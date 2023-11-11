@@ -14,7 +14,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.Base64;
+import org.signal.core.util.Base64;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
@@ -51,14 +51,14 @@ public final class MessageGroupContext {
   }
 
   public MessageGroupContext(@NonNull GroupContext group) {
-    this.encodedGroupContext = Base64.encodeBytes(group.encode());
+    this.encodedGroupContext = Base64.encodeWithPadding(group.encode());
     this.groupV1             = new GroupV1Properties(group);
     this.groupV2             = null;
     this.group               = groupV1;
   }
 
   public MessageGroupContext(@NonNull DecryptedGroupV2Context group) {
-    this.encodedGroupContext = Base64.encodeBytes(group.encode());
+    this.encodedGroupContext = Base64.encodeWithPadding(group.encode());
     this.groupV1             = null;
     this.groupV2             = new GroupV2Properties(group);
     this.group               = groupV2;

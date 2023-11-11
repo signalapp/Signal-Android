@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.components.settings.app.internal
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import io.reactivex.rxjava3.core.Observable
 import org.signal.ringrtc.CallManager
 import org.thoughtcrime.securesms.jobs.StoryOnboardingDownloadJob
 import org.thoughtcrime.securesms.keyvalue.InternalValues
@@ -19,6 +20,14 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
   init {
     repository.getEmojiVersionInfo { version ->
       store.update { it.copy(emojiVersion = version) }
+    }
+
+    val pendingOneTimeDonation: Observable<Boolean> = SignalStore.donationsValues().observablePendingOneTimeDonation
+      .distinctUntilChanged()
+      .map { it.isPresent }
+
+    store.update(pendingOneTimeDonation) { pending, state ->
+      state.copy(hasPendingOneTimeDonation = pending)
     }
   }
 
@@ -136,7 +145,8 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     disableStorageService = SignalStore.internalValues().storageServiceDisabled(),
     canClearOnboardingState = SignalStore.storyValues().hasDownloadedOnboardingStory && Stories.isFeatureEnabled(),
     pnpInitialized = SignalStore.misc().hasPniInitializedDevices(),
-    useConversationItemV2ForMedia = SignalStore.internalValues().useConversationItemV2Media()
+    useConversationItemV2ForMedia = SignalStore.internalValues().useConversationItemV2Media(),
+    hasPendingOneTimeDonation = SignalStore.donationsValues().getPendingOneTimeDonation() != null
   )
 
   fun onClearOnboardingState() {

@@ -15,6 +15,8 @@
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
   <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/5389476324250</string> -->
   <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="pending_transfer_url" translatable="false">https://support.signal.org/hc/articles/360031949872#pending</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string> -->
 
     <string name="yes">അതെ/ഉവ്വ്</string>
     <string name="no">അല്ല/ഇല്ല</string>
@@ -119,11 +121,8 @@
     <string name="BlockedUsersActivity__block">ബ്ലോക്ക് ചെയ്യുക</string>
 
     <!-- CreditCardFragment -->
-    <!-- Title of fragment detailing the donation amount for one-time donation, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__donation_amount_s">സംഭാവനാ തുക: %1$s</string>
-    <!-- Title of fragment detailing the donation amount for monthly donation, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__donation_amount_s_per_month">സംഭാവനാ തുക: %1$s/മാസം</string>
-    <!-- Explanation of how to fill in the form, displayed above the credit card text fields -->
+    <!-- Title of fragment -->
+    <string name="CreditCardFragment__credit_or_debit_card">ക്രെഡിറ്റ് കാർഡ് അല്ലെങ്കിൽ ഡെബിറ്റ് കാർഡ്</string>
     <!-- Explanation of how to fill in the form and a note about pii, displayed above the credit card text fields -->
     <string name="CreditCardFragment__enter_your_card_details">നിങ്ങളുടെ കാർഡ് വിശദാംശങ്ങൾ നൽകുക. Signal നിങ്ങളുടെ വ്യക്തിപരമായ വിവരങ്ങൾ ശേഖരിക്കുകയോ സംഭരിക്കുകയോ ചെയ്യുന്നില്ല.</string>
     <!-- Displayed as a hint in the card number text field -->
@@ -148,8 +147,18 @@
     <string name="CreditCardFragment__year_required">വർഷം ആവശ്യമാണ്</string>
     <!-- Error displayed under the card expiry text field when the expiry year is invalid -->
     <string name="CreditCardFragment__invalid_year">വർഷം തെറ്റാണ്</string>
-    <!-- Button label to confirm credit card input and proceed with payment -->
-    <string name="CreditCardFragment__continue">തുടരുക</string>
+    <!-- Button label to confirm credit card input and proceed with one-time payment -->
+    <string name="CreditCardFragment__donate_s">%1$s -ന് സംഭാവന നൽകുക</string>
+    <!-- Button label to confirm credit card input and proceed with subscription payment -->
+    <string name="CreditCardFragment__donate_s_month">%1$s/മാസം സംഭാവന നൽകുക</string>
+
+    <!-- OneTimeDonationPreference -->
+    <!-- Preference title with placeholder for amount. -->
+    <string name="OneTimeDonationPreference__one_time_s">ഒറ്റത്തവണ %1$s</string>
+    <!-- Preference subtitle when donation is pending -->
+    <string name="OneTimeDonationPreference__donation_pending">സംഭാവന തീർപ്പാക്കപ്പെട്ടിട്ടില്ല</string>
+    <!-- Preference subtitle when donation is processing -->
+    <string name="OneTimeDonationPreference__donation_processing">സംഭാവന പ്രോസസ് ചെയ്യുന്നു</string>
 
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">%1$s എന്നത് ബ്ലോക്ക് ചെയ്ത ശേഷം പുറത്തുപോകണോ?</string>
@@ -634,6 +643,8 @@
     <!-- Show percentage of completion of backup -->
     <string name="BackupsPreferenceFragment__s_so_far">%1$s%% ഇതുവരെ…</string>
     <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">ബാക്കപ്പുകൾ സൃഷ്ടിക്കുന്നതിന് Signal-ന് ബാഹ്യ സ്റ്റോറജ് ​​അനുമതി ആവശ്യമാണ്, പക്ഷേ ഇത് ശാശ്വതമായി നിരസിക്കപ്പെട്ടു. അപ്ലിക്കേഷൻ ക്രമീകരണങ്ങളിലേക്കു പോയി , \"അനുമതികൾ\" തിരഞ്ഞെടുത്ത് \"സ്റ്റോറജ്\" ഉപയോഗാനുമതി നൽകുക .</string>
+    <!-- Title of dialog shown when picking the time to perform a chat backup -->
+    <string name="BackupsPreferenceFragment__set_backup_time">ബാക്കപ്പ് സമയം സജ്ജീകരിക്കുക</string>
 
 
     <!-- CustomDefaultPreference -->
@@ -980,12 +991,15 @@
     <string name="ManageProfileFragment_profile_name">പ്രൊഫൈലിന്റെ പേര്</string>
     <string name="ManageProfileFragment_username">ഉപയോക്തൃനാമം</string>
     <string name="ManageProfileFragment_about">എന്നെ പറ്റി</string>
-    <string name="ManageProfileFragment_write_a_few_words_about_yourself">നിങ്ങളെ പറ്റി രണ്ടുവാക്ക് എഴുതൂ</string>
-    <string name="ManageProfileFragment_your_name">നിങ്ങളുടെ പേര്</string>
-    <string name="ManageProfileFragment_your_username">നിങ്ങളുടെ ഉപയോക്തൃനാമം</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">അവതാർ സജ്ജമാക്കാന്‍ കഴിഞ്ഞില്ല</string>
     <string name="ManageProfileFragment_badges">ബാഡ്‌ജുകള്‍</string>
+    <!-- Text for a button that will take the user to the screen to manage their username link and QR code -->
+    <string name="ManageProfileFragment_link_setting_text">QR കോഡ് അല്ലെങ്കിൽ ലിങ്ക്</string>
     <string name="ManageProfileFragment__edit_photo">ഫോട്ടോ എഡിറ്റ് ചെയ്യുക</string>
+    <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
+    <string name="ManageProfileFragment__link_tooltip_title">നിങ്ങളുടെ ഉപയോക്തൃനാമം പങ്കിടുക</string>
+    <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
+    <string name="ManageProfileFragment__link_tooltip_body">നിങ്ങളുടെ തനതായ QR കോഡ് അല്ലെങ്കിൽ ലിങ്ക് പങ്കിട്ട് നിങ്ങളുമായി ചാറ്റ് തുടങ്ങാൻ മറ്റുള്ളവരെ അനുവദിക്കുക.</string>
     <!-- Snackbar message after creating username -->
     <string name="ManageProfileFragment__username_created">ഉപയോക്തൃനാമം സൃഷ്‌ടിച്ചു</string>
     <!-- Snackbar message after copying username -->
@@ -994,10 +1008,16 @@
     <string name="ManageProfileFragment__couldnt_delete_username">ഉപയോക്തൃനാമം ഇല്ലാതാക്കാനായില്ല. പിന്നീട് വീണ്ടും ശ്രമിക്കുക.</string>
     <!-- Snackbar message after successful deletion of username -->
     <string name="ManageProfileFragment__username_deleted">ഉപയോക്തൃനാമം ഇല്ലാതാക്കി</string>
+    <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
+    <string name="ManageProfileFragment__delete_username_dialog_title">Delete username?</string>
+    <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
+    <string name="ManageProfileFragment__delete_username_dialog_body">"This will remove your username and disable your QR code and link. %1$s will be available for others to claim. Are you sure?"</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
-    <string name="UsernameOutOfSyncReminder__something_went_wrong">നിങ്ങളുടെ ഉപയോക്തൃനാമവുമായി ബന്ധപ്പെട്ട് എന്തോ പിശകുണ്ടായി, ഇത് നിങ്ങളുടെ അക്കൗണ്ടിലേക്ക് അസൈൻ ചെയ്തിട്ടില്ല. നിങ്ങൾക്കത് വീണ്ടും സജ്ജമാക്കാൻ ശ്രമിക്കാം അല്ലെങ്കിൽ പുതിയൊരെണ്ണം തിരഞ്ഞെടുക്കാം.</string>
+    <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">നിങ്ങളുടെ ഉപയോക്തൃനാമവുമായി ബന്ധപ്പെട്ട് എന്തോ പിശകുണ്ടായി, ഇത് നിങ്ങളുടെ അക്കൗണ്ടിലേക്ക് അസൈൻ ചെയ്തിട്ടില്ല. നിങ്ങൾക്കത് വീണ്ടും സജ്ജമാക്കാൻ ശ്രമിക്കാം അല്ലെങ്കിൽ പുതിയൊരെണ്ണം തിരഞ്ഞെടുക്കാം.</string>
+    <!-- Displayed above the conversation list when a user needs to address an issue with their username link -->
+    <string name="UsernameOutOfSyncReminder__link_corrupt">Something went wrong with your QR code and username link, it’s no longer valid. Create a new link to share with others.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
     <string name="UsernameOutOfSyncReminder__fix_now">ഇപ്പോൾ പരിഹരിക്കുക</string>
 
@@ -2088,9 +2108,13 @@
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">%1$s %2$s എന്നയാളുടെ നമ്പറാണ്</string>
 
-    <!-- UpdateApkReadyListener -->
-    <string name="UpdateApkReadyListener_Signal_update">Signal അപ്‌ഡേറ്റ്</string>
-    <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal-ന്റെ ഒരു പുതിയ പതിപ്പ് ലഭ്യമാണ്, അപ്‌ഡേറ്റ് ചെയ്യാൻ തൊടുക</string>
+    <!-- ApkUpdateNotifications -->
+    <string name="ApkUpdateNotifications_prompt_install_title">Signal അപ്‌ഡേറ്റ്</string>
+    <string name="ApkUpdateNotifications_prompt_install_body">Signal-ന്റെ ഒരു പുതിയ പതിപ്പ് ലഭ്യമാണ്. അപ്ഡേറ്റ് ചെയ്യാൻ ടാപ്പ് ചെയ്യുക.</string>
+    <string name="ApkUpdateNotifications_failed_general_title">Signal അപ്ഡേറ്റ് ചെയ്യാനായില്ല</string>
+    <string name="ApkUpdateNotifications_failed_general_body">ഞങ്ങൾ പിന്നീട് വീണ്ടും ശ്രമിക്കും.</string>
+    <string name="ApkUpdateNotifications_auto_update_success_title">Signal അപ്ഡേറ്റ് ആയി</string>
+    <string name="ApkUpdateNotifications_auto_update_success_body">%1$s പതിപ്പിലേക്ക് ഓട്ടോമാറ്റിക്കായി അപ്ഡേറ്റ് ആയി.</string>
 
     <!-- UntrustedSendDialog -->
     <string name="UntrustedSendDialog_send_message">സന്ദേശം അയക്കണോ?</string>
@@ -2698,24 +2722,13 @@
 
     <!-- verify_display_fragment -->
     <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
-    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">%1$s എന്നയാളുമായി ആദ്യാവസാനം എൻക്രിപ്റ്റ് ചെയ്യൽ പരിശോധിച്ചുറപ്പിക്കാൻ, അവരുടെ ഉപകരണവുമായി മുകളിലുള്ള കളർ കാർഡ് പൊരുത്തപ്പെടുത്തുകയും അക്കങ്ങൾ താരതമ്യം ചെയ്യുകയും ചെയ്യൂ. ഇത് പൊരുത്തപ്പെടുന്നില്ലെങ്കിൽ, സ്വൈപ്പ് ചെയ്‌ത് സുരക്ഷാ നമ്പറുകളുടെ മറ്റൊരു പെയർ പരീക്ഷിച്ചു നോക്കുക. ഒരു പെയർ പൊരുത്തപ്പെട്ടാൽ മതി.</string>
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">%1$s എന്നയാളുമായി ആദ്യവസാനം എൻക്രിപ്റ്റ് ചെയ്യൽ പരിശോധിച്ചുറപ്പിക്കാൻ അവരുടെ ഉപകരണവുമായി മുകളിലുള്ള അക്കങ്ങൾ താരതമ്യം ചെയ്യുക. നിങ്ങൾക്ക് അവരുടെ ഉപകരണത്തിലെ കോഡ് സ്കാൻ ചെയ്യാനും കഴിയും.</string>
     <string name="verify_display_fragment__tap_to_scan">സ്കാൻ ചെയ്യാൻ തൊടുക</string>
     <string name="verify_display_fragment__successful_match">വിജയകരമായ ചേര്‍ച്ച</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">സുരക്ഷാ നമ്പർ പരിശോധിക്കുന്നതിൽ പരാജയപ്പെട്ടു</string>
     <string name="verify_display_fragment__loading">ലഭ്യമാക്കുന്നു</string>
     <string name="verify_display_fragment__mark_as_verified">പരിശോധിച്ചതായി അടയാളപ്പെടുത്തുക</string>
     <string name="verify_display_fragment__clear_verification">പരിശോധന പൂർത്തിയാക്കുക</string>
-    <!-- Banner at top of safety numbers screen explaining that we\'re updating how safety numbers work. -->
-    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">സുരക്ഷാ നമ്പറുകൾ അപ്ഡേറ്റ് ചെയ്യുകയാണ്.</string>
-
-    <!-- Title for dialog explaining for how safety numbers are transitioning to support usernames -->
-    <string name="PnpSafetyNumberEducationDialog__title">സുരക്ഷാ നമ്പറുകളിലെ മാറ്റങ്ങൾ</string>
-    <!-- Message for dialog explaining for how safety numbers are transitioning to support usernames -->
-    <string name="PnpSafetyNumberEducationDialog__body">Signal-ൽ വരാനിരിക്കുന്ന സ്വകാര്യതാ നയങ്ങൾ പ്രവർത്തനക്ഷമമാക്കാൻ സുരക്ഷാ നമ്പറുകൾ കാലാനുസൃതമായി അപ്ഡേറ്റ് ചെയ്യുന്നു.\n\nസുരക്ഷാ നമ്പറുകൾ പരിശോധിച്ചുറപ്പിക്കാൻ, നിങ്ങളുടെ കോൺടാക്റ്റിന്റെ ഉപകരണവുമായി കളർ കാർഡ് പൊരുത്തപ്പെടുത്തുക. ഇത് പൊരുത്തപ്പെടുന്നില്ലെങ്കിൽ, സ്വൈപ്പ് ചെയ്‌ത് സുരക്ഷാ നമ്പറുകളുടെ മറ്റൊരു പെയർ പരീക്ഷിച്ചു നോക്കുക. ഒരു പെയർ പൊരുത്തപ്പെട്ടാൽ മതി.</string>
-    <!-- Button for more information about the safety number changes. Takes user to support article -->
-    <string name="PnpSafetyNumberEducationDialog__help">സഹായം ആവശ്യമുണ്ടോ?</string>
-    <!-- Confirmation button for educating users about new safety number changes -->
-    <string name="PnpSafetyNumberEducationDialog__confirm">മനസ്സിലായി</string>
 
     <!-- verity_scan_fragment -->
     <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">നിങ്ങളുടെ കോൺടാക്ടിൻ്റെ ഡിവൈസിലുള്ള QR കോഡ് സ്കാൻ ചെയ്യുക.</string>
@@ -3011,6 +3024,7 @@
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">പേയ്മെന്റുകൾ</string>
     <string name="preferences_chats__chats">ചാറ്റുകൾ</string>
+    <string name="preferences_app_updates__title">അപ്ലിക്കേഷൻ അപ്‌ഡേറ്റുകൾ</string>
     <string name="preferences_data_and_storage__manage_storage">സ്റ്റോറേജ് ക്രമീകരിക്കുക</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">കോളുകള്ക്ക് കുറഞ്ഞ ഡാറ്റ ഉപയോഗിക്കുക</string>
     <string name="preferences_data_and_storage__never">ഒരിക്കലും വേണ്ട</string>
@@ -4562,6 +4576,8 @@
     <string name="NewConversationActivity__view_contact">കോൺടാക്റ്റ് കാണുക</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
     <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s ഒരു Signal ഉപയോക്താവല്ല</string>
+    <!-- Error message shown when we could not get a user from the username link -->
+    <string name="NewConversationActivity__">%1$s ഒരു Signal ഉപയോക്താവല്ല</string>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">പേര് അല്ലെങ്കിൽ നമ്പർ തിരയുക</string>
@@ -4747,6 +4763,12 @@
     <string name="ManageDonationsFragment__other_ways_to_give">സംഭാവന നൽകാനുള്ള മറ്റ് മാർഗ്ഗങ്ങൾ</string>
     <!-- Preference label to launch badge gifting -->
     <string name="ManageDonationsFragment__donate_for_a_friend">ഒരു സുഹൃത്തിന് വേണ്ടി സംഭാവന ചെയ്യുക</string>
+    <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
+    <string name="ManageDonationsFragment__couldnt_confirm_donation">Couldn\'t confirm donation</string>
+    <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
+    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">Your %1$s/month donation couldn\'t be confirmed. Check your banking app to approve your iDEAL payment.</string>
+    <!-- Dialog message shown when a one-time donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
+    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">Your one-time %1$s donation couldn\'t be confirmed. Check your banking app to approve your iDEAL payment.</string>
 
     <string name="Boost__enter_custom_amount">ഇഷ്‌ടാനുസൃത തുക നൽകുക</string>
     <!-- Error label when the amount is smaller than what we can accept -->
@@ -4758,6 +4780,12 @@
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">ബാഡ്‌ജ് ചേർക്കാനായില്ല. %1$s</string>
     <string name="MySupportPreference__please_contact_support">ദയവായി പിന്തുണയുമായി ബന്ധപ്പെടുക.</string>
+    <!-- Displayed as a subtitle on a row in the Manage Donations screen when payment for a donation is pending -->
+    <string name="MySupportPreference__payment_pending">പേയ്മെന്റ് തീർപ്പാക്കപ്പെട്ടിട്ടില്ല</string>
+    <!-- Displayed as a dialog message when clicking on a donation row that is pending. Placeholder is a formatted fiat amount -->
+    <string name="MySupportPreference__your_bank_transfer_of_s">നിങ്ങളുടെ %1$s തുകയുടെ ബാങ്ക് ട്രാൻസ്ഫർ തീർപ്പാക്കിയിട്ടില്ല. ബാങ്ക് ട്രാൻസ്ഫറുകൾ പൂർത്തിയാക്കാൻ സാധാരണയായി 1 പ്രവൃത്തി ദിവസം എടുക്കും.  </string>
+    <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
+    <string name="MySupportPreference__learn_more">കൂടുതലറിയുക</string>
 
     <!-- Title of dialog telling user they need to update signal as it expired -->
     <string name="UpdateSignalExpiredDialog__title">Signal അപ്ഡേറ്റ് ചെയ്യുക</string>
@@ -4807,12 +4835,16 @@
     <string name="Subscription__contact_support">പിന്തുണയുമായി ബന്ധപ്പെടുക</string>
     <string name="Subscription__get_a_s_badge">%1$s ബാഡ്‌ജ് നേടൂ</string>
 
-    <string name="SubscribeFragment__processing_payment">പേയ്‌മെന്റ് പ്രോസസ്സ് ചെയ്യുന്നു…</string>
+    <string name="SubscribeFragment__processing_payment">Processing donation…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
-    <string name="DonationsErrors__error_processing_payment">പേയ്‌മെന്റ് പ്രോസസ്സ് ചെയ്യുന്നതിൽ പിശക്.</string>
+    <string name="DonationsErrors__error_processing_payment">Error processing donation</string>
+    <!-- Displayed on manage donations screen as a dialog message when payment method failed -->
+    <string name="DonationsErrors__try_another_payment_method">മറ്റൊരു പേയ്‌മെന്റ് രീതി പരീക്ഷിക്കുക അല്ലെങ്കിൽ കൂടുതൽ വിവരങ്ങൾക്ക് നിങ്ങളുടെ ബാങ്കുമായി ബന്ധപ്പെടുക.</string>
+    <!-- Displayed on manage donations screen error dialogs as an action label -->
+    <string name="DonationsErrors__learn_more">കൂടുതലറിയുക</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
-    <string name="DonationsErrors__error_processing_payment_s">പേയ്‌മെന്റ് പ്രോസസ്സ് ചെയ്യുന്നതിൽ പിശക്. %1$s</string>
-    <string name="DonationsErrors__your_payment">നിങ്ങളുടെ പേയ്‌മെന്റ് പ്രോസസ്സ് ചെയ്യാനായില്ല, നിങ്ങളിൽ നിന്ന് നിരക്ക് ഈടാക്കിയിട്ടില്ല. വീണ്ടും ശ്രമിക്കുക.‌</string>
+    <string name="DonationsErrors__error_processing_payment_s">Error processing donation. %1$s</string>
+    <string name="DonationsErrors__your_payment">Your donation couldn\'t be processed and you have not been charged. Please try again.</string>
     <string name="DonationsErrors__still_processing">പ്രോസസ്സ് ചെയ്യുന്നു</string>
     <string name="DonationsErrors__couldnt_add_badge">ബാഡ്‌ജ് ചേർക്കാനായില്ല</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -4822,9 +4854,9 @@
     <!-- Displayed as title when some generic error happens during sending donation on behalf of another user -->
     <string name="DonationsErrors__donation_failed">സംഭാവന പരാജയപ്പെട്ടു</string>
     <!-- Displayed as message when some generic error happens during sending donation on behalf of another user -->
-    <string name="DonationsErrors__your_payment_was_processed_but">നിങ്ങളുടെ പേയ്‌മെന്റ് പ്രോസസ്സ് ചെയ്തു, പക്ഷേ Signal-ന് നിങ്ങളുടെ സംഭാവന സന്ദേശം അയയ്‌ക്കാൻ കഴിഞ്ഞില്ല. ദയവായി പിന്തുണയുമായി ബന്ധപ്പെടുക.</string>
+    <string name="DonationsErrors__your_payment_was_processed_but">Your donation was processed but Signal could not send your donation message. Please contact support.</string>
     <string name="DonationsErrors__your_badge_could_not">നിങ്ങളുടെ അക്കൗണ്ടിലേക്ക് നിങ്ങളുടെ ബാഡ്‌ജ് ചേർക്കാൻ കഴിഞ്ഞില്ല, എന്നാൽ നിങ്ങളിൽ നിന്ന് നിരക്ക് ഈടാക്കിയിരിക്കാം. പിന്തുണയുമായി ബന്ധപ്പെടുക.</string>
-    <string name="DonationsErrors__your_payment_is_still">നിങ്ങളുടെ പേയ്‌മെന്റ് ഇപ്പോഴും പ്രോസസ്സ് ചെയ്യുകയാണ്. നിങ്ങളുടെ കണക്ഷനെ ആശ്രയിച്ച് ഇതിന് കുറച്ച് മിനിറ്റുകൾ എടുത്തേക്കാം.</string>
+    <string name="DonationsErrors__your_payment_is_still">Your donation is still being processed. This can take a few minutes depending on your connection.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">സബ്‍സ്ക്രിപ്ഷൻ റദ്ദാക്കാൻ കഴിഞ്ഞില്ല</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">സബ്‍സ്ക്രിപ്ഷൻ റദ്ദാക്കുന്നതിന് ഇന്റർനെറ്റ് കണക്ഷൻ ആവശ്യമാണ്.</string>
     <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">നിങ്ങളുടെ ഉപകരണം Google Pay പിന്തുണയ്‌ക്കാത്തതിനാൽ ഒരു ബാഡ്‌ജ് നേടാൻ നിങ്ങൾക്ക് സബ്‌സ്‌ക്രൈബ് ചെയ്യാനാകില്ല. ഞങ്ങളുടെ വെബ്‌സൈറ്റിൽ സംഭാവന നൽകിക്കൊണ്ട് നിങ്ങൾക്ക് ഇപ്പോഴും Signal-നെ പിന്തുണയ്ക്കാം.</string>
@@ -4836,6 +4868,8 @@
     <string name="DonationsErrors__this_user_cant_receive_donations_until">ഈ ഉപയോക്താവിന് അവര്‍ Signal അപ്ഗ്രേഡ് ചെയ്യുന്നത് വരെ സംഭാവനകൾ സ്വീകരിക്കാൻ കഴിയില്ല.</string>
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__your_donation_could_not_be_sent">ഒരു നെറ്റ്‌വർക്ക് പിശക് കാരണം നിങ്ങളുടെ സംഭാവന അയയ്‌ക്കാൻ കഴിഞ്ഞില്ല. നിങ്ങളുടെ കണക്ഷൻ പരിശോധിച്ച ശേഷം വീണ്ടും ശ്രമിക്കുക.</string>
+    <!-- Displayed as a dialog message when the user encounters an error during an iDEAL donation -->
+    <string name="DonationsErrors__your_ideal_couldnt_be_processed">Your iDEAL donation couldn\'t be processed. Try another payment method or contact your bank for more information.</string>
 
     <!-- Gift message view title -->
     <string name="GiftMessageView__donation_on_behalf_of_s">%1$s എന്നയാളുടെ പേരിലുള്ള സംഭാവന</string>
@@ -4880,7 +4914,7 @@
     <!-- Stripe decline code incorrect expiration year -->
     <string name="DeclineCode__the_expiration_year">നിങ്ങളുടെ പേയ്‌മെന്റ് രീതിയുടെ കാലഹരണപ്പെടുന്ന വർഷം തെറ്റാണ്. അത് Google Pay-യിൽ പുതുക്കിയ ശേ‍ഷം വീണ്ടും ശ്രമിക്കുക.</string>
     <!-- Stripe decline code issuer not available -->
-    <string name="DeclineCode__try_completing_the_payment_again">പേയ്‌മെന്റ് വീണ്ടും പൂർത്തിയാക്കാൻ ശ്രമിക്കുക അല്ലെങ്കിൽ കൂടുതൽ വിവരങ്ങൾക്ക് നിങ്ങളുടെ ബാങ്കുമായി ബന്ധപ്പെടുക.</string>
+    <string name="DeclineCode__try_completing_the_payment_again">Try completing the donation again or contact your bank for more information.</string>
     <!-- Stripe decline code processing error -->
     <string name="DeclineCode__try_again">വീണ്ടും ശ്രമിക്കുക അല്ലെങ്കിൽ കൂടുതൽ വിവരങ്ങൾക്ക് നിങ്ങളുടെ ബാങ്കുമായി ബന്ധപ്പെടുക.</string>
 
@@ -4899,6 +4933,18 @@
     <string name="DeclineCode__the_expiration_year_on_your_card_is_incorrect">നിങ്ങളുടെ കാർഡിലെ കാലഹരണപ്പെടുന്ന വർഷം തെറ്റാണ്. നിങ്ങളുടെ കാർഡ് വിശദാംശങ്ങൾ ശരിയാണെന്ന് പരിശോധിച്ചുറപ്പിച്ച ശേഷം വീണ്ടും ശ്രമിക്കുക.</string>
     <!-- Stripe decline code incorrect_number and invalid_number for credit cards displayed in a notification or dialog -->
     <string name="DeclineCode__your_card_number_is_incorrect_verify_your_card_details">നിങ്ങളുടെ കാർഡ് നമ്പർ തെറ്റാണ്. നിങ്ങളുടെ കാർഡ് വിശദാംശങ്ങൾ ശരിയാണെന്ന് പരിശോധിച്ചുറപ്പിച്ച ശേഷം വീണ്ടും ശ്രമിക്കുക.</string>
+
+    <!-- Stripe Failure Codes for failed bank transfers -->
+    <!-- Failure code text for insufficient funds, displayed in a dialog or notification -->
+    <string name="StripeFailureCode__the_bank_account_provided">ഈ വാങ്ങൽ പൂർത്തിയാക്കാനുള്ള ഫണ്ട് നിങ്ങളുടെ ബാങ്ക് അക്കൗണ്ടിൽ ഇല്ല, വീണ്ടും ശ്രമിക്കുക അല്ലെങ്കിൽ കൂടുതൽ വിവരങ്ങൾക്ക് നിങ്ങളുടെ ബാങ്കുമായി ബന്ധപ്പെടുക.</string>
+    <!-- Failure code text for revoked authorization of payment, displayed in a dialog or notification -->
+    <string name="StripeFailureCode__this_payment_was_revoked">This donation was revoked by the account holder and could not be processed. You haven\'t been charged.</string>
+    <!-- Failure code text for a payment lacking an authorized mandate or incorrect mandate, displayed in a dialog or notification -->
+    <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">An error occurred while processing this donation, please try again.</string>
+    <!-- Failure code text for a closed account, deceased recipient, or one with blocked direct debits, displayed in a dialog or notification -->
+    <string name="StripeFailureCode__the_bank_details_provided_could_not_be_processed">നൽകിയ ബാങ്ക് വിവരങ്ങൾ പ്രോസസ് ചെയ്യാനായില്ല, കൂടുതൽ വിവരങ്ങൾക്ക് നിങ്ങളുടെ ബാങ്കിനെ ബന്ധപ്പെടുക.</string>
+    <!-- Failure code text for a non-existent bank branch, invalid account holder, invalid iban, generic failure, or unknown bank failure, displayed in a dialog or notification -->
+    <string name="StripeFailureCode__verify_your_bank_details_are_correct">നിങ്ങളുടെ ബാങ്ക് വിശദാംശങ്ങൾ ശരിയാണെന്ന് പരിശോധിച്ചുറപ്പിച്ച ശേഷം വീണ്ടും ശ്രമിക്കുക. പ്രശ്നം തുടരുകയാണെങ്കിൽ, നിങ്ങളുടെ ബാങ്കുമായി ബന്ധപ്പെടുക.</string>
 
     <!-- Title of create notification profile screen -->
     <string name="EditNotificationProfileFragment__name_your_profile">പ്രൊഫൈലിന് പേര് നൽകുക</string>
@@ -5548,7 +5594,10 @@
     <!-- Message of safety number changes bottom sheet when not showing individual records and user has seen review screen -->
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">എല്ലാ കണക്ഷനുകളും അവലോകനം ചെയ്‌തു, തുടരുന്നതിന് അയയ്ക്കുക എന്നതിൽ ടാപ്പ് ചെയ്യുക.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
-    <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Signal വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്യുകയോ ഉപകരണങ്ങൾ മാറുകയോ ചെയ്‌തിട്ടുണ്ടാകാവുന്ന %1$d കണക്ഷനുകൾ നിങ്ങൾക്കുണ്ട്. നിങ്ങളുടെ സ്റ്റോറി അവരുമായി പങ്കിടുന്നതിന് മുമ്പ് അവരുടെ സുരക്ഷാ നമ്പറുകൾ അവലോകനം ചെയ്യുകയോ അവരെ നിങ്ങളുടെ സ്റ്റോറിയിൽ നിന്ന് നീക്കം ചെയ്യുന്നതിനെ കുറിച്ച് ചിന്തിക്കുകയോ ചെയ്യുക.</string>
+    <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
+        <item quantity="one">Signal വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്യുകയോ ഉപകരണങ്ങൾ മാറ്റുകയോ ചെയ്‌തിട്ടുണ്ടാകാവുന്ന %1$d കണക്ഷൻ നിങ്ങൾക്ക് ഉണ്ട്. നിങ്ങൾക്ക് അവരുടെ സുരക്ഷാ നമ്പറുകൾ ഓപ്ഷണലായി അവലോകനം ചെയ്യാം.</item>
+        <item quantity="other">Signal വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്യുകയോ ഉപകരണങ്ങൾ മാറുകയോ ചെയ്‌തിട്ടുണ്ടാകാവുന്ന %1$d കണക്ഷനുകൾ നിങ്ങൾക്കുണ്ട്. നിങ്ങളുടെ സ്റ്റോറി അവരുമായി പങ്കിടുന്നതിന് മുമ്പ് അവരുടെ സുരക്ഷാ നമ്പറുകൾ അവലോകനം ചെയ്യുകയോ അവരെ നിങ്ങളുടെ സ്റ്റോറിയിൽ നിന്ന് നീക്കം ചെയ്യുന്നതിനെ കുറിച്ച് ചിന്തിക്കുകയോ ചെയ്യുക.</item>
+    </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">സുരക്ഷാ നമ്പർ ഉറപ്പാക്കു</string>
     <!-- Menu action to remove user from story -->
@@ -5791,6 +5840,23 @@
     <string name="DonateToSignalFragment__continue">തുടരുക</string>
     <!-- Description below title -->
     <string name="DonateToSignalFragment__private_messaging">സ്വകാര്യ സന്ദേശമയയ്‌ക്കൽ, നിങ്ങളുടെ ധനസഹായത്തിൽ. പരസ്യങ്ങളില്ല, ട്രാക്കിംഗില്ല, വിട്ടുവീഴ്‌ചയില്ല. Signal-നെ പിന്തുണയ്ക്കാൻ ഇപ്പോൾ സംഭാവന നൽകൂ.</string>
+    <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
+    <string name="DonateToSignalFragment__you_have_a_donation_pending">നിങ്ങൾക്ക് തീർപ്പാക്കാത്ത ഒരു സംഭാവനയുണ്ട്</string>
+    <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">ബാങ്ക് ട്രാൻസ്ഫറുകൾ പ്രോസസ്സ് ചെയ്യുന്നതിന് സാധാരണയായി 1 പ്രവൃത്തി ദിവസമെടുക്കും. നിങ്ങളുടെ സബ്‌സ്‌ക്രിപ്‌ഷൻ അപ്‌ഡേറ്റ് ചെയ്യുന്നതിന് മുമ്പ്, ഈ പേയ്‌മെന്റ് പൂർത്തിയാകുന്നത് വരെ കാത്തിരിക്കുക.</string>
+    <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">ബാങ്ക് ട്രാൻസ്ഫറുകൾ പ്രോസസ്സ് ചെയ്യുന്നതിന് സാധാരണയായി 1 പ്രവൃത്തി ദിവസമെടുക്കും. മറ്റൊരു സംഭാവന നൽകുന്നതിന് മുമ്പ്, ഈ പേയ്‌മെന്റ് പൂർത്തിയാകുന്നതുവരെ കാത്തിരിക്കുക.</string>
+    <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Your donation is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before updating your subscription.</string>
+    <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Your donation is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before making another donation.</string>
+    <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
+    <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">Your iDEAL donation is still processing. Check your banking app to approve your payment before making another donation.</string>
+    <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
+    <string name="DonateToSignal__donation_amount_too_high">Donation amount too high</string>
+    <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
+    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">You can send up to %1$s via bank transfer. Try a different amount or a different payment method.</string>
+
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">പ്രതിമാസം</string>
     <!-- Donation pill toggle one-time text -->
@@ -5814,6 +5880,40 @@
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">ക്രെഡിറ്റ് കാർഡ് അല്ലെങ്കിൽ ഡെബിറ്റ് കാർഡ്</string>
     <!-- Sheet summary when giving donating for a friend -->
     <string name="GatewaySelectorBottomSheet__donate_for_a_friend">ഒരു സുഹൃത്തിന് വേണ്ടി സംഭാവന ചെയ്യുക</string>
+    <!-- Button label for paying with iDEAL -->
+    <string name="GatewaySelectorBottomSheet__ideal">iDEAL</string>
+
+    <!-- Dialog title for launching external intent -->
+    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Leave Signal to confirm donation?</string>
+    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">When confirmed, return to Signal to finish processing your donation.</string>
+
+    <!-- IdealBank -->
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__abn_amro">ABN AMRO</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__asn_bank">ASN Bank</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__bunq">bunq</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__ing">ING</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__knab">Knab</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__n26">N26</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__rabobank">Rabobank</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__regiobank">RegioBank</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__revolut">Revolut</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__sns_bank">SNS Bank</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__triodos_bank">Triodos Bank</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__van_lanschot">Van Lanschot Kempen</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__yoursafe">Yoursafe</string>
 
     <!-- BankTransferMandateFragment -->
     <!-- Title of screen displaying the bank transfer mandate -->
@@ -5823,11 +5923,15 @@
     <!-- Subtitle learn more of screen displaying bank transfer mandate -->
     <string name="BankTransferMandateFragment__learn_more">കൂടുതലറിയുക</string>
     <!-- Button label to continue with transfer -->
-    <string name="BankTransferMandateFragment__continue">തുടരുക</string>
+    <string name="BankTransferMandateFragment__agree">Agree</string>
+    <!-- Button label to read more of the bank mandate that is currently off screen -->
+    <string name="BankTransferMandateFragment__read_more">കൂടുതൽ വായിക്കുക</string>
+    <!-- Text displayed when mandate load fails -->
+    <string name="BankTransferMandateFragment__failed_to_load_mandate">അഭ്യർത്ഥന ലോഡ് ചെയ്യാനായില്ല</string>
 
     <!-- BankTransferDetailsFragment -->
     <!-- Subtext explaining how email is used. Placeholder is \'Learn more\' -->
-    <string name="BankTransferDetailsFragment__enter_your_bank_details">നിങ്ങളുടെ ബാങ്ക് വിവരങ്ങളും ഇമെയിൽ വിലാസവും നൽകുക. നിങ്ങളുടെ സംഭാവനയേക്കുറിച്ചുള്ള അപ്ഡേറ്റുകൾ നിങ്ങൾക്ക് അയയ്ക്കാൻ Stripe നിങ്ങളുടെ ഇമെയിൽ വിലാസം ഉപയോഗിക്കുന്നു. %1$s</string>
+    <string name="BankTransferDetailsFragment__enter_your_bank_details">Enter your bank details and email. Stripe uses this email to send you updates about your donation. %1$s</string>
     <!-- Subtext learn more link text -->
     <string name="BankTransferDetailsFragment__learn_more">കൂടുതലറിയുക</string>
     <!-- Text field label for name on bank account -->
@@ -5836,20 +5940,72 @@
     <string name="BankTransferDetailsFragment__iban">IBAN</string>
     <!-- Text field label for email -->
     <string name="BankTransferDetailsFragment__email">ഇമെയിൽ</string>
-    <!-- Text label for button to show user how to find their IBAN number -->
-    <string name="BankTransferDetailsFragment__find_account_numbers">അക്കൗണ്ട് നമ്പറുകൾ കണ്ടെത്തുക</string>
+    <!-- Text label for button to show user how to find their IBAN -->
+    <string name="BankTransferDetailsFragment__find_account_info">അക്കൗണ്ട് വിവരങ്ങൾ കണ്ടെത്തുക</string>
     <!-- Donate button label for monthly subscription -->
     <string name="BankTransferDetailsFragment__donate_s_month">%1$s/മാസം സംഭാവന നൽകുക</string>
     <!-- Donate button label for one-time -->
     <string name="BankTransferDetailsFragment__donate_s">%1$s -ന് സംഭാവന നൽകുക</string>
     <!-- Error label for IBAN field when number is too short -->
-    <string name="BankTransferDetailsFragment__iban_nubmer_is_too_short">IBAN നമ്പർ വളരെ ചെറുതാണ്</string>
+    <string name="BankTransferDetailsFragment__iban_is_too_short">IBAN വളരെ ചെറുതാണ്</string>
     <!-- Error label for IBAN field when number is too long -->
-    <string name="BankTransferDetailsFragment__iban_nubmer_is_too_long">IBAN നമ്പർ വളരെ വലുതാണ്</string>
+    <string name="BankTransferDetailsFragment__iban_is_too_long">IBAN വളരെ വലുതാണ്</string>
     <!-- Error label for IBAN field when country is not supported -->
     <string name="BankTransferDetailsFragment__iban_country_code_is_not_supported">IBAN രാജ്യ കോഡ് പിന്തുണയ്ക്കുന്നില്ല</string>
     <!-- Error label for IBAN field when number is invalid -->
-    <string name="BankTransferDetailsFragment__invalid_iban_nubmer">IBAN നമ്പർ അസാധുവാണ്</string>
+    <string name="BankTransferDetailsFragment__invalid_iban">IBAN അസാധുവാണ്</string>
+
+    <!-- IdealTransferDetailsFragment -->
+    <!-- Title of the screen, displayed in the toolbar -->
+    <string name="IdealTransferDetailsFragment__ideal">iDEAL</string>
+    <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
+    <string name="IdealTransferDetailsFragment__enter_your_bank">നിങ്ങളുടെ ബാങ്ക്, പേര്, ഇമെയിൽ എന്നിവ നൽകുക. നിങ്ങളുടെ സംഭാവനയുമായി ബന്ധപ്പെട്ട അപ്ഡേറ്റുകൾ അയയ്ക്കാൻ Stripe ഈ ഇമെയിൽ ഉപയോഗിക്കുന്നു. %1$s</string>
+    <!-- Subtitle learn-more button displayed inline with the subtitle text -->
+    <string name="IdealTransferDetailsFragment__learn_more">കൂടുതലറിയുക</string>
+    <!-- Hint label for text entry box for name on bank account -->
+    <string name="IdealTransferDetailsFragment__name_on_bank_account">ബാങ്ക് അക്കൗണ്ടിലെ പേര്</string>
+    <!-- Hint label for text entry box for email -->
+    <string name="IdealTransferDetailsFragment__email">ഇമെയിൽ</string>
+    <!-- Default label for bank selection -->
+    <string name="IdealTransferDetailsFragment__choose_your_bank">നിങ്ങളുടെ ബാങ്ക് തിരഞ്ഞെടുക്കുക</string>
+
+    <!-- IdealTransferDetailsBankSelectionDialogFragment -->
+    <!-- Title of the screen, displayed in the toolbar -->
+    <string name="IdealTransferDetailsBankSelectionDialogFragment__choose_your_bank">നിങ്ങളുടെ ബാങ്ക് തിരഞ്ഞെടുക്കുക</string>
+
+    <!-- Title of bottom sheet for finding account information -->
+    <string name="FindAccountInfoSheet__find_your_account_information">നിങ്ങളുടെ അക്കൗണ്ട് വിവരങ്ങൾ കണ്ടെത്തുക</string>
+    <!-- Body of bottom sheet for finding account information -->
+    <string name="FindAccountInfoSheet__look_for_your_iban_at">നിങ്ങളുടെ ബാങ്ക് സ്റ്റേറ്റ്‍മെന്‍റിന്‍റെ മുകളിലായി നിങ്ങളുടെ IBAN നമ്പർ നോക്കുക. IBAN നമ്പറിൽ 34 ക്യാരക്ടറുകൾ വരെയുണ്ട്. നിങ്ങൾ നൽകുന്ന പേര് നിങ്ങളുടെ ബാങ്ക് അക്കൗണ്ടിലെ പൂർണ്ണമായ പേരുമായി പൊരുത്തപ്പെടണം. കൂടുതൽ വിവരങ്ങൾക്ക് നിങ്ങളുടെ ബാങ്കുമായി ബന്ധപ്പെടുക.</string>
+
+    <!-- Title of donation pending sheet displayed after making a bank transfer -->
+    <string name="DonationPendingBottomSheet__donation_pending">സംഭാവന തീർപ്പാക്കപ്പെട്ടിട്ടില്ല</string>
+    <!-- Top text block of donation pending sheet displayed after subscribing via a bank transfer. Placeholder is the badge name. -->
+    <string name="DonationPendingBottomSheet__your_monthly_donation_is_pending">നിങ്ങളുടെ പ്രതിമാസ സംഭാവന തീർപ്പാക്കപ്പെട്ടിട്ടില്ല. നിങ്ങളുടെ സംഭാവന ലഭിക്കുമ്പോൾ നിങ്ങളുടെ പ്രൊഫൈലിൽ %1$s ബാഡ്ജ് പ്രദർശിപ്പിക്കാൻ നിങ്ങൾക്ക് കഴിയും.</string>
+    <!-- Top text block of donation pending sheet displayed after one-time donation via a bank transfer. Placeholder is the badge name. -->
+    <string name="DonationPendingBottomSheet__your_one_time_donation_is_pending">നിങ്ങളുടെ ഒറ്റത്തവണ സംഭാവന തീർപ്പാക്കപ്പെട്ടിട്ടില്ല. നിങ്ങളുടെ സംഭാവന ലഭിക്കുമ്പോൾ നിങ്ങളുടെ പ്രൊഫൈലിൽ %1$s ബാഡ്ജ് പ്രദർശിപ്പിക്കാൻ നിങ്ങൾക്ക് കഴിയും.</string>
+    <!-- Bottom text block of donation pending sheet displayed after donating via a bank transfer. Placeholder is for learn more. -->
+    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">ബാങ്ക് ട്രാൻസ്ഫറുകൾ പ്രോസസ്സ് ചെയ്യുന്നതിന് സാധാരണയായി 1 പ്രവൃത്തി ദിവസമെടുക്കും. %1$s</string>
+    <!-- Learn more text for donation pending sheet displayed after donating via a bank transfer. -->
+    <string name="DonationPendingBottomSheet__learn_more">കൂടുതലറിയുക</string>
+    <!-- Confirmation button for donation pending sheet displayed after donating via a bank transfer. -->
+    <string name="DonationPendingBottomSheet__done">പൂർത്തിയായി</string>
+
+    <!-- Title of donation error sheet displayed after making a bank transfer that fails -->
+    <string name="DonationErrorBottomSheet__donation_couldnt_be_processed">സംഭാവന പ്രോസസ് ചെയ്യാനായില്ല</string>
+    <!-- Text block of donation error sheet displayed after making a bank transfer that fails -->
+    <string name="DonationErrorBottomSheet__were_having_trouble">നിങ്ങളുടെ ബാങ്ക് ട്രാൻസ്ഫർ പ്രോസസ്സ് ചെയ്യുന്നതിൽ ഞങ്ങൾ പ്രശ്നം നേരിടുന്നു. നിങ്ങളിൽ നിന്ന് നിരക്ക് ഈടാക്കിയിട്ടില്ല. മറ്റൊരു പേയ്മെന്റ് രീതി പരീക്ഷിക്കുക അല്ലെങ്കിൽ കൂടുതൽ വിവരങ്ങൾക്ക് നിങ്ങളുടെ ബാങ്കുമായി ബന്ധപ്പെടുക.</string>
+    <!-- Button label for retry button of donation error sheet displayed after making a bank transfer that fails -->
+    <string name="DonationErrorBottomSheet__try_again">വീണ്ടും ശ്രമിക്കുക</string>
+    <!-- Button label for not now button of donation error sheet displayed after making a bank transfer that fails -->
+    <string name="DonationErrorBottomSheet__not_now">ഇപ്പോൾ വേണ്ട</string>
+
+    <!-- Title of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed -->
+    <string name="DonationCompletedBottomSheet__donation_complete">സംഭാവന പൂർത്തിയായി</string>
+    <!-- Text block of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed -->
+    <string name="DonationCompleteBottomSheet__your_bank_transfer_was_received">നിങ്ങളുടെ ബാങ്ക് ട്രാൻസ്ഫർ ലഭിച്ചു. നിങ്ങളുടെ പിന്തുണ കാണിക്കുന്നതിനായി നിങ്ങളുടെ പ്രൊഫൈലിൽ ഈ ബാഡ്ജ് പ്രദർശിപ്പിക്കാൻ നിങ്ങൾക്ക് തിരഞ്ഞെടുക്കാം.</string>
+    <!-- Button text of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed to dismiss sheet -->
+    <string name="DonationCompleteBottomSheet__done">പൂർത്തിയായി</string>
 
     <!-- StripePaymentInProgressFragment -->
     <string name="StripePaymentInProgressFragment__cancelling">റദ്ദാക്കുന്നു…</string>
@@ -6263,6 +6419,19 @@
     <string name="PendingParticipantsBottomSheet__reject">നിരസിക്കുക</string>
     <!-- Content description for confirming a user -->
     <string name="PendingParticipantsBottomSheet__approve">അംഗീകരിക്കുക</string>
+
+    <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
+    <string name="GrantFullScreenIntentPermission_megaphone_title">പൂർണ്ണ സ്ക്രീൻ അറിയിപ്പുകൾ ഓണാക്കണോ?</string>
+    <!-- Body of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
+    <string name="GrantFullScreenIntentPermission_megaphone_body">നിങ്ങളുടെ കോൺടാക്റ്റുകളിൽ നിന്നും ഗ്രൂപ്പുകളിൽ നിന്നുമുള്ള ഒരു കോൾ പോലും കാണാതെ പോകരുത്.</string>
+    <!-- Button on the megaphone megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls that starts the fix process -->
+    <string name="GrantFullScreenIntentPermission_megaphone_turn_on">ഓൺ ചെയ്യുക</string>
+    <!-- Title of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
+    <string name="GrantFullScreenIntentPermission_bottomsheet_title">പൂർണ്ണ സ്ക്രീൻ അറിയിപ്പുകൾ ഓണാക്കുക</string>
+    <!-- Subtitle of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
+    <string name="GrantFullScreenIntentPermission_bottomsheet_subtitle">നിങ്ങളുടെ കോൺടാക്റ്റുകളിൽ നിന്നും ഗ്രൂപ്പുകളിൽ നിന്നും കോൾ അറിയിപ്പുകൾ ലഭിക്കുന്നതിന്:</string>
+    <!-- Step 2 of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications, it indicates the name of the setting that needs to be re-enabled -->
+    <string name="GrantFullScreenIntentPermission_bottomsheet_step2">2. %1$s പൂർണ്ണ സ്ക്രീൻ അറിയിപ്പുകൾ അനുവദിക്കുക</string>
 
     <!-- EOF -->
 </resources>

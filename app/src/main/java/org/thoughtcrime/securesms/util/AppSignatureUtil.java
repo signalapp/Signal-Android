@@ -8,6 +8,7 @@ import android.content.pm.Signature;
 
 import androidx.annotation.NonNull;
 
+import org.signal.core.util.Base64;
 import org.signal.core.util.logging.Log;
 
 import java.nio.charset.StandardCharsets;
@@ -56,7 +57,7 @@ public final class AppSignatureUtil {
       byte[] hashSignature = messageDigest.digest();
       hashSignature = Arrays.copyOfRange(hashSignature, 0, HASH_LENGTH_BYTES);
 
-      String base64Hash = Base64.encodeBytes(hashSignature);
+      String base64Hash = Base64.encodeWithPadding(hashSignature);
       base64Hash = base64Hash.substring(0, HASH_LENGTH_CHARS);
 
       return base64Hash;

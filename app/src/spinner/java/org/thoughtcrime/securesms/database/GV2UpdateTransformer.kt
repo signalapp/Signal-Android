@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.database
 
 import android.database.Cursor
+import org.signal.core.util.Base64
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.requireLong
 import org.signal.spinner.ColumnTransformer
@@ -9,7 +10,6 @@ import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.UpdateDescription
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.thoughtcrime.securesms.util.Base64
 
 object GV2UpdateTransformer : ColumnTransformer {
   override fun matches(tableName: String?, columnName: String): Boolean {

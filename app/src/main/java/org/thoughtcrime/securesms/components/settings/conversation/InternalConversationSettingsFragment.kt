@@ -7,6 +7,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import org.signal.core.util.Base64
 import org.signal.core.util.Hex
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.isAbsent
@@ -27,7 +28,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.subscription.Subscriber
-import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.Util
@@ -110,7 +110,7 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
           summary = DSLSettingsText.from("[${recipient.profileName.givenName}] [${state.recipient.profileName.familyName}]")
         )
 
-        val profileKeyBase64 = recipient.profileKey?.let(Base64::encodeBytes) ?: "None"
+        val profileKeyBase64 = recipient.profileKey?.let(Base64::encodeWithPadding) ?: "None"
         longClickPref(
           title = DSLSettingsText.from("Profile Key (Base64)"),
           summary = DSLSettingsText.from(profileKeyBase64),

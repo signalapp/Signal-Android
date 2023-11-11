@@ -83,7 +83,7 @@ class PayPalPaymentInProgressViewModel(
     Log.d(TAG, "Beginning subscription update...", true)
 
     store.update { DonationProcessorStage.PAYMENT_PIPELINE }
-    disposables += monthlyDonationRepository.cancelActiveSubscriptionIfNecessary().andThen(monthlyDonationRepository.setSubscriptionLevel(request.level.toString(), request.uiSessionKey))
+    disposables += monthlyDonationRepository.cancelActiveSubscriptionIfNecessary().andThen(monthlyDonationRepository.setSubscriptionLevel(request, false))
       .subscribeBy(
         onComplete = {
           Log.w(TAG, "Completed subscription update", true)
@@ -93,8 +93,8 @@ class PayPalPaymentInProgressViewModel(
           Log.w(TAG, "Failed to update subscription", throwable, true)
           val donationError: DonationError = when (throwable) {
             is DonationError -> throwable
-            is DonationProcessorError -> throwable.toDonationError(DonationErrorSource.SUBSCRIPTION, PaymentSourceType.PayPal)
-            else -> DonationError.genericBadgeRedemptionFailure(DonationErrorSource.SUBSCRIPTION)
+            is DonationProcessorError -> throwable.toDonationError(DonationErrorSource.MONTHLY, PaymentSourceType.PayPal)
+            else -> DonationError.genericBadgeRedemptionFailure(DonationErrorSource.MONTHLY)
           }
           DonationError.routeDonationError(ApplicationDependencies.getApplication(), donationError)
 
@@ -153,13 +153,10 @@ class PayPalPaymentInProgressViewModel(
       }
       .flatMapCompletable { response ->
         oneTimeDonationRepository.waitForOneTimeRedemption(
-          price = request.fiat,
+          gatewayRequest = request,
           paymentIntentId = response.paymentId,
-          badgeRecipient = request.recipientId,
-          additionalMessage = request.additionalMessage,
-          badgeLevel = request.level,
           donationProcessor = DonationProcessor.PAYPAL,
-          uiSessionKey = request.uiSessionKey
+          paymentSourceType = PaymentSourceType.PayPal
         )
       }
       .subscribeOn(Schedulers.io())
@@ -190,9 +187,9 @@ class PayPalPaymentInProgressViewModel(
       .andThen(payPalRepository.createPaymentMethod())
       .flatMap(routeToPaypalConfirmation)
       .flatMapCompletable { payPalRepository.setDefaultPaymentMethod(it.paymentId) }
-      .onErrorResumeNext { Completable.error(DonationError.getPaymentSetupError(DonationErrorSource.SUBSCRIPTION, it, PaymentSourceType.PayPal)) }
+      .onErrorResumeNext { Completable.error(DonationError.getPaymentSetupError(DonationErrorSource.MONTHLY, it, PaymentSourceType.PayPal)) }
 
-    disposables += setup.andThen(monthlyDonationRepository.setSubscriptionLevel(request.level.toString(), request.uiSessionKey))
+    disposables += setup.andThen(monthlyDonationRepository.setSubscriptionLevel(request, false))
       .subscribeBy(
         onError = { throwable ->
           Log.w(TAG, "Failure in monthly payment pipeline...", throwable, true)
@@ -200,8 +197,8 @@ class PayPalPaymentInProgressViewModel(
 
           val donationError: DonationError = when (throwable) {
             is DonationError -> throwable
-            is DonationProcessorError -> throwable.toDonationError(DonationErrorSource.SUBSCRIPTION, PaymentSourceType.PayPal)
-            else -> DonationError.genericBadgeRedemptionFailure(DonationErrorSource.SUBSCRIPTION)
+            is DonationProcessorError -> throwable.toDonationError(DonationErrorSource.MONTHLY, PaymentSourceType.PayPal)
+            else -> DonationError.genericBadgeRedemptionFailure(DonationErrorSource.MONTHLY)
           }
           DonationError.routeDonationError(ApplicationDependencies.getApplication(), donationError)
         },

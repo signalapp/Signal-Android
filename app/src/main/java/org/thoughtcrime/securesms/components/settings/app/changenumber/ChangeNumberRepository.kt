@@ -307,8 +307,8 @@ class ChangeNumberRepository(
     return Single.fromCallable {
       for (certificateType in certificateTypes) {
         val certificate: ByteArray? = when (certificateType) {
-          CertificateType.UUID_AND_E164 -> accountManager.getSenderCertificate()
-          CertificateType.UUID_ONLY -> accountManager.getSenderCertificateForPhoneNumberPrivacy()
+          CertificateType.ACI_AND_E164 -> accountManager.getSenderCertificate()
+          CertificateType.ACI_ONLY -> accountManager.getSenderCertificateForPhoneNumberPrivacy()
           else -> throw AssertionError()
         }
 

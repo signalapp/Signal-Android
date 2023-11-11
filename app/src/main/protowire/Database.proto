@@ -272,3 +272,102 @@ message ThreadMergeEvent {
 message SessionSwitchoverEvent {
     string e164 = 1;
 }
+
+message DecimalValue {
+    uint32 scale     = 1;
+    uint32 precision = 2;
+    bytes  value     = 3;
+}
+
+message FiatValue {
+    string       currencyCode  = 1;
+    DecimalValue amount        = 2;
+    uint64       timestamp     = 3;
+}
+
+message DonationErrorValue {
+    enum Type {
+        PROCESSOR_CODE = 0; // Generic processor error (e.g. Stripe returned an error code)
+        DECLINE_CODE   = 1; // Stripe or PayPal decline Code
+        FAILURE_CODE   = 2; // Stripe bank transfer failure code
+        REDEMPTION     = 3; // Generic redemption error (status is HTTP code)
+        PAYMENT        = 4; // Generic payment error (status is HTTP code)
+    }
+
+    Type   type = 1;
+    string code = 2;
+}
+
+message PendingOneTimeDonation {
+    enum PaymentMethodType {
+        CARD       = 0;
+        SEPA_DEBIT = 1;
+        PAYPAL     = 2;
+        IDEAL      = 3;
+    }
+
+             PaymentMethodType  paymentMethodType   = 1;
+             FiatValue          amount              = 2;
+             BadgeList.Badge    badge               = 3;
+             int64              timestamp           = 4;
+    optional DonationErrorValue error               = 5;
+             bool               pendingVerification = 6;
+             bool               checkedVerification = 7;
+}
+
+/**
+ * Contains the data necessary to show the corresponding terminal sheet
+ * for a given donation. Note that the word "terminal" here is used in
+ * the same way that it is used in Rx, where we simply mean that, regardless
+ * of outcome, a donation has completed processing.
+ */
+message TerminalDonationQueue {
+    message TerminalDonation {
+                 int64              level                      = 1;
+                 bool               isLongRunningPaymentMethod = 2;
+        optional DonationErrorValue error                      = 3;
+    }
+
+    repeated TerminalDonation terminalDonations = 1;
+}
+
+/**
+ * Contains the data necessary to complete a transaction after the
+ * user completes authorization externally. This helps prevent
+ * scenarios where the application dies while the user is confirming
+ * a transaction in their bank app.
+ */
+message ExternalLaunchTransactionState {
+
+    message StripeIntentAccessor {
+        enum Type {
+            PAYMENT_INTENT = 0;
+            SETUP_INTENT   = 1;
+        }
+
+        Type type                 = 1;
+        string intentId           = 2;
+        string intentClientSecret = 3;
+    }
+
+    message GatewayRequest {
+        enum DonateToSignalType {
+            MONTHLY  = 0;
+            ONE_TIME = 1;
+            GIFT     = 2;
+        }
+
+        DonateToSignalType donateToSignalType = 1;
+        BadgeList.Badge    badge              = 2;
+        string             label              = 3;
+        DecimalValue       price              = 4;
+        string             currencyCode       = 5;
+        int64              level              = 6;
+        int64              recipient_id       = 7;
+        string             additionalMessage  = 8;
+    }
+
+    StripeIntentAccessor stripeIntentAccessor = 1;
+    GatewayRequest       gatewayRequest       = 2;
+    string               paymentSourceType    = 3;
+}

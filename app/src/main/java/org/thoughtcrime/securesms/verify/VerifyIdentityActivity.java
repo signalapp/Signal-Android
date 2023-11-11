@@ -56,16 +56,9 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity {
                                                          boolean verified) {
     Recipient recipient = Recipient.live(recipientId).resolve();
 
-    if (FeatureFlags.showAciSafetyNumberAsDefault()) {
-      if (!recipient.hasServiceId()) {
-        showExchangeMessagesDialog(context);
-        return;
-      }
-    } else {
-      if (!recipient.hasServiceId() || !recipient.hasE164()) {
-        showExchangeMessagesDialog(context);
-        return;
-      }
+    if (!recipient.hasServiceId()) {
+      showExchangeMessagesDialog(context);
+      return;
     }
 
     context.startActivity(newIntent(context, recipientId, identityKey, verified));

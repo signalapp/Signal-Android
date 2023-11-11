@@ -12,21 +12,30 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
+import org.signal.donations.PaymentSourceType
 
 class BankTransferMandateViewModel(
+  paymentSourceType: PaymentSourceType,
   repository: BankTransferMandateRepository = BankTransferMandateRepository()
 ) : ViewModel() {
 
   private val disposables = CompositeDisposable()
   private val internalMandate = mutableStateOf("")
+  private val internalFailedToLoadMandate = mutableStateOf(false)
+
   val mandate: State<String> = internalMandate
+  val failedToLoadMandate: State<Boolean> = internalFailedToLoadMandate
 
   init {
-    disposables += repository.getMandate()
+    disposables += repository.getMandate(paymentSourceType as PaymentSourceType.Stripe)
       .observeOn(AndroidSchedulers.mainThread())
       .subscribeBy(
         onSuccess = { internalMandate.value = it },
-        onError = { internalMandate.value = "Failed to load mandate." }
+        onError = { internalFailedToLoadMandate.value = true }
       )
+  }
+
+  override fun onCleared() {
+    disposables.clear()
   }
 }

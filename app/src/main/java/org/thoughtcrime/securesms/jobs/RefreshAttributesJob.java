@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.account.AccountAttributes;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.push.exceptions.NetworkFailureException;
-import org.whispersystems.util.Base64;
+import org.signal.core.util.Base64;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -118,7 +118,7 @@ public class RefreshAttributesJob extends BaseJob {
         universalUnidentifiedAccess,
         capabilities,
         phoneNumberDiscoverable,
-        (encryptedDeviceName == null) ? null : Base64.encodeBytes(encryptedDeviceName),
+        (encryptedDeviceName == null) ? null : Base64.encodeWithPadding(encryptedDeviceName),
         pniRegistrationId,
         recoveryPassword
     );

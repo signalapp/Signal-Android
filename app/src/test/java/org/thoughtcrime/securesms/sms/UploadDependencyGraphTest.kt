@@ -21,7 +21,7 @@ import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobs.AttachmentCompressionJob
 import org.thoughtcrime.securesms.jobs.AttachmentCopyJob
 import org.thoughtcrime.securesms.jobs.AttachmentUploadJob
-import org.thoughtcrime.securesms.jobs.ResumableUploadSpecJob
+import org.thoughtcrime.securesms.jobs.protos.AttachmentUploadJobData
 import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.mms.SentMediaQuality
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -206,16 +206,15 @@ class UploadDependencyGraphTest {
 
     assertTrue(steps.all { it.size == 1 })
     assertTrue(steps[0][0] is AttachmentCompressionJob)
-    assertTrue(steps[1][0] is ResumableUploadSpecJob)
-    assertTrue(steps[2][0] is AttachmentUploadJob)
+    assertTrue(steps[1][0] is AttachmentUploadJob)
 
     if (expectedCopyDestinationCount > 0) {
-      assertTrue(steps[3][0] is AttachmentCopyJob)
+      assertTrue(steps[2][0] is AttachmentCopyJob)
 
-      val uploadData = JsonJobData.deserialize(steps[2][0].serialize())
-      val copyData = JsonJobData.deserialize(steps[3][0].serialize())
+      val uploadData = AttachmentUploadJobData.ADAPTER.decode(steps[1][0].serialize()!!)
+      val copyData = JsonJobData.deserialize(steps[2][0].serialize())
 
-      val uploadAttachmentId = AttachmentId(uploadData.getLong("row_id"), uploadData.getLong("unique_id"))
+      val uploadAttachmentId = AttachmentId(uploadData.attachmentRowId, uploadData.attachmentUniqueId)
       val copySourceAttachmentId = JsonUtils.fromJson(copyData.getString("source_id"), AttachmentId::class.java)
 
       assertEquals(uploadAttachmentId, copySourceAttachmentId)
@@ -223,7 +222,7 @@ class UploadDependencyGraphTest {
       val copyDestinations = copyData.getStringArray("destination_ids")
       assertEquals(expectedCopyDestinationCount, copyDestinations.size)
     } else {
-      assertEquals(3, steps.size)
+      assertEquals(2, steps.size)
     }
   }
 

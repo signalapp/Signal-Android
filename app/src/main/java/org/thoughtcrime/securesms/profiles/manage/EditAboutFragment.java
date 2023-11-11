@@ -43,7 +43,7 @@ import java.util.Optional;
 /**
  * Let's you edit the 'About' section of your profile.
  */
-public class EditAboutFragment extends Fragment implements ManageProfileActivity.EmojiController {
+public class EditAboutFragment extends Fragment implements EditProfileActivity.EmojiController {
 
   public static final int ABOUT_MAX_GLYPHS              = 140;
   public static final int ABOUT_LIMIT_DISPLAY_THRESHOLD = 120;

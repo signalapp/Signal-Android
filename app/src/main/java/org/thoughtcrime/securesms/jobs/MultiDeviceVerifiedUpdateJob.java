@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
-import org.thoughtcrime.securesms.util.Base64;
+import org.signal.core.util.Base64;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
@@ -76,7 +76,7 @@ public class MultiDeviceVerifiedUpdateJob extends BaseJob {
   @Override
   public @Nullable byte[] serialize() {
     return new JsonJobData.Builder().putString(KEY_DESTINATION, destination.serialize())
-                                    .putString(KEY_IDENTITY_KEY, Base64.encodeBytes(identityKey))
+                                    .putString(KEY_IDENTITY_KEY, Base64.encodeWithPadding(identityKey))
                                     .putInt(KEY_VERIFIED_STATUS, verifiedStatus.toInt())
                                     .putLong(KEY_TIMESTAMP, timestamp)
                                     .serialize();

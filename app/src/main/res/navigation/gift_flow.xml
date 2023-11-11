@@ -62,9 +62,6 @@
         <action
             android:id="@+id/action_giftFlowConfirmationFragment_to_paypalPaymentInProgressFragment"
             app:destination="@id/paypalPaymentInProgressFragment" />
-        <action
-            android:id="@+id/action_giftFlowConfirmationFragment_to_bankTransferMandateFragment"
-            app:destination="@id/bankTransferMandateFragment" />
     </fragment>
 
     <dialog
@@ -95,6 +92,11 @@
             android:name="request"
             app:argType="org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest"
             app:nullable="false" />
+
+        <argument
+            android:name="is_long_running"
+            app:argType="boolean"
+            android:defaultValue="false" />
         <action
             android:id="@+id/action_stripePaymentInProgressFragment_to_stripe3dsDialogFragment"
             app:destination="@id/stripe3dsDialogFragment" />
@@ -133,6 +135,11 @@
         <argument
             android:name="return_uri"
             app:argType="android.net.Uri"
+            app:nullable="false" />
+
+        <argument
+            android:name="stripe3DSData"
+            app:argType="org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.Stripe3DSData"
             app:nullable="false" />
     </dialog>
 
@@ -189,29 +196,4 @@
             app:argType="org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest"
             app:nullable="false" />
     </dialog>
-
-    <fragment
-        android:id="@+id/bankTransferMandateFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.app.subscription.donate.transfer.mandate.BankTransferMandateFragment"
-        android:label="bank_transfer_mandate_fragment">
-
-        <argument
-            android:name="request"
-            app:argType="org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest"
-            app:nullable="false" />
-        <action
-            android:id="@+id/action_bankTransferMandateFragment_to_bankTransferDetailsFragment"
-            app:destination="@id/bankTransferDetailsFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/bankTransferDetailsFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.app.subscription.donate.transfer.details.BankTransferDetailsFragment"
-        android:label="bank_transfer_details_fragment">
-
-        <argument
-            android:name="request"
-            app:argType="org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest"
-            app:nullable="false" />
-    </fragment>
 </navigation>

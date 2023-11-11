@@ -90,7 +90,7 @@ class V2FooterPositionDelegate private constructor(
       return false
     }
 
-    val availableWidth = maxWidth - lastLineWidth
+    val availableWidth = maxWidth - lastLineWidth - (horizontalFooterPadding * 2)
     if (body.lineCount == 1 && availableWidth > (footerWidth + 8.dp)) {
       displayAtEndOfBody()
       return true

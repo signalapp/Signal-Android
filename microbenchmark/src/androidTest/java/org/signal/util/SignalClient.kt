@@ -1,6 +1,7 @@
 package org.signal.util
 
 import okio.ByteString.Companion.toByteString
+import org.signal.core.util.Base64
 import org.signal.libsignal.internal.Native
 import org.signal.libsignal.internal.NativeHandleGuard
 import org.signal.libsignal.metadata.certificate.CertificateValidator
@@ -27,7 +28,6 @@ import org.whispersystems.signalservice.internal.push.DataMessage
 import org.whispersystems.signalservice.internal.push.Envelope
 import org.whispersystems.signalservice.internal.push.OutgoingPushMessage
 import org.whispersystems.signalservice.internal.util.Util
-import org.whispersystems.util.Base64
 import java.util.Optional
 import java.util.UUID
 import java.util.concurrent.locks.ReentrantLock

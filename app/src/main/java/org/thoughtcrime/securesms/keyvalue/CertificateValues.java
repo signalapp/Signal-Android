@@ -9,8 +9,8 @@ import java.util.List;
 
 public final class CertificateValues extends SignalStoreValues {
 
-  private static final String UD_CERTIFICATE_UUID_AND_E164 = "certificate.uuidAndE164";
-  private static final String UD_CERTIFICATE_UUID_ONLY     = "certificate.uuidOnly";
+  private static final String SEALED_SENDER_CERT_ACI_AND_E164 = "certificate.uuidAndE164";
+  private static final String SEALED_SENDER_CERT_ACI_ONLY     = "certificate.uuidOnly";
 
   CertificateValues(@NonNull KeyValueStore store) {
     super(store);
@@ -32,9 +32,9 @@ public final class CertificateValues extends SignalStoreValues {
     KeyValueStore.Writer writer = getStore().beginWrite();
 
     switch (certificateType) {
-      case UUID_AND_E164: writer.putBlob(UD_CERTIFICATE_UUID_AND_E164, certificate); break;
-      case UUID_ONLY    : writer.putBlob(UD_CERTIFICATE_UUID_ONLY, certificate);     break;
-      default           : throw new AssertionError();
+      case ACI_AND_E164: writer.putBlob(SEALED_SENDER_CERT_ACI_AND_E164, certificate); break;
+      case ACI_ONLY    : writer.putBlob(SEALED_SENDER_CERT_ACI_ONLY, certificate);     break;
+      default          : throw new AssertionError();
     }
 
     writer.commit();
@@ -42,9 +42,9 @@ public final class CertificateValues extends SignalStoreValues {
 
   public @Nullable byte[] getUnidentifiedAccessCertificate(@NonNull CertificateType certificateType) {
     switch (certificateType) {
-      case UUID_AND_E164: return getBlob(UD_CERTIFICATE_UUID_AND_E164, null);
-      case UUID_ONLY    : return getBlob(UD_CERTIFICATE_UUID_ONLY, null);
-      default           : throw new AssertionError();
+      case ACI_AND_E164: return getBlob(SEALED_SENDER_CERT_ACI_AND_E164, null);
+      case ACI_ONLY    : return getBlob(SEALED_SENDER_CERT_ACI_ONLY, null);
+      default          : throw new AssertionError();
     }
   }
 

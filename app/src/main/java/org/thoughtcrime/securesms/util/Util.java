@@ -44,6 +44,7 @@ import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 
+import org.signal.core.util.Base64;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.R;
@@ -359,7 +360,7 @@ public class Util {
 
   public static String getSecret(int size) {
     byte[] secret = getSecretBytes(size);
-    return Base64.encodeBytes(secret);
+    return Base64.encodeWithPadding(secret);
   }
 
   public static byte[] getSecretBytes(int size) {

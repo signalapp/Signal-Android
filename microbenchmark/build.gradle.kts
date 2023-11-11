@@ -51,6 +51,8 @@ android {
 dependencies {
   lintChecks(project(":lintchecks"))
 
+  implementation(project(":core-util"))
+
   // Base dependencies
   androidTestImplementation(testLibs.junit.junit)
   androidTestImplementation(benchmarkLibs.androidx.test.ext.junit)

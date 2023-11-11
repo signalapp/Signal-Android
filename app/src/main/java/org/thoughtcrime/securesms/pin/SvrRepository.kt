@@ -29,7 +29,6 @@ import org.whispersystems.signalservice.api.kbs.MasterKey
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.BackupResponse
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.RestoreResponse
-import org.whispersystems.signalservice.api.svr.SecureValueRecoveryV1
 import org.whispersystems.signalservice.internal.push.AuthCredentials
 import java.io.IOException
 import java.util.concurrent.TimeUnit
@@ -41,10 +40,9 @@ object SvrRepository {
   val TAG = Log.tag(SvrRepository::class.java)
 
   private val svr2: SecureValueRecovery = ApplicationDependencies.getSignalServiceAccountManager().getSecureValueRecoveryV2(BuildConfig.SVR2_MRENCLAVE)
-  private val svr1: SecureValueRecovery = SecureValueRecoveryV1(ApplicationDependencies.getKeyBackupService(BuildConfig.KBS_ENCLAVE))
 
   /** An ordered list of SVR implementations. They should be in priority order, with the most important one listed first. */
-  private val implementations: List<SecureValueRecovery> = listOf(svr2, svr1)
+  private val implementations: List<SecureValueRecovery> = listOf(svr2)
 
   /**
    * A lock that ensures that only one thread at a time is altering the various pieces of SVR state.
@@ -72,8 +70,7 @@ object SvrRepository {
       Log.i(TAG, "restoreMasterKeyPreRegistration()", true)
 
       val operations: List<Pair<SecureValueRecovery, () -> RestoreResponse>> = listOf(
-        svr2 to { restoreMasterKeyPreRegistration(svr2, credentials.svr2, userPin) },
-        svr1 to { restoreMasterKeyPreRegistration(svr1, credentials.svr1, userPin) }
+        svr2 to { restoreMasterKeyPreRegistration(svr2, credentials.svr2, userPin) }
       )
 
       for ((implementation, operation) in operations) {

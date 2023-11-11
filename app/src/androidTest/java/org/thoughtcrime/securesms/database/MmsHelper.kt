@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.database
 import org.thoughtcrime.securesms.database.model.ParentStoryId
 import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
-import org.thoughtcrime.securesms.mms.IncomingMediaMessage
+import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.recipients.Recipient
 import java.util.Optional
@@ -55,9 +55,9 @@ object MmsHelper {
   }
 
   fun insert(
-    message: IncomingMediaMessage,
+    message: IncomingMessage,
     threadId: Long
   ): Optional<MessageTable.InsertResult> {
-    return SignalDatabase.messages.insertSecureDecryptedMessageInbox(message, threadId)
+    return SignalDatabase.messages.insertMessageInbox(message, threadId)
   }
 }

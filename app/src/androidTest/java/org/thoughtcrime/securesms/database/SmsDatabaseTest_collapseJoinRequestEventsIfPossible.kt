@@ -18,12 +18,10 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.groupChange
 import org.thoughtcrime.securesms.database.model.databaseprotos.groupContext
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.sms.IncomingGroupUpdateMessage
-import org.thoughtcrime.securesms.sms.IncomingTextMessage
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.ServiceId.PNI
-import java.util.Optional
 import java.util.UUID
 
 @Suppress("ClassName", "TestFunctionName")
@@ -272,13 +270,28 @@ class SmsDatabaseTest_collapseJoinRequestEventsIfPossible {
     assertThat("latest message should be deleted", sms.getMessageRecordOrNull(latestMessage.messageId), nullValue())
   }
 
-  private fun smsMessage(sender: RecipientId, body: String? = ""): IncomingTextMessage {
+  private fun smsMessage(sender: RecipientId, body: String? = ""): IncomingMessage {
     wallClock++
-    return IncomingTextMessage(sender, 1, wallClock, wallClock, wallClock, body, Optional.of(groupId), 0, true, null)
+    return IncomingMessage(
+      type = MessageType.NORMAL,
+      from = sender,
+      sentTimeMillis = wallClock,
+      serverTimeMillis = wallClock,
+      receivedTimeMillis = wallClock,
+      body = body,
+      groupId = groupId,
+      isUnidentified = true
+    )
   }
 
-  private fun groupUpdateMessage(sender: RecipientId, groupContext: DecryptedGroupV2Context): IncomingGroupUpdateMessage {
-    return IncomingGroupUpdateMessage(smsMessage(sender, null), groupContext)
+  private fun groupUpdateMessage(sender: RecipientId, groupContext: DecryptedGroupV2Context): IncomingMessage {
+    wallClock++
+    return IncomingMessage.groupUpdate(
+      from = sender,
+      timestamp = wallClock,
+      groupId = groupId,
+      groupContext = groupContext
+    )
   }
 
   companion object {

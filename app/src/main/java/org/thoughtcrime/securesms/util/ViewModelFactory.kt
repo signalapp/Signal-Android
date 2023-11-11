@@ -74,7 +74,7 @@ inline fun <reified VM : ViewModel> Fragment.savedStateViewModel(
 inline fun <reified VM : ViewModel> Fragment.activitySavedStateViewModel(
   noinline create: (SavedStateHandle) -> VM
 ): Lazy<VM> {
-  return viewModels(
+  return activityViewModels(
     factoryProducer = SavedStateViewModelFactory.factoryProducer(create) { requireActivity() }
   )
 }

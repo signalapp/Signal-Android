@@ -207,13 +207,20 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
 
   private fun displayPendingGallery(currentState: TransferControlViewState) {
     binding.primaryProgressView.startClickListener = currentState.downloadClickedListener
-    applyFocusableAndClickable(currentState, listOf(binding.primaryProgressView, binding.primaryDetailsText), listOf(binding.secondaryProgressView, binding.playVideoButton))
+    applyFocusableAndClickable(
+      currentState,
+      listOf(binding.primaryProgressView, binding.primaryDetailsText, binding.primaryBackground),
+      listOf(binding.secondaryProgressView, binding.playVideoButton)
+    )
     binding.primaryProgressView.setStopped(false)
     showAllViews(
       playVideoButton = false,
       secondaryProgressView = false,
       secondaryDetailsText = currentState.showSecondaryText
     )
+
+    binding.primaryDetailsText.setOnClickListener(currentState.downloadClickedListener)
+    binding.primaryBackground.setOnClickListener(currentState.downloadClickedListener)
 
     binding.primaryDetailsText.translationX = if (ViewUtil.isLtr(this)) {
       ViewUtil.dpToPx(-8).toFloat()
@@ -430,7 +437,10 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
       inactiveViews.forEach { it.focusable = View.NOT_FOCUSABLE }
     }
     activeViews.forEach { it.isClickable = currentState.isClickable }
-    inactiveViews.forEach { it.isClickable = false }
+    inactiveViews.forEach {
+      it.setOnClickListener(null)
+      it.isClickable = false
+    }
   }
 
   override fun setFocusable(focusable: Boolean) {

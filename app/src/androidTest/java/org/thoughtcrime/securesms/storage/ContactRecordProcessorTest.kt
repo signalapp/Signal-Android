@@ -6,12 +6,12 @@ import org.junit.Assert.assertNotEquals
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.signal.core.util.Base64
 import org.signal.core.util.update
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.FeatureFlagsAccessor
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
@@ -113,7 +113,7 @@ class ContactRecordProcessorTest {
   private fun setStorageId(recipientId: RecipientId, storageId: StorageId) {
     SignalDatabase.rawDatabase
       .update(RecipientTable.TABLE_NAME)
-      .values(RecipientTable.STORAGE_SERVICE_ID to Base64.encodeBytes(storageId.raw))
+      .values(RecipientTable.STORAGE_SERVICE_ID to Base64.encodeWithPadding(storageId.raw))
       .where("${RecipientTable.ID} = ?", recipientId)
       .run()
   }

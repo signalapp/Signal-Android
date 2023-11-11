@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.database
 
 import android.content.Context
 import androidx.core.content.contentValuesOf
+import org.signal.core.util.Base64
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.logging.Log
 import org.signal.core.util.requireInt
@@ -11,7 +12,6 @@ import org.signal.libsignal.protocol.InvalidKeyException
 import org.signal.libsignal.protocol.ecc.Curve
 import org.signal.libsignal.protocol.ecc.ECKeyPair
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord
-import org.thoughtcrime.securesms.util.Base64
 import org.whispersystems.signalservice.api.push.ServiceId
 import java.io.IOException
 import java.util.LinkedList
@@ -88,9 +88,9 @@ class SignedPreKeyTable(context: Context, databaseHelper: SignalDatabase) : Data
     val contentValues = contentValuesOf(
       ACCOUNT_ID to serviceId.toString(),
       KEY_ID to keyId,
-      PUBLIC_KEY to Base64.encodeBytes(record.keyPair.publicKey.serialize()),
-      PRIVATE_KEY to Base64.encodeBytes(record.keyPair.privateKey.serialize()),
-      SIGNATURE to Base64.encodeBytes(record.signature),
+      PUBLIC_KEY to Base64.encodeWithPadding(record.keyPair.publicKey.serialize()),
+      PRIVATE_KEY to Base64.encodeWithPadding(record.keyPair.privateKey.serialize()),
+      SIGNATURE to Base64.encodeWithPadding(record.signature),
       TIMESTAMP to record.timestamp
     )
     writableDatabase.replace(TABLE_NAME, null, contentValues)

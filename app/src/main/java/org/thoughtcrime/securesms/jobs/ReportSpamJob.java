@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.Base64;
+import org.signal.core.util.Base64;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
@@ -86,7 +86,7 @@ public class ReportSpamJob extends BaseJob {
 
         byte[] reportingTokenBytes = SignalDatabase.recipients().getReportingToken(recipientId);
         if (reportingTokenBytes != null) {
-          reportingTokenEncoded = Base64.encodeBytes(reportingTokenBytes);
+          reportingTokenEncoded = Base64.encodeWithPadding(reportingTokenBytes);
         }
         
         signalServiceAccountManager.reportSpam(serviceId.get(), data.getServerGuid(), reportingTokenEncoded);

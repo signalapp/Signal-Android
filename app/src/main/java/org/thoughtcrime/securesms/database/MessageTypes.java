@@ -78,11 +78,11 @@ public interface MessageTypes {
   long KEY_EXCHANGE_BIT                   = 0x8000;
   long KEY_EXCHANGE_IDENTITY_VERIFIED_BIT = 0x4000;
   long KEY_EXCHANGE_IDENTITY_DEFAULT_BIT  = 0x2000;
-  long KEY_EXCHANGE_CORRUPTED_BIT         = 0x1000;
+//  long KEY_EXCHANGE_CORRUPTED_BIT         = 0x1000;
   long KEY_EXCHANGE_INVALID_VERSION_BIT   = 0x800;
   long KEY_EXCHANGE_BUNDLE_BIT            = 0x400;
   long KEY_EXCHANGE_IDENTITY_UPDATE_BIT   = 0x200;
-  long KEY_EXCHANGE_CONTENT_FORMAT        = 0x100;
+//  long KEY_EXCHANGE_CONTENT_FORMAT        = 0x100;
 
   // Secure Message Information
   long SECURE_MESSAGE_BIT = 0x800000;
@@ -236,20 +236,12 @@ public interface MessageTypes {
     return (type & KEY_EXCHANGE_IDENTITY_DEFAULT_BIT) != 0;
   }
 
-  static boolean isCorruptedKeyExchange(long type) {
-    return (type & KEY_EXCHANGE_CORRUPTED_BIT) != 0;
-  }
-
   static boolean isInvalidVersionKeyExchange(long type) {
     return (type & KEY_EXCHANGE_INVALID_VERSION_BIT) != 0;
   }
 
   static boolean isBundleKeyExchange(long type) {
     return (type & KEY_EXCHANGE_BUNDLE_BIT) != 0;
-  }
-
-  static boolean isContentBundleKeyExchange(long type) {
-    return (type & KEY_EXCHANGE_CONTENT_FORMAT) != 0;
   }
 
   static boolean isIdentityUpdate(long type) {

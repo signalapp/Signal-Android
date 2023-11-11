@@ -35,8 +35,8 @@ include ':lintchecks'
 include ':paging'
 include ':paging-app'
 include ':core-util'
+include ':core-util-jvm'
 include ':glide-config'
-include ':video'
 include ':device-transfer'
 include ':device-transfer-app'
 include ':image-editor'
@@ -56,10 +56,10 @@ include ':photoview'
 include ':core-ui'
 include ':benchmark'
 include ':microbenchmark'
+include ':video'
 include ':video-app'
 include ':glide-webp'
 include ':glide-webp-app'
-include ':core-util-jvm'
 
 project(':app').name = 'Signal-Android'
 project(':paging').projectDir = file('paging/lib')
@@ -67,8 +67,6 @@ project(':paging-app').projectDir = file('paging/app')
 
 project(':device-transfer').projectDir = file('device-transfer/lib')
 project(':device-transfer-app').projectDir = file('device-transfer/app')
-
-project(':libsignal-service').projectDir = file('libsignal/service')
 
 project(':image-editor').projectDir = file('image-editor/lib')
 project(':image-editor-app').projectDir = file('image-editor/app')
@@ -87,6 +85,9 @@ project(':contacts-app').projectDir = file('contacts/app')
 
 project(':qr').projectDir = file('qr/lib')
 project(':qr-app').projectDir = file('qr/app')
+
+project(':video').projectDir = file('video/lib')
+project(':video-app').projectDir = file('video/app')
 
 project(':glide-webp').projectDir = file('glide-webp/lib')
 project(':glide-webp-app').projectDir = file('glide-webp/app')

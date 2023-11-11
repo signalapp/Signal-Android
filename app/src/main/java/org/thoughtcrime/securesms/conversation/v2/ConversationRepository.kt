@@ -559,13 +559,9 @@ class ConversationRepository(
     }
   }
 
-  fun startExpirationTimeout(messageRecord: MessageRecord) {
-    SignalExecutors.BOUNDED_IO.execute {
-      val now = System.currentTimeMillis()
-
-      SignalDatabase.messages.markExpireStarted(messageRecord.id, now)
-      ApplicationDependencies.getExpiringMessageManager().scheduleDeletion(messageRecord.id, messageRecord.isMms, now, messageRecord.expiresIn)
-    }
+  fun startExpirationTimeout(expirationInfos: List<MessageTable.ExpirationInfo>) {
+    SignalDatabase.messages.markExpireStarted(expirationInfos.map { it.id to it.expireStarted })
+    ApplicationDependencies.getExpiringMessageManager().scheduleDeletion(expirationInfos)
   }
 
   fun markLastSeen(threadId: Long) {

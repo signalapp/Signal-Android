@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/create_profile"
+    app:startDestination="@id/createProfileFragment">
+
+    <fragment
+        android:id="@+id/createProfileFragment"
+        android:name="org.thoughtcrime.securesms.profiles.edit.CreateProfileFragment"
+        android:label="fragment_create_profile"
+        tools:layout="@layout/create_profile_fragment">
+
+        <action
+            android:id="@+id/action_createProfileFragment_to_avatar_picker"
+            app:destination="@id/avatar_picker"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim">
+            <argument
+                android:name="group_id"
+                app:argType="org.thoughtcrime.securesms.groups.ParcelableGroupId"
+                app:nullable="true" />
+
+            <argument
+                android:name="group_avatar_media"
+                app:argType="org.thoughtcrime.securesms.mediasend.Media"
+                app:nullable="true" />
+        </action>
+
+        <action
+            android:id="@+id/action_createProfileFragment_to_phoneNumberPrivacy"
+            app:destination="@id/phoneNumberPrivacy"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+    </fragment>
+
+    <include app:graph="@navigation/avatar_picker" />
+
+    <fragment
+        android:id="@+id/phoneNumberPrivacy"
+        android:name="org.thoughtcrime.securesms.profiles.edit.pnp.WhoCanSeeMyPhoneNumberFragment"
+        android:label="fragment_phone_number_privacy"
+        tools:layout="@layout/dsl_settings_fragment" />
+
+</navigation>

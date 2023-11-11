@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Application
 import android.content.ContentValues
 import android.database.Cursor
+import androidx.core.content.contentValuesOf
 import net.zetetic.database.sqlcipher.SQLiteDatabase
 import net.zetetic.database.sqlcipher.SQLiteOpenHelper
 import org.signal.core.util.CursorUtil
@@ -58,6 +59,7 @@ class JobDatabase(
     const val SERIALIZED_DATA = "serialized_data"
     const val SERIALIZED_INPUT_DATA = "serialized_input_data"
     const val IS_RUNNING = "is_running"
+    const val PRIORITY = "priority"
 
     val CREATE_TABLE =
       """
@@ -74,7 +76,8 @@ class JobDatabase(
           $SERIALIZED_DATA TEXT, 
           $SERIALIZED_INPUT_DATA TEXT DEFAULT NULL, 
           $IS_RUNNING INTEGER,
-          $NEXT_BACKOFF_INTERVAL INTEGER
+          $NEXT_BACKOFF_INTERVAL INTEGER,
+          $PRIORITY INTEGER DEFAULT 0
         )
       """.trimIndent()
   }
@@ -144,6 +147,10 @@ class JobDatabase(
       db.execSQL("ALTER TABLE job_spec ADD COLUMN next_backoff_interval INTEGER")
       db.execSQL("UPDATE job_spec SET last_run_attempt_time = 0")
     }
+
+    if (oldVersion < 3) {
+      db.execSQL("ALTER TABLE job_spec ADD COLUMN priority INTEGER DEFAULT 0")
+    }
   }
 
   override fun onOpen(db: SQLiteDatabase) {
@@ -188,7 +195,8 @@ class JobDatabase(
       Jobs.LIFESPAN,
       Jobs.SERIALIZED_DATA,
       Jobs.SERIALIZED_INPUT_DATA,
-      Jobs.IS_RUNNING
+      Jobs.IS_RUNNING,
+      Jobs.PRIORITY
     )
     return readableDatabase
       .query(Jobs.TABLE_NAME, columns, null, null, null, null, "${Jobs.CREATE_TIME}, ${Jobs.ID} ASC")
@@ -328,7 +336,8 @@ class JobDatabase(
         Jobs.LIFESPAN to job.lifespan,
         Jobs.SERIALIZED_DATA to job.serializedData,
         Jobs.SERIALIZED_INPUT_DATA to job.serializedInputData,
-        Jobs.IS_RUNNING to if (job.isRunning) 1 else 0
+        Jobs.IS_RUNNING to if (job.isRunning) 1 else 0,
+        Jobs.PRIORITY to job.priority
       )
       .run(SQLiteDatabase.CONFLICT_IGNORE)
   }
@@ -377,7 +386,8 @@ class JobDatabase(
       serializedData = cursor.requireBlob(Jobs.SERIALIZED_DATA),
       serializedInputData = cursor.requireBlob(Jobs.SERIALIZED_INPUT_DATA),
       isRunning = cursor.requireBoolean(Jobs.IS_RUNNING),
-      isMemoryOnly = false
+      isMemoryOnly = false,
+      priority = cursor.requireInt(Jobs.PRIORITY)
     )
   }
 
@@ -408,9 +418,14 @@ class JobDatabase(
     }
   }
 
+  /** Should only be used for debugging! */
+  fun debugResetBackoffInterval() {
+    writableDatabase.update(Jobs.TABLE_NAME, contentValuesOf(Jobs.NEXT_BACKOFF_INTERVAL to 0), null, null)
+  }
+
   companion object {
     private val TAG = Log.tag(JobDatabase::class.java)
-    private const val DATABASE_VERSION = 2
+    private const val DATABASE_VERSION = 3
     private const val DATABASE_NAME = "signal-jobmanager.db"
 
     @SuppressLint("StaticFieldLeak")

@@ -43,6 +43,7 @@ public final class SignalStore {
   private final NotificationProfileValues notificationProfileValues;
   private final ReleaseChannelValues      releaseChannelValues;
   private final StoryValues               storyValues;
+  private final ApkUpdateValues           apkUpdate;
 
   private final PlainTextSharedPrefsDataStore plainTextValues;
 
@@ -87,6 +88,7 @@ public final class SignalStore {
     this.notificationProfileValues = new NotificationProfileValues(store);
     this.releaseChannelValues      = new ReleaseChannelValues(store);
     this.storyValues               = new StoryValues(store);
+    this.apkUpdate                 = new ApkUpdateValues(store);
     this.plainTextValues           = new PlainTextSharedPrefsDataStore(ApplicationDependencies.getApplication());
   }
 
@@ -262,6 +264,10 @@ public final class SignalStore {
 
   public static @NonNull StoryValues storyValues() {
     return getInstance().storyValues;
+  }
+
+  public static @NonNull ApkUpdateValues apkUpdate() {
+    return getInstance().apkUpdate;
   }
 
   public static @NonNull GroupsV2AuthorizationSignalStoreCache groupsV2AciAuthorizationCache() {

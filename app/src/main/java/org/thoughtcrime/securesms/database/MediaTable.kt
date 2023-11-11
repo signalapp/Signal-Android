@@ -121,7 +121,9 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
         ${AttachmentTable.CONTENT_TYPE} LIKE 'audio/%'
       """
     )
-    private val ALL_MEDIA_QUERY = String.format(BASE_MEDIA_QUERY, "${AttachmentTable.CONTENT_TYPE} NOT LIKE 'text/x-signal-plain'")
+
+    private val ALL_MEDIA_QUERY = String.format(BASE_MEDIA_QUERY, "${AttachmentTable.DATA} IS NOT NULL AND ${AttachmentTable.CONTENT_TYPE} NOT LIKE 'text/x-signal-plain'")
+
     private val DOCUMENT_MEDIA_QUERY = String.format(
       BASE_MEDIA_QUERY,
       """
@@ -141,13 +143,19 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
     }
   }
 
-  fun getGalleryMediaForThread(threadId: Long, sorting: Sorting): Cursor {
-    val query = if (FeatureFlags.instantVideoPlayback()) {
+  @JvmOverloads
+  fun getGalleryMediaForThread(threadId: Long, sorting: Sorting, limit: Int = 0): Cursor {
+    var query = if (FeatureFlags.instantVideoPlayback()) {
       sorting.applyToQuery(applyEqualityOperator(threadId, GALLERY_MEDIA_QUERY_INCLUDING_TEMP_VIDEOS))
     } else {
       sorting.applyToQuery(applyEqualityOperator(threadId, GALLERY_MEDIA_QUERY))
     }
     val args = arrayOf(threadId.toString() + "")
+
+    if (limit > 0) {
+      query = "$query LIMIT $limit"
+    }
+
     return readableDatabase.rawQuery(query, args)
   }
 

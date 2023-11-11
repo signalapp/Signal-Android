@@ -3,6 +3,7 @@ captures/
 project.properties
 keystore.debug.properties
 keystore.staging.properties
+nightly-url.txt
 .project
 .settings
 bin/

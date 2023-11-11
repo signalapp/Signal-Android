@@ -6,7 +6,6 @@
 package org.thoughtcrime.securesms.conversation.v2.items
 
 import android.graphics.Canvas
-import androidx.core.view.isVisible
 import org.thoughtcrime.securesms.util.visible
 
 /**
@@ -43,12 +42,12 @@ class V2ConversationItemSnapshotStrategy(
       it.scaleY = 1f
     }
 
-    val originalIsVisible = viewsToHide.associateWith { it.isVisible }
+    val originalVisibility = viewsToHide.associateWith { it.visibility }
     viewsToHide.forEach { it.visible = false }
 
     binding.root.draw(canvas)
 
-    originalIsVisible.forEach { (view, isVisible) -> view.isVisible = isVisible }
+    originalVisibility.forEach { (view, visibility) -> view.visibility = visibility }
     originalScales.forEach { view, (scaleX, scaleY) ->
       view.scaleX = scaleX
       view.scaleY = scaleY

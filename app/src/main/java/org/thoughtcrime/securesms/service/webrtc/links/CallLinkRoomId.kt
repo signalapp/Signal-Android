@@ -9,9 +9,9 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
+import org.signal.core.util.Base64
 import org.signal.core.util.Serializer
 import org.signal.ringrtc.CallLinkRootKey
-import org.thoughtcrime.securesms.util.Base64
 
 @Parcelize
 class CallLinkRoomId private constructor(private val roomId: ByteArray) : Parcelable {
@@ -40,7 +40,7 @@ class CallLinkRoomId private constructor(private val roomId: ByteArray) : Parcel
 
   object DatabaseSerializer : Serializer<CallLinkRoomId, String> {
     override fun serialize(data: CallLinkRoomId): String {
-      return Base64.encodeBytes(data.roomId)
+      return Base64.encodeWithPadding(data.roomId)
     }
 
     override fun deserialize(data: String): CallLinkRoomId {

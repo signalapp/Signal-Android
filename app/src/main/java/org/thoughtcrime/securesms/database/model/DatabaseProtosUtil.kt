@@ -3,7 +3,9 @@
 package org.thoughtcrime.securesms.database.model
 
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
+import org.thoughtcrime.securesms.database.model.databaseprotos.PendingOneTimeDonation
 import org.whispersystems.signalservice.internal.push.BodyRange
+import kotlin.time.Duration.Companion.days
 
 /**
  * Collection of extensions to make working with database protos cleaner.
@@ -52,3 +54,25 @@ fun List<BodyRange>?.toBodyRangeList(): BodyRangeList? {
 
   return builder.build()
 }
+
+fun PendingOneTimeDonation?.isPending(): Boolean {
+  return this != null && this.error == null && !this.isExpired
+}
+
+fun PendingOneTimeDonation?.isLongRunning(): Boolean {
+  return isPending() && this!!.paymentMethodType == PendingOneTimeDonation.PaymentMethodType.SEPA_DEBIT
+}
+
+val PendingOneTimeDonation.isExpired: Boolean
+  get() {
+    val pendingOneTimeBankTransferTimeout = 14.days
+    val pendingOneTimeNormalTimeout = 1.days
+
+    val timeout = if (paymentMethodType == PendingOneTimeDonation.PaymentMethodType.SEPA_DEBIT) {
+      pendingOneTimeBankTransferTimeout
+    } else {
+      pendingOneTimeNormalTimeout
+    }
+
+    return (timestamp + timeout.inWholeMilliseconds) < System.currentTimeMillis()
+  }

@@ -5,6 +5,8 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import androidx.annotation.VisibleForTesting
+import org.signal.core.util.Base64
+import org.signal.core.util.LongSerializer
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.IdentityKeyPair
@@ -19,7 +21,6 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.PreKeysSyncJob
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.service.KeyCachingService
-import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
@@ -70,7 +71,7 @@ internal class AccountValues internal constructor(store: KeyValueStore) : Signal
     private const val KEY_USERNAME = "account.username"
     private const val KEY_USERNAME_LINK_ENTROPY = "account.username_link_entropy"
     private const val KEY_USERNAME_LINK_SERVER_ID = "account.username_link_server_id"
-    private const val KEY_USERNAME_OUT_OF_SYNC = "phoneNumberPrivacy.usernameOutOfSync"
+    private const val KEY_USERNAME_SYNC_STATE = "phoneNumberPrivacy.usernameSyncState"
 
     @VisibleForTesting
     const val KEY_E164 = "account.e164"
@@ -199,7 +200,7 @@ internal class AccountValues internal constructor(store: KeyValueStore) : Signal
   fun generateAciIdentityKeyIfNecessary() {
     synchronized(this) {
       if (store.containsKey(KEY_ACI_IDENTITY_PUBLIC_KEY)) {
-        Log.w(TAG, "Tried to generate an ANI identity, but one was already set!", Throwable())
+        Log.w(TAG, "Tried to generate an ACI identity, but one was already set!", Throwable())
         return
       }
 
@@ -396,7 +397,17 @@ internal class AccountValues internal constructor(store: KeyValueStore) : Signal
    * There are some cases where our username may fall out of sync with the service. In particular, we may get a new value for our username from
    * storage service but then find that it doesn't match what's on the service.
    */
-  var usernameOutOfSync: Boolean by booleanValue(KEY_USERNAME_OUT_OF_SYNC, false)
+  var usernameSyncState: UsernameSyncState by enumValue(
+    KEY_USERNAME_SYNC_STATE,
+    UsernameSyncState.IN_SYNC,
+    object : LongSerializer<UsernameSyncState> {
+      override fun serialize(data: UsernameSyncState): Long {
+        Log.i(TAG, "Marking username sync state as: $data")
+        return data.serialize()
+      }
+      override fun deserialize(data: Long): UsernameSyncState = UsernameSyncState.deserialize(data)
+    }
+  )
 
   private fun clearLocalCredentials() {
     putString(KEY_SERVICE_PASSWORD, Util.getSecret(18))
@@ -493,5 +504,24 @@ internal class AccountValues internal constructor(store: KeyValueStore) : Signal
 
   private fun SharedPreferences.hasStringData(key: String): Boolean {
     return this.getString(key, null) != null
+  }
+
+  enum class UsernameSyncState(private val value: Long) {
+    /** Our username data is in sync with the service */
+    IN_SYNC(1),
+
+    /** Both our username and username link are out-of-sync with the service */
+    USERNAME_AND_LINK_CORRUPTED(2),
+
+    /** Our username link is out-of-sync with the service */
+    LINK_CORRUPTED(3);
+
+    fun serialize(): Long = value
+
+    companion object {
+      fun deserialize(value: Long): UsernameSyncState {
+        return values().firstOrNull { it.value == value } ?: throw IllegalArgumentException("Invalud value: $value")
+      }
+    }
   }
 }

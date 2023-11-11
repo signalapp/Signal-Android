@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription.manage
 
 import org.thoughtcrime.securesms.badges.models.Badge
+import org.thoughtcrime.securesms.database.model.databaseprotos.PendingOneTimeDonation
 import org.thoughtcrime.securesms.subscription.Subscription
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 
@@ -8,24 +9,27 @@ data class ManageDonationsState(
   val hasOneTimeBadge: Boolean = false,
   val hasReceipts: Boolean = false,
   val featuredBadge: Badge? = null,
-  val transactionState: TransactionState = TransactionState.Init,
+  val subscriptionTransactionState: TransactionState = TransactionState.Init,
   val availableSubscriptions: List<Subscription> = emptyList(),
-  private val subscriptionRedemptionState: SubscriptionRedemptionState = SubscriptionRedemptionState.NONE
+  val pendingOneTimeDonation: PendingOneTimeDonation? = null,
+  val nonVerifiedMonthlyDonation: NonVerifiedMonthlyDonation? = null,
+  private val subscriptionRedemptionState: RedemptionState = RedemptionState.NONE
 ) {
 
-  fun getMonthlyDonorRedemptionState(): SubscriptionRedemptionState {
-    return when (transactionState) {
+  fun getMonthlyDonorRedemptionState(): RedemptionState {
+    return when (subscriptionTransactionState) {
       TransactionState.Init -> subscriptionRedemptionState
       TransactionState.NetworkFailure -> subscriptionRedemptionState
-      TransactionState.InTransaction -> SubscriptionRedemptionState.IN_PROGRESS
-      is TransactionState.NotInTransaction -> getStateFromActiveSubscription(transactionState.activeSubscription) ?: subscriptionRedemptionState
+      TransactionState.InTransaction -> RedemptionState.IN_PROGRESS
+      is TransactionState.NotInTransaction -> getStateFromActiveSubscription(subscriptionTransactionState.activeSubscription) ?: subscriptionRedemptionState
     }
   }
 
-  private fun getStateFromActiveSubscription(activeSubscription: ActiveSubscription): SubscriptionRedemptionState? {
+  private fun getStateFromActiveSubscription(activeSubscription: ActiveSubscription): RedemptionState? {
     return when {
-      activeSubscription.isFailedPayment -> SubscriptionRedemptionState.FAILED
-      activeSubscription.isInProgress -> SubscriptionRedemptionState.IN_PROGRESS
+      activeSubscription.isFailedPayment -> RedemptionState.FAILED
+      activeSubscription.isPendingBankTransfer -> RedemptionState.IS_PENDING_BANK_TRANSFER
+      activeSubscription.isInProgress -> RedemptionState.IN_PROGRESS
       else -> null
     }
   }
@@ -37,9 +41,10 @@ data class ManageDonationsState(
     class NotInTransaction(val activeSubscription: ActiveSubscription) : TransactionState()
   }
 
-  enum class SubscriptionRedemptionState {
+  enum class RedemptionState {
     NONE,
     IN_PROGRESS,
+    IS_PENDING_BANK_TRANSFER,
     FAILED
   }
 }

@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.components.settings.app.usernamelinks.main
 
 import android.content.res.Configuration
-import android.graphics.Bitmap
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -43,7 +42,6 @@ import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCodeDa
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCodeState
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.UsernameQrCodeColorScheme
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.main.UsernameLinkSettingsState.ActiveTab
-import org.thoughtcrime.securesms.compose.ScreenshotController
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
@@ -57,9 +55,8 @@ fun UsernameLinkShareScreen(
   snackbarHostState: SnackbarHostState,
   scope: CoroutineScope,
   navController: NavController,
-  onShareBadge: (Bitmap) -> Unit,
+  onShareBadge: () -> Unit,
   modifier: Modifier = Modifier,
-  screenshotController: ScreenshotController? = null,
   onResetClicked: () -> Unit
 ) {
   when (state.usernameLinkResetResult) {
@@ -82,7 +79,6 @@ fun UsernameLinkShareScreen(
       data = state.qrCodeState,
       colorScheme = state.qrCodeColorScheme,
       username = state.username,
-      screenshotController = screenshotController,
       usernameCopyable = true,
       modifier = Modifier.padding(horizontal = 58.dp, vertical = 24.dp),
       onClick = {
@@ -93,13 +89,8 @@ fun UsernameLinkShareScreen(
     )
 
     ButtonBar(
-      onShareClicked = {
-        val badgeBitmap = screenshotController?.screenshot()
-        if (badgeBitmap != null) {
-          onShareBadge.invoke(badgeBitmap)
-        }
-      },
-      onColorClicked = { navController.safeNavigate(R.id.action_usernameLinkSettingsFragment_to_usernameLinkQrColorPickerFragment) }
+      onShareClicked = onShareBadge,
+      onColorClicked = { navController.safeNavigate(UsernameLinkSettingsFragmentDirections.actionUsernameLinkSettingsFragmentToUsernameLinkQrColorPickerFragment()) }
     )
 
     LinkRow(

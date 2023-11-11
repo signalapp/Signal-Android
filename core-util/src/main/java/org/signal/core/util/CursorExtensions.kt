@@ -181,6 +181,10 @@ inline fun Cursor.forEach(operation: (Cursor) -> Unit) {
   }
 }
 
+fun Cursor.iterable(): Iterable<Cursor> {
+  return CursorIterable(this)
+}
+
 fun Boolean.toInt(): Int = if (this) 1 else 0
 
 /**
@@ -201,4 +205,24 @@ fun Cursor.rowToString(): String {
   }
 
   return builder.toString()
+}
+
+private class CursorIterable(private val cursor: Cursor) : Iterable<Cursor> {
+  override fun iterator(): Iterator<Cursor> {
+    return CursorIterator(cursor)
+  }
+}
+
+private class CursorIterator(private val cursor: Cursor) : Iterator<Cursor> {
+  override fun hasNext(): Boolean {
+    return !cursor.isClosed && cursor.count > 0 && !cursor.isLast && !cursor.isAfterLast
+  }
+
+  override fun next(): Cursor {
+    return if (cursor.moveToNext()) {
+      cursor
+    } else {
+      throw NoSuchElementException()
+    }
+  }
 }

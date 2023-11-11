@@ -157,6 +157,6 @@ public class EditSelfProfileRepository implements EditProfileRepository {
 
   @Override
   public void getCurrentUsername(@NonNull Consumer<Optional<String>> callback) {
-    callback.accept(Recipient.self().getUsername());
+    callback.accept(Optional.ofNullable(SignalStore.account().getUsername()));
   }
 }

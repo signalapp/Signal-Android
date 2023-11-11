@@ -23,7 +23,7 @@ import java.net.URLDecoder
 object CallLinks {
   private const val ROOT_KEY = "key"
   private const val HTTPS_LINK_PREFIX = "https://signal.link/call/#key="
-  private const val SNGL_LINK_PREFIX = "sgnl://signal.link/#key="
+  private const val SNGL_LINK_PREFIX = "sgnl://signal.link/call/#key="
 
   private val TAG = Log.tag(CallLinks::class.java)
 
@@ -58,7 +58,7 @@ object CallLinks {
       return false
     }
 
-    if (!url.startsWith(HTTPS_LINK_PREFIX) && !url.startsWith(SNGL_LINK_PREFIX)) {
+    if (!url.startsWith(HTTPS_LINK_PREFIX) || !url.startsWith(SNGL_LINK_PREFIX)) {
       return false
     }
 

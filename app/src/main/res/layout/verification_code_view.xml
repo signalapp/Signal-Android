@@ -10,7 +10,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/container_zero"
-        style="@style/Widget.Signal.TextInputLayout.Registration"
+        style="@style/Widget.Signal.TextInputLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:errorEnabled="false"
@@ -39,7 +39,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/container_one"
-        style="@style/Widget.Signal.TextInputLayout.Registration"
+        style="@style/Widget.Signal.TextInputLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="4dp"
@@ -69,7 +69,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/container_two"
-        style="@style/Widget.Signal.TextInputLayout.Registration"
+        style="@style/Widget.Signal.TextInputLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="4dp"
@@ -116,7 +116,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/container_three"
-        style="@style/Widget.Signal.TextInputLayout.Registration"
+        style="@style/Widget.Signal.TextInputLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="4dp"
@@ -146,7 +146,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/container_four"
-        style="@style/Widget.Signal.TextInputLayout.Registration"
+        style="@style/Widget.Signal.TextInputLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="4dp"
@@ -176,7 +176,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/container_five"
-        style="@style/Widget.Signal.TextInputLayout.Registration"
+        style="@style/Widget.Signal.TextInputLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="4dp"

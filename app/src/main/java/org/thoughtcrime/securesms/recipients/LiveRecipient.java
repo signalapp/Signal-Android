@@ -157,8 +157,9 @@ public final class LiveRecipient {
   }
 
   @WorkerThread
-  public void refresh() {
+  public LiveRecipient refresh() {
     refresh(getId());
+    return this;
   }
 
   /**

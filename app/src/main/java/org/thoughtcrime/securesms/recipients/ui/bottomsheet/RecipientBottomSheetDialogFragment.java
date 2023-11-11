@@ -314,11 +314,13 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
     });
 
     viewModel.getIdentity().observe(getViewLifecycleOwner(), identityRecord -> {
-      viewSafetyNumberButton.setVisibility(View.VISIBLE);
-      viewSafetyNumberButton.setOnClickListener(view -> {
-        dismiss();
-        viewModel.onViewSafetyNumberClicked(requireActivity(), identityRecord);
-      });
+      if (identityRecord != null) {
+        viewSafetyNumberButton.setVisibility(View.VISIBLE);
+        viewSafetyNumberButton.setOnClickListener(view -> {
+          dismiss();
+          viewModel.onViewSafetyNumberClicked(requireActivity(), identityRecord);
+        });
+      }
     });
 
     avatar.setOnClickListener(view -> {

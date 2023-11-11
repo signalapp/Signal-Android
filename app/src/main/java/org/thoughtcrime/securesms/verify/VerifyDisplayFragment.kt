@@ -82,10 +82,6 @@ class VerifyDisplayFragment : Fragment(), OnScrollChangedListener {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     initializeViewModel()
 
-    binding.safetyNumberUpdatingBannerText.text = getString(R.string.verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more)
-    binding.safetyNumberUpdatingBannerText.setLink("https://signal.org/redirect/safety-numbers")
-    binding.safetyNumberUpdatingBannerText.setLinkColor(ContextCompat.getColor(requireContext(), R.color.signal_colorPrimary))
-
     updateVerifyButton(requireArguments().getBoolean(VERIFIED_STATE, false), false)
 
     binding.verifyButton.setOnClickListener { updateVerifyButton(!currentVerifiedState, true) }
@@ -116,7 +112,6 @@ class VerifyDisplayFragment : Fragment(), OnScrollChangedListener {
         return@observe
       }
       val multipleCards = fingerprints.size > 1
-      binding.safetyNumberChangeBanner.visible = multipleCards
       binding.dotIndicators.visible = multipleCards
 
       if (fingerprints.isEmpty()) {
@@ -143,14 +138,6 @@ class VerifyDisplayFragment : Fragment(), OnScrollChangedListener {
     val remoteIdentity = requireArguments().requireParcelableCompat(REMOTE_IDENTITY, IdentityKeyParcelable::class.java).get()!!
 
     viewModel = ViewModelProvider(this, VerifySafetyNumberViewModel.Factory(recipientId, localIdentity, remoteIdentity)).get(VerifySafetyNumberViewModel::class.java)
-  }
-
-  override fun onStart() {
-    super.onStart()
-    if (!viewModel.showedSafetyNumberEducationDialog) {
-      PnpSafetyNumberEducationDialogFragment.show(childFragmentManager)
-      viewModel.showedSafetyNumberEducationDialog = true
-    }
   }
 
   override fun onResume() {

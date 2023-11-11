@@ -6,6 +6,7 @@ import androidx.annotation.VisibleForTesting
 import net.zetetic.database.sqlcipher.SQLiteOpenHelper
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.logging.Log
+import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.crypto.AttachmentSecret
 import org.thoughtcrime.securesms.crypto.DatabaseSecret
 import org.thoughtcrime.securesms.crypto.MasterSecret
@@ -345,13 +346,9 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     }
 
     @JvmStatic
-    fun runInTransaction(operation: Runnable) {
-      instance!!.signalWritableDatabase.beginTransaction()
-      try {
-        operation.run()
-        instance!!.signalWritableDatabase.setTransactionSuccessful()
-      } finally {
-        instance!!.signalWritableDatabase.endTransaction()
+    fun <T> runInTransaction(block: (SQLiteDatabase) -> T): T {
+      return instance!!.signalWritableDatabase.withinTransaction {
+        block(it)
       }
     }
 

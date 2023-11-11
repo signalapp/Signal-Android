@@ -5,9 +5,11 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.badges.Badges
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.databaseprotos.TerminalDonationQueue
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobmanager.JobTracker
 import org.thoughtcrime.securesms.jobs.MultiDeviceSubscriptionSyncRequestJob
@@ -147,7 +149,10 @@ class MonthlyDonationRepository(private val donationsService: DonationsService) 
     }
   }
 
-  fun setSubscriptionLevel(subscriptionLevel: String, uiSessionKey: Long): Completable {
+  fun setSubscriptionLevel(gatewayRequest: GatewayRequest, isLongRunning: Boolean): Completable {
+    val subscriptionLevel = gatewayRequest.level.toString()
+    val uiSessionKey = gatewayRequest.uiSessionKey
+
     return getOrCreateLevelUpdateOperation(subscriptionLevel)
       .flatMapCompletable { levelUpdateOperation ->
         val subscriber = SignalStore.donationsValues().requireSubscriber()
@@ -186,11 +191,22 @@ class MonthlyDonationRepository(private val donationsService: DonationsService) 
             val countDownLatch = CountDownLatch(1)
             var finalJobState: JobTracker.JobState? = null
 
-            SubscriptionReceiptRequestResponseJob.createSubscriptionContinuationJobChain(uiSessionKey).enqueue { _, jobState ->
+            val terminalDonation = TerminalDonationQueue.TerminalDonation(
+              level = gatewayRequest.level,
+              isLongRunningPaymentMethod = isLongRunning
+            )
+
+            SubscriptionReceiptRequestResponseJob.createSubscriptionContinuationJobChain(uiSessionKey, terminalDonation).enqueue { _, jobState ->
               if (jobState.isComplete) {
                 finalJobState = jobState
                 countDownLatch.countDown()
               }
+            }
+
+            val timeoutError: DonationError = if (isLongRunning) {
+              DonationError.donationPending(DonationErrorSource.MONTHLY, gatewayRequest)
+            } else {
+              DonationError.timeoutWaitingForToken(DonationErrorSource.MONTHLY)
             }
 
             try {
@@ -202,20 +218,20 @@ class MonthlyDonationRepository(private val donationsService: DonationsService) 
                   }
                   JobTracker.JobState.FAILURE -> {
                     Log.d(TAG, "Subscription request response job chain failed permanently.", true)
-                    it.onError(DonationError.genericBadgeRedemptionFailure(DonationErrorSource.SUBSCRIPTION))
+                    it.onError(DonationError.genericBadgeRedemptionFailure(DonationErrorSource.MONTHLY))
                   }
                   else -> {
                     Log.d(TAG, "Subscription request response job chain ignored due to in-progress jobs.", true)
-                    it.onError(DonationError.timeoutWaitingForToken(DonationErrorSource.SUBSCRIPTION))
+                    it.onError(timeoutError)
                   }
                 }
               } else {
                 Log.d(TAG, "Subscription request response job timed out.", true)
-                it.onError(DonationError.timeoutWaitingForToken(DonationErrorSource.SUBSCRIPTION))
+                it.onError(timeoutError)
               }
             } catch (e: InterruptedException) {
               Log.w(TAG, "Subscription request response interrupted.", e, true)
-              it.onError(DonationError.timeoutWaitingForToken(DonationErrorSource.SUBSCRIPTION))
+              it.onError(timeoutError)
             }
           }
       }.doOnError {
@@ -224,22 +240,28 @@ class MonthlyDonationRepository(private val donationsService: DonationsService) 
   }
 
   private fun getOrCreateLevelUpdateOperation(subscriptionLevel: String): Single<LevelUpdateOperation> = Single.fromCallable {
-    Log.d(TAG, "Retrieving level update operation for $subscriptionLevel")
-    val levelUpdateOperation = SignalStore.donationsValues().getLevelOperation(subscriptionLevel)
-    if (levelUpdateOperation == null) {
-      val newOperation = LevelUpdateOperation(
-        idempotencyKey = IdempotencyKey.generate(),
-        level = subscriptionLevel
-      )
+    getOrCreateLevelUpdateOperation(TAG, subscriptionLevel)
+  }
 
-      SignalStore.donationsValues().setLevelOperation(newOperation)
-      LevelUpdate.updateProcessingState(true)
-      Log.d(TAG, "Created a new operation for $subscriptionLevel")
-      newOperation
-    } else {
-      LevelUpdate.updateProcessingState(true)
-      Log.d(TAG, "Reusing operation for $subscriptionLevel")
-      levelUpdateOperation
+  companion object {
+    fun getOrCreateLevelUpdateOperation(tag: String, subscriptionLevel: String): LevelUpdateOperation {
+      Log.d(tag, "Retrieving level update operation for $subscriptionLevel")
+      val levelUpdateOperation = SignalStore.donationsValues().getLevelOperation(subscriptionLevel)
+      return if (levelUpdateOperation == null) {
+        val newOperation = LevelUpdateOperation(
+          idempotencyKey = IdempotencyKey.generate(),
+          level = subscriptionLevel
+        )
+
+        SignalStore.donationsValues().setLevelOperation(newOperation)
+        LevelUpdate.updateProcessingState(true)
+        Log.d(tag, "Created a new operation for $subscriptionLevel")
+        newOperation
+      } else {
+        LevelUpdate.updateProcessingState(true)
+        Log.d(tag, "Reusing operation for $subscriptionLevel")
+        levelUpdateOperation
+      }
     }
   }
 

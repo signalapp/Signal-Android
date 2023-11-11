@@ -24,7 +24,7 @@ import org.signal.libsignal.protocol.ecc.Curve;
 import org.signal.libsignal.protocol.ecc.ECKeyPair;
 import org.signal.libsignal.protocol.ecc.ECPrivateKey;
 import org.signal.libsignal.protocol.ecc.ECPublicKey;
-import org.thoughtcrime.securesms.util.Base64;
+import org.signal.core.util.Base64;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.io.IOException;
@@ -99,7 +99,7 @@ public class AsymmetricMasterCipher {
   }
 
   public String encryptBody(String body) {
-    return Base64.encodeBytes(encryptBytes(body.getBytes()));
+    return Base64.encodeWithPadding(encryptBytes(body.getBytes()));
   }
 
   private MasterCipher getMasterCipherForSecret(byte[] secretBytes) {

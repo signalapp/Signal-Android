@@ -73,7 +73,8 @@ public class JobMigrator {
                                                   updatedJobData.getData(),
                                                   jobSpec.getSerializedInputData(),
                                                   jobSpec.isRunning(),
-                                                  jobSpec.isMemoryOnly());
+                                                  jobSpec.isMemoryOnly(),
+                                                  jobSpec.getPriority());
 
         iter.set(updatedJobSpec);
       }

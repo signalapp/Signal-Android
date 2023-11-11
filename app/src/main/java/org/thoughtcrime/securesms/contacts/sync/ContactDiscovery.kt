@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.SyncSystemContactLinksJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.v2.ConversationId
 import org.thoughtcrime.securesms.permissions.Permissions
@@ -23,7 +24,6 @@ import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.registration.RegistrationUtil
-import org.thoughtcrime.securesms.sms.IncomingJoinedMessage
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.TextSecurePreferences
@@ -73,7 +73,8 @@ object ContactDiscovery {
         ContactDiscoveryRefreshV2.refreshAll(context, useCompat = FeatureFlags.cdsCompatMode())
       },
       removeSystemContactLinksIfMissing = true,
-      notifyOfNewUsers = notifyOfNewUsers
+      notifyOfNewUsers = notifyOfNewUsers,
+      forceFullSystemContactSync = true
     )
 
     StorageSyncHelper.scheduleSyncForDataChange()
@@ -140,7 +141,8 @@ object ContactDiscovery {
     descriptor: String,
     refresh: () -> RefreshResult,
     removeSystemContactLinksIfMissing: Boolean,
-    notifyOfNewUsers: Boolean
+    notifyOfNewUsers: Boolean,
+    forceFullSystemContactSync: Boolean = false
   ): RefreshResult {
     val stopwatch = Stopwatch(descriptor)
 
@@ -153,7 +155,7 @@ object ContactDiscovery {
     if (hasContactsPermissions(context)) {
       ApplicationDependencies.getJobManager().add(SyncSystemContactLinksJob())
 
-      val useFullSync = removeSystemContactLinksIfMissing && result.registeredIds.size > FULL_SYSTEM_CONTACT_SYNC_THRESHOLD
+      val useFullSync = forceFullSystemContactSync || (removeSystemContactLinksIfMissing && result.registeredIds.size > FULL_SYSTEM_CONTACT_SYNC_THRESHOLD)
       syncRecipientsWithSystemContacts(
         context = context,
         rewrites = result.rewrites,
@@ -197,7 +199,7 @@ object ContactDiscovery {
 
     Recipient.resolvedList(newUserIds)
       .filter { !it.isSelf && it.hasAUserSetDisplayName(context) && !hasSession(it.id) }
-      .map { IncomingJoinedMessage(it.id) }
+      .map { IncomingMessage.contactJoined(it.id, System.currentTimeMillis()) }
       .map { SignalDatabase.messages.insertMessageInbox(it) }
       .filter { it.isPresent }
       .map { it.get() }

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright 2023 Signal Messenger, LLC
+  ~ SPDX-License-Identifier: AGPL-3.0-only
+  -->
+
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/username_link_settings"
+    app:startDestination="@id/usernameLinkSettingsFragment">
+
+    <fragment
+        android:id="@+id/usernameLinkSettingsFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.usernamelinks.main.UsernameLinkSettingsFragment">
+
+        <action
+            android:id="@+id/action_usernameLinkSettingsFragment_to_usernameLinkQrColorPickerFragment"
+            app:destination="@id/usernameLinkQrColorPickerFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/usernameLinkQrColorPickerFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.usernamelinks.colorpicker.UsernameLinkQrColorPickerFragment" />
+
+</navigation>

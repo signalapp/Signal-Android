@@ -10,7 +10,8 @@ data class GatewayResponse(val gateway: Gateway, val request: GatewayRequest) : 
     GOOGLE_PAY,
     PAYPAL,
     CREDIT_CARD,
-    SEPA_DEBIT;
+    SEPA_DEBIT,
+    IDEAL;
 
     fun toPaymentSourceType(): PaymentSourceType {
       return when (this) {
@@ -18,6 +19,7 @@ data class GatewayResponse(val gateway: Gateway, val request: GatewayRequest) : 
         PAYPAL -> PaymentSourceType.PayPal
         CREDIT_CARD -> PaymentSourceType.Stripe.CreditCard
         SEPA_DEBIT -> PaymentSourceType.Stripe.SEPADebit
+        IDEAL -> PaymentSourceType.Stripe.IDEAL
       }
     }
   }

@@ -59,7 +59,7 @@
         <item name="android:windowBackground">@drawable/dialog_background</item>
         <item name="android:textColor">@null</item>
     </style>
-    
+
     <style name="TextSecure.Animation.FullScreenDialog" parent="@android:style/Animation.Activity">
         <item name="android:windowEnterAnimation">@anim/fade_scale_in</item>
         <item name="android:windowExitAnimation">@anim/fade_scale_out</item>
@@ -371,10 +371,16 @@
         <item name="hintTextAppearance">@style/Signal.Text.LabelMedium</item>
     </style>
 
-    <style name="Widget.Signal.TextInputLayout.Registration" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+    <style name="Widget.Signal.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
         <item name="boxCornerRadiusTopEnd">4dp</item>
         <item name="boxCornerRadiusTopStart">4dp</item>
         <item name="hintTextAppearance">@style/Signal.Text.LabelMedium</item>
+        <item name="boxStrokeColor">@color/signal_colorPrimary</item>
+        <item name="boxStrokeErrorColor">@color/signal_colorError</item>
+        <item name="errorIconTint">@color/signal_colorError</item>
+        <item name="errorTextColor">@color/signal_colorError</item>
+        <item name="hintTextColor">@color/signal_colorPrimary</item>
+        <item name="boxBackgroundColor">@color/signal_colorSurfaceVariant</item>
     </style>
 
     <style name="Widget.Signal.TextInputLayout.Registration.Dropdown" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">

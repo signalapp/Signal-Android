@@ -15,8 +15,10 @@
     <dimen name="payment_recovery_phrase_adapter_margin">92dp</dimen>
     <dimen name="payment_recovery_phrase_outline_margin">48dp</dimen>
 
+    <dimen name="bank_transfer_mandate_gutter">32dp</dimen>
     <dimen name="media_bubble_gif_width">260dp</dimen>
     <dimen name="dsl_settings_gutter">24dp</dimen>
+    <dimen name="active_subscription_gutter_start">22dp</dimen>
     <dimen name="media_overview_toggle_gutter">10dp</dimen>
     <dimen name="wallpaper_selection_gutter">16dp</dimen>
     <dimen name="safety_number_recipient_row_item_gutter">12dp</dimen>

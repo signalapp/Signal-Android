@@ -25,7 +25,7 @@ abstract class ComposeBottomSheetDialogFragment : FixedRoundedCornerBottomSheetD
         SignalTheme(
           isDarkMode = isDarkTheme()
         ) {
-          Surface(shape = RoundedCornerShape(18.dp, 18.dp)) {
+          Surface(shape = RoundedCornerShape(18.dp, 18.dp), color = SignalTheme.colors.colorSurface1) {
             SheetContent()
           }
         }

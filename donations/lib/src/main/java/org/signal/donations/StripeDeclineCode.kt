@@ -3,10 +3,10 @@ package org.signal.donations
 /**
  * Stripe Payment Processor decline codes
  */
-sealed class StripeDeclineCode {
+sealed class StripeDeclineCode(val rawCode: String) {
 
-  data class Known(val code: Code) : StripeDeclineCode()
-  data class Unknown(val code: String) : StripeDeclineCode()
+  data class Known(val code: Code) : StripeDeclineCode(code.code)
+  data class Unknown(val code: String) : StripeDeclineCode(code)
 
   fun isKnown(): Boolean = this is Known
 

@@ -336,6 +336,45 @@ class FastJobStorageTest {
   }
 
   @Test
+  fun `getPendingJobsWithNoDependenciesInCreatedOrder - first item in queue with priority`() {
+    val fullSpec1 = FullSpec(jobSpec(id = "1", factoryKey = "f1", queueKey = "q", createTime = 1, priority = Job.Parameters.PRIORITY_LOW), emptyList(), emptyList())
+    val fullSpec2 = FullSpec(jobSpec(id = "2", factoryKey = "f2", queueKey = "q", createTime = 2, priority = Job.Parameters.PRIORITY_HIGH), emptyList(), emptyList())
+    val fullSpec3 = FullSpec(jobSpec(id = "3", factoryKey = "f3", queueKey = "q", createTime = 3, priority = Job.Parameters.PRIORITY_DEFAULT), emptyList(), emptyList())
+
+    val subject = FastJobStorage(fixedDataDatabase(listOf(fullSpec1, fullSpec2, fullSpec3)))
+    subject.init()
+
+    val jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(10)
+    jobs.size assertIs 1
+    jobs[0].id assertIs "2"
+  }
+
+  @Test
+  fun `getPendingJobsWithNoDependenciesInCreatedOrder - complex priority`() {
+    val fullSpec1 = FullSpec(jobSpec(id = "1", factoryKey = "f1", queueKey = "q1", createTime = 1, priority = Job.Parameters.PRIORITY_LOW), emptyList(), emptyList())
+    val fullSpec2 = FullSpec(jobSpec(id = "2", factoryKey = "f2", queueKey = "q1", createTime = 2, priority = Job.Parameters.PRIORITY_HIGH), emptyList(), emptyList())
+    val fullSpec3 = FullSpec(jobSpec(id = "3", factoryKey = "f3", queueKey = "q2", createTime = 3, priority = Job.Parameters.PRIORITY_DEFAULT), emptyList(), emptyList())
+    val fullSpec4 = FullSpec(jobSpec(id = "4", factoryKey = "f4", queueKey = "q2", createTime = 4, priority = Job.Parameters.PRIORITY_LOW), emptyList(), emptyList())
+    val fullSpec5 = FullSpec(jobSpec(id = "5", factoryKey = "f5", queueKey = "q3", createTime = 5, priority = Job.Parameters.PRIORITY_DEFAULT), emptyList(), emptyList())
+    val fullSpec6 = FullSpec(jobSpec(id = "6", factoryKey = "f6", queueKey = "q3", createTime = 6, priority = Job.Parameters.PRIORITY_HIGH), emptyList(), emptyList())
+    val fullSpec7 = FullSpec(jobSpec(id = "7", factoryKey = "f7", queueKey = "q4", createTime = 7, priority = Job.Parameters.PRIORITY_LOW), emptyList(), emptyList())
+    val fullSpec8 = FullSpec(jobSpec(id = "8", factoryKey = "f8", queueKey = null, createTime = 8, priority = Job.Parameters.PRIORITY_LOW), emptyList(), emptyList())
+    val fullSpec9 = FullSpec(jobSpec(id = "9", factoryKey = "f9", queueKey = null, createTime = 9, priority = Job.Parameters.PRIORITY_DEFAULT), emptyList(), emptyList())
+
+    val subject = FastJobStorage(fixedDataDatabase(listOf(fullSpec1, fullSpec2, fullSpec3, fullSpec4, fullSpec5, fullSpec6, fullSpec7, fullSpec8, fullSpec9)))
+    subject.init()
+
+    val jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(10)
+    jobs.size assertIs 6
+    jobs[0].id assertIs "2"
+    jobs[1].id assertIs "6"
+    jobs[2].id assertIs "3"
+    jobs[3].id assertIs "9"
+    jobs[4].id assertIs "7"
+    jobs[5].id assertIs "8"
+  }
+
+  @Test
   fun `getPendingJobsWithNoDependenciesInCreatedOrder - lastRunAttemptTime in the future runs right away`() {
     val currentTime = 10L
 
@@ -581,7 +620,8 @@ class FastJobStorageTest {
     serializedData: ByteArray? = null,
     serializedInputData: ByteArray? = null,
     isRunning: Boolean = false,
-    isMemoryOnly: Boolean = false
+    isMemoryOnly: Boolean = false,
+    priority: Int = 0
   ): JobSpec {
     return JobSpec(
       id = id,
@@ -596,7 +636,8 @@ class FastJobStorageTest {
       serializedData = serializedData,
       serializedInputData = serializedInputData,
       isRunning = isRunning,
-      isMemoryOnly = isMemoryOnly
+      isMemoryOnly = isMemoryOnly,
+      priority = priority
     )
   }
 
@@ -614,7 +655,8 @@ class FastJobStorageTest {
       serializedData = null,
       serializedInputData = null,
       isRunning = false,
-      isMemoryOnly = false
+      isMemoryOnly = false,
+      priority = 0
     )
     val JOB_2 = JobSpec(
       id = "id2",
@@ -629,7 +671,8 @@ class FastJobStorageTest {
       serializedData = null,
       serializedInputData = null,
       isRunning = false,
-      isMemoryOnly = false
+      isMemoryOnly = false,
+      priority = 0
     )
     val JOB_3 = JobSpec(
       id = "id3",
@@ -644,7 +687,8 @@ class FastJobStorageTest {
       serializedData = null,
       serializedInputData = null,
       isRunning = false,
-      isMemoryOnly = false
+      isMemoryOnly = false,
+      priority = 0
     )
 
     val CONSTRAINT_1 = ConstraintSpec(jobSpecId = "id1", factoryKey = "f1", isMemoryOnly = false)
@@ -691,7 +735,8 @@ class FastJobStorageTest {
       serializedData = null,
       serializedInputData = null,
       isRunning = false,
-      isMemoryOnly = true
+      isMemoryOnly = true,
+      priority = 0
     )
     val CONSTRAINT_1 = ConstraintSpec(jobSpecId = "id1", factoryKey = "f1", isMemoryOnly = true)
     val FULL_SPEC_1 = FullSpec(JOB_1, listOf(CONSTRAINT_1), emptyList())
@@ -712,7 +757,8 @@ class FastJobStorageTest {
       serializedData = null,
       serializedInputData = null,
       isRunning = false,
-      isMemoryOnly = false
+      isMemoryOnly = false,
+      priority = 0
     )
     val JOB_2 = JobSpec(
       id = "id2",
@@ -727,7 +773,8 @@ class FastJobStorageTest {
       serializedData = null,
       serializedInputData = null,
       isRunning = false,
-      isMemoryOnly = false
+      isMemoryOnly = false,
+      priority = 0
     )
     val JOB_3 = JobSpec(
       id = "id3",
@@ -742,7 +789,8 @@ class FastJobStorageTest {
       serializedData = null,
       serializedInputData = null,
       isRunning = false,
-      isMemoryOnly = false
+      isMemoryOnly = false,
+      priority = 0
     )
 
     val DEPENDENCY_1 = DependencySpec(jobId = "id1", dependsOnJobId = "id2", isMemoryOnly = false)

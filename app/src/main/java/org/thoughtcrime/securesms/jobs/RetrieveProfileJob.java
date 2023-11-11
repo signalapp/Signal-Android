@@ -40,7 +40,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
-import org.thoughtcrime.securesms.util.Base64;
+import org.signal.core.util.Base64;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.ProfileUtil;
 import org.thoughtcrime.securesms.util.Util;
@@ -292,10 +292,11 @@ public class RetrieveProfileJob extends BaseJob {
 
     //noinspection SimplifyStreamApiCallChains
     ListUtil.chunk(operationState.profiles, 150).stream().forEach(list -> {
-      SignalDatabase.runInTransaction(() -> {
+      SignalDatabase.runInTransaction((db) -> {
         for (Pair<Recipient, ProfileAndCredential> profile : list) {
           process(profile.first(), profile.second());
         }
+        return null;
       });
     });
 

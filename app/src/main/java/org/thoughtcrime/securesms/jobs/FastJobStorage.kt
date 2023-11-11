@@ -69,8 +69,11 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
           it.queueKey ?: it.id
         }
         .map { byQueueKey: Map.Entry<String, List<JobSpec>> ->
-          // Find the oldest job in each queue
-          byQueueKey.value.minByOrNull { it.createTime }
+          // We want to find the next job we should run within each queue. It should be the oldest job within the group of jobs with the highest priority.
+          // We can get this by sorting by createTime, then taking first job in that list that has the max priority.
+          byQueueKey.value
+            .sortedBy { it.createTime }
+            .maxByOrNull { it.priority }
         }
         .filterNotNull()
         .filter { job ->
@@ -80,6 +83,9 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
         .filterNot { it.isRunning }
         .filter { job -> job.hasEligibleRunTime(currentTime) }
         .sortedBy { it.createTime }
+        .sortedByDescending { it.priority }
+
+      // Note: The priority sort at the end is safe because it's stable. That means that within jobs with the same priority, they will still be sorted by createTime.
     }
   }
 

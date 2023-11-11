@@ -22,7 +22,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.payments.Entropy;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.subscription.Subscriber;
-import org.thoughtcrime.securesms.util.Base64;
+import org.signal.core.util.Base64;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.push.UsernameLinkComponents;
@@ -36,6 +36,7 @@ import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.storage.protos.AccountRecord;
 import org.whispersystems.signalservice.internal.storage.protos.OptionalBool;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
@@ -69,8 +70,8 @@ public final class StorageSyncHelper {
   public static @NonNull IdDifferenceResult findIdDifference(@NonNull Collection<StorageId> remoteIds,
                                                              @NonNull Collection<StorageId> localIds)
   {
-    Map<String, StorageId> remoteByRawId = Stream.of(remoteIds).collect(Collectors.toMap(id -> Base64.encodeBytes(id.getRaw()), id -> id));
-    Map<String, StorageId> localByRawId  = Stream.of(localIds).collect(Collectors.toMap(id -> Base64.encodeBytes(id.getRaw()), id -> id));
+    Map<String, StorageId> remoteByRawId = Stream.of(remoteIds).collect(Collectors.toMap(id -> Base64.encodeWithPadding(id.getRaw()), id -> id));
+    Map<String, StorageId> localByRawId  = Stream.of(localIds).collect(Collectors.toMap(id -> Base64.encodeWithPadding(id.getRaw()), id -> id));
 
     boolean hasTypeMismatch = remoteByRawId.size() != remoteIds.size() || localByRawId.size() != localIds.size();
 
@@ -119,16 +120,24 @@ public final class StorageSyncHelper {
     final OptionalBool storyViewReceiptsState = SignalStore.storyValues().getViewedReceiptsEnabled() ? OptionalBool.ENABLED
                                                                                                      : OptionalBool.DISABLED;
 
-    if (self.getStorageServiceId() == null) {
-      Log.w(TAG, "[buildAccountRecord] No storageId for self! Generating. (Record had ID: " + (record != null && record.getStorageId() != null) + ")");
+    if (self.getStorageServiceId() == null || (record != null && record.getStorageId() == null)) {
+      Log.w(TAG, "[buildAccountRecord] No storageId for self or record! Generating. (Self: " + (self.getStorageServiceId() != null) + ", Record: " + (record != null && record.getStorageId() != null) + ")");
       SignalDatabase.recipients().updateStorageId(self.getId(), generateKey());
       self = Recipient.self().fresh();
       record = recipientTable.getRecordForSync(self.getId());
     }
 
+    if (record == null) {
+      Log.w(TAG, "[buildAccountRecord] Could not find a RecipientRecord for ourselves! ID: " + self.getId());
+    } else if (!Arrays.equals(record.getStorageId(), self.getStorageServiceId())) {
+      Log.w(TAG, "[buildAccountRecord] StorageId on RecipientRecord did not match self! ID: " + self.getId());
+    }
+
     final boolean hasReadOnboardingStory = SignalStore.storyValues().getUserHasViewedOnboardingStory() || SignalStore.storyValues().getUserHasReadOnboardingStory();
 
-    SignalAccountRecord.Builder account = new SignalAccountRecord.Builder(self.getStorageServiceId(), record != null ? record.getSyncExtras().getStorageProto() : null)
+    byte[] storageId = record != null && record.getStorageId() != null ? record.getStorageId() : self.getStorageServiceId();
+
+    SignalAccountRecord.Builder account = new SignalAccountRecord.Builder(storageId, record != null ? record.getSyncExtras().getStorageProto() : null)
                                                                  .setProfileKey(self.getProfileKey())
                                                                  .setGivenName(self.getProfileName().getGivenName())
                                                                  .setFamilyName(self.getProfileName().getFamilyName())

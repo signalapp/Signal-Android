@@ -97,6 +97,7 @@ public class SubmitDebugLogRepository {
       add(new LogSectionSenderKey());
     }
     add(new LogSectionRemappedRecords());
+    add(new LogSectionAnr());
     add(new LogSectionLogcat());
     add(new LogSectionLoggerHeader());
   }};

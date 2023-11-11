@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.profiles.manage
 import androidx.annotation.WorkerThread
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.signal.core.util.Base64
 import org.signal.core.util.Result
 import org.signal.core.util.Result.Companion.failure
 import org.signal.core.util.Result.Companion.success
@@ -12,6 +13,7 @@ import org.signal.libsignal.usernames.Username
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.main.UsernameLinkResetResult
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.keyvalue.AccountValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
@@ -21,17 +23,69 @@ import org.whispersystems.signalservice.api.SignalServiceAccountManager
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.UsernameLinkComponents
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
+import org.whispersystems.signalservice.api.push.exceptions.UsernameIsNotAssociatedWithAnAccountException
 import org.whispersystems.signalservice.api.push.exceptions.UsernameIsNotReservedException
 import org.whispersystems.signalservice.api.push.exceptions.UsernameMalformedException
 import org.whispersystems.signalservice.api.push.exceptions.UsernameTakenException
-import org.whispersystems.util.Base64UrlSafe
+import org.whispersystems.signalservice.api.util.UuidUtil
+import org.whispersystems.signalservice.api.util.toByteArray
 import java.io.IOException
+import java.util.UUID
 
 /**
  * Performs various actions around usernames and username links.
+ *
+ * Usernames and username links are more complicated than you may think. This is because we want the following properties:
+ * - We want usernames to be assigned a random numerical discriminator to avoid land grabs
+ * - We don't want to store plaintext usernames on the service
+ * - We don't want plaintext usernames in username links
+ * - We want username links to be revocable and rotatable without changing your username
+ * - We want users to be able to turn a link into a displayable username in the app
+ *
+ * As a result, the process of reserving them, creating links, and parsing those links is more complex.
+ *
+ * # Setting a username
+ *
+ * To start, let's define a username as being composed of two parts: a nickname and a discriminator. The nickname is the user-chosen part of the username, and
+ * the discriminator is a random set of digits that we bolt onto the end so that people can choose whatever nickname they want. So a username ends up looking
+ * like this: mynickname.123
+ *
+ * Setting a username is a multi-step process.
+ *
+ * 1. The user chooses a nickname.
+ * 2. We take that nickname and pair it with a bunch of possible discriminators of different lengths, turning them into a list of possible usernames.
+ * 3. We hash those possible usernames and submit them to the service. It will reserve the first one that's available, returning it in the response.
+ * 4. We present the (nickname, discriminator) combo to the user, and they can choose to confirm it.
+ * 5. If the user confirms it, we tell the service the final username hash, and it saves it as the final username.
+ *
+ * # Username links
+ *
+ * There's three main components to username links:
+ * - An encrypted username blob
+ * - A serverId (which is a UUID)
+ * - "entropy" (some random bytes used to encrypt the username)
+ *
+ * The service basically stores a map of (serverId -> encrypted username blob). We can ask the service for the encrypted username blob for a given serverId,
+ * and then decrypt it with the entropy. Simple enough.
+ *
+ * How are those pieces shared? Well, the link looks like this:
+ * https://signal.me/#eu/<32 bytes of entropy><16 bytes of serverId uuid>
+ *
+ * So, when we get a link, we parse out the entropy and serverId. We then use the serverId to get the encrypted username, and then decrypt it with the entropy.
+ *
+ * This gives us everything we want:
+ * - We can rotate our link without changing our username by just picking new (serverId, entropy) and storing a new blob on the service.
+ * - When the user decrypts the username, they see it displayed exactly how the user uploaded it.
+ * - The service has no idea what links correspond to what usernames -- it's just storing encrypted blobs.
  */
-class UsernameRepository {
-  private val accountManager: SignalServiceAccountManager = ApplicationDependencies.getSignalServiceAccountManager()
+object UsernameRepository {
+  private val TAG = Log.tag(UsernameRepository::class.java)
+
+  private val URL_REGEX = """(https://)?signal.me/?#eu/([a-zA-Z0-9+\-_/]+)""".toRegex()
+
+  val BASE_URL = "https://signal.me/#eu/"
+
+  private val accountManager: SignalServiceAccountManager get() = ApplicationDependencies.getSignalServiceAccountManager()
 
   /**
    * Given a nickname, this will temporarily reserve a matching discriminator that can later be confirmed via [confirmUsername].
@@ -54,6 +108,7 @@ class UsernameRepository {
   /**
    * Deletes the username from the local user's account
    */
+  @JvmStatic
   fun deleteUsername(): Single<UsernameDeleteResult> {
     return Single
       .fromCallable { deleteUsernameInternal() }
@@ -70,20 +125,20 @@ class UsernameRepository {
    */
   fun createOrResetUsernameLink(): Single<UsernameLinkResetResult> {
     if (!NetworkUtil.isConnected(ApplicationDependencies.getApplication())) {
-      Log.w(TAG, "[createOrRotateUsernameLink] No network! Not making any changes.")
+      Log.w(TAG, "[createOrResetUsernameLink] No network! Not making any changes.")
       return Single.just(UsernameLinkResetResult.NetworkUnavailable)
     }
 
     val usernameString = SignalStore.account().username
     if (usernameString.isNullOrBlank()) {
-      Log.w(TAG, "[createOrRotateUsernameLink] No username set! Cannot rotate the link!")
+      Log.w(TAG, "[createOrResetUsernameLink] No username set! Cannot rotate the link!")
       return Single.just(UsernameLinkResetResult.UnexpectedError)
     }
 
     val username = try {
       Username(usernameString)
     } catch (e: BaseUsernameException) {
-      Log.w(TAG, "[createOrRotateUsernameLink] Failed to parse our own username! Cannot rotate the link!")
+      Log.w(TAG, "[createOrResetUsernameLink] Failed to parse our own username! Cannot rotate the link!")
       return Single.just(UsernameLinkResetResult.UnexpectedError)
     }
 
@@ -92,16 +147,21 @@ class UsernameRepository {
         try {
           SignalStore.account().usernameLink = null
 
-          Log.d(TAG, "[createOrRotateUsernameLink] Creating username link...")
+          Log.d(TAG, "[createOrResetUsernameLink] Creating username link...")
           val components = accountManager.createUsernameLink(username)
           SignalStore.account().usernameLink = components
+
+          if (SignalStore.account().usernameSyncState == AccountValues.UsernameSyncState.LINK_CORRUPTED) {
+            SignalStore.account().usernameSyncState = AccountValues.UsernameSyncState.IN_SYNC
+          }
+
           SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
           StorageSyncHelper.scheduleSyncForDataChange()
-          Log.d(TAG, "[createOrRotateUsernameLink] Username link created.")
+          Log.d(TAG, "[createOrResetUsernameLink] Username link created.")
 
           UsernameLinkResetResult.Success(components)
         } catch (e: IOException) {
-          Log.w(TAG, "[createOrRotateUsernameLink] Failed to rotate the username!")
+          Log.w(TAG, "[createOrResetUsernameLink] Failed to rotate the username!", e)
           UsernameLinkResetResult.NetworkError
         }
       }
@@ -111,8 +171,9 @@ class UsernameRepository {
   /**
    * Given a full username link, this will do the necessary parsing and network lookups to resolve it to a (username, ACI) pair.
    */
-  fun convertLinkToUsernameAndAci(url: String): Single<UsernameLinkConversionResult> {
-    val components: UsernameLinkComponents = UsernameUtil.parseLink(url) ?: return Single.just(UsernameLinkConversionResult.Invalid)
+  @JvmStatic
+  fun fetchUsernameAndAciFromLink(url: String): Single<UsernameLinkConversionResult> {
+    val components: UsernameLinkComponents = parseLink(url) ?: return Single.just(UsernameLinkConversionResult.Invalid)
 
     return Single
       .fromCallable {
@@ -124,7 +185,7 @@ class UsernameRepository {
 
           username = Username.fromLink(link)
 
-          val aci = accountManager.getAciByUsernameHash(UsernameUtil.hashUsernameToBase64(username.toString()))
+          val aci = accountManager.getAciByUsername(username)
 
           UsernameLinkConversionResult.Success(username, aci)
         } catch (e: IOException) {
@@ -147,13 +208,56 @@ class UsernameRepository {
       .subscribeOn(Schedulers.io())
   }
 
+  @JvmStatic
+  fun fetchAciForUsername(username: String): Single<UsernameAciFetchResult> {
+    return Single.fromCallable {
+      try {
+        val aci: ACI = ApplicationDependencies.getSignalServiceAccountManager().getAciByUsername(Username(username))
+        UsernameAciFetchResult.Success(aci)
+      } catch (e: UsernameIsNotAssociatedWithAnAccountException) {
+        Log.w(TAG, "[fetchAciFromUsername] Failed to get ACI for username hash", e)
+        UsernameAciFetchResult.NotFound
+      } catch (e: IOException) {
+        Log.w(TAG, "[fetchAciFromUsername] Hit network error while trying to resolve ACI from username", e)
+        UsernameAciFetchResult.NetworkError
+      }
+    }
+  }
+
+  /**
+   * Parses out the [UsernameLinkComponents] from a link if possible, otherwise null.
+   * You need to make a separate network request to convert these components into a username.
+   */
+  @JvmStatic
+  fun parseLink(url: String): UsernameLinkComponents? {
+    val match: MatchResult = URL_REGEX.find(url) ?: return null
+    val path: String = match.groups[2]?.value ?: return null
+    val allBytes: ByteArray = Base64.decode(path)
+
+    if (allBytes.size != 48) {
+      return null
+    }
+
+    val entropy: ByteArray = allBytes.slice(0 until 32).toByteArray()
+    val serverId: ByteArray = allBytes.slice(32 until allBytes.size).toByteArray()
+    val serverIdUuid: UUID = UuidUtil.parseOrNull(serverId) ?: return null
+
+    return UsernameLinkComponents(entropy = entropy, serverId = serverIdUuid)
+  }
+
+  fun UsernameLinkComponents.toLink(): String {
+    val combined: ByteArray = this.entropy + this.serverId.toByteArray()
+    val base64 = Base64.encodeUrlSafeWithoutPadding(combined)
+    return BASE_URL + base64
+  }
+
   @WorkerThread
   private fun reserveUsernameInternal(nickname: String): Result<UsernameState.Reserved, UsernameSetResult> {
     return try {
       val candidates: List<Username> = Username.candidatesFrom(nickname, UsernameUtil.MIN_LENGTH, UsernameUtil.MAX_LENGTH)
 
       val hashes: List<String> = candidates
-        .map { Base64UrlSafe.encodeBytesWithoutPadding(it.hash) }
+        .map { Base64.encodeUrlSafeWithoutPadding(it.hash) }
 
       val response = accountManager.reserveUsername(hashes)
 
@@ -188,7 +292,7 @@ class UsernameRepository {
       SignalStore.account().username = username.username
       SignalStore.account().usernameLink = null
       SignalDatabase.recipients.setUsername(Recipient.self().id, reserved.username)
-      SignalStore.account().usernameOutOfSync = false
+      SignalStore.account().usernameSyncState = AccountValues.UsernameSyncState.IN_SYNC
       Log.i(TAG, "[confirmUsername] Successfully confirmed username.")
 
       if (tryToSetUsernameLink(username)) {
@@ -232,7 +336,9 @@ class UsernameRepository {
     return try {
       accountManager.deleteUsername()
       SignalDatabase.recipients.setUsername(Recipient.self().id, null)
-      SignalStore.account().usernameOutOfSync = false
+      SignalStore.account().username = null
+      SignalStore.account().usernameLink = null
+      SignalStore.account().usernameSyncState = AccountValues.UsernameSyncState.IN_SYNC
       Log.i(TAG, "[deleteUsername] Successfully deleted the username.")
       UsernameDeleteResult.SUCCESS
     } catch (e: IOException) {
@@ -267,7 +373,9 @@ class UsernameRepository {
     data class NotFound(val username: Username?) : UsernameLinkConversionResult()
   }
 
-  companion object {
-    private val TAG = Log.tag(UsernameRepository::class.java)
+  sealed class UsernameAciFetchResult {
+    class Success(val aci: ACI) : UsernameAciFetchResult()
+    object NotFound : UsernameAciFetchResult()
+    object NetworkError : UsernameAciFetchResult()
   }
 }

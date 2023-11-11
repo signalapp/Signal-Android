@@ -21,7 +21,7 @@ import org.signal.libsignal.protocol.IdentityKey;
 import org.signal.libsignal.protocol.InvalidKeyException;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.Base64;
+import org.signal.core.util.Base64;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -83,7 +83,7 @@ public class IdentityKeyMismatch {
     public void serialize(IdentityKey value, JsonGenerator jsonGenerator, SerializerProvider serializers)
         throws IOException
     {
-      jsonGenerator.writeString(Base64.encodeBytes(value.serialize()));
+      jsonGenerator.writeString(Base64.encodeWithPadding(value.serialize()));
     }
   }
 

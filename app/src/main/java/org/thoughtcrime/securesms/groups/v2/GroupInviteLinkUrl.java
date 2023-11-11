@@ -3,11 +3,11 @@ package org.thoughtcrime.securesms.groups.v2;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.signal.core.util.Base64;
 import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey;
 import org.signal.storageservice.protos.groups.GroupInviteLink;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
-import org.whispersystems.util.Base64UrlSafe;
 
 import java.io.IOException;
 import java.net.URI;
@@ -58,7 +58,7 @@ public final class GroupInviteLinkUrl {
         throw new InvalidGroupLinkException("No reference was in the uri");
       }
 
-      byte[]          bytes           = Base64UrlSafe.decodePaddingAgnostic(encoding);
+      byte[]          bytes           = Base64.decode(encoding);
       GroupInviteLink groupInviteLink = GroupInviteLink.ADAPTER.decode(bytes);
 
       //noinspection SwitchStatementWithTooFewBranches
@@ -112,7 +112,7 @@ public final class GroupInviteLinkUrl {
                                                                                                                   .build())
                                                          .build();
 
-    String encoding = Base64UrlSafe.encodeBytesWithoutPadding(groupInviteLink.encode());
+    String encoding = Base64.encodeUrlSafeWithoutPadding(groupInviteLink.encode());
 
     return GROUP_URL_PREFIX + encoding;
   }

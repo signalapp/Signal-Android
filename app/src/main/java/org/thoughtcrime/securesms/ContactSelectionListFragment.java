@@ -50,6 +50,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.pnikosis.materialishprogress.ProgressWheel;
 
 import org.signal.core.util.concurrent.LifecycleDisposable;
+import org.signal.core.util.concurrent.RxExtensions;
 import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.components.RecyclerViewFastScroller;
@@ -70,6 +71,8 @@ import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery;
 import org.thoughtcrime.securesms.groups.SelectionLimits;
 import org.thoughtcrime.securesms.groups.ui.GroupLimitDialog;
 import org.thoughtcrime.securesms.permissions.Permissions;
+import org.thoughtcrime.securesms.profiles.manage.UsernameRepository;
+import org.thoughtcrime.securesms.profiles.manage.UsernameRepository.UsernameAciFetchResult;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.CommunicationActions;
@@ -145,6 +148,8 @@ public final class ContactSelectionListFragment extends LoggingFragment {
   private           Set<RecipientId>                     currentSelection;
   private           boolean                              isMulti;
   private           boolean                              canSelectSelf;
+  private           boolean                              resetPositionOnCommit = false;
+
   private           ListClickListener                    listClickListener = new ListClickListener();
   @Nullable private SwipeRefreshLayout.OnRefreshListener onRefreshListener;
 
@@ -423,6 +428,10 @@ public final class ContactSelectionListFragment extends LoggingFragment {
     onRefreshListener = null;
   }
 
+  public int getSelectedMembersSize() {
+    return contactSearchMediator.getSelectedMembersSize();
+  }
+
   private @NonNull Bundle safeArguments() {
     return getArguments() != null ? getArguments() : new Bundle();
   }
@@ -523,12 +532,17 @@ public final class ContactSelectionListFragment extends LoggingFragment {
       return;
     }
 
-    this.cursorFilter = filter;
+    this.resetPositionOnCommit = true;
+    this.cursorFilter          = filter;
+
     contactSearchMediator.onFilterChanged(filter);
   }
 
   public void resetQueryFilter() {
     setQueryFilter(null);
+
+    this.resetPositionOnCommit = true;
+
     swipeRefresh.setRefreshing(false);
   }
 
@@ -547,6 +561,11 @@ public final class ContactSelectionListFragment extends LoggingFragment {
   }
 
   private void onLoadFinished(int count) {
+    if (resetPositionOnCommit) {
+      resetPositionOnCommit = false;
+      recyclerView.scrollToPosition(0);
+    }
+
     swipeRefresh.setVisibility(View.VISIBLE);
     showContactsLayout.setVisibility(View.GONE);
 
@@ -666,11 +685,18 @@ public final class ContactSelectionListFragment extends LoggingFragment {
           AlertDialog loadingDialog = SimpleProgressDialog.show(requireContext());
 
           SimpleTask.run(getViewLifecycleOwner().getLifecycle(), () -> {
-            return UsernameUtil.fetchAciForUsername(username);
-          }, uuid -> {
+            try {
+              return RxExtensions.safeBlockingGet(UsernameRepository.fetchAciForUsername(UsernameUtil.sanitizeUsernameFromSearch(username)));
+            } catch (InterruptedException e) {
+              Log.w(TAG, "Interrupted?", e);
+              return UsernameAciFetchResult.NetworkError.INSTANCE;
+            }
+          }, result  -> {
             loadingDialog.dismiss();
-            if (uuid.isPresent()) {
-              Recipient       recipient = Recipient.externalUsername(uuid.get(), username);
+
+            // TODO Could be more specific with errors
+            if (result instanceof UsernameAciFetchResult.Success success) {
+              Recipient       recipient = Recipient.externalUsername(success.getAci(), username);
               SelectedContact selected  = SelectedContact.forUsername(recipient.getId(), username);
 
               if (onContactSelectedListener != null) {

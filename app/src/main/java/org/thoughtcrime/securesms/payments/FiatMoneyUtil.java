@@ -1,5 +1,4 @@
 package org.thoughtcrime.securesms.payments;
-
 import android.content.res.Resources;
 
 import androidx.annotation.NonNull;

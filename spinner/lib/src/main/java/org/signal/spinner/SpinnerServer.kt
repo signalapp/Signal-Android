@@ -12,7 +12,9 @@ import org.signal.core.util.ExceptionUtil
 import org.signal.core.util.ForeignKeyConstraint
 import org.signal.core.util.getForeignKeys
 import org.signal.core.util.logging.Log
+import org.signal.core.util.tracing.Tracer
 import org.signal.spinner.Spinner.DatabaseConfig
+import java.io.ByteArrayInputStream
 import java.lang.IllegalArgumentException
 import java.security.NoSuchAlgorithmException
 import java.text.SimpleDateFormat
@@ -71,6 +73,7 @@ internal class SpinnerServer(
         session.method == Method.GET && session.uri == "/query" -> getQuery(dbParam)
         session.method == Method.POST && session.uri == "/query" -> postQuery(dbParam, dbConfig, session)
         session.method == Method.GET && session.uri == "/recent" -> getRecent(dbParam)
+        session.method == Method.GET && session.uri == "/trace" -> getTrace()
         session.method == Method.GET && session.uri == "/logs" -> getLogs(dbParam)
         isWebsocketRequested(session) && session.uri == "/logs/websocket" -> getLogWebSocket(session)
         else -> {
@@ -214,6 +217,14 @@ internal class SpinnerServer(
         plugins = plugins.values.toList(),
         recentSql = queries?.reversed()
       )
+    )
+  }
+
+  private fun getTrace(): Response {
+    return newChunkedResponse(
+      Response.Status.OK,
+      "application/octet-stream",
+      ByteArrayInputStream(Tracer.getInstance().serialize())
     )
   }
 

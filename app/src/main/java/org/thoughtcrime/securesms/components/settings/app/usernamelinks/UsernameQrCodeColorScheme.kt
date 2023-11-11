@@ -8,6 +8,8 @@ import androidx.compose.ui.graphics.Color
 enum class UsernameQrCodeColorScheme(
   val borderColor: Color,
   val foregroundColor: Color,
+  val textColor: Color = Color.White,
+  val outlineColor: Color = Color.Transparent,
   private val key: String
 ) {
   Blue(
@@ -18,6 +20,8 @@ enum class UsernameQrCodeColorScheme(
   White(
     borderColor = Color(0xFFFFFFFF),
     foregroundColor = Color(0xFF000000),
+    textColor = Color.Black,
+    outlineColor = Color(0xFFE9E9E9),
     key = "white"
   ),
   Grey(

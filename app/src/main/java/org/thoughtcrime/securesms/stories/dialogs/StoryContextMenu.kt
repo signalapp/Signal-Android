@@ -12,6 +12,7 @@ import androidx.core.app.ShareCompat
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.load.Options
 import io.reactivex.rxjava3.core.Single
+import org.signal.core.util.Base64
 import org.signal.core.util.DimensionUnit
 import org.signal.core.util.concurrent.SimpleTask
 import org.signal.core.util.logging.Log
@@ -27,7 +28,6 @@ import org.thoughtcrime.securesms.stories.StoryTextPostModel
 import org.thoughtcrime.securesms.stories.landing.StoriesLandingItem
 import org.thoughtcrime.securesms.stories.viewer.page.StoryPost
 import org.thoughtcrime.securesms.stories.viewer.page.StoryViewerPageState
-import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.BitmapUtil
 import org.thoughtcrime.securesms.util.DeleteDialog
 import org.thoughtcrime.securesms.util.MediaUtil

@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
-import org.conscrypt.Conscrypt;
+import org.conscrypt.ConscryptSignal;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -51,7 +51,7 @@ public final class SignalProxyUtil {
    */
   public static void enableProxy(@NonNull SignalProxy proxy) {
     SignalStore.proxy().enableProxy(proxy);
-    Conscrypt.setUseEngineSocketByDefault(true);
+    ConscryptSignal.setUseEngineSocketByDefault(true);
     ApplicationDependencies.resetAllNetworkConnections();
     startListeningToWebsocket();
   }
@@ -62,7 +62,7 @@ public final class SignalProxyUtil {
    */
   public static void disableProxy() {
     SignalStore.proxy().disableProxy();
-    Conscrypt.setUseEngineSocketByDefault(false);
+    ConscryptSignal.setUseEngineSocketByDefault(false);
     ApplicationDependencies.resetAllNetworkConnections();
     startListeningToWebsocket();
   }
