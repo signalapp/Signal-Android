@@ -33,15 +33,15 @@ ktlint {
     version = "0.49.1"
 }
 
-def canonicalVersionCode = 1355
-def canonicalVersionName = "6.39.2"
+def canonicalVersionCode = 1360
+def canonicalVersionName = "6.39.3"
 
 def postFixSize = 100
-def abiPostFix = ['universal'   : 5,
-                  'armeabi-v7a' : 6,
-                  'arm64-v8a'   : 7,
-                  'x86'         : 8,
-                  'x86_64'      : 9]
+def abiPostFix = ['universal'   : 0,
+                  'armeabi-v7a' : 1,
+                  'arm64-v8a'   : 2,
+                  'x86'         : 3,
+                  'x86_64'      : 4]
 
 def keystores = [ 'debug'  : loadKeystoreProperties('keystore.debug.properties') ]
 
