@@ -315,7 +315,8 @@ public class RecipientUtil {
       GroupTable groupDatabase = SignalDatabase.groups();
       return groupDatabase.getPushGroupsContainingMember(recipient.getId())
                           .stream()
-                          .anyMatch(GroupRecord::isV2Group);
+                          .filter(GroupRecord::isV2Group)
+                          .anyMatch(group -> group.memberLevel(Recipient.self()).isInGroup());
 
     }
   }
