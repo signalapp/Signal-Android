@@ -67,7 +67,6 @@ import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment.DisplayOrderComparator
-import org.thoughtcrime.securesms.attachments.MmsNotificationAttachment
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.conversation.MessageStyler
 import org.thoughtcrime.securesms.database.EarlyDeliveryReceiptCache.Receipt
@@ -96,7 +95,6 @@ import org.thoughtcrime.securesms.database.model.MessageExportStatus
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
-import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.ParentStoryId
 import org.thoughtcrime.securesms.database.model.ParentStoryId.DirectReply
 import org.thoughtcrime.securesms.database.model.ParentStoryId.GroupReply
@@ -4907,11 +4905,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     override fun getCurrent(): MessageRecord {
       val mmsType = cursor.requireLong(MMS_MESSAGE_TYPE)
 
-      return if (mmsType == PduHeaders.MESSAGE_TYPE_NOTIFICATION_IND.toLong()) {
-        getNotificationMmsMessageRecord(cursor)
-      } else {
-        getMediaMmsMessageRecord(cursor)
-      }
+      return getMediaMmsMessageRecord(cursor)
     }
 
     override fun getMessageExportStateForCurrentRecord(): MessageExportState {
@@ -4937,73 +4931,6 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
     fun getCurrentId(): MessageId {
       return MessageId(cursor.requireLong(ID))
-    }
-
-    private fun getNotificationMmsMessageRecord(cursor: Cursor): NotificationMmsMessageRecord {
-      val id = cursor.requireLong(ID)
-      val dateSent = cursor.requireLong(DATE_SENT)
-      val dateReceived = cursor.requireLong(DATE_RECEIVED)
-      val threadId = cursor.requireLong(THREAD_ID)
-      val mailbox = cursor.requireLong(TYPE)
-      val fromRecipientId = cursor.requireLong(FROM_RECIPIENT_ID)
-      val fromDeviceId = cursor.requireInt(FROM_DEVICE_ID)
-      val toRecipientId = cursor.requireLong(TO_RECIPIENT_ID)
-      val fromRecipient = Recipient.live(RecipientId.from(fromRecipientId)).get()
-      val toRecipient = Recipient.live(RecipientId.from(toRecipientId)).get()
-      val contentLocation = cursor.requireString(MMS_CONTENT_LOCATION).toIsoBytes()
-      val transactionId = cursor.requireString(MMS_TRANSACTION_ID).toIsoBytes()
-      val messageSize = cursor.requireLong(MMS_MESSAGE_SIZE)
-      val expiry = cursor.requireLong(MMS_EXPIRY)
-      val status = cursor.requireInt(MMS_STATUS)
-      val deliveryReceiptCount = cursor.requireInt(DELIVERY_RECEIPT_COUNT)
-      var readReceiptCount = cursor.requireInt(READ_RECEIPT_COUNT)
-      val subscriptionId = cursor.requireInt(SMS_SUBSCRIPTION_ID)
-      val viewedReceiptCount = cursor.requireInt(VIEWED_RECEIPT_COUNT)
-      val receiptTimestamp = cursor.requireLong(RECEIPT_TIMESTAMP)
-      val storyType = StoryType.fromCode(cursor.requireInt(STORY_TYPE))
-      val parentStoryId = ParentStoryId.deserialize(cursor.requireLong(PARENT_STORY_ID))
-      val body = cursor.requireString(BODY)
-
-      if (!TextSecurePreferences.isReadReceiptsEnabled(context)) {
-        readReceiptCount = 0
-      }
-
-      val slideDeck = SlideDeck(MmsNotificationAttachment(status, messageSize))
-      val giftBadge: GiftBadge? = if (body != null && MessageTypes.isGiftBadge(mailbox)) {
-        try {
-          GiftBadge.ADAPTER.decode(Base64.decode(body))
-        } catch (e: IOException) {
-          Log.w(TAG, "Error parsing gift badge", e)
-          null
-        }
-      } else {
-        null
-      }
-
-      return NotificationMmsMessageRecord(
-        id,
-        fromRecipient,
-        fromDeviceId,
-        toRecipient,
-        dateSent,
-        dateReceived,
-        deliveryReceiptCount,
-        threadId,
-        contentLocation,
-        messageSize,
-        expiry,
-        status,
-        transactionId,
-        mailbox,
-        subscriptionId,
-        slideDeck,
-        readReceiptCount,
-        viewedReceiptCount,
-        receiptTimestamp,
-        storyType,
-        parentStoryId,
-        giftBadge
-      )
     }
 
     private fun getMediaMmsMessageRecord(cursor: Cursor): MediaMmsMessageRecord {
