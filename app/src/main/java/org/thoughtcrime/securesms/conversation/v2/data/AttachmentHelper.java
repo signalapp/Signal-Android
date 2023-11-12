@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.util.Util;
 
@@ -41,11 +41,11 @@ public class AttachmentHelper {
   public @NonNull List<MessageRecord> buildUpdatedModels(@NonNull Context context, @NonNull List<MessageRecord> records) {
     return records.stream()
                   .map(record -> {
-                    if (record instanceof MediaMmsMessageRecord) {
+                    if (record instanceof MmsMessageRecord) {
                       List<DatabaseAttachment> attachments = messageIdToAttachments.get(record.getId());
 
                       if (Util.hasItems(attachments)) {
-                        return ((MediaMmsMessageRecord) record).withAttachments(attachments);
+                        return ((MmsMessageRecord) record).withAttachments(attachments);
                       }
                     }
 

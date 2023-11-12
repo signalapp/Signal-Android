@@ -20,8 +20,8 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.components.menu.ActionItem
 import org.thoughtcrime.securesms.components.menu.SignalContextMenu
-import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.stories.StoryTextPostModel
@@ -49,7 +49,7 @@ object StoryContextMenu {
   }
 
   fun save(context: Context, messageRecord: MessageRecord) {
-    val mediaMessageRecord = messageRecord as? MediaMmsMessageRecord
+    val mediaMessageRecord = messageRecord as? MmsMessageRecord
     val uri: Uri? = mediaMessageRecord?.slideDeck?.firstSlide?.uri
     val contentType: String? = mediaMessageRecord?.slideDeck?.firstSlide?.contentType
 
@@ -92,7 +92,7 @@ object StoryContextMenu {
       .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, saveAttachment)
   }
 
-  fun share(fragment: Fragment, messageRecord: MediaMmsMessageRecord) {
+  fun share(fragment: Fragment, messageRecord: MmsMessageRecord) {
     val intent = if (messageRecord.storyType.isTextStory) {
       val textStoryBody = StoryTextPost.ADAPTER.decode(Base64.decode(messageRecord.body)).body
       val linkUrl = messageRecord.linkPreviews.firstOrNull()?.url ?: ""

@@ -10,9 +10,9 @@ import org.thoughtcrime.securesms.conversation.v2.data.AttachmentHelper
 import org.thoughtcrime.securesms.conversation.v2.data.ReactionHelper
 import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.Quote
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.util.getQuote
@@ -74,7 +74,7 @@ class MessageQuotesRepository {
       .map { replyRecord ->
         val replyQuote: Quote? = replyRecord.getQuote()
         if (replyQuote != null && replyQuote.id == originalRecord!!.dateSent) {
-          (replyRecord as MediaMmsMessageRecord).withoutQuote()
+          (replyRecord as MmsMessageRecord).withoutQuote()
         } else {
           replyRecord
         }

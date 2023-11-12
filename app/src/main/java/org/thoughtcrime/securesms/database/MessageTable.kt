@@ -89,7 +89,6 @@ import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchSet
 import org.thoughtcrime.securesms.database.documents.NetworkFailure
 import org.thoughtcrime.securesms.database.documents.NetworkFailureSet
 import org.thoughtcrime.securesms.database.model.GroupCallUpdateDetailsUtil
-import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.Mention
 import org.thoughtcrime.securesms.database.model.MessageExportStatus
 import org.thoughtcrime.securesms.database.model.MessageId
@@ -964,7 +963,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     }
   }
 
-  fun insertEditMessageInbox(mediaMessage: IncomingMessage, targetMessage: MediaMmsMessageRecord): Optional<InsertResult> {
+  fun insertEditMessageInbox(mediaMessage: IncomingMessage, targetMessage: MmsMessageRecord): Optional<InsertResult> {
     val insertResult = insertMessageInbox(retrieved = mediaMessage, editedMessage = targetMessage, notifyObservers = false)
 
     if (insertResult.isPresent) {
@@ -1924,7 +1923,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   fun markAsRemoteDelete(targetMessage: MessageRecord) {
     writableDatabase.withinTransaction { db ->
       if (targetMessage.isEditMessage) {
-        val latestRevisionId = (targetMessage as? MediaMmsMessageRecord)?.latestRevisionId?.id ?: targetMessage.id
+        val latestRevisionId = (targetMessage as? MmsMessageRecord)?.latestRevisionId?.id ?: targetMessage.id
         markAsRemoteDeleteInternal(latestRevisionId)
         getPreviousEditIds(latestRevisionId).map { id ->
           db.update(TABLE_NAME)
@@ -2445,7 +2444,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   fun insertMessageInbox(
     retrieved: IncomingMessage,
     candidateThreadId: Long = -1,
-    editedMessage: MediaMmsMessageRecord? = null,
+    editedMessage: MmsMessageRecord? = null,
     notifyObservers: Boolean = true
   ): Optional<InsertResult> {
     val type = retrieved.toMessageType()
@@ -2924,8 +2923,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         .where("$ID_WHERE OR $LATEST_REVISION_ID = ?", message.messageToEdit, message.messageToEdit)
         .run()
 
-      val textAttachments = (editedMessage as? MediaMmsMessageRecord)?.slideDeck?.asAttachments()?.filter { it.contentType == MediaUtil.LONG_TEXT }?.mapNotNull { (it as? DatabaseAttachment)?.attachmentId?.rowId } ?: emptyList()
-      val linkPreviewAttachments = (editedMessage as? MediaMmsMessageRecord)?.linkPreviews?.mapNotNull { it.attachmentId?.rowId } ?: emptyList()
+      val textAttachments = (editedMessage as? MmsMessageRecord)?.slideDeck?.asAttachments()?.filter { it.contentType == MediaUtil.LONG_TEXT }?.mapNotNull { (it as? DatabaseAttachment)?.attachmentId?.rowId } ?: emptyList()
+      val linkPreviewAttachments = (editedMessage as? MmsMessageRecord)?.linkPreviews?.mapNotNull { it.attachmentId?.rowId } ?: emptyList()
       val excludeIds = HashSet<Long>()
       excludeIds += textAttachments
       excludeIds += linkPreviewAttachments
@@ -4933,7 +4932,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       return MessageId(cursor.requireLong(ID))
     }
 
-    private fun getMediaMmsMessageRecord(cursor: Cursor): MediaMmsMessageRecord {
+    private fun getMediaMmsMessageRecord(cursor: Cursor): MmsMessageRecord {
       val id = cursor.requireLong(ID)
       val dateSent = cursor.requireLong(DATE_SENT)
       val dateReceived = cursor.requireLong(DATE_RECEIVED)
@@ -5012,7 +5011,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         null
       }
 
-      return MediaMmsMessageRecord(
+      return MmsMessageRecord(
         id,
         fromRecipient,
         fromDeviceId,

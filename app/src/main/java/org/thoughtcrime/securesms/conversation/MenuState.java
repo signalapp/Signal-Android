@@ -3,9 +3,8 @@ package org.thoughtcrime.securesms.conversation;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart;
-import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
-import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
+import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.MessageConstraintsUtil;
@@ -167,15 +166,15 @@ public final class MenuState {
       MessageRecord messageRecord = multiSelectRecord.getMessageRecord();
 
       builder.shouldShowResendAction(messageRecord.isFailed())
-             .shouldShowSaveAttachmentAction(mediaIsSelected                                             &&
-                                             !actionMessage                                              &&
-                                             !viewOnce                                                   &&
-                                             messageRecord.isMms()                                       &&
-                                             !hasPendingMedia                                            &&
-                                             !hasGift                                                    &&
-                                             !messageRecord.isMmsNotification()                          &&
-                                             ((MediaMmsMessageRecord)messageRecord).containsMediaSlide() &&
-                                             ((MediaMmsMessageRecord)messageRecord).getSlideDeck().getStickerSlide() == null)
+             .shouldShowSaveAttachmentAction(mediaIsSelected &&
+                                             !actionMessage &&
+                                             !viewOnce &&
+                                             messageRecord.isMms() &&
+                                             !hasPendingMedia &&
+                                             !hasGift &&
+                                             !messageRecord.isMmsNotification() &&
+                                             ((MmsMessageRecord)messageRecord).containsMediaSlide() &&
+                                             ((MmsMessageRecord)messageRecord).getSlideDeck().getStickerSlide() == null)
              .shouldShowForwardAction(shouldShowForwardAction)
              .shouldShowDetailsAction(!actionMessage && !conversationRecipient.isReleaseNotes())
              .shouldShowReplyAction(canReplyToMessage(conversationRecipient, actionMessage, messageRecord, shouldShowMessageRequest, isNonAdminInAnnouncementGroup));

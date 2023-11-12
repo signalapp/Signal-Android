@@ -25,7 +25,6 @@ import org.thoughtcrime.securesms.database.PaymentMetaDataUtil
 import org.thoughtcrime.securesms.database.SentStorySyncManifest
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DistributionListId
-import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.Mention
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
@@ -377,7 +376,7 @@ object SyncMessageProcessor {
     val mediaMessage = OutgoingMessage(
       recipient = toRecipient,
       body = message.body ?: "",
-      attachments = syncAttachments.ifEmpty { (targetMessage as? MediaMmsMessageRecord)?.slideDeck?.asAttachments() ?: emptyList() },
+      attachments = syncAttachments.ifEmpty { (targetMessage as? MmsMessageRecord)?.slideDeck?.asAttachments() ?: emptyList() },
       timestamp = sent.timestamp!!,
       expiresIn = targetMessage.expiresIn,
       viewOnce = viewOnce,
@@ -962,7 +961,7 @@ object SyncMessageProcessor {
     val toMarkViewed = records.map { it.id }
 
     val toEnqueueDownload = records
-      .map { it as MediaMmsMessageRecord }
+      .map { it as MmsMessageRecord }
       .filter { it.storyType.isStory && !it.storyType.isTextStory }
 
     for (mediaMmsMessageRecord in toEnqueueDownload) {

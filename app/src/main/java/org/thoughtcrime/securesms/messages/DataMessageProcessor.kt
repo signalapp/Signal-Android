@@ -30,7 +30,6 @@ import org.thoughtcrime.securesms.database.NoSuchMessageException
 import org.thoughtcrime.securesms.database.PaymentTable.PublicKeyConflictException
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.GroupRecord
-import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.Mention
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
@@ -515,7 +514,7 @@ object DataMessageProcessor {
       return null
     }
 
-    val targetMessageId = (targetMessage as? MediaMmsMessageRecord)?.latestRevisionId ?: MessageId(targetMessage.id)
+    val targetMessageId = (targetMessage as? MmsMessageRecord)?.latestRevisionId ?: MessageId(targetMessage.id)
 
     if (isRemove) {
       SignalDatabase.reactions.deleteReaction(targetMessageId, senderRecipientId)
@@ -1050,7 +1049,7 @@ object DataMessageProcessor {
     }
 
     val authorId = Recipient.externalPush(ServiceId.parseOrThrow(quote.authorAci!!)).id
-    var quotedMessage = SignalDatabase.messages.getMessageFor(quote.id!!, authorId) as? MediaMmsMessageRecord
+    var quotedMessage = SignalDatabase.messages.getMessageFor(quote.id!!, authorId) as? MmsMessageRecord
 
     if (quotedMessage != null && !quotedMessage.isRemoteDelete) {
       log(timestamp, "Found matching message record...")
@@ -1076,7 +1075,7 @@ object DataMessageProcessor {
       }
 
       if (quotedMessage.isPaymentNotification) {
-        quotedMessage = SignalDatabase.payments.updateMessageWithPayment(quotedMessage) as MediaMmsMessageRecord
+        quotedMessage = SignalDatabase.payments.updateMessageWithPayment(quotedMessage) as MmsMessageRecord
       }
 
       val body = if (quotedMessage.isPaymentNotification) quotedMessage.getDisplayBody(context).toString() else quotedMessage.body

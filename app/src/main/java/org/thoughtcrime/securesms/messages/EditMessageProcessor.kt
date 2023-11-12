@@ -6,8 +6,8 @@ import org.signal.core.util.orNull
 import org.thoughtcrime.securesms.database.MessageTable.InsertResult
 import org.thoughtcrime.securesms.database.MessageType
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageId
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.database.model.toBodyRangeList
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
@@ -49,7 +49,7 @@ object EditMessageProcessor {
 
     log(envelope.timestamp!!, "[handleEditMessage] Edit message for " + editMessage.targetSentTimestamp)
 
-    var targetMessage: MediaMmsMessageRecord? = SignalDatabase.messages.getMessageFor(editMessage.targetSentTimestamp!!, senderRecipient.id) as? MediaMmsMessageRecord
+    var targetMessage: MmsMessageRecord? = SignalDatabase.messages.getMessageFor(editMessage.targetSentTimestamp!!, senderRecipient.id) as? MmsMessageRecord
     val targetThreadRecipient: Recipient? = if (targetMessage != null) SignalDatabase.threads.getRecipientForThreadId(targetMessage.threadId) else null
 
     if (targetMessage == null || targetThreadRecipient == null) {
@@ -118,7 +118,7 @@ object EditMessageProcessor {
     envelope: Envelope,
     metadata: EnvelopeMetadata,
     message: DataMessage,
-    targetMessage: MediaMmsMessageRecord
+    targetMessage: MmsMessageRecord
   ): InsertResult? {
     val messageRanges: BodyRangeList? = message.bodyRanges.filter { it.mentionAci == null }.toList().toBodyRangeList()
     val targetQuote = targetMessage.quote
@@ -178,7 +178,7 @@ object EditMessageProcessor {
     envelope: Envelope,
     metadata: EnvelopeMetadata,
     message: DataMessage,
-    targetMessage: MediaMmsMessageRecord
+    targetMessage: MmsMessageRecord
   ): InsertResult? {
     val textMessage = IncomingMessage(
       type = MessageType.NORMAL,

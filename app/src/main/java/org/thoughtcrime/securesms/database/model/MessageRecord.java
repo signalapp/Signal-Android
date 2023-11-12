@@ -735,8 +735,8 @@ public abstract class MessageRecord extends DisplayRecord {
   }
 
   public boolean isLatestRevision() {
-    if (this instanceof MediaMmsMessageRecord) {
-      return ((MediaMmsMessageRecord) this).getLatestRevisionId() == null;
+    if (this instanceof MmsMessageRecord) {
+      return ((MmsMessageRecord) this).getLatestRevisionId() == null;
     }
     return true;
   }

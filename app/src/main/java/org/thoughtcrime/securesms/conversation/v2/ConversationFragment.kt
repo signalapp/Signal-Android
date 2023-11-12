@@ -194,7 +194,6 @@ import org.thoughtcrime.securesms.conversation.v2.keyboard.AttachmentKeyboardFra
 import org.thoughtcrime.securesms.database.DraftTable
 import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord
-import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.Mention
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
@@ -1990,7 +1989,7 @@ class ConversationFragment :
     if (menuState.shouldShowSaveAttachmentAction()) {
       items.add(
         ActionItem(R.drawable.symbol_save_android_24, getResources().getString(R.string.conversation_selection__menu_save)) {
-          handleSaveAttachment(getSelectedConversationMessage().messageRecord as MediaMmsMessageRecord)
+          handleSaveAttachment(getSelectedConversationMessage().messageRecord as MmsMessageRecord)
           actionMode?.finish()
         }
       )
@@ -2166,7 +2165,7 @@ class ConversationFragment :
     }
   }
 
-  private fun handleSaveAttachment(record: MediaMmsMessageRecord) {
+  private fun handleSaveAttachment(record: MmsMessageRecord) {
     if (record.isViewOnce) {
       error("Cannot save a view-once message")
     }
@@ -2219,7 +2218,7 @@ class ConversationFragment :
   }
 
   private fun handleViewPaymentDetails(conversationMessage: ConversationMessage) {
-    val record: MediaMmsMessageRecord = conversationMessage.messageRecord as? MediaMmsMessageRecord ?: return
+    val record: MmsMessageRecord = conversationMessage.messageRecord as? MmsMessageRecord ?: return
     val payment = record.payment ?: return
     if (record.isPaymentNotification) {
       startActivity(PaymentsActivity.navigateToPaymentDetails(requireContext(), payment.uuid))
@@ -3295,7 +3294,7 @@ class ConversationFragment :
         ConversationReactionOverlay.Action.EDIT -> handleEditMessage(conversationMessage)
         ConversationReactionOverlay.Action.FORWARD -> handleForwardMessageParts(conversationMessage.multiselectCollection.toSet())
         ConversationReactionOverlay.Action.RESEND -> handleResend(conversationMessage)
-        ConversationReactionOverlay.Action.DOWNLOAD -> handleSaveAttachment(conversationMessage.messageRecord as MediaMmsMessageRecord)
+        ConversationReactionOverlay.Action.DOWNLOAD -> handleSaveAttachment(conversationMessage.messageRecord as MmsMessageRecord)
         ConversationReactionOverlay.Action.COPY -> handleCopyMessage(conversationMessage.multiselectCollection.toSet())
         ConversationReactionOverlay.Action.MULTISELECT -> handleEnterMultiselect(conversationMessage)
         ConversationReactionOverlay.Action.PAYMENT_DETAILS -> handleViewPaymentDetails(conversationMessage)

@@ -46,7 +46,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.conversation.colors.Colorizable;
 import org.thoughtcrime.securesms.conversation.colors.Colorizer;
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart;
-import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4Playable;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicyEnforcer;
@@ -326,7 +326,7 @@ public class ConversationAdapter
     if (conversationMessage == null) return -1;
 
     if (displayMode.getScheduleMessageMode()) {
-      calendar.setTimeInMillis(((MediaMmsMessageRecord) conversationMessage.getMessageRecord()).getScheduledDate());
+      calendar.setTimeInMillis(((MmsMessageRecord) conversationMessage.getMessageRecord()).getScheduledDate());
     } else if (displayMode == ConversationItemDisplayMode.EditHistory.INSTANCE) {
       calendar.setTimeInMillis(conversationMessage.getMessageRecord().getDateSent());
     } else {
@@ -346,7 +346,7 @@ public class ConversationAdapter
     ConversationMessage conversationMessage = Objects.requireNonNull(getItem(position));
 
     if (displayMode.getScheduleMessageMode()) {
-      viewHolder.setText(DateUtils.getScheduledMessagesDateHeaderString(viewHolder.itemView.getContext(), locale, ((MediaMmsMessageRecord) conversationMessage.getMessageRecord()).getScheduledDate()));
+      viewHolder.setText(DateUtils.getScheduledMessagesDateHeaderString(viewHolder.itemView.getContext(), locale, ((MmsMessageRecord) conversationMessage.getMessageRecord()).getScheduledDate()));
     } else if (displayMode == ConversationItemDisplayMode.EditHistory.INSTANCE) {
       viewHolder.setText(DateUtils.getConversationDateHeaderString(viewHolder.itemView.getContext(), locale, conversationMessage.getMessageRecord().getDateSent()));
     } else {

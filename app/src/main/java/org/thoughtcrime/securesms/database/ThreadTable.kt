@@ -38,7 +38,6 @@ import org.thoughtcrime.securesms.database.SignalDatabase.Companion.messageLog
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.messages
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.recipients
 import org.thoughtcrime.securesms.database.ThreadBodyUtil.ThreadBody
-import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.ThreadRecord
@@ -1699,7 +1698,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       return null
     }
 
-    val slideDeck: SlideDeck = (record as MediaMmsMessageRecord).slideDeck
+    val slideDeck: SlideDeck = (record as MmsMessageRecord).slideDeck
     val thumbnail = Optional.ofNullable(slideDeck.thumbnailSlide)
       .or(Optional.ofNullable(slideDeck.stickerSlide))
       .orElse(null)

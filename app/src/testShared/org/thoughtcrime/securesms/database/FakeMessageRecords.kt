@@ -7,7 +7,7 @@ import org.thoughtcrime.securesms.blurhash.BlurHash
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch
 import org.thoughtcrime.securesms.database.documents.NetworkFailure
-import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.ParentStoryId
 import org.thoughtcrime.securesms.database.model.Quote
 import org.thoughtcrime.securesms.database.model.ReactionRecord
@@ -143,8 +143,8 @@ object FakeMessageRecords {
     giftBadge: GiftBadge? = null,
     payment: Payment? = null,
     call: CallTable.Call? = null
-  ): MediaMmsMessageRecord {
-    return MediaMmsMessageRecord(
+  ): MmsMessageRecord {
+    return MmsMessageRecord(
       id,
       conversationRecipient,
       recipientDeviceId,

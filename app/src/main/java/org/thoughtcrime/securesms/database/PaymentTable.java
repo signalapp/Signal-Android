@@ -18,7 +18,7 @@ import org.signal.core.util.CursorUtil;
 import org.signal.core.util.SQLiteDatabaseExtensionsKt;
 import org.signal.core.util.SqlUtil;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.CryptoValue;
@@ -436,8 +436,8 @@ public final class PaymentTable extends DatabaseTable implements RecipientIdData
   public @NonNull MessageRecord updateMessageWithPayment(@NonNull MessageRecord record) {
     if (record.isPaymentNotification()) {
       Payment payment = getPayment(UuidUtil.parseOrThrow(record.getBody()));
-      if (payment != null && record instanceof MediaMmsMessageRecord) {
-        return ((MediaMmsMessageRecord) record).withPayment(payment);
+      if (payment != null && record instanceof MmsMessageRecord) {
+        return ((MmsMessageRecord) record).withPayment(payment);
       } else {
         throw new AssertionError("Payment not found for message");
       }
