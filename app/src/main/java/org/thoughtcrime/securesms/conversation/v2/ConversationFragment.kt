@@ -3801,6 +3801,28 @@ class ConversationFragment :
   //region Input Panel Callbacks
 
   private inner class InputPanelListener : InputPanel.Listener {
+    private fun handleTypingIndicatorOnRecorderStopped() {
+      val typingStatusSender = ApplicationDependencies.getTypingStatusSender()
+      val recipient = viewModel.recipientSnapshot
+
+      if (recipient == null || recipient.isBlocked || recipient.isSelf) {
+        return
+      }
+
+      typingStatusSender.onTypingStoppedWithNotify(args.threadId)
+    }
+
+    private fun handleTypingIndicatorOnRecorderStarted() {
+      val typingStatusSender = ApplicationDependencies.getTypingStatusSender()
+      val recipient = viewModel.recipientSnapshot
+
+      if (recipient == null || recipient.isBlocked || recipient.isSelf) {
+        return
+      }
+
+      typingStatusSender.onTypingStarted(args.threadId)
+    }
+
     override fun onVoiceNoteDraftPlay(audioUri: Uri, progress: Double) {
       getVoiceNoteMediaController().startSinglePlaybackForDraft(audioUri, args.threadId, progress)
     }
@@ -3819,16 +3841,19 @@ class ConversationFragment :
     }
 
     override fun onRecorderStarted() {
+      handleTypingIndicatorOnRecorderStarted()
       voiceMessageRecordingDelegate.onRecorderStarted()
     }
 
     override fun onRecorderLocked() {
       updateToggleButtonState()
+      handleTypingIndicatorOnRecorderStarted()
       voiceMessageRecordingDelegate.onRecorderLocked()
     }
 
     override fun onRecorderFinished() {
       updateToggleButtonState()
+      handleTypingIndicatorOnRecorderStopped()
       voiceMessageRecordingDelegate.onRecorderFinished()
     }
 
@@ -3836,6 +3861,7 @@ class ConversationFragment :
       if (lifecycle.currentState.isAtLeast(Lifecycle.State.CREATED)) {
         updateToggleButtonState()
       }
+      handleTypingIndicatorOnRecorderStopped()
       voiceMessageRecordingDelegate.onRecorderCanceled(byUser)
     }
 
