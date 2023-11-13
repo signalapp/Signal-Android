@@ -11,7 +11,6 @@ import org.thoughtcrime.securesms.util.adapter.mapping.BindingFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.BindingViewHolder
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
-import java.util.Locale
 
 /**
  * Renders a single call preference row when displaying call info.
@@ -82,7 +81,7 @@ object CallPreference {
     }
 
     private fun getCallTime(messageRecord: MessageRecord): String {
-      return DateUtils.getOnlyTimeString(context, Locale.getDefault(), messageRecord.timestamp)
+      return DateUtils.getOnlyTimeString(context, messageRecord.timestamp)
     }
   }
 }
