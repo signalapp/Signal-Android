@@ -14,6 +14,7 @@
         <item name="android:textColor">@color/signal_dark_colorOnPrimaryContainer</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:textAppearance">@style/Signal.Text.BodyLarge</item>
+        <item name="backgroundTint">@color/signal_dark_colorSurface4</item>
     </style>
 
     <style name="Widget.Signal.Button.TextButton" parent="Widget.Material3.Button.TextButton">
