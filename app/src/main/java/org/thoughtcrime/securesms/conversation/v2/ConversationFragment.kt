@@ -632,8 +632,6 @@ class ConversationFragment :
 
     conversationGroupViewModel.updateGroupStateIfNeeded()
 
-    ConversationUtil.refreshRecipientShortcuts()
-
     if (SignalStore.rateLimit().needsRecaptcha()) {
       RecaptchaProofBottomSheetFragment.show(childFragmentManager)
     }
@@ -641,6 +639,8 @@ class ConversationFragment :
 
   override fun onPause() {
     super.onPause()
+
+    ConversationUtil.refreshRecipientShortcuts()
 
     if (!args.conversationScreenType.isInBubble) {
       ApplicationDependencies.getMessageNotifier().clearVisibleThread()
