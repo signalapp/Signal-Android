@@ -162,10 +162,13 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
 
     Log.i(TAG, "Upgrading database: $oldVersion, $newVersion")
     val startTime = System.currentTimeMillis()
+    db.setForeignKeyConstraintsEnabled(false)
     try {
       // Transactions and version bumps are handled in the migrate method
       SignalDatabaseMigrations.migrate(context, db, oldVersion, newVersion)
     } finally {
+      db.setForeignKeyConstraintsEnabled(true)
+
       // We have to re-begin the transaction for the calling code (see comment at start of method)
       db.beginTransaction()
     }
