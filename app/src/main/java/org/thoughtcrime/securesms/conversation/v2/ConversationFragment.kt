@@ -2923,9 +2923,11 @@ class ConversationFragment :
               }
 
               override fun onHide() {
-                if (lifecycle.currentState.isAtLeast(Lifecycle.State.INITIALIZED)) {
-                  binding.conversationItemRecycler.suppressLayout(false)
+                if (!lifecycle.currentState.isAtLeast(Lifecycle.State.INITIALIZED)) {
+                  return
                 }
+
+                binding.conversationItemRecycler.suppressLayout(false)
                 if (selectedConversationModel.audioUri != null) {
                   getVoiceNoteMediaController().resumePlayback(selectedConversationModel.audioUri, messageRecord.getId())
                 }
