@@ -122,6 +122,10 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     repository.addSampleReleaseNote()
   }
 
+  fun addRemoteDonateMegaphone() {
+    repository.addRemoteDonateMegaphone()
+  }
+
   fun refresh() {
     store.update { getState().copy(emojiVersion = it.emojiVersion) }
   }
