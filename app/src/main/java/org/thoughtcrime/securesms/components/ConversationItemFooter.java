@@ -416,7 +416,7 @@ public class ConversationItemFooter extends ConstraintLayout {
         deliveryStatusView.setNone();
       } else if (messageRecord.isPending()) {
         deliveryStatusView.setPending();
-      } else if (messageRecord.isRemoteRead()) {
+      } else if (messageRecord.hasReadReceipt()) {
         deliveryStatusView.setRead();
       } else if (messageRecord.isDelivered()) {
         deliveryStatusView.setDelivered();
@@ -433,7 +433,7 @@ public class ConversationItemFooter extends ConstraintLayout {
       if (mmsMessageRecord.getSlideDeck().getAudioSlide() != null) {
         showAudioDurationViews();
 
-        if (messageRecord.getViewedReceiptCount() > 0 || (messageRecord.isOutgoing() && Objects.equals(messageRecord.getToRecipient(), Recipient.self()))) {
+        if (messageRecord.isViewed() || (messageRecord.isOutgoing() && Objects.equals(messageRecord.getToRecipient(), Recipient.self()))) {
           revealDot.setProgress(1f);
         } else {
           revealDot.setProgress(0f);

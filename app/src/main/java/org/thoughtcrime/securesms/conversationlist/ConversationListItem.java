@@ -516,7 +516,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
       } else {
         if (thread.isPending()) {
           deliveryStatusIndicator.setPending();
-        } else if (thread.isRemoteRead()) {
+        } else if (thread.hasReadReceipt()) {
           deliveryStatusIndicator.setRead();
         } else if (thread.isDelivered()) {
           deliveryStatusIndicator.setDelivered();

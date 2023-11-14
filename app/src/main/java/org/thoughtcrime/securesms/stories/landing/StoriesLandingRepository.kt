@@ -105,7 +105,7 @@ class StoriesLandingRepository(context: Context) {
   private fun createStoriesLandingItemData(sender: Recipient, messageRecords: List<MessageRecord>, sendingCount: Long, failureCount: Long): Observable<StoriesLandingItemData> {
     val itemDataObservable = Observable.create<StoriesLandingItemData> { emitter ->
       fun refresh(sender: Recipient) {
-        val primaryIndex = messageRecords.indexOfFirst { !it.isOutgoing && it.viewedReceiptCount == 0 }.takeIf { it > -1 } ?: 0
+        val primaryIndex = messageRecords.indexOfFirst { !it.isOutgoing && !it.isViewed }.takeIf { it > -1 } ?: 0
         val itemData = StoriesLandingItemData(
           storyRecipient = sender,
           storyViewState = StoryViewState.NONE,

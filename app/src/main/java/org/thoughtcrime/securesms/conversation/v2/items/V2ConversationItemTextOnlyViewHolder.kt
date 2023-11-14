@@ -700,7 +700,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
 
     when {
       record.isPending -> deliveryStatus.setPending()
-      record.isRemoteRead -> deliveryStatus.setRead()
+      record.hasReadReceipt() -> deliveryStatus.setRead()
       record.isDelivered -> deliveryStatus.setDelivered()
       else -> deliveryStatus.setSent()
     }

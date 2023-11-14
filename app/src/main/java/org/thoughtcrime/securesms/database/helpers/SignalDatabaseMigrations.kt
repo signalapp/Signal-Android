@@ -65,6 +65,7 @@ import org.thoughtcrime.securesms.database.helpers.migration.V206_AddConversatio
 import org.thoughtcrime.securesms.database.helpers.migration.V207_AddChunkSizeColumn
 import org.thoughtcrime.securesms.database.helpers.migration.V209_ClearRecipientPniFromAciColumn
 import org.thoughtcrime.securesms.database.helpers.migration.V210_FixPniPossibleColumns
+import org.thoughtcrime.securesms.database.helpers.migration.V211_ReceiptColumnRenames
 
 /**
  * Contains all of the database migrations for [SignalDatabase]. Broken into a separate file for cleanliness.
@@ -73,7 +74,7 @@ object SignalDatabaseMigrations {
 
   val TAG: String = Log.tag(SignalDatabaseMigrations.javaClass)
 
-  const val DATABASE_VERSION = 210
+  const val DATABASE_VERSION = 211
 
   @JvmStatic
   fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -323,6 +324,10 @@ object SignalDatabaseMigrations {
 
     if (oldVersion < 210) {
       V210_FixPniPossibleColumns.migrate(context, db, oldVersion, newVersion)
+    }
+
+    if (oldVersion < 211) {
+      V211_ReceiptColumnRenames.migrate(context, db, oldVersion, newVersion)
     }
   }
 
