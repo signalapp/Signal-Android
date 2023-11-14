@@ -292,7 +292,6 @@ import org.thoughtcrime.securesms.util.Debouncer
 import org.thoughtcrime.securesms.util.DeleteDialog
 import org.thoughtcrime.securesms.util.Dialogs
 import org.thoughtcrime.securesms.util.DrawableUtil
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.FullscreenHelper
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.MessageConstraintsUtil
@@ -1482,12 +1481,6 @@ class ConversationFragment :
   }
 
   private fun handleSendEditMessage() {
-    if (!FeatureFlags.editMessageSending()) {
-      Log.w(TAG, "Edit message sending disabled, forcing exit of edit mode")
-      inputPanel.exitEditMessageMode()
-      return
-    }
-
     if (!inputPanel.inEditMessageMode()) {
       Log.w(TAG, "Not in edit message mode, unknown state, forcing re-exit")
       inputPanel.exitEditMessageMode()
@@ -1969,7 +1962,7 @@ class ConversationFragment :
       )
     }
 
-    if (menuState.shouldShowEditAction() && FeatureFlags.editMessageSending()) {
+    if (menuState.shouldShowEditAction()) {
       items.add(
         ActionItem(R.drawable.symbol_edit_24, resources.getString(R.string.conversation_selection__menu_edit)) {
           handleEditMessage(getSelectedConversationMessage())
@@ -2142,10 +2135,6 @@ class ConversationFragment :
   }
 
   private fun handleEditMessage(conversationMessage: ConversationMessage) {
-    if (!FeatureFlags.editMessageSending()) {
-      return
-    }
-
     if (isSearchRequested) {
       searchMenuItem?.collapseActionView()
     }

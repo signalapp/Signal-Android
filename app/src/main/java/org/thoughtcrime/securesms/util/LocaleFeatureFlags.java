@@ -29,13 +29,6 @@ public final class LocaleFeatureFlags {
   private static final String COUNTRY_WILDCARD = "*";
   private static final int    NOT_FOUND        = -1;
 
-  /**
-   * In donate megaphone group for given country code
-   */
-  public static boolean isInDonateMegaphone() {
-    return isEnabledPartsPerMillion(FeatureFlags.DONATE_MEGAPHONE, FeatureFlags.donateMegaphone());
-  }
-
   public static @NonNull Optional<PushMediaConstraints.MediaConfig> getMediaQualityLevel() {
     Map<String, Integer> countryValues = parseCountryValues(FeatureFlags.getMediaQualityLevels(), NOT_FOUND);
     int                  level         = getCountryValue(countryValues, Recipient.self().getE164().orElse(""), NOT_FOUND);
