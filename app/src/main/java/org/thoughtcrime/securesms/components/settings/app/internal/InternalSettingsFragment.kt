@@ -492,9 +492,17 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         }
       )
 
-      if (SignalStore.donationsValues().getSubscriber() != null) {
-        dividerPref()
+      switchPref(
+        title = DSLSettingsText.from("Disable LBRed"),
+        isChecked = state.callingDisableLBRed,
+        onClick = {
+          viewModel.setInternalCallingDisableLBRed(!state.callingDisableLBRed)
+        }
+      )
 
+      dividerPref()
+
+      if (SignalStore.donationsValues().getSubscriber() != null) {
         sectionHeaderPref(DSLSettingsText.from("Badges"))
 
         clickPref(
@@ -527,6 +535,8 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
             Toast.makeText(context, "Cleared", Toast.LENGTH_SHORT).show()
           }
         )
+
+        dividerPref()
       }
 
       if (state.hasPendingOneTimeDonation) {
