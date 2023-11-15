@@ -5105,10 +5105,10 @@
     <string name="DonationReceiptListFragment__recurring">Recurring</string>
     <!-- Donation receipts one-time tab label -->
     <string name="DonationReceiptListFragment__one_time">One-time</string>
+    <!-- Donation receipts gift tab -->
+    <string name="DonationReceiptListFragment__for_a_friend">For a friend</string>
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__donation_for_a_friend">Donation for a friend</string>
-    <!-- Donation receipts boost row label -->
-    <!-- Donation receipts details title -->
     <!-- Donation receipts donation type heading -->
     <string name="DonationReceiptDetailsFragment__donation_type">Donation type</string>
     <!-- Donation receipts date paid heading -->
