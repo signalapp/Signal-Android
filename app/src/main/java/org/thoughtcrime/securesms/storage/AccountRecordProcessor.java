@@ -124,12 +124,11 @@ public class AccountRecordProcessor extends DefaultStorageRecordProcessor<Signal
     boolean                              hasSetMyStoriesPrivacy        = remote.hasSetMyStoriesPrivacy();
     boolean                              hasViewedOnboardingStory      = remote.hasViewedOnboardingStory() || local.hasViewedOnboardingStory();
     boolean                              storiesDisabled               = remote.isStoriesDisabled();
-    boolean                              hasReadOnboardingStory        = remote.hasReadOnboardingStory() || remote.hasViewedOnboardingStory() || local.hasReadOnboardingStory() || local.hasViewedOnboardingStory() ;
     boolean                              hasSeenGroupStoryEducation    = remote.hasSeenGroupStoryEducationSheet() || local.hasSeenGroupStoryEducationSheet();
     String                               username                      = !StringUtil.isEmpty(remote.getUsername()) ? remote.getUsername() : local.getUsername();
     AccountRecord.UsernameLink           usernameLink                  = remote.getUsernameLink() != null ? remote.getUsernameLink() :  local.getUsernameLink();
-    boolean                              matchesRemote                 = doParamsMatch(remote, unknownFields, givenName, familyName, avatarUrlPath, profileKey, noteToSelfArchived, noteToSelfForcedUnread, readReceipts, typingIndicators, sealedSenderIndicators, linkPreviews, phoneNumberSharingMode, unlisted, pinnedConversations, preferContactAvatars, payments, universalExpireTimer, primarySendsSms, e164, defaultReactions, subscriber, displayBadgesOnProfile, subscriptionManuallyCancelled, keepMutedChatsArchived, hasSetMyStoriesPrivacy, hasViewedOnboardingStory, storiesDisabled, storyViewReceiptsState, hasReadOnboardingStory, username, usernameLink);
-    boolean                              matchesLocal                  = doParamsMatch(local, unknownFields, givenName, familyName, avatarUrlPath, profileKey, noteToSelfArchived, noteToSelfForcedUnread, readReceipts, typingIndicators, sealedSenderIndicators, linkPreviews, phoneNumberSharingMode, unlisted, pinnedConversations, preferContactAvatars, payments, universalExpireTimer, primarySendsSms, e164, defaultReactions, subscriber, displayBadgesOnProfile, subscriptionManuallyCancelled, keepMutedChatsArchived, hasSetMyStoriesPrivacy, hasViewedOnboardingStory, storiesDisabled, storyViewReceiptsState, hasReadOnboardingStory, username, usernameLink);
+    boolean                              matchesRemote                 = doParamsMatch(remote, unknownFields, givenName, familyName, avatarUrlPath, profileKey, noteToSelfArchived, noteToSelfForcedUnread, readReceipts, typingIndicators, sealedSenderIndicators, linkPreviews, phoneNumberSharingMode, unlisted, pinnedConversations, preferContactAvatars, payments, universalExpireTimer, primarySendsSms, e164, defaultReactions, subscriber, displayBadgesOnProfile, subscriptionManuallyCancelled, keepMutedChatsArchived, hasSetMyStoriesPrivacy, hasViewedOnboardingStory, storiesDisabled, storyViewReceiptsState, username, usernameLink);
+    boolean                              matchesLocal                  = doParamsMatch(local, unknownFields, givenName, familyName, avatarUrlPath, profileKey, noteToSelfArchived, noteToSelfForcedUnread, readReceipts, typingIndicators, sealedSenderIndicators, linkPreviews, phoneNumberSharingMode, unlisted, pinnedConversations, preferContactAvatars, payments, universalExpireTimer, primarySendsSms, e164, defaultReactions, subscriber, displayBadgesOnProfile, subscriptionManuallyCancelled, keepMutedChatsArchived, hasSetMyStoriesPrivacy, hasViewedOnboardingStory, storiesDisabled, storyViewReceiptsState, username, usernameLink);
 
     if (matchesRemote) {
       return remote;
@@ -163,7 +162,6 @@ public class AccountRecordProcessor extends DefaultStorageRecordProcessor<Signal
                                                                    .setHasSetMyStoriesPrivacy(hasSetMyStoriesPrivacy)
                                                                    .setHasViewedOnboardingStory(hasViewedOnboardingStory)
                                                                    .setStoriesDisabled(storiesDisabled)
-                                                                   .setHasReadOnboardingStory(hasReadOnboardingStory)
                                                                    .setHasSeenGroupStoryEducationSheet(hasSeenGroupStoryEducation)
                                                                    .setUsername(username)
                                                                    .setUsernameLink(usernameLink);
@@ -220,7 +218,6 @@ public class AccountRecordProcessor extends DefaultStorageRecordProcessor<Signal
                                        boolean hasViewedOnboardingStory,
                                        boolean storiesDisabled,
                                        @NonNull OptionalBool storyViewReceiptsState,
-                                       boolean hasReadOnboardingStory,
                                        @Nullable String username,
                                        @Nullable AccountRecord.UsernameLink usernameLink)
   {
@@ -252,7 +249,6 @@ public class AccountRecordProcessor extends DefaultStorageRecordProcessor<Signal
            contact.hasViewedOnboardingStory() == hasViewedOnboardingStory &&
            contact.isStoriesDisabled() == storiesDisabled &&
            contact.getStoryViewReceiptsState().equals(storyViewReceiptsState) &&
-           contact.hasReadOnboardingStory() == hasReadOnboardingStory &&
            Objects.equals(contact.getUsername(), username) &&
            Objects.equals(contact.getUsernameLink(), usernameLink);
   }

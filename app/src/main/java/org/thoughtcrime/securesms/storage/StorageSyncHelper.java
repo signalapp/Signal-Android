@@ -133,8 +133,6 @@ public final class StorageSyncHelper {
       Log.w(TAG, "[buildAccountRecord] StorageId on RecipientRecord did not match self! ID: " + self.getId());
     }
 
-    final boolean hasReadOnboardingStory = SignalStore.storyValues().getUserHasViewedOnboardingStory() || SignalStore.storyValues().getUserHasReadOnboardingStory();
-
     byte[] storageId = record != null && record.getStorageId() != null ? record.getStorageId() : self.getStorageServiceId();
 
     SignalAccountRecord.Builder account = new SignalAccountRecord.Builder(storageId, record != null ? record.getSyncExtras().getStorageProto() : null)
@@ -164,7 +162,6 @@ public final class StorageSyncHelper {
                                                                  .setHasViewedOnboardingStory(SignalStore.storyValues().getUserHasViewedOnboardingStory())
                                                                  .setStoriesDisabled(SignalStore.storyValues().isFeatureDisabled())
                                                                  .setStoryViewReceiptsState(storyViewReceiptsState)
-                                                                 .setHasReadOnboardingStory(hasReadOnboardingStory)
                                                                  .setHasSeenGroupStoryEducationSheet(SignalStore.storyValues().getUserHasSeenGroupStoryEducationSheet())
                                                                  .setUsername(SignalStore.account().getUsername());
 
@@ -209,7 +206,6 @@ public final class StorageSyncHelper {
     SignalStore.storyValues().setUserHasBeenNotifiedAboutStories(update.getNew().hasSetMyStoriesPrivacy());
     SignalStore.storyValues().setUserHasViewedOnboardingStory(update.getNew().hasViewedOnboardingStory());
     SignalStore.storyValues().setFeatureDisabled(update.getNew().isStoriesDisabled());
-    SignalStore.storyValues().setUserHasReadOnboardingStory(update.getNew().hasReadOnboardingStory());
     SignalStore.storyValues().setUserHasSeenGroupStoryEducationSheet(update.getNew().hasSeenGroupStoryEducationSheet());
     SignalStore.account().setUsername(update.getNew().getUsername());
 

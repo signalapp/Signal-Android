@@ -182,7 +182,7 @@ message AccountRecord {
            bool                   readReceipts                    = 6;
            bool                   sealedSenderIndicators          = 7;
            bool                   typingIndicators                = 8;
-           bool                   proxiedLinkPreviews             = 9;
+           reserved            /* proxiedLinkPreviews */            9;
            bool                   noteToSelfMarkedUnread          = 10;
            bool                   linkPreviews                    = 11;
            PhoneNumberSharingMode phoneNumberSharingMode          = 12;
@@ -204,7 +204,7 @@ message AccountRecord {
            reserved            /* storiesDisabled */                28;
            bool                   storiesDisabled                 = 29;
            OptionalBool           storyViewReceiptsEnabled        = 30;
-           bool                   hasReadOnboardingStory          = 31;
+           reserved            /* hasReadOnboardingStory */         31;
            bool                   hasSeenGroupStoryEducationSheet = 32;
            string                 username                        = 33;
            bool                   hasCompletedUsernameOnboarding  = 34;

@@ -21,7 +21,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.sms.MessageSender
-import org.thoughtcrime.securesms.stories.Stories
 
 class StoriesLandingRepository(context: Context) {
 
@@ -169,11 +168,6 @@ class StoriesLandingRepository(context: Context) {
       val releaseThread: Long? = SignalStore.releaseChannelValues().releaseChannelRecipientId?.let { SignalDatabase.threads.getThreadIdIfExistsFor(it) }
 
       MultiDeviceReadUpdateJob.enqueue(messageInfos.filter { it.threadId == releaseThread }.map { it.syncMessageId })
-
-      if (messageInfos.any { it.threadId == releaseThread }) {
-        SignalStore.storyValues().userHasReadOnboardingStory = true
-        Stories.onStorySettingsChanged(Recipient.self().id)
-      }
     }
   }
 

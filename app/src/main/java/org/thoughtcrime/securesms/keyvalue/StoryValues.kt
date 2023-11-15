@@ -41,11 +41,6 @@ internal class StoryValues(store: KeyValueStore) : SignalStoreValues(store) {
     private const val USER_HAS_VIEWED_ONBOARDING_STORY = "stories.user.has.seen.onboarding"
 
     /**
-     * Marks whether the user has seen the onboarding story in the stories landing page
-     */
-    private const val USER_HAS_READ_ONBOARDING_STORY = "stories.user.has.read.onboarding"
-
-    /**
      * Whether or not the user will send and receive viewed receipts for stories
      */
     private const val STORY_VIEWED_RECEIPTS = "stories.viewed.receipts"
@@ -66,7 +61,6 @@ internal class StoryValues(store: KeyValueStore) : SignalStoreValues(store) {
     USER_HAS_SEEN_FIRST_NAV_VIEW,
     HAS_DOWNLOADED_ONBOARDING_STORY,
     USER_HAS_VIEWED_ONBOARDING_STORY,
-    USER_HAS_READ_ONBOARDING_STORY,
     STORY_VIEWED_RECEIPTS,
     USER_HAS_SEEN_GROUP_STORY_EDUCATION_SHEET
   )
@@ -83,18 +77,12 @@ internal class StoryValues(store: KeyValueStore) : SignalStoreValues(store) {
 
   var userHasViewedOnboardingStory: Boolean by booleanValue(USER_HAS_VIEWED_ONBOARDING_STORY, false)
 
-  var userHasReadOnboardingStory: Boolean by booleanValue(USER_HAS_READ_ONBOARDING_STORY, false)
-
   var viewedReceiptsEnabled: Boolean by booleanValue(STORY_VIEWED_RECEIPTS, false)
 
   var userHasSeenGroupStoryEducationSheet: Boolean by booleanValue(USER_HAS_SEEN_GROUP_STORY_EDUCATION_SHEET, false)
 
   fun isViewedReceiptsStateSet(): Boolean {
     return store.containsKey(STORY_VIEWED_RECEIPTS)
-  }
-
-  fun hasUserOnboardingStoryReadBeenSet(): Boolean {
-    return store.containsKey(USER_HAS_READ_ONBOARDING_STORY)
   }
 
   fun setLatestStorySend(storySend: StorySend) {

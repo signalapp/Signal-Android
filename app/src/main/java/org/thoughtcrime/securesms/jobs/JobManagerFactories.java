@@ -76,7 +76,6 @@ import org.thoughtcrime.securesms.migrations.StickerMyDailyLifeMigrationJob;
 import org.thoughtcrime.securesms.migrations.StorageCapabilityMigrationJob;
 import org.thoughtcrime.securesms.migrations.StorageServiceMigrationJob;
 import org.thoughtcrime.securesms.migrations.StorageServiceSystemNameMigrationJob;
-import org.thoughtcrime.securesms.migrations.StoryReadStateMigrationJob;
 import org.thoughtcrime.securesms.migrations.StoryViewedReceiptsStateMigrationJob;
 import org.thoughtcrime.securesms.migrations.Svr2MirrorMigrationJob;
 import org.thoughtcrime.securesms.migrations.SyncDistributionListsMigrationJob;
@@ -262,7 +261,6 @@ public final class JobManagerFactories {
       put(StorageCapabilityMigrationJob.KEY,         new StorageCapabilityMigrationJob.Factory());
       put(StorageServiceMigrationJob.KEY,            new StorageServiceMigrationJob.Factory());
       put(StorageServiceSystemNameMigrationJob.KEY,  new StorageServiceSystemNameMigrationJob.Factory());
-      put(StoryReadStateMigrationJob.KEY,            new StoryReadStateMigrationJob.Factory());
       put(StoryViewedReceiptsStateMigrationJob.KEY,  new StoryViewedReceiptsStateMigrationJob.Factory());
       put(Svr2MirrorMigrationJob.KEY,                new Svr2MirrorMigrationJob.Factory());
       put(SyncDistributionListsMigrationJob.KEY,     new SyncDistributionListsMigrationJob.Factory());
@@ -306,6 +304,7 @@ public final class JobManagerFactories {
       put("MmsReceiveJob",                           new FailingJob.Factory());
       put("MmsDownloadJob",                          new FailingJob.Factory());
       put("SmsReceiveJob",                           new FailingJob.Factory());
+      put("StoryReadStateMigrationJob",              new PassingMigrationJob.Factory());
     }};
   }
 
