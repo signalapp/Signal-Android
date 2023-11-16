@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.signal.core.util.DimensionUnit;
@@ -155,7 +156,7 @@ public class CreateGroupActivity extends ContactSelectionActivity {
       stopwatch.split("resolve");
 
       Set<Recipient> registeredChecks = resolved.stream()
-                                                .filter(r -> r.getRegistered() == RecipientTable.RegisteredState.UNKNOWN)
+                                                .filter(r -> !r.isRegistered() || !r.hasServiceId())
                                                 .collect(Collectors.toSet());
 
       Log.i(TAG, "Need to do " + registeredChecks.size() + " registration checks.");
@@ -170,11 +171,22 @@ public class CreateGroupActivity extends ContactSelectionActivity {
 
       stopwatch.split("registered");
 
-      return ids;
-    }, recipientIds -> {
+      return Recipient.resolvedList(ids);
+    }, recipients -> {
       dismissibleDialog.dismiss();
       stopwatch.stop(TAG);
-      startActivityForResult(AddGroupDetailsActivity.newIntent(this, recipientIds), REQUEST_CODE_ADD_DETAILS);
+
+      List<Recipient> notRegistered = recipients.stream().filter(r -> !r.isRegistered() || !r.hasServiceId()).collect(Collectors.toList());
+
+      if (notRegistered.isEmpty()) {
+        startActivityForResult(AddGroupDetailsActivity.newIntent(this, recipients.stream().map(Recipient::getId).collect(Collectors.toList())), REQUEST_CODE_ADD_DETAILS);
+      } else {
+        String notRegisteredNames = notRegistered.stream().map(r -> r.getDisplayName(this)).collect(Collectors.joining(", "));
+        new MaterialAlertDialogBuilder(this)
+            .setMessage(getResources().getQuantityString(R.plurals.CreateGroupActivity_not_signal_users, notRegistered.size(), notRegisteredNames))
+            .setPositiveButton(android.R.string.ok, null)
+            .show();
+      }
     });
   }
 }
