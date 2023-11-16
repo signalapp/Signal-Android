@@ -299,7 +299,7 @@ public final class WifiDirect {
     ensureInitialized();
 
     manager.requestConnectionInfo(channel, info -> {
-      Log.i(TAG, "Connection information available. group_formed: " + info.groupFormed + " group_owner: " + info.isGroupOwner);
+      Log.i(TAG, "Connection information available. group_formed: " + info.groupFormed + " is_group_owner: " + info.isGroupOwner + " has_group_owner_address: " +  (info.groupOwnerAddress != null));
       WifiDirectConnectionListener listener = connectionListener;
       if (listener != null) {
         listener.onNetworkConnected(info);
