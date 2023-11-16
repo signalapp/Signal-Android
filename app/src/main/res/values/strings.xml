@@ -6443,5 +6443,16 @@
     <!-- Step 2 of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications, it indicates the name of the setting that needs to be re-enabled -->
     <string name="GrantFullScreenIntentPermission_bottomsheet_step2">2. %1$s Allow full screen notifications</string>
 
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, title for dialog -->
+    <string name="MonthlyDonationCanceled__title">Monthly donation canceled</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, body for dialog. First placeholder is a payment related error message. Second placeholder is 'learn more' -->
+    <string name="MonthlyDonationCanceled__message">Your recurring monthly donation was canceled. %1$s\n\nYour badge will no longer be visible on your profile. %2$s</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, learn more used in placeholder for body for dialog. -->
+    <string name="MonthlyDonationCanceled__learn_more">Learn more</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, primary button to renew subscription with new data -->
+    <string name="MonthlyDonationCanceled__renew_button">Renew subscription</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, second button to dismiss the dialog entirely -->
+    <string name="MonthlyDonationCanceled__not_now_button">Not now</string>
+
     <!-- EOF -->
 </resources>

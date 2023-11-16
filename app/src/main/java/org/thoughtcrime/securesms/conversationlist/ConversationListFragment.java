@@ -90,8 +90,8 @@ import org.thoughtcrime.securesms.MuteDialog;
 import org.thoughtcrime.securesms.NewConversationActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.badges.models.Badge;
-import org.thoughtcrime.securesms.badges.self.expired.CantProcessSubscriptionPaymentBottomSheetDialogFragment;
-import org.thoughtcrime.securesms.badges.self.expired.ExpiredBadgeBottomSheetDialogFragment;
+import org.thoughtcrime.securesms.badges.self.expired.MonthlyDonationCanceledBottomSheetDialogFragment;
+import org.thoughtcrime.securesms.badges.self.expired.ExpiredOneTimeBadgeBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.components.Material3SearchToolbar;
 import org.thoughtcrime.securesms.components.RatingManager;
 import org.thoughtcrime.securesms.components.SignalProgressDialog;
@@ -167,7 +167,6 @@ import org.thoughtcrime.securesms.stories.tabs.ConversationListTab;
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTabsViewModel;
 import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.AppStartup;
-import org.thoughtcrime.securesms.util.BottomSheetUtil;
 import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.ConversationUtil;
 import org.thoughtcrime.securesms.util.PlayStoreUtil;
@@ -491,7 +490,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     Badge                              expiredBadge                       = SignalStore.donationsValues().getExpiredBadge();
     String                             subscriptionCancellationReason     = SignalStore.donationsValues().getUnexpectedSubscriptionCancelationReason();
     UnexpectedSubscriptionCancellation unexpectedSubscriptionCancellation = UnexpectedSubscriptionCancellation.fromStatus(subscriptionCancellationReason);
-    boolean                            isDisplayingSubscriptionFailure    = false;
     long                               subscriptionFailureTimestamp       = SignalStore.donationsValues().getUnexpectedSubscriptionCancelationTimestamp();
     long                               subscriptionFailureWatermark       = SignalStore.donationsValues().getUnexpectedSubscriptionCancelationWatermark();
     boolean                            isWatermarkPriorToTimestamp        = subscriptionFailureWatermark < subscriptionFailureTimestamp;
@@ -502,9 +500,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
         isWatermarkPriorToTimestamp)
     {
       Log.w(TAG, "Displaying bottom sheet for unexpected cancellation: " + unexpectedSubscriptionCancellation, true);
-      new CantProcessSubscriptionPaymentBottomSheetDialogFragment().show(getChildFragmentManager(), BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG);
+      MonthlyDonationCanceledBottomSheetDialogFragment.show(getChildFragmentManager());
       SignalStore.donationsValues().setUnexpectedSubscriptionCancelationWatermark(subscriptionFailureTimestamp);
-      isDisplayingSubscriptionFailure = true;
     } else if (unexpectedSubscriptionCancellation != null && SignalStore.donationsValues().isUserManuallyCancelled()) {
       Log.w(TAG, "Unexpected cancellation detected but not displaying dialog because user manually cancelled their subscription: " + unexpectedSubscriptionCancellation, true);
       SignalStore.donationsValues().setUnexpectedSubscriptionCancelationWatermark(subscriptionFailureTimestamp);
@@ -513,17 +510,16 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       SignalStore.donationsValues().setUnexpectedSubscriptionCancelationWatermark(subscriptionFailureTimestamp);
     }
 
-    if (expiredBadge != null && !isDisplayingSubscriptionFailure) {
+    if (expiredBadge != null && expiredBadge.isBoost()) {
       SignalStore.donationsValues().setExpiredBadge(null);
 
-      if (expiredBadge.isBoost() || !SignalStore.donationsValues().isUserManuallyCancelled()) {
-        Log.w(TAG, "Displaying bottom sheet for an expired badge", true);
-        ExpiredBadgeBottomSheetDialogFragment.show(
-            expiredBadge,
-            unexpectedSubscriptionCancellation,
-            SignalStore.donationsValues().getUnexpectedSubscriptionCancelationChargeFailure(),
-            getParentFragmentManager());
-      }
+      Log.w(TAG, "Displaying bottom sheet for an expired badge", true);
+      ExpiredOneTimeBadgeBottomSheetDialogFragment.show(
+          expiredBadge,
+          unexpectedSubscriptionCancellation,
+          SignalStore.donationsValues().getUnexpectedSubscriptionCancelationChargeFailure(),
+          getParentFragmentManager()
+      );
     }
   }
 

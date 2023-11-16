@@ -136,7 +136,11 @@ public final class ActiveSubscription {
   }
 
   public boolean isInProgress() {
-    return activeSubscription != null && !isActive() && !activeSubscription.isFailedPayment();
+    return activeSubscription != null && !isActive() && (!activeSubscription.isFailedPayment() || activeSubscription.isPastDue());
+  }
+
+  public boolean isPastDue() {
+    return activeSubscription != null && activeSubscription.isPastDue();
   }
 
   public boolean isFailedPayment() {
@@ -247,6 +251,10 @@ public final class ActiveSubscription {
 
     public boolean isFailedPayment() {
       return Status.isPaymentFailed(getStatus());
+    }
+
+    public boolean isPastDue() {
+      return Status.getStatus(getStatus()) == Status.PAST_DUE;
     }
 
     public boolean isCanceled() {

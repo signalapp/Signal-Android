@@ -109,19 +109,6 @@ public class SubscriptionKeepAliveJob extends BaseJob {
       return;
     }
 
-    if (activeSubscription.isFailedPayment()) {
-      Log.i(TAG, "User has a subscription with a failed payment. Marking the payment failure. Status message: " + activeSubscription.getActiveSubscription().getStatus(), true);
-      SignalStore.donationsValues().setUnexpectedSubscriptionCancelationChargeFailure(activeSubscription.getChargeFailure());
-      SignalStore.donationsValues().setUnexpectedSubscriptionCancelationReason(activeSubscription.getActiveSubscription().getStatus());
-      SignalStore.donationsValues().setUnexpectedSubscriptionCancelationTimestamp(activeSubscription.getActiveSubscription().getEndOfCurrentPeriod());
-      return;
-    }
-
-    if (!activeSubscription.getActiveSubscription().isActive()) {
-      Log.i(TAG, "User has an inactive subscription. Status message: " + activeSubscription.getActiveSubscription().getStatus() + " Exiting.", true);
-      return;
-    }
-
     DonationRedemptionJobStatus status = DonationRedemptionJobWatcher.getSubscriptionRedemptionJobStatus();
     if (status != DonationRedemptionJobStatus.None.INSTANCE && status != DonationRedemptionJobStatus.FailedSubscription.INSTANCE) {
       Log.i(TAG, "Already trying to redeem donation, current status: " + status.getClass().getSimpleName(), true);
