@@ -31,6 +31,22 @@ class ScrubberTest(private val input: String, private val expected: String) {
           "A UK number +**********00"
         ),
         arrayOf(
+          "A Japanese number 08011112222",
+          "A Japanese number 0********22"
+        ),
+        arrayOf(
+          "A Japanese number (08011112222)",
+          "A Japanese number (0********22)"
+        ),
+        arrayOf(
+          "Not a Japanese number 08011112222333344445555",
+          "Not a Japanese number 08011112222333344445555"
+        ),
+        arrayOf(
+          "Not a Japanese number 1234508011112222",
+          "Not a Japanese number 1234508011112222"
+        ),
+        arrayOf(
           "An avatar filename: file:///data/user/0/org.thoughtcrime.securesms/files/avatars/%2B447700900099",
           "An avatar filename: file:///data/user/0/org.thoughtcrime.securesms/files/avatars/%2B**********99"
         ),

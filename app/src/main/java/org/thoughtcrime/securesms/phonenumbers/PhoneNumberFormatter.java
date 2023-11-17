@@ -127,6 +127,7 @@ public class PhoneNumberFormatter {
     }
 
     if (isShortCode(bareNumber, localCountryCode)) {
+      Log.i(TAG, "Recognized number as short code.");
       return bareNumber;
     }
 
@@ -134,7 +135,13 @@ public class PhoneNumberFormatter {
 
     try {
       Phonenumber.PhoneNumber parsedNumber = phoneNumberUtil.parse(processedNumber, localCountryCode);
-      return phoneNumberUtil.format(parsedNumber, PhoneNumberUtil.PhoneNumberFormat.E164);
+      String                  formatted    = phoneNumberUtil.format(parsedNumber, PhoneNumberUtil.PhoneNumberFormat.E164);
+
+      if (formatted.startsWith("+")) {
+        return formatted;
+      } else {
+        throw new NumberParseException(NumberParseException.ErrorType.NOT_A_NUMBER, "After formatting, the number did not start with +! hasRawInput: " + parsedNumber.hasRawInput());
+      }
     } catch (NumberParseException e) {
       Log.w(TAG, e.toString());
       if (bareNumber.charAt(0) == '+') {

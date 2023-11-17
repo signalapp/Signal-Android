@@ -23,6 +23,8 @@ object Scrubber {
   private val E164_PATTERN = Pattern.compile("(\\+|%2B)(\\d{5,13})(\\d{2})")
   private const val E164_CENSOR = "*************"
 
+  private val E164_ZERO_PATTERN = Pattern.compile("\\b(0)(\\d{8})(\\d{2})\\b")
+
   /** The second group will be censored.*/
   private val CRUDE_EMAIL_PATTERN = Pattern.compile("\\b([^\\s/])([^\\s/]*@[^\\s]+)")
   private const val EMAIL_CENSOR = "...@..."
@@ -77,6 +79,7 @@ object Scrubber {
   fun scrub(input: CharSequence): CharSequence {
     return input
       .scrubE164()
+      .scrubE164Zero()
       .scrubEmail()
       .scrubGroupsV1()
       .scrubGroupsV2()
@@ -89,6 +92,15 @@ object Scrubber {
 
   private fun CharSequence.scrubE164(): CharSequence {
     return scrub(this, E164_PATTERN) { matcher, output ->
+      output
+        .append(matcher.group(1))
+        .append(E164_CENSOR, 0, matcher.group(2)!!.length)
+        .append(matcher.group(3))
+    }
+  }
+
+  private fun CharSequence.scrubE164Zero(): CharSequence {
+    return scrub(this, E164_ZERO_PATTERN) { matcher, output ->
       output
         .append(matcher.group(1))
         .append(E164_CENSOR, 0, matcher.group(2)!!.length)
