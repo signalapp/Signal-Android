@@ -172,7 +172,7 @@ public class PhoneNumberFormatter {
   private boolean isShortCode(@NonNull String bareNumber, String localCountryCode) {
     try {
       Phonenumber.PhoneNumber parsedNumber = phoneNumberUtil.parse(bareNumber, localCountryCode);
-      return ShortNumberInfo.getInstance().isPossibleShortNumberForRegion(parsedNumber, localCountryCode);
+      return ShortNumberInfo.getInstance().isValidShortNumberForRegion(parsedNumber, localCountryCode);
     } catch (NumberParseException e) {
       return false;
     }
