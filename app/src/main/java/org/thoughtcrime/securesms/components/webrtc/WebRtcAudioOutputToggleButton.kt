@@ -86,21 +86,12 @@ class WebRtcAudioOutputToggleButton @JvmOverloads constructor(context: Context, 
 
     val currentOutput = outputState.getCurrentOutput()
 
-    val numberOfOutputs = outputState.getOutputs().size
-    val extra = if (numberOfOutputs < SHOW_PICKER_THRESHOLD) {
-      when (currentOutput) {
-        WebRtcAudioOutput.HANDSET -> intArrayOf(R.attr.state_speaker_off)
-        WebRtcAudioOutput.SPEAKER -> intArrayOf(R.attr.state_speaker_on)
-        WebRtcAudioOutput.BLUETOOTH_HEADSET -> intArrayOf(R.attr.state_bt_headset_selected) // should never be seen in practice.
-        WebRtcAudioOutput.WIRED_HEADSET -> intArrayOf(R.attr.state_wired_headset_selected) // should never be seen in practice.
-      }
-    } else {
-      when (currentOutput) {
-        WebRtcAudioOutput.HANDSET -> intArrayOf(R.attr.state_handset_selected)
-        WebRtcAudioOutput.SPEAKER -> intArrayOf(R.attr.state_speaker_selected)
-        WebRtcAudioOutput.BLUETOOTH_HEADSET -> intArrayOf(R.attr.state_bt_headset_selected)
-        WebRtcAudioOutput.WIRED_HEADSET -> intArrayOf(R.attr.state_wired_headset_selected)
-      }
+    val shouldShowDropdownForSpeaker = outputState.getOutputs().size >= SHOW_PICKER_THRESHOLD || !outputState.getOutputs().contains(WebRtcAudioOutput.HANDSET)
+    val extra = when (currentOutput) {
+      WebRtcAudioOutput.HANDSET -> intArrayOf(R.attr.state_speaker_off)
+      WebRtcAudioOutput.SPEAKER -> if (shouldShowDropdownForSpeaker) intArrayOf(R.attr.state_speaker_selected) else intArrayOf(R.attr.state_speaker_on)
+      WebRtcAudioOutput.BLUETOOTH_HEADSET -> intArrayOf(R.attr.state_bt_headset_selected)
+      WebRtcAudioOutput.WIRED_HEADSET -> intArrayOf(R.attr.state_wired_headset_selected)
     }
 
     Log.i(TAG, "Switching to $currentOutput")
