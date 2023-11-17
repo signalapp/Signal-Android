@@ -15,7 +15,7 @@ import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -86,7 +86,7 @@ class WebRtcAudioOutputBottomSheet : ComposeBottomSheetDialogFragment(), DialogI
 
 @Composable
 fun DeviceList(audioOutputOptions: ImmutableList<AudioOutputOption>, initialDeviceId: Int, modifier: Modifier = Modifier.fillMaxWidth(), onDeviceSelected: (AudioOutputOption) -> Unit) {
-  var selectedDeviceId by rememberSaveable { mutableStateOf(initialDeviceId) }
+  var selectedDeviceId by rememberSaveable { mutableIntStateOf(initialDeviceId) }
   Column(
     horizontalAlignment = Alignment.Start,
     modifier = modifier
@@ -94,6 +94,7 @@ fun DeviceList(audioOutputOptions: ImmutableList<AudioOutputOption>, initialDevi
     Text(
       text = stringResource(R.string.WebRtcAudioOutputToggle__audio_output),
       style = MaterialTheme.typography.headlineMedium,
+      color = MaterialTheme.colorScheme.onSurface,
       modifier = Modifier
         .padding(8.dp)
     )
@@ -127,6 +128,7 @@ fun DeviceList(audioOutputOptions: ImmutableList<AudioOutputOption>, initialDevi
           Text(
             text = device.friendlyName,
             style = MaterialTheme.typography.bodyLarge,
+            color = MaterialTheme.colorScheme.onSurface,
             modifier = Modifier.padding(start = 16.dp)
           )
         }
