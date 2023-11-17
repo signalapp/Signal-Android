@@ -214,7 +214,7 @@ class UsernameLinkSettingsFragment : ComposeFragment() {
       },
       navigationIcon = {
         IconButton(
-          onClick = { requireActivity().onNavigateUp() }
+          onClick = { requireActivity().onBackPressed() }
         ) {
           Icon(
             painter = painterResource(R.drawable.symbol_x_24),
