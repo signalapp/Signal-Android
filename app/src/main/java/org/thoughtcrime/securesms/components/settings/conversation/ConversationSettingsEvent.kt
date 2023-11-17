@@ -32,8 +32,4 @@ sealed class ConversationSettingsEvent {
   class ShowMembersAdded(
     val membersAddedCount: Int
   ) : ConversationSettingsEvent()
-
-  class InitiateGroupMigration(
-    val recipientId: RecipientId
-  ) : ConversationSettingsEvent()
 }

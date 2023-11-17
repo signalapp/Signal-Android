@@ -124,7 +124,6 @@ public final class JobManagerFactories {
       put(ForceUpdateGroupV2WorkerJob.KEY,           new ForceUpdateGroupV2WorkerJob.Factory());
       put(GenerateAudioWaveFormJob.KEY,              new GenerateAudioWaveFormJob.Factory());
       put(GiftSendJob.KEY,                           new GiftSendJob.Factory());
-      put(GroupV1MigrationJob.KEY,                   new GroupV1MigrationJob.Factory());
       put(GroupCallUpdateSendJob.KEY,                new GroupCallUpdateSendJob.Factory());
       put(GroupCallPeekJob.KEY,                      new GroupCallPeekJob.Factory());
       put(GroupCallPeekWorkerJob.KEY,                new GroupCallPeekWorkerJob.Factory());
@@ -305,6 +304,7 @@ public final class JobManagerFactories {
       put("MmsDownloadJob",                          new FailingJob.Factory());
       put("SmsReceiveJob",                           new FailingJob.Factory());
       put("StoryReadStateMigrationJob",              new PassingMigrationJob.Factory());
+      put("GroupV1MigrationJob",                     new FailingJob.Factory());
     }};
   }
 

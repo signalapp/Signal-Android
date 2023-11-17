@@ -937,13 +937,6 @@ final class GroupManagerV2 {
         alreadyAMember = true;
       }
 
-      GroupRecord unmigratedV1Group = GroupsV1MigratedCache.getV1GroupByV2Id(groupId);
-
-      if (unmigratedV1Group != null) {
-        Log.i(TAG, "Group link was for a migrated V1 group we know about! Migrating it and using that as the base.");
-        GroupsV1MigrationUtil.performLocalMigration(context, unmigratedV1Group.getId().requireV1());
-      }
-
       DecryptedGroup decryptedGroup = createPlaceholderGroup(joinInfo, requestToJoin);
 
       Optional<GroupRecord> group = groupDatabase.getGroup(groupId);

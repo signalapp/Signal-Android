@@ -219,7 +219,6 @@ import org.thoughtcrime.securesms.groups.ui.invitesandrequests.ManagePendingAndR
 import org.thoughtcrime.securesms.groups.ui.invitesandrequests.invite.GroupLinkInviteFriendsBottomSheetDialogFragment
 import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupDescriptionDialog
 import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationInfoBottomSheetDialogFragment
-import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationInitiationBottomSheetDialogFragment
 import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationSuggestionsDialog
 import org.thoughtcrime.securesms.groups.v2.GroupBlockJoinRequestResult
 import org.thoughtcrime.securesms.invites.InviteActions
@@ -3144,10 +3143,6 @@ class ConversationFragment :
       GroupMembersDialog(requireActivity(), recipientSnapshot).display()
     }
 
-    override fun handleDistributionBroadcastEnabled(menuItem: MenuItem) = error("This fragment does not support this action.")
-
-    override fun handleDistributionConversationEnabled(menuItem: MenuItem) = error("This fragment does not support this action.")
-
     override fun handleManageGroup() {
       val recipient = viewModel.recipientSnapshot ?: return
       val intent = ConversationSettingsActivity.forGroup(requireContext(), recipient.requireGroupId())
@@ -3610,16 +3605,6 @@ class ConversationFragment :
           .onUnblock()
           .subscribeWithShowProgress("unblock")
       }
-    }
-
-    override fun onGroupV1MigrationClicked() {
-      val recipient = viewModel.recipientSnapshot
-      if (recipient == null) {
-        Log.w(TAG, "[onGroupV1MigrationClicked] No recipient!")
-        return
-      }
-
-      GroupsV1MigrationInitiationBottomSheetDialogFragment.showForInitiation(childFragmentManager, recipient.id)
     }
 
     override fun onInviteToSignal(recipient: Recipient) {

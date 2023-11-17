@@ -56,7 +56,6 @@ import org.thoughtcrime.securesms.conversation.colors.ChatColors.Id.Companion.fo
 import org.thoughtcrime.securesms.conversation.colors.ChatColorsMapper.getChatColors
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.database.GroupTable.LegacyGroupInsertException
-import org.thoughtcrime.securesms.database.GroupTable.MissedGroupMigrationInsertException
 import org.thoughtcrime.securesms.database.GroupTable.ShowAsStoryState
 import org.thoughtcrime.securesms.database.IdentityTable.VerifiedStatus
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.groups
@@ -80,7 +79,6 @@ import org.thoughtcrime.securesms.groups.BadGroupIdException
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupId.V1
 import org.thoughtcrime.securesms.groups.GroupId.V2
-import org.thoughtcrime.securesms.groups.GroupsV1MigratedCache
 import org.thoughtcrime.securesms.groups.v2.ProfileKeySet
 import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
@@ -574,8 +572,6 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       return existing.get()
     } else if (groupId.isV1 && groups.groupExists(groupId.requireV1().deriveV2MigrationGroupId())) {
       throw LegacyGroupInsertException(groupId)
-    } else if (groupId.isV2 && GroupsV1MigratedCache.hasV1Group(groupId.requireV2())) {
-      throw MissedGroupMigrationInsertException(groupId)
     } else {
       val values = ContentValues().apply {
         put(GROUP_ID, groupId.toString())
@@ -589,8 +585,6 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
           return existing.get()
         } else if (groupId.isV1 && groups.groupExists(groupId.requireV1().deriveV2MigrationGroupId())) {
           throw LegacyGroupInsertException(groupId)
-        } else if (groupId.isV2 && groups.getGroupV1ByExpectedV2(groupId.requireV2()).isPresent) {
-          throw MissedGroupMigrationInsertException(groupId)
         } else {
           throw AssertionError("Failed to insert recipient!")
         }
@@ -641,14 +635,6 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         if (v2.isPresent) {
           db.setTransactionSuccessful()
           return v2.get()
-        }
-      }
-
-      if (groupId.isV2) {
-        val v1 = GroupsV1MigratedCache.getV1GroupByV2Id(groupId.requireV2())
-        if (v1 != null) {
-          db.setTransactionSuccessful()
-          return v1.recipientId
         }
       }
 

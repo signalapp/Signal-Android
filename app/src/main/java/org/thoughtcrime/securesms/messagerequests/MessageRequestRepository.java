@@ -126,21 +126,17 @@ public final class MessageRequestRepository {
       }
     } else if (!RecipientUtil.isLegacyProfileSharingAccepted(recipient) && isLegacyThread(recipient)) {
       if (recipient.isGroup()) {
-        return MessageRequestState.LEGACY_GROUP_V1;
+        return MessageRequestState.DEPRECATED_GROUP_V1;
       } else {
         return MessageRequestState.LEGACY_INDIVIDUAL;
       }
     } else if (recipient.isPushV1Group()) {
       if (RecipientUtil.isMessageRequestAccepted(context, threadId)) {
-        if (recipient.getParticipantIds().size() > FeatureFlags.groupLimits().getHardLimit()) {
-          return MessageRequestState.DEPRECATED_GROUP_V1_TOO_LARGE;
-        } else {
-          return MessageRequestState.DEPRECATED_GROUP_V1;
-        }
+        return MessageRequestState.DEPRECATED_GROUP_V1;
       } else if (!recipient.isActiveGroup()) {
         return MessageRequestState.NONE;
       } else {
-        return MessageRequestState.GROUP_V1;
+        return MessageRequestState.DEPRECATED_GROUP_V1;
       }
     } else {
       if (RecipientUtil.isMessageRequestAccepted(context, threadId)) {

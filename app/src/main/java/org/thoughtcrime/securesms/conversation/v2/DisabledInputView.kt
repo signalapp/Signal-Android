@@ -87,7 +87,6 @@ class DisabledInputView @JvmOverloads constructor(
         setDeleteOnClickListener { listener?.onDeleteGroupClicked() }
         setBlockOnClickListener { listener?.onBlockClicked() }
         setUnblockOnClickListener { listener?.onUnblockClicked() }
-        setGroupV1MigrationContinueListener { listener?.onGroupV1MigrationClicked() }
       }
     )
   }
@@ -230,7 +229,6 @@ class DisabledInputView @JvmOverloads constructor(
     fun onDeleteGroupClicked()
     fun onBlockClicked()
     fun onUnblockClicked()
-    fun onGroupV1MigrationClicked()
     fun onInviteToSignal(recipient: Recipient)
     fun onUnmuteReleaseNotesChannel()
   }
