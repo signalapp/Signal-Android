@@ -20,7 +20,7 @@ data class CreditCardFormState(
       number,
       expiration.month.toInt(),
       expiration.year.toInt(),
-      code.toInt()
+      code
     )
   }
 }
