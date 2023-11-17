@@ -406,7 +406,7 @@
     <string name="ConversationActivity_error_sending_media">मीडिया भेजने में त्रुटि</string>
 
     <!-- Message shown when opening an MMS group conversation with SMS disabled and there are no exported messages -->
-    <string name="ConversationActivity__sms_messaging_is_no_longer_supported">SMS messaging is no longer supported in Signal.</string>
+    <string name="ConversationActivity__sms_messaging_is_no_longer_supported">SMS संदेश सेवा अब Signal में समर्थित नहीं है।</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">SMS संदेश सेवा अब Signal में समर्थित नहीं है। %1$s को Signal पर आमंत्रित करें और बातचीत यहीं पर रखें।</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
@@ -1535,7 +1535,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">%1$s को आपको संदेश भेजने दें? जब तक आप उनको अनब्लॉक नहीं करते, तब तक आपको कोई संदेश नहीं मिलेगा।</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">%1$s से अपडेट और खबरें पानी हैं? जब तक आप उनकी अनब्लॉक नहीं करते, तब तक आपको कोई अपडेट नहीं मिलेगा।</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">इस ग्रुप के साथ अपनी चैट जारी रखनी है और इसके मेंबर्स के साथ अपना नाम और तस्वीर शेयर करनी है?</string>
-    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">नए फ़ीचर्स जैसे कि @mentions और एडमिन को एक्टिवेट करने के लिए इस ग्रुप को अपग्रेड करें। वे मेंबर जिन्होंने इस ग्रुप में अपना नाम और तस्वीर शेयर नहीं की है, उन्हें शामिल होने के लिए आमंत्रित किया जाएगा।</string>
+    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">This Legacy Group can no longer be used. Create a new group to activate new features like @mentions and admins.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">इस लेगेसी ग्रुप को अब उपयोग नहीं किया जा सकता क्योंकि यह बहुत बड़ा है। अधिकतम ग्रुप साइज़ है %1$d।</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">%1$s के साथ आपका चैट जारी रखनी है और इनके साथ अपना नाम और तस्वीर शेयर करनी है?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">इस ग्रुप में जुड़ना है और इसके मेंबर्स के साथ अपना नाम और तस्वीर शेयर करनी है? उन्हें पता नहीं चलेगा कि आपने उनके मेसेज देख लिए हैं जब तक आप स्वीकार नहीं करते।</string>
@@ -6406,11 +6406,11 @@
     <string name="UsernameLinkSettings_reset_link_result_network_error">आपके लिंक को फिर से स्थापित करते समय एक नेटवर्क त्रुटि उत्पन्न हुई। बाद में पुन: प्रयास करें।</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
-    <string name="UsernameLinkShareBottomSheet_title">Anyone with this link can view your username and start a chat with you. Only share it with people you trust.</string>
+    <string name="UsernameLinkShareBottomSheet_title">इस लिंक वाला कोई भी व्यक्ति आपका यूज़रनेम देख सकता है और आपसे चैट शुरू कर सकता है। इसे केवल उन लोगों के साथ साझा करें, जिन पर आपको भरोसा है।</string>
     <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
-    <string name="UsernameLinkShareBottomSheet_copy_link">Copy link</string>
+    <string name="UsernameLinkShareBottomSheet_copy_link">लिंक कॉपी करें</string>
     <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
-    <string name="UsernameLinkShareBottomSheet_share">Share</string>
+    <string name="UsernameLinkShareBottomSheet_share">साझा करें</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
@@ -6448,15 +6448,15 @@
     <string name="GrantFullScreenIntentPermission_bottomsheet_step2">2. %1$s फुल स्क्रीन नोटिफिकेशन की अनुमति दें</string>
 
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, title for dialog -->
-    <string name="MonthlyDonationCanceled__title">Monthly donation canceled</string>
+    <string name="MonthlyDonationCanceled__title">मासिक दान रद्द किया गया</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, body for dialog. First placeholder is a payment related error message. Second placeholder is \'learn more\' -->
     <string name="MonthlyDonationCanceled__message">Your recurring monthly donation was canceled. %1$s\n\nYour badge will no longer be visible on your profile. %2$s</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, learn more used in placeholder for body for dialog. -->
-    <string name="MonthlyDonationCanceled__learn_more">Learn more</string>
+    <string name="MonthlyDonationCanceled__learn_more">अधिक जानें</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, primary button to renew subscription with new data -->
-    <string name="MonthlyDonationCanceled__renew_button">Renew subscription</string>
+    <string name="MonthlyDonationCanceled__renew_button">सब्सक्रिप्शन नवीकृत करें</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, second button to dismiss the dialog entirely -->
-    <string name="MonthlyDonationCanceled__not_now_button">Not now</string>
+    <string name="MonthlyDonationCanceled__not_now_button">अभी नहीं</string>
 
     <!-- EOF -->
 </resources>

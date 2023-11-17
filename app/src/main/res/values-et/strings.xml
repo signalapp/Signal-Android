@@ -406,7 +406,7 @@
     <string name="ConversationActivity_error_sending_media">Meedia saatmisel tekkis tõrge</string>
 
     <!-- Message shown when opening an MMS group conversation with SMS disabled and there are no exported messages -->
-    <string name="ConversationActivity__sms_messaging_is_no_longer_supported">SMS messaging is no longer supported in Signal.</string>
+    <string name="ConversationActivity__sms_messaging_is_no_longer_supported">Signal ei toeta enam SMS-sõnumeid.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Signal ei toeta enam SMS-sõnumeid. Kutsu %1$s Signalisse ja jätkake vestlust siin.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
@@ -1535,7 +1535,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Kas lubad kasutajal %1$s sulle sõnumeid saata? Sa ei saa sõnumeid enne kui oled blokeeringu eemaldanud.</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Kas soovid näha kasutaja %1$s uuendusi ja uudiseid? Sa ei saa uuendusi enne kui oled blokeeringu eemaldanud.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Kas jätkata vestlust selle grupiga ja jagada sinu nime ning fotot grupi liikmetele?</string>
-    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Uuenda seda gruppi, et aktiveerida uus funktsionaalsus nagu @mainimised ja administraatorid. Liikmed, kes pole selles grupis jaganud enda nime ja fotot kutsutakse liituma.</string>
+    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">This Legacy Group can no longer be used. Create a new group to activate new features like @mentions and admins.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Seda vana gruppi ei saa rohkem kasutada, sest see on liiga suur. Maksimaalne grupi suurus on %1$d.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Kas jätkata seda vestlust isikuga %1$s ning jagada temaga sinu nime ja fotot?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Kas soovid selle grupiga liituda ja jagada enda nime ning pilti selle liikmetega? Nad ei tea, et oled seda sõnumit näinud enne kui oled sellega nõustunud.</string>
@@ -6408,9 +6408,9 @@
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
     <string name="UsernameLinkShareBottomSheet_title">Anyone with this link can view your username and start a chat with you. Only share it with people you trust.</string>
     <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
-    <string name="UsernameLinkShareBottomSheet_copy_link">Copy link</string>
+    <string name="UsernameLinkShareBottomSheet_copy_link">Kopeeri link</string>
     <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
-    <string name="UsernameLinkShareBottomSheet_share">Share</string>
+    <string name="UsernameLinkShareBottomSheet_share">Jaga</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
@@ -6452,11 +6452,11 @@
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, body for dialog. First placeholder is a payment related error message. Second placeholder is \'learn more\' -->
     <string name="MonthlyDonationCanceled__message">Your recurring monthly donation was canceled. %1$s\n\nYour badge will no longer be visible on your profile. %2$s</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, learn more used in placeholder for body for dialog. -->
-    <string name="MonthlyDonationCanceled__learn_more">Learn more</string>
+    <string name="MonthlyDonationCanceled__learn_more">Rohkem teavet</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, primary button to renew subscription with new data -->
-    <string name="MonthlyDonationCanceled__renew_button">Renew subscription</string>
+    <string name="MonthlyDonationCanceled__renew_button">Uuenda tellimust</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, second button to dismiss the dialog entirely -->
-    <string name="MonthlyDonationCanceled__not_now_button">Not now</string>
+    <string name="MonthlyDonationCanceled__not_now_button">Mitte praegu</string>
 
     <!-- EOF -->
 </resources>

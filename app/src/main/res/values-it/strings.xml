@@ -406,7 +406,7 @@
     <string name="ConversationActivity_error_sending_media">Errore durante l\'invio del media</string>
 
     <!-- Message shown when opening an MMS group conversation with SMS disabled and there are no exported messages -->
-    <string name="ConversationActivity__sms_messaging_is_no_longer_supported">SMS messaging is no longer supported in Signal.</string>
+    <string name="ConversationActivity__sms_messaging_is_no_longer_supported">La messaggistica via SMS non è più supportata su Signal.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">La messaggistica via SMS non è più supportata su Signal. Invita %1$s su Signal per continuare la conversazione in app.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
@@ -1535,7 +1535,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Vuoi consentire a %1$s di inviarti messaggi? Non riceverai messaggi da parte sua finché non sbloccherai il contatto.</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Vuoi ricevere aggiornamenti e notizie da %1$s? Non riceverai aggiornamenti finché non sbloccherai il contatto.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Continuare la tua chat con questo gruppo e condividere il tuo nome e la tua foto con i suoi membri?</string>
-    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Aggiorna questo gruppo per attivare nuove funzionalità come @menzioni e amministratori. I membri che non hanno condiviso il loro nome o la loro foto in questo gruppo saranno invitati a unirsi.</string>
+    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">This Legacy Group can no longer be used. Create a new group to activate new features like @mentions and admins.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Questo Gruppo Legacy non può più essere usato perché è troppo grande. La dimensione massima del gruppo è %1$d.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Vuoi continuare questa chat con %1$s e condividere il tuo nome e la tua foto con questo utente?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Unirsi a questo gruppo e condividere il tuo nome e la tua foto con i suoi membri? Non sapranno che hai visto i loro messaggi finché non accetti.</string>
@@ -6406,11 +6406,11 @@
     <string name="UsernameLinkSettings_reset_link_result_network_error">Si è verificato un errore con la connessione durante il reset del tuo link. Riprova più tardi.</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
-    <string name="UsernameLinkShareBottomSheet_title">Anyone with this link can view your username and start a chat with you. Only share it with people you trust.</string>
+    <string name="UsernameLinkShareBottomSheet_title">Chiunque abbia questo link può vedere il tuo nome utente e iniziare una chat con te. Condividilo solo con persone di cui ti fidi.</string>
     <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
-    <string name="UsernameLinkShareBottomSheet_copy_link">Copy link</string>
+    <string name="UsernameLinkShareBottomSheet_copy_link">Copia link</string>
     <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
-    <string name="UsernameLinkShareBottomSheet_share">Share</string>
+    <string name="UsernameLinkShareBottomSheet_share">Condividi</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
@@ -6448,15 +6448,15 @@
     <string name="GrantFullScreenIntentPermission_bottomsheet_step2">2. %1$s Consenti notifiche a schermo intero</string>
 
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, title for dialog -->
-    <string name="MonthlyDonationCanceled__title">Monthly donation canceled</string>
+    <string name="MonthlyDonationCanceled__title">Donazione mensile annullata</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, body for dialog. First placeholder is a payment related error message. Second placeholder is \'learn more\' -->
     <string name="MonthlyDonationCanceled__message">Your recurring monthly donation was canceled. %1$s\n\nYour badge will no longer be visible on your profile. %2$s</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, learn more used in placeholder for body for dialog. -->
-    <string name="MonthlyDonationCanceled__learn_more">Learn more</string>
+    <string name="MonthlyDonationCanceled__learn_more">Scopri di più</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, primary button to renew subscription with new data -->
-    <string name="MonthlyDonationCanceled__renew_button">Renew subscription</string>
+    <string name="MonthlyDonationCanceled__renew_button">Rinnova contributo</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, second button to dismiss the dialog entirely -->
-    <string name="MonthlyDonationCanceled__not_now_button">Not now</string>
+    <string name="MonthlyDonationCanceled__not_now_button">Non ora</string>
 
     <!-- EOF -->
 </resources>

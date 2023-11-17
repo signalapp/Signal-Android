@@ -415,7 +415,7 @@
     <string name="ConversationActivity_error_sending_media">Tharla botún fad agus a bhí an meán á sheoladh</string>
 
     <!-- Message shown when opening an MMS group conversation with SMS disabled and there are no exported messages -->
-    <string name="ConversationActivity__sms_messaging_is_no_longer_supported">SMS messaging is no longer supported in Signal.</string>
+    <string name="ConversationActivity__sms_messaging_is_no_longer_supported">Ní thacaítear le cur teachtaireachtaí SMS in Signal a thuilleadh.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Ní thacaítear le cur teachtaireachtaí SMS in Signal a thuilleadh. Tabhair cuireadh do %1$s teacht isteach in Signal leis an gcomhrá a choinneáil anseo.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
@@ -1697,7 +1697,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Lig do %1$s teachtaireachtaí a sheoladh chugat? Ní bhfaighidh tú aon teachtaireachtaí go dtí go mbainfidh tú an bac de/di.</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Faigh nuashonruithe agus nuacht ó %1$s? Ní bhfaighidh tú aon nuashonruithe go dtí go mbainfidh tú an bac de/di.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Continue your chat with this group and share your name and photo with its members?</string>
-    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Uasghrádaigh an grúpa seo chun gnéithe nua amhail @tráchtanna agus riarthóirí a ghníomhachtú. Baill nár chomhroinn a n-ainm nó a ngrianghraf sa ghrúpa seo, tabharfar cuireadh dóibh dul isteach ann.</string>
+    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">This Legacy Group can no longer be used. Create a new group to activate new features like @mentions and admins.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Ní féidir an seanleagan seo den Ghrúpa a úsáid a thuilleadh toisc go bhfuil sé rómhór. Is í %1$d uasmhéid an ghrúpa.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Lean le do chomhrá le %1$s agus comhroinn d\'ainm agus grianghraf leis an duine sin?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Téigh isteach sa ghrúpa seo agus comhroinn d\'ainm agus grianghraf lena bhaill? Ní bheidh a fhios acu go bhfaca tú na teachtaireachtaí go dtí go nglacfaidh tú.</string>
@@ -6814,11 +6814,11 @@
     <string name="UsernameLinkSettings_reset_link_result_network_error">Tharla earráid líonra agus do nasc á athshocrú. Triail arís níos déanaí.</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
-    <string name="UsernameLinkShareBottomSheet_title">Anyone with this link can view your username and start a chat with you. Only share it with people you trust.</string>
+    <string name="UsernameLinkShareBottomSheet_title">Aon duine a bhfuil an nasc sin acu, beidh siad in ann féachaint ar d\'ainm úsáideora agus tús a chur le comhrá leat. Ná comhroinn é ach le daoine a bhfuil muinín agat iontu.</string>
     <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
-    <string name="UsernameLinkShareBottomSheet_copy_link">Copy link</string>
+    <string name="UsernameLinkShareBottomSheet_copy_link">Cóipeáil an nasc</string>
     <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
-    <string name="UsernameLinkShareBottomSheet_share">Share</string>
+    <string name="UsernameLinkShareBottomSheet_share">Comhroinn</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
@@ -6862,15 +6862,15 @@
     <string name="GrantFullScreenIntentPermission_bottomsheet_step2">2. %1$s Ceadaigh fógraí lánscáileáin</string>
 
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, title for dialog -->
-    <string name="MonthlyDonationCanceled__title">Monthly donation canceled</string>
+    <string name="MonthlyDonationCanceled__title">Tabhartas míosúil curtha ar ceal</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, body for dialog. First placeholder is a payment related error message. Second placeholder is \'learn more\' -->
     <string name="MonthlyDonationCanceled__message">Your recurring monthly donation was canceled. %1$s\n\nYour badge will no longer be visible on your profile. %2$s</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, learn more used in placeholder for body for dialog. -->
-    <string name="MonthlyDonationCanceled__learn_more">Learn more</string>
+    <string name="MonthlyDonationCanceled__learn_more">Tuilleadh faisnéise</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, primary button to renew subscription with new data -->
-    <string name="MonthlyDonationCanceled__renew_button">Renew subscription</string>
+    <string name="MonthlyDonationCanceled__renew_button">Athnuaigh síntiús</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, second button to dismiss the dialog entirely -->
-    <string name="MonthlyDonationCanceled__not_now_button">Not now</string>
+    <string name="MonthlyDonationCanceled__not_now_button">Ní anois</string>
 
     <!-- EOF -->
 </resources>

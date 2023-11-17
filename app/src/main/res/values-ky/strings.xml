@@ -403,7 +403,7 @@
     <string name="ConversationActivity_error_sending_media">Медиафайлды жөнөтүүдө ката кетти</string>
 
     <!-- Message shown when opening an MMS group conversation with SMS disabled and there are no exported messages -->
-    <string name="ConversationActivity__sms_messaging_is_no_longer_supported">SMS messaging is no longer supported in Signal.</string>
+    <string name="ConversationActivity__sms_messaging_is_no_longer_supported">Signal кызматында мындан ары SMS менен жазыша албайсыз.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Signal кызматында мындан ары SMS менен жазыша албайсыз. %1$s менен бул жерден сүйлөшө берүү үчүн аны Signal\'га чакырыңыз.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
@@ -1481,7 +1481,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">%1$s сиз менен жазыша берсинби? Аны бөгөттөн чыгармайынча, билдирүүлөрдү албайсыз.</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">%1$s жаңыртууларын жана жаңылыктарын аласызбы? Аны бөгөттөн чыгармайынча, билдирүүлөрдү албайсыз.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Бул топ менен маектешүүнү улантып, атыңыз менен сүрөтүңүз топтогуларга көрүнө берсинби?</string>
-    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">\@айтыпөтүүлөр жана топтордун администраторлору сыяктуу жаңы функцияларды иштетүү үчүн бул топту жаңыртыңыз. Атын же сүрөтүн ушул топтогуларга ачыктай элек мүчөлөр топко кошулуу чакыруусун алышат.</string>
+    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">This Legacy Group can no longer be used. Create a new group to activate new features like @mentions and admins.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Бул эски топ өтө чоң болгондуктан, аны колдоно албайсыз. Топтун көлөмү %1$d ашпаш керек.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Бул маекти %1$s менен улантып, атыңыз менен сүрөтүңүздү аларга көрсөтө бересизби?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Бул топко кошулуп, атыңыз менен сүрөтүңүз анын мүчөлөрүнө көрүнө берсинби? Топко кошулмайынча, алардын билдирүүлөрүн көрүп, көрбөгөнүңүздү билишпейт.</string>
@@ -6272,9 +6272,9 @@
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
     <string name="UsernameLinkShareBottomSheet_title">Anyone with this link can view your username and start a chat with you. Only share it with people you trust.</string>
     <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
-    <string name="UsernameLinkShareBottomSheet_copy_link">Copy link</string>
+    <string name="UsernameLinkShareBottomSheet_copy_link">Шилтемени көчүрүү</string>
     <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
-    <string name="UsernameLinkShareBottomSheet_share">Share</string>
+    <string name="UsernameLinkShareBottomSheet_share">Бөлүшүү</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
@@ -6314,11 +6314,11 @@
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, body for dialog. First placeholder is a payment related error message. Second placeholder is \'learn more\' -->
     <string name="MonthlyDonationCanceled__message">Your recurring monthly donation was canceled. %1$s\n\nYour badge will no longer be visible on your profile. %2$s</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, learn more used in placeholder for body for dialog. -->
-    <string name="MonthlyDonationCanceled__learn_more">Learn more</string>
+    <string name="MonthlyDonationCanceled__learn_more">Кененирээк маалымат</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, primary button to renew subscription with new data -->
-    <string name="MonthlyDonationCanceled__renew_button">Renew subscription</string>
+    <string name="MonthlyDonationCanceled__renew_button">Жазылууну жаңыртуу</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, second button to dismiss the dialog entirely -->
-    <string name="MonthlyDonationCanceled__not_now_button">Not now</string>
+    <string name="MonthlyDonationCanceled__not_now_button">Азыр эмес</string>
 
     <!-- EOF -->
 </resources>

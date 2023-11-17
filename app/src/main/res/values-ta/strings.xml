@@ -406,7 +406,7 @@
     <string name="ConversationActivity_error_sending_media">மீடியா அனுப்புவதில் பிழை</string>
 
     <!-- Message shown when opening an MMS group conversation with SMS disabled and there are no exported messages -->
-    <string name="ConversationActivity__sms_messaging_is_no_longer_supported">SMS messaging is no longer supported in Signal.</string>
+    <string name="ConversationActivity__sms_messaging_is_no_longer_supported">சிக்னலில் இனி எஸ்.எம்.எஸ் செய்தியிடல் ஆதரிக்கப்படாது.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">சிக்னலில் இனி எஸ்.எம்.எஸ் செய்தியிடல் ஆதரிக்கப்படாது. உரையாடலை இங்கே தொடர %1$s ஐ சிக்னலுக்கு அழைக்கவும்.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
@@ -1535,7 +1535,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">உங்களுக்கு %1$s மெசேஜ் அனுப்ப அனுமதிக்கிறீர்களா? நீங்கள் தடை நீக்கம் செய்யும் வரை நீங்கள் எந்த மெசேஜையும் பெறமாட்டீர்கள்.</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">%1$s -இடமிருந்து அறிவிப்புகள் மற்றும் செய்திகளைப் பெற வேண்டுமா? நீங்கள் தடை நீக்கம் செய்யும் வரை எந்த அறிவிப்புகளையும் பெறமாட்டீர்கள்.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">இந்த குழுவுடன் உங்கள் சாட்டைத் தொடர, உங்கள் பெயரையும் புகைப்படத்தையும் அதன் உறுப்பினர்களுடன் பகிர்ந்து கொள்ளவா?</string>
-    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">\@ குறிப்புகள் மற்றும் நிர்வாகிகள் போன்ற புதிய அம்சங்களை செயல்படுத்த இந்த குழுவை மேம்படுத்தவும். இந்த குழுவில் தங்கள் பெயரையோ புகைப்படத்தையோ பகிர்ந்து கொள்ளாத உறுப்பினர்கள் சேர அழைக்கப்படுவார்கள்.</string>
+    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">This Legacy Group can no longer be used. Create a new group to activate new features like @mentions and admins.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">இந்த மரபு குழு மிகப் பெரியது, எனவே இதை இனி பயன்படுத்த முடியாது. அதிகபட்ச குழு அளவு: %1$d</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">%1$s உடன் சாட்டைத் தொடரவும் மற்றும் அவர்களுடன் உங்கள் பெயரையும் புகைப்படத்தையும் பகிர வேண்டுமா?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">இந்த குழுவில் சேர்ந்து உங்கள் பெயர் மற்றும் புகைப்படத்தை அதன் உறுப்பினர்களுடன் பகிர்ந்து கொள்ள விரும்புகிறீர்களா? நீங்கள் ஏற்றுக்கொள்ளும் வரை அவர்களின் செய்திகளை நீங்கள் பார்த்திருப்பதை அவர்கள் அறிய மாட்டார்கள்.</string>
@@ -6408,9 +6408,9 @@
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
     <string name="UsernameLinkShareBottomSheet_title">Anyone with this link can view your username and start a chat with you. Only share it with people you trust.</string>
     <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
-    <string name="UsernameLinkShareBottomSheet_copy_link">Copy link</string>
+    <string name="UsernameLinkShareBottomSheet_copy_link">இணைப்பை நகலெடுக்கவும்</string>
     <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
-    <string name="UsernameLinkShareBottomSheet_share">Share</string>
+    <string name="UsernameLinkShareBottomSheet_share">பகிர்</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
@@ -6452,11 +6452,11 @@
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, body for dialog. First placeholder is a payment related error message. Second placeholder is \'learn more\' -->
     <string name="MonthlyDonationCanceled__message">Your recurring monthly donation was canceled. %1$s\n\nYour badge will no longer be visible on your profile. %2$s</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, learn more used in placeholder for body for dialog. -->
-    <string name="MonthlyDonationCanceled__learn_more">Learn more</string>
+    <string name="MonthlyDonationCanceled__learn_more">மேலும் அறிக</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, primary button to renew subscription with new data -->
-    <string name="MonthlyDonationCanceled__renew_button">Renew subscription</string>
+    <string name="MonthlyDonationCanceled__renew_button">சந்தாவைப் புதுப்பிக்கவும்</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, second button to dismiss the dialog entirely -->
-    <string name="MonthlyDonationCanceled__not_now_button">Not now</string>
+    <string name="MonthlyDonationCanceled__not_now_button">இப்போது வேண்டாம்</string>
 
     <!-- EOF -->
 </resources>

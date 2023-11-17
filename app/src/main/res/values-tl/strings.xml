@@ -406,7 +406,7 @@
     <string name="ConversationActivity_error_sending_media">Error sending media</string>
 
     <!-- Message shown when opening an MMS group conversation with SMS disabled and there are no exported messages -->
-    <string name="ConversationActivity__sms_messaging_is_no_longer_supported">SMS messaging is no longer supported in Signal.</string>
+    <string name="ConversationActivity__sms_messaging_is_no_longer_supported">Hindi na suportado sa Signal ang SMS messaging.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Hindi na suportado sa Signal ang SMS messaging. I-invite si %1$s sa Signal para mapanatili ang convo niyo dito.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
@@ -1535,7 +1535,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Hayaang mag-message si %1$s sa\'yo? Hindi ka makakatanggap ng anumang message hanggang sa i-unblock mo siya.</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Gusto mo bang makakuha ng updates at news mula kay %1$s? Hindi ka makakatanggap ng anumang update hanggang sa i-unblock mo siya.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Gusto mo bang ipagpatuloy ang iyong chat sa group na ito at i-share ang pangalan at photo mo sa members nito?</string>
-    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">I-upgrade ang group na ito para ma-activate ang bagong features gaya ng @mentions at admins. Ang members na hindi nai-share ang kanilang pangalan at photo sa group na ito ay iimbitahang mag-join.</string>
+    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">This Legacy Group can no longer be used. Create a new group to activate new features like @mentions and admins.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Ang Legacy Group na ito\'y hindi na pwedeng gamitin dahil masyado na itong malaki. Ang maximum group size ay %1$d.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Gusto mo bang ipagpatuloy ang chat ninyo ni %1$s at i-share ang pangalan at photo mo sa kanya?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Gusto mo bang mag-join sa group na ito at i-share sa members ang pangalan at photo mo? Hindi nila malalaman na nakita mo ang kanilang messages hanggang sa i-accept mo ito.</string>
@@ -6408,9 +6408,9 @@
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
     <string name="UsernameLinkShareBottomSheet_title">Anyone with this link can view your username and start a chat with you. Only share it with people you trust.</string>
     <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
-    <string name="UsernameLinkShareBottomSheet_copy_link">Copy link</string>
+    <string name="UsernameLinkShareBottomSheet_copy_link">Kopyahin ang link</string>
     <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
-    <string name="UsernameLinkShareBottomSheet_share">Share</string>
+    <string name="UsernameLinkShareBottomSheet_share">Ibahagi</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
@@ -6452,11 +6452,11 @@
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, body for dialog. First placeholder is a payment related error message. Second placeholder is \'learn more\' -->
     <string name="MonthlyDonationCanceled__message">Your recurring monthly donation was canceled. %1$s\n\nYour badge will no longer be visible on your profile. %2$s</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, learn more used in placeholder for body for dialog. -->
-    <string name="MonthlyDonationCanceled__learn_more">Learn more</string>
+    <string name="MonthlyDonationCanceled__learn_more">Matuto pa</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, primary button to renew subscription with new data -->
-    <string name="MonthlyDonationCanceled__renew_button">Renew subscription</string>
+    <string name="MonthlyDonationCanceled__renew_button">I-renew ang subscription</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, second button to dismiss the dialog entirely -->
-    <string name="MonthlyDonationCanceled__not_now_button">Not now</string>
+    <string name="MonthlyDonationCanceled__not_now_button">Hindi na muna</string>
 
     <!-- EOF -->
 </resources>
