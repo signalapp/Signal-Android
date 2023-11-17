@@ -6,7 +6,6 @@ import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import androidx.annotation.VisibleForTesting
 import org.signal.core.util.Base64
-import org.signal.core.util.LongSerializer
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.IdentityKeyPair
@@ -72,6 +71,7 @@ internal class AccountValues internal constructor(store: KeyValueStore) : Signal
     private const val KEY_USERNAME_LINK_ENTROPY = "account.username_link_entropy"
     private const val KEY_USERNAME_LINK_SERVER_ID = "account.username_link_server_id"
     private const val KEY_USERNAME_SYNC_STATE = "phoneNumberPrivacy.usernameSyncState"
+    private const val KEY_USERNAME_SYNC_ERROR_COUNT = "phoneNumberPrivacy.usernameErrorCount"
 
     @VisibleForTesting
     const val KEY_E164 = "account.e164"
@@ -397,17 +397,14 @@ internal class AccountValues internal constructor(store: KeyValueStore) : Signal
    * There are some cases where our username may fall out of sync with the service. In particular, we may get a new value for our username from
    * storage service but then find that it doesn't match what's on the service.
    */
-  var usernameSyncState: UsernameSyncState by enumValue(
-    KEY_USERNAME_SYNC_STATE,
-    UsernameSyncState.IN_SYNC,
-    object : LongSerializer<UsernameSyncState> {
-      override fun serialize(data: UsernameSyncState): Long {
-        Log.i(TAG, "Marking username sync state as: $data")
-        return data.serialize()
-      }
-      override fun deserialize(data: Long): UsernameSyncState = UsernameSyncState.deserialize(data)
+  var usernameSyncState: UsernameSyncState
+    get() = UsernameSyncState.deserialize(getLong(KEY_USERNAME_SYNC_STATE, UsernameSyncState.IN_SYNC.serialize()))
+    set(value) {
+      Log.i(TAG, "Marking username sync state as: $value")
+      putLong(KEY_USERNAME_SYNC_STATE, value.serialize())
     }
-  )
+
+  var usernameSyncErrorCount: Int by integerValue(KEY_USERNAME_SYNC_ERROR_COUNT, 0)
 
   private fun clearLocalCredentials() {
     putString(KEY_SERVICE_PASSWORD, Util.getSecret(18))
@@ -520,7 +517,7 @@ internal class AccountValues internal constructor(store: KeyValueStore) : Signal
 
     companion object {
       fun deserialize(value: Long): UsernameSyncState {
-        return values().firstOrNull { it.value == value } ?: throw IllegalArgumentException("Invalud value: $value")
+        return values().firstOrNull { it.value == value } ?: throw IllegalArgumentException("Invalid value: $value")
       }
     }
   }

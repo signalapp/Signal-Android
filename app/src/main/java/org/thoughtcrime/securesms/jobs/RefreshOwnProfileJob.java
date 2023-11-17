@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.AccountValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.profiles.ProfileName;
+import org.thoughtcrime.securesms.profiles.manage.UsernameRepository;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.subscription.Subscriber;
@@ -267,9 +268,10 @@ public class RefreshOwnProfileJob extends BaseJob {
 
       if (TextUtils.isEmpty(localUsernameHash) && TextUtils.isEmpty(remoteUsernameHash)) {
         Log.d(TAG, "Local and remote username hash are both empty. Considering validated.");
+        UsernameRepository.onUsernameConsistencyValidated();
       } else if (!Objects.equals(localUsernameHash, remoteUsernameHash)) {
         Log.w(TAG, "Local username hash does not match server username hash. Local hash: " + (TextUtils.isEmpty(localUsername) ? "empty" : "present") + ", Remote hash: " + (TextUtils.isEmpty(remoteUsernameHash) ? "empty" : "present"));
-        SignalStore.account().setUsernameSyncState(AccountValues.UsernameSyncState.USERNAME_AND_LINK_CORRUPTED);
+        UsernameRepository.onUsernameMismatchDetected();
         return;
       } else {
         Log.d(TAG, "Username validated.");
@@ -278,7 +280,8 @@ public class RefreshOwnProfileJob extends BaseJob {
       Log.w(TAG, "Failed perform synchronization check during username phase.", e);
     } catch (BaseUsernameException e) {
       Log.w(TAG, "Our local username data is invalid!", e);
-      SignalStore.account().setUsernameSyncState(AccountValues.UsernameSyncState.USERNAME_AND_LINK_CORRUPTED);
+      UsernameRepository.onUsernameMismatchDetected();
+      return;
     }
 
     try {
@@ -291,9 +294,7 @@ public class RefreshOwnProfileJob extends BaseJob {
 
         if (!remoteUsername.getUsername().equals(SignalStore.account().getUsername())) {
           Log.w(TAG, "The remote username decrypted ok, but the decrypted username did not match our local username!");
-          SignalStore.account().setUsernameSyncState(AccountValues.UsernameSyncState.LINK_CORRUPTED);
-          SignalStore.account().setUsernameLink(null);
-          StorageSyncHelper.scheduleSyncForDataChange();
+          UsernameRepository.onUsernameLinkMismatchDetected();
         } else {
           Log.d(TAG, "Username link validated.");
         }
@@ -304,13 +305,11 @@ public class RefreshOwnProfileJob extends BaseJob {
       Log.w(TAG, "Failed perform synchronization check during the username link phase.", e);
     } catch (BaseUsernameException e) {
       Log.w(TAG, "Failed to decrypt username link using the remote encrypted username and our local entropy!", e);
-      SignalStore.account().setUsernameSyncState(AccountValues.UsernameSyncState.LINK_CORRUPTED);
-      SignalStore.account().setUsernameLink(null);
-      StorageSyncHelper.scheduleSyncForDataChange();
+      UsernameRepository.onUsernameLinkMismatchDetected();
     }
 
     if (validated) {
-      SignalStore.account().setUsernameSyncState(AccountValues.UsernameSyncState.IN_SYNC);
+      UsernameRepository.onUsernameConsistencyValidated();
     }
   }
 
