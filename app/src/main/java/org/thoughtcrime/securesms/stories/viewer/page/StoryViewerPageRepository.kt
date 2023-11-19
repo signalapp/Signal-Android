@@ -90,7 +90,7 @@ open class StoryViewerPageRepository(context: Context, private val storyViewStat
           content = getContent(record as MmsMessageRecord),
           conversationMessage = ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(context, record, recipient),
           allowsReplies = record.storyType.isStoryWithReplies,
-          hasSelfViewed = storyViewStateCache.getOrPut(record.id, if (record.isOutgoing) true else record.viewedReceiptCount > 0)
+          hasSelfViewed = storyViewStateCache.getOrPut(record.id, if (record.isOutgoing) true else record.isViewed())
         )
 
         emitter.onNext(story)

@@ -27,7 +27,7 @@ data class ManageDonationsState(
 
   private fun getStateFromActiveSubscription(activeSubscription: ActiveSubscription): RedemptionState? {
     return when {
-      activeSubscription.isFailedPayment -> RedemptionState.FAILED
+      activeSubscription.isFailedPayment && !activeSubscription.isPastDue -> RedemptionState.FAILED
       activeSubscription.isPendingBankTransfer -> RedemptionState.IS_PENDING_BANK_TRANSFER
       activeSubscription.isInProgress -> RedemptionState.IN_PROGRESS
       else -> null

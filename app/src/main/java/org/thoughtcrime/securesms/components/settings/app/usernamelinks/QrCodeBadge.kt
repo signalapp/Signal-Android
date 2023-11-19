@@ -51,7 +51,7 @@ fun QrCodeBadge(
   username: String,
   modifier: Modifier = Modifier,
   usernameCopyable: Boolean = false,
-  onClick: (() -> Unit) = {}
+  onClick: ((String) -> Unit) = {}
 ) {
   val borderColor by animateColorAsState(targetValue = colorScheme.borderColor, label = "border")
   val foregroundColor by animateColorAsState(targetValue = colorScheme.foregroundColor, label = "foreground")
@@ -132,7 +132,7 @@ fun QrCodeBadge(
           .clip(RoundedCornerShape(8.dp))
           .clickable(
             enabled = usernameCopyable,
-            onClick = onClick
+            onClick = { onClick(username) }
           )
           .padding(8.dp)
       ) {

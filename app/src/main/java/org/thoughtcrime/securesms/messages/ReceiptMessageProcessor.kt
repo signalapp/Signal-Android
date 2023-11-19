@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.messages
 
 import android.annotation.SuppressLint
 import android.content.Context
+import org.signal.core.util.Stopwatch
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.PushProcessEarlyMessagesJob
@@ -18,6 +19,10 @@ import org.whispersystems.signalservice.internal.push.Envelope
 import org.whispersystems.signalservice.internal.push.ReceiptMessage
 
 object ReceiptMessageProcessor {
+  private val TAG = MessageContentProcessor.TAG
+
+  private const val VERBOSE = false
+
   fun process(context: Context, senderRecipient: Recipient, envelope: Envelope, content: Content, metadata: EnvelopeMetadata, earlyMessageCacheEntry: EarlyMessageCacheEntry?) {
     val receiptMessage = content.receiptMessage!!
 
@@ -37,8 +42,9 @@ object ReceiptMessageProcessor {
     senderRecipientId: RecipientId
   ) {
     log(envelope.timestamp!!, "Processing delivery receipts. Sender: $senderRecipientId, Device: ${metadata.sourceDeviceId}, Timestamps: ${deliveryReceipt.timestamp.joinToString(", ")}")
+    val stopwatch: Stopwatch? = if (VERBOSE) Stopwatch("delivery-receipt", decimalPlaces = 2) else null
 
-    val missingTargetTimestamps: Set<Long> = SignalDatabase.messages.incrementDeliveryReceiptCounts(deliveryReceipt.timestamp, senderRecipientId, envelope.timestamp!!)
+    val missingTargetTimestamps: Set<Long> = SignalDatabase.messages.incrementDeliveryReceiptCounts(deliveryReceipt.timestamp, senderRecipientId, envelope.timestamp!!, stopwatch)
 
     for (targetTimestamp in missingTargetTimestamps) {
       warn(envelope.timestamp!!, "[handleDeliveryReceipt] Could not find matching message! targetTimestamp: $targetTimestamp, receiptAuthor: $senderRecipientId")
@@ -50,7 +56,12 @@ object ReceiptMessageProcessor {
     }
 
     SignalDatabase.pendingPniSignatureMessages.acknowledgeReceipts(senderRecipientId, deliveryReceipt.timestamp, metadata.sourceDeviceId)
+    stopwatch?.split("pni-signatures")
+
     SignalDatabase.messageLog.deleteEntriesForRecipient(deliveryReceipt.timestamp, senderRecipientId, metadata.sourceDeviceId)
+    stopwatch?.split("msl")
+
+    stopwatch?.stop(TAG)
   }
 
   @SuppressLint("DefaultLocale")

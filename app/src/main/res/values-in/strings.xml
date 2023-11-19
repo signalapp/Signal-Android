@@ -402,6 +402,8 @@
 
     <string name="ConversationActivity_error_sending_media">Gagal mengirim media</string>
 
+    <!-- Message shown when opening an MMS group conversation with SMS disabled and there are no exported messages -->
+    <string name="ConversationActivity__sms_messaging_is_no_longer_supported">Pengiriman pesan SMS tidak lagi didukung di Signal.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Pengiriman pesan SMS tidak lagi didukung di Signal. Undang %1$s ke Signal untuk menyimpan percakapan di sini.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
@@ -975,15 +977,15 @@
     <!-- Snackbar message after successful deletion of username -->
     <string name="ManageProfileFragment__username_deleted">Nama pengguna dihapus</string>
     <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_title">Delete username?</string>
+    <string name="ManageProfileFragment__delete_username_dialog_title">Hapus nama pengguna?</string>
     <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_body">"This will remove your username and disable your QR code and link. %1$s will be available for others to claim. Are you sure?"</string>
+    <string name="ManageProfileFragment__delete_username_dialog_body">"Ini akan menghapus nama pengguna serta menonaktifkan tautan dan kode QR Anda. %1$s akan bisa diklaim oleh orang lain. Anda yakin?"</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
     <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">Ada yang salah dengan nama pengguna Anda, nama pengguna tersebut tidak lagi ditetapkan untuk akun Anda. Anda bisa mencoba dan mengaturnya lagi atau memilih yang baru.</string>
     <!-- Displayed above the conversation list when a user needs to address an issue with their username link -->
-    <string name="UsernameOutOfSyncReminder__link_corrupt">Something went wrong with your QR code and username link, it’s no longer valid. Create a new link to share with others.</string>
+    <string name="UsernameOutOfSyncReminder__link_corrupt">Ada yang salah dengan kode QR dan tautan nama pengguna Anda, tautan tersebut sudah tidak valid. Buat tautan baru untuk dibagikan dengan orang lain.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
     <string name="UsernameOutOfSyncReminder__fix_now">Perbaiki sekarang</string>
 
@@ -1479,7 +1481,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Izinkan %1$s mengirimi Anda pesan? Anda tidak akan menerima pesan apa pun sampai Anda membuka blokir mereka.</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Dapatkan pembaruan dan berita dari %1$s? Anda tidak akan menerima pembaruan apa pun sampai Anda membuka blokir mereka.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Lanjutkan obrolan Anda dengan grup ini dan bagikan nama dan foto Anda dengan anggotanya?</string>
-    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Perbarui grup ini untuk mengaktifkan fitur-fitur baru seperti @penyebutan dan admin. Anggota yang tidak membagikan nama atau fotonya di grup ini akan diundang untuk bergabung.</string>
+    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">This Legacy Group can no longer be used. Create a new group to activate new features like @mentions and admins.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Grup Lama tidak lagi dapat digunakan karena berukuran terlalu besar. Ukuran maksimum grup adalah %1$d.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Lanjutkan obrolan Anda dengan %1$s dan bagikan nama dan foto Anda dengannya?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Bergabung dengan grup ini dan bagikan nama dan foto Anda dengan anggotanya? Mereka tidak akan mengetahuinya sampai Anda menerimanya.</string>
@@ -4473,6 +4475,10 @@
     <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s bukan pengguna Signal</string>
     <!-- Error message shown when we could not get a user from the username link -->
     <string name="NewConversationActivity__">%1$s bukan pengguna Signal</string>
+    <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
+    <plurals name="CreateGroupActivity_not_signal_users">
+        <item quantity="other">%1$s are not Signal users</item>
+    </plurals>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">Cari nama atau nomor</string>
@@ -4655,11 +4661,11 @@
     <!-- Preference label to launch badge gifting -->
     <string name="ManageDonationsFragment__donate_for_a_friend">Donasi untuk Teman</string>
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
-    <string name="ManageDonationsFragment__couldnt_confirm_donation">Couldn\'t confirm donation</string>
+    <string name="ManageDonationsFragment__couldnt_confirm_donation">Tidak dapat mengonfirmasi donasi</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">Your %1$s/month donation couldn\'t be confirmed. Check your banking app to approve your iDEAL payment.</string>
+    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">Donasi %1$s/bulan Anda tidak dapat dikonfirmasi. Cek aplikasi perbankan Anda untuk menyetujui pembayaran iDEAL.</string>
     <!-- Dialog message shown when a one-time donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">Your one-time %1$s donation couldn\'t be confirmed. Check your banking app to approve your iDEAL payment.</string>
+    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">Donasi satu kali sebesar %1$s tidak dapat dikonfirmasi. Cek aplikasi perbankan Anda untuk menyetujui pembayaran iDEAL.</string>
 
     <string name="Boost__enter_custom_amount">Masukkan Jumlah Kustom</string>
     <!-- Error label when the amount is smaller than what we can accept -->
@@ -4726,16 +4732,16 @@
     <string name="Subscription__contact_support">Hubungi Bantuan</string>
     <string name="Subscription__get_a_s_badge">Dapatkan lencana %1$s</string>
 
-    <string name="SubscribeFragment__processing_payment">Processing donation…</string>
+    <string name="SubscribeFragment__processing_payment">Memproses donasi…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
-    <string name="DonationsErrors__error_processing_payment">Error processing donation</string>
+    <string name="DonationsErrors__error_processing_payment">Gagal memproses donasi</string>
     <!-- Displayed on manage donations screen as a dialog message when payment method failed -->
     <string name="DonationsErrors__try_another_payment_method">Coba metode pembayaran lain atau hubungi bank Anda untuk informasi lebih lanjut.</string>
     <!-- Displayed on manage donations screen error dialogs as an action label -->
     <string name="DonationsErrors__learn_more">Pelajari selengkapnya</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
-    <string name="DonationsErrors__error_processing_payment_s">Error processing donation. %1$s</string>
-    <string name="DonationsErrors__your_payment">Your donation couldn\'t be processed and you have not been charged. Please try again.</string>
+    <string name="DonationsErrors__error_processing_payment_s">Gagal memproses donasi. %1$s</string>
+    <string name="DonationsErrors__your_payment">Donasi tidak dapat diproses dan saldo Anda belum terpotong. Silakan coba lagi.</string>
     <string name="DonationsErrors__still_processing">Masih memproses</string>
     <string name="DonationsErrors__couldnt_add_badge">Tidak dapat menambahkan lencana</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -4745,9 +4751,9 @@
     <!-- Displayed as title when some generic error happens during sending donation on behalf of another user -->
     <string name="DonationsErrors__donation_failed">Donasi gagal</string>
     <!-- Displayed as message when some generic error happens during sending donation on behalf of another user -->
-    <string name="DonationsErrors__your_payment_was_processed_but">Your donation was processed but Signal could not send your donation message. Please contact support.</string>
+    <string name="DonationsErrors__your_payment_was_processed_but">Donasi telah diproses, tetapi Signal tidak dapat mengirimkan pesan donasi Anda. Mohon hubungi bantuan.</string>
     <string name="DonationsErrors__your_badge_could_not">Lencana Anda tidak dapat ditambahkan ke akun Anda, tetapi Anda mungkin telah dikenakan biaya. Harap hubungi bagian dukungan.</string>
-    <string name="DonationsErrors__your_payment_is_still">Your donation is still being processed. This can take a few minutes depending on your connection.</string>
+    <string name="DonationsErrors__your_payment_is_still">Donasi Anda sedang diproses. Ini dapat memakan waktu beberapa menit tergantung koneksi Anda.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Gagal membatalkan langganan</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Pembatalan langganan memerlukan koneksi internet.</string>
     <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Perangkat Anda tidak mendukung Google Pay sehingga Anda tidak dapat berlangganan dan mendapatkan lencana. Anda tetap bisa mendukung Signal dengan berdonasi melalui situs web kami.</string>
@@ -4760,7 +4766,7 @@
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__your_donation_could_not_be_sent">Donasi Anda tidak bisa dikirim karena kesalahan jaringan. Periksa koneksi dan coba lagi.</string>
     <!-- Displayed as a dialog message when the user encounters an error during an iDEAL donation -->
-    <string name="DonationsErrors__your_ideal_couldnt_be_processed">Your iDEAL donation couldn\'t be processed. Try another payment method or contact your bank for more information.</string>
+    <string name="DonationsErrors__your_ideal_couldnt_be_processed">Donasi iDEAL Anda tidak dapat diproses. Coba metode pembayaran lain atau hubungi bank Anda untuk informasi lebih lanjut.</string>
 
     <!-- Gift message view title -->
     <string name="GiftMessageView__donation_on_behalf_of_s">Donasi atas nama %1$s</string>
@@ -4805,7 +4811,7 @@
     <!-- Stripe decline code incorrect expiration year -->
     <string name="DeclineCode__the_expiration_year">Tahun kedaluwarsa pada metode pembayaran Anda salah. Perbarui di Google Pay dan coba lagi.</string>
     <!-- Stripe decline code issuer not available -->
-    <string name="DeclineCode__try_completing_the_payment_again">Try completing the donation again or contact your bank for more information.</string>
+    <string name="DeclineCode__try_completing_the_payment_again">Coba selesaikan donasi lagi atau hubungi bank Anda untuk informasi lebih lanjut.</string>
     <!-- Stripe decline code processing error -->
     <string name="DeclineCode__try_again">Coba lagi atau hubungi bank Anda untuk informasi lebih lanjut.</string>
 
@@ -4829,9 +4835,9 @@
     <!-- Failure code text for insufficient funds, displayed in a dialog or notification -->
     <string name="StripeFailureCode__the_bank_account_provided">Jumlah uang di rekening bank yang diberikan tidak cukup untuk menyelesaikan pembelian ini, coba lagi atau hubungi bank Anda untuk informasi lebih lanjut.</string>
     <!-- Failure code text for revoked authorization of payment, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__this_payment_was_revoked">This donation was revoked by the account holder and could not be processed. You haven\'t been charged.</string>
+    <string name="StripeFailureCode__this_payment_was_revoked">Otorisasi donasi ini telah dibatalkan oleh pemegang rekening dan tidak dapat diproses. Saldo Anda belum terpotong.</string>
     <!-- Failure code text for a payment lacking an authorized mandate or incorrect mandate, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">An error occurred while processing this donation, please try again.</string>
+    <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">Terjadi kegagalan saat memproses donasi ini, silakan coba lagi.</string>
     <!-- Failure code text for a closed account, deceased recipient, or one with blocked direct debits, displayed in a dialog or notification -->
     <string name="StripeFailureCode__the_bank_details_provided_could_not_be_processed">Detail bank yang diberikan tidak dapat diproses, hubungi bank Anda untuk informasi lebih lanjut.</string>
     <!-- Failure code text for a non-existent bank branch, invalid account holder, invalid iban, generic failure, or unknown bank failure, displayed in a dialog or notification -->
@@ -4993,10 +4999,10 @@
     <string name="DonationReceiptListFragment__recurring">Berulang</string>
     <!-- Donation receipts one-time tab label -->
     <string name="DonationReceiptListFragment__one_time">Sekali saja</string>
+    <!-- Donation receipts gift tab -->
+    <string name="DonationReceiptListFragment__for_a_friend">For a friend</string>
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__donation_for_a_friend">Donasi untuk teman</string>
-    <!-- Donation receipts boost row label -->
-    <!-- Donation receipts details title -->
     <!-- Donation receipts donation type heading -->
     <string name="DonationReceiptDetailsFragment__donation_type">Tipe donasi</string>
     <!-- Donation receipts date paid heading -->
@@ -5717,11 +5723,11 @@
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
     <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Proses transfer bank biasanya perlu waktu 1 hari kerja. Harap tunggu hingga pembayaran ini selesai sebelum memberikan donasi lagi.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Your donation is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before updating your subscription.</string>
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Donasi Anda sedang diproses. Ini dapat memakan waktu beberapa menit tergantung koneksi Anda. Harap tunggu hingga pembayaran ini selesai sebelum memperbarui langganan Anda.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Your donation is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before making another donation.</string>
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Donasi Anda sedang diproses. Ini dapat memakan waktu beberapa menit tergantung koneksi Anda. Harap tunggu hingga pembayaran ini selesai sebelum memberikan donasi lagi.</string>
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
-    <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">Your iDEAL donation is still processing. Check your banking app to approve your payment before making another donation.</string>
+    <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">Donasi via iDEAL Anda masih diproses. Cek aplikasi perbankan Anda untuk menyetujui pembayaran sebelum memberikan donasi lagi.</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
     <string name="DonateToSignal__donation_amount_too_high">Donation amount too high</string>
     <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
@@ -5753,8 +5759,8 @@
     <string name="GatewaySelectorBottomSheet__ideal">iDEAL</string>
 
     <!-- Dialog title for launching external intent -->
-    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Leave Signal to confirm donation?</string>
-    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">When confirmed, return to Signal to finish processing your donation.</string>
+    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Keluar dari Signal untuk mengonfirmasi donasi?</string>
+    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">Saat dikonfirmasi, kembali ke Signal untuk menyelesaikan proses donasi Anda.</string>
 
     <!-- IdealBank -->
     <!-- iDEAL bank name -->
@@ -5792,7 +5798,7 @@
     <!-- Subtitle learn more of screen displaying bank transfer mandate -->
     <string name="BankTransferMandateFragment__learn_more">Pelajari selengkapnya</string>
     <!-- Button label to continue with transfer -->
-    <string name="BankTransferMandateFragment__agree">Agree</string>
+    <string name="BankTransferMandateFragment__agree">Setuju</string>
     <!-- Button label to read more of the bank mandate that is currently off screen -->
     <string name="BankTransferMandateFragment__read_more">Baca lebih lanjut</string>
     <!-- Text displayed when mandate load fails -->
@@ -5800,7 +5806,7 @@
 
     <!-- BankTransferDetailsFragment -->
     <!-- Subtext explaining how email is used. Placeholder is \'Learn more\' -->
-    <string name="BankTransferDetailsFragment__enter_your_bank_details">Enter your bank details and email. Stripe uses this email to send you updates about your donation. %1$s</string>
+    <string name="BankTransferDetailsFragment__enter_your_bank_details">Masukkan detail bank dan email Anda. Stripe menggunakan email ini untuk mengirimkan info terbaru tentang donasi Anda. %1$s</string>
     <!-- Subtext learn more link text -->
     <string name="BankTransferDetailsFragment__learn_more">Pelajari selengkapnya</string>
     <!-- Text field label for name on bank account -->
@@ -6263,6 +6269,13 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">Terjadi kesalahan jaringan saat mencoba mereset tautan. Coba lagi nanti.</string>
 
+    <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
+    <string name="UsernameLinkShareBottomSheet_title">Siapa pun yang punya tautan ini bisa melihat nama pengguna Anda dan memulai obrolan dengan Anda. Hanya bagikan dengan orang yang Anda percaya.</string>
+    <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
+    <string name="UsernameLinkShareBottomSheet_copy_link">Salin tautan</string>
+    <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
+    <string name="UsernameLinkShareBottomSheet_share">Bagikan</string>
+
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
     <string name="PendingParticipantsView__would_like_to_join">Ingin bergabung…</string>
@@ -6295,6 +6308,17 @@
     <string name="GrantFullScreenIntentPermission_bottomsheet_subtitle">Untuk menerima notifikasi panggilan dari kontak dan grup Anda:</string>
     <!-- Step 2 of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications, it indicates the name of the setting that needs to be re-enabled -->
     <string name="GrantFullScreenIntentPermission_bottomsheet_step2">2. %1$s Izinkan notifikasi layar penuh</string>
+
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, title for dialog -->
+    <string name="MonthlyDonationCanceled__title">Donasi bulanan dibatalkan</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, body for dialog. First placeholder is a payment related error message. Second placeholder is \'learn more\' -->
+    <string name="MonthlyDonationCanceled__message">Your recurring monthly donation was canceled. %1$s\n\nYour badge will no longer be visible on your profile. %2$s</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, learn more used in placeholder for body for dialog. -->
+    <string name="MonthlyDonationCanceled__learn_more">Pelajari selengkapnya</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, primary button to renew subscription with new data -->
+    <string name="MonthlyDonationCanceled__renew_button">Perpanjang langganan</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, second button to dismiss the dialog entirely -->
+    <string name="MonthlyDonationCanceled__not_now_button">Tidak sekarang</string>
 
     <!-- EOF -->
 </resources>

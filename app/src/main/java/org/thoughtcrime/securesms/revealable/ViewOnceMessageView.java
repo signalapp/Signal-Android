@@ -119,7 +119,7 @@ public class ViewOnceMessageView extends LinearLayout {
       icon.setImageResource(0);
       showProgress = true;
     } else if (messageRecord.isOutgoing()) {
-      if (messageRecord.isRemoteViewed()) {
+      if (messageRecord.isViewed()) {
         iconColor = openedIconColor;
         text.setText(R.string.RevealableMessageView_viewed);
         icon.setImageResource(R.drawable.ic_viewed_once_24);

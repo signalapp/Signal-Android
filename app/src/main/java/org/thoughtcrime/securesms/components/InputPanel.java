@@ -49,7 +49,7 @@ import org.thoughtcrime.securesms.conversation.ConversationStickerSuggestionAdap
 import org.thoughtcrime.securesms.conversation.MessageStyler;
 import org.thoughtcrime.securesms.conversation.VoiceNoteDraftView;
 import org.thoughtcrime.securesms.database.DraftTable;
-import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.Quote;
@@ -423,10 +423,10 @@ public class InputPanel extends ConstraintLayout
   }
 
   private void updateEditModeThumbnail(@NonNull GlideRequests glideRequests) {
-    if (messageToEdit instanceof MediaMmsMessageRecord) {
-      MediaMmsMessageRecord mediaEditMessage = (MediaMmsMessageRecord) messageToEdit;
-      SlideDeck             slideDeck        = mediaEditMessage.getSlideDeck();
-      Slide                 imageVideoSlide  = slideDeck.getSlides().stream().filter(s -> s.hasImage() || s.hasVideo() || s.hasSticker()).findFirst().orElse(null);
+    if (messageToEdit instanceof MmsMessageRecord) {
+      MmsMessageRecord mediaEditMessage = (MmsMessageRecord) messageToEdit;
+      SlideDeck        slideDeck        = mediaEditMessage.getSlideDeck();
+      Slide            imageVideoSlide  = slideDeck.getSlides().stream().filter(s -> s.hasImage() || s.hasVideo() || s.hasSticker()).findFirst().orElse(null);
 
       if (imageVideoSlide != null && imageVideoSlide.getUri() != null) {
         editMessageThumbnail.setVisibility(VISIBLE);

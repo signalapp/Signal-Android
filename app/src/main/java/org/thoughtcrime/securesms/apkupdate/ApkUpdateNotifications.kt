@@ -30,6 +30,9 @@ object ApkUpdateNotifications {
    */
   @SuppressLint("LaunchActivityFromNotification")
   fun showInstallPrompt(context: Context, downloadId: Long) {
+    Log.d(TAG, "Showing install prompt. DownloadId: $downloadId")
+    ServiceUtil.getNotificationManager(context).cancel(NotificationIds.APK_UPDATE_FAILED_INSTALL)
+
     val pendingIntent = PendingIntent.getBroadcast(
       context,
       1,
@@ -37,7 +40,7 @@ object ApkUpdateNotifications {
         action = ApkUpdateNotificationReceiver.ACTION_INITIATE_INSTALL
         putExtra(ApkUpdateNotificationReceiver.EXTRA_DOWNLOAD_ID, downloadId)
       },
-      PendingIntentFlags.immutable()
+      PendingIntentFlags.updateCurrent()
     )
 
     val notification = NotificationCompat.Builder(context, NotificationChannels.getInstance().APP_UPDATES)
@@ -52,7 +55,15 @@ object ApkUpdateNotifications {
     ServiceUtil.getNotificationManager(context).notify(NotificationIds.APK_UPDATE_PROMPT_INSTALL, notification)
   }
 
+  fun dismissInstallPrompt(context: Context) {
+    Log.d(TAG, "Dismissing install prompt.")
+    ServiceUtil.getNotificationManager(context).cancel(NotificationIds.APK_UPDATE_PROMPT_INSTALL)
+  }
+
   fun showInstallFailed(context: Context, reason: FailureReason) {
+    Log.d(TAG, "Showing failed notification. Reason: $reason")
+    ServiceUtil.getNotificationManager(context).cancel(NotificationIds.APK_UPDATE_PROMPT_INSTALL)
+
     val pendingIntent = PendingIntent.getActivity(
       context,
       0,

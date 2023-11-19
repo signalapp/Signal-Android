@@ -712,7 +712,7 @@ object SystemContactsRepository {
       while (!cursor.isAfterLast && lookupKey == cursor.getLookupKey() && cursor.isPhoneMimeType()) {
         val displayNumber: String? = cursor.requireString(ContactsContract.CommonDataKinds.Phone.NUMBER)
 
-        if (displayNumber != null && displayNumber.isNotEmpty()) {
+        if (!displayNumber.isNullOrEmpty()) {
           phoneDetails += ContactPhoneDetails(
             contactUri = ContactsContract.Contacts.getLookupUri(cursor.requireLong(ContactsContract.CommonDataKinds.Phone._ID), lookupKey),
             displayName = cursor.requireString(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME),

@@ -405,6 +405,8 @@
 
     <string name="ConversationActivity_error_sending_media">Kon nie media stuur nie</string>
 
+    <!-- Message shown when opening an MMS group conversation with SMS disabled and there are no exported messages -->
+    <string name="ConversationActivity__sms_messaging_is_no_longer_supported">SMS-boodskappe word nie meer in Signal ondersteun nie.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">SMS-boodskappe word nie meer in Signal ondersteun nie. Nooi %1$s na Signal om die gesprek hier te hou.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
@@ -1533,7 +1535,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Laat %1$s toe om vir jou boodskappe stuur? Tot jy hulle ontsper, sal jy geen boodskappe ontvang nie.</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Wil jy bywerkings en nuus van %1$s kry? Tot jy hulle ontsper, sal jy geen bywerkings ontvang nie.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Wil jy jou klets met hierdie groep voortsit en jou naam en foto met sy lede deel?</string>
-    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Gradeer hierdie groep op om nuwe funksies soos @vermeldings en admins te aktiveer. Lede wat nie hul naam of foto in hierdie groep gedeel het nie, sal genooi word om aan te sluit.</string>
+    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">This Legacy Group can no longer be used. Create a new group to activate new features like @mentions and admins.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Hierdie Legaatgroep kan nie meer gebruik word nie omdat dit te groot is. Die maksimum groepgrootte is %1$d.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Wil jy jou klets met %1$s voortsit en jou naam en foto met hulle deel?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Sluit by hierdie groep aan en deel jou naam en foto met die lede? Tot jy aanvaar, sal hulle nie weet dat jy hulle boodskappe gesien het nie.</string>
@@ -4578,6 +4580,11 @@
     <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s is nie \'n Signal-gebruiker nie</string>
     <!-- Error message shown when we could not get a user from the username link -->
     <string name="NewConversationActivity__">%1$s is nie \'n Signal-gebruiker nie</string>
+    <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
+    <plurals name="CreateGroupActivity_not_signal_users">
+        <item quantity="one">%1$s is nie \'n Signal-gebruiker nie</item>
+        <item quantity="other">%1$s is nie Signal-gebruikers nie</item>
+    </plurals>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">Soek vir naam of nommer</string>
@@ -5102,10 +5109,10 @@
     <string name="DonationReceiptListFragment__recurring">Herhalend</string>
     <!-- Donation receipts one-time tab label -->
     <string name="DonationReceiptListFragment__one_time">Eenmalig</string>
+    <!-- Donation receipts gift tab -->
+    <string name="DonationReceiptListFragment__for_a_friend">Vir \'n vriend</string>
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__donation_for_a_friend">Skenking namens \'n vriend/in</string>
-    <!-- Donation receipts boost row label -->
-    <!-- Donation receipts details title -->
     <!-- Donation receipts donation type heading -->
     <string name="DonationReceiptDetailsFragment__donation_type">Tipe skenking</string>
     <!-- Donation receipts date paid heading -->
@@ -5853,9 +5860,9 @@
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
     <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">Jou iDEAL-skenking word nog verwerk. Gaan na jou banktoepassing om jou betaling goed te keur voordat jy nog \'n skenking maak.</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
-    <string name="DonateToSignal__donation_amount_too_high">Donation amount too high</string>
+    <string name="DonateToSignal__donation_amount_too_high">Skenkingsbedrag te hoog</string>
     <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
-    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">You can send up to %1$s via bank transfer. Try a different amount or a different payment method.</string>
+    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">Jy kan tot %1$s per bankoorplasing stuur. Probeer \'n ander bedrag of \'n ander betaalmetode.</string>
 
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">Maandeliks</string>
@@ -6398,6 +6405,13 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">\'n Netwerkfout het voorgekom terwyl jy probeer het om jou skakel terug te stel. Probeer later weer.</string>
 
+    <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
+    <string name="UsernameLinkShareBottomSheet_title">Enigeen met hierdie skakel kan jou gebruikersnaam sien en \'n gesprek met jou begin. Deel dit slegs met mense wie jy vertrou.</string>
+    <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
+    <string name="UsernameLinkShareBottomSheet_copy_link">Kopieer skakel</string>
+    <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
+    <string name="UsernameLinkShareBottomSheet_share">Deel</string>
+
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
     <string name="PendingParticipantsView__would_like_to_join">Wil graag aansluit…</string>
@@ -6432,6 +6446,17 @@
     <string name="GrantFullScreenIntentPermission_bottomsheet_subtitle">Om oproepkennisgewings van jou kontakte en groepe te ontvang:</string>
     <!-- Step 2 of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications, it indicates the name of the setting that needs to be re-enabled -->
     <string name="GrantFullScreenIntentPermission_bottomsheet_step2">2. %1$s Laat volskerm-kennisgewings toe</string>
+
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, title for dialog -->
+    <string name="MonthlyDonationCanceled__title">Maandelikse skenking gekanselleer</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, body for dialog. First placeholder is a payment related error message. Second placeholder is \'learn more\' -->
+    <string name="MonthlyDonationCanceled__message">Jou herhalende maandelikse skenking is gekanselleer. %1$s\n\nJou wapen sal nie meer op jou profiel sigbaar wees nie. %2$s</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, learn more used in placeholder for body for dialog. -->
+    <string name="MonthlyDonationCanceled__learn_more">Vind meer uit</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, primary button to renew subscription with new data -->
+    <string name="MonthlyDonationCanceled__renew_button">Hernu intekening</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, second button to dismiss the dialog entirely -->
+    <string name="MonthlyDonationCanceled__not_now_button">Nie nou nie</string>
 
     <!-- EOF -->
 </resources>

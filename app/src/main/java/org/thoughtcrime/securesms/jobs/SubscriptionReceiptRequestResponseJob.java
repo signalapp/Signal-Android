@@ -15,6 +15,7 @@ import org.signal.libsignal.zkgroup.receipts.ReceiptCredential;
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation;
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialRequestContext;
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialResponse;
+import org.thoughtcrime.securesms.components.settings.app.subscription.DonationsConfigurationExtensionsKt;
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError;
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource;
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.PayPalDeclineCode;
@@ -30,11 +31,13 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.subscription.Subscriber;
 import org.signal.core.util.Base64;
+import org.whispersystems.signalservice.api.services.DonationsService;
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription;
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 
 import java.io.IOException;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import okio.ByteString;
@@ -72,7 +75,6 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
             .Builder()
             .addConstraint(NetworkConstraint.KEY)
             .setQueue("ReceiptRedemption")
-            .setMaxInstancesForQueue(1)
             .setLifespan(terminalDonation.isLongRunningPaymentMethod ? TimeUnit.DAYS.toMillis(30) : TimeUnit.DAYS.toMillis(1))
             .setMaxAttempts(Parameters.UNLIMITED)
             .build(),
@@ -174,12 +176,11 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
       }
 
       if (isForKeepAlive) {
-        Log.w(TAG, "Subscription payment failure in active subscription response (status = " + subscription.getStatus() + ").", true);
-        onPaymentFailure(subscription.getStatus(), subscription.getProcessor(), chargeFailure, subscription.getEndOfCurrentPeriod(), true);
-        throw new Exception("Active subscription hit a payment failure: " + subscription.getStatus());
+        Log.w(TAG, "Subscription payment failure in active subscription response (status = " + subscription.getStatus() + "). Payment could still be retried by processor.", true);
+        throw new Exception("Payment renewal is in retry state, let keep-alive job restart process");
       } else {
         Log.w(TAG, "New subscription has hit a payment failure. (status = " + subscription.getStatus() + ").", true);
-        onPaymentFailure(subscription.getStatus(), subscription.getProcessor(), chargeFailure, subscription.getEndOfCurrentPeriod(), false);
+        onPaymentFailure(subscription, chargeFailure, false);
         throw new Exception("New subscription has hit a payment failure: " + subscription.getStatus());
       }
     } else if (!subscription.isActive()) {
@@ -189,15 +190,18 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
 
         if (!isForKeepAlive) {
           Log.w(TAG, "Initial subscription payment failed, treating as a permanent failure.");
-          onPaymentFailure(subscription.getStatus(), subscription.getProcessor(), chargeFailure, subscription.getEndOfCurrentPeriod(), false);
+          onPaymentFailure(subscription, chargeFailure, false);
           throw new Exception("New subscription has hit a payment failure.");
         }
       }
 
+      if (isForKeepAlive && subscription.isCanceled()) {
+        Log.w(TAG, "Permanent payment failure in renewing subscription. (status = " + subscription.getStatus() + ").", true);
+        onPaymentFailure(subscription, chargeFailure, true);
+        throw new Exception();
+      }
+
       Log.w(TAG, "Subscription is not yet active. Status: " + subscription.getStatus(), true);
-      throw new RetryableException();
-    } else if (subscription.isCanceled()) {
-      Log.w(TAG, "Subscription is marked as cancelled, but it's possible that the user cancelled and then later tried to resubscribe. Scheduling a retry.", true);
       throw new RetryableException();
     } else {
       Log.i(TAG, "Subscription is valid, proceeding with request for ReceiptCredentialResponse", true);
@@ -353,15 +357,21 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
    * 1. In the case of a keep-alive event, we want to book-keep the error to show the user on a subsequent launch, and we want to sync our failure state to
    * linked devices.
    */
-  private void onPaymentFailure(@NonNull String status, @NonNull ActiveSubscription.Processor processor, @Nullable ActiveSubscription.ChargeFailure chargeFailure, long timestamp, boolean isForKeepAlive) {
+  private void onPaymentFailure(@NonNull ActiveSubscription.Subscription subscription, @Nullable ActiveSubscription.ChargeFailure chargeFailure, boolean isForKeepAlive) {
     SignalStore.donationsValues().setShouldCancelSubscriptionBeforeNextSubscribeAttempt(true);
     if (isForKeepAlive) {
-      Log.d(TAG, "Is for a keep-alive and we have a status. Setting UnexpectedSubscriptionCancelation state...", true);
+      Log.d(TAG, "Subscription canceled during keep-alive. Setting UnexpectedSubscriptionCancelation state...", true);
       SignalStore.donationsValues().setUnexpectedSubscriptionCancelationChargeFailure(chargeFailure);
-      SignalStore.donationsValues().setUnexpectedSubscriptionCancelationReason(status);
-      SignalStore.donationsValues().setUnexpectedSubscriptionCancelationTimestamp(timestamp);
+      SignalStore.donationsValues().setUnexpectedSubscriptionCancelationReason(subscription.getStatus());
+      SignalStore.donationsValues().setUnexpectedSubscriptionCancelationTimestamp(subscription.getEndOfCurrentPeriod());
+      SignalStore.donationsValues().setShowMonthlyDonationCanceledDialog(true);
+
+      ApplicationDependencies.getDonationsService().getDonationsConfiguration(Locale.getDefault()).getResult().ifPresent(config -> {
+        SignalStore.donationsValues().setExpiredBadge(DonationsConfigurationExtensionsKt.getBadge(config, subscription.getLevel()));
+      });
+
       MultiDeviceSubscriptionSyncRequestJob.enqueue();
-    } else if (chargeFailure != null && processor == ActiveSubscription.Processor.STRIPE) {
+    } else if (chargeFailure != null && subscription.getProcessor() == ActiveSubscription.Processor.STRIPE) {
       Log.d(TAG, "Stripe charge failure detected: " + chargeFailure, true);
 
       StripeDeclineCode               declineCode = StripeDeclineCode.Companion.getFromCode(chargeFailure.getOutcomeNetworkReason());
@@ -399,7 +409,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
 
       Log.w(TAG, "Not for a keep-alive and we have a charge failure. Routing a payment setup error...", true);
       onPaymentFailedError(paymentSetupError);
-    } else if (chargeFailure != null && processor == ActiveSubscription.Processor.BRAINTREE) {
+    } else if (chargeFailure != null && subscription.getProcessor() == ActiveSubscription.Processor.BRAINTREE) {
       Log.d(TAG, "PayPal charge failure detected: " + chargeFailure, true);
 
 

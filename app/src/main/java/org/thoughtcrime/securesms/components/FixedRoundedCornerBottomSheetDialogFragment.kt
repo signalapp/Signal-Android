@@ -42,7 +42,9 @@ abstract class FixedRoundedCornerBottomSheetDialogFragment : BottomSheetDialogFr
 
   override fun onResume() {
     super.onResume()
-    WindowUtil.initializeScreenshotSecurity(requireContext(), dialog!!.window!!)
+    dialog?.window?.let { window ->
+      WindowUtil.initializeScreenshotSecurity(requireContext(), window)
+    }
   }
 
   override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

@@ -405,6 +405,8 @@
 
     <string name="ConversationActivity_error_sending_media">Fehler beim Senden der Medieninhalte</string>
 
+    <!-- Message shown when opening an MMS group conversation with SMS disabled and there are no exported messages -->
+    <string name="ConversationActivity__sms_messaging_is_no_longer_supported">Die SMS-Nachrichtübermittlung wird in Signal nicht länger unterstützt.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Die SMS-Nachrichtübermittlung wird in Signal nicht länger unterstützt. Lade %1$s zu Signal ein, damit die Unterhaltung hier weitergeht.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
@@ -1009,15 +1011,15 @@
     <!-- Snackbar message after successful deletion of username -->
     <string name="ManageProfileFragment__username_deleted">Nutzername gelöscht</string>
     <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_title">Delete username?</string>
+    <string name="ManageProfileFragment__delete_username_dialog_title">Nutzername löschen?</string>
     <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_body">"This will remove your username and disable your QR code and link. %1$s will be available for others to claim. Are you sure?"</string>
+    <string name="ManageProfileFragment__delete_username_dialog_body">"Hierdurch wird dein Nutzername entfernt und dein QR-Code und dein Link werden deaktiviert. %1$s kann dann auch von anderen verwendet werden. Bist du dir sicher?"</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
     <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">Mit deinem Nutzernamen ist etwas schief gelaufen, er ist deinem Konto nicht mehr zugeordnet. Du kannst versuchen, ihn erneut einzugeben oder einen neuen zu wählen.</string>
     <!-- Displayed above the conversation list when a user needs to address an issue with their username link -->
-    <string name="UsernameOutOfSyncReminder__link_corrupt">Something went wrong with your QR code and username link, it’s no longer valid. Create a new link to share with others.</string>
+    <string name="UsernameOutOfSyncReminder__link_corrupt">Mit dem QR-Code und Link deines Nutzernamens ist etwas schief gelaufen, sie sind nicht mehr gültig. Erstelle einen neuen Link, um ihn mit anderen zu teilen.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
     <string name="UsernameOutOfSyncReminder__fix_now">Jetzt beheben</string>
 
@@ -1533,7 +1535,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Darf %1$s dir Nachrichten schreiben? Du wirst keine Nachrichten erhalten, es sei denn, du erteilst eine Freigabe.</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Aktualisierungen und Neuigkeiten von %1$s erhalten? Du wirst keine Aktualisierungen erhalten, es sei denn, du erteilst eine Freigabe.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Chat mit dieser Gruppe fortsetzen und deinen Namen und dein Foto mit deren Mitgliedern teilen?</string>
-    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Aktualisiere diese Gruppe für neue Funktionen wie @Erwähnungen und Admins. Mitglieder, die ihre Namen und Fotos nicht mit dieser Gruppe geteilt haben, werden eingeladen, beizutreten.</string>
+    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">This Legacy Group can no longer be used. Create a new group to activate new features like @mentions and admins.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Diese Gruppe alten Typs kann nicht mehr verwendet werden. Die maximale Gruppengröße von %1$d Mitgliedern ist überschritten.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Chat mit %1$s fortsetzen und deinen Namen und dein Foto mit diesem Nutzer/dieser Nutzerin teilen?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Möchtest du dieser Gruppe beitreten und deinen Namen und dein Foto mit ihren Mitgliedern teilen? Diese wissen nicht, dass du ihre Nachrichten gesehen hast, bis du die Anfrage annimmst.</string>
@@ -4578,6 +4580,11 @@
     <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s ist kein Signal-Nutzer</string>
     <!-- Error message shown when we could not get a user from the username link -->
     <string name="NewConversationActivity__">%1$s ist kein Signal-Nutzer</string>
+    <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
+    <plurals name="CreateGroupActivity_not_signal_users">
+        <item quantity="one">%1$s is not a Signal user</item>
+        <item quantity="other">%1$s are not Signal users</item>
+    </plurals>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">Name oder Nummer suchen</string>
@@ -4764,11 +4771,11 @@
     <!-- Preference label to launch badge gifting -->
     <string name="ManageDonationsFragment__donate_for_a_friend">Für einen Freund spenden</string>
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
-    <string name="ManageDonationsFragment__couldnt_confirm_donation">Couldn\'t confirm donation</string>
+    <string name="ManageDonationsFragment__couldnt_confirm_donation">Spende konnte nicht bestätigt werden</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">Your %1$s/month donation couldn\'t be confirmed. Check your banking app to approve your iDEAL payment.</string>
+    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">Deine Spende in Höhe von %1$s pro Monat konnte nicht bestätigt werden. Überprüfe deine Banking-App, um deine Zahlung über iDEAL zu bestätigen.</string>
     <!-- Dialog message shown when a one-time donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">Your one-time %1$s donation couldn\'t be confirmed. Check your banking app to approve your iDEAL payment.</string>
+    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">Deine einmalige Spende in Höhe von %1$s konnte nicht bestätigt werden. Überprüfe deine Banking-App, um deine Zahlung über iDEAL zu bestätigen.</string>
 
     <string name="Boost__enter_custom_amount">Eigenen Betrag eingeben</string>
     <!-- Error label when the amount is smaller than what we can accept -->
@@ -4835,16 +4842,16 @@
     <string name="Subscription__contact_support">Support kontaktieren</string>
     <string name="Subscription__get_a_s_badge">Erhalte ein %1$s-Abzeichen</string>
 
-    <string name="SubscribeFragment__processing_payment">Processing donation…</string>
+    <string name="SubscribeFragment__processing_payment">Spende wird bearbeitet…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
-    <string name="DonationsErrors__error_processing_payment">Error processing donation</string>
+    <string name="DonationsErrors__error_processing_payment">Fehler beim Bearbeiten der Spende</string>
     <!-- Displayed on manage donations screen as a dialog message when payment method failed -->
     <string name="DonationsErrors__try_another_payment_method">Versuche eine andere Zahlungsmethode oder kontaktiere für mehr Informationen deine Bank.</string>
     <!-- Displayed on manage donations screen error dialogs as an action label -->
     <string name="DonationsErrors__learn_more">Mehr erfahren</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
-    <string name="DonationsErrors__error_processing_payment_s">Error processing donation. %1$s</string>
-    <string name="DonationsErrors__your_payment">Your donation couldn\'t be processed and you have not been charged. Please try again.</string>
+    <string name="DonationsErrors__error_processing_payment_s">Fehler beim Bearbeiten der Spende. %1$s</string>
+    <string name="DonationsErrors__your_payment">Deine Spende konnte nicht bearbeitet werden und wurde nicht abgebucht. Bitte versuche es erneut.</string>
     <string name="DonationsErrors__still_processing">Wird noch verarbeitet</string>
     <string name="DonationsErrors__couldnt_add_badge">Abzeichen konnte nicht hinzugefügt werden.</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -4854,9 +4861,9 @@
     <!-- Displayed as title when some generic error happens during sending donation on behalf of another user -->
     <string name="DonationsErrors__donation_failed">Spende fehlgeschlagen</string>
     <!-- Displayed as message when some generic error happens during sending donation on behalf of another user -->
-    <string name="DonationsErrors__your_payment_was_processed_but">Your donation was processed but Signal could not send your donation message. Please contact support.</string>
+    <string name="DonationsErrors__your_payment_was_processed_but">Deine Spende wurde bearbeitet, aber Signal konnte deine Spendenmitteilung nicht versenden. Bitte kontaktiere den Support.</string>
     <string name="DonationsErrors__your_badge_could_not">Dein Abzeichen konnte deinem Konto nicht hinzugefügt werden, eventuell wurde jedoch die Zahlung abgebucht. Bitte kontaktiere den Support.</string>
-    <string name="DonationsErrors__your_payment_is_still">Your donation is still being processed. This can take a few minutes depending on your connection.</string>
+    <string name="DonationsErrors__your_payment_is_still">Deine Spende wird immer noch bearbeitet. Das kann abhängig von deiner Verbindung ein paar Minuten dauern.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Regelmäßige Spende konnte nicht gekündigt werden</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Die Kündigung regelmäßiger Spenden benötigt eine Internetverbindung.</string>
     <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Dein Gerät unterstützt Google Pay nicht, daher kannst du nicht spenden, um ein Abzeichen zu erhalten. Aber durch eine Spende auf unserer Website kannst du Signal trotzdem unterstützen.</string>
@@ -4869,7 +4876,7 @@
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__your_donation_could_not_be_sent">Deine Spende konnte aufgrund eines Netzwerkfehlers nicht gesendet werden. Überprüfe deine Verbindung und versuche es erneut.</string>
     <!-- Displayed as a dialog message when the user encounters an error during an iDEAL donation -->
-    <string name="DonationsErrors__your_ideal_couldnt_be_processed">Your iDEAL donation couldn\'t be processed. Try another payment method or contact your bank for more information.</string>
+    <string name="DonationsErrors__your_ideal_couldnt_be_processed">Deine Spende über iDEAL konnte nicht bearbeitet werden. Versuche es mit einer anderen Zahlungsmethode oder kontaktiere deine Bank für weitere Informationen.</string>
 
     <!-- Gift message view title -->
     <string name="GiftMessageView__donation_on_behalf_of_s">Spende im Namen von %1$s</string>
@@ -4914,7 +4921,7 @@
     <!-- Stripe decline code incorrect expiration year -->
     <string name="DeclineCode__the_expiration_year">Das Ablaufjahr deiner Zahlungsmethode ist falsch. Aktualisiere es in Google Pay und versuche es erneut.</string>
     <!-- Stripe decline code issuer not available -->
-    <string name="DeclineCode__try_completing_the_payment_again">Try completing the donation again or contact your bank for more information.</string>
+    <string name="DeclineCode__try_completing_the_payment_again">Versuche, die Spende erneut abzuschließen, oder kontaktiere deine Bank für weitere Informationen.</string>
     <!-- Stripe decline code processing error -->
     <string name="DeclineCode__try_again">Versuche es erneut oder kontaktiere für mehr Informationen deine Bank.</string>
 
@@ -4938,9 +4945,9 @@
     <!-- Failure code text for insufficient funds, displayed in a dialog or notification -->
     <string name="StripeFailureCode__the_bank_account_provided">Das angegebene Bankkonto hat nicht genügend Guthaben, um diesen Kauf abzuschließen. Versuche es noch einmal oder kontaktiere deine Bank, um mehr zu erfahren.</string>
     <!-- Failure code text for revoked authorization of payment, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__this_payment_was_revoked">This donation was revoked by the account holder and could not be processed. You haven\'t been charged.</string>
+    <string name="StripeFailureCode__this_payment_was_revoked">Diese Spende wurde vom Kontoinhaber/von der Kontoinhaberin widerrufen und konnte nicht bearbeitet werden. Es wurde kein Betrag abgebucht.</string>
     <!-- Failure code text for a payment lacking an authorized mandate or incorrect mandate, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">An error occurred while processing this donation, please try again.</string>
+    <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">Bei der Bearbeitung dieser Spende ist ein Fehler aufgetreten. Bitte versuche es erneut.</string>
     <!-- Failure code text for a closed account, deceased recipient, or one with blocked direct debits, displayed in a dialog or notification -->
     <string name="StripeFailureCode__the_bank_details_provided_could_not_be_processed">Die angegebene Bankverbindung konnte nicht verarbeitet werden. Bitte kontaktiere deine Bank, um mehr zu erfahren.</string>
     <!-- Failure code text for a non-existent bank branch, invalid account holder, invalid iban, generic failure, or unknown bank failure, displayed in a dialog or notification -->
@@ -5102,10 +5109,10 @@
     <string name="DonationReceiptListFragment__recurring">Regelmäßig</string>
     <!-- Donation receipts one-time tab label -->
     <string name="DonationReceiptListFragment__one_time">Einmalig</string>
+    <!-- Donation receipts gift tab -->
+    <string name="DonationReceiptListFragment__for_a_friend">For a friend</string>
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__donation_for_a_friend">Spende für einen Freund</string>
-    <!-- Donation receipts boost row label -->
-    <!-- Donation receipts details title -->
     <!-- Donation receipts donation type heading -->
     <string name="DonationReceiptDetailsFragment__donation_type">Spendenart</string>
     <!-- Donation receipts date paid heading -->
@@ -5847,11 +5854,11 @@
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
     <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Die Verarbeitung von Banküberweisungen dauert in der Regel einen Werktag. Bitte warte, bis diese Zahlung abgeschlossen ist, bevor du eine weitere Spende vornimmst.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Your donation is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before updating your subscription.</string>
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Deine Spende wird immer noch bearbeitet. Das kann abhängig von deiner Verbindung ein paar Minuten dauern. Bitte warte, bis diese Zahlung abgeschlossen ist, bevor du deine regelmäßige Spende aktualisierst.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Your donation is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before making another donation.</string>
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Deine Spende wird immer noch bearbeitet. Das kann abhängig von deiner Verbindung ein paar Minuten dauern. Bitte warte, bis diese Zahlung abgeschlossen ist, bevor du eine weitere Spende vornimmst.</string>
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
-    <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">Your iDEAL donation is still processing. Check your banking app to approve your payment before making another donation.</string>
+    <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">Deine Spende über iDEAL wird noch bearbeitet. Überprüfe deine Banking-App, um deine Zahlung zu bestätigen, bevor du eine weitere Spende vornimmst.</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
     <string name="DonateToSignal__donation_amount_too_high">Donation amount too high</string>
     <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
@@ -5884,8 +5891,8 @@
     <string name="GatewaySelectorBottomSheet__ideal">iDEAL</string>
 
     <!-- Dialog title for launching external intent -->
-    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Leave Signal to confirm donation?</string>
-    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">When confirmed, return to Signal to finish processing your donation.</string>
+    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Signal verlassen, um Spende zu bestätigen?</string>
+    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">Kehre nach der Bestätigung zu Signal zurück, um den Spendenvorgang abzuschließen.</string>
 
     <!-- IdealBank -->
     <!-- iDEAL bank name -->
@@ -5923,7 +5930,7 @@
     <!-- Subtitle learn more of screen displaying bank transfer mandate -->
     <string name="BankTransferMandateFragment__learn_more">Mehr erfahren</string>
     <!-- Button label to continue with transfer -->
-    <string name="BankTransferMandateFragment__agree">Agree</string>
+    <string name="BankTransferMandateFragment__agree">Einverstanden</string>
     <!-- Button label to read more of the bank mandate that is currently off screen -->
     <string name="BankTransferMandateFragment__read_more">Weiterlesen</string>
     <!-- Text displayed when mandate load fails -->
@@ -5931,7 +5938,7 @@
 
     <!-- BankTransferDetailsFragment -->
     <!-- Subtext explaining how email is used. Placeholder is \'Learn more\' -->
-    <string name="BankTransferDetailsFragment__enter_your_bank_details">Enter your bank details and email. Stripe uses this email to send you updates about your donation. %1$s</string>
+    <string name="BankTransferDetailsFragment__enter_your_bank_details">Gib deine Bankverbindung und deine E-Mail-Adresse ein. Stripe verwendet diese E-Mail-Adresse, um dir Updates zu deiner Spende zu schicken. %1$s</string>
     <!-- Subtext learn more link text -->
     <string name="BankTransferDetailsFragment__learn_more">Mehr erfahren</string>
     <!-- Text field label for name on bank account -->
@@ -6398,6 +6405,13 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">Beim Zurücksetzen deines Links ist ein Netzwerkfehler aufgetreten. Versuche es später erneut.</string>
 
+    <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
+    <string name="UsernameLinkShareBottomSheet_title">Mit diesem Link können andere deinen Nutzernamen sehen und einen Chat mit dir beginnen. Teile den Link nur mit Leuten, denen du vertraust.</string>
+    <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
+    <string name="UsernameLinkShareBottomSheet_copy_link">Link kopieren</string>
+    <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
+    <string name="UsernameLinkShareBottomSheet_share">Teilen</string>
+
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
     <string name="PendingParticipantsView__would_like_to_join">Würde gerne beitreten…</string>
@@ -6432,6 +6446,17 @@
     <string name="GrantFullScreenIntentPermission_bottomsheet_subtitle">Um Anrufbenachrichtigungen von deinen Kontakten und Gruppen zu erhalten:</string>
     <!-- Step 2 of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications, it indicates the name of the setting that needs to be re-enabled -->
     <string name="GrantFullScreenIntentPermission_bottomsheet_step2">2. %1$s Benachrichtigungen im Vollbildmodus erlauben</string>
+
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, title for dialog -->
+    <string name="MonthlyDonationCanceled__title">Monatliche Spende beendet</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, body for dialog. First placeholder is a payment related error message. Second placeholder is \'learn more\' -->
+    <string name="MonthlyDonationCanceled__message">Your recurring monthly donation was canceled. %1$s\n\nYour badge will no longer be visible on your profile. %2$s</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, learn more used in placeholder for body for dialog. -->
+    <string name="MonthlyDonationCanceled__learn_more">Mehr erfahren</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, primary button to renew subscription with new data -->
+    <string name="MonthlyDonationCanceled__renew_button">Regelmäßige Spende verlängern</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, second button to dismiss the dialog entirely -->
+    <string name="MonthlyDonationCanceled__not_now_button">Jetzt nicht</string>
 
     <!-- EOF -->
 </resources>

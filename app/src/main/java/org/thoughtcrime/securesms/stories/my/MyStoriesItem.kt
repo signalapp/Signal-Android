@@ -51,7 +51,7 @@ object MyStoriesItem {
     override fun areContentsTheSame(newItem: Model): Boolean {
       return distributionStory == newItem.distributionStory &&
         !hasStatusChange(newItem) &&
-        distributionStory.messageRecord.viewedReceiptCount == newItem.distributionStory.messageRecord.viewedReceiptCount &&
+        distributionStory.messageRecord.isViewed == newItem.distributionStory.messageRecord.isViewed &&
         super.areContentsTheSame(newItem)
     }
 

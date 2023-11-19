@@ -67,19 +67,6 @@
         app:layout_constraintTop_toTopOf="@id/message_request_block" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/message_request_gv1_migration"
-        style="@style/Signal.Widget.Button.Medium.Tonal"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="16dp"
-        android:text="@string/MessageRequestBottomView_continue"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <com.google.android.material.button.MaterialButton
         android:id="@+id/message_request_big_delete"
         style="@style/Signal.Widget.Button.Medium.Tonal"
         android:layout_width="0dp"
@@ -109,7 +96,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:barrierDirection="top"
-        app:constraint_referenced_ids="message_request_block,message_request_big_delete,message_request_gv1_migration" />
+        app:constraint_referenced_ids="message_request_block,message_request_big_delete" />
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/message_request_normal_buttons"
@@ -125,14 +112,6 @@
         android:layout_height="0dp"
         android:visibility="gone"
         app:constraint_referenced_ids="message_request_big_delete,message_request_big_unblock"
-        tools:visibility="visible" />
-
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/message_request_gv1_migration_buttons"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:visibility="gone"
-        app:constraint_referenced_ids="message_request_gv1_migration"
         tools:visibility="visible" />
 
     <ProgressBar

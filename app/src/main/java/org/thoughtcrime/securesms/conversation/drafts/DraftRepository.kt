@@ -24,10 +24,10 @@ import org.thoughtcrime.securesms.database.MessageTypes
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.ThreadTable
 import org.thoughtcrime.securesms.database.adjustBodyRanges
-import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.Mention
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyboard.KeyboardUtil
@@ -207,7 +207,7 @@ class DraftRepository(
   private fun loadDraftQuoteInternal(serialized: String): ConversationMessage? {
     val quoteId: QuoteId = QuoteId.deserialize(context, serialized) ?: return null
     val messageRecord: MessageRecord = SignalDatabase.messages.getMessageFor(quoteId.id, quoteId.author)?.let {
-      if (it is MediaMmsMessageRecord) {
+      if (it is MmsMessageRecord) {
         it.withAttachments(SignalDatabase.attachments.getAttachmentsForMessage(it.id))
       } else {
         it

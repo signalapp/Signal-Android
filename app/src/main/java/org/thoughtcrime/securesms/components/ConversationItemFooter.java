@@ -30,9 +30,8 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener;
 import org.thoughtcrime.securesms.conversation.ConversationItemDisplayMode;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
-import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
+import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -318,7 +317,7 @@ public class ConversationItemFooter extends ConstraintLayout {
     } else if (messageRecord.isRateLimited()) {
       dateView.setText(R.string.ConversationItem_send_paused);
     } else if (MessageRecordUtil.isScheduled(messageRecord)) {
-      dateView.setText(DateUtils.getOnlyTimeString(getContext(), locale, ((MediaMmsMessageRecord) messageRecord).getScheduledDate()));
+      dateView.setText(DateUtils.getOnlyTimeString(getContext(), ((MmsMessageRecord) messageRecord).getScheduledDate()));
     } else {
       long timestamp = messageRecord.getTimestamp();
       if (messageRecord.isEditMessage()) {
@@ -417,7 +416,7 @@ public class ConversationItemFooter extends ConstraintLayout {
         deliveryStatusView.setNone();
       } else if (messageRecord.isPending()) {
         deliveryStatusView.setPending();
-      } else if (messageRecord.isRemoteRead()) {
+      } else if (messageRecord.hasReadReceipt()) {
         deliveryStatusView.setRead();
       } else if (messageRecord.isDelivered()) {
         deliveryStatusView.setDelivered();
@@ -434,7 +433,7 @@ public class ConversationItemFooter extends ConstraintLayout {
       if (mmsMessageRecord.getSlideDeck().getAudioSlide() != null) {
         showAudioDurationViews();
 
-        if (messageRecord.getViewedReceiptCount() > 0 || (messageRecord.isOutgoing() && Objects.equals(messageRecord.getToRecipient(), Recipient.self()))) {
+        if (messageRecord.isViewed() || (messageRecord.isOutgoing() && Objects.equals(messageRecord.getToRecipient(), Recipient.self()))) {
           revealDot.setProgress(1f);
         } else {
           revealDot.setProgress(0f);

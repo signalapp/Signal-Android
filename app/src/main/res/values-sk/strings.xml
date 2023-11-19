@@ -411,6 +411,8 @@
 
     <string name="ConversationActivity_error_sending_media">Chyba pri odosielaní médií</string>
 
+    <!-- Message shown when opening an MMS group conversation with SMS disabled and there are no exported messages -->
+    <string name="ConversationActivity__sms_messaging_is_no_longer_supported">Signal už nepodporuje odosielanie SMS správ.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Signal už nepodporuje odosielanie SMS správ. Ak chcete konverzáciu zachovať tu, pozvite používateľa %1$s, aby sa pripojil k Signalu.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
@@ -1077,15 +1079,15 @@
     <!-- Snackbar message after successful deletion of username -->
     <string name="ManageProfileFragment__username_deleted">Používateľské meno bolo odstránené</string>
     <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_title">Delete username?</string>
+    <string name="ManageProfileFragment__delete_username_dialog_title">Odstrániť používateľské meno?</string>
     <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_body">"This will remove your username and disable your QR code and link. %1$s will be available for others to claim. Are you sure?"</string>
+    <string name="ManageProfileFragment__delete_username_dialog_body">"Týmto sa odstráni vaše používateľské meno a zruší sa váš QR kód a odkaz. Používateľské meno „%1$s“ bude k dispozícii pre ďalších používateľov. Naozaj chcete pokračovať?"</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
     <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">Vyskytol sa problém s vaším používateľským menom, už nie je priradené k vášmu účtu. Môžete si ho skúsiť nastaviť znova alebo si vybrať nové.</string>
     <!-- Displayed above the conversation list when a user needs to address an issue with their username link -->
-    <string name="UsernameOutOfSyncReminder__link_corrupt">Something went wrong with your QR code and username link, it’s no longer valid. Create a new link to share with others.</string>
+    <string name="UsernameOutOfSyncReminder__link_corrupt">Vyskytol sa problém s vašim QR kódom a odkazom na používateľské meno, už nie sú platné. Vytvorte nový odkaz a zdieľajte ho s ostatnými.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
     <string name="UsernameOutOfSyncReminder__fix_now">Opraviť teraz</string>
 
@@ -1641,7 +1643,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Chcete povoliť používateľovi %1$s, aby vám poslal správu? Kým ho neodblokujete, nepríjmete od neho žiadne správy.</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Chcete dostávať aktualizácie a novinky od používateľa %1$s? Kým ich neodblokujete, nebudete dostávať žiadne aktualizácie.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Pokračovať v čete v tejto skupine a zdieľať vaše meno a fotku s jej členmi?</string>
-    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Modernizovaním tejto skupiny aktivujete nové funkcie ako @spomenutia a administrátori. Členovia, ktorí nezdieľali svoje meno alebo fotku, budú do tejto skupiny pozvaní.</string>
+    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">This Legacy Group can no longer be used. Create a new group to activate new features like @mentions and admins.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Táto Zastaraná skupina sa nemôže ďalej používať, pretože je príliš veľká. Maximálna veľkosť skupiny je %1$d.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Pokračovať v čete s používateľom %1$s a zdieľať s ním vaše meno a fotku?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Pridať sa do tejto skupiny a zdieľať vaše meno a fotku s jej členmi? Kým s tým nebudete súhlasiť, členovia skupiny nebudú vedieť, že ste ich správy videli.</string>
@@ -4788,6 +4790,13 @@
     <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s nepoužíva Signal</string>
     <!-- Error message shown when we could not get a user from the username link -->
     <string name="NewConversationActivity__">%1$s nepoužíva Signal</string>
+    <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
+    <plurals name="CreateGroupActivity_not_signal_users">
+        <item quantity="one">%1$s is not a Signal user</item>
+        <item quantity="few">%1$s are not Signal users</item>
+        <item quantity="many">%1$s are not Signal users</item>
+        <item quantity="other">%1$s are not Signal users</item>
+    </plurals>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">Vyhľadajte meno, alebo číslo</string>
@@ -4982,11 +4991,11 @@
     <!-- Preference label to launch badge gifting -->
     <string name="ManageDonationsFragment__donate_for_a_friend">Prispejte za priateľa</string>
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
-    <string name="ManageDonationsFragment__couldnt_confirm_donation">Couldn\'t confirm donation</string>
+    <string name="ManageDonationsFragment__couldnt_confirm_donation">Príspevok sa nepodarilo potvrdiť</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">Your %1$s/month donation couldn\'t be confirmed. Check your banking app to approve your iDEAL payment.</string>
+    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">Váš príspevok vo výške %1$s/mesiac sa nepodarilo potvrdiť. Ak chcete schváliť platbu cez iDEAL, skontrolujte svoju bankovú aplikáciu.</string>
     <!-- Dialog message shown when a one-time donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">Your one-time %1$s donation couldn\'t be confirmed. Check your banking app to approve your iDEAL payment.</string>
+    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">Váš jednorazový príspevok vo výške %1$s sa nepodarilo potvrdiť. Ak chcete schváliť platbu cez iDEAL, skontrolujte svoju bankovú aplikáciu.</string>
 
     <string name="Boost__enter_custom_amount">Zadajte vlastnú čiastku</string>
     <!-- Error label when the amount is smaller than what we can accept -->
@@ -5053,16 +5062,16 @@
     <string name="Subscription__contact_support">Kontaktovať zákaznícku podporu</string>
     <string name="Subscription__get_a_s_badge">Získajte odznak %1$s</string>
 
-    <string name="SubscribeFragment__processing_payment">Processing donation…</string>
+    <string name="SubscribeFragment__processing_payment">Spracúva sa príspevok…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
-    <string name="DonationsErrors__error_processing_payment">Error processing donation</string>
+    <string name="DonationsErrors__error_processing_payment">Chyba pri spracovaní príspevku</string>
     <!-- Displayed on manage donations screen as a dialog message when payment method failed -->
     <string name="DonationsErrors__try_another_payment_method">Skúste iný spôsob platby, alebo kontaktujte svoju banku a požiadajte o viac informácií.</string>
     <!-- Displayed on manage donations screen error dialogs as an action label -->
     <string name="DonationsErrors__learn_more">Zistiť viac</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
-    <string name="DonationsErrors__error_processing_payment_s">Error processing donation. %1$s</string>
-    <string name="DonationsErrors__your_payment">Your donation couldn\'t be processed and you have not been charged. Please try again.</string>
+    <string name="DonationsErrors__error_processing_payment_s">Chyba pri spracovaní príspevku. %1$s</string>
+    <string name="DonationsErrors__your_payment">Váš príspevok sa nepodarilo spracovať a neboli vám účtované žiadne poplatky. Skúste to znova.</string>
     <string name="DonationsErrors__still_processing">Stále sa spracováva</string>
     <string name="DonationsErrors__couldnt_add_badge">Odznak sa nepodarilo pridať</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -5072,9 +5081,9 @@
     <!-- Displayed as title when some generic error happens during sending donation on behalf of another user -->
     <string name="DonationsErrors__donation_failed">Prispenie bolo neúspešné</string>
     <!-- Displayed as message when some generic error happens during sending donation on behalf of another user -->
-    <string name="DonationsErrors__your_payment_was_processed_but">Your donation was processed but Signal could not send your donation message. Please contact support.</string>
+    <string name="DonationsErrors__your_payment_was_processed_but">Váš príspevok bol spracovaný ale Signalu sa nepodarilo odoslať správu o prispení. Kontaktujte náš tím podpory.</string>
     <string name="DonationsErrors__your_badge_could_not">Odznak nebolo možné pridať do vášho účtu, možno vám však boli účtované poplatky. Kontaktujte podporu.</string>
-    <string name="DonationsErrors__your_payment_is_still">Your donation is still being processed. This can take a few minutes depending on your connection.</string>
+    <string name="DonationsErrors__your_payment_is_still">Váš príspevok sa stále spracováva. V závislosti od vášho pripojenia to môže trvať niekoľko minút.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Predplatné sa nepodarilo zrušiť</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Zrušenie predplatného vyžaduje internetové pripojenie.</string>
     <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Vaše zariadenie nepodporuje službu Google Pay, nemôžete sa preto prihlásiť na prispievanie a získať odznak. Signal však môžete stále podporiť príspevkom na našej webovej stránke.</string>
@@ -5087,7 +5096,7 @@
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__your_donation_could_not_be_sent">Váš príspevok nebolo možné odoslať z dôvodu chyby siete. Skontrolujte pripojenie a skúste to znovu.</string>
     <!-- Displayed as a dialog message when the user encounters an error during an iDEAL donation -->
-    <string name="DonationsErrors__your_ideal_couldnt_be_processed">Your iDEAL donation couldn\'t be processed. Try another payment method or contact your bank for more information.</string>
+    <string name="DonationsErrors__your_ideal_couldnt_be_processed">Príspevok cez iDEAL sa nepodarilo spracovať. Skúste iný spôsob platby alebo kontaktujte svoju banku a požiadajte o viac informácií.</string>
 
     <!-- Gift message view title -->
     <string name="GiftMessageView__donation_on_behalf_of_s">Príspevok v mene používateľa %1$s</string>
@@ -5132,7 +5141,7 @@
     <!-- Stripe decline code incorrect expiration year -->
     <string name="DeclineCode__the_expiration_year">Rok vypršania platnosti vášho spôsobu platby je nesprávny. Aktualizujte ho v službe Google Pay a skúste to znova.</string>
     <!-- Stripe decline code issuer not available -->
-    <string name="DeclineCode__try_completing_the_payment_again">Try completing the donation again or contact your bank for more information.</string>
+    <string name="DeclineCode__try_completing_the_payment_again">Skúste znova dokončiť odosielanie príspevku alebo kontaktujte svoju banku a požiadajte o ďalšie informácie.</string>
     <!-- Stripe decline code processing error -->
     <string name="DeclineCode__try_again">Skúste to znova, alebo kontaktujte svoju banku a požiadajte o ďalšie informácie.</string>
 
@@ -5156,9 +5165,9 @@
     <!-- Failure code text for insufficient funds, displayed in a dialog or notification -->
     <string name="StripeFailureCode__the_bank_account_provided">Zadaný bankový účet nemá dostatok prostriedkov na dokončenie tohto nákupu, skúste to znova alebo kontaktujte svoju banku a požiadajte o ďalšie informácie.</string>
     <!-- Failure code text for revoked authorization of payment, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__this_payment_was_revoked">This donation was revoked by the account holder and could not be processed. You haven\'t been charged.</string>
+    <string name="StripeFailureCode__this_payment_was_revoked">Tento príspevok bol odvolaný majiteľom účtu a nemohol byť spracovaný. Neboli vám účtované žiadne poplatky.</string>
     <!-- Failure code text for a payment lacking an authorized mandate or incorrect mandate, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">An error occurred while processing this donation, please try again.</string>
+    <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">Pri spracovaní tohto príspevku sa vyskytla chyba, skúste to znova.</string>
     <!-- Failure code text for a closed account, deceased recipient, or one with blocked direct debits, displayed in a dialog or notification -->
     <string name="StripeFailureCode__the_bank_details_provided_could_not_be_processed">Poskytnuté bankové údaje sa nepodarilo spracovať. Kontaktujte svoju banku a požiadajte o ďalšie informácie.</string>
     <!-- Failure code text for a non-existent bank branch, invalid account holder, invalid iban, generic failure, or unknown bank failure, displayed in a dialog or notification -->
@@ -5320,10 +5329,10 @@
     <string name="DonationReceiptListFragment__recurring">Opakujúce sa</string>
     <!-- Donation receipts one-time tab label -->
     <string name="DonationReceiptListFragment__one_time">Raz</string>
+    <!-- Donation receipts gift tab -->
+    <string name="DonationReceiptListFragment__for_a_friend">For a friend</string>
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__donation_for_a_friend">Príspevok za priateľa</string>
-    <!-- Donation receipts boost row label -->
-    <!-- Donation receipts details title -->
     <!-- Donation receipts donation type heading -->
     <string name="DonationReceiptDetailsFragment__donation_type">Typ príspevku</string>
     <!-- Donation receipts date paid heading -->
@@ -6107,11 +6116,11 @@
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
     <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Spracovanie bankového prevodu zvyčajne trvá jeden pracovný deň. Pred odoslanim ďalšieho príspevku počkajte, kým sa platba nedokončí.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Your donation is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before updating your subscription.</string>
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Váš príspevok sa stále spracováva. V závislosti od vášho pripojenia to môže trvať niekoľko minút. Pred aktualizáciou prispievania počkajte, kým sa platba nedokončí.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Your donation is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before making another donation.</string>
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Váš príspevok sa stále spracováva. V závislosti od vášho pripojenia to môže trvať niekoľko minút. Pred odoslaním ďalšieho príspevku počkajte, kým sa platba nedokončí.</string>
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
-    <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">Your iDEAL donation is still processing. Check your banking app to approve your payment before making another donation.</string>
+    <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">Príspevok cez iDEAL sa stále spracováva. Pred odoslaním ďalšieho príspevku skontrolujte svoju bankovú aplikáciu, aby ste schválili platbu.</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
     <string name="DonateToSignal__donation_amount_too_high">Donation amount too high</string>
     <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
@@ -6146,8 +6155,8 @@
     <string name="GatewaySelectorBottomSheet__ideal">iDEAL</string>
 
     <!-- Dialog title for launching external intent -->
-    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Leave Signal to confirm donation?</string>
-    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">When confirmed, return to Signal to finish processing your donation.</string>
+    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Opustiť Signal a potvrdiť príspevok?</string>
+    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">Po potvrdení sa vráťte do aplikácie a dokončite spracovanie svojho príspevku.</string>
 
     <!-- IdealBank -->
     <!-- iDEAL bank name -->
@@ -6185,7 +6194,7 @@
     <!-- Subtitle learn more of screen displaying bank transfer mandate -->
     <string name="BankTransferMandateFragment__learn_more">Zistiť viac</string>
     <!-- Button label to continue with transfer -->
-    <string name="BankTransferMandateFragment__agree">Agree</string>
+    <string name="BankTransferMandateFragment__agree">Súhlasím</string>
     <!-- Button label to read more of the bank mandate that is currently off screen -->
     <string name="BankTransferMandateFragment__read_more">Čítaj viac</string>
     <!-- Text displayed when mandate load fails -->
@@ -6193,7 +6202,7 @@
 
     <!-- BankTransferDetailsFragment -->
     <!-- Subtext explaining how email is used. Placeholder is \'Learn more\' -->
-    <string name="BankTransferDetailsFragment__enter_your_bank_details">Enter your bank details and email. Stripe uses this email to send you updates about your donation. %1$s</string>
+    <string name="BankTransferDetailsFragment__enter_your_bank_details">Zadajte údaje svojej banky a e-mail. Stripe používa tento e-mail na odosielanie aktualizácií o vašom príspevku. %1$s</string>
     <!-- Subtext learn more link text -->
     <string name="BankTransferDetailsFragment__learn_more">Zistiť viac</string>
     <!-- Text field label for name on bank account -->
@@ -6668,6 +6677,13 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">Pri pokuse o resetovanie vášho odkazu sa vyskytla chyba siete. Skúste to znova neskôr.</string>
 
+    <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
+    <string name="UsernameLinkShareBottomSheet_title">Ktokoľvek s týmto odkazom si môže zobraziť vaše používateľské meno a začať s vami čet. Zdieľajte ho iba s ľuďmi, ktorým dôverujete.</string>
+    <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
+    <string name="UsernameLinkShareBottomSheet_copy_link">Skopírovať odkaz</string>
+    <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
+    <string name="UsernameLinkShareBottomSheet_share">Zdieľať</string>
+
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
     <string name="PendingParticipantsView__would_like_to_join">Chce sa pridať…</string>
@@ -6706,6 +6722,17 @@
     <string name="GrantFullScreenIntentPermission_bottomsheet_subtitle">Ak chcete dostávať upozornenia na hovory od vašich kontaktov a skupín:</string>
     <!-- Step 2 of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications, it indicates the name of the setting that needs to be re-enabled -->
     <string name="GrantFullScreenIntentPermission_bottomsheet_step2">2. %1$s Povoľte upozornenia na celú obrazovku</string>
+
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, title for dialog -->
+    <string name="MonthlyDonationCanceled__title">Mesačný príspevok bol zrušený</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, body for dialog. First placeholder is a payment related error message. Second placeholder is \'learn more\' -->
+    <string name="MonthlyDonationCanceled__message">Your recurring monthly donation was canceled. %1$s\n\nYour badge will no longer be visible on your profile. %2$s</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, learn more used in placeholder for body for dialog. -->
+    <string name="MonthlyDonationCanceled__learn_more">Zistiť viac</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, primary button to renew subscription with new data -->
+    <string name="MonthlyDonationCanceled__renew_button">Obnoviť predplatné</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, second button to dismiss the dialog entirely -->
+    <string name="MonthlyDonationCanceled__not_now_button">Teraz nie</string>
 
     <!-- EOF -->
 </resources>

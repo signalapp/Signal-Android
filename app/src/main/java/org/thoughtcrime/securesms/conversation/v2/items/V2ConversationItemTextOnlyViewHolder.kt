@@ -36,8 +36,8 @@ import org.thoughtcrime.securesms.conversation.mutiselect.Multiselect
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
 import org.thoughtcrime.securesms.conversation.mutiselect.Multiselectable
 import org.thoughtcrime.securesms.conversation.v2.data.ConversationMessageElement
-import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -642,7 +642,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
       binding.footerDate.text = conversationMessage.computedProperties.formattedDate.value
     } else {
       var date = dateString
-      if (conversationContext.displayMode != ConversationItemDisplayMode.Detailed && record is MediaMmsMessageRecord && record.isEditMessage()) {
+      if (conversationContext.displayMode != ConversationItemDisplayMode.Detailed && record is MmsMessageRecord && record.isEditMessage()) {
         date = getContext().getString(R.string.ConversationItem_edited_timestamp_footer, date)
 
         binding.footerDate.setOnClickListener {
@@ -700,7 +700,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
 
     when {
       record.isPending -> deliveryStatus.setPending()
-      record.isRemoteRead -> deliveryStatus.setRead()
+      record.hasReadReceipt() -> deliveryStatus.setRead()
       record.isDelivered -> deliveryStatus.setDelivered()
       else -> deliveryStatus.setSent()
     }

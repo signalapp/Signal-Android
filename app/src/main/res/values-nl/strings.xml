@@ -405,6 +405,8 @@
 
     <string name="ConversationActivity_error_sending_media">Fout bij het verzenden van media</string>
 
+    <!-- Message shown when opening an MMS group conversation with SMS disabled and there are no exported messages -->
+    <string name="ConversationActivity__sms_messaging_is_no_longer_supported">Sms-berichten worden niet langer ondersteund in Signal.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Sms-berichten worden niet langer ondersteund in Signal. Nodig %1$s uit voor Signal om het gesprek hier te houden.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
@@ -629,7 +631,7 @@
     <string name="BackupsPreferenceFragment__last_backup">Meest recente back-upbestand: %1$s</string>
     <string name="BackupsPreferenceFragment__backup_folder">Back-uplocatie</string>
     <!-- Title for a preference item allowing the user to selected the hour of the day when their chats are backed up. -->
-    <string name="BackupsPreferenceFragment__backup_time">Tijd voor back-up</string>
+    <string name="BackupsPreferenceFragment__backup_time">Back-uptijd</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">Back-upwachtwoord verifiëren</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Test je back-upwachtwoord om na te gaan of je het juiste wachtwoord hebt onthouden</string>
     <string name="BackupsPreferenceFragment__turn_on">Inschakelen</string>
@@ -1009,17 +1011,17 @@
     <!-- Snackbar message after successful deletion of username -->
     <string name="ManageProfileFragment__username_deleted">Gebruikersnaam verwijderd</string>
     <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_title">Delete username?</string>
+    <string name="ManageProfileFragment__delete_username_dialog_title">Gebruikersnaam verwijderen?</string>
     <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_body">"This will remove your username and disable your QR code and link. %1$s will be available for others to claim. Are you sure?"</string>
+    <string name="ManageProfileFragment__delete_username_dialog_body">"Hiermee wordt je gebruikersnaam verwijderd en worden je QR-code en link uitgeschakeld. %1$s kan hierna door anderen worden geclaimd. Weet je het zeker?"</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
-    <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">Er is iets misgegaan met je gebruikersnaam, deze is niet meer aan je account toegewezen. Je kunt het opnieuw proberen in te stellen of een nieuwe kiezen.</string>
+    <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">Er is iets misgegaan met je gebruikersnaam, deze is niet meer aan je account toegewezen. Je kunt je gebruikersnaam opnieuw proberen in te stellen of een nieuwe kiezen.</string>
     <!-- Displayed above the conversation list when a user needs to address an issue with their username link -->
-    <string name="UsernameOutOfSyncReminder__link_corrupt">Something went wrong with your QR code and username link, it’s no longer valid. Create a new link to share with others.</string>
+    <string name="UsernameOutOfSyncReminder__link_corrupt">Er is iets misgegaan met je QR-code en gebruikersnaamlink, deze zijn niet langer geldig. Maak een nieuwe link om met anderen te delen.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
-    <string name="UsernameOutOfSyncReminder__fix_now">Nu regelen</string>
+    <string name="UsernameOutOfSyncReminder__fix_now">Nu oplossen</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1217,7 +1219,7 @@
     <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Signal vraagt je af en toe om je pincode te bevestigen, zodat je je pincode goed onthoudt.</string>
     <string name="Megaphones_verify_pin">Pincode bevestigen</string>
     <string name="Megaphones_get_started">Maak een begin</string>
-    <string name="Megaphones_new_group">Nieuwe-stijl groep</string>
+    <string name="Megaphones_new_group">Nieuwe groep</string>
     <string name="Megaphones_invite_friends">Vrienden uitnodigen</string>
     <string name="Megaphones_chat_colors">Chatkleur</string>
     <string name="Megaphones_add_a_profile_photo">Voeg een profielfoto toe</string>
@@ -1533,7 +1535,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Wil je berichten van %1$s ontvangen? Totdat je diegene hebt gedeblokkeerd, zul je geen berichten ontvangen.</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Wil je updates en nieuws van %1$s ontvangen? Je zult geen berichten ontvangen totdat je diegene hebt gedeblokkeerd.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Wil je je profielnaam, -foto en -omschrijving voor deze groep zichtbaar maken om je chat met de groep voort te kunnen zetten?</string>
-    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Zet deze groep om om nieuwe functionaliteiten te kunnen gebruiken zoals @vermeldingen en beheerders. Groepsleden die hun profielnaam, -foto en -omschrijving niet voor deze groep zichtbaar hebben gemaakt, zullen worden uitgenodigd om tot deze groep toe te treden.</string>
+    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">This Legacy Group can no longer be used. Create a new group to activate new features like @mentions and admins.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Deze verouderde groep kan niet langer gebruikt worden omdat hij teveel leden heeft. Het maximum ledenaantal voor een groep is %1$d.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Doorgaan met deze chat met %1$s en je naam en foto met hen delen?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Wil je lid worden van deze groep, en sta je toe dat alle leden van de groep je profielnaam, -foto en -omschrijving kunnen zien? Als je leesbevestigingen hebt ingeschakeld kunnen de leden van deze groep die nog niet zien totdat je de uitnodiging hebt aanvaard.</string>
@@ -2096,7 +2098,7 @@
     <!-- Displayed in the notification when the user has opened a received gift -->
     <string name="ThreadRecord__you_redeemed_a_badge">Je hebt een badge ingewisseld</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
-    <string name="ThreadRecord__reacted_s_to_your_story">Heeft %1$s op je verhaal gereageerd</string>
+    <string name="ThreadRecord__reacted_s_to_your_story">Heeft met %1$s op je verhaal gereageerd</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
     <string name="ThreadRecord__reacted_s_to_their_story">Reageerde met %1$s op een verhaal</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
@@ -2287,7 +2289,7 @@
     <string name="NotificationChannel_failures">Mislukkingen</string>
     <string name="NotificationChannel_backups">Back-ups</string>
     <string name="NotificationChannel_locked_status">Vergrendelingstoestand</string>
-    <string name="NotificationChannel_app_updates">Nieuwe versies van de app</string>
+    <string name="NotificationChannel_app_updates">App-updates</string>
     <string name="NotificationChannel_other">Anders</string>
     <string name="NotificationChannel_group_chats">Chats</string>
     <string name="NotificationChannel_missing_display_name">Onbekend</string>
@@ -3024,7 +3026,7 @@
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">Betalingen</string>
     <string name="preferences_chats__chats">Chats</string>
-    <string name="preferences_app_updates__title">Nieuwe versies van de app</string>
+    <string name="preferences_app_updates__title">App-updates</string>
     <string name="preferences_data_and_storage__manage_storage">Opslag beheren</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">Minder data gebruiken bij oproepen</string>
     <string name="preferences_data_and_storage__never">Nooit</string>
@@ -3387,7 +3389,7 @@
     <!-- conversation_list_fragment -->
     <string name="conversation_list_fragment__fab_content_description">Nieuwe chat</string>
     <string name="conversation_list_fragment__open_camera_description">Camera openen</string>
-    <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Nog geen chats.\nBegin door een vriend of kennis een bericht te zenden.</string>
+    <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Nog geen chats.\nBegin door een vriend of vriendin een bericht te sturen.</string>
 
 
     <!-- conversation_secure_verified -->
@@ -4007,7 +4009,7 @@
     <string name="ChatWallpaperFragment__reset_chat_colors">Chatkleuren verwijderen</string>
     <string name="ChatWallpaperFragment__reset_chat_color">Chatkleur verwijderen</string>
     <string name="ChatWallpaperFragment__reset_chat_color_question">Chatkleur verwijderen?</string>
-    <string name="ChatWallpaperFragment__set_wallpaper">Gespreksachtergrond kiezen</string>
+    <string name="ChatWallpaperFragment__set_wallpaper">Chatachtergrond kiezen</string>
     <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Achtergrond dimmen bij donkere modus</string>
     <string name="ChatWallpaperFragment__contact_name">Naam van contactpersoon</string>
     <string name="ChatWallpaperFragment__reset">Voor dit gesprek verwijderen</string>
@@ -4028,7 +4030,7 @@
 
     <!-- ChatWallpaperPreviewActivity -->
     <string name="ChatWallpaperPreviewActivity__preview">Voorbeeld</string>
-    <string name="ChatWallpaperPreviewActivity__set_wallpaper">Gespreksachtergrond kiezen</string>
+    <string name="ChatWallpaperPreviewActivity__set_wallpaper">Chatachtergrond kiezen</string>
     <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Veeg om meer achtergronden weer te geven.</string>
     <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Achtergrond instellen voor alle chats</string>
     <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Deze standaard achtergrond instellen voor %1$s.</string>
@@ -4039,7 +4041,7 @@
     <!-- WallpaperCropActivity -->
     <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Knijp met twee vingers om te vergroten of te draaien, sleep met één vinger om te verschuiven.</string>
     <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Achtergrond instellen voor alle chats.</string>
-    <string name="WallpaperCropActivity__set_wallpaper_for_s">Deze zelf gemaakte achtergrond instellen voor %1$s.</string>
+    <string name="WallpaperCropActivity__set_wallpaper_for_s">Achtergrond instellen voor %1$s.</string>
     <string name="WallpaperCropActivity__error_setting_wallpaper">Het instellen van een achtergrond is mislukt.</string>
     <string name="WallpaperCropActivity__blur_photo">Afbeelding vervagen</string>
 
@@ -4497,7 +4499,7 @@
     <string name="ConversationSettingsFragment__disappearing_messages">Verdwijnende berichten</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">Geluiden &amp; meldingen</string>
   <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
-    <string name="ConversationSettingsFragment__contact_details">In systeemcontactenlijst weergeven</string>
+    <string name="ConversationSettingsFragment__contact_details">Contactdetails</string>
     <string name="ConversationSettingsFragment__view_safety_number">Veiligheidsnummer weergeven</string>
     <string name="ConversationSettingsFragment__block">Blokkeren</string>
     <string name="ConversationSettingsFragment__block_group">Groep blokkeren</string>
@@ -4578,6 +4580,11 @@
     <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s is geen Signal-gebruiker</string>
     <!-- Error message shown when we could not get a user from the username link -->
     <string name="NewConversationActivity__">%1$s is geen Signal-gebruiker</string>
+    <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
+    <plurals name="CreateGroupActivity_not_signal_users">
+        <item quantity="one">%1$s is not a Signal user</item>
+        <item quantity="other">%1$s are not Signal users</item>
+    </plurals>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">Zoek op naam of telefoonnummer</string>
@@ -4764,11 +4771,11 @@
     <!-- Preference label to launch badge gifting -->
     <string name="ManageDonationsFragment__donate_for_a_friend">Doneer voor een vriend(in)</string>
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
-    <string name="ManageDonationsFragment__couldnt_confirm_donation">Couldn\'t confirm donation</string>
+    <string name="ManageDonationsFragment__couldnt_confirm_donation">Kan donatie niet bevestigen</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">Your %1$s/month donation couldn\'t be confirmed. Check your banking app to approve your iDEAL payment.</string>
+    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">Je donatie van %1$s/maand kan niet worden bevestigd. Ga naar je bankapp om je betaling via iDEAL goed te keuren.</string>
     <!-- Dialog message shown when a one-time donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">Your one-time %1$s donation couldn\'t be confirmed. Check your banking app to approve your iDEAL payment.</string>
+    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">Je eenmalige donatie %1$s kan niet worden bevestigd. Ga naar je bankapp om je betaling via iDEAL goed te keuren.</string>
 
     <string name="Boost__enter_custom_amount">Een zelfgekozen bedrag invullen</string>
     <!-- Error label when the amount is smaller than what we can accept -->
@@ -4808,7 +4815,7 @@
     <!-- Title of expiry sheet when boost badge falls off profile unexpectedly. -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Je Boost-badge is verlopen</string>
     <!-- Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Je maandelijkse donatie is geannuleerd</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Maandelijkse donatie stopgezet</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Je Boost-badge is verlopen en is daarom niet langer zichtbaar op je profiel</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Je kunt je Boost-badge opnieuw voor 30 dagen activeren met een nieuwe eenmalige donatie.</string>
@@ -4822,7 +4829,7 @@
     <!-- Copy displayed when badge expires after payment failure -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Je maandelijkse donaties zijn stopgezet omdat Signal je betaling niet kon verwerken. Je badge is niet langer op je profiel zichtbaar.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Je terugkerende maandelijkse donatie is geannuleerd. %1$s Je %2$s badge is niet langer zichtbaar op je profiel.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Je terugkerende maandelijkse donatie is stopgezet. %1$s Je %2$s badge is niet langer zichtbaar op je profiel.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Je kunt Signal gewoon blijven gebruiken, maar als je Signal wilt ondersteunen en je badge weer wilt weergeven dan moet je je donaties vernieuwen.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Maandelijkse donaties vernieuwen</string>
     <!-- Button label to send user to Google Pay website -->
@@ -4835,16 +4842,16 @@
     <string name="Subscription__contact_support">Neem contact op</string>
     <string name="Subscription__get_a_s_badge">Ontvang een ‘%1$s’-badge</string>
 
-    <string name="SubscribeFragment__processing_payment">Processing donation…</string>
+    <string name="SubscribeFragment__processing_payment">Donatie aan het verwerken…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
-    <string name="DonationsErrors__error_processing_payment">Error processing donation</string>
+    <string name="DonationsErrors__error_processing_payment">Fout bij het verwerken van donatie</string>
     <!-- Displayed on manage donations screen as a dialog message when payment method failed -->
     <string name="DonationsErrors__try_another_payment_method">Probeer het via een andere betalingsmethode of neem contact op met je bank om hen om meer informatie te vragen.</string>
     <!-- Displayed on manage donations screen error dialogs as an action label -->
     <string name="DonationsErrors__learn_more">Meer lezen</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
-    <string name="DonationsErrors__error_processing_payment_s">Error processing donation. %1$s</string>
-    <string name="DonationsErrors__your_payment">Your donation couldn\'t be processed and you have not been charged. Please try again.</string>
+    <string name="DonationsErrors__error_processing_payment_s">Fout bij het verwerken van donatie. %1$s</string>
+    <string name="DonationsErrors__your_payment">Je donatie kon niet worden verwerkt, er is geen geld afgeschreven. Probeer het opnieuw.</string>
     <string name="DonationsErrors__still_processing">Wordt nog verwerkt</string>
     <string name="DonationsErrors__couldnt_add_badge">Kan badge niet toevoegen</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -4854,9 +4861,9 @@
     <!-- Displayed as title when some generic error happens during sending donation on behalf of another user -->
     <string name="DonationsErrors__donation_failed">Doneren is mislukt</string>
     <!-- Displayed as message when some generic error happens during sending donation on behalf of another user -->
-    <string name="DonationsErrors__your_payment_was_processed_but">Your donation was processed but Signal could not send your donation message. Please contact support.</string>
+    <string name="DonationsErrors__your_payment_was_processed_but">Je betaling is verwerkt, maar Signal kan je donatiebericht niet versturen. Neem contact op met support.</string>
     <string name="DonationsErrors__your_badge_could_not">Het is niet gelukt om de badge toe te voegen aan je profiel, maar je hebt misschien al wel betaald. Neem contact op met support.</string>
-    <string name="DonationsErrors__your_payment_is_still">Your donation is still being processed. This can take a few minutes depending on your connection.</string>
+    <string name="DonationsErrors__your_payment_is_still">Je donatie wordt nog verwerkt. Dit kan een paar minuten duren afhankelijk van je internetverbinding.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Het annuleren van je maandelijkse donaties is mislukt</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Om je maandelijkse donaties te annuleren moet je toegang hebben tot internet.</string>
     <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Je apparaat biedt geen ondersteuning voor Google Pay, daarom kun je via de app geen maandelijkse donaties maken en kun je geen badge verdienen. Je kunt nog wel doneren via Signals website.</string>
@@ -4869,7 +4876,7 @@
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__your_donation_could_not_be_sent">Je donatie kon niet worden verstuurd vanwege een netwerkfout. Ga na dat je apparaat met het internet is verbonden en probeer het opnieuw.</string>
     <!-- Displayed as a dialog message when the user encounters an error during an iDEAL donation -->
-    <string name="DonationsErrors__your_ideal_couldnt_be_processed">Your iDEAL donation couldn\'t be processed. Try another payment method or contact your bank for more information.</string>
+    <string name="DonationsErrors__your_ideal_couldnt_be_processed">Je donatie met iDEAL kan niet worden verwerkt. Probeer het via een andere betalingsmethode of neem contact op met je bank voor meer informatie.</string>
 
     <!-- Gift message view title -->
     <string name="GiftMessageView__donation_on_behalf_of_s">Donatie namens %1$s</string>
@@ -4914,7 +4921,7 @@
     <!-- Stripe decline code incorrect expiration year -->
     <string name="DeclineCode__the_expiration_year">Het jaar waarop je betalingsmethode verloopt is onjuist. Werk eerst je betalingsinformatie bij in Google Pay en probeer het vervolgens opnieuw.</string>
     <!-- Stripe decline code issuer not available -->
-    <string name="DeclineCode__try_completing_the_payment_again">Try completing the donation again or contact your bank for more information.</string>
+    <string name="DeclineCode__try_completing_the_payment_again">Probeer opnieuw de betaling te voltooien of neem contact op met je bank voor meer informatie.</string>
     <!-- Stripe decline code processing error -->
     <string name="DeclineCode__try_again">Probeer het opnieuw of neem contact op met je bank om hen om meer informatie te vragen.</string>
 
@@ -4938,9 +4945,9 @@
     <!-- Failure code text for insufficient funds, displayed in a dialog or notification -->
     <string name="StripeFailureCode__the_bank_account_provided">Er is onvoldoende saldo op de opgegeven bankrekening om deze betaling te voltooien. Probeer het opnieuw of neem contact op met je bank voor meer informatie.</string>
     <!-- Failure code text for revoked authorization of payment, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__this_payment_was_revoked">This donation was revoked by the account holder and could not be processed. You haven\'t been charged.</string>
+    <string name="StripeFailureCode__this_payment_was_revoked">Deze betaling is door de rekeninghouder ingetrokken en kon niet worden verwerkt. Er is geen geld afgeschreven.</string>
     <!-- Failure code text for a payment lacking an authorized mandate or incorrect mandate, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">An error occurred while processing this donation, please try again.</string>
+    <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">Er is een fout opgetreden bij het verwerken van deze donatie. Probeer het opnieuw.</string>
     <!-- Failure code text for a closed account, deceased recipient, or one with blocked direct debits, displayed in a dialog or notification -->
     <string name="StripeFailureCode__the_bank_details_provided_could_not_be_processed">De opgegeven bankgegevens konden niet worden verwerkt. Neem voor meer informatie contact op met je bank.</string>
     <!-- Failure code text for a non-existent bank branch, invalid account holder, invalid iban, generic failure, or unknown bank failure, displayed in a dialog or notification -->
@@ -5102,10 +5109,10 @@
     <string name="DonationReceiptListFragment__recurring">Maandelijks</string>
     <!-- Donation receipts one-time tab label -->
     <string name="DonationReceiptListFragment__one_time">Eenmalig</string>
+    <!-- Donation receipts gift tab -->
+    <string name="DonationReceiptListFragment__for_a_friend">For a friend</string>
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__donation_for_a_friend">Donatie voor een vriend(in)</string>
-    <!-- Donation receipts boost row label -->
-    <!-- Donation receipts details title -->
     <!-- Donation receipts donation type heading -->
     <string name="DonationReceiptDetailsFragment__donation_type">Donatietype</string>
     <!-- Donation receipts date paid heading -->
@@ -5847,11 +5854,11 @@
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
     <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">De verwerking van een bankoverschrijving duurt doorgaans 1 werkdag. Wacht tot deze betaling is voltooid voordat je nog een donatie doet.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Your donation is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before updating your subscription.</string>
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Je donatie is nog in behandeling. Dit kan een paar minuten duren afhankelijk van je internetverbinding. Wacht tot deze betaling is voltooid voordat je je maandelijkse donaties bijwerkt.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Your donation is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before making another donation.</string>
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Je donatie wordt nog verwerkt. Dit kan een paar minuten duren afhankelijk van je internetverbinding. Wacht tot deze betaling is voltooid voordat je nog een donatie doet.</string>
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
-    <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">Your iDEAL donation is still processing. Check your banking app to approve your payment before making another donation.</string>
+    <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">Je donatie via iDEAL is nog in behandeling. Ga naar je bankapp om je betaling goed te keuren voordat je opnieuw een donatie doet.</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
     <string name="DonateToSignal__donation_amount_too_high">Donation amount too high</string>
     <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
@@ -5884,8 +5891,8 @@
     <string name="GatewaySelectorBottomSheet__ideal">iDEAL</string>
 
     <!-- Dialog title for launching external intent -->
-    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Leave Signal to confirm donation?</string>
-    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">When confirmed, return to Signal to finish processing your donation.</string>
+    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Signal verlaten om je donatie te bevestigen?</string>
+    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">Wanneer je betaling is bevestigd, ga terug naar Signal om de verwerking van je donatie te voltooien.</string>
 
     <!-- IdealBank -->
     <!-- iDEAL bank name -->
@@ -5923,7 +5930,7 @@
     <!-- Subtitle learn more of screen displaying bank transfer mandate -->
     <string name="BankTransferMandateFragment__learn_more">Meer informatie</string>
     <!-- Button label to continue with transfer -->
-    <string name="BankTransferMandateFragment__agree">Agree</string>
+    <string name="BankTransferMandateFragment__agree">Akkoord</string>
     <!-- Button label to read more of the bank mandate that is currently off screen -->
     <string name="BankTransferMandateFragment__read_more">Meer lezen</string>
     <!-- Text displayed when mandate load fails -->
@@ -5931,7 +5938,7 @@
 
     <!-- BankTransferDetailsFragment -->
     <!-- Subtext explaining how email is used. Placeholder is \'Learn more\' -->
-    <string name="BankTransferDetailsFragment__enter_your_bank_details">Enter your bank details and email. Stripe uses this email to send you updates about your donation. %1$s</string>
+    <string name="BankTransferDetailsFragment__enter_your_bank_details">Vul je bankgegevens en e-mailadres in. Stripe gebruikt je e-mailadres om je op de hoogte te houden over je donatie. %1$s</string>
     <!-- Subtext learn more link text -->
     <string name="BankTransferDetailsFragment__learn_more">Meer informatie</string>
     <!-- Text field label for name on bank account -->
@@ -5941,7 +5948,7 @@
     <!-- Text field label for email -->
     <string name="BankTransferDetailsFragment__email">E-mail</string>
     <!-- Text label for button to show user how to find their IBAN -->
-    <string name="BankTransferDetailsFragment__find_account_info">Vind je rekeninginformatie</string>
+    <string name="BankTransferDetailsFragment__find_account_info">Rekeninginformatie vinden</string>
     <!-- Donate button label for monthly subscription -->
     <string name="BankTransferDetailsFragment__donate_s_month">%1$s per maand doneren</string>
     <!-- Donate button label for one-time -->
@@ -5974,7 +5981,7 @@
     <string name="IdealTransferDetailsBankSelectionDialogFragment__choose_your_bank">Kies je bank</string>
 
     <!-- Title of bottom sheet for finding account information -->
-    <string name="FindAccountInfoSheet__find_your_account_information">Vind je rekeninginformatie</string>
+    <string name="FindAccountInfoSheet__find_your_account_information">Je rekeninginformatie vinden</string>
     <!-- Body of bottom sheet for finding account information -->
     <string name="FindAccountInfoSheet__look_for_your_iban_at">Je IBAN-nummer vind je bovenaan je bankafschrift. IBAN-nummers bevatten maximaal 34 tekens. De naam die je invoert, moet overeenkomen met de volledige naam op je bankrekening. Neem contact op met je bank voor meer informatie.</string>
 
@@ -6398,6 +6405,13 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">Er is een netwerkfout opgetreden tijdens het herstellen van je link. Probeer het later opnieuw.</string>
 
+    <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
+    <string name="UsernameLinkShareBottomSheet_title">Iedereen met deze link kan jouw gebruikersnaam zien en een chat met je starten. Deel deze alleen met mensen die je vertrouwt.</string>
+    <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
+    <string name="UsernameLinkShareBottomSheet_copy_link">Link kopiëren</string>
+    <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
+    <string name="UsernameLinkShareBottomSheet_share">Naar gesprekken delen</string>
+
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
     <string name="PendingParticipantsView__would_like_to_join">Wil graag meedoen…</string>
@@ -6432,6 +6446,17 @@
     <string name="GrantFullScreenIntentPermission_bottomsheet_subtitle">Om oproepmeldingen te ontvangen van je contacten en groepen:</string>
     <!-- Step 2 of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications, it indicates the name of the setting that needs to be re-enabled -->
     <string name="GrantFullScreenIntentPermission_bottomsheet_step2">2. %1$s Sta meldingen op volledig scherm toe</string>
+
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, title for dialog -->
+    <string name="MonthlyDonationCanceled__title">Maandelijkse donatie stopgezet</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, body for dialog. First placeholder is a payment related error message. Second placeholder is \'learn more\' -->
+    <string name="MonthlyDonationCanceled__message">Your recurring monthly donation was canceled. %1$s\n\nYour badge will no longer be visible on your profile. %2$s</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, learn more used in placeholder for body for dialog. -->
+    <string name="MonthlyDonationCanceled__learn_more">Meer lezen</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, primary button to renew subscription with new data -->
+    <string name="MonthlyDonationCanceled__renew_button">Maandelijkse donaties vernieuwen</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, second button to dismiss the dialog entirely -->
+    <string name="MonthlyDonationCanceled__not_now_button">Niet nu</string>
 
     <!-- EOF -->
 </resources>

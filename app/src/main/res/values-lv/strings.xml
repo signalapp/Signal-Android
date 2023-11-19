@@ -408,6 +408,8 @@
 
     <string name="ConversationActivity_error_sending_media">Neizdevās nosūtīt multivides failu</string>
 
+    <!-- Message shown when opening an MMS group conversation with SMS disabled and there are no exported messages -->
+    <string name="ConversationActivity__sms_messaging_is_no_longer_supported">Signal vairs netiek atbalstīta SMS ziņu sūtīšana.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Signal vairs netiek atbalstīta SMS ziņu sūtīšana. Uzaiciniet lietotāju %1$s izmantot Signal, lai turpinātu sarunu šeit.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
@@ -1043,15 +1045,15 @@
     <!-- Snackbar message after successful deletion of username -->
     <string name="ManageProfileFragment__username_deleted">Lietotājvārds izdzēsts</string>
     <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_title">Delete username?</string>
+    <string name="ManageProfileFragment__delete_username_dialog_title">Vai dzēst lietotāja vārdu?</string>
     <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_body">"This will remove your username and disable your QR code and link. %1$s will be available for others to claim. Are you sure?"</string>
+    <string name="ManageProfileFragment__delete_username_dialog_body">"Tādējādi tiks dzēsts jūsu lietotāja vārds, un jūsu QR kods un saite vairs nedarbosies. Lietotājvārds \"%1$s\" būs pieejams citiem lietotājiem. Vai tiešām vēlaties dzēst?"</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
     <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">Radās problēma ar jūsu lietotāja vārdu, tas vairs nav piešķirts jūsu kontam. Varat mēģināt iestatīt to vēlreiz vai izvēlēties jaunu.</string>
     <!-- Displayed above the conversation list when a user needs to address an issue with their username link -->
-    <string name="UsernameOutOfSyncReminder__link_corrupt">Something went wrong with your QR code and username link, it’s no longer valid. Create a new link to share with others.</string>
+    <string name="UsernameOutOfSyncReminder__link_corrupt">Radās problēma saistībā ar jūsu QR kodu un lietotāja vārda saiti. Tā vairs nav derīga. Izveidojiet jaunu saiti, lai kopīgotu to ar citiem.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
     <string name="UsernameOutOfSyncReminder__fix_now">Labot</string>
 
@@ -1587,7 +1589,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Vai atļaut lietotājam %1$s ar jums sazināties? Jūs nesaņemsiet ziņas līdz viņu neatbloķēsiet.</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Vai saņemt jaunumus un ziņas no lietotāja %1$s? Jūs nesaņemsiet ziņas līdz viņu neatbloķēsiet.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Vai turpināt tērzēšanu ar šo grupu un rādīt savu vārdu un fotoattēlu šīs grupas dalībniekiem?</string>
-    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Jauniniet šo grupu, lai aktivizētu jaunas funkcijas, piemēram, @pieminējumi un administratori. Dalībnieki, kuri šajā grupā nav kopīgojuši savu vārdu vai fotoattēlu, tiks uzaicināti pievienoties.</string>
+    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">This Legacy Group can no longer be used. Create a new group to activate new features like @mentions and admins.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Šo vecā tipa grupu vairs nevar izmantot, jo tā ir pārāk liela. Maksimālais grupas lielums ir %1$d.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Vai turpināt sarunu ar lietotāju %1$s un rādīt savu vārdu un fotoattēlu?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Vai pievienoties šai grupai un kopīgot jūsu vārdu un fotoattēlu? Grupas dalībnieki nezinās, vai jūs izlasījāt ziņas, kamēr neapstiprināsiet uzaicinājumu.</string>
@@ -4683,6 +4685,12 @@
     <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s nav Signal lietotājs</string>
     <!-- Error message shown when we could not get a user from the username link -->
     <string name="NewConversationActivity__">%1$s nav Signal lietotājs</string>
+    <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
+    <plurals name="CreateGroupActivity_not_signal_users">
+        <item quantity="zero">%1$s are not Signal users</item>
+        <item quantity="one">%1$s is not a Signal user</item>
+        <item quantity="other">%1$s are not Signal users</item>
+    </plurals>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">Meklēt vārdu vai numuru</string>
@@ -4873,11 +4881,11 @@
     <!-- Preference label to launch badge gifting -->
     <string name="ManageDonationsFragment__donate_for_a_friend">Ziedot drauga vārdā</string>
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
-    <string name="ManageDonationsFragment__couldnt_confirm_donation">Couldn\'t confirm donation</string>
+    <string name="ManageDonationsFragment__couldnt_confirm_donation">Ziedojumu nevarēja apstiprināt</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">Your %1$s/month donation couldn\'t be confirmed. Check your banking app to approve your iDEAL payment.</string>
+    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">Jūsu ziedojumu (%1$s mēnesī) nevarēja apstiprināt. Apstipriniet maksājumu platformai iDEAL savā bankas lietotnē.</string>
     <!-- Dialog message shown when a one-time donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">Your one-time %1$s donation couldn\'t be confirmed. Check your banking app to approve your iDEAL payment.</string>
+    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">Jūsu vienreizējo ziedojumu %1$s apmērā nevarēja apstiprināt. Apstipriniet maksājumu platformai iDEAL savā bankas lietotnē.</string>
 
     <string name="Boost__enter_custom_amount">Ievadīt pielāgotu summu</string>
     <!-- Error label when the amount is smaller than what we can accept -->
@@ -4944,16 +4952,16 @@
     <string name="Subscription__contact_support">Sazināties ar atbalstu</string>
     <string name="Subscription__get_a_s_badge">Iegūstiet %1$s nozīmīti</string>
 
-    <string name="SubscribeFragment__processing_payment">Processing donation…</string>
+    <string name="SubscribeFragment__processing_payment">Notiek ziedojuma apstrāde…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
-    <string name="DonationsErrors__error_processing_payment">Error processing donation</string>
+    <string name="DonationsErrors__error_processing_payment">Ziedojuma apstrādes kļūda</string>
     <!-- Displayed on manage donations screen as a dialog message when payment method failed -->
     <string name="DonationsErrors__try_another_payment_method">Mēģiniet citu maksājuma veidu vai sazinieties ar savu banku, lai iegūtu vairāk informācijas.</string>
     <!-- Displayed on manage donations screen error dialogs as an action label -->
     <string name="DonationsErrors__learn_more">Uzzināt vairāk</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
-    <string name="DonationsErrors__error_processing_payment_s">Error processing donation. %1$s</string>
-    <string name="DonationsErrors__your_payment">Your donation couldn\'t be processed and you have not been charged. Please try again.</string>
+    <string name="DonationsErrors__error_processing_payment_s">Ziedojuma apstrādes kļūda. %1$s</string>
+    <string name="DonationsErrors__your_payment">Jūsu ziedojumu nevarēja apstrādāt, un maksa no jums netika iekasēta. Lūdzu, mēģiniet vēlreiz.</string>
     <string name="DonationsErrors__still_processing">Vēl apstrādā</string>
     <string name="DonationsErrors__couldnt_add_badge">Nevarēja pievienot nozīmīti</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -4963,9 +4971,9 @@
     <!-- Displayed as title when some generic error happens during sending donation on behalf of another user -->
     <string name="DonationsErrors__donation_failed">Ziedošana neizdevās</string>
     <!-- Displayed as message when some generic error happens during sending donation on behalf of another user -->
-    <string name="DonationsErrors__your_payment_was_processed_but">Your donation was processed but Signal could not send your donation message. Please contact support.</string>
+    <string name="DonationsErrors__your_payment_was_processed_but">Jūsu ziedojums tika apstrādāts, taču Signal nevarēja nosūtīt ziņu par ziedojumu. Lūdzu, sazinieties ar atbalsta dienestu.</string>
     <string name="DonationsErrors__your_badge_could_not">Jūsu nozīmīti nevarēja pievienot jūsu kontam, tomēr iespējams, ka no jums tika iekasēta maksa. Lūdzu, sazinieties ar tehnisko atbalstu.</string>
-    <string name="DonationsErrors__your_payment_is_still">Your donation is still being processed. This can take a few minutes depending on your connection.</string>
+    <string name="DonationsErrors__your_payment_is_still">Jūsu ziedojums joprojām tiek apstrādāts. Apstrāde var ilgt dažas minūtes atkarībā no jūsu savienojuma.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Neizdevās atcelt abonementu</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Abonementa atcelšanai nepieciešams interneta savienojums.</string>
     <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Jūsu ierīce neatbalsta Google Pay, tāpēc jūs nevarat pieteikties abonementam, lai iegūtu nozīmīti. Jūs vēl arvien varat atbalstīt Signal, ziedojot mūsu mājaslapā.</string>
@@ -4978,7 +4986,7 @@
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__your_donation_could_not_be_sent">Jūsu ziedojumu neizdevās nosūtīt tīkla kļūdas dēļ. Pārbaudiet savienojumu un mēģiniet vēlreiz.</string>
     <!-- Displayed as a dialog message when the user encounters an error during an iDEAL donation -->
-    <string name="DonationsErrors__your_ideal_couldnt_be_processed">Your iDEAL donation couldn\'t be processed. Try another payment method or contact your bank for more information.</string>
+    <string name="DonationsErrors__your_ideal_couldnt_be_processed">Jūsu ziedojumu platformai iDEAL nevarēja apstrādāt. Mēģiniet izmantot citu maksājuma veidu vai sazinieties ar savu banku, lai iegūtu vairāk informācijas.</string>
 
     <!-- Gift message view title -->
     <string name="GiftMessageView__donation_on_behalf_of_s">Ziedojums lietotāja %1$s vārdā</string>
@@ -5023,7 +5031,7 @@
     <!-- Stripe decline code incorrect expiration year -->
     <string name="DeclineCode__the_expiration_year">Jūsu maksājuma veida derīguma termiņa gada skaitlis ir nepareizs. Atjauniniet to Google Pay un mēģiniet vēlreiz.</string>
     <!-- Stripe decline code issuer not available -->
-    <string name="DeclineCode__try_completing_the_payment_again">Try completing the donation again or contact your bank for more information.</string>
+    <string name="DeclineCode__try_completing_the_payment_again">Mēģiniet pabeigt ziedojumu vēlreiz vai sazinieties ar savu banku, lai iegūtu vairāk informācijas.</string>
     <!-- Stripe decline code processing error -->
     <string name="DeclineCode__try_again">Mēģiniet vēlreiz vai sazinieties ar savu banku, lai iegūtu vairāk informācijas.</string>
 
@@ -5047,9 +5055,9 @@
     <!-- Failure code text for insufficient funds, displayed in a dialog or notification -->
     <string name="StripeFailureCode__the_bank_account_provided">Norādītajā bankas kontā nepietiek līdzekļu, lai pabeigtu šo pirkumu. Mēģiniet vēlreiz vai sazinieties ar banku, lai iegūtu vairāk informācijas.</string>
     <!-- Failure code text for revoked authorization of payment, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__this_payment_was_revoked">This donation was revoked by the account holder and could not be processed. You haven\'t been charged.</string>
+    <string name="StripeFailureCode__this_payment_was_revoked">Konta īpašnieks šo ziedojumu atsauca, un to nevarēja apstrādāt. No jums netika ieturēta maksa.</string>
     <!-- Failure code text for a payment lacking an authorized mandate or incorrect mandate, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">An error occurred while processing this donation, please try again.</string>
+    <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">Radās kļūda, apstrādājot šo ziedojumu. Lūdzu, mēģiniet vēlreiz.</string>
     <!-- Failure code text for a closed account, deceased recipient, or one with blocked direct debits, displayed in a dialog or notification -->
     <string name="StripeFailureCode__the_bank_details_provided_could_not_be_processed">Norādīto bankas informāciju nevarēja apstrādāt. Lai iegūtu vairāk informācijas, sazinieties ar savu banku.</string>
     <!-- Failure code text for a non-existent bank branch, invalid account holder, invalid iban, generic failure, or unknown bank failure, displayed in a dialog or notification -->
@@ -5211,10 +5219,10 @@
     <string name="DonationReceiptListFragment__recurring">Regulārs</string>
     <!-- Donation receipts one-time tab label -->
     <string name="DonationReceiptListFragment__one_time">Vienreizējs</string>
+    <!-- Donation receipts gift tab -->
+    <string name="DonationReceiptListFragment__for_a_friend">For a friend</string>
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__donation_for_a_friend">Ziedojums drauga vārdā</string>
-    <!-- Donation receipts boost row label -->
-    <!-- Donation receipts details title -->
     <!-- Donation receipts donation type heading -->
     <string name="DonationReceiptDetailsFragment__donation_type">Ziedojuma tips</string>
     <!-- Donation receipts date paid heading -->
@@ -5977,11 +5985,11 @@
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
     <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Bankas pārskaitījumu apstrāde parasti ilgst 1 darbdienu. Pirms cita ziedojuma veikšanas, lūdzu, uzgaidiet, līdz šis maksājums tiks pabeigts.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Your donation is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before updating your subscription.</string>
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Jūsu ziedojums joprojām tiek apstrādāts. Apstrāde var ilgt dažas minūtes atkarībā no jūsu savienojuma. Pirms abonementa atjaunināšanas, lūdzu, uzgaidiet, līdz šis maksājums tiks pabeigts.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Your donation is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before making another donation.</string>
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Jūsu ziedojums joprojām tiek apstrādāts. Apstrāde var ilgt dažas minūtes atkarībā no jūsu savienojuma. Pirms cita ziedojuma veikšanas, lūdzu, uzgaidiet, līdz šis maksājums tiks pabeigts.</string>
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
-    <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">Your iDEAL donation is still processing. Check your banking app to approve your payment before making another donation.</string>
+    <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">Jūsu ziedojums platformai iDEAL joprojām tiek apstrādāts. Pirms cita ziedojuma veikšanas apstipriniet maksājumu savā bankas lietotnē.</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
     <string name="DonateToSignal__donation_amount_too_high">Donation amount too high</string>
     <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
@@ -6015,8 +6023,8 @@
     <string name="GatewaySelectorBottomSheet__ideal">iDEAL</string>
 
     <!-- Dialog title for launching external intent -->
-    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Leave Signal to confirm donation?</string>
-    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">When confirmed, return to Signal to finish processing your donation.</string>
+    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Vai pamest Signal, lai apstiprinātu ziedojumu?</string>
+    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">Kad ziedojums būs apstiprināts, atgriezieties Signal platformā, lai pabeigtu tā apstrādi.</string>
 
     <!-- IdealBank -->
     <!-- iDEAL bank name -->
@@ -6054,7 +6062,7 @@
     <!-- Subtitle learn more of screen displaying bank transfer mandate -->
     <string name="BankTransferMandateFragment__learn_more">Lasīt vairāk</string>
     <!-- Button label to continue with transfer -->
-    <string name="BankTransferMandateFragment__agree">Agree</string>
+    <string name="BankTransferMandateFragment__agree">Piekrist</string>
     <!-- Button label to read more of the bank mandate that is currently off screen -->
     <string name="BankTransferMandateFragment__read_more">Lasīt vairāk</string>
     <!-- Text displayed when mandate load fails -->
@@ -6062,7 +6070,7 @@
 
     <!-- BankTransferDetailsFragment -->
     <!-- Subtext explaining how email is used. Placeholder is \'Learn more\' -->
-    <string name="BankTransferDetailsFragment__enter_your_bank_details">Enter your bank details and email. Stripe uses this email to send you updates about your donation. %1$s</string>
+    <string name="BankTransferDetailsFragment__enter_your_bank_details">Ievadiet bankas informāciju un e-pasta adresi. Stripe izmantos šo e-pasta adresi, lai sūtītu jums informāciju par ziedojumu. %1$s</string>
     <!-- Subtext learn more link text -->
     <string name="BankTransferDetailsFragment__learn_more">Lasīt vairāk</string>
     <!-- Text field label for name on bank account -->
@@ -6533,6 +6541,13 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">Mēģinot atiestatīt jūsu saiti, radās tīkla kļūda. Lūdzu, mēģiniet vēlāk.</string>
 
+    <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
+    <string name="UsernameLinkShareBottomSheet_title">Anyone with this link can view your username and start a chat with you. Only share it with people you trust.</string>
+    <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
+    <string name="UsernameLinkShareBottomSheet_copy_link">Kopēt saiti</string>
+    <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
+    <string name="UsernameLinkShareBottomSheet_share">Kopīgot</string>
+
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
     <string name="PendingParticipantsView__would_like_to_join">Vēlas pievienoties…</string>
@@ -6569,6 +6584,17 @@
     <string name="GrantFullScreenIntentPermission_bottomsheet_subtitle">Lai saņemtu zvanu paziņojumus no kontaktpersonām un grupām, veiciet tālāk norādītās darbības.</string>
     <!-- Step 2 of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications, it indicates the name of the setting that needs to be re-enabled -->
     <string name="GrantFullScreenIntentPermission_bottomsheet_step2">2. %1$s Atļaut pilnekrāna paziņojumus</string>
+
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, title for dialog -->
+    <string name="MonthlyDonationCanceled__title">Monthly donation canceled</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, body for dialog. First placeholder is a payment related error message. Second placeholder is \'learn more\' -->
+    <string name="MonthlyDonationCanceled__message">Your recurring monthly donation was canceled. %1$s\n\nYour badge will no longer be visible on your profile. %2$s</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, learn more used in placeholder for body for dialog. -->
+    <string name="MonthlyDonationCanceled__learn_more">Uzzināt vairāk</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, primary button to renew subscription with new data -->
+    <string name="MonthlyDonationCanceled__renew_button">Atjaunot abonementu</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, second button to dismiss the dialog entirely -->
+    <string name="MonthlyDonationCanceled__not_now_button">Ne tagad</string>
 
     <!-- EOF -->
 </resources>

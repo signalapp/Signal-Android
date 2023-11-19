@@ -13,6 +13,7 @@ import org.json.JSONObject
 import org.jsoup.helper.StringUtil
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.SqlUtil
+import org.signal.core.util.Stopwatch
 import org.signal.core.util.delete
 import org.signal.core.util.exists
 import org.signal.core.util.logging.Log
@@ -23,6 +24,7 @@ import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireString
 import org.signal.core.util.select
+import org.signal.core.util.toInt
 import org.signal.core.util.update
 import org.signal.core.util.withinTransaction
 import org.signal.libsignal.zkgroup.InvalidInputException
@@ -38,7 +40,6 @@ import org.thoughtcrime.securesms.database.SignalDatabase.Companion.messageLog
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.messages
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.recipients
 import org.thoughtcrime.securesms.database.ThreadBodyUtil.ThreadBody
-import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.ThreadRecord
@@ -98,8 +99,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     const val SNIPPET_EXTRAS = "snippet_extras"
     const val ARCHIVED = "archived"
     const val STATUS = "status"
-    const val DELIVERY_RECEIPT_COUNT = "delivery_receipt_count"
-    const val READ_RECEIPT_COUNT = "read_receipt_count"
+    const val HAS_DELIVERY_RECEIPT = "has_delivery_receipt"
+    const val HAS_READ_RECEIPT = "has_read_receipt"
     const val EXPIRES_IN = "expires_in"
     const val LAST_SEEN = "last_seen"
     const val HAS_SENT = "has_sent"
@@ -128,8 +129,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         $UNREAD_COUNT INTEGER DEFAULT 0, 
         $ARCHIVED INTEGER DEFAULT 0, 
         $STATUS INTEGER DEFAULT 0, 
-        $DELIVERY_RECEIPT_COUNT INTEGER DEFAULT 0, 
-        $READ_RECEIPT_COUNT INTEGER DEFAULT 0, 
+        $HAS_DELIVERY_RECEIPT INTEGER DEFAULT 0, 
+        $HAS_READ_RECEIPT INTEGER DEFAULT 0, 
         $EXPIRES_IN INTEGER DEFAULT 0, 
         $LAST_SEEN INTEGER DEFAULT 0, 
         $HAS_SENT INTEGER DEFAULT 0, 
@@ -165,10 +166,10 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       SNIPPET_EXTRAS,
       ARCHIVED,
       STATUS,
-      DELIVERY_RECEIPT_COUNT,
+      HAS_DELIVERY_RECEIPT,
       EXPIRES_IN,
       LAST_SEEN,
-      READ_RECEIPT_COUNT,
+      HAS_READ_RECEIPT,
       LAST_SCROLLED,
       PINNED,
       UNREAD_SELF_MENTION_COUNT
@@ -243,8 +244,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       SNIPPET_EXTRAS to extraSerialized,
       MEANINGFUL_MESSAGES to if (meaningfulMessages) 1 else 0,
       STATUS to status,
-      DELIVERY_RECEIPT_COUNT to deliveryReceiptCount,
-      READ_RECEIPT_COUNT to readReceiptCount,
+      HAS_DELIVERY_RECEIPT to deliveryReceiptCount,
+      HAS_READ_RECEIPT to readReceiptCount,
       EXPIRES_IN to expiresIn,
       ACTIVE to 1,
       UNREAD_COUNT to unreadCount,
@@ -1402,6 +1403,37 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     )
   }
 
+  /**
+   * Updates the thread with the receipt status of the message provided, but only if that message is the most recent meaningful message.
+   * The idea here is that if it _is_ the most meaningful message, we can set the new status. If it's not, there's no need to update
+   * the thread at all.
+   */
+  fun updateReceiptStatus(messageId: Long, threadId: Long, stopwatch: Stopwatch? = null) {
+    val status = messages.getReceiptStatusIfItsTheMostRecentMeaningfulMessage(messageId, threadId)
+    stopwatch?.split("thread-query")
+
+    if (status != null) {
+      Log.d(TAG, "Updating receipt status for thread $threadId")
+      writableDatabase
+        .update(TABLE_NAME)
+        .values(
+          HAS_DELIVERY_RECEIPT to status.hasDeliveryReceipt.toInt(),
+          HAS_READ_RECEIPT to status.hasReadReceipt.toInt(),
+          STATUS to when {
+            MessageTypes.isFailedMessageType(status.type) -> MessageTable.Status.STATUS_FAILED
+            MessageTypes.isSentType(status.type) -> MessageTable.Status.STATUS_COMPLETE
+            MessageTypes.isPendingMessageType(status.type) -> MessageTable.Status.STATUS_PENDING
+            else -> MessageTable.Status.STATUS_NONE
+          }
+        )
+        .where("$ID = ?", threadId)
+        .run()
+    } else {
+      Log.d(TAG, "Receipt was for an old message, not updating thread.")
+    }
+    stopwatch?.split("thread-update")
+  }
+
   private fun update(threadId: Long, unarchive: Boolean, allowDeletion: Boolean, notifyListeners: Boolean): Boolean {
     if (threadId == -1L) {
       Log.d(TAG, "Skipping update for threadId -1")
@@ -1478,11 +1510,11 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         extra = getExtrasFor(record, threadBody),
         date = record.timestamp,
         status = record.deliveryStatus,
-        deliveryReceiptCount = record.deliveryReceiptCount,
+        deliveryReceiptCount = record.hasDeliveryReceipt().toInt(),
         type = record.type,
         unarchive = unarchive,
         expiresIn = record.expiresIn,
-        readReceiptCount = record.readReceiptCount,
+        readReceiptCount = record.hasReadReceipt().toInt(),
         unreadCount = unreadCount,
         unreadMentionCount = unreadMentionCount
       )
@@ -1647,8 +1679,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         UNREAD_COUNT to 0,
         ARCHIVED to 0,
         STATUS to 0,
-        DELIVERY_RECEIPT_COUNT to 0,
-        READ_RECEIPT_COUNT to 0,
+        HAS_DELIVERY_RECEIPT to 0,
+        HAS_READ_RECEIPT to 0,
         EXPIRES_IN to 0,
         LAST_SEEN to 0,
         HAS_SENT to 0,
@@ -1670,7 +1702,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       return null
     }
 
-    val slideDeck: SlideDeck = (record as MediaMmsMessageRecord).slideDeck
+    val slideDeck: SlideDeck = (record as MmsMessageRecord).slideDeck
     val thumbnail = Optional.ofNullable(slideDeck.thumbnailSlide)
       .or(Optional.ofNullable(slideDeck.stickerSlide))
       .orElse(null)
@@ -1862,7 +1894,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         Recipient(recipientId, details, true)
       }
 
-      val readReceiptCount = if (TextSecurePreferences.isReadReceiptsEnabled(context)) cursor.requireInt(READ_RECEIPT_COUNT) else 0
+      val hasReadReceipt = TextSecurePreferences.isReadReceiptsEnabled(context) && cursor.requireBoolean(HAS_READ_RECEIPT)
       val extraString = cursor.getString(cursor.getColumnIndexOrThrow(SNIPPET_EXTRAS))
       val extra: Extra? = if (extraString != null) {
         try {
@@ -1896,8 +1928,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         .setDate(cursor.requireLong(DATE))
         .setArchived(cursor.requireBoolean(ARCHIVED))
         .setDeliveryStatus(cursor.requireInt(STATUS).toLong())
-        .setDeliveryReceiptCount(cursor.requireInt(DELIVERY_RECEIPT_COUNT))
-        .setReadReceiptCount(readReceiptCount)
+        .setHasDeliveryReceipt(cursor.requireBoolean(HAS_DELIVERY_RECEIPT))
+        .setHasReadReceipt(hasReadReceipt)
         .setExpiresIn(cursor.requireLong(EXPIRES_IN))
         .setLastSeen(cursor.requireLong(LAST_SEEN))
         .setSnippetUri(getSnippetUri(cursor))

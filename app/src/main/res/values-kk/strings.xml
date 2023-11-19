@@ -405,6 +405,8 @@
 
     <string name="ConversationActivity_error_sending_media">Мультимедианы жіберу кезінде қате шықты</string>
 
+    <!-- Message shown when opening an MMS group conversation with SMS disabled and there are no exported messages -->
+    <string name="ConversationActivity__sms_messaging_is_no_longer_supported">Енді Signal-да SMS-пен алмасу мүмкін емес.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Енді Signal-да SMS-пен алмасу мүмкін емес. Әңгімелеріңізді осы жерде жалғастыру үшін %1$s деген кісіні Signal-ға шақырыңыз.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
@@ -1009,15 +1011,15 @@
     <!-- Snackbar message after successful deletion of username -->
     <string name="ManageProfileFragment__username_deleted">Пайдаланушы аты жойылды</string>
     <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_title">Delete username?</string>
+    <string name="ManageProfileFragment__delete_username_dialog_title">Пайдаланушы атын жою керек пе?</string>
     <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_body">"This will remove your username and disable your QR code and link. %1$s will be available for others to claim. Are you sure?"</string>
+    <string name="ManageProfileFragment__delete_username_dialog_body">"Бұл пайдаланушы атыңызды жояды және QR кодыңыз бен сілтемені өшіреді. “%1$s” басқалар үшін қолжетімді болады. Сенімдісіз бе?"</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
     <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">Пайдаланушы атыңызға байланысты бірдеңе дұрыс болмады, ол енді сіздің аккаунтыңызға тағайындалып тұрған жоқ. Оны қайта орнаты көруіңізге болады немесе жаңасын таңдаңыз.</string>
     <!-- Displayed above the conversation list when a user needs to address an issue with their username link -->
-    <string name="UsernameOutOfSyncReminder__link_corrupt">Something went wrong with your QR code and username link, it’s no longer valid. Create a new link to share with others.</string>
+    <string name="UsernameOutOfSyncReminder__link_corrupt">QR коды және пайдаланушы атына сілтемеге қатысты белгісіз қате орын алды, олар енді жарамсыз. Басқалармен бөліскіңіз келсе, жаңа сілтеме жасаңыз.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
     <string name="UsernameOutOfSyncReminder__fix_now">Қазір түзету</string>
 
@@ -1533,7 +1535,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">%1$s сізге хат жазуына рұқсат етесіз бе? Сіз оны блоктан шығармайынша, ешқандай хат алмайсыз.</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">%1$s бойынша жаңартулар мен хабарлар алып тұрғыңыз келе ме? Оны блоктан шығармайынша, ешқандай жаңарту алмайсыз.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Continue your chat with this group and share your name and photo with its members?</string>
-    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">\@атап өтулер мен әкімшілер сияқты жаңа функцияларды іске қосу үшін осы топты жаңартыңыз. Бұл топта аты-жөндері немесе фотосуреттері көрсетілмеген топ мүшелері топқа қосылуға шақырту алады.</string>
+    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">This Legacy Group can no longer be used. Create a new group to activate new features like @mentions and admins.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Бұл ескі топты қолдану мүмкін емес, себебі ол өте үлкен. Максималды топ өлшемі – %1$d.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">%1$s деген кісімен чатты жалғастыру керек пе және оған атыңыз бен фотосуретіңіз көрінетін болсын ба?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Осы топқа қосылып, оның мүшелеріне аты-жөніңіз бен фотосуретіңіздің көрсетілгенін қалайсыз ба? Оларды қабылдамайынша, сіз олардың хатын оқығаныңызды біле алмайды.</string>
@@ -4578,6 +4580,11 @@
     <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s Signal пайдаланушысы емес</string>
     <!-- Error message shown when we could not get a user from the username link -->
     <string name="NewConversationActivity__">%1$s Signal пайдаланушысы емес</string>
+    <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
+    <plurals name="CreateGroupActivity_not_signal_users">
+        <item quantity="one">%1$s is not a Signal user</item>
+        <item quantity="other">%1$s are not Signal users</item>
+    </plurals>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">Атын немесе нөмірін іздеу</string>
@@ -4764,11 +4771,11 @@
     <!-- Preference label to launch badge gifting -->
     <string name="ManageDonationsFragment__donate_for_a_friend">Досқа демеу</string>
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
-    <string name="ManageDonationsFragment__couldnt_confirm_donation">Couldn\'t confirm donation</string>
+    <string name="ManageDonationsFragment__couldnt_confirm_donation">Демеушілік расталмады</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">Your %1$s/month donation couldn\'t be confirmed. Check your banking app to approve your iDEAL payment.</string>
+    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">Айына %1$s мөлшеріндегі демеушілігіңізді растау мүмкін болмады. iDEAL төлеміңізді растау үшін банкинг қолданбаңызды тексеріңіз.</string>
     <!-- Dialog message shown when a one-time donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">Your one-time %1$s donation couldn\'t be confirmed. Check your banking app to approve your iDEAL payment.</string>
+    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">Бір реттік %1$s демеушілігіңізді растау мүмкін болмады. iDEAL төлеміңізді растау үшін банкинг қолданбаңызды тексеріңіз.</string>
 
     <string name="Boost__enter_custom_amount">Реттелмелі сома енгізіңіз</string>
     <!-- Error label when the amount is smaller than what we can accept -->
@@ -4835,16 +4842,16 @@
     <string name="Subscription__contact_support">Қолдау қызметіне хабарласу</string>
     <string name="Subscription__get_a_s_badge">%1$s таңбасын алыңыз</string>
 
-    <string name="SubscribeFragment__processing_payment">Processing donation…</string>
+    <string name="SubscribeFragment__processing_payment">Демеу өңделуде…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
-    <string name="DonationsErrors__error_processing_payment">Error processing donation</string>
+    <string name="DonationsErrors__error_processing_payment">Демеуді өңдеу кезінде қате шықты</string>
     <!-- Displayed on manage donations screen as a dialog message when payment method failed -->
     <string name="DonationsErrors__try_another_payment_method">Басқа төлеу әдісін қолданып көріңіз немесе толық ақпарат алу үшін банкке хабарласыңыз.</string>
     <!-- Displayed on manage donations screen error dialogs as an action label -->
     <string name="DonationsErrors__learn_more">Толық ақпарат</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
-    <string name="DonationsErrors__error_processing_payment_s">Error processing donation. %1$s</string>
-    <string name="DonationsErrors__your_payment">Your donation couldn\'t be processed and you have not been charged. Please try again.</string>
+    <string name="DonationsErrors__error_processing_payment_s">Демеуді өңдеу кезінде қате шықты. %1$s</string>
+    <string name="DonationsErrors__your_payment">Демеуіңізді өңдеу мүмкін болмады және сізден ақы алынбады. Қайталап көріңіз.</string>
     <string name="DonationsErrors__still_processing">Әлі өңделуде</string>
     <string name="DonationsErrors__couldnt_add_badge">Таңба қосу мүмкін емес</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -4854,9 +4861,9 @@
     <!-- Displayed as title when some generic error happens during sending donation on behalf of another user -->
     <string name="DonationsErrors__donation_failed">Демеу жасалмады</string>
     <!-- Displayed as message when some generic error happens during sending donation on behalf of another user -->
-    <string name="DonationsErrors__your_payment_was_processed_but">Your donation was processed but Signal could not send your donation message. Please contact support.</string>
+    <string name="DonationsErrors__your_payment_was_processed_but">Демеушілік жасалды, бірақ Signal сіздің демеушілік жөніндегі хатыңызды жібере алмады. Қолдау көрсету орталығына хабарласыңыз.</string>
     <string name="DonationsErrors__your_badge_could_not">Таңбаңызды аккаунтыңызға қосу мүмкін болмады, бірақ сізден ақы алынған болуы мүмкін. Қолдау көрсету қызметіне хабарласуыңызды сұраймыз.</string>
-    <string name="DonationsErrors__your_payment_is_still">Your donation is still being processed. This can take a few minutes depending on your connection.</string>
+    <string name="DonationsErrors__your_payment_is_still">Демеуіңіз әлі өңделіп жатыр. Желі жұмысына байланысты бұған бірнеше минут кетуі мүмкін.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Жазылымнан бас тарту мүмкін болмады</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Жазылымнан бас тарту үшін интернет керек.</string>
     <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Құрылғыңызда Google Pay жұмыс істемейді, сондықтан жазылып, таңба ала алмайсыз. Дегенмен Signal-ға веб-сайт арқылы демеушілік жасауға болады.</string>
@@ -4869,7 +4876,7 @@
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__your_donation_could_not_be_sent">Желідегі қатеге байланысты демеу ретінде берілген ақша жіберілмеді. Контактіні тексеріп, қайталап көріңіз.</string>
     <!-- Displayed as a dialog message when the user encounters an error during an iDEAL donation -->
-    <string name="DonationsErrors__your_ideal_couldnt_be_processed">Your iDEAL donation couldn\'t be processed. Try another payment method or contact your bank for more information.</string>
+    <string name="DonationsErrors__your_ideal_couldnt_be_processed">iDEAL-ға берген демеу ақшаңызды өңдеу мүмкін болмады. Басқа төлеу әдісін қолданып көріңіз немесе қосымша ақпарат алу үшін банкке хабарласыңыз.</string>
 
     <!-- Gift message view title -->
     <string name="GiftMessageView__donation_on_behalf_of_s">%1$s атынан демеушілік жасау</string>
@@ -4914,7 +4921,7 @@
     <!-- Stripe decline code incorrect expiration year -->
     <string name="DeclineCode__the_expiration_year">Төлеу әдісіңіздің мерзімі аяқталатын жыл дұрыс емес. Оны Google Pay-де жаңартып, қайталап көріңіз.</string>
     <!-- Stripe decline code issuer not available -->
-    <string name="DeclineCode__try_completing_the_payment_again">Try completing the donation again or contact your bank for more information.</string>
+    <string name="DeclineCode__try_completing_the_payment_again">Демеуді қайта жасап көріңіз немесе толық ақпарат алу үшін банкке хабарласыңыз.</string>
     <!-- Stripe decline code processing error -->
     <string name="DeclineCode__try_again">Қайталап көріңіз немесе толық ақпарат алу үшін банкке хабарласыңыз.</string>
 
@@ -4938,9 +4945,9 @@
     <!-- Failure code text for insufficient funds, displayed in a dialog or notification -->
     <string name="StripeFailureCode__the_bank_account_provided">Көрсетілген банк шотындағы қаражат бұл сатып алу транзакциясын жасауға жеткіліксіз, қайталап көріңіз немесе банкке хабарласып, толық ақпарат алыңыз.</string>
     <!-- Failure code text for revoked authorization of payment, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__this_payment_was_revoked">This donation was revoked by the account holder and could not be processed. You haven\'t been charged.</string>
+    <string name="StripeFailureCode__this_payment_was_revoked">Бұл демеу ақшаны шот иесі қайтарып тастады, сондықтан оны өңдеу мүмкін болмады. Сізден ақы алынған жоқ.</string>
     <!-- Failure code text for a payment lacking an authorized mandate or incorrect mandate, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">An error occurred while processing this donation, please try again.</string>
+    <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">Осы демеуді жасау кезінде қате шықты, қайталап көріңіз.</string>
     <!-- Failure code text for a closed account, deceased recipient, or one with blocked direct debits, displayed in a dialog or notification -->
     <string name="StripeFailureCode__the_bank_details_provided_could_not_be_processed">Көрсетілген банк реквизиттері өңделмеді, банкке хабарласып, толық ақпарат алыңыз.</string>
     <!-- Failure code text for a non-existent bank branch, invalid account holder, invalid iban, generic failure, or unknown bank failure, displayed in a dialog or notification -->
@@ -5102,10 +5109,10 @@
     <string name="DonationReceiptListFragment__recurring">Қайталанатын</string>
     <!-- Donation receipts one-time tab label -->
     <string name="DonationReceiptListFragment__one_time">Бір реттік</string>
+    <!-- Donation receipts gift tab -->
+    <string name="DonationReceiptListFragment__for_a_friend">For a friend</string>
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__donation_for_a_friend">Досқа демеу</string>
-    <!-- Donation receipts boost row label -->
-    <!-- Donation receipts details title -->
     <!-- Donation receipts donation type heading -->
     <string name="DonationReceiptDetailsFragment__donation_type">Демеушілік түрі</string>
     <!-- Donation receipts date paid heading -->
@@ -5847,11 +5854,11 @@
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
     <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Банк аударымдары әдетте 1 жұмыс күніне созылады. Тағы да демеушілік жасамас бұрын, осы төлемнің өткенін күтіңіз.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Your donation is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before updating your subscription.</string>
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Демеуіңіз әлі өңделіп жатыр. Желі жұмысына байланысты бұған бірнеше минут кетуі мүмкін. Осы төлем жасалғанын күтіңіз, содан кейін жазылымыңызды жаңартыңыз.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Your donation is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before making another donation.</string>
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Демеуіңіз әлі өңделіп жатыр. Желі жұмысына байланысты бұған бірнеше минут кетуі мүмкін. Тағы да демеушілік жасамас бұрын, осы төлемнің өткенін күтіңіз.</string>
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
-    <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">Your iDEAL donation is still processing. Check your banking app to approve your payment before making another donation.</string>
+    <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">iDEAL арқылы жасалған демеуіңіз өңделіп жатыр. Басқа демеу жасамас бұрын, төлеміңізді растау үшін банкинг қолданбасын тексеріңіз.</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
     <string name="DonateToSignal__donation_amount_too_high">Donation amount too high</string>
     <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
@@ -5884,8 +5891,8 @@
     <string name="GatewaySelectorBottomSheet__ideal">iDEAL</string>
 
     <!-- Dialog title for launching external intent -->
-    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Leave Signal to confirm donation?</string>
-    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">When confirmed, return to Signal to finish processing your donation.</string>
+    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Демеушілікті растау үшін Signal-дан шығу керек пе?</string>
+    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">Расталған соң, Signal-ға қайтып, демеушілігіңізді аяқтаңыз.</string>
 
     <!-- IdealBank -->
     <!-- iDEAL bank name -->
@@ -5923,7 +5930,7 @@
     <!-- Subtitle learn more of screen displaying bank transfer mandate -->
     <string name="BankTransferMandateFragment__learn_more">Толық ақпарат</string>
     <!-- Button label to continue with transfer -->
-    <string name="BankTransferMandateFragment__agree">Agree</string>
+    <string name="BankTransferMandateFragment__agree">Келісу</string>
     <!-- Button label to read more of the bank mandate that is currently off screen -->
     <string name="BankTransferMandateFragment__read_more">Толығырақ</string>
     <!-- Text displayed when mandate load fails -->
@@ -5931,7 +5938,7 @@
 
     <!-- BankTransferDetailsFragment -->
     <!-- Subtext explaining how email is used. Placeholder is \'Learn more\' -->
-    <string name="BankTransferDetailsFragment__enter_your_bank_details">Enter your bank details and email. Stripe uses this email to send you updates about your donation. %1$s</string>
+    <string name="BankTransferDetailsFragment__enter_your_bank_details">Банк реквизиттеріңіз бен электрондық поштаңызды енгізіңіз. Stripe осы электрондық поштаға сіз жасаған демеушілік туралы ақпарат жіберіп отырады. %1$s</string>
     <!-- Subtext learn more link text -->
     <string name="BankTransferDetailsFragment__learn_more">Толық ақпарат</string>
     <!-- Text field label for name on bank account -->
@@ -6398,6 +6405,13 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">Сілтемені қалпына келтіріп жатқанда желі қатесі пайда болды. Кейінірек қайталап көріңіз.</string>
 
+    <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
+    <string name="UsernameLinkShareBottomSheet_title">Anyone with this link can view your username and start a chat with you. Only share it with people you trust.</string>
+    <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
+    <string name="UsernameLinkShareBottomSheet_copy_link">Сілтемені көшіру</string>
+    <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
+    <string name="UsernameLinkShareBottomSheet_share">Бөлісу</string>
+
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
     <string name="PendingParticipantsView__would_like_to_join">Қосылғысы келеді…</string>
@@ -6432,6 +6446,17 @@
     <string name="GrantFullScreenIntentPermission_bottomsheet_subtitle">Контактілеріңіз бен топтарыңыздан қоңырау туралы хабарландырулар алу үшін:</string>
     <!-- Step 2 of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications, it indicates the name of the setting that needs to be re-enabled -->
     <string name="GrantFullScreenIntentPermission_bottomsheet_step2">2. %1$s Толық экран хабарландыруларына рұқсат ету</string>
+
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, title for dialog -->
+    <string name="MonthlyDonationCanceled__title">Monthly donation canceled</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, body for dialog. First placeholder is a payment related error message. Second placeholder is \'learn more\' -->
+    <string name="MonthlyDonationCanceled__message">Your recurring monthly donation was canceled. %1$s\n\nYour badge will no longer be visible on your profile. %2$s</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, learn more used in placeholder for body for dialog. -->
+    <string name="MonthlyDonationCanceled__learn_more">Толық ақпарат</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, primary button to renew subscription with new data -->
+    <string name="MonthlyDonationCanceled__renew_button">Жазылымды жаңарту</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, second button to dismiss the dialog entirely -->
+    <string name="MonthlyDonationCanceled__not_now_button">Кейін</string>
 
     <!-- EOF -->
 </resources>

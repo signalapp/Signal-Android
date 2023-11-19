@@ -86,9 +86,9 @@ object TestMms {
       put(MessageTable.VIEW_ONCE, message.isViewOnce)
       put(MessageTable.FROM_RECIPIENT_ID, recipientId.serialize())
       put(MessageTable.TO_RECIPIENT_ID, recipientId.serialize())
-      put(MessageTable.DELIVERY_RECEIPT_COUNT, 0)
+      put(MessageTable.HAS_DELIVERY_RECEIPT, 0)
       put(MessageTable.RECEIPT_TIMESTAMP, 0)
-      put(MessageTable.VIEWED_RECEIPT_COUNT, if (viewed) 1 else 0)
+      put(MessageTable.VIEWED_COLUMN, if (viewed) 1 else 0)
       put(MessageTable.STORY_TYPE, message.storyType.code)
 
       put(MessageTable.BODY, body)

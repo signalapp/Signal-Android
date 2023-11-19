@@ -21,7 +21,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.sms.MessageSender
-import org.thoughtcrime.securesms.stories.Stories
 
 class StoriesLandingRepository(context: Context) {
 
@@ -105,7 +104,7 @@ class StoriesLandingRepository(context: Context) {
   private fun createStoriesLandingItemData(sender: Recipient, messageRecords: List<MessageRecord>, sendingCount: Long, failureCount: Long): Observable<StoriesLandingItemData> {
     val itemDataObservable = Observable.create<StoriesLandingItemData> { emitter ->
       fun refresh(sender: Recipient) {
-        val primaryIndex = messageRecords.indexOfFirst { !it.isOutgoing && it.viewedReceiptCount == 0 }.takeIf { it > -1 } ?: 0
+        val primaryIndex = messageRecords.indexOfFirst { !it.isOutgoing && !it.isViewed }.takeIf { it > -1 } ?: 0
         val itemData = StoriesLandingItemData(
           storyRecipient = sender,
           storyViewState = StoryViewState.NONE,
@@ -169,11 +168,6 @@ class StoriesLandingRepository(context: Context) {
       val releaseThread: Long? = SignalStore.releaseChannelValues().releaseChannelRecipientId?.let { SignalDatabase.threads.getThreadIdIfExistsFor(it) }
 
       MultiDeviceReadUpdateJob.enqueue(messageInfos.filter { it.threadId == releaseThread }.map { it.syncMessageId })
-
-      if (messageInfos.any { it.threadId == releaseThread }) {
-        SignalStore.storyValues().userHasReadOnboardingStory = true
-        Stories.onStorySettingsChanged(Recipient.self().id)
-      }
     }
   }
 

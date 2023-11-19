@@ -41,7 +41,6 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -716,7 +715,7 @@ public final class ConversationReactionOverlay extends FrameLayout {
       items.add(new ActionItem(R.drawable.symbol_reply_24, getResources().getString(R.string.conversation_selection__menu_reply), () -> handleActionItemClicked(Action.REPLY)));
     }
 
-    if (FeatureFlags.editMessageSending() && menuState.shouldShowEditAction()) {
+    if (menuState.shouldShowEditAction()) {
       items.add(new ActionItem(R.drawable.symbol_edit_24, getResources().getString(R.string.conversation_selection__menu_edit), () -> handleActionItemClicked(Action.EDIT)));
     }
 

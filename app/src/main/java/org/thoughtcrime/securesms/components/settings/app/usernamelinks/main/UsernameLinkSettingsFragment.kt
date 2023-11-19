@@ -30,6 +30,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -43,6 +44,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.app.ShareCompat
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -59,19 +61,24 @@ import org.signal.core.util.concurrent.LifecycleDisposable
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.main.UsernameLinkSettingsState.ActiveTab
 import org.thoughtcrime.securesms.compose.ComposeFragment
-import org.thoughtcrime.securesms.compose.ScreenshotController
 import org.thoughtcrime.securesms.providers.BlobProvider
 import java.io.ByteArrayOutputStream
+import java.util.UUID
 
-@OptIn(
-  ExperimentalPermissionsApi::class
-)
+@OptIn(ExperimentalPermissionsApi::class)
 class UsernameLinkSettingsFragment : ComposeFragment() {
 
   private val viewModel: UsernameLinkSettingsViewModel by viewModels()
   private val disposables: LifecycleDisposable = LifecycleDisposable()
 
-  private val screenshotController = ScreenshotController()
+  override fun onStart() {
+    super.onStart()
+    setFragmentResultListener(UsernameLinkShareBottomSheet.REQUEST_KEY) { key, bundle ->
+      if (bundle.getBoolean(UsernameLinkShareBottomSheet.KEY_COPY)) {
+        viewModel.onLinkCopied()
+      }
+    }
+  }
 
   @OptIn(ExperimentalMaterial3Api::class)
   @Composable
@@ -83,6 +90,15 @@ class UsernameLinkSettingsFragment : ComposeFragment() {
     var showResetDialog: Boolean by remember { mutableStateOf(false) }
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
     val cameraPermissionState: PermissionState = rememberPermissionState(permission = android.Manifest.permission.CAMERA)
+    val linkCopiedEvent: UUID? by viewModel.linkCopiedEvent
+
+    val linkCopiedString = stringResource(R.string.UsernameLinkSettings_link_copied_toast)
+
+    LaunchedEffect(linkCopiedEvent) {
+      if (linkCopiedEvent != null) {
+        snackbarHostState.showSnackbar(linkCopiedString)
+      }
+    }
 
     Scaffold(
       snackbarHost = { SnackbarHost(hostState = snackbarHostState) },

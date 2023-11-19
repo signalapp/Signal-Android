@@ -59,6 +59,8 @@ fun UsernameLinkShareScreen(
   modifier: Modifier = Modifier,
   onResetClicked: () -> Unit
 ) {
+  val context = LocalContext.current
+
   when (state.usernameLinkResetResult) {
     UsernameLinkResetResult.NetworkUnavailable -> {
       ResetLinkResultDialog(stringResource(R.string.UsernameLinkSettings_reset_link_result_network_unavailable), onDismiss = onLinkResultHandled)
@@ -81,7 +83,8 @@ fun UsernameLinkShareScreen(
       username = state.username,
       usernameCopyable = true,
       modifier = Modifier.padding(horizontal = 58.dp, vertical = 24.dp),
-      onClick = {
+      onClick = { username ->
+        Util.copyToClipboard(context, username)
         scope.launch {
           snackbarHostState.showSnackbar(usernameCopiedString)
         }
@@ -95,8 +98,9 @@ fun UsernameLinkShareScreen(
 
     LinkRow(
       linkState = state.usernameLinkState,
-      snackbarHostState = snackbarHostState,
-      scope = scope
+      onClick = {
+        navController.safeNavigate(UsernameLinkSettingsFragmentDirections.actionUsernameLinkSettingsFragmentToUsernameLinkShareBottomSheet())
+      }
     )
 
     Text(
@@ -142,9 +146,7 @@ private fun ButtonBar(onShareClicked: () -> Unit, onColorClicked: () -> Unit) {
 }
 
 @Composable
-private fun LinkRow(linkState: UsernameLinkState, snackbarHostState: SnackbarHostState, scope: CoroutineScope) {
-  val context = LocalContext.current
-  val copyMessage = stringResource(R.string.UsernameLinkSettings_link_copied_toast)
+private fun LinkRow(linkState: UsernameLinkState, onClick: () -> Unit = {}) {
   Row(
     modifier = Modifier
       .fillMaxWidth()
@@ -161,11 +163,7 @@ private fun LinkRow(linkState: UsernameLinkState, snackbarHostState: SnackbarHos
         shape = RoundedCornerShape(12.dp)
       )
       .clickable(enabled = linkState is UsernameLinkState.Present) {
-        Util.copyToClipboard(context, (linkState as UsernameLinkState.Present).link)
-
-        scope.launch {
-          snackbarHostState.showSnackbar(copyMessage)
-        }
+        onClick()
       }
       .padding(horizontal = 26.dp, vertical = 16.dp)
       .alpha(if (linkState is UsernameLinkState.Present) 1.0f else 0.6f)
@@ -225,19 +223,13 @@ private fun LinkRowPreview() {
     Surface {
       Column(modifier = Modifier.padding(8.dp)) {
         LinkRow(
-          linkState = UsernameLinkState.Present("https://signal.me/#eu/asdfasdfasdfasdfasdfasdfasdfasdfasdfasdf"),
-          snackbarHostState = SnackbarHostState(),
-          scope = rememberCoroutineScope()
+          linkState = UsernameLinkState.Present("https://signal.me/#eu/asdfasdfasdfasdfasdfasdfasdfasdfasdfasdf")
         )
         LinkRow(
-          linkState = UsernameLinkState.NotSet,
-          snackbarHostState = SnackbarHostState(),
-          scope = rememberCoroutineScope()
+          linkState = UsernameLinkState.NotSet
         )
         LinkRow(
-          linkState = UsernameLinkState.Resetting,
-          snackbarHostState = SnackbarHostState(),
-          scope = rememberCoroutineScope()
+          linkState = UsernameLinkState.Resetting
         )
       }
     }

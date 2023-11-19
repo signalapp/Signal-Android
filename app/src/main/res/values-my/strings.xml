@@ -402,6 +402,8 @@
 
     <string name="ConversationActivity_error_sending_media">မီဒီယာပို့ခြင်းအမှား</string>
 
+    <!-- Message shown when opening an MMS group conversation with SMS disabled and there are no exported messages -->
+    <string name="ConversationActivity__sms_messaging_is_no_longer_supported">SMS မက်ဆေ့ချ်လုပ်ဆောင်ချက်ကို Signal တွင် မပံ့ပိုးပေးတော့ပါ။</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">SMS မက်ဆေ့ချ်လုပ်ဆောင်ချက်ကို Signal တွင် မပံ့ပိုးပေးတော့ပါ။ ဤတွင် ဆက်လက်ဆွေးနွေးနိုင်ရန် %1$s အား Signal သို့ ဖိတ်ခေါ်ပါ။</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
@@ -975,15 +977,15 @@
     <!-- Snackbar message after successful deletion of username -->
     <string name="ManageProfileFragment__username_deleted">သုံးစွဲသူအမည် ဖျက်ပစ်ပြီး</string>
     <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_title">Delete username?</string>
+    <string name="ManageProfileFragment__delete_username_dialog_title">သုံးစွဲသူအမည်ကို ဖျက်မည်လား။</string>
     <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_body">"This will remove your username and disable your QR code and link. %1$s will be available for others to claim. Are you sure?"</string>
+    <string name="ManageProfileFragment__delete_username_dialog_body">"သင်၏ သုံးစွဲသူအမည်ကို ဖယ်ရှားလိုက်မည်ဖြစ်ပြီး သင့် QR ကုဒ်နှင့် လင့်ခ်ကို ပိတ်လိုက်ပါမည်။ %1$s ကို အခြားသူများ အသုံးပြု၍ရသွားပါလိမ့်မည်။ သေချာပါသလား။"</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
     <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">သင်၏ သုံးစွဲသူအမည်နှင့်ပတ်သက်၍ တစ်စုံတစ်ခု မှားယွင်းနေပါသည်၊ သင့်အကောင့်အတွက် သတ်မှတ်ပေးတော့မည် မဟုတ်ပါ။ ထပ်မံကြိုးစား၍ သတ်မှတ်နိုင်ပါသည် သို့မဟုတ် အသစ်တစ်ခု ရွေးချယ်နိုင်ပါသည်။</string>
     <!-- Displayed above the conversation list when a user needs to address an issue with their username link -->
-    <string name="UsernameOutOfSyncReminder__link_corrupt">Something went wrong with your QR code and username link, it’s no longer valid. Create a new link to share with others.</string>
+    <string name="UsernameOutOfSyncReminder__link_corrupt">သင်၏ QR ကုဒ်နှင့် သုံးစွဲသူအမည် လင့်ခ်တွင် တစ်စုံတစ်ခု မှားယွင်းနေပါသည်၊ ၎င်းသည် မှန်ကန်ခြင်းမရှိတော့ပါ။ အခြားသူများနှင့် မျှဝေပေးရန် လင့်ခ်အသစ်တစ်ခု ဖန်တီးပါ။</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
     <string name="UsernameOutOfSyncReminder__fix_now">ယခု ဖြေရှင်းရန်</string>
 
@@ -1479,7 +1481,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">%1$s အား သင့်ထံ မက်ဆေ့ချ် ပို့ခွင့်ပြုမည်လား။ ၎င်းတို့အား ဘလော့ခ် မဖြေမချင်း မက်ဆေ့ချ်များ ရရှိမည် မဟုတ်ပါ။</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">%1$s ထံမှ အပ်ဒိတ်များနှင့် သတင်းများ ရယူမည်လား။ ၎င်းတို့အား ဘလော့ခ် မဖြေမချင်း အပ်ဒိတ်များ ရရှိမည် မဟုတ်ပါ။</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">ထိုအဖွဲ့နှင့် ဆက်လက်၍ ချက်(တ်)ပြီး သင်၏ အမည်နှင့် ရုပ်ပုံကို အဖွဲ့ဝင်များနှင့် ဝေမျှမည်လား။</string>
-    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">၎င်းအဖွဲ့ကို အဆင့်မြှင့်၍ @မန်းရှင်းများ နှင့် စီမံသူ အင်္ဂါရပ်အသစ်များကို သုံးလိုက်ပါ။ ၎င်းအဖွဲ့ထဲတွင် အမည်နှင့် ရုပ်ပုံများ မမျှဝေရသေးသော အဖွဲ့ဝင်များကို ဝင်ရောက်ရန် ဖိတ်ခေါ်ပါလိမ့်မည်။</string>
+    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">This Legacy Group can no longer be used. Create a new group to activate new features like @mentions and admins.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">ဤ အမွေအဖွဲ့သည် အလွန်ကြီး၍ အဖွဲ့သစ်သို့အဆင့်မြှင့်လို့မရပါ။ အများဆုံးရှိနိုင်သော အဖွဲ့ဝင်အရေတွက်သည် %1$d ဦးသာ ဖြစ်ပါသည်။</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">%1$s နှင့် ချက်(တ်)ကို ဆက်ပြောပြီး သင်၏ အမည်နှင့် ရုပ်ပုံကို ၎င်းတို့နှင့် ဝေမျှမည်လား။</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">၎င်းအဖွဲ့သို့ ဝင်ရောက်ပြီး သင်၏ အမည် နှင့် ရုပ်ပုံတို့ကို အဖွဲ့ဝင်များနှင့် မျှဝေမည်လား? အဖွဲ့ဝင်များသည် သင်မှ ၎င်းတို့၏ မက်ဆေ့ချ်များကို ဖတ်ရှုခဲ့သည်ကို သင်လက်ခံသည်အထိ မတွေ့ရပါ။</string>
@@ -4473,6 +4475,10 @@
     <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s သည် Signal သုံးစွဲသူ မဟုတ်ပါ</string>
     <!-- Error message shown when we could not get a user from the username link -->
     <string name="NewConversationActivity__">%1$s သည် Signal သုံးစွဲသူ မဟုတ်ပါ</string>
+    <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
+    <plurals name="CreateGroupActivity_not_signal_users">
+        <item quantity="other">%1$s are not Signal users</item>
+    </plurals>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">အမည် သို့မဟုတ် နံပါတ်ကို ရှာရန်</string>
@@ -4655,11 +4661,11 @@
     <!-- Preference label to launch badge gifting -->
     <string name="ManageDonationsFragment__donate_for_a_friend">မိတ်ဆွေတစ်ယောက်အတွက် လှူရန်</string>
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
-    <string name="ManageDonationsFragment__couldnt_confirm_donation">Couldn\'t confirm donation</string>
+    <string name="ManageDonationsFragment__couldnt_confirm_donation">လှူဒါန်းမှုကို အတည်ပြုနိုင်ခြင်းမရှိပါ</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">Your %1$s/month donation couldn\'t be confirmed. Check your banking app to approve your iDEAL payment.</string>
+    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">သင်၏ တစ်လလျှင် %1$s လှူဒါန်းမှုကို အတည်မပြုနိုင်ပါ။ သင်၏ iDEAL ငွေပေးချေမှုကို အတည်ပြုရန် သင့်ဘဏ်အက်ပ်ကို စစ်ဆေးပါ။</string>
     <!-- Dialog message shown when a one-time donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">Your one-time %1$s donation couldn\'t be confirmed. Check your banking app to approve your iDEAL payment.</string>
+    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">သင်၏ %1$s တစ်ကြိမ်စာ လှူဒါန်းမှုကို အတည်မပြုနိုင်ပါ။ သင်၏ iDEAL ငွေပေးချေမှုကို အတည်ပြုရန် သင့်ဘဏ်အက်ပ်ကို စစ်ဆေးပါ။</string>
 
     <string name="Boost__enter_custom_amount">စိတ်ကြိုက်ပမာဏကို ရိုက်ထည့်ပါ</string>
     <!-- Error label when the amount is smaller than what we can accept -->
@@ -4726,16 +4732,16 @@
     <string name="Subscription__contact_support">ပံ့ပိုးမှုစင်တာသို့ ဆက်သွယ်ပါ</string>
     <string name="Subscription__get_a_s_badge">%1$s ဘဲ့ဂျ် ရယူရန်</string>
 
-    <string name="SubscribeFragment__processing_payment">Processing donation…</string>
+    <string name="SubscribeFragment__processing_payment">လှူဒါန်းမှုကို စီမံလုပ်ဆောင်နေဆဲ…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
-    <string name="DonationsErrors__error_processing_payment">Error processing donation</string>
+    <string name="DonationsErrors__error_processing_payment">လှူဒါန်းမှု စီမံလုပ်ဆောင်ရာတွင် ချို့ယွင်းချက်ရှိသည်</string>
     <!-- Displayed on manage donations screen as a dialog message when payment method failed -->
     <string name="DonationsErrors__try_another_payment_method">အခြားသော ငွေပေးချေနည်းကို သုံးကြည့်ပါ သို့မဟုတ် နောက်ထပ်အချက်အလက်များအတွက် သင့်ဘဏ်ကို ဆက်သွယ်ပါ။</string>
     <!-- Displayed on manage donations screen error dialogs as an action label -->
     <string name="DonationsErrors__learn_more">ပိုမိုလေ့လာရန်</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
-    <string name="DonationsErrors__error_processing_payment_s">Error processing donation. %1$s</string>
-    <string name="DonationsErrors__your_payment">Your donation couldn\'t be processed and you have not been charged. Please try again.</string>
+    <string name="DonationsErrors__error_processing_payment_s">လှူဒါန်းမှု စီမံလုပ်ဆောင်ရာတွင် ချို့ယွင်းချက်ရှိသည်။ %1$s</string>
+    <string name="DonationsErrors__your_payment">သင့်လှူဒါန်းမှုကို စီမံလုပ်ဆောင်နိုင်ခြင်း မရှိခဲ့ဘဲ သင့်ထံမှ ငွေကောက်ခံခဲ့ခြင်းမရှိပါ။ ထပ်ကြိုးစားကြည့်ပါ။</string>
     <string name="DonationsErrors__still_processing">စီမံလုပ်ဆောင်နေဆဲ</string>
     <string name="DonationsErrors__couldnt_add_badge">ဘဲ့ဂျ် ပေါင်းထည့်၍ မရနိုင်ပါ</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -4745,9 +4751,9 @@
     <!-- Displayed as title when some generic error happens during sending donation on behalf of another user -->
     <string name="DonationsErrors__donation_failed">လှူဒါန်းမှု မအောင်မြင်ပါ</string>
     <!-- Displayed as message when some generic error happens during sending donation on behalf of another user -->
-    <string name="DonationsErrors__your_payment_was_processed_but">Your donation was processed but Signal could not send your donation message. Please contact support.</string>
+    <string name="DonationsErrors__your_payment_was_processed_but">သင့်လှူဒါန်းမှုကို စီမံလုပ်ဆောင်ပြီးသော်လည်း Signal သည် သင့်လှူဒါန်းမှု မက်ဆေ့ချ်ကို မပေးပို့နိုင်ခဲ့ပါ။ အကူအညီရယူရန် ဆက်သွယ်ပါ။</string>
     <string name="DonationsErrors__your_badge_could_not">သင့်ဘဲ့ဂျ်ကို သင့်အကောင့်တွင် ပေါင်းထည့်၍ မရနိုင်ခဲ့သော်လည်း သင့်ထံမှ ငွေဖြတ်တောက်သွားနိုင်ပါသည်။ အကူအညီရယူရန် ဆက်သွယ်ပါ။</string>
-    <string name="DonationsErrors__your_payment_is_still">Your donation is still being processed. This can take a few minutes depending on your connection.</string>
+    <string name="DonationsErrors__your_payment_is_still">သင့်လှူဒါန်းမှုကို လုပ်ဆောင်နေဆဲ ဖြစ်ပါသည်။ သင့်ချိတ်ဆက်မှုအပေါ် မူတည်၍ မိနစ်အနည်းငယ် ကြာနိုင်ပါသည်။</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">ပုံမှန်လှူဒါန်းငွေကို ပယ်ဖျက်ရန် မအောင်မြင်ပါ</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">ပုံမှန်လှူဒါန်းငွေ ပယ်ဖျက်မှုသည် အင်တာနက် ချိတ်ဆက်မှု လိုအပ်ပါသည်။</string>
     <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">သင့်စက်သည် Google Pay နှင့် တွဲဖက်လုပ်ဆောင်နိုင်ခြင်း မရှိသောကြောင့် ဘဲ့ဂျ်ရရှိရန် လှူဒါန်း၍ မရနိုင်ပါ။ ကျွန်ုပ်တို့၏ ဝက်ဘ်ဆိုက်တွင် လှူဒါန်းမှု ပြုလုပ်ခြင်းဖြင့် Signal ကို ဆက်လက် ပံ့ပိုးကူညီနိုင်ပါသည်။</string>
@@ -4760,7 +4766,7 @@
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__your_donation_could_not_be_sent">ကွန်ရက်ချို့ယွင်းချက်ကြောင့် သင့်လှူဒါန်းမှုကို မပေးပို့နိုင်ပါ။ ချိတ်ဆက်မှုစစ်ဆေးပြီး ထပ်ကြိုးစားကြည့်ပါ။</string>
     <!-- Displayed as a dialog message when the user encounters an error during an iDEAL donation -->
-    <string name="DonationsErrors__your_ideal_couldnt_be_processed">Your iDEAL donation couldn\'t be processed. Try another payment method or contact your bank for more information.</string>
+    <string name="DonationsErrors__your_ideal_couldnt_be_processed">သင့် iDEAL လှူဒါန်းမှုကို စီမံလုပ်ဆောင်၍ မရနိုင်ပါ။ အခြားသော ငွေပေးချေနည်းကို သုံးကြည့်ပါ သို့မဟုတ် နောက်ထပ်အချက်အလက်များအတွက် သင့်ဘဏ်ကို ဆက်သွယ်ပါ။</string>
 
     <!-- Gift message view title -->
     <string name="GiftMessageView__donation_on_behalf_of_s">%1$s ကိုယ်စား လှူဒါန်းမှု</string>
@@ -4805,7 +4811,7 @@
     <!-- Stripe decline code incorrect expiration year -->
     <string name="DeclineCode__the_expiration_year">သင့်ငွေပေးချေမှု နည်းလမ်းရှိ သက်တမ်းကုန်ဆုံးမည့်နှစ်သည် မမှန်ကန်ပါ။ Google Pay တွင် အပ်ဒိတ်လုပ်ပြီး ထပ်ကြိုးစားပါ။</string>
     <!-- Stripe decline code issuer not available -->
-    <string name="DeclineCode__try_completing_the_payment_again">Try completing the donation again or contact your bank for more information.</string>
+    <string name="DeclineCode__try_completing_the_payment_again">လှူဒါန်းမှု ပြီးမြောက်စေရန် ထပ်ကြိုးစားပါ သို့မဟုတ် နောက်ထပ်အချက်အလက်အတွက် သင့်ဘဏ်ကို ဆက်သွယ်ပါ။</string>
     <!-- Stripe decline code processing error -->
     <string name="DeclineCode__try_again">ထပ်ကြိုးစားပါ သို့မဟုတ် နောက်ထပ်အချက်အလက်အတွက် သင့်ဘဏ်ကို ဆက်သွယ်ပါ။</string>
 
@@ -4829,9 +4835,9 @@
     <!-- Failure code text for insufficient funds, displayed in a dialog or notification -->
     <string name="StripeFailureCode__the_bank_account_provided">ပေးထားသော ဘဏ်အကောင့်တွင် ဤဝယ်ယူမှုကို အပြီးသတ်ရန် ငွေအလုံအလောက်မရှိပါ၊ ထပ်မံကြိုးစားပါ သို့မဟုတ် နောက်ထပ်အချက်အလက်များအတွက် သင့်ဘဏ်သို့ ဆက်သွယ်ပါ။</string>
     <!-- Failure code text for revoked authorization of payment, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__this_payment_was_revoked">This donation was revoked by the account holder and could not be processed. You haven\'t been charged.</string>
+    <string name="StripeFailureCode__this_payment_was_revoked">ဤလှူဒါန်းမှုကို အကောင့်ပိုင်ရှင်က ရုပ်သိမ်းလိုက်၍ ဆောင်ရွက်၍မရနိုင်ပါ။ သင့်ထံမှ ငွေကောက်ခံခြင်း မရှိခဲ့ပါ။</string>
     <!-- Failure code text for a payment lacking an authorized mandate or incorrect mandate, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">An error occurred while processing this donation, please try again.</string>
+    <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">ဤလှူဒါန်းမှုကို စီမံလုပ်ဆောင်နေစဉ် အမှားအယွင်းတစ်ခု ဖြစ်သွားပါသည်၊ ထပ်မံကြိုးစားပေးပါ။</string>
     <!-- Failure code text for a closed account, deceased recipient, or one with blocked direct debits, displayed in a dialog or notification -->
     <string name="StripeFailureCode__the_bank_details_provided_could_not_be_processed">ပေးထားသော ဘဏ်အသေးစိတ်အချက်များဖြင့် ဆောင်ရွက်၍မရနိုင်ပါ၊ နောက်ထပ်အချက်အလက်များအတွက် သင့်ဘဏ်သို့ ဆက်သွယ်ပါ။</string>
     <!-- Failure code text for a non-existent bank branch, invalid account holder, invalid iban, generic failure, or unknown bank failure, displayed in a dialog or notification -->
@@ -4993,10 +4999,10 @@
     <string name="DonationReceiptListFragment__recurring">ထပ်ထလဲလဲ လှူခြင်း</string>
     <!-- Donation receipts one-time tab label -->
     <string name="DonationReceiptListFragment__one_time">တစ်ကြိမ်</string>
+    <!-- Donation receipts gift tab -->
+    <string name="DonationReceiptListFragment__for_a_friend">For a friend</string>
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__donation_for_a_friend">မိတ်ဆွေတစ်ယောက်အတွက် လှူဒါန်းမှု</string>
-    <!-- Donation receipts boost row label -->
-    <!-- Donation receipts details title -->
     <!-- Donation receipts donation type heading -->
     <string name="DonationReceiptDetailsFragment__donation_type">လှူဒါန်းမှု အမျိုးအစား</string>
     <!-- Donation receipts date paid heading -->
@@ -5717,11 +5723,11 @@
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
     <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">ဘဏ်ငွေလွှဲပြောင်းမှုများကို စီမံဆောင်ရွက်ရန် များသောအားဖြင့် ရုံးဖွင့်ရက် 1 ရက် ကြာပါသည်။ နောက်ထပ်လှူဒါန်းမှု မပြုလုပ်မီ ထိုငွေပေးချေမှု ပြီးစီးသည်အထိ စောင့်ဆိုင်းပေးပါ။</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Your donation is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before updating your subscription.</string>
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">သင့်လှူဒါန်းမှုကို လုပ်ဆောင်နေဆဲ ဖြစ်ပါသည်။ သင့်ချိတ်ဆက်မှုအပေါ် မူတည်၍ မိနစ်အနည်းငယ် ကြာနိုင်ပါသည်။ သင့်ပုံမှန်လှူဒါန်းငွေကို အပ်ဒိတ်မလုပ်မီ ထိုငွေပေးချေမှု ပြီးစီးသည်အထိ စောင့်ဆိုင်းပေးပါ။</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Your donation is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before making another donation.</string>
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">သင့်လှူဒါန်းမှုကို လုပ်ဆောင်နေဆဲ ဖြစ်ပါသည်။ သင့်ချိတ်ဆက်မှုအပေါ် မူတည်၍ မိနစ်အနည်းငယ် ကြာနိုင်ပါသည်။ နောက်ထပ်လှူဒါန်းမှု မပြုလုပ်မီ ထိုငွေပေးချေမှု ပြီးစီးသည်အထိ စောင့်ဆိုင်းပေးပါ။</string>
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
-    <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">Your iDEAL donation is still processing. Check your banking app to approve your payment before making another donation.</string>
+    <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">သင့် iDEAL လှူဒါန်းမှုကို စီမံလုပ်ဆောင်နေဆဲ ဖြစ်ပါသည်။ အခြားလှူဒါန်းမှုတစ်ခု မပြုလုပ်မီ သင့်ငွေပေးချေမှုကို အတည်ပြုရန် သင့်ဘဏ်အက်ပ်ကို စစ်ဆေးပါ။</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
     <string name="DonateToSignal__donation_amount_too_high">Donation amount too high</string>
     <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
@@ -5753,8 +5759,8 @@
     <string name="GatewaySelectorBottomSheet__ideal">iDEAL</string>
 
     <!-- Dialog title for launching external intent -->
-    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Leave Signal to confirm donation?</string>
-    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">When confirmed, return to Signal to finish processing your donation.</string>
+    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">လှူဒါန်းမှုကို အတည်ပြုရန် Signal မှ ထွက်ပါမည်လား။</string>
+    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">အတည်ပြုပြီးသောအခါ သင်၏လှူဒါန်းမှုကို အပြီးသတ်ဆောင်ရွက်ရန် Signal သို့ ပြန်သွားပါ။</string>
 
     <!-- IdealBank -->
     <!-- iDEAL bank name -->
@@ -5792,7 +5798,7 @@
     <!-- Subtitle learn more of screen displaying bank transfer mandate -->
     <string name="BankTransferMandateFragment__learn_more">ပိုမိုလေ့လာရန်</string>
     <!-- Button label to continue with transfer -->
-    <string name="BankTransferMandateFragment__agree">Agree</string>
+    <string name="BankTransferMandateFragment__agree">သဘောတူပါသည်</string>
     <!-- Button label to read more of the bank mandate that is currently off screen -->
     <string name="BankTransferMandateFragment__read_more">ပိုမိုဖတ်ရှုရန်</string>
     <!-- Text displayed when mandate load fails -->
@@ -5800,7 +5806,7 @@
 
     <!-- BankTransferDetailsFragment -->
     <!-- Subtext explaining how email is used. Placeholder is \'Learn more\' -->
-    <string name="BankTransferDetailsFragment__enter_your_bank_details">Enter your bank details and email. Stripe uses this email to send you updates about your donation. %1$s</string>
+    <string name="BankTransferDetailsFragment__enter_your_bank_details">သင်၏ ဘဏ်အသေးစိတ်အချက်များနှင့် အီးမေးလ်ကို ထည့်သွင်းပါ။ Stripe သည် သင့်လှူဒါန်းမှုနှင့်ပတ်သက်၍ အပ်ဒိတ်များ ပေးပို့ရန် ထိုအီးမေးလ်ကို အသုံးပြုပါသည်။ %1$s</string>
     <!-- Subtext learn more link text -->
     <string name="BankTransferDetailsFragment__learn_more">ပိုမိုလေ့လာရန်</string>
     <!-- Text field label for name on bank account -->
@@ -6263,6 +6269,13 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">သင်၏လင့်ခ်ကို ပြန်လည်သတ်မှတ်ရန် ကြိုးစားစဉ် ကွန်ရက်ချို့ယွင်းချက်တစ်ခု ဖြစ်ပွားခဲ့ပါသည်။ နောက်မှ ထပ်ကြိုးစားကြည့်ပါ။</string>
 
+    <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
+    <string name="UsernameLinkShareBottomSheet_title">Anyone with this link can view your username and start a chat with you. Only share it with people you trust.</string>
+    <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
+    <string name="UsernameLinkShareBottomSheet_copy_link">လင့်ခ်ကူးရန်</string>
+    <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
+    <string name="UsernameLinkShareBottomSheet_share">ဝေမျှမယ်</string>
+
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
     <string name="PendingParticipantsView__would_like_to_join">ပါဝင်လိုသည်…</string>
@@ -6295,6 +6308,17 @@
     <string name="GrantFullScreenIntentPermission_bottomsheet_subtitle">သင့်အဆက်အသွယ်များနှင့် အဖွဲ့များထံမှ ကောလ်အသိပေးချက်များကို လက်ခံရရှိရန်-</string>
     <!-- Step 2 of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications, it indicates the name of the setting that needs to be re-enabled -->
     <string name="GrantFullScreenIntentPermission_bottomsheet_step2">2. %1$s မျက်နှာပြင်အပြည့် အသိပေးချက်များကို ခွင့်ပြုပါ</string>
+
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, title for dialog -->
+    <string name="MonthlyDonationCanceled__title">Monthly donation canceled</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, body for dialog. First placeholder is a payment related error message. Second placeholder is \'learn more\' -->
+    <string name="MonthlyDonationCanceled__message">Your recurring monthly donation was canceled. %1$s\n\nYour badge will no longer be visible on your profile. %2$s</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, learn more used in placeholder for body for dialog. -->
+    <string name="MonthlyDonationCanceled__learn_more">ပိုမိုလေ့လာရန်</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, primary button to renew subscription with new data -->
+    <string name="MonthlyDonationCanceled__renew_button">ပုံမှန်လှူဒါန်းငွေကို သက်တမ်းတိုးရန်</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, second button to dismiss the dialog entirely -->
+    <string name="MonthlyDonationCanceled__not_now_button">ယခု မလုပ်သေးပါ</string>
 
     <!-- EOF -->
 </resources>

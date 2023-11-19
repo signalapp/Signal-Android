@@ -110,7 +110,7 @@ public class ApplicationMigrations {
     static final int PNI_2                         = 66;
     static final int SYSTEM_NAME_SYNC              = 67;
     static final int STORY_VIEWED_STATE            = 68;
-    static final int STORY_READ_STATE              = 69;
+//    static final int STORY_READ_STATE              = 69;
     static final int THREAD_MESSAGE_SCHEMA_CHANGE  = 70;
     static final int SMS_MMS_MERGE                 = 71;
     static final int REBUILD_MESSAGE_FTS_INDEX     = 72;
@@ -140,9 +140,10 @@ public class ApplicationMigrations {
     static final int RECHECK_PAYMENTS              = 96;
     static final int THREAD_COUNT_DB_MIGRATION     = 97;
     static final int SYNC_KEYS_MIGRATION           = 98;
+    static final int SELF_REGISTERTED_STATE        = 99;
   }
 
-  public static final int CURRENT_VERSION = 98;
+  public static final int CURRENT_VERSION = 99;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -516,9 +517,9 @@ public class ApplicationMigrations {
       jobs.put(Version.STORY_VIEWED_STATE, new StoryViewedReceiptsStateMigrationJob());
     }
 
-    if (lastSeenVersion < Version.STORY_READ_STATE) {
-      jobs.put(Version.STORY_READ_STATE, new StoryReadStateMigrationJob());
-    }
+//    if (lastSeenVersion < Version.STORY_READ_STATE) {
+//      jobs.put(Version.STORY_READ_STATE, new StoryReadStateMigrationJob());
+//    }
 
     if (lastSeenVersion < Version.THREAD_MESSAGE_SCHEMA_CHANGE) {
       jobs.put(Version.THREAD_MESSAGE_SCHEMA_CHANGE, new DatabaseMigrationJob());
@@ -635,6 +636,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.SYNC_KEYS_MIGRATION) {
       jobs.put(Version.SYNC_KEYS_MIGRATION, new SyncKeysMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.SELF_REGISTERTED_STATE) {
+      jobs.put(Version.SELF_REGISTERTED_STATE,  new SelfRegisteredStateMigrationJob());
     }
 
     return jobs;

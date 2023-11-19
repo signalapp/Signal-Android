@@ -100,7 +100,7 @@ class CallLinkInfoSheet : ComposeBottomSheetDialogFragment() {
     }
   }
 
-  override fun isDarkTheme(): Boolean = true
+  override val forceDarkTheme = true
 
   private val webRtcCallViewModel: WebRtcCallViewModel by activityViewModels()
   private val callLinkDetailsViewModel: CallLinkDetailsViewModel by viewModels(factoryProducer = {

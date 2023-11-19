@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.keyvalue.AccountValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.subscription.Subscriber;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.ProfileUtil;
@@ -267,7 +268,7 @@ public class RefreshOwnProfileJob extends BaseJob {
       if (TextUtils.isEmpty(localUsernameHash) && TextUtils.isEmpty(remoteUsernameHash)) {
         Log.d(TAG, "Local and remote username hash are both empty. Considering validated.");
       } else if (!Objects.equals(localUsernameHash, remoteUsernameHash)) {
-        Log.w(TAG, "Local username hash does not match server username hash. Local hash: " + (TextUtils.isEmpty(localUsername) ? "empty" : "present") + ", Remote hash: " + (TextUtils.isEmpty(localUsername) ? "empty" : "present"));
+        Log.w(TAG, "Local username hash does not match server username hash. Local hash: " + (TextUtils.isEmpty(localUsername) ? "empty" : "present") + ", Remote hash: " + (TextUtils.isEmpty(remoteUsernameHash) ? "empty" : "present"));
         SignalStore.account().setUsernameSyncState(AccountValues.UsernameSyncState.USERNAME_AND_LINK_CORRUPTED);
         return;
       } else {
@@ -292,6 +293,7 @@ public class RefreshOwnProfileJob extends BaseJob {
           Log.w(TAG, "The remote username decrypted ok, but the decrypted username did not match our local username!");
           SignalStore.account().setUsernameSyncState(AccountValues.UsernameSyncState.LINK_CORRUPTED);
           SignalStore.account().setUsernameLink(null);
+          StorageSyncHelper.scheduleSyncForDataChange();
         } else {
           Log.d(TAG, "Username link validated.");
         }
@@ -304,6 +306,7 @@ public class RefreshOwnProfileJob extends BaseJob {
       Log.w(TAG, "Failed to decrypt username link using the remote encrypted username and our local entropy!", e);
       SignalStore.account().setUsernameSyncState(AccountValues.UsernameSyncState.LINK_CORRUPTED);
       SignalStore.account().setUsernameLink(null);
+      StorageSyncHelper.scheduleSyncForDataChange();
     }
 
     if (validated) {

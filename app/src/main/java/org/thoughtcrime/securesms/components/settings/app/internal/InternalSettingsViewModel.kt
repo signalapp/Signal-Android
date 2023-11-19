@@ -113,6 +113,11 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     refresh()
   }
 
+  fun setInternalCallingDisableLBRed(enabled: Boolean) {
+    preferenceDataStore.putBoolean(InternalValues.CALLING_DISABLE_LBRED, enabled)
+    refresh()
+  }
+
   fun setUseConversationItemV2Media(enabled: Boolean) {
     SignalStore.internalValues().setUseConversationItemV2Media(enabled)
     refresh()
@@ -120,6 +125,10 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
 
   fun addSampleReleaseNote() {
     repository.addSampleReleaseNote()
+  }
+
+  fun addRemoteDonateMegaphone() {
+    repository.addRemoteDonateMegaphone()
   }
 
   fun refresh() {
@@ -138,6 +147,7 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     callingAudioProcessingMethod = SignalStore.internalValues().callingAudioProcessingMethod(),
     callingDataMode = SignalStore.internalValues().callingDataMode(),
     callingDisableTelecom = SignalStore.internalValues().callingDisableTelecom(),
+    callingDisableLBRed = SignalStore.internalValues().callingDisableLBRed(),
     useBuiltInEmojiSet = SignalStore.internalValues().forceBuiltInEmoji(),
     emojiVersion = null,
     removeSenderKeyMinimium = SignalStore.internalValues().removeSenderKeyMinimum(),

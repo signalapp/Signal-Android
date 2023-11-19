@@ -402,6 +402,8 @@
 
     <string name="ConversationActivity_error_sending_media">Lỗi gửi tệp đa phương tiện</string>
 
+    <!-- Message shown when opening an MMS group conversation with SMS disabled and there are no exported messages -->
+    <string name="ConversationActivity__sms_messaging_is_no_longer_supported">Việc nhắn tin SMS không còn được hỗ trợ trên Signal.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Việc nhắn tin SMS không còn được hỗ trợ trên Signal. Mời %1$s sử dụng Signal để tiếp tục cuộc trò chuyện ở đây.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
@@ -975,15 +977,15 @@
     <!-- Snackbar message after successful deletion of username -->
     <string name="ManageProfileFragment__username_deleted">Tên người dùng đã xóa</string>
     <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_title">Delete username?</string>
+    <string name="ManageProfileFragment__delete_username_dialog_title">Xóa tên người dùng?</string>
     <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_body">"This will remove your username and disable your QR code and link. %1$s will be available for others to claim. Are you sure?"</string>
+    <string name="ManageProfileFragment__delete_username_dialog_body">"Thao tác này sẽ xóa tên người dùng của bạn, đồng thời vô hiệu hóa mã QR và đường dẫn của bạn. %1$s sẽ có thể được sử dụng bởi thành viên khác. Bạn có chắc không?"</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
     <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">Có vấn đề với tên người dùng của bạn, tên này không còn gắn liền với tài khoản của bạn. Bạn có thể thử và đặt lại hoặc chọn một tên mới.</string>
     <!-- Displayed above the conversation list when a user needs to address an issue with their username link -->
-    <string name="UsernameOutOfSyncReminder__link_corrupt">Something went wrong with your QR code and username link, it’s no longer valid. Create a new link to share with others.</string>
+    <string name="UsernameOutOfSyncReminder__link_corrupt">Có vấn đề với mã QR và đường dẫn tên người dùng của bạn, tên này không còn khả dụng. Hãy tạo đường dẫn mới để chia sẻ với mọi người.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
     <string name="UsernameOutOfSyncReminder__fix_now">Sửa ngay</string>
 
@@ -1479,7 +1481,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Cho phép %1$s nhắn tin cho bạn? Bạn sẽ không nhận thêm tin nhắn mới cho tới khi bạn bỏ chặn họ.</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Nhận cập nhật và tin tức từ %1$s? Bạn sẽ không nhận được cập nhật nào cho tới khi bạn bỏ chặn họ.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Tiếp tục cuộc trò chuyện của bạn với nhóm này và chia sẻ tên và ảnh của bạn với các thành viên nhóm?</string>
-    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Nâng cấp nhóm này để kích hoạt các tính năng mới như @nhắc tên và quản trị viên. Các thành viên chưa chia sẻ tên hoặc ảnh đại diện trong nhóm này sẽ được mời tham gia.</string>
+    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">This Legacy Group can no longer be used. Create a new group to activate new features like @mentions and admins.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Nhóm Cũ này không thể được sử dụng vì nhóm quá lớn. Kích cỡ tối đa của nhóm là %1$d.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Tiếp tục cuộc trò chuyện này với %1$s và chia sẻ tên và ảnh của bạn với người này?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Tham gia nhóm này và chia sẻ tên và ảnh đại diện của bạn với các thành viên nhóm? Họ sẽ không biết là bạn đã đọc tin nhắn cho tới khi bạn chấp nhận.</string>
@@ -4473,6 +4475,10 @@
     <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s không phải là người dùng Signal</string>
     <!-- Error message shown when we could not get a user from the username link -->
     <string name="NewConversationActivity__">%1$s không phải là người dùng Signal</string>
+    <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
+    <plurals name="CreateGroupActivity_not_signal_users">
+        <item quantity="other">%1$s không phải là người dùng Signal</item>
+    </plurals>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">Tìm kiếm tên hoặc số điện thoại</string>
@@ -4655,11 +4661,11 @@
     <!-- Preference label to launch badge gifting -->
     <string name="ManageDonationsFragment__donate_for_a_friend">Ủng hộ thay cho một người bạn</string>
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
-    <string name="ManageDonationsFragment__couldnt_confirm_donation">Couldn\'t confirm donation</string>
+    <string name="ManageDonationsFragment__couldnt_confirm_donation">Không thể xác nhận khoản ủng hộ</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">Your %1$s/month donation couldn\'t be confirmed. Check your banking app to approve your iDEAL payment.</string>
+    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">Khoản ủng hộ %1$s/tháng của bạn không thể được xác nhận. Kiểm tra ứng dụng ngân hàng của bạn để chấp thuận khoản thanh toán iDEAL.</string>
     <!-- Dialog message shown when a one-time donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">Your one-time %1$s donation couldn\'t be confirmed. Check your banking app to approve your iDEAL payment.</string>
+    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">Khoản ủng hộ %1$s một lần của bạn không thể được xác nhận. Kiểm tra ứng dụng ngân hàng của bạn để chấp thuận khoản thanh toán iDEAL.</string>
 
     <string name="Boost__enter_custom_amount">Nhập vào Số tiền Tuỳ chọn</string>
     <!-- Error label when the amount is smaller than what we can accept -->
@@ -4726,16 +4732,16 @@
     <string name="Subscription__contact_support">Liên lạc Hỗ trợ</string>
     <string name="Subscription__get_a_s_badge">Nhận một huy hiệu %1$s</string>
 
-    <string name="SubscribeFragment__processing_payment">Processing donation…</string>
+    <string name="SubscribeFragment__processing_payment">Đang xử lý khoản ủng hộ…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
-    <string name="DonationsErrors__error_processing_payment">Error processing donation</string>
+    <string name="DonationsErrors__error_processing_payment">Có lỗi khi xử lý khoản ủng hộ</string>
     <!-- Displayed on manage donations screen as a dialog message when payment method failed -->
     <string name="DonationsErrors__try_another_payment_method">Hãy thử một phương thức thanh toán khác hoặc liên hệ với ngân hàng của bạn để biết thêm thông tin.</string>
     <!-- Displayed on manage donations screen error dialogs as an action label -->
     <string name="DonationsErrors__learn_more">Tìm hiểu thêm</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
-    <string name="DonationsErrors__error_processing_payment_s">Error processing donation. %1$s</string>
-    <string name="DonationsErrors__your_payment">Your donation couldn\'t be processed and you have not been charged. Please try again.</string>
+    <string name="DonationsErrors__error_processing_payment_s">Có lỗi khi xử lý khoản ủng hộ. %1$s</string>
+    <string name="DonationsErrors__your_payment">Khoản ủng hộ của bạn không thể được xử lý và tài khoản của bạn chưa bị trừ. Vui lòng thử lại.</string>
     <string name="DonationsErrors__still_processing">Vẫn đang xữ lý</string>
     <string name="DonationsErrors__couldnt_add_badge">Không thể thêm huy hiệu</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -4745,9 +4751,9 @@
     <!-- Displayed as title when some generic error happens during sending donation on behalf of another user -->
     <string name="DonationsErrors__donation_failed">Ủng hộ thất bại</string>
     <!-- Displayed as message when some generic error happens during sending donation on behalf of another user -->
-    <string name="DonationsErrors__your_payment_was_processed_but">Your donation was processed but Signal could not send your donation message. Please contact support.</string>
+    <string name="DonationsErrors__your_payment_was_processed_but">Khoản ủng hộ của bạn đã được xử lý nhưng Signal không thể gửi tin nhắn kèm khoản ủng hộ của bạn. Vui lòng liên hệ bộ phận hỗ trợ.</string>
     <string name="DonationsErrors__your_badge_could_not">Huy hiệu của bạn không thể thêm vào tài khoản, nhưng bạn vẫn có thể bị tính phí. Xin vui lòng liên hệ với chúng tôi để được hỗ trợ.</string>
-    <string name="DonationsErrors__your_payment_is_still">Your donation is still being processed. This can take a few minutes depending on your connection.</string>
+    <string name="DonationsErrors__your_payment_is_still">Khoản ủng hộ của bạn vẫn đang được xử lý. Quá trình này có thể mất vài phút tùy vào kết nối của bạn.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Hủy gói ủng hộ không thành công</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Để hủy gói ủng hộ, thiết bị cần kết nối internet.</string>
     <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Thiết bị của bạn không hỗ trợ Google Pay, vì vậy bạn không thể đăng ký ủng hộ để nhận huy hiệu. Bạn vẫn có thể gửi khoản ủng hộ cho Signal trên trang Web của chúng tôi.</string>
@@ -4760,7 +4766,7 @@
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__your_donation_could_not_be_sent">Khoản ủng hộ của bạn không thể gửi đi được vì lỗi mạng. Kiểm tra kết nối của bạn và thử lại.</string>
     <!-- Displayed as a dialog message when the user encounters an error during an iDEAL donation -->
-    <string name="DonationsErrors__your_ideal_couldnt_be_processed">Your iDEAL donation couldn\'t be processed. Try another payment method or contact your bank for more information.</string>
+    <string name="DonationsErrors__your_ideal_couldnt_be_processed">Khoản ủng hộ thông qua iDEAL của bạn không thể được xử lý. Hãy thử một phương thức thanh toán khác hoặc liên hệ với ngân hàng của bạn để biết thêm thông tin.</string>
 
     <!-- Gift message view title -->
     <string name="GiftMessageView__donation_on_behalf_of_s">Khoản ủng hộ thay cho %1$s</string>
@@ -4805,7 +4811,7 @@
     <!-- Stripe decline code incorrect expiration year -->
     <string name="DeclineCode__the_expiration_year">Năm hết hạn của phương thức thanh toán không đúng. Hãy cập nhật trên Google Pay và thử lại.</string>
     <!-- Stripe decline code issuer not available -->
-    <string name="DeclineCode__try_completing_the_payment_again">Try completing the donation again or contact your bank for more information.</string>
+    <string name="DeclineCode__try_completing_the_payment_again">Hãy thử hoàn thành việc ủng hộ một lần nữa hoặc liên hệ với ngân hàng của bạn để biết thêm thông tin.</string>
     <!-- Stripe decline code processing error -->
     <string name="DeclineCode__try_again">Thử lại hoặc liên hệ ngân hàng của bạn để biết thêm thông tin.</string>
 
@@ -4829,9 +4835,9 @@
     <!-- Failure code text for insufficient funds, displayed in a dialog or notification -->
     <string name="StripeFailureCode__the_bank_account_provided">Số dư trong tài khoản ngân hàng đã cung cấp không đủ để hoàn thành giao dịch, hãy thử lại hoặc liên hệ với ngân hàng của bạn để biết thêm thông tin.</string>
     <!-- Failure code text for revoked authorization of payment, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__this_payment_was_revoked">This donation was revoked by the account holder and could not be processed. You haven\'t been charged.</string>
+    <string name="StripeFailureCode__this_payment_was_revoked">Khoản thanh toán này đã bị thu hồi bởi chủ tài khoản và không thể được xử lý. Bạn chưa bị trừ tiền.</string>
     <!-- Failure code text for a payment lacking an authorized mandate or incorrect mandate, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">An error occurred while processing this donation, please try again.</string>
+    <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">Có lỗi xảy ra trong quá trình xử lý khoản ủng hộ, vui lòng thử lại.</string>
     <!-- Failure code text for a closed account, deceased recipient, or one with blocked direct debits, displayed in a dialog or notification -->
     <string name="StripeFailureCode__the_bank_details_provided_could_not_be_processed">Thông tin tài khoản ngân hàng đã cung cấp không thể được xử lý, liên hệ với ngân hàng của bạn để biết thêm thông tin.</string>
     <!-- Failure code text for a non-existent bank branch, invalid account holder, invalid iban, generic failure, or unknown bank failure, displayed in a dialog or notification -->
@@ -4993,10 +4999,10 @@
     <string name="DonationReceiptListFragment__recurring">Lặp lại</string>
     <!-- Donation receipts one-time tab label -->
     <string name="DonationReceiptListFragment__one_time">Một lần</string>
+    <!-- Donation receipts gift tab -->
+    <string name="DonationReceiptListFragment__for_a_friend">Thay cho bạn mình</string>
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__donation_for_a_friend">Khoản ủng hộ thay cho một người bạn</string>
-    <!-- Donation receipts boost row label -->
-    <!-- Donation receipts details title -->
     <!-- Donation receipts donation type heading -->
     <string name="DonationReceiptDetailsFragment__donation_type">Hình thức ủng hộ</string>
     <!-- Donation receipts date paid heading -->
@@ -5717,15 +5723,15 @@
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
     <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Giao dịch chuyển khoản ngân hàng thường mất 1 ngày làm việc để xử lý. Vui lòng chờ đến khi khoản thanh toán này hoàn tất trước khi gửi thêm khoản ủng hộ khác.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Your donation is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before updating your subscription.</string>
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Khoản ủng hộ của bạn vẫn đang được xử lý. Quá trình này có thể mất vài phút tùy vào kết nối của bạn. Vui lòng chờ đến khi khoản thanh toán này hoàn tất trước khi cập nhật gói ủng hộ.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Your donation is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before making another donation.</string>
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Khoản ủng hộ của bạn vẫn đang được xử lý. Quá trình này có thể mất vài phút tùy vào kết nối của bạn. Vui lòng chờ đến khi khoản thanh toán này hoàn tất trước khi gửi thêm khoản ủng hộ khác.</string>
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
-    <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">Your iDEAL donation is still processing. Check your banking app to approve your payment before making another donation.</string>
+    <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">Khoản ủng hộ thông qua iDEAL của bạn không thể được xử lý. Kiểm tra ứng dụng ngân hàng của bạn để chấp thuận khoản thanh toán trước khi tiến hành gửi một khoản ủng hộ khác.</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
-    <string name="DonateToSignal__donation_amount_too_high">Donation amount too high</string>
+    <string name="DonateToSignal__donation_amount_too_high">Khoản ủng hộ quá cao</string>
     <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
-    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">You can send up to %1$s via bank transfer. Try a different amount or a different payment method.</string>
+    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">Bạn có thể gửi đến %1$s qua chuyển khoản ngân hàng. Thử một khoản ủng hộ có giá trị khác hoặc một phương thức thanh toán khác.</string>
 
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">Hàng tháng</string>
@@ -5753,8 +5759,8 @@
     <string name="GatewaySelectorBottomSheet__ideal">iDEAL</string>
 
     <!-- Dialog title for launching external intent -->
-    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Leave Signal to confirm donation?</string>
-    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">When confirmed, return to Signal to finish processing your donation.</string>
+    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Rời khỏi Signal để xác nhận khoản ủng hộ?</string>
+    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">Khi đã xác nhận, quay lại Signal để hoàn tất xử lý khoản ủng hộ của bạn.</string>
 
     <!-- IdealBank -->
     <!-- iDEAL bank name -->
@@ -5792,7 +5798,7 @@
     <!-- Subtitle learn more of screen displaying bank transfer mandate -->
     <string name="BankTransferMandateFragment__learn_more">Tìm hiểu thêm</string>
     <!-- Button label to continue with transfer -->
-    <string name="BankTransferMandateFragment__agree">Agree</string>
+    <string name="BankTransferMandateFragment__agree">Đồng ý</string>
     <!-- Button label to read more of the bank mandate that is currently off screen -->
     <string name="BankTransferMandateFragment__read_more">Đọc thêm</string>
     <!-- Text displayed when mandate load fails -->
@@ -5800,7 +5806,7 @@
 
     <!-- BankTransferDetailsFragment -->
     <!-- Subtext explaining how email is used. Placeholder is \'Learn more\' -->
-    <string name="BankTransferDetailsFragment__enter_your_bank_details">Enter your bank details and email. Stripe uses this email to send you updates about your donation. %1$s</string>
+    <string name="BankTransferDetailsFragment__enter_your_bank_details">Nhập thông tin ngân hàng và địa chỉ email của bạn. Stripe sử dụng địa chỉ email này để gửi thông tin cập nhật về khoản ủng hộ của bạn. %1$s</string>
     <!-- Subtext learn more link text -->
     <string name="BankTransferDetailsFragment__learn_more">Tìm hiểu thêm</string>
     <!-- Text field label for name on bank account -->
@@ -6263,6 +6269,13 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">Có lỗi kết nối mạng khi đang tiến hành đặt lại đường dẫn. Thử lại sau.</string>
 
+    <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
+    <string name="UsernameLinkShareBottomSheet_title">Bất kỳ ai có đường dẫn này có thể xem tên người dùng của bạn và bắt đầu trò chuyện với bạn. Chỉ chia sẻ đường dẫn với người bạn tin tưởng.</string>
+    <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
+    <string name="UsernameLinkShareBottomSheet_copy_link">Sao chép đường dẫn</string>
+    <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
+    <string name="UsernameLinkShareBottomSheet_share">Chia sẻ</string>
+
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
     <string name="PendingParticipantsView__would_like_to_join">Muốn tham gia…</string>
@@ -6295,6 +6308,17 @@
     <string name="GrantFullScreenIntentPermission_bottomsheet_subtitle">Để nhận thông báo toàn màn hình từ các liên hệ và nhóm:</string>
     <!-- Step 2 of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications, it indicates the name of the setting that needs to be re-enabled -->
     <string name="GrantFullScreenIntentPermission_bottomsheet_step2">2. %1$s Cho phép thông báo toàn màn hình</string>
+
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, title for dialog -->
+    <string name="MonthlyDonationCanceled__title">Đã hủy ủng hộ hàng tháng</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, body for dialog. First placeholder is a payment related error message. Second placeholder is \'learn more\' -->
+    <string name="MonthlyDonationCanceled__message">Khoản ủng hộ hàng tháng của bạn đã được hủy. %1$s\n\nHuy hiệu của bạn sẽ không còn hiển thị trên hồ sơ. %2$s</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, learn more used in placeholder for body for dialog. -->
+    <string name="MonthlyDonationCanceled__learn_more">Tìm hiểu thêm</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, primary button to renew subscription with new data -->
+    <string name="MonthlyDonationCanceled__renew_button">Gia hạn Gói Ủng hộ</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, second button to dismiss the dialog entirely -->
+    <string name="MonthlyDonationCanceled__not_now_button">Để sau</string>
 
     <!-- EOF -->
 </resources>

@@ -7,9 +7,9 @@ import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.NoSuchMessageException
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.ReactionRecord
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -51,7 +51,7 @@ object NotificationStateProvider {
               SignalDatabase.messages.hasGroupReplyOrReactionInStory(it)
             }
 
-            if (record is MediaMmsMessageRecord) {
+            if (record is MmsMessageRecord) {
               val attachments = SignalDatabase.attachments.getAttachmentsForMessage(record.id)
               if (attachments.isNotEmpty()) {
                 record = record.withAttachments(attachments)

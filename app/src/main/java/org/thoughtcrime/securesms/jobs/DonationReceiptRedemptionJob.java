@@ -72,7 +72,6 @@ public class DonationReceiptRedemptionJob extends BaseJob {
             .addConstraint(NetworkConstraint.KEY)
             .setQueue(SUBSCRIPTION_QUEUE + (isLongRunningDonationPaymentType ? LONG_RUNNING_QUEUE_SUFFIX : ""))
             .setMaxAttempts(Parameters.UNLIMITED)
-            .setMaxInstancesForQueue(1)
             .setLifespan(TimeUnit.DAYS.toMillis(1))
             .build());
   }

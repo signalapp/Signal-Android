@@ -414,6 +414,8 @@
 
     <string name="ConversationActivity_error_sending_media">Tharla botún fad agus a bhí an meán á sheoladh</string>
 
+    <!-- Message shown when opening an MMS group conversation with SMS disabled and there are no exported messages -->
+    <string name="ConversationActivity__sms_messaging_is_no_longer_supported">Ní thacaítear le cur teachtaireachtaí SMS in Signal a thuilleadh.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Ní thacaítear le cur teachtaireachtaí SMS in Signal a thuilleadh. Tabhair cuireadh do %1$s teacht isteach in Signal leis an gcomhrá a choinneáil anseo.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
@@ -1111,15 +1113,15 @@
     <!-- Snackbar message after successful deletion of username -->
     <string name="ManageProfileFragment__username_deleted">Ainm úsáideora scriosta</string>
     <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_title">Delete username?</string>
+    <string name="ManageProfileFragment__delete_username_dialog_title">Scrios ainm úsáideora?</string>
     <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_body">"This will remove your username and disable your QR code and link. %1$s will be available for others to claim. Are you sure?"</string>
+    <string name="ManageProfileFragment__delete_username_dialog_body">"Bainfear d\'ainm úsáideora agus díchumasófar do chód QR agus nasc leis sin. Beidh daoine eile in ann %1$s a éileamh. An bhfuil tú cinnte?"</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
     <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">Bhí fadhb le d\'ainm úsáideora, níl sé sannta do do chuntas a thuilleadh. Is féidir leat athshocrú a thriail nó ceann nua a roghnú.</string>
     <!-- Displayed above the conversation list when a user needs to address an issue with their username link -->
-    <string name="UsernameOutOfSyncReminder__link_corrupt">Something went wrong with your QR code and username link, it’s no longer valid. Create a new link to share with others.</string>
+    <string name="UsernameOutOfSyncReminder__link_corrupt">Bhí fadhb le do chód QR agus nasc d\'ainm úsáideora, níl sé bailí a thuilleadh. Cruthaigh nasc nua lena chomhroinnt le daoine eile.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
     <string name="UsernameOutOfSyncReminder__fix_now">Deisigh anois</string>
 
@@ -1695,7 +1697,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Lig do %1$s teachtaireachtaí a sheoladh chugat? Ní bhfaighidh tú aon teachtaireachtaí go dtí go mbainfidh tú an bac de/di.</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Faigh nuashonruithe agus nuacht ó %1$s? Ní bhfaighidh tú aon nuashonruithe go dtí go mbainfidh tú an bac de/di.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Continue your chat with this group and share your name and photo with its members?</string>
-    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Uasghrádaigh an grúpa seo chun gnéithe nua amhail @tráchtanna agus riarthóirí a ghníomhachtú. Baill nár chomhroinn a n-ainm nó a ngrianghraf sa ghrúpa seo, tabharfar cuireadh dóibh dul isteach ann.</string>
+    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">This Legacy Group can no longer be used. Create a new group to activate new features like @mentions and admins.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Ní féidir an seanleagan seo den Ghrúpa a úsáid a thuilleadh toisc go bhfuil sé rómhór. Is í %1$d uasmhéid an ghrúpa.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Lean le do chomhrá le %1$s agus comhroinn d\'ainm agus grianghraf leis an duine sin?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Téigh isteach sa ghrúpa seo agus comhroinn d\'ainm agus grianghraf lena bhaill? Ní bheidh a fhios acu go bhfaca tú na teachtaireachtaí go dtí go nglacfaidh tú.</string>
@@ -4893,6 +4895,14 @@
     <string name="NewConversationActivity__s_is_not_a_signal_user">Ní úsáideoir Signal é/í %1$s</string>
     <!-- Error message shown when we could not get a user from the username link -->
     <string name="NewConversationActivity__">Ní úsáideoir Signal é/í %1$s</string>
+    <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
+    <plurals name="CreateGroupActivity_not_signal_users">
+        <item quantity="one">%1$s is not a Signal user</item>
+        <item quantity="two">%1$s are not Signal users</item>
+        <item quantity="few">%1$s are not Signal users</item>
+        <item quantity="many">%1$s are not Signal users</item>
+        <item quantity="other">%1$s are not Signal users</item>
+    </plurals>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">Cuardaigh ainm nó uimhir</string>
@@ -5091,11 +5101,11 @@
     <!-- Preference label to launch badge gifting -->
     <string name="ManageDonationsFragment__donate_for_a_friend">Tabhair airgead ar son Cara</string>
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
-    <string name="ManageDonationsFragment__couldnt_confirm_donation">Couldn\'t confirm donation</string>
+    <string name="ManageDonationsFragment__couldnt_confirm_donation">Níorbh fhéidir an tabhartas a dheimhniú</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">Your %1$s/month donation couldn\'t be confirmed. Check your banking app to approve your iDEAL payment.</string>
+    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">Níorbh fhéidir do thabhartas %1$s/sa mhí a dheimhniú. Seiceáil d\'aip bhaincéireachta le d\'íocaíocht iDEAL a fhaomhadh.</string>
     <!-- Dialog message shown when a one-time donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">Your one-time %1$s donation couldn\'t be confirmed. Check your banking app to approve your iDEAL payment.</string>
+    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">Níorbh fhéidir do thabhartas aonuaire %1$s a dheimhniú. Seiceáil d\'aip bhaincéireachta le d\'íocaíocht iDEAL a fhaomhadh.</string>
 
     <string name="Boost__enter_custom_amount">Cuir isteach Méid Saincheaptha</string>
     <!-- Error label when the amount is smaller than what we can accept -->
@@ -5162,16 +5172,16 @@
     <string name="Subscription__contact_support">Déan Teagmháil le Foireann Tacaíochta Signal</string>
     <string name="Subscription__get_a_s_badge">Faigh suaitheantas %1$s</string>
 
-    <string name="SubscribeFragment__processing_payment">Processing donation…</string>
+    <string name="SubscribeFragment__processing_payment">Tabhartas á phróiseáil…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
-    <string name="DonationsErrors__error_processing_payment">Error processing donation</string>
+    <string name="DonationsErrors__error_processing_payment">Earráid le próiseáil an tabhartais</string>
     <!-- Displayed on manage donations screen as a dialog message when payment method failed -->
     <string name="DonationsErrors__try_another_payment_method">Try another payment method or contact your bank for more information.</string>
     <!-- Displayed on manage donations screen error dialogs as an action label -->
     <string name="DonationsErrors__learn_more">Tuilleadh faisnéise</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
-    <string name="DonationsErrors__error_processing_payment_s">Error processing donation. %1$s</string>
-    <string name="DonationsErrors__your_payment">Your donation couldn\'t be processed and you have not been charged. Please try again.</string>
+    <string name="DonationsErrors__error_processing_payment_s">Earráid le próiseáil an tabhartais. %1$s</string>
+    <string name="DonationsErrors__your_payment">Níorbh fhéidir do thabhartas a phróiseáil agus níor gearradh aon táillí ort. Triail arís.</string>
     <string name="DonationsErrors__still_processing">Still Processing</string>
     <string name="DonationsErrors__couldnt_add_badge">Níor fhéidir suaitheantas a chur leis</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -5181,9 +5191,9 @@
     <!-- Displayed as title when some generic error happens during sending donation on behalf of another user -->
     <string name="DonationsErrors__donation_failed">Theip ar an tabhartas</string>
     <!-- Displayed as message when some generic error happens during sending donation on behalf of another user -->
-    <string name="DonationsErrors__your_payment_was_processed_but">Your donation was processed but Signal could not send your donation message. Please contact support.</string>
+    <string name="DonationsErrors__your_payment_was_processed_but">Rinneadh do thabhartas a phróiseáil ach ní raibh Signal in ann do theachtaireacht faoin tabhartas a sheoladh. Déan teagmháil leis an bhfoireann tacaíochta.</string>
     <string name="DonationsErrors__your_badge_could_not">Níorbh fhéidir do shuaitheantas a chur le do chuntas, ach seans gur gearradh táille ort. Déan teagmháil leis an bhfoireann tacaíochta.</string>
-    <string name="DonationsErrors__your_payment_is_still">Your donation is still being processed. This can take a few minutes depending on your connection.</string>
+    <string name="DonationsErrors__your_payment_is_still">Tá do thabhartas á phróiseáil fós. D\'fheadfaí go mbeadh cúpla nóiméad i gceist leis sin ag brath ar do nasc.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Theip ar chur an tsíntiúis ar ceal</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Teastaíonn nasc Idirlín chun an síntiús a chur ar ceal.</string>
     <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Ní thacaíonn do ghléas le Google Pay, mar sin ní féidir leat síntiús a ghlacadh chun suaitheantas a thuilleamh. Is féidir leat tacú le Signal fós trí airgead a thabhairt ar ár suíomh gréasáin.</string>
@@ -5196,7 +5206,7 @@
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__your_donation_could_not_be_sent">Níorbh fhéidir do thabhartas a sheoladh de dheasca earráid líonra. Seiceáil do nasc agus triail arís.</string>
     <!-- Displayed as a dialog message when the user encounters an error during an iDEAL donation -->
-    <string name="DonationsErrors__your_ideal_couldnt_be_processed">Your iDEAL donation couldn\'t be processed. Try another payment method or contact your bank for more information.</string>
+    <string name="DonationsErrors__your_ideal_couldnt_be_processed">Níorbh fhéidir do thabhartas iDEAL a phróiseáil. Triail modh íocaíochta eile nó déan teagmháil le do bhanc le tuilleadh faisnéise a fháil.</string>
 
     <!-- Gift message view title -->
     <string name="GiftMessageView__donation_on_behalf_of_s">Tabhartas ar son %1$s</string>
@@ -5241,7 +5251,7 @@
     <!-- Stripe decline code incorrect expiration year -->
     <string name="DeclineCode__the_expiration_year">Tá an bhliain as feidhm ar do mhodh íocaíochta mícheart. Nuashonraigh in Google Pay í agus triail arís.</string>
     <!-- Stripe decline code issuer not available -->
-    <string name="DeclineCode__try_completing_the_payment_again">Try completing the donation again or contact your bank for more information.</string>
+    <string name="DeclineCode__try_completing_the_payment_again">Triail an tabhartas a thabhairt arís nó déan teagmháil le do bhanc le tuilleadh faisnéise a fháil.</string>
     <!-- Stripe decline code processing error -->
     <string name="DeclineCode__try_again">Triail arís nó déan teagmháil le do bhanc le tuilleadh faisnéise a fháil.</string>
 
@@ -5265,9 +5275,9 @@
     <!-- Failure code text for insufficient funds, displayed in a dialog or notification -->
     <string name="StripeFailureCode__the_bank_account_provided">Ní leor an t-airgead sa chuntas bainc seo leis an gceannachán a chur i gcrích, triail arís nó déan teagmháil le do bhanc le tuilleadh faisnéise a fháil.</string>
     <!-- Failure code text for revoked authorization of payment, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__this_payment_was_revoked">This donation was revoked by the account holder and could not be processed. You haven\'t been charged.</string>
+    <string name="StripeFailureCode__this_payment_was_revoked">Chealaigh sealbhóir an chuntais an tabhartas seo agus níorbh fhéidir é a phróiseáil. Níor gearradh aon táillí ort.</string>
     <!-- Failure code text for a payment lacking an authorized mandate or incorrect mandate, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">An error occurred while processing this donation, please try again.</string>
+    <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">Tharla earráid agus an tabhartas seo á phróiseáil, triail arís.</string>
     <!-- Failure code text for a closed account, deceased recipient, or one with blocked direct debits, displayed in a dialog or notification -->
     <string name="StripeFailureCode__the_bank_details_provided_could_not_be_processed">Níorbh fhéidir na sonraí bainc a phróiseáil, déan teagmháil le do bhanc le tuilleadh faisnéise a fháil.</string>
     <!-- Failure code text for a non-existent bank branch, invalid account holder, invalid iban, generic failure, or unknown bank failure, displayed in a dialog or notification -->
@@ -5429,10 +5439,10 @@
     <string name="DonationReceiptListFragment__recurring">Recurring</string>
     <!-- Donation receipts one-time tab label -->
     <string name="DonationReceiptListFragment__one_time">One-time</string>
+    <!-- Donation receipts gift tab -->
+    <string name="DonationReceiptListFragment__for_a_friend">For a friend</string>
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__donation_for_a_friend">Tabhartas ar son cara</string>
-    <!-- Donation receipts boost row label -->
-    <!-- Donation receipts details title -->
     <!-- Donation receipts donation type heading -->
     <string name="DonationReceiptDetailsFragment__donation_type">Cineál tabhartais</string>
     <!-- Donation receipts date paid heading -->
@@ -6237,11 +6247,11 @@
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
     <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Is gnách go bpróiseáiltear aistrithe bainc laistigh de 1 lá gnó amháin. Fan go gcríochnófar an íocaíocht seo roimh thabhartas eile a thabhairt.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Your donation is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before updating your subscription.</string>
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Tá do thabhartas á phróiseáil fós. D\'fheadfaí go mbeadh cúpla nóiméad i gceist leis sin ag brath ar do nasc. Fan go gcríochnófar an íocaíocht seo roimh do shíntiús a nuashonrú.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Your donation is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before making another donation.</string>
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Tá do thabhartas á phróiseáil fós. D\'fheadfaí go mbeadh cúpla nóiméad i gceist leis sin ag brath ar do nasc. Fan go gcríochnófar an íocaíocht seo roimh thabhartas eile a thabhairt.</string>
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
-    <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">Your iDEAL donation is still processing. Check your banking app to approve your payment before making another donation.</string>
+    <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">Tá do thabhartas iDEAL á phróiseáil fós. Seiceáil d\'aip bhaincéireachta le d\'íocaíocht a fhaomhadh roimh thabhartas eile a dhéanamh.</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
     <string name="DonateToSignal__donation_amount_too_high">Donation amount too high</string>
     <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
@@ -6277,8 +6287,8 @@
     <string name="GatewaySelectorBottomSheet__ideal">iDEAL</string>
 
     <!-- Dialog title for launching external intent -->
-    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Leave Signal to confirm donation?</string>
-    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">When confirmed, return to Signal to finish processing your donation.</string>
+    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Imigh as Signal leis an tabhartas a dheimhniú?</string>
+    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">Agus é deimhnithe fill ar Signal chun próiseáil do thabhartais a chur i gcrích.</string>
 
     <!-- IdealBank -->
     <!-- iDEAL bank name -->
@@ -6316,7 +6326,7 @@
     <!-- Subtitle learn more of screen displaying bank transfer mandate -->
     <string name="BankTransferMandateFragment__learn_more">Tuilleadh faisnéise</string>
     <!-- Button label to continue with transfer -->
-    <string name="BankTransferMandateFragment__agree">Agree</string>
+    <string name="BankTransferMandateFragment__agree">Aontaigh</string>
     <!-- Button label to read more of the bank mandate that is currently off screen -->
     <string name="BankTransferMandateFragment__read_more">Léigh a thuilleadh</string>
     <!-- Text displayed when mandate load fails -->
@@ -6324,7 +6334,7 @@
 
     <!-- BankTransferDetailsFragment -->
     <!-- Subtext explaining how email is used. Placeholder is \'Learn more\' -->
-    <string name="BankTransferDetailsFragment__enter_your_bank_details">Enter your bank details and email. Stripe uses this email to send you updates about your donation. %1$s</string>
+    <string name="BankTransferDetailsFragment__enter_your_bank_details">Cuir isteach do shonraí bainc agus do sheoladh ríomhphoist. Úsáideann Stripe an seoladh ríomhphoist seo le nuashonruithe maidir le do thabhartas a sheoladh chugat. %1$s</string>
     <!-- Subtext learn more link text -->
     <string name="BankTransferDetailsFragment__learn_more">Tuilleadh faisnéise</string>
     <!-- Text field label for name on bank account -->
@@ -6803,6 +6813,13 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">Tharla earráid líonra agus do nasc á athshocrú. Triail arís níos déanaí.</string>
 
+    <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
+    <string name="UsernameLinkShareBottomSheet_title">Aon duine a bhfuil an nasc sin acu, beidh siad in ann féachaint ar d\'ainm úsáideora agus tús a chur le comhrá leat. Ná comhroinn é ach le daoine a bhfuil muinín agat iontu.</string>
+    <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
+    <string name="UsernameLinkShareBottomSheet_copy_link">Cóipeáil an nasc</string>
+    <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
+    <string name="UsernameLinkShareBottomSheet_share">Comhroinn</string>
+
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
     <string name="PendingParticipantsView__would_like_to_join">Ag iarraidh dul isteach ann…</string>
@@ -6843,6 +6860,17 @@
     <string name="GrantFullScreenIntentPermission_bottomsheet_subtitle">D\'fhonn fógraí maidir le glaonna a fháil ó do theagmhálaithe agus ó do ghrúpaí:</string>
     <!-- Step 2 of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications, it indicates the name of the setting that needs to be re-enabled -->
     <string name="GrantFullScreenIntentPermission_bottomsheet_step2">2. %1$s Ceadaigh fógraí lánscáileáin</string>
+
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, title for dialog -->
+    <string name="MonthlyDonationCanceled__title">Tabhartas míosúil curtha ar ceal</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, body for dialog. First placeholder is a payment related error message. Second placeholder is \'learn more\' -->
+    <string name="MonthlyDonationCanceled__message">Your recurring monthly donation was canceled. %1$s\n\nYour badge will no longer be visible on your profile. %2$s</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, learn more used in placeholder for body for dialog. -->
+    <string name="MonthlyDonationCanceled__learn_more">Tuilleadh faisnéise</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, primary button to renew subscription with new data -->
+    <string name="MonthlyDonationCanceled__renew_button">Athnuaigh síntiús</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, second button to dismiss the dialog entirely -->
+    <string name="MonthlyDonationCanceled__not_now_button">Ní anois</string>
 
     <!-- EOF -->
 </resources>

@@ -96,7 +96,7 @@ dependencyResolutionManagement {
 
             // Google
             library('google-protobuf-javalite', 'com.google.protobuf:protobuf-javalite:3.11.4')
-            library('google-libphonenumber', 'com.googlecode.libphonenumber:libphonenumber:8.13.19')
+            library('google-libphonenumber', 'com.googlecode.libphonenumber:libphonenumber:8.13.23')
             library('google-play-services-maps', 'com.google.android.gms:play-services-maps:18.1.0')
             library('google-play-services-auth', 'com.google.android.gms:play-services-auth:20.3.0')
             library('google-play-services-wallet', 'com.google.android.gms:play-services-wallet:19.1.0')
@@ -116,7 +116,7 @@ dependencyResolutionManagement {
             library('libsignal-client', 'org.signal', 'libsignal-client').versionRef('libsignal-client')
             library('libsignal-android', 'org.signal', 'libsignal-android').versionRef('libsignal-client')
             library('signal-aesgcmprovider', 'org.signal:aesgcmprovider:0.0.3')
-            library('signal-ringrtc', 'org.signal:ringrtc-android:2.34.3')
+            library('signal-ringrtc', 'org.signal:ringrtc-android:2.34.4')
             library('signal-android-database-sqlcipher', 'org.signal:sqlcipher-android:4.5.4-S2')
 
             // Third Party

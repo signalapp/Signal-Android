@@ -60,7 +60,6 @@ public final class FeatureFlags {
   private static final String INTERNAL_USER                     = "android.internalUser";
   private static final String VERIFY_V2                         = "android.verifyV2";
   private static final String CLIENT_EXPIRATION                 = "android.clientExpiration";
-  public  static final String DONATE_MEGAPHONE                  = "android.donate.2";
   private static final String CUSTOM_VIDEO_MUXER                = "android.customVideoMuxer";
   private static final String CDS_REFRESH_INTERVAL              = "cds.syncInterval.seconds";
   private static final String AUTOMATIC_SESSION_RESET           = "android.automaticSessionReset.2";
@@ -92,7 +91,6 @@ public final class FeatureFlags {
   private static final String TELECOM_MODEL_BLOCKLIST           = "android.calling.telecomModelBlockList";
   private static final String CAMERAX_MODEL_BLOCKLIST           = "android.cameraXModelBlockList";
   private static final String CAMERAX_MIXED_MODEL_BLOCKLIST     = "android.cameraXMixedModelBlockList";
-  private static final String HIDE_CONTACTS                     = "android.hide.contacts.2";
   private static final String PAYMENTS_REQUEST_ACTIVATE_FLOW    = "android.payments.requestActivateFlow";
   public  static final String GOOGLE_PAY_DISABLED_REGIONS       = "global.donations.gpayDisabledRegions";
   public  static final String CREDIT_CARD_DISABLED_REGIONS      = "global.donations.ccDisabledRegions";
@@ -102,7 +100,6 @@ public final class FeatureFlags {
   private static final String PAYPAL_RECURRING_DONATIONS        = "android.recurringPayPalDonations.3";
   private static final String ANY_ADDRESS_PORTS_KILL_SWITCH     = "android.calling.fieldTrial.anyAddressPortsKillSwitch";
   private static final String AD_HOC_CALLING                    = "android.calling.ad.hoc.3";
-  private static final String EDIT_MESSAGE_SEND                 = "android.editMessage.send.13";
   private static final String MAX_ATTACHMENT_COUNT              = "android.attachments.maxCount";
   private static final String MAX_ATTACHMENT_RECEIVE_SIZE_BYTES = "global.attachments.maxReceiveBytes";
   private static final String MAX_ATTACHMENT_SIZE_BYTES         = "global.attachments.maxBytes";
@@ -114,10 +111,9 @@ public final class FeatureFlags {
   public  static final String PROMPT_BATTERY_SAVER              = "android.promptBatterySaver";
   public  static final String USERNAMES                         = "android.usernames";
   public  static final String INSTANT_VIDEO_PLAYBACK            = "android.instantVideoPlayback";
-  private static final String CONVERSATION_ITEM_V2_TEXT         = "android.conversationItemV2.text.4";
   public  static final String CRASH_PROMPT_CONFIG               = "android.crashPromptConfig";
-  private static final String SEPA_DEBIT_DONATIONS              = "android.sepa.debit.donations.3";
-  private static final String IDEAL_DONATIONS                   = "android.ideal.donations.3";
+  private static final String SEPA_DEBIT_DONATIONS              = "android.sepa.debit.donations.4";
+  private static final String IDEAL_DONATIONS                   = "android.ideal.donations.4";
   public  static final String IDEAL_ENABLED_REGIONS             = "global.donations.idealEnabledRegions";
   public  static final String SEPA_ENABLED_REGIONS              = "global.donations.sepaEnabledRegions";
 
@@ -132,7 +128,6 @@ public final class FeatureFlags {
       INTERNAL_USER,
       VERIFY_V2,
       CLIENT_EXPIRATION,
-      DONATE_MEGAPHONE,
       CUSTOM_VIDEO_MUXER,
       CDS_REFRESH_INTERVAL,
       GROUP_NAME_MAX_LENGTH,
@@ -163,7 +158,6 @@ public final class FeatureFlags {
       TELECOM_MODEL_BLOCKLIST,
       CAMERAX_MODEL_BLOCKLIST,
       CAMERAX_MIXED_MODEL_BLOCKLIST,
-      HIDE_CONTACTS,
       PAYMENTS_REQUEST_ACTIVATE_FLOW,
       GOOGLE_PAY_DISABLED_REGIONS,
       CREDIT_CARD_DISABLED_REGIONS,
@@ -172,7 +166,6 @@ public final class FeatureFlags {
       PAYPAL_ONE_TIME_DONATIONS,
       PAYPAL_RECURRING_DONATIONS,
       ANY_ADDRESS_PORTS_KILL_SWITCH,
-      EDIT_MESSAGE_SEND,
       MAX_ATTACHMENT_COUNT,
       MAX_ATTACHMENT_RECEIVE_SIZE_BYTES,
       MAX_ATTACHMENT_SIZE_BYTES,
@@ -185,7 +178,6 @@ public final class FeatureFlags {
       PROMPT_BATTERY_SAVER,
       USERNAMES,
       INSTANT_VIDEO_PLAYBACK,
-      CONVERSATION_ITEM_V2_TEXT,
       CRASH_PROMPT_CONFIG,
       BLOCK_SSE,
       SEPA_DEBIT_DONATIONS,
@@ -240,7 +232,6 @@ public final class FeatureFlags {
       RETRY_RECEIPTS,
       MAX_GROUP_CALL_RING_SIZE,
       SENDER_KEY_MAX_AGE,
-      DONATE_MEGAPHONE,
       HARDWARE_AEC_BLOCKLIST_MODELS,
       SOFTWARE_AEC_BLOCKLIST_MODELS,
       USE_HARDWARE_AEC_IF_OLD,
@@ -251,7 +242,6 @@ public final class FeatureFlags {
       CAMERAX_MODEL_BLOCKLIST,
       PAYMENTS_REQUEST_ACTIVATE_FLOW,
       CDS_HARD_LIMIT,
-      EDIT_MESSAGE_SEND,
       MAX_ATTACHMENT_COUNT,
       MAX_ATTACHMENT_RECEIVE_SIZE_BYTES,
       MAX_ATTACHMENT_SIZE_BYTES,
@@ -373,11 +363,6 @@ public final class FeatureFlags {
   /** The raw client expiration JSON string. */
   public static String clientExpiration() {
     return getString(CLIENT_EXPIRATION, null);
-  }
-
-  /** The raw donate megaphone CSV string */
-  public static String donateMegaphone() {
-    return getString(DONATE_MEGAPHONE, "");
   }
 
   /**
@@ -535,16 +520,6 @@ public final class FeatureFlags {
     return getInteger(STORIES_AUTO_DOWNLOAD_MAXIMUM, 2);
   }
 
-  /**
-   * Whether or not users can hide contacts.
-   *
-   * WARNING: This feature is intended to be enabled in tandem with other clients, as it modifies contact records.
-   * Here be dragons.
-   */
-  public static boolean hideContacts() {
-    return getBoolean(HIDE_CONTACTS, false);
-  }
-
   /** Whether client supports sending a request to another to activate payments */
   public static boolean paymentsRequestActivateFlow() {
     return getBoolean(PAYMENTS_REQUEST_ACTIVATE_FLOW, false);
@@ -606,10 +581,6 @@ public final class FeatureFlags {
     return getBoolean(FCM_MAY_HAVE_MESSAGES_KILL_SWITCH, false);
   }
 
-  public static boolean editMessageSending() {
-    return getBoolean(EDIT_MESSAGE_SEND, false);
-  }
-
   /**
    * Whether or not ad-hoc calling is enabled
    */
@@ -649,15 +620,6 @@ public final class FeatureFlags {
    */
   public static boolean instantVideoPlayback() {
     return getBoolean(INSTANT_VIDEO_PLAYBACK, false);
-  }
-
-  /**
-   * Note: this setting is currently
-   *
-   * @return Whether to use TextOnly V2 Conversation Items.
-   */
-  public static boolean useTextOnlyConversationItemV2() {
-    return getBoolean(CONVERSATION_ITEM_V2_TEXT, false);
   }
 
   public static String promptForDelayedNotificationLogs() {

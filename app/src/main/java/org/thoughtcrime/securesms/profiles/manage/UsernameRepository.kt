@@ -293,6 +293,9 @@ object UsernameRepository {
       SignalStore.account().usernameLink = null
       SignalDatabase.recipients.setUsername(Recipient.self().id, reserved.username)
       SignalStore.account().usernameSyncState = AccountValues.UsernameSyncState.IN_SYNC
+
+      SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
+      StorageSyncHelper.scheduleSyncForDataChange()
       Log.i(TAG, "[confirmUsername] Successfully confirmed username.")
 
       if (tryToSetUsernameLink(username)) {
@@ -322,6 +325,9 @@ object UsernameRepository {
       try {
         val linkComponents = accountManager.createUsernameLink(username)
         SignalStore.account().usernameLink = linkComponents
+
+        SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
+        StorageSyncHelper.scheduleSyncForDataChange()
         return true
       } catch (e: IOException) {
         Log.w(TAG, "[tryToSetUsernameLink] Failed with IOException on attempt " + (i + 1) + "/3", e)
@@ -339,6 +345,8 @@ object UsernameRepository {
       SignalStore.account().username = null
       SignalStore.account().usernameLink = null
       SignalStore.account().usernameSyncState = AccountValues.UsernameSyncState.IN_SYNC
+      SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
+      StorageSyncHelper.scheduleSyncForDataChange()
       Log.i(TAG, "[deleteUsername] Successfully deleted the username.")
       UsernameDeleteResult.SUCCESS
     } catch (e: IOException) {

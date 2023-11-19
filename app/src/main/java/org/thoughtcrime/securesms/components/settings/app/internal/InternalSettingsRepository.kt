@@ -1,19 +1,24 @@
 package org.thoughtcrime.securesms.components.settings.app.internal
 
 import android.content.Context
+import org.json.JSONObject
 import org.signal.core.util.concurrent.SignalExecutors
 import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.RemoteMegaphoneRecord
 import org.thoughtcrime.securesms.database.model.addStyle
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.emoji.EmojiFiles
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob
 import org.thoughtcrime.securesms.jobs.CreateReleaseChannelJob
+import org.thoughtcrime.securesms.jobs.FetchRemoteMegaphoneImageJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.v2.ConversationId
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.releasechannel.ReleaseChannel
+import java.util.UUID
+import kotlin.time.Duration.Companion.days
 
 class InternalSettingsRepository(context: Context) {
 
@@ -55,6 +60,36 @@ class InternalSettingsRepository(context: Context) {
           .forEach { ApplicationDependencies.getJobManager().add(AttachmentDownloadJob(insertResult.messageId, it.attachmentId, false)) }
 
         ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(insertResult.threadId))
+      }
+    }
+  }
+
+  fun addRemoteDonateMegaphone() {
+    SignalExecutors.UNBOUNDED.execute {
+      val record = RemoteMegaphoneRecord(
+        uuid = UUID.randomUUID().toString(),
+        priority = 100,
+        countries = "*:1000000",
+        minimumVersion = 1,
+        doNotShowBefore = System.currentTimeMillis() - 2.days.inWholeMilliseconds,
+        doNotShowAfter = System.currentTimeMillis() + 28.days.inWholeMilliseconds,
+        showForNumberOfDays = 30,
+        conditionalId = null,
+        primaryActionId = RemoteMegaphoneRecord.ActionId.DONATE,
+        secondaryActionId = RemoteMegaphoneRecord.ActionId.SNOOZE,
+        imageUrl = "/static/release-notes/donate-heart.png",
+        title = "Donate Test",
+        body = "Donate body test.",
+        primaryActionText = "Donate",
+        secondaryActionText = "Snooze",
+        primaryActionData = null,
+        secondaryActionData = JSONObject("{ \"snoozeDurationDays\": [5, 7, 100] }")
+      )
+
+      SignalDatabase.remoteMegaphones.insert(record)
+
+      if (record.imageUrl != null) {
+        ApplicationDependencies.getJobManager().add(FetchRemoteMegaphoneImageJob(record.uuid, record.imageUrl))
       }
     }
   }

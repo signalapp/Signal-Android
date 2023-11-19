@@ -405,6 +405,8 @@
 
     <string name="ConversationActivity_error_sending_media">मीडिया भेजने में त्रुटि</string>
 
+    <!-- Message shown when opening an MMS group conversation with SMS disabled and there are no exported messages -->
+    <string name="ConversationActivity__sms_messaging_is_no_longer_supported">SMS संदेश सेवा अब Signal में समर्थित नहीं है।</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">SMS संदेश सेवा अब Signal में समर्थित नहीं है। %1$s को Signal पर आमंत्रित करें और बातचीत यहीं पर रखें।</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
@@ -1009,15 +1011,15 @@
     <!-- Snackbar message after successful deletion of username -->
     <string name="ManageProfileFragment__username_deleted">यूज़रनेम डिलीट कर दिया गया है</string>
     <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_title">Delete username?</string>
+    <string name="ManageProfileFragment__delete_username_dialog_title">यूज़र नाम डिलीट करें?</string>
     <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_body">"This will remove your username and disable your QR code and link. %1$s will be available for others to claim. Are you sure?"</string>
+    <string name="ManageProfileFragment__delete_username_dialog_body">"यह आपका यूज़रनेम हटा देगा और आपका QR कोड और लिंक अक्षम कर देगा। %1$s अन्य लोगों के लिए दावा करने के लिए उपलब्ध होगा। क्या आपको यकीन है?"</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
     <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">आपके यूज़रनेम में कुछ गलत है, यह अब आपके अकाउंट के लिए असाइन नहीं है। आप इसे फिर से सेट करने की कोशिश कर सकते हैं या एक नया चुन सकते हैं।</string>
     <!-- Displayed above the conversation list when a user needs to address an issue with their username link -->
-    <string name="UsernameOutOfSyncReminder__link_corrupt">Something went wrong with your QR code and username link, it’s no longer valid. Create a new link to share with others.</string>
+    <string name="UsernameOutOfSyncReminder__link_corrupt">आपके QR कोड और उपयोगकर्ता नाम लिंक में कुछ गड़बड़ है, यह अब मान्य नहीं है। दूसरों के साथ साझा करने के लिए एक नया लिंक बनाएं।</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
     <string name="UsernameOutOfSyncReminder__fix_now">अभी ठीक करें</string>
 
@@ -1533,7 +1535,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">%1$s को आपको संदेश भेजने दें? जब तक आप उनको अनब्लॉक नहीं करते, तब तक आपको कोई संदेश नहीं मिलेगा।</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">%1$s से अपडेट और खबरें पानी हैं? जब तक आप उनकी अनब्लॉक नहीं करते, तब तक आपको कोई अपडेट नहीं मिलेगा।</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">इस ग्रुप के साथ अपनी चैट जारी रखनी है और इसके मेंबर्स के साथ अपना नाम और तस्वीर शेयर करनी है?</string>
-    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">नए फ़ीचर्स जैसे कि @mentions और एडमिन को एक्टिवेट करने के लिए इस ग्रुप को अपग्रेड करें। वे मेंबर जिन्होंने इस ग्रुप में अपना नाम और तस्वीर शेयर नहीं की है, उन्हें शामिल होने के लिए आमंत्रित किया जाएगा।</string>
+    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">This Legacy Group can no longer be used. Create a new group to activate new features like @mentions and admins.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">इस लेगेसी ग्रुप को अब उपयोग नहीं किया जा सकता क्योंकि यह बहुत बड़ा है। अधिकतम ग्रुप साइज़ है %1$d।</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">%1$s के साथ आपका चैट जारी रखनी है और इनके साथ अपना नाम और तस्वीर शेयर करनी है?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">इस ग्रुप में जुड़ना है और इसके मेंबर्स के साथ अपना नाम और तस्वीर शेयर करनी है? उन्हें पता नहीं चलेगा कि आपने उनके मेसेज देख लिए हैं जब तक आप स्वीकार नहीं करते।</string>
@@ -4578,6 +4580,11 @@
     <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s एक Signal यूज़र नहीं है</string>
     <!-- Error message shown when we could not get a user from the username link -->
     <string name="NewConversationActivity__">%1$s एक Signal यूज़र नहीं है</string>
+    <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
+    <plurals name="CreateGroupActivity_not_signal_users">
+        <item quantity="one">%1$s is not a Signal user</item>
+        <item quantity="other">%1$s are not Signal users</item>
+    </plurals>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">नाम या नंबर खोजें</string>
@@ -4764,11 +4771,11 @@
     <!-- Preference label to launch badge gifting -->
     <string name="ManageDonationsFragment__donate_for_a_friend">किसी दोस्त के लिए दान दें</string>
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
-    <string name="ManageDonationsFragment__couldnt_confirm_donation">Couldn\'t confirm donation</string>
+    <string name="ManageDonationsFragment__couldnt_confirm_donation">दान की पुष्टि नहीं की जा सकी</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">Your %1$s/month donation couldn\'t be confirmed. Check your banking app to approve your iDEAL payment.</string>
+    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">आपके %1$s/माह के दान की पुष्टि नहीं की जा सकी। अपने आदर्श भुगतान को स्वीकृत करने के लिए अपने बैंकिंग ऐप की जांच करें।</string>
     <!-- Dialog message shown when a one-time donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">Your one-time %1$s donation couldn\'t be confirmed. Check your banking app to approve your iDEAL payment.</string>
+    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">आपके एकमुश्त %1$s दान की पुष्टि नहीं की जा सकी। अपने आदर्श भुगतान को स्वीकृत करने के लिए अपने बैंकिंग ऐप की जांच करें।</string>
 
     <string name="Boost__enter_custom_amount">कस्टम राशि दर्ज करें</string>
     <!-- Error label when the amount is smaller than what we can accept -->
@@ -4835,16 +4842,16 @@
     <string name="Subscription__contact_support">समर्थन से संपर्क करें</string>
     <string name="Subscription__get_a_s_badge">एक %1$s बैज पाएँ</string>
 
-    <string name="SubscribeFragment__processing_payment">Processing donation…</string>
+    <string name="SubscribeFragment__processing_payment">दान संसाधित किया जा रहा है…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
-    <string name="DonationsErrors__error_processing_payment">Error processing donation</string>
+    <string name="DonationsErrors__error_processing_payment">दान संसाधित करने में त्रुटि</string>
     <!-- Displayed on manage donations screen as a dialog message when payment method failed -->
     <string name="DonationsErrors__try_another_payment_method">किसी अन्य भुगतान विधि से प्रयास करें या फिर अधिक जानकारी के लिए अपने बैंक से संपर्क करें।</string>
     <!-- Displayed on manage donations screen error dialogs as an action label -->
     <string name="DonationsErrors__learn_more">अधिक जानें</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
-    <string name="DonationsErrors__error_processing_payment_s">Error processing donation. %1$s</string>
-    <string name="DonationsErrors__your_payment">Your donation couldn\'t be processed and you have not been charged. Please try again.</string>
+    <string name="DonationsErrors__error_processing_payment_s">दान संसाधित करने में त्रुटि। %1$s</string>
+    <string name="DonationsErrors__your_payment">आपका दान प्रोसेस नहीं किया जा सका और आपसे शुल्क नहीं लिया गया है। कृपया फिर से कोशिश करें। कृपया फिर से प्रयास करें।</string>
     <string name="DonationsErrors__still_processing">अभी भी प्रोसेस कर रहे</string>
     <string name="DonationsErrors__couldnt_add_badge">बैज नहीं जोड़ा जा सका</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -4854,9 +4861,9 @@
     <!-- Displayed as title when some generic error happens during sending donation on behalf of another user -->
     <string name="DonationsErrors__donation_failed">दान विफल रहा</string>
     <!-- Displayed as message when some generic error happens during sending donation on behalf of another user -->
-    <string name="DonationsErrors__your_payment_was_processed_but">Your donation was processed but Signal could not send your donation message. Please contact support.</string>
+    <string name="DonationsErrors__your_payment_was_processed_but">आपका दान प्रोसेस कर लिया गया था लेकिन Signal द्वारा आपका दान संदेश नहीं भेजा जा सका। कृपया सपोर्ट से संपर्क करें।</string>
     <string name="DonationsErrors__your_badge_could_not">आपका बैज आपके अकाउंट में जोड़ा नहीं जा सका, लेकिन हो सकता है कि आपसे शुल्क लिया गया हो। कृपया सपोर्ट से संपर्क करें।</string>
-    <string name="DonationsErrors__your_payment_is_still">Your donation is still being processed. This can take a few minutes depending on your connection.</string>
+    <string name="DonationsErrors__your_payment_is_still">आपका दान अभी भी संसाधित किया जा रहा है। आपके कनेक्शन के आधार पर इसमें कुछ समय लग सकता है।</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">सब्सक्रिप्शन रद्द नहीं किया जा सका</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">सब्सक्रिप्शन को रद्द करने के लिए इंटरनेट कनेक्शन आवश्यक है।</string>
     <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">आपका डिवाइस Google Pay को सपोर्ट नहीं करता है, इसलिए आप बैज पाने के लिए सब्सक्राइब नहीं कर सकते। आप फिर भी हमारी वेबसाइट पर दान करके Signal का समर्थन कर सकते हैं।</string>
@@ -4869,7 +4876,7 @@
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__your_donation_could_not_be_sent">आपका दान किसी नेटवर्क दोष के कारण नहीं भेजा जा सका। अपना कनेक्शन जाँचें और फिर से प्रयास करें।</string>
     <!-- Displayed as a dialog message when the user encounters an error during an iDEAL donation -->
-    <string name="DonationsErrors__your_ideal_couldnt_be_processed">Your iDEAL donation couldn\'t be processed. Try another payment method or contact your bank for more information.</string>
+    <string name="DonationsErrors__your_ideal_couldnt_be_processed">आपका आदर्श दान संसाधित नहीं किया जा सका। किसी अन्य भुगतान विधि से प्रयास करें या फिर अधिक जानकारी के लिए अपने बैंक से संपर्क करें।</string>
 
     <!-- Gift message view title -->
     <string name="GiftMessageView__donation_on_behalf_of_s">%1$s की ओर से दान</string>
@@ -4914,7 +4921,7 @@
     <!-- Stripe decline code incorrect expiration year -->
     <string name="DeclineCode__the_expiration_year">आपकी भुगतान विधि पर दिया गया समाप्ति का वर्ष गलत है। इसे Google Pay में अपडेट करें और फिर से प्रयास करें। </string>
     <!-- Stripe decline code issuer not available -->
-    <string name="DeclineCode__try_completing_the_payment_again">Try completing the donation again or contact your bank for more information.</string>
+    <string name="DeclineCode__try_completing_the_payment_again">फिर से दान पूरा करने का प्रयास करें या फिर अधिक जानकारी के लिए अपने बैंक से संपर्क करें।</string>
     <!-- Stripe decline code processing error -->
     <string name="DeclineCode__try_again">फिर से प्रयास करें या फिर अधिक जानकारी के लिए अपने बैंक से संपर्क करें।</string>
 
@@ -4938,9 +4945,9 @@
     <!-- Failure code text for insufficient funds, displayed in a dialog or notification -->
     <string name="StripeFailureCode__the_bank_account_provided">प्रदान किए गए बैंक अकाउंट में इस खरीदारी को पूरा करने के लिए पर्याप्त धनराशि नहीं है, पुनः प्रयास करें या अधिक जानकारी के लिए अपने बैंक से संपर्क करें।</string>
     <!-- Failure code text for revoked authorization of payment, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__this_payment_was_revoked">This donation was revoked by the account holder and could not be processed. You haven\'t been charged.</string>
+    <string name="StripeFailureCode__this_payment_was_revoked">इस दान को अकाउंट धारक द्वारा रद्द कर दिया गया था और संसाधित नहीं किया जा सका। आपसे शुल्क नहीं लिया गया है।</string>
     <!-- Failure code text for a payment lacking an authorized mandate or incorrect mandate, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">An error occurred while processing this donation, please try again.</string>
+    <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">इस दान को संसाधित करते समय एक त्रुटि हुई, कृपया पुनः प्रयास करें।</string>
     <!-- Failure code text for a closed account, deceased recipient, or one with blocked direct debits, displayed in a dialog or notification -->
     <string name="StripeFailureCode__the_bank_details_provided_could_not_be_processed">प्रदान किए गए बैंक विवरण संसाधित नहीं किए जा सके, अधिक जानकारी के लिए अपने बैंक से संपर्क करें।</string>
     <!-- Failure code text for a non-existent bank branch, invalid account holder, invalid iban, generic failure, or unknown bank failure, displayed in a dialog or notification -->
@@ -5102,10 +5109,10 @@
     <string name="DonationReceiptListFragment__recurring">आवर्ती</string>
     <!-- Donation receipts one-time tab label -->
     <string name="DonationReceiptListFragment__one_time">एक बार का</string>
+    <!-- Donation receipts gift tab -->
+    <string name="DonationReceiptListFragment__for_a_friend">For a friend</string>
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__donation_for_a_friend">किसी दोस्त के लिए दान</string>
-    <!-- Donation receipts boost row label -->
-    <!-- Donation receipts details title -->
     <!-- Donation receipts donation type heading -->
     <string name="DonationReceiptDetailsFragment__donation_type">दान प्रकार</string>
     <!-- Donation receipts date paid heading -->
@@ -5847,11 +5854,11 @@
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
     <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">बैंक हस्तांतरण प्रक्रिया में आमतौर पर 1 कार्यदिवस लगता है। कृपया, दूसरा दान करने से पहले इस भुगतान के पूरा होने तक इंतजार करें।</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Your donation is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before updating your subscription.</string>
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">आपका दान अभी भी संसाधित किया जा रहा है। आपके कनेक्शन के आधार पर इसमें कुछ समय लग सकता है। कृपया अपना सब्सक्रिप्शन अपडेट करने से पहले इस भुगतान के पूरा होने तक इंतजार करें।</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Your donation is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before making another donation.</string>
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">आपका दान अभी भी संसाधित किया जा रहा है। आपके कनेक्शन के आधार पर इसमें कुछ समय लग सकता है। कृपया, दूसरा दान करने से पहले इस भुगतान के पूरा होने तक इंतजार करें।</string>
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
-    <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">Your iDEAL donation is still processing. Check your banking app to approve your payment before making another donation.</string>
+    <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">आपका आदर्श दान अभी भी संसाधित हो रहा है। दोबारा दान देने से पहले भुगतान को स्वीकृत करने के लिए अपने बैंकिंग ऐप की जांच करें।</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
     <string name="DonateToSignal__donation_amount_too_high">Donation amount too high</string>
     <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
@@ -5884,8 +5891,8 @@
     <string name="GatewaySelectorBottomSheet__ideal">iDEAL</string>
 
     <!-- Dialog title for launching external intent -->
-    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Leave Signal to confirm donation?</string>
-    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">When confirmed, return to Signal to finish processing your donation.</string>
+    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">दान की पुष्टि के लिए Signal छोड़ें?</string>
+    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">पुष्टि होने पर, अपनी दान प्रक्रिया पूरी करने के लिए Signal पर वापस लौटें।</string>
 
     <!-- IdealBank -->
     <!-- iDEAL bank name -->
@@ -5923,7 +5930,7 @@
     <!-- Subtitle learn more of screen displaying bank transfer mandate -->
     <string name="BankTransferMandateFragment__learn_more">अधिक जानें</string>
     <!-- Button label to continue with transfer -->
-    <string name="BankTransferMandateFragment__agree">Agree</string>
+    <string name="BankTransferMandateFragment__agree">सहमत</string>
     <!-- Button label to read more of the bank mandate that is currently off screen -->
     <string name="BankTransferMandateFragment__read_more">ज़्यादा पढ़ें</string>
     <!-- Text displayed when mandate load fails -->
@@ -5931,7 +5938,7 @@
 
     <!-- BankTransferDetailsFragment -->
     <!-- Subtext explaining how email is used. Placeholder is \'Learn more\' -->
-    <string name="BankTransferDetailsFragment__enter_your_bank_details">Enter your bank details and email. Stripe uses this email to send you updates about your donation. %1$s</string>
+    <string name="BankTransferDetailsFragment__enter_your_bank_details">अपना बैंक विवरण और ईमेल दर्ज करें। स्ट्राइप इस ईमेल का इस्तेमाल आपको आपके दान के बारे में अपडेट भेजने के लिए करता है। %1$s</string>
     <!-- Subtext learn more link text -->
     <string name="BankTransferDetailsFragment__learn_more">अधिक जानें</string>
     <!-- Text field label for name on bank account -->
@@ -6398,6 +6405,13 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">आपके लिंक को फिर से स्थापित करते समय एक नेटवर्क त्रुटि उत्पन्न हुई। बाद में पुन: प्रयास करें।</string>
 
+    <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
+    <string name="UsernameLinkShareBottomSheet_title">इस लिंक वाला कोई भी व्यक्ति आपका यूज़रनेम देख सकता है और आपसे चैट शुरू कर सकता है। इसे केवल उन लोगों के साथ साझा करें, जिन पर आपको भरोसा है।</string>
+    <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
+    <string name="UsernameLinkShareBottomSheet_copy_link">लिंक कॉपी करें</string>
+    <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
+    <string name="UsernameLinkShareBottomSheet_share">साझा करें</string>
+
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
     <string name="PendingParticipantsView__would_like_to_join">जुड़ना चाहेंगे…</string>
@@ -6432,6 +6446,17 @@
     <string name="GrantFullScreenIntentPermission_bottomsheet_subtitle">अपने संपर्कों और समूहों से कॉल अधिसूचना प्राप्त करने के लिए:</string>
     <!-- Step 2 of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications, it indicates the name of the setting that needs to be re-enabled -->
     <string name="GrantFullScreenIntentPermission_bottomsheet_step2">2. %1$s फुल स्क्रीन नोटिफिकेशन की अनुमति दें</string>
+
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, title for dialog -->
+    <string name="MonthlyDonationCanceled__title">मासिक दान रद्द किया गया</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, body for dialog. First placeholder is a payment related error message. Second placeholder is \'learn more\' -->
+    <string name="MonthlyDonationCanceled__message">Your recurring monthly donation was canceled. %1$s\n\nYour badge will no longer be visible on your profile. %2$s</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, learn more used in placeholder for body for dialog. -->
+    <string name="MonthlyDonationCanceled__learn_more">अधिक जानें</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, primary button to renew subscription with new data -->
+    <string name="MonthlyDonationCanceled__renew_button">सब्सक्रिप्शन नवीकृत करें</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, second button to dismiss the dialog entirely -->
+    <string name="MonthlyDonationCanceled__not_now_button">अभी नहीं</string>
 
     <!-- EOF -->
 </resources>

@@ -5,7 +5,6 @@ package org.thoughtcrime.securesms.util
 import android.content.Context
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.database.MessageTypes
-import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.Quote
@@ -19,7 +18,7 @@ const val MAX_BODY_DISPLAY_LENGTH = 1000
 fun MessageRecord.isMediaMessage(): Boolean {
   return isMms &&
     !isMmsNotification &&
-    (this as MediaMmsMessageRecord).containsMediaSlide() &&
+    (this as MmsMessageRecord).containsMediaSlide() &&
     slideDeck.stickerSlide == null
 }
 
@@ -145,7 +144,7 @@ fun MessageRecord.isTextOnly(context: Context): Boolean {
 }
 
 fun MessageRecord.isScheduled(): Boolean {
-  return (this as? MediaMmsMessageRecord)?.scheduledDate?.let { it != -1L } ?: false
+  return (this as? MmsMessageRecord)?.scheduledDate?.let { it != -1L } ?: false
 }
 
 /**
@@ -156,7 +155,7 @@ fun MessageRecord.getRecordQuoteType(): QuoteModel.Type {
 }
 
 fun MessageRecord.isEditMessage(): Boolean {
-  return this is MediaMmsMessageRecord && isEditMessage
+  return this is MmsMessageRecord && isEditMessage
 }
 
 /**

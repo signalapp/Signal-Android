@@ -10,7 +10,7 @@ import org.signal.core.util.PendingIntentFlags
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.IndividualSendJob
 import org.thoughtcrime.securesms.jobs.PushGroupSendJob
@@ -37,7 +37,7 @@ class ScheduledMessageManager(
   @Suppress("UsePropertyAccessSyntax")
   @WorkerThread
   override fun getNextClosestEvent(): Event? {
-    val oldestMessage: MediaMmsMessageRecord? = messagesTable.getOldestScheduledSendTimestamp() as? MediaMmsMessageRecord
+    val oldestMessage: MmsMessageRecord? = messagesTable.getOldestScheduledSendTimestamp() as? MmsMessageRecord
 
     if (oldestMessage == null) {
       cancelAlarm(application, ScheduledMessagesAlarm::class.java)

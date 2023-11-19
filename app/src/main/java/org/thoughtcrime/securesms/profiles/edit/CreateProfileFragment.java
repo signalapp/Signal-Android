@@ -37,7 +37,7 @@ import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.GlideApp;
-import org.thoughtcrime.securesms.profiles.edit.pnp.WhoCanSeeMyPhoneNumberFragment;
+import org.thoughtcrime.securesms.profiles.edit.pnp.WhoCanFindMeByPhoneNumberFragment;
 import org.thoughtcrime.securesms.profiles.manage.EditProfileNameFragment;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.util.CommunicationActions;
@@ -210,8 +210,8 @@ public class CreateProfileFragment extends LoggingFragment {
       binding.profileDescriptionText.setOnLinkClickListener(v -> CommunicationActions.openBrowserLink(requireContext(), getString(R.string.EditProfileFragment__support_link)));
 
       if (FeatureFlags.phoneNumberPrivacy()) {
-        getParentFragmentManager().setFragmentResultListener(WhoCanSeeMyPhoneNumberFragment.REQUEST_KEY, getViewLifecycleOwner(), (requestKey, result) -> {
-          if (WhoCanSeeMyPhoneNumberFragment.REQUEST_KEY.equals(requestKey)) {
+        getParentFragmentManager().setFragmentResultListener(WhoCanFindMeByPhoneNumberFragment.REQUEST_KEY, getViewLifecycleOwner(), (requestKey, result) -> {
+          if (WhoCanFindMeByPhoneNumberFragment.REQUEST_KEY.equals(requestKey)) {
             presentWhoCanFindMeDescription(SignalStore.phoneNumberPrivacy().getPhoneNumberListingMode());
           }
         });

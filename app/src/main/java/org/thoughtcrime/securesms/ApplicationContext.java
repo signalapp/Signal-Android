@@ -426,6 +426,9 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
       if (FeatureFlags.callingFieldTrialAnyAddressPortsKillSwitch()) {
         fieldTrials.put("RingRTC-AnyAddressPortsKillSwitch", "Enabled");
       }
+      if (!SignalStore.internalValues().callingDisableLBRed()) {
+        fieldTrials.put("RingRTC-Audio-LBRed-For-Opus", "Enabled,bitrate_pri:22000");
+      }
       CallManager.initialize(this, new RingRtcLogger(), fieldTrials);
     } catch (UnsatisfiedLinkError e) {
       throw new AssertionError("Unable to load ringrtc library", e);

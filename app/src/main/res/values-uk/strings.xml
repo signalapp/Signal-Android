@@ -411,6 +411,8 @@
 
     <string name="ConversationActivity_error_sending_media">Помилка відправлення медіа</string>
 
+    <!-- Message shown when opening an MMS group conversation with SMS disabled and there are no exported messages -->
+    <string name="ConversationActivity__sms_messaging_is_no_longer_supported">Signal більше не підтримує SMS-повідомлення.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Signal більше не підтримує SMS-повідомлення. Запросіть користувача %1$s в Signal, щоб продовжити розмову тут.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
@@ -1077,15 +1079,15 @@
     <!-- Snackbar message after successful deletion of username -->
     <string name="ManageProfileFragment__username_deleted">Ім\'я користувача було видалено</string>
     <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_title">Delete username?</string>
+    <string name="ManageProfileFragment__delete_username_dialog_title">Видалити ім\'я користувача?</string>
     <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_body">"This will remove your username and disable your QR code and link. %1$s will be available for others to claim. Are you sure?"</string>
+    <string name="ManageProfileFragment__delete_username_dialog_body">"Ім\'я користувача буде вилучено, а QR-код і посилання — вимкнено. Інші користувачі зможуть вибрати ім\'я «%1$s». Змінити ім\'я?"</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
     <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">Із вашим іменем користувача сталася помилка. Ім\'я більше не присвоєно вашому акаунту. Ви можете спробувати встановити це ім\'я повторно або вибрати нове.</string>
     <!-- Displayed above the conversation list when a user needs to address an issue with their username link -->
-    <string name="UsernameOutOfSyncReminder__link_corrupt">Something went wrong with your QR code and username link, it’s no longer valid. Create a new link to share with others.</string>
+    <string name="UsernameOutOfSyncReminder__link_corrupt">Із вашим QR-кодом і посиланням імені користувача сталася помилка. Вони більше не дійсні. Створіть нове посилання, щоби поділитися ним з іншими.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
     <string name="UsernameOutOfSyncReminder__fix_now">Виправити</string>
 
@@ -1641,7 +1643,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Дозволити користувачу %1$s надсилати вам повідомлення? Ви не отримаєте повідомлень, поки не розблокуєте цього користувача.</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Отримувати оновлення та новини від %1$s? Ви не отримуватимете оновлень, поки не розблокуєте користувача.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Продовжувати спілкуватися з цією групою та ділитися своїм ім’ям та фото з її учасниками?</string>
-    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Оновіть цю групу, щоб отримати доступ до нових можливостей як-до @згадування та адміністратори. Учасники, які не поділились своїми іменами чи фотографіями у цій групі, будуть запрошені приєднатись.</string>
+    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">This Legacy Group can no longer be used. Create a new group to activate new features like @mentions and admins.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Ця Застаріла Група більше не може використовуватись, тому що вона занадто велика. Максимальний розмір групи це - %1$d.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Продовжити спілкування в чаті з користувачем %1$s та поділитись іменем і фотографією?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Приєднатися до цієї групи та поділитися своїм ім’ям та фото з її учасниками? Вони не знатимуть, що ви бачили їхні повідомлення, поки ви не приймете.</string>
@@ -4788,6 +4790,13 @@
     <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s не користується Signal</string>
     <!-- Error message shown when we could not get a user from the username link -->
     <string name="NewConversationActivity__">%1$s не користується Signal</string>
+    <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
+    <plurals name="CreateGroupActivity_not_signal_users">
+        <item quantity="one">%1$s is not a Signal user</item>
+        <item quantity="few">%1$s are not Signal users</item>
+        <item quantity="many">%1$s are not Signal users</item>
+        <item quantity="other">%1$s are not Signal users</item>
+    </plurals>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">Пошук імені чи номеру</string>
@@ -4982,11 +4991,11 @@
     <!-- Preference label to launch badge gifting -->
     <string name="ManageDonationsFragment__donate_for_a_friend">Донат для друга</string>
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
-    <string name="ManageDonationsFragment__couldnt_confirm_donation">Couldn\'t confirm donation</string>
+    <string name="ManageDonationsFragment__couldnt_confirm_donation">Не вдалося підтвердити донат</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">Your %1$s/month donation couldn\'t be confirmed. Check your banking app to approve your iDEAL payment.</string>
+    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">Не вдалося підтвердити ваш донат %1$s/місяць. Перевірте застосунок свого банку і підтвердьте платіж iDEAL.</string>
     <!-- Dialog message shown when a one-time donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">Your one-time %1$s donation couldn\'t be confirmed. Check your banking app to approve your iDEAL payment.</string>
+    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">Не вдалося підтвердити ваш разовий донат %1$s. Перевірте застосунок свого банку і підтвердьте платіж iDEAL.</string>
 
     <string name="Boost__enter_custom_amount">Інша сума</string>
     <!-- Error label when the amount is smaller than what we can accept -->
@@ -5053,16 +5062,16 @@
     <string name="Subscription__contact_support">Зверніться в службу підтримки</string>
     <string name="Subscription__get_a_s_badge">Отримати значок %1$s</string>
 
-    <string name="SubscribeFragment__processing_payment">Processing donation…</string>
+    <string name="SubscribeFragment__processing_payment">Донат обробляється…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
-    <string name="DonationsErrors__error_processing_payment">Error processing donation</string>
+    <string name="DonationsErrors__error_processing_payment">Помилка обробки доната</string>
     <!-- Displayed on manage donations screen as a dialog message when payment method failed -->
     <string name="DonationsErrors__try_another_payment_method">Спробуйте інший спосіб платежу, або зв\'яжіться зі своїм банком для додаткової інформації.</string>
     <!-- Displayed on manage donations screen error dialogs as an action label -->
     <string name="DonationsErrors__learn_more">Подробиці</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
-    <string name="DonationsErrors__error_processing_payment_s">Error processing donation. %1$s</string>
-    <string name="DonationsErrors__your_payment">Your donation couldn\'t be processed and you have not been charged. Please try again.</string>
+    <string name="DonationsErrors__error_processing_payment_s">Помилка обробки доната. %1$s</string>
+    <string name="DonationsErrors__your_payment">Не вдалося обробити донат. Кошти не було стягнуто. Спробуйте ще раз.</string>
     <string name="DonationsErrors__still_processing">Ще обробляється</string>
     <string name="DonationsErrors__couldnt_add_badge">Не вдалося додати значок</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -5072,9 +5081,9 @@
     <!-- Displayed as title when some generic error happens during sending donation on behalf of another user -->
     <string name="DonationsErrors__donation_failed">Не вдалося задонатити</string>
     <!-- Displayed as message when some generic error happens during sending donation on behalf of another user -->
-    <string name="DonationsErrors__your_payment_was_processed_but">Your donation was processed but Signal could not send your donation message. Please contact support.</string>
+    <string name="DonationsErrors__your_payment_was_processed_but">Ваш донат було оброблено, але Signal не вдалося надіслати повідомлення з ним. Будь ласка, зверніться до служби підтримки.</string>
     <string name="DonationsErrors__your_badge_could_not">Не вдалося додати значок до вашого профілю, але, можливо, з вас було стягнуто плату. Будь ласка, зверніться до служби підтримки.</string>
-    <string name="DonationsErrors__your_payment_is_still">Your donation is still being processed. This can take a few minutes depending on your connection.</string>
+    <string name="DonationsErrors__your_payment_is_still">Ваш донат ще обробляється. Обробка може зайняти кілька хвилин в залежності від вашого з\'єднання.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Не вдалося скасувати передплату</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Для скасування передплати потрібне підключення до інтернету.</string>
     <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Ваш пристрій не підтримує Google Pay, тому ви не можете оформити передплату, щоб отримати значок. Ви все ще можете підтримати Signal, зробивши пожертву на нашому вебсайті.</string>
@@ -5087,7 +5096,7 @@
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__your_donation_could_not_be_sent">Не вдалося надіслати донат через помилку мережі. Перевірте з\'єднання та спробуйте ще.</string>
     <!-- Displayed as a dialog message when the user encounters an error during an iDEAL donation -->
-    <string name="DonationsErrors__your_ideal_couldnt_be_processed">Your iDEAL donation couldn\'t be processed. Try another payment method or contact your bank for more information.</string>
+    <string name="DonationsErrors__your_ideal_couldnt_be_processed">Не вдалося обробити донат через iDEAL. Спробуйте інший спосіб оплати або зв\'яжіться зі своїм банком для додаткової інформації.</string>
 
     <!-- Gift message view title -->
     <string name="GiftMessageView__donation_on_behalf_of_s">Донат від імені користувача %1$s</string>
@@ -5132,7 +5141,7 @@
     <!-- Stripe decline code incorrect expiration year -->
     <string name="DeclineCode__the_expiration_year">Рік закінчення строку дії картки невірний. Оновіть його у Google Pay та спробуйте знов.</string>
     <!-- Stripe decline code issuer not available -->
-    <string name="DeclineCode__try_completing_the_payment_again">Try completing the donation again or contact your bank for more information.</string>
+    <string name="DeclineCode__try_completing_the_payment_again">Спробуйте повторити платіж або зв\'яжіться зі своїм банком для отримання додаткової інформації.</string>
     <!-- Stripe decline code processing error -->
     <string name="DeclineCode__try_again">Спробуйте знов, або зв\'яжіться зі своїм банком для додаткової інформації.</string>
 
@@ -5156,9 +5165,9 @@
     <!-- Failure code text for insufficient funds, displayed in a dialog or notification -->
     <string name="StripeFailureCode__the_bank_account_provided">На вказаному банківському рахунку недостатньо коштів. Спробуйте знову або зв\'яжіться зі своїм банком для додаткової інформації.</string>
     <!-- Failure code text for revoked authorization of payment, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__this_payment_was_revoked">This donation was revoked by the account holder and could not be processed. You haven\'t been charged.</string>
+    <string name="StripeFailureCode__this_payment_was_revoked">Власник рахунку скасував цей донат, тому його не вдалося обробити. Оплату не було стягнуто.</string>
     <!-- Failure code text for a payment lacking an authorized mandate or incorrect mandate, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">An error occurred while processing this donation, please try again.</string>
+    <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">Під час обробки доната виникла помилка. Будь ласка, спробуйте ще раз.</string>
     <!-- Failure code text for a closed account, deceased recipient, or one with blocked direct debits, displayed in a dialog or notification -->
     <string name="StripeFailureCode__the_bank_details_provided_could_not_be_processed">Не вдалося обробити введені банківські реквізити. Зв\'яжіться зі своїм банком для додаткової інформації.</string>
     <!-- Failure code text for a non-existent bank branch, invalid account holder, invalid iban, generic failure, or unknown bank failure, displayed in a dialog or notification -->
@@ -5320,10 +5329,10 @@
     <string name="DonationReceiptListFragment__recurring">Поточні</string>
     <!-- Donation receipts one-time tab label -->
     <string name="DonationReceiptListFragment__one_time">Одноразово</string>
+    <!-- Donation receipts gift tab -->
+    <string name="DonationReceiptListFragment__for_a_friend">For a friend</string>
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__donation_for_a_friend">Донат для друга</string>
-    <!-- Donation receipts boost row label -->
-    <!-- Donation receipts details title -->
     <!-- Donation receipts donation type heading -->
     <string name="DonationReceiptDetailsFragment__donation_type">Тип внеску</string>
     <!-- Donation receipts date paid heading -->
@@ -6107,11 +6116,11 @@
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
     <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Зазвичай обробка банківських переказів займає 1 робочий день. Будь ласка, зачекайте на проведення платежу, перш ніж робити новий донат.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Your donation is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before updating your subscription.</string>
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Ваш донат ще обробляється. Обробка може зайняти кілька хвилин в залежності від вашого з\'єднання. Будь ласка, зачекайте на проведення платежу, перш ніж оновлювати передплату.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Your donation is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before making another donation.</string>
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Ваш донат ще обробляється. Обробка може зайняти кілька хвилин в залежності від вашого з\'єднання. Будь ласка, зачекайте на проведення платежу, перш ніж робити новий донат.</string>
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
-    <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">Your iDEAL donation is still processing. Check your banking app to approve your payment before making another donation.</string>
+    <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">Донат через iDEAL в обробці. Перевірте застосунок свого банку і підтвердьте платіж, перш ніж робити новий донат.</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
     <string name="DonateToSignal__donation_amount_too_high">Donation amount too high</string>
     <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
@@ -6146,8 +6155,8 @@
     <string name="GatewaySelectorBottomSheet__ideal">iDEAL</string>
 
     <!-- Dialog title for launching external intent -->
-    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Leave Signal to confirm donation?</string>
-    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">When confirmed, return to Signal to finish processing your donation.</string>
+    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Покинути Signal для підтвердження доната?</string>
+    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">Після підтвердження поверніться до Signal, щоб завершити обробку доната.</string>
 
     <!-- IdealBank -->
     <!-- iDEAL bank name -->
@@ -6185,7 +6194,7 @@
     <!-- Subtitle learn more of screen displaying bank transfer mandate -->
     <string name="BankTransferMandateFragment__learn_more">Подробиці</string>
     <!-- Button label to continue with transfer -->
-    <string name="BankTransferMandateFragment__agree">Agree</string>
+    <string name="BankTransferMandateFragment__agree">Погодитися</string>
     <!-- Button label to read more of the bank mandate that is currently off screen -->
     <string name="BankTransferMandateFragment__read_more">Дізнатись більше</string>
     <!-- Text displayed when mandate load fails -->
@@ -6193,7 +6202,7 @@
 
     <!-- BankTransferDetailsFragment -->
     <!-- Subtext explaining how email is used. Placeholder is \'Learn more\' -->
-    <string name="BankTransferDetailsFragment__enter_your_bank_details">Enter your bank details and email. Stripe uses this email to send you updates about your donation. %1$s</string>
+    <string name="BankTransferDetailsFragment__enter_your_bank_details">Введіть свої банківські реквізити та електронну адресу. Stripe використовує вашу електронну адресу для того, щоб надсилати оновлення щодо внеску. %1$s</string>
     <!-- Subtext learn more link text -->
     <string name="BankTransferDetailsFragment__learn_more">Подробиці</string>
     <!-- Text field label for name on bank account -->
@@ -6668,6 +6677,13 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">Під час спроби скинути посилання сталася помилка мережі. Спробуйте знову пізніше.</string>
 
+    <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
+    <string name="UsernameLinkShareBottomSheet_title">Із цим посиланням будь-хто може переглянути ваше ім\'я користувача та розпочати з вами чат. Діліться ним тільки з людьми, яким довіряєте.</string>
+    <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
+    <string name="UsernameLinkShareBottomSheet_copy_link">Копіювати посилання</string>
+    <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
+    <string name="UsernameLinkShareBottomSheet_share">Поділитися</string>
+
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
     <string name="PendingParticipantsView__would_like_to_join">Хоче приєднатися…</string>
@@ -6706,6 +6722,17 @@
     <string name="GrantFullScreenIntentPermission_bottomsheet_subtitle">Щоб отримувати сповіщення про виклики від ваших контактів і груп:</string>
     <!-- Step 2 of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications, it indicates the name of the setting that needs to be re-enabled -->
     <string name="GrantFullScreenIntentPermission_bottomsheet_step2">2. %1$s Увімкніть повноекранні сповіщення</string>
+
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, title for dialog -->
+    <string name="MonthlyDonationCanceled__title">Щомісячний донат скасовано</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, body for dialog. First placeholder is a payment related error message. Second placeholder is \'learn more\' -->
+    <string name="MonthlyDonationCanceled__message">Your recurring monthly donation was canceled. %1$s\n\nYour badge will no longer be visible on your profile. %2$s</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, learn more used in placeholder for body for dialog. -->
+    <string name="MonthlyDonationCanceled__learn_more">Подробиці</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, primary button to renew subscription with new data -->
+    <string name="MonthlyDonationCanceled__renew_button">Поновити передплату</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, second button to dismiss the dialog entirely -->
+    <string name="MonthlyDonationCanceled__not_now_button">Не зараз</string>
 
     <!-- EOF -->
 </resources>

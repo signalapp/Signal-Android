@@ -144,19 +144,21 @@ class InternalDonorErrorConfigurationViewModel : ViewModel() {
 
   private fun handleSubscriptionExpiration(state: InternalDonorErrorConfigurationState) {
     SignalStore.donationsValues().setExpiredBadge(state.selectedBadge)
+    SignalStore.donationsValues().clearUserManuallyCancelled()
     handleSubscriptionPaymentFailure(state)
   }
 
   private fun handleSubscriptionPaymentFailure(state: InternalDonorErrorConfigurationState) {
     SignalStore.donationsValues().unexpectedSubscriptionCancelationReason = state.selectedUnexpectedSubscriptionCancellation?.status
     SignalStore.donationsValues().unexpectedSubscriptionCancelationTimestamp = System.currentTimeMillis()
+    SignalStore.donationsValues().showMonthlyDonationCanceledDialog = true
     SignalStore.donationsValues().setUnexpectedSubscriptionCancelationChargeFailure(
       state.selectedStripeDeclineCode?.let {
         ActiveSubscription.ChargeFailure(
           it.code,
           "Test Charge Failure",
           "Test Network Status",
-          "Test Network Reason",
+          it.code,
           "Test"
         )
       }

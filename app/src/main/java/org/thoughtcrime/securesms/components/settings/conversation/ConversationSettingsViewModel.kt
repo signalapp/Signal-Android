@@ -30,7 +30,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientUtil
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil
 import org.thoughtcrime.securesms.util.livedata.Store
@@ -118,8 +117,6 @@ sealed class ConversationSettingsViewModel(
       this.close()
     }
   }
-
-  open fun initiateGroupUpgrade(): Unit = error("This ViewModel does not support this interaction")
 
   private class RecipientSettingsViewModel(
     private val recipientId: RecipientId,
@@ -281,7 +278,7 @@ sealed class ConversationSettingsViewModel(
           ),
           canModifyBlockedState = RecipientUtil.isBlockable(recipient),
           specificSettingsState = state.requireGroupSettingsState().copy(
-            legacyGroupState = getLegacyGroupState(recipient)
+            legacyGroupState = getLegacyGroupState()
           )
         )
       }
@@ -390,14 +387,8 @@ sealed class ConversationSettingsViewModel(
       }
     }
 
-    private fun getLegacyGroupState(recipient: Recipient): LegacyGroupPreference.State {
-      val showLegacyInfo = recipient.requireGroupId().isV1
-
-      return if (showLegacyInfo && recipient.participantIds.size > FeatureFlags.groupLimits().hardLimit) {
-        LegacyGroupPreference.State.TOO_LARGE
-      } else if (showLegacyInfo) {
-        LegacyGroupPreference.State.UPGRADE
-      } else if (groupId.isMms) {
+    private fun getLegacyGroupState(): LegacyGroupPreference.State {
+      return if (groupId.isMms) {
         LegacyGroupPreference.State.MMS_WARNING
       } else {
         LegacyGroupPreference.State.NONE
@@ -467,12 +458,6 @@ sealed class ConversationSettingsViewModel(
 
     override fun unblock() {
       repository.unblock(groupId)
-    }
-
-    override fun initiateGroupUpgrade() {
-      repository.getExternalPossiblyMigratedGroupRecipientId(groupId) {
-        internalEvents.onNext(ConversationSettingsEvent.InitiateGroupMigration(it))
-      }
     }
   }
 

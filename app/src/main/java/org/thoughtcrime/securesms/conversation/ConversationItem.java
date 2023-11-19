@@ -105,9 +105,8 @@ import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.MediaTable;
 import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
-import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
+import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.Quote;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
@@ -1132,7 +1131,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       if (joinCallLinkStub.resolved()) joinCallLinkStub.get().setVisibility(View.GONE);
       paymentViewStub.setVisibility(View.GONE);
 
-      sharedContactStub.get().setContact(((MediaMmsMessageRecord) messageRecord).getSharedContacts().get(0), glideRequests, locale);
+      sharedContactStub.get().setContact(((MmsMessageRecord) messageRecord).getSharedContacts().get(0), glideRequests, locale);
       sharedContactStub.get().setEventListener(sharedContactEventListener);
       sharedContactStub.get().setOnClickListener(sharedContactClickListener);
       sharedContactStub.get().setOnLongClickListener(passthroughClickListener);
@@ -1219,7 +1218,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       if (joinCallLinkStub.resolved()) joinCallLinkStub.get().setVisibility(View.GONE);
       paymentViewStub.setVisibility(View.GONE);
 
-      audioViewStub.get().setAudio(Objects.requireNonNull(((MediaMmsMessageRecord) messageRecord).getSlideDeck().getAudioSlide()), new AudioViewCallbacks(), showControls, true);
+      audioViewStub.get().setAudio(Objects.requireNonNull(((MmsMessageRecord) messageRecord).getSlideDeck().getAudioSlide()), new AudioViewCallbacks(), showControls, true);
       audioViewStub.get().setDownloadClickListener(singleDownloadClickListener);
       audioViewStub.get().setOnLongClickListener(passthroughClickListener);
 
@@ -1249,7 +1248,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
       //noinspection ConstantConditions
       documentViewStub.get().setDocument(
-          ((MediaMmsMessageRecord) messageRecord).getSlideDeck().getDocumentSlide(),
+          ((MmsMessageRecord) messageRecord).getSlideDeck().getDocumentSlide(),
           showControls,
           displayMode != ConversationItemDisplayMode.Detailed.INSTANCE
       );
@@ -1381,7 +1380,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       if (giftViewStub.resolved()) giftViewStub.get().setVisibility(View.GONE);
       if (joinCallLinkStub.resolved()) joinCallLinkStub.get().setVisibility(View.GONE);
 
-      MediaMmsMessageRecord mediaMmsMessageRecord = (MediaMmsMessageRecord) messageRecord;
+      MmsMessageRecord mediaMmsMessageRecord = (MmsMessageRecord) messageRecord;
 
       paymentViewStub.setVisibility(View.VISIBLE);
       paymentViewStub.get().bindPayment(conversationRecipient.get(), Objects.requireNonNull(mediaMmsMessageRecord.getPayment()), colorizer);
@@ -1592,9 +1591,9 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       if (quoteView == null) {
         throw new AssertionError();
       }
-      Quote quote = ((MediaMmsMessageRecord) current).getQuote();
+      Quote quote = ((MmsMessageRecord) current).getQuote();
 
-      if (((MediaMmsMessageRecord) current).getParentStoryId() != null) {
+      if (((MmsMessageRecord) current).getParentStoryId() != null) {
         quoteView.setMessageType(current.isOutgoing() ? QuoteView.MessageType.STORY_REPLY_OUTGOING : QuoteView.MessageType.STORY_REPLY_INCOMING);
       } else {
         quoteView.setMessageType(current.isOutgoing() ? QuoteView.MessageType.OUTGOING : QuoteView.MessageType.INCOMING);
@@ -2244,7 +2243,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
   @Override
   public @Nullable Projection getOpenableGiftProjection(boolean isAnimating) {
-    if (!isGiftMessage(messageRecord) || messageRecord.isRemoteDelete() || (messageRecord.getViewedReceiptCount() > 0 && !isAnimating)) {
+    if (!isGiftMessage(messageRecord) || messageRecord.isRemoteDelete() || (messageRecord.isViewed() && !isAnimating)) {
       return null;
     }
 

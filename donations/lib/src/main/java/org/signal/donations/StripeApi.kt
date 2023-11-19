@@ -224,7 +224,7 @@ class StripeApi(
       CARD_NUMBER_KEY to cardData.number,
       CARD_MONTH_KEY to cardData.month.toString(),
       CARD_YEAR_KEY to cardData.year.toString(),
-      CARD_CVC_KEY to cardData.cvc.toString()
+      CARD_CVC_KEY to cardData.cvc
     )
 
     postForm("tokens", parameters).use { response ->
@@ -595,7 +595,7 @@ class StripeApi(
     val number: String,
     val month: Int,
     val year: Int,
-    val cvc: Int
+    val cvc: String
   ) : Parcelable
 
   @Parcelize

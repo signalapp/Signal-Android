@@ -109,25 +109,25 @@ public abstract class MessageRecord extends DisplayRecord {
 
   MessageRecord(long id, String body, Recipient fromRecipient, int fromDeviceId, Recipient toRecipient,
                 long dateSent, long dateReceived, long dateServer, long threadId,
-                int deliveryStatus, int deliveryReceiptCount, long type,
+                int deliveryStatus, boolean hasDeliveryReceipt, long type,
                 Set<IdentityKeyMismatch> mismatches,
                 Set<NetworkFailure> networkFailures,
                 int subscriptionId,
                 long expiresIn,
                 long expireStarted,
-                int readReceiptCount,
+                boolean hasReadReceipt,
                 boolean unidentified,
                 @NonNull List<ReactionRecord> reactions,
                 boolean remoteDelete,
                 long notifiedTimestamp,
-                int viewedReceiptCount,
+                boolean viewed,
                 long receiptTimestamp,
                 @Nullable MessageId originalMessageId,
                 int revisionNumber)
   {
     super(body, fromRecipient, toRecipient, dateSent, dateReceived,
-          threadId, deliveryStatus, deliveryReceiptCount, type,
-          readReceiptCount, viewedReceiptCount);
+          threadId, deliveryStatus, hasDeliveryReceipt, type,
+          hasReadReceipt, viewed);
     this.id                  = id;
     this.authorDeviceId      = fromDeviceId;
     this.mismatches          = mismatches;
@@ -735,8 +735,8 @@ public abstract class MessageRecord extends DisplayRecord {
   }
 
   public boolean isLatestRevision() {
-    if (this instanceof MediaMmsMessageRecord) {
-      return ((MediaMmsMessageRecord) this).getLatestRevisionId() == null;
+    if (this instanceof MmsMessageRecord) {
+      return ((MmsMessageRecord) this).getLatestRevisionId() == null;
     }
     return true;
   }

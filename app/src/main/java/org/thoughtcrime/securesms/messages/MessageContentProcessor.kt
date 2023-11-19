@@ -20,8 +20,6 @@ import org.thoughtcrime.securesms.groups.GroupChangeBusyException
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupManager
 import org.thoughtcrime.securesms.groups.GroupNotAMemberException
-import org.thoughtcrime.securesms.groups.GroupsV1MigratedCache
-import org.thoughtcrime.securesms.groups.GroupsV1MigrationUtil
 import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor
 import org.thoughtcrime.securesms.jobs.AutomaticSessionResetJob
 import org.thoughtcrime.securesms.jobs.NullMessageSendJob
@@ -232,10 +230,6 @@ open class MessageContentProcessor(private val context: Context) {
       senderRecipient: Recipient,
       groupSecretParams: GroupSecretParams? = null
     ): Gv2PreProcessResult {
-      val v1Group = GroupsV1MigratedCache.getV1GroupByV2Id(groupId)
-      if (v1Group != null) {
-        GroupsV1MigrationUtil.performLocalMigration(context, v1Group.id.requireV1())
-      }
       val preUpdateGroupRecord = SignalDatabase.groups.getGroup(groupId)
       val groupUpdateResult = updateGv2GroupFromServerOrP2PChange(context, timestamp, groupV2, preUpdateGroupRecord, groupSecretParams)
       if (groupUpdateResult == null) {

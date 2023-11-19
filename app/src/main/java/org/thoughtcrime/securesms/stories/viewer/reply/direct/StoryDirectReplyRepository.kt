@@ -5,8 +5,8 @@ import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.ParentStoryId
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.mms.OutgoingMessage
@@ -28,7 +28,7 @@ class StoryDirectReplyRepository(context: Context) {
 
   fun send(storyId: Long, groupDirectReplyRecipientId: RecipientId?, body: CharSequence, bodyRangeList: BodyRangeList?, isReaction: Boolean): Completable {
     return Completable.create { emitter ->
-      val message = SignalDatabase.messages.getMessageRecord(storyId) as MediaMmsMessageRecord
+      val message = SignalDatabase.messages.getMessageRecord(storyId) as MmsMessageRecord
       val (recipient, threadId) = if (groupDirectReplyRecipientId == null) {
         message.fromRecipient to message.threadId
       } else {

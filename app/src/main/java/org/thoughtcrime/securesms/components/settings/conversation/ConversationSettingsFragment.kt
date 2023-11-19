@@ -72,7 +72,6 @@ import org.thoughtcrime.securesms.groups.ui.invitesandrequests.ManagePendingAndR
 import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupDescriptionDialog
 import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupInviteSentDialog
 import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupsLearnMoreBottomSheetDialogFragment
-import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationInitiationBottomSheetDialogFragment
 import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory
 import org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity
@@ -279,7 +278,6 @@ class ConversationSettingsFragment : DSLSettingsFragment(
         is ConversationSettingsEvent.ShowAddMembersToGroupError -> showAddMembersToGroupError(event)
         is ConversationSettingsEvent.ShowGroupInvitesSentDialog -> showGroupInvitesSentDialog(event)
         is ConversationSettingsEvent.ShowMembersAdded -> showMembersAdded(event)
-        is ConversationSettingsEvent.InitiateGroupMigration -> GroupsV1MigrationInitiationBottomSheetDialogFragment.showForInitiation(parentFragmentManager, event.recipientId)
       }
     }
   }
@@ -363,7 +361,6 @@ class ConversationSettingsFragment : DSLSettingsFragment(
             LegacyGroupPreference.Model(
               state = groupState.legacyGroupState,
               onLearnMoreClick = { GroupsLearnMoreBottomSheetDialogFragment.show(parentFragmentManager) },
-              onUpgradeClick = { viewModel.initiateGroupUpgrade() },
               onMmsWarningClick = { startActivity(Intent(requireContext(), InviteActivity::class.java)) }
             )
           )

@@ -387,7 +387,7 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
   var unexpectedSubscriptionCancelationWatermark: Long by longValue(SUBSCRIPTION_CANCELATION_WATERMARK, 0L)
 
   @get:JvmName("showCantProcessDialog")
-  var showCantProcessDialog: Boolean by booleanValue(SHOW_CANT_PROCESS_DIALOG, true)
+  var showMonthlyDonationCanceledDialog: Boolean by booleanValue(SHOW_CANT_PROCESS_DIALOG, true)
 
   /**
    * Denotes that the previous attempt to subscribe failed in some way. Either an

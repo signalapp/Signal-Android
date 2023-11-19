@@ -25,7 +25,6 @@ import org.thoughtcrime.securesms.database.PaymentMetaDataUtil
 import org.thoughtcrime.securesms.database.SentStorySyncManifest
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DistributionListId
-import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.Mention
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
@@ -372,12 +371,10 @@ object SyncMessageProcessor {
     }
 
     val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(toRecipient)
-    val messageId: Long
-    val attachments: List<DatabaseAttachment>
     val mediaMessage = OutgoingMessage(
       recipient = toRecipient,
       body = message.body ?: "",
-      attachments = syncAttachments.ifEmpty { (targetMessage as? MediaMmsMessageRecord)?.slideDeck?.asAttachments() ?: emptyList() },
+      attachments = syncAttachments.ifEmpty { (targetMessage as? MmsMessageRecord)?.slideDeck?.asAttachments() ?: emptyList() },
       timestamp = sent.timestamp!!,
       expiresIn = targetMessage.expiresIn,
       viewOnce = viewOnce,
@@ -390,32 +387,28 @@ object SyncMessageProcessor {
       messageToEdit = targetMessage.id
     )
 
-    SignalDatabase.messages.beginTransaction()
-    try {
-      messageId = SignalDatabase.messages.insertMessageOutbox(mediaMessage, threadId, false, GroupReceiptTable.STATUS_UNKNOWN, null)
+    val messageId: Long = SignalDatabase.messages.insertMessageOutbox(mediaMessage, threadId, false, GroupReceiptTable.STATUS_UNKNOWN, null)
 
-      if (toRecipient.isGroup) {
-        updateGroupReceiptStatus(sent, messageId, toRecipient.requireGroupId())
-      } else {
-        SignalDatabase.messages.markUnidentified(messageId, sent.isUnidentified(toRecipient.serviceId.orNull()))
-      }
-
-      SignalDatabase.messages.markAsSent(messageId, true)
-
-      attachments = SignalDatabase.attachments.getAttachmentsForMessage(messageId)
-
-      if (targetMessage.expireStarted > 0) {
-        SignalDatabase.messages.markExpireStarted(messageId, targetMessage.expireStarted)
-        ApplicationDependencies.getExpiringMessageManager().scheduleDeletion(messageId, true, targetMessage.expireStarted, targetMessage.expireStarted)
-      }
-      if (toRecipient.isSelf) {
-        SignalDatabase.messages.incrementDeliveryReceiptCount(sent.timestamp!!, toRecipient.id, System.currentTimeMillis())
-        SignalDatabase.messages.incrementReadReceiptCount(sent.timestamp!!, toRecipient.id, System.currentTimeMillis())
-      }
-      SignalDatabase.messages.setTransactionSuccessful()
-    } finally {
-      SignalDatabase.messages.endTransaction()
+    if (toRecipient.isGroup) {
+      updateGroupReceiptStatus(sent, messageId, toRecipient.requireGroupId())
+    } else {
+      SignalDatabase.messages.markUnidentified(messageId, sent.isUnidentified(toRecipient.serviceId.orNull()))
     }
+
+    SignalDatabase.messages.markAsSent(messageId, true)
+
+    val attachments: List<DatabaseAttachment> = SignalDatabase.attachments.getAttachmentsForMessage(messageId)
+
+    if (targetMessage.expireStarted > 0) {
+      SignalDatabase.messages.markExpireStarted(messageId, targetMessage.expireStarted)
+      ApplicationDependencies.getExpiringMessageManager().scheduleDeletion(messageId, true, targetMessage.expireStarted, targetMessage.expireStarted)
+    }
+
+    if (toRecipient.isSelf) {
+      SignalDatabase.messages.incrementDeliveryReceiptCount(sent.timestamp!!, toRecipient.id, System.currentTimeMillis())
+      SignalDatabase.messages.incrementReadReceiptCount(sent.timestamp!!, toRecipient.id, System.currentTimeMillis())
+    }
+
     if (syncAttachments.isNotEmpty()) {
       SignalDatabase.runPostSuccessfulTransaction {
         for (attachment in attachments) {
@@ -497,35 +490,26 @@ object SyncMessageProcessor {
     )
 
     val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
-    val messageId: Long
-    val attachments: List<DatabaseAttachment>
+    val messageId: Long = SignalDatabase.messages.insertMessageOutbox(mediaMessage, threadId, false, GroupReceiptTable.STATUS_UNDELIVERED, null)
 
-    SignalDatabase.messages.beginTransaction()
-    try {
-      messageId = SignalDatabase.messages.insertMessageOutbox(mediaMessage, threadId, false, GroupReceiptTable.STATUS_UNDELIVERED, null)
-
-      if (groupId != null) {
-        updateGroupReceiptStatus(sent, messageId, recipient.requireGroupId())
-      } else if (recipient.distributionListId.isPresent) {
-        updateGroupReceiptStatusForDistributionList(sent, messageId, recipient.distributionListId.get())
-      } else {
-        SignalDatabase.messages.markUnidentified(messageId, sent.isUnidentified(recipient.serviceId.orNull()))
-      }
-
-      SignalDatabase.messages.markAsSent(messageId, true)
-
-      val allAttachments = SignalDatabase.attachments.getAttachmentsForMessage(messageId)
-      attachments = allAttachments.filterNot { it.isSticker }
-
-      if (recipient.isSelf) {
-        SignalDatabase.messages.incrementDeliveryReceiptCount(sent.timestamp!!, recipient.id, System.currentTimeMillis())
-        SignalDatabase.messages.incrementReadReceiptCount(sent.timestamp!!, recipient.id, System.currentTimeMillis())
-      }
-
-      SignalDatabase.messages.setTransactionSuccessful()
-    } finally {
-      SignalDatabase.messages.endTransaction()
+    if (groupId != null) {
+      updateGroupReceiptStatus(sent, messageId, recipient.requireGroupId())
+    } else if (recipient.distributionListId.isPresent) {
+      updateGroupReceiptStatusForDistributionList(sent, messageId, recipient.distributionListId.get())
+    } else {
+      SignalDatabase.messages.markUnidentified(messageId, sent.isUnidentified(recipient.serviceId.orNull()))
     }
+
+    SignalDatabase.messages.markAsSent(messageId, true)
+
+    val allAttachments = SignalDatabase.attachments.getAttachmentsForMessage(messageId)
+    val attachments: List<DatabaseAttachment> = allAttachments.filterNot { it.isSticker }
+
+    if (recipient.isSelf) {
+      SignalDatabase.messages.incrementDeliveryReceiptCount(sent.timestamp!!, recipient.id, System.currentTimeMillis())
+      SignalDatabase.messages.incrementReadReceiptCount(sent.timestamp!!, recipient.id, System.currentTimeMillis())
+    }
+
     SignalDatabase.runPostSuccessfulTransaction {
       for (attachment in attachments) {
         ApplicationDependencies.getJobManager().add(AttachmentDownloadJob(messageId, attachment.attachmentId, false))
@@ -719,32 +703,25 @@ object SyncMessageProcessor {
       }
 
       val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
-      val messageId: Long
+      val messageId: Long = SignalDatabase.messages.insertMessageOutbox(mediaMessage, threadId, false, GroupReceiptTable.STATUS_UNKNOWN, null)
 
-      SignalDatabase.messages.beginTransaction()
-      try {
-        messageId = SignalDatabase.messages.insertMessageOutbox(mediaMessage, threadId, false, GroupReceiptTable.STATUS_UNKNOWN, null)
-        if (recipient.isGroup) {
-          updateGroupReceiptStatus(sent, messageId, recipient.requireGroupId())
-        } else {
-          SignalDatabase.messages.markUnidentified(messageId, sent.isUnidentified(recipient.serviceId.orNull()))
-        }
+      if (recipient.isGroup) {
+        updateGroupReceiptStatus(sent, messageId, recipient.requireGroupId())
+      } else {
+        SignalDatabase.messages.markUnidentified(messageId, sent.isUnidentified(recipient.serviceId.orNull()))
+      }
 
-        SignalDatabase.messages.markAsSent(messageId, true)
-        if (dataMessage.expireTimerDuration > Duration.ZERO) {
-          SignalDatabase.messages.markExpireStarted(messageId, sent.expirationStartTimestamp ?: 0)
+      SignalDatabase.messages.markAsSent(messageId, true)
+      if (dataMessage.expireTimerDuration > Duration.ZERO) {
+        SignalDatabase.messages.markExpireStarted(messageId, sent.expirationStartTimestamp ?: 0)
 
-          ApplicationDependencies
-            .getExpiringMessageManager()
-            .scheduleDeletion(messageId, true, sent.expirationStartTimestamp ?: 0, dataMessage.expireTimerDuration.inWholeMilliseconds)
-        }
-        if (recipient.isSelf) {
-          SignalDatabase.messages.incrementDeliveryReceiptCount(sent.timestamp!!, recipient.id, System.currentTimeMillis())
-          SignalDatabase.messages.incrementReadReceiptCount(sent.timestamp!!, recipient.id, System.currentTimeMillis())
-        }
-        SignalDatabase.messages.setTransactionSuccessful()
-      } finally {
-        SignalDatabase.messages.endTransaction()
+        ApplicationDependencies
+          .getExpiringMessageManager()
+          .scheduleDeletion(messageId, true, sent.expirationStartTimestamp ?: 0, dataMessage.expireTimerDuration.inWholeMilliseconds)
+      }
+      if (recipient.isSelf) {
+        SignalDatabase.messages.incrementDeliveryReceiptCount(sent.timestamp!!, recipient.id, System.currentTimeMillis())
+        SignalDatabase.messages.incrementReadReceiptCount(sent.timestamp!!, recipient.id, System.currentTimeMillis())
       }
 
       return threadId
@@ -791,36 +768,28 @@ object SyncMessageProcessor {
     }
 
     val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
-    val messageId: Long
-    val attachments: List<DatabaseAttachment>
+    val messageId: Long = SignalDatabase.messages.insertMessageOutbox(mediaMessage, threadId, false, GroupReceiptTable.STATUS_UNKNOWN, null)
 
-    SignalDatabase.messages.beginTransaction()
-    try {
-      messageId = SignalDatabase.messages.insertMessageOutbox(mediaMessage, threadId, false, GroupReceiptTable.STATUS_UNKNOWN, null)
-
-      if (recipient.isGroup) {
-        updateGroupReceiptStatus(sent, messageId, recipient.requireGroupId())
-      } else {
-        SignalDatabase.messages.markUnidentified(messageId, sent.isUnidentified(recipient.serviceId.orNull()))
-      }
-
-      SignalDatabase.messages.markAsSent(messageId, true)
-
-      attachments = SignalDatabase.attachments.getAttachmentsForMessage(messageId)
-
-      if (dataMessage.expireTimerDuration > Duration.ZERO) {
-        SignalDatabase.messages.markExpireStarted(messageId, sent.expirationStartTimestamp ?: 0)
-
-        ApplicationDependencies.getExpiringMessageManager().scheduleDeletion(messageId, true, sent.expirationStartTimestamp ?: 0, dataMessage.expireTimerDuration.inWholeMilliseconds)
-      }
-      if (recipient.isSelf) {
-        SignalDatabase.messages.incrementDeliveryReceiptCount(sent.timestamp!!, recipient.id, System.currentTimeMillis())
-        SignalDatabase.messages.incrementReadReceiptCount(sent.timestamp!!, recipient.id, System.currentTimeMillis())
-      }
-      SignalDatabase.messages.setTransactionSuccessful()
-    } finally {
-      SignalDatabase.messages.endTransaction()
+    if (recipient.isGroup) {
+      updateGroupReceiptStatus(sent, messageId, recipient.requireGroupId())
+    } else {
+      SignalDatabase.messages.markUnidentified(messageId, sent.isUnidentified(recipient.serviceId.orNull()))
     }
+
+    SignalDatabase.messages.markAsSent(messageId, true)
+
+    val attachments: List<DatabaseAttachment> = SignalDatabase.attachments.getAttachmentsForMessage(messageId)
+
+    if (dataMessage.expireTimerDuration > Duration.ZERO) {
+      SignalDatabase.messages.markExpireStarted(messageId, sent.expirationStartTimestamp ?: 0)
+
+      ApplicationDependencies.getExpiringMessageManager().scheduleDeletion(messageId, true, sent.expirationStartTimestamp ?: 0, dataMessage.expireTimerDuration.inWholeMilliseconds)
+    }
+    if (recipient.isSelf) {
+      SignalDatabase.messages.incrementDeliveryReceiptCount(sent.timestamp!!, recipient.id, System.currentTimeMillis())
+      SignalDatabase.messages.incrementReadReceiptCount(sent.timestamp!!, recipient.id, System.currentTimeMillis())
+    }
+
     SignalDatabase.runPostSuccessfulTransaction {
       val downloadJobs: List<AttachmentDownloadJob> = attachments.map { AttachmentDownloadJob(messageId, it.attachmentId, false) }
       for (attachment in attachments) {
@@ -962,7 +931,7 @@ object SyncMessageProcessor {
     val toMarkViewed = records.map { it.id }
 
     val toEnqueueDownload = records
-      .map { it as MediaMmsMessageRecord }
+      .map { it as MmsMessageRecord }
       .filter { it.storyType.isStory && !it.storyType.isTextStory }
 
     for (mediaMmsMessageRecord in toEnqueueDownload) {

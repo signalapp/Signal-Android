@@ -492,9 +492,17 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         }
       )
 
-      if (SignalStore.donationsValues().getSubscriber() != null) {
-        dividerPref()
+      switchPref(
+        title = DSLSettingsText.from("Disable LBRed"),
+        isChecked = state.callingDisableLBRed,
+        onClick = {
+          viewModel.setInternalCallingDisableLBRed(!state.callingDisableLBRed)
+        }
+      )
 
+      dividerPref()
+
+      if (SignalStore.donationsValues().getSubscriber() != null) {
         sectionHeaderPref(DSLSettingsText.from("Badges"))
 
         clickPref(
@@ -527,6 +535,8 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
             Toast.makeText(context, "Cleared", Toast.LENGTH_SHORT).show()
           }
         )
+
+        dividerPref()
       }
 
       if (state.hasPendingOneTimeDonation) {
@@ -588,6 +598,13 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         title = DSLSettingsText.from("Add sample note"),
         onClick = {
           viewModel.addSampleReleaseNote()
+        }
+      )
+
+      clickPref(
+        title = DSLSettingsText.from("Add remote donate megaphone"),
+        onClick = {
+          viewModel.addRemoteDonateMegaphone()
         }
       )
 
@@ -704,6 +721,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
               SignalStore.account().username = random
               SignalDatabase.recipients.setUsername(Recipient.self().id, random)
+              StorageSyncHelper.scheduleSyncForDataChange()
 
               Toast.makeText(context, "Done", Toast.LENGTH_SHORT).show()
             }
@@ -724,6 +742,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
                 entropy = Util.getSecretBytes(32),
                 serverId = SignalStore.account().usernameLink?.serverId ?: UUID.randomUUID()
               )
+              StorageSyncHelper.scheduleSyncForDataChange()
               Toast.makeText(context, "Done", Toast.LENGTH_SHORT).show()
             }
             .setNegativeButton(android.R.string.cancel) { d, _ -> d.dismiss() }
