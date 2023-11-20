@@ -68,6 +68,7 @@ import org.thoughtcrime.securesms.database.helpers.migration.V207_AddChunkSizeCo
 import org.thoughtcrime.securesms.database.helpers.migration.V209_ClearRecipientPniFromAciColumn
 import org.thoughtcrime.securesms.database.helpers.migration.V210_FixPniPossibleColumns
 import org.thoughtcrime.securesms.database.helpers.migration.V211_ReceiptColumnRenames
+import org.thoughtcrime.securesms.database.helpers.migration.V212_RemoveDistributionListUniqueConstraint
 
 /**
  * Contains all of the database migrations for [SignalDatabase]. Broken into a separate file for cleanliness.
@@ -76,7 +77,7 @@ object SignalDatabaseMigrations {
 
   val TAG: String = Log.tag(SignalDatabaseMigrations.javaClass)
 
-  const val DATABASE_VERSION = 211
+  const val DATABASE_VERSION = 212
 
   private val migrations: List<Pair<Int, SignalDatabaseMigration>> = listOf(
     149 to V149_LegacyMigrations,
@@ -141,7 +142,8 @@ object SignalDatabaseMigrations {
     // 208 was a bad migration that only manipulated data and did not change schema, replaced by 209
     209 to V209_ClearRecipientPniFromAciColumn,
     210 to V210_FixPniPossibleColumns,
-    211 to V211_ReceiptColumnRenames
+    211 to V211_ReceiptColumnRenames,
+    212 to V212_RemoveDistributionListUniqueConstraint
   )
 
   @JvmStatic
