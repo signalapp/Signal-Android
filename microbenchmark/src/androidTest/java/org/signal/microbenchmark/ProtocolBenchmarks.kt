@@ -11,6 +11,8 @@ import org.junit.runner.RunWith
 import org.signal.libsignal.protocol.logging.SignalProtocolLogger
 import org.signal.libsignal.protocol.logging.SignalProtocolLoggerProvider
 import org.signal.util.SignalClient
+import org.whispersystems.signalservice.api.push.DistributionId
+import java.util.Optional
 
 /**
  * Benchmarks for decrypting messages.
@@ -74,16 +76,49 @@ class ProtocolBenchmarks {
     }
   }
 
+  @Test
+  fun multi_encrypt_sealedSender() {
+    val recipientCount = 10
+    val clients = buildAndInitializeClients(recipientCount)
+    val alice = clients.first()
+    val others = clients.filterNot { it == alice }
+    val distributionId = DistributionId.create()
+
+    clients.forEach {
+      it.initializedGroupSession(distributionId)
+    }
+
+    benchmarkRule.measureRepeated {
+      alice.multiEncryptSealedSender(distributionId, others, Optional.empty())
+    }
+  }
+
   private fun buildAndInitializeClients(): Pair<SignalClient, SignalClient> {
-    val alice = SignalClient()
-    val bob = SignalClient()
+    val clients = buildAndInitializeClients(2)
+    return clients[0] to clients[1]
+  }
 
-    // Do initial prekey dance
-    alice.initializeSession(bob)
-    bob.initializeSession(alice)
-    alice.decryptMessage(bob.encryptUnsealedSender(alice))
-    bob.decryptMessage(alice.encryptUnsealedSender(bob))
+  private fun buildAndInitializeClients(recipientCount: Int): List<SignalClient> {
+    val clients = ArrayList<SignalClient>(recipientCount)
+    for (n in 1..recipientCount) {
+      clients.add(SignalClient())
+    }
 
-    return alice to bob
+    clients.forEach { alice ->
+      clients.filterNot { it == alice }.forEach { bob ->
+        alice.initializeSession(bob)
+        bob.initializeSession(alice)
+
+        alice.decryptMessage(bob.encryptUnsealedSender(alice))
+
+        bob.decryptMessage(alice.encryptUnsealedSender(bob))
+
+        alice.decryptMessage(bob.encryptSealedSender(alice))
+
+        bob.decryptMessage(alice.encryptSealedSender(bob))
+      }
+    }
+
+    return clients
   }
 }

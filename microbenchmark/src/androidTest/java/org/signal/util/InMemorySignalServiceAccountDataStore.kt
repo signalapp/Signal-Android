@@ -118,8 +118,8 @@ class InMemorySignalServiceAccountDataStore : SignalServiceAccountDataStore {
     senderKeys[SenderKeyLocator(sender, distributionId)] = record
   }
 
-  override fun loadSenderKey(sender: SignalProtocolAddress, distributionId: UUID): SenderKeyRecord {
-    return senderKeys[SenderKeyLocator(sender, distributionId)]!!
+  override fun loadSenderKey(sender: SignalProtocolAddress, distributionId: UUID): SenderKeyRecord? {
+    return senderKeys[SenderKeyLocator(sender, distributionId)]
   }
 
   override fun loadKyberPreKey(kyberPreKeyId: Int): KyberPreKeyRecord {
