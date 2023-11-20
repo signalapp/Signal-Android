@@ -828,7 +828,7 @@ public abstract class WebRtcActionProcessor {
     Recipient recipient = currentState.getCallInfoState().getCallRecipient();
 
     if (recipient != null && currentState.getCallInfoState().getGroupCallState().isConnected()) {
-      webRtcInteractor.sendGroupCallMessage(recipient, WebRtcUtil.getGroupCallEraId(groupCall), false, false);
+      webRtcInteractor.sendGroupCallMessage(recipient, WebRtcUtil.getGroupCallEraId(groupCall), null, false, false);
     }
 
     currentState = currentState.builder()

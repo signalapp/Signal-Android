@@ -5,8 +5,8 @@ import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 
+import org.signal.ringrtc.CallId;
 import org.signal.ringrtc.CallManager;
 import org.signal.ringrtc.GroupCall;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -85,8 +85,8 @@ public class WebRtcInteractor {
     signalCallManager.sendCallMessage(remotePeer, callMessage);
   }
 
-  void sendGroupCallMessage(@NonNull Recipient recipient, @Nullable String groupCallEraId, boolean isIncoming, boolean isJoinEvent) {
-    signalCallManager.sendGroupCallUpdateMessage(recipient, groupCallEraId, isIncoming, isJoinEvent);
+  void sendGroupCallMessage(@NonNull Recipient recipient, @Nullable String groupCallEraId, @Nullable CallId callId, boolean isIncoming, boolean isJoinEvent) {
+    signalCallManager.sendGroupCallUpdateMessage(recipient, groupCallEraId, callId, isIncoming, isJoinEvent);
   }
 
   void updateGroupCallUpdateMessage(@NonNull RecipientId groupId, @Nullable String groupCallEraId, @NonNull Collection<UUID> joinedMembers, boolean isCallFull) {

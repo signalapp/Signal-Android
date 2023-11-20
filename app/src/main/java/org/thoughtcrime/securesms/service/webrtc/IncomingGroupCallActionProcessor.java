@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
 import org.signal.ringrtc.CallException;
+import org.signal.ringrtc.CallId;
 import org.signal.ringrtc.CallManager;
 import org.signal.ringrtc.GroupCall;
 import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink;
@@ -233,6 +234,8 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
 
   @Override
   protected @NonNull WebRtcServiceState handleDenyCall(@NonNull WebRtcServiceState currentState) {
+    Log.i(TAG, "handleDenyCall():");
+
     Recipient         recipient = currentState.getCallInfoState().getCallRecipient();
     Optional<GroupId> groupId   = recipient.getGroupId();
     long              ringId    = currentState.getCallSetupState(RemotePeer.GROUP_CALL_ID).getRingId();
@@ -252,6 +255,7 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
       Log.w(TAG, "Error while trying to cancel ring " + ringId, e);
     }
 
+    webRtcInteractor.sendGroupCallMessage(currentState.getCallInfoState().getCallRecipient(), null, new CallId(ringId), true, false);
     webRtcInteractor.updatePhoneState(LockManager.PhoneState.PROCESSING);
     webRtcInteractor.stopAudio(false);
     webRtcInteractor.updatePhoneState(LockManager.PhoneState.IDLE);
