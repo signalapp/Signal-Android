@@ -1,6 +1,9 @@
-package org.signal.core.util;
+/*
+ * Copyright 2023 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
 
-import androidx.annotation.Nullable;
+package org.signal.core.util;
 
 import org.signal.core.util.logging.Log;
 
@@ -20,7 +23,7 @@ public final class StreamUtil {
 
   private StreamUtil() {}
 
-  public static void close(@Nullable Closeable closeable) {
+  public static void close(Closeable closeable) {
     if (closeable == null) return;
 
     try {
@@ -64,6 +67,10 @@ public final class StreamUtil {
   }
 
   public static byte[] readFully(InputStream in, int maxBytes) throws IOException {
+    return readFully(in, maxBytes, true);
+  }
+
+  public static byte[] readFully(InputStream in, int maxBytes, boolean closeWhenDone) throws IOException {
     ByteArrayOutputStream bout      = new ByteArrayOutputStream();
     byte[]                buffer    = new byte[4096];
     int                   totalRead = 0;
@@ -77,7 +84,9 @@ public final class StreamUtil {
       }
     }
 
-    in.close();
+    if (closeWhenDone) {
+      in.close();
+    }
 
     return bout.toByteArray();
   }

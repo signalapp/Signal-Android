@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.subscription.Subscriber
 import org.thoughtcrime.securesms.util.ProfileUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
@@ -35,21 +36,11 @@ object AccountDataProcessor {
     val self = Recipient.self().fresh()
     val record = recipients.getRecordForSync(self.id)
 
-    val pniIdentityKey = SignalStore.account().pniIdentityKey
-    val aciIdentityKey = SignalStore.account().aciIdentityKey
-
     val subscriber: Subscriber? = SignalStore.donationsValues().getSubscriber()
 
     emitter.emit(
       Frame(
         account = AccountData(
-          aci = SignalStore.account().aci!!.toByteString(),
-          pni = SignalStore.account().pni!!.toByteString(),
-          e164 = SignalStore.account().e164!!.toLong(),
-          pniIdentityPrivateKey = pniIdentityKey.privateKey.serialize().toByteString(),
-          pniIdentityPublicKey = pniIdentityKey.publicKey.serialize().toByteString(),
-          aciIdentityPrivateKey = aciIdentityKey.privateKey.serialize().toByteString(),
-          aciIdentityPublicKey = aciIdentityKey.publicKey.serialize().toByteString(),
           profileKey = self.profileKey?.toByteString() ?: EMPTY,
           givenName = self.profileName.givenName,
           familyName = self.profileName.familyName,
@@ -60,14 +51,12 @@ object AccountDataProcessor {
           subscriberCurrencyCode = subscriber?.currencyCode ?: defaultAccountRecord.subscriberCurrencyCode,
           accountSettings = AccountData.AccountSettings(
             storyViewReceiptsEnabled = SignalStore.storyValues().viewedReceiptsEnabled,
-            hasReadOnboardingStory = SignalStore.storyValues().userHasViewedOnboardingStory || SignalStore.storyValues().userHasReadOnboardingStory,
-            noteToSelfArchived = record != null && record.syncExtras.isArchived,
             noteToSelfMarkedUnread = record != null && record.syncExtras.isForcedUnread,
             typingIndicators = TextSecurePreferences.isTypingIndicatorsEnabled(context),
             readReceipts = TextSecurePreferences.isReadReceiptsEnabled(context),
             sealedSenderIndicators = TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(context),
             linkPreviews = SignalStore.settings().isLinkPreviewsEnabled,
-            unlistedPhoneNumber = SignalStore.phoneNumberPrivacy().phoneNumberListingMode.isUnlisted,
+            notDiscoverableByPhoneNumber = SignalStore.phoneNumberPrivacy().phoneNumberListingMode.isUnlisted,
             phoneNumberSharingMode = SignalStore.phoneNumberPrivacy().phoneNumberSharingMode.toBackupPhoneNumberSharingMode(),
             preferContactAvatars = SignalStore.settings().isPreferSystemContactPhotos,
             universalExpireTimer = SignalStore.settings().universalExpireTimer,
@@ -84,16 +73,12 @@ object AccountDataProcessor {
     )
   }
 
-  fun import(accountData: AccountData) {
-    SignalStore.account().restoreAciIdentityKeyFromBackup(accountData.aciIdentityPublicKey.toByteArray(), accountData.aciIdentityPrivateKey.toByteArray())
-    SignalStore.account().restorePniIdentityKeyFromBackup(accountData.pniIdentityPublicKey.toByteArray(), accountData.pniIdentityPrivateKey.toByteArray())
-
-    recipients.restoreSelfFromBackup(accountData)
+  fun import(accountData: AccountData, selfId: RecipientId) {
+    recipients.restoreSelfFromBackup(accountData, selfId)
 
     SignalStore.account().setRegistered(true)
 
     val context = ApplicationDependencies.getApplication()
-
     val settings = accountData.accountSettings
 
     if (settings != null) {
@@ -101,7 +86,7 @@ object AccountDataProcessor {
       TextSecurePreferences.setTypingIndicatorsEnabled(context, settings.typingIndicators)
       TextSecurePreferences.setShowUnidentifiedDeliveryIndicatorsEnabled(context, settings.sealedSenderIndicators)
       SignalStore.settings().isLinkPreviewsEnabled = settings.linkPreviews
-      SignalStore.phoneNumberPrivacy().phoneNumberListingMode = if (settings.unlistedPhoneNumber) PhoneNumberPrivacyValues.PhoneNumberListingMode.UNLISTED else PhoneNumberPrivacyValues.PhoneNumberListingMode.LISTED
+      SignalStore.phoneNumberPrivacy().phoneNumberListingMode = if (settings.notDiscoverableByPhoneNumber) PhoneNumberPrivacyValues.PhoneNumberListingMode.UNLISTED else PhoneNumberPrivacyValues.PhoneNumberListingMode.LISTED
       SignalStore.phoneNumberPrivacy().phoneNumberSharingMode = settings.phoneNumberSharingMode.toLocalPhoneNumberMode()
       SignalStore.settings().isPreferSystemContactPhotos = settings.preferContactAvatars
       SignalStore.settings().universalExpireTimer = settings.universalExpireTimer
@@ -111,7 +96,6 @@ object AccountDataProcessor {
       SignalStore.storyValues().userHasBeenNotifiedAboutStories = settings.hasSetMyStoriesPrivacy
       SignalStore.storyValues().userHasViewedOnboardingStory = settings.hasViewedOnboardingStory
       SignalStore.storyValues().isFeatureDisabled = settings.storiesDisabled
-      SignalStore.storyValues().userHasReadOnboardingStory = settings.hasReadOnboardingStory
       SignalStore.storyValues().userHasSeenGroupStoryEducationSheet = settings.hasSeenGroupStoryEducationSheet
       SignalStore.storyValues().viewedReceiptsEnabled = settings.storyViewReceiptsEnabled ?: settings.readReceipts
 

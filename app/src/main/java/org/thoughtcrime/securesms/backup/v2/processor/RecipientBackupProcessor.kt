@@ -27,7 +27,9 @@ object RecipientBackupProcessor {
 
     SignalDatabase.recipients.getContactsForBackup(selfId).use { reader ->
       for (backupRecipient in reader) {
-        emitter.emit(Frame(recipient = backupRecipient))
+        if (backupRecipient != null) {
+          emitter.emit(Frame(recipient = backupRecipient))
+        }
       }
     }
 

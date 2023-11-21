@@ -14,12 +14,12 @@ import org.signal.core.util.toInt
 import org.thoughtcrime.securesms.backup.v2.BackupState
 import org.thoughtcrime.securesms.backup.v2.proto.BodyRange
 import org.thoughtcrime.securesms.backup.v2.proto.ChatItem
+import org.thoughtcrime.securesms.backup.v2.proto.ChatUpdateMessage
 import org.thoughtcrime.securesms.backup.v2.proto.Quote
 import org.thoughtcrime.securesms.backup.v2.proto.Reaction
 import org.thoughtcrime.securesms.backup.v2.proto.SendStatus
-import org.thoughtcrime.securesms.backup.v2.proto.SimpleUpdate
+import org.thoughtcrime.securesms.backup.v2.proto.SimpleChatUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.StandardMessage
-import org.thoughtcrime.securesms.backup.v2.proto.UpdateMessage
 import org.thoughtcrime.securesms.database.GroupReceiptTable
 import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.MessageTypes
@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.JsonUtils
+import org.whispersystems.signalservice.api.util.UuidUtil
 
 /**
  * An object that will ingest all fo the [ChatItem]s you want to write, buffer them until hitting a specified batch size, and then batch insert them
@@ -58,9 +59,9 @@ class ChatItemImportInserter(
       MessageTable.BODY,
       MessageTable.FROM_RECIPIENT_ID,
       MessageTable.TO_RECIPIENT_ID,
-      MessageTable.DELIVERY_RECEIPT_COUNT,
-      MessageTable.READ_RECEIPT_COUNT,
-      MessageTable.VIEWED_RECEIPT_COUNT,
+      MessageTable.HAS_DELIVERY_RECEIPT,
+      MessageTable.HAS_READ_RECEIPT,
+      MessageTable.VIEWED_COLUMN,
       MessageTable.MISMATCHED_IDENTITIES,
       MessageTable.EXPIRES_IN,
       MessageTable.EXPIRE_STARTED,
@@ -173,32 +174,32 @@ class ChatItemImportInserter(
     contentValues.put(MessageTable.FROM_RECIPIENT_ID, fromRecipientId.serialize())
     contentValues.put(MessageTable.TO_RECIPIENT_ID, (if (this.outgoing != null) chatRecipientId else selfId).serialize())
     contentValues.put(MessageTable.THREAD_ID, threadId)
-    contentValues.put(MessageTable.DATE_RECEIVED, this.dateReceived)
-    contentValues.put(MessageTable.RECEIPT_TIMESTAMP, this.outgoing?.sendStatus?.maxOf { it.timestamp } ?: 0)
+    contentValues.put(MessageTable.DATE_RECEIVED, this.incoming?.dateReceived ?: this.dateSent)
+    contentValues.put(MessageTable.RECEIPT_TIMESTAMP, this.outgoing?.sendStatus?.maxOf { it.lastStatusUpdateTimestamp } ?: 0)
     contentValues.putNull(MessageTable.LATEST_REVISION_ID)
     contentValues.putNull(MessageTable.ORIGINAL_MESSAGE_ID)
     contentValues.put(MessageTable.REVISION_NUMBER, 0)
-    contentValues.put(MessageTable.EXPIRES_IN, this.expiresIn ?: 0)
-    contentValues.put(MessageTable.EXPIRE_STARTED, this.expireStart ?: 0)
+    contentValues.put(MessageTable.EXPIRES_IN, this.expiresInMs ?: 0)
+    contentValues.put(MessageTable.EXPIRE_STARTED, this.expireStartDate ?: 0)
 
     if (this.outgoing != null) {
-      val viewReceiptCount = this.outgoing.sendStatus.count { it.deliveryStatus == SendStatus.Status.VIEWED }
-      val readReceiptCount = Integer.max(viewReceiptCount, this.outgoing.sendStatus.count { it.deliveryStatus == SendStatus.Status.READ })
-      val deliveryReceiptCount = Integer.max(readReceiptCount, this.outgoing.sendStatus.count { it.deliveryStatus == SendStatus.Status.DELIVERED })
+      val viewed = this.outgoing.sendStatus.any { it.deliveryStatus == SendStatus.Status.VIEWED }
+      val hasReadReceipt = viewed || this.outgoing.sendStatus.any { it.deliveryStatus == SendStatus.Status.READ }
+      val hasDeliveryReceipt = viewed || hasReadReceipt || this.outgoing.sendStatus.any { it.deliveryStatus == SendStatus.Status.DELIVERED }
 
-      contentValues.put(MessageTable.VIEWED_RECEIPT_COUNT, viewReceiptCount)
-      contentValues.put(MessageTable.READ_RECEIPT_COUNT, readReceiptCount)
-      contentValues.put(MessageTable.DELIVERY_RECEIPT_COUNT, deliveryReceiptCount)
+      contentValues.put(MessageTable.VIEWED_COLUMN, viewed.toInt())
+      contentValues.put(MessageTable.HAS_READ_RECEIPT, hasReadReceipt.toInt())
+      contentValues.put(MessageTable.HAS_DELIVERY_RECEIPT, hasDeliveryReceipt.toInt())
       contentValues.put(MessageTable.UNIDENTIFIED, this.outgoing.sendStatus.count { it.sealedSender })
       contentValues.put(MessageTable.READ, 1)
 
       contentValues.addNetworkFailures(this, backupState)
       contentValues.addIdentityKeyMismatches(this, backupState)
     } else {
-      contentValues.put(MessageTable.VIEWED_RECEIPT_COUNT, 0)
-      contentValues.put(MessageTable.READ_RECEIPT_COUNT, 0)
-      contentValues.put(MessageTable.DELIVERY_RECEIPT_COUNT, 0)
-      contentValues.put(MessageTable.UNIDENTIFIED, this.incoming?.sealedSender?.toInt() ?: 0)
+      contentValues.put(MessageTable.VIEWED_COLUMN, 0)
+      contentValues.put(MessageTable.HAS_READ_RECEIPT, 0)
+      contentValues.put(MessageTable.HAS_DELIVERY_RECEIPT, 0)
+      contentValues.put(MessageTable.UNIDENTIFIED, this.sealedSender?.toInt())
       contentValues.put(MessageTable.READ, this.incoming?.read?.toInt() ?: 0)
     }
 
@@ -264,7 +265,7 @@ class ChatItemImportInserter(
           GroupReceiptTable.MMS_ID to messageId,
           GroupReceiptTable.RECIPIENT_ID to recipientId.serialize(),
           GroupReceiptTable.STATUS to sendStatus.deliveryStatus.toLocalSendStatus(),
-          GroupReceiptTable.TIMESTAMP to sendStatus.timestamp,
+          GroupReceiptTable.TIMESTAMP to sendStatus.lastStatusUpdateTimestamp,
           GroupReceiptTable.UNIDENTIFIED to sendStatus.sealedSender
         )
       } else {
@@ -308,27 +309,28 @@ class ChatItemImportInserter(
     }
   }
 
-  private fun ContentValues.addUpdateMessage(updateMessage: UpdateMessage) {
+  private fun ContentValues.addUpdateMessage(updateMessage: ChatUpdateMessage) {
     var typeFlags: Long = 0
     when {
       updateMessage.simpleUpdate != null -> {
         typeFlags = when (updateMessage.simpleUpdate.type) {
-          SimpleUpdate.Type.JOINED_SIGNAL -> MessageTypes.JOINED_TYPE
-          SimpleUpdate.Type.IDENTITY_UPDATE -> MessageTypes.KEY_EXCHANGE_IDENTITY_UPDATE_BIT
-          SimpleUpdate.Type.IDENTITY_VERIFIED -> MessageTypes.KEY_EXCHANGE_IDENTITY_VERIFIED_BIT
-          SimpleUpdate.Type.IDENTITY_DEFAULT -> MessageTypes.KEY_EXCHANGE_IDENTITY_DEFAULT_BIT
-          SimpleUpdate.Type.CHANGE_NUMBER -> MessageTypes.CHANGE_NUMBER_TYPE
-          SimpleUpdate.Type.BOOST_REQUEST -> MessageTypes.BOOST_REQUEST_TYPE
-          SimpleUpdate.Type.END_SESSION -> MessageTypes.END_SESSION_BIT
-          SimpleUpdate.Type.CHAT_SESSION_REFRESH -> MessageTypes.ENCRYPTION_REMOTE_FAILED_BIT
-          SimpleUpdate.Type.BAD_DECRYPT -> MessageTypes.BAD_DECRYPT_TYPE
-          SimpleUpdate.Type.PAYMENTS_ACTIVATED -> MessageTypes.SPECIAL_TYPE_PAYMENTS_ACTIVATED
-          SimpleUpdate.Type.PAYMENT_ACTIVATION_REQUEST -> MessageTypes.SPECIAL_TYPE_PAYMENTS_ACTIVATE_REQUEST
+          SimpleChatUpdate.Type.UNKNOWN -> 0
+          SimpleChatUpdate.Type.JOINED_SIGNAL -> MessageTypes.JOINED_TYPE
+          SimpleChatUpdate.Type.IDENTITY_UPDATE -> MessageTypes.KEY_EXCHANGE_IDENTITY_UPDATE_BIT
+          SimpleChatUpdate.Type.IDENTITY_VERIFIED -> MessageTypes.KEY_EXCHANGE_IDENTITY_VERIFIED_BIT
+          SimpleChatUpdate.Type.IDENTITY_DEFAULT -> MessageTypes.KEY_EXCHANGE_IDENTITY_DEFAULT_BIT
+          SimpleChatUpdate.Type.CHANGE_NUMBER -> MessageTypes.CHANGE_NUMBER_TYPE
+          SimpleChatUpdate.Type.BOOST_REQUEST -> MessageTypes.BOOST_REQUEST_TYPE
+          SimpleChatUpdate.Type.END_SESSION -> MessageTypes.END_SESSION_BIT
+          SimpleChatUpdate.Type.CHAT_SESSION_REFRESH -> MessageTypes.ENCRYPTION_REMOTE_FAILED_BIT
+          SimpleChatUpdate.Type.BAD_DECRYPT -> MessageTypes.BAD_DECRYPT_TYPE
+          SimpleChatUpdate.Type.PAYMENTS_ACTIVATED -> MessageTypes.SPECIAL_TYPE_PAYMENTS_ACTIVATED
+          SimpleChatUpdate.Type.PAYMENT_ACTIVATION_REQUEST -> MessageTypes.SPECIAL_TYPE_PAYMENTS_ACTIVATE_REQUEST
         }
       }
       updateMessage.expirationTimerChange != null -> {
         typeFlags = MessageTypes.EXPIRATION_TIMER_UPDATE_BIT
-        put(MessageTable.EXPIRES_IN, updateMessage.expirationTimerChange.expiresIn.toLong() * 1000)
+        put(MessageTable.EXPIRES_IN, updateMessage.expirationTimerChange.expiresInMs.toLong())
       }
       updateMessage.profileChange != null -> {
         typeFlags = MessageTypes.PROFILE_CHANGE_TYPE
@@ -341,13 +343,13 @@ class ChatItemImportInserter(
   }
 
   private fun ContentValues.addQuote(quote: Quote) {
-    this.put(MessageTable.QUOTE_ID, quote.targetSentTimestamp)
+    this.put(MessageTable.QUOTE_ID, quote.targetSentTimestamp ?: MessageTable.QUOTE_TARGET_MISSING_ID)
     this.put(MessageTable.QUOTE_AUTHOR, backupState.backupToLocalRecipientId[quote.authorId]!!.serialize())
     this.put(MessageTable.QUOTE_BODY, quote.text)
     this.put(MessageTable.QUOTE_TYPE, quote.type.toLocalQuoteType())
     this.put(MessageTable.QUOTE_BODY_RANGES, quote.bodyRanges.toLocalBodyRanges()?.encode())
     // TODO quote attachments
-    this.put(MessageTable.QUOTE_MISSING, quote.originalMessageMissing.toInt())
+    this.put(MessageTable.QUOTE_MISSING, (quote.targetSentTimestamp == null).toInt())
   }
 
   private fun Quote.Type.toLocalQuoteType(): Int {
@@ -398,7 +400,7 @@ class ChatItemImportInserter(
     return BodyRangeList(
       ranges = this.map { bodyRange ->
         BodyRangeList.BodyRange(
-          mentionUuid = bodyRange.mentionAci,
+          mentionUuid = bodyRange.mentionAci?.let { UuidUtil.fromByteString(it) }?.toString(),
           style = bodyRange.style?.let {
             when (bodyRange.style) {
               BodyRange.Style.BOLD -> BodyRangeList.BodyRange.Style.BOLD
@@ -418,6 +420,7 @@ class ChatItemImportInserter(
 
   private fun SendStatus.Status.toLocalSendStatus(): Int {
     return when (this) {
+      SendStatus.Status.UNKNOWN -> GroupReceiptTable.STATUS_UNKNOWN
       SendStatus.Status.FAILED -> GroupReceiptTable.STATUS_UNKNOWN
       SendStatus.Status.PENDING -> GroupReceiptTable.STATUS_UNDELIVERED
       SendStatus.Status.SENT -> GroupReceiptTable.STATUS_UNDELIVERED

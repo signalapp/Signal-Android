@@ -58,7 +58,6 @@ fun DistributionListTables.getAllForBackup(): List<BackupRecipient> {
           distributionId = record.distributionId.asUuid().toByteArray().toByteString(),
           allowReplies = record.allowsReplies,
           deletionTimestamp = record.deletedAtTimestamp,
-          isUnknown = record.isUnknown,
           privacyMode = record.privacyMode.toBackupPrivacyMode(),
           memberRecipientIds = record.members.map { it.toLong() }
         )
@@ -81,7 +80,6 @@ fun DistributionListTables.restoreFromBackup(dlist: BackupDistributionList, back
     allowsReplies = dlist.allowReplies,
     deletionTimestamp = dlist.deletionTimestamp,
     storageId = null,
-    isUnknown = dlist.isUnknown,
     privacyMode = dlist.privacyMode.toLocalPrivacyMode()
   )!!
 
@@ -108,6 +106,7 @@ private fun DistributionListPrivacyMode.toBackupPrivacyMode(): BackupDistributio
 
 private fun BackupDistributionList.PrivacyMode.toLocalPrivacyMode(): DistributionListPrivacyMode {
   return when (this) {
+    BackupDistributionList.PrivacyMode.UNKNOWN -> DistributionListPrivacyMode.ALL
     BackupDistributionList.PrivacyMode.ONLY_WITH -> DistributionListPrivacyMode.ONLY_WITH
     BackupDistributionList.PrivacyMode.ALL -> DistributionListPrivacyMode.ALL
     BackupDistributionList.PrivacyMode.ALL_EXCEPT -> DistributionListPrivacyMode.ALL_EXCEPT

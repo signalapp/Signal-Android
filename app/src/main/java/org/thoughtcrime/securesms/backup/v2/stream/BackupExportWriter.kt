@@ -7,6 +7,6 @@ package org.thoughtcrime.securesms.backup.v2.stream
 
 import org.thoughtcrime.securesms.backup.v2.proto.Frame
 
-interface BackupExportStream {
+interface BackupExportWriter : AutoCloseable {
   fun write(frame: Frame)
 }

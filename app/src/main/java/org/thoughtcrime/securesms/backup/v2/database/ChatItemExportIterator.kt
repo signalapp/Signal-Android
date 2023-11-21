@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.backup.v2.database
 
 import android.database.Cursor
+import okio.ByteString.Companion.toByteString
 import org.signal.core.util.Base64
 import org.signal.core.util.logging.Log
 import org.signal.core.util.requireBlob
@@ -14,16 +15,16 @@ import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireString
 import org.thoughtcrime.securesms.backup.v2.proto.ChatItem
-import org.thoughtcrime.securesms.backup.v2.proto.ExpirationTimerChange
-import org.thoughtcrime.securesms.backup.v2.proto.ProfileChange
+import org.thoughtcrime.securesms.backup.v2.proto.ChatUpdateMessage
+import org.thoughtcrime.securesms.backup.v2.proto.ExpirationTimerChatUpdate
+import org.thoughtcrime.securesms.backup.v2.proto.ProfileChangeChatUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.Quote
 import org.thoughtcrime.securesms.backup.v2.proto.Reaction
 import org.thoughtcrime.securesms.backup.v2.proto.RemoteDeletedMessage
 import org.thoughtcrime.securesms.backup.v2.proto.SendStatus
-import org.thoughtcrime.securesms.backup.v2.proto.SimpleUpdate
+import org.thoughtcrime.securesms.backup.v2.proto.SimpleChatUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.StandardMessage
 import org.thoughtcrime.securesms.backup.v2.proto.Text
-import org.thoughtcrime.securesms.backup.v2.proto.UpdateMessage
 import org.thoughtcrime.securesms.database.GroupReceiptTable
 import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.MessageTypes
@@ -35,6 +36,8 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.database.model.databaseprotos.ProfileChangeDetails
 import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.util.JsonUtils
+import org.whispersystems.signalservice.api.util.UuidUtil
+import org.whispersystems.signalservice.api.util.toByteArray
 import java.io.Closeable
 import java.io.IOException
 import java.util.LinkedList
@@ -90,31 +93,31 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
 
       when {
         record.remoteDeleted -> builder.remoteDeletedMessage = RemoteDeletedMessage()
-        MessageTypes.isJoinedType(record.type) -> builder.updateMessage = UpdateMessage(simpleUpdate = SimpleUpdate(type = SimpleUpdate.Type.JOINED_SIGNAL))
-        MessageTypes.isIdentityUpdate(record.type) -> builder.updateMessage = UpdateMessage(simpleUpdate = SimpleUpdate(type = SimpleUpdate.Type.IDENTITY_UPDATE))
-        MessageTypes.isIdentityVerified(record.type) -> builder.updateMessage = UpdateMessage(simpleUpdate = SimpleUpdate(type = SimpleUpdate.Type.IDENTITY_VERIFIED))
-        MessageTypes.isIdentityDefault(record.type) -> builder.updateMessage = UpdateMessage(simpleUpdate = SimpleUpdate(type = SimpleUpdate.Type.IDENTITY_DEFAULT))
-        MessageTypes.isChangeNumber(record.type) -> builder.updateMessage = UpdateMessage(simpleUpdate = SimpleUpdate(type = SimpleUpdate.Type.CHANGE_NUMBER))
-        MessageTypes.isBoostRequest(record.type) -> builder.updateMessage = UpdateMessage(simpleUpdate = SimpleUpdate(type = SimpleUpdate.Type.BOOST_REQUEST))
-        MessageTypes.isEndSessionType(record.type) -> builder.updateMessage = UpdateMessage(simpleUpdate = SimpleUpdate(type = SimpleUpdate.Type.END_SESSION))
-        MessageTypes.isChatSessionRefresh(record.type) -> builder.updateMessage = UpdateMessage(simpleUpdate = SimpleUpdate(type = SimpleUpdate.Type.CHAT_SESSION_REFRESH))
-        MessageTypes.isBadDecryptType(record.type) -> builder.updateMessage = UpdateMessage(simpleUpdate = SimpleUpdate(type = SimpleUpdate.Type.BAD_DECRYPT))
-        MessageTypes.isPaymentsActivated(record.type) -> builder.updateMessage = UpdateMessage(simpleUpdate = SimpleUpdate(type = SimpleUpdate.Type.PAYMENTS_ACTIVATED))
-        MessageTypes.isPaymentsRequestToActivate(record.type) -> builder.updateMessage = UpdateMessage(simpleUpdate = SimpleUpdate(type = SimpleUpdate.Type.PAYMENT_ACTIVATION_REQUEST))
-        MessageTypes.isExpirationTimerUpdate(record.type) -> builder.updateMessage = UpdateMessage(expirationTimerChange = ExpirationTimerChange((record.expiresIn / 1000).toInt()))
+        MessageTypes.isJoinedType(record.type) -> builder.updateMessage = ChatUpdateMessage(simpleUpdate = SimpleChatUpdate(type = SimpleChatUpdate.Type.JOINED_SIGNAL))
+        MessageTypes.isIdentityUpdate(record.type) -> builder.updateMessage = ChatUpdateMessage(simpleUpdate = SimpleChatUpdate(type = SimpleChatUpdate.Type.IDENTITY_UPDATE))
+        MessageTypes.isIdentityVerified(record.type) -> builder.updateMessage = ChatUpdateMessage(simpleUpdate = SimpleChatUpdate(type = SimpleChatUpdate.Type.IDENTITY_VERIFIED))
+        MessageTypes.isIdentityDefault(record.type) -> builder.updateMessage = ChatUpdateMessage(simpleUpdate = SimpleChatUpdate(type = SimpleChatUpdate.Type.IDENTITY_DEFAULT))
+        MessageTypes.isChangeNumber(record.type) -> builder.updateMessage = ChatUpdateMessage(simpleUpdate = SimpleChatUpdate(type = SimpleChatUpdate.Type.CHANGE_NUMBER))
+        MessageTypes.isBoostRequest(record.type) -> builder.updateMessage = ChatUpdateMessage(simpleUpdate = SimpleChatUpdate(type = SimpleChatUpdate.Type.BOOST_REQUEST))
+        MessageTypes.isEndSessionType(record.type) -> builder.updateMessage = ChatUpdateMessage(simpleUpdate = SimpleChatUpdate(type = SimpleChatUpdate.Type.END_SESSION))
+        MessageTypes.isChatSessionRefresh(record.type) -> builder.updateMessage = ChatUpdateMessage(simpleUpdate = SimpleChatUpdate(type = SimpleChatUpdate.Type.CHAT_SESSION_REFRESH))
+        MessageTypes.isBadDecryptType(record.type) -> builder.updateMessage = ChatUpdateMessage(simpleUpdate = SimpleChatUpdate(type = SimpleChatUpdate.Type.BAD_DECRYPT))
+        MessageTypes.isPaymentsActivated(record.type) -> builder.updateMessage = ChatUpdateMessage(simpleUpdate = SimpleChatUpdate(type = SimpleChatUpdate.Type.PAYMENTS_ACTIVATED))
+        MessageTypes.isPaymentsRequestToActivate(record.type) -> builder.updateMessage = ChatUpdateMessage(simpleUpdate = SimpleChatUpdate(type = SimpleChatUpdate.Type.PAYMENT_ACTIVATION_REQUEST))
+        MessageTypes.isExpirationTimerUpdate(record.type) -> builder.updateMessage = ChatUpdateMessage(expirationTimerChange = ExpirationTimerChatUpdate((record.expiresIn / 1000).toInt()))
         MessageTypes.isProfileChange(record.type) -> {
-          builder.updateMessage = UpdateMessage(
+          builder.updateMessage = ChatUpdateMessage(
             profileChange = try {
               val decoded: ByteArray = Base64.decode(record.body!!)
               val profileChangeDetails = ProfileChangeDetails.ADAPTER.decode(decoded)
               if (profileChangeDetails.profileNameChange != null) {
-                ProfileChange(previousName = profileChangeDetails.profileNameChange.previous, newName = profileChangeDetails.profileNameChange.newValue)
+                ProfileChangeChatUpdate(previousName = profileChangeDetails.profileNameChange.previous, newName = profileChangeDetails.profileNameChange.newValue)
               } else {
-                ProfileChange()
+                ProfileChangeChatUpdate()
               }
             } catch (e: IOException) {
               Log.w(TAG, "Profile name change details could not be read", e)
-              ProfileChange()
+              ProfileChangeChatUpdate()
             }
           )
         }
@@ -142,9 +145,9 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
       chatId = record.threadId
       authorId = record.fromRecipientId
       dateSent = record.dateSent
-      dateReceived = record.dateReceived
-      expireStart = if (record.expireStarted > 0) record.expireStarted else null
-      expiresIn = if (record.expiresIn > 0) record.expiresIn else null
+      sealedSender = record.sealedSender
+      expireStartDate = if (record.expireStarted > 0) record.expireStarted else null
+      expiresInMs = if (record.expiresIn > 0) record.expiresIn else null
       revisions = emptyList()
       sms = !MessageTypes.isSecureType(record.type)
 
@@ -155,7 +158,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
       } else {
         incoming = ChatItem.IncomingMessageDetails(
           dateServerSent = record.dateServer,
-          sealedSender = record.sealedSender,
+          dateReceived = record.dateReceived,
           read = record.read
         )
       }
@@ -169,21 +172,21 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
         body = this.body!!,
         bodyRanges = this.bodyRanges?.toBackupBodyRanges() ?: emptyList()
       ),
-      linkPreview = null,
+      // TODO Link previews!
+      linkPreview = emptyList(),
       longText = null,
       reactions = reactionRecords.toBackupReactions()
     )
   }
 
   private fun BackupMessageRecord.toQuote(): Quote? {
-    return if (this.quoteTargetSentTimestamp > 0) {
+    return if (this.quoteTargetSentTimestamp != MessageTable.QUOTE_NOT_PRESENT_ID && this.quoteAuthor > 0) {
       // TODO Attachments!
       val type = QuoteModel.Type.fromCode(this.quoteType)
       Quote(
-        targetSentTimestamp = this.quoteTargetSentTimestamp,
+        targetSentTimestamp = this.quoteTargetSentTimestamp.takeIf { !this.quoteMissing && it != MessageTable.QUOTE_TARGET_MISSING_ID },
         authorId = this.quoteAuthor,
         text = this.quoteBody,
-        originalMessageMissing = this.quoteMissing,
         bodyRanges = this.quoteBodyRanges?.toBackupBodyRanges() ?: emptyList(),
         type = when (type) {
           QuoteModel.Type.NORMAL -> Quote.Type.NORMAL
@@ -207,7 +210,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
       BackupBodyRange(
         start = it.start,
         length = it.length,
-        mentionAci = it.mentionUuid,
+        mentionAci = it.mentionUuid?.let { UuidUtil.parseOrThrow(it) }?.toByteArray()?.toByteString(),
         style = it.style?.toBackupBodyRangeStyle()
       )
     }
@@ -245,9 +248,9 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
     }
 
     val status: SendStatus.Status = when {
-      this.viewedReceiptCount > 0 -> SendStatus.Status.VIEWED
-      this.readReceiptCount > 0 -> SendStatus.Status.READ
-      this.deliveryReceiptCount > 0 -> SendStatus.Status.DELIVERED
+      this.viewed -> SendStatus.Status.VIEWED
+      this.hasReadReceipt -> SendStatus.Status.READ
+      this.hasDeliveryReceipt -> SendStatus.Status.DELIVERED
       this.baseType == MessageTypes.BASE_SENT_TYPE -> SendStatus.Status.SENT
       MessageTypes.isFailedMessageType(this.type) -> SendStatus.Status.FAILED
       else -> SendStatus.Status.PENDING
@@ -257,7 +260,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
       SendStatus(
         recipientId = this.toRecipientId,
         deliveryStatus = status,
-        timestamp = this.receiptTimestamp,
+        lastStatusUpdateTimestamp = this.receiptTimestamp,
         sealedSender = this.sealedSender,
         networkFailure = this.networkFailureRecipientIds.contains(this.toRecipientId),
         identityKeyMismatch = this.identityMismatchRecipientIds.contains(this.toRecipientId)
@@ -271,7 +274,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
         recipientId = it.recipientId.toLong(),
         deliveryStatus = it.status.toBackupDeliveryStatus(),
         sealedSender = it.isUnidentified,
-        timestamp = it.timestamp,
+        lastStatusUpdateTimestamp = it.timestamp,
         networkFailure = networkFailureRecipientIds.contains(it.recipientId.toLong()),
         identityKeyMismatch = identityMismatchRecipientIds.contains(it.recipientId.toLong())
       )
@@ -337,9 +340,9 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
       quoteType = this.requireInt(MessageTable.QUOTE_TYPE),
       originalMessageId = this.requireLong(MessageTable.ORIGINAL_MESSAGE_ID),
       latestRevisionId = this.requireLong(MessageTable.LATEST_REVISION_ID),
-      deliveryReceiptCount = this.requireInt(MessageTable.DELIVERY_RECEIPT_COUNT),
-      viewedReceiptCount = this.requireInt(MessageTable.VIEWED_RECEIPT_COUNT),
-      readReceiptCount = this.requireInt(MessageTable.READ_RECEIPT_COUNT),
+      hasDeliveryReceipt = this.requireBoolean(MessageTable.HAS_DELIVERY_RECEIPT),
+      viewed = this.requireBoolean(MessageTable.VIEWED_COLUMN),
+      hasReadReceipt = this.requireBoolean(MessageTable.HAS_READ_RECEIPT),
       read = this.requireBoolean(MessageTable.READ),
       receiptTimestamp = this.requireLong(MessageTable.RECEIPT_TIMESTAMP),
       networkFailureRecipientIds = this.requireString(MessageTable.NETWORK_FAILURES).parseNetworkFailures(),
@@ -371,9 +374,9 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
     val quoteType: Int,
     val originalMessageId: Long,
     val latestRevisionId: Long,
-    val deliveryReceiptCount: Int,
-    val readReceiptCount: Int,
-    val viewedReceiptCount: Int,
+    val hasDeliveryReceipt: Boolean,
+    val hasReadReceipt: Boolean,
+    val viewed: Boolean,
     val receiptTimestamp: Long,
     val read: Boolean,
     val networkFailureRecipientIds: Set<Long>,

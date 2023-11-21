@@ -127,9 +127,7 @@ fun RecipientTable.restoreRecipientFromBackup(recipient: BackupRecipient, backup
 /**
  * Given [AccountData], this will insert the necessary data for the local user into the [RecipientTable].
  */
-fun RecipientTable.restoreSelfFromBackup(accountData: AccountData) {
-  val self = Recipient.trustedPush(ACI.parseOrThrow(accountData.aci.toByteArray()), PNI.parseOrNull(accountData.pni.toByteArray()), accountData.e164.toString())
-
+fun RecipientTable.restoreSelfFromBackup(accountData: AccountData, selfId: RecipientId) {
   val values = ContentValues().apply {
     put(RecipientTable.PROFILE_GIVEN_NAME, accountData.givenName.nullIfBlank())
     put(RecipientTable.PROFILE_FAMILY_NAME, accountData.familyName.nullIfBlank())
@@ -152,7 +150,7 @@ fun RecipientTable.restoreSelfFromBackup(accountData: AccountData) {
   writableDatabase
     .update(RecipientTable.TABLE_NAME)
     .values(values)
-    .where("${RecipientTable.ID} = ?", self.id)
+    .where("${RecipientTable.ID} = ?", selfId)
     .run()
 }
 
@@ -181,7 +179,7 @@ private fun RecipientTable.restoreContactFromBackup(contact: Contact): Recipient
       RecipientTable.HIDDEN to contact.hidden,
       RecipientTable.PROFILE_FAMILY_NAME to contact.profileFamilyName.nullIfBlank(),
       RecipientTable.PROFILE_GIVEN_NAME to contact.profileGivenName.nullIfBlank(),
-      RecipientTable.PROFILE_JOINED_NAME to contact.profileJoinedName.nullIfBlank(),
+      RecipientTable.PROFILE_JOINED_NAME to ProfileName.fromParts(contact.profileGivenName.nullIfBlank(), contact.profileFamilyName.nullIfBlank()).toString().nullIfBlank(),
       RecipientTable.PROFILE_KEY to if (profileKey == null) null else Base64.encodeWithPadding(profileKey),
       RecipientTable.PROFILE_SHARING to contact.profileSharing.toInt(),
       RecipientTable.REGISTERED to contact.registered.toLocalRegisteredState().id,
@@ -205,12 +203,12 @@ private fun Contact.toLocalExtras(): RecipientExtras {
  * Provides a nice iterable interface over a [RecipientTable] cursor, converting rows to [BackupRecipient]s.
  * Important: Because this is backed by a cursor, you must close it. It's recommended to use `.use()` or try-with-resources.
  */
-class BackupContactIterator(private val cursor: Cursor, private val selfId: Long) : Iterator<BackupRecipient>, Closeable {
+class BackupContactIterator(private val cursor: Cursor, private val selfId: Long) : Iterator<BackupRecipient?>, Closeable {
   override fun hasNext(): Boolean {
     return cursor.count > 0 && !cursor.isLast
   }
 
-  override fun next(): BackupRecipient {
+  override fun next(): BackupRecipient? {
     if (!cursor.moveToNext()) {
       throw NoSuchElementException()
     }
@@ -225,9 +223,14 @@ class BackupContactIterator(private val cursor: Cursor, private val selfId: Long
 
     val aci = ACI.parseOrNull(cursor.requireString(RecipientTable.ACI_COLUMN))
     val pni = PNI.parseOrNull(cursor.requireString(RecipientTable.PNI_COLUMN))
+    val e164 = cursor.requireString(RecipientTable.E164)?.e164ToLong()
     val registeredState = RecipientTable.RegisteredState.fromId(cursor.requireInt(RecipientTable.REGISTERED))
     val profileKey = cursor.requireString(RecipientTable.PROFILE_KEY)
     val extras = RecipientTableCursorUtil.getExtras(cursor)
+
+    if (aci == null && pni == null && e164 == null) {
+      return null
+    }
 
     return BackupRecipient(
       id = id,
@@ -244,7 +247,6 @@ class BackupContactIterator(private val cursor: Cursor, private val selfId: Long
         profileSharing = cursor.requireBoolean(RecipientTable.PROFILE_SHARING),
         profileGivenName = cursor.requireString(RecipientTable.PROFILE_GIVEN_NAME).nullIfBlank(),
         profileFamilyName = cursor.requireString(RecipientTable.PROFILE_FAMILY_NAME).nullIfBlank(),
-        profileJoinedName = cursor.requireString(RecipientTable.PROFILE_JOINED_NAME).nullIfBlank(),
         hideStory = extras?.hideStory() ?: false
       )
     )

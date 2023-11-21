@@ -207,6 +207,9 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     const val ORIGINAL_MESSAGE_ID = "original_message_id"
     const val REVISION_NUMBER = "revision_number"
 
+    const val QUOTE_NOT_PRESENT_ID = 0L
+    const val QUOTE_TARGET_MISSING_ID = -1L
+
     const val CREATE_TABLE = """
       CREATE TABLE $TABLE_NAME (
         $ID INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -2316,7 +2319,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       val quoteAttachments: List<Attachment> = associatedAttachments.filter { it.isQuote }.toList()
       val quoteMentions: List<Mention> = parseQuoteMentions(cursor)
       val quoteBodyRanges: BodyRangeList? = parseQuoteBodyRanges(cursor)
-      val quote: QuoteModel? = if (quoteId > 0 && quoteAuthor > 0 && (!TextUtils.isEmpty(quoteText) || quoteAttachments.isNotEmpty())) {
+      val quote: QuoteModel? = if (quoteId != QUOTE_NOT_PRESENT_ID && quoteAuthor > 0 && (!TextUtils.isEmpty(quoteText) || quoteAttachments.isNotEmpty())) {
         QuoteModel(quoteId, RecipientId.from(quoteAuthor), quoteText ?: "", quoteMissing, quoteAttachments, quoteMentions, QuoteModel.Type.fromCode(quoteType), quoteBodyRanges)
       } else {
         null
@@ -5119,7 +5122,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       val quoteAttachments: List<Attachment> = attachments.filter { it.isQuote }
       val quoteDeck = SlideDeck(quoteAttachments)
 
-      return if (quoteId > 0 && quoteAuthor > 0) {
+      return if (quoteId != QUOTE_NOT_PRESENT_ID && quoteAuthor > 0) {
         if (quoteText != null && (quoteMentions.isNotEmpty() || bodyRanges != null)) {
           val updated: UpdatedBodyAndMentions = MentionUtil.updateBodyAndMentionsWithDisplayNames(context, quoteText, quoteMentions)
           val styledText = SpannableString(updated.body)

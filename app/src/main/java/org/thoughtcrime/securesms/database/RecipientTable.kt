@@ -688,7 +688,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
     val foundRecords = queries.flatMap { query ->
       readableDatabase.query(TABLE_NAME, null, query.where, query.whereArgs, null, null, null).readToList { cursor ->
-        getRecord(context, cursor)
+        RecipientTableCursorUtil.getRecord(context, cursor)
       }
     }
 

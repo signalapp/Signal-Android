@@ -19,6 +19,7 @@ import org.signal.core.util.requireBlob
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireString
 import org.signal.core.util.select
+import org.signal.core.util.toInt
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.backup.v2.database.clearAllDataForBackupRestore
 import org.thoughtcrime.securesms.database.EmojiSearchTable
@@ -40,6 +41,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
+import java.io.ByteArrayInputStream
 import java.util.UUID
 import kotlin.random.Random
 
@@ -176,7 +178,6 @@ class BackupTest {
       SignalStore.settings().setKeepMutedChatsArchived(true)
 
       SignalStore.storyValues().viewedReceiptsEnabled = false
-      SignalStore.storyValues().userHasReadOnboardingStory = true
       SignalStore.storyValues().userHasViewedOnboardingStory = true
       SignalStore.storyValues().isFeatureDisabled = false
       SignalStore.storyValues().userHasBeenNotifiedAboutStories = true
@@ -227,7 +228,8 @@ class BackupTest {
     val startingMainData: DatabaseData = SignalDatabase.rawDatabase.readAllContents()
     val startingKeyValueData: DatabaseData = if (validateKeyValue) SignalDatabase.rawDatabase.readAllContents() else emptyMap()
 
-    BackupRepository.import(BackupRepository.export())
+    val exported: ByteArray = BackupRepository.export()
+    BackupRepository.import(length = exported.size.toLong(), inputStreamFactory = { ByteArrayInputStream(exported) }, selfData = BackupRepository.SelfData(SELF_ACI, SELF_PNI, SELF_E164, SELF_PROFILE_KEY))
 
     val endingData: DatabaseData = SignalDatabase.rawDatabase.readAllContents()
     val endingKeyValueData: DatabaseData = if (validateKeyValue) SignalDatabase.rawDatabase.readAllContents() else emptyMap()
@@ -299,7 +301,7 @@ class BackupTest {
     fun standardMessage(
       outgoing: Boolean,
       sentTimestamp: Long = System.currentTimeMillis(),
-      receivedTimestamp: Long = sentTimestamp + 1,
+      receivedTimestamp: Long = if (outgoing) sentTimestamp else sentTimestamp + 1,
       serverTimestamp: Long = sentTimestamp,
       body: String? = null,
       read: Boolean = true,
@@ -328,7 +330,7 @@ class BackupTest {
     fun remoteDeletedMessage(
       outgoing: Boolean,
       sentTimestamp: Long = System.currentTimeMillis(),
-      receivedTimestamp: Long = sentTimestamp + 1,
+      receivedTimestamp: Long = if (outgoing) sentTimestamp else sentTimestamp + 1,
       serverTimestamp: Long = sentTimestamp
     ): Long {
       return db.insertMessage(
@@ -350,7 +352,7 @@ class BackupTest {
     outgoing: Boolean,
     threadId: Long,
     sentTimestamp: Long = System.currentTimeMillis(),
-    receivedTimestamp: Long = sentTimestamp + 1,
+    receivedTimestamp: Long = if (outgoing) sentTimestamp else sentTimestamp + 1,
     serverTimestamp: Long = sentTimestamp,
     body: String? = null,
     read: Boolean = true,
@@ -390,12 +392,12 @@ class BackupTest {
 
     if (quotes != null) {
       val quoteDetails = this.getQuoteDetailsFor(quotes)
-      contentValues.put(MessageTable.QUOTE_ID, quoteDetails.quotedSentTimestamp)
+      contentValues.put(MessageTable.QUOTE_ID, if (quoteTargetMissing) MessageTable.QUOTE_TARGET_MISSING_ID else quoteDetails.quotedSentTimestamp)
       contentValues.put(MessageTable.QUOTE_AUTHOR, quoteDetails.authorId.serialize())
       contentValues.put(MessageTable.QUOTE_BODY, quoteDetails.body)
       contentValues.put(MessageTable.QUOTE_BODY_RANGES, quoteDetails.bodyRanges)
       contentValues.put(MessageTable.QUOTE_TYPE, quoteDetails.type)
-      contentValues.put(MessageTable.QUOTE_MISSING, quoteTargetMissing)
+      contentValues.put(MessageTable.QUOTE_MISSING, quoteTargetMissing.toInt())
     }
 
     if (body != null && (randomMention || randomStyling)) {
@@ -493,7 +495,7 @@ class BackupTest {
 
         if (!contentEquals(expectedValue, actualValue)) {
           if (!describedRow) {
-            builder.append("-- ROW $i\n")
+            builder.append("-- ROW ${i + 1}\n")
             describedRow = true
           }
           builder.append("  [$key] Expected: ${expectedValue.prettyPrint()} || Actual: ${actualValue.prettyPrint()} \n")
@@ -502,6 +504,8 @@ class BackupTest {
 
       if (describedRow) {
         builder.append("\n")
+        builder.append("Expected: $expectedRow\n")
+        builder.append("Actual: $actualRow\n")
       }
     }
 
