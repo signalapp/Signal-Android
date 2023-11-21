@@ -385,6 +385,20 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
     /** Used as a placeholder recipient for self during migrations when self isn't yet available. */
     private val PLACEHOLDER_SELF_ID = -2L
+
+    @JvmStatic
+    fun maskCapabilitiesToLong(capabilities: SignalServiceProfile.Capabilities): Long {
+      var value: Long = 0
+      value = Bitmask.update(value, Capabilities.GROUPS_V1_MIGRATION, Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isGv1Migration).serialize().toLong())
+      value = Bitmask.update(value, Capabilities.SENDER_KEY, Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isSenderKey).serialize().toLong())
+      value = Bitmask.update(value, Capabilities.ANNOUNCEMENT_GROUPS, Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isAnnouncementGroup).serialize().toLong())
+      value = Bitmask.update(value, Capabilities.CHANGE_NUMBER, Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isChangeNumber).serialize().toLong())
+      value = Bitmask.update(value, Capabilities.STORIES, Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isStories).serialize().toLong())
+      value = Bitmask.update(value, Capabilities.GIFT_BADGES, Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isGiftBadges).serialize().toLong())
+      value = Bitmask.update(value, Capabilities.PNP, Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isPnp).serialize().toLong())
+      value = Bitmask.update(value, Capabilities.PAYMENT_ACTIVATION, Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isPaymentActivation).serialize().toLong())
+      return value
+    }
   }
 
   fun getByE164(e164: String): Optional<RecipientId> {
@@ -675,6 +689,24 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     return RecipientReader(cursor)
   }
 
+  fun getRecords(ids: Collection<RecipientId>): Map<RecipientId, RecipientRecord> {
+    val queries = SqlUtil.buildCollectionQuery(
+      column = ID,
+      values = ids.map { it.serialize() }
+    )
+
+    val foundRecords = queries.flatMap { query ->
+      readableDatabase.query(TABLE_NAME, null, query.where, query.whereArgs, null, null, null).readToList { cursor ->
+        getRecord(context, cursor)
+      }
+    }
+
+    val foundIds = foundRecords.map { record -> record.id }
+    val remappedRecords = ids.filterNot { it in foundIds }.map(::findRemappedIdRecord)
+
+    return (foundRecords + remappedRecords).associateBy { it.id }
+  }
+
   fun getRecord(id: RecipientId): RecipientRecord {
     val query = "$ID = ?"
     val args = arrayOf(id.serialize())
@@ -683,15 +715,19 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       return if (cursor != null && cursor.moveToNext()) {
         getRecord(context, cursor)
       } else {
-        val remapped = RemappedRecords.getInstance().getRecipient(id)
-
-        if (remapped.isPresent) {
-          Log.w(TAG, "Missing recipient for $id, but found it in the remapped records as ${remapped.get()}")
-          getRecord(remapped.get())
-        } else {
-          throw MissingRecipientException(id)
-        }
+        findRemappedIdRecord(id)
       }
+    }
+  }
+
+  private fun findRemappedIdRecord(id: RecipientId): RecipientRecord {
+    val remapped = RemappedRecords.getInstance().getRecipient(id)
+
+    return if (remapped.isPresent) {
+      Log.w(TAG, "Missing recipient for $id, but found it in the remapped records as ${remapped.get()}")
+      getRecord(remapped.get())
+    } else {
+      throw MissingRecipientException(id)
     }
   }
 
@@ -1457,18 +1493,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   }
 
   fun setCapabilities(id: RecipientId, capabilities: SignalServiceProfile.Capabilities) {
-    var value: Long = 0
-    value = Bitmask.update(value, Capabilities.GROUPS_V1_MIGRATION, Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isGv1Migration).serialize().toLong())
-    value = Bitmask.update(value, Capabilities.SENDER_KEY, Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isSenderKey).serialize().toLong())
-    value = Bitmask.update(value, Capabilities.ANNOUNCEMENT_GROUPS, Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isAnnouncementGroup).serialize().toLong())
-    value = Bitmask.update(value, Capabilities.CHANGE_NUMBER, Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isChangeNumber).serialize().toLong())
-    value = Bitmask.update(value, Capabilities.STORIES, Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isStories).serialize().toLong())
-    value = Bitmask.update(value, Capabilities.GIFT_BADGES, Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isGiftBadges).serialize().toLong())
-    value = Bitmask.update(value, Capabilities.PNP, Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isPnp).serialize().toLong())
-    value = Bitmask.update(value, Capabilities.PAYMENT_ACTIVATION, Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isPaymentActivation).serialize().toLong())
-
     val values = ContentValues(1).apply {
-      put(CAPABILITIES, value)
+      put(CAPABILITIES, maskCapabilitiesToLong(capabilities))
     }
 
     if (update(id, values)) {
