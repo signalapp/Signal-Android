@@ -152,7 +152,7 @@ class VoiceMessageRecordingDelegate(
     fun discardRecording() {
       saveDraft = false
       shouldSend = false
-      audioRecorder.stopRecording()
+      audioRecorder.discardRecording()
     }
 
     fun saveDraft() {

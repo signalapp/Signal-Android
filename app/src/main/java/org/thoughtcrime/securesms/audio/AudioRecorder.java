@@ -113,6 +113,23 @@ public class AudioRecorder {
     });
   }
 
+  public void discardRecording() {
+    Log.i(TAG, "cancelRecording()");
+    executor.execute(() -> {
+      if (recorder == null) {
+        Log.e(TAG, "MediaRecorder was never initialized successfully!");
+        return;
+      }
+      audioFocusManager.abandonAudioFocus();
+      recorder.stop();
+      recordingUriFuture.cancel(true);
+
+      recordingSubject   = null;
+      recorder           = null;
+      recordingUriFuture = null;
+    });
+  }
+
   public void stopRecording() {
     Log.i(TAG, "stopRecording()");
 
