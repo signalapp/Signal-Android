@@ -361,6 +361,10 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
   }
 
   private fun displayUploadingGallery(currentState: TransferControlViewState) {
+    if (currentState.downloadClickedListener == null) {
+      Log.w(TAG, "No click listener set for retry!")
+    }
+
     binding.secondaryProgressView.startClickListener = currentState.downloadClickedListener
     applyFocusableAndClickable(currentState, listOf(binding.secondaryProgressView), listOf(binding.primaryProgressView, binding.playVideoButton))
     showAllViews(
@@ -376,6 +380,10 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
   }
 
   private fun displayRetry(currentState: TransferControlViewState, isUploading: Boolean) {
+    if (currentState.downloadClickedListener == null) {
+      Log.w(TAG, "No click listener set for retry!")
+    }
+    
     binding.secondaryProgressView.startClickListener = currentState.downloadClickedListener
     applyFocusableAndClickable(currentState, listOf(binding.secondaryProgressView), listOf(binding.primaryProgressView, binding.playVideoButton))
     showAllViews(
