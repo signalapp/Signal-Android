@@ -385,7 +385,10 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
     }
 
     binding.secondaryProgressView.startClickListener = currentState.downloadClickedListener
-    applyFocusableAndClickable(currentState, listOf(binding.secondaryProgressView), listOf(binding.primaryProgressView, binding.playVideoButton))
+    applyFocusableAndClickable(currentState,
+      listOf(binding.secondaryProgressView, binding.secondaryDetailsText, binding.secondaryBackground),
+      listOf(binding.primaryProgressView, binding.playVideoButton)
+    )
     showAllViews(
       playVideoButton = false,
       primaryProgressView = false,
@@ -393,6 +396,8 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
       secondaryDetailsText = currentState.showSecondaryText
     )
 
+    binding.secondaryBackground.setOnClickListener(currentState.downloadClickedListener)
+    binding.secondaryDetailsText.setOnClickListener(currentState.downloadClickedListener)
     binding.secondaryProgressView.setStopped(isUploading)
     binding.secondaryDetailsText.text = resources.getString(R.string.NetworkFailure__retry)
   }
