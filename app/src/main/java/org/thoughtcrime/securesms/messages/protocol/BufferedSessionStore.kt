@@ -100,7 +100,7 @@ class BufferedSessionStore(private val selfServiceId: ServiceId) : SignalService
     error("Should not happen during the intended usage pattern of this class")
   }
 
-  override fun getAllAddressesWithActiveSessions(addressNames: MutableList<String>): Set<SignalProtocolAddress> {
+  override fun getAllAddressesWithActiveSessions(addressNames: MutableList<String>): Map<SignalProtocolAddress, SessionRecord> {
     error("Should not happen during the intended usage pattern of this class")
   }
 

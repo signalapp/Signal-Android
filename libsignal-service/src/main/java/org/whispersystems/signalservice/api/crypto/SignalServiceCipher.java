@@ -40,6 +40,7 @@ import org.signal.libsignal.protocol.message.CiphertextMessage;
 import org.signal.libsignal.protocol.message.PlaintextContent;
 import org.signal.libsignal.protocol.message.PreKeySignalMessage;
 import org.signal.libsignal.protocol.message.SignalMessage;
+import org.signal.libsignal.protocol.state.SessionRecord;
 import org.whispersystems.signalservice.api.InvalidMessageStructureException;
 import org.whispersystems.signalservice.api.SignalServiceAccountDataStore;
 import org.whispersystems.signalservice.api.SignalSessionLock;
@@ -56,6 +57,7 @@ import org.whispersystems.signalservice.internal.push.PushTransportDetails;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -87,6 +89,7 @@ public class SignalServiceCipher {
 
   public byte[] encryptForGroup(DistributionId distributionId,
                                 List<SignalProtocolAddress> destinations,
+                                Map<SignalProtocolAddress, SessionRecord> sessionMap,
                                 SenderCertificate senderCertificate,
                                 byte[] unpaddedMessage,
                                 ContentHint contentHint,
@@ -103,7 +106,7 @@ public class SignalServiceCipher {
                                                                                                  contentHint.getType(),
                                                                                                  groupId);
 
-    return sessionCipher.multiRecipientEncrypt(destinations, messageContent);
+    return sessionCipher.multiRecipientEncrypt(signalProtocolStore, destinations, sessionMap, messageContent);
   }
 
   public OutgoingPushMessage encrypt(SignalProtocolAddress destination,

@@ -156,7 +156,7 @@ class SignalClient {
       SignalProtocolAddress(bob.aci.toString(), 1)
     }
 
-    return cipher.encryptForGroup(distributionId, destinations, senderCertificate, content.encode(), ContentHint.DEFAULT, groupId)
+    return cipher.encryptForGroup(distributionId, destinations, null, senderCertificate, content.encode(), ContentHint.DEFAULT, groupId)
   }
 
   fun decryptMessage(envelope: Envelope) {
