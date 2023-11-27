@@ -243,13 +243,17 @@ public abstract class AudioManagerCompat {
         Log.w(TAG, "Trying again to request audio focus");
       }
 
-      int result = audioManager.requestAudioFocus(audioFocusRequest);
+      try {
+        int result = audioManager.requestAudioFocus(audioFocusRequest);
 
-      if (result != AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
-        Log.w(TAG, "Audio focus not granted. Result code: " + result);
+        if (result != AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+          Log.w(TAG, "Audio focus not granted. Result code: " + result);
+          return false;
+        }
+      } catch (SecurityException ex) {
+        Log.w(TAG, "Encountered security exception when requesting audio focus.");
         return false;
       }
-
       return true;
     }
 
