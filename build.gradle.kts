@@ -7,12 +7,6 @@ buildscript {
   repositories {
     google()
     mavenCentral()
-    jcenter {
-      content {
-        includeVersion("org.jetbrains.trove4j", "trove4j", "20160824")
-        includeGroupByRegex("com\\.archinamon.*")
-      }
-    }
     maven {
       url = uri("https://plugins.gradle.org/m2/")
       content {
@@ -20,6 +14,7 @@ buildscript {
       }
     }
   }
+
   dependencies {
     classpath("com.android.tools.build:gradle:8.0.2")
     classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.5.3")
