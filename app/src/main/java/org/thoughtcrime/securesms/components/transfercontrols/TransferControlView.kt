@@ -383,7 +383,7 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
     if (currentState.downloadClickedListener == null) {
       Log.w(TAG, "No click listener set for retry!")
     }
-    
+
     binding.secondaryProgressView.startClickListener = currentState.downloadClickedListener
     applyFocusableAndClickable(currentState, listOf(binding.secondaryProgressView), listOf(binding.primaryProgressView, binding.playVideoButton))
     showAllViews(
