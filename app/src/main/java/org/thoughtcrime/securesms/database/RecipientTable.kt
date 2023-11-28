@@ -467,11 +467,9 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     Log.d(TAG, "[getAndPossiblyMerge] Requires a transaction.")
 
     val db = writableDatabase
-    var transactionSuccessful = false
     lateinit var result: ProcessPnpTupleResult
 
-    db.beginTransaction()
-    try {
+    db.withinTransaction {
       result = processPnpTuple(e164 = e164, pni = pni, aci = aci, pniVerified = pniVerified, changeSelf = changeSelf)
 
       if (result.operations.isNotEmpty() || result.requiredInsert) {
@@ -480,12 +478,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         Log.i(TAG, "[getAndPossiblyMerge] ($aci, $pniString, $e164String) BreadCrumbs: ${result.breadCrumbs}, Operations: ${result.operations}, RequiredInsert: ${result.requiredInsert}, FinalId: ${result.finalId}")
       }
 
-      db.setTransactionSuccessful()
-      transactionSuccessful = true
-    } finally {
-      db.endTransaction()
-
-      if (transactionSuccessful) {
+      db.runPostSuccessfulTransaction {
         if (result.affectedIds.isNotEmpty()) {
           result.affectedIds.forEach { ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(it) }
           RetrieveProfileJob.enqueue(result.affectedIds)
