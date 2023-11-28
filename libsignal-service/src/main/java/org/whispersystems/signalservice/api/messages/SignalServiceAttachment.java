@@ -41,7 +41,7 @@ public abstract class SignalServiceAttachment {
   }
 
   public static SignalServiceAttachmentStream emptyStream(String contentType) {
-    return new SignalServiceAttachmentStream(new ByteArrayInputStream(new byte[0]), contentType, 0, Optional.empty(), false, false, false, null, null);
+    return new SignalServiceAttachmentStream(new ByteArrayInputStream(new byte[0]), contentType, 0, Optional.empty(), false, false, false, false, null, null);
   }
 
   public static class Builder {
@@ -55,6 +55,7 @@ public abstract class SignalServiceAttachment {
     private boolean                 voiceNote;
     private boolean                 borderless;
     private boolean                 gif;
+    private boolean                 faststart;
     private int                     width;
     private int                     height;
     private String                  caption;
@@ -109,6 +110,11 @@ public abstract class SignalServiceAttachment {
       return this;
     }
 
+    public Builder withFaststart(boolean faststart) {
+      this.faststart = faststart;
+      return this;
+    }
+
     public Builder withWidth(int width) {
       this.width = width;
       return this;
@@ -151,6 +157,7 @@ public abstract class SignalServiceAttachment {
                                                voiceNote,
                                                borderless,
                                                gif,
+                                               faststart,
                                                Optional.empty(),
                                                width,
                                                height,

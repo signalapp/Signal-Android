@@ -946,7 +946,7 @@ public class PushServiceSocket {
                   formAttributes.getPolicy(), formAttributes.getAlgorithm(),
                   formAttributes.getCredential(), formAttributes.getDate(),
                   formAttributes.getSignature(), profileAvatar.getData(),
-                  profileAvatar.getContentType(), profileAvatar.getDataLength(),
+                  profileAvatar.getContentType(), profileAvatar.getDataLength(), false,
                   profileAvatar.getOutputStreamFactory(), null, null);
 
        return Optional.of(formAttributes.getKey());
@@ -1393,7 +1393,7 @@ public class PushServiceSocket {
                        uploadAttributes.credential, uploadAttributes.date,
                        uploadAttributes.signature,
                        new ByteArrayInputStream(avatarCipherText),
-                       "application/octet-stream", avatarCipherText.length,
+                       "application/octet-stream", avatarCipherText.length, false,
                        new NoCipherOutputStreamFactory(),
                        null, null);
   }
@@ -1407,8 +1407,8 @@ public class PushServiceSocket {
                                            uploadAttributes.getCredential(), uploadAttributes.getDate(),
                                            uploadAttributes.getSignature(), attachment.getData(),
                                            "application/octet-stream", attachment.getDataSize(),
-                                           attachment.getOutputStreamFactory(), attachment.getListener(),
-                                           attachment.getCancelationSignal());
+                                           attachment.getIncremental(), attachment.getOutputStreamFactory(),
+                                           attachment.getListener(), attachment.getCancelationSignal());
 
     return new Pair<>(id, digest);
   }
@@ -1434,6 +1434,7 @@ public class PushServiceSocket {
                           attachment.getData(),
                           "application/octet-stream",
                           attachment.getDataSize(),
+                          attachment.getIncremental(),
                           attachment.getOutputStreamFactory(),
                           attachment.getListener(),
                           attachment.getCancelationSignal());
@@ -1442,6 +1443,7 @@ public class PushServiceSocket {
                           attachment.getData(),
                           "application/offset+octet-stream",
                           attachment.getDataSize(),
+                          attachment.getIncremental(),
                           attachment.getOutputStreamFactory(),
                           attachment.getListener(),
                           attachment.getCancelationSignal(),
@@ -1529,7 +1531,7 @@ public class PushServiceSocket {
 
   private AttachmentDigest uploadToCdn0(String path, String acl, String key, String policy, String algorithm,
                                         String credential, String date, String signature,
-                                        InputStream data, String contentType, long length,
+                                        InputStream data, String contentType, long length, boolean incremental,
                                         OutputStreamFactory outputStreamFactory, ProgressListener progressListener,
                                         CancelationSignal cancelationSignal)
       throws PushNetworkException, NonSuccessfulResponseCodeException
@@ -1541,7 +1543,7 @@ public class PushServiceSocket {
                                                         .readTimeout(soTimeoutMillis, TimeUnit.MILLISECONDS)
                                                         .build();
 
-    DigestingRequestBody file = new DigestingRequestBody(data, outputStreamFactory, contentType, length, progressListener, cancelationSignal, 0);
+    DigestingRequestBody file = new DigestingRequestBody(data, outputStreamFactory, contentType, length, incremental, progressListener, cancelationSignal, 0);
 
     RequestBody requestBody = new MultipartBody.Builder()
                                                .setType(MultipartBody.FORM)
@@ -1639,7 +1641,7 @@ public class PushServiceSocket {
     }
   }
 
-  private AttachmentDigest uploadToCdn2(String resumableUrl, InputStream data, String contentType, long length, OutputStreamFactory outputStreamFactory, ProgressListener progressListener, CancelationSignal cancelationSignal) throws IOException {
+  private AttachmentDigest uploadToCdn2(String resumableUrl, InputStream data, String contentType, long length, boolean incremental, OutputStreamFactory outputStreamFactory, ProgressListener progressListener, CancelationSignal cancelationSignal) throws IOException {
     ConnectionHolder connectionHolder = getRandom(cdnClientsMap.get(2), random);
     OkHttpClient     okHttpClient     = connectionHolder.getClient()
                                                         .newBuilder()
@@ -1648,7 +1650,7 @@ public class PushServiceSocket {
                                                         .build();
 
     ResumeInfo           resumeInfo = getResumeInfoCdn2(resumableUrl, length);
-    DigestingRequestBody file       = new DigestingRequestBody(data, outputStreamFactory, contentType, length, progressListener, cancelationSignal, resumeInfo.contentStart);
+    DigestingRequestBody file       = new DigestingRequestBody(data, outputStreamFactory, contentType, length, incremental, progressListener, cancelationSignal, resumeInfo.contentStart);
 
     if (resumeInfo.contentStart == length) {
       Log.w(TAG, "Resume start point == content length");
@@ -1690,6 +1692,7 @@ public class PushServiceSocket {
                                         InputStream data,
                                         String contentType,
                                         long length,
+                                        boolean incremental,
                                         OutputStreamFactory outputStreamFactory,
                                         ProgressListener progressListener,
                                         CancelationSignal cancelationSignal,
@@ -1704,7 +1707,7 @@ public class PushServiceSocket {
                                                         .build();
 
     ResumeInfo           resumeInfo = getResumeInfoCdn3(resumableUrl, headers);
-    DigestingRequestBody file       = new DigestingRequestBody(data, outputStreamFactory, contentType, length, progressListener, cancelationSignal, resumeInfo.contentStart);
+    DigestingRequestBody file       = new DigestingRequestBody(data, outputStreamFactory, contentType, length, incremental, progressListener, cancelationSignal, resumeInfo.contentStart);
 
     if (resumeInfo.contentStart == length) {
       Log.w(TAG, "Resume start point == content length");

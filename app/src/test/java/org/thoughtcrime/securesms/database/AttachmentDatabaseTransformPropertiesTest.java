@@ -11,13 +11,13 @@ public class AttachmentDatabaseTransformPropertiesTest {
   public void transformProperties_verifyStructure() {
     AttachmentTable.TransformProperties properties = AttachmentTable.TransformProperties.empty();
     assertEquals("Added transform property, need to confirm default behavior for pre-existing payloads in database",
-                 "{\"skipTransform\":false,\"videoTrim\":false,\"videoTrimStartTimeUs\":0,\"videoTrimEndTimeUs\":0,\"sentMediaQuality\":0,\"videoEdited\":false}",
+                 "{\"skipTransform\":false,\"videoTrim\":false,\"videoTrimStartTimeUs\":0,\"videoTrimEndTimeUs\":0,\"sentMediaQuality\":0,\"mp4Faststart\":false,\"videoEdited\":false}",
                  properties.serialize());
   }
 
   @Test
   public void transformProperties_verifyMissingSentMediaQualityDefaultBehavior() {
-    String json = "{\"skipTransform\":false,\"videoTrim\":false,\"videoTrimStartTimeUs\":0,\"videoTrimEndTimeUs\":0,\"videoEdited\":false}";
+    String json = "{\"skipTransform\":false,\"videoTrim\":false,\"videoTrimStartTimeUs\":0,\"videoTrimEndTimeUs\":0,\"videoEdited\":false,\"mp4Faststart\":false}";
 
     AttachmentTable.TransformProperties properties = AttachmentTable.TransformProperties.parse(json);
 

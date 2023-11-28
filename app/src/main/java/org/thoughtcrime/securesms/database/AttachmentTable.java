@@ -942,10 +942,16 @@ public class AttachmentTable extends DatabaseTable {
     }
   }
 
-  public void markAttachmentAsTransformed(@NonNull AttachmentId attachmentId) {
+  public void markAttachmentAsTransformed(@NonNull AttachmentId attachmentId, boolean withFaststart) {
     getWritableDatabase().beginTransaction();
     try {
-      updateAttachmentTransformProperties(attachmentId, getTransformProperties(attachmentId).withSkipTransform());
+      TransformProperties transformProperties = getTransformProperties(attachmentId).withSkipTransform();
+
+      if (withFaststart) {
+        transformProperties = transformProperties.withMp4Faststart();
+      }
+
+      updateAttachmentTransformProperties(attachmentId, transformProperties);
       getWritableDatabase().setTransactionSuccessful();
     } catch (Exception e) {
       Log.w(TAG, "Could not mark attachment as transformed.", e);
@@ -1645,19 +1651,22 @@ public class AttachmentTable extends DatabaseTable {
     @JsonProperty private final long    videoTrimStartTimeUs;
     @JsonProperty private final long    videoTrimEndTimeUs;
     @JsonProperty private final int     sentMediaQuality;
+    @JsonProperty private final boolean mp4Faststart;
 
     @JsonCreator
     public TransformProperties(@JsonProperty("skipTransform") boolean skipTransform,
                                @JsonProperty("videoTrim") boolean videoTrim,
                                @JsonProperty("videoTrimStartTimeUs") long videoTrimStartTimeUs,
                                @JsonProperty("videoTrimEndTimeUs") long videoTrimEndTimeUs,
-                               @JsonProperty("sentMediaQuality") int sentMediaQuality)
+                               @JsonProperty("sentMediaQuality") int sentMediaQuality,
+                               @JsonProperty("mp4Faststart") boolean mp4Faststart)
     {
       this.skipTransform        = skipTransform;
       this.videoTrim            = videoTrim;
       this.videoTrimStartTimeUs = videoTrimStartTimeUs;
       this.videoTrimEndTimeUs   = videoTrimEndTimeUs;
       this.sentMediaQuality     = sentMediaQuality;
+      this.mp4Faststart         = mp4Faststart;
     }
 
     protected TransformProperties(Parcel in) {
@@ -1666,6 +1675,7 @@ public class AttachmentTable extends DatabaseTable {
       videoTrimStartTimeUs = in.readLong();
       videoTrimEndTimeUs   = in.readLong();
       sentMediaQuality     = in.readInt();
+      mp4Faststart         = in.readByte() != 0;
     }
 
     @Override
@@ -1675,6 +1685,7 @@ public class AttachmentTable extends DatabaseTable {
       dest.writeLong(videoTrimStartTimeUs);
       dest.writeLong(videoTrimEndTimeUs);
       dest.writeInt(sentMediaQuality);
+      dest.writeByte((byte) (mp4Faststart ? 1 : 0));
     }
 
     @Override
@@ -1695,20 +1706,20 @@ public class AttachmentTable extends DatabaseTable {
     };
 
     public static @NonNull TransformProperties empty() {
-      return new TransformProperties(false, false, 0, 0, DEFAULT_MEDIA_QUALITY);
+      return new TransformProperties(false, false, 0, 0, DEFAULT_MEDIA_QUALITY, false);
     }
 
     public static @NonNull TransformProperties forSkipTransform() {
-      return new TransformProperties(true, false, 0, 0, DEFAULT_MEDIA_QUALITY);
+      return new TransformProperties(true, false, 0, 0, DEFAULT_MEDIA_QUALITY, false);
     }
 
     public static @NonNull TransformProperties forVideoTrim(long videoTrimStartTimeUs, long videoTrimEndTimeUs) {
-      return new TransformProperties(false, true, videoTrimStartTimeUs, videoTrimEndTimeUs, DEFAULT_MEDIA_QUALITY);
+      return new TransformProperties(false, true, videoTrimStartTimeUs, videoTrimEndTimeUs, DEFAULT_MEDIA_QUALITY, false);
     }
 
     public static @NonNull TransformProperties forSentMediaQuality(@NonNull Optional<TransformProperties> currentProperties, @NonNull SentMediaQuality sentMediaQuality) {
       TransformProperties existing = currentProperties.orElse(empty());
-      return new TransformProperties(existing.skipTransform, existing.videoTrim, existing.videoTrimStartTimeUs, existing.videoTrimEndTimeUs, sentMediaQuality.getCode());
+      return new TransformProperties(existing.skipTransform, existing.videoTrim, existing.videoTrimStartTimeUs, existing.videoTrimEndTimeUs, sentMediaQuality.getCode(), existing.mp4Faststart);
     }
 
     public boolean shouldSkipTransform() {
@@ -1721,6 +1732,10 @@ public class AttachmentTable extends DatabaseTable {
 
     public boolean isVideoTrim() {
       return videoTrim;
+    }
+
+    public boolean isMp4Faststart() {
+      return mp4Faststart;
     }
 
     public long getVideoTrimStartTimeUs() {
@@ -1736,9 +1751,12 @@ public class AttachmentTable extends DatabaseTable {
     }
 
     @NonNull TransformProperties withSkipTransform() {
-      return new TransformProperties(true, false, 0, 0, sentMediaQuality);
+      return new TransformProperties(true, false, 0, 0, sentMediaQuality, false);
     }
 
+    @NonNull TransformProperties withMp4Faststart() {
+      return new TransformProperties(skipTransform, videoTrim, videoTrimStartTimeUs, videoTrimEndTimeUs, sentMediaQuality, true);
+    }
     public @NonNull String serialize() {
       return JsonUtil.toJson(this);
     }

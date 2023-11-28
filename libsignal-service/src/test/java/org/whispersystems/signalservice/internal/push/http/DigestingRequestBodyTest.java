@@ -83,7 +83,7 @@ public class DigestingRequestBodyTest {
   }
 
   private DigestingRequestBody getBody(long contentStart) {
-    return new DigestingRequestBody(new ByteArrayInputStream(input), outputStreamFactory, "application/octet", CONTENT_LENGTH, new SignalServiceAttachment.ProgressListener() {
+    return new DigestingRequestBody(new ByteArrayInputStream(input), outputStreamFactory, "application/octet", CONTENT_LENGTH, false, new SignalServiceAttachment.ProgressListener() {
       @Override
       public void onAttachmentProgress(long total, long progress) {
         // no-op

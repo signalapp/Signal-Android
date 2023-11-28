@@ -174,10 +174,10 @@ public final class AttachmentCompressionJob extends BaseJob {
         try (MediaStream converted = compressImage(context, attachment, constraints)) {
           attachmentDatabase.updateAttachmentData(attachment, converted, false);
         }
-        attachmentDatabase.markAttachmentAsTransformed(attachmentId);
+        attachmentDatabase.markAttachmentAsTransformed(attachmentId, false);
       } else if (constraints.isSatisfied(context, attachment)) {
         Log.i(TAG, "Not compressing.");
-        attachmentDatabase.markAttachmentAsTransformed(attachmentId);
+        attachmentDatabase.markAttachmentAsTransformed(attachmentId, false);
       } else {
         throw new UndeliverableMessageException("Size constraints could not be met!");
       }
@@ -253,7 +253,7 @@ public final class AttachmentCompressionJob extends BaseJob {
               }
             }
 
-            attachmentDatabase.markAttachmentAsTransformed(attachment.getAttachmentId());
+            attachmentDatabase.markAttachmentAsTransformed(attachment.getAttachmentId(), false);
 
             return Objects.requireNonNull(attachmentDatabase.getAttachment(attachment.getAttachmentId()));
           } else {
@@ -276,7 +276,7 @@ public final class AttachmentCompressionJob extends BaseJob {
                 attachmentDatabase.updateAttachmentData(attachment, mediaStream, true);
               }
 
-              attachmentDatabase.markAttachmentAsTransformed(attachment.getAttachmentId());
+              attachmentDatabase.markAttachmentAsTransformed(attachment.getAttachmentId(), true);
 
               return Objects.requireNonNull(attachmentDatabase.getAttachment(attachment.getAttachmentId()));
             } else {
