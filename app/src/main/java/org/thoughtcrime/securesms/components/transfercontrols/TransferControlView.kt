@@ -385,7 +385,8 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
     }
 
     binding.secondaryProgressView.startClickListener = currentState.downloadClickedListener
-    applyFocusableAndClickable(currentState,
+    applyFocusableAndClickable(
+      currentState,
       listOf(binding.secondaryProgressView, binding.secondaryDetailsText, binding.secondaryBackground),
       listOf(binding.primaryProgressView, binding.playVideoButton)
     )
