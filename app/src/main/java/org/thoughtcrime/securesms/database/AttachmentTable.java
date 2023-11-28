@@ -945,7 +945,14 @@ public class AttachmentTable extends DatabaseTable {
   public void markAttachmentAsTransformed(@NonNull AttachmentId attachmentId, boolean withFaststart) {
     getWritableDatabase().beginTransaction();
     try {
-      TransformProperties transformProperties = getTransformProperties(attachmentId).withSkipTransform();
+      TransformProperties transformProperties = getTransformProperties(attachmentId);
+
+      if (transformProperties == null) {
+        Log.w(TAG, "Failed to get transformation properties, attachment no longer exists.");
+        return;
+      }
+
+      transformProperties = transformProperties.withSkipTransform();
 
       if (withFaststart) {
         transformProperties = transformProperties.withMp4Faststart();
@@ -960,7 +967,10 @@ public class AttachmentTable extends DatabaseTable {
     }
   }
 
-  public @NonNull TransformProperties getTransformProperties(@NonNull AttachmentId attachmentId) {
+  /**
+   * @return null if we fail to find the given attachmentId
+   */
+  public @Nullable TransformProperties getTransformProperties(@NonNull AttachmentId attachmentId) {
     String[] projection = SqlUtil.buildArgs(TRANSFORM_PROPERTIES);
     String[] args       = attachmentId.toStrings();
 
@@ -969,7 +979,7 @@ public class AttachmentTable extends DatabaseTable {
         String serializedProperties = CursorUtil.requireString(cursor, TRANSFORM_PROPERTIES);
         return TransformProperties.parse(serializedProperties);
       } else {
-        throw new AssertionError("No such attachment.");
+        return null;
       }
     }
   }
