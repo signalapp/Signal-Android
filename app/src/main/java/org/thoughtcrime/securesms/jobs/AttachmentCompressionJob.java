@@ -221,7 +221,7 @@ public final class AttachmentCompressionJob extends BaseJob {
           options = new TranscoderOptions(transformProperties.getVideoTrimStartTimeUs(), transformProperties.getVideoTrimEndTimeUs());
         }
 
-        if (FeatureFlags.useStreamingVideoMuxer() || !MemoryFileDescriptor.supported()) {
+        if (FeatureFlags.useStreamingVideoMuxer()) {
           StreamingTranscoder transcoder = new StreamingTranscoder(dataSource, options, constraints.getCompressedVideoMaxSize(context));
 
           if (transcoder.isTranscodeRequired()) {
