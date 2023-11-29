@@ -821,57 +821,6 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
     notifyConversationListListeners()
   }
 
-  /**
-   * Migrates a V1 group to a V2 group.
-   *
-   * @param decryptedGroup The state that represents the group on the server. This will be used to
-   * determine if we need to save our old membership list and stuff.
-   */
-  fun migrateToV2(
-    threadId: Long,
-    groupIdV1: GroupId.V1,
-    decryptedGroup: DecryptedGroup
-  ): GroupId.V2 {
-    val groupIdV2 = groupIdV1.deriveV2MigrationGroupId()
-    val groupMasterKey = groupIdV1.deriveV2MigrationMasterKey()
-
-    writableDatabase.withinTransaction { db ->
-      val record = getGroup(groupIdV1).get()
-
-      val newMembers: MutableList<RecipientId> = decryptedGroup.members.toAciList().toRecipientIds()
-      val pendingMembers: List<RecipientId> = DecryptedGroupUtil.pendingToServiceIdList(decryptedGroup.pendingMembers).toRecipientIds()
-      newMembers.addAll(pendingMembers)
-
-      val droppedMembers: List<RecipientId> = SetUtil.difference(record.members, newMembers).toList()
-      val unmigratedMembers: List<RecipientId> = pendingMembers + droppedMembers
-
-      val updated: Int = db.update(TABLE_NAME)
-        .values(
-          GROUP_ID to groupIdV2.toString(),
-          V2_MASTER_KEY to groupMasterKey.serialize(),
-          DISTRIBUTION_ID to DistributionId.create().toString(),
-          EXPECTED_V2_ID to null,
-          UNMIGRATED_V1_MEMBERS to if (unmigratedMembers.isEmpty()) null else unmigratedMembers.serialize()
-        )
-        .where("$GROUP_ID = ?", groupIdV1)
-        .run()
-
-      if (updated != 1) {
-        throw AssertionError()
-      }
-
-      recipients.updateGroupId(groupIdV1, groupIdV2)
-      update(groupMasterKey, decryptedGroup)
-      messages.insertGroupV1MigrationEvents(
-        record.recipientId,
-        threadId,
-        GroupMigrationMembershipChange(pendingMembers, droppedMembers)
-      )
-    }
-
-    return groupIdV2
-  }
-
   fun update(groupMasterKey: GroupMasterKey, decryptedGroup: DecryptedGroup) {
     update(GroupId.v2(groupMasterKey), decryptedGroup)
   }
