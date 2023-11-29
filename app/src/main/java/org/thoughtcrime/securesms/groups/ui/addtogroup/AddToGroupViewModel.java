@@ -47,7 +47,7 @@ public final class AddToGroupViewModel extends ViewModel {
       SignalExecutors.BOUNDED.execute(() -> {
         Recipient recipient      = Recipient.resolved(recipientId);
         Recipient groupRecipient = Recipient.resolved(groupRecipientIds.get(0));
-        String    recipientName  = recipient.getDisplayName(context);
+        String    recipientName  = recipient.getDisplayNameOrUsername(context);
         String    groupName      = groupRecipient.getDisplayName(context);
 
         if (groupRecipient.getGroupId().get().isV1() && !recipient.hasE164()) {
