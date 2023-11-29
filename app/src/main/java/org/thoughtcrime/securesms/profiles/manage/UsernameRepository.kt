@@ -219,6 +219,9 @@ object UsernameRepository {
       } catch (e: UsernameIsNotAssociatedWithAnAccountException) {
         Log.w(TAG, "[fetchAciFromUsername] Failed to get ACI for username hash", e)
         UsernameAciFetchResult.NotFound
+      } catch (e: BaseUsernameException) {
+        Log.w(TAG, "[fetchAciFromUsername] Invalid username", e)
+        UsernameAciFetchResult.NotFound
       } catch (e: IOException) {
         Log.w(TAG, "[fetchAciFromUsername] Hit network error while trying to resolve ACI from username", e)
         UsernameAciFetchResult.NetworkError
