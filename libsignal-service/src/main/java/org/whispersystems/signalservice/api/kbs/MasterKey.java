@@ -8,7 +8,7 @@ import org.whispersystems.util.StringUtil;
 import java.security.SecureRandom;
 import java.util.Arrays;
 
-import static org.whispersystems.signalservice.api.crypto.CryptoUtil.hmacSha256;
+import static org.signal.core.util.CryptoUtil.hmacSha256;
 
 public final class MasterKey {
 
@@ -38,6 +38,10 @@ public final class MasterKey {
 
   public StorageKey deriveStorageServiceKey() {
     return new StorageKey(derive("Storage Service Encryption"));
+  }
+
+  public byte[] deriveLoggingKey() {
+    return derive("Logging Key");
   }
 
   private byte[] derive(String keyName) {
