@@ -3106,16 +3106,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     return deleteMessage(messageId, threadId)
   }
 
-  fun deleteMessage(messageId: Long, notify: Boolean): Boolean {
-    val threadId = getThreadIdForMessage(messageId)
-    return deleteMessage(messageId, threadId, notify)
-  }
-
-  fun deleteMessage(messageId: Long, threadId: Long): Boolean {
-    return deleteMessage(messageId, threadId, true)
-  }
-
-  private fun deleteMessage(messageId: Long, threadId: Long, notify: Boolean): Boolean {
+  private fun deleteMessage(messageId: Long, threadId: Long = getThreadIdForMessage(messageId), notify: Boolean = true, updateThread: Boolean = true): Boolean {
     Log.d(TAG, "deleteMessage($messageId)")
 
     attachments.deleteAttachmentsForMessage(messageId)
@@ -3129,7 +3120,12 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
     calls.updateCallEventDeletionTimestamps()
     threads.setLastScrolled(threadId, 0)
-    val threadDeleted = threads.update(threadId, false)
+
+    val threadDeleted = if (updateThread) {
+      threads.update(threadId, false)
+    } else {
+      false
+    }
 
     if (notify) {
       notifyConversationListeners(threadId)
@@ -3336,7 +3332,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     OptimizeMessageSearchIndexJob.enqueue()
   }
 
-  fun deleteThreads(threadIds: Set<Long>) {
+  private fun deleteThreads(threadIds: Set<Long>) {
     Log.d(TAG, "deleteThreads(count: ${threadIds.size})")
 
     writableDatabase.withinTransaction { db ->
@@ -3346,7 +3342,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
           .where(query.where, query.whereArgs)
           .run()
           .forEach { cursor ->
-            deleteMessage(cursor.requireLong(ID), false)
+            deleteMessage(cursor.requireLong(ID), notify = false, updateThread = false)
           }
       }
     }
