@@ -184,7 +184,8 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
     byte[]        identityKey;
 
     if ((remote.getIdentityState() != local.getIdentityState() && remote.getIdentityKey().isPresent()) ||
-        (remote.getIdentityKey().isPresent() && local.getIdentityKey().isEmpty()))
+        (remote.getIdentityKey().isPresent() && local.getIdentityKey().isEmpty()) ||
+        (remote.getIdentityKey().isPresent() && local.getUnregisteredTimestamp() > 0))
     {
       identityState = remote.getIdentityState();
       identityKey   = remote.getIdentityKey().get();
