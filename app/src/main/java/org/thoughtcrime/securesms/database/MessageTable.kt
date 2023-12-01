@@ -398,14 +398,16 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
           $PARENT_STORY_ID <= 0 AND
           $SCHEDULED_DATE = -1 AND
           $LATEST_REVISION_ID IS NULL AND
+          $TYPE & ${MessageTypes.KEY_EXCHANGE_IDENTITY_DEFAULT_BIT} = 0 AND
+          $TYPE & ${MessageTypes.KEY_EXCHANGE_IDENTITY_VERIFIED_BIT} = 0 AND
           $TYPE NOT IN (
             ${MessageTypes.PROFILE_CHANGE_TYPE}, 
-             ${MessageTypes.GV1_MIGRATION_TYPE},
-             ${MessageTypes.CHANGE_NUMBER_TYPE},
-             ${MessageTypes.BOOST_REQUEST_TYPE},
-             ${MessageTypes.SMS_EXPORT_TYPE}
-           ) 
-         ORDER BY $DATE_RECEIVED DESC LIMIT 1
+            ${MessageTypes.GV1_MIGRATION_TYPE},
+            ${MessageTypes.CHANGE_NUMBER_TYPE},
+            ${MessageTypes.BOOST_REQUEST_TYPE},
+            ${MessageTypes.SMS_EXPORT_TYPE}
+           )
+          ORDER BY $DATE_RECEIVED DESC LIMIT 1
        """
 
     private val IS_CALL_TYPE_CLAUSE = """(
