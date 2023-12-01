@@ -44,6 +44,8 @@ class StripeApi(
 
     const val RETURN_URL_SCHEME = "sgnlpay"
     private const val RETURN_URL_3DS = "$RETURN_URL_SCHEME://3DS"
+
+    const val RETURN_URL_IDEAL = "https://signaldonations.org/stripe/return/ideal"
   }
 
   sealed class CreatePaymentIntentResult {
@@ -74,7 +76,7 @@ class StripeApi(
       val parameters = mutableMapOf(
         "client_secret" to setupIntent.intentClientSecret,
         "payment_method" to paymentMethodId,
-        "return_url" to RETURN_URL_3DS
+        "return_url" to if (paymentSource is IDEALPaymentSource) RETURN_URL_IDEAL else RETURN_URL_3DS
       )
 
       if (paymentSource.type.isBankTransfer) {
@@ -122,7 +124,7 @@ class StripeApi(
       val parameters = mutableMapOf(
         "client_secret" to paymentIntent.intentClientSecret,
         "payment_method" to paymentMethodId,
-        "return_url" to RETURN_URL_3DS
+        "return_url" to if (paymentSource is IDEALPaymentSource) RETURN_URL_IDEAL else RETURN_URL_3DS
       )
 
       if (paymentSource.type.isBankTransfer) {

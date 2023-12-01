@@ -598,6 +598,13 @@
             <action android:name="android.intent.action.VIEW" />
             <category android:name="android.intent.category.DEFAULT" />
             <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="https" android:host="signaldonations.org" android:pathPrefix="/stripe/return/ideal"/>
+        </intent-filter>
+
+        <intent-filter android:autoVerify="true">
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
             <data android:scheme="https"
                   android:host="signal.tube" />
             <data android:scheme="sgnl"
