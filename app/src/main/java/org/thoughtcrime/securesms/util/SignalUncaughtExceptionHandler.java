@@ -1,10 +1,14 @@
 package org.thoughtcrime.securesms.util;
 
+import android.database.sqlite.SQLiteDatabaseCorruptException;
+
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.ExceptionUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.LogDatabase;
+import org.thoughtcrime.securesms.database.SearchTable;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 
@@ -34,6 +38,15 @@ public class SignalUncaughtExceptionHandler implements Thread.UncaughtExceptionH
         Log.w(TAG, "Uncaught SSLException! It is *not* an IOException!", e);
       }
       return;
+    }
+
+    if (e instanceof SQLiteDatabaseCorruptException) {
+      if (e.getMessage().indexOf("message_fts") >= 0) {
+        Log.w(TAG, "FTS corrupted! Resetting FTS index.");
+        SignalDatabase.messageSearch().fullyResetTables();
+      } else {
+        Log.w(TAG, "Some non-FTS related corruption?");
+      }
     }
 
     if (e instanceof OnErrorNotImplementedException && e.getCause() != null) {
