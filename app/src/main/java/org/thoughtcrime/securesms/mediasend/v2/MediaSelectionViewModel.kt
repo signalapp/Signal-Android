@@ -122,13 +122,15 @@ class MediaSelectionViewModel(
       addMedia(initialMedia)
     }
 
-    disposables += selectedMediaSubject.map { media ->
-      Stories.MediaTransform.getSendRequirements(media)
-    }.subscribeBy { requirements ->
-      store.update {
-        it.copy(storySendRequirements = requirements)
+    disposables += selectedMediaSubject
+      .subscribeOn(Schedulers.io())
+      .map { media -> Stories.MediaTransform.getSendRequirements(media) }
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribeBy { requirements ->
+        store.update {
+          it.copy(storySendRequirements = requirements)
+        }
       }
-    }
   }
 
   override fun onCleared() {
