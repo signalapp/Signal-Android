@@ -46,7 +46,10 @@ data class LargeBadge(
       description.text = if (model.largeBadge.badge.isSubscription()) {
         context.getString(R.string.ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly, model.shortName)
       } else {
-        context.getString(R.string.ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation, model.shortName)
+        if (model.largeBadge.badge.isGift())
+          context.getString(R.string.ViewBadgeBottomSheetDialogFragment__a_friend_made_a_donation_to_signal_on_behalf_of_s, model.shortName)
+        else
+          context.getString(R.string.ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation, model.shortName)
       }
 
       description.setLines(model.maxLines)

@@ -4715,6 +4715,8 @@
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly">%1$s supports Signal with a monthly donation. Signal is a nonprofit with no advertisers or investors, supported only by people like you.</string>
     <!-- Description of a page in the bottom sheet of a one-time badge. Placeholder is a user\'s short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation">%1$s supports Signal with a donation. Signal is a nonprofit with no advertisers or investors, supported only by people like you.</string>
+    <!-- Description of a page in the bottom sheet of a one-time badge gifted by a friend. Placeholder is a user\'s short-name -->
+    <string name="ViewBadgeBottomSheetDialogFragment__a_friend_made_a_donation_to_signal_on_behalf_of_s">A friend made a donation to Signal on behalf of %1$s. Signal is a nonprofit with no advertisers or investors, supported only by people like you.</string>
 
     <string name="ImageView__badge">Badge</string>
 
