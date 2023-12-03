@@ -6,6 +6,7 @@ import androidx.annotation.VisibleForTesting
 import net.zetetic.database.sqlcipher.SQLiteOpenHelper
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.logging.Log
+import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.crypto.AttachmentSecret
 import org.thoughtcrime.securesms.crypto.DatabaseSecret
 import org.thoughtcrime.securesms.crypto.MasterSecret
@@ -14,8 +15,6 @@ import org.thoughtcrime.securesms.database.helpers.PreKeyMigrationHelper
 import org.thoughtcrime.securesms.database.helpers.SQLCipherMigrationHelper
 import org.thoughtcrime.securesms.database.helpers.SessionStoreMigrationHelper
 import org.thoughtcrime.securesms.database.helpers.SignalDatabaseMigrations
-import org.thoughtcrime.securesms.database.helpers.SignalDatabaseMigrations.migrate
-import org.thoughtcrime.securesms.database.helpers.SignalDatabaseMigrations.migratePostTransaction
 import org.thoughtcrime.securesms.database.model.AvatarPickerDatabase
 import org.thoughtcrime.securesms.jobs.PreKeysSyncJob
 import org.thoughtcrime.securesms.migrations.LegacyMigrationJob
@@ -163,21 +162,18 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
 
     Log.i(TAG, "Upgrading database: $oldVersion, $newVersion")
     val startTime = System.currentTimeMillis()
-    db.beginTransaction()
+    db.setForeignKeyConstraintsEnabled(false)
     try {
-      migrate(context, db, oldVersion, newVersion)
-      db.version = newVersion
-      db.setTransactionSuccessful()
+      // Transactions and version bumps are handled in the migrate method
+      SignalDatabaseMigrations.migrate(context, db, oldVersion, newVersion)
     } finally {
-      if (db.inTransaction()) {
-        db.endTransaction()
-      }
+      db.setForeignKeyConstraintsEnabled(true)
 
       // We have to re-begin the transaction for the calling code (see comment at start of method)
       db.beginTransaction()
     }
 
-    migratePostTransaction(context, oldVersion)
+    SignalDatabaseMigrations.migratePostTransaction(context, oldVersion)
     Log.i(TAG, "Upgrade complete. Took " + (System.currentTimeMillis() - startTime) + " ms.")
   }
 
@@ -345,13 +341,9 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     }
 
     @JvmStatic
-    fun runInTransaction(operation: Runnable) {
-      instance!!.signalWritableDatabase.beginTransaction()
-      try {
-        operation.run()
-        instance!!.signalWritableDatabase.setTransactionSuccessful()
-      } finally {
-        instance!!.signalWritableDatabase.endTransaction()
+    fun <T> runInTransaction(block: (SQLiteDatabase) -> T): T {
+      return instance!!.signalWritableDatabase.withinTransaction {
+        block(it)
       }
     }
 

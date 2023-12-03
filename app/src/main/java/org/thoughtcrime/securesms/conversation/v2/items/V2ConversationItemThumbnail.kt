@@ -24,7 +24,7 @@ import com.bumptech.glide.request.transition.Transition
 import org.signal.core.util.dp
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.v2.items.V2ConversationItemUtils.isThumbnailAtBottomOfBubble
-import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader
 import org.thoughtcrime.securesms.mms.Slide
 
@@ -92,7 +92,7 @@ class V2ConversationItemThumbnail @JvmOverloads constructor(
   }
 
   fun presentThumbnail(
-    mediaMessage: MediaMmsMessageRecord,
+    mediaMessage: MmsMessageRecord,
     conversationContext: V2ConversationContext
   ) {
     val slideDeck = mediaMessage.slideDeck

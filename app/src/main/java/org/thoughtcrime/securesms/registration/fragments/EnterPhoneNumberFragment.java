@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ScrollView;
 
 import androidx.annotation.NonNull;
@@ -204,13 +205,13 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
 
   private void onE164EnteredSuccessfully(@NonNull Context context, boolean fcmSupported) {
     enterInProgressUiState();
-
+    Log.d(TAG, "E164 entered successfully.");
     Disposable disposable = viewModel.canEnterSkipSmsFlow()
                                      .observeOn(AndroidSchedulers.mainThread())
                                      .onErrorReturnItem(false)
                                      .subscribe(canEnter -> {
                                        if (canEnter) {
-                                         Log.i(TAG, "Enter skip flow");
+                                         Log.i(TAG, "Entering skip flow.");
                                          SafeNavigation.safeNavigate(NavHostFragment.findNavController(this), EnterPhoneNumberFragmentDirections.actionReRegisterWithPinFragment());
                                        } else {
                                          Log.i(TAG, "Unable to collect necessary data to enter skip flow, returning to normal");
@@ -452,6 +453,7 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
   }
 
   private void handlePromptForNoPlayServices(@NonNull Context context) {
+    Log.d(TAG, "Device does not have Play Services, showing consent dialog.");
     new MaterialAlertDialogBuilder(context)
         .setTitle(R.string.RegistrationActivity_missing_google_play_services)
         .setMessage(R.string.RegistrationActivity_this_device_is_missing_google_play_services)
@@ -469,20 +471,31 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
     disposables.add(
         viewModel.canEnterSkipSmsFlow()
                  .observeOn(AndroidSchedulers.mainThread())
-                 .subscribe(canSkipSms -> showConfirmNumberDialogIfTranslated(context,
-                                                                              viewModel.hasUserSkippedReRegisterFlow() ? R.string.RegistrationActivity_additional_verification_required
-                                                                                                                       : R.string.RegistrationActivity_phone_number_verification_dialog_title,
-                                                                              canSkipSms ? null
-                                                                                         : R.string.RegistrationActivity_a_verification_code_will_be_sent_to_this_number,
-                                                                              e164number,
-                                                                              () -> {
-                                                                                ViewUtil.hideKeyboard(context, number.getEditText());
-                                                                                onConfirmed.run();
-                                                                              },
-                                                                              () -> {
-                                                                                exitInProgressUiState();
-                                                                                ViewUtil.focusAndMoveCursorToEndAndOpenKeyboard(this.number.getEditText());
-                                                                              }))
+                 .subscribe(canSkipSms -> {
+                   Log.d(TAG, "Showing confirm number dialog. canSkipSms = " + canSkipSms + " hasUserSkipped = " + viewModel.hasUserSkippedReRegisterFlow());
+                   final EditText editText = this.number.getEditText();
+                   showConfirmNumberDialogIfTranslated(context,
+                                                       viewModel.hasUserSkippedReRegisterFlow() ? R.string.RegistrationActivity_additional_verification_required
+                                                                                                : R.string.RegistrationActivity_phone_number_verification_dialog_title,
+                                                       canSkipSms ? null
+                                                                  : R.string.RegistrationActivity_a_verification_code_will_be_sent_to_this_number,
+                                                       e164number,
+                                                       () -> {
+                                                         Log.d(TAG, "User confirmed number.");
+                                                         if (editText != null) {
+                                                           ViewUtil.hideKeyboard(context, editText);
+                                                         }
+                                                         onConfirmed.run();
+                                                       },
+                                                       () -> {
+                                                         Log.d(TAG, "User canceled confirm number, returning to edit number.");
+                                                         exitInProgressUiState();
+                                                         if (editText != null) {
+                                                           ViewUtil.focusAndMoveCursorToEndAndOpenKeyboard(editText);
+                                                         }
+                                                       });
+                            }
+                 )
     );
   }
 }

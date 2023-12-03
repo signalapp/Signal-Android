@@ -6,7 +6,7 @@ import androidx.annotation.Nullable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.util.Base64;
+import org.signal.core.util.Base64;
 import org.thoughtcrime.securesms.util.JsonUtils;
 
 import java.io.IOException;
@@ -427,7 +427,7 @@ public class JsonJobData {
     }
 
     public Builder putBlobAsString(@NonNull String key, @Nullable byte[] value) {
-      String serialized = value != null ? Base64.encodeBytes(value) : null;
+      String serialized = value != null ? Base64.encodeWithPadding(value) : null;
       strings.put(key, serialized);
       return this;
     }

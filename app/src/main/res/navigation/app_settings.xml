@@ -12,7 +12,7 @@
         tools:layout="@layout/dsl_settings_fragment">
         <action
             android:id="@+id/action_appSettingsFragment_to_usernameLinkSettingsFragment"
-            app:destination="@id/usernameLinkSettingsFragment"
+            app:destination="@id/username_link_settings"
             app:enterAnim="@anim/fragment_open_enter"
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
@@ -107,6 +107,13 @@
             app:popEnterAnim="@anim/fragment_close_enter"
             app:popExitAnim="@anim/fragment_close_exit" />
         <action
+            android:id="@+id/action_appSettingsFragment_to_appUpdatesSettingsFragment"
+            app:destination="@id/appUpdatesFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+        <action
             android:id="@+id/action_appSettingsFragment_to_internalSettingsFragment"
             app:destination="@id/internalSettingsFragment"
             app:enterAnim="@anim/fragment_open_enter"
@@ -137,7 +144,7 @@
 
     <activity
         android:id="@+id/manageProfileActivity"
-        android:name="org.thoughtcrime.securesms.profiles.manage.ManageProfileActivity"
+        android:name="org.thoughtcrime.securesms.profiles.manage.EditProfileActivity"
         android:label="manage_profile_activity" />
 
     <!-- region Account Settings and subpages -->
@@ -566,6 +573,16 @@
         app:popUpTo="@id/app_settings"
         app:popUpToInclusive="true" />
 
+    <action
+        android:id="@+id/action_direct_to_usernameLinkSettings"
+        app:destination="@id/username_link_settings"
+        app:enterAnim="@anim/fragment_open_enter"
+        app:exitAnim="@anim/fragment_open_exit"
+        app:popEnterAnim="@anim/fragment_close_enter"
+        app:popExitAnim="@anim/fragment_close_exit"
+        app:popUpTo="@id/app_settings"
+        app:popUpToInclusive="true" />
+
     <!-- endregion -->
 
     <!-- Internal Settings -->
@@ -589,7 +606,23 @@
         <action
             android:id="@+id/action_internalSettingsFragment_to_internalConversationSpringboardFragment"
             app:destination="@id/internalConversationSpringboardFragment" />
+        <action
+            android:id="@+id/action_internalSettingsFragment_to_oneTimeDonationConfigurationFragment"
+            app:destination="@id/oneTimeDonationConfigurationFragment" />
+        <action
+            android:id="@+id/action_internalSettingsFragment_to_terminalDonationConfigurationFragment"
+            app:destination="@id/terminalDonationConfigurationFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/terminalDonationConfigurationFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.internal.InternalTerminalDonationConfigurationFragment"
+        android:label="terminal_donation_configuration_fragment" />
+
+    <fragment
+        android:id="@+id/oneTimeDonationConfigurationFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.internal.InternalPendingOneTimeDonationConfigurationFragment"
+        android:label="one_time_donation_configuration_fragment" />
 
     <fragment
         android:id="@+id/donorErrorConfigurationFragment"
@@ -627,6 +660,13 @@
         android:label="internal_conversation_test_fragment" />
 
     <!-- endregion -->
+
+    <!-- App updates -->
+
+    <fragment
+        android:id="@+id/appUpdatesFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.updates.AppUpdatesSettingsFragment"
+        android:label="app_update_fragment" />
 
     <!-- Subscriptions -->
     <fragment
@@ -873,23 +913,8 @@
 
     </fragment>
 
-    <fragment
-        android:id="@+id/usernameLinkSettingsFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.app.usernamelinks.main.UsernameLinkSettingsFragment">
 
-        <action
-            android:id="@+id/action_usernameLinkSettingsFragment_to_usernameLinkQrColorPickerFragment"
-            app:destination="@id/usernameLinkQrColorPickerFragment"
-            app:enterAnim="@anim/fragment_open_enter"
-            app:exitAnim="@anim/fragment_open_exit"
-            app:popEnterAnim="@anim/fragment_close_enter"
-            app:popExitAnim="@anim/fragment_close_exit" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/usernameLinkQrColorPickerFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.app.usernamelinks.colorpicker.UsernameLinkQrColorPickerFragment" />
-
+    <include app:graph="@navigation/username_link_settings" />
     <include app:graph="@navigation/story_privacy_settings" />
 
 </navigation>

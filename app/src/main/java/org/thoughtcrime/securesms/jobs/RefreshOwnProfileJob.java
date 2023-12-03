@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.signal.core.util.Base64;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.usernames.BaseUsernameException;
 import org.signal.libsignal.usernames.Username;
@@ -19,11 +20,12 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.keyvalue.AccountValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.subscription.Subscriber;
-import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.ProfileUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -32,15 +34,17 @@ import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException;
 import org.whispersystems.signalservice.api.crypto.ProfileCipher;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
+import org.whispersystems.signalservice.api.push.UsernameLinkComponents;
+import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription;
 import org.whispersystems.signalservice.api.util.ExpiringProfileCredentialUtil;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.push.ReserveUsernameResponse;
 import org.whispersystems.signalservice.internal.push.WhoAmIResponse;
-import org.whispersystems.util.Base64UrlSafe;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -251,58 +255,62 @@ public class RefreshOwnProfileJob extends BaseJob {
     }
   }
 
-  static void checkUsernameIsInSync() throws IOException {
-    if (TextUtils.isEmpty(SignalDatabase.recipients().getUsername(Recipient.self().getId()))) {
-      Log.i(TAG, "No local username. Clearing username from server.");
-      ApplicationDependencies.getSignalServiceAccountManager().deleteUsername();
-    } else {
-      Log.i(TAG, "Local user has a username, attempting username synchronization.");
-      performLocalRemoteComparison();
-    }
-  }
+  static void checkUsernameIsInSync() {
+    boolean validated = false;
 
-  private static void performLocalRemoteComparison() {
     try {
-      String  localUsername    = SignalDatabase.recipients().getUsername(Recipient.self().getId());
-      boolean hasLocalUsername = !TextUtils.isEmpty(localUsername);
-
-      if (!hasLocalUsername) {
-        return;
-      }
+      String localUsername = SignalStore.account().getUsername();
 
       WhoAmIResponse whoAmIResponse     = ApplicationDependencies.getSignalServiceAccountManager().getWhoAmI();
-      boolean        hasServerUsername  = !TextUtils.isEmpty(whoAmIResponse.getUsernameHash());
-      String         serverUsernameHash = whoAmIResponse.getUsernameHash();
-      String         localUsernameHash  = Base64UrlSafe.encodeBytesWithoutPadding(Username.hash(localUsername));
+      String         remoteUsernameHash = whoAmIResponse.getUsernameHash();
+      String         localUsernameHash  = localUsername != null ? Base64.encodeUrlSafeWithoutPadding(new Username(localUsername).getHash()) : null;
 
-      if (!hasServerUsername) {
-        Log.w(TAG, "No remote username is set.");
+      if (TextUtils.isEmpty(localUsernameHash) && TextUtils.isEmpty(remoteUsernameHash)) {
+        Log.d(TAG, "Local and remote username hash are both empty. Considering validated.");
+      } else if (!Objects.equals(localUsernameHash, remoteUsernameHash)) {
+        Log.w(TAG, "Local username hash does not match server username hash. Local hash: " + (TextUtils.isEmpty(localUsername) ? "empty" : "present") + ", Remote hash: " + (TextUtils.isEmpty(remoteUsernameHash) ? "empty" : "present"));
+        SignalStore.account().setUsernameSyncState(AccountValues.UsernameSyncState.USERNAME_AND_LINK_CORRUPTED);
+        return;
+      } else {
+        Log.d(TAG, "Username validated.");
       }
-
-      if (!Objects.equals(localUsernameHash, serverUsernameHash)) {
-        Log.w(TAG, "Local username hash does not match server username hash.");
-      }
-
-      if (!hasServerUsername || !Objects.equals(localUsernameHash, serverUsernameHash)) {
-        Log.i(TAG, "Attempting to resynchronize username.");
-        tryToReserveAndConfirmLocalUsername(localUsername, localUsernameHash);
-      }
-    } catch (IOException | BaseUsernameException e) {
-      Log.w(TAG, "Failed perform synchronization check", e);
-    }
-  }
-
-  private static void tryToReserveAndConfirmLocalUsername(@NonNull String localUsername, @NonNull String localUsernameHash) {
-    try {
-      ReserveUsernameResponse response = ApplicationDependencies.getSignalServiceAccountManager()
-                                                                .reserveUsername(Collections.singletonList(localUsernameHash));
-
-      ApplicationDependencies.getSignalServiceAccountManager()
-                             .confirmUsername(localUsername, response);
     } catch (IOException e) {
-      Log.d(TAG, "Failed to synchronize username.", e);
-      // TODO [greyson][usernames] Is this actually enough to trigger it? Shouldn't we wait until we know for sure, rather than have a network error?
-      SignalStore.account().setUsernameOutOfSync(true);
+      Log.w(TAG, "Failed perform synchronization check during username phase.", e);
+    } catch (BaseUsernameException e) {
+      Log.w(TAG, "Our local username data is invalid!", e);
+      SignalStore.account().setUsernameSyncState(AccountValues.UsernameSyncState.USERNAME_AND_LINK_CORRUPTED);
+    }
+
+    try {
+      UsernameLinkComponents localUsernameLink = SignalStore.account().getUsernameLink();
+
+      if (localUsernameLink != null) {
+        byte[]                remoteEncryptedUsername = ApplicationDependencies.getSignalServiceAccountManager().getEncryptedUsernameFromLinkServerId(localUsernameLink.getServerId());
+        Username.UsernameLink combinedLink            = new Username.UsernameLink(localUsernameLink.getEntropy(), remoteEncryptedUsername);
+        Username              remoteUsername          = Username.fromLink(combinedLink);
+
+        if (!remoteUsername.getUsername().equals(SignalStore.account().getUsername())) {
+          Log.w(TAG, "The remote username decrypted ok, but the decrypted username did not match our local username!");
+          SignalStore.account().setUsernameSyncState(AccountValues.UsernameSyncState.LINK_CORRUPTED);
+          SignalStore.account().setUsernameLink(null);
+          StorageSyncHelper.scheduleSyncForDataChange();
+        } else {
+          Log.d(TAG, "Username link validated.");
+        }
+
+        validated = true;
+      }
+    } catch (IOException e) {
+      Log.w(TAG, "Failed perform synchronization check during the username link phase.", e);
+    } catch (BaseUsernameException e) {
+      Log.w(TAG, "Failed to decrypt username link using the remote encrypted username and our local entropy!", e);
+      SignalStore.account().setUsernameSyncState(AccountValues.UsernameSyncState.LINK_CORRUPTED);
+      SignalStore.account().setUsernameLink(null);
+      StorageSyncHelper.scheduleSyncForDataChange();
+    }
+
+    if (validated) {
+      SignalStore.account().setUsernameSyncState(AccountValues.UsernameSyncState.IN_SYNC);
     }
   }
 

@@ -60,7 +60,6 @@ public final class FeatureFlags {
   private static final String INTERNAL_USER                     = "android.internalUser";
   private static final String VERIFY_V2                         = "android.verifyV2";
   private static final String CLIENT_EXPIRATION                 = "android.clientExpiration";
-  public  static final String DONATE_MEGAPHONE                  = "android.donate.2";
   private static final String CUSTOM_VIDEO_MUXER                = "android.customVideoMuxer";
   private static final String CDS_REFRESH_INTERVAL              = "cds.syncInterval.seconds";
   private static final String AUTOMATIC_SESSION_RESET           = "android.automaticSessionReset.2";
@@ -92,7 +91,6 @@ public final class FeatureFlags {
   private static final String TELECOM_MODEL_BLOCKLIST           = "android.calling.telecomModelBlockList";
   private static final String CAMERAX_MODEL_BLOCKLIST           = "android.cameraXModelBlockList";
   private static final String CAMERAX_MIXED_MODEL_BLOCKLIST     = "android.cameraXMixedModelBlockList";
-  private static final String HIDE_CONTACTS                     = "android.hide.contacts";
   private static final String PAYMENTS_REQUEST_ACTIVATE_FLOW    = "android.payments.requestActivateFlow";
   public  static final String GOOGLE_PAY_DISABLED_REGIONS       = "global.donations.gpayDisabledRegions";
   public  static final String CREDIT_CARD_DISABLED_REGIONS      = "global.donations.ccDisabledRegions";
@@ -102,21 +100,22 @@ public final class FeatureFlags {
   private static final String PAYPAL_RECURRING_DONATIONS        = "android.recurringPayPalDonations.3";
   private static final String ANY_ADDRESS_PORTS_KILL_SWITCH     = "android.calling.fieldTrial.anyAddressPortsKillSwitch";
   private static final String AD_HOC_CALLING                    = "android.calling.ad.hoc.3";
-  private static final String EDIT_MESSAGE_SEND                 = "android.editMessage.send.13";
   private static final String MAX_ATTACHMENT_COUNT              = "android.attachments.maxCount";
   private static final String MAX_ATTACHMENT_RECEIVE_SIZE_BYTES = "global.attachments.maxReceiveBytes";
   private static final String MAX_ATTACHMENT_SIZE_BYTES         = "global.attachments.maxBytes";
   private static final String SVR2_KILLSWITCH                   = "android.svr2.killSwitch";
   private static final String CDS_DISABLE_COMPAT_MODE           = "cds.disableCompatibilityMode";
   private static final String FCM_MAY_HAVE_MESSAGES_KILL_SWITCH = "android.fcmNotificationFallbackKillSwitch";
-  private static final String SAFETY_NUMBER_ACI                 = "global.safetyNumberAci";
   public  static final String PROMPT_FOR_NOTIFICATION_LOGS      = "android.logs.promptNotifications";
   private static final String PROMPT_FOR_NOTIFICATION_CONFIG    = "android.logs.promptNotificationsConfig";
   public  static final String PROMPT_BATTERY_SAVER              = "android.promptBatterySaver";
   public  static final String USERNAMES                         = "android.usernames";
   public  static final String INSTANT_VIDEO_PLAYBACK            = "android.instantVideoPlayback";
-  private static final String CONVERSATION_ITEM_V2_TEXT         = "android.conversationItemV2.text.4";
   public  static final String CRASH_PROMPT_CONFIG               = "android.crashPromptConfig";
+  private static final String SEPA_DEBIT_DONATIONS              = "android.sepa.debit.donations.4";
+  private static final String IDEAL_DONATIONS                   = "android.ideal.donations.4";
+  public  static final String IDEAL_ENABLED_REGIONS             = "global.donations.idealEnabledRegions";
+  public  static final String SEPA_ENABLED_REGIONS              = "global.donations.sepaEnabledRegions";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -129,7 +128,6 @@ public final class FeatureFlags {
       INTERNAL_USER,
       VERIFY_V2,
       CLIENT_EXPIRATION,
-      DONATE_MEGAPHONE,
       CUSTOM_VIDEO_MUXER,
       CDS_REFRESH_INTERVAL,
       GROUP_NAME_MAX_LENGTH,
@@ -160,7 +158,6 @@ public final class FeatureFlags {
       TELECOM_MODEL_BLOCKLIST,
       CAMERAX_MODEL_BLOCKLIST,
       CAMERAX_MIXED_MODEL_BLOCKLIST,
-      HIDE_CONTACTS,
       PAYMENTS_REQUEST_ACTIVATE_FLOW,
       GOOGLE_PAY_DISABLED_REGIONS,
       CREDIT_CARD_DISABLED_REGIONS,
@@ -169,23 +166,24 @@ public final class FeatureFlags {
       PAYPAL_ONE_TIME_DONATIONS,
       PAYPAL_RECURRING_DONATIONS,
       ANY_ADDRESS_PORTS_KILL_SWITCH,
-      EDIT_MESSAGE_SEND,
       MAX_ATTACHMENT_COUNT,
       MAX_ATTACHMENT_RECEIVE_SIZE_BYTES,
       MAX_ATTACHMENT_SIZE_BYTES,
       AD_HOC_CALLING,
       SVR2_KILLSWITCH,
       CDS_DISABLE_COMPAT_MODE,
-      SAFETY_NUMBER_ACI,
       FCM_MAY_HAVE_MESSAGES_KILL_SWITCH,
       PROMPT_FOR_NOTIFICATION_LOGS,
       PROMPT_FOR_NOTIFICATION_CONFIG,
       PROMPT_BATTERY_SAVER,
       USERNAMES,
       INSTANT_VIDEO_PLAYBACK,
-      CONVERSATION_ITEM_V2_TEXT,
       CRASH_PROMPT_CONFIG,
-      BLOCK_SSE
+      BLOCK_SSE,
+      SEPA_DEBIT_DONATIONS,
+      IDEAL_DONATIONS,
+      IDEAL_ENABLED_REGIONS,
+      SEPA_ENABLED_REGIONS
   );
 
   @VisibleForTesting
@@ -234,7 +232,6 @@ public final class FeatureFlags {
       RETRY_RECEIPTS,
       MAX_GROUP_CALL_RING_SIZE,
       SENDER_KEY_MAX_AGE,
-      DONATE_MEGAPHONE,
       HARDWARE_AEC_BLOCKLIST_MODELS,
       SOFTWARE_AEC_BLOCKLIST_MODELS,
       USE_HARDWARE_AEC_IF_OLD,
@@ -245,13 +242,11 @@ public final class FeatureFlags {
       CAMERAX_MODEL_BLOCKLIST,
       PAYMENTS_REQUEST_ACTIVATE_FLOW,
       CDS_HARD_LIMIT,
-      EDIT_MESSAGE_SEND,
       MAX_ATTACHMENT_COUNT,
       MAX_ATTACHMENT_RECEIVE_SIZE_BYTES,
       MAX_ATTACHMENT_SIZE_BYTES,
       SVR2_KILLSWITCH,
       CDS_DISABLE_COMPAT_MODE,
-      SAFETY_NUMBER_ACI,
       FCM_MAY_HAVE_MESSAGES_KILL_SWITCH,
       PROMPT_FOR_NOTIFICATION_LOGS,
       PROMPT_FOR_NOTIFICATION_CONFIG,
@@ -357,7 +352,7 @@ public final class FeatureFlags {
 
   /** Internal testing extensions. */
   public static boolean internalUser() {
-    return getBoolean(INTERNAL_USER, false) || Environment.IS_PNP;
+    return getBoolean(INTERNAL_USER, false) || Environment.IS_PNP || Environment.IS_STAGING;
   }
 
   /** Whether or not to use the UUID in verification codes. */
@@ -365,22 +360,9 @@ public final class FeatureFlags {
     return getBoolean(VERIFY_V2, false);
   }
 
-  /** Whether or not we show the ACI safety number as the default initial safety number. */
-  public static boolean showAciSafetyNumberAsDefault() {
-    long estimatedServerTimeSeconds = (System.currentTimeMillis() - SignalStore.misc().getLastKnownServerTimeOffset()) / 1000;
-    long flagEnableTimeSeconds      = getLong(SAFETY_NUMBER_ACI, Long.MAX_VALUE);
-
-    return estimatedServerTimeSeconds > flagEnableTimeSeconds;
-  }
-
   /** The raw client expiration JSON string. */
   public static String clientExpiration() {
     return getString(CLIENT_EXPIRATION, null);
-  }
-
-  /** The raw donate megaphone CSV string */
-  public static String donateMegaphone() {
-    return getString(DONATE_MEGAPHONE, "");
   }
 
   /**
@@ -538,16 +520,6 @@ public final class FeatureFlags {
     return getInteger(STORIES_AUTO_DOWNLOAD_MAXIMUM, 2);
   }
 
-  /**
-   * Whether or not users can hide contacts.
-   *
-   * WARNING: This feature is intended to be enabled in tandem with other clients, as it modifies contact records.
-   * Here be dragons.
-   */
-  public static boolean hideContacts() {
-    return getBoolean(HIDE_CONTACTS, false);
-  }
-
   /** Whether client supports sending a request to another to activate payments */
   public static boolean paymentsRequestActivateFlow() {
     return getBoolean(PAYMENTS_REQUEST_ACTIVATE_FLOW, false);
@@ -609,10 +581,6 @@ public final class FeatureFlags {
     return getBoolean(FCM_MAY_HAVE_MESSAGES_KILL_SWITCH, false);
   }
 
-  public static boolean editMessageSending() {
-    return getBoolean(EDIT_MESSAGE_SEND, false);
-  }
-
   /**
    * Whether or not ad-hoc calling is enabled
    */
@@ -654,15 +622,6 @@ public final class FeatureFlags {
     return getBoolean(INSTANT_VIDEO_PLAYBACK, false);
   }
 
-  /**
-   * Note: this setting is currently
-   *
-   * @return Whether to use TextOnly V2 Conversation Items.
-   */
-  public static boolean useTextOnlyConversationItemV2() {
-    return getBoolean(CONVERSATION_ITEM_V2_TEXT, false);
-  }
-
   public static String promptForDelayedNotificationLogs() {
     return getString(PROMPT_FOR_NOTIFICATION_LOGS, "*");
   }
@@ -680,6 +639,25 @@ public final class FeatureFlags {
     return getString(CRASH_PROMPT_CONFIG, "");
   }
 
+  /**
+   * Whether or not SEPA debit payments for donations are enabled.
+   * WARNING: This feature is under heavy development and is *not* ready for wider use.
+   */
+  public static boolean sepaDebitDonations() {
+    return getBoolean(SEPA_DEBIT_DONATIONS, false);
+  }
+
+  public static boolean idealDonations() {
+    return getBoolean(IDEAL_DONATIONS, false);
+  }
+
+  public static String idealEnabledRegions() {
+    return getString(IDEAL_ENABLED_REGIONS, "");
+  }
+
+  public static String sepaEnabledRegions() {
+    return getString(SEPA_ENABLED_REGIONS, "");
+  }
 
   /** Only for rendering debug info. */
   public static synchronized @NonNull Map<String, Object> getMemoryValues() {

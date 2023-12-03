@@ -117,7 +117,19 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
     lifecycleDisposable +=
       viewModel
         .state
-        .distinctUntilChanged()
+        .distinctUntilChanged { t1, t2 ->
+          // this is all fields except for [isInSharedAnimation], which is explicitly excluded.
+          (
+            t1.mediaRecords == t2.mediaRecords &&
+              t1.loadState == t2.loadState &&
+              t1.position == t2.position &&
+              t1.showThread == t2.showThread &&
+              t1.allMediaInAlbumRail == t2.allMediaInAlbumRail &&
+              t1.leftIsRecent == t2.leftIsRecent &&
+              t1.albums == t2.albums &&
+              t1.messageBodies == t2.messageBodies
+            )
+        }
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe {
           bindCurrentState(it)

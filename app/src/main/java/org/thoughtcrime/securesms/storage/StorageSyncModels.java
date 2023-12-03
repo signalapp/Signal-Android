@@ -18,7 +18,6 @@ import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.subscription.Subscriber;
-import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord;
 import org.whispersystems.signalservice.api.storage.SignalContactRecord;
@@ -66,20 +65,20 @@ public final class StorageSyncModels {
   }
 
   public static AccountRecord.PhoneNumberSharingMode localToRemotePhoneNumberSharingMode(PhoneNumberPrivacyValues.PhoneNumberSharingMode phoneNumberPhoneNumberSharingMode) {
+    // TODO [pnp] When we launch usernames, we want DEFAULT to map to NOBODY. In fact, we can just pass a boolean into this function instead of an enum.
     switch (phoneNumberPhoneNumberSharingMode) {
-      case EVERYONE: return AccountRecord.PhoneNumberSharingMode.EVERYBODY;
-      case CONTACTS: return AccountRecord.PhoneNumberSharingMode.CONTACTS_ONLY;
-      case NOBODY  : return AccountRecord.PhoneNumberSharingMode.NOBODY;
-      default      : throw new AssertionError();
+      case DEFAULT  : return AccountRecord.PhoneNumberSharingMode.UNKNOWN;
+      case EVERYBODY: return AccountRecord.PhoneNumberSharingMode.EVERYBODY;
+      case NOBODY   : return AccountRecord.PhoneNumberSharingMode.NOBODY;
+      default       : throw new AssertionError();
     }
   }
 
   public static PhoneNumberPrivacyValues.PhoneNumberSharingMode remoteToLocalPhoneNumberSharingMode(AccountRecord.PhoneNumberSharingMode phoneNumberPhoneNumberSharingMode) {
     switch (phoneNumberPhoneNumberSharingMode) {
-      case EVERYBODY    : return PhoneNumberPrivacyValues.PhoneNumberSharingMode.EVERYONE;
-      case CONTACTS_ONLY: return PhoneNumberPrivacyValues.PhoneNumberSharingMode.CONTACTS;
+      case EVERYBODY    : return PhoneNumberPrivacyValues.PhoneNumberSharingMode.EVERYBODY;
       case NOBODY       : return PhoneNumberPrivacyValues.PhoneNumberSharingMode.NOBODY;
-      default           : return PhoneNumberPrivacyValues.PhoneNumberSharingMode.CONTACTS;
+      default           : return PhoneNumberPrivacyValues.PhoneNumberSharingMode.DEFAULT;
     }
   }
 
@@ -130,7 +129,7 @@ public final class StorageSyncModels {
   }
 
   private static @NonNull SignalContactRecord localToRemoteContact(@NonNull RecipientRecord recipient, byte[] rawStorageId) {
-    if (recipient.getAci() == null && recipient.getE164() == null) {
+    if (recipient.getAci() == null && recipient.getPni() == null && recipient.getE164() == null) {
       throw new AssertionError("Must have either a UUID or a phone number!");
     }
 

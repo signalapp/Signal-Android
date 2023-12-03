@@ -14,7 +14,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.v2.data.ConversationMessageElement
-import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
 import org.thoughtcrime.securesms.util.drawAsTopItemDecoration
@@ -210,7 +210,7 @@ class ConversationItemDecorations(hasWallpaper: Boolean = false, private val sch
 
   private fun ConversationMessageElement.timestamp(): Long {
     return if (scheduleMessageMode) {
-      (conversationMessage.messageRecord as MediaMmsMessageRecord).scheduledDate
+      (conversationMessage.messageRecord as MmsMessageRecord).scheduledDate
     } else {
       conversationMessage.conversationTimestamp
     }

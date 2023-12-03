@@ -35,7 +35,7 @@ import org.whispersystems.signalservice.api.push.exceptions.IncorrectCodeExcepti
 import org.whispersystems.signalservice.api.push.exceptions.IncorrectRegistrationRecoveryPasswordException;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataResponse;
-import org.whispersystems.util.Base64;
+import org.signal.core.util.Base64;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -336,9 +336,11 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
 
   public @NonNull Single<Boolean> canEnterSkipSmsFlow() {
     if (userSkippedReRegisterFlow) {
+      Log.d(TAG, "User skipped re-register flow.");
       return Single.just(false);
     }
 
+    Log.d(TAG, "Querying if user can enter skip SMS flow.");
     return Single.just(hasRecoveryPassword())
                  .flatMap(hasRecoveryPassword -> {
                    Log.i(TAG, "Checking if user has existing recovery password: " + hasRecoveryPassword);
@@ -365,15 +367,19 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
         .collect(Collectors.toList());
 
     if (usernamePasswords.isEmpty()) {
+      Log.d(TAG, "No valid SVR tokens in local store.");
       return Single.just(false);
     }
 
+    Log.d(TAG, "Valid tokens in local store, validating with SVR.");
     return registrationRepository.getSvrAuthCredential(getRegistrationData(), usernamePasswords)
                                  .flatMap(p -> {
                                    if (p.hasValidSvr2AuthCredential()) {
+                                     Log.d(TAG, "Saving valid SVR2 auth credential.");
                                      setSvrAuthCredentials(new SvrAuthCredentialSet(null, p.requireSvr2AuthCredential()));
                                      return Single.just(true);
                                    } else {
+                                     Log.d(TAG, "SVR2 response contained no valid SVR2 auth credentials.");
                                      return Single.just(false);
                                    }
                                  })

@@ -38,6 +38,10 @@ sealed class ContactSearchKey {
       ContactSearchConfiguration.SectionKey.PHONE_NUMBER -> SelectedContact.forPhone(null, query)
       else -> error("Unexpected section for unknown recipient: $sectionKey")
     }
+
+    override fun toString(): String {
+      return "UnknownRecipientKey(sectionKey=$sectionKey)"
+    }
   }
 
   /**

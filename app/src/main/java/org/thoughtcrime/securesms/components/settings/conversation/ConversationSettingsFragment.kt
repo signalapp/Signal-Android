@@ -72,10 +72,9 @@ import org.thoughtcrime.securesms.groups.ui.invitesandrequests.ManagePendingAndR
 import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupDescriptionDialog
 import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupInviteSentDialog
 import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupsLearnMoreBottomSheetDialogFragment
-import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationInitiationBottomSheetDialogFragment
 import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory
-import org.thoughtcrime.securesms.profiles.edit.EditProfileActivity
+import org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientExporter
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -199,7 +198,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
       val args = ConversationSettingsFragmentArgs.fromBundle(requireArguments())
       val groupId = args.groupId as ParcelableGroupId
 
-      startActivity(EditProfileActivity.getIntentForGroupProfile(requireActivity(), requireNotNull(ParcelableGroupId.get(groupId))))
+      startActivity(CreateProfileActivity.getIntentForGroupProfile(requireActivity(), requireNotNull(ParcelableGroupId.get(groupId))))
       true
     } else {
       super.onOptionsItemSelected(item)
@@ -279,7 +278,6 @@ class ConversationSettingsFragment : DSLSettingsFragment(
         is ConversationSettingsEvent.ShowAddMembersToGroupError -> showAddMembersToGroupError(event)
         is ConversationSettingsEvent.ShowGroupInvitesSentDialog -> showGroupInvitesSentDialog(event)
         is ConversationSettingsEvent.ShowMembersAdded -> showMembersAdded(event)
-        is ConversationSettingsEvent.InitiateGroupMigration -> GroupsV1MigrationInitiationBottomSheetDialogFragment.showForInitiation(parentFragmentManager, event.recipientId)
       }
     }
   }
@@ -351,7 +349,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
               descriptionShouldLinkify = groupState.groupDescriptionShouldLinkify,
               canEditGroupAttributes = groupState.canEditGroupAttributes,
               onEditGroupDescription = {
-                startActivity(EditProfileActivity.getIntentForGroupProfile(requireActivity(), groupState.groupId))
+                startActivity(CreateProfileActivity.getIntentForGroupProfile(requireActivity(), groupState.groupId))
               },
               onViewGroupDescription = {
                 GroupDescriptionDialog.show(childFragmentManager, groupState.groupId, null, groupState.groupDescriptionShouldLinkify)
@@ -363,7 +361,6 @@ class ConversationSettingsFragment : DSLSettingsFragment(
             LegacyGroupPreference.Model(
               state = groupState.legacyGroupState,
               onLearnMoreClick = { GroupsLearnMoreBottomSheetDialogFragment.show(parentFragmentManager) },
-              onUpgradeClick = { viewModel.initiateGroupUpgrade() },
               onMmsWarningClick = { startActivity(Intent(requireContext(), InviteActivity::class.java)) }
             )
           )
@@ -555,7 +552,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
         }
       }
 
-      if (state.sharedMedia != null && state.sharedMedia.count > 0) {
+      if (state.sharedMedia.isNotEmpty()) {
         dividerPref()
 
         sectionHeaderPref(R.string.recipient_preference_activity__shared_media)
@@ -563,7 +560,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
         @Suppress("DEPRECATION")
         customPref(
           SharedMediaPreference.Model(
-            mediaCursor = state.sharedMedia,
+            mediaRecords = state.sharedMedia,
             mediaIds = state.sharedMediaIds,
             onMediaRecordClick = { view, mediaRecord, isLtr ->
               view.transitionName = "thumb"

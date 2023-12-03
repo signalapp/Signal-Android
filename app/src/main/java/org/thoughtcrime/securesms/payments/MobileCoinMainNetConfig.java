@@ -9,7 +9,7 @@ import com.mobilecoin.lib.Verifier;
 import com.mobilecoin.lib.exceptions.AttestationException;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.Base64;
+import org.signal.core.util.Base64;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.internal.push.AuthCredentials;
 

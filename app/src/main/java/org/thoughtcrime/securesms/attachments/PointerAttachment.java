@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 import org.thoughtcrime.securesms.blurhash.BlurHash;
 import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
-import org.thoughtcrime.securesms.util.Base64;
+import org.signal.core.util.Base64;
 import org.whispersystems.signalservice.api.InvalidMessageStructureException;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
@@ -108,7 +108,7 @@ public class PointerAttachment extends Attachment {
     String encodedKey = null;
 
     if (pointer.get().asPointer().getKey() != null) {
-      encodedKey = Base64.encodeBytes(pointer.get().asPointer().getKey());
+      encodedKey = Base64.encodeWithPadding(pointer.get().asPointer().getKey());
     }
 
     return Optional.of(new PointerAttachment(pointer.get().getContentType(),
@@ -144,7 +144,7 @@ public class PointerAttachment extends Attachment {
                                              pointer.getFileName(),
                                              thumbnail != null ? thumbnail.asPointer().getCdnNumber() : 0,
                                              thumbnail != null ? thumbnail.asPointer().getRemoteId().toString() : "0",
-                                             thumbnail != null && thumbnail.asPointer().getKey() != null ? Base64.encodeBytes(thumbnail.asPointer().getKey()) : null,
+                                             thumbnail != null && thumbnail.asPointer().getKey() != null ? Base64.encodeWithPadding(thumbnail.asPointer().getKey()) : null,
                                              null,
                                              thumbnail != null ? thumbnail.asPointer().getDigest().orElse(null) : null,
                                              thumbnail != null ? thumbnail.asPointer().getIncrementalDigest().orElse(null) : null,
@@ -175,7 +175,7 @@ public class PointerAttachment extends Attachment {
                                              quotedAttachment.fileName,
                                              thumbnail != null ? thumbnail.asPointer().getCdnNumber() : 0,
                                              thumbnail != null ? thumbnail.asPointer().getRemoteId().toString() : "0",
-                                             thumbnail != null && thumbnail.asPointer().getKey() != null ? Base64.encodeBytes(thumbnail.asPointer().getKey()) : null,
+                                             thumbnail != null && thumbnail.asPointer().getKey() != null ? Base64.encodeWithPadding(thumbnail.asPointer().getKey()) : null,
                                              null,
                                              thumbnail != null ? thumbnail.asPointer().getDigest().orElse(null) : null,
                                              thumbnail != null ? thumbnail.asPointer().getIncrementalDigest().orElse(null) : null,

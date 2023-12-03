@@ -1,56 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    tools:viewBindingIgnore="true"
+<!--
+  ~ Copyright 2023 Signal Messenger, LLC
+  ~ SPDX-License-Identifier: AGPL-3.0-only
+  -->
+
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:parentTag="org.thoughtcrime.securesms.components.TransferControlView">
+    android:animateLayoutChanges="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:parentTag="org.thoughtcrime.securesms.components.transfercontrols.TransferControlView">
 
-    <com.pnikosis.materialishprogress.ProgressWheel
-        android:id="@+id/progress_wheel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:visibility="gone"
-        android:padding="4dp"
-        app:matProg_barColor="@color/core_ultramarine"
-        app:matProg_rimColor="@color/core_grey_05"
-        app:matProg_linearProgress="true"
-        app:matProg_spinSpeed="0.2"
-        app:matProg_barWidth="2dp"
-        app:matProg_rimWidth="2dp"
-        app:matProg_circleRadius="24dp"
-        tools:visibility="visible"/>
+    <View
+        android:id="@+id/secondary_background"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/transfer_controls_background"
+        android:longClickable="false"
+        app:layout_constraintBottom_toBottomOf="@+id/secondary_details_text"
+        app:layout_constraintEnd_toEndOf="@+id/secondary_details_text"
+        app:layout_constraintStart_toStartOf="@+id/secondary_progress_view"
+        app:layout_constraintTop_toTopOf="@+id/secondary_details_text" />
 
-    <LinearLayout
-        android:id="@+id/download_details"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <View
+        android:id="@+id/primary_background"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/transfer_control_view_primary_background_height"
         android:layout_gravity="center"
-        android:padding="4dp"
+        android:background="@drawable/transfer_controls_play_background"
+        android:longClickable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/primary_details_text"
+        app:layout_constraintStart_toStartOf="@+id/primary_progress_view"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <org.thoughtcrime.securesms.components.transfercontrols.TransferProgressView
+        android:id="@+id/secondary_progress_view"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:layout_gravity="center"
+        android:paddingStart="4dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="-4dp"
+        android:paddingBottom="4dp"
+        app:iconSize="12dp"
+        app:stopIconSize="6dp"
+        app:stopIconCornerRadius="1dp"
+        app:layout_constraintStart_toStartOf="@+id/vertical_guideline"
+        app:layout_constraintTop_toTopOf="@+id/horizontal_guideline" />
+
+    <TextView
+        android:id="@+id/secondary_details_text"
+        style="@style/Signal.Text.Caption"
+        android:includeFontPadding="false"
+        android:layout_width="wrap_content"
+        android:layout_height="26dp"
+        android:layout_marginStart="@dimen/transfer_control_view_progressbar_to_textview_margin"
+        android:layout_marginEnd="4dp"
+        android:fontFamily="sans-serif-light"
         android:gravity="center"
+        android:longClickable="false"
+        android:paddingStart="4dp"
+        android:paddingTop="2dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="2dp"
+        android:textColor="@color/signal_colorOnCustom"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintStart_toEndOf="@+id/secondary_progress_view"
+        app:layout_constraintTop_toTopOf="@+id/secondary_progress_view" />
+
+    <org.thoughtcrime.securesms.components.transfercontrols.TransferProgressView
+        android:id="@+id/primary_progress_view"
+        android:layout_width="@dimen/transfer_control_view_primary_background_height"
+        android:layout_height="@dimen/transfer_control_view_primary_background_height"
+        app:iconSize="24dp"
+        app:stopIconSize="14dp"
+        app:stopIconCornerRadius="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/primary_details_text"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/primary_details_text"
+        style="@style/Signal.Text.BodyLarge"
+        android:includeFontPadding="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:longClickable="false"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:textColor="@color/signal_colorOnCustom"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toBottomOf="@+id/primary_progress_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/primary_progress_view"
+        app:layout_constraintTop_toTopOf="@+id/primary_progress_view" />
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/play_video_button"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_margin="12dp"
+        android:contentDescription="@string/ThumbnailView_Play_video_description"
+        android:scaleType="fitXY"
+        android:tint="@color/signal_colorOnCustom"
+        app:layout_constraintBottom_toBottomOf="@+id/primary_progress_view"
+        app:layout_constraintEnd_toEndOf="@+id/primary_progress_view"
+        app:layout_constraintStart_toStartOf="@+id/primary_progress_view"
+        app:layout_constraintTop_toTopOf="@+id/primary_progress_view"
+        app:srcCompat="@drawable/triangle_right"
+        tools:ignore="RtlHardcoded,RtlSymmetry"
+        tools:visibility="gone" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vertical_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="6dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horizontal_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:visibility="gone"
-        tools:visibility="visible">
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:tint="@color/core_grey_60"
-            app:srcCompat="@drawable/ic_arrow_down_circle_filled" />
-
-        <TextView
-            android:id="@+id/download_details_text"
-            style="@style/Signal.Text.Preview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="4dp"
-            android:fontFamily="sans-serif-medium"
-            android:gravity="center"
-            android:longClickable="false"
-            android:textColor="@color/black" />
-
-    </LinearLayout>
-
+        app:layout_constraintGuide_begin="6dp" />
 </merge>

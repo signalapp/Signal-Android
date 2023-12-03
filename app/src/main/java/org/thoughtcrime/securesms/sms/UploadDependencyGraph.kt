@@ -11,7 +11,6 @@ import org.thoughtcrime.securesms.jobmanager.JobManager
 import org.thoughtcrime.securesms.jobs.AttachmentCompressionJob
 import org.thoughtcrime.securesms.jobs.AttachmentCopyJob
 import org.thoughtcrime.securesms.jobs.AttachmentUploadJob
-import org.thoughtcrime.securesms.jobs.ResumableUploadSpecJob
 import org.thoughtcrime.securesms.mms.OutgoingMessage
 
 /**
@@ -196,12 +195,10 @@ class UploadDependencyGraph private constructor(
      */
     private fun createAttachmentUploadChain(jobManager: JobManager, databaseAttachment: DatabaseAttachment): Pair<JobId, JobManager.Chain> {
       val compressionJob: Job = AttachmentCompressionJob.fromAttachment(databaseAttachment, false, -1)
-      val resumableUploadSpecJob: Job = ResumableUploadSpecJob()
       val uploadJob: Job = AttachmentUploadJob(databaseAttachment.attachmentId)
 
       return uploadJob.id to jobManager
         .startChain(compressionJob)
-        .then(resumableUploadSpecJob)
         .then(uploadJob)
     }
   }

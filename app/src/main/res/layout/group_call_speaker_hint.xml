@@ -19,7 +19,7 @@
         android:text="@string/WebRtcCallScreen_swipe_up_to_change_views"
         app:drawableStartCompat="@drawable/ic_arrow_up_16"
         android:drawablePadding="8dp"
-        android:textColor="@color/core_grey_05"
-        app:drawableTint="@color/core_grey_05" />
+        android:textColor="@color/signal_light_colorOnSecondaryContainer"
+        app:drawableTint="@color/signal_light_colorOnSecondaryContainer" />
 
 </FrameLayout>

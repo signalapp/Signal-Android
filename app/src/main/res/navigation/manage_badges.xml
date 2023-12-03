@@ -28,7 +28,7 @@
 
     <dialog
         android:id="@+id/expiredBadgeDialog"
-        android:name="org.thoughtcrime.securesms.badges.self.expired.ExpiredBadgeBottomSheetDialogFragment"
+        android:name="org.thoughtcrime.securesms.badges.self.expired.ExpiredOneTimeBadgeBottomSheetDialogFragment"
         android:label="dialog_expired_badge">
 
         <argument

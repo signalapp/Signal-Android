@@ -66,4 +66,8 @@ public class ProfileContactPhoto implements ContactPhoto {
   public int hashCode() {
     return Objects.hash(recipient, avatarObject, profileAvatarFileDetails);
   }
+
+  public @NonNull Recipient getRecipient() {
+    return recipient;
+  }
 }

@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.database.model.ParentStoryId
 import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.mms.IncomingMediaMessage
+import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
@@ -73,7 +73,8 @@ class MmsTableTest_stories {
     )
 
     MmsHelper.insert(
-      IncomingMediaMessage(
+      IncomingMessage(
+        type = MessageType.NORMAL,
         from = sender,
         sentTimeMillis = 2,
         serverTimeMillis = 2,
@@ -95,7 +96,8 @@ class MmsTableTest_stories {
     // GIVEN
     val sender = recipients[0]
     val messageId = MmsHelper.insert(
-      IncomingMediaMessage(
+      IncomingMessage(
+        type = MessageType.NORMAL,
         from = sender,
         sentTimeMillis = 2,
         serverTimeMillis = 2,
@@ -122,7 +124,8 @@ class MmsTableTest_stories {
     // GIVEN
     val messageIds = recipients.take(5).map {
       MmsHelper.insert(
-        IncomingMediaMessage(
+        IncomingMessage(
+          type = MessageType.NORMAL,
           from = it,
           sentTimeMillis = 2,
           serverTimeMillis = 2,
@@ -154,7 +157,8 @@ class MmsTableTest_stories {
     val unviewedIds: List<Long> = (0 until 5).map {
       Thread.sleep(5)
       MmsHelper.insert(
-        IncomingMediaMessage(
+        IncomingMessage(
+          type = MessageType.NORMAL,
           from = recipients[it],
           sentTimeMillis = System.currentTimeMillis(),
           serverTimeMillis = 2,
@@ -168,7 +172,8 @@ class MmsTableTest_stories {
     val viewedIds: List<Long> = (0 until 5).map {
       Thread.sleep(5)
       MmsHelper.insert(
-        IncomingMediaMessage(
+        IncomingMessage(
+          type = MessageType.NORMAL,
           from = recipients[it],
           sentTimeMillis = System.currentTimeMillis(),
           serverTimeMillis = 2,
@@ -213,7 +218,8 @@ class MmsTableTest_stories {
   fun givenNoOutgoingStories_whenICheckIsOutgoingStoryAlreadyInDatabase_thenIExpectFalse() {
     // GIVEN
     MmsHelper.insert(
-      IncomingMediaMessage(
+      IncomingMessage(
+        type = MessageType.NORMAL,
         from = recipients[0],
         sentTimeMillis = 200,
         serverTimeMillis = 2,
@@ -321,7 +327,8 @@ class MmsTableTest_stories {
     )
 
     MmsHelper.insert(
-      IncomingMediaMessage(
+      IncomingMessage(
+        type = MessageType.NORMAL,
         from = myStory.id,
         sentTimeMillis = 201,
         serverTimeMillis = 201,

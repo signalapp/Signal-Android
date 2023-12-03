@@ -1,6 +1,7 @@
 package org.signal.util
 
-import com.google.protobuf.ByteString
+import okio.ByteString.Companion.toByteString
+import org.signal.core.util.Base64
 import org.signal.libsignal.internal.Native
 import org.signal.libsignal.internal.NativeHandleGuard
 import org.signal.libsignal.metadata.certificate.CertificateValidator
@@ -22,10 +23,11 @@ import org.whispersystems.signalservice.api.crypto.SignalServiceCipher
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
+import org.whispersystems.signalservice.internal.push.Content
+import org.whispersystems.signalservice.internal.push.DataMessage
+import org.whispersystems.signalservice.internal.push.Envelope
 import org.whispersystems.signalservice.internal.push.OutgoingPushMessage
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos
 import org.whispersystems.signalservice.internal.util.Util
-import org.whispersystems.util.Base64
 import java.util.Optional
 import java.util.UUID
 import java.util.concurrent.locks.ReentrantLock
@@ -78,17 +80,15 @@ class SignalClient {
     SessionBuilder(store, address).process(to.preKeyBundle)
   }
 
-  fun encryptUnsealedSender(to: SignalClient): SignalServiceProtos.Envelope {
+  fun encryptUnsealedSender(to: SignalClient): Envelope {
     val sentTimestamp = System.currentTimeMillis()
 
-    val message = SignalServiceProtos.DataMessage.newBuilder()
-      .setBody("Test Message")
-      .setTimestamp(sentTimestamp)
-      .build()
-
-    val content = SignalServiceProtos.Content.newBuilder()
-      .setDataMessage(message)
-      .build()
+    val content = Content(
+      dataMessage = DataMessage(
+        body = "Test Message",
+        timestamp = sentTimestamp
+      )
+    )
 
     val outgoingPushMessage: OutgoingPushMessage = cipher.encrypt(
       SignalProtocolAddress(to.aci.toString(), 1),
@@ -98,30 +98,28 @@ class SignalClient {
 
     val encryptedContent: ByteArray = Base64.decode(outgoingPushMessage.content)
 
-    return SignalServiceProtos.Envelope.newBuilder()
-      .setSourceServiceId(aci.toString())
-      .setSourceDevice(1)
-      .setDestinationServiceId(to.aci.toString())
-      .setTimestamp(sentTimestamp)
-      .setServerTimestamp(sentTimestamp)
-      .setServerGuid(UUID.randomUUID().toString())
-      .setType(SignalServiceProtos.Envelope.Type.valueOf(outgoingPushMessage.type))
-      .setUrgent(true)
-      .setContent(ByteString.copyFrom(encryptedContent))
-      .build()
+    return Envelope(
+      sourceServiceId = aci.toString(),
+      sourceDevice = 1,
+      destinationServiceId = to.aci.toString(),
+      timestamp = sentTimestamp,
+      serverTimestamp = sentTimestamp,
+      serverGuid = UUID.randomUUID().toString(),
+      type = Envelope.Type.fromValue(outgoingPushMessage.type),
+      urgent = true,
+      content = encryptedContent.toByteString()
+    )
   }
 
-  fun encryptSealedSender(to: SignalClient): SignalServiceProtos.Envelope {
+  fun encryptSealedSender(to: SignalClient): Envelope {
     val sentTimestamp = System.currentTimeMillis()
 
-    val message = SignalServiceProtos.DataMessage.newBuilder()
-      .setBody("Test Message")
-      .setTimestamp(sentTimestamp)
-      .build()
-
-    val content = SignalServiceProtos.Content.newBuilder()
-      .setDataMessage(message)
-      .build()
+    val content = Content(
+      dataMessage = DataMessage(
+        body = "Test Message",
+        timestamp = sentTimestamp
+      )
+    )
 
     val outgoingPushMessage: OutgoingPushMessage = cipher.encrypt(
       SignalProtocolAddress(to.aci.toString(), 1),
@@ -131,20 +129,20 @@ class SignalClient {
 
     val encryptedContent: ByteArray = Base64.decode(outgoingPushMessage.content)
 
-    return SignalServiceProtos.Envelope.newBuilder()
-      .setSourceServiceId(aci.toString())
-      .setSourceDevice(1)
-      .setDestinationServiceId(to.aci.toString())
-      .setTimestamp(sentTimestamp)
-      .setServerTimestamp(sentTimestamp)
-      .setServerGuid(UUID.randomUUID().toString())
-      .setType(SignalServiceProtos.Envelope.Type.valueOf(outgoingPushMessage.type))
-      .setUrgent(true)
-      .setContent(ByteString.copyFrom(encryptedContent))
-      .build()
+    return Envelope(
+      sourceServiceId = aci.toString(),
+      sourceDevice = 1,
+      destinationServiceId = to.aci.toString(),
+      timestamp = sentTimestamp,
+      serverTimestamp = sentTimestamp,
+      serverGuid = UUID.randomUUID().toString(),
+      type = Envelope.Type.fromValue(outgoingPushMessage.type),
+      urgent = true,
+      content = encryptedContent.toByteString()
+    )
   }
 
-  fun decryptMessage(envelope: SignalServiceProtos.Envelope) {
+  fun decryptMessage(envelope: Envelope) {
     cipher.decrypt(envelope, System.currentTimeMillis())
   }
 }

@@ -11,12 +11,10 @@ import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.groups.GroupId;
-import org.thoughtcrime.securesms.groups.GroupsV1MigrationUtil;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.signalservice.api.storage.SignalGroupV2Record;
 import org.whispersystems.signalservice.internal.storage.protos.GroupV2Record;
 
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Optional;
@@ -98,26 +96,9 @@ public final class GroupV2RecordProcessor extends DefaultStorageRecordProcessor<
     }
   }
 
-  /**
-   * This contains a pretty big compromise: In the event that the new GV2 group we learned about
-   * was, in fact, a migrated V1 group we already knew about, we handle the migration here. This
-   * isn't great because the migration will likely result in network activity. And because this is
-   * all happening in a transaction, this could keep the transaction open for longer than we'd like.
-   * However, given that nearly all V1 groups have already been migrated, we're at a point where
-   * this event should be extraordinarily rare, and it didn't seem worth it to add a lot of
-   * complexity to accommodate this specific scenario.
-   */
   @Override
-  void insertLocal(@NonNull SignalGroupV2Record record) throws IOException {
-    GroupId.V2 actualV2Id   = GroupId.v2(record.getMasterKeyOrThrow());
-    GroupId.V1 possibleV1Id = gv1GroupsByExpectedGv2Id.get(actualV2Id);
-
-    if (possibleV1Id != null) {
-      Log.i(TAG, "Discovered a new GV2 ID that is actually a migrated V1 group! Migrating now.");
-      GroupsV1MigrationUtil.performLocalMigration(context, possibleV1Id);
-    } else {
-      recipientTable.applyStorageSyncGroupV2Insert(record);
-    }
+  void insertLocal(@NonNull SignalGroupV2Record record) {
+    recipientTable.applyStorageSyncGroupV2Insert(record);
   }
 
   @Override

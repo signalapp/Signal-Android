@@ -68,6 +68,13 @@ object DonationErrorDialogs {
       )
     }
 
+    override fun onTryBankTransferAgain(context: Context): DonationErrorParams.ErrorAction<Unit>? {
+      return DonationErrorParams.ErrorAction(
+        label = R.string.DeclineCode__try,
+        action = {}
+      )
+    }
+
     override fun onLearnMore(context: Context): DonationErrorParams.ErrorAction<Unit>? {
       return DonationErrorParams.ErrorAction(
         label = R.string.DeclineCode__learn_more,

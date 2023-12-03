@@ -3,10 +3,10 @@ package org.thoughtcrime.securesms.groups.v2;
 import androidx.annotation.NonNull;
 
 import org.junit.Test;
+import org.signal.core.util.Base64;
 import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.storageservice.protos.groups.GroupInviteLink;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.util.Base64UrlSafe;
 
 import java.io.IOException;
 
@@ -98,13 +98,13 @@ public final class GroupInviteLinkUrl_InvalidGroupLinkException_Test {
   private static String createEncodedProtobuf(@NonNull byte[] groupMasterKey,
                                               @NonNull byte[] passwordBytes)
   {
-    return Base64UrlSafe.encodeBytesWithoutPadding(new GroupInviteLink.Builder()
-                                                                      .v1Contents(new GroupInviteLink.GroupInviteLinkContentsV1.Builder()
-                                                                                                     .groupMasterKey(ByteString.of(groupMasterKey))
-                                                                                                     .inviteLinkPassword(ByteString.of(passwordBytes))
-                                                                                                     .build())
-                                                                      .build()
-                                                                      .encode());
+    return Base64.encodeUrlSafeWithoutPadding(new GroupInviteLink.Builder()
+                                                                 .v1Contents(new GroupInviteLink.GroupInviteLinkContentsV1.Builder()
+                                                                                 .groupMasterKey(ByteString.of(groupMasterKey))
+                                                                                 .inviteLinkPassword(ByteString.of(passwordBytes))
+                                                                                 .build())
+                                                                 .build()
+                                                                 .encode());
   }
 
 }

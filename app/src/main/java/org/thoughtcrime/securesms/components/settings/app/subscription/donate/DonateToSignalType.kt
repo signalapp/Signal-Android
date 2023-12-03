@@ -12,8 +12,8 @@ enum class DonateToSignalType(val requestCode: Short) : Parcelable {
 
   fun toErrorSource(): DonationErrorSource {
     return when (this) {
-      ONE_TIME -> DonationErrorSource.BOOST
-      MONTHLY -> DonationErrorSource.SUBSCRIPTION
+      ONE_TIME -> DonationErrorSource.ONE_TIME
+      MONTHLY -> DonationErrorSource.MONTHLY
       GIFT -> DonationErrorSource.GIFT
     }
   }

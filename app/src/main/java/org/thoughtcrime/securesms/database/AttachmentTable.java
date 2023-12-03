@@ -37,12 +37,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.signal.core.util.Base64;
 import org.signal.core.util.CursorExtensionsKt;
 import org.signal.core.util.CursorUtil;
 import org.signal.core.util.SQLiteDatabaseExtensionsKt;
 import org.signal.core.util.SetUtil;
 import org.signal.core.util.SqlUtil;
 import org.signal.core.util.StreamUtil;
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
@@ -60,7 +62,6 @@ import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.SentMediaQuality;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
-import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.FileUtils;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.MediaUtil;
@@ -586,6 +587,7 @@ public class AttachmentTable extends DatabaseTable {
 
     if (MediaUtil.isImageType(contentType) || MediaUtil.isVideoType(contentType)) {
       Glide.get(context).clearDiskCache();
+      ThreadUtil.runOnMain(() -> Glide.get(context).clearMemory());
     }
   }
 
@@ -845,6 +847,10 @@ public class AttachmentTable extends DatabaseTable {
   @NonNull Map<Attachment, AttachmentId> insertAttachmentsForMessage(long mmsId, @NonNull List<Attachment> attachments, @NonNull List<Attachment> quoteAttachment)
       throws MmsException
   {
+    if (attachments.isEmpty() && quoteAttachment.isEmpty()) {
+      return Collections.emptyMap();
+    }
+
     Log.d(TAG, "insertParts(" + attachments.size() + ")");
 
     Map<Attachment, AttachmentId> insertedAttachments = new HashMap<>();
@@ -1189,7 +1195,7 @@ public class AttachmentTable extends DatabaseTable {
       DigestInputStream          digestInputStream = new DigestInputStream(in, messageDigest);
       Pair<byte[], OutputStream> out               = ModernEncryptingPartOutputStream.createFor(attachmentSecret, tempFile, false);
       long                       length            = StreamUtil.copy(digestInputStream, out.second);
-      String                     hash              = Base64.encodeBytes(digestInputStream.getMessageDigest().digest());
+      String                     hash              = Base64.encodeWithPadding(digestInputStream.getMessageDigest().digest());
 
       if (!tempFile.renameTo(destination)) {
         Log.w(TAG, "Couldn't rename " + tempFile.getPath() + " to " + destination.getPath());

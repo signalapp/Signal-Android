@@ -1,13 +1,13 @@
 package org.thoughtcrime.securesms.badges.gifts
 
 import android.content.Context
+import org.signal.core.util.Base64
 import org.signal.libsignal.zkgroup.InvalidInputException
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
 import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.util.Base64
 import java.lang.Integer.min
 import java.util.concurrent.TimeUnit
 
@@ -32,7 +32,7 @@ object Gifts {
   ): OutgoingMessage {
     return OutgoingMessage(
       threadRecipient = recipient,
-      body = Base64.encodeBytes(giftBadge.encode()),
+      body = Base64.encodeWithPadding(giftBadge.encode()),
       isSecure = true,
       sentTimeMillis = sentTimestamp,
       expiresIn = expiresIn,

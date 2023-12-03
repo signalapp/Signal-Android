@@ -16,6 +16,7 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.mebiBytes
 import org.signal.core.util.readToList
 import org.signal.core.util.readToSingleInt
+import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullString
 import org.signal.core.util.select
 import org.signal.core.util.update
@@ -56,7 +57,7 @@ class LogDatabase private constructor(
   companion object {
     private val TAG = Log.tag(LogDatabase::class.java)
 
-    private const val DATABASE_VERSION = 3
+    private const val DATABASE_VERSION = 4
     private const val DATABASE_NAME = "signal-logs.db"
 
     @SuppressLint("StaticFieldLeak") // We hold an Application context, not a view context
@@ -83,11 +84,15 @@ class LogDatabase private constructor(
   @get:JvmName("crashes")
   val crashes: CrashTable by lazy { CrashTable(this) }
 
+  @get:JvmName("anrs")
+  val anrs: AnrTable by lazy { AnrTable(this) }
+
   override fun onCreate(db: SQLiteDatabase) {
     Log.i(TAG, "onCreate()")
 
     db.execSQL(LogTable.CREATE_TABLE)
     db.execSQL(CrashTable.CREATE_TABLE)
+    db.execSQL(AnrTable.CREATE_TABLE)
 
     LogTable.CREATE_INDEXES.forEach { db.execSQL(it) }
     CrashTable.CREATE_INDEXES.forEach { db.execSQL(it) }
@@ -107,6 +112,10 @@ class LogDatabase private constructor(
       db.execSQL("CREATE TABLE crash (_id INTEGER PRIMARY KEY, created_at INTEGER, name TEXT, message TEXT, stack_trace TEXT, last_prompted_at INTEGER)")
       db.execSQL("CREATE INDEX crash_created_at ON crash (created_at)")
       db.execSQL("CREATE INDEX crash_name_message ON crash (name, message)")
+    }
+
+    if (oldVersion < 4) {
+      db.execSQL("CREATE TABLE anr (_id INTEGER PRIMARY KEY, created_at INTEGER NOT NULL, thread_dump TEXT NOT NULL)")
     }
   }
 
@@ -258,6 +267,12 @@ class LogDatabase private constructor(
         .run()
     }
 
+    fun clearAll() {
+      writableDatabase
+        .delete(TABLE_NAME)
+        .run()
+    }
+
     private fun getSize(query: String?, args: Array<String>?): Long {
       readableDatabase.query(TABLE_NAME, arrayOf("SUM($SIZE)"), query, args, null, null, null).use { cursor ->
         return if (cursor.moveToFirst()) {
@@ -387,6 +402,12 @@ class LogDatabase private constructor(
         .run()
     }
 
+    fun clear() {
+      writableDatabase
+        .delete(TABLE_NAME)
+        .run()
+    }
+
     private fun CrashConfig.CrashPattern.asLikeQuery(): Pair<String, Array<String>> {
       val query = StringBuilder()
       var args = arrayOf<String>()
@@ -414,5 +435,73 @@ class LogDatabase private constructor(
 
       return query.toString() to args
     }
+  }
+
+  class AnrTable(private val openHelper: LogDatabase) {
+    companion object {
+      const val TABLE_NAME = "anr"
+      const val ID = "_id"
+      const val CREATED_AT = "created_at"
+      const val THREAD_DUMP = "thread_dump"
+
+      const val CREATE_TABLE = """
+        CREATE TABLE $TABLE_NAME (
+          $ID INTEGER PRIMARY KEY,
+          $CREATED_AT INTEGER NOT NULL,
+          $THREAD_DUMP TEXT NOT NULL
+        )
+      """
+    }
+
+    private val readableDatabase: SQLiteDatabase get() = openHelper.readableDatabase
+    private val writableDatabase: SQLiteDatabase get() = openHelper.writableDatabase
+
+    fun save(currentTime: Long, threadDumps: String) {
+      writableDatabase
+        .insertInto(TABLE_NAME)
+        .values(
+          CREATED_AT to currentTime,
+          THREAD_DUMP to threadDumps
+        )
+        .run()
+
+      val count = writableDatabase
+        .delete(TABLE_NAME)
+        .where(
+          """
+          $ID NOT IN (SELECT $ID FROM $TABLE_NAME ORDER BY $CREATED_AT DESC LIMIT 10)
+          """.trimIndent()
+        )
+        .run()
+
+      if (count > 0) {
+        Log.i(TAG, "Deleted $count old ANRs")
+      }
+    }
+
+    fun getAll(): List<AnrRecord> {
+      return readableDatabase
+        .select()
+        .from(TABLE_NAME)
+        .run()
+        .readToList { cursor ->
+          AnrRecord(
+            createdAt = cursor.requireLong(CREATED_AT),
+            threadDump = cursor.requireNonNullString(THREAD_DUMP)
+          )
+        }
+        .sortedBy { it.createdAt }
+    }
+
+    fun clear() {
+      writableDatabase
+        .delete(TABLE_NAME)
+        .run()
+    }
+
+    data class AnrRecord(
+      val createdAt: Long,
+      val threadDump: String
+    )
   }
 }

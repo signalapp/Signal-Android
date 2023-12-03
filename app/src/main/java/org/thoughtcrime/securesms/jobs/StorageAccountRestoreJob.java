@@ -6,7 +6,6 @@ import androidx.annotation.Nullable;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.JobTracker;
@@ -106,7 +105,7 @@ public class StorageAccountRestoreJob extends BaseJob {
     Log.i(TAG, "Applying changes locally...");
     SignalDatabase.getRawDatabase().beginTransaction();
     try {
-      StorageSyncHelper.applyAccountStorageSyncUpdates(context, Recipient.self(), accountRecord, false);
+      StorageSyncHelper.applyAccountStorageSyncUpdates(context, Recipient.self().fresh(), accountRecord, false);
       SignalDatabase.getRawDatabase().setTransactionSuccessful();
     } finally {
       SignalDatabase.getRawDatabase().endTransaction();

@@ -66,7 +66,7 @@ class CallLinkIncomingRequestSheet : ComposeBottomSheetDialogFragment() {
     }
   }
 
-  override fun isDarkTheme(): Boolean = true
+  override val forceDarkTheme = true
 
   private val recipientId: RecipientId by lazy {
     requireArguments().getParcelableCompat(RECIPIENT_ID, RecipientId::class.java)!!

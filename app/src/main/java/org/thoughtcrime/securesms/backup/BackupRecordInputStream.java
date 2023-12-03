@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 
 import org.signal.core.util.Conversions;
 import org.signal.core.util.StreamUtil;
+import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.kdf.HKDF;
 import org.signal.libsignal.protocol.util.ByteUtil;
 import org.thoughtcrime.securesms.backup.proto.BackupFrame;
@@ -26,6 +27,9 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 class BackupRecordInputStream extends FullBackupBase.BackupStream {
+
+  private final String TAG             = Log.tag(BackupRecordInputStream.class);
+  private final int    MAX_BUFFER_SIZE = 8192;
 
   private final int         version;
   private final InputStream in;
@@ -92,6 +96,35 @@ class BackupRecordInputStream extends FullBackupBase.BackupStream {
     return readFrame(in);
   }
 
+  boolean validateFrame() throws InvalidAlgorithmParameterException, IOException, InvalidKeyException {
+    int frameLength = decryptFrameLength(in);
+    if (frameLength <= 0) {
+      Log.i(TAG, "Backup frame is not valid due to negative frame length. This is likely because the decryption passphrase was wrong.");
+      return false;
+    }
+
+    int    bufferSize = Math.min(MAX_BUFFER_SIZE, frameLength);
+    byte[] buffer     = new byte[bufferSize];
+    byte[] theirMac   = new byte[10];
+    while (frameLength > 0) {
+      int read = in.read(buffer, 0, Math.min(buffer.length, frameLength));
+      if (read == -1) return false;
+
+      if (read < MAX_BUFFER_SIZE) {
+        final int frameEndIndex = read - 10;
+        mac.update(buffer, 0, frameEndIndex);
+        System.arraycopy(buffer, frameEndIndex, theirMac, 0, theirMac.length);
+      } else {
+        mac.update(buffer, 0, read);
+      }
+      frameLength -= read;
+    }
+    
+    byte[] ourMac = ByteUtil.trim(mac.doFinal(), 10);
+
+    return MessageDigest.isEqual(ourMac, theirMac);
+  }
+
   void readAttachmentTo(OutputStream out, int length) throws IOException {
     try {
       Conversions.intToByteArray(iv, 0, counter++);
@@ -142,24 +175,7 @@ class BackupRecordInputStream extends FullBackupBase.BackupStream {
 
   private BackupFrame readFrame(InputStream in) throws IOException {
     try {
-      byte[] length = new byte[4];
-      StreamUtil.readFully(in, length);
-
-      Conversions.intToByteArray(iv, 0, counter++);
-      cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(cipherKey, "AES"), new IvParameterSpec(iv));
-
-      int frameLength;
-      if (BackupVersions.isFrameLengthEncrypted(version)) {
-        mac.update(length);
-        // this depends upon cipher being a stream cipher mode in order to get back the length without needing a full AES block-size input
-        byte[] decryptedLength = cipher.update(length);
-        if (decryptedLength.length != length.length) {
-          throw new IOException("Cipher was not a stream cipher!");
-        }
-        frameLength = Conversions.byteArrayToInt(decryptedLength);
-      } else {
-        frameLength = Conversions.byteArrayToInt(length);
-      }
+      int frameLength = decryptFrameLength(in);
 
       byte[] frame = new byte[frameLength];
       StreamUtil.readFully(in, frame);
@@ -180,6 +196,28 @@ class BackupRecordInputStream extends FullBackupBase.BackupStream {
     } catch (InvalidKeyException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
       throw new AssertionError(e);
     }
+  }
+
+  private int decryptFrameLength(InputStream inputStream) throws IOException, InvalidAlgorithmParameterException, InvalidKeyException {
+    byte[] length = new byte[4];
+    StreamUtil.readFully(inputStream, length);
+
+    Conversions.intToByteArray(iv, 0, counter++);
+    cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(cipherKey, "AES"), new IvParameterSpec(iv));
+
+    int frameLength;
+    if (BackupVersions.isFrameLengthEncrypted(version)) {
+      mac.update(length);
+      // this depends upon cipher being a stream cipher mode in order to get back the length without needing a full AES block-size input
+      byte[] decryptedLength = cipher.update(length);
+      if (decryptedLength.length != length.length) {
+        throw new IOException("Cipher was not a stream cipher!");
+      }
+      frameLength = Conversions.byteArrayToInt(decryptedLength);
+    } else {
+      frameLength = Conversions.byteArrayToInt(length);
+    }
+    return frameLength;
   }
 
   static class BadMacException extends IOException {}

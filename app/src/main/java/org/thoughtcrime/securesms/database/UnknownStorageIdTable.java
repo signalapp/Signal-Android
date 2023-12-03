@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.CursorUtil;
-import org.thoughtcrime.securesms.util.Base64;
+import org.signal.core.util.Base64;
 import org.signal.core.util.SqlUtil;
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord;
 import org.whispersystems.signalservice.api.storage.StorageId;
@@ -84,7 +84,7 @@ public class UnknownStorageIdTable extends DatabaseTable {
 
   public @Nullable SignalStorageRecord getById(@NonNull byte[] rawId) {
     String   query = STORAGE_ID + " = ?";
-    String[] args  = new String[] { Base64.encodeBytes(rawId) };
+    String[] args  = new String[] { Base64.encodeWithPadding(rawId) };
 
     try (Cursor cursor = databaseHelper.getSignalReadableDatabase().query(TABLE_NAME, null, query, args, null, null, null)) {
       if (cursor != null && cursor.moveToFirst()) {
@@ -104,7 +104,7 @@ public class UnknownStorageIdTable extends DatabaseTable {
     for (SignalStorageRecord insert : inserts) {
       ContentValues values = new ContentValues();
       values.put(TYPE, insert.getType());
-      values.put(STORAGE_ID, Base64.encodeBytes(insert.getId().getRaw()));
+      values.put(STORAGE_ID, Base64.encodeWithPadding(insert.getId().getRaw()));
 
       db.insert(TABLE_NAME, null, values);
     }
@@ -117,7 +117,7 @@ public class UnknownStorageIdTable extends DatabaseTable {
     Preconditions.checkArgument(db.inTransaction(), "Must be in a transaction!");
 
     for (StorageId id : deletes) {
-      String[] args = SqlUtil.buildArgs(Base64.encodeBytes(id.getRaw()));
+      String[] args = SqlUtil.buildArgs(Base64.encodeWithPadding(id.getRaw()));
       db.delete(TABLE_NAME, deleteQuery, args);
     }
   }

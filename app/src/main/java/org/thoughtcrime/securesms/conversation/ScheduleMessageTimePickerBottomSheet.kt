@@ -61,6 +61,10 @@ class ScheduleMessageTimePickerBottomSheet : FixedRoundedCornerBottomSheetDialog
       scheduledLocalDateTime = scheduledLocalDateTime.plusMinutes(5L - (scheduledLocalDateTime.minute % 5))
     }
 
+    if (scheduledLocalDateTime.isBefore(LocalDateTime.now())) {
+      scheduledLocalDateTime.plusDays(1)
+    }
+
     scheduledHour = scheduledLocalDateTime.hour
     scheduledMinute = scheduledLocalDateTime.minute
 

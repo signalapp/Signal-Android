@@ -177,10 +177,21 @@ class DSLConfiguration {
 
   fun tonalButton(
     text: DSLSettingsText,
+    icon: DSLSettingsIcon? = null,
     isEnabled: Boolean = true,
     onClick: () -> Unit
   ) {
-    val preference = Button.Model.Tonal(text, null, isEnabled, onClick)
+    val preference = Button.Model.Tonal(text, icon, isEnabled, onClick)
+    children.add(preference)
+  }
+
+  fun tonalWrappedButton(
+    text: DSLSettingsText,
+    icon: DSLSettingsIcon? = null,
+    isEnabled: Boolean = true,
+    onClick: () -> Unit
+  ) {
+    val preference = Button.Model.TonalWrapped(text, icon, isEnabled, onClick)
     children.add(preference)
   }
 

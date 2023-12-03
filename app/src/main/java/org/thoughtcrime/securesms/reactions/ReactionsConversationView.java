@@ -15,7 +15,6 @@ import androidx.core.content.ContextCompat;
 
 import com.annimon.stream.Stream;
 
-import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiImageView;
 import org.thoughtcrime.securesms.components.emoji.EmojiUtil;
@@ -118,6 +117,7 @@ public class ReactionsConversationView extends LinearLayout {
       return false;
     }
 
+    bubbleWidth = -1;
     this.records.clear();
     this.records.addAll(records);
 

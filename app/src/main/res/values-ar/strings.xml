@@ -15,6 +15,8 @@
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
   <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/5389476324250</string> -->
   <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="pending_transfer_url" translatable="false">https://support.signal.org/hc/articles/360031949872#pending</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string> -->
 
     <string name="yes">نعم</string>
     <string name="no">لا</string>
@@ -119,11 +121,8 @@
     <string name="BlockedUsersActivity__block">حظر</string>
 
     <!-- CreditCardFragment -->
-    <!-- Title of fragment detailing the donation amount for one-time donation, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__donation_amount_s">مَبلَغ التَّبَرُّع: %1$s</string>
-    <!-- Title of fragment detailing the donation amount for monthly donation, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__donation_amount_s_per_month">مَبلَغ التَّبَرُّع: %1$s/شهريًا</string>
-    <!-- Explanation of how to fill in the form, displayed above the credit card text fields -->
+    <!-- Title of fragment -->
+    <string name="CreditCardFragment__credit_or_debit_card">بطاقة الائتمان أو الخصم</string>
     <!-- Explanation of how to fill in the form and a note about pii, displayed above the credit card text fields -->
     <string name="CreditCardFragment__enter_your_card_details">يُرجى إدخال معلومات بطاقتك. لا يقوم سيجنال بجمع أو تخزين معلوماتك الشخصية.</string>
     <!-- Displayed as a hint in the card number text field -->
@@ -148,8 +147,18 @@
     <string name="CreditCardFragment__year_required">يُرجى إدخال السنة</string>
     <!-- Error displayed under the card expiry text field when the expiry year is invalid -->
     <string name="CreditCardFragment__invalid_year">سنة غير صحيحة</string>
-    <!-- Button label to confirm credit card input and proceed with payment -->
-    <string name="CreditCardFragment__continue">واصل</string>
+    <!-- Button label to confirm credit card input and proceed with one-time payment -->
+    <string name="CreditCardFragment__donate_s">تبرّع لـ %1$s</string>
+    <!-- Button label to confirm credit card input and proceed with subscription payment -->
+    <string name="CreditCardFragment__donate_s_month">تبرّع بـ %1$s/شهريًا</string>
+
+    <!-- OneTimeDonationPreference -->
+    <!-- Preference title with placeholder for amount. -->
+    <string name="OneTimeDonationPreference__one_time_s">%1$s مرة واحدة</string>
+    <!-- Preference subtitle when donation is pending -->
+    <string name="OneTimeDonationPreference__donation_pending">التبرّع معلق</string>
+    <!-- Preference subtitle when donation is processing -->
+    <string name="OneTimeDonationPreference__donation_processing">جارٍ معالجة التبرّع</string>
 
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">حظر ثم مغادرة %1$s؟</string>
@@ -408,6 +417,8 @@
 
     <string name="ConversationActivity_error_sending_media">خطأُ في إرسال الوسائط</string>
 
+    <!-- Message shown when opening an MMS group conversation with SMS disabled and there are no exported messages -->
+    <string name="ConversationActivity__sms_messaging_is_no_longer_supported">لم تعُد رسائل SMS مُدعّمة من طرف سيجنال.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">لم تعُد رسائل SMS مُدعّمة من طرف سيجنال. قم بدعوة %1$s إلى سيجنال لإبقاء المحادثة هنا.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
@@ -698,6 +709,8 @@
     <!-- Show percentage of completion of backup -->
     <string name="BackupsPreferenceFragment__s_so_far">‫%1$s%% إلى الآن…</string>
     <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">يحتاج سيجنال إلى إذن الوصول إلى سعة التخزين الخارجية لإنشاء نسخ احتياطية، ولكن رُفض الإذن على نحو دائم. الرجاء الاطلاع على إعدادات التطبيق ثم اختيار \"الصلاحيات\"، ثم تفعيل \"سعة التخزين\".</string>
+    <!-- Title of dialog shown when picking the time to perform a chat backup -->
+    <string name="BackupsPreferenceFragment__set_backup_time">ضبط وقت النسخ الاحتياطي</string>
 
 
     <!-- CustomDefaultPreference -->
@@ -1116,12 +1129,15 @@
     <string name="ManageProfileFragment_profile_name">اسم الحساب</string>
     <string name="ManageProfileFragment_username">اسم المستخدم</string>
     <string name="ManageProfileFragment_about">حول</string>
-    <string name="ManageProfileFragment_write_a_few_words_about_yourself">يمكنك كتابة بضع كلمات عنك</string>
-    <string name="ManageProfileFragment_your_name">اسمك</string>
-    <string name="ManageProfileFragment_your_username">اسم المستخدم الخاص بك</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">فشل ضبط صورة حسابك</string>
     <string name="ManageProfileFragment_badges">الشارات</string>
+    <!-- Text for a button that will take the user to the screen to manage their username link and QR code -->
+    <string name="ManageProfileFragment_link_setting_text">رمز أو رابط الاستجابة السريع</string>
     <string name="ManageProfileFragment__edit_photo">تحرير الصورة</string>
+    <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
+    <string name="ManageProfileFragment__link_tooltip_title">شارك اسم المُستخدم الخاص بك</string>
+    <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
+    <string name="ManageProfileFragment__link_tooltip_body">اسمح للآخرين ببدء محادثة معك عبر مشاركة رمز أو رابط الاستجابة السريع الفريد الخاص بك.</string>
     <!-- Snackbar message after creating username -->
     <string name="ManageProfileFragment__username_created">تم إنشاء اسم المستخدم</string>
     <!-- Snackbar message after copying username -->
@@ -1130,10 +1146,16 @@
     <string name="ManageProfileFragment__couldnt_delete_username">تعذّر حذف اسم المستخدم. يُرجى المحاولة مرة أخرى لاحقًا.</string>
     <!-- Snackbar message after successful deletion of username -->
     <string name="ManageProfileFragment__username_deleted">تم حذف اسم المستخدم</string>
+    <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
+    <string name="ManageProfileFragment__delete_username_dialog_title">حذف اسم المستخدم؟</string>
+    <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
+    <string name="ManageProfileFragment__delete_username_dialog_body">"سيُؤدي هذا إلى إزالة اسم المستخدم الخاص بك وتعطيل رمز الاستجابة السريع والرابط الخاصين بك. \"%1$s\" سيُصبح متاحًا للآخرين ليستفيدوا منه. هل أنت متأكد؟"</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
-    <string name="UsernameOutOfSyncReminder__something_went_wrong">حدثت مشكلة مع اسم المستخدم الخاص بك ولم يعد مخصصًا لحسابك. يمكنك محاولة تعيينه من جديد أو اختيار اسم مستخدم جديد.</string>
+    <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">حدثت مشكلة مع اسم المستخدم الخاص بك ولم يعد مخصصًا لحسابك. يمكنك محاولة تعيينه من جديد أو اختيار اسم مستخدم جديد.</string>
+    <!-- Displayed above the conversation list when a user needs to address an issue with their username link -->
+    <string name="UsernameOutOfSyncReminder__link_corrupt">حدث خطأ ما مع رمز الاستجابة السريع ورابط اسم المستخدم الخاصين بك، حيث لم يعد صالحًا. أنشئ رابطًا جديدًا للمشاركة مع الآخرين.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
     <string name="UsernameOutOfSyncReminder__fix_now">إصلاح الآن</string>
 
@@ -1729,7 +1751,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">هل تود السماح لـ %1$s بإرسال رسالة لك؟ لن تتلقى أي رسالة منه حتى تُلغي حظرك له.</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">الحصول على الجديد والتحديثات من %1$s؟ لن تصلك أي تحديثات حتى يُرفَع حظرك عنها.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">مُواصلة دردشاتك مع هذه المجموعة ومُشاركة اسمك وصورتك مع أعضاءها؟</string>
-    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">يجب ترقية هذه المجموعة لتفعيل ميزات جديدة مثل ‎@mention والمشرفين عليها. ستتم دعوة اﻷعضاء الذين لم يشاركوا أسمائهم أو صورهم في هذه المجموعة للانضمام إليها.</string>
+    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">This Legacy Group can no longer be used. Create a new group to activate new features like @mentions and admins.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">لا يمكن استخدام هذه المجموعة القديمة الطراز لأنها كبيرة جدا. الحد الأقصى للمجموعة هو %1$d.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">مُواصلة هذه الدردشة مع %1$s ومُشاركة اسمك وصورتك معه؟</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">الانضمام إلى هذه المجموعة ومشاركة اسمك وصورتك مع أعضائها؟ لن يعرفوا أنك قرأت رسالتهم حتى توافق.</string>
@@ -2380,9 +2402,13 @@
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">يعود الرقم %1$s إلى %2$s</string>
 
-    <!-- UpdateApkReadyListener -->
-    <string name="UpdateApkReadyListener_Signal_update">تحديث سيجنال</string>
-    <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">إصدار جديد لـ سيجنال متوفر، أنقر للتحديث</string>
+    <!-- ApkUpdateNotifications -->
+    <string name="ApkUpdateNotifications_prompt_install_title">تحديث سيجنال</string>
+    <string name="ApkUpdateNotifications_prompt_install_body">إصدار جديد من سيجنال متوفر. انقر للتحديث.</string>
+    <string name="ApkUpdateNotifications_failed_general_title">تعذّر على سيجنال التحديث</string>
+    <string name="ApkUpdateNotifications_failed_general_body">سنحاول من جديد لاحقًا.</string>
+    <string name="ApkUpdateNotifications_auto_update_success_title">تم تحديث سيجنال بنجاح</string>
+    <string name="ApkUpdateNotifications_auto_update_success_body">تم تحديثك تلقائيًا إلى الإصدار %1$s.</string>
 
     <!-- UntrustedSendDialog -->
     <string name="UntrustedSendDialog_send_message">هل تود إرسال الرسالة ؟</string>
@@ -2626,6 +2652,9 @@
         <item quantity="many">%1$d عنصر</item>
         <item quantity="other">%1$d عنصر</item>
     </plurals>
+    <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
+    <string name="TransferControlView__processing">جارٍ المعالجة…</string>
+
 
     <!-- UnauthorizedReminder -->
     <!-- Message shown in a reminder banner when the user\'s device is no longer registered -->
@@ -3043,24 +3072,13 @@
 
     <!-- verify_display_fragment -->
     <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
-    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">للتحقّق من أمان تعميتك من الطرف للطرف مع %1$s، يُرجى مطابقة لون البطاقة أعلاه مع جهازه ومقارنة الأرقام. إذا فشل تطابقهما، يُرجى السحب لتجربة زوج آخر من أرقام الأمان. ستحتاج إلى تطابق زوج واحد فقط.</string>
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">للتحقّق من أمان التشفير من الطرف للطرف مع %1$s، قارن الأرقام أعلاه بأجهزته. يُمكنه أيضًا مسح الرمز على جهازه.</string>
     <string name="verify_display_fragment__tap_to_scan">المس للمسح</string>
     <string name="verify_display_fragment__successful_match">تم التوافُق بنجاح</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">لقد فشل التحقق من رقم الأمان</string>
     <string name="verify_display_fragment__loading">قيد التحميل…</string>
     <string name="verify_display_fragment__mark_as_verified">علِّم كمُتحقَّق منه</string>
     <string name="verify_display_fragment__clear_verification">محو التحقق</string>
-    <!-- Banner at top of safety numbers screen explaining that we\'re updating how safety numbers work. -->
-    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">جارٍ تحديث أرقام الأمان.</string>
-
-    <!-- Title for dialog explaining for how safety numbers are transitioning to support usernames -->
-    <string name="PnpSafetyNumberEducationDialog__title">التغييرات التي ستطرأ على أرقام الأمان</string>
-    <!-- Message for dialog explaining for how safety numbers are transitioning to support usernames -->
-    <string name="PnpSafetyNumberEducationDialog__body">يتم تحديث أرقام الأمان على مدى فترة انتقالية لتفعيل ميزات الخصوصية القادمة في سيجنال-Signal.\n\nللتحقّق من أرقام الأمان، يُرجى مطابقة لون البطاقة مع جهاز جهة اتصالك. إذا فشل تطابقهما، يُرجى السحب لتجربة زوج آخر من أرقام الأمان. ستحتاج إلى تطابق زوج واحد فقط.</string>
-    <!-- Button for more information about the safety number changes. Takes user to support article -->
-    <string name="PnpSafetyNumberEducationDialog__help">بحاجة إلى مساعدة ؟</string>
-    <!-- Confirmation button for educating users about new safety number changes -->
-    <string name="PnpSafetyNumberEducationDialog__confirm">عُلم</string>
 
     <!-- verity_scan_fragment -->
     <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">امسح رمز الاستجابة السريعة المعروض على جهاز جهة اتصالك.</string>
@@ -3352,7 +3370,15 @@
     <string name="preferences_storage__six_months">6 أشهر</string>
     <string name="preferences_storage__thirty_days">30 يوما</string>
     <string name="preferences_storage__none">لا شيء</string>
-    <string name="preferences_storage__s_messages">%1$s رسائل</string>
+    <plurals name="preferences_storage__s_messages_plural">
+        <item quantity="zero">%1$s رسائل</item>
+        <item quantity="one">%1$s رسالة</item>
+        <item quantity="two">%1$s رسالتين</item>
+        <item quantity="few">%1$s رسائل</item>
+        <item quantity="many">%1$s رسالة</item>
+        <item quantity="other">%1$s رسالة</item>
+    </plurals>
+
     <string name="preferences_storage__custom">مخصص</string>
     <string name="preferences_advanced__use_system_emoji">استخدام الرموز التعبيرية بالنظام</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">تمرير جميع المكالمات عبر خادوم سيجنال لتجنّب الإفصاح عن عنوان بروتوكول الانترنت الخاص بك إلى جهة الاتصال. تفعيل الخاصيّة سيقلل من جودة المكالمة.</string>
@@ -3360,6 +3386,7 @@
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">الدفوعات</string>
     <string name="preferences_chats__chats">الدردشات</string>
+    <string name="preferences_app_updates__title">تحديثات التطبيق</string>
     <string name="preferences_data_and_storage__manage_storage">إدارة التخزين</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">استخدام بيانات أقل أثناء المكالمات</string>
     <string name="preferences_data_and_storage__never">أبدا</string>
@@ -4971,6 +4998,17 @@
     <string name="NewConversationActivity__view_contact">عرض جهات الاتصال</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
     <string name="NewConversationActivity__s_is_not_a_signal_user">لم يعُد %1$s من مستخدمي سيجنال</string>
+    <!-- Error message shown when we could not get a user from the username link -->
+    <string name="NewConversationActivity__">لم يعُد %1$s من مستخدمي سيجنال</string>
+    <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
+    <plurals name="CreateGroupActivity_not_signal_users">
+        <item quantity="zero">%1$s are not Signal users</item>
+        <item quantity="one">%1$s is not a Signal user</item>
+        <item quantity="two">%1$s are not Signal users</item>
+        <item quantity="few">%1$s are not Signal users</item>
+        <item quantity="many">%1$s are not Signal users</item>
+        <item quantity="other">%1$s are not Signal users</item>
+    </plurals>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">البحث باستخدام الاسم أو الرقم</string>
@@ -5172,6 +5210,12 @@
     <string name="ManageDonationsFragment__other_ways_to_give">طرق أخرى للتبرّع</string>
     <!-- Preference label to launch badge gifting -->
     <string name="ManageDonationsFragment__donate_for_a_friend">تبرّع لصديق</string>
+    <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
+    <string name="ManageDonationsFragment__couldnt_confirm_donation">تعذر تأكيد التبرع</string>
+    <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
+    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">تعذر تأكيد تبرعك بـ %1$s/شهريًا. تفقد تطبيق مصرفك لتأكيد عملية دفع iDEAL الخاصة بك.</string>
+    <!-- Dialog message shown when a one-time donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
+    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">تعذر تأكيد تبرعك بـ %1$s لمرة واحدة. تفقد تطبيق مصرفك لتأكيد عملية دفع iDEAL الخاصة بك.</string>
 
     <string name="Boost__enter_custom_amount">إدخال مَبلَغ مُخَصَّص</string>
     <!-- Error label when the amount is smaller than what we can accept -->
@@ -5183,6 +5227,12 @@
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">تعذّر إضافة الشارة. %1$s</string>
     <string name="MySupportPreference__please_contact_support">يُرجى الاتصال بفريق الدعم.</string>
+    <!-- Displayed as a subtitle on a row in the Manage Donations screen when payment for a donation is pending -->
+    <string name="MySupportPreference__payment_pending">عملية الدفع مُعلقة</string>
+    <!-- Displayed as a dialog message when clicking on a donation row that is pending. Placeholder is a formatted fiat amount -->
+    <string name="MySupportPreference__your_bank_transfer_of_s">تحويلك المصرفي بمبلغ %1$s مُعلق. عادة ما تستغرق التحويلات المصرفية يوم عمل واحد.  </string>
+    <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
+    <string name="MySupportPreference__learn_more">معرفة المزيد</string>
 
     <!-- Title of dialog telling user they need to update signal as it expired -->
     <string name="UpdateSignalExpiredDialog__title">تحديث سيجنال</string>
@@ -5232,12 +5282,16 @@
     <string name="Subscription__contact_support">الاتصال بالدعم</string>
     <string name="Subscription__get_a_s_badge">احصل على شارة %1$s</string>
 
-    <string name="SubscribeFragment__processing_payment">تجري معالجة الدفوعات…</string>
+    <string name="SubscribeFragment__processing_payment">تبرعك قيد المعالجة…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
-    <string name="DonationsErrors__error_processing_payment">حدث خطأ أثناء معالجة عملية الدفع</string>
+    <string name="DonationsErrors__error_processing_payment">حدث خطأ أثناء معالجة التبرع</string>
+    <!-- Displayed on manage donations screen as a dialog message when payment method failed -->
+    <string name="DonationsErrors__try_another_payment_method">يُرجى محاولة القيام بطريقة أخرى للدفع أو الاتصال بالمصرف الذي لديك عنده حساب للمزيد من المعلومات.</string>
+    <!-- Displayed on manage donations screen error dialogs as an action label -->
+    <string name="DonationsErrors__learn_more">معرفة المزيد</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
-    <string name="DonationsErrors__error_processing_payment_s">حدث خطأ أثناء معالجة عملية الدفع. %1$s</string>
-    <string name="DonationsErrors__your_payment">تعذرت معالجة عملية دفعك ولم يتم تحصيل رسوم منك. حاول مرة اخرى.</string>
+    <string name="DonationsErrors__error_processing_payment_s">حدث خطأ أثناء معالجة التبرع. %1$s</string>
+    <string name="DonationsErrors__your_payment">تعذرت معالجة تبرعك ولم يتم تحصيل رسوم منك. يُرجى إعادة المُحاولة.</string>
     <string name="DonationsErrors__still_processing">ما زال قيد المعالجة</string>
     <string name="DonationsErrors__couldnt_add_badge">تعذّر إضافة الشارة</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -5247,9 +5301,9 @@
     <!-- Displayed as title when some generic error happens during sending donation on behalf of another user -->
     <string name="DonationsErrors__donation_failed">تعذّر التبرع</string>
     <!-- Displayed as message when some generic error happens during sending donation on behalf of another user -->
-    <string name="DonationsErrors__your_payment_was_processed_but">تمت مُعالجة عملية دفعك ولكن لم يتمكّن سيجنال من إرسال رسالة التبرع. يُرجى الاتصال بفريق الدعم.</string>
+    <string name="DonationsErrors__your_payment_was_processed_but">تمت مُعالجة عملية دفعك ولكن لم يتمكّن سيجنال من إرسال رسالة التبرّع. يُرجى الاتصال بفريق الدعم.</string>
     <string name="DonationsErrors__your_badge_could_not">تعذّر إضافة شارتك إلى حسابك، ولكن يُمكن أن المبلغ قد خُصم من حسابك. يُرجى التواصل مع قسم الدعم.</string>
-    <string name="DonationsErrors__your_payment_is_still">ما زالت عملية الدفع الخاصة بك قيد المعالجة. قد يستغرق الأمر بضع دقائق وفقاً لاتصال شبكتك.</string>
+    <string name="DonationsErrors__your_payment_is_still">لا يزال تبرعك قيد المعالجة. قد يستغرق الأمر بضع دقائق حسب اتصال شبكتك.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">فشل إلغاء الاشتراك</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">يتطلب إلغاء الاشتراك اتصالاً بالإنترنت.</string>
     <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">لا يدعم جهازك Google Pay، لذلك لا يُمكنك الاشتراك لِربح شارة. ما زال يُمكنك دعم سيجنال بالتبرع على موقعنا الإلكتروني.</string>
@@ -5261,6 +5315,8 @@
     <string name="DonationsErrors__this_user_cant_receive_donations_until">لا يُمكن لهذا المُستخدم تلقّي الهدايا حتى يقوم بترقية تطبيق سيجنال.</string>
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__your_donation_could_not_be_sent">تعذّر إرسال هديتك بسبب خطأ في الشبكة. تحقّق من اتصالك بالشبكة ثم حاول مجددًا.</string>
+    <!-- Displayed as a dialog message when the user encounters an error during an iDEAL donation -->
+    <string name="DonationsErrors__your_ideal_couldnt_be_processed">تعذرت معالجة تبرع iDEAL الخاص بك. يُرجى محاولة طريقة أخرى للدفع أو الاتصال بمصرفك للمزيد من المعلومات.</string>
 
     <!-- Gift message view title -->
     <string name="GiftMessageView__donation_on_behalf_of_s">تبرّع نيابة عن %1$s</string>
@@ -5278,6 +5334,8 @@
 
     <!-- Stripe decline code generic_failure -->
     <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">يُرجى محاولة القيام بطريقة أخرى للدفع أو الاتصال بالمصرف الذي لديك عنده حساب للمزيد من المعلومات.</string>
+    <!-- PayPal decline code for payment declined -->
+    <string name="DeclineCode__try_another_payment_method_or_contact_your_bank_for_more_information_if_this_was_a_paypal">يُرجى اللجوء إلى طريقة أخرى للدفع أو التواصل مع مصرفك للمزيد من المعلومات. وإذا كان الأمر يتعلق بمعاملة PayPal فيُرجى التواصل مع PayPal.</string>
     <!-- Stripe decline code verify on Google Pay and try again -->
     <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">يُرجى التحقق من أن طريقة دفعك في Google Pay حديثة ثم المحاولة مرة أخرى.</string>
     <!-- Stripe decline code learn more action label -->
@@ -5303,7 +5361,7 @@
     <!-- Stripe decline code incorrect expiration year -->
     <string name="DeclineCode__the_expiration_year">إن سنة انتهاء صلاحية طريقة دفعك غير صحيحة. يُرجى تحديثها في Google Pay ثم المحاولة مرة أخرى.</string>
     <!-- Stripe decline code issuer not available -->
-    <string name="DeclineCode__try_completing_the_payment_again">يُرجى محاولة إتمام الدفع مرة أخرى أو الاتصال بالمصرف الذي لديك حساب عنده للمزيد من المعلومات.</string>
+    <string name="DeclineCode__try_completing_the_payment_again">يُرجى محاولة إتمام الدفع مرة أخرى أو الاتصال بمصرفك للمزيد من المعلومات.</string>
     <!-- Stripe decline code processing error -->
     <string name="DeclineCode__try_again">يُرجى المحاولة مرة أخرى أو الاتصال بالمصرف الذي لديك حساب عنده للمزيد من المعلومات.</string>
 
@@ -5322,6 +5380,18 @@
     <string name="DeclineCode__the_expiration_year_on_your_card_is_incorrect">سنة انتهاء الصلاحية الخاصة ببطاقتك غير صحيحة. تأكد من صحة تفاصيل بطاقتك وأعد المحاولة مرة أخرى.</string>
     <!-- Stripe decline code incorrect_number and invalid_number for credit cards displayed in a notification or dialog -->
     <string name="DeclineCode__your_card_number_is_incorrect_verify_your_card_details">أرقام بطاقتك غير صحيحة. تأكد من صحة تفاصيل بطاقتك وأعد المحاولة مرة أخرى.</string>
+
+    <!-- Stripe Failure Codes for failed bank transfers -->
+    <!-- Failure code text for insufficient funds, displayed in a dialog or notification -->
+    <string name="StripeFailureCode__the_bank_account_provided">لا يتوفر الحساب البنكي الذي أدخلته على مبالغ كافية لإتمام عملية الشراء هذه. يُرجى المحاولة مرة أخرى أو الاتصال بمصرفك للمزيد من المعلومات.</string>
+    <!-- Failure code text for revoked authorization of payment, displayed in a dialog or notification -->
+    <string name="StripeFailureCode__this_payment_was_revoked">لقد أُلغي هذا التبرع من قِبل صاحب الحساب وتعذّر معالجتها. لم تُحصّل أي رسوم منك.</string>
+    <!-- Failure code text for a payment lacking an authorized mandate or incorrect mandate, displayed in a dialog or notification -->
+    <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">حدث خطأ ما أثناء معالجة هذا التبرع، يُرجى المحاولة مجددًا.</string>
+    <!-- Failure code text for a closed account, deceased recipient, or one with blocked direct debits, displayed in a dialog or notification -->
+    <string name="StripeFailureCode__the_bank_details_provided_could_not_be_processed">تعذّر معالجة المعلومات المصرفية المُدلى بها، يُرجى الاتصال بمصرفك للمزيد من المعلومات.</string>
+    <!-- Failure code text for a non-existent bank branch, invalid account holder, invalid iban, generic failure, or unknown bank failure, displayed in a dialog or notification -->
+    <string name="StripeFailureCode__verify_your_bank_details_are_correct">تأكد من صحة تفاصيل بطاقتك وأعد المحاولة مرة أخرى. إذا استمر المُشكل، يُرجى الاتصال بالمصرف الذي تتعامل معه.</string>
 
     <!-- Title of create notification profile screen -->
     <string name="EditNotificationProfileFragment__name_your_profile">تسمية هيئة إشعارك</string>
@@ -5479,10 +5549,10 @@
     <string name="DonationReceiptListFragment__recurring">التكرار</string>
     <!-- Donation receipts one-time tab label -->
     <string name="DonationReceiptListFragment__one_time">مرة واحدة</string>
+    <!-- Donation receipts gift tab -->
+    <string name="DonationReceiptListFragment__for_a_friend">For a friend</string>
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__donation_for_a_friend">تقديم تبرع لصديق</string>
-    <!-- Donation receipts boost row label -->
-    <!-- Donation receipts details title -->
     <!-- Donation receipts donation type heading -->
     <string name="DonationReceiptDetailsFragment__donation_type">صنف التبرّع</string>
     <!-- Donation receipts date paid heading -->
@@ -6039,7 +6109,14 @@
     <!-- Message of safety number changes bottom sheet when not showing individual records and user has seen review screen -->
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">تمت مراجعة كل جهات الاتصال، انقر إرسال للمواصلة.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
-    <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">%1$d من جهات اتصالك قد يكونوا أعادو تثبيت سيجنال أو غيّروا أجهزتهم. قبل مشاركة قِصتك معهم، يُرجى مراجعة أرقام الأمان الخاصة بهم أو فكّر في حذفهم من قصتك.</string>
+    <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
+        <item quantity="zero">%1$d من جهات اتصالك قد يكون أعاد تثبيت سيجنال أو غيّر جهازه. قبل مشاركة قِصتك معه، يُرجى مراجعة أرقام الأمان الخاصة به أو فكّر في حذفه من قصتك.</item>
+        <item quantity="one">%1$d من جهات اتصالك قد يكون أعاد تثبيت سيجنال أو غيّر جهازه. قبل مشاركة قِصتك معه، يُرجى مراجعة أرقام الأمان الخاصة به أو فكّر في حذفه من قصتك.</item>
+        <item quantity="two">%1$d من جهات اتصالك قد يكونوا أعادو تثبيت سيجنال أو غيّروا أجهزتهم. قبل مشاركة قِصتك معهم، يُرجى مراجعة أرقام الأمان الخاصة بهم أو فكّر في حذفهم من قصتك.</item>
+        <item quantity="few">%1$d من جهات اتصالك قد يكونوا أعادو تثبيت سيجنال أو غيّروا أجهزتهم. قبل مشاركة قِصتك معهم، يُرجى مراجعة أرقام الأمان الخاصة بهم أو فكّر في حذفهم من قصتك.</item>
+        <item quantity="many">%1$d من جهات اتصالك قد يكونوا أعادو تثبيت سيجنال أو غيّروا أجهزتهم. قبل مشاركة قِصتك معهم، يُرجى مراجعة أرقام الأمان الخاصة بهم أو فكّر في حذفهم من قصتك.</item>
+        <item quantity="other">%1$d من جهات اتصالك قد يكونوا أعادو تثبيت سيجنال أو غيّروا أجهزتهم. قبل مشاركة قِصتك معهم، يُرجى مراجعة أرقام الأمان الخاصة بهم أو فكّر في حذفهم من قصتك.</item>
+    </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">تحقق من رقم اﻷمان</string>
     <!-- Menu action to remove user from story -->
@@ -6294,6 +6371,23 @@
     <string name="DonateToSignalFragment__continue">واصل</string>
     <!-- Description below title -->
     <string name="DonateToSignalFragment__private_messaging">تراسل خاص، مُموّل من طرفك. بدون إعلانات، بدون مُتعقبات، بدون رقابة. تبرّع الآن لدعم سيجنال.</string>
+    <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
+    <string name="DonateToSignalFragment__you_have_a_donation_pending">لديك تبرّع مُعلق</string>
+    <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">عادة ما تستغرق التحويلات المصرفية يوم عمل واحد للمعالجة. يُرجى الانتظار حتى اكتمال عملية الدفع هذه قبل تحديث اشتراكك.</string>
+    <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">عادة ما تستغرق التحويلات المصرفية يوم عمل واحد للمعالجة. يُرجى الانتظار حتى اكتمال عملية الدفع هذه قبل التبرّع مرة أخرى.</string>
+    <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">لا يزال تبرعك قيد المعالجة. قد يستغرق الأمر بضع دقائق حسب اتصال شبكتك. يُرجى الانتظار حتى اكتمال عملية الدفع هذه قبل تحديث اشتراكك.</string>
+    <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">لا يزال تبرعك قيد المعالجة. قد يستغرق الأمر بضع دقائق حسب اتصال شبكتك. يُرجى الانتظار حتى اكتمال عملية الدفع هذه قبل التبرّع مرة أخرى.</string>
+    <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
+    <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">لا يزال تبرع iDeal الخاص بك قيد المُعالجة. تفقد تطبيق مصرفك للموافقة على عملية الدفع الخاصة بك قبل التبرّع مرة أخرى.</string>
+    <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
+    <string name="DonateToSignal__donation_amount_too_high">Donation amount too high</string>
+    <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
+    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">You can send up to %1$s via bank transfer. Try a different amount or a different payment method.</string>
+
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">شهريًا</string>
     <!-- Donation pill toggle one-time text -->
@@ -6315,10 +6409,138 @@
         <item quantity="many">احصل على شارة %1$s لمدة %2$d يومًا</item>
         <item quantity="other">احصل على شارة %1$s لمدة %2$d يوم</item>
     </plurals>
+    <!-- Button label for paying with a bank transfer -->
+    <string name="GatewaySelectorBottomSheet__bank_transfer">تحويل مصرفي</string>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">بطاقة الائتمان أو الخصم</string>
     <!-- Sheet summary when giving donating for a friend -->
     <string name="GatewaySelectorBottomSheet__donate_for_a_friend">تبرّع لصديق</string>
+    <!-- Button label for paying with iDEAL -->
+    <string name="GatewaySelectorBottomSheet__ideal">iDEAL</string>
+
+    <!-- Dialog title for launching external intent -->
+    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">مغادرة سيجنال لتأكيد التبرع؟</string>
+    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">بعد التأكيد، ارجع إلى سيجنال لإنهاء معالجة تبرعك.</string>
+
+    <!-- IdealBank -->
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__abn_amro">ABN AMRO</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__asn_bank">ASN Bank</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__bunq">bunq</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__ing">ING</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__knab">Knab</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__n26">N26</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__rabobank">Rabobank</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__regiobank">RegioBank</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__revolut">Revolut</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__sns_bank">SNS Bank</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__triodos_bank">Triodos Bank</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__van_lanschot">Van Lanschot Kempen</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__yoursafe">Yoursafe</string>
+
+    <!-- BankTransferMandateFragment -->
+    <!-- Title of screen displaying the bank transfer mandate -->
+    <string name="BankTransferMandateFragment__bank_transfer">تحويل مصرفي</string>
+    <!-- Subtitle of screen displaying the bank transfer mandate, placeholder is \'Learn more\' -->
+    <string name="BankTransferMandateFragment__stripe_processes_donations">يُعالج Stripe التبرّعات المقدمة لسيجنال. لا يقوم سيجنال بجمع أو تخزين معلوماتك الشخصية. %1$s</string>
+    <!-- Subtitle learn more of screen displaying bank transfer mandate -->
+    <string name="BankTransferMandateFragment__learn_more">معرفة المزيد</string>
+    <!-- Button label to continue with transfer -->
+    <string name="BankTransferMandateFragment__agree">موافق</string>
+    <!-- Button label to read more of the bank mandate that is currently off screen -->
+    <string name="BankTransferMandateFragment__read_more">قراءة المزيد</string>
+    <!-- Text displayed when mandate load fails -->
+    <string name="BankTransferMandateFragment__failed_to_load_mandate">تعذر تحميل الطلب</string>
+
+    <!-- BankTransferDetailsFragment -->
+    <!-- Subtext explaining how email is used. Placeholder is \'Learn more\' -->
+    <string name="BankTransferDetailsFragment__enter_your_bank_details">أدخل معلومات مصرفك وبريدك الإلكتروني. يستخدم Stripe هذا البريد الإلكتروني لإرسال تحديثات متعلقة بتبرعاتك. %1$s</string>
+    <!-- Subtext learn more link text -->
+    <string name="BankTransferDetailsFragment__learn_more">معرفة المزيد</string>
+    <!-- Text field label for name on bank account -->
+    <string name="BankTransferDetailsFragment__name_on_bank_account">الاسم كما يظهر في الحساب المصرفي</string>
+    <!-- Text field label for IBAN -->
+    <string name="BankTransferDetailsFragment__iban">IBAN</string>
+    <!-- Text field label for email -->
+    <string name="BankTransferDetailsFragment__email">البريد الإلكتروني</string>
+    <!-- Text label for button to show user how to find their IBAN -->
+    <string name="BankTransferDetailsFragment__find_account_info">العثور على معلومات الحساب</string>
+    <!-- Donate button label for monthly subscription -->
+    <string name="BankTransferDetailsFragment__donate_s_month">تبرّع بـ %1$s/شهريًا</string>
+    <!-- Donate button label for one-time -->
+    <string name="BankTransferDetailsFragment__donate_s">تبرّع لـ %1$s</string>
+    <!-- Error label for IBAN field when number is too short -->
+    <string name="BankTransferDetailsFragment__iban_is_too_short">رقم IBAN قصير جدًا</string>
+    <!-- Error label for IBAN field when number is too long -->
+    <string name="BankTransferDetailsFragment__iban_is_too_long">رقم IBAN طويل جدًا</string>
+    <!-- Error label for IBAN field when country is not supported -->
+    <string name="BankTransferDetailsFragment__iban_country_code_is_not_supported">رقم IBAN الخاص ببلدك غير مدعوم</string>
+    <!-- Error label for IBAN field when number is invalid -->
+    <string name="BankTransferDetailsFragment__invalid_iban">رقم IBAN غير صحيح</string>
+
+    <!-- IdealTransferDetailsFragment -->
+    <!-- Title of the screen, displayed in the toolbar -->
+    <string name="IdealTransferDetailsFragment__ideal">iDEAL</string>
+    <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
+    <string name="IdealTransferDetailsFragment__enter_your_bank">يُرجى إدخال معلومات مصرفك واسمك وبريدك الإلكتروني. يستخدم Stripe هذا البريد الإلكتروني لإرسال تحديثات متعلقة بتبرعاتك. %1$s</string>
+    <!-- Subtitle learn-more button displayed inline with the subtitle text -->
+    <string name="IdealTransferDetailsFragment__learn_more">معرفة المزيد</string>
+    <!-- Hint label for text entry box for name on bank account -->
+    <string name="IdealTransferDetailsFragment__name_on_bank_account">الاسم كما يظهر في الحساب المصرفي</string>
+    <!-- Hint label for text entry box for email -->
+    <string name="IdealTransferDetailsFragment__email">البريد الإلكتروني</string>
+    <!-- Default label for bank selection -->
+    <string name="IdealTransferDetailsFragment__choose_your_bank">اختر مصرفك</string>
+
+    <!-- IdealTransferDetailsBankSelectionDialogFragment -->
+    <!-- Title of the screen, displayed in the toolbar -->
+    <string name="IdealTransferDetailsBankSelectionDialogFragment__choose_your_bank">اختر مصرفك</string>
+
+    <!-- Title of bottom sheet for finding account information -->
+    <string name="FindAccountInfoSheet__find_your_account_information">العثور على معلومات حسابك</string>
+    <!-- Body of bottom sheet for finding account information -->
+    <string name="FindAccountInfoSheet__look_for_your_iban_at">ابحث عن رقم IBAN الخاص بك في الجزء العلوي من كشف حسابك المصرفي. يَحتوي رقم IBAN على ما يصل إلى 34 رقمًا. يَجب أن يتطابق الاسم الذي تُدخله مع اسمك الكامل في حسابك المصرفي. يُرجى الاتصال بمصرفك لمزيد من المعلومات.</string>
+
+    <!-- Title of donation pending sheet displayed after making a bank transfer -->
+    <string name="DonationPendingBottomSheet__donation_pending">التبرّع معلق</string>
+    <!-- Top text block of donation pending sheet displayed after subscribing via a bank transfer. Placeholder is the badge name. -->
+    <string name="DonationPendingBottomSheet__your_monthly_donation_is_pending">تبرّعك الشهري معلق. ستتمكّن من عرض شارتك %1$s على حسابك الشخصي فور التوصل بتبرّعك.</string>
+    <!-- Top text block of donation pending sheet displayed after one-time donation via a bank transfer. Placeholder is the badge name. -->
+    <string name="DonationPendingBottomSheet__your_one_time_donation_is_pending">تبرّعك لمرة واحدة معلّق. ستتمكّن من عرض شارتك %1$s على حسابك الشخصي فور التوصل بتبرّعك.</string>
+    <!-- Bottom text block of donation pending sheet displayed after donating via a bank transfer. Placeholder is for learn more. -->
+    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">عادة ما تستغرق التحويلات المصرفية يوم عمل واحد للمعالجة. %1$s</string>
+    <!-- Learn more text for donation pending sheet displayed after donating via a bank transfer. -->
+    <string name="DonationPendingBottomSheet__learn_more">معرفة المزيد</string>
+    <!-- Confirmation button for donation pending sheet displayed after donating via a bank transfer. -->
+    <string name="DonationPendingBottomSheet__done">تمّ</string>
+
+    <!-- Title of donation error sheet displayed after making a bank transfer that fails -->
+    <string name="DonationErrorBottomSheet__donation_couldnt_be_processed">تعذر معالجة التبرّع</string>
+    <!-- Text block of donation error sheet displayed after making a bank transfer that fails -->
+    <string name="DonationErrorBottomSheet__were_having_trouble">نُواجه مشكلة في معالجة التحويل المصرفي الخاص بك. لم تُحصّل أي رسوم منك. يُرجى محاولة طريقة أخرى للدفع أو الاتصال بالمصرف الذي لديك عنده حساب للمزيد من المعلومات.</string>
+    <!-- Button label for retry button of donation error sheet displayed after making a bank transfer that fails -->
+    <string name="DonationErrorBottomSheet__try_again">حاول مجددا</string>
+    <!-- Button label for not now button of donation error sheet displayed after making a bank transfer that fails -->
+    <string name="DonationErrorBottomSheet__not_now">ليس الآن</string>
+
+    <!-- Title of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed -->
+    <string name="DonationCompletedBottomSheet__donation_complete">اكتمل التبرّع</string>
+    <!-- Text block of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed -->
+    <string name="DonationCompleteBottomSheet__your_bank_transfer_was_received">تم التوصل بتحويلك المصرفي. يُمكنك اختيار عرض هذه الشارة على حسابك الشخصي لإظهار دعمك.</string>
+    <!-- Button text of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed to dismiss sheet -->
+    <string name="DonationCompleteBottomSheet__done">تمّ</string>
 
     <!-- StripePaymentInProgressFragment -->
     <string name="StripePaymentInProgressFragment__cancelling">جارٍ الإلغاء…</string>
@@ -6727,6 +6949,13 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">لقد حدث خطأ في الشبكة أثناء محاولة إعادة تعيين رابطك. يُرجى المحاولة مرة أخرى لاحقًا.</string>
 
+    <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
+    <string name="UsernameLinkShareBottomSheet_title">يُمكن لأي شخص يتوفر على هذا الرابط رؤية اسم المستخدم الخاص بك وبدء محادثة جديدة معك. شاركه مع من تثق فقط.</string>
+    <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
+    <string name="UsernameLinkShareBottomSheet_copy_link">نسخ الرابط</string>
+    <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
+    <string name="UsernameLinkShareBottomSheet_share">شارك</string>
+
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
     <string name="PendingParticipantsView__would_like_to_join">يرغب في الانضمام…</string>
@@ -6756,6 +6985,30 @@
     <string name="PendingParticipantsBottomSheet__reject">رفض</string>
     <!-- Content description for confirming a user -->
     <string name="PendingParticipantsBottomSheet__approve">الموافقة</string>
+
+    <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
+    <string name="GrantFullScreenIntentPermission_megaphone_title">تفعيل إشعارات ملء الشاشة؟</string>
+    <!-- Body of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
+    <string name="GrantFullScreenIntentPermission_megaphone_body">لا تفوّت مكالمة أبدًا من جهات اتصالك أو مجموعاتك.</string>
+    <!-- Button on the megaphone megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls that starts the fix process -->
+    <string name="GrantFullScreenIntentPermission_megaphone_turn_on">شغّل</string>
+    <!-- Title of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
+    <string name="GrantFullScreenIntentPermission_bottomsheet_title">تفعيل إشعارات ملء الشاشة</string>
+    <!-- Subtitle of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
+    <string name="GrantFullScreenIntentPermission_bottomsheet_subtitle">للتوصّل بإشعارات مُكالمات من جهات اتصالك ومجموعاتك:</string>
+    <!-- Step 2 of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications, it indicates the name of the setting that needs to be re-enabled -->
+    <string name="GrantFullScreenIntentPermission_bottomsheet_step2">2. %1$s تفعيل إشعارات ملء الشاشة</string>
+
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, title for dialog -->
+    <string name="MonthlyDonationCanceled__title">تم إلغاء التبرعات الشهرية</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, body for dialog. First placeholder is a payment related error message. Second placeholder is \'learn more\' -->
+    <string name="MonthlyDonationCanceled__message">Your recurring monthly donation was canceled. %1$s\n\nYour badge will no longer be visible on your profile. %2$s</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, learn more used in placeholder for body for dialog. -->
+    <string name="MonthlyDonationCanceled__learn_more">معرفة المزيد</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, primary button to renew subscription with new data -->
+    <string name="MonthlyDonationCanceled__renew_button">إعادة الاشتراك</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, second button to dismiss the dialog entirely -->
+    <string name="MonthlyDonationCanceled__not_now_button">ليس الآن</string>
 
     <!-- EOF -->
 </resources>

@@ -1,3 +1,8 @@
+/*
+ * Copyright 2023 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
@@ -31,6 +36,7 @@ import org.signal.core.util.logging.Log;
 import org.signal.glide.transforms.SignalDownsampleStrategy;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.blurhash.BlurHash;
+import org.thoughtcrime.securesms.components.transfercontrols.TransferControlView;
 import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideRequest;
@@ -41,7 +47,6 @@ import org.thoughtcrime.securesms.mms.SlideClickListener;
 import org.thoughtcrime.securesms.mms.SlidesClickedListener;
 import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.stories.StoryTextPostModel;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
@@ -50,6 +55,7 @@ import org.thoughtcrime.securesms.util.views.Stub;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.concurrent.ExecutionException;
@@ -80,12 +86,12 @@ public class ThumbnailView extends FrameLayout {
 
   private final CornerMask cornerMask;
 
-  private ThumbnailViewTransferControlsState transferControlsState      = new ThumbnailViewTransferControlsState();
-  private Stub<TransferControlView>          transferControlViewStub;
-  private SlideClickListener                 thumbnailClickListener     = null;
-  private SlidesClickedListener              downloadClickListener      = null;
-  private SlideClickListener                 progressWheelClickListener = null;
-  private Slide                              slide                      = null;
+  private final Stub<TransferControlView>          transferControlViewStub;
+  private       SlideClickListener                 thumbnailClickListener      = null;
+  private       SlidesClickedListener              downloadClickListener       = null;
+  private       SlidesClickedListener              cancelDownloadClickListener = null;
+  private       SlideClickListener                 playVideoClickListener      = null;
+  private       Slide                              slide                       = null;
 
 
   public ThumbnailView(Context context) {
@@ -278,15 +284,13 @@ public class ThumbnailView extends FrameLayout {
   @Override
   public void setFocusable(boolean focusable) {
     super.setFocusable(focusable);
-    transferControlsState = transferControlsState.withFocusable(focusable);
-    transferControlsState.applyState(transferControlViewStub);
+    transferControlViewStub.get().setFocusable(focusable);
   }
 
   @Override
   public void setClickable(boolean clickable) {
     super.setClickable(clickable);
-    transferControlsState = transferControlsState.withClickable(clickable);
-    transferControlsState.applyState(transferControlViewStub);
+    transferControlViewStub.get().setClickable(clickable);
   }
 
   public @Nullable Drawable getImageDrawable() {
@@ -359,24 +363,15 @@ public class ThumbnailView extends FrameLayout {
     }
 
     if (showControls) {
-      int transferState = TransferControlView.getTransferState(Collections.singletonList(slide));
-      if (transferState == AttachmentTable.TRANSFER_PROGRESS_DONE || transferState == AttachmentTable.TRANSFER_PROGRESS_PERMANENT_FAILURE) {
-        transferControlViewStub.setVisibility(View.GONE);
-      } else {
-        transferControlViewStub.setVisibility(View.VISIBLE);
+      transferControlViewStub.get().setDownloadClickListener(new DownloadClickDispatcher());
+      transferControlViewStub.get().setCancelClickListener(new CancelClickDispatcher());
+      if (MediaUtil.isInstantVideoSupported(slide)) {
+        transferControlViewStub.get().setInstantPlaybackClickListener(new InstantVideoClickDispatcher());
       }
-
-      transferControlsState = transferControlsState.withSlide(slide)
-                                                   .withDownloadClickListener(new DownloadClickDispatcher());
-
-      if (FeatureFlags.instantVideoPlayback()) {
-        transferControlsState = transferControlsState.withProgressWheelClickListener(new ProgressWheelClickDispatcher());
-      }
-
-      transferControlsState.applyState(transferControlViewStub);
-    } else {
-      transferControlViewStub.setVisibility(View.GONE);
+      transferControlViewStub.get().setSlides(List.of(slide));
     }
+    int transferState = TransferControlView.getTransferState(List.of(slide));
+    transferControlViewStub.get().setVisible(showControls && transferState != AttachmentTable.TRANSFER_PROGRESS_DONE && transferState != AttachmentTable.TRANSFER_PROGRESS_PERMANENT_FAILURE);
 
     if (slide.getUri() != null && slide.hasPlayOverlay() &&
         (slide.getTransferState() == AttachmentTable.TRANSFER_PROGRESS_DONE || isPreview))
@@ -525,8 +520,41 @@ public class ThumbnailView extends FrameLayout {
     this.downloadClickListener = listener;
   }
 
-  public void setProgressWheelClickListener(SlideClickListener listener) {
-    this.progressWheelClickListener = listener;
+  public void setCancelDownloadClickListener(SlidesClickedListener listener) {
+    this.cancelDownloadClickListener = listener;
+  }
+
+  public void setPlayVideoClickListener(SlideClickListener listener) {
+    this.playVideoClickListener = listener;
+  }
+
+  private static boolean hasSameContents(@Nullable Slide slide, @Nullable Slide other) {
+    if (Util.equals(slide, other)) {
+
+      if (slide != null && other != null) {
+        byte[] digestLeft  = slide.asAttachment().getDigest();
+        byte[] digestRight = other.asAttachment().getDigest();
+
+        return Arrays.equals(digestLeft, digestRight);
+      }
+    }
+
+    return false;
+  }
+
+  private GlideRequest<Drawable> buildThumbnailGlideRequest(@NonNull GlideRequests glideRequests, @NonNull Slide slide) {
+    GlideRequest<Drawable> request = applySizing(glideRequests.load(new DecryptableUri(Objects.requireNonNull(slide.getUri())))
+                                                              .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                                                              .downsample(SignalDownsampleStrategy.CENTER_OUTSIDE_NO_UPSCALE)
+                                                              .transition(withCrossFade()));
+
+    boolean doNotShowMissingThumbnailImage = Build.VERSION.SDK_INT < 23;
+
+    if (slide.isInProgress() || doNotShowMissingThumbnailImage) {
+      return request;
+    } else {
+      return request.apply(RequestOptions.errorOf(R.drawable.ic_missing_thumbnail_picture));
+    }
   }
 
   public void clear(GlideRequests glideRequests) {
@@ -543,13 +571,12 @@ public class ThumbnailView extends FrameLayout {
     slide = null;
   }
 
-  public void showDownloadText(boolean showDownloadText) {
-    transferControlsState = transferControlsState.withDownloadText(showDownloadText);
-    transferControlsState.applyState(transferControlViewStub);
+  public void showSecondaryText(boolean showSecondaryText) {
+    transferControlViewStub.get().setShowSecondaryText(showSecondaryText);
   }
 
   public void showProgressSpinner() {
-    transferControlViewStub.get().showProgressSpinner();
+    transferControlViewStub.get().setVisible(true);
   }
 
   public void setScaleType(@NonNull ImageView.ScaleType scaleType) {
@@ -566,20 +593,6 @@ public class ThumbnailView extends FrameLayout {
     invalidate();
   }
 
-  private GlideRequest<Drawable> buildThumbnailGlideRequest(@NonNull GlideRequests glideRequests, @NonNull Slide slide) {
-    GlideRequest<Drawable> request = applySizing(glideRequests.load(new DecryptableUri(Objects.requireNonNull(slide.getUri())))
-                                                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                                                    .downsample(SignalDownsampleStrategy.CENTER_OUTSIDE_NO_UPSCALE)
-                                                    .transition(withCrossFade()));
-
-    boolean doNotShowMissingThumbnailImage = Build.VERSION.SDK_INT < 23;
-
-    if (slide.isInProgress() || doNotShowMissingThumbnailImage) {
-      return request;
-    } else {
-      return request.apply(RequestOptions.errorOf(R.drawable.ic_missing_thumbnail_picture));
-    }
-  }
 
   private RequestBuilder<Bitmap> buildPlaceholderGlideRequest(@NonNull GlideRequests glideRequests, @NonNull Slide slide) {
     GlideRequest<Bitmap> bitmap          = glideRequests.asBitmap();
@@ -591,7 +604,12 @@ public class ThumbnailView extends FrameLayout {
       bitmap = bitmap.load(slide.getPlaceholderRes(getContext().getTheme()));
     }
 
-    return applySizing(bitmap.diskCacheStrategy(DiskCacheStrategy.NONE));
+    final GlideRequest<Bitmap> resizedRequest = applySizing(bitmap.diskCacheStrategy(DiskCacheStrategy.NONE));
+    if (placeholderBlur != null) {
+      return resizedRequest.centerCrop();
+    } else {
+      return resizedRequest;
+    }
   }
 
   private <TranscodeType> GlideRequest<TranscodeType> applySizing(@NonNull GlideRequest<TranscodeType> request) {
@@ -621,19 +639,6 @@ public class ThumbnailView extends FrameLayout {
     return 0;
   }
 
-  private static boolean hasSameContents(@Nullable Slide slide, @Nullable Slide other) {
-    if (Util.equals(slide, other)) {
-
-      if (slide != null && other != null) {
-        byte[] digestLeft = slide.asAttachment().getDigest();
-        byte[] digestRight = other.asAttachment().getDigest();
-
-        return Arrays.equals(digestLeft, digestRight);
-      }
-    }
-
-    return false;
-  }
 
   public interface ThumbnailRequestListener extends RequestListener<Drawable> {
     void onLoadCanceled();
@@ -670,14 +675,26 @@ public class ThumbnailView extends FrameLayout {
     }
   }
 
-  private class ProgressWheelClickDispatcher implements View.OnClickListener {
+  private class CancelClickDispatcher implements View.OnClickListener {
     @Override
     public void onClick(View view) {
-      Log.i(TAG, "onClick() for progress wheel");
-      if (progressWheelClickListener != null && slide != null) {
-        progressWheelClickListener.onClick(view, slide);
+      Log.i(TAG, "onClick() for cancel button");
+      if (cancelDownloadClickListener != null && slide != null) {
+        cancelDownloadClickListener.onClick(view, Collections.singletonList(slide));
       } else {
-        Log.w(TAG, "Received a progress wheel click, but unable to execute it. slide: " + slide + "  progressWheelClickListener: " + progressWheelClickListener);
+        Log.w(TAG, "Received a cancel button click, but unable to execute it. slide: " + slide + "  cancelDownloadClickListener: " + cancelDownloadClickListener);
+      }
+    }
+  }
+
+  private class InstantVideoClickDispatcher implements View.OnClickListener {
+    @Override
+    public void onClick(View view) {
+      Log.i(TAG, "onClick() for instant video playback");
+      if (playVideoClickListener != null && slide != null) {
+        playVideoClickListener.onClick(view, slide);
+      } else {
+        Log.w(TAG, "Received an instant video click, but unable to execute it. slide: " + slide + "  playVideoClickListener: " + playVideoClickListener);
       }
     }
   }

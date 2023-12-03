@@ -653,7 +653,7 @@ public class NotificationChannels {
 
     notificationManager.createNotificationChannels(Arrays.asList(messages, calls, failures, backups, lockedStatus, other, voiceNotes, joinEvents, background, callStatus, appAlerts, additionalMessageNotifications));
 
-    if (BuildConfig.PLAY_STORE_DISABLED) {
+    if (BuildConfig.MANAGES_APP_UPDATES) {
       NotificationChannel appUpdates = new NotificationChannel(APP_UPDATES, context.getString(R.string.NotificationChannel_app_updates), NotificationManager.IMPORTANCE_DEFAULT);
       notificationManager.createNotificationChannel(appUpdates);
     } else {

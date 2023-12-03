@@ -14,7 +14,6 @@ import org.signal.core.util.Result
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository.UsernameDeleteResult
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository.UsernameSetResult
-import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.UsernameUtil.InvalidReason
 import org.thoughtcrime.securesms.util.UsernameUtil.checkUsername
 import org.thoughtcrime.securesms.util.rx.RxStore
@@ -33,7 +32,6 @@ import java.util.concurrent.TimeUnit
  */
 internal class UsernameEditViewModel private constructor(private val isInRegistration: Boolean) : ViewModel() {
   private val events: PublishSubject<Event> = PublishSubject.create()
-  private val repo: UsernameRepository = UsernameRepository()
   private val nicknamePublisher: PublishProcessor<String> = PublishProcessor.create()
   private val disposables: CompositeDisposable = CompositeDisposable()
 
@@ -41,7 +39,7 @@ internal class UsernameEditViewModel private constructor(private val isInRegistr
     defaultValue = State(
       buttonState = ButtonState.SUBMIT_DISABLED,
       usernameStatus = UsernameStatus.NONE,
-      username = Recipient.self().username.map<UsernameState> { UsernameState.Set(it) }.orElse(UsernameState.NoUsername)
+      username = SignalStore.account().username?.let { UsernameState.Set(it) } ?: UsernameState.NoUsername
     ),
     scheduler = Schedulers.computation()
   )
@@ -60,7 +58,7 @@ internal class UsernameEditViewModel private constructor(private val isInRegistr
 
   fun onNicknameUpdated(nickname: String) {
     uiState.update { state: State ->
-      if (nickname.isBlank() && Recipient.self().username.isPresent) {
+      if (nickname.isBlank() && SignalStore.account().username != null) {
         return@update State(
           buttonState = if (isInRegistration) ButtonState.SUBMIT_DISABLED else ButtonState.DELETE,
           usernameStatus = UsernameStatus.NONE,
@@ -71,9 +69,19 @@ internal class UsernameEditViewModel private constructor(private val isInRegistr
       val invalidReason: InvalidReason? = checkUsername(nickname)
 
       if (invalidReason != null) {
-        State(ButtonState.SUBMIT_DISABLED, mapUsernameError(invalidReason), state.username)
+        // We only want to show actual errors after debouncing. But we also don't want to allow users to submit names with errors.
+        // So we disable submit, but we don't show an error yet.
+        State(
+          buttonState = ButtonState.SUBMIT_DISABLED,
+          usernameStatus = UsernameStatus.NONE,
+          username = state.username
+        )
       } else {
-        State(ButtonState.SUBMIT_DISABLED, UsernameStatus.NONE, state.username)
+        State(
+          buttonState = ButtonState.SUBMIT_DISABLED,
+          usernameStatus = UsernameStatus.NONE,
+          username = state.username
+        )
       }
     }
 
@@ -92,7 +100,7 @@ internal class UsernameEditViewModel private constructor(private val isInRegistr
       return
     }
 
-    if (usernameState.username == Recipient.self().username.orElse(null)) {
+    if (usernameState.username == SignalStore.account().username) {
       uiState.update { State(ButtonState.SUBMIT_DISABLED, UsernameStatus.NONE, it.username) }
       return
     }
@@ -105,7 +113,7 @@ internal class UsernameEditViewModel private constructor(private val isInRegistr
 
     uiState.update { State(ButtonState.SUBMIT_LOADING, UsernameStatus.NONE, it.username) }
 
-    disposables += repo.confirmUsername(usernameState).subscribe { result: UsernameSetResult ->
+    disposables += UsernameRepository.confirmUsername(usernameState).subscribe { result: UsernameSetResult ->
       val nickname = usernameState.getNickname()
 
       when (result) {
@@ -138,7 +146,7 @@ internal class UsernameEditViewModel private constructor(private val isInRegistr
   fun onUsernameDeleted() {
     uiState.update { state: State -> State(ButtonState.DELETE_LOADING, UsernameStatus.NONE, state.username) }
 
-    disposables += repo.deleteUsername().subscribe { result: UsernameDeleteResult ->
+    disposables += UsernameRepository.deleteUsername().subscribe { result: UsernameDeleteResult ->
       when (result) {
         UsernameDeleteResult.SUCCESS -> {
           uiState.update { state: State -> State(ButtonState.DELETE_DISABLED, UsernameStatus.NONE, state.username) }
@@ -169,12 +177,19 @@ internal class UsernameEditViewModel private constructor(private val isInRegistr
 
     val invalidReason: InvalidReason? = checkUsername(nickname)
     if (invalidReason != null) {
+      uiState.update { state ->
+        State(
+          buttonState = ButtonState.SUBMIT_DISABLED,
+          usernameStatus = mapUsernameError(invalidReason),
+          username = state.username
+        )
+      }
       return
     }
 
     uiState.update { State(ButtonState.SUBMIT_DISABLED, UsernameStatus.NONE, UsernameState.Loading) }
 
-    disposables += repo.reserveUsername(nickname).subscribe { result: Result<UsernameState.Reserved, UsernameSetResult> ->
+    disposables += UsernameRepository.reserveUsername(nickname).subscribe { result: Result<UsernameState.Reserved, UsernameSetResult> ->
       result.either(
         onSuccess = { reserved: UsernameState.Reserved ->
           uiState.update { State(ButtonState.SUBMIT, UsernameStatus.NONE, reserved) }
@@ -229,7 +244,8 @@ internal class UsernameEditViewModel private constructor(private val isInRegistr
   }
 
   companion object {
-    private const val NICKNAME_PUBLISHER_DEBOUNCE_TIMEOUT_MILLIS: Long = 500
+    private const val NICKNAME_PUBLISHER_DEBOUNCE_TIMEOUT_MILLIS: Long = 1000
+
     private fun mapUsernameError(invalidReason: InvalidReason): UsernameStatus {
       return when (invalidReason) {
         InvalidReason.TOO_SHORT -> UsernameStatus.TOO_SHORT

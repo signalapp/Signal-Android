@@ -26,7 +26,6 @@ import org.thoughtcrime.securesms.conversation.v2.computed.FormattedDate
 import java.text.DateFormatSymbols
 import java.text.ParseException
 import java.text.SimpleDateFormat
-import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 import java.util.concurrent.TimeUnit
@@ -139,7 +138,7 @@ object DateUtils : android.text.format.DateUtils() {
         FormattedDate(true, context.resources.getString(R.string.DateUtils_minutes_ago, minutes))
       }
       else -> {
-        FormattedDate(false, getOnlyTimeString(context, locale, timestamp))
+        FormattedDate(false, getOnlyTimeString(context, timestamp))
       }
     }
   }
@@ -152,9 +151,8 @@ object DateUtils : android.text.format.DateUtils() {
    * For 24 hour locale: 19:23
    */
   @JvmStatic
-  fun getOnlyTimeString(context: Context, locale: Locale, timestamp: Long): String {
-    val format = if (context.is24HourFormat()) "HH:mm" else "hh:mm a"
-    return timestamp.toDateString(format, locale)
+  fun getOnlyTimeString(context: Context, timestamp: Long): String {
+    return timestamp.toLocalTime().formatHours(context)
   }
 
   /**
@@ -260,10 +258,11 @@ object DateUtils : android.text.format.DateUtils() {
     }
   }
 
-  fun getScheduledMessageDateString(context: Context, locale: Locale, timestamp: Long): String {
+  fun getScheduledMessageDateString(context: Context, timestamp: Long): String {
+    val localDateTime = timestamp.toLocalDateTime()
+
     val dayModifier: String = if (isToday(timestamp)) {
-      val calendar = Calendar.getInstance(locale)
-      if (calendar[Calendar.HOUR_OF_DAY] >= 19) {
+      if (localDateTime.hour >= 19) {
         context.getString(R.string.DateUtils_tonight)
       } else {
         context.getString(R.string.DateUtils_today)
@@ -271,8 +270,7 @@ object DateUtils : android.text.format.DateUtils() {
     } else {
       context.getString(R.string.DateUtils_tomorrow)
     }
-    val format = if (context.is24HourFormat()) "HH:mm" else "hh:mm a"
-    val time = timestamp.toDateString(format, locale)
+    val time = localDateTime.toLocalTime().formatHours(context)
     return context.getString(R.string.DateUtils_schedule_at, dayModifier, time)
   }
 

@@ -193,8 +193,12 @@ sealed class NotificationItem(val threadRecipient: Recipient, protected val reco
   }
 
   data class ThumbnailInfo(val uri: Uri? = null, val contentType: String? = null) {
+    var needsShrinking = false
+      private set
+
     companion object {
       val NONE = ThumbnailInfo()
+      val NEEDS_SHRINKING = ThumbnailInfo().apply { needsShrinking = true }
     }
   }
 }
@@ -208,7 +212,7 @@ class MessageNotification(threadRecipient: Recipient, record: MessageRecord) : N
   override val isNewNotification: Boolean = notifiedTimestamp == 0L && !record.isEditMessage
   val hasSelfMention = record.hasSelfMention()
 
-  private var thumbnailInfo: ThumbnailInfo? = null
+  private var thumbnailInfo: ThumbnailInfo = NotificationThumbnails.getWithoutModifying(this)
 
   override fun getPrimaryTextActual(context: Context): CharSequence {
     return if (KeyCachingService.isLocked(context)) {
@@ -262,15 +266,13 @@ class MessageNotification(threadRecipient: Recipient, record: MessageRecord) : N
   }
 
   override fun getThumbnailInfo(context: Context): ThumbnailInfo {
-    if (thumbnailInfo == null) {
-      thumbnailInfo = if (SignalStore.settings().messageNotificationsPrivacy.isDisplayMessage && !KeyCachingService.isLocked(context)) {
-        NotificationThumbnails.get(context, this)
-      } else {
-        ThumbnailInfo()
+    if (thumbnailInfo.needsShrinking) {
+      if (SignalStore.settings().messageNotificationsPrivacy.isDisplayMessage && !KeyCachingService.isLocked(context)) {
+        thumbnailInfo = NotificationThumbnails.get(context, this)
       }
     }
 
-    return thumbnailInfo!!
+    return thumbnailInfo
   }
 
   override fun canReply(context: Context): Boolean {

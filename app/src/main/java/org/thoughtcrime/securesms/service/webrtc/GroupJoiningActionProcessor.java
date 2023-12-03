@@ -91,15 +91,17 @@ public class GroupJoiningActionProcessor extends GroupActionProcessor {
             }
           }
 
-          builder.changeCallInfoState()
-                 .callState(WebRtcViewModel.State.CALL_CONNECTED)
-                 .groupCallState(WebRtcViewModel.GroupCallState.CONNECTED_AND_JOINED)
-                 .callConnectedTime(System.currentTimeMillis())
-                 .commit()
-                 .changeLocalDeviceState()
-                 .commit()
-                 .actionProcessor(actionProcessorFactory.createConnectedActionProcessor(webRtcInteractor));
+          currentState = builder.changeCallInfoState()
+                                .callState(WebRtcViewModel.State.CALL_CONNECTED)
+                                .groupCallState(WebRtcViewModel.GroupCallState.CONNECTED_AND_JOINED)
+                                .callConnectedTime(System.currentTimeMillis())
+                                .commit()
+                                .changeLocalDeviceState()
+                                .commit()
+                                .actionProcessor(actionProcessorFactory.createConnectedActionProcessor(webRtcInteractor))
+                                .build();
 
+          builder = currentState.getActionProcessor().handleGroupJoinedMembershipChanged(currentState).builder();
         } else if (device.getJoinState() == GroupCall.JoinState.JOINING) {
           builder.changeCallInfoState()
                  .groupCallState(WebRtcViewModel.GroupCallState.CONNECTED_AND_JOINING)

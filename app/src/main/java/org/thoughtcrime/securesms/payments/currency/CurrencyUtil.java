@@ -15,6 +15,8 @@ import java.util.Locale;
  */
 public final class CurrencyUtil {
 
+  public static Currency EURO = Currency.getInstance("EUR");
+
   public static @Nullable Currency getCurrencyByCurrencyCode(@NonNull String currencyCode) {
     try {
       return Currency.getInstance(currencyCode);

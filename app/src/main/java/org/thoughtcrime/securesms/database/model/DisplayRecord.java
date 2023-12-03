@@ -46,13 +46,13 @@ public abstract class DisplayRecord {
   private final long       threadId;
   private final String     body;
   private final int        deliveryStatus;
-  private final int        deliveryReceiptCount;
-  private final int        readReceiptCount;
-  private final int        viewReceiptCount;
+  private final boolean    hasDeliveryReceipt;
+  private final boolean    hasReadReceipt;
+  private final boolean    viewed;
 
   DisplayRecord(String body, Recipient fromRecipient, Recipient toRecipient, long dateSent,
-                long dateReceived, long threadId, int deliveryStatus, int deliveryReceiptCount,
-                long type, int readReceiptCount, int viewReceiptCount)
+                long dateReceived, long threadId, int deliveryStatus, boolean hasDeliveryReceipt,
+                long type, boolean hasReadReceipt, boolean viewed)
   {
     this.threadId             = threadId;
     this.fromRecipient        = fromRecipient;
@@ -61,10 +61,10 @@ public abstract class DisplayRecord {
     this.dateReceived         = dateReceived;
     this.type                 = type;
     this.body                 = body;
-    this.deliveryReceiptCount = deliveryReceiptCount;
-    this.readReceiptCount     = readReceiptCount;
+    this.hasDeliveryReceipt   = hasDeliveryReceipt;
+    this.hasReadReceipt       = hasReadReceipt;
+    this.viewed               = viewed;
     this.deliveryStatus       = deliveryStatus;
-    this.viewReceiptCount     = viewReceiptCount;
   }
 
   public @NonNull String getBody() {
@@ -203,36 +203,25 @@ public abstract class DisplayRecord {
     return deliveryStatus;
   }
 
-  public int getDeliveryReceiptCount() {
-    return deliveryReceiptCount;
+  public boolean hasDeliveryReceipt() {
+    return hasDeliveryReceipt;
   }
 
-  public int getReadReceiptCount() {
-    return readReceiptCount;
-  }
 
   /**
-   * For outgoing messages, this is incremented whenever a remote recipient has viewed our message
-   * and sends us a VIEWED receipt. For incoming messages, this is an indication of whether local
-   * user has viewed a piece of content.
-   *
-   * @return the number of times this has been viewed.
+   * Either the outgoing message has a viewed receipt, or an incoming message has been viewed by the local user.
    */
-  public int getViewedReceiptCount() {
-    return viewReceiptCount;
+  public boolean isViewed() {
+    return viewed;
   }
 
   public boolean isDelivered() {
     return (deliveryStatus >= Status.STATUS_COMPLETE &&
-            deliveryStatus < Status.STATUS_PENDING) || deliveryReceiptCount > 0;
+            deliveryStatus < Status.STATUS_PENDING) || hasDeliveryReceipt;
   }
 
-  public boolean isRemoteViewed() {
-    return viewReceiptCount > 0;
-  }
-
-  public boolean isRemoteRead() {
-    return readReceiptCount > 0;
+  public boolean hasReadReceipt() {
+    return hasReadReceipt;
   }
 
   public boolean isPendingInsecureSmsFallback() {

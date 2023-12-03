@@ -106,7 +106,7 @@ class NotificationsSettingsFragment : DSLSettingsFragment(R.string.preferences__
             textId = R.string.NotificationSettingsFragment__to_enable_notifications,
             actionId = R.string.NotificationSettingsFragment__turn_on,
             onClick = {
-              TurnOnNotificationsBottomSheet().show(childFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
+              TurnOnNotificationsBottomSheet.turnOnSystemNotificationsFragment(requireContext()).show(childFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
             }
           )
         )

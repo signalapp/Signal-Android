@@ -2,12 +2,14 @@ package org.thoughtcrime.securesms.preferences;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.text.method.LinkMovementMethod;
+import android.util.TimeUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -268,7 +270,7 @@ public class BackupsPreferenceFragment extends Fragment {
           .setTimeFormat(timeFormat)
           .setHour(SignalStore.settings().getBackupHour())
           .setMinute(SignalStore.settings().getBackupMinute())
-          .setTitleText("Set Backup Time")
+          .setTitleText(R.string.BackupsPreferenceFragment__set_backup_time)
           .build();
       timePickerFragment.addOnPositiveButtonClickListener(v -> {
         int days = frequencyPickerDialogFragment.getValue();

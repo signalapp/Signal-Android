@@ -1,3 +1,8 @@
+/*
+ * Copyright 2023 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 package org.thoughtcrime.securesms.util;
 
 import android.content.ContentResolver;
@@ -148,12 +153,10 @@ public class MediaUtil {
     if (fileExtension == null) {
       return mimeType;
     }
-    switch (fileExtension.toLowerCase()) {
-      case "m4a":
-        return safeMimeTypeOverride(mimeType, AUDIO_MP4);
-      default:
-        return mimeType;
+    if (fileExtension.toLowerCase().equals("m4a")) {
+      return safeMimeTypeOverride(mimeType, AUDIO_MP4);
     }
+    return mimeType;
   }
 
   public static @Nullable String getCorrectedMimeType(@Nullable String mimeType) {
@@ -401,11 +404,7 @@ public class MediaUtil {
     } else if (uri.toString().startsWith("file://") &&
                MediaUtil.isVideo(URLConnection.guessContentTypeFromName(uri.toString()))) {
       return true;
-    } else if (PartAuthority.isAttachmentUri(uri) && MediaUtil.isVideoType(PartAuthority.getAttachmentContentType(context, uri))) {
-      return true;
-    } else {
-      return false;
-    }
+    } else return PartAuthority.isAttachmentUri(uri) && MediaUtil.isVideoType(PartAuthority.getAttachmentContentType(context, uri));
   }
 
   @WorkerThread
@@ -468,6 +467,17 @@ public class MediaUtil {
     return mediaMetadataRetriever.getFrameAtTime(timeUs);
   }
 
+  public static boolean isInstantVideoSupported(Slide slide) {
+    if (!FeatureFlags.instantVideoPlayback()) {
+      return false;
+    }
+    final Attachment attachment                        = slide.asAttachment();
+    final boolean    isIncremental                     = attachment.getIncrementalDigest() != null;
+    final boolean    hasIncrementalMacChunkSizeDefined = attachment.getIncrementalMacChunkSize() > 0;
+    final boolean    contentTypeSupported              = isVideoType(slide.getContentType());
+    return isIncremental && contentTypeSupported && hasIncrementalMacChunkSizeDefined;
+  }
+
   public static @Nullable String getDiscreteMimeType(@NonNull String mimeType) {
     final String[] sections = mimeType.split("/", 2);
     return sections.length > 1 ? sections[0] : null;
@@ -476,7 +486,7 @@ public class MediaUtil {
   public static class ThumbnailData implements AutoCloseable {
 
     @NonNull private final Bitmap bitmap;
-             private final float  aspectRatio;
+    private final          float  aspectRatio;
 
     public ThumbnailData(@NonNull Bitmap bitmap) {
       this.bitmap      = bitmap;

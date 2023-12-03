@@ -46,7 +46,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.MessageSender.SendType;
 import org.thoughtcrime.securesms.stories.Stories;
-import org.thoughtcrime.securesms.util.Base64;
+import org.signal.core.util.Base64;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MessageUtil;
 import org.thoughtcrime.securesms.util.Util;
@@ -390,7 +390,7 @@ public final class MultiShareSender {
   {
     return OutgoingMessage.textStoryMessage(
         recipient,
-        Base64.encodeBytes(new StoryTextPost.Builder()
+        Base64.encodeWithPadding(new StoryTextPost.Builder()
                                             .body(getBodyForTextStory(multiShareArgs.getDraftText(), multiShareArgs.getLinkPreview()))
                                             .style(StoryTextPost.Style.DEFAULT)
                                             .background(background.serialize())

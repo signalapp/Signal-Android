@@ -4,11 +4,11 @@ import android.app.Application
 import android.database.Cursor
 import androidx.core.content.contentValuesOf
 import net.zetetic.database.sqlcipher.SQLiteDatabase
+import org.signal.core.util.Base64
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
-import org.thoughtcrime.securesms.util.Base64
 
 /**
  * Performs a check and ensures that MyStory exists at the correct distribution list id and correct distribution id.
@@ -87,7 +87,7 @@ object V153_MyStoryMigration : SignalDatabaseMigration {
       contentValuesOf(
         "group_type" to 4,
         "distribution_list_id" to MY_STORY_DISTRIBUTION_LIST_ID,
-        "storage_service_key" to Base64.encodeBytes(StorageSyncHelper.generateKey()),
+        "storage_service_key" to Base64.encodeWithPadding(StorageSyncHelper.generateKey()),
         "profile_sharing" to 1
       )
     )

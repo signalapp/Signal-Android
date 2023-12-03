@@ -24,12 +24,15 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsIcon
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
 import org.thoughtcrime.securesms.components.settings.PreferenceViewHolder
+import org.thoughtcrime.securesms.components.settings.app.subscription.completed.TerminalDonationDelegate
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent
+import org.thoughtcrime.securesms.keyvalue.AccountValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.registration.RegistrationNavigationActivity
+import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.PlayStoreUtil
 import org.thoughtcrime.securesms.util.Util
@@ -50,6 +53,8 @@ class AppSettingsFragment : DSLSettingsFragment(
   private lateinit var reminderView: Stub<ReminderView>
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    viewLifecycleOwner.lifecycle.addObserver(TerminalDonationDelegate(childFragmentManager, viewLifecycleOwner))
+
     super.onViewCreated(view, savedInstanceState)
     reminderView = ViewUtil.findStubById(view, R.id.reminder_stub)
 
@@ -229,6 +234,16 @@ class AppSettingsFragment : DSLSettingsFragment(
         }
       )
 
+      if (Environment.IS_NIGHTLY) {
+        clickPref(
+          title = DSLSettingsText.from("App updates"),
+          icon = DSLSettingsIcon.from(R.drawable.symbol_calendar_24),
+          onClick = {
+            findNavController().safeNavigate(R.id.action_appSettingsFragment_to_appUpdatesSettingsFragment)
+          }
+        )
+      }
+
       dividerPref()
 
       if (SignalStore.paymentsValues().paymentsAvailability.showPaymentsMenu()) {
@@ -344,7 +359,7 @@ class AppSettingsFragment : DSLSettingsFragment(
       summaryView.visibility = View.VISIBLE
       avatarView.visibility = View.VISIBLE
 
-      if (FeatureFlags.usernames()) {
+      if (FeatureFlags.usernames() && SignalStore.account().usernameSyncState == AccountValues.UsernameSyncState.IN_SYNC) {
         qrButton.visibility = View.VISIBLE
         qrButton.isClickable = true
         qrButton.setOnClickListener { model.onQrButtonClicked() }

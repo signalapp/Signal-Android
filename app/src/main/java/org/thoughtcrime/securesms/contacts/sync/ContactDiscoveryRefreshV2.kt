@@ -206,9 +206,11 @@ object ContactDiscoveryRefreshV2 {
    */
   @WorkerThread
   private fun Set<RecipientId>.removePossiblyRegisteredButUnlisted(): Set<RecipientId> {
+    val selfId = Recipient.self().id
     return this - Recipient.resolvedList(this)
-      .filter { it.hasServiceId() }
-      .filter { hasCommunicatedWith(it) }
+      .filter {
+        (it.hasServiceId() && hasCommunicatedWith(it)) || it.id == selfId
+      }
       .map { it.id }
       .toSet()
   }

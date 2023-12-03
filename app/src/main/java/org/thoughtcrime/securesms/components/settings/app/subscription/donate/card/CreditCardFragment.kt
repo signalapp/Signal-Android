@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.components.settings.app.subscription.donate.c
 import android.content.Context
 import android.os.Bundle
 import android.view.View
-import android.view.WindowManager
 import android.view.inputmethod.EditorInfo
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
@@ -18,6 +17,7 @@ import androidx.navigation.navGraphViewModels
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.TemporaryScreenshotSecurity
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentComponent
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalType
@@ -29,7 +29,6 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.donate.st
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
 import org.thoughtcrime.securesms.databinding.CreditCardFragmentBinding
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
@@ -48,13 +47,15 @@ class CreditCardFragment : Fragment(R.layout.credit_card_fragment) {
   )
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    TemporaryScreenshotSecurity.bindToViewLifecycleOwner(this)
+
     val errorSource: DonationErrorSource = when (args.request.donateToSignalType) {
-      DonateToSignalType.ONE_TIME -> DonationErrorSource.BOOST
-      DonateToSignalType.MONTHLY -> DonationErrorSource.SUBSCRIPTION
+      DonateToSignalType.ONE_TIME -> DonationErrorSource.ONE_TIME
+      DonateToSignalType.MONTHLY -> DonationErrorSource.MONTHLY
       DonateToSignalType.GIFT -> DonationErrorSource.GIFT
     }
 
-    DonationCheckoutDelegate.ErrorHandler().attach(this, null, errorSource)
+    DonationCheckoutDelegate.ErrorHandler().attach(this, null, args.request.uiSessionKey, errorSource)
 
     setFragmentResultListener(StripePaymentInProgressFragment.REQUEST_KEY) { _, bundle ->
       val result: DonationProcessorActionResult = bundle.getParcelableCompat(StripePaymentInProgressFragment.REQUEST_KEY, DonationProcessorActionResult::class.java)!!
@@ -64,13 +65,13 @@ class CreditCardFragment : Fragment(R.layout.credit_card_fragment) {
       }
     }
 
-    binding.title.text = if (args.request.donateToSignalType == DonateToSignalType.MONTHLY) {
+    binding.continueButton.text = if (args.request.donateToSignalType == DonateToSignalType.MONTHLY) {
       getString(
-        R.string.CreditCardFragment__donation_amount_s_per_month,
+        R.string.CreditCardFragment__donate_s_month,
         FiatMoneyUtil.format(resources, args.request.fiat, FiatMoneyUtil.formatOptions().trimZerosAfterDecimal())
       )
     } else {
-      getString(R.string.CreditCardFragment__donation_amount_s, FiatMoneyUtil.format(resources, args.request.fiat))
+      getString(R.string.CreditCardFragment__donate_s, FiatMoneyUtil.format(resources, args.request.fiat))
     }
 
     binding.description.setLinkColor(ContextCompat.getColor(requireContext(), R.color.signal_colorPrimary))
@@ -140,13 +141,6 @@ class CreditCardFragment : Fragment(R.layout.credit_card_fragment) {
     }
   }
 
-  override fun onStart() {
-    super.onStart()
-    if (!TextSecurePreferences.isScreenSecurityEnabled(requireContext())) {
-      requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_SECURE)
-    }
-  }
-
   override fun onResume() {
     super.onResume()
 
@@ -155,13 +149,6 @@ class CreditCardFragment : Fragment(R.layout.credit_card_fragment) {
       CreditCardFormState.FocusedField.NUMBER -> ViewUtil.focusAndShowKeyboard(binding.cardNumber)
       CreditCardFormState.FocusedField.EXPIRATION -> ViewUtil.focusAndShowKeyboard(binding.cardExpiry)
       CreditCardFormState.FocusedField.CODE -> ViewUtil.focusAndShowKeyboard(binding.cardCvv)
-    }
-  }
-
-  override fun onStop() {
-    super.onStop()
-    if (!TextSecurePreferences.isScreenSecurityEnabled(requireContext())) {
-      requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_SECURE)
     }
   }
 

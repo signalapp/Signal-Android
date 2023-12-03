@@ -1,25 +1,40 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway
 
 import io.reactivex.rxjava3.core.Single
+import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.components.settings.app.subscription.getAvailablePaymentMethods
+import org.thoughtcrime.securesms.payments.currency.CurrencyUtil
 import org.whispersystems.signalservice.api.services.DonationsService
+import org.whispersystems.signalservice.internal.push.DonationsConfiguration
 import java.util.Locale
 
 class GatewaySelectorRepository(
   private val donationsService: DonationsService
 ) {
-  fun getAvailableGateways(currencyCode: String): Single<Set<GatewayResponse.Gateway>> {
+  fun getAvailableGatewayConfiguration(currencyCode: String): Single<GatewayConfiguration> {
     return Single.fromCallable {
       donationsService.getDonationsConfiguration(Locale.getDefault())
     }.flatMap { it.flattenResult() }
       .map { configuration ->
-        configuration.getAvailablePaymentMethods(currencyCode).map {
+        val available = configuration.getAvailablePaymentMethods(currencyCode).map {
           when (it) {
-            "PAYPAL" -> listOf(GatewayResponse.Gateway.PAYPAL)
-            "CARD" -> listOf(GatewayResponse.Gateway.CREDIT_CARD, GatewayResponse.Gateway.GOOGLE_PAY)
+            DonationsConfiguration.PAYPAL -> listOf(GatewayResponse.Gateway.PAYPAL)
+            DonationsConfiguration.CARD -> listOf(GatewayResponse.Gateway.CREDIT_CARD, GatewayResponse.Gateway.GOOGLE_PAY)
+            DonationsConfiguration.SEPA_DEBIT -> listOf(GatewayResponse.Gateway.SEPA_DEBIT)
+            DonationsConfiguration.IDEAL -> listOf(GatewayResponse.Gateway.IDEAL)
             else -> listOf()
           }
         }.flatten().toSet()
+
+        GatewayConfiguration(
+          availableGateways = available,
+          sepaEuroMaximum = if (configuration.sepaMaximumEuros != null) FiatMoney(configuration.sepaMaximumEuros, CurrencyUtil.EURO) else null
+        )
       }
   }
+
+  data class GatewayConfiguration(
+    val availableGateways: Set<GatewayResponse.Gateway>,
+    val sepaEuroMaximum: FiatMoney?
+  )
 }

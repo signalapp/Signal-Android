@@ -12,6 +12,7 @@ import java.util.Currency
 
 @Parcelize
 data class GatewayRequest(
+  val uiSessionKey: Long,
   val donateToSignalType: DonateToSignalType,
   val badge: Badge,
   val label: String,

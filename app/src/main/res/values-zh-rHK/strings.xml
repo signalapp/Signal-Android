@@ -15,6 +15,8 @@
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
   <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/5389476324250</string> -->
   <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="pending_transfer_url" translatable="false">https://support.signal.org/hc/articles/360031949872#pending</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string> -->
 
     <string name="yes">是</string>
     <string name="no">否</string>
@@ -119,11 +121,8 @@
     <string name="BlockedUsersActivity__block">封鎖</string>
 
     <!-- CreditCardFragment -->
-    <!-- Title of fragment detailing the donation amount for one-time donation, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__donation_amount_s">捐款金額：%1$s</string>
-    <!-- Title of fragment detailing the donation amount for monthly donation, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__donation_amount_s_per_month">捐款金額：每月 %1$s</string>
-    <!-- Explanation of how to fill in the form, displayed above the credit card text fields -->
+    <!-- Title of fragment -->
+    <string name="CreditCardFragment__credit_or_debit_card">信用卡或簽帳金融卡</string>
     <!-- Explanation of how to fill in the form and a note about pii, displayed above the credit card text fields -->
     <string name="CreditCardFragment__enter_your_card_details">請輸入付款卡詳情。Signal 不會收集或保存你的個人資料。</string>
     <!-- Displayed as a hint in the card number text field -->
@@ -148,8 +147,18 @@
     <string name="CreditCardFragment__year_required">必須填寫年份</string>
     <!-- Error displayed under the card expiry text field when the expiry year is invalid -->
     <string name="CreditCardFragment__invalid_year">年份無效</string>
-    <!-- Button label to confirm credit card input and proceed with payment -->
-    <string name="CreditCardFragment__continue">繼續</string>
+    <!-- Button label to confirm credit card input and proceed with one-time payment -->
+    <string name="CreditCardFragment__donate_s">捐款 %1$s</string>
+    <!-- Button label to confirm credit card input and proceed with subscription payment -->
+    <string name="CreditCardFragment__donate_s_month">每月捐款 %1$s</string>
+
+    <!-- OneTimeDonationPreference -->
+    <!-- Preference title with placeholder for amount. -->
+    <string name="OneTimeDonationPreference__one_time_s">單次 %1$s</string>
+    <!-- Preference subtitle when donation is pending -->
+    <string name="OneTimeDonationPreference__donation_pending">捐款正待處理</string>
+    <!-- Preference subtitle when donation is processing -->
+    <string name="OneTimeDonationPreference__donation_processing">捐款正在處理中</string>
 
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">要封鎖並退出 %1$s 嗎？</string>
@@ -393,6 +402,8 @@
 
     <string name="ConversationActivity_error_sending_media">傳送媒體時發生錯誤</string>
 
+    <!-- Message shown when opening an MMS group conversation with SMS disabled and there are no exported messages -->
+    <string name="ConversationActivity__sms_messaging_is_no_longer_supported">Signal 不再支援短訊功能。</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Signal 不再支援短訊功能。邀請 %1$s 加入 Signal 以繼續對話。</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
@@ -618,6 +629,8 @@
     <!-- Show percentage of completion of backup -->
     <string name="BackupsPreferenceFragment__s_so_far">目前進度 %1$s%%…</string>
     <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal 需要外部儲存空間權限才可建立備份，但已被永久拒絕。請前往應用程式設定，選擇「權限」，然後啟用「儲存裝置」。</string>
+    <!-- Title of dialog shown when picking the time to perform a chat backup -->
+    <string name="BackupsPreferenceFragment__set_backup_time">設定備份時間</string>
 
 
     <!-- CustomDefaultPreference -->
@@ -946,12 +959,15 @@
     <string name="ManageProfileFragment_profile_name">個人資料名稱</string>
     <string name="ManageProfileFragment_username">使用者名稱</string>
     <string name="ManageProfileFragment_about">關於</string>
-    <string name="ManageProfileFragment_write_a_few_words_about_yourself">不妨寫句話自我介紹一下</string>
-    <string name="ManageProfileFragment_your_name">您的名稱</string>
-    <string name="ManageProfileFragment_your_username">您的使用者名稱</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">設定頭像失敗</string>
     <string name="ManageProfileFragment_badges">徽章</string>
+    <!-- Text for a button that will take the user to the screen to manage their username link and QR code -->
+    <string name="ManageProfileFragment_link_setting_text">二維碼或連結</string>
     <string name="ManageProfileFragment__edit_photo">編輯相片</string>
+    <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
+    <string name="ManageProfileFragment__link_tooltip_title">分享你的用戶名稱</string>
+    <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
+    <string name="ManageProfileFragment__link_tooltip_body">分享你專屬的二維碼或連結，讓其他人能開始與你聊天。</string>
     <!-- Snackbar message after creating username -->
     <string name="ManageProfileFragment__username_created">已建立用戶名稱</string>
     <!-- Snackbar message after copying username -->
@@ -960,10 +976,16 @@
     <string name="ManageProfileFragment__couldnt_delete_username">無法刪除用戶名稱。請稍後再試。</string>
     <!-- Snackbar message after successful deletion of username -->
     <string name="ManageProfileFragment__username_deleted">已刪除用戶名稱</string>
+    <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
+    <string name="ManageProfileFragment__delete_username_dialog_title">要刪除用戶名稱？</string>
+    <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
+    <string name="ManageProfileFragment__delete_username_dialog_body">"這將刪除你的用戶名稱並停用你的二維碼和連結。 「%1$s」將會供其他人使用。 你確定嗎？"</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
-    <string name="UsernameOutOfSyncReminder__something_went_wrong">你的用戶名稱發生問題，不再被分派至你的帳戶。你可以嘗試重設或選擇一個新的。</string>
+    <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">你的用戶名稱發生問題，不再被分派至你的帳戶。你可以嘗試重設或選擇一個新的。</string>
+    <!-- Displayed above the conversation list when a user needs to address an issue with their username link -->
+    <string name="UsernameOutOfSyncReminder__link_corrupt">你的二維碼及用戶名稱連結發生問題，已不再有效。 建立新連結以與他人分享。</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
     <string name="UsernameOutOfSyncReminder__fix_now">立即修復</string>
 
@@ -1459,7 +1481,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">你是否要允許 %1$s 與你通訊？在解除封鎖之前，你都不會收到對方的任何訊息。</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">你是否要獲取 %1$s 的更新資訊及最新消息？在解除封鎖之前，你都不會收到任何更新資訊。</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">要繼續與此群組的對話，並與其成員分享您的名稱和照片嗎？</string>
-    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">升級此群組以啟用新功能，諸如 @提及 和管理員。此群組中未有分享名稱或照片的成員將會獲邀加入。</string>
+    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">This Legacy Group can no longer be used. Create a new group to activate new features like @mentions and admins.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">此「舊版群組」現已不再可用，因為人數太多。群組人數上限為 %1$d 人。</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">要繼續與 %1$s 聊天，並與其分享你的名稱和照片嗎？</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">要加入此群組，並向其成員分享您的名稱和照片嗎？在您接受之前，他們不會知道您看過其訊息。</string>
@@ -2015,9 +2037,13 @@
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">%1$s 是 %2$s 的手機號碼</string>
 
-    <!-- UpdateApkReadyListener -->
-    <string name="UpdateApkReadyListener_Signal_update">Signal 更新</string>
-    <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">新版本的 Signal 現已可用，輕觸以更新</string>
+    <!-- ApkUpdateNotifications -->
+    <string name="ApkUpdateNotifications_prompt_install_title">Signal 更新</string>
+    <string name="ApkUpdateNotifications_prompt_install_body">新版本的 Signal 現已提供。 輕觸以更新。</string>
+    <string name="ApkUpdateNotifications_failed_general_title">Signal 無法更新</string>
+    <string name="ApkUpdateNotifications_failed_general_body">我們將稍後再試。</string>
+    <string name="ApkUpdateNotifications_auto_update_success_title">Signal 已成功更新</string>
+    <string name="ApkUpdateNotifications_auto_update_success_body">已自動更新到版本 %1$s。</string>
 
     <!-- UntrustedSendDialog -->
     <string name="UntrustedSendDialog_send_message">要傳送訊息嗎？</string>
@@ -2241,6 +2267,9 @@
     <plurals name="TransferControlView_n_items">
         <item quantity="other">%1$d 個項目</item>
     </plurals>
+    <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
+    <string name="TransferControlView__processing">正在處理…</string>
+
 
     <!-- UnauthorizedReminder -->
     <!-- Message shown in a reminder banner when the user\'s device is no longer registered -->
@@ -2608,24 +2637,13 @@
 
     <!-- verify_display_fragment -->
     <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
-    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">若要驗證你與 %1$s 之間的端對端加密，請比對上方色卡與對方裝置上的色卡是否匹配，以及比較數字。如果這些無法匹配，請滑動並嘗試另一組安全碼。只需要匹配一對。</string>
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">若要驗證你與 %1$s 之間的端對端加密，請比較上方數字與對方裝置上的數字是否一樣。 你亦可掃瞄對方裝置上的二維碼。</string>
     <string name="verify_display_fragment__tap_to_scan">輕觸以掃描</string>
     <string name="verify_display_fragment__successful_match">比對成功</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">驗證安全碼失敗</string>
     <string name="verify_display_fragment__loading">正在載入…</string>
     <string name="verify_display_fragment__mark_as_verified">標記為已驗證</string>
     <string name="verify_display_fragment__clear_verification">清除驗證</string>
-    <!-- Banner at top of safety numbers screen explaining that we\'re updating how safety numbers work. -->
-    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">安全碼正在更新中。</string>
-
-    <!-- Title for dialog explaining for how safety numbers are transitioning to support usernames -->
-    <string name="PnpSafetyNumberEducationDialog__title">安全碼變更</string>
-    <!-- Message for dialog explaining for how safety numbers are transitioning to support usernames -->
-    <string name="PnpSafetyNumberEducationDialog__body">安全碼會在過渡期間進行更新，以啟用 Signal 即將推出的隱私功能。\n\n要驗證安全碼，請將色卡與聯絡人的裝置配對。如果這些無法匹配，請滑動並嘗試另一組安全號碼。只需要匹配一對。</string>
-    <!-- Button for more information about the safety number changes. Takes user to support article -->
-    <string name="PnpSafetyNumberEducationDialog__help">需要說明嗎？</string>
-    <!-- Confirmation button for educating users about new safety number changes -->
-    <string name="PnpSafetyNumberEducationDialog__confirm">我知道了</string>
 
     <!-- verity_scan_fragment -->
     <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">請掃描您的聯絡人裝置上的二維碼。</string>
@@ -2907,7 +2925,10 @@
     <string name="preferences_storage__six_months">6 個月</string>
     <string name="preferences_storage__thirty_days">30 天</string>
     <string name="preferences_storage__none">無</string>
-    <string name="preferences_storage__s_messages">%1$s 則訊息</string>
+    <plurals name="preferences_storage__s_messages_plural">
+        <item quantity="other">%1$s 則訊息</item>
+    </plurals>
+
     <string name="preferences_storage__custom">自訂</string>
     <string name="preferences_advanced__use_system_emoji">使用系統表情符號</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">經由 Signal 伺服器轉送所有通話以避免向您的聯絡人透露您的 IP 位址。啟用時將會降低通話質素。</string>
@@ -2915,6 +2936,7 @@
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">付款</string>
     <string name="preferences_chats__chats">聊天</string>
+    <string name="preferences_app_updates__title">應用程式更新</string>
     <string name="preferences_data_and_storage__manage_storage">管理儲存空間</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">通話時使用較少數據</string>
     <string name="preferences_data_and_storage__never">永不</string>
@@ -4451,6 +4473,12 @@
     <string name="NewConversationActivity__view_contact">檢視聯絡人</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
     <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s 不是 Signal 用戶</string>
+    <!-- Error message shown when we could not get a user from the username link -->
+    <string name="NewConversationActivity__">%1$s 不是 Signal 用戶</string>
+    <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
+    <plurals name="CreateGroupActivity_not_signal_users">
+        <item quantity="other">%1$s are not Signal users</item>
+    </plurals>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">搜尋名稱或號碼</string>
@@ -4632,6 +4660,12 @@
     <string name="ManageDonationsFragment__other_ways_to_give">其他方式捐贈</string>
     <!-- Preference label to launch badge gifting -->
     <string name="ManageDonationsFragment__donate_for_a_friend">為朋友捐款</string>
+    <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
+    <string name="ManageDonationsFragment__couldnt_confirm_donation">無法確認捐款</string>
+    <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
+    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">無法確認你每月 %1$s 的捐款。 請檢查銀行應用程式以核准你的 iDEAL 付款。</string>
+    <!-- Dialog message shown when a one-time donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
+    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">無法確認你的 %1$s 單次捐款。請檢查銀行應用程式以核准你的 iDEAL 付款。</string>
 
     <string name="Boost__enter_custom_amount">請輸入自訂金額</string>
     <!-- Error label when the amount is smaller than what we can accept -->
@@ -4643,6 +4677,12 @@
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">無法新增徽章。%1$s</string>
     <string name="MySupportPreference__please_contact_support">請聯絡支援。</string>
+    <!-- Displayed as a subtitle on a row in the Manage Donations screen when payment for a donation is pending -->
+    <string name="MySupportPreference__payment_pending">付款正待處理</string>
+    <!-- Displayed as a dialog message when clicking on a donation row that is pending. Placeholder is a formatted fiat amount -->
+    <string name="MySupportPreference__your_bank_transfer_of_s">你 %1$s 的銀行轉帳正待處理。 銀行轉帳通常需要 1 個工作天才能完成。  </string>
+    <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
+    <string name="MySupportPreference__learn_more">了解更多</string>
 
     <!-- Title of dialog telling user they need to update signal as it expired -->
     <string name="UpdateSignalExpiredDialog__title">更新 Signal</string>
@@ -4692,12 +4732,16 @@
     <string name="Subscription__contact_support">聯絡支援</string>
     <string name="Subscription__get_a_s_badge">獲取 %1$s 徽章</string>
 
-    <string name="SubscribeFragment__processing_payment">正在處理付款…</string>
+    <string name="SubscribeFragment__processing_payment">正在處理捐款…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
-    <string name="DonationsErrors__error_processing_payment">處理付款時發生錯誤</string>
+    <string name="DonationsErrors__error_processing_payment">處理捐款時發生錯誤</string>
+    <!-- Displayed on manage donations screen as a dialog message when payment method failed -->
+    <string name="DonationsErrors__try_another_payment_method">試試換另一個付款方法，又或者聯絡您的銀行取得更多資訊。</string>
+    <!-- Displayed on manage donations screen error dialogs as an action label -->
+    <string name="DonationsErrors__learn_more">了解更多</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
-    <string name="DonationsErrors__error_processing_payment_s">處理付款時發生錯誤。%1$s</string>
-    <string name="DonationsErrors__your_payment">系統無法處理你的付款，且並未向你收取費用。請再試一次。</string>
+    <string name="DonationsErrors__error_processing_payment_s">處理捐款時發生錯誤。 %1$s</string>
+    <string name="DonationsErrors__your_payment">無法處理你的付款，且並未向你收取費用。 請重試。</string>
     <string name="DonationsErrors__still_processing">仍在處理中</string>
     <string name="DonationsErrors__couldnt_add_badge">無法新增徽章</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -4707,9 +4751,9 @@
     <!-- Displayed as title when some generic error happens during sending donation on behalf of another user -->
     <string name="DonationsErrors__donation_failed">捐款失敗</string>
     <!-- Displayed as message when some generic error happens during sending donation on behalf of another user -->
-    <string name="DonationsErrors__your_payment_was_processed_but">系統已經處理你的付款，但 Signal 無法傳送你的捐款訊息。請聯絡支援團隊。</string>
+    <string name="DonationsErrors__your_payment_was_processed_but">系統已經處理你的捐款，但 Signal 無法傳送你的捐款訊息。 請聯絡支援團隊。</string>
     <string name="DonationsErrors__your_badge_could_not">系統無法將徽章新增至你的帳戶，但可能已向你收取相關款項。請聯絡支援團隊。</string>
-    <string name="DonationsErrors__your_payment_is_still">您的付款仍在處理中。可能需時幾分鐘，視乎您的連線而定。</string>
+    <string name="DonationsErrors__your_payment_is_still">你的捐款仍在處理中。 可能需時幾分鐘，視乎你的連線而定。</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">無法取消定期贊助</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">你必須有網路連線才可取消定期贊助。</string>
     <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">你的裝置不支援 Google Pay，因此未能進行定期贊助並贈予徽章。你仍可在我們的網站上捐款以支持 Signal。</string>
@@ -4721,6 +4765,8 @@
     <string name="DonationsErrors__this_user_cant_receive_donations_until">此用戶必須先升級 Signal 才能接收捐款。</string>
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__your_donation_could_not_be_sent">由於發生網路錯誤，系統無法發送你的捐款。請檢查你的網路連線，然後再試一次。</string>
+    <!-- Displayed as a dialog message when the user encounters an error during an iDEAL donation -->
+    <string name="DonationsErrors__your_ideal_couldnt_be_processed">無法處理你的 iDEAL 捐款。 請嘗試其他付款方式，或聯絡你的銀行取得更多資訊。</string>
 
     <!-- Gift message view title -->
     <string name="GiftMessageView__donation_on_behalf_of_s">代表 %1$s 捐款</string>
@@ -4738,6 +4784,8 @@
 
     <!-- Stripe decline code generic_failure -->
     <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">試試換另一個付款方法，又或者聯絡您的銀行取得更多資訊。</string>
+    <!-- PayPal decline code for payment declined -->
+    <string name="DeclineCode__try_another_payment_method_or_contact_your_bank_for_more_information_if_this_was_a_paypal">試試另一個付款方法，或聯絡您的銀行取得更多資訊。如果這是 PayPal 交易，請聯絡 PayPal。</string>
     <!-- Stripe decline code verify on Google Pay and try again -->
     <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">請到 Google Pay 驗證您的付款方法仍然有效，然後再試一次。</string>
     <!-- Stripe decline code learn more action label -->
@@ -4763,7 +4811,7 @@
     <!-- Stripe decline code incorrect expiration year -->
     <string name="DeclineCode__the_expiration_year">您的付款方法所述的到期年份不正確。請到 Google Pay 更新此資訊，然後再試一次。</string>
     <!-- Stripe decline code issuer not available -->
-    <string name="DeclineCode__try_completing_the_payment_again">再試試完成付款，又或者聯絡您的銀行取得更多資訊。</string>
+    <string name="DeclineCode__try_completing_the_payment_again">再次嘗試完成捐款，又或者聯絡你的銀行取得更多資訊。</string>
     <!-- Stripe decline code processing error -->
     <string name="DeclineCode__try_again">請再試一次，又或者聯絡您的銀行取得更多資訊。</string>
 
@@ -4782,6 +4830,18 @@
     <string name="DeclineCode__the_expiration_year_on_your_card_is_incorrect">您信用卡上的有效日期不正確。驗證您的信用卡資料是否正確，然後重試。</string>
     <!-- Stripe decline code incorrect_number and invalid_number for credit cards displayed in a notification or dialog -->
     <string name="DeclineCode__your_card_number_is_incorrect_verify_your_card_details">您的信用卡號碼不正確。驗證您的信用卡資料是否正確，然後重試。</string>
+
+    <!-- Stripe Failure Codes for failed bank transfers -->
+    <!-- Failure code text for insufficient funds, displayed in a dialog or notification -->
+    <string name="StripeFailureCode__the_bank_account_provided">你所提供的銀行帳戶資金不足以完成此次購買，請重新嘗試，或者聯絡你的銀行了解詳情。</string>
+    <!-- Failure code text for revoked authorization of payment, displayed in a dialog or notification -->
+    <string name="StripeFailureCode__this_payment_was_revoked">帳戶持有人撤銷此捐款而無法處理。系統並未向你收取費用。</string>
+    <!-- Failure code text for a payment lacking an authorized mandate or incorrect mandate, displayed in a dialog or notification -->
+    <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">處理此捐款時發生錯誤，請重新嘗試。</string>
+    <!-- Failure code text for a closed account, deceased recipient, or one with blocked direct debits, displayed in a dialog or notification -->
+    <string name="StripeFailureCode__the_bank_details_provided_could_not_be_processed">無法處理所提供的銀行資料，請聯絡你的銀行了解詳情。</string>
+    <!-- Failure code text for a non-existent bank branch, invalid account holder, invalid iban, generic failure, or unknown bank failure, displayed in a dialog or notification -->
+    <string name="StripeFailureCode__verify_your_bank_details_are_correct">驗證你的銀行資料是否正確，然後重試。如果問題仍然存在，請與你的銀行聯絡。</string>
 
     <!-- Title of create notification profile screen -->
     <string name="EditNotificationProfileFragment__name_your_profile">為您的情景命名</string>
@@ -4939,10 +4999,10 @@
     <string name="DonationReceiptListFragment__recurring">週期</string>
     <!-- Donation receipts one-time tab label -->
     <string name="DonationReceiptListFragment__one_time">單次</string>
+    <!-- Donation receipts gift tab -->
+    <string name="DonationReceiptListFragment__for_a_friend">For a friend</string>
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__donation_for_a_friend">為朋友捐款</string>
-    <!-- Donation receipts boost row label -->
-    <!-- Donation receipts details title -->
     <!-- Donation receipts donation type heading -->
     <string name="DonationReceiptDetailsFragment__donation_type">捐款類型</string>
     <!-- Donation receipts date paid heading -->
@@ -5414,7 +5474,9 @@
     <!-- Message of safety number changes bottom sheet when not showing individual records and user has seen review screen -->
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">已檢查所有人脈，請點按傳送以繼續操作。</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
-    <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">你有 %1$d 個人脈可能已重新安裝 Signal 或更換裝置。與他們分享你的限時動態之前，請先檢查他們的安全碼，或考慮將他們從你的限時動態中移除。</string>
+    <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
+        <item quantity="other">你有 %1$d 位聯絡人可能已重新安裝 Signal 或更換裝置。與對方分享你的限時動態之前，請先檢查他們的安全碼，或考慮將他們從你的限時動態中移除。</item>
+    </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">驗證安全碼</string>
     <!-- Menu action to remove user from story -->
@@ -5654,6 +5716,23 @@
     <string name="DonateToSignalFragment__continue">繼續</string>
     <!-- Description below title -->
     <string name="DonateToSignalFragment__private_messaging">我們是由你贊助的私密通訊軟體。無廣告、無追蹤、而且絕不妥協。請立即捐款支持 Signal。</string>
+    <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
+    <string name="DonateToSignalFragment__you_have_a_donation_pending">你有捐款正待處理</string>
+    <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">銀行轉帳通常需要 1 個工作天來處理。 請等待付款完成後，才更新你的捐款。</string>
+    <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">銀行轉帳通常需要 1 個工作天來處理。 請等待付款完成後，才進行另一次捐款。</string>
+    <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">你的捐款仍在處理中。 可能需時幾分鐘，視乎你的連線而定。請等待付款完成後，才更新你的定期贊助。</string>
+    <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">你的捐款仍在處理中。 可能需時幾分鐘，視乎你的連線而定。請等待付款完成後，才進行另一次捐款。</string>
+    <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
+    <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">你的 iDEAL 捐款仍在處理中。 請檢查銀行應用程式以核准你的付款，然後才進行另一次捐款。</string>
+    <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
+    <string name="DonateToSignal__donation_amount_too_high">Donation amount too high</string>
+    <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
+    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">You can send up to %1$s via bank transfer. Try a different amount or a different payment method.</string>
+
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">每月</string>
     <!-- Donation pill toggle one-time text -->
@@ -5670,10 +5749,138 @@
     <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
         <item quantity="other">獲取為期 %2$d 天的 %1$s 徽章</item>
     </plurals>
+    <!-- Button label for paying with a bank transfer -->
+    <string name="GatewaySelectorBottomSheet__bank_transfer">銀行轉帳</string>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">信用卡或簽帳金融卡</string>
     <!-- Sheet summary when giving donating for a friend -->
     <string name="GatewaySelectorBottomSheet__donate_for_a_friend">為朋友捐款</string>
+    <!-- Button label for paying with iDEAL -->
+    <string name="GatewaySelectorBottomSheet__ideal">iDEAL</string>
+
+    <!-- Dialog title for launching external intent -->
+    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">要離開 Signal 以確認捐款？</string>
+    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">確認後，請返回 Signal 以完成你的捐款處理。</string>
+
+    <!-- IdealBank -->
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__abn_amro">ABN AMRO</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__asn_bank">ASN Bank</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__bunq">bunq</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__ing">ING</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__knab">Knab</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__n26">N26</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__rabobank">Rabobank</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__regiobank">RegioBank</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__revolut">Revolut</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__sns_bank">SNS Bank</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__triodos_bank">Triodos Bank</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__van_lanschot">Van Lanschot Kempen</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__yoursafe">Yoursafe</string>
+
+    <!-- BankTransferMandateFragment -->
+    <!-- Title of screen displaying the bank transfer mandate -->
+    <string name="BankTransferMandateFragment__bank_transfer">銀行轉帳</string>
+    <!-- Subtitle of screen displaying the bank transfer mandate, placeholder is \'Learn more\' -->
+    <string name="BankTransferMandateFragment__stripe_processes_donations">Stripe 會處理給 Signal 的捐款。Signal 不會收集或儲存你的個人資料。%1$s</string>
+    <!-- Subtitle learn more of screen displaying bank transfer mandate -->
+    <string name="BankTransferMandateFragment__learn_more">了解更多</string>
+    <!-- Button label to continue with transfer -->
+    <string name="BankTransferMandateFragment__agree">同意</string>
+    <!-- Button label to read more of the bank mandate that is currently off screen -->
+    <string name="BankTransferMandateFragment__read_more">閱讀全文</string>
+    <!-- Text displayed when mandate load fails -->
+    <string name="BankTransferMandateFragment__failed_to_load_mandate">無法載入授權</string>
+
+    <!-- BankTransferDetailsFragment -->
+    <!-- Subtext explaining how email is used. Placeholder is \'Learn more\' -->
+    <string name="BankTransferDetailsFragment__enter_your_bank_details">請輸入你的銀行資料和電郵地址。 Stripe 會使用此電郵向你發送有關捐款的最新訊息。 %1$s</string>
+    <!-- Subtext learn more link text -->
+    <string name="BankTransferDetailsFragment__learn_more">了解更多</string>
+    <!-- Text field label for name on bank account -->
+    <string name="BankTransferDetailsFragment__name_on_bank_account">銀行帳戶上的姓名</string>
+    <!-- Text field label for IBAN -->
+    <string name="BankTransferDetailsFragment__iban">IBAN</string>
+    <!-- Text field label for email -->
+    <string name="BankTransferDetailsFragment__email">電郵</string>
+    <!-- Text label for button to show user how to find their IBAN -->
+    <string name="BankTransferDetailsFragment__find_account_info">搜尋帳戶資料</string>
+    <!-- Donate button label for monthly subscription -->
+    <string name="BankTransferDetailsFragment__donate_s_month">每月捐款 %1$s</string>
+    <!-- Donate button label for one-time -->
+    <string name="BankTransferDetailsFragment__donate_s">捐款 %1$s</string>
+    <!-- Error label for IBAN field when number is too short -->
+    <string name="BankTransferDetailsFragment__iban_is_too_short">IBAN 太短</string>
+    <!-- Error label for IBAN field when number is too long -->
+    <string name="BankTransferDetailsFragment__iban_is_too_long">IBAN 太長</string>
+    <!-- Error label for IBAN field when country is not supported -->
+    <string name="BankTransferDetailsFragment__iban_country_code_is_not_supported">未支援 IBAN 國家代碼</string>
+    <!-- Error label for IBAN field when number is invalid -->
+    <string name="BankTransferDetailsFragment__invalid_iban">IBAN 無效</string>
+
+    <!-- IdealTransferDetailsFragment -->
+    <!-- Title of the screen, displayed in the toolbar -->
+    <string name="IdealTransferDetailsFragment__ideal">iDEAL</string>
+    <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
+    <string name="IdealTransferDetailsFragment__enter_your_bank">請輸入你的銀行、名稱和電郵地址。 Stripe 會使用此電郵向你發送有關捐款的最新訊息。 %1$s</string>
+    <!-- Subtitle learn-more button displayed inline with the subtitle text -->
+    <string name="IdealTransferDetailsFragment__learn_more">了解更多</string>
+    <!-- Hint label for text entry box for name on bank account -->
+    <string name="IdealTransferDetailsFragment__name_on_bank_account">銀行帳戶上的姓名</string>
+    <!-- Hint label for text entry box for email -->
+    <string name="IdealTransferDetailsFragment__email">電郵</string>
+    <!-- Default label for bank selection -->
+    <string name="IdealTransferDetailsFragment__choose_your_bank">選擇你的銀行</string>
+
+    <!-- IdealTransferDetailsBankSelectionDialogFragment -->
+    <!-- Title of the screen, displayed in the toolbar -->
+    <string name="IdealTransferDetailsBankSelectionDialogFragment__choose_your_bank">選擇你的銀行</string>
+
+    <!-- Title of bottom sheet for finding account information -->
+    <string name="FindAccountInfoSheet__find_your_account_information">搜尋你的帳戶資料</string>
+    <!-- Body of bottom sheet for finding account information -->
+    <string name="FindAccountInfoSheet__look_for_your_iban_at">在銀行結帳單頂端查找你的 IBAN。IBAN 包含最多 34 個字元。你輸入的姓名應與你銀行帳戶上的全名相符。請聯絡你的銀行了解詳情。</string>
+
+    <!-- Title of donation pending sheet displayed after making a bank transfer -->
+    <string name="DonationPendingBottomSheet__donation_pending">捐款正待處理</string>
+    <!-- Top text block of donation pending sheet displayed after subscribing via a bank transfer. Placeholder is the badge name. -->
+    <string name="DonationPendingBottomSheet__your_monthly_donation_is_pending">你的每月捐款正待處理。 收到捐款後，你便能在個人資料中顯示 %1$s 徽章。</string>
+    <!-- Top text block of donation pending sheet displayed after one-time donation via a bank transfer. Placeholder is the badge name. -->
+    <string name="DonationPendingBottomSheet__your_one_time_donation_is_pending">你的單次捐款正待處理。 收到捐款後，你便能在個人資料中顯示 %1$s 徽章。</string>
+    <!-- Bottom text block of donation pending sheet displayed after donating via a bank transfer. Placeholder is for learn more. -->
+    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">銀行轉帳通常需要 1 個工作天來處理。 %1$s</string>
+    <!-- Learn more text for donation pending sheet displayed after donating via a bank transfer. -->
+    <string name="DonationPendingBottomSheet__learn_more">了解更多</string>
+    <!-- Confirmation button for donation pending sheet displayed after donating via a bank transfer. -->
+    <string name="DonationPendingBottomSheet__done">完成</string>
+
+    <!-- Title of donation error sheet displayed after making a bank transfer that fails -->
+    <string name="DonationErrorBottomSheet__donation_couldnt_be_processed">捐款無法處理</string>
+    <!-- Text block of donation error sheet displayed after making a bank transfer that fails -->
+    <string name="DonationErrorBottomSheet__were_having_trouble">我們在處理你的銀行轉帳時遇到問題。 你尚未被扣款。 請嘗試其他付款方式，或聯絡你的銀行取得更多資訊。</string>
+    <!-- Button label for retry button of donation error sheet displayed after making a bank transfer that fails -->
+    <string name="DonationErrorBottomSheet__try_again">再試一次</string>
+    <!-- Button label for not now button of donation error sheet displayed after making a bank transfer that fails -->
+    <string name="DonationErrorBottomSheet__not_now">現在不要</string>
+
+    <!-- Title of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed -->
+    <string name="DonationCompletedBottomSheet__donation_complete">捐款完成</string>
+    <!-- Text block of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed -->
+    <string name="DonationCompleteBottomSheet__your_bank_transfer_was_received">已收到你的銀行轉帳。你可選擇在個人資料中顯示此徽章，以展現你對我們的支持。</string>
+    <!-- Button text of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed to dismiss sheet -->
+    <string name="DonationCompleteBottomSheet__done">完成</string>
 
     <!-- StripePaymentInProgressFragment -->
     <string name="StripePaymentInProgressFragment__cancelling">正在取消…</string>
@@ -6062,6 +6269,13 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">嘗試重設連結時發生網路錯誤。請稍後再試。</string>
 
+    <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
+    <string name="UsernameLinkShareBottomSheet_title">任何人憑此連結將可檢視你的用戶名稱，並開始與你聊天。請只與你信任的人分享此連結。</string>
+    <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
+    <string name="UsernameLinkShareBottomSheet_copy_link">複製連結</string>
+    <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
+    <string name="UsernameLinkShareBottomSheet_share">分享</string>
+
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
     <string name="PendingParticipantsView__would_like_to_join">想加入…</string>
@@ -6081,6 +6295,30 @@
     <string name="PendingParticipantsBottomSheet__reject">拒絕</string>
     <!-- Content description for confirming a user -->
     <string name="PendingParticipantsBottomSheet__approve">核准</string>
+
+    <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
+    <string name="GrantFullScreenIntentPermission_megaphone_title">要開啟全螢幕通知？</string>
+    <!-- Body of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
+    <string name="GrantFullScreenIntentPermission_megaphone_body">不再錯過任何來自你聯絡人或群組中的來電。</string>
+    <!-- Button on the megaphone megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls that starts the fix process -->
+    <string name="GrantFullScreenIntentPermission_megaphone_turn_on">開啟</string>
+    <!-- Title of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
+    <string name="GrantFullScreenIntentPermission_bottomsheet_title">開啟全螢幕通知</string>
+    <!-- Subtitle of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
+    <string name="GrantFullScreenIntentPermission_bottomsheet_subtitle">如要接收來自聯絡人和群組的來電通知：</string>
+    <!-- Step 2 of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications, it indicates the name of the setting that needs to be re-enabled -->
+    <string name="GrantFullScreenIntentPermission_bottomsheet_step2">2. %1$s 允許全螢幕通知</string>
+
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, title for dialog -->
+    <string name="MonthlyDonationCanceled__title">已取消每月捐款</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, body for dialog. First placeholder is a payment related error message. Second placeholder is \'learn more\' -->
+    <string name="MonthlyDonationCanceled__message">Your recurring monthly donation was canceled. %1$s\n\nYour badge will no longer be visible on your profile. %2$s</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, learn more used in placeholder for body for dialog. -->
+    <string name="MonthlyDonationCanceled__learn_more">了解更多</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, primary button to renew subscription with new data -->
+    <string name="MonthlyDonationCanceled__renew_button">為定期贊助續期</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, second button to dismiss the dialog entirely -->
+    <string name="MonthlyDonationCanceled__not_now_button">現在不要</string>
 
     <!-- EOF -->
 </resources>

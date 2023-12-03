@@ -724,7 +724,7 @@ final class GroupManagerV2 {
         List<GroupCandidate> groupCandidates = groupCandidateHelper.recipientIdsToCandidatesList(ids);
 
         return groupOperations.replaceAddMembers(change, groupCandidates);
-      } catch (InvalidInputException | VerificationFailedException | IOException e) {
+      } catch (InvalidGroupStateException | InvalidInputException | VerificationFailedException | IOException e) {
         Log.w(TAG, "Unable to refetch credentials for added members, failing change", e);
       }
 
@@ -935,13 +935,6 @@ final class GroupManagerV2 {
       } catch (GroupJoinAlreadyAMemberException e) {
         Log.i(TAG, "Server reports that we are already a member of " + groupId);
         alreadyAMember = true;
-      }
-
-      GroupRecord unmigratedV1Group = GroupsV1MigratedCache.getV1GroupByV2Id(groupId);
-
-      if (unmigratedV1Group != null) {
-        Log.i(TAG, "Group link was for a migrated V1 group we know about! Migrating it and using that as the base.");
-        GroupsV1MigrationUtil.performLocalMigration(context, unmigratedV1Group.getId().requireV1());
       }
 
       DecryptedGroup decryptedGroup = createPlaceholderGroup(joinInfo, requestToJoin);

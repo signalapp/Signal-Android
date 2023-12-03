@@ -58,7 +58,7 @@ class BecomeASustainerFragment : DSLSettingsBottomSheetFragment() {
 
       space(DimensionUnit.DP.toPixels(32f).toInt())
 
-      tonalButton(
+      tonalWrappedButton(
         text = DSLSettingsText.from(
           R.string.BecomeASustainerMegaphone__become_a_sustainer
         ),

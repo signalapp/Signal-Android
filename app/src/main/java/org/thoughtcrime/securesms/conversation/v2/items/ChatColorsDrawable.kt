@@ -19,9 +19,9 @@ import androidx.core.graphics.toRectF
 import androidx.core.graphics.withClip
 import androidx.core.graphics.withTranslation
 import androidx.core.view.children
-import androidx.core.view.doOnDetach
 import androidx.recyclerview.widget.RecyclerView
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
+import org.thoughtcrime.securesms.conversation.v2.items.ChatColorsDrawable.ChatColorsItemDecoration
 import org.thoughtcrime.securesms.util.Projection
 import org.thoughtcrime.securesms.util.Projection.Corners
 
@@ -32,7 +32,8 @@ import org.thoughtcrime.securesms.util.Projection.Corners
 class ChatColorsDrawable : Drawable() {
 
   companion object {
-    private var maskDrawable: Drawable? = null
+    private var globalChatColors: ChatColors? = null
+    private var globalMask: Drawable? = null
     private var latestBounds: Rect? = null
 
     /**
@@ -44,14 +45,34 @@ class ChatColorsDrawable : Drawable() {
       }
 
       recyclerView.addItemDecoration(ChatColorsItemDecoration)
-      recyclerView.doOnDetach {
-        maskDrawable = null
+    }
+
+    fun setGlobalChatColors(recyclerView: RecyclerView, chatColors: ChatColors) {
+      if (globalChatColors == chatColors) {
+        return
       }
+
+      globalChatColors = chatColors
+
+      globalMask = if (chatColors.isGradient()) {
+        chatColors.chatBubbleMask
+      } else {
+        null
+      }
+
+      recyclerView.invalidateItemDecorations()
+    }
+
+    fun clearGlobalChatColors(recyclerView: RecyclerView) {
+      globalChatColors = null
+      globalMask = null
+
+      recyclerView.invalidateItemDecorations()
     }
 
     private fun applyBounds(bounds: Rect) {
       latestBounds = bounds
-      maskDrawable?.bounds = bounds
+      globalMask?.bounds = bounds
     }
   }
 
@@ -65,20 +86,18 @@ class ChatColorsDrawable : Drawable() {
    * Clipping path that includes the dimensions and corners for this view.
    */
   private val path = Path()
-
   private val rect = RectF()
 
-  private var gradientColors: ChatColors? = null
   private var corners: FloatArray = floatArrayOf(0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f)
-  private var fillColor: Int = 0
+
+  private var localChatColors: ChatColors? = null
+  private var localMask: Drawable? = null
 
   override fun draw(canvas: Canvas) {
-    if (gradientColors == null && fillColor == 0) {
-      return
-    }
+    val chatColors = getChatColors() ?: return
 
-    val mask = maskDrawable
-    if (gradientColors != null && mask != null) {
+    val mask = getMask()
+    if (chatColors.isGradient() && mask != null) {
       canvas.withTranslation(-maskOffset.x, -maskOffset.y) {
         canvas.withClip(path) {
           mask.draw(canvas)
@@ -89,7 +108,7 @@ class ChatColorsDrawable : Drawable() {
       rect.set(bounds)
       path.addRoundRect(rect, corners, Path.Direction.CW)
       canvas.withClip(path) {
-        canvas.drawColor(fillColor)
+        canvas.drawColor(chatColors.asSingleColor())
       }
     }
   }
@@ -139,7 +158,7 @@ class ChatColorsDrawable : Drawable() {
   }
 
   fun isSolidColor(): Boolean {
-    return gradientColors == null
+    return getChatColors()?.isGradient() == false
   }
 
   fun setCorners(corners: FloatArray) {
@@ -150,37 +169,40 @@ class ChatColorsDrawable : Drawable() {
   }
 
   /**
-   * Sets the chat color and shape as specified. If the colors are a gradient,
+   * Sets the shape as specified. If the colors are a gradient,
    * we will use masking to draw, and we will draw every time we're told to by
    * the decorator.
-   *
-   * If a solid color is set, we can skip drawing as we move, since we haven't changed.
    */
-  fun setChatColors(
-    chatColors: ChatColors,
+  fun setCorners(
     corners: Corners
   ) {
-    this.corners = corners.toRadii()
+    setCorners(corners.toRadii())
+  }
 
-    if (chatColors.isGradient()) {
-      if (maskDrawable == null) {
-        maskDrawable = chatColors.chatBubbleMask
+  fun setLocalChatColors(
+    chatColors: ChatColors
+  ) {
+    localChatColors = chatColors
 
-        val maskBounds = latestBounds
-        if (maskBounds != null) {
-          maskDrawable?.bounds = maskBounds
-        }
-      }
-
-      this.fillColor = 0
-      this.gradientColors = chatColors
+    localMask = if (chatColors.isGradient()) {
+      chatColors.chatBubbleMask
     } else {
-      this.fillColor = chatColors.asSingleColor()
-      this.gradientColors = null
+      null
     }
 
     invalidateSelf()
   }
+
+  fun clearLocalChatColors() {
+    localChatColors = null
+    localMask = null
+
+    invalidateSelf()
+  }
+
+  private fun getChatColors(): ChatColors? = localChatColors ?: globalChatColors
+
+  private fun getMask(): Drawable? = localMask ?: globalMask
 
   private object ChatColorsItemDecoration : RecyclerView.ItemDecoration() {
     override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {

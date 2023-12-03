@@ -28,7 +28,7 @@ class InputReadyState(
   val isRequestingMember: Boolean? = selfMemberLevel?.equals(GroupTable.MemberLevel.REQUESTING_MEMBER)
 
   fun shouldShowInviteToSignal(): Boolean {
-    return !conversationRecipient.isGroup &&
+    return !conversationRecipient.isPushGroup &&
       !conversationRecipient.isRegistered &&
       !conversationRecipient.isReleaseNotes
   }

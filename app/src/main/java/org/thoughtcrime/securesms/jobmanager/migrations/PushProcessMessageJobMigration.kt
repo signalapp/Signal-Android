@@ -1,13 +1,13 @@
 package org.thoughtcrime.securesms.jobmanager.migrations
 
 import okio.ByteString.Companion.toByteString
+import org.signal.core.util.Base64
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.jobmanager.JobMigration
 import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobs.FailingJob
 import org.thoughtcrime.securesms.jobs.PushProcessMessageErrorJob
 import org.thoughtcrime.securesms.messages.MessageState
-import org.thoughtcrime.securesms.util.Base64
 import org.whispersystems.signalservice.api.crypto.protos.CompleteMessage
 import org.whispersystems.signalservice.api.crypto.protos.EnvelopeMetadata
 import org.whispersystems.signalservice.api.push.ServiceId

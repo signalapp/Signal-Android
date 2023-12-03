@@ -93,7 +93,7 @@ public class StoragePreferenceFragment extends ListSummaryPreferenceFragment {
 
     keepMessages.setSummary(SignalStore.settings().getKeepMessagesDuration().getStringResource());
 
-    trimLength.setSummary(SignalStore.settings().isTrimByLengthEnabled() ? getString(R.string.preferences_storage__s_messages, NumberFormat.getInstance().format(SignalStore.settings().getThreadTrimLength()))
+    trimLength.setSummary(SignalStore.settings().isTrimByLengthEnabled() ? getResources().getQuantityString(R.plurals.preferences_storage__s_messages_plural, SignalStore.settings().getThreadTrimLength(), NumberFormat.getInstance().format(SignalStore.settings().getThreadTrimLength()))
                                                                          : getString(R.string.preferences_storage__none));
   }
 
@@ -132,7 +132,12 @@ public class StoragePreferenceFragment extends ListSummaryPreferenceFragment {
       new MaterialAlertDialogBuilder(requireActivity())
           .setTitle(R.string.preferences_storage__are_you_sure_you_want_to_delete_all_message_history)
           .setMessage(R.string.preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone)
-          .setPositiveButton(R.string.preferences_storage__delete_all_now, (d, w) -> SignalExecutors.BOUNDED.execute(() -> SignalDatabase.threads().deleteAllConversations()))
+          .setPositiveButton(R.string.preferences_storage__delete_all_now, (d, w) -> {
+            SignalExecutors.BOUNDED.execute(() -> {
+              SignalDatabase.threads().deleteAllConversations();
+              ApplicationDependencies.getMessageNotifier().updateNotification(requireContext());
+            });
+          })
           .setNegativeButton(android.R.string.cancel, null)
           .show();
     }
@@ -197,7 +202,7 @@ public class StoragePreferenceFragment extends ListSummaryPreferenceFragment {
       for (int option : options) {
         boolean isSelected = option == trimLength;
         String  text       = option == 0 ? activity.getString(R.string.preferences_storage__none)
-                                         : activity.getString(R.string.preferences_storage__s_messages, NumberFormat.getInstance().format(option));
+                                         : activity.getResources().getQuantityString(R.plurals.preferences_storage__s_messages_plural, option, NumberFormat.getInstance().format(option));
 
         settings.add(new SingleSelectSetting.Item(option, text, null, isSelected));
 
@@ -209,7 +214,7 @@ public class StoragePreferenceFragment extends ListSummaryPreferenceFragment {
                                                             activity.getString(R.string.preferences_storage__custom),
                                                             !hasSelection,
                                                             currentValue,
-                                                            activity.getString(R.string.preferences_storage__s_messages, NumberFormat.getInstance().format(currentValue))));
+                                                            activity.getResources().getQuantityString(R.plurals.preferences_storage__s_messages_plural, currentValue, NumberFormat.getInstance().format(currentValue))));
       return settings;
     }
 

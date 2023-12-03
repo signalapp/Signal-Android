@@ -6,10 +6,10 @@
 package org.thoughtcrime.securesms.database
 
 import android.database.Cursor
+import org.signal.core.util.Base64
 import org.signal.core.util.requireBlob
 import org.signal.libsignal.protocol.state.KyberPreKeyRecord
 import org.signal.spinner.ColumnTransformer
-import org.thoughtcrime.securesms.util.Base64
 
 object KyberKeyTransformer : ColumnTransformer {
   override fun matches(tableName: String?, columnName: String): Boolean {
@@ -18,6 +18,6 @@ object KyberKeyTransformer : ColumnTransformer {
 
   override fun transform(tableName: String?, columnName: String, cursor: Cursor): String? {
     val record = KyberPreKeyRecord(cursor.requireBlob(columnName))
-    return "ID: ${record.id}\nTimestamp: ${record.timestamp}\nPublicKey: ${Base64.encodeBytesWithoutPadding(record.keyPair.publicKey.serialize())}\nPrivateKey: ${Base64.encodeBytesWithoutPadding(record.keyPair.secretKey.serialize())}\nSignature: ${Base64.encodeBytesWithoutPadding(record.signature)}"
+    return "ID: ${record.id}\nTimestamp: ${record.timestamp}\nPublicKey: ${Base64.encodeWithoutPadding(record.keyPair.publicKey.serialize())}\nPrivateKey: ${Base64.encodeWithoutPadding(record.keyPair.secretKey.serialize())}\nSignature: ${Base64.encodeWithoutPadding(record.signature)}"
   }
 }

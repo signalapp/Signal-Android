@@ -18,7 +18,7 @@ import org.signal.core.util.CursorUtil;
 import org.signal.core.util.SQLiteDatabaseExtensionsKt;
 import org.signal.core.util.SqlUtil;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.CryptoValue;
@@ -32,7 +32,7 @@ import org.thoughtcrime.securesms.payments.Payment;
 import org.thoughtcrime.securesms.payments.State;
 import org.thoughtcrime.securesms.payments.proto.PaymentMetaData;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.Base64;
+import org.signal.core.util.Base64;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.whispersystems.signalservice.api.payments.Money;
 import org.whispersystems.signalservice.api.util.UuidUtil;
@@ -239,7 +239,7 @@ public final class PaymentTable extends DatabaseTable implements RecipientIdData
     }
     if (receipt != null) {
       values.put(RECEIPT, receipt);
-      values.put(PUBLIC_KEY, Base64.encodeBytes(PaymentMetaDataUtil.receiptPublic(PaymentMetaDataUtil.fromReceipt(receipt))));
+      values.put(PUBLIC_KEY, Base64.encodeWithPadding(PaymentMetaDataUtil.receiptPublic(PaymentMetaDataUtil.fromReceipt(receipt))));
     } else {
       values.putNull(RECEIPT);
       values.putNull(PUBLIC_KEY);
@@ -436,8 +436,8 @@ public final class PaymentTable extends DatabaseTable implements RecipientIdData
   public @NonNull MessageRecord updateMessageWithPayment(@NonNull MessageRecord record) {
     if (record.isPaymentNotification()) {
       Payment payment = getPayment(UuidUtil.parseOrThrow(record.getBody()));
-      if (payment != null && record instanceof MediaMmsMessageRecord) {
-        return ((MediaMmsMessageRecord) record).withPayment(payment);
+      if (payment != null && record instanceof MmsMessageRecord) {
+        return ((MmsMessageRecord) record).withPayment(payment);
       } else {
         throw new AssertionError("Payment not found for message");
       }
@@ -468,7 +468,7 @@ public final class PaymentTable extends DatabaseTable implements RecipientIdData
     values.put(TRANSACTION, transaction);
     values.put(RECEIPT, receipt);
     try {
-      values.put(PUBLIC_KEY, Base64.encodeBytes(PaymentMetaDataUtil.receiptPublic(PaymentMetaDataUtil.fromReceipt(receipt))));
+      values.put(PUBLIC_KEY, Base64.encodeWithPadding(PaymentMetaDataUtil.receiptPublic(PaymentMetaDataUtil.fromReceipt(receipt))));
       values.put(META_DATA, PaymentMetaDataUtil.fromReceiptAndTransaction(receipt, transaction).encode());
     } catch (SerializationException e) {
       throw new IllegalArgumentException(e);

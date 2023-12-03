@@ -9,7 +9,7 @@ import android.util.TypedValue
 import android.view.View
 import org.thoughtcrime.securesms.components.QuoteView
 import org.thoughtcrime.securesms.conversation.v2.data.ConversationMessageElement
-import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
@@ -140,7 +140,7 @@ class V2ConversationItemMediaViewHolder<Model : MappingModel<Model>>(
     return hasThumbnail() || hasQuote()
   }
 
-  private fun requireMediaMessage(): MediaMmsMessageRecord {
-    return conversationMessage.messageRecord as MediaMmsMessageRecord
+  private fun requireMediaMessage(): MmsMessageRecord {
+    return conversationMessage.messageRecord as MmsMessageRecord
   }
 }

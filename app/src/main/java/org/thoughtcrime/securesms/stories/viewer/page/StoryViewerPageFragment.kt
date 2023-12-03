@@ -57,7 +57,7 @@ import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectFor
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
 import org.thoughtcrime.securesms.database.AttachmentTable
-import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewFragment
 import org.thoughtcrime.securesms.mediapreview.VideoControlsDelegate
@@ -760,7 +760,7 @@ class StoryViewerPageFragment :
   }
 
   private fun presentSlate(post: StoryPost) {
-    storySlate.setBackground((post.conversationMessage.messageRecord as? MediaMmsMessageRecord)?.slideDeck?.thumbnailSlide?.placeholderBlur)
+    storySlate.setBackground((post.conversationMessage.messageRecord as? MmsMessageRecord)?.slideDeck?.thumbnailSlide?.placeholderBlur)
 
     if (post.conversationMessage.messageRecord.isOutgoing) {
       storySlate.moveToState(StorySlateView.State.HIDDEN, post.id)
@@ -1084,7 +1084,7 @@ class StoryViewerPageFragment :
         }
       },
       onShare = {
-        StoryContextMenu.share(this, it.conversationMessage.messageRecord as MediaMmsMessageRecord)
+        StoryContextMenu.share(this, it.conversationMessage.messageRecord as MmsMessageRecord)
       },
       onSave = {
         StoryContextMenu.save(requireContext(), it.conversationMessage.messageRecord)

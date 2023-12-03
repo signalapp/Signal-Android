@@ -6,6 +6,7 @@ import android.os.Parcelable
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.compose.runtime.Stable
 import com.bumptech.glide.load.Key
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.DownsampleStrategy
@@ -25,6 +26,7 @@ typealias OnBadgeClicked = (Badge, Boolean, Boolean) -> Unit
 /**
  * A Badge that can be collected and displayed by a user.
  */
+@Stable
 @Parcelize
 data class Badge(
   val id: String,

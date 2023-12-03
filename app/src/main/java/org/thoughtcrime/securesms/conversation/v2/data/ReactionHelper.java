@@ -3,8 +3,7 @@ package org.thoughtcrime.securesms.conversation.v2.data;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
-import org.thoughtcrime.securesms.database.model.MessageId;
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.util.Util;
@@ -47,8 +46,8 @@ public class ReactionHelper {
 
   public static @NonNull MessageRecord recordWithReactions(@NonNull MessageRecord record, List<ReactionRecord> reactions) {
     if (Util.hasItems(reactions)) {
-      if (record instanceof MediaMmsMessageRecord) {
-        return ((MediaMmsMessageRecord) record).withReactions(reactions);
+      if (record instanceof MmsMessageRecord) {
+        return ((MmsMessageRecord) record).withReactions(reactions);
       } else {
         throw new IllegalStateException("We have reactions for an unsupported record type: " + record.getClass().getName());
       }

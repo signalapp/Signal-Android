@@ -19,13 +19,12 @@ import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery
-import org.whispersystems.signalservice.api.svr.SecureValueRecoveryV1
 
 class InternalSvrPlaygroundViewModel : ViewModel() {
 
   private val _state: MutableState<InternalSvrPlaygroundState> = mutableStateOf(
     InternalSvrPlaygroundState(
-      options = persistentListOf(SvrImplementation.SVR1, SvrImplementation.SVR2)
+      options = persistentListOf(SvrImplementation.SVR2)
     )
   )
   val state: State<InternalSvrPlaygroundState> = _state
@@ -104,7 +103,6 @@ class InternalSvrPlaygroundViewModel : ViewModel() {
 
   private fun SvrImplementation.toImplementation(): SecureValueRecovery {
     return when (this) {
-      SvrImplementation.SVR1 -> SecureValueRecoveryV1(ApplicationDependencies.getKeyBackupService(BuildConfig.KBS_ENCLAVE))
       SvrImplementation.SVR2 -> ApplicationDependencies.getSignalServiceAccountManager().getSecureValueRecoveryV2(BuildConfig.SVR2_MRENCLAVE)
     }
   }

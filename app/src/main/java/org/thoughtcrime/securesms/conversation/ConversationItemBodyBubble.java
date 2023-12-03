@@ -12,7 +12,6 @@ import androidx.annotation.Nullable;
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
-import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.components.Outliner;
 import org.thoughtcrime.securesms.util.Projection;
 import org.thoughtcrime.securesms.util.Util;

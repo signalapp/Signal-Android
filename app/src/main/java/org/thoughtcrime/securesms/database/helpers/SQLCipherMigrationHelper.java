@@ -26,7 +26,7 @@ import org.thoughtcrime.securesms.jobs.UnableToStartException;
 import org.thoughtcrime.securesms.migrations.LegacyMigrationJob;
 import org.thoughtcrime.securesms.service.GenericForegroundService;
 import org.thoughtcrime.securesms.service.NotificationController;
-import org.thoughtcrime.securesms.util.Base64;
+import org.signal.core.util.Base64;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.io.IOException;
@@ -125,7 +125,7 @@ public class SQLCipherMigrationHelper {
               plaintext = legacyCipher.decryptBytes(Base64.decode(mediaKey));
             }
 
-            row.put("cd", Base64.encodeBytes(plaintext));
+            row.put("cd", Base64.encodeWithPadding(plaintext));
           }
         } catch (IOException | InvalidMessageException e) {
           Log.w(TAG, e);

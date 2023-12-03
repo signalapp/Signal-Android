@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.mediasend.camerax;
 
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

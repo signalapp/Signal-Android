@@ -14,13 +14,11 @@ import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.pin.KbsEnclaves;
 import org.thoughtcrime.securesms.subscription.Subscriber;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.whispersystems.signalservice.api.util.PhoneNumberFormatter;
 import org.whispersystems.signalservice.internal.EmptyResponse;
 import org.whispersystems.signalservice.internal.ServiceResponse;
-import org.whispersystems.signalservice.internal.contacts.crypto.UnauthenticatedResponseException;
 
 import java.io.IOException;
 import java.text.Collator;
@@ -102,17 +100,6 @@ class DeleteAccountRepository {
       }
 
       Log.i(TAG, "deleteAccount: successfully left all groups.");
-      Log.i(TAG, "deleteAccount: attempting to remove pin...");
-
-      try {
-        ApplicationDependencies.getKeyBackupService(KbsEnclaves.current()).newPinChangeSession().removePin();
-      } catch (UnauthenticatedResponseException | IOException e) {
-        Log.w(TAG, "deleteAccount: failed to remove PIN", e);
-        onDeleteAccountEvent.accept(DeleteAccountEvent.PinDeletionFailed.INSTANCE);
-        return;
-      }
-
-      Log.i(TAG, "deleteAccount: successfully removed pin.");
       Log.i(TAG, "deleteAccount: attempting to delete account from server...");
 
       try {

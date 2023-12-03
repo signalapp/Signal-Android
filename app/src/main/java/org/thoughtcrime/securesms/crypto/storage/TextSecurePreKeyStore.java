@@ -5,7 +5,6 @@ import androidx.annotation.NonNull;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.InvalidKeyIdException;
 import org.signal.libsignal.protocol.state.PreKeyRecord;
-import org.signal.libsignal.protocol.state.PreKeyStore;
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord;
 import org.signal.libsignal.protocol.state.SignedPreKeyStore;
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock;

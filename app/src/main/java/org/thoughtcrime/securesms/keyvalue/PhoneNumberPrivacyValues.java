@@ -2,8 +2,6 @@ package org.thoughtcrime.securesms.keyvalue;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.util.FeatureFlags;
-
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -15,9 +13,9 @@ public final class PhoneNumberPrivacyValues extends SignalStoreValues {
   public static final String LISTING_MODE      = "phoneNumberPrivacy.listingMode";
   public static final String LISTING_TIMESTAMP = "phoneNumberPrivacy.listingMode.timestamp";
 
-  private static final Collection<CertificateType> REGULAR_CERTIFICATE = Collections.singletonList(CertificateType.UUID_AND_E164);
-  private static final Collection<CertificateType> PRIVACY_CERTIFICATE = Collections.singletonList(CertificateType.UUID_ONLY);
-  private static final Collection<CertificateType> BOTH_CERTIFICATES   = Collections.unmodifiableCollection(Arrays.asList(CertificateType.UUID_AND_E164, CertificateType.UUID_ONLY));
+  private static final Collection<CertificateType> ACI_AND_E164_CERTIFICATE = Collections.singletonList(CertificateType.ACI_AND_E164);
+  private static final Collection<CertificateType> ACI_ONLY_CERTIFICATE     = Collections.singletonList(CertificateType.ACI_ONLY);
+  private static final Collection<CertificateType> BOTH_CERTIFICATES        = Collections.unmodifiableCollection(Arrays.asList(CertificateType.ACI_AND_E164, CertificateType.ACI_ONLY));
 
   PhoneNumberPrivacyValues(@NonNull KeyValueStore store) {
     super(store);
@@ -36,23 +34,31 @@ public final class PhoneNumberPrivacyValues extends SignalStoreValues {
     return Arrays.asList(SHARING_MODE, LISTING_MODE, LISTING_TIMESTAMP);
   }
 
+  /**
+   * Note: Only giving raw access to the underlying value for storage service.
+   * Most callers should use {@link #isPhoneNumberSharingEnabled()}.
+   */
   public @NonNull PhoneNumberSharingMode getPhoneNumberSharingMode() {
-    if (!FeatureFlags.phoneNumberPrivacy()) {
-      return PhoneNumberSharingMode.EVERYONE;
-    }
+    return PhoneNumberSharingMode.deserialize(getInteger(SHARING_MODE, PhoneNumberSharingMode.DEFAULT.serialize()));
+  }
 
-    return PhoneNumberSharingMode.deserialize(getInteger(SHARING_MODE, PhoneNumberSharingMode.EVERYONE.serialize()));
+  public boolean isPhoneNumberSharingEnabled() {
+    // TODO [pnp] When we launch usernames, the default should return false
+    return switch (getPhoneNumberSharingMode()) {
+      case DEFAULT, EVERYBODY -> true;
+      case NOBODY -> false;
+    };
   }
 
   public void setPhoneNumberSharingMode(@NonNull PhoneNumberSharingMode phoneNumberSharingMode) {
     putInteger(SHARING_MODE, phoneNumberSharingMode.serialize());
   }
 
-  public @NonNull PhoneNumberListingMode getPhoneNumberListingMode() {
-    if (!FeatureFlags.phoneNumberPrivacy()) {
-      return PhoneNumberListingMode.LISTED;
-    }
+  public boolean isDiscoverableByPhoneNumber() {
+    return getPhoneNumberListingMode() == PhoneNumberPrivacyValues.PhoneNumberListingMode.LISTED;
+  }
 
+  public @NonNull PhoneNumberListingMode getPhoneNumberListingMode() {
     return PhoneNumberListingMode.deserialize(getInteger(LISTING_MODE, PhoneNumberListingMode.LISTED.serialize()));
   }
 
@@ -73,11 +79,10 @@ public final class PhoneNumberPrivacyValues extends SignalStoreValues {
    * these certificates types.
    */
   public Collection<CertificateType> getRequiredCertificateTypes() {
-    switch (getPhoneNumberSharingMode()) {
-      case EVERYONE: return REGULAR_CERTIFICATE;
-      case CONTACTS: return BOTH_CERTIFICATES;
-      case NOBODY  : return PRIVACY_CERTIFICATE;
-      default      : throw new AssertionError();
+    if (isPhoneNumberSharingEnabled()) {
+      return ACI_AND_E164_CERTIFICATE;
+    } else {
+      return ACI_ONLY_CERTIFICATE;
     }
   }
 
@@ -85,12 +90,12 @@ public final class PhoneNumberPrivacyValues extends SignalStoreValues {
    * All certificate types required according to the feature flags.
    */
   public Collection<CertificateType> getAllCertificateTypes() {
-    return FeatureFlags.phoneNumberPrivacy() ? BOTH_CERTIFICATES : REGULAR_CERTIFICATE;
+    return BOTH_CERTIFICATES;
   }
 
   public enum PhoneNumberSharingMode {
-    EVERYONE(0),
-    CONTACTS(1),
+    DEFAULT(0),
+    EVERYBODY(1),
     NOBODY(2);
 
     private final int code;

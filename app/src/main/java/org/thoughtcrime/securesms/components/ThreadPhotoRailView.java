@@ -17,12 +17,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.database.MediaTable;
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewCache;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.util.MediaUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ThreadPhotoRailView extends FrameLayout {
 
@@ -56,11 +58,11 @@ public class ThreadPhotoRailView extends FrameLayout {
     }
   }
 
-  public void setCursor(@NonNull GlideRequests glideRequests, @Nullable Cursor cursor) {
-    this.recyclerView.setAdapter(new ThreadPhotoRailAdapter(getContext(), glideRequests, cursor, this.listener));
+  public void setMediaRecords(@NonNull GlideRequests glideRequests, @NonNull List<MediaTable.MediaRecord> mediaRecords) {
+    this.recyclerView.setAdapter(new ThreadPhotoRailAdapter(getContext(), glideRequests, mediaRecords, this.listener));
   }
 
-  private static class ThreadPhotoRailAdapter extends CursorRecyclerViewAdapter<ThreadPhotoRailAdapter.ThreadPhotoViewHolder> {
+  private static class ThreadPhotoRailAdapter extends RecyclerView.Adapter<ThreadPhotoRailAdapter.ThreadPhotoViewHolder> {
 
     @SuppressWarnings("unused")
     private static final String TAG = Log.tag(ThreadPhotoRailAdapter.class);
@@ -69,18 +71,27 @@ public class ThreadPhotoRailView extends FrameLayout {
 
     @Nullable private OnItemClickedListener clickedListener;
 
+    private final List<MediaTable.MediaRecord> mediaRecords = new ArrayList<>();
+
     private ThreadPhotoRailAdapter(@NonNull Context context,
                                    @NonNull GlideRequests glideRequests,
-                                   @Nullable Cursor cursor,
+                                   @NonNull List<MediaTable.MediaRecord> mediaRecords,
                                    @Nullable OnItemClickedListener listener)
     {
-      super(context, cursor);
       this.glideRequests   = glideRequests;
       this.clickedListener = listener;
+
+      this.mediaRecords.clear();
+      this.mediaRecords.addAll(mediaRecords);
     }
 
     @Override
-    public ThreadPhotoViewHolder onCreateItemViewHolder(ViewGroup parent, int viewType) {
+    public int getItemCount() {
+      return mediaRecords.size();
+    }
+
+    @Override
+    public @NonNull ThreadPhotoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
       View itemView = LayoutInflater.from(parent.getContext())
                                     .inflate(R.layout.recipient_preference_photo_rail_item, parent, false);
 
@@ -88,18 +99,14 @@ public class ThreadPhotoRailView extends FrameLayout {
     }
 
     @Override
-    public void onBindItemViewHolder(ThreadPhotoViewHolder viewHolder, @NonNull Cursor cursor) {
-      ThumbnailView          imageView   = viewHolder.imageView;
-      MediaTable.MediaRecord mediaRecord = MediaTable.MediaRecord.from(cursor);
+    public void onBindViewHolder(@NonNull ThreadPhotoViewHolder viewHolder, int position) {
+      MediaTable.MediaRecord mediaRecord = mediaRecords.get(position);
       Slide                  slide       = MediaUtil.getSlideForAttachment(mediaRecord.getAttachment());
 
-      if (slide != null) {
-        imageView.setImageResource(glideRequests, slide, false, false);
-      }
-
-      imageView.setOnClickListener(v -> {
-        MediaPreviewCache.INSTANCE.setDrawable(imageView.getImageDrawable());
-        if (clickedListener != null) clickedListener.onItemClicked(imageView, mediaRecord);
+      viewHolder.imageView.setImageResource(glideRequests, slide, false, false);
+      viewHolder.imageView.setOnClickListener(v -> {
+        MediaPreviewCache.INSTANCE.setDrawable(viewHolder.imageView.getImageDrawable());
+        if (clickedListener != null) clickedListener.onItemClicked(viewHolder.imageView, mediaRecord);
       });
     }
 

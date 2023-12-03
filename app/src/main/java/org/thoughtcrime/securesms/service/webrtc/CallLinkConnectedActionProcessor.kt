@@ -9,7 +9,7 @@ import org.signal.core.util.logging.Log
 import org.signal.ringrtc.CallException
 import org.signal.ringrtc.GroupCall
 import org.signal.ringrtc.PeekInfo
-import org.thoughtcrime.securesms.components.webrtc.CallLinkNullMessageSender
+import org.thoughtcrime.securesms.components.webrtc.CallLinkProfileKeySender
 import org.thoughtcrime.securesms.database.CallLinkTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.events.CallParticipant
@@ -46,6 +46,9 @@ class CallLinkConnectedActionProcessor(
 
     val callLinkRoomId: CallLinkRoomId = superState.callInfoState.callRecipient.requireCallLinkRoomId()
     val callLink: CallLinkTable.CallLink = SignalDatabase.callLinks.getCallLinkByRoomId(callLinkRoomId) ?: return superState
+    val joinedParticipants: Set<Recipient> = peekInfo.joinedMembers.map { Recipient.externalPush(ServiceId.ACI.from(it)) }.toSet()
+
+    CallLinkProfileKeySender.onRecipientsUpdated(joinedParticipants)
 
     if (callLink.credentials?.adminPassBytes == null) {
       Log.i(tag, "User is not an admin.")
@@ -54,8 +57,6 @@ class CallLinkConnectedActionProcessor(
 
     Log.i(tag, "Updating pending list with ${peekInfo.pendingUsers.size} entries.")
     val pendingParticipants: List<Recipient> = peekInfo.pendingUsers.map { Recipient.externalPush(ServiceId.ACI.from(it)) }
-
-    CallLinkNullMessageSender.onRecipientsUpdated(superState.callInfoState.remoteCallParticipants.map { it.recipient }.toSet())
 
     return superState.builder()
       .changeCallInfoState()

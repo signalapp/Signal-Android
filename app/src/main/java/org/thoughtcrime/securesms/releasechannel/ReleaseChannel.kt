@@ -2,10 +2,11 @@ package org.thoughtcrime.securesms.releasechannel
 
 import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.database.MessageTable
+import org.thoughtcrime.securesms.database.MessageType
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
-import org.thoughtcrime.securesms.mms.IncomingMediaMessage
+import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
@@ -60,7 +61,8 @@ object ReleaseChannel {
       Optional.empty()
     }
 
-    val message = IncomingMediaMessage(
+    val message = IncomingMessage(
+      type = MessageType.NORMAL,
       from = recipientId,
       sentTimeMillis = System.currentTimeMillis(),
       serverTimeMillis = System.currentTimeMillis(),
@@ -72,6 +74,6 @@ object ReleaseChannel {
       storyType = storyType
     )
 
-    return SignalDatabase.messages.insertSecureDecryptedMessageInbox(message, threadId).orElse(null)
+    return SignalDatabase.messages.insertMessageInbox(message, threadId).orElse(null)
   }
 }

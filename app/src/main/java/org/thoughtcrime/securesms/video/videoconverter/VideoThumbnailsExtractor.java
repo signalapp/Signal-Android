@@ -12,7 +12,6 @@ import androidx.annotation.RequiresApi;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.media.MediaInput;
 
-import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 

@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.stories.viewer.info
 
-import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.messagedetails.MessageDetails
 
 /**
@@ -9,7 +9,7 @@ import org.thoughtcrime.securesms.messagedetails.MessageDetails
 data class StoryInfoState(
   val messageDetails: MessageDetails? = null
 ) {
-  private val mediaMessage = messageDetails?.conversationMessage?.messageRecord as? MediaMmsMessageRecord
+  private val mediaMessage = messageDetails?.conversationMessage?.messageRecord as? MmsMessageRecord
 
   val sentMillis: Long = mediaMessage?.dateSent ?: -1L
   val receivedMillis: Long = mediaMessage?.dateReceived ?: -1L

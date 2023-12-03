@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.database.model.databaseprotos.AudioWaveFormData;
 import org.thoughtcrime.securesms.util.ParcelUtil;
-import org.whispersystems.util.Base64;
+import org.signal.core.util.Base64;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -27,7 +27,7 @@ public final class AudioHash implements Parcelable {
   }
 
   public AudioHash(@NonNull AudioWaveFormData audioWaveForm) {
-    this(Base64.encodeBytes(audioWaveForm.encode()), audioWaveForm);
+    this(Base64.encodeWithPadding(audioWaveForm.encode()), audioWaveForm);
   }
 
   protected AudioHash(Parcel in) {

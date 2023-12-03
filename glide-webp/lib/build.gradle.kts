@@ -18,6 +18,8 @@ android {
         arguments("-DLIBWEBP_PATH=$rootDir/libwebp")
       }
     }
+
+    testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
   }
 
   externalNativeBuild {
@@ -33,4 +35,11 @@ dependencies {
 
   implementation(libs.glide.glide)
   kapt(libs.glide.compiler)
+
+  androidTestImplementation(testLibs.androidx.test.core)
+  androidTestImplementation(testLibs.androidx.test.core.ktx)
+  androidTestImplementation(testLibs.androidx.test.ext.junit)
+  androidTestImplementation(testLibs.androidx.test.ext.junit.ktx)
+  androidTestImplementation(testLibs.androidx.test.monitor)
+  androidTestImplementation(testLibs.androidx.test.runner)
 }

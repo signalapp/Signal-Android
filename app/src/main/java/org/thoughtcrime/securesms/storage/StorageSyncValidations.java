@@ -7,7 +7,7 @@ import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.Base64;
+import org.signal.core.util.Base64;
 import org.signal.core.util.SetUtil;
 import org.whispersystems.signalservice.api.storage.SignalContactRecord;
 import org.whispersystems.signalservice.api.storage.SignalStorageManifest;
@@ -34,10 +34,10 @@ public final class StorageSyncValidations {
     validateManifestAndInserts(result.getManifest(), result.getInserts(), self);
 
     if (result.getDeletes().size() > 0) {
-      Set<String> allSetEncoded = Stream.of(result.getManifest().getStorageIds()).map(StorageId::getRaw).map(Base64::encodeBytes).collect(Collectors.toSet());
+      Set<String> allSetEncoded = Stream.of(result.getManifest().getStorageIds()).map(StorageId::getRaw).map(Base64::encodeWithPadding).collect(Collectors.toSet());
 
       for (byte[] delete : result.getDeletes()) {
-        String encoded = Base64.encodeBytes(delete);
+        String encoded = Base64.encodeWithPadding(delete);
         if (allSetEncoded.contains(encoded)) {
           throw new DeletePresentInFullIdSetError();
         }

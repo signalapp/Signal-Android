@@ -252,6 +252,7 @@
 
     <activity-alias android:name=".RoutingActivity"
                     android:targetActivity=".MainActivity"
+                    android:resizeableActivity="true"
                     android:exported="true">
 
         <intent-filter>
@@ -630,6 +631,7 @@
               android:launchMode="singleTask"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
               android:parentActivityName=".MainActivity"
+              android:resizeableActivity="true"
               android:exported="false">
         <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -961,7 +963,7 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
               android:exported="false"/>
 
-    <activity android:name=".profiles.edit.EditProfileActivity"
+    <activity android:name=".profiles.edit.CreateProfileActivity"
               android:theme="@style/TextSecure.LightRegistrationTheme"
               android:windowSoftInputMode="stateVisible|adjustResize"
               android:exported="false"/>
@@ -971,7 +973,7 @@
               android:windowSoftInputMode="stateVisible|adjustResize"
               android:exported="false"/>
 
-    <activity android:name=".profiles.manage.ManageProfileActivity"
+    <activity android:name=".profiles.manage.EditProfileActivity"
               android:theme="@style/TextSecure.LightTheme"
               android:windowSoftInputMode="stateVisible|adjustResize"
               android:exported="false"/>
@@ -1029,6 +1031,7 @@
     <activity android:name=".MainActivity"
               android:theme="@style/Theme.Signal.DayNight.NoActionBar"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
+              android:resizeableActivity="true"
               android:exported="false"/>
 
     <activity android:name=".pin.PinRestoreActivity"
@@ -1187,6 +1190,10 @@
         android:exported="false"/>
 
     <service
+        android:name=".service.AttachmentProgressService"
+        android:exported="false"/>
+
+    <service
         android:name=".gcm.FcmFetchBackgroundService"
         android:exported="false"/>
 
@@ -1200,37 +1207,11 @@
         </intent-filter>
     </service>
 
-    <receiver android:name=".service.SmsListener"
-              android:permission="android.permission.BROADCAST_SMS"
-              android:enabled="true"
-              android:exported="true">
-             <intent-filter android:priority="1001">
-                 <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
-             </intent-filter>
-             <intent-filter>
-                 <action android:name="android.provider.Telephony.SMS_DELIVER"/>
-             </intent-filter>
-    </receiver>
-
     <receiver android:name=".service.SmsDeliveryListener"
               android:exported="true">
         <intent-filter>
             <action android:name="org.thoughtcrime.securesms.services.MESSAGE_SENT"/>
         </intent-filter>
-    </receiver>
-
-    <receiver android:name=".service.MmsListener"
-              android:enabled="true"
-              android:exported="true"
-              android:permission="android.permission.BROADCAST_WAP_PUSH">
-             <intent-filter android:priority="1001">
-                 <action android:name="android.provider.Telephony.WAP_PUSH_RECEIVED"/>
-                 <data android:mimeType="application/vnd.wap.mms-message" />
-             </intent-filter>
-             <intent-filter>
-                 <action android:name="android.provider.Telephony.WAP_PUSH_DELIVER"/>
-                 <data android:mimeType="application/vnd.wap.mms-message" />
-             </intent-filter>
     </receiver>
 
     <receiver android:name=".notifications.MarkReadReceiver"

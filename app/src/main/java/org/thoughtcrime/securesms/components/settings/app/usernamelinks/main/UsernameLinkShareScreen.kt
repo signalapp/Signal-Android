@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.components.settings.app.usernamelinks.main
 
 import android.content.res.Configuration
-import android.graphics.Bitmap
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -43,7 +42,6 @@ import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCodeDa
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCodeState
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.UsernameQrCodeColorScheme
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.main.UsernameLinkSettingsState.ActiveTab
-import org.thoughtcrime.securesms.compose.ScreenshotController
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
@@ -57,11 +55,12 @@ fun UsernameLinkShareScreen(
   snackbarHostState: SnackbarHostState,
   scope: CoroutineScope,
   navController: NavController,
-  onShareBadge: (Bitmap) -> Unit,
+  onShareBadge: () -> Unit,
   modifier: Modifier = Modifier,
-  screenshotController: ScreenshotController? = null,
   onResetClicked: () -> Unit
 ) {
+  val context = LocalContext.current
+
   when (state.usernameLinkResetResult) {
     UsernameLinkResetResult.NetworkUnavailable -> {
       ResetLinkResultDialog(stringResource(R.string.UsernameLinkSettings_reset_link_result_network_unavailable), onDismiss = onLinkResultHandled)
@@ -82,10 +81,10 @@ fun UsernameLinkShareScreen(
       data = state.qrCodeState,
       colorScheme = state.qrCodeColorScheme,
       username = state.username,
-      screenshotController = screenshotController,
       usernameCopyable = true,
       modifier = Modifier.padding(horizontal = 58.dp, vertical = 24.dp),
-      onClick = {
+      onClick = { username ->
+        Util.copyToClipboard(context, username)
         scope.launch {
           snackbarHostState.showSnackbar(usernameCopiedString)
         }
@@ -93,19 +92,15 @@ fun UsernameLinkShareScreen(
     )
 
     ButtonBar(
-      onShareClicked = {
-        val badgeBitmap = screenshotController?.screenshot()
-        if (badgeBitmap != null) {
-          onShareBadge.invoke(badgeBitmap)
-        }
-      },
-      onColorClicked = { navController.safeNavigate(R.id.action_usernameLinkSettingsFragment_to_usernameLinkQrColorPickerFragment) }
+      onShareClicked = onShareBadge,
+      onColorClicked = { navController.safeNavigate(UsernameLinkSettingsFragmentDirections.actionUsernameLinkSettingsFragmentToUsernameLinkQrColorPickerFragment()) }
     )
 
     LinkRow(
       linkState = state.usernameLinkState,
-      snackbarHostState = snackbarHostState,
-      scope = scope
+      onClick = {
+        navController.safeNavigate(UsernameLinkSettingsFragmentDirections.actionUsernameLinkSettingsFragmentToUsernameLinkShareBottomSheet())
+      }
     )
 
     Text(
@@ -151,9 +146,7 @@ private fun ButtonBar(onShareClicked: () -> Unit, onColorClicked: () -> Unit) {
 }
 
 @Composable
-private fun LinkRow(linkState: UsernameLinkState, snackbarHostState: SnackbarHostState, scope: CoroutineScope) {
-  val context = LocalContext.current
-  val copyMessage = stringResource(R.string.UsernameLinkSettings_link_copied_toast)
+private fun LinkRow(linkState: UsernameLinkState, onClick: () -> Unit = {}) {
   Row(
     modifier = Modifier
       .fillMaxWidth()
@@ -170,11 +163,7 @@ private fun LinkRow(linkState: UsernameLinkState, snackbarHostState: SnackbarHos
         shape = RoundedCornerShape(12.dp)
       )
       .clickable(enabled = linkState is UsernameLinkState.Present) {
-        Util.copyToClipboard(context, (linkState as UsernameLinkState.Present).link)
-
-        scope.launch {
-          snackbarHostState.showSnackbar(copyMessage)
-        }
+        onClick()
       }
       .padding(horizontal = 26.dp, vertical = 16.dp)
       .alpha(if (linkState is UsernameLinkState.Present) 1.0f else 0.6f)
@@ -234,19 +223,13 @@ private fun LinkRowPreview() {
     Surface {
       Column(modifier = Modifier.padding(8.dp)) {
         LinkRow(
-          linkState = UsernameLinkState.Present("https://signal.me/#eu/asdfasdfasdfasdfasdfasdfasdfasdfasdfasdf"),
-          snackbarHostState = SnackbarHostState(),
-          scope = rememberCoroutineScope()
+          linkState = UsernameLinkState.Present("https://signal.me/#eu/asdfasdfasdfasdfasdfasdfasdfasdfasdfasdf")
         )
         LinkRow(
-          linkState = UsernameLinkState.NotSet,
-          snackbarHostState = SnackbarHostState(),
-          scope = rememberCoroutineScope()
+          linkState = UsernameLinkState.NotSet
         )
         LinkRow(
-          linkState = UsernameLinkState.Resetting,
-          snackbarHostState = SnackbarHostState(),
-          scope = rememberCoroutineScope()
+          linkState = UsernameLinkState.Resetting
         )
       }
     }

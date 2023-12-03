@@ -30,11 +30,15 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.donate.ga
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.paypal.PayPalPaymentInProgressFragment
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.StripePaymentInProgressFragment
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.StripePaymentInProgressViewModel
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.transfer.BankTransferRequestKeys
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorDialogs
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorParams
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
+import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.payments.currency.CurrencyUtil
 import org.thoughtcrime.securesms.util.fragments.requireListener
+import java.math.BigDecimal
 import java.util.Currency
 
 /**
@@ -43,6 +47,7 @@ import java.util.Currency
 class DonationCheckoutDelegate(
   private val fragment: Fragment,
   private val callback: Callback,
+  private val uiSessionKey: Long,
   errorSource: DonationErrorSource,
   vararg additionalSources: DonationErrorSource
 ) : DefaultLifecycleObserver {
@@ -65,7 +70,7 @@ class DonationCheckoutDelegate(
 
   init {
     fragment.viewLifecycleOwner.lifecycle.addObserver(this)
-    ErrorHandler().attach(fragment, callback, errorSource, *additionalSources)
+    ErrorHandler().attach(fragment, callback, uiSessionKey, errorSource, *additionalSources)
   }
 
   override fun onCreate(owner: LifecycleOwner) {
@@ -74,8 +79,12 @@ class DonationCheckoutDelegate(
     registerGooglePayCallback()
 
     fragment.setFragmentResultListener(GatewaySelectorBottomSheet.REQUEST_KEY) { _, bundle ->
-      val response: GatewayResponse = bundle.getParcelableCompat(GatewaySelectorBottomSheet.REQUEST_KEY, GatewayResponse::class.java)!!
-      handleGatewaySelectionResponse(response)
+      if (bundle.containsKey(GatewaySelectorBottomSheet.FAILURE_KEY)) {
+        callback.showSepaEuroMaximumDialog(FiatMoney(bundle.getSerializable(GatewaySelectorBottomSheet.SEPA_EURO_MAX) as BigDecimal, CurrencyUtil.EURO))
+      } else {
+        val response: GatewayResponse = bundle.getParcelableCompat(GatewaySelectorBottomSheet.REQUEST_KEY, GatewayResponse::class.java)!!
+        handleGatewaySelectionResponse(response)
+      }
     }
 
     fragment.setFragmentResultListener(StripePaymentInProgressFragment.REQUEST_KEY) { _, bundle ->
@@ -86,6 +95,16 @@ class DonationCheckoutDelegate(
     fragment.setFragmentResultListener(CreditCardFragment.REQUEST_KEY) { _, bundle ->
       val result: DonationProcessorActionResult = bundle.getParcelableCompat(StripePaymentInProgressFragment.REQUEST_KEY, DonationProcessorActionResult::class.java)!!
       handleDonationProcessorActionResult(result)
+    }
+
+    fragment.setFragmentResultListener(BankTransferRequestKeys.REQUEST_KEY) { _, bundle ->
+      val result: DonationProcessorActionResult = bundle.getParcelableCompat(StripePaymentInProgressFragment.REQUEST_KEY, DonationProcessorActionResult::class.java)!!
+      handleDonationProcessorActionResult(result)
+    }
+
+    fragment.setFragmentResultListener(BankTransferRequestKeys.PENDING_KEY) { _, bundle ->
+      val request: GatewayRequest = bundle.getParcelableCompat(BankTransferRequestKeys.PENDING_KEY, GatewayRequest::class.java)!!
+      callback.navigateToDonationPending(gatewayRequest = request)
     }
 
     fragment.setFragmentResultListener(PayPalPaymentInProgressFragment.REQUEST_KEY) { _, bundle ->
@@ -100,6 +119,8 @@ class DonationCheckoutDelegate(
         GatewayResponse.Gateway.GOOGLE_PAY -> launchGooglePay(gatewayResponse)
         GatewayResponse.Gateway.PAYPAL -> launchPayPal(gatewayResponse)
         GatewayResponse.Gateway.CREDIT_CARD -> launchCreditCard(gatewayResponse)
+        GatewayResponse.Gateway.SEPA_DEBIT -> launchBankTransfer(gatewayResponse)
+        GatewayResponse.Gateway.IDEAL -> launchBankTransfer(gatewayResponse)
       }
     } else {
       error("Unsupported combination! ${gatewayResponse.gateway} ${gatewayResponse.request.donateToSignalType}")
@@ -119,6 +140,7 @@ class DonationCheckoutDelegate(
     if (result.action == DonationProcessorAction.CANCEL_SUBSCRIPTION) {
       Snackbar.make(fragment.requireView(), R.string.SubscribeFragment__your_subscription_has_been_cancelled, Snackbar.LENGTH_LONG).show()
     } else {
+      SignalStore.donationsValues().removeTerminalDonation(result.request.level)
       callback.onPaymentComplete(result.request)
     }
   }
@@ -154,6 +176,14 @@ class DonationCheckoutDelegate(
     callback.navigateToCreditCardForm(gatewayResponse.request)
   }
 
+  private fun launchBankTransfer(gatewayResponse: GatewayResponse) {
+    if (gatewayResponse.request.donateToSignalType != DonateToSignalType.MONTHLY && gatewayResponse.gateway == GatewayResponse.Gateway.IDEAL) {
+      callback.navigateToIdealDetailsFragment(gatewayResponse.request)
+    } else {
+      callback.navigateToBankTransferMandate(gatewayResponse)
+    }
+  }
+
   private fun registerGooglePayCallback() {
     disposables += donationPaymentComponent.googlePayResultPublisher.subscribeBy(
       onNext = { paymentResult ->
@@ -182,8 +212,8 @@ class DonationCheckoutDelegate(
 
       val error = DonationError.getGooglePayRequestTokenError(
         source = when (request.donateToSignalType) {
-          DonateToSignalType.MONTHLY -> DonationErrorSource.SUBSCRIPTION
-          DonateToSignalType.ONE_TIME -> DonationErrorSource.BOOST
+          DonateToSignalType.MONTHLY -> DonationErrorSource.MONTHLY
+          DonateToSignalType.ONE_TIME -> DonationErrorSource.ONE_TIME
           DonateToSignalType.GIFT -> DonationErrorSource.GIFT
         },
         throwable = googlePayException
@@ -204,11 +234,11 @@ class DonationCheckoutDelegate(
 
     private var fragment: Fragment? = null
     private var errorDialog: DialogInterface? = null
-    private var userCancelledFlowCallback: UserCancelledFlowCallback? = null
+    private var errorHandlerCallback: ErrorHandlerCallback? = null
 
-    fun attach(fragment: Fragment, userCancelledFlowCallback: UserCancelledFlowCallback?, errorSource: DonationErrorSource, vararg additionalSources: DonationErrorSource) {
+    fun attach(fragment: Fragment, errorHandlerCallback: ErrorHandlerCallback?, uiSessionKey: Long, errorSource: DonationErrorSource, vararg additionalSources: DonationErrorSource) {
       this.fragment = fragment
-      this.userCancelledFlowCallback = userCancelledFlowCallback
+      this.errorHandlerCallback = errorHandlerCallback
 
       val disposables = LifecycleDisposable()
       fragment.viewLifecycleOwner.lifecycle.addObserver(this)
@@ -218,12 +248,14 @@ class DonationCheckoutDelegate(
       additionalSources.forEach { source ->
         disposables += registerErrorSource(source)
       }
+
+      disposables += registerUiSession(uiSessionKey)
     }
 
     override fun onDestroy(owner: LifecycleOwner) {
       errorDialog?.dismiss()
       fragment = null
-      userCancelledFlowCallback = null
+      errorHandlerCallback = null
     }
 
     private fun registerErrorSource(errorSource: DonationErrorSource): Disposable {
@@ -231,6 +263,14 @@ class DonationCheckoutDelegate(
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe { error ->
           showErrorDialog(error)
+        }
+    }
+
+    private fun registerUiSession(uiSessionKey: Long): Disposable {
+      return DonationError.getErrorsForUiSessionKey(uiSessionKey)
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe {
+          showErrorDialog(it)
         }
     }
 
@@ -246,25 +286,47 @@ class DonationCheckoutDelegate(
         return
       }
 
+      if (throwable is DonationError.UserLaunchedExternalApplication) {
+        Log.d(TAG, "User launched an external application.", true)
+        errorHandlerCallback?.onUserLaunchedAnExternalApplication()
+        return
+      }
+
+      if (throwable is DonationError.BadgeRedemptionError.DonationPending) {
+        Log.d(TAG, "Long-running donation is still pending.", true)
+        errorHandlerCallback?.navigateToDonationPending(throwable.gatewayRequest)
+        return
+      }
+
       Log.d(TAG, "Displaying donation error dialog.", true)
       errorDialog = DonationErrorDialogs.show(
         fragment!!.requireContext(),
         throwable,
         object : DonationErrorDialogs.DialogCallback() {
-          var tryCCAgain = false
+          var tryAgain = false
 
           override fun onTryCreditCardAgain(context: Context): DonationErrorParams.ErrorAction<Unit> {
             return DonationErrorParams.ErrorAction(
               label = R.string.DeclineCode__try,
               action = {
-                tryCCAgain = true
+                tryAgain = true
+              }
+            )
+          }
+
+          override fun onTryBankTransferAgain(context: Context): DonationErrorParams.ErrorAction<Unit> {
+            return DonationErrorParams.ErrorAction(
+              label = R.string.DeclineCode__try,
+              action = {
+                tryAgain = true
               }
             )
           }
 
           override fun onDialogDismissed() {
             errorDialog = null
-            if (!tryCCAgain) {
+            if (!tryAgain) {
+              tryAgain = false
               fragment!!.findNavController().popBackStack()
             }
           }
@@ -273,15 +335,19 @@ class DonationCheckoutDelegate(
     }
   }
 
-  interface UserCancelledFlowCallback {
-    fun onUserCancelledPaymentFlow()
+  interface ErrorHandlerCallback {
+    fun onUserLaunchedAnExternalApplication()
+    fun navigateToDonationPending(gatewayRequest: GatewayRequest)
   }
 
-  interface Callback : UserCancelledFlowCallback {
+  interface Callback : ErrorHandlerCallback {
     fun navigateToStripePaymentInProgress(gatewayRequest: GatewayRequest)
     fun navigateToPayPalPaymentInProgress(gatewayRequest: GatewayRequest)
     fun navigateToCreditCardForm(gatewayRequest: GatewayRequest)
+    fun navigateToIdealDetailsFragment(gatewayRequest: GatewayRequest)
+    fun navigateToBankTransferMandate(gatewayResponse: GatewayResponse)
     fun onPaymentComplete(gatewayRequest: GatewayRequest)
     fun onProcessorActionProcessed()
+    fun showSepaEuroMaximumDialog(sepaEuroMaximum: FiatMoney)
   }
 }

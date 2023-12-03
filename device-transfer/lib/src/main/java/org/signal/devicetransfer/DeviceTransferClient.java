@@ -357,8 +357,11 @@ final class DeviceTransferClient implements Handler.Callback {
     public void onNetworkConnected(@NonNull WifiP2pInfo info) {
       if (info.isGroupOwner) {
         handler.sendEmptyMessage(START_IP_EXCHANGE);
-      } else {
+      } else if (info.groupOwnerAddress != null) {
         handler.sendMessage(handler.obtainMessage(START_NETWORK_CLIENT, info.groupOwnerAddress.getHostAddress()));
+      } else {
+        Log.d(TAG, "Group owner address null, re-requesting networking information.");
+        handler.sendMessage(handler.obtainMessage(NETWORK_CONNECTION_CHANGED, true));
       }
     }
 

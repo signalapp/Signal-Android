@@ -6,7 +6,6 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.groups
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.groups.GroupChangeBusyException
-import org.thoughtcrime.securesms.groups.GroupsV1MigratedCache
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.ChangeNumberConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
@@ -122,7 +121,7 @@ class PushProcessMessageJob private constructor(
         if (groupId.isV2) {
           val localRevision = groups.getGroupV2Revision(groupId.requireV2())
 
-          if (groupContext.revision!! > localRevision || GroupsV1MigratedCache.hasV1Group(groupId)) {
+          if (groupContext.revision!! > localRevision) {
             Log.i(TAG, "Adding network constraint to group-related job.")
             requireNetwork = true
           }

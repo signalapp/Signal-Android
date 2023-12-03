@@ -90,15 +90,17 @@ class StripeRepository(activity: Activity) : StripeApi.PaymentIntentFetcher, Str
     badgeLevel: Long,
     paymentSourceType: PaymentSourceType
   ): Single<StripeIntentAccessor> {
+    check(paymentSourceType is PaymentSourceType.Stripe)
+
     Log.d(TAG, "Creating payment intent for $price...", true)
 
-    return stripeApi.createPaymentIntent(price, badgeLevel)
+    return stripeApi.createPaymentIntent(price, badgeLevel, paymentSourceType)
       .onErrorResumeNext {
         OneTimeDonationRepository.handleCreatePaymentIntentError(it, badgeRecipient, paymentSourceType)
       }
       .flatMap { result ->
         val recipient = Recipient.resolved(badgeRecipient)
-        val errorSource = if (recipient.isSelf) DonationErrorSource.BOOST else DonationErrorSource.GIFT
+        val errorSource = if (recipient.isSelf) DonationErrorSource.ONE_TIME else DonationErrorSource.GIFT
 
         Log.d(TAG, "Created payment intent for $price.", true)
         when (result) {
@@ -110,9 +112,12 @@ class StripeRepository(activity: Activity) : StripeApi.PaymentIntentFetcher, Str
       }.subscribeOn(Schedulers.io())
   }
 
-  fun createAndConfirmSetupIntent(paymentSource: StripeApi.PaymentSource): Single<StripeApi.Secure3DSAction> {
+  fun createAndConfirmSetupIntent(
+    paymentSource: StripeApi.PaymentSource,
+    paymentSourceType: PaymentSourceType.Stripe
+  ): Single<StripeApi.Secure3DSAction> {
     Log.d(TAG, "Continuing subscription setup...", true)
-    return stripeApi.createSetupIntent()
+    return stripeApi.createSetupIntent(paymentSourceType)
       .flatMap { result ->
         Log.d(TAG, "Retrieved SetupIntent, confirming...", true)
         stripeApi.confirmSetupIntent(paymentSource, result.setupIntent)
@@ -125,7 +130,7 @@ class StripeRepository(activity: Activity) : StripeApi.PaymentIntentFetcher, Str
     badgeRecipient: RecipientId
   ): Single<StripeApi.Secure3DSAction> {
     val isBoost = badgeRecipient == Recipient.self().id
-    val donationErrorSource: DonationErrorSource = if (isBoost) DonationErrorSource.BOOST else DonationErrorSource.GIFT
+    val donationErrorSource: DonationErrorSource = if (isBoost) DonationErrorSource.ONE_TIME else DonationErrorSource.GIFT
 
     Log.d(TAG, "Confirming payment intent...", true)
     return stripeApi.confirmPaymentIntent(paymentSource, paymentIntent)
@@ -134,13 +139,13 @@ class StripeRepository(activity: Activity) : StripeApi.PaymentIntentFetcher, Str
       }
   }
 
-  override fun fetchPaymentIntent(price: FiatMoney, level: Long): Single<StripeIntentAccessor> {
+  override fun fetchPaymentIntent(price: FiatMoney, level: Long, sourceType: PaymentSourceType.Stripe): Single<StripeIntentAccessor> {
     Log.d(TAG, "Fetching payment intent from Signal service for $price... (Locale.US minimum precision: ${price.minimumUnitPrecisionString})")
     return Single
       .fromCallable {
         ApplicationDependencies
           .getDonationsService()
-          .createDonationIntentWithAmount(price.minimumUnitPrecisionString, price.currency.currencyCode, level)
+          .createDonationIntentWithAmount(price.minimumUnitPrecisionString, price.currency.currencyCode, level, sourceType.paymentMethod)
       }
       .flatMap(ServiceResponse<StripeClientSecret>::flattenResult)
       .map {
@@ -159,27 +164,27 @@ class StripeRepository(activity: Activity) : StripeApi.PaymentIntentFetcher, Str
    * it means that the PaymentMethod is already tied to a PayPal account. We can retry in this
    * situation by simply deleting the old subscriber id on the service and replacing it.
    */
-  private fun createPaymentMethod(retryOn409: Boolean = true): Single<StripeClientSecret> {
+  private fun createPaymentMethod(paymentSourceType: PaymentSourceType.Stripe, retryOn409: Boolean = true): Single<StripeClientSecret> {
     return Single.fromCallable { SignalStore.donationsValues().requireSubscriber() }
       .flatMap {
         Single.fromCallable {
           ApplicationDependencies
             .getDonationsService()
-            .createStripeSubscriptionPaymentMethod(it.subscriberId)
+            .createStripeSubscriptionPaymentMethod(it.subscriberId, paymentSourceType.paymentMethod)
         }
       }
       .flatMap { serviceResponse ->
         if (retryOn409 && serviceResponse.status == 409) {
-          monthlyDonationRepository.rotateSubscriberId().andThen(createPaymentMethod(retryOn409 = false))
+          monthlyDonationRepository.rotateSubscriberId().andThen(createPaymentMethod(paymentSourceType, retryOn409 = false))
         } else {
           serviceResponse.flattenResult()
         }
       }
   }
 
-  override fun fetchSetupIntent(): Single<StripeIntentAccessor> {
+  override fun fetchSetupIntent(sourceType: PaymentSourceType.Stripe): Single<StripeIntentAccessor> {
     Log.d(TAG, "Fetching setup intent from Signal service...")
-    return createPaymentMethod()
+    return createPaymentMethod(sourceType)
       .map {
         StripeIntentAccessor(
           objectType = StripeIntentAccessor.ObjectType.SETUP_INTENT,
@@ -197,19 +202,22 @@ class StripeRepository(activity: Activity) : StripeApi.PaymentIntentFetcher, Str
    *       that we are successful and proceed as normal. If the payment didn't actually succeed, then we
    *       expect an error later in the chain to inform us of this.
    */
-  fun getStatusAndPaymentMethodId(stripeIntentAccessor: StripeIntentAccessor): Single<StatusAndPaymentMethodId> {
+  fun getStatusAndPaymentMethodId(
+    stripeIntentAccessor: StripeIntentAccessor,
+    paymentMethodId: String?
+  ): Single<StatusAndPaymentMethodId> {
     return Single.fromCallable {
       when (stripeIntentAccessor.objectType) {
-        StripeIntentAccessor.ObjectType.NONE -> StatusAndPaymentMethodId(StripeIntentStatus.SUCCEEDED, null)
+        StripeIntentAccessor.ObjectType.NONE -> StatusAndPaymentMethodId(stripeIntentAccessor.intentId, StripeIntentStatus.SUCCEEDED, paymentMethodId)
         StripeIntentAccessor.ObjectType.PAYMENT_INTENT -> stripeApi.getPaymentIntent(stripeIntentAccessor).let {
           if (it.status == null) {
             Log.d(TAG, "Returned payment intent had a null status.", true)
           }
-          StatusAndPaymentMethodId(it.status ?: StripeIntentStatus.SUCCEEDED, it.paymentMethod)
+          StatusAndPaymentMethodId(stripeIntentAccessor.intentId, it.status ?: StripeIntentStatus.SUCCEEDED, it.paymentMethod)
         }
 
         StripeIntentAccessor.ObjectType.SETUP_INTENT -> stripeApi.getSetupIntent(stripeIntentAccessor).let {
-          StatusAndPaymentMethodId(it.status, it.paymentMethod)
+          StatusAndPaymentMethodId(stripeIntentAccessor.intentId, it.status, it.paymentMethod)
         }
       }
     }
@@ -217,6 +225,7 @@ class StripeRepository(activity: Activity) : StripeApi.PaymentIntentFetcher, Str
 
   fun setDefaultPaymentMethod(
     paymentMethodId: String,
+    setupIntentId: String,
     paymentSourceType: PaymentSourceType
   ): Completable {
     return Single.fromCallable {
@@ -225,9 +234,15 @@ class StripeRepository(activity: Activity) : StripeApi.PaymentIntentFetcher, Str
     }.flatMap {
       Log.d(TAG, "Setting default payment method via Signal service...")
       Single.fromCallable {
-        ApplicationDependencies
-          .getDonationsService()
-          .setDefaultStripePaymentMethod(it.subscriberId, paymentMethodId)
+        if (paymentSourceType == PaymentSourceType.Stripe.IDEAL) {
+          ApplicationDependencies
+            .getDonationsService()
+            .setDefaultIdealPaymentMethod(it.subscriberId, setupIntentId)
+        } else {
+          ApplicationDependencies
+            .getDonationsService()
+            .setDefaultStripePaymentMethod(it.subscriberId, paymentMethodId)
+        }
       }
     }.flatMap(ServiceResponse<EmptyResponse>::flattenResult).ignoreElement().doOnComplete {
       Log.d(TAG, "Set default payment method via Signal service!")
@@ -246,7 +261,18 @@ class StripeRepository(activity: Activity) : StripeApi.PaymentIntentFetcher, Str
     }
   }
 
+  fun createSEPADebitPaymentSource(sepaDebitData: StripeApi.SEPADebitData): Single<StripeApi.PaymentSource> {
+    Log.d(TAG, "Creating SEPA Debit payment source via Stripe api...")
+    return stripeApi.createPaymentSourceFromSEPADebitData(sepaDebitData)
+  }
+
+  fun createIdealPaymentSource(idealData: StripeApi.IDEALData): Single<StripeApi.PaymentSource> {
+    Log.d(TAG, "Creating iDEAL payment source via Stripe api...")
+    return stripeApi.createPaymentSourceFromIDEALData(idealData)
+  }
+
   data class StatusAndPaymentMethodId(
+    val intentId: String,
     val status: StripeIntentStatus,
     val paymentMethod: String?
   )

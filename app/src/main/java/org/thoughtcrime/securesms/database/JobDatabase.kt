@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Application
 import android.content.ContentValues
 import android.database.Cursor
+import androidx.core.content.contentValuesOf
 import net.zetetic.database.sqlcipher.SQLiteDatabase
 import net.zetetic.database.sqlcipher.SQLiteOpenHelper
 import org.signal.core.util.CursorUtil
@@ -23,9 +24,6 @@ import org.signal.core.util.update
 import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.crypto.DatabaseSecret
 import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider
-import org.thoughtcrime.securesms.database.SignalDatabase.Companion.hasTable
-import org.thoughtcrime.securesms.database.SignalDatabase.Companion.rawDatabase
-import org.thoughtcrime.securesms.database.SqlCipherLibraryLoader.load
 import org.thoughtcrime.securesms.jobmanager.persistence.ConstraintSpec
 import org.thoughtcrime.securesms.jobmanager.persistence.DependencySpec
 import org.thoughtcrime.securesms.jobmanager.persistence.FullSpec
@@ -61,6 +59,7 @@ class JobDatabase(
     const val SERIALIZED_DATA = "serialized_data"
     const val SERIALIZED_INPUT_DATA = "serialized_input_data"
     const val IS_RUNNING = "is_running"
+    const val PRIORITY = "priority"
 
     val CREATE_TABLE =
       """
@@ -77,7 +76,8 @@ class JobDatabase(
           $SERIALIZED_DATA TEXT, 
           $SERIALIZED_INPUT_DATA TEXT DEFAULT NULL, 
           $IS_RUNNING INTEGER,
-          $NEXT_BACKOFF_INTERVAL INTEGER
+          $NEXT_BACKOFF_INTERVAL INTEGER,
+          $PRIORITY INTEGER DEFAULT 0
         )
       """.trimIndent()
   }
@@ -123,19 +123,19 @@ class JobDatabase(
     db.execSQL(Constraints.CREATE_TABLE)
     db.execSQL(Dependencies.CREATE_TABLE)
 
-    if (hasTable("job_spec")) {
+    if (SignalDatabase.hasTable("job_spec")) {
       Log.i(TAG, "Found old job_spec table. Migrating data.")
-      migrateJobSpecsFromPreviousDatabase(rawDatabase, db)
+      migrateJobSpecsFromPreviousDatabase(SignalDatabase.rawDatabase, db)
     }
 
-    if (hasTable("constraint_spec")) {
+    if (SignalDatabase.hasTable("constraint_spec")) {
       Log.i(TAG, "Found old constraint_spec table. Migrating data.")
-      migrateConstraintSpecsFromPreviousDatabase(rawDatabase, db)
+      migrateConstraintSpecsFromPreviousDatabase(SignalDatabase.rawDatabase, db)
     }
 
-    if (hasTable("dependency_spec")) {
+    if (SignalDatabase.hasTable("dependency_spec")) {
       Log.i(TAG, "Found old dependency_spec table. Migrating data.")
-      migrateDependencySpecsFromPreviousDatabase(rawDatabase, db)
+      migrateDependencySpecsFromPreviousDatabase(SignalDatabase.rawDatabase, db)
     }
   }
 
@@ -146,6 +146,10 @@ class JobDatabase(
       db.execSQL("ALTER TABLE job_spec RENAME COLUMN next_run_attempt_time TO last_run_attempt_time")
       db.execSQL("ALTER TABLE job_spec ADD COLUMN next_backoff_interval INTEGER")
       db.execSQL("UPDATE job_spec SET last_run_attempt_time = 0")
+    }
+
+    if (oldVersion < 3) {
+      db.execSQL("ALTER TABLE job_spec ADD COLUMN priority INTEGER DEFAULT 0")
     }
   }
 
@@ -191,7 +195,8 @@ class JobDatabase(
       Jobs.LIFESPAN,
       Jobs.SERIALIZED_DATA,
       Jobs.SERIALIZED_INPUT_DATA,
-      Jobs.IS_RUNNING
+      Jobs.IS_RUNNING,
+      Jobs.PRIORITY
     )
     return readableDatabase
       .query(Jobs.TABLE_NAME, columns, null, null, null, null, "${Jobs.CREATE_TIME}, ${Jobs.ID} ASC")
@@ -331,7 +336,8 @@ class JobDatabase(
         Jobs.LIFESPAN to job.lifespan,
         Jobs.SERIALIZED_DATA to job.serializedData,
         Jobs.SERIALIZED_INPUT_DATA to job.serializedInputData,
-        Jobs.IS_RUNNING to if (job.isRunning) 1 else 0
+        Jobs.IS_RUNNING to if (job.isRunning) 1 else 0,
+        Jobs.PRIORITY to job.priority
       )
       .run(SQLiteDatabase.CONFLICT_IGNORE)
   }
@@ -380,7 +386,8 @@ class JobDatabase(
       serializedData = cursor.requireBlob(Jobs.SERIALIZED_DATA),
       serializedInputData = cursor.requireBlob(Jobs.SERIALIZED_INPUT_DATA),
       isRunning = cursor.requireBoolean(Jobs.IS_RUNNING),
-      isMemoryOnly = false
+      isMemoryOnly = false,
+      priority = cursor.requireInt(Jobs.PRIORITY)
     )
   }
 
@@ -405,15 +412,20 @@ class JobDatabase(
   }
 
   private fun dropTableIfPresent(table: String) {
-    if (hasTable(table)) {
+    if (SignalDatabase.hasTable(table)) {
       Log.i(TAG, "Dropping original $table table from the main database.")
-      rawDatabase.execSQL("DROP TABLE $table")
+      SignalDatabase.rawDatabase.execSQL("DROP TABLE $table")
     }
+  }
+
+  /** Should only be used for debugging! */
+  fun debugResetBackoffInterval() {
+    writableDatabase.update(Jobs.TABLE_NAME, contentValuesOf(Jobs.NEXT_BACKOFF_INTERVAL to 0), null, null)
   }
 
   companion object {
     private val TAG = Log.tag(JobDatabase::class.java)
-    private const val DATABASE_VERSION = 2
+    private const val DATABASE_VERSION = 3
     private const val DATABASE_NAME = "signal-jobmanager.db"
 
     @SuppressLint("StaticFieldLeak")
@@ -425,7 +437,7 @@ class JobDatabase(
       if (instance == null) {
         synchronized(JobDatabase::class.java) {
           if (instance == null) {
-            load()
+            SqlCipherLibraryLoader.load()
             instance = JobDatabase(context, DatabaseSecretProvider.getOrCreateDatabaseSecret(context))
           }
         }

@@ -25,8 +25,6 @@ import org.signal.core.ui.Texts
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.compose.StatusBarColorNestedScrollConnection
-import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues.PhoneNumberListingMode
-import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues.PhoneNumberSharingMode
 
 class PhoneNumberPrivacySettingsFragment : ComposeFragment() {
 
@@ -67,7 +65,7 @@ class PhoneNumberPrivacySettingsFragment : ComposeFragment() {
 
           item {
             Rows.RadioRow(
-              selected = state.seeMyPhoneNumber == PhoneNumberSharingMode.EVERYONE,
+              selected = state.phoneNumberSharing,
               text = stringResource(id = R.string.PhoneNumberPrivacy_everyone),
               modifier = Modifier.clickable(onClick = viewModel::setEveryoneCanSeeMyNumber)
             )
@@ -75,7 +73,7 @@ class PhoneNumberPrivacySettingsFragment : ComposeFragment() {
 
           item {
             Rows.RadioRow(
-              selected = state.seeMyPhoneNumber == PhoneNumberSharingMode.NOBODY,
+              selected = !state.phoneNumberSharing,
               text = stringResource(id = R.string.PhoneNumberPrivacy_nobody),
               modifier = Modifier.clickable(onClick = viewModel::setNobodyCanSeeMyNumber)
             )
@@ -84,10 +82,10 @@ class PhoneNumberPrivacySettingsFragment : ComposeFragment() {
           item {
             Text(
               text = stringResource(
-                id = when (state.seeMyPhoneNumber) {
-                  PhoneNumberSharingMode.EVERYONE -> R.string.PhoneNumberPrivacySettingsFragment__your_phone_number
-                  PhoneNumberSharingMode.NOBODY -> R.string.PhoneNumberPrivacySettingsFragment__nobody_will_see
-                  else -> error("Unexpected state $state")
+                id = if (state.phoneNumberSharing) {
+                  R.string.PhoneNumberPrivacySettingsFragment__your_phone_number
+                } else {
+                  R.string.PhoneNumberPrivacySettingsFragment__nobody_will_see
                 }
               ),
               style = MaterialTheme.typography.bodyMedium,
@@ -106,16 +104,16 @@ class PhoneNumberPrivacySettingsFragment : ComposeFragment() {
 
           item {
             Rows.RadioRow(
-              selected = state.findMeByPhoneNumber == PhoneNumberListingMode.LISTED,
+              selected = state.discoverableByPhoneNumber,
               text = stringResource(id = R.string.PhoneNumberPrivacy_everyone),
               modifier = Modifier.clickable(onClick = viewModel::setEveryoneCanFindMeByMyNumber)
             )
           }
 
-          if (state.seeMyPhoneNumber == PhoneNumberSharingMode.NOBODY) {
+          if (!state.phoneNumberSharing) {
             item {
               Rows.RadioRow(
-                selected = state.findMeByPhoneNumber == PhoneNumberListingMode.UNLISTED,
+                selected = !state.discoverableByPhoneNumber,
                 text = stringResource(id = R.string.PhoneNumberPrivacy_nobody),
                 modifier = Modifier.clickable(onClick = viewModel::setNobodyCanFindMeByMyNumber)
               )
@@ -125,9 +123,10 @@ class PhoneNumberPrivacySettingsFragment : ComposeFragment() {
           item {
             Text(
               text = stringResource(
-                id = when (state.findMeByPhoneNumber) {
-                  PhoneNumberListingMode.UNLISTED -> R.string.WhoCanSeeMyPhoneNumberFragment__nobody_on_signal
-                  PhoneNumberListingMode.LISTED -> R.string.WhoCanSeeMyPhoneNumberFragment__anyone_who_has
+                id = if (state.discoverableByPhoneNumber) {
+                  R.string.WhoCanSeeMyPhoneNumberFragment__anyone_who_has
+                } else {
+                  R.string.WhoCanSeeMyPhoneNumberFragment__nobody_on_signal
                 }
               ),
               style = MaterialTheme.typography.bodyMedium,

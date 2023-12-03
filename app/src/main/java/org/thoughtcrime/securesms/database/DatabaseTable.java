@@ -49,10 +49,6 @@ public abstract class DatabaseTable {
 
   protected void notifyConversationListeners(Set<Long> threadIds) {
     ApplicationDependencies.getDatabaseObserver().notifyConversationListeners(threadIds);
-
-    for (long threadId : threadIds) {
-      notifyConversationListeners(threadId);
-    }
   }
 
   protected void notifyConversationListeners(long threadId) {

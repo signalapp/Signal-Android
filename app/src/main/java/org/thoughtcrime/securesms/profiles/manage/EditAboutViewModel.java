@@ -12,12 +12,12 @@ import io.reactivex.rxjava3.subjects.PublishSubject;
 
 public final class EditAboutViewModel extends ViewModel {
 
-  private final ManageProfileRepository    repository;
+  private final EditProfileRepository      repository;
   private final BehaviorSubject<SaveState> saveState;
   private final PublishSubject<Event>      events;
 
   public EditAboutViewModel() {
-    this.repository = new ManageProfileRepository();
+    this.repository = new EditProfileRepository();
     this.saveState  = BehaviorSubject.createDefault(SaveState.IDLE);
     this.events     = PublishSubject.create();
   }

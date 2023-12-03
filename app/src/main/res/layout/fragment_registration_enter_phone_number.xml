@@ -57,7 +57,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/number"
-                style="@style/Widget.Signal.TextInputLayout.Registration"
+                style="@style/Widget.Signal.TextInputLayout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

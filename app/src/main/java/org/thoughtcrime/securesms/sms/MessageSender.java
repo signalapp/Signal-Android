@@ -59,7 +59,6 @@ import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
 import org.thoughtcrime.securesms.jobs.IndividualSendJob;
 import org.thoughtcrime.securesms.jobs.ReactionSendJob;
 import org.thoughtcrime.securesms.jobs.RemoteDeleteSendJob;
-import org.thoughtcrime.securesms.jobs.ResumableUploadSpecJob;
 import org.thoughtcrime.securesms.jobs.SmsSendJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
@@ -418,17 +417,15 @@ public class MessageSender {
       AttachmentTable    attachmentDatabase = SignalDatabase.attachments();
       DatabaseAttachment databaseAttachment = attachmentDatabase.insertAttachmentForPreUpload(attachment);
 
-      Job compressionJob         = AttachmentCompressionJob.fromAttachment(databaseAttachment, false, -1);
-      Job resumableUploadSpecJob = new ResumableUploadSpecJob();
-      Job uploadJob              = new AttachmentUploadJob(databaseAttachment.getAttachmentId());
+      Job compressionJob = AttachmentCompressionJob.fromAttachment(databaseAttachment, false, -1);
+      Job uploadJob      = new AttachmentUploadJob(databaseAttachment.getAttachmentId());
 
       ApplicationDependencies.getJobManager()
                              .startChain(compressionJob)
-                             .then(resumableUploadSpecJob)
                              .then(uploadJob)
                              .enqueue();
 
-      return new PreUploadResult(media, databaseAttachment.getAttachmentId(), Arrays.asList(compressionJob.getId(), resumableUploadSpecJob.getId(), uploadJob.getId()));
+      return new PreUploadResult(media, databaseAttachment.getAttachmentId(), Arrays.asList(compressionJob.getId(), uploadJob.getId()));
     } catch (MmsException e) {
       Log.w(TAG, "preUploadPushAttachment() - Failed to upload!", e);
       return null;

@@ -25,6 +25,9 @@ import org.signal.core.ui.theme.SignalTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 object Scaffolds {
+  /**
+   * @param titleContent The title area content. First parameter is the contentOffset.
+   */
   @Composable
   fun Settings(
     title: String,
@@ -32,6 +35,9 @@ object Scaffolds {
     navigationIconPainter: Painter,
     modifier: Modifier = Modifier,
     navigationContentDescription: String? = null,
+    titleContent: @Composable (Float, String) -> Unit = { _, title ->
+      Text(text = title, style = MaterialTheme.typography.titleLarge)
+    },
     content: @Composable (PaddingValues) -> Unit
   ) {
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
@@ -40,10 +46,7 @@ object Scaffolds {
       topBar = {
         TopAppBar(
           title = {
-            Text(
-              text = title,
-              style = MaterialTheme.typography.titleLarge
-            )
+            titleContent(scrollBehavior.state.contentOffset, title)
           },
           navigationIcon = {
             IconButton(
@@ -57,7 +60,7 @@ object Scaffolds {
             }
           },
           scrollBehavior = scrollBehavior,
-          colors = TopAppBarDefaults.smallTopAppBarColors(
+          colors = TopAppBarDefaults.topAppBarColors(
             scrolledContainerColor = SignalTheme.colors.colorSurface2
           )
         )

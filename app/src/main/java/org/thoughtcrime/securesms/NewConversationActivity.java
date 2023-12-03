@@ -51,7 +51,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.CommunicationActions;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 
 import java.io.IOException;
@@ -313,7 +312,7 @@ public class NewConversationActivity extends ContactSelectionActivity
   }
 
   private @Nullable ActionItem createRemoveActionItem(@NonNull Recipient recipient) {
-    if (!FeatureFlags.hideContacts() || recipient.isSelf() || recipient.isGroup()) {
+    if (recipient.isSelf() || recipient.isGroup()) {
       return null;
     }
 

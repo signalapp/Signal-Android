@@ -23,12 +23,14 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.donate.Do
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
+import org.thoughtcrime.securesms.components.settings.app.subscription.errors.toDonationError
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.MultiDeviceSubscriptionSyncRequestJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.rx.RxStore
 import org.whispersystems.signalservice.api.util.Preconditions
 import org.whispersystems.signalservice.internal.push.DonationProcessor
+import org.whispersystems.signalservice.internal.push.exceptions.DonationProcessorError
 
 class StripePaymentInProgressViewModel(
   private val stripeRepository: StripeRepository,
@@ -44,8 +46,7 @@ class StripePaymentInProgressViewModel(
   val state: Flowable<DonationProcessorStage> = store.stateFlowable.observeOn(AndroidSchedulers.mainThread())
 
   private val disposables = CompositeDisposable()
-  private var paymentData: PaymentData? = null
-  private var cardData: StripeApi.CardData? = null
+  private var stripePaymentData: StripePaymentData? = null
 
   override fun onCleared() {
     disposables.clear()
@@ -68,12 +69,12 @@ class StripePaymentInProgressViewModel(
     disposables.clear()
   }
 
-  fun processNewDonation(request: GatewayRequest, nextActionHandler: (StripeApi.Secure3DSAction) -> Single<StripeIntentAccessor>) {
+  fun processNewDonation(request: GatewayRequest, nextActionHandler: StripeNextActionHandler) {
     Log.d(TAG, "Proceeding with donation...", true)
 
     val errorSource = when (request.donateToSignalType) {
-      DonateToSignalType.ONE_TIME -> DonationErrorSource.BOOST
-      DonateToSignalType.MONTHLY -> DonationErrorSource.SUBSCRIPTION
+      DonateToSignalType.ONE_TIME -> DonationErrorSource.ONE_TIME
+      DonateToSignalType.MONTHLY -> DonationErrorSource.MONTHLY
       DonateToSignalType.GIFT -> DonationErrorSource.GIFT
     }
 
@@ -87,49 +88,67 @@ class StripePaymentInProgressViewModel(
   }
 
   private fun resolvePaymentSourceProvider(errorSource: DonationErrorSource): PaymentSourceProvider {
-    val paymentData = this.paymentData
-    val cardData = this.cardData
-
-    return when {
-      paymentData == null && cardData == null -> error("No payment provider available.")
-      paymentData != null && cardData != null -> error("Too many providers available")
-      paymentData != null -> PaymentSourceProvider(
+    return when (val data = stripePaymentData) {
+      is StripePaymentData.GooglePay -> PaymentSourceProvider(
         PaymentSourceType.Stripe.GooglePay,
-        Single.just<StripeApi.PaymentSource>(GooglePayPaymentSource(paymentData)).doAfterTerminate { clearPaymentInformation() }
+        Single.just<StripeApi.PaymentSource>(GooglePayPaymentSource(data.paymentData)).doAfterTerminate { clearPaymentInformation() }
       )
-      cardData != null -> PaymentSourceProvider(
+
+      is StripePaymentData.CreditCard -> PaymentSourceProvider(
         PaymentSourceType.Stripe.CreditCard,
-        stripeRepository.createCreditCardPaymentSource(errorSource, cardData).doAfterTerminate { clearPaymentInformation() }
+        stripeRepository.createCreditCardPaymentSource(errorSource, data.cardData).doAfterTerminate { clearPaymentInformation() }
       )
+
+      is StripePaymentData.SEPADebit -> PaymentSourceProvider(
+        PaymentSourceType.Stripe.SEPADebit,
+        stripeRepository.createSEPADebitPaymentSource(data.sepaDebitData).doAfterTerminate { clearPaymentInformation() }
+      )
+
+      is StripePaymentData.IDEAL -> PaymentSourceProvider(
+        PaymentSourceType.Stripe.IDEAL,
+        stripeRepository.createIdealPaymentSource(data.idealData).doAfterTerminate { clearPaymentInformation() }
+      )
+
       else -> error("This should never happen.")
     }
   }
 
   fun providePaymentData(paymentData: PaymentData) {
     requireNoPaymentInformation()
-    this.paymentData = paymentData
+    this.stripePaymentData = StripePaymentData.GooglePay(paymentData)
   }
 
   fun provideCardData(cardData: StripeApi.CardData) {
     requireNoPaymentInformation()
-    this.cardData = cardData
+    this.stripePaymentData = StripePaymentData.CreditCard(cardData)
+  }
+
+  fun provideSEPADebitData(bankData: StripeApi.SEPADebitData) {
+    requireNoPaymentInformation()
+    this.stripePaymentData = StripePaymentData.SEPADebit(bankData)
+  }
+
+  fun provideIDEALData(bankData: StripeApi.IDEALData) {
+    requireNoPaymentInformation()
+    this.stripePaymentData = StripePaymentData.IDEAL(bankData)
   }
 
   private fun requireNoPaymentInformation() {
-    require(paymentData == null)
-    require(cardData == null)
+    require(stripePaymentData == null)
   }
 
   private fun clearPaymentInformation() {
     Log.d(TAG, "Cleared payment information.", true)
-    paymentData = null
-    cardData = null
+    stripePaymentData = null
   }
 
-  private fun proceedMonthly(request: GatewayRequest, paymentSourceProvider: PaymentSourceProvider, nextActionHandler: (StripeApi.Secure3DSAction) -> Single<StripeIntentAccessor>) {
+  private fun proceedMonthly(request: GatewayRequest, paymentSourceProvider: PaymentSourceProvider, nextActionHandler: StripeNextActionHandler) {
     val ensureSubscriberId: Completable = monthlyDonationRepository.ensureSubscriberId()
-    val createAndConfirmSetupIntent: Single<StripeApi.Secure3DSAction> = paymentSourceProvider.paymentSource.flatMap { stripeRepository.createAndConfirmSetupIntent(it) }
-    val setLevel: Completable = monthlyDonationRepository.setSubscriptionLevel(request.level.toString())
+    val createAndConfirmSetupIntent: Single<StripeApi.Secure3DSAction> = paymentSourceProvider.paymentSource.flatMap {
+      stripeRepository.createAndConfirmSetupIntent(it, paymentSourceProvider.paymentSourceType as PaymentSourceType.Stripe)
+    }
+
+    val setLevel: Completable = monthlyDonationRepository.setSubscriptionLevel(request, paymentSourceProvider.paymentSourceType.isBankTransfer)
 
     Log.d(TAG, "Starting subscription payment pipeline...", true)
     store.update { DonationProcessorStage.PAYMENT_PIPELINE }
@@ -138,16 +157,22 @@ class StripePaymentInProgressViewModel(
       .andThen(monthlyDonationRepository.cancelActiveSubscriptionIfNecessary())
       .andThen(createAndConfirmSetupIntent)
       .flatMap { secure3DSAction ->
-        nextActionHandler(secure3DSAction)
-          .flatMap { secure3DSResult -> stripeRepository.getStatusAndPaymentMethodId(secure3DSResult) }
-          .map { (_, paymentMethod) -> paymentMethod ?: secure3DSAction.paymentMethodId!! }
+        nextActionHandler.handle(
+          action = secure3DSAction,
+          Stripe3DSData(
+            secure3DSAction.stripeIntentAccessor,
+            request,
+            paymentSourceProvider.paymentSourceType.code
+          )
+        )
+          .flatMap { secure3DSResult -> stripeRepository.getStatusAndPaymentMethodId(secure3DSResult, secure3DSAction.paymentMethodId) }
       }
-      .flatMapCompletable { stripeRepository.setDefaultPaymentMethod(it, paymentSourceProvider.paymentSourceType) }
+      .flatMapCompletable { stripeRepository.setDefaultPaymentMethod(it.paymentMethod!!, it.intentId, paymentSourceProvider.paymentSourceType) }
       .onErrorResumeNext {
-        if (it is DonationError) {
-          Completable.error(it)
-        } else {
-          Completable.error(DonationError.getPaymentSetupError(DonationErrorSource.SUBSCRIPTION, it, paymentSourceProvider.paymentSourceType))
+        when (it) {
+          is DonationError -> Completable.error(it)
+          is DonationProcessorError -> Completable.error(it.toDonationError(DonationErrorSource.MONTHLY, paymentSourceProvider.paymentSourceType))
+          else -> Completable.error(DonationError.getPaymentSetupError(DonationErrorSource.MONTHLY, it, paymentSourceProvider.paymentSourceType))
         }
       }
 
@@ -159,7 +184,7 @@ class StripePaymentInProgressViewModel(
         val donationError: DonationError = if (throwable is DonationError) {
           throwable
         } else {
-          DonationError.genericBadgeRedemptionFailure(DonationErrorSource.SUBSCRIPTION)
+          DonationError.genericBadgeRedemptionFailure(DonationErrorSource.MONTHLY)
         }
         DonationError.routeDonationError(ApplicationDependencies.getApplication(), donationError)
       },
@@ -173,7 +198,7 @@ class StripePaymentInProgressViewModel(
   private fun proceedOneTime(
     request: GatewayRequest,
     paymentSourceProvider: PaymentSourceProvider,
-    nextActionHandler: (StripeApi.Secure3DSAction) -> Single<StripeIntentAccessor>
+    nextActionHandler: StripeNextActionHandler
   ) {
     Log.w(TAG, "Beginning one-time payment pipeline...", true)
 
@@ -189,16 +214,24 @@ class StripePaymentInProgressViewModel(
 
     disposables += intentAndSource.flatMapCompletable { (paymentIntent, paymentSource) ->
       stripeRepository.confirmPayment(paymentSource, paymentIntent, request.recipientId)
-        .flatMap { nextActionHandler(it) }
-        .flatMap { stripeRepository.getStatusAndPaymentMethodId(it) }
+        .flatMap { action ->
+          nextActionHandler
+            .handle(
+              action,
+              Stripe3DSData(
+                action.stripeIntentAccessor,
+                request,
+                paymentSourceProvider.paymentSourceType.code
+              )
+            )
+            .flatMap { stripeRepository.getStatusAndPaymentMethodId(it, action.paymentMethodId) }
+        }
         .flatMapCompletable {
           oneTimeDonationRepository.waitForOneTimeRedemption(
-            price = amount,
+            gatewayRequest = request,
             paymentIntentId = paymentIntent.intentId,
-            badgeRecipient = request.recipientId,
-            additionalMessage = request.additionalMessage,
-            badgeLevel = request.level,
-            donationProcessor = DonationProcessor.STRIPE
+            donationProcessor = DonationProcessor.STRIPE,
+            paymentSourceType = paymentSource.type
           )
         }
     }.subscribeBy(
@@ -206,10 +239,10 @@ class StripePaymentInProgressViewModel(
         Log.w(TAG, "Failure in one-time payment pipeline...", throwable, true)
         store.update { DonationProcessorStage.FAILED }
 
-        val donationError: DonationError = if (throwable is DonationError) {
-          throwable
-        } else {
-          DonationError.genericBadgeRedemptionFailure(DonationErrorSource.BOOST)
+        val donationError: DonationError = when (throwable) {
+          is DonationError -> throwable
+          is DonationProcessorError -> throwable.toDonationError(request.donateToSignalType.toErrorSource(), paymentSourceProvider.paymentSourceType)
+          else -> DonationError.genericBadgeRedemptionFailure(request.donateToSignalType.toErrorSource())
         }
         DonationError.routeDonationError(ApplicationDependencies.getApplication(), donationError)
       },
@@ -239,11 +272,10 @@ class StripePaymentInProgressViewModel(
     )
   }
 
-  fun updateSubscription(request: GatewayRequest) {
+  fun updateSubscription(request: GatewayRequest, isLongRunning: Boolean) {
     Log.d(TAG, "Beginning subscription update...", true)
-
     store.update { DonationProcessorStage.PAYMENT_PIPELINE }
-    disposables += monthlyDonationRepository.cancelActiveSubscriptionIfNecessary().andThen(monthlyDonationRepository.setSubscriptionLevel(request.level.toString()))
+    disposables += monthlyDonationRepository.cancelActiveSubscriptionIfNecessary().andThen(monthlyDonationRepository.setSubscriptionLevel(request, isLongRunning))
       .subscribeBy(
         onComplete = {
           Log.w(TAG, "Completed subscription update", true)
@@ -251,10 +283,10 @@ class StripePaymentInProgressViewModel(
         },
         onError = { throwable ->
           Log.w(TAG, "Failed to update subscription", throwable, true)
-          val donationError: DonationError = if (throwable is DonationError) {
-            throwable
-          } else {
-            DonationError.genericBadgeRedemptionFailure(DonationErrorSource.SUBSCRIPTION)
+          val donationError: DonationError = when (throwable) {
+            is DonationError -> throwable
+            is DonationProcessorError -> throwable.toDonationError(DonationErrorSource.MONTHLY, PaymentSourceType.Stripe.GooglePay)
+            else -> DonationError.genericBadgeRedemptionFailure(DonationErrorSource.MONTHLY)
           }
           DonationError.routeDonationError(ApplicationDependencies.getApplication(), donationError)
 
@@ -267,6 +299,13 @@ class StripePaymentInProgressViewModel(
     val paymentSourceType: PaymentSourceType,
     val paymentSource: Single<StripeApi.PaymentSource>
   )
+
+  private sealed interface StripePaymentData {
+    class GooglePay(val paymentData: PaymentData) : StripePaymentData
+    class CreditCard(val cardData: StripeApi.CardData) : StripePaymentData
+    class SEPADebit(val sepaDebitData: StripeApi.SEPADebitData) : StripePaymentData
+    class IDEAL(val idealData: StripeApi.IDEALData) : StripePaymentData
+  }
 
   class Factory(
     private val stripeRepository: StripeRepository,

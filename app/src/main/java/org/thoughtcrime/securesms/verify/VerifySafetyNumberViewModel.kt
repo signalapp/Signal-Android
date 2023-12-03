@@ -24,7 +24,6 @@ import org.thoughtcrime.securesms.recipients.LiveRecipient
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.IdentityUtil
 
 class VerifySafetyNumberViewModel(
@@ -38,7 +37,6 @@ class VerifySafetyNumberViewModel(
   }
 
   val recipient: LiveRecipient = Recipient.live(recipientId)
-  var showedSafetyNumberEducationDialog = SignalStore.uiHints().hasSeenSafetyNumberUpdateNux()
 
   private val fingerprintListLiveData = MutableLiveData<List<SafetyNumberFingerprint>>()
 
@@ -54,14 +52,6 @@ class VerifySafetyNumberViewModel(
       val generator = NumericFingerprintGenerator(5200)
 
       var aciFingerprint: SafetyNumberFingerprint? = null
-      var e164Fingerprint: SafetyNumberFingerprint? = null
-
-      if (resolved.e164.isPresent) {
-        val localIdentifier = Recipient.self().requireE164().toByteArray()
-        val remoteIdentifier = resolved.requireE164().toByteArray()
-        val version = 1
-        e164Fingerprint = SafetyNumberFingerprint(version, localIdentifier, localIdentity, remoteIdentifier, remoteIdentity, generator.createFor(version, localIdentifier, localIdentity, remoteIdentifier, remoteIdentity))
-      }
 
       if (resolved.aci.isPresent) {
         val localIdentifier = SignalStore.account().requireAci().toByteArray()
@@ -70,18 +60,8 @@ class VerifySafetyNumberViewModel(
         aciFingerprint = SafetyNumberFingerprint(version, localIdentifier, localIdentity, remoteIdentifier, remoteIdentity, generator.createFor(version, localIdentifier, localIdentity, remoteIdentifier, remoteIdentity))
       }
 
-      if (FeatureFlags.showAciSafetyNumberAsDefault()) {
-        if (aciFingerprint != null) {
-          fingerprintList.add(aciFingerprint)
-          if (e164Fingerprint != null) {
-            fingerprintList.add(e164Fingerprint)
-          }
-        }
-      } else {
-        if (aciFingerprint != null && e164Fingerprint != null) {
-          fingerprintList.add(e164Fingerprint)
-          fingerprintList.add(aciFingerprint)
-        }
+      if (aciFingerprint != null) {
+        fingerprintList.add(aciFingerprint)
       }
 
       fingerprintListLiveData.postValue(fingerprintList)

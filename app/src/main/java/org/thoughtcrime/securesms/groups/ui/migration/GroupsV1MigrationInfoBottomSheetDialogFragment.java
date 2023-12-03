@@ -25,8 +25,7 @@ import org.thoughtcrime.securesms.util.WindowUtil;
 import java.util.List;
 
 /**
- * Shows more info about a GV1->GV2 migration event. Looks similar to
- * {@link GroupsV1MigrationInitiationBottomSheetDialogFragment}, but only displays static data.
+ * Shows more info about a GV1->GV2 migration event.
  */
 public final class GroupsV1MigrationInfoBottomSheetDialogFragment extends BottomSheetDialogFragment {
 

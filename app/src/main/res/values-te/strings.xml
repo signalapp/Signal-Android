@@ -15,6 +15,8 @@
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
   <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/5389476324250</string> -->
   <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="pending_transfer_url" translatable="false">https://support.signal.org/hc/articles/360031949872#pending</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string> -->
 
     <string name="yes">అవును</string>
     <string name="no">కాదు</string>
@@ -119,11 +121,8 @@
     <string name="BlockedUsersActivity__block">బ్లాక్ చేయండి</string>
 
     <!-- CreditCardFragment -->
-    <!-- Title of fragment detailing the donation amount for one-time donation, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__donation_amount_s">విరాళం మొత్తం: %1$s</string>
-    <!-- Title of fragment detailing the donation amount for monthly donation, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__donation_amount_s_per_month">విరాళం మొత్తం: %1$s/నెల</string>
-    <!-- Explanation of how to fill in the form, displayed above the credit card text fields -->
+    <!-- Title of fragment -->
+    <string name="CreditCardFragment__credit_or_debit_card">క్రెడిట్ లేదా డెబిట్ కార్డు</string>
     <!-- Explanation of how to fill in the form and a note about pii, displayed above the credit card text fields -->
     <string name="CreditCardFragment__enter_your_card_details">మీ కార్డు వివరాలను ఎంటర్ చేయండి. Signal మీ వ్యక్తిగత సమాచారాన్ని సేకరించదు లేదా నిల్వ చేయదు.</string>
     <!-- Displayed as a hint in the card number text field -->
@@ -148,8 +147,18 @@
     <string name="CreditCardFragment__year_required">సంవత్సరం అవసరం</string>
     <!-- Error displayed under the card expiry text field when the expiry year is invalid -->
     <string name="CreditCardFragment__invalid_year">చెల్లని సంవత్సరం</string>
-    <!-- Button label to confirm credit card input and proceed with payment -->
-    <string name="CreditCardFragment__continue">కొనసాగు</string>
+    <!-- Button label to confirm credit card input and proceed with one-time payment -->
+    <string name="CreditCardFragment__donate_s">%1$s విరాళం ఇవ్వండి</string>
+    <!-- Button label to confirm credit card input and proceed with subscription payment -->
+    <string name="CreditCardFragment__donate_s_month">%1$s/నెలకు విరాళం ఇవ్వండి</string>
+
+    <!-- OneTimeDonationPreference -->
+    <!-- Preference title with placeholder for amount. -->
+    <string name="OneTimeDonationPreference__one_time_s">ఒక్కసారి %1$s</string>
+    <!-- Preference subtitle when donation is pending -->
+    <string name="OneTimeDonationPreference__donation_pending">విరాళం పెండింగ్‌లో ఉంది</string>
+    <!-- Preference subtitle when donation is processing -->
+    <string name="OneTimeDonationPreference__donation_processing">విరాళం ప్రక్రియ చేయబడుతోంది</string>
 
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">%1$sను బ్లాక్ చేసి మరియు వదలివేసేదా?</string>
@@ -396,6 +405,8 @@
 
     <string name="ConversationActivity_error_sending_media">మీడియాను పంపడంలో లోపం చోటుచేసుకుంది</string>
 
+    <!-- Message shown when opening an MMS group conversation with SMS disabled and there are no exported messages -->
+    <string name="ConversationActivity__sms_messaging_is_no_longer_supported">Signal లో SMS సందేశాలు పంపేందుకు ఇక ఏమాత్రం మద్దతు ఇవ్వబడదు.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Signal లో SMS సందేశాలు పంపేందుకు ఇక ఏమాత్రం మద్దతు ఇవ్వబడదు. ఇక్కడ సంభాషణను ఉంచడానికి %1$s ను Signal కు ఆహ్వానించండి.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
@@ -634,6 +645,8 @@
     <!-- Show percentage of completion of backup -->
     <string name="BackupsPreferenceFragment__s_so_far">%1$s%% ఇప్పటి వరకు…</string>
     <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">ప్రత్యామ్నాయను సృష్టించడానికి Signal బాహ్య నిల్వ అనుమతి అవసరం, కానీ ఇది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తనం సెట్టింగ్లకు కొనసాగించండి, \"అనుమతులు\" ఎంచుకుని, \"నిల్వ\" ను ప్రారంభించండి.</string>
+    <!-- Title of dialog shown when picking the time to perform a chat backup -->
+    <string name="BackupsPreferenceFragment__set_backup_time">బ్యాకప్ సమయాన్ని సెట్ చేయండి</string>
 
 
     <!-- CustomDefaultPreference -->
@@ -980,12 +993,15 @@
     <string name="ManageProfileFragment_profile_name">ఖాతాదారుని పేరు</string>
     <string name="ManageProfileFragment_username">వినియోగదారుడు</string>
     <string name="ManageProfileFragment_about">గురించి</string>
-    <string name="ManageProfileFragment_write_a_few_words_about_yourself">మీ గురించి కొన్ని పదాలు రాయండి</string>
-    <string name="ManageProfileFragment_your_name">మీ పేరు</string>
-    <string name="ManageProfileFragment_your_username">మీ వినియోగదారు పేరు</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">అవతార్ సెట్ చేయడంలో విఫలమైంది</string>
     <string name="ManageProfileFragment_badges">బ్యాడ్జీలు</string>
+    <!-- Text for a button that will take the user to the screen to manage their username link and QR code -->
+    <string name="ManageProfileFragment_link_setting_text">QR కోడ్ లేదా లింక్</string>
     <string name="ManageProfileFragment__edit_photo">ఫోటోని ఎడిట్ చేయండి</string>
+    <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
+    <string name="ManageProfileFragment__link_tooltip_title">మీ యూజర్‌నేమ్‌ను పంచుకోండి</string>
+    <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
+    <string name="ManageProfileFragment__link_tooltip_body">మీ ప్రత్యేకమైన QR కోడ్ లేదా లింక్‌ను పంచుకోవడం ద్వారా ఇతరులు మీతో చాట్ చేయడాన్ని ప్రారంభించనివ్వండి.</string>
     <!-- Snackbar message after creating username -->
     <string name="ManageProfileFragment__username_created">యూజర్‌నేమ్ సృష్టించబడింది</string>
     <!-- Snackbar message after copying username -->
@@ -994,10 +1010,16 @@
     <string name="ManageProfileFragment__couldnt_delete_username">యూజర్‌నేమ్‌ను తొలగించలేకపోయాము. తరువాత మళ్ళీ ప్రయత్నించండి.</string>
     <!-- Snackbar message after successful deletion of username -->
     <string name="ManageProfileFragment__username_deleted">యూజర్‌నేమ్ తొలగించబడింది</string>
+    <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
+    <string name="ManageProfileFragment__delete_username_dialog_title">యూజర్‌నేమ్‌ను తొలగించేదా?</string>
+    <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
+    <string name="ManageProfileFragment__delete_username_dialog_body">"ఇది మీ యూజర్‌నేమ్‌ను తొలగిస్తుంది మరియు మీ QR కోడ్ మరియు లింక్‌ను నిలిపివేస్తుంది. క్లెయిమ్ చేయడానికి ఇతరులకు %1$s అందుబాటులో ఉంటుంది. ఖచ్చితంగా చేసేదా?"</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
-    <string name="UsernameOutOfSyncReminder__something_went_wrong">మీ యూజర్‌నేమ్‌తో ఏదో తప్పు జరిగింది, ఇది మీ ఖాతాకు ఇక ఏమాత్రం కేటాయించబడలేదు. మీరు ప్రయత్నించి, దానిని మళ్లీ సెట్ చేయవచ్చు లేదా ఒక కొత్త దానిని ఎంచుకోవచ్చు.</string>
+    <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">మీ యూజర్‌నేమ్‌తో ఏదో తప్పు జరిగింది, ఇది మీ ఖాతాకు ఇక ఏమాత్రం కేటాయించబడలేదు. మీరు ప్రయత్నించి, దానిని మళ్లీ సెట్ చేయవచ్చు లేదా ఒక కొత్త దానిని ఎంచుకోవచ్చు.</string>
+    <!-- Displayed above the conversation list when a user needs to address an issue with their username link -->
+    <string name="UsernameOutOfSyncReminder__link_corrupt">మీ QR కోడ్ మరియు యూజర్‌నేమ్ లింక్‌తో ఏదో తప్పు జరిగింది, ఇది ఇకపై చెల్లుబాటు కాదు. ఇతరులతో పంచుకోవడానికి కొత్త లింక్‌ను సృష్టించండి.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
     <string name="UsernameOutOfSyncReminder__fix_now">ఇప్పుడు పరిష్కరించండి</string>
 
@@ -1513,7 +1535,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">%1$s మీకు సందేశం పంపనివ్వమంటారా? మీరు వారిని అన్‌బ్లాక్ చేసేంతవరకు మీరు ఎలాంటి సందేశాలను అందుకోరు.</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">%1$s నుంచి అప్‌డేట్స్ మరియు వార్తలను పొందేదా? మీరు వారిని అన్‌బ్లాక్ చేసేంతవరకు మీరు ఎలాంటి అప్‌డేట్‌లను అందుకోలేరు.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">ఈ గ్రూప్‌తో మీ చాట్‌ను కొనసాగించండి మరియు మీ పేరు మరియు ఫోటోను దాని సభ్యులతో పంచుకునేదా?</string>
-    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">\@ప్రస్తావనలు మరియు నిర్వాహకులు వంటి క్రొత్త లక్షణాలను చైతన్యవంతం చేయడానికి ఈ సమూహాన్ని అప్‌గ్రేడ్ చేయండి. ఈ గుంపులో తమ పేరు లేదా ఛాయాచిత్రంను పంచుకోని సభ్యులను చేరడానికి ఆహ్వానించబడతారు.</string>
+    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">This Legacy Group can no longer be used. Create a new group to activate new features like @mentions and admins.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">ఈ లెగసీ సమూహం ఇకపై ఉపయోగించబడదు ఎందుకంటే ఇది చాలా పెద్దది. గరిష్ట సమూహ పరిమాణం %1$d</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">%1$s తో మీ చాట్ కొనసాగించి, మీ పేరు మరియు ఫోటోను వారితో పంచుకునేదా?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">ఈ గుంపులో చేరండి మరియు మీ పేరు మరియు ఫోటోను దాని సభ్యులతో పంచుకోవాలా? మీరు అంగీకరించే వరకు మీరు వారి సందేశాలను చూశారని వారికి తెలియదు.</string>
@@ -2088,9 +2110,13 @@
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">%1$s %2$s కు చెందినది</string>
 
-    <!-- UpdateApkReadyListener -->
-    <string name="UpdateApkReadyListener_Signal_update">Signal నవీకరణ</string>
-    <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal యొక్క కొత్త వివరణం అందుబాటులో ఉంది, నవీకరణ కొరకు తట్టండి</string>
+    <!-- ApkUpdateNotifications -->
+    <string name="ApkUpdateNotifications_prompt_install_title">Signal నవీకరణ</string>
+    <string name="ApkUpdateNotifications_prompt_install_body">Signal యొక్క కొత్త వెర్షన్ అందుబాటులో ఉంది. అప్‌డేట్ చేయడానికి తట్టండి.</string>
+    <string name="ApkUpdateNotifications_failed_general_title">అప్‌డేట్ చేసేందుకు Signal విఫలమైంది</string>
+    <string name="ApkUpdateNotifications_failed_general_body">మేము తర్వాత మళ్ళీ ప్రయత్నిస్తాము.</string>
+    <string name="ApkUpdateNotifications_auto_update_success_title">Signal విజయవంతంగా అప్‌డేట్ చేయబడింది</string>
+    <string name="ApkUpdateNotifications_auto_update_success_body">మీరు ఆటోమేటిక్‌గా %1$s వెర్షన్‌కు అప్‌డేట్ చేయబడ్డారు.</string>
 
     <!-- UntrustedSendDialog -->
     <string name="UntrustedSendDialog_send_message">సందేశం పంపాల?</string>
@@ -2318,6 +2344,9 @@
         <item quantity="one">%1$d అంశం</item>
         <item quantity="other">%1$dఅంశాలు</item>
     </plurals>
+    <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
+    <string name="TransferControlView__processing">ప్రక్రియ చేస్తోంది…</string>
+
 
     <!-- UnauthorizedReminder -->
     <!-- Message shown in a reminder banner when the user\'s device is no longer registered -->
@@ -2695,24 +2724,13 @@
 
     <!-- verify_display_fragment -->
     <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
-    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">%1$s‌తో పూర్తి స్థాయి ఎన్‌క్రిప్షన్‌ను ధృవీకరించడానికి, పైన ఉన్న రంగు కార్డును వారి పరికరంతో మ్యాచ్ చేయండి మరియు సంఖ్యలను పోల్చండి. ఒకవేళ ఇవి మ్యాచ్ కాకపోతే, భద్రతా సంఖ్యల మరో జతను స్వైప్ చేసి ప్రయత్నించండి. కేవలం ఒక జత మాత్రమే మ్యాచ్ కావాలి.</string>
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">%1$s‌తో ఎండ్-టు-ఎండ్ ఎన్‌క్రిప్షన్‌ను ధృవీకరించడానికి, పైన ఉన్న సంఖ్యలను వాటి పరికరంతో పోల్చండి. వారి పరికరంలో మీరు కోడ్‌ను కూడా స్కాన్ చేయవచ్చు.</string>
     <string name="verify_display_fragment__tap_to_scan">స్కాన్ నొక్కండి</string>
     <string name="verify_display_fragment__successful_match">విజయవంతంగా మ్యాచ్ అయింది</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">భద్రతా సంఖ్యను ధృవీకరించడం విఫలమైంది</string>
     <string name="verify_display_fragment__loading">లోడ్…</string>
     <string name="verify_display_fragment__mark_as_verified">ధృవీకరించినట్లు గుర్తించండి</string>
     <string name="verify_display_fragment__clear_verification">ధృవీకరణను క్లియర్ చేయండి</string>
-    <!-- Banner at top of safety numbers screen explaining that we\'re updating how safety numbers work. -->
-    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">భద్రతా సంఖ్యలు అప్‌డేట్ చేయబడుతున్నాయి.</string>
-
-    <!-- Title for dialog explaining for how safety numbers are transitioning to support usernames -->
-    <string name="PnpSafetyNumberEducationDialog__title">భద్రతా సంఖ్యలకు మార్పులు</string>
-    <!-- Message for dialog explaining for how safety numbers are transitioning to support usernames -->
-    <string name="PnpSafetyNumberEducationDialog__body">Signal లో రాబోయే గోప్యతా విలక్షణతలను ప్రారంభించడానికి పరివర్తన వ్యవధిలో భద్రతా సంఖ్యలు అప్‌డేట్ చేయబడుతున్నాయి.\n\nభద్రతా సంఖ్యలను ధృవీకరించడానికి, మీ కాంటాక్ట్ యొక్క పరికరంతో రంగు కార్డును మ్యాచ్ చేయండి. ఒకవేళ ఇవి మ్యాచ్ కాకపోతే, భద్రతా సంఖ్యల మరో జతను స్వైప్ చేసి ప్రయత్నించండి. కేవలం ఒక జత మాత్రమే మ్యాచ్ కావాలి.</string>
-    <!-- Button for more information about the safety number changes. Takes user to support article -->
-    <string name="PnpSafetyNumberEducationDialog__help">సాయం అవసరమా?</string>
-    <!-- Confirmation button for educating users about new safety number changes -->
-    <string name="PnpSafetyNumberEducationDialog__confirm">అర్థమైంది</string>
 
     <!-- verity_scan_fragment -->
     <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">మీ సంప్రదింపు పరికరంలో QR కోడ్‌ను స్కాన్ చేయండి.</string>
@@ -2996,7 +3014,11 @@
     <string name="preferences_storage__six_months">6 నెలలు</string>
     <string name="preferences_storage__thirty_days">30 రోజులు</string>
     <string name="preferences_storage__none">ఏదీ కాదు</string>
-    <string name="preferences_storage__s_messages">%1$s సందేశాలు</string>
+    <plurals name="preferences_storage__s_messages_plural">
+        <item quantity="one">%1$s సందేశం</item>
+        <item quantity="other">%1$s సందేశాలు</item>
+    </plurals>
+
     <string name="preferences_storage__custom">అనుకూలికరన</string>
     <string name="preferences_advanced__use_system_emoji">యంత్రము యొక్క ఎమొజిలను ఉపయొగించు</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">మీ పరిచయం మీ IP చిరునామా బహిర్గతం నివారించేందుకు Signal సర్వర్ ద్వారా అన్ని కాల్స్ ప్రసారం. సమర్ధించే కాల్ నాణ్యత తగ్గిస్తుంది.</string>
@@ -3004,6 +3026,7 @@
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">చెల్లింపులు</string>
     <string name="preferences_chats__chats">చాట్‌లు</string>
+    <string name="preferences_app_updates__title">అనువర్తన నవీకరణలు</string>
     <string name="preferences_data_and_storage__manage_storage">నిల్వను నిర్వహించండి</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">కాల్‌ల కోసం తక్కువ డేటాను ఉపయోగించండి</string>
     <string name="preferences_data_and_storage__never">ఎప్పుడూ</string>
@@ -4555,6 +4578,13 @@
     <string name="NewConversationActivity__view_contact">పరిచయాన్ని వీక్షించండి</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
     <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s Signal యూజర్ కాదు</string>
+    <!-- Error message shown when we could not get a user from the username link -->
+    <string name="NewConversationActivity__">%1$s Signal యూజర్ కాదు</string>
+    <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
+    <plurals name="CreateGroupActivity_not_signal_users">
+        <item quantity="one">%1$s is not a Signal user</item>
+        <item quantity="other">%1$s are not Signal users</item>
+    </plurals>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">పేరు లేదా నెంబరు వెతకండి</string>
@@ -4740,6 +4770,12 @@
     <string name="ManageDonationsFragment__other_ways_to_give">ఇవ్వడానికి ఇతర మార్గాలు</string>
     <!-- Preference label to launch badge gifting -->
     <string name="ManageDonationsFragment__donate_for_a_friend">ఒక స్నేహితుడి కొరకు విరాళం ఇవ్వండి</string>
+    <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
+    <string name="ManageDonationsFragment__couldnt_confirm_donation">విరాళాన్ని ధృవీకరించడం సాధ్యం కాదు</string>
+    <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
+    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">నెలకు %1$s మీ విరాళం ధృవీకరించబడలేదు. మీ iDEAL చెల్లింపును ఆమోదించడానికి మీ బ్యాంకింగ్ యాప్‌ను తనిఖీ చేయండి.</string>
+    <!-- Dialog message shown when a one-time donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
+    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">మీ ఒక్కసారి %1$s విరాళం ధృవీకరించబడలేదు. మీ iDEAL చెల్లింపును ఆమోదించడానికి మీ బ్యాంకింగ్ యాప్‌ను తనిఖీ చేయండి.</string>
 
     <string name="Boost__enter_custom_amount">అనుకూల మొత్తాన్ని ఎంటర్ చేయండి</string>
     <!-- Error label when the amount is smaller than what we can accept -->
@@ -4751,6 +4787,12 @@
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">బ్యాడ్జిని జోడించలేక పోయాను. %1$s</string>
     <string name="MySupportPreference__please_contact_support">దయచేసి సపోర్ట్‌ని సంప్రదించండి.</string>
+    <!-- Displayed as a subtitle on a row in the Manage Donations screen when payment for a donation is pending -->
+    <string name="MySupportPreference__payment_pending">చెల్లింపు పెండింగ్‌లో ఉంది</string>
+    <!-- Displayed as a dialog message when clicking on a donation row that is pending. Placeholder is a formatted fiat amount -->
+    <string name="MySupportPreference__your_bank_transfer_of_s">%1$s యొక్క మీ బ్యాంక్ బదిలీ పెండింగ్‌లో ఉంది. బ్యాంక్ బదిలీలను పూర్తి చేయడానికి సాధారణంగా 1 వ్యాపార రోజు పడుతుంది.  </string>
+    <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
+    <string name="MySupportPreference__learn_more">మరింత తెలుసుకోండి</string>
 
     <!-- Title of dialog telling user they need to update signal as it expired -->
     <string name="UpdateSignalExpiredDialog__title">Signal ను నవీకరించండి</string>
@@ -4800,12 +4842,16 @@
     <string name="Subscription__contact_support">మద్దతును సంప్రదించండి</string>
     <string name="Subscription__get_a_s_badge">%1$s బ్యాడ్జిని పొందండి</string>
 
-    <string name="SubscribeFragment__processing_payment">పేమెంట్ ప్రాసెస్ చేస్తోంది…</string>
+    <string name="SubscribeFragment__processing_payment">విరాళం ప్రక్రియ చేయబడుతోంది…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
-    <string name="DonationsErrors__error_processing_payment">పేమెంట్‌ని ప్రాసెస్ చేయడంలో దోషం.</string>
+    <string name="DonationsErrors__error_processing_payment">విరాళాన్ని ప్రక్రియ చేసేటప్పుడు పొరపాటు ఏర్పడింది</string>
+    <!-- Displayed on manage donations screen as a dialog message when payment method failed -->
+    <string name="DonationsErrors__try_another_payment_method">మరో పేమెంట్ విధానం ప్రయత్నించండి లేదా మరింత సమాచారం కొరకు మీ బ్యాంక్‌ని సంప్రదించండి.</string>
+    <!-- Displayed on manage donations screen error dialogs as an action label -->
+    <string name="DonationsErrors__learn_more">మరింత తెలుసుకోండి</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
-    <string name="DonationsErrors__error_processing_payment_s">పేమెంట్ ప్రాసెస్ చేయడంలో దోషం. %1$s</string>
-    <string name="DonationsErrors__your_payment">మీ పేమెంట్ ప్రాసెస్ చేయబడలేదు మరియు మీకు ఛార్జ్ చేయబడదు. దయచేసి మళ్ళీ ప్రయత్నించండి.</string>
+    <string name="DonationsErrors__error_processing_payment_s">విరాళాన్ని ప్రక్రియ చేసేటప్పుడు పొరపాటు ఏర్పడింది. %1$s</string>
+    <string name="DonationsErrors__your_payment">మీ విరాళం ప్రక్రియ చేయబడలేదు మరియు మీకు ఛార్జ్ విధించబడలేదు. దయచేసి మళ్ళీ ప్రయత్నించండి.</string>
     <string name="DonationsErrors__still_processing">ఇంకా ప్రాసెసింగ్ చేస్తోంది</string>
     <string name="DonationsErrors__couldnt_add_badge">బ్యాడ్జిని జోడించలేక పోయాను</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -4815,9 +4861,9 @@
     <!-- Displayed as title when some generic error happens during sending donation on behalf of another user -->
     <string name="DonationsErrors__donation_failed">విరాళం ఇవ్వడం విఫలమైంది</string>
     <!-- Displayed as message when some generic error happens during sending donation on behalf of another user -->
-    <string name="DonationsErrors__your_payment_was_processed_but">మీ చెల్లింపు ప్రాసెస్ చేయబడింది, అయితే Android మీ విరాళ సందేశాన్ని పంపలేకపోయింది. దయచేసి సపోర్ట్‌ని సంప్రదించండి.</string>
+    <string name="DonationsErrors__your_payment_was_processed_but">మీ విరాళం ప్రక్రియ చేయబడింది, కాని Signal మీ విరాళ సందేశాన్ని పంపలేకపోయింది. దయచేసి మద్దతును సంప్రదించండి.</string>
     <string name="DonationsErrors__your_badge_could_not">మీ బ్యాడ్జి మీ ఖాతాకు జోడించబడలేదు, కానీ మీకు ఛార్జ్ విధంచబడి ఉండవచ్చు. దయచేసి మద్దతును సంప్రదించండి.</string>
-    <string name="DonationsErrors__your_payment_is_still">మీ పేమెంట్ ఇంకా ప్రాసెసింగ్‌లో ఉంది. మీ కనెక్షన్‌పై ఆధారపడి దీనికి కొన్ని నిమిషాలు పట్టవచ్చు.</string>
+    <string name="DonationsErrors__your_payment_is_still">మీ విరాళం ఇంకా ప్రక్రియ చేయబడుతోంది. మీ కనెక్షన్ ఆధారంగా దీనికి కొన్ని నిమిషాలు పట్టవచ్చు.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">సబ్‌స్క్రిప్షన్ రద్దు చేయడంలో విఫలమైంది</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">సబ్‌స్క్రిప్షన్ రద్దుకు ఇంటర్నెట్ కనెక్షన్ అవసరం.</string>
     <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">మీ పరికరం Google Pay కు మద్దతు ఇవ్వదు, అందువల్ల బ్యాడ్జిని సంపాదించడానికి మీరు సబ్‌స్క్రైబ్ చేసుకోలేరు. అయితే మా వెబ్‌సైట్‌లో విరాళం ఇవ్వడం ద్వారా మీరు ఇంకా Signal కు మద్దతను ఇవ్వచ్చు.</string>
@@ -4829,6 +4875,8 @@
     <string name="DonationsErrors__this_user_cant_receive_donations_until">ఈ యూజర్ వారి Signalని అప్‌గ్రేడ్ చేసుకునేంత వరకు విరాళాలను పొందలేడు.</string>
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__your_donation_could_not_be_sent">ఒక నెట్‌వర్క్ దోషం కారణంగా మీ విరాళాన్ని పంపలేరు. మీ కనెక్షన్‌ను తనిఖీ చేయండి మరియు మళ్ళీ ప్రయత్నించండి.</string>
+    <!-- Displayed as a dialog message when the user encounters an error during an iDEAL donation -->
+    <string name="DonationsErrors__your_ideal_couldnt_be_processed">మీ iDEAL విరాళం ప్రక్రియ చేయబడలేదు. మరో చెల్లింపు విధానాన్ని ప్రయత్నించండి లేదా మరింత సమాచారం కొరకు మీ బ్యాంక్‌ను సంప్రదించండి.</string>
 
     <!-- Gift message view title -->
     <string name="GiftMessageView__donation_on_behalf_of_s">%1$s తరఫున విరాళం</string>
@@ -4846,6 +4894,8 @@
 
     <!-- Stripe decline code generic_failure -->
     <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">మరో పేమెంట్ విధానం ప్రయత్నించండి లేదా మరింత సమాచారం కొరకు మీ బ్యాంక్‌ని సంప్రదించండి.</string>
+    <!-- PayPal decline code for payment declined -->
+    <string name="DeclineCode__try_another_payment_method_or_contact_your_bank_for_more_information_if_this_was_a_paypal">మరో చెల్లింపు విధానాన్ని ప్రయత్నించండి లేదా మరింత సమాచారం కొరకు మీ బ్యాంక్‌ను సంప్రదించండి. ఒకవేళ ఇది PayPal లావదేవీ అయితే PayPal ను సంప్రదించండి.</string>
     <!-- Stripe decline code verify on Google Pay and try again -->
     <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">మీ పేమెంట్ విధానం Google Pay లో అప్ టూ డేట్‌గా ఉందని ధృవీకరించండి, మళ్లీ ప్రయత్నించండి.</string>
     <!-- Stripe decline code learn more action label -->
@@ -4871,7 +4921,7 @@
     <!-- Stripe decline code incorrect expiration year -->
     <string name="DeclineCode__the_expiration_year">మీ పేమెంట్ విధానంలో గడువు తీరే సంవత్సరం తప్పుగా ఉంది. దానిని Apple Payలో అప్‌డేట్ చేసి, మళ్లీ ప్రయత్నించండి.</string>
     <!-- Stripe decline code issuer not available -->
-    <string name="DeclineCode__try_completing_the_payment_again">పేమెంట్ పూర్తి చేయడానికి మళ్లీ ప్రయత్నించండి లేదా మరింత సమాచారం కొరకు మీ బ్యాంక్‌ని సంప్రదించండి.</string>
+    <string name="DeclineCode__try_completing_the_payment_again">విరాళాన్ని పూర్తి చేయడానికి మళ్ళీ ప్రయత్నించండి లేదా మరింత సమాచారం కొరకు మీ బ్యాంక్‌ను సంప్రదించండి.</string>
     <!-- Stripe decline code processing error -->
     <string name="DeclineCode__try_again">మళ్లీ ప్రయత్నించండి లేదా మరింత సమాచారం కొరకు మీ బ్యాంక్‌ని సంప్రదించండి.</string>
 
@@ -4890,6 +4940,18 @@
     <string name="DeclineCode__the_expiration_year_on_your_card_is_incorrect">మీ కార్డుపై గడువు తీరే సంవత్సరం తప్పు. మీ కార్డు వివరాలు సరైనవి అని ధృవీకరించుకోండి మరియు మళ్ళీ ప్రయత్నించండి.</string>
     <!-- Stripe decline code incorrect_number and invalid_number for credit cards displayed in a notification or dialog -->
     <string name="DeclineCode__your_card_number_is_incorrect_verify_your_card_details">మీ కార్డు నంబర్ తప్పు. మీ కార్డు వివరాలు సరైనవి అని ధృవీకరించుకోండి మరియు మళ్ళీ ప్రయత్నించండి.</string>
+
+    <!-- Stripe Failure Codes for failed bank transfers -->
+    <!-- Failure code text for insufficient funds, displayed in a dialog or notification -->
+    <string name="StripeFailureCode__the_bank_account_provided">ఈ కొనుగోలును పూర్తి చేయడానికి అందివ్వబడ్డ బ్యాంక్ ఖాతాలో తగినన్ని నిధులు లేవు, మళ్ళీ ప్రయత్నించండి లేదా మరింత సమాచారం కొరకు మీ బ్యాంక్‌ను సంప్రదించండి.</string>
+    <!-- Failure code text for revoked authorization of payment, displayed in a dialog or notification -->
+    <string name="StripeFailureCode__this_payment_was_revoked">ఖాతాదారుడి ద్వారా ఈ విరాళం ఉపసంహరించబడింది మరియు ప్రక్రియ చేయబడలేదు. మీకు ఛార్జీ విధించబడలేదు.</string>
+    <!-- Failure code text for a payment lacking an authorized mandate or incorrect mandate, displayed in a dialog or notification -->
+    <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">ఈ విరాళాన్ని ప్రక్రియ చేసేటప్పుడు ఒక పొరపాటు ఏర్పడింది, దయచేసి మళ్ళీ ప్రయత్నించండి.</string>
+    <!-- Failure code text for a closed account, deceased recipient, or one with blocked direct debits, displayed in a dialog or notification -->
+    <string name="StripeFailureCode__the_bank_details_provided_could_not_be_processed">అందివ్వబడ్డ బ్యాంక్ వివరాలను ప్రక్రియ చేయడం సాధ్యపడలేదు, మరింత సమాచారం కొరకు మీ బ్యాంక్‌ను సంప్రదించండి.</string>
+    <!-- Failure code text for a non-existent bank branch, invalid account holder, invalid iban, generic failure, or unknown bank failure, displayed in a dialog or notification -->
+    <string name="StripeFailureCode__verify_your_bank_details_are_correct">మీ బ్యాంక్ వివరాలు సరైనవి అని ధృవీకరించుకోండి మరియు మళ్ళీ ప్రయత్నించండి. ఒకవేళ సమస్య కొనసాగినట్లయితే, మీ బ్యాంక్‌ను సంప్రదించండి.</string>
 
     <!-- Title of create notification profile screen -->
     <string name="EditNotificationProfileFragment__name_your_profile">మీ ప్రొఫైల్‌కు పేరు పెట్టండి</string>
@@ -5047,10 +5109,10 @@
     <string name="DonationReceiptListFragment__recurring">రికరింగ్</string>
     <!-- Donation receipts one-time tab label -->
     <string name="DonationReceiptListFragment__one_time">ఒక్క-సారి</string>
+    <!-- Donation receipts gift tab -->
+    <string name="DonationReceiptListFragment__for_a_friend">For a friend</string>
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__donation_for_a_friend">ఒక స్నేహితుడి కొరకు విరాళం</string>
-    <!-- Donation receipts boost row label -->
-    <!-- Donation receipts details title -->
     <!-- Donation receipts donation type heading -->
     <string name="DonationReceiptDetailsFragment__donation_type">విరాళం రకం</string>
     <!-- Donation receipts date paid heading -->
@@ -5539,7 +5601,10 @@
     <!-- Message of safety number changes bottom sheet when not showing individual records and user has seen review screen -->
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">అన్ని కనెక్షన్‌లు సమీక్షించబడ్డాయి, కొనసాగడానికి పంపండి మీద తట్టండి.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
-    <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Signal ను తిరిగి ఇన్‌స్టాల్ చేసిన లేదా పరికరాలను మార్చిన %1$d కనెక్షన్స్ మీకు ఉన్నాయి. వారితో మీ స్టోరీను పంచుకోవడానికి ముందు వారి భద్రతా సంఖ్యలను సమీక్షించండి లేదా వారిని మీ స్టోరీ నుంచి తొలగించడానికి పరిగణించండి.</string>
+    <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
+        <item quantity="one">మీకు %1$d కనెక్షన్ ఉంది, వారు Signal ను మళ్ళీ ఇన్‌స్టాల్ చేసి ఉండవచ్చు లేదా పరికరాలను మార్చి ఉండవచ్చు. మీ కథను వారితో పంచుకునే ముందు వారి భద్రతా సంఖ్యలను సమీక్షించండి లేదా వాటిని మీ కథ నుండి తొలగించేందుకు పరిగణించండి.</item>
+        <item quantity="other">మీకు %1$d కనెక్షన్స్ ఉన్నాయి, వారు Signal ను మళ్ళీ ఇన్‌స్టాల్ చేసి ఉండవచ్చు లేదా పరికరాలను మార్చి ఉండవచ్చు. మీ కథను వారితో పంచుకునే ముందు వారి భద్రతా సంఖ్యలను సమీక్షించండి లేదా వాటిని మీ కథ నుండి తొలగించేందుకు పరిగణించండి.</item>
+    </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">భద్రత సంఖ్యను ధృవీకరించండి</string>
     <!-- Menu action to remove user from story -->
@@ -5782,6 +5847,23 @@
     <string name="DonateToSignalFragment__continue">కొనసాగు</string>
     <!-- Description below title -->
     <string name="DonateToSignalFragment__private_messaging">మీ ద్వారా నిధులు సమకూర్చబడిన ప్రైవేట్ సందేశం పంపడం. ప్రకటనలు లేవు, ట్రాకింగ్ లేదు, రాజీ లేదు. Signal కు మద్దతు ఇవ్వడానికి ఇప్పుడే విరాళం ఇవ్వండి.</string>
+    <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
+    <string name="DonateToSignalFragment__you_have_a_donation_pending">మీకు ఒక విరాళం పెండింగులో ఉంది</string>
+    <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">బ్యాంక్ బదిలీలను ప్రక్రియ చేయడానికి సాధారణంగా 1 వ్యాపార రోజు పడుతుంది. మీ సబ్‌స్క్రిప్షన్‌ను అప్‌డేట్ చేయడానికి ముందు ఈ చెల్లింపు పూర్తయ్యే వరకు దయచేసి వేచి ఉండండి.</string>
+    <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">బ్యాంక్ బదిలీలను ప్రక్రియ చేయడానికి సాధారణంగా 1 వ్యాపార రోజు పడుతుంది. మరొక విరాళం ఇచ్చే ముందు ఈ చెల్లింపు పూర్తయ్యే వరకు దయచేసి వేచి ఉండండి.</string>
+    <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">మీ విరాళం ఇంకా ప్రక్రియ చేయబడుతోంది. మీ కనెక్షన్ ఆధారంగా దీనికి కొన్ని నిమిషాలు పట్టవచ్చు. మీ సబ్‌స్క్రిప్షన్‌ను అప్‌డేట్ చేయడానికి ముందు ఈ చెల్లింపు పూర్తయ్యే వరకు దయచేసి వేచి ఉండండి.</string>
+    <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">మీ విరాళం ఇంకా ప్రక్రియ చేయబడుతోంది. మీ కనెక్షన్ ఆధారంగా దీనికి కొన్ని నిమిషాలు పట్టవచ్చు. మరొక విరాళం ఇచ్చే ముందు ఈ చెల్లింపు పూర్తయ్యే వరకు దయచేసి వేచి ఉండండి.</string>
+    <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
+    <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">మీ iDEAL విరాళం ఇంకా ప్రక్రియ చేయబడుతోంది. మరొక విరాాళం చేయడానికి ముందు మీ చెల్లింపును ఆమోదించడానికి మీ బ్యాంకింగ్ యాప్‌ను తనిఖీ చేయండి.</string>
+    <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
+    <string name="DonateToSignal__donation_amount_too_high">Donation amount too high</string>
+    <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
+    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">You can send up to %1$s via bank transfer. Try a different amount or a different payment method.</string>
+
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">నెలవారీ</string>
     <!-- Donation pill toggle one-time text -->
@@ -5799,10 +5881,138 @@
         <item quantity="one">%2$d రోజుకు %1$s బ్యాడ్జిని పొందండి</item>
         <item quantity="other">%2$d రోజులకు %1$s బ్యాడ్జిని పొందండి</item>
     </plurals>
+    <!-- Button label for paying with a bank transfer -->
+    <string name="GatewaySelectorBottomSheet__bank_transfer">బ్యాంక్ బదిలీ</string>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">క్రెడిట్ లేదా డెబిట్ కార్డు</string>
     <!-- Sheet summary when giving donating for a friend -->
     <string name="GatewaySelectorBottomSheet__donate_for_a_friend">ఒక స్నేహితుడి కొరకు విరాళం ఇవ్వండి</string>
+    <!-- Button label for paying with iDEAL -->
+    <string name="GatewaySelectorBottomSheet__ideal">iDEAL</string>
+
+    <!-- Dialog title for launching external intent -->
+    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">విరాళాన్ని ధృవీకరించడానికి Signal నుండి నిష్క్రమించేదా?</string>
+    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">ధృవీకరించిన తర్వాత, మీ విరాళాన్ని ప్రక్రియ చేయడం పూర్తి చేయడానికి Signal కు తిరిగి రండి.</string>
+
+    <!-- IdealBank -->
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__abn_amro">ABN AMRO</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__asn_bank">ASN Bank</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__bunq">bunq</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__ing">ING</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__knab">Knab</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__n26">N26</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__rabobank">Rabobank</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__regiobank">RegioBank</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__revolut">Revolut</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__sns_bank">SNS Bank</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__triodos_bank">Triodos Bank</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__van_lanschot">Van Lanschot Kempen</string>
+    <!-- iDEAL bank name -->
+    <string name="IdealBank__yoursafe">Yoursafe</string>
+
+    <!-- BankTransferMandateFragment -->
+    <!-- Title of screen displaying the bank transfer mandate -->
+    <string name="BankTransferMandateFragment__bank_transfer">బ్యాంక్ బదిలీ</string>
+    <!-- Subtitle of screen displaying the bank transfer mandate, placeholder is \'Learn more\' -->
+    <string name="BankTransferMandateFragment__stripe_processes_donations">Signal కు ఇవ్వబడిన విరాళాలను Stripe ప్రక్రియ చేస్తుంది. Signal మీ వ్యక్తిగత సమాచారాన్ని సేకరించదు లేదా నిల్వ చేయదు. %1$s</string>
+    <!-- Subtitle learn more of screen displaying bank transfer mandate -->
+    <string name="BankTransferMandateFragment__learn_more">మరింత తెలుసుకోండి</string>
+    <!-- Button label to continue with transfer -->
+    <string name="BankTransferMandateFragment__agree">అంగీకరించండి</string>
+    <!-- Button label to read more of the bank mandate that is currently off screen -->
+    <string name="BankTransferMandateFragment__read_more">మరింత చదవండి</string>
+    <!-- Text displayed when mandate load fails -->
+    <string name="BankTransferMandateFragment__failed_to_load_mandate">ఆదేశాన్ని లోడ్ చేసేందుకు విఫలమైంది</string>
+
+    <!-- BankTransferDetailsFragment -->
+    <!-- Subtext explaining how email is used. Placeholder is \'Learn more\' -->
+    <string name="BankTransferDetailsFragment__enter_your_bank_details">మీ బ్యాంక్ వివరాలు మరియు ఈమెయిల్‌ను ఎంటర్ చేయండి. మీ విరాళం గురించి మీకు అప్‌డేట్‌లను పంపడానికి Stripe ఈ ఈమెయిల్‌ను ఉపయోగిస్తుంది. %1$s</string>
+    <!-- Subtext learn more link text -->
+    <string name="BankTransferDetailsFragment__learn_more">మరింత తెలుసుకోండి</string>
+    <!-- Text field label for name on bank account -->
+    <string name="BankTransferDetailsFragment__name_on_bank_account">బ్యాంక్ ఖాతాలో పేరు</string>
+    <!-- Text field label for IBAN -->
+    <string name="BankTransferDetailsFragment__iban">IBAN</string>
+    <!-- Text field label for email -->
+    <string name="BankTransferDetailsFragment__email">ఇమెయిల్</string>
+    <!-- Text label for button to show user how to find their IBAN -->
+    <string name="BankTransferDetailsFragment__find_account_info">ఖాతా సమాచారాన్ని కనుగొనండి</string>
+    <!-- Donate button label for monthly subscription -->
+    <string name="BankTransferDetailsFragment__donate_s_month">%1$s/నెలకు విరాళం ఇవ్వండి</string>
+    <!-- Donate button label for one-time -->
+    <string name="BankTransferDetailsFragment__donate_s">%1$s విరాళం ఇవ్వండి</string>
+    <!-- Error label for IBAN field when number is too short -->
+    <string name="BankTransferDetailsFragment__iban_is_too_short">IBAN చాలా చిన్నదిగా ఉంది</string>
+    <!-- Error label for IBAN field when number is too long -->
+    <string name="BankTransferDetailsFragment__iban_is_too_long">IBAN చాలా పెద్దదిగా ఉంది</string>
+    <!-- Error label for IBAN field when country is not supported -->
+    <string name="BankTransferDetailsFragment__iban_country_code_is_not_supported">IBAN దేశం కోడ్ మద్దతు ఇవ్వబడలేదు</string>
+    <!-- Error label for IBAN field when number is invalid -->
+    <string name="BankTransferDetailsFragment__invalid_iban">చెల్లని IBAN</string>
+
+    <!-- IdealTransferDetailsFragment -->
+    <!-- Title of the screen, displayed in the toolbar -->
+    <string name="IdealTransferDetailsFragment__ideal">iDEAL</string>
+    <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
+    <string name="IdealTransferDetailsFragment__enter_your_bank">మీ బ్యాంక్, పేరు మరియు ఈమెయిల్‌ను ఎంటర్ చేయండి. మీ విరాళం గురించి మీకు అప్‌డేట్‌లను పంపడానికి Stripe ఈ ఈమెయిల్‌ను ఉపయోగిస్తుంది. %1$s</string>
+    <!-- Subtitle learn-more button displayed inline with the subtitle text -->
+    <string name="IdealTransferDetailsFragment__learn_more">మరింత తెలుసుకోండి</string>
+    <!-- Hint label for text entry box for name on bank account -->
+    <string name="IdealTransferDetailsFragment__name_on_bank_account">బ్యాంక్ ఖాతాలో పేరు</string>
+    <!-- Hint label for text entry box for email -->
+    <string name="IdealTransferDetailsFragment__email">ఇమెయిల్</string>
+    <!-- Default label for bank selection -->
+    <string name="IdealTransferDetailsFragment__choose_your_bank">మీ బ్యాంక్‌ను ఎంచుకోండి</string>
+
+    <!-- IdealTransferDetailsBankSelectionDialogFragment -->
+    <!-- Title of the screen, displayed in the toolbar -->
+    <string name="IdealTransferDetailsBankSelectionDialogFragment__choose_your_bank">మీ బ్యాంక్‌ను ఎంచుకోండి</string>
+
+    <!-- Title of bottom sheet for finding account information -->
+    <string name="FindAccountInfoSheet__find_your_account_information">మీ ఖాతా సమాచారాన్ని కనుగొనండి</string>
+    <!-- Body of bottom sheet for finding account information -->
+    <string name="FindAccountInfoSheet__look_for_your_iban_at">మీ బ్యాంక్ స్టేట్‌మెంట్ పై భాగాన మీ IBAN కోసం చూడండి. IBANలు 34 అక్షరాల వరకు కలిగి ఉంటాయి. మీరు ఎంటర్ చేసే పేరు మీ బ్యాంక్ ఖాతాలోని మీ పూర్తి పేరుతో సరిపోలాలి. మరింత సమాచారం కొరకు మీ బ్యాంక్‌ను సంప్రదించండి.</string>
+
+    <!-- Title of donation pending sheet displayed after making a bank transfer -->
+    <string name="DonationPendingBottomSheet__donation_pending">విరాళం పెండింగ్‌లో ఉంది</string>
+    <!-- Top text block of donation pending sheet displayed after subscribing via a bank transfer. Placeholder is the badge name. -->
+    <string name="DonationPendingBottomSheet__your_monthly_donation_is_pending">మీ నెలవారీ విరాళం పెండింగ్‌లో ఉంది. మీ విరాళం అందుకోబడినప్పుడు మీ ప్రొఫైల్‌పై మీరు %1$s బ్యాడ్జ్‌ను ప్రదర్శించగలుగుతారు.</string>
+    <!-- Top text block of donation pending sheet displayed after one-time donation via a bank transfer. Placeholder is the badge name. -->
+    <string name="DonationPendingBottomSheet__your_one_time_donation_is_pending">మీ ఒక్కసారి విరాళం పెండింగ్‌లో ఉంది. మీ విరాళం అందుకోబడినప్పుడు మీ ప్రొఫైల్‌పై మీరు %1$s బ్యాడ్జ్‌ను ప్రదర్శించగలుగుతారు.</string>
+    <!-- Bottom text block of donation pending sheet displayed after donating via a bank transfer. Placeholder is for learn more. -->
+    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">బ్యాంక్ బదిలీలను ప్రక్రియ చేయడానికి సాధారణంగా 1 వ్యాపార రోజు పడుతుంది. %1$s</string>
+    <!-- Learn more text for donation pending sheet displayed after donating via a bank transfer. -->
+    <string name="DonationPendingBottomSheet__learn_more">మరింత తెలుసుకోండి</string>
+    <!-- Confirmation button for donation pending sheet displayed after donating via a bank transfer. -->
+    <string name="DonationPendingBottomSheet__done">పూర్తయింది</string>
+
+    <!-- Title of donation error sheet displayed after making a bank transfer that fails -->
+    <string name="DonationErrorBottomSheet__donation_couldnt_be_processed">విరాళం ప్రక్రియ చేయబడలేదు</string>
+    <!-- Text block of donation error sheet displayed after making a bank transfer that fails -->
+    <string name="DonationErrorBottomSheet__were_having_trouble">మీ బ్యాంక్ బదిలీని ప్రక్రియ చేయడంలో మాకు సమస్య ఉంది. మీకు ఛార్జీ విధించబడలేదు. మరో చెల్లింపు విధానం ప్రయత్నించండి లేదా మరింత సమాచారం కొరకు మీ బ్యాంక్‌ను సంప్రదించండి.</string>
+    <!-- Button label for retry button of donation error sheet displayed after making a bank transfer that fails -->
+    <string name="DonationErrorBottomSheet__try_again">మళ్ళీ ప్రయత్నించండి</string>
+    <!-- Button label for not now button of donation error sheet displayed after making a bank transfer that fails -->
+    <string name="DonationErrorBottomSheet__not_now">ఇప్పుడు కాదు</string>
+
+    <!-- Title of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed -->
+    <string name="DonationCompletedBottomSheet__donation_complete">విరాళం పూర్తయింది</string>
+    <!-- Text block of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed -->
+    <string name="DonationCompleteBottomSheet__your_bank_transfer_was_received">మీ బ్యాంక్ బదిలీ అందుకోబడింది. మీ మద్దతను చూపించేందుకు మీ ప్రొఫైల్‌పై ఈ బ్యాడ్జ్‌ను ప్రదర్శించేందుకు మీరు ఎంచుకోవచ్చు.</string>
+    <!-- Button text of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed to dismiss sheet -->
+    <string name="DonationCompleteBottomSheet__done">పూర్తయింది</string>
 
     <!-- StripePaymentInProgressFragment -->
     <string name="StripePaymentInProgressFragment__cancelling">రద్దు చేస్తోంది…</string>
@@ -6195,6 +6405,13 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">మీ లింక్‌ను రీసెట్ చేయడానికి ప్రయత్నిస్తున్నప్పుడు నెట్‌వర్క్ లోపం ఏర్పడింది. తరువాత మళ్ళీ ప్రయత్నించండి.</string>
 
+    <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
+    <string name="UsernameLinkShareBottomSheet_title">Anyone with this link can view your username and start a chat with you. Only share it with people you trust.</string>
+    <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
+    <string name="UsernameLinkShareBottomSheet_copy_link">లింక్‌ను కాపీ చేయండి</string>
+    <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
+    <string name="UsernameLinkShareBottomSheet_share">పంచుకోండి</string>
+
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
     <string name="PendingParticipantsView__would_like_to_join">చేరాలనుకుంటున్నారు…</string>
@@ -6216,6 +6433,30 @@
     <string name="PendingParticipantsBottomSheet__reject">తిరస్కరించు</string>
     <!-- Content description for confirming a user -->
     <string name="PendingParticipantsBottomSheet__approve">ఆమోదించడానికి</string>
+
+    <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
+    <string name="GrantFullScreenIntentPermission_megaphone_title">పూర్తి స్క్రీన్ నోటిఫికేషన్లను ఆన్ చేసేదా?</string>
+    <!-- Body of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
+    <string name="GrantFullScreenIntentPermission_megaphone_body">మీ కాంటాక్టులు మరియు గ్రూపుల నుండి కాల్‌ను ఎప్పటికీ మిస్ అవకండి.</string>
+    <!-- Button on the megaphone megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls that starts the fix process -->
+    <string name="GrantFullScreenIntentPermission_megaphone_turn_on">ఆన్ చేయండి</string>
+    <!-- Title of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
+    <string name="GrantFullScreenIntentPermission_bottomsheet_title">పూర్తి స్క్రీన్ నోటిఫికేషన్లను ఆన్ చేయండి</string>
+    <!-- Subtitle of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
+    <string name="GrantFullScreenIntentPermission_bottomsheet_subtitle">మీ కాంటాక్టులు మరియు గ్రూపుల నుండి కాల్ నోటిఫికేషన్లను అందుకోవడానికి:</string>
+    <!-- Step 2 of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications, it indicates the name of the setting that needs to be re-enabled -->
+    <string name="GrantFullScreenIntentPermission_bottomsheet_step2">2. %1$s పూర్తి స్క్రీన్ నోటిఫికేషన్లను అనుమతించండి</string>
+
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, title for dialog -->
+    <string name="MonthlyDonationCanceled__title">Monthly donation canceled</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, body for dialog. First placeholder is a payment related error message. Second placeholder is \'learn more\' -->
+    <string name="MonthlyDonationCanceled__message">Your recurring monthly donation was canceled. %1$s\n\nYour badge will no longer be visible on your profile. %2$s</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, learn more used in placeholder for body for dialog. -->
+    <string name="MonthlyDonationCanceled__learn_more">మరింత తెలుసుకోండి</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, primary button to renew subscription with new data -->
+    <string name="MonthlyDonationCanceled__renew_button">సబ్‌స్క్రిప్షన్‌ను పునరుద్ధరించండి</string>
+    <!-- Bottom sheet dialog shown when a monthly donation fails to renew, second button to dismiss the dialog entirely -->
+    <string name="MonthlyDonationCanceled__not_now_button">ఇప్పుడు కాదు</string>
 
     <!-- EOF -->
 </resources>

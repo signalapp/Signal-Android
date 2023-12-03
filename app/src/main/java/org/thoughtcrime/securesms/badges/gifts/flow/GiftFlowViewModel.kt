@@ -39,6 +39,7 @@ class GiftFlowViewModel(
   val state: Flowable<GiftFlowState> = store.stateFlowable
   val events: Observable<DonationEvent> = eventPublisher
   val snapshot: GiftFlowState get() = store.state
+  val uiSessionKey: Long = System.currentTimeMillis()
 
   init {
     refresh()

@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.jobmanager.impl;
 
 import android.app.Application;
-import android.content.Context;
 import android.os.Build;
 import android.telephony.PhoneStateListener;
 import android.telephony.ServiceState;

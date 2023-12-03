@@ -20,7 +20,7 @@ public class AttachmentStreamUriLoader implements ModelLoader<AttachmentModel, I
 
   @Override
   public @Nullable LoadData<InputStream> buildLoadData(@NonNull AttachmentModel attachmentModel, int width, int height, @NonNull Options options) {
-    return new LoadData<>(attachmentModel, new AttachmentStreamLocalUriFetcher(attachmentModel.attachment, attachmentModel.plaintextLength, attachmentModel.key, attachmentModel.digest, attachmentModel.incrementalDigest, attachmentModel.incrementalMacChunkSize));
+    return new LoadData<>(attachmentModel, new AttachmentStreamLocalUriFetcher(attachmentModel.attachment, attachmentModel.plaintextLength, attachmentModel.key, attachmentModel.digest));
   }
 
   @Override

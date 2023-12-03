@@ -92,7 +92,7 @@ public final class ThreadBodyUtil {
   private static @NonNull String getGiftSummary(@NonNull Context context, @NonNull MessageRecord messageRecord) {
     if (messageRecord.isOutgoing()) {
       return context.getString(R.string.ThreadRecord__you_donated_for_s, messageRecord.getToRecipient().getShortDisplayName(context));
-    } else if (messageRecord.getViewedReceiptCount() > 0) {
+    } else if (messageRecord.isViewed()) {
       return context.getString(R.string.ThreadRecord__you_redeemed_a_badge);
     } else {
       return context.getString(R.string.ThreadRecord__s_donated_for_you, messageRecord.getFromRecipient().getShortDisplayName(context));

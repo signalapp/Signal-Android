@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright 2023 Signal Messenger, LLC
+  ~ SPDX-License-Identifier: AGPL-3.0-only
+  -->
+
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -51,7 +56,7 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_gravity="center"
-        android:background="@drawable/circle_white"
+        android:background="@drawable/transfer_controls_play_background"
         android:longClickable="false"
         android:visibility="gone"
         tools:visibility="visible">
@@ -61,9 +66,8 @@
             android:layout_height="match_parent"
             android:layout_margin="12dp"
             android:contentDescription="@string/ThumbnailView_Play_video_description"
-            android:paddingLeft="5dp"
             android:scaleType="fitXY"
-            android:tint="@color/core_ultramarine"
+            android:tint="@color/signal_colorOnCustom"
             app:srcCompat="@drawable/triangle_right"
             tools:ignore="RtlHardcoded,RtlSymmetry" />
 
@@ -71,9 +75,10 @@
 
     <ViewStub
         android:id="@+id/transfer_controls_stub"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
+        android:background="@color/transparent"
         android:layout="@layout/transfer_controls_stub" />
 
 </merge>

@@ -26,7 +26,7 @@ import org.signal.core.util.StreamUtil
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.mms.PartAuthority
 import java.io.File
@@ -63,7 +63,7 @@ object SaveAttachmentUtil {
       .show()
   }
 
-  fun getAttachmentsForRecord(record: MediaMmsMessageRecord): Set<SaveAttachment> {
+  fun getAttachmentsForRecord(record: MmsMessageRecord): Set<SaveAttachment> {
     return record.slideDeck.slides
       .filter { it.uri != null && (it.hasImage() || it.hasVideo() || it.hasAudio() || it.hasDocument()) }
       .map { SaveAttachment(it.uri!!, it.contentType, record.dateSent, it.fileName.orNull()) }

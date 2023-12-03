@@ -13,7 +13,8 @@ data class JobSpec(
   val serializedData: ByteArray?,
   val serializedInputData: ByteArray?,
   val isRunning: Boolean,
-  val isMemoryOnly: Boolean
+  val isMemoryOnly: Boolean,
+  val priority: Int
 ) {
 
   fun withNextBackoffInterval(updated: Long): JobSpec {

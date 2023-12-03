@@ -1,12 +1,12 @@
 package org.thoughtcrime.securesms.jobs
 
+import org.signal.core.util.Base64
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.ProfileUtil
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile
 import java.io.IOException
@@ -57,7 +57,7 @@ class AccountConsistencyWorkerJob private constructor(parameters: Parameters) : 
     }
 
     val profile: SignalServiceProfile = ProfileUtil.retrieveProfileSync(context, Recipient.self(), SignalServiceProfile.RequestType.PROFILE, false).profile
-    val encodedPublicKey = Base64.encodeBytes(SignalStore.account().aciIdentityKey.publicKey.serialize())
+    val encodedPublicKey = Base64.encodeWithPadding(SignalStore.account().aciIdentityKey.publicKey.serialize())
 
     if (profile.identityKey != encodedPublicKey) {
       Log.w(TAG, "Identity key on profile differed from the one we have locally! Marking ourselves unregistered.")

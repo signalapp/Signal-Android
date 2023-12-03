@@ -115,24 +115,23 @@ public class VoiceNotePlaybackService extends MediaSessionService {
 
     @Override
     public void onPlaybackStateChanged(int playbackState) {
-      Log.d(TAG, "[onPlaybackStateChanged] playbackState: " + playbackState);
       boolean playWhenReady = player.getPlayWhenReady();
+      Log.d(TAG, "[onPlaybackStateChanged] playbackState: " + playbackStateToString(playbackState) + "\tplayWhenReady: " + playWhenReady);
       switch (playbackState) {
-        case Player.STATE_BUFFERING:
-        case Player.STATE_READY:
-
+        case Player.STATE_BUFFERING, Player.STATE_READY -> {
           if (!playWhenReady) {
             stopForeground(false);
           } else {
             sendViewedReceiptForCurrentWindowIndex();
           }
-          break;
-        case Player.STATE_ENDED:
+        }
+        case Player.STATE_ENDED -> {
           if (previousPlaybackState == Player.STATE_READY) {
             player.clearMediaItems();
           }
-          break;
-        default:
+        }
+        default -> {
+        }
       }
       previousPlaybackState = playbackState;
     }
@@ -360,5 +359,15 @@ public class VoiceNotePlaybackService extends MediaSessionService {
     public void onForegroundServiceStartNotAllowedException() {
       Log.e(TAG, "Could not start VoiceNotePlaybackService, encountered a ForegroundServiceStartNotAllowedException.");
     }
+  }
+
+  private String playbackStateToString(int playbackState) {
+    return switch (playbackState) {
+      case Player.STATE_IDLE -> "Player.STATE_IDLE";
+      case Player.STATE_BUFFERING -> "Player.STATE_BUFFERING";
+      case Player.STATE_READY -> "Player.STATE_READY";
+      case Player.STATE_ENDED -> "Player.STATE_ENDED";
+      default -> "UNKNOWN(" + playbackState + ")";
+    };
   }
 }

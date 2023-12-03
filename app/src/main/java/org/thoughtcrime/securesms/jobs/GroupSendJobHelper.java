@@ -43,10 +43,16 @@ final class GroupSendJobHelper {
         skipped.add(recipient.getId());
       }
 
-      if (sendMessageResult.getSuccess()               != null ||
-          sendMessageResult.getIdentityFailure()       != null ||
-          sendMessageResult.getProofRequiredFailure()  != null ||
-          sendMessageResult.isUnregisteredFailure())
+      if (sendMessageResult.isInvalidPreKeyFailure()) {
+        Log.w(TAG, "Invalid pre-key failure for " + recipient.getId());
+        skipped.add(recipient.getId());
+      }
+
+      if (sendMessageResult.getSuccess() != null ||
+          sendMessageResult.getIdentityFailure() != null ||
+          sendMessageResult.getProofRequiredFailure() != null ||
+          sendMessageResult.isUnregisteredFailure() ||
+          sendMessageResult.isInvalidPreKeyFailure())
       {
         completions.add(recipient);
       }
