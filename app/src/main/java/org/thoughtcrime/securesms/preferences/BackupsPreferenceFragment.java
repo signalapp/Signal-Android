@@ -276,6 +276,7 @@ public class BackupsPreferenceFragment extends Fragment {
         int days = frequencyPickerDialogFragment.getValue();
         int hour = timePickerFragment.getHour();
         int minute = timePickerFragment.getMinute();
+        Log.i(TAG, "Setting backup schedule: every " + days + " days at" + hour + "h" + minute + "m");
         SignalStore.settings().setBackupSchedule(days, hour, minute);
         updateTimeLabel();
         // Schedule the next backup using the newly set frequency, but relative to the time of the
@@ -314,7 +315,11 @@ public class BackupsPreferenceFragment extends Fragment {
     final int backupHour      = SignalStore.settings().getBackupHour();
     final int backupMinute    = SignalStore.settings().getBackupMinute();
     LocalTime time            = LocalTime.of(backupHour, backupMinute);
-    timeLabel.setText(JavaTimeExtensionsKt.formatHours(time, requireContext()) + " every " + backupFrequency + " days");
+
+    String backupTimeString = JavaTimeExtensionsKt.formatHours(time, requireContext());
+    timeLabel.setText(backupFrequency == 1 ? getString(R.string.BackupsPreferenceFragment__time_label_daily, backupTimeString)
+                                           : getString(R.string.BackupsPreferenceFragment__time_label_n_days, backupTimeString, backupFrequency)
+    );
   }
 
   private void setBackupsEnabled() {
