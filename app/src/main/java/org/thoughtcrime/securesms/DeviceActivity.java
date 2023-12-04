@@ -195,7 +195,7 @@ public class DeviceActivity extends PassphraseRequiredActivity
           ProfileKey      profileKey         = ProfileKeyUtil.getSelfProfileKey();
 
           TextSecurePreferences.setMultiDevice(DeviceActivity.this, true);
-          accountManager.addDevice(ephemeralId, publicKey, aciIdentityKeyPair, pniIdentityKeyPair, profileKey, verificationCode);
+          accountManager.addDevice(ephemeralId, publicKey, aciIdentityKeyPair, pniIdentityKeyPair, profileKey, SignalStore.svr().getOrCreateMasterKey(), verificationCode);
 
           return SUCCESS;
         } catch (NotFoundException e) {
