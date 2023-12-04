@@ -318,7 +318,9 @@ public class BackupsPreferenceFragment extends Fragment {
 
     String backupTimeString = JavaTimeExtensionsKt.formatHours(time, requireContext());
     timeLabel.setText(backupFrequency == 1 ? getString(R.string.BackupsPreferenceFragment__time_label_daily, backupTimeString)
-                                           : getString(R.string.BackupsPreferenceFragment__time_label_n_days, backupTimeString, backupFrequency)
+                                           : getResources().getQuantityString(R.plurals.BackupsPreferenceFragment__time_label_n_days,
+                                                                              backupFrequency,
+                                                                              backupTimeString, backupFrequency)
     );
   }
 
