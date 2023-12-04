@@ -26,6 +26,8 @@ public class SendReadReceiptsJobMigrationTest {
     SendReadReceiptJob   job     = new SendReadReceiptJob(1, RecipientId.from(2), new ArrayList<>(), new ArrayList<>());
     JobMigration.JobData jobData = new JobMigration.JobData(job.getFactoryKey(),
                                                             "asdf",
+                                                            -1,
+                                                            -1,
                                                             new JsonJobData.Builder()
                                                                     .putString("recipient", RecipientId.from(2).serialize())
                                                                     .putLongArray("message_ids", new long[]{1, 2, 3, 4, 5})
@@ -49,6 +51,8 @@ public class SendReadReceiptsJobMigrationTest {
     SendReadReceiptJob   job     = new SendReadReceiptJob(1, RecipientId.from(2), new ArrayList<>(), new ArrayList<>());
     JobMigration.JobData jobData = new JobMigration.JobData(job.getFactoryKey(),
                                                             "asdf",
+                                                            -1,
+                                                            -1,
                                                             new JsonJobData.Builder()
                                                                 .putString("recipient", RecipientId.from(2).serialize())
                                                                 .putLongArray("message_ids", new long[]{})
@@ -66,7 +70,7 @@ public class SendReadReceiptsJobMigrationTest {
   public void givenSendReadReceiptJobDataWithThreadId_whenIMigrate_thenIDoNotReplace() {
     // GIVEN
     SendReadReceiptJob   job     = new SendReadReceiptJob(1, RecipientId.from(2), new ArrayList<>(), new ArrayList<>());
-    JobMigration.JobData jobData = new JobMigration.JobData(job.getFactoryKey(), "asdf", job.serialize());
+    JobMigration.JobData jobData = new JobMigration.JobData(job.getFactoryKey(), "asdf", -1, -1, job.serialize());
 
     // WHEN
     JobMigration.JobData result = testSubject.migrate(jobData);
@@ -78,7 +82,7 @@ public class SendReadReceiptsJobMigrationTest {
   @Test
   public void givenSomeOtherJobDataWithThreadId_whenIMigrate_thenIDoNotReplace() {
     // GIVEN
-    JobMigration.JobData jobData = new JobMigration.JobData("SomeOtherJob", "asdf", new JsonJobData.Builder().putLong("thread", 1).serialize());
+    JobMigration.JobData jobData = new JobMigration.JobData("SomeOtherJob", "asdf", -1, -1, new JsonJobData.Builder().putLong("thread", 1).serialize());
 
     // WHEN
     JobMigration.JobData result = testSubject.migrate(jobData);
@@ -90,7 +94,7 @@ public class SendReadReceiptsJobMigrationTest {
   @Test
   public void givenSomeOtherJobDataWithoutThreadId_whenIMigrate_thenIDoNotReplace() {
     // GIVEN
-    JobMigration.JobData jobData = new JobMigration.JobData("SomeOtherJob", "asdf", new JsonJobData.Builder().serialize());
+    JobMigration.JobData jobData = new JobMigration.JobData("SomeOtherJob", "asdf", -1, -1, new JsonJobData.Builder().serialize());
 
     // WHEN
     JobMigration.JobData result = testSubject.migrate(jobData);

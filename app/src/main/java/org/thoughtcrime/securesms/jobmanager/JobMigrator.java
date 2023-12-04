@@ -59,7 +59,7 @@ public class JobMigrator {
 
       while (iter.hasNext()) {
         JobSpec     jobSpec         = iter.next();
-        JobData     originalJobData = new JobData(jobSpec.getFactoryKey(), jobSpec.getQueueKey(), jobSpec.getSerializedData());
+        JobData     originalJobData = new JobData(jobSpec.getFactoryKey(), jobSpec.getQueueKey(), jobSpec.getMaxAttempts(), jobSpec.getLifespan(), jobSpec.getSerializedData());
         JobData     updatedJobData  = migration.migrate(originalJobData);
         JobSpec     updatedJobSpec  = new JobSpec(jobSpec.getId(),
                                                   updatedJobData.getFactoryKey(),
@@ -68,8 +68,8 @@ public class JobMigrator {
                                                   jobSpec.getLastRunAttemptTime(),
                                                   jobSpec.getNextBackoffInterval(),
                                                   jobSpec.getRunAttempt(),
-                                                  jobSpec.getMaxAttempts(),
-                                                  jobSpec.getLifespan(),
+                                                  updatedJobData.getMaxAttempts(),
+                                                  updatedJobData.getLifespan(),
                                                   updatedJobData.getData(),
                                                   jobSpec.getSerializedInputData(),
                                                   jobSpec.isRunning(),
