@@ -1751,7 +1751,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">هل تود السماح لـ %1$s بإرسال رسالة لك؟ لن تتلقى أي رسالة منه حتى تُلغي حظرك له.</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">الحصول على الجديد والتحديثات من %1$s؟ لن تصلك أي تحديثات حتى يُرفَع حظرك عنها.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">مُواصلة دردشاتك مع هذه المجموعة ومُشاركة اسمك وصورتك مع أعضاءها؟</string>
-    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">This Legacy Group can no longer be used. Create a new group to activate new features like @mentions and admins.</string>
+    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">لم يعد ممكنًا استخدام هذه المجموعة القديمة. أنشئ مجموعة جديدة لتفعيل المزايا الجديدة مثل @الإشارات والمشرفين.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">لا يمكن استخدام هذه المجموعة القديمة الطراز لأنها كبيرة جدا. الحد الأقصى للمجموعة هو %1$d.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">مُواصلة هذه الدردشة مع %1$s ومُشاركة اسمك وصورتك معه؟</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">الانضمام إلى هذه المجموعة ومشاركة اسمك وصورتك مع أعضائها؟ لن يعرفوا أنك قرأت رسالتهم حتى توافق.</string>
@@ -2720,7 +2720,7 @@
     <string name="contact_selection_activity__invite_to_signal">ادعُ إلى سيجنال</string>
     <string name="contact_selection_activity__new_group">مجموعة جديدة</string>
     <!-- Row item title for refreshing contacts -->
-    <string name="contact_selection_activity__refresh_contacts">تحيدث قائمة الاتصال</string>
+    <string name="contact_selection_activity__refresh_contacts">تحديث قائمة الاتصال</string>
     <!-- Row item description for refreshing contacts -->
     <string name="contact_selection_activity__missing_someone">هل تفتقد إلى جهة اتصال؟ حاول التحديث من جديد</string>
     <!-- Row header title for more section -->
@@ -5002,12 +5002,12 @@
     <string name="NewConversationActivity__">لم يعُد %1$s من مستخدمي سيجنال</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
     <plurals name="CreateGroupActivity_not_signal_users">
-        <item quantity="zero">%1$s are not Signal users</item>
-        <item quantity="one">%1$s is not a Signal user</item>
-        <item quantity="two">%1$s are not Signal users</item>
-        <item quantity="few">%1$s are not Signal users</item>
-        <item quantity="many">%1$s are not Signal users</item>
-        <item quantity="other">%1$s are not Signal users</item>
+        <item quantity="zero">%1$s ليسوا مستخدمي سيجنال</item>
+        <item quantity="one">%1$s ليس مستخدم سيجنال</item>
+        <item quantity="two">%1$s ليسا مستخدمي سيجنال</item>
+        <item quantity="few">%1$s ليسوا مستخدمي سيجنال</item>
+        <item quantity="many">%1$s ليسوا مستخدم سيجنال</item>
+        <item quantity="other">%1$s ليسوا مستخدمي سيجنال</item>
     </plurals>
 
     <!-- ContactFilterView -->
@@ -5550,7 +5550,7 @@
     <!-- Donation receipts one-time tab label -->
     <string name="DonationReceiptListFragment__one_time">مرة واحدة</string>
     <!-- Donation receipts gift tab -->
-    <string name="DonationReceiptListFragment__for_a_friend">For a friend</string>
+    <string name="DonationReceiptListFragment__for_a_friend">نيابة عن صديق</string>
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__donation_for_a_friend">تقديم تبرع لصديق</string>
     <!-- Donation receipts donation type heading -->
@@ -6384,9 +6384,9 @@
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
     <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">لا يزال تبرع iDeal الخاص بك قيد المُعالجة. تفقد تطبيق مصرفك للموافقة على عملية الدفع الخاصة بك قبل التبرّع مرة أخرى.</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
-    <string name="DonateToSignal__donation_amount_too_high">Donation amount too high</string>
+    <string name="DonateToSignal__donation_amount_too_high">مبلغ التبرّع كبير جدًا</string>
     <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
-    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">You can send up to %1$s via bank transfer. Try a different amount or a different payment method.</string>
+    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">يُمكنك إرسال ما يصل إلى %1$s عبر تحويل مصرفي. جرّب مبلغًا مختلفًا أو طريقة دفع أخرى.</string>
 
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">شهريًا</string>
@@ -7002,7 +7002,7 @@
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, title for dialog -->
     <string name="MonthlyDonationCanceled__title">تم إلغاء التبرعات الشهرية</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, body for dialog. First placeholder is a payment related error message. Second placeholder is \'learn more\' -->
-    <string name="MonthlyDonationCanceled__message">Your recurring monthly donation was canceled. %1$s\n\nYour badge will no longer be visible on your profile. %2$s</string>
+    <string name="MonthlyDonationCanceled__message">تم إلغاء التبرّع الشهري المُتكرر. %1$s\n\nلن تبقى شارتك ظاهرة على حسابك الشخصي. %2$s</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, learn more used in placeholder for body for dialog. -->
     <string name="MonthlyDonationCanceled__learn_more">معرفة المزيد</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, primary button to renew subscription with new data -->

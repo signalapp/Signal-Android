@@ -1481,7 +1481,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">%1$s အား သင့်ထံ မက်ဆေ့ချ် ပို့ခွင့်ပြုမည်လား။ ၎င်းတို့အား ဘလော့ခ် မဖြေမချင်း မက်ဆေ့ချ်များ ရရှိမည် မဟုတ်ပါ။</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">%1$s ထံမှ အပ်ဒိတ်များနှင့် သတင်းများ ရယူမည်လား။ ၎င်းတို့အား ဘလော့ခ် မဖြေမချင်း အပ်ဒိတ်များ ရရှိမည် မဟုတ်ပါ။</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">ထိုအဖွဲ့နှင့် ဆက်လက်၍ ချက်(တ်)ပြီး သင်၏ အမည်နှင့် ရုပ်ပုံကို အဖွဲ့ဝင်များနှင့် ဝေမျှမည်လား။</string>
-    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">This Legacy Group can no longer be used. Create a new group to activate new features like @mentions and admins.</string>
+    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">ဤပုံစံဟောင်းအဖွဲ့ကို အသုံးပြု၍မရတော့ပါ။ @mentions နှင့် အက်ဒ်မင်များကဲ့သို့ အင်္ဂါရပ်အသစ်များကို သက်ဝင်လုပ်ဆောင်ရန် အဖွဲ့သစ်တစ်ဖွဲ့ ဖန်တီးပါ။</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">ဤ အမွေအဖွဲ့သည် အလွန်ကြီး၍ အဖွဲ့သစ်သို့အဆင့်မြှင့်လို့မရပါ။ အများဆုံးရှိနိုင်သော အဖွဲ့ဝင်အရေတွက်သည် %1$d ဦးသာ ဖြစ်ပါသည်။</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">%1$s နှင့် ချက်(တ်)ကို ဆက်ပြောပြီး သင်၏ အမည်နှင့် ရုပ်ပုံကို ၎င်းတို့နှင့် ဝေမျှမည်လား။</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">၎င်းအဖွဲ့သို့ ဝင်ရောက်ပြီး သင်၏ အမည် နှင့် ရုပ်ပုံတို့ကို အဖွဲ့ဝင်များနှင့် မျှဝေမည်လား? အဖွဲ့ဝင်များသည် သင်မှ ၎င်းတို့၏ မက်ဆေ့ချ်များကို ဖတ်ရှုခဲ့သည်ကို သင်လက်ခံသည်အထိ မတွေ့ရပါ။</string>
@@ -4477,7 +4477,7 @@
     <string name="NewConversationActivity__">%1$s သည် Signal သုံးစွဲသူ မဟုတ်ပါ</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
     <plurals name="CreateGroupActivity_not_signal_users">
-        <item quantity="other">%1$s are not Signal users</item>
+        <item quantity="other">%1$s သည် Signal သုံးစွဲသူများ မဟုတ်ပါ</item>
     </plurals>
 
     <!-- ContactFilterView -->
@@ -5000,7 +5000,7 @@
     <!-- Donation receipts one-time tab label -->
     <string name="DonationReceiptListFragment__one_time">တစ်ကြိမ်</string>
     <!-- Donation receipts gift tab -->
-    <string name="DonationReceiptListFragment__for_a_friend">For a friend</string>
+    <string name="DonationReceiptListFragment__for_a_friend">မိတ်ဆွေတစ်ဦးအတွက်</string>
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__donation_for_a_friend">မိတ်ဆွေတစ်ယောက်အတွက် လှူဒါန်းမှု</string>
     <!-- Donation receipts donation type heading -->
@@ -5729,9 +5729,9 @@
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
     <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">သင့် iDEAL လှူဒါန်းမှုကို စီမံလုပ်ဆောင်နေဆဲ ဖြစ်ပါသည်။ အခြားလှူဒါန်းမှုတစ်ခု မပြုလုပ်မီ သင့်ငွေပေးချေမှုကို အတည်ပြုရန် သင့်ဘဏ်အက်ပ်ကို စစ်ဆေးပါ။</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
-    <string name="DonateToSignal__donation_amount_too_high">Donation amount too high</string>
+    <string name="DonateToSignal__donation_amount_too_high">လှူဒါန်းမည့်ပမာဏ များလွန်းနေပါသည်</string>
     <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
-    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">You can send up to %1$s via bank transfer. Try a different amount or a different payment method.</string>
+    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">ဘဏ်ငွေလွှဲပြောင်းမှုဖြင့် %1$s အထိ ပေးပို့နိုင်ပါသည်။ မတူညီသောပမာဏ သို့မဟုတ် မတူညီသော ငွေပေးချေမှုနည်းလမ်းကို စမ်းကြည့်ပါ။</string>
 
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">လစဉ်</string>
@@ -6270,7 +6270,7 @@
     <string name="UsernameLinkSettings_reset_link_result_network_error">သင်၏လင့်ခ်ကို ပြန်လည်သတ်မှတ်ရန် ကြိုးစားစဉ် ကွန်ရက်ချို့ယွင်းချက်တစ်ခု ဖြစ်ပွားခဲ့ပါသည်။ နောက်မှ ထပ်ကြိုးစားကြည့်ပါ။</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
-    <string name="UsernameLinkShareBottomSheet_title">Anyone with this link can view your username and start a chat with you. Only share it with people you trust.</string>
+    <string name="UsernameLinkShareBottomSheet_title">အောက်ပါလင့်ခ်ရှိသူတိုင်းသည် သင့်သုံးစွဲသူအမည်ကို ကြည့်ရှုပြီး သင်နှင့် စတင်၍ ချက်(တ်)နိုင်ပါသည်။ ထိုလင့်ခ်ကို သင် ယုံကြည်ရသူများနှင့်သာ မျှဝေပေးပါ။/</string>
     <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
     <string name="UsernameLinkShareBottomSheet_copy_link">လင့်ခ်ကူးရန်</string>
     <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
@@ -6310,9 +6310,9 @@
     <string name="GrantFullScreenIntentPermission_bottomsheet_step2">2. %1$s မျက်နှာပြင်အပြည့် အသိပေးချက်များကို ခွင့်ပြုပါ</string>
 
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, title for dialog -->
-    <string name="MonthlyDonationCanceled__title">Monthly donation canceled</string>
+    <string name="MonthlyDonationCanceled__title">လစဉ် လှူဒါန်းမှု ပယ်ဖျက်လိုက်ပါပြီ</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, body for dialog. First placeholder is a payment related error message. Second placeholder is \'learn more\' -->
-    <string name="MonthlyDonationCanceled__message">Your recurring monthly donation was canceled. %1$s\n\nYour badge will no longer be visible on your profile. %2$s</string>
+    <string name="MonthlyDonationCanceled__message">သင်၏ လစဉ် ပုံမှန်လှူဒါန်းမှုကို ပယ်ဖျက်လိုက်ပါပြီ။ %1$s\n\nသင့်ဘဲ့ဂျ်ကို သင့်ပရိုဖိုင်တွင် မြင်တွေ့ရတော့မည်မဟုတ်ပါ။ %2$s</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, learn more used in placeholder for body for dialog. -->
     <string name="MonthlyDonationCanceled__learn_more">ပိုမိုလေ့လာရန်</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, primary button to renew subscription with new data -->

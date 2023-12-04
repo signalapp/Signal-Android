@@ -4792,10 +4792,10 @@
     <string name="NewConversationActivity__">%1$s nije korisnik/ca Signala</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
     <plurals name="CreateGroupActivity_not_signal_users">
-        <item quantity="one">%1$s is not a Signal user</item>
-        <item quantity="few">%1$s are not Signal users</item>
-        <item quantity="many">%1$s are not Signal users</item>
-        <item quantity="other">%1$s are not Signal users</item>
+        <item quantity="one">%1$s nije korisnik Signala</item>
+        <item quantity="few">%1$s nisu korisnici Signala</item>
+        <item quantity="many">%1$s nisu korisnici Signala</item>
+        <item quantity="other">%1$s nisu korisnici Signala</item>
     </plurals>
 
     <!-- ContactFilterView -->
@@ -5330,7 +5330,7 @@
     <!-- Donation receipts one-time tab label -->
     <string name="DonationReceiptListFragment__one_time">Jednom</string>
     <!-- Donation receipts gift tab -->
-    <string name="DonationReceiptListFragment__for_a_friend">For a friend</string>
+    <string name="DonationReceiptListFragment__for_a_friend">Za prijatelja</string>
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__donation_for_a_friend">Donacija za prijatelja</string>
     <!-- Donation receipts donation type heading -->
@@ -6122,9 +6122,9 @@
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
     <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">Vaša iDEAL donacija se još uvijek obrađuje. Provjerite bankovnu aplikaciju da odobrite uplatu prije nego date drugu donaciju.</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
-    <string name="DonateToSignal__donation_amount_too_high">Donation amount too high</string>
+    <string name="DonateToSignal__donation_amount_too_high">Iznos donacije je prevelik</string>
     <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
-    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">You can send up to %1$s via bank transfer. Try a different amount or a different payment method.</string>
+    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">Možete poslati do %1$s putem bankovnog transfera. Pokušajte s drugim iznosom ili drugim načinom plaćanja.</string>
 
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">Mjesečno</string>
@@ -6678,7 +6678,7 @@
     <string name="UsernameLinkSettings_reset_link_result_network_error">Došlo je do mrežne greške prilikom pokušaja poništavanja vaše veze. Pokušajte ponovo kasnije.</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
-    <string name="UsernameLinkShareBottomSheet_title">Anyone with this link can view your username and start a chat with you. Only share it with people you trust.</string>
+    <string name="UsernameLinkShareBottomSheet_title">Svako s ovom poveznicom može vidjeti vaše korisničko ime i započeti chat s vama. Podijelite ga samo sa ljudima kojima vjerujete.</string>
     <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
     <string name="UsernameLinkShareBottomSheet_copy_link">Kopiraj poveznicu</string>
     <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
@@ -6724,9 +6724,9 @@
     <string name="GrantFullScreenIntentPermission_bottomsheet_step2">2. %1$s Dozvoli obavještenja preko cijelog ekrana</string>
 
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, title for dialog -->
-    <string name="MonthlyDonationCanceled__title">Monthly donation canceled</string>
+    <string name="MonthlyDonationCanceled__title">Mjesečna donacija je otkazana</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, body for dialog. First placeholder is a payment related error message. Second placeholder is \'learn more\' -->
-    <string name="MonthlyDonationCanceled__message">Your recurring monthly donation was canceled. %1$s\n\nYour badge will no longer be visible on your profile. %2$s</string>
+    <string name="MonthlyDonationCanceled__message">Vaša ponavljajuća mjesečna donacija je otkazana. %1$s\n\nVaša značka više neće biti vidljiva na vašem profilu. %2$s</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, learn more used in placeholder for body for dialog. -->
     <string name="MonthlyDonationCanceled__learn_more">Saznaj više</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, primary button to renew subscription with new data -->

@@ -1535,7 +1535,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">%1$sને તમને મેસેજ કરવા દેવા છે? તમે તેમને અનબ્લૉક નહીં કરો ત્યાં સુધી તમને કોઈ મેસેજ પ્રાપ્ત થશે નહીં.</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">%1$s તરફથી અપડેટ અને સમાચાર મેળવવા માગો છે? તમે તેમને અનબ્લૉક નહીં કરો ત્યાં સુધી કોઈ અપડેટ મેળવશો નહીં.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">આ ગ્રુપ સાથે તમારી ચેટ ચાલુ રાખવી છે અને તેના સભ્યો સાથે તમારું નામ અને ફોટો શેર કરવા છે?</string>
-    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">This Legacy Group can no longer be used. Create a new group to activate new features like @mentions and admins.</string>
+    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">આ એક લેગસી ગ્રૂપનો હવે ઉપયોગ થઈ શકતો નથી. @ઉલ્લેખો અને એડમિન જેવા નવા ફીચર સક્રિય કરવા માટે નવું ગ્રૂપ બનાવો.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">આ લેગસી ગ્રુપને નવા ગ્રુપમાં અપગ્રેડ કરી શકાતું નથી કારણ કે તે ખૂબ મોટું છે. ગ્રુપનું મહત્તમ કદ %1$d છે.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">%1$s સાથે તમારી ચેટ ચાલુ રાખી અને તેમની સાથે તમારું નામ અને ફોટો શેર કરવો છે?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">શું આ ગ્રુપમાં જોડાવું છે અને તેના સભ્યો સાથે તમારું નામ અને ફોટો શેર કરવા છે? જ્યાં સુધી તમે સ્વીકારશો નહીં ત્યાં સુધી તેઓ જાણશે નહીં કે તમે તેમના મેસેજ જોયા છે.</string>
@@ -4582,8 +4582,8 @@
     <string name="NewConversationActivity__">%1$s હવે Signal વપરાશકર્તા નથી</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
     <plurals name="CreateGroupActivity_not_signal_users">
-        <item quantity="one">%1$s is not a Signal user</item>
-        <item quantity="other">%1$s are not Signal users</item>
+        <item quantity="one">%1$s Signal ઉપયોગકર્તા નથી</item>
+        <item quantity="other">%1$s Signal ઉપયોગકર્તાઓ નથી</item>
     </plurals>
 
     <!-- ContactFilterView -->
@@ -5110,7 +5110,7 @@
     <!-- Donation receipts one-time tab label -->
     <string name="DonationReceiptListFragment__one_time">એક-વખત</string>
     <!-- Donation receipts gift tab -->
-    <string name="DonationReceiptListFragment__for_a_friend">For a friend</string>
+    <string name="DonationReceiptListFragment__for_a_friend">મિત્ર માટે</string>
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__donation_for_a_friend">મિત્ર માટે દાન</string>
     <!-- Donation receipts donation type heading -->
@@ -5860,9 +5860,9 @@
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
     <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">તમારા iDEAL દાનની પ્રક્રિયા હજી ચાલુ છે. બીજું દાન કરતા પહેલાં તમારી ચુકવણી મંજૂર કરવા માટે તમારી બેંકિંગ ઍપ તપાસો.</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
-    <string name="DonateToSignal__donation_amount_too_high">Donation amount too high</string>
+    <string name="DonateToSignal__donation_amount_too_high">દાનની રકમ બહુ વધારે છે</string>
     <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
-    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">You can send up to %1$s via bank transfer. Try a different amount or a different payment method.</string>
+    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">તમે બેંક ટ્રાન્સફર દ્વારા %1$s સુધી મોકલી શકો છો. કોઈ બીજી રકમ અથવા અલગ ચુકવણી પદ્ધતિ અજમાવી જુઓ.</string>
 
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">માસિક</string>
@@ -6450,7 +6450,7 @@
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, title for dialog -->
     <string name="MonthlyDonationCanceled__title">માસિક દાન રદ કર્યું</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, body for dialog. First placeholder is a payment related error message. Second placeholder is \'learn more\' -->
-    <string name="MonthlyDonationCanceled__message">Your recurring monthly donation was canceled. %1$s\n\nYour badge will no longer be visible on your profile. %2$s</string>
+    <string name="MonthlyDonationCanceled__message">તમારું પુનરાવર્તિત માસિક દાન રદ કરવામાં આવ્યું હતું. %1$s\n\nતમારું બૅજ હવે તમારી પ્રોફાઇલ પર દેખાશે નહીં. %2$s</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, learn more used in placeholder for body for dialog. -->
     <string name="MonthlyDonationCanceled__learn_more">વધુ જાણો</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, primary button to renew subscription with new data -->

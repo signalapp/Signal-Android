@@ -1589,7 +1589,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Vai atļaut lietotājam %1$s ar jums sazināties? Jūs nesaņemsiet ziņas līdz viņu neatbloķēsiet.</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Vai saņemt jaunumus un ziņas no lietotāja %1$s? Jūs nesaņemsiet ziņas līdz viņu neatbloķēsiet.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Vai turpināt tērzēšanu ar šo grupu un rādīt savu vārdu un fotoattēlu šīs grupas dalībniekiem?</string>
-    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">This Legacy Group can no longer be used. Create a new group to activate new features like @mentions and admins.</string>
+    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Šo novecojušo grupu vairs nevar izmantot. Izveidojiet jaunu grupu, lai aktivizētu jaunas funkcijas, piemēram, @pieminējumus un administratorus.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Šo vecā tipa grupu vairs nevar izmantot, jo tā ir pārāk liela. Maksimālais grupas lielums ir %1$d.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Vai turpināt sarunu ar lietotāju %1$s un rādīt savu vārdu un fotoattēlu?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Vai pievienoties šai grupai un kopīgot jūsu vārdu un fotoattēlu? Grupas dalībnieki nezinās, vai jūs izlasījāt ziņas, kamēr neapstiprināsiet uzaicinājumu.</string>
@@ -4687,9 +4687,9 @@
     <string name="NewConversationActivity__">%1$s nav Signal lietotājs</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
     <plurals name="CreateGroupActivity_not_signal_users">
-        <item quantity="zero">%1$s are not Signal users</item>
-        <item quantity="one">%1$s is not a Signal user</item>
-        <item quantity="other">%1$s are not Signal users</item>
+        <item quantity="zero">%1$s nav Signal lietotāji</item>
+        <item quantity="one">%1$s nav Signal lietotājs</item>
+        <item quantity="other">%1$s nav Signal lietotāji</item>
     </plurals>
 
     <!-- ContactFilterView -->
@@ -5220,7 +5220,7 @@
     <!-- Donation receipts one-time tab label -->
     <string name="DonationReceiptListFragment__one_time">Vienreizējs</string>
     <!-- Donation receipts gift tab -->
-    <string name="DonationReceiptListFragment__for_a_friend">For a friend</string>
+    <string name="DonationReceiptListFragment__for_a_friend">Draugam</string>
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__donation_for_a_friend">Ziedojums drauga vārdā</string>
     <!-- Donation receipts donation type heading -->
@@ -5991,9 +5991,9 @@
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
     <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">Jūsu ziedojums platformai iDEAL joprojām tiek apstrādāts. Pirms cita ziedojuma veikšanas apstipriniet maksājumu savā bankas lietotnē.</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
-    <string name="DonateToSignal__donation_amount_too_high">Donation amount too high</string>
+    <string name="DonateToSignal__donation_amount_too_high">Ziedojuma summa ir pārāk liela</string>
     <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
-    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">You can send up to %1$s via bank transfer. Try a different amount or a different payment method.</string>
+    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">Veicot bankas pārskaitījumu, var nosūtīt summas, kuru apmērs nepārsniedz %1$s. Mēģiniet ziedot citu summu vai izmantot citu maksājuma veidu.</string>
 
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">Ikmēneša</string>
@@ -6542,7 +6542,7 @@
     <string name="UsernameLinkSettings_reset_link_result_network_error">Mēģinot atiestatīt jūsu saiti, radās tīkla kļūda. Lūdzu, mēģiniet vēlāk.</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
-    <string name="UsernameLinkShareBottomSheet_title">Anyone with this link can view your username and start a chat with you. Only share it with people you trust.</string>
+    <string name="UsernameLinkShareBottomSheet_title">Ikviens, kuram ir pieejama šī saite, var skatīt jūsu lietotāja vārdu un uzsākt sarunu ar jums. Kopīgojiet šo saiti tikai ar uzticamiem cilvēkiem.</string>
     <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
     <string name="UsernameLinkShareBottomSheet_copy_link">Kopēt saiti</string>
     <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
@@ -6586,9 +6586,9 @@
     <string name="GrantFullScreenIntentPermission_bottomsheet_step2">2. %1$s Atļaut pilnekrāna paziņojumus</string>
 
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, title for dialog -->
-    <string name="MonthlyDonationCanceled__title">Monthly donation canceled</string>
+    <string name="MonthlyDonationCanceled__title">Ikmēneša ziedojums atcelts</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, body for dialog. First placeholder is a payment related error message. Second placeholder is \'learn more\' -->
-    <string name="MonthlyDonationCanceled__message">Your recurring monthly donation was canceled. %1$s\n\nYour badge will no longer be visible on your profile. %2$s</string>
+    <string name="MonthlyDonationCanceled__message">Regulārais ikmēneša ziedojums tika atcelts. %1$s\n\nNozīmīte vairs netiks rādīta jūsu profilā. %2$s</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, learn more used in placeholder for body for dialog. -->
     <string name="MonthlyDonationCanceled__learn_more">Uzzināt vairāk</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, primary button to renew subscription with new data -->

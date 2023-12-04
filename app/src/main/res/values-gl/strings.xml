@@ -1535,7 +1535,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Deixar que %1$s che envíe mensaxes? Non recibirás ningunha mensaxe ata que desbloquees o contacto.</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Queres recibir novidades de %1$s? Non recibirás ningunha noticia ata que desbloquees o contacto.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Continuar esta conversa con este grupo e compartir o teu nome e foto cos seus membros?</string>
-    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">This Legacy Group can no longer be used. Create a new group to activate new features like @mentions and admins.</string>
+    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Este Grupo Clásico xa non poderá usarse. Crea un novo grupo para activar a novas funcións como @mencións e administradores.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Este Grupo Clásico non pode seguir utilizándose porque é demasiado grande. O tamaño máximo do grupo é %1$d.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Continuar esta conversa con %1$s e compartir o teu nome e foto?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Unirse a este grupo e compartir cos seus membros o teu nome e fotografía? Non saberán quen viu as súas mensaxes ata que aceptes.</string>
@@ -4582,8 +4582,8 @@
     <string name="NewConversationActivity__">%1$s non emprega Signal</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
     <plurals name="CreateGroupActivity_not_signal_users">
-        <item quantity="one">%1$s is not a Signal user</item>
-        <item quantity="other">%1$s are not Signal users</item>
+        <item quantity="one">%1$s non é un usuario de Signal</item>
+        <item quantity="other">%1$s non son usuarios de Signal</item>
     </plurals>
 
     <!-- ContactFilterView -->
@@ -5110,7 +5110,7 @@
     <!-- Donation receipts one-time tab label -->
     <string name="DonationReceiptListFragment__one_time">Puntual</string>
     <!-- Donation receipts gift tab -->
-    <string name="DonationReceiptListFragment__for_a_friend">For a friend</string>
+    <string name="DonationReceiptListFragment__for_a_friend">para un amigo</string>
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__donation_for_a_friend">Doazón en nome dun amigo</string>
     <!-- Donation receipts donation type heading -->
@@ -5860,9 +5860,9 @@
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
     <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">A túa doazón iDEAL está a procesarse. Comproba a túa aplicación bancaria para aprobar o teu pagamento antes de facer outra doazón.</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
-    <string name="DonateToSignal__donation_amount_too_high">Donation amount too high</string>
+    <string name="DonateToSignal__donation_amount_too_high">Importe do donativo demasiado alto</string>
     <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
-    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">You can send up to %1$s via bank transfer. Try a different amount or a different payment method.</string>
+    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">Podes enviar ata %1$s por transferencia bancaria. Proba cunha cantidade diferente ou con outro método de pagamento.</string>
 
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">Mensualmente</string>
@@ -6406,7 +6406,7 @@
     <string name="UsernameLinkSettings_reset_link_result_network_error">Ocorreu un erro de rede mentres restableciamos a túa ligazón. Volver tentar máis tarde.</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
-    <string name="UsernameLinkShareBottomSheet_title">Anyone with this link can view your username and start a chat with you. Only share it with people you trust.</string>
+    <string name="UsernameLinkShareBottomSheet_title">Con esta ligazón calquera persoa poderá ver o teu nome de usuario e comezar a conversar contigo. Compártea só coas persoas nas que confíes.</string>
     <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
     <string name="UsernameLinkShareBottomSheet_copy_link">Copiar ligazón</string>
     <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
@@ -6448,9 +6448,9 @@
     <string name="GrantFullScreenIntentPermission_bottomsheet_step2">2. %1$s Activa as notificacións de pantalla completa</string>
 
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, title for dialog -->
-    <string name="MonthlyDonationCanceled__title">Monthly donation canceled</string>
+    <string name="MonthlyDonationCanceled__title">Donativo mensual cancelado</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, body for dialog. First placeholder is a payment related error message. Second placeholder is \'learn more\' -->
-    <string name="MonthlyDonationCanceled__message">Your recurring monthly donation was canceled. %1$s\n\nYour badge will no longer be visible on your profile. %2$s</string>
+    <string name="MonthlyDonationCanceled__message">O teu donativo mensual cancelouse. %1$s\n\nA túa insignia xa non será visible no teu perfil. %2$s</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, learn more used in placeholder for body for dialog. -->
     <string name="MonthlyDonationCanceled__learn_more">Máis información</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, primary button to renew subscription with new data -->

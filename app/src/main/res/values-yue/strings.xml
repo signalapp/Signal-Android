@@ -1481,7 +1481,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">你係咪想俾 %1$s 傳送訊息俾你？喺解除封鎖之前，你都唔會收到對方嘅任何訊息。</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">你係咪想接收 %1$s 嘅更新資訊同最新消息？喺解除封鎖之前，你都唔會收到對方嘅任何更新資訊。</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">係咪要繼續同呢個谷傾偈，並向個谷嘅所有成員分享您嘅名同相？</string>
-    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">This Legacy Group can no longer be used. Create a new group to activate new features like @mentions and admins.</string>
+    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">呢個舊版群組已經唔用得喇。如果想啟用新功能，例如 @提及同埋管理員功能，就開個新群組啦。</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">呢個舊版谷冇得繼續用，因為太大喇。谷嘅人數上限係 %1$d 人。</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">係咪要繼續同 %1$s 傾偈，同埋同佢分享你嘅名同相？</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">係咪要加入呢個谷，並同個谷嘅所有成員分享您嘅名同相？您話䎺之前，佢哋都唔會知您睇過個訊息嘅。</string>
@@ -4477,7 +4477,7 @@
     <string name="NewConversationActivity__">%1$s 唔係 Signal 嘅用戶</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
     <plurals name="CreateGroupActivity_not_signal_users">
-        <item quantity="other">%1$s are not Signal users</item>
+        <item quantity="other">%1$s 唔係 Signal 嘅用戶</item>
     </plurals>
 
     <!-- ContactFilterView -->
@@ -5000,7 +5000,7 @@
     <!-- Donation receipts one-time tab label -->
     <string name="DonationReceiptListFragment__one_time">單次</string>
     <!-- Donation receipts gift tab -->
-    <string name="DonationReceiptListFragment__for_a_friend">For a friend</string>
+    <string name="DonationReceiptListFragment__for_a_friend">代朋友捐款</string>
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__donation_for_a_friend">代表朋友捐款</string>
     <!-- Donation receipts donation type heading -->
@@ -5729,9 +5729,9 @@
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
     <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">你 iDeal 嘅捐款仲喺度處理緊。 請用你個銀行 app 去核准你嘅付款，然後先至做另一次捐款。</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
-    <string name="DonateToSignal__donation_amount_too_high">Donation amount too high</string>
+    <string name="DonateToSignal__donation_amount_too_high">捐款金額太高</string>
     <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
-    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">You can send up to %1$s via bank transfer. Try a different amount or a different payment method.</string>
+    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">你可以透過銀行轉賬發送最多 %1$s。試吓其他金額或者其他付款方式。</string>
 
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">每月</string>
@@ -6312,7 +6312,7 @@
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, title for dialog -->
     <string name="MonthlyDonationCanceled__title">每月捐款已被取消</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, body for dialog. First placeholder is a payment related error message. Second placeholder is \'learn more\' -->
-    <string name="MonthlyDonationCanceled__message">Your recurring monthly donation was canceled. %1$s\n\nYour badge will no longer be visible on your profile. %2$s</string>
+    <string name="MonthlyDonationCanceled__message">你嘅每月定期捐款已經取消。%1$s\n\n你嘅徽章唔會再喺個人檔案度顯示。%2$s</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, learn more used in placeholder for body for dialog. -->
     <string name="MonthlyDonationCanceled__learn_more">了解詳情</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, primary button to renew subscription with new data -->
