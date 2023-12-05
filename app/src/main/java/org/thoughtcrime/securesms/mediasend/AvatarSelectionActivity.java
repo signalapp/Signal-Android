@@ -1,7 +1,9 @@
 package org.thoughtcrime.securesms.mediasend;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Point;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -214,6 +217,10 @@ public class AvatarSelectionActivity extends AppCompatActivity implements Camera
     return !isGalleryFirst();
   }
 
+  private boolean hasCameraPermission() {
+    return ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED;
+  }
+
   private void handleSave() {
     ImageEditorFragment fragment = (ImageEditorFragment) getSupportFragmentManager().findFragmentByTag(IMAGE_EDITOR);
     if (fragment == null) {
@@ -284,6 +291,6 @@ public class AvatarSelectionActivity extends AppCompatActivity implements Camera
 
   @Override
   public boolean isCameraEnabled() {
-    return true;
+    return hasCameraPermission();
   }
 }
