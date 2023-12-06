@@ -267,7 +267,7 @@ public class AttachmentManager {
     final SettableFuture<Boolean> result = new SettableFuture<>();
 
     new AsyncTask<Void, Void, Slide>() {
-      private boolean areConstrainsSatisfied = false;
+      private boolean areConstraintsSatisfied = false;
 
       @Override
       protected void onPreExecute() {
@@ -291,7 +291,7 @@ public class AttachmentManager {
           return null;
         }
 
-        this.areConstrainsSatisfied = areConstraintsSatisfied(context, slide, constraints);
+        this.areConstraintsSatisfied = areConstraintsSatisfied(context, slide, constraints);
         return slide;
       }
 
@@ -303,7 +303,7 @@ public class AttachmentManager {
                          R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
                          Toast.LENGTH_SHORT).show();
           result.set(false);
-        } else if (!areConstrainsSatisfied) {
+        } else if (!areConstraintsSatisfied) {
           attachmentViewStub.get().setVisibility(View.GONE);
           Toast.makeText(context,
                          R.string.ConversationActivity_attachment_exceeds_size_limits,
