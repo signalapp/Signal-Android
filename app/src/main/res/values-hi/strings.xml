@@ -323,6 +323,8 @@
     <string name="ConversationItem_cant_download_image_you_will_need_to_send_it_again">इमेज डाउनलोड नहीं किया जा सकता। आपको इसे फिर से भेजना होगा।</string>
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">वीडियो डाउनलोड नहीं किया जा सकता। आपको इसे फिर से भेजना होगा।</string>
+    <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp represents a message that has been edited extremely recently. -->
+    <string name="ConversationItem_edited_now_timestamp_footer">Edited Now</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
     <string name="ConversationItem_edited_timestamp_footer">%1$s संपादित किया गया</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
@@ -1845,9 +1847,17 @@
     <string name="WebRtcAudioOutputBottomSheet__earpiece_icon_content_description">डिवाइस के ईयरपीस का प्रतिनिधित्व करने वाला आइकन।</string>
 
     <!-- CallParticipantsListDialog -->
-    <plurals name="CallParticipantsListDialog_in_this_call_d_people">
-        <item quantity="one">इस कॉल में · %1$d व्यक्ति</item>
-        <item quantity="other">इस कॉल में · %1$d लोग</item>
+    <plurals name="CallParticipantsListDialog_in_this_call">
+        <item quantity="one">In this call (%1$d)</item>
+        <item quantity="other">In this call (%1$d)</item>
+    </plurals>
+    <plurals name="CallParticipantsListDialog__signal_will_ring">
+        <item quantity="one">Signal will Ring (%1$d)</item>
+        <item quantity="other">Signal will Ring (%1$d)</item>
+    </plurals>
+    <plurals name="CallParticipantsListDialog__signal_will_notify">
+        <item quantity="one">Signal will Notify (%1$d)</item>
+        <item quantity="other">Signal will Notify (%1$d)</item>
     </plurals>
 
     <!-- CallParticipantView -->
@@ -1934,7 +1944,7 @@
 
     <string name="RegistrationActivity_phone_number_description">फोन नंबर</string>
     <string name="RegistrationActivity_country_code_description">देश कोड</string>
-    <string name="RegistrationActivity_call">कोल</string>
+    <string name="RegistrationActivity_call">कॉल</string>
     <string name="RegistrationActivity_verification_code">सत्यापन कोड</string>
     <string name="RegistrationActivity_resend_code">कोड फ़िर से भेजें</string>
     <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
@@ -5961,12 +5971,18 @@
     <string name="BankTransferDetailsFragment__iban_country_code_is_not_supported">IBAN देश कोड समर्थित नहीं है</string>
     <!-- Error label for IBAN field when number is invalid -->
     <string name="BankTransferDetailsFragment__invalid_iban">अमान्य IBAN</string>
+    <!-- Error label for name field when name is not at least two characters long -->
+    <string name="BankTransferDetailsFragment__minimum_2_characters">Minimum 2 characters</string>
+    <!-- Error label for email field when email is not valid -->
+    <string name="BankTransferDetailsFragment__invalid_email_address">Invalid email address</string>
 
     <!-- IdealTransferDetailsFragment -->
     <!-- Title of the screen, displayed in the toolbar -->
     <string name="IdealTransferDetailsFragment__ideal">iDEAL</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
     <string name="IdealTransferDetailsFragment__enter_your_bank">अपना बैंक, नाम और ईमेल दर्ज करें। स्ट्राइप इस ईमेल का इस्तेमाल आपको आपके दान के बारे में अपडेट भेजने के लिए करता है। %1$s</string>
+    <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
+    <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">Enter your bank details. Signal does not collect or store your personal information. %1$s</string>
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
     <string name="IdealTransferDetailsFragment__learn_more">अधिक जानें</string>
     <!-- Hint label for text entry box for name on bank account -->

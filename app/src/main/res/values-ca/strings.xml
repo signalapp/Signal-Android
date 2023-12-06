@@ -323,6 +323,8 @@
     <string name="ConversationItem_cant_download_image_you_will_need_to_send_it_again">No es pot descarregar la imatge. Hauràs de tornar-la a enviar.</string>
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">No es pot descarregar el vídeo. Hauràs de tornar-lo a enviar.</string>
+    <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp represents a message that has been edited extremely recently. -->
+    <string name="ConversationItem_edited_now_timestamp_footer">Edited Now</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
     <string name="ConversationItem_edited_timestamp_footer">Editat fa %1$s</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
@@ -1845,9 +1847,17 @@
     <string name="WebRtcAudioOutputBottomSheet__earpiece_icon_content_description">Icona representant auricular d\'un dispositiu.</string>
 
     <!-- CallParticipantsListDialog -->
-    <plurals name="CallParticipantsListDialog_in_this_call_d_people">
-        <item quantity="one">En aquesta trucada · %1$d persona</item>
-        <item quantity="other">En aquesta trucada · %1$d persones</item>
+    <plurals name="CallParticipantsListDialog_in_this_call">
+        <item quantity="one">In this call (%1$d)</item>
+        <item quantity="other">In this call (%1$d)</item>
+    </plurals>
+    <plurals name="CallParticipantsListDialog__signal_will_ring">
+        <item quantity="one">Signal will Ring (%1$d)</item>
+        <item quantity="other">Signal will Ring (%1$d)</item>
+    </plurals>
+    <plurals name="CallParticipantsListDialog__signal_will_notify">
+        <item quantity="one">Signal will Notify (%1$d)</item>
+        <item quantity="other">Signal will Notify (%1$d)</item>
     </plurals>
 
     <!-- CallParticipantView -->
@@ -5961,12 +5971,18 @@
     <string name="BankTransferDetailsFragment__iban_country_code_is_not_supported">El codi de país de l\'IBAN no és compatible</string>
     <!-- Error label for IBAN field when number is invalid -->
     <string name="BankTransferDetailsFragment__invalid_iban">IBAN no vàlid</string>
+    <!-- Error label for name field when name is not at least two characters long -->
+    <string name="BankTransferDetailsFragment__minimum_2_characters">Minimum 2 characters</string>
+    <!-- Error label for email field when email is not valid -->
+    <string name="BankTransferDetailsFragment__invalid_email_address">Invalid email address</string>
 
     <!-- IdealTransferDetailsFragment -->
     <!-- Title of the screen, displayed in the toolbar -->
     <string name="IdealTransferDetailsFragment__ideal">iDEAL</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
     <string name="IdealTransferDetailsFragment__enter_your_bank">Introdueix el teu banc, nom i correu electrònic. Stripe utilitza aquest correu electrònic per enviar-te actualitzacions sobre la teva donació. %1$s</string>
+    <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
+    <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">Enter your bank details. Signal does not collect or store your personal information. %1$s</string>
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
     <string name="IdealTransferDetailsFragment__learn_more">Més informació</string>
     <!-- Hint label for text entry box for name on bank account -->

@@ -326,6 +326,8 @@
     <string name="ConversationItem_cant_download_image_you_will_need_to_send_it_again">Ní féidir an íomhá a íoslódáil. Beidh ort í a sheoladh arís.</string>
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Ní féidir an físeán a íoslódáil. Beidh ort é a sheoladh arís.</string>
+    <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp represents a message that has been edited extremely recently. -->
+    <string name="ConversationItem_edited_now_timestamp_footer">Edited Now</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
     <string name="ConversationItem_edited_timestamp_footer">Curtha in eagar %1$s</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
@@ -1697,7 +1699,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Lig do %1$s teachtaireachtaí a sheoladh chugat? Ní bhfaighidh tú aon teachtaireachtaí go dtí go mbainfidh tú an bac de/di.</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Faigh nuashonruithe agus nuacht ó %1$s? Ní bhfaighidh tú aon nuashonruithe go dtí go mbainfidh tú an bac de/di.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Continue your chat with this group and share your name and photo with its members?</string>
-    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">This Legacy Group can no longer be used. Create a new group to activate new features like @mentions and admins.</string>
+    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Ní féidir an Grúpa Oidhreachta seo a úsáid a thuilleadh. Cruthaigh grúpa nua le gnéithe nua a ghníomhachtú, amhail @tráchtanna agus riarthóirí.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Ní féidir an seanleagan seo den Ghrúpa a úsáid a thuilleadh toisc go bhfuil sé rómhór. Is í %1$d uasmhéid an ghrúpa.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Lean le do chomhrá le %1$s agus comhroinn d\'ainm agus grianghraf leis an duine sin?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Téigh isteach sa ghrúpa seo agus comhroinn d\'ainm agus grianghraf lena bhaill? Ní bheidh a fhios acu go bhfaca tú na teachtaireachtaí go dtí go nglacfaidh tú.</string>
@@ -2058,12 +2060,26 @@
     <string name="WebRtcAudioOutputBottomSheet__earpiece_icon_content_description">Deilbhín a léiríonn cluaisín gléis.</string>
 
     <!-- CallParticipantsListDialog -->
-    <plurals name="CallParticipantsListDialog_in_this_call_d_people">
-        <item quantity="one">Sa ghlao seo · %1$d duine</item>
-        <item quantity="two">Sa ghlao seo · %1$d dhuine</item>
-        <item quantity="few">Sa ghlao seo · %1$d dhuine</item>
-        <item quantity="many">Sa ghlao seo · %1$d nduine</item>
-        <item quantity="other">Sa ghlao seo · %1$d duine</item>
+    <plurals name="CallParticipantsListDialog_in_this_call">
+        <item quantity="one">In this call (%1$d)</item>
+        <item quantity="two">In this call (%1$d)</item>
+        <item quantity="few">In this call (%1$d)</item>
+        <item quantity="many">In this call (%1$d)</item>
+        <item quantity="other">In this call (%1$d)</item>
+    </plurals>
+    <plurals name="CallParticipantsListDialog__signal_will_ring">
+        <item quantity="one">Signal will Ring (%1$d)</item>
+        <item quantity="two">Signal will Ring (%1$d)</item>
+        <item quantity="few">Signal will Ring (%1$d)</item>
+        <item quantity="many">Signal will Ring (%1$d)</item>
+        <item quantity="other">Signal will Ring (%1$d)</item>
+    </plurals>
+    <plurals name="CallParticipantsListDialog__signal_will_notify">
+        <item quantity="one">Signal will Notify (%1$d)</item>
+        <item quantity="two">Signal will Notify (%1$d)</item>
+        <item quantity="few">Signal will Notify (%1$d)</item>
+        <item quantity="many">Signal will Notify (%1$d)</item>
+        <item quantity="other">Signal will Notify (%1$d)</item>
     </plurals>
 
     <!-- CallParticipantView -->
@@ -6357,12 +6373,18 @@
     <string name="BankTransferDetailsFragment__iban_country_code_is_not_supported">Cód tíortha IBAN gan tacú</string>
     <!-- Error label for IBAN field when number is invalid -->
     <string name="BankTransferDetailsFragment__invalid_iban">IBAN neamhbhailí</string>
+    <!-- Error label for name field when name is not at least two characters long -->
+    <string name="BankTransferDetailsFragment__minimum_2_characters">Minimum 2 characters</string>
+    <!-- Error label for email field when email is not valid -->
+    <string name="BankTransferDetailsFragment__invalid_email_address">Invalid email address</string>
 
     <!-- IdealTransferDetailsFragment -->
     <!-- Title of the screen, displayed in the toolbar -->
     <string name="IdealTransferDetailsFragment__ideal">iDEAL</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
     <string name="IdealTransferDetailsFragment__enter_your_bank">Cuir isteach do bhanc, d\'ainm agus do sheoladh ríomhphoist. Úsáideann Stripe an seoladh ríomhphoist seo le nuashonruithe a sheoladh chugat maidir le do thabhartas. %1$s</string>
+    <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
+    <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">Enter your bank details. Signal does not collect or store your personal information. %1$s</string>
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
     <string name="IdealTransferDetailsFragment__learn_more">Tuilleadh faisnéise</string>
     <!-- Hint label for text entry box for name on bank account -->

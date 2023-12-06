@@ -323,6 +323,8 @@
     <string name="ConversationItem_cant_download_image_you_will_need_to_send_it_again">Kan afbeelding niet downloaden. Je zal het opnieuw moeten verzenden.</string>
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Kan video niet downloaden. Je zal het opnieuw moeten verzenden.</string>
+    <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp represents a message that has been edited extremely recently. -->
+    <string name="ConversationItem_edited_now_timestamp_footer">Edited Now</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
     <string name="ConversationItem_edited_timestamp_footer">Bewerkt %1$s</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
@@ -1216,7 +1218,7 @@
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">Herinner me later</string>
     <string name="Megaphones_verify_your_signal_pin">Weet je je Signal-pincode nog?</string>
-    <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Signal vraagt je af en toe om je pincode te bevestigen, zodat je je pincode goed onthoudt.</string>
+    <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">We vragen je af en toe om je pincode te bevestigen, zodat je je pincode goed onthoudt.</string>
     <string name="Megaphones_verify_pin">Pincode bevestigen</string>
     <string name="Megaphones_get_started">Maak een begin</string>
     <string name="Megaphones_new_group">Nieuwe groep</string>
@@ -1412,14 +1414,14 @@
     <string name="MessageRecord_allow_only_admins_to_send">De groepsinstellingen zijn aangepast om uitsluitend beheerders de mogelijkheid te geven om berichten te verzenden en oproepen te beginnen.</string>
 
     <!-- GV2 group link invite access level change -->
-    <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Je hebt de groepslink ingeschakeld zonder vereiste beheerdersgoedkeuring van nieuwe leden.</string>
-    <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Je hebt de groepslink ingeschakeld met vereiste beheerdersgoedkeuring van nieuwe leden.</string>
+    <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Je hebt de groepslink zonder beheerdersgoedkeuring van nieuwe leden ingeschakeld.</string>
+    <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Je hebt de groepslink met beheerdersgoedkeuring van nieuwe leden ingeschakeld.</string>
     <string name="MessageRecord_you_turned_off_the_group_link">Je hebt de groepslink uitgeschakeld.</string>
-    <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s heeft de groepslink ingeschakeld zonder vereiste beheerdersgoedkeuring van nieuwe leden.</string>
-    <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s heeft de groepslink ingeschakeld met vereiste beheerdersgoedkeuring van nieuwe leden.</string>
+    <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s heeft de groepslink zonder beheerdersgoedkeuring van nieuwe leden ingeschakeld.</string>
+    <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s heeft de groepslink met beheerdersgoedkeuring van nieuwe leden ingeschakeld.</string>
     <string name="MessageRecord_s_turned_off_the_group_link">%1$s heeft de groepslink uitgeschakeld.</string>
-    <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">De groepslink is ingeschakeld zonder vereiste beheerdersgoedkeuring van nieuwe leden.</string>
-    <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">De groepslink is ingeschakeld met vereiste beheerdersgoedkeuring van nieuwe leden.</string>
+    <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">De groepslink zonder beheerdersgoedkeuring van nieuwe leden is ingeschakeld.</string>
+    <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">De groepslink met beheerdersgoedkeuring van nieuwe leden is ingeschakeld.</string>
     <string name="MessageRecord_the_group_link_has_been_turned_off">De groepslink is uitgeschakeld.</string>
     <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Je hebt beheerdersgoedkeuring van nieuwe leden uitgeschakeld voor de groepslink.</string>
     <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s heeft beheerdersgoedkeuring van nieuwe leden uitgeschakeld voor de groepslink.</string>
@@ -1845,9 +1847,17 @@
     <string name="WebRtcAudioOutputBottomSheet__earpiece_icon_content_description">Een icoon dat de oortelefoon van een apparaat voorstelt.</string>
 
     <!-- CallParticipantsListDialog -->
-    <plurals name="CallParticipantsListDialog_in_this_call_d_people">
-        <item quantity="one">In deze oproep · %1$d persoon</item>
-        <item quantity="other">In deze oproep · %1$d personen</item>
+    <plurals name="CallParticipantsListDialog_in_this_call">
+        <item quantity="one">In this call (%1$d)</item>
+        <item quantity="other">In this call (%1$d)</item>
+    </plurals>
+    <plurals name="CallParticipantsListDialog__signal_will_ring">
+        <item quantity="one">Signal will Ring (%1$d)</item>
+        <item quantity="other">Signal will Ring (%1$d)</item>
+    </plurals>
+    <plurals name="CallParticipantsListDialog__signal_will_notify">
+        <item quantity="one">Signal will Notify (%1$d)</item>
+        <item quantity="other">Signal will Notify (%1$d)</item>
     </plurals>
 
     <!-- CallParticipantView -->
@@ -1918,7 +1928,7 @@
         <item quantity="one">Je bent nu %1$d stap verwijderd van het indienen van een foutopsporingslog.</item>
         <item quantity="other">Je bent nu %1$d stappen verwijderd van het indienen van een foutopsporingslog.</item>
     </plurals>
-    <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Signal moet verifiëren dat je een mens bent.</string>
+    <string name="RegistrationActivity_we_need_to_verify_that_youre_human">We moeten verifiëren dat je een mens bent.</string>
     <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
     <string name="RegistrationActivity_voice_call">Audio-oproep</string>
     <!-- Dialog button to cancel the pending action and return to the previous state. -->
@@ -1987,12 +1997,12 @@
     <string name="SignalBottomActionBar_more">Meer opties</string>
 
     <!-- SignalPinReminders -->
-    <string name="SignalPinReminders_well_remind_you_again_later">Pincode succesvol geverifieerd. Signal zal het later opnieuw vragen.</string>
-    <string name="SignalPinReminders_well_remind_you_again_tomorrow">Pincode succesvol geverifieerd. Signal zal het morgen opnieuw vragen.</string>
-    <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Pincode succesvol geverifieerd. Signal zal het over een paar dagen opnieuw vragen.</string>
-    <string name="SignalPinReminders_well_remind_you_again_in_a_week">Pincode succesvol geverifieerd. Signal zal het over een week opnieuw vragen.</string>
-    <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Pincode succesvol geverifieerd. Signal zal het over een aantal weken opnieuw vragen.</string>
-    <string name="SignalPinReminders_well_remind_you_again_in_a_month">Pincode succesvol geverifieerd. Signal zal het over een maand opnieuw vragen.</string>
+    <string name="SignalPinReminders_well_remind_you_again_later">Pincode succesvol geverifieerd. We zullen het later opnieuw vragen.</string>
+    <string name="SignalPinReminders_well_remind_you_again_tomorrow">Pincode succesvol geverifieerd. We zullen het morgen opnieuw vragen.</string>
+    <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Pincode succesvol geverifieerd. We zullen het over een paar dagen opnieuw vragen.</string>
+    <string name="SignalPinReminders_well_remind_you_again_in_a_week">Pincode succesvol geverifieerd. We zullen het over een week opnieuw vragen.</string>
+    <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Pincode succesvol geverifieerd. We zullen het over een aantal weken opnieuw vragen.</string>
+    <string name="SignalPinReminders_well_remind_you_again_in_a_month">Pincode succesvol geverifieerd. We zullen het over een maand opnieuw vragen.</string>
 
     <!-- Slide -->
     <string name="Slide_image">Afbeelding</string>
@@ -3504,7 +3514,7 @@
     <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Voer de zojuist aangemaakte pincode opnieuw in.</string>
     <string name="ConfirmKbsPinFragment__confirm_your_pin">Bevestig je pincode.</string>
     <string name="ConfirmKbsPinFragment__pin_creation_failed">Pincode aanmaken mislukt</string>
-    <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Je pincode is niet opgeslagen. Signal zal je later vragen een pincode aan te maken.</string>
+    <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Je pincode is niet opgeslagen. We zullen je later vragen een pincode aan te maken.</string>
     <string name="ConfirmKbsPinFragment__pin_created">Pincode aangemaakt.</string>
     <string name="ConfirmKbsPinFragment__re_enter_your_pin">Voer dezelfde pincode opnieuw in</string>
     <string name="ConfirmKbsPinFragment__creating_pin">Pincode aan het aanmaken…</string>
@@ -4276,7 +4286,7 @@
     <!-- Dialog title shown if we were not able to confirm your phone number with the server and thus cannot let leave the change flow yet after a crash during the regular flow -->
     <string name="ChangeNumberLockActivity__change_status_unconfirmed">Onbekend of telefoonnummer is gewijzigd</string>
     <!-- Dialog message shown when we can\'t verify the phone number on the server, only shown if there was a network error communicating with the server after a crash during the regular flow -->
-    <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Signal kan niet vaststellen of je telefoonnummer is gewijzigd.\n\n(Fout: %1$s)</string>
+    <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">We kunnen niet vaststellen of je telefoonnummer is gewijzigd.\n\n(Fout: %1$s)</string>
     <!-- Dialog button to retry confirming the number on the server -->
     <string name="ChangeNumberLockActivity__retry">Opnieuw proberen</string>
     <!-- Dialog button shown to leave the app when in the unconfirmed change status after a crash in the regular flow -->
@@ -4842,7 +4852,7 @@
     <string name="Subscription__contact_support">Neem contact op</string>
     <string name="Subscription__get_a_s_badge">Ontvang een ‘%1$s’-badge</string>
 
-    <string name="SubscribeFragment__processing_payment">Donatie aan het verwerken…</string>
+    <string name="SubscribeFragment__processing_payment">Aan het verwerken…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
     <string name="DonationsErrors__error_processing_payment">Fout bij het verwerken van donatie</string>
     <!-- Displayed on manage donations screen as a dialog message when payment method failed -->
@@ -5961,12 +5971,18 @@
     <string name="BankTransferDetailsFragment__iban_country_code_is_not_supported">IBAN-landcode wordt niet ondersteund</string>
     <!-- Error label for IBAN field when number is invalid -->
     <string name="BankTransferDetailsFragment__invalid_iban">Ongeldig IBAN-nummer</string>
+    <!-- Error label for name field when name is not at least two characters long -->
+    <string name="BankTransferDetailsFragment__minimum_2_characters">Minimum 2 characters</string>
+    <!-- Error label for email field when email is not valid -->
+    <string name="BankTransferDetailsFragment__invalid_email_address">Invalid email address</string>
 
     <!-- IdealTransferDetailsFragment -->
     <!-- Title of the screen, displayed in the toolbar -->
     <string name="IdealTransferDetailsFragment__ideal">iDEAL</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
     <string name="IdealTransferDetailsFragment__enter_your_bank">Vul je bank, naam en e-mailadres in. Stripe gebruikt je e-mailadres om je op de hoogte te houden over je donatie. %1$s</string>
+    <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
+    <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">Enter your bank details. Signal does not collect or store your personal information. %1$s</string>
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
     <string name="IdealTransferDetailsFragment__learn_more">Meer lezen</string>
     <!-- Hint label for text entry box for name on bank account -->
