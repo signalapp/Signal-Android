@@ -15,7 +15,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
-import androidx.navigation.Navigator
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.RecyclerView
@@ -116,7 +115,7 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
       val cameraFab = requireView().findViewById<View?>(R.id.camera_fab)
       val newConvoFab = requireView().findViewById<View?>(R.id.fab)
 
-      val extras = when  {
+      val extras = when {
         cameraFab != null && newConvoFab != null -> {
           ViewCompat.setTransitionName(cameraFab, "camera_fab")
           ViewCompat.setTransitionName(newConvoFab, "new_convo_fab")
