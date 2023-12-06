@@ -253,10 +253,6 @@ public class WebRtcCallViewModel extends ViewModel {
 
   public void onLocalPictureInPictureClicked() {
     CallParticipantsState state = participantsState.getValue();
-    if (state.getGroupCallState() != WebRtcViewModel.GroupCallState.IDLE) {
-      return;
-    }
-
     participantsState.onNext(CallParticipantsState.setExpanded(participantsState.getValue(),
                                                                state.getLocalRenderState() != WebRtcLocalRenderState.EXPANDED));
   }

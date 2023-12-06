@@ -116,6 +116,7 @@ public final class FeatureFlags {
   private static final String IDEAL_DONATIONS                   = "android.ideal.donations.5";
   public  static final String IDEAL_ENABLED_REGIONS             = "global.donations.idealEnabledRegions";
   public  static final String SEPA_ENABLED_REGIONS              = "global.donations.sepaEnabledRegions";
+  private static final String CALLING_REACTIONS                 = "android.calling.reactions";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -183,7 +184,8 @@ public final class FeatureFlags {
       SEPA_DEBIT_DONATIONS,
       IDEAL_DONATIONS,
       IDEAL_ENABLED_REGIONS,
-      SEPA_ENABLED_REGIONS
+      SEPA_ENABLED_REGIONS,
+      CALLING_REACTIONS
   );
 
   @VisibleForTesting
@@ -253,7 +255,8 @@ public final class FeatureFlags {
       PROMPT_BATTERY_SAVER,
       USERNAMES,
       CRASH_PROMPT_CONFIG,
-      BLOCK_SSE
+      BLOCK_SSE,
+      CALLING_REACTIONS
   );
 
   /**
@@ -657,6 +660,13 @@ public final class FeatureFlags {
 
   public static String sepaEnabledRegions() {
     return getString(SEPA_ENABLED_REGIONS, "");
+  }
+
+  /**
+   * Whether or not group call reactions are enabled.
+   */
+  public static boolean groupCallReactions() {
+    return getBoolean(CALLING_REACTIONS, false);
   }
 
   /** Only for rendering debug info. */

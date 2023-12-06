@@ -1,10 +1,16 @@
 package org.thoughtcrime.securesms.components.webrtc;
 
+import android.graphics.Point;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
+
+import org.thoughtcrime.securesms.animation.ResizeAnimation;
+import org.thoughtcrime.securesms.mediasend.SimpleAnimationListener;
+import org.thoughtcrime.securesms.util.ViewUtil;
 
 /**
  * Helps manage the expansion and shrinking of the in-app pip.
@@ -12,7 +18,21 @@ import androidx.annotation.NonNull;
 @MainThread
 final class PictureInPictureExpansionHelper {
 
+  private static final int PIP_RESIZE_DURATION_MS = 300;
+  private static final int EXPANDED_PIP_WIDTH_DP  = 170;
+  private static final int EXPANDED_PIP_HEIGHT_DP = 300;
+
+  private final View  selfPip;
+  private final Point expandedDimensions;
+
   private State state = State.IS_SHRUNKEN;
+  private Point defaultDimensions;
+
+  public PictureInPictureExpansionHelper(@NonNull View selfPip) {
+    this.selfPip            = selfPip;
+    this.defaultDimensions  = new Point(selfPip.getLayoutParams().width, selfPip.getLayoutParams().height);
+    this.expandedDimensions = new Point(ViewUtil.dpToPx(EXPANDED_PIP_WIDTH_DP), ViewUtil.dpToPx(EXPANDED_PIP_HEIGHT_DP));
+  }
 
   public boolean isExpandedOrExpanding() {
     return state == State.IS_EXPANDED || state == State.IS_EXPANDING;
@@ -22,144 +42,79 @@ final class PictureInPictureExpansionHelper {
     return state == State.IS_SHRUNKEN || state == State.IS_SHRINKING;
   }
 
-  public void expand(@NonNull View toExpand, @NonNull Callback callback) {
+  public void setDefaultSize(@NonNull Point dimensions, @NonNull Callback callback) {
+    if (defaultDimensions.equals(dimensions)) {
+      return;
+    }
+
+    defaultDimensions = dimensions;
+
     if (isExpandedOrExpanding()) {
       return;
     }
 
-    performExpandAnimation(toExpand, new Callback() {
+    ViewGroup.LayoutParams layoutParams = selfPip.getLayoutParams();
+    if (layoutParams.width == defaultDimensions.x && layoutParams.height == defaultDimensions.y) {
+      callback.onAnimationHasFinished();
+      return;
+    }
+
+    resizeSelfPip(defaultDimensions, callback);
+  }
+
+  public void expand() {
+    if (isExpandedOrExpanding()) {
+      return;
+    }
+
+    resizeSelfPip(expandedDimensions, new Callback() {
       @Override
       public void onAnimationWillStart() {
         state = State.IS_EXPANDING;
-        callback.onAnimationWillStart();
-      }
-
-      @Override
-      public void onPictureInPictureExpanded() {
-        callback.onPictureInPictureExpanded();
-      }
-
-      @Override
-      public void onPictureInPictureNotVisible() {
-        callback.onPictureInPictureNotVisible();
       }
 
       @Override
       public void onAnimationHasFinished() {
         state = State.IS_EXPANDED;
-        callback.onAnimationHasFinished();
       }
     });
   }
 
-  public void shrink(@NonNull View toExpand, @NonNull Callback callback) {
+  public void shrink() {
     if (isShrunkenOrShrinking()) {
       return;
     }
 
-    performShrinkAnimation(toExpand, new Callback() {
+    resizeSelfPip(defaultDimensions, new Callback() {
       @Override
       public void onAnimationWillStart() {
         state = State.IS_SHRINKING;
-        callback.onAnimationWillStart();
-      }
-
-      @Override
-      public void onPictureInPictureExpanded() {
-        callback.onPictureInPictureExpanded();
-      }
-
-      @Override
-      public void onPictureInPictureNotVisible() {
-        callback.onPictureInPictureNotVisible();
       }
 
       @Override
       public void onAnimationHasFinished() {
         state = State.IS_SHRUNKEN;
-        callback.onAnimationHasFinished();
       }
     });
   }
 
-  private void performExpandAnimation(@NonNull View target, @NonNull Callback callback) {
-    ViewGroup parent = (ViewGroup) target.getParent();
+  private void resizeSelfPip(@NonNull Point dimension, @NonNull Callback callback) {
+    ResizeAnimation resizeAnimation = new ResizeAnimation(selfPip, dimension);
+    resizeAnimation.setDuration(PIP_RESIZE_DURATION_MS);
+    resizeAnimation.setAnimationListener(new SimpleAnimationListener() {
+      @Override
+      public void onAnimationStart(Animation animation) {
+        callback.onAnimationWillStart();
+      }
 
-    float x      = target.getX();
-    float y      = target.getY();
-    float scaleX = parent.getMeasuredWidth() / (float) target.getMeasuredWidth();
-    float scaleY = parent.getMeasuredHeight() / (float) target.getMeasuredHeight();
-    float scale  = Math.max(scaleX, scaleY);
+      @Override
+      public void onAnimationEnd(Animation animation) {
+        callback.onAnimationHasFinished();
+      }
+    });
 
-    callback.onAnimationWillStart();
-
-    target.animate()
-          .setDuration(200)
-          .x((parent.getMeasuredWidth() - target.getMeasuredWidth()) / 2f)
-          .y((parent.getMeasuredHeight() - target.getMeasuredHeight()) / 2f)
-          .scaleX(scale)
-          .scaleY(scale)
-          .withEndAction(() -> {
-            callback.onPictureInPictureExpanded();
-            target.animate()
-                  .setDuration(100)
-                  .alpha(0f)
-                  .withEndAction(() -> {
-                    callback.onPictureInPictureNotVisible();
-
-                    target.setX(x);
-                    target.setY(y);
-                    target.setScaleX(0f);
-                    target.setScaleY(0f);
-                    target.setAlpha(1f);
-
-                    target.animate()
-                          .setDuration(200)
-                          .scaleX(1f)
-                          .scaleY(1f)
-                          .withEndAction(callback::onAnimationHasFinished);
-                  });
-          });
-  }
-
-  private void performShrinkAnimation(@NonNull View target, @NonNull Callback callback) {
-    ViewGroup parent = (ViewGroup) target.getParent();
-
-    float x      = target.getX();
-    float y      = target.getY();
-    float scaleX = parent.getMeasuredWidth() / (float) target.getMeasuredWidth();
-    float scaleY = parent.getMeasuredHeight() / (float) target.getMeasuredHeight();
-    float scale  = Math.max(scaleX, scaleY);
-
-    callback.onAnimationWillStart();
-
-    target.animate()
-          .setDuration(200)
-          .scaleX(0f)
-          .scaleY(0f)
-          .withEndAction(() -> {
-            target.setX((parent.getMeasuredWidth() - target.getMeasuredWidth()) / 2f);
-            target.setY((parent.getMeasuredHeight() - target.getMeasuredHeight()) / 2f);
-            target.setAlpha(0f);
-            target.setScaleX(scale);
-            target.setScaleY(scale);
-
-            callback.onPictureInPictureNotVisible();
-
-            target.animate()
-                  .setDuration(100)
-                  .alpha(1f)
-                  .withEndAction(() -> {
-                    callback.onPictureInPictureExpanded();
-
-                    target.animate()
-                          .scaleX(1f)
-                          .scaleY(1f)
-                          .x(x)
-                          .y(y)
-                          .withEndAction(callback::onAnimationHasFinished);
-                  });
-            });
+    selfPip.clearAnimation();
+    selfPip.startAnimation(resizeAnimation);
   }
 
   enum State {
@@ -174,24 +129,12 @@ final class PictureInPictureExpansionHelper {
      * Called when an animation (shrink or expand) will begin. This happens before any animation
      * is executed.
      */
-    void onAnimationWillStart();
-
-    /**
-     * Called when the PiP is covering the whole screen. This is when any staging / teardown of the
-     * large local renderer should occur.
-     */
-    void onPictureInPictureExpanded();
-
-    /**
-     * Called when the PiP is not visible on the screen anymore. This is when any staging / teardown
-     * of the pip should occur.
-     */
-    void onPictureInPictureNotVisible();
+    default void onAnimationWillStart() {}
 
     /**
      * Called when the animation is complete. Useful for e.g. adjusting the pip's final location to
      * make sure it is respecting the screen space available.
      */
-    void onAnimationHasFinished();
+    default void onAnimationHasFinished() {}
   }
 }

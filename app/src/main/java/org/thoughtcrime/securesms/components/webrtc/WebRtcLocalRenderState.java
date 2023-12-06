@@ -6,5 +6,9 @@ public enum WebRtcLocalRenderState {
   SMALLER_RECTANGLE,
   LARGE,
   LARGE_NO_VIDEO,
-  EXPANDED
+  EXPANDED;
+
+  public boolean isAnySmall() {
+    return this == SMALL_RECTANGLE || this == SMALLER_RECTANGLE;
+  }
 }

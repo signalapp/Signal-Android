@@ -29,6 +29,7 @@ import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Rational;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -53,8 +54,8 @@ import org.greenrobot.eventbus.ThreadMode;
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.signal.core.util.concurrent.SignalExecutors;
-import org.signal.libsignal.protocol.IdentityKey;
 import org.signal.core.util.logging.Log;
+import org.signal.libsignal.protocol.IdentityKey;
 import org.thoughtcrime.securesms.components.TooltipPopup;
 import org.thoughtcrime.securesms.components.sensors.DeviceOrientationMonitor;
 import org.thoughtcrime.securesms.components.webrtc.CallLinkInfoSheet;
@@ -73,6 +74,7 @@ import org.thoughtcrime.securesms.components.webrtc.WebRtcCallView;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcCallViewModel;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcControls;
 import org.thoughtcrime.securesms.components.webrtc.WifiToCellularPopupWindow;
+import org.thoughtcrime.securesms.components.webrtc.controls.ControlsAndInfoController;
 import org.thoughtcrime.securesms.components.webrtc.participantslist.CallParticipantsListDialog;
 import org.thoughtcrime.securesms.components.webrtc.requests.CallLinkIncomingRequestSheet;
 import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeDialog;
@@ -152,6 +154,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
   private PictureInPictureParams.Builder   pipBuilderParams;
   private LifecycleDisposable              lifecycleDisposable;
   private long                             lastCallLinkDisconnectDialogShowTime;
+  private ControlsAndInfoController        controlsAndInfo;
 
   private Disposable ephemeralStateDisposable = Disposable.empty();
 
@@ -161,7 +164,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     super.attachBaseContext(newBase);
   }
 
-  @SuppressLint("SourceLockedOrientationActivity")
+  @SuppressLint({ "SourceLockedOrientationActivity", "MissingInflatedId" })
   @Override
   public void onCreate(Bundle savedInstanceState) {
     Log.i(TAG, "onCreate(" + getIntent().getBooleanExtra(EXTRA_STARTED_FROM_FULLSCREEN, false) + ")");
@@ -188,6 +191,13 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     initializeResources();
     initializeViewModel(isLandscapeEnabled);
     initializePictureInPictureParams();
+
+    controlsAndInfo = new ControlsAndInfoController(callScreen, viewModel);
+    controlsAndInfo.addVisibilityListener(new FadeCallback());
+
+    fullscreenHelper.showAndHideWithSystemUI(getWindow(), findViewById(R.id.webrtc_call_view_toolbar_text), findViewById(R.id.webrtc_call_view_toolbar_no_text));
+
+    lifecycleDisposable.add(controlsAndInfo);
 
     logIntent(getIntent());
 
@@ -431,7 +441,10 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     viewModel.setIsLandscapeEnabled(isLandscapeEnabled);
     viewModel.setIsInPipMode(isInPipMode());
     viewModel.getMicrophoneEnabled().observe(this, callScreen::setMicEnabled);
-    viewModel.getWebRtcControls().observe(this, callScreen::setWebRtcControls);
+    viewModel.getWebRtcControls().observe(this, controls -> {
+      callScreen.setWebRtcControls(controls);
+      controlsAndInfo.updateControls(controls);
+    });
     viewModel.getEvents().observe(this, this::handleViewModelEvent);
 
     lifecycleDisposable.add(viewModel.getInCallstatus().subscribe(this::handleInCallStatus));
@@ -522,7 +535,6 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
                                    .setText(R.string.WebRtcCallActivity__tap_here_to_turn_on_your_video)
                                    .setOnDismissListener(() -> viewModel.onDismissedVideoTooltip())
                                    .show(TooltipPopup.POSITION_ABOVE);
-        return;
       }
     } else if (event instanceof WebRtcCallViewModel.Event.DismissVideoTooltip) {
       if (videoTooltip != null) {
@@ -912,7 +924,6 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
 
   private void handleCallPreJoin(@NonNull WebRtcViewModel event) {
     if (event.getGroupState().isNotIdle()) {
-      callScreen.setStatusFromGroupCallState(event.getGroupState());
       callScreen.setRingGroup(event.shouldRingGroup());
 
       if (event.shouldRingGroup() && event.areRemoteDevicesInCall()) {
@@ -946,10 +957,8 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     }
 
     @Override
-    public void onControlsFadeOut() {
-      if (videoTooltip != null) {
-        videoTooltip.dismiss();
-      }
+    public void toggleControls() {
+      controlsAndInfo.toggleControls();
     }
 
     @Override
@@ -1060,7 +1069,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
       if (liveRecipient.get().isCallLink()) {
         CallLinkInfoSheet.show(getSupportFragmentManager(), liveRecipient.get().requireCallLinkRoomId());
       } else {
-        CallParticipantsListDialog.show(getSupportFragmentManager());
+        controlsAndInfo.showCallInfo();
       }
     }
 
@@ -1121,6 +1130,22 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
           Log.d(TAG, "OnWindowLayoutInfo accepted: ensure call view is in flat display mode");
           viewModel.setFoldableState(WebRtcControls.FoldableState.flat());
         }
+      }
+    }
+  }
+
+  private class FadeCallback implements ControlsAndInfoController.BottomSheetVisibilityListener {
+
+    @Override
+    public void onShown() {
+      fullscreenHelper.showSystemUI();
+    }
+
+    @Override
+    public void onHidden() {
+      fullscreenHelper.hideSystemUI();
+      if (videoTooltip != null) {
+        videoTooltip.dismiss();
       }
     }
   }

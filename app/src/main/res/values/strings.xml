@@ -1848,9 +1848,17 @@
     <string name="WebRtcAudioOutputBottomSheet__earpiece_icon_content_description">An icon representing a device\'s earpiece.</string>
 
     <!-- CallParticipantsListDialog -->
-    <plurals name="CallParticipantsListDialog_in_this_call_d_people">
-        <item quantity="one">In this call · %1$d person</item>
-        <item quantity="other">In this call · %1$d people</item>
+    <plurals name="CallParticipantsListDialog_in_this_call">
+        <item quantity="one">In this call (%1$d)</item>
+        <item quantity="other">In this call (%1$d)</item>
+    </plurals>
+    <plurals name="CallParticipantsListDialog__signal_will_ring">
+        <item quantity="one">Signal will Ring (%1$d)</item>
+        <item quantity="other">Signal will Ring (%1$d)</item>
+    </plurals>
+    <plurals name="CallParticipantsListDialog__signal_will_notify">
+        <item quantity="one">Signal will Notify (%1$d)</item>
+        <item quantity="other">Signal will Notify (%1$d)</item>
     </plurals>
 
     <!-- CallParticipantView -->

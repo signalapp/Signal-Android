@@ -546,6 +546,11 @@ public abstract class WebRtcActionProcessor {
     return currentState;
   }
 
+  protected @NonNull WebRtcServiceState handleSendGroupReact(@NonNull WebRtcServiceState currentState) {
+    Log.i(tag, "react not processed");
+    return currentState;
+  }
+
   public @NonNull WebRtcServiceState handleCameraSwitchCompleted(@NonNull WebRtcServiceState currentState, @NonNull CameraState newCameraState) {
     Log.i(tag, "handleCameraSwitchCompleted not processed");
     return currentState;
@@ -727,6 +732,11 @@ public abstract class WebRtcActionProcessor {
   protected @NonNull WebRtcServiceState handleGroupJoinedMembershipChanged(@NonNull WebRtcServiceState currentState) {
     Log.i(tag, "handleGroupJoinedMembershipChanged not processed");
     return currentState;
+  }
+
+  protected @NonNull WebRtcEphemeralState handleGroupCallReaction(@NonNull WebRtcServiceState currentState, @NonNull WebRtcEphemeralState ephemeralState, List<GroupCall.Reaction> reactions) {
+   Log.i(tag, "handleGroupCallReaction not processed");
+   return ephemeralState;
   }
 
   protected @NonNull WebRtcServiceState handleGroupRequestMembershipProof(@NonNull WebRtcServiceState currentState, int groupCallHashCode) {
