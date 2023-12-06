@@ -113,19 +113,20 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
     if (state.tab == ConversationListTab.CHATS) {
       return
     } else {
-      val cameraFab = requireView().findViewById<View>(R.id.camera_fab)
-      val newConvoFab = requireView().findViewById<View>(R.id.fab)
+      val cameraFab = requireView().findViewById<View?>(R.id.camera_fab)
+      val newConvoFab = requireView().findViewById<View?>(R.id.fab)
 
-      ViewCompat.setTransitionName(cameraFab, "camera_fab")
-      ViewCompat.setTransitionName(newConvoFab, "new_convo_fab")
+      val extras = when  {
+        cameraFab != null && newConvoFab != null -> {
+          ViewCompat.setTransitionName(cameraFab, "camera_fab")
+          ViewCompat.setTransitionName(newConvoFab, "new_convo_fab")
 
-      val extras: Navigator.Extras? = if (cameraFab == null || newConvoFab == null) {
-        null
-      } else {
-        FragmentNavigatorExtras(
-          cameraFab to "camera_fab",
-          newConvoFab to "new_convo_fab"
-        )
+          FragmentNavigatorExtras(
+            cameraFab to "camera_fab",
+            newConvoFab to "new_convo_fab"
+          )
+        }
+        else -> null
       }
 
       val destination = if (state.tab == ConversationListTab.STORIES) {
