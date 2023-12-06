@@ -35,6 +35,7 @@ import android.widget.Toast;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.WorkerThread;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
@@ -266,6 +267,8 @@ public class AttachmentManager {
     final SettableFuture<Boolean> result = new SettableFuture<>();
 
     new AsyncTask<Void, Void, Slide>() {
+      private boolean areConstraintsSatisfied = false;
+
       @Override
       protected void onPreExecute() {
         thumbnail.clear(glideRequests);
@@ -275,19 +278,21 @@ public class AttachmentManager {
 
       @Override
       protected @Nullable Slide doInBackground(Void... params) {
+        Slide slide;
         try {
           if (PartAuthority.isLocalUri(uri)) {
-            return getManuallyCalculatedSlideInfo(uri, width, height);
+            slide = getManuallyCalculatedSlideInfo(uri, width, height);
           } else {
             Slide result = getContentResolverSlideInfo(uri, width, height);
-
-            if (result == null) return getManuallyCalculatedSlideInfo(uri, width, height);
-            else                return result;
+            slide = (result == null) ? getManuallyCalculatedSlideInfo(uri, width, height) : result;
           }
         } catch (IOException e) {
           Log.w(TAG, e);
           return null;
         }
+
+        this.areConstraintsSatisfied = areConstraintsSatisfied(context, slide, constraints);
+        return slide;
       }
 
       @Override
@@ -298,7 +303,7 @@ public class AttachmentManager {
                          R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
                          Toast.LENGTH_SHORT).show();
           result.set(false);
-        } else if (!areConstraintsSatisfied(context, slide, constraints)) {
+        } else if (!areConstraintsSatisfied) {
           attachmentViewStub.get().setVisibility(View.GONE);
           Toast.makeText(context,
                          R.string.ConversationActivity_attachment_exceeds_size_limits,
@@ -524,6 +529,7 @@ public class AttachmentManager {
     }
   }
 
+  @WorkerThread
   private boolean areConstraintsSatisfied(final @NonNull  Context context,
                                           final @Nullable Slide slide,
                                           final @NonNull  MediaConstraints constraints)
