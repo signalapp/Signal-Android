@@ -146,7 +146,6 @@ class ControlsAndInfoController(
       override fun onApplyWindowInsets(statusBar: Int, navigationBar: Int, parentStart: Int, parentEnd: Int) {
         if (navigationBar > 0) {
           callControls.padding(bottom = navigationBar)
-          callInfoComposeView.padding(bottom = navigationBar)
         }
       }
     })

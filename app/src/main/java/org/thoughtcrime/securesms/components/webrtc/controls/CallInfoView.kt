@@ -165,6 +165,10 @@ private fun CallInfo(
         )
       }
     }
+
+    item {
+      Spacer(modifier = Modifier.size(48.dp))
+    }
   }
 }
 
