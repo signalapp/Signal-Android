@@ -5,13 +5,14 @@
 
 package org.thoughtcrime.securesms.events
 
+import org.thoughtcrime.securesms.recipients.Recipient
 import java.util.concurrent.TimeUnit
 
 /**
- * This is a data class to represent a reaction coming in over the wire in the format we need (mapped to a [CallParticipant]) in a way that can be easily
+ * This is a data class to represent a reaction coming in over the wire in the format we need (mapped to a [Recipient]) in a way that can be easily
  * compared across Rx streams.
  */
-data class GroupCallReactionEvent(val sender: CallParticipant, val reaction: String, val timestamp: Long) {
+data class GroupCallReactionEvent(val sender: Recipient, val reaction: String, val timestamp: Long) {
   fun getExpirationTimestamp(): Long {
     return timestamp + TimeUnit.SECONDS.toMillis(LIFESPAN_SECONDS)
   }

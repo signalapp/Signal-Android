@@ -8,6 +8,7 @@ import androidx.annotation.Px;
 import androidx.annotation.StringRes;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager;
 
 import java.util.Set;
@@ -153,6 +154,10 @@ public final class WebRtcControls {
 
   public boolean displayEndCall() {
     return isAtLeastOutgoing() || callState == CallState.RECONNECTING;
+  }
+
+  public boolean displayOverflow() {
+    return FeatureFlags.groupCallReactions() && isAtLeastOutgoing();
   }
 
   public boolean displayMuteAudio() {

@@ -295,8 +295,8 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
     process((s, p) -> p.handleScreenOffChange(s));
   }
 
-  public void react() {
-    process((s, p) -> p.handleSendGroupReact(s));
+  public void react(@NonNull String reaction) {
+    processStateless(s -> serviceState.getActionProcessor().handleSendGroupReact(serviceState, s, reaction));
   }
 
   public void postStateUpdate(@NonNull WebRtcServiceState state) {

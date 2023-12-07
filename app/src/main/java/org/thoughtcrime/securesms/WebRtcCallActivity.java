@@ -29,7 +29,6 @@ import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Rational;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -60,6 +59,7 @@ import org.thoughtcrime.securesms.components.TooltipPopup;
 import org.thoughtcrime.securesms.components.sensors.DeviceOrientationMonitor;
 import org.thoughtcrime.securesms.components.webrtc.CallLinkInfoSheet;
 import org.thoughtcrime.securesms.components.webrtc.CallLinkProfileKeySender;
+import org.thoughtcrime.securesms.components.webrtc.CallOverflowPopupWindow;
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantsListUpdatePopupWindow;
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantsState;
 import org.thoughtcrime.securesms.components.webrtc.CallStateUpdatePopupWindow;
@@ -82,6 +82,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.messagerequests.CalleeMustAcceptMessageRequestActivity;
 import org.thoughtcrime.securesms.permissions.Permissions;
+import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -115,7 +116,7 @@ import io.reactivex.rxjava3.disposables.Disposable;
 
 import static org.thoughtcrime.securesms.components.sensors.Orientation.PORTRAIT_BOTTOM_EDGE;
 
-public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChangeDialog.Callback {
+public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChangeDialog.Callback, ReactWithAnyEmojiBottomSheetDialogFragment.Callback {
 
   private static final String TAG = Log.tag(WebRtcCallActivity.class);
 
@@ -140,6 +141,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
 
   private CallParticipantsListUpdatePopupWindow participantUpdateWindow;
   private CallStateUpdatePopupWindow            callStateUpdatePopupWindow;
+  private CallOverflowPopupWindow               callOverflowPopupWindow;
   private WifiToCellularPopupWindow             wifiToCellularPopupWindow;
   private DeviceOrientationMonitor              deviceOrientationMonitor;
 
@@ -193,7 +195,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     initializeViewModel(isLandscapeEnabled);
     initializePictureInPictureParams();
 
-    controlsAndInfo = new ControlsAndInfoController(callScreen, viewModel);
+    controlsAndInfo = new ControlsAndInfoController(callScreen, callOverflowPopupWindow, viewModel);
     controlsAndInfo.addVisibilityListener(new FadeCallback());
 
     fullscreenHelper.showAndHideWithSystemUI(getWindow(), findViewById(R.id.webrtc_call_view_toolbar_text), findViewById(R.id.webrtc_call_view_toolbar_no_text));
@@ -432,6 +434,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     participantUpdateWindow    = new CallParticipantsListUpdatePopupWindow(callScreen);
     callStateUpdatePopupWindow = new CallStateUpdatePopupWindow(callScreen);
     wifiToCellularPopupWindow  = new WifiToCellularPopupWindow(callScreen);
+    callOverflowPopupWindow    = new CallOverflowPopupWindow(this, callScreen);
   }
 
   private void initializeViewModel(boolean isLandscapeEnabled) {
@@ -947,6 +950,15 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     MessageSender.onMessageSent();
   }
 
+  @Override
+  public void onReactWithAnyEmojiDialogDismissed() { /* no-op */ }
+
+  @Override
+  public void onReactWithAnyEmojiSelected(@NonNull String emoji) {
+    ApplicationDependencies.getSignalCallManager().react(emoji);
+    callOverflowPopupWindow.dismiss();
+  }
+
   private final class ControlsListener implements WebRtcCallView.ControlsListener {
 
     @Override
@@ -1032,6 +1044,11 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     @Override
     public void onAcceptCallWithVoiceOnlyPressed() {
       handleAnswerWithAudio();
+    }
+
+    @Override
+    public void onOverflowClicked() {
+      controlsAndInfo.toggleOverflowPopup();
     }
 
     @Override

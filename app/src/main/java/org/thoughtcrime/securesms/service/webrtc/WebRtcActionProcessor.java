@@ -546,9 +546,9 @@ public abstract class WebRtcActionProcessor {
     return currentState;
   }
 
-  protected @NonNull WebRtcServiceState handleSendGroupReact(@NonNull WebRtcServiceState currentState) {
+  protected @NonNull WebRtcEphemeralState handleSendGroupReact(@NonNull WebRtcServiceState currentState, @NonNull WebRtcEphemeralState ephemeralState, @NonNull String reaction) {
     Log.i(tag, "react not processed");
-    return currentState;
+    return ephemeralState;
   }
 
   public @NonNull WebRtcServiceState handleCameraSwitchCompleted(@NonNull WebRtcServiceState currentState, @NonNull CameraState newCameraState) {

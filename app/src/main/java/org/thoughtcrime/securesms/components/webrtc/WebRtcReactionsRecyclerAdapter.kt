@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.emoji.EmojiImageView
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
 import org.thoughtcrime.securesms.events.GroupCallReactionEvent
+import org.thoughtcrime.securesms.recipients.Recipient
 
 /**
  * RecyclerView adapter for the reactions feed. This takes in a list of [GroupCallReactionEvent] and renders them onto the screen.
@@ -48,10 +49,18 @@ class WebRtcReactionsRecyclerAdapter : ListAdapter<GroupCallReactionEvent, WebRt
     private val textView: EmojiTextView = itemView.findViewById(R.id.webrtc_call_reaction_name_textview)
     fun bind(item: GroupCallReactionEvent) {
       emojiView.setImageEmoji(item.reaction)
-      textView.text = item.sender.getRecipientDisplayNameDeviceAgnostic(itemView.context)
+      textView.text = getName(item.sender)
       itemView.isClickable = false
       textView.isClickable = false
       emojiView.isClickable = false
+    }
+
+    private fun getName(recipient: Recipient): String {
+      return if (recipient.isSelf) {
+        itemView.context.getString(R.string.CallParticipant__you)
+      } else {
+        recipient.getDisplayName(itemView.context)
+      }
     }
   }
 

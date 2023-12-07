@@ -47,14 +47,6 @@ data class CallParticipant constructor(
     }
   }
 
-  fun getRecipientDisplayNameDeviceAgnostic(context: Context): String {
-    return if (recipient.isSelf) {
-      context.getString(R.string.CallParticipant__you)
-    } else {
-      recipient.getDisplayName(context)
-    }
-  }
-
   fun getShortRecipientDisplayName(context: Context): String {
     return if (recipient.isSelf && isPrimary) {
       context.getString(R.string.CallParticipant__you)

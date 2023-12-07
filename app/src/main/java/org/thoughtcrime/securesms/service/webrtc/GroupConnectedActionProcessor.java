@@ -20,16 +20,16 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.ringrtc.Camera;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
+import org.thoughtcrime.securesms.service.webrtc.state.CallInfoState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcEphemeralState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 /**
  * Process actions for when the call has at least once been connected and joined.
@@ -203,9 +203,24 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
   }
 
   @Override
+  protected @NonNull WebRtcEphemeralState handleSendGroupReact(@NonNull WebRtcServiceState currentState, @NonNull WebRtcEphemeralState ephemeralState, @NonNull String reaction) {
+    try {
+      currentState.getCallInfoState().requireGroupCall().react(reaction);
+
+      List<GroupCallReactionEvent> reactionList  = ephemeralState.getUnexpiredReactions();
+      reactionList.add(new GroupCallReactionEvent(Recipient.self(), reaction, System.currentTimeMillis()));
+
+      return ephemeralState.copy(ephemeralState.getLocalAudioLevel(), ephemeralState.getRemoteAudioLevels(), reactionList);
+    } catch (CallException e) {
+      Log.w(TAG,"Unable to send reaction in group call", e);
+    }
+    return ephemeralState;
+  }
+
+  @Override
   protected @NonNull WebRtcEphemeralState handleGroupCallReaction(@NonNull WebRtcServiceState currentState, @NonNull WebRtcEphemeralState ephemeralState, List<GroupCall.Reaction> reactions) {
-    List<GroupCallReactionEvent>            reactionList = ephemeralState.getUnexpiredReactions();
-    Map<CallParticipantId, CallParticipant> participants = currentState.getCallInfoState().getRemoteCallParticipantsMap();
+    List<GroupCallReactionEvent> reactionList  = ephemeralState.getUnexpiredReactions();
+    List<CallParticipant>        participants  = currentState.getCallInfoState().getRemoteCallParticipants();
 
     for (GroupCall.Reaction reaction : reactions) {
       final GroupCallReactionEvent event = createGroupCallReaction(participants, reaction);
@@ -218,13 +233,13 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
   }
 
   @Nullable
-  private GroupCallReactionEvent createGroupCallReaction(Map<CallParticipantId, CallParticipant> participants, final GroupCall.Reaction reaction) {
-    CallParticipantId participantId = participants.keySet().stream().filter(participant -> participant.getDemuxId() == reaction.demuxId).findFirst().orElse(null);
-    if (participantId == null) {
+  private GroupCallReactionEvent createGroupCallReaction(Collection<CallParticipant> participants, final GroupCall.Reaction reaction) {
+    CallParticipant participant = participants.stream().filter(it -> it.getCallParticipantId().getDemuxId() == reaction.demuxId).findFirst().orElse(null);
+    if (participant == null) {
       Log.v(TAG, "Could not find CallParticipantId in list of call participants based on demuxId for reaction.");
       return null;
     }
 
-    return new GroupCallReactionEvent(participants.get(participantId), reaction.value, System.currentTimeMillis());
+    return new GroupCallReactionEvent(participant.getRecipient(), reaction.value, System.currentTimeMillis());
   }
 }

@@ -1831,6 +1831,8 @@
     <string name="WebRtcCallView__toggle_camera">Toggle camera</string>
     <!-- Toggle content description for toggling mute state  -->
     <string name="WebRtcCallView__toggle_mute">Toggle mute</string>
+    <!-- Content description for additional actions menu button -->
+    <string name="WebRtcCallView__additional_actions">Additional actions</string>
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">End call</string>
 

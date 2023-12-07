@@ -28,6 +28,7 @@ import io.reactivex.rxjava3.disposables.Disposable
 import org.signal.core.util.dp
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.InsetAwareConstraintLayout
+import org.thoughtcrime.securesms.components.webrtc.CallOverflowPopupWindow
 import org.thoughtcrime.securesms.components.webrtc.WebRtcCallView
 import org.thoughtcrime.securesms.components.webrtc.WebRtcCallViewModel
 import org.thoughtcrime.securesms.components.webrtc.WebRtcControls
@@ -41,6 +42,7 @@ import kotlin.time.Duration.Companion.seconds
  */
 class ControlsAndInfoController(
   private val webRtcCallView: WebRtcCallView,
+  private val overflowPopupWindow: CallOverflowPopupWindow,
   private val viewModel: WebRtcCallViewModel
 ) : Disposable {
 
@@ -122,6 +124,7 @@ class ControlsAndInfoController(
 
     behavior.addBottomSheetCallback(object : BottomSheetCallback() {
       override fun onStateChanged(bottomSheet: View, newState: Int) {
+        overflowPopupWindow.dismiss()
         if (newState == BottomSheetBehavior.STATE_COLLAPSED) {
           if (controlState.isFadeOutEnabled) {
             hide(delay = HIDE_CONTROL_DELAY)
@@ -149,6 +152,10 @@ class ControlsAndInfoController(
         }
       }
     })
+
+    overflowPopupWindow.setOnDismissListener {
+      hide(delay = HIDE_CONTROL_DELAY)
+    }
   }
 
   fun addVisibilityListener(listener: BottomSheetVisibilityListener): Boolean {
@@ -188,6 +195,15 @@ class ControlsAndInfoController(
       showControls()
     } else {
       hide()
+    }
+  }
+
+  fun toggleOverflowPopup() {
+    if (overflowPopupWindow.isShowing) {
+      overflowPopupWindow.dismiss()
+    } else {
+      cancelScheduledHide()
+      overflowPopupWindow.show(webRtcCallView.popupAnchor)
     }
   }
 

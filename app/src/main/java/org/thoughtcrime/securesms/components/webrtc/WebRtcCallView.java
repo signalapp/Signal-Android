@@ -37,7 +37,6 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.google.android.material.button.MaterialButton;
-import com.google.common.collect.Sets;
 
 import org.signal.core.util.DimensionUnit;
 import org.signal.core.util.SetUtil;
@@ -98,6 +97,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
   private ImageView                     cameraDirectionToggle;
   private AccessibleToggleButton        ringToggle;
   private PictureInPictureGestureHelper pictureInPictureGestureHelper;
+  private ImageView                     overflow;
   private ImageView                     hangup;
   private View                          answerWithoutVideo;
   private View                          topGradient;
@@ -179,6 +179,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     answerWithoutVideoLabel       = findViewById(R.id.call_screen_answer_without_video_label);
     cameraDirectionToggle         = findViewById(R.id.call_screen_camera_direction_toggle);
     ringToggle                    = findViewById(R.id.call_screen_audio_ring_toggle);
+    overflow                      = findViewById(R.id.call_screen_overflow_button);
     hangup                        = findViewById(R.id.call_screen_end_call);
     answerWithoutVideo            = findViewById(R.id.call_screen_answer_without_video);
     topGradient                   = findViewById(R.id.call_screen_header_gradient);
@@ -278,6 +279,10 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
 
     cameraDirectionToggle.setOnClickListener(v -> runIfNonNull(controlsListener, ControlsListener::onCameraDirectionChanged));
 
+    overflow.setOnClickListener(v -> {
+      runIfNonNull(controlsListener, ControlsListener::onOverflowClicked);
+    });
+
     hangup.setOnClickListener(v -> runIfNonNull(controlsListener, ControlsListener::onEndCallPressed));
     decline.setOnClickListener(v -> runIfNonNull(controlsListener, ControlsListener::onDenyCallPressed));
 
@@ -346,6 +351,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
       return false;
     });
 
+    rotatableControls.add(overflow);
     rotatableControls.add(hangup);
     rotatableControls.add(answer);
     rotatableControls.add(answerWithoutVideo);
@@ -596,6 +602,10 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     }
   }
 
+  public @NonNull View getPopupAnchor() {
+    return aboveControlsGuideline;
+  }
+
   public void setStatusFromHangupType(@NonNull HangupMessage.Type hangupType) {
     switch (hangupType) {
       case NORMAL:
@@ -715,6 +725,10 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     if (webRtcControls.displayEndCall()) {
       visibleViewSet.add(hangup);
       visibleViewSet.add(footerGradient);
+    }
+
+    if (webRtcControls.displayOverflow()) {
+      visibleViewSet.add(overflow);
     }
 
     if (webRtcControls.displayMuteAudio()) {
@@ -893,6 +907,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
   private void updateButtonStateForLargeButtons() {
     cameraDirectionToggle.setImageResource(R.drawable.webrtc_call_screen_camera_toggle);
     hangup.setImageResource(R.drawable.webrtc_call_screen_hangup);
+    overflow.setImageResource(R.drawable.webrtc_call_screen_overflow_menu);
     micToggle.setBackgroundResource(R.drawable.webrtc_call_screen_mic_toggle);
     videoToggle.setBackgroundResource(R.drawable.webrtc_call_screen_video_toggle);
     audioToggle.setImageResource(R.drawable.webrtc_call_screen_speaker_toggle);
@@ -902,6 +917,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
   private void updateButtonStateForSmallButtons() {
     cameraDirectionToggle.setImageResource(R.drawable.webrtc_call_screen_camera_toggle_small);
     hangup.setImageResource(R.drawable.webrtc_call_screen_hangup_small);
+    overflow.setImageResource(R.drawable.webrtc_call_screen_overflow_menu_small);
     micToggle.setBackgroundResource(R.drawable.webrtc_call_screen_mic_toggle_small);
     videoToggle.setBackgroundResource(R.drawable.webrtc_call_screen_video_toggle_small);
     audioToggle.setImageResource(R.drawable.webrtc_call_screen_speaker_toggle_small);
@@ -938,6 +954,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     void onAudioOutputChanged31(@NonNull WebRtcAudioDevice audioOutput);
     void onVideoChanged(boolean isVideoEnabled);
     void onMicChanged(boolean isMicEnabled);
+    void onOverflowClicked();
     void onCameraDirectionChanged();
     void onEndCallPressed();
     void onDenyCallPressed();
