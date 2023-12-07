@@ -117,6 +117,7 @@ public final class FeatureFlags {
   public  static final String IDEAL_ENABLED_REGIONS             = "global.donations.idealEnabledRegions";
   public  static final String SEPA_ENABLED_REGIONS              = "global.donations.sepaEnabledRegions";
   private static final String CALLING_REACTIONS                 = "android.calling.reactions";
+  private static final String NOTIFICATION_THUMBNAIL_BLOCKLIST  = "android.notificationThumbnailProductBlocklist";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -185,7 +186,8 @@ public final class FeatureFlags {
       IDEAL_DONATIONS,
       IDEAL_ENABLED_REGIONS,
       SEPA_ENABLED_REGIONS,
-      CALLING_REACTIONS
+      CALLING_REACTIONS,
+      NOTIFICATION_THUMBNAIL_BLOCKLIST
   );
 
   @VisibleForTesting
@@ -256,7 +258,8 @@ public final class FeatureFlags {
       USERNAMES,
       CRASH_PROMPT_CONFIG,
       BLOCK_SSE,
-      CALLING_REACTIONS
+      CALLING_REACTIONS,
+      NOTIFICATION_THUMBNAIL_BLOCKLIST
   );
 
   /**
@@ -667,6 +670,11 @@ public final class FeatureFlags {
    */
   public static boolean groupCallReactions() {
     return getBoolean(CALLING_REACTIONS, false);
+  }
+
+  /** List of device products that are blocked from showing notification thumbnails. */
+  public static String notificationThumbnailProductBlocklist() {
+    return getString(NOTIFICATION_THUMBNAIL_BLOCKLIST, "");
   }
 
   /** Only for rendering debug info. */
