@@ -3,13 +3,14 @@ package org.thoughtcrime.securesms.components.webrtc;
 import android.graphics.Point;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
 
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
+import androidx.transition.AutoTransition;
+import androidx.transition.Transition;
+import androidx.transition.TransitionListenerAdapter;
+import androidx.transition.TransitionManager;
 
-import org.thoughtcrime.securesms.animation.ResizeAnimation;
-import org.thoughtcrime.securesms.mediasend.SimpleAnimationListener;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 /**
@@ -22,14 +23,22 @@ final class PictureInPictureExpansionHelper {
   private static final int EXPANDED_PIP_WIDTH_DP  = 170;
   private static final int EXPANDED_PIP_HEIGHT_DP = 300;
 
-  private final View  selfPip;
-  private final Point expandedDimensions;
+  public static final int NORMAL_PIP_WIDTH_DP = 90;
+  public static final int NORMAL_PIP_HEIGHT_DP = 160;
+
+  public static final int MINI_PIP_WIDTH_DP = 40;
+  public static final int MINI_PIP_HEIGHT_DP = 72;
+
+  private final View      selfPip;
+  private final ViewGroup parent;
+  private final Point     expandedDimensions;
 
   private State state = State.IS_SHRUNKEN;
   private Point defaultDimensions;
 
   public PictureInPictureExpansionHelper(@NonNull View selfPip) {
     this.selfPip            = selfPip;
+    this.parent             = (ViewGroup) selfPip.getParent();
     this.defaultDimensions  = new Point(selfPip.getLayoutParams().width, selfPip.getLayoutParams().height);
     this.expandedDimensions = new Point(ViewUtil.dpToPx(EXPANDED_PIP_WIDTH_DP), ViewUtil.dpToPx(EXPANDED_PIP_HEIGHT_DP));
   }
@@ -42,7 +51,11 @@ final class PictureInPictureExpansionHelper {
     return state == State.IS_SHRUNKEN || state == State.IS_SHRINKING;
   }
 
-  public void setDefaultSize(@NonNull Point dimensions, @NonNull Callback callback) {
+  public boolean isMiniSize() {
+    return defaultDimensions.x < ViewUtil.dpToPx(NORMAL_PIP_WIDTH_DP);
+  }
+
+  public void startDefaultSizeTransition(@NonNull Point dimensions, @NonNull Callback callback) {
     if (defaultDimensions.equals(dimensions)) {
       return;
     }
@@ -53,21 +66,15 @@ final class PictureInPictureExpansionHelper {
       return;
     }
 
-    ViewGroup.LayoutParams layoutParams = selfPip.getLayoutParams();
-    if (layoutParams.width == defaultDimensions.x && layoutParams.height == defaultDimensions.y) {
-      callback.onAnimationHasFinished();
-      return;
-    }
-
-    resizeSelfPip(defaultDimensions, callback);
+    beginResizeSelfPipTransition(defaultDimensions, callback);
   }
 
-  public void expand() {
+  public void beginExpandTransition() {
     if (isExpandedOrExpanding()) {
       return;
     }
 
-    resizeSelfPip(expandedDimensions, new Callback() {
+    beginResizeSelfPipTransition(expandedDimensions, new Callback() {
       @Override
       public void onAnimationWillStart() {
         state = State.IS_EXPANDING;
@@ -80,12 +87,12 @@ final class PictureInPictureExpansionHelper {
     });
   }
 
-  public void shrink() {
+  public void beginShrinkTransition() {
     if (isShrunkenOrShrinking()) {
       return;
     }
 
-    resizeSelfPip(defaultDimensions, new Callback() {
+    beginResizeSelfPipTransition(defaultDimensions, new Callback() {
       @Override
       public void onAnimationWillStart() {
         state = State.IS_SHRINKING;
@@ -98,23 +105,30 @@ final class PictureInPictureExpansionHelper {
     });
   }
 
-  private void resizeSelfPip(@NonNull Point dimension, @NonNull Callback callback) {
-    ResizeAnimation resizeAnimation = new ResizeAnimation(selfPip, dimension);
-    resizeAnimation.setDuration(PIP_RESIZE_DURATION_MS);
-    resizeAnimation.setAnimationListener(new SimpleAnimationListener() {
+  private void beginResizeSelfPipTransition(@NonNull Point dimension, @NonNull Callback callback) {
+    TransitionManager.endTransitions(parent);
+
+    Transition transition = new AutoTransition().setDuration(PIP_RESIZE_DURATION_MS);
+    transition.addListener(new TransitionListenerAdapter() {
       @Override
-      public void onAnimationStart(Animation animation) {
+      public void onTransitionStart(@NonNull Transition transition) {
         callback.onAnimationWillStart();
       }
 
       @Override
-      public void onAnimationEnd(Animation animation) {
+      public void onTransitionEnd(@NonNull Transition transition) {
         callback.onAnimationHasFinished();
       }
     });
 
-    selfPip.clearAnimation();
-    selfPip.startAnimation(resizeAnimation);
+    TransitionManager.beginDelayedTransition(parent, transition);
+
+    ViewGroup.LayoutParams params = selfPip.getLayoutParams();
+
+    params.width  = dimension.x;
+    params.height = dimension.y;
+
+    selfPip.setLayoutParams(params);
   }
 
   enum State {

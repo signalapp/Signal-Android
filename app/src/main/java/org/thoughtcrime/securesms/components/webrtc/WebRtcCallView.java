@@ -497,20 +497,21 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
 
     videoToggle.setChecked(localCallParticipant.isVideoEnabled(), false);
     smallLocalRender.setRenderInPip(true);
+    smallLocalRender.setCallParticipant(localCallParticipant);
+    smallLocalRender.setMirror(localCallParticipant.getCameraDirection() == CameraState.Direction.FRONT);
 
     if (state == WebRtcLocalRenderState.EXPANDED) {
-      pictureInPictureExpansionHelper.expand();
+      pictureInPictureExpansionHelper.beginExpandTransition();
+      smallLocalRender.setSelfPipMode(CallParticipantView.SelfPipMode.EXPANDED_SELF_PIP);
       return;
     } else if ((state.isAnySmall() || state == WebRtcLocalRenderState.GONE) && pictureInPictureExpansionHelper.isExpandedOrExpanding()) {
-      pictureInPictureExpansionHelper.shrink();
+      pictureInPictureExpansionHelper.beginShrinkTransition();
+      smallLocalRender.setSelfPipMode(pictureInPictureExpansionHelper.isMiniSize() ? CallParticipantView.SelfPipMode.MINI_SELF_PIP : CallParticipantView.SelfPipMode.NORMAL_SELF_PIP);
 
       if (state != WebRtcLocalRenderState.GONE) {
         return;
       }
     }
-
-    smallLocalRender.setCallParticipant(localCallParticipant);
-    smallLocalRender.setMirror(localCallParticipant.getCameraDirection() == CameraState.Direction.FRONT);
 
     switch (state) {
       case GONE:
@@ -806,26 +807,34 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
   private void animatePipToLargeRectangle(boolean isLandscape) {
     final Point dimens;
     if (isLandscape) {
-      dimens = new Point(ViewUtil.dpToPx(160), ViewUtil.dpToPx(90));
+      dimens = new Point(ViewUtil.dpToPx(PictureInPictureExpansionHelper.NORMAL_PIP_HEIGHT_DP),
+                         ViewUtil.dpToPx(PictureInPictureExpansionHelper.NORMAL_PIP_WIDTH_DP));
     } else {
-      dimens = new Point(ViewUtil.dpToPx(90), ViewUtil.dpToPx(160));
+      dimens = new Point(ViewUtil.dpToPx(PictureInPictureExpansionHelper.NORMAL_PIP_WIDTH_DP),
+                         ViewUtil.dpToPx(PictureInPictureExpansionHelper.NORMAL_PIP_HEIGHT_DP));
     }
 
-    pictureInPictureExpansionHelper.setDefaultSize(dimens, new PictureInPictureExpansionHelper.Callback() {
+    pictureInPictureExpansionHelper.startDefaultSizeTransition(dimens, new PictureInPictureExpansionHelper.Callback() {
       @Override
       public void onAnimationHasFinished() {
         pictureInPictureGestureHelper.enableCorners();
       }
     });
+
+    smallLocalRender.setSelfPipMode(CallParticipantView.SelfPipMode.NORMAL_SELF_PIP);
   }
 
   private void animatePipToSmallRectangle() {
-    pictureInPictureExpansionHelper.setDefaultSize(new Point(ViewUtil.dpToPx(54), ViewUtil.dpToPx(72)), new PictureInPictureExpansionHelper.Callback() {
-      @Override
-      public void onAnimationHasFinished() {
-        pictureInPictureGestureHelper.lockToBottomEnd();
-      }
-    });
+    pictureInPictureExpansionHelper.startDefaultSizeTransition(new Point(ViewUtil.dpToPx(PictureInPictureExpansionHelper.MINI_PIP_WIDTH_DP),
+                                                                         ViewUtil.dpToPx(PictureInPictureExpansionHelper.MINI_PIP_HEIGHT_DP)),
+                                                               new PictureInPictureExpansionHelper.Callback() {
+                                                                 @Override
+                                                                 public void onAnimationHasFinished() {
+                                                                   pictureInPictureGestureHelper.lockToBottomEnd();
+                                                                 }
+                                                               });
+
+    smallLocalRender.setSelfPipMode(CallParticipantView.SelfPipMode.MINI_SELF_PIP);
   }
 
   private void toggleControls() {

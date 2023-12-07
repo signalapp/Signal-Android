@@ -9,12 +9,13 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewKt;
 import androidx.core.widget.ImageViewCompat;
+import androidx.transition.Transition;
 import androidx.transition.TransitionManager;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -37,6 +38,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.AvatarUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.webrtc.RendererCommon;
+import org.whispersystems.signalservice.api.util.Preconditions;
 
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
@@ -56,6 +58,8 @@ public class CallParticipantView extends ConstraintLayout {
   private RecipientId recipientId;
   private boolean     infoMode;
   private Runnable    missingMediaKeysUpdater;
+
+  private SelfPipMode selfPipMode = SelfPipMode.NOT_SELF_PIP;
 
   private AppCompatImageView  backgroundAvatar;
   private AvatarImageView     avatar;
@@ -211,6 +215,85 @@ public class CallParticipantView extends ConstraintLayout {
     pipBadge.setVisibility(shouldRenderInPip ? View.VISIBLE : View.GONE);
   }
 
+  /**
+   * Adjust UI elements for the various self PIP positions. If called after a {@link TransitionManager#beginDelayedTransition(ViewGroup, Transition)},
+   * the changes to the UI elements will animate.
+   */
+  void setSelfPipMode(@NonNull SelfPipMode selfPipMode) {
+    Preconditions.checkArgument(selfPipMode != SelfPipMode.NOT_SELF_PIP);
+
+    if (this.selfPipMode == selfPipMode) {
+      return;
+    }
+
+    this.selfPipMode = selfPipMode;
+
+    ConstraintSet constraints = new ConstraintSet();
+    constraints.clone(this);
+
+    switch (selfPipMode) {
+      case NORMAL_SELF_PIP -> {
+        constraints.connect(
+            R.id.call_participant_audio_indicator,
+            ConstraintSet.START,
+            ConstraintSet.PARENT_ID,
+            ConstraintSet.START,
+            ViewUtil.dpToPx(6)
+        );
+        constraints.clear(
+            R.id.call_participant_audio_indicator,
+            ConstraintSet.END
+        );
+        constraints.setMargin(
+            R.id.call_participant_audio_indicator,
+            ConstraintSet.BOTTOM,
+            ViewUtil.dpToPx(6)
+        );
+      }
+      case EXPANDED_SELF_PIP -> {
+        constraints.connect(
+            R.id.call_participant_audio_indicator,
+            ConstraintSet.START,
+            ConstraintSet.PARENT_ID,
+            ConstraintSet.START,
+            ViewUtil.dpToPx(8)
+        );
+        constraints.clear(
+            R.id.call_participant_audio_indicator,
+            ConstraintSet.END
+        );
+        constraints.setMargin(
+            R.id.call_participant_audio_indicator,
+            ConstraintSet.BOTTOM,
+            ViewUtil.dpToPx(8)
+        );
+      }
+      case MINI_SELF_PIP -> {
+        constraints.connect(
+            R.id.call_participant_audio_indicator,
+            ConstraintSet.START,
+            ConstraintSet.PARENT_ID,
+            ConstraintSet.START,
+            0
+        );
+        constraints.connect(
+            R.id.call_participant_audio_indicator,
+            ConstraintSet.END,
+            ConstraintSet.PARENT_ID,
+            ConstraintSet.END,
+            0
+        );
+        constraints.setMargin(
+            R.id.call_participant_audio_indicator,
+            ConstraintSet.BOTTOM,
+            ViewUtil.dpToPx(6)
+        );
+      }
+    }
+
+    constraints.applyTo(this);
+  }
+
   void hideAvatar() {
     avatar.setAlpha(0f);
     badge.setAlpha(0f);
@@ -301,5 +384,12 @@ public class CallParticipantView extends ConstraintLayout {
       photo.setScaleType(ImageView.ScaleType.CENTER_CROP);
       return photo;
     }
+  }
+
+  public enum SelfPipMode {
+    NOT_SELF_PIP,
+    NORMAL_SELF_PIP,
+    EXPANDED_SELF_PIP,
+    MINI_SELF_PIP
   }
 }
