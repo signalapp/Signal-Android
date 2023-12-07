@@ -21,12 +21,16 @@ import org.thoughtcrime.securesms.backup.v2.stream.EncryptedBackupWriter
 import org.thoughtcrime.securesms.backup.v2.stream.PlainTextBackupReader
 import org.thoughtcrime.securesms.backup.v2.stream.PlainTextBackupWriter
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.whispersystems.signalservice.api.NetworkResult
+import org.whispersystems.signalservice.api.archive.ArchiveServiceCredential
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
+import kotlin.time.Duration.Companion.milliseconds
 
 object BackupRepository {
 
@@ -147,6 +151,54 @@ object BackupRepository {
     }
 
     Log.d(TAG, "import() ${eventTimer.stop().summary}")
+  }
+
+  /**
+   * A simple test method that just hits various network endpoints. Only useful for the playground.
+   */
+  fun testNetworkInteractions() {
+    val api = ApplicationDependencies.getSignalServiceAccountManager().archiveApi
+    val backupKey = SignalStore.svr().getOrCreateMasterKey().deriveBackupKey()
+
+    // Just running some sample requests
+    api
+      .triggerBackupIdReservation(backupKey)
+      .then { getAuthCredential() }
+      .then { credential ->
+        api.setPublicKey(backupKey, credential)
+          .also { Log.i(TAG, "PublicKeyResult: $it") }
+          .map { credential }
+      }
+      .then { credential ->
+        api.getBackupInfo(backupKey, credential)
+          .also { Log.i(TAG, "BackupInfoResult: $it") }
+          .map { credential }
+      }
+      .then { credential ->
+        api.getMessageBackupUploadForm(backupKey, credential)
+          .also { Log.i(TAG, "UploadFormResult: $it") }
+      }.also { Log.i(TAG, "OverallResponse: $it") }
+  }
+
+  /**
+   * Retrieves an auth credential, preferring a cached value if available.
+   */
+  private fun getAuthCredential(): NetworkResult<ArchiveServiceCredential> {
+    val currentTime = System.currentTimeMillis()
+
+    val credential = SignalStore.backup().credentialsByDay.getForCurrentTime(currentTime.milliseconds)
+
+    if (credential != null) {
+      return NetworkResult.Success(credential)
+    }
+
+    Log.w(TAG, "No credentials found for today, need to fetch new ones! This shouldn't happen under normal circumstances. We should ensure the routine fetch is running properly.")
+
+    return ApplicationDependencies.getSignalServiceAccountManager().archiveApi.getServiceCredentials(currentTime).map { result ->
+      SignalStore.backup().addCredentials(result.credentials.toList())
+      SignalStore.backup().clearCredentialsOlderThan(currentTime)
+      SignalStore.backup().credentialsByDay.getForCurrentTime(currentTime.milliseconds)!!
+    }
   }
 
   data class SelfData(

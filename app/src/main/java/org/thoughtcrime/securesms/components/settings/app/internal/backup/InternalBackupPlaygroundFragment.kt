@@ -97,7 +97,8 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
         }
 
         exportFileLauncher.launch(intent)
-      }
+      },
+      onTestNetworkClicked = { viewModel.testNetworkInteractions() }
     )
   }
 
@@ -113,7 +114,8 @@ fun Screen(
   onImportMemoryClicked: () -> Unit = {},
   onImportFileClicked: () -> Unit = {},
   onPlaintextClicked: () -> Unit = {},
-  onSaveToDiskClicked: () -> Unit = {}
+  onSaveToDiskClicked: () -> Unit = {},
+  onTestNetworkClicked: () -> Unit = {}
 ) {
   Surface {
     Column(
@@ -141,6 +143,12 @@ fun Screen(
         enabled = !state.backupState.inProgress
       ) {
         Text("Export")
+      }
+      Buttons.LargePrimary(
+        onClick = onTestNetworkClicked,
+        enabled = state.backupState == BackupState.EXPORT_DONE
+      ) {
+        Text("Test network")
       }
       Buttons.LargeTonal(
         onClick = onImportMemoryClicked,

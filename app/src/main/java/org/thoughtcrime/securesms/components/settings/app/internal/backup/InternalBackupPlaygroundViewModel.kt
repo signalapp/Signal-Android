@@ -80,6 +80,13 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
     _state.value = _state.value.copy(plaintext = !_state.value.plaintext)
   }
 
+  fun testNetworkInteractions() {
+    disposables += Single
+      .fromCallable { BackupRepository.testNetworkInteractions() }
+      .subscribeOn(Schedulers.io())
+      .subscribe()
+  }
+
   override fun onCleared() {
     disposables.clear()
   }
