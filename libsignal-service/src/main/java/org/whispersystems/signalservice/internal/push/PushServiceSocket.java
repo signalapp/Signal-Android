@@ -1510,6 +1510,7 @@ public class PushServiceSocket {
             listener.onAttachmentProgress(body.contentLength() + offset, totalRead);
             if (listener.shouldCancel()) {
               call.cancel();
+              throw new PushNetworkException("Canceled by listener check.");
             }
           }
         }

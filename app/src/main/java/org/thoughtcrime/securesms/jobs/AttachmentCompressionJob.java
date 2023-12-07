@@ -277,7 +277,10 @@ public final class AttachmentCompressionJob extends BaseJob {
               }
 
               attachmentDatabase.markAttachmentAsTransformed(attachment.getAttachmentId(), true);
-
+              eventBus.postSticky(new PartProgressEvent(attachment,
+                                                        PartProgressEvent.Type.COMPRESSION,
+                                                        100,
+                                                        100));
               return Objects.requireNonNull(attachmentDatabase.getAttachment(attachment.getAttachmentId()));
             } else {
               Log.i(TAG, "Transcode was not required (in-memory transcoder)");

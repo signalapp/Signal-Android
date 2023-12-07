@@ -32,10 +32,10 @@ class TransferProgressView @JvmOverloads constructor(
 ) : View(context, attrs, defStyleAttr, defStyleRes) {
   companion object {
     const val TAG = "TransferProgressView"
-    private const val PROGRESS_ARC_STROKE_WIDTH_DP = 1.5f
+    private const val PROGRESS_ARC_STROKE_WIDTH_DP = 2f
     private const val ICON_SIZE_DP = 24f
     private const val STOP_CORNER_RADIUS_DP = 4f
-    private const val PROGRESS_BAR_INSET_DP = 3
+    private const val PROGRESS_BAR_INSET_DP = 2
   }
 
   private val iconColor: Int

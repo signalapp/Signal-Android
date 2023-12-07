@@ -78,6 +78,12 @@ public class AlbumThumbnailView extends FrameLayout {
               downloadClickListener.onClick(v, slides);
             }
           });
+      transferControlsStub.get().setCancelClickListener(
+          v -> {
+            if (cancelDownloadClickListener != null) {
+              cancelDownloadClickListener.onClick(v, slides);
+            }
+          });
       transferControlsStub.get().setSlides(slides);
     } else {
       if (transferControlsStub.resolved()) {

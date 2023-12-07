@@ -26,8 +26,10 @@ import org.thoughtcrime.securesms.events.PartProgressEvent
 import org.thoughtcrime.securesms.mms.Slide
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.ViewUtil
+import org.thoughtcrime.securesms.util.concurrent.ListenableFuture
 import org.thoughtcrime.securesms.util.visible
 import java.util.UUID
+import java.util.concurrent.ExecutionException
 
 class TransferControlView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : ConstraintLayout(context, attrs, defStyleAttr) {
   private val uuid = UUID.randomUUID().toString()
@@ -65,6 +67,11 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
   private fun applyState(currentState: TransferControlViewState) {
     val mode = deriveMode(currentState)
     verboseLog("New state applying, mode = $mode")
+
+    children.forEach {
+      it.clearAnimation()
+    }
+
     when (mode) {
       Mode.PENDING_GALLERY -> displayPendingGallery(currentState)
       Mode.PENDING_GALLERY_CONTAINS_PLAYABLE -> displayPendingGalleryWithPlayable(currentState)
@@ -223,9 +230,9 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
     binding.primaryBackground.setOnClickListener(currentState.downloadClickedListener)
 
     binding.primaryDetailsText.translationX = if (ViewUtil.isLtr(this)) {
-      ViewUtil.dpToPx(-8).toFloat()
+      ViewUtil.dpToPx(-PRIMARY_TEXT_OFFSET_DP).toFloat()
     } else {
-      ViewUtil.dpToPx(8).toFloat()
+      ViewUtil.dpToPx(PRIMARY_TEXT_OFFSET_DP).toFloat()
     }
     val remainingSlides = currentState.slides.filterNot { it.transferState == AttachmentTable.TRANSFER_PROGRESS_DONE }
     val downloadCount = remainingSlides.size
@@ -250,7 +257,11 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
     )
 
     binding.secondaryProgressView.setStopped(false)
-
+    binding.secondaryDetailsText.translationX = if (ViewUtil.isLtr(this)) {
+      ViewUtil.dpToPx(-SECONDARY_TEXT_OFFSET_DP).toFloat()
+    } else {
+      ViewUtil.dpToPx(SECONDARY_TEXT_OFFSET_DP).toFloat()
+    }
     val byteCount = currentState.slides.sumOf { it.asAttachment().size }
     binding.secondaryDetailsText.text = Formatter.formatShortFileSize(context, byteCount)
   }
@@ -266,6 +277,11 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
       secondaryDetailsText = currentState.showSecondaryText
     )
     val byteCount = currentState.slides.sumOf { it.asAttachment().size }
+    binding.secondaryDetailsText.translationX = if (ViewUtil.isLtr(this)) {
+      ViewUtil.dpToPx(-SECONDARY_TEXT_OFFSET_DP).toFloat()
+    } else {
+      ViewUtil.dpToPx(SECONDARY_TEXT_OFFSET_DP).toFloat()
+    }
     binding.secondaryDetailsText.text = Formatter.formatShortFileSize(context, byteCount)
   }
 
@@ -280,6 +296,11 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
       secondaryDetailsText = currentState.showSecondaryText,
       secondaryProgressView = currentState.showSecondaryText
     )
+    binding.secondaryDetailsText.translationX = if (ViewUtil.isLtr(this)) {
+      ViewUtil.dpToPx(-SECONDARY_TEXT_OFFSET_DP).toFloat()
+    } else {
+      ViewUtil.dpToPx(SECONDARY_TEXT_OFFSET_DP).toFloat()
+    }
     val byteCount = currentState.slides.sumOf { it.asAttachment().size }
     binding.secondaryDetailsText.text = Formatter.formatShortFileSize(context, byteCount)
   }
@@ -300,7 +321,7 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
       binding.secondaryProgressView.cancelClickListener = currentState.cancelDownloadClickedListener
       binding.secondaryProgressView.setDownloading(progress)
     }
-
+    binding.secondaryDetailsText.translationX = 0f
     binding.secondaryDetailsText.text = deriveSecondaryDetailsText(currentState)
   }
 
@@ -320,7 +341,7 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
     } else {
       binding.primaryProgressView.setDownloading(progress)
     }
-
+    binding.secondaryDetailsText.translationX = 0f
     binding.secondaryDetailsText.text = deriveSecondaryDetailsText(currentState)
   }
 
@@ -341,6 +362,7 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
     } else {
       binding.secondaryProgressView.setDownloading(progress)
     }
+    binding.secondaryDetailsText.translationX = 0f
     binding.secondaryDetailsText.text = deriveSecondaryDetailsText(currentState)
   }
 
@@ -357,6 +379,7 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
     val progress = calculateProgress(currentState)
     binding.secondaryProgressView.setUploading(progress)
 
+    binding.secondaryDetailsText.translationX = 0f
     binding.secondaryDetailsText.text = deriveSecondaryDetailsText(currentState)
   }
 
@@ -376,6 +399,7 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
     val progress = calculateProgress(currentState)
     binding.secondaryProgressView.setUploading(progress)
 
+    binding.secondaryDetailsText.translationX = 0f
     binding.secondaryDetailsText.text = deriveSecondaryDetailsText(currentState)
   }
 
@@ -396,7 +420,11 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
       primaryDetailsText = false,
       secondaryDetailsText = currentState.showSecondaryText
     )
-
+    binding.secondaryDetailsText.translationX = if (ViewUtil.isLtr(this)) {
+      ViewUtil.dpToPx(-RETRY_SECONDARY_TEXT_OFFSET_DP).toFloat()
+    } else {
+      ViewUtil.dpToPx(RETRY_SECONDARY_TEXT_OFFSET_DP).toFloat()
+    }
     binding.secondaryBackground.setOnClickListener(currentState.downloadClickedListener)
     binding.secondaryDetailsText.setOnClickListener(currentState.downloadClickedListener)
     binding.secondaryProgressView.setStopped(isUploading)
@@ -405,7 +433,9 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
 
   private fun displayChildrenAsGone() {
     children.forEach {
-      it.visible = false
+      if (it.visible && it.animation == null) {
+        ViewUtil.fadeOut(it, 250).addListener(AnimationCleanup(it))
+      }
     }
   }
 
@@ -435,7 +465,11 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
     binding.secondaryProgressView.visible = secondaryProgressView
     binding.secondaryDetailsText.visible = secondaryDetailsText
     binding.secondaryBackground.visible = secondaryProgressView || secondaryDetailsText
-    val textPadding = if (secondaryProgressView) 0 else context.resources.getDimensionPixelSize(R.dimen.transfer_control_view_progressbar_to_textview_margin)
+    val textPadding = if (secondaryProgressView) {
+      context.resources.getDimensionPixelSize(R.dimen.transfer_control_view_progressbar_to_textview_margin)
+    } else {
+      context.resources.getDimensionPixelSize(R.dimen.transfer_control_view_parent_to_textview_margin)
+    }
     ViewUtil.setPaddingStart(binding.secondaryDetailsText, textPadding)
     if (ViewUtil.isLtr(binding.secondaryDetailsText)) {
       (binding.secondaryDetailsText.layoutParams as MarginLayoutParams).leftMargin = textPadding
@@ -481,12 +515,20 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
 
       if (event.type == PartProgressEvent.Type.COMPRESSION) {
         val mutableMap = it.compressionProgress.toMutableMap()
-        mutableMap[attachment] = Progress.fromEvent(event)
+        val updateEvent = Progress.fromEvent(event)
+        val existingEvent = mutableMap[attachment]
+        if (existingEvent == null || updateEvent.completed > existingEvent.completed) {
+          mutableMap[attachment] = updateEvent
+        }
         verboseLog("onEventAsync compression update")
         return@updateState it.copy(compressionProgress = mutableMap.toMap())
       } else {
         val mutableMap = it.networkProgress.toMutableMap()
-        mutableMap[attachment] = Progress.fromEvent(event)
+        val updateEvent = Progress.fromEvent(event)
+        val existingEvent = mutableMap[attachment]
+        if (existingEvent == null || updateEvent.completed > existingEvent.completed) {
+          mutableMap[attachment] = updateEvent
+        }
         verboseLog("onEventAsync network update")
         return@updateState it.copy(networkProgress = mutableMap.toMap())
       }
@@ -619,7 +661,7 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
     } else {
       val progressText = Formatter.formatShortFileSize(context, currentState.networkProgress.sumCompleted())
       val totalText = Formatter.formatShortFileSize(context, currentState.networkProgress.sumTotal())
-      "$progressText/$totalText"
+      context.resources.getString(R.string.TransferControlView__download_progress, progressText, totalText)
     }
   }
 
@@ -636,6 +678,9 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
     private const val TAG = "TransferControlView"
     private const val VERBOSE_DEVELOPMENT_LOGGING = false
     private const val UPLOAD_TASK_WEIGHT = 1
+    private const val SECONDARY_TEXT_OFFSET_DP = 3
+    private const val RETRY_SECONDARY_TEXT_OFFSET_DP = 6
+    private const val PRIMARY_TEXT_OFFSET_DP = 4
 
     /**
      * A weighting compared to [UPLOAD_TASK_WEIGHT]
@@ -694,5 +739,15 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
     RETRY_DOWNLOADING,
     RETRY_UPLOADING,
     GONE
+  }
+
+  private class AnimationCleanup(val animatedView: View) : ListenableFuture.Listener<Boolean> {
+    override fun onSuccess(result: Boolean?) {
+      animatedView.clearAnimation()
+    }
+
+    override fun onFailure(e: ExecutionException?) {
+      animatedView.clearAnimation()
+    }
   }
 }
