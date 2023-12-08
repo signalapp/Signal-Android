@@ -1759,6 +1759,8 @@
     <string name="WebRtcCallView__toggle_camera">切换相机</string>
     <!-- Toggle content description for toggling mute state  -->
     <string name="WebRtcCallView__toggle_mute">切换静音</string>
+    <!-- Content description for additional actions menu button -->
+    <string name="WebRtcCallView__additional_actions">Additional actions</string>
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">结束呼叫</string>
 
@@ -2277,6 +2279,8 @@
     </plurals>
     <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
     <string name="TransferControlView__processing">正在处理中……</string>
+    <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
+    <string name="TransferControlView__download_progress">%1$s/%2$s</string>
 
 
     <!-- UnauthorizedReminder -->
@@ -2301,6 +2305,8 @@
     <string name="WebRtcCallActivity__answered_on_a_linked_device">已在在其它设备上接听。</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">已在其它设备上拒接。</string>
     <string name="WebRtcCallActivity__busy_on_a_linked_device">在其它设备上忙碌未接。</string>
+    <!-- Tooltip message shown first time user is in a video call after switch camera button moved -->
+    <string name="WebRtcCallActivity__flip_camera_tooltip">Flip Camera has been moved here, tap your video to try it out</string>
 
     <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">有人用变更过的安全码加入了这次通话</string>
 
@@ -5848,7 +5854,7 @@
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
     <string name="IdealTransferDetailsFragment__enter_your_bank">请输入您的银行、名称和电子邮件地址。Stripe 将使用此电子邮件地址给您发送关于您的捐款的最新信息。%1$s</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
-    <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">Enter your bank details. Signal does not collect or store your personal information. %1$s</string>
+    <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">请输入您的银行信息。Signal 不会收集或储存您的个人信息。%1$s</string>
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
     <string name="IdealTransferDetailsFragment__learn_more">了解详情</string>
     <!-- Hint label for text entry box for name on bank account -->

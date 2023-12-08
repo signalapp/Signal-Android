@@ -1759,6 +1759,8 @@
     <string name="WebRtcCallView__toggle_camera">Togol kamera</string>
     <!-- Toggle content description for toggling mute state  -->
     <string name="WebRtcCallView__toggle_mute">Togol redam</string>
+    <!-- Content description for additional actions menu button -->
+    <string name="WebRtcCallView__additional_actions">Additional actions</string>
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">Tamatkan panggilan</string>
 
@@ -2277,6 +2279,8 @@
     </plurals>
     <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
     <string name="TransferControlView__processing">Memproses…</string>
+    <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
+    <string name="TransferControlView__download_progress">%1$s/%2$s</string>
 
 
     <!-- UnauthorizedReminder -->
@@ -2301,6 +2305,8 @@
     <string name="WebRtcCallActivity__answered_on_a_linked_device">Dijawab pada peranti yang dipautkan.</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">Ditolak pada peranti yang dipautkan.</string>
     <string name="WebRtcCallActivity__busy_on_a_linked_device">Sibuk pada peranti yang dipautkan.</string>
+    <!-- Tooltip message shown first time user is in a video call after switch camera button moved -->
+    <string name="WebRtcCallActivity__flip_camera_tooltip">Flip Camera has been moved here, tap your video to try it out</string>
 
     <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Seseorang telah menyertai panggilan ini dengan nombor keselamatan yang telah berubah.</string>
 
@@ -5848,7 +5854,7 @@
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
     <string name="IdealTransferDetailsFragment__enter_your_bank">Masukkan bank, nama dan e-mel anda. Stripe menggunakan e-mel ini untuk menghantar kemas kini tentang derma anda. %1$s</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
-    <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">Enter your bank details. Signal does not collect or store your personal information. %1$s</string>
+    <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">Masukkan butiran bank anda. Signal tidak mengumpul atau menyimpan maklumat peribadi anda. %1$s</string>
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
     <string name="IdealTransferDetailsFragment__learn_more">Ketahui lebih lanjut</string>
     <!-- Hint label for text entry box for name on bank account -->
