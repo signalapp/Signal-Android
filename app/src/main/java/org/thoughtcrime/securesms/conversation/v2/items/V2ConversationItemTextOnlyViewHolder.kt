@@ -136,10 +136,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
         )
     }
 
-    binding.root.setOnClickListener {
-      conversationContext.clickListener.onItemClick(getMultiselectPartForLatestTouch())
-    }
-
+    binding.root.setOnClickListener { onBubbleClicked() }
     binding.root.setOnLongClickListener {
       conversationContext.clickListener.onItemLongClick(binding.root, getMultiselectPartForLatestTouch())
 
@@ -707,6 +704,28 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
       record.hasReadReceipt() -> deliveryStatus.setRead()
       record.isDelivered -> deliveryStatus.setDelivered()
       else -> deliveryStatus.setSent()
+    }
+  }
+
+  private fun onBubbleClicked() {
+    val messageRecord = conversationMessage.messageRecord
+
+    when {
+      conversationContext.selectedItems.isNotEmpty() -> {
+        conversationContext.clickListener.onItemClick(getMultiselectPartForLatestTouch())
+      }
+      messageRecord.isFailed -> {
+        conversationContext.clickListener.onMessageWithErrorClicked(messageRecord)
+      }
+      messageRecord.isRateLimited && SignalStore.rateLimit().needsRecaptcha() -> {
+        conversationContext.clickListener.onMessageWithRecaptchaNeededClicked(messageRecord)
+      }
+      messageRecord.isOutgoing && messageRecord.isIdentityMismatchFailure -> {
+        conversationContext.clickListener.onIncomingIdentityMismatchClicked(messageRecord.fromRecipient.id)
+      }
+      else -> {
+        conversationContext.clickListener.onItemClick(getMultiselectPartForLatestTouch())
+      }
     }
   }
 
