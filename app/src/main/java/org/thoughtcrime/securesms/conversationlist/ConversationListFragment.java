@@ -601,7 +601,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   @Override
   public void onConfigurationChanged(@NonNull Configuration newConfig) {
     super.onConfigurationChanged(newConfig);
-    onMegaphoneChanged(viewModel.getMegaphone());
+    viewModel.onConfigurationChanged();
   }
 
   private ContactSearchConfiguration mapSearchStateToConfiguration(@NonNull ContactSearchState state) {

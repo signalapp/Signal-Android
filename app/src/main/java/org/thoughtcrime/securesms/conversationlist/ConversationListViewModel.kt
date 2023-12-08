@@ -202,6 +202,12 @@ class ConversationListViewModel(
     }
   }
 
+  fun onConfigurationChanged() {
+    megaphoneRepository.getNextMegaphone { next ->
+      store.update { it.copy(megaphone = next ?: Megaphone.NONE) }
+    }
+  }
+
   private data class ConversationListState(
     val conversations: List<Conversation> = emptyList(),
     val megaphone: Megaphone = Megaphone.NONE,
