@@ -2387,6 +2387,8 @@
     <string name="WebRtcCallActivity__answered_on_a_linked_device">Answered on a linked device.</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">Declined on a linked device.</string>
     <string name="WebRtcCallActivity__busy_on_a_linked_device">Busy on a linked device.</string>
+    <!-- Tooltip message shown first time user is in a video call after switch camera button moved -->
+    <string name="WebRtcCallActivity__flip_camera_tooltip">Flip Camera has been moved here, tap your video to try it out</string>
 
     <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Someone has joined this call with a safety number that has changed.</string>
 

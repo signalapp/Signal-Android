@@ -148,6 +148,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
   private FullscreenHelper                 fullscreenHelper;
   private WebRtcCallView                   callScreen;
   private TooltipPopup                     videoTooltip;
+  private TooltipPopup                     switchCameraTooltip;
   private WebRtcCallViewModel              viewModel;
   private boolean                          enableVideoIfAvailable;
   private boolean                          hasWarnedAboutBluetooth;
@@ -549,6 +550,20 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
       }
     } else if (event instanceof WebRtcCallViewModel.Event.ShowWifiToCellularPopup) {
       wifiToCellularPopupWindow.show();
+    } else if (event instanceof WebRtcCallViewModel.Event.ShowSwitchCameraTooltip) {
+      if (switchCameraTooltip == null) {
+        switchCameraTooltip = TooltipPopup.forTarget(callScreen.getSwitchCameraTooltipTarget())
+                                          .setBackgroundTint(ContextCompat.getColor(this, R.color.core_ultramarine))
+                                          .setTextColor(ContextCompat.getColor(this, R.color.core_white))
+                                          .setText(R.string.WebRtcCallActivity__flip_camera_tooltip)
+                                          .setOnDismissListener(() -> viewModel.onDismissedSwitchCameraTooltip())
+                                          .show(TooltipPopup.POSITION_ABOVE);
+      }
+    } else if (event instanceof WebRtcCallViewModel.Event.DismissSwitchCameraTooltip) {
+      if (switchCameraTooltip != null) {
+        switchCameraTooltip.dismiss();
+        switchCameraTooltip = null;
+      }
     } else {
       throw new IllegalArgumentException("Unknown event: " + event);
     }

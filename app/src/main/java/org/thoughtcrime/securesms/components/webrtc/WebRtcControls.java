@@ -157,7 +157,7 @@ public final class WebRtcControls {
   }
 
   public boolean displayOverflow() {
-    return FeatureFlags.groupCallReactions() && isAtLeastOutgoing();
+    return FeatureFlags.groupCallReactions() && isAtLeastOutgoing() && hasAtLeastOneRemote && isGroupCall();
   }
 
   public boolean displayMuteAudio() {
@@ -173,7 +173,7 @@ public final class WebRtcControls {
   }
 
   public boolean displayCameraToggle() {
-    return (isPreJoin() || isAtLeastOutgoing()) && isLocalVideoEnabled && isMoreThanOneCameraAvailable;
+    return (isPreJoin() || (isAtLeastOutgoing() && !hasAtLeastOneRemote)) && isLocalVideoEnabled && isMoreThanOneCameraAvailable;
   }
 
   public boolean displayRemoteVideoRecycler() {

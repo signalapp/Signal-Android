@@ -81,17 +81,18 @@ public class WebRtcCallViewModel extends ViewModel {
   private final Runnable elapsedTimeRunnable     = this::handleTick;
   private final Runnable stopOutgoingRingingMode = this::stopOutgoingRingingMode;
 
-  private boolean               canDisplayTooltipIfNeeded = true;
-  private boolean               canDisplayPopupIfNeeded   = true;
-  private boolean               hasEnabledLocalVideo      = false;
-  private boolean               wasInOutgoingRingingMode  = false;
-  private long                  callConnectedTime         = -1;
-  private boolean               answerWithVideoAvailable  = false;
-  private boolean               canEnterPipMode           = false;
-  private List<CallParticipant> previousParticipantsList  = Collections.emptyList();
-  private boolean               callStarting              = false;
-  private boolean               switchOnFirstScreenShare  = true;
-  private boolean               showScreenShareTip        = true;
+  private boolean               canDisplayTooltipIfNeeded             = true;
+  private boolean               canDisplaySwitchCameraTooltipIfNeeded = true;
+  private boolean               canDisplayPopupIfNeeded               = true;
+  private boolean               hasEnabledLocalVideo                  = false;
+  private boolean               wasInOutgoingRingingMode              = false;
+  private long                  callConnectedTime                     = -1;
+  private boolean               answerWithVideoAvailable              = false;
+  private boolean               canEnterPipMode                       = false;
+  private List<CallParticipant> previousParticipantsList              = Collections.emptyList();
+  private boolean               callStarting                          = false;
+  private boolean               switchOnFirstScreenShare              = true;
+  private boolean               showScreenShareTip                    = true;
 
   private final WebRtcCallRepository repository = new WebRtcCallRepository(ApplicationDependencies.getApplication());
 
@@ -261,6 +262,11 @@ public class WebRtcCallViewModel extends ViewModel {
     canDisplayTooltipIfNeeded = false;
   }
 
+  public void onDismissedSwitchCameraTooltip() {
+    canDisplaySwitchCameraTooltipIfNeeded = false;
+    SignalStore.tooltips().markCallingSwitchCameraTooltipSeen();
+  }
+
   @MainThread
   public void updateFromWebRtcViewModel(@NonNull WebRtcViewModel webRtcViewModel, boolean enableVideo) {
     canEnterPipMode = !webRtcViewModel.getState().isPreJoinOrNetworkUnavailable();
@@ -341,6 +347,16 @@ public class WebRtcCallViewModel extends ViewModel {
       events.setValue(new Event.ShowWifiToCellularPopup());
     } else if (!webRtcViewModel.isCellularConnection()) {
       canDisplayPopupIfNeeded = true;
+    }
+
+    if (SignalStore.tooltips().showCallingSwitchCameraTooltip() &&
+        canDisplaySwitchCameraTooltipIfNeeded &&
+        hasEnabledLocalVideo &&
+        webRtcViewModel.getState() == WebRtcViewModel.State.CALL_CONNECTED &&
+        !newState.getAllRemoteParticipants().isEmpty()
+    ) {
+      canDisplaySwitchCameraTooltipIfNeeded = false;
+      events.setValue(new Event.ShowSwitchCameraTooltip());
     }
   }
 
@@ -535,6 +551,12 @@ public class WebRtcCallViewModel extends ViewModel {
     }
 
     public static class ShowWifiToCellularPopup extends Event {
+    }
+
+    public static class ShowSwitchCameraTooltip extends Event {
+    }
+
+    public static class DismissSwitchCameraTooltip extends Event {
     }
 
     public static class StartCall extends Event {

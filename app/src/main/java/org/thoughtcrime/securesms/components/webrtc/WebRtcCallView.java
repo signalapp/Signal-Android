@@ -278,6 +278,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     });
 
     cameraDirectionToggle.setOnClickListener(v -> runIfNonNull(controlsListener, ControlsListener::onCameraDirectionChanged));
+    smallLocalRender.findViewById(R.id.call_participant_switch_camera).setOnClickListener(v -> runIfNonNull(controlsListener, ControlsListener::onCameraDirectionChanged));
 
     overflow.setOnClickListener(v -> {
       runIfNonNull(controlsListener, ControlsListener::onOverflowClicked);
@@ -792,6 +793,10 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
 
   public @NonNull View getVideoTooltipTarget() {
     return videoToggle;
+  }
+
+  public @NonNull View getSwitchCameraTooltipTarget() {
+    return smallLocalRenderFrame;
   }
 
   public void showSpeakerViewHint() {

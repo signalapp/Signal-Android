@@ -74,6 +74,8 @@ public class CallParticipantView extends ConstraintLayout {
   private EmojiTextView       infoMessage;
   private Button              infoMoreInfo;
   private AppCompatImageView  infoIcon;
+  private View                switchCameraIconFrame;
+  private View                switchCameraIcon;
 
   public CallParticipantView(@NonNull Context context) {
     super(context);
@@ -92,18 +94,20 @@ public class CallParticipantView extends ConstraintLayout {
   protected void onFinishInflate() {
     super.onFinishInflate();
 
-    backgroundAvatar = findViewById(R.id.call_participant_background_avatar);
-    avatar           = findViewById(R.id.call_participant_item_avatar);
-    pipAvatar        = findViewById(R.id.call_participant_item_pip_avatar);
-    rendererFrame    = findViewById(R.id.call_participant_renderer_frame);
-    renderer         = findViewById(R.id.call_participant_renderer);
-    audioIndicator   = findViewById(R.id.call_participant_audio_indicator);
-    infoOverlay      = findViewById(R.id.call_participant_info_overlay);
-    infoIcon         = findViewById(R.id.call_participant_info_icon);
-    infoMessage      = findViewById(R.id.call_participant_info_message);
-    infoMoreInfo     = findViewById(R.id.call_participant_info_more_info);
-    badge            = findViewById(R.id.call_participant_item_badge);
-    pipBadge         = findViewById(R.id.call_participant_item_pip_badge);
+    backgroundAvatar      = findViewById(R.id.call_participant_background_avatar);
+    avatar                = findViewById(R.id.call_participant_item_avatar);
+    pipAvatar             = findViewById(R.id.call_participant_item_pip_avatar);
+    rendererFrame         = findViewById(R.id.call_participant_renderer_frame);
+    renderer              = findViewById(R.id.call_participant_renderer);
+    audioIndicator        = findViewById(R.id.call_participant_audio_indicator);
+    infoOverlay           = findViewById(R.id.call_participant_info_overlay);
+    infoIcon              = findViewById(R.id.call_participant_info_icon);
+    infoMessage           = findViewById(R.id.call_participant_info_message);
+    infoMoreInfo          = findViewById(R.id.call_participant_info_more_info);
+    badge                 = findViewById(R.id.call_participant_item_badge);
+    pipBadge              = findViewById(R.id.call_participant_item_pip_badge);
+    switchCameraIconFrame = findViewById(R.id.call_participant_switch_camera);
+    switchCameraIcon      = findViewById(R.id.call_participant_switch_camera_icon);
 
     avatar.setFallbackPhotoProvider(FALLBACK_PHOTO_PROVIDER);
     useLargeAvatar();
@@ -249,6 +253,27 @@ public class CallParticipantView extends ConstraintLayout {
             ConstraintSet.BOTTOM,
             ViewUtil.dpToPx(6)
         );
+
+        constraints.setVisibility(R.id.call_participant_switch_camera, View.VISIBLE);
+        constraints.setMargin(
+            R.id.call_participant_switch_camera,
+            ConstraintSet.END,
+            ViewUtil.dpToPx(6)
+        );
+        constraints.setMargin(
+            R.id.call_participant_switch_camera,
+            ConstraintSet.BOTTOM,
+            ViewUtil.dpToPx(6)
+        );
+        constraints.constrainWidth(R.id.call_participant_switch_camera, ViewUtil.dpToPx(28));
+        constraints.constrainHeight(R.id.call_participant_switch_camera, ViewUtil.dpToPx(28));
+
+        ViewGroup.LayoutParams params = switchCameraIcon.getLayoutParams();
+        params.width = params.height = ViewUtil.dpToPx(16);
+        switchCameraIcon.setLayoutParams(params);
+
+        switchCameraIconFrame.setClickable(false);
+        switchCameraIconFrame.setEnabled(false);
       }
       case EXPANDED_SELF_PIP -> {
         constraints.connect(
@@ -267,6 +292,27 @@ public class CallParticipantView extends ConstraintLayout {
             ConstraintSet.BOTTOM,
             ViewUtil.dpToPx(8)
         );
+
+        constraints.setVisibility(R.id.call_participant_switch_camera, View.VISIBLE);
+        constraints.setMargin(
+            R.id.call_participant_switch_camera,
+            ConstraintSet.END,
+            ViewUtil.dpToPx(8)
+        );
+        constraints.setMargin(
+            R.id.call_participant_switch_camera,
+            ConstraintSet.BOTTOM,
+            ViewUtil.dpToPx(8)
+        );
+        constraints.constrainWidth(R.id.call_participant_switch_camera, ViewUtil.dpToPx(48));
+        constraints.constrainHeight(R.id.call_participant_switch_camera, ViewUtil.dpToPx(48));
+
+        ViewGroup.LayoutParams params = switchCameraIcon.getLayoutParams();
+        params.width = params.height = ViewUtil.dpToPx(24);
+        switchCameraIcon.setLayoutParams(params);
+
+        switchCameraIconFrame.setClickable(true);
+        switchCameraIconFrame.setEnabled(true);
       }
       case MINI_SELF_PIP -> {
         constraints.connect(
@@ -288,6 +334,7 @@ public class CallParticipantView extends ConstraintLayout {
             ConstraintSet.BOTTOM,
             ViewUtil.dpToPx(6)
         );
+        constraints.setVisibility(R.id.call_participant_switch_camera, View.GONE);
       }
     }
 
