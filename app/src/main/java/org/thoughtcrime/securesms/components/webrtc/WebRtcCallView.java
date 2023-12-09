@@ -24,6 +24,7 @@ import androidx.annotation.RequiresApi;
 import androidx.annotation.StringRes;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
+import androidx.compose.ui.platform.ComposeView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.constraintlayout.widget.Guideline;
@@ -124,6 +125,8 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
   private RecyclerView                  groupReactionsFeed;
   private MultiReactionBurstLayout      reactionViews;
   private Guideline                     aboveControlsGuideline;
+  private ComposeView                   raiseHandSnackbar;
+
 
 
   private WebRtcCallParticipantsPagerAdapter    pagerAdapter;
@@ -202,6 +205,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     groupReactionsFeed            = findViewById(R.id.call_screen_reactions_feed);
     reactionViews                 = findViewById(R.id.call_screen_reactions_container);
     aboveControlsGuideline        = findViewById(R.id.call_screen_above_controls_guideline);
+    raiseHandSnackbar             = findViewById(R.id.call_screen_raise_hand_view);
 
     View decline      = findViewById(R.id.call_screen_decline_call);
     View answerLabel  = findViewById(R.id.call_screen_answer_call_label);
@@ -728,6 +732,10 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
       visibleViewSet.add(groupReactionsFeed);
     }
 
+    if (webRtcControls.displayRaiseHand()) {
+      visibleViewSet.add(raiseHandSnackbar);
+    }
+
     boolean forceUpdate = webRtcControls.adjustForFold() && !controls.adjustForFold();
     controls = webRtcControls;
 
@@ -829,6 +837,12 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
                           ViewUtil.dpToPx(layoutPositions.participantBottomMargin));
 
     constraintSet.connect(R.id.call_screen_reactions_feed,
+                          ConstraintSet.BOTTOM,
+                          layoutPositions.reactionBottomViewId,
+                          ConstraintSet.TOP,
+                          ViewUtil.dpToPx(layoutPositions.reactionBottomMargin));
+
+    constraintSet.connect(R.id.call_screen_raise_hand_view,
                           ConstraintSet.BOTTOM,
                           layoutPositions.reactionBottomViewId,
                           ConstraintSet.TOP,

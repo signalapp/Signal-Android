@@ -23,6 +23,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -48,7 +49,9 @@ import org.signal.core.ui.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.AvatarImageView
 import org.thoughtcrime.securesms.components.webrtc.WebRtcCallViewModel
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.events.CallParticipant
+import org.thoughtcrime.securesms.events.GroupCallRaiseHandEvent
 import org.thoughtcrime.securesms.events.WebRtcViewModel
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -72,7 +75,8 @@ object CallInfoView {
           remoteParticipants = state.allRemoteParticipants.sortedBy { it.callParticipantId.recipientId },
           localParticipant = state.localParticipant,
           groupMembers = state.groupMembers.filterNot { it.member.isSelf },
-          callRecipient = state.recipient
+          callRecipient = state.recipient,
+          raisedHands = state.raisedHands
         )
       }
       .subscribeAsState(ParticipantsState())
@@ -94,8 +98,9 @@ object CallInfoView {
 private fun CallInfoPreview() {
   SignalTheme(isDarkMode = true) {
     Surface {
+      val remoteParticipants = listOf(CallParticipant(recipient = Recipient.UNKNOWN))
       CallInfo(
-        participantsState = ParticipantsState(remoteParticipants = listOf(CallParticipant(recipient = Recipient.UNKNOWN))),
+        participantsState = ParticipantsState(remoteParticipants = remoteParticipants, raisedHands = remoteParticipants.map { GroupCallRaiseHandEvent(it.recipient, System.currentTimeMillis()) }),
         controlAndInfoState = ControlAndInfoState()
       )
     }
@@ -125,6 +130,31 @@ private fun CallInfo(
         style = MaterialTheme.typography.titleLarge,
         modifier = Modifier.padding(bottom = 24.dp)
       )
+    }
+
+    if (participantsState.raisedHands.isNotEmpty()) {
+      item {
+        Box(
+          modifier = Modifier
+            .padding(horizontal = 24.dp)
+            .defaultMinSize(minHeight = 52.dp)
+            .fillMaxWidth(),
+          contentAlignment = Alignment.CenterStart
+        ) {
+          Text(
+            text = pluralStringResource(id = R.plurals.CallParticipantsListDialog__raised_hands, count = participantsState.raisedHands.size, participantsState.raisedHands.size),
+            style = MaterialTheme.typography.titleSmall
+          )
+        }
+      }
+
+      items(
+        items = participantsState.raisedHands,
+        key = { it.sender.id },
+        contentType = { null }
+      ) {
+        HandRaisedRow(recipient = it.sender)
+      }
     }
 
     item {
@@ -173,6 +203,8 @@ private fun CallInfo(
           showIcons = false,
           isVideoEnabled = false,
           isMicrophoneEnabled = false,
+          showHandRaised = false,
+          canLowerHand = false,
           isSelfAdmin = false,
           onBlockClicked = {}
         )
@@ -214,6 +246,16 @@ private fun CallParticipantRowPreview() {
   }
 }
 
+@Preview
+@Composable
+private fun HandRaisedRowPreview() {
+  SignalTheme(isDarkMode = true) {
+    Surface {
+      HandRaisedRow(Recipient.UNKNOWN, canLowerHand = true)
+    }
+  }
+}
+
 @Composable
 private fun CallParticipantRow(
   callParticipant: CallParticipant,
@@ -226,8 +268,25 @@ private fun CallParticipantRow(
     showIcons = true,
     isVideoEnabled = callParticipant.isVideoEnabled,
     isMicrophoneEnabled = callParticipant.isMicrophoneEnabled,
+    showHandRaised = false,
+    canLowerHand = false,
     isSelfAdmin = isSelfAdmin,
     onBlockClicked = { onBlockClicked(callParticipant) }
+  )
+}
+
+@Composable
+private fun HandRaisedRow(recipient: Recipient, canLowerHand: Boolean = recipient.isSelf) {
+  CallParticipantRow(
+    initialRecipient = recipient,
+    name = recipient.getShortDisplayName(LocalContext.current),
+    showIcons = true,
+    isVideoEnabled = true,
+    isMicrophoneEnabled = true,
+    showHandRaised = true,
+    canLowerHand = canLowerHand,
+    isSelfAdmin = false,
+    onBlockClicked = {}
   )
 }
 
@@ -238,6 +297,8 @@ private fun CallParticipantRow(
   showIcons: Boolean,
   isVideoEnabled: Boolean,
   isMicrophoneEnabled: Boolean,
+  showHandRaised: Boolean,
+  canLowerHand: Boolean,
   isSelfAdmin: Boolean,
   onBlockClicked: () -> Unit
 ) {
@@ -274,6 +335,25 @@ private fun CallParticipantRow(
         .weight(1f)
         .align(Alignment.CenterVertically)
     )
+
+    if (showIcons && showHandRaised && canLowerHand) {
+      TextButton(onClick = {
+        if (recipient.isSelf) {
+          ApplicationDependencies.getSignalCallManager().raiseHand(false)
+        }
+      }) {
+        Text(text = stringResource(id = R.string.CallOverflowPopupWindow__lower_hand))
+      }
+      Spacer(modifier = Modifier.width(16.dp))
+    }
+
+    if (showIcons && showHandRaised) {
+      Icon(
+        imageVector = ImageVector.vectorResource(id = R.drawable.symbol_raise_hand_24),
+        contentDescription = null,
+        modifier = Modifier.align(Alignment.CenterVertically)
+      )
+    }
 
     if (showIcons && !isVideoEnabled) {
       Icon(
@@ -322,6 +402,8 @@ private fun GroupMemberRow(
     showIcons = false,
     isVideoEnabled = false,
     isMicrophoneEnabled = false,
+    showHandRaised = false,
+    canLowerHand = false,
     isSelfAdmin = isSelfAdmin
   ) {}
 }
@@ -334,7 +416,8 @@ private data class ParticipantsState(
   val remoteParticipants: List<CallParticipant> = emptyList(),
   val localParticipant: CallParticipant? = null,
   val groupMembers: List<GroupMemberEntry.FullMember> = emptyList(),
-  val callRecipient: Recipient = Recipient.UNKNOWN
+  val callRecipient: Recipient = Recipient.UNKNOWN,
+  val raisedHands: List<GroupCallRaiseHandEvent> = emptyList()
 ) {
 
   val participantsForList: List<CallParticipant> = if (includeSelf && localParticipant != null) {

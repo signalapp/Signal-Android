@@ -295,6 +295,10 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
     process((s, p) -> p.handleScreenOffChange(s));
   }
 
+  public void raiseHand(boolean raised) {
+    process((s, p) -> p.handleSelfRaiseHand(s, raised));
+  }
+
   public void react(@NonNull String reaction) {
     processStateless(s -> serviceState.getActionProcessor().handleSendGroupReact(serviceState, s, reaction));
   }
@@ -909,7 +913,9 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
 
   @Override
   public void onRaisedHands(@NonNull GroupCall groupCall, List<Long> raisedHands) {
-    // TODO: Implement handling of raise hand.
+    if (FeatureFlags.groupCallRaiseHand()) {
+      process((s, p) -> p.handleGroupCallRaisedHand(s, raisedHands));
+    }
   }
 
   @Override

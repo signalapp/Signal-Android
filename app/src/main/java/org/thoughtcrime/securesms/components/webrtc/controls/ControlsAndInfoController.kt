@@ -69,6 +69,7 @@ class ControlsAndInfoController(
   private val frame: FrameLayout
   private val behavior: BottomSheetBehavior<View>
   private val callInfoComposeView: ComposeView
+  private val raiseHandComposeView: ComposeView
   private val callControls: ConstraintLayout
   private val bottomSheetVisibilityListeners = mutableSetOf<BottomSheetVisibilityListener>()
   private val scheduleHideControlsRunnable: Runnable = Runnable { onScheduledHide() }
@@ -86,6 +87,7 @@ class ControlsAndInfoController(
     behavior = BottomSheetBehavior.from(frame)
     callInfoComposeView = webRtcCallView.findViewById(R.id.call_info_compose)
     callControls = webRtcCallView.findViewById(R.id.call_controls_constraint_layout)
+    raiseHandComposeView = webRtcCallView.findViewById(R.id.call_screen_raise_hand_view)
 
     callInfoComposeView.apply {
       setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
@@ -97,6 +99,13 @@ class ControlsAndInfoController(
 
     callInfoComposeView.alpha = 0f
     callInfoComposeView.translationY = infoTranslationDistance
+
+    raiseHandComposeView.apply {
+      setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
+      setContent {
+        RaiseHandSnackbar.View(viewModel, showCallInfoListener = ::showCallInfo)
+      }
+    }
 
     frame.background = MaterialShapeDrawable(
       ShapeAppearanceModel.builder()

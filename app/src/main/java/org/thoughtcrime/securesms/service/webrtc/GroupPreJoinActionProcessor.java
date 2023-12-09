@@ -137,6 +137,7 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
                                                                      true,
                                                                      true,
                                                                      true,
+                                                                     currentState.getCallInfoState().getRaisedHands().contains(recipient),
                                                                      0,
                                                                      false,
                                                                      0,

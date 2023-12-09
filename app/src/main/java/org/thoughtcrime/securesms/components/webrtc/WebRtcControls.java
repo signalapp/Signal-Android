@@ -216,6 +216,10 @@ public final class WebRtcControls {
     return !isInPipMode;
   }
 
+  public boolean displayRaiseHand() {
+    return FeatureFlags.groupCallRaiseHand() && !isInPipMode;
+  }
+
   public @NonNull WebRtcAudioOutput getAudioOutput() {
     switch (activeDevice) {
       case SPEAKER_PHONE:

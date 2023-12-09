@@ -21,6 +21,7 @@
         android:orientation="horizontal"
         tools:layout_constraintGuide_end="200dp" />
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/call_screen_participants_parent"
         android:layout_width="0dp"
@@ -395,6 +396,13 @@
             android:layout_height="wrap_content"
             app:barrierDirection="top"
             app:constraint_referenced_ids="call_screen_answer_call,call_screen_decline_call,call_screen_audio_mic_toggle,call_screen_camera_direction_toggle,call_screen_video_toggle,call_screen_answer_without_video,call_screen_speaker_toggle,call_screen_end_call" />
+
+    <androidx.compose.ui.platform.ComposeView
+        android:id="@+id/call_screen_raise_hand_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/call_screen_above_controls_guideline"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <include layout="@layout/webrtc_call_controls"/>
 </merge>

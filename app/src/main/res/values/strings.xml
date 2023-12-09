@@ -1849,6 +1849,34 @@
     <!-- A text description of the earpiece icon, used for accessibility. -->
     <string name="WebRtcAudioOutputBottomSheet__earpiece_icon_content_description">An icon representing a device\'s earpiece.</string>
 
+    <!-- A clickable button to "raise your hand" in a group call to signify you have something to say -->
+    <string name="CallOverflowPopupWindow__raise_hand">Raise hand</string>
+    <!-- A description of a clickable image representing a raised hand -->
+    <string name="CallOverflowPopupWindow__raise_hand_illustration_content_description">Raise hand</string>
+    <!-- A dialog prompt to confirm you want to lower your hand -->
+    <string name="CallOverflowPopupWindow__lower_your_hand">Lower your hand?</string>
+    <!-- A dialog button to confirm you would like to lower your hand -->
+    <string name="CallOverflowPopupWindow__lower_hand">Lower hand</string>
+    <!-- A notification to the user that they successfully raised their hand -->
+    <string name="CallOverflowPopupWindow__you_raised_your_hand">You raised your hand</string>
+    <!-- A button to take you to a list of participants with raised hands -->
+    <string name="CallOverflowPopupWindow__view">View</string>
+
+    <!-- A notification to the user that one or more participants in the call successfully raised their hand. In the singular case, it is a name. In the plural case, it is a name or "You" -->
+    <plurals name="CallOverflowPopupWindow__raised_a_hand">
+        <item quantity="one">%1$s has raised a hand</item>
+        <item quantity="other">%1$s + %2$d have raised a hand</item>
+    </plurals>
+
+    <!-- A badge to show how many hands are raised. The first string may be a name or "You" -->
+    <plurals name="CallRaiseHandSnackbar_raised_hands">
+        <item quantity="one">%1$s</item>
+        <item quantity="other">%1$s +%2$d</item>
+    </plurals>
+
+    <!-- An accessibility label for screen readers on a view that can be expanded -->
+    <string name="CallOverflowPopupWindow__expand_snackbar_accessibility_label">Expand raised hand view</string>
+
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call">
         <item quantity="one">In this call (%1$d)</item>
@@ -1861,6 +1889,10 @@
     <plurals name="CallParticipantsListDialog__signal_will_notify">
         <item quantity="one">Signal will Notify (%1$d)</item>
         <item quantity="other">Signal will Notify (%1$d)</item>
+    </plurals>
+    <plurals name="CallParticipantsListDialog__raised_hands">
+        <item quantity="one">Raised hand (%1$d)</item>
+        <item quantity="other">Raised hands (%1$d)</item>
     </plurals>
 
     <!-- CallParticipantView -->

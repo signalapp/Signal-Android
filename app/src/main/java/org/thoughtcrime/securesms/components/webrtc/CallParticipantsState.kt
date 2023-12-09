@@ -8,6 +8,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.webrtc.WebRtcControls.FoldableState
 import org.thoughtcrime.securesms.events.CallParticipant
 import org.thoughtcrime.securesms.events.CallParticipant.Companion.createLocal
+import org.thoughtcrime.securesms.events.GroupCallRaiseHandEvent
 import org.thoughtcrime.securesms.events.GroupCallReactionEvent
 import org.thoughtcrime.securesms.events.WebRtcViewModel
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry
@@ -26,10 +27,11 @@ data class CallParticipantsState(
   val callState: WebRtcViewModel.State = WebRtcViewModel.State.CALL_DISCONNECTED,
   val groupCallState: WebRtcViewModel.GroupCallState = WebRtcViewModel.GroupCallState.IDLE,
   private val remoteParticipants: ParticipantCollection = ParticipantCollection(SMALL_GROUP_MAX),
-  val localParticipant: CallParticipant = createLocal(CameraState.UNKNOWN, BroadcastVideoSink(), false),
+  val localParticipant: CallParticipant = createLocal(CameraState.UNKNOWN, BroadcastVideoSink(), microphoneEnabled = false, isHandRaised = false),
   val focusedParticipant: CallParticipant = CallParticipant.EMPTY,
   val localRenderState: WebRtcLocalRenderState = WebRtcLocalRenderState.GONE,
   val reactions: List<GroupCallReactionEvent> = emptyList(),
+  val raisedHands: List<GroupCallRaiseHandEvent> = emptyList(),
   val isInPipMode: Boolean = false,
   private val showVideoForOutgoing: Boolean = false,
   val isViewingFocusedParticipant: Boolean = false,
@@ -227,6 +229,7 @@ data class CallParticipantsState(
         localRenderState = localRenderState,
         showVideoForOutgoing = newShowVideoForOutgoing,
         recipient = webRtcViewModel.recipient,
+        raisedHands = webRtcViewModel.raisedHands,
         remoteDevicesCount = webRtcViewModel.remoteDevicesCount,
         ringGroup = webRtcViewModel.ringGroup,
         isInOutgoingRingingMode = isInOutgoingRingingMode,

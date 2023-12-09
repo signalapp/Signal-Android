@@ -16,6 +16,7 @@ data class CallParticipant constructor(
   val isForwardingVideo: Boolean = true,
   val isVideoEnabled: Boolean = false,
   val isMicrophoneEnabled: Boolean = false,
+  val isHandRaised: Boolean = false,
   val lastSpoke: Long = 0,
   val audioLevel: AudioLevel? = null,
   val isMediaKeysReceived: Boolean = true,
@@ -109,7 +110,8 @@ data class CallParticipant constructor(
     fun createLocal(
       cameraState: CameraState,
       renderer: BroadcastVideoSink,
-      microphoneEnabled: Boolean
+      microphoneEnabled: Boolean,
+      isHandRaised: Boolean
     ): CallParticipant {
       return CallParticipant(
         callParticipantId = CallParticipantId(Recipient.self()),
@@ -117,7 +119,8 @@ data class CallParticipant constructor(
         videoSink = renderer,
         cameraState = cameraState,
         isVideoEnabled = cameraState.isEnabled && cameraState.cameraCount > 0,
-        isMicrophoneEnabled = microphoneEnabled
+        isMicrophoneEnabled = microphoneEnabled,
+        isHandRaised = isHandRaised
       )
     }
 
@@ -130,6 +133,7 @@ data class CallParticipant constructor(
       isForwardingVideo: Boolean,
       audioEnabled: Boolean,
       videoEnabled: Boolean,
+      isHandRaised: Boolean,
       lastSpoke: Long,
       mediaKeysReceived: Boolean,
       addedToCallTime: Long,
@@ -144,6 +148,7 @@ data class CallParticipant constructor(
         isForwardingVideo = isForwardingVideo,
         isVideoEnabled = videoEnabled,
         isMicrophoneEnabled = audioEnabled,
+        isHandRaised = isHandRaised,
         lastSpoke = lastSpoke,
         isMediaKeysReceived = mediaKeysReceived,
         addedToCallTime = addedToCallTime,

@@ -116,6 +116,7 @@ public class GroupActionProcessor extends DeviceAwareActionProcessor {
                                                           device.getForwardingVideo() == null || device.getForwardingVideo(),
                                                           Boolean.FALSE.equals(device.getAudioMuted()),
                                                           Boolean.FALSE.equals(device.getVideoMuted()),
+                                                          currentState.getCallInfoState().getRaisedHands().contains(recipient),
                                                           device.getSpeakerTime(),
                                                           device.getMediaKeysReceived(),
                                                           device.getAddedTime(),

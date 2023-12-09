@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink;
 import org.thoughtcrime.securesms.components.webrtc.EglBaseWrapper;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.CallParticipantId;
+import org.thoughtcrime.securesms.events.GroupCallRaiseHandEvent;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -362,6 +363,11 @@ public class WebRtcServiceStateBuilder {
 
     public @NonNull CallInfoStateBuilder setCallLinkDisconnectReason(@Nullable CallLinkDisconnectReason callLinkDisconnectReason) {
       toBuild.setCallLinkDisconnectReason(callLinkDisconnectReason);
+      return this;
+    }
+
+    public @NonNull CallInfoStateBuilder setRaisedHand(@NonNull List<GroupCallRaiseHandEvent> raisedHands) {
+      toBuild.setRaisedHands(raisedHands);
       return this;
     }
   }

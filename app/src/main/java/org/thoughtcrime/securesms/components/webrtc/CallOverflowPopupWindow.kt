@@ -10,7 +10,9 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.PopupWindow
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.widget.PopupWindowCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.WebRtcCallActivity
@@ -22,13 +24,19 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
  */
 class CallOverflowPopupWindow(private val activity: WebRtcCallActivity, parentViewGroup: ViewGroup) : PopupWindow(
   LayoutInflater.from(activity).inflate(R.layout.call_overflow_holder, parentViewGroup, false),
-  activity.resources.getDimension(R.dimen.reaction_scrubber_width).toInt(),
-  ViewGroup.LayoutParams.WRAP_CONTENT
+  activity.resources.getDimension(R.dimen.calling_reaction_popup_menu_width).toInt(),
+  activity.resources.getDimension(R.dimen.calling_reaction_popup_menu_height).toInt()
+
 ) {
 
   init {
-    (contentView as CallReactionScrubber).initialize(activity.supportFragmentManager, activity) {
+    val root = (contentView as LinearLayout)
+    root.findViewById<CallReactionScrubber>(R.id.reaction_scrubber).initialize(activity.supportFragmentManager) {
       ApplicationDependencies.getSignalCallManager().react(it)
+      dismiss()
+    }
+    root.findViewById<ConstraintLayout>(R.id.raise_hand_layout_parent).setOnClickListener {
+      ApplicationDependencies.getSignalCallManager().raiseHand(true)
       dismiss()
     }
   }
@@ -45,7 +53,7 @@ class CallOverflowPopupWindow(private val activity: WebRtcCallActivity, parentVi
     val windowWidth = windowRect.width()
     val popupWidth = resources.getDimension(R.dimen.reaction_scrubber_width).toInt()
 
-    val popupHeight = resources.getDimension(R.dimen.calling_reaction_emoji_height).toInt()
+    val popupHeight = resources.getDimension(R.dimen.calling_reaction_popup_menu_height).toInt()
 
     val xOffset = windowWidth - popupWidth - margin
     val yOffset = -popupHeight - margin
