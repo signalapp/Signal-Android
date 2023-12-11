@@ -14,7 +14,6 @@ import org.signal.ringrtc.GroupCall;
 import org.signal.ringrtc.PeekInfo;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.CallParticipantId;
-import org.thoughtcrime.securesms.events.GroupCallRaiseHandEvent;
 import org.thoughtcrime.securesms.events.GroupCallReactionEvent;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -24,18 +23,13 @@ import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.state.CallInfoState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcEphemeralState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
+import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceStateBuilder;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Set;
 import java.util.UUID;
-import java.util.stream.Collectors;
-
-import ezvcard.util.StringUtils;
 
 /**
  * Process actions for when the call has at least once been connected and joined.
@@ -266,34 +260,38 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
 
   @Override
   protected @NonNull WebRtcServiceState handleGroupCallRaisedHand(@NonNull WebRtcServiceState currentState, List<Long> raisedHands) {
-    Log.i(tag, "handleGroupCallRaisedHand():");
-    List<GroupCallRaiseHandEvent> existingHands = currentState.getCallInfoState().getRaisedHands();
+    Log.i(TAG, "handleGroupCallRaisedHand():");
+    long                                           now          = System.currentTimeMillis();
+    WebRtcServiceStateBuilder.CallInfoStateBuilder builder      = currentState.builder().changeCallInfoState();
+    Long                                           localDemuxId = currentState.getCallInfoState().requireGroupCall().getLocalDeviceState().getDemuxId();
 
     List<CallParticipant> participants = currentState.getCallInfoState().getRemoteCallParticipants();
-    List<GroupCallRaiseHandEvent> currentRaisedHands = raisedHands
-        .stream().map(demuxId -> {
-          if (Objects.equals(demuxId, currentState.getCallInfoState().requireGroupCall().getLocalDeviceState().getDemuxId())) {
-            return Recipient.self();
-          }
 
-          CallParticipant participant = participants.stream().filter(it -> it.getCallParticipantId().getDemuxId() == demuxId).findFirst().orElse(null);
-          if (participant == null) {
-            Log.v(TAG, "Could not find CallParticipantId in list of call participants based on demuxId for raise hand.");
-            return null;
-          }
-          return participant.getRecipient();
-        })
-        .filter(Objects::nonNull)
-        .map(recipient -> {
-          final Optional<GroupCallRaiseHandEvent> matchingEvent = existingHands.stream().filter(existingEvent -> existingEvent.getSender().equals(recipient)).findFirst();
-          if (matchingEvent.isPresent()) {
-            return matchingEvent.get();
-          } else {
-            return new GroupCallRaiseHandEvent(recipient, System.currentTimeMillis());
-          }
-        })
-        .collect(Collectors.toList());
+    for (CallParticipant updatedParticipant : participants) {
+      boolean isHandCurrentlyRaised = raisedHands.contains(updatedParticipant.getCallParticipantId().getDemuxId());
+      boolean wasHandAlreadyRaised  = updatedParticipant.isHandRaised();
+      if (isHandCurrentlyRaised && !wasHandAlreadyRaised) {
+        builder.putParticipant(updatedParticipant.getCallParticipantId(), updatedParticipant.withHandRaisedTimestamp(now));
+      } else if (!isHandCurrentlyRaised && wasHandAlreadyRaised) {
+        builder.putParticipant(updatedParticipant.getCallParticipantId(), updatedParticipant.withHandRaisedTimestamp(CallParticipant.HAND_LOWERED));
+      }
+    }
 
-    return currentState.builder().changeCallInfoState().setRaisedHand(currentRaisedHands).build();
+    if (localDemuxId != null) {
+      if (raisedHands.contains(localDemuxId)) {
+        builder.setLocalParticipant(CallParticipant.createLocal(currentState.getLocalDeviceState().getCameraState(),
+                                                                currentState.getVideoState().requireLocalSink(),
+                                                                currentState.getLocalDeviceState().isMicrophoneEnabled(),
+                                                                now,
+                                                                new CallParticipantId(localDemuxId, Recipient.self().getId())));
+      } else {
+        builder.setLocalParticipant(CallParticipant.createLocal(currentState.getLocalDeviceState().getCameraState(),
+                                                                currentState.getVideoState().requireLocalSink(),
+                                                                currentState.getLocalDeviceState().isMicrophoneEnabled(),
+                                                                CallParticipant.HAND_LOWERED,
+                                                                new CallParticipantId(localDemuxId, Recipient.self().getId())));
+      }
+    }
+    return builder.build();
   }
 }

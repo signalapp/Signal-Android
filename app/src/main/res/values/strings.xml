@@ -1857,6 +1857,8 @@
     <string name="CallOverflowPopupWindow__lower_your_hand">Lower your hand?</string>
     <!-- A dialog button to confirm you would like to lower your hand -->
     <string name="CallOverflowPopupWindow__lower_hand">Lower hand</string>
+    <!-- A negative button for a dialog confirming the user wants to lower their hand (withdraw a raised hand) -->
+    <string name="CallOverflowPopupWindow__cancel">Cancel</string>
     <!-- A notification to the user that they successfully raised their hand -->
     <string name="CallOverflowPopupWindow__you_raised_your_hand">You raised your hand</string>
     <!-- A button to take you to a list of participants with raised hands -->

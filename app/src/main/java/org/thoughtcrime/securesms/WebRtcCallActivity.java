@@ -437,7 +437,13 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     participantUpdateWindow    = new CallParticipantsListUpdatePopupWindow(callScreen);
     callStateUpdatePopupWindow = new CallStateUpdatePopupWindow(callScreen);
     wifiToCellularPopupWindow  = new WifiToCellularPopupWindow(callScreen);
-    callOverflowPopupWindow    = new CallOverflowPopupWindow(this, callScreen);
+    callOverflowPopupWindow    = new CallOverflowPopupWindow(this, callScreen, () -> {
+      CallParticipantsState state = viewModel.getCallParticipantsStateSnapshot();
+      if (state == null) {
+        return false;
+      }
+      return state.getLocalParticipant().isHandRaised();
+    });
   }
 
   private void initializeViewModel(boolean isLandscapeEnabled) {

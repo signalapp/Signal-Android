@@ -167,7 +167,7 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
                                                                     true,
                                                                     true,
                                                                     false,
-                                                                    currentState.getCallInfoState().getRaisedHands().contains(remotePeerGroup.getRecipient()),
+                                                                    CallParticipant.HAND_LOWERED,
                                                                     0,
                                                                     true,
                                                                     0,

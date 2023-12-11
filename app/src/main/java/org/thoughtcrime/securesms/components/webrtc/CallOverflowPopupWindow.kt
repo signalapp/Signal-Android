@@ -12,22 +12,25 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.PopupWindow
+import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.widget.PopupWindowCompat
+import androidx.fragment.app.FragmentActivity
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.WebRtcCallActivity
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 
 /**
  * A popup window for calls that holds extra actions, such as reactions, raise hand, and screen sharing.
  *
  */
-class CallOverflowPopupWindow(private val activity: WebRtcCallActivity, parentViewGroup: ViewGroup) : PopupWindow(
+class CallOverflowPopupWindow(private val activity: FragmentActivity, parentViewGroup: ViewGroup, private val raisedHandDelegate: RaisedHandDelegate) : PopupWindow(
   LayoutInflater.from(activity).inflate(R.layout.call_overflow_holder, parentViewGroup, false),
   activity.resources.getDimension(R.dimen.calling_reaction_popup_menu_width).toInt(),
   activity.resources.getDimension(R.dimen.calling_reaction_popup_menu_height).toInt()
 
 ) {
+  private val raiseHandLabel: TextView = (contentView as LinearLayout).findViewById(R.id.raise_hand_label)
 
   init {
     val root = (contentView as LinearLayout)
@@ -36,8 +39,19 @@ class CallOverflowPopupWindow(private val activity: WebRtcCallActivity, parentVi
       dismiss()
     }
     root.findViewById<ConstraintLayout>(R.id.raise_hand_layout_parent).setOnClickListener {
-      ApplicationDependencies.getSignalCallManager().raiseHand(true)
-      dismiss()
+      if (raisedHandDelegate.isSelfHandRaised()) {
+        MaterialAlertDialogBuilder(activity)
+          .setTitle(R.string.CallOverflowPopupWindow__lower_your_hand)
+          .setPositiveButton(R.string.CallOverflowPopupWindow__lower_hand) { _, _ ->
+            ApplicationDependencies.getSignalCallManager().raiseHand(false)
+            this@CallOverflowPopupWindow.dismiss()
+          }
+          .setNegativeButton(R.string.CallOverflowPopupWindow__cancel, null)
+          .show()
+      } else {
+        ApplicationDependencies.getSignalCallManager().raiseHand(true)
+        dismiss()
+      }
     }
   }
 
@@ -58,6 +72,12 @@ class CallOverflowPopupWindow(private val activity: WebRtcCallActivity, parentVi
     val xOffset = windowWidth - popupWidth - margin
     val yOffset = -popupHeight - margin
 
+    raiseHandLabel.setText(if (raisedHandDelegate.isSelfHandRaised()) R.string.CallOverflowPopupWindow__lower_hand else R.string.CallOverflowPopupWindow__raise_hand)
+
     PopupWindowCompat.showAsDropDown(this, anchor, xOffset, yOffset, Gravity.NO_GRAVITY)
+  }
+
+  interface RaisedHandDelegate {
+    fun isSelfHandRaised(): Boolean
   }
 }

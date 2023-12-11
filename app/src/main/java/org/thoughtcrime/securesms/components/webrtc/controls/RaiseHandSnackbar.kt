@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.components.webrtc.controls
 
+import android.content.Context
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.background
@@ -41,6 +42,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.core.BackpressureStrategy
 import kotlinx.coroutines.delay
 import org.signal.core.ui.theme.SignalTheme
@@ -50,7 +52,6 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.events.GroupCallRaiseHandEvent
 import org.thoughtcrime.securesms.recipients.Recipient
 import java.util.concurrent.TimeUnit
-import kotlin.time.Duration
 
 /**
  * This is a UI element to display the status of one or more people with raised hands in a group call.
@@ -149,8 +150,9 @@ private fun RaiseHand(
               Spacer(modifier = Modifier.weight(1f))
 
               if (state.raisedHands.first().sender.isSelf) {
+                val context = LocalContext.current
                 TextButton(onClick = {
-                  ApplicationDependencies.getSignalCallManager().raiseHand(false)
+                  showLowerHandDialog(context)
                 }) {
                   Text(text = stringResource(id = R.string.CallOverflowPopupWindow__lower_hand))
                 }
@@ -165,6 +167,16 @@ private fun RaiseHand(
       }
     }
   }
+}
+
+private fun showLowerHandDialog(context: Context) {
+  MaterialAlertDialogBuilder(context)
+    .setTitle(R.string.CallOverflowPopupWindow__lower_your_hand)
+    .setPositiveButton(
+      R.string.CallOverflowPopupWindow__lower_hand
+    ) { _, _ -> ApplicationDependencies.getSignalCallManager().raiseHand(false) }
+    .setNegativeButton(R.string.CallOverflowPopupWindow__cancel, null)
+    .show()
 }
 
 @Composable

@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.components.webrtc.controls
 
+import android.content.Context
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -42,6 +43,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.toLiveData
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.core.BackpressureStrategy
 import io.reactivex.rxjava3.core.Observable
 import org.signal.core.ui.Rows
@@ -337,9 +339,10 @@ private fun CallParticipantRow(
     )
 
     if (showIcons && showHandRaised && canLowerHand) {
+      val context = LocalContext.current
       TextButton(onClick = {
         if (recipient.isSelf) {
-          ApplicationDependencies.getSignalCallManager().raiseHand(false)
+          showLowerHandDialog(context)
         }
       }) {
         Text(text = stringResource(id = R.string.CallOverflowPopupWindow__lower_hand))
@@ -389,6 +392,16 @@ private fun CallParticipantRow(
       )
     }
   }
+}
+
+private fun showLowerHandDialog(context: Context) {
+  MaterialAlertDialogBuilder(context)
+    .setTitle(R.string.CallOverflowPopupWindow__lower_your_hand)
+    .setPositiveButton(
+      R.string.CallOverflowPopupWindow__lower_hand
+    ) { _, _ -> ApplicationDependencies.getSignalCallManager().raiseHand(false) }
+    .setNegativeButton(R.string.CallOverflowPopupWindow__cancel, null)
+    .show()
 }
 
 @Composable
