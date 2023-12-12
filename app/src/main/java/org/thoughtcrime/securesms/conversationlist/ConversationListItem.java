@@ -141,6 +141,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
 
   private LiveData<SpannableString> displayBody;
   private Disposable                joinMembersDisposable = Disposable.empty();
+  private Runnable                  updateDateView = null;
 
   public ConversationListItem(Context context) {
     this(context, null);
@@ -249,11 +250,16 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     observeDisplayBody(lifecycleOwner, displayBody);
 
     if (thread.getDate() > 0) {
-      CharSequence date = DateUtils.getBriefRelativeTimeSpanString(getContext(), locale, thread.getDate());
-      dateView.setText(date);
       dateView.setTypeface(thread.isRead() ? LIGHT_TYPEFACE : BOLD_TYPEFACE);
       dateView.setTextColor(thread.isRead() ? ContextCompat.getColor(getContext(), R.color.signal_text_secondary)
                                             : ContextCompat.getColor(getContext(), R.color.signal_text_primary));
+
+      updateDateView = () -> {
+        CharSequence date = DateUtils.getBriefRelativeTimeSpanString(getContext(), locale, thread.getDate());
+        dateView.setText(date);
+      };
+
+      updateDateView.run();
     }
 
     if (thread.isArchived()) {
@@ -278,35 +284,6 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     }
   }
 
-  public void bindContact(@NonNull LifecycleOwner lifecycleOwner,
-                          @NonNull Recipient contact,
-                          @NonNull GlideRequests glideRequests,
-                          @NonNull Locale locale,
-                          @Nullable String highlightSubstring)
-  {
-    this.glideRequests      = glideRequests;
-    this.locale             = locale;
-    this.highlightSubstring = highlightSubstring;
-
-    observeRecipient(lifecycleOwner, contact.live());
-    observeDisplayBody(null, null);
-    joinMembersDisposable.dispose();
-    setSubjectViewText(null);
-
-    fromView.setText(contact, SearchUtil.getHighlightedSpan(locale, searchStyleFactory, new SpannableString(contact.getDisplayName(getContext())), highlightSubstring, SearchUtil.MATCH_ALL), true, null);
-    setSubjectViewText(SearchUtil.getHighlightedSpan(locale, searchStyleFactory, contact.getE164().orElse(""), highlightSubstring, SearchUtil.MATCH_ALL));
-    dateView.setText("");
-    archivedView.setVisibility(GONE);
-    unreadIndicator.setVisibility(GONE);
-    unreadMentions.setVisibility(GONE);
-    deliveryStatusIndicator.setNone();
-    alertView.setNone();
-
-    setSelectedConversations(new ConversationSet());
-    setBadgeFromRecipient(recipient.get());
-    contactPhotoImage.setAvatar(glideRequests, recipient.get(), !batchMode);
-  }
-
   public void bindMessage(@NonNull LifecycleOwner lifecycleOwner,
                           @NonNull MessageResult messageResult,
                           @NonNull GlideRequests glideRequests,
@@ -324,7 +301,10 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
 
     fromView.setText(recipient.get(), recipient.get().getDisplayNameOrUsername(getContext()), false, null, false);
     setSubjectViewText(SearchUtil.getHighlightedSpan(locale, searchStyleFactory, messageResult.getBodySnippet(), highlightSubstring, SearchUtil.MATCH_ALL));
-    dateView.setText(DateUtils.getBriefRelativeTimeSpanString(getContext(), locale, messageResult.getReceivedTimestampMs()));
+
+    updateDateView = () -> dateView.setText(DateUtils.getBriefRelativeTimeSpanString(getContext(), locale, messageResult.getReceivedTimestampMs()));
+
+    updateDateView.run();
     archivedView.setVisibility(GONE);
     unreadIndicator.setVisibility(GONE);
     unreadMentions.setVisibility(GONE);
@@ -353,7 +333,9 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     });
 
     fromView.setText(recipient.get(), false);
-    dateView.setText(DateUtils.getBriefRelativeTimeSpanString(getContext(), locale, groupWithMembers.getDate()));
+
+    updateDateView = () -> dateView.setText(DateUtils.getBriefRelativeTimeSpanString(getContext(), locale, groupWithMembers.getDate()));
+    updateDateView.run();
     archivedView.setVisibility(GONE);
     unreadIndicator.setVisibility(GONE);
     unreadMentions.setVisibility(GONE);
@@ -386,6 +368,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
 
     observeDisplayBody(null, null);
     joinMembersDisposable.dispose();
+    updateDateView = null;
   }
 
   @Override
@@ -426,6 +409,13 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
       this.typingView.stopAnimation();
 
       this.subjectView.setVisibility(VISIBLE);
+    }
+  }
+
+  @Override
+  public void updateTimestamp() {
+    if (updateDateView != null) {
+      updateDateView.run();
     }
   }
 

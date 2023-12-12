@@ -476,8 +476,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       setAdapter(defaultAdapter);
     }
 
-    if (activeAdapter != null) {
-      activeAdapter.notifyItemRangeChanged(0, activeAdapter.getItemCount());
+    if (activeAdapter instanceof TimestampPayloadSupport) {
+      ((TimestampPayloadSupport) activeAdapter).notifyTimestampPayloadUpdate();
     }
 
     SignalProxyUtil.startListeningToWebsocket();
