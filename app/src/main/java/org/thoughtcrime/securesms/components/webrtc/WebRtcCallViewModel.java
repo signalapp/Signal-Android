@@ -351,7 +351,7 @@ public class WebRtcCallViewModel extends ViewModel {
 
     if (SignalStore.tooltips().showCallingSwitchCameraTooltip() &&
         canDisplaySwitchCameraTooltipIfNeeded &&
-        hasEnabledLocalVideo &&
+        localParticipant.getCameraState().isEnabled() &&
         webRtcViewModel.getState() == WebRtcViewModel.State.CALL_CONNECTED &&
         !newState.getAllRemoteParticipants().isEmpty()
     ) {

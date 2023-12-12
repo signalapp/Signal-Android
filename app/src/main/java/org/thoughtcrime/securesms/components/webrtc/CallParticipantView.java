@@ -172,6 +172,10 @@ public class CallParticipantView extends ConstraintLayout {
 
       audioIndicator.setVisibility(View.VISIBLE);
       audioIndicator.bind(participant.isMicrophoneEnabled(), participant.getAudioLevel());
+
+      if (selfPipMode != SelfPipMode.NOT_SELF_PIP) {
+        switchCameraIconFrame.setVisibility(participant.isVideoEnabled() ? View.VISIBLE : View.GONE);
+      }
     }
 
     if (participantChanged || !Objects.equals(contactPhoto, participant.getRecipient().getContactPhoto())) {
