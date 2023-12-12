@@ -379,15 +379,9 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
   @Override
   public void onWindowSystemUiVisibilityChanged(int visible) {
     if ((visible & SYSTEM_UI_FLAG_HIDE_NAVIGATION) == 0) {
-      if (controls.adjustForFold()) {
-        pictureInPictureGestureHelper.clearVerticalBoundaries();
-        pictureInPictureGestureHelper.setTopVerticalBoundary(getPipBarrier().getTop());
-      } else {
-        pictureInPictureGestureHelper.setTopVerticalBoundary(getPipBarrier().getBottom());
-        pictureInPictureGestureHelper.setBottomVerticalBoundary(findViewById(R.id.call_controls_info_parent).getTop());
-      }
+      pictureInPictureGestureHelper.setTopVerticalBoundary(collapsedToolbar.getBottom());
     } else {
-      pictureInPictureGestureHelper.clearVerticalBoundaries();
+      pictureInPictureGestureHelper.setTopVerticalBoundary(getStatusBarGuideline().getBottom());
     }
   }
 
@@ -961,8 +955,6 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
   public interface ControlsListener {
     void onStartCall(boolean isVideoCall);
     void onCancelStartCall();
-    void showSystemUI();
-    void hideSystemUI();
     void onAudioOutputChanged(@NonNull WebRtcAudioOutput audioOutput);
     @RequiresApi(31)
     void onAudioOutputChanged31(@NonNull WebRtcAudioDevice audioOutput);

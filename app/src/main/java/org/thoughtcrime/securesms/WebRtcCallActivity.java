@@ -992,16 +992,6 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     }
 
     @Override
-    public void showSystemUI() {
-      fullscreenHelper.showSystemUI();
-    }
-
-    @Override
-    public void hideSystemUI() {
-      fullscreenHelper.hideSystemUI();
-    }
-
-    @Override
     public void onAudioOutputChanged(@NonNull WebRtcAudioOutput audioOutput) {
       maybeDisplaySpeakerphonePopup(audioOutput);
       switch (audioOutput) {

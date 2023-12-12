@@ -34,7 +34,7 @@ public class PictureInPictureGestureHelper extends GestureDetector.SimpleOnGestu
 
   private int             pipWidth;
   private int             pipHeight;
-  private int             activePointerId       = MotionEvent.INVALID_POINTER_ID;
+  private int             activePointerId        = MotionEvent.INVALID_POINTER_ID;
   private float           lastTouchX;
   private float           lastTouchY;
   private int             extraPaddingTop;
@@ -45,7 +45,9 @@ public class PictureInPictureGestureHelper extends GestureDetector.SimpleOnGestu
   private int             maximumFlingVelocity;
   private boolean         isLockedToBottomEnd;
   private Interpolator    interpolator;
-  private Corner          currentCornerPosition = Corner.BOTTOM_RIGHT;
+  private Corner          currentCornerPosition  = Corner.BOTTOM_RIGHT;
+  private int             previousTopBoundary    = -1;
+  private int             previousBottomBoundary = -1;
 
   @SuppressLint("ClickableViewAccessibility")
   public static PictureInPictureGestureHelper applyTo(@NonNull View child) {
@@ -109,12 +111,12 @@ public class PictureInPictureGestureHelper extends GestureDetector.SimpleOnGestu
     this.interpolator         = ADJUST_INTERPOLATOR;
   }
 
-  public void clearVerticalBoundaries() {
-    setTopVerticalBoundary(parent.getTop());
-    setBottomVerticalBoundary(parent.getMeasuredHeight() + parent.getTop());
-  }
-
   public void setTopVerticalBoundary(int topBoundary) {
+    if (topBoundary == previousTopBoundary) {
+      return;
+    }
+    previousTopBoundary = topBoundary;
+
     extraPaddingTop = topBoundary - parent.getTop();
 
     ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) child.getLayoutParams();
@@ -123,6 +125,11 @@ public class PictureInPictureGestureHelper extends GestureDetector.SimpleOnGestu
   }
 
   public void setBottomVerticalBoundary(int bottomBoundary) {
+    if (bottomBoundary == previousBottomBoundary) {
+      return;
+    }
+    previousBottomBoundary = bottomBoundary;
+
     extraPaddingBottom = parent.getMeasuredHeight() + parent.getTop() - bottomBoundary;
 
     ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) child.getLayoutParams();

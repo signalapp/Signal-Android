@@ -104,8 +104,8 @@ class ControlsAndInfoController(
     behavior.state = BottomSheetBehavior.STATE_HIDDEN
     BottomSheetBehaviorHack.setNestedScrollingChild(behavior, callInfoComposeView)
 
-    coordinator.addOnLayoutChangeListener { _, _, top, _, bottom, _, _, _, _ ->
-      val guidelineTop = max(frame.top, (bottom - top) - behavior.peekHeight)
+    coordinator.addOnLayoutChangeListener { _, _, _, _, _, _, _, _, _ ->
+      val guidelineTop = max(frame.top, coordinator.height - behavior.peekHeight)
       webRtcCallView.post { webRtcCallView.onControlTopChanged(guidelineTop) }
     }
 
