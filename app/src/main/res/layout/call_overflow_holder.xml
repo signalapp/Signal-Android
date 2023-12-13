@@ -14,14 +14,17 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/calling_reaction_emoji_height"
         android:background="@drawable/conversation_reaction_overlay_background"
-        android:elevation="4dp" />
+        android:elevation="4dp"
+        android:visibility="gone" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/raise_hand_layout_parent"
         android:layout_width="match_parent"
         android:layout_height="@dimen/calling_reaction_emoji_height"
         android:layout_marginTop="8dp"
-        android:background="@drawable/conversation_reaction_overlay_background">
+        android:background="@drawable/conversation_reaction_overlay_background"
+        android:elevation="4dp"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/raise_hand_icon"

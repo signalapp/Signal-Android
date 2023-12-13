@@ -18,6 +18,7 @@ import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.platform.rememberNestedScrollInteropConnection
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
+import androidx.constraintlayout.widget.Guideline
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
 import androidx.transition.AutoTransition
@@ -71,6 +72,7 @@ class ControlsAndInfoController(
   private val callInfoComposeView: ComposeView
   private val raiseHandComposeView: ComposeView
   private val callControls: ConstraintLayout
+  private val aboveControlsGuideline: Guideline
   private val bottomSheetVisibilityListeners = mutableSetOf<BottomSheetVisibilityListener>()
   private val scheduleHideControlsRunnable: Runnable = Runnable { onScheduledHide() }
   private val handler: Handler?
@@ -88,6 +90,7 @@ class ControlsAndInfoController(
     callInfoComposeView = webRtcCallView.findViewById(R.id.call_info_compose)
     callControls = webRtcCallView.findViewById(R.id.call_controls_constraint_layout)
     raiseHandComposeView = webRtcCallView.findViewById(R.id.call_screen_raise_hand_view)
+    aboveControlsGuideline = webRtcCallView.findViewById(R.id.call_screen_above_controls_guideline)
 
     callInfoComposeView.apply {
       setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
@@ -123,7 +126,11 @@ class ControlsAndInfoController(
 
     coordinator.addOnLayoutChangeListener { _, _, _, _, _, _, _, _, _ ->
       val guidelineTop = max(frame.top, coordinator.height - behavior.peekHeight)
-      webRtcCallView.post { webRtcCallView.onControlTopChanged(guidelineTop) }
+      webRtcCallView.post { onControlTopChanged(guidelineTop) }
+    }
+
+    raiseHandComposeView.addOnLayoutChangeListener { _, _, top, _, bottom, _, _, _, _ ->
+      onControlTopChanged(guidelineTop = aboveControlsGuideline.top, composeViewSize = bottom - top)
     }
 
     callControls.viewTreeObserver.addOnGlobalLayoutListener {
@@ -135,7 +142,7 @@ class ControlsAndInfoController(
         behavior.maxHeight = (coordinator.height.toFloat() * 0.66f).toInt()
 
         val guidelineTop = max(frame.top, coordinator.height - behavior.peekHeight)
-        webRtcCallView.post { webRtcCallView.onControlTopChanged(guidelineTop) }
+        webRtcCallView.post { onControlTopChanged(guidelineTop) }
       }
     }
 
@@ -161,7 +168,7 @@ class ControlsAndInfoController(
         callInfoComposeView.alpha = alphaCallInfo(slideOffset)
         callInfoComposeView.translationY = infoTranslationDistance - (infoTranslationDistance * callInfoComposeView.alpha)
 
-        webRtcCallView.onControlTopChanged(max(frame.top, coordinator.height - behavior.peekHeight))
+        onControlTopChanged(max(frame.top, coordinator.height - behavior.peekHeight))
       }
     })
 
@@ -178,6 +185,11 @@ class ControlsAndInfoController(
     }
   }
 
+  fun onControlTopChanged(guidelineTop: Int, composeViewSize: Int = raiseHandComposeView.height) {
+    aboveControlsGuideline.setGuidelineBegin(guidelineTop)
+    webRtcCallView.onControlTopChanged(guidelineTop - composeViewSize)
+  }
+
   fun addVisibilityListener(listener: BottomSheetVisibilityListener): Boolean {
     return bottomSheetVisibilityListeners.add(listener)
   }
@@ -188,7 +200,7 @@ class ControlsAndInfoController(
     behavior.state = BottomSheetBehavior.STATE_EXPANDED
   }
 
-  fun showControls() {
+  private fun showControls() {
     cancelScheduledHide()
     behavior.isHideable = false
     behavior.state = BottomSheetBehavior.STATE_COLLAPSED
@@ -223,7 +235,7 @@ class ControlsAndInfoController(
       overflowPopupWindow.dismiss()
     } else {
       cancelScheduledHide()
-      overflowPopupWindow.show(webRtcCallView.popupAnchor)
+      overflowPopupWindow.show(aboveControlsGuideline)
     }
   }
 

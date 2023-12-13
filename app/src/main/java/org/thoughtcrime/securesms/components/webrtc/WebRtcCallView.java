@@ -124,7 +124,6 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
   private Stub<View>                    callLinkWarningCard;
   private RecyclerView                  groupReactionsFeed;
   private MultiReactionBurstLayout      reactionViews;
-  private Guideline                     aboveControlsGuideline;
   private ComposeView                   raiseHandSnackbar;
 
 
@@ -204,7 +203,6 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     callLinkWarningCard           = new Stub<>(findViewById(R.id.call_screen_call_link_warning));
     groupReactionsFeed            = findViewById(R.id.call_screen_reactions_feed);
     reactionViews                 = findViewById(R.id.call_screen_reactions_container);
-    aboveControlsGuideline        = findViewById(R.id.call_screen_above_controls_guideline);
     raiseHandSnackbar             = findViewById(R.id.call_screen_raise_hand_view);
 
     View decline      = findViewById(R.id.call_screen_decline_call);
@@ -593,10 +591,6 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     }
   }
 
-  public @NonNull View getPopupAnchor() {
-    return aboveControlsGuideline;
-  }
-
   public void setStatusFromHangupType(@NonNull HangupMessage.Type hangupType) {
     switch (hangupType) {
       case NORMAL:
@@ -921,8 +915,6 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
 
   public void onControlTopChanged(int top) {
     pictureInPictureGestureHelper.setBottomVerticalBoundary(top);
-
-    aboveControlsGuideline.setGuidelineBegin(top);
   }
 
   public interface ControlsListener {

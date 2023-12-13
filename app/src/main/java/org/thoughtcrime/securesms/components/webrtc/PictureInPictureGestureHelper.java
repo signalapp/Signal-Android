@@ -132,9 +132,7 @@ public class PictureInPictureGestureHelper extends GestureDetector.SimpleOnGestu
 
     extraPaddingBottom = parent.getMeasuredHeight() + parent.getTop() - bottomBoundary;
 
-    ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) child.getLayoutParams();
-    layoutParams.setMargins(layoutParams.leftMargin, layoutParams.topMargin, layoutParams.rightMargin, extraPaddingBottom + framePadding);
-    child.setLayoutParams(layoutParams);
+    ViewUtil.setBottomMargin(child, extraPaddingBottom + framePadding);
   }
 
   private boolean onGestureFinished(MotionEvent e) {

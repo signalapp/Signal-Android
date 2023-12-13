@@ -8,6 +8,10 @@ package org.thoughtcrime.securesms.components.webrtc.controls
 import android.content.Context
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.expandIn
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -59,11 +63,11 @@ import java.util.concurrent.TimeUnit
  */
 object RaiseHandSnackbar {
   const val TAG = "RaiseHandSnackbar"
-  val COLLAPSE_DELAY_MS = TimeUnit.SECONDS.toMillis(4L)
+  private val COLLAPSE_DELAY_MS = TimeUnit.SECONDS.toMillis(4L)
 
   @Composable
   fun View(webRtcCallViewModel: WebRtcCallViewModel, showCallInfoListener: () -> Unit, modifier: Modifier = Modifier) {
-    var isExpanded by remember { mutableStateOf(ExpansionState(false, false)) }
+    var isExpanded by remember { mutableStateOf(ExpansionState(isExpanded = false, forced = false)) }
 
     val webRtcState by webRtcCallViewModel.callParticipantsState
       .toFlowable(BackpressureStrategy.LATEST)
@@ -84,10 +88,10 @@ object RaiseHandSnackbar {
 
     LaunchedEffect(isExpanded) {
       delay(COLLAPSE_DELAY_MS)
-      isExpanded = ExpansionState(false, false)
+      isExpanded = ExpansionState(isExpanded = false, forced = false)
     }
 
-    RaiseHand(state, modifier, { isExpanded = ExpansionState(true, true) }, showCallInfoListener)
+    RaiseHand(state, modifier, { isExpanded = ExpansionState(isExpanded = true, forced = true) }, showCallInfoListener = showCallInfoListener)
   }
 }
 
@@ -106,7 +110,11 @@ private fun RaiseHand(
   setExpanded: (Boolean) -> Unit = {},
   showCallInfoListener: () -> Unit = {}
 ) {
-  AnimatedVisibility(visible = state.raisedHands.isNotEmpty()) {
+  AnimatedVisibility(
+    visible = state.raisedHands.isNotEmpty(),
+    enter = fadeIn() + expandIn(expandFrom = Alignment.CenterEnd),
+    exit = shrinkOut(shrinkTowards = Alignment.CenterEnd) + fadeOut()
+  ) {
     SignalTheme(
       isDarkMode = true
     ) {
@@ -115,10 +123,10 @@ private fun RaiseHand(
           .padding(horizontal = 16.dp)
           .clip(shape = RoundedCornerShape(16.dp, 16.dp, 16.dp, 16.dp))
           .background(MaterialTheme.colorScheme.surface)
-      ) {
-        val boxModifier = modifier
           .height(48.dp)
           .animateContentSize()
+      ) {
+        val boxModifier = modifier
           .padding(horizontal = 16.dp)
           .clickable(
             !state.expansionState.isExpanded,
@@ -207,7 +215,7 @@ private fun getShortDisplayName(raisedHands: List<GroupCallRaiseHandEvent>): Str
 
 private data class RaiseHandState(
   val raisedHands: List<GroupCallRaiseHandEvent> = emptyList(),
-  val expansionState: ExpansionState = ExpansionState(false, false)
+  val expansionState: ExpansionState = ExpansionState(isExpanded = false, forced = false)
 ) {
 
   fun isEmpty(): Boolean {
