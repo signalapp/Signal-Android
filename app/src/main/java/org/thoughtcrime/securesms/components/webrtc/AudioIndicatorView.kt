@@ -46,13 +46,14 @@ class AudioIndicatorView(context: Context, attrs: AttributeSet) : FrameLayout(co
     inflate(context, R.layout.audio_indicator_view, this)
     setWillNotDraw(false)
 
-    setBackgroundResource(R.drawable.circle_tintable)
     backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.transparent_black_70))
   }
 
   private val micMuted: View = findViewById(R.id.mic_muted)
 
   fun bind(microphoneEnabled: Boolean, level: CallParticipant.AudioLevel?) {
+    setBackgroundResource(R.drawable.circle_tintable)
+
     micMuted.visible = !microphoneEnabled
 
     val wasShowingAudioLevel = showAudioLevel
