@@ -328,7 +328,7 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">تعذّر تحميل الفيديو. سَتحتاج إلى إرساله مرة أخرى.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp represents a message that has been edited extremely recently. -->
-    <string name="ConversationItem_edited_now_timestamp_footer">Edited Now</string>
+    <string name="ConversationItem_edited_now_timestamp_footer">تم التعديل الآن</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
     <string name="ConversationItem_edited_timestamp_footer">مُعدّلة %1$s</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
@@ -2134,28 +2134,28 @@
 
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call">
-        <item quantity="zero">In this call (%1$d)</item>
-        <item quantity="one">In this call (%1$d)</item>
-        <item quantity="two">In this call (%1$d)</item>
-        <item quantity="few">In this call (%1$d)</item>
-        <item quantity="many">In this call (%1$d)</item>
-        <item quantity="other">In this call (%1$d)</item>
+        <item quantity="zero">في هذه المكالمة (%1$d)</item>
+        <item quantity="one">في هذه المكالمة (%1$d)</item>
+        <item quantity="two">في هذه المكالمة (%1$d)</item>
+        <item quantity="few">في هذه المكالمة (%1$d)</item>
+        <item quantity="many">في هذه المكالمة (%1$d)</item>
+        <item quantity="other">في هذه المكالمة (%1$d)</item>
     </plurals>
     <plurals name="CallParticipantsListDialog__signal_will_ring">
-        <item quantity="zero">Signal will Ring (%1$d)</item>
-        <item quantity="one">Signal will Ring (%1$d)</item>
-        <item quantity="two">Signal will Ring (%1$d)</item>
-        <item quantity="few">Signal will Ring (%1$d)</item>
-        <item quantity="many">Signal will Ring (%1$d)</item>
-        <item quantity="other">Signal will Ring (%1$d)</item>
+        <item quantity="zero">سيرنّ سيجنال على (%1$d)</item>
+        <item quantity="one">سيرنّ سيجنال على (%1$d)</item>
+        <item quantity="two">سيرنّ سيجنال على (%1$d)</item>
+        <item quantity="few">سيرنّ سيجنال على (%1$d)</item>
+        <item quantity="many">سيرنّ سيجنال على (%1$d)</item>
+        <item quantity="other">سيرنّ سيجنال على (%1$d)</item>
     </plurals>
     <plurals name="CallParticipantsListDialog__signal_will_notify">
-        <item quantity="zero">Signal will Notify (%1$d)</item>
-        <item quantity="one">Signal will Notify (%1$d)</item>
-        <item quantity="two">Signal will Notify (%1$d)</item>
-        <item quantity="few">Signal will Notify (%1$d)</item>
-        <item quantity="many">Signal will Notify (%1$d)</item>
-        <item quantity="other">Signal will Notify (%1$d)</item>
+        <item quantity="zero">سينبّه سيجنال (%1$d)</item>
+        <item quantity="one">سينبّه سيجنال (%1$d)</item>
+        <item quantity="two">سينبّه سيجنال (%1$d)</item>
+        <item quantity="few">سينبّه سيجنال (%1$d)</item>
+        <item quantity="many">سينبّه سيجنال (%1$d)</item>
+        <item quantity="other">سينبّه سيجنال (%1$d)</item>
     </plurals>
 
     <!-- CallParticipantView -->
@@ -6514,9 +6514,9 @@
     <!-- Error label for IBAN field when number is invalid -->
     <string name="BankTransferDetailsFragment__invalid_iban">رقم IBAN غير صحيح</string>
     <!-- Error label for name field when name is not at least two characters long -->
-    <string name="BankTransferDetailsFragment__minimum_2_characters">Minimum 2 characters</string>
+    <string name="BankTransferDetailsFragment__minimum_2_characters">حرفان كحد أدنى</string>
     <!-- Error label for email field when email is not valid -->
-    <string name="BankTransferDetailsFragment__invalid_email_address">Invalid email address</string>
+    <string name="BankTransferDetailsFragment__invalid_email_address">عنوان بريد إلكتروني غير صحيح</string>
 
     <!-- IdealTransferDetailsFragment -->
     <!-- Title of the screen, displayed in the toolbar -->

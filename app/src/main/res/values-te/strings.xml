@@ -324,7 +324,7 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">వీడియోను డౌన్‌లోడ్ చేసుకోలేరు. దానిని మీరు మళ్ళీ పంపాలి.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp represents a message that has been edited extremely recently. -->
-    <string name="ConversationItem_edited_now_timestamp_footer">Edited Now</string>
+    <string name="ConversationItem_edited_now_timestamp_footer">ఇప్పుడే సవరించబడింది</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
     <string name="ConversationItem_edited_timestamp_footer">సవరించబడింది %1$s</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
@@ -1850,16 +1850,16 @@
 
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call">
-        <item quantity="one">In this call (%1$d)</item>
-        <item quantity="other">In this call (%1$d)</item>
+        <item quantity="one">ఈ కాల్‌లో (%1$d)</item>
+        <item quantity="other">ఈ కాల్స్‌లో (%1$d)</item>
     </plurals>
     <plurals name="CallParticipantsListDialog__signal_will_ring">
-        <item quantity="one">Signal will Ring (%1$d)</item>
-        <item quantity="other">Signal will Ring (%1$d)</item>
+        <item quantity="one">Signal (%1$d)కు రింగ్ చేస్తుంది</item>
+        <item quantity="other">Signal (%1$d)లకు రింగ్ చేస్తుంది</item>
     </plurals>
     <plurals name="CallParticipantsListDialog__signal_will_notify">
-        <item quantity="one">Signal will Notify (%1$d)</item>
-        <item quantity="other">Signal will Notify (%1$d)</item>
+        <item quantity="one">Signal, (%1$d)కు తెలియచేస్తుంది</item>
+        <item quantity="other">Signal, (%1$d)లకు తెలియచేస్తుంది</item>
     </plurals>
 
     <!-- CallParticipantView -->
@@ -5978,9 +5978,9 @@
     <!-- Error label for IBAN field when number is invalid -->
     <string name="BankTransferDetailsFragment__invalid_iban">చెల్లని IBAN</string>
     <!-- Error label for name field when name is not at least two characters long -->
-    <string name="BankTransferDetailsFragment__minimum_2_characters">Minimum 2 characters</string>
+    <string name="BankTransferDetailsFragment__minimum_2_characters">కనీసం 2 అక్షరాలు ఉండాలి</string>
     <!-- Error label for email field when email is not valid -->
-    <string name="BankTransferDetailsFragment__invalid_email_address">Invalid email address</string>
+    <string name="BankTransferDetailsFragment__invalid_email_address">ఈమెయిల్ చిరునామా చెల్లనిది</string>
 
     <!-- IdealTransferDetailsFragment -->
     <!-- Title of the screen, displayed in the toolbar -->
@@ -5988,7 +5988,7 @@
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
     <string name="IdealTransferDetailsFragment__enter_your_bank">మీ బ్యాంక్, పేరు మరియు ఈమెయిల్‌ను ఎంటర్ చేయండి. మీ విరాళం గురించి మీకు అప్‌డేట్‌లను పంపడానికి Stripe ఈ ఈమెయిల్‌ను ఉపయోగిస్తుంది. %1$s</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
-    <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">Enter your bank details. Signal does not collect or store your personal information. %1$s</string>
+    <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">మీ బ్యాంక్ వివరాలు ఎంటర్ చేయండి. Signal మీ వ్యక్తిగత సమాచారాన్ని సేకరించదు లేదా నిల్వ చేయదు. %1$s</string>
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
     <string name="IdealTransferDetailsFragment__learn_more">మరింత తెలుసుకోండి</string>
     <!-- Hint label for text entry box for name on bank account -->

@@ -326,7 +326,7 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Videoposnetka ni mogoče prenesti. Ponovno ga boste morali poslati.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp represents a message that has been edited extremely recently. -->
-    <string name="ConversationItem_edited_now_timestamp_footer">Edited Now</string>
+    <string name="ConversationItem_edited_now_timestamp_footer">Pravkar urejeno</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
     <string name="ConversationItem_edited_timestamp_footer">Urejeno pred %1$s</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
@@ -1992,22 +1992,22 @@
 
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call">
-        <item quantity="one">In this call (%1$d)</item>
-        <item quantity="two">In this call (%1$d)</item>
-        <item quantity="few">In this call (%1$d)</item>
-        <item quantity="other">In this call (%1$d)</item>
+        <item quantity="one">V tem klicu (%1$d)</item>
+        <item quantity="two">V tem klicu (%1$d)</item>
+        <item quantity="few">V tem klicu (%1$d)</item>
+        <item quantity="other">V tem klicu (%1$d)</item>
     </plurals>
     <plurals name="CallParticipantsListDialog__signal_will_ring">
-        <item quantity="one">Signal will Ring (%1$d)</item>
-        <item quantity="two">Signal will Ring (%1$d)</item>
-        <item quantity="few">Signal will Ring (%1$d)</item>
-        <item quantity="other">Signal will Ring (%1$d)</item>
+        <item quantity="one">Signal bo zvonil (%1$d)</item>
+        <item quantity="two">Signal bo zvonil (%1$d)</item>
+        <item quantity="few">Signal bo zvonil (%1$d)</item>
+        <item quantity="other">Signal bo zvonil (%1$d)</item>
     </plurals>
     <plurals name="CallParticipantsListDialog__signal_will_notify">
-        <item quantity="one">Signal will Notify (%1$d)</item>
-        <item quantity="two">Signal will Notify (%1$d)</item>
-        <item quantity="few">Signal will Notify (%1$d)</item>
-        <item quantity="other">Signal will Notify (%1$d)</item>
+        <item quantity="one">Signal bo obvestil (%1$d)</item>
+        <item quantity="two">Signal bo obvestil (%1$d)</item>
+        <item quantity="few">Signal bo obvestil (%1$d)</item>
+        <item quantity="other">Signal bo obvestil (%1$d)</item>
     </plurals>
 
     <!-- CallParticipantView -->
@@ -6246,9 +6246,9 @@
     <!-- Error label for IBAN field when number is invalid -->
     <string name="BankTransferDetailsFragment__invalid_iban">Neveljaven IBAN</string>
     <!-- Error label for name field when name is not at least two characters long -->
-    <string name="BankTransferDetailsFragment__minimum_2_characters">Minimum 2 characters</string>
+    <string name="BankTransferDetailsFragment__minimum_2_characters">Najmanj 2 znaka</string>
     <!-- Error label for email field when email is not valid -->
-    <string name="BankTransferDetailsFragment__invalid_email_address">Invalid email address</string>
+    <string name="BankTransferDetailsFragment__invalid_email_address">Nepravilen e-naslov</string>
 
     <!-- IdealTransferDetailsFragment -->
     <!-- Title of the screen, displayed in the toolbar -->
@@ -6256,7 +6256,7 @@
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
     <string name="IdealTransferDetailsFragment__enter_your_bank">Vnesite svojo banko, ime in e-pošto. Stripe uporablja to e-pošto, da vam pošilja posodobitve o vaši donaciji. %1$s</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
-    <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">Enter your bank details. Signal does not collect or store your personal information. %1$s</string>
+    <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">Vnesite svoje bančne podatke. Signal ne zbira in ne hrani vaših osebnih podatkov. %1$s</string>
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
     <string name="IdealTransferDetailsFragment__learn_more">Preberite več</string>
     <!-- Hint label for text entry box for name on bank account -->

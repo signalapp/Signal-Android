@@ -324,7 +324,7 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Hindi ma-download ang video Kailangan mo itong i-send ulit.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp represents a message that has been edited extremely recently. -->
-    <string name="ConversationItem_edited_now_timestamp_footer">Edited Now</string>
+    <string name="ConversationItem_edited_now_timestamp_footer">Kaka-edit Lang</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
     <string name="ConversationItem_edited_timestamp_footer">In-edit %1$s</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
@@ -1850,16 +1850,16 @@
 
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call">
-        <item quantity="one">In this call (%1$d)</item>
-        <item quantity="other">In this call (%1$d)</item>
+        <item quantity="one">Sa tawag na ito (%1$d)</item>
+        <item quantity="other">Sa tawag na ito (%1$d)</item>
     </plurals>
     <plurals name="CallParticipantsListDialog__signal_will_ring">
-        <item quantity="one">Signal will Ring (%1$d)</item>
-        <item quantity="other">Signal will Ring (%1$d)</item>
+        <item quantity="one">Tatawagan ng Signal si (%1$d)</item>
+        <item quantity="other">Tatawagan ng Signal sila (%1$d)</item>
     </plurals>
     <plurals name="CallParticipantsListDialog__signal_will_notify">
-        <item quantity="one">Signal will Notify (%1$d)</item>
-        <item quantity="other">Signal will Notify (%1$d)</item>
+        <item quantity="one">Ino-notify ng Signal si (%1$d)</item>
+        <item quantity="other">Ino-notify ng Signal sila (%1$d)</item>
     </plurals>
 
     <!-- CallParticipantView -->
@@ -5988,7 +5988,7 @@
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
     <string name="IdealTransferDetailsFragment__enter_your_bank">Ilagay ang iyong bangko, pangalan, at email. Gagamitin ng Stripe ang email na ito para padalhan ka ng updates tungkol sa donation mo. %1$s</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
-    <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">Enter your bank details. Signal does not collect or store your personal information. %1$s</string>
+    <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">Ilagay ang iyong bank details. Hindi kinokolekta o itinatago ng Signal ang iyong personal na impormasyon. %1$s</string>
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
     <string name="IdealTransferDetailsFragment__learn_more">Matuto pa</string>
     <!-- Hint label for text entry box for name on bank account -->
