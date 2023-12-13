@@ -74,7 +74,8 @@ object SvrRepository {
       Log.i(TAG, "restoreMasterKeyPreRegistration()", true)
 
       val operations: List<Pair<SecureValueRecovery, () -> RestoreResponse>> = listOf(
-        svr2 to { restoreMasterKeyPreRegistration(svr2, credentials.svr2, userPin) }
+        svr2 to { restoreMasterKeyPreRegistration(svr2, credentials.svr2, userPin) },
+        svr2Deprecated to { restoreMasterKeyPreRegistration(svr2Deprecated, credentials.svr2, userPin) }
       )
 
       for ((implementation, operation) in operations) {
