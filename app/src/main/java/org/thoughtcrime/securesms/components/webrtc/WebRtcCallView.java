@@ -233,8 +233,6 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
       }
     });
 
-    topViews.add(collapsedToolbar);
-    topViews.add(headerToolbar);
     topViews.add(largeHeader);
     topViews.add(topGradient);
 
