@@ -12,6 +12,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.kotlin.plusAssign
@@ -123,9 +124,11 @@ class MediaSelectionViewModel(
     }
 
     disposables += selectedMediaSubject
-      .subscribeOn(Schedulers.io())
-      .map { media -> Stories.MediaTransform.getSendRequirements(media) }
-      .observeOn(AndroidSchedulers.mainThread())
+      .flatMapSingle { media ->
+        Single.fromCallable {
+          Stories.MediaTransform.getSendRequirements(media)
+        }.subscribeOn(Schedulers.io())
+      }
       .subscribeBy { requirements ->
         store.update {
           it.copy(storySendRequirements = requirements)
@@ -495,12 +498,14 @@ class MediaSelectionViewModel(
           putBoolean(BUNDLE_IS_IMAGE, true)
         }
       }
+
       is VideoEditorFragment.Data -> {
         value.bundle.apply {
           putParcelable(BUNDLE_URI, key)
           putBoolean(BUNDLE_IS_IMAGE, false)
         }
       }
+
       else -> {
         throw IllegalStateException()
       }
