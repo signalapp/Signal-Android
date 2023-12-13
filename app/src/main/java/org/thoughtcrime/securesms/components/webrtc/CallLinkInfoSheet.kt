@@ -86,6 +86,7 @@ import org.thoughtcrime.securesms.util.BottomSheetUtil
  * within WebRtcActivity. If the user is able to modify call link
  * state, provides options to do so.
  */
+@Deprecated("Merge with CallInfoView")
 class CallLinkInfoSheet : ComposeBottomSheetDialogFragment() {
 
   companion object {

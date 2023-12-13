@@ -64,6 +64,7 @@ import org.thoughtcrime.securesms.components.webrtc.CallParticipantsListUpdatePo
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantsState;
 import org.thoughtcrime.securesms.components.webrtc.CallStateUpdatePopupWindow;
 import org.thoughtcrime.securesms.components.webrtc.CallToastPopupWindow;
+import org.thoughtcrime.securesms.components.webrtc.controls.ControlsAndInfoViewModel;
 import org.thoughtcrime.securesms.components.webrtc.GroupCallSafetyNumberChangeNotificationUtil;
 import org.thoughtcrime.securesms.components.webrtc.InCallStatus;
 import org.thoughtcrime.securesms.components.webrtc.PendingParticipantsBottomSheet;
@@ -150,6 +151,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
   private TooltipPopup                     videoTooltip;
   private TooltipPopup                     switchCameraTooltip;
   private WebRtcCallViewModel              viewModel;
+  private ControlsAndInfoViewModel         controlsAndInfoViewModel;
   private boolean                          enableVideoIfAvailable;
   private boolean                          hasWarnedAboutBluetooth;
   private WindowLayoutInfoConsumer         windowLayoutInfoConsumer;
@@ -196,7 +198,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     initializeViewModel(isLandscapeEnabled);
     initializePictureInPictureParams();
 
-    controlsAndInfo = new ControlsAndInfoController(callScreen, callOverflowPopupWindow, viewModel);
+    controlsAndInfo = new ControlsAndInfoController(callScreen, callOverflowPopupWindow, viewModel, controlsAndInfoViewModel);
     controlsAndInfo.addVisibilityListener(new FadeCallback());
 
     fullscreenHelper.showAndHideWithSystemUI(getWindow(), findViewById(R.id.webrtc_call_view_toolbar_text), findViewById(R.id.webrtc_call_view_toolbar_no_text));
@@ -495,6 +497,8 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
                                      .subscribe(callScreen::updatePendingParticipantsList);
 
     lifecycleDisposable.add(disposable);
+
+    controlsAndInfoViewModel = new ViewModelProvider(this).get(ControlsAndInfoViewModel.class);
   }
 
   private void initializePictureInPictureParams() {

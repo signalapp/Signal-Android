@@ -43,7 +43,8 @@ import kotlin.time.Duration.Companion.seconds
 class ControlsAndInfoController(
   private val webRtcCallView: WebRtcCallView,
   private val overflowPopupWindow: CallOverflowPopupWindow,
-  private val viewModel: WebRtcCallViewModel
+  private val viewModel: WebRtcCallViewModel,
+  private val controlsAndInfoViewModel: ControlsAndInfoViewModel
 ) : Disposable {
 
   companion object {
@@ -83,7 +84,7 @@ class ControlsAndInfoController(
       setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
       setContent {
         val nestedScrollInterop = rememberNestedScrollInteropConnection()
-        CallInfoView.View(viewModel, Modifier.nestedScroll(nestedScrollInterop))
+        CallInfoView.View(viewModel, controlsAndInfoViewModel, Modifier.nestedScroll(nestedScrollInterop))
       }
     }
 
@@ -126,11 +127,14 @@ class ControlsAndInfoController(
       override fun onStateChanged(bottomSheet: View, newState: Int) {
         overflowPopupWindow.dismiss()
         if (newState == BottomSheetBehavior.STATE_COLLAPSED) {
+          controlsAndInfoViewModel.resetScrollState()
           if (controlState.isFadeOutEnabled) {
             hide(delay = HIDE_CONTROL_DELAY)
           }
         } else if (newState == BottomSheetBehavior.STATE_EXPANDED || newState == BottomSheetBehavior.STATE_DRAGGING) {
           cancelScheduledHide()
+        } else if (newState == BottomSheetBehavior.STATE_HIDDEN) {
+          controlsAndInfoViewModel.resetScrollState()
         }
       }
 

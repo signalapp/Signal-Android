@@ -17,12 +17,14 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.rxjava3.subscribeAsState
@@ -58,8 +60,8 @@ import org.thoughtcrime.securesms.recipients.Recipient
 object CallInfoView {
 
   @Composable
-  fun View(webRtcCallViewModel: WebRtcCallViewModel, modifier: Modifier) {
-    val state: ParticipantsState by webRtcCallViewModel.callParticipantsState
+  fun View(webRtcCallViewModel: WebRtcCallViewModel, controlsAndInfoViewModel: ControlsAndInfoViewModel, modifier: Modifier) {
+    val participantsState: ParticipantsState by webRtcCallViewModel.callParticipantsState
       .toFlowable(BackpressureStrategy.LATEST)
       .map { state ->
         ParticipantsState(
@@ -75,11 +77,13 @@ object CallInfoView {
       }
       .subscribeAsState(ParticipantsState())
 
+    val controlAndInfoState: ControlAndInfoState by controlsAndInfoViewModel.state
+
     SignalTheme(
       isDarkMode = true
     ) {
       Surface {
-        CallInfo(state = state, modifier = modifier)
+        CallInfo(participantsState = participantsState, controlAndInfoState = controlAndInfoState, modifier = modifier)
       }
     }
   }
@@ -91,7 +95,8 @@ private fun CallInfoPreview() {
   SignalTheme(isDarkMode = true) {
     Surface {
       CallInfo(
-        state = ParticipantsState(remoteParticipants = listOf(CallParticipant(recipient = Recipient.UNKNOWN)))
+        participantsState = ParticipantsState(remoteParticipants = listOf(CallParticipant(recipient = Recipient.UNKNOWN))),
+        controlAndInfoState = ControlAndInfoState()
       )
     }
   }
@@ -99,10 +104,18 @@ private fun CallInfoPreview() {
 
 @Composable
 private fun CallInfo(
-  state: ParticipantsState,
+  participantsState: ParticipantsState,
+  controlAndInfoState: ControlAndInfoState,
   modifier: Modifier = Modifier
 ) {
+  val listState = rememberLazyListState()
+
+  LaunchedEffect(controlAndInfoState.resetScrollState) {
+    listState.scrollToItem(0)
+  }
+
   LazyColumn(
+    state = listState,
     horizontalAlignment = Alignment.CenterHorizontally,
     modifier = modifier
   ) {
@@ -123,15 +136,15 @@ private fun CallInfo(
         contentAlignment = Alignment.CenterStart
       ) {
         Text(
-          text = getCallSheetLabel(state),
+          text = getCallSheetLabel(participantsState),
           style = MaterialTheme.typography.titleSmall
         )
       }
     }
 
-    if (!state.inCallLobby || state.isOngoing()) {
+    if (!participantsState.inCallLobby || participantsState.isOngoing()) {
       items(
-        items = state.participantsForList,
+        items = participantsState.participantsForList,
         key = { it.callParticipantId },
         contentType = { null }
       ) {
@@ -141,9 +154,9 @@ private fun CallInfo(
           onBlockClicked = {}
         )
       }
-    } else if (state.isGroupCall()) {
+    } else if (participantsState.isGroupCall()) {
       items(
-        items = state.groupMembers,
+        items = participantsState.groupMembers,
         key = { it.member.id.toLong() },
         contentType = { null }
       ) {
@@ -155,8 +168,8 @@ private fun CallInfo(
     } else {
       item {
         CallParticipantRow(
-          initialRecipient = state.callRecipient,
-          name = state.callRecipient.getShortDisplayName(LocalContext.current),
+          initialRecipient = participantsState.callRecipient,
+          name = participantsState.callRecipient.getShortDisplayName(LocalContext.current),
           showIcons = false,
           isVideoEnabled = false,
           isMicrophoneEnabled = false,
