@@ -6,6 +6,8 @@
 
 package org.whispersystems.signalservice.api;
 
+import com.squareup.wire.FieldEncoding;
+
 import org.signal.libsignal.protocol.IdentityKeyPair;
 import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.protocol.ecc.ECPublicKey;
@@ -563,10 +565,17 @@ public class SignalServiceAccountManager {
 
     manifestRecordBuilder.identifiers(
         manifest.getStorageIds().stream()
-                .map(id -> new ManifestRecord.Identifier.Builder()
-                                                        .raw(ByteString.of(id.getRaw()))
-                                                        .type(ManifestRecord.Identifier.Type.Companion.fromValue(id.getType()))
-                                                        .build())
+                .map(id -> {
+                  ManifestRecord.Identifier.Builder builder = new ManifestRecord.Identifier.Builder()
+                      .raw(ByteString.of(id.getRaw()));
+                  if (!id.isUnknown()) {
+                    builder.type(ManifestRecord.Identifier.Type.Companion.fromValue(id.getType()));
+                  } else {
+                    builder.type(ManifestRecord.Identifier.Type.UNKNOWN);
+                    builder.addUnknownField(2, FieldEncoding.VARINT, id.getType());
+                  }
+                  return builder.build();
+                })
                 .collect(Collectors.toList())
     );
 
