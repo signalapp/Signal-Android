@@ -331,9 +331,9 @@ public class StorageSyncJob extends BaseJob {
         Log.i(TAG, "Removed " + removedUnregistered + " recipients from storage service that have been unregistered for longer than 30 days.");
       }
 
-      List<StorageId>           localStorageIds = getAllLocalStorageIds(self);
+      List<StorageId>           localStorageIds = getAllLocalStorageIds(self).stream().filter(it -> !it.isUnknown()).collect(Collectors.toList());
       IdDifferenceResult        idDifference    = StorageSyncHelper.findIdDifference(remoteManifest.getStorageIds(), localStorageIds);
-      List<SignalStorageRecord> remoteInserts   = buildLocalStorageRecords(context, self, idDifference.getLocalOnlyIds().stream().filter(it -> !it.isUnknown()).collect(Collectors.toList()));
+      List<SignalStorageRecord> remoteInserts   = buildLocalStorageRecords(context, self, idDifference.getLocalOnlyIds());
       List<byte[]>              remoteDeletes   = Stream.of(idDifference.getRemoteOnlyIds()).map(StorageId::getRaw).toList();
 
       Log.i(TAG, "ID Difference :: " + idDifference);
