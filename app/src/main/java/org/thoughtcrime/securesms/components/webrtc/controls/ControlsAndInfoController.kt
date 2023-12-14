@@ -9,14 +9,20 @@ import android.content.res.ColorStateList
 import android.os.Handler
 import android.view.View
 import android.widget.FrameLayout
+import androidx.annotation.IdRes
+import androidx.annotation.Px
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.platform.rememberNestedScrollInteropConnection
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
+import androidx.transition.AutoTransition
+import androidx.transition.TransitionManager
+import androidx.transition.TransitionSet
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback
 import com.google.android.material.bottomsheet.BottomSheetBehaviorHack
@@ -52,6 +58,7 @@ class ControlsAndInfoController(
     private const val CONTROL_FADE_OUT_DONE = 0.23f
     private const val INFO_FADE_IN_START = CONTROL_FADE_OUT_DONE
     private const val INFO_FADE_IN_DONE = 0.8f
+    private const val CONTROL_TRANSITION_DURATION = 250L
 
     private val HIDE_CONTROL_DELAY = 5.seconds.inWholeMilliseconds
   }
@@ -215,6 +222,14 @@ class ControlsAndInfoController(
     val previousState = controlState
     controlState = newControlState
 
+    showOrHideControlsOnUpdate(previousState)
+
+    if (controlState.controlVisibilitiesChanged(previousState)) {
+      updateControlVisibilities()
+    }
+  }
+
+  private fun showOrHideControlsOnUpdate(previousState: WebRtcControls) {
     if (controlState == WebRtcControls.PIP) {
       hide()
       return
@@ -239,6 +254,32 @@ class ControlsAndInfoController(
         showControls()
       }
     }
+  }
+
+  private fun updateControlVisibilities() {
+    TransitionManager.endTransitions(callControls)
+    TransitionManager.beginDelayedTransition(
+      callControls,
+      AutoTransition().apply {
+        ordering = TransitionSet.ORDERING_TOGETHER
+        duration = CONTROL_TRANSITION_DURATION
+      }
+    )
+
+    val constraints = ConstraintSet().apply {
+      clone(callControls)
+      val margin = if (controlState.displaySmallCallButtons()) 4.dp else 8.dp
+
+      setControlConstraints(R.id.call_screen_speaker_toggle, controlState.displayAudioToggle(), margin)
+      setControlConstraints(R.id.call_screen_camera_direction_toggle, controlState.displayCameraToggle(), margin)
+      setControlConstraints(R.id.call_screen_video_toggle, controlState.displayVideoToggle(), margin)
+      setControlConstraints(R.id.call_screen_audio_mic_toggle, controlState.displayMuteAudio(), margin)
+      setControlConstraints(R.id.call_screen_audio_ring_toggle, controlState.displayRingToggle(), margin)
+      setControlConstraints(R.id.call_screen_overflow_button, controlState.displayOverflow(), margin)
+      setControlConstraints(R.id.call_screen_end_call, controlState.displayEndCall(), margin)
+    }
+
+    constraints.applyTo(callControls)
   }
 
   private fun onScheduledHide() {
@@ -277,6 +318,22 @@ class ControlsAndInfoController(
 
   override fun isDisposed(): Boolean {
     return disposables.isDisposed
+  }
+
+  private fun ConstraintSet.setControlConstraints(@IdRes viewId: Int, visible: Boolean, @Px horizontalMargins: Int) {
+    setVisibility(viewId, if (visible) View.VISIBLE else View.GONE)
+    setMargin(viewId, ConstraintSet.START, horizontalMargins)
+    setMargin(viewId, ConstraintSet.END, horizontalMargins)
+  }
+
+  private fun WebRtcControls.controlVisibilitiesChanged(previousState: WebRtcControls): Boolean {
+    return displayAudioToggle() != previousState.displayAudioToggle() ||
+      displayCameraToggle() != previousState.displayCameraToggle() ||
+      displayVideoToggle() != previousState.displayVideoToggle() ||
+      displayMuteAudio() != previousState.displayMuteAudio() ||
+      displayRingToggle() != previousState.displayRingToggle() ||
+      displayOverflow() != previousState.displayOverflow() ||
+      displayEndCall() != previousState.displayEndCall()
   }
 
   interface BottomSheetVisibilityListener {

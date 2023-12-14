@@ -204,12 +204,8 @@ public final class WebRtcControls {
     return isAtLeastOutgoing() && isRemoteVideoEnabled && callState != CallState.RECONNECTING;
   }
 
-  public boolean displaySmallOngoingCallButtons() {
-    return isAtLeastOutgoing() && displayAudioToggle() && displayCameraToggle();
-  }
-
-  public boolean displayLargeOngoingCallButtons() {
-    return isAtLeastOutgoing() && !(displayAudioToggle() && displayCameraToggle());
+  public boolean displaySmallCallButtons() {
+    return displayedButtonCount() >= 5;
   }
 
   public boolean displayTopViews() {
@@ -267,6 +263,16 @@ public final class WebRtcControls {
 
   private boolean isGroupCall() {
     return groupCallState != GroupCallState.NONE;
+  }
+
+  private int displayedButtonCount() {
+    return (displayAudioToggle() ? 1 : 0) +
+           (displayCameraToggle() ? 1 : 0) +
+           (displayVideoToggle() ? 1 : 0) +
+           (displayMuteAudio() ? 1 : 0) +
+           (displayRingToggle() ? 1 : 0) +
+           (displayOverflow() ? 1 : 0) +
+           (displayEndCall() ? 1 : 0);
   }
 
   public enum CallState {

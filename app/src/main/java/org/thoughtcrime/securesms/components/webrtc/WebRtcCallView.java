@@ -136,9 +136,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
   private final Set<View> topViews             = new HashSet<>();
   private final Set<View> visibleViewSet       = new HashSet<>();
   private final Set<View> allTimeVisibleViews  = new HashSet<>();
-  private final Set<View> adjustableMarginsSet = new HashSet<>();
   private final Set<View> rotatableControls    = new HashSet<>();
-
 
   private final ThrottledDebouncer throttledDebouncer = new ThrottledDebouncer(TRANSITION_DURATION_MILLIS);
   private       WebRtcControls     controls           = WebRtcControls.NONE;
@@ -242,11 +240,6 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     incomingCallViews.add(declineLabel);
     incomingCallViews.add(footerGradient);
     incomingCallViews.add(incomingRingStatus);
-
-    adjustableMarginsSet.add(micToggle);
-    adjustableMarginsSet.add(cameraDirectionToggle);
-    adjustableMarginsSet.add(videoToggle);
-    adjustableMarginsSet.add(audioToggle);
 
     audioToggle.setOnAudioOutputChangedListener(webRtcAudioDevice -> {
       runIfNonNull(controlsListener, listener ->
@@ -703,8 +696,6 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     }
 
     if (webRtcControls.displayAudioToggle()) {
-      visibleViewSet.add(audioToggle);
-
       audioToggle.setControlAvailability(webRtcControls.isEarpieceAvailableForAudioToggle(),
                                          webRtcControls.isBluetoothHeadsetAvailableForAudioToggle(),
                                          webRtcControls.isWiredHeadsetAvailableForAudioToggle());
@@ -712,30 +703,9 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
       audioToggle.updateAudioOutputState(webRtcControls.getAudioOutput());
     }
 
-    if (webRtcControls.displayCameraToggle()) {
-      visibleViewSet.add(cameraDirectionToggle);
-    }
-
-    if (webRtcControls.displayEndCall()) {
-      visibleViewSet.add(hangup);
-      visibleViewSet.add(footerGradient);
-    }
-
-    if (webRtcControls.displayOverflow()) {
-      visibleViewSet.add(overflow);
-    }
-
-    if (webRtcControls.displayMuteAudio()) {
-      visibleViewSet.add(micToggle);
-    }
-
-    if (webRtcControls.displayVideoToggle()) {
-      visibleViewSet.add(videoToggle);
-    }
-
-    if (webRtcControls.displaySmallOngoingCallButtons()) {
+    if (webRtcControls.displaySmallCallButtons()) {
       updateButtonStateForSmallButtons();
-    } else if (webRtcControls.displayLargeOngoingCallButtons()) {
+    } else {
       updateButtonStateForLargeButtons();
     }
 
@@ -751,10 +721,6 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
       visibleViewSet.remove(footerGradient);
     } else {
       fullScreenShade.setVisibility(GONE);
-    }
-
-    if (webRtcControls.displayRingToggle()) {
-      visibleViewSet.add(ringToggle);
     }
 
     if (webRtcControls.displayReactions()) {
@@ -777,7 +743,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
         (!webRtcControls.showSmallHeader() && largeHeaderAvatar.getVisibility() == View.GONE) ||
         forceUpdate)
     {
-      throttledDebouncer.publish(() -> fadeInNewUiState(webRtcControls.displaySmallOngoingCallButtons(), webRtcControls.showSmallHeader()));
+      throttledDebouncer.publish(() -> fadeInNewUiState(webRtcControls.showSmallHeader()));
     }
 
     onWindowSystemUiVisibilityChanged(getWindowSystemUiVisibility());
@@ -871,20 +837,13 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     constraintSet.applyTo(this);
   }
 
-  private void fadeInNewUiState(boolean useSmallMargins, boolean showSmallHeader) {
+  private void fadeInNewUiState(boolean showSmallHeader) {
     for (View view : SetUtil.difference(allTimeVisibleViews, visibleViewSet)) {
       view.setVisibility(GONE);
     }
 
     for (View view : visibleViewSet) {
       view.setVisibility(VISIBLE);
-
-      if (adjustableMarginsSet.contains(view)) {
-        MarginLayoutParams params = (MarginLayoutParams) view.getLayoutParams();
-        params.setMarginEnd(ViewUtil.dpToPx(useSmallMargins ? SMALL_ONGOING_CALL_BUTTON_MARGIN_DP
-                                                            : LARGE_ONGOING_CALL_BUTTON_MARGIN_DP));
-        view.setLayoutParams(params);
-      }
     }
 
     if (showSmallHeader) {
@@ -918,6 +877,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     videoToggle.setBackgroundResource(R.drawable.webrtc_call_screen_video_toggle);
     audioToggle.setImageResource(R.drawable.webrtc_call_screen_speaker_toggle);
     ringToggle.setBackgroundResource(R.drawable.webrtc_call_screen_ring_toggle);
+    overflow.setBackgroundResource(R.drawable.webrtc_call_screen_overflow_menu);
   }
 
   private void updateButtonStateForSmallButtons() {
@@ -928,6 +888,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     videoToggle.setBackgroundResource(R.drawable.webrtc_call_screen_video_toggle_small);
     audioToggle.setImageResource(R.drawable.webrtc_call_screen_speaker_toggle_small);
     ringToggle.setBackgroundResource(R.drawable.webrtc_call_screen_ring_toggle_small);
+    overflow.setBackgroundResource(R.drawable.webrtc_call_screen_overflow_menu_small);
   }
 
   public void switchToSpeakerView() {
