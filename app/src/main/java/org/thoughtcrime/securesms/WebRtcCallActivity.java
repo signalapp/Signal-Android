@@ -992,7 +992,10 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
 
     @Override
     public void toggleControls() {
-      controlsAndInfo.toggleControls();
+      WebRtcControls controlState = viewModel.getWebRtcControls().getValue();
+      if (controlState != null && !controlState.displayIncomingCallButtons()) {
+        controlsAndInfo.toggleControls();
+      }
     }
 
     @Override
