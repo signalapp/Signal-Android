@@ -224,7 +224,7 @@ class ControlsAndInfoController(
 
     showOrHideControlsOnUpdate(previousState)
 
-    if (controlState.controlVisibilitiesChanged(previousState)) {
+    if (controlState != WebRtcControls.PIP && controlState.controlVisibilitiesChanged(previousState)) {
       updateControlVisibilities()
     }
   }
