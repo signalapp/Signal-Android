@@ -21,7 +21,6 @@
         android:orientation="horizontal"
         tools:layout_constraintGuide_end="200dp" />
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/call_screen_participants_parent"
         android:layout_width="0dp"

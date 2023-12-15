@@ -125,12 +125,11 @@ class ControlsAndInfoController(
     BottomSheetBehaviorHack.setNestedScrollingChild(behavior, callInfoComposeView)
 
     coordinator.addOnLayoutChangeListener { _, _, _, _, _, _, _, _, _ ->
-      val guidelineTop = max(frame.top, coordinator.height - behavior.peekHeight)
-      webRtcCallView.post { onControlTopChanged(guidelineTop) }
+      webRtcCallView.post { onControlTopChanged() }
     }
 
     raiseHandComposeView.addOnLayoutChangeListener { _, _, top, _, bottom, _, _, _, _ ->
-      onControlTopChanged(guidelineTop = aboveControlsGuideline.top, composeViewSize = bottom - top)
+      onControlTopChanged(composeViewSize = bottom - top)
     }
 
     callControls.viewTreeObserver.addOnGlobalLayoutListener {
@@ -141,8 +140,7 @@ class ControlsAndInfoController(
         frame.minimumHeight = coordinator.height / 2
         behavior.maxHeight = (coordinator.height.toFloat() * 0.66f).toInt()
 
-        val guidelineTop = max(frame.top, coordinator.height - behavior.peekHeight)
-        webRtcCallView.post { onControlTopChanged(guidelineTop) }
+        webRtcCallView.post { onControlTopChanged() }
       }
     }
 
@@ -168,7 +166,7 @@ class ControlsAndInfoController(
         callInfoComposeView.alpha = alphaCallInfo(slideOffset)
         callInfoComposeView.translationY = infoTranslationDistance - (infoTranslationDistance * callInfoComposeView.alpha)
 
-        onControlTopChanged(max(frame.top, coordinator.height - behavior.peekHeight))
+        onControlTopChanged()
       }
     })
 
@@ -185,9 +183,10 @@ class ControlsAndInfoController(
     }
   }
 
-  fun onControlTopChanged(guidelineTop: Int, composeViewSize: Int = raiseHandComposeView.height) {
+  fun onControlTopChanged(composeViewSize: Int = raiseHandComposeView.height) {
+    val guidelineTop = max(frame.top, coordinator.height - behavior.peekHeight)
     aboveControlsGuideline.setGuidelineBegin(guidelineTop)
-    webRtcCallView.onControlTopChanged(guidelineTop - composeViewSize)
+    webRtcCallView.onControlTopChanged(guidelineTop, composeViewSize)
   }
 
   fun addVisibilityListener(listener: BottomSheetVisibilityListener): Boolean {

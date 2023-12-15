@@ -113,6 +113,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
   private View                          errorButton;
   private boolean                       controlsVisible = true;
   private Guideline                     showParticipantsGuideline;
+  private Guideline                     aboveControlsGuideline;
   private Guideline                     topFoldGuideline;
   private Guideline                     callScreenTopFoldGuideline;
   private AvatarImageView               largeHeaderAvatar;
@@ -193,6 +194,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     groupCallSpeakerHint          = new Stub<>(findViewById(R.id.call_screen_group_call_speaker_hint));
     groupCallFullStub             = new Stub<>(findViewById(R.id.group_call_call_full_view));
     showParticipantsGuideline     = findViewById(R.id.call_screen_show_participants_guideline);
+    aboveControlsGuideline        = findViewById(R.id.call_screen_above_controls_guideline);
     topFoldGuideline              = findViewById(R.id.fold_top_guideline);
     callScreenTopFoldGuideline    = findViewById(R.id.fold_top_call_screen_guideline);
     largeHeaderAvatar             = findViewById(R.id.call_screen_header_avatar);
@@ -462,9 +464,11 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
 
     updateLocalCallParticipant(state.getLocalRenderState(), state.getLocalParticipant(), displaySmallSelfPipInLandscape);
 
-    if (state.isLargeVideoGroup() && !state.isInPipMode() && !state.isFolded()) {
+    if (state.isLargeVideoGroup()) {
+      moveSnackbarAboveParticipantRail(true);
       adjustLayoutForLargeCount();
     } else {
+      moveSnackbarAboveParticipantRail(state.isViewingFocusedParticipant());
       adjustLayoutForSmallCount();
     }
   }
@@ -836,11 +840,26 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
                           ConstraintSet.TOP,
                           ViewUtil.dpToPx(layoutPositions.reactionBottomMargin));
 
+    constraintSet.applyTo(this);
+  }
+
+  private void moveSnackbarAboveParticipantRail(boolean aboveRail) {
+    if (aboveRail) {
+      updateSnackbarBottomConstraint(callParticipantsRecycler);
+    } else {
+      updateSnackbarBottomConstraint(aboveControlsGuideline);
+    }
+  }
+
+  private void updateSnackbarBottomConstraint(View anchor) {
+    ConstraintSet constraintSet = new ConstraintSet();
+    constraintSet.clone(this);
+
     constraintSet.connect(R.id.call_screen_raise_hand_view,
                           ConstraintSet.BOTTOM,
-                          layoutPositions.reactionBottomViewId,
+                          anchor.getId(),
                           ConstraintSet.TOP,
-                          ViewUtil.dpToPx(layoutPositions.reactionBottomMargin));
+                          ViewUtil.dpToPx(8));
 
     constraintSet.applyTo(this);
   }
@@ -913,8 +932,15 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     ringToggle.setActivated(enabled);
   }
 
-  public void onControlTopChanged(int top) {
-    pictureInPictureGestureHelper.setBottomVerticalBoundary(top);
+  public void onControlTopChanged(int guidelineTop, int snackBarHeight) {
+    int offset = 0;
+    if (lastState != null) {
+      CallParticipantsState state = lastState.getCallParticipantsState();
+      if (!state.isViewingFocusedParticipant() && !state.isLargeVideoGroup()) {
+        offset = snackBarHeight;
+      }
+      pictureInPictureGestureHelper.setBottomVerticalBoundary(guidelineTop - offset);
+    }
   }
 
   public interface ControlsListener {

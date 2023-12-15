@@ -16,9 +16,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -67,31 +65,31 @@ object RaiseHandSnackbar {
 
   @Composable
   fun View(webRtcCallViewModel: WebRtcCallViewModel, showCallInfoListener: () -> Unit, modifier: Modifier = Modifier) {
-    var isExpanded by remember { mutableStateOf(ExpansionState(isExpanded = false, forced = false)) }
+    var expansionState by remember { mutableStateOf(ExpansionState(shouldExpand = false, forced = false)) }
 
     val webRtcState by webRtcCallViewModel.callParticipantsState
       .toFlowable(BackpressureStrategy.LATEST)
       .map { state ->
         val raisedHands = state.raisedHands.sortedByDescending { it.timestamp }
         val shouldExpand = RaiseHandState.shouldExpand(raisedHands)
-        if (!isExpanded.forced) {
-          isExpanded = ExpansionState(shouldExpand, false)
+        if (!expansionState.forced) {
+          expansionState = ExpansionState(shouldExpand, false)
         }
         raisedHands
       }.subscribeAsState(initial = emptyList())
 
     val state by remember {
       derivedStateOf {
-        RaiseHandState(raisedHands = webRtcState, expansionState = isExpanded)
+        RaiseHandState(raisedHands = webRtcState, expansionState = expansionState)
       }
     }
 
-    LaunchedEffect(isExpanded) {
+    LaunchedEffect(expansionState) {
       delay(COLLAPSE_DELAY_MS)
-      isExpanded = ExpansionState(isExpanded = false, forced = false)
+      expansionState = ExpansionState(shouldExpand = false, forced = false)
     }
 
-    RaiseHand(state, modifier, { isExpanded = ExpansionState(isExpanded = true, forced = true) }, showCallInfoListener = showCallInfoListener)
+    RaiseHand(state, modifier, { expansionState = ExpansionState(shouldExpand = true, forced = true) }, showCallInfoListener = showCallInfoListener)
   }
 }
 
@@ -123,20 +121,19 @@ private fun RaiseHand(
           .padding(horizontal = 16.dp)
           .clip(shape = RoundedCornerShape(16.dp, 16.dp, 16.dp, 16.dp))
           .background(MaterialTheme.colorScheme.surface)
-          .height(48.dp)
           .animateContentSize()
       ) {
         val boxModifier = modifier
           .padding(horizontal = 16.dp)
           .clickable(
-            !state.expansionState.isExpanded,
+            !state.isExpanded,
             stringResource(id = R.string.CallOverflowPopupWindow__expand_snackbar_accessibility_label),
             Role.Button
           ) { setExpanded(true) }
 
         Box(
           contentAlignment = Alignment.CenterStart,
-          modifier = if (state.expansionState.isExpanded) {
+          modifier = if (state.isExpanded) {
             boxModifier.fillMaxWidth()
           } else {
             boxModifier.wrapContentWidth()
@@ -146,27 +143,35 @@ private fun RaiseHand(
             Icon(
               imageVector = ImageVector.vectorResource(id = R.drawable.symbol_raise_hand_24),
               contentDescription = null,
-              modifier = Modifier.align(Alignment.CenterVertically)
+              modifier = Modifier.align(Alignment.CenterVertically).padding(vertical = 8.dp)
             )
 
             Text(
               text = getSnackbarText(state),
               color = MaterialTheme.colorScheme.onSurface,
-              modifier = Modifier.padding(start = 16.dp)
+              modifier = Modifier
+                .padding(start = 16.dp)
+                .weight(1f, fill = state.isExpanded)
+                .wrapContentWidth(Alignment.Start)
+                .padding(vertical = 16.dp)
             )
-            if (state.expansionState.isExpanded && state.raisedHands.isNotEmpty()) {
-              Spacer(modifier = Modifier.weight(1f))
-
+            if (state.isExpanded) {
               if (state.raisedHands.first().sender.isSelf) {
                 val context = LocalContext.current
-                TextButton(onClick = {
-                  showLowerHandDialog(context)
-                }) {
-                  Text(text = stringResource(id = R.string.CallOverflowPopupWindow__lower_hand))
+                TextButton(
+                  onClick = {
+                    showLowerHandDialog(context)
+                  },
+                  modifier = Modifier.wrapContentWidth(Alignment.End)
+                ) {
+                  Text(text = stringResource(id = R.string.CallOverflowPopupWindow__lower_hand), maxLines = 1)
                 }
               } else {
-                TextButton(onClick = showCallInfoListener) {
-                  Text(text = stringResource(id = R.string.CallOverflowPopupWindow__view))
+                TextButton(
+                  onClick = showCallInfoListener,
+                  modifier = Modifier.wrapContentWidth(Alignment.End)
+                ) {
+                  Text(text = stringResource(id = R.string.CallOverflowPopupWindow__view), maxLines = 1)
                 }
               }
             }
@@ -189,10 +194,10 @@ private fun showLowerHandDialog(context: Context) {
 
 @Composable
 private fun getSnackbarText(state: RaiseHandState): String {
-  if (state.isEmpty()) {
+  if (state.isEmpty) {
     return ""
   }
-  return if (!state.expansionState.isExpanded) {
+  return if (!state.isExpanded) {
     pluralStringResource(id = R.plurals.CallRaiseHandSnackbar_raised_hands, count = state.raisedHands.size, getShortDisplayName(state.raisedHands), state.raisedHands.size - 1)
   } else {
     if (state.raisedHands.size == 1 && state.raisedHands.first().sender.isSelf) {
@@ -215,12 +220,11 @@ private fun getShortDisplayName(raisedHands: List<GroupCallRaiseHandEvent>): Str
 
 private data class RaiseHandState(
   val raisedHands: List<GroupCallRaiseHandEvent> = emptyList(),
-  val expansionState: ExpansionState = ExpansionState(isExpanded = false, forced = false)
+  val expansionState: ExpansionState = ExpansionState(shouldExpand = false, forced = false)
 ) {
+  val isExpanded = expansionState.shouldExpand && raisedHands.isNotEmpty()
 
-  fun isEmpty(): Boolean {
-    return raisedHands.isEmpty()
-  }
+  val isEmpty = raisedHands.isEmpty()
 
   companion object {
     @JvmStatic
@@ -232,6 +236,6 @@ private data class RaiseHandState(
 }
 
 private data class ExpansionState(
-  val isExpanded: Boolean,
+  val shouldExpand: Boolean,
   val forced: Boolean
 )
