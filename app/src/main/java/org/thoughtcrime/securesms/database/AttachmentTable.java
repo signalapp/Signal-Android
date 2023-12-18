@@ -56,6 +56,9 @@ import org.thoughtcrime.securesms.crypto.ClassicDecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream;
 import org.thoughtcrime.securesms.database.model.databaseprotos.AudioWaveFormData;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.jobmanager.JobManager;
+import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
 import org.thoughtcrime.securesms.jobs.GenerateAudioWaveFormJob;
 import org.thoughtcrime.securesms.mms.MediaStream;
 import org.thoughtcrime.securesms.mms.MmsException;
@@ -365,16 +368,19 @@ public class AttachmentTable extends DatabaseTable {
   public boolean deleteAttachmentsForMessage(long mmsId) {
     Log.d(TAG, "[deleteAttachmentsForMessage] mmsId: " + mmsId);
 
-    SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
+    final JobManager jobManager = ApplicationDependencies.getJobManager();
 
+    SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
     db.beginTransaction();
     try {
       try (Cursor cursor = db.query(TABLE_NAME, new String[] { DATA, CONTENT_TYPE, ROW_ID, UNIQUE_ID }, MMS_ID + " = ?", new String[] { mmsId + "" }, null, null, null)) {
         while (cursor.moveToNext()) {
+          final AttachmentId attachmentId = new AttachmentId(CursorUtil.requireLong(cursor, ROW_ID),
+                                                             CursorUtil.requireLong(cursor, UNIQUE_ID));
+          jobManager.cancelAllInQueue(AttachmentDownloadJob.constructQueueString(attachmentId));
           deleteAttachmentOnDisk(CursorUtil.requireString(cursor, DATA),
                                  CursorUtil.requireString(cursor, CONTENT_TYPE),
-                                 new AttachmentId(CursorUtil.requireLong(cursor, ROW_ID),
-                                                  CursorUtil.requireLong(cursor, UNIQUE_ID)));
+                                 attachmentId);
         }
       }
 
