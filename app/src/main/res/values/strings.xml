@@ -1879,6 +1879,18 @@
     <!-- An accessibility label for screen readers on a view that can be expanded -->
     <string name="CallOverflowPopupWindow__expand_snackbar_accessibility_label">Expand raised hand view</string>
 
+    <!-- AboutSheet -->
+    <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
+    <string name="AboutSheet__signal_connection">Signal connection</string>
+    <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
+    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s is in your system contacts</string>
+    <!-- Notice in a row when user has no groups in common -->
+    <string name="AboutSheet__you_have_no_groups_in_common">You have no groups in common</string>
+    <!-- Notice when a user is not a connection to review requests carefully -->
+    <string name="AboutSheet__review_requests_carefully">Review requests carefully</string>
+    <!-- Text used when user has groups in common. Placeholder is the count -->
+    <string name="AboutSheet__d_groups_in_common">%1$d groups in common</string>
+
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call">
         <item quantity="one">In this call (%1$d)</item>
