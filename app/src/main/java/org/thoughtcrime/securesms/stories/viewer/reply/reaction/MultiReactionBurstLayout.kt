@@ -9,6 +9,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.FrameLayout
 import androidx.core.view.children
+import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.emoji.EmojiUtil
 import org.thoughtcrime.securesms.events.GroupCallReactionEvent
 import kotlin.time.Duration.Companion.seconds
@@ -23,7 +24,8 @@ class MultiReactionBurstLayout @JvmOverloads constructor(
 
   init {
     repeat(MAX_SIMULTANEOUS_REACTIONS) {
-      addView(OnReactionSentView(context))
+      val view = OnReactionSentView(context, layoutRes = R.layout.reaction_burst_view)
+      addView(view)
     }
   }
 

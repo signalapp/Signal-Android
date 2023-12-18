@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/emoji_1"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="12dp"
+            android:scaleX="0"
+            android:scaleY="0"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="parent" />
+        <Constraint
+            android:id="@+id/emoji_2"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="12dp"
+            android:scaleX="0"
+            android:scaleY="0"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="parent" />
+        <Constraint
+            android:id="@id/emoji_3"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="12dp"
+            android:scaleX="0"
+            android:scaleY="0"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="parent" />
+        <Constraint
+            android:id="@+id/emoji_4"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="12dp"
+            android:scaleX="0"
+            android:scaleY="0"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="parent" />
+        <Constraint
+            android:id="@+id/emoji_5"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="12dp"
+            android:scaleX="0"
+            android:scaleY="0"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="parent" />
+        <Constraint
+            android:id="@+id/emoji_6"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="12dp"
+            android:scaleX="0"
+            android:scaleY="0"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="parent" />
+        <Constraint
+            android:id="@+id/emoji_7"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="12dp"
+            android:scaleX="0"
+            android:scaleY="0"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="parent" />
+        <Constraint
+            android:id="@+id/emoji_8"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="12dp"
+            android:scaleX="0"
+            android:scaleY="0"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="parent"/>
+        <Constraint
+            android:id="@+id/emoji_9"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="12dp"
+            android:scaleX="0"
+            android:scaleY="0"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="parent" />
+        <Constraint
+            android:id="@+id/emoji_10"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="12dp"
+            android:scaleX="0"
+            android:scaleY="0"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="parent" />
+        <Constraint
+            android:id="@+id/emoji_11"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="12dp"
+            android:scaleX="0"
+            android:scaleY="0"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="parent" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@id/emoji_1"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginBottom="16dp"
+            android:scaleX="1"
+            android:scaleY="1"
+            motion:layout_constraintBottom_toTopOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent" />
+        <Constraint
+            android:id="@id/emoji_2"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginEnd="80dp"
+            android:layout_marginBottom="16dp"
+            android:scaleX="1"
+            android:scaleY="1"
+            motion:layout_constraintBottom_toTopOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent" />
+        <Constraint
+            android:id="@id/emoji_3"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginEnd="56dp"
+            android:scaleX="1"
+            android:scaleY="1"
+            motion:layout_constraintBottom_toTopOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent" />
+        <Constraint
+            android:id="@id/emoji_4"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginBottom="16dp"
+            android:scaleX="1"
+            android:scaleY="1"
+            motion:layout_constraintBottom_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent" />
+        <Constraint
+            android:id="@id/emoji_5"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginBottom="16dp"
+            android:scaleX="1"
+            android:scaleY="1"
+            motion:layout_constraintBottom_toTopOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent" />
+        <Constraint
+            android:id="@id/emoji_6"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="16dp"
+            android:scaleX="1"
+            android:scaleY="1"
+            motion:layout_constraintBottom_toTopOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent" />
+        <Constraint
+            android:id="@id/emoji_7"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="16dp"
+            android:scaleX="1"
+            android:scaleY="1"
+            motion:layout_constraintBottom_toTopOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent" />
+        <Constraint
+            android:id="@id/emoji_8"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="16dp"
+            android:scaleX="1"
+            android:scaleY="1"
+            motion:layout_constraintBottom_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent" />
+        <Constraint
+            android:id="@+id/emoji_9"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleX="1"
+            android:scaleY="1"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="parent" />
+        <Constraint
+            android:id="@id/emoji_10"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="16dp"
+            android:scaleX="1"
+            android:scaleY="1"
+            motion:layout_constraintBottom_toTopOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginEnd="16dp" />
+        <Constraint
+            android:id="@id/emoji_11"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="16dp"
+            android:scaleX="1"
+            android:scaleY="1"
+            motion:layout_constraintBottom_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent" />
+    </ConstraintSet>
+
+    <Transition
+        motion:constraintSetEnd="@id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="3000"
+        motion:motionInterpolator="cubic(0.25,0.25,0.5,1)">
+
+        <KeyFrameSet>
+            <KeyAttribute
+                android:scaleX="1"
+                motion:framePosition="40"
+                motion:motionTarget="emoji" />
+            <KeyAttribute
+                android:scaleY="1"
+                motion:framePosition="40"
+                motion:motionTarget="emoji" />
+            <KeyCycle
+                android:rotation="24"
+                motion:framePosition="0"
+                motion:motionTarget="@+id/emoji_1"
+                motion:waveOffset="0"
+                motion:wavePeriod="1" />
+            <KeyCycle
+                android:rotation="24"
+                motion:framePosition="100"
+                motion:motionTarget="@+id/emoji_1"
+                motion:waveOffset="0"
+                motion:wavePeriod="1" />
+            <KeyCycle
+                android:rotation="15"
+                motion:framePosition="0"
+                motion:motionTarget="@+id/emoji_2"
+                motion:waveOffset="-15"
+                motion:wavePeriod="1" />
+            <KeyCycle
+                android:rotation="15"
+                motion:framePosition="100"
+                motion:motionTarget="@+id/emoji_2"
+                motion:waveOffset="-15"
+                motion:wavePeriod="1" />
+            <KeyCycle
+                android:rotation="8"
+                motion:framePosition="0"
+                motion:motionTarget="@+id/emoji_3"
+                motion:waveOffset="0"
+                motion:wavePeriod="1" />
+            <KeyCycle
+                android:rotation="8"
+                motion:framePosition="100"
+                motion:motionTarget="@+id/emoji_3"
+                motion:waveOffset="0"
+                motion:wavePeriod="1" />
+            <KeyCycle
+                android:rotation="12"
+                motion:framePosition="0"
+                motion:motionTarget="@+id/emoji_4"
+                motion:waveOffset="0"
+                motion:wavePeriod="1" />
+            <KeyCycle
+                android:rotation="12"
+                motion:framePosition="100"
+                motion:motionTarget="@+id/emoji_4"
+                motion:waveOffset="0"
+                motion:wavePeriod="1" />
+            <KeyCycle
+                android:rotation="12"
+                motion:framePosition="0"
+                motion:motionTarget="@+id/emoji_5"
+                motion:waveOffset="0"
+                motion:wavePeriod="1" />
+            <KeyCycle
+                android:rotation="12"
+                motion:framePosition="100"
+                motion:motionTarget="@+id/emoji_5"
+                motion:waveOffset="0"
+                motion:wavePeriod="1" />
+            <KeyCycle
+                android:rotation="10"
+                motion:framePosition="0"
+                motion:motionTarget="@+id/emoji_8"
+                motion:waveOffset="2"
+                motion:wavePeriod="1" />
+            <KeyCycle
+                android:rotation="10"
+                motion:framePosition="100"
+                motion:motionTarget="@+id/emoji_8"
+                motion:waveOffset="2"
+                motion:wavePeriod="1" />
+            <KeyCycle
+                android:rotation="6"
+                motion:framePosition="0"
+                motion:motionTarget="@+id/emoji_11"
+                motion:waveOffset="2"
+                motion:wavePeriod="1" />
+            <KeyCycle
+                android:rotation="6"
+                motion:framePosition="100"
+                motion:motionTarget="@+id/emoji_11"
+                motion:waveOffset="2"
+                motion:wavePeriod="1" />
+            <KeyPosition
+                motion:framePosition="40"
+                motion:keyPositionType="deltaRelative"
+                motion:motionTarget="@+id/emoji_1"
+                motion:percentY="1" />
+            <KeyPosition
+                motion:framePosition="44"
+                motion:keyPositionType="deltaRelative"
+                motion:motionTarget="@+id/emoji_2"
+                motion:percentY="1" />
+            <KeyPosition
+                motion:framePosition="72"
+                motion:keyPositionType="deltaRelative"
+                motion:motionTarget="@+id/emoji_3"
+                motion:percentY="1" />
+            <KeyPosition
+                motion:framePosition="52"
+                motion:keyPositionType="deltaRelative"
+                motion:motionTarget="@+id/emoji_4"
+                motion:percentY="1" />
+            <KeyPosition
+                motion:framePosition="56"
+                motion:keyPositionType="deltaRelative"
+                motion:motionTarget="@+id/emoji_5"
+                motion:percentY="1" />
+            <KeyPosition
+                motion:framePosition="48"
+                motion:keyPositionType="deltaRelative"
+                motion:motionTarget="@+id/emoji_6"
+                motion:percentY="1" />
+            <KeyPosition
+                motion:framePosition="64"
+                motion:keyPositionType="deltaRelative"
+                motion:motionTarget="@+id/emoji_7"
+                motion:percentY="1" />
+            <KeyPosition
+                motion:framePosition="68"
+                motion:keyPositionType="deltaRelative"
+                motion:motionTarget="@+id/emoji_8"
+                motion:percentY="1" />
+            <KeyPosition
+                motion:framePosition="80"
+                motion:keyPositionType="deltaRelative"
+                motion:motionTarget="@+id/emoji_9"
+                motion:percentY="1" />
+            <KeyPosition
+                motion:framePosition="88"
+                motion:keyPositionType="deltaRelative"
+                motion:motionTarget="@+id/emoji_10"
+                motion:percentY="1" />
+            <KeyPosition
+                motion:framePosition="78"
+                motion:keyPositionType="deltaRelative"
+                motion:motionTarget="@+id/emoji_11"
+                motion:percentY="1" />
+        </KeyFrameSet>
+    </Transition>
+</MotionScene>
