@@ -1760,7 +1760,7 @@
     <!-- Toggle content description for toggling mute state  -->
     <string name="WebRtcCallView__toggle_mute">알림 토글</string>
     <!-- Content description for additional actions menu button -->
-    <string name="WebRtcCallView__additional_actions">Additional actions</string>
+    <string name="WebRtcCallView__additional_actions">작업 더 보기</string>
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">전화 종료</string>
 
@@ -2306,7 +2306,7 @@
     <string name="WebRtcCallActivity__declined_on_a_linked_device">연결된 기기에서 거부했습니다.</string>
     <string name="WebRtcCallActivity__busy_on_a_linked_device">연결된 기기에서 사용 중입니다.</string>
     <!-- Tooltip message shown first time user is in a video call after switch camera button moved -->
-    <string name="WebRtcCallActivity__flip_camera_tooltip">Flip Camera has been moved here, tap your video to try it out</string>
+    <string name="WebRtcCallActivity__flip_camera_tooltip">카메라 전환이 여기로 이동했습니다. 영상을 탭하여 사용해 보세요.</string>
 
     <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">누군가 변경된 안전 번호로 통화에 참여했습니다.</string>
 

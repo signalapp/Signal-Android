@@ -75,7 +75,7 @@
     <string name="DraftDatabase_Draft_video_snippet">(físeán)</string>
     <string name="DraftDatabase_Draft_location_snippet">(suíomh)</string>
     <string name="DraftDatabase_Draft_quote_snippet">(freagair)</string>
-    <string name="DraftDatabase_Draft_voice_note">(Teachtaireacht bhéil)</string>
+    <string name="DraftDatabase_Draft_voice_note">(Glórphost)</string>
 
     <!-- AttachmentKeyboard -->
     <string name="AttachmentKeyboard_gallery">Gailearaí</string>
@@ -2324,7 +2324,7 @@
     <string name="ThreadRecord_hidden_recipient">Tá an duine sin folaithe agat, seol teachtaireacht arís le cur ar ais ar do liosta é/í.</string>
     <string name="ThreadRecord_photo">Grianghraf</string>
     <string name="ThreadRecord_gif">GIF</string>
-    <string name="ThreadRecord_voice_message">Teachtaireacht Ghutha</string>
+    <string name="ThreadRecord_voice_message">Glórphost</string>
     <string name="ThreadRecord_file">Comhad</string>
     <string name="ThreadRecord_video">Físeán</string>
     <string name="ThreadRecord_chat_session_refreshed">Chat session refreshed</string>
@@ -2596,7 +2596,7 @@
     <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
     <string name="TransferControlView__processing">Próiseáil…</string>
     <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
-    <string name="TransferControlView__download_progress">%1$s/%2$s</string>
+    <string name="TransferControlView__download_progress">%1$s / %2$s</string>
 
 
     <!-- UnauthorizedReminder -->
@@ -4215,7 +4215,7 @@
     <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Theip ar sheinm an ghlórphoist</string>
 
     <!-- VoiceNoteMediaDescriptionCompatFactory -->
-    <string name="VoiceNoteMediaItemFactory__voice_message">Teachtaireacht bhéil · %1$s</string>
+    <string name="VoiceNoteMediaItemFactory__voice_message">Glórphost · %1$s</string>
     <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s chuig %2$s</string>
 
     <!-- StorageUtil -->

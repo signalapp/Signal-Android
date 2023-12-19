@@ -1831,7 +1831,7 @@
     <!-- Toggle content description for toggling mute state  -->
     <string name="WebRtcCallView__toggle_mute">Αλλαγή σίγασης</string>
     <!-- Content description for additional actions menu button -->
-    <string name="WebRtcCallView__additional_actions">Additional actions</string>
+    <string name="WebRtcCallView__additional_actions">Επιπλέον ενέργειες</string>
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">Τερματισμός κλήσης</string>
 
@@ -2385,7 +2385,7 @@
     <string name="WebRtcCallActivity__declined_on_a_linked_device">Απορρίφθηκε απο συνδεμένη συσκευή.</string>
     <string name="WebRtcCallActivity__busy_on_a_linked_device">Απασχολημένος/η από συνδεμένη συσκευή.</string>
     <!-- Tooltip message shown first time user is in a video call after switch camera button moved -->
-    <string name="WebRtcCallActivity__flip_camera_tooltip">Flip Camera has been moved here, tap your video to try it out</string>
+    <string name="WebRtcCallActivity__flip_camera_tooltip">Η Εναλλαγή κάμερας μεταφέρθηκε εδώ, πάτα στο βίνεο για να τη δοκιμάσεις</string>
 
     <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Κάποιος μπήκε στην κλήση με κάποιον αριθμό ασφαλείας που έχει αλλάξει.</string>
 

@@ -1831,7 +1831,7 @@
     <!-- Toggle content description for toggling mute state  -->
     <string name="WebRtcCallView__toggle_mute">Mykistys käyttöön / pois käytöstä</string>
     <!-- Content description for additional actions menu button -->
-    <string name="WebRtcCallView__additional_actions">Additional actions</string>
+    <string name="WebRtcCallView__additional_actions">Lisää toimintoja</string>
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">Lopeta puhelu</string>
 
@@ -2385,7 +2385,7 @@
     <string name="WebRtcCallActivity__declined_on_a_linked_device">Hylätty yhdistetyllä laitteella.</string>
     <string name="WebRtcCallActivity__busy_on_a_linked_device">Varattu yhdistetyllä laitteella.</string>
     <!-- Tooltip message shown first time user is in a video call after switch camera button moved -->
-    <string name="WebRtcCallActivity__flip_camera_tooltip">Flip Camera has been moved here, tap your video to try it out</string>
+    <string name="WebRtcCallActivity__flip_camera_tooltip">Kameran vaihto on nyt täällä. Kokeile napauttamalla videota</string>
 
     <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Joku on liittynyt tähän puheluun vaihtuneen turvanumeron kanssa.</string>
 

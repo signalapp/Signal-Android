@@ -1973,7 +1973,7 @@
     <!-- Toggle content description for toggling mute state  -->
     <string name="WebRtcCallView__toggle_mute">Přepnout ztlumení zvuku</string>
     <!-- Content description for additional actions menu button -->
-    <string name="WebRtcCallView__additional_actions">Additional actions</string>
+    <string name="WebRtcCallView__additional_actions">Další možnosti</string>
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">Ukončit hovor</string>
 
@@ -2543,7 +2543,7 @@
     <string name="WebRtcCallActivity__declined_on_a_linked_device">Odmítnuto na propojeném zařízení.</string>
     <string name="WebRtcCallActivity__busy_on_a_linked_device">Obsazeno na propojeném zařízení.</string>
     <!-- Tooltip message shown first time user is in a video call after switch camera button moved -->
-    <string name="WebRtcCallActivity__flip_camera_tooltip">Flip Camera has been moved here, tap your video to try it out</string>
+    <string name="WebRtcCallActivity__flip_camera_tooltip">Překlopení fotoaparátu bylo přesunuto sem – klepněte na video a vyzkoušejte to</string>
 
     <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Někdo se přidal k tomuto hovoru s bezpečnostním číslem, které se změnilo.</string>
 

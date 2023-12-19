@@ -1831,7 +1831,7 @@
     <!-- Toggle content description for toggling mute state  -->
     <string name="WebRtcCallView__toggle_mute">Укључи/искључи звук</string>
     <!-- Content description for additional actions menu button -->
-    <string name="WebRtcCallView__additional_actions">Additional actions</string>
+    <string name="WebRtcCallView__additional_actions">Додатне радње</string>
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">Заврши позив</string>
 
@@ -2385,7 +2385,7 @@
     <string name="WebRtcCallActivity__declined_on_a_linked_device">Одбијено на другом уређају.</string>
     <string name="WebRtcCallActivity__busy_on_a_linked_device">У току на другом уређају.</string>
     <!-- Tooltip message shown first time user is in a video call after switch camera button moved -->
-    <string name="WebRtcCallActivity__flip_camera_tooltip">Flip Camera has been moved here, tap your video to try it out</string>
+    <string name="WebRtcCallActivity__flip_camera_tooltip">Опција за окретање камере је премештена овде, додирните видео да је испробате</string>
 
     <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Неко се придружио овом позиву са сигурноснем бројем који се променио.</string>
 
