@@ -42,7 +42,6 @@ import org.thoughtcrime.securesms.util.AvatarUtil
 import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.Material3OnScrollHelper
 import org.thoughtcrime.securesms.util.TopToastPopup
-import org.thoughtcrime.securesms.util.TopToastPopup.Companion.show
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.runHideAnimation
 import org.thoughtcrime.securesms.util.runRevealAnimation
@@ -125,6 +124,7 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
             newConvoFab to "new_convo_fab"
           )
         }
+
         else -> null
       }
 
@@ -302,19 +302,23 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
     val activeProfile = NotificationProfiles.getActiveProfile(notificationProfiles)
     if (activeProfile != null) {
       if (activeProfile.id != SignalStore.notificationProfileValues().lastProfilePopup) {
-        requireView().postDelayed({
-          SignalStore.notificationProfileValues().lastProfilePopup = activeProfile.id
-          SignalStore.notificationProfileValues().lastProfilePopupTime = System.currentTimeMillis()
-          if (previousTopToastPopup?.isShowing == true) {
-            previousTopToastPopup?.dismiss()
-          }
-          var view = requireView() as ViewGroup
-          val fragment = parentFragmentManager.findFragmentByTag(BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
-          if (fragment != null && fragment.isAdded && fragment.view != null) {
-            view = fragment.requireView() as ViewGroup
-          }
+        view?.postDelayed({
           try {
-            previousTopToastPopup = show(view, R.drawable.ic_moon_16, getString(R.string.ConversationListFragment__s_on, activeProfile.name))
+            var fragmentView = view as? ViewGroup ?: return@postDelayed
+
+            SignalStore.notificationProfileValues().lastProfilePopup = activeProfile.id
+            SignalStore.notificationProfileValues().lastProfilePopupTime = System.currentTimeMillis()
+
+            if (previousTopToastPopup?.isShowing == true) {
+              previousTopToastPopup?.dismiss()
+            }
+
+            val fragment = parentFragmentManager.findFragmentByTag(BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
+            if (fragment != null && fragment.isAdded && fragment.view != null) {
+              fragmentView = fragment.requireView() as ViewGroup
+            }
+
+            previousTopToastPopup = TopToastPopup.show(fragmentView, R.drawable.ic_moon_16, getString(R.string.ConversationListFragment__s_on, activeProfile.name))
           } catch (e: Exception) {
             Log.w(TAG, "Unable to show toast popup", e)
           }
@@ -324,6 +328,7 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
     } else {
       notificationProfileStatus.visibility = View.GONE
     }
+
     if (!SignalStore.notificationProfileValues().hasSeenTooltip && Util.hasItems(notificationProfiles)) {
       val target: View? = findOverflowMenuButton(_toolbar)
       if (target != null) {
