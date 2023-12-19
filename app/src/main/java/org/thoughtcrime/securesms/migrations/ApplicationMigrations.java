@@ -142,9 +142,10 @@ public class ApplicationMigrations {
     static final int SYNC_KEYS_MIGRATION           = 98;
     static final int SELF_REGISTERTED_STATE        = 99;
     static final int SVR2_ENCLAVE_UPDATE           = 100;
+    static final int STORAGE_LOCAL_UNKNOWNS_FIX    = 101;
   }
 
-  public static final int CURRENT_VERSION = 100;
+  public static final int CURRENT_VERSION = 101;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -645,6 +646,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.SVR2_ENCLAVE_UPDATE) {
       jobs.put(Version.SVR2_ENCLAVE_UPDATE,  new Svr2MirrorMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.STORAGE_LOCAL_UNKNOWNS_FIX) {
+      jobs.put(Version.STORAGE_LOCAL_UNKNOWNS_FIX, new StorageFixLocalUnknownMigrationJob());
     }
 
     return jobs;
