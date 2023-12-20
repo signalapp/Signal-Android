@@ -745,8 +745,7 @@ public class PushServiceSocket {
 
     makeServiceRequest(String.format(Locale.US, PREKEY_PATH, preKeyUpload.getServiceIdType().queryParam()),
                        "PUT",
-                       JsonUtil.toJson(new PreKeyState(preKeyUpload.getIdentityKey(),
-                                                       signedPreKey,
+                       JsonUtil.toJson(new PreKeyState(signedPreKey,
                                                        oneTimeEcPreKeys,
                                                        lastResortKyberPreKey,
                                                        oneTimeKyberPreKeys)));

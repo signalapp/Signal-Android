@@ -264,7 +264,6 @@ class ChangeNumberRepository(
       accountManager.setPreKeys(
         PreKeyUpload(
           serviceIdType = ServiceIdType.PNI,
-          identityKey = pniProtocolStore.identityKeyPair.publicKey,
           signedPreKey = signedPreKey,
           oneTimeEcPreKeys = oneTimePreKeys,
           lastResortKyberPreKey = null,
