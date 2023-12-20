@@ -146,7 +146,8 @@ object RecipientDatabaseTestUtils {
         badges = badges,
         needsPniSignature = false,
         hiddenState = Recipient.HiddenState.NOT_HIDDEN,
-        callLinkRoomId = null
+        callLinkRoomId = null,
+        phoneNumberSharing = RecipientTable.PhoneNumberSharingState.UNKNOWN
       ),
       participantIds = participants,
       isReleaseChannel = isReleaseChannel,

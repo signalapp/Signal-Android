@@ -23,6 +23,9 @@ public class SignalServiceProfileWrite {
   private byte[] paymentAddress;
 
   @JsonProperty
+  private byte[] phoneNumberSharing;
+
+  @JsonProperty
   private boolean avatar;
 
   @JsonProperty
@@ -38,16 +41,17 @@ public class SignalServiceProfileWrite {
   public SignalServiceProfileWrite(){
   }
 
-  public SignalServiceProfileWrite(String version, byte[] name, byte[] about, byte[] aboutEmoji, byte[] paymentAddress, boolean hasAvatar, boolean sameAvatar, byte[] commitment, List<String> badgeIds) {
-    this.version        = version;
-    this.name           = name;
-    this.about          = about;
-    this.aboutEmoji     = aboutEmoji;
-    this.paymentAddress = paymentAddress;
-    this.avatar         = hasAvatar;
-    this.sameAvatar     = sameAvatar;
-    this.commitment     = commitment;
-    this.badgeIds       = badgeIds;
+  public SignalServiceProfileWrite(String version, byte[] name, byte[] about, byte[] aboutEmoji, byte[] paymentAddress, byte[] phoneNumberSharing, boolean hasAvatar, boolean sameAvatar, byte[] commitment, List<String> badgeIds) {
+    this.version            = version;
+    this.name               = name;
+    this.about              = about;
+    this.aboutEmoji         = aboutEmoji;
+    this.paymentAddress     = paymentAddress;
+    this.phoneNumberSharing = phoneNumberSharing;
+    this.avatar             = hasAvatar;
+    this.sameAvatar         = sameAvatar;
+    this.commitment         = commitment;
+    this.badgeIds           = badgeIds;
   }
 
   public boolean hasAvatar() {

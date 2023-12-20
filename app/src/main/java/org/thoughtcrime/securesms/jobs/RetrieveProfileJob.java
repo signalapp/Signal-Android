@@ -21,6 +21,7 @@ import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.IdentityKey;
 import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.protocol.util.Pair;
+import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.thoughtcrime.securesms.badges.Badges;
@@ -28,6 +29,7 @@ import org.thoughtcrime.securesms.badges.models.Badge;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.RecipientTable;
+import org.thoughtcrime.securesms.database.RecipientTable.PhoneNumberSharingState;
 import org.thoughtcrime.securesms.database.RecipientTable.UnidentifiedAccessMode;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.RecipientRecord;
@@ -411,6 +413,14 @@ public class RetrieveProfileJob extends BaseJob {
       return true;
     }
 
+    PhoneNumberSharingState remotePhoneNumberSharing = ProfileUtil.decryptBoolean(profileKey, remoteProfile.getPhoneNumberSharing())
+                                                                  .map(value -> value ? PhoneNumberSharingState.ENABLED : PhoneNumberSharingState.DISABLED)
+                                                                  .orElse(PhoneNumberSharingState.UNKNOWN);
+
+    if (localRecipientRecord.getPhoneNumberSharing() != remotePhoneNumberSharing) {
+      return true;
+    }
+
     return false;
   }
 
@@ -425,6 +435,7 @@ public class RetrieveProfileJob extends BaseJob {
     setProfileBadges(recipient, profile.getBadges());
     setProfileCapabilities(recipient, profile.getCapabilities());
     setUnidentifiedAccessMode(recipient, profile.getUnidentifiedAccess(), profile.isUnrestrictedUnidentifiedAccess());
+    setPhoneNumberSharingMode(recipient, profile.getPhoneNumberSharing());
 
     if (recipientProfileKey != null) {
       profileAndCredential.getExpiringProfileKeyCredential()
@@ -609,6 +620,26 @@ public class RetrieveProfileJob extends BaseJob {
     }
 
     SignalDatabase.recipients().setCapabilities(recipient.getId(), capabilities);
+  }
+
+  private void setPhoneNumberSharingMode(Recipient recipient, String phoneNumberSharing) {
+    ProfileKey profileKey = ProfileKeyUtil.profileKeyOrNull(recipient.getProfileKey());
+    if (profileKey == null) {
+      return;
+    }
+
+    try {
+      PhoneNumberSharingState remotePhoneNumberSharing = ProfileUtil.decryptBoolean(profileKey, phoneNumberSharing)
+                                                                    .map(value -> value ? PhoneNumberSharingState.ENABLED : PhoneNumberSharingState.DISABLED)
+                                                                    .orElse(PhoneNumberSharingState.UNKNOWN);
+
+      if (recipient.getPhoneNumberSharing() != remotePhoneNumberSharing) {
+        Log.i(TAG, "Updating phone number sharing state for " + recipient.getId() + " to " + remotePhoneNumberSharing);
+        SignalDatabase.recipients().setPhoneNumberSharing(recipient.getId(), remotePhoneNumberSharing);
+      }
+    } catch (InvalidCiphertextException | IOException e) {
+      Log.w(TAG, "Failed to set the phone number sharing setting!", e);
+    }
   }
 
   /**

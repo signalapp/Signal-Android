@@ -148,6 +148,7 @@ public class RefreshOwnProfileJob extends BaseJob {
     setProfileCapabilities(profile.getCapabilities());
     setProfileBadges(profile.getBadges());
     ensureUnidentifiedAccessCorrect(profile.getUnidentifiedAccess(), profile.isUnrestrictedUnidentifiedAccess());
+    ensurePhoneNumberSharingIsCorrect(profile.getPhoneNumberSharing());
 
     profileAndCredential.getExpiringProfileKeyCredential()
                         .ifPresent(expiringProfileKeyCredential -> setExpiringProfileKeyCredential(self, ProfileKeyUtil.getSelfProfileKey(), expiringProfileKeyCredential));
@@ -254,6 +255,45 @@ public class RefreshOwnProfileJob extends BaseJob {
       Log.w(TAG, "Unidentified access failed to verify! Refreshing attributes.");
       ApplicationDependencies.getJobManager().add(new RefreshAttributesJob());
     }
+  }
+
+  /**
+   * Checks to make sure that our phone number sharing setting matches what's on our profile. If there's a mismatch, we first sync with storage service
+   * (to limit race conditions between devices) and then upload our profile.
+   */
+  private void ensurePhoneNumberSharingIsCorrect(@Nullable String phoneNumberSharingCiphertext) {
+    if (phoneNumberSharingCiphertext == null) {
+      Log.w(TAG, "No phone number sharing is set remotely! Syncing with storage service, then uploading our profile.");
+      syncWithStorageServiceThenUploadProfile();
+      return;
+    }
+
+    ProfileKey    profileKey = ProfileKeyUtil.getSelfProfileKey();
+    ProfileCipher cipher     = new ProfileCipher(profileKey);
+
+    try {
+      RecipientTable.PhoneNumberSharingState remotePhoneNumberSharing = cipher.decryptBoolean(Base64.decode(phoneNumberSharingCiphertext))
+                                                                              .map(value -> value ? RecipientTable.PhoneNumberSharingState.ENABLED : RecipientTable.PhoneNumberSharingState.DISABLED)
+                                                                              .orElse(RecipientTable.PhoneNumberSharingState.UNKNOWN);
+
+      if (remotePhoneNumberSharing == RecipientTable.PhoneNumberSharingState.UNKNOWN || remotePhoneNumberSharing.getEnabled() != SignalStore.phoneNumberPrivacy().isPhoneNumberSharingEnabled()) {
+        Log.w(TAG, "Phone number sharing setting did not match! Syncing with storage service, then uploading our profile.");
+        syncWithStorageServiceThenUploadProfile();
+      }
+    } catch (IOException e) {
+      Log.w(TAG, "Failed to decode phone number sharing! Syncing with storage service, then uploading our profile.", e);
+      syncWithStorageServiceThenUploadProfile();
+    } catch (InvalidCiphertextException e) {
+      Log.w(TAG, "Failed to decrypt phone number sharing! Syncing with storage service, then uploading our profile.", e);
+      syncWithStorageServiceThenUploadProfile();
+    }
+  }
+
+  private void syncWithStorageServiceThenUploadProfile() {
+    ApplicationDependencies.getJobManager()
+                           .startChain(new StorageSyncJob())
+                           .then(new ProfileUploadJob())
+                           .enqueue();
   }
 
   static void checkUsernameIsInSync() {

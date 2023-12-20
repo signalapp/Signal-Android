@@ -581,7 +581,7 @@ class ConversationAdapterV2(
       } else if (isSelf) {
         conversationBanner.setSubtitle(context.getString(R.string.ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation))
       } else {
-        val subtitle: String? = recipient.e164.map { e164: String? -> PhoneNumberFormatter.prettyPrint(e164!!) }.orElse(null)
+        val subtitle: String? = recipient.takeIf { it.shouldShowE164() }?.e164?.map { e164: String? -> PhoneNumberFormatter.prettyPrint(e164!!) }?.orElse(null)
         if (subtitle == null || subtitle == title) {
           conversationBanner.hideSubtitle()
         } else {

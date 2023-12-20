@@ -177,6 +177,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     const val BADGES = "badges"
     const val NEEDS_PNI_SIGNATURE = "needs_pni_signature"
     const val REPORTING_TOKEN = "reporting_token"
+    const val PHONE_NUMBER_SHARING = "phone_number_sharing"
 
     const val SEARCH_PROFILE_NAME = "search_signal_profile"
     const val SORT_NAME = "sort_name"
@@ -242,7 +243,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         $CUSTOM_CHAT_COLORS_ID INTEGER DEFAULT 0,
         $BADGES BLOB DEFAULT NULL,
         $NEEDS_PNI_SIGNATURE INTEGER DEFAULT 0,
-        $REPORTING_TOKEN BLOB DEFAULT NULL
+        $REPORTING_TOKEN BLOB DEFAULT NULL,
+        $PHONE_NUMBER_SHARING INTEGER DEFAULT ${PhoneNumberSharingState.UNKNOWN.id}
       )
       """
 
@@ -301,7 +303,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       CUSTOM_CHAT_COLORS_ID,
       BADGES,
       NEEDS_PNI_SIGNATURE,
-      REPORTING_TOKEN
+      REPORTING_TOKEN,
+      PHONE_NUMBER_SHARING
     )
 
     private val ID_PROJECTION = arrayOf(ID)
@@ -1799,6 +1802,15 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     val contentValues = ContentValues(1).apply {
       put(NOTIFICATION_CHANNEL, notificationChannel)
     }
+    if (update(id, contentValues)) {
+      ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
+    }
+  }
+
+  fun setPhoneNumberSharing(id: RecipientId, phoneNumberSharing: PhoneNumberSharingState) {
+    val contentValues = contentValuesOf(
+      PHONE_NUMBER_SHARING to phoneNumberSharing.id
+    )
     if (update(id, contentValues)) {
       ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
     }
@@ -3339,7 +3351,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         (
           $SORT_NAME GLOB ? OR 
           $USERNAME GLOB ? OR 
-          $E164 GLOB ? OR 
+          ${ContactSearchSelection.E164_SEARCH} OR 
           $EMAIL GLOB ?
         )
       """
@@ -3360,7 +3372,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       (
           $SORT_NAME GLOB ? OR 
           $USERNAME GLOB ? OR 
-          $E164 GLOB ? OR 
+          ${ContactSearchSelection.E164_SEARCH} OR 
           $EMAIL GLOB ?
       ))
     """
@@ -3381,7 +3393,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       AND (
           $SORT_NAME GLOB ? OR 
           $USERNAME GLOB ? OR 
-          $E164 GLOB ? OR 
+          ${ContactSearchSelection.E164_SEARCH} OR 
           $EMAIL GLOB ?
       )
     """
@@ -4401,16 +4413,17 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
             WHERE ${GroupTable.MembershipTable.TABLE_NAME}.${GroupTable.MembershipTable.RECIPIENT_ID} = $TABLE_NAME.$ID AND ${GroupTable.TABLE_NAME}.${GroupTable.ACTIVE} = 1 AND ${GroupTable.TABLE_NAME}.${GroupTable.MMS} = 0
         )
       """
+      val E164_SEARCH = "(($PHONE_NUMBER_SHARING != ${PhoneNumberSharingState.DISABLED.id} OR $SYSTEM_CONTACT_URI NOT NULL) AND $E164 GLOB ?)"
       const val FILTER_GROUPS = " AND $GROUP_ID IS NULL"
       const val FILTER_ID = " AND $ID != ?"
       const val FILTER_BLOCKED = " AND $BLOCKED = ?"
       const val FILTER_HIDDEN = " AND $HIDDEN = ?"
       const val NON_SIGNAL_CONTACT = "$REGISTERED != ? AND $SYSTEM_CONTACT_URI NOT NULL AND ($E164 NOT NULL OR $EMAIL NOT NULL)"
-      const val QUERY_NON_SIGNAL_CONTACT = "$NON_SIGNAL_CONTACT AND ($E164 GLOB ? OR $EMAIL GLOB ? OR $SYSTEM_JOINED_NAME GLOB ?)"
+      val QUERY_NON_SIGNAL_CONTACT = "$NON_SIGNAL_CONTACT AND ($E164_SEARCH OR $EMAIL GLOB ? OR $SYSTEM_JOINED_NAME GLOB ?)"
       const val SIGNAL_CONTACT = "$REGISTERED = ? AND (NULLIF($SYSTEM_JOINED_NAME, '') NOT NULL OR $PROFILE_SHARING = ?) AND ($SORT_NAME NOT NULL OR $USERNAME NOT NULL)"
-      const val QUERY_SIGNAL_CONTACT = "$SIGNAL_CONTACT AND ($E164 GLOB ? OR $SORT_NAME GLOB ? OR $USERNAME GLOB ?)"
+      val QUERY_SIGNAL_CONTACT = "$SIGNAL_CONTACT AND ($E164_SEARCH OR $SORT_NAME GLOB ? OR $USERNAME GLOB ?)"
       val GROUP_MEMBER_CONTACT = "$REGISTERED = ? AND $HAS_GROUP_IN_COMMON AND NOT (NULLIF($SYSTEM_JOINED_NAME, '') NOT NULL OR $PROFILE_SHARING = ?) AND ($SORT_NAME NOT NULL OR $USERNAME NOT NULL)"
-      val QUERY_GROUP_MEMBER_CONTACT = "$GROUP_MEMBER_CONTACT AND ($E164 GLOB ? OR $SORT_NAME GLOB ? OR $USERNAME GLOB ?)"
+      val QUERY_GROUP_MEMBER_CONTACT = "$GROUP_MEMBER_CONTACT AND ($E164_SEARCH OR $SORT_NAME GLOB ? OR $USERNAME GLOB ?)"
     }
   }
 
@@ -4495,6 +4508,19 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
     companion object {
       fun fromId(id: Int): MentionSetting {
+        return values()[id]
+      }
+    }
+  }
+
+  enum class PhoneNumberSharingState(val id: Int) {
+    UNKNOWN(0), ENABLED(1), DISABLED(2);
+
+    val enabled
+      get() = this == ENABLED || this == UNKNOWN
+
+    companion object {
+      fun fromId(id: Int): PhoneNumberSharingState {
         return values()[id]
       }
     }

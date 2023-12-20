@@ -722,17 +722,19 @@ public class SignalServiceAccountManager {
                                               String aboutEmoji,
                                               Optional<PaymentAddress> paymentsAddress,
                                               AvatarUploadParams avatar,
-                                              List<String> visibleBadgeIds)
+                                              List<String> visibleBadgeIds,
+                                              boolean phoneNumberSharing)
       throws IOException
   {
     if (name == null) name = "";
 
-    ProfileCipher     profileCipher               = new ProfileCipher(profileKey);
-    byte[]            ciphertextName              = profileCipher.encryptString(name, ProfileCipher.getTargetNameLength(name));
-    byte[]            ciphertextAbout             = profileCipher.encryptString(about, ProfileCipher.getTargetAboutLength(about));
-    byte[]            ciphertextEmoji             = profileCipher.encryptString(aboutEmoji, ProfileCipher.EMOJI_PADDED_LENGTH);
-    byte[]            ciphertextMobileCoinAddress = paymentsAddress.map(address -> profileCipher.encryptWithLength(address.encode(), ProfileCipher.PAYMENTS_ADDRESS_CONTENT_SIZE)).orElse(null);
-    ProfileAvatarData profileAvatarData           = null;
+    ProfileCipher     profileCipher                = new ProfileCipher(profileKey);
+    byte[]            ciphertextName               = profileCipher.encryptString(name, ProfileCipher.getTargetNameLength(name));
+    byte[]            ciphertextAbout              = profileCipher.encryptString(about, ProfileCipher.getTargetAboutLength(about));
+    byte[]            ciphertextEmoji              = profileCipher.encryptString(aboutEmoji, ProfileCipher.EMOJI_PADDED_LENGTH);
+    byte[]            ciphertextMobileCoinAddress  = paymentsAddress.map(address -> profileCipher.encryptWithLength(address.encode(), ProfileCipher.PAYMENTS_ADDRESS_CONTENT_SIZE)).orElse(null);
+    byte[]            cipherTextPhoneNumberSharing = profileCipher.encryptBoolean(phoneNumberSharing);
+    ProfileAvatarData profileAvatarData            = null;
 
     if (avatar.stream != null && !avatar.keepTheSame) {
       profileAvatarData = new ProfileAvatarData(avatar.stream.getStream(),
@@ -746,6 +748,7 @@ public class SignalServiceAccountManager {
                                                                              ciphertextAbout,
                                                                              ciphertextEmoji,
                                                                              ciphertextMobileCoinAddress,
+                                                                             cipherTextPhoneNumberSharing,
                                                                              avatar.hasAvatar,
                                                                              avatar.keepTheSame,
                                                                              profileKey.getCommitment(aci.getLibSignalAci()).serialize(),

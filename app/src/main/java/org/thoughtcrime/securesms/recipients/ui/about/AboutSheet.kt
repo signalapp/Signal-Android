@@ -154,7 +154,7 @@ private fun AboutSheetContent(
       modifier = Modifier.fillMaxWidth()
     )
 
-    if (recipient.about != null) {
+    if (!recipient.about.isNullOrBlank()) {
       AboutRow(
         startIcon = painterResource(R.drawable.symbol_edit_24),
         text = {
@@ -190,7 +190,7 @@ private fun AboutSheetContent(
       )
     }
 
-    if (recipient.e164.isPresent) {
+    if (recipient.e164.isPresent && recipient.shouldShowE164()) {
       val e164 = remember(recipient.e164.get()) {
         PhoneNumberFormatter.get(context).prettyPrintFormat(recipient.e164.get())
       }

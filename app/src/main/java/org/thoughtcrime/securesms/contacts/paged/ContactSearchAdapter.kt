@@ -27,7 +27,6 @@ import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
 import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
@@ -437,8 +436,7 @@ open class ContactSearchAdapter(
         number.text = recipient.combinedAboutAndEmoji
         number.visible = true
       } else if (displayOptions.displaySecondaryInformation == DisplaySecondaryInformation.ALWAYS && recipient.hasE164()) {
-        number.text = PhoneNumberFormatter.prettyPrint(recipient.requireE164())
-        number.visible = true
+        number.visible = false
       } else {
         super.bindNumberField(model)
       }

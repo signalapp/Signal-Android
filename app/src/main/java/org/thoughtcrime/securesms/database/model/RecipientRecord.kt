@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.database.IdentityTable.VerifiedStatus
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.RecipientTable.MentionSetting
+import org.thoughtcrime.securesms.database.RecipientTable.PhoneNumberSharingState
 import org.thoughtcrime.securesms.database.RecipientTable.RegisteredState
 import org.thoughtcrime.securesms.database.RecipientTable.UnidentifiedAccessMode
 import org.thoughtcrime.securesms.database.RecipientTable.VibrateState
@@ -76,7 +77,8 @@ data class RecipientRecord(
   @get:JvmName("needsPniSignature")
   val needsPniSignature: Boolean,
   val hiddenState: Recipient.HiddenState,
-  val callLinkRoomId: CallLinkRoomId?
+  val callLinkRoomId: CallLinkRoomId?,
+  val phoneNumberSharing: PhoneNumberSharingState
 ) {
 
   fun e164Only(): Boolean {
