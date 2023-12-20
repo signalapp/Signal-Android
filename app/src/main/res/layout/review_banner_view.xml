@@ -1,111 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<org.thoughtcrime.securesms.profiles.spoofing.ReviewBannerView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    tools:viewBindingIgnore="true"
+<org.thoughtcrime.securesms.profiles.spoofing.ReviewBannerView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/review_banner"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_height="wrap_content">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="108dp"
-        android:background="@color/signal_background_primary">
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginVertical="11dp"
+        android:background="@color/signal_background_primary"
+        android:minHeight="66dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="0dp"
+        app:strokeColor="@color/signal_colorOutline_38"
+        app:strokeWidth="1dp">
 
-    <FrameLayout
-        android:id="@+id/banner_icon_frame"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical">
 
-        <ImageView
-            android:id="@+id/banner_icon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:scaleType="centerInside" />
+            <FrameLayout
+                android:id="@+id/banner_icon_frame"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginStart="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-        <org.thoughtcrime.securesms.components.AvatarImageView
-            android:id="@+id/banner_avatar_1"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_gravity="top|start"
-            android:layout_marginStart="2dp"
-            android:layout_marginTop="2dp"
-            android:visibility="gone"
-            tools:visibility="visible" />
+                <ImageView
+                    android:id="@+id/banner_icon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:importantForAccessibility="no"
+                    android:scaleType="centerInside" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/banner_avatar_stroke"
-            android:layout_width="29dp"
-            android:layout_height="29dp"
-            android:layout_marginStart="11.5dp"
-            android:layout_marginTop="11.5dp"
-            android:background="@drawable/circle_tintable"
-            android:visibility="gone"
-            app:backgroundTint="?android:windowBackground"
-            tools:backgroundTint="@color/red_500"
-            tools:visibility="visible" />
+                <org.thoughtcrime.securesms.components.AvatarImageView
+                    android:id="@+id/banner_top_left_avatar"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="top|start"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginTop="2dp"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
 
-        <org.thoughtcrime.securesms.components.AvatarImageView
-            android:id="@+id/banner_avatar_2"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_gravity="end|bottom"
-            android:layout_marginEnd="2dp"
-            android:layout_marginBottom="2dp"
-            android:visibility="gone"
-            tools:visibility="visible" />
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/banner_avatar_stroke"
+                    android:layout_width="29dp"
+                    android:layout_height="29dp"
+                    android:layout_marginStart="11.5dp"
+                    android:layout_marginTop="11.5dp"
+                    android:background="@drawable/circle_tintable"
+                    android:visibility="gone"
+                    app:backgroundTint="?android:windowBackground"
+                    tools:backgroundTint="@color/red_500"
+                    tools:visibility="visible" />
 
-    </FrameLayout>
+                <org.thoughtcrime.securesms.components.AvatarImageView
+                    android:id="@+id/banner_bottom_right_avatar"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="end|bottom"
+                    android:layout_marginEnd="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
 
-    <TextView
-        android:id="@+id/banner_message"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="72dp"
-        android:textAppearance="@style/Signal.Text.Body"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Review requests carefully Signal found another contact with the same name." />
+            </FrameLayout>
 
-    <ImageView
-        android:id="@+id/banner_close"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:scaleType="centerInside"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_x_20" />
+            <TextView
+                android:id="@+id/banner_message"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginVertical="16dp"
+                android:text="@string/ReviewBannerView__name_conflict_found"
+                android:textAppearance="@style/Signal.Text.BodyMedium"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/banner_tap_to_review"
+                app:layout_constraintStart_toEndOf="@id/banner_icon_frame"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/banner_tap_to_review"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="16dp"
-        android:text="@string/ConversationFragment__tap_to_review"
-        android:textAppearance="@style/TextAppearance.Signal.Body1.Bold"
-        android:textColor="?colorAccent"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@id/banner_message"
-        app:layout_constraintTop_toBottomOf="@id/banner_message" />
+            <ImageView
+                android:id="@+id/banner_close"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:contentDescription="@string/Material3SearchToolbar__close"
+                android:scaleType="centerInside"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_x_20" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/banner_tap_to_review"
+                style="@style/Signal.Widget.Button.Small.Primary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:minWidth="0dp"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="6dp"
+                android:text="@string/ReviewBannerView__view"
+                android:textColor="@color/signal_colorOnSecondaryContainer"
+                app:backgroundTint="@color/signal_colorSurface2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/banner_close"
+                app:layout_constraintStart_toEndOf="@id/banner_message"
+                app:layout_constraintTop_toTopOf="parent"
+                app:strokeWidth="0dp" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="5dp"
-        android:background="@drawable/toolbar_shadow"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
 
 </org.thoughtcrime.securesms.profiles.spoofing.ReviewBannerView>

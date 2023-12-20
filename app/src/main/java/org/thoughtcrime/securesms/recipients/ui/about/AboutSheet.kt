@@ -127,17 +127,25 @@ private fun AboutSheetContent(
     BottomSheets.Handle(modifier = Modifier.padding(top = 6.dp))
   }
 
+  val avatarOnClick = remember(recipient.profileAvatarFileDetails.hasFile()) {
+    if (recipient.profileAvatarFileDetails.hasFile()) {
+      onAvatarClicked
+    } else {
+      { }
+    }
+  }
+
   Column(horizontalAlignment = Alignment.CenterHorizontally) {
     AvatarImage(
       recipient = recipient,
       modifier = Modifier
         .padding(top = 56.dp)
         .size(240.dp)
-        .clickable(onClick = onAvatarClicked)
+        .clickable(onClick = avatarOnClick)
     )
 
     Text(
-      text = "About",
+      text = stringResource(id = if (recipient.isSelf) R.string.AboutSheet__you else R.string.AboutSheet__about),
       style = MaterialTheme.typography.headlineMedium,
       modifier = Modifier
         .fillMaxWidth()

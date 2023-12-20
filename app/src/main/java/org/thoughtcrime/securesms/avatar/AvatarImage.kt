@@ -29,7 +29,7 @@ fun AvatarImage(
   } else {
     AndroidView(
       factory = ::AvatarImageView,
-      modifier = modifier
+      modifier = modifier.background(color = Color.Transparent, shape = CircleShape)
     ) {
       it.setAvatarUsingProfile(recipient)
     }
