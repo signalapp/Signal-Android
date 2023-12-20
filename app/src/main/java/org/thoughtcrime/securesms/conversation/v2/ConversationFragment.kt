@@ -2539,6 +2539,7 @@ class ConversationFragment :
         }
 
         toast(toastText)
+        return
       }
 
       disposables += viewModel.getTemporaryViewOnceUri(messageRecord).subscribeBy(
