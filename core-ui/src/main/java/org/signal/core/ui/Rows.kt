@@ -76,6 +76,7 @@ object Rows {
   fun ToggleRow(
     checked: Boolean,
     text: String,
+    textColor: Color = MaterialTheme.colorScheme.onSurface,
     onCheckChanged: (Boolean) -> Unit,
     modifier: Modifier = Modifier
   ) {
@@ -86,6 +87,7 @@ object Rows {
     ) {
       Text(
         text = text,
+        color = textColor,
         modifier = Modifier
           .weight(1f)
           .align(CenterVertically)

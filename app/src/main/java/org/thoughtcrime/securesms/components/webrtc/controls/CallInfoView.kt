@@ -29,6 +29,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rxjava3.subscribeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -46,9 +47,12 @@ import androidx.lifecycle.toLiveData
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.core.BackpressureStrategy
 import io.reactivex.rxjava3.core.Observable
+import org.signal.core.ui.Dividers
 import org.signal.core.ui.Rows
 import org.signal.core.ui.theme.SignalTheme
+import org.signal.ringrtc.CallLinkState
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.calls.links.SignalCallRow
 import org.thoughtcrime.securesms.components.AvatarImageView
 import org.thoughtcrime.securesms.components.webrtc.WebRtcCallViewModel
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
@@ -65,7 +69,12 @@ import org.thoughtcrime.securesms.recipients.Recipient
 object CallInfoView {
 
   @Composable
-  fun View(webRtcCallViewModel: WebRtcCallViewModel, controlsAndInfoViewModel: ControlsAndInfoViewModel, modifier: Modifier) {
+  fun View(
+    webRtcCallViewModel: WebRtcCallViewModel,
+    controlsAndInfoViewModel: ControlsAndInfoViewModel,
+    callbacks: Callbacks,
+    modifier: Modifier
+  ) {
     val participantsState: ParticipantsState by webRtcCallViewModel.callParticipantsState
       .toFlowable(BackpressureStrategy.LATEST)
       .map { state ->
@@ -85,13 +94,34 @@ object CallInfoView {
 
     val controlAndInfoState: ControlAndInfoState by controlsAndInfoViewModel.state
 
+    val onEditNameClicked: () -> Unit = remember(controlAndInfoState) {
+      {
+        callbacks.onEditNameClicked(controlAndInfoState.callLink?.state?.name ?: "")
+      }
+    }
+
     SignalTheme(
       isDarkMode = true
     ) {
       Surface {
-        CallInfo(participantsState = participantsState, controlAndInfoState = controlAndInfoState, modifier = modifier)
+        CallInfo(
+          participantsState = participantsState,
+          controlAndInfoState = controlAndInfoState,
+          onShareLinkClicked = callbacks::onShareLinkClicked,
+          onEditNameClicked = onEditNameClicked,
+          onToggleAdminApprovalClicked = callbacks::onToggleAdminApprovalClicked,
+          onBlock = callbacks::onBlock,
+          modifier = modifier
+        )
       }
     }
+  }
+
+  interface Callbacks {
+    fun onShareLinkClicked()
+    fun onEditNameClicked(name: String)
+    fun onToggleAdminApprovalClicked(checked: Boolean)
+    fun onBlock(callParticipant: CallParticipant)
   }
 }
 
@@ -103,7 +133,11 @@ private fun CallInfoPreview() {
       val remoteParticipants = listOf(CallParticipant(recipient = Recipient.UNKNOWN))
       CallInfo(
         participantsState = ParticipantsState(remoteParticipants = remoteParticipants, raisedHands = remoteParticipants.map { GroupCallRaiseHandEvent(it.recipient, System.currentTimeMillis()) }),
-        controlAndInfoState = ControlAndInfoState()
+        controlAndInfoState = ControlAndInfoState(),
+        onShareLinkClicked = { },
+        onEditNameClicked = { },
+        onToggleAdminApprovalClicked = { },
+        onBlock = { }
       )
     }
   }
@@ -113,6 +147,10 @@ private fun CallInfoPreview() {
 private fun CallInfo(
   participantsState: ParticipantsState,
   controlAndInfoState: ControlAndInfoState,
+  onShareLinkClicked: () -> Unit,
+  onEditNameClicked: () -> Unit,
+  onToggleAdminApprovalClicked: (Boolean) -> Unit,
+  onBlock: (CallParticipant) -> Unit,
   modifier: Modifier = Modifier
 ) {
   val listState = rememberLazyListState()
@@ -132,6 +170,29 @@ private fun CallInfo(
         style = MaterialTheme.typography.titleLarge,
         modifier = Modifier.padding(bottom = 24.dp)
       )
+    }
+
+    if (controlAndInfoState.callLink != null) {
+      item {
+        SignalCallRow(callLink = controlAndInfoState.callLink, onJoinClicked = null)
+
+        Rows.TextRow(
+          text = stringResource(id = R.string.CallLinkDetailsFragment__share_link),
+          icon = ImageVector.vectorResource(id = R.drawable.symbol_link_24),
+          iconModifier = Modifier
+            .background(
+              color = MaterialTheme.colorScheme.surfaceVariant,
+              shape = CircleShape
+            )
+            .size(42.dp)
+            .padding(9.dp),
+          onClick = onShareLinkClicked,
+          modifier = Modifier
+            .defaultMinSize(minHeight = 64.dp)
+        )
+
+        Dividers.Default()
+      }
     }
 
     if (participantsState.raisedHands.isNotEmpty()) {
@@ -157,21 +218,30 @@ private fun CallInfo(
       ) {
         HandRaisedRow(recipient = it.sender)
       }
+
+      item {
+        Dividers.Default()
+      }
     }
 
-    item {
-      Box(
-        modifier = Modifier
-          .padding(horizontal = 24.dp)
-          .defaultMinSize(minHeight = 52.dp)
-          .fillMaxWidth(),
-        contentAlignment = Alignment.CenterStart
-      ) {
-        Text(
-          text = getCallSheetLabel(participantsState),
-          style = MaterialTheme.typography.titleSmall
-        )
+    var includeAdminControlsDivider = true
+    if (controlAndInfoState.callLink == null || participantsState.isOngoing()) {
+      item {
+        Box(
+          modifier = Modifier
+            .padding(horizontal = 24.dp)
+            .defaultMinSize(minHeight = 52.dp)
+            .fillMaxWidth(),
+          contentAlignment = Alignment.CenterStart
+        ) {
+          Text(
+            text = getCallSheetLabel(participantsState),
+            style = MaterialTheme.typography.titleSmall
+          )
+        }
       }
+    } else {
+      includeAdminControlsDivider = false
     }
 
     if (!participantsState.inCallLobby || participantsState.isOngoing()) {
@@ -182,8 +252,8 @@ private fun CallInfo(
       ) {
         CallParticipantRow(
           callParticipant = it,
-          isSelfAdmin = false,
-          onBlockClicked = {}
+          isSelfAdmin = controlAndInfoState.isSelfAdmin() && !participantsState.inCallLobby,
+          onBlockClicked = onBlock
         )
       }
     } else if (participantsState.isGroupCall()) {
@@ -197,7 +267,7 @@ private fun CallInfo(
           isSelfAdmin = false
         )
       }
-    } else {
+    } else if (controlAndInfoState.callLink == null) {
       item {
         CallParticipantRow(
           initialRecipient = participantsState.callRecipient,
@@ -209,6 +279,24 @@ private fun CallInfo(
           canLowerHand = false,
           isSelfAdmin = false,
           onBlockClicked = {}
+        )
+      }
+    }
+
+    if (controlAndInfoState.callLink?.credentials?.adminPassBytes != null) {
+      item {
+        if (includeAdminControlsDivider) {
+          Dividers.Default()
+        }
+
+        Rows.TextRow(
+          text = stringResource(id = R.string.CallLinkDetailsFragment__add_call_name),
+          onClick = onEditNameClicked
+        )
+        Rows.ToggleRow(
+          checked = controlAndInfoState.callLink.state.restrictions == CallLinkState.Restrictions.ADMIN_APPROVAL,
+          text = stringResource(id = R.string.CallLinkDetailsFragment__approve_all_members),
+          onCheckChanged = onToggleAdminApprovalClicked
         )
       }
     }

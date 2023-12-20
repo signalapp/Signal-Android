@@ -840,6 +840,12 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
                           ConstraintSet.TOP,
                           ViewUtil.dpToPx(layoutPositions.reactionBottomMargin));
 
+    constraintSet.connect(pendingParticipantsViewStub.getId(),
+                          ConstraintSet.BOTTOM,
+                          layoutPositions.reactionBottomViewId,
+                          ConstraintSet.TOP,
+                          ViewUtil.dpToPx(layoutPositions.reactionBottomMargin));
+
     constraintSet.applyTo(this);
   }
 

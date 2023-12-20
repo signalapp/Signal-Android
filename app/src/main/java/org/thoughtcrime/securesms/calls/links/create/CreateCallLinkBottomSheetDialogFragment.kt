@@ -92,6 +92,7 @@ class CreateCallLinkBottomSheetDialogFragment : ComposeBottomSheetDialogFragment
       Text(
         text = stringResource(id = R.string.CreateCallLinkBottomSheetDialogFragment__create_call_link),
         style = MaterialTheme.typography.titleLarge,
+        color = MaterialTheme.colorScheme.onSurface,
         textAlign = TextAlign.Center,
         modifier = Modifier.fillMaxWidth()
       )
