@@ -236,7 +236,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
 
     SignalExecutors.BOUNDED.execute(() -> {
       FeatureFlags.refreshIfNecessary();
-      RetrieveProfileJob.enqueueRoutineFetchIfNecessary(this);
+      RetrieveProfileJob.enqueueRoutineFetchIfNecessary();
       executePendingContactSync();
       KeyCachingService.onAppForegrounded(this);
       ApplicationDependencies.getShakeToReport().enable();

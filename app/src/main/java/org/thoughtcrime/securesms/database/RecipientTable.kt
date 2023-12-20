@@ -3473,19 +3473,12 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   }
 
   fun markProfilesFetched(ids: Collection<RecipientId>, time: Long) {
-    val db = writableDatabase
-    db.beginTransaction()
-    try {
-      val values = ContentValues(1).apply {
-        put(LAST_PROFILE_FETCH, time)
-      }
+    writableDatabase.withinTransaction { db ->
+      val values = contentValuesOf(LAST_PROFILE_FETCH to time)
 
-      for (id in ids) {
-        db.update(TABLE_NAME, values, ID_WHERE, arrayOf(id.serialize()))
+      SqlUtil.buildCollectionQuery(ID, ids).forEach { query ->
+        db.update(TABLE_NAME, values, query.where, query.whereArgs)
       }
-      db.setTransactionSuccessful()
-    } finally {
-      db.endTransaction()
     }
   }
 
