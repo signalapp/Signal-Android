@@ -714,8 +714,6 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     bodyBubble.setVideoPlayerProjection(null);
     bodyBubble.setQuoteViewProjection(null);
 
-    playVideoClickListener.cleanup();
-
     glideRequests = null;
   }
 
@@ -2517,10 +2515,14 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void onEventAsync(PartProgressEvent event) {
-      float       progressPercent    = ((float) event.progress) / event.total;
-      final View  currentParentView  = parentView;
       final Slide currentActiveSlide = activeSlide;
-      if (progressPercent >= MINIMUM_DOWNLOADED_THRESHOLD && currentParentView != null && currentActiveSlide != null) {
+      if (currentActiveSlide == null || !event.attachment.equals(currentActiveSlide.asAttachment())) {
+        return;
+      }
+
+      final View  currentParentView  = parentView;
+      float       progressPercent    = ((float) event.progress) / event.total;
+      if (progressPercent >= MINIMUM_DOWNLOADED_THRESHOLD && currentParentView != null) {
         cleanup();
         launchMediaPreview(currentParentView, currentActiveSlide);
       }
