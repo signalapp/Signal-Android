@@ -239,7 +239,7 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
     val remainingSlides = currentState.slides.filterNot { it.transferState == AttachmentTable.TRANSFER_PROGRESS_DONE }
     val downloadCount = remainingSlides.size
     binding.primaryDetailsText.text = context.resources.getQuantityString(R.plurals.TransferControlView_n_items, downloadCount, downloadCount)
-    val byteCount = remainingSlides.sumOf { it.asAttachment().size }
+    val byteCount = currentState.networkProgress.sumTotal() - currentState.networkProgress.sumCompleted()
     binding.secondaryDetailsText.text = Formatter.formatShortFileSize(context, byteCount)
   }
 
@@ -264,7 +264,7 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
     } else {
       ViewUtil.dpToPx(SECONDARY_TEXT_OFFSET_DP).toFloat()
     }
-    val byteCount = currentState.slides.sumOf { it.asAttachment().size }
+    val byteCount = currentState.networkProgress.sumTotal() - currentState.networkProgress.sumCompleted()
     binding.secondaryDetailsText.text = Formatter.formatShortFileSize(context, byteCount)
   }
 

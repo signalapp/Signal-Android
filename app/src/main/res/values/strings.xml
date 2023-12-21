@@ -2419,7 +2419,7 @@
     </plurals>
     <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
     <string name="TransferControlView__processing">Processing…</string>
-    <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
+    <!-- Status update label used while the device is transmitting data over the network. Will take the form of "123 KB/2.0 MB" -->
     <string name="TransferControlView__download_progress">%1$s/%2$s</string>
 
 
