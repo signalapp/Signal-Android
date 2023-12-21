@@ -140,6 +140,10 @@ object StoryMessageProcessor {
         warn("Incoming text story has color / position mismatch. Defaulting to start and end colors.")
         linearGradientBuilder.colors(listOf(gradient.colors[0], gradient.colors[gradient.colors.size - 1]))
         linearGradientBuilder.positions(listOf(0f, 1f))
+      } else if (gradient.startColor != null && gradient.endColor != null) {
+        warn("Incoming text story is using deprecated fields for the gradient. Building a two color gradient with them.")
+        linearGradientBuilder.colors(listOf(gradient.startColor!!, gradient.endColor!!))
+        linearGradientBuilder.positions(listOf(0f, 1f))
       } else {
         warn("Incoming text story did not have a valid linear gradient.")
         linearGradientBuilder.colors(listOf(Color.BLACK, Color.BLACK))
