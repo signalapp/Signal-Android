@@ -279,9 +279,9 @@ public final class AttachmentCompressionJob extends BaseJob {
                                                           percent));
               }, cancelationSignal)) {
                 attachmentDatabase.updateAttachmentData(attachment, mediaStream, true);
+                attachmentDatabase.markAttachmentAsTransformed(attachment.getAttachmentId(), mediaStream.getFaststart());
               }
 
-              attachmentDatabase.markAttachmentAsTransformed(attachment.getAttachmentId(), true);
               eventBus.postSticky(new PartProgressEvent(attachment,
                                                         PartProgressEvent.Type.COMPRESSION,
                                                         100,

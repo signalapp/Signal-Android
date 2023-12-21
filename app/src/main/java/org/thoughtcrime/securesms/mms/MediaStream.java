@@ -25,12 +25,22 @@ public class MediaStream implements Closeable {
   private final String      mimeType;
   private final int         width;
   private final int         height;
+  private final boolean     faststart;
 
   public MediaStream(InputStream stream, String mimeType, int width, int height) {
-    this.stream   = stream;
-    this.mimeType = mimeType;
-    this.width    = width;
-    this.height   = height;
+    this.stream    = stream;
+    this.mimeType  = mimeType;
+    this.width     = width;
+    this.height    = height;
+    this.faststart = false;
+  }
+
+  public MediaStream(InputStream stream, String mimeType, int width, int height, boolean faststart) {
+    this.stream    = stream;
+    this.mimeType  = mimeType;
+    this.width     = width;
+    this.height    = height;
+    this.faststart = faststart;
   }
 
   public InputStream getStream() {
@@ -47,6 +57,10 @@ public class MediaStream implements Closeable {
 
   public int getHeight() {
     return height;
+  }
+
+  public boolean getFaststart() {
+    return faststart;
   }
 
   @Override
