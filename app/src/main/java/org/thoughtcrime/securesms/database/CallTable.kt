@@ -49,16 +49,16 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     private val TIME_WINDOW = TimeUnit.HOURS.toMillis(4)
 
     const val TABLE_NAME = "call"
-    private const val ID = "_id"
-    private const val CALL_ID = "call_id"
-    private const val MESSAGE_ID = "message_id"
+    const val ID = "_id"
+    const val CALL_ID = "call_id"
+    const val MESSAGE_ID = "message_id"
     const val PEER = "peer"
     const val TYPE = "type"
-    private const val DIRECTION = "direction"
+    const val DIRECTION = "direction"
     const val EVENT = "event"
     const val TIMESTAMP = "timestamp"
-    private const val RINGER = "ringer"
-    private const val DELETION_TIMESTAMP = "deletion_timestamp"
+    const val RINGER = "ringer"
+    const val DELETION_TIMESTAMP = "deletion_timestamp"
 
     //language=sql
     val CREATE_TABLE = """

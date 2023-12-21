@@ -12,6 +12,7 @@ import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.backup.v2.database.ChatItemImportInserter
 import org.thoughtcrime.securesms.backup.v2.database.clearAllDataForBackupRestore
 import org.thoughtcrime.securesms.backup.v2.processor.AccountDataProcessor
+import org.thoughtcrime.securesms.backup.v2.processor.CallLogBackupProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.ChatBackupProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.ChatItemBackupProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.RecipientBackupProcessor
@@ -68,6 +69,11 @@ object BackupRepository {
         ChatBackupProcessor.export { frame ->
           writer.write(frame)
           eventTimer.emit("thread")
+        }
+
+        CallLogBackupProcessor.export { frame ->
+          writer.write(frame)
+          eventTimer.emit("call")
         }
 
         ChatItemBackupProcessor.export { frame ->
@@ -129,6 +135,11 @@ object BackupRepository {
           frame.chat != null -> {
             ChatBackupProcessor.import(frame.chat, backupState)
             eventTimer.emit("chat")
+          }
+
+          frame.call != null -> {
+            CallLogBackupProcessor.import(frame.call, backupState)
+            eventTimer.emit("call")
           }
 
           frame.chatItem != null -> {
@@ -214,4 +225,5 @@ class BackupState {
   val chatIdToLocalThreadId = HashMap<Long, Long>()
   val chatIdToLocalRecipientId = HashMap<Long, RecipientId>()
   val chatIdToBackupRecipientId = HashMap<Long, Long>()
+  val callIdToType = HashMap<Long, Long>()
 }
