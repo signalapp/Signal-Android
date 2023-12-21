@@ -53,7 +53,6 @@ import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.CachedInflater
-import org.thoughtcrime.securesms.util.HtmlUtil
 import org.thoughtcrime.securesms.util.Projection
 import org.thoughtcrime.securesms.util.ProjectionList
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
@@ -572,20 +571,20 @@ class ConversationAdapterV2(
       if (recipient.isGroup) {
         if (groupInfo.pendingMemberCount > 0) {
           val invited = context.resources.getQuantityString(R.plurals.MessageRequestProfileView_invited, groupInfo.pendingMemberCount, groupInfo.pendingMemberCount)
-          conversationBanner.setSubtitle(context.resources.getQuantityString(R.plurals.MessageRequestProfileView_members_and_invited, groupInfo.fullMemberCount, groupInfo.fullMemberCount, invited))
+          conversationBanner.setSubtitle(context.resources.getQuantityString(R.plurals.MessageRequestProfileView_members_and_invited, groupInfo.fullMemberCount, groupInfo.fullMemberCount, invited), R.drawable.symbol_group_light_20)
         } else if (groupInfo.fullMemberCount > 0) {
-          conversationBanner.setSubtitle(context.resources.getQuantityString(R.plurals.MessageRequestProfileView_members, groupInfo.fullMemberCount, groupInfo.fullMemberCount))
+          conversationBanner.setSubtitle(context.resources.getQuantityString(R.plurals.MessageRequestProfileView_members, groupInfo.fullMemberCount, groupInfo.fullMemberCount), R.drawable.symbol_group_light_20)
         } else {
-          conversationBanner.setSubtitle(null)
+          conversationBanner.hideSubtitle()
         }
       } else if (isSelf) {
-        conversationBanner.setSubtitle(context.getString(R.string.ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation))
+        conversationBanner.setSubtitle(context.getString(R.string.ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation), R.drawable.symbol_person_light_24)
       } else {
         val subtitle: String? = recipient.takeIf { it.shouldShowE164() }?.e164?.map { e164: String? -> PhoneNumberFormatter.prettyPrint(e164!!) }?.orElse(null)
         if (subtitle == null || subtitle == title) {
           conversationBanner.hideSubtitle()
         } else {
-          conversationBanner.setSubtitle(subtitle)
+          conversationBanner.setSubtitle(subtitle, R.drawable.symbol_phone_light_20)
         }
       }
 
@@ -609,20 +608,20 @@ class ConversationAdapterV2(
         }
       } else {
         val description: String = when (sharedGroups.size) {
-          1 -> context.getString(R.string.MessageRequestProfileView_member_of_one_group, HtmlUtil.bold(sharedGroups[0]))
-          2 -> context.getString(R.string.MessageRequestProfileView_member_of_two_groups, HtmlUtil.bold(sharedGroups[0]), HtmlUtil.bold(sharedGroups[1]))
-          3 -> context.getString(R.string.MessageRequestProfileView_member_of_many_groups, HtmlUtil.bold(sharedGroups[0]), HtmlUtil.bold(sharedGroups[1]), HtmlUtil.bold(sharedGroups[2]))
+          1 -> context.getString(R.string.MessageRequestProfileView_member_of_one_group, sharedGroups[0])
+          2 -> context.getString(R.string.MessageRequestProfileView_member_of_two_groups, sharedGroups[0], sharedGroups[1])
+          3 -> context.getString(R.string.MessageRequestProfileView_member_of_many_groups, sharedGroups[0], sharedGroups[1], sharedGroups[2])
           else -> {
             val others: Int = sharedGroups.size - 2
             context.getString(
               R.string.MessageRequestProfileView_member_of_many_groups,
-              HtmlUtil.bold(sharedGroups[0]),
-              HtmlUtil.bold(sharedGroups[1]),
+              sharedGroups[0],
+              sharedGroups[1],
               context.resources.getQuantityString(R.plurals.MessageRequestProfileView_member_of_d_additional_groups, others, others)
             )
           }
         }
-        conversationBanner.setDescription(HtmlCompat.fromHtml(description, 0))
+        conversationBanner.setDescription(HtmlCompat.fromHtml(description, 0), R.drawable.symbol_group_light_20)
         conversationBanner.showDescription()
       }
     }
