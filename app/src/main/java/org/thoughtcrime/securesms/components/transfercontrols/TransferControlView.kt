@@ -549,7 +549,7 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
       for (slide in slides) {
         val attachment = slide.asAttachment()
         if (attachment.transferState == AttachmentTable.TRANSFER_PROGRESS_DONE) {
-          networkProgress[attachment] = Progress(1L, attachment.size)
+          networkProgress[attachment] = Progress(attachment.size, attachment.size)
         } else if (!MediaUtil.isInstantVideoSupported(slide)) {
           allStreamableOrDone = false
         }
