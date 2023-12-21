@@ -93,7 +93,7 @@
         android:longClickable="false"
         android:paddingStart="0dp"
         android:paddingTop="4dp"
-        android:paddingEnd="4dp"
+        android:paddingEnd="6dp"
         android:paddingBottom="4dp"
         android:textColor="@color/signal_colorOnCustom"
         app:layout_constrainedWidth="true"
