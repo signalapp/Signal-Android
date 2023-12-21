@@ -25,17 +25,17 @@ import org.thoughtcrime.securesms.databinding.TransferControlsViewBinding
 import org.thoughtcrime.securesms.events.PartProgressEvent
 import org.thoughtcrime.securesms.mms.Slide
 import org.thoughtcrime.securesms.util.MediaUtil
+import org.thoughtcrime.securesms.util.ThrottledDebouncer
 import org.thoughtcrime.securesms.util.ViewUtil
-import org.thoughtcrime.securesms.util.concurrent.ListenableFuture
 import org.thoughtcrime.securesms.util.visible
 import java.util.UUID
-import java.util.concurrent.ExecutionException
 
 class TransferControlView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : ConstraintLayout(context, attrs, defStyleAttr) {
   private val uuid = UUID.randomUUID().toString()
   private val binding: TransferControlsViewBinding
 
   private var state = TransferControlViewState()
+  private val progressUpdateDebouncer: ThrottledDebouncer = ThrottledDebouncer(100)
 
   init {
     tag = uuid
@@ -58,8 +58,10 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
 
   private fun updateState(stateFactory: (TransferControlViewState) -> TransferControlViewState) {
     val newState = stateFactory.invoke(state)
-    if (newState != state) {
-      applyState(newState)
+    if (newState != state && !(deriveMode(state) == Mode.GONE && deriveMode(newState) == Mode.GONE)) {
+      progressUpdateDebouncer.publish {
+        applyState(newState)
+      }
     }
     state = newState
   }
@@ -434,7 +436,7 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
   private fun displayChildrenAsGone() {
     children.forEach {
       if (it.visible && it.animation == null) {
-        ViewUtil.fadeOut(it, 250).addListener(AnimationCleanup(it))
+        ViewUtil.fadeOut(it, 250)
       }
     }
   }
@@ -642,8 +644,8 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
   }
 
   private fun isCompressing(state: TransferControlViewState): Boolean {
-    // We never get a completion event so it never actually reaches 100%
-    return state.compressionProgress.sumTotal() > 0 && state.compressionProgress.values.map { it.completed.toFloat() / it.total }.sum() < 0.99f
+    val total = state.compressionProgress.sumTotal()
+    return total > 0 && state.compressionProgress.sumCompleted() / total < 0.99f
   }
 
   private fun calculateProgress(state: TransferControlViewState): Float {
@@ -739,15 +741,5 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
     RETRY_DOWNLOADING,
     RETRY_UPLOADING,
     GONE
-  }
-
-  private class AnimationCleanup(val animatedView: View) : ListenableFuture.Listener<Boolean> {
-    override fun onSuccess(result: Boolean?) {
-      animatedView.clearAnimation()
-    }
-
-    override fun onFailure(e: ExecutionException?) {
-      animatedView.clearAnimation()
-    }
   }
 }
