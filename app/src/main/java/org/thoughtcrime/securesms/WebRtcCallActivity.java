@@ -199,7 +199,10 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     controlsAndInfo = new ControlsAndInfoController(this, callScreen, callOverflowPopupWindow, viewModel, controlsAndInfoViewModel);
     controlsAndInfo.addVisibilityListener(new FadeCallback());
 
-    fullscreenHelper.showAndHideWithSystemUI(getWindow(), findViewById(R.id.webrtc_call_view_toolbar_text), findViewById(R.id.webrtc_call_view_toolbar_no_text));
+    fullscreenHelper.showAndHideWithSystemUI(getWindow(),
+                                             findViewById(R.id.call_screen_header_gradient),
+                                             findViewById(R.id.webrtc_call_view_toolbar_text),
+                                             findViewById(R.id.webrtc_call_view_toolbar_no_text));
 
     lifecycleDisposable.add(controlsAndInfo);
 
