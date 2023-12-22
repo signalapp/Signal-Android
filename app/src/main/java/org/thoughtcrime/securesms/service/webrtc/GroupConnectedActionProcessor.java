@@ -206,9 +206,7 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
   protected @NonNull WebRtcServiceState handleSelfRaiseHand(@NonNull WebRtcServiceState currentState, boolean raised) {
     Log.i(tag, "handleSelfRaiseHand():");
     try {
-      final CallInfoState callInfoState = currentState.getCallInfoState();
-
-      callInfoState.requireGroupCall().raiseHand(raised);
+      currentState.getCallInfoState().requireGroupCall().raiseHand(raised);
 
       return currentState;
     } catch (CallException e) {
@@ -268,11 +266,11 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
     List<CallParticipant> participants = currentState.getCallInfoState().getRemoteCallParticipants();
 
     for (CallParticipant updatedParticipant : participants) {
-      boolean isHandCurrentlyRaised = raisedHands.contains(updatedParticipant.getCallParticipantId().getDemuxId());
+      int raisedHandIndex = raisedHands.indexOf(updatedParticipant.getCallParticipantId().getDemuxId());
       boolean wasHandAlreadyRaised  = updatedParticipant.isHandRaised();
-      if (isHandCurrentlyRaised && !wasHandAlreadyRaised) {
-        builder.putParticipant(updatedParticipant.getCallParticipantId(), updatedParticipant.withHandRaisedTimestamp(now));
-      } else if (!isHandCurrentlyRaised && wasHandAlreadyRaised) {
+      if (raisedHandIndex >= 0 && !wasHandAlreadyRaised) {
+        builder.putParticipant(updatedParticipant.getCallParticipantId(), updatedParticipant.withHandRaisedTimestamp(now + raisedHandIndex));
+      } else if (raisedHandIndex < 0 && wasHandAlreadyRaised) {
         builder.putParticipant(updatedParticipant.getCallParticipantId(), updatedParticipant.withHandRaisedTimestamp(CallParticipant.HAND_LOWERED));
       }
     }
