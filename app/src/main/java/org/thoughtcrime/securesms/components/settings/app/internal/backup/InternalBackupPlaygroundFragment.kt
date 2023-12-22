@@ -33,9 +33,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.viewModels
 import org.signal.core.ui.Buttons
+import org.signal.core.ui.Dividers
 import org.signal.core.ui.theme.SignalTheme
+import org.signal.core.util.bytes
 import org.signal.core.util.getLength
+import org.signal.core.util.roundedString
 import org.thoughtcrime.securesms.components.settings.app.internal.backup.InternalBackupPlaygroundViewModel.BackupState
+import org.thoughtcrime.securesms.components.settings.app.internal.backup.InternalBackupPlaygroundViewModel.BackupUploadState
 import org.thoughtcrime.securesms.components.settings.app.internal.backup.InternalBackupPlaygroundViewModel.ScreenState
 import org.thoughtcrime.securesms.compose.ComposeFragment
 
@@ -98,7 +102,8 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
 
         exportFileLauncher.launch(intent)
       },
-      onTestNetworkClicked = { viewModel.testNetworkInteractions() }
+      onUploadToRemoteClicked = { viewModel.uploadBackupToRemote() },
+      onCheckRemoteBackupStateClicked = { viewModel.checkRemoteBackupState() }
     )
   }
 
@@ -115,7 +120,8 @@ fun Screen(
   onImportFileClicked: () -> Unit = {},
   onPlaintextClicked: () -> Unit = {},
   onSaveToDiskClicked: () -> Unit = {},
-  onTestNetworkClicked: () -> Unit = {}
+  onUploadToRemoteClicked: () -> Unit = {},
+  onCheckRemoteBackupStateClicked: () -> Unit = {}
 ) {
   Surface {
     Column(
@@ -144,12 +150,9 @@ fun Screen(
       ) {
         Text("Export")
       }
-      Buttons.LargePrimary(
-        onClick = onTestNetworkClicked,
-        enabled = state.backupState == BackupState.EXPORT_DONE
-      ) {
-        Text("Test network")
-      }
+
+      Dividers.Default()
+
       Buttons.LargeTonal(
         onClick = onImportMemoryClicked,
         enabled = state.backupState == BackupState.EXPORT_DONE
@@ -172,7 +175,7 @@ fun Screen(
           StateLabel("Export in progress...")
         }
         BackupState.EXPORT_DONE -> {
-          StateLabel("Export complete. Sitting in memory. You can click 'Import' to import that data, or you can save it to a file.")
+          StateLabel("Export complete. Sitting in memory. You can click 'Import' to import that data, save it to a file, or upload it to remote.")
 
           Spacer(modifier = Modifier.height(8.dp))
 
@@ -182,6 +185,57 @@ fun Screen(
         }
         BackupState.IMPORT_IN_PROGRESS -> {
           StateLabel("Import in progress...")
+        }
+      }
+
+      Dividers.Default()
+
+      Buttons.LargeTonal(
+        onClick = onCheckRemoteBackupStateClicked
+      ) {
+        Text("Check remote backup state")
+      }
+
+      Spacer(modifier = Modifier.height(8.dp))
+
+      when (state.remoteBackupState) {
+        is InternalBackupPlaygroundViewModel.RemoteBackupState.Available -> {
+          StateLabel("Exists/allocated. Space used by media: ${state.remoteBackupState.response.usedSpace ?: 0} bytes (${state.remoteBackupState.response.usedSpace?.bytes?.inMebiBytes?.roundedString(3) ?: 0} MiB)")
+        }
+        InternalBackupPlaygroundViewModel.RemoteBackupState.GeneralError -> {
+          StateLabel("Hit an unknown error. Check the logs.")
+        }
+        InternalBackupPlaygroundViewModel.RemoteBackupState.NotFound -> {
+          StateLabel("Not found.")
+        }
+        InternalBackupPlaygroundViewModel.RemoteBackupState.Unknown -> {
+          StateLabel("Hit the button above to check the state.")
+        }
+      }
+
+      Spacer(modifier = Modifier.height(8.dp))
+
+      Buttons.LargePrimary(
+        onClick = onUploadToRemoteClicked,
+        enabled = state.backupState == BackupState.EXPORT_DONE
+      ) {
+        Text("Upload to remote")
+      }
+
+      Spacer(modifier = Modifier.height(8.dp))
+
+      when (state.uploadState) {
+        BackupUploadState.NONE -> {
+          StateLabel("")
+        }
+        BackupUploadState.UPLOAD_IN_PROGRESS -> {
+          StateLabel("Upload in progress...")
+        }
+        BackupUploadState.UPLOAD_DONE -> {
+          StateLabel("Upload complete.")
+        }
+        BackupUploadState.UPLOAD_FAILED -> {
+          StateLabel("Upload failed.")
         }
       }
     }
@@ -237,6 +291,17 @@ fun PreviewScreenImportInProgress() {
   SignalTheme {
     Surface {
       Screen(state = ScreenState(backupState = BackupState.IMPORT_IN_PROGRESS, plaintext = false))
+    }
+  }
+}
+
+@Preview(name = "Light Theme", group = "screen", uiMode = Configuration.UI_MODE_NIGHT_NO)
+@Preview(name = "Dark Theme", group = "screen", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+fun PreviewScreenUploadInProgress() {
+  SignalTheme {
+    Surface {
+      Screen(state = ScreenState(uploadState = BackupUploadState.UPLOAD_IN_PROGRESS, plaintext = false))
     }
   }
 }

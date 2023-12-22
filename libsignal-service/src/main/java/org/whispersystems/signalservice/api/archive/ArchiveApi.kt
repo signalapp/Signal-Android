@@ -16,6 +16,7 @@ import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.backup.BackupKey
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.internal.push.PushServiceSocket
+import java.io.InputStream
 
 /**
  * Class to interact with various archive-related endpoints.
@@ -98,6 +99,24 @@ class ArchiveApi(
       val zkCredential = getZkCredential(backupKey, serviceCredential)
       val presentationData = CredentialPresentationData.from(backupKey, zkCredential, backupServerPublicParams)
       pushServiceSocket.getArchiveBackupInfo(presentationData.toArchiveCredentialPresentation())
+    }
+  }
+
+  /**
+   * Retrieves a resumable upload URL you can use to upload your main message backup file to cloud storage.
+   */
+  fun getBackupResumableUploadUrl(archiveFormResponse: ArchiveMessageBackupUploadFormResponse): NetworkResult<String> {
+    return NetworkResult.fromFetch {
+      pushServiceSocket.getResumableUploadUrl(archiveFormResponse)
+    }
+  }
+
+  /**
+   * Uploads your main backup file to cloud storage.
+   */
+  fun uploadBackupFile(archiveFormResponse: ArchiveMessageBackupUploadFormResponse, resumableUploadUrl: String, data: InputStream, dataLength: Long): NetworkResult<Unit> {
+    return NetworkResult.fromFetch {
+      pushServiceSocket.uploadBackupFile(archiveFormResponse, resumableUploadUrl, data, dataLength)
     }
   }
 

@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.NetworkResult
+import org.whispersystems.signalservice.api.archive.ArchiveGetBackupInfoResponse
 import org.whispersystems.signalservice.api.archive.ArchiveServiceCredential
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.ServiceId.PNI
@@ -165,14 +166,13 @@ object BackupRepository {
   }
 
   /**
-   * A simple test method that just hits various network endpoints. Only useful for the playground.
+   * Returns an object with details about the remote backup state.
    */
-  fun testNetworkInteractions() {
+  fun getRemoteBackupState(): NetworkResult<ArchiveGetBackupInfoResponse> {
     val api = ApplicationDependencies.getSignalServiceAccountManager().archiveApi
     val backupKey = SignalStore.svr().getOrCreateMasterKey().deriveBackupKey()
 
-    // Just running some sample requests
-    api
+    return api
       .triggerBackupIdReservation(backupKey)
       .then { getAuthCredential() }
       .then { credential ->
@@ -182,13 +182,41 @@ object BackupRepository {
       }
       .then { credential ->
         api.getBackupInfo(backupKey, credential)
-          .also { Log.i(TAG, "BackupInfoResult: $it") }
+      }
+  }
+
+  /**
+   * A simple test method that just hits various network endpoints. Only useful for the playground.
+   *
+   * @return True if successful, otherwise false.
+   */
+  fun uploadBackupFile(backupStream: InputStream, backupStreamLength: Long): Boolean {
+    val api = ApplicationDependencies.getSignalServiceAccountManager().archiveApi
+    val backupKey = SignalStore.svr().getOrCreateMasterKey().deriveBackupKey()
+
+    return api
+      .triggerBackupIdReservation(backupKey)
+      .then { getAuthCredential() }
+      .then { credential ->
+        api.setPublicKey(backupKey, credential)
+          .also { Log.i(TAG, "PublicKeyResult: $it") }
           .map { credential }
       }
       .then { credential ->
         api.getMessageBackupUploadForm(backupKey, credential)
           .also { Log.i(TAG, "UploadFormResult: $it") }
-      }.also { Log.i(TAG, "OverallResponse: $it") }
+      }
+      .then { form ->
+        api.getBackupResumableUploadUrl(form)
+          .also { Log.i(TAG, "ResumableUploadUrlResult: $it") }
+          .map { form to it }
+      }
+      .then { formAndUploadUrl ->
+        val (form, resumableUploadUrl) = formAndUploadUrl
+        api.uploadBackupFile(form, resumableUploadUrl, backupStream, backupStreamLength)
+          .also { Log.i(TAG, "UploadBackupFileResult: $it") }
+      }
+      .also { Log.i(TAG, "OverallResult: $it") } is NetworkResult.Success
   }
 
   /**

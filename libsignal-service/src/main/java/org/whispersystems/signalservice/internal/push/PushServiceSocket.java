@@ -1637,6 +1637,10 @@ public class PushServiceSocket {
     }
   }
 
+  public String getResumableUploadUrl(ArchiveMessageBackupUploadFormResponse uploadFormResponse) throws IOException {
+    return getResumableUploadUrl(uploadFormResponse.getCdn(), uploadFormResponse.getSignedUploadLocation(), uploadFormResponse.getHeaders());
+  }
+
   private String getResumableUploadUrl(int cdn, String signedUrl, Map<String, String> headers) throws IOException {
     ConnectionHolder connectionHolder = getRandom(cdnClientsMap.get(cdn), random);
     OkHttpClient     okHttpClient     = connectionHolder.getClient()
@@ -1737,6 +1741,10 @@ public class PushServiceSocket {
         connections.remove(call);
       }
     }
+  }
+
+  public void uploadBackupFile(ArchiveMessageBackupUploadFormResponse uploadFormResponse, String resumableUploadUrl, InputStream data, long dataLength) throws IOException {
+    uploadToCdn3(resumableUploadUrl, data, "application/octet-stream", dataLength, false, new NoCipherOutputStreamFactory(), null, null, uploadFormResponse.getHeaders());
   }
 
   private AttachmentDigest uploadToCdn3(String resumableUrl,
