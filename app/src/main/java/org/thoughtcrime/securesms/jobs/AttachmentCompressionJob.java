@@ -7,7 +7,6 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
-
 import androidx.media3.common.MimeTypes;
 
 import org.greenrobot.eventbus.EventBus;
@@ -23,8 +22,8 @@ import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream;
 import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
-import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
@@ -37,7 +36,6 @@ import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.ImageCompressionUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.MemoryFileDescriptor;
 import org.thoughtcrime.securesms.util.MemoryFileDescriptor.MemoryFileException;
 import org.thoughtcrime.securesms.video.InMemoryTranscoder;
 import org.thoughtcrime.securesms.video.StreamingTranscoder;
@@ -172,9 +170,8 @@ public final class AttachmentCompressionJob extends BaseJob {
       } else if (constraints.canResize(attachment)) {
         Log.i(TAG, "Compressing image.");
         try (MediaStream converted = compressImage(context, attachment, constraints)) {
-          attachmentDatabase.updateAttachmentData(attachment, converted, false);
+          attachmentDatabase.updateAttachmentData(attachment, converted, false, false);
         }
-        attachmentDatabase.markAttachmentAsTransformed(attachmentId, false);
       } else if (constraints.isSatisfied(context, attachment)) {
         Log.i(TAG, "Not compressing.");
         attachmentDatabase.markAttachmentAsTransformed(attachmentId, false);
@@ -250,15 +247,13 @@ public final class AttachmentCompressionJob extends BaseJob {
                                                         100));
 
               try (MediaStream mediaStream = new MediaStream(ModernDecryptingPartInputStream.createFor(attachmentSecret, file, 0), MimeTypes.VIDEO_MP4, 0, 0)) {
-                attachmentDatabase.updateAttachmentData(attachment, mediaStream, true);
+                attachmentDatabase.updateAttachmentData(attachment, mediaStream, true, false);
               }
             } finally {
               if (!file.delete()) {
                 Log.w(TAG, "Failed to delete temp file");
               }
             }
-
-            attachmentDatabase.markAttachmentAsTransformed(attachment.getAttachmentId(), false);
 
             return Objects.requireNonNull(attachmentDatabase.getAttachment(attachment.getAttachmentId()));
           } else {
@@ -278,8 +273,7 @@ public final class AttachmentCompressionJob extends BaseJob {
                                                           100,
                                                           percent));
               }, cancelationSignal)) {
-                attachmentDatabase.updateAttachmentData(attachment, mediaStream, true);
-                attachmentDatabase.markAttachmentAsTransformed(attachment.getAttachmentId(), mediaStream.getFaststart());
+                attachmentDatabase.updateAttachmentData(attachment, mediaStream, true, mediaStream.getFaststart());
               }
 
               eventBus.postSticky(new PartProgressEvent(attachment,

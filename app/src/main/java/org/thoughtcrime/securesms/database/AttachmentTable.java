@@ -886,11 +886,13 @@ public class AttachmentTable extends DatabaseTable {
    */
   public void updateAttachmentData(@NonNull DatabaseAttachment databaseAttachment,
                                    @NonNull MediaStream mediaStream,
-                                   boolean onlyModifyThisAttachment)
+                                   boolean onlyModifyThisAttachment,
+                                   boolean withFastStart)
     throws MmsException, IOException
   {
-    SQLiteDatabase database    = databaseHelper.getSignalWritableDatabase();
-    DataInfo       oldDataInfo = getAttachmentDataFileInfo(databaseAttachment.getAttachmentId(), DATA);
+    AttachmentId   attachmentId = databaseAttachment.getAttachmentId();
+    SQLiteDatabase database     = databaseHelper.getSignalWritableDatabase();
+    DataInfo       oldDataInfo  = getAttachmentDataFileInfo(attachmentId, DATA);
 
     if (oldDataInfo == null) {
       throw new MmsException("No attachment data found!");
@@ -910,7 +912,15 @@ public class AttachmentTable extends DatabaseTable {
 
     database.beginTransaction();
     try {
-      dataInfo = deduplicateAttachment(dataInfo, databaseAttachment.getAttachmentId(), databaseAttachment.getTransformProperties());
+      TransformProperties transformProperties = databaseAttachment.getTransformProperties();
+
+      dataInfo = deduplicateAttachment(dataInfo, attachmentId, transformProperties);
+
+      transformProperties = transformProperties.withSkipTransform();
+
+      if (withFastStart) {
+        transformProperties = transformProperties.withMp4Faststart();
+      }
 
       ContentValues contentValues = new ContentValues();
       contentValues.put(SIZE, dataInfo.length);
@@ -920,9 +930,10 @@ public class AttachmentTable extends DatabaseTable {
       contentValues.put(DATA, dataInfo.file.getAbsolutePath());
       contentValues.put(DATA_RANDOM, dataInfo.random);
       contentValues.put(DATA_HASH, dataInfo.hash);
+      contentValues.put(TRANSFORM_PROPERTIES, transformProperties.serialize());
 
       int updateCount = updateAttachmentAndMatchingHashes(database,
-                                                          databaseAttachment.getAttachmentId(),
+                                                          attachmentId,
                                                           isSingleUseOfData ? dataInfo.hash : oldDataInfo.hash,
                                                           contentValues);
 
