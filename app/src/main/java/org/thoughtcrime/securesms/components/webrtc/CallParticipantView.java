@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -36,6 +37,7 @@ import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.AvatarUtil;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.webrtc.RendererCommon;
 import org.whispersystems.signalservice.api.util.Preconditions;
@@ -57,6 +59,7 @@ public class CallParticipantView extends ConstraintLayout {
 
   private RecipientId recipientId;
   private boolean     infoMode;
+  private boolean     raiseHandAllowed;
   private Runnable    missingMediaKeysUpdater;
 
   private SelfPipMode selfPipMode = SelfPipMode.NOT_SELF_PIP;
@@ -76,6 +79,8 @@ public class CallParticipantView extends ConstraintLayout {
   private AppCompatImageView  infoIcon;
   private View                switchCameraIconFrame;
   private View                switchCameraIcon;
+  private ImageView           raiseHandIcon;
+  private TextView            nameLabel;
 
   public CallParticipantView(@NonNull Context context) {
     super(context);
@@ -108,6 +113,8 @@ public class CallParticipantView extends ConstraintLayout {
     pipBadge              = findViewById(R.id.call_participant_item_pip_badge);
     switchCameraIconFrame = findViewById(R.id.call_participant_switch_camera);
     switchCameraIcon      = findViewById(R.id.call_participant_switch_camera_icon);
+    raiseHandIcon         = findViewById(R.id.call_participant_raise_hand_icon);
+    nameLabel             = findViewById(R.id.call_participant_name_label);
 
     avatar.setFallbackPhotoProvider(FALLBACK_PHOTO_PROVIDER);
     useLargeAvatar();
@@ -172,6 +179,15 @@ public class CallParticipantView extends ConstraintLayout {
 
       audioIndicator.setVisibility(View.VISIBLE);
       audioIndicator.bind(participant.isMicrophoneEnabled(), participant.getAudioLevel());
+      final String shortRecipientDisplayName = participant.getShortRecipientDisplayName(getContext());
+      if (FeatureFlags.groupCallRaiseHand() && raiseHandAllowed && participant.isHandRaised()) {
+        raiseHandIcon.setVisibility(View.VISIBLE);
+        nameLabel.setVisibility(View.VISIBLE);
+        nameLabel.setText(shortRecipientDisplayName);
+      } else {
+        raiseHandIcon.setVisibility(View.GONE);
+        nameLabel.setVisibility(View.GONE);
+      }
     }
 
     if (participantChanged || !Objects.equals(contactPhoto, participant.getRecipient().getContactPhoto())) {
@@ -217,6 +233,10 @@ public class CallParticipantView extends ConstraintLayout {
     badge.setVisibility(shouldRenderInPip ? View.GONE : View.VISIBLE);
     pipAvatar.setVisibility(shouldRenderInPip ? View.VISIBLE : View.GONE);
     pipBadge.setVisibility(shouldRenderInPip ? View.VISIBLE : View.GONE);
+  }
+
+  public void setRaiseHandAllowed(boolean raiseHandAllowed) {
+    this.raiseHandAllowed = raiseHandAllowed;
   }
 
   /**
