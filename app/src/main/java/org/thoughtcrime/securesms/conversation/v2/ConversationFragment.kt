@@ -62,6 +62,8 @@ import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.ConversationLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -76,6 +78,7 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -440,6 +443,10 @@ class ConversationFragment :
 
   private val shareDataTimestampViewModel: ShareDataTimestampViewModel by activityViewModels()
 
+  private val toggleUpdateViewModel: ToggleUpdateViewModel by viewModel {
+    ToggleUpdateViewModel()
+  }
+
   private val inlineQueryController: InlineQueryResultsControllerV2 by lazy {
     InlineQueryResultsControllerV2(
       this,
@@ -591,6 +598,14 @@ class ConversationFragment :
     inputPanel.setMediaListener(InputPanelMediaListener())
 
     ChatColorsDrawable.attach(binding.conversationItemRecycler)
+
+    lifecycleScope.launch {
+      repeatOnLifecycle(Lifecycle.State.STARTED) {
+        toggleUpdateViewModel.state.collect {
+          updateToggleButtonState()
+        }
+      }
+    }
   }
 
   override fun onViewStateRestored(savedInstanceState: Bundle?) {
@@ -1010,7 +1025,7 @@ class ConversationFragment :
         .distinctUntilChanged { previous, next -> previous.voiceNoteDraft == next.voiceNoteDraft }
         .subscribe {
           inputPanel.voiceNoteDraft = it.voiceNoteDraft
-          updateToggleButtonState()
+          toggleUpdateViewModel.update()
         }
     )
 
@@ -1636,7 +1651,7 @@ class ConversationFragment :
           inputPanel.setLinkPreview(GlideApp.with(this), state.linkPreview)
         }
 
-        updateToggleButtonState()
+        toggleUpdateViewModel.update()
       }
       .addTo(disposables)
   }
@@ -3710,7 +3725,7 @@ class ConversationFragment :
       if (composeText.textTrimmed.isEmpty() || beforeLength == 0) {
         composeText.postDelayed({
           if (lifecycle.currentState.isAtLeast(Lifecycle.State.CREATED)) {
-            updateToggleButtonState()
+            toggleUpdateViewModel.update()
           }
         }, 50)
       }
@@ -3798,18 +3813,18 @@ class ConversationFragment :
     }
 
     override fun onRecorderLocked() {
-      updateToggleButtonState()
+      toggleUpdateViewModel.update()
       voiceMessageRecordingDelegate.onRecorderLocked()
     }
 
     override fun onRecorderFinished() {
-      updateToggleButtonState()
+      toggleUpdateViewModel.update()
       voiceMessageRecordingDelegate.onRecorderFinished()
     }
 
     override fun onRecorderCanceled(byUser: Boolean) {
       if (lifecycle.currentState.isAtLeast(Lifecycle.State.CREATED)) {
-        updateToggleButtonState()
+        toggleUpdateViewModel.update()
       }
       voiceMessageRecordingDelegate.onRecorderCanceled(byUser)
     }
@@ -3848,7 +3863,7 @@ class ConversationFragment :
     }
 
     override fun onEnterEditMode() {
-      updateToggleButtonState()
+      toggleUpdateViewModel.update()
       previousPages = keyboardPagerViewModel.pages().value
       keyboardPagerViewModel.setOnlyPage(KeyboardPage.EMOJI)
       onKeyboardChanged(KeyboardPage.EMOJI)
@@ -3857,7 +3872,7 @@ class ConversationFragment :
     }
 
     override fun onExitEditMode() {
-      updateToggleButtonState()
+      toggleUpdateViewModel.update()
       draftViewModel.deleteMessageEditDraft()
       if (previousPages != null) {
         keyboardPagerViewModel.setPages(previousPages!!)
@@ -3915,7 +3930,7 @@ class ConversationFragment :
 
   private inner class AttachmentManagerListener : AttachmentManager.AttachmentListener {
     override fun onAttachmentChanged() {
-      updateToggleButtonState()
+      toggleUpdateViewModel.update()
       updateLinkPreviewState()
     }
 
