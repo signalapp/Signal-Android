@@ -230,6 +230,24 @@ public final class SqlUtilTest {
   }
 
   @Test
+  public void buildBulkInsert_single_singleBatch_containsNulls() {
+    List<ContentValues> contentValues = new ArrayList<>();
+
+    ContentValues cv1 = new ContentValues();
+    cv1.put("a", 1);
+    cv1.put("b", 2);
+    cv1.put("c", (String) null);
+
+    contentValues.add(cv1);
+
+    List<SqlUtil.Query> output = SqlUtil.buildBulkInsert("mytable", new String[] { "a", "b", "c"}, contentValues);
+
+    assertEquals(1, output.size());
+    assertEquals("INSERT INTO mytable (a, b, c) VALUES (?, ?, null)", output.get(0).getWhere());
+    assertArrayEquals(new String[] { "1", "2" }, output.get(0).getWhereArgs());
+  }
+
+  @Test
   public void buildBulkInsert_multiple_singleBatch() {
     List<ContentValues> contentValues = new ArrayList<>();
 

@@ -21,7 +21,7 @@ public class RecipientIdFollowUpJobMigration extends JobMigration {
   }
 
   @Override
-  protected @NonNull JobData migrate(@NonNull JobData jobData) {
+  public @NonNull JobData migrate(@NonNull JobData jobData) {
     switch(jobData.getFactoryKey()) {
       case "RequestGroupInfoJob": return migrateRequestGroupInfoJob(jobData);
       case "SendDeliveryReceiptJob": return migrateSendDeliveryReceiptJob(jobData);
@@ -54,6 +54,6 @@ public class RecipientIdFollowUpJobMigration extends JobMigration {
   }
 
   private static JobData failingJobData() {
-    return new JobData("FailingJob", null, null);
+    return JobData.FAILING_JOB_DATA;
   }
 }

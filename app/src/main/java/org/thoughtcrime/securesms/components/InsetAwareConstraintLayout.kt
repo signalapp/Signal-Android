@@ -51,13 +51,14 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
     private val windowTypes = WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.displayCutout()
   }
 
-  private val statusBarGuideline: Guideline? by lazy { findViewById(R.id.status_bar_guideline) }
+  protected val statusBarGuideline: Guideline? by lazy { findViewById(R.id.status_bar_guideline) }
   private val navigationBarGuideline: Guideline? by lazy { findViewById(R.id.navigation_bar_guideline) }
   private val parentStartGuideline: Guideline? by lazy { findViewById(R.id.parent_start_guideline) }
   private val parentEndGuideline: Guideline? by lazy { findViewById(R.id.parent_end_guideline) }
   private val keyboardGuideline: Guideline? by lazy { findViewById(R.id.keyboard_guideline) }
 
-  private val listeners: MutableList<KeyboardStateListener> = mutableListOf()
+  private val windowInsetsListeners: MutableSet<WindowInsetsListener> = mutableSetOf()
+  private val keyboardStateListeners: MutableSet<KeyboardStateListener> = mutableSetOf()
   private val keyboardAnimator = KeyboardInsetAnimator()
   private val displayMetrics = DisplayMetrics()
   private var overridingKeyboard: Boolean = false
@@ -82,20 +83,35 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
   }
 
   fun addKeyboardStateListener(listener: KeyboardStateListener) {
-    listeners += listener
+    keyboardStateListeners += listener
   }
 
   fun removeKeyboardStateListener(listener: KeyboardStateListener) {
-    listeners.remove(listener)
+    keyboardStateListeners.remove(listener)
+  }
+
+  fun addWindowInsetsListener(listener: WindowInsetsListener) {
+    windowInsetsListeners += listener
+  }
+
+  fun removeWindowInsetsListener(listener: WindowInsetsListener) {
+    windowInsetsListeners.remove(listener)
   }
 
   private fun applyInsets(windowInsets: Insets, keyboardInsets: Insets) {
     val isLtr = ViewUtil.isLtr(this)
 
-    statusBarGuideline?.setGuidelineBegin(windowInsets.top)
-    navigationBarGuideline?.setGuidelineEnd(windowInsets.bottom)
-    parentStartGuideline?.setGuidelineBegin(if (isLtr) windowInsets.left else windowInsets.right)
-    parentEndGuideline?.setGuidelineEnd(if (isLtr) windowInsets.right else windowInsets.left)
+    val statusBar = windowInsets.top
+    val navigationBar = windowInsets.bottom
+    val parentStart = if (isLtr) windowInsets.left else windowInsets.right
+    val parentEnd = if (isLtr) windowInsets.right else windowInsets.left
+
+    statusBarGuideline?.setGuidelineBegin(statusBar)
+    navigationBarGuideline?.setGuidelineEnd(navigationBar)
+    parentStartGuideline?.setGuidelineBegin(parentStart)
+    parentEndGuideline?.setGuidelineEnd(parentEnd)
+
+    windowInsetsListeners.forEach { it.onApplyWindowInsets(statusBar, navigationBar, parentStart, parentEnd) }
 
     if (keyboardInsets.bottom > 0) {
       setKeyboardHeight(keyboardInsets.bottom)
@@ -113,7 +129,7 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
     }
 
     if (previousKeyboardHeight != keyboardInsets.bottom) {
-      listeners.forEach {
+      keyboardStateListeners.forEach {
         if (previousKeyboardHeight <= 0) {
           it.onKeyboardShown()
         } else {
@@ -189,6 +205,10 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
   interface KeyboardStateListener {
     fun onKeyboardShown()
     fun onKeyboardHidden()
+  }
+
+  interface WindowInsetsListener {
+    fun onApplyWindowInsets(statusBar: Int, navigationBar: Int, parentStart: Int, parentEnd: Int)
   }
 
   /**

@@ -1,14 +1,14 @@
 plugins {
-    id 'signal-library'
+    id("signal-library")
 }
 
 android {
-    namespace 'org.signal.smsexporter'
+    namespace = "org.signal.smsexporter"
 }
 
 dependencies {
-    implementation project(':core-util')
+    implementation(project(":core-util"))
 
-    implementation libs.androidx.core.role
-    implementation libs.android.smsmms
+    implementation(libs.androidx.core.role)
+    implementation(libs.android.smsmms)
 }

@@ -83,7 +83,8 @@ object UsernameRepository {
 
   private val URL_REGEX = """(https://)?signal.me/?#eu/([a-zA-Z0-9+\-_/]+)""".toRegex()
 
-  val BASE_URL = "https://signal.me/#eu/"
+  private const val BASE_URL = "https://signal.me/#eu/"
+  private const val USERNAME_SYNC_ERROR_THRESHOLD = 3
 
   private val accountManager: SignalServiceAccountManager get() = ApplicationDependencies.getSignalServiceAccountManager()
 
@@ -153,6 +154,7 @@ object UsernameRepository {
 
           if (SignalStore.account().usernameSyncState == AccountValues.UsernameSyncState.LINK_CORRUPTED) {
             SignalStore.account().usernameSyncState = AccountValues.UsernameSyncState.IN_SYNC
+            SignalStore.account().usernameSyncErrorCount = 0
           }
 
           SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
@@ -217,6 +219,9 @@ object UsernameRepository {
       } catch (e: UsernameIsNotAssociatedWithAnAccountException) {
         Log.w(TAG, "[fetchAciFromUsername] Failed to get ACI for username hash", e)
         UsernameAciFetchResult.NotFound
+      } catch (e: BaseUsernameException) {
+        Log.w(TAG, "[fetchAciFromUsername] Invalid username", e)
+        UsernameAciFetchResult.NotFound
       } catch (e: IOException) {
         Log.w(TAG, "[fetchAciFromUsername] Hit network error while trying to resolve ACI from username", e)
         UsernameAciFetchResult.NetworkError
@@ -249,6 +254,44 @@ object UsernameRepository {
     val combined: ByteArray = this.entropy + this.serverId.toByteArray()
     val base64 = Base64.encodeUrlSafeWithoutPadding(combined)
     return BASE_URL + base64
+  }
+
+  @JvmStatic
+  fun onUsernameConsistencyValidated() {
+    SignalStore.account().usernameSyncState = AccountValues.UsernameSyncState.IN_SYNC
+
+    if (SignalStore.account().usernameSyncErrorCount > 0) {
+      Log.i(TAG, "Username consistency validated. There were previously ${SignalStore.account().usernameSyncErrorCount} error(s).")
+      SignalStore.account().usernameSyncErrorCount = 0
+    }
+  }
+
+  @JvmStatic
+  fun onUsernameMismatchDetected() {
+    SignalStore.account().usernameSyncErrorCount++
+
+    if (SignalStore.account().usernameSyncErrorCount >= USERNAME_SYNC_ERROR_THRESHOLD) {
+      Log.w(TAG, "We've now seen ${SignalStore.account().usernameSyncErrorCount} mismatches in a row. Marking username and link as corrupted.")
+      SignalStore.account().usernameSyncState = AccountValues.UsernameSyncState.USERNAME_AND_LINK_CORRUPTED
+      SignalStore.account().usernameSyncErrorCount = 0
+    } else {
+      Log.w(TAG, "Username mismatch reported. At ${SignalStore.account().usernameSyncErrorCount} / $USERNAME_SYNC_ERROR_THRESHOLD tries.")
+    }
+  }
+
+  @JvmStatic
+  fun onUsernameLinkMismatchDetected() {
+    SignalStore.account().usernameSyncErrorCount++
+
+    if (SignalStore.account().usernameSyncErrorCount >= USERNAME_SYNC_ERROR_THRESHOLD) {
+      Log.w(TAG, "We've now seen ${SignalStore.account().usernameSyncErrorCount} mismatches in a row. Marking link as corrupted.")
+      SignalStore.account().usernameSyncState = AccountValues.UsernameSyncState.LINK_CORRUPTED
+      SignalStore.account().usernameLink = null
+      SignalStore.account().usernameSyncErrorCount = 0
+      StorageSyncHelper.scheduleSyncForDataChange()
+    } else {
+      Log.w(TAG, "Link mismatch reported. At ${SignalStore.account().usernameSyncErrorCount} / $USERNAME_SYNC_ERROR_THRESHOLD tries.")
+    }
   }
 
   @WorkerThread
@@ -293,6 +336,7 @@ object UsernameRepository {
       SignalStore.account().usernameLink = null
       SignalDatabase.recipients.setUsername(Recipient.self().id, reserved.username)
       SignalStore.account().usernameSyncState = AccountValues.UsernameSyncState.IN_SYNC
+      SignalStore.account().usernameSyncErrorCount = 0
 
       SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
       StorageSyncHelper.scheduleSyncForDataChange()
@@ -345,6 +389,7 @@ object UsernameRepository {
       SignalStore.account().username = null
       SignalStore.account().usernameLink = null
       SignalStore.account().usernameSyncState = AccountValues.UsernameSyncState.IN_SYNC
+      SignalStore.account().usernameSyncErrorCount = 0
       SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
       StorageSyncHelper.scheduleSyncForDataChange()
       Log.i(TAG, "[deleteUsername] Successfully deleted the username.")

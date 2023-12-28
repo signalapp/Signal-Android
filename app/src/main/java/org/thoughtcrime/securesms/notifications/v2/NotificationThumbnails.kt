@@ -2,6 +2,8 @@ package org.thoughtcrime.securesms.notifications.v2
 
 import android.content.Context
 import android.net.Uri
+import android.os.Build
+import org.signal.core.util.asListContains
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.model.MessageId
@@ -10,6 +12,7 @@ import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader
 import org.thoughtcrime.securesms.mms.Slide
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.util.BitmapDecodingException
+import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.ImageCompressionUtil
 import org.thoughtcrime.securesms.util.kb
 import org.thoughtcrime.securesms.util.mb
@@ -33,8 +36,20 @@ object NotificationThumbnails {
 
   private val thumbnailCache = LinkedHashMap<MessageId, CachedThumbnail>(MAX_CACHE_SIZE)
 
+  /**
+   * Some devices are hitting weird issues when rendering notification thumbnails. It's only a few specific older models, so rather than try to figure out the
+   * specifics here, we'll just disable notification thumbnails for them.
+   */
+  private val isBlocklisted by lazy {
+    FeatureFlags.notificationThumbnailProductBlocklist().asListContains(Build.PRODUCT)
+  }
+
   fun getWithoutModifying(notificationItem: NotificationItem): NotificationItem.ThumbnailInfo {
     val thumbnailSlide: Slide? = notificationItem.slideDeck?.thumbnailSlide
+
+    if (isBlocklisted) {
+      return NotificationItem.ThumbnailInfo.NONE
+    }
 
     if (thumbnailSlide == null || thumbnailSlide.uri == null) {
       return NotificationItem.ThumbnailInfo.NONE

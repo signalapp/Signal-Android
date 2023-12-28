@@ -42,3 +42,15 @@ fun String?.emptyIfNull(): String {
 fun String.toSingleLine(): String {
   return this.trimIndent().split("\n").joinToString(separator = " ")
 }
+
+fun String?.nullIfEmpty(): String? {
+  return this?.ifEmpty {
+    null
+  }
+}
+
+fun String?.nullIfBlank(): String? {
+  return this?.ifBlank {
+    null
+  }
+}

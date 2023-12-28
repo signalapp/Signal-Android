@@ -112,10 +112,12 @@ public final class FeatureFlags {
   public  static final String USERNAMES                         = "android.usernames";
   public  static final String INSTANT_VIDEO_PLAYBACK            = "android.instantVideoPlayback";
   public  static final String CRASH_PROMPT_CONFIG               = "android.crashPromptConfig";
-  private static final String SEPA_DEBIT_DONATIONS              = "android.sepa.debit.donations.4";
-  private static final String IDEAL_DONATIONS                   = "android.ideal.donations.4";
+  private static final String SEPA_DEBIT_DONATIONS              = "android.sepa.debit.donations.5";
+  private static final String IDEAL_DONATIONS                   = "android.ideal.donations.5";
   public  static final String IDEAL_ENABLED_REGIONS             = "global.donations.idealEnabledRegions";
   public  static final String SEPA_ENABLED_REGIONS              = "global.donations.sepaEnabledRegions";
+  private static final String CALLING_REACTIONS                 = "android.calling.reactions";
+  private static final String NOTIFICATION_THUMBNAIL_BLOCKLIST  = "android.notificationThumbnailProductBlocklist";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -183,7 +185,9 @@ public final class FeatureFlags {
       SEPA_DEBIT_DONATIONS,
       IDEAL_DONATIONS,
       IDEAL_ENABLED_REGIONS,
-      SEPA_ENABLED_REGIONS
+      SEPA_ENABLED_REGIONS,
+      CALLING_REACTIONS,
+      NOTIFICATION_THUMBNAIL_BLOCKLIST
   );
 
   @VisibleForTesting
@@ -253,7 +257,9 @@ public final class FeatureFlags {
       PROMPT_BATTERY_SAVER,
       USERNAMES,
       CRASH_PROMPT_CONFIG,
-      BLOCK_SSE
+      BLOCK_SSE,
+      CALLING_REACTIONS,
+      NOTIFICATION_THUMBNAIL_BLOCKLIST
   );
 
   /**
@@ -657,6 +663,18 @@ public final class FeatureFlags {
 
   public static String sepaEnabledRegions() {
     return getString(SEPA_ENABLED_REGIONS, "");
+  }
+
+  /**
+   * Whether or not group call reactions are enabled.
+   */
+  public static boolean groupCallReactions() {
+    return getBoolean(CALLING_REACTIONS, false);
+  }
+
+  /** List of device products that are blocked from showing notification thumbnails. */
+  public static String notificationThumbnailProductBlocklist() {
+    return getString(NOTIFICATION_THUMBNAIL_BLOCKLIST, "");
   }
 
   /** Only for rendering debug info. */

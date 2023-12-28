@@ -60,7 +60,7 @@ object DateUtils : android.text.format.DateUtils() {
   @JvmStatic
   fun getBriefRelativeTimeSpanString(c: Context, locale: Locale, timestamp: Long): String {
     return when {
-      timestamp.isWithin(1.minutes) -> {
+      isNow(timestamp) -> {
         c.getString(R.string.DateUtils_just_now)
       }
       timestamp.isWithin(1.hours) -> {
@@ -89,7 +89,7 @@ object DateUtils : android.text.format.DateUtils() {
   @JvmStatic
   fun getExtendedRelativeTimeSpanString(context: Context, locale: Locale, timestamp: Long): String {
     return when {
-      timestamp.isWithin(1.minutes) -> {
+      isNow(timestamp) -> {
         context.getString(R.string.DateUtils_just_now)
       }
       timestamp.isWithin(1.hours) -> {
@@ -130,15 +130,15 @@ object DateUtils : android.text.format.DateUtils() {
   @JvmStatic
   fun getDatelessRelativeTimeSpanFormattedDate(context: Context, locale: Locale, timestamp: Long): FormattedDate {
     return when {
-      timestamp.isWithin(1.minutes) -> {
-        FormattedDate(true, context.getString(R.string.DateUtils_just_now))
+      isNow(timestamp) -> {
+        FormattedDate(isRelative = true, isNow = true, value = context.getString(R.string.DateUtils_just_now))
       }
       timestamp.isWithin(1.hours) -> {
         val minutes = timestamp.convertDeltaTo(DurationUnit.MINUTES)
-        FormattedDate(true, context.resources.getString(R.string.DateUtils_minutes_ago, minutes))
+        FormattedDate(isRelative = true, isNow = false, value = context.resources.getString(R.string.DateUtils_minutes_ago, minutes))
       }
       else -> {
-        FormattedDate(false, getOnlyTimeString(context, timestamp))
+        FormattedDate(isRelative = false, isNow = false, value = getOnlyTimeString(context, timestamp))
       }
     }
   }
@@ -335,6 +335,16 @@ object DateUtils : android.text.format.DateUtils() {
       }
     }
   }
+
+  /**
+   * This exposes "now" (defined here as a one minute window) to other classes.
+   * This is because certain locales use different linguistic constructions for "modified n minutes ago" and "modified just now",
+   * and therefore the caller will need to load different string resources in these situations.
+   *
+   * @param timestamp a Unix timestamp
+   */
+  @JvmStatic
+  fun isNow(timestamp: Long) = timestamp.isWithin(1.minutes)
 
   private fun Long.isWithin(duration: Duration): Boolean {
     return System.currentTimeMillis() - this <= duration.inWholeMilliseconds

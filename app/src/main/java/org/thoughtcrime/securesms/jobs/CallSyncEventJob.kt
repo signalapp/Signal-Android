@@ -46,6 +46,21 @@ class CallSyncEventJob private constructor(
       )
     }
 
+    @JvmStatic
+    fun createForNotAccepted(conversationRecipientId: RecipientId, callId: Long, isIncoming: Boolean): CallSyncEventJob {
+      return CallSyncEventJob(
+        getParameters(),
+        listOf(
+          CallSyncEventJobRecord(
+            recipientId = conversationRecipientId.toLong(),
+            callId = callId,
+            direction = CallTable.Direction.serialize(if (isIncoming) CallTable.Direction.INCOMING else CallTable.Direction.OUTGOING),
+            event = CallTable.Event.serialize(CallTable.Event.NOT_ACCEPTED)
+          )
+        )
+      )
+    }
+
     private fun createForDelete(calls: List<CallTable.Call>): CallSyncEventJob {
       return CallSyncEventJob(
         getParameters(),
@@ -123,6 +138,13 @@ class CallSyncEventJob private constructor(
   private fun createSyncMessage(syncTimestamp: Long, callSyncEvent: CallSyncEventJobRecord, callType: CallTable.Type): SyncMessage.CallEvent {
     return when (callSyncEvent.deserializeEvent()) {
       CallTable.Event.ACCEPTED -> CallEventSyncMessageUtil.createAcceptedSyncMessage(
+        remotePeer = RemotePeer(callSyncEvent.deserializeRecipientId(), CallId(callSyncEvent.callId)),
+        timestamp = syncTimestamp,
+        isOutgoing = callSyncEvent.deserializeDirection() == CallTable.Direction.OUTGOING,
+        isVideoCall = callType != CallTable.Type.AUDIO_CALL
+      )
+
+      CallTable.Event.NOT_ACCEPTED -> CallEventSyncMessageUtil.createNotAcceptedSyncMessage(
         remotePeer = RemotePeer(callSyncEvent.deserializeRecipientId(), CallId(callSyncEvent.callId)),
         timestamp = syncTimestamp,
         isOutgoing = callSyncEvent.deserializeDirection() == CallTable.Direction.OUTGOING,

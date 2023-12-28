@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.animation;
 
+import android.graphics.Point;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -15,6 +16,10 @@ public class ResizeAnimation extends Animation {
 
   private int startWidth;
   private int startHeight;
+
+  public ResizeAnimation(@NonNull View target, @NonNull Point dimension) {
+    this(target, dimension.x, dimension.y);
+  }
 
   public ResizeAnimation(@NonNull View target, int targetWidthPx, int targetHeightPx) {
     this.target         = target;

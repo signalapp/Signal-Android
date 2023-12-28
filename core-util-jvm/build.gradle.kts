@@ -18,4 +18,5 @@ java {
 
 dependencies {
   testImplementation(testLibs.junit.junit)
+  testImplementation(testLibs.assertj.core)
 }

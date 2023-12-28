@@ -109,14 +109,23 @@ class FullSignalAudioManagerApi31(context: Context, eventListener: EventListener
       val volume: Float = androidAudioManager.ringVolumeWithMinimum()
       soundPool.play(disconnectedSoundId, volume, volume, 0, 0, 1.0f)
     }
-    state = State.UNINITIALIZED
     androidAudioManager.unregisterAudioDeviceCallback(deviceCallback)
-    androidAudioManager.clearCommunicationDevice()
-    setSpeakerphoneOn(savedIsSpeakerPhoneOn)
-    setMicrophoneMute(savedIsMicrophoneMute)
-    androidAudioManager.mode = savedAudioMode
+    if (state == State.UNINITIALIZED && userSelectedAudioDevice != null) {
+      Log.d(
+        TAG,
+        "Stopping audio manager after selecting audio device but never initializing. " +
+          "This indicates a service spun up solely to set audio device. " +
+          "Therefore skipping audio device reset."
+      )
+    } else {
+      androidAudioManager.clearCommunicationDevice()
+      setSpeakerphoneOn(savedIsSpeakerPhoneOn)
+      setMicrophoneMute(savedIsMicrophoneMute)
+      androidAudioManager.mode = savedAudioMode
+    }
     androidAudioManager.abandonCallAudioFocus()
     Log.d(TAG, "Abandoned audio focus for VOICE_CALL streams")
+    state = State.UNINITIALIZED
 
     Log.d(TAG, "Stopped")
   }

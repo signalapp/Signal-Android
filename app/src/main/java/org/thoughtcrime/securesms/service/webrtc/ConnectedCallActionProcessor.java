@@ -95,7 +95,8 @@ public class ConnectedCallActionProcessor extends DeviceAwareActionProcessor {
     return ephemeralState.copy(
         CallParticipant.AudioLevel.fromRawAudioLevel(localLevel),
         callParticipantId.map(participantId -> Collections.singletonMap(participantId, CallParticipant.AudioLevel.fromRawAudioLevel(remoteLevel)))
-                         .orElse(Collections.emptyMap())
+                         .orElse(Collections.emptyMap()),
+        ephemeralState.getUnexpiredReactions()
     );
   }
 

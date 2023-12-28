@@ -2,9 +2,11 @@ package org.thoughtcrime.securesms.database
 
 import android.content.ContentValues
 import android.content.Context
+import android.database.Cursor
 import androidx.core.content.contentValuesOf
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.delete
+import org.signal.core.util.forEach
 import org.signal.core.util.readToList
 import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireInt
@@ -21,9 +23,9 @@ class GroupReceiptTable(context: Context?, databaseHelper: SignalDatabase?) : Da
     private const val ID = "_id"
     const val MMS_ID = "mms_id"
     const val RECIPIENT_ID = "address"
-    private const val STATUS = "status"
-    private const val TIMESTAMP = "timestamp"
-    private const val UNIDENTIFIED = "unidentified"
+    const val STATUS = "status"
+    const val TIMESTAMP = "timestamp"
+    const val UNIDENTIFIED = "unidentified"
     const val STATUS_UNKNOWN = -1
     const val STATUS_UNDELIVERED = 0
     const val STATUS_DELIVERED = 1
@@ -127,14 +129,32 @@ class GroupReceiptTable(context: Context?, databaseHelper: SignalDatabase?) : Da
       .from(TABLE_NAME)
       .where("$MMS_ID = ?", mmsId)
       .run()
-      .readToList { cursor ->
-        GroupReceiptInfo(
-          recipientId = RecipientId.from(cursor.requireLong(RECIPIENT_ID)),
-          status = cursor.requireInt(STATUS),
-          timestamp = cursor.requireLong(TIMESTAMP),
-          isUnidentified = cursor.requireBoolean(UNIDENTIFIED)
-        )
-      }
+      .readToList { it.toGroupReceiptInfo() }
+  }
+
+  fun getGroupReceiptInfoForMessages(ids: Set<Long>): Map<Long, List<GroupReceiptInfo>> {
+    if (ids.isEmpty()) {
+      return emptyMap()
+    }
+
+    val messageIdsToGroupReceipts: MutableMap<Long, MutableList<GroupReceiptInfo>> = mutableMapOf()
+
+    val args: List<Array<String>> = ids.map { SqlUtil.buildArgs(it) }
+
+    SqlUtil.buildCustomCollectionQuery("$MMS_ID = ?", args).forEach { query ->
+      readableDatabase
+        .select()
+        .from(TABLE_NAME)
+        .where(query.where, query.whereArgs)
+        .run()
+        .forEach { cursor ->
+          val messageId = cursor.requireLong(MMS_ID)
+          val receipts = messageIdsToGroupReceipts.getOrPut(messageId) { mutableListOf() }
+          receipts += cursor.toGroupReceiptInfo()
+        }
+    }
+
+    return messageIdsToGroupReceipts
   }
 
   fun deleteRowsForMessage(mmsId: Long) {
@@ -161,6 +181,15 @@ class GroupReceiptTable(context: Context?, databaseHelper: SignalDatabase?) : Da
       .values(RECIPIENT_ID to toId.serialize())
       .where("$RECIPIENT_ID = ?", fromId)
       .run()
+  }
+
+  private fun Cursor.toGroupReceiptInfo(): GroupReceiptInfo {
+    return GroupReceiptInfo(
+      recipientId = RecipientId.from(this.requireLong(RECIPIENT_ID)),
+      status = this.requireInt(STATUS),
+      timestamp = this.requireLong(TIMESTAMP),
+      isUnidentified = this.requireBoolean(UNIDENTIFIED)
+    )
   }
 
   data class GroupReceiptInfo(

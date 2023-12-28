@@ -322,6 +322,8 @@
     <string name="ConversationItem_cant_download_image_you_will_need_to_send_it_again">이미지를 다운로드할 수 없습니다. 다시 공유해 주세요.</string>
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">동영상을 다운로드할 수 없습니다. 다시 공유해 주세요.</string>
+    <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp represents a message that has been edited extremely recently. -->
+    <string name="ConversationItem_edited_now_timestamp_footer">방금 수정함</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
     <string name="ConversationItem_edited_timestamp_footer">%1$s 전 수정함</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
@@ -1481,7 +1483,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">%1$s 님이 내게 메시지를 보내도록 허용할까요? 차단을 해제할 때까지 모든 메시지를 차단합니다.</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">%1$s의 업데이트와 메시지를 받아보시겠어요? 차단을 해제할 때까지 모든 업데이트를 차단합니다.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">이 그룹과 대화를 계속하고 멤버들에게 이름과 사진을 공유하시겠어요?</string>
-    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">This Legacy Group can no longer be used. Create a new group to activate new features like @mentions and admins.</string>
+    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">이 레거시 그룹은 더 이상 사용할 수 없습니다. 새 그룹을 만들어 @멘션 및 관리자와 같은 새로운 기능을 활성화하세요.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">이 구형 그룹의 규모가 너무 커서 더 이상 사용할 수 없습니다. 최대 그룹 규모는 %1$d입니다.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">%1$s 님과 대화를 계속하고 이름과 사진을 공유하시겠어요?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">그룹에 가입하고 멤버들과 이름과 사진을 공유하시겠습니까? 귀하가 수락할 때까지 귀하가 자신의 메시지를 본 것을 알지 못합니다.</string>
@@ -1757,6 +1759,8 @@
     <string name="WebRtcCallView__toggle_camera">카메라 토글</string>
     <!-- Toggle content description for toggling mute state  -->
     <string name="WebRtcCallView__toggle_mute">알림 토글</string>
+    <!-- Content description for additional actions menu button -->
+    <string name="WebRtcCallView__additional_actions">작업 더 보기</string>
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">전화 종료</string>
 
@@ -1774,8 +1778,14 @@
     <string name="WebRtcAudioOutputBottomSheet__earpiece_icon_content_description">기기 이어폰을 나타내는 아이콘입니다.</string>
 
     <!-- CallParticipantsListDialog -->
-    <plurals name="CallParticipantsListDialog_in_this_call_d_people">
-        <item quantity="other">통화 참여자: %1$d명</item>
+    <plurals name="CallParticipantsListDialog_in_this_call">
+        <item quantity="other">통화 참가자 수(%1$d)</item>
+    </plurals>
+    <plurals name="CallParticipantsListDialog__signal_will_ring">
+        <item quantity="other">Signal에서 전화벨을 울립니다(%1$d).</item>
+    </plurals>
+    <plurals name="CallParticipantsListDialog__signal_will_notify">
+        <item quantity="other">Signal에서 알림을 보냅니다(%1$d).</item>
     </plurals>
 
     <!-- CallParticipantView -->
@@ -2269,6 +2279,8 @@
     </plurals>
     <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
     <string name="TransferControlView__processing">처리 중…</string>
+    <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
+    <string name="TransferControlView__download_progress">%1$s/%2$s</string>
 
 
     <!-- UnauthorizedReminder -->
@@ -2293,6 +2305,8 @@
     <string name="WebRtcCallActivity__answered_on_a_linked_device">연결된 기기에서 응답했습니다.</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">연결된 기기에서 거부했습니다.</string>
     <string name="WebRtcCallActivity__busy_on_a_linked_device">연결된 기기에서 사용 중입니다.</string>
+    <!-- Tooltip message shown first time user is in a video call after switch camera button moved -->
+    <string name="WebRtcCallActivity__flip_camera_tooltip">카메라 전환이 여기로 이동했습니다. 영상을 탭하여 사용해 보세요.</string>
 
     <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">누군가 변경된 안전 번호로 통화에 참여했습니다.</string>
 
@@ -4477,7 +4491,7 @@
     <string name="NewConversationActivity__">%1$s 님은 Signal 사용자가 아닙니다.</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
     <plurals name="CreateGroupActivity_not_signal_users">
-        <item quantity="other">%1$s are not Signal users</item>
+        <item quantity="other">%1$s번은 Signal 사용자가 아닙니다</item>
     </plurals>
 
     <!-- ContactFilterView -->
@@ -5000,7 +5014,7 @@
     <!-- Donation receipts one-time tab label -->
     <string name="DonationReceiptListFragment__one_time">1회성 기부</string>
     <!-- Donation receipts gift tab -->
-    <string name="DonationReceiptListFragment__for_a_friend">For a friend</string>
+    <string name="DonationReceiptListFragment__for_a_friend">친구 대신</string>
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__donation_for_a_friend">친구 대신 기부</string>
     <!-- Donation receipts donation type heading -->
@@ -5729,9 +5743,9 @@
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
     <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">iDEAL 기부를 아직 처리 중입니다. 다른 기부를 하기 전에 은행 앱을 확인하여 결제를 승인하세요.</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
-    <string name="DonateToSignal__donation_amount_too_high">Donation amount too high</string>
+    <string name="DonateToSignal__donation_amount_too_high">기부 금액이 너무 큽니다</string>
     <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
-    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">You can send up to %1$s via bank transfer. Try a different amount or a different payment method.</string>
+    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">은행 송금을 통해 보낼 수 있는 최대 금액은 %1$s입니다. 다른 금액이나 다른 결제 방법으로 시도해 주세요.</string>
 
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">월간</string>
@@ -5829,12 +5843,18 @@
     <string name="BankTransferDetailsFragment__iban_country_code_is_not_supported">IBAN 국가 코드가 지원되지 않습니다.</string>
     <!-- Error label for IBAN field when number is invalid -->
     <string name="BankTransferDetailsFragment__invalid_iban">유효하지 않은 IBAN</string>
+    <!-- Error label for name field when name is not at least two characters long -->
+    <string name="BankTransferDetailsFragment__minimum_2_characters">이름은 2자 이상이어야 합니다.</string>
+    <!-- Error label for email field when email is not valid -->
+    <string name="BankTransferDetailsFragment__invalid_email_address">잘못된 이메일 주소입니다.</string>
 
     <!-- IdealTransferDetailsFragment -->
     <!-- Title of the screen, displayed in the toolbar -->
     <string name="IdealTransferDetailsFragment__ideal">iDEAL</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
     <string name="IdealTransferDetailsFragment__enter_your_bank">은행과 이름, 이메일 주소를 입력하세요. Stripe는 이 이메일 주소로 기부에 관한 업데이트를 보내드립니다. %1$s</string>
+    <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
+    <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">은행 세부 정보를 입력하세요. Signal은 개인 정보를 수집하거나 저장하지 않습니다. %1$s</string>
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
     <string name="IdealTransferDetailsFragment__learn_more">자세히 알아보기</string>
     <!-- Hint label for text entry box for name on bank account -->
@@ -6312,7 +6332,7 @@
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, title for dialog -->
     <string name="MonthlyDonationCanceled__title">월간 기부를 취소함</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, body for dialog. First placeholder is a payment related error message. Second placeholder is \'learn more\' -->
-    <string name="MonthlyDonationCanceled__message">Your recurring monthly donation was canceled. %1$s\n\nYour badge will no longer be visible on your profile. %2$s</string>
+    <string name="MonthlyDonationCanceled__message">월간 기부를 취소했습니다. %1$s\n\n배지가 더는 프로필에 표시되지 않습니다. %2$s</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, learn more used in placeholder for body for dialog. -->
     <string name="MonthlyDonationCanceled__learn_more">자세히 알아보기</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, primary button to renew subscription with new data -->

@@ -325,6 +325,8 @@
     <string name="ConversationItem_cant_download_image_you_will_need_to_send_it_again">Fotku sa nepodarilo stiahnuť. Musíte ju odoslať znova.</string>
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Video sa nepodarilo stiahnuť. Musíte ho odoslať znova.</string>
+    <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp represents a message that has been edited extremely recently. -->
+    <string name="ConversationItem_edited_now_timestamp_footer">Teraz upravené</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
     <string name="ConversationItem_edited_timestamp_footer">Upravené %1$s</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
@@ -1643,7 +1645,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Chcete povoliť používateľovi %1$s, aby vám poslal správu? Kým ho neodblokujete, nepríjmete od neho žiadne správy.</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Chcete dostávať aktualizácie a novinky od používateľa %1$s? Kým ich neodblokujete, nebudete dostávať žiadne aktualizácie.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Pokračovať v čete v tejto skupine a zdieľať vaše meno a fotku s jej členmi?</string>
-    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">This Legacy Group can no longer be used. Create a new group to activate new features like @mentions and admins.</string>
+    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Túto zastaranú skupinu už nie je možné používať. Vytvorte novú skupinu na aktiváciu nových funkcií, ako sú @zmienky a správcovia.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Táto Zastaraná skupina sa nemôže ďalej používať, pretože je príliš veľká. Maximálna veľkosť skupiny je %1$d.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Pokračovať v čete s používateľom %1$s a zdieľať s ním vaše meno a fotku?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Pridať sa do tejto skupiny a zdieľať vaše meno a fotku s jej členmi? Kým s tým nebudete súhlasiť, členovia skupiny nebudú vedieť, že ste ich správy videli.</string>
@@ -1970,6 +1972,8 @@
     <string name="WebRtcCallView__toggle_camera">Zapnúť/vypnúť kameru</string>
     <!-- Toggle content description for toggling mute state  -->
     <string name="WebRtcCallView__toggle_mute">Zapnúť/vypnúť zvuky</string>
+    <!-- Content description for additional actions menu button -->
+    <string name="WebRtcCallView__additional_actions">Dalšie možnosti</string>
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">Ukončiť hovor</string>
 
@@ -1987,11 +1991,23 @@
     <string name="WebRtcAudioOutputBottomSheet__earpiece_icon_content_description">Ikona predstavujúca slúchadlo zariadenia.</string>
 
     <!-- CallParticipantsListDialog -->
-    <plurals name="CallParticipantsListDialog_in_this_call_d_people">
-        <item quantity="one">V tomto hovore · %1$d osoba</item>
-        <item quantity="few">V tomto hovore · %1$d ľudia</item>
-        <item quantity="many">V tomto hovore · %1$d ľudí</item>
-        <item quantity="other">V tomto hovore · %1$d ľudí</item>
+    <plurals name="CallParticipantsListDialog_in_this_call">
+        <item quantity="one">V tomto hovore (%1$d)</item>
+        <item quantity="few">V tomto hovore (%1$d)</item>
+        <item quantity="many">V tomto hovore (%1$d)</item>
+        <item quantity="other">V tomto hovore (%1$d)</item>
+    </plurals>
+    <plurals name="CallParticipantsListDialog__signal_will_ring">
+        <item quantity="one">Signal zavolá používateľovi (%1$d)</item>
+        <item quantity="few">Signal zavolá používateľom (%1$d)</item>
+        <item quantity="many">Signal zavolá používateľom (%1$d)</item>
+        <item quantity="other">Signal zavolá používateľom (%1$d)</item>
+    </plurals>
+    <plurals name="CallParticipantsListDialog__signal_will_notify">
+        <item quantity="one">Signal upozorní používateľa (%1$d)</item>
+        <item quantity="few">Signal upozorní používateľov (%1$d)</item>
+        <item quantity="many">Signal upozorní používateľov (%1$d)</item>
+        <item quantity="other">Signal upozorní používateľov (%1$d)</item>
     </plurals>
 
     <!-- CallParticipantView -->
@@ -2500,6 +2516,8 @@
     </plurals>
     <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
     <string name="TransferControlView__processing">Spracováva sa…</string>
+    <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
+    <string name="TransferControlView__download_progress">%1$s/%2$s</string>
 
 
     <!-- UnauthorizedReminder -->
@@ -2524,6 +2542,8 @@
     <string name="WebRtcCallActivity__answered_on_a_linked_device">Prijaté na pripojenom zariadení.</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">Odmietnuté na pripojenom zariadení.</string>
     <string name="WebRtcCallActivity__busy_on_a_linked_device">Zaneprázdnené na pripojenom zariadení.</string>
+    <!-- Tooltip message shown first time user is in a video call after switch camera button moved -->
+    <string name="WebRtcCallActivity__flip_camera_tooltip">Flip Camera bola presunutá sem, ťuknite na video a vyskúšajte to</string>
 
     <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">K tomuto hovoru sa pripojil niekto so zmeneným bezpečnostným číslom.</string>
 
@@ -4792,10 +4812,10 @@
     <string name="NewConversationActivity__">%1$s nepoužíva Signal</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
     <plurals name="CreateGroupActivity_not_signal_users">
-        <item quantity="one">%1$s is not a Signal user</item>
-        <item quantity="few">%1$s are not Signal users</item>
-        <item quantity="many">%1$s are not Signal users</item>
-        <item quantity="other">%1$s are not Signal users</item>
+        <item quantity="one">%1$s nepoužíva Signal</item>
+        <item quantity="few">%1$s nepoužívajú Signal</item>
+        <item quantity="many">%1$s nepoužívajú Signal</item>
+        <item quantity="other">%1$s nepoužívajú Signal</item>
     </plurals>
 
     <!-- ContactFilterView -->
@@ -5330,7 +5350,7 @@
     <!-- Donation receipts one-time tab label -->
     <string name="DonationReceiptListFragment__one_time">Raz</string>
     <!-- Donation receipts gift tab -->
-    <string name="DonationReceiptListFragment__for_a_friend">For a friend</string>
+    <string name="DonationReceiptListFragment__for_a_friend">Za priateľa</string>
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__donation_for_a_friend">Príspevok za priateľa</string>
     <!-- Donation receipts donation type heading -->
@@ -6122,9 +6142,9 @@
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
     <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">Príspevok cez iDEAL sa stále spracováva. Pred odoslaním ďalšieho príspevku skontrolujte svoju bankovú aplikáciu, aby ste schválili platbu.</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
-    <string name="DonateToSignal__donation_amount_too_high">Donation amount too high</string>
+    <string name="DonateToSignal__donation_amount_too_high">Príliš vysoká suma príspevku</string>
     <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
-    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">You can send up to %1$s via bank transfer. Try a different amount or a different payment method.</string>
+    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">Bankovým prevodom môžete poslať maximálne %1$s. Skúste zadať inú sumu alebo iný spôsob platby.</string>
 
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">Mesačne</string>
@@ -6225,12 +6245,18 @@
     <string name="BankTransferDetailsFragment__iban_country_code_is_not_supported">Kód krajiny pre IBAN nie je podporovaný</string>
     <!-- Error label for IBAN field when number is invalid -->
     <string name="BankTransferDetailsFragment__invalid_iban">Neplatné číslo IBAN</string>
+    <!-- Error label for name field when name is not at least two characters long -->
+    <string name="BankTransferDetailsFragment__minimum_2_characters">Minimálne 2 znaky</string>
+    <!-- Error label for email field when email is not valid -->
+    <string name="BankTransferDetailsFragment__invalid_email_address">Neplatná emailová adresa</string>
 
     <!-- IdealTransferDetailsFragment -->
     <!-- Title of the screen, displayed in the toolbar -->
     <string name="IdealTransferDetailsFragment__ideal">iDEAL</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
     <string name="IdealTransferDetailsFragment__enter_your_bank">Zadajte svoju banku, meno a e-mail. Stripe používa tento e-mail na odosielanie aktualizácií o vašom príspevku. %1$s</string>
+    <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
+    <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">Zadajte svoje bankové údaje. Signal nezhromažďuje ani neukladá vaše osobné údaje. %1$s</string>
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
     <string name="IdealTransferDetailsFragment__learn_more">Zistiť viac</string>
     <!-- Hint label for text entry box for name on bank account -->
@@ -6726,7 +6752,7 @@
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, title for dialog -->
     <string name="MonthlyDonationCanceled__title">Mesačný príspevok bol zrušený</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, body for dialog. First placeholder is a payment related error message. Second placeholder is \'learn more\' -->
-    <string name="MonthlyDonationCanceled__message">Your recurring monthly donation was canceled. %1$s\n\nYour badge will no longer be visible on your profile. %2$s</string>
+    <string name="MonthlyDonationCanceled__message">Váš pravidelný mesačný príspevok bol zrušený. %1$s\n\nVáš odznak sa už nebude zobrazovať vo vašom profile. %2$s</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, learn more used in placeholder for body for dialog. -->
     <string name="MonthlyDonationCanceled__learn_more">Zistiť viac</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, primary button to renew subscription with new data -->

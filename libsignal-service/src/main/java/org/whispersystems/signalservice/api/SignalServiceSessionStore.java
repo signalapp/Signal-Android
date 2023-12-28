@@ -1,9 +1,11 @@
 package org.whispersystems.signalservice.api;
 
 import org.signal.libsignal.protocol.SignalProtocolAddress;
+import org.signal.libsignal.protocol.state.SessionRecord;
 import org.signal.libsignal.protocol.state.SessionStore;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -12,5 +14,5 @@ import java.util.Set;
  */
 public interface SignalServiceSessionStore extends SessionStore {
   void archiveSession(SignalProtocolAddress address);
-  Set<SignalProtocolAddress> getAllAddressesWithActiveSessions(List<String> addressNames);
+  Map<SignalProtocolAddress, SessionRecord> getAllAddressesWithActiveSessions(List<String> addressNames);
 }

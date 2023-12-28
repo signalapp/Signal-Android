@@ -207,6 +207,7 @@ public abstract class PushSendJob extends SendJob {
                                     .withVoiceNote(attachment.isVoiceNote())
                                     .withBorderless(attachment.isBorderless())
                                     .withGif(attachment.isVideoGif())
+                                    .withFaststart(attachment.getTransformProperties().isMp4Faststart())
                                     .withWidth(attachment.getWidth())
                                     .withHeight(attachment.getHeight())
                                     .withCaption(attachment.getCaption())

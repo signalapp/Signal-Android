@@ -6,12 +6,25 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription.donate.transfer.ideal
 
 import org.signal.donations.StripeApi
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.transfer.BankDetailsValidator
 
 data class IdealTransferDetailsState(
+  val isMonthly: Boolean,
   val idealBank: IdealBank? = null,
   val name: String = "",
-  val email: String = ""
+  val nameFocusState: FocusState = FocusState.NOT_FOCUSED,
+  val email: String = "",
+  val emailFocusState: FocusState = FocusState.NOT_FOCUSED
 ) {
+
+  fun showNameError(): Boolean {
+    return nameFocusState == FocusState.LOST_FOCUS && !BankDetailsValidator.validName(name)
+  }
+
+  fun showEmailError(): Boolean {
+    return emailFocusState == FocusState.LOST_FOCUS && !BankDetailsValidator.validEmail(email)
+  }
+
   fun asIDEALData(): StripeApi.IDEALData {
     return StripeApi.IDEALData(
       bank = idealBank!!.code,
@@ -21,6 +34,12 @@ data class IdealTransferDetailsState(
   }
 
   fun canProceed(): Boolean {
-    return idealBank != null && name.isNotBlank() && email.isNotBlank()
+    return idealBank != null && BankDetailsValidator.validName(name) && (!isMonthly || BankDetailsValidator.validEmail(email))
+  }
+
+  enum class FocusState {
+    NOT_FOCUSED,
+    FOCUSED,
+    LOST_FOCUS
   }
 }

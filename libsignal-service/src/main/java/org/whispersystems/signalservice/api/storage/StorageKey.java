@@ -6,7 +6,7 @@ import org.whispersystems.util.StringUtil;
 
 import java.util.Arrays;
 
-import static org.whispersystems.signalservice.api.crypto.CryptoUtil.hmacSha256;
+import static org.signal.core.util.CryptoUtil.hmacSha256;
 
 /**
  * Key used to encrypt data on the storage service. Not used directly -- instead we used keys that

@@ -19,13 +19,13 @@ import org.thoughtcrime.securesms.crash.CrashConfig
 import org.thoughtcrime.securesms.database.LogDatabase
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogRepository
 
-class PromptLogsViewModel(private val context: Application, purpose: DebugLogsPromptDialogFragment.Purpose) : AndroidViewModel(context) {
+class PromptLogsViewModel(private val context: Application, private val purpose: DebugLogsPromptDialogFragment.Purpose) : AndroidViewModel(context) {
 
   private val submitDebugLogRepository = SubmitDebugLogRepository()
 
   private val disposables = CompositeDisposable()
 
-  init {
+  fun onVisible() {
     if (purpose == DebugLogsPromptDialogFragment.Purpose.CRASH) {
       disposables += Single
         .fromCallable {

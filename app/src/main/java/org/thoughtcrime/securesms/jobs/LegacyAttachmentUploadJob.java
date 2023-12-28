@@ -193,6 +193,7 @@ public final class LegacyAttachmentUploadJob extends BaseJob {
                                                                        .withVoiceNote(attachment.isVoiceNote())
                                                                        .withBorderless(attachment.isBorderless())
                                                                        .withGif(attachment.isVideoGif())
+                                                                       .withFaststart(attachment.getTransformProperties().isMp4Faststart())
                                                                        .withWidth(attachment.getWidth())
                                                                        .withHeight(attachment.getHeight())
                                                                        .withUploadTimestamp(System.currentTimeMillis())

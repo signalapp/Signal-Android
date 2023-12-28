@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 import org.thoughtcrime.securesms.service.webrtc.links.UpdateCallLinkResult
 
+@Deprecated("Merge with ControlsAndInfoViewModel")
 class CallLinkDetailsViewModel(
   callLinkRoomId: CallLinkRoomId,
   repository: CallLinkDetailsRepository = CallLinkDetailsRepository(),

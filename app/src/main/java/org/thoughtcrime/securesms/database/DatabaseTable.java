@@ -79,11 +79,11 @@ public abstract class DatabaseTable {
     this.databaseHelper = databaseHelper;
   }
 
-  protected SQLiteDatabase getReadableDatabase() {
+  public SQLiteDatabase getReadableDatabase() {
     return databaseHelper.getSignalReadableDatabase();
   }
 
-  protected SQLiteDatabase getWritableDatabase() {
+  public SQLiteDatabase getWritableDatabase() {
     return databaseHelper.getSignalWritableDatabase();
   }
 }

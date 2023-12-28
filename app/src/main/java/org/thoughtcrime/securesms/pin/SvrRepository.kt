@@ -39,10 +39,14 @@ object SvrRepository {
 
   val TAG = Log.tag(SvrRepository::class.java)
 
+  private val svr2Deprecated: SecureValueRecovery = ApplicationDependencies.getSignalServiceAccountManager().getSecureValueRecoveryV2(BuildConfig.SVR2_MRENCLAVE_DEPRECATED)
   private val svr2: SecureValueRecovery = ApplicationDependencies.getSignalServiceAccountManager().getSecureValueRecoveryV2(BuildConfig.SVR2_MRENCLAVE)
 
-  /** An ordered list of SVR implementations. They should be in priority order, with the most important one listed first. */
-  private val implementations: List<SecureValueRecovery> = listOf(svr2)
+  /** An ordered list of SVR implementations to read from. They should be in priority order, with the most important one listed first. */
+  private val readImplementations: List<SecureValueRecovery> = listOf(svr2, svr2Deprecated)
+
+  /** An ordered list of SVR implementations to write to. They should be in priority order, with the most important one listed first. */
+  private val writeImplementations: List<SecureValueRecovery> = listOf(svr2, svr2Deprecated)
 
   /**
    * A lock that ensures that only one thread at a time is altering the various pieces of SVR state.
@@ -70,7 +74,8 @@ object SvrRepository {
       Log.i(TAG, "restoreMasterKeyPreRegistration()", true)
 
       val operations: List<Pair<SecureValueRecovery, () -> RestoreResponse>> = listOf(
-        svr2 to { restoreMasterKeyPreRegistration(svr2, credentials.svr2, userPin) }
+        svr2 to { restoreMasterKeyPreRegistration(svr2, credentials.svr2, userPin) },
+        svr2Deprecated to { restoreMasterKeyPreRegistration(svr2Deprecated, credentials.svr2, userPin) }
       )
 
       for ((implementation, operation) in operations) {
@@ -122,7 +127,7 @@ object SvrRepository {
     val stopwatch = Stopwatch("pin-submission")
 
     operationLock.withLock {
-      for (implementation in implementations) {
+      for (implementation in readImplementations) {
         when (val response: RestoreResponse = implementation.restoreDataPostRegistration(userPin)) {
           is RestoreResponse.Success -> {
             Log.i(TAG, "[restoreMasterKeyPostRegistration] Successfully restored master key. $implementation", true)
@@ -187,7 +192,7 @@ object SvrRepository {
   }
 
   /**
-   * Sets the user's PIN the one specified, updating local stores as necessary.
+   * Sets the user's PIN to the one specified, updating local stores as necessary.
    * The resulting Single will not throw an error in any expected case, only if there's a runtime exception.
    */
   @WorkerThread
@@ -196,7 +201,7 @@ object SvrRepository {
     return operationLock.withLock {
       val masterKey: MasterKey = SignalStore.svr().getOrCreateMasterKey()
 
-      val responses: List<BackupResponse> = implementations
+      val responses: List<BackupResponse> = writeImplementations
         .filter { it != svr2 || FeatureFlags.svr2() }
         .map { it.setPin(userPin, masterKey) }
         .map { it.execute() }

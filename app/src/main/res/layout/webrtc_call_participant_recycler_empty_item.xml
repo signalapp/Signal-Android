@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Space xmlns:android="http://schemas.android.com/apk/res/android"
+<android.widget.Space xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:viewBindingIgnore="true"
-    android:layout_width="54dp"
+    android:layout_width="40dp"
     android:layout_height="72dp"
     tools:background="@color/red_500"
     tools:visibility="visible" />

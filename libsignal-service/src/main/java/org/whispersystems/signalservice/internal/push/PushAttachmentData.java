@@ -18,19 +18,21 @@ public class PushAttachmentData {
   private final String                  contentType;
   private final InputStream             data;
   private final long                    dataSize;
+  private final boolean                 incremental;
   private final OutputStreamFactory     outputStreamFactory;
   private final ProgressListener        listener;
   private final CancelationSignal       cancelationSignal;
   private final ResumableUploadSpec     resumableUploadSpec;
 
   public PushAttachmentData(String contentType, InputStream data, long dataSize,
-                            OutputStreamFactory outputStreamFactory,
+                            boolean incremental, OutputStreamFactory outputStreamFactory,
                             ProgressListener listener, CancelationSignal cancelationSignal,
                             ResumableUploadSpec resumableUploadSpec)
   {
     this.contentType             = contentType;
     this.data                    = data;
     this.dataSize                = dataSize;
+    this.incremental             = incremental;
     this.outputStreamFactory     = outputStreamFactory;
     this.resumableUploadSpec     = resumableUploadSpec;
     this.listener                = listener;
@@ -47,6 +49,10 @@ public class PushAttachmentData {
 
   public long getDataSize() {
     return dataSize;
+  }
+
+  public boolean getIncremental() {
+    return incremental;
   }
 
   public OutputStreamFactory getOutputStreamFactory() {

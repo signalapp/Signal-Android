@@ -84,7 +84,7 @@ class CallStateUpdatePopupWindow(private val parent: ViewGroup) : PopupWindow(
 
     measureChild()
 
-    val anchor: View = ViewCompat.requireViewById(parent, R.id.call_screen_footer_gradient_barrier)
+    val anchor: View = ViewCompat.requireViewById(parent, R.id.call_screen_above_controls_guideline)
     val pill: View = ViewCompat.requireViewById(contentView, R.id.call_state_pill)
 
     // 54 is the top margin of the contentView (30) plus the desired padding (24)

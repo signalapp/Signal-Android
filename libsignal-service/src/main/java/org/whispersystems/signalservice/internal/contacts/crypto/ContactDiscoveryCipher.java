@@ -1,7 +1,7 @@
 package org.whispersystems.signalservice.internal.contacts.crypto;
 
 import org.signal.libsignal.protocol.util.ByteUtil;
-import org.whispersystems.signalservice.api.crypto.CryptoUtil;
+import org.signal.core.util.CryptoUtil;
 import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException;
 import org.whispersystems.signalservice.internal.contacts.crypto.AESCipher.AESEncryptedResult;
 import org.whispersystems.signalservice.internal.contacts.entities.DiscoveryRequest;

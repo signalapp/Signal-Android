@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.database.helpers
 import android.app.Application
 import android.content.Context
 import net.zetetic.database.sqlcipher.SQLiteDatabase
+import org.signal.core.util.areForeignKeyConstraintsEnabled
 import org.signal.core.util.logging.Log
 import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.database.helpers.migration.SignalDatabaseMigration
@@ -68,6 +69,8 @@ import org.thoughtcrime.securesms.database.helpers.migration.V207_AddChunkSizeCo
 import org.thoughtcrime.securesms.database.helpers.migration.V209_ClearRecipientPniFromAciColumn
 import org.thoughtcrime.securesms.database.helpers.migration.V210_FixPniPossibleColumns
 import org.thoughtcrime.securesms.database.helpers.migration.V211_ReceiptColumnRenames
+import org.thoughtcrime.securesms.database.helpers.migration.V212_RemoveDistributionListUniqueConstraint
+import org.thoughtcrime.securesms.database.helpers.migration.V213_FixUsernameInE164Column
 
 /**
  * Contains all of the database migrations for [SignalDatabase]. Broken into a separate file for cleanliness.
@@ -75,8 +78,6 @@ import org.thoughtcrime.securesms.database.helpers.migration.V211_ReceiptColumnR
 object SignalDatabaseMigrations {
 
   val TAG: String = Log.tag(SignalDatabaseMigrations.javaClass)
-
-  const val DATABASE_VERSION = 211
 
   private val migrations: List<Pair<Int, SignalDatabaseMigration>> = listOf(
     149 to V149_LegacyMigrations,
@@ -141,23 +142,35 @@ object SignalDatabaseMigrations {
     // 208 was a bad migration that only manipulated data and did not change schema, replaced by 209
     209 to V209_ClearRecipientPniFromAciColumn,
     210 to V210_FixPniPossibleColumns,
-    211 to V211_ReceiptColumnRenames
+    211 to V211_ReceiptColumnRenames,
+    212 to V212_RemoveDistributionListUniqueConstraint,
+    213 to V213_FixUsernameInE164Column
   )
+
+  const val DATABASE_VERSION = 213
 
   @JvmStatic
   fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
+    val initialForeignKeyState = db.areForeignKeyConstraintsEnabled()
+
     for (migrationData in migrations) {
       val (version, migration) = migrationData
 
       if (oldVersion < version) {
-        Log.i(TAG, "Running migration for version $version: ${migration.javaClass.simpleName}")
+        Log.i(TAG, "Running migration for version $version: ${migration.javaClass.simpleName}. Foreign keys: ${migration.enableForeignKeys}")
+        val startTime = System.currentTimeMillis()
+
+        db.setForeignKeyConstraintsEnabled(migration.enableForeignKeys)
         db.withinTransaction {
           migration.migrate(context, db, oldVersion, newVersion)
           db.version = version
         }
-        Log.i(TAG, "Successfully completed migration for version $version.")
+
+        Log.i(TAG, "Successfully completed migration for version $version in ${System.currentTimeMillis() - startTime} ms")
       }
     }
+
+    db.setForeignKeyConstraintsEnabled(initialForeignKeyState)
   }
 
   @JvmStatic

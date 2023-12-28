@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.apkupdate.ApkUpdateDownloadManagerReceiver
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.FileUtils
 import org.thoughtcrime.securesms.util.JsonUtils
 import java.io.FileInputStream
@@ -81,8 +82,7 @@ class ApkUpdateJob private constructor(parameters: Parameters) : BaseJob(paramet
       Log.d(TAG, "Got descriptor: $updateDescriptor")
     }
 
-    val currentVersionCode = getCurrentAppVersionCode()
-    if (updateDescriptor.versionCode > currentVersionCode || (updateDescriptor.versionCode == currentVersionCode && (updateDescriptor.uploadTimestamp ?: 0) > SignalStore.apkUpdate().lastApkUploadTime)) {
+    if (shouldUpdate(getCurrentAppVersionCode(), updateDescriptor, SignalStore.apkUpdate().lastApkUploadTime, Environment.IS_WEBSITE)) {
       Log.i(TAG, "Newer version code available. Current: (versionCode: ${getCurrentAppVersionCode()}, uploadTime: ${SignalStore.apkUpdate().lastApkUploadTime}), Update: (versionCode: ${updateDescriptor.versionCode}, uploadTime: ${updateDescriptor.uploadTimestamp})")
       val digest: ByteArray = Hex.fromStringCondensed(updateDescriptor.digest)
       val downloadStatus: DownloadStatus = getDownloadStatus(updateDescriptor.url, digest)
@@ -203,6 +203,14 @@ class ApkUpdateJob private constructor(parameters: Parameters) : BaseJob(paramet
           Log.d(TAG, "Deleted " + file.name)
         }
       }
+    }
+  }
+
+  private fun shouldUpdate(currentVersionCode: Int, updateDescriptor: UpdateDescriptor, lastApkUploadTime: Long, isWebsite: Boolean): Boolean {
+    return if (isWebsite) {
+      return updateDescriptor.versionCode > currentVersionCode
+    } else {
+      return updateDescriptor.versionCode > currentVersionCode || (updateDescriptor.versionCode == currentVersionCode && (updateDescriptor.uploadTimestamp ?: 0) > lastApkUploadTime)
     }
   }
 

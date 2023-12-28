@@ -324,6 +324,8 @@
     <string name="ConversationItem_cant_download_image_you_will_need_to_send_it_again">Nu se poate descărca imaginea. Va trebui să o trimiți din nou.</string>
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Nu se poate descărca videoclipul. Va trebui să îl trimiți din nou.</string>
+    <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp represents a message that has been edited extremely recently. -->
+    <string name="ConversationItem_edited_now_timestamp_footer">Editat acum</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
     <string name="ConversationItem_edited_timestamp_footer">Editat la %1$s</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
@@ -1589,7 +1591,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Vrei să primești mesaje de la %1$s? Nu vei primi niciun mesaj până când contactul este deblocat.</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Vrei să primești știri și actualizări de la %1$s? Nu vei primi nicio actualizare până când nu deblochezi.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Continui conversația cu acest grup și partajezi numele și fotografia ta cu membrii săi?</string>
-    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">This Legacy Group can no longer be used. Create a new group to activate new features like @mentions and admins.</string>
+    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Acest grup vechi nu mai poate fi utilizat. Creează un grup nou pentru a activa funcții noi, cum ar fi @mențiuni și administratori.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Acest grup vechi nu mai poate fi utilizat deoarece este prea mare. Dimensiunea maximă a grupului este de %1$d.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Continui conversația ta cu %1$s și partajezi numele și fotografia de profil cu el/ea?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Te alături acestui grup și îți împărtășești numele și fotografia cu membrii săi? Nu vor ști că le-ai văzut mesajele până nu accepți.</string>
@@ -1899,6 +1901,8 @@
     <string name="WebRtcCallView__toggle_camera">Schimbă camera</string>
     <!-- Toggle content description for toggling mute state  -->
     <string name="WebRtcCallView__toggle_mute">Comută mute</string>
+    <!-- Content description for additional actions menu button -->
+    <string name="WebRtcCallView__additional_actions">Acțiuni suplimentare</string>
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">Închide</string>
 
@@ -1916,10 +1920,20 @@
     <string name="WebRtcAudioOutputBottomSheet__earpiece_icon_content_description">O pictogramă care reprezintă casca unui dispozitiv.</string>
 
     <!-- CallParticipantsListDialog -->
-    <plurals name="CallParticipantsListDialog_in_this_call_d_people">
-        <item quantity="one">În acest apel · %1$d persoană</item>
-        <item quantity="few">În acest apel · %1$d persoane</item>
-        <item quantity="other">În acest apel · %1$d de persoane</item>
+    <plurals name="CallParticipantsListDialog_in_this_call">
+        <item quantity="one">În acest apel (%1$d)</item>
+        <item quantity="few">În acest apel (%1$d)</item>
+        <item quantity="other">În acest apel (%1$d)</item>
+    </plurals>
+    <plurals name="CallParticipantsListDialog__signal_will_ring">
+        <item quantity="one">Signal va suna (%1$d)</item>
+        <item quantity="few">Signal va suna (%1$d)</item>
+        <item quantity="other">Signal va suna (%1$d)</item>
+    </plurals>
+    <plurals name="CallParticipantsListDialog__signal_will_notify">
+        <item quantity="one">Signal va trimite o notificare (%1$d)</item>
+        <item quantity="few">Signal va trimite o notificare (%1$d)</item>
+        <item quantity="other">Signal va trimite o notificare (%1$d)</item>
     </plurals>
 
     <!-- CallParticipantView -->
@@ -2423,6 +2437,8 @@
     </plurals>
     <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
     <string name="TransferControlView__processing">Procesare…</string>
+    <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
+    <string name="TransferControlView__download_progress">%1$s/%2$s</string>
 
 
     <!-- UnauthorizedReminder -->
@@ -2447,6 +2463,8 @@
     <string name="WebRtcCallActivity__answered_on_a_linked_device">Răspuns de pe un dispozitiv asociat.</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">Respins de pe un dispozitiv asociat.</string>
     <string name="WebRtcCallActivity__busy_on_a_linked_device">Ocupat de pe un dispozitiv asociat.</string>
+    <!-- Tooltip message shown first time user is in a video call after switch camera button moved -->
+    <string name="WebRtcCallActivity__flip_camera_tooltip">Butonul Schimbă camera a fost mutat aici, atinge videoclipul pentru a-l încerca</string>
 
     <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Cineva s-a alăturat apelului cu un număr de siguranță ce s-a schimbat.</string>
 
@@ -4687,9 +4705,9 @@
     <string name="NewConversationActivity__">%1$s nu este utilizator Signal</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
     <plurals name="CreateGroupActivity_not_signal_users">
-        <item quantity="one">%1$s is not a Signal user</item>
-        <item quantity="few">%1$s are not Signal users</item>
-        <item quantity="other">%1$s are not Signal users</item>
+        <item quantity="one">%1$s nu este utilizator Signal</item>
+        <item quantity="few">%1$s nu sunt utilizatori Signal</item>
+        <item quantity="other">%1$s nu sunt utilizatori Signal</item>
     </plurals>
 
     <!-- ContactFilterView -->
@@ -5220,7 +5238,7 @@
     <!-- Donation receipts one-time tab label -->
     <string name="DonationReceiptListFragment__one_time">O dată</string>
     <!-- Donation receipts gift tab -->
-    <string name="DonationReceiptListFragment__for_a_friend">For a friend</string>
+    <string name="DonationReceiptListFragment__for_a_friend">Pentru un prieten</string>
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__donation_for_a_friend">Donație pentru un prieten</string>
     <!-- Donation receipts donation type heading -->
@@ -5991,9 +6009,9 @@
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
     <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">Donația ta iDEAL este încă în procesare. Verifică aplicația bancară pentru a-ți aproba plata înainte de a face o altă donație.</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
-    <string name="DonateToSignal__donation_amount_too_high">Donation amount too high</string>
+    <string name="DonateToSignal__donation_amount_too_high">Suma donației este prea mare</string>
     <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
-    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">You can send up to %1$s via bank transfer. Try a different amount or a different payment method.</string>
+    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">Poți trimite până la %1$s prin transfer bancar. Încearcă o sumă diferită sau o metodă de plată diferită.</string>
 
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">Lunar</string>
@@ -6093,12 +6111,18 @@
     <string name="BankTransferDetailsFragment__iban_country_code_is_not_supported">Codul țării IBAN nu este acceptat</string>
     <!-- Error label for IBAN field when number is invalid -->
     <string name="BankTransferDetailsFragment__invalid_iban">IBAN nevalid</string>
+    <!-- Error label for name field when name is not at least two characters long -->
+    <string name="BankTransferDetailsFragment__minimum_2_characters">Minim 2 caractere</string>
+    <!-- Error label for email field when email is not valid -->
+    <string name="BankTransferDetailsFragment__invalid_email_address">Adresa email nevalidă</string>
 
     <!-- IdealTransferDetailsFragment -->
     <!-- Title of the screen, displayed in the toolbar -->
     <string name="IdealTransferDetailsFragment__ideal">iDEAL</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
     <string name="IdealTransferDetailsFragment__enter_your_bank">Introdu banca, numele și adresa de e-mail. Stripe folosește acest e-mail pentru a trimite actualizări despre donația ta. %1$s</string>
+    <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
+    <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">Introdu detaliile tale bancare. Signal nu colectează și nu păstrează informațiile personale. %1$s</string>
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
     <string name="IdealTransferDetailsFragment__learn_more">Află mai multe</string>
     <!-- Hint label for text entry box for name on bank account -->
@@ -6588,7 +6612,7 @@
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, title for dialog -->
     <string name="MonthlyDonationCanceled__title">Donație lunară anulată</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, body for dialog. First placeholder is a payment related error message. Second placeholder is \'learn more\' -->
-    <string name="MonthlyDonationCanceled__message">Your recurring monthly donation was canceled. %1$s\n\nYour badge will no longer be visible on your profile. %2$s</string>
+    <string name="MonthlyDonationCanceled__message">Donația ta lunară recurentă a fost anulată. %1$s\n\nInsigna ta nu va mai fi vizibilă pe profilul tău. %2$s</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, learn more used in placeholder for body for dialog. -->
     <string name="MonthlyDonationCanceled__learn_more">Află mai multe</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, primary button to renew subscription with new data -->

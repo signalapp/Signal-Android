@@ -118,8 +118,8 @@ class InMemorySignalServiceAccountDataStore : SignalServiceAccountDataStore {
     senderKeys[SenderKeyLocator(sender, distributionId)] = record
   }
 
-  override fun loadSenderKey(sender: SignalProtocolAddress, distributionId: UUID): SenderKeyRecord {
-    return senderKeys[SenderKeyLocator(sender, distributionId)]!!
+  override fun loadSenderKey(sender: SignalProtocolAddress, distributionId: UUID): SenderKeyRecord? {
+    return senderKeys[SenderKeyLocator(sender, distributionId)]
   }
 
   override fun loadKyberPreKey(kyberPreKeyId: Int): KyberPreKeyRecord {
@@ -174,12 +174,11 @@ class InMemorySignalServiceAccountDataStore : SignalServiceAccountDataStore {
     sessions[address]!!.archiveCurrentState()
   }
 
-  override fun getAllAddressesWithActiveSessions(addressNames: MutableList<String>): Set<SignalProtocolAddress> {
+  override fun getAllAddressesWithActiveSessions(addressNames: MutableList<String>): MutableMap<SignalProtocolAddress, SessionRecord> {
     return sessions
       .filter { it.key.name in addressNames }
       .filter { it.value.isValid() }
-      .map { it.key }
-      .toSet()
+      .toMutableMap()
   }
 
   override fun getSenderKeySharedWith(distributionId: DistributionId): Set<SignalProtocolAddress> {

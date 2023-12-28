@@ -12,7 +12,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.signal.core.util.AppUtil
-import org.signal.core.util.Hex
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.concurrent.SimpleTask
 import org.signal.core.util.logging.Log
@@ -158,6 +157,14 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         summary = DSLSettingsText.from("Quickly test various SVR options and error conditions."),
         onClick = {
           findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalSvrPlaygroundFragment())
+        }
+      )
+
+      clickPref(
+        title = DSLSettingsText.from("Backup Playground"),
+        summary = DSLSettingsText.from("Test backup import/export."),
+        onClick = {
+          findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalBackupPlaygroundFragment())
         }
       )
 
@@ -717,7 +724,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
             .setTitle("Corrupt your username?")
             .setMessage("Are you sure? You might not be able to get your original username back.")
             .setPositiveButton(android.R.string.ok) { _, _ ->
-              val random = "${Hex.toStringCondensed(Util.getSecretBytes(4))}.${Random.nextInt(1, 100)}"
+              val random = "${(1..5).map { ('a'..'z').random() }.joinToString(separator = "") }.${Random.nextInt(1, 100)}"
 
               SignalStore.account().username = random
               SignalDatabase.recipients.setUsername(Recipient.self().id, random)

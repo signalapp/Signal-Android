@@ -183,10 +183,10 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
                                               CallTable.Direction.INCOMING,
                                               CallTable.Event.ONGOING);
 
-    webRtcInteractor.updatePhoneState(LockManager.PhoneState.INTERACTIVE);
 
     boolean shouldDisturbUserWithCall = DoNotDisturbUtil.shouldDisturbUserWithCall(context.getApplicationContext(), recipient);
     if (shouldDisturbUserWithCall) {
+      webRtcInteractor.updatePhoneState(LockManager.PhoneState.INTERACTIVE);
       boolean started = webRtcInteractor.startWebRtcCallActivityIfPossible();
       if (!started) {
         Log.i(TAG, "Unable to start call activity due to OS version or not being in the foreground");

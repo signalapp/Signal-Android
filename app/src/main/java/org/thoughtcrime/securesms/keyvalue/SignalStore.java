@@ -301,4 +301,9 @@ public final class SignalStore {
   public static void inject(@NonNull KeyValueStore store) {
     instance = new SignalStore(store);
   }
+
+  public static void clearAllDataForBackupRestore() {
+    releaseChannelValues().clearReleaseChannelRecipientId();
+    account().clearRegistrationButKeepCredentials();
+  }
 }

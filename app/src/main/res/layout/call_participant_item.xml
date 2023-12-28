@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <org.thoughtcrime.securesms.components.webrtc.CallParticipantView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:viewBindingIgnore="true"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     tools:layout_height="match_parent"
-    tools:layout_width="match_parent">
+    tools:layout_width="match_parent"
+    tools:viewBindingIgnore="true">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/call_participant_background_avatar"
@@ -86,12 +86,35 @@
 
     <org.thoughtcrime.securesms.components.webrtc.AudioIndicatorView
         android:id="@+id/call_participant_audio_indicator"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
         android:layout_marginStart="@dimen/webrtc_audio_indicator_margin"
         android:layout_marginBottom="@dimen/webrtc_audio_indicator_margin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/call_participant_switch_camera"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="6dp"
+        android:background="@drawable/circle_tintable"
+        android:backgroundTint="@color/signal_dark_colorSecondaryContainer"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:visibility="visible">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/call_participant_switch_camera_icon"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/symbol_switch_24"
+            app:tint="@color/core_white" />
+
+    </FrameLayout>
 
     <LinearLayout
         android:id="@+id/call_participant_info_overlay"

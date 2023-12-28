@@ -197,6 +197,10 @@ sealed class ServiceId(val libSignalServiceId: LibSignalServiceId) {
         }
       }
 
+      /** Parses a [ByteString] as a PNI, regardless if the `PNI:` prefix is present or not. Only use this if you are certain that what you're reading is a PNI. */
+      @JvmStatic
+      fun parseOrNull(bytes: ByteString): PNI? = parseOrNull(bytes.toByteArray())
+
       /** Parses a string as a PNI, regardless if the `PNI:` prefix is present or not. Only use this if you are certain that what you're reading is a PNI. */
       @JvmStatic
       @Throws(IllegalArgumentException::class)

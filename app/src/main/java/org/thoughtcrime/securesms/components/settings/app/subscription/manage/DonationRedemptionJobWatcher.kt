@@ -24,6 +24,12 @@ object DonationRedemptionJobWatcher {
     ONE_TIME
   }
 
+  @JvmStatic
+  @WorkerThread
+  fun hasPendingRedemptionJob(): Boolean {
+    return getDonationRedemptionJobStatus(RedemptionType.SUBSCRIPTION).isInProgress() || getDonationRedemptionJobStatus(RedemptionType.ONE_TIME).isInProgress()
+  }
+
   fun watchSubscriptionRedemption(): Observable<DonationRedemptionJobStatus> = watch(RedemptionType.SUBSCRIPTION)
 
   @JvmStatic

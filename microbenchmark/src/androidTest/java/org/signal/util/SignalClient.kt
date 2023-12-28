@@ -12,6 +12,8 @@ import org.signal.libsignal.protocol.SignalProtocolAddress
 import org.signal.libsignal.protocol.ecc.Curve
 import org.signal.libsignal.protocol.ecc.ECKeyPair
 import org.signal.libsignal.protocol.ecc.ECPublicKey
+import org.signal.libsignal.protocol.groups.GroupSessionBuilder
+import org.signal.libsignal.protocol.message.SenderKeyDistributionMessage
 import org.signal.libsignal.protocol.state.PreKeyBundle
 import org.signal.libsignal.protocol.state.PreKeyRecord
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord
@@ -19,8 +21,10 @@ import org.whispersystems.signalservice.api.SignalServiceAccountDataStore
 import org.whispersystems.signalservice.api.SignalSessionLock
 import org.whispersystems.signalservice.api.crypto.ContentHint
 import org.whispersystems.signalservice.api.crypto.EnvelopeContent
+import org.whispersystems.signalservice.api.crypto.SignalGroupSessionBuilder
 import org.whispersystems.signalservice.api.crypto.SignalServiceCipher
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess
+import org.whispersystems.signalservice.api.push.DistributionId
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.internal.push.Content
@@ -43,20 +47,13 @@ class SignalClient {
     private val trustRoot: ECKeyPair = Curve.generateKeyPair()
   }
 
+  private val lock = TestSessionLock()
+
   private val aci: ACI = ACI.from(UUID.randomUUID())
 
   private val store: SignalServiceAccountDataStore = InMemorySignalServiceAccountDataStore()
 
-  private val preKeyBundle: PreKeyBundle = let {
-    val preKeyRecord = PreKeyRecord(1, Curve.generateKeyPair())
-    val signedPreKeyPair = Curve.generateKeyPair()
-    val signedPreKeySignature = Curve.calculateSignature(store.identityKeyPair.privateKey, signedPreKeyPair.publicKey.serialize())
-
-    store.storePreKey(1, preKeyRecord)
-    store.storeSignedPreKey(1, SignedPreKeyRecord(1, System.currentTimeMillis(), signedPreKeyPair, signedPreKeySignature))
-
-    PreKeyBundle(1, 1, 1, preKeyRecord.keyPair.publicKey, 1, signedPreKeyPair.publicKey, signedPreKeySignature, store.identityKeyPair.publicKey)
-  }
+  private var prekeyIndex = 0
 
   private val unidentifiedAccessKey: ByteArray = Util.getSecretBytes(32)
 
@@ -69,15 +66,19 @@ class SignalClient {
     expires = Long.MAX_VALUE
   )
 
-  private val cipher = SignalServiceCipher(SignalServiceAddress(aci), 1, store, TestSessionLock(), CertificateValidator(trustRoot.publicKey))
+  private val cipher = SignalServiceCipher(SignalServiceAddress(aci), 1, store, lock, CertificateValidator(trustRoot.publicKey))
 
   /**
-   * Sets up sessions using the [to] client's [preKeyBundle]. Note that you can only initialize a client once
-   * since we currently only make a single prekey bundle.
+   * Sets up sessions using the [to] client's [preKeyBundles]. Note that you can only initialize a client up to 1,000 times because that's how many prekeys we have.
    */
   fun initializeSession(to: SignalClient) {
     val address = SignalProtocolAddress(to.aci.toString(), 1)
-    SessionBuilder(store, address).process(to.preKeyBundle)
+    SessionBuilder(store, address).process(to.createPreKeyBundle())
+  }
+
+  fun initializedGroupSession(distributionId: DistributionId): SenderKeyDistributionMessage {
+    val self = SignalProtocolAddress(aci.toString(), 1)
+    return SignalGroupSessionBuilder(lock, GroupSessionBuilder(store)).create(self, distributionId.asUuid())
   }
 
   fun encryptUnsealedSender(to: SignalClient): Envelope {
@@ -142,8 +143,36 @@ class SignalClient {
     )
   }
 
+  fun multiEncryptSealedSender(distributionId: DistributionId, others: List<SignalClient>, groupId: Optional<ByteArray>): ByteArray {
+    val sentTimestamp = System.currentTimeMillis()
+
+    val content = Content(
+      dataMessage = DataMessage(
+        body = "Test Message",
+        timestamp = sentTimestamp
+      )
+    )
+    val destinations = others.map { bob ->
+      SignalProtocolAddress(bob.aci.toString(), 1)
+    }
+
+    return cipher.encryptForGroup(distributionId, destinations, null, senderCertificate, content.encode(), ContentHint.DEFAULT, groupId)
+  }
+
   fun decryptMessage(envelope: Envelope) {
     cipher.decrypt(envelope, System.currentTimeMillis())
+  }
+
+  private fun createPreKeyBundle(): PreKeyBundle {
+    val prekeyId = prekeyIndex++
+    val preKeyRecord = PreKeyRecord(prekeyId, Curve.generateKeyPair())
+    val signedPreKeyPair = Curve.generateKeyPair()
+    val signedPreKeySignature = Curve.calculateSignature(store.identityKeyPair.privateKey, signedPreKeyPair.publicKey.serialize())
+
+    store.storePreKey(prekeyId, preKeyRecord)
+    store.storeSignedPreKey(prekeyId, SignedPreKeyRecord(prekeyId, System.currentTimeMillis(), signedPreKeyPair, signedPreKeySignature))
+
+    return PreKeyBundle(prekeyId, prekeyId, prekeyId, preKeyRecord.keyPair.publicKey, prekeyId, signedPreKeyPair.publicKey, signedPreKeySignature, store.identityKeyPair.publicKey)
   }
 }
 

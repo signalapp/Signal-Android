@@ -11,6 +11,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import java.util.concurrent.CountDownLatch
+import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicReference
 
 /**
@@ -18,39 +19,53 @@ import java.util.concurrent.atomic.AtomicReference
  */
 @Suppress("ClassName")
 class SqlCipherErrorHandler(private val databaseName: String) : DatabaseErrorHandler {
+  companion object {
+    private val TAG = Log.tag(SqlCipherErrorHandler::class.java)
+
+    private val errorHandlingInProgress = AtomicBoolean(false)
+  }
 
   override fun onCorruption(db: SQLiteDatabase, message: String) {
-    val result: DiagnosticResults = runDiagnostics(ApplicationDependencies.getApplication(), db)
-    var lines: List<String> = result.logs.split("\n")
-    lines = listOf("Database '$databaseName' corrupted!", "[sqlite] $message", "Diagnostics results:") + lines
+    if (errorHandlingInProgress.getAndSet(true)) {
+      Log.w(TAG, "Error handling already in progress, skipping.")
+      return
+    }
 
-    Log.e(TAG, "Database '$databaseName' corrupted!")
-    Log.e(TAG, "[sqlite] $message")
-    Log.e(TAG, "Diagnostic results:\n ${result.logs}")
+    try {
+      val result: DiagnosticResults = runDiagnostics(ApplicationDependencies.getApplication(), db)
+      var lines: List<String> = result.logs.split("\n")
+      lines = listOf("Database '$databaseName' corrupted!", "[sqlite] $message", "Diagnostics results:") + lines
 
-    if (result is DiagnosticResults.Success) {
-      if (result.pragma1Passes && result.pragma2Passes) {
-        var endCount = 0
-        while (db.inTransaction() && endCount < 10) {
-          db.endTransaction()
-          endCount++
+      Log.e(TAG, "Database '$databaseName' corrupted!")
+      Log.e(TAG, "[sqlite] $message")
+      Log.e(TAG, "Diagnostic results:\n ${result.logs}")
+
+      if (result is DiagnosticResults.Success) {
+        if (result.pragma1Passes && result.pragma2Passes) {
+          var endCount = 0
+          while (db.inTransaction() && endCount < 10) {
+            db.endTransaction()
+            endCount++
+          }
+
+          attemptToClearFullTextSearchIndex(db)
+          throw DatabaseCorruptedError_BothChecksPass(lines)
+        } else if (!result.pragma1Passes && result.pragma2Passes) {
+          attemptToClearFullTextSearchIndex(db)
+          throw DatabaseCorruptedError_NormalCheckFailsCipherCheckPasses(lines)
+        } else if (result.pragma1Passes && !result.pragma2Passes) {
+          attemptToClearFullTextSearchIndex(db)
+          throw DatabaseCorruptedError_NormalCheckPassesCipherCheckFails(lines)
+        } else {
+          attemptToClearFullTextSearchIndex(db)
+          throw DatabaseCorruptedError_BothChecksFail(lines)
         }
-
-        attemptToClearFullTextSearchIndex(db)
-        throw DatabaseCorruptedError_BothChecksPass(lines)
-      } else if (!result.pragma1Passes && result.pragma2Passes) {
-        attemptToClearFullTextSearchIndex(db)
-        throw DatabaseCorruptedError_NormalCheckFailsCipherCheckPasses(lines)
-      } else if (result.pragma1Passes && !result.pragma2Passes) {
-        attemptToClearFullTextSearchIndex(db)
-        throw DatabaseCorruptedError_NormalCheckPassesCipherCheckFails(lines)
       } else {
         attemptToClearFullTextSearchIndex(db)
-        throw DatabaseCorruptedError_BothChecksFail(lines)
+        throw DatabaseCorruptedError_FailedToRunChecks(lines)
       }
-    } else {
-      attemptToClearFullTextSearchIndex(db)
-      throw DatabaseCorruptedError_FailedToRunChecks(lines)
+    } finally {
+      errorHandlingInProgress.set(false)
     }
   }
 
@@ -184,8 +199,4 @@ class SqlCipherErrorHandler(private val databaseName: String) : DatabaseErrorHan
   private class DatabaseCorruptedError_NormalCheckFailsCipherCheckPasses constructor(lines: List<String>) : CustomTraceError(lines)
   private class DatabaseCorruptedError_NormalCheckPassesCipherCheckFails constructor(lines: List<String>) : CustomTraceError(lines)
   private class DatabaseCorruptedError_FailedToRunChecks constructor(lines: List<String>) : CustomTraceError(lines)
-
-  companion object {
-    private val TAG = Log.tag(SqlCipherErrorHandler::class.java)
-  }
 }

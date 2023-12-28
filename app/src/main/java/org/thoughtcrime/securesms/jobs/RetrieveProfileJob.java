@@ -10,7 +10,9 @@ import androidx.annotation.WorkerThread;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
+import com.annimon.stream.function.Predicate;
 
+import org.signal.core.util.Base64;
 import org.signal.core.util.ListUtil;
 import org.signal.core.util.SetUtil;
 import org.signal.core.util.Stopwatch;
@@ -28,10 +30,11 @@ import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.RecipientTable.UnidentifiedAccessMode;
 import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.notifications.v2.ConversationId;
@@ -40,7 +43,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
-import org.signal.core.util.Base64;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.ProfileUtil;
 import org.thoughtcrime.securesms.util.Util;
@@ -58,6 +60,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -281,6 +285,12 @@ public class RetrieveProfileJob extends BaseJob {
 
     stopwatch.split("responses");
 
+    final Map<RecipientId, RecipientRecord> localRecords = SignalDatabase.recipients().getRecords(recipientIds);
+
+    Log.d(TAG, "Fetched " + localRecords.size() + " existing records.");
+
+    stopwatch.split("disk-fetch");
+
     Set<RecipientId> success = SetUtil.difference(recipientIds, operationState.retries);
 
     Set<RecipientId> newlyRegistered = Stream.of(operationState.profiles)
@@ -289,16 +299,41 @@ public class RetrieveProfileJob extends BaseJob {
                                              .map(Recipient::getId)
                                              .collect(Collectors.toSet());
 
+    List<Pair<Recipient, ProfileAndCredential>> updatedProfiles = Stream.of(operationState.profiles)
+                                                                        .filter(recipientProfileAndCredentialPair -> {
+                                                                          final Recipient   recipientToUpdate   = recipientProfileAndCredentialPair.first();
+                                                                          final RecipientId recipientToUpdateId = recipientToUpdate.getId();
 
-    //noinspection SimplifyStreamApiCallChains
-    ListUtil.chunk(operationState.profiles, 150).stream().forEach(list -> {
-      SignalDatabase.runInTransaction((db) -> {
-        for (Pair<Recipient, ProfileAndCredential> profile : list) {
-          process(profile.first(), profile.second());
-        }
-        return null;
+                                                                          final RecipientRecord localRecipientRecord = localRecords.get(recipientToUpdateId);
+                                                                          if (localRecipientRecord == null) {
+                                                                            return true;
+                                                                          }
+
+                                                                          final SignalServiceProfile                   remoteProfile    = recipientProfileAndCredentialPair.second().getProfile();
+                                                                          final Optional<ExpiringProfileKeyCredential> remoteCredential = recipientProfileAndCredentialPair.second().getExpiringProfileKeyCredential();
+
+                                                                          try {
+                                                                            return isUpdated(localRecipientRecord, remoteProfile, remoteCredential);
+                                                                          } catch (InvalidCiphertextException | IOException e) {
+                                                                            Log.w(TAG, "Could not compare new and old profiles.", e);
+                                                                            return true;
+                                                                          }
+                                                                        })
+                                                                        .toList();
+
+    Log.d(TAG, "Committing updates to " + updatedProfiles.size() + " of " + operationState.profiles.size() + " retrieved profiles.");
+
+    if (!updatedProfiles.isEmpty()) {
+      //noinspection SimplifyStreamApiCallChains
+      ListUtil.chunk(updatedProfiles, 150).stream().forEach(list -> {
+        SignalDatabase.runInTransaction((db) -> {
+          for (Pair<Recipient, ProfileAndCredential> profile : list) {
+            process(profile.first(), profile.second());
+          }
+          return null;
+        });
       });
-    });
+    }
 
     recipientTable.markProfilesFetched(success, System.currentTimeMillis());
 
@@ -335,6 +370,49 @@ public class RetrieveProfileJob extends BaseJob {
 
   @Override
   public void onFailure() {}
+
+  private boolean isUpdated(RecipientRecord localRecipientRecord, SignalServiceProfile remoteProfile, Optional<ExpiringProfileKeyCredential> remoteExpiringProfileKeyCredential)
+      throws InvalidCiphertextException, IOException {
+
+    if (!Util.equals(localRecipientRecord.getProfileAvatar(), remoteProfile.getAvatar())) {
+      return true;
+    }
+
+    if (!Util.equals(localRecipientRecord.getBadges(), Stream.of(remoteProfile.getBadges()).map(Badges::fromServiceBadge).collect(Collectors.toList()))) {
+      return true;
+    }
+
+    if (!Util.equals(localRecipientRecord.getCapabilities().getRawBits(), RecipientTable.maskCapabilitiesToLong(remoteProfile.getCapabilities()))) {
+      return true;
+    }
+
+    ProfileKey profileKey = ProfileKeyUtil.profileKeyOrNull(localRecipientRecord.getProfileKey());
+    final UnidentifiedAccessMode accessMode = deriveUnidentifiedAccessMode(profileKey,
+                                                                           remoteProfile.getUnidentifiedAccess(),
+                                                                           remoteProfile.isUnrestrictedUnidentifiedAccess());
+    if (!Util.equals(localRecipientRecord.getUnidentifiedAccessMode(), accessMode)) {
+      return true;
+    }
+
+    if (profileKey == null) {
+      return false;
+    }
+
+    final ProfileName newProfileName = ProfileName.fromSerialized(ProfileUtil.decryptString(profileKey, remoteProfile.getName()));
+    if (!Util.equals(localRecipientRecord.getProfileName(), newProfileName)) {
+      return true;
+    }
+
+    if (!Util.equals(localRecipientRecord.getAbout(), ProfileUtil.decryptString(profileKey, remoteProfile.getAbout()))) {
+      return true;
+    }
+
+    if (remoteExpiringProfileKeyCredential.isPresent() && !Util.equals(localRecipientRecord.getExpiringProfileKeyCredential(), remoteExpiringProfileKeyCredential.get())) {
+      return true;
+    }
+
+    return false;
+  }
 
   private void process(Recipient recipient, ProfileAndCredential profileAndCredential) {
     SignalServiceProfile profile             = profileAndCredential.getProfile();
@@ -406,19 +484,28 @@ public class RetrieveProfileJob extends BaseJob {
   }
 
   private void setUnidentifiedAccessMode(Recipient recipient, String unidentifiedAccessVerifier, boolean unrestrictedUnidentifiedAccess) {
-    RecipientTable recipientTable = SignalDatabase.recipients();
-    ProfileKey     profileKey     = ProfileKeyUtil.profileKeyOrNull(recipient.getProfileKey());
+
+    final ProfileKey             profileKey = ProfileKeyUtil.profileKeyOrNull(recipient.getProfileKey());
+    final UnidentifiedAccessMode newMode    = deriveUnidentifiedAccessMode(profileKey, unidentifiedAccessVerifier, unrestrictedUnidentifiedAccess);
+    if (recipient.getUnidentifiedAccessMode() != newMode) {
+      if (newMode == UnidentifiedAccessMode.UNRESTRICTED) {
+        Log.i(TAG, "Marking recipient UD status as unrestricted.");
+      } else if (profileKey == null || unidentifiedAccessVerifier == null)  {
+        Log.i(TAG, "Marking recipient UD status as disabled.");
+      } else {
+        Log.i(TAG, "Marking recipient UD status as " + newMode.name() + " after verification.");
+      }
+      SignalDatabase.recipients().setUnidentifiedAccessMode(recipient.getId(), newMode);
+    }
+  }
+
+
+  private UnidentifiedAccessMode deriveUnidentifiedAccessMode(ProfileKey profileKey, String unidentifiedAccessVerifier, boolean unrestrictedUnidentifiedAccess) {
 
     if (unrestrictedUnidentifiedAccess && unidentifiedAccessVerifier != null) {
-      if (recipient.getUnidentifiedAccessMode() != UnidentifiedAccessMode.UNRESTRICTED) {
-        Log.i(TAG, "Marking recipient UD status as unrestricted.");
-        recipientTable.setUnidentifiedAccessMode(recipient.getId(), UnidentifiedAccessMode.UNRESTRICTED);
-      }
+      return UnidentifiedAccessMode.UNRESTRICTED;
     } else if (profileKey == null || unidentifiedAccessVerifier == null) {
-      if (recipient.getUnidentifiedAccessMode() != UnidentifiedAccessMode.DISABLED) {
-        Log.i(TAG, "Marking recipient UD status as disabled.");
-        recipientTable.setUnidentifiedAccessMode(recipient.getId(), UnidentifiedAccessMode.DISABLED);
-      }
+      return UnidentifiedAccessMode.DISABLED;
     } else {
       ProfileCipher profileCipher = new ProfileCipher(profileKey);
       boolean       verifiedUnidentifiedAccess;
@@ -430,12 +517,7 @@ public class RetrieveProfileJob extends BaseJob {
         verifiedUnidentifiedAccess = false;
       }
 
-      UnidentifiedAccessMode mode = verifiedUnidentifiedAccess ? UnidentifiedAccessMode.ENABLED : UnidentifiedAccessMode.DISABLED;
-
-      if (recipient.getUnidentifiedAccessMode() != mode) {
-        Log.i(TAG, "Marking recipient UD status as " + mode.name() + " after verification.");
-        recipientTable.setUnidentifiedAccessMode(recipient.getId(), mode);
-      }
+      return verifiedUnidentifiedAccess ? UnidentifiedAccessMode.ENABLED : UnidentifiedAccessMode.DISABLED;
     }
   }
 

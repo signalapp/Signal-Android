@@ -1314,7 +1314,7 @@ object SyncMessageProcessor {
       when (event) {
         CallTable.Event.DELETE -> SignalDatabase.calls.deleteGroupCall(call)
         CallTable.Event.ACCEPTED -> {
-          if (call.timestamp < timestamp) {
+          if (call.timestamp > timestamp) {
             SignalDatabase.calls.setTimestamp(call.callId, recipient.id, timestamp)
           }
           if (callEvent.direction == SyncMessage.CallEvent.Direction.INCOMING) {
@@ -1323,15 +1323,30 @@ object SyncMessageProcessor {
             warn(envelopeTimestamp, "Invalid direction OUTGOING for event ACCEPTED")
           }
         }
-        CallTable.Event.NOT_ACCEPTED -> warn("Unsupported event type $event. Ignoring. timestamp: $timestamp type: $type direction: $direction event: $event hasPeer: $hasConversationId")
+        CallTable.Event.NOT_ACCEPTED -> {
+          if (call.timestamp > timestamp) {
+            SignalDatabase.calls.setTimestamp(call.callId, recipient.id, timestamp)
+          }
+          if (callEvent.direction == SyncMessage.CallEvent.Direction.INCOMING) {
+            SignalDatabase.calls.declineIncomingGroupCall(call)
+          } else {
+            warn(envelopeTimestamp, "Invalid direction OUTGOING for event NOT_ACCEPTED")
+          }
+        }
         else -> warn("Unsupported event type $event. Ignoring. timestamp: $timestamp type: $type direction: $direction event: $event hasPeer: $hasConversationId")
       }
     } else {
       when (event) {
         CallTable.Event.DELETE -> SignalDatabase.calls.insertDeletedGroupCallFromSyncEvent(callEvent.id!!, recipient.id, direction, timestamp)
         CallTable.Event.ACCEPTED -> SignalDatabase.calls.insertAcceptedGroupCall(callEvent.id!!, recipient.id, direction, timestamp)
-        CallTable.Event.NOT_ACCEPTED -> warn("Unsupported event type $event. Ignoring. timestamp: $timestamp type: $type direction: $direction event: $event hasPeer: $hasConversationId")
-        else -> warn("Unsupported event type $event. Ignoring. timestamp: $timestamp type: $type direction: $direction event: $event hasPeer: $hasConversationId")
+        CallTable.Event.NOT_ACCEPTED -> {
+          if (callEvent.direction == SyncMessage.CallEvent.Direction.INCOMING) {
+            SignalDatabase.calls.insertDeclinedGroupCall(callEvent.id!!, recipient.id, timestamp)
+          } else {
+            warn(envelopeTimestamp, "Invalid direction OUTGOING for event NOT_ACCEPTED for non-existing call")
+          }
+        }
+        else -> warn("Unsupported event type $event. Ignoring. timestamp: $timestamp type: $type direction: $direction event: $event hasPeer: $hasConversationId call: null")
       }
     }
   }

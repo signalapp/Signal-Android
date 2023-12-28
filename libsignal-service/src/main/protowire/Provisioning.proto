@@ -32,7 +32,8 @@ message ProvisionMessage {
   optional bytes  profileKey            = 6;
   optional bool   readReceipts          = 7;
   optional uint32 provisioningVersion   = 9;
-  // NEXT ID: 13
+  optional bytes  masterKey             = 13;
+  // NEXT ID: 14
 }
 
 enum ProvisioningVersion {

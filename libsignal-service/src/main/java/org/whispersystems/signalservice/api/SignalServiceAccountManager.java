@@ -639,6 +639,7 @@ public class SignalServiceAccountManager {
                         IdentityKeyPair aciIdentityKeyPair,
                         IdentityKeyPair pniIdentityKeyPair,
                         ProfileKey profileKey,
+                        MasterKey masterKey,
                         String code)
       throws InvalidKeyException, IOException
   {
@@ -661,7 +662,8 @@ public class SignalServiceAccountManager {
                                                             .number(e164)
                                                             .profileKey(ByteString.of(profileKey.serialize()))
                                                             .provisioningCode(code)
-                                                            .provisioningVersion(ProvisioningVersion.CURRENT.getValue());
+                                                            .provisioningVersion(ProvisioningVersion.CURRENT.getValue())
+                                                            .masterKey(ByteString.of(masterKey.serialize()));
 
     byte[] ciphertext = cipher.encrypt(message.build());
     this.pushServiceSocket.sendProvisioningMessage(deviceIdentifier, ciphertext);
