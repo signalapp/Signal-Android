@@ -279,11 +279,7 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
       secondaryDetailsText = currentState.showSecondaryText
     )
     val byteCount = currentState.slides.sumOf { it.asAttachment().size }
-    binding.secondaryDetailsText.translationX = if (ViewUtil.isLtr(this)) {
-      ViewUtil.dpToPx(-SECONDARY_TEXT_OFFSET_DP).toFloat()
-    } else {
-      ViewUtil.dpToPx(SECONDARY_TEXT_OFFSET_DP).toFloat()
-    }
+    binding.secondaryDetailsText.translationX = 0f
     binding.secondaryDetailsText.text = Formatter.formatShortFileSize(context, byteCount)
   }
 
