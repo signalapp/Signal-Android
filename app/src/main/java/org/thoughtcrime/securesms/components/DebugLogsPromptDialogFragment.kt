@@ -105,6 +105,11 @@ class DebugLogsPromptDialogFragment : FixedRoundedCornerBottomSheetDialogFragmen
     }
   }
 
+  override fun onStart() {
+    super.onStart()
+    viewModel.onVisible()
+  }
+
   private fun submitLogs(debugLog: String, purpose: Purpose) {
     CommunicationActions.openEmail(
       requireContext(),

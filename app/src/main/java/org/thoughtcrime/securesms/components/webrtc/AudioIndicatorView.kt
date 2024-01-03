@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.components.webrtc
 
 import android.animation.ValueAnimator
 import android.content.Context
+import android.content.res.ColorStateList
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
@@ -10,6 +11,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.view.animation.DecelerateInterpolator
 import android.widget.FrameLayout
+import androidx.core.content.ContextCompat
 import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.events.CallParticipant
@@ -31,9 +33,9 @@ class AudioIndicatorView(context: Context, attrs: AttributeSet) : FrameLayout(co
   }
 
   private val barRect = RectF()
-  private val barWidth = DimensionUnit.DP.toPixels(4f)
+  private val barWidth = DimensionUnit.DP.toPixels(3f)
   private val barRadius = DimensionUnit.DP.toPixels(32f)
-  private val barPadding = DimensionUnit.DP.toPixels(4f)
+  private val barPadding = DimensionUnit.DP.toPixels(3f)
   private var middleBarAnimation: ValueAnimator? = null
   private var sideBarAnimation: ValueAnimator? = null
 
@@ -43,11 +45,15 @@ class AudioIndicatorView(context: Context, attrs: AttributeSet) : FrameLayout(co
   init {
     inflate(context, R.layout.audio_indicator_view, this)
     setWillNotDraw(false)
+
+    backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.transparent_black_70))
   }
 
   private val micMuted: View = findViewById(R.id.mic_muted)
 
   fun bind(microphoneEnabled: Boolean, level: CallParticipant.AudioLevel?) {
+    setBackgroundResource(R.drawable.circle_tintable)
+
     micMuted.visible = !microphoneEnabled
 
     val wasShowingAudioLevel = showAudioLevel
@@ -55,11 +61,11 @@ class AudioIndicatorView(context: Context, attrs: AttributeSet) : FrameLayout(co
 
     if (showAudioLevel) {
       val scaleFactor = when (level!!) {
-        CallParticipant.AudioLevel.LOWEST -> 0.2f
-        CallParticipant.AudioLevel.LOW -> 0.4f
-        CallParticipant.AudioLevel.MEDIUM -> 0.6f
-        CallParticipant.AudioLevel.HIGH -> 0.8f
-        CallParticipant.AudioLevel.HIGHEST -> 1.0f
+        CallParticipant.AudioLevel.LOWEST -> 0.1f
+        CallParticipant.AudioLevel.LOW -> 0.3f
+        CallParticipant.AudioLevel.MEDIUM -> 0.5f
+        CallParticipant.AudioLevel.HIGH -> 0.65f
+        CallParticipant.AudioLevel.HIGHEST -> 0.8f
       }
 
       middleBarAnimation?.end()

@@ -109,6 +109,15 @@ object SqlUtil {
     }
   }
 
+  /**
+   * For tables that have an autoincrementing primary key, this will reset the key to start back at 1.
+   * IMPORTANT: This is quite dangerous! Only do this if you're effectively resetting the entire database.
+   */
+  @JvmStatic
+  fun resetAutoIncrementValue(db: SupportSQLiteDatabase, targetTable: String) {
+    db.execSQL("DELETE FROM sqlite_sequence WHERE name=?", arrayOf(targetTable))
+  }
+
   @JvmStatic
   fun isEmpty(db: SupportSQLiteDatabase, table: String): Boolean {
     db.query("SELECT COUNT(*) FROM $table", null).use { cursor ->
@@ -388,36 +397,30 @@ object SqlUtil {
     val builder = StringBuilder()
     builder.append("INSERT INTO ").append(tableName).append(" (")
 
-    for (i in columns.indices) {
-      builder.append(columns[i])
-      if (i < columns.size - 1) {
-        builder.append(", ")
-      }
-    }
+    val columnString = columns.joinToString(separator = ", ")
+    builder.append(columnString)
 
     builder.append(") VALUES ")
 
-    val placeholder = StringBuilder()
-    placeholder.append("(")
-
-    for (i in columns.indices) {
-      placeholder.append("?")
-      if (i < columns.size - 1) {
-        placeholder.append(", ")
+    val placeholders = contentValues
+      .map { values ->
+        columns
+          .map { column ->
+            if (values[column] != null) {
+              if (values[column] is ByteArray) {
+                "X'${Hex.toStringCondensed(values[column] as ByteArray).uppercase()}'"
+              } else {
+                "?"
+              }
+            } else {
+              "null"
+            }
+          }
+          .joinToString(separator = ", ", prefix = "(", postfix = ")")
       }
-    }
+      .joinToString(separator = ", ")
 
-    placeholder.append(")")
-
-    var i = 0
-    val len = contentValues.size
-    while (i < len) {
-      builder.append(placeholder)
-      if (i < len - 1) {
-        builder.append(", ")
-      }
-      i++
-    }
+    builder.append(placeholders)
 
     val query = builder.toString()
     val args: MutableList<String> = mutableListOf()
@@ -425,7 +428,10 @@ object SqlUtil {
     for (values in contentValues) {
       for (column in columns) {
         val value = values[column]
-        args += if (value != null) values[column].toString() else "null"
+
+        if (value != null && value !is ByteArray) {
+          args += value.toString()
+        }
       }
     }
 

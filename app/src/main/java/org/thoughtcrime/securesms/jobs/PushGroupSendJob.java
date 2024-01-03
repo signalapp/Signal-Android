@@ -221,9 +221,9 @@ public final class PushGroupSendJob extends PushSendJob {
       if (Util.hasItems(filterRecipients)) {
         target = new ArrayList<>(filterRecipients.size() + existingNetworkFailures.size());
         target.addAll(Stream.of(filterRecipients).map(Recipient::resolved).toList());
-        target.addAll(Stream.of(existingNetworkFailures).map(nf -> nf.getRecipientId(context)).distinct().map(Recipient::resolved).toList());
+        target.addAll(Stream.of(existingNetworkFailures).map(NetworkFailure::getRecipientId).distinct().map(Recipient::resolved).toList());
       } else if (!existingNetworkFailures.isEmpty()) {
-        target = Stream.of(existingNetworkFailures).map(nf -> nf.getRecipientId(context)).distinct().map(Recipient::resolved).toList();
+        target = Stream.of(existingNetworkFailures).map(NetworkFailure::getRecipientId).distinct().map(Recipient::resolved).toList();
       } else {
         GroupRecipientResult result = getGroupMessageRecipients(groupRecipient.requireGroupId(), messageId);
 
@@ -421,8 +421,8 @@ public final class PushGroupSendJob extends PushSendJob {
     List<SendMessageResult>          successes                 = Stream.of(results).filter(result -> result.getSuccess() != null).toList();
     List<Pair<RecipientId, Boolean>> successUnidentifiedStatus = Stream.of(successes).map(result -> new Pair<>(accessList.requireIdByAddress(result.getAddress()), result.getSuccess().isUnidentified())).toList();
     Set<RecipientId>                 successIds                = Stream.of(successUnidentifiedStatus).map(Pair::first).collect(Collectors.toSet());
-    Set<NetworkFailure>              resolvedNetworkFailures   = Stream.of(existingNetworkFailures).filter(failure -> successIds.contains(failure.getRecipientId(context))).collect(Collectors.toSet());
-    Set<IdentityKeyMismatch>         resolvedIdentityFailures  = Stream.of(existingIdentityMismatches).filter(failure -> successIds.contains(failure.getRecipientId(context))).collect(Collectors.toSet());
+    Set<NetworkFailure>              resolvedNetworkFailures   = Stream.of(existingNetworkFailures).filter(failure -> successIds.contains(failure.getRecipientId())).collect(Collectors.toSet());
+    Set<IdentityKeyMismatch>         resolvedIdentityFailures  = Stream.of(existingIdentityMismatches).filter(failure -> successIds.contains(failure.getRecipientId())).collect(Collectors.toSet());
     List<RecipientId>                unregisteredRecipients    = Stream.of(results).filter(SendMessageResult::isUnregisteredFailure).map(result -> RecipientId.from(result.getAddress())).toList();
     List<RecipientId>                invalidPreKeyRecipients   = Stream.of(results).filter(SendMessageResult::isInvalidPreKeyFailure).map(result -> RecipientId.from(result.getAddress())).toList();
     Set<RecipientId>                 skippedRecipients         = new HashSet<>();
@@ -442,12 +442,12 @@ public final class PushGroupSendJob extends PushSendJob {
     }
 
     existingNetworkFailures.removeAll(resolvedNetworkFailures);
-    existingNetworkFailures.removeIf(it -> skippedRecipients.contains(it.getRecipientId(context)));
+    existingNetworkFailures.removeIf(it -> skippedRecipients.contains(it.getRecipientId()));
     existingNetworkFailures.addAll(networkFailures);
     database.setNetworkFailures(messageId, existingNetworkFailures);
 
     existingIdentityMismatches.removeAll(resolvedIdentityFailures);
-    existingIdentityMismatches.removeIf(it -> skippedRecipients.contains(it.getRecipientId(context)));
+    existingIdentityMismatches.removeIf(it -> skippedRecipients.contains(it.getRecipientId()));
     existingIdentityMismatches.addAll(identityMismatches);
     database.setMismatchedIdentities(messageId, existingIdentityMismatches);
 
@@ -485,7 +485,7 @@ public final class PushGroupSendJob extends PushSendJob {
       notifyMediaMessageDeliveryFailed(context, messageId);
 
       Set<RecipientId> mismatchRecipientIds = Stream.of(existingIdentityMismatches)
-                                                    .map(mismatch -> mismatch.getRecipientId(context))
+                                                    .map(mismatch -> mismatch.getRecipientId())
                                                     .collect(Collectors.toSet());
 
       RetrieveProfileJob.enqueue(mismatchRecipientIds);

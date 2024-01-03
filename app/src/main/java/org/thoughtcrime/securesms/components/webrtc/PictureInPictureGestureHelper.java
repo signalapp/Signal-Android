@@ -1,9 +1,9 @@
 package org.thoughtcrime.securesms.components.webrtc;
 
-import android.animation.Animator;
 import android.annotation.SuppressLint;
 import android.graphics.Point;
 import android.view.GestureDetector;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
@@ -11,19 +11,16 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
+import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.core.view.GestureDetectorCompat;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.animation.AnimationCompleteListener;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.TouchInterceptingFrameLayout;
 
 import java.util.Arrays;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Queue;
 
 public class PictureInPictureGestureHelper extends GestureDetector.SimpleOnGestureListener {
 
@@ -31,18 +28,15 @@ public class PictureInPictureGestureHelper extends GestureDetector.SimpleOnGestu
   private static final Interpolator FLING_INTERPOLATOR  = new ViscousFluidInterpolator();
   private static final Interpolator ADJUST_INTERPOLATOR = new AccelerateDecelerateInterpolator();
 
-  private final ViewGroup       parent;
-  private final View            child;
-  private final int             framePadding;
-  private final Queue<Runnable> runAfterFling;
+  private final ViewGroup parent;
+  private final View      child;
+  private final int       framePadding;
 
   private int             pipWidth;
   private int             pipHeight;
-  private int             activePointerId = MotionEvent.INVALID_POINTER_ID;
+  private int             activePointerId        = MotionEvent.INVALID_POINTER_ID;
   private float           lastTouchX;
   private float           lastTouchY;
-  private boolean         isDragging;
-  private boolean         isAnimating;
   private int             extraPaddingTop;
   private int             extraPaddingBottom;
   private double          projectionX;
@@ -51,6 +45,9 @@ public class PictureInPictureGestureHelper extends GestureDetector.SimpleOnGestu
   private int             maximumFlingVelocity;
   private boolean         isLockedToBottomEnd;
   private Interpolator    interpolator;
+  private Corner          currentCornerPosition  = Corner.BOTTOM_RIGHT;
+  private int             previousTopBoundary    = -1;
+  private int             previousBottomBoundary = -1;
 
   @SuppressLint("ClickableViewAccessibility")
   public static PictureInPictureGestureHelper applyTo(@NonNull View child) {
@@ -111,21 +108,33 @@ public class PictureInPictureGestureHelper extends GestureDetector.SimpleOnGestu
     this.pipWidth             = child.getResources().getDimensionPixelSize(R.dimen.picture_in_picture_gesture_helper_pip_width);
     this.pipHeight            = child.getResources().getDimensionPixelSize(R.dimen.picture_in_picture_gesture_helper_pip_height);
     this.maximumFlingVelocity = ViewConfiguration.get(child.getContext()).getScaledMaximumFlingVelocity();
-    this.runAfterFling        = new LinkedList<>();
     this.interpolator         = ADJUST_INTERPOLATOR;
   }
 
-  public void clearVerticalBoundaries() {
-    setTopVerticalBoundary(parent.getTop());
-    setBottomVerticalBoundary(parent.getMeasuredHeight() + parent.getTop());
-  }
-
   public void setTopVerticalBoundary(int topBoundary) {
+    if (topBoundary == previousTopBoundary) {
+      return;
+    }
+    previousTopBoundary = topBoundary;
+
     extraPaddingTop = topBoundary - parent.getTop();
+
+    ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) child.getLayoutParams();
+    layoutParams.setMargins(layoutParams.leftMargin, extraPaddingTop + framePadding, layoutParams.rightMargin, layoutParams.bottomMargin);
+    child.setLayoutParams(layoutParams);
   }
 
   public void setBottomVerticalBoundary(int bottomBoundary) {
+    if (bottomBoundary == previousBottomBoundary) {
+      return;
+    }
+    previousBottomBoundary = bottomBoundary;
+
     extraPaddingBottom = parent.getMeasuredHeight() + parent.getTop() - bottomBoundary;
+
+    ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) child.getLayoutParams();
+    layoutParams.setMargins(layoutParams.leftMargin, layoutParams.topMargin, layoutParams.rightMargin, extraPaddingBottom + framePadding);
+    child.setLayoutParams(layoutParams);
   }
 
   private boolean onGestureFinished(MotionEvent e) {
@@ -139,35 +148,13 @@ public class PictureInPictureGestureHelper extends GestureDetector.SimpleOnGestu
     return false;
   }
 
-  public void adjustPip() {
-    pipWidth  = child.getMeasuredWidth();
-    pipHeight = child.getMeasuredHeight();
-
-    if (isAnimating) {
-      interpolator = ADJUST_INTERPOLATOR;
-
-      fling();
-    } else if (!isDragging) {
-      interpolator = ADJUST_INTERPOLATOR;
-
-      onFling(null, null, 0, 0);
-    }
-  }
-
   public void lockToBottomEnd() {
     isLockedToBottomEnd = true;
+    fling();
   }
 
   public void enableCorners() {
     isLockedToBottomEnd = false;
-  }
-
-  public void performAfterFling(@NonNull Runnable runnable) {
-    if (isAnimating) {
-      runAfterFling.add(runnable);
-    } else {
-      runnable.run();
-    }
   }
 
   @Override
@@ -175,7 +162,6 @@ public class PictureInPictureGestureHelper extends GestureDetector.SimpleOnGestu
     activePointerId = e.getPointerId(0);
     lastTouchX      = e.getX(0) + child.getX();
     lastTouchY      = e.getY(0) + child.getY();
-    isDragging      = true;
     pipWidth        = child.getMeasuredWidth();
     pipHeight       = child.getMeasuredHeight();
     interpolator    = FLING_INTERPOLATOR;
@@ -185,6 +171,10 @@ public class PictureInPictureGestureHelper extends GestureDetector.SimpleOnGestu
 
   @Override
   public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+    if (isLockedToBottomEnd) {
+      return false;
+    }
+
     int pointerIndex = e2.findPointerIndex(activePointerId);
 
     if (pointerIndex == -1) {
@@ -192,10 +182,10 @@ public class PictureInPictureGestureHelper extends GestureDetector.SimpleOnGestu
       return false;
     }
 
-    float x            = e2.getX(pointerIndex) + child.getX();
-    float y            = e2.getY(pointerIndex) + child.getY();
-    float dx           = x - lastTouchX;
-    float dy           = y - lastTouchY;
+    float x  = e2.getX(pointerIndex) + child.getX();
+    float y  = e2.getY(pointerIndex) + child.getY();
+    float dx = x - lastTouchX;
+    float dy = y - lastTouchY;
 
     child.setTranslationX(child.getTranslationX() + dx);
     child.setTranslationY(child.getTranslationY() + dy);
@@ -208,6 +198,10 @@ public class PictureInPictureGestureHelper extends GestureDetector.SimpleOnGestu
 
   @Override
   public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+    if (isLockedToBottomEnd) {
+      return false;
+    }
+
     if (velocityTracker != null) {
       velocityTracker.computeCurrentVelocity(1000, maximumFlingVelocity);
 
@@ -225,92 +219,75 @@ public class PictureInPictureGestureHelper extends GestureDetector.SimpleOnGestu
 
   @Override
   public boolean onSingleTapUp(MotionEvent e) {
-    isDragging = false;
-
     child.performClick();
     return true;
   }
 
   private void fling() {
     Point  projection            = new Point((int) projectionX, (int) projectionY);
-    Point  nearestCornerPosition = findNearestCornerPosition(projection);
+    Corner nearestCornerPosition = findNearestCornerPosition(projection);
 
-    isAnimating = true;
-    isDragging  = false;
+    FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) child.getLayoutParams();
+    layoutParams.gravity = nearestCornerPosition.gravity;
+
+    if (currentCornerPosition != null && currentCornerPosition != nearestCornerPosition) {
+      adjustTranslationFrameOfReference(child, currentCornerPosition, nearestCornerPosition);
+    }
+    currentCornerPosition = nearestCornerPosition;
+
+    child.setLayoutParams(layoutParams);
 
     child.animate()
-         .translationX(getTranslationXForPoint(nearestCornerPosition))
-         .translationY(getTranslationYForPoint(nearestCornerPosition))
+         .translationX(0)
+         .translationY(0)
          .setDuration(250)
          .setInterpolator(interpolator)
-         .setListener(new AnimationCompleteListener() {
-           @Override
-           public void onAnimationEnd(Animator animation) {
-             isAnimating = false;
-
-             Iterator<Runnable> afterFlingRunnables = runAfterFling.iterator();
-             while (afterFlingRunnables.hasNext()) {
-               Runnable runnable = afterFlingRunnables.next();
-
-               runnable.run();
-               afterFlingRunnables.remove();
-             }
-           }
-         })
          .start();
   }
 
-  private Point findNearestCornerPosition(Point projection) {
+  private Corner findNearestCornerPosition(Point projection) {
     if (isLockedToBottomEnd) {
-      return ViewUtil.isLtr(parent) ? calculateBottomRightCoordinates(parent)
-                                    : calculateBottomLeftCoordinates(parent);
+      return ViewUtil.isLtr(parent) ? Corner.BOTTOM_RIGHT
+                                    : Corner.BOTTOM_LEFT;
     }
 
-    Point  maxPoint     = null;
-    double maxDistance  = Double.MAX_VALUE;
+    CornerPoint maxPoint    = null;
+    double      maxDistance = Double.MAX_VALUE;
 
-    for (Point point : Arrays.asList(calculateTopLeftCoordinates(),
-                                     calculateTopRightCoordinates(parent),
-                                     calculateBottomLeftCoordinates(parent),
-                                     calculateBottomRightCoordinates(parent)))
-    {
-      double distance = distance(point, projection);
+    for (CornerPoint cornerPoint : Arrays.asList(calculateTopLeftCoordinates(),
+                                                 calculateTopRightCoordinates(parent),
+                                                 calculateBottomLeftCoordinates(parent),
+                                                 calculateBottomRightCoordinates(parent))) {
+      double distance = distance(cornerPoint.point, projection);
 
       if (distance < maxDistance) {
         maxDistance = distance;
-        maxPoint    = point;
+        maxPoint    = cornerPoint;
       }
     }
 
-    return maxPoint;
+    //noinspection DataFlowIssue
+    return maxPoint.corner;
   }
 
-  private float getTranslationXForPoint(Point destination) {
-    return destination.x - child.getLeft();
+  private CornerPoint calculateTopLeftCoordinates() {
+    return new CornerPoint(new Point(framePadding, framePadding + extraPaddingTop),
+                           Corner.TOP_LEFT);
   }
 
-  private float getTranslationYForPoint(Point destination) {
-    return destination.y - child.getTop();
+  private CornerPoint calculateTopRightCoordinates(@NonNull ViewGroup parent) {
+    return new CornerPoint(new Point(parent.getMeasuredWidth() - pipWidth - framePadding, framePadding + extraPaddingTop),
+                           Corner.TOP_RIGHT);
   }
 
-  private Point calculateTopLeftCoordinates() {
-    return new Point(framePadding,
-                     framePadding + extraPaddingTop);
+  private CornerPoint calculateBottomLeftCoordinates(@NonNull ViewGroup parent) {
+    return new CornerPoint(new Point(framePadding, parent.getMeasuredHeight() - pipHeight - framePadding - extraPaddingBottom),
+                           Corner.BOTTOM_LEFT);
   }
 
-  private Point calculateTopRightCoordinates(@NonNull ViewGroup parent) {
-    return new Point(parent.getMeasuredWidth() - pipWidth - framePadding,
-                     framePadding + extraPaddingTop);
-  }
-
-  private Point calculateBottomLeftCoordinates(@NonNull ViewGroup parent) {
-    return new Point(framePadding,
-                     parent.getMeasuredHeight() - pipHeight - framePadding - extraPaddingBottom);
-  }
-
-  private Point calculateBottomRightCoordinates(@NonNull ViewGroup parent) {
-    return new Point(parent.getMeasuredWidth() - pipWidth - framePadding,
-                     parent.getMeasuredHeight() - pipHeight - framePadding - extraPaddingBottom);
+  private CornerPoint calculateBottomRightCoordinates(@NonNull ViewGroup parent) {
+    return new CornerPoint(new Point(parent.getMeasuredWidth() - pipWidth - framePadding, parent.getMeasuredHeight() - pipHeight - framePadding - extraPaddingBottom),
+                           Corner.BOTTOM_RIGHT);
   }
 
   private static float project(float initialVelocity) {
@@ -321,9 +298,80 @@ public class PictureInPictureGestureHelper extends GestureDetector.SimpleOnGestu
     return Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2));
   }
 
-  /** Borrowed from ScrollView */
+
+  /**
+   * User drag is implemented by translating the view from the current gravity anchor (corner). When the user drags
+   * to a new corner, we need to adjust the translations for the new corner so the animation of translation X/Y to 0
+   * works correctly.
+   *
+   * For example, if in bottom right and need to move to top right, we need to calculate a new translation Y since instead
+   * of being translated up from bottom it's translated down from the top.
+   */
+  private void adjustTranslationFrameOfReference(@NonNull View child, @NonNull Corner previous, @NonNull Corner next) {
+    TouchInterceptingFrameLayout parent            = (TouchInterceptingFrameLayout) child.getParent();
+    FrameLayout.LayoutParams     childLayoutParams = (FrameLayout.LayoutParams) child.getLayoutParams();
+    int                          parentWidth       = parent.getWidth();
+    int                          parentHeight      = parent.getHeight();
+
+    if (previous.topHalf != next.topHalf) {
+      int childHeight = childLayoutParams.height + childLayoutParams.topMargin + childLayoutParams.bottomMargin;
+
+      float adjustedTranslationY;
+      if (previous.topHalf) {
+        adjustedTranslationY = -(parentHeight - child.getTranslationY() - childHeight);
+      } else {
+        adjustedTranslationY = parentHeight + child.getTranslationY() - childHeight;
+      }
+      child.setTranslationY(adjustedTranslationY);
+    }
+
+    if (previous.leftSide != next.leftSide) {
+      int childWidth = childLayoutParams.width + childLayoutParams.leftMargin + childLayoutParams.rightMargin;
+
+      float adjustedTranslationX;
+      if (previous.leftSide) {
+        adjustedTranslationX = -(parentWidth - child.getTranslationX() - childWidth);
+      } else {
+        adjustedTranslationX = parentWidth + child.getTranslationX() - childWidth;
+      }
+      child.setTranslationX(adjustedTranslationX);
+    }
+  }
+
+  private static class CornerPoint {
+    final Point  point;
+    final Corner corner;
+
+    public CornerPoint(@NonNull Point point, @NonNull Corner corner) {
+      this.point  = point;
+      this.corner = corner;
+    }
+  }
+
+  private enum Corner {
+    TOP_LEFT(Gravity.TOP | Gravity.START, true, true),
+    TOP_RIGHT(Gravity.TOP | Gravity.END, false, true),
+    BOTTOM_LEFT(Gravity.BOTTOM | Gravity.START, true, false),
+    BOTTOM_RIGHT(Gravity.BOTTOM | Gravity.END, false, false);
+
+    final int     gravity;
+    final boolean leftSide;
+    final boolean topHalf;
+
+    Corner(int gravity, boolean leftSide, boolean topHalf) {
+      this.gravity  = gravity;
+      this.leftSide = leftSide;
+      this.topHalf  = topHalf;
+    }
+  }
+
+  /**
+   * Borrowed from ScrollView
+   */
   private static class ViscousFluidInterpolator implements Interpolator {
-    /** Controls the viscous fluid effect (how much of it). */
+    /**
+     * Controls the viscous fluid effect (how much of it).
+     */
     private static final float VISCOUS_FLUID_SCALE = 8.0f;
 
     private static final float VISCOUS_FLUID_NORMALIZE;
@@ -340,10 +388,10 @@ public class PictureInPictureGestureHelper extends GestureDetector.SimpleOnGestu
     private static float viscousFluid(float x) {
       x *= VISCOUS_FLUID_SCALE;
       if (x < 1.0f) {
-        x -= (1.0f - (float)Math.exp(-x));
+        x -= (1.0f - (float) Math.exp(-x));
       } else {
         float start = 0.36787944117f;   // 1/e == exp(-1)
-        x = 1.0f - (float)Math.exp(1.0f - x);
+        x = 1.0f - (float) Math.exp(1.0f - x);
         x = start + x * (1.0f - start);
       }
       return x;

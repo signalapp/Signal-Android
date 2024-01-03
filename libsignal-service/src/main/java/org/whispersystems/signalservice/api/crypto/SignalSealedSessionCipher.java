@@ -1,5 +1,7 @@
 package org.whispersystems.signalservice.api.crypto;
 
+import org.signal.libsignal.internal.Native;
+import org.signal.libsignal.internal.NativeHandleGuard;
 import org.signal.libsignal.metadata.InvalidMetadataMessageException;
 import org.signal.libsignal.metadata.InvalidMetadataVersionException;
 import org.signal.libsignal.metadata.ProtocolDuplicateMessageException;
@@ -19,9 +21,14 @@ import org.signal.libsignal.protocol.InvalidRegistrationIdException;
 import org.signal.libsignal.protocol.NoSessionException;
 import org.signal.libsignal.protocol.SignalProtocolAddress;
 import org.signal.libsignal.protocol.UntrustedIdentityException;
+import org.signal.libsignal.protocol.state.SessionRecord;
+import org.signal.libsignal.protocol.state.SignalProtocolStore;
 import org.whispersystems.signalservice.api.SignalSessionLock;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * A thread-safe wrapper around {@link SealedSessionCipher}.
@@ -44,11 +51,47 @@ public class SignalSealedSessionCipher {
     }
   }
 
-  public byte[] multiRecipientEncrypt(List<SignalProtocolAddress> recipients, UnidentifiedSenderMessageContent content)
+  // TODO: Revert the change here to use the libsignal SealedSessionCipher when the API changes
+  public byte[] multiRecipientEncrypt(SignalProtocolStore signalProtocolStore, List<SignalProtocolAddress> recipients, Map<SignalProtocolAddress, SessionRecord> sessionMap, UnidentifiedSenderMessageContent content)
       throws InvalidKeyException, UntrustedIdentityException, NoSessionException, InvalidRegistrationIdException
   {
     try (SignalSessionLock.Lock unused = lock.acquire()) {
-      return cipher.multiRecipientEncrypt(recipients, content);
+      if (sessionMap == null) {
+        return cipher.multiRecipientEncrypt(recipients, content);
+      }
+      List<SessionRecord> recipientSessions = recipients.stream().map(sessionMap::get).collect(Collectors.toList());
+      if (recipientSessions.stream().anyMatch(Objects::isNull)) {
+        throw new NoSessionException("Failed to find one or more sessions.");
+      }
+      // Unsafely access the native handles for the recipients and sessions,
+      // because try-with-resources syntax doesn't support a List of resources.
+      long[] recipientHandles = new long[recipients.size()];
+      int i = 0;
+      for (SignalProtocolAddress nextRecipient : recipients) {
+        recipientHandles[i] = nextRecipient.unsafeNativeHandleWithoutGuard();
+        i++;
+      }
+
+      long[] recipientSessionHandles = new long[recipientSessions.size()];
+      i = 0;
+      for (SessionRecord nextSession : recipientSessions) {
+        recipientSessionHandles[i] = nextSession.unsafeNativeHandleWithoutGuard();
+        i++;
+      }
+
+      try (NativeHandleGuard contentGuard = new NativeHandleGuard(content)) {
+        byte[] result =
+            Native.SealedSessionCipher_MultiRecipientEncrypt(
+                recipientHandles,
+                recipientSessionHandles,
+                contentGuard.nativeHandle(),
+                signalProtocolStore);
+        // Manually keep the lists of recipients and sessions from being garbage collected
+        // while we're using their native handles.
+        Native.keepAlive(recipients);
+        Native.keepAlive(recipientSessions);
+        return result;
+      }
     }
   }
 

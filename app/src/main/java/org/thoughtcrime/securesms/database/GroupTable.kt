@@ -7,7 +7,6 @@ import android.text.TextUtils
 import androidx.annotation.WorkerThread
 import androidx.core.content.contentValuesOf
 import org.intellij.lang.annotations.Language
-import org.signal.core.util.SetUtil
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.SqlUtil.appendArg
 import org.signal.core.util.SqlUtil.buildArgs
@@ -36,14 +35,12 @@ import org.signal.storageservice.protos.groups.local.DecryptedGroup
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchSortOrder
 import org.thoughtcrime.securesms.contacts.paged.collections.ContactSearchIterator
 import org.thoughtcrime.securesms.crypto.SenderKeyUtil
-import org.thoughtcrime.securesms.database.SignalDatabase.Companion.messages
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.recipients
 import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.groups.BadGroupIdException
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupId.Push
-import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange
 import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -60,6 +57,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPoin
 import org.whispersystems.signalservice.api.push.DistributionId
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
+import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import java.io.Closeable
 import java.security.SecureRandom
 import java.util.Optional
@@ -821,57 +819,6 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
     notifyConversationListListeners()
   }
 
-  /**
-   * Migrates a V1 group to a V2 group.
-   *
-   * @param decryptedGroup The state that represents the group on the server. This will be used to
-   * determine if we need to save our old membership list and stuff.
-   */
-  fun migrateToV2(
-    threadId: Long,
-    groupIdV1: GroupId.V1,
-    decryptedGroup: DecryptedGroup
-  ): GroupId.V2 {
-    val groupIdV2 = groupIdV1.deriveV2MigrationGroupId()
-    val groupMasterKey = groupIdV1.deriveV2MigrationMasterKey()
-
-    writableDatabase.withinTransaction { db ->
-      val record = getGroup(groupIdV1).get()
-
-      val newMembers: MutableList<RecipientId> = decryptedGroup.members.toAciList().toRecipientIds()
-      val pendingMembers: List<RecipientId> = DecryptedGroupUtil.pendingToServiceIdList(decryptedGroup.pendingMembers).toRecipientIds()
-      newMembers.addAll(pendingMembers)
-
-      val droppedMembers: List<RecipientId> = SetUtil.difference(record.members, newMembers).toList()
-      val unmigratedMembers: List<RecipientId> = pendingMembers + droppedMembers
-
-      val updated: Int = db.update(TABLE_NAME)
-        .values(
-          GROUP_ID to groupIdV2.toString(),
-          V2_MASTER_KEY to groupMasterKey.serialize(),
-          DISTRIBUTION_ID to DistributionId.create().toString(),
-          EXPECTED_V2_ID to null,
-          UNMIGRATED_V1_MEMBERS to if (unmigratedMembers.isEmpty()) null else unmigratedMembers.serialize()
-        )
-        .where("$GROUP_ID = ?", groupIdV1)
-        .run()
-
-      if (updated != 1) {
-        throw AssertionError()
-      }
-
-      recipients.updateGroupId(groupIdV1, groupIdV2)
-      update(groupMasterKey, decryptedGroup)
-      messages.insertGroupV1MigrationEvents(
-        record.recipientId,
-        threadId,
-        GroupMigrationMembershipChange(pendingMembers, droppedMembers)
-      )
-    }
-
-    return groupIdV2
-  }
-
   fun update(groupMasterKey: GroupMasterKey, decryptedGroup: DecryptedGroup) {
     update(GroupId.v2(groupMasterKey), decryptedGroup)
   }
@@ -917,6 +864,14 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
         val distributionId = existingGroup.get().distributionId!!
         Log.i(TAG, removed.size.toString() + " members were removed from group " + groupId + ". Rotating the DistributionId " + distributionId)
         SenderKeyUtil.rotateOurKey(distributionId)
+      }
+
+      change.promotePendingPniAciMembers.forEach { member ->
+        recipients.getAndPossiblyMergePnpVerified(
+          aci = ACI.parseOrNull(member.aciBytes),
+          pni = PNI.parseOrNull(member.pniBytes),
+          e164 = null
+        )
       }
     }
 

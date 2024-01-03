@@ -7,7 +7,7 @@
                 android:top="4dp"
                 android:left="4dp"
                 android:right="4dp"
-                android:drawable="@drawable/webrtc_call_screen_circle_unchecked" />
+                android:drawable="@drawable/webrtc_call_screen_circle_checked" />
             <item android:bottom="14dp" android:drawable="@drawable/symbol_speaker_fill_white_24" android:left="14dp" android:right="14dp" android:top="14dp" />
         </layer-list>
     </item>
@@ -18,7 +18,7 @@
                 android:top="4dp"
                 android:left="4dp"
                 android:right="4dp"
-                android:drawable="@drawable/webrtc_call_screen_circle_checked" />
+                android:drawable="@drawable/webrtc_call_screen_circle_unchecked" />
             <item android:bottom="14dp" android:drawable="@drawable/symbol_speaker_fill_24" android:left="14dp" android:right="14dp" android:top="14dp" />
         </layer-list>
     </item>

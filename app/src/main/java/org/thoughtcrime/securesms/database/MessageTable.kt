@@ -207,6 +207,9 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     const val ORIGINAL_MESSAGE_ID = "original_message_id"
     const val REVISION_NUMBER = "revision_number"
 
+    const val QUOTE_NOT_PRESENT_ID = 0L
+    const val QUOTE_TARGET_MISSING_ID = -1L
+
     const val CREATE_TABLE = """
       CREATE TABLE $TABLE_NAME (
         $ID INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -398,14 +401,16 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
           $PARENT_STORY_ID <= 0 AND
           $SCHEDULED_DATE = -1 AND
           $LATEST_REVISION_ID IS NULL AND
+          $TYPE & ${MessageTypes.KEY_EXCHANGE_IDENTITY_DEFAULT_BIT} = 0 AND
+          $TYPE & ${MessageTypes.KEY_EXCHANGE_IDENTITY_VERIFIED_BIT} = 0 AND
           $TYPE NOT IN (
             ${MessageTypes.PROFILE_CHANGE_TYPE}, 
-             ${MessageTypes.GV1_MIGRATION_TYPE},
-             ${MessageTypes.CHANGE_NUMBER_TYPE},
-             ${MessageTypes.BOOST_REQUEST_TYPE},
-             ${MessageTypes.SMS_EXPORT_TYPE}
-           ) 
-         ORDER BY $DATE_RECEIVED DESC LIMIT 1
+            ${MessageTypes.GV1_MIGRATION_TYPE},
+            ${MessageTypes.CHANGE_NUMBER_TYPE},
+            ${MessageTypes.BOOST_REQUEST_TYPE},
+            ${MessageTypes.SMS_EXPORT_TYPE}
+           )
+          ORDER BY $DATE_RECEIVED DESC LIMIT 1
        """
 
     private val IS_CALL_TYPE_CLAUSE = """(
@@ -1768,7 +1773,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     return threads.getOrCreateThreadIdFor(recipient)
   }
 
-  private fun rawQueryWithAttachments(where: String, arguments: Array<String>?, reverse: Boolean = false, limit: Long = 0): Cursor {
+  fun rawQueryWithAttachments(where: String, arguments: Array<String>?, reverse: Boolean = false, limit: Long = 0): Cursor {
     return rawQueryWithAttachments(MMS_PROJECTION_WITH_ATTACHMENTS, where, arguments, reverse, limit)
   }
 
@@ -2314,7 +2319,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       val quoteAttachments: List<Attachment> = associatedAttachments.filter { it.isQuote }.toList()
       val quoteMentions: List<Mention> = parseQuoteMentions(cursor)
       val quoteBodyRanges: BodyRangeList? = parseQuoteBodyRanges(cursor)
-      val quote: QuoteModel? = if (quoteId > 0 && quoteAuthor > 0 && (!TextUtils.isEmpty(quoteText) || quoteAttachments.isNotEmpty())) {
+      val quote: QuoteModel? = if (quoteId != QUOTE_NOT_PRESENT_ID && quoteAuthor > 0 && (!TextUtils.isEmpty(quoteText) || quoteAttachments.isNotEmpty())) {
         QuoteModel(quoteId, RecipientId.from(quoteAuthor), quoteText ?: "", quoteMissing, quoteAttachments, quoteMentions, QuoteModel.Type.fromCode(quoteType), quoteBodyRanges)
       } else {
         null
@@ -3106,16 +3111,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     return deleteMessage(messageId, threadId)
   }
 
-  fun deleteMessage(messageId: Long, notify: Boolean): Boolean {
-    val threadId = getThreadIdForMessage(messageId)
-    return deleteMessage(messageId, threadId, notify)
-  }
-
-  fun deleteMessage(messageId: Long, threadId: Long): Boolean {
-    return deleteMessage(messageId, threadId, true)
-  }
-
-  private fun deleteMessage(messageId: Long, threadId: Long, notify: Boolean): Boolean {
+  private fun deleteMessage(messageId: Long, threadId: Long = getThreadIdForMessage(messageId), notify: Boolean = true, updateThread: Boolean = true): Boolean {
     Log.d(TAG, "deleteMessage($messageId)")
 
     attachments.deleteAttachmentsForMessage(messageId)
@@ -3129,7 +3125,12 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
     calls.updateCallEventDeletionTimestamps()
     threads.setLastScrolled(threadId, 0)
-    val threadDeleted = threads.update(threadId, false)
+
+    val threadDeleted = if (updateThread) {
+      threads.update(threadId, false)
+    } else {
+      false
+    }
 
     if (notify) {
       notifyConversationListeners(threadId)
@@ -3336,7 +3337,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     OptimizeMessageSearchIndexJob.enqueue()
   }
 
-  fun deleteThreads(threadIds: Set<Long>) {
+  private fun deleteThreads(threadIds: Set<Long>) {
     Log.d(TAG, "deleteThreads(count: ${threadIds.size})")
 
     writableDatabase.withinTransaction { db ->
@@ -3346,7 +3347,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
           .where(query.where, query.whereArgs)
           .run()
           .forEach { cursor ->
-            deleteMessage(cursor.requireLong(ID), false)
+            deleteMessage(cursor.requireLong(ID), notify = false, updateThread = false)
           }
       }
     }
@@ -5121,7 +5122,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       val quoteAttachments: List<Attachment> = attachments.filter { it.isQuote }
       val quoteDeck = SlideDeck(quoteAttachments)
 
-      return if (quoteId > 0 && quoteAuthor > 0) {
+      return if (quoteId != QUOTE_NOT_PRESENT_ID && quoteAuthor > 0) {
         if (quoteText != null && (quoteMentions.isNotEmpty() || bodyRanges != null)) {
           val updated: UpdatedBodyAndMentions = MentionUtil.updateBodyAndMentionsWithDisplayNames(context, quoteText, quoteMentions)
           val styledText = SpannableString(updated.body)

@@ -15,7 +15,7 @@ public class RetrieveProfileJobMigration extends JobMigration {
   }
 
   @Override
-  protected @NonNull JobData migrate(@NonNull JobData jobData) {
+  public @NonNull JobData migrate(@NonNull JobData jobData) {
     Log.i(TAG, "Running.");
 
     if ("RetrieveProfileJob".equals(jobData.getFactoryKey())) {

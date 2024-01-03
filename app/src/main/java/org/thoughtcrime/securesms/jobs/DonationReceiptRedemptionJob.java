@@ -28,17 +28,15 @@ import org.whispersystems.signalservice.internal.ServiceResponse;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.concurrent.TimeUnit;
-
-import okio.ByteString;
 
 /**
  * Job to redeem a verified donation receipt. It is up to the Job prior in the chain to specify a valid
  * presentation object via setOutputData. This is expected to be the byte[] blob of a ReceiptCredentialPresentation object.
  */
 public class DonationReceiptRedemptionJob extends BaseJob {
-  private static final String TAG   = Log.tag(DonationReceiptRedemptionJob.class);
-  private static final long   NO_ID = -1L;
+  private static final String TAG         = Log.tag(DonationReceiptRedemptionJob.class);
+  private static final long   NO_ID       = -1L;
+  private static final int    MAX_RETRIES = 1500;
 
   public static final String SUBSCRIPTION_QUEUE                    = "ReceiptRedemption";
   public static final String ONE_TIME_QUEUE                        = "BoostReceiptRedemption";
@@ -71,8 +69,8 @@ public class DonationReceiptRedemptionJob extends BaseJob {
             .Builder()
             .addConstraint(NetworkConstraint.KEY)
             .setQueue(SUBSCRIPTION_QUEUE + (isLongRunningDonationPaymentType ? LONG_RUNNING_QUEUE_SUFFIX : ""))
-            .setMaxAttempts(Parameters.UNLIMITED)
-            .setLifespan(TimeUnit.DAYS.toMillis(1))
+            .setMaxAttempts(MAX_RETRIES)
+            .setLifespan(Parameters.IMMORTAL)
             .build());
   }
 
@@ -86,8 +84,8 @@ public class DonationReceiptRedemptionJob extends BaseJob {
             .Builder()
             .addConstraint(NetworkConstraint.KEY)
             .setQueue(ONE_TIME_QUEUE + (isLongRunningDonationPaymentType ? LONG_RUNNING_QUEUE_SUFFIX : ""))
-            .setMaxAttempts(Parameters.UNLIMITED)
-            .setLifespan(TimeUnit.DAYS.toMillis(1))
+            .setMaxAttempts(MAX_RETRIES)
+            .setLifespan(Parameters.IMMORTAL)
             .build());
   }
 
@@ -112,8 +110,8 @@ public class DonationReceiptRedemptionJob extends BaseJob {
             .Builder()
             .addConstraint(NetworkConstraint.KEY)
             .setQueue("GiftReceiptRedemption-" + messageId)
-            .setMaxAttempts(Parameters.UNLIMITED)
-            .setLifespan(TimeUnit.DAYS.toMillis(1))
+            .setMaxAttempts(MAX_RETRIES)
+            .setLifespan(Parameters.IMMORTAL)
             .build());
 
     RefreshOwnProfileJob               refreshOwnProfileJob               = new RefreshOwnProfileJob();

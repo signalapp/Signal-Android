@@ -367,6 +367,28 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     Log.d(TAG, "Transitioned group call ${call.callId} from ${call.event} to $newEvent")
   }
 
+  fun declineIncomingGroupCall(call: Call) {
+    checkIsGroupOrAdHocCall(call)
+    check(call.direction == Direction.INCOMING)
+
+    val newEvent = when (call.event) {
+      Event.RINGING, Event.MISSED -> Event.DECLINED
+      else -> {
+        Log.d(TAG, "Call in state ${call.event} cannot be transitioned by DECLINED")
+        return
+      }
+    }
+
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(EVENT to Event.serialize(newEvent))
+      .run()
+
+    ApplicationDependencies.getMessageNotifier().updateNotification(context)
+    ApplicationDependencies.getDatabaseObserver().notifyCallUpdateObservers()
+    Log.d(TAG, "Transitioned group call ${call.callId} from ${call.event} to $newEvent")
+  }
+
   fun insertAcceptedGroupCall(
     callId: Long,
     recipientId: RecipientId,
@@ -403,6 +425,46 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
           DIRECTION to Direction.serialize(direction),
           TIMESTAMP to timestamp,
           RINGER to ringer
+        )
+        .run(SQLiteDatabase.CONFLICT_ABORT)
+    }
+
+    ApplicationDependencies.getDatabaseObserver().notifyCallUpdateObservers()
+  }
+
+  fun insertDeclinedGroupCall(
+    callId: Long,
+    recipientId: RecipientId,
+    timestamp: Long
+  ) {
+    val recipient = Recipient.resolved(recipientId)
+    val type = if (recipient.isCallLink) Type.AD_HOC_CALL else Type.GROUP_CALL
+
+    writableDatabase.withinTransaction { db ->
+      val messageId: MessageId? = if (type == Type.GROUP_CALL) {
+        SignalDatabase.messages.insertGroupCall(
+          groupRecipientId = recipientId,
+          sender = Recipient.self().id,
+          timestamp,
+          "",
+          emptyList(),
+          false
+        )
+      } else {
+        null
+      }
+
+      db
+        .insertInto(TABLE_NAME)
+        .values(
+          CALL_ID to callId,
+          MESSAGE_ID to messageId?.id,
+          PEER to recipientId.toLong(),
+          EVENT to Event.serialize(Event.DECLINED),
+          TYPE to Type.serialize(type),
+          DIRECTION to Direction.serialize(Direction.INCOMING),
+          TIMESTAMP to timestamp,
+          RINGER to null
         )
         .run(SQLiteDatabase.CONFLICT_ABORT)
     }

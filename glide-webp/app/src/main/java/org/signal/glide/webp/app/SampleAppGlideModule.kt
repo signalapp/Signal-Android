@@ -14,7 +14,11 @@ import org.signal.core.util.logging.Log
 
 @GlideModule
 class SampleAppGlideModule : AppGlideModule() {
+  companion object {
+    private val TAG = Log.tag(SampleAppGlideModule::class.java)
+  }
+
   override fun registerComponents(context: Context, glide: Glide, registry: Registry) {
-    Log.e("SPIDERMAN", "AppModule - registerComponents")
+    Log.e(TAG, "AppModule - registerComponents")
   }
 }

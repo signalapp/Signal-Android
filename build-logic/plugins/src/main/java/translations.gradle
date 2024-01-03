@@ -3,30 +3,12 @@ import groovy.transform.stc.ClosureParams
 import groovy.transform.stc.SimpleType
 import org.signal.buildtools.StaticIpResolver
 
-ext {
-    autoResConfig = this.&autoResConfig
-}
-
 def allStringsResourceFiles(@ClosureParams(value = SimpleType.class, options = ['java.io.File']) Closure c) {
     file('src/main/res').eachFileRecurse(FileType.FILES) { f ->
         if (f.name == 'strings.xml') {
             c(f)
         }
     }
-}
-
-/**
- * Discovers supported languages listed as under the res/values- directory.
- */
-def autoResConfig() {
-    def files = []
-    allStringsResourceFiles { f ->
-        files.add(f.parentFile.name)
-    }
-    ['en'] + files.collect { f -> f =~ /^values-([a-z]{2,3}(-r[A-Z]{2})?)$/ }
-            .findAll { matcher -> matcher.find() }
-            .collect { matcher -> matcher.group(1) }
-            .sort()
 }
 
 task replaceEllipsis {
@@ -125,17 +107,17 @@ task resolveStaticIps {
     description 'Fetches static IPs for core hosts and writes them to static-ips.gradle'
     doLast {
         def staticIpResolver = new StaticIpResolver()
-        new File(projectDir, "static-ips.gradle").text = """
-            ext.service_ips='${staticIpResolver.resolveToBuildConfig("chat.signal.org")}'
-            ext.storage_ips='${staticIpResolver.resolveToBuildConfig("storage.signal.org")}'
-            ext.cdn_ips='${staticIpResolver.resolveToBuildConfig("cdn.signal.org")}'
-            ext.cdn2_ips='${staticIpResolver.resolveToBuildConfig("cdn2.signal.org")}'
-            ext.cdn3_ips='${staticIpResolver.resolveToBuildConfig("cdn3.signal.org")}'
-            ext.sfu_ips='${staticIpResolver.resolveToBuildConfig("sfu.voip.signal.org")}'
-            ext.content_proxy_ips='${staticIpResolver.resolveToBuildConfig("contentproxy.signal.org")}'
-            ext.svr2_ips='${staticIpResolver.resolveToBuildConfig("svr2.signal.org")}'
-            ext.cdsi_ips='${staticIpResolver.resolveToBuildConfig("cdsi.signal.org")}'
-        """.stripIndent().trim()
+        new File(projectDir, "static-ips.gradle.kts").text = """
+            rootProject.extra["service_ips"] = \"\"\"${staticIpResolver.resolveToBuildConfig("chat.signal.org")}\"\"\"
+            rootProject.extra["storage_ips"] = \"\"\"${staticIpResolver.resolveToBuildConfig("storage.signal.org")}\"\"\"
+            rootProject.extra["cdn_ips"] = \"\"\"${staticIpResolver.resolveToBuildConfig("cdn.signal.org")}\"\"\"
+            rootProject.extra["cdn2_ips"] = \"\"\"${staticIpResolver.resolveToBuildConfig("cdn2.signal.org")}\"\"\"
+            rootProject.extra["cdn3_ips"] = \"\"\"${staticIpResolver.resolveToBuildConfig("cdn3.signal.org")}\"\"\"
+            rootProject.extra["sfu_ips"] = \"\"\"${staticIpResolver.resolveToBuildConfig("sfu.voip.signal.org")}\"\"\"
+            rootProject.extra["content_proxy_ips"] = \"\"\"${staticIpResolver.resolveToBuildConfig("contentproxy.signal.org")}\"\"\"
+            rootProject.extra["svr2_ips"] = \"\"\"${staticIpResolver.resolveToBuildConfig("svr2.signal.org")}\"\"\"
+            rootProject.extra["cdsi_ips"] = \"\"\"${staticIpResolver.resolveToBuildConfig("cdsi.signal.org")}\"\"\"
+        """.stripIndent().trim() + "\n"
     }
 }
 

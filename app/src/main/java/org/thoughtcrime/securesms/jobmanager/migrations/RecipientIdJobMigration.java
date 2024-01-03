@@ -26,7 +26,7 @@ public class RecipientIdJobMigration extends JobMigration {
   }
 
   @Override
-  protected @NonNull JobData migrate(@NonNull JobData jobData) {
+  public @NonNull JobData migrate(@NonNull JobData jobData) {
     switch(jobData.getFactoryKey()) {
       case "MultiDeviceContactUpdateJob":  return migrateMultiDeviceContactUpdateJob(jobData);
       case "MultiDeviceRevealUpdateJob":   return migrateMultiDeviceViewOnceOpenJob(jobData);

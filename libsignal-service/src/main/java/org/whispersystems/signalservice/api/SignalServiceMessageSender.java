@@ -18,6 +18,7 @@ import org.signal.libsignal.protocol.message.DecryptionErrorMessage;
 import org.signal.libsignal.protocol.message.PlaintextContent;
 import org.signal.libsignal.protocol.message.SenderKeyDistributionMessage;
 import org.signal.libsignal.protocol.state.PreKeyBundle;
+import org.signal.libsignal.protocol.state.SessionRecord;
 import org.signal.libsignal.protocol.util.Pair;
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil;
@@ -136,6 +137,7 @@ import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -790,6 +792,7 @@ public class SignalServiceMessageSender {
     PushAttachmentData attachmentData   = new PushAttachmentData(attachment.getContentType(),
                                                                  dataStream,
                                                                  ciphertextLength,
+                                                                 attachment.isFaststart(),
                                                                  new AttachmentCipherOutputStreamFactory(attachmentKey, attachmentIV),
                                                                  attachment.getListener(),
                                                                  attachment.getCancelationSignal(),
@@ -875,7 +878,7 @@ public class SignalServiceMessageSender {
                                               attachment.getHeight(),
                                               Optional.of(digest.getDigest()),
                                               Optional.ofNullable(digest.getIncrementalDigest()),
-                                              digest.getIncrementalMacChunkSize(),
+                                              digest.getIncrementalDigest() != null ? digest.getIncrementalMacChunkSize() : 0,
                                               attachment.getFileName(),
                                               attachment.getVoiceNote(),
                                               attachment.isBorderless(),
@@ -2197,7 +2200,7 @@ public class SignalServiceMessageSender {
 
       byte[] ciphertext;
       try {
-        ciphertext = cipher.encryptForGroup(distributionId, targetInfo.destinations, senderCertificate, content.encode(), contentHint, groupId);
+        ciphertext = cipher.encryptForGroup(distributionId, targetInfo.destinations, targetInfo.sessions, senderCertificate, content.encode(), contentHint, groupId);
       } catch (org.signal.libsignal.protocol.UntrustedIdentityException e) {
         throw new UntrustedIdentityException("Untrusted during group encrypt", e.getName(), e.getUntrustedIdentity());
       }
@@ -2245,9 +2248,11 @@ public class SignalServiceMessageSender {
   }
 
   private GroupTargetInfo buildGroupTargetInfo(List<SignalServiceAddress> recipients) {
-    List<String>                             addressNames         = recipients.stream().map(SignalServiceAddress::getIdentifier).collect(Collectors.toList());
-    Set<SignalProtocolAddress>               destinations         = aciStore.getAllAddressesWithActiveSessions(addressNames);
-    Map<String, List<Integer>>               devicesByAddressName = new HashMap<>();
+    List<String>                              addressNames         = recipients.stream().map(SignalServiceAddress::getIdentifier).collect(Collectors.toList());
+    Map<SignalProtocolAddress, SessionRecord> sessionMap           = aciStore.getAllAddressesWithActiveSessions(addressNames);
+    Map<String, List<Integer>>                devicesByAddressName = new HashMap<>();
+
+    Set<SignalProtocolAddress> destinations = new HashSet<>(sessionMap.keySet());
 
     destinations.addAll(recipients.stream()
                                   .map(a -> new SignalProtocolAddress(a.getIdentifier(), SignalServiceAddress.DEFAULT_DEVICE_ID))
@@ -2267,17 +2272,22 @@ public class SignalServiceMessageSender {
       }
     }
 
-    return new GroupTargetInfo(new ArrayList<>(destinations), recipientDevices);
+    return new GroupTargetInfo(new ArrayList<>(destinations), recipientDevices, sessionMap);
   }
 
 
   private static final class GroupTargetInfo {
-    private final List<SignalProtocolAddress>              destinations;
-    private final Map<SignalServiceAddress, List<Integer>> devices;
+    private final List<SignalProtocolAddress>               destinations;
+    private final Map<SignalServiceAddress, List<Integer>>  devices;
+    private final Map<SignalProtocolAddress, SessionRecord> sessions;
 
-    private GroupTargetInfo(List<SignalProtocolAddress> destinations, Map<SignalServiceAddress, List<Integer>> devices) {
+    private GroupTargetInfo(
+        List<SignalProtocolAddress> destinations,
+        Map<SignalServiceAddress, List<Integer>> devices,
+        Map<SignalProtocolAddress, SessionRecord> sessions) {
       this.destinations = destinations;
       this.devices      = devices;
+      this.sessions     = sessions;
     }
   }
 

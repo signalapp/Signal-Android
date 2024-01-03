@@ -323,6 +323,8 @@
     <string name="ConversationItem_cant_download_image_you_will_need_to_send_it_again">ਤਸਵੀਰ ਨੂੰ ਡਾਊਨਲੋਡ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ। ਤੁਹਾਨੂੰ ਇਹ ਦੁਬਾਰਾ ਭੇਜਣੀ ਪਵੇਗੀ।</string>
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">ਵੀਡੀਓ ਨੂੰ ਡਾਊਨਲੋਡ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ। ਤੁਹਾਨੂੰ ਇਹ ਦੁਬਾਰਾ ਭੇਜਣੀ ਪਵੇਗੀ।</string>
+    <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp represents a message that has been edited extremely recently. -->
+    <string name="ConversationItem_edited_now_timestamp_footer">ਹੁਣੇ ਸੋਧਿਆ ਗਿਆ</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
     <string name="ConversationItem_edited_timestamp_footer">ਸੋਧਿਆ ਗਿਆ %1$s</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
@@ -1535,7 +1537,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">ਕੀ ਤੁਸੀਂ %1$s ਨੂੰ ਤੁਹਾਨੂੰ ਸੁਨੇਹਾ ਭੇਜਣ ਦੀ ਇਜਾਜ਼ਤ ਦੇਣਾ ਚਾਹੁੰਦੇ ਹੋ? ਜਦੋਂ ਤੱਕ ਤੁਸੀਂ ਉਹਨਾਂ ਉੱਤੋਂ ਪਾਬੰਦੀ ਨਹੀਂ ਹਟਾਉਂਦੇ, ਉਦੋਂ ਤੱਕ ਤੁਹਾਨੂੰ ਕੋਈ ਵੀ ਸੁਨੇਹੇ ਪ੍ਰਾਪਤ ਨਹੀਂ ਹੋਣਗੇ।</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">ਕੀ ਤੁਸੀਂ %1$s ਤੋਂ ਅੱਪਡੇਟਾਂ ਅਤੇ ਖ਼ਬਰਾਂ ਪ੍ਰਾਪਤ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ? ਜਦੋਂ ਤੱਕ ਤੁਸੀਂ ਉਹਨਾਂ ਉੱਤੋਂ ਪਾਬੰਦੀ ਨਹੀਂ ਹਟਾਉਂਦੇ, ਉਦੋਂ ਤੱਕ ਤੁਹਾਨੂੰ ਕੋਈ ਵੀ ਅੱਪਡੇਟ ਪ੍ਰਾਪਤ ਨਹੀਂ ਹੋਵੇਗੀ।</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">ਇਸ ਗਰੁੱਪ ਵਿੱਚ ਆਪਣੀ ਚੈਟ ਅਤੇ ਇਸਦੇ ਮੈਂਬਰਾਂ ਨਾਲ ਆਪਣਾ ਨਾਂ ਅਤੇ ਫ਼ੋਟੋ ਸਾਂਝੀ ਕਰਨੀ ਜਾਰੀ ਰੱਖਣੀ ਹੈ?</string>
-    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">This Legacy Group can no longer be used. Create a new group to activate new features like @mentions and admins.</string>
+    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">ਇਸ ਲੈਗਸੀ ਗਰੁੱਪ ਨੂੰ ਹੁਣ ਹੋਰ ਨਹੀਂ ਵਰਤਿਆ ਜਾ ਸਕਦਾ। @mentions ਅਤੇ ਐਡਮਿਨ ਵਰਗੇ ਨਵੇਂ ਫੀਚਰਾਂ ਨੂੰ ਕਿਰਿਆਸ਼ੀਲ ਕਰਨ ਲਈ ਇੱਕ ਨਵਾਂ ਗਰੁੱਪ ਬਣਾਓ।</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">ਇਸ ਲੈਗਸੀ ਗਰੁੱਪ ਨੂੰ ਹੁਣ ਹੋਰ ਨਹੀਂ ਵਰਤਿਆ ਜਾ ਸਕਦਾ ਕਿਉਂਕਿ ਇਹ ਬਹੁਤ ਵੱਡਾ ਹੈ। ਗਰੁੱਪ ਦਾ ਵੱਧ ਤੋਂ ਵੱਧ ਆਕਾਰ %1$d ਹੈ।</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">ਕੀ ਤੁਸੀਂ %1$s ਨਾਲ ਆਪਣੀ ਚੈਟ ਨੂੰ ਜਾਰੀ ਰੱਖਣਾ ਅਤੇ ਉਹਨਾਂ ਨਾਲ ਆਪਣੇ ਨਾਂ ਅਤੇ ਫ਼ੋਟੋ ਨੂੰ ਸਾਂਝਾ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">ਇਸ ਗਰੁੱਪ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਣਾ ਅਤੇ ਇਸਦੇ ਮੈਂਬਰਾਂ ਨਾਲ ਆਪਣਾ ਨਾਂ ਅਤੇ ਫ਼ੋਟੋ ਸਾਂਝੀ ਕਰਨੀ ਚਾਹੁੰਦੇ ਹੋ? ਜਦੋਂ ਤੱਕ ਤੁਸੀਂ ਮਨਜ਼ੂਰ ਨਹੀਂ ਕਰ ਲੈਂਦੇ ਉਦੋਂ ਤੱਕ ਉਹਨਾਂ ਨੂੰ ਇਹ ਪਤਾ ਨਹੀਂ ਲੱਗੇਗਾ ਕਿ ਤੁਸੀਂ ਉਹਨਾਂ ਦੇ ਸੁਨੇਹੇ ਦੇਖ ਲਏ ਹਨ।</string>
@@ -1828,6 +1830,8 @@
     <string name="WebRtcCallView__toggle_camera">ਕੈਮਰਾ ਬਦਲੋ</string>
     <!-- Toggle content description for toggling mute state  -->
     <string name="WebRtcCallView__toggle_mute">ਮਿਊਟ ਨੂੰ ਬਦਲੋ</string>
+    <!-- Content description for additional actions menu button -->
+    <string name="WebRtcCallView__additional_actions">ਹੋਰ ਐਕਸ਼ਨ</string>
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">ਕਾਲ ਖਤਮ ਕਰੋ</string>
 
@@ -1845,9 +1849,17 @@
     <string name="WebRtcAudioOutputBottomSheet__earpiece_icon_content_description">ਡਿਵਾਈਸ ਦੇ ਈਅਰਪੀਸ ਨੂੰ ਦਰਸਾਉਣ ਵਾਲਾ ਆਈਕਨ।</string>
 
     <!-- CallParticipantsListDialog -->
-    <plurals name="CallParticipantsListDialog_in_this_call_d_people">
-        <item quantity="one">ਇਸ ਕਾਲ ਵਿੱਚ %1$d ਵਿਅਕਤੀ</item>
-        <item quantity="other">ਇਸ ਕਾਲ ਵਿੱਚ %1$d ਲੋਕ</item>
+    <plurals name="CallParticipantsListDialog_in_this_call">
+        <item quantity="one">ਇਸ ਕਾਲ ਵਿੱਚ (%1$d)</item>
+        <item quantity="other">ਇਸ ਕਾਲ ਵਿੱਚ (%1$d)</item>
+    </plurals>
+    <plurals name="CallParticipantsListDialog__signal_will_ring">
+        <item quantity="one">Signal (%1$d) ਨੂੰ ਰਿੰਗ ਕਰੇਗਾ</item>
+        <item quantity="other">Signal (%1$d) ਨੂੰ ਰਿੰਗ ਕਰੇਗਾ</item>
+    </plurals>
+    <plurals name="CallParticipantsListDialog__signal_will_notify">
+        <item quantity="one">Signal (%1$d) ਨੂੰ ਸੂਚਿਤ ਕਰੇਗਾ</item>
+        <item quantity="other">Signal (%1$d) ਨੂੰ ਸੂਚਿਤ ਕਰੇਗਾ</item>
     </plurals>
 
     <!-- CallParticipantView -->
@@ -2346,6 +2358,8 @@
     </plurals>
     <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
     <string name="TransferControlView__processing">ਕਾਰਵਾਈ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ…</string>
+    <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
+    <string name="TransferControlView__download_progress">%1$s/%2$s</string>
 
 
     <!-- UnauthorizedReminder -->
@@ -2370,6 +2384,8 @@
     <string name="WebRtcCallActivity__answered_on_a_linked_device">ਲਿੰਕ ਕੀਤੀ ਡਿਵਾਈਸ ’ਤੇ ਜਵਾਬ ਦਿੱਤਾ।</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">ਲਿੰਕ ਕੀਤੀ ਡਿਵਾਈਸ ’ਤੇ ਇਨਕਾਰ ਕਰ ਦਿੱਤਾ।</string>
     <string name="WebRtcCallActivity__busy_on_a_linked_device">ਲਿੰਕ ਕੀਤੀ ਡਿਵਾਈਸ ’ਤੇ ਵਿਅਸਤ।</string>
+    <!-- Tooltip message shown first time user is in a video call after switch camera button moved -->
+    <string name="WebRtcCallActivity__flip_camera_tooltip">ਕੈਮਰਾ ਪਲਟਣ ਵਾਲੇ ਬਟਨ ਨੂੰ ਹੁਣ ਇੱਥੇ ਖਿਸਕਾ ਦਿੱਤਾ ਗਿਆ ਹੈ, ਇਸ ਨੂੰ ਅਜ਼ਮਾਉਣ ਲਈ ਆਪਣੀ ਵੀਡੀਓ ਉੱਤੇ ਟੈਪ ਕਰੋ</string>
 
     <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">ਕਾਲ ਵਿੱਚ ਕੋਈ ਅਜਿਹਾ ਵਿਅਕਤੀ ਸ਼ਾਮਲ ਹੋਇਆ ਹੈ ਜਿਸਦਾ ਸੁਰੱਖਿਆ ਨੰਬਰ ਬਦਲ ਗਿਆ ਹੈ।</string>
 
@@ -4582,8 +4598,8 @@
     <string name="NewConversationActivity__">%1$s Signal ਦੇ ਵਰਤੋਂਕਾਰ ਨਹੀਂ ਹਨ</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
     <plurals name="CreateGroupActivity_not_signal_users">
-        <item quantity="one">%1$s is not a Signal user</item>
-        <item quantity="other">%1$s are not Signal users</item>
+        <item quantity="one">%1$s Signal ਦੇ ਵਰਤੋਂਕਾਰ ਨਹੀਂ ਹੈ</item>
+        <item quantity="other">%1$s Signal ਦੇ ਵਰਤੋਂਕਾਰ ਨਹੀਂ ਹਨ</item>
     </plurals>
 
     <!-- ContactFilterView -->
@@ -5110,7 +5126,7 @@
     <!-- Donation receipts one-time tab label -->
     <string name="DonationReceiptListFragment__one_time">ਇੱਕ-ਵਾਰ</string>
     <!-- Donation receipts gift tab -->
-    <string name="DonationReceiptListFragment__for_a_friend">For a friend</string>
+    <string name="DonationReceiptListFragment__for_a_friend">ਕਿਸੇ ਦੋਸਤ ਲਈ</string>
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__donation_for_a_friend">ਕਿਸੇ ਦੋਸਤ ਦੀ ਤਰਫ਼ ਤੋਂ ਦਾਨ</string>
     <!-- Donation receipts donation type heading -->
@@ -5860,9 +5876,9 @@
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
     <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">ਤੁਹਾਡੇ iDEAL ਦਾਨ ਉੱਤੇ ਹਾਲੇ ਵੀ ਕਾਰਵਾਈ ਜਾਰੀ ਹੈ। ਇੱਕ ਵਾਰ ਫੇਰ ਦਾਨ ਕਰਨ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਆਪਣੇ ਭੁਗਤਾਨ ਨੂੰ ਮਨਜ਼ੂਰੀ ਦੇਣ ਲਈ ਆਪਣੀ ਬੈਂਕਿੰਗ ਐਪ ਚੈੱਕ ਕਰੋ।</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
-    <string name="DonateToSignal__donation_amount_too_high">Donation amount too high</string>
+    <string name="DonateToSignal__donation_amount_too_high">ਦਾਨ ਦੀ ਰਕਮ ਬਹੁਤ ਜ਼ਿਆਦਾ ਹੈ</string>
     <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
-    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">You can send up to %1$s via bank transfer. Try a different amount or a different payment method.</string>
+    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">ਤੁਸੀਂ ਬੈਂਕ ਟ੍ਰਾਂਸਫਰ ਰਾਹੀਂ ਵੱਧ ਤੋਂ ਵੱਧ %1$s ਭੇਜ ਸਕਦੇ ਹੋ। ਇੱਕ ਵੱਖਰੀ ਰਕਮ ਜਾਂ ਵੱਖਰੀ ਭੁਗਤਾਨ ਵਿਧੀ ਨੂੰ ਅਜ਼ਮਾ ਕੇ ਦੇਖੋ।</string>
 
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">ਹਰ ਮਹੀਨੇ</string>
@@ -5961,12 +5977,18 @@
     <string name="BankTransferDetailsFragment__iban_country_code_is_not_supported">IBAN ਦੇਸ਼ ਕੋਡ ਸਮਰਥਿਤ ਨਹੀਂ ਹੈ</string>
     <!-- Error label for IBAN field when number is invalid -->
     <string name="BankTransferDetailsFragment__invalid_iban">ਅਵੈਧ IBAN</string>
+    <!-- Error label for name field when name is not at least two characters long -->
+    <string name="BankTransferDetailsFragment__minimum_2_characters">ਘੱਟ ਤੋਂ ਘੱਟ 2 ਅੱਖਰ</string>
+    <!-- Error label for email field when email is not valid -->
+    <string name="BankTransferDetailsFragment__invalid_email_address">ਈਮੇਲ ਪਤਾ ਅਵੈਧ ਹੈ</string>
 
     <!-- IdealTransferDetailsFragment -->
     <!-- Title of the screen, displayed in the toolbar -->
     <string name="IdealTransferDetailsFragment__ideal">iDEAL</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
     <string name="IdealTransferDetailsFragment__enter_your_bank">ਆਪਣੇ ਬੈਂਕ, ਨਾਮ ਅਤੇ ਈਮੇਲ ਪਤਾ ਦਰਜ ਕਰੋ। Stripe ਤੁਹਾਨੂੰ ਤੁਹਾਡੇ ਦਾਨ ਬਾਰੇ ਅੱਪਡੇਟ ਭੇਜਣ ਲਈ ਇਸ ਈਮੇਲ ਦੀ ਵਰਤੋਂ ਕਰਦਾ ਹੈ। %1$s</string>
+    <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
+    <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">ਆਪਣੇ ਬੈਂਕ ਦੇ ਵੇਰਵੇ ਦਰਜ ਕਰੋ। Signal ਤੁਹਾਡੀ ਨਿੱਜੀ ਜਾਣਕਾਰੀ ਨੂੰ ਇਕੱਠਾ ਜਾਂ ਸਟੋਰ ਨਹੀਂ ਕਰਦਾ ਹੈ। %1$s</string>
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
     <string name="IdealTransferDetailsFragment__learn_more">ਹੋਰ ਜਾਣੋ</string>
     <!-- Hint label for text entry box for name on bank account -->
@@ -6406,7 +6428,7 @@
     <string name="UsernameLinkSettings_reset_link_result_network_error">ਤੁਹਾਡੇ ਲਿੰਕ ਨੂੰ ਰੀਸੈੱਟ ਕਰਨ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰਦੇ ਸਮੇਂ ਨੈੱਟਵਰਕ ਵਿੱਚ ਕੋਈ ਗੜਬੜੀ ਆਈ ਸੀ। ਬਾਅਦ ਵਿੱਚ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
-    <string name="UsernameLinkShareBottomSheet_title">Anyone with this link can view your username and start a chat with you. Only share it with people you trust.</string>
+    <string name="UsernameLinkShareBottomSheet_title">ਇਹ ਲਿੰਕ ਜਿਸ ਵਿਅਕਤੀ ਕੋਲ ਵੀ ਹੈ ਉਹ ਤੁਹਾਡਾ ਵਰਤੋਂਕਾਰ ਨਾਂ ਦੇਖ ਸਕਦਾ ਹੈ ਅਤੇ ਤੁਹਾਡੇ ਨਾਲ ਚੈਟ ਸ਼ੁਰੂ ਕਰ ਸਕਦਾ ਹੈ। ਇਸਨੂੰ ਸਿਰਫ਼ ਉਹਨਾਂ ਲੋਕਾਂ ਨਾਲ ਸਾਂਝਾ ਕਰੋ ਜਿਹਨਾਂ ਉੱਤੇ ਤੁਸੀਂ ਭਰੋਸਾ ਕਰਦੇ ਹੋ।</string>
     <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
     <string name="UsernameLinkShareBottomSheet_copy_link">ਲਿੰਕ ਕਾਪੀ ਕਰੋ</string>
     <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
@@ -6448,9 +6470,9 @@
     <string name="GrantFullScreenIntentPermission_bottomsheet_step2">2. %1$s ਪੂਰੀ ਸਕ੍ਰੀਨ ਉੱਤੇ ਦਿਖਣ ਵਾਲੀਆਂ ਸੂਚਨਾਵਾਂ ਨੂੰ ਚਾਲੂ ਕਰੋ</string>
 
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, title for dialog -->
-    <string name="MonthlyDonationCanceled__title">Monthly donation canceled</string>
+    <string name="MonthlyDonationCanceled__title">ਹਰ ਮਹੀਨੇ ਦਿੱਤਾ ਜਾਣ ਵਾਲਾ ਦਾਨ ਰੱਦ ਕੀਤਾ ਗਿਆ</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, body for dialog. First placeholder is a payment related error message. Second placeholder is \'learn more\' -->
-    <string name="MonthlyDonationCanceled__message">Your recurring monthly donation was canceled. %1$s\n\nYour badge will no longer be visible on your profile. %2$s</string>
+    <string name="MonthlyDonationCanceled__message">ਤੁਹਾਡੇ ਵੱਲੋਂ ਹਰ ਮਹੀਨੇ ਦਿੱਤਾ ਜਾਣ ਵਾਲਾ ਦਾਨ ਰੱਦ ਕਰ ਦਿੱਤਾ ਗਿਆ ਸੀ। %1$s\n\n ਤੁਹਾਡਾ ਬੈਜ ਹੁਣ ਤੁਹਾਡੀ ਪ੍ਰੋਫਾਈਲ ਉੱਤੇ ਦਿਖਾਈ ਨਹੀਂ ਦੇਵੇਗਾ। %2$s</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, learn more used in placeholder for body for dialog. -->
     <string name="MonthlyDonationCanceled__learn_more">ਹੋਰ ਜਾਣੋ</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, primary button to renew subscription with new data -->

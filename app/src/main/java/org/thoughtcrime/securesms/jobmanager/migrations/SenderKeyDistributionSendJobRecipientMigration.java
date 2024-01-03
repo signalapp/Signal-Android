@@ -35,7 +35,7 @@ public class SenderKeyDistributionSendJobRecipientMigration extends JobMigration
   }
 
   @Override
-  protected @NonNull JobData migrate(@NonNull JobData jobData) {
+  public @NonNull JobData migrate(@NonNull JobData jobData) {
     if ("SenderKeyDistributionSendJob".equals(jobData.getFactoryKey())) {
       return migrateJob(jobData, groupDatabase);
     } else {

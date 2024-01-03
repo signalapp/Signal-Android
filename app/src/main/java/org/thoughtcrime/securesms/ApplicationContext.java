@@ -34,6 +34,7 @@ import org.signal.core.util.concurrent.AnrDetector;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.AndroidLogger;
 import org.signal.core.util.logging.Log;
+import org.signal.core.util.logging.Scrubber;
 import org.signal.core.util.tracing.Tracer;
 import org.signal.glide.SignalGlideCodecs;
 import org.signal.libsignal.protocol.logging.SignalProtocolLoggerProvider;
@@ -159,6 +160,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
                             .addBlocking("rx-init", this::initializeRx)
                             .addBlocking("event-bus", () -> EventBus.builder().logNoSubscriberMessages(false).installDefaultEventBus())
                             .addBlocking("app-dependencies", this::initializeAppDependencies)
+                            .addBlocking("scrubber", () -> Scrubber.setIdentifierHmacKeyProvider(() -> SignalStore.svr().getOrCreateMasterKey().deriveLoggingKey()))
                             .addBlocking("first-launch", this::initializeFirstEverAppLaunch)
                             .addBlocking("app-migrations", this::initializeApplicationMigrations)
                             .addBlocking("mark-registration", () -> RegistrationUtil.maybeMarkRegistrationComplete())

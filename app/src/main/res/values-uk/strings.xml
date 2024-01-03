@@ -325,6 +325,8 @@
     <string name="ConversationItem_cant_download_image_you_will_need_to_send_it_again">Не вдалося завантажити зображення. Потрібно буде надіслати його ще раз.</string>
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Не вдалося завантажити відео. Потрібно буде надіслати його ще раз.</string>
+    <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp represents a message that has been edited extremely recently. -->
+    <string name="ConversationItem_edited_now_timestamp_footer">Змінено зараз</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
     <string name="ConversationItem_edited_timestamp_footer">Змінено %1$s</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
@@ -1643,7 +1645,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Дозволити користувачу %1$s надсилати вам повідомлення? Ви не отримаєте повідомлень, поки не розблокуєте цього користувача.</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Отримувати оновлення та новини від %1$s? Ви не отримуватимете оновлень, поки не розблокуєте користувача.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Продовжувати спілкуватися з цією групою та ділитися своїм ім’ям та фото з її учасниками?</string>
-    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">This Legacy Group can no longer be used. Create a new group to activate new features like @mentions and admins.</string>
+    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Цю застарілу групу більше не можна використовувати. Створіть нову групу, щоб активувати такі функції, як @згадки та адміністрування.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Ця Застаріла Група більше не може використовуватись, тому що вона занадто велика. Максимальний розмір групи це - %1$d.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Продовжити спілкування в чаті з користувачем %1$s та поділитись іменем і фотографією?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Приєднатися до цієї групи та поділитися своїм ім’ям та фото з її учасниками? Вони не знатимуть, що ви бачили їхні повідомлення, поки ви не приймете.</string>
@@ -1970,6 +1972,8 @@
     <string name="WebRtcCallView__toggle_camera">Перемкнути камеру</string>
     <!-- Toggle content description for toggling mute state  -->
     <string name="WebRtcCallView__toggle_mute">Перемкнути звук</string>
+    <!-- Content description for additional actions menu button -->
+    <string name="WebRtcCallView__additional_actions">Додаткові дії</string>
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">Завершити виклик</string>
 
@@ -1987,11 +1991,23 @@
     <string name="WebRtcAudioOutputBottomSheet__earpiece_icon_content_description">Значок, який представляє навушники пристрою.</string>
 
     <!-- CallParticipantsListDialog -->
-    <plurals name="CallParticipantsListDialog_in_this_call_d_people">
-        <item quantity="one">У цьому дзвінку · %1$d осіб</item>
-        <item quantity="few">У цьому дзвінку · %1$d особа</item>
-        <item quantity="many">У цьому дзвінку · %1$d осіб</item>
-        <item quantity="other">У цьому дзвінку · %1$d осіб</item>
+    <plurals name="CallParticipantsListDialog_in_this_call">
+        <item quantity="one">У цьому виклику (%1$d)</item>
+        <item quantity="few">У цьому виклику (%1$d)</item>
+        <item quantity="many">У цьому виклику (%1$d)</item>
+        <item quantity="other">У цьому виклику (%1$d)</item>
+    </plurals>
+    <plurals name="CallParticipantsListDialog__signal_will_ring">
+        <item quantity="one">Signal зателефонує (%1$d)</item>
+        <item quantity="few">Signal зателефонує (%1$d)</item>
+        <item quantity="many">Signal зателефонує (%1$d)</item>
+        <item quantity="other">Signal зателефонує (%1$d)</item>
+    </plurals>
+    <plurals name="CallParticipantsListDialog__signal_will_notify">
+        <item quantity="one">Signal надішле сповіщення (%1$d)</item>
+        <item quantity="few">Signal надішле сповіщення (%1$d)</item>
+        <item quantity="many">Signal надішле сповіщення (%1$d)</item>
+        <item quantity="other">Signal надішле сповіщення (%1$d)</item>
     </plurals>
 
     <!-- CallParticipantView -->
@@ -2500,6 +2516,8 @@
     </plurals>
     <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
     <string name="TransferControlView__processing">Обробка…</string>
+    <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
+    <string name="TransferControlView__download_progress">%1$s/%2$s</string>
 
 
     <!-- UnauthorizedReminder -->
@@ -2524,6 +2542,8 @@
     <string name="WebRtcCallActivity__answered_on_a_linked_device">Розмову прийнято на прив\'язаному пристрої.</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">Відхилений на прив\'язаному пристрої.</string>
     <string name="WebRtcCallActivity__busy_on_a_linked_device">Зайнято на прив\'язаному пристрої.</string>
+    <!-- Tooltip message shown first time user is in a video call after switch camera button moved -->
+    <string name="WebRtcCallActivity__flip_camera_tooltip">Тепер кнопка перемикання камери знаходиться тут. Торкніться свого відео, щоб спробувати</string>
 
     <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Хтось щойно приєднався до дзвінка зі зміненим кодом безпеки.</string>
 
@@ -4792,10 +4812,10 @@
     <string name="NewConversationActivity__">%1$s не користується Signal</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
     <plurals name="CreateGroupActivity_not_signal_users">
-        <item quantity="one">%1$s is not a Signal user</item>
-        <item quantity="few">%1$s are not Signal users</item>
-        <item quantity="many">%1$s are not Signal users</item>
-        <item quantity="other">%1$s are not Signal users</item>
+        <item quantity="one">%1$s не використовує Signal</item>
+        <item quantity="few">%1$s не використовують Signal</item>
+        <item quantity="many">%1$s не використовують Signal</item>
+        <item quantity="other">%1$s не використовують Signal</item>
     </plurals>
 
     <!-- ContactFilterView -->
@@ -5330,7 +5350,7 @@
     <!-- Donation receipts one-time tab label -->
     <string name="DonationReceiptListFragment__one_time">Одноразово</string>
     <!-- Donation receipts gift tab -->
-    <string name="DonationReceiptListFragment__for_a_friend">For a friend</string>
+    <string name="DonationReceiptListFragment__for_a_friend">Для друга</string>
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__donation_for_a_friend">Донат для друга</string>
     <!-- Donation receipts donation type heading -->
@@ -6122,9 +6142,9 @@
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
     <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">Донат через iDEAL в обробці. Перевірте застосунок свого банку і підтвердьте платіж, перш ніж робити новий донат.</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
-    <string name="DonateToSignal__donation_amount_too_high">Donation amount too high</string>
+    <string name="DonateToSignal__donation_amount_too_high">Сума завелика</string>
     <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
-    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">You can send up to %1$s via bank transfer. Try a different amount or a different payment method.</string>
+    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">За допомогою банківського переказу можна надіслати до %1$s. Спробуйте іншу суму або інший спосіб оплати.</string>
 
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">Щомісяця</string>
@@ -6225,12 +6245,18 @@
     <string name="BankTransferDetailsFragment__iban_country_code_is_not_supported">Код країни IBAN не підтримується</string>
     <!-- Error label for IBAN field when number is invalid -->
     <string name="BankTransferDetailsFragment__invalid_iban">Недійсний IBAN</string>
+    <!-- Error label for name field when name is not at least two characters long -->
+    <string name="BankTransferDetailsFragment__minimum_2_characters">Мінімум 2 символи</string>
+    <!-- Error label for email field when email is not valid -->
+    <string name="BankTransferDetailsFragment__invalid_email_address">Невірна електронна адреса</string>
 
     <!-- IdealTransferDetailsFragment -->
     <!-- Title of the screen, displayed in the toolbar -->
     <string name="IdealTransferDetailsFragment__ideal">iDEAL</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
     <string name="IdealTransferDetailsFragment__enter_your_bank">Введіть свій банк, своє ім\'я та електрону адресу. Stripe використовує вашу електронну адресу, щоб надсилати оновлення щодо внеску. %1$s</string>
+    <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
+    <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">Введіть свої банківські реквізити. Signal не збирає і не зберігає вашу особисту інформацію. %1$s</string>
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
     <string name="IdealTransferDetailsFragment__learn_more">Подробиці</string>
     <!-- Hint label for text entry box for name on bank account -->
@@ -6726,7 +6752,7 @@
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, title for dialog -->
     <string name="MonthlyDonationCanceled__title">Щомісячний донат скасовано</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, body for dialog. First placeholder is a payment related error message. Second placeholder is \'learn more\' -->
-    <string name="MonthlyDonationCanceled__message">Your recurring monthly donation was canceled. %1$s\n\nYour badge will no longer be visible on your profile. %2$s</string>
+    <string name="MonthlyDonationCanceled__message">Ваш регулярний щомісячний донат було скасовано. %1$s\n\nВаш значок більше не відображається у профілі. %2$s</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, learn more used in placeholder for body for dialog. -->
     <string name="MonthlyDonationCanceled__learn_more">Подробиці</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, primary button to renew subscription with new data -->

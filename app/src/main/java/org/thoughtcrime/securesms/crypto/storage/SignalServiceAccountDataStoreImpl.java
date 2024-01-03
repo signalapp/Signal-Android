@@ -21,6 +21,7 @@ import org.whispersystems.signalservice.api.push.DistributionId;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
@@ -126,7 +127,7 @@ public class SignalServiceAccountDataStoreImpl implements SignalServiceAccountDa
   }
 
   @Override
-  public Set<SignalProtocolAddress> getAllAddressesWithActiveSessions(List<String> addressNames) {
+  public Map<SignalProtocolAddress, SessionRecord> getAllAddressesWithActiveSessions(List<String> addressNames) {
     return sessionStore.getAllAddressesWithActiveSessions(addressNames);
   }
 

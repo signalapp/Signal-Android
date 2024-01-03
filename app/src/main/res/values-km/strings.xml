@@ -322,6 +322,8 @@
     <string name="ConversationItem_cant_download_image_you_will_need_to_send_it_again">មិនអាចទាញយករូបភាពទេ។ អ្នកនឹងត្រូវផ្ញើវាម្តងទៀត។</string>
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">មិនអាចទាញយកវីដេអូទេ។ អ្នកនឹងត្រូវផ្ញើវាម្តងទៀត។</string>
+    <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp represents a message that has been edited extremely recently. -->
+    <string name="ConversationItem_edited_now_timestamp_footer">បានកែឥឡូវនេះ</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
     <string name="ConversationItem_edited_timestamp_footer">បានកែ %1$s</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
@@ -1481,7 +1483,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">អាចឲ្យ %1$s ផ្ញើសារមកអ្នកបាន? អ្នកនឹងមិនទទួលបានសារណាមួយឡើយ រហូតទាល់តែអ្នកឈប់ទប់ស្កាត់ពួកគេ។</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">ទទួលបានបច្ចុប្បន្នភាព និងព័ត៌មានពី %1$s? អ្នកនឹងមិនទទួលបានបច្ចុប្បន្នភាពណាមួយឡើយ រហូតទាល់តែអ្នកឈប់ទប់ស្កាត់ពួកគេ។</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">បន្តការជជែករបស់អ្នកជាមួយក្រុមនេះ និងចែករំលែកឈ្មោះ និងរូបភាពរបស់អ្នកជាមួយសមាជិកក្រុម។</string>
-    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">This Legacy Group can no longer be used. Create a new group to activate new features like @mentions and admins.</string>
+    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">ក្រុមកេរដំណែលនេះមិនអាចប្រើបានទៀតឡើយ។ បង្កើតក្រុមថ្មីមួយ ដើម្បីបើកដំណើរការមុខងារថ្មីៗដូចជា @លើកឈ្មោះ និងអ្នកគ្រប់គ្រង។</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">ក្រុមជំនាន់មុន អាចឈប់ប្រើប្រាស់ ដោយសារវាមានទំហំធំពេក។ ទំហំអតិបរមាក្រុមគឺ %1$d។</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">បន្តការជជែកជាមួយ %1$s ហើយចែករំលែកឈ្មោះ និងរូបថតរបស់អ្នកជាមួយគេ?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">ចូលក្រុមនេះ និងចែករំលែកឈ្មោះ និងរូបថតអ្នក ជាមួយសមាជិកក្រុម? ពួកគេនឹងមិនដឹងថាអ្នកបានឃើញសាររបស់ពួកគេ រហូតអ្នកយល់ព្រមទទួល។</string>
@@ -1757,6 +1759,8 @@
     <string name="WebRtcCallView__toggle_camera">បិទ/បើកកាមេរ៉ា</string>
     <!-- Toggle content description for toggling mute state  -->
     <string name="WebRtcCallView__toggle_mute">បិទ/បើកសំឡេង</string>
+    <!-- Content description for additional actions menu button -->
+    <string name="WebRtcCallView__additional_actions">សកម្មភាពបន្ថែម</string>
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">បិទការហៅ</string>
 
@@ -1774,8 +1778,14 @@
     <string name="WebRtcAudioOutputBottomSheet__earpiece_icon_content_description">រូបតំណាងសម្រាប់កាសរបស់ឧបករណ៍។</string>
 
     <!-- CallParticipantsListDialog -->
-    <plurals name="CallParticipantsListDialog_in_this_call_d_people">
-        <item quantity="other">ក្នុងការហៅនេះ · %1$d នាក់</item>
+    <plurals name="CallParticipantsListDialog_in_this_call">
+        <item quantity="other">នៅក្នុងការហៅនេះ (%1$d)</item>
+    </plurals>
+    <plurals name="CallParticipantsListDialog__signal_will_ring">
+        <item quantity="other">Signal នឹងហៅទៅ (%1$d)</item>
+    </plurals>
+    <plurals name="CallParticipantsListDialog__signal_will_notify">
+        <item quantity="other">Signal នឹងជូនដំណឹងទៅ (%1$d)</item>
     </plurals>
 
     <!-- CallParticipantView -->
@@ -2269,6 +2279,8 @@
     </plurals>
     <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
     <string name="TransferControlView__processing">កំពុងដំណើរការ…</string>
+    <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
+    <string name="TransferControlView__download_progress">%1$s/%2$s</string>
 
 
     <!-- UnauthorizedReminder -->
@@ -2293,6 +2305,8 @@
     <string name="WebRtcCallActivity__answered_on_a_linked_device">បានឆ្លើយលើឧបករណ៍ដែលបានតភ្ជាប់។</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">បានបដិសេធលើឧបករណ៍ដែលបានតភ្ជាប់។</string>
     <string name="WebRtcCallActivity__busy_on_a_linked_device">ជាប់រវល់លើឧបករណ៍ដែលបានតភ្ជាប់។</string>
+    <!-- Tooltip message shown first time user is in a video call after switch camera button moved -->
+    <string name="WebRtcCallActivity__flip_camera_tooltip">មុខងារត្រឡប់កាមេរ៉ាត្រូវបានផ្លាស់ទីមកត្រង់នេះ។ ចុចលើវីដេអូរបស់អ្នក ដើម្បីសាកល្បងប្រើវា</string>
 
     <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">នរណាម្នាក់បានចូលរួមការហៅនេះ ជាមួយលេខសុវត្ថិភាពដែលបានផ្លាស់ប្តូរ។</string>
 
@@ -4477,7 +4491,7 @@
     <string name="NewConversationActivity__">%1$s មិនមែនជាអ្នកប្រើ Signal ទេ</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
     <plurals name="CreateGroupActivity_not_signal_users">
-        <item quantity="other">%1$s are not Signal users</item>
+        <item quantity="other">%1$s មិនមែនជាអ្នកប្រើ Signal ទេ</item>
     </plurals>
 
     <!-- ContactFilterView -->
@@ -5000,7 +5014,7 @@
     <!-- Donation receipts one-time tab label -->
     <string name="DonationReceiptListFragment__one_time">តែមួយដង</string>
     <!-- Donation receipts gift tab -->
-    <string name="DonationReceiptListFragment__for_a_friend">For a friend</string>
+    <string name="DonationReceiptListFragment__for_a_friend">សម្រាប់មិត្តភក្តិម្នាក់</string>
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__donation_for_a_friend">ការបរិច្ចាគសម្រាប់មិត្តភក្តិម្នាក់</string>
     <!-- Donation receipts donation type heading -->
@@ -5729,9 +5743,9 @@
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
     <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">ការបរិច្ចាគរបស់អ្នកតាមរយៈ iDEAL កំពុងដំណើរការនៅឡើយ។ សូមមើលកម្មវិធីធនាគាររបស់អ្នកដើម្បីយល់ព្រមលើការបង់ប្រាក់របស់អ្នក មុនពេលធ្វើការបរិច្ចាគផ្សេងទៀត។</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
-    <string name="DonateToSignal__donation_amount_too_high">Donation amount too high</string>
+    <string name="DonateToSignal__donation_amount_too_high">ចំនួនទឹកប្រាក់បរិច្ចាគខ្ពស់ពេក</string>
     <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
-    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">You can send up to %1$s via bank transfer. Try a different amount or a different payment method.</string>
+    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">អ្នកអាចផ្ញើរហូតដល់ %1$s តាមរយៈការផ្ទេរប្រាក់តាមធនាគារ។ សាកល្បងចំនួនទឹកប្រាក់ផ្សេង ឬវិធីបង់ប្រាក់ផ្សេងទៀត។</string>
 
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">ប្រចាំខែ</string>
@@ -5829,12 +5843,18 @@
     <string name="BankTransferDetailsFragment__iban_country_code_is_not_supported">មិនស្គាល់លេខកូដប្រទេស IBAN</string>
     <!-- Error label for IBAN field when number is invalid -->
     <string name="BankTransferDetailsFragment__invalid_iban">លេខ IBAN មិនត្រឹមត្រូវ</string>
+    <!-- Error label for name field when name is not at least two characters long -->
+    <string name="BankTransferDetailsFragment__minimum_2_characters">យ៉ាងតិចណាស់ 2 តួអក្សរ</string>
+    <!-- Error label for email field when email is not valid -->
+    <string name="BankTransferDetailsFragment__invalid_email_address">អាសយដ្ឋានអ៊ីមែលមិនត្រឹមត្រូវ</string>
 
     <!-- IdealTransferDetailsFragment -->
     <!-- Title of the screen, displayed in the toolbar -->
     <string name="IdealTransferDetailsFragment__ideal">iDEAL</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
     <string name="IdealTransferDetailsFragment__enter_your_bank">បញ្ចូលធនាគារ ឈ្មោះ និងអ៊ីមែលរបស់អ្នក។ Stripe ប្រើអ៊ីមែលនេះដើម្បីផ្ញើព័ត៌មានថ្មីៗមកអ្នកអំពីការបរិច្ចាគរបស់អ្នក។ %1$s</string>
+    <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
+    <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">បញ្ចូលព័ត៌មានលម្អិតនៃធនាគាររបស់អ្នក។ Signal មិនប្រមូល ឬរក្សាទុកព័ត៌មានផ្ទាល់ខ្លួនរបស់អ្នកទេ។ %1$s</string>
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
     <string name="IdealTransferDetailsFragment__learn_more">ស្វែងយល់បន្ថែម</string>
     <!-- Hint label for text entry box for name on bank account -->
@@ -6270,7 +6290,7 @@
     <string name="UsernameLinkSettings_reset_link_result_network_error">បញ្ហាបណ្តាញមួយបានកើតឡើង ខណៈពេលព្យាយាមកំណត់តំណរបស់អ្នកឡើងវិញ។ សូមព្យាយាមម្តងទៀតនៅពេលក្រោយ។</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
-    <string name="UsernameLinkShareBottomSheet_title">Anyone with this link can view your username and start a chat with you. Only share it with people you trust.</string>
+    <string name="UsernameLinkShareBottomSheet_title">អ្នកដែលមានតំណនេះអាចមើលឈ្មោះអ្នកប្រើរបស់អ្នក និងចាប់ផ្តើមការជជែកជាមួយអ្នកបាន។ សូមចែករំលែកវាជាមួយមនុស្សដែលអ្នកទុកចិត្តប៉ុណ្ណោះ។</string>
     <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
     <string name="UsernameLinkShareBottomSheet_copy_link">ចម្លងតំណ</string>
     <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
@@ -6310,9 +6330,9 @@
     <string name="GrantFullScreenIntentPermission_bottomsheet_step2">2. %1$s អនុញ្ញាតការជូនដំណឹងពេញអេក្រង់</string>
 
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, title for dialog -->
-    <string name="MonthlyDonationCanceled__title">Monthly donation canceled</string>
+    <string name="MonthlyDonationCanceled__title">ការបរិច្ចាគប្រចាំខែត្រូវបានបោះបង់</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, body for dialog. First placeholder is a payment related error message. Second placeholder is \'learn more\' -->
-    <string name="MonthlyDonationCanceled__message">Your recurring monthly donation was canceled. %1$s\n\nYour badge will no longer be visible on your profile. %2$s</string>
+    <string name="MonthlyDonationCanceled__message">ការបរិច្ចាគប្រចាំខែជាថ្មីទៀតរបស់អ្នកត្រូវបានបោះបង់។ %1$s\n\nស្លាករបស់អ្នកនឹងលែងមើលឃើញនៅលើប្រូហ្វាល់របស់អ្នកទៀតហើយ។ %2$s</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, learn more used in placeholder for body for dialog. -->
     <string name="MonthlyDonationCanceled__learn_more">ស្វែងយល់បន្ថែម</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, primary button to renew subscription with new data -->

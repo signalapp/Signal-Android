@@ -64,6 +64,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.donate.ga
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.StripePaymentInProgressFragment
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.StripePaymentInProgressViewModel
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.transfer.BankTransferRequestKeys
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.transfer.details.BankTransferDetailsViewModel.Field
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
@@ -133,7 +134,7 @@ class BankTransferDetailsFragment : ComposeFragment(), DonationCheckoutDelegate.
       setDisplayFindAccountInfoSheet = viewModel::setDisplayFindAccountInfoSheet,
       onLearnMoreClick = this::onLearnMoreClick,
       onDonateClick = this::onDonateClick,
-      onIBANFocusChanged = viewModel::onIBANFocusChanged,
+      onFocusChanged = viewModel::onFocusChanged,
       donateLabel = donateLabel
     )
   }
@@ -186,7 +187,7 @@ private fun BankTransferDetailsContentPreview() {
       setDisplayFindAccountInfoSheet = {},
       onLearnMoreClick = {},
       onDonateClick = {},
-      onIBANFocusChanged = {},
+      onFocusChanged = { _, _ -> },
       donateLabel = "Donate $5/month"
     )
   }
@@ -202,7 +203,7 @@ private fun BankTransferDetailsContent(
   setDisplayFindAccountInfoSheet: (Boolean) -> Unit,
   onLearnMoreClick: () -> Unit,
   onDonateClick: () -> Unit,
-  onIBANFocusChanged: (Boolean) -> Unit,
+  onFocusChanged: (Field, Boolean) -> Unit,
   donateLabel: String
 ) {
   Scaffolds.Settings(
@@ -275,7 +276,7 @@ private fun BankTransferDetailsContent(
               .fillMaxWidth()
               .padding(top = 12.dp)
               .defaultMinSize(minHeight = 78.dp)
-              .onFocusChanged { onIBANFocusChanged(it.hasFocus) }
+              .onFocusChanged { onFocusChanged(Field.IBAN, it.hasFocus) }
               .focusRequester(focusRequester)
           )
         }
@@ -294,11 +295,17 @@ private fun BankTransferDetailsContent(
             keyboardActions = KeyboardActions(
               onNext = { focusManager.moveFocus(FocusDirection.Down) }
             ),
-            supportingText = {},
+            isError = state.showNameError(),
+            supportingText = {
+              if (state.showNameError()) {
+                Text(text = stringResource(id = R.string.BankTransferDetailsFragment__minimum_2_characters))
+              }
+            },
             modifier = Modifier
               .fillMaxWidth()
               .padding(top = 16.dp)
               .defaultMinSize(minHeight = 78.dp)
+              .onFocusChanged { onFocusChanged(Field.NAME, it.hasFocus) }
           )
         }
 
@@ -316,11 +323,17 @@ private fun BankTransferDetailsContent(
             keyboardActions = KeyboardActions(
               onDone = { onDonateClick() }
             ),
-            supportingText = {},
+            isError = state.showEmailError(),
+            supportingText = {
+              if (state.showEmailError()) {
+                Text(text = stringResource(id = R.string.BankTransferDetailsFragment__invalid_email_address))
+              }
+            },
             modifier = Modifier
               .fillMaxWidth()
               .padding(top = 16.dp)
               .defaultMinSize(minHeight = 78.dp)
+              .onFocusChanged { onFocusChanged(Field.EMAIL, it.hasFocus) }
           )
         }
 

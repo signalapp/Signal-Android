@@ -165,7 +165,7 @@ class BobClient(val serviceId: ServiceId, val e164: String, val identityKeyPair:
     override fun storeSenderKey(sender: SignalProtocolAddress?, distributionId: UUID?, record: SenderKeyRecord?) = throw UnsupportedOperationException()
     override fun loadSenderKey(sender: SignalProtocolAddress?, distributionId: UUID?): SenderKeyRecord = throw UnsupportedOperationException()
     override fun archiveSession(address: SignalProtocolAddress?) = throw UnsupportedOperationException()
-    override fun getAllAddressesWithActiveSessions(addressNames: MutableList<String>?): MutableSet<SignalProtocolAddress> = throw UnsupportedOperationException()
+    override fun getAllAddressesWithActiveSessions(addressNames: MutableList<String>?): MutableMap<SignalProtocolAddress, SessionRecord> = throw UnsupportedOperationException()
     override fun getSenderKeySharedWith(distributionId: DistributionId?): MutableSet<SignalProtocolAddress> = throw UnsupportedOperationException()
     override fun markSenderKeySharedWith(distributionId: DistributionId?, addresses: MutableCollection<SignalProtocolAddress>?) = throw UnsupportedOperationException()
     override fun clearSenderKeySharedWith(addresses: MutableCollection<SignalProtocolAddress>?) = throw UnsupportedOperationException()

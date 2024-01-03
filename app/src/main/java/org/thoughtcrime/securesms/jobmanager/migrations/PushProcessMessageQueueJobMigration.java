@@ -36,7 +36,7 @@ public class PushProcessMessageQueueJobMigration extends JobMigration {
   }
 
   @Override
-  protected @NonNull JobData migrate(@NonNull JobData jobData) {
+  public @NonNull JobData migrate(@NonNull JobData jobData) {
     if ("PushProcessJob".equals(jobData.getFactoryKey())) {
       Log.i(TAG, "Found a PushProcessMessageJob to migrate.");
       try {

@@ -1,5 +1,7 @@
 package org.whispersystems.signalservice.api.kbs;
 
+import org.signal.libsignal.protocol.kdf.HKDF;
+import org.whispersystems.signalservice.api.backup.BackupKey;
 import org.whispersystems.signalservice.api.storage.StorageKey;
 import org.whispersystems.signalservice.internal.util.Hex;
 import org.signal.core.util.Base64;
@@ -8,7 +10,7 @@ import org.whispersystems.util.StringUtil;
 import java.security.SecureRandom;
 import java.util.Arrays;
 
-import static org.whispersystems.signalservice.api.crypto.CryptoUtil.hmacSha256;
+import static org.signal.core.util.CryptoUtil.hmacSha256;
 
 public final class MasterKey {
 
@@ -38,6 +40,14 @@ public final class MasterKey {
 
   public StorageKey deriveStorageServiceKey() {
     return new StorageKey(derive("Storage Service Encryption"));
+  }
+
+  public byte[] deriveLoggingKey() {
+    return derive("Logging Key");
+  }
+
+  public BackupKey deriveBackupKey() {
+    return new BackupKey(HKDF.deriveSecrets(masterKey, "20231003_Signal_Backups_GenerateBackupKey".getBytes(), 32));
   }
 
   private byte[] derive(String keyName) {

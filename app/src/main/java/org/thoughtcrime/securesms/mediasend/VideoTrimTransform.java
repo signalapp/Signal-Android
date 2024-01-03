@@ -33,6 +33,6 @@ public final class VideoTrimTransform implements MediaTransform {
                      media.isVideoGif(),
                      media.getBucketId(),
                      media.getCaption(),
-                     Optional.of(new AttachmentTable.TransformProperties(false, data.durationEdited, data.startTimeUs, data.endTimeUs, SentMediaQuality.STANDARD.getCode())));
+                     Optional.of(new AttachmentTable.TransformProperties(false, data.durationEdited, data.startTimeUs, data.endTimeUs, SentMediaQuality.STANDARD.getCode(), false)));
   }
 }

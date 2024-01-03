@@ -5,6 +5,8 @@
 
 package org.signal.core.util.logging
 
+import org.signal.core.util.CryptoUtil
+import org.signal.core.util.Hex
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
@@ -20,10 +22,8 @@ object Scrubber {
    * Supposedly, the shortest international phone numbers in use contain seven digits.
    * Handles URL encoded +, %2B
    */
-  private val E164_PATTERN = Pattern.compile("(\\+|%2B)(\\d{5,13})(\\d{2})")
-  private const val E164_CENSOR = "*************"
-
-  private val E164_ZERO_PATTERN = Pattern.compile("\\b(0)(\\d{8})(\\d{2})\\b")
+  private val E164_PATTERN = Pattern.compile("(\\+|%2B)(\\d{7,15})")
+  private val E164_ZERO_PATTERN = Pattern.compile("\\b0(\\d{10})\\b")
 
   /** The second group will be censored.*/
   private val CRUDE_EMAIL_PATTERN = Pattern.compile("\\b([^\\s/])([^\\s/]*@[^\\s]+)")
@@ -40,6 +40,8 @@ object Scrubber {
   /** The middle group will be censored. */
   private val UUID_PATTERN = Pattern.compile("(JOB::)?([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{9})([0-9a-f]{3})", Pattern.CASE_INSENSITIVE)
   private const val UUID_CENSOR = "********-****-****-****-*********"
+
+  private val PNI_PATTERN = Pattern.compile("PNI:([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{9}[0-9a-f]{3})", Pattern.CASE_INSENSITIVE)
 
   /**
    * The entire string is censored. Note: left as concatenated strings because kotlin string literals leave trailing newlines, and removing them breaks
@@ -76,6 +78,14 @@ object Scrubber {
   private const val CALL_LINK_CENSOR_SUFFIX = "-XXXX-XXXX-XXXX-XXXX-XXXX-XXXX-XXXX"
 
   @JvmStatic
+  @Volatile
+  var identifierHmacKeyProvider: () -> ByteArray? = { null }
+
+  @JvmStatic
+  @Volatile
+  private var identifierHmacKey: ByteArray? = null
+
+  @JvmStatic
   fun scrub(input: CharSequence): CharSequence {
     return input
       .scrubE164()
@@ -83,6 +93,7 @@ object Scrubber {
       .scrubEmail()
       .scrubGroupsV1()
       .scrubGroupsV2()
+      .scrubPnis()
       .scrubUuids()
       .scrubDomains()
       .scrubIpv4()
@@ -93,18 +104,16 @@ object Scrubber {
   private fun CharSequence.scrubE164(): CharSequence {
     return scrub(this, E164_PATTERN) { matcher, output ->
       output
-        .append(matcher.group(1))
-        .append(E164_CENSOR, 0, matcher.group(2)!!.length)
-        .append(matcher.group(3))
+        .append("E164:")
+        .append(hash(matcher.group(2)))
     }
   }
 
   private fun CharSequence.scrubE164Zero(): CharSequence {
     return scrub(this, E164_ZERO_PATTERN) { matcher, output ->
       output
-        .append(matcher.group(1))
-        .append(E164_CENSOR, 0, matcher.group(2)!!.length)
-        .append(matcher.group(3))
+        .append("E164:")
+        .append(hash(matcher.group(1)))
     }
   }
 
@@ -131,6 +140,14 @@ object Scrubber {
         .append(matcher.group(1))
         .append(GROUP_ID_V2_CENSOR)
         .append(matcher.group(3))
+    }
+  }
+
+  private fun CharSequence.scrubPnis(): CharSequence {
+    return scrub(this, PNI_PATTERN) { matcher, output ->
+      output
+        .append("PNI:")
+        .append(hash(matcher.group(1)))
     }
   }
 
@@ -197,5 +214,15 @@ object Scrubber {
       output.append(input, lastEndingPos, input.length)
       output
     }
+  }
+
+  private fun hash(value: String): String {
+    if (identifierHmacKey == null) {
+      identifierHmacKey = identifierHmacKeyProvider()
+    }
+
+    val key: ByteArray = identifierHmacKey ?: return "<redacted>"
+    val hash = CryptoUtil.hmacSha256(key, value.toByteArray())
+    return "<${Hex.toStringCondensed(hash).take(5)}>"
   }
 }

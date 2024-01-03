@@ -322,6 +322,8 @@
     <string name="ConversationItem_cant_download_image_you_will_need_to_send_it_again">無法下載圖像。你需要再次傳送。</string>
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">無法下載影片。你需要再次傳送。</string>
+    <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp represents a message that has been edited extremely recently. -->
+    <string name="ConversationItem_edited_now_timestamp_footer">已編輯 現在</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
     <string name="ConversationItem_edited_timestamp_footer">%1$s 前已編輯</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
@@ -1481,7 +1483,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">要讓 %1$s 傳訊息給你嗎？在解封鎖他們之前，你不會收到任何訊息。</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">要從 %1$s取得更新和新聞的通知嗎？ 在你取消封鎖它們之前，你不會收到任何更新通知。</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">繼續與該群群組聊天，並與其成員分享你的名字和照片嗎？</string>
-    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">This Legacy Group can no longer be used. Create a new group to activate new features like @mentions and admins.</string>
+    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">此舊版群組無法再使用。建立新群組以啟用「@提及」和管理員等新功能。</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">此舊版群組太大，因此無法再使用。 最大組大小為%1$d。</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">要繼續與 %1$s 聊天，並與其分享你的名稱和照片嗎？</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">加入該群組並與其成員分享你的名字和照片嗎？ 在你接受之前，他們不會知道你已看到他們的訊息。</string>
@@ -1757,6 +1759,8 @@
     <string name="WebRtcCallView__toggle_camera">切換攝影機</string>
     <!-- Toggle content description for toggling mute state  -->
     <string name="WebRtcCallView__toggle_mute">切換靜音</string>
+    <!-- Content description for additional actions menu button -->
+    <string name="WebRtcCallView__additional_actions">其他操作</string>
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">掛斷</string>
 
@@ -1774,8 +1778,14 @@
     <string name="WebRtcAudioOutputBottomSheet__earpiece_icon_content_description">代表裝置耳機的圖示。</string>
 
     <!-- CallParticipantsListDialog -->
-    <plurals name="CallParticipantsListDialog_in_this_call_d_people">
-        <item quantity="other">在此通話中·%1$d個人</item>
+    <plurals name="CallParticipantsListDialog_in_this_call">
+        <item quantity="other">在此通話中 (%1$d)</item>
+    </plurals>
+    <plurals name="CallParticipantsListDialog__signal_will_ring">
+        <item quantity="other">Signal 會打電話給 (%1$d)</item>
+    </plurals>
+    <plurals name="CallParticipantsListDialog__signal_will_notify">
+        <item quantity="other">Signal 會通知 (%1$d)</item>
     </plurals>
 
     <!-- CallParticipantView -->
@@ -2269,6 +2279,8 @@
     </plurals>
     <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
     <string name="TransferControlView__processing">正在處理…</string>
+    <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
+    <string name="TransferControlView__download_progress">%1$s/%2$s</string>
 
 
     <!-- UnauthorizedReminder -->
@@ -2293,6 +2305,8 @@
     <string name="WebRtcCallActivity__answered_on_a_linked_device">在已連結的裝置回答。</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">拒絕在已連結的裝置。</string>
     <string name="WebRtcCallActivity__busy_on_a_linked_device">已連結的裝置忙線。</string>
+    <!-- Tooltip message shown first time user is in a video call after switch camera button moved -->
+    <string name="WebRtcCallActivity__flip_camera_tooltip">「切換鏡頭」已移動到此處，點一下你的影片來嘗試</string>
 
     <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">有人加入了此通話，並更改了一個安全碼。</string>
 
@@ -4477,7 +4491,7 @@
     <string name="NewConversationActivity__">%1$s 不是 Signal 用戶</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
     <plurals name="CreateGroupActivity_not_signal_users">
-        <item quantity="other">%1$s are not Signal users</item>
+        <item quantity="other">%1$s 不是 Signal 用戶</item>
     </plurals>
 
     <!-- ContactFilterView -->
@@ -5000,7 +5014,7 @@
     <!-- Donation receipts one-time tab label -->
     <string name="DonationReceiptListFragment__one_time">一次性</string>
     <!-- Donation receipts gift tab -->
-    <string name="DonationReceiptListFragment__for_a_friend">For a friend</string>
+    <string name="DonationReceiptListFragment__for_a_friend">為朋友</string>
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__donation_for_a_friend">為朋友捐款</string>
     <!-- Donation receipts donation type heading -->
@@ -5729,9 +5743,9 @@
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
     <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">你的 iDEAL 捐款仍在處理中。 請檢查銀行應用程式以核准你的付款，然後才進行另一次捐款。</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
-    <string name="DonateToSignal__donation_amount_too_high">Donation amount too high</string>
+    <string name="DonateToSignal__donation_amount_too_high">捐款金額太高</string>
     <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
-    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">You can send up to %1$s via bank transfer. Try a different amount or a different payment method.</string>
+    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">你可以透過銀行轉帳寄送最多 %1$s 。嘗試不同金額或不同付款方式。</string>
 
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">每個月</string>
@@ -5829,12 +5843,18 @@
     <string name="BankTransferDetailsFragment__iban_country_code_is_not_supported">未支援 IBAN 國家代碼</string>
     <!-- Error label for IBAN field when number is invalid -->
     <string name="BankTransferDetailsFragment__invalid_iban">IBAN 無效</string>
+    <!-- Error label for name field when name is not at least two characters long -->
+    <string name="BankTransferDetailsFragment__minimum_2_characters">最少 2 個字元</string>
+    <!-- Error label for email field when email is not valid -->
+    <string name="BankTransferDetailsFragment__invalid_email_address">電郵地址無效</string>
 
     <!-- IdealTransferDetailsFragment -->
     <!-- Title of the screen, displayed in the toolbar -->
     <string name="IdealTransferDetailsFragment__ideal">iDEAL</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
     <string name="IdealTransferDetailsFragment__enter_your_bank">請輸入你的銀行、名稱和電郵地址。 Stripe 會使用此電郵向你發送有關捐款的最新訊息。 %1$s</string>
+    <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
+    <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">請輸入你的銀行資料。 Signal 不會收集或儲存你的個人資料。%1$s</string>
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
     <string name="IdealTransferDetailsFragment__learn_more">了解更多</string>
     <!-- Hint label for text entry box for name on bank account -->
@@ -6312,7 +6332,7 @@
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, title for dialog -->
     <string name="MonthlyDonationCanceled__title">已取消每月捐款</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, body for dialog. First placeholder is a payment related error message. Second placeholder is \'learn more\' -->
-    <string name="MonthlyDonationCanceled__message">Your recurring monthly donation was canceled. %1$s\n\nYour badge will no longer be visible on your profile. %2$s</string>
+    <string name="MonthlyDonationCanceled__message">你的每月定期捐款已經取消。%1$s\n\n你的徽章不會再顯示在你的個人資料中。%2$s</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, learn more used in placeholder for body for dialog. -->
     <string name="MonthlyDonationCanceled__learn_more">了解更多</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, primary button to renew subscription with new data -->

@@ -323,6 +323,8 @@
     <string name="ConversationItem_cant_download_image_you_will_need_to_send_it_again">Huwezi kupakua picha. Utahitaji kuituma tena.</string>
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Huwezi kupakua video. Utahitaji kuituma tena.</string>
+    <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp represents a message that has been edited extremely recently. -->
+    <string name="ConversationItem_edited_now_timestamp_footer">Imehaririwa Sasa</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
     <string name="ConversationItem_edited_timestamp_footer">Imehaririwa %1$s</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
@@ -1535,7 +1537,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Je ungependa kumruhusu %1$s akutumie ujumbe? Hutapata jumbe zozote mpaka utakapoondoa kizuizi kwake.</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Pata masasisho na habari kutoka kwa %1$s? Hutapata sasisho zozote mpaka utakapoondoa kizuizi kwao.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Ungependa kuendelea kuzungumza na kikundi hiki na ushiriki jina na picha yako na wanachama wake?</string>
-    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">This Legacy Group can no longer be used. Create a new group to activate new features like @mentions and admins.</string>
+    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Kikundi hiki cha Legacy hakiwezi kutumiwa tena. Unda kikundi kipya ili kutumia vipengele vipya kama @watajwa na admins.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Kikundi hiki Kizee hakiwezi tena kutumiwa kwa sababu ni kikubwa mno. Ukubwa wa juu zaidi wa kikundi ni %1$d.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Endelea na gumzo hili na %1$s na ushiriki jina na picha yako naye?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Ungependa kujiunge na kikundi hiki na ushiriki jina na picha yako na washiriki wake? Hawatajua umeona ujumbe wao hadi utakapokubali.</string>
@@ -1828,6 +1830,8 @@
     <string name="WebRtcCallView__toggle_camera">Geuza kamera</string>
     <!-- Toggle content description for toggling mute state  -->
     <string name="WebRtcCallView__toggle_mute">Geuza kunyamazisha</string>
+    <!-- Content description for additional actions menu button -->
+    <string name="WebRtcCallView__additional_actions">Hatua za ziada</string>
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">Mwisho wa simu</string>
 
@@ -1845,9 +1849,17 @@
     <string name="WebRtcAudioOutputBottomSheet__earpiece_icon_content_description">Ikoni inayowakilisha kisikilizishi cha kifaa.</string>
 
     <!-- CallParticipantsListDialog -->
-    <plurals name="CallParticipantsListDialog_in_this_call_d_people">
-        <item quantity="one">Katika mazungumzo haya ya simu· Watu %1$d</item>
-        <item quantity="other">Katika mazungumzo haya ya simu· Watu %1$d</item>
+    <plurals name="CallParticipantsListDialog_in_this_call">
+        <item quantity="one">(%1$d) kwenye simu hii</item>
+        <item quantity="other">(%1$d) kwenye simu hii</item>
+    </plurals>
+    <plurals name="CallParticipantsListDialog__signal_will_ring">
+        <item quantity="one">Signal Itaita (%1$d)</item>
+        <item quantity="other">Signal Itaita (%1$d)</item>
+    </plurals>
+    <plurals name="CallParticipantsListDialog__signal_will_notify">
+        <item quantity="one">Signal Itamtaarifu (%1$d)</item>
+        <item quantity="other">Signal Itawataarifu (%1$d)</item>
     </plurals>
 
     <!-- CallParticipantView -->
@@ -2346,6 +2358,8 @@
     </plurals>
     <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
     <string name="TransferControlView__processing">Inachakata…</string>
+    <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
+    <string name="TransferControlView__download_progress">%1$s/%2$s</string>
 
 
     <!-- UnauthorizedReminder -->
@@ -2370,6 +2384,8 @@
     <string name="WebRtcCallActivity__answered_on_a_linked_device">Umejibu kwenye kifaa kilichounganishwa.</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">Umekataa kwenye kifaa kilichounganishwa.</string>
     <string name="WebRtcCallActivity__busy_on_a_linked_device">Una shughuli kwenye kifaa kilichounganishwa.</string>
+    <!-- Tooltip message shown first time user is in a video call after switch camera button moved -->
+    <string name="WebRtcCallActivity__flip_camera_tooltip">Kamera Mbinjuko imehamishiwa hapa, gusa video yako ili kuijaribu</string>
 
     <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Mtu fulani amejiunga na mazungumzo haya ya simu kwa kutumia nambari ya usalama ambayo imebadilika.</string>
 
@@ -4582,8 +4598,8 @@
     <string name="NewConversationActivity__">%1$s si mtumiaji wa Signal</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
     <plurals name="CreateGroupActivity_not_signal_users">
-        <item quantity="one">%1$s is not a Signal user</item>
-        <item quantity="other">%1$s are not Signal users</item>
+        <item quantity="one">%1$s Si mtumiaji wa Signal</item>
+        <item quantity="other">%1$s si watumiaji wa Signal</item>
     </plurals>
 
     <!-- ContactFilterView -->
@@ -5110,7 +5126,7 @@
     <!-- Donation receipts one-time tab label -->
     <string name="DonationReceiptListFragment__one_time">Mara moja</string>
     <!-- Donation receipts gift tab -->
-    <string name="DonationReceiptListFragment__for_a_friend">For a friend</string>
+    <string name="DonationReceiptListFragment__for_a_friend">Kwa ajili ya rafiki</string>
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__donation_for_a_friend">Mchango kwa rafiki</string>
     <!-- Donation receipts donation type heading -->
@@ -5860,9 +5876,9 @@
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
     <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">Mchango wako wa iDEAL bado unachakatwa. Angalia programu yako ya benki ili kuthibitisha malipo kabla kufanya mchango mwingine.</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
-    <string name="DonateToSignal__donation_amount_too_high">Donation amount too high</string>
+    <string name="DonateToSignal__donation_amount_too_high">Kiwango cha mchango ni kikubwa sana</string>
     <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
-    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">You can send up to %1$s via bank transfer. Try a different amount or a different payment method.</string>
+    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">Unaweza kutuma hadi %1$s kupitia benki. Jaribu kiasi tofauti au njia tofauti ya malipo.</string>
 
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">Kila mwezi</string>
@@ -5961,12 +5977,18 @@
     <string name="BankTransferDetailsFragment__iban_country_code_is_not_supported">Msimbo wa nchi wa IBAN hautumiki</string>
     <!-- Error label for IBAN field when number is invalid -->
     <string name="BankTransferDetailsFragment__invalid_iban">Nambari ya IBAN isiyo halali</string>
+    <!-- Error label for name field when name is not at least two characters long -->
+    <string name="BankTransferDetailsFragment__minimum_2_characters">Kiwango cha chini herufi 2</string>
+    <!-- Error label for email field when email is not valid -->
+    <string name="BankTransferDetailsFragment__invalid_email_address">Anuani ya barua pepe isiyo sahihi</string>
 
     <!-- IdealTransferDetailsFragment -->
     <!-- Title of the screen, displayed in the toolbar -->
     <string name="IdealTransferDetailsFragment__ideal">iDEAL</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
     <string name="IdealTransferDetailsFragment__enter_your_bank">Ingiza benki yako, jina na barua pepe. Stripe inatumia barua pepe hii kukutumia taarifa kuhusu mchango wako. %1$s</string>
+    <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
+    <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">Weka taarifa zako za benki. Signal haikusanyi wala kuhifadhi taarifa zako binafsi. %1$s</string>
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
     <string name="IdealTransferDetailsFragment__learn_more">Jifunze zaidi</string>
     <!-- Hint label for text entry box for name on bank account -->
@@ -6406,7 +6428,7 @@
     <string name="UsernameLinkSettings_reset_link_result_network_error">Hitilafu ya kimtandao imetokea wakati wa kuweka upya kiungo chako. Jaribu tena baadaye.</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
-    <string name="UsernameLinkShareBottomSheet_title">Anyone with this link can view your username and start a chat with you. Only share it with people you trust.</string>
+    <string name="UsernameLinkShareBottomSheet_title">Yeyote aliye na kiungo hiki anaweza kuona jina lako la mtumiaji na kuanza mazungumzo nawe. Ishiriki tu na watu unaowaamini.</string>
     <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
     <string name="UsernameLinkShareBottomSheet_copy_link">Nakili kiungo</string>
     <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
@@ -6448,9 +6470,9 @@
     <string name="GrantFullScreenIntentPermission_bottomsheet_step2">2. %1$s Ruhusu arifa za skrini nzima</string>
 
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, title for dialog -->
-    <string name="MonthlyDonationCanceled__title">Monthly donation canceled</string>
+    <string name="MonthlyDonationCanceled__title">Mchango wa mwezi umeghairishwa</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, body for dialog. First placeholder is a payment related error message. Second placeholder is \'learn more\' -->
-    <string name="MonthlyDonationCanceled__message">Your recurring monthly donation was canceled. %1$s\n\nYour badge will no longer be visible on your profile. %2$s</string>
+    <string name="MonthlyDonationCanceled__message">Mchango wako wa mwezi unaojirudia umeghairishwa. %1$s\n\nBeji yako haitaonekana tena kwenye wasifu wako. %2$s</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, learn more used in placeholder for body for dialog. -->
     <string name="MonthlyDonationCanceled__learn_more">Jifunze zaidi</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, primary button to renew subscription with new data -->

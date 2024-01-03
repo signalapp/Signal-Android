@@ -1,0 +1,567 @@
+syntax = "proto3";
+
+package signal.backup;
+
+option java_package = "org.thoughtcrime.securesms.backup.v2.proto";
+
+message BackupInfo {
+  uint64 version = 1;
+  uint64 backupTimeMs = 2;
+  bytes  iv = 3;
+}
+
+message Frame {
+  oneof item {
+    AccountData account = 1;
+    Recipient recipient = 2;
+    Chat chat = 3;
+    ChatItem chatItem = 4;
+    Call call = 5;
+    StickerPack stickerPack = 6;
+  }
+}
+
+message AccountData {
+  enum PhoneNumberSharingMode {
+    UNKNOWN = 0;
+    EVERYBODY = 1;
+    NOBODY = 2;
+  }
+  message UsernameLink {
+    enum Color {
+      UNKNOWN = 0;
+      BLUE = 1;
+      WHITE = 2;
+      GREY = 3;
+      OLIVE = 4;
+      GREEN = 5;
+      ORANGE = 6;
+      PINK = 7;
+      PURPLE = 8;
+    }
+
+    bytes entropy = 1;  // 32 bytes of entropy used for encryption
+    bytes serverId = 2; // 16 bytes of encoded UUID provided by the server
+    Color color = 3;
+  }
+
+  message AccountSettings {
+    bool readReceipts = 1;
+    bool sealedSenderIndicators = 2;
+    bool typingIndicators = 3;
+    bool noteToSelfMarkedUnread = 4;
+    bool linkPreviews = 5;
+    bool notDiscoverableByPhoneNumber = 6;
+    bool preferContactAvatars = 7;
+    uint32 universalExpireTimer = 8;
+    repeated string preferredReactionEmoji = 9;
+    bool displayBadgesOnProfile = 10;
+    bool keepMutedChatsArchived = 11;
+    bool hasSetMyStoriesPrivacy = 12;
+    bool hasViewedOnboardingStory = 13;
+    bool storiesDisabled = 14;
+    optional bool storyViewReceiptsEnabled = 15;
+    bool hasSeenGroupStoryEducationSheet = 16;
+    bool hasCompletedUsernameOnboarding = 17;
+    PhoneNumberSharingMode phoneNumberSharingMode = 18;
+  }
+
+  bytes profileKey = 1;
+  optional string username = 2;
+  UsernameLink usernameLink = 3;
+  string givenName = 4;
+  string familyName = 5;
+  string avatarUrlPath = 6;
+  bytes subscriberId = 7;
+  string subscriberCurrencyCode = 8;
+  bool subscriptionManuallyCancelled = 9;
+  AccountSettings accountSettings = 10;
+}
+
+message Recipient {
+  uint64 id = 1; // generated id for reference only within this file
+  oneof destination {
+    Contact contact = 2;
+    Group group = 3;
+    DistributionList distributionList = 4;
+    Self self = 5;
+    ReleaseNotes releaseNotes = 6;
+  }
+}
+
+message Contact {
+  enum Registered {
+    UNKNOWN = 0;
+    REGISTERED = 1;
+    NOT_REGISTERED = 2;
+  }
+
+  optional bytes aci = 1; // should be 16 bytes
+  optional bytes pni = 2; // should be 16 bytes
+  optional string username = 3;
+  optional uint64 e164 = 4;
+  bool blocked = 5;
+  bool hidden = 6;
+  Registered registered = 7;
+  uint64 unregisteredTimestamp = 8;
+  optional bytes profileKey = 9;
+  bool profileSharing = 10;
+  optional string profileGivenName = 11;
+  optional string profileFamilyName = 12;
+  bool hideStory = 13;
+}
+
+message Group {
+  enum StorySendMode {
+    DEFAULT = 0;
+    DISABLED = 1;
+    ENABLED = 2;
+  }
+
+  bytes masterKey = 1;
+  bool whitelisted = 2;
+  bool hideStory = 3;
+  StorySendMode storySendMode = 4;
+}
+
+message Self {}
+
+message ReleaseNotes {}
+
+message Chat {
+  uint64 id = 1; // generated id for reference only within this file
+  uint64 recipientId = 2;
+  bool archived = 3;
+  uint32 pinnedOrder = 4; // 0 = unpinned, otherwise chat is considered pinned and will be displayed in ascending order
+  uint64 expirationTimerMs = 5;
+  uint64 muteUntilMs = 6;
+  bool markedUnread = 7;
+  bool dontNotifyForMentionsIfMuted = 8;
+  FilePointer wallpaper = 9;
+}
+
+message DistributionList {
+  enum PrivacyMode {
+    UNKNOWN = 0;
+    ONLY_WITH = 1;
+    ALL_EXCEPT = 2;
+    ALL = 3;
+  }
+
+  string name = 1;
+  bytes distributionId = 2; // distribution list ids are uuids
+  bool allowReplies = 3;
+  uint64 deletionTimestamp = 4;
+  PrivacyMode privacyMode = 5;
+  repeated uint64 memberRecipientIds = 6; // generated recipient id
+}
+
+message Identity {
+  bytes serviceId = 1;
+  bytes identityKey = 2;
+  uint64 timestamp = 3;
+  bool firstUse = 4;
+  bool verified = 5;
+  bool nonblockingApproval = 6;
+}
+
+message Call {
+  enum Type {
+    UNKNOWN_TYPE = 0;
+    AUDIO_CALL = 1;
+    VIDEO_CALL = 2;
+    GROUP_CALL = 3;
+    AD_HOC_CALL = 4;
+  }
+
+  enum Event {
+    UNKNOWN_EVENT = 0;
+    OUTGOING = 1; // 1:1 calls only
+    ACCEPTED = 2; // 1:1 and group calls. Group calls: You accepted a ring.
+    NOT_ACCEPTED = 3; // 1:1 calls only,
+    MISSED = 4; // 1:1 and group. Group calls: The remote ring has expired or was cancelled by the ringer.
+    DELETE = 5; // 1:1 and Group/Ad-Hoc Calls.
+    GENERIC_GROUP_CALL = 6; // Group/Ad-Hoc Calls only. Initial state
+    JOINED = 7; // Group Calls: User has joined the group call.
+    DECLINED = 8; // Group Calls: If you declined a ring.
+    OUTGOING_RING = 9; // Group Calls: If you are ringing a group.
+  }
+
+  uint64 callId = 1;
+  uint64 conversationRecipientId = 2;
+  Type type = 3;
+  bool outgoing = 4;
+  uint64 timestamp = 5;
+  uint64 ringerRecipientId = 6;
+  Event event = 7;
+}
+
+message ChatItem {
+  message IncomingMessageDetails {
+    uint64 dateReceived = 1;
+    uint64 dateServerSent = 2;
+    bool read = 3;
+  }
+
+  message OutgoingMessageDetails {
+    repeated SendStatus sendStatus = 1;
+  }
+
+  uint64 chatId = 1;   // conversation id
+  uint64 authorId = 2; // recipient id
+  uint64 dateSent = 3;
+  bool sealedSender = 4;
+  optional uint64 expireStartDate = 5; // timestamp of when expiration timer started ticking down
+  optional uint64 expiresInMs = 6; // how long timer of message is (ms)
+  repeated ChatItem revisions = 7; // ordered from oldest to newest
+  bool sms = 8;
+
+  oneof directionalDetails {
+    IncomingMessageDetails incoming = 10;
+    OutgoingMessageDetails outgoing = 12;
+  }
+
+  oneof item {
+    StandardMessage standardMessage = 13;
+    ContactMessage contactMessage = 14;
+    VoiceMessage voiceMessage = 15;
+    StickerMessage stickerMessage = 16;
+    RemoteDeletedMessage remoteDeletedMessage = 17;
+    ChatUpdateMessage updateMessage = 18;
+  }
+}
+
+message SendStatus {
+  enum Status {
+    UNKNOWN = 0;
+    FAILED = 1;
+    PENDING = 2;
+    SENT = 3;
+    DELIVERED = 4;
+    READ = 5;
+    VIEWED = 6;
+    SKIPPED = 7; // e.g. user in group was blocked, so we skipped sending to them
+  }
+
+  uint64 recipientId = 1;
+  Status deliveryStatus = 2;
+  bool networkFailure = 3;
+  bool identityKeyMismatch = 4;
+  bool sealedSender = 5;
+  uint64 lastStatusUpdateTimestamp = 6; // the time the status was last updated -- if from a receipt, it should be the sentTime of the receipt
+}
+
+message Text {
+  string body = 1;
+  repeated BodyRange bodyRanges = 2;
+}
+
+message StandardMessage {
+  optional Quote quote = 1;
+  optional Text text = 2;
+  repeated FilePointer attachments = 3;
+  repeated LinkPreview linkPreview = 4;
+  optional FilePointer longText = 5;
+  repeated Reaction reactions = 6;
+}
+
+message ContactMessage {
+  repeated ContactAttachment contact = 1;
+  repeated Reaction reactions = 2;
+}
+
+message ContactAttachment {
+  message Name {
+    optional string givenName = 1;
+    optional string familyName = 2;
+    optional string prefix = 3;
+    optional string suffix = 4;
+    optional string middleName = 5;
+    optional string displayName = 6;
+  }
+
+  message Phone {
+    enum Type {
+      UNKNOWN = 0;
+      HOME = 1;
+      MOBILE = 2;
+      WORK = 3;
+      CUSTOM = 4;
+    }
+
+    optional string value = 1;
+    optional Type type = 2;
+    optional string label = 3;
+  }
+
+  message Email {
+    enum Type {
+      UNKNOWN = 0;
+      HOME = 1;
+      MOBILE = 2;
+      WORK = 3;
+      CUSTOM = 4;
+    }
+
+    optional string value = 1;
+    optional Type type = 2;
+    optional string label = 3;
+  }
+
+  message PostalAddress {
+    enum Type {
+      UNKNOWN = 0;
+      HOME = 1;
+      WORK = 2;
+      CUSTOM = 3;
+    }
+
+    optional Type type = 1;
+    optional string label = 2;
+    optional string street = 3;
+    optional string pobox = 4;
+    optional string neighborhood = 5;
+    optional string city = 6;
+    optional string region = 7;
+    optional string postcode = 8;
+    optional string country = 9;
+  }
+
+  message Avatar {
+    FilePointer avatar = 1;
+  }
+
+  optional Name name = 1;
+  repeated Phone number = 3;
+  repeated Email email = 4;
+  repeated PostalAddress address = 5;
+  optional Avatar avatar = 6;
+  optional string organization = 7;
+}
+
+message DocumentMessage {
+  Text text = 1;
+  FilePointer document = 2;
+  repeated Reaction reactions = 3;
+}
+
+message VoiceMessage {
+  optional Quote quote = 1;
+  FilePointer audio = 2;
+  repeated Reaction reactions = 3;
+}
+
+message StickerMessage {
+  Sticker sticker = 1;
+  repeated Reaction reactions = 2;
+}
+
+// Tombstone for remote delete
+message RemoteDeletedMessage {}
+
+message Sticker {
+  bytes packId = 1;
+  bytes packKey = 2;
+  uint32 stickerId = 3;
+  optional string emoji = 4;
+}
+
+message LinkPreview {
+  string url = 1;
+  optional string title = 2;
+  optional FilePointer image = 3;
+  optional string description = 4;
+  optional uint64 date = 5;
+}
+
+message FilePointer {
+  message BackupLocator {
+    string mediaName = 1;
+    uint32 cdnNumber = 2;
+  }
+
+  message AttachmentLocator {
+    string cdnKey = 1;
+    uint32 cdnNumber = 2;
+    uint64 uploadTimestamp = 3;
+  }
+
+  message LegacyAttachmentLocator {
+    fixed64 cdnId = 1;
+  }
+
+  // An attachment that was backed up without being downloaded.
+  // Its MediaName should be generated as “{sender_aci}_{cdn_attachment_key}”,
+  // but should eventually transition to a BackupLocator with mediaName
+  // being the content hash once it is downloaded.
+  message UndownloadedBackupLocator {
+    bytes senderAci = 1;
+    string cdnKey = 2;
+    uint32 cdnNumber = 3;
+  }
+
+  enum Flags {
+    VOICE_MESSAGE = 0;
+    BORDERLESS = 1;
+    GIF = 2;
+  }
+
+  oneof locator {
+    BackupLocator backupLocator = 1;
+    AttachmentLocator attachmentLocator= 2;
+    LegacyAttachmentLocator legacyAttachmentLocator = 3;
+    UndownloadedBackupLocator undownloadedBackupLocator = 4;
+  }
+
+  optional bytes key = 5;
+  optional string contentType = 6;
+  optional uint32 size = 7;
+  optional bytes digest = 8;
+  optional bytes incrementalMac = 9;
+  optional bytes incrementalMacChunkSize = 10;
+  optional string fileName = 11;
+  optional uint32 flags = 12;
+  optional uint32 width = 13;
+  optional uint32 height = 14;
+  optional string caption = 15;
+  optional string blurHash = 16;
+}
+
+message Quote {
+  enum Type {
+    UNKNOWN = 0;
+    NORMAL = 1;
+    GIFTBADGE = 2;
+  }
+
+  message QuotedAttachment {
+    optional string contentType = 1;
+    optional string fileName = 2;
+    optional FilePointer thumbnail = 3;
+  }
+
+  optional uint64 targetSentTimestamp = 1; // null if the target message could not be found at time of quote insert
+  uint64 authorId = 2;
+  optional string text = 3;
+  repeated QuotedAttachment attachments = 4;
+  repeated BodyRange bodyRanges = 5;
+  Type type = 6;
+}
+
+message BodyRange {
+  enum Style {
+    NONE = 0;
+    BOLD = 1;
+    ITALIC = 2;
+    SPOILER = 3;
+    STRIKETHROUGH = 4;
+    MONOSPACE = 5;
+  }
+
+  optional uint32 start = 1;
+  optional uint32 length = 2;
+
+  oneof associatedValue {
+    bytes mentionAci = 3;
+    Style style = 4;
+  }
+}
+
+message Reaction {
+  string emoji = 1;
+  uint64 authorId = 2;
+  uint64 sentTimestamp = 3;
+  optional uint64 receivedTimestamp = 4;
+  uint64 sortOrder = 5; // A higher sort order means that a reaction is more recent
+}
+
+message ChatUpdateMessage {
+  oneof update {
+    SimpleChatUpdate simpleUpdate = 1;
+    GroupDescriptionChatUpdate groupDescription = 2;
+    ExpirationTimerChatUpdate expirationTimerChange = 3;
+    ProfileChangeChatUpdate profileChange = 4;
+    ThreadMergeChatUpdate threadMerge = 5;
+    SessionSwitchoverChatUpdate sessionSwitchover = 6;
+    CallChatUpdate callingMessage = 7;
+  }
+}
+
+message CallChatUpdate{
+  oneof call {
+    uint64 callId = 1; // maps to id of Call from call log
+    IndividualCallChatUpdate callMessage = 2;
+    GroupCallChatUpdate groupCall = 3;
+  }
+}
+
+message IndividualCallChatUpdate {
+  enum Type {
+    UNKNOWN = 0;
+    INCOMING_AUDIO_CALL = 1;
+    INCOMING_VIDEO_CALL = 2;
+    OUTGOING_AUDIO_CALL = 3;
+    OUTGOING_VIDEO_CALL = 4;
+    MISSED_AUDIO_CALL = 5;
+    MISSED_VIDEO_CALL = 6;
+  }
+}
+
+message GroupCallChatUpdate {
+  bytes startedCallAci = 1;
+  uint64 startedCallTimestamp = 2;
+  repeated bytes inCallAcis = 3;
+}
+
+message SimpleChatUpdate {
+  enum Type {
+    UNKNOWN = 0;
+    JOINED_SIGNAL = 1;
+    IDENTITY_UPDATE = 2;
+    IDENTITY_VERIFIED = 3;
+    IDENTITY_DEFAULT = 4; // marking as unverified
+    CHANGE_NUMBER = 5;
+    BOOST_REQUEST = 6;
+    END_SESSION = 7;
+    CHAT_SESSION_REFRESH = 8;
+    BAD_DECRYPT = 9;
+    PAYMENTS_ACTIVATED = 10;
+    PAYMENT_ACTIVATION_REQUEST = 11;
+  }
+
+  Type type = 1;
+}
+
+message GroupDescriptionChatUpdate {
+  string newDescription = 1;
+}
+
+message ExpirationTimerChatUpdate {
+  uint32 expiresInMs = 1;
+}
+
+message ProfileChangeChatUpdate {
+  string previousName = 1;
+  string newName = 2;
+}
+
+message ThreadMergeChatUpdate {
+  uint64 previousE164 = 1;
+}
+
+message SessionSwitchoverChatUpdate {
+  uint64 e164 = 1;
+}
+
+message StickerPack {
+  bytes id = 1;
+  bytes key = 2;
+  string title = 3;
+  string author = 4;
+  repeated StickerPackSticker stickers = 5; // First one should be cover sticker.
+}
+
+message StickerPackSticker {
+  FilePointer data = 1;
+  string emoji = 2;
+}

@@ -38,6 +38,10 @@ class UsernameShareBottomSheet : DSLSettingsBottomSheetFragment() {
     ShareButton.register(adapter)
 
     lifecycleDisposable += Recipient.observable(Recipient.self().id).subscribe {
+      if (context == null) {
+        return@subscribe
+      }
+
       adapter.submitList(getConfiguration(it).toMappingModelList())
     }
   }

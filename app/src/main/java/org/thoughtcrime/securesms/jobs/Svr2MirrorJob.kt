@@ -82,7 +82,7 @@ class Svr2MirrorJob private constructor(parameters: Parameters, private var seri
 
       return when (val response: BackupResponse = session.execute()) {
         is BackupResponse.Success -> {
-          Log.i(TAG, "Successfully migrated to SVR2!")
+          Log.i(TAG, "Successfully migrated to SVR2! $svr2")
           SignalStore.svr().appendAuthTokenToList(response.authorization.asBasic())
           ApplicationDependencies.getJobManager().add(RefreshAttributesJob())
           Result.success()

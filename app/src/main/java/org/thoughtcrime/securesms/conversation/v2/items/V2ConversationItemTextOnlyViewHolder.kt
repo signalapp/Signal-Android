@@ -643,7 +643,11 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     } else {
       var date = dateString
       if (conversationContext.displayMode != ConversationItemDisplayMode.Detailed && record is MmsMessageRecord && record.isEditMessage()) {
-        date = getContext().getString(R.string.ConversationItem_edited_timestamp_footer, date)
+        date = if (conversationMessage.computedProperties.formattedDate.isNow) {
+          getContext().getString(R.string.ConversationItem_edited_now_timestamp_footer)
+        } else {
+          getContext().getString(R.string.ConversationItem_edited_timestamp_footer, date)
+        }
 
         binding.footerDate.setOnClickListener {
           conversationContext.clickListener.onEditedIndicatorClicked(record)

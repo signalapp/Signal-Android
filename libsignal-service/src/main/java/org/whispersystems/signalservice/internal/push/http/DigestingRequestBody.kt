@@ -22,6 +22,7 @@ class DigestingRequestBody(
   private val outputStreamFactory: OutputStreamFactory,
   private val contentType: String,
   private val contentLength: Long,
+  private val incremental: Boolean,
   private val progressListener: SignalServiceAttachment.ProgressListener?,
   private val cancelationSignal: CancelationSignal?,
   private val contentStart: Long
@@ -41,7 +42,7 @@ class DigestingRequestBody(
   override fun writeTo(sink: BufferedSink) {
     val digestStream = ByteArrayOutputStream()
     val inner = SkippingOutputStream(contentStart, sink.outputStream())
-    val isIncremental = outputStreamFactory is AttachmentCipherOutputStreamFactory
+    val isIncremental = incremental && outputStreamFactory is AttachmentCipherOutputStreamFactory
     val sizeChoice: ChunkSizeChoice = ChunkSizeChoice.inferChunkSize(contentLength.toInt())
     val outputStream: DigestingOutputStream = if (isIncremental) {
       (outputStreamFactory as AttachmentCipherOutputStreamFactory).createIncrementalFor(inner, contentLength, sizeChoice, digestStream)

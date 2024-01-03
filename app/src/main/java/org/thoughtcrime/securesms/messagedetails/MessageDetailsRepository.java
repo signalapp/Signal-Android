@@ -138,7 +138,7 @@ public final class MessageDetailsRepository {
   private @Nullable NetworkFailure getNetworkFailure(MessageRecord messageRecord, Recipient recipient) {
     if (messageRecord.hasNetworkFailures()) {
       for (final NetworkFailure failure : messageRecord.getNetworkFailures()) {
-        if (failure.getRecipientId(context).equals(recipient.getId())) {
+        if (failure.getRecipientId().equals(recipient.getId())) {
           return failure;
         }
       }
@@ -149,7 +149,7 @@ public final class MessageDetailsRepository {
   private @Nullable IdentityKeyMismatch getKeyMismatchFailure(MessageRecord messageRecord, Recipient recipient) {
     if (messageRecord.isIdentityMismatchFailure()) {
       for (final IdentityKeyMismatch mismatch : messageRecord.getIdentityKeyMismatches()) {
-        if (mismatch.getRecipientId(context).equals(recipient.getId())) {
+        if (mismatch.getRecipientId().equals(recipient.getId())) {
           return mismatch;
         }
       }

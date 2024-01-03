@@ -4,7 +4,7 @@ import org.whispersystems.util.StringUtil;
 
 import java.util.Arrays;
 
-import static org.whispersystems.signalservice.api.crypto.CryptoUtil.hmacSha256;
+import static org.signal.core.util.CryptoUtil.hmacSha256;
 import static org.whispersystems.util.ByteArrayUtil.concat;
 import static org.whispersystems.util.ByteArrayUtil.xor;
 import static java.util.Arrays.copyOfRange;

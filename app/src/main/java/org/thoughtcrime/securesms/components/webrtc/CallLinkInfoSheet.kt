@@ -51,6 +51,7 @@ import androidx.lifecycle.toLiveData
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.BackpressureStrategy
+import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import kotlinx.collections.immutable.toImmutableList
 import org.signal.core.ui.BottomSheets
@@ -85,6 +86,7 @@ import org.thoughtcrime.securesms.util.BottomSheetUtil
  * within WebRtcActivity. If the user is able to modify call link
  * state, provides options to do so.
  */
+@Deprecated("Merge with CallInfoView")
 class CallLinkInfoSheet : ComposeBottomSheetDialogFragment() {
 
   companion object {
@@ -121,10 +123,6 @@ class CallLinkInfoSheet : ComposeBottomSheetDialogFragment() {
   @Composable
   override fun SheetContent() {
     val callLinkDetailsState by callLinkDetailsViewModel.state
-    val callParticipantsState by webRtcCallViewModel.callParticipantsState
-      .toFlowable(BackpressureStrategy.LATEST)
-      .toLiveData()
-      .observeAsState()
 
     val participants: List<CallParticipant> by webRtcCallViewModel.callParticipantsState
       .toFlowable(BackpressureStrategy.LATEST)
@@ -332,7 +330,7 @@ private fun CallLinkMemberRow(
       .fillMaxWidth()
       .padding(Rows.defaultPadding())
   ) {
-    val recipient by Recipient.observable(callParticipant.recipient.id)
+    val recipient by ((if (LocalInspectionMode.current) Observable.just(Recipient.UNKNOWN) else Recipient.observable(callParticipant.recipient.id)))
       .toFlowable(BackpressureStrategy.LATEST)
       .toLiveData()
       .observeAsState(initial = callParticipant.recipient)

@@ -177,6 +177,7 @@ class AttachmentUploadJob private constructor(
         .withVoiceNote(attachment.isVoiceNote)
         .withBorderless(attachment.isBorderless)
         .withGif(attachment.isVideoGif)
+        .withFaststart(attachment.transformProperties.isMp4Faststart)
         .withWidth(attachment.width)
         .withHeight(attachment.height)
         .withUploadTimestamp(System.currentTimeMillis())

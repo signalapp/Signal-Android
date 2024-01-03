@@ -323,6 +323,8 @@
     <string name="ConversationItem_cant_download_image_you_will_need_to_send_it_again">Неуспешно изтегляне на изображението. Ще трябва да го изпратите отново.</string>
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Неуспешно изтегляне на видеото. Ще трябва да го изпратите отново.</string>
+    <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp represents a message that has been edited extremely recently. -->
+    <string name="ConversationItem_edited_now_timestamp_footer">Редактирано сега</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
     <string name="ConversationItem_edited_timestamp_footer">Редактирано %1$s</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
@@ -1535,7 +1537,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Позволявате ли на %1$s да ви изпраща съобщения? Няма да получавате съобщения, преди да отблокирате потребителя.</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Получаване на актуализации и новини от %1$s? Няма да получавате актуализации, преди да отблокирате потребителя.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Ще продължите ли чата с тази група и ще споделите ли името и снимката си с нейните членове?</string>
-    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">This Legacy Group can no longer be used. Create a new group to activate new features like @mentions and admins.</string>
+    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Тази група от стар вид повече не може да се използва. Създайте нова група, за да активирате нови функции като @споменавания и администратори.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Тази група от стар вид вече не може да се използва, защото е твърде голяма. Максималният размер на групата е %1$d.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Ще продължите ли чата си с/ъс %1$s и ще споделите ли името и снимката си с потребителя?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Присъединете се към тази група и споделете вашето име и снимка с нейните членове? Те няма да разберат, че сте видели съобщенията им, докато не приемете.</string>
@@ -1828,6 +1830,8 @@
     <string name="WebRtcCallView__toggle_camera">Превключване на камера</string>
     <!-- Toggle content description for toggling mute state  -->
     <string name="WebRtcCallView__toggle_mute">Превключване на тих режим</string>
+    <!-- Content description for additional actions menu button -->
+    <string name="WebRtcCallView__additional_actions">Допълнителни действия</string>
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">Прекрати обаждането</string>
 
@@ -1845,9 +1849,17 @@
     <string name="WebRtcAudioOutputBottomSheet__earpiece_icon_content_description">Икона със слушалка на устройство.</string>
 
     <!-- CallParticipantsListDialog -->
-    <plurals name="CallParticipantsListDialog_in_this_call_d_people">
-        <item quantity="one">В този разговор · %1$d човек</item>
-        <item quantity="other">В този разговор · %1$d хора</item>
+    <plurals name="CallParticipantsListDialog_in_this_call">
+        <item quantity="one">В този разговор (%1$d)</item>
+        <item quantity="other">В този разговор (%1$d)</item>
+    </plurals>
+    <plurals name="CallParticipantsListDialog__signal_will_ring">
+        <item quantity="one">Signal ще позвъни (%1$d)</item>
+        <item quantity="other">Signal ще позвъни (%1$d)</item>
+    </plurals>
+    <plurals name="CallParticipantsListDialog__signal_will_notify">
+        <item quantity="one">Signal ще извести (%1$d)</item>
+        <item quantity="other">Signal ще извести (%1$d)</item>
     </plurals>
 
     <!-- CallParticipantView -->
@@ -2346,6 +2358,8 @@
     </plurals>
     <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
     <string name="TransferControlView__processing">Обработва се…</string>
+    <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
+    <string name="TransferControlView__download_progress">%1$s/%2$s</string>
 
 
     <!-- UnauthorizedReminder -->
@@ -2370,6 +2384,8 @@
     <string name="WebRtcCallActivity__answered_on_a_linked_device">Отговорено на свързано устройство.</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">Отказано на свързано устройство.</string>
     <string name="WebRtcCallActivity__busy_on_a_linked_device">Сигнал заетo на свързано устройство.</string>
+    <!-- Tooltip message shown first time user is in a video call after switch camera button moved -->
+    <string name="WebRtcCallActivity__flip_camera_tooltip">Бутонът „Смени камерата“ беше преместен тук ‑ докоснете видеото си, за да го изпробвате</string>
 
     <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Някой се е присъединил към това обаждане с променен номер за безопасност.</string>
 
@@ -4582,8 +4598,8 @@
     <string name="NewConversationActivity__">%1$s не е потребител на Signal</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
     <plurals name="CreateGroupActivity_not_signal_users">
-        <item quantity="one">%1$s is not a Signal user</item>
-        <item quantity="other">%1$s are not Signal users</item>
+        <item quantity="one">%1$s не е потребител на Signal</item>
+        <item quantity="other">%1$s не са потребители на Signal</item>
     </plurals>
 
     <!-- ContactFilterView -->
@@ -5110,7 +5126,7 @@
     <!-- Donation receipts one-time tab label -->
     <string name="DonationReceiptListFragment__one_time">Еднократно</string>
     <!-- Donation receipts gift tab -->
-    <string name="DonationReceiptListFragment__for_a_friend">For a friend</string>
+    <string name="DonationReceiptListFragment__for_a_friend">За приятел</string>
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__donation_for_a_friend">Дарение за приятел</string>
     <!-- Donation receipts donation type heading -->
@@ -5860,9 +5876,9 @@
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
     <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">Вашето дарение през iDEAL все още се обработва. Вижте в приложението на вашата банка, за да одобрите плащането, преди да направите друго дарение.</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
-    <string name="DonateToSignal__donation_amount_too_high">Donation amount too high</string>
+    <string name="DonateToSignal__donation_amount_too_high">Размерът на дарението е прекалено голям</string>
     <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
-    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">You can send up to %1$s via bank transfer. Try a different amount or a different payment method.</string>
+    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">Можете да изпратите до %1$s чрез банков превод. Опитайте с различна сума или различен начин на плащане.</string>
 
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">Ежемесечно</string>
@@ -5961,12 +5977,18 @@
     <string name="BankTransferDetailsFragment__iban_country_code_is_not_supported">Кодът на държавата в този IBAN не се поддържа</string>
     <!-- Error label for IBAN field when number is invalid -->
     <string name="BankTransferDetailsFragment__invalid_iban">Невалиден IBAN</string>
+    <!-- Error label for name field when name is not at least two characters long -->
+    <string name="BankTransferDetailsFragment__minimum_2_characters">Минимум 2 знака</string>
+    <!-- Error label for email field when email is not valid -->
+    <string name="BankTransferDetailsFragment__invalid_email_address">Невалиден имейл адрес</string>
 
     <!-- IdealTransferDetailsFragment -->
     <!-- Title of the screen, displayed in the toolbar -->
     <string name="IdealTransferDetailsFragment__ideal">iDEAL</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
     <string name="IdealTransferDetailsFragment__enter_your_bank">Въведете вашите банка, име и имейл. Stripe използва този имейл, за да ви изпраща актуализации за вашето дарение. %1$s</string>
+    <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
+    <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">Въведете своите банкови данни. Signal не събира и не съхранява личната ви информация. %1$s</string>
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
     <string name="IdealTransferDetailsFragment__learn_more">Научете повече</string>
     <!-- Hint label for text entry box for name on bank account -->
@@ -6406,7 +6428,7 @@
     <string name="UsernameLinkSettings_reset_link_result_network_error">Възникна мрежова грешка при опита за нулиране на линка ви. Опитайте пак по-късно.</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
-    <string name="UsernameLinkShareBottomSheet_title">Anyone with this link can view your username and start a chat with you. Only share it with people you trust.</string>
+    <string name="UsernameLinkShareBottomSheet_title">Всеки с този линк може да види потребителското ви име и да започне чат с вас. Споделяйте го само с хора, на които имате доверие.</string>
     <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
     <string name="UsernameLinkShareBottomSheet_copy_link">Копиране на линка</string>
     <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
@@ -6448,9 +6470,9 @@
     <string name="GrantFullScreenIntentPermission_bottomsheet_step2">2. %1$s Разрешаване на известия на цял екран</string>
 
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, title for dialog -->
-    <string name="MonthlyDonationCanceled__title">Monthly donation canceled</string>
+    <string name="MonthlyDonationCanceled__title">Месечното дарение е отменено</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, body for dialog. First placeholder is a payment related error message. Second placeholder is \'learn more\' -->
-    <string name="MonthlyDonationCanceled__message">Your recurring monthly donation was canceled. %1$s\n\nYour badge will no longer be visible on your profile. %2$s</string>
+    <string name="MonthlyDonationCanceled__message">Вашето периодично месечно дарение беше отменено. %1$s\n\nЗначката ви вече няма да се вижда на профила ви. %2$s</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, learn more used in placeholder for body for dialog. -->
     <string name="MonthlyDonationCanceled__learn_more">Научете повече</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, primary button to renew subscription with new data -->

@@ -78,6 +78,9 @@ class StaticIpResolver @JvmOverloads constructor(
   private object RealRecordFetcher : RecordFetcher {
     override fun fetchRecords(hostName: String): Array<Record>? {
       val resolver = SimpleResolver("1.1.1.1")
+
+      resolver.setTCP(true)
+
       val lookup: Lookup = doLookup(hostName)
 
       lookup.setResolver(resolver)

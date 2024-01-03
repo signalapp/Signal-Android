@@ -339,7 +339,7 @@ object Stories {
           error("Illegal clip: $startTimeUs > $endTimeUs for clip $clipIndex")
         }
 
-        AttachmentTable.TransformProperties(false, true, startTimeUs, endTimeUs, SentMediaQuality.STANDARD.code)
+        AttachmentTable.TransformProperties(false, true, startTimeUs, endTimeUs, SentMediaQuality.STANDARD.code, false)
       }.map { transformMedia(media, it) }
     }
 

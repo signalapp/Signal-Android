@@ -82,7 +82,7 @@ object SafetyNumberBottomSheet {
   @JvmStatic
   fun forMessageRecord(context: Context, messageRecord: MessageRecord): Factory {
     val args = SafetyNumberBottomSheetArgs(
-      untrustedRecipients = messageRecord.identityKeyMismatches.map { it.getRecipientId(context) },
+      untrustedRecipients = messageRecord.identityKeyMismatches.map { it.recipientId },
       destinations = getDestinationFromRecord(messageRecord),
       messageId = MessageId(messageRecord.id)
     )

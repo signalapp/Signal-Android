@@ -30,6 +30,8 @@ public class SenderKeyDistributionSendJobRecipientMigrationTest {
     // GIVEN
     JobMigration.JobData jobData = new JobMigration.JobData(SenderKeyDistributionSendJob.KEY,
                                                             "asdf",
+                                                            -1,
+                                                            -1,
                                                             new JsonJobData.Builder()
                                                                     .putString("recipient_id", RecipientId.from(1).serialize())
                                                                     .putBlobAsString("group_id", GROUP_ID.getDecodedId())
@@ -53,6 +55,8 @@ public class SenderKeyDistributionSendJobRecipientMigrationTest {
     // GIVEN
     JobMigration.JobData jobData = new JobMigration.JobData(SenderKeyDistributionSendJob.KEY,
                                                             "asdf",
+                                                            -1,
+                                                            -1,
                                                             new JsonJobData.Builder()
                                                                 .putString("recipient_id", RecipientId.from(1).serialize())
                                                                 .putBlobAsString("group_id", GROUP_ID.getDecodedId())
@@ -70,6 +74,8 @@ public class SenderKeyDistributionSendJobRecipientMigrationTest {
     // GIVEN
     JobMigration.JobData jobData = new JobMigration.JobData(SenderKeyDistributionSendJob.KEY,
                                                             "asdf",
+                                                            -1,
+                                                            -1,
                                                             new JsonJobData.Builder()
                                                                 .putString("recipient_id", RecipientId.from(1).serialize())
                                                                 .serialize());

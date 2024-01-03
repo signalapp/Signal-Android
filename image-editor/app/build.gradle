@@ -1,19 +1,19 @@
 plugins {
-    id 'signal-sample-app'
-    id 'kotlin-kapt'
+    id("signal-sample-app")
+    id("kotlin-kapt")
 }
 
 android {
-    namespace 'org.signal.imageeditor.app'
+    namespace = "org.signal.imageeditor.app"
 
     defaultConfig {
-        applicationId "org.signal.imageeditor.app"
+        applicationId = "org.signal.imageeditor.app"
     }
 }
 
 dependencies {
-    implementation project(':image-editor')
+    implementation(project(":image-editor"))
 
-    implementation libs.glide.glide
-    kapt libs.glide.compiler
+    implementation(libs.glide.glide)
+    kapt(libs.glide.compiler)
 }

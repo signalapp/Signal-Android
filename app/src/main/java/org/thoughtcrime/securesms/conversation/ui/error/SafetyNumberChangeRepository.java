@@ -155,7 +155,7 @@ public final class SafetyNumberChangeRepository {
 
         IdentityKey newIdentityKey = messageRecord.getIdentityKeyMismatches()
                                                   .stream()
-                                                  .filter(mismatch -> mismatch.getRecipientId(context).equals(changedRecipient.getRecipient().getId()))
+                                                  .filter(mismatch -> mismatch.getRecipientId().equals(changedRecipient.getRecipient().getId()))
                                                   .map(IdentityKeyMismatch::getIdentityKey)
                                                   .filter(Objects::nonNull)
                                                   .findFirst()

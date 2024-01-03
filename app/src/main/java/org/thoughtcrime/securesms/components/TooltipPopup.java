@@ -171,21 +171,23 @@ public class TooltipPopup extends PopupWindow {
     ShapeAppearanceModel.Builder  shapeAppearanceModel  = ShapeAppearanceModel.builder()
                                                                               .setAllCornerSizes(DimensionUnit.DP.toPixels(18));
 
-    // If the arrow is within the last 20dp of the right hand side, use RIGHT and set corner to 9dp
-    onLayout(() -> {
-      if (arrow.getX() > getContentView().getWidth() / 2f) {
-        arrow.setImageResource(R.drawable.ic_tooltip_arrow_up_right);
-      }
+    if (position == POSITION_BELOW) {
+      // If the arrow is within the last 20dp of the right hand side, use RIGHT and set corner to 9dp
+      onLayout(() -> {
+        if (arrow.getX() > getContentView().getWidth() / 2f) {
+          arrow.setImageResource(R.drawable.ic_tooltip_arrow_up_right);
+        }
 
-      float arrowEnd = arrow.getX() + arrow.getRight();
-      if (arrowEnd > getContentView().getRight() - DimensionUnit.DP.toPixels(20)) {
-        shapeableBubbleBackground.setShapeAppearanceModel(shapeAppearanceModel.setTopRightCornerSize(DimensionUnit.DP.toPixels(9f)).build());
-        bubble.setBackground(shapeableBubbleBackground);
-      } else if (arrowEnd < DimensionUnit.DP.toPixels(20)) {
-        shapeableBubbleBackground.setShapeAppearanceModel(shapeAppearanceModel.setTopLeftCornerSize(DimensionUnit.DP.toPixels(9f)).build());
-        bubble.setBackground(shapeableBubbleBackground);
-      }
-    });
+        float arrowEnd = arrow.getX() + arrow.getRight();
+        if (arrowEnd > getContentView().getRight() - DimensionUnit.DP.toPixels(20)) {
+          shapeableBubbleBackground.setShapeAppearanceModel(shapeAppearanceModel.setTopRightCornerSize(DimensionUnit.DP.toPixels(9f)).build());
+          bubble.setBackground(shapeableBubbleBackground);
+        } else if (arrowEnd < DimensionUnit.DP.toPixels(20)) {
+          shapeableBubbleBackground.setShapeAppearanceModel(shapeAppearanceModel.setTopLeftCornerSize(DimensionUnit.DP.toPixels(9f)).build());
+          bubble.setBackground(shapeableBubbleBackground);
+        }
+      });
+    }
 
     try {
       showAsDropDown(anchor, xoffset, yoffset);

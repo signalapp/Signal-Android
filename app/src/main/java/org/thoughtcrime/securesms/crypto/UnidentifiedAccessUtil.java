@@ -23,18 +23,17 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.signal.core.util.Base64;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class UnidentifiedAccessUtil {
 
@@ -76,7 +75,7 @@ public class UnidentifiedAccessUtil {
 
     return accessMap;
   }
-  
+
   @WorkerThread
   public static List<Optional<UnidentifiedAccessPair>> getAccessFor(@NonNull Context context, @NonNull List<Recipient> recipients, boolean log) {
     return getAccessFor(context, recipients, false, log);
@@ -84,37 +83,35 @@ public class UnidentifiedAccessUtil {
 
   @WorkerThread
   public static List<Optional<UnidentifiedAccessPair>> getAccessFor(@NonNull Context context, @NonNull List<Recipient> recipients, boolean isForStory, boolean log) {
-    byte[] ourUnidentifiedAccessKey = UnidentifiedAccess.deriveAccessKeyFrom(ProfileKeyUtil.getSelfProfileKey());
+    final byte[] ourUnidentifiedAccessKey;
 
     if (TextSecurePreferences.isUniversalUnidentifiedAccess(context)) {
       ourUnidentifiedAccessKey = UNRESTRICTED_KEY;
+    } else {
+      ourUnidentifiedAccessKey = ProfileKeyUtil.getSelfProfileKey().deriveAccessKey();
     }
-
-    List<Optional<UnidentifiedAccessPair>> access = new ArrayList<>(recipients.size());
 
     CertificateType certificateType                  = getUnidentifiedAccessCertificateType();
     byte[]          ourUnidentifiedAccessCertificate = SignalStore.certificateValues().getUnidentifiedAccessCertificate(certificateType);
 
-    for (Recipient recipient : recipients) {
+    List<Optional<UnidentifiedAccessPair>> access = recipients.parallelStream().map(recipient -> {
+      UnidentifiedAccessPair unidentifiedAccessPair = null;
       if (ourUnidentifiedAccessCertificate != null) {
         try {
           UnidentifiedAccess theirAccess = getTargetUnidentifiedAccess(recipient, ourUnidentifiedAccessCertificate, isForStory);
           UnidentifiedAccess ourAccess   = new UnidentifiedAccess(ourUnidentifiedAccessKey, ourUnidentifiedAccessCertificate, false);
 
           if (theirAccess != null) {
-            access.add(Optional.of(new UnidentifiedAccessPair(theirAccess, ourAccess)));
-          } else {
-            access.add(Optional.empty());
+            unidentifiedAccessPair = new UnidentifiedAccessPair(theirAccess, ourAccess);
           }
         } catch (InvalidCertificateException e) {
           Log.w(TAG, "Invalid unidentified access certificate!", e);
-          access.add(Optional.empty());
         }
       } else {
         Log.w(TAG, "Missing unidentified access certificate!");
-        access.add(Optional.empty());
       }
-    }
+      return Optional.ofNullable(unidentifiedAccessPair);
+    }).collect(Collectors.toList());
 
     int unidentifiedCount = Stream.of(access).filter(Optional::isPresent).toList().size();
     int otherCount        = access.size() - unidentifiedCount;
@@ -178,7 +175,7 @@ public class UnidentifiedAccessUtil {
             accessKey = UNRESTRICTED_KEY;
           }
         } else {
-          accessKey = UnidentifiedAccess.deriveAccessKeyFrom(theirProfileKey);
+          accessKey = theirProfileKey.deriveAccessKey();
         }
         break;
       case DISABLED:
@@ -188,7 +185,7 @@ public class UnidentifiedAccessUtil {
         if (theirProfileKey == null) {
           accessKey = null;
         } else {
-          accessKey = UnidentifiedAccess.deriveAccessKeyFrom(theirProfileKey);
+          accessKey = theirProfileKey.deriveAccessKey();
         }
         break;
       case UNRESTRICTED:

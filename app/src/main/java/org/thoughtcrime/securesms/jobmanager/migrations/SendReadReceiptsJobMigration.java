@@ -19,7 +19,7 @@ public class SendReadReceiptsJobMigration extends JobMigration {
   }
 
   @Override
-  protected @NonNull JobData migrate(@NonNull JobData jobData) {
+  public @NonNull JobData migrate(@NonNull JobData jobData) {
     if ("SendReadReceiptJob".equals(jobData.getFactoryKey())) {
       return migrateSendReadReceiptJob(messageTable, jobData);
     }
@@ -41,7 +41,7 @@ public class SendReadReceiptsJobMigration extends JobMigration {
       }
 
       if (threadIds.size() != 1) {
-        return new JobData("FailingJob", null, null);
+        return JobData.FAILING_JOB_DATA;
       } else {
         return jobData.withData(data.buildUpon().putLong("thread", threadIds.first()).serialize());
       }

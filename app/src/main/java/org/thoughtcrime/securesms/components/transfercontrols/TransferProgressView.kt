@@ -32,10 +32,10 @@ class TransferProgressView @JvmOverloads constructor(
 ) : View(context, attrs, defStyleAttr, defStyleRes) {
   companion object {
     const val TAG = "TransferProgressView"
-    private const val PROGRESS_ARC_STROKE_WIDTH_DP = 1.5f
+    private const val PROGRESS_ARC_STROKE_WIDTH_DP = 2f
     private const val ICON_SIZE_DP = 24f
     private const val STOP_CORNER_RADIUS_DP = 4f
-    private const val PROGRESS_BAR_INSET_DP = 3
+    private const val PROGRESS_BAR_INSET_DP = 2
   }
 
   private val iconColor: Int
@@ -89,7 +89,8 @@ class TransferProgressView @JvmOverloads constructor(
     super.onDraw(canvas)
 
     when (currentState) {
-      State.IN_PROGRESS_CANCELABLE, State.IN_PROGRESS_NON_CANCELABLE -> drawProgress(canvas, progressPercent)
+      State.IN_PROGRESS_CANCELABLE -> drawProgress(canvas, progressPercent, true)
+      State.IN_PROGRESS_NON_CANCELABLE -> drawProgress(canvas, progressPercent, false)
       State.READY_TO_UPLOAD -> sizeAndDrawDrawable(canvas, uploadDrawable)
       State.READY_TO_DOWNLOAD -> sizeAndDrawDrawable(canvas, downloadDrawable)
       State.UNINITIALIZED -> Unit
@@ -126,11 +127,13 @@ class TransferProgressView @JvmOverloads constructor(
     invalidate()
   }
 
-  private fun drawProgress(canvas: Canvas, progressPercent: Float) {
-    stopIconRect.set(0f, 0f, stopIconSize, stopIconSize)
+  private fun drawProgress(canvas: Canvas, progressPercent: Float, showStopIcon: Boolean) {
+    if (showStopIcon) {
+      stopIconRect.set(0f, 0f, stopIconSize, stopIconSize)
 
-    canvas.withTranslation(width / 2 - (stopIconSize / 2), height / 2 - (stopIconSize / 2)) {
-      drawRoundRect(stopIconRect, stopIconCornerRadius, stopIconCornerRadius, stopIconPaint)
+      canvas.withTranslation(width / 2 - (stopIconSize / 2), height / 2 - (stopIconSize / 2)) {
+        drawRoundRect(stopIconRect, stopIconCornerRadius, stopIconCornerRadius, stopIconPaint)
+      }
     }
 
     val trackWidthScaled = progressArcStrokeWidth

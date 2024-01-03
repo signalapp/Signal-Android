@@ -23,7 +23,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.registration.VerifyResponse
 import org.thoughtcrime.securesms.registration.VerifyResponseWithoutKbs
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.account.PniKeyDistributionRequest
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
@@ -50,7 +49,7 @@ class PnpInitializeDevicesJob private constructor(parameters: Parameters) : Base
 
     @JvmStatic
     fun enqueueIfNecessary() {
-      if (SignalStore.misc().hasPniInitializedDevices() || !SignalStore.account().isRegistered || SignalStore.account().aci == null || Recipient.self().pnpCapability != Recipient.Capability.SUPPORTED || !FeatureFlags.phoneNumberPrivacy()) {
+      if (SignalStore.misc().hasPniInitializedDevices() || !SignalStore.account().isRegistered || SignalStore.account().aci == null || Recipient.self().pnpCapability != Recipient.Capability.SUPPORTED) {
         return
       }
 
