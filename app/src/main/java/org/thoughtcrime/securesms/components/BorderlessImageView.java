@@ -63,7 +63,7 @@ public class BorderlessImageView extends FrameLayout {
       image.setImageResource(glideRequests, slide, showControls, false);
     } else {
       image.setScaleType(ImageView.ScaleType.CENTER_CROP);
-      image.setImageResource(glideRequests, slide, showControls, false, slide.asAttachment().getWidth(), slide.asAttachment().getHeight());
+      image.setImageResource(glideRequests, slide, showControls, false, slide.asAttachment().width, slide.asAttachment().height);
     }
 
     missingShade.setVisibility(showControls ? View.VISIBLE : View.GONE);

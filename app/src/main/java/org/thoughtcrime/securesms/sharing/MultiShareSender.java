@@ -329,15 +329,15 @@ public final class MultiShareSender {
                                                                                 : thumbnail.getUri() == null
                                                                                   ? null
                                                                                   : new ImageSlide(context,
-                                                                                                 thumbnail.getUri(),
-                                                                                                 thumbnail.getContentType(),
-                                                                                                 thumbnail.getSize(),
-                                                                                                 thumbnail.getWidth(),
-                                                                                                 thumbnail.getHeight(),
-                                                                                                 thumbnail.isBorderless(),
-                                                                                                 thumbnail.getCaption(),
-                                                                                                 thumbnail.getBlurHash(),
-                                                                                                 thumbnail.getTransformProperties()).asAttachment()
+                                                                                                   thumbnail.getUri(),
+                                                                                                   thumbnail.contentType,
+                                                                                                   thumbnail.size,
+                                                                                                   thumbnail.width,
+                                                                                                   thumbnail.height,
+                                                                                                   thumbnail.borderless,
+                                                                                                   thumbnail.caption,
+                                                                                                   thumbnail.blurHash,
+                                                                                                   thumbnail.transformProperties).asAttachment()
           )
       ));
     }
@@ -345,17 +345,17 @@ public final class MultiShareSender {
 
   private static Slide ensureDefaultQuality(@NonNull Context context, @NonNull ImageSlide imageSlide) {
     Attachment attachment = imageSlide.asAttachment();
-    if (attachment.getTransformProperties().getSentMediaQuality() == SentMediaQuality.HIGH.getCode()) {
+    if (attachment.transformProperties.sentMediaQuality == SentMediaQuality.HIGH.getCode()) {
       return new ImageSlide(
           context,
           attachment.getUri(),
-          attachment.getContentType(),
-          attachment.getSize(),
-          attachment.getWidth(),
-          attachment.getHeight(),
-          attachment.isBorderless(),
-          attachment.getCaption(),
-          attachment.getBlurHash(),
+          attachment.contentType,
+          attachment.size,
+          attachment.width,
+          attachment.height,
+          attachment.borderless,
+          attachment.caption,
+          attachment.blurHash,
           AttachmentTable.TransformProperties.empty()
       );
     } else {

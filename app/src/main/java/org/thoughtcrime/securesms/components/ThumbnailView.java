@@ -397,7 +397,7 @@ public class ThumbnailView extends FrameLayout {
 
     Log.i(TAG, "loading part with id " + slide.asAttachment().getUri()
                + ", progress " + slide.getTransferState() + ", fast preflight id: " +
-               slide.asAttachment().getFastPreflightId());
+               slide.asAttachment().fastPreflightId);
 
     BlurHash previousBlurHash = this.slide != null ? this.slide.getPlaceholderBlur() : null;
 
@@ -532,8 +532,8 @@ public class ThumbnailView extends FrameLayout {
     if (Util.equals(slide, other)) {
 
       if (slide != null && other != null) {
-        byte[] digestLeft  = slide.asAttachment().getDigest();
-        byte[] digestRight = other.asAttachment().getDigest();
+        byte[] digestLeft  = slide.asAttachment().digest;
+        byte[] digestRight = other.asAttachment().digest;
 
         return Arrays.equals(digestLeft, digestRight);
       }

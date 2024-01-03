@@ -45,7 +45,7 @@ public class LinkPreview implements Parcelable {
     this.description  = description;
     this.date         = date;
     this.thumbnail    = Optional.of(thumbnail);
-    this.attachmentId = thumbnail.getAttachmentId();
+    this.attachmentId = thumbnail.attachmentId;
   }
 
   public LinkPreview(@NonNull String url, @NonNull String title, @NonNull String description, long date, @NonNull Optional<Attachment> thumbnail) {

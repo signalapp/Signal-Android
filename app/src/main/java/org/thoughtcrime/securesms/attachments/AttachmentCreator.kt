@@ -15,7 +15,6 @@ import android.os.Parcelable
 object AttachmentCreator : Parcelable.Creator<Attachment> {
   enum class Subclass(val clazz: Class<out Attachment>, val code: String) {
     DATABASE(DatabaseAttachment::class.java, "database"),
-    MMS_NOTIFICATION(MmsNotificationAttachment::class.java, "mms_notification"),
     POINTER(PointerAttachment::class.java, "pointer"),
     TOMBSTONE(TombstoneAttachment::class.java, "tombstone"),
     URI(UriAttachment::class.java, "uri")
@@ -32,7 +31,6 @@ object AttachmentCreator : Parcelable.Creator<Attachment> {
 
     return when (Subclass.values().first { rawCode == it.code }) {
       Subclass.DATABASE -> DatabaseAttachment(source)
-      Subclass.MMS_NOTIFICATION -> MmsNotificationAttachment(source)
       Subclass.POINTER -> PointerAttachment(source)
       Subclass.TOMBSTONE -> TombstoneAttachment(source)
       Subclass.URI -> UriAttachment(source)

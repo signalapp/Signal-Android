@@ -66,7 +66,7 @@ public abstract class SendJob extends BaseJob {
   protected String buildAttachmentString(@NonNull List<Attachment> attachments) {
     List<String> strings = attachments.stream().map(attachment -> {
       if (attachment instanceof DatabaseAttachment) {
-        return ((DatabaseAttachment) attachment).getAttachmentId().toString();
+        return ((DatabaseAttachment) attachment).attachmentId.toString();
       } else if (attachment.getUri() != null) {
         return attachment.getUri().toString();
       } else {

@@ -119,8 +119,8 @@ public final class AttachmentDownloadJob extends BaseJob {
     final AttachmentTable    database     = SignalDatabase.attachments();
     final AttachmentId       attachmentId = new AttachmentId(partRowId, partUniqueId);
     final DatabaseAttachment attachment   = database.getAttachment(attachmentId);
-    final boolean pending = attachment != null && attachment.getTransferState() != AttachmentTable.TRANSFER_PROGRESS_DONE
-                            && attachment.getTransferState() != AttachmentTable.TRANSFER_PROGRESS_PERMANENT_FAILURE;
+    final boolean pending = attachment != null && attachment.transferState != AttachmentTable.TRANSFER_PROGRESS_DONE
+                            && attachment.transferState != AttachmentTable.TRANSFER_PROGRESS_PERMANENT_FAILURE;
 
     if (pending && (manual || AttachmentUtil.isAutoDownloadPermitted(context, attachment))) {
       Log.i(TAG, "onAdded() Marking attachment progress as 'started'");
@@ -168,7 +168,7 @@ public final class AttachmentDownloadJob extends BaseJob {
     Log.i(TAG, "Downloading push part " + attachmentId);
     database.setTransferState(messageId, attachmentId, AttachmentTable.TRANSFER_PROGRESS_STARTED);
 
-    if (attachment.getCdnNumber() != ReleaseChannel.CDN_NUMBER) {
+    if (attachment.cdnNumber != ReleaseChannel.CDN_NUMBER) {
       retrieveAttachment(messageId, attachmentId, attachment);
     } else {
       retrieveUrlAttachment(messageId, attachmentId, attachment);
@@ -200,7 +200,7 @@ public final class AttachmentDownloadJob extends BaseJob {
     File            attachmentFile = database.getOrCreateTransferFile(attachmentId);
 
     try {
-      if (attachment.getSize() > maxReceiveSize) {
+      if (attachment.size > maxReceiveSize) {
         throw new MmsException("Attachment too large, failing download");
       }
       SignalServiceMessageReceiver   messageReceiver = ApplicationDependencies.getSignalServiceMessageReceiver();
@@ -243,38 +243,38 @@ public final class AttachmentDownloadJob extends BaseJob {
   }
 
   private SignalServiceAttachmentPointer createAttachmentPointer(Attachment attachment) throws InvalidPartException {
-    if (TextUtils.isEmpty(attachment.getLocation())) {
+    if (TextUtils.isEmpty(attachment.location)) {
       throw new InvalidPartException("empty content id");
     }
 
-    if (TextUtils.isEmpty(attachment.getKey())) {
+    if (TextUtils.isEmpty(attachment.key)) {
       throw new InvalidPartException("empty encrypted key");
     }
 
     try {
-      final SignalServiceAttachmentRemoteId remoteId = SignalServiceAttachmentRemoteId.from(attachment.getLocation());
-      final byte[]                          key      = Base64.decode(attachment.getKey());
+      final SignalServiceAttachmentRemoteId remoteId = SignalServiceAttachmentRemoteId.from(attachment.location);
+      final byte[]                          key      = Base64.decode(attachment.key);
 
-      if (attachment.getDigest() != null) {
-        Log.i(TAG, "Downloading attachment with digest: " + Hex.toString(attachment.getDigest()));
+      if (attachment.digest != null) {
+        Log.i(TAG, "Downloading attachment with digest: " + Hex.toString(attachment.digest));
       } else {
         Log.i(TAG, "Downloading attachment with no digest...");
       }
 
-      return new SignalServiceAttachmentPointer(attachment.getCdnNumber(), remoteId, null, key,
-                                                Optional.of(Util.toIntExact(attachment.getSize())),
+      return new SignalServiceAttachmentPointer(attachment.cdnNumber, remoteId, null, key,
+                                                Optional.of(Util.toIntExact(attachment.size)),
                                                 Optional.empty(),
                                                 0, 0,
-                                                Optional.ofNullable(attachment.getDigest()),
+                                                Optional.ofNullable(attachment.digest),
                                                 Optional.ofNullable(attachment.getIncrementalDigest()),
-                                                attachment.getIncrementalMacChunkSize(),
-                                                Optional.ofNullable(attachment.getFileName()),
-                                                attachment.isVoiceNote(),
-                                                attachment.isBorderless(),
-                                                attachment.isVideoGif(),
+                                                attachment.incrementalMacChunkSize,
+                                                Optional.ofNullable(attachment.fileName),
+                                                attachment.voiceNote,
+                                                attachment.borderless,
+                                                attachment.videoGif,
                                                 Optional.empty(),
-                                                Optional.ofNullable(attachment.getBlurHash()).map(BlurHash::getHash),
-                                                attachment.getUploadTimestamp());
+                                                Optional.ofNullable(attachment.blurHash).map(BlurHash::getHash),
+                                                attachment.uploadTimestamp);
     } catch (IOException | ArithmeticException e) {
       Log.w(TAG, e);
       throw new InvalidPartException(e);
@@ -286,7 +286,7 @@ public final class AttachmentDownloadJob extends BaseJob {
                                      final Attachment attachment)
       throws IOException
   {
-    try (Response response = S3.getObject(Objects.requireNonNull(attachment.getFileName()))) {
+    try (Response response = S3.getObject(Objects.requireNonNull(attachment.fileName))) {
       ResponseBody body = response.body();
       if (body != null) {
         if (body.contentLength() > FeatureFlags.maxAttachmentReceiveSizeBytes()) {

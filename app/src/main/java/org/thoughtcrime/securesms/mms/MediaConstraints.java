@@ -75,7 +75,7 @@ public abstract class MediaConstraints {
 
   public boolean isSatisfied(@NonNull Context context, @NonNull Attachment attachment) {
     try {
-      long size = attachment.getSize();
+      long size = attachment.size;
       if (size > getMaxAttachmentSize()) {
         return false;
       }

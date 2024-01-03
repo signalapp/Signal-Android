@@ -2023,10 +2023,10 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     if (messageRecord.isMms()) {
       TextSlide slide = ((MmsMessageRecord) messageRecord).getSlideDeck().getTextSlide();
 
-      if (slide != null && (slide.asAttachment().getTransferState() == AttachmentTable.TRANSFER_PROGRESS_DONE || MessageRecordUtil.isScheduled(messageRecord))) {
+      if (slide != null && (slide.asAttachment().transferState == AttachmentTable.TRANSFER_PROGRESS_DONE || MessageRecordUtil.isScheduled(messageRecord))) {
         message = getResources().getString(R.string.ConversationItem_read_more);
         action  = () -> eventListener.onMoreTextClicked(conversationRecipient.getId(), messageRecord.getId(), messageRecord.isMms());
-      } else if (slide != null && slide.asAttachment().getTransferState() == AttachmentTable.TRANSFER_PROGRESS_STARTED) {
+      } else if (slide != null && slide.asAttachment().transferState == AttachmentTable.TRANSFER_PROGRESS_STARTED) {
         message = getResources().getString(R.string.ConversationItem_pending);
         action  = () -> {};
       } else if (slide != null) {
@@ -2438,7 +2438,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
         for (Slide slide : slides) {
           ApplicationDependencies.getJobManager().add(new AttachmentDownloadJob(messageRecord.getId(),
-                                                                                ((DatabaseAttachment) slide.asAttachment()).getAttachmentId(),
+                                                                                ((DatabaseAttachment) slide.asAttachment()).attachmentId,
                                                                                 true));
         }
       }
@@ -2457,7 +2457,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         Log.i(TAG, "Canceling push attachment downloads for " + slides.size() + " items");
 
         for (Slide slide : slides) {
-          final String queue = AttachmentDownloadJob.constructQueueString(((DatabaseAttachment) slide.asAttachment()).getAttachmentId());
+          final String queue = AttachmentDownloadJob.constructQueueString(((DatabaseAttachment) slide.asAttachment()).attachmentId);
           jobManager.cancelAllInQueue(queue);
         }
       }
@@ -2477,8 +2477,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       }
       if (MediaUtil.isInstantVideoSupported(slide)) {
         final DatabaseAttachment databaseAttachment = (DatabaseAttachment) slide.asAttachment();
-        if (databaseAttachment.getTransferState() != AttachmentTable.TRANSFER_PROGRESS_STARTED) {
-          final AttachmentId attachmentId = databaseAttachment.getAttachmentId();
+        if (databaseAttachment.transferState != AttachmentTable.TRANSFER_PROGRESS_STARTED) {
+          final AttachmentId attachmentId = databaseAttachment.attachmentId;
           final JobManager   jobManager   = ApplicationDependencies.getJobManager();
           final String       queue        = AttachmentDownloadJob.constructQueueString(attachmentId);
           setup(v, slide);
@@ -2550,7 +2550,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         performClick();
       } else if (eventListener != null && hasSticker(messageRecord)) {
         //noinspection ConstantConditions
-        eventListener.onStickerClicked(((MmsMessageRecord) messageRecord).getSlideDeck().getStickerSlide().asAttachment().getSticker());
+        eventListener.onStickerClicked(((MmsMessageRecord) messageRecord).getSlideDeck().getStickerSlide().asAttachment().stickerLocator);
       }
     }
   }
@@ -2617,7 +2617,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         messageRecord.getTimestamp(),
         mediaUri,
         slide.getContentType(),
-        slide.asAttachment().getSize(),
+        slide.asAttachment().size,
         slide.getCaption().orElse(null),
         false,
         false,
@@ -2626,8 +2626,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         MediaTable.Sorting.Newest,
         slide.isVideoGif(),
         new MediaIntentFactory.SharedElementArgs(
-            slide.asAttachment().getWidth(),
-            slide.asAttachment().getHeight(),
+            slide.asAttachment().width,
+            slide.asAttachment().height,
             mediaThumbnailStub.require().getCorners().getTopLeft(),
             mediaThumbnailStub.require().getCorners().getTopRight(),
             mediaThumbnailStub.require().getCorners().getBottomRight(),

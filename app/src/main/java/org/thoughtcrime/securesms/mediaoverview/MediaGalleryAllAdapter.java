@@ -203,7 +203,7 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
   }
 
   public void toggleSelection(@NonNull MediaRecord mediaRecord) {
-    AttachmentId           attachmentId = mediaRecord.getAttachment().getAttachmentId();
+    AttachmentId           attachmentId = mediaRecord.getAttachment().attachmentId;
     MediaTable.MediaRecord removed      = selected.remove(attachmentId);
     if (removed == null) {
       selected.put(attachmentId, mediaRecord);
@@ -219,7 +219,7 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
   public long getSelectedMediaTotalFileSize() {
     //noinspection ConstantConditions attacment cannot be null if selected
     return Stream.of(selected.values())
-                 .collect(Collectors.summingLong(a -> a.getAttachment().getSize()));
+                 .collect(Collectors.summingLong(a -> a.getAttachment().size));
   }
 
   @NonNull
@@ -238,7 +238,7 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
       int sectionItemCount = media.getSectionItemCount(section);
       for (int item = 0; item < sectionItemCount; item++) {
         MediaRecord mediaRecord = media.get(section, item);
-        selected.put(mediaRecord.getAttachment().getAttachmentId(), mediaRecord);
+        selected.put(mediaRecord.getAttachment().attachmentId, mediaRecord);
       }
     }
     this.notifyItemRangeChanged(0, getItemCount(), PAYLOAD_SELECTED);
@@ -282,7 +282,7 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
     }
 
     protected boolean isSelected() {
-      return selected.containsKey(mediaRecord.getAttachment().getAttachmentId());
+      return selected.containsKey(mediaRecord.getAttachment().attachmentId);
     }
 
     protected void updateSelectedView() {
@@ -539,11 +539,11 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
         throw new AssertionError();
       }
 
-      isVoiceNote = slide.asAttachment().isVoiceNote();
+      isVoiceNote = slide.asAttachment().voiceNote;
 
       super.bind(context, mediaRecord, slide);
 
-      long mmsId = Objects.requireNonNull(mediaRecord.getAttachment()).getMmsId();
+      long mmsId = Objects.requireNonNull(mediaRecord.getAttachment()).mmsId;
 
       audioItemListener.unregisterPlaybackStateObserver(audioView.getPlaybackStateObserver());
       audioView.setAudio((AudioSlide) slide, new AudioViewCallbacksAdapter(audioItemListener, mmsId), true, true);

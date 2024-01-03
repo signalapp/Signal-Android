@@ -37,7 +37,6 @@ import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.ImageCompressionUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.MemoryFileDescriptor;
 import org.thoughtcrime.securesms.util.MemoryFileDescriptor.MemoryFileException;
 import org.thoughtcrime.securesms.video.InMemoryTranscoder;
 import org.thoughtcrime.securesms.video.StreamingTranscoder;
@@ -73,7 +72,7 @@ public final class AttachmentCompressionJob extends BaseJob {
                                                         boolean mms,
                                                         int mmsSubscriptionId)
   {
-    return new AttachmentCompressionJob(databaseAttachment.getAttachmentId(),
+    return new AttachmentCompressionJob(databaseAttachment.attachmentId,
                                         MediaUtil.isVideo(databaseAttachment) && MediaConstraints.isVideoTranscodeAvailable(),
                                         mms,
                                         mmsSubscriptionId);
@@ -136,13 +135,13 @@ public final class AttachmentCompressionJob extends BaseJob {
       throw new UndeliverableMessageException("Cannot find the specified attachment.");
     }
 
-    if (databaseAttachment.getTransformProperties().shouldSkipTransform()) {
+    if (databaseAttachment.transformProperties.shouldSkipTransform()) {
       Log.i(TAG, "Skipping at the direction of the TransformProperties.");
       return;
     }
 
     MediaConstraints mediaConstraints = mms ? MediaConstraints.getMmsMediaConstraints(mmsSubscriptionId)
-                                            : MediaConstraints.getPushMediaConstraints(SentMediaQuality.fromCode(databaseAttachment.getTransformProperties().getSentMediaQuality()));
+                                            : MediaConstraints.getPushMediaConstraints(SentMediaQuality.fromCode(databaseAttachment.transformProperties.sentMediaQuality));
 
     compress(database, mediaConstraints, databaseAttachment);
   }
@@ -194,12 +193,12 @@ public final class AttachmentCompressionJob extends BaseJob {
                                                                               @NonNull TranscoderCancelationSignal cancelationSignal)
       throws UndeliverableMessageException
   {
-    AttachmentTable.TransformProperties transformProperties = attachment.getTransformProperties();
+    AttachmentTable.TransformProperties transformProperties = attachment.transformProperties;
 
     boolean allowSkipOnFailure = false;
 
     if (!MediaConstraints.isVideoTranscodeAvailable()) {
-      if (transformProperties.isVideoEdited()) {
+      if (transformProperties.getVideoEdited()) {
         throw new UndeliverableMessageException("Video edited, but transcode is not available");
       }
       return attachment;
@@ -210,15 +209,15 @@ public final class AttachmentCompressionJob extends BaseJob {
         notification.setIndeterminate(true);
       }
 
-      try (MediaDataSource dataSource = attachmentDatabase.mediaDataSourceFor(attachment.getAttachmentId(), false)) {
+      try (MediaDataSource dataSource = attachmentDatabase.mediaDataSourceFor(attachment.attachmentId, false)) {
         if (dataSource == null) {
           throw new UndeliverableMessageException("Cannot get media data source for attachment.");
         }
 
-        allowSkipOnFailure = !transformProperties.isVideoEdited();
+        allowSkipOnFailure = !transformProperties.getVideoEdited();
         TranscoderOptions options = null;
-        if (transformProperties.isVideoTrim()) {
-          options = new TranscoderOptions(transformProperties.getVideoTrimStartTimeUs(), transformProperties.getVideoTrimEndTimeUs());
+        if (transformProperties.videoTrim) {
+          options = new TranscoderOptions(transformProperties.videoTrimStartTimeUs, transformProperties.videoTrimEndTimeUs);
         }
 
         if (FeatureFlags.useStreamingVideoMuxer()) {
@@ -228,7 +227,7 @@ public final class AttachmentCompressionJob extends BaseJob {
             Log.i(TAG, "Compressing with streaming muxer");
             AttachmentSecret attachmentSecret = AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret();
 
-            File file = SignalDatabase.attachments().newFile();
+            File file = SignalDatabase.attachments().newFile(context);
             file.deleteOnExit();
 
             try {
@@ -258,9 +257,9 @@ public final class AttachmentCompressionJob extends BaseJob {
               }
             }
 
-            attachmentDatabase.markAttachmentAsTransformed(attachment.getAttachmentId(), false);
+            attachmentDatabase.markAttachmentAsTransformed(attachment.attachmentId, false);
 
-            return Objects.requireNonNull(attachmentDatabase.getAttachment(attachment.getAttachmentId()));
+            return Objects.requireNonNull(attachmentDatabase.getAttachment(attachment.attachmentId));
           } else {
             Log.i(TAG, "Transcode was not required");
           }
@@ -279,14 +278,14 @@ public final class AttachmentCompressionJob extends BaseJob {
                                                           percent));
               }, cancelationSignal)) {
                 attachmentDatabase.updateAttachmentData(attachment, mediaStream, true);
-                attachmentDatabase.markAttachmentAsTransformed(attachment.getAttachmentId(), mediaStream.getFaststart());
+                attachmentDatabase.markAttachmentAsTransformed(attachment.attachmentId, mediaStream.getFaststart());
               }
 
               eventBus.postSticky(new PartProgressEvent(attachment,
                                                         PartProgressEvent.Type.COMPRESSION,
                                                         100,
                                                         100));
-              return Objects.requireNonNull(attachmentDatabase.getAttachment(attachment.getAttachmentId()));
+              return Objects.requireNonNull(attachmentDatabase.getAttachment(attachment.attachmentId));
             } else {
               Log.i(TAG, "Transcode was not required (in-memory transcoder)");
             }
@@ -294,7 +293,7 @@ public final class AttachmentCompressionJob extends BaseJob {
         }
       }
     } catch (VideoSourceException | EncodingException | MemoryFileException e) {
-      if (attachment.getSize() > constraints.getVideoMaxSize(context)) {
+      if (attachment.size > constraints.getVideoMaxSize(context)) {
         throw new UndeliverableMessageException("Duration not found, attachment too large to skip transcode", e);
       } else {
         if (allowSkipOnFailure) {
@@ -330,7 +329,7 @@ public final class AttachmentCompressionJob extends BaseJob {
     try {
       for (int size : mediaConstraints.getImageDimensionTargets(context)) {
         result = ImageCompressionUtil.compressWithinConstraints(context,
-                                                                attachment.getContentType(),
+                                                                attachment.contentType,
                                                                 new DecryptableStreamUriLoader.DecryptableUri(uri),
                                                                 size,
                                                                 mediaConstraints.getImageMaxSize(context),

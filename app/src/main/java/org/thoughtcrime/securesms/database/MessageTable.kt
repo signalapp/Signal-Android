@@ -2316,7 +2316,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       val quoteText = cursor.requireString(QUOTE_BODY)
       val quoteType = cursor.requireInt(QUOTE_TYPE)
       val quoteMissing = cursor.requireBoolean(QUOTE_MISSING)
-      val quoteAttachments: List<Attachment> = associatedAttachments.filter { it.isQuote }.toList()
+      val quoteAttachments: List<Attachment> = associatedAttachments.filter { it.quote }.toList()
       val quoteMentions: List<Mention> = parseQuoteMentions(cursor)
       val quoteBodyRanges: BodyRangeList? = parseQuoteBodyRanges(cursor)
       val quote: QuoteModel? = if (quoteId != QUOTE_NOT_PRESENT_ID && quoteAuthor > 0 && (!TextUtils.isEmpty(quoteText) || quoteAttachments.isNotEmpty())) {
@@ -2330,7 +2330,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       val previews: List<LinkPreview> = getLinkPreviews(cursor, associatedAttachments)
       val previewAttachments: Set<Attachment> = previews.filter { it.thumbnail.isPresent }.map { it.thumbnail.get() }.toSet()
       val attachments: List<Attachment> = associatedAttachments
-        .filterNot { it.isQuote }
+        .filterNot { it.quote }
         .filterNot { contactAttachments.contains(it) }
         .filterNot { previewAttachments.contains(it) }
         .sortedWith(DisplayOrderComparator())
@@ -5119,7 +5119,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       val bodyRanges = parseQuoteBodyRanges(cursor)
 
       val attachments = attachments.getAttachments(cursor)
-      val quoteAttachments: List<Attachment> = attachments.filter { it.isQuote }
+      val quoteAttachments: List<Attachment> = attachments.filter { it.quote }
       val quoteDeck = SlideDeck(quoteAttachments)
 
       return if (quoteId != QUOTE_NOT_PRESENT_ID && quoteAuthor > 0) {
@@ -5170,7 +5170,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       @JvmStatic
       fun buildSlideDeck(attachments: List<DatabaseAttachment>): SlideDeck {
         val messageAttachments = attachments
-          .filterNot { it.isQuote }
+          .filterNot { it.quote }
           .sortedWith(DisplayOrderComparator())
 
         return SlideDeck(messageAttachments)

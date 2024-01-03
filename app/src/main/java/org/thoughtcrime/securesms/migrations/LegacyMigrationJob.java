@@ -246,15 +246,15 @@ public class LegacyMigrationJob extends MigrationJob {
 
     Log.i(TAG, pendingAttachments.size() + " pending parts.");
     for (DatabaseAttachment attachment : pendingAttachments) {
-      final MmsReader     reader = MessageTable.mmsReaderFor(mmsDb.getMessageCursor(attachment.getMmsId()));
+      final MmsReader     reader = MessageTable.mmsReaderFor(mmsDb.getMessageCursor(attachment.mmsId));
       final MessageRecord record = reader.getNext();
 
-      if (attachment.hasData()) {
-        Log.i(TAG, "corrected a pending media part " + attachment.getAttachmentId() + "that already had data.");
-        attachmentDb.setTransferState(attachment.getMmsId(), attachment.getAttachmentId(), AttachmentTable.TRANSFER_PROGRESS_DONE);
+      if (attachment.hasData) {
+        Log.i(TAG, "corrected a pending media part " + attachment.attachmentId + "that already had data.");
+        attachmentDb.setTransferState(attachment.mmsId, attachment.attachmentId, AttachmentTable.TRANSFER_PROGRESS_DONE);
       } else if (record != null && !record.isOutgoing() && record.isPush()) {
-        Log.i(TAG, "queuing new attachment download job for incoming push part " + attachment.getAttachmentId() + ".");
-        ApplicationDependencies.getJobManager().add(new AttachmentDownloadJob(attachment.getMmsId(), attachment.getAttachmentId(), false));
+        Log.i(TAG, "queuing new attachment download job for incoming push part " + attachment.attachmentId + ".");
+        ApplicationDependencies.getJobManager().add(new AttachmentDownloadJob(attachment.mmsId, attachment.attachmentId, false));
       }
       reader.close();
     }

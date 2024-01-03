@@ -97,7 +97,7 @@ public class PartAuthority {
     case PART_ROW:
       Attachment attachment = SignalDatabase.attachments().getAttachment(new PartUriParser(uri).getPartId());
 
-      if (attachment != null) return attachment.getFileName();
+      if (attachment != null) return attachment.fileName;
       else                    return null;
     case PERSISTENT_ROW:
       return DeprecatedPersistentBlobProvider.getFileName(context, uri);
@@ -115,7 +115,7 @@ public class PartAuthority {
       case PART_ROW:
         Attachment attachment = SignalDatabase.attachments().getAttachment(new PartUriParser(uri).getPartId());
 
-        if (attachment != null) return attachment.getSize();
+        if (attachment != null) return attachment.size;
         else                    return null;
       case PERSISTENT_ROW:
         return DeprecatedPersistentBlobProvider.getFileSize(context, uri);
@@ -133,7 +133,7 @@ public class PartAuthority {
       case PART_ROW:
         Attachment attachment = SignalDatabase.attachments().getAttachment(new PartUriParser(uri).getPartId());
 
-        if (attachment != null) return attachment.getContentType();
+        if (attachment != null) return attachment.contentType;
         else                    return null;
       case PERSISTENT_ROW:
         return DeprecatedPersistentBlobProvider.getMimeType(context, uri);
@@ -151,7 +151,7 @@ public class PartAuthority {
       case PART_ROW:
         Attachment attachment = SignalDatabase.attachments().getAttachment(new PartUriParser(uri).getPartId());
 
-        if (attachment != null) return attachment.isVideoGif();
+        if (attachment != null) return attachment.videoGif;
         else                    return false;
       default:
         return false;

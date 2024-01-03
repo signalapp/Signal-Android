@@ -294,7 +294,7 @@ public class MmsMessageRecord extends MessageRecord {
   public @NonNull MmsMessageRecord withAttachments(@NonNull List<DatabaseAttachment> attachments) {
     Map<AttachmentId, DatabaseAttachment> attachmentIdMap = new HashMap<>();
     for (DatabaseAttachment attachment : attachments) {
-      attachmentIdMap.put(attachment.getAttachmentId(), attachment);
+      attachmentIdMap.put(attachment.attachmentId, attachment);
     }
 
     List<Contact>     contacts               = updateContacts(getSharedContacts(), attachmentIdMap);
@@ -369,7 +369,7 @@ public class MmsMessageRecord extends MessageRecord {
       return null;
     }
 
-    List<DatabaseAttachment> quoteAttachments = attachments.stream().filter(Attachment::isQuote).collect(Collectors.toList());
+    List<DatabaseAttachment> quoteAttachments = attachments.stream().filter(a -> a.quote).collect(Collectors.toList());
 
     return quote.withAttachment(new SlideDeck(quoteAttachments));
   }

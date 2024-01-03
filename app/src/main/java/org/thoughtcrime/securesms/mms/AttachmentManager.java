@@ -323,7 +323,7 @@ public class AttachmentManager {
             result.set(true);
           } else {
             Attachment attachment = slide.asAttachment();
-            result.deferTo(thumbnail.setImageResource(glideRequests, slide, false, true, attachment.getWidth(), attachment.getHeight()));
+            result.deferTo(thumbnail.setImageResource(glideRequests, slide, false, true, attachment.width, attachment.height));
             removableMediaView.display(thumbnail, mediaType == SlideFactory.MediaType.IMAGE);
           }
 
@@ -546,7 +546,7 @@ public class AttachmentManager {
           MediaIntentFactory.UNKNOWN_TIMESTAMP,
           slide.getUri(),
           slide.getContentType(),
-          slide.asAttachment().getSize(),
+          slide.asAttachment().size,
           slide.getCaption().orElse(null),
           false,
           false,

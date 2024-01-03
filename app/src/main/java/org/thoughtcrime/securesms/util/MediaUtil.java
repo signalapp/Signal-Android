@@ -100,7 +100,7 @@ public class MediaUtil {
       return new StickerSlide(attachment);
     }
 
-    switch (getSlideTypeFromContentType(attachment.getContentType())) {
+    switch (getSlideTypeFromContentType(attachment.contentType)) {
       case GIF       : return new GifSlide(attachment);
       case IMAGE     : return new ImageSlide(attachment);
       case VIDEO     : return new VideoSlide(attachment);
@@ -262,31 +262,31 @@ public class MediaUtil {
   }
 
   public static boolean isGif(Attachment attachment) {
-    return isGif(attachment.getContentType());
+    return isGif(attachment.contentType);
   }
 
   public static boolean isJpeg(Attachment attachment) {
-    return isJpegType(attachment.getContentType());
+    return isJpegType(attachment.contentType);
   }
 
   public static boolean isHeic(Attachment attachment) {
-    return isHeicType(attachment.getContentType());
+    return isHeicType(attachment.contentType);
   }
 
   public static boolean isHeif(Attachment attachment) {
-    return isHeifType(attachment.getContentType());
+    return isHeifType(attachment.contentType);
   }
 
   public static boolean isImage(Attachment attachment) {
-    return isImageType(attachment.getContentType());
+    return isImageType(attachment.contentType);
   }
 
   public static boolean isAudio(Attachment attachment) {
-    return isAudioType(attachment.getContentType());
+    return isAudioType(attachment.contentType);
   }
 
   public static boolean isVideo(Attachment attachment) {
-    return isVideoType(attachment.getContentType());
+    return isVideoType(attachment.contentType);
   }
 
   public static boolean isVideo(String contentType) {
@@ -473,7 +473,7 @@ public class MediaUtil {
     }
     final Attachment attachment                        = slide.asAttachment();
     final boolean    isIncremental                     = attachment.getIncrementalDigest() != null;
-    final boolean    hasIncrementalMacChunkSizeDefined = attachment.getIncrementalMacChunkSize() > 0;
+    final boolean    hasIncrementalMacChunkSizeDefined = attachment.incrementalMacChunkSize > 0;
     final boolean    contentTypeSupported              = isVideoType(slide.getContentType());
     return isIncremental && contentTypeSupported && hasIncrementalMacChunkSizeDefined;
   }

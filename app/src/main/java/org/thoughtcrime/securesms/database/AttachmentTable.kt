@@ -1,0 +1,1669 @@
+/*
+ * Copyright (C) 2011 Whisper Systems
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+package org.thoughtcrime.securesms.database
+
+import android.content.ContentValues
+import android.content.Context
+import android.database.Cursor
+import android.media.MediaDataSource
+import android.os.Parcelable
+import android.text.TextUtils
+import androidx.annotation.RequiresApi
+import androidx.annotation.VisibleForTesting
+import androidx.annotation.WorkerThread
+import androidx.core.content.contentValuesOf
+import com.bumptech.glide.Glide
+import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.parcelize.IgnoredOnParcel
+import kotlinx.parcelize.Parcelize
+import org.json.JSONArray
+import org.json.JSONException
+import org.signal.core.util.Base64.encodeWithPadding
+import org.signal.core.util.SqlUtil.buildArgs
+import org.signal.core.util.SqlUtil.buildCollectionQuery
+import org.signal.core.util.SqlUtil.buildSingleCollectionQuery
+import org.signal.core.util.StreamUtil
+import org.signal.core.util.ThreadUtil
+import org.signal.core.util.delete
+import org.signal.core.util.exists
+import org.signal.core.util.forEach
+import org.signal.core.util.groupBy
+import org.signal.core.util.isNull
+import org.signal.core.util.logging.Log
+import org.signal.core.util.readToList
+import org.signal.core.util.readToSingleObject
+import org.signal.core.util.requireBlob
+import org.signal.core.util.requireBoolean
+import org.signal.core.util.requireInt
+import org.signal.core.util.requireLong
+import org.signal.core.util.requireNonNullBlob
+import org.signal.core.util.requireNonNullString
+import org.signal.core.util.requireString
+import org.signal.core.util.select
+import org.signal.core.util.update
+import org.signal.core.util.withinTransaction
+import org.thoughtcrime.securesms.attachments.Attachment
+import org.thoughtcrime.securesms.attachments.AttachmentId
+import org.thoughtcrime.securesms.attachments.DatabaseAttachment
+import org.thoughtcrime.securesms.audio.AudioHash
+import org.thoughtcrime.securesms.blurhash.BlurHash
+import org.thoughtcrime.securesms.crypto.AttachmentSecret
+import org.thoughtcrime.securesms.crypto.ClassicDecryptingPartInputStream
+import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream
+import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream
+import org.thoughtcrime.securesms.database.SignalDatabase.Companion.messages
+import org.thoughtcrime.securesms.database.SignalDatabase.Companion.stickers
+import org.thoughtcrime.securesms.database.SignalDatabase.Companion.threads
+import org.thoughtcrime.securesms.database.model.databaseprotos.AudioWaveFormData
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob
+import org.thoughtcrime.securesms.jobs.GenerateAudioWaveFormJob
+import org.thoughtcrime.securesms.mms.MediaStream
+import org.thoughtcrime.securesms.mms.MmsException
+import org.thoughtcrime.securesms.mms.PartAuthority
+import org.thoughtcrime.securesms.mms.SentMediaQuality
+import org.thoughtcrime.securesms.stickers.StickerLocator
+import org.thoughtcrime.securesms.util.FileUtils
+import org.thoughtcrime.securesms.util.JsonUtils.SaneJSONObject
+import org.thoughtcrime.securesms.util.MediaUtil
+import org.thoughtcrime.securesms.util.StorageUtil
+import org.thoughtcrime.securesms.video.EncryptedMediaDataSource
+import org.whispersystems.signalservice.internal.util.JsonUtil
+import java.io.File
+import java.io.FileNotFoundException
+import java.io.IOException
+import java.io.InputStream
+import java.security.DigestInputStream
+import java.security.MessageDigest
+import java.security.NoSuchAlgorithmException
+import java.util.Arrays
+import java.util.LinkedList
+import java.util.Objects
+import java.util.Optional
+
+class AttachmentTable(
+  context: Context,
+  databaseHelper: SignalDatabase,
+  private val attachmentSecret: AttachmentSecret
+) : DatabaseTable(context, databaseHelper) {
+
+  companion object {
+    val TAG = Log.tag(AttachmentTable::class.java)
+
+    const val TABLE_NAME = "part"
+    const val ROW_ID = "_id"
+    const val ATTACHMENT_JSON_ALIAS = "attachment_json"
+    const val MMS_ID = "mid"
+    const val CONTENT_TYPE = "ct"
+    const val NAME = "name"
+    const val CONTENT_DISPOSITION = "cd"
+    const val CONTENT_LOCATION = "cl"
+    const val DATA = "_data"
+    const val TRANSFER_STATE = "pending_push"
+    const val TRANSFER_FILE = "transfer_file"
+    const val SIZE = "data_size"
+    const val FILE_NAME = "file_name"
+    const val UNIQUE_ID = "unique_id"
+    const val DIGEST = "digest"
+    const val VOICE_NOTE = "voice_note"
+    const val BORDERLESS = "borderless"
+    const val VIDEO_GIF = "video_gif"
+    const val QUOTE = "quote"
+    const val STICKER_PACK_ID = "sticker_pack_id"
+    const val STICKER_PACK_KEY = "sticker_pack_key"
+    const val STICKER_ID = "sticker_id"
+    const val STICKER_EMOJI = "sticker_emoji"
+    const val FAST_PREFLIGHT_ID = "fast_preflight_id"
+    const val DATA_RANDOM = "data_random"
+    const val WIDTH = "width"
+    const val HEIGHT = "height"
+    const val CAPTION = "caption"
+    const val DATA_HASH = "data_hash"
+    const val VISUAL_HASH = "blur_hash"
+    const val TRANSFORM_PROPERTIES = "transform_properties"
+    const val DISPLAY_ORDER = "display_order"
+    const val UPLOAD_TIMESTAMP = "upload_timestamp"
+    const val CDN_NUMBER = "cdn_number"
+    const val MAC_DIGEST = "incremental_mac_digest"
+    const val INCREMENTAL_MAC_CHUNK_SIZE = "incremental_mac_chunk_size"
+
+    private const val DIRECTORY = "parts"
+
+    const val TRANSFER_PROGRESS_DONE = 0
+    const val TRANSFER_PROGRESS_STARTED = 1
+    const val TRANSFER_PROGRESS_PENDING = 2
+    const val TRANSFER_PROGRESS_FAILED = 3
+    const val TRANSFER_PROGRESS_PERMANENT_FAILURE = 4
+    const val PREUPLOAD_MESSAGE_ID: Long = -8675309
+
+    private const val PART_ID_WHERE = "$ROW_ID = ? AND $UNIQUE_ID = ?"
+    private const val PART_ID_WHERE_NOT = "$ROW_ID != ? AND $UNIQUE_ID != ?"
+
+    private val PROJECTION = arrayOf(
+      ROW_ID,
+      MMS_ID,
+      CONTENT_TYPE,
+      NAME,
+      CONTENT_DISPOSITION,
+      CDN_NUMBER,
+      CONTENT_LOCATION,
+      DATA,
+      TRANSFER_STATE,
+      SIZE,
+      FILE_NAME,
+      UNIQUE_ID,
+      DIGEST,
+      MAC_DIGEST,
+      INCREMENTAL_MAC_CHUNK_SIZE,
+      FAST_PREFLIGHT_ID,
+      VOICE_NOTE,
+      BORDERLESS,
+      VIDEO_GIF,
+      QUOTE,
+      DATA_RANDOM,
+      WIDTH,
+      HEIGHT,
+      CAPTION,
+      STICKER_PACK_ID,
+      STICKER_PACK_KEY,
+      STICKER_ID,
+      STICKER_EMOJI,
+      DATA_HASH,
+      VISUAL_HASH,
+      TRANSFORM_PROPERTIES,
+      TRANSFER_FILE,
+      DISPLAY_ORDER,
+      UPLOAD_TIMESTAMP
+    )
+
+    const val CREATE_TABLE = """
+      CREATE TABLE $TABLE_NAME (
+        $ROW_ID INTEGER PRIMARY KEY,
+        $MMS_ID INTEGER,
+        seq INTEGER DEFAULT 0,
+        $CONTENT_TYPE TEXT,
+        $NAME TEXT,
+        chset INTEGER,
+        $CONTENT_DISPOSITION TEXT,
+        fn TEXT,
+        cid TEXT,
+        $CONTENT_LOCATION TEXT,
+        ctt_s INTEGER,
+        ctt_t TEXT,
+        encrypted INTEGER,
+        $TRANSFER_STATE INTEGER,
+        $DATA TEXT,
+        $SIZE INTEGER,
+        $FILE_NAME TEXT,
+        $UNIQUE_ID INTEGER NOT NULL,
+        $DIGEST BLOB,
+        $FAST_PREFLIGHT_ID TEXT,
+        $VOICE_NOTE INTEGER DEFAULT 0,
+        $BORDERLESS INTEGER DEFAULT 0,
+        $VIDEO_GIF INTEGER DEFAULT 0,
+        $DATA_RANDOM BLOB,
+        $QUOTE INTEGER DEFAULT 0,
+        $WIDTH INTEGER DEFAULT 0,
+        $HEIGHT INTEGER DEFAULT 0,
+        $CAPTION TEXT DEFAULT NULL,
+        $STICKER_PACK_ID TEXT DEFAULT NULL,
+        $STICKER_PACK_KEY DEFAULT NULL,
+        $STICKER_ID INTEGER DEFAULT -1,
+        $STICKER_EMOJI STRING DEFAULT NULL,
+        $DATA_HASH TEXT DEFAULT NULL,
+        $VISUAL_HASH TEXT DEFAULT NULL,
+        $TRANSFORM_PROPERTIES TEXT DEFAULT NULL,
+        $TRANSFER_FILE TEXT DEFAULT NULL,
+        $DISPLAY_ORDER INTEGER DEFAULT 0,
+        $UPLOAD_TIMESTAMP INTEGER DEFAULT 0,
+        $CDN_NUMBER INTEGER DEFAULT 0,
+        $MAC_DIGEST BLOB,
+        $INCREMENTAL_MAC_CHUNK_SIZE INTEGER DEFAULT 0
+      )
+      """
+
+    @JvmField
+    val CREATE_INDEXS = arrayOf(
+      "CREATE INDEX IF NOT EXISTS part_mms_id_index ON $TABLE_NAME ($MMS_ID);",
+      "CREATE INDEX IF NOT EXISTS pending_push_index ON $TABLE_NAME ($TRANSFER_STATE);",
+      "CREATE INDEX IF NOT EXISTS part_sticker_pack_id_index ON $TABLE_NAME ($STICKER_PACK_ID);",
+      "CREATE INDEX IF NOT EXISTS part_data_hash_index ON $TABLE_NAME ($DATA_HASH);",
+      "CREATE INDEX IF NOT EXISTS part_data_index ON $TABLE_NAME ($DATA);"
+    )
+
+    @JvmStatic
+    @JvmOverloads
+    @Throws(IOException::class)
+    fun newFile(context: Context): File {
+      val partsDirectory = context.getDir(DIRECTORY, Context.MODE_PRIVATE)
+      return PartFileProtector.protect { File.createTempFile("part", ".mms", partsDirectory) }
+    }
+  }
+
+  @Throws(IOException::class)
+  fun getAttachmentStream(attachmentId: AttachmentId, offset: Long): InputStream {
+    return try {
+      getDataStream(attachmentId, DATA, offset)
+    } catch (e: FileNotFoundException) {
+      throw IOException("No stream for: $attachmentId", e)
+    } ?: throw IOException("No stream for: $attachmentId")
+  }
+
+  fun getAttachment(attachmentId: AttachmentId): DatabaseAttachment? {
+    return readableDatabase
+      .select(*PROJECTION)
+      .from(TABLE_NAME)
+      .where(PART_ID_WHERE, attachmentId.toStrings())
+      .run()
+      .readToList { it.readAttachments() }
+      .flatten()
+      .firstOrNull()
+  }
+
+  fun getAttachmentsForMessage(mmsId: Long): List<DatabaseAttachment> {
+    return readableDatabase
+      .select(*PROJECTION)
+      .from(TABLE_NAME)
+      .where("$MMS_ID = ?", mmsId)
+      .orderBy("$UNIQUE_ID ASC, $ROW_ID ASC")
+      .run()
+      .readToList { it.readAttachments() }
+      .flatten()
+  }
+
+  fun getAttachmentsForMessages(mmsIds: Collection<Long?>): Map<Long, List<DatabaseAttachment>> {
+    if (mmsIds.isEmpty()) {
+      return emptyMap()
+    }
+
+    val query = buildSingleCollectionQuery(MMS_ID, mmsIds)
+
+    return readableDatabase
+      .select(*PROJECTION)
+      .from(TABLE_NAME)
+      .where(query.where, query.whereArgs)
+      .orderBy("$UNIQUE_ID ASC, $ROW_ID ASC")
+      .run()
+      .groupBy { cursor ->
+        val attachment = cursor.readAttachment()
+        attachment.mmsId to attachment
+      }
+  }
+
+  fun hasAttachment(id: AttachmentId): Boolean {
+    return readableDatabase
+      .exists(TABLE_NAME)
+      .where(PART_ID_WHERE, id.toStrings())
+      .run()
+  }
+
+  fun getPendingAttachments(): List<DatabaseAttachment> {
+    return readableDatabase
+      .select(*PROJECTION)
+      .from(TABLE_NAME)
+      .where("$TRANSFER_STATE = ?", TRANSFER_PROGRESS_STARTED.toString())
+      .run()
+      .readToList { it.readAttachments() }
+      .flatten()
+  }
+
+  fun deleteAttachmentsForMessage(mmsId: Long): Boolean {
+    Log.d(TAG, "[deleteAttachmentsForMessage] mmsId: $mmsId")
+
+    return writableDatabase.withinTransaction { db ->
+      db.select(DATA, CONTENT_TYPE, ROW_ID, UNIQUE_ID)
+        .from(TABLE_NAME)
+        .where("$MMS_ID = ?", mmsId)
+        .run()
+        .forEach { cursor ->
+          val attachmentId = AttachmentId(
+            cursor.requireLong(ROW_ID),
+            cursor.requireLong(UNIQUE_ID)
+          )
+
+          ApplicationDependencies.getJobManager().cancelAllInQueue(AttachmentDownloadJob.constructQueueString(attachmentId))
+
+          deleteAttachmentOnDisk(
+            data = cursor.requireString(DATA),
+            contentType = cursor.requireString(CONTENT_TYPE),
+            attachmentId = attachmentId
+          )
+        }
+
+      val deleteCount = db.delete(TABLE_NAME)
+        .where("$MMS_ID = ?", mmsId)
+        .run()
+
+      notifyAttachmentListeners()
+
+      deleteCount > 0
+    }
+  }
+
+  /**
+   * Deletes all attachments with an ID of [PREUPLOAD_MESSAGE_ID]. These represent
+   * attachments that were pre-uploaded and haven't been assigned to a message. This should only be
+   * done when you *know* that all attachments *should* be assigned a real mmsId. For instance, when
+   * the app starts. Otherwise you could delete attachments that are legitimately being
+   * pre-uploaded.
+   */
+  fun deleteAbandonedPreuploadedAttachments(): Int {
+    var count = 0
+
+    writableDatabase
+      .select(ROW_ID, UNIQUE_ID)
+      .from(TABLE_NAME)
+      .where("$MMS_ID = ?", PREUPLOAD_MESSAGE_ID)
+      .run()
+      .forEach { cursor ->
+        val id = AttachmentId(
+          cursor.requireLong(ROW_ID),
+          cursor.requireLong(UNIQUE_ID)
+        )
+
+        deleteAttachment(id)
+
+        count++
+      }
+
+    return count
+  }
+
+  fun deleteAttachmentFilesForViewOnceMessage(mmsId: Long) {
+    Log.d(TAG, "[deleteAttachmentFilesForViewOnceMessage] mmsId: $mmsId")
+
+    writableDatabase.withinTransaction { db ->
+      db.select(DATA, CONTENT_TYPE, ROW_ID, UNIQUE_ID)
+        .from(TABLE_NAME)
+        .where("$MMS_ID = ?", mmsId)
+        .run()
+        .forEach { cursor ->
+          deleteAttachmentOnDisk(
+            data = cursor.requireString(DATA),
+            contentType = cursor.requireString(CONTENT_TYPE),
+            attachmentId = AttachmentId(cursor.requireLong(ROW_ID), cursor.requireLong(UNIQUE_ID))
+          )
+        }
+
+      db.update(TABLE_NAME)
+        .values(
+          DATA to null,
+          DATA_RANDOM to null,
+          DATA_HASH to null,
+          FILE_NAME to null,
+          CAPTION to null,
+          SIZE to 0,
+          WIDTH to 0,
+          HEIGHT to 0,
+          TRANSFER_STATE to TRANSFER_PROGRESS_DONE,
+          VISUAL_HASH to null,
+          CONTENT_TYPE to MediaUtil.VIEW_ONCE
+        )
+        .run()
+
+      notifyAttachmentListeners()
+
+      val threadId = messages.getThreadIdForMessage(mmsId)
+      if (threadId > 0) {
+        notifyConversationListeners(threadId)
+      }
+    }
+  }
+
+  fun deleteAttachment(id: AttachmentId) {
+    Log.d(TAG, "[deleteAttachment] attachmentId: $id")
+
+    writableDatabase.withinTransaction { db ->
+      db.select(DATA, CONTENT_TYPE)
+        .from(TABLE_NAME)
+        .where(PART_ID_WHERE, id.toStrings())
+        .run()
+        .use { cursor ->
+          if (!cursor.moveToFirst()) {
+            Log.w(TAG, "Tried to delete an attachment, but it didn't exist.")
+            return@withinTransaction
+          }
+
+          val data = cursor.requireString(DATA)
+          val contentType = cursor.requireString(CONTENT_TYPE)
+
+          deleteAttachmentOnDisk(
+            data = data,
+            contentType = contentType,
+            attachmentId = id
+          )
+
+          db.delete(TABLE_NAME)
+            .where(PART_ID_WHERE, id.toStrings())
+            .run()
+
+          deleteAttachmentOnDisk(data, contentType, id)
+          notifyAttachmentListeners()
+        }
+    }
+  }
+
+  fun trimAllAbandonedAttachments() {
+    val deleteCount = writableDatabase
+      .delete(TABLE_NAME)
+      .where("$MMS_ID != $PREUPLOAD_MESSAGE_ID AND $MMS_ID NOT IN (SELECT ${MessageTable.ID} FROM ${MessageTable.TABLE_NAME})")
+      .run()
+
+    if (deleteCount > 0) {
+      Log.i(TAG, "Trimmed $deleteCount abandoned attachments.")
+    }
+  }
+
+  fun deleteAbandonedAttachmentFiles(): Int {
+    val diskFiles = context.getDir(DIRECTORY, Context.MODE_PRIVATE).listFiles() ?: return 0
+
+    val filesOnDisk: Set<String> = diskFiles
+      .filter { file: File -> !PartFileProtector.isProtected(file) }
+      .map { file: File -> file.absolutePath }
+      .toSet()
+
+    val filesInDb: Set<String> = readableDatabase
+      .select(DATA)
+      .from(TABLE_NAME)
+      .run()
+      .readToList { it.requireString(DATA) }
+      .filterNotNull()
+      .toSet() + stickers.allStickerFiles
+
+    val onDiskButNotInDatabase: Set<String> = filesOnDisk - filesInDb
+
+    for (filePath in onDiskButNotInDatabase) {
+      val success = File(filePath).delete()
+      if (!success) {
+        Log.w(TAG, "[deleteAbandonedAttachmentFiles] Failed to delete attachment file. $filePath")
+      }
+    }
+
+    return onDiskButNotInDatabase.size
+  }
+
+  fun deleteAllAttachments() {
+    Log.d(TAG, "[deleteAllAttachments]")
+
+    writableDatabase
+      .delete(TABLE_NAME)
+      .run()
+
+    FileUtils.deleteDirectoryContents(context.getDir(DIRECTORY, Context.MODE_PRIVATE))
+
+    notifyAttachmentListeners()
+  }
+
+  fun setTransferState(messageId: Long, attachmentId: AttachmentId, transferState: Int) {
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(TRANSFER_STATE to transferState)
+      .where(PART_ID_WHERE, attachmentId.toStrings())
+      .run()
+
+    val threadId = messages.getThreadIdForMessage(messageId)
+    notifyConversationListeners(threadId)
+  }
+
+  @Throws(MmsException::class)
+  fun setTransferProgressFailed(attachmentId: AttachmentId, mmsId: Long) {
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(TRANSFER_STATE to TRANSFER_PROGRESS_FAILED)
+      .where("$PART_ID_WHERE AND $TRANSFER_STATE < $TRANSFER_PROGRESS_PERMANENT_FAILURE", attachmentId.toStrings())
+      .run()
+
+    notifyConversationListeners(messages.getThreadIdForMessage(mmsId))
+  }
+
+  @Throws(MmsException::class)
+  fun setTransferProgressPermanentFailure(attachmentId: AttachmentId, mmsId: Long) {
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(TRANSFER_STATE to TRANSFER_PROGRESS_PERMANENT_FAILURE)
+      .where(PART_ID_WHERE, attachmentId.toStrings())
+      .run()
+
+    notifyConversationListeners(messages.getThreadIdForMessage(mmsId))
+  }
+
+  @Throws(MmsException::class)
+  fun insertAttachmentsForPlaceholder(mmsId: Long, attachmentId: AttachmentId, inputStream: InputStream) {
+    val placeholder = getAttachment(attachmentId)
+    val oldInfo = getAttachmentDataFileInfo(attachmentId, DATA)
+    var dataInfo = storeAttachmentStream(inputStream)
+    val transferFile = getTransferFile(databaseHelper.signalReadableDatabase, attachmentId)
+
+    val updated = writableDatabase.withinTransaction { db ->
+      dataInfo = deduplicateAttachment(dataInfo, attachmentId, placeholder?.transformProperties ?: TransformProperties.empty())
+
+      if (oldInfo != null) {
+        updateAttachmentDataHash(db, oldInfo.hash, dataInfo)
+      }
+
+      val values = ContentValues()
+      values.put(DATA, dataInfo.file.absolutePath)
+      values.put(SIZE, dataInfo.length)
+      values.put(DATA_RANDOM, dataInfo.random)
+      values.put(DATA_HASH, dataInfo.hash)
+
+      val visualHashString = placeholder.getVisualHashStringOrNull()
+      if (visualHashString != null) {
+        values.put(VISUAL_HASH, visualHashString)
+      }
+
+      values.put(TRANSFER_STATE, TRANSFER_PROGRESS_DONE)
+      values.put(TRANSFER_FILE, null as String?)
+      values.put(TRANSFORM_PROPERTIES, TransformProperties.forSkipTransform().serialize())
+
+      val updateCount = db.update(TABLE_NAME)
+        .values(values)
+        .where(PART_ID_WHERE, attachmentId.toStrings())
+        .run()
+
+      updateCount > 0
+    }
+
+    if (updated) {
+      val threadId = messages.getThreadIdForMessage(mmsId)
+
+      if (!messages.isStory(mmsId)) {
+        threads.updateSnippetUriSilently(threadId, PartAuthority.getAttachmentDataUri(attachmentId))
+      }
+
+      notifyConversationListeners(threadId)
+      notifyConversationListListeners()
+      notifyAttachmentListeners()
+    } else {
+      if (!dataInfo.file.delete()) {
+        Log.w(TAG, "Failed to delete unused attachment")
+      }
+    }
+
+    if (transferFile != null) {
+      if (!transferFile.delete()) {
+        Log.w(TAG, "Unable to delete transfer file.")
+      }
+    }
+
+    if (placeholder != null && MediaUtil.isAudio(placeholder)) {
+      GenerateAudioWaveFormJob.enqueue(placeholder.attachmentId)
+    }
+  }
+
+  @Throws(MmsException::class)
+  fun copyAttachmentData(sourceId: AttachmentId, destinationId: AttachmentId) {
+    val sourceAttachment = getAttachment(sourceId) ?: throw MmsException("Cannot find attachment for source!")
+    val sourceDataInfo = getAttachmentDataFileInfo(sourceId, DATA) ?: throw MmsException("No attachment data found for source!")
+
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(
+        DATA to sourceDataInfo.file.absolutePath,
+        DATA_HASH to sourceDataInfo.hash,
+        SIZE to sourceDataInfo.length,
+        DATA_RANDOM to sourceDataInfo.random,
+        TRANSFER_STATE to sourceAttachment.transferState,
+        CDN_NUMBER to sourceAttachment.cdnNumber,
+        CONTENT_LOCATION to sourceAttachment.location,
+        DIGEST to sourceAttachment.digest,
+        MAC_DIGEST to sourceAttachment.incrementalDigest,
+        INCREMENTAL_MAC_CHUNK_SIZE to sourceAttachment.incrementalMacChunkSize,
+        CONTENT_DISPOSITION to sourceAttachment.key,
+        NAME to sourceAttachment.relay,
+        SIZE to sourceAttachment.size,
+        FAST_PREFLIGHT_ID to sourceAttachment.fastPreflightId,
+        WIDTH to sourceAttachment.width,
+        HEIGHT to sourceAttachment.height,
+        CONTENT_TYPE to sourceAttachment.contentType,
+        VISUAL_HASH to sourceAttachment.getVisualHashStringOrNull(),
+        TRANSFORM_PROPERTIES to sourceAttachment.transformProperties?.serialize()
+      )
+      .where(PART_ID_WHERE, destinationId.toStrings())
+      .run()
+  }
+
+  fun updateAttachmentCaption(id: AttachmentId, caption: String?) {
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(CAPTION to caption)
+      .where(PART_ID_WHERE, id.toStrings())
+      .run()
+  }
+
+  fun updateDisplayOrder(orderMap: Map<AttachmentId, Int?>) {
+    writableDatabase.withinTransaction { db ->
+      for ((key, value) in orderMap) {
+        db.update(TABLE_NAME)
+          .values(DISPLAY_ORDER to value)
+          .where(PART_ID_WHERE, key.toStrings())
+          .run()
+      }
+    }
+  }
+
+  fun updateAttachmentAfterUpload(id: AttachmentId, attachment: Attachment, uploadTimestamp: Long) {
+    val dataInfo = getAttachmentDataFileInfo(id, DATA)
+    val values = contentValuesOf(
+      TRANSFER_STATE to TRANSFER_PROGRESS_DONE,
+      CDN_NUMBER to attachment.cdnNumber,
+      CONTENT_LOCATION to attachment.location,
+      DIGEST to attachment.digest,
+      MAC_DIGEST to attachment.incrementalDigest,
+      INCREMENTAL_MAC_CHUNK_SIZE to attachment.incrementalMacChunkSize,
+      CONTENT_DISPOSITION to attachment.key,
+      NAME to attachment.relay,
+      SIZE to attachment.size,
+      FAST_PREFLIGHT_ID to attachment.fastPreflightId,
+      VISUAL_HASH to attachment.getVisualHashStringOrNull(),
+      UPLOAD_TIMESTAMP to uploadTimestamp
+    )
+
+    if (dataInfo != null && dataInfo.hash != null) {
+      updateAttachmentAndMatchingHashes(writableDatabase, id, dataInfo.hash, values)
+    } else {
+      writableDatabase
+        .update(TABLE_NAME)
+        .values(values)
+        .where(PART_ID_WHERE, id.toStrings())
+        .run()
+    }
+  }
+
+  @Throws(MmsException::class)
+  fun insertAttachmentForPreUpload(attachment: Attachment): DatabaseAttachment {
+    val result = insertAttachmentsForMessage(PREUPLOAD_MESSAGE_ID, listOf(attachment), emptyList())
+
+    if (result.values.isEmpty()) {
+      throw MmsException("Bad attachment result!")
+    }
+
+    return getAttachment(result.values.iterator().next()) ?: throw MmsException("Failed to retrieve attachment we just inserted!")
+  }
+
+  fun updateMessageId(attachmentIds: Collection<AttachmentId>, mmsId: Long, isStory: Boolean) {
+    writableDatabase.withinTransaction { db ->
+      val values = ContentValues(2).apply {
+        put(MMS_ID, mmsId)
+        if (!isStory) {
+          putNull(CAPTION)
+        }
+      }
+
+      var updatedCount = 0
+      var attachmentIdSize = 0
+      for (attachmentId in attachmentIds) {
+        attachmentIdSize++
+        updatedCount += db
+          .update(TABLE_NAME)
+          .values(values)
+          .where(PART_ID_WHERE, attachmentId.toStrings())
+          .run()
+      }
+
+      Log.d(TAG, "[updateMessageId] Updated $updatedCount out of $attachmentIdSize ids.")
+    }
+  }
+
+  @Throws(MmsException::class)
+  fun insertAttachmentsForMessage(mmsId: Long, attachments: List<Attachment>, quoteAttachment: List<Attachment>): Map<Attachment, AttachmentId> {
+    if (attachments.isEmpty() && quoteAttachment.isEmpty()) {
+      return emptyMap()
+    }
+
+    Log.d(TAG, "insertParts(${attachments.size})")
+
+    val insertedAttachments: MutableMap<Attachment, AttachmentId> = mutableMapOf()
+    for (attachment in attachments) {
+      val attachmentId = insertAttachment(mmsId, attachment, attachment.quote)
+      insertedAttachments[attachment] = attachmentId
+      Log.i(TAG, "Inserted attachment at ID: $attachmentId")
+    }
+
+    try {
+      for (attachment in quoteAttachment) {
+        val attachmentId = insertAttachment(mmsId, attachment, true)
+        insertedAttachments[attachment] = attachmentId
+        Log.i(TAG, "Inserted quoted attachment at ID: $attachmentId")
+      }
+    } catch (e: MmsException) {
+      Log.w(TAG, "Failed to insert quote attachment! messageId: $mmsId")
+    }
+
+    return insertedAttachments
+  }
+
+  /**
+   * @param onlyModifyThisAttachment If false and more than one attachment shares this file and quality, they will all
+   * be updated. If true, then guarantees not to affect other attachments.
+   */
+  @Throws(MmsException::class, IOException::class)
+  fun updateAttachmentData(
+    databaseAttachment: DatabaseAttachment,
+    mediaStream: MediaStream,
+    onlyModifyThisAttachment: Boolean
+  ) {
+    val attachmentId = databaseAttachment.attachmentId
+    val oldDataInfo = getAttachmentDataFileInfo(attachmentId, DATA) ?: throw MmsException("No attachment data found!")
+    var destination = oldDataInfo.file
+    val isSingleUseOfData = onlyModifyThisAttachment || oldDataInfo.hash == null
+
+    if (isSingleUseOfData && fileReferencedByMoreThanOneAttachment(destination)) {
+      Log.i(TAG, "Creating a new file as this one is used by more than one attachment")
+      destination = newFile(context)
+    }
+
+    var dataInfo: DataInfo = storeAttachmentStream(destination, mediaStream.stream)
+
+    writableDatabase.withinTransaction { db ->
+      dataInfo = deduplicateAttachment(dataInfo, attachmentId, databaseAttachment.transformProperties)
+
+      val contentValues = contentValuesOf(
+        SIZE to dataInfo.length,
+        CONTENT_TYPE to mediaStream.mimeType,
+        WIDTH to mediaStream.width,
+        HEIGHT to mediaStream.height,
+        DATA to dataInfo.file.absolutePath,
+        DATA_RANDOM to dataInfo.random,
+        DATA_HASH to dataInfo.hash
+      )
+
+      val updateCount = updateAttachmentAndMatchingHashes(
+        db = db,
+        attachmentId = attachmentId,
+        dataHash = if (isSingleUseOfData) dataInfo.hash else oldDataInfo.hash,
+        contentValues = contentValues
+      )
+
+      Log.i(TAG, "[updateAttachmentData] Updated $updateCount rows.")
+    }
+  }
+
+  fun duplicateAttachmentsForMessage(destinationMessageId: Long, sourceMessageId: Long, excludedIds: Collection<Long>) {
+    writableDatabase.withinTransaction { db ->
+      db.execSQL("CREATE TEMPORARY TABLE tmp_part AS SELECT * FROM $TABLE_NAME WHERE $MMS_ID = ?", buildArgs(sourceMessageId))
+
+      val queries = buildCollectionQuery(ROW_ID, excludedIds)
+      for (query in queries) {
+        db.delete("tmp_part", query.where, query.whereArgs)
+      }
+
+      db.execSQL("UPDATE tmp_part SET $ROW_ID = NULL, $MMS_ID = ?", buildArgs(destinationMessageId))
+      db.execSQL("INSERT INTO $TABLE_NAME SELECT * FROM tmp_part")
+      db.execSQL("DROP TABLE tmp_part")
+    }
+  }
+
+  @Throws(IOException::class)
+  fun getOrCreateTransferFile(attachmentId: AttachmentId): File {
+    val existing = getTransferFile(writableDatabase, attachmentId)
+    if (existing != null) {
+      return existing
+    }
+
+    val transferFile = newTransferFile()
+
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(TRANSFER_FILE to transferFile.absolutePath)
+      .where(PART_ID_WHERE, attachmentId.toStrings())
+      .run()
+
+    return transferFile
+  }
+
+  @VisibleForTesting
+  fun getAttachmentDataFileInfo(attachmentId: AttachmentId, dataType: String): DataInfo? {
+    return readableDatabase
+      .select(dataType, SIZE, DATA_RANDOM, DATA_HASH, TRANSFORM_PROPERTIES)
+      .from(TABLE_NAME)
+      .where(PART_ID_WHERE, attachmentId.toStrings())
+      .run()
+      .readToSingleObject { cursor ->
+        if (cursor.isNull(dataType)) {
+          null
+        } else {
+          DataInfo(
+            file = File(cursor.getString(cursor.getColumnIndexOrThrow(dataType))),
+            length = cursor.requireLong(SIZE),
+            random = cursor.requireNonNullBlob(DATA_RANDOM),
+            hash = cursor.requireNonNullString(DATA_HASH),
+            transformProperties = TransformProperties.parse(cursor.requireString(TRANSFORM_PROPERTIES))
+          )
+        }
+      }
+  }
+
+  fun markAttachmentAsTransformed(attachmentId: AttachmentId, withFastStart: Boolean) {
+    writableDatabase.withinTransaction { db ->
+      try {
+        var transformProperties = getTransformProperties(attachmentId)
+        if (transformProperties == null) {
+          Log.w(TAG, "Failed to get transformation properties, attachment no longer exists.")
+          return@withinTransaction
+        }
+
+        transformProperties = transformProperties.withSkipTransform()
+        if (withFastStart) {
+          transformProperties = transformProperties.withMp4FastStart()
+        }
+
+        updateAttachmentTransformProperties(attachmentId, transformProperties)
+      } catch (e: Exception) {
+        Log.w(TAG, "Could not mark attachment as transformed.", e)
+      }
+    }
+  }
+
+  @WorkerThread
+  fun writeAudioHash(attachmentId: AttachmentId, audioWaveForm: AudioWaveFormData?) {
+    Log.i(TAG, "updating part audio wave form for $attachmentId")
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(VISUAL_HASH to audioWaveForm?.let { AudioHash(it).hash })
+      .where(PART_ID_WHERE, attachmentId.toStrings())
+      .run()
+  }
+
+  @RequiresApi(23)
+  fun mediaDataSourceFor(attachmentId: AttachmentId, allowReadingFromTempFile: Boolean): MediaDataSource? {
+    val dataInfo = getAttachmentDataFileInfo(attachmentId, DATA)
+    if (dataInfo != null) {
+      return EncryptedMediaDataSource.createFor(attachmentSecret, dataInfo.file, dataInfo.random, dataInfo.length)
+    }
+
+    if (allowReadingFromTempFile) {
+      Log.d(TAG, "Completed data file not found for video attachment, checking for in-progress files.")
+      val transferFile = getTransferFile(readableDatabase, attachmentId)
+      if (transferFile != null) {
+        return EncryptedMediaDataSource.createForDiskBlob(attachmentSecret, transferFile)
+      }
+    }
+
+    Log.w(TAG, "No data file found for video attachment!")
+    return null
+  }
+
+  /**
+   * @return null if we fail to find the given attachmentId
+   */
+  fun getTransformProperties(attachmentId: AttachmentId): TransformProperties? {
+    return readableDatabase
+      .select(TRANSFORM_PROPERTIES)
+      .from(TABLE_NAME)
+      .where(PART_ID_WHERE, attachmentId.toStrings())
+      .run()
+      .readToSingleObject {
+        TransformProperties.parse(it.requireString(TRANSFORM_PROPERTIES))
+      }
+  }
+
+  fun markAttachmentUploaded(messageId: Long, attachment: Attachment) {
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(TRANSFER_STATE to TRANSFER_PROGRESS_DONE)
+      .where(PART_ID_WHERE, (attachment as DatabaseAttachment).attachmentId.toStrings())
+      .run()
+
+    val threadId = messages.getThreadIdForMessage(messageId)
+    notifyConversationListeners(threadId)
+  }
+
+  fun getAttachments(cursor: Cursor): List<DatabaseAttachment> {
+    return try {
+      if (cursor.getColumnIndex(ATTACHMENT_JSON_ALIAS) != -1) {
+        if (cursor.isNull(ATTACHMENT_JSON_ALIAS)) {
+          return LinkedList()
+        }
+
+        val result: MutableList<DatabaseAttachment> = mutableListOf()
+        val array = JSONArray(cursor.requireString(ATTACHMENT_JSON_ALIAS))
+
+        for (i in 0 until array.length()) {
+          val jsonObject = SaneJSONObject(array.getJSONObject(i))
+
+          if (!jsonObject.isNull(ROW_ID)) {
+            val contentType = jsonObject.getString(CONTENT_TYPE)
+
+            result += DatabaseAttachment(
+              attachmentId = AttachmentId(jsonObject.getLong(ROW_ID), jsonObject.getLong(UNIQUE_ID)),
+              mmsId = jsonObject.getLong(MMS_ID),
+              hasData = !TextUtils.isEmpty(jsonObject.getString(DATA)),
+              hasThumbnail = MediaUtil.isImageType(contentType) || MediaUtil.isVideoType(contentType),
+              contentType = contentType,
+              transferProgress = jsonObject.getInt(TRANSFER_STATE),
+              size = jsonObject.getLong(SIZE),
+              fileName = jsonObject.getString(FILE_NAME),
+              cdnNumber = jsonObject.getInt(CDN_NUMBER),
+              location = jsonObject.getString(CONTENT_LOCATION),
+              key = jsonObject.getString(CONTENT_DISPOSITION),
+              relay = jsonObject.getString(NAME),
+              digest = null,
+              incrementalDigest = null,
+              incrementalMacChunkSize = 0,
+              fastPreflightId = jsonObject.getString(FAST_PREFLIGHT_ID),
+              voiceNote = jsonObject.getInt(VOICE_NOTE) == 1,
+              borderless = jsonObject.getInt(BORDERLESS) == 1,
+              videoGif = jsonObject.getInt(VIDEO_GIF) == 1,
+              width = jsonObject.getInt(WIDTH),
+              height = jsonObject.getInt(HEIGHT),
+              quote = jsonObject.getInt(QUOTE) == 1,
+              caption = jsonObject.getString(CAPTION),
+              stickerLocator = if (jsonObject.getInt(STICKER_ID) >= 0) {
+                StickerLocator(
+                  jsonObject.getString(STICKER_PACK_ID)!!,
+                  jsonObject.getString(STICKER_PACK_KEY)!!,
+                  jsonObject.getInt(STICKER_ID),
+                  jsonObject.getString(STICKER_EMOJI)
+                )
+              } else {
+                null
+              },
+              blurHash = if (MediaUtil.isAudioType(contentType)) null else BlurHash.parseOrNull(jsonObject.getString(VISUAL_HASH)),
+              audioHash = if (MediaUtil.isAudioType(contentType)) AudioHash.parseOrNull(jsonObject.getString(VISUAL_HASH)) else null,
+              transformProperties = TransformProperties.parse(jsonObject.getString(TRANSFORM_PROPERTIES)),
+              displayOrder = jsonObject.getInt(DISPLAY_ORDER),
+              uploadTimestamp = jsonObject.getLong(UPLOAD_TIMESTAMP)
+            )
+          }
+        }
+
+        result
+      } else {
+        listOf(getAttachment(cursor))
+      }
+    } catch (e: JSONException) {
+      throw AssertionError(e)
+    }
+  }
+
+  fun hasStickerAttachments(): Boolean {
+    return readableDatabase
+      .exists(TABLE_NAME)
+      .where("$STICKER_PACK_ID NOT NULL")
+      .run()
+  }
+
+  fun containsStickerPackId(stickerPackId: String): Boolean {
+    return readableDatabase.exists(TABLE_NAME)
+      .where("$STICKER_PACK_ID = ?", stickerPackId)
+      .run()
+  }
+
+  fun getUnavailableStickerPacks(): Cursor {
+    val query = """
+      SELECT DISTINCT $STICKER_PACK_ID, $STICKER_PACK_KEY
+      FROM $TABLE_NAME
+      WHERE
+        $STICKER_PACK_ID NOT NULL AND
+        $STICKER_PACK_KEY NOT NULL AND
+        $STICKER_PACK_ID NOT IN (SELECT DISTINCT ${StickerTable.PACK_ID} FROM ${StickerTable.TABLE_NAME})
+    """
+
+    return readableDatabase.rawQuery(query, null)
+  }
+
+  private fun deleteAttachmentOnDisk(
+    data: String?,
+    contentType: String?,
+    attachmentId: AttachmentId
+  ) {
+    check(writableDatabase.inTransaction()) { "Must be in a transaction!" }
+
+    val dataUsage = getAttachmentFileUsages(data, attachmentId)
+    if (dataUsage.hasStrongReference) {
+      Log.i(TAG, "[deleteAttachmentOnDisk] Attachment in use. Skipping deletion. $data $attachmentId")
+      return
+    }
+
+    Log.i(TAG, "[deleteAttachmentOnDisk] No other strong uses of this attachment. Safe to delete. $data $attachmentId")
+    if (!data.isNullOrBlank()) {
+      if (File(data).delete()) {
+        Log.i(TAG, "[deleteAttachmentOnDisk] Deleted attachment file. $data $attachmentId")
+
+        if (dataUsage.removableWeakReferences.isNotEmpty()) {
+          Log.i(TAG, "[deleteAttachmentOnDisk] Deleting ${dataUsage.removableWeakReferences.size} weak references for $data")
+
+          var deletedCount = 0
+          for (weakReference in dataUsage.removableWeakReferences) {
+            Log.i(TAG, "[deleteAttachmentOnDisk] Clearing weak reference for $data $weakReference")
+
+            deletedCount += writableDatabase
+              .update(TABLE_NAME)
+              .values(
+                DATA to null,
+                DATA_RANDOM to null,
+                DATA_HASH to null
+              )
+              .where(PART_ID_WHERE, weakReference.toStrings())
+              .run()
+          }
+
+          val logMessage = "[deleteAttachmentOnDisk] Cleared $deletedCount/${dataUsage.removableWeakReferences.size} weak references for $data"
+          if (deletedCount != dataUsage.removableWeakReferences.size) {
+            Log.w(TAG, logMessage)
+          } else {
+            Log.i(TAG, logMessage)
+          }
+        }
+      } else {
+        Log.w(TAG, "[deleteAttachmentOnDisk] Failed to delete attachment. $data $attachmentId")
+      }
+    }
+
+    if (MediaUtil.isImageType(contentType) || MediaUtil.isVideoType(contentType)) {
+      Glide.get(context).clearDiskCache()
+      ThreadUtil.runOnMain { Glide.get(context).clearMemory() }
+    }
+  }
+
+  private fun getAttachmentFileUsages(data: String?, attachmentId: AttachmentId): DataUsageResult {
+    check(writableDatabase.inTransaction()) { "Must be in a transaction!" }
+
+    if (data == null) {
+      return DataUsageResult.NOT_IN_USE
+    }
+
+    val quoteRows: MutableList<AttachmentId> = mutableListOf()
+
+    readableDatabase
+      .select(ROW_ID, UNIQUE_ID, QUOTE)
+      .from(TABLE_NAME)
+      .where("$DATA = ? AND $UNIQUE_ID != ? AND $ROW_ID != ?", data, attachmentId.uniqueId, attachmentId.rowId)
+      .run()
+      .forEach { cursor ->
+        if (cursor.requireBoolean(QUOTE)) {
+          quoteRows += AttachmentId(cursor.requireLong(ROW_ID), cursor.requireLong(UNIQUE_ID))
+        } else {
+          return DataUsageResult.IN_USE
+        }
+      }
+
+    return DataUsageResult(quoteRows)
+  }
+
+  /**
+   * Check if data file is in use by another attachment row with a different hash. Rows with the same data and hash
+   * will be fixed in a later call to [updateAttachmentAndMatchingHashes].
+   */
+  private fun isAttachmentFileUsedByOtherAttachments(attachmentId: AttachmentId?, dataInfo: DataInfo): Boolean {
+    return if (attachmentId == null) {
+      false
+    } else {
+      readableDatabase
+        .exists(TABLE_NAME)
+        .where("$DATA = ? AND $DATA_HASH != ?", dataInfo.file.absolutePath, dataInfo.hash)
+        .run()
+    }
+  }
+
+  private fun updateAttachmentDataHash(
+    db: SQLiteDatabase,
+    oldHash: String,
+    newData: DataInfo
+  ) {
+    if (oldHash == null) {
+      return
+    }
+
+    db.update(TABLE_NAME)
+      .values(
+        DATA to newData.file.absolutePath,
+        DATA_RANDOM to newData.random,
+        DATA_HASH to newData.hash
+      )
+      .where("$DATA_HASH = ?", oldHash)
+      .run()
+  }
+
+  private fun updateAttachmentTransformProperties(attachmentId: AttachmentId, transformProperties: TransformProperties) {
+    val dataInfo = getAttachmentDataFileInfo(attachmentId, DATA)
+    if (dataInfo == null) {
+      Log.w(TAG, "[updateAttachmentTransformProperties] No data info found!")
+      return
+    }
+
+    val contentValues = contentValuesOf(TRANSFORM_PROPERTIES to transformProperties.serialize())
+    val updateCount = updateAttachmentAndMatchingHashes(databaseHelper.signalWritableDatabase, attachmentId, dataInfo.hash, contentValues)
+    Log.i(TAG, "[updateAttachmentTransformProperties] Updated $updateCount rows.")
+  }
+
+  private fun updateAttachmentAndMatchingHashes(
+    db: SQLiteDatabase,
+    attachmentId: AttachmentId,
+    dataHash: String?,
+    contentValues: ContentValues
+  ): Int {
+    return db
+      .update(TABLE_NAME)
+      .values(contentValues)
+      .where("($ROW_ID = ? AND $UNIQUE_ID = ?) OR ($DATA_HASH NOT NULL AND $DATA_HASH = ?)", attachmentId.rowId.toString(), attachmentId.uniqueId.toString(), dataHash.toString())
+      .run()
+  }
+
+  /**
+   * Returns true if the file referenced by two or more attachments.
+   * Returns false if the file is referenced by zero or one attachments.
+   */
+  private fun fileReferencedByMoreThanOneAttachment(file: File): Boolean {
+    return readableDatabase
+      .select("1")
+      .from(TABLE_NAME)
+      .where("$DATA = ?", file.absolutePath)
+      .limit(2)
+      .run()
+      .use { cursor ->
+        cursor.moveToNext() && cursor.moveToNext()
+      }
+  }
+
+  @Throws(FileNotFoundException::class)
+  private fun getDataStream(attachmentId: AttachmentId, dataType: String, offset: Long): InputStream? {
+    val dataInfo = getAttachmentDataFileInfo(attachmentId, dataType) ?: return null
+
+    return try {
+      if (dataInfo.random != null && dataInfo.random.size == 32) {
+        ModernDecryptingPartInputStream.createFor(attachmentSecret, dataInfo.random, dataInfo.file, offset)
+      } else {
+        val stream = ClassicDecryptingPartInputStream.createFor(attachmentSecret, dataInfo.file)
+        val skipped = stream.skip(offset)
+        if (skipped != offset) {
+          Log.w(TAG, "Skip failed: $skipped vs $offset")
+          return null
+        }
+        stream
+      }
+    } catch (e: FileNotFoundException) {
+      Log.w(TAG, e)
+      throw e
+    } catch (e: IOException) {
+      Log.w(TAG, e)
+      null
+    }
+  }
+
+  @Throws(MmsException::class)
+  private fun storeAttachmentStream(inputStream: InputStream): DataInfo {
+    return try {
+      storeAttachmentStream(newFile(context), inputStream)
+    } catch (e: IOException) {
+      throw MmsException(e)
+    }
+  }
+
+  @Throws(IOException::class)
+  private fun newTransferFile(): File {
+    val partsDirectory = context.getDir(DIRECTORY, Context.MODE_PRIVATE)
+    return PartFileProtector.protect {
+      File.createTempFile("transfer", ".mms", partsDirectory)
+    }
+  }
+
+  /**
+   * Reads the entire stream and saves to disk. If you need to deduplicate attachments, call [deduplicateAttachment]
+   * afterwards and use the [DataInfo] returned by it instead.
+   */
+  @Throws(MmsException::class, IllegalStateException::class)
+  private fun storeAttachmentStream(destination: File, inputStream: InputStream): DataInfo {
+    return try {
+      val tempFile = newFile(context)
+      val messageDigest = MessageDigest.getInstance("SHA-256")
+      val digestInputStream = DigestInputStream(inputStream, messageDigest)
+      val out = ModernEncryptingPartOutputStream.createFor(attachmentSecret, tempFile, false)
+      val length = StreamUtil.copy(digestInputStream, out.second)
+      val hash = encodeWithPadding(digestInputStream.messageDigest.digest())
+
+      if (!tempFile.renameTo(destination)) {
+        Log.w(TAG, "Couldn't rename ${tempFile.path} to ${destination.path}")
+        tempFile.delete()
+        throw IllegalStateException("Couldn't rename ${tempFile.path} to ${destination.path}")
+      }
+
+      DataInfo(
+        file = destination,
+        length = length,
+        random = out.first,
+        hash = hash,
+        transformProperties = null
+      )
+    } catch (e: IOException) {
+      throw MmsException(e)
+    } catch (e: NoSuchAlgorithmException) {
+      throw MmsException(e)
+    }
+  }
+
+  private fun deduplicateAttachment(
+    dataInfo: DataInfo,
+    attachmentId: AttachmentId?,
+    transformProperties: TransformProperties?
+  ): DataInfo {
+    check(writableDatabase.inTransaction()) { "Must be in a transaction!" }
+
+    val sharedDataInfos = findDuplicateDataFileInfos(writableDatabase, dataInfo.hash, attachmentId)
+
+    for (sharedDataInfo in sharedDataInfos) {
+      if (dataInfo.file == sharedDataInfo.file) {
+        continue
+      }
+
+      val isUsedElsewhere = isAttachmentFileUsedByOtherAttachments(attachmentId, dataInfo)
+      val isSameQuality = transformProperties?.sentMediaQuality == sharedDataInfo.transformProperties?.sentMediaQuality
+
+      Log.i(TAG, "[deduplicateAttachment] Potential duplicate data file found. usedElsewhere: " + isUsedElsewhere + " sameQuality: " + isSameQuality + " otherFile: " + sharedDataInfo.file.absolutePath)
+
+      if (!isSameQuality) {
+        continue
+      }
+
+      if (!isUsedElsewhere) {
+        if (dataInfo.file.delete()) {
+          Log.i(TAG, "[deduplicateAttachment] Deleted original file. ${dataInfo.file}")
+        } else {
+          Log.w(TAG, "[deduplicateAttachment] Original file could not be deleted.")
+        }
+      }
+
+      return sharedDataInfo
+    }
+
+    Log.i(TAG, "[deduplicateAttachment] No acceptable matching attachment data found. ${dataInfo.file.absolutePath}")
+    return dataInfo
+  }
+
+  private fun findDuplicateDataFileInfos(
+    database: SQLiteDatabase,
+    hash: String,
+    excludedAttachmentId: AttachmentId?
+  ): List<DataInfo> {
+    check(database.inTransaction()) { "Must be in a transaction!" }
+
+    val selectorArgs: Pair<String, Array<String>> = buildSharedFileSelectorArgs(hash, excludedAttachmentId)
+
+    return database
+      .select(DATA, DATA_RANDOM, SIZE, TRANSFORM_PROPERTIES)
+      .from(TABLE_NAME)
+      .where(selectorArgs.first, selectorArgs.second)
+      .run()
+      .readToList { cursor ->
+        DataInfo(
+          file = File(cursor.requireNonNullString(DATA)),
+          length = cursor.requireLong(SIZE),
+          random = cursor.requireNonNullBlob(DATA_RANDOM),
+          hash = hash,
+          transformProperties = TransformProperties.parse(cursor.requireString(TRANSFORM_PROPERTIES))
+        )
+      }
+  }
+
+  private fun buildSharedFileSelectorArgs(newHash: String, attachmentId: AttachmentId?): Pair<String, Array<String>> {
+    return if (attachmentId == null) {
+      "$DATA_HASH = ?" to arrayOf(newHash)
+    } else {
+      "$PART_ID_WHERE_NOT AND $DATA_HASH = ?" to arrayOf(
+        attachmentId.rowId.toString(),
+        attachmentId.uniqueId.toString(),
+        newHash
+      )
+    }
+  }
+
+  @Throws(MmsException::class)
+  private fun insertAttachment(mmsId: Long, attachment: Attachment, quote: Boolean): AttachmentId {
+    Log.d(TAG, "Inserting attachment for mms id: $mmsId")
+
+    var notifyPacks = false
+
+    val attachmentId: AttachmentId = writableDatabase.withinTransaction { db ->
+      try {
+        var dataInfo: DataInfo? = null
+        val uniqueId = System.currentTimeMillis()
+
+        if (attachment.uri != null) {
+          val storeDataInfo = storeAttachmentStream(PartAuthority.getAttachmentStream(context, attachment.uri!!))
+          Log.d(TAG, "Wrote part to file: ${storeDataInfo.file.absolutePath}")
+
+          dataInfo = deduplicateAttachment(storeDataInfo, null, attachment.transformProperties)
+        }
+
+        var template = attachment
+        var useTemplateUpload = false
+
+        if (dataInfo != null) {
+          val possibleTemplates = findTemplateAttachments(dataInfo.hash)
+
+          for (possibleTemplate in possibleTemplates) {
+            useTemplateUpload = possibleTemplate.uploadTimestamp > attachment.uploadTimestamp &&
+              possibleTemplate.transferState == TRANSFER_PROGRESS_DONE &&
+              possibleTemplate.transformProperties?.shouldSkipTransform() == true && possibleTemplate.digest != null &&
+              attachment.transformProperties?.videoEdited == false && possibleTemplate.transformProperties?.sentMediaQuality == attachment.transformProperties?.sentMediaQuality
+
+            if (useTemplateUpload) {
+              Log.i(TAG, "Found a duplicate attachment upon insertion. Using it as a template.")
+              template = possibleTemplate
+              break
+            }
+          }
+        }
+
+        val contentValues = ContentValues()
+        contentValues.put(MMS_ID, mmsId)
+        contentValues.put(CONTENT_TYPE, template.contentType)
+        contentValues.put(TRANSFER_STATE, attachment.transferState)
+        contentValues.put(UNIQUE_ID, uniqueId)
+        contentValues.put(CDN_NUMBER, if (useTemplateUpload) template.cdnNumber else attachment.cdnNumber)
+        contentValues.put(CONTENT_LOCATION, if (useTemplateUpload) template.location else attachment.location)
+        contentValues.put(DIGEST, if (useTemplateUpload) template.digest else attachment.digest)
+        contentValues.put(MAC_DIGEST, if (useTemplateUpload) template.incrementalDigest else attachment.incrementalDigest)
+        contentValues.put(INCREMENTAL_MAC_CHUNK_SIZE, if (useTemplateUpload) template.incrementalMacChunkSize else attachment.incrementalMacChunkSize)
+        contentValues.put(CONTENT_DISPOSITION, if (useTemplateUpload) template.key else attachment.key)
+        contentValues.put(NAME, if (useTemplateUpload) template.relay else attachment.relay)
+        contentValues.put(FILE_NAME, StorageUtil.getCleanFileName(attachment.fileName))
+        contentValues.put(SIZE, template.size)
+        contentValues.put(FAST_PREFLIGHT_ID, attachment.fastPreflightId)
+        contentValues.put(VOICE_NOTE, if (attachment.voiceNote) 1 else 0)
+        contentValues.put(BORDERLESS, if (attachment.borderless) 1 else 0)
+        contentValues.put(VIDEO_GIF, if (attachment.videoGif) 1 else 0)
+        contentValues.put(WIDTH, template.width)
+        contentValues.put(HEIGHT, template.height)
+        contentValues.put(QUOTE, quote)
+        contentValues.put(CAPTION, attachment.caption)
+        contentValues.put(UPLOAD_TIMESTAMP, if (useTemplateUpload) template.uploadTimestamp else attachment.uploadTimestamp)
+
+        if (attachment.transformProperties?.videoEdited == true) {
+          contentValues.putNull(VISUAL_HASH)
+          contentValues.put(TRANSFORM_PROPERTIES, attachment.transformProperties?.serialize())
+        } else {
+          contentValues.put(VISUAL_HASH, template.getVisualHashStringOrNull())
+          contentValues.put(TRANSFORM_PROPERTIES, (if (useTemplateUpload) template else attachment).transformProperties?.serialize())
+        }
+
+        attachment.stickerLocator?.let { sticker ->
+          contentValues.put(STICKER_PACK_ID, sticker.packId)
+          contentValues.put(STICKER_PACK_KEY, sticker.packKey)
+          contentValues.put(STICKER_ID, sticker.stickerId)
+          contentValues.put(STICKER_EMOJI, sticker.emoji)
+        }
+
+        if (dataInfo != null) {
+          contentValues.put(DATA, dataInfo.file.absolutePath)
+          contentValues.put(SIZE, dataInfo.length)
+          contentValues.put(DATA_RANDOM, dataInfo.random)
+
+          if (attachment.transformProperties?.videoEdited == true) {
+            contentValues.putNull(DATA_HASH)
+          } else {
+            contentValues.put(DATA_HASH, dataInfo.hash)
+          }
+        }
+
+        notifyPacks = attachment.isSticker && !hasStickerAttachments()
+
+        val rowId = db.insert(TABLE_NAME, null, contentValues)
+        AttachmentId(rowId, uniqueId)
+      } catch (e: IOException) {
+        throw MmsException(e)
+      }
+    }
+
+    if (notifyPacks) {
+      notifyStickerPackListeners()
+    }
+
+    notifyAttachmentListeners()
+    return attachmentId
+  }
+
+  private fun findTemplateAttachments(dataHash: String): List<DatabaseAttachment> {
+    return readableDatabase
+      .select(*PROJECTION)
+      .from(TABLE_NAME)
+      .where("$DATA_HASH = ?", dataHash)
+      .run()
+      .readToList { it.readAttachment() }
+  }
+
+  private fun getTransferFile(db: SQLiteDatabase, attachmentId: AttachmentId): File? {
+    return db
+      .select(TRANSFER_FILE)
+      .from(TABLE_NAME)
+      .where(PART_ID_WHERE, attachmentId.toStrings())
+      .limit(1)
+      .run()
+      .readToSingleObject { cursor ->
+        cursor.requireString(TRANSFER_FILE)?.let { File(it) }
+      }
+  }
+
+  private fun getAttachment(cursor: Cursor): DatabaseAttachment {
+    val contentType = cursor.requireString(CONTENT_TYPE)
+
+    return DatabaseAttachment(
+      attachmentId = AttachmentId(cursor.requireLong(ROW_ID), cursor.requireLong(UNIQUE_ID)),
+      mmsId = cursor.requireLong(MMS_ID),
+      hasData = !cursor.isNull(DATA),
+      hasThumbnail = MediaUtil.isImageType(contentType) || MediaUtil.isVideoType(contentType),
+      contentType = contentType,
+      transferProgress = cursor.requireInt(TRANSFER_STATE),
+      size = cursor.requireLong(SIZE),
+      fileName = cursor.requireString(FILE_NAME),
+      cdnNumber = cursor.requireInt(CDN_NUMBER),
+      location = cursor.requireString(CONTENT_LOCATION),
+      key = cursor.requireString(CONTENT_DISPOSITION),
+      relay = cursor.requireString(NAME),
+      digest = cursor.requireBlob(DIGEST),
+      incrementalDigest = cursor.requireBlob(MAC_DIGEST),
+      incrementalMacChunkSize = cursor.requireInt(INCREMENTAL_MAC_CHUNK_SIZE),
+      fastPreflightId = cursor.requireString(FAST_PREFLIGHT_ID),
+      voiceNote = cursor.requireBoolean(VOICE_NOTE),
+      borderless = cursor.requireBoolean(BORDERLESS),
+      videoGif = cursor.requireBoolean(VIDEO_GIF),
+      width = cursor.requireInt(WIDTH),
+      height = cursor.requireInt(HEIGHT),
+      quote = cursor.requireBoolean(QUOTE),
+      caption = cursor.requireString(CAPTION),
+      stickerLocator = cursor.readStickerLocator(),
+      blurHash = if (MediaUtil.isAudioType(contentType)) null else BlurHash.parseOrNull(cursor.requireString(VISUAL_HASH)),
+      audioHash = if (MediaUtil.isAudioType(contentType)) AudioHash.parseOrNull(cursor.requireString(VISUAL_HASH)) else null,
+      transformProperties = TransformProperties.parse(cursor.requireString(TRANSFORM_PROPERTIES)),
+      displayOrder = cursor.requireInt(DISPLAY_ORDER),
+      uploadTimestamp = cursor.requireLong(UPLOAD_TIMESTAMP)
+    )
+  }
+
+  private fun Cursor.readAttachments(): List<DatabaseAttachment> {
+    return getAttachments(this)
+  }
+
+  private fun Cursor.readAttachment(): DatabaseAttachment {
+    return getAttachment(this)
+  }
+
+  private fun Cursor.readStickerLocator(): StickerLocator? {
+    return if (this.requireInt(STICKER_ID) >= 0) {
+      StickerLocator(
+        packId = this.requireNonNullString(STICKER_PACK_ID),
+        packKey = this.requireNonNullString(STICKER_PACK_KEY),
+        stickerId = this.requireInt(STICKER_ID),
+        emoji = this.requireString(STICKER_EMOJI)
+      )
+    } else {
+      null
+    }
+  }
+
+  private fun Attachment?.getVisualHashStringOrNull(): String? {
+    return when {
+      this == null -> null
+      this.blurHash != null -> this.blurHash!!.hash
+      this.audioHash != null -> this.audioHash!!.hash
+      else -> null
+    }
+  }
+
+  @VisibleForTesting
+  class DataInfo(
+    val file: File,
+    val length: Long,
+    val random: ByteArray,
+    val hash: String,
+    val transformProperties: TransformProperties?
+  ) {
+    override fun equals(o: Any?): Boolean {
+      if (this === o) return true
+      if (o == null || javaClass != o.javaClass) return false
+      val dataInfo = o as DataInfo
+      return length == dataInfo.length && file == dataInfo.file &&
+        Arrays.equals(random, dataInfo.random) && hash == dataInfo.hash && transformProperties == dataInfo.transformProperties
+    }
+
+    override fun hashCode(): Int {
+      var result = Objects.hash(file, length, hash, transformProperties)
+      result = 31 * result + Arrays.hashCode(random)
+      return result
+    }
+  }
+
+  /**
+   * @param removableWeakReferences Entries in here can be removed from the database. Only possible to be non-empty when [hasStrongReference] is false.
+   */
+  private class DataUsageResult private constructor(val hasStrongReference: Boolean, val removableWeakReferences: List<AttachmentId>) {
+    constructor(removableWeakReferences: List<AttachmentId>) : this(false, removableWeakReferences)
+
+    init {
+      if (hasStrongReference && removableWeakReferences.isNotEmpty()) {
+        throw IllegalStateException("There's a strong reference and removable weak references!")
+      }
+    }
+
+    companion object {
+      val IN_USE = DataUsageResult(true, emptyList())
+      val NOT_IN_USE = DataUsageResult(false, emptyList())
+    }
+  }
+
+  @Parcelize
+  data class TransformProperties(
+    @JsonProperty("skipTransform")
+    @JvmField
+    val skipTransform: Boolean,
+
+    @JsonProperty("videoTrim")
+    @JvmField
+    val videoTrim: Boolean,
+
+    @JsonProperty("videoTrimStartTimeUs")
+    @JvmField
+    val videoTrimStartTimeUs: Long,
+
+    @JsonProperty("videoTrimEndTimeUs")
+    @JvmField
+    val videoTrimEndTimeUs: Long,
+
+    @JsonProperty("sentMediaQuality")
+    @JvmField
+    val sentMediaQuality: Int,
+
+    @JsonProperty("mp4Faststart")
+    @JvmField
+    val mp4FastStart: Boolean
+  ) : Parcelable {
+    fun shouldSkipTransform(): Boolean {
+      return skipTransform
+    }
+
+    @IgnoredOnParcel
+    @JsonProperty("videoEdited")
+    val videoEdited: Boolean = videoTrim
+
+    fun withSkipTransform(): TransformProperties {
+      return this.copy(
+        skipTransform = true,
+        videoTrim = false,
+        videoTrimStartTimeUs = 0,
+        videoTrimEndTimeUs = 0,
+        mp4FastStart = false
+      )
+    }
+
+    fun withMp4FastStart(): TransformProperties {
+      return this.copy(mp4FastStart = true)
+    }
+
+    fun serialize(): String {
+      return JsonUtil.toJson(this)
+    }
+
+    companion object {
+      private val DEFAULT_MEDIA_QUALITY = SentMediaQuality.STANDARD.code
+
+      @JvmStatic
+      fun empty(): TransformProperties {
+        return TransformProperties(
+          skipTransform = false,
+          videoTrim = false,
+          videoTrimStartTimeUs = 0,
+          videoTrimEndTimeUs = 0,
+          sentMediaQuality = DEFAULT_MEDIA_QUALITY,
+          mp4FastStart = false
+        )
+      }
+
+      fun forSkipTransform(): TransformProperties {
+        return TransformProperties(
+          skipTransform = true,
+          videoTrim = false,
+          videoTrimStartTimeUs = 0,
+          videoTrimEndTimeUs = 0,
+          sentMediaQuality = DEFAULT_MEDIA_QUALITY,
+          mp4FastStart = false
+        )
+      }
+
+      fun forVideoTrim(videoTrimStartTimeUs: Long, videoTrimEndTimeUs: Long): TransformProperties {
+        return TransformProperties(
+          skipTransform = false,
+          videoTrim = true,
+          videoTrimStartTimeUs = videoTrimStartTimeUs,
+          videoTrimEndTimeUs = videoTrimEndTimeUs,
+          sentMediaQuality = DEFAULT_MEDIA_QUALITY,
+          mp4FastStart = false
+        )
+      }
+
+      @JvmStatic
+      fun forSentMediaQuality(currentProperties: Optional<TransformProperties>, sentMediaQuality: SentMediaQuality): TransformProperties {
+        val existing = currentProperties.orElse(empty())
+        return existing.copy(sentMediaQuality = sentMediaQuality.code)
+      }
+
+      @JvmStatic
+      fun parse(serialized: String?): TransformProperties {
+        return if (serialized == null) {
+          empty()
+        } else {
+          try {
+            JsonUtil.fromJson(serialized, TransformProperties::class.java)
+          } catch (e: IOException) {
+            Log.w(TAG, "Failed to parse TransformProperties!", e)
+            empty()
+          }
+        }
+      }
+    }
+  }
+}

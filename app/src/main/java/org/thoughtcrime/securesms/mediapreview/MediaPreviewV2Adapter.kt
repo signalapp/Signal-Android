@@ -31,8 +31,8 @@ class MediaPreviewV2Adapter(fragment: Fragment) : FragmentStateAdapter(fragment)
       MediaPreviewFragment.DATA_URI to attachment.uri,
       MediaPreviewFragment.DATA_CONTENT_TYPE to contentType,
       MediaPreviewFragment.DATA_SIZE to attachment.size,
-      MediaPreviewFragment.AUTO_PLAY to attachment.isVideoGif,
-      MediaPreviewFragment.VIDEO_GIF to attachment.isVideoGif
+      MediaPreviewFragment.AUTO_PLAY to attachment.videoGif,
+      MediaPreviewFragment.VIDEO_GIF to attachment.videoGif
     )
     val fragment = if (MediaUtil.isVideo(contentType)) {
       VideoMediaPreviewFragment()

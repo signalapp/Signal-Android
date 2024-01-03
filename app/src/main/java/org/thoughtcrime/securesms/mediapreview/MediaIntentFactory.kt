@@ -77,7 +77,7 @@ object MediaIntentFactory {
         leftIsRecent,
         allMediaInRail = allMediaInRail,
         sorting = MediaTable.Sorting.Newest,
-        isVideoGif = attachment.isVideoGif,
+        isVideoGif = attachment.videoGif,
         sharedElementArgs = SharedElementArgs(
           attachment.width,
           attachment.height,

@@ -331,7 +331,7 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
   }
 
   private fun bindMediaPreviewPlaybackControls(currentItem: MediaTable.MediaRecord, currentFragment: MediaPreviewFragment?) {
-    val mediaType: MediaPreviewPlayerControlView.MediaMode = if (currentItem.attachment?.isVideoGif == true) {
+    val mediaType: MediaPreviewPlayerControlView.MediaMode = if (currentItem.attachment?.videoGif == true) {
       MediaPreviewPlayerControlView.MediaMode.IMAGE
     } else {
       MediaPreviewPlayerControlView.MediaMode.fromString(currentItem.contentType)
