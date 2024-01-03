@@ -522,7 +522,7 @@ object DataMessageProcessor {
     } else {
       val reactionRecord = ReactionRecord(emoji!!, senderRecipientId, message.timestamp!!, System.currentTimeMillis())
       SignalDatabase.reactions.addReaction(targetMessageId, reactionRecord)
-      ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.fromMessageRecord(targetMessage), false)
+      ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.fromMessageRecord(targetMessage))
     }
 
     return targetMessageId
@@ -542,7 +542,7 @@ object DataMessageProcessor {
         SignalDatabase.messages.deleteRemotelyDeletedStory(targetMessage.id)
       }
 
-      ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.fromMessageRecord(targetMessage), false)
+      ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.fromMessageRecord(targetMessage))
 
       MessageId(targetMessage.id)
     } else if (targetMessage == null) {
