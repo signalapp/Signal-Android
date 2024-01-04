@@ -1088,6 +1088,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     @Override
     public void onLocalPictureInPictureClicked() {
       viewModel.onLocalPictureInPictureClicked();
+      controlsAndInfo.restartHideControlsTimer();
     }
 
     @Override

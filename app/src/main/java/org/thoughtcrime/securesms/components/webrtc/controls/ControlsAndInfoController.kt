@@ -276,6 +276,10 @@ class ControlsAndInfoController(
     }
   }
 
+  fun restartHideControlsTimer() {
+    hide(delay = HIDE_CONTROL_DELAY)
+  }
+
   private fun showOrHideControlsOnUpdate(previousState: WebRtcControls) {
     if (controlState == WebRtcControls.PIP) {
       hide()
