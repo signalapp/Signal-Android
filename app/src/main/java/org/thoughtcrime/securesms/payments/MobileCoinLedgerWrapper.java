@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import org.thoughtcrime.securesms.payments.proto.MobileCoinLedger;
 import org.whispersystems.signalservice.api.payments.Money;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,8 +19,8 @@ public final class MobileCoinLedgerWrapper {
   private final Balance          balance;
 
   public MobileCoinLedgerWrapper(@NonNull MobileCoinLedger ledger) {
-    Money.MobileCoin fullAmount         = Money.picoMobileCoin(ledger.balance);
-    Money.MobileCoin transferableAmount = Money.picoMobileCoin(ledger.transferableBalance);
+    Money.MobileCoin fullAmount         = ledger.balance.size() > 0 ? Money.picoMobileCoin(new BigInteger(ledger.balance.toByteArray())) : Money.picoMobileCoin(ledger.deprecatedBalance);
+    Money.MobileCoin transferableAmount = ledger.transferableBalance.size() > 0 ? Money.picoMobileCoin(new BigInteger(ledger.transferableBalance.toByteArray())) : Money.picoMobileCoin(ledger.deprecatedTransferableBalance);
 
     this.ledger  = ledger;
     this.balance = new Balance(fullAmount, transferableAmount, ledger.asOfTimeStamp);
@@ -54,7 +55,7 @@ public final class MobileCoinLedgerWrapper {
     }
 
     public @NonNull Money.MobileCoin getValue() {
-      return Money.picoMobileCoin(ownedTXO.amount);
+      return ownedTXO.amount.size() > 0 ? Money.picoMobileCoin(new BigInteger(ownedTXO.amount.toByteArray())) : Money.picoMobileCoin(ownedTXO.deprecatedAmount);
     }
 
     public @NonNull ByteString getKeyImage() {
