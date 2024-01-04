@@ -260,7 +260,7 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
   protected @NonNull WebRtcServiceState handleGroupCallRaisedHand(@NonNull WebRtcServiceState currentState, List<Long> raisedHands) {
     Log.i(TAG, "handleGroupCallRaisedHand():");
 
-    boolean                                        playSound    = false;
+    boolean                                        playSound    = !raisedHands.isEmpty();
     long                                           now          = System.currentTimeMillis();
     WebRtcServiceStateBuilder.CallInfoStateBuilder builder      = currentState.builder().changeCallInfoState();
     Long                                           localDemuxId = currentState.getCallInfoState().requireGroupCall().getLocalDeviceState().getDemuxId();
@@ -270,9 +270,13 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
     for (CallParticipant updatedParticipant : participants) {
       int raisedHandIndex = raisedHands.indexOf(updatedParticipant.getCallParticipantId().getDemuxId());
       boolean wasHandAlreadyRaised  = updatedParticipant.isHandRaised();
+
+      if (wasHandAlreadyRaised) {
+        playSound = false;
+      }
+      
       if (raisedHandIndex >= 0 && !wasHandAlreadyRaised) {
         builder.putParticipant(updatedParticipant.getCallParticipantId(), updatedParticipant.withHandRaisedTimestamp(now + raisedHandIndex));
-        playSound = true;
       } else if (raisedHandIndex < 0 && wasHandAlreadyRaised) {
         builder.putParticipant(updatedParticipant.getCallParticipantId(), updatedParticipant.withHandRaisedTimestamp(CallParticipant.HAND_LOWERED));
       }
