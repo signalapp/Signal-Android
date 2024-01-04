@@ -140,6 +140,11 @@ public class ConversationHeaderView extends ConstraintLayout {
     binding.messageRequestDescription.setMovementMethod(enable ? LongClickMovementMethod.getInstance(getContext()) : null);
   }
 
+  public void hideDecorations() {
+    binding.messageRequestInfoOutline.setVisibility(View.GONE);
+    binding.messageRequestDivider.setVisibility(View.GONE);
+  }
+
   private @NonNull CharSequence prependIcon(@NonNull CharSequence input, @DrawableRes int iconRes) {
     Drawable drawable = ContextCompat.getDrawable(getContext(), iconRes);
     Preconditions.checkNotNull(drawable);
