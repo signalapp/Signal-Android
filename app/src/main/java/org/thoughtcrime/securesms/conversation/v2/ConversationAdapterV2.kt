@@ -622,7 +622,6 @@ class ConversationAdapterV2(
           }
         }
         conversationBanner.setDescription(HtmlCompat.fromHtml(description, 0), R.drawable.symbol_group_light_20)
-        conversationBanner.showDescription()
       }
 
       if (recipient.isReleaseNotes) {

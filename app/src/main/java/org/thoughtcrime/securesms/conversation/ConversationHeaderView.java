@@ -14,6 +14,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 
 import org.signal.core.util.DimensionUnit;
+import org.signal.core.util.StringUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
@@ -94,17 +95,22 @@ public class ConversationHeaderView extends ConstraintLayout {
   }
 
   public void setSubtitle(@NonNull CharSequence subtitle, @DrawableRes int iconRes) {
+    if (TextUtils.isEmpty(subtitle)) {
+      hideSubtitle();
+      return;
+    }
+
     binding.messageRequestSubtitle.setText(prependIcon(subtitle, iconRes));
     binding.messageRequestSubtitle.setVisibility(View.VISIBLE);
   }
 
   public void setDescription(@Nullable CharSequence description, @DrawableRes int iconRes) {
-    if (description == null) {
+    if (TextUtils.isEmpty(description)) {
       hideDescription();
       return;
     }
 
-    binding.messageRequestSubtitle.setText(prependIcon(description, iconRes));
+    binding.messageRequestDescription.setText(prependIcon(description, iconRes));
     binding.messageRequestDescription.setVisibility(View.VISIBLE);
   }
 
