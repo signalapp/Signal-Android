@@ -266,6 +266,6 @@ class VoiceNotePlayerCallback(val context: Context, val player: VoiceNotePlayer)
   }
 
   private fun List<MessageRecord>.messageRecordsToVoiceNoteMediaItems(): List<MediaItem> {
-    return this.filter { it.hasAudio() }.mapNotNull { VoiceNoteMediaItemFactory.buildMediaItem(context, it) }
+    return this.takeWhile { it.hasAudio() }.mapNotNull { VoiceNoteMediaItemFactory.buildMediaItem(context, it) }
   }
 }
