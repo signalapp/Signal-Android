@@ -90,7 +90,6 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
   private TextView                      recipientName;
   private TextView                      status;
   private TextView                      incomingRingStatus;
-  private ConstraintLayout              participantsParent;
   private ControlsListener              controlsListener;
   private RecipientId                   recipientId;
   private ImageView                     answer;
@@ -111,7 +110,6 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
   private Stub<FrameLayout>             groupCallSpeakerHint;
   private Stub<View>                    groupCallFullStub;
   private View                          errorButton;
-  private boolean                       controlsVisible = true;
   private Guideline                     showParticipantsGuideline;
   private Guideline                     aboveControlsGuideline;
   private Guideline                     topFoldGuideline;
@@ -175,7 +173,6 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     recipientName                 = findViewById(R.id.call_screen_recipient_name);
     status                        = findViewById(R.id.call_screen_status);
     incomingRingStatus            = findViewById(R.id.call_screen_incoming_ring_status);
-    participantsParent            = findViewById(R.id.call_screen_participants_parent);
     answer                        = findViewById(R.id.call_screen_answer_call);
     answerWithoutVideoLabel       = findViewById(R.id.call_screen_answer_without_video_label);
     cameraDirectionToggle         = findViewById(R.id.call_screen_camera_direction_toggle);
@@ -373,10 +370,13 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
 
   @Override
   public void onWindowSystemUiVisibilityChanged(int visible) {
+    final Guideline statusBarGuideline = getStatusBarGuideline();
     if ((visible & SYSTEM_UI_FLAG_HIDE_NAVIGATION) == 0) {
       pictureInPictureGestureHelper.setTopVerticalBoundary(collapsedToolbar.getBottom());
+    } else if (statusBarGuideline != null) {
+      pictureInPictureGestureHelper.setTopVerticalBoundary(statusBarGuideline.getBottom());
     } else {
-      pictureInPictureGestureHelper.setTopVerticalBoundary(getStatusBarGuideline().getBottom());
+      Log.d(TAG, "Could not update PiP gesture helper.");
     }
   }
 
@@ -738,7 +738,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     controls = webRtcControls;
 
     if (!controls.isFadeOutEnabled()) {
-      controlsVisible = true;
+      boolean controlsVisible = true;
     }
 
     allTimeVisibleViews.addAll(visibleViewSet);
