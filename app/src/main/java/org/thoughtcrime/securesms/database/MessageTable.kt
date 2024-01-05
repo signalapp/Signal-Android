@@ -4995,6 +4995,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       val latestRevisionId: MessageId? = cursor.requireLong(LATEST_REVISION_ID).let { if (it == 0L) null else MessageId(it) }
       val originalMessageId: MessageId? = cursor.requireLong(ORIGINAL_MESSAGE_ID).let { if (it == 0L) null else MessageId(it) }
       val editCount = cursor.requireInt(REVISION_NUMBER)
+      val isRead = cursor.requireBoolean(READ)
 
       if (!TextSecurePreferences.isReadReceiptsEnabled(context)) {
         hasReadReceipt = false
@@ -5081,7 +5082,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         scheduledDate,
         latestRevisionId,
         originalMessageId,
-        editCount
+        editCount,
+        isRead
       )
     }
 

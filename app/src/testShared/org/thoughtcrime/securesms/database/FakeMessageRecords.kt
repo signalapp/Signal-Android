@@ -183,7 +183,8 @@ object FakeMessageRecords {
       -1,
       null,
       null,
-      0
+      0,
+      false
     )
   }
 }

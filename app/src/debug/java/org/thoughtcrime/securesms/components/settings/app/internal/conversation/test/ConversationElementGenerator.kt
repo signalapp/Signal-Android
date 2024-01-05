@@ -117,7 +117,8 @@ class ConversationElementGenerator {
       -1,
       null,
       null,
-      0
+      0,
+      false
     )
 
     val conversationMessage = ConversationMessageFactory.createWithUnresolvedData(
