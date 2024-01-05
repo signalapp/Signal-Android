@@ -657,9 +657,9 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
     return if (isCompressing(currentState)) {
       return context.getString(R.string.TransferControlView__processing)
     } else {
-      val progressText = Formatter.formatShortFileSize(context, currentState.networkProgress.sumCompleted())
-      val totalText = Formatter.formatShortFileSize(context, currentState.networkProgress.sumTotal())
-      context.resources.getString(R.string.TransferControlView__download_progress, progressText, totalText)
+      val progressMiB = currentState.networkProgress.sumCompleted() / MEBIBYTE
+      val totalMiB = currentState.networkProgress.sumTotal() / MEBIBYTE
+      context.resources.getString(R.string.TransferControlView__download_progress, progressMiB, totalMiB)
     }
   }
 
@@ -679,6 +679,7 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
     private const val SECONDARY_TEXT_OFFSET_DP = 3
     private const val RETRY_SECONDARY_TEXT_OFFSET_DP = 6
     private const val PRIMARY_TEXT_OFFSET_DP = 4
+    private const val MEBIBYTE = 1048576f
 
     /**
      * A weighting compared to [UPLOAD_TASK_WEIGHT]
