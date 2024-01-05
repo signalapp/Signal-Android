@@ -1294,10 +1294,6 @@ public class SignalServiceMessageSender {
         offerBuilder.opaque(ByteString.of(offer.getOpaque()));
       }
 
-      if (offer.getSdp() != null) {
-        offerBuilder.sdp(offer.getSdp());
-      }
-
       builder.offer(offerBuilder.build());
     } else if (callMessage.getAnswerMessage().isPresent()) {
       AnswerMessage answer = callMessage.getAnswerMessage().get();
@@ -1308,26 +1304,16 @@ public class SignalServiceMessageSender {
         answerBuilder.opaque(ByteString.of(answer.getOpaque()));
       }
 
-      if (answer.getSdp() != null) {
-        answerBuilder.sdp(answer.getSdp());
-      }
-
       builder.answer(answerBuilder.build());
     } else if (callMessage.getIceUpdateMessages().isPresent()) {
       List<IceUpdateMessage> updates = callMessage.getIceUpdateMessages().get();
       List<CallMessage.IceUpdate> iceUpdates = new ArrayList<>(updates.size());
       for (IceUpdateMessage update : updates) {
         CallMessage.IceUpdate.Builder iceBuilder = new CallMessage.IceUpdate.Builder()
-                                                                            .id(update.getId())
-                                                                            .mid("audio")
-                                                                            .line(0);
+                                                                            .id(update.getId());
 
         if (update.getOpaque() != null) {
           iceBuilder.opaque(ByteString.of(update.getOpaque()));
-        }
-
-        if (update.getSdp() != null) {
-          iceBuilder.sdp(update.getSdp());
         }
 
         iceUpdates.add(iceBuilder.build());

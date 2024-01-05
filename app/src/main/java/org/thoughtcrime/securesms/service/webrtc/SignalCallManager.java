@@ -678,7 +678,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
 
     OfferMessage.Type        offerType     = WebRtcUtil.getOfferTypeFromCallMediaType(callMediaType);
     WebRtcData.CallMetadata  callMetadata  = new WebRtcData.CallMetadata(remotePeer, remoteDevice);
-    WebRtcData.OfferMetadata offerMetadata = new WebRtcData.OfferMetadata(opaque, null, offerType);
+    WebRtcData.OfferMetadata offerMetadata = new WebRtcData.OfferMetadata(opaque, offerType);
 
     process((s, p) -> p.handleSendOffer(s, callMetadata, offerMetadata, broadcast));
   }
@@ -699,7 +699,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
     Log.i(TAG, "onSendAnswer: id: " + remotePeer.getCallId().format(remoteDevice));
 
     WebRtcData.CallMetadata   callMetadata   = new WebRtcData.CallMetadata(remotePeer, remoteDevice);
-    WebRtcData.AnswerMetadata answerMetadata = new WebRtcData.AnswerMetadata(opaque, null);
+    WebRtcData.AnswerMetadata answerMetadata = new WebRtcData.AnswerMetadata(opaque);
 
     process((s, p) -> p.handleSendAnswer(s, callMetadata, answerMetadata, broadcast));
   }
@@ -760,7 +760,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
     Log.i(TAG, "onSendCallMessage():");
 
     OpaqueMessage            opaqueMessage = new OpaqueMessage(bytes, getUrgencyFromCallUrgency(urgency));
-    SignalServiceCallMessage callMessage   = SignalServiceCallMessage.forOpaque(opaqueMessage, true, null);
+    SignalServiceCallMessage callMessage   = SignalServiceCallMessage.forOpaque(opaqueMessage, null);
 
     networkExecutor.execute(() -> {
       Recipient recipient = Recipient.resolved(RecipientId.from(ACI.from(aciUuid)));
@@ -797,7 +797,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
                                                                     .collect(Collectors.toList())));
 
         OpaqueMessage            opaqueMessage = new OpaqueMessage(message, getUrgencyFromCallUrgency(urgency));
-        SignalServiceCallMessage callMessage   = SignalServiceCallMessage.forOutgoingGroupOpaque(groupId.getDecodedId(), System.currentTimeMillis(), opaqueMessage, true, null);
+        SignalServiceCallMessage callMessage   = SignalServiceCallMessage.forOutgoingGroupOpaque(groupId.getDecodedId(), System.currentTimeMillis(), opaqueMessage, null);
         RecipientAccessList      accessList    = new RecipientAccessList(recipients);
 
         List<SendMessageResult> results = GroupSendUtil.sendCallMessage(context,

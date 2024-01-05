@@ -46,21 +46,15 @@ public class WebRtcData {
    */
   public static class OfferMetadata {
     private final @Nullable byte[]            opaque;
-    private final @Nullable String            sdp;
     private final @NonNull  OfferMessage.Type offerType;
 
-    public OfferMetadata(@Nullable byte[] opaque, @Nullable String sdp, @NonNull OfferMessage.Type offerType) {
+    public OfferMetadata(@Nullable byte[] opaque, @NonNull OfferMessage.Type offerType) {
       this.opaque    = opaque;
-      this.sdp       = sdp;
       this.offerType = offerType;
     }
 
     @Nullable byte[] getOpaque() {
       return opaque;
-    }
-
-    @Nullable String getSdp() {
-      return sdp;
     }
 
     @NonNull OfferMessage.Type getOfferType() {
@@ -100,19 +94,13 @@ public class WebRtcData {
    */
   public static class AnswerMetadata {
     private final @Nullable byte[] opaque;
-    private final @Nullable String sdp;
 
-    public AnswerMetadata(@Nullable byte[] opaque, @Nullable String sdp) {
+    public AnswerMetadata(@Nullable byte[] opaque) {
       this.opaque = opaque;
-      this.sdp    = sdp;
     }
 
     @Nullable byte[] getOpaque() {
       return opaque;
-    }
-
-    @Nullable String getSdp() {
-      return sdp;
     }
   }
 

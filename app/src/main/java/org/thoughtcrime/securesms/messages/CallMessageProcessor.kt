@@ -40,9 +40,7 @@ object CallMessageProcessor {
       callMessage.offer != null -> handleCallOfferMessage(envelope, metadata, callMessage.offer!!, senderRecipient.id, serverDeliveredTimestamp)
       callMessage.answer != null -> handleCallAnswerMessage(envelope, metadata, callMessage.answer!!, senderRecipient.id)
       callMessage.iceUpdate.isNotEmpty() -> handleCallIceUpdateMessage(envelope, metadata, callMessage.iceUpdate, senderRecipient.id)
-      callMessage.hangup != null || callMessage.legacyHangup != null -> {
-        handleCallHangupMessage(envelope, metadata, callMessage.hangup ?: callMessage.legacyHangup, senderRecipient.id)
-      }
+      callMessage.hangup != null -> handleCallHangupMessage(envelope, metadata, callMessage.hangup!!, senderRecipient.id)
       callMessage.busy != null -> handleCallBusyMessage(envelope, metadata, callMessage.busy!!, senderRecipient.id)
       callMessage.opaque != null -> handleCallOpaqueMessage(envelope, metadata, callMessage.opaque!!, senderRecipient.requireAci(), serverDeliveredTimestamp)
     }
@@ -51,10 +49,10 @@ object CallMessageProcessor {
   private fun handleCallOfferMessage(envelope: Envelope, metadata: EnvelopeMetadata, offer: Offer, senderRecipientId: RecipientId, serverDeliveredTimestamp: Long) {
     log(envelope.timestamp!!, "handleCallOfferMessage...")
 
-    val offerId = if (offer.id != null && offer.type != null && ((offer.opaque != null) xor (offer.sdp != null))) {
+    val offerId = if (offer.id != null && offer.type != null && offer.opaque != null) {
       offer.id!!
     } else {
-      warn(envelope.timestamp!!, "Invalid offer, missing id/type, or invalid combination of opaque/sdp")
+      warn(envelope.timestamp!!, "Invalid offer, missing id, type, or opaque")
       return
     }
 
@@ -64,7 +62,7 @@ object CallMessageProcessor {
     ApplicationDependencies.getSignalCallManager()
       .receivedOffer(
         CallMetadata(remotePeer, metadata.sourceDeviceId),
-        OfferMetadata(offer.opaque?.toByteArray(), offer.sdp, OfferMessage.Type.fromProto(offer.type!!)),
+        OfferMetadata(offer.opaque?.toByteArray(), OfferMessage.Type.fromProto(offer.type!!)),
         ReceivedOfferMetadata(
           remoteIdentityKey,
           envelope.serverTimestamp!!,
@@ -81,10 +79,10 @@ object CallMessageProcessor {
   ) {
     log(envelope.timestamp!!, "handleCallAnswerMessage...")
 
-    val answerId = if (answer.id != null && ((answer.opaque != null) xor (answer.sdp != null))) {
+    val answerId = if (answer.id != null && answer.opaque != null) {
       answer.id!!
     } else {
-      warn(envelope.timestamp!!, "Invalid answer, missing id")
+      warn(envelope.timestamp!!, "Invalid answer, missing id or opaque")
       return
     }
 
@@ -94,7 +92,7 @@ object CallMessageProcessor {
     ApplicationDependencies.getSignalCallManager()
       .receivedAnswer(
         CallMetadata(remotePeer, metadata.sourceDeviceId),
-        AnswerMetadata(answer.opaque?.toByteArray(), answer.sdp),
+        AnswerMetadata(answer.opaque?.toByteArray()),
         ReceivedAnswerMetadata(remoteIdentityKey)
       )
   }

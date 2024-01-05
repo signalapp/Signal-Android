@@ -63,27 +63,22 @@ message CallMessage {
     }
 
     optional uint64 id     = 1;
-    // Legacy/deprecated; replaced by 'opaque'
-    optional string sdp    = 2;
+    reserved     /* sdp */   2;
     optional Type   type   = 3;
     optional bytes  opaque = 4;
   }
 
   message Answer {
     optional uint64 id     = 1;
-    // Legacy/deprecated; replaced by 'opaque'
-    optional string sdp    = 2;
+    reserved     /* sdp */   2;
     optional bytes  opaque = 3;
   }
 
   message IceUpdate {
     optional uint64 id     = 1;
-    // Legacy/deprecated; remove when old clients are gone.
-    optional string mid    = 2;
-    // Legacy/deprecated; remove when old clients are gone.
-    optional uint32 line   = 3;
-    // Legacy/deprecated; replaced by 'opaque'
-    optional string sdp    = 4;
+    reserved     /* mid */   2;
+    reserved     /* line */  3;
+    reserved     /* sdp */   4;
     optional bytes  opaque = 5;
   }
 
@@ -118,7 +113,7 @@ message CallMessage {
   optional Offer     offer               = 1;
   optional Answer    answer              = 2;
   repeated IceUpdate iceUpdate           = 3;
-  optional Hangup    legacyHangup        = 4;
+  reserved        /* legacyHangup */       4;
   optional Busy      busy                = 5;
   reserved        /* profileKey */         6;
   optional Hangup    hangup              = 7;
