@@ -5683,8 +5683,8 @@
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">All connections have been reviewed, tap send to continue.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
     <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
-        <item quantity="one">You have %1$d connection who may have reinstalled Signal or changed devices. Before sharing your story with them review their safety numbers or consider removing them from your story.</item>
-        <item quantity="other">You have %1$d connections who may have reinstalled Signal or changed devices. Before sharing your story with them review their safety numbers or consider removing them from your story.</item>
+        <item quantity="one">%1$d connection may have reinstalled Signal or changed devices. You may review their safety number or continue with the send.</item>
+        <item quantity="other">%1$d connections may have reinstalled Signal or changed devices. You may review their safety numbers or continue with the send.</item>
     </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Verify safety number</string>
