@@ -285,8 +285,14 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
 
   private fun displayPendingPlayableVideo(currentState: TransferControlViewState) {
     binding.secondaryProgressView.startClickListener = currentState.downloadClickedListener
+    binding.secondaryDetailsText.setOnClickListener(currentState.downloadClickedListener)
+    binding.secondaryBackground.setOnClickListener(currentState.downloadClickedListener)
     binding.playVideoButton.setOnClickListener(currentState.instantPlaybackClickListener)
-    applyFocusableAndClickable(currentState, listOf(binding.secondaryProgressView, binding.playVideoButton), listOf(binding.primaryProgressView))
+    applyFocusableAndClickable(
+      currentState,
+      listOf(binding.secondaryProgressView, binding.secondaryDetailsText, binding.secondaryBackground, binding.playVideoButton),
+      listOf(binding.primaryProgressView)
+    )
     binding.secondaryProgressView.setStopped(false)
     showAllViews(
       primaryProgressView = false,
