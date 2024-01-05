@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.scribbles;
 import android.animation.Animator;
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Rect;
 import android.net.Uri;
 import android.provider.OpenableColumns;
 import android.util.AttributeSet;
@@ -13,6 +14,7 @@ import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.core.view.ViewCompat;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
@@ -24,6 +26,7 @@ import org.thoughtcrime.securesms.video.VideoUtil;
 import org.thoughtcrime.securesms.video.videoconverter.VideoThumbnailsRangeSelectorView;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -33,6 +36,8 @@ public final class VideoEditorHud extends LinearLayout {
 
   @SuppressWarnings("unused")
   private static final String TAG = Log.tag(VideoEditorHud.class);
+
+  private final List<Rect> exclusionZone = List.of(new Rect());
 
   private VideoThumbnailsRangeSelectorView videoTimeLine;
   private EventListener                    eventListener;
@@ -65,6 +70,16 @@ public final class VideoEditorHud extends LinearLayout {
 
   public void setEventListener(EventListener eventListener) {
     this.eventListener = eventListener;
+  }
+
+  @Override
+  protected void onLayout(boolean changed, int l, int t, int r, int b) {
+    final Rect outRect = exclusionZone.get(0);
+    videoTimeLine.getHitRect(outRect);
+    outRect.left = l;
+    outRect.right = r;
+    ViewCompat.setSystemGestureExclusionRects(this, exclusionZone);
+    super.onLayout(changed, l, t, r, b);
   }
 
   @RequiresApi(api = 23)
