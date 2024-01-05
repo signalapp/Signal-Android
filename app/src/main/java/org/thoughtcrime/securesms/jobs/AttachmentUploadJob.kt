@@ -17,12 +17,15 @@ import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.blurhash.BlurHashEncoder
+import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.events.PartProgressEvent
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
+import org.thoughtcrime.securesms.jobmanager.persistence.JobSpec
 import org.thoughtcrime.securesms.jobs.protos.AttachmentUploadJobData
+import org.thoughtcrime.securesms.mms.MmsException
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.net.NotPushRegisteredException
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -71,6 +74,17 @@ class AttachmentUploadJob private constructor(
         val maxPaddedSize = AttachmentCipherStreamUtil.getPlaintextLength(maxCipherTextSize)
         return PaddingInputStream.getMaxUnpaddedSize(maxPaddedSize)
       }
+
+    @JvmStatic
+    fun jobSpecMatchesAttachmentId(jobSpec: JobSpec, attachmentId: AttachmentId): Boolean {
+      if (KEY != jobSpec.factoryKey) {
+        return false
+      }
+      val serializedData = jobSpec.serializedData ?: return false
+      val data = AttachmentUploadJobData.ADAPTER.decode(serializedData)
+      val parsed = AttachmentId(data.attachmentRowId, data.attachmentUniqueId)
+      return attachmentId == parsed
+    }
   }
 
   constructor(attachmentId: AttachmentId) : this(
@@ -94,6 +108,25 @@ class AttachmentUploadJob private constructor(
   override fun getFactoryKey(): String = KEY
 
   override fun shouldTrace(): Boolean = true
+
+  override fun onAdded() {
+    Log.i(TAG, "onAdded() $attachmentId")
+
+    val database = SignalDatabase.attachments
+    val attachment = database.getAttachment(attachmentId)
+
+    if (attachment == null) {
+      Log.w(TAG, "Could not fetch attachment from database.")
+      return
+    }
+
+    val pending = attachment.transferState != AttachmentTable.TRANSFER_PROGRESS_DONE && attachment.transferState != AttachmentTable.TRANSFER_PROGRESS_PERMANENT_FAILURE
+
+    if (pending) {
+      Log.i(TAG, "onAdded() Marking attachment progress as 'started'")
+      database.setTransferState(attachment.mmsId, attachmentId, AttachmentTable.TRANSFER_PROGRESS_STARTED)
+    }
+  }
 
   @Throws(Exception::class)
   public override fun onRun() {
@@ -152,8 +185,17 @@ class AttachmentUploadJob private constructor(
   }
 
   override fun onFailure() {
-    if (isCanceled) {
-      SignalDatabase.attachments.deleteAttachment(attachmentId)
+    val database = SignalDatabase.attachments
+    val databaseAttachment = database.getAttachment(attachmentId)
+    if (databaseAttachment == null) {
+      Log.i(TAG, "Could not find attachment in DB for upload job upon failure/cancellation.")
+      return
+    }
+
+    try {
+      database.setTransferProgressFailed(attachmentId, databaseAttachment.mmsId)
+    } catch (e: MmsException) {
+      Log.w(TAG, "Error marking attachment as failed upon failed/canceled upload.", e)
     }
   }
 

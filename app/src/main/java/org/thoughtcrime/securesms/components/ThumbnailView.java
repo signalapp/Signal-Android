@@ -86,12 +86,12 @@ public class ThumbnailView extends FrameLayout {
 
   private final CornerMask cornerMask;
 
-  private final Stub<TransferControlView>          transferControlViewStub;
-  private       SlideClickListener                 thumbnailClickListener      = null;
-  private       SlidesClickedListener              downloadClickListener       = null;
-  private       SlidesClickedListener              cancelDownloadClickListener = null;
-  private       SlideClickListener                 playVideoClickListener      = null;
-  private       Slide                              slide                       = null;
+  private final Stub<TransferControlView> transferControlViewStub;
+  private       SlideClickListener        thumbnailClickListener      = null;
+  private       SlidesClickedListener     startTransferClickListener  = null;
+  private       SlidesClickedListener     cancelTransferClickListener = null;
+  private       SlideClickListener        playVideoClickListener      = null;
+  private       Slide                     slide                       = null;
 
 
   public ThumbnailView(Context context) {
@@ -363,7 +363,7 @@ public class ThumbnailView extends FrameLayout {
     }
 
     if (showControls) {
-      transferControlViewStub.get().setDownloadClickListener(new DownloadClickDispatcher());
+      transferControlViewStub.get().setTransferClickListener(new DownloadClickDispatcher());
       transferControlViewStub.get().setCancelClickListener(new CancelClickDispatcher());
       if (MediaUtil.isInstantVideoSupported(slide)) {
         transferControlViewStub.get().setInstantPlaybackClickListener(new InstantVideoClickDispatcher());
@@ -516,12 +516,12 @@ public class ThumbnailView extends FrameLayout {
     this.thumbnailClickListener = listener;
   }
 
-  public void setDownloadClickListener(SlidesClickedListener listener) {
-    this.downloadClickListener = listener;
+  public void setStartTransferClickListener(SlidesClickedListener listener) {
+    this.startTransferClickListener = listener;
   }
 
-  public void setCancelDownloadClickListener(SlidesClickedListener listener) {
-    this.cancelDownloadClickListener = listener;
+  public void setCancelTransferClickListener(SlidesClickedListener listener) {
+    this.cancelTransferClickListener = listener;
   }
 
   public void setPlayVideoClickListener(SlideClickListener listener) {
@@ -667,10 +667,10 @@ public class ThumbnailView extends FrameLayout {
     @Override
     public void onClick(View view) {
       Log.i(TAG, "onClick() for download button");
-      if (downloadClickListener != null && slide != null) {
-        downloadClickListener.onClick(view, Collections.singletonList(slide));
+      if (startTransferClickListener != null && slide != null) {
+        startTransferClickListener.onClick(view, Collections.singletonList(slide));
       } else {
-        Log.w(TAG, "Received a download button click, but unable to execute it. slide: " + slide + "  downloadClickListener: " + downloadClickListener);
+        Log.w(TAG, "Received a download button click, but unable to execute it. slide: " + slide + "  downloadClickListener: " + startTransferClickListener);
       }
     }
   }
@@ -679,10 +679,10 @@ public class ThumbnailView extends FrameLayout {
     @Override
     public void onClick(View view) {
       Log.i(TAG, "onClick() for cancel button");
-      if (cancelDownloadClickListener != null && slide != null) {
-        cancelDownloadClickListener.onClick(view, Collections.singletonList(slide));
+      if (cancelTransferClickListener != null && slide != null) {
+        cancelTransferClickListener.onClick(view, Collections.singletonList(slide));
       } else {
-        Log.w(TAG, "Received a cancel button click, but unable to execute it. slide: " + slide + "  cancelDownloadClickListener: " + cancelDownloadClickListener);
+        Log.w(TAG, "Received a cancel button click, but unable to execute it. slide: " + slide + "  cancelDownloadClickListener: " + cancelTransferClickListener);
       }
     }
   }

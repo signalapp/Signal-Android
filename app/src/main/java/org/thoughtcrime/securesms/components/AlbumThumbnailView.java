@@ -30,9 +30,9 @@ import java.util.List;
 public class AlbumThumbnailView extends FrameLayout {
 
   private @Nullable SlideClickListener    thumbnailClickListener;
-  private @Nullable SlidesClickedListener downloadClickListener;
-  private @Nullable SlidesClickedListener cancelDownloadClickListener;
-  private @Nullable SlideClickListener playVideoClickListener;
+  private @Nullable SlidesClickedListener startTransferClickListener;
+  private @Nullable SlidesClickedListener cancelTransferClickListener;
+  private @Nullable SlideClickListener    playVideoClickListener;
 
   private int currentSizeClass;
 
@@ -72,16 +72,16 @@ public class AlbumThumbnailView extends FrameLayout {
 
     if (showControls) {
       transferControlsStub.get().setShowSecondaryText(true);
-      transferControlsStub.get().setDownloadClickListener(
+      transferControlsStub.get().setTransferClickListener(
           v -> {
-            if (downloadClickListener != null) {
-              downloadClickListener.onClick(v, slides);
+            if (startTransferClickListener != null) {
+              startTransferClickListener.onClick(v, slides);
             }
           });
       transferControlsStub.get().setCancelClickListener(
           v -> {
-            if (cancelDownloadClickListener != null) {
-              cancelDownloadClickListener.onClick(v, slides);
+            if (cancelTransferClickListener != null) {
+              cancelTransferClickListener.onClick(v, slides);
             }
           });
       transferControlsStub.get().setSlides(slides);
@@ -117,12 +117,12 @@ public class AlbumThumbnailView extends FrameLayout {
     thumbnailClickListener = listener;
   }
 
-  public void setDownloadClickListener(SlidesClickedListener listener) {
-    this.downloadClickListener = listener;
+  public void setStartTransferClickListener(SlidesClickedListener listener) {
+    this.startTransferClickListener = listener;
   }
 
-  public void setCancelDownloadClickListener(SlidesClickedListener listener) {
-    this.cancelDownloadClickListener = listener;
+  public void setCancelTransferClickListener(SlidesClickedListener listener) {
+    this.cancelTransferClickListener = listener;
   }
 
   public void setPlayVideoClickListener(SlideClickListener listener) {
@@ -288,8 +288,8 @@ public class AlbumThumbnailView extends FrameLayout {
     ThumbnailView cell = findViewById(id);
     cell.showSecondaryText(false);
     cell.setThumbnailClickListener(defaultThumbnailClickListener);
-    cell.setDownloadClickListener(downloadClickListener);
-    cell.setCancelDownloadClickListener(cancelDownloadClickListener);
+    cell.setStartTransferClickListener(startTransferClickListener);
+    cell.setCancelTransferClickListener(cancelTransferClickListener);
     if (MediaUtil.isInstantVideoSupported(slide)) {
       cell.setPlayVideoClickListener(playVideoClickListener);
     }

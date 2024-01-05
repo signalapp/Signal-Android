@@ -161,6 +161,7 @@ public class MediaUploadRepository {
     if (result != null) {
       Stream.of(result.getJobIds()).forEach(jobManager::cancel);
       uploadResults.remove(media);
+      SignalDatabase.attachments().deleteAttachment(result.getAttachmentId());
     }
   }
 

@@ -7,7 +7,6 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
-
 import androidx.media3.common.MimeTypes;
 
 import org.greenrobot.eventbus.EventBus;
@@ -23,9 +22,10 @@ import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream;
 import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
-import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.jobmanager.persistence.JobSpec;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.MediaStream;
@@ -125,6 +125,21 @@ public final class AttachmentCompressionJob extends BaseJob {
   }
 
   @Override
+  public void onAdded() {
+    Log.i(TAG, "onAdded() " + attachmentId.toString());
+
+    final AttachmentTable    database     = SignalDatabase.attachments();
+    final DatabaseAttachment attachment   = database.getAttachment(attachmentId);
+    final boolean pending = attachment != null && attachment.transferState != AttachmentTable.TRANSFER_PROGRESS_DONE
+                            && attachment.transferState != AttachmentTable.TRANSFER_PROGRESS_PERMANENT_FAILURE;
+
+    if (pending) {
+      Log.i(TAG, "onAdded() Marking attachment progress as 'started'");
+      database.setTransferState(attachment.mmsId, attachmentId, AttachmentTable.TRANSFER_PROGRESS_STARTED);
+    }
+  }
+
+  @Override
   public void onRun() throws Exception {
     Log.d(TAG, "Running for: " + attachmentId);
 
@@ -147,7 +162,20 @@ public final class AttachmentCompressionJob extends BaseJob {
   }
 
   @Override
-  public void onFailure() { }
+  public void onFailure() {
+    AttachmentTable    database           = SignalDatabase.attachments();
+    DatabaseAttachment databaseAttachment = database.getAttachment(attachmentId);
+    if (databaseAttachment == null) {
+      Log.i(TAG, "Could not find attachment in DB for compression job upon failure.");
+      return;
+    }
+
+    try {
+      database.setTransferProgressFailed(attachmentId, databaseAttachment.mmsId);
+    } catch (MmsException e) {
+      Log.w(TAG, "Error marking attachment as failed upon failed compression.", e);
+    }
+  }
 
   @Override
   protected boolean onShouldRetry(@NonNull Exception exception) {
@@ -350,6 +378,21 @@ public final class AttachmentCompressionJob extends BaseJob {
                            result.getMimeType(),
                            result.getWidth(),
                            result.getHeight());
+  }
+
+  public static boolean jobSpecMatchesAttachmentId(@NonNull JobSpec jobSpec, @NonNull AttachmentId attachmentId) {
+    if (!KEY.equals(jobSpec.getFactoryKey())) {
+      return false;
+    }
+
+    final byte[] serializedData = jobSpec.getSerializedData();
+    if (serializedData == null) {
+      return false;
+    }
+
+    JsonJobData data = JsonJobData.deserialize(serializedData);
+    final AttachmentId parsed = new AttachmentId(data.getLong(KEY_ROW_ID), data.getLong(KEY_UNIQUE_ID));
+    return attachmentId.equals(parsed);
   }
 
   public static final class Factory implements Job.Factory<AttachmentCompressionJob> {

@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobLogger;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.jobmanager.persistence.JobSpec;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 import org.thoughtcrime.securesms.releasechannel.ReleaseChannel;
@@ -63,10 +64,10 @@ public final class AttachmentDownloadJob extends BaseJob {
 
   private static final String TAG = Log.tag(AttachmentDownloadJob.class);
 
-  private static final String KEY_MESSAGE_ID    = "message_id";
-  private static final String KEY_PART_ROW_ID   = "part_row_id";
-  private static final String KEY_PAR_UNIQUE_ID = "part_unique_id";
-  private static final String KEY_MANUAL        = "part_manual";
+  private static final String KEY_MESSAGE_ID = "message_id";
+  private static final String KEY_ROW_ID     = "part_row_id";
+  private static final String KEY_UNIQUE_ID  = "part_unique_id";
+  private static final String KEY_MANUAL     = "part_manual";
 
   private final long messageId;
   private final long partRowId;
@@ -97,8 +98,8 @@ public final class AttachmentDownloadJob extends BaseJob {
   @Override
   public @Nullable byte[] serialize() {
     return new JsonJobData.Builder().putLong(KEY_MESSAGE_ID, messageId)
-                                    .putLong(KEY_PART_ROW_ID, partRowId)
-                                    .putLong(KEY_PAR_UNIQUE_ID, partUniqueId)
+                                    .putLong(KEY_ROW_ID, partRowId)
+                                    .putLong(KEY_UNIQUE_ID, partUniqueId)
                                     .putBoolean(KEY_MANUAL, manual)
                                     .serialize();
   }
@@ -318,6 +319,21 @@ public final class AttachmentDownloadJob extends BaseJob {
     }
   }
 
+  public static boolean jobSpecMatchesAttachmentId(@NonNull JobSpec jobSpec, @NonNull AttachmentId attachmentId) {
+    if (!KEY.equals(jobSpec.getFactoryKey())) {
+      return false;
+    }
+
+    final byte[] serializedData = jobSpec.getSerializedData();
+    if (serializedData == null) {
+      return false;
+    }
+
+    JsonJobData data = JsonJobData.deserialize(serializedData);
+    final AttachmentId parsed = new AttachmentId(data.getLong(KEY_ROW_ID), data.getLong(KEY_UNIQUE_ID));
+    return attachmentId.equals(parsed);
+  }
+
   @VisibleForTesting
   static class InvalidPartException extends Exception {
     InvalidPartException(String s) {super(s);}
@@ -331,7 +347,7 @@ public final class AttachmentDownloadJob extends BaseJob {
 
       return new AttachmentDownloadJob(parameters,
                                        data.getLong(KEY_MESSAGE_ID),
-                                       new AttachmentId(data.getLong(KEY_PART_ROW_ID), data.getLong(KEY_PAR_UNIQUE_ID)),
+                                       new AttachmentId(data.getLong(KEY_ROW_ID), data.getLong(KEY_UNIQUE_ID)),
                                        data.getBoolean(KEY_MANUAL));
     }
   }

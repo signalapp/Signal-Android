@@ -251,10 +251,10 @@ class ConversationItemThumbnail @JvmOverloads constructor(
     state.applyState(thumbnail, album)
   }
 
-  fun setDownloadClickListener(listener: SlidesClickedListener?) {
+  fun setStartTransferClickListener(listener: SlidesClickedListener?) {
     state = state.copy(
-      thumbnailViewState = state.thumbnailViewState.copy(downloadClickListener = listener),
-      albumViewState = state.albumViewState.copy(downloadClickListener = listener)
+      thumbnailViewState = state.thumbnailViewState.copy(startTransferClickListener = listener),
+      albumViewState = state.albumViewState.copy(startTransferClickListener = listener)
     )
 
     state.applyState(thumbnail, album)
@@ -269,10 +269,10 @@ class ConversationItemThumbnail @JvmOverloads constructor(
     state.applyState(thumbnail, album)
   }
 
-  fun setCancelDownloadClickListener(listener: SlidesClickedListener?) {
+  fun setCancelTransferClickListener(listener: SlidesClickedListener?) {
     state = state.copy(
-      thumbnailViewState = state.thumbnailViewState.copy(cancelDownloadClickListener = listener),
-      albumViewState = state.albumViewState.copy(cancelDownloadClickListener = listener)
+      thumbnailViewState = state.thumbnailViewState.copy(cancelTransferClickListener = listener),
+      albumViewState = state.albumViewState.copy(cancelTransferClickListener = listener)
     )
 
     state.applyState(thumbnail, album)
