@@ -326,9 +326,9 @@
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp represents a message that has been edited within the last minute. -->
     <string name="ConversationItem_edited_now_timestamp_footer">Redigeret nu</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. This is displayed when the edit has occurred between 1-59 minutes ago. -->
-    <string name="ConversationItem_edited_relative_timestamp_footer">Edited %1$s</string>
+    <string name="ConversationItem_edited_relative_timestamp_footer">Redigeret %1$s</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. This is displayed when the edit occurred at least 1 hour ago. -->
-    <string name="ConversationItem_edited_absolute_timestamp_footer">Edited %1$s</string>
+    <string name="ConversationItem_edited_absolute_timestamp_footer">Redigeret %1$s</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
     <string name="ConversationItem__join_call">Deltag i opkald</string>
 
@@ -363,7 +363,7 @@
     <!-- A title for the option to send an SMS with a placeholder to put the name of their SIM card -->
     <string name="ConversationActivity_transport_signal">Signal-besked</string>
     <!-- The content description for button to send a message in a conversation -->
-    <string name="ConversationActivity_send_message_content_description">Send message</string>
+    <string name="ConversationActivity_send_message_content_description">Send besked</string>
     <string name="ConversationActivity_lets_switch_to_signal">Lad os bruge Signal %1$s?</string>
     <string name="ConversationActivity_specify_recipient">Vælg venligst en kontakt</string>
     <string name="ConversationActivity_attachment_exceeds_size_limits">Vedhæftningen overskrider max. grænsen for filstørrelser, for den type af besked du sender.</string>
@@ -1853,19 +1853,19 @@
     <string name="WebRtcAudioOutputBottomSheet__earpiece_icon_content_description">Et ikon, der viser en enheds øretelefon.</string>
 
     <!-- A clickable button to "raise your hand" in a group call to signify you have something to say -->
-    <string name="CallOverflowPopupWindow__raise_hand">Raise hand</string>
+    <string name="CallOverflowPopupWindow__raise_hand">Ræk hånden op</string>
     <!-- A description of a clickable image representing a raised hand -->
-    <string name="CallOverflowPopupWindow__raise_hand_illustration_content_description">Raise hand</string>
+    <string name="CallOverflowPopupWindow__raise_hand_illustration_content_description">Ræk hånden op</string>
     <!-- A dialog prompt to confirm you want to lower your hand -->
     <string name="CallOverflowPopupWindow__lower_your_hand">Lower your hand?</string>
     <!-- A dialog button to confirm you would like to lower your hand -->
-    <string name="CallOverflowPopupWindow__lower_hand">Lower hand</string>
+    <string name="CallOverflowPopupWindow__lower_hand">Tag hånden ned</string>
     <!-- A negative button for a dialog confirming the user wants to lower their hand (withdraw a raised hand) -->
-    <string name="CallOverflowPopupWindow__cancel">Cancel</string>
+    <string name="CallOverflowPopupWindow__cancel">Annuller</string>
     <!-- A notification to the user that they successfully raised their hand -->
     <string name="CallOverflowPopupWindow__you_raised_your_hand">You raised your hand</string>
     <!-- A button to take you to a list of participants with raised hands -->
-    <string name="CallOverflowPopupWindow__view">View</string>
+    <string name="CallOverflowPopupWindow__view">Vis</string>
 
     <!-- A notification to the user that one or more participants in the call successfully raised their hand. In the singular case, it is a name. In the plural case, it is a name or "You" -->
     <plurals name="CallOverflowPopupWindow__raised_a_hand">
@@ -1890,13 +1890,13 @@
     <!-- Notice in a row when user has no groups in common -->
     <string name="AboutSheet__you_have_no_groups_in_common">You have no groups in common</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
-    <string name="AboutSheet__review_requests_carefully">Review requests carefully</string>
+    <string name="AboutSheet__review_requests_carefully">Gennemgå anmodninger omhyggeligt</string>
     <!-- Text used when user has groups in common. Placeholder is the count -->
-    <string name="AboutSheet__d_groups_in_common">%1$d groups in common</string>
+    <string name="AboutSheet__d_groups_in_common">%1$d grupper til fælles</string>
     <!-- Text displayed in title for external recipients -->
-    <string name="AboutSheet__about">About</string>
+    <string name="AboutSheet__about">Om</string>
     <!-- Text displayed in title for you -->
-    <string name="AboutSheet__you">You</string>
+    <string name="AboutSheet__you">Dig</string>
 
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call">
@@ -2031,7 +2031,7 @@
     <!-- ReviewBannerView text when a name conflict has been found -->
     <string name="ReviewBannerView__name_conflict_found">Name conflict found</string>
     <!-- Button label to view name conflicts -->
-    <string name="ReviewBannerView__view">View</string>
+    <string name="ReviewBannerView__view">Vis</string>
 
     <!-- Search -->
     <string name="SearchFragment_no_results">Ingen resultater fundet for \"%1$s\"</string>
@@ -2418,8 +2418,8 @@
     </plurals>
     <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
     <string name="TransferControlView__processing">Behandler…</string>
-    <!-- Status update label used while the device is transmitting data over the network. Will take the form of "123 KB/2.0 MB" -->
-    <string name="TransferControlView__download_progress">%1$s/%2$s</string>
+    <!-- Status update label used while the device is transmitting data over the network. Will take the form of "1.0 MB/2.0 MB" -->
+    <string name="TransferControlView__download_progress">%1$1.1f MB/%2$2.1f MB</string>
 
 
     <!-- UnauthorizedReminder -->

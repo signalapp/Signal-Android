@@ -326,9 +326,9 @@
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp represents a message that has been edited within the last minute. -->
     <string name="ConversationItem_edited_now_timestamp_footer">இப்போது திருத்தப்பட்டது</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. This is displayed when the edit has occurred between 1-59 minutes ago. -->
-    <string name="ConversationItem_edited_relative_timestamp_footer">Edited %1$s</string>
+    <string name="ConversationItem_edited_relative_timestamp_footer">%1$s திருத்தப்பட்டது</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. This is displayed when the edit occurred at least 1 hour ago. -->
-    <string name="ConversationItem_edited_absolute_timestamp_footer">Edited %1$s</string>
+    <string name="ConversationItem_edited_absolute_timestamp_footer">%1$s திருத்தப்பட்டது</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
     <string name="ConversationItem__join_call">அழைப்பில் சேரவும்</string>
 
@@ -363,7 +363,7 @@
     <!-- A title for the option to send an SMS with a placeholder to put the name of their SIM card -->
     <string name="ConversationActivity_transport_signal">Signal செய்தி</string>
     <!-- The content description for button to send a message in a conversation -->
-    <string name="ConversationActivity_send_message_content_description">Send message</string>
+    <string name="ConversationActivity_send_message_content_description">அனுப்பு செய்தி</string>
     <string name="ConversationActivity_lets_switch_to_signal">%1$s நாம் Signalக்கு மாறுவோம்</string>
     <string name="ConversationActivity_specify_recipient">தயவு செய்து ஒரு தொடர்பை தேர்ந்தெடு</string>
     <string name="ConversationActivity_attachment_exceeds_size_limits">நீங்கள் அனுப்பும் இணைப்பு செய்தி அளவு வரம்பை மீறுகிறது .</string>
@@ -1853,19 +1853,19 @@
     <string name="WebRtcAudioOutputBottomSheet__earpiece_icon_content_description">டிவைஸின் இயர்பீஸைக் குறிக்கும் ஐகான்.</string>
 
     <!-- A clickable button to "raise your hand" in a group call to signify you have something to say -->
-    <string name="CallOverflowPopupWindow__raise_hand">Raise hand</string>
+    <string name="CallOverflowPopupWindow__raise_hand">கையை உயர்த்துக</string>
     <!-- A description of a clickable image representing a raised hand -->
-    <string name="CallOverflowPopupWindow__raise_hand_illustration_content_description">Raise hand</string>
+    <string name="CallOverflowPopupWindow__raise_hand_illustration_content_description">கையை உயர்த்துக</string>
     <!-- A dialog prompt to confirm you want to lower your hand -->
     <string name="CallOverflowPopupWindow__lower_your_hand">Lower your hand?</string>
     <!-- A dialog button to confirm you would like to lower your hand -->
-    <string name="CallOverflowPopupWindow__lower_hand">Lower hand</string>
+    <string name="CallOverflowPopupWindow__lower_hand">கையைத் தாழ்த்தவும்</string>
     <!-- A negative button for a dialog confirming the user wants to lower their hand (withdraw a raised hand) -->
-    <string name="CallOverflowPopupWindow__cancel">Cancel</string>
+    <string name="CallOverflowPopupWindow__cancel">ரத்துசெய்</string>
     <!-- A notification to the user that they successfully raised their hand -->
     <string name="CallOverflowPopupWindow__you_raised_your_hand">You raised your hand</string>
     <!-- A button to take you to a list of participants with raised hands -->
-    <string name="CallOverflowPopupWindow__view">View</string>
+    <string name="CallOverflowPopupWindow__view">காண்க</string>
 
     <!-- A notification to the user that one or more participants in the call successfully raised their hand. In the singular case, it is a name. In the plural case, it is a name or "You" -->
     <plurals name="CallOverflowPopupWindow__raised_a_hand">
@@ -1890,13 +1890,13 @@
     <!-- Notice in a row when user has no groups in common -->
     <string name="AboutSheet__you_have_no_groups_in_common">You have no groups in common</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
-    <string name="AboutSheet__review_requests_carefully">Review requests carefully</string>
+    <string name="AboutSheet__review_requests_carefully">கோரிக்கைகளை கவனமாக மதிப்பாய்வு செய்யவும்</string>
     <!-- Text used when user has groups in common. Placeholder is the count -->
-    <string name="AboutSheet__d_groups_in_common">%1$d groups in common</string>
+    <string name="AboutSheet__d_groups_in_common">%1$d பொதுவான குழுக்கள்</string>
     <!-- Text displayed in title for external recipients -->
-    <string name="AboutSheet__about">About</string>
+    <string name="AboutSheet__about">பற்றி</string>
     <!-- Text displayed in title for you -->
-    <string name="AboutSheet__you">You</string>
+    <string name="AboutSheet__you">நீங்கள்</string>
 
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call">
@@ -2031,7 +2031,7 @@
     <!-- ReviewBannerView text when a name conflict has been found -->
     <string name="ReviewBannerView__name_conflict_found">Name conflict found</string>
     <!-- Button label to view name conflicts -->
-    <string name="ReviewBannerView__view">View</string>
+    <string name="ReviewBannerView__view">காண்க</string>
 
     <!-- Search -->
     <string name="SearchFragment_no_results">\'%1$s\' க்கான முடிவுகள் எதுவும் கிடைக்கவில்லை</string>
@@ -2418,8 +2418,8 @@
     </plurals>
     <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
     <string name="TransferControlView__processing">செயலாக்கப்படுகிறது…</string>
-    <!-- Status update label used while the device is transmitting data over the network. Will take the form of "123 KB/2.0 MB" -->
-    <string name="TransferControlView__download_progress">%1$s/%2$s</string>
+    <!-- Status update label used while the device is transmitting data over the network. Will take the form of "1.0 MB/2.0 MB" -->
+    <string name="TransferControlView__download_progress">%1$1.1f MB/%2$2.1f MB</string>
 
 
     <!-- UnauthorizedReminder -->
