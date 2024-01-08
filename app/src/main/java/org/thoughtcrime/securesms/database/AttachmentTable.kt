@@ -673,7 +673,7 @@ class AttachmentTable(
       UPLOAD_TIMESTAMP to uploadTimestamp
     )
 
-    if (dataInfo != null && dataInfo.hash != null) {
+    if (dataInfo?.hash != null) {
       updateAttachmentAndMatchingHashes(writableDatabase, id, dataInfo.hash, values)
     } else {
       writableDatabase
@@ -841,7 +841,7 @@ class AttachmentTable(
             file = File(cursor.getString(cursor.getColumnIndexOrThrow(dataType))),
             length = cursor.requireLong(SIZE),
             random = cursor.requireNonNullBlob(DATA_RANDOM),
-            hash = cursor.requireNonNullString(DATA_HASH),
+            hash = cursor.requireString(DATA_HASH),
             transformProperties = TransformProperties.parse(cursor.requireString(TRANSFORM_PROPERTIES))
           )
         }
@@ -1101,7 +1101,7 @@ class AttachmentTable(
    * will be fixed in a later call to [updateAttachmentAndMatchingHashes].
    */
   private fun isAttachmentFileUsedByOtherAttachments(attachmentId: AttachmentId?, dataInfo: DataInfo): Boolean {
-    return if (attachmentId == null) {
+    return if (attachmentId == null || dataInfo.hash == null) {
       false
     } else {
       readableDatabase
@@ -1113,7 +1113,7 @@ class AttachmentTable(
 
   private fun updateAttachmentDataHash(
     db: SQLiteDatabase,
-    oldHash: String,
+    oldHash: String?,
     newData: DataInfo
   ) {
     if (oldHash == null) {
@@ -1287,10 +1287,14 @@ class AttachmentTable(
 
   private fun findDuplicateDataFileInfos(
     database: SQLiteDatabase,
-    hash: String,
+    hash: String?,
     excludedAttachmentId: AttachmentId?
   ): List<DataInfo> {
     check(database.inTransaction()) { "Must be in a transaction!" }
+
+    if (hash == null) {
+      return emptyList()
+    }
 
     val selectorArgs: Pair<String, Array<String>> = buildSharedFileSelectorArgs(hash, excludedAttachmentId)
 
@@ -1428,7 +1432,11 @@ class AttachmentTable(
     return attachmentId
   }
 
-  private fun findTemplateAttachments(dataHash: String): List<DatabaseAttachment> {
+  private fun findTemplateAttachments(dataHash: String?): List<DatabaseAttachment> {
+    if (dataHash == null) {
+      return emptyList()
+    }
+
     return readableDatabase
       .select(*PROJECTION)
       .from(TABLE_NAME)
@@ -1520,20 +1528,28 @@ class AttachmentTable(
     val file: File,
     val length: Long,
     val random: ByteArray,
-    val hash: String,
+    val hash: String?,
     val transformProperties: TransformProperties?
   ) {
-    override fun equals(o: Any?): Boolean {
-      if (this === o) return true
-      if (o == null || javaClass != o.javaClass) return false
-      val dataInfo = o as DataInfo
-      return length == dataInfo.length && file == dataInfo.file &&
-        Arrays.equals(random, dataInfo.random) && hash == dataInfo.hash && transformProperties == dataInfo.transformProperties
+    override fun equals(other: Any?): Boolean {
+      if (this === other) return true
+      if (javaClass != other?.javaClass) return false
+
+      other as DataInfo
+
+      if (file != other.file) return false
+      if (length != other.length) return false
+      if (!random.contentEquals(other.random)) return false
+      if (hash != other.hash) return false
+      return transformProperties == other.transformProperties
     }
 
     override fun hashCode(): Int {
-      var result = Objects.hash(file, length, hash, transformProperties)
-      result = 31 * result + Arrays.hashCode(random)
+      var result = file.hashCode()
+      result = 31 * result + length.hashCode()
+      result = 31 * result + random.contentHashCode()
+      result = 31 * result + (hash?.hashCode() ?: 0)
+      result = 31 * result + (transformProperties?.hashCode() ?: 0)
       return result
     }
   }
