@@ -346,13 +346,12 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
 
   fun acceptIncomingGroupCall(call: Call) {
     checkIsGroupOrAdHocCall(call)
-    check(call.direction == Direction.INCOMING)
 
     val newEvent = when (call.event) {
       Event.RINGING, Event.MISSED, Event.DECLINED -> Event.ACCEPTED
       Event.GENERIC_GROUP_CALL -> Event.JOINED
       else -> {
-        Log.d(TAG, "Call in state ${call.event} cannot be transitioned by ACCEPTED")
+        Log.d(TAG, "[acceptIncomingGroupCall] Call in state ${call.event} cannot be transitioned by ACCEPTED")
         return
       }
     }
@@ -364,7 +363,32 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
 
     ApplicationDependencies.getMessageNotifier().updateNotification(context)
     ApplicationDependencies.getDatabaseObserver().notifyCallUpdateObservers()
-    Log.d(TAG, "Transitioned group call ${call.callId} from ${call.event} to $newEvent")
+    Log.d(TAG, "[acceptIncomingGroupCall] Transitioned group call ${call.callId} from ${call.event} to $newEvent")
+  }
+
+  fun acceptOutgoingGroupCall(call: Call) {
+    checkIsGroupOrAdHocCall(call)
+
+    val newEvent = when (call.event) {
+      Event.GENERIC_GROUP_CALL, Event.JOINED -> Event.OUTGOING_RING
+      Event.RINGING, Event.MISSED, Event.DECLINED, Event.ACCEPTED -> {
+        Log.w(TAG, "[acceptOutgoingGroupCall] This shouldn't have been an outgoing ring because the call already existed!")
+        Event.ACCEPTED
+      }
+      else -> {
+        Log.d(TAG, "[acceptOutgoingGroupCall] Call in state ${call.event} cannot be transitioned by ACCEPTED")
+        return
+      }
+    }
+
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(EVENT to Event.serialize(newEvent), DIRECTION to Direction.serialize(Direction.OUTGOING))
+      .run()
+
+    ApplicationDependencies.getMessageNotifier().updateNotification(context)
+    ApplicationDependencies.getDatabaseObserver().notifyCallUpdateObservers()
+    Log.d(TAG, "[acceptOutgoingGroupCall] Transitioned group call ${call.callId} from ${call.event} to $newEvent")
   }
 
   fun declineIncomingGroupCall(call: Call) {
@@ -372,7 +396,8 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     check(call.direction == Direction.INCOMING)
 
     val newEvent = when (call.event) {
-      Event.RINGING, Event.MISSED -> Event.DECLINED
+      Event.GENERIC_GROUP_CALL, Event.RINGING, Event.MISSED -> Event.DECLINED
+      Event.JOINED -> Event.ACCEPTED
       else -> {
         Log.d(TAG, "Call in state ${call.event} cannot be transitioned by DECLINED")
         return
@@ -709,12 +734,24 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
           RingUpdate.EXPIRED_REQUEST, RingUpdate.CANCELLED_BY_RINGER -> {
             when (call.event) {
               Event.GENERIC_GROUP_CALL, Event.RINGING -> updateEventFromRingState(ringId, Event.MISSED, ringerRecipient)
+              Event.JOINED -> updateEventFromRingState(ringId, Event.ACCEPTED, ringerRecipient)
               Event.OUTGOING_RING -> Log.w(TAG, "Received an expiration or cancellation while in OUTGOING_RING state. Ignoring.")
               else -> Unit
             }
           }
 
-          RingUpdate.BUSY_LOCALLY, RingUpdate.BUSY_ON_ANOTHER_DEVICE -> {
+          RingUpdate.BUSY_LOCALLY -> {
+            when (call.event) {
+              Event.JOINED -> updateEventFromRingState(ringId, Event.ACCEPTED)
+              Event.GENERIC_GROUP_CALL, Event.RINGING -> updateEventFromRingState(ringId, Event.MISSED)
+              else -> {
+                updateEventFromRingState(ringId, call.event, ringerRecipient)
+                Log.w(TAG, "Received a busy event we can't process. Updating ringer only.")
+              }
+            }
+          }
+
+          RingUpdate.BUSY_ON_ANOTHER_DEVICE -> {
             when (call.event) {
               Event.JOINED -> updateEventFromRingState(ringId, Event.ACCEPTED)
               Event.GENERIC_GROUP_CALL, Event.RINGING -> updateEventFromRingState(ringId, Event.MISSED)
@@ -728,7 +765,8 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
 
           RingUpdate.DECLINED_ON_ANOTHER_DEVICE -> {
             when (call.event) {
-              Event.RINGING, Event.MISSED -> updateEventFromRingState(ringId, Event.DECLINED)
+              Event.RINGING, Event.MISSED, Event.GENERIC_GROUP_CALL -> updateEventFromRingState(ringId, Event.DECLINED)
+              Event.JOINED -> updateEventFromRingState(ringId, Event.ACCEPTED)
               Event.OUTGOING_RING -> Log.w(TAG, "Received DECLINED_ON_ANOTHER_DEVICE while in OUTGOING_RING state.")
               else -> Unit
             }

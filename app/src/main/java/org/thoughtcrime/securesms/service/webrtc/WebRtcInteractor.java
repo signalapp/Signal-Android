@@ -204,4 +204,8 @@ public class WebRtcInteractor {
   public void sendNotAcceptedCallEventSyncMessage(@NonNull RemotePeer remotePeer, boolean isOutgoing, boolean isVideoCall) {
     signalCallManager.sendNotAcceptedCallEventSyncMessage(remotePeer, isOutgoing, isVideoCall);
   }
+
+  public void sendGroupCallNotAcceptedCallEventSyncMessage(@NonNull RemotePeer remotePeer, boolean isOutgoing) {
+    signalCallManager.sendGroupCallNotAcceptedCallEventSyncMessage(remotePeer, isOutgoing);
+  }
 }

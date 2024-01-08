@@ -256,7 +256,11 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
       Log.w(TAG, "Error while trying to cancel ring " + ringId, e);
     }
 
-    webRtcInteractor.sendGroupCallMessage(currentState.getCallInfoState().getCallRecipient(), null, new CallId(ringId), true, false);
+    CallId     callId     = new CallId(ringId);
+    RemotePeer remotePeer = new RemotePeer(recipient.getId(), callId);
+
+    webRtcInteractor.sendGroupCallNotAcceptedCallEventSyncMessage(remotePeer, false);
+    webRtcInteractor.sendGroupCallMessage(currentState.getCallInfoState().getCallRecipient(), null, callId, true, false);
     webRtcInteractor.updatePhoneState(LockManager.PhoneState.PROCESSING);
     webRtcInteractor.stopAudio(false);
     webRtcInteractor.updatePhoneState(LockManager.PhoneState.IDLE);

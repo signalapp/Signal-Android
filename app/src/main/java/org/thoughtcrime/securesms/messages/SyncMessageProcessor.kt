@@ -1317,10 +1317,10 @@ object SyncMessageProcessor {
           if (call.timestamp > timestamp) {
             SignalDatabase.calls.setTimestamp(call.callId, recipient.id, timestamp)
           }
-          if (callEvent.direction == SyncMessage.CallEvent.Direction.INCOMING) {
+          if (direction == CallTable.Direction.INCOMING) {
             SignalDatabase.calls.acceptIncomingGroupCall(call)
           } else {
-            warn(envelopeTimestamp, "Invalid direction OUTGOING for event ACCEPTED")
+            SignalDatabase.calls.acceptOutgoingGroupCall(call)
           }
         }
         CallTable.Event.NOT_ACCEPTED -> {
