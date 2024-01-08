@@ -486,13 +486,15 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
      * Submits the necessary job to refresh the profile of the requested recipient. Works for any
      * RecipientId, including individuals, groups, or yourself.
      *
-     *
-     * Identical to [.enqueue])}
+     * May not enqueue any jobs in certain circumstances. In particular, if the recipient is a group
+     * with no other members, then no job will be enqueued.
      */
     @JvmStatic
     @WorkerThread
     fun enqueue(recipientId: RecipientId) {
-      ApplicationDependencies.getJobManager().add(forRecipient(recipientId))
+      forRecipients(setOf(recipientId)).firstOrNull()?.let { job ->
+        ApplicationDependencies.getJobManager().add(job)
+      }
     }
 
     /**
@@ -510,17 +512,8 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
 
     /**
      * Works for any RecipientId, whether it's an individual, group, or yourself.
-     */
-    @JvmStatic
-    @WorkerThread
-    fun forRecipient(recipientId: RecipientId): Job {
-      return forRecipients(setOf(recipientId)).first()
-    }
-
-    /**
-     * Works for any RecipientId, whether it's an individual, group, or yourself.
      *
-     * @return A list of length 2 or less. Two iff you are in the recipients.
+     * @return A list of length 2 or less. Two iff you are in the recipients. Could be empty for groups with no other members.
      */
     @JvmStatic
     @WorkerThread

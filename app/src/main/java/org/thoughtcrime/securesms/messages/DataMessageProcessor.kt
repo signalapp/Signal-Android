@@ -223,7 +223,7 @@ object DataMessageProcessor {
       if (SignalDatabase.recipients.setProfileKey(senderRecipient.id, messageProfileKey)) {
         log(timestamp, "Profile key on message from " + senderRecipient.id + " didn't match our local store. It has been updated.")
         SignalDatabase.runPostSuccessfulTransaction {
-          ApplicationDependencies.getJobManager().add(RetrieveProfileJob.forRecipient(senderRecipient.id))
+          RetrieveProfileJob.enqueue(senderRecipient.id)
         }
       }
     } else {
