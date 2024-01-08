@@ -244,9 +244,15 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
 
   private fun displayPendingGalleryWithPlayable(currentState: TransferControlViewState) {
     binding.secondaryProgressView.startClickListener = currentState.startTransferClickListener
+    binding.secondaryDetailsText.setOnClickListener(currentState.startTransferClickListener)
+    binding.secondaryBackground.setOnClickListener(currentState.startTransferClickListener)
     super.setClickable(false)
     binding.secondaryProgressView.isClickable = currentState.showSecondaryText
     binding.secondaryProgressView.isFocusable = currentState.showSecondaryText
+    binding.secondaryDetailsText.isClickable = currentState.showSecondaryText
+    binding.secondaryDetailsText.isFocusable = currentState.showSecondaryText
+    binding.secondaryBackground.isClickable = currentState.showSecondaryText
+    binding.secondaryBackground.isFocusable = currentState.showSecondaryText
     binding.primaryProgressView.isClickable = false
     binding.primaryProgressView.isFocusable = false
     showAllViews(
