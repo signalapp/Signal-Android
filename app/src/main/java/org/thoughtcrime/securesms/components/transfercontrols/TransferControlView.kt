@@ -722,7 +722,7 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
     private const val TAG = "TransferControlView"
     private const val VERBOSE_DEVELOPMENT_LOGGING = false
     private const val UPLOAD_TASK_WEIGHT = 1
-    private const val SECONDARY_TEXT_OFFSET_DP = 3
+    private const val SECONDARY_TEXT_OFFSET_DP = 6
     private const val RETRY_SECONDARY_TEXT_OFFSET_DP = 6
     private const val PRIMARY_TEXT_OFFSET_DP = 4
     private const val MEBIBYTE = 1048576f
