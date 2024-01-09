@@ -1172,6 +1172,25 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     )
   }
 
+  fun getLatestRingingCalls(): List<Call> {
+    return readableDatabase.select()
+      .from(TABLE_NAME)
+      .where("$EVENT = ?", Event.serialize(Event.RINGING))
+      .limit(10)
+      .orderBy(TIMESTAMP)
+      .run()
+      .readToList {
+        Call.deserialize(it)
+      }
+  }
+
+  fun markRingingCallsAsMissed() {
+    writableDatabase.update(TABLE_NAME)
+      .values(EVENT to Event.serialize(Event.MISSED))
+      .where("$EVENT = ?", Event.serialize(Event.RINGING))
+      .run()
+  }
+
   fun getCallsCount(searchTerm: String?, filter: CallLogFilter): Int {
     return getCallsCursor(true, 0, 0, searchTerm, filter).use {
       it.moveToFirst()
