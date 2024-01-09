@@ -1147,8 +1147,8 @@ public class PushServiceSocket {
    * @param encryptedUsername URL-safe base64-encoded encrypted username
    * @return The serverId for the generated link.
    */
-  public UUID createUsernameLink(String encryptedUsername) throws IOException {
-    String                      response = makeServiceRequest(USERNAME_LINK_PATH, "PUT", JsonUtil.toJson(new SetUsernameLinkRequestBody(encryptedUsername)));
+  public UUID createUsernameLink(String encryptedUsername, boolean keepLinkHandle) throws IOException {
+    String                      response = makeServiceRequest(USERNAME_LINK_PATH, "PUT", JsonUtil.toJson(new SetUsernameLinkRequestBody(encryptedUsername, keepLinkHandle)));
     SetUsernameLinkResponseBody parsed   = JsonUtil.fromJson(response, SetUsernameLinkResponseBody.class);
 
     return parsed.getUsernameLinkHandle();

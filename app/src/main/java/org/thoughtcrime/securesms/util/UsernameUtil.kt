@@ -6,9 +6,11 @@ import java.util.regex.Pattern
 
 object UsernameUtil {
   private val TAG = Log.tag(UsernameUtil::class.java)
-  const val MIN_LENGTH = 3
-  const val MAX_LENGTH = 32
-  private val FULL_PATTERN = Pattern.compile(String.format(Locale.US, "^[a-zA-Z_][a-zA-Z0-9_]{%d,%d}$", MIN_LENGTH - 1, MAX_LENGTH - 1), Pattern.CASE_INSENSITIVE)
+  const val MIN_NICKNAME_LENGTH = 3
+  const val MAX_NICKNAME_LENGTH = 32
+  const val MIN_DISCRIMINATOR_LENGTH = 2
+  const val MAX_DISCRIMINATOR_LENGTH = 10
+  private val FULL_PATTERN = Pattern.compile(String.format(Locale.US, "^[a-zA-Z_][a-zA-Z0-9_]{%d,%d}$", MIN_NICKNAME_LENGTH - 1, MAX_NICKNAME_LENGTH - 1), Pattern.CASE_INSENSITIVE)
   private val DIGIT_START_PATTERN = Pattern.compile("^[0-9].*$")
   private const val BASE_URL_SCHEMELESS = "signal.me/#eu/"
   private const val BASE_URL = "https://$BASE_URL_SCHEMELESS"
@@ -17,8 +19,8 @@ object UsernameUtil {
     String.format(
       Locale.US,
       "^@?[a-zA-Z_][a-zA-Z0-9_]{%d,%d}(.[0-9]+)?$",
-      MIN_LENGTH - 1,
-      MAX_LENGTH - 1,
+      MIN_NICKNAME_LENGTH - 1,
+      MAX_NICKNAME_LENGTH - 1,
       Pattern.CASE_INSENSITIVE
     )
   )
@@ -39,16 +41,36 @@ object UsernameUtil {
       value == null -> {
         InvalidReason.TOO_SHORT
       }
-      value.length < MIN_LENGTH -> {
+      value.length < MIN_NICKNAME_LENGTH -> {
         InvalidReason.TOO_SHORT
       }
-      value.length > MAX_LENGTH -> {
+      value.length > MAX_NICKNAME_LENGTH -> {
         InvalidReason.TOO_LONG
       }
       DIGIT_START_PATTERN.matcher(value).matches() -> {
         InvalidReason.STARTS_WITH_NUMBER
       }
       !FULL_PATTERN.matcher(value).matches() -> {
+        InvalidReason.INVALID_CHARACTERS
+      }
+      else -> {
+        null
+      }
+    }
+  }
+
+  fun checkDiscriminator(value: String?): InvalidReason? {
+    return when {
+      value == null -> {
+        null
+      }
+      value.length < MIN_DISCRIMINATOR_LENGTH -> {
+        InvalidReason.TOO_SHORT
+      }
+      value.length > MAX_DISCRIMINATOR_LENGTH -> {
+        InvalidReason.TOO_LONG
+      }
+      value.toIntOrNull() == null -> {
         InvalidReason.INVALID_CHARACTERS
       }
       else -> {

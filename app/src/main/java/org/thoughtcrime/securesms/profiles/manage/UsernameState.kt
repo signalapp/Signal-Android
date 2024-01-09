@@ -10,6 +10,8 @@ sealed class UsernameState {
   protected open val username: String? = null
   open val isInProgress: Boolean = false
 
+  fun requireUsername(): String = username!!
+
   object Loading : UsernameState() {
     override val isInProgress: Boolean = true
   }
@@ -19,6 +21,10 @@ sealed class UsernameState {
   data class Reserved(
     public override val username: String,
     val reserveUsernameResponse: ReserveUsernameResponse
+  ) : UsernameState()
+
+  data class CaseChange(
+    public override val username: String
   ) : UsernameState()
 
   data class Set(

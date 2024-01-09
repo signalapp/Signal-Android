@@ -89,11 +89,20 @@ object UsernameRepository {
   private val accountManager: SignalServiceAccountManager get() = ApplicationDependencies.getSignalServiceAccountManager()
 
   /**
+   * Given a username, update the username link, given that all was changed was the casing of the nickname.
+   */
+  fun updateUsername(caseChange: UsernameState.CaseChange): Single<UsernameSetResult> {
+    return Single
+      .fromCallable { updateUsernameInternal(caseChange) }
+      .subscribeOn(Schedulers.io())
+  }
+
+  /**
    * Given a nickname, this will temporarily reserve a matching discriminator that can later be confirmed via [confirmUsername].
    */
-  fun reserveUsername(nickname: String): Single<Result<UsernameState.Reserved, UsernameSetResult>> {
+  fun reserveUsername(nickname: String, discriminator: String?): Single<Result<UsernameState.Reserved, UsernameSetResult>> {
     return Single
-      .fromCallable { reserveUsernameInternal(nickname) }
+      .fromCallable { reserveUsernameInternal(nickname, discriminator) }
       .subscribeOn(Schedulers.io())
   }
 
@@ -295,9 +304,13 @@ object UsernameRepository {
   }
 
   @WorkerThread
-  private fun reserveUsernameInternal(nickname: String): Result<UsernameState.Reserved, UsernameSetResult> {
+  private fun reserveUsernameInternal(nickname: String, discriminator: String?): Result<UsernameState.Reserved, UsernameSetResult> {
     return try {
-      val candidates: List<Username> = Username.candidatesFrom(nickname, UsernameUtil.MIN_LENGTH, UsernameUtil.MAX_LENGTH)
+      val candidates: List<Username> = if (discriminator == null) {
+        Username.candidatesFrom(nickname, UsernameUtil.MIN_NICKNAME_LENGTH, UsernameUtil.MAX_NICKNAME_LENGTH)
+      } else {
+        listOf(Username("$nickname${UsernameState.DELIMITER}$discriminator"))
+      }
 
       val hashes: List<String> = candidates
         .map { Base64.encodeUrlSafeWithoutPadding(it.hash) }
@@ -324,6 +337,31 @@ object UsernameRepository {
     } catch (e: IOException) {
       Log.w(TAG, "[reserveUsername] Generic network exception.", e)
       failure(UsernameSetResult.NETWORK_ERROR)
+    }
+  }
+
+  @WorkerThread
+  private fun updateUsernameInternal(caseChange: UsernameState.CaseChange): UsernameSetResult {
+    return try {
+      val oldUsernameLink = SignalStore.account().usernameLink ?: return UsernameSetResult.USERNAME_INVALID
+      val username = Username(caseChange.username)
+      val newUsernameLink = username.generateLink(oldUsernameLink.entropy)
+      val usernameLinkComponents = accountManager.updateUsernameLink(newUsernameLink)
+
+      SignalStore.account().username = username.username
+      SignalStore.account().usernameLink = usernameLinkComponents
+      SignalDatabase.recipients.setUsername(Recipient.self().id, username.username)
+      SignalStore.account().usernameSyncState = AccountValues.UsernameSyncState.IN_SYNC
+      SignalStore.account().usernameSyncErrorCount = 0
+
+      SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
+      StorageSyncHelper.scheduleSyncForDataChange()
+      Log.i(TAG, "[updateUsername] Successfully updated username.")
+
+      UsernameSetResult.SUCCESS
+    } catch (e: IOException) {
+      Log.w(TAG, "[updateUsername] Generic network exception.", e)
+      UsernameSetResult.NETWORK_ERROR
     }
   }
 

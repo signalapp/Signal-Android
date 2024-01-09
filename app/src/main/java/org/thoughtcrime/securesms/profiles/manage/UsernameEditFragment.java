@@ -3,14 +3,12 @@ package org.thoughtcrime.securesms.profiles.manage;
 import android.animation.LayoutTransition;
 import android.content.Intent;
 import android.content.res.ColorStateList;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -25,25 +23,22 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputLayout;
 
-import org.signal.core.util.DimensionUnit;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
 import org.thoughtcrime.securesms.databinding.UsernameEditFragmentBinding;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.FragmentResultContract;
 import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.UsernameUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton;
 
-import java.util.Objects;
-
 public class UsernameEditFragment extends LoggingFragment {
 
-  private static final float DISABLED_ALPHA = 0.5f;
+  private static final float DISABLED_ALPHA           = 0.5f;
+  public static final String IGNORE_TEXT_CHANGE_EVENT = "ignore.text.change.event";
 
   private UsernameEditViewModel       viewModel;
   private UsernameEditFragmentBinding binding;
@@ -99,6 +94,7 @@ public class UsernameEditFragment extends LoggingFragment {
 
     lifecycleDisposable.add(viewModel.getUiState().subscribe(this::onUiStateChanged));
     lifecycleDisposable.add(viewModel.getEvents().subscribe(this::onEvent));
+    lifecycleDisposable.add(viewModel.getUsernameInputState().subscribe(this::presentUsernameInputState));
 
     binding.usernameSubmitButton.setOnClickListener(v -> viewModel.onUsernameSubmitted());
     binding.usernameDeleteButton.setOnClickListener(v -> viewModel.onUsernameDeleted());
@@ -112,10 +108,23 @@ public class UsernameEditFragment extends LoggingFragment {
     binding.usernameText.addTextChangedListener(new SimpleTextWatcher() {
       @Override
       public void onTextChanged(@NonNull String text) {
-        viewModel.onNicknameUpdated(text);
+        if (binding.usernameText.getTag() != IGNORE_TEXT_CHANGE_EVENT) {
+          viewModel.onNicknameUpdated(text);
+        }
       }
     });
-    binding.usernameText.setOnEditorActionListener((v, actionId, event) -> {
+
+    binding.discriminatorText.setText(usernameState.getDiscriminator());
+    binding.discriminatorText.addTextChangedListener(new SimpleTextWatcher() {
+      @Override
+      public void onTextChanged(@NonNull String text) {
+        if (binding.discriminatorText.getTag() != IGNORE_TEXT_CHANGE_EVENT) {
+          viewModel.onDiscriminatorUpdated(text);
+        }
+      }
+    });
+
+    binding.discriminatorText.setOnEditorActionListener((v, actionId, event) -> {
       if (actionId == EditorInfo.IME_ACTION_DONE) {
         viewModel.onUsernameSubmitted();
         return true;
@@ -127,22 +136,7 @@ public class UsernameEditFragment extends LoggingFragment {
     binding.usernameDescription.setLearnMoreVisible(true);
     binding.usernameDescription.setOnLinkClickListener(this::onLearnMore);
 
-    initializeSuffix();
     ViewUtil.focusAndShowKeyboard(binding.usernameText);
-  }
-
-  private void initializeSuffix() {
-    TextView suffixTextView = binding.usernameTextWrapper.getSuffixTextView();
-    Drawable pipe           = Objects.requireNonNull(ContextCompat.getDrawable(requireContext(), R.drawable.pipe_divider));
-
-    pipe.setBounds(0, 0, (int) DimensionUnit.DP.toPixels(1f), (int) DimensionUnit.DP.toPixels(20f));
-    suffixTextView.setCompoundDrawablesRelative(pipe, null, null, null);
-
-    ViewUtil.setLeftMargin(suffixTextView, (int) DimensionUnit.DP.toPixels(16f));
-
-    binding.usernameTextWrapper.getSuffixTextView().setCompoundDrawablePadding((int) DimensionUnit.DP.toPixels(16f));
-
-    suffixTextView.setOnClickListener(this::onLearnMore);
   }
 
   @Override
@@ -162,7 +156,7 @@ public class UsernameEditFragment extends LoggingFragment {
   private void onUiStateChanged(@NonNull UsernameEditViewModel.State state) {
     TextInputLayout usernameInputWrapper = binding.usernameTextWrapper;
 
-    presentSuffix(state.username);
+    presentProgressState(state.username);
     presentButtonState(state.buttonState);
     presentSummary(state.username);
 
@@ -174,7 +168,7 @@ public class UsernameEditFragment extends LoggingFragment {
         break;
       case TOO_SHORT:
       case TOO_LONG:
-        usernameInputWrapper.setError(getResources().getString(R.string.UsernameEditFragment_usernames_must_be_between_a_and_b_characters, UsernameUtil.MIN_LENGTH, UsernameUtil.MAX_LENGTH));
+        usernameInputWrapper.setError(getResources().getString(R.string.UsernameEditFragment_usernames_must_be_between_a_and_b_characters, UsernameUtil.MIN_NICKNAME_LENGTH, UsernameUtil.MAX_NICKNAME_LENGTH));
         usernameInputWrapper.setErrorTextColor(ColorStateList.valueOf(getResources().getColor(R.color.signal_colorError)));
 
         break;
@@ -195,6 +189,22 @@ public class UsernameEditFragment extends LoggingFragment {
         break;
       case TAKEN:
         usernameInputWrapper.setError(getResources().getString(R.string.UsernameEditFragment_this_username_is_taken));
+        usernameInputWrapper.setErrorTextColor(ColorStateList.valueOf(getResources().getColor(R.color.signal_colorError)));
+
+        break;
+      case DISCRIMINATOR_HAS_INVALID_CHARACTERS:
+      case DISCRIMINATOR_NOT_AVAILABLE:
+        usernameInputWrapper.setError(getResources().getString(R.string.UsernameEditFragment__this_username_is_not_available_try_another_number));
+        usernameInputWrapper.setErrorTextColor(ColorStateList.valueOf(getResources().getColor(R.color.signal_colorError)));
+
+        break;
+      case DISCRIMINATOR_TOO_LONG:
+        usernameInputWrapper.setError(getResources().getString(R.string.UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits, UsernameUtil.MAX_DISCRIMINATOR_LENGTH));
+        usernameInputWrapper.setErrorTextColor(ColorStateList.valueOf(getResources().getColor(R.color.signal_colorError)));
+
+        break;
+      case DISCRIMINATOR_TOO_SHORT:
+        usernameInputWrapper.setError(getResources().getString(R.string.UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits, UsernameUtil.MIN_DISCRIMINATOR_LENGTH));
         usernameInputWrapper.setErrorTextColor(ColorStateList.valueOf(getResources().getColor(R.color.signal_colorError)));
 
         break;
@@ -302,9 +312,25 @@ public class UsernameEditFragment extends LoggingFragment {
     }
   }
 
-  private void presentSuffix(@NonNull UsernameState usernameState) {
-    binding.usernameTextWrapper.setSuffixText(usernameState.getDiscriminator());
+  private void presentUsernameInputState(@NonNull UsernameEditStateMachine.State state) {
+    binding.usernameText.setTag(IGNORE_TEXT_CHANGE_EVENT);
+    String nickname = state.getNickname();
+    if (!binding.usernameText.getText().toString().equals(nickname)) {
+      binding.usernameText.setText(state.getNickname());
+      binding.usernameText.setSelection(binding.usernameText.length());
+    }
+    binding.usernameText.setTag(null);
 
+    binding.discriminatorText.setTag(IGNORE_TEXT_CHANGE_EVENT);
+    String discriminator = state.getDiscriminator();
+    if (!binding.discriminatorText.getText().toString().equals(discriminator)) {
+      binding.discriminatorText.setText(state.getDiscriminator());
+      binding.discriminatorText.setSelection(binding.discriminatorText.length());
+    }
+    binding.discriminatorText.setTag(null);
+  }
+
+  private void presentProgressState(@NonNull UsernameState usernameState) {
     boolean isInProgress = usernameState.isInProgress();
 
     if (isInProgress) {

@@ -787,6 +787,12 @@ public class SignalServiceAccountManager {
     this.pushServiceSocket.confirmUsername(username, reserveUsernameResponse);
   }
 
+  public UsernameLinkComponents updateUsernameLink(UsernameLink newUsernameLink) throws IOException {
+      UUID serverId = this.pushServiceSocket.createUsernameLink(Base64.encodeUrlSafeWithoutPadding(newUsernameLink.getEncryptedUsername()), true);
+
+      return new UsernameLinkComponents(newUsernameLink.getEntropy(), serverId);
+  }
+
   public void deleteUsername() throws IOException {
     this.pushServiceSocket.deleteUsername();
   }
@@ -794,7 +800,7 @@ public class SignalServiceAccountManager {
   public UsernameLinkComponents createUsernameLink(Username username) throws IOException {
     try {
       UsernameLink link     = username.generateLink();
-      UUID         serverId = this.pushServiceSocket.createUsernameLink(Base64.encodeUrlSafeWithPadding(link.getEncryptedUsername()));
+      UUID         serverId = this.pushServiceSocket.createUsernameLink(Base64.encodeUrlSafeWithPadding(link.getEncryptedUsername()), false);
 
       return new UsernameLinkComponents(link.getEntropy(), serverId);
     } catch (BaseUsernameException e) {
