@@ -37,7 +37,7 @@ final class MobileCoinMainNetConfig extends MobileCoinConfig {
 
   @Override
   @NonNull Uri getFogUri() {
-    return Uri.parse("fog://service.fog.mob.production.namda.net");
+    return Uri.parse("fog://fog.prod.mobilecoinww.com");
   }
 
   @Override
