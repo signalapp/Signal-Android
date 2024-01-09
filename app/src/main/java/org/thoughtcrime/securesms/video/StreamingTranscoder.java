@@ -29,7 +29,6 @@ public final class StreamingTranscoder {
   private final           long                           duration;
   private final           int                            inputBitRate;
   private final           VideoBitRateCalculator.Quality targetQuality;
-  private final           long                           memoryFileEstimate;
   private final           boolean                        transcodeRequired;
   private final           long                           fileSizeEstimate;
   private final @Nullable TranscoderOptions              options;
@@ -65,7 +64,6 @@ public final class StreamingTranscoder {
     }
 
     this.fileSizeEstimate   = targetQuality.getFileSizeEstimate();
-    this.memoryFileEstimate = (long) (fileSizeEstimate * 1.1);
   }
 
   public void transcode(@NonNull Progress progress,
@@ -136,14 +134,12 @@ public final class StreamingTranscoder {
                              "Output size    : %s kB\n" +
                              "  of Original  : %.1f%%\n" +
                              "  of Estimate  : %.1f%%\n" +
-                             "  of Memory    : %.1f%%\n" +
                              "Output bitrate : %s bps",
                              encodeDurationSec,
                              durationSec / encodeDurationSec,
                              numberFormat.format(outSize / 1024),
                              (outSize * 100d) / inSize,
                              (outSize * 100d) / fileSizeEstimate,
-                             (outSize * 100d) / memoryFileEstimate,
                              numberFormat.format(VideoBitRateCalculator.bitRate(outSize, duration))));
 
     if (outSize > upperSizeLimit) {

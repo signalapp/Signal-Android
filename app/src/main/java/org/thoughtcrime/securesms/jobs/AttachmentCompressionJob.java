@@ -9,8 +9,13 @@ import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 import androidx.media3.common.MimeTypes;
 
+import com.google.common.io.ByteStreams;
+
 import org.greenrobot.eventbus.EventBus;
 import org.signal.core.util.logging.Log;
+import org.signal.libsignal.media.Mp4Sanitizer;
+import org.signal.libsignal.media.ParseException;
+import org.signal.libsignal.media.SanitizedMetadata;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
@@ -48,7 +53,9 @@ import org.thoughtcrime.securesms.video.videoconverter.EncodingException;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.SequenceInputStream;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
@@ -256,6 +263,7 @@ public final class AttachmentCompressionJob extends BaseJob {
             File file = SignalDatabase.attachments().newFile(context);
             file.deleteOnExit();
 
+            boolean faststart = false;
             try {
               try (OutputStream outputStream = ModernEncryptingPartOutputStream.createFor(attachmentSecret, file, true).second) {
                 transcoder.transcode(percent -> {
@@ -274,8 +282,23 @@ public final class AttachmentCompressionJob extends BaseJob {
                                                         100,
                                                         100));
 
-              try (MediaStream mediaStream = new MediaStream(ModernDecryptingPartInputStream.createFor(attachmentSecret, file, 0), MimeTypes.VIDEO_MP4, 0, 0)) {
-                attachmentDatabase.updateAttachmentData(attachment, mediaStream, true);
+              InputStream transcodedFileStream = ModernDecryptingPartInputStream.createFor(attachmentSecret, file, 0);
+              SanitizedMetadata metadata             = null;
+              try {
+                metadata = Mp4Sanitizer.sanitize(transcodedFileStream, file.length());
+              } catch (ParseException e) {
+                Log.e(TAG, "Could not parse MP4 file.", e);
+              }
+
+              if (metadata != null && metadata.getSanitizedMetadata() != null) {
+                try (MediaStream mediaStream = new MediaStream(new SequenceInputStream(new ByteArrayInputStream(metadata.getSanitizedMetadata()), ByteStreams.limit(ModernDecryptingPartInputStream.createFor(attachmentSecret, file, metadata.getDataOffset()), metadata.getDataLength())), MimeTypes.VIDEO_MP4, 0, 0, true)) {
+                  attachmentDatabase.updateAttachmentData(attachment, mediaStream, true);
+                  faststart = true;
+                }
+              } else {
+                try (MediaStream mediaStream = new MediaStream(ModernDecryptingPartInputStream.createFor(attachmentSecret, file, 0), MimeTypes.VIDEO_MP4, 0, 0)) {
+                  attachmentDatabase.updateAttachmentData(attachment, mediaStream, true);
+                }
               }
             } finally {
               if (!file.delete()) {
@@ -283,7 +306,7 @@ public final class AttachmentCompressionJob extends BaseJob {
               }
             }
 
-            attachmentDatabase.markAttachmentAsTransformed(attachment.attachmentId, false);
+            attachmentDatabase.markAttachmentAsTransformed(attachment.attachmentId, faststart);
 
             return Objects.requireNonNull(attachmentDatabase.getAttachment(attachment.attachmentId));
           } else {
