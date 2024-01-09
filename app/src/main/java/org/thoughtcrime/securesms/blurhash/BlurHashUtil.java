@@ -57,6 +57,4 @@ final class BlurHashUtil {
     return result;
   }
 
-  private BlurHashUtil() {
-  }
 }
