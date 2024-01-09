@@ -121,7 +121,52 @@ object UsernameRepository {
   }
 
   /**
-   * Deletes the username and username link from the local user's account
+   * Attempts to reclaim the username that is currently stored on disk if necessary.
+   * This is intended to be used after registration.
+   *
+   * This method call may result in mutating [SignalStore] state.
+   */
+  @WorkerThread
+  @JvmStatic
+  fun reclaimUsernameIfNecessary(): UsernameReclaimResult {
+    if (!SignalStore.misc().needsUsernameRestore()) {
+      Log.d(TAG, "[reclaimUsernameIfNecessary] No need to restore username. Skipping.")
+      return UsernameReclaimResult.SUCCESS
+    }
+
+    val username = SignalStore.account().username
+    val link = SignalStore.account().usernameLink
+
+    if (username == null || link == null) {
+      Log.d(TAG, "[reclaimUsernameIfNecessary] No username or link to restore. Skipping.")
+      SignalStore.misc().setNeedsUsernameRestore(false)
+      return UsernameReclaimResult.SUCCESS
+    }
+
+    val result = reclaimUsernameIfNecessaryInternal(Username(username), link)
+
+    when (result) {
+      UsernameReclaimResult.SUCCESS -> {
+        Log.i(TAG, "[reclaimUsernameIfNecessary] Successfully reclaimed username and link.")
+        SignalStore.misc().setNeedsUsernameRestore(false)
+      }
+
+      UsernameReclaimResult.PERMANENT_ERROR -> {
+        Log.w(TAG, "[reclaimUsernameIfNecessary] Permanently failed to reclaim username and link. User will see an error.")
+        SignalStore.account().usernameSyncState = AccountValues.UsernameSyncState.USERNAME_AND_LINK_CORRUPTED
+        SignalStore.misc().setNeedsUsernameRestore(false)
+      }
+
+      UsernameReclaimResult.NETWORK_ERROR -> {
+        Log.w(TAG, "[reclaimUsernameIfNecessary] Hit a transient network error while trying to reclaim username and link.")
+      }
+    }
+
+    return result
+  }
+
+  /**
+   * Deletes the username from the local user's account
    */
   @JvmStatic
   fun deleteUsernameAndLink(): Single<UsernameDeleteResult> {
@@ -418,8 +463,34 @@ object UsernameRepository {
     }
   }
 
+  @WorkerThread
+  @JvmStatic
+  private fun reclaimUsernameIfNecessaryInternal(username: Username, usernameLinkComponents: UsernameLinkComponents): UsernameReclaimResult {
+    try {
+      accountManager.reclaimUsernameAndLink(username, usernameLinkComponents)
+    } catch (e: UsernameTakenException) {
+      Log.w(TAG, "[reclaimUsername] Username gone.")
+      return UsernameReclaimResult.PERMANENT_ERROR
+    } catch (e: UsernameIsNotReservedException) {
+      Log.w(TAG, "[reclaimUsername] Username was not reserved.")
+      return UsernameReclaimResult.PERMANENT_ERROR
+    } catch (e: BaseUsernameException) {
+      Log.w(TAG, "[reclaimUsername] Invalid username.")
+      return UsernameReclaimResult.PERMANENT_ERROR
+    } catch (e: IOException) {
+      Log.w(TAG, "[reclaimUsername] Network error.", e)
+      return UsernameReclaimResult.NETWORK_ERROR
+    }
+
+    return UsernameReclaimResult.SUCCESS
+  }
+
   enum class UsernameSetResult {
     SUCCESS, USERNAME_UNAVAILABLE, USERNAME_INVALID, NETWORK_ERROR, CANDIDATE_GENERATION_ERROR
+  }
+
+  enum class UsernameReclaimResult {
+    SUCCESS, PERMANENT_ERROR, NETWORK_ERROR
   }
 
   enum class UsernameDeleteResult {

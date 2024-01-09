@@ -296,7 +296,7 @@ public class RefreshOwnProfileJob extends BaseJob {
                            .enqueue();
   }
 
-  static void checkUsernameIsInSync() {
+  private static void checkUsernameIsInSync() {
     boolean validated = false;
 
     try {

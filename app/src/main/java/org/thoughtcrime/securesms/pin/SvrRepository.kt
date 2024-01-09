@@ -12,7 +12,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobmanager.JobTracker
-import org.thoughtcrime.securesms.jobs.NewRegistrationUsernameSyncJob
+import org.thoughtcrime.securesms.jobs.ReclaimUsernameAndLinkJob
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
 import org.thoughtcrime.securesms.jobs.ResetSvrGuessCountJob
 import org.thoughtcrime.securesms.jobs.StorageAccountRestoreJob
@@ -152,7 +152,7 @@ object SvrRepository {
             ApplicationDependencies
               .getJobManager()
               .startChain(StorageSyncJob())
-              .then(NewRegistrationUsernameSyncJob())
+              .then(ReclaimUsernameAndLinkJob())
               .enqueueAndBlockUntilCompletion(TimeUnit.SECONDS.toMillis(10))
             stopwatch.split("contact-restore")
 
