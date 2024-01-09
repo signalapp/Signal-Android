@@ -327,9 +327,9 @@
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp represents a message that has been edited within the last minute. -->
     <string name="ConversationItem_edited_now_timestamp_footer">Rediģēts tikko</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. This is displayed when the edit has occurred between 1-59 minutes ago. -->
-    <string name="ConversationItem_edited_relative_timestamp_footer">Rediģēta %1$s</string>
+    <string name="ConversationItem_edited_relative_timestamp_footer">Rediģēts pirms %1$s</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. This is displayed when the edit occurred at least 1 hour ago. -->
-    <string name="ConversationItem_edited_absolute_timestamp_footer">Rediģēta %1$s</string>
+    <string name="ConversationItem_edited_absolute_timestamp_footer">Rediģēts plkst. %1$s</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
     <string name="ConversationItem__join_call">Pievienoties sarunai</string>
 
@@ -1928,21 +1928,21 @@
     <!-- A description of a clickable image representing a raised hand -->
     <string name="CallOverflowPopupWindow__raise_hand_illustration_content_description">Pacelt roku</string>
     <!-- A dialog prompt to confirm you want to lower your hand -->
-    <string name="CallOverflowPopupWindow__lower_your_hand">Lower your hand?</string>
+    <string name="CallOverflowPopupWindow__lower_your_hand">Nolaist roku?</string>
     <!-- A dialog button to confirm you would like to lower your hand -->
     <string name="CallOverflowPopupWindow__lower_hand">Nolaist roku</string>
     <!-- A negative button for a dialog confirming the user wants to lower their hand (withdraw a raised hand) -->
     <string name="CallOverflowPopupWindow__cancel">Atcelt</string>
     <!-- A notification to the user that they successfully raised their hand -->
-    <string name="CallOverflowPopupWindow__you_raised_your_hand">You raised your hand</string>
+    <string name="CallOverflowPopupWindow__you_raised_your_hand">Jūs pacēlāt roku</string>
     <!-- A button to take you to a list of participants with raised hands -->
     <string name="CallOverflowPopupWindow__view">Skatīt</string>
 
     <!-- A notification to the user that one or more participants in the call successfully raised their hand. In the singular case, it is a name. In the plural case, it is a name or "You" -->
     <plurals name="CallOverflowPopupWindow__raised_a_hand">
-        <item quantity="zero">%1$s + %2$d have raised a hand</item>
-        <item quantity="one">%1$s has raised a hand</item>
-        <item quantity="other">%1$s + %2$d have raised a hand</item>
+        <item quantity="zero">%1$s +%2$d pacēla roku</item>
+        <item quantity="one">%1$s pacēla roku</item>
+        <item quantity="other">%1$s +%2$d pacēla roku</item>
     </plurals>
 
     <!-- A badge to show how many hands are raised. The first string may be a name or "You" -->
@@ -1953,15 +1953,15 @@
     </plurals>
 
     <!-- An accessibility label for screen readers on a view that can be expanded -->
-    <string name="CallOverflowPopupWindow__expand_snackbar_accessibility_label">Expand raised hand view</string>
+    <string name="CallOverflowPopupWindow__expand_snackbar_accessibility_label">Izvērst pacelto roku skatu</string>
 
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
-    <string name="AboutSheet__signal_connection">Signal connection</string>
+    <string name="AboutSheet__signal_connection">Signal kontaktpersona</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
-    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s is in your system contacts</string>
+    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s ir kontaktpersona jūsu sistēmā</string>
     <!-- Notice in a row when user has no groups in common -->
-    <string name="AboutSheet__you_have_no_groups_in_common">You have no groups in common</string>
+    <string name="AboutSheet__you_have_no_groups_in_common">Jums nav kopīgu grupu</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
     <string name="AboutSheet__review_requests_carefully">Pārskatiet pieprasījumus rūpīgi</string>
     <!-- Text used when user has groups in common. Placeholder is the count -->
@@ -1988,9 +1988,9 @@
         <item quantity="other">Signal nosūtīs paziņojumu (%1$d)</item>
     </plurals>
     <plurals name="CallParticipantsListDialog__raised_hands">
-        <item quantity="zero">Raised hands (%1$d)</item>
-        <item quantity="one">Raised hand (%1$d)</item>
-        <item quantity="other">Raised hands (%1$d)</item>
+        <item quantity="zero">Paceltas rokas (%1$d)</item>
+        <item quantity="one">Pacelta roka (%1$d)</item>
+        <item quantity="other">Paceltas rokas (%1$d)</item>
     </plurals>
 
     <!-- CallParticipantView -->
@@ -2107,7 +2107,7 @@
 
     <!-- ReviewBannerView -->
     <!-- ReviewBannerView text when a name conflict has been found -->
-    <string name="ReviewBannerView__name_conflict_found">Name conflict found</string>
+    <string name="ReviewBannerView__name_conflict_found">Konflikts vārdu pārklāšanās dēļ</string>
     <!-- Button label to view name conflicts -->
     <string name="ReviewBannerView__view">Skatīt</string>
 
@@ -4114,9 +4114,9 @@
     <string name="ReviewCard__block">Bloķēt</string>
     <string name="ReviewCard__delete">Dzēst</string>
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
-    <string name="ReviewCard__s_recently_changed">%1$s recently changed their profile name from %2$s to %3$s</string>
+    <string name="ReviewCard__s_recently_changed">%1$s nesen mainīja sava profila vārdu no %2$s uz %3$s</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
-    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s is in your system contacts</string>
+    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s ir kontaktpersona jūsu sistēmā</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s pievienojās</string>

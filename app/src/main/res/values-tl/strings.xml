@@ -1857,20 +1857,20 @@
     <!-- A description of a clickable image representing a raised hand -->
     <string name="CallOverflowPopupWindow__raise_hand_illustration_content_description">Itaas ang Kamay</string>
     <!-- A dialog prompt to confirm you want to lower your hand -->
-    <string name="CallOverflowPopupWindow__lower_your_hand">Lower your hand?</string>
+    <string name="CallOverflowPopupWindow__lower_your_hand">Gusto mo bang ibaba ang iyong kamay?</string>
     <!-- A dialog button to confirm you would like to lower your hand -->
     <string name="CallOverflowPopupWindow__lower_hand">Ibaba ang Kamay</string>
     <!-- A negative button for a dialog confirming the user wants to lower their hand (withdraw a raised hand) -->
     <string name="CallOverflowPopupWindow__cancel">I-cancel</string>
     <!-- A notification to the user that they successfully raised their hand -->
-    <string name="CallOverflowPopupWindow__you_raised_your_hand">You raised your hand</string>
+    <string name="CallOverflowPopupWindow__you_raised_your_hand">Itinaas mo ang iyong kamay</string>
     <!-- A button to take you to a list of participants with raised hands -->
     <string name="CallOverflowPopupWindow__view">Tingnan</string>
 
     <!-- A notification to the user that one or more participants in the call successfully raised their hand. In the singular case, it is a name. In the plural case, it is a name or "You" -->
     <plurals name="CallOverflowPopupWindow__raised_a_hand">
-        <item quantity="one">%1$s has raised a hand</item>
-        <item quantity="other">%1$s + %2$d have raised a hand</item>
+        <item quantity="one">Si %1$s ay nagtaas ng kamay</item>
+        <item quantity="other">Sila %1$s + %2$d ay nagtaas ng kamay</item>
     </plurals>
 
     <!-- A badge to show how many hands are raised. The first string may be a name or "You" -->
@@ -1880,15 +1880,15 @@
     </plurals>
 
     <!-- An accessibility label for screen readers on a view that can be expanded -->
-    <string name="CallOverflowPopupWindow__expand_snackbar_accessibility_label">Expand raised hand view</string>
+    <string name="CallOverflowPopupWindow__expand_snackbar_accessibility_label">Palakihin ang raised hand view</string>
 
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">Signal connection</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
-    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s is in your system contacts</string>
+    <string name="AboutSheet__s_is_in_your_system_contacts">Si %1$s ay nasa system contacts mo</string>
     <!-- Notice in a row when user has no groups in common -->
-    <string name="AboutSheet__you_have_no_groups_in_common">You have no groups in common</string>
+    <string name="AboutSheet__you_have_no_groups_in_common">Wala kayong common groups</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
     <string name="AboutSheet__review_requests_carefully">I-review ang requests nang maigi</string>
     <!-- Text used when user has groups in common. Placeholder is the count -->
@@ -1912,8 +1912,8 @@
         <item quantity="other">Ino-notify ng Signal sila (%1$d)</item>
     </plurals>
     <plurals name="CallParticipantsListDialog__raised_hands">
-        <item quantity="one">Raised hand (%1$d)</item>
-        <item quantity="other">Raised hands (%1$d)</item>
+        <item quantity="one">Nakataas na kamay (%1$d)</item>
+        <item quantity="other">Mga nakataas na kamay (%1$d)</item>
     </plurals>
 
     <!-- CallParticipantView -->
@@ -2029,7 +2029,7 @@
 
     <!-- ReviewBannerView -->
     <!-- ReviewBannerView text when a name conflict has been found -->
-    <string name="ReviewBannerView__name_conflict_found">Name conflict found</string>
+    <string name="ReviewBannerView__name_conflict_found">May nakitang conflict sa mga pangalan</string>
     <!-- Button label to view name conflicts -->
     <string name="ReviewBannerView__view">Tingnan</string>
 
@@ -4008,9 +4008,9 @@
     <string name="ReviewCard__block">I-block</string>
     <string name="ReviewCard__delete">Burahin</string>
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
-    <string name="ReviewCard__s_recently_changed">%1$s recently changed their profile name from %2$s to %3$s</string>
+    <string name="ReviewCard__s_recently_changed">Pinalitan ni %1$s ang kanyang profile name ng %3$s mula sa %2$s kamakailan</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
-    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s is in your system contacts</string>
+    <string name="ReviewCard__s_is_in_your_system_contacts">Si %1$s ay nasa system contacts mo</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s joined</string>

@@ -327,7 +327,7 @@
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. This is displayed when the edit has occurred between 1-59 minutes ago. -->
     <string name="ConversationItem_edited_relative_timestamp_footer">編輯咗 (%1$s前)</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. This is displayed when the edit occurred at least 1 hour ago. -->
-    <string name="ConversationItem_edited_absolute_timestamp_footer">編輯咗 (%1$s前)</string>
+    <string name="ConversationItem_edited_absolute_timestamp_footer">編輯咗 (%1$s)</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
     <string name="ConversationItem__join_call">加入通話</string>
 
@@ -1786,36 +1786,36 @@
     <!-- A description of a clickable image representing a raised hand -->
     <string name="CallOverflowPopupWindow__raise_hand_illustration_content_description">舉手</string>
     <!-- A dialog prompt to confirm you want to lower your hand -->
-    <string name="CallOverflowPopupWindow__lower_your_hand">Lower your hand?</string>
+    <string name="CallOverflowPopupWindow__lower_your_hand">係咪想放低手？</string>
     <!-- A dialog button to confirm you would like to lower your hand -->
     <string name="CallOverflowPopupWindow__lower_hand">放低手</string>
     <!-- A negative button for a dialog confirming the user wants to lower their hand (withdraw a raised hand) -->
     <string name="CallOverflowPopupWindow__cancel">取消</string>
     <!-- A notification to the user that they successfully raised their hand -->
-    <string name="CallOverflowPopupWindow__you_raised_your_hand">You raised your hand</string>
+    <string name="CallOverflowPopupWindow__you_raised_your_hand">你舉咗手</string>
     <!-- A button to take you to a list of participants with raised hands -->
     <string name="CallOverflowPopupWindow__view">睇下</string>
 
     <!-- A notification to the user that one or more participants in the call successfully raised their hand. In the singular case, it is a name. In the plural case, it is a name or "You" -->
     <plurals name="CallOverflowPopupWindow__raised_a_hand">
-        <item quantity="other">%1$s + %2$d have raised a hand</item>
+        <item quantity="other">%1$s + %2$d 舉咗手</item>
     </plurals>
 
     <!-- A badge to show how many hands are raised. The first string may be a name or "You" -->
     <plurals name="CallRaiseHandSnackbar_raised_hands">
-        <item quantity="other">%1$s +%2$d</item>
+        <item quantity="other">%1$s + %2$d</item>
     </plurals>
 
     <!-- An accessibility label for screen readers on a view that can be expanded -->
-    <string name="CallOverflowPopupWindow__expand_snackbar_accessibility_label">Expand raised hand view</string>
+    <string name="CallOverflowPopupWindow__expand_snackbar_accessibility_label">展開舉手視圖</string>
 
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
-    <string name="AboutSheet__signal_connection">Signal connection</string>
+    <string name="AboutSheet__signal_connection">Signal 人脈</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
-    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s is in your system contacts</string>
+    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s 係你嘅聯絡人</string>
     <!-- Notice in a row when user has no groups in common -->
-    <string name="AboutSheet__you_have_no_groups_in_common">You have no groups in common</string>
+    <string name="AboutSheet__you_have_no_groups_in_common">你哋冇共同群組</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
     <string name="AboutSheet__review_requests_carefully">請求要金睛火眼睇清楚</string>
     <!-- Text used when user has groups in common. Placeholder is the count -->
@@ -1836,7 +1836,7 @@
         <item quantity="other">Signal 會通知 (%1$d)</item>
     </plurals>
     <plurals name="CallParticipantsListDialog__raised_hands">
-        <item quantity="other">Raised hands (%1$d)</item>
+        <item quantity="other">舉咗手 (%1$d)</item>
     </plurals>
 
     <!-- CallParticipantView -->
@@ -1951,7 +1951,7 @@
 
     <!-- ReviewBannerView -->
     <!-- ReviewBannerView text when a name conflict has been found -->
-    <string name="ReviewBannerView__name_conflict_found">Name conflict found</string>
+    <string name="ReviewBannerView__name_conflict_found">系統發現有人撞名</string>
     <!-- Button label to view name conflicts -->
     <string name="ReviewBannerView__view">睇下</string>
 
@@ -3902,9 +3902,9 @@
     <string name="ReviewCard__block">封鎖</string>
     <string name="ReviewCard__delete">刪除</string>
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
-    <string name="ReviewCard__s_recently_changed">%1$s recently changed their profile name from %2$s to %3$s</string>
+    <string name="ReviewCard__s_recently_changed">%1$s 最近將個人資料嘅名由 %2$s 改咗做 %3$s</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
-    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s is in your system contacts</string>
+    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s 係你嘅聯絡人</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s 已加入</string>
