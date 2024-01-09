@@ -155,13 +155,20 @@ public final class AttachmentCompressionJob extends BaseJob {
       throw new UndeliverableMessageException("Cannot find the specified attachment.");
     }
 
-    if (databaseAttachment.transformProperties.shouldSkipTransform()) {
+    AttachmentTable.TransformProperties transformProperties = databaseAttachment.transformProperties;
+
+    if (transformProperties == null) {
+      Log.i(TAG, "TransformProperties were null! Using empty TransformProperties.");
+      transformProperties = AttachmentTable.TransformProperties.empty();
+    }
+
+    if (transformProperties.shouldSkipTransform()) {
       Log.i(TAG, "Skipping at the direction of the TransformProperties.");
       return;
     }
 
     MediaConstraints mediaConstraints = mms ? MediaConstraints.getMmsMediaConstraints(mmsSubscriptionId)
-                                            : MediaConstraints.getPushMediaConstraints(SentMediaQuality.fromCode(databaseAttachment.transformProperties.sentMediaQuality));
+                                            : MediaConstraints.getPushMediaConstraints(SentMediaQuality.fromCode(transformProperties.sentMediaQuality));
 
     compress(database, mediaConstraints, databaseAttachment);
   }
