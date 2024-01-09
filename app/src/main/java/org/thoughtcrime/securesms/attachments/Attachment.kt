@@ -31,13 +31,11 @@ abstract class Attachment(
   @JvmField
   val cdnNumber: Int,
   @JvmField
-  val location: String?,
+  val remoteLocation: String?,
   @JvmField
-  val key: String?,
+  val remoteKey: String?,
   @JvmField
-  val relay: String?,
-  @JvmField
-  val digest: ByteArray?,
+  val remoteDigest: ByteArray?,
   @JvmField
   val incrementalDigest: ByteArray?,
   @JvmField
@@ -79,10 +77,9 @@ abstract class Attachment(
     size = parcel.readLong(),
     fileName = parcel.readString(),
     cdnNumber = parcel.readInt(),
-    location = parcel.readString(),
-    key = parcel.readString(),
-    relay = parcel.readString(),
-    digest = ParcelUtil.readByteArray(parcel),
+    remoteLocation = parcel.readString(),
+    remoteKey = parcel.readString(),
+    remoteDigest = ParcelUtil.readByteArray(parcel),
     incrementalDigest = ParcelUtil.readByteArray(parcel),
     fastPreflightId = parcel.readString(),
     voiceNote = ParcelUtil.readBoolean(parcel),
@@ -107,10 +104,9 @@ abstract class Attachment(
     dest.writeLong(size)
     dest.writeString(fileName)
     dest.writeInt(cdnNumber)
-    dest.writeString(location)
-    dest.writeString(key)
-    dest.writeString(relay)
-    ParcelUtil.writeByteArray(dest, digest)
+    dest.writeString(remoteLocation)
+    dest.writeString(remoteKey)
+    ParcelUtil.writeByteArray(dest, remoteDigest)
     ParcelUtil.writeByteArray(dest, incrementalDigest)
     dest.writeString(fastPreflightId)
     ParcelUtil.writeBoolean(dest, voiceNote)

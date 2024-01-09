@@ -532,8 +532,8 @@ public class ThumbnailView extends FrameLayout {
     if (Util.equals(slide, other)) {
 
       if (slide != null && other != null) {
-        byte[] digestLeft  = slide.asAttachment().digest;
-        byte[] digestRight = other.asAttachment().digest;
+        byte[] digestLeft  = slide.asAttachment().remoteDigest;
+        byte[] digestRight = other.asAttachment().remoteDigest;
 
         return Arrays.equals(digestLeft, digestRight);
       }

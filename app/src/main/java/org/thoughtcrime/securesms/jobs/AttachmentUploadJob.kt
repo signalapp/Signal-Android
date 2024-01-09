@@ -82,7 +82,7 @@ class AttachmentUploadJob private constructor(
       }
       val serializedData = jobSpec.serializedData ?: return false
       val data = AttachmentUploadJobData.ADAPTER.decode(serializedData)
-      val parsed = AttachmentId(data.attachmentRowId, data.attachmentUniqueId)
+      val parsed = AttachmentId(data.attachmentId)
       return attachmentId == parsed
     }
   }
@@ -99,8 +99,7 @@ class AttachmentUploadJob private constructor(
 
   override fun serialize(): ByteArray {
     return AttachmentUploadJobData(
-      attachmentRowId = attachmentId.rowId,
-      attachmentUniqueId = attachmentId.uniqueId,
+      attachmentId = attachmentId.id,
       uploadSpec = uploadSpec
     ).encode()
   }
@@ -138,7 +137,7 @@ class AttachmentUploadJob private constructor(
     val databaseAttachment = SignalDatabase.attachments.getAttachment(attachmentId) ?: throw InvalidAttachmentException("Cannot find the specified attachment.")
 
     val timeSinceUpload = System.currentTimeMillis() - databaseAttachment.uploadTimestamp
-    if (timeSinceUpload < UPLOAD_REUSE_THRESHOLD && !TextUtils.isEmpty(databaseAttachment.location)) {
+    if (timeSinceUpload < UPLOAD_REUSE_THRESHOLD && !TextUtils.isEmpty(databaseAttachment.remoteLocation)) {
       Log.i(TAG, "We can re-use an already-uploaded file. It was uploaded $timeSinceUpload ms (${timeSinceUpload.milliseconds.inRoundedDays()} days) ago. Skipping.")
       return
     } else if (databaseAttachment.uploadTimestamp > 0) {
@@ -297,7 +296,7 @@ class AttachmentUploadJob private constructor(
       val data = AttachmentUploadJobData.ADAPTER.decode(serializedData!!)
       return AttachmentUploadJob(
         parameters = parameters,
-        attachmentId = AttachmentId(data.attachmentRowId, data.attachmentUniqueId),
+        attachmentId = AttachmentId(data.attachmentId),
         data.uploadSpec
       )
     }

@@ -78,8 +78,7 @@ public final class PartProvider extends BaseContentProvider {
   }
 
   public static Uri getContentUri(AttachmentId attachmentId) {
-    Uri uri = Uri.withAppendedPath(CONTENT_URI, String.valueOf(attachmentId.getUniqueId()));
-    return ContentUris.withAppendedId(uri, attachmentId.getRowId());
+    return ContentUris.withAppendedId(CONTENT_URI, attachmentId.id);
   }
 
   @Override

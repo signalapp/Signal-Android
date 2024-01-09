@@ -202,18 +202,18 @@ public class FullBackupImporter extends FullBackupBase {
     try {
       inputStream.readAttachmentTo(output.second, attachment.length);
 
-      contentValues.put(AttachmentTable.DATA, dataFile.getAbsolutePath());
+      contentValues.put(AttachmentTable.DATA_FILE, dataFile.getAbsolutePath());
       contentValues.put(AttachmentTable.DATA_RANDOM, output.first);
     } catch (BackupRecordInputStream.BadMacException e) {
       Log.w(TAG, "Bad MAC for attachment " + attachment.attachmentId + "! Can't restore it.", e);
       dataFile.delete();
-      contentValues.put(AttachmentTable.DATA, (String) null);
+      contentValues.put(AttachmentTable.DATA_FILE, (String) null);
       contentValues.put(AttachmentTable.DATA_RANDOM, (String) null);
     }
 
     db.update(AttachmentTable.TABLE_NAME, contentValues,
-              AttachmentTable.ROW_ID + " = ? AND " + AttachmentTable.UNIQUE_ID + " = ?",
-              new String[] {String.valueOf(attachment.rowId), String.valueOf(attachment.attachmentId)});
+              AttachmentTable.ID + " = ?",
+              new String[] {String.valueOf(attachment.rowId)});
   }
 
   private static void processSticker(@NonNull Context context, @NonNull AttachmentSecret attachmentSecret, @NonNull SQLiteDatabase db, @NonNull Sticker sticker, BackupRecordInputStream inputStream)

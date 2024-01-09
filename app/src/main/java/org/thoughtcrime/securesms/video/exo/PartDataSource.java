@@ -58,14 +58,14 @@ class PartDataSource implements DataSource {
 
     final boolean hasIncrementalDigest = attachment.getIncrementalDigest() != null;
     final boolean inProgress           = attachment.isInProgress();
-    final String  attachmentKey        = attachment.key;
+    final String  attachmentKey        = attachment.remoteKey;
     final boolean hasData              = attachment.hasData;
 
     if (inProgress && !hasData && hasIncrementalDigest && attachmentKey != null && FeatureFlags.instantVideoPlayback()) {
       final byte[] decode       = Base64.decode(attachmentKey);
       final File   transferFile = attachmentDatabase.getOrCreateTransferFile(attachment.attachmentId);
       try {
-        this.inputStream = AttachmentCipherInputStream.createForAttachment(transferFile, attachment.size, decode, attachment.digest, attachment.getIncrementalDigest(), attachment.incrementalMacChunkSize);
+        this.inputStream = AttachmentCipherInputStream.createForAttachment(transferFile, attachment.size, decode, attachment.remoteDigest, attachment.getIncrementalDigest(), attachment.incrementalMacChunkSize);
 
         long skipped = 0;
         while (skipped < dataSpec.position) {

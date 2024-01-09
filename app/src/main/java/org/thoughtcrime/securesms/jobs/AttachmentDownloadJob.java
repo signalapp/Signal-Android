@@ -64,14 +64,12 @@ public final class AttachmentDownloadJob extends BaseJob {
 
   private static final String TAG = Log.tag(AttachmentDownloadJob.class);
 
-  private static final String KEY_MESSAGE_ID = "message_id";
-  private static final String KEY_ROW_ID     = "part_row_id";
-  private static final String KEY_UNIQUE_ID  = "part_unique_id";
-  private static final String KEY_MANUAL     = "part_manual";
+  private static final String KEY_MESSAGE_ID    = "message_id";
+  private static final String KEY_ATTACHMENT_ID = "part_row_id";
+  private static final String KEY_MANUAL        = "part_manual";
 
-  private final long messageId;
-  private final long partRowId;
-  private final long partUniqueId;
+  private final long    messageId;
+  private final long    attachmentId;
   private final boolean manual;
 
   public AttachmentDownloadJob(long messageId, AttachmentId attachmentId, boolean manual) {
@@ -90,16 +88,14 @@ public final class AttachmentDownloadJob extends BaseJob {
     super(parameters);
 
     this.messageId    = messageId;
-    this.partRowId    = attachmentId.getRowId();
-    this.partUniqueId = attachmentId.getUniqueId();
+    this.attachmentId = attachmentId.id;
     this.manual       = manual;
   }
 
   @Override
   public @Nullable byte[] serialize() {
     return new JsonJobData.Builder().putLong(KEY_MESSAGE_ID, messageId)
-                                    .putLong(KEY_ROW_ID, partRowId)
-                                    .putLong(KEY_UNIQUE_ID, partUniqueId)
+                                    .putLong(KEY_ATTACHMENT_ID, attachmentId)
                                     .putBoolean(KEY_MANUAL, manual)
                                     .serialize();
   }
@@ -110,18 +106,18 @@ public final class AttachmentDownloadJob extends BaseJob {
   }
 
   public static String constructQueueString(AttachmentId attachmentId) {
-    return "AttachmentDownloadJob" + attachmentId.getRowId() + "-" + attachmentId.getUniqueId();
+    return "AttachmentDownloadJob-" + attachmentId.id;
   }
 
   @Override
   public void onAdded() {
-    Log.i(TAG, "onAdded() messageId: " + messageId + "  partRowId: " + partRowId + "  partUniqueId: " + partUniqueId + "  manual: " + manual);
+    Log.i(TAG, "onAdded() messageId: " + messageId + "  attachmentId: " + attachmentId + "  manual: " + manual);
 
     final AttachmentTable    database     = SignalDatabase.attachments();
-    final AttachmentId       attachmentId = new AttachmentId(partRowId, partUniqueId);
+    final AttachmentId       attachmentId = new AttachmentId(this.attachmentId);
     final DatabaseAttachment attachment   = database.getAttachment(attachmentId);
-    final boolean pending = attachment != null && attachment.transferState != AttachmentTable.TRANSFER_PROGRESS_DONE
-                            && attachment.transferState != AttachmentTable.TRANSFER_PROGRESS_PERMANENT_FAILURE;
+    final boolean            pending      = attachment != null && attachment.transferState != AttachmentTable.TRANSFER_PROGRESS_DONE
+                                            && attachment.transferState != AttachmentTable.TRANSFER_PROGRESS_PERMANENT_FAILURE;
 
     if (pending && (manual || AttachmentUtil.isAutoDownloadPermitted(context, attachment))) {
       Log.i(TAG, "onAdded() Marking attachment progress as 'started'");
@@ -139,10 +135,10 @@ public final class AttachmentDownloadJob extends BaseJob {
   }
 
   public void doWork() throws IOException, RetryLaterException {
-    Log.i(TAG, "onRun() messageId: " + messageId + "  partRowId: " + partRowId + "  partUniqueId: " + partUniqueId + "  manual: " + manual);
+    Log.i(TAG, "onRun() messageId: " + messageId + "  attachmentId: " + attachmentId + "  manual: " + manual);
 
     final AttachmentTable    database     = SignalDatabase.attachments();
-    final AttachmentId       attachmentId = new AttachmentId(partRowId, partUniqueId);
+    final AttachmentId       attachmentId = new AttachmentId(this.attachmentId);
     final DatabaseAttachment attachment   = database.getAttachment(attachmentId);
 
     if (attachment == null) {
@@ -178,9 +174,9 @@ public final class AttachmentDownloadJob extends BaseJob {
 
   @Override
   public void onFailure() {
-    Log.w(TAG, JobLogger.format(this, "onFailure() messageId: " + messageId + "  partRowId: " + partRowId + "  partUniqueId: " + partUniqueId + "  manual: " + manual));
+    Log.w(TAG, JobLogger.format(this, "onFailure() messageId: " + messageId + "  attachmentId: " + attachmentId + "  manual: " + manual));
 
-    final AttachmentId attachmentId = new AttachmentId(partRowId, partUniqueId);
+    final AttachmentId attachmentId = new AttachmentId(this.attachmentId);
     markFailed(messageId, attachmentId);
   }
 
@@ -244,20 +240,20 @@ public final class AttachmentDownloadJob extends BaseJob {
   }
 
   private SignalServiceAttachmentPointer createAttachmentPointer(Attachment attachment) throws InvalidPartException {
-    if (TextUtils.isEmpty(attachment.location)) {
+    if (TextUtils.isEmpty(attachment.remoteLocation)) {
       throw new InvalidPartException("empty content id");
     }
 
-    if (TextUtils.isEmpty(attachment.key)) {
+    if (TextUtils.isEmpty(attachment.remoteKey)) {
       throw new InvalidPartException("empty encrypted key");
     }
 
     try {
-      final SignalServiceAttachmentRemoteId remoteId = SignalServiceAttachmentRemoteId.from(attachment.location);
-      final byte[]                          key      = Base64.decode(attachment.key);
+      final SignalServiceAttachmentRemoteId remoteId = SignalServiceAttachmentRemoteId.from(attachment.remoteLocation);
+      final byte[]                          key      = Base64.decode(attachment.remoteKey);
 
-      if (attachment.digest != null) {
-        Log.i(TAG, "Downloading attachment with digest: " + Hex.toString(attachment.digest));
+      if (attachment.remoteDigest != null) {
+        Log.i(TAG, "Downloading attachment with digest: " + Hex.toString(attachment.remoteDigest));
       } else {
         Log.i(TAG, "Downloading attachment with no digest...");
       }
@@ -266,7 +262,7 @@ public final class AttachmentDownloadJob extends BaseJob {
                                                 Optional.of(Util.toIntExact(attachment.size)),
                                                 Optional.empty(),
                                                 0, 0,
-                                                Optional.ofNullable(attachment.digest),
+                                                Optional.ofNullable(attachment.remoteDigest),
                                                 Optional.ofNullable(attachment.getIncrementalDigest()),
                                                 attachment.incrementalMacChunkSize,
                                                 Optional.ofNullable(attachment.fileName),
@@ -330,7 +326,7 @@ public final class AttachmentDownloadJob extends BaseJob {
     }
 
     JsonJobData data = JsonJobData.deserialize(serializedData);
-    final AttachmentId parsed = new AttachmentId(data.getLong(KEY_ROW_ID), data.getLong(KEY_UNIQUE_ID));
+    final AttachmentId parsed = new AttachmentId(data.getLong(KEY_ATTACHMENT_ID));
     return attachmentId.equals(parsed);
   }
 
@@ -347,7 +343,7 @@ public final class AttachmentDownloadJob extends BaseJob {
 
       return new AttachmentDownloadJob(parameters,
                                        data.getLong(KEY_MESSAGE_ID),
-                                       new AttachmentId(data.getLong(KEY_ROW_ID), data.getLong(KEY_UNIQUE_ID)),
+                                       new AttachmentId(data.getLong(KEY_ATTACHMENT_ID)),
                                        data.getBoolean(KEY_MANUAL));
     }
   }

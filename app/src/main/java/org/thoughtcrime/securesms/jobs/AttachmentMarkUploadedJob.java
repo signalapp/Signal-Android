@@ -24,9 +24,8 @@ public final class AttachmentMarkUploadedJob extends BaseJob {
   @SuppressWarnings("unused")
   private static final String TAG = Log.tag(AttachmentMarkUploadedJob.class);
 
-  private static final String KEY_ROW_ID     = "row_id";
-  private static final String KEY_UNIQUE_ID  = "unique_id";
-  private static final String KEY_MESSAGE_ID = "message_id";
+  private static final String KEY_ATTACHMENT_ID = "row_id";
+  private static final String KEY_MESSAGE_ID    = "message_id";
 
   private final AttachmentId attachmentId;
   private final long         messageId;
@@ -48,8 +47,7 @@ public final class AttachmentMarkUploadedJob extends BaseJob {
 
   @Override
   public @Nullable byte[] serialize() {
-    return new JsonJobData.Builder().putLong(KEY_ROW_ID, attachmentId.getRowId())
-                                    .putLong(KEY_UNIQUE_ID, attachmentId.getUniqueId())
+    return new JsonJobData.Builder().putLong(KEY_ATTACHMENT_ID, attachmentId.id)
                                     .putLong(KEY_MESSAGE_ID, messageId)
                                     .serialize();
   }
@@ -93,7 +91,7 @@ public final class AttachmentMarkUploadedJob extends BaseJob {
 
       return new AttachmentMarkUploadedJob(parameters,
                                            data.getLong(KEY_MESSAGE_ID),
-                                           new AttachmentId(data.getLong(KEY_ROW_ID), data.getLong(KEY_UNIQUE_ID)));
+                                           new AttachmentId(data.getLong(KEY_ATTACHMENT_ID)));
     }
   }
 }

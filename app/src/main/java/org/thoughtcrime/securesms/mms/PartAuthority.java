@@ -54,7 +54,7 @@ public class PartAuthority {
 
   static {
     uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-    uriMatcher.addURI(AUTHORITY, "part/*/#", PART_ROW);
+    uriMatcher.addURI(AUTHORITY, "part/#", PART_ROW);
     uriMatcher.addURI(AUTHORITY, "sticker/#", STICKER_ROW);
     uriMatcher.addURI(AUTHORITY, "wallpaper/*", WALLPAPER_ROW);
     uriMatcher.addURI(AUTHORITY, "emoji/*", EMOJI_ROW);
@@ -174,8 +174,7 @@ public class PartAuthority {
   }
 
   public static Uri getAttachmentDataUri(AttachmentId attachmentId) {
-    Uri uri = Uri.withAppendedPath(PART_CONTENT_URI, String.valueOf(attachmentId.getUniqueId()));
-    return ContentUris.withAppendedId(uri, attachmentId.getRowId());
+    return ContentUris.withAppendedId(PART_CONTENT_URI, attachmentId.id);
   }
 
   public static Uri getAttachmentThumbnailUri(AttachmentId attachmentId) {

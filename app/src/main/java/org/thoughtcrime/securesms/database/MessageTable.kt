@@ -351,15 +351,14 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       """
         json_group_array(
           json_object(
-            '${AttachmentTable.ROW_ID}', ${AttachmentTable.TABLE_NAME}.${AttachmentTable.ROW_ID}, 
-            '${AttachmentTable.UNIQUE_ID}', ${AttachmentTable.TABLE_NAME}.${AttachmentTable.UNIQUE_ID}, 
-            '${AttachmentTable.MMS_ID}', ${AttachmentTable.TABLE_NAME}.${AttachmentTable.MMS_ID},
-            '${AttachmentTable.SIZE}', ${AttachmentTable.TABLE_NAME}.${AttachmentTable.SIZE}, 
+            '${AttachmentTable.ID}', ${AttachmentTable.TABLE_NAME}.${AttachmentTable.ID}, 
+            '${AttachmentTable.MESSAGE_ID}', ${AttachmentTable.TABLE_NAME}.${AttachmentTable.MESSAGE_ID},
+            '${AttachmentTable.DATA_SIZE}', ${AttachmentTable.TABLE_NAME}.${AttachmentTable.DATA_SIZE}, 
             '${AttachmentTable.FILE_NAME}', ${AttachmentTable.TABLE_NAME}.${AttachmentTable.FILE_NAME}, 
-            '${AttachmentTable.DATA}', ${AttachmentTable.TABLE_NAME}.${AttachmentTable.DATA}, 
+            '${AttachmentTable.DATA_FILE}', ${AttachmentTable.TABLE_NAME}.${AttachmentTable.DATA_FILE}, 
             '${AttachmentTable.CONTENT_TYPE}', ${AttachmentTable.TABLE_NAME}.${AttachmentTable.CONTENT_TYPE}, 
             '${AttachmentTable.CDN_NUMBER}', ${AttachmentTable.TABLE_NAME}.${AttachmentTable.CDN_NUMBER}, 
-            '${AttachmentTable.CONTENT_LOCATION}', ${AttachmentTable.TABLE_NAME}.${AttachmentTable.CONTENT_LOCATION}, 
+            '${AttachmentTable.REMOTE_LOCATION}', ${AttachmentTable.TABLE_NAME}.${AttachmentTable.REMOTE_LOCATION}, 
             '${AttachmentTable.FAST_PREFLIGHT_ID}', ${AttachmentTable.TABLE_NAME}.${AttachmentTable.FAST_PREFLIGHT_ID},
             '${AttachmentTable.VOICE_NOTE}', ${AttachmentTable.TABLE_NAME}.${AttachmentTable.VOICE_NOTE},
             '${AttachmentTable.BORDERLESS}', ${AttachmentTable.TABLE_NAME}.${AttachmentTable.BORDERLESS},
@@ -367,15 +366,14 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
             '${AttachmentTable.WIDTH}', ${AttachmentTable.TABLE_NAME}.${AttachmentTable.WIDTH},
             '${AttachmentTable.HEIGHT}', ${AttachmentTable.TABLE_NAME}.${AttachmentTable.HEIGHT},
             '${AttachmentTable.QUOTE}', ${AttachmentTable.TABLE_NAME}.${AttachmentTable.QUOTE},
-            '${AttachmentTable.CONTENT_DISPOSITION}', ${AttachmentTable.TABLE_NAME}.${AttachmentTable.CONTENT_DISPOSITION},
-            '${AttachmentTable.NAME}', ${AttachmentTable.TABLE_NAME}.${AttachmentTable.NAME},
+            '${AttachmentTable.REMOTE_KEY}', ${AttachmentTable.TABLE_NAME}.${AttachmentTable.REMOTE_KEY},
             '${AttachmentTable.TRANSFER_STATE}', ${AttachmentTable.TABLE_NAME}.${AttachmentTable.TRANSFER_STATE},
             '${AttachmentTable.CAPTION}', ${AttachmentTable.TABLE_NAME}.${AttachmentTable.CAPTION},
             '${AttachmentTable.STICKER_PACK_ID}', ${AttachmentTable.TABLE_NAME}.${AttachmentTable.STICKER_PACK_ID},
             '${AttachmentTable.STICKER_PACK_KEY}', ${AttachmentTable.TABLE_NAME}.${AttachmentTable.STICKER_PACK_KEY},
             '${AttachmentTable.STICKER_ID}', ${AttachmentTable.TABLE_NAME}.${AttachmentTable.STICKER_ID},
             '${AttachmentTable.STICKER_EMOJI}', ${AttachmentTable.TABLE_NAME}.${AttachmentTable.STICKER_EMOJI},
-            '${AttachmentTable.VISUAL_HASH}', ${AttachmentTable.TABLE_NAME}.${AttachmentTable.VISUAL_HASH},
+            '${AttachmentTable.BLUR_HASH}', ${AttachmentTable.TABLE_NAME}.${AttachmentTable.BLUR_HASH},
             '${AttachmentTable.TRANSFORM_PROPERTIES}', ${AttachmentTable.TABLE_NAME}.${AttachmentTable.TRANSFORM_PROPERTIES},
             '${AttachmentTable.DISPLAY_ORDER}', ${AttachmentTable.TABLE_NAME}.${AttachmentTable.DISPLAY_ORDER},
             '${AttachmentTable.UPLOAD_TIMESTAMP}', ${AttachmentTable.TABLE_NAME}.${AttachmentTable.UPLOAD_TIMESTAMP}
@@ -1783,7 +1781,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       SELECT 
         ${Util.join(projection, ",")} 
       FROM 
-        $TABLE_NAME LEFT OUTER JOIN ${AttachmentTable.TABLE_NAME} ON ($TABLE_NAME.$ID = ${AttachmentTable.TABLE_NAME}.${AttachmentTable.MMS_ID}) 
+        $TABLE_NAME LEFT OUTER JOIN ${AttachmentTable.TABLE_NAME} ON ($TABLE_NAME.$ID = ${AttachmentTable.TABLE_NAME}.${AttachmentTable.MESSAGE_ID}) 
       WHERE 
         $where 
       GROUP BY 
@@ -2253,12 +2251,12 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       .run()
 
     readableDatabase
-      .select(AttachmentTable.ROW_ID, AttachmentTable.UNIQUE_ID)
+      .select(AttachmentTable.ID)
       .from(AttachmentTable.TABLE_NAME)
-      .where("${AttachmentTable.MMS_ID} NOT IN (SELECT $ID FROM $TABLE_NAME)")
+      .where("${AttachmentTable.MESSAGE_ID} NOT IN (SELECT $ID FROM $TABLE_NAME)")
       .run()
       .forEach { cursor ->
-        attachments.deleteAttachment(AttachmentId(cursor.requireLong(AttachmentTable.ROW_ID), cursor.requireLong(AttachmentTable.UNIQUE_ID)))
+        attachments.deleteAttachment(AttachmentId(cursor.requireLong(AttachmentTable.ID)))
       }
 
     mentions.deleteAbandonedMentions()
@@ -2555,7 +2553,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     }
 
     if (retrieved.attachments.isEmpty() && editedMessage?.id != null && attachments.getAttachmentsForMessage(editedMessage.id).isNotEmpty()) {
-      val linkPreviewAttachmentIds = editedMessage.linkPreviews.mapNotNull { it.attachmentId?.rowId }.toSet()
+      val linkPreviewAttachmentIds = editedMessage.linkPreviews.mapNotNull { it.attachmentId?.id }.toSet()
       attachments.duplicateAttachmentsForMessage(messageId, editedMessage.id, linkPreviewAttachmentIds)
     }
 
@@ -2928,8 +2926,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         .where("$ID_WHERE OR $LATEST_REVISION_ID = ?", message.messageToEdit, message.messageToEdit)
         .run()
 
-      val textAttachments = (editedMessage as? MmsMessageRecord)?.slideDeck?.asAttachments()?.filter { it.contentType == MediaUtil.LONG_TEXT }?.mapNotNull { (it as? DatabaseAttachment)?.attachmentId?.rowId } ?: emptyList()
-      val linkPreviewAttachments = (editedMessage as? MmsMessageRecord)?.linkPreviews?.mapNotNull { it.attachmentId?.rowId } ?: emptyList()
+      val textAttachments = (editedMessage as? MmsMessageRecord)?.slideDeck?.asAttachments()?.filter { it.contentType == MediaUtil.LONG_TEXT }?.mapNotNull { (it as? DatabaseAttachment)?.attachmentId?.id } ?: emptyList()
+      val linkPreviewAttachments = (editedMessage as? MmsMessageRecord)?.linkPreviews?.mapNotNull { it.attachmentId?.id } ?: emptyList()
       val excludeIds = HashSet<Long>()
       excludeIds += textAttachments
       excludeIds += linkPreviewAttachments
@@ -3305,9 +3303,9 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     val fileSize: Long = readableDatabase.rawQuery(
       """
       SELECT 
-        SUM(${AttachmentTable.TABLE_NAME}.${AttachmentTable.SIZE}) AS s
+        SUM(${AttachmentTable.TABLE_NAME}.${AttachmentTable.DATA_SIZE}) AS s
       FROM 
-        $TABLE_NAME INNER JOIN ${AttachmentTable.TABLE_NAME} ON $TABLE_NAME.$ID = ${AttachmentTable.TABLE_NAME}.${AttachmentTable.MMS_ID}
+        $TABLE_NAME INNER JOIN ${AttachmentTable.TABLE_NAME} ON $TABLE_NAME.$ID = ${AttachmentTable.TABLE_NAME}.${AttachmentTable.MESSAGE_ID}
       WHERE
         ${getInsecureMessageClause()} AND $EXPORTED < ${MessageExportStatus.EXPORTED.serialize()}
       """,
@@ -3415,10 +3413,10 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         $VIEW_ONCE, 
         $DATE_RECEIVED 
       FROM 
-        $TABLE_NAME INNER JOIN ${AttachmentTable.TABLE_NAME} ON $TABLE_NAME.$ID = ${AttachmentTable.TABLE_NAME}.${AttachmentTable.MMS_ID} 
+        $TABLE_NAME INNER JOIN ${AttachmentTable.TABLE_NAME} ON $TABLE_NAME.$ID = ${AttachmentTable.TABLE_NAME}.${AttachmentTable.MESSAGE_ID} 
       WHERE 
         $VIEW_ONCE > 0 AND 
-        (${AttachmentTable.DATA} NOT NULL OR ${AttachmentTable.TRANSFER_STATE} != ?)
+        (${AttachmentTable.DATA_FILE} NOT NULL OR ${AttachmentTable.TRANSFER_STATE} != ?)
       """
 
     val args = buildArgs(AttachmentTable.TRANSFER_PROGRESS_DONE)

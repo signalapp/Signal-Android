@@ -102,42 +102,41 @@ class AttachmentTable(
   companion object {
     val TAG = Log.tag(AttachmentTable::class.java)
 
-    const val TABLE_NAME = "part"
-    const val ROW_ID = "_id"
-    const val ATTACHMENT_JSON_ALIAS = "attachment_json"
-    const val MMS_ID = "mid"
-    const val CONTENT_TYPE = "ct"
-    const val NAME = "name"
-    const val CONTENT_DISPOSITION = "cd"
-    const val CONTENT_LOCATION = "cl"
-    const val DATA = "_data"
-    const val TRANSFER_STATE = "pending_push"
+    const val TABLE_NAME = "attachment"
+    const val ID = "_id"
+    const val MESSAGE_ID = "message_id"
+    const val CONTENT_TYPE = "content_type"
+    const val REMOTE_KEY = "remote_key"
+    const val REMOTE_LOCATION = "remote_location"
+    const val REMOTE_DIGEST = "remote_digest"
+    const val REMOTE_INCREMENTAL_DIGEST = "remote_incremental_digest"
+    const val REMOTE_INCREMENTAL_DIGEST_CHUNK_SIZE = "remote_incremental_digest_chunk_size"
+    const val CDN_NUMBER = "cdn_number"
+    const val TRANSFER_STATE = "transfer_state"
     const val TRANSFER_FILE = "transfer_file"
-    const val SIZE = "data_size"
+    const val DATA_FILE = "data_file"
+    const val DATA_SIZE = "data_size"
+    const val DATA_RANDOM = "data_random"
+    const val DATA_HASH = "data_hash"
     const val FILE_NAME = "file_name"
-    const val UNIQUE_ID = "unique_id"
-    const val DIGEST = "digest"
+    const val FAST_PREFLIGHT_ID = "fast_preflight_id"
     const val VOICE_NOTE = "voice_note"
     const val BORDERLESS = "borderless"
     const val VIDEO_GIF = "video_gif"
     const val QUOTE = "quote"
+    const val WIDTH = "width"
+    const val HEIGHT = "height"
+    const val CAPTION = "caption"
     const val STICKER_PACK_ID = "sticker_pack_id"
     const val STICKER_PACK_KEY = "sticker_pack_key"
     const val STICKER_ID = "sticker_id"
     const val STICKER_EMOJI = "sticker_emoji"
-    const val FAST_PREFLIGHT_ID = "fast_preflight_id"
-    const val DATA_RANDOM = "data_random"
-    const val WIDTH = "width"
-    const val HEIGHT = "height"
-    const val CAPTION = "caption"
-    const val DATA_HASH = "data_hash"
-    const val VISUAL_HASH = "blur_hash"
+    const val BLUR_HASH = "blur_hash"
     const val TRANSFORM_PROPERTIES = "transform_properties"
     const val DISPLAY_ORDER = "display_order"
     const val UPLOAD_TIMESTAMP = "upload_timestamp"
-    const val CDN_NUMBER = "cdn_number"
-    const val MAC_DIGEST = "incremental_mac_digest"
-    const val INCREMENTAL_MAC_CHUNK_SIZE = "incremental_mac_chunk_size"
+
+    const val ATTACHMENT_JSON_ALIAS = "attachment_json"
 
     private const val DIRECTORY = "parts"
 
@@ -148,31 +147,28 @@ class AttachmentTable(
     const val TRANSFER_PROGRESS_PERMANENT_FAILURE = 4
     const val PREUPLOAD_MESSAGE_ID: Long = -8675309
 
-    private const val PART_ID_WHERE = "$ROW_ID = ? AND $UNIQUE_ID = ?"
-    private const val PART_ID_WHERE_NOT = "$ROW_ID != ? AND $UNIQUE_ID != ?"
-
     private val PROJECTION = arrayOf(
-      ROW_ID,
-      MMS_ID,
+      ID,
+      MESSAGE_ID,
       CONTENT_TYPE,
-      NAME,
-      CONTENT_DISPOSITION,
+      REMOTE_KEY,
+      REMOTE_LOCATION,
+      REMOTE_DIGEST,
+      REMOTE_INCREMENTAL_DIGEST,
+      REMOTE_INCREMENTAL_DIGEST_CHUNK_SIZE,
       CDN_NUMBER,
-      CONTENT_LOCATION,
-      DATA,
       TRANSFER_STATE,
-      SIZE,
+      TRANSFER_FILE,
+      DATA_FILE,
+      DATA_SIZE,
+      DATA_RANDOM,
+      DATA_HASH,
       FILE_NAME,
-      UNIQUE_ID,
-      DIGEST,
-      MAC_DIGEST,
-      INCREMENTAL_MAC_CHUNK_SIZE,
       FAST_PREFLIGHT_ID,
       VOICE_NOTE,
       BORDERLESS,
       VIDEO_GIF,
       QUOTE,
-      DATA_RANDOM,
       WIDTH,
       HEIGHT,
       CAPTION,
@@ -180,40 +176,34 @@ class AttachmentTable(
       STICKER_PACK_KEY,
       STICKER_ID,
       STICKER_EMOJI,
-      DATA_HASH,
-      VISUAL_HASH,
+      BLUR_HASH,
       TRANSFORM_PROPERTIES,
-      TRANSFER_FILE,
       DISPLAY_ORDER,
       UPLOAD_TIMESTAMP
     )
 
     const val CREATE_TABLE = """
       CREATE TABLE $TABLE_NAME (
-        $ROW_ID INTEGER PRIMARY KEY,
-        $MMS_ID INTEGER,
-        seq INTEGER DEFAULT 0,
+        $ID INTEGER PRIMARY KEY AUTOINCREMENT,
+        $MESSAGE_ID INTEGER,
         $CONTENT_TYPE TEXT,
-        $NAME TEXT,
-        chset INTEGER,
-        $CONTENT_DISPOSITION TEXT,
-        fn TEXT,
-        cid TEXT,
-        $CONTENT_LOCATION TEXT,
-        ctt_s INTEGER,
-        ctt_t TEXT,
-        encrypted INTEGER,
+        $REMOTE_KEY TEXT,
+        $REMOTE_LOCATION TEXT,
+        $REMOTE_DIGEST BLOB,
+        $REMOTE_INCREMENTAL_DIGEST BLOB,
+        $REMOTE_INCREMENTAL_DIGEST_CHUNK_SIZE INTEGER DEFAULT 0,
+        $CDN_NUMBER INTEGER DEFAULT 0,
         $TRANSFER_STATE INTEGER,
-        $DATA TEXT,
-        $SIZE INTEGER,
+        $TRANSFER_FILE TEXT DEFAULT NULL,
+        $DATA_FILE TEXT,
+        $DATA_SIZE INTEGER,
+        $DATA_RANDOM BLOB,
+        $DATA_HASH TEXT DEFAULT NULL,
         $FILE_NAME TEXT,
-        $UNIQUE_ID INTEGER NOT NULL,
-        $DIGEST BLOB,
         $FAST_PREFLIGHT_ID TEXT,
         $VOICE_NOTE INTEGER DEFAULT 0,
         $BORDERLESS INTEGER DEFAULT 0,
         $VIDEO_GIF INTEGER DEFAULT 0,
-        $DATA_RANDOM BLOB,
         $QUOTE INTEGER DEFAULT 0,
         $WIDTH INTEGER DEFAULT 0,
         $HEIGHT INTEGER DEFAULT 0,
@@ -222,25 +212,20 @@ class AttachmentTable(
         $STICKER_PACK_KEY DEFAULT NULL,
         $STICKER_ID INTEGER DEFAULT -1,
         $STICKER_EMOJI STRING DEFAULT NULL,
-        $DATA_HASH TEXT DEFAULT NULL,
-        $VISUAL_HASH TEXT DEFAULT NULL,
+        $BLUR_HASH TEXT DEFAULT NULL,
         $TRANSFORM_PROPERTIES TEXT DEFAULT NULL,
-        $TRANSFER_FILE TEXT DEFAULT NULL,
         $DISPLAY_ORDER INTEGER DEFAULT 0,
-        $UPLOAD_TIMESTAMP INTEGER DEFAULT 0,
-        $CDN_NUMBER INTEGER DEFAULT 0,
-        $MAC_DIGEST BLOB,
-        $INCREMENTAL_MAC_CHUNK_SIZE INTEGER DEFAULT 0
+        $UPLOAD_TIMESTAMP INTEGER DEFAULT 0
       )
       """
 
     @JvmField
     val CREATE_INDEXS = arrayOf(
-      "CREATE INDEX IF NOT EXISTS part_mms_id_index ON $TABLE_NAME ($MMS_ID);",
-      "CREATE INDEX IF NOT EXISTS pending_push_index ON $TABLE_NAME ($TRANSFER_STATE);",
-      "CREATE INDEX IF NOT EXISTS part_sticker_pack_id_index ON $TABLE_NAME ($STICKER_PACK_ID);",
-      "CREATE INDEX IF NOT EXISTS part_data_hash_index ON $TABLE_NAME ($DATA_HASH);",
-      "CREATE INDEX IF NOT EXISTS part_data_index ON $TABLE_NAME ($DATA);"
+      "CREATE INDEX IF NOT EXISTS attachment_message_id_index ON $TABLE_NAME ($MESSAGE_ID);",
+      "CREATE INDEX IF NOT EXISTS attachment_transfer_state_index ON $TABLE_NAME ($TRANSFER_STATE);",
+      "CREATE INDEX IF NOT EXISTS attachment_sticker_pack_id_index ON $TABLE_NAME ($STICKER_PACK_ID);",
+      "CREATE INDEX IF NOT EXISTS attachment_data_hash_index ON $TABLE_NAME ($DATA_HASH);",
+      "CREATE INDEX IF NOT EXISTS attachment_data_index ON $TABLE_NAME ($DATA_FILE);"
     )
 
     @JvmStatic
@@ -255,7 +240,7 @@ class AttachmentTable(
   @Throws(IOException::class)
   fun getAttachmentStream(attachmentId: AttachmentId, offset: Long): InputStream {
     return try {
-      getDataStream(attachmentId, DATA, offset)
+      getDataStream(attachmentId, DATA_FILE, offset)
     } catch (e: FileNotFoundException) {
       throw IOException("No stream for: $attachmentId", e)
     } ?: throw IOException("No stream for: $attachmentId")
@@ -265,7 +250,7 @@ class AttachmentTable(
     return readableDatabase
       .select(*PROJECTION)
       .from(TABLE_NAME)
-      .where(PART_ID_WHERE, attachmentId.toStrings())
+      .where("$ID = ?", attachmentId.id)
       .run()
       .readToList { it.readAttachments() }
       .flatten()
@@ -276,8 +261,8 @@ class AttachmentTable(
     return readableDatabase
       .select(*PROJECTION)
       .from(TABLE_NAME)
-      .where("$MMS_ID = ?", mmsId)
-      .orderBy("$UNIQUE_ID ASC, $ROW_ID ASC")
+      .where("$MESSAGE_ID = ?", mmsId)
+      .orderBy("$ID ASC")
       .run()
       .readToList { it.readAttachments() }
       .flatten()
@@ -288,13 +273,13 @@ class AttachmentTable(
       return emptyMap()
     }
 
-    val query = buildSingleCollectionQuery(MMS_ID, mmsIds)
+    val query = buildSingleCollectionQuery(MESSAGE_ID, mmsIds)
 
     return readableDatabase
       .select(*PROJECTION)
       .from(TABLE_NAME)
       .where(query.where, query.whereArgs)
-      .orderBy("$UNIQUE_ID ASC, $ROW_ID ASC")
+      .orderBy("$ID ASC")
       .run()
       .groupBy { cursor ->
         val attachment = cursor.readAttachment()
@@ -305,7 +290,7 @@ class AttachmentTable(
   fun hasAttachment(id: AttachmentId): Boolean {
     return readableDatabase
       .exists(TABLE_NAME)
-      .where(PART_ID_WHERE, id.toStrings())
+      .where("$ID = ?", id.id)
       .run()
   }
 
@@ -323,27 +308,24 @@ class AttachmentTable(
     Log.d(TAG, "[deleteAttachmentsForMessage] mmsId: $mmsId")
 
     return writableDatabase.withinTransaction { db ->
-      db.select(DATA, CONTENT_TYPE, ROW_ID, UNIQUE_ID)
+      db.select(DATA_FILE, CONTENT_TYPE, ID)
         .from(TABLE_NAME)
-        .where("$MMS_ID = ?", mmsId)
+        .where("$MESSAGE_ID = ?", mmsId)
         .run()
         .forEach { cursor ->
-          val attachmentId = AttachmentId(
-            cursor.requireLong(ROW_ID),
-            cursor.requireLong(UNIQUE_ID)
-          )
+          val attachmentId = AttachmentId(cursor.requireLong(ID))
 
           ApplicationDependencies.getJobManager().cancelAllInQueue(AttachmentDownloadJob.constructQueueString(attachmentId))
 
           deleteAttachmentOnDisk(
-            data = cursor.requireString(DATA),
+            data = cursor.requireString(DATA_FILE),
             contentType = cursor.requireString(CONTENT_TYPE),
             attachmentId = attachmentId
           )
         }
 
       val deleteCount = db.delete(TABLE_NAME)
-        .where("$MMS_ID = ?", mmsId)
+        .where("$MESSAGE_ID = ?", mmsId)
         .run()
 
       notifyAttachmentListeners()
@@ -363,18 +345,13 @@ class AttachmentTable(
     var count = 0
 
     writableDatabase
-      .select(ROW_ID, UNIQUE_ID)
+      .select(ID)
       .from(TABLE_NAME)
-      .where("$MMS_ID = ?", PREUPLOAD_MESSAGE_ID)
+      .where("$MESSAGE_ID = ?", PREUPLOAD_MESSAGE_ID)
       .run()
       .forEach { cursor ->
-        val id = AttachmentId(
-          cursor.requireLong(ROW_ID),
-          cursor.requireLong(UNIQUE_ID)
-        )
-
+        val id = AttachmentId(cursor.requireLong(ID))
         deleteAttachment(id)
-
         count++
       }
 
@@ -385,30 +362,30 @@ class AttachmentTable(
     Log.d(TAG, "[deleteAttachmentFilesForViewOnceMessage] mmsId: $mmsId")
 
     writableDatabase.withinTransaction { db ->
-      db.select(DATA, CONTENT_TYPE, ROW_ID, UNIQUE_ID)
+      db.select(DATA_FILE, CONTENT_TYPE, ID)
         .from(TABLE_NAME)
-        .where("$MMS_ID = ?", mmsId)
+        .where("$MESSAGE_ID = ?", mmsId)
         .run()
         .forEach { cursor ->
           deleteAttachmentOnDisk(
-            data = cursor.requireString(DATA),
+            data = cursor.requireString(DATA_FILE),
             contentType = cursor.requireString(CONTENT_TYPE),
-            attachmentId = AttachmentId(cursor.requireLong(ROW_ID), cursor.requireLong(UNIQUE_ID))
+            attachmentId = AttachmentId(cursor.requireLong(ID))
           )
         }
 
       db.update(TABLE_NAME)
         .values(
-          DATA to null,
+          DATA_FILE to null,
           DATA_RANDOM to null,
           DATA_HASH to null,
           FILE_NAME to null,
           CAPTION to null,
-          SIZE to 0,
+          DATA_SIZE to 0,
           WIDTH to 0,
           HEIGHT to 0,
           TRANSFER_STATE to TRANSFER_PROGRESS_DONE,
-          VISUAL_HASH to null,
+          BLUR_HASH to null,
           CONTENT_TYPE to MediaUtil.VIEW_ONCE
         )
         .run()
@@ -426,9 +403,9 @@ class AttachmentTable(
     Log.d(TAG, "[deleteAttachment] attachmentId: $id")
 
     writableDatabase.withinTransaction { db ->
-      db.select(DATA, CONTENT_TYPE)
+      db.select(DATA_FILE, CONTENT_TYPE)
         .from(TABLE_NAME)
-        .where(PART_ID_WHERE, id.toStrings())
+        .where("$ID = ?", id.id)
         .run()
         .use { cursor ->
           if (!cursor.moveToFirst()) {
@@ -436,7 +413,7 @@ class AttachmentTable(
             return@withinTransaction
           }
 
-          val data = cursor.requireString(DATA)
+          val data = cursor.requireString(DATA_FILE)
           val contentType = cursor.requireString(CONTENT_TYPE)
 
           deleteAttachmentOnDisk(
@@ -446,7 +423,7 @@ class AttachmentTable(
           )
 
           db.delete(TABLE_NAME)
-            .where(PART_ID_WHERE, id.toStrings())
+            .where("$ID = ?", id.id)
             .run()
 
           deleteAttachmentOnDisk(data, contentType, id)
@@ -458,7 +435,7 @@ class AttachmentTable(
   fun trimAllAbandonedAttachments() {
     val deleteCount = writableDatabase
       .delete(TABLE_NAME)
-      .where("$MMS_ID != $PREUPLOAD_MESSAGE_ID AND $MMS_ID NOT IN (SELECT ${MessageTable.ID} FROM ${MessageTable.TABLE_NAME})")
+      .where("$MESSAGE_ID != $PREUPLOAD_MESSAGE_ID AND $MESSAGE_ID NOT IN (SELECT ${MessageTable.ID} FROM ${MessageTable.TABLE_NAME})")
       .run()
 
     if (deleteCount > 0) {
@@ -475,10 +452,10 @@ class AttachmentTable(
       .toSet()
 
     val filesInDb: Set<String> = readableDatabase
-      .select(DATA)
+      .select(DATA_FILE)
       .from(TABLE_NAME)
       .run()
-      .readToList { it.requireString(DATA) }
+      .readToList { it.requireString(DATA_FILE) }
       .filterNotNull()
       .toSet() + stickers.allStickerFiles
 
@@ -510,7 +487,7 @@ class AttachmentTable(
     writableDatabase
       .update(TABLE_NAME)
       .values(TRANSFER_STATE to transferState)
-      .where(PART_ID_WHERE, attachmentId.toStrings())
+      .where("$ID = ?", attachmentId.id)
       .run()
 
     val threadId = messages.getThreadIdForMessage(messageId)
@@ -522,7 +499,7 @@ class AttachmentTable(
     writableDatabase
       .update(TABLE_NAME)
       .values(TRANSFER_STATE to TRANSFER_PROGRESS_FAILED)
-      .where("$PART_ID_WHERE AND $TRANSFER_STATE < $TRANSFER_PROGRESS_PERMANENT_FAILURE", attachmentId.toStrings())
+      .where("$ID = ? AND $TRANSFER_STATE < $TRANSFER_PROGRESS_PERMANENT_FAILURE", attachmentId.id)
       .run()
 
     notifyConversationListeners(messages.getThreadIdForMessage(mmsId))
@@ -533,7 +510,7 @@ class AttachmentTable(
     writableDatabase
       .update(TABLE_NAME)
       .values(TRANSFER_STATE to TRANSFER_PROGRESS_PERMANENT_FAILURE)
-      .where(PART_ID_WHERE, attachmentId.toStrings())
+      .where("$ID = ?", attachmentId.id)
       .run()
 
     notifyConversationListeners(messages.getThreadIdForMessage(mmsId))
@@ -542,7 +519,7 @@ class AttachmentTable(
   @Throws(MmsException::class)
   fun insertAttachmentsForPlaceholder(mmsId: Long, attachmentId: AttachmentId, inputStream: InputStream) {
     val placeholder = getAttachment(attachmentId)
-    val oldInfo = getAttachmentDataFileInfo(attachmentId, DATA)
+    val oldInfo = getAttachmentDataFileInfo(attachmentId, DATA_FILE)
     var dataInfo = storeAttachmentStream(inputStream)
     val transferFile = getTransferFile(databaseHelper.signalReadableDatabase, attachmentId)
 
@@ -554,14 +531,14 @@ class AttachmentTable(
       }
 
       val values = ContentValues()
-      values.put(DATA, dataInfo.file.absolutePath)
-      values.put(SIZE, dataInfo.length)
+      values.put(DATA_FILE, dataInfo.file.absolutePath)
+      values.put(DATA_SIZE, dataInfo.length)
       values.put(DATA_RANDOM, dataInfo.random)
       values.put(DATA_HASH, dataInfo.hash)
 
       val visualHashString = placeholder.getVisualHashStringOrNull()
       if (visualHashString != null) {
-        values.put(VISUAL_HASH, visualHashString)
+        values.put(BLUR_HASH, visualHashString)
       }
 
       values.put(TRANSFER_STATE, TRANSFER_PROGRESS_DONE)
@@ -570,7 +547,7 @@ class AttachmentTable(
 
       val updateCount = db.update(TABLE_NAME)
         .values(values)
-        .where(PART_ID_WHERE, attachmentId.toStrings())
+        .where("$ID = ?", attachmentId.id)
         .run()
 
       updateCount > 0
@@ -606,32 +583,31 @@ class AttachmentTable(
   @Throws(MmsException::class)
   fun copyAttachmentData(sourceId: AttachmentId, destinationId: AttachmentId) {
     val sourceAttachment = getAttachment(sourceId) ?: throw MmsException("Cannot find attachment for source!")
-    val sourceDataInfo = getAttachmentDataFileInfo(sourceId, DATA) ?: throw MmsException("No attachment data found for source!")
+    val sourceDataInfo = getAttachmentDataFileInfo(sourceId, DATA_FILE) ?: throw MmsException("No attachment data found for source!")
 
     writableDatabase
       .update(TABLE_NAME)
       .values(
-        DATA to sourceDataInfo.file.absolutePath,
+        DATA_FILE to sourceDataInfo.file.absolutePath,
         DATA_HASH to sourceDataInfo.hash,
-        SIZE to sourceDataInfo.length,
+        DATA_SIZE to sourceDataInfo.length,
         DATA_RANDOM to sourceDataInfo.random,
         TRANSFER_STATE to sourceAttachment.transferState,
         CDN_NUMBER to sourceAttachment.cdnNumber,
-        CONTENT_LOCATION to sourceAttachment.location,
-        DIGEST to sourceAttachment.digest,
-        MAC_DIGEST to sourceAttachment.incrementalDigest,
-        INCREMENTAL_MAC_CHUNK_SIZE to sourceAttachment.incrementalMacChunkSize,
-        CONTENT_DISPOSITION to sourceAttachment.key,
-        NAME to sourceAttachment.relay,
-        SIZE to sourceAttachment.size,
+        REMOTE_LOCATION to sourceAttachment.remoteLocation,
+        REMOTE_DIGEST to sourceAttachment.remoteDigest,
+        REMOTE_INCREMENTAL_DIGEST to sourceAttachment.incrementalDigest,
+        REMOTE_INCREMENTAL_DIGEST_CHUNK_SIZE to sourceAttachment.incrementalMacChunkSize,
+        REMOTE_KEY to sourceAttachment.remoteKey,
+        DATA_SIZE to sourceAttachment.size,
         FAST_PREFLIGHT_ID to sourceAttachment.fastPreflightId,
         WIDTH to sourceAttachment.width,
         HEIGHT to sourceAttachment.height,
         CONTENT_TYPE to sourceAttachment.contentType,
-        VISUAL_HASH to sourceAttachment.getVisualHashStringOrNull(),
+        BLUR_HASH to sourceAttachment.getVisualHashStringOrNull(),
         TRANSFORM_PROPERTIES to sourceAttachment.transformProperties?.serialize()
       )
-      .where(PART_ID_WHERE, destinationId.toStrings())
+      .where("$ID = ?", destinationId.id)
       .run()
   }
 
@@ -639,7 +615,7 @@ class AttachmentTable(
     writableDatabase
       .update(TABLE_NAME)
       .values(CAPTION to caption)
-      .where(PART_ID_WHERE, id.toStrings())
+      .where("$ID = ?", id.id)
       .run()
   }
 
@@ -648,26 +624,25 @@ class AttachmentTable(
       for ((key, value) in orderMap) {
         db.update(TABLE_NAME)
           .values(DISPLAY_ORDER to value)
-          .where(PART_ID_WHERE, key.toStrings())
+          .where("$ID = ?", key.id)
           .run()
       }
     }
   }
 
   fun updateAttachmentAfterUpload(id: AttachmentId, attachment: Attachment, uploadTimestamp: Long) {
-    val dataInfo = getAttachmentDataFileInfo(id, DATA)
+    val dataInfo = getAttachmentDataFileInfo(id, DATA_FILE)
     val values = contentValuesOf(
       TRANSFER_STATE to TRANSFER_PROGRESS_DONE,
       CDN_NUMBER to attachment.cdnNumber,
-      CONTENT_LOCATION to attachment.location,
-      DIGEST to attachment.digest,
-      MAC_DIGEST to attachment.incrementalDigest,
-      INCREMENTAL_MAC_CHUNK_SIZE to attachment.incrementalMacChunkSize,
-      CONTENT_DISPOSITION to attachment.key,
-      NAME to attachment.relay,
-      SIZE to attachment.size,
+      REMOTE_LOCATION to attachment.remoteLocation,
+      REMOTE_DIGEST to attachment.remoteDigest,
+      REMOTE_INCREMENTAL_DIGEST to attachment.incrementalDigest,
+      REMOTE_INCREMENTAL_DIGEST_CHUNK_SIZE to attachment.incrementalMacChunkSize,
+      REMOTE_KEY to attachment.remoteKey,
+      DATA_SIZE to attachment.size,
       FAST_PREFLIGHT_ID to attachment.fastPreflightId,
-      VISUAL_HASH to attachment.getVisualHashStringOrNull(),
+      BLUR_HASH to attachment.getVisualHashStringOrNull(),
       UPLOAD_TIMESTAMP to uploadTimestamp
     )
 
@@ -677,7 +652,7 @@ class AttachmentTable(
       writableDatabase
         .update(TABLE_NAME)
         .values(values)
-        .where(PART_ID_WHERE, id.toStrings())
+        .where("$ID = ?", id.id)
         .run()
     }
   }
@@ -696,7 +671,7 @@ class AttachmentTable(
   fun updateMessageId(attachmentIds: Collection<AttachmentId>, mmsId: Long, isStory: Boolean) {
     writableDatabase.withinTransaction { db ->
       val values = ContentValues(2).apply {
-        put(MMS_ID, mmsId)
+        put(MESSAGE_ID, mmsId)
         if (!isStory) {
           putNull(CAPTION)
         }
@@ -709,7 +684,7 @@ class AttachmentTable(
         updatedCount += db
           .update(TABLE_NAME)
           .values(values)
-          .where(PART_ID_WHERE, attachmentId.toStrings())
+          .where("$ID = ?", attachmentId.id)
           .run()
       }
 
@@ -756,7 +731,7 @@ class AttachmentTable(
     onlyModifyThisAttachment: Boolean
   ) {
     val attachmentId = databaseAttachment.attachmentId
-    val oldDataInfo = getAttachmentDataFileInfo(attachmentId, DATA) ?: throw MmsException("No attachment data found!")
+    val oldDataInfo = getAttachmentDataFileInfo(attachmentId, DATA_FILE) ?: throw MmsException("No attachment data found!")
     var destination = oldDataInfo.file
     val isSingleUseOfData = onlyModifyThisAttachment || oldDataInfo.hash == null
 
@@ -771,11 +746,11 @@ class AttachmentTable(
       dataInfo = deduplicateAttachment(dataInfo, attachmentId, databaseAttachment.transformProperties)
 
       val contentValues = contentValuesOf(
-        SIZE to dataInfo.length,
+        DATA_SIZE to dataInfo.length,
         CONTENT_TYPE to mediaStream.mimeType,
         WIDTH to mediaStream.width,
         HEIGHT to mediaStream.height,
-        DATA to dataInfo.file.absolutePath,
+        DATA_FILE to dataInfo.file.absolutePath,
         DATA_RANDOM to dataInfo.random,
         DATA_HASH to dataInfo.hash
       )
@@ -793,14 +768,14 @@ class AttachmentTable(
 
   fun duplicateAttachmentsForMessage(destinationMessageId: Long, sourceMessageId: Long, excludedIds: Collection<Long>) {
     writableDatabase.withinTransaction { db ->
-      db.execSQL("CREATE TEMPORARY TABLE tmp_part AS SELECT * FROM $TABLE_NAME WHERE $MMS_ID = ?", buildArgs(sourceMessageId))
+      db.execSQL("CREATE TEMPORARY TABLE tmp_part AS SELECT * FROM $TABLE_NAME WHERE $MESSAGE_ID = ?", buildArgs(sourceMessageId))
 
-      val queries = buildCollectionQuery(ROW_ID, excludedIds)
+      val queries = buildCollectionQuery(ID, excludedIds)
       for (query in queries) {
         db.delete("tmp_part", query.where, query.whereArgs)
       }
 
-      db.execSQL("UPDATE tmp_part SET $ROW_ID = NULL, $MMS_ID = ?", buildArgs(destinationMessageId))
+      db.execSQL("UPDATE tmp_part SET $ID = NULL, $MESSAGE_ID = ?", buildArgs(destinationMessageId))
       db.execSQL("INSERT INTO $TABLE_NAME SELECT * FROM tmp_part")
       db.execSQL("DROP TABLE tmp_part")
     }
@@ -818,7 +793,7 @@ class AttachmentTable(
     writableDatabase
       .update(TABLE_NAME)
       .values(TRANSFER_FILE to transferFile.absolutePath)
-      .where(PART_ID_WHERE, attachmentId.toStrings())
+      .where("$ID = ?", attachmentId.id)
       .run()
 
     return transferFile
@@ -827,9 +802,9 @@ class AttachmentTable(
   @VisibleForTesting
   fun getAttachmentDataFileInfo(attachmentId: AttachmentId, dataType: String): DataInfo? {
     return readableDatabase
-      .select(dataType, SIZE, DATA_RANDOM, DATA_HASH, TRANSFORM_PROPERTIES)
+      .select(dataType, DATA_SIZE, DATA_RANDOM, DATA_HASH, TRANSFORM_PROPERTIES)
       .from(TABLE_NAME)
-      .where(PART_ID_WHERE, attachmentId.toStrings())
+      .where("$ID = ?", attachmentId.id)
       .run()
       .readToSingleObject { cursor ->
         if (cursor.isNull(dataType)) {
@@ -837,7 +812,7 @@ class AttachmentTable(
         } else {
           DataInfo(
             file = File(cursor.getString(cursor.getColumnIndexOrThrow(dataType))),
-            length = cursor.requireLong(SIZE),
+            length = cursor.requireLong(DATA_SIZE),
             random = cursor.requireNonNullBlob(DATA_RANDOM),
             hash = cursor.requireString(DATA_HASH),
             transformProperties = TransformProperties.parse(cursor.requireString(TRANSFORM_PROPERTIES))
@@ -872,14 +847,14 @@ class AttachmentTable(
     Log.i(TAG, "updating part audio wave form for $attachmentId")
     writableDatabase
       .update(TABLE_NAME)
-      .values(VISUAL_HASH to audioWaveForm?.let { AudioHash(it).hash })
-      .where(PART_ID_WHERE, attachmentId.toStrings())
+      .values(BLUR_HASH to audioWaveForm?.let { AudioHash(it).hash })
+      .where("$ID = ?", attachmentId.id)
       .run()
   }
 
   @RequiresApi(23)
   fun mediaDataSourceFor(attachmentId: AttachmentId, allowReadingFromTempFile: Boolean): MediaDataSource? {
-    val dataInfo = getAttachmentDataFileInfo(attachmentId, DATA)
+    val dataInfo = getAttachmentDataFileInfo(attachmentId, DATA_FILE)
     if (dataInfo != null) {
       return EncryptedMediaDataSource.createFor(attachmentSecret, dataInfo.file, dataInfo.random, dataInfo.length)
     }
@@ -903,7 +878,7 @@ class AttachmentTable(
     return readableDatabase
       .select(TRANSFORM_PROPERTIES)
       .from(TABLE_NAME)
-      .where(PART_ID_WHERE, attachmentId.toStrings())
+      .where("$ID = ?", attachmentId.id)
       .run()
       .readToSingleObject {
         TransformProperties.parse(it.requireString(TRANSFORM_PROPERTIES))
@@ -914,7 +889,7 @@ class AttachmentTable(
     writableDatabase
       .update(TABLE_NAME)
       .values(TRANSFER_STATE to TRANSFER_PROGRESS_DONE)
-      .where(PART_ID_WHERE, (attachment as DatabaseAttachment).attachmentId.toStrings())
+      .where("$ID = ?", (attachment as DatabaseAttachment).attachmentId.id)
       .run()
 
     val threadId = messages.getThreadIdForMessage(messageId)
@@ -934,22 +909,21 @@ class AttachmentTable(
         for (i in 0 until array.length()) {
           val jsonObject = SaneJSONObject(array.getJSONObject(i))
 
-          if (!jsonObject.isNull(ROW_ID)) {
+          if (!jsonObject.isNull(ID)) {
             val contentType = jsonObject.getString(CONTENT_TYPE)
 
             result += DatabaseAttachment(
-              attachmentId = AttachmentId(jsonObject.getLong(ROW_ID), jsonObject.getLong(UNIQUE_ID)),
-              mmsId = jsonObject.getLong(MMS_ID),
-              hasData = !TextUtils.isEmpty(jsonObject.getString(DATA)),
+              attachmentId = AttachmentId(jsonObject.getLong(ID)),
+              mmsId = jsonObject.getLong(MESSAGE_ID),
+              hasData = !TextUtils.isEmpty(jsonObject.getString(DATA_FILE)),
               hasThumbnail = MediaUtil.isImageType(contentType) || MediaUtil.isVideoType(contentType),
               contentType = contentType,
               transferProgress = jsonObject.getInt(TRANSFER_STATE),
-              size = jsonObject.getLong(SIZE),
+              size = jsonObject.getLong(DATA_SIZE),
               fileName = jsonObject.getString(FILE_NAME),
               cdnNumber = jsonObject.getInt(CDN_NUMBER),
-              location = jsonObject.getString(CONTENT_LOCATION),
-              key = jsonObject.getString(CONTENT_DISPOSITION),
-              relay = jsonObject.getString(NAME),
+              location = jsonObject.getString(REMOTE_LOCATION),
+              key = jsonObject.getString(REMOTE_KEY),
               digest = null,
               incrementalDigest = null,
               incrementalMacChunkSize = 0,
@@ -971,8 +945,8 @@ class AttachmentTable(
               } else {
                 null
               },
-              blurHash = if (MediaUtil.isAudioType(contentType)) null else BlurHash.parseOrNull(jsonObject.getString(VISUAL_HASH)),
-              audioHash = if (MediaUtil.isAudioType(contentType)) AudioHash.parseOrNull(jsonObject.getString(VISUAL_HASH)) else null,
+              blurHash = if (MediaUtil.isAudioType(contentType)) null else BlurHash.parseOrNull(jsonObject.getString(BLUR_HASH)),
+              audioHash = if (MediaUtil.isAudioType(contentType)) AudioHash.parseOrNull(jsonObject.getString(BLUR_HASH)) else null,
               transformProperties = TransformProperties.parse(jsonObject.getString(TRANSFORM_PROPERTIES)),
               displayOrder = jsonObject.getInt(DISPLAY_ORDER),
               uploadTimestamp = jsonObject.getLong(UPLOAD_TIMESTAMP)
@@ -1043,11 +1017,11 @@ class AttachmentTable(
             deletedCount += writableDatabase
               .update(TABLE_NAME)
               .values(
-                DATA to null,
+                DATA_FILE to null,
                 DATA_RANDOM to null,
                 DATA_HASH to null
               )
-              .where(PART_ID_WHERE, weakReference.toStrings())
+              .where("$ID = ?", weakReference.id)
               .run()
           }
 
@@ -1079,13 +1053,13 @@ class AttachmentTable(
     val quoteRows: MutableList<AttachmentId> = mutableListOf()
 
     readableDatabase
-      .select(ROW_ID, UNIQUE_ID, QUOTE)
+      .select(ID, QUOTE)
       .from(TABLE_NAME)
-      .where("$DATA = ? AND $UNIQUE_ID != ? AND $ROW_ID != ?", data, attachmentId.uniqueId, attachmentId.rowId)
+      .where("$DATA_FILE = ? AND $ID != ?", data, attachmentId.id)
       .run()
       .forEach { cursor ->
         if (cursor.requireBoolean(QUOTE)) {
-          quoteRows += AttachmentId(cursor.requireLong(ROW_ID), cursor.requireLong(UNIQUE_ID))
+          quoteRows += AttachmentId(cursor.requireLong(ID))
         } else {
           return DataUsageResult.IN_USE
         }
@@ -1104,7 +1078,7 @@ class AttachmentTable(
     } else {
       readableDatabase
         .exists(TABLE_NAME)
-        .where("$DATA = ? AND $DATA_HASH != ?", dataInfo.file.absolutePath, dataInfo.hash)
+        .where("$DATA_FILE = ? AND $DATA_HASH != ?", dataInfo.file.absolutePath, dataInfo.hash)
         .run()
     }
   }
@@ -1120,7 +1094,7 @@ class AttachmentTable(
 
     db.update(TABLE_NAME)
       .values(
-        DATA to newData.file.absolutePath,
+        DATA_FILE to newData.file.absolutePath,
         DATA_RANDOM to newData.random,
         DATA_HASH to newData.hash
       )
@@ -1129,7 +1103,7 @@ class AttachmentTable(
   }
 
   private fun updateAttachmentTransformProperties(attachmentId: AttachmentId, transformProperties: TransformProperties) {
-    val dataInfo = getAttachmentDataFileInfo(attachmentId, DATA)
+    val dataInfo = getAttachmentDataFileInfo(attachmentId, DATA_FILE)
     if (dataInfo == null) {
       Log.w(TAG, "[updateAttachmentTransformProperties] No data info found!")
       return
@@ -1149,7 +1123,7 @@ class AttachmentTable(
     return db
       .update(TABLE_NAME)
       .values(contentValues)
-      .where("($ROW_ID = ? AND $UNIQUE_ID = ?) OR ($DATA_HASH NOT NULL AND $DATA_HASH = ?)", attachmentId.rowId.toString(), attachmentId.uniqueId.toString(), dataHash.toString())
+      .where("$ID = ? OR ($DATA_HASH NOT NULL AND $DATA_HASH = ?)", attachmentId.id, dataHash.toString())
       .run()
   }
 
@@ -1161,7 +1135,7 @@ class AttachmentTable(
     return readableDatabase
       .select("1")
       .from(TABLE_NAME)
-      .where("$DATA = ?", file.absolutePath)
+      .where("$DATA_FILE = ?", file.absolutePath)
       .limit(2)
       .run()
       .use { cursor ->
@@ -1297,14 +1271,14 @@ class AttachmentTable(
     val selectorArgs: Pair<String, Array<String>> = buildSharedFileSelectorArgs(hash, excludedAttachmentId)
 
     return database
-      .select(DATA, DATA_RANDOM, SIZE, TRANSFORM_PROPERTIES)
+      .select(DATA_FILE, DATA_RANDOM, DATA_SIZE, TRANSFORM_PROPERTIES)
       .from(TABLE_NAME)
       .where(selectorArgs.first, selectorArgs.second)
       .run()
       .readToList { cursor ->
         DataInfo(
-          file = File(cursor.requireNonNullString(DATA)),
-          length = cursor.requireLong(SIZE),
+          file = File(cursor.requireNonNullString(DATA_FILE)),
+          length = cursor.requireLong(DATA_SIZE),
           random = cursor.requireNonNullBlob(DATA_RANDOM),
           hash = hash,
           transformProperties = TransformProperties.parse(cursor.requireString(TRANSFORM_PROPERTIES))
@@ -1316,9 +1290,8 @@ class AttachmentTable(
     return if (attachmentId == null) {
       "$DATA_HASH = ?" to arrayOf(newHash)
     } else {
-      "$PART_ID_WHERE_NOT AND $DATA_HASH = ?" to arrayOf(
-        attachmentId.rowId.toString(),
-        attachmentId.uniqueId.toString(),
+      "$ID != ? AND $DATA_HASH = ?" to arrayOf(
+        attachmentId.id.toString(),
         newHash
       )
     }
@@ -1333,7 +1306,6 @@ class AttachmentTable(
     val attachmentId: AttachmentId = writableDatabase.withinTransaction { db ->
       try {
         var dataInfo: DataInfo? = null
-        val uniqueId = System.currentTimeMillis()
 
         if (attachment.uri != null) {
           val storeDataInfo = storeAttachmentStream(PartAuthority.getAttachmentStream(context, attachment.uri!!))
@@ -1351,7 +1323,7 @@ class AttachmentTable(
           for (possibleTemplate in possibleTemplates) {
             useTemplateUpload = possibleTemplate.uploadTimestamp > attachment.uploadTimestamp &&
               possibleTemplate.transferState == TRANSFER_PROGRESS_DONE &&
-              possibleTemplate.transformProperties?.shouldSkipTransform() == true && possibleTemplate.digest != null &&
+              possibleTemplate.transformProperties?.shouldSkipTransform() == true && possibleTemplate.remoteDigest != null &&
               attachment.transformProperties?.videoEdited == false && possibleTemplate.transformProperties?.sentMediaQuality == attachment.transformProperties?.sentMediaQuality
 
             if (useTemplateUpload) {
@@ -1363,19 +1335,17 @@ class AttachmentTable(
         }
 
         val contentValues = ContentValues()
-        contentValues.put(MMS_ID, mmsId)
+        contentValues.put(MESSAGE_ID, mmsId)
         contentValues.put(CONTENT_TYPE, template.contentType)
         contentValues.put(TRANSFER_STATE, attachment.transferState)
-        contentValues.put(UNIQUE_ID, uniqueId)
         contentValues.put(CDN_NUMBER, if (useTemplateUpload) template.cdnNumber else attachment.cdnNumber)
-        contentValues.put(CONTENT_LOCATION, if (useTemplateUpload) template.location else attachment.location)
-        contentValues.put(DIGEST, if (useTemplateUpload) template.digest else attachment.digest)
-        contentValues.put(MAC_DIGEST, if (useTemplateUpload) template.incrementalDigest else attachment.incrementalDigest)
-        contentValues.put(INCREMENTAL_MAC_CHUNK_SIZE, if (useTemplateUpload) template.incrementalMacChunkSize else attachment.incrementalMacChunkSize)
-        contentValues.put(CONTENT_DISPOSITION, if (useTemplateUpload) template.key else attachment.key)
-        contentValues.put(NAME, if (useTemplateUpload) template.relay else attachment.relay)
+        contentValues.put(REMOTE_LOCATION, if (useTemplateUpload) template.remoteLocation else attachment.remoteLocation)
+        contentValues.put(REMOTE_DIGEST, if (useTemplateUpload) template.remoteDigest else attachment.remoteDigest)
+        contentValues.put(REMOTE_INCREMENTAL_DIGEST, if (useTemplateUpload) template.incrementalDigest else attachment.incrementalDigest)
+        contentValues.put(REMOTE_INCREMENTAL_DIGEST_CHUNK_SIZE, if (useTemplateUpload) template.incrementalMacChunkSize else attachment.incrementalMacChunkSize)
+        contentValues.put(REMOTE_KEY, if (useTemplateUpload) template.remoteKey else attachment.remoteKey)
         contentValues.put(FILE_NAME, StorageUtil.getCleanFileName(attachment.fileName))
-        contentValues.put(SIZE, template.size)
+        contentValues.put(DATA_SIZE, template.size)
         contentValues.put(FAST_PREFLIGHT_ID, attachment.fastPreflightId)
         contentValues.put(VOICE_NOTE, if (attachment.voiceNote) 1 else 0)
         contentValues.put(BORDERLESS, if (attachment.borderless) 1 else 0)
@@ -1387,10 +1357,10 @@ class AttachmentTable(
         contentValues.put(UPLOAD_TIMESTAMP, if (useTemplateUpload) template.uploadTimestamp else attachment.uploadTimestamp)
 
         if (attachment.transformProperties?.videoEdited == true) {
-          contentValues.putNull(VISUAL_HASH)
+          contentValues.putNull(BLUR_HASH)
           contentValues.put(TRANSFORM_PROPERTIES, attachment.transformProperties?.serialize())
         } else {
-          contentValues.put(VISUAL_HASH, template.getVisualHashStringOrNull())
+          contentValues.put(BLUR_HASH, template.getVisualHashStringOrNull())
           contentValues.put(TRANSFORM_PROPERTIES, (if (useTemplateUpload) template else attachment).transformProperties?.serialize())
         }
 
@@ -1402,8 +1372,8 @@ class AttachmentTable(
         }
 
         if (dataInfo != null) {
-          contentValues.put(DATA, dataInfo.file.absolutePath)
-          contentValues.put(SIZE, dataInfo.length)
+          contentValues.put(DATA_FILE, dataInfo.file.absolutePath)
+          contentValues.put(DATA_SIZE, dataInfo.length)
           contentValues.put(DATA_RANDOM, dataInfo.random)
 
           if (attachment.transformProperties?.videoEdited == true) {
@@ -1416,7 +1386,7 @@ class AttachmentTable(
         notifyPacks = attachment.isSticker && !hasStickerAttachments()
 
         val rowId = db.insert(TABLE_NAME, null, contentValues)
-        AttachmentId(rowId, uniqueId)
+        AttachmentId(rowId)
       } catch (e: IOException) {
         throw MmsException(e)
       }
@@ -1447,7 +1417,7 @@ class AttachmentTable(
     return db
       .select(TRANSFER_FILE)
       .from(TABLE_NAME)
-      .where(PART_ID_WHERE, attachmentId.toStrings())
+      .where("$ID = ?", attachmentId.id)
       .limit(1)
       .run()
       .readToSingleObject { cursor ->
@@ -1459,21 +1429,20 @@ class AttachmentTable(
     val contentType = cursor.requireString(CONTENT_TYPE)
 
     return DatabaseAttachment(
-      attachmentId = AttachmentId(cursor.requireLong(ROW_ID), cursor.requireLong(UNIQUE_ID)),
-      mmsId = cursor.requireLong(MMS_ID),
-      hasData = !cursor.isNull(DATA),
+      attachmentId = AttachmentId(cursor.requireLong(ID)),
+      mmsId = cursor.requireLong(MESSAGE_ID),
+      hasData = !cursor.isNull(DATA_FILE),
       hasThumbnail = MediaUtil.isImageType(contentType) || MediaUtil.isVideoType(contentType),
       contentType = contentType,
       transferProgress = cursor.requireInt(TRANSFER_STATE),
-      size = cursor.requireLong(SIZE),
+      size = cursor.requireLong(DATA_SIZE),
       fileName = cursor.requireString(FILE_NAME),
       cdnNumber = cursor.requireInt(CDN_NUMBER),
-      location = cursor.requireString(CONTENT_LOCATION),
-      key = cursor.requireString(CONTENT_DISPOSITION),
-      relay = cursor.requireString(NAME),
-      digest = cursor.requireBlob(DIGEST),
-      incrementalDigest = cursor.requireBlob(MAC_DIGEST),
-      incrementalMacChunkSize = cursor.requireInt(INCREMENTAL_MAC_CHUNK_SIZE),
+      location = cursor.requireString(REMOTE_LOCATION),
+      key = cursor.requireString(REMOTE_KEY),
+      digest = cursor.requireBlob(REMOTE_DIGEST),
+      incrementalDigest = cursor.requireBlob(REMOTE_INCREMENTAL_DIGEST),
+      incrementalMacChunkSize = cursor.requireInt(REMOTE_INCREMENTAL_DIGEST_CHUNK_SIZE),
       fastPreflightId = cursor.requireString(FAST_PREFLIGHT_ID),
       voiceNote = cursor.requireBoolean(VOICE_NOTE),
       borderless = cursor.requireBoolean(BORDERLESS),
@@ -1483,8 +1452,8 @@ class AttachmentTable(
       quote = cursor.requireBoolean(QUOTE),
       caption = cursor.requireString(CAPTION),
       stickerLocator = cursor.readStickerLocator(),
-      blurHash = if (MediaUtil.isAudioType(contentType)) null else BlurHash.parseOrNull(cursor.requireString(VISUAL_HASH)),
-      audioHash = if (MediaUtil.isAudioType(contentType)) AudioHash.parseOrNull(cursor.requireString(VISUAL_HASH)) else null,
+      blurHash = if (MediaUtil.isAudioType(contentType)) null else BlurHash.parseOrNull(cursor.requireString(BLUR_HASH)),
+      audioHash = if (MediaUtil.isAudioType(contentType)) AudioHash.parseOrNull(cursor.requireString(BLUR_HASH)) else null,
       transformProperties = TransformProperties.parse(cursor.requireString(TRANSFORM_PROPERTIES)),
       displayOrder = cursor.requireInt(DISPLAY_ORDER),
       uploadTimestamp = cursor.requireLong(UPLOAD_TIMESTAMP)

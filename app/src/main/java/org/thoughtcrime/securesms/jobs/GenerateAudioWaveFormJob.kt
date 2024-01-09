@@ -22,8 +22,7 @@ class GenerateAudioWaveFormJob private constructor(private val attachmentId: Att
   companion object {
     private val TAG = Log.tag(GenerateAudioWaveFormJob::class.java)
 
-    private const val KEY_PART_ROW_ID = "part_row_id"
-    private const val KEY_PAR_UNIQUE_ID = "part_unique_id"
+    private const val KEY_ATTACHMENT_ID = "part_row_id"
 
     const val KEY = "GenerateAudioWaveFormJob"
 
@@ -48,8 +47,7 @@ class GenerateAudioWaveFormJob private constructor(private val attachmentId: Att
 
   override fun serialize(): ByteArray? {
     return JsonJobData.Builder()
-      .putLong(KEY_PART_ROW_ID, attachmentId.rowId)
-      .putLong(KEY_PAR_UNIQUE_ID, attachmentId.uniqueId)
+      .putLong(KEY_ATTACHMENT_ID, attachmentId.id)
       .serialize()
   }
 
@@ -89,7 +87,7 @@ class GenerateAudioWaveFormJob private constructor(private val attachmentId: Att
   class Factory : Job.Factory<GenerateAudioWaveFormJob> {
     override fun create(parameters: Parameters, serializedData: ByteArray?): GenerateAudioWaveFormJob {
       val data = JsonJobData.deserialize(serializedData)
-      return GenerateAudioWaveFormJob(AttachmentId(data.getLong(KEY_PART_ROW_ID), data.getLong(KEY_PAR_UNIQUE_ID)), parameters)
+      return GenerateAudioWaveFormJob(AttachmentId(data.getLong(KEY_ATTACHMENT_ID)), parameters)
     }
   }
 }

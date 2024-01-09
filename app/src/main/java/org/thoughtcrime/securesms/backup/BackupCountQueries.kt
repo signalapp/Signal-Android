@@ -21,7 +21,7 @@ object BackupCountQueries {
   @get:JvmStatic
   val attachmentCount: String = """
       SELECT COUNT(*) FROM ${AttachmentTable.TABLE_NAME} 
-      INNER JOIN ${MessageTable.TABLE_NAME} ON ${AttachmentTable.TABLE_NAME}.${AttachmentTable.MMS_ID} = ${MessageTable.TABLE_NAME}.${MessageTable.ID} 
+      INNER JOIN ${MessageTable.TABLE_NAME} ON ${AttachmentTable.TABLE_NAME}.${AttachmentTable.MESSAGE_ID} = ${MessageTable.TABLE_NAME}.${MessageTable.ID} 
       WHERE ${MessageTable.TABLE_NAME}.${MessageTable.EXPIRES_IN} <= 0 AND ${MessageTable.TABLE_NAME}.${MessageTable.VIEW_ONCE} <= 0
   """
 }

@@ -167,7 +167,7 @@ public class FullBackupExporter extends FullBackupBase {
         } else if (table.equals(GroupReceiptTable.TABLE_NAME)) {
           count = exportTable(table, input, outputStream, cursor -> isForNonExpiringMmsMessage(input, cursor.getLong(cursor.getColumnIndexOrThrow(GroupReceiptTable.MMS_ID))), null, count, estimatedCount, cancellationSignal);
         } else if (table.equals(AttachmentTable.TABLE_NAME)) {
-          count = exportTable(table, input, outputStream, cursor -> isForNonExpiringMmsMessage(input, cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentTable.MMS_ID))), (cursor, innerCount) -> exportAttachment(attachmentSecret, cursor, outputStream, innerCount, estimatedCount), count, estimatedCount, cancellationSignal);
+          count = exportTable(table, input, outputStream, cursor -> isForNonExpiringMmsMessage(input, cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentTable.MESSAGE_ID))), (cursor, innerCount) -> exportAttachment(attachmentSecret, cursor, outputStream, innerCount, estimatedCount), count, estimatedCount, cancellationSignal);
         } else if (table.equals(StickerTable.TABLE_NAME)) {
           count = exportTable(table, input, outputStream, cursor -> true, (cursor, innerCount) -> exportSticker(attachmentSecret, cursor, outputStream, innerCount, estimatedCount), count, estimatedCount, cancellationSignal);
         } else if (!TABLE_CONTENT_BLOCKLIST.contains(table)) {
@@ -444,11 +444,10 @@ public class FullBackupExporter extends FullBackupBase {
                                       long estimatedCount)
       throws IOException
   {
-    long rowId    = cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentTable.ROW_ID));
-    long uniqueId = cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentTable.UNIQUE_ID));
-    long size     = cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentTable.SIZE));
+    long rowId = cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentTable.ID));
+    long size  = cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentTable.DATA_SIZE));
 
-    String data   = cursor.getString(cursor.getColumnIndexOrThrow(AttachmentTable.DATA));
+    String data   = cursor.getString(cursor.getColumnIndexOrThrow(AttachmentTable.DATA_FILE));
     byte[] random = cursor.getBlob(cursor.getColumnIndexOrThrow(AttachmentTable.DATA_RANDOM));
 
     if (!TextUtils.isEmpty(data)) {
@@ -457,14 +456,14 @@ public class FullBackupExporter extends FullBackupBase {
 
       if (size <= 0 || fileLength != dbLength) {
         size = calculateVeryOldStreamLength(attachmentSecret, random, data);
-        Log.w(TAG, "Needed size calculation! Manual: " + size + " File: " + fileLength + "  DB: " + dbLength + " ID: " + new AttachmentId(rowId, uniqueId));
+        Log.w(TAG, "Needed size calculation! Manual: " + size + " File: " + fileLength + "  DB: " + dbLength + " ID: " + new AttachmentId(rowId));
       }
     }
 
     EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, ++count, estimatedCount));
     if (!TextUtils.isEmpty(data) && size > 0) {
       try (InputStream inputStream = openAttachmentStream(attachmentSecret, random, data)) {
-        outputStream.write(new AttachmentId(rowId, uniqueId), inputStream, size);
+        outputStream.write(new AttachmentId(rowId), inputStream, size);
       } catch (FileNotFoundException e) {
         Log.w(TAG, "Missing attachment", e);
       }

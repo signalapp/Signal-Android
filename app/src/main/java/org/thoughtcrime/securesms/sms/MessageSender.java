@@ -723,7 +723,7 @@ public class MessageSender {
 
     @Override
     public @NonNull String toString() {
-      return "{ID: " + attachmentId.getRowId() + ", URI: " + media.getUri() + ", Jobs: " + jobIds.stream().map(j -> "JOB::" + j).collect(Collectors.toList()) + "}";
+      return "{ID: " + attachmentId.id + ", URI: " + media.getUri() + ", Jobs: " + jobIds.stream().map(j -> "JOB::" + j).collect(Collectors.toList()) + "}";
     }
   }
 

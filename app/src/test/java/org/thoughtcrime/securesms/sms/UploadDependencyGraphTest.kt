@@ -214,7 +214,7 @@ class UploadDependencyGraphTest {
       val uploadData = AttachmentUploadJobData.ADAPTER.decode(steps[1][0].serialize()!!)
       val copyData = JsonJobData.deserialize(steps[2][0].serialize())
 
-      val uploadAttachmentId = AttachmentId(uploadData.attachmentRowId, uploadData.attachmentUniqueId)
+      val uploadAttachmentId = AttachmentId(uploadData.attachmentId)
       val copySourceAttachmentId = JsonUtils.fromJson(copyData.getString("source_id"), AttachmentId::class.java)
 
       assertEquals(uploadAttachmentId, copySourceAttachmentId)
@@ -228,7 +228,7 @@ class UploadDependencyGraphTest {
 
   private fun getAttachmentForPreUpload(id: Long, attachment: Attachment): DatabaseAttachment {
     return DatabaseAttachment(
-      attachmentId = AttachmentId(id, id),
+      attachmentId = AttachmentId(id),
       mmsId = AttachmentTable.PREUPLOAD_MESSAGE_ID,
       hasData = false,
       hasThumbnail = false,
@@ -237,10 +237,9 @@ class UploadDependencyGraphTest {
       size = attachment.size,
       fileName = attachment.fileName,
       cdnNumber = attachment.cdnNumber,
-      location = attachment.location,
-      key = attachment.key,
-      relay = attachment.relay,
-      digest = attachment.digest,
+      location = attachment.remoteLocation,
+      key = attachment.remoteKey,
+      digest = attachment.remoteDigest,
       incrementalDigest = attachment.incrementalDigest,
       incrementalMacChunkSize = attachment.incrementalMacChunkSize,
       fastPreflightId = attachment.fastPreflightId,

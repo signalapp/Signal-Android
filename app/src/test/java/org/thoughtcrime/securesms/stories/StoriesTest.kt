@@ -84,7 +84,7 @@ class StoriesTest {
     val messageRecord = FakeMessageRecords.buildMediaMmsMessageRecord(
       linkPreviews = listOf(
         FakeMessageRecords.buildLinkPreview(
-          attachmentId = AttachmentId(1, 2)
+          attachmentId = AttachmentId(1)
         )
       )
     )

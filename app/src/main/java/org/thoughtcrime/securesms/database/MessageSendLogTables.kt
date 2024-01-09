@@ -92,13 +92,13 @@ class MessageSendLogTables constructor(context: Context?, databaseHelper: Signal
       """
         CREATE TRIGGER msl_message_delete AFTER DELETE ON ${MessageTable.TABLE_NAME} 
         BEGIN 
-        	DELETE FROM $TABLE_NAME WHERE $ID IN (SELECT ${MslMessageTable.PAYLOAD_ID} FROM ${MslMessageTable.TABLE_NAME} WHERE ${MslMessageTable.MESSAGE_ID} = old.${MessageTable.ID});
+          DELETE FROM $TABLE_NAME WHERE $ID IN (SELECT ${MslMessageTable.PAYLOAD_ID} FROM ${MslMessageTable.TABLE_NAME} WHERE ${MslMessageTable.MESSAGE_ID} = old.${MessageTable.ID});
         END
       """,
       """
         CREATE TRIGGER msl_attachment_delete AFTER DELETE ON ${AttachmentTable.TABLE_NAME}
         BEGIN
-        	DELETE FROM $TABLE_NAME WHERE $ID IN (SELECT ${MslMessageTable.PAYLOAD_ID} FROM ${MslMessageTable.TABLE_NAME} WHERE ${MslMessageTable.MESSAGE_ID} = old.${AttachmentTable.MMS_ID});
+          DELETE FROM $TABLE_NAME WHERE $ID IN (SELECT ${MslMessageTable.PAYLOAD_ID} FROM ${MslMessageTable.TABLE_NAME} WHERE ${MslMessageTable.TABLE_NAME}.${MslMessageTable.MESSAGE_ID} = old.${AttachmentTable.MESSAGE_ID});
         END
       """
     )

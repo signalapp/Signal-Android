@@ -60,9 +60,8 @@ public final class LegacyAttachmentUploadJob extends BaseJob {
 
   private static final long UPLOAD_REUSE_THRESHOLD = TimeUnit.DAYS.toMillis(3);
 
-  private static final String KEY_ROW_ID      = "row_id";
-  private static final String KEY_UNIQUE_ID   = "unique_id";
-  private static final String KEY_FORCE_V2    = "force_v2";
+  private static final String KEY_ROW_ID   = "row_id";
+  private static final String KEY_FORCE_V2 = "force_v2";
 
   /**
    * Foreground notification shows while uploading attachments above this.
@@ -81,8 +80,7 @@ public final class LegacyAttachmentUploadJob extends BaseJob {
 
   @Override
   public @Nullable byte[] serialize() {
-    return new JsonJobData.Builder().putLong(KEY_ROW_ID, attachmentId.getRowId())
-                                    .putLong(KEY_UNIQUE_ID, attachmentId.getUniqueId())
+    return new JsonJobData.Builder().putLong(KEY_ROW_ID, attachmentId.id)
                                     .putBoolean(KEY_FORCE_V2, forceV2)
                                     .serialize();
   }
@@ -127,7 +125,7 @@ public final class LegacyAttachmentUploadJob extends BaseJob {
     }
 
     long timeSinceUpload = System.currentTimeMillis() - databaseAttachment.uploadTimestamp;
-    if (timeSinceUpload < UPLOAD_REUSE_THRESHOLD && !TextUtils.isEmpty(databaseAttachment.location)) {
+    if (timeSinceUpload < UPLOAD_REUSE_THRESHOLD && !TextUtils.isEmpty(databaseAttachment.remoteLocation)) {
       Log.i(TAG, "We can re-use an already-uploaded file. It was uploaded " + timeSinceUpload + " ms ago. Skipping.");
       return;
     } else if (databaseAttachment.uploadTimestamp > 0) {
@@ -276,7 +274,7 @@ public final class LegacyAttachmentUploadJob extends BaseJob {
     public @NonNull LegacyAttachmentUploadJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
       JsonJobData data = JsonJobData.deserialize(serializedData);
 
-      return new LegacyAttachmentUploadJob(parameters, new AttachmentId(data.getLong(KEY_ROW_ID), data.getLong(KEY_UNIQUE_ID)), data.getBooleanOrDefault(KEY_FORCE_V2, false));
+      return new LegacyAttachmentUploadJob(parameters, new AttachmentId(data.getLong(KEY_ROW_ID)), data.getBooleanOrDefault(KEY_FORCE_V2, false));
     }
   }
 }

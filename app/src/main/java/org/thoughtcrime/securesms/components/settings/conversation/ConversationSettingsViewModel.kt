@@ -76,7 +76,7 @@ sealed class ConversationSettingsViewModel(
       if (!cleared) {
         state.copy(
           sharedMedia = mediaRecords,
-          sharedMediaIds = mediaRecords.mapNotNull { it.attachment?.attachmentId?.rowId },
+          sharedMediaIds = mediaRecords.mapNotNull { it.attachment?.attachmentId?.id },
           sharedMediaLoaded = true,
           displayInternalRecipientDetails = repository.isInternalRecipientDetailsEnabled()
         )

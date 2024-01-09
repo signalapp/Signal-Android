@@ -262,19 +262,19 @@ public abstract class PushSendJob extends SendJob {
   }
 
   protected @Nullable SignalServiceAttachment getAttachmentPointerFor(Attachment attachment) {
-    if (TextUtils.isEmpty(attachment.location)) {
+    if (TextUtils.isEmpty(attachment.remoteLocation)) {
       Log.w(TAG, "empty content id");
       return null;
     }
 
-    if (TextUtils.isEmpty(attachment.key)) {
+    if (TextUtils.isEmpty(attachment.remoteKey)) {
       Log.w(TAG, "empty encrypted key");
       return null;
     }
 
     try {
-      final SignalServiceAttachmentRemoteId remoteId = SignalServiceAttachmentRemoteId.from(attachment.location);
-      final byte[]                          key      = Base64.decode(attachment.key);
+      final SignalServiceAttachmentRemoteId remoteId = SignalServiceAttachmentRemoteId.from(attachment.remoteLocation);
+      final byte[]                          key      = Base64.decode(attachment.remoteKey);
 
       int width  = attachment.width;
       int height = attachment.height;
@@ -296,7 +296,7 @@ public abstract class PushSendJob extends SendJob {
                                                 Optional.empty(),
                                                 width,
                                                 height,
-                                                Optional.ofNullable(attachment.digest),
+                                                Optional.ofNullable(attachment.remoteDigest),
                                                 Optional.ofNullable(attachment.getIncrementalDigest()),
                                                 attachment.incrementalMacChunkSize,
                                                 Optional.ofNullable(attachment.fileName),

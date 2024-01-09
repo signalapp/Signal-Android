@@ -59,9 +59,8 @@ public final class AttachmentCompressionJob extends BaseJob {
   @SuppressWarnings("unused")
   private static final String TAG = Log.tag(AttachmentCompressionJob.class);
 
-  private static final String KEY_ROW_ID              = "row_id";
-  private static final String KEY_UNIQUE_ID           = "unique_id";
-  private static final String KEY_MMS                 = "mms";
+  private static final String KEY_ATTACHMENT_ID = "row_id";
+  private static final String KEY_MMS           = "mms";
   private static final String KEY_MMS_SUBSCRIPTION_ID = "mms_subscription_id";
 
   private final AttachmentId attachmentId;
@@ -107,8 +106,7 @@ public final class AttachmentCompressionJob extends BaseJob {
 
   @Override
   public @Nullable byte [] serialize() {
-    return new JsonJobData.Builder().putLong(KEY_ROW_ID, attachmentId.getRowId())
-                                    .putLong(KEY_UNIQUE_ID, attachmentId.getUniqueId())
+    return new JsonJobData.Builder().putLong(KEY_ATTACHMENT_ID, attachmentId.id)
                                     .putBoolean(KEY_MMS, mms)
                                     .putInt(KEY_MMS_SUBSCRIPTION_ID, mmsSubscriptionId)
                                     .serialize();
@@ -391,7 +389,7 @@ public final class AttachmentCompressionJob extends BaseJob {
     }
 
     JsonJobData data = JsonJobData.deserialize(serializedData);
-    final AttachmentId parsed = new AttachmentId(data.getLong(KEY_ROW_ID), data.getLong(KEY_UNIQUE_ID));
+    final AttachmentId parsed = new AttachmentId(data.getLong(KEY_ATTACHMENT_ID));
     return attachmentId.equals(parsed);
   }
 
@@ -401,7 +399,7 @@ public final class AttachmentCompressionJob extends BaseJob {
       JsonJobData data = JsonJobData.deserialize(serializedData);
 
       return new AttachmentCompressionJob(parameters,
-                                          new AttachmentId(data.getLong(KEY_ROW_ID), data.getLong(KEY_UNIQUE_ID)),
+                                          new AttachmentId(data.getLong(KEY_ATTACHMENT_ID)),
                                           data.getBoolean(KEY_MMS),
                                           data.getInt(KEY_MMS_SUBSCRIPTION_ID));
     }
