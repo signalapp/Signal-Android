@@ -358,13 +358,13 @@ class AttachmentTable(
     return count
   }
 
-  fun deleteAttachmentFilesForViewOnceMessage(mmsId: Long) {
-    Log.d(TAG, "[deleteAttachmentFilesForViewOnceMessage] mmsId: $mmsId")
+  fun deleteAttachmentFilesForViewOnceMessage(messageId: Long) {
+    Log.d(TAG, "[deleteAttachmentFilesForViewOnceMessage] messageId: $messageId")
 
     writableDatabase.withinTransaction { db ->
       db.select(DATA_FILE, CONTENT_TYPE, ID)
         .from(TABLE_NAME)
-        .where("$MESSAGE_ID = ?", mmsId)
+        .where("$MESSAGE_ID = ?", messageId)
         .run()
         .forEach { cursor ->
           deleteAttachmentOnDisk(
@@ -388,11 +388,12 @@ class AttachmentTable(
           BLUR_HASH to null,
           CONTENT_TYPE to MediaUtil.VIEW_ONCE
         )
+        .where("$MESSAGE_ID = ?", messageId)
         .run()
 
       notifyAttachmentListeners()
 
-      val threadId = messages.getThreadIdForMessage(mmsId)
+      val threadId = messages.getThreadIdForMessage(messageId)
       if (threadId > 0) {
         notifyConversationListeners(threadId)
       }
