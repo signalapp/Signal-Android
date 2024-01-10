@@ -85,7 +85,6 @@ class PlaybackTestActivity : AppCompatActivity() {
   }
 }
 
-
 @OptIn(UnstableApi::class)
 @Composable
 fun ExoVideoView(source: MediaSource, exoPlayer: ExoPlayer, modifier: Modifier = Modifier) {

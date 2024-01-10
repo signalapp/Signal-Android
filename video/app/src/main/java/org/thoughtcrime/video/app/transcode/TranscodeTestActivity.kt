@@ -7,5 +7,4 @@ package org.thoughtcrime.video.app.transcode
 
 import androidx.appcompat.app.AppCompatActivity
 
-class TranscodeTestActivity : AppCompatActivity() {
-}
+class TranscodeTestActivity : AppCompatActivity()

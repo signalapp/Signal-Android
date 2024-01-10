@@ -6,11 +6,7 @@
 package org.thoughtcrime.video.app
 
 import android.content.Intent
-import android.content.pm.ActivityInfo
-import android.content.pm.PackageManager
-import android.content.pm.PackageManager.NameNotFoundException
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.Arrangement
@@ -24,7 +20,6 @@ import org.thoughtcrime.video.app.playback.PlaybackTestActivity
 import org.thoughtcrime.video.app.transcode.TranscodeTestActivity
 import org.thoughtcrime.video.app.ui.composables.LabeledButton
 import org.thoughtcrime.video.app.ui.theme.SignalTheme
-
 
 /**
  * Main activity for this sample app.
