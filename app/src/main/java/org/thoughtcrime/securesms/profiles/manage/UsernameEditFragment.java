@@ -101,10 +101,6 @@ public class UsernameEditFragment extends LoggingFragment {
     binding.usernameDoneButton.setOnClickListener(v -> viewModel.onUsernameSubmitted());
     binding.usernameSkipButton.setOnClickListener(v -> viewModel.onUsernameSkipped());
 
-    String        username      = SignalStore.account().getUsername();
-    UsernameState usernameState = username != null ? new UsernameState.Set(username) : UsernameState.NoUsername.INSTANCE;
-
-    binding.usernameText.setText(usernameState.getNickname());
     binding.usernameText.addTextChangedListener(new SimpleTextWatcher() {
       @Override
       public void onTextChanged(@NonNull String text) {
@@ -114,7 +110,6 @@ public class UsernameEditFragment extends LoggingFragment {
       }
     });
 
-    binding.discriminatorText.setText(usernameState.getDiscriminator());
     binding.discriminatorText.addTextChangedListener(new SimpleTextWatcher() {
       @Override
       public void onTextChanged(@NonNull String text) {
@@ -156,9 +151,9 @@ public class UsernameEditFragment extends LoggingFragment {
   private void onUiStateChanged(@NonNull UsernameEditViewModel.State state) {
     TextInputLayout usernameInputWrapper = binding.usernameTextWrapper;
 
-    presentProgressState(state.username);
+    presentProgressState(state.usernameState);
     presentButtonState(state.buttonState);
-    presentSummary(state.username);
+    presentSummary(state.usernameState);
 
     binding.root.setLayoutTransition(ANIMATED_LAYOUT);
 
@@ -227,7 +222,7 @@ public class UsernameEditFragment extends LoggingFragment {
 
   private void presentSummary(@NonNull UsernameState usernameState) {
     if (usernameState.getUsername() != null) {
-      binding.summary.setText(usernameState.getUsername());
+      binding.summary.setText(usernameState.getUsername().getUsername());
       binding.summary.setAlpha(1f);
     } else if (usernameState instanceof UsernameState.Loading) {
       binding.summary.setAlpha(0.5f);

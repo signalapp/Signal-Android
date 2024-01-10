@@ -12,6 +12,8 @@ import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.PublishSubject
 import org.signal.core.util.Result
+import org.signal.core.util.logging.Log
+import org.signal.libsignal.usernames.Username
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository.UsernameDeleteResult
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository.UsernameSetResult
@@ -19,6 +21,7 @@ import org.thoughtcrime.securesms.util.UsernameUtil.InvalidReason
 import org.thoughtcrime.securesms.util.UsernameUtil.checkDiscriminator
 import org.thoughtcrime.securesms.util.UsernameUtil.checkUsername
 import org.thoughtcrime.securesms.util.rx.RxStore
+import org.whispersystems.signalservice.api.util.Usernames
 import java.util.concurrent.TimeUnit
 
 /**
@@ -40,15 +43,15 @@ internal class UsernameEditViewModel private constructor(private val isInRegistr
     defaultValue = State(
       buttonState = ButtonState.SUBMIT_DISABLED,
       usernameStatus = UsernameStatus.NONE,
-      username = SignalStore.account().username?.let { UsernameState.Set(it) } ?: UsernameState.NoUsername
+      usernameState = SignalStore.account().username?.let { UsernameState.Set(Username(it)) } ?: UsernameState.NoUsername
     ),
     scheduler = Schedulers.computation()
   )
 
   private val stateMachineStore = RxStore<UsernameEditStateMachine.State>(
     defaultValue = UsernameEditStateMachine.NoUserEntry(
-      nickname = SignalStore.account().username?.split(UsernameState.DELIMITER)?.first() ?: "",
-      discriminator = SignalStore.account().username?.split(UsernameState.DELIMITER)?.last() ?: "",
+      nickname = SignalStore.account().username?.split(Usernames.DELIMITER)?.first() ?: "",
+      discriminator = SignalStore.account().username?.split(Usernames.DELIMITER)?.last() ?: "",
       stateModifier = UsernameEditStateMachine.StateModifier.SYSTEM
     ),
     scheduler = Schedulers.computation()
@@ -76,7 +79,7 @@ internal class UsernameEditViewModel private constructor(private val isInRegistr
         return@update State(
           buttonState = if (isInRegistration) ButtonState.SUBMIT_DISABLED else ButtonState.DELETE,
           usernameStatus = UsernameStatus.NONE,
-          username = UsernameState.NoUsername
+          usernameState = UsernameState.NoUsername
         )
       }
 
@@ -88,13 +91,13 @@ internal class UsernameEditViewModel private constructor(private val isInRegistr
         State(
           buttonState = ButtonState.SUBMIT_DISABLED,
           usernameStatus = UsernameStatus.NONE,
-          username = state.username
+          usernameState = state.usernameState
         )
       } else {
         State(
           buttonState = ButtonState.SUBMIT_DISABLED,
           usernameStatus = UsernameStatus.NONE,
-          username = state.username
+          usernameState = state.usernameState
         )
       }
     }
@@ -110,14 +113,14 @@ internal class UsernameEditViewModel private constructor(private val isInRegistr
         return@update State(
           buttonState = if (isInRegistration) ButtonState.SUBMIT_DISABLED else ButtonState.DELETE,
           usernameStatus = UsernameStatus.NONE,
-          username = UsernameState.NoUsername
+          usernameState = UsernameState.NoUsername
         )
       }
 
       State(
         buttonState = ButtonState.SUBMIT_DISABLED,
         usernameStatus = UsernameStatus.NONE,
-        username = state.username
+        usernameState = state.usernameState
       )
     }
 
@@ -132,61 +135,62 @@ internal class UsernameEditViewModel private constructor(private val isInRegistr
   }
 
   fun onUsernameSubmitted() {
-    val state = stateMachineStore.state
+    val editState = stateMachineStore.state
+    val usernameState = uiState.state.usernameState
+    val isCaseChange = isCaseChange(editState)
 
-    if (isCaseChange(state)) {
-      handleUserConfirmation(UsernameRepository::updateUsername)
-    } else {
-      handleUserConfirmation(UsernameRepository::confirmUsername)
-    }
-  }
-
-  private inline fun <reified T : UsernameState> handleUserConfirmation(
-    repositoryWorkerMethod: (T) -> Single<UsernameSetResult>
-  ) {
-    val usernameState = uiState.state.username
-    if (usernameState !is T) {
-      uiState.update { State(ButtonState.SUBMIT_DISABLED, UsernameStatus.NONE, it.username) }
+    if (usernameState !is UsernameState.Reserved && usernameState !is UsernameState.CaseChange) {
+      Log.w(TAG, "Username was submitted, current state is invalid! State: ${usernameState.javaClass.simpleName}")
+      uiState.update { it.copy(buttonState = ButtonState.SUBMIT_DISABLED, usernameStatus = UsernameStatus.NONE) }
       return
     }
 
-    if (usernameState.requireUsername() == SignalStore.account().username) {
-      uiState.update { State(ButtonState.SUBMIT_DISABLED, UsernameStatus.NONE, it.username) }
+    if (usernameState.requireUsername().username == SignalStore.account().username) {
+      Log.d(TAG, "Username was submitted, but was identical to the current username. Ignoring.")
+      uiState.update { it.copy(buttonState = ButtonState.SUBMIT_DISABLED, usernameStatus = UsernameStatus.NONE) }
       return
     }
 
-    val invalidReason = checkUsername(usernameState.getNickname())
+    val invalidReason: InvalidReason? = checkUsername(usernameState.getNickname())
     if (invalidReason != null) {
-      uiState.update { State(ButtonState.SUBMIT_DISABLED, mapNicknameError(invalidReason), it.username) }
+      Log.w(TAG, "Username was submitted, but did not pass validity checks. Reason: $invalidReason")
+      uiState.update { it.copy(buttonState = ButtonState.SUBMIT_DISABLED, usernameStatus = mapNicknameError(invalidReason)) }
       return
     }
 
-    uiState.update { State(ButtonState.SUBMIT_LOADING, UsernameStatus.NONE, it.username) }
+    uiState.update { it.copy(buttonState = ButtonState.SUBMIT_LOADING, usernameStatus = UsernameStatus.NONE) }
 
-    disposables += repositoryWorkerMethod(usernameState).subscribe { result: UsernameSetResult ->
+    val usernameConfirmOperation: Single<UsernameSetResult> = if (isCaseChange) {
+      UsernameRepository.updateUsernameDisplayForCurrentLink(usernameState.requireUsername())
+    } else {
+      val reservation = usernameState as UsernameState.Reserved
+      UsernameRepository.confirmUsernameAndCreateNewLink(reservation.requireUsername())
+    }
+
+    disposables += usernameConfirmOperation.subscribe { result: UsernameSetResult ->
       val nickname = usernameState.getNickname()
 
       when (result) {
         UsernameSetResult.SUCCESS -> {
           SignalStore.uiHints().markHasSetOrSkippedUsernameCreation()
-          uiState.update { State(ButtonState.SUBMIT_DISABLED, UsernameStatus.NONE, it.username) }
+          uiState.update { State(ButtonState.SUBMIT_DISABLED, UsernameStatus.NONE, it.usernameState) }
           events.onNext(Event.SUBMIT_SUCCESS)
         }
 
         UsernameSetResult.USERNAME_INVALID -> {
-          uiState.update { State(ButtonState.SUBMIT_DISABLED, UsernameStatus.INVALID_GENERIC, it.username) }
+          uiState.update { State(ButtonState.SUBMIT_DISABLED, UsernameStatus.INVALID_GENERIC, it.usernameState) }
           events.onNext(Event.SUBMIT_FAIL_INVALID)
           nickname?.let { onNicknameUpdated(it) }
         }
 
         UsernameSetResult.CANDIDATE_GENERATION_ERROR, UsernameSetResult.USERNAME_UNAVAILABLE -> {
-          uiState.update { State(ButtonState.SUBMIT_DISABLED, UsernameStatus.TAKEN, it.username) }
+          uiState.update { State(ButtonState.SUBMIT_DISABLED, UsernameStatus.TAKEN, it.usernameState) }
           events.onNext(Event.SUBMIT_FAIL_TAKEN)
           nickname?.let { onNicknameUpdated(it) }
         }
 
         UsernameSetResult.NETWORK_ERROR -> {
-          uiState.update { State(ButtonState.SUBMIT, UsernameStatus.NONE, it.username) }
+          uiState.update { State(ButtonState.SUBMIT, UsernameStatus.NONE, it.usernameState) }
           events.onNext(Event.NETWORK_FAILURE)
         }
       }
@@ -194,17 +198,17 @@ internal class UsernameEditViewModel private constructor(private val isInRegistr
   }
 
   fun onUsernameDeleted() {
-    uiState.update { state: State -> State(ButtonState.DELETE_LOADING, UsernameStatus.NONE, state.username) }
+    uiState.update { state: State -> State(ButtonState.DELETE_LOADING, UsernameStatus.NONE, state.usernameState) }
 
-    disposables += UsernameRepository.deleteUsername().subscribe { result: UsernameDeleteResult ->
+    disposables += UsernameRepository.deleteUsernameAndLink().subscribe { result: UsernameDeleteResult ->
       when (result) {
         UsernameDeleteResult.SUCCESS -> {
-          uiState.update { state: State -> State(ButtonState.DELETE_DISABLED, UsernameStatus.NONE, state.username) }
+          uiState.update { state: State -> State(ButtonState.DELETE_DISABLED, UsernameStatus.NONE, state.usernameState) }
           events.onNext(Event.DELETE_SUCCESS)
         }
 
         UsernameDeleteResult.NETWORK_ERROR -> {
-          uiState.update { state: State -> State(ButtonState.DELETE, UsernameStatus.NONE, state.username) }
+          uiState.update { state: State -> State(ButtonState.DELETE, UsernameStatus.NONE, state.usernameState) }
           events.onNext(Event.NETWORK_FAILURE)
         }
       }
@@ -225,7 +229,7 @@ internal class UsernameEditViewModel private constructor(private val isInRegistr
     }
 
     val newLower = state.nickname.lowercase()
-    val oldLower = SignalStore.account().username?.split(UsernameState.DELIMITER)?.firstOrNull()?.lowercase()
+    val oldLower = SignalStore.account().username?.split(Usernames.DELIMITER)?.firstOrNull()?.lowercase()
 
     return newLower == oldLower
   }
@@ -241,29 +245,28 @@ internal class UsernameEditViewModel private constructor(private val isInRegistr
       return
     }
 
+    val invalidReason: InvalidReason? = checkUsername(nickname)
+    if (invalidReason != null) {
+      uiState.update { uiState ->
+        uiState.copy(
+          buttonState = ButtonState.SUBMIT_DISABLED,
+          usernameStatus = mapNicknameError(invalidReason)
+        )
+      }
+      return
+    }
+
     if (isCaseChange(state)) {
-      val discriminator = SignalStore.account().username?.split(UsernameState.DELIMITER)?.lastOrNull() ?: error("Unexpected case change, no discriminator!")
+      val discriminator = SignalStore.account().username?.split(Usernames.DELIMITER)?.lastOrNull() ?: error("Unexpected case change, no discriminator!")
       uiState.update {
         State(
           buttonState = ButtonState.SUBMIT,
           usernameStatus = UsernameStatus.NONE,
-          username = UsernameState.CaseChange("${state.nickname}${UsernameState.DELIMITER}$discriminator")
+          usernameState = UsernameState.CaseChange(Username("${state.nickname}${Usernames.DELIMITER}$discriminator"))
         )
       }
 
       stateMachineStore.update { s -> s.onSystemChangedDiscriminator(discriminator) }
-      return
-    }
-
-    val invalidReason: InvalidReason? = checkUsername(nickname)
-    if (invalidReason != null) {
-      uiState.update { uiState ->
-        State(
-          buttonState = ButtonState.SUBMIT_DISABLED,
-          usernameStatus = mapNicknameError(invalidReason),
-          username = uiState.username
-        )
-      }
       return
     }
 
@@ -282,7 +285,7 @@ internal class UsernameEditViewModel private constructor(private val isInRegistr
         State(
           buttonState = ButtonState.SUBMIT_DISABLED,
           usernameStatus = mapDiscriminatorError(discriminatorInvalidReason),
-          username = s.username
+          usernameState = s.usernameState
         )
       }
       return
@@ -333,10 +336,10 @@ internal class UsernameEditViewModel private constructor(private val isInRegistr
     }
   }
 
-  class State(
+  data class State(
     @JvmField val buttonState: ButtonState,
     @JvmField val usernameStatus: UsernameStatus,
-    @JvmField val username: UsernameState
+    @JvmField val usernameState: UsernameState
   )
 
   enum class UsernameStatus {
@@ -368,6 +371,8 @@ internal class UsernameEditViewModel private constructor(private val isInRegistr
   }
 
   companion object {
+    private val TAG = Log.tag(UsernameEditViewModel::class.java)
+
     private const val NICKNAME_PUBLISHER_DEBOUNCE_TIMEOUT_MILLIS: Long = 1000
 
     private fun mapNicknameError(invalidReason: InvalidReason): UsernameStatus {
@@ -376,7 +381,6 @@ internal class UsernameEditViewModel private constructor(private val isInRegistr
         InvalidReason.TOO_LONG -> UsernameStatus.TOO_LONG
         InvalidReason.STARTS_WITH_NUMBER -> UsernameStatus.CANNOT_START_WITH_NUMBER
         InvalidReason.INVALID_CHARACTERS -> UsernameStatus.INVALID_CHARACTERS
-        else -> UsernameStatus.INVALID_GENERIC
       }
     }
 

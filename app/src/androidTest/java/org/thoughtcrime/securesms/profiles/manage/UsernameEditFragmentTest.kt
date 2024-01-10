@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.testing.SignalActivityRule
 import org.thoughtcrime.securesms.testing.assertIsNotNull
 import org.thoughtcrime.securesms.testing.assertIsNull
 import org.thoughtcrime.securesms.testing.success
+import org.whispersystems.signalservice.api.util.Usernames
 import org.whispersystems.signalservice.internal.push.ReserveUsernameResponse
 import java.util.concurrent.TimeUnit
 
@@ -96,7 +97,7 @@ class UsernameEditFragmentTest {
   fun testNicknameUpdateHappyPath() {
     val nickname = "Spiderman"
     val discriminator = "4578"
-    val username = "$nickname${UsernameState.DELIMITER}$discriminator"
+    val username = "$nickname${Usernames.DELIMITER}$discriminator"
 
     InstrumentationApplicationDependencyProvider.addMockWebRequestHandlers(
       Put("/v1/accounts/username/reserved") {

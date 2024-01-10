@@ -27,6 +27,7 @@ import org.whispersystems.signalservice.api.push.exceptions.UsernameIsNotAssocia
 import org.whispersystems.signalservice.api.push.exceptions.UsernameIsNotReservedException
 import org.whispersystems.signalservice.api.push.exceptions.UsernameMalformedException
 import org.whispersystems.signalservice.api.push.exceptions.UsernameTakenException
+import org.whispersystems.signalservice.api.util.Usernames
 import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.api.util.toByteArray
 import java.io.IOException
@@ -89,16 +90,7 @@ object UsernameRepository {
   private val accountManager: SignalServiceAccountManager get() = ApplicationDependencies.getSignalServiceAccountManager()
 
   /**
-   * Given a username, update the username link, given that all was changed was the casing of the nickname.
-   */
-  fun updateUsername(caseChange: UsernameState.CaseChange): Single<UsernameSetResult> {
-    return Single
-      .fromCallable { updateUsernameInternal(caseChange) }
-      .subscribeOn(Schedulers.io())
-  }
-
-  /**
-   * Given a nickname, this will temporarily reserve a matching discriminator that can later be confirmed via [confirmUsername].
+   * Given a nickname, this will temporarily reserve a matching discriminator that can later be confirmed via [confirmUsernameAndCreateNewLink].
    */
   fun reserveUsername(nickname: String, discriminator: String?): Single<Result<UsernameState.Reserved, UsernameSetResult>> {
     return Single
@@ -107,19 +99,32 @@ object UsernameRepository {
   }
 
   /**
-   * Given a reserved username (obtained via [reserveUsername]), this will confirm that reservation, assigning the user that username.
+   * This changes the encrypted username associated with your current username link.
+   * The intent of this is to allow users to change the casing of their username without changing the link,
+   * since usernames are case-insensitive.
    */
-  fun confirmUsername(reserved: UsernameState.Reserved): Single<UsernameSetResult> {
+  fun updateUsernameDisplayForCurrentLink(updatedUsername: Username): Single<UsernameSetResult> {
     return Single
-      .fromCallable { confirmUsernameInternal(reserved) }
+      .fromCallable { updateUsernameDisplayForCurrentLinkInternal(updatedUsername) }
       .subscribeOn(Schedulers.io())
   }
 
   /**
-   * Deletes the username from the local user's account
+   * Given a reserved username (obtained via [reserveUsername]), this will confirm that reservation, assigning the user that username.
+   * It will also create a new username link. Therefore, be sure to call [updateUsernameDisplayForCurrentLink] instead if all that has changed is the
+   * casing, and you want to keep the link the same.
+   */
+  fun confirmUsernameAndCreateNewLink(username: Username): Single<UsernameSetResult> {
+    return Single
+      .fromCallable { confirmUsernameAndCreateNewLinkInternal(username) }
+      .subscribeOn(Schedulers.io())
+  }
+
+  /**
+   * Deletes the username and username link from the local user's account
    */
   @JvmStatic
-  fun deleteUsername(): Single<UsernameDeleteResult> {
+  fun deleteUsernameAndLink(): Single<UsernameDeleteResult> {
     return Single
       .fromCallable { deleteUsernameInternal() }
       .subscribeOn(Schedulers.io())
@@ -309,7 +314,7 @@ object UsernameRepository {
       val candidates: List<Username> = if (discriminator == null) {
         Username.candidatesFrom(nickname, UsernameUtil.MIN_NICKNAME_LENGTH, UsernameUtil.MAX_NICKNAME_LENGTH)
       } else {
-        listOf(Username("$nickname${UsernameState.DELIMITER}$discriminator"))
+        listOf(Username("$nickname${Usernames.DELIMITER}$discriminator"))
       }
 
       val hashes: List<String> = candidates
@@ -324,7 +329,7 @@ object UsernameRepository {
       }
 
       Log.i(TAG, "[reserveUsername] Successfully reserved username.")
-      success(UsernameState.Reserved(candidates[hashIndex].username, response))
+      success(UsernameState.Reserved(candidates[hashIndex]))
     } catch (e: BaseUsernameException) {
       Log.w(TAG, "[reserveUsername] An error occurred while generating candidates.")
       failure(UsernameSetResult.CANDIDATE_GENERATION_ERROR)
@@ -341,63 +346,65 @@ object UsernameRepository {
   }
 
   @WorkerThread
-  private fun updateUsernameInternal(caseChange: UsernameState.CaseChange): UsernameSetResult {
+  private fun updateUsernameDisplayForCurrentLinkInternal(updatedUsername: Username): UsernameSetResult {
+    Log.i(TAG, "[updateUsernameDisplayForCurrentLink] Beginning username update...")
+
     return try {
       val oldUsernameLink = SignalStore.account().usernameLink ?: return UsernameSetResult.USERNAME_INVALID
-      val username = Username(caseChange.username)
-      val newUsernameLink = username.generateLink(oldUsernameLink.entropy)
+      val newUsernameLink = updatedUsername.generateLink(oldUsernameLink.entropy)
       val usernameLinkComponents = accountManager.updateUsernameLink(newUsernameLink)
 
-      SignalStore.account().username = username.username
+      SignalStore.account().username = updatedUsername.username
       SignalStore.account().usernameLink = usernameLinkComponents
+      SignalDatabase.recipients.setUsername(Recipient.self().id, updatedUsername.username)
+      SignalStore.account().usernameSyncState = AccountValues.UsernameSyncState.IN_SYNC
+      SignalStore.account().usernameSyncErrorCount = 0
+
+      SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
+      StorageSyncHelper.scheduleSyncForDataChange()
+      Log.i(TAG, "[updateUsernameDisplayForCurrentLink] Successfully updated username.")
+
+      UsernameSetResult.SUCCESS
+    } catch (e: IOException) {
+      Log.w(TAG, "[updateUsernameDisplayForCurrentLink] Generic network exception.", e)
+      UsernameSetResult.NETWORK_ERROR
+    }
+  }
+
+  @WorkerThread
+  private fun confirmUsernameAndCreateNewLinkInternal(username: Username): UsernameSetResult {
+    Log.i(TAG, "[confirmUsernameAndCreateNewLink] Beginning username confirmation...")
+
+    return try {
+      accountManager.confirmUsername(username)
+      SignalStore.account().username = username.username
+      SignalStore.account().usernameLink = null
       SignalDatabase.recipients.setUsername(Recipient.self().id, username.username)
       SignalStore.account().usernameSyncState = AccountValues.UsernameSyncState.IN_SYNC
       SignalStore.account().usernameSyncErrorCount = 0
 
       SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
       StorageSyncHelper.scheduleSyncForDataChange()
-      Log.i(TAG, "[updateUsername] Successfully updated username.")
-
-      UsernameSetResult.SUCCESS
-    } catch (e: IOException) {
-      Log.w(TAG, "[updateUsername] Generic network exception.", e)
-      UsernameSetResult.NETWORK_ERROR
-    }
-  }
-
-  @WorkerThread
-  private fun confirmUsernameInternal(reserved: UsernameState.Reserved): UsernameSetResult {
-    return try {
-      val username = Username(reserved.username)
-      accountManager.confirmUsername(reserved.username, reserved.reserveUsernameResponse)
-      SignalStore.account().username = username.username
-      SignalStore.account().usernameLink = null
-      SignalDatabase.recipients.setUsername(Recipient.self().id, reserved.username)
-      SignalStore.account().usernameSyncState = AccountValues.UsernameSyncState.IN_SYNC
-      SignalStore.account().usernameSyncErrorCount = 0
-
-      SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
-      StorageSyncHelper.scheduleSyncForDataChange()
-      Log.i(TAG, "[confirmUsername] Successfully confirmed username.")
+      Log.i(TAG, "[confirmUsernameAndCreateNewLink] Successfully confirmed username.")
 
       if (tryToSetUsernameLink(username)) {
-        Log.i(TAG, "[confirmUsername] Successfully confirmed username link.")
+        Log.i(TAG, "[confirmUsernameAndCreateNewLink] Successfully confirmed username link.")
       } else {
-        Log.w(TAG, "[confirmUsername] Failed to confirm a username link. We'll try again when the user goes to view their link.")
+        Log.w(TAG, "[confirmUsernameAndCreateNewLink] Failed to confirm a username link. We'll try again when the user goes to view their link.")
       }
 
       UsernameSetResult.SUCCESS
     } catch (e: UsernameTakenException) {
-      Log.w(TAG, "[confirmUsername] Username gone.")
+      Log.w(TAG, "[confirmUsernameAndCreateNewLink] Username gone.")
       UsernameSetResult.USERNAME_UNAVAILABLE
     } catch (e: UsernameIsNotReservedException) {
-      Log.w(TAG, "[confirmUsername] Username was not reserved.")
+      Log.w(TAG, "[confirmUsernameAndCreateNewLink] Username was not reserved.")
       UsernameSetResult.USERNAME_INVALID
     } catch (e: BaseUsernameException) {
-      Log.w(TAG, "[confirmUsername] Username was not reserved.")
+      Log.w(TAG, "[confirmUsernameAndCreateNewLink] Username was not reserved.")
       UsernameSetResult.USERNAME_INVALID
     } catch (e: IOException) {
-      Log.w(TAG, "[confirmUsername] Generic network exception.", e)
+      Log.w(TAG, "[confirmUsernameAndCreateNewLink] Generic network exception.", e)
       UsernameSetResult.NETWORK_ERROR
     }
   }

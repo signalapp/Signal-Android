@@ -1109,18 +1109,16 @@ public class PushServiceSocket {
    * PUT /v1/accounts/username_hash/confirm
    * Set a previously reserved username for the account.
    *
-   * @param username                The username the user wishes to confirm. For example, myusername.27
-   * @param reserveUsernameResponse The response object from the reservation
-   * @throws IOException            Thrown when the username is invalid or taken, or when another network error occurs.
+   * @param username     The username the user wishes to confirm.
+   * @throws IOException Thrown when the username is invalid or taken, or when another network error occurs.
    */
-  public void confirmUsername(String username, ReserveUsernameResponse reserveUsernameResponse) throws IOException {
+  public void confirmUsername(Username username) throws IOException {
     try {
       byte[] randomness = new byte[32];
       random.nextBytes(randomness);
 
-      byte[]                 proof                  = new Username(username).generateProofWithRandomness(randomness);
-      ConfirmUsernameRequest confirmUsernameRequest = new ConfirmUsernameRequest(reserveUsernameResponse.getUsernameHash(),
-                                                                                 Base64.encodeUrlSafeWithoutPadding(proof));
+      byte[]                 proof                  = username.generateProofWithRandomness(randomness);
+      ConfirmUsernameRequest confirmUsernameRequest = new ConfirmUsernameRequest(Base64.encodeUrlSafeWithoutPadding(username.getHash()), Base64.encodeUrlSafeWithoutPadding(proof));
 
       makeServiceRequest(CONFIRM_USERNAME_PATH, "PUT", JsonUtil.toJson(confirmUsernameRequest), NO_HEADERS, (responseCode, body) -> {
         switch (responseCode) {
@@ -1159,7 +1157,7 @@ public class PushServiceSocket {
     makeServiceRequest(USERNAME_LINK_PATH, "DELETE", null);
   }
 
-  /** Given a link serverId (see {@link #createUsernameLink(String)}), this will return the encrypted username associate with the link. */
+  /** Given a link serverId (see {@link #createUsernameLink(String, boolean)}}), this will return the encrypted username associate with the link. */
   public byte[] getEncryptedUsernameFromLinkServerId(UUID serverId) throws IOException {
     String                          response = makeServiceRequestWithoutAuthentication(String.format(USERNAME_FROM_LINK_PATH, serverId.toString()), "GET", null);
     GetUsernameFromLinkResponseBody parsed   = JsonUtil.fromJson(response, GetUsernameFromLinkResponseBody.class);

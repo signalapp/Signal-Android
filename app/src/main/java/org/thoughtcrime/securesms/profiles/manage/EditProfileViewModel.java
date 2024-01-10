@@ -104,7 +104,7 @@ class EditProfileViewModel extends ViewModel {
   }
 
   public Single<UsernameRepository.UsernameDeleteResult> deleteUsername() {
-    return UsernameRepository.deleteUsername().observeOn(AndroidSchedulers.mainThread());
+    return UsernameRepository.deleteUsernameAndLink().observeOn(AndroidSchedulers.mainThread());
   }
 
   public boolean shouldShowUsername() {
