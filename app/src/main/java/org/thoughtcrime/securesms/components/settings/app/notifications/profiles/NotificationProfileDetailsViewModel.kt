@@ -9,7 +9,6 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
-import org.thoughtcrime.securesms.database.NotificationProfileDatabase
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfiles
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -84,20 +83,12 @@ class NotificationProfileDetailsViewModel(private val profileId: Long, private v
   }
 
   fun toggleAllowAllMentions(): Single<NotificationProfile> {
-    return repository.getProfile(profileId)
-      .take(1)
-      .singleOrError()
-      .flatMap { repository.updateProfile(it.copy(allowAllMentions = !it.allowAllMentions)) }
-      .map { (it as NotificationProfileDatabase.NotificationProfileChangeResult.Success).notificationProfile }
+    return repository.toggleAllowAllMentions(profileId)
       .observeOn(AndroidSchedulers.mainThread())
   }
 
   fun toggleAllowAllCalls(): Single<NotificationProfile> {
-    return repository.getProfile(profileId)
-      .take(1)
-      .singleOrError()
-      .flatMap { repository.updateProfile(it.copy(allowAllCalls = !it.allowAllCalls)) }
-      .map { (it as NotificationProfileDatabase.NotificationProfileChangeResult.Success).notificationProfile }
+    return repository.toggleAllowAllCalls(profileId)
       .observeOn(AndroidSchedulers.mainThread())
   }
 
