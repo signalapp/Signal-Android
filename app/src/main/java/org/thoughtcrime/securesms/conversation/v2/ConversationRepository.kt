@@ -10,6 +10,7 @@ import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Build
+import android.text.SpannableStringBuilder
 import androidx.core.content.pm.ShortcutInfoCompat
 import androidx.core.graphics.drawable.IconCompat
 import com.bumptech.glide.request.target.CustomTarget
@@ -470,7 +471,7 @@ class ConversationRepository(
         }
       }
       .filterNot(Util::isEmpty)
-      .joinToString("\n")
+      .joinTo(buffer = SpannableStringBuilder(), separator = "\n")
   }
 
   fun getRecipientContactPhotoBitmap(context: Context, glideRequests: GlideRequests, recipient: Recipient): Single<ShortcutInfoCompat> {
