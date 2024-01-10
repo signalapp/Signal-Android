@@ -1,9 +1,9 @@
 /*
- * Copyright 2023 Signal Messenger, LLC
+ * Copyright 2024 Signal Messenger, LLC
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.video.app
+package org.thoughtcrime.video.app.playback
 
 import android.content.Context
 import android.net.Uri
@@ -28,7 +28,7 @@ import java.io.File
  * Main screen view model for the video sample app.
  */
 @OptIn(UnstableApi::class)
-class MainScreenViewModel : ViewModel() {
+class PlaybackTestViewModel : ViewModel() {
   // Initialize an silent media source before the user selects a video. This is the closest I could find to an "empty" media source while still being nullsafe.
   private val value by lazy {
     val factory = SilenceMediaSource.Factory()
