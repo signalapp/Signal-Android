@@ -615,6 +615,13 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         }
       )
 
+      clickPref(
+        title = DSLSettingsText.from("Add donate_friend remote megaphone"),
+        onClick = {
+          viewModel.addRemoteDonateFriendMegaphone()
+        }
+      )
+
       dividerPref()
 
       sectionHeaderPref(DSLSettingsText.from("CDS"))

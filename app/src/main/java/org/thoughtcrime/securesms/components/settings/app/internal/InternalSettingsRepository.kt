@@ -64,7 +64,7 @@ class InternalSettingsRepository(context: Context) {
     }
   }
 
-  fun addRemoteDonateMegaphone() {
+  fun addRemoteMegaphone(actionId: RemoteMegaphoneRecord.ActionId) {
     SignalExecutors.UNBOUNDED.execute {
       val record = RemoteMegaphoneRecord(
         uuid = UUID.randomUUID().toString(),
@@ -75,7 +75,7 @@ class InternalSettingsRepository(context: Context) {
         doNotShowAfter = System.currentTimeMillis() + 28.days.inWholeMilliseconds,
         showForNumberOfDays = 30,
         conditionalId = null,
-        primaryActionId = RemoteMegaphoneRecord.ActionId.DONATE,
+        primaryActionId = actionId,
         secondaryActionId = RemoteMegaphoneRecord.ActionId.SNOOZE,
         imageUrl = "/static/release-notes/donate-heart.png",
         title = "Donate Test",
