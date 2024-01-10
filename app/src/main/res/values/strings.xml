@@ -1283,6 +1283,10 @@
     <string name="MessageRecord_missed_voice_call">Missed voice call</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">Missed video call</string>
+    <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
+    <string name="MessageRecord_missed_voice_call_notification_profile">Missed voice call while notification profile on</string>
+    <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
+    <string name="MessageRecord_missed_video_call_notification_profile">Missed video call while notification profile on</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
     <string name="MessageRecord_you_declined_a_voice_call">You declined a voice call</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
@@ -6255,6 +6259,8 @@
     <string name="CallLogAdapter__outgoing">Outgoing</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">Missed</string>
+    <!-- Displayed for missed calls declined by notification profile -->
+    <string name="CallLogAdapter__missed_notification_profile">Missed while notification profile on</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">Join</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -6362,6 +6368,8 @@
     <string name="CallPreference__group_call">Group call</string>
     <!-- Missed group call in call info -->
     <string name="CallPreference__missed_group_call">Missed group call</string>
+    <!-- Missed group call while notification profile on in call info -->
+    <string name="CallPreference__missed_group_call_notification_profile">Missed group call while notification profile on</string>
     <!-- Incoming group call in call info -->
     <string name="CallPreference__incoming_group_call">Incoming group call</string>
     <!-- Outgoing group call in call info -->

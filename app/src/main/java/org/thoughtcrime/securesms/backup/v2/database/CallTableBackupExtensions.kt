@@ -109,7 +109,8 @@ class CallLogIterator(private val cursor: Cursor) : Iterator<BackupCall?>, Close
         CallTable.Event.DECLINED -> Call.Event.DECLINED
         CallTable.Event.GENERIC_GROUP_CALL -> Call.Event.GENERIC_GROUP_CALL
         CallTable.Event.JOINED -> Call.Event.JOINED
-        CallTable.Event.MISSED -> Call.Event.MISSED
+        CallTable.Event.MISSED,
+        CallTable.Event.MISSED_NOTIFICATION_PROFILE -> Call.Event.MISSED
         CallTable.Event.DELETE -> Call.Event.DELETE
         CallTable.Event.RINGING -> Call.Event.UNKNOWN_EVENT
         CallTable.Event.NOT_ACCEPTED -> Call.Event.NOT_ACCEPTED

@@ -74,7 +74,7 @@
         android:drawablePadding="6dp"
         android:ellipsize="end"
         android:gravity="start|center_vertical"
-        android:maxLines="1"
+        android:maxLines="2"
         android:textAlignment="viewStart"
         android:textAppearance="@style/Signal.Text.BodyMedium"
         android:textColor="@color/signal_colorOnSurfaceVariant"

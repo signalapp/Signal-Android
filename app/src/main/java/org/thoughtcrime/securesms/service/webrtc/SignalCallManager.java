@@ -963,15 +963,15 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
     });
   }
 
-  public void insertMissedCall(@NonNull RemotePeer remotePeer, long timestamp, boolean isVideoOffer) {
+  public void insertMissedCall(@NonNull RemotePeer remotePeer, long timestamp, boolean isVideoOffer, @NonNull CallTable.Event missedEvent) {
     CallTable.Call call = SignalDatabase.calls()
-                                        .updateOneToOneCall(remotePeer.getCallId().longValue(), CallTable.Event.MISSED);
+                                        .updateOneToOneCall(remotePeer.getCallId().longValue(), missedEvent);
 
     if (call == null) {
       CallTable.Type type = isVideoOffer ? CallTable.Type.VIDEO_CALL : CallTable.Type.AUDIO_CALL;
 
       SignalDatabase.calls()
-                    .insertOneToOneCall(remotePeer.getCallId().longValue(), timestamp, remotePeer.getId(), type, CallTable.Direction.INCOMING, CallTable.Event.MISSED);
+                    .insertOneToOneCall(remotePeer.getCallId().longValue(), timestamp, remotePeer.getId(), type, CallTable.Direction.INCOMING, missedEvent);
     }
   }
 

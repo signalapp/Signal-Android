@@ -348,7 +348,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     checkIsGroupOrAdHocCall(call)
 
     val newEvent = when (call.event) {
-      Event.RINGING, Event.MISSED, Event.DECLINED -> Event.ACCEPTED
+      Event.RINGING, Event.MISSED, Event.MISSED_NOTIFICATION_PROFILE, Event.DECLINED -> Event.ACCEPTED
       Event.GENERIC_GROUP_CALL -> Event.JOINED
       else -> {
         Log.d(TAG, "[acceptIncomingGroupCall] Call in state ${call.event} cannot be transitioned by ACCEPTED")
@@ -371,7 +371,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
 
     val newEvent = when (call.event) {
       Event.GENERIC_GROUP_CALL, Event.JOINED -> Event.OUTGOING_RING
-      Event.RINGING, Event.MISSED, Event.DECLINED, Event.ACCEPTED -> {
+      Event.RINGING, Event.MISSED, Event.MISSED_NOTIFICATION_PROFILE, Event.DECLINED, Event.ACCEPTED -> {
         Log.w(TAG, "[acceptOutgoingGroupCall] This shouldn't have been an outgoing ring because the call already existed!")
         Event.ACCEPTED
       }
@@ -396,7 +396,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     check(call.direction == Direction.INCOMING)
 
     val newEvent = when (call.event) {
-      Event.GENERIC_GROUP_CALL, Event.RINGING, Event.MISSED -> Event.DECLINED
+      Event.GENERIC_GROUP_CALL, Event.RINGING, Event.MISSED, Event.MISSED_NOTIFICATION_PROFILE -> Event.DECLINED
       Event.JOINED -> Event.ACCEPTED
       else -> {
         Log.d(TAG, "Call in state ${call.event} cannot be transitioned by DECLINED")
@@ -689,15 +689,17 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     handleGroupRingState(ringId, groupRecipientId, ringerRecipient, dateReceived, ringState)
   }
 
+  @JvmOverloads
   fun insertOrUpdateGroupCallFromRingState(
     ringId: Long,
     groupRecipientId: RecipientId,
     ringerAci: ACI,
     dateReceived: Long,
-    ringState: RingUpdate
+    ringState: RingUpdate,
+    dueToNotificationProfile: Boolean = false
   ) {
     val ringerRecipient = Recipient.externalPush(ringerAci)
-    handleGroupRingState(ringId, groupRecipientId, ringerRecipient.id, dateReceived, ringState)
+    handleGroupRingState(ringId, groupRecipientId, ringerRecipient.id, dateReceived, ringState, dueToNotificationProfile)
   }
 
   fun isRingCancelled(ringId: Long, groupRecipientId: RecipientId): Boolean {
@@ -710,7 +712,8 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     groupRecipientId: RecipientId,
     ringerRecipient: RecipientId,
     dateReceived: Long,
-    ringState: RingUpdate
+    ringState: RingUpdate,
+    dueToNotificationProfile: Boolean = false
   ) {
     writableDatabase.withinTransaction {
       Log.d(TAG, "Processing group ring state update for $ringId in state $ringState")
@@ -733,7 +736,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
 
           RingUpdate.EXPIRED_REQUEST, RingUpdate.CANCELLED_BY_RINGER -> {
             when (call.event) {
-              Event.GENERIC_GROUP_CALL, Event.RINGING -> updateEventFromRingState(ringId, Event.MISSED, ringerRecipient)
+              Event.GENERIC_GROUP_CALL, Event.RINGING -> updateEventFromRingState(ringId, if (dueToNotificationProfile) Event.MISSED_NOTIFICATION_PROFILE else Event.MISSED, ringerRecipient)
               Event.JOINED -> updateEventFromRingState(ringId, Event.ACCEPTED, ringerRecipient)
               Event.OUTGOING_RING -> Log.w(TAG, "Received an expiration or cancellation while in OUTGOING_RING state. Ignoring.")
               else -> Unit
@@ -765,7 +768,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
 
           RingUpdate.DECLINED_ON_ANOTHER_DEVICE -> {
             when (call.event) {
-              Event.RINGING, Event.MISSED, Event.GENERIC_GROUP_CALL -> updateEventFromRingState(ringId, Event.DECLINED)
+              Event.RINGING, Event.MISSED, Event.MISSED_NOTIFICATION_PROFILE, Event.GENERIC_GROUP_CALL -> updateEventFromRingState(ringId, Event.DECLINED)
               Event.JOINED -> updateEventFromRingState(ringId, Event.ACCEPTED)
               Event.OUTGOING_RING -> Log.w(TAG, "Received DECLINED_ON_ANOTHER_DEVICE while in OUTGOING_RING state.")
               else -> Unit
@@ -775,7 +778,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
       } else {
         val event: Event = when (ringState) {
           RingUpdate.REQUESTED -> Event.RINGING
-          RingUpdate.EXPIRED_REQUEST -> Event.MISSED
+          RingUpdate.EXPIRED_REQUEST -> if (dueToNotificationProfile) Event.MISSED_NOTIFICATION_PROFILE else Event.MISSED
           RingUpdate.ACCEPTED_ON_ANOTHER_DEVICE -> {
             Log.w(TAG, "Missed original ring request for $ringId")
             Event.ACCEPTED
@@ -939,7 +942,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
 
   fun deleteAllNonAdHocCallEventsExcept(callRowIds: Set<Long>, missedOnly: Boolean) {
     val callFilter = if (missedOnly) {
-      "$EVENT = ${Event.serialize(Event.MISSED)} AND $DELETION_TIMESTAMP = 0"
+      "($EVENT = ${Event.serialize(Event.MISSED)} OR $EVENT = ${Event.serialize(Event.MISSED_NOTIFICATION_PROFILE)}) AND $DELETION_TIMESTAMP = 0"
     } else {
       "$DELETION_TIMESTAMP = 0"
     }
@@ -1040,7 +1043,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
   private fun getCallsCursor(isCount: Boolean, offset: Int, limit: Int, searchTerm: String?, filter: CallLogFilter): Cursor {
     val filterClause: SqlUtil.Query = when (filter) {
       CallLogFilter.ALL -> SqlUtil.buildQuery("$DELETION_TIMESTAMP = 0")
-      CallLogFilter.MISSED -> SqlUtil.buildQuery("$EVENT = ${Event.serialize(Event.MISSED)} AND $DELETION_TIMESTAMP = 0")
+      CallLogFilter.MISSED -> SqlUtil.buildQuery("($EVENT = ${Event.serialize(Event.MISSED)} OR $EVENT = ${Event.serialize(Event.MISSED_NOTIFICATION_PROFILE)}) AND $DELETION_TIMESTAMP = 0")
       CallLogFilter.AD_HOC -> SqlUtil.buildQuery("$TYPE = ${Type.serialize(Type.AD_HOC_CALL)} AND $DELETION_TIMESTAMP = 0")
     }
 
@@ -1079,6 +1082,16 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
       "p.$ID, p.$TIMESTAMP, $EVENT, $DIRECTION, $PEER, p.$TYPE, $CALL_ID, $MESSAGE_ID, $RINGER, children, in_period, ${MessageTable.BODY},"
     }
 
+    val eventTypeSubQuery = """
+      ($TABLE_NAME.$EVENT = c.$EVENT AND ($TABLE_NAME.$EVENT = ${Event.serialize(Event.MISSED)} OR $TABLE_NAME.$EVENT = ${Event.serialize(Event.MISSED_NOTIFICATION_PROFILE)})) OR
+      (
+        $TABLE_NAME.$EVENT != ${Event.serialize(Event.MISSED)} AND 
+        c.$EVENT != ${Event.serialize(Event.MISSED)} AND 
+        $TABLE_NAME.$EVENT != ${Event.serialize(Event.MISSED_NOTIFICATION_PROFILE)} AND 
+        c.$EVENT != ${Event.serialize(Event.MISSED_NOTIFICATION_PROFILE)}
+      )
+      """
+
     //language=sql
     val statement = """
       SELECT $projection
@@ -1106,10 +1119,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
                 AND $TABLE_NAME.$PEER = c.$PEER
                 AND $TABLE_NAME.$TIMESTAMP - $TIME_WINDOW <= c.$TIMESTAMP
                 AND $TABLE_NAME.$TIMESTAMP >= c.$TIMESTAMP
-                AND (
-                  ($TABLE_NAME.$EVENT = c.$EVENT AND $TABLE_NAME.$EVENT = ${Event.serialize(Event.MISSED)}) OR
-                  ($TABLE_NAME.$EVENT != ${Event.serialize(Event.MISSED)} AND c.$EVENT != ${Event.serialize(Event.MISSED)})
-                )
+                AND ($eventTypeSubQuery)
                 AND ${filterClause.where}
               ORDER BY
                 $TIMESTAMP DESC
@@ -1124,10 +1134,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
                 AND $TABLE_NAME.$PEER = c.$PEER
                 AND c.$TIMESTAMP - $TIME_WINDOW <= $TABLE_NAME.$TIMESTAMP
                 AND c.$TIMESTAMP >= $TABLE_NAME.$TIMESTAMP
-                AND (
-                  ($TABLE_NAME.$EVENT = c.$EVENT AND $TABLE_NAME.$EVENT = ${Event.serialize(Event.MISSED)}) OR
-                  ($TABLE_NAME.$EVENT != ${Event.serialize(Event.MISSED)} AND c.$EVENT != ${Event.serialize(Event.MISSED)})
-                )
+                AND ($eventTypeSubQuery)
                 AND ${filterClause.where}
             ) as children,
             (
@@ -1255,7 +1262,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
           return MessageTypes.GROUP_CALL_TYPE
         }
 
-        return if (direction == Direction.INCOMING && event == Event.MISSED) {
+        return if (direction == Direction.INCOMING && event.isMissedCall()) {
           if (type == Type.VIDEO_CALL) MessageTypes.MISSED_VIDEO_CALL_TYPE else MessageTypes.MISSED_AUDIO_CALL_TYPE
         } else if (direction == Direction.INCOMING) {
           if (type == Type.VIDEO_CALL) MessageTypes.INCOMING_VIDEO_CALL_TYPE else MessageTypes.INCOMING_AUDIO_CALL_TYPE
@@ -1374,6 +1381,13 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
 
     /**
      * 1:1 and Group/Ad-Hoc Calls.
+     *
+     * Call was auto-declined due to a notification profile.
+     */
+    MISSED_NOTIFICATION_PROFILE(10),
+
+    /**
+     * 1:1 and Group/Ad-Hoc Calls.
      */
     DELETE(4),
 
@@ -1402,7 +1416,11 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     /**
      * Group Calls: If you are ringing a group.
      */
-    OUTGOING_RING(9);
+    OUTGOING_RING(9); // Next is 11
+
+    fun isMissedCall(): Boolean {
+      return this == MISSED || this == MISSED_NOTIFICATION_PROFILE
+    }
 
     companion object Serializer : IntSerializer<Event> {
       override fun serialize(data: Event): Int = data.code

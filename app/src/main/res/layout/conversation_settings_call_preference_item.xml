@@ -21,11 +21,12 @@
 
     <TextView
         android:id="@+id/call_type"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:textAppearance="@style/Signal.Text.BodyLarge"
         app:layout_constraintBottom_toTopOf="@id/call_time"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/call_icon"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
