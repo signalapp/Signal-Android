@@ -23,14 +23,14 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputLayout;
 
+import org.signal.core.util.EditTextUtil;
+import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
 import org.thoughtcrime.securesms.databinding.UsernameEditFragmentBinding;
-import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.FragmentResultContract;
-import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.UsernameUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton;
@@ -157,58 +157,27 @@ public class UsernameEditFragment extends LoggingFragment {
 
     binding.root.setLayoutTransition(ANIMATED_LAYOUT);
 
-    switch (state.usernameStatus) {
-      case NONE:
-        usernameInputWrapper.setError(null);
-        break;
-      case TOO_SHORT:
-      case TOO_LONG:
-        usernameInputWrapper.setError(getResources().getString(R.string.UsernameEditFragment_usernames_must_be_between_a_and_b_characters, UsernameUtil.MIN_NICKNAME_LENGTH, UsernameUtil.MAX_NICKNAME_LENGTH));
-        usernameInputWrapper.setErrorTextColor(ColorStateList.valueOf(getResources().getColor(R.color.signal_colorError)));
+    CharSequence error = switch (state.usernameStatus) {
+      case NONE -> null;
+      case TOO_SHORT, TOO_LONG -> getString(R.string.UsernameEditFragment_usernames_must_be_between_a_and_b_characters, UsernameUtil.MIN_NICKNAME_LENGTH, UsernameUtil.MAX_NICKNAME_LENGTH);
+      case INVALID_CHARACTERS -> getString(R.string.UsernameEditFragment_usernames_can_only_include);
+      case CANNOT_START_WITH_NUMBER -> getString(R.string.UsernameEditFragment_usernames_cannot_begin_with_a_number);
+      case INVALID_GENERIC -> getString(R.string.UsernameEditFragment_username_is_invalid);
+      case TAKEN -> getString(R.string.UsernameEditFragment_this_username_is_taken);
+      case DISCRIMINATOR_HAS_INVALID_CHARACTERS, DISCRIMINATOR_NOT_AVAILABLE -> getString(R.string.UsernameEditFragment__this_username_is_not_available_try_another_number);
+      case DISCRIMINATOR_TOO_LONG -> getString(R.string.UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits, UsernameUtil.MAX_DISCRIMINATOR_LENGTH);
+      case DISCRIMINATOR_TOO_SHORT -> getString(R.string.UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits, UsernameUtil.MIN_DISCRIMINATOR_LENGTH);
+    };
 
-        break;
-      case INVALID_CHARACTERS:
-        usernameInputWrapper.setError(getResources().getString(R.string.UsernameEditFragment_usernames_can_only_include));
-        usernameInputWrapper.setErrorTextColor(ColorStateList.valueOf(getResources().getColor(R.color.signal_colorError)));
+    int colorRes = error != null ? R.color.signal_colorError : R.color.signal_colorPrimary;
+    int color = ContextCompat.getColor(requireContext(), colorRes);
 
-        break;
-      case CANNOT_START_WITH_NUMBER:
-        usernameInputWrapper.setError(getResources().getString(R.string.UsernameEditFragment_usernames_cannot_begin_with_a_number));
-        usernameInputWrapper.setErrorTextColor(ColorStateList.valueOf(getResources().getColor(R.color.signal_colorError)));
-
-        break;
-      case INVALID_GENERIC:
-        usernameInputWrapper.setError(getResources().getString(R.string.UsernameEditFragment_username_is_invalid));
-        usernameInputWrapper.setErrorTextColor(ColorStateList.valueOf(getResources().getColor(R.color.signal_colorError)));
-
-        break;
-      case TAKEN:
-        usernameInputWrapper.setError(getResources().getString(R.string.UsernameEditFragment_this_username_is_taken));
-        usernameInputWrapper.setErrorTextColor(ColorStateList.valueOf(getResources().getColor(R.color.signal_colorError)));
-
-        break;
-      case DISCRIMINATOR_HAS_INVALID_CHARACTERS:
-      case DISCRIMINATOR_NOT_AVAILABLE:
-        usernameInputWrapper.setError(getResources().getString(R.string.UsernameEditFragment__this_username_is_not_available_try_another_number));
-        usernameInputWrapper.setErrorTextColor(ColorStateList.valueOf(getResources().getColor(R.color.signal_colorError)));
-
-        break;
-      case DISCRIMINATOR_TOO_LONG:
-        usernameInputWrapper.setError(getResources().getString(R.string.UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits, UsernameUtil.MAX_DISCRIMINATOR_LENGTH));
-        usernameInputWrapper.setErrorTextColor(ColorStateList.valueOf(getResources().getColor(R.color.signal_colorError)));
-
-        break;
-      case DISCRIMINATOR_TOO_SHORT:
-        usernameInputWrapper.setError(getResources().getString(R.string.UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits, UsernameUtil.MIN_DISCRIMINATOR_LENGTH));
-        usernameInputWrapper.setErrorTextColor(ColorStateList.valueOf(getResources().getColor(R.color.signal_colorError)));
-
-        break;
-    }
-
-    CharSequence error = usernameInputWrapper.getError();
+    binding.usernameTextFocusedStroke.setBackgroundColor(color);
+    binding.usernameTextWrapper.setHintTextColor(ColorStateList.valueOf(color));
+    EditTextUtil.setCursorColor(binding.usernameText, color);
+    EditTextUtil.setCursorColor(binding.discriminatorText, color);
     binding.usernameError.setVisibility(error != null ? View.VISIBLE : View.GONE);
-    binding.usernameError.setText(usernameInputWrapper.getError());
-
+    binding.usernameError.setText(error);
     binding.root.setLayoutTransition(STATIC_LAYOUT);
   }
 
@@ -224,9 +193,7 @@ public class UsernameEditFragment extends LoggingFragment {
     if (usernameState.getUsername() != null) {
       binding.summary.setText(usernameState.getUsername().getUsername());
       binding.summary.setAlpha(1f);
-    } else if (usernameState instanceof UsernameState.Loading) {
-      binding.summary.setAlpha(0.5f);
-    } else {
+    } else if (!(usernameState instanceof UsernameState.Loading)) {
       binding.summary.setText(R.string.UsernameEditFragment__choose_your_username);
       binding.summary.setAlpha(1f);
     }

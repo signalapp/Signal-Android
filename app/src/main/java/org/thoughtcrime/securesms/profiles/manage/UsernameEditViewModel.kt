@@ -83,23 +83,11 @@ internal class UsernameEditViewModel private constructor(private val isInRegistr
         )
       }
 
-      val invalidReason: InvalidReason? = checkUsername(nickname)
-
-      if (invalidReason != null) {
-        // We only want to show actual errors after debouncing. But we also don't want to allow users to submit names with errors.
-        // So we disable submit, but we don't show an error yet.
-        State(
-          buttonState = ButtonState.SUBMIT_DISABLED,
-          usernameStatus = UsernameStatus.NONE,
-          usernameState = state.usernameState
-        )
-      } else {
-        State(
-          buttonState = ButtonState.SUBMIT_DISABLED,
-          usernameStatus = UsernameStatus.NONE,
-          usernameState = state.usernameState
-        )
-      }
+      State(
+        buttonState = ButtonState.SUBMIT_DISABLED,
+        usernameStatus = UsernameStatus.NONE,
+        usernameState = state.usernameState
+      )
     }
 
     stateMachineStore.update {
@@ -270,8 +258,6 @@ internal class UsernameEditViewModel private constructor(private val isInRegistr
       return
     }
 
-    uiState.update { State(ButtonState.SUBMIT_DISABLED, UsernameStatus.NONE, UsernameState.Loading) }
-
     val isDiscriminatorSetByUser = state is UsernameEditStateMachine.UserEnteredDiscriminator || state is UsernameEditStateMachine.UserEnteredNicknameAndDiscriminator
     val discriminator = if (isDiscriminatorSetByUser) {
       state.discriminator
@@ -281,15 +267,16 @@ internal class UsernameEditViewModel private constructor(private val isInRegistr
 
     val discriminatorInvalidReason = checkDiscriminator(discriminator)
     if (isDiscriminatorSetByUser && discriminatorInvalidReason != null) {
-      uiState.update { s ->
-        State(
+      uiState.update { uiState ->
+        uiState.copy(
           buttonState = ButtonState.SUBMIT_DISABLED,
-          usernameStatus = mapDiscriminatorError(discriminatorInvalidReason),
-          usernameState = s.usernameState
+          usernameStatus = mapDiscriminatorError(discriminatorInvalidReason)
         )
       }
       return
     }
+
+    uiState.update { State(ButtonState.SUBMIT_DISABLED, UsernameStatus.NONE, UsernameState.Loading) }
 
     disposables += UsernameRepository.reserveUsername(nickname, discriminator).subscribe { result: Result<UsernameState.Reserved, UsernameSetResult> ->
       result.either(

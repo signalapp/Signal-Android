@@ -39,7 +39,7 @@
         android:id="@+id/username_box_fill"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/signal_colorSurfaceVariant"
+        android:background="@drawable/username_edit_box_fill"
         app:layout_constraintBottom_toBottomOf="@id/username_text_wrapper"
         app:layout_constraintEnd_toEndOf="@id/discriminator_text"
         app:layout_constraintStart_toStartOf="@id/username_text_wrapper"
@@ -92,9 +92,10 @@
         android:imeOptions="actionDone"
         android:importantForAutofill="no"
         android:inputType="number"
+        android:maxLength="19"
         android:maxLines="1"
-        android:paddingHorizontal="16dp"
         android:minHeight="48dp"
+        android:paddingHorizontal="16dp"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="@id/username_text_wrapper"
         app:layout_constraintEnd_toEndOf="parent"
@@ -105,12 +106,13 @@
         android:layout_width="16dp"
         android:layout_height="16dp"
         android:layout_marginBottom="10dp"
+        android:layout_marginEnd="16dp"
         app:indicatorColor="@color/signal_colorOnSurfaceVariant"
         app:indicatorSize="16dp"
         app:layout_constraintBottom_toBottomOf="@id/username_text_wrapper"
         app:layout_constraintEnd_toStartOf="@id/discriminator_text"
         app:trackColor="@color/transparent"
-        app:trackThickness="1dp" />
+        app:trackThickness="1.75dp" />
 
     <View
         android:id="@+id/divider"
@@ -134,7 +136,8 @@
         android:id="@+id/username_error"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="4dp"
         android:textAppearance="@style/Signal.Text.BodyMedium"
         android:textColor="@color/signal_colorError"
         android:visibility="gone"
@@ -161,7 +164,6 @@
 
     <org.thoughtcrime.securesms.util.views.LearnMoreTextView
         android:id="@+id/username_description"
-        style="@style/Signal.Text.Caption"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dsl_settings_gutter"
