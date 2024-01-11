@@ -21,8 +21,8 @@ plugins {
 
 apply(from = "static-ips.gradle.kts")
 
-val canonicalVersionCode = 1373
-val canonicalVersionName = "6.43.2"
+val canonicalVersionCode = 1374
+val canonicalVersionName = "6.44.0"
 
 val postFixSize = 100
 val abiPostFix: Map<String, Int> = mapOf(
