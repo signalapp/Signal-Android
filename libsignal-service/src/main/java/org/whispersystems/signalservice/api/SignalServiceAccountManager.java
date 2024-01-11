@@ -785,7 +785,7 @@ public class SignalServiceAccountManager {
 
   public UsernameLinkComponents confirmUsernameAndCreateNewLink(Username username) throws IOException {
     try {
-      UsernameLink link    = link = username.generateLink();
+      UsernameLink link    = username.generateLink();
       UUID        serverId = this.pushServiceSocket.confirmUsernameAndCreateNewLink(username, link);
 
       return new UsernameLinkComponents(link.getEntropy(), serverId);
