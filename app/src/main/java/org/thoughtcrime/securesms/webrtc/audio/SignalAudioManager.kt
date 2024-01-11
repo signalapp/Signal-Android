@@ -44,6 +44,10 @@ sealed class SignalAudioManager(protected val context: Context, protected val ev
   protected val incomingRinger = IncomingRinger(context)
   protected val outgoingRinger = OutgoingRinger(context)
 
+  private val stateChangeUpSoundId = context.assets.openFd("sounds/state-change_confirm-up.ogg").use {
+    soundPool.load(it, 1)
+  }
+
   companion object {
     @JvmStatic
     fun create(context: Context, eventListener: EventListener?): SignalAudioManager {
@@ -66,6 +70,7 @@ sealed class SignalAudioManager(protected val context: Context, protected val ev
         is AudioManagerCommand.StartIncomingRinger -> startIncomingRinger(command.ringtoneUri, command.vibrate)
         is AudioManagerCommand.SilenceIncomingRinger -> silenceIncomingRinger()
         is AudioManagerCommand.StartOutgoingRinger -> startOutgoingRinger()
+        is AudioManagerCommand.PlayStateChangeUp -> playStateChangeUp()
       }
     }
   }
@@ -79,6 +84,11 @@ sealed class SignalAudioManager(protected val context: Context, protected val ev
         commandAndControlThread = null
       }
     }
+  }
+
+  private fun playStateChangeUp() {
+    val volume: Float = androidAudioManager.voiceCallVolume
+    soundPool.play(stateChangeUpSoundId, volume, volume, 0, 0, 1f)
   }
 
   protected abstract fun initialize()

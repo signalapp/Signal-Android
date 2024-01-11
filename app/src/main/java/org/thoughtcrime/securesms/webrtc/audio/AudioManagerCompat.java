@@ -191,6 +191,10 @@ public abstract class AudioManagerCompat {
     return (float) (1 - (Math.log(maxVolume + 1 - volume) / Math.log(maxVolume + 1)));
   }
 
+  public float getVoiceCallVolume() {
+    return audioManager.getStreamVolume(AudioManager.STREAM_VOICE_CALL);
+  }
+
   abstract public SoundPool createSoundPool();
 
   abstract public boolean requestCallAudioFocus();

@@ -5,7 +5,6 @@
 
 package org.whispersystems.signalservice.api.account
 
-import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.state.KyberPreKeyRecord
 import org.signal.libsignal.protocol.state.PreKeyRecord
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord
@@ -18,7 +17,6 @@ import org.whispersystems.signalservice.api.push.ServiceIdType
  */
 data class PreKeyUpload(
   val serviceIdType: ServiceIdType,
-  val identityKey: IdentityKey,
   val signedPreKey: SignedPreKeyRecord?,
   val oneTimeEcPreKeys: List<PreKeyRecord>?,
   val lastResortKyberPreKey: KyberPreKeyRecord?,

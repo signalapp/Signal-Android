@@ -34,7 +34,7 @@ object GiftRowItem {
     override fun bind(model: Model) {
       binding.check.visible = false
       binding.badge.setBadge(model.giftBadge)
-      binding.tagline.visible = false
+      binding.tagline.visible = true
 
       val price = FiatMoneyUtil.format(
         context.resources,
@@ -46,7 +46,8 @@ object GiftRowItem {
 
       val duration = TimeUnit.MILLISECONDS.toDays(model.giftBadge.duration)
 
-      binding.title.text = context.resources.getQuantityString(R.plurals.GiftRowItem_s_dot_d_day_duration, duration.toInt(), price, duration)
+      binding.title.text = model.giftBadge.name
+      binding.tagline.text = context.resources.getQuantityString(R.plurals.GiftRowItem_s_dot_d_day_duration, duration.toInt(), price, duration)
     }
   }
 }

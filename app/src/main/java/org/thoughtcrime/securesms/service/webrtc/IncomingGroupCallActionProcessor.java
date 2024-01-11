@@ -167,6 +167,7 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
                                                                     true,
                                                                     true,
                                                                     false,
+                                                                    CallParticipant.HAND_LOWERED,
                                                                     0,
                                                                     true,
                                                                     0,

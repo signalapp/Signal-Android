@@ -78,6 +78,7 @@ import org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientExporter
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.recipients.ui.about.AboutSheet
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.stories.StoryViewerArgs
@@ -321,7 +322,11 @@ class ConversationSettingsFragment : DSLSettingsFragment(
       )
 
       state.withRecipientSettingsState {
-        customPref(BioTextPreference.RecipientModel(recipient = state.recipient))
+        customPref(
+          BioTextPreference.RecipientModel(recipient = state.recipient, onHeadlineClickListener = {
+            AboutSheet.create(state.recipient).show(parentFragmentManager, null)
+          })
+        )
       }
 
       state.withGroupSettingsState { groupState ->

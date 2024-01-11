@@ -192,7 +192,7 @@ message Call {
   Type type = 3;
   bool outgoing = 4;
   uint64 timestamp = 5;
-  uint64 ringerRecipientId = 6;
+  optional uint64 ringerRecipientId = 6;
   Event event = 7;
 }
 
@@ -505,6 +505,7 @@ message IndividualCallChatUpdate {
     MISSED_AUDIO_CALL = 5;
     MISSED_VIDEO_CALL = 6;
   }
+  Type type = 1;
 }
 
 message GroupCallChatUpdate {

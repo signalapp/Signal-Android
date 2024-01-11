@@ -16,6 +16,7 @@ data class CallParticipant constructor(
   val isForwardingVideo: Boolean = true,
   val isVideoEnabled: Boolean = false,
   val isMicrophoneEnabled: Boolean = false,
+  val handRaisedTimestamp: Long = HAND_LOWERED,
   val lastSpoke: Long = 0,
   val audioLevel: AudioLevel? = null,
   val isMediaKeysReceived: Boolean = true,
@@ -34,6 +35,9 @@ data class CallParticipant constructor(
 
   val isSelf: Boolean
     get() = recipient.isSelf
+
+  val isHandRaised: Boolean
+    get() = handRaisedTimestamp > 0
 
   fun getRecipientDisplayName(context: Context): String {
     return if (recipient.isSelf && isPrimary) {
@@ -71,6 +75,10 @@ data class CallParticipant constructor(
     return copy(isScreenSharing = enable)
   }
 
+  fun withHandRaisedTimestamp(timestamp: Long): CallParticipant {
+    return copy(handRaisedTimestamp = timestamp)
+  }
+
   enum class DeviceOrdinal {
     PRIMARY, SECONDARY
   }
@@ -102,22 +110,28 @@ data class CallParticipant constructor(
   }
 
   companion object {
+    const val HAND_LOWERED = -1L
+
     @JvmField
     val EMPTY: CallParticipant = CallParticipant()
 
     @JvmStatic
+    @JvmOverloads
     fun createLocal(
       cameraState: CameraState,
       renderer: BroadcastVideoSink,
-      microphoneEnabled: Boolean
+      microphoneEnabled: Boolean,
+      handRaisedTimestamp: Long,
+      callParticipantId: CallParticipantId = CallParticipantId(Recipient.self())
     ): CallParticipant {
       return CallParticipant(
-        callParticipantId = CallParticipantId(Recipient.self()),
+        callParticipantId = callParticipantId,
         recipient = Recipient.self(),
         videoSink = renderer,
         cameraState = cameraState,
         isVideoEnabled = cameraState.isEnabled && cameraState.cameraCount > 0,
-        isMicrophoneEnabled = microphoneEnabled
+        isMicrophoneEnabled = microphoneEnabled,
+        handRaisedTimestamp = handRaisedTimestamp
       )
     }
 
@@ -130,6 +144,7 @@ data class CallParticipant constructor(
       isForwardingVideo: Boolean,
       audioEnabled: Boolean,
       videoEnabled: Boolean,
+      handRaisedTimestamp: Long,
       lastSpoke: Long,
       mediaKeysReceived: Boolean,
       addedToCallTime: Long,
@@ -144,6 +159,7 @@ data class CallParticipant constructor(
         isForwardingVideo = isForwardingVideo,
         isVideoEnabled = videoEnabled,
         isMicrophoneEnabled = audioEnabled,
+        handRaisedTimestamp = handRaisedTimestamp,
         lastSpoke = lastSpoke,
         isMediaKeysReceived = mediaKeysReceived,
         addedToCallTime = addedToCallTime,

@@ -178,7 +178,7 @@ public class CallParticipantListUpdateTest {
   private static CallParticipant createParticipant(long recipientId, long deMuxId, @NonNull CallParticipant.DeviceOrdinal deviceOrdinal) {
     Recipient recipient = new Recipient(RecipientId.from(recipientId), mock(RecipientDetails.class), true);
 
-    return CallParticipant.createRemote(new CallParticipantId(deMuxId, recipient.getId()), recipient, null, new BroadcastVideoSink(), false, false, false, -1, false, 0, false, deviceOrdinal);
+    return CallParticipant.createRemote(new CallParticipantId(deMuxId, recipient.getId()), recipient, null, new BroadcastVideoSink(), false, false, false, CallParticipant.HAND_LOWERED, -1, false, 0, false, deviceOrdinal);
   }
 
 }

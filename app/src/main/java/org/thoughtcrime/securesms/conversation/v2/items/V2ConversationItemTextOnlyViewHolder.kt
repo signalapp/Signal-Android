@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.conversation.mutiselect.Multiselect
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
 import org.thoughtcrime.securesms.conversation.mutiselect.Multiselectable
+import org.thoughtcrime.securesms.conversation.v2.computed.FormattedDate
 import org.thoughtcrime.securesms.conversation.v2.data.ConversationMessageElement
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
@@ -100,7 +101,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
   override val badgeImageView: View? = binding.senderBadge
 
   private var reactionMeasureListener: ReactionMeasureListener = ReactionMeasureListener()
-  private var dateString: String = ""
+  private var formattedDate: FormattedDate? = null
 
   private val bodyBubbleDrawable = ChatColorsDrawable()
   private val footerDrawable = ChatColorsDrawable()
@@ -136,10 +137,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
         )
     }
 
-    binding.root.setOnClickListener {
-      conversationContext.clickListener.onItemClick(getMultiselectPartForLatestTouch())
-    }
-
+    binding.root.setOnClickListener { onBubbleClicked() }
     binding.root.setOnLongClickListener {
       conversationContext.clickListener.onItemLongClick(binding.root, getMultiselectPartForLatestTouch())
 
@@ -200,7 +198,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     )
 
     if (ConversationAdapterBridge.PAYLOAD_TIMESTAMP in payload) {
-      if (conversationMessage.computedProperties.formattedDate.value != dateString) {
+      if (conversationMessage.computedProperties.formattedDate != formattedDate) {
         presentDate()
       }
       hasProcessedSupportedPayload = true
@@ -619,7 +617,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
       return
     }
 
-    dateString = conversationMessage.computedProperties.formattedDate.value
+    formattedDate = conversationMessage.computedProperties.formattedDate
 
     binding.footerDate.setOnClickListener(null)
     binding.footerDate.visible = true
@@ -641,12 +639,14 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     } else if (record.isScheduled()) {
       binding.footerDate.text = conversationMessage.computedProperties.formattedDate.value
     } else {
-      var date = dateString
+      var dateLabel = conversationMessage.computedProperties.formattedDate.value
       if (conversationContext.displayMode != ConversationItemDisplayMode.Detailed && record is MmsMessageRecord && record.isEditMessage()) {
-        date = if (conversationMessage.computedProperties.formattedDate.isNow) {
+        dateLabel = if (conversationMessage.computedProperties.formattedDate.isNow) {
           getContext().getString(R.string.ConversationItem_edited_now_timestamp_footer)
+        } else if (conversationMessage.computedProperties.formattedDate.isRelative) {
+          getContext().getString(R.string.ConversationItem_edited_relative_timestamp_footer, dateLabel)
         } else {
-          getContext().getString(R.string.ConversationItem_edited_timestamp_footer, date)
+          getContext().getString(R.string.ConversationItem_edited_absolute_timestamp_footer, dateLabel)
         }
 
         binding.footerDate.setOnClickListener {
@@ -654,7 +654,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
         }
       }
 
-      binding.footerDate.text = date
+      binding.footerDate.text = dateLabel
     }
   }
 
@@ -707,6 +707,28 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
       record.hasReadReceipt() -> deliveryStatus.setRead()
       record.isDelivered -> deliveryStatus.setDelivered()
       else -> deliveryStatus.setSent()
+    }
+  }
+
+  private fun onBubbleClicked() {
+    val messageRecord = conversationMessage.messageRecord
+
+    when {
+      conversationContext.selectedItems.isNotEmpty() -> {
+        conversationContext.clickListener.onItemClick(getMultiselectPartForLatestTouch())
+      }
+      messageRecord.isFailed -> {
+        conversationContext.clickListener.onMessageWithErrorClicked(messageRecord)
+      }
+      messageRecord.isRateLimited && SignalStore.rateLimit().needsRecaptcha() -> {
+        conversationContext.clickListener.onMessageWithRecaptchaNeededClicked(messageRecord)
+      }
+      messageRecord.isOutgoing && messageRecord.isIdentityMismatchFailure -> {
+        conversationContext.clickListener.onIncomingIdentityMismatchClicked(messageRecord.fromRecipient.id)
+      }
+      else -> {
+        conversationContext.clickListener.onItemClick(getMultiselectPartForLatestTouch())
+      }
     }
   }
 

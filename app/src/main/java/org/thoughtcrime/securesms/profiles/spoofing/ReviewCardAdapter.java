@@ -44,6 +44,7 @@ class ReviewCardAdapter extends ListAdapter<ReviewCard, ReviewCardViewHolder> {
   interface Callbacks {
     void onCardClicked(@NonNull ReviewCard card);
     void onActionClicked(@NonNull ReviewCard card, @NonNull ReviewCard.Action action);
+    void onSignalConnectionClicked();
   }
 
   private final class CallbacksAdapter implements ReviewCardViewHolder.Callbacks {
@@ -69,6 +70,11 @@ class ReviewCardAdapter extends ListAdapter<ReviewCard, ReviewCardViewHolder> {
     public void onSecondaryActionItemClicked(int position) {
       ReviewCard card = getItem(position);
       callback.onActionClicked(card, Objects.requireNonNull(card.getSecondaryAction()));
+    }
+
+    @Override
+    public void onSignalConnectionClicked() {
+      callback.onSignalConnectionClicked();
     }
   }
 }

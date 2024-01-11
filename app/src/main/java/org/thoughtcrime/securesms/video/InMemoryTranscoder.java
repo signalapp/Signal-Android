@@ -180,7 +180,7 @@ public final class InMemoryTranscoder implements Closeable {
 
     if (metadata != null && metadata.getSanitizedMetadata() != null) {
       memoryFile.seek(metadata.getDataOffset());
-      return new MediaStream(new SequenceInputStream(new ByteArrayInputStream(metadata.getSanitizedMetadata()), ByteStreams.limit(new FileInputStream(memoryFileFileDescriptor), metadata.getDataLength())), MimeTypes.VIDEO_MP4, 0, 0);
+      return new MediaStream(new SequenceInputStream(new ByteArrayInputStream(metadata.getSanitizedMetadata()), ByteStreams.limit(new FileInputStream(memoryFileFileDescriptor), metadata.getDataLength())), MimeTypes.VIDEO_MP4, 0, 0, true);
     } else {
       memoryFile.seek(0);
       return new MediaStream(new FileInputStream(memoryFileFileDescriptor), MimeTypes.VIDEO_MP4, 0, 0);

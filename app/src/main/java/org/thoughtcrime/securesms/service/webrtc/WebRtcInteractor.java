@@ -165,6 +165,10 @@ public class WebRtcInteractor {
     WebRtcCallService.sendAudioManagerCommand(context, new AudioManagerCommand.SetDefaultDevice(recipientId, userDevice, clearUserEarpieceSelection));
   }
 
+  public void playStateChangeUp() {
+    WebRtcCallService.sendAudioManagerCommand(context, new AudioManagerCommand.PlayStateChangeUp());
+  }
+
   void peekGroupCallForRingingCheck(@NonNull GroupCallRingCheckInfo groupCallRingCheckInfo) {
     signalCallManager.peekGroupCallForRingingCheck(groupCallRingCheckInfo);
   }

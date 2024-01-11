@@ -76,8 +76,6 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
       }
 
       state.gatewayOrderStrategy.orderedGateways.forEachIndexed { index, gateway ->
-        space(16.dp)
-
         when (gateway) {
           GatewayResponse.Gateway.GOOGLE_PAY -> renderGooglePayButton(state)
           GatewayResponse.Gateway.PAYPAL -> renderPayPalButton(state)
@@ -93,6 +91,8 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
 
   private fun DSLConfiguration.renderGooglePayButton(state: GatewaySelectorState) {
     if (state.isGooglePayAvailable) {
+      space(16.dp)
+
       customPref(
         GooglePayButton.Model(
           isEnabled = true,
@@ -108,6 +108,8 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
 
   private fun DSLConfiguration.renderPayPalButton(state: GatewaySelectorState) {
     if (state.isPayPalAvailable) {
+      space(16.dp)
+
       customPref(
         PayPalButton.Model(
           onClick = {
@@ -123,6 +125,8 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
 
   private fun DSLConfiguration.renderCreditCardButton(state: GatewaySelectorState) {
     if (state.isCreditCardAvailable) {
+      space(16.dp)
+
       primaryButton(
         text = DSLSettingsText.from(R.string.GatewaySelectorBottomSheet__credit_or_debit_card),
         icon = DSLSettingsIcon.from(R.drawable.credit_card, R.color.signal_colorOnCustom),
@@ -137,6 +141,8 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
 
   private fun DSLConfiguration.renderSEPADebitButton(state: GatewaySelectorState) {
     if (state.isSEPADebitAvailable) {
+      space(16.dp)
+
       tonalButton(
         text = DSLSettingsText.from(R.string.GatewaySelectorBottomSheet__bank_transfer),
         icon = DSLSettingsIcon.from(R.drawable.bank_transfer),
@@ -160,6 +166,8 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
 
   private fun DSLConfiguration.renderIDEALButton(state: GatewaySelectorState) {
     if (state.isIDEALAvailable) {
+      space(16.dp)
+
       tonalButton(
         text = DSLSettingsText.from(R.string.GatewaySelectorBottomSheet__ideal),
         icon = DSLSettingsIcon.from(R.drawable.logo_ideal, NO_TINT),

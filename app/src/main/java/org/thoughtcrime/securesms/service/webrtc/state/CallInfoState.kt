@@ -22,6 +22,7 @@ data class CallInfoState(
   var callRecipient: Recipient = Recipient.UNKNOWN,
   var callConnectedTime: Long = -1,
   @get:JvmName("getRemoteCallParticipantsMap") var remoteParticipants: MutableMap<CallParticipantId, CallParticipant> = mutableMapOf(),
+  var localParticipant: CallParticipant? = null,
   var peerMap: MutableMap<Int, RemotePeer> = mutableMapOf(),
   var activePeer: RemotePeer? = null,
   var groupCall: GroupCall? = null,

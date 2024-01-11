@@ -273,6 +273,8 @@ object Stories {
     @JvmStatic
     @WorkerThread
     fun getVideoDuration(uri: Uri): Long {
+      ThreadUtil.assertNotMainThread()
+
       var duration = 0L
       var player: ExoPlayer? = null
       val countDownLatch = CountDownLatch(1)

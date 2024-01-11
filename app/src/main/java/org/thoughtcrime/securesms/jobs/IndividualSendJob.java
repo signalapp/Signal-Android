@@ -166,6 +166,9 @@ public class IndividualSendJob extends PushSendJob {
       markAttachmentsUploaded(messageId, message);
       database.markUnidentified(messageId, unidentified);
 
+      // For scheduled messages, which may not have updated the thread with it's snippet yet
+      SignalDatabase.threads().updateSilently(threadId, false);
+
       if (recipient.isSelf()) {
         SignalDatabase.messages().incrementDeliveryReceiptCount(message.getSentTimeMillis(), recipient.getId(), System.currentTimeMillis());
         SignalDatabase.messages().incrementReadReceiptCount(message.getSentTimeMillis(), recipient.getId(), System.currentTimeMillis());

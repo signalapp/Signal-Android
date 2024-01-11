@@ -364,5 +364,10 @@ public class WebRtcServiceStateBuilder {
       toBuild.setCallLinkDisconnectReason(callLinkDisconnectReason);
       return this;
     }
+
+    public @NonNull CallInfoStateBuilder setLocalParticipant(@NonNull CallParticipant callParticipant) {
+      toBuild.setLocalParticipant(callParticipant);
+      return this;
+    }
   }
 }

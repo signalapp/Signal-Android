@@ -29,7 +29,7 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.Set;
 
-class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.ViewHolder> {
+class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.ViewHolder> implements TimestampPayloadSupport {
 
   private static final int TYPE_THREAD              = 1;
   private static final int TYPE_ACTION              = 2;
@@ -41,7 +41,8 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
 
   private enum Payload {
     TYPING_INDICATOR,
-    SELECTION
+    SELECTION,
+    TIMESTAMP
   }
 
   private final LifecycleOwner              lifecycleOwner;
@@ -129,12 +130,13 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
     } else if (holder instanceof ConversationViewHolder) {
       for (Object payloadObject : payloads) {
         if (payloadObject instanceof Payload) {
-          Payload payload = (Payload) payloadObject;
+          Payload                payload = (Payload) payloadObject;
+          ConversationViewHolder vh      = (ConversationViewHolder) holder;
 
-          if (payload == Payload.SELECTION) {
-            ((ConversationViewHolder) holder).getConversationListItem().setSelectedConversations(selectedConversations);
-          } else {
-            ((ConversationViewHolder) holder).getConversationListItem().updateTypingIndicator(typingSet);
+          switch (payload) {
+            case TYPING_INDICATOR -> vh.getConversationListItem().updateTypingIndicator(typingSet);
+            case SELECTION -> vh.getConversationListItem().setSelectedConversations(selectedConversations);
+            case TIMESTAMP -> vh.getConversationListItem().updateTimestamp();
           }
         }
       }
@@ -188,6 +190,11 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
     }
 
     return super.getItem(position);
+  }
+
+  @Override
+  public void notifyTimestampPayloadUpdate() {
+    notifyItemRangeChanged(0, getItemCount(), Payload.TIMESTAMP);
   }
 
   public void setPagingController(@Nullable PagingController pagingController) {

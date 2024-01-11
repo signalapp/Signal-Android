@@ -237,6 +237,10 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
                                                               receiptCredentialPresentation.serialize())
                                              .putBlobAsString(DonationReceiptRedemptionJob.INPUT_TERMINAL_DONATION, terminalDonation.encode())
                                              .serialize());
+
+      if (donationErrorSource == DonationErrorSource.GIFT) {
+        SignalStore.donationsValues().setPendingOneTimeDonation(null);
+      }
     } else {
       Log.w(TAG, "Encountered a retryable exception: " + response.getStatus(), response.getExecutionError().orElse(null), true);
       throw new RetryableException();

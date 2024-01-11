@@ -4,10 +4,13 @@ import android.content.Context
 import androidx.annotation.PluralsRes
 import androidx.annotation.StringRes
 import com.annimon.stream.OptionalLong
+import kotlinx.collections.immutable.toImmutableList
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.webrtc.WebRtcControls.FoldableState
 import org.thoughtcrime.securesms.events.CallParticipant
+import org.thoughtcrime.securesms.events.CallParticipant.Companion.HAND_LOWERED
 import org.thoughtcrime.securesms.events.CallParticipant.Companion.createLocal
+import org.thoughtcrime.securesms.events.GroupCallRaiseHandEvent
 import org.thoughtcrime.securesms.events.GroupCallReactionEvent
 import org.thoughtcrime.securesms.events.WebRtcViewModel
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry
@@ -26,7 +29,7 @@ data class CallParticipantsState(
   val callState: WebRtcViewModel.State = WebRtcViewModel.State.CALL_DISCONNECTED,
   val groupCallState: WebRtcViewModel.GroupCallState = WebRtcViewModel.GroupCallState.IDLE,
   private val remoteParticipants: ParticipantCollection = ParticipantCollection(SMALL_GROUP_MAX),
-  val localParticipant: CallParticipant = createLocal(CameraState.UNKNOWN, BroadcastVideoSink(), false),
+  val localParticipant: CallParticipant = createLocal(CameraState.UNKNOWN, BroadcastVideoSink(), microphoneEnabled = false, handRaisedTimestamp = HAND_LOWERED),
   val focusedParticipant: CallParticipant = CallParticipant.EMPTY,
   val localRenderState: WebRtcLocalRenderState = WebRtcLocalRenderState.GONE,
   val reactions: List<GroupCallReactionEvent> = emptyList(),
@@ -45,8 +48,17 @@ data class CallParticipantsState(
 
   val allRemoteParticipants: List<CallParticipant> = remoteParticipants.allParticipants
   val isFolded: Boolean = foldableState.isFolded
-  val isLargeVideoGroup: Boolean = allRemoteParticipants.size > SMALL_GROUP_MAX
+  val isLargeVideoGroup: Boolean = allRemoteParticipants.size > SMALL_GROUP_MAX && !isInPipMode && !isFolded
   val isIncomingRing: Boolean = callState == WebRtcViewModel.State.CALL_INCOMING
+
+  val raisedHands: List<GroupCallRaiseHandEvent>
+    get() {
+      val results = allRemoteParticipants.filter { it.isHandRaised }.map { GroupCallRaiseHandEvent(it.recipient, it.handRaisedTimestamp) }.toMutableList()
+      if (localParticipant.isHandRaised) {
+        results.add(GroupCallRaiseHandEvent(localParticipant.recipient, localParticipant.handRaisedTimestamp))
+      }
+      return results.toImmutableList()
+    }
 
   val gridParticipants: List<CallParticipant>
     get() {

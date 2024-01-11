@@ -1,39 +1,37 @@
 package org.thoughtcrime.securesms.conversation;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.TextView;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 
+import org.signal.core.util.DimensionUnit;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.badges.BadgeImageView;
-import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.databinding.ConversationHeaderViewBinding;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.ContextUtil;
 import org.thoughtcrime.securesms.util.LongClickMovementMethod;
 import org.thoughtcrime.securesms.util.SpanUtil;
+import org.whispersystems.signalservice.api.util.Preconditions;
 
 public class ConversationHeaderView extends ConstraintLayout {
 
-  private AvatarImageView contactAvatar;
-  private TextView        contactTitle;
-  private TextView        contactAbout;
-  private TextView        contactSubtitle;
-  private EmojiTextView   contactDescription;
-  private View            tapToView;
-  private BadgeImageView  contactBadge;
+  private final ConversationHeaderViewBinding binding;
 
   public ConversationHeaderView(Context context) {
     this(context, null);
@@ -46,38 +44,32 @@ public class ConversationHeaderView extends ConstraintLayout {
   public ConversationHeaderView(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
 
-    inflate(getContext(), R.layout.conversation_banner_view, this);
+    inflate(getContext(), R.layout.conversation_header_view, this);
 
-    contactAvatar      = findViewById(R.id.message_request_avatar);
-    contactBadge       = findViewById(R.id.message_request_badge);
-    contactTitle       = findViewById(R.id.message_request_title);
-    contactAbout       = findViewById(R.id.message_request_about);
-    contactSubtitle    = findViewById(R.id.message_request_subtitle);
-    contactDescription = findViewById(R.id.message_request_description);
-    tapToView          = findViewById(R.id.message_request_avatar_tap_to_view);
+    binding = ConversationHeaderViewBinding.bind(this);
 
-    contactAvatar.setFallbackPhotoProvider(new FallbackPhotoProvider());
+    binding.messageRequestAvatar.setFallbackPhotoProvider(new FallbackPhotoProvider());
   }
 
   public void setBadge(@Nullable Recipient recipient) {
     if (recipient == null || recipient.isSelf()) {
-      contactBadge.setBadge(null);
+      binding.messageRequestBadge.setBadge(null);
     } else {
-      contactBadge.setBadgeFromRecipient(recipient);
+      binding.messageRequestBadge.setBadgeFromRecipient(recipient);
     }
   }
 
   public void setAvatar(@NonNull GlideRequests requests, @Nullable Recipient recipient) {
-    contactAvatar.setAvatar(requests, recipient, false);
+    binding.messageRequestAvatar.setAvatar(requests, recipient, false);
 
     if (recipient != null && recipient.shouldBlurAvatar() && recipient.getContactPhoto() != null) {
-      tapToView.setVisibility(VISIBLE);
-      tapToView.setOnClickListener(v -> {
+      binding.messageRequestAvatarTapToView.setVisibility(VISIBLE);
+      binding.messageRequestAvatarTapToView.setOnClickListener(v -> {
         SignalExecutors.BOUNDED.execute(() -> SignalDatabase.recipients().manuallyShowAvatar(recipient.getId()));
       });
     } else {
-      tapToView.setVisibility(GONE);
-      tapToView.setOnClickListener(null);
+      binding.messageRequestAvatarTapToView.setVisibility(GONE);
+      binding.messageRequestAvatarTapToView.setOnClickListener(null);
     }
   }
 
@@ -86,7 +78,7 @@ public class ConversationHeaderView extends ConstraintLayout {
     if (recipient.showVerified()) {
       SpanUtil.appendCenteredImageSpan(title, ContextUtil.requireDrawable(getContext(), R.drawable.ic_official_28), 28, 28);
     }
-    contactTitle.setText(title);
+    binding.messageRequestTitle.setText(title);
     return title.toString();
   }
 
@@ -98,46 +90,77 @@ public class ConversationHeaderView extends ConstraintLayout {
       about = recipient.getCombinedAboutAndEmoji();
     }
 
-    contactAbout.setText(about);
-    contactAbout.setVisibility(TextUtils.isEmpty(about) ? GONE : VISIBLE);
+    binding.messageRequestAbout.setText(about);
+    binding.messageRequestAbout.setVisibility(TextUtils.isEmpty(about) ? GONE : VISIBLE);
   }
 
-  public void setSubtitle(@Nullable CharSequence subtitle) {
-    contactSubtitle.setText(subtitle);
-    contactSubtitle.setVisibility(TextUtils.isEmpty(subtitle) ? GONE : VISIBLE);
+  public void setSubtitle(@NonNull CharSequence subtitle, @DrawableRes int iconRes) {
+    if (TextUtils.isEmpty(subtitle)) {
+      hideSubtitle();
+      return;
+    }
+
+    binding.messageRequestSubtitle.setText(prependIcon(subtitle, iconRes));
+    binding.messageRequestSubtitle.setVisibility(View.VISIBLE);
   }
 
-  public void setDescription(@Nullable CharSequence description) {
-    contactDescription.setText(description);
-    contactDescription.setVisibility(TextUtils.isEmpty(description) ? GONE : VISIBLE);
+  public void setDescription(@Nullable CharSequence description, @DrawableRes int iconRes) {
+    if (TextUtils.isEmpty(description)) {
+      hideDescription();
+      return;
+    }
+
+    binding.messageRequestDescription.setText(prependIcon(description, iconRes));
+    binding.messageRequestDescription.setVisibility(View.VISIBLE);
   }
 
   public @NonNull EmojiTextView getDescription() {
-    return contactDescription;
+    return binding.messageRequestDescription;
   }
 
   public void showBackgroundBubble(boolean enabled) {
     if (enabled) {
-      setBackgroundResource(R.drawable.wallpaper_bubble_background_12);
+      setBackgroundResource(R.drawable.wallpaper_bubble_background_18);
+      binding.messageRequestInfoOutline.setVisibility(View.INVISIBLE);
+      binding.messageRequestDivider.setVisibility(View.VISIBLE);
     } else {
       setBackground(null);
+      binding.messageRequestInfoOutline.setVisibility(View.VISIBLE);
+      binding.messageRequestDivider.setVisibility(View.INVISIBLE);
     }
   }
 
   public void hideSubtitle() {
-    contactSubtitle.setVisibility(View.GONE);
+    binding.messageRequestSubtitle.setVisibility(View.GONE);
   }
 
   public void showDescription() {
-    contactDescription.setVisibility(View.VISIBLE);
+    binding.messageRequestDescription.setVisibility(View.VISIBLE);
   }
 
   public void hideDescription() {
-    contactDescription.setVisibility(View.GONE);
+    binding.messageRequestDescription.setVisibility(View.GONE);
   }
 
   public void setLinkifyDescription(boolean enable) {
-    contactDescription.setMovementMethod(enable ? LongClickMovementMethod.getInstance(getContext()) : null);
+    binding.messageRequestDescription.setMovementMethod(enable ? LongClickMovementMethod.getInstance(getContext()) : null);
+  }
+
+  public void hideDecorations() {
+    binding.messageRequestInfoOutline.setVisibility(View.GONE);
+    binding.messageRequestDivider.setVisibility(View.GONE);
+  }
+
+  private @NonNull CharSequence prependIcon(@NonNull CharSequence input, @DrawableRes int iconRes) {
+    Drawable drawable = ContextCompat.getDrawable(getContext(), iconRes);
+    Preconditions.checkNotNull(drawable);
+    drawable.setBounds(0, 0, (int) DimensionUnit.DP.toPixels(20), (int) DimensionUnit.DP.toPixels(20));
+    drawable.setColorFilter(ContextCompat.getColor(getContext(), R.color.signal_colorOnSurface), PorterDuff.Mode.SRC_ATOP);
+
+    return new SpannableStringBuilder()
+        .append(SpanUtil.buildCenteredImageSpan(drawable))
+        .append(SpanUtil.space(8, DimensionUnit.DP))
+        .append(input);
   }
 
   private static final class FallbackPhotoProvider extends Recipient.FallbackPhotoProvider {

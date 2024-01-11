@@ -413,7 +413,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
           ORDER BY $DATE_RECEIVED DESC LIMIT 1
        """
 
-    private val IS_CALL_TYPE_CLAUSE = """(
+    const val IS_CALL_TYPE_CLAUSE = """(
       ($TYPE = ${MessageTypes.INCOMING_AUDIO_CALL_TYPE})
       OR
       ($TYPE = ${MessageTypes.INCOMING_VIDEO_CALL_TYPE})

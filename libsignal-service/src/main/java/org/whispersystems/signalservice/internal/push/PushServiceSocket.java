@@ -20,6 +20,7 @@ import org.signal.libsignal.protocol.util.Pair;
 import org.signal.libsignal.usernames.BaseUsernameException;
 import org.signal.libsignal.usernames.Username;
 import org.signal.libsignal.zkgroup.VerificationFailedException;
+import org.signal.libsignal.zkgroup.backups.BackupAuthCredentialRequest;
 import org.signal.libsignal.zkgroup.calllinks.CreateCallLinkCredentialRequest;
 import org.signal.libsignal.zkgroup.calllinks.CreateCallLinkCredentialResponse;
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations;
@@ -42,6 +43,12 @@ import org.whispersystems.signalservice.api.account.ChangePhoneNumberRequest;
 import org.whispersystems.signalservice.api.account.PniKeyDistributionRequest;
 import org.whispersystems.signalservice.api.account.PreKeyCollection;
 import org.whispersystems.signalservice.api.account.PreKeyUpload;
+import org.whispersystems.signalservice.api.archive.ArchiveCredentialPresentation;
+import org.whispersystems.signalservice.api.archive.ArchiveServiceCredentialsResponse;
+import org.whispersystems.signalservice.api.archive.ArchiveGetBackupInfoResponse;
+import org.whispersystems.signalservice.api.archive.ArchiveMessageBackupUploadFormResponse;
+import org.whispersystems.signalservice.api.archive.ArchiveSetBackupIdRequest;
+import org.whispersystems.signalservice.api.archive.ArchiveSetPublicKeyRequest;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.groupsv2.CredentialResponse;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2AuthorizationString;
@@ -85,7 +92,6 @@ import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 import org.whispersystems.signalservice.api.push.exceptions.RangeException;
 import org.whispersystems.signalservice.api.push.exceptions.RateLimitException;
 import org.whispersystems.signalservice.api.push.exceptions.RegistrationRetryException;
-import org.whispersystems.signalservice.api.push.exceptions.RemoteAttestationResponseExpiredException;
 import org.whispersystems.signalservice.api.push.exceptions.ResumeLocationInvalidException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 import org.whispersystems.signalservice.api.push.exceptions.TokenNotAcceptedException;
@@ -108,9 +114,6 @@ import org.whispersystems.signalservice.internal.configuration.SignalCdnUrl;
 import org.whispersystems.signalservice.internal.configuration.SignalProxy;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
 import org.whispersystems.signalservice.internal.configuration.SignalUrl;
-import org.whispersystems.signalservice.internal.contacts.entities.KeyBackupRequest;
-import org.whispersystems.signalservice.internal.contacts.entities.KeyBackupResponse;
-import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse;
 import org.whispersystems.signalservice.internal.crypto.AttachmentDigest;
 import org.whispersystems.signalservice.internal.push.exceptions.DonationProcessorError;
 import org.whispersystems.signalservice.internal.push.exceptions.DonationReceiptCredentialError;
@@ -303,6 +306,12 @@ public class PushServiceSocket {
 
   private static final String BACKUP_AUTH_CHECK = "/v2/backup/auth/check";
 
+  private static final String ARCHIVE_CREDENTIALS         = "/v1/archives/auth?redemptionStartSeconds=%d&redemptionEndSeconds=%d";
+  private static final String ARCHIVE_BACKUP_ID           = "/v1/archives/backupid";
+  private static final String ARCHIVE_PUBLIC_KEY          = "/v1/archives/keys";
+  private static final String ARCHIVE_INFO                = "/v1/archives";
+  private static final String ARCHIVE_MESSAGE_UPLOAD_FORM = "/v1/archives/upload/form";
+
   private static final String CALL_LINK_CREATION_AUTH = "/v1/call-link/create-auth";
   private static final String SERVER_DELIVERED_TIMESTAMP_HEADER = "X-Signal-Timestamp";
 
@@ -470,6 +479,48 @@ public class PushServiceSocket {
 
     return credentials;
   }
+
+  public ArchiveServiceCredentialsResponse getArchiveCredentials(long currentTime) throws IOException {
+    long secondsRoundedToNearestDay = TimeUnit.DAYS.toSeconds(TimeUnit.MILLISECONDS.toDays(currentTime));
+    long endTimeInSeconds           = secondsRoundedToNearestDay + TimeUnit.DAYS.toSeconds(7);
+
+    String response = makeServiceRequest(String.format(Locale.US, ARCHIVE_CREDENTIALS, secondsRoundedToNearestDay, endTimeInSeconds), "GET", null);
+
+    return JsonUtil.fromJson(response, ArchiveServiceCredentialsResponse.class);
+  }
+
+  public void setArchiveBackupId(BackupAuthCredentialRequest request) throws IOException {
+    String body = JsonUtil.toJson(new ArchiveSetBackupIdRequest(request));
+    makeServiceRequest(ARCHIVE_BACKUP_ID, "PUT", body);
+  }
+
+  public void setArchivePublicKey(ECPublicKey publicKey, ArchiveCredentialPresentation credentialPresentation) throws IOException {
+    Map<String, String> headers = new HashMap<>();
+    headers.put("X-Signal-ZK-Auth", Base64.encodeWithPadding(credentialPresentation.getPresentation()));
+    headers.put("X-Signal-ZK-Auth-Signature", Base64.encodeWithPadding(credentialPresentation.getSignedPresentation()));
+
+    String body = JsonUtil.toJson(new ArchiveSetPublicKeyRequest(publicKey));
+    makeServiceRequestWithoutAuthentication(ARCHIVE_PUBLIC_KEY, "PUT", body, headers, NO_HANDLER);
+  }
+
+  public ArchiveGetBackupInfoResponse getArchiveBackupInfo(ArchiveCredentialPresentation credentialPresentation) throws IOException {
+    Map<String, String> headers = new HashMap<>();
+    headers.put("X-Signal-ZK-Auth", Base64.encodeWithPadding(credentialPresentation.getPresentation()));
+    headers.put("X-Signal-ZK-Auth-Signature", Base64.encodeWithPadding(credentialPresentation.getSignedPresentation()));
+
+    String response = makeServiceRequestWithoutAuthentication(ARCHIVE_INFO, "GET", null, headers, NO_HANDLER);
+    return JsonUtil.fromJson(response, ArchiveGetBackupInfoResponse.class);
+  }
+
+  public ArchiveMessageBackupUploadFormResponse getArchiveMessageBackupUploadForm(ArchiveCredentialPresentation credentialPresentation) throws IOException {
+    Map<String, String> headers = new HashMap<>();
+    headers.put("X-Signal-ZK-Auth", Base64.encodeWithPadding(credentialPresentation.getPresentation()));
+    headers.put("X-Signal-ZK-Auth-Signature", Base64.encodeWithPadding(credentialPresentation.getSignedPresentation()));
+
+    String response = makeServiceRequestWithoutAuthentication(ARCHIVE_MESSAGE_UPLOAD_FORM, "GET", null, headers, NO_HANDLER);
+    return JsonUtil.fromJson(response, ArchiveMessageBackupUploadFormResponse.class);
+  }
+
 
   public VerifyAccountResponse changeNumber(@Nonnull ChangePhoneNumberRequest changePhoneNumberRequest)
       throws IOException
@@ -694,8 +745,7 @@ public class PushServiceSocket {
 
     makeServiceRequest(String.format(Locale.US, PREKEY_PATH, preKeyUpload.getServiceIdType().queryParam()),
                        "PUT",
-                       JsonUtil.toJson(new PreKeyState(preKeyUpload.getIdentityKey(),
-                                                       signedPreKey,
+                       JsonUtil.toJson(new PreKeyState(signedPreKey,
                                                        oneTimeEcPreKeys,
                                                        lastResortKyberPreKey,
                                                        oneTimeKyberPreKeys)));
@@ -1587,6 +1637,10 @@ public class PushServiceSocket {
     }
   }
 
+  public String getResumableUploadUrl(ArchiveMessageBackupUploadFormResponse uploadFormResponse) throws IOException {
+    return getResumableUploadUrl(uploadFormResponse.getCdn(), uploadFormResponse.getSignedUploadLocation(), uploadFormResponse.getHeaders());
+  }
+
   private String getResumableUploadUrl(int cdn, String signedUrl, Map<String, String> headers) throws IOException {
     ConnectionHolder connectionHolder = getRandom(cdnClientsMap.get(cdn), random);
     OkHttpClient     okHttpClient     = connectionHolder.getClient()
@@ -1687,6 +1741,10 @@ public class PushServiceSocket {
         connections.remove(call);
       }
     }
+  }
+
+  public void uploadBackupFile(ArchiveMessageBackupUploadFormResponse uploadFormResponse, String resumableUploadUrl, InputStream data, long dataLength) throws IOException {
+    uploadToCdn3(resumableUploadUrl, data, "application/octet-stream", dataLength, false, new NoCipherOutputStreamFactory(), null, null, uploadFormResponse.getHeaders());
   }
 
   private AttachmentDigest uploadToCdn3(String resumableUrl,

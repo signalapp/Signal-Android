@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.backup.v2
 
 import android.content.ContentValues
 import android.database.Cursor
+import androidx.core.content.contentValuesOf
 import net.zetetic.database.sqlcipher.SQLiteDatabase
 import org.junit.Before
 import org.junit.Test
@@ -20,8 +21,10 @@ import org.signal.core.util.requireLong
 import org.signal.core.util.requireString
 import org.signal.core.util.select
 import org.signal.core.util.toInt
+import org.signal.core.util.withinTransaction
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.backup.v2.database.clearAllDataForBackupRestore
+import org.thoughtcrime.securesms.database.CallTable
 import org.thoughtcrime.securesms.database.EmojiSearchTable
 import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.MessageTypes
@@ -60,7 +63,8 @@ class BackupTest {
 
     /** Columns that we don't need to check equality of */
     private val IGNORED_COLUMNS: Map<String, Set<String>> = mapOf(
-      RecipientTable.TABLE_NAME to setOf(RecipientTable.STORAGE_SERVICE_ID)
+      RecipientTable.TABLE_NAME to setOf(RecipientTable.STORAGE_SERVICE_ID),
+      MessageTable.TABLE_NAME to setOf(MessageTable.FROM_DEVICE_ID)
     )
 
     /** Tables we don't need to check equality of */
@@ -142,6 +146,88 @@ class BackupTest {
       individualRecipient(aci = ACI.from(UUID.randomUUID()), profileSharing = false)
       individualRecipient(aci = ACI.from(UUID.randomUUID()), hideStory = true)
       individualRecipient(aci = ACI.from(UUID.randomUUID()), hidden = true)
+    }
+  }
+
+  @Test
+  fun individualCallLogs() {
+    backupTest {
+      val aliceId = individualRecipient(
+        aci = ALICE_ACI,
+        pni = ALICE_PNI,
+        e164 = ALICE_E164,
+        givenName = "Alice",
+        familyName = "Smith",
+        username = "alice.99",
+        hidden = false,
+        registeredState = RecipientTable.RegisteredState.REGISTERED,
+        profileKey = ProfileKey(Random.nextBytes(32)),
+        profileSharing = true,
+        hideStory = false
+      )
+      insertOneToOneCallVariations(1, 1, aliceId)
+    }
+  }
+
+  private fun insertOneToOneCallVariations(callId: Long, timestamp: Long, id: RecipientId): Long {
+    val directions = arrayOf(CallTable.Direction.INCOMING, CallTable.Direction.OUTGOING)
+    val callTypes = arrayOf(CallTable.Type.AUDIO_CALL, CallTable.Type.VIDEO_CALL)
+    val events = arrayOf(
+      CallTable.Event.MISSED,
+      CallTable.Event.OUTGOING_RING,
+      CallTable.Event.ONGOING,
+      CallTable.Event.ACCEPTED,
+      CallTable.Event.NOT_ACCEPTED
+    )
+    var callTimestamp: Long = timestamp
+    var currentCallId = callId
+    for (direction in directions) {
+      for (event in events) {
+        for (type in callTypes) {
+          insertOneToOneCall(callId = currentCallId, callTimestamp, id, type, direction, event)
+          callTimestamp++
+          currentCallId++
+        }
+      }
+    }
+
+    return currentCallId
+  }
+
+  private fun insertOneToOneCall(callId: Long, timestamp: Long, peer: RecipientId, type: CallTable.Type, direction: CallTable.Direction, event: CallTable.Event) {
+    val messageType: Long = CallTable.Call.getMessageType(type, direction, event)
+
+    SignalDatabase.rawDatabase.withinTransaction {
+      val recipient = Recipient.resolved(peer)
+      val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
+      val outgoing = direction == CallTable.Direction.OUTGOING
+
+      val messageValues = contentValuesOf(
+        MessageTable.FROM_RECIPIENT_ID to if (outgoing) Recipient.self().id.serialize() else peer.serialize(),
+        MessageTable.FROM_DEVICE_ID to 1,
+        MessageTable.TO_RECIPIENT_ID to if (outgoing) peer.serialize() else Recipient.self().id.serialize(),
+        MessageTable.DATE_RECEIVED to timestamp,
+        MessageTable.DATE_SENT to timestamp,
+        MessageTable.READ to 1,
+        MessageTable.TYPE to messageType,
+        MessageTable.THREAD_ID to threadId
+      )
+
+      val messageId = SignalDatabase.rawDatabase.insert(MessageTable.TABLE_NAME, null, messageValues)
+
+      val values = contentValuesOf(
+        CallTable.CALL_ID to callId,
+        CallTable.MESSAGE_ID to messageId,
+        CallTable.PEER to peer.serialize(),
+        CallTable.TYPE to CallTable.Type.serialize(type),
+        CallTable.DIRECTION to CallTable.Direction.serialize(direction),
+        CallTable.EVENT to CallTable.Event.serialize(event),
+        CallTable.TIMESTAMP to timestamp
+      )
+
+      SignalDatabase.rawDatabase.insert(CallTable.TABLE_NAME, null, values)
+
+      SignalDatabase.threads.update(threadId, true)
     }
   }
 

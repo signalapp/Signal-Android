@@ -112,6 +112,7 @@ class WebRtcCallParticipantsPagerAdapter extends ListAdapter<WebRtcCallParticipa
       CallParticipant participant = page.getCallParticipants().get(0);
       callParticipantView.setCallParticipant(participant);
       callParticipantView.setRenderInPip(page.isRenderInPip());
+      callParticipantView.setRaiseHandAllowed(false);
       if (participant.isScreenSharing()) {
         callParticipantView.setScalingType(RendererCommon.ScalingType.SCALE_ASPECT_FIT);
       } else {

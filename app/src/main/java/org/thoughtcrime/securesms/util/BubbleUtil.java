@@ -120,7 +120,7 @@ public final class BubbleUtil {
                                                                    .orElse(null);
 
           if (activeThreadNotification != null && activeThreadNotification.deleteIntent != null) {
-            ApplicationDependencies.getMessageNotifier().updateNotification(context, conversationId, BubbleState.SHOWN);
+            ApplicationDependencies.getMessageNotifier().forceBubbleNotification(context, conversationId);
           } else {
             Recipient recipient = Recipient.resolved(recipientId);
             NotificationFactory.notifyToBubbleConversation(context, recipient, threadId);

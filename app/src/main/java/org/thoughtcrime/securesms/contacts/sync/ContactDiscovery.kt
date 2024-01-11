@@ -206,7 +206,7 @@ object ContactDiscovery {
       .forEach { result ->
         val hour = Calendar.getInstance()[Calendar.HOUR_OF_DAY]
         if (hour in 9..22) {
-          ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(result.threadId), true)
+          ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(result.threadId))
         } else {
           Log.i(TAG, "Not notifying of a new user due to the time of day. (Hour: $hour)")
         }

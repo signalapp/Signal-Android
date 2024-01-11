@@ -47,8 +47,8 @@ public class TurnOffContactJoinedNotificationsActivity extends AppCompatActivity
         })
         .setNegativeButton(android.R.string.cancel, ((dialog, which) -> {
           dialog.dismiss();
-          finish();
         }))
+        .setOnDismissListener(dialog -> finish())
         .show();
   }
 
@@ -65,7 +65,6 @@ public class TurnOffContactJoinedNotificationsActivity extends AppCompatActivity
       return null;
     }, unused -> {
       dialog.dismiss();
-      finish();
     });
   }
 }

@@ -1006,7 +1006,7 @@
         android:exported="false"/>
 
     <activity android:name=".contacts.TurnOffContactJoinedNotificationsActivity"
-              android:theme="@style/Theme.AppCompat.Dialog.Alert"
+              android:theme="@style/TextSecure.DialogActivity"
               android:exported="false"/>
 
     <activity android:name=".contactshare.ContactShareEditActivity"

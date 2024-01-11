@@ -546,6 +546,12 @@ public abstract class WebRtcActionProcessor {
     return currentState;
   }
 
+
+  protected @NonNull WebRtcServiceState handleSelfRaiseHand(@NonNull WebRtcServiceState currentState, boolean raised) {
+    Log.i(tag, "raiseHand not processed");
+    return currentState;
+  }
+
   protected @NonNull WebRtcEphemeralState handleSendGroupReact(@NonNull WebRtcServiceState currentState, @NonNull WebRtcEphemeralState ephemeralState, @NonNull String reaction) {
     Log.i(tag, "react not processed");
     return ephemeralState;
@@ -737,6 +743,11 @@ public abstract class WebRtcActionProcessor {
   protected @NonNull WebRtcEphemeralState handleGroupCallReaction(@NonNull WebRtcServiceState currentState, @NonNull WebRtcEphemeralState ephemeralState, List<GroupCall.Reaction> reactions) {
    Log.i(tag, "handleGroupCallReaction not processed");
    return ephemeralState;
+  }
+
+  protected @NonNull WebRtcServiceState handleGroupCallRaisedHand(@NonNull WebRtcServiceState currentState, List<Long> raisedHands) {
+   Log.i(tag, "handleGroupCallRaisedHand not processed");
+   return currentState;
   }
 
   protected @NonNull WebRtcServiceState handleGroupRequestMembershipProof(@NonNull WebRtcServiceState currentState, int groupCallHashCode) {

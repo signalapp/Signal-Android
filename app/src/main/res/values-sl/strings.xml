@@ -325,10 +325,12 @@
     <string name="ConversationItem_cant_download_image_you_will_need_to_send_it_again">Slike ni mogoče prenesti. Ponovno jo boste morali poslati.</string>
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Videoposnetka ni mogoče prenesti. Ponovno ga boste morali poslati.</string>
-    <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp represents a message that has been edited extremely recently. -->
+    <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp represents a message that has been edited within the last minute. -->
     <string name="ConversationItem_edited_now_timestamp_footer">Pravkar urejeno</string>
-    <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">Urejeno pred %1$s</string>
+    <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. This is displayed when the edit has occurred between 1-59 minutes ago. -->
+    <string name="ConversationItem_edited_relative_timestamp_footer">Urejeno pred %1$s</string>
+    <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. This is displayed when the edit occurred at least 1 hour ago. -->
+    <string name="ConversationItem_edited_absolute_timestamp_footer">Urejeno pred %1$s</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
     <string name="ConversationItem__join_call">Pridruži se klicu</string>
 
@@ -366,6 +368,8 @@
     <string name="ConversationActivity_transport_insecure_mms">Nezavarovan MMS</string>
     <!-- A title for the option to send an SMS with a placeholder to put the name of their SIM card -->
     <string name="ConversationActivity_transport_signal">Sporočilo Signal</string>
+    <!-- The content description for button to send a message in a conversation -->
+    <string name="ConversationActivity_send_message_content_description">Pošlji sporočilo</string>
     <string name="ConversationActivity_lets_switch_to_signal">Začni uporabljati aplikacijo Signal %1$s</string>
     <string name="ConversationActivity_specify_recipient">Prosimo, izberite uporabnika_co</string>
     <string name="ConversationActivity_attachment_exceeds_size_limits">Velikost priponke presega omejitev velikosti za ta tip sporočil.</string>
@@ -1990,6 +1994,56 @@
     <!-- A text description of the earpiece icon, used for accessibility. -->
     <string name="WebRtcAudioOutputBottomSheet__earpiece_icon_content_description">Ikona, ki predstavlja slušalko naprave.</string>
 
+    <!-- A clickable button to "raise your hand" in a group call to signify you have something to say -->
+    <string name="CallOverflowPopupWindow__raise_hand">Dvigni roko</string>
+    <!-- A description of a clickable image representing a raised hand -->
+    <string name="CallOverflowPopupWindow__raise_hand_illustration_content_description">Dvigni roko</string>
+    <!-- A dialog prompt to confirm you want to lower your hand -->
+    <string name="CallOverflowPopupWindow__lower_your_hand">Želite spustiti roko?</string>
+    <!-- A dialog button to confirm you would like to lower your hand -->
+    <string name="CallOverflowPopupWindow__lower_hand">Spusti roko</string>
+    <!-- A negative button for a dialog confirming the user wants to lower their hand (withdraw a raised hand) -->
+    <string name="CallOverflowPopupWindow__cancel">Prekliči</string>
+    <!-- A notification to the user that they successfully raised their hand -->
+    <string name="CallOverflowPopupWindow__you_raised_your_hand">Dvignili ste roko</string>
+    <!-- A button to take you to a list of participants with raised hands -->
+    <string name="CallOverflowPopupWindow__view">Ogled</string>
+
+    <!-- A notification to the user that one or more participants in the call successfully raised their hand. In the singular case, it is a name. In the plural case, it is a name or "You" -->
+    <plurals name="CallOverflowPopupWindow__raised_a_hand">
+        <item quantity="one">%1$s je dvignil_a roko</item>
+        <item quantity="two">%1$s + %2$d sta dvignila roko</item>
+        <item quantity="few">%1$s + %2$d so dvignili roko</item>
+        <item quantity="other">%1$s + %2$d jih je dvignilo roko</item>
+    </plurals>
+
+    <!-- A badge to show how many hands are raised. The first string may be a name or "You" -->
+    <plurals name="CallRaiseHandSnackbar_raised_hands">
+        <item quantity="one">%1$s</item>
+        <item quantity="two">%1$s + %2$d</item>
+        <item quantity="few">%1$s + %2$d</item>
+        <item quantity="other">%1$s + %2$d</item>
+    </plurals>
+
+    <!-- An accessibility label for screen readers on a view that can be expanded -->
+    <string name="CallOverflowPopupWindow__expand_snackbar_accessibility_label">Razširite pogled dvignjene roke</string>
+
+    <!-- AboutSheet -->
+    <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
+    <string name="AboutSheet__signal_connection">Signal povezava</string>
+    <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
+    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s je med vašimi sistemskimi stiki</string>
+    <!-- Notice in a row when user has no groups in common -->
+    <string name="AboutSheet__you_have_no_groups_in_common">Nimata skupne skupine</string>
+    <!-- Notice when a user is not a connection to review requests carefully -->
+    <string name="AboutSheet__review_requests_carefully">Pazljivo preglejte prošnje</string>
+    <!-- Text used when user has groups in common. Placeholder is the count -->
+    <string name="AboutSheet__d_groups_in_common">%1$d skupnih skupin</string>
+    <!-- Text displayed in title for external recipients -->
+    <string name="AboutSheet__about">Več</string>
+    <!-- Text displayed in title for you -->
+    <string name="AboutSheet__you">Vi</string>
+
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call">
         <item quantity="one">V tem klicu (%1$d)</item>
@@ -2008,6 +2062,12 @@
         <item quantity="two">Signal bo obvestil (%1$d)</item>
         <item quantity="few">Signal bo obvestil (%1$d)</item>
         <item quantity="other">Signal bo obvestil (%1$d)</item>
+    </plurals>
+    <plurals name="CallParticipantsListDialog__raised_hands">
+        <item quantity="one">Dvignjena roka (%1$d)</item>
+        <item quantity="two">Dvignjeni roki (%1$d)</item>
+        <item quantity="few">Dvignjene roke (%1$d)</item>
+        <item quantity="other">Dvignjene roke (%1$d)</item>
     </plurals>
 
     <!-- CallParticipantView -->
@@ -2122,6 +2182,12 @@
     <string name="RevealableMessageView_view_video">Ogled videa</string>
     <string name="RevealableMessageView_viewed">Ogledano</string>
     <string name="RevealableMessageView_media">Medijske datoteke</string>
+
+    <!-- ReviewBannerView -->
+    <!-- ReviewBannerView text when a name conflict has been found -->
+    <string name="ReviewBannerView__name_conflict_found">To ime uporablja več uporabnikov</string>
+    <!-- Button label to view name conflicts -->
+    <string name="ReviewBannerView__view">Ogled</string>
 
     <!-- Search -->
     <string name="SearchFragment_no_results">Iskanje po \'%1$s\' ni vrnilo nobenega rezultata.</string>
@@ -2516,8 +2582,8 @@
     </plurals>
     <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
     <string name="TransferControlView__processing">V obdelavi …</string>
-    <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
-    <string name="TransferControlView__download_progress">%1$s/%2$s</string>
+    <!-- Status update label used while the device is transmitting data over the network. Will take the form of "1.0 MB/2.0 MB" -->
+    <string name="TransferControlView__download_progress">%1$1.1f MB/%2$2.1f MB</string>
 
 
     <!-- UnauthorizedReminder -->
@@ -4147,14 +4213,16 @@
     <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Odstranitev člana_ice ni uspela.</string>
 
     <!-- ReviewCard -->
-    <string name="ReviewCard__member">Član</string>
     <string name="ReviewCard__request">Prošnja</string>
     <string name="ReviewCard__your_contact">Vaš stik</string>
     <string name="ReviewCard__remove_from_group">Odstrani iz skupine</string>
     <string name="ReviewCard__update_contact">Posodobite stik</string>
     <string name="ReviewCard__block">Blokiraj</string>
     <string name="ReviewCard__delete">Izbriši</string>
-    <string name="ReviewCard__recently_changed">Uporabnik_ca je pred kratkim spremenil_a ime profila iz %1$s v %2$s</string>
+    <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
+    <string name="ReviewCard__s_recently_changed">%1$s je pred kratkim spremenil_a svoje ime iz %2$s v %3$s</string>
+    <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
+    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s je med vašimi sistemskimi stiki</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">Pridružil_a se je %1$s</string>

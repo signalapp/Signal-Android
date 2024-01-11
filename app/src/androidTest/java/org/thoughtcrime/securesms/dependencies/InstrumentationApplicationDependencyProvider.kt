@@ -80,7 +80,8 @@ class InstrumentationApplicationDependencyProvider(application: Application, def
       dns = Optional.of(SignalServiceNetworkAccess.DNS),
       signalProxy = Optional.empty(),
       zkGroupServerPublicParams = Base64.decode(BuildConfig.ZKGROUP_SERVER_PUBLIC_PARAMS),
-      genericServerPublicParams = Base64.decode(BuildConfig.GENERIC_SERVER_PUBLIC_PARAMS)
+      genericServerPublicParams = Base64.decode(BuildConfig.GENERIC_SERVER_PUBLIC_PARAMS),
+      backupServerPublicParams = Base64.decode(BuildConfig.BACKUP_SERVER_PUBLIC_PARAMS)
     )
 
     serviceNetworkAccessMock = mock {

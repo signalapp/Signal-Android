@@ -223,7 +223,7 @@ object DataMessageProcessor {
       if (SignalDatabase.recipients.setProfileKey(senderRecipient.id, messageProfileKey)) {
         log(timestamp, "Profile key on message from " + senderRecipient.id + " didn't match our local store. It has been updated.")
         SignalDatabase.runPostSuccessfulTransaction {
-          ApplicationDependencies.getJobManager().add(RetrieveProfileJob.forRecipient(senderRecipient.id))
+          RetrieveProfileJob.enqueue(senderRecipient.id)
         }
       }
     } else {
@@ -522,7 +522,7 @@ object DataMessageProcessor {
     } else {
       val reactionRecord = ReactionRecord(emoji!!, senderRecipientId, message.timestamp!!, System.currentTimeMillis())
       SignalDatabase.reactions.addReaction(targetMessageId, reactionRecord)
-      ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.fromMessageRecord(targetMessage), false)
+      ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.fromMessageRecord(targetMessage))
     }
 
     return targetMessageId
@@ -542,7 +542,7 @@ object DataMessageProcessor {
         SignalDatabase.messages.deleteRemotelyDeletedStory(targetMessage.id)
       }
 
-      ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.fromMessageRecord(targetMessage), false)
+      ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.fromMessageRecord(targetMessage))
 
       MessageId(targetMessage.id)
     } else if (targetMessage == null) {

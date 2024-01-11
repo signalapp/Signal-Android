@@ -63,6 +63,9 @@ public class SignalServiceProfile {
   @JsonProperty
   private List<Badge> badges;
 
+  @JsonProperty
+  private String phoneNumberSharing;
+
   @JsonIgnore
   private RequestType requestType;
 
@@ -94,6 +97,10 @@ public class SignalServiceProfile {
 
   public String getUnidentifiedAccess() {
     return unidentifiedAccess;
+  }
+
+  public String getPhoneNumberSharing() {
+    return phoneNumberSharing;
   }
 
   public boolean isUnrestrictedUnidentifiedAccess() {

@@ -28,6 +28,7 @@ public class CallParticipantsLayout extends FlexboxLayout {
 
   private static final int MULTIPLE_PARTICIPANT_SPACING = ViewUtil.dpToPx(3);
   private static final int CORNER_RADIUS                = ViewUtil.dpToPx(10);
+  private static final int RAISE_HAND_MINIMUM_COUNT     = 2;
 
   private List<CallParticipant> callParticipants   = Collections.emptyList();
   private CallParticipant       focusedParticipant = null;
@@ -144,6 +145,8 @@ public class CallParticipantsLayout extends FlexboxLayout {
     } else {
       callParticipantView.useLargeAvatar();
     }
+
+    callParticipantView.setRaiseHandAllowed(count >= RAISE_HAND_MINIMUM_COUNT);
 
     layoutStrategy.setChildLayoutParams(view, index, getChildCount());
   }

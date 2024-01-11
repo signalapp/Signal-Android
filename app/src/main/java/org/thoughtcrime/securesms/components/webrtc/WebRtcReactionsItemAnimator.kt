@@ -6,39 +6,65 @@
 package org.thoughtcrime.securesms.components.webrtc
 
 import android.animation.Animator
-import android.animation.AnimatorSet
 import android.animation.ValueAnimator
+import android.os.Build
+import android.view.animation.AccelerateInterpolator
+import android.view.animation.DecelerateInterpolator
+import android.view.animation.Interpolator
 import androidx.core.animation.doOnEnd
 import androidx.recyclerview.widget.RecyclerView
 import org.signal.core.util.logging.Log
 
 /**
- * Reactions item animator based on [ConversationItemAnimator]
+ * Reactions item animator based on [org.thoughtcrime.securesms.conversation.mutiselect.ConversationItemAnimator]
  */
 class WebRtcReactionsItemAnimator : RecyclerView.ItemAnimator() {
 
   private data class TweeningInfo(
+    val property: AnimatedProperty,
+    val interpolator: Interpolator,
     val startValue: Float,
     val endValue: Float
   ) {
-    fun lerp(progress: Float): Float {
-      return startValue + progress * (endValue - startValue)
+    private val range = endValue - startValue
+
+    fun calculateCurrentValue(progress: Float): Float {
+      val interpolatedProgress = interpolator.getInterpolation(progress)
+      return startValue + (interpolatedProgress * range)
     }
   }
 
   private data class AnimationInfo(
     val sharedAnimator: ValueAnimator,
-    val tweeningInfo: TweeningInfo
+    val tweeningInfos: List<TweeningInfo>
   )
 
-  private val pendingSlideAnimations: MutableMap<RecyclerView.ViewHolder, TweeningInfo> = mutableMapOf()
-  private val slideAnimations: MutableMap<RecyclerView.ViewHolder, AnimationInfo> = mutableMapOf()
+  private enum class AnimatedProperty {
+    TRANSLATION_Y,
+    ALPHA
+  }
+
+  private val accelerateInterpolator: Interpolator = AccelerateInterpolator()
+  private val decelerateInterpolator: Interpolator = DecelerateInterpolator()
+
+  private val pendingAnimations: MutableMap<RecyclerView.ViewHolder, List<TweeningInfo>> = mutableMapOf()
+  private val activeAnimations: MutableMap<RecyclerView.ViewHolder, AnimationInfo> = mutableMapOf()
 
   override fun animateDisappearance(viewHolder: RecyclerView.ViewHolder, preLayoutInfo: ItemHolderInfo, postLayoutInfo: ItemHolderInfo?): Boolean {
-    if (!pendingSlideAnimations.containsKey(viewHolder) &&
-      !slideAnimations.containsKey(viewHolder)
+    if (!pendingAnimations.containsKey(viewHolder) &&
+      !activeAnimations.containsKey(viewHolder)
     ) {
-      pendingSlideAnimations[viewHolder] = TweeningInfo(0f, viewHolder.itemView.height.toFloat())
+      val existingAnimations = pendingAnimations[viewHolder]?.toMutableList() ?: mutableListOf()
+
+      val startingAlpha = when (viewHolder.layoutPosition) {
+        WebRtcReactionsRecyclerAdapter.MAX_REACTION_NUMBER - 2 -> 0.7f
+        WebRtcReactionsRecyclerAdapter.MAX_REACTION_NUMBER - 3 -> 0.9f
+        else -> 1f
+      }
+      existingAnimations.add(TweeningInfo(AnimatedProperty.ALPHA, accelerateInterpolator, startingAlpha, 0f))
+      existingAnimations.add(TweeningInfo(AnimatedProperty.TRANSLATION_Y, accelerateInterpolator, 0f, (preLayoutInfo.top - preLayoutInfo.bottom) / 2f))
+
+      pendingAnimations[viewHolder] = existingAnimations
       dispatchAnimationStarted(viewHolder)
       return true
     }
@@ -52,12 +78,14 @@ class WebRtcReactionsItemAnimator : RecyclerView.ItemAnimator() {
       dispatchAnimationFinished(viewHolder)
       return false
     }
-
-    return animateSlide(viewHolder, preLayoutInfo, postLayoutInfo)
+    val existingAnimations = pendingAnimations[viewHolder]?.toMutableList() ?: mutableListOf()
+    existingAnimations.add(TweeningInfo(AnimatedProperty.ALPHA, accelerateInterpolator, 0f, 1f))
+    pendingAnimations[viewHolder] = existingAnimations
+    return animateSlideIn(viewHolder, preLayoutInfo, postLayoutInfo)
   }
 
-  private fun animateSlide(viewHolder: RecyclerView.ViewHolder, preLayoutInfo: ItemHolderInfo?, postLayoutInfo: ItemHolderInfo): Boolean {
-    if (slideAnimations.containsKey(viewHolder)) {
+  private fun animateSlideIn(viewHolder: RecyclerView.ViewHolder, preLayoutInfo: ItemHolderInfo?, postLayoutInfo: ItemHolderInfo): Boolean {
+    if (activeAnimations.containsKey(viewHolder)) {
       dispatchAnimationFinished(viewHolder)
       return false
     }
@@ -76,18 +104,20 @@ class WebRtcReactionsItemAnimator : RecyclerView.ItemAnimator() {
 
     viewHolder.itemView.translationY = translationY
 
-    pendingSlideAnimations[viewHolder] = TweeningInfo(translationY, 0f)
+    val existingAnimations = pendingAnimations[viewHolder]?.toMutableList() ?: mutableListOf()
+    existingAnimations.add(TweeningInfo(AnimatedProperty.TRANSLATION_Y, decelerateInterpolator, translationY, 0f))
+    pendingAnimations[viewHolder] = existingAnimations
     dispatchAnimationStarted(viewHolder)
 
     return true
   }
 
   override fun animatePersistence(viewHolder: RecyclerView.ViewHolder, preLayoutInfo: ItemHolderInfo, postLayoutInfo: ItemHolderInfo): Boolean {
-    return if (pendingSlideAnimations.contains(viewHolder) || slideAnimations.containsKey(viewHolder)) {
+    return if (pendingAnimations.contains(viewHolder) || activeAnimations.containsKey(viewHolder)) {
       dispatchAnimationFinished(viewHolder)
       false
     } else {
-      animateSlide(viewHolder, preLayoutInfo, postLayoutInfo)
+      animateSlideIn(viewHolder, preLayoutInfo, postLayoutInfo)
     }
   }
 
@@ -100,41 +130,61 @@ class WebRtcReactionsItemAnimator : RecyclerView.ItemAnimator() {
   }
 
   override fun runPendingAnimations() {
-    Log.d(TAG, "Starting ${pendingSlideAnimations.size} animations.")
-    runPendingSlideAnimations()
+    Log.d(TAG, "Starting ${pendingAnimations.size} animations.")
+    runPendingAnimationsInternal()
   }
 
-  private fun runPendingSlideAnimations() {
-    val animators: MutableList<Animator> = mutableListOf()
-    for ((viewHolder, tweeningInfo) in pendingSlideAnimations) {
-      val animator = ValueAnimator.ofFloat(0f, 1f)
-      slideAnimations[viewHolder] = AnimationInfo(animator, tweeningInfo)
-      animator.duration = 150L
-      animator.addUpdateListener {
-        if (viewHolder in slideAnimations) {
-          viewHolder.itemView.translationY = tweeningInfo.lerp(it.animatedFraction)
-          (viewHolder.itemView.parent as RecyclerView?)?.invalidate()
+  private fun runPendingAnimationsInternal() {
+    activeAnimations.filter { pendingAnimations.containsKey(it.key) }
+      .forEach {
+        it.value.sharedAnimator.end()
+        handleAnimationEnd(it.key)
+      }
+    val animator = ValueAnimator.ofFloat(0f, 1f)
+
+    animator.duration = ANIMATION_DURATION
+    animator.addUpdateListener {
+      activeAnimationsByAnimator(it).forEach { (viewHolder, animationInfo) ->
+        val itemView = viewHolder.itemView
+        animationInfo.tweeningInfos.forEach { tween ->
+          val currentValue = tween.calculateCurrentValue(it.animatedFraction)
+          when (tween.property) {
+            AnimatedProperty.TRANSLATION_Y -> itemView.translationY = currentValue
+            AnimatedProperty.ALPHA -> {
+              if (Build.VERSION.SDK_INT >= 29) {
+                itemView.transitionAlpha = currentValue
+              } else {
+                itemView.alpha = currentValue
+              }
+            }
+          }
         }
       }
-      animator.doOnEnd {
-        if (viewHolder in slideAnimations) {
+    }
+
+    animator.doOnEnd {
+      activeAnimationsByAnimator(it)
+        .forEach { (viewHolder, _) ->
           handleAnimationEnd(viewHolder)
         }
-      }
-      animators.add(animator)
     }
 
-    AnimatorSet().apply {
-      playTogether(animators)
-      start()
-    }
+    animator.start()
 
-    pendingSlideAnimations.clear()
+    activeAnimations.putAll(pendingAnimations.mapValues { AnimationInfo(animator, it.value) })
+
+    pendingAnimations.clear()
   }
 
   private fun handleAnimationEnd(viewHolder: RecyclerView.ViewHolder) {
     viewHolder.itemView.translationY = 0f
-    slideAnimations.remove(viewHolder)
+    if (Build.VERSION.SDK_INT >= 29) {
+      viewHolder.itemView.transitionAlpha = 1f
+    } else {
+      viewHolder.itemView.alpha = 1f
+    }
+    activeAnimations.remove(viewHolder)
+
     dispatchAnimationFinished(viewHolder)
     dispatchFinishedWhenDone()
   }
@@ -149,7 +199,7 @@ class WebRtcReactionsItemAnimator : RecyclerView.ItemAnimator() {
   }
 
   override fun isRunning(): Boolean {
-    return slideAnimations.values.any { it.sharedAnimator.isRunning }
+    return activeAnimations.values.any { it.sharedAnimator.isRunning }
   }
 
   override fun onAnimationFinished(viewHolder: RecyclerView.ViewHolder) {
@@ -158,11 +208,11 @@ class WebRtcReactionsItemAnimator : RecyclerView.ItemAnimator() {
   }
 
   private fun endSlideAnimation(item: RecyclerView.ViewHolder) {
-    slideAnimations[item]?.sharedAnimator?.cancel()
+    activeAnimations[item]?.sharedAnimator?.cancel()
   }
 
   private fun endSlideAnimations() {
-    slideAnimations.values.map { it.sharedAnimator }.forEach {
+    activeAnimations.values.map { it.sharedAnimator }.forEach {
       it.cancel()
     }
   }
@@ -174,7 +224,12 @@ class WebRtcReactionsItemAnimator : RecyclerView.ItemAnimator() {
     }
   }
 
+  private fun activeAnimationsByAnimator(it: Animator): Map<RecyclerView.ViewHolder, AnimationInfo> {
+    return activeAnimations.filterValues { animationInfo: AnimationInfo -> animationInfo.sharedAnimator == it }
+  }
+
   companion object {
     private val TAG = Log.tag(WebRtcReactionsItemAnimator::class.java)
+    private const val ANIMATION_DURATION = 150L
   }
 }

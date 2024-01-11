@@ -25,17 +25,17 @@ import org.thoughtcrime.securesms.databinding.TransferControlsViewBinding
 import org.thoughtcrime.securesms.events.PartProgressEvent
 import org.thoughtcrime.securesms.mms.Slide
 import org.thoughtcrime.securesms.util.MediaUtil
+import org.thoughtcrime.securesms.util.ThrottledDebouncer
 import org.thoughtcrime.securesms.util.ViewUtil
-import org.thoughtcrime.securesms.util.concurrent.ListenableFuture
 import org.thoughtcrime.securesms.util.visible
 import java.util.UUID
-import java.util.concurrent.ExecutionException
 
 class TransferControlView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : ConstraintLayout(context, attrs, defStyleAttr) {
   private val uuid = UUID.randomUUID().toString()
   private val binding: TransferControlsViewBinding
 
   private var state = TransferControlViewState()
+  private val progressUpdateDebouncer: ThrottledDebouncer = ThrottledDebouncer(100)
 
   init {
     tag = uuid
@@ -58,8 +58,10 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
 
   private fun updateState(stateFactory: (TransferControlViewState) -> TransferControlViewState) {
     val newState = stateFactory.invoke(state)
-    if (newState != state) {
-      applyState(newState)
+    if (newState != state && !(deriveMode(state) == Mode.GONE && deriveMode(newState) == Mode.GONE)) {
+      progressUpdateDebouncer.publish {
+        applyState(newState)
+      }
     }
     state = newState
   }
@@ -237,7 +239,7 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
     val remainingSlides = currentState.slides.filterNot { it.transferState == AttachmentTable.TRANSFER_PROGRESS_DONE }
     val downloadCount = remainingSlides.size
     binding.primaryDetailsText.text = context.resources.getQuantityString(R.plurals.TransferControlView_n_items, downloadCount, downloadCount)
-    val byteCount = remainingSlides.sumOf { it.asAttachment().size }
+    val byteCount = currentState.networkProgress.sumTotal() - currentState.networkProgress.sumCompleted()
     binding.secondaryDetailsText.text = Formatter.formatShortFileSize(context, byteCount)
   }
 
@@ -262,7 +264,7 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
     } else {
       ViewUtil.dpToPx(SECONDARY_TEXT_OFFSET_DP).toFloat()
     }
-    val byteCount = currentState.slides.sumOf { it.asAttachment().size }
+    val byteCount = currentState.networkProgress.sumTotal() - currentState.networkProgress.sumCompleted()
     binding.secondaryDetailsText.text = Formatter.formatShortFileSize(context, byteCount)
   }
 
@@ -277,11 +279,7 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
       secondaryDetailsText = currentState.showSecondaryText
     )
     val byteCount = currentState.slides.sumOf { it.asAttachment().size }
-    binding.secondaryDetailsText.translationX = if (ViewUtil.isLtr(this)) {
-      ViewUtil.dpToPx(-SECONDARY_TEXT_OFFSET_DP).toFloat()
-    } else {
-      ViewUtil.dpToPx(SECONDARY_TEXT_OFFSET_DP).toFloat()
-    }
+    binding.secondaryDetailsText.translationX = 0f
     binding.secondaryDetailsText.text = Formatter.formatShortFileSize(context, byteCount)
   }
 
@@ -434,7 +432,7 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
   private fun displayChildrenAsGone() {
     children.forEach {
       if (it.visible && it.animation == null) {
-        ViewUtil.fadeOut(it, 250).addListener(AnimationCleanup(it))
+        ViewUtil.fadeOut(it, 250)
       }
     }
   }
@@ -549,7 +547,7 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
       for (slide in slides) {
         val attachment = slide.asAttachment()
         if (attachment.transferState == AttachmentTable.TRANSFER_PROGRESS_DONE) {
-          networkProgress[attachment] = Progress(1L, attachment.size)
+          networkProgress[attachment] = Progress(attachment.size, attachment.size)
         } else if (!MediaUtil.isInstantVideoSupported(slide)) {
           allStreamableOrDone = false
         }
@@ -642,8 +640,8 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
   }
 
   private fun isCompressing(state: TransferControlViewState): Boolean {
-    // We never get a completion event so it never actually reaches 100%
-    return state.compressionProgress.sumTotal() > 0 && state.compressionProgress.values.map { it.completed.toFloat() / it.total }.sum() < 0.99f
+    val total = state.compressionProgress.sumTotal()
+    return total > 0 && state.compressionProgress.sumCompleted() / total < 0.99f
   }
 
   private fun calculateProgress(state: TransferControlViewState): Float {
@@ -659,9 +657,9 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
     return if (isCompressing(currentState)) {
       return context.getString(R.string.TransferControlView__processing)
     } else {
-      val progressText = Formatter.formatShortFileSize(context, currentState.networkProgress.sumCompleted())
-      val totalText = Formatter.formatShortFileSize(context, currentState.networkProgress.sumTotal())
-      context.resources.getString(R.string.TransferControlView__download_progress, progressText, totalText)
+      val progressMiB = currentState.networkProgress.sumCompleted() / MEBIBYTE
+      val totalMiB = currentState.networkProgress.sumTotal() / MEBIBYTE
+      context.resources.getString(R.string.TransferControlView__download_progress, progressMiB, totalMiB)
     }
   }
 
@@ -681,6 +679,7 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
     private const val SECONDARY_TEXT_OFFSET_DP = 3
     private const val RETRY_SECONDARY_TEXT_OFFSET_DP = 6
     private const val PRIMARY_TEXT_OFFSET_DP = 4
+    private const val MEBIBYTE = 1048576f
 
     /**
      * A weighting compared to [UPLOAD_TASK_WEIGHT]
@@ -739,15 +738,5 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
     RETRY_DOWNLOADING,
     RETRY_UPLOADING,
     GONE
-  }
-
-  private class AnimationCleanup(val animatedView: View) : ListenableFuture.Listener<Boolean> {
-    override fun onSuccess(result: Boolean?) {
-      animatedView.clearAnimation()
-    }
-
-    override fun onFailure(e: ExecutionException?) {
-      animatedView.clearAnimation()
-    }
   }
 }

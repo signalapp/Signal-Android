@@ -33,7 +33,11 @@ class ConversationListSearchAdapter(
   callButtonClickCallbacks: CallButtonClickCallbacks,
   lifecycleOwner: LifecycleOwner,
   glideRequests: GlideRequests
-) : ContactSearchAdapter(context, fixedContacts, displayOptions, onClickedCallbacks, longClickCallbacks, storyContextMenuCallbacks, callButtonClickCallbacks) {
+) : ContactSearchAdapter(context, fixedContacts, displayOptions, onClickedCallbacks, longClickCallbacks, storyContextMenuCallbacks, callButtonClickCallbacks), TimestampPayloadSupport {
+
+  companion object {
+    private const val PAYLOAD_TIMESTAMP = 0
+  }
 
   init {
     registerFactory(
@@ -62,6 +66,27 @@ class ConversationListSearchAdapter(
     )
   }
 
+  override fun notifyTimestampPayloadUpdate() {
+    notifyItemRangeChanged(0, itemCount, PAYLOAD_TIMESTAMP)
+  }
+
+  private abstract class ConversationListItemViewHolder<M : MappingModel<M>>(
+    itemView: View
+  ) : MappingViewHolder<M>(itemView) {
+    private val conversationListItem: ConversationListItem = itemView as ConversationListItem
+
+    override fun bind(model: M) {
+      if (payload.contains(PAYLOAD_TIMESTAMP)) {
+        conversationListItem.updateTimestamp()
+        return
+      }
+
+      fullBind(model)
+    }
+
+    abstract fun fullBind(model: M)
+  }
+
   private class EmptyViewHolder(
     itemView: View
   ) : MappingViewHolder<EmptyModel>(itemView) {
@@ -69,6 +94,10 @@ class ConversationListSearchAdapter(
     private val noResults = itemView.findViewById<TextView>(R.id.search_no_results)
 
     override fun bind(model: EmptyModel) {
+      if (payload.isNotEmpty()) {
+        return
+      }
+
       noResults.text = context.getString(R.string.SearchFragment_no_results, model.empty.query ?: "")
     }
   }
@@ -78,8 +107,8 @@ class ConversationListSearchAdapter(
     private val lifecycleOwner: LifecycleOwner,
     private val glideRequests: GlideRequests,
     itemView: View
-  ) : MappingViewHolder<ThreadModel>(itemView) {
-    override fun bind(model: ThreadModel) {
+  ) : ConversationListItemViewHolder<ThreadModel>(itemView) {
+    override fun fullBind(model: ThreadModel) {
       itemView.setOnClickListener {
         threadListener.onClicked(itemView, model.thread, false)
       }
@@ -101,8 +130,8 @@ class ConversationListSearchAdapter(
     private val lifecycleOwner: LifecycleOwner,
     private val glideRequests: GlideRequests,
     itemView: View
-  ) : MappingViewHolder<MessageModel>(itemView) {
-    override fun bind(model: MessageModel) {
+  ) : ConversationListItemViewHolder<MessageModel>(itemView) {
+    override fun fullBind(model: MessageModel) {
       itemView.setOnClickListener {
         messageListener.onClicked(itemView, model.message, false)
       }
@@ -122,8 +151,8 @@ class ConversationListSearchAdapter(
     private val lifecycleOwner: LifecycleOwner,
     private val glideRequests: GlideRequests,
     itemView: View
-  ) : MappingViewHolder<GroupWithMembersModel>(itemView) {
-    override fun bind(model: GroupWithMembersModel) {
+  ) : ConversationListItemViewHolder<GroupWithMembersModel>(itemView) {
+    override fun fullBind(model: GroupWithMembersModel) {
       itemView.setOnClickListener {
         groupWithMembersListener.onClicked(itemView, model.groupWithMembers, false)
       }

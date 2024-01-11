@@ -66,7 +66,9 @@ object V166_ThreadAndMessageForeignKeys : SignalDatabaseMigration {
         Log.w(TAG, "There were $count threads for RecipientId::$recipientId. Merging.", true)
 
         val threads: List<ThreadInfo> = getThreadsByRecipientId(db, cursor.requireLong("thread_recipient_id"))
-        mergeThreads(db, threads)
+        if (threads.size > 1) {
+          mergeThreads(db, threads)
+        }
       }
     }
   }

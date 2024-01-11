@@ -23,10 +23,10 @@ import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.state.CallInfoState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcEphemeralState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
+import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceStateBuilder;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
@@ -203,6 +203,19 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
   }
 
   @Override
+  protected @NonNull WebRtcServiceState handleSelfRaiseHand(@NonNull WebRtcServiceState currentState, boolean raised) {
+    Log.i(tag, "handleSelfRaiseHand():");
+    try {
+      currentState.getCallInfoState().requireGroupCall().raiseHand(raised);
+
+      return currentState;
+    } catch (CallException e) {
+      Log.w(TAG, "Unable to " + (raised ? "raise" : "lower") + " hand in group call", e);
+    }
+    return currentState;
+  }
+
+  @Override
   protected @NonNull WebRtcEphemeralState handleSendGroupReact(@NonNull WebRtcServiceState currentState, @NonNull WebRtcEphemeralState ephemeralState, @NonNull String reaction) {
     try {
       currentState.getCallInfoState().requireGroupCall().react(reaction);
@@ -241,5 +254,53 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
     }
 
     return new GroupCallReactionEvent(participant.getRecipient(), reaction.value, System.currentTimeMillis());
+  }
+
+  @Override
+  protected @NonNull WebRtcServiceState handleGroupCallRaisedHand(@NonNull WebRtcServiceState currentState, List<Long> raisedHands) {
+    Log.i(TAG, "handleGroupCallRaisedHand():");
+
+    boolean                                        playSound    = !raisedHands.isEmpty();
+    long                                           now          = System.currentTimeMillis();
+    WebRtcServiceStateBuilder.CallInfoStateBuilder builder      = currentState.builder().changeCallInfoState();
+    Long                                           localDemuxId = currentState.getCallInfoState().requireGroupCall().getLocalDeviceState().getDemuxId();
+
+    List<CallParticipant> participants = currentState.getCallInfoState().getRemoteCallParticipants();
+
+    for (CallParticipant updatedParticipant : participants) {
+      int raisedHandIndex = raisedHands.indexOf(updatedParticipant.getCallParticipantId().getDemuxId());
+      boolean wasHandAlreadyRaised  = updatedParticipant.isHandRaised();
+
+      if (wasHandAlreadyRaised) {
+        playSound = false;
+      }
+      
+      if (raisedHandIndex >= 0 && !wasHandAlreadyRaised) {
+        builder.putParticipant(updatedParticipant.getCallParticipantId(), updatedParticipant.withHandRaisedTimestamp(now + raisedHandIndex));
+      } else if (raisedHandIndex < 0 && wasHandAlreadyRaised) {
+        builder.putParticipant(updatedParticipant.getCallParticipantId(), updatedParticipant.withHandRaisedTimestamp(CallParticipant.HAND_LOWERED));
+      }
+    }
+
+    if (localDemuxId != null) {
+      if (raisedHands.contains(localDemuxId)) {
+        builder.setLocalParticipant(CallParticipant.createLocal(currentState.getLocalDeviceState().getCameraState(),
+                                                                currentState.getVideoState().requireLocalSink(),
+                                                                currentState.getLocalDeviceState().isMicrophoneEnabled(),
+                                                                now,
+                                                                new CallParticipantId(localDemuxId, Recipient.self().getId())));
+      } else {
+        builder.setLocalParticipant(CallParticipant.createLocal(currentState.getLocalDeviceState().getCameraState(),
+                                                                currentState.getVideoState().requireLocalSink(),
+                                                                currentState.getLocalDeviceState().isMicrophoneEnabled(),
+                                                                CallParticipant.HAND_LOWERED,
+                                                                new CallParticipantId(localDemuxId, Recipient.self().getId())));
+      }
+    }
+    if (playSound) {
+      webRtcInteractor.playStateChangeUp();
+    }
+
+    return builder.build();
   }
 }

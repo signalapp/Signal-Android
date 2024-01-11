@@ -173,7 +173,7 @@ public final class WebRtcControls {
   }
 
   public boolean displayCameraToggle() {
-    return (isPreJoin() || (isAtLeastOutgoing() && !hasAtLeastOneRemote)) && isLocalVideoEnabled && isMoreThanOneCameraAvailable;
+    return (isPreJoin() || (isAtLeastOutgoing() && !hasAtLeastOneRemote)) && isLocalVideoEnabled && isMoreThanOneCameraAvailable && !isInPipMode;
   }
 
   public boolean displayRemoteVideoRecycler() {
@@ -214,6 +214,10 @@ public final class WebRtcControls {
 
   public boolean displayReactions() {
     return !isInPipMode;
+  }
+
+  public boolean displayRaiseHand() {
+    return FeatureFlags.groupCallRaiseHand() && !isInPipMode;
   }
 
   public @NonNull WebRtcAudioOutput getAudioOutput() {

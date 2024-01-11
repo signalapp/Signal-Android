@@ -20,4 +20,5 @@ public interface BindableConversationListItem extends Unbindable {
 
   void setSelectedConversations(@NonNull ConversationSet conversations);
   void updateTypingIndicator(@NonNull Set<Long> typingThreads);
+  void updateTimestamp();
 }

@@ -31,10 +31,13 @@ object BioTextPreference {
     abstract fun getHeadlineText(context: Context): CharSequence
     abstract fun getSubhead1Text(context: Context): String?
     abstract fun getSubhead2Text(): String?
+
+    open val onHeadlineClickListener: () -> Unit = {}
   }
 
   class RecipientModel(
-    private val recipient: Recipient
+    private val recipient: Recipient,
+    override val onHeadlineClickListener: () -> Unit
   ) : BioTextPreferenceModel<RecipientModel>() {
 
     override fun getHeadlineText(context: Context): CharSequence {
@@ -44,12 +47,18 @@ object BioTextPreference {
         recipient.getDisplayNameOrUsername(context)
       }
 
-      return if (recipient.showVerified()) {
-        SpannableStringBuilder(name).apply {
+      if (!recipient.showVerified() && !recipient.isIndividual) {
+        return name
+      }
+
+      return SpannableStringBuilder(name).apply {
+        if (recipient.showVerified()) {
           SpanUtil.appendCenteredImageSpan(this, ContextUtil.requireDrawable(context, R.drawable.ic_official_28), 28, 28)
         }
-      } else {
-        name
+
+        if (recipient.isIndividual) {
+          SpanUtil.appendCenteredImageSpan(this, ContextUtil.requireDrawable(context, R.drawable.symbol_chevron_right_24_color_on_secondary_container), 24, 24)
+        }
       }
     }
 
@@ -61,7 +70,11 @@ object BioTextPreference {
       }
     }
 
-    override fun getSubhead2Text(): String? = recipient.e164.map(PhoneNumberFormatter::prettyPrint).orElse(null)
+    override fun getSubhead2Text(): String? = if (recipient.shouldShowE164()) {
+      recipient.e164.map(PhoneNumberFormatter::prettyPrint).orElse(null)
+    } else {
+      null
+    }
 
     override fun areContentsTheSame(newItem: RecipientModel): Boolean {
       return super.areContentsTheSame(newItem) && newItem.recipient.hasSameContent(recipient)
@@ -101,6 +114,7 @@ object BioTextPreference {
 
     override fun bind(model: T) {
       headline.text = model.getHeadlineText(context)
+      headline.setOnClickListener { model.onHeadlineClickListener() }
 
       model.getSubhead1Text(context).let {
         subhead1.text = it

@@ -2,9 +2,11 @@ package org.thoughtcrime.securesms.profiles.edit.pnp
 
 import io.reactivex.rxjava3.core.Completable
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.jobs.ProfileUploadJob
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.storage.StorageSyncHelper
 
 /**
  * Manages the current phone-number listing state.
@@ -31,6 +33,8 @@ class WhoCanFindMeByPhoneNumberRepository {
       }
 
       ApplicationDependencies.getJobManager().add(RefreshAttributesJob())
+      StorageSyncHelper.scheduleSyncForDataChange()
+      ApplicationDependencies.getJobManager().add(ProfileUploadJob())
     }
   }
 }

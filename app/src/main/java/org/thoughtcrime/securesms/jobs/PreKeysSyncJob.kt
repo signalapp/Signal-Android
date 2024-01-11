@@ -146,7 +146,6 @@ class PreKeysSyncJob private constructor(parameters: Parameters) : BaseJob(param
       accountManager.setPreKeys(
         PreKeyUpload(
           serviceIdType = serviceIdType,
-          identityKey = protocolStore.identityKeyPair.publicKey,
           signedPreKey = signedPreKeyToUpload,
           oneTimeEcPreKeys = oneTimeEcPreKeysToUpload,
           lastResortKyberPreKey = lastResortKyberPreKeyToUpload,

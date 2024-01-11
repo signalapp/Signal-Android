@@ -32,6 +32,11 @@ class CallLogAdapter(
   callbacks: Callbacks
 ) : PagingMappingAdapter<CallLogRow.Id>() {
 
+  companion object {
+    private const val PAYLOAD_SELECTION_STATE = "PAYLOAD_SELECTION_STATE"
+    private const val PAYLOAD_TIMESTAMP = "PAYLOAD_TIMESTAMP"
+  }
+
   init {
     registerFactory(
       CallModel::class.java,
@@ -72,6 +77,10 @@ class CallLogAdapter(
     )
   }
 
+  fun onTimestampTick() {
+    notifyItemRangeChanged(0, itemCount, PAYLOAD_TIMESTAMP)
+  }
+
   fun submitCallRows(
     rows: List<CallLogRow?>,
     selectionState: CallLogSelectionState,
@@ -98,9 +107,6 @@ class CallLogAdapter(
     val selectionState: CallLogSelectionState,
     val itemCount: Int
   ) : MappingModel<CallModel> {
-    companion object {
-      const val PAYLOAD_SELECTION_STATE = "PAYLOAD_SELECTION_STATE"
-    }
 
     override fun areItemsTheSame(newItem: CallModel): Boolean = call.id == newItem.call.id
     override fun areContentsTheSame(newItem: CallModel): Boolean {
@@ -133,10 +139,6 @@ class CallLogAdapter(
     val itemCount: Int
   ) : MappingModel<CallLinkModel> {
 
-    companion object {
-      const val PAYLOAD_SELECTION_STATE = "PAYLOAD_SELECTION_STATE"
-    }
-
     override fun areItemsTheSame(newItem: CallLinkModel): Boolean {
       return callLink.record.roomId == newItem.callLink.record.roomId
     }
@@ -149,7 +151,7 @@ class CallLogAdapter(
 
     override fun getChangePayload(newItem: CallLinkModel): Any? {
       return if (callLink == newItem.callLink && (!isSelectionStateTheSame(newItem) || !isItemCountTheSame(newItem))) {
-        CallModel.PAYLOAD_SELECTION_STATE
+        PAYLOAD_SELECTION_STATE
       } else {
         null
       }
@@ -183,6 +185,10 @@ class CallLogAdapter(
     private val onStartVideoCallClicked: (Recipient) -> Unit
   ) : BindingViewHolder<CallLinkModel, CallLogAdapterItemBinding>(binding) {
     override fun bind(model: CallLinkModel) {
+      if (payload.size == 1 && payload.contains(PAYLOAD_TIMESTAMP)) {
+        return
+      }
+
       itemView.setOnClickListener {
         onCallLinkClicked(model.callLink)
       }
@@ -195,7 +201,7 @@ class CallLogAdapter(
       binding.callSelected.isChecked = model.selectionState.contains(model.callLink.id)
       binding.callSelected.visible = model.selectionState.isNotEmpty(model.itemCount)
 
-      if (payload.contains(CallModel.PAYLOAD_SELECTION_STATE)) {
+      if (payload.isNotEmpty()) {
         return
       }
 
@@ -252,7 +258,11 @@ class CallLogAdapter(
       binding.callSelected.isChecked = model.selectionState.contains(model.call.id)
       binding.callSelected.visible = model.selectionState.isNotEmpty(model.itemCount)
 
-      if (payload.contains(CallModel.PAYLOAD_SELECTION_STATE)) {
+      if (payload.contains(PAYLOAD_TIMESTAMP)) {
+        presentCallInfo(model.call, model.call.date)
+      }
+
+      if (payload.isNotEmpty()) {
         return
       }
 

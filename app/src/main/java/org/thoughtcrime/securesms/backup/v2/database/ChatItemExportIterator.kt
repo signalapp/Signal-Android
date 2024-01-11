@@ -6,42 +6,55 @@
 package org.thoughtcrime.securesms.backup.v2.database
 
 import android.database.Cursor
+import com.annimon.stream.Stream
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.Base64
+import org.signal.core.util.Base64.decodeOrThrow
 import org.signal.core.util.logging.Log
 import org.signal.core.util.requireBlob
 import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireString
+import org.thoughtcrime.securesms.backup.v2.proto.CallChatUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.ChatItem
 import org.thoughtcrime.securesms.backup.v2.proto.ChatUpdateMessage
 import org.thoughtcrime.securesms.backup.v2.proto.ExpirationTimerChatUpdate
+import org.thoughtcrime.securesms.backup.v2.proto.GroupCallChatUpdate
+import org.thoughtcrime.securesms.backup.v2.proto.IndividualCallChatUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.ProfileChangeChatUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.Quote
 import org.thoughtcrime.securesms.backup.v2.proto.Reaction
 import org.thoughtcrime.securesms.backup.v2.proto.RemoteDeletedMessage
 import org.thoughtcrime.securesms.backup.v2.proto.SendStatus
+import org.thoughtcrime.securesms.backup.v2.proto.SessionSwitchoverChatUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.SimpleChatUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.StandardMessage
 import org.thoughtcrime.securesms.backup.v2.proto.Text
+import org.thoughtcrime.securesms.backup.v2.proto.ThreadMergeChatUpdate
 import org.thoughtcrime.securesms.database.GroupReceiptTable
 import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.MessageTypes
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.SignalDatabase.Companion.calls
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchSet
 import org.thoughtcrime.securesms.database.documents.NetworkFailureSet
+import org.thoughtcrime.securesms.database.model.GroupCallUpdateDetailsUtil
 import org.thoughtcrime.securesms.database.model.ReactionRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.database.model.databaseprotos.ProfileChangeDetails
+import org.thoughtcrime.securesms.database.model.databaseprotos.SessionSwitchoverEvent
+import org.thoughtcrime.securesms.database.model.databaseprotos.ThreadMergeEvent
 import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.util.JsonUtils
+import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.api.util.toByteArray
 import java.io.Closeable
 import java.io.IOException
 import java.util.LinkedList
 import java.util.Queue
+import java.util.UUID
 import org.thoughtcrime.securesms.backup.v2.proto.BodyRange as BackupBodyRange
 
 /**
@@ -121,6 +134,79 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
             }
           )
         }
+        MessageTypes.isSessionSwitchoverType(record.type) -> {
+          builder.updateMessage = ChatUpdateMessage(
+            sessionSwitchover = try {
+              val event = SessionSwitchoverEvent.ADAPTER.decode(decodeOrThrow(record.body!!))
+              SessionSwitchoverChatUpdate(event.e164.e164ToLong()!!)
+            } catch (e: Exception) {
+              SessionSwitchoverChatUpdate()
+            }
+          )
+        }
+        MessageTypes.isThreadMergeType(record.type) -> {
+          builder.updateMessage = ChatUpdateMessage(
+            threadMerge = try {
+              val event = ThreadMergeEvent.ADAPTER.decode(decodeOrThrow(record.body!!))
+              ThreadMergeChatUpdate(event.previousE164.e164ToLong()!!)
+            } catch (e: Exception) {
+              ThreadMergeChatUpdate()
+            }
+          )
+        }
+        MessageTypes.isCallLog(record.type) -> {
+          val call = calls.getCallByMessageId(record.id)
+          if (call != null) {
+            builder.updateMessage = ChatUpdateMessage(callingMessage = CallChatUpdate(callId = call.callId))
+          } else {
+            when {
+              MessageTypes.isMissedAudioCall(record.type) -> {
+                builder.updateMessage = ChatUpdateMessage(callingMessage = CallChatUpdate(callMessage = IndividualCallChatUpdate(type = IndividualCallChatUpdate.Type.MISSED_AUDIO_CALL)))
+              }
+              MessageTypes.isMissedVideoCall(record.type) -> {
+                builder.updateMessage = ChatUpdateMessage(callingMessage = CallChatUpdate(callMessage = IndividualCallChatUpdate(type = IndividualCallChatUpdate.Type.MISSED_VIDEO_CALL)))
+              }
+              MessageTypes.isIncomingAudioCall(record.type) -> {
+                builder.updateMessage = ChatUpdateMessage(callingMessage = CallChatUpdate(callMessage = IndividualCallChatUpdate(type = IndividualCallChatUpdate.Type.INCOMING_AUDIO_CALL)))
+              }
+              MessageTypes.isIncomingVideoCall(record.type) -> {
+                builder.updateMessage = ChatUpdateMessage(callingMessage = CallChatUpdate(callMessage = IndividualCallChatUpdate(type = IndividualCallChatUpdate.Type.INCOMING_VIDEO_CALL)))
+              }
+              MessageTypes.isOutgoingAudioCall(record.type) -> {
+                builder.updateMessage = ChatUpdateMessage(callingMessage = CallChatUpdate(callMessage = IndividualCallChatUpdate(type = IndividualCallChatUpdate.Type.OUTGOING_AUDIO_CALL)))
+              }
+              MessageTypes.isOutgoingVideoCall(record.type) -> {
+                builder.updateMessage = ChatUpdateMessage(callingMessage = CallChatUpdate(callMessage = IndividualCallChatUpdate(type = IndividualCallChatUpdate.Type.OUTGOING_VIDEO_CALL)))
+              }
+              MessageTypes.isGroupCall(record.type) -> {
+                try {
+                  val groupCallUpdateDetails = GroupCallUpdateDetailsUtil.parse(record.body)
+
+                  val joinedMembers = Stream.of(groupCallUpdateDetails.inCallUuids)
+                    .map { uuid: String? -> UuidUtil.parseOrNull(uuid) }
+                    .withoutNulls()
+                    .map { obj: UUID? -> ACI.from(obj!!).toByteString() }
+                    .toList()
+                  builder.updateMessage = ChatUpdateMessage(
+                    callingMessage = CallChatUpdate(
+                      groupCall = GroupCallChatUpdate(
+                        startedCallAci = ACI.from(UuidUtil.parseOrThrow(groupCallUpdateDetails.startedCallUuid)).toByteString(),
+                        startedCallTimestamp = groupCallUpdateDetails.startedCallTimestamp,
+                        inCallAcis = joinedMembers
+                      )
+                    )
+                  )
+                } catch (exception: java.lang.Exception) {
+                  continue
+                }
+              }
+            }
+          }
+        }
+        record.body == null -> {
+          Log.w(TAG, "Record missing a body, skipping")
+          continue
+        }
         else -> builder.standardMessage = record.toTextMessage(reactionsById[id])
       }
 
@@ -136,6 +222,16 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
 
   override fun close() {
     cursor.close()
+  }
+
+  private fun String.e164ToLong(): Long? {
+    val fixed = if (this.startsWith("+")) {
+      this.substring(1)
+    } else {
+      this
+    }
+
+    return fixed.toLongOrNull()
   }
 
   private fun BackupMessageRecord.toBasicChatItemBuilder(groupReceipts: List<GroupReceiptTable.GroupReceiptInfo>?): ChatItem.Builder {

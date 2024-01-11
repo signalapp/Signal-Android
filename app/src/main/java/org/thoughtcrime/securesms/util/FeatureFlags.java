@@ -118,6 +118,7 @@ public final class FeatureFlags {
   public  static final String SEPA_ENABLED_REGIONS              = "global.donations.sepaEnabledRegions";
   private static final String CALLING_REACTIONS                 = "android.calling.reactions";
   private static final String NOTIFICATION_THUMBNAIL_BLOCKLIST  = "android.notificationThumbnailProductBlocklist";
+  private static final String CALLING_RAISE_HAND                 = "android.calling.raiseHand";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -187,7 +188,8 @@ public final class FeatureFlags {
       IDEAL_ENABLED_REGIONS,
       SEPA_ENABLED_REGIONS,
       CALLING_REACTIONS,
-      NOTIFICATION_THUMBNAIL_BLOCKLIST
+      NOTIFICATION_THUMBNAIL_BLOCKLIST,
+      CALLING_RAISE_HAND
   );
 
   @VisibleForTesting
@@ -259,7 +261,8 @@ public final class FeatureFlags {
       CRASH_PROMPT_CONFIG,
       BLOCK_SSE,
       CALLING_REACTIONS,
-      NOTIFICATION_THUMBNAIL_BLOCKLIST
+      NOTIFICATION_THUMBNAIL_BLOCKLIST,
+      CALLING_RAISE_HAND
   );
 
   /**
@@ -670,6 +673,13 @@ public final class FeatureFlags {
    */
   public static boolean groupCallReactions() {
     return getBoolean(CALLING_REACTIONS, false);
+  }
+
+  /**
+   * Whether or not group call raise hand is enabled.
+   */
+  public static boolean groupCallRaiseHand() {
+    return getBoolean(CALLING_RAISE_HAND, false);
   }
 
   /** List of device products that are blocked from showing notification thumbnails. */

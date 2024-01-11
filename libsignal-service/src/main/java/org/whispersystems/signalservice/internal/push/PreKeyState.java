@@ -12,11 +12,6 @@ import java.util.List;
 
 public class PreKeyState {
 
-  @JsonProperty("identityKey")
-  @JsonSerialize(using = JsonUtil.IdentityKeySerializer.class)
-  @JsonDeserialize(using = JsonUtil.IdentityKeyDeserializer.class)
-  private IdentityKey        identityKey;
-
   @JsonProperty("preKeys")
   private List<PreKeyEntity> oneTimeEcPreKeys;
 
@@ -32,21 +27,15 @@ public class PreKeyState {
   public PreKeyState() {}
 
   public PreKeyState(
-      IdentityKey identityKey,
       SignedPreKeyEntity signedPreKey,
       List<PreKeyEntity> oneTimeEcPreKeys,
       KyberPreKeyEntity lastResortKyberPreKey,
       List<KyberPreKeyEntity> oneTimeKyberPreKeys
   ) {
-    this.identityKey        = identityKey;
     this.signedPreKey       = signedPreKey;
     this.oneTimeEcPreKeys   = oneTimeEcPreKeys;
     this.lastResortKyberKey = lastResortKyberPreKey;
     this.oneTimeKyberKeys   = oneTimeKyberPreKeys;
-  }
-
-  public IdentityKey getIdentityKey() {
-    return identityKey;
   }
 
   public List<PreKeyEntity> getPreKeys() {

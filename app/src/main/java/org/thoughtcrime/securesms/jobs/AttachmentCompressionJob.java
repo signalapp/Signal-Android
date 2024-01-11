@@ -244,6 +244,11 @@ public final class AttachmentCompressionJob extends BaseJob {
                 }, outputStream, cancelationSignal);
               }
 
+              eventBus.postSticky(new PartProgressEvent(attachment,
+                                                        PartProgressEvent.Type.COMPRESSION,
+                                                        100,
+                                                        100));
+
               try (MediaStream mediaStream = new MediaStream(ModernDecryptingPartInputStream.createFor(attachmentSecret, file, 0), MimeTypes.VIDEO_MP4, 0, 0)) {
                 attachmentDatabase.updateAttachmentData(attachment, mediaStream, true);
               }
@@ -274,9 +279,9 @@ public final class AttachmentCompressionJob extends BaseJob {
                                                           percent));
               }, cancelationSignal)) {
                 attachmentDatabase.updateAttachmentData(attachment, mediaStream, true);
+                attachmentDatabase.markAttachmentAsTransformed(attachment.getAttachmentId(), mediaStream.getFaststart());
               }
 
-              attachmentDatabase.markAttachmentAsTransformed(attachment.getAttachmentId(), true);
               eventBus.postSticky(new PartProgressEvent(attachment,
                                                         PartProgressEvent.Type.COMPRESSION,
                                                         100,

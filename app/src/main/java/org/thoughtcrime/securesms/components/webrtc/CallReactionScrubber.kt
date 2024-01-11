@@ -39,7 +39,7 @@ class CallReactionScrubber @JvmOverloads constructor(
     customEmojiIndex = emojiViews.size - 1
   }
 
-  fun initialize(fragmentManager: FragmentManager, callback: ReactWithAnyEmojiBottomSheetDialogFragment.Callback, listener: (String) -> Unit) {
+  fun initialize(fragmentManager: FragmentManager, listener: (String) -> Unit) {
     val emojis = SignalStore.emojiValues().reactions
     for (i in emojiViews.indices) {
       val view = emojiViews[i]

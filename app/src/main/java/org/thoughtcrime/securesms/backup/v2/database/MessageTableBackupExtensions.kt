@@ -58,7 +58,7 @@ fun MessageTable.getMessagesForBackup(): ChatItemExportIterator {
         ${MessageTypes.BASE_SENT_TYPE},
         ${MessageTypes.BASE_SENDING_TYPE},
         ${MessageTypes.BASE_SENT_FAILED_TYPE}
-      )
+      ) OR ${MessageTable.IS_CALL_TYPE_CLAUSE}
       """
     )
     .orderBy("${MessageTable.DATE_RECEIVED} ASC")

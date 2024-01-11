@@ -46,7 +46,7 @@ object SvrRepository {
   private val readImplementations: List<SecureValueRecovery> = listOf(svr2, svr2Deprecated)
 
   /** An ordered list of SVR implementations to write to. They should be in priority order, with the most important one listed first. */
-  private val writeImplementations: List<SecureValueRecovery> = listOf(svr2, svr2Deprecated)
+  private val writeImplementations: List<SecureValueRecovery> = listOf(svr2)
 
   /**
    * A lock that ensures that only one thread at a time is altering the various pieces of SVR state.

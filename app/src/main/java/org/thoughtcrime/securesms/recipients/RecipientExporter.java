@@ -34,7 +34,7 @@ public final class RecipientExporter {
   }
 
   private static void addAddressToIntent(Intent intent, Recipient recipient) {
-    if (recipient.getE164().isPresent()) {
+    if (recipient.getE164().isPresent() && recipient.shouldShowE164()) {
       intent.putExtra(ContactsContract.Intents.Insert.PHONE, recipient.requireE164());
     } else if (recipient.getEmail().isPresent()) {
       intent.putExtra(ContactsContract.Intents.Insert.EMAIL, recipient.requireEmail());
