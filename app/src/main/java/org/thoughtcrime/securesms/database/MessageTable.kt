@@ -2245,6 +2245,13 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
    * Trims data related to expired messages. Only intended to be run after a backup restore.
    */
   fun trimEntriesForExpiredMessages() {
+    val messageDeleteCount = writableDatabase
+      .delete(TABLE_NAME)
+      .where("$EXPIRE_STARTED > 0 AND $EXPIRES_IN > 0 AND ($EXPIRE_STARTED + $EXPIRES_IN) < ${System.currentTimeMillis()}")
+      .run()
+
+    Log.d(TAG, "Deleted $messageDeleteCount expired messages after backup.")
+
     writableDatabase
       .delete(GroupReceiptTable.TABLE_NAME)
       .where("${GroupReceiptTable.MMS_ID} NOT IN (SELECT $ID FROM $TABLE_NAME)")
@@ -2271,23 +2278,6 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         threads.setLastScrolled(id, 0)
         threads.update(id, false)
       }
-  }
-
-  fun getNotification(messageId: Long): Optional<MmsNotificationInfo> {
-    return readableDatabase
-      .select(FROM_RECIPIENT_ID, MMS_CONTENT_LOCATION, MMS_TRANSACTION_ID, SMS_SUBSCRIPTION_ID)
-      .from(TABLE_NAME)
-      .where("$ID = ?", messageId)
-      .run()
-      .readToSingleObject { cursor ->
-        MmsNotificationInfo(
-          from = RecipientId.from(cursor.requireLong(FROM_RECIPIENT_ID)),
-          contentLocation = cursor.requireNonNullString(MMS_CONTENT_LOCATION),
-          transactionId = cursor.requireNonNullString(MMS_TRANSACTION_ID),
-          subscriptionId = cursor.requireInt(SMS_SUBSCRIPTION_ID)
-        )
-      }
-      .toOptional()
   }
 
   @Throws(MmsException::class, NoSuchMessageException::class)
