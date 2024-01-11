@@ -1283,6 +1283,10 @@
     <string name="MessageRecord_missed_voice_call">छूटी हुई वॉयस कॉल</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">छूटी हुई वीडियो कॉल</string>
+    <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
+    <string name="MessageRecord_missed_voice_call_notification_profile">Missed voice call while notification profile on</string>
+    <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
+    <string name="MessageRecord_missed_video_call_notification_profile">Missed video call while notification profile on</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
     <string name="MessageRecord_you_declined_a_voice_call">आपने एक वॉयस कॉल काट दी</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
@@ -2199,6 +2203,8 @@
     <string name="UnverifiedSendDialog_send">भेजें</string>
 
     <!-- UsernameEditFragment -->
+    <!-- Placeholder text for custom discriminator -->
+    <string name="UsernameEditFragment__00">00</string>
     <!-- Toolbar title when entering from registration -->
     <string name="UsernameEditFragment__add_a_username">कोई यूज़रनेम जोड़ें</string>
     <!-- Instructional text at the top of the username edit screen -->
@@ -2221,6 +2227,12 @@
     <string name="UsernameEditFragment__skip">छोड़ दे</string>
     <!-- Content description for done button -->
     <string name="UsernameEditFragment__done">पूर्ण</string>
+    <!-- Displayed when the chosen discriminator is not available for the given nickname -->
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">This username is not available, try another number.</string>
+    <!-- Displayed when the chosen discriminator is too short -->&apos;
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Invalid username, enter a minimum of %1$d digits.</string>
+    <!-- Displayed when the chosen discriminator is too long -->&apos;
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Invalid username, enter a maximum of %1$d digits.</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d संपर्क सिग्नल पर है!</item>
@@ -2420,6 +2432,8 @@
     <string name="TransferControlView__processing">प्रोसेस हो रहा है</string>
     <!-- Status update label used while the device is transmitting data over the network. Will take the form of "1.0 MB/2.0 MB" -->
     <string name="TransferControlView__download_progress">%1$1.1f MB/%2$2.1f MB</string>
+    <!-- Attachment file size label for not-yet-downloaded images and video. Will take the form of "1.0 MB" -->
+    <string name="TransferControlView__filesize">%1$1.1f MB</string>
 
 
     <!-- UnauthorizedReminder -->
@@ -5066,6 +5080,12 @@
     <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">इस प्रोफ़ाइल के ऑन होने पर जिन लोगों और ग्रुप्स से आप नोटिफ़िकेशन पाना चाहते हैं उन्हें जोड़ें</string>
     <!-- Button text that launches the contact picker to select from -->
     <string name="AddAllowedMembers__add_people_or_groups">लोग या ग्रुप जोड़ें</string>
+    <!-- Title for exceptions section of add people to notification profile screen in create flow -->
+    <string name="AddAllowedMembers__exceptions">Exceptions</string>
+    <!-- List preference to toggle that allows calls through the notification profile during create flow -->
+    <string name="AddAllowedMembers__allow_all_calls">Allow all calls</string>
+    <!-- List preference to toggle that allows mentions through the notification profile during create flow -->
+    <string name="AddAllowedMembers__notify_for_all_mentions">Notify for all mentions</string>
 
     <!-- Call to action button on contact picker for adding to profile -->
     <string name="SelectRecipientsFragment__add">जोड़ें</string>
@@ -5680,8 +5700,8 @@
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">सभी कनेक्शन की समीक्षा कर ली गई है, जारी रखने के लिए भेजें पर टैप करें।</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
     <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
-        <item quantity="one">आपका %1$d कनेक्शन है जिसने शायद Signal फिर से इंस्टॉल किया हो या डिवाइस बदले हों। आप उसे भेजने से पहले वैकल्पिक तौर पर उनकी सुरक्षा संख्याओं की समीक्षा कर सकते हैं या उन्हें स्टोरी से हटा सकते हैं।</item>
-        <item quantity="other">आपके %1$d कनेक्शन हैं जिन्होंने शायद Signal फिर से इंस्टॉल किया हो या डिवाइस बदले हों। आप उन्हें भेजने से पहले वैकल्पिक तौर पर उनकी सुरक्षा संख्याओं की समीक्षा कर सकते हैं या उन्हें स्टोरी से हटा सकते हैं।</item>
+        <item quantity="one">%1$d connection may have reinstalled Signal or changed devices. You may review their safety number or continue with the send.</item>
+        <item quantity="other">%1$d connections may have reinstalled Signal or changed devices. You may review their safety numbers or continue with the send.</item>
     </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">सुरक्षा संख्या सत्यापित करें</string>
@@ -6236,6 +6256,8 @@
     <string name="CallLogAdapter__outgoing">आउटगोइंग</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">मिस्ड</string>
+    <!-- Displayed for missed calls declined by notification profile -->
+    <string name="CallLogAdapter__missed_notification_profile">Missed while notification profile on</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">जुड़ें</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -6343,6 +6365,8 @@
     <string name="CallPreference__group_call">ग्रुप कॉल</string>
     <!-- Missed group call in call info -->
     <string name="CallPreference__missed_group_call">मिस्ड ग्रुप कॉल</string>
+    <!-- Missed group call while notification profile on in call info -->
+    <string name="CallPreference__missed_group_call_notification_profile">Missed group call while notification profile on</string>
     <!-- Incoming group call in call info -->
     <string name="CallPreference__incoming_group_call">इनकमिंग ग्रुप कॉल</string>
     <!-- Outgoing group call in call info -->

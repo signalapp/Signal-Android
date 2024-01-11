@@ -1239,6 +1239,10 @@
     <string name="MessageRecord_missed_voice_call">音声通話着信あり</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">ビデオ通話着信あり</string>
+    <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
+    <string name="MessageRecord_missed_voice_call_notification_profile">Missed voice call while notification profile on</string>
+    <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
+    <string name="MessageRecord_missed_video_call_notification_profile">Missed video call while notification profile on</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
     <string name="MessageRecord_you_declined_a_voice_call">音声通話を拒否しました</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
@@ -2121,6 +2125,8 @@
     <string name="UnverifiedSendDialog_send">送信する</string>
 
     <!-- UsernameEditFragment -->
+    <!-- Placeholder text for custom discriminator -->
+    <string name="UsernameEditFragment__00">00</string>
     <!-- Toolbar title when entering from registration -->
     <string name="UsernameEditFragment__add_a_username">ユーザー名を追加する</string>
     <!-- Instructional text at the top of the username edit screen -->
@@ -2143,6 +2149,12 @@
     <string name="UsernameEditFragment__skip">スキップ</string>
     <!-- Content description for done button -->
     <string name="UsernameEditFragment__done">完了</string>
+    <!-- Displayed when the chosen discriminator is not available for the given nickname -->
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">This username is not available, try another number.</string>
+    <!-- Displayed when the chosen discriminator is too short -->&apos;
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Invalid username, enter a minimum of %1$d digits.</string>
+    <!-- Displayed when the chosen discriminator is too long -->&apos;
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Invalid username, enter a maximum of %1$d digits.</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="other">%1$d件の連絡先がSignalを使用しています！</item>
@@ -2338,6 +2350,8 @@
     <string name="TransferControlView__processing">処理中…</string>
     <!-- Status update label used while the device is transmitting data over the network. Will take the form of "1.0 MB/2.0 MB" -->
     <string name="TransferControlView__download_progress">%1$1.1f MB/%2$2.1f MB</string>
+    <!-- Attachment file size label for not-yet-downloaded images and video. Will take the form of "1.0 MB" -->
+    <string name="TransferControlView__filesize">%1$1.1f MB</string>
 
 
     <!-- UnauthorizedReminder -->
@@ -4951,6 +4965,12 @@
     <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">このプロファイルの有効時に通知や通話着信を受け取りたい、人やグループを選択してください。</string>
     <!-- Button text that launches the contact picker to select from -->
     <string name="AddAllowedMembers__add_people_or_groups">人またはグループを追加</string>
+    <!-- Title for exceptions section of add people to notification profile screen in create flow -->
+    <string name="AddAllowedMembers__exceptions">Exceptions</string>
+    <!-- List preference to toggle that allows calls through the notification profile during create flow -->
+    <string name="AddAllowedMembers__allow_all_calls">Allow all calls</string>
+    <!-- List preference to toggle that allows mentions through the notification profile during create flow -->
+    <string name="AddAllowedMembers__notify_for_all_mentions">Notify for all mentions</string>
 
     <!-- Call to action button on contact picker for adding to profile -->
     <string name="SelectRecipientsFragment__add">追加する</string>
@@ -5548,7 +5568,7 @@
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">すべてのコネクションが確認されました。続行するには送信をタップしてください。</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
     <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
-        <item quantity="other">%1$d 人のコネクションがSignalを再インストールしたか端末を変更した可能性があります。ストーリーを彼らと共有する前に、彼らの安全番号を確認するか、あなたのストーリーから彼らを削除することを検討してください。</item>
+        <item quantity="other">%1$d connections may have reinstalled Signal or changed devices. You may review their safety numbers or continue with the send.</item>
     </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">安全番号を確認</string>
@@ -6098,6 +6118,8 @@
     <string name="CallLogAdapter__outgoing">発信</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">不在着信</string>
+    <!-- Displayed for missed calls declined by notification profile -->
+    <string name="CallLogAdapter__missed_notification_profile">Missed while notification profile on</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">参加する</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -6202,6 +6224,8 @@
     <string name="CallPreference__group_call">グループ通話</string>
     <!-- Missed group call in call info -->
     <string name="CallPreference__missed_group_call">グループ通話着信あり</string>
+    <!-- Missed group call while notification profile on in call info -->
+    <string name="CallPreference__missed_group_call_notification_profile">Missed group call while notification profile on</string>
     <!-- Incoming group call in call info -->
     <string name="CallPreference__incoming_group_call">グループ通話着信</string>
     <!-- Outgoing group call in call info -->

@@ -1283,6 +1283,10 @@
     <string name="MessageRecord_missed_voice_call">മിസ്‌ഡ് വോയ്‌സ് കോൾ</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">മിസ്‌ഡ് വീഡിയോ കോൾ</string>
+    <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
+    <string name="MessageRecord_missed_voice_call_notification_profile">Missed voice call while notification profile on</string>
+    <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
+    <string name="MessageRecord_missed_video_call_notification_profile">Missed video call while notification profile on</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
     <string name="MessageRecord_you_declined_a_voice_call">നിങ്ങൾ ഒരു വോയ്‌സ് കോൾ നിരസിച്ചു</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
@@ -2199,6 +2203,8 @@
     <string name="UnverifiedSendDialog_send">അയയ്‌ക്കുക</string>
 
     <!-- UsernameEditFragment -->
+    <!-- Placeholder text for custom discriminator -->
+    <string name="UsernameEditFragment__00">00</string>
     <!-- Toolbar title when entering from registration -->
     <string name="UsernameEditFragment__add_a_username">ഒരു ഉപയോക്തൃനാമം ചേർക്കുക</string>
     <!-- Instructional text at the top of the username edit screen -->
@@ -2221,6 +2227,12 @@
     <string name="UsernameEditFragment__skip">ഒഴിവാക്കുക</string>
     <!-- Content description for done button -->
     <string name="UsernameEditFragment__done">ചെയ്‌തു</string>
+    <!-- Displayed when the chosen discriminator is not available for the given nickname -->
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">This username is not available, try another number.</string>
+    <!-- Displayed when the chosen discriminator is too short -->&apos;
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Invalid username, enter a minimum of %1$d digits.</string>
+    <!-- Displayed when the chosen discriminator is too long -->&apos;
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Invalid username, enter a maximum of %1$d digits.</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">Signal-ൽ‌ %1$d കോൺ‌ടാക്റ്റ് ഉണ്ട്!</item>
@@ -2420,6 +2432,8 @@
     <string name="TransferControlView__processing">പ്രോസസ് ചെയ്യുന്നു…</string>
     <!-- Status update label used while the device is transmitting data over the network. Will take the form of "1.0 MB/2.0 MB" -->
     <string name="TransferControlView__download_progress">%1$1.1f MB/%2$2.1f MB</string>
+    <!-- Attachment file size label for not-yet-downloaded images and video. Will take the form of "1.0 MB" -->
+    <string name="TransferControlView__filesize">%1$1.1f MB</string>
 
 
     <!-- UnauthorizedReminder -->
@@ -5066,6 +5080,12 @@
     <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">ഈ പ്രൊഫൈൽ ഓണായിരിക്കുമ്പോൾ നിങ്ങൾക്ക് അറിയിപ്പുകളും കോളുകളും ആവശ്യമുള്ള ആളുകളെയും ഗ്രൂപ്പുകളെയും ചേർക്കുക</string>
     <!-- Button text that launches the contact picker to select from -->
     <string name="AddAllowedMembers__add_people_or_groups">ആളുകളെയോ ഗ്രൂപ്പുകളെയോ ചേർക്കുക</string>
+    <!-- Title for exceptions section of add people to notification profile screen in create flow -->
+    <string name="AddAllowedMembers__exceptions">Exceptions</string>
+    <!-- List preference to toggle that allows calls through the notification profile during create flow -->
+    <string name="AddAllowedMembers__allow_all_calls">Allow all calls</string>
+    <!-- List preference to toggle that allows mentions through the notification profile during create flow -->
+    <string name="AddAllowedMembers__notify_for_all_mentions">Notify for all mentions</string>
 
     <!-- Call to action button on contact picker for adding to profile -->
     <string name="SelectRecipientsFragment__add">ചേർക്കുക</string>
@@ -5680,8 +5700,8 @@
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">എല്ലാ കണക്ഷനുകളും അവലോകനം ചെയ്‌തു, തുടരുന്നതിന് അയയ്ക്കുക എന്നതിൽ ടാപ്പ് ചെയ്യുക.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
     <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
-        <item quantity="one">Signal വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്യുകയോ ഉപകരണങ്ങൾ മാറ്റുകയോ ചെയ്‌തിട്ടുണ്ടാകാവുന്ന %1$d കണക്ഷൻ നിങ്ങൾക്ക് ഉണ്ട്. നിങ്ങൾക്ക് അവരുടെ സുരക്ഷാ നമ്പറുകൾ ഓപ്ഷണലായി അവലോകനം ചെയ്യാം.</item>
-        <item quantity="other">Signal വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്യുകയോ ഉപകരണങ്ങൾ മാറുകയോ ചെയ്‌തിട്ടുണ്ടാകാവുന്ന %1$d കണക്ഷനുകൾ നിങ്ങൾക്കുണ്ട്. നിങ്ങളുടെ സ്റ്റോറി അവരുമായി പങ്കിടുന്നതിന് മുമ്പ് അവരുടെ സുരക്ഷാ നമ്പറുകൾ അവലോകനം ചെയ്യുകയോ അവരെ നിങ്ങളുടെ സ്റ്റോറിയിൽ നിന്ന് നീക്കം ചെയ്യുന്നതിനെ കുറിച്ച് ചിന്തിക്കുകയോ ചെയ്യുക.</item>
+        <item quantity="one">%1$d connection may have reinstalled Signal or changed devices. You may review their safety number or continue with the send.</item>
+        <item quantity="other">%1$d connections may have reinstalled Signal or changed devices. You may review their safety numbers or continue with the send.</item>
     </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">സുരക്ഷാ നമ്പർ ഉറപ്പാക്കു</string>
@@ -6236,6 +6256,8 @@
     <string name="CallLogAdapter__outgoing">ഔട്ട്ഗോയിംഗ്</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">മിസ്‌ഡ്</string>
+    <!-- Displayed for missed calls declined by notification profile -->
+    <string name="CallLogAdapter__missed_notification_profile">Missed while notification profile on</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">ചേരുക</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -6343,6 +6365,8 @@
     <string name="CallPreference__group_call">ഗ്രൂപ്പ് കോൾ</string>
     <!-- Missed group call in call info -->
     <string name="CallPreference__missed_group_call">മിസ്‌ഡ് ഗ്രൂപ്പ് കോൾ</string>
+    <!-- Missed group call while notification profile on in call info -->
+    <string name="CallPreference__missed_group_call_notification_profile">Missed group call while notification profile on</string>
     <!-- Incoming group call in call info -->
     <string name="CallPreference__incoming_group_call">ഇൻകമിംഗ് ഗ്രൂപ്പ് കോൾ</string>
     <!-- Outgoing group call in call info -->

@@ -2232,9 +2232,9 @@
     <string name="UsernameEditFragment__done">Done</string>
     <!-- Displayed when the chosen discriminator is not available for the given nickname -->
     <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">This username is not available, try another number.</string>
-    <!-- Displayed when the chosen discriminator is too short -->'
+    <!-- Displayed when the chosen discriminator is too short -->
     <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Invalid username, enter a minimum of %1$d digits.</string>
-    <!-- Displayed when the chosen discriminator is too long -->'
+    <!-- Displayed when the chosen discriminator is too long -->
     <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Invalid username, enter a maximum of %1$d digits.</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
