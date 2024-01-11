@@ -131,12 +131,7 @@ object UsernameRepository {
   }
 
   /**
-   * Creates or rotates the username link for the local user. If successful,  the [UsernameLinkComponents] will be returned.
-   * If it fails for any reason, the optional will be empty.
-   *
-   * The assumption here is that when the user clicks this button, they will either have a new link, or no link at all.
-   * This is to prevent indeterminate states where the network call fails but may have actually succeeded, that kind of thing.
-   * As such, it's recommended to block calling this method on a network check.
+   * Creates or rotates the username link for the local user.
    */
   fun createOrResetUsernameLink(): Single<UsernameLinkResetResult> {
     if (!NetworkUtil.isConnected(ApplicationDependencies.getApplication())) {
@@ -376,9 +371,10 @@ object UsernameRepository {
     Log.i(TAG, "[confirmUsernameAndCreateNewLink] Beginning username confirmation...")
 
     return try {
-      accountManager.confirmUsername(username)
+      val linkComponents: UsernameLinkComponents = accountManager.confirmUsernameAndCreateNewLink(username)
+
       SignalStore.account().username = username.username
-      SignalStore.account().usernameLink = null
+      SignalStore.account().usernameLink = linkComponents
       SignalDatabase.recipients.setUsername(Recipient.self().id, username.username)
       SignalStore.account().usernameSyncState = AccountValues.UsernameSyncState.IN_SYNC
       SignalStore.account().usernameSyncErrorCount = 0
@@ -386,12 +382,6 @@ object UsernameRepository {
       SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
       StorageSyncHelper.scheduleSyncForDataChange()
       Log.i(TAG, "[confirmUsernameAndCreateNewLink] Successfully confirmed username.")
-
-      if (tryToSetUsernameLink(username)) {
-        Log.i(TAG, "[confirmUsernameAndCreateNewLink] Successfully confirmed username link.")
-      } else {
-        Log.w(TAG, "[confirmUsernameAndCreateNewLink] Failed to confirm a username link. We'll try again when the user goes to view their link.")
-      }
 
       UsernameSetResult.SUCCESS
     } catch (e: UsernameTakenException) {
@@ -407,23 +397,6 @@ object UsernameRepository {
       Log.w(TAG, "[confirmUsernameAndCreateNewLink] Generic network exception.", e)
       UsernameSetResult.NETWORK_ERROR
     }
-  }
-
-  private fun tryToSetUsernameLink(username: Username): Boolean {
-    for (i in 0..2) {
-      try {
-        val linkComponents = accountManager.createUsernameLink(username)
-        SignalStore.account().usernameLink = linkComponents
-
-        SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
-        StorageSyncHelper.scheduleSyncForDataChange()
-        return true
-      } catch (e: IOException) {
-        Log.w(TAG, "[tryToSetUsernameLink] Failed with IOException on attempt " + (i + 1) + "/3", e)
-      }
-    }
-
-    return false
   }
 
   @WorkerThread

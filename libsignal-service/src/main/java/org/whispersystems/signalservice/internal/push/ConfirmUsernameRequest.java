@@ -9,8 +9,12 @@ class ConfirmUsernameRequest {
   @JsonProperty
   private String zkProof;
 
-  ConfirmUsernameRequest(String usernameHash, String zkProof) {
-    this.usernameHash = usernameHash;
-    this.zkProof      = zkProof;
+  @JsonProperty
+  private String encryptedUsername;
+
+  ConfirmUsernameRequest(String usernameHash, String zkProof, String encryptedUsername) {
+    this.usernameHash      = usernameHash;
+    this.zkProof           = zkProof;
+    this.encryptedUsername = encryptedUsername;
   }
 }

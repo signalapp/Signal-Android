@@ -1112,15 +1112,19 @@ public class PushServiceSocket {
    * @param username     The username the user wishes to confirm.
    * @throws IOException Thrown when the username is invalid or taken, or when another network error occurs.
    */
-  public void confirmUsername(Username username) throws IOException {
+  public UUID confirmUsernameAndCreateNewLink(Username username, Username.UsernameLink link) throws IOException {
     try {
       byte[] randomness = new byte[32];
       random.nextBytes(randomness);
 
       byte[]                 proof                  = username.generateProofWithRandomness(randomness);
-      ConfirmUsernameRequest confirmUsernameRequest = new ConfirmUsernameRequest(Base64.encodeUrlSafeWithoutPadding(username.getHash()), Base64.encodeUrlSafeWithoutPadding(proof));
+      ConfirmUsernameRequest confirmUsernameRequest = new ConfirmUsernameRequest(
+                                                        Base64.encodeUrlSafeWithoutPadding(username.getHash()),
+                                                        Base64.encodeUrlSafeWithoutPadding(proof),
+                                                        Base64.encodeUrlSafeWithoutPadding(link.getEncryptedUsername())
+                                                      );
 
-      makeServiceRequest(CONFIRM_USERNAME_PATH, "PUT", JsonUtil.toJson(confirmUsernameRequest), NO_HEADERS, (responseCode, body) -> {
+      String response = makeServiceRequest(CONFIRM_USERNAME_PATH, "PUT", JsonUtil.toJson(confirmUsernameRequest), NO_HEADERS, (responseCode, body) -> {
         switch (responseCode) {
           case 409:
             throw new UsernameIsNotReservedException();
@@ -1128,6 +1132,8 @@ public class PushServiceSocket {
             throw new UsernameTakenException();
         }
       }, Optional.empty());
+
+      return JsonUtil.fromJson(response, ConfirmUsernameResponse.class).getUsernameLinkHandle();
     } catch (BaseUsernameException e) {
       throw new IOException(e);
     }

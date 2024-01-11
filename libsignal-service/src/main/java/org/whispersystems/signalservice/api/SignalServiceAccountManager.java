@@ -783,8 +783,15 @@ public class SignalServiceAccountManager {
     return this.pushServiceSocket.reserveUsername(usernameHashes);
   }
 
-  public void confirmUsername(Username username) throws IOException {
-    this.pushServiceSocket.confirmUsername(username);
+  public UsernameLinkComponents confirmUsernameAndCreateNewLink(Username username) throws IOException {
+    try {
+      UsernameLink link    = link = username.generateLink();
+      UUID        serverId = this.pushServiceSocket.confirmUsernameAndCreateNewLink(username, link);
+
+      return new UsernameLinkComponents(link.getEntropy(), serverId);
+    } catch (BaseUsernameException e) {
+      throw new AssertionError(e);
+    }
   }
 
   public UsernameLinkComponents updateUsernameLink(UsernameLink newUsernameLink) throws IOException {
