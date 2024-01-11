@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.ViewKt;
 
 import org.signal.core.util.DimensionUnit;
 import org.signal.core.util.concurrent.SignalExecutors;
@@ -128,6 +129,8 @@ public class ConversationHeaderView extends ConstraintLayout {
       binding.messageRequestInfoOutline.setVisibility(View.VISIBLE);
       binding.messageRequestDivider.setVisibility(View.INVISIBLE);
     }
+
+    hideDecoratorsIfContentIsNotPresent();
   }
 
   public void hideSubtitle() {
@@ -146,7 +149,11 @@ public class ConversationHeaderView extends ConstraintLayout {
     binding.messageRequestDescription.setMovementMethod(enable ? LongClickMovementMethod.getInstance(getContext()) : null);
   }
 
-  public void hideDecorations() {
+  private void hideDecoratorsIfContentIsNotPresent() {
+    if (ViewKt.isVisible(binding.messageRequestSubtitle) || ViewKt.isVisible(binding.messageRequestDescription)) {
+      return;
+    }
+
     binding.messageRequestInfoOutline.setVisibility(View.GONE);
     binding.messageRequestDivider.setVisibility(View.GONE);
   }

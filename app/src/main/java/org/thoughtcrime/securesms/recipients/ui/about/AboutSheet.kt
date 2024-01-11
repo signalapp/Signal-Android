@@ -281,7 +281,6 @@ private fun AboutRow(
   endIcon: Painter? = null,
   onClick: (() -> Unit)? = null
 ) {
-
   val padHorizontal = if (onClick != null) 19.dp else 32.dp
   val padVertical = if (onClick != null) 4.dp else 6.dp
 
