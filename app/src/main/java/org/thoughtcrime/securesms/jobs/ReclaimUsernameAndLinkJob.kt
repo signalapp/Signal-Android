@@ -5,7 +5,6 @@
 
 package org.thoughtcrime.securesms.jobs
 
-import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.BackoffUtil
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
@@ -13,11 +12,22 @@ import org.thoughtcrime.securesms.profiles.manage.UsernameRepository
 import org.thoughtcrime.securesms.util.FeatureFlags
 import kotlin.time.Duration.Companion.days
 
-class ReclaimUsernameAndLinkJob private constructor(parameters: Job.Parameters) : Job(parameters) {
+/**
+ * A job to attempt to reclaim a previously-owned username and link after the user re-registers.
+ *
+ * There's some nuance here in the scheduling -- we need it to after either the account record
+ * has been fetched, meaning either [StorageAccountRestoreJob] or [StorageSyncJob] has been run
+ * first. We manage this creating chains where the job is constructed and putting it in the same
+ * queue as the storage sync job just in case it managed to get enqueued some other way in the
+ * future.
+ *
+ * Also worth noting that [StorageAccountRestoreJob] also attempts to reclaim the username first,
+ * but we enqueue this as a fallback since [StorageAccountRestoreJob] has always been a best-effort
+ * thing that relies on future [StorageSyncJob]'s to clean up any failures.
+ */
+class ReclaimUsernameAndLinkJob private constructor(parameters: Parameters) : Job(parameters) {
   companion object {
     const val KEY = "UsernameAndLinkRestoreJob"
-
-    private val TAG = Log.tag(ReclaimUsernameAndLinkJob::class.java)
   }
 
   constructor() : this(
