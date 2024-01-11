@@ -189,13 +189,12 @@ public final class FeatureFlags {
       SEPA_ENABLED_REGIONS,
       CALLING_REACTIONS,
       NOTIFICATION_THUMBNAIL_BLOCKLIST,
-      CALLING_RAISE_HAND
+      CALLING_RAISE_HAND,
+      PHONE_NUMBER_PRIVACY
   );
 
   @VisibleForTesting
-  static final Set<String> NOT_REMOTE_CAPABLE = SetUtil.newHashSet(
-      PHONE_NUMBER_PRIVACY
-  );
+  static final Set<String> NOT_REMOTE_CAPABLE = SetUtil.newHashSet();
 
   /**
    * Values in this map will take precedence over any value. This should only be used for local
@@ -262,7 +261,8 @@ public final class FeatureFlags {
       BLOCK_SSE,
       CALLING_REACTIONS,
       NOTIFICATION_THUMBNAIL_BLOCKLIST,
-      CALLING_RAISE_HAND
+      CALLING_RAISE_HAND,
+      PHONE_NUMBER_PRIVACY
   );
 
   /**
