@@ -34,6 +34,7 @@ public class EmojiImageView extends AppCompatImageView {
       setImageResource(R.drawable.ic_emoji);
     } else {
       setImageDrawable(EmojiProvider.getEmojiDrawable(getContext(), emoji, forceJumboEmoji));
+      setContentDescription(emoji);
     }
   }
 }
