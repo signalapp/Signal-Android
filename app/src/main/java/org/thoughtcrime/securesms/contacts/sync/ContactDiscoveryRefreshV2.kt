@@ -182,8 +182,11 @@ object ContactDiscoveryRefreshV2 {
     val existingIds: Set<RecipientId> = SignalDatabase.recipients.getAllPossiblyRegisteredByE164(recipientE164s + rewrites.values)
     stopwatch.split("get-ids")
 
-    val inactiveIds: Set<RecipientId> = (existingIds - registeredIds).removePossiblyRegisteredButUnlisted()
+    val inactiveIds: Set<RecipientId> = (existingIds - registeredIds).removePossiblyRegisteredButUndiscoverable()
     stopwatch.split("registered-but-unlisted")
+
+    val missingFromCds: Set<RecipientId> = existingIds - registeredIds
+    SignalDatabase.recipients.updatePhoneNumberDiscoverability(registeredIds, missingFromCds)
 
     SignalDatabase.recipients.bulkUpdatedRegisteredStatus(registeredIds, inactiveIds)
     stopwatch.split("update-registered")
@@ -199,13 +202,13 @@ object ContactDiscoveryRefreshV2 {
   }
 
   /**
-   * If an account is unlisted, it won't come back in the CDS response. So just because we're missing a entry doesn't mean they've become unregistered.
+   * If an account is undiscoverable, it won't come back in the CDS response. So just because we're missing a entry doesn't mean they've become unregistered.
    * This function removes people from the list that both have a serviceId and some history of communication. We consider this a good heuristic for
    * "maybe this person just removed themselves from CDS". We'll rely on profile fetches that occur during chat opens to check registered status and clear
    * actually-unregistered users out.
    */
   @WorkerThread
-  private fun Set<RecipientId>.removePossiblyRegisteredButUnlisted(): Set<RecipientId> {
+  private fun Set<RecipientId>.removePossiblyRegisteredButUndiscoverable(): Set<RecipientId> {
     val selfId = Recipient.self().id
     return this - Recipient.resolvedList(this)
       .filter {
