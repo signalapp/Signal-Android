@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.media.MediaInput;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -40,7 +39,8 @@ final class VideoThumbnailsExtractor {
       extractor = input.createExtractor();
       MediaFormat mediaFormat = null;
       for (int index = 0; index < extractor.getTrackCount(); ++index) {
-        if (extractor.getTrackFormat(index).getString(MediaFormat.KEY_MIME).startsWith("video/")) {
+        final String mimeType = extractor.getTrackFormat(index).getString(MediaFormat.KEY_MIME);
+        if (mimeType != null && mimeType.startsWith("video/")) {
           extractor.selectTrack(index);
           mediaFormat = extractor.getTrackFormat(index);
           break;
@@ -48,6 +48,10 @@ final class VideoThumbnailsExtractor {
       }
       if (mediaFormat != null) {
         final String mime     = mediaFormat.getString(MediaFormat.KEY_MIME);
+        if (mime == null) {
+          throw new IllegalArgumentException("Mime type for MediaFormat was null: \t" + mediaFormat);
+        }
+
         final int    rotation = mediaFormat.containsKey(MediaFormat.KEY_ROTATION) ? mediaFormat.getInteger(MediaFormat.KEY_ROTATION) : 0;
         final int    width    = mediaFormat.getInteger(MediaFormat.KEY_WIDTH);
         final int    height   = mediaFormat.getInteger(MediaFormat.KEY_HEIGHT);

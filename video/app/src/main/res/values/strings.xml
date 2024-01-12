@@ -5,4 +5,9 @@
 
 <resources>
     <string name="app_name">Video Framework Tester</string>
+    <string name="notification_channel_id">transcode-progress</string>
+    <string name="notification_title">Encoding video…</string>
+    <string name="cancel_transcode">Cancel</string>
+    <string name="channel_name">Transcoding progress updates.</string>
+    <string name="channel_description">Persistent notifications that allow the transcode job to complete when the app is in the background.</string>
 </resources>

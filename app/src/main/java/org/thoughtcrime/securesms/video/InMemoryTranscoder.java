@@ -15,11 +15,13 @@ import org.signal.core.util.logging.Log;
 import org.signal.libsignal.media.Mp4Sanitizer;
 import org.signal.libsignal.media.ParseException;
 import org.signal.libsignal.media.SanitizedMetadata;
-import org.thoughtcrime.securesms.media.MediaInput;
 import org.thoughtcrime.securesms.mms.MediaStream;
 import org.thoughtcrime.securesms.util.MemoryFileDescriptor;
+import org.thoughtcrime.securesms.video.exceptions.VideoSizeException;
+import org.thoughtcrime.securesms.video.exceptions.VideoSourceException;
 import org.thoughtcrime.securesms.video.videoconverter.EncodingException;
 import org.thoughtcrime.securesms.video.videoconverter.MediaConverter;
+import org.thoughtcrime.securesms.video.videoconverter.mediadatasource.MediaDataSourceMediaInput;
 
 import java.io.ByteArrayInputStream;
 import java.io.Closeable;
@@ -122,7 +124,7 @@ public final class InMemoryTranscoder implements Closeable {
 
     final MediaConverter converter = new MediaConverter();
 
-    converter.setInput(new MediaInput.MediaDataSourceMediaInput(dataSource));
+    converter.setInput(new MediaDataSourceMediaInput(dataSource));
     converter.setOutput(memoryFileFileDescriptor);
     converter.setVideoResolution(targetQuality.getOutputResolution());
     converter.setVideoBitrate(targetQuality.getTargetVideoBitRate());

@@ -20,7 +20,7 @@ android {
 
   defaultConfig {
     applicationId = "org.thoughtcrime.video.app"
-    minSdk = signalMinSdkVersion
+    minSdk = 23
     targetSdk = signalTargetSdkVersion
     versionCode = 1
     versionName = "1.0"
@@ -63,6 +63,9 @@ dependencies {
   implementation(platform(libs.androidx.compose.bom))
   implementation(libs.androidx.compose.material3)
   implementation(libs.bundles.media3)
+  implementation(project(":video"))
+  implementation(project(":core-util"))
+  implementation("androidx.work:work-runtime-ktx:2.9.0")
   debugImplementation(libs.androidx.compose.ui.tooling.core)
   debugImplementation(libs.androidx.compose.ui.test.manifest)
 }

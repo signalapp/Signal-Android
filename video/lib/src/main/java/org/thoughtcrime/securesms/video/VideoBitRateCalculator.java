@@ -1,15 +1,17 @@
 package org.thoughtcrime.securesms.video;
 
+import org.thoughtcrime.securesms.video.videoconverter.VideoConstants;
+
 /**
  * Calculates a target quality output for a video to fit within a specified size.
  */
 public final class VideoBitRateCalculator {
 
-  private static final int MAXIMUM_TARGET_VIDEO_BITRATE = VideoUtil.VIDEO_BIT_RATE;
+  private static final int MAXIMUM_TARGET_VIDEO_BITRATE = VideoConstants.VIDEO_BIT_RATE;
   private static final int LOW_RES_TARGET_VIDEO_BITRATE = 1_750_000;
   private static final int MINIMUM_TARGET_VIDEO_BITRATE = 500_000;
-  private static final int AUDIO_BITRATE                = VideoUtil.AUDIO_BIT_RATE;
-  private static final int OUTPUT_FORMAT                = VideoUtil.VIDEO_SHORT_WIDTH;
+  private static final int AUDIO_BITRATE                = VideoConstants.AUDIO_BIT_RATE;
+  private static final int OUTPUT_FORMAT                = VideoConstants.VIDEO_SHORT_EDGE;
   private static final int LOW_RES_OUTPUT_FORMAT        = 480;
 
   private final long upperFileSizeLimitWithMargin;

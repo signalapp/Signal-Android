@@ -8,9 +8,11 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.media.MediaInput;
+import org.thoughtcrime.securesms.video.exceptions.VideoSizeException;
+import org.thoughtcrime.securesms.video.exceptions.VideoSourceException;
 import org.thoughtcrime.securesms.video.videoconverter.EncodingException;
 import org.thoughtcrime.securesms.video.videoconverter.MediaConverter;
+import org.thoughtcrime.securesms.video.videoconverter.mediadatasource.MediaDataSourceMediaInput;
 
 import java.io.FilterOutputStream;
 import java.io.IOException;
@@ -103,7 +105,7 @@ public final class StreamingTranscoder {
     final MediaConverter          converter               = new MediaConverter();
     final LimitedSizeOutputStream limitedSizeOutputStream = new LimitedSizeOutputStream(stream, upperSizeLimit);
 
-    converter.setInput(new MediaInput.MediaDataSourceMediaInput(dataSource));
+    converter.setInput(new MediaDataSourceMediaInput(dataSource));
     converter.setOutput(limitedSizeOutputStream);
     converter.setVideoResolution(targetQuality.getOutputResolution());
     converter.setVideoBitrate(targetQuality.getTargetVideoBitRate());

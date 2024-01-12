@@ -3,8 +3,9 @@
   ~ SPDX-License-Identifier: AGPL-3.0-only
   -->
 
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
-
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -23,6 +24,7 @@
             </intent-filter>
         </activity>
         <activity
+
             android:name=".transcode.TranscodeTestActivity"
             android:exported="false"
             android:theme="@style/Theme.Signal" />
@@ -30,6 +32,10 @@
             android:name=".playback.PlaybackTestActivity"
             android:exported="false"
             android:theme="@style/Theme.Signal" />
+        <service
+            android:name="androidx.work.impl.foreground.SystemForegroundService"
+            android:foregroundServiceType="dataSync"
+            tools:node="merge" />
     </application>
 
 </manifest>

@@ -47,7 +47,7 @@ import org.thoughtcrime.securesms.video.InMemoryTranscoder;
 import org.thoughtcrime.securesms.video.StreamingTranscoder;
 import org.thoughtcrime.securesms.video.TranscoderCancelationSignal;
 import org.thoughtcrime.securesms.video.TranscoderOptions;
-import org.thoughtcrime.securesms.video.VideoSourceException;
+import org.thoughtcrime.securesms.video.exceptions.VideoSourceException;
 import org.thoughtcrime.securesms.video.videoconverter.EncodingException;
 
 import java.io.ByteArrayInputStream;

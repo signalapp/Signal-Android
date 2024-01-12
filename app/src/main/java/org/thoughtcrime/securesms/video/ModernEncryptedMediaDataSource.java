@@ -8,6 +8,7 @@ import androidx.annotation.RequiresApi;
 
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream;
+import org.thoughtcrime.securesms.video.videoconverter.mediadatasource.InputStreamMediaDataSource;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,7 +23,7 @@ import java.io.InputStream;
  * the presence of a random part of the key supplied in the constructor.
  */
 @RequiresApi(23)
-final class ModernEncryptedMediaDataSource extends MediaDataSource {
+final class ModernEncryptedMediaDataSource extends InputStreamMediaDataSource {
 
   private final AttachmentSecret attachmentSecret;
   private final File             mediaFile;
@@ -37,44 +38,15 @@ final class ModernEncryptedMediaDataSource extends MediaDataSource {
   }
 
   @Override
-  public int readAt(long position, byte[] bytes, int offset, int length) throws IOException {
-    if (position >= this.length) {
-      return -1;
-    }
-
-    try (InputStream inputStream = createInputStream(position)) {
-      int totalRead = 0;
-
-      while (length > 0) {
-        int read = inputStream.read(bytes, offset, length);
-
-        if (read == -1) {
-          if (totalRead == 0) {
-            return -1;
-          } else {
-            return totalRead;
-          }
-        }
-
-        length    -= read;
-        offset    += read;
-        totalRead += read;
-      }
-
-      return totalRead;
-    }
-  }
+  public void close() {}
 
   @Override
   public long getSize() {
     return length;
   }
 
-  @Override
-  public void close() {
-  }
-
-  private InputStream createInputStream(long position) throws IOException {
+  @NonNull
+  public InputStream createInputStream(long position) throws IOException {
     if (random == null) {
       return ModernDecryptingPartInputStream.createFor(attachmentSecret, mediaFile, position);
     } else {

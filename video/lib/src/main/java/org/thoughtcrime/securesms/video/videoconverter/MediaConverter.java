@@ -29,7 +29,6 @@ import androidx.annotation.StringDef;
 import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.media.MediaInput;
 import org.thoughtcrime.securesms.video.videoconverter.muxer.StreamingMuxer;
 
 import java.io.File;

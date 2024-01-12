@@ -76,11 +76,11 @@ class PlaybackTestActivity : AppCompatActivity() {
    */
   private val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
     if (uri != null) {
-      Log.d("PhotoPicker", "Selected URI: $uri")
+      Log.d("PlaybackPicker", "Selected URI: $uri")
       viewModel.selectedVideo = uri
       viewModel.updateMediaSource(this)
     } else {
-      Log.d("PhotoPicker", "No media selected")
+      Log.d("PlaybackPicker", "No media selected")
     }
   }
 }
