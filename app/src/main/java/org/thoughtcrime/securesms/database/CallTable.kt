@@ -359,6 +359,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     writableDatabase
       .update(TABLE_NAME)
       .values(EVENT to Event.serialize(newEvent))
+      .where("$CALL_ID = ?", call.callId)
       .run()
 
     ApplicationDependencies.getMessageNotifier().updateNotification(context)
@@ -384,6 +385,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     writableDatabase
       .update(TABLE_NAME)
       .values(EVENT to Event.serialize(newEvent), DIRECTION to Direction.serialize(Direction.OUTGOING))
+      .where("$CALL_ID = ?", call.callId)
       .run()
 
     ApplicationDependencies.getMessageNotifier().updateNotification(context)
@@ -407,6 +409,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     writableDatabase
       .update(TABLE_NAME)
       .values(EVENT to Event.serialize(newEvent))
+      .where("$CALL_ID = ?", call.callId)
       .run()
 
     ApplicationDependencies.getMessageNotifier().updateNotification(context)
