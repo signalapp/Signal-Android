@@ -40,6 +40,7 @@ import org.signal.core.util.SqlUtil.getNextAutoIncrementId
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.count
 import org.signal.core.util.delete
+import org.signal.core.util.deleteAll
 import org.signal.core.util.exists
 import org.signal.core.util.forEach
 import org.signal.core.util.insertInto
@@ -3390,7 +3391,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     attachments.deleteAllAttachments()
     groupReceipts.deleteAllRows()
     mentions.deleteAllMentions()
-    writableDatabase.delete(TABLE_NAME).run()
+    writableDatabase.deleteAll(TABLE_NAME)
     calls.updateCallEventDeletionTimestamps()
 
     OptimizeMessageSearchIndexJob.enqueue()

@@ -7,7 +7,7 @@ package org.thoughtcrime.securesms.backup.v2.database
 
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.CursorUtil
-import org.signal.core.util.delete
+import org.signal.core.util.deleteAll
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
 import org.signal.core.util.requireLong
@@ -88,12 +88,10 @@ fun DistributionListTables.restoreFromBackup(dlist: BackupDistributionList, back
 
 fun DistributionListTables.clearAllDataForBackupRestore() {
   writableDatabase
-    .delete(DistributionListTables.ListTable.TABLE_NAME)
-    .run()
+    .deleteAll(DistributionListTables.ListTable.TABLE_NAME)
 
   writableDatabase
-    .delete(DistributionListTables.MembershipTable.TABLE_NAME)
-    .run()
+    .deleteAll(DistributionListTables.MembershipTable.TABLE_NAME)
 }
 
 private fun DistributionListPrivacyMode.toBackupPrivacyMode(): BackupDistributionList.PrivacyMode {

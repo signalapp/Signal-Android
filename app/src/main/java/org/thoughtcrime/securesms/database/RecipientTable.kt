@@ -33,6 +33,7 @@ import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireString
 import org.signal.core.util.select
 import org.signal.core.util.update
+import org.signal.core.util.updateAll
 import org.signal.core.util.withinTransaction
 import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.InvalidKeyException
@@ -2011,7 +2012,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   /**
    * Does *not* handle clearing the recipient cache. It is assumed the caller handles this.
    */
-  fun updateSelfPhone(e164: String, pni: PNI) {
+  fun updateSelfE164(e164: String, pni: PNI) {
     val db = writableDatabase
 
     db.beginTransaction()
@@ -2022,11 +2023,10 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       if (id == newId) {
         Log.i(TAG, "[updateSelfPhone] Phone updated for self")
       } else {
-        throw AssertionError("[updateSelfPhone] Self recipient id changed when updating phone. old: $id new: $newId")
+        throw AssertionError("[updateSelfPhone] Self recipient id changed when updating e164. old: $id new: $newId")
       }
 
-      db
-        .update(TABLE_NAME)
+      db.updateAll(TABLE_NAME)
         .values(NEEDS_PNI_SIGNATURE to 0)
         .run()
 

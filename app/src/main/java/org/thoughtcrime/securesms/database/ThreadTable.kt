@@ -6,7 +6,6 @@ import android.content.Context
 import android.database.Cursor
 import android.database.MergeCursor
 import android.net.Uri
-import androidx.annotation.VisibleForTesting
 import androidx.core.content.contentValuesOf
 import com.fasterxml.jackson.annotation.JsonProperty
 import org.json.JSONObject
@@ -26,6 +25,7 @@ import org.signal.core.util.requireString
 import org.signal.core.util.select
 import org.signal.core.util.toInt
 import org.signal.core.util.update
+import org.signal.core.util.updateAll
 import org.signal.core.util.withinTransaction
 import org.signal.libsignal.zkgroup.InvalidInputException
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
@@ -403,7 +403,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
   fun setAllThreadsRead(): List<MarkedMessageInfo> {
     writableDatabase
-      .update(TABLE_NAME)
+      .updateAll(TABLE_NAME)
       .values(
         READ to ReadStatus.READ.serialize(),
         UNREAD_COUNT to 0,
@@ -1107,14 +1107,6 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     ConversationUtil.clearShortcuts(context, recipientIds)
   }
 
-  @VisibleForTesting
-  fun clearForTests() {
-    writableDatabase.withinTransaction {
-      deleteAllConversations()
-      it.delete(TABLE_NAME).run()
-    }
-  }
-
   @SuppressLint("DiscouragedApi")
   fun deleteAllConversations() {
     writableDatabase.withinTransaction { db ->
@@ -1294,7 +1286,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     writableDatabase.withinTransaction { db ->
       applyStorageSyncUpdate(recipientId, record.isNoteToSelfArchived, record.isNoteToSelfForcedUnread)
 
-      db.update(TABLE_NAME)
+      db.updateAll(TABLE_NAME)
         .values(PINNED to 0)
         .run()
 
@@ -1664,36 +1656,42 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
   }
 
   private fun SQLiteDatabase.deactivateThread(query: SqlUtil.Query?) {
-    val update = update(TABLE_NAME)
-      .values(
-        DATE to 0,
-        MEANINGFUL_MESSAGES to 0,
-        READ to ReadStatus.READ.serialize(),
-        TYPE to 0,
-        ERROR to 0,
-        SNIPPET to null,
-        SNIPPET_TYPE to 0,
-        SNIPPET_URI to null,
-        SNIPPET_CONTENT_TYPE to null,
-        SNIPPET_EXTRAS to null,
-        UNREAD_COUNT to 0,
-        ARCHIVED to 0,
-        STATUS to 0,
-        HAS_DELIVERY_RECEIPT to 0,
-        HAS_READ_RECEIPT to 0,
-        EXPIRES_IN to 0,
-        LAST_SEEN to 0,
-        HAS_SENT to 0,
-        LAST_SCROLLED to 0,
-        PINNED to 0,
-        UNREAD_SELF_MENTION_COUNT to 0,
-        ACTIVE to 0
-      )
+    val contentValues = contentValuesOf(
+      DATE to 0,
+      MEANINGFUL_MESSAGES to 0,
+      READ to ReadStatus.READ.serialize(),
+      TYPE to 0,
+      ERROR to 0,
+      SNIPPET to null,
+      SNIPPET_TYPE to 0,
+      SNIPPET_URI to null,
+      SNIPPET_CONTENT_TYPE to null,
+      SNIPPET_EXTRAS to null,
+      UNREAD_COUNT to 0,
+      ARCHIVED to 0,
+      STATUS to 0,
+      HAS_DELIVERY_RECEIPT to 0,
+      HAS_READ_RECEIPT to 0,
+      EXPIRES_IN to 0,
+      LAST_SEEN to 0,
+      HAS_SENT to 0,
+      LAST_SCROLLED to 0,
+      PINNED to 0,
+      UNREAD_SELF_MENTION_COUNT to 0,
+      ACTIVE to 0
+    )
 
     if (query != null) {
-      update.where(query.where, query.whereArgs).run()
+      writableDatabase
+        .update(TABLE_NAME)
+        .values(contentValues)
+        .where(query.where, query.whereArgs)
+        .run()
     } else {
-      update.run()
+      writableDatabase
+        .updateAll(TABLE_NAME)
+        .values(contentValues)
+        .run()
     }
   }
 
