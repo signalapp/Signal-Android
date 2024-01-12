@@ -56,7 +56,7 @@ object AccountDataProcessor {
             readReceipts = TextSecurePreferences.isReadReceiptsEnabled(context),
             sealedSenderIndicators = TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(context),
             linkPreviews = SignalStore.settings().isLinkPreviewsEnabled,
-            notDiscoverableByPhoneNumber = SignalStore.phoneNumberPrivacy().phoneNumberListingMode.isUnlisted,
+            notDiscoverableByPhoneNumber = SignalStore.phoneNumberPrivacy().phoneNumberDiscoverabilityMode.isUndiscoverable,
             phoneNumberSharingMode = SignalStore.phoneNumberPrivacy().phoneNumberSharingMode.toBackupPhoneNumberSharingMode(),
             preferContactAvatars = SignalStore.settings().isPreferSystemContactPhotos,
             universalExpireTimer = SignalStore.settings().universalExpireTimer,
@@ -86,7 +86,7 @@ object AccountDataProcessor {
       TextSecurePreferences.setTypingIndicatorsEnabled(context, settings.typingIndicators)
       TextSecurePreferences.setShowUnidentifiedDeliveryIndicatorsEnabled(context, settings.sealedSenderIndicators)
       SignalStore.settings().isLinkPreviewsEnabled = settings.linkPreviews
-      SignalStore.phoneNumberPrivacy().phoneNumberListingMode = if (settings.notDiscoverableByPhoneNumber) PhoneNumberPrivacyValues.PhoneNumberListingMode.UNLISTED else PhoneNumberPrivacyValues.PhoneNumberListingMode.LISTED
+      SignalStore.phoneNumberPrivacy().phoneNumberDiscoverabilityMode = if (settings.notDiscoverableByPhoneNumber) PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE else PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode.DISCOVERABLE
       SignalStore.phoneNumberPrivacy().phoneNumberSharingMode = settings.phoneNumberSharingMode.toLocalPhoneNumberMode()
       SignalStore.settings().isPreferSystemContactPhotos = settings.preferContactAvatars
       SignalStore.settings().universalExpireTimer = settings.universalExpireTimer

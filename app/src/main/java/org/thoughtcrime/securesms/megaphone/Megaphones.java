@@ -415,12 +415,12 @@ public final class Megaphones {
   private static boolean shouldShowSetUpYourUsernameMegaphone(@NonNull Map<Event, MegaphoneRecord> records) {
     boolean                                         hasUsername                    = SignalStore.account().isRegistered() && SignalStore.account().getUsername() != null;
     boolean                                         hasCompleted                   = MapUtil.mapOrDefault(records, Event.SET_UP_YOUR_USERNAME, MegaphoneRecord::isFinished, false);
-    long                                            phoneNumberDiscoveryDisabledAt = SignalStore.phoneNumberPrivacy().getPhoneNumberListingModeTimestamp();
-    PhoneNumberPrivacyValues.PhoneNumberListingMode listingMode                    = SignalStore.phoneNumberPrivacy().getPhoneNumberListingMode();
+    long                                                    phoneNumberDiscoveryDisabledAt = SignalStore.phoneNumberPrivacy().getPhoneNumberDiscoverabilityModeTimestamp();
+    PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode listingMode                    = SignalStore.phoneNumberPrivacy().getPhoneNumberDiscoverabilityMode();
 
     return FeatureFlags.usernames() &&
            !hasUsername &&
-           listingMode.isUnlisted() &&
+           listingMode.isUndiscoverable() &&
            !hasCompleted &&
            phoneNumberDiscoveryDisabledAt > 0 &&
            (System.currentTimeMillis() - phoneNumberDiscoveryDisabledAt) >= TimeUnit.DAYS.toMillis(3);

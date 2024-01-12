@@ -3677,7 +3677,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     SqlUtil.buildCollectionQuery(ID, missingFromCds).forEach { query ->
       writableDatabase
         .update(TABLE_NAME)
-        .values(PHONE_NUMBER_DISCOVERABLE to PhoneNumberDiscoverableState.UNDISCOVERABLE.id)
+        .values(PHONE_NUMBER_DISCOVERABLE to PhoneNumberDiscoverableState.NOT_DISCOVERABLE.id)
         .where(query.where, query.whereArgs)
         .run()
     }
@@ -4189,7 +4189,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         put(SYSTEM_CONTACT_URI, systemContactUri)
       }
 
-      val updateQuery = SqlUtil.buildTrueUpdateQuery("$ID = ? AND $PHONE_NUMBER_DISCOVERABLE != ?", SqlUtil.buildArgs(id, PhoneNumberDiscoverableState.UNDISCOVERABLE.id), refreshQualifyingValues)
+      val updateQuery = SqlUtil.buildTrueUpdateQuery("$ID = ? AND $PHONE_NUMBER_DISCOVERABLE != ?", SqlUtil.buildArgs(id, PhoneNumberDiscoverableState.NOT_DISCOVERABLE.id), refreshQualifyingValues)
       if (update(updateQuery, refreshQualifyingValues)) {
         pendingRecipients.add(id)
       }
@@ -4197,7 +4197,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       writableDatabase
         .update(TABLE_NAME)
         .values(SYSTEM_INFO_PENDING to 0)
-        .where("$ID = ? AND $PHONE_NUMBER_DISCOVERABLE != ?", id, PhoneNumberDiscoverableState.UNDISCOVERABLE.id)
+        .where("$ID = ? AND $PHONE_NUMBER_DISCOVERABLE != ?", id, PhoneNumberDiscoverableState.NOT_DISCOVERABLE.id)
         .run()
     }
 
@@ -4548,7 +4548,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   }
 
   enum class PhoneNumberDiscoverableState(val id: Int) {
-    UNKNOWN(0), DISCOVERABLE(1), UNDISCOVERABLE(2);
+    UNKNOWN(0), DISCOVERABLE(1), NOT_DISCOVERABLE(2);
 
     companion object {
       fun fromId(id: Int): PhoneNumberDiscoverableState {

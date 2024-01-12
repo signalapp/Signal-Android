@@ -212,13 +212,13 @@ public class CreateProfileFragment extends LoggingFragment {
       if (FeatureFlags.phoneNumberPrivacy()) {
         getParentFragmentManager().setFragmentResultListener(WhoCanFindMeByPhoneNumberFragment.REQUEST_KEY, getViewLifecycleOwner(), (requestKey, result) -> {
           if (WhoCanFindMeByPhoneNumberFragment.REQUEST_KEY.equals(requestKey)) {
-            presentWhoCanFindMeDescription(SignalStore.phoneNumberPrivacy().getPhoneNumberListingMode());
+            presentWhoCanFindMeDescription(SignalStore.phoneNumberPrivacy().getPhoneNumberDiscoverabilityMode());
           }
         });
 
         binding.whoCanFindMeContainer.setVisibility(View.VISIBLE);
         binding.whoCanFindMeContainer.setOnClickListener(v -> SafeNavigation.safeNavigate(Navigation.findNavController(v), CreateProfileFragmentDirections.actionCreateProfileFragmentToPhoneNumberPrivacy()));
-        presentWhoCanFindMeDescription(SignalStore.phoneNumberPrivacy().getPhoneNumberListingMode());
+        presentWhoCanFindMeDescription(SignalStore.phoneNumberPrivacy().getPhoneNumberDiscoverabilityMode());
       }
     }
 
@@ -285,12 +285,12 @@ public class CreateProfileFragment extends LoggingFragment {
     }
   }
 
-  private void presentWhoCanFindMeDescription(PhoneNumberPrivacyValues.PhoneNumberListingMode phoneNumberListingMode) {
+  private void presentWhoCanFindMeDescription(PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode phoneNumberListingMode) {
     switch (phoneNumberListingMode) {
-      case LISTED:
+      case DISCOVERABLE:
         binding.whoCanFindMeDescription.setText(R.string.PhoneNumberPrivacy_everyone);
         break;
-      case UNLISTED:
+      case NOT_DISCOVERABLE:
         binding.whoCanFindMeDescription.setText(R.string.PhoneNumberPrivacy_nobody);
         break;
     }
