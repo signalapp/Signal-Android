@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.video.exceptions.VideoSizeException;
 import org.thoughtcrime.securesms.video.exceptions.VideoSourceException;
 import org.thoughtcrime.securesms.video.videoconverter.EncodingException;
 import org.thoughtcrime.securesms.video.videoconverter.MediaConverter;
+import org.thoughtcrime.securesms.video.videoconverter.VideoConstants;
 import org.thoughtcrime.securesms.video.videoconverter.mediadatasource.MediaDataSourceMediaInput;
 
 import java.io.FilterOutputStream;
@@ -25,15 +26,15 @@ public final class StreamingTranscoder {
 
   private static final String TAG = Log.tag(StreamingTranscoder.class);
 
-  private final           MediaDataSource                dataSource;
-  private final           long                           upperSizeLimit;
-  private final           long                           inSize;
-  private final           long                           duration;
-  private final           int                            inputBitRate;
-  private final           VideoBitRateCalculator.Quality targetQuality;
-  private final           boolean                        transcodeRequired;
-  private final           long                           fileSizeEstimate;
-  private final @Nullable TranscoderOptions              options;
+  private final           MediaDataSource    dataSource;
+  private final           long               upperSizeLimit;
+  private final           long               inSize;
+  private final           long               duration;
+  private final           int                inputBitRate;
+  private final           TranscodingQuality targetQuality;
+  private final           boolean            transcodeRequired;
+  private final           long               fileSizeEstimate;
+  private final @Nullable TranscoderOptions  options;
 
   /**
    * @param upperSizeLimit A upper size to transcode to. The actual output size can be up to 10% smaller.
@@ -64,6 +65,34 @@ public final class StreamingTranscoder {
     if (!transcodeRequired) {
       Log.i(TAG, "Video is within 20% of target bitrate, below the size limit, contained no location metadata or custom options.");
     }
+
+    this.fileSizeEstimate   = targetQuality.getFileSizeEstimate();
+  }
+
+  public StreamingTranscoder(@NonNull MediaDataSource dataSource,
+                             @Nullable TranscoderOptions options,
+                             int videoBitrate,
+                             int shortEdge)
+      throws IOException, VideoSourceException
+  {
+    this.dataSource = dataSource;
+    this.options    = options;
+
+    final MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
+    try {
+      mediaMetadataRetriever.setDataSource(dataSource);
+    } catch (RuntimeException e) {
+      Log.w(TAG, "Unable to read datasource", e);
+      throw new VideoSourceException("Unable to read datasource", e);
+    }
+
+    this.inSize         = dataSource.getSize();
+    this.duration       = getDuration(mediaMetadataRetriever);
+    this.inputBitRate   = VideoBitRateCalculator.bitRate(inSize, duration);
+    this.targetQuality  = new TranscodingQuality(videoBitrate, VideoConstants.AUDIO_BIT_RATE, 1.0, duration, shortEdge);
+    this.upperSizeLimit = Long.MAX_VALUE;
+
+    this.transcodeRequired = true;
 
     this.fileSizeEstimate   = targetQuality.getFileSizeEstimate();
   }

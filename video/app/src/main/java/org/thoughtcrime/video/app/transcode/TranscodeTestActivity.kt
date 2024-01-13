@@ -5,8 +5,11 @@
 
 package org.thoughtcrime.video.app.transcode
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.ViewGroup
@@ -15,73 +18,64 @@ import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.collectAsState
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import org.thoughtcrime.video.app.ui.composables.LabeledButton
+import org.thoughtcrime.video.app.R
+import org.thoughtcrime.video.app.transcode.composables.ConfigureEncodingParameters
+import org.thoughtcrime.video.app.transcode.composables.SelectInput
+import org.thoughtcrime.video.app.transcode.composables.SelectOutput
+import org.thoughtcrime.video.app.transcode.composables.TranscodingJobProgress
 import org.thoughtcrime.video.app.ui.theme.SignalTheme
 
+/**
+ * Visual entry point for testing transcoding in the video sample app.
+ */
 class TranscodeTestActivity : AppCompatActivity() {
   private val viewModel: TranscodeTestViewModel by viewModels()
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     viewModel.initialize(this)
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+      val name = applicationContext.getString(R.string.channel_name)
+      val descriptionText = applicationContext.getString(R.string.channel_description)
+      val importance = NotificationManager.IMPORTANCE_DEFAULT
+      val mChannel = NotificationChannel(getString(R.string.notification_channel_id), name, importance)
+      mChannel.description = descriptionText
+      val notificationManager = applicationContext.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+      notificationManager.createNotificationChannel(mChannel)
+    }
+
     setContent {
       SignalTheme {
         Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-          Column(
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-          ) {
-            val videoUris = viewModel.selectedVideos
-            val outputDir = viewModel.outputDirectory
-            val transcodingJobs = viewModel.getTranscodingJobsAsState().collectAsState(emptyList())
-            if (transcodingJobs.value.isNotEmpty()) {
-              transcodingJobs.value.forEach { workInfo ->
-                val currentProgress = workInfo.progress.getInt(TranscodeWorker.KEY_PROGRESS, -1)
-                Row(
-                  verticalAlignment = Alignment.CenterVertically,
-                  modifier = Modifier.padding(horizontal = 16.dp)
-                ) {
-                  Text(text = "...${workInfo.id.toString().takeLast(4)}", modifier = Modifier.padding(end = 16.dp).weight(1f))
-                  if (workInfo.state.isFinished) {
-                    LinearProgressIndicator(progress = 1f, trackColor = MaterialTheme.colorScheme.secondary, modifier = Modifier.weight(3f))
-                  } else if (currentProgress >= 0) {
-                    LinearProgressIndicator(progress = currentProgress / 100f, modifier = Modifier.weight(3f))
-                  } else {
-                    LinearProgressIndicator(modifier = Modifier.weight(3f))
-                  }
-                }
-              }
-              LabeledButton("Reset/Cancel") { viewModel.reset() }
-            } else if (videoUris.isEmpty()) {
-              LabeledButton("Select Videos") { pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.VideoOnly)) }
-            } else if (outputDir == null) {
-              LabeledButton("Select Output Directory") { outputDirRequest.launch(null) }
-            } else {
-              Text(text = "Selected videos:", modifier = Modifier.align(Alignment.Start).padding(16.dp))
-              videoUris.forEach {
-                Text(text = it.toString(), fontSize = 8.sp, fontFamily = FontFamily.Monospace, modifier = Modifier.align(Alignment.Start).padding(horizontal = 16.dp))
-              }
-              LabeledButton(buttonLabel = "Transcode") {
+          val videoUris = viewModel.selectedVideos
+          val outputDir = viewModel.outputDirectory
+          val transcodingJobs = viewModel.getTranscodingJobsAsState().collectAsState(emptyList())
+          if (transcodingJobs.value.isNotEmpty()) {
+            TranscodingJobProgress(transcodingJobs = transcodingJobs.value, resetButtonOnClick = { viewModel.reset() })
+          } else if (videoUris.isEmpty()) {
+            SelectInput { pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.VideoOnly)) }
+          } else if (outputDir == null) {
+            SelectOutput { outputDirRequest.launch(null) }
+          } else {
+            ConfigureEncodingParameters(
+              videoUris = videoUris,
+              onAutoSettingsCheckChanged = { viewModel.useAutoTranscodingSettings = it },
+              onRadioButtonSelected = { viewModel.videoResolution = it },
+              onSliderValueChanged = { viewModel.videoMegaBitrate = it },
+              onFastStartSettingCheckChanged = { viewModel.enableFastStart = it },
+              onSequentialSettingCheckChanged = { viewModel.forceSequentialQueueProcessing = it },
+              buttonClickListener = {
                 viewModel.transcode()
                 viewModel.selectedVideos = emptyList()
                 viewModel.resetOutputDirectory()
               }
-            }
+            )
           }
         }
       }

@@ -5,7 +5,10 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -24,14 +27,16 @@
             </intent-filter>
         </activity>
         <activity
-
             android:name=".transcode.TranscodeTestActivity"
             android:exported="false"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/Theme.Signal" />
         <activity
             android:name=".playback.PlaybackTestActivity"
             android:exported="false"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/Theme.Signal" />
+
         <service
             android:name="androidx.work.impl.foreground.SystemForegroundService"
             android:foregroundServiceType="dataSync"

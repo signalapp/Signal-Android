@@ -9,4 +9,4 @@ import java.io.IOException
 /**
  * Exception to denote when video processing has been unable to meet its output file size requirements.
  */
-class VideoSizeException internal constructor(message: String?) : IOException(message)
+class VideoSizeException(message: String?) : IOException(message)

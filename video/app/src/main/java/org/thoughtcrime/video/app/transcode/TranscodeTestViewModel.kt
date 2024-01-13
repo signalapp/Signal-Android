@@ -15,14 +15,24 @@ import androidx.lifecycle.ViewModel
 import androidx.work.WorkInfo
 import kotlinx.coroutines.flow.Flow
 import java.util.UUID
+import kotlin.math.roundToInt
 
+/**
+ * ViewModel for the transcoding screen of the video sample app. See [TranscodeTestActivity].
+ */
 class TranscodeTestViewModel : ViewModel() {
   private lateinit var repository: TranscodeTestRepository
   private var backPressedRunnable = {}
   private var transcodingJobs: Map<UUID, Uri> = emptyMap()
+
   var outputDirectory: Uri? by mutableStateOf(null)
     private set
   var selectedVideos: List<Uri> by mutableStateOf(emptyList())
+  var videoMegaBitrate = DEFAULT_VIDEO_MEGABITRATE
+  var videoResolution = VideoResolution.HD
+  var useAutoTranscodingSettings = true
+  var enableFastStart = true
+  var forceSequentialQueueProcessing = false
 
   fun initialize(context: Context) {
     repository = TranscodeTestRepository(context)
@@ -31,7 +41,11 @@ class TranscodeTestViewModel : ViewModel() {
 
   fun transcode() {
     val output = outputDirectory ?: throw IllegalStateException("No output directory selected!")
-    transcodingJobs = repository.transcode(selectedVideos, output)
+    if (useAutoTranscodingSettings) {
+      transcodingJobs = repository.transcode(selectedVideos, output, forceSequentialQueueProcessing, null)
+    } else {
+      transcodingJobs = repository.transcode(selectedVideos, output, forceSequentialQueueProcessing, TranscodeTestRepository.CustomTranscodingOptions(videoResolution, (videoMegaBitrate * MEGABIT).roundToInt(), enableFastStart))
+    }
   }
 
   fun getTranscodingJobsAsState(): Flow<MutableList<WorkInfo>> {
@@ -60,5 +74,9 @@ class TranscodeTestViewModel : ViewModel() {
 
   fun resetOutputDirectory() {
     outputDirectory = null
+  }
+
+  companion object {
+    private const val MEGABIT = 1000000
   }
 }

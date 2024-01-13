@@ -5,16 +5,15 @@
 
 package org.thoughtcrime.video.app.transcode
 
-import android.app.NotificationChannel
-import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
-import android.content.Context.NOTIFICATION_SERVICE
+import android.content.Intent
 import android.content.pm.ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC
 import android.net.Uri
 import android.os.Build
-import android.os.ParcelFileDescriptor
 import android.util.Log
 import androidx.core.app.NotificationCompat
+import androidx.core.app.TaskStackBuilder
 import androidx.documentfile.provider.DocumentFile
 import androidx.media3.common.util.UnstableApi
 import androidx.work.CoroutineWorker
@@ -24,70 +23,118 @@ import androidx.work.WorkManager
 import androidx.work.WorkerParameters
 import org.signal.core.util.getLength
 import org.thoughtcrime.securesms.video.StreamingTranscoder
+import org.thoughtcrime.securesms.video.postprocessing.Mp4FaststartPostProcessor
 import org.thoughtcrime.securesms.video.videoconverter.VideoConstants
 import org.thoughtcrime.securesms.video.videoconverter.mediadatasource.InputStreamMediaDataSource
 import org.thoughtcrime.video.app.R
+import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.io.InputStream
 import java.time.Instant
 
-class TranscodeWorker(private val ctx: Context, params: WorkerParameters) : CoroutineWorker(ctx, params) {
+/**
+ * A WorkManager worker to transcode videos in the background. This utilizes [StreamingTranscoder].
+ */
+class TranscodeWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(ctx, params) {
   @UnstableApi
   override suspend fun doWork(): Result {
+    val logPrefix = "[Job ${id.toString().takeLast(4)}]"
     val notificationId = inputData.getInt(KEY_NOTIFICATION_ID, -1)
     if (notificationId < 0) {
-      Log.w(TAG, "Notification ID was null!")
+      Log.w(TAG, "$logPrefix Notification ID was null!")
       return Result.failure()
     }
 
     val inputUri = inputData.getString(KEY_INPUT_URI)
     if (inputUri == null) {
-      Log.w(TAG, "Input URI was null!")
+      Log.w(TAG, "$logPrefix Input URI was null!")
       return Result.failure()
     }
 
     val outputDirUri = inputData.getString(KEY_OUTPUT_URI)
     if (outputDirUri == null) {
-      Log.w(TAG, "Output URI was null!")
+      Log.w(TAG, "$logPrefix Output URI was null!")
       return Result.failure()
     }
 
-    val input = DocumentFile.fromSingleUri(ctx, Uri.parse(inputUri))?.name
+    val postProcessForFastStart = inputData.getBoolean(KEY_ENABLE_FASTSTART, true)
+    val resolution = inputData.getInt(KEY_SHORT_EDGE, -1)
+    val desiredBitrate = inputData.getInt(KEY_BIT_RATE, -1)
 
+    val input = DocumentFile.fromSingleUri(applicationContext, Uri.parse(inputUri))?.name
     if (input == null) {
-      Log.w(TAG, "Could not read input file name!")
+      Log.w(TAG, "$logPrefix Could not read input file name!")
       return Result.failure()
     }
 
-    val outputFileUri = createFile(Uri.parse(outputDirUri), "transcoded-${Instant.now()}-$input$OUTPUT_FILE_EXTENSION")
+    val filenameBase = "transcoded-${Instant.now()}-$input"
+    val tempFilename = "$filenameBase$TEMP_FILE_EXTENSION"
+    val finalFilename = "$filenameBase$OUTPUT_FILE_EXTENSION"
 
-    if (outputFileUri == null) {
-      Log.w(TAG, "Could not create output file!")
+    val tempFile = createFile(Uri.parse(outputDirUri), tempFilename)
+    if (tempFile == null) {
+      Log.w(TAG, "$logPrefix Could not create temp file!")
       return Result.failure()
     }
 
-    val datasource = WorkerMediaDataSource(ctx, Uri.parse(inputUri))
+    val datasource = WorkerMediaDataSource(applicationContext, Uri.parse(inputUri))
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
-      Log.w(TAG, "Transcoder is only supported on API 26+!")
+      Log.w(TAG, "$logPrefix Transcoder is only supported on API 26+!")
       return Result.failure()
     }
-    val transcoder = StreamingTranscoder(datasource, null, 50 * 1024 * 1024) // TODO: set options
+
+    val transcoder = if (resolution > 0 && desiredBitrate > 0) {
+      StreamingTranscoder(datasource, null, desiredBitrate, resolution)
+    } else {
+      StreamingTranscoder(datasource, null, DEFAULT_FILE_SIZE_LIMIT)
+    }
+
     setForeground(createForegroundInfo(-1, notificationId))
-    ctx.contentResolver.openFileDescriptor(outputFileUri, "w").use { it: ParcelFileDescriptor? ->
-      if (it == null) {
-        Log.w(TAG, "Could not open output file for writing!")
+
+    applicationContext.contentResolver.openFileDescriptor(tempFile.uri, "w").use { tempFd ->
+      if (tempFd == null) {
+        Log.w(TAG, "$logPrefix Could not open temp file for I/O!")
         return Result.failure()
       }
-      transcoder.transcode(
-        { percent: Int ->
-          setProgressAsync(Data.Builder().putInt(KEY_PROGRESS, percent).build())
-          setForegroundAsync(createForegroundInfo(percent, notificationId))
-        },
-        FileOutputStream(it.fileDescriptor),
-        { isStopped }
-      )
-      return Result.success()
+      transcoder.transcode({ percent: Int ->
+        setProgressAsync(Data.Builder().putInt(KEY_PROGRESS, percent).build())
+        setForegroundAsync(createForegroundInfo(percent, notificationId))
+      }, FileOutputStream(tempFd.fileDescriptor), { isStopped })
     }
+    Log.v(TAG, "$logPrefix Initial transcode completed successfully!")
+    if (!postProcessForFastStart) {
+      tempFile.renameTo(finalFilename)
+      Log.v(TAG, "$logPrefix Rename successful.")
+    } else {
+      applicationContext.contentResolver.openFileDescriptor(tempFile.uri, "r").use { tempFd ->
+        if (tempFd == null) {
+          Log.w(TAG, "$logPrefix Could not open temp file for I/O!")
+          return Result.failure()
+        }
+
+        val finalFile = createFile(Uri.parse(outputDirUri), finalFilename)
+        if (finalFile == null) {
+          Log.w(TAG, "$logPrefix Could not create final file for faststart processing!")
+          return Result.failure()
+        }
+        applicationContext.contentResolver.openFileDescriptor(finalFile.uri, "w").use { finalFd ->
+          if (finalFd == null) {
+            Log.w(TAG, "$logPrefix Could not open output file for I/O!")
+            return Result.failure()
+          }
+
+          Mp4FaststartPostProcessor({ FileInputStream(tempFd.fileDescriptor) }, tempFd.statSize).processAndWriteTo(FileOutputStream(finalFd.fileDescriptor))
+
+          if (!tempFile.delete()) {
+            Log.w(TAG, "$logPrefix Failed to delete temp file after processing!")
+            return Result.failure()
+          }
+        }
+      }
+      Log.v(TAG, "$logPrefix Faststart postprocess successful.")
+    }
+    Log.v(TAG, "$logPrefix Overall transcode job successful.")
+    return Result.success()
   }
 
   private fun createForegroundInfo(progress: Int, notificationId: Int): ForegroundInfo {
@@ -96,23 +143,19 @@ class TranscodeWorker(private val ctx: Context, params: WorkerParameters) : Coro
     val cancel = applicationContext.getString(R.string.cancel_transcode)
     val intent = WorkManager.getInstance(applicationContext)
       .createCancelPendingIntent(getId())
-
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-      val name = applicationContext.getString(R.string.channel_name)
-      val descriptionText = applicationContext.getString(R.string.channel_description)
-      val importance = NotificationManager.IMPORTANCE_LOW
-      val mChannel = NotificationChannel(id, name, importance)
-      mChannel.description = descriptionText
-      val notificationManager = applicationContext.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-      notificationManager.createNotificationChannel(mChannel)
+    val transcodeActivityIntent = Intent(applicationContext, TranscodeTestActivity::class.java)
+    val pendingIntent: PendingIntent? = TaskStackBuilder.create(applicationContext).run {
+      addNextIntentWithParentStack(transcodeActivityIntent)
+      getPendingIntent(0,
+        PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
     }
-
     val notification = NotificationCompat.Builder(applicationContext, id)
       .setContentTitle(title)
       .setTicker(title)
-      .setProgress(100, progress, progress >= 0)
+      .setProgress(100, progress, progress <= 0)
       .setSmallIcon(R.drawable.ic_work_notification)
       .setOngoing(true)
+      .setContentIntent(pendingIntent)
       .addAction(android.R.drawable.ic_delete, cancel, intent)
       .build()
 
@@ -123,8 +166,8 @@ class TranscodeWorker(private val ctx: Context, params: WorkerParameters) : Coro
     }
   }
 
-  private fun createFile(treeUri: Uri, filename: String): Uri? {
-    return DocumentFile.fromTreeUri(ctx, treeUri)?.createFile(VideoConstants.VIDEO_MIME_TYPE, filename)?.uri
+  private fun createFile(treeUri: Uri, filename: String): DocumentFile? {
+    return DocumentFile.fromTreeUri(applicationContext, treeUri)?.createFile(VideoConstants.VIDEO_MIME_TYPE, filename)
   }
 
   private class WorkerMediaDataSource(context: Context, private val uri: Uri) : InputStreamMediaDataSource() {
@@ -154,9 +197,15 @@ class TranscodeWorker(private val ctx: Context, params: WorkerParameters) : Coro
   companion object {
     private const val TAG = "TranscodeWorker"
     private const val OUTPUT_FILE_EXTENSION = ".mp4"
+    private const val TEMP_FILE_EXTENSION = ".tmp"
+    private const val DEFAULT_FILE_SIZE_LIMIT: Long = 50 * 1024 * 1024
     const val KEY_INPUT_URI = "input_uri"
     const val KEY_OUTPUT_URI = "output_uri"
     const val KEY_PROGRESS = "progress"
+    const val KEY_LONG_EDGE = "resolution_long_edge"
+    const val KEY_SHORT_EDGE = "resolution_short_edge"
+    const val KEY_BIT_RATE = "video_bit_rate"
+    const val KEY_ENABLE_FASTSTART = "video_enable_faststart"
     const val KEY_NOTIFICATION_ID = "notification_id"
   }
 }

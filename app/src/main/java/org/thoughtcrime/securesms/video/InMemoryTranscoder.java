@@ -7,9 +7,7 @@ import android.media.MediaMetadataRetriever;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-
 import androidx.media3.common.MimeTypes;
-import com.google.common.io.ByteStreams;
 
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.media.Mp4Sanitizer;
@@ -17,18 +15,18 @@ import org.signal.libsignal.media.ParseException;
 import org.signal.libsignal.media.SanitizedMetadata;
 import org.thoughtcrime.securesms.mms.MediaStream;
 import org.thoughtcrime.securesms.util.MemoryFileDescriptor;
+import org.thoughtcrime.securesms.video.exceptions.VideoPostProcessingException;
 import org.thoughtcrime.securesms.video.exceptions.VideoSizeException;
 import org.thoughtcrime.securesms.video.exceptions.VideoSourceException;
+import org.thoughtcrime.securesms.video.postprocessing.Mp4FaststartPostProcessor;
 import org.thoughtcrime.securesms.video.videoconverter.EncodingException;
 import org.thoughtcrime.securesms.video.videoconverter.MediaConverter;
 import org.thoughtcrime.securesms.video.videoconverter.mediadatasource.MediaDataSourceMediaInput;
 
-import java.io.ByteArrayInputStream;
 import java.io.Closeable;
 import java.io.FileDescriptor;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.SequenceInputStream;
 import java.text.NumberFormat;
 import java.util.Locale;
 
@@ -37,17 +35,17 @@ public final class InMemoryTranscoder implements Closeable {
 
   private static final String TAG = Log.tag(InMemoryTranscoder.class);
 
-  private final           Context                        context;
-  private final           MediaDataSource                dataSource;
-  private final           long                           upperSizeLimit;
-  private final           long                           inSize;
-  private final           long                           duration;
-  private final           int                            inputBitRate;
-  private final           VideoBitRateCalculator.Quality targetQuality;
-  private final           long                           memoryFileEstimate;
-  private final           boolean                        transcodeRequired;
-  private final           long                           fileSizeEstimate;
-  private final @Nullable TranscoderOptions              options;
+  private final           Context            context;
+  private final           MediaDataSource    dataSource;
+  private final           long               upperSizeLimit;
+  private final           long               inSize;
+  private final           long               duration;
+  private final           int                inputBitRate;
+  private final           TranscodingQuality targetQuality;
+  private final           long               memoryFileEstimate;
+  private final           boolean            transcodeRequired;
+  private final           long               fileSizeEstimate;
+  private final @Nullable TranscoderOptions  options;
 
   private @Nullable MemoryFileDescriptor memoryFile;
 
@@ -148,13 +146,6 @@ public final class InMemoryTranscoder implements Closeable {
 
     memoryFile.seek(0);
 
-    SanitizedMetadata metadata = null;
-    try {
-      metadata = Mp4Sanitizer.sanitize(new FileInputStream(memoryFileFileDescriptor), memoryFile.size());
-    } catch (ParseException e) {
-      Log.e(TAG, "Could not parse MP4 file.", e);
-    }
-
     // output details of the transcoding
     long  outSize           = memoryFile.size();
     float encodeDurationSec = (System.currentTimeMillis() - startTime) / 1000f;
@@ -179,14 +170,30 @@ public final class InMemoryTranscoder implements Closeable {
       throw new VideoSizeException("Size constraints could not be met!");
     }
 
+    try {
+      final Mp4FaststartPostProcessor postProcessor = new Mp4FaststartPostProcessor(() -> {
+        try {
+          memoryFile.seek(0);
+          return new FileInputStream(memoryFileFileDescriptor);
+        } catch (IOException e) {
+          Log.w(TAG, "IOException thrown while creating FileInputStream.", e);
+          throw new VideoPostProcessingException("Exception while opening InputStream!", e);
+        }
+      }, memoryFile.size());
 
-    if (metadata != null && metadata.getSanitizedMetadata() != null) {
-      memoryFile.seek(metadata.getDataOffset());
-      return new MediaStream(new SequenceInputStream(new ByteArrayInputStream(metadata.getSanitizedMetadata()), ByteStreams.limit(new FileInputStream(memoryFileFileDescriptor), metadata.getDataLength())), MimeTypes.VIDEO_MP4, 0, 0, true);
-    } else {
-      memoryFile.seek(0);
-      return new MediaStream(new FileInputStream(memoryFileFileDescriptor), MimeTypes.VIDEO_MP4, 0, 0);
+      return new MediaStream(postProcessor.process(), MimeTypes.VIDEO_MP4, 0, 0, true);
+    } catch (VideoPostProcessingException e) {
+      Log.w(TAG, "Exception thrown during post processing.", e);
+      final Throwable cause = e.getCause();
+      if (cause instanceof IOException) {
+        throw (IOException) cause;
+      } else if ( cause instanceof EncodingException) {
+        throw (EncodingException) cause;
+      }
     }
+
+    memoryFile.seek(0);
+    return new MediaStream(new FileInputStream(memoryFileFileDescriptor), MimeTypes.VIDEO_MP4, 0, 0);
   }
 
   public boolean isTranscodeRequired() {

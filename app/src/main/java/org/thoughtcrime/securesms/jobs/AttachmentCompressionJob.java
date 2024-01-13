@@ -9,13 +9,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 import androidx.media3.common.MimeTypes;
 
-import com.google.common.io.ByteStreams;
-
 import org.greenrobot.eventbus.EventBus;
 import org.signal.core.util.logging.Log;
-import org.signal.libsignal.media.Mp4Sanitizer;
-import org.signal.libsignal.media.ParseException;
-import org.signal.libsignal.media.SanitizedMetadata;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
@@ -47,15 +42,16 @@ import org.thoughtcrime.securesms.video.InMemoryTranscoder;
 import org.thoughtcrime.securesms.video.StreamingTranscoder;
 import org.thoughtcrime.securesms.video.TranscoderCancelationSignal;
 import org.thoughtcrime.securesms.video.TranscoderOptions;
+import org.thoughtcrime.securesms.video.exceptions.VideoPostProcessingException;
+import org.thoughtcrime.securesms.video.exceptions.VideoSourceException;
+import org.thoughtcrime.securesms.video.postprocessing.Mp4FaststartPostProcessor;
 import org.thoughtcrime.securesms.video.exceptions.VideoSourceException;
 import org.thoughtcrime.securesms.video.videoconverter.EncodingException;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.SequenceInputStream;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
@@ -289,23 +285,17 @@ public final class AttachmentCompressionJob extends BaseJob {
                                                         100,
                                                         100));
 
-              InputStream transcodedFileStream = ModernDecryptingPartInputStream.createFor(attachmentSecret, file, 0);
-              SanitizedMetadata metadata             = null;
-              try {
-                metadata = Mp4Sanitizer.sanitize(transcodedFileStream, file.length());
-              } catch (ParseException e) {
-                Log.e(TAG, "Could not parse MP4 file.", e);
-              }
+              final Mp4FaststartPostProcessor postProcessor = new Mp4FaststartPostProcessor(() -> {
+                try {
+                  return ModernDecryptingPartInputStream.createFor(attachmentSecret, file, 0);
+                } catch (IOException e) {
+                  throw new RuntimeException(e);
+                }
+              }, file.length());
 
-              if (metadata != null && metadata.getSanitizedMetadata() != null) {
-                try (MediaStream mediaStream = new MediaStream(new SequenceInputStream(new ByteArrayInputStream(metadata.getSanitizedMetadata()), ByteStreams.limit(ModernDecryptingPartInputStream.createFor(attachmentSecret, file, metadata.getDataOffset()), metadata.getDataLength())), MimeTypes.VIDEO_MP4, 0, 0, true)) {
-                  attachmentDatabase.updateAttachmentData(attachment, mediaStream, true);
-                  faststart = true;
-                }
-              } else {
-                try (MediaStream mediaStream = new MediaStream(ModernDecryptingPartInputStream.createFor(attachmentSecret, file, 0), MimeTypes.VIDEO_MP4, 0, 0)) {
-                  attachmentDatabase.updateAttachmentData(attachment, mediaStream, true);
-                }
+              try (MediaStream mediaStream = new MediaStream(postProcessor.process(), MimeTypes.VIDEO_MP4, 0, 0, true)) {
+                attachmentDatabase.updateAttachmentData(attachment, mediaStream, true);
+                faststart = true;
               }
             } finally {
               if (!file.delete()) {
@@ -360,6 +350,12 @@ public final class AttachmentCompressionJob extends BaseJob {
       }
     } catch (IOException | MmsException e) {
       throw new UndeliverableMessageException("Failed to transcode", e);
+    } catch (RuntimeException e) {
+      if (e.getCause() instanceof IOException) {
+        throw new UndeliverableMessageException("Failed to transcode", e);
+      } else {
+        throw e;
+      }
     }
     return attachment;
   }

@@ -20,11 +20,14 @@ import java.util.UUID
 import kotlin.math.absoluteValue
 import kotlin.random.Random
 
+/**
+ * Repository to perform various transcoding functions.
+ */
 class TranscodeTestRepository(context: Context) {
   private val workManager = WorkManager.getInstance(context)
   private val usedNotificationIds = emptySet<Int>()
 
-  fun transcode(selectedVideos: List<Uri>, outputDirectory: Uri): Map<UUID, Uri> {
+  fun transcode(selectedVideos: List<Uri>, outputDirectory: Uri, forceSequentialProcessing: Boolean, customTranscodingOptions: CustomTranscodingOptions?): Map<UUID, Uri> {
     if (selectedVideos.isEmpty()) {
       return emptyMap()
     }
@@ -34,20 +37,35 @@ class TranscodeTestRepository(context: Context) {
       while (usedNotificationIds.contains(notificationId)) {
         notificationId = Random.nextInt().absoluteValue
       }
+      val inputData = Data.Builder()
+        .putString(TranscodeWorker.KEY_INPUT_URI, it.toString())
+        .putString(TranscodeWorker.KEY_OUTPUT_URI, outputDirectory.toString())
+        .putInt(TranscodeWorker.KEY_NOTIFICATION_ID, notificationId)
+
+      if (customTranscodingOptions != null) {
+        inputData.putInt(TranscodeWorker.KEY_LONG_EDGE, customTranscodingOptions.videoResolution.longEdge)
+        inputData.putInt(TranscodeWorker.KEY_SHORT_EDGE, customTranscodingOptions.videoResolution.shortEdge)
+        inputData.putInt(TranscodeWorker.KEY_BIT_RATE, customTranscodingOptions.bitrate)
+        inputData.putBoolean(TranscodeWorker.KEY_ENABLE_FASTSTART, customTranscodingOptions.enableFastStart)
+      }
+
       val transcodeRequest = OneTimeWorkRequestBuilder<TranscodeWorker>()
-        .setInputData(createInputDataForWorkRequest(it, outputDirectory, notificationId))
+        .setInputData(inputData.build())
         .addTag(TRANSCODING_WORK_TAG)
         .build()
       it to transcodeRequest
     }
-
     val idsToUris = urisAndRequests.associateBy({ it.second.id }, { it.first })
     val requests = urisAndRequests.map { it.second }
-    var continuation = workManager.beginWith(requests.first())
-    for (request in requests.drop(1)) {
-      continuation = continuation.then(request)
+    if (forceSequentialProcessing) {
+      var continuation = workManager.beginWith(requests.first())
+      for (request in requests.drop(1)) {
+        continuation = continuation.then(request)
+      }
+      continuation.enqueue()
+    } else {
+      workManager.enqueue(requests)
     }
-    continuation.enqueue()
     return idsToUris
   }
 
@@ -56,19 +74,6 @@ class TranscodeTestRepository(context: Context) {
       return emptyFlow()
     }
     return workManager.getWorkInfosFlow(WorkQuery.fromIds(jobIds))
-  }
-
-  /**
-   * Creates the input data bundle which includes the blur level to
-   * update the amount of blur to be applied and the Uri to operate on
-   * @return Data which contains the Image Uri as a String and blur level as an Integer
-   */
-  private fun createInputDataForWorkRequest(selectedVideo: Uri, outputUri: Uri, notificationId: Int): Data {
-    return Data.Builder()
-      .putString(TranscodeWorker.KEY_INPUT_URI, selectedVideo.toString())
-      .putString(TranscodeWorker.KEY_OUTPUT_URI, outputUri.toString())
-      .putInt(TranscodeWorker.KEY_NOTIFICATION_ID, notificationId)
-      .build()
   }
 
   fun cancelAllTranscodes() {
@@ -111,6 +116,8 @@ class TranscodeTestRepository(context: Context) {
   }
 
   private data class FileMetadata(val documentId: String, val label: String, val size: Long)
+
+  data class CustomTranscodingOptions(val videoResolution: VideoResolution, val bitrate: Int, val enableFastStart: Boolean)
 
   companion object {
     private const val TAG = "TranscodingTestRepository"
