@@ -188,7 +188,7 @@ public class PreKeyUtil {
     return record;
   }
 
-  public synchronized static @NonNull KyberPreKeyRecord generateLastRestortKyberPreKey(int id, @NonNull ECPrivateKey privateKey) {
+  public synchronized static @NonNull KyberPreKeyRecord generateLastResortKyberPreKey(int id, @NonNull ECPrivateKey privateKey) {
     Log.i(TAG, "Generating last resort kyber prekey...");
     return generateKyberPreKey(id, privateKey);
   }
