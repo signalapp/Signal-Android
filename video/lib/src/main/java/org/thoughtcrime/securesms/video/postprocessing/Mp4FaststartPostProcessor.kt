@@ -19,23 +19,23 @@ import java.io.SequenceInputStream
  * A post processor that takes a stream of bytes, and using [Mp4Sanitizer], moves the metadata to the front of the file.
  *
  * @property inputStreamFactory factory for the [InputStream]. May be called multiple times.
- * @property inputLength the exact stream of the [InputStream]
+ * @property inputLength the exact length of the [InputStream]
  */
-class Mp4FaststartPostProcessor(private val inputStreamFactory: () -> InputStream, private val inputLength: Long) {
+class Mp4FaststartPostProcessor(private val inputStreamFactory: InputStreamFactory, private val inputLength: Long) {
 
   /**
    * It is the responsibility of the called to close the resulting [InputStream]
    */
   fun process(): InputStream {
     val metadata: SanitizedMetadata?
-    inputStreamFactory().use {
+    inputStreamFactory.create().use {
       metadata = Mp4Sanitizer.sanitize(it, inputLength)
     }
     if (metadata?.sanitizedMetadata == null) {
       throw VideoPostProcessingException("Mp4Sanitizer could not parse media metadata!")
     }
 
-    val inputStream = inputStreamFactory()
+    val inputStream = inputStreamFactory.create()
     inputStream.skip(metadata.dataOffset)
 
     return SequenceInputStream(ByteArrayInputStream(metadata.sanitizedMetadata), LimitedInputStream(inputStream, metadata.dataLength))
@@ -45,6 +45,10 @@ class Mp4FaststartPostProcessor(private val inputStreamFactory: () -> InputStrea
     process().use { inStream ->
       return inStream.copyTo(outputStream)
     }
+  }
+
+  fun interface InputStreamFactory {
+    fun create(): InputStream
   }
 
   companion object {
@@ -117,6 +121,5 @@ class Mp4FaststartPostProcessor(private val inputStreamFactory: () -> InputStrea
       left -= skipped
       return skipped
     }
-
   }
 }
