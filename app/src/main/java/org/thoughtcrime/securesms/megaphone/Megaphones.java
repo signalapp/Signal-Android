@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.notifications.TurnOnNotificationsBottomSheet;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.profiles.manage.EditProfileActivity;
+import org.thoughtcrime.securesms.profiles.username.NewWaysToConnectDialogFragment;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.ServiceUtil;
@@ -340,13 +341,13 @@ public final class Megaphones {
 
   public static @NonNull Megaphone buildSetUpYourUsernameMegaphone(@NonNull Context context) {
     return new Megaphone.Builder(Event.SET_UP_YOUR_USERNAME, Megaphone.Style.BASIC)
-        .setTitle(R.string.SetUpYourUsername__set_up_your_signal_username)
-        .setBody(R.string.SetUpYourUsername__usernames_let_others)
-        .setImage(R.drawable.usernames_64)
-        .setActionButton(R.string.SetUpYourUsername__continue, (megaphone, controller) -> {
-          controller.onMegaphoneNavigationRequested(EditProfileActivity.getIntentForUsernameEdit(context));
+        .setTitle(R.string.NewWaysToConnectDialogFragment__new_ways_to_connect)
+        .setBody(R.string.SetUpYourUsername__introducing_phone_number_privacy)
+        .setImage(R.drawable.usernames_megaphone)
+        .setActionButton(R.string.SetUpYourUsername__learn_more, (megaphone, controller) -> {
+          controller.onMegaphoneDialogFragmentRequested(new NewWaysToConnectDialogFragment());
         })
-        .setSecondaryButton(R.string.SetUpYourUsername__not_now, (megaphone, controller) -> {
+        .setSecondaryButton(R.string.SetUpYourUsername__dismiss, (megaphone, controller) -> {
           controller.onMegaphoneCompleted(Event.SET_UP_YOUR_USERNAME);
         })
         .build();
@@ -360,7 +361,7 @@ public final class Megaphones {
         .setActionButton(R.string.GrantFullScreenIntentPermission_megaphone_turn_on, (megaphone, controller) -> {
           controller.onMegaphoneDialogFragmentRequested(TurnOnNotificationsBottomSheet.turnOnFullScreenIntentFragment(context));
         })
-        .setSecondaryButton(R.string.SetUpYourUsername__not_now, (megaphone, controller) -> {
+        .setSecondaryButton(R.string.GrantFullScreenIntentPermission_megaphone_not_now, (megaphone, controller) -> {
           controller.onMegaphoneCompleted(Event.GRANT_FULL_SCREEN_INTENT);
         })
         .build();

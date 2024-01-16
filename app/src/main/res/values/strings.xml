@@ -2427,6 +2427,26 @@
     <!-- Notification subtext for group stories -->
     <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s &#8226; Story</string>
 
+    <!-- NewWaysToConnectDialogFragment -->
+    <!-- Fragment title, displayed at the top of the content -->
+    <string name="NewWaysToConnectDialogFragment__new_ways_to_connect">New ways to connect</string>
+    <!-- Row item title for phone number privacy explainer -->
+    <string name="NewWaysToConnectDialogFragment__phone_number_privacy">Phone number privacy</string>
+    <!-- Row item description for phone number privacy explainer -->
+    <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">Your phone number is no longer shared with chats. If your number is saved to a friend\'s contacts, they will still see it.</string>
+    <!-- Row item title for usernames explainer -->
+    <string name="NewWaysToConnectDialogFragment__usernames">Usernames</string>
+    <!-- Row item description for usernames explainer -->
+    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">People can now message you using your optional username so you don\'t have to give out your phone number. Usernames aren\'t visible on your profile.</string>
+    <!-- Row item title for qr code and links explainer -->
+    <string name="NewWaysToConnectDialogFragment__qr_codes_and_links">QR codes and links</string>
+    <!-- Row item description for qr code and links explainer -->
+    <string name="NewWaysToConnectDialogFragment__usernames_have_a_unique_qr_code">Usernames have a unique QR code and link you can share with friends to quickly start a chat with you.</string>
+    <!-- Button label for not right now -->
+    <string name="NewWaysToConnectDialogFragment__not_now">Not now</string>
+    <!-- Button label for continue -->
+    <string name="NewWaysToConnectDialogFragment__set_up_your_username">Set up your username</string>
+
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">Play video</string>
     <string name="ThumbnailView_Has_a_caption_description">Has a caption</string>
@@ -6213,11 +6233,11 @@
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__set_up_your_signal_username">Set up your Signal username</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">Usernames let others message you without needing your phone number</string>
+    <string name="SetUpYourUsername__introducing_phone_number_privacy">Introducing phone number privacy, optional usernames and links.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__not_now">Not now</string>
+    <string name="SetUpYourUsername__dismiss">Dismiss</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__continue">Continue</string>
+    <string name="SetUpYourUsername__learn_more">Learn more</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -6562,6 +6582,8 @@
     <string name="GrantFullScreenIntentPermission_megaphone_body">Never miss a call from your contacts and groups.</string>
     <!-- Button on the megaphone megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls that starts the fix process -->
     <string name="GrantFullScreenIntentPermission_megaphone_turn_on">Turn on</string>
+    <!-- Button on the megaphone shown at the bottom of the chatlist when a user has disabled the system setting for showing full screen notifications used showing incoming calls that dismisses the megaphone -->
+    <string name="GrantFullScreenIntentPermission_megaphone_not_now">Not now</string>
     <!-- Title of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
     <string name="GrantFullScreenIntentPermission_bottomsheet_title">Turn on full screen notifications</string>
     <!-- Subtitle of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
