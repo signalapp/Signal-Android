@@ -488,7 +488,12 @@ object SystemContactsRepository {
       // Data entry for name
       ContentProviderOperation.newInsert(dataUri)
         .withValueBackReference(ContactsContract.CommonDataKinds.StructuredName.RAW_CONTACT_ID, operationIndex)
-        .withValue(ContactsContract.CommonDataKinds.StructuredName.DISPLAY_NAME, systemContactInfo.displayName)
+        .withValue(ContactsContract.CommonDataKinds.StructuredName.DISPLAY_NAME, systemContactInfo.name.displayName)
+        .withValue(ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME, systemContactInfo.name.givenName)
+        .withValue(ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME, systemContactInfo.name.familyName)
+        .withValue(ContactsContract.CommonDataKinds.StructuredName.PREFIX, systemContactInfo.name.prefix)
+        .withValue(ContactsContract.CommonDataKinds.StructuredName.SUFFIX, systemContactInfo.name.suffix)
+        .withValue(ContactsContract.CommonDataKinds.StructuredName.MIDDLE_NAME, systemContactInfo.name.middleName)
         .withValue(ContactsContract.Data.MIMETYPE, ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE)
         .build(),
 
@@ -596,15 +601,41 @@ object SystemContactsRepository {
         val systemNumber: String? = contactCursor.requireString(ContactsContract.PhoneLookup.NUMBER)
         if (systemNumber != null && e164Formatter(systemNumber) == e164) {
           val phoneLookupId = contactCursor.requireLong(ContactsContract.PhoneLookup._ID)
+          val idProjection = arrayOf(ContactsContract.RawContacts._ID)
+          val idSelection = "${ContactsContract.RawContacts.CONTACT_ID} = ? "
+          val idArgs = SqlUtil.buildArgs(phoneLookupId)
 
-          context.contentResolver.query(ContactsContract.RawContacts.CONTENT_URI, arrayOf(ContactsContract.RawContacts._ID), "${ContactsContract.RawContacts.CONTACT_ID} = ? ", SqlUtil.buildArgs(phoneLookupId), null)?.use { idCursor ->
+          context.contentResolver.query(ContactsContract.RawContacts.CONTENT_URI, idProjection, idSelection, idArgs, null)?.use { idCursor ->
             if (idCursor.moveToNext()) {
-              return SystemContactInfo(
-                displayName = contactCursor.requireString(ContactsContract.PhoneLookup.DISPLAY_NAME),
-                displayPhone = systemNumber,
-                siblingRawContactId = idCursor.requireLong(ContactsContract.RawContacts._ID),
-                type = contactCursor.requireInt(ContactsContract.PhoneLookup.TYPE)
+              val rawContactId = idCursor.requireLong(ContactsContract.RawContacts._ID)
+              val nameProjection = arrayOf(
+                ContactsContract.CommonDataKinds.StructuredName.DISPLAY_NAME,
+                ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME,
+                ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME,
+                ContactsContract.CommonDataKinds.StructuredName.PREFIX,
+                ContactsContract.CommonDataKinds.StructuredName.SUFFIX,
+                ContactsContract.CommonDataKinds.StructuredName.MIDDLE_NAME
               )
+              val nameSelection = "${ContactsContract.Data.RAW_CONTACT_ID} = ? AND ${ContactsContract.Data.MIMETYPE} = ?"
+              val nameArgs = SqlUtil.buildArgs(rawContactId, ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE)
+
+              context.contentResolver.query(ContactsContract.Data.CONTENT_URI, nameProjection, nameSelection, nameArgs, null)?.use { nameCursor ->
+                if (nameCursor.moveToNext()) {
+                  return SystemContactInfo(
+                    name = NameDetails(
+                      displayName = nameCursor.requireString(ContactsContract.CommonDataKinds.StructuredName.DISPLAY_NAME),
+                      givenName = nameCursor.requireString(ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME),
+                      familyName = nameCursor.requireString(ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME),
+                      prefix = nameCursor.requireString(ContactsContract.CommonDataKinds.StructuredName.PREFIX),
+                      suffix = nameCursor.requireString(ContactsContract.CommonDataKinds.StructuredName.SUFFIX),
+                      middleName = nameCursor.requireString(ContactsContract.CommonDataKinds.StructuredName.MIDDLE_NAME)
+                    ),
+                    displayPhone = systemNumber,
+                    siblingRawContactId = rawContactId,
+                    type = contactCursor.requireInt(ContactsContract.PhoneLookup.TYPE)
+                  )
+                }
+              }
             }
           }
         }
@@ -824,7 +855,7 @@ object SystemContactsRepository {
   )
 
   private data class SystemContactInfo(
-    val displayName: String?,
+    val name: NameDetails,
     val displayPhone: String,
     val siblingRawContactId: Long,
     val type: Int

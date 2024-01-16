@@ -37,7 +37,7 @@ class ContactListViewModel(application: Application) : AndroidViewModel(applicat
         val contactList: List<ContactDetails> = SystemContactsRepository.getAllSystemContacts(
           context = application,
           e164Formatter = { number -> PhoneNumberUtils.formatNumberToE164(number, "US") ?: number }
-        ).use { it.toList() }
+        ).use { it.toList().sortedBy { c -> c.givenName } }
 
         _contacts.postValue(contactList)
       } else {
