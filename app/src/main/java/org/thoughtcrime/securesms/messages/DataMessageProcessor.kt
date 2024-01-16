@@ -411,7 +411,7 @@ object DataMessageProcessor {
       }
 
       val mediaMessage = IncomingMessage(
-        type = MessageType.NORMAL,
+        type = MessageType.STORY_REACTION,
         from = senderRecipientId,
         sentTimeMillis = envelope.timestamp!!,
         serverTimeMillis = envelope.serverTimestamp!!,
