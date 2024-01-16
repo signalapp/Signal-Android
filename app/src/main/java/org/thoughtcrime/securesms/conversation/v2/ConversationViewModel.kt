@@ -6,11 +6,13 @@
 package org.thoughtcrime.securesms.conversation.v2
 
 import android.content.Context
+import android.graphics.Rect
 import android.net.Uri
 import android.os.Build
 import androidx.core.content.pm.ShortcutInfoCompat
 import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.BackpressureStrategy
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Maybe
@@ -33,8 +35,10 @@ import org.thoughtcrime.securesms.components.reminder.Reminder
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.ScheduledMessagesRepository
+import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
 import org.thoughtcrime.securesms.conversation.v2.data.ConversationElementKey
+import org.thoughtcrime.securesms.conversation.v2.items.ChatColorsDrawable
 import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.model.IdentityRecord
@@ -79,6 +83,7 @@ import kotlin.time.Duration
 class ConversationViewModel(
   val threadId: Long,
   private val requestedStartingPosition: Int,
+  initialChatColors: ChatColors,
   private val repository: ConversationRepository,
   recipientRepository: ConversationRecipientRepository,
   messageRequestRepository: MessageRequestRepository,
@@ -109,6 +114,10 @@ class ConversationViewModel(
     .map { it.get().requireV2GroupProperties().getMemberServiceIds() }
     .distinctUntilChanged()
     .observeOn(AndroidSchedulers.mainThread())
+
+  private val chatBounds: BehaviorSubject<Rect> = BehaviorSubject.create()
+  private val chatColors: RxStore<ChatColorsDrawable.ChatColorsData> = RxStore(ChatColorsDrawable.ChatColorsData(initialChatColors, null))
+  val chatColorsSnapshot: ChatColorsDrawable.ChatColorsData get() = chatColors.state
 
   @Volatile
   var recipientSnapshot: Recipient? = null
@@ -152,6 +161,19 @@ class ConversationViewModel(
       .subscribeBy {
         recipientSnapshot = it
       }
+
+    val chatColorsDataObservable: Observable<ChatColorsDrawable.ChatColorsData> = Observable.combineLatest(
+      recipient.map { it.chatColors }.distinctUntilChanged(),
+      chatBounds.distinctUntilChanged()
+    ) { chatColors, bounds ->
+      val chatMask = chatColors.chatBubbleMask
+
+      chatMask.bounds = bounds
+
+      ChatColorsDrawable.ChatColorsData(chatColors, chatMask)
+    }
+
+    disposables += chatColors.update(chatColorsDataObservable.toFlowable(BackpressureStrategy.LATEST)) { c, _ -> c }
 
     disposables += repository.getConversationThreadState(threadId, requestedStartingPosition)
       .subscribeBy(onSuccess = {
@@ -249,6 +271,10 @@ class ConversationViewModel(
         override fun onError(e: Throwable) = Unit
         override fun onComplete() = Unit
       })
+  }
+
+  fun onChatBoundsChanged(bounds: Rect) {
+    chatBounds.onNext(bounds)
   }
 
   fun setSearchQuery(query: String?) {

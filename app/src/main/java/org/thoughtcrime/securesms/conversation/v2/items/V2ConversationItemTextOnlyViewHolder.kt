@@ -103,9 +103,9 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
   private var reactionMeasureListener: ReactionMeasureListener = ReactionMeasureListener()
   private var formattedDate: FormattedDate? = null
 
-  private val bodyBubbleDrawable = ChatColorsDrawable()
-  private val footerDrawable = ChatColorsDrawable()
-  private val senderDrawable = ChatColorsDrawable()
+  private val bodyBubbleDrawable = ChatColorsDrawable(conversationContext::getChatColorsData)
+  private val footerDrawable = ChatColorsDrawable(conversationContext::getChatColorsData)
+  private val senderDrawable = ChatColorsDrawable(conversationContext::getChatColorsData)
   private val bodyBubbleLayoutTransition = BodyBubbleLayoutTransition()
 
   protected lateinit var shape: V2ConversationItemShape.MessageShape

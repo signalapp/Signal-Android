@@ -211,6 +211,7 @@ class V2ConversationItemShapeTest {
     override val searchQuery: String? = null
     override val glideRequests: GlideRequests = mockk()
     override val isParentInScroll: Boolean = false
+    override fun getChatColorsData(): ChatColorsDrawable.ChatColorsData = ChatColorsDrawable.ChatColorsData(null, null)
 
     override fun onStartExpirationTimeout(messageRecord: MessageRecord) = Unit
 

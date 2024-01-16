@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.conversation.v2.data.IncomingTextOnly
 import org.thoughtcrime.securesms.conversation.v2.data.OutgoingMedia
 import org.thoughtcrime.securesms.conversation.v2.data.OutgoingTextOnly
 import org.thoughtcrime.securesms.conversation.v2.data.ThreadHeader
+import org.thoughtcrime.securesms.conversation.v2.items.ChatColorsDrawable
 import org.thoughtcrime.securesms.conversation.v2.items.V2ConversationContext
 import org.thoughtcrime.securesms.conversation.v2.items.V2ConversationItemMediaViewHolder
 import org.thoughtcrime.securesms.conversation.v2.items.V2ConversationItemTextOnlyViewHolder
@@ -66,7 +67,8 @@ class ConversationAdapterV2(
   override val clickListener: ItemClickListener,
   private var hasWallpaper: Boolean,
   private val colorizer: Colorizer,
-  private val startExpirationTimeout: (MessageRecord) -> Unit
+  private val startExpirationTimeout: (MessageRecord) -> Unit,
+  private val chatColorsDataProvider: () -> ChatColorsDrawable.ChatColorsData
 ) : PagingMappingAdapter<ConversationElementKey>(), ConversationAdapterBridge, V2ConversationContext {
 
   companion object {
@@ -182,6 +184,10 @@ class ConversationAdapterV2(
   override fun hasWallpaper(): Boolean = hasWallpaper && displayMode.displayWallpaper()
 
   override fun getColorizer(): Colorizer = colorizer
+
+  override fun getChatColorsData(): ChatColorsDrawable.ChatColorsData {
+    return chatColorsDataProvider()
+  }
 
   override fun getNextMessage(adapterPosition: Int): MessageRecord? {
     return getConversationMessage(adapterPosition - 1)?.messageRecord

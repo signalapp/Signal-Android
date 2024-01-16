@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.conversation.colors.Colorizer
 import org.thoughtcrime.securesms.conversation.colors.RecyclerViewColorizer
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
 import org.thoughtcrime.securesms.conversation.v2.ConversationAdapterV2
+import org.thoughtcrime.securesms.conversation.v2.items.ChatColorsDrawable
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
@@ -65,7 +66,8 @@ class InternalConversationTestFragment : Fragment(R.layout.conversation_test_fra
       clickListener = ClickListener(),
       hasWallpaper = springboardViewModel.hasWallpaper.value,
       colorizer = Colorizer(),
-      startExpirationTimeout = {}
+      startExpirationTimeout = {},
+      chatColorsDataProvider = { ChatColorsDrawable.ChatColorsData(null, null) }
     )
 
     if (springboardViewModel.hasWallpaper.value) {

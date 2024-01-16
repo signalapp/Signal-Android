@@ -11,7 +11,6 @@ import android.graphics.Outline
 import android.graphics.Path
 import android.graphics.PixelFormat
 import android.graphics.PointF
-import android.graphics.Rect
 import android.graphics.RectF
 import android.graphics.drawable.Drawable
 import android.view.ViewGroup
@@ -29,52 +28,17 @@ import org.thoughtcrime.securesms.util.Projection.Corners
  * Drawable that renders the given chat colors at a specified coordinate offset.
  * This is meant to be used in conjunction with [ChatColorsItemDecoration]
  */
-class ChatColorsDrawable : Drawable() {
+class ChatColorsDrawable(
+  private val dataProvider: () -> ChatColorsData
+) : Drawable() {
 
-  companion object {
-    private var globalChatColors: ChatColors? = null
-    private var globalMask: Drawable? = null
-    private var latestBounds: Rect? = null
-
-    /**
-     * Binds the ChatColorsDrawable static cache to the lifecycle of the given recycler-view
-     */
-    fun attach(recyclerView: RecyclerView) {
-      recyclerView.addOnLayoutChangeListener { _, left, top, right, bottom, _, _, _, _ ->
-        applyBounds(Rect(left, top, right, bottom))
-      }
-
-      recyclerView.addItemDecoration(ChatColorsItemDecoration)
-    }
-
-    fun setGlobalChatColors(recyclerView: RecyclerView, chatColors: ChatColors) {
-      if (globalChatColors == chatColors) {
-        return
-      }
-
-      globalChatColors = chatColors
-
-      globalMask = if (chatColors.isGradient()) {
-        chatColors.chatBubbleMask
-      } else {
-        null
-      }
-
-      recyclerView.invalidateItemDecorations()
-    }
-
-    fun clearGlobalChatColors(recyclerView: RecyclerView) {
-      globalChatColors = null
-      globalMask = null
-
-      recyclerView.invalidateItemDecorations()
-    }
-
-    private fun applyBounds(bounds: Rect) {
-      latestBounds = bounds
-      globalMask?.bounds = bounds
-    }
-  }
+  /**
+   * Object allowing you to inject global color / masking.
+   */
+  data class ChatColorsData(
+    var chatColors: ChatColors?,
+    var mask: Drawable?
+  )
 
   /**
    * Translation coordinates so that the mask is drawn at the right location
@@ -200,11 +164,11 @@ class ChatColorsDrawable : Drawable() {
     invalidateSelf()
   }
 
-  private fun getChatColors(): ChatColors? = localChatColors ?: globalChatColors
+  private fun getChatColors(): ChatColors? = localChatColors ?: dataProvider().chatColors
 
-  private fun getMask(): Drawable? = localMask ?: globalMask
+  private fun getMask(): Drawable? = localMask ?: dataProvider().mask
 
-  private object ChatColorsItemDecoration : RecyclerView.ItemDecoration() {
+  object ChatColorsItemDecoration : RecyclerView.ItemDecoration() {
     override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
       parent.children.map { parent.getChildViewHolder(it) }.filterIsInstance<ChatColorsDrawableInvalidator>().forEach { element ->
         element.invalidateChatColorsDrawable(parent)

@@ -25,6 +25,8 @@ interface V2ConversationContext {
   val searchQuery: String?
   val isParentInScroll: Boolean
 
+  fun getChatColorsData(): ChatColorsDrawable.ChatColorsData
+
   fun onStartExpirationTimeout(messageRecord: MessageRecord)
 
   fun hasWallpaper(): Boolean
