@@ -111,6 +111,7 @@ class AddToGroupStoryDelegate(
             timestamp = System.currentTimeMillis(),
             storyType = result.storyType,
             isSecure = true,
+            body = result.body,
             attachments = listOf(it)
           )
         }
