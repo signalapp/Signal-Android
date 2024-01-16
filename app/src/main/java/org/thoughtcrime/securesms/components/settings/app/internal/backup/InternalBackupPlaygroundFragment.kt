@@ -200,7 +200,7 @@ fun Screen(
 
       when (state.remoteBackupState) {
         is InternalBackupPlaygroundViewModel.RemoteBackupState.Available -> {
-          StateLabel("Exists/allocated. Space used by media: ${state.remoteBackupState.response.usedSpace ?: 0} bytes (${state.remoteBackupState.response.usedSpace?.bytes?.inMebiBytes?.roundedString(3) ?: 0} MiB)")
+          StateLabel("Exists/allocated. ${state.remoteBackupState.response.mediaCount} media items, using ${state.remoteBackupState.response.usedSpace} bytes (${state.remoteBackupState.response.usedSpace.bytes.inMebiBytes.roundedString(3)} MiB)")
         }
         InternalBackupPlaygroundViewModel.RemoteBackupState.GeneralError -> {
           StateLabel("Hit an unknown error. Check the logs.")

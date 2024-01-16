@@ -26,7 +26,6 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.NetworkResult
-import org.whispersystems.signalservice.api.archive.ArchiveGetBackupInfoResponse
 import org.whispersystems.signalservice.api.archive.ArchiveServiceCredential
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.ServiceId.PNI
@@ -168,7 +167,7 @@ object BackupRepository {
   /**
    * Returns an object with details about the remote backup state.
    */
-  fun getRemoteBackupState(): NetworkResult<ArchiveGetBackupInfoResponse> {
+  fun getRemoteBackupState(): NetworkResult<BackupMetadata> {
     val api = ApplicationDependencies.getSignalServiceAccountManager().archiveApi
     val backupKey = SignalStore.svr().getOrCreateMasterKey().deriveBackupKey()
 
@@ -182,6 +181,18 @@ object BackupRepository {
       }
       .then { credential ->
         api.getBackupInfo(backupKey, credential)
+          .map { it to credential }
+      }
+      .then { pair ->
+        val (info, credential) = pair
+        api.debugGetUploadedMediaItemMetadata(backupKey, credential)
+          .also { Log.i(TAG, "MediaItemMetadataResult: $it") }
+          .map { mediaObjects ->
+            BackupMetadata(
+              usedSpace = info.usedSpace ?: 0,
+              mediaCount = mediaObjects.size.toLong()
+            )
+          }
       }
   }
 
@@ -255,3 +266,8 @@ class BackupState {
   val chatIdToBackupRecipientId = HashMap<Long, Long>()
   val callIdToType = HashMap<Long, Long>()
 }
+
+class BackupMetadata(
+  val usedSpace: Long,
+  val mediaCount: Long
+)

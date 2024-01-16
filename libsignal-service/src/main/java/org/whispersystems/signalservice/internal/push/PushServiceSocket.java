@@ -44,6 +44,7 @@ import org.whispersystems.signalservice.api.account.PniKeyDistributionRequest;
 import org.whispersystems.signalservice.api.account.PreKeyCollection;
 import org.whispersystems.signalservice.api.account.PreKeyUpload;
 import org.whispersystems.signalservice.api.archive.ArchiveCredentialPresentation;
+import org.whispersystems.signalservice.api.archive.ArchiveGetMediaItemsResponse;
 import org.whispersystems.signalservice.api.archive.ArchiveServiceCredentialsResponse;
 import org.whispersystems.signalservice.api.archive.ArchiveGetBackupInfoResponse;
 import org.whispersystems.signalservice.api.archive.ArchiveMessageBackupUploadFormResponse;
@@ -161,6 +162,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -311,6 +313,7 @@ public class PushServiceSocket {
   private static final String ARCHIVE_PUBLIC_KEY          = "/v1/archives/keys";
   private static final String ARCHIVE_INFO                = "/v1/archives";
   private static final String ARCHIVE_MESSAGE_UPLOAD_FORM = "/v1/archives/upload/form";
+  private static final String ARCHIVE_MEDIA_LIST          = "/v1/archives/media?limit=%d";
 
   private static final String CALL_LINK_CREATION_AUTH = "/v1/call-link/create-auth";
   private static final String SERVER_DELIVERED_TIMESTAMP_HEADER = "X-Signal-Timestamp";
@@ -510,6 +513,39 @@ public class PushServiceSocket {
 
     String response = makeServiceRequestWithoutAuthentication(ARCHIVE_INFO, "GET", null, headers, NO_HANDLER);
     return JsonUtil.fromJson(response, ArchiveGetBackupInfoResponse.class);
+  }
+
+  public List<ArchiveGetMediaItemsResponse.StoredMediaObject> debugGetAllArchiveMediaItems(ArchiveCredentialPresentation credentialPresentation) throws IOException {
+    List<ArchiveGetMediaItemsResponse.StoredMediaObject> mediaObjects = new ArrayList<>();
+
+    String cursor = null;
+    do {
+      ArchiveGetMediaItemsResponse response = getArchiveMediaItemsPage(credentialPresentation, 512, cursor);
+      mediaObjects.addAll(response.getStoredMediaObjects());
+      cursor = response.getCursor();
+    } while (cursor != null);
+
+    return mediaObjects;
+  }
+
+  /**
+   * Retrieves a page of media items in the user's archive.
+   * @param cursor A token that can be read from your previous response, telling the server where to start the next page.
+   */
+  public ArchiveGetMediaItemsResponse getArchiveMediaItemsPage(ArchiveCredentialPresentation credentialPresentation, int limit, String cursor) throws IOException {
+    Map<String, String> headers = new HashMap<>();
+    headers.put("X-Signal-ZK-Auth", Base64.encodeWithPadding(credentialPresentation.getPresentation()));
+    headers.put("X-Signal-ZK-Auth-Signature", Base64.encodeWithPadding(credentialPresentation.getSignedPresentation()));
+
+    String url = String.format(Locale.US, ARCHIVE_MEDIA_LIST, limit);
+
+    if (cursor != null) {
+      url += "&cursor=" + cursor;
+    }
+
+    String response = makeServiceRequestWithoutAuthentication(url, "GET", null, headers, NO_HANDLER);
+
+    return JsonUtil.fromJson(response, ArchiveGetMediaItemsResponse.class);
   }
 
   public ArchiveMessageBackupUploadFormResponse getArchiveMessageBackupUploadForm(ArchiveCredentialPresentation credentialPresentation) throws IOException {

@@ -15,10 +15,10 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
+import org.thoughtcrime.securesms.backup.v2.BackupMetadata
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.whispersystems.signalservice.api.NetworkResult
-import org.whispersystems.signalservice.api.archive.ArchiveGetBackupInfoResponse
 import java.io.ByteArrayInputStream
 import java.io.InputStream
 
@@ -137,6 +137,6 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
     object Unknown : RemoteBackupState()
     object NotFound : RemoteBackupState()
     object GeneralError : RemoteBackupState()
-    data class Available(val response: ArchiveGetBackupInfoResponse) : RemoteBackupState()
+    data class Available(val response: BackupMetadata) : RemoteBackupState()
   }
 }
