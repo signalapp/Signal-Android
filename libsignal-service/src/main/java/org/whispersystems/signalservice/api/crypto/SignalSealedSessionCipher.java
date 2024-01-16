@@ -56,6 +56,11 @@ public class SignalSealedSessionCipher {
   {
     try (SignalSessionLock.Lock unused = lock.acquire()) {
       List<SessionRecord> recipientSessions = recipients.stream().map(sessionMap::get).collect(Collectors.toList());
+
+      if (recipientSessions.contains(null)) {
+        throw new NoSessionException("No session for some recipients");
+      }
+
       return cipher.multiRecipientEncrypt(recipients, recipientSessions, content);
     }
   }
