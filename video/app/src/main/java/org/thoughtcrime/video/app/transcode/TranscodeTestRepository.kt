@@ -83,7 +83,7 @@ class TranscodeTestRepository(context: Context) {
 
   fun cleanFailedTranscodes(context: Context, folderUri: Uri) {
     val docs = queryChildDocuments(context, folderUri)
-    docs.filter { it.documentId.endsWith(".mp4") && it.size == 0L }.forEach {
+    docs.filter { it.documentId.endsWith(".tmp") }.forEach {
       val fileUri = DocumentsContract.buildDocumentUriUsingTree(folderUri, it.documentId)
       DocumentsContract.deleteDocument(context.contentResolver, fileUri)
     }
