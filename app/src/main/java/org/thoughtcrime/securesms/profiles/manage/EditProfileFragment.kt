@@ -175,6 +175,8 @@ class EditProfileFragment : LoggingFragment() {
       viewModel.username.observe(viewLifecycleOwner) { presentUsername(it) }
     } else {
       binding.manageProfileUsernameContainer.visibility = View.GONE
+      binding.manageProfileDivider.root.visibility = View.GONE
+      binding.usernameInfoText.visibility = View.GONE
     }
   }
 

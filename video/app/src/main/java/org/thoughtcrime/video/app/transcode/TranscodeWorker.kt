@@ -146,8 +146,10 @@ class TranscodeWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(
     val transcodeActivityIntent = Intent(applicationContext, TranscodeTestActivity::class.java)
     val pendingIntent: PendingIntent? = TaskStackBuilder.create(applicationContext).run {
       addNextIntentWithParentStack(transcodeActivityIntent)
-      getPendingIntent(0,
-        PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+      getPendingIntent(
+        0,
+        PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+      )
     }
     val notification = NotificationCompat.Builder(applicationContext, id)
       .setContentTitle(title)

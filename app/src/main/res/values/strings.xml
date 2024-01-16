@@ -996,6 +996,8 @@
     <string name="GroupMentionSettingDialog_dont_notify_me">Don\'t notify me</string>
 
     <!-- ManageProfileFragment -->
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
+    <string name="ManageProfileFragment__your_username">Your username, QR code and link aren\'t visible on your profile. Only share your username with people you trust.</string>
     <string name="ManageProfileFragment_profile_name">Profile name</string>
     <string name="ManageProfileFragment_username">Username</string>
     <string name="ManageProfileFragment_about">About</string>
