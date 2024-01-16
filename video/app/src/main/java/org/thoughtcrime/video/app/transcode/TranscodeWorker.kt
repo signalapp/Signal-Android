@@ -22,13 +22,13 @@ import androidx.work.ForegroundInfo
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
 import org.signal.core.util.getLength
+import org.signal.core.util.readLength
 import org.thoughtcrime.securesms.video.StreamingTranscoder
 import org.thoughtcrime.securesms.video.postprocessing.Mp4FaststartPostProcessor
 import org.thoughtcrime.securesms.video.videoconverter.VideoConstants
 import org.thoughtcrime.securesms.video.videoconverter.mediadatasource.InputStreamMediaDataSource
 import org.thoughtcrime.video.app.R
-import java.io.FileInputStream
-import java.io.FileOutputStream
+import java.io.IOException
 import java.io.InputStream
 import java.time.Instant
 
@@ -90,45 +90,55 @@ class TranscodeWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(
     }
 
     setForeground(createForegroundInfo(-1, notificationId))
-
-    applicationContext.contentResolver.openFileDescriptor(tempFile.uri, "w").use { tempFd ->
-      if (tempFd == null) {
+    applicationContext.contentResolver.openOutputStream(tempFile.uri).use { outputStream ->
+      if (outputStream == null) {
         Log.w(TAG, "$logPrefix Could not open temp file for I/O!")
         return Result.failure()
       }
+
       transcoder.transcode({ percent: Int ->
         setProgressAsync(Data.Builder().putInt(KEY_PROGRESS, percent).build())
         setForegroundAsync(createForegroundInfo(percent, notificationId))
-      }, FileOutputStream(tempFd.fileDescriptor), { isStopped })
+      }, outputStream, { isStopped })
     }
     Log.v(TAG, "$logPrefix Initial transcode completed successfully!")
     if (!postProcessForFastStart) {
       tempFile.renameTo(finalFilename)
       Log.v(TAG, "$logPrefix Rename successful.")
     } else {
-      applicationContext.contentResolver.openFileDescriptor(tempFile.uri, "r").use { tempFd ->
-        if (tempFd == null) {
+      val tempFileLength: Long
+      applicationContext.contentResolver.openInputStream(tempFile.uri).use { tempFileStream ->
+        if (tempFileStream == null) {
           Log.w(TAG, "$logPrefix Could not open temp file for I/O!")
           return Result.failure()
         }
 
-        val finalFile = createFile(Uri.parse(outputDirUri), finalFilename)
-        if (finalFile == null) {
-          Log.w(TAG, "$logPrefix Could not create final file for faststart processing!")
+        tempFileLength = tempFileStream.readLength() ?: run {
+          Log.w(TAG, "$logPrefix Could not read file length of temp file descriptor!")
           return Result.failure()
         }
-        applicationContext.contentResolver.openFileDescriptor(finalFile.uri, "w").use { finalFd ->
-          if (finalFd == null) {
-            Log.w(TAG, "$logPrefix Could not open output file for I/O!")
-            return Result.failure()
-          }
+      }
+      val finalFile = createFile(Uri.parse(outputDirUri), finalFilename) ?: run {
+        Log.w(TAG, "$logPrefix Could not create final file for faststart processing!")
+        return Result.failure()
+      }
+      applicationContext.contentResolver.openOutputStream(finalFile.uri, "w").use { finalFileStream ->
+        if (finalFileStream == null) {
+          Log.w(TAG, "$logPrefix Could not open output file for I/O!")
+          return Result.failure()
+        }
 
-          Mp4FaststartPostProcessor({ FileInputStream(tempFd.fileDescriptor) }, tempFd.statSize).processAndWriteTo(FileOutputStream(finalFd.fileDescriptor))
+        val inputStreamFactory = { applicationContext.contentResolver.openInputStream(tempFile.uri) ?: throw IOException("Could not open temp file for reading!") }
+        val bytesCopied = Mp4FaststartPostProcessor(inputStreamFactory, tempFileLength).processAndWriteTo(finalFileStream)
 
-          if (!tempFile.delete()) {
-            Log.w(TAG, "$logPrefix Failed to delete temp file after processing!")
-            return Result.failure()
-          }
+        if (bytesCopied != tempFileLength) {
+          Log.w(TAG, "$logPrefix Postprocessing failed! Original transcoded filesize ($tempFileLength) did not match postprocessed filesize ($bytesCopied)")
+          return Result.failure()
+        }
+
+        if (!tempFile.delete()) {
+          Log.w(TAG, "$logPrefix Failed to delete temp file after processing!")
+          return Result.failure()
         }
       }
       Log.v(TAG, "$logPrefix Faststart postprocess successful.")

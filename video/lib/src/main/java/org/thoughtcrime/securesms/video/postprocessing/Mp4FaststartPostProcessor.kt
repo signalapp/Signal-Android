@@ -21,9 +21,15 @@ import java.io.SequenceInputStream
  * @property inputLength the exact stream of the [InputStream]
  */
 class Mp4FaststartPostProcessor(private val inputStreamFactory: () -> InputStream, private val inputLength: Long) {
-  fun process(): InputStream {
-    val metadata: SanitizedMetadata? = Mp4Sanitizer.sanitize(inputStreamFactory(), inputLength)
 
+  /**
+   * It is the responsibility of the called to close the resulting [InputStream]
+   */
+  fun process(): InputStream {
+    val metadata: SanitizedMetadata?
+    inputStreamFactory().use {
+      metadata = Mp4Sanitizer.sanitize(it, inputLength)
+    }
     if (metadata?.sanitizedMetadata == null) {
       throw VideoPostProcessingException("Mp4Sanitizer could not parse media metadata!")
     }
@@ -33,8 +39,10 @@ class Mp4FaststartPostProcessor(private val inputStreamFactory: () -> InputStrea
     return SequenceInputStream(ByteArrayInputStream(metadata.sanitizedMetadata), ByteStreams.limit(inputStream, metadata.dataLength))
   }
 
-  fun processAndWriteTo(outputStream: OutputStream) {
-    process().copyTo(outputStream)
+  fun processAndWriteTo(outputStream: OutputStream): Long {
+    process().use { inStream ->
+      return inStream.copyTo(outputStream)
+    }
   }
 
   companion object {
