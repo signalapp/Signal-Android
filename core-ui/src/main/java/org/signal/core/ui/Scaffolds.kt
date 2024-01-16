@@ -38,11 +38,13 @@ object Scaffolds {
     titleContent: @Composable (Float, String) -> Unit = { _, title ->
       Text(text = title, style = MaterialTheme.typography.titleLarge)
     },
+    snackbarHost: @Composable () -> Unit = {},
     content: @Composable (PaddingValues) -> Unit
   ) {
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
 
     Scaffold(
+      snackbarHost = snackbarHost,
       topBar = {
         TopAppBar(
           title = {
