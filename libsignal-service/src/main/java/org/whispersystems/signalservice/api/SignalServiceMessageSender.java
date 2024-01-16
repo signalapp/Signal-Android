@@ -2114,10 +2114,12 @@ public class SignalServiceMessageSender {
     }
 
     for (int i = 0; i < RETRY_COUNT; i++) {
-      GroupTargetInfo            targetInfo     = buildGroupTargetInfo(recipients);
+            GroupTargetInfo targetInfo         = buildGroupTargetInfo(recipients);
+      final GroupTargetInfo targetInfoSnapshot = targetInfo;
+
       Set<SignalProtocolAddress> sharedWith     = aciStore.getSenderKeySharedWith(distributionId);
       List<SignalServiceAddress> needsSenderKey = targetInfo.destinations.stream()
-                                                                         .filter(a -> !sharedWith.contains(a))
+                                                                         .filter(a -> !sharedWith.contains(a) || targetInfoSnapshot.sessions.get(a) == null)
                                                                          .map(a -> ServiceId.parseOrThrow(a.getName()))
                                                                          .distinct()
                                                                          .map(SignalServiceAddress::new)
