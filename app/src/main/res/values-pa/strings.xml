@@ -1284,9 +1284,9 @@
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">ਵੀਡੀਓ ਕਾਲ ਮਿਸ ਹੋਈ</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
-    <string name="MessageRecord_missed_voice_call_notification_profile">Missed voice call while notification profile on</string>
+    <string name="MessageRecord_missed_voice_call_notification_profile">ਸੂਚਨਾ ਪ੍ਰੋਫਾਈਲ ਦੇ ਚਾਲੂ ਹੋਣ ਦੌਰਾਨ ਵੌਇਸ ਕਾਲ ਮਿਸ ਹੋਈ</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
-    <string name="MessageRecord_missed_video_call_notification_profile">Missed video call while notification profile on</string>
+    <string name="MessageRecord_missed_video_call_notification_profile">ਸੂਚਨਾ ਪ੍ਰੋਫਾਈਲ ਦੇ ਚਾਲੂ ਹੋਣ ਦੌਰਾਨ ਵੀਡੀਓ ਕਾਲ ਮਿਸ ਹੋਈ</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
     <string name="MessageRecord_you_declined_a_voice_call">ਤੁਸੀਂ ਵੌਇਸ ਕਾਲ ਨੂੰ ਅਸਵੀਕਾਰ ਕੀਤਾ</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
@@ -2228,11 +2228,11 @@
     <!-- Content description for done button -->
     <string name="UsernameEditFragment__done">ਮੁਕੰਮਲ</string>
     <!-- Displayed when the chosen discriminator is not available for the given nickname -->
-    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">This username is not available, try another number.</string>
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">ਇਹ ਵਰਤੋਂਕਾਰ ਨਾਂ ਉਪਲਬਧ ਨਹੀਂ ਹੈ, ਕੋਈ ਹੋਰ ਨੰਬਰ ਅਜ਼ਮਾਓ।</string>
     <!-- Displayed when the chosen discriminator is too short -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Invalid username, enter a minimum of %1$d digits.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">ਵਰਤੋਂਕਾਰ ਨਾਂ ਅਵੈਧ ਹੈ, ਘੱਟ ਤੋਂ ਘੱਟ %1$d ਅੰਕ ਦਰਜ ਕਰੋ।</string>
     <!-- Displayed when the chosen discriminator is too long -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Invalid username, enter a maximum of %1$d digits.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">ਵਰਤੋਂਕਾਰ ਨਾਂ ਅਵੈਧ ਹੈ, ਵੱਧ ਤੋਂ ਵੱਧ %1$d ਅੰਕ ਦਰਜ ਕਰੋ।</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d ਸੰਪਰਕ Signal ਉੱਤੇ ਹੈ!</item>
@@ -5081,9 +5081,9 @@
     <!-- Button text that launches the contact picker to select from -->
     <string name="AddAllowedMembers__add_people_or_groups">ਲੋਕ ਜਾਂ ਗਰੁੱਪ ਜੋੜੋ</string>
     <!-- Title for exceptions section of add people to notification profile screen in create flow -->
-    <string name="AddAllowedMembers__exceptions">ਛੋਟਾਂ</string>
+    <string name="AddAllowedMembers__exceptions">ਛੋਟ</string>
     <!-- List preference to toggle that allows calls through the notification profile during create flow -->
-    <string name="AddAllowedMembers__allow_all_calls">ਸਭ ਕਾਲਾਂ ਮਨਜ਼ੂਰ</string>
+    <string name="AddAllowedMembers__allow_all_calls">ਸਭ ਕਾਲਾਂ ਨੂੰ ਇਜਾਜ਼ਤਾਂ ਦਿਓ</string>
     <!-- List preference to toggle that allows mentions through the notification profile during create flow -->
     <string name="AddAllowedMembers__notify_for_all_mentions">ਸਾਰੇ ਜ਼ਿਕਰਾਂ ਲਈ ਸੂਚਨਾ ਦਿਓ</string>
 
@@ -5700,8 +5700,8 @@
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">ਸਾਰੇ ਕਨੈਕਸ਼ਨਾਂ ਦੀ ਸਮੀਖਿਆ ਹੋ ਗਈ ਹੈ, ਅੱਗੇ ਜਾਰੀ ਰੱਖਣ ਲਈ \"ਭੇਜੋ\" \'ਤੇ ਟੈਪ ਕਰੋ।</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
     <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
-        <item quantity="one">%1$d connection may have reinstalled Signal or changed devices. You may review their safety number or continue with the send.</item>
-        <item quantity="other">%1$d connections may have reinstalled Signal or changed devices. You may review their safety numbers or continue with the send.</item>
+        <item quantity="one">%1$d ਕਨੈਕਸ਼ਨ ਨੇ ਸ਼ਾਇਦ Signal ਨੂੰ ਦੁਬਾਰਾ ਇੰਸਟਾਲ ਕੀਤਾ ਹੈ ਜਾਂ ਡਿਵਾਈਸਾਂ ਨੂੰ ਬਦਲਿਆ ਹੈ। ਤੁਸੀਂ ਉਹਨਾਂ ਦੇ ਸੁਰੱਖਿਆ ਨੰਬਰ ਦੀ ਸਮੀਖਿਆ ਕਰ ਸਕਦੇ ਹੋ ਜਾਂ ਭੇਜਣਾ ਜਾਰੀ ਰੱਖ ਸਕਦੇ ਹੋ।</item>
+        <item quantity="other">%1$d ਕਨੈਕਸ਼ਨਾਂ ਨੇ ਸ਼ਾਇਦ Signal ਨੂੰ ਦੁਬਾਰਾ ਇੰਸਟਾਲ ਕੀਤਾ ਹੈ ਜਾਂ ਡਿਵਾਈਸਾਂ ਨੂੰ ਬਦਲਿਆ ਹੈ। ਤੁਸੀਂ ਉਹਨਾਂ ਦੇ ਸੁਰੱਖਿਆ ਨੰਬਰਾਂ ਦੀ ਸਮੀਖਿਆ ਕਰ ਸਕਦੇ ਹੋ ਜਾਂ ਭੇਜਣਾ ਜਾਰੀ ਰੱਖ ਸਕਦੇ ਹੋ।</item>
     </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">ਸੁਰੱਖਿਆ ਨੰਬਰ ਦੀ ਤਸਦੀਕ ਕਰੋ</string>
@@ -6257,7 +6257,7 @@
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">ਮਿਸਡ ਕਾਲ</string>
     <!-- Displayed for missed calls declined by notification profile -->
-    <string name="CallLogAdapter__missed_notification_profile">Missed while notification profile on</string>
+    <string name="CallLogAdapter__missed_notification_profile">ਸੂਚਨਾ ਪ੍ਰੋਫਾਈਲ ਦੇ ਚਾਲੂ ਹੋਣ ਦੌਰਾਨ ਕਾਲ ਮਿਸ ਹੋਈ</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">ਸ਼ਾਮਲ ਹੋਵੋ</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -6366,7 +6366,7 @@
     <!-- Missed group call in call info -->
     <string name="CallPreference__missed_group_call">ਮਿਸ ਹੋਈਆਂ ਗਰੁੱਪ ਕਾਲ</string>
     <!-- Missed group call while notification profile on in call info -->
-    <string name="CallPreference__missed_group_call_notification_profile">Missed group call while notification profile on</string>
+    <string name="CallPreference__missed_group_call_notification_profile">ਸੂਚਨਾ ਪ੍ਰੋਫਾਈਲ ਦੇ ਚਾਲੂ ਹੋਣ ਦੌਰਾਨ ਗਰੁੱਪ ਕਾਲ ਮਿਸ ਹੋਈ</string>
     <!-- Incoming group call in call info -->
     <string name="CallPreference__incoming_group_call">ਇਨਕਮਿੰਗ ਗਰੁੱਪ ਕਾਲ</string>
     <!-- Outgoing group call in call info -->

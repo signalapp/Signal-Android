@@ -1240,9 +1240,9 @@
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">Кабыл алынбаган аудио чалуу</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
-    <string name="MessageRecord_missed_voice_call_notification_profile">Missed voice call while notification profile on</string>
+    <string name="MessageRecord_missed_voice_call_notification_profile">Билдирмелер профили иштеп турганда кабыл алынбай калган аудио чалуу</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
-    <string name="MessageRecord_missed_video_call_notification_profile">Missed video call while notification profile on</string>
+    <string name="MessageRecord_missed_video_call_notification_profile">Билдирмелер профили иштеп турганда кабыл алынбай калган видео чалуу</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
     <string name="MessageRecord_you_declined_a_voice_call">Аудио чалуудан баш тарттыңыз</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
@@ -2150,11 +2150,11 @@
     <!-- Content description for done button -->
     <string name="UsernameEditFragment__done">Бүттү</string>
     <!-- Displayed when the chosen discriminator is not available for the given nickname -->
-    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">This username is not available, try another number.</string>
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">Бул колдонуучу аты жеткиликсиз, башкасын колдонуп көрүңүз.</string>
     <!-- Displayed when the chosen discriminator is too short -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Invalid username, enter a minimum of %1$d digits.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Колдонуучунун аты жарабайт, кеминде %1$d сан киргизиңиз.</string>
     <!-- Displayed when the chosen discriminator is too long -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Invalid username, enter a maximum of %1$d digits.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Колдонуучунун аты жарабайт, сандар %1$d ашпашы керек.</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="other">Signal\'да %1$dбайланышыңыз бар!</item>
@@ -5568,7 +5568,7 @@
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Бардык байланыштар текшерилди, улантуу үчүн жөнөтүү дегенди басыңыз.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
     <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
-        <item quantity="other">%1$d connections may have reinstalled Signal or changed devices. You may review their safety numbers or continue with the send.</item>
+        <item quantity="other">%1$d байланыштары Signal\'ды кайра орнотушу же түзмөктөрдү өзгөртүшү мүмкүн. Алардын коопсуздук номерлерин карап көрүңүз же жөнөтүп улантыңыз.</item>
     </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Коопсуздук кодун ырастоо</string>
@@ -6119,7 +6119,7 @@
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">Жооп берилбеген</string>
     <!-- Displayed for missed calls declined by notification profile -->
-    <string name="CallLogAdapter__missed_notification_profile">Missed while notification profile on</string>
+    <string name="CallLogAdapter__missed_notification_profile">Билдирмелер профили иштеп турганда кабыл алынбай калды</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">Кошулуу</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -6225,7 +6225,7 @@
     <!-- Missed group call in call info -->
     <string name="CallPreference__missed_group_call">Жооп берилбеген топтук чалуу</string>
     <!-- Missed group call while notification profile on in call info -->
-    <string name="CallPreference__missed_group_call_notification_profile">Missed group call while notification profile on</string>
+    <string name="CallPreference__missed_group_call_notification_profile">Билдирмелер профили иштеп турганда кабыл алынбай калган топтук чалуу</string>
     <!-- Incoming group call in call info -->
     <string name="CallPreference__incoming_group_call">Келүүчү топтук чалуу</string>
     <!-- Outgoing group call in call info -->

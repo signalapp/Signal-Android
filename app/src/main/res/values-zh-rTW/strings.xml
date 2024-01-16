@@ -1240,9 +1240,9 @@
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">錯過視訊電話</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
-    <string name="MessageRecord_missed_voice_call_notification_profile">Missed voice call while notification profile on</string>
+    <string name="MessageRecord_missed_voice_call_notification_profile">通知設定檔開啟時有未接語音通話</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
-    <string name="MessageRecord_missed_video_call_notification_profile">Missed video call while notification profile on</string>
+    <string name="MessageRecord_missed_video_call_notification_profile">通知設定檔開啟時未接視訊通話</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
     <string name="MessageRecord_you_declined_a_voice_call">你拒絕了一個語音通話</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
@@ -2150,11 +2150,11 @@
     <!-- Content description for done button -->
     <string name="UsernameEditFragment__done">完成</string>
     <!-- Displayed when the chosen discriminator is not available for the given nickname -->
-    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">This username is not available, try another number.</string>
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">此用戶名稱無法使用，請嘗試其他號碼。</string>
     <!-- Displayed when the chosen discriminator is too short -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Invalid username, enter a minimum of %1$d digits.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">無效的用戶名稱，輸入至少 %1$d 位數。</string>
     <!-- Displayed when the chosen discriminator is too long -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Invalid username, enter a maximum of %1$d digits.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">無效的用戶名稱，輸入最多 %1$d 位數。</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="other">有%1$d個聯絡人使用Signal</item>
@@ -5568,7 +5568,7 @@
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">所有聯絡人已審核完畢，點選「傳送」即可繼續。</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
     <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
-        <item quantity="other">%1$d connections may have reinstalled Signal or changed devices. You may review their safety numbers or continue with the send.</item>
+        <item quantity="other">%1$d 位聯絡人可能已重新安裝 Signal 或更換裝置。你可以檢查他們的安全碼或繼續傳送訊息。</item>
     </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">驗證安全碼</string>
@@ -6119,7 +6119,7 @@
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">未接來電</string>
     <!-- Displayed for missed calls declined by notification profile -->
-    <string name="CallLogAdapter__missed_notification_profile">Missed while notification profile on</string>
+    <string name="CallLogAdapter__missed_notification_profile">通知設定檔開啟時未接通話</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">加入</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -6225,7 +6225,7 @@
     <!-- Missed group call in call info -->
     <string name="CallPreference__missed_group_call">未接群組的通話</string>
     <!-- Missed group call while notification profile on in call info -->
-    <string name="CallPreference__missed_group_call_notification_profile">Missed group call while notification profile on</string>
+    <string name="CallPreference__missed_group_call_notification_profile">通知設定檔開啟時未接群組通話</string>
     <!-- Incoming group call in call info -->
     <string name="CallPreference__incoming_group_call">群組通話來電</string>
     <!-- Outgoing group call in call info -->

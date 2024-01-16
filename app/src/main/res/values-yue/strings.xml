@@ -1240,9 +1240,9 @@
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">未接嘅視像通話</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
-    <string name="MessageRecord_missed_voice_call_notification_profile">Missed voice call while notification profile on</string>
+    <string name="MessageRecord_missed_voice_call_notification_profile">通知設定檔開啟時未接語音通話</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
-    <string name="MessageRecord_missed_video_call_notification_profile">Missed video call while notification profile on</string>
+    <string name="MessageRecord_missed_video_call_notification_profile">通知設定檔開啟時未接視像通話</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
     <string name="MessageRecord_you_declined_a_voice_call">你拒絕咗一個語音通話</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
@@ -2150,11 +2150,11 @@
     <!-- Content description for done button -->
     <string name="UsernameEditFragment__done">搞掂</string>
     <!-- Displayed when the chosen discriminator is not available for the given nickname -->
-    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">This username is not available, try another number.</string>
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">呢個用戶名稱唔用得，試吓其他號碼啦。</string>
     <!-- Displayed when the chosen discriminator is too short -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Invalid username, enter a minimum of %1$d digits.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">用戶名稱無效，請輸入至少 %1$d 位數字。</string>
     <!-- Displayed when the chosen discriminator is too long -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Invalid username, enter a maximum of %1$d digits.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">用戶名稱無效，請輸入最多 %1$d 位數字。</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="other">%1$d 位聯絡人開咗 Signal 喇！</item>
@@ -4966,11 +4966,11 @@
     <!-- Button text that launches the contact picker to select from -->
     <string name="AddAllowedMembers__add_people_or_groups">加人或者谷</string>
     <!-- Title for exceptions section of add people to notification profile screen in create flow -->
-    <string name="AddAllowedMembers__exceptions">吾系青一色</string>
+    <string name="AddAllowedMembers__exceptions">例外情況</string>
     <!-- List preference to toggle that allows calls through the notification profile during create flow -->
-    <string name="AddAllowedMembers__allow_all_calls">批准所有通話入閘</string>
+    <string name="AddAllowedMembers__allow_all_calls">批准所有通話</string>
     <!-- List preference to toggle that allows mentions through the notification profile during create flow -->
-    <string name="AddAllowedMembers__notify_for_all_mentions">點名講嘅時候點都要通知</string>
+    <string name="AddAllowedMembers__notify_for_all_mentions">為所有提及開啟通知</string>
 
     <!-- Call to action button on contact picker for adding to profile -->
     <string name="SelectRecipientsFragment__add">加入去</string>
@@ -5568,7 +5568,7 @@
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">已經審查晒所有人脈，㩒一吓傳送就可以繼續。</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
     <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
-        <item quantity="other">%1$d connections may have reinstalled Signal or changed devices. You may review their safety numbers or continue with the send.</item>
+        <item quantity="other">%1$d 個人脈可能重新安裝咗 Signal 或者更換咗裝置。你可以檢查佢哋嘅安全碼或者繼續傳送訊息。</item>
     </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">驗證安全碼</string>
@@ -6119,7 +6119,7 @@
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">未接來電</string>
     <!-- Displayed for missed calls declined by notification profile -->
-    <string name="CallLogAdapter__missed_notification_profile">Missed while notification profile on</string>
+    <string name="CallLogAdapter__missed_notification_profile">通知設定檔開啟時未接通話</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">加入</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -6225,7 +6225,7 @@
     <!-- Missed group call in call info -->
     <string name="CallPreference__missed_group_call">未接嘅群組通話</string>
     <!-- Missed group call while notification profile on in call info -->
-    <string name="CallPreference__missed_group_call_notification_profile">Missed group call while notification profile on</string>
+    <string name="CallPreference__missed_group_call_notification_profile">通知設定檔開啟時未接群組通話</string>
     <!-- Incoming group call in call info -->
     <string name="CallPreference__incoming_group_call">群組通話來電</string>
     <!-- Outgoing group call in call info -->

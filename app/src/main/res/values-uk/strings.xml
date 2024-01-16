@@ -1372,9 +1372,9 @@
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">Пропущений відеовиклик</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
-    <string name="MessageRecord_missed_voice_call_notification_profile">Missed voice call while notification profile on</string>
+    <string name="MessageRecord_missed_voice_call_notification_profile">Пропущено голосовий виклик під час увімкненого профілю сповіщень</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
-    <string name="MessageRecord_missed_video_call_notification_profile">Missed video call while notification profile on</string>
+    <string name="MessageRecord_missed_video_call_notification_profile">Пропущено відеовиклик під час увімкненого профілю сповіщень</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
     <string name="MessageRecord_you_declined_a_voice_call">Ви відхилили голосовий виклик</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
@@ -2384,11 +2384,11 @@
     <!-- Content description for done button -->
     <string name="UsernameEditFragment__done">Готово</string>
     <!-- Displayed when the chosen discriminator is not available for the given nickname -->
-    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">This username is not available, try another number.</string>
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">Це ім\'я користувача недоступне, спробуйте інший номер.</string>
     <!-- Displayed when the chosen discriminator is too short -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Invalid username, enter a minimum of %1$d digits.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Недійсне ім\'я користувача, введіть мінімум %1$d цифри.</string>
     <!-- Displayed when the chosen discriminator is too long -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Invalid username, enter a maximum of %1$d digits.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Недійсне ім\'я користувача, введіть максимум %1$d цифр.</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d контакт у Signal!</item>
@@ -5313,9 +5313,9 @@
     <!-- Title for exceptions section of add people to notification profile screen in create flow -->
     <string name="AddAllowedMembers__exceptions">Виключення</string>
     <!-- List preference to toggle that allows calls through the notification profile during create flow -->
-    <string name="AddAllowedMembers__allow_all_calls">Дозволити усі виклики</string>
+    <string name="AddAllowedMembers__allow_all_calls">Дозволити всі виклики</string>
     <!-- List preference to toggle that allows mentions through the notification profile during create flow -->
-    <string name="AddAllowedMembers__notify_for_all_mentions">Сповіщати про усі згадування</string>
+    <string name="AddAllowedMembers__notify_for_all_mentions">Сповіщати про всі згадування</string>
 
     <!-- Call to action button on contact picker for adding to profile -->
     <string name="SelectRecipientsFragment__add">Додати</string>
@@ -5964,10 +5964,10 @@
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Усі довірені контакти було переглянуто. Натисніть «відправити», щоб продовжити.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
     <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
-        <item quantity="one">%1$d connection may have reinstalled Signal or changed devices. You may review their safety number or continue with the send.</item>
-        <item quantity="few">%1$d connections may have reinstalled Signal or changed devices. You may review their safety numbers or continue with the send.</item>
-        <item quantity="many">%1$d connections may have reinstalled Signal or changed devices. You may review their safety numbers or continue with the send.</item>
-        <item quantity="other">%1$d connections may have reinstalled Signal or changed devices. You may review their safety numbers or continue with the send.</item>
+        <item quantity="one">Можливо, %1$d ваш контакт перевстановив Signal або змінив пристрій. Ви можете переглянути код безпеки або надіслати без перегляду.</item>
+        <item quantity="few">Можливо, %1$d ваші контакти перевстановили Signal або змінили пристрій. Ви можете переглянути код безпеки або надіслати без перегляду.</item>
+        <item quantity="many">Можливо, %1$d ваших контактів перевстановили Signal або змінили пристрій. Ви можете переглянути код безпеки або надіслати без перегляду.</item>
+        <item quantity="other">Можливо, %1$d ваших контактів перевстановили Signal або змінили пристрій. Ви можете переглянути код безпеки або надіслати без перегляду.</item>
     </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Підтвердити код безпеки</string>
@@ -6533,7 +6533,7 @@
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">Пропущений</string>
     <!-- Displayed for missed calls declined by notification profile -->
-    <string name="CallLogAdapter__missed_notification_profile">Missed while notification profile on</string>
+    <string name="CallLogAdapter__missed_notification_profile">Пропущено під час увімкненого профілю сповіщень</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">Приєднатись</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -6648,7 +6648,7 @@
     <!-- Missed group call in call info -->
     <string name="CallPreference__missed_group_call">Пропущений груповий дзвінок</string>
     <!-- Missed group call while notification profile on in call info -->
-    <string name="CallPreference__missed_group_call_notification_profile">Missed group call while notification profile on</string>
+    <string name="CallPreference__missed_group_call_notification_profile">Пропущено груповий виклик під час увімкненого профілю сповіщень</string>
     <!-- Incoming group call in call info -->
     <string name="CallPreference__incoming_group_call">Вхідний груповий дзвінок</string>
     <!-- Outgoing group call in call info -->

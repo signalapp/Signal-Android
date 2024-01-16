@@ -1372,9 +1372,9 @@
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">שיחת וידאו שלא נענתה</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
-    <string name="MessageRecord_missed_voice_call_notification_profile">Missed voice call while notification profile on</string>
+    <string name="MessageRecord_missed_voice_call_notification_profile">שיחה קולית שלא נענתה בזמן שפרופיל ההתראות פועל</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
-    <string name="MessageRecord_missed_video_call_notification_profile">Missed video call while notification profile on</string>
+    <string name="MessageRecord_missed_video_call_notification_profile">שיחת וידאו שלא נענתה בזמן שפרופיל ההתראות פועל</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
     <string name="MessageRecord_you_declined_a_voice_call">דחית שיחה קולית</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
@@ -2384,11 +2384,11 @@
     <!-- Content description for done button -->
     <string name="UsernameEditFragment__done">סיים</string>
     <!-- Displayed when the chosen discriminator is not available for the given nickname -->
-    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">This username is not available, try another number.</string>
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">שם המשתמש הזה לא זמין, כדאי לנסות מספר אחר.</string>
     <!-- Displayed when the chosen discriminator is too short -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Invalid username, enter a minimum of %1$d digits.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">שם משתמש לא חוקי, יש להזין לפחות %1$d ספרות.</string>
     <!-- Displayed when the chosen discriminator is too long -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Invalid username, enter a maximum of %1$d digits.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">שם משתמש לא חוקי, יש להזין עד %1$d ספרות.</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">איש קשר %1$d ב־Signal!</item>
@@ -5311,11 +5311,11 @@
     <!-- Button text that launches the contact picker to select from -->
     <string name="AddAllowedMembers__add_people_or_groups">הוסף אנשים או קבוצות</string>
     <!-- Title for exceptions section of add people to notification profile screen in create flow -->
-    <string name="AddAllowedMembers__exceptions">חריגות</string>
+    <string name="AddAllowedMembers__exceptions">יוצאי דופן</string>
     <!-- List preference to toggle that allows calls through the notification profile during create flow -->
-    <string name="AddAllowedMembers__allow_all_calls">התר את כל השיחות</string>
+    <string name="AddAllowedMembers__allow_all_calls">לאפשר את כל השיחות</string>
     <!-- List preference to toggle that allows mentions through the notification profile during create flow -->
-    <string name="AddAllowedMembers__notify_for_all_mentions">יידע לגבי כל האזכורים</string>
+    <string name="AddAllowedMembers__notify_for_all_mentions">להתריע על כל האזכורים</string>
 
     <!-- Call to action button on contact picker for adding to profile -->
     <string name="SelectRecipientsFragment__add">הוסף</string>
@@ -5964,10 +5964,10 @@
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">כל חברי ה-Signal נסקרו, יש ללחוץ על שליחה כדי להמשיך.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
     <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
-        <item quantity="one">%1$d connection may have reinstalled Signal or changed devices. You may review their safety number or continue with the send.</item>
-        <item quantity="two">%1$d connections may have reinstalled Signal or changed devices. You may review their safety numbers or continue with the send.</item>
-        <item quantity="many">%1$d connections may have reinstalled Signal or changed devices. You may review their safety numbers or continue with the send.</item>
-        <item quantity="other">%1$d connections may have reinstalled Signal or changed devices. You may review their safety numbers or continue with the send.</item>
+        <item quantity="one">יתכן שחבר או חברת Signal %1$d התקינו מחדש את Signal או החליפו מכשירים. יש לך אפשרות לסקור את מספר הבטיחות שלהם או להמשיך עם השליחה.</item>
+        <item quantity="two">יתכן ש–%1$d חברי Signal התקינו מחדש את Signal או החליפו מכשירים. יש לך אפשרות לסקור את מספרי הבטיחות שלהם או להמשיך עם השליחה.</item>
+        <item quantity="many">יתכן ש–%1$d חברי Signal התקינו מחדש את Signal או החליפו מכשירים. יש לך אפשרות לסקור את מספרי הבטיחות שלהם או להמשיך עם השליחה.</item>
+        <item quantity="other">יתכן ש–%1$d חברי Signal התקינו מחדש את Signal או החליפו מכשירים. יש לך אפשרות לסקור את מספרי הבטיחות שלהם או להמשיך עם השליחה.</item>
     </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">אימות מספר בטיחות</string>
@@ -6533,7 +6533,7 @@
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">שיחה שלא נענתה</string>
     <!-- Displayed for missed calls declined by notification profile -->
-    <string name="CallLogAdapter__missed_notification_profile">Missed while notification profile on</string>
+    <string name="CallLogAdapter__missed_notification_profile">שיחות שלא נענו בזמן שפרופיל ההתראות פועל</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">הצטרפות</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -6648,7 +6648,7 @@
     <!-- Missed group call in call info -->
     <string name="CallPreference__missed_group_call">שיחה קבוצתית שלא נענתה</string>
     <!-- Missed group call while notification profile on in call info -->
-    <string name="CallPreference__missed_group_call_notification_profile">Missed group call while notification profile on</string>
+    <string name="CallPreference__missed_group_call_notification_profile">שיחה קבוצתית שלא נענתה בזמן שפרופיל ההתראות פועל</string>
     <!-- Incoming group call in call info -->
     <string name="CallPreference__incoming_group_call">שיחה קבוצתית נכנסת</string>
     <!-- Outgoing group call in call info -->

@@ -1240,9 +1240,9 @@
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">လွတ်သွားသော ဗီဒီယိုကောလ်</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
-    <string name="MessageRecord_missed_voice_call_notification_profile">Missed voice call while notification profile on</string>
+    <string name="MessageRecord_missed_voice_call_notification_profile">အသိပေးချက် ပရိုဖိုင်ကို ဖွင့်ထားစဉ် အော်ဒီယိုကောလ် လွတ်သွားသည်</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
-    <string name="MessageRecord_missed_video_call_notification_profile">Missed video call while notification profile on</string>
+    <string name="MessageRecord_missed_video_call_notification_profile">အသိပေးချက် ပရိုဖိုင်ကို ဖွင့်ထားစဉ် ဗီဒီယိုကောလ် လွတ်သွားသည်</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
     <string name="MessageRecord_you_declined_a_voice_call">သင်သည် အော်ဒီယိုကောလ်ကို ငြင်းပယ်လိုက်သည်</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
@@ -2150,11 +2150,11 @@
     <!-- Content description for done button -->
     <string name="UsernameEditFragment__done">ပြီးပါပြီ</string>
     <!-- Displayed when the chosen discriminator is not available for the given nickname -->
-    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">This username is not available, try another number.</string>
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">ဤသုံးစွဲသူအမည်ကို သုံး၍မရပါ၊ အခြားနံပါတ်တစ်ခုကို စမ်းကြည့်ပါ။</string>
     <!-- Displayed when the chosen discriminator is too short -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Invalid username, enter a minimum of %1$d digits.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">သုံးစွဲသူအမည် မမှန်ကန်ပါ၊ အနည်းဆုံး ဂဏန်း %1$d လုံး ရိုက်ထည့်ပါ။</string>
     <!-- Displayed when the chosen discriminator is too long -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Invalid username, enter a maximum of %1$d digits.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">သုံးစွဲသူအမည် မမှန်ကန်ပါ၊ အများဆုံး ဂဏန်း %1$d လုံး ရိုက်ထည့်ပါ။</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="other">အဆက်အသွယ် %1$d ဦးသည် Signal ပေါ်ရှိပါသည်!</item>
@@ -4970,7 +4970,7 @@
     <!-- List preference to toggle that allows calls through the notification profile during create flow -->
     <string name="AddAllowedMembers__allow_all_calls">ကောလ်အားလုံး ခွင့်ပြုရန်</string>
     <!-- List preference to toggle that allows mentions through the notification profile during create flow -->
-    <string name="AddAllowedMembers__notify_for_all_mentions">မန်းရှင်းလုပ်ထားသူအားလုံးအတွက် အသိပေးရန်</string>
+    <string name="AddAllowedMembers__notify_for_all_mentions">မန်းရှင်းခေါ်မှုများအားလုံးအတွက် အသိပေးရန်</string>
 
     <!-- Call to action button on contact picker for adding to profile -->
     <string name="SelectRecipientsFragment__add">ပေါင်းထည့်မယ်</string>
@@ -5568,7 +5568,7 @@
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">ချိတ်ဆက်မှုများ အားလုံးကို ပြန်လည်စိစစ်ထားပါသည်၊ ဆက်လုပ်ရန်အတွက် ပေးပို့မည်ကို နှိပ်ပါ။</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
     <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
-        <item quantity="other">%1$d connections may have reinstalled Signal or changed devices. You may review their safety numbers or continue with the send.</item>
+        <item quantity="other">အဆက်အသွယ် %1$d ဦးသည် Signal ကို ပြန်လည်ထည့်သွင်းခြင်း သို့မဟုတ် စက်ပြောင်းခြင်း ပြုလုပ်ခဲ့နိုင်ပါသည်။ ၎င်းတို့၏ လုံခြုံရေးနံပါတ်များကို သင် ပြန်လည်စိစစ်နိုင်ပါသည် သို့မဟုတ် ပေးပို့မှုကို ဆက်လုပ်နိုင်ပါသည်။</item>
     </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">စိတ်ချရသောနံပါတ်ကို စစ်ဆေးအတည်ပြုခြင်း</string>
@@ -6119,7 +6119,7 @@
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">လွတ်သွားသည်</string>
     <!-- Displayed for missed calls declined by notification profile -->
-    <string name="CallLogAdapter__missed_notification_profile">Missed while notification profile on</string>
+    <string name="CallLogAdapter__missed_notification_profile">အသိပေးချက် ပရိုဖိုင်ကို ဖွင့်ထားစဉ် လွတ်သွားသည်</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">ပါဝင်ရန်</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -6225,7 +6225,7 @@
     <!-- Missed group call in call info -->
     <string name="CallPreference__missed_group_call">လွတ်သွားသော အဖွဲ့ကောလ်</string>
     <!-- Missed group call while notification profile on in call info -->
-    <string name="CallPreference__missed_group_call_notification_profile">Missed group call while notification profile on</string>
+    <string name="CallPreference__missed_group_call_notification_profile">အသိပေးချက် ပရိုဖိုင်ကို ဖွင့်ထားစဉ် အဖွဲ့ကောလ် လွတ်သွားသည်</string>
     <!-- Incoming group call in call info -->
     <string name="CallPreference__incoming_group_call">အဝင် အဖွဲ့ကောလ်</string>
     <!-- Outgoing group call in call info -->

@@ -1240,9 +1240,9 @@
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">วิดีโอคอลที่ไม่ได้รับ</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
-    <string name="MessageRecord_missed_voice_call_notification_profile">Missed voice call while notification profile on</string>
+    <string name="MessageRecord_missed_voice_call_notification_profile">สายโทรเสียงที่ไม่ได้รับระหว่างใช้โปรไฟล์การแจ้งเตือน</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
-    <string name="MessageRecord_missed_video_call_notification_profile">Missed video call while notification profile on</string>
+    <string name="MessageRecord_missed_video_call_notification_profile">วิดีโอคอลที่ไม่ได้รับระหว่างใช้โปรไฟล์การแจ้งเตือน</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
     <string name="MessageRecord_you_declined_a_voice_call">คุณปฏิเสธการโทรด้วยเสียง</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
@@ -2150,11 +2150,11 @@
     <!-- Content description for done button -->
     <string name="UsernameEditFragment__done">เสร็จสิ้น</string>
     <!-- Displayed when the chosen discriminator is not available for the given nickname -->
-    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">This username is not available, try another number.</string>
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">ไม่สามารถใช้ชื่อผู้ใช้นี้ได้ ลองกรอกตัวเลขอื่น</string>
     <!-- Displayed when the chosen discriminator is too short -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Invalid username, enter a minimum of %1$d digits.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">ชื่อผู้ใช้ไม่ถูกต้อง ต้องกรอกตัวเลขอย่างน้อย %1$d หลัก</string>
     <!-- Displayed when the chosen discriminator is too long -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Invalid username, enter a maximum of %1$d digits.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">ชื่อผู้ใช้ไม่ถูกต้อง ต้องกรอกตัวเลขไม่เกิน %1$d หลัก</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="other">มีผู้ติดต่อ %1$d คนใช้งาน Signal!</item>
@@ -5568,7 +5568,7 @@
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">ตรวจสอบผู้ติดต่อทั้งหมดแล้ว แตะส่งเพื่อดำเนินการต่อ</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
     <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
-        <item quantity="other">%1$d connections may have reinstalled Signal or changed devices. You may review their safety numbers or continue with the send.</item>
+        <item quantity="other">เครือข่าย %1$d คนอาจติดตั้ง Signal ใหม่หรือเปลี่ยนอุปกรณ์ คุณสามารถลองตรวจสอบหมายเลขความปลอดภัยของเครือข่ายก่อนหรือยืนยันการส่ง</item>
     </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">ตรวจยืนยันหมายเลขความปลอดภัย</string>
@@ -6119,7 +6119,7 @@
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">ไม่ได้รับ</string>
     <!-- Displayed for missed calls declined by notification profile -->
-    <string name="CallLogAdapter__missed_notification_profile">Missed while notification profile on</string>
+    <string name="CallLogAdapter__missed_notification_profile">สายที่ไม่ได้รับระหว่างใช้โปรไฟล์การแจ้งเตือน</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">เข้าร่วม</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -6225,7 +6225,7 @@
     <!-- Missed group call in call info -->
     <string name="CallPreference__missed_group_call">สายโทรกลุ่มที่ไม่ได้รับ</string>
     <!-- Missed group call while notification profile on in call info -->
-    <string name="CallPreference__missed_group_call_notification_profile">Missed group call while notification profile on</string>
+    <string name="CallPreference__missed_group_call_notification_profile">สายโทรกลุ่มที่ไม่ได้รับระหว่างใช้โปรไฟล์การแจ้งเตือน</string>
     <!-- Incoming group call in call info -->
     <string name="CallPreference__incoming_group_call">สายโทรกลุ่มขาเข้า</string>
     <!-- Outgoing group call in call info -->

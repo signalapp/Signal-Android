@@ -1284,9 +1284,9 @@
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">Vastamata videokõne</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
-    <string name="MessageRecord_missed_voice_call_notification_profile">Missed voice call while notification profile on</string>
+    <string name="MessageRecord_missed_voice_call_notification_profile">Vastamata häälkõne teavituste profiili sisselülitatuse ajal</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
-    <string name="MessageRecord_missed_video_call_notification_profile">Missed video call while notification profile on</string>
+    <string name="MessageRecord_missed_video_call_notification_profile">Vastamata videokõne teavituste profiili sisselülitatuse ajal</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
     <string name="MessageRecord_you_declined_a_voice_call">Sa keeldusid häälkõnest</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
@@ -2228,11 +2228,11 @@
     <!-- Content description for done button -->
     <string name="UsernameEditFragment__done">Tehtud</string>
     <!-- Displayed when the chosen discriminator is not available for the given nickname -->
-    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">This username is not available, try another number.</string>
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">See kasutajanimi ei ole saadaval, proovi teist numbrit.</string>
     <!-- Displayed when the chosen discriminator is too short -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Invalid username, enter a minimum of %1$d digits.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Kehtetu kasutajanimi, sisesta vähemalt %1$d tähemärki.</string>
     <!-- Displayed when the chosen discriminator is too long -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Invalid username, enter a maximum of %1$d digits.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Kehtetu kasutajanimi, sisesta maksimaalselt %1$d tähemärki.</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d kontakt on Signalis!</item>
@@ -5700,8 +5700,8 @@
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Kõik kontaktid on kontrollitud, jätkamiseks toksa \"Saada\".</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
     <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
-        <item quantity="one">%1$d connection may have reinstalled Signal or changed devices. You may review their safety number or continue with the send.</item>
-        <item quantity="other">%1$d connections may have reinstalled Signal or changed devices. You may review their safety numbers or continue with the send.</item>
+        <item quantity="one">Võimalik, et %1$d kontakt on Signali uuesti paigaldanud või oma seadet vahetanud. Sul on võimalik tema turvanumber üle kontrollida või saatmisega jätkata.</item>
+        <item quantity="other">Võimalik, et %1$d kontakti on Signali uuesti paigaldanud või oma seadet vahetanud. Sul on võimalik nende turvanumbrid üle kontrollida või saatmisega jätkata.</item>
     </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Kinnita turvanumbrit</string>
@@ -6257,7 +6257,7 @@
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">Vastamata</string>
     <!-- Displayed for missed calls declined by notification profile -->
-    <string name="CallLogAdapter__missed_notification_profile">Missed while notification profile on</string>
+    <string name="CallLogAdapter__missed_notification_profile">Vastamata teavituste profiili sisselülitatuse ajal</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">Liitu</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -6366,7 +6366,7 @@
     <!-- Missed group call in call info -->
     <string name="CallPreference__missed_group_call">Vastamata grupikõne</string>
     <!-- Missed group call while notification profile on in call info -->
-    <string name="CallPreference__missed_group_call_notification_profile">Missed group call while notification profile on</string>
+    <string name="CallPreference__missed_group_call_notification_profile">Vastamata grupikõne teavituste profiili sisselülitatuse ajal</string>
     <!-- Incoming group call in call info -->
     <string name="CallPreference__incoming_group_call">Sissetulev grupikõne</string>
     <!-- Outgoing group call in call info -->

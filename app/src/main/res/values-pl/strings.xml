@@ -1372,9 +1372,9 @@
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">Nieodebrane połączenie wideo</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
-    <string name="MessageRecord_missed_voice_call_notification_profile">Missed voice call while notification profile on</string>
+    <string name="MessageRecord_missed_voice_call_notification_profile">Nieodebrane połączenie głosowe przy włączonym profilu powiadomień</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
-    <string name="MessageRecord_missed_video_call_notification_profile">Missed video call while notification profile on</string>
+    <string name="MessageRecord_missed_video_call_notification_profile">Nieodebrane połączenie wideo przy włączonym profilu powiadomień</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
     <string name="MessageRecord_you_declined_a_voice_call">Odrzucono połączenie głosowe</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
@@ -2384,11 +2384,11 @@
     <!-- Content description for done button -->
     <string name="UsernameEditFragment__done">Gotowe</string>
     <!-- Displayed when the chosen discriminator is not available for the given nickname -->
-    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">This username is not available, try another number.</string>
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">Ta nazwa użytkownika jest niedostępna, spróbuj innego numeru.</string>
     <!-- Displayed when the chosen discriminator is too short -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Invalid username, enter a minimum of %1$d digits.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Nieprawidłowa nazwa użytkownika, wprowadź co najmniej %1$d cyfry.</string>
     <!-- Displayed when the chosen discriminator is too long -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Invalid username, enter a maximum of %1$d digits.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Nieprawidłowa nazwa użytkownika, wprowadź maks. %1$d cyfr.</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$dkontakt jest w Signal!</item>
@@ -5964,10 +5964,10 @@
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Wszystkie kontakty zostały przejrzane. Stuknij w opcję „wyślij”, aby kontynuować.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
     <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
-        <item quantity="one">%1$d connection may have reinstalled Signal or changed devices. You may review their safety number or continue with the send.</item>
-        <item quantity="few">%1$d connections may have reinstalled Signal or changed devices. You may review their safety numbers or continue with the send.</item>
-        <item quantity="many">%1$d connections may have reinstalled Signal or changed devices. You may review their safety numbers or continue with the send.</item>
-        <item quantity="other">%1$d connections may have reinstalled Signal or changed devices. You may review their safety numbers or continue with the send.</item>
+        <item quantity="one">Wśród kontaktów masz %1$d osobę, która mogła ponownie zainstalować aplikację Signal albo zmienić urządzenie. Możesz zweryfikować jej numer bezpieczeństwa lub wysłać bez weryfikacji.</item>
+        <item quantity="few">Wśród kontaktów masz %1$d osoby, które mogły ponownie zainstalować aplikację Signal albo zmienić urządzenie. Możesz zweryfikować ich numer bezpieczeństwa lub wysłać bez weryfikacji.</item>
+        <item quantity="many">Wśród kontaktów masz %1$d osób, które mogły ponownie zainstalować aplikację Signal albo zmienić urządzenie. Możesz zweryfikować ich numer bezpieczeństwa lub wysłać bez weryfikacji.</item>
+        <item quantity="other">Wśród kontaktów masz %1$d osób, które mogły ponownie zainstalować aplikację Signal albo zmienić urządzenie. Możesz zweryfikować ich numer bezpieczeństwa lub wysłać bez weryfikacji.</item>
     </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Zweryfikuj numer bezpieczeństwa</string>
@@ -6533,7 +6533,7 @@
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">Nieodebrane</string>
     <!-- Displayed for missed calls declined by notification profile -->
-    <string name="CallLogAdapter__missed_notification_profile">Missed while notification profile on</string>
+    <string name="CallLogAdapter__missed_notification_profile">Nieodebrane przy włączonym profilu powiadomień</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">Dołącz</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -6648,7 +6648,7 @@
     <!-- Missed group call in call info -->
     <string name="CallPreference__missed_group_call">Nieodebrane połączenie grupowe</string>
     <!-- Missed group call while notification profile on in call info -->
-    <string name="CallPreference__missed_group_call_notification_profile">Missed group call while notification profile on</string>
+    <string name="CallPreference__missed_group_call_notification_profile">Nieodebrane połączenie grupowe przy włączonym profilu powiadomień</string>
     <!-- Incoming group call in call info -->
     <string name="CallPreference__incoming_group_call">Nadchodzące połączenie grupowe</string>
     <!-- Outgoing group call in call info -->

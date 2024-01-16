@@ -1284,9 +1284,9 @@
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">Chamada de vídeo perdida</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
-    <string name="MessageRecord_missed_voice_call_notification_profile">Missed voice call while notification profile on</string>
+    <string name="MessageRecord_missed_voice_call_notification_profile">Chamada de voz perdida mentres o perfil de notificación estaba activado</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
-    <string name="MessageRecord_missed_video_call_notification_profile">Missed video call while notification profile on</string>
+    <string name="MessageRecord_missed_video_call_notification_profile">Videochamada perdida mentres o perfil de notificación estaba activado</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
     <string name="MessageRecord_you_declined_a_voice_call">Rexeitaches unha chamada de voz</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
@@ -2228,11 +2228,11 @@
     <!-- Content description for done button -->
     <string name="UsernameEditFragment__done">Feito</string>
     <!-- Displayed when the chosen discriminator is not available for the given nickname -->
-    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">This username is not available, try another number.</string>
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">Este nome de usuario non está dispoñible, tenta con outro número.</string>
     <!-- Displayed when the chosen discriminator is too short -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Invalid username, enter a minimum of %1$d digits.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Nome de usuario non válido, insire un mínimo de %1$d díxitos.</string>
     <!-- Displayed when the chosen discriminator is too long -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Invalid username, enter a maximum of %1$d digits.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Nome de usuario non válido, insire un máximo de %1$d díxitos.</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$dcontacto está en Signal!</item>
@@ -5700,8 +5700,8 @@
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Revisáronse todas as conexións, preme «Enviar» para continuar.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
     <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
-        <item quantity="one">%1$d connection may have reinstalled Signal or changed devices. You may review their safety number or continue with the send.</item>
-        <item quantity="other">%1$d connections may have reinstalled Signal or changed devices. You may review their safety numbers or continue with the send.</item>
+        <item quantity="one">Tes %1$d conexión que pode que volvese instalar Signal ou que cambiase de dispositivo. Se queres, podes revisar o seu número de seguranza ou continuar co envío.</item>
+        <item quantity="other">Tes %1$d conexións que pode que volvesen instalar Signal ou que cambiasen de dispositivo. Se queres, podes revisar o seus números de seguranza ou continuar co envío.</item>
     </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Comprobar número de seguranza</string>
@@ -6257,7 +6257,7 @@
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">Perdida</string>
     <!-- Displayed for missed calls declined by notification profile -->
-    <string name="CallLogAdapter__missed_notification_profile">Missed while notification profile on</string>
+    <string name="CallLogAdapter__missed_notification_profile">Perdida mentres o perfil de notificación estaba activado</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">Unirse</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -6366,7 +6366,7 @@
     <!-- Missed group call in call info -->
     <string name="CallPreference__missed_group_call">Chamada de grupo perdida</string>
     <!-- Missed group call while notification profile on in call info -->
-    <string name="CallPreference__missed_group_call_notification_profile">Missed group call while notification profile on</string>
+    <string name="CallPreference__missed_group_call_notification_profile">Chamada de grupo perdida mentres o perfil de notificación estaba activado</string>
     <!-- Incoming group call in call info -->
     <string name="CallPreference__incoming_group_call">Chamada de grupo entrante</string>
     <!-- Outgoing group call in call info -->

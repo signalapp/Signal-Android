@@ -371,7 +371,7 @@
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">Omdat je niet langer lid bent van deze groep ontvang je geen nieuwe berichten en kun je geen berichten verzenden.</string>
     <string name="ConversationActivity_only_s_can_send_messages">Alleen %1$s kunnen berichten verzenden.</string>
     <string name="ConversationActivity_admins">beheerders</string>
-    <string name="ConversationActivity_message_an_admin">Bericht verzenden naar een beheerder</string>
+    <string name="ConversationActivity_message_an_admin">Bericht sturen naar een beheerder</string>
     <string name="ConversationActivity_cant_start_group_call">Je kunt geen groepsoproep beginnen</string>
     <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Alleen beheerders kunnen in deze groep oproepen beginnen.</string>
     <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Er is geen app beschikbaar op je apparaat om deze link te openen.</string>
@@ -606,9 +606,9 @@
     <!-- Toolbar title for this screen -->
     <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Wie kan mij via mijn nummer vinden?</string>
     <!-- Description for radio item stating anyone can see your phone number -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">Iedereen die jouw telefoonnummer in zijn contacten heeft staan, zal je kunnen zien als een contact op Signal. Anderen kunnen je vinden via jouw telefoonnummer als ze daarop zoeken.</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">Iedereen die jouw telefoonnummer in hun contacten heeft staan, zal jou kunnen zien als een contact op Signal. Anderen kunnen je vinden via jouw telefoonnummer als ze daarop zoeken.</string>
     <!-- Description for radio item stating no one will be able to see your phone number -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">Niemand op Signal kan je vinden met jouw telefoonnummer.</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">Niemand op Signal kan jou vinden met jouw telefoonnummer.</string>
 
     <!-- ChooseBackupFragment -->
     <string name="ChooseBackupFragment__restore_from_backup">Back-upgegevens terugzetten?</string>
@@ -642,7 +642,7 @@
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Test je back-upwachtwoord om na te gaan of je het juiste wachtwoord hebt onthouden</string>
     <string name="BackupsPreferenceFragment__turn_on">Inschakelen</string>
     <string name="BackupsPreferenceFragment__turn_off">Uitschakelen</string>
-    <string name="BackupsPreferenceFragment__to_restore_a_backup">"Om je gegevens uit een back-up terug te zetten moet je Signal opnieuw installeren. Open dan de net geïnstalleerde Signal-app en tik op “Back-upgegevens terugzetten”. %1$s"</string>
+    <string name="BackupsPreferenceFragment__to_restore_a_backup">"Om je gegevens uit een back-up terug te zetten moet je Signal opnieuw installeren. Open vervolgens de app en tik op “Back-upgegevens terugzetten”. %1$s"</string>
     <string name="BackupsPreferenceFragment__learn_more">Meer lezen</string>
     <string name="BackupsPreferenceFragment__in_progress">Wordt nu uitgevoerd…</string>
     <!-- Status text shown in backup preferences when verifying a backup -->
@@ -1284,9 +1284,9 @@
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">Gemiste video-oproep</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
-    <string name="MessageRecord_missed_voice_call_notification_profile">Missed voice call while notification profile on</string>
+    <string name="MessageRecord_missed_voice_call_notification_profile">Gemiste spraakoproep terwijl het meldingsprofiel was ingeschakeld</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
-    <string name="MessageRecord_missed_video_call_notification_profile">Missed video call while notification profile on</string>
+    <string name="MessageRecord_missed_video_call_notification_profile">Gemiste video-oproep terwijl meldingsprofiel was ingeschakeld</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
     <string name="MessageRecord_you_declined_a_voice_call">Je hebt een spraakoproep geweigerd</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
@@ -2208,7 +2208,7 @@
     <!-- Toolbar title when entering from registration -->
     <string name="UsernameEditFragment__add_a_username">Voeg een gebruikersnaam toe</string>
     <!-- Instructional text at the top of the username edit screen -->
-    <string name="UsernameEditFragment__choose_your_username">Kies jouw gebruikersnaam.</string>
+    <string name="UsernameEditFragment__choose_your_username">Kies jouw gebruikersnaam</string>
     <string name="UsernameEditFragment_username">Gebruikersnaam</string>
     <string name="UsernameEditFragment_delete">Verwijderen</string>
     <string name="UsernameEditFragment_successfully_removed_username">Gebruikersnaam succesvol verwijderd.</string>
@@ -2228,11 +2228,11 @@
     <!-- Content description for done button -->
     <string name="UsernameEditFragment__done">Klaar</string>
     <!-- Displayed when the chosen discriminator is not available for the given nickname -->
-    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">This username is not available, try another number.</string>
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">Deze gebruikersnaam is niet beschikbaar, probeer een ander nummer.</string>
     <!-- Displayed when the chosen discriminator is too short -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Invalid username, enter a minimum of %1$d digits.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Ongeldige gebruikersnaam, voer minimaal %1$d cijfers in.</string>
     <!-- Displayed when the chosen discriminator is too long -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Invalid username, enter a maximum of %1$d digits.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Ongeldige gebruikersnaam, voer maximaal %1$d cijfers in.</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d van je contactpersonen is bereikbaar via Signal.</item>
@@ -3616,7 +3616,7 @@
     <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Om je te helpen je pincode te onthouden, vragen we je regelmatig om je pincode in te voeren. We zullen dit na verloop van tijd minder vaak vragen.</string>
     <string name="KbsReminderDialog__skip">Overslaan</string>
     <string name="KbsReminderDialog__submit">Bevestigen</string>
-    <string name="KbsReminderDialog__forgot_pin">Tik hier als je je pincode bent vergeten</string>
+    <string name="KbsReminderDialog__forgot_pin">Pincode vergeten?</string>
     <string name="KbsReminderDialog__incorrect_pin_try_again">Foutieve pincode, probeer het opnieuw.</string>
 
     <!-- AccountLockedFragment -->
@@ -4575,7 +4575,7 @@
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__story">Verhaal</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__message">Berichten</string>
+    <string name="ConversationSettingsFragment__message">Bericht</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__video">Video</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -5083,7 +5083,7 @@
     <!-- Title for exceptions section of add people to notification profile screen in create flow -->
     <string name="AddAllowedMembers__exceptions">Uitzonderingen</string>
     <!-- List preference to toggle that allows calls through the notification profile during create flow -->
-    <string name="AddAllowedMembers__allow_all_calls">Alle oproepen doorlaten</string>
+    <string name="AddAllowedMembers__allow_all_calls">Alle oproepen toestaan</string>
     <!-- List preference to toggle that allows mentions through the notification profile during create flow -->
     <string name="AddAllowedMembers__notify_for_all_mentions">Alle vermeldingen melden</string>
 
@@ -5700,8 +5700,8 @@
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Alle contacten zijn beoordeeld, tik op versturen om verder te gaan.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
     <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
-        <item quantity="one">%1$d connection may have reinstalled Signal or changed devices. You may review their safety number or continue with the send.</item>
-        <item quantity="other">%1$d connections may have reinstalled Signal or changed devices. You may review their safety numbers or continue with the send.</item>
+        <item quantity="one">%1$d contact heeft mogelijk Signal opnieuw geïnstalleerd of is van toestel veranderd. Je kunt het veiligheidsnummer bekijken of doorgaan met verzenden.</item>
+        <item quantity="other">%1$d contacten hebben mogelijk Signal opnieuw geïnstalleerd of zijn van toestel veranderd. Je kunt hun veiligheidsnummer bekijken of doorgaan met verzenden.</item>
     </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Veiligheidsnummer verifiëren</string>
@@ -6257,7 +6257,7 @@
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">Gemist</string>
     <!-- Displayed for missed calls declined by notification profile -->
-    <string name="CallLogAdapter__missed_notification_profile">Missed while notification profile on</string>
+    <string name="CallLogAdapter__missed_notification_profile">Gemist terwijl meldingsprofiel was ingeschakeld</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">Deelnemen</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -6366,7 +6366,7 @@
     <!-- Missed group call in call info -->
     <string name="CallPreference__missed_group_call">Gemiste groepsoproep</string>
     <!-- Missed group call while notification profile on in call info -->
-    <string name="CallPreference__missed_group_call_notification_profile">Missed group call while notification profile on</string>
+    <string name="CallPreference__missed_group_call_notification_profile">Gemiste groepsoproep terwijl meldingsprofiel was ingeschakeld</string>
     <!-- Incoming group call in call info -->
     <string name="CallPreference__incoming_group_call">Inkomende groepsoproep</string>
     <!-- Outgoing group call in call info -->
