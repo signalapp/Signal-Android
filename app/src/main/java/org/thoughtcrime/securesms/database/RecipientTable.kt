@@ -3124,11 +3124,12 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       .readToSingleBoolean()
   }
 
-  fun getRegisteredE164s(): Set<String> {
+  /** All e164's that are eligible for having a signal link added to their system contact entry. */
+  fun getE164sForSystemContactLinks(): Set<String> {
     return readableDatabase
       .select(E164)
       .from(TABLE_NAME)
-      .where("$REGISTERED = ? and $HIDDEN = ? AND $E164 NOT NULL", RegisteredState.REGISTERED.id, Recipient.HiddenState.NOT_HIDDEN.serialize())
+      .where("$REGISTERED = ? and $HIDDEN = ? AND $E164 NOT NULL AND $PHONE_NUMBER_DISCOVERABLE != ?", RegisteredState.REGISTERED.id, Recipient.HiddenState.NOT_HIDDEN.serialize(), PhoneNumberDiscoverableState.NOT_DISCOVERABLE)
       .run()
       .readToSet { cursor ->
         cursor.requireNonNullString(E164)

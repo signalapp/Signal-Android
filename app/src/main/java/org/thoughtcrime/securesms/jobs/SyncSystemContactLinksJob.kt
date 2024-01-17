@@ -44,9 +44,9 @@ class SyncSystemContactLinksJob private constructor(parameters: Parameters) : Ba
 
     val stopwatch = Stopwatch("contact-links")
 
-    val registeredE164s: Set<String> = SignalDatabase.recipients.getRegisteredE164s()
+    val e164sForLinking: Set<String> = SignalDatabase.recipients.getE164sForSystemContactLinks()
 
-    if (registeredE164s.isEmpty()) {
+    if (e164sForLinking.isEmpty()) {
       Log.w(TAG, "No registeredE164s. Skipping.")
       return
     }
@@ -66,7 +66,7 @@ class SyncSystemContactLinksJob private constructor(parameters: Parameters) : Ba
       SystemContactsRepository.addMessageAndCallLinksToContacts(
         context = context,
         config = buildContactLinkConfiguration(context, account),
-        targetE164s = registeredE164s,
+        targetE164s = e164sForLinking,
         removeIfMissing = true
       )
       stopwatch.split("add-links")
