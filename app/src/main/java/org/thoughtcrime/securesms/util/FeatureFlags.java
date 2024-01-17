@@ -82,7 +82,6 @@ public final class FeatureFlags {
   private static final String HARDWARE_AEC_BLOCKLIST_MODELS     = "android.calling.hardwareAecBlockList";
   private static final String SOFTWARE_AEC_BLOCKLIST_MODELS     = "android.calling.softwareAecBlockList";
   private static final String USE_HARDWARE_AEC_IF_OLD           = "android.calling.useHardwareAecIfOlderThanApi29";
-  private static final String USE_AEC3                          = "android.calling.useAec3";
   private static final String PAYMENTS_COUNTRY_BLOCKLIST        = "global.payments.disabledRegions";
   public  static final String PHONE_NUMBER_PRIVACY              = "android.pnp";
   public  static final String BLOCK_SSE                         = "android.blockSessionSwitchoverEvents";
@@ -154,7 +153,6 @@ public final class FeatureFlags {
       HARDWARE_AEC_BLOCKLIST_MODELS,
       SOFTWARE_AEC_BLOCKLIST_MODELS,
       USE_HARDWARE_AEC_IF_OLD,
-      USE_AEC3,
       PAYMENTS_COUNTRY_BLOCKLIST,
       STORIES_AUTO_DOWNLOAD_MAXIMUM,
       TELECOM_MANUFACTURER_ALLOWLIST,
@@ -240,7 +238,6 @@ public final class FeatureFlags {
       HARDWARE_AEC_BLOCKLIST_MODELS,
       SOFTWARE_AEC_BLOCKLIST_MODELS,
       USE_HARDWARE_AEC_IF_OLD,
-      USE_AEC3,
       PAYMENTS_COUNTRY_BLOCKLIST,
       TELECOM_MANUFACTURER_ALLOWLIST,
       TELECOM_MODEL_BLOCKLIST,
@@ -515,11 +512,6 @@ public final class FeatureFlags {
   /** Whether or not hardware AEC should be used for calling on devices older than API 29. */
   public static boolean useHardwareAecIfOlderThanApi29() {
     return getBoolean(USE_HARDWARE_AEC_IF_OLD, false);
-  }
-
-  /** Whether or not {@link org.signal.ringrtc.CallManager.AudioProcessingMethod#ForceSoftwareAec3} can be used */
-  public static boolean useAec3() {
-    return getBoolean(USE_AEC3, true);
   }
 
   /**
