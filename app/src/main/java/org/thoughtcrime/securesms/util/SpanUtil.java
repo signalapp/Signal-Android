@@ -116,9 +116,13 @@ public final class SpanUtil {
   }
 
   public static CharSequence buildImageSpan(@NonNull Drawable drawable) {
-    SpannableString imageSpan = new SpannableString(" ");
-
     int flag = Build.VERSION.SDK_INT >= 29 ? DynamicDrawableSpan.ALIGN_CENTER : DynamicDrawableSpan.ALIGN_BASELINE;
+
+    return buildImageSpan(drawable, flag);
+  }
+
+  private static CharSequence buildImageSpan(@NonNull Drawable drawable, int flag) {
+    SpannableString imageSpan = new SpannableString(" ");
 
     imageSpan.setSpan(new ImageSpan(drawable, flag), 0, imageSpan.length(), 0);
 
@@ -141,6 +145,11 @@ public final class SpanUtil {
   public static void appendCenteredImageSpan(@NonNull SpannableStringBuilder builder, @NonNull Drawable drawable, int width, int height) {
     drawable.setBounds(0, 0, ViewUtil.dpToPx(width), ViewUtil.dpToPx(height));
     builder.append(" ").append(SpanUtil.buildCenteredImageSpan(drawable));
+  }
+
+  public static void appendBottomImageSpan(@NonNull SpannableStringBuilder builder, @NonNull Drawable drawable, int width, int height) {
+    drawable.setBounds(0, 0, ViewUtil.dpToPx(width), ViewUtil.dpToPx(height));
+    builder.append(" ").append(SpanUtil.buildImageSpan(drawable, DynamicDrawableSpan.ALIGN_BOTTOM));
   }
 
   public static CharSequence learnMore(@NonNull Context context,

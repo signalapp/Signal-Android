@@ -74,22 +74,6 @@
             app:layout_constraintTop_toBottomOf="@id/rbs_full_name"
             tools:text="🕷🕷🕷Hangin' on the web🕷🕷" />
 
-        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
-            android:id="@+id/rbs_username_number"
-            style="@style/Signal.Text.BodyLarge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dsl_settings_gutter"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="@dimen/dsl_settings_gutter"
-            android:textColor="@color/signal_text_secondary"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rbs_about"
-            app:layout_goneMarginTop="8dp"
-            tools:text="\@spidergwen  +1 555-654-6657" />
-
         <TextView
             android:id="@+id/rbs_note_to_self_description"
             android:layout_width="0dp"
@@ -106,7 +90,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rbs_username_number"
+            app:layout_constraintTop_toBottomOf="@+id/rbs_about"
             tools:visibility="visible" />
 
         <LinearLayout

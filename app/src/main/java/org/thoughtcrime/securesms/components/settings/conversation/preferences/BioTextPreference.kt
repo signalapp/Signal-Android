@@ -2,13 +2,14 @@ package org.thoughtcrime.securesms.components.settings.conversation.preferences
 
 import android.content.ClipData
 import android.content.Context
+import android.graphics.drawable.InsetDrawable
 import android.text.SpannableStringBuilder
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import org.signal.core.util.dp
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
-import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.ContextUtil
 import org.thoughtcrime.securesms.util.ServiceUtil
@@ -32,12 +33,12 @@ object BioTextPreference {
     abstract fun getSubhead1Text(context: Context): String?
     abstract fun getSubhead2Text(): String?
 
-    open val onHeadlineClickListener: () -> Unit = {}
+    open val onHeadlineClickListener: (() -> Unit)? = null
   }
 
   class RecipientModel(
     private val recipient: Recipient,
-    override val onHeadlineClickListener: () -> Unit
+    override val onHeadlineClickListener: (() -> Unit)?
   ) : BioTextPreferenceModel<RecipientModel>() {
 
     override fun getHeadlineText(context: Context): CharSequence {
@@ -56,8 +57,13 @@ object BioTextPreference {
           SpanUtil.appendCenteredImageSpan(this, ContextUtil.requireDrawable(context, R.drawable.ic_official_28), 28, 28)
         }
 
-        if (recipient.isIndividual) {
-          SpanUtil.appendCenteredImageSpan(this, ContextUtil.requireDrawable(context, R.drawable.symbol_chevron_right_24_color_on_secondary_container), 24, 24)
+        if (recipient.isIndividual && !recipient.isSelf) {
+          val drawable = ContextUtil.requireDrawable(context, R.drawable.symbol_chevron_right_24_color_on_secondary_container)
+          drawable.setBounds(0, 0, 24.dp, 24.dp)
+
+          val insetDrawable = InsetDrawable(drawable, 0, 0, 0, 4.dp)
+
+          SpanUtil.appendBottomImageSpan(this, insetDrawable, 24, 28)
         }
       }
     }
@@ -70,11 +76,7 @@ object BioTextPreference {
       }
     }
 
-    override fun getSubhead2Text(): String? = if (recipient.shouldShowE164()) {
-      recipient.e164.map(PhoneNumberFormatter::prettyPrint).orElse(null)
-    } else {
-      null
-    }
+    override fun getSubhead2Text(): String? = null
 
     override fun areContentsTheSame(newItem: RecipientModel): Boolean {
       return super.areContentsTheSame(newItem) && newItem.recipient.hasSameContent(recipient)
@@ -114,7 +116,11 @@ object BioTextPreference {
 
     override fun bind(model: T) {
       headline.text = model.getHeadlineText(context)
-      headline.setOnClickListener { model.onHeadlineClickListener() }
+
+      val clickListener = model.onHeadlineClickListener
+      if (clickListener != null) {
+        headline.setOnClickListener { clickListener() }
+      }
 
       model.getSubhead1Text(context).let {
         subhead1.text = it

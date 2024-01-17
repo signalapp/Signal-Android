@@ -584,7 +584,7 @@ class ConversationAdapterV2(
           conversationBanner.hideSubtitle()
         }
       } else if (isSelf) {
-        conversationBanner.setSubtitle(context.getString(R.string.ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation), R.drawable.symbol_person_light_24)
+        conversationBanner.setSubtitle(context.getString(R.string.ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation), R.drawable.symbol_note_light_24)
       } else {
         val subtitle: String? = recipient.takeIf { it.shouldShowE164() }?.e164?.map { e164: String? -> PhoneNumberFormatter.prettyPrint(e164!!) }?.orElse(null)
         if (subtitle == null || subtitle == title) {

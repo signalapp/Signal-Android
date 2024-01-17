@@ -323,9 +323,14 @@ class ConversationSettingsFragment : DSLSettingsFragment(
 
       state.withRecipientSettingsState {
         customPref(
-          BioTextPreference.RecipientModel(recipient = state.recipient, onHeadlineClickListener = {
-            AboutSheet.create(state.recipient).show(parentFragmentManager, null)
-          })
+          BioTextPreference.RecipientModel(
+            recipient = state.recipient,
+            onHeadlineClickListener = if (state.recipient.isSelf || !state.recipient.isIndividual) {
+              null
+            } else {
+              { AboutSheet.create(state.recipient).show(parentFragmentManager, null) }
+            }
+          )
         )
       }
 
