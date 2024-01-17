@@ -26,6 +26,7 @@ import org.signal.core.util.readToList
 import org.signal.core.util.readToSet
 import org.signal.core.util.readToSingleBoolean
 import org.signal.core.util.readToSingleLong
+import org.signal.core.util.readToSingleObject
 import org.signal.core.util.requireBlob
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
@@ -1938,6 +1939,15 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
 
     return 0
+  }
+
+  fun getPhoneNumberDiscoverability(id: RecipientId): PhoneNumberDiscoverableState? {
+    return readableDatabase
+      .select(PHONE_NUMBER_DISCOVERABLE)
+      .from(TABLE_NAME)
+      .where("$ID = ?", id)
+      .run()
+      .readToSingleObject { PhoneNumberDiscoverableState.fromId(it.requireInt(PHONE_NUMBER_DISCOVERABLE)) }
   }
 
   /**
