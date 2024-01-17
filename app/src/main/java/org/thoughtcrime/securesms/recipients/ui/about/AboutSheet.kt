@@ -215,24 +215,22 @@ private fun AboutSheetContent(
     }
 
     val groupsInCommonText = if (recipient.hasGroupsInCommon()) {
-      pluralStringResource(id = R.plurals.AboutSheet__d_groups_in, groupsInCommonCount)
+      pluralStringResource(id = R.plurals.AboutSheet__d_groups_in, groupsInCommonCount, groupsInCommonCount)
     } else {
       stringResource(id = R.string.AboutSheet__you_have_no_groups_in_common)
     }
 
+    val groupsInCommonIcon = if (!recipient.isProfileSharing && groupsInCommonCount == 0) {
+      painterResource(R.drawable.symbol_error_circle_24)
+    } else {
+      painterResource(R.drawable.symbol_group_24)
+    }
+
     AboutRow(
-      startIcon = painterResource(R.drawable.symbol_group_24),
+      startIcon = groupsInCommonIcon,
       text = groupsInCommonText,
       modifier = Modifier.fillMaxWidth()
     )
-
-    if (!recipient.isProfileSharing) {
-      AboutRow(
-        startIcon = painterResource(R.drawable.symbol_error_circle_24),
-        text = pluralStringResource(id = R.plurals.AboutSheet__d_groups_in, groupsInCommonCount),
-        modifier = Modifier.fillMaxWidth()
-      )
-    }
 
     Spacer(modifier = Modifier.size(26.dp))
   }
