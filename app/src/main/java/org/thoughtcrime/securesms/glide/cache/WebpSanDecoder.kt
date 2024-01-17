@@ -1,25 +1,27 @@
 /*
- * Copyright 2023 Signal Messenger, LLC
+ * Copyright 2024 Signal Messenger, LLC
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.signal.glide.webp
+package org.thoughtcrime.securesms.glide.cache
 
 import android.graphics.Bitmap
 import com.bumptech.glide.load.Options
 import com.bumptech.glide.load.ResourceDecoder
 import com.bumptech.glide.load.engine.Resource
-import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool
-import com.bumptech.glide.load.resource.bitmap.BitmapResource
 import org.signal.core.util.StreamUtil
 import org.signal.core.util.logging.Log
+import org.signal.libsignal.media.WebpSanitizer
 import java.io.IOException
 import java.io.InputStream
 
-class WebpInputStreamResourceDecoder(private val bitmapPool: BitmapPool) : ResourceDecoder<InputStream, Bitmap> {
+/**
+ * Uses WebpSanitizer to check for invalid webp.
+ */
+class WebpSanDecoder : ResourceDecoder<InputStream, Bitmap> {
 
   companion object {
-    private const val TAG = "WebpResourceDecoder" // Name > 23 characters
+    private val TAG = Log.tag(WebpSanDecoder::class.java)
 
     private val MAGIC_NUMBER_P1 = byteArrayOf(0x52, 0x49, 0x46, 0x46) // "RIFF"
     private val MAGIC_NUMBER_P2 = byteArrayOf(0x57, 0x45, 0x42, 0x50) // "WEBP"
@@ -34,10 +36,12 @@ class WebpInputStreamResourceDecoder(private val bitmapPool: BitmapPool) : Resou
    * [4-7]: File length
    * [8-11]: "WEBP"
    *
-   * We're not verifying the file length here, so we just need to check the first and last
+   * We're not verifying the file length here, so we just need to check the first and last.
+   *
+   * We then sanitize the webp and block the load if the check fails.
    */
   override fun handles(source: InputStream, options: Options): Boolean {
-    return try {
+    try {
       val magicNumberP1 = ByteArray(4)
       StreamUtil.readFully(source, magicNumberP1)
 
@@ -47,24 +51,27 @@ class WebpInputStreamResourceDecoder(private val bitmapPool: BitmapPool) : Resou
       val magicNumberP2 = ByteArray(4)
       StreamUtil.readFully(source, magicNumberP2)
 
-      magicNumberP1.contentEquals(MAGIC_NUMBER_P1) && magicNumberP2.contentEquals(MAGIC_NUMBER_P2)
+      if (magicNumberP1.contentEquals(MAGIC_NUMBER_P1) && magicNumberP2.contentEquals(MAGIC_NUMBER_P2)) {
+        try {
+          source.reset()
+          source.mark(MAX_WEBP_COMPRESSED_SIZE)
+          WebpSanitizer.sanitize(source, Long.MAX_VALUE)
+          source.reset()
+        } catch (e: Exception) {
+          Log.w(TAG, "Sanitize check failed or mark position invalidated by reset", e)
+          return true
+        }
+      }
     } catch (e: IOException) {
       Log.w(TAG, "Failed to read magic number from stream!", e)
-      false
+      return true
     }
+
+    return false
   }
 
   override fun decode(source: InputStream, width: Int, height: Int, options: Options): Resource<Bitmap>? {
-    Log.d(TAG, "decode()")
-
-    val webp: ByteArray = try {
-      StreamUtil.readFully(source, MAX_WEBP_COMPRESSED_SIZE)
-    } catch (e: IOException) {
-      Log.w(TAG, "Unexpected IOException hit while reading image data", e)
-      throw e
-    }
-
-    val bitmap: Bitmap? = WebpDecoder().nativeDecodeBitmapScaled(webp, width, height)
-    return BitmapResource.obtain(bitmap, bitmapPool)
+    Log.w(TAG, "Image did not pass sanitizer")
+    throw IOException("Unable to load image")
   }
 }

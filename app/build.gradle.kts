@@ -487,7 +487,6 @@ dependencies {
   implementation(project(":sms-exporter"))
   implementation(project(":sticky-header-grid"))
   implementation(project(":photoview"))
-  implementation(project(":glide-webp"))
   implementation(project(":core-ui"))
 
   implementation(libs.androidx.fragment.ktx)

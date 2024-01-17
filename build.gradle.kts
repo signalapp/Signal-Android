@@ -100,8 +100,6 @@ task("qa") {
 
 tasks.register("clean", Delete::class) {
   delete(rootProject.buildDir)
-  // Because gradle is weird, we delete here for glide-webp/lib project so the clean tasks there doesn"t barf
-  delete(fileTree("glide-webp/lib/.cxx"))
 }
 
 task("format") {

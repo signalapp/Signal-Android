@@ -10,6 +10,4 @@ android {
 dependencies {
   implementation(libs.glide.glide)
   kapt(libs.glide.compiler)
-
-  implementation(project(":glide-webp"))
 }

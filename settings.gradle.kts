@@ -58,8 +58,6 @@ include(":benchmark")
 include(":microbenchmark")
 include(":video")
 include(":video-app")
-include(":glide-webp")
-include(":glide-webp-app")
 
 project(":app").name = "Signal-Android"
 project(":paging").projectDir = file("paging/lib")
@@ -88,9 +86,6 @@ project(":qr-app").projectDir = file("qr/app")
 
 project(":video").projectDir = file("video/lib")
 project(":video-app").projectDir = file("video/app")
-
-project(":glide-webp").projectDir = file("glide-webp/lib")
-project(":glide-webp-app").projectDir = file("glide-webp/app")
 
 rootProject.name = "Signal"
 
