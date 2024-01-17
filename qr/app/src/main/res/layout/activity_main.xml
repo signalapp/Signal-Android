@@ -11,7 +11,7 @@
         android:id="@+id/camera_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Change Camera" />
+        android:text="@string/change_camera" />
 
     <TextView
         android:id="@+id/text_qr_data"

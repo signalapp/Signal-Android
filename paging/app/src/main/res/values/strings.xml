@@ -1,3 +1,7 @@
 <resources>
   <string name="app_name">PagingTest</string>
+    <string name="invalidate">Invalidate</string>
+  <string name="_250">250 ↓</string>
+  <string name="_250_">250 ↑</string>
+  <string name="prepend">Prepend</string>
 </resources>

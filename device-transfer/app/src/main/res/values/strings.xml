@@ -1,3 +1,8 @@
 <resources>
   <string name="app_name">DeviceTransferTest</string>
+    <string name="start_server">Start Server</string>
+  <string name="stop">Stop</string>
+  <string name="permission">Permission</string>
+  <string name="start_client">Start Client</string>
+  <string name="libsignal_unknown">libsignal: unknown</string>
 </resources>

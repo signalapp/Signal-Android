@@ -11,7 +11,7 @@
         android:id="@+id/start_server"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Start Server"
+        android:text="@string/start_server"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -20,7 +20,7 @@
         android:id="@+id/stop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Stop"
+        android:text="@string/stop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/start_client" />
@@ -29,7 +29,7 @@
         android:id="@+id/enable_permission"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Permission"
+        android:text="@string/permission"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/stop" />
@@ -50,7 +50,7 @@
         android:id="@+id/start_client"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Start Client"
+        android:text="@string/start_client"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/start_server" />
@@ -59,7 +59,7 @@
         android:id="@+id/libsignal_version"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="libsignal: unknown"
+        android:text="@string/libsignal_unknown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/enable_permission" />

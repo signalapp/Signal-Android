@@ -1,3 +1,4 @@
 <resources>
   <string name="app_name">QR</string>
+    <string name="change_camera">Change Camera</string>
 </resources>

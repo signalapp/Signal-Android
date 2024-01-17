@@ -1,3 +1,9 @@
 <resources>
   <string name="app_name">ContactsTest</string>
+    <string name="lookup">Lookup</string>
+  <string name="contact_list">Contact List</string>
+  <string name="contact_lookup">Contact Lookup</string>
+  <string name="link_contacts">Link Contacts</string>
+  <string name="unlink_contacts">Unlink Contacts</string>
+  <string name="go">Go</string>
 </resources>

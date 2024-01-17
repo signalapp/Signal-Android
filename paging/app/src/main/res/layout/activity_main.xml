@@ -26,7 +26,7 @@
           android:id="@+id/invalidate_btn"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:text="Invalidate" />
+          android:text="@string/invalidate" />
 
       <Space
           android:layout_width="8dp"
@@ -36,7 +36,7 @@
           android:id="@+id/down250_btn"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:text="250 ↓" />
+          android:text="@string/_250" />
 
       <Space
           android:layout_width="8dp"
@@ -46,7 +46,7 @@
           android:id="@+id/up250_btn"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:text="250 ↑" />
+          android:text="@string/_250_" />
 
       <Space
           android:layout_width="8dp"
@@ -56,7 +56,7 @@
           android:id="@+id/prepend_btn"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:text="Prepend" />
+          android:text="@string/prepend" />
 
     </LinearLayout>
 
