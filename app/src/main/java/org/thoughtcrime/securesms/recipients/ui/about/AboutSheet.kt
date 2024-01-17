@@ -28,6 +28,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -216,7 +217,11 @@ private fun AboutSheetContent(
     val groupsInCommonText = if (recipient.hasGroupsInCommon()) {
       stringResource(id = R.string.AboutSheet__d_groups_in_common, groupsInCommonCount)
     } else {
-      stringResource(id = R.string.AboutSheet__you_have_no_groups_in_common)
+      pluralStringResource(
+        id = R.plurals.AboutSheet__d_groups_in_common,
+        groupsInCommonCount,
+        groupsInCommonCount
+      )
     }
 
     AboutRow(

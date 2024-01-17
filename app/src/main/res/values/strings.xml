@@ -1897,7 +1897,10 @@
     <!-- Notice when a user is not a connection to review requests carefully -->
     <string name="AboutSheet__review_requests_carefully">Review requests carefully</string>
     <!-- Text used when user has groups in common. Placeholder is the count -->
-    <string name="AboutSheet__d_groups_in_common">%1$d groups in common</string>
+    <plurals name="AboutSheet__d_groups_in_common">
+        <item quantity="one">%1$d group in common</item>
+        <item quantity="other">%1$d groups in common</item>
+    </plurals>
     <!-- Text displayed in title for external recipients -->
     <string name="AboutSheet__about">About</string>
     <!-- Text displayed in title for you -->
