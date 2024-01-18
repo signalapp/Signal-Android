@@ -13,6 +13,7 @@ import androidx.annotation.RequiresApi;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.video.interfaces.MediaInput;
 import org.thoughtcrime.securesms.video.interfaces.Muxer;
+import org.thoughtcrime.securesms.video.videoconverter.utils.Extensions;
 import org.thoughtcrime.securesms.video.videoconverter.utils.Preconditions;
 
 import java.io.FileNotFoundException;
@@ -33,6 +34,8 @@ final class VideoTrackConverter {
 
     private static final String MEDIA_FORMAT_KEY_DISPLAY_WIDTH  = "display-width";
     private static final String MEDIA_FORMAT_KEY_DISPLAY_HEIGHT = "display-height";
+
+    private static final float FRAME_RATE_TOLERANCE = 0.05f; // tolerance for transcoding VFR -> CFR
 
     private final long mTimeFrom;
     private final long mTimeTo;
@@ -420,7 +423,7 @@ final class VideoTrackConverter {
     }
 
     void verifyEndState() {
-        Preconditions.checkState("encoded (" + mVideoEncodedFrameCount + ") and decoded (" + mVideoDecodedFrameCount + ") video frame counts should match", mVideoDecodedFrameCount == mVideoEncodedFrameCount);
+        Preconditions.checkState("encoded (" + mVideoEncodedFrameCount + ") and decoded (" + mVideoDecodedFrameCount + ") video frame counts should match", Extensions.isWithin(mVideoDecodedFrameCount, mVideoEncodedFrameCount, FRAME_RATE_TOLERANCE));
         Preconditions.checkState("decoded frame count should be less than extracted frame count", mVideoDecodedFrameCount <= mVideoExtractedFrameCount);
     }
 
