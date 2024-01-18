@@ -128,7 +128,12 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
       if (call != null) {
         Log.i(TAG, "Updated call: $callId event: $event")
 
-        SignalDatabase.messages.updateCallLog(call.messageId!!, call.messageType)
+        if (call.messageId == null) {
+          Log.w(TAG, "Call does not have an associated message id! No message to update.")
+        } else {
+          SignalDatabase.messages.updateCallLog(call.messageId, call.messageType)
+        }
+
         ApplicationDependencies.getMessageNotifier().updateNotification(context)
         ApplicationDependencies.getDatabaseObserver().notifyCallUpdateObservers()
       }
