@@ -113,10 +113,7 @@ class TranscodeWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(
           return Result.failure()
         }
 
-        tempFileLength = tempFileStream.readLength() ?: run {
-          Log.w(TAG, "$logPrefix Could not read file length of temp file descriptor!")
-          return Result.failure()
-        }
+        tempFileLength = tempFileStream.readLength()
       }
       val finalFile = createFile(Uri.parse(outputDirUri), finalFilename) ?: run {
         Log.w(TAG, "$logPrefix Could not create final file for faststart processing!")
@@ -129,7 +126,7 @@ class TranscodeWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(
         }
 
         val inputStreamFactory = { applicationContext.contentResolver.openInputStream(tempFile.uri) ?: throw IOException("Could not open temp file for reading!") }
-        val bytesCopied = Mp4FaststartPostProcessor(inputStreamFactory, tempFileLength).processAndWriteTo(finalFileStream)
+        val bytesCopied = Mp4FaststartPostProcessor(inputStreamFactory).processAndWriteTo(finalFileStream)
 
         if (bytesCopied != tempFileLength) {
           Log.w(TAG, "$logPrefix Postprocessing failed! Original transcoded filesize ($tempFileLength) did not match postprocessed filesize ($bytesCopied)")

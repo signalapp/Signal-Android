@@ -42,10 +42,8 @@ import org.thoughtcrime.securesms.video.InMemoryTranscoder;
 import org.thoughtcrime.securesms.video.StreamingTranscoder;
 import org.thoughtcrime.securesms.video.TranscoderCancelationSignal;
 import org.thoughtcrime.securesms.video.TranscoderOptions;
-import org.thoughtcrime.securesms.video.exceptions.VideoPostProcessingException;
 import org.thoughtcrime.securesms.video.exceptions.VideoSourceException;
 import org.thoughtcrime.securesms.video.postprocessing.Mp4FaststartPostProcessor;
-import org.thoughtcrime.securesms.video.exceptions.VideoSourceException;
 import org.thoughtcrime.securesms.video.videoconverter.EncodingException;
 
 import java.io.ByteArrayInputStream;
@@ -263,7 +261,7 @@ public final class AttachmentCompressionJob extends BaseJob {
             Log.i(TAG, "Compressing with streaming muxer");
             AttachmentSecret attachmentSecret = AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret();
 
-            File file = SignalDatabase.attachments().newFile(context);
+            File file = AttachmentTable.newFile(context);
             file.deleteOnExit();
 
             boolean faststart = false;
@@ -291,9 +289,10 @@ public final class AttachmentCompressionJob extends BaseJob {
                 } catch (IOException e) {
                   throw new RuntimeException(e);
                 }
-              }, file.length());
+              });
 
-              try (MediaStream mediaStream = new MediaStream(postProcessor.process(), MimeTypes.VIDEO_MP4, 0, 0, true)) {
+              final long plaintextLength = ModernEncryptingPartOutputStream.getPlaintextLength(file.length());
+              try (MediaStream mediaStream = new MediaStream(postProcessor.process(plaintextLength), MimeTypes.VIDEO_MP4, 0, 0, true)) {
                 attachmentDatabase.updateAttachmentData(attachment, mediaStream, true);
                 faststart = true;
               }

@@ -5,9 +5,9 @@
 
 package org.thoughtcrime.securesms.video.postprocessing
 
+import org.signal.core.util.readLength
 import org.signal.libsignal.media.Mp4Sanitizer
 import org.signal.libsignal.media.SanitizedMetadata
-import org.thoughtcrime.securesms.video.exceptions.VideoPostProcessingException
 import java.io.ByteArrayInputStream
 import java.io.FilterInputStream
 import java.io.IOException
@@ -18,31 +18,22 @@ import java.io.SequenceInputStream
 /**
  * A post processor that takes a stream of bytes, and using [Mp4Sanitizer], moves the metadata to the front of the file.
  *
- * @property inputStreamFactory factory for the [InputStream]. May be called multiple times.
- * @property inputLength the exact length of the [InputStream]
+ * @property inputStreamFactory factory for the [InputStream]. Expected to be called multiple times.
  */
-class Mp4FaststartPostProcessor(private val inputStreamFactory: InputStreamFactory, private val inputLength: Long) {
+class Mp4FaststartPostProcessor(private val inputStreamFactory: InputStreamFactory) {
 
   /**
-   * It is the responsibility of the called to close the resulting [InputStream]
+   * It is the responsibility of the caller to close the resulting [InputStream].
    */
-  fun process(): InputStream {
-    val metadata: SanitizedMetadata?
-    inputStreamFactory.create().use {
-      metadata = Mp4Sanitizer.sanitize(it, inputLength)
-    }
-    if (metadata?.sanitizedMetadata == null) {
-      throw VideoPostProcessingException("Mp4Sanitizer could not parse media metadata!")
-    }
-
+  fun process(inputLength: Long = calculateStreamLength(inputStreamFactory.create())): SequenceInputStream {
+    val metadata = sanitizeMetadata(inputStreamFactory.create(), inputLength)
     val inputStream = inputStreamFactory.create()
     inputStream.skip(metadata.dataOffset)
-
     return SequenceInputStream(ByteArrayInputStream(metadata.sanitizedMetadata), LimitedInputStream(inputStream, metadata.dataLength))
   }
 
-  fun processAndWriteTo(outputStream: OutputStream): Long {
-    process().use { inStream ->
+  fun processAndWriteTo(outputStream: OutputStream, inputLength: Long = calculateStreamLength(inputStreamFactory.create())): Long {
+    process(inputLength).use { inStream ->
       return inStream.copyTo(outputStream)
     }
   }
@@ -53,6 +44,20 @@ class Mp4FaststartPostProcessor(private val inputStreamFactory: InputStreamFacto
 
   companion object {
     const val TAG = "Mp4Faststart"
+
+    @JvmStatic
+    fun calculateStreamLength(inputStream: InputStream): Long {
+      inputStream.use {
+        return it.readLength()
+      }
+    }
+
+    @JvmStatic
+    private fun sanitizeMetadata(inputStream: InputStream, inputLength: Long): SanitizedMetadata {
+      inputStream.use {
+        return Mp4Sanitizer.sanitize(it, inputLength)
+      }
+    }
   }
 
   private class LimitedInputStream(innerStream: InputStream, limit: Long) : FilterInputStream(innerStream) {

@@ -179,9 +179,9 @@ public final class InMemoryTranscoder implements Closeable {
           Log.w(TAG, "IOException thrown while creating FileInputStream.", e);
           throw new VideoPostProcessingException("Exception while opening InputStream!", e);
         }
-      }, memoryFile.size());
+      });
 
-      return new MediaStream(postProcessor.process(), MimeTypes.VIDEO_MP4, 0, 0, true);
+      return new MediaStream(postProcessor.process(outSize), MimeTypes.VIDEO_MP4, 0, 0, true);
     } catch (VideoPostProcessingException e) {
       Log.w(TAG, "Exception thrown during post processing.", e);
       final Throwable cause = e.getCause();
