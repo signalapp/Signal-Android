@@ -389,6 +389,11 @@ object UsernameRepository {
   private fun updateUsernameDisplayForCurrentLinkInternal(updatedUsername: Username): UsernameSetResult {
     Log.i(TAG, "[updateUsernameDisplayForCurrentLink] Beginning username update...")
 
+    if (!NetworkUtil.isConnected(ApplicationDependencies.getApplication())) {
+      Log.w(TAG, "[deleteUsernameInternal] No network connection! Not attempting the request.")
+      return UsernameSetResult.NETWORK_ERROR
+    }
+
     return try {
       val oldUsernameLink = SignalStore.account().usernameLink ?: return UsernameSetResult.USERNAME_INVALID
       val newUsernameLink = updatedUsername.generateLink(oldUsernameLink.entropy)
@@ -414,6 +419,11 @@ object UsernameRepository {
   @WorkerThread
   private fun confirmUsernameAndCreateNewLinkInternal(username: Username): UsernameSetResult {
     Log.i(TAG, "[confirmUsernameAndCreateNewLink] Beginning username confirmation...")
+
+    if (!NetworkUtil.isConnected(ApplicationDependencies.getApplication())) {
+      Log.w(TAG, "[confirmUsernameAndCreateNewLink] No network connection! Not attempting the request.")
+      return UsernameSetResult.NETWORK_ERROR
+    }
 
     return try {
       val linkComponents: UsernameLinkComponents = accountManager.confirmUsernameAndCreateNewLink(username)
@@ -446,6 +456,11 @@ object UsernameRepository {
 
   @WorkerThread
   private fun deleteUsernameInternal(): UsernameDeleteResult {
+    if (!NetworkUtil.isConnected(ApplicationDependencies.getApplication())) {
+      Log.w(TAG, "[deleteUsernameInternal] No network connection! Not attempting the request.")
+      return UsernameDeleteResult.NETWORK_ERROR
+    }
+
     return try {
       accountManager.deleteUsername()
       SignalDatabase.recipients.setUsername(Recipient.self().id, null)

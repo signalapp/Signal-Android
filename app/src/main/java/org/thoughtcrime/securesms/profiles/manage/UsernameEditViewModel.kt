@@ -14,9 +14,11 @@ import io.reactivex.rxjava3.subjects.PublishSubject
 import org.signal.core.util.Result
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.usernames.Username
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository.UsernameDeleteResult
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository.UsernameSetResult
+import org.thoughtcrime.securesms.util.NetworkUtil
 import org.thoughtcrime.securesms.util.UsernameUtil.InvalidReason
 import org.thoughtcrime.securesms.util.UsernameUtil.checkDiscriminator
 import org.thoughtcrime.securesms.util.UsernameUtil.checkUsername
@@ -123,6 +125,11 @@ internal class UsernameEditViewModel private constructor(private val isInRegistr
   }
 
   fun onUsernameSubmitted() {
+    if (!NetworkUtil.isConnected(ApplicationDependencies.getApplication())) {
+      events.onNext(Event.NETWORK_FAILURE)
+      return
+    }
+
     val editState = stateMachineStore.state
     val usernameState = uiState.state.usernameState
     val isCaseChange = isCaseChange(editState)
