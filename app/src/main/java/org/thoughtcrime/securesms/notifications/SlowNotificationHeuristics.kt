@@ -176,7 +176,7 @@ object SlowNotificationHeuristics {
       Log.d(TAG, "insufficient data for message latency")
       return false
     }
-    val eventCount = metrics.count { it.name == SignalLocalMetrics.MessageLatency.NAME_HIGH }
+    val eventCount = metrics.find { it.name == SignalLocalMetrics.MessageLatency.NAME_HIGH }?.count ?: 0
     if (eventCount < messageThreshold) {
       Log.d(TAG, "not enough messages for message latency")
       return false
