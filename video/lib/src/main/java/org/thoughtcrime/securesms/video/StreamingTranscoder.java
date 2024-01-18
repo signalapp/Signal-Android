@@ -10,9 +10,10 @@ import androidx.annotation.RequiresApi;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.video.exceptions.VideoSizeException;
 import org.thoughtcrime.securesms.video.exceptions.VideoSourceException;
-import org.thoughtcrime.securesms.video.videoconverter.EncodingException;
+import org.thoughtcrime.securesms.video.interfaces.TranscoderCancelationSignal;
+import org.thoughtcrime.securesms.video.videoconverter.exceptions.EncodingException;
 import org.thoughtcrime.securesms.video.videoconverter.MediaConverter;
-import org.thoughtcrime.securesms.video.videoconverter.VideoConstants;
+import org.thoughtcrime.securesms.video.videoconverter.utils.VideoConstants;
 import org.thoughtcrime.securesms.video.videoconverter.mediadatasource.MediaDataSourceMediaInput;
 
 import java.io.FilterOutputStream;

@@ -2,15 +2,13 @@ package org.thoughtcrime.securesms.video;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.media.MediaFormat;
 import android.util.DisplayMetrics;
 import android.util.Size;
 
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.mms.MediaConstraints;
-import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.video.videoconverter.VideoConstants;
+import org.thoughtcrime.securesms.video.videoconverter.utils.VideoConstants;
 
 import java.util.concurrent.TimeUnit;
 

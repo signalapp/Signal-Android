@@ -7,6 +7,8 @@ import android.media.MediaMuxer;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
+import org.thoughtcrime.securesms.video.interfaces.Muxer;
+
 import java.io.File;
 import java.io.FileDescriptor;
 import java.io.IOException;

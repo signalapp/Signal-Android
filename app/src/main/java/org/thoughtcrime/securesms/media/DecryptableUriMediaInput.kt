@@ -7,7 +7,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase.Companion.attachments
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.mms.PartUriParser
 import org.thoughtcrime.securesms.providers.BlobProvider
-import org.thoughtcrime.securesms.video.videoconverter.MediaInput
+import org.thoughtcrime.securesms.video.interfaces.MediaInput
 import org.thoughtcrime.securesms.video.videoconverter.mediadatasource.MediaDataSourceMediaInput
 import java.io.IOException
 

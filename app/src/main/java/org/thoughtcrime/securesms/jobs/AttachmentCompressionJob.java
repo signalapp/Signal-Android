@@ -40,11 +40,11 @@ import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MemoryFileDescriptor.MemoryFileException;
 import org.thoughtcrime.securesms.video.InMemoryTranscoder;
 import org.thoughtcrime.securesms.video.StreamingTranscoder;
-import org.thoughtcrime.securesms.video.TranscoderCancelationSignal;
+import org.thoughtcrime.securesms.video.interfaces.TranscoderCancelationSignal;
 import org.thoughtcrime.securesms.video.TranscoderOptions;
 import org.thoughtcrime.securesms.video.exceptions.VideoSourceException;
 import org.thoughtcrime.securesms.video.postprocessing.Mp4FaststartPostProcessor;
-import org.thoughtcrime.securesms.video.videoconverter.EncodingException;
+import org.thoughtcrime.securesms.video.videoconverter.exceptions.EncodingException;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;

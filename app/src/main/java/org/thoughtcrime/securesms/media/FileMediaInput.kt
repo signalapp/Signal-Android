@@ -5,7 +5,7 @@
 package org.thoughtcrime.securesms.media
 
 import android.media.MediaExtractor
-import org.thoughtcrime.securesms.video.videoconverter.MediaInput
+import org.thoughtcrime.securesms.video.interfaces.MediaInput
 import java.io.File
 import java.io.IOException
 

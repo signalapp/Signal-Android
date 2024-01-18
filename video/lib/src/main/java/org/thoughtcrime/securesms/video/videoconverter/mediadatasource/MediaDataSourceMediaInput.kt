@@ -8,7 +8,7 @@ package org.thoughtcrime.securesms.video.videoconverter.mediadatasource
 import android.media.MediaDataSource
 import android.media.MediaExtractor
 import androidx.annotation.RequiresApi
-import org.thoughtcrime.securesms.video.videoconverter.MediaInput
+import org.thoughtcrime.securesms.video.interfaces.MediaInput
 import java.io.IOException
 
 /**

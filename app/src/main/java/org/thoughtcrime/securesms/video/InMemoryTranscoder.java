@@ -10,16 +10,14 @@ import androidx.annotation.RequiresApi;
 import androidx.media3.common.MimeTypes;
 
 import org.signal.core.util.logging.Log;
-import org.signal.libsignal.media.Mp4Sanitizer;
-import org.signal.libsignal.media.ParseException;
-import org.signal.libsignal.media.SanitizedMetadata;
 import org.thoughtcrime.securesms.mms.MediaStream;
 import org.thoughtcrime.securesms.util.MemoryFileDescriptor;
 import org.thoughtcrime.securesms.video.exceptions.VideoPostProcessingException;
 import org.thoughtcrime.securesms.video.exceptions.VideoSizeException;
 import org.thoughtcrime.securesms.video.exceptions.VideoSourceException;
+import org.thoughtcrime.securesms.video.interfaces.TranscoderCancelationSignal;
 import org.thoughtcrime.securesms.video.postprocessing.Mp4FaststartPostProcessor;
-import org.thoughtcrime.securesms.video.videoconverter.EncodingException;
+import org.thoughtcrime.securesms.video.videoconverter.exceptions.EncodingException;
 import org.thoughtcrime.securesms.video.videoconverter.MediaConverter;
 import org.thoughtcrime.securesms.video.videoconverter.mediadatasource.MediaDataSourceMediaInput;
 

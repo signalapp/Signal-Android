@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.video.videoconverter
+package org.thoughtcrime.securesms.video.videoconverter.utils
 
 import android.media.MediaFormat
 object VideoConstants {

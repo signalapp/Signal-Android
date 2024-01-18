@@ -25,8 +25,8 @@ import org.signal.core.util.getLength
 import org.signal.core.util.readLength
 import org.thoughtcrime.securesms.video.StreamingTranscoder
 import org.thoughtcrime.securesms.video.postprocessing.Mp4FaststartPostProcessor
-import org.thoughtcrime.securesms.video.videoconverter.VideoConstants
 import org.thoughtcrime.securesms.video.videoconverter.mediadatasource.InputStreamMediaDataSource
+import org.thoughtcrime.securesms.video.videoconverter.utils.VideoConstants
 import org.thoughtcrime.video.app.R
 import java.io.IOException
 import java.io.InputStream

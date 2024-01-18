@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.video;
 
-import org.thoughtcrime.securesms.video.videoconverter.VideoConstants;
+import org.thoughtcrime.securesms.video.videoconverter.utils.VideoConstants;
 
 /**
  * Calculates a target quality output for a video to fit within a specified size.

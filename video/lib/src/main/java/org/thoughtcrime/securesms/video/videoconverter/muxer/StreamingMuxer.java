@@ -6,7 +6,7 @@ import android.media.MediaFormat;
 import androidx.annotation.NonNull;
 
 import org.mp4parser.streaming.StreamingTrack;
-import org.thoughtcrime.securesms.video.videoconverter.Muxer;
+import org.thoughtcrime.securesms.video.interfaces.Muxer;
 
 import java.io.IOException;
 import java.io.OutputStream;
