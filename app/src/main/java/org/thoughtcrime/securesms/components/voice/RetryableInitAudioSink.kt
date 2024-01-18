@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.components.voice
 import android.content.Context
 import androidx.annotation.OptIn
 import androidx.media3.common.util.UnstableApi
-import androidx.media3.exoplayer.audio.AudioCapabilities
 import androidx.media3.exoplayer.audio.AudioSink
 import androidx.media3.exoplayer.audio.DefaultAudioSink
 import org.signal.core.util.logging.Log
@@ -19,12 +18,9 @@ class RetryableInitAudioSink(
   context: Context,
   enableFloatOutput: Boolean,
   enableAudioTrackPlaybackParams: Boolean,
-  enableOffload: Boolean,
-  val delegate: AudioSink = DefaultAudioSink.Builder()
-    .setAudioCapabilities(AudioCapabilities.getCapabilities(context))
+  val delegate: AudioSink = DefaultAudioSink.Builder(context)
     .setEnableFloatOutput(enableFloatOutput)
     .setEnableAudioTrackPlaybackParams(enableAudioTrackPlaybackParams)
-    .setOffloadMode(if (enableOffload) DefaultAudioSink.OFFLOAD_MODE_ENABLED_GAPLESS_REQUIRED else DefaultAudioSink.OFFLOAD_MODE_DISABLED)
     .build()
 ) : AudioSink by delegate {
 
