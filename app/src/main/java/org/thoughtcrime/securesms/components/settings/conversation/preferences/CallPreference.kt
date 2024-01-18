@@ -61,8 +61,8 @@ object CallPreference {
 
     private fun getCallType(call: CallTable.Call): String {
       val id = when (call.messageType) {
-        MessageTypes.MISSED_VIDEO_CALL_TYPE -> if (call.event == CallTable.Event.MISSED) R.string.MessageRecord_missed_voice_call else R.string.MessageRecord_missed_voice_call_notification_profile
-        MessageTypes.MISSED_AUDIO_CALL_TYPE -> if (call.event == CallTable.Event.MISSED) R.string.MessageRecord_missed_video_call else R.string.MessageRecord_missed_video_call_notification_profile
+        MessageTypes.MISSED_AUDIO_CALL_TYPE -> if (call.event == CallTable.Event.MISSED) R.string.MessageRecord_missed_voice_call else R.string.MessageRecord_missed_voice_call_notification_profile
+        MessageTypes.MISSED_VIDEO_CALL_TYPE -> if (call.event == CallTable.Event.MISSED) R.string.MessageRecord_missed_video_call else R.string.MessageRecord_missed_video_call_notification_profile
         MessageTypes.INCOMING_AUDIO_CALL_TYPE -> R.string.MessageRecord_incoming_voice_call
         MessageTypes.INCOMING_VIDEO_CALL_TYPE -> R.string.MessageRecord_incoming_video_call
         MessageTypes.OUTGOING_AUDIO_CALL_TYPE -> R.string.MessageRecord_outgoing_voice_call
