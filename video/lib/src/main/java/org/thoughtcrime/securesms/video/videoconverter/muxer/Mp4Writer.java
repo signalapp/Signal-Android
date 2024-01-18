@@ -378,6 +378,14 @@ final class Mp4Writer extends DefaultBoxes implements SampleSink {
     return mdhd;
   }
 
+  @Override
+  protected Box createTkhd(StreamingTrack streamingTrack) {
+    TrackHeaderBox tkhd = (TrackHeaderBox) super.createTkhd(streamingTrack);
+    tkhd.setEnabled(true);
+    tkhd.setInMovie(true);
+    return tkhd;
+  }
+
   private class Mdat implements Box {
     final ArrayList<StreamingSample> samples;
     long size;
