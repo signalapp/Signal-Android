@@ -7,6 +7,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
+import com.google.common.io.CountingOutputStream;
+
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.video.exceptions.VideoSizeException;
 import org.thoughtcrime.securesms.video.exceptions.VideoSourceException;
@@ -91,7 +93,7 @@ public final class StreamingTranscoder {
     this.duration       = getDuration(mediaMetadataRetriever);
     this.inputBitRate   = VideoBitRateCalculator.bitRate(inSize, duration);
     this.targetQuality  = new TranscodingQuality(videoBitrate, VideoConstants.AUDIO_BIT_RATE, 1.0, duration, shortEdge);
-    this.upperSizeLimit = Long.MAX_VALUE;
+    this.upperSizeLimit = 0L;
 
     this.transcodeRequired = true;
 
@@ -126,17 +128,24 @@ public final class StreamingTranscoder {
                              numberFormat.format(inSize / 1024),
                              numberFormat.format(inputBitRate)));
 
-    if (fileSizeEstimate > upperSizeLimit) {
+    final boolean sizeLimitEnabled = 0 < upperSizeLimit;
+
+    if (sizeLimitEnabled && upperSizeLimit < fileSizeEstimate) {
       throw new VideoSizeException("Size constraints could not be met!");
     }
 
     final long startTime = System.currentTimeMillis();
 
     final MediaConverter          converter               = new MediaConverter();
-    final LimitedSizeOutputStream limitedSizeOutputStream = new LimitedSizeOutputStream(stream, upperSizeLimit);
 
     converter.setInput(new MediaDataSourceMediaInput(dataSource));
-    converter.setOutput(limitedSizeOutputStream);
+    final CountingOutputStream outStream;
+    if (sizeLimitEnabled) {
+      outStream = new CountingOutputStream(new LimitedSizeOutputStream(stream, upperSizeLimit));
+    } else {
+      outStream = new CountingOutputStream(stream);
+    }
+    converter.setOutput(outStream);
     converter.setVideoResolution(targetQuality.getOutputResolution());
     converter.setVideoBitrate(targetQuality.getTargetVideoBitRate());
     converter.setAudioBitrate(targetQuality.getTargetAudioBitRate());
@@ -157,7 +166,7 @@ public final class StreamingTranscoder {
 
     converter.convert();
 
-    long  outSize           = limitedSizeOutputStream.written;
+    long  outSize           = outStream.getCount();
     float encodeDurationSec = (System.currentTimeMillis() - startTime) / 1000f;
 
     Log.i(TAG, String.format(Locale.US,
@@ -174,7 +183,7 @@ public final class StreamingTranscoder {
                              (outSize * 100d) / fileSizeEstimate,
                              numberFormat.format(VideoBitRateCalculator.bitRate(outSize, duration))));
 
-    if (outSize > upperSizeLimit) {
+    if (sizeLimitEnabled && outSize > upperSizeLimit) {
       throw new VideoSizeException("Size constraints could not be met!");
     }
 
