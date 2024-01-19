@@ -55,7 +55,7 @@ class WebpSanDecoder : ResourceDecoder<InputStream, Bitmap> {
         try {
           source.reset()
           source.mark(MAX_WEBP_COMPRESSED_SIZE)
-          WebpSanitizer.sanitize(source, Long.MAX_VALUE)
+          WebpSanitizer.sanitize(source)
           source.reset()
         } catch (e: Exception) {
           Log.w(TAG, "Sanitize check failed or mark position invalidated by reset", e)
