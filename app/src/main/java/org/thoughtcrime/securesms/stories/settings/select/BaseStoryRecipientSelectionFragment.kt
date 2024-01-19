@@ -119,7 +119,11 @@ abstract class BaseStoryRecipientSelectionFragment : Fragment(R.layout.stories_b
 
   override fun onBeforeContactSelected(isFromUnknownSearchKey: Boolean, recipientId: Optional<RecipientId>, number: String?, callback: Consumer<Boolean>) {
     viewModel.addRecipient(recipientId.get())
-    searchField.setText("")
+
+    if (searchField.text.isNotBlank()) {
+      searchField.setText("")
+    }
+
     callback.accept(true)
   }
 
