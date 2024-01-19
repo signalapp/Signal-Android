@@ -37,7 +37,7 @@ import java.util.concurrent.TimeUnit
  *
  * The nickname is user-controlled, whereas the discriminator is controlled by the server.
  */
-internal class UsernameEditViewModel private constructor(private val isInRegistration: Boolean) : ViewModel() {
+internal class UsernameEditViewModel private constructor(private val mode: UsernameEditMode) : ViewModel() {
   private val events: PublishSubject<Event> = PublishSubject.create()
   private val disposables: CompositeDisposable = CompositeDisposable()
 
@@ -67,6 +67,10 @@ internal class UsernameEditViewModel private constructor(private val isInRegistr
       .filter { it.stateModifier == UsernameEditStateMachine.StateModifier.USER }
       .debounce(NICKNAME_PUBLISHER_DEBOUNCE_TIMEOUT_MILLIS, TimeUnit.MILLISECONDS)
       .subscribeBy(onNext = this::onUsernameStateUpdateDebounced)
+
+    if (mode == UsernameEditMode.RECOVERY) {
+      onNicknameUpdated(SignalStore.account().username?.split(Usernames.DELIMITER)?.first() ?: "")
+    }
   }
 
   override fun onCleared() {
@@ -79,7 +83,7 @@ internal class UsernameEditViewModel private constructor(private val isInRegistr
     uiState.update { state: State ->
       if (nickname.isBlank() && SignalStore.account().username != null) {
         return@update State(
-          buttonState = if (isInRegistration) ButtonState.SUBMIT_DISABLED else ButtonState.DELETE,
+          buttonState = if (mode.allowsDelete) ButtonState.DELETE else ButtonState.SUBMIT_DISABLED,
           usernameStatus = UsernameStatus.NONE,
           usernameState = UsernameState.NoUsername
         )
@@ -101,7 +105,7 @@ internal class UsernameEditViewModel private constructor(private val isInRegistr
     uiState.update { state: State ->
       if (discriminator.isBlank() && SignalStore.account().username != null) {
         return@update State(
-          buttonState = if (isInRegistration) ButtonState.SUBMIT_DISABLED else ButtonState.DELETE,
+          buttonState = if (mode.allowsDelete) ButtonState.DELETE else ButtonState.SUBMIT_DISABLED,
           usernameStatus = UsernameStatus.NONE,
           usernameState = UsernameState.NoUsername
         )
@@ -140,7 +144,7 @@ internal class UsernameEditViewModel private constructor(private val isInRegistr
       return
     }
 
-    if (usernameState.requireUsername().username == SignalStore.account().username) {
+    if (usernameState.requireUsername().username == SignalStore.account().username && mode != UsernameEditMode.RECOVERY) {
       Log.d(TAG, "Username was submitted, but was identical to the current username. Ignoring.")
       uiState.update { it.copy(buttonState = ButtonState.SUBMIT_DISABLED, usernameStatus = UsernameStatus.NONE) }
       return
@@ -219,6 +223,10 @@ internal class UsernameEditViewModel private constructor(private val isInRegistr
   }
 
   private fun isCaseChange(state: UsernameEditStateMachine.State): Boolean {
+    if (mode == UsernameEditMode.RECOVERY) {
+      return false
+    }
+
     if (state is UsernameEditStateMachine.UserEnteredDiscriminator || state is UsernameEditStateMachine.UserEnteredNicknameAndDiscriminator) {
       return false
     }
@@ -358,9 +366,9 @@ internal class UsernameEditViewModel private constructor(private val isInRegistr
     NETWORK_FAILURE, SUBMIT_SUCCESS, DELETE_SUCCESS, SUBMIT_FAIL_INVALID, SUBMIT_FAIL_TAKEN, SKIPPED
   }
 
-  class Factory(private val isInRegistration: Boolean) : ViewModelProvider.Factory {
+  class Factory(private val mode: UsernameEditMode) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return modelClass.cast(UsernameEditViewModel(isInRegistration))!!
+      return modelClass.cast(UsernameEditViewModel(mode))!!
     }
   }
 

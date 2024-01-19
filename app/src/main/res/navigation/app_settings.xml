@@ -583,6 +583,21 @@
         app:popUpTo="@id/app_settings"
         app:popUpToInclusive="true" />
 
+    <action
+        android:id="@+id/action_direct_to_usernameRecovery"
+        app:destination="@id/create_username"
+        app:enterAnim="@anim/fragment_open_enter"
+        app:exitAnim="@anim/fragment_open_exit"
+        app:popEnterAnim="@anim/fragment_close_enter"
+        app:popExitAnim="@anim/fragment_close_exit"
+        app:popUpTo="@id/app_settings"
+        app:popUpToInclusive="true">
+        <argument
+            android:name="mode"
+            android:defaultValue="RECOVERY"
+            app:argType="org.thoughtcrime.securesms.profiles.manage.UsernameEditMode" />
+    </action>
+
     <!-- endregion -->
 
     <!-- Internal Settings -->
@@ -923,6 +938,7 @@
 
 
     <include app:graph="@navigation/username_link_settings" />
+    <include app:graph="@navigation/create_username" />
     <include app:graph="@navigation/story_privacy_settings" />
 
 </navigation>

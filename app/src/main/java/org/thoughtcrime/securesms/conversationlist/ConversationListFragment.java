@@ -44,6 +44,9 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.IdRes;
@@ -155,6 +158,7 @@ import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.profiles.manage.EditProfileActivity;
+import org.thoughtcrime.securesms.profiles.manage.UsernameEditFragment;
 import org.thoughtcrime.securesms.ratelimit.RecaptchaProofBottomSheetFragment;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -700,6 +704,11 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       Snackbar.make(fab, R.string.ConfirmKbsPinFragment__pin_created, Snackbar.LENGTH_LONG).show();
       viewModel.onMegaphoneCompleted(Megaphones.Event.PINS_FOR_ALL);
     }
+
+    if (resultCode == RESULT_OK && requestCode == UsernameEditFragment.REQUEST_CODE) {
+      String snackbarString = getString(R.string.ConversationListFragment_username_recovered_toast, SignalStore.account().getUsername());
+      Snackbar.make(fab, snackbarString, Snackbar.LENGTH_LONG).show();
+    }
   }
 
   private void onConversationClicked(@NonNull ThreadRecord threadRecord) {
@@ -791,7 +800,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     } else if (reminderActionId == R.id.reminder_action_cds_permanent_error_learn_more) {
       CdsPermanentErrorBottomSheet.show(getChildFragmentManager());
     } else if (reminderActionId == R.id.reminder_action_fix_username_and_link) {
-      startActivity(EditProfileActivity.getIntent(requireContext()));
+      startActivityForResult(AppSettingsActivity.usernameRecovery(requireContext()), UsernameEditFragment.REQUEST_CODE);
     } else if (reminderActionId == R.id.reminder_action_fix_username_link) {
       startActivity(AppSettingsActivity.usernameLinkSettings(requireContext()));
     } else if (reminderActionId == R.id.reminder_action_re_register) {

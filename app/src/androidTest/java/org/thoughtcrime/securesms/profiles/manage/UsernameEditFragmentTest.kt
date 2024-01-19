@@ -59,7 +59,7 @@ class UsernameEditFragmentTest {
 
   @Test
   fun testUsernameCreationInRegistration() {
-    val scenario = createScenario(true)
+    val scenario = createScenario(UsernameEditMode.REGISTRATION)
 
     scenario.moveToState(Lifecycle.State.RESUMED)
 
@@ -77,7 +77,7 @@ class UsernameEditFragmentTest {
   @Ignore("Flakey espresso test.")
   @Test
   fun testUsernameCreationOutsideOfRegistration() {
-    val scenario = createScenario()
+    val scenario = createScenario(UsernameEditMode.NORMAL)
 
     scenario.moveToState(Lifecycle.State.RESUMED)
 
@@ -108,7 +108,7 @@ class UsernameEditFragmentTest {
       }
     )
 
-    val scenario = createScenario(isInRegistration = true)
+    val scenario = createScenario(UsernameEditMode.REGISTRATION)
     scenario.moveToState(Lifecycle.State.RESUMED)
 
     onView(withId(R.id.username_text)).perform(typeText(nickname))
@@ -132,8 +132,8 @@ class UsernameEditFragmentTest {
     onView(withId(R.id.username_done_button)).check(matches(isNotEnabled()))
   }
 
-  private fun createScenario(isInRegistration: Boolean = false): FragmentScenario<UsernameEditFragment> {
-    val fragmentArgs = UsernameEditFragmentArgs.Builder().setIsInRegistration(isInRegistration).build().toBundle()
+  private fun createScenario(mode: UsernameEditMode = UsernameEditMode.NORMAL): FragmentScenario<UsernameEditFragment> {
+    val fragmentArgs = UsernameEditFragmentArgs.Builder().setMode(mode).build().toBundle()
     return launchFragmentInContainer(
       fragmentArgs = fragmentArgs,
       themeResId = R.style.Signal_DayNight_NoActionBar

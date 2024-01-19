@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.profiles.manage;
 
 import android.animation.LayoutTransition;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
@@ -30,6 +31,7 @@ import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
 import org.thoughtcrime.securesms.databinding.UsernameEditFragmentBinding;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.FragmentResultContract;
 import org.thoughtcrime.securesms.util.UsernameUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -39,6 +41,9 @@ public class UsernameEditFragment extends LoggingFragment {
 
   private static final float DISABLED_ALPHA           = 0.5f;
   public static final String IGNORE_TEXT_CHANGE_EVENT = "ignore.text.change.event";
+
+  public static final int    REQUEST_CODE   = 4242;
+  public static final String EXTRA_USERNAME = "username";
 
   private UsernameEditViewModel       viewModel;
   private UsernameEditFragmentBinding binding;
@@ -75,13 +80,19 @@ public class UsernameEditFragment extends LoggingFragment {
       args = new UsernameEditFragmentArgs.Builder().build();
     }
 
-    if (args.getIsInRegistration()) {
+    if (args.getMode() == UsernameEditMode.REGISTRATION) {
       binding.toolbar.setNavigationIcon(null);
       binding.toolbar.setTitle(R.string.UsernameEditFragment__add_a_username);
       binding.usernameSkipButton.setVisibility(View.VISIBLE);
       binding.usernameDoneButton.setVisibility(View.VISIBLE);
     } else {
-      binding.toolbar.setNavigationOnClickListener(v -> Navigation.findNavController(view).popBackStack());
+      binding.toolbar.setNavigationOnClickListener(v -> {
+        if (args.getMode() == UsernameEditMode.RECOVERY) {
+          getActivity().finish();
+        } else {
+          Navigation.findNavController(view).popBackStack();
+        }
+      });
       binding.usernameSubmitButton.setVisibility(View.VISIBLE);
     }
 
@@ -90,13 +101,13 @@ public class UsernameEditFragment extends LoggingFragment {
     lifecycleDisposable = new LifecycleDisposable();
     lifecycleDisposable.bindTo(getViewLifecycleOwner());
 
-    viewModel = new ViewModelProvider(this, new UsernameEditViewModel.Factory(args.getIsInRegistration())).get(UsernameEditViewModel.class);
+    viewModel = new ViewModelProvider(this, new UsernameEditViewModel.Factory(args.getMode())).get(UsernameEditViewModel.class);
 
     lifecycleDisposable.add(viewModel.getUiState().subscribe(this::onUiStateChanged));
     lifecycleDisposable.add(viewModel.getEvents().subscribe(this::onEvent));
     lifecycleDisposable.add(viewModel.getUsernameInputState().subscribe(this::presentUsernameInputState));
 
-    binding.usernameSubmitButton.setOnClickListener(v -> viewModel.onUsernameSubmitted());
+    binding.usernameSubmitButton.setOnClickListener(v -> promptOrSubmitUsername());
     binding.usernameDeleteButton.setOnClickListener(v -> viewModel.onUsernameDeleted());
     binding.usernameDoneButton.setOnClickListener(v -> viewModel.onUsernameSubmitted());
     binding.usernameSkipButton.setOnClickListener(v -> viewModel.onUsernameSkipped());
@@ -121,7 +132,7 @@ public class UsernameEditFragment extends LoggingFragment {
 
     binding.discriminatorText.setOnEditorActionListener((v, actionId, event) -> {
       if (actionId == EditorInfo.IME_ACTION_DONE) {
-        viewModel.onUsernameSubmitted();
+        promptOrSubmitUsername();
         return true;
       }
       return false;
@@ -139,6 +150,22 @@ public class UsernameEditFragment extends LoggingFragment {
     super.onDestroyView();
     binding = null;
   }
+
+  private void promptOrSubmitUsername() {
+    if (args.getMode() == UsernameEditMode.RECOVERY) {
+      new MaterialAlertDialogBuilder(requireContext())
+          .setMessage(R.string.UsernameEditFragment_recovery_dialog_confirmation)
+          .setPositiveButton(android.R.string.ok, ((dialog, which) -> {
+            viewModel.onUsernameSubmitted();
+            dialog.dismiss();
+          }))
+          .setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.dismiss())
+          .show();
+    } else {
+      viewModel.onUsernameSubmitted();
+    }
+  }
+
 
   private void onLearnMore(@Nullable View unused) {
     new MaterialAlertDialogBuilder(requireContext())
@@ -182,7 +209,7 @@ public class UsernameEditFragment extends LoggingFragment {
   }
 
   private void presentButtonState(@NonNull UsernameEditViewModel.ButtonState buttonState) {
-    if (args.getIsInRegistration()) {
+    if (args.getMode() == UsernameEditMode.REGISTRATION) {
       presentRegistrationButtonState(buttonState);
     } else {
       presentProfileUpdateButtonState(buttonState);
@@ -306,6 +333,9 @@ public class UsernameEditFragment extends LoggingFragment {
     switch (event) {
       case SUBMIT_SUCCESS:
         ResultContract.setUsernameCreated(getParentFragmentManager());
+        if (getActivity() != null) {
+          getActivity().setResult(Activity.RESULT_OK);
+        }
         closeScreen();
         break;
       case SUBMIT_FAIL_TAKEN:
@@ -328,8 +358,10 @@ public class UsernameEditFragment extends LoggingFragment {
   }
 
   private void closeScreen() {
-    if (args.getIsInRegistration()) {
+    if (args.getMode() == UsernameEditMode.REGISTRATION) {
       finishAndStartNextIntent();
+    } else if (args.getMode() == UsernameEditMode.RECOVERY) {
+      getActivity().finish();
     } else {
       NavHostFragment.findNavController(this).popBackStack();
     }

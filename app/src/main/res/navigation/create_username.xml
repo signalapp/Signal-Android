@@ -11,9 +11,9 @@
         tools:layout="@layout/username_edit_fragment">
 
         <argument
-            android:name="is_in_registration"
-            android:defaultValue="false"
-            app:argType="boolean" />
+            android:name="mode"
+            android:defaultValue="NORMAL"
+            app:argType="org.thoughtcrime.securesms.profiles.manage.UsernameEditMode" />
 
     </fragment>
 
