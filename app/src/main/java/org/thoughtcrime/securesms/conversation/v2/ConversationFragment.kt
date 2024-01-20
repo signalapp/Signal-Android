@@ -1328,6 +1328,13 @@ class ConversationFragment :
         optionsMenuCallback.handleConversationSettings()
       }
     }
+
+    if (recipient.isSystemContact) {
+      titleView.setOnLongClickListener {
+        startActivity(Intent(Intent.ACTION_VIEW, recipient.contactUri))
+        return@setOnLongClickListener true
+      }
+    }
   }
 
   private fun presentWallpaper(chatWallpaper: ChatWallpaper?) {
