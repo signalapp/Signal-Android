@@ -49,13 +49,16 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_device"
-        style="@style/Widget.Material3.FloatingActionButton.Primary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
         android:contentDescription="@string/device_list_fragment__link_new_device"
         android:focusable="true"
-        app:srcCompat="@drawable/ic_plus_24" />
+        android:theme="@style/Widget.Material3.FloatingActionButton.Secondary"
+        app:backgroundTint="@color/signal_colorPrimaryContainer"
+        app:shapeAppearanceOverlay="@style/Signal.ShapeOverlay.Rounded.Fab"
+        app:srcCompat="@drawable/ic_plus_24"
+        app:tint="@color/signal_colorOnSurface" />
 
 </LinearLayout>
