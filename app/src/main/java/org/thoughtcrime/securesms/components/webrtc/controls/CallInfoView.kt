@@ -246,7 +246,7 @@ private fun CallInfo(
 
     if (!participantsState.inCallLobby || participantsState.isOngoing()) {
       items(
-        items = participantsState.participantsForList,
+        items = participantsState.participantsForList.distinctBy { it.callParticipantId },
         key = { it.callParticipantId },
         contentType = { null }
       ) {

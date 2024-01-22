@@ -7,7 +7,7 @@ import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.ringrtc.CameraState
 
-data class CallParticipant constructor(
+data class CallParticipant(
   val callParticipantId: CallParticipantId = CallParticipantId(Recipient.UNKNOWN),
   val recipient: Recipient = Recipient.UNKNOWN,
   val identityKey: IdentityKey? = null,
