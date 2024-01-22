@@ -5,9 +5,11 @@
 
 package org.thoughtcrime.video.app.transcode
 
+import android.Manifest
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -24,6 +26,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
+import androidx.core.content.ContextCompat
 import org.thoughtcrime.video.app.R
 import org.thoughtcrime.video.app.transcode.composables.ConfigureEncodingParameters
 import org.thoughtcrime.video.app.transcode.composables.SelectInput
@@ -35,6 +38,7 @@ import org.thoughtcrime.video.app.ui.theme.SignalTheme
  * Visual entry point for testing transcoding in the video sample app.
  */
 class TranscodeTestActivity : AppCompatActivity() {
+  private val TAG = "TranscodeTestActivity"
   private val viewModel: TranscodeTestViewModel by viewModels()
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -81,6 +85,9 @@ class TranscodeTestActivity : AppCompatActivity() {
       }
     }
     getComposeView()?.keepScreenOn = true
+    if (Build.VERSION.SDK_INT >= 33 && ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+      requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+    }
   }
 
   /**
@@ -88,11 +95,11 @@ class TranscodeTestActivity : AppCompatActivity() {
    */
   private val pickMedia = registerForActivityResult(ActivityResultContracts.PickMultipleVisualMedia()) { uris: List<Uri> ->
     if (uris.isNotEmpty()) {
-      Log.d("VideoPicker", "Selected URI: $uris")
+      Log.d(TAG, "Selected URI: $uris")
       viewModel.selectedVideos = uris
       viewModel.resetOutputDirectory()
     } else {
-      Log.d("VideoPicker", "No media selected")
+      Log.d(TAG, "No media selected")
     }
   }
 
@@ -102,6 +109,13 @@ class TranscodeTestActivity : AppCompatActivity() {
       viewModel.setOutputDirectoryAndCleanFailedTranscodes(this, it)
     }
   }
+
+  private val requestPermissionLauncher =
+    registerForActivityResult(
+      ActivityResultContracts.RequestPermission()
+    ) { isGranted: Boolean ->
+      Log.d(TAG, "Notification permission allowed: $isGranted")
+    }
 
   private fun getComposeView(): ComposeView? {
     return window.decorView
