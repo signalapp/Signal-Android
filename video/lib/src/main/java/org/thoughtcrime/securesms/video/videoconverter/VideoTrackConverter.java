@@ -4,6 +4,7 @@ import android.media.MediaCodec;
 import android.media.MediaCodecInfo;
 import android.media.MediaExtractor;
 import android.media.MediaFormat;
+import android.os.Build;
 import android.view.Surface;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.video.interfaces.MediaInput;
 import org.thoughtcrime.securesms.video.interfaces.Muxer;
 import org.thoughtcrime.securesms.video.videoconverter.utils.Extensions;
+import org.thoughtcrime.securesms.video.videoconverter.utils.MediaCodecCompat;
 import org.thoughtcrime.securesms.video.videoconverter.utils.Preconditions;
 
 import java.io.FileNotFoundException;
@@ -21,6 +23,8 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicReference;
+
+import kotlin.Pair;
 
 final class VideoTrackConverter {
 
@@ -155,6 +159,9 @@ final class VideoTrackConverter {
         outputVideoFormat.setInteger(MediaFormat.KEY_BIT_RATE, videoBitrate);
         outputVideoFormat.setInteger(MediaFormat.KEY_FRAME_RATE, OUTPUT_VIDEO_FRAME_RATE);
         outputVideoFormat.setInteger(MediaFormat.KEY_I_FRAME_INTERVAL, OUTPUT_VIDEO_IFRAME_INTERVAL);
+        if (Build.VERSION.SDK_INT >= 31 && isHdr(inputVideoFormat)) {
+            outputVideoFormat.setInteger(MediaFormat.KEY_COLOR_TRANSFER_REQUEST, MediaFormat.COLOR_TRANSFER_SDR_VIDEO);
+        }
         if (VERBOSE) Log.d(TAG, "video format: " + outputVideoFormat);
 
         // Create a MediaCodec for the desired codec, then configure it as an encoder with
@@ -180,6 +187,19 @@ final class VideoTrackConverter {
         if (mTimeFrom > 0) {
             mVideoExtractor.seekTo(mTimeFrom * 1000, MediaExtractor.SEEK_TO_PREVIOUS_SYNC);
             Log.i(TAG, "Seek video:" + mTimeFrom + " " + mVideoExtractor.getSampleTime());
+        }
+    }
+
+    private boolean isHdr(MediaFormat inputVideoFormat) {
+        if (Build.VERSION.SDK_INT < 24) {
+            return false;
+        }
+        try {
+            final int colorInfo = inputVideoFormat.getInteger(MediaFormat.KEY_COLOR_TRANSFER);
+            return colorInfo == MediaFormat.COLOR_TRANSFER_ST2084 || colorInfo == MediaFormat.COLOR_TRANSFER_HLG;
+        } catch (NullPointerException npe) {
+            // color transfer key does not exist, no color data supplied
+            return false;
         }
     }
 
@@ -478,9 +498,10 @@ final class VideoTrackConverter {
     private @NonNull
     MediaCodec createVideoDecoder(
             final @NonNull MediaFormat inputFormat,
-            final @NonNull Surface surface) throws IOException {
-        final MediaCodec decoder = MediaCodec.createDecoderByType(MediaConverter.getMimeTypeFor(inputFormat));
-        decoder.configure(inputFormat, surface, null, 0);
+            final @NonNull Surface surface) {
+        final Pair<MediaCodec, MediaFormat> decoderPair = MediaCodecCompat.findDecoder(inputFormat);
+        final MediaCodec                    decoder     = decoderPair.getFirst();
+        decoder.configure(decoderPair.getSecond(), surface, null, 0);
         decoder.start();
         return decoder;
     }
@@ -490,12 +511,29 @@ final class VideoTrackConverter {
             final @NonNull MediaCodecInfo codecInfo,
             final @NonNull MediaFormat format,
             final @NonNull AtomicReference<Surface> surfaceReference) throws IOException {
+        boolean tonemapRequested = isTonemapEnabled(format);
         final MediaCodec encoder = MediaCodec.createByCodecName(codecInfo.getName());
         encoder.configure(format, null, null, MediaCodec.CONFIGURE_FLAG_ENCODE);
+        if (tonemapRequested && !isTonemapEnabled(format)) {
+            Log.d(TAG, "HDR tone-mapping requested but not supported by the decoder.");
+        }
         // Must be called before start()
         surfaceReference.set(encoder.createInputSurface());
         encoder.start();
         return encoder;
+    }
+
+    private static boolean isTonemapEnabled(@NonNull MediaFormat format) {
+        if (Build.VERSION.SDK_INT < 31) {
+            return false;
+        }
+        try {
+            int request = format.getInteger(MediaFormat.KEY_COLOR_TRANSFER_REQUEST);
+            return request == MediaFormat.COLOR_TRANSFER_SDR_VIDEO;
+        } catch (NullPointerException npe) {
+            // transfer request key does not exist, tone mapping not requested
+            return false;
+        }
     }
 
     private static int getAndSelectVideoTrackIndex(@NonNull MediaExtractor extractor) {
