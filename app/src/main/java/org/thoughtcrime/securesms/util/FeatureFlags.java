@@ -109,7 +109,7 @@ public final class FeatureFlags {
   private static final String PROMPT_FOR_NOTIFICATION_CONFIG    = "android.logs.promptNotificationsConfig";
   public  static final String PROMPT_BATTERY_SAVER              = "android.promptBatterySaver";
   public  static final String USERNAMES                         = "android.usernames";
-  public  static final String INSTANT_VIDEO_PLAYBACK            = "android.instantVideoPlayback";
+  public  static final String INSTANT_VIDEO_PLAYBACK            = "android.instantVideoPlayback.1";
   public  static final String CRASH_PROMPT_CONFIG               = "android.crashPromptConfig";
   private static final String SEPA_DEBIT_DONATIONS              = "android.sepa.debit.donations.5";
   private static final String IDEAL_DONATIONS                   = "android.ideal.donations.5";
