@@ -68,4 +68,7 @@ dependencies {
   implementation("androidx.work:work-runtime-ktx:2.9.0")
   debugImplementation(libs.androidx.compose.ui.tooling.core)
   debugImplementation(libs.androidx.compose.ui.test.manifest)
+  androidTestImplementation(testLibs.junit.junit)
+  androidTestImplementation(testLibs.androidx.test.runner)
+  androidTestImplementation(testLibs.androidx.test.ext.junit.ktx)
 }
