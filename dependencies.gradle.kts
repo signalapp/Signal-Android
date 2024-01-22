@@ -174,8 +174,8 @@ dependencyResolutionManagement {
     }
 
     create("testLibs") {
-      version("androidx-test", "1.4.0")
-      version("androidx-test-ext-junit", "1.1.1")
+      version("androidx-test", "1.5.0")
+      version("androidx-test-ext-junit", "1.1.5")
       version("robolectric", "4.10.3")
 
       library("junit-junit", "junit:junit:4.13.2")
