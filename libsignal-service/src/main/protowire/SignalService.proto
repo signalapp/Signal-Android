@@ -673,7 +673,8 @@ message AttachmentPointer {
   optional bytes   thumbnail               = 5;
   optional bytes   digest                  = 6;
   reserved                                   16;
-  optional bytes   incrementalMac          = 18;
+  reserved                                   18;
+  optional bytes   incrementalMac          = 19;
   optional uint32  incrementalMacChunkSize = 17;
   optional string  fileName                = 7;
   optional uint32  flags                   = 8;
