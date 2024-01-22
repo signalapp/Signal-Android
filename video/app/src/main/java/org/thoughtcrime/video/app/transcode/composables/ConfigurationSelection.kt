@@ -40,7 +40,6 @@ import org.thoughtcrime.video.app.transcode.MAX_VIDEO_MEGABITRATE
 import org.thoughtcrime.video.app.transcode.MIN_VIDEO_MEGABITRATE
 import org.thoughtcrime.video.app.transcode.VideoResolution
 import org.thoughtcrime.video.app.ui.composables.LabeledButton
-import kotlin.math.roundToInt
 
 /**
  * A view that shows the queue of video URIs to encode, and allows you to change the encoding options.
@@ -86,6 +85,21 @@ fun ConfigureEncodingParameters(
     Row(
       verticalAlignment = Alignment.CenterVertically,
       modifier = Modifier
+        .padding(horizontal = 8.dp)
+        .fillMaxWidth()
+    ) {
+      Checkbox(
+        checked = sequentialProcessingChecked.value,
+        onCheckedChange = { isChecked ->
+          sequentialProcessingChecked.value = isChecked
+          onSequentialSettingCheckChanged(isChecked)
+        }
+      )
+      Text(text = "Force Sequential Queue Processing", style = MaterialTheme.typography.bodySmall)
+    }
+    Row(
+      verticalAlignment = Alignment.CenterVertically,
+      modifier = Modifier
         .padding(vertical = 8.dp, horizontal = 8.dp)
         .fillMaxWidth()
     ) {
@@ -97,7 +111,7 @@ fun ConfigureEncodingParameters(
         }
       )
       Text(
-        text = "Calculate Output Settings Automatically",
+        text = "Match Signal App Transcoding Settings",
         style = MaterialTheme.typography.bodySmall
       )
     }
@@ -145,11 +159,10 @@ fun ConfigureEncodingParameters(
           activeTrackColor = MaterialTheme.colorScheme.secondary,
           inactiveTrackColor = MaterialTheme.colorScheme.secondaryContainer
         ),
-        steps = 5,
         valueRange = MIN_VIDEO_MEGABITRATE..MAX_VIDEO_MEGABITRATE,
         modifier = Modifier.padding(top = 16.dp, start = 16.dp, end = 16.dp)
       )
-      Text(text = "${sliderPosition.roundToInt()} Mbit/s")
+      Text(text = String.format("%.1f Mbit/s", sliderPosition))
       Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
@@ -163,22 +176,7 @@ fun ConfigureEncodingParameters(
             onFastStartSettingCheckChanged(isChecked)
           }
         )
-        Text(text = "Enable postprocessing for faststart", style = MaterialTheme.typography.bodySmall)
-      }
-      Row(
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier
-          .padding(vertical = 8.dp, horizontal = 8.dp)
-          .fillMaxWidth()
-      ) {
-        Checkbox(
-          checked = sequentialProcessingChecked.value,
-          onCheckedChange = { isChecked ->
-            sequentialProcessingChecked.value = isChecked
-            onSequentialSettingCheckChanged(isChecked)
-          }
-        )
-        Text(text = "Force Sequential Queue Processing", style = MaterialTheme.typography.bodySmall)
+        Text(text = "Enable Mp4San Postprocessing", style = MaterialTheme.typography.bodySmall)
       }
     }
     LabeledButton(buttonLabel = "Transcode", onClick = buttonClickListener, modifier = Modifier.padding(vertical = 8.dp))

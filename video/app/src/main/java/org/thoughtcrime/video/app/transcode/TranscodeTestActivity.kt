@@ -8,6 +8,7 @@ package org.thoughtcrime.video.app.transcode
 import android.Manifest
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -26,7 +27,9 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.thoughtcrime.video.app.R
 import org.thoughtcrime.video.app.transcode.composables.ConfigureEncodingParameters
 import org.thoughtcrime.video.app.transcode.composables.SelectInput
@@ -85,9 +88,25 @@ class TranscodeTestActivity : AppCompatActivity() {
       }
     }
     getComposeView()?.keepScreenOn = true
-    if (Build.VERSION.SDK_INT >= 33 && ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
-      requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+    if (Build.VERSION.SDK_INT >= 33) {
+      val notificationPermissionStatus = ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
+      Log.v(TAG, "Notification permission status: $notificationPermissionStatus")
+      if (notificationPermissionStatus != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.POST_NOTIFICATIONS)) {
+          showPermissionRationaleDialog { _, _ -> requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS) }
+        } else {
+          requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+        }
+      }
     }
+  }
+
+  private fun showPermissionRationaleDialog(okListener: DialogInterface.OnClickListener) {
+    MaterialAlertDialogBuilder(this)
+      .setTitle("The system will request the notification permission.")
+      .setMessage("This permission is required to show the transcoding progress in the notification tray.")
+      .setPositiveButton("Ok", okListener)
+      .show()
   }
 
   /**

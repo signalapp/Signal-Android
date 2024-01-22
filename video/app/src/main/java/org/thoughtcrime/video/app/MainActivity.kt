@@ -5,8 +5,11 @@
 
 package org.thoughtcrime.video.app
 
+import android.content.Context
 import android.content.Intent
+import android.media.MediaScannerConnection
 import android.os.Bundle
+import android.os.Environment
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.Arrangement
@@ -16,6 +19,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.video.app.playback.PlaybackTestActivity
 import org.thoughtcrime.video.app.transcode.TranscodeTestActivity
 import org.thoughtcrime.video.app.ui.composables.LabeledButton
@@ -25,6 +29,7 @@ import org.thoughtcrime.video.app.ui.theme.SignalTheme
  * Main activity for this sample app.
  */
 class MainActivity : AppCompatActivity() {
+  private val TAG = Log.tag(MainActivity::class.java)
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -42,6 +47,22 @@ class MainActivity : AppCompatActivity() {
           }
         }
       }
+    }
+  }
+
+  override fun onStart() {
+    super.onStart()
+    refreshMediaProviderForExternalStorage(this, arrayOf("video/*"))
+  }
+
+  private fun refreshMediaProviderForExternalStorage(context: Context, mimeTypes: Array<String>) {
+    val rootPath = Environment.getExternalStorageDirectory().absolutePath
+    MediaScannerConnection.scanFile(
+      context,
+      arrayOf<String>(rootPath),
+      mimeTypes
+    ) { _, _ ->
+      Log.i(TAG, "Re-scan of external storage for media completed.")
     }
   }
 }

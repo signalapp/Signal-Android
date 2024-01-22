@@ -8,9 +8,9 @@ package org.thoughtcrime.video.app.transcode
 /**
  * A dumping ground for constants that should be referenced across the sample app.
  */
-internal const val MIN_VIDEO_MEGABITRATE = 2f
-internal const val DEFAULT_VIDEO_MEGABITRATE = 2f
-internal const val MAX_VIDEO_MEGABITRATE = 10f
+internal const val MIN_VIDEO_MEGABITRATE = 0.5f
+internal const val DEFAULT_VIDEO_MEGABITRATE = 2.5f
+internal const val MAX_VIDEO_MEGABITRATE = 5f
 
 enum class VideoResolution(val longEdge: Int, val shortEdge: Int) {
   SD(854, 480),
