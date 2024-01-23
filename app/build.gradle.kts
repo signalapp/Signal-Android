@@ -450,14 +450,14 @@ android {
     }
   }
 
-  android.buildTypes.forEach {
-    val path: String = if (it.name == "release") {
-      "$projectDir/src/release/java"
-    } else {
-      "$projectDir/src/debug/java"
-    }
+  val releaseDir = "$projectDir/src/release/java"
+  val debugDir = "$projectDir/src/debug/java"
 
-    sourceSets.findByName(it.name)!!.java.srcDir(path)
+  android.buildTypes.configureEach {
+    val path = if (name == "release") releaseDir else debugDir
+    sourceSets.named(name) {
+      java.srcDir(path)
+    }
   }
 }
 
