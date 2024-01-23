@@ -498,7 +498,7 @@
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Norėdami greitai atsakyti į žinutę, galite perbraukti ją į kairę</string>
     <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Vienkartinės peržiūros įrašas ištrinamas po išsiuntimo</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Tu jau peržiūrėjai šią žinutę</string>
-    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Šiame pokalbyje gali pridėti sau priminimų. Jei yra su paskyra susietų įrenginių, nauji priminimai bus sinchronizuoti.</string>
+    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">You can add notes for yourself in this chat. If your account has any linked devices, new notes will be synced.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d grupės nariai(-ių) turi tokį patį vardą.</string>
     <string name="ConversationFragment__tap_to_review">Bakstelėkite norėdami peržiūrėti</string>
     <string name="ConversationFragment__review_requests_carefully">Atidžiai peržiūrėkite prašymus</string>
@@ -594,6 +594,8 @@
     <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">Čia galite įjungti ar išjungti pranešimų profilį.</string>
     <!-- Message shown in top toast to indicate the named profile is on -->
     <string name="ConversationListFragment__s_on">%1$s įjungtas</string>
+    <!-- -->
+    <string name="ConversationListFragment_username_recovered_toast">Your QR code and link have been reset and your username is %1$s</string>
 
     <!-- ConversationListItem -->
     <string name="ConversationListItem_key_exchange_message">Šifro apsikeitimo žinutė</string>
@@ -1064,6 +1066,8 @@
     <string name="GroupMentionSettingDialog_dont_notify_me">Nepranešti</string>
 
     <!-- ManageProfileFragment -->
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
+    <string name="ManageProfileFragment__your_username">Your username, QR code and link aren\'t visible on your profile. Only share your username with people you trust.</string>
     <string name="ManageProfileFragment_profile_name">Profilio pavadinimas</string>
     <string name="ManageProfileFragment_username">Naudotojo vardas</string>
     <string name="ManageProfileFragment_about">Apie</string>
@@ -2042,7 +2046,12 @@
     <!-- Notice when a user is not a connection to review requests carefully -->
     <string name="AboutSheet__review_requests_carefully">Atidžiai peržiūrėkite prašymus</string>
     <!-- Text used when user has groups in common. Placeholder is the count -->
-    <string name="AboutSheet__d_groups_in_common">Bendrų grupių: %1$d</string>
+    <plurals name="AboutSheet__d_groups_in">
+        <item quantity="one">%1$d group in common</item>
+        <item quantity="few">%1$d groups in common</item>
+        <item quantity="many">%1$d groups in common</item>
+        <item quantity="other">%1$d groups in common</item>
+    </plurals>
     <!-- Text displayed in title for external recipients -->
     <string name="AboutSheet__about">Apie</string>
     <!-- Text displayed in title for you -->
@@ -2389,6 +2398,8 @@
     <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Netinkamas naudotojo vardas, įveskite bent %1$d skaitmenis.</string>
     <!-- Displayed when the chosen discriminator is too long -->
     <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Netinkamas naudotojo vardas, įveskite daugiausia %1$d skaitmenų.</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
+    <string name="UsernameEditFragment_recovery_dialog_confirmation">Recovering your username will reset your existing QR code and link. Are you sure?</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d adresatas naudoja Signal!</item>
@@ -2580,6 +2591,26 @@
     <string name="SingleRecipientNotificationBuilder_you">Jūs</string>
     <!-- Notification subtext for group stories -->
     <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s • Istorija</string>
+
+    <!-- NewWaysToConnectDialogFragment -->
+    <!-- Fragment title, displayed at the top of the content -->
+    <string name="NewWaysToConnectDialogFragment__new_ways_to_connect">New ways to connect</string>
+    <!-- Row item title for phone number privacy explainer -->
+    <string name="NewWaysToConnectDialogFragment__phone_number_privacy">Phone number privacy</string>
+    <!-- Row item description for phone number privacy explainer -->
+    <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">Your phone number is no longer shared with chats. If your number is saved to a friend\'s contacts, they will still see it.</string>
+    <!-- Row item title for usernames explainer -->
+    <string name="NewWaysToConnectDialogFragment__usernames">Usernames</string>
+    <!-- Row item description for usernames explainer -->
+    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">People can now message you using your optional username so you don\'t have to give out your phone number. Usernames aren\'t visible on your profile.</string>
+    <!-- Row item title for qr code and links explainer -->
+    <string name="NewWaysToConnectDialogFragment__qr_codes_and_links">QR codes and links</string>
+    <!-- Row item description for qr code and links explainer -->
+    <string name="NewWaysToConnectDialogFragment__usernames_have_a_unique_qr_code">Usernames have a unique QR code and link you can share with friends to quickly start a chat with you.</string>
+    <!-- Button label for not right now -->
+    <string name="NewWaysToConnectDialogFragment__not_now">Not now</string>
+    <!-- Button label for continue -->
+    <string name="NewWaysToConnectDialogFragment__set_up_your_username">Set up your username</string>
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">Atkurti vaizdo įrašą</string>
@@ -3969,11 +4000,17 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Kas gali matyti mano tel. numerį</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Niekas nematys tavo tel. numerio programėlėje „Signal“</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see_your">Nobody will see your phone number on Signal, even when messaging them.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Kas gali mane rasti pagal numerį</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
     <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">Tavo tel. numeris bus matomas tiems, kam rašysi, ir grupėms, kuriose rašysi žinutes. Žmonės, turintys tavo numerį tarp adresatų telefone, matys jį ir programėlėje „Signal“.</string>
+    <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
+    <string name="PhoneNumberPrivacySettingsFragment__anyone_who_has">Anyone who has your phone number will see you\'re on Signal and can start chats with you.</string>
+    <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_be_able_to_see">Nobody will be able to see you\'re on Signal unless you message them or have an existing chat with them.</string>
+    <!-- Snackbar text when pressing invalid radio item -->
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"To change this setting, set Who can see my number to Nobody."</string>
     <string name="PhoneNumberPrivacy_everyone">Visi</string>
     <string name="PhoneNumberPrivacy_nobody">Niekas</string>
     <string name="preferences_app_protection__screen_lock">Ekrano užraktas</string>
@@ -6475,11 +6512,11 @@
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__set_up_your_signal_username">Sukurk savo „Signal“ naudotojo vardą</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">Naudotojo vardas leidžia kitiems siųsti tau žinutes be telefono numerio</string>
+    <string name="SetUpYourUsername__introducing_phone_number_privacy">Introducing phone number privacy, optional usernames and links.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__not_now">Ne dabar</string>
+    <string name="SetUpYourUsername__dismiss">Dismiss</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__continue">Tęsti</string>
+    <string name="SetUpYourUsername__learn_more">Learn more</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -6834,6 +6871,8 @@
     <string name="GrantFullScreenIntentPermission_megaphone_body">Niekada nepraleisk savo adresatų ir grupių skambučių.</string>
     <!-- Button on the megaphone megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls that starts the fix process -->
     <string name="GrantFullScreenIntentPermission_megaphone_turn_on">Įjungti</string>
+    <!-- Button on the megaphone shown at the bottom of the chatlist when a user has disabled the system setting for showing full screen notifications used showing incoming calls that dismisses the megaphone -->
+    <string name="GrantFullScreenIntentPermission_megaphone_not_now">Not now</string>
     <!-- Title of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
     <string name="GrantFullScreenIntentPermission_bottomsheet_title">Įjunk viso ekrano pranešimus</string>
     <!-- Subtitle of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
