@@ -10,4 +10,6 @@
     <string name="cancel_transcode">Cancel</string>
     <string name="channel_name">Transcoding progress updates.</string>
     <string name="channel_description">Persistent notifications that allow the transcode job to complete when the app is in the background.</string>
+    <string name="preference_file_key">settings</string>
+    <string name="preference_activity_shortcut_key">activity_shortcut</string>
 </resources>
