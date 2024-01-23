@@ -68,7 +68,7 @@ public final class PartProvider extends BaseContentProvider {
 
   static {
     uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-    uriMatcher.addURI(CONTENT_AUTHORITY, "part/*/#", SINGLE_ROW);
+    uriMatcher.addURI(CONTENT_AUTHORITY, "part/#", SINGLE_ROW);
   }
 
   @Override
