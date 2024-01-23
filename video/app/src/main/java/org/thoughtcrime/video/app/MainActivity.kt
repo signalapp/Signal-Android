@@ -29,6 +29,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import org.signal.core.util.logging.AndroidLogger
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.video.app.playback.PlaybackTestActivity
 import org.thoughtcrime.video.app.transcode.TranscodeTestActivity
@@ -53,6 +54,8 @@ class MainActivity : AppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+    Log.initialize(AndroidLogger())
+
     val startPlaybackScreen = { saveChoice: Boolean -> proceed(Screen.TEST_PLAYBACK, saveChoice) }
     val startTranscodeScreen = { saveChoice: Boolean -> proceed(Screen.TEST_TRANSCODE, saveChoice) }
     setContent {

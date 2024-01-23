@@ -36,6 +36,8 @@ import java.time.Instant
  * A WorkManager worker to transcode videos in the background. This utilizes [StreamingTranscoder].
  */
 class TranscodeWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(ctx, params) {
+  private var lastProgress = 0
+
   @UnstableApi
   override suspend fun doWork(): Result {
     val logPrefix = "[Job ${id.toString().takeLast(4)}]"
@@ -95,10 +97,13 @@ class TranscodeWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(
         Log.w(TAG, "$logPrefix Could not open temp file for I/O!")
         return Result.failure()
       }
-
       transcoder.transcode({ percent: Int ->
-        setProgressAsync(Data.Builder().putInt(KEY_PROGRESS, percent).build())
-        setForegroundAsync(createForegroundInfo(percent, notificationId))
+        if (lastProgress != percent) {
+          lastProgress = percent
+          Log.v(TAG, "$logPrefix Updating progress percent to $percent%")
+          setProgressAsync(Data.Builder().putInt(KEY_PROGRESS, percent).build())
+          setForegroundAsync(createForegroundInfo(percent, notificationId))
+        }
       }, outputStream, { isStopped })
     }
     Log.v(TAG, "$logPrefix Initial transcode completed successfully!")
@@ -165,6 +170,7 @@ class TranscodeWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(
       .setSmallIcon(R.drawable.ic_work_notification)
       .setOngoing(true)
       .setContentIntent(pendingIntent)
+      .setPriority(NotificationCompat.PRIORITY_LOW)
       .addAction(android.R.drawable.ic_delete, cancel, intent)
       .build()
 
