@@ -414,9 +414,7 @@ android {
   }
 
   applicationVariants.all {
-    val variant = this
-
-    variant.outputs
+    outputs
       .map { it as com.android.build.gradle.internal.api.ApkVariantOutputImpl }
       .forEach { output ->
         if (output.baseName.contains("nightly")) {
@@ -429,10 +427,10 @@ android {
             output.versionNameOverride = tag
             output.outputFileName = output.outputFileName.replace(".apk", "-${output.versionNameOverride}.apk")
           } else {
-            output.outputFileName = output.outputFileName.replace(".apk", "-${variant.versionName}.apk")
+            output.outputFileName = output.outputFileName.replace(".apk", "-${versionName}.apk")
           }
         } else {
-          output.outputFileName = output.outputFileName.replace(".apk", "-${variant.versionName}.apk")
+          output.outputFileName = output.outputFileName.replace(".apk", "-${versionName}.apk")
 
           val abiName: String = output.getFilter("ABI") ?: "universal"
           val postFix: Int = abiPostFix[abiName]!!
