@@ -60,7 +60,7 @@ public final class FeatureFlags {
   private static final String INTERNAL_USER                     = "android.internalUser";
   private static final String VERIFY_V2                         = "android.verifyV2";
   private static final String CLIENT_EXPIRATION                 = "android.clientExpiration";
-  private static final String CUSTOM_VIDEO_MUXER                = "android.customVideoMuxer";
+  private static final String CUSTOM_VIDEO_MUXER                = "android.customVideoMuxer.1";
   private static final String CDS_REFRESH_INTERVAL              = "cds.syncInterval.seconds";
   private static final String AUTOMATIC_SESSION_RESET           = "android.automaticSessionReset.2";
   private static final String AUTOMATIC_SESSION_INTERVAL        = "android.automaticSessionResetInterval";
