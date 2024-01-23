@@ -98,7 +98,6 @@ android {
 
   kotlinOptions {
     jvmTarget = signalKotlinJvmTarget
-    freeCompilerArgs = listOf("-Xallow-result-return-type")
   }
 
   keystores["debug"]?.let { properties ->
