@@ -606,9 +606,9 @@
     <!-- Toolbar title for this screen -->
     <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Wie kan mij via mijn nummer vinden?</string>
     <!-- Description for radio item stating anyone can see your phone number -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">Iedereen die jouw telefoonnummer in hun contacten heeft staan, zal jou kunnen zien als een contact op Signal. Anderen kunnen je vinden via jouw telefoonnummer als ze daarop zoeken.</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">Iedereen die jouw telefoonnummer in hun contacten heeft staan, zal je kunnen zien als een contact op Signal. Anderen kunnen je vinden via jouw telefoonnummer als ze daarop zoeken.</string>
     <!-- Description for radio item stating no one will be able to see your phone number -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">Niemand op Signal kan jou vinden met jouw telefoonnummer.</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">Niemand op Signal kan je vinden met jouw telefoonnummer.</string>
 
     <!-- ChooseBackupFragment -->
     <string name="ChooseBackupFragment__restore_from_backup">Back-upgegevens terugzetten?</string>
@@ -642,7 +642,7 @@
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Test je back-upwachtwoord om na te gaan of je het juiste wachtwoord hebt onthouden</string>
     <string name="BackupsPreferenceFragment__turn_on">Inschakelen</string>
     <string name="BackupsPreferenceFragment__turn_off">Uitschakelen</string>
-    <string name="BackupsPreferenceFragment__to_restore_a_backup">"Om je gegevens uit een back-up terug te zetten moet je Signal opnieuw installeren. Open vervolgens de app en tik op “Back-upgegevens terugzetten”. %1$s"</string>
+    <string name="BackupsPreferenceFragment__to_restore_a_backup">"Om je gegevens uit een back-up terug te zetten moet je Signal opnieuw installeren. Open vervolgens de app en tik op ‘Back-upgegevens terugzetten’. %1$s"</string>
     <string name="BackupsPreferenceFragment__learn_more">Meer lezen</string>
     <string name="BackupsPreferenceFragment__in_progress">Wordt nu uitgevoerd…</string>
     <!-- Status text shown in backup preferences when verifying a backup -->
@@ -800,7 +800,7 @@
         <item quantity="one">Uitnodiging verstuurd</item>
         <item quantity="other">%1$d uitnodigingen verstuurd</item>
     </plurals>
-    <string name="GroupManagement_invite_single_user">“%1$s” kan niet direct door jou worden toegevoegd aan de groep.\n\nIn plaats daarvan heeft deze persoon een uitnodiging gekregen om lid te worden van de groep, en zal geen groepsberichten kunnen zien totdat die de uitnodiging aanvaard.</string>
+    <string name="GroupManagement_invite_single_user">“%1$s” kan niet direct door jou worden toegevoegd aan de groep.\n\nIn plaats daarvan heeft deze persoon een uitnodiging gekregen om lid te worden van de groep, en zal geen groepsberichten kunnen zien totdat die de uitnodiging aanvaardt.</string>
     <string name="GroupManagement_invite_multiple_users">Deze personen kunnen niet direct door jou aan de groep worden toegevoegd.\n\n In plaats daarvan hebben ze een uitnodiging gekregen om lid te worden van de groep, en ze zullen geen groepsberichten kunnen zien totdat ze de uitnodiging hebben aanvaard.</string>
 
     <!-- GroupsV1MigrationLearnMoreBottomSheetDialogFragment -->
@@ -871,7 +871,7 @@
     <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Je zult in deze groep niet langer berichten kunnen verzenden of ontvangen.</string>
     <string name="LeaveGroupDialog_leave">Verlaten</string>
     <string name="LeaveGroupDialog_choose_new_admin">Kies een nieuwe beheerder</string>
-    <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Voor je de groep verlaat moet je tenminste één beheerder aanwijzen voor deze groep.</string>
+    <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Voor je de groep verlaat moet je ten minste één beheerder aanwijzen voor deze groep.</string>
     <string name="LeaveGroupDialog_choose_admin">Beheerder kiezen</string>
 
     <!-- LinkPreviewView -->
@@ -972,7 +972,7 @@
 
     <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Je hebt geen recht om dit te doen</string>
     <string name="ManageGroupActivity_not_capable">Één of meer van de door jou toegevoegde personen ondersteunen de vernieuwde groepen nog niet. Zij moeten Signal bijwerken.</string>
-    <string name="ManageGroupActivity_not_announcement_capable">Tenminste een persoon die je hebt toegevoegd moet eerst Signal bijwerken voordat ze aan mededelingsgroepen kunnen worden toegevoegd.</string>
+    <string name="ManageGroupActivity_not_announcement_capable">Ten minste een persoon die je hebt toegevoegd moet eerst Signal bijwerken voordat ze aan mededelingsgroepen kunnen worden toegevoegd.</string>
     <string name="ManageGroupActivity_failed_to_update_the_group">Bijwerken van de groep is mislukt</string>
     <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Je bent geen lid van deze groep</string>
     <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Het bijwerken van de groep is mislukt. Probeer het later opnieuw</string>
@@ -1546,7 +1546,7 @@
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Wil je updates en nieuws van %1$s ontvangen? Je zult geen berichten ontvangen totdat je diegene hebt gedeblokkeerd.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Wil je je profielnaam, -foto en -omschrijving voor deze groep zichtbaar maken om je chat met de groep voort te kunnen zetten?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Dit is een verouderde groep en deze kan niet meer gebruikt worden. Maak een nieuwe groep om nieuwe functies zoals @vermeldingen en beheerders te activeren.</string>
-    <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Deze verouderde groep kan niet langer gebruikt worden omdat hij teveel leden heeft. Het maximum ledenaantal voor een groep is %1$d.</string>
+    <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Deze verouderde groep kan niet langer gebruikt worden omdat die teveel leden heeft. Het maximum ledenaantal voor een groep is %1$d.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Doorgaan met deze chat met %1$s en je naam en foto met hen delen?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Wil je lid worden van deze groep, en sta je toe dat alle leden van de groep je profielnaam, -foto en -omschrijving kunnen zien? Als je leesbevestigingen hebt ingeschakeld kunnen de leden van deze groep die nog niet zien totdat je de uitnodiging hebt aanvaard.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Wil je lid worden van deze groep, en sta je toe dat alle leden van de groep je profielnaam, -foto en -omschrijving kunnen zien? Je kunt hun berichten nog niet zien totdat je de uitnodiging hebt aanvaard.</string>
@@ -1908,12 +1908,12 @@
         <item quantity="other">In deze oproep (%1$d)</item>
     </plurals>
     <plurals name="CallParticipantsListDialog__signal_will_ring">
-        <item quantity="one">Signal zal (%1$d) bellen</item>
-        <item quantity="other">Signal zal (%1$d) bellen</item>
+        <item quantity="one">Signal zal bellen naar (%1$d)</item>
+        <item quantity="other">Signal zal bellen naar (%1$d)</item>
     </plurals>
     <plurals name="CallParticipantsListDialog__signal_will_notify">
-        <item quantity="one">Signal zal (%1$d) een melding sturen</item>
-        <item quantity="other">Signal zal (%1$d) een melding sturen</item>
+        <item quantity="one">Signal zal een melding sturen naar (%1$d)</item>
+        <item quantity="other">Signal zal een melding sturen naar (%1$d)</item>
     </plurals>
     <plurals name="CallParticipantsListDialog__raised_hands">
         <item quantity="one">Opgestoken hand (%1$d)</item>
@@ -2629,7 +2629,7 @@
     <string name="QuoteView__donation_for_a_friend">Donatie voor een vriend(in)</string>
 
     <!-- conversation_fragment -->
-    <string name="conversation_fragment__scroll_to_the_bottom_content_description">Scroll naar bodem</string>
+    <string name="conversation_fragment__scroll_to_the_bottom_content_description">Scrol naar bodem</string>
 
     <!-- BubbleOptOutTooltip -->
     <!-- Message to inform the user of what Android chat bubbles are -->
@@ -2772,7 +2772,7 @@
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">Afleveringsprobleem</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Een bericht, media, sticker, emoji-reactie, of leesbevestiging van %1$s kon niet aan jou worden afgeleverd. Het kan zijn dat deze persoon iets naar je probeerde te verzenden in een één-op-één-gesprek of in een groepsgesprek.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Een bericht, media, sticker, emoji-reactie, of leesbevestiging van %1$s kon niet aan jou worden afgeleverd. Het kan zijn dat deze persoon iets naar je probeerde te verzenden in een één-op-één-chat of in een groepschat.</string>
     <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Een bericht, media, sticker, emoji-reactie, of een bevestiging dat een bericht gelezen is van %1$s kan niet aan jou worden afgeleverd.</string>
 
     <!-- profile_create_activity -->
@@ -3332,7 +3332,7 @@
     <string name="PaymentsTransferFragment__invalid_address">Adres ongeldig</string>
     <string name="PaymentsTransferFragment__check_the_wallet_address">Ga na dat het portemonnee-adres waarnaar je probeert over te schrijven juist is en probeer het opnieuw.</string>
     <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">Je kunt niet vanuit Signal overschrijven naar je eigen Signal portemonnee-adres. Vul het portemonnee-adres van je account bij de beurs in.</string>
-    <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">Signal heeft toegang tot de camera nodig om een QR-code the kunnen scannen.</string>
+    <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">Signal heeft toegang tot de camera nodig om een QR-code te kunnen scannen.</string>
     <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal heeft toegang tot je camera nodig om QR-codes te scannen, maar deze toestemming is pertinent geweigerd. Ga naar het menu voor instellingen voor apps, tik op \'App-machtigingen\' en schakel \'Camera\' in.</string>
     <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">Signal heeft toegang tot de camera nodig om een QR-code te kunnen scannen.</string>
     <string name="PaymentsTransferFragment__settings">Instellingen</string>
@@ -5165,7 +5165,7 @@
     <!-- If in create mode, call to action button text to show to use the enabled schedule and move to the next screen -->
     <string name="EditNotificationProfileSchedule__next">Volgende</string>
     <!-- Error message shown if trying to save/use a schedule with no days selected -->
-    <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">Je moet tenminste één dag kiezen</string>
+    <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">Je moet ten minste één dag kiezen</string>
 
     <!-- Title for final screen shown after completing a profile creation -->
     <string name="NotificationProfileCreated__profile_created">Meldingsprofiel aangemaakt</string>

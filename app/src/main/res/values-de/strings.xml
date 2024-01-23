@@ -4272,7 +4272,7 @@
     <!-- AccountSettingsFragment -->
     <string name="AccountSettingsFragment__account">Konto</string>
     <string name="AccountSettingsFragment__youll_be_asked_less_frequently">PIN-Erinnerungen aktivieren. Diese werden seltener angezeigt, wenn du die PIN regelmäßig korrekt eingibst.</string>
-    <string name="AccountSettingsFragment__require_your_signal_pin">Signal-PIN erforderlich machen, sobald du deine Rufnummer erneut bei Signal registrierst</string>
+    <string name="AccountSettingsFragment__require_your_signal_pin">Signal-PIN Eingabe erforderlich machen, sobald du deine Telefonnummer erneut bei Signal registrierst.</string>
     <string name="AccountSettingsFragment__change_phone_number">Rufnummer ändern</string>
     <!-- Account setting that allows user to request and export their signal account data -->
     <string name="AccountSettingsFragment__request_account_data">Deine Kontodaten</string>
@@ -4427,7 +4427,7 @@
     <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bildschirmfotos in der Anwendung und der Liste der letzten Anwendungen blockieren</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-Nachrichten und -Anrufe, »Anrufe immer indirekt« und »Vertraulicher Absender«</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standardablaufzeit für neue Chats</string>
-    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Lege eine Standardablaufzeit für verschwindende Nachrichten aller von dir begonnenen neuen Chats fest.</string>
+    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Lege eine Standardablaufzeit für verschwindende Nachrichten fest. Diese gilt für alle von dir begonnenen neuen Chats.</string>
     <!-- Summary for stories preference to launch into story privacy settings -->
     <string name="PrivacySettingsFragment__payment_lock_require_lock">Richte eine Android-Bildschirmsperre oder eine Fingerabdruck-ID ein, um Geld zu überweisen</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
@@ -5564,8 +5564,8 @@
     <string name="GiftFlowStartFragment__donate_for_a_friend">Für einen Freund spenden</string>
     <!-- Description text on start fragment for gifting a badge -->
     <plurals name="GiftFlowStartFragment__support_signal_by">
-        <item quantity="one">Unterstütze Signal, indem du für einen Freund oder ein Familienmitglied, das Signal nutzt, spendest. Sie erhalten ein Abzeichen, das sie für %1$d Tag in ihrem Profil anzeigen können.</item>
-        <item quantity="other">Unterstütze Signal, indem du für einen Freund oder ein Familienmitglied, das Signal nutzt, spendest. Sie erhalten ein Abzeichen, das sie für %1$d Tage auf ihrem Profil anzeigen können.</item>
+        <item quantity="one">Unterstütze Signal, indem du für einen Signal-Kontakt spendest. Der Kontakt erhält ein Abzeichen, das er für %1$d Tag im Profil anzeigen kann.</item>
+        <item quantity="other">Unterstütze Signal, indem du für einen Signal-Kontakt spendest. Der Kontakt erhält ein Abzeichen, das er für %1$d Tage im Profil anzeigen kann.</item>
     </plurals>
     <!-- Action button label for start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__next">Weiter</string>
@@ -5757,7 +5757,7 @@
     <!-- Preference title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories">Storys ausschalten</string>
     <!-- Preference summary to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__if_you_opt_out">Wenn du dich von Storys abmeldest, kannst du keine Storys mehr teilen oder ansehen.</string>
+    <string name="StoriesPrivacySettingsFragment__if_you_opt_out">Wenn du Storys ausschaltest, kannst du keine Storys mehr teilen oder ansehen.</string>
     <!-- Preference title to turn on stories -->
     <string name="StoriesPrivacySettingsFragment__turn_on_stories">Storys einschalten</string>
     <!-- Preference summary to turn on stories -->
@@ -5940,7 +5940,7 @@
 
     <!-- DonateToSignalFragment -->
     <!-- Title below avatar -->
-    <string name="DonateToSignalFragment__privacy_over_profit">Datenschutz geht über Gewinn.</string>
+    <string name="DonateToSignalFragment__privacy_over_profit">Datenschutz statt Gewinn.</string>
     <!-- Continue button label -->
     <string name="DonateToSignalFragment__continue">Fortfahren</string>
     <!-- Description below title -->

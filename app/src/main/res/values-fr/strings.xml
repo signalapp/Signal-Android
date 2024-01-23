@@ -326,7 +326,7 @@
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp represents a message that has been edited within the last minute. -->
     <string name="ConversationItem_edited_now_timestamp_footer">Modifié à l\'instant</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. This is displayed when the edit has occurred between 1-59 minutes ago. -->
-    <string name="ConversationItem_edited_relative_timestamp_footer">Modifié il y a %1$s minutes</string>
+    <string name="ConversationItem_edited_relative_timestamp_footer">Modifié il y a %1$s</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. This is displayed when the edit occurred at least 1 hour ago. -->
     <string name="ConversationItem_edited_absolute_timestamp_footer">Modifié à %1$s</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->

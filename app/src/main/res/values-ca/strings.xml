@@ -1195,8 +1195,8 @@
     <string name="MediaOverviewActivity_Selected_description">Seleccionat</string>
     <string name="MediaOverviewActivity_select_all">Selecciona-ho tot</string>
     <plurals name="MediaOverviewActivity_save_plural">
-        <item quantity="one">Desat</item>
-        <item quantity="other">Desats</item>
+        <item quantity="one">Desar canvi</item>
+        <item quantity="other">Desar canvis</item>
     </plurals>
     <plurals name="MediaOverviewActivity_delete_plural">
         <item quantity="one">Suprimit</item>
@@ -2106,7 +2106,7 @@
     <string name="SubmitDebugLogActivity_edit">Edita</string>
     <string name="SubmitDebugLogActivity_done">Fet</string>
     <!-- Menu option to save a debug log file to disk. -->
-    <string name="SubmitDebugLogActivity_save">Desats</string>
+    <string name="SubmitDebugLogActivity_save">Desar</string>
     <!-- Error that is show in a toast when we fail to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_failed_to_save">No s\'ha pogut desar</string>
     <!-- Toast that is show to notify that we have saved the debug log file to disk. -->
@@ -3070,7 +3070,7 @@
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Activeu-ho si el dispositiu fa servir SMS / MMS per WiFi (feu-ho només si la «Trucada per WiFi» està activada al dispositiu)</string>
     <string name="preferences__incognito_keyboard">Teclat d\'incògnit</string>
     <string name="preferences__read_receipts">Confirmació de lectura</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Si les confirmacions de recepció estan desactivbades, no podreu veure les dels altres.</string>
+    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Si desactives les confirmacions de lectura, no podràs veure les dels altres.</string>
     <string name="preferences__typing_indicators">Indicadors de tecleig</string>
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Si els indicadors de tecleig estan desactivats, no podreu veure els indicadors de tecleig dels altres.</string>
     <string name="preferences__request_keyboard_to_disable">Sol·licita un teclat per desactivar l\'aprenentatge personalitzat.</string>
@@ -3448,7 +3448,7 @@
     <!-- Button to edit a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="conversation_selection__menu_edit">Editar</string>
     <!-- Button to save a message attachment (image, file etc.); Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
-    <string name="conversation_selection__menu_save">Desats</string>
+    <string name="conversation_selection__menu_save">Desar</string>
     <!-- Button to retry sending a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_resend_message">Torna a enviar</string>
     <!-- Button to select a message and enter selection mode; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
@@ -5056,7 +5056,7 @@
     <!-- Call to action button once the profile is named to create the profile and continue to the customization steps -->
     <string name="EditNotificationProfileFragment__create">Crea</string>
     <!-- Call to action button once the profile name is edited -->
-    <string name="EditNotificationProfileFragment__save">Desats</string>
+    <string name="EditNotificationProfileFragment__save">Desar</string>
     <!-- Title of edit notification profile screen -->
     <string name="EditNotificationProfileFragment__edit_this_profile">Edita aquest perfil</string>
     <!-- Error message shown when attempting to create or edit a profile name to an existing profile name -->
@@ -5159,7 +5159,7 @@
     <!-- Title of select time dialog shown when setting end time for schedule -->
     <string name="EditNotificationProfileSchedule__set_end_time">Estableix l\'hora d\'acabar</string>
     <!-- If in edit mode, call to action button text show to save schedule to profile -->
-    <string name="EditNotificationProfileSchedule__save">Desats</string>
+    <string name="EditNotificationProfileSchedule__save">Desar</string>
     <!-- If in create mode, call to action button text to show to skip enabling a schedule -->
     <string name="EditNotificationProfileSchedule__skip">Omet</string>
     <!-- If in create mode, call to action button text to show to use the enabled schedule and move to the next screen -->

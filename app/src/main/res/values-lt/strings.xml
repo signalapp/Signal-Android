@@ -1372,9 +1372,9 @@
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">Praleistas vaizdo skambutis</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
-    <string name="MessageRecord_missed_voice_call_notification_profile">Missed voice call while notification profile on</string>
+    <string name="MessageRecord_missed_voice_call_notification_profile">Praleistas balso skambutis įjungus pranešimų profilį</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
-    <string name="MessageRecord_missed_video_call_notification_profile">Missed video call while notification profile on</string>
+    <string name="MessageRecord_missed_video_call_notification_profile">Praleistas vaizdo skambutis įjungus pranešimų profilį</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
     <string name="MessageRecord_you_declined_a_voice_call">Tu atmetei balso skambutį</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
@@ -2384,11 +2384,11 @@
     <!-- Content description for done button -->
     <string name="UsernameEditFragment__done">Atlikta</string>
     <!-- Displayed when the chosen discriminator is not available for the given nickname -->
-    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">This username is not available, try another number.</string>
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">Šis naudotojo vardas negalimas, bandykite kitą numerį.</string>
     <!-- Displayed when the chosen discriminator is too short -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Invalid username, enter a minimum of %1$d digits.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Netinkamas naudotojo vardas, įveskite bent %1$d skaitmenis.</string>
     <!-- Displayed when the chosen discriminator is too long -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Invalid username, enter a maximum of %1$d digits.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Netinkamas naudotojo vardas, įveskite daugiausia %1$d skaitmenų.</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d adresatas naudoja Signal!</item>
@@ -5964,10 +5964,10 @@
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Visi kontaktai peržiūrėti; bakstelėkite „Siųsti“, jei norite tęsti.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
     <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
-        <item quantity="one">%1$d connection may have reinstalled Signal or changed devices. You may review their safety number or continue with the send.</item>
-        <item quantity="few">%1$d connections may have reinstalled Signal or changed devices. You may review their safety numbers or continue with the send.</item>
-        <item quantity="many">%1$d connections may have reinstalled Signal or changed devices. You may review their safety numbers or continue with the send.</item>
-        <item quantity="other">%1$d connections may have reinstalled Signal or changed devices. You may review their safety numbers or continue with the send.</item>
+        <item quantity="one">%1$d kontaktas galbūt iš naujo įdiegė „Signal“ arba pakeitė įrenginį. Jei norite, galite peržiūrėti jo saugumo numerį ir tik tada siųsti.</item>
+        <item quantity="few">%1$d kontaktai galbūt iš naujo įdiegė „Signal“ arba pakeitė įrenginį. Jei norite, galite peržiūrėti jų saugumo numerius ir tik tada siųsti.</item>
+        <item quantity="many">%1$d kontakto galbūt iš naujo įdiegė „Signal“ arba pakeitė įrenginį. Jei norite, galite peržiūrėti jų saugumo numerius ir tik tada siųsti.</item>
+        <item quantity="other">%1$d kontaktų galbūt iš naujo įdiegė „Signal“ arba pakeitė įrenginį. Jei norite, galite peržiūrėti jų saugumo numerius ir tik tada siųsti.</item>
     </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Patvirtinti saugumo numerį</string>
@@ -6533,7 +6533,7 @@
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">Praleisti</string>
     <!-- Displayed for missed calls declined by notification profile -->
-    <string name="CallLogAdapter__missed_notification_profile">Missed while notification profile on</string>
+    <string name="CallLogAdapter__missed_notification_profile">Praleista įjungus pranešimų profilį</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">Prisijungti</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -6648,7 +6648,7 @@
     <!-- Missed group call in call info -->
     <string name="CallPreference__missed_group_call">Praleistas grupės skambutis</string>
     <!-- Missed group call while notification profile on in call info -->
-    <string name="CallPreference__missed_group_call_notification_profile">Missed group call while notification profile on</string>
+    <string name="CallPreference__missed_group_call_notification_profile">Praleistas grupės skambutis įjungus pranešimų profilį</string>
     <!-- Incoming group call in call info -->
     <string name="CallPreference__incoming_group_call">Gaunamasis grupės skambutis</string>
     <!-- Outgoing group call in call info -->
