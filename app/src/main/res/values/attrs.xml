@@ -153,6 +153,7 @@
         <attr name="emoji_renderMentions" format="boolean" />
         <attr name="emoji_forceJumbo" format="boolean" />
         <attr name="emoji_renderSpoilers" format="boolean" />
+        <attr name="emoji_shrinkWrap" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="EmojiImageView">

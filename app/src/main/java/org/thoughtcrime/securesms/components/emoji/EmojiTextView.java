@@ -32,6 +32,7 @@ import androidx.core.view.GestureDetectorCompat;
 import androidx.core.view.ViewKt;
 import androidx.core.widget.TextViewCompat;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.parsing.EmojiParser;
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
@@ -73,6 +74,7 @@ public class EmojiTextView extends AppCompatTextView {
   private boolean                isJumbomoji;
   private boolean                forceJumboEmoji;
   private boolean                renderSpoilers;
+  private boolean                shrinkWrap;
 
   private MentionRendererDelegate mentionRendererDelegate;
   private SpoilerRendererDelegate spoilerRendererDelegate;
@@ -96,6 +98,7 @@ public class EmojiTextView extends AppCompatTextView {
     measureLastLine = a.getBoolean(R.styleable.EmojiTextView_measureLastLine, false);
     forceJumboEmoji = a.getBoolean(R.styleable.EmojiTextView_emoji_forceJumbo, false);
     renderSpoilers  = a.getBoolean(R.styleable.EmojiTextView_emoji_renderSpoilers, false);
+    shrinkWrap      = a.getBoolean(R.styleable.EmojiTextView_emoji_shrinkWrap, false);
     a.recycle();
 
     a                = context.obtainStyledAttributes(attrs, new int[] { android.R.attr.textSize });
@@ -224,6 +227,25 @@ public class EmojiTextView extends AppCompatTextView {
     widthMeasureSpec = applyWidthMeasureRoundingFix(widthMeasureSpec);
 
     super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
+    int mode = MeasureSpec.getMode(widthMeasureSpec);
+    if (shrinkWrap && getLayout() != null && mode == MeasureSpec.AT_MOST) {
+      Layout layout = getLayout();
+
+      float maxLineWidth = 0f;
+      for (int i = 0; i < layout.getLineCount(); i++) {
+        if (layout.getLineWidth(i) > maxLineWidth) {
+          maxLineWidth = layout.getLineWidth(i);
+        }
+      }
+
+      int desiredWidth = (int) maxLineWidth + getPaddingLeft() + getPaddingRight();
+      if (getMeasuredWidth() > desiredWidth) {
+        widthMeasureSpec = MeasureSpec.makeMeasureSpec(desiredWidth, mode);
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+      }
+    }
+
     CharSequence text = getText();
     if (getLayout() == null || !measureLastLine || text == null || text.length() == 0) {
       lastLineWidth = -1;

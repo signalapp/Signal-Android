@@ -60,6 +60,7 @@
             app:emoji_maxLength="1000"
             app:emoji_renderMentions="true"
             app:emoji_renderSpoilers="true"
+            app:emoji_shrinkWrap="true"
             app:measureLastLine="true"
             app:scaleEmojis="true"
             tools:text="Mango pickle lorem ipsum" />
