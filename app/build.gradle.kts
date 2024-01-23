@@ -444,14 +444,9 @@ android {
       }
   }
 
-  android.variantFilter {
-    val distribution: String = flavors[0].name
-    val environment: String = flavors[1].name
-    val buildType: String = buildType.name
-    val fullName: String = distribution + environment.capitalize() + buildType.capitalize()
-
-    if (!selectableVariants.contains(fullName)) {
-      ignore = true
+  androidComponents {
+    beforeVariants { variant ->
+      variant.enable = variant.name in selectableVariants
     }
   }
 
