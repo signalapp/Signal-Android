@@ -9,6 +9,7 @@ import android.app.Notification
 import android.app.Service
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.os.IBinder
 import androidx.core.app.ServiceCompat
 import org.signal.core.util.logging.Log
@@ -39,7 +40,7 @@ abstract class SafeForegroundService : Service() {
      * @return False if we tried to start the service but failed, otherwise true.
      */
     @CheckReturnValue
-    fun start(context: Context, serviceClass: Class<out SafeForegroundService>): Boolean {
+    fun start(context: Context, serviceClass: Class<out SafeForegroundService>, extras: Bundle = Bundle.EMPTY): Boolean {
       stateLock.withLock {
         val state = currentState(serviceClass)
 
@@ -57,7 +58,10 @@ abstract class SafeForegroundService : Service() {
             try {
               ForegroundServiceUtil.startWhenCapable(
                 context = context,
-                intent = Intent(context, serviceClass).apply { action = ACTION_START }
+                intent = Intent(context, serviceClass).apply {
+                  action = ACTION_START
+                  putExtras(extras)
+                }
               )
               true
             } catch (e: UnableToStartException) {
@@ -79,14 +83,15 @@ abstract class SafeForegroundService : Service() {
      * Safely stops the service by starting it with an action to stop itself.
      * This is done to prevent scenarios where you stop the service while
      * a start is pending, preventing the posting of a foreground notification.
+     * @return true if service was running previously
      */
-    fun stop(context: Context, serviceClass: Class<out SafeForegroundService>) {
+    fun stop(context: Context, serviceClass: Class<out SafeForegroundService>): Boolean {
       stateLock.withLock {
         val state = currentState(serviceClass)
 
         Log.d(TAG, "[stop] Current state: $state")
 
-        when (state) {
+        return when (state) {
           State.STARTING -> {
             Log.d(TAG, "[stop] Stopping service.")
             states[serviceClass] = State.STOPPING
@@ -99,16 +104,19 @@ abstract class SafeForegroundService : Service() {
               Log.w(TAG, "Failed to start service class $serviceClass", e)
               states[serviceClass] = State.STOPPED
             }
+            true
           }
 
           State.STOPPED,
           State.STOPPING -> {
             Log.d(TAG, "[stop] No need to stop the service. Current state: $state")
+            false
           }
 
           State.NEEDS_RESTART -> {
             Log.i(TAG, "[stop] Clearing pending restart.")
             states[serviceClass] = State.STOPPING
+            false
           }
         }
       }

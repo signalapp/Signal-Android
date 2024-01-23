@@ -117,7 +117,8 @@ public final class FeatureFlags {
   public  static final String SEPA_ENABLED_REGIONS              = "global.donations.sepaEnabledRegions";
   private static final String CALLING_REACTIONS                 = "android.calling.reactions";
   private static final String NOTIFICATION_THUMBNAIL_BLOCKLIST  = "android.notificationThumbnailProductBlocklist";
-  private static final String CALLING_RAISE_HAND                 = "android.calling.raiseHand";
+  private static final String CALLING_RAISE_HAND                = "android.calling.raiseHand";
+  private static final String USE_ACTIVE_CALL_MANAGER           = "android.calling.useActiveCallManager";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -188,7 +189,8 @@ public final class FeatureFlags {
       CALLING_REACTIONS,
       NOTIFICATION_THUMBNAIL_BLOCKLIST,
       CALLING_RAISE_HAND,
-      PHONE_NUMBER_PRIVACY
+      PHONE_NUMBER_PRIVACY,
+      USE_ACTIVE_CALL_MANAGER
   );
 
   @VisibleForTesting
@@ -677,6 +679,11 @@ public final class FeatureFlags {
   /** List of device products that are blocked from showing notification thumbnails. */
   public static String notificationThumbnailProductBlocklist() {
     return getString(NOTIFICATION_THUMBNAIL_BLOCKLIST, "");
+  }
+
+  /** Whether or not to use active call manager instead of WebRtcCallService. */
+  public static boolean useActiveCallManager() {
+    return getBoolean(USE_ACTIVE_CALL_MANAGER, false);
   }
 
   /** Only for rendering debug info. */

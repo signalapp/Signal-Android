@@ -1,0 +1,330 @@
+/*
+ * Copyright 2024 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
+package org.thoughtcrime.securesms.service.webrtc
+
+import android.app.Notification
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import android.net.ConnectivityManager
+import android.telephony.PhoneStateListener
+import android.telephony.TelephonyManager
+import androidx.annotation.MainThread
+import androidx.core.app.NotificationManagerCompat
+import androidx.core.os.bundleOf
+import org.signal.core.util.ThreadUtil
+import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.jobs.UnableToStartException
+import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.service.SafeForegroundService
+import org.thoughtcrime.securesms.util.TelephonyUtil
+import org.thoughtcrime.securesms.webrtc.CallNotificationBuilder
+import org.thoughtcrime.securesms.webrtc.UncaughtExceptionHandlerManager
+import org.thoughtcrime.securesms.webrtc.audio.AudioManagerCommand
+import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager
+import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager.Companion.create
+import org.thoughtcrime.securesms.webrtc.locks.LockManager
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.minutes
+
+/**
+ * Entry point for [SignalCallManager] and friends to interact with the Android system as
+ * previously done via [WebRtcCallService].
+ *
+ * This tries to limit the use of a foreground service until a call has been fully established
+ * and the user has likely foregrounded us by accepting a call.
+ */
+class ActiveCallManager(
+  private val application: Context
+) : SignalAudioManager.EventListener {
+
+  companion object {
+    private val TAG = Log.tag(ActiveCallManager::class.java)
+  }
+
+  private val callManager = ApplicationDependencies.getSignalCallManager()
+
+  private var networkReceiver: NetworkReceiver? = null
+  private var powerButtonReceiver: PowerButtonReceiver? = null
+  private var uncaughtExceptionHandlerManager: UncaughtExceptionHandlerManager? = null
+  private val webSocketKeepAliveTask: WebSocketKeepAliveTask = WebSocketKeepAliveTask()
+  private var signalAudioManager: SignalAudioManager? = null
+  private var previousNotificationId = -1
+
+  init {
+    registerUncaughtExceptionHandler()
+    registerNetworkReceiver()
+
+    webSocketKeepAliveTask.start()
+  }
+
+  fun stop() {
+    Log.v(TAG, "stop")
+
+    uncaughtExceptionHandlerManager?.unregister()
+    uncaughtExceptionHandlerManager = null
+
+    signalAudioManager?.shutdown()
+    signalAudioManager = null
+
+    unregisterNetworkReceiver()
+    unregisterPowerButtonReceiver()
+
+    webSocketKeepAliveTask.stop()
+
+    if (!ActiveCallForegroundService.stop(application) && previousNotificationId != -1) {
+      NotificationManagerCompat.from(application).cancel(previousNotificationId)
+    }
+  }
+
+  fun update(type: Int, recipientId: RecipientId, isVideoCall: Boolean) {
+    Log.i(TAG, "update $type $recipientId $isVideoCall")
+
+    val notificationId = CallNotificationBuilder.getNotificationId(type)
+
+    if (previousNotificationId != notificationId && previousNotificationId != -1) {
+      NotificationManagerCompat.from(application).cancel(previousNotificationId)
+    }
+
+    previousNotificationId = notificationId
+
+    if (type != CallNotificationBuilder.TYPE_ESTABLISHED) {
+      val notification = CallNotificationBuilder.getCallInProgressNotification(application, type, Recipient.resolved(recipientId), isVideoCall, false)
+      NotificationManagerCompat.from(application).notify(notificationId, notification)
+    } else {
+      ActiveCallForegroundService.start(application, recipientId, isVideoCall)
+    }
+  }
+
+  fun sendAudioCommand(audioCommand: AudioManagerCommand) {
+    if (signalAudioManager == null) {
+      signalAudioManager = create(application, this)
+    }
+
+    Log.i(TAG, "Sending audio command [" + audioCommand.javaClass.simpleName + "] to " + signalAudioManager?.javaClass?.simpleName)
+    signalAudioManager!!.handleCommand(audioCommand)
+  }
+
+  fun changePowerButton(enabled: Boolean) {
+    if (enabled) {
+      registerPowerButtonReceiver()
+    } else {
+      unregisterPowerButtonReceiver()
+    }
+  }
+
+  private fun registerUncaughtExceptionHandler() {
+    uncaughtExceptionHandlerManager = UncaughtExceptionHandlerManager()
+    uncaughtExceptionHandlerManager!!.registerHandler(ProximityLockRelease(callManager.lockManager))
+  }
+
+  private fun registerNetworkReceiver() {
+    if (networkReceiver == null) {
+      networkReceiver = NetworkReceiver()
+      application.registerReceiver(networkReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
+    }
+  }
+
+  private fun unregisterNetworkReceiver() {
+    if (networkReceiver != null) {
+      application.unregisterReceiver(networkReceiver)
+      networkReceiver = null
+    }
+  }
+
+  private fun registerPowerButtonReceiver() {
+    if (!AndroidTelecomUtil.telecomSupported && powerButtonReceiver == null) {
+      powerButtonReceiver = PowerButtonReceiver()
+      application.registerReceiver(powerButtonReceiver, IntentFilter(Intent.ACTION_SCREEN_OFF))
+    }
+  }
+
+  private fun unregisterPowerButtonReceiver() {
+    if (powerButtonReceiver != null) {
+      application.unregisterReceiver(powerButtonReceiver)
+      powerButtonReceiver = null
+    }
+  }
+
+  override fun onAudioDeviceChanged(activeDevice: SignalAudioManager.AudioDevice, devices: Set<SignalAudioManager.AudioDevice>) {
+    callManager.onAudioDeviceChanged(activeDevice, devices)
+  }
+
+  override fun onBluetoothPermissionDenied() {
+    callManager.onBluetoothPermissionDenied()
+  }
+
+  /** Foreground service started only after a call is established */
+  class ActiveCallForegroundService : SafeForegroundService() {
+    companion object {
+      private const val EXTRA_RECIPIENT_ID = "RECIPIENT_ID"
+      private const val EXTRA_IS_VIDEO_CALL = "IS_VIDEO_CALL"
+
+      fun start(context: Context, recipientId: RecipientId, isVideoCall: Boolean) {
+        val extras = bundleOf(
+          EXTRA_RECIPIENT_ID to recipientId,
+          EXTRA_IS_VIDEO_CALL to isVideoCall
+        )
+
+        if (!SafeForegroundService.start(context, ActiveCallForegroundService::class.java, extras)) {
+          throw UnableToStartException(Exception())
+        }
+      }
+
+      fun stop(context: Context): Boolean {
+        return SafeForegroundService.stop(context, ActiveCallForegroundService::class.java)
+      }
+    }
+
+    override val tag: String
+      get() = TAG
+
+    override val notificationId: Int
+      get() = CallNotificationBuilder.WEBRTC_NOTIFICATION
+
+    private var hangUpRtcOnDeviceCallAnswered: PhoneStateListener? = null
+    private var notification: Notification? = null
+
+    override fun onCreate() {
+      super.onCreate()
+      hangUpRtcOnDeviceCallAnswered = HangUpRtcOnPstnCallAnsweredListener()
+
+      if (!AndroidTelecomUtil.telecomSupported) {
+        try {
+          TelephonyUtil.getManager(application).listen(hangUpRtcOnDeviceCallAnswered, PhoneStateListener.LISTEN_CALL_STATE)
+        } catch (e: SecurityException) {
+          Log.w(TAG, "Failed to listen to PSTN call answers!", e)
+        }
+      }
+    }
+
+    override fun onDestroy() {
+      super.onDestroy()
+
+      if (!AndroidTelecomUtil.telecomSupported) {
+        TelephonyUtil.getManager(application).listen(hangUpRtcOnDeviceCallAnswered, PhoneStateListener.LISTEN_NONE)
+      }
+    }
+
+    override fun getForegroundNotification(intent: Intent): Notification {
+      if (notification != null) {
+        return notification!!
+      } else if (!intent.hasExtra(EXTRA_RECIPIENT_ID)) {
+        return CallNotificationBuilder.getStoppingNotification(this)
+      }
+
+      val recipientId: RecipientId = intent.getParcelableExtra(EXTRA_RECIPIENT_ID)!!
+      val isVideoCall = intent.getBooleanExtra(EXTRA_IS_VIDEO_CALL, false)
+
+      notification = CallNotificationBuilder.getCallInProgressNotification(
+        this,
+        CallNotificationBuilder.TYPE_ESTABLISHED,
+        Recipient.resolved(recipientId),
+        isVideoCall,
+        false
+      )
+
+      return notification!!
+    }
+
+    @Suppress("deprecation")
+    private class HangUpRtcOnPstnCallAnsweredListener : PhoneStateListener() {
+      override fun onCallStateChanged(state: Int, phoneNumber: String) {
+        super.onCallStateChanged(state, phoneNumber)
+        if (state == TelephonyManager.CALL_STATE_OFFHOOK) {
+          hangup()
+          Log.i(TAG, "Device phone call ended Signal call.")
+        }
+      }
+
+      private fun hangup() {
+        ApplicationDependencies.getSignalCallManager().localHangup()
+      }
+    }
+  }
+
+  class ActiveCallServiceReceiver : BroadcastReceiver() {
+
+    companion object {
+      const val ACTION_DENY = "org.thoughtcrime.securesms.service.webrtc.ActiveCallAction.DENY"
+      const val ACTION_HANGUP = "org.thoughtcrime.securesms.service.webrtc.ActiveCallAction.HANGUP"
+    }
+
+    override fun onReceive(context: Context?, intent: Intent?) {
+      Log.d(TAG, "action: ${intent?.action}")
+      when (intent?.action) {
+        ACTION_DENY -> ApplicationDependencies.getSignalCallManager().denyCall()
+        ACTION_HANGUP -> ApplicationDependencies.getSignalCallManager().localHangup()
+      }
+    }
+  }
+
+  /**
+   * Periodically request the web socket stay open if we are doing anything call related.
+   */
+  private class WebSocketKeepAliveTask : Runnable {
+
+    companion object {
+      private val REQUEST_WEBSOCKET_STAY_OPEN_DELAY: Duration = 1.minutes
+      private val WEBSOCKET_KEEP_ALIVE_TOKEN: String = WebSocketKeepAliveTask::class.java.simpleName
+    }
+
+    private var keepRunning = false
+
+    @MainThread
+    fun start() {
+      if (!keepRunning) {
+        keepRunning = true
+        run()
+      }
+    }
+
+    @MainThread
+    fun stop() {
+      keepRunning = false
+      ThreadUtil.cancelRunnableOnMain(this)
+      ApplicationDependencies.getIncomingMessageObserver().removeKeepAliveToken(WEBSOCKET_KEEP_ALIVE_TOKEN)
+    }
+
+    @MainThread
+    override fun run() {
+      if (keepRunning) {
+        ApplicationDependencies.getIncomingMessageObserver().registerKeepAliveToken(WEBSOCKET_KEEP_ALIVE_TOKEN)
+        ThreadUtil.runOnMainDelayed(this, REQUEST_WEBSOCKET_STAY_OPEN_DELAY.inWholeMilliseconds)
+      }
+    }
+  }
+
+  private class NetworkReceiver : BroadcastReceiver() {
+    override fun onReceive(context: Context, intent: Intent) {
+      val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+      val activeNetworkInfo = connectivityManager.activeNetworkInfo
+
+      ApplicationDependencies.getSignalCallManager().apply {
+        networkChange(activeNetworkInfo != null && activeNetworkInfo.isConnected)
+        dataModeUpdate()
+      }
+    }
+  }
+
+  private class PowerButtonReceiver : BroadcastReceiver() {
+    override fun onReceive(context: Context, intent: Intent) {
+      if (Intent.ACTION_SCREEN_OFF == intent.action) {
+        ApplicationDependencies.getSignalCallManager().screenOff()
+      }
+    }
+  }
+
+  private class ProximityLockRelease(private val lockManager: LockManager) : Thread.UncaughtExceptionHandler {
+    override fun uncaughtException(thread: Thread, throwable: Throwable) {
+      Log.i(TAG, "Uncaught exception - releasing proximity lock", throwable)
+      lockManager.updatePhoneState(LockManager.PhoneState.IDLE)
+    }
+  }
+}
