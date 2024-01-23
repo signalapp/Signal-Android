@@ -163,8 +163,8 @@ android {
     versionCode = canonicalVersionCode * postFixSize
     versionName = canonicalVersionName
 
-    minSdkVersion(signalMinSdkVersion)
-    targetSdkVersion(signalTargetSdkVersion)
+    minSdk = signalMinSdkVersion
+    targetSdk = signalTargetSdkVersion
 
     multiDexEnabled = true
 
