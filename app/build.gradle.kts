@@ -98,7 +98,6 @@ android {
 
   kotlinOptions {
     jvmTarget = signalKotlinJvmTarget
-    freeCompilerArgs = listOf("-Xallow-result-return-type")
   }
 
   keystores["debug"]?.let { properties ->
@@ -164,8 +163,8 @@ android {
     versionCode = canonicalVersionCode * postFixSize
     versionName = canonicalVersionName
 
-    minSdkVersion(signalMinSdkVersion)
-    targetSdkVersion(signalTargetSdkVersion)
+    minSdk = signalMinSdkVersion
+    targetSdk = signalTargetSdkVersion
 
     multiDexEnabled = true
 
@@ -415,9 +414,7 @@ android {
   }
 
   applicationVariants.all {
-    val variant = this
-
-    variant.outputs
+    outputs
       .map { it as com.android.build.gradle.internal.api.ApkVariantOutputImpl }
       .forEach { output ->
         if (output.baseName.contains("nightly")) {
@@ -430,10 +427,10 @@ android {
             output.versionNameOverride = tag
             output.outputFileName = output.outputFileName.replace(".apk", "-${output.versionNameOverride}.apk")
           } else {
-            output.outputFileName = output.outputFileName.replace(".apk", "-${variant.versionName}.apk")
+            output.outputFileName = output.outputFileName.replace(".apk", "-$versionName.apk")
           }
         } else {
-          output.outputFileName = output.outputFileName.replace(".apk", "-${variant.versionName}.apk")
+          output.outputFileName = output.outputFileName.replace(".apk", "-$versionName.apk")
 
           val abiName: String = output.getFilter("ABI") ?: "universal"
           val postFix: Int = abiPostFix[abiName]!!
@@ -447,25 +444,20 @@ android {
       }
   }
 
-  android.variantFilter {
-    val distribution: String = flavors[0].name
-    val environment: String = flavors[1].name
-    val buildType: String = buildType.name
-    val fullName: String = distribution + environment.capitalize() + buildType.capitalize()
-
-    if (!selectableVariants.contains(fullName)) {
-      ignore = true
+  androidComponents {
+    beforeVariants { variant ->
+      variant.enable = variant.name in selectableVariants
     }
   }
 
-  android.buildTypes.forEach {
-    val path: String = if (it.name == "release") {
-      "$projectDir/src/release/java"
-    } else {
-      "$projectDir/src/debug/java"
-    }
+  val releaseDir = "$projectDir/src/release/java"
+  val debugDir = "$projectDir/src/debug/java"
 
-    sourceSets.findByName(it.name)!!.java.srcDir(path)
+  android.buildTypes.configureEach {
+    val path = if (name == "release") releaseDir else debugDir
+    sourceSets.named(name) {
+      java.srcDir(path)
+    }
   }
 }
 
