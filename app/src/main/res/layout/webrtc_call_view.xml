@@ -106,7 +106,7 @@
             android:orientation="vertical"
             android:scrollbars="none"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toTopOf="@+id/call_screen_above_controls_guideline"
+            app:layout_constraintBottom_toTopOf="@+id/call_screen_pending_recipients"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -369,9 +369,9 @@
             android:id="@+id/call_screen_pending_recipients"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
+            android:layout_marginHorizontal="16dp"
             android:layout_marginBottom="32dp"
-            android:inflatedId="@+id/call_screen_pending_recipients_view"
+            android:inflatedId="@+id/call_screen_pending_recipients"
             android:layout="@layout/call_screen_pending_participants_view"
             app:layout_constraintBottom_toTopOf="@id/call_screen_above_controls_guideline"
             app:layout_constraintEnd_toEndOf="parent"
@@ -400,8 +400,16 @@
         android:id="@+id/call_screen_raise_hand_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/call_screen_above_controls_guideline"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toTopOf="@id/call_screen_pending_recipients"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <include layout="@layout/webrtc_call_controls"/>
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/pip_bottom_boundary_barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="top"
+        app:constraint_referenced_ids="call_screen_raise_hand_view,call_screen_pending_recipients,call_screen_above_controls_guideline" />
 </merge>

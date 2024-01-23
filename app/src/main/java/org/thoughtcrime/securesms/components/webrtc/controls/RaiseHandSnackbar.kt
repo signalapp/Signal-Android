@@ -120,7 +120,7 @@ private fun RaiseHand(
         modifier = modifier
           .padding(horizontal = 16.dp)
           .clip(shape = RoundedCornerShape(16.dp, 16.dp, 16.dp, 16.dp))
-          .background(MaterialTheme.colorScheme.surface)
+          .background(SignalTheme.colors.colorSurface1)
           .animateContentSize()
       ) {
         val boxModifier = modifier
