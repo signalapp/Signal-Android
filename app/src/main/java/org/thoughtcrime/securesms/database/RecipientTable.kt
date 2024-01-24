@@ -2450,14 +2450,14 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
               try {
                 SignalDatabase.messages.insertSessionSwitchoverEvent(operation.recipientId, threadId, event)
               } catch (e: Exception) {
-                Log.e(TAG, "About to crash! Breadcrumbs: ${changeSet.breadCrumbs}, Operations: ${changeSet.operations}, ID: ${changeSet.id}")
+                Log.e(TAG, "About to crash! Breadcrumbs: ${changeSet.breadCrumbs}, Operations: ${changeSet.operations}, ID: ${changeSet.id}", true)
 
                 val allPnis: Set<PNI> = getAllPnis()
                 val pnisWithSessions: Set<PNI> = sessions.findAllThatHaveAnySession(allPnis)
-                Log.e(TAG, "We know of ${allPnis.size} PNIs, and there are sessions with ${pnisWithSessions.size} of them.")
+                Log.e(TAG, "We know of ${allPnis.size} PNIs, and there are sessions with ${pnisWithSessions.size} of them.", true)
 
                 val record = getRecord(operation.recipientId)
-                Log.e(TAG, "ID: ${record.id}, E164: ${record.e164}, ACI: ${record.aci}, PNI: ${record.pni}, Registered: ${record.registered}")
+                Log.e(TAG, "ID: ${record.id}, E164: ${record.e164}, ACI: ${record.aci}, PNI: ${record.pni}, Registered: ${record.registered}", true)
 
                 if (record.aci != null && record.aci == SignalStore.account().aci) {
                   if (pnisWithSessions.contains(SignalStore.account().pni!!)) {
