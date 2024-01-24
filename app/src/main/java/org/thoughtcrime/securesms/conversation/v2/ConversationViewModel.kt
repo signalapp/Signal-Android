@@ -11,6 +11,7 @@ import android.net.Uri
 import android.os.Build
 import androidx.core.content.pm.ShortcutInfoCompat
 import androidx.lifecycle.ViewModel
+import com.bumptech.glide.RequestManager
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.BackpressureStrategy
 import io.reactivex.rxjava3.core.Completable
@@ -58,7 +59,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.messagerequests.MessageRequestRepository
 import org.thoughtcrime.securesms.messagerequests.MessageRequestState
-import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.mms.Slide
 import org.thoughtcrime.securesms.mms.SlideDeck
@@ -348,9 +348,9 @@ class ConversationViewModel(
       .addTo(disposables)
   }
 
-  fun getContactPhotoIcon(context: Context, glideRequests: GlideRequests): Single<ShortcutInfoCompat> {
+  fun getContactPhotoIcon(context: Context, requestManager: RequestManager): Single<ShortcutInfoCompat> {
     return recipient.firstOrError().flatMap {
-      repository.getRecipientContactPhotoBitmap(context, glideRequests, it)
+      repository.getRecipientContactPhotoBitmap(context, requestManager, it)
     }
   }
 

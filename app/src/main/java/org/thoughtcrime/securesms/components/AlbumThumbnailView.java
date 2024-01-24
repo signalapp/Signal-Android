@@ -16,9 +16,10 @@ import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.bumptech.glide.RequestManager;
+
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.transfercontrols.TransferControlView;
-import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideClickListener;
 import org.thoughtcrime.securesms.mms.SlidesClickedListener;
@@ -65,7 +66,7 @@ public class AlbumThumbnailView extends FrameLayout {
     transferControlsStub  = new Stub<>(findViewById(R.id.album_transfer_controls_stub));
   }
 
-  public void setSlides(@NonNull GlideRequests glideRequests, @NonNull List<Slide> slides, boolean showControls) {
+  public void setSlides(@NonNull RequestManager requestManager, @NonNull List<Slide> slides, boolean showControls) {
     if (slides.size() < 2) {
       throw new IllegalStateException("Provided less than two slides.");
     }
@@ -98,7 +99,7 @@ public class AlbumThumbnailView extends FrameLayout {
       currentSizeClass = sizeClass;
     }
 
-    showSlides(glideRequests, slides);
+    showSlides(requestManager, slides);
     applyCorners();
     forceLayout();
   }
@@ -261,21 +262,21 @@ public class AlbumThumbnailView extends FrameLayout {
     applyCornersForSizeClass5();
   }
 
-  private void showSlides(@NonNull GlideRequests glideRequests, @NonNull List<Slide> slides) {
+  private void showSlides(@NonNull RequestManager requestManager, @NonNull List<Slide> slides) {
     boolean showControls = TransferControlView.containsPlayableSlides(slides);
-    setSlide(glideRequests, slides.get(0), R.id.album_cell_1, showControls);
-    setSlide(glideRequests, slides.get(1), R.id.album_cell_2, showControls);
+    setSlide(requestManager, slides.get(0), R.id.album_cell_1, showControls);
+    setSlide(requestManager, slides.get(1), R.id.album_cell_2, showControls);
 
     if (slides.size() >= 3) {
-      setSlide(glideRequests, slides.get(2), R.id.album_cell_3, showControls);
+      setSlide(requestManager, slides.get(2), R.id.album_cell_3, showControls);
     }
 
     if (slides.size() >= 4) {
-      setSlide(glideRequests, slides.get(3), R.id.album_cell_4, showControls);
+      setSlide(requestManager, slides.get(3), R.id.album_cell_4, showControls);
     }
 
     if (slides.size() >= 5) {
-      setSlide(glideRequests, slides.get(4), R.id.album_cell_5, showControls && slides.size() == 5);
+      setSlide(requestManager, slides.get(4), R.id.album_cell_5, showControls && slides.size() == 5);
     }
 
     if (slides.size() > 5) {
@@ -284,7 +285,7 @@ public class AlbumThumbnailView extends FrameLayout {
     }
   }
 
-  private void setSlide(@NonNull GlideRequests glideRequests, @NonNull Slide slide, @IdRes int id, boolean showControls) {
+  private void setSlide(@NonNull RequestManager requestManager, @NonNull Slide slide, @IdRes int id, boolean showControls) {
     ThumbnailView cell = findViewById(id);
     cell.showSecondaryText(false);
     cell.setThumbnailClickListener(defaultThumbnailClickListener);
@@ -294,7 +295,7 @@ public class AlbumThumbnailView extends FrameLayout {
       cell.setPlayVideoClickListener(playVideoClickListener);
     }
     cell.setOnLongClickListener(defaultLongClickListener);
-    cell.setImageResource(glideRequests, slide, showControls, false);
+    cell.setImageResource(requestManager, slide, showControls, false);
   }
 
   private int sizeClass(int size) {

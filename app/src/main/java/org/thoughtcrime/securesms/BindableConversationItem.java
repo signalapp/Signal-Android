@@ -8,6 +8,8 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 
+import com.bumptech.glide.RequestManager;
+
 import org.signal.ringrtc.CallLinkRootKey;
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState;
 import org.thoughtcrime.securesms.contactshare.Contact;
@@ -26,7 +28,6 @@ import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory;
-import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
@@ -41,7 +42,7 @@ public interface BindableConversationItem extends Unbindable, GiphyMp4Playable, 
             @NonNull ConversationMessage messageRecord,
             @NonNull Optional<MessageRecord> previousMessageRecord,
             @NonNull Optional<MessageRecord> nextMessageRecord,
-            @NonNull GlideRequests glideRequests,
+            @NonNull RequestManager requestManager,
             @NonNull Locale locale,
             @NonNull Set<MultiselectPart> batchSelected,
             @NonNull Recipient recipients,

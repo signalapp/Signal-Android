@@ -20,9 +20,10 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -89,7 +90,7 @@ public class ContactShareEditActivity extends PassphraseRequiredActivity impleme
     Material3OnScrollHelper onScrollHelper = new Material3OnScrollHelper(this, Collections.singletonList(toolbar), Collections.emptyList(), this);
     onScrollHelper.attach(contactList);
 
-    ContactShareEditAdapter contactAdapter = new ContactShareEditAdapter(GlideApp.with(this), dynamicLanguage.getCurrentLocale(), this);
+    ContactShareEditAdapter contactAdapter = new ContactShareEditAdapter(Glide.with(this), dynamicLanguage.getCurrentLocale(), this);
     contactList.setAdapter(contactAdapter);
 
     SharedContactRepository contactRepository = new SharedContactRepository(this, AsyncTask.THREAD_POOL_EXECUTOR);

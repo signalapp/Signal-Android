@@ -11,13 +11,13 @@ import android.util.AttributeSet;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.google.android.material.chip.Chip;
 
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
-import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
 public final class ContactChip extends Chip {
@@ -44,7 +44,7 @@ public final class ContactChip extends Chip {
     return contact;
   }
 
-  public void setAvatar(@NonNull GlideRequests requestManager, @Nullable Recipient recipient, @Nullable Runnable onAvatarSet) {
+  public void setAvatar(@NonNull RequestManager requestManager, @Nullable Recipient recipient, @Nullable Runnable onAvatarSet) {
     if (recipient != null) {
       requestManager.clear(this);
 

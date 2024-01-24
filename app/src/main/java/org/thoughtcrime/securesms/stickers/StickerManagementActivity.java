@@ -11,11 +11,12 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment;
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs;
-import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.sharing.MultiShareArgs;
 import org.thoughtcrime.securesms.util.DeviceProperties;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -110,7 +111,7 @@ public final class StickerManagementActivity extends PassphraseRequiredActivity 
 
   private void initView() {
     this.list    = findViewById(R.id.sticker_management_list);
-    this.adapter = new StickerManagementAdapter(GlideApp.with(this), this, DeviceProperties.shouldAllowApngStickerAnimation(this));
+    this.adapter = new StickerManagementAdapter(Glide.with(this), this, DeviceProperties.shouldAllowApngStickerAnimation(this));
 
     list.setLayoutManager(new LinearLayoutManager(this));
     list.setAdapter(adapter);

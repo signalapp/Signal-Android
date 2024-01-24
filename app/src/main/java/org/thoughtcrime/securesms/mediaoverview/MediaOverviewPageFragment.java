@@ -26,6 +26,7 @@ import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.codewaves.stickyheadergrid.StickyHeaderGridLayoutManager;
 
 import org.signal.core.util.DimensionUnit;
@@ -41,7 +42,6 @@ import org.thoughtcrime.securesms.database.loaders.GroupedThreadMediaLoader;
 import org.thoughtcrime.securesms.database.loaders.MediaLoader;
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory;
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewV2Activity;
-import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.util.BottomOffsetDecoration;
 import org.thoughtcrime.securesms.util.MediaUtil;
@@ -125,7 +125,7 @@ public final class MediaOverviewPageFragment extends Fragment
     this.gridManager     = new StickyHeaderGridLayoutManager(spans);
 
     this.adapter = new MediaGalleryAllAdapter(context,
-                                              GlideApp.with(this),
+                                              Glide.with(this),
                                               new GroupedThreadMediaLoader.EmptyGroupedThreadMedia(),
                                               this,
                                               this,

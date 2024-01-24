@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 
 import org.signal.core.util.logging.Log;
@@ -26,7 +27,6 @@ import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectFor
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs;
 import org.thoughtcrime.securesms.glide.cache.ApngOptions;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
-import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.sharing.MultiShareArgs;
 import org.thoughtcrime.securesms.stickers.StickerManifest.Sticker;
 import org.thoughtcrime.securesms.util.DeviceProperties;
@@ -154,9 +154,9 @@ public final class StickerPackPreviewActivity extends PassphraseRequiredActivity
     this.shareButton      = findViewById(R.id.sticker_install_share_button);
     this.shareButtonImage = findViewById(R.id.sticker_install_share_button_image);
 
-    this.adapter       = new StickerPackPreviewAdapter(GlideApp.with(this), this, DeviceProperties.shouldAllowApngStickerAnimation(this));
+    this.adapter       = new StickerPackPreviewAdapter(Glide.with(this), this, DeviceProperties.shouldAllowApngStickerAnimation(this));
     this.layoutManager = new GridLayoutManager(this, 2);
-    this.touchListener = new StickerRolloverTouchListener(this, GlideApp.with(this), this, this);
+    this.touchListener = new StickerRolloverTouchListener(this, Glide.with(this), this, this);
     onScreenWidthChanged(getScreenWidth());
 
     stickerList.setLayoutManager(layoutManager);
@@ -204,7 +204,7 @@ public final class StickerPackPreviewActivity extends PassphraseRequiredActivity
     if (cover != null) {
       Object model = cover.getUri().isPresent() ? new DecryptableStreamUriLoader.DecryptableUri(cover.getUri().get())
                                                 : new StickerRemoteUri(cover.getPackId(), cover.getPackKey(), cover.getId());
-      GlideApp.with(this).load(model)
+      Glide.with(this).load(model)
               .transition(DrawableTransitionOptions.withCrossFade())
               .fitCenter()
               .set(ApngOptions.ANIMATE, DeviceProperties.shouldAllowApngStickerAnimation(this))

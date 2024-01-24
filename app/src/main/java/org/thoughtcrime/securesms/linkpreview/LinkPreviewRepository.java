@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.util.Consumer;
 
+import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.signal.core.util.Hex;
@@ -35,7 +36,6 @@ import org.thoughtcrime.securesms.groups.v2.GroupInviteLinkUrl;
 import org.thoughtcrime.securesms.jobs.AvatarGroupsV2DownloadJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil.OpenGraph;
-import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.PushMediaConstraints;
 import org.thoughtcrime.securesms.net.CallRequestController;
 import org.thoughtcrime.securesms.net.CompositeRequestController;
@@ -279,7 +279,7 @@ public class LinkPreviewRepository {
         Optional<StickerInfo> cover        = OptionalUtil.or(manifest.getCover(), firstSticker);
 
         if (cover.isPresent()) {
-          Bitmap bitmap = GlideApp.with(context).asBitmap()
+          Bitmap bitmap = Glide.with(context).asBitmap()
                                                 .load(new StickerRemoteUri(packIdString, packKeyString, cover.get().getId()))
                                                 .skipMemoryCache(true)
                                                 .diskCacheStrategy(DiskCacheStrategy.NONE)

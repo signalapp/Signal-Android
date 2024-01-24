@@ -8,10 +8,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.RequestManager;
+
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.mediasend.Media;
-import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.adapter.StableIdGenerator;
 
@@ -22,15 +23,15 @@ import java.util.concurrent.TimeUnit;
 class AttachmentKeyboardMediaAdapter extends RecyclerView.Adapter<AttachmentKeyboardMediaAdapter.MediaViewHolder> {
 
   private final List<Media>              media;
-  private final GlideRequests            glideRequests;
+  private final RequestManager           requestManager;
   private final Listener                 listener;
   private final StableIdGenerator<Media> idGenerator;
 
-  AttachmentKeyboardMediaAdapter(@NonNull GlideRequests glideRequests, @NonNull Listener listener) {
-    this.glideRequests = glideRequests;
-    this.listener      = listener;
-    this.media         = new ArrayList<>();
-    this.idGenerator   = new StableIdGenerator<>();
+  AttachmentKeyboardMediaAdapter(@NonNull RequestManager requestManager, @NonNull Listener listener) {
+    this.requestManager = requestManager;
+    this.listener       = listener;
+    this.media          = new ArrayList<>();
+    this.idGenerator    = new StableIdGenerator<>();
 
     setHasStableIds(true);
   }
@@ -47,7 +48,7 @@ class AttachmentKeyboardMediaAdapter extends RecyclerView.Adapter<AttachmentKeyb
 
   @Override
   public void onBindViewHolder(@NonNull MediaViewHolder holder, int position) {
-    holder.bind(media.get(position), glideRequests, listener);
+    holder.bind(media.get(position), requestManager, listener);
   }
 
   @Override
@@ -83,8 +84,8 @@ class AttachmentKeyboardMediaAdapter extends RecyclerView.Adapter<AttachmentKeyb
       videoIcon = itemView.findViewById(R.id.attachment_keyboard_item_video_icon);
     }
 
-    void bind(@NonNull Media media, @NonNull GlideRequests glideRequests, @NonNull Listener listener) {
-      image.setImageResource(glideRequests, media.getUri(), 400, 400);
+    void bind(@NonNull Media media, @NonNull RequestManager requestManager, @NonNull Listener listener) {
+      image.setImageResource(requestManager, media.getUri(), 400, 400);
       image.setOnClickListener(v -> listener.onMediaClicked(media));
 
       duration.setVisibility(View.GONE);

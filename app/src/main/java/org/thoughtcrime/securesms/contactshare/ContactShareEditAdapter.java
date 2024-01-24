@@ -11,8 +11,9 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.RequestManager;
+
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.mms.GlideRequests;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,23 +23,23 @@ import static org.thoughtcrime.securesms.contactshare.Contact.Name;
 
 public class ContactShareEditAdapter extends RecyclerView.Adapter<ContactShareEditAdapter.ContactEditViewHolder> {
 
-  private final GlideRequests glideRequests;
-  private final Locale        locale;
-  private final EventListener eventListener;
-  private final List<Contact> contacts;
+  private final RequestManager requestManager;
+  private final Locale         locale;
+  private final EventListener  eventListener;
+  private final List<Contact>  contacts;
 
-  ContactShareEditAdapter(@NonNull GlideRequests glideRequests, @NonNull Locale locale, @NonNull EventListener eventListener) {
-    this.glideRequests = glideRequests;
-    this.locale        = locale;
-    this.eventListener = eventListener;
-    this.contacts      = new ArrayList<>();
+  ContactShareEditAdapter(@NonNull RequestManager requestManager, @NonNull Locale locale, @NonNull EventListener eventListener) {
+    this.requestManager = requestManager;
+    this.locale         = locale;
+    this.eventListener  = eventListener;
+    this.contacts       = new ArrayList<>();
   }
 
   @Override
   public @NonNull ContactEditViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
     return new ContactEditViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_editable_contact, parent, false),
                                      locale,
-                                     glideRequests);
+                                     requestManager);
   }
 
   @Override
@@ -67,12 +68,12 @@ public class ContactShareEditAdapter extends RecyclerView.Adapter<ContactShareEd
     private final View                nameEditButton;
     private final ContactFieldAdapter fieldAdapter;
 
-    ContactEditViewHolder(View itemView, @NonNull Locale locale, @NonNull GlideRequests glideRequests) {
+    ContactEditViewHolder(View itemView, @NonNull Locale locale, @NonNull RequestManager requestManager) {
       super(itemView);
 
       this.name           = itemView.findViewById(R.id.editable_contact_name);
       this.nameEditButton = itemView.findViewById(R.id.editable_contact_name_edit_button);
-      this.fieldAdapter   = new ContactFieldAdapter(locale, glideRequests, true);
+      this.fieldAdapter   = new ContactFieldAdapter(locale, requestManager, true);
 
       RecyclerView fields = itemView.findViewById(R.id.editable_contact_fields);
       fields.setLayoutManager(new LinearLayoutManager(itemView.getContext()));

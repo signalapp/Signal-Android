@@ -27,6 +27,7 @@ import androidx.annotation.UiThread;
 import androidx.appcompat.widget.AppCompatImageView;
 
 import com.bumptech.glide.RequestBuilder;
+import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.Request;
 import com.bumptech.glide.request.RequestListener;
@@ -39,8 +40,6 @@ import org.thoughtcrime.securesms.blurhash.BlurHash;
 import org.thoughtcrime.securesms.components.transfercontrols.TransferControlView;
 import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
-import org.thoughtcrime.securesms.mms.GlideRequest;
-import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideClickListener;
@@ -314,23 +313,23 @@ public class ThumbnailView extends FrameLayout {
     }
   }
 
-  public void setImageDrawable(@NonNull GlideRequests glideRequests, @Nullable Drawable drawable) {
-    glideRequests.clear(image);
-    glideRequests.clear(blurHash);
+  public void setImageDrawable(@NonNull RequestManager requestManager, @Nullable Drawable drawable) {
+    requestManager.clear(image);
+    requestManager.clear(blurHash);
 
     image.setImageDrawable(drawable);
     blurHash.setImageDrawable(null);
   }
 
   @UiThread
-  public ListenableFuture<Boolean> setImageResource(@NonNull GlideRequests glideRequests, @NonNull Slide slide,
+  public ListenableFuture<Boolean> setImageResource(@NonNull RequestManager requestManager, @NonNull Slide slide,
                                                     boolean showControls, boolean isPreview)
   {
-    return setImageResource(glideRequests, slide, showControls, isPreview, 0, 0);
+    return setImageResource(requestManager, slide, showControls, isPreview, 0, 0);
   }
 
   @UiThread
-  public ListenableFuture<Boolean> setImageResource(@NonNull GlideRequests glideRequests, @NonNull Slide slide,
+  public ListenableFuture<Boolean> setImageResource(@NonNull RequestManager requestManager, @NonNull Slide slide,
                                                     boolean showControls, boolean isPreview,
                                                     int naturalWidth, int naturalHeight)
   {
@@ -340,10 +339,10 @@ public class ThumbnailView extends FrameLayout {
       transferControlViewStub.setVisibility(View.GONE);
       playOverlay.setVisibility(View.GONE);
 
-      glideRequests.clear(blurHash);
+      requestManager.clear(blurHash);
       blurHash.setImageDrawable(null);
 
-      glideRequests.clear(image);
+      requestManager.clear(image);
       image.setImageDrawable(null);
 
       int errorImageResource;
@@ -414,10 +413,10 @@ public class ThumbnailView extends FrameLayout {
     boolean                 resultHandled = false;
 
     if (slide.hasPlaceholder() && (previousBlurHash == null || !Objects.equals(slide.getPlaceholderBlur(), previousBlurHash))) {
-      buildPlaceholderGlideRequest(glideRequests, slide).into(new GlideBitmapListeningTarget(blurHash, result));
+      buildPlaceholderRequestBuilder(requestManager, slide).into(new GlideBitmapListeningTarget(blurHash, result));
       resultHandled = true;
     } else if (!slide.hasPlaceholder()) {
-      glideRequests.clear(blurHash);
+      requestManager.clear(blurHash);
       blurHash.setImageDrawable(null);
     }
 
@@ -425,14 +424,14 @@ public class ThumbnailView extends FrameLayout {
       if (!MediaUtil.isJpegType(slide.getContentType()) && !MediaUtil.isVideoType(slide.getContentType())) {
         SettableFuture<Boolean> thumbnailFuture = new SettableFuture<>();
         thumbnailFuture.deferTo(result);
-        thumbnailFuture.addListener(new BlurHashClearListener(glideRequests, blurHash));
+        thumbnailFuture.addListener(new BlurHashClearListener(requestManager, blurHash));
       }
 
-      buildThumbnailGlideRequest(glideRequests, slide).into(new GlideDrawableListeningTarget(image, result));
+      buildThumbnailRequestBuilder(requestManager, slide).into(new GlideDrawableListeningTarget(image, result));
 
       resultHandled = true;
     } else {
-      glideRequests.clear(image);
+      requestManager.clear(image);
       image.setImageDrawable(null);
     }
 
@@ -443,20 +442,20 @@ public class ThumbnailView extends FrameLayout {
     return result;
   }
 
-  public ListenableFuture<Boolean> setImageResource(@NonNull GlideRequests glideRequests, @NonNull Uri uri) {
-    return setImageResource(glideRequests, uri, 0, 0);
+  public ListenableFuture<Boolean> setImageResource(@NonNull RequestManager requestManager, @NonNull Uri uri) {
+    return setImageResource(requestManager, uri, 0, 0);
   }
 
-  public ListenableFuture<Boolean> setImageResource(@NonNull GlideRequests glideRequests, @NonNull Uri uri, int width, int height) {
-    return setImageResource(glideRequests, uri, width, height, true, null);
+  public ListenableFuture<Boolean> setImageResource(@NonNull RequestManager requestManager, @NonNull Uri uri, int width, int height) {
+    return setImageResource(requestManager, uri, width, height, true, null);
   }
 
-  public ListenableFuture<Boolean> setImageResource(@NonNull GlideRequests glideRequests, @NonNull Uri uri, int width, int height, boolean animate, @Nullable ThumbnailRequestListener listener) {
+  public ListenableFuture<Boolean> setImageResource(@NonNull RequestManager requestManager, @NonNull Uri uri, int width, int height, boolean animate, @Nullable ThumbnailRequestListener listener) {
     SettableFuture<Boolean> future = new SettableFuture<>();
 
     transferControlViewStub.setVisibility(View.GONE);
 
-    GlideRequest<Drawable> request = glideRequests.load(new DecryptableUri(uri))
+    RequestBuilder<Drawable> request = requestManager.load(new DecryptableUri(uri))
                                                   .diskCacheStrategy(DiskCacheStrategy.NONE)
                                                   .downsample(SignalDownsampleStrategy.CENTER_OUTSIDE_NO_UPSCALE)
                                                   .listener(listener);
@@ -483,12 +482,12 @@ public class ThumbnailView extends FrameLayout {
     return future;
   }
 
-  public ListenableFuture<Boolean> setImageResource(@NonNull GlideRequests glideRequests, @NonNull StoryTextPostModel model, int width, int height) {
+  public ListenableFuture<Boolean> setImageResource(@NonNull RequestManager requestManager, @NonNull StoryTextPostModel model, int width, int height) {
     SettableFuture<Boolean> future = new SettableFuture<>();
 
     transferControlViewStub.setVisibility(View.GONE);
 
-    GlideRequest<Drawable> request = glideRequests.load(model)
+    RequestBuilder<Drawable> request = requestManager.load(model)
                                                   .diskCacheStrategy(DiskCacheStrategy.NONE)
                                                   .placeholder(model.getPlaceholder())
                                                   .downsample(SignalDownsampleStrategy.CENTER_OUTSIDE_NO_UPSCALE)
@@ -502,7 +501,7 @@ public class ThumbnailView extends FrameLayout {
     return future;
   }
 
-  private <T> GlideRequest<T> override(@NonNull GlideRequest<T> request, int width, int height) {
+  private <T> RequestBuilder<T> override(@NonNull RequestBuilder<T> request, int width, int height) {
     if (width > 0 && height > 0) {
       Log.d(TAG, "override: apply w" + width + "xh" + height);
       return request.override(width, height);
@@ -542,8 +541,8 @@ public class ThumbnailView extends FrameLayout {
     return false;
   }
 
-  private GlideRequest<Drawable> buildThumbnailGlideRequest(@NonNull GlideRequests glideRequests, @NonNull Slide slide) {
-    GlideRequest<Drawable> request = applySizing(glideRequests.load(new DecryptableUri(Objects.requireNonNull(slide.getUri())))
+  private RequestBuilder<Drawable> buildThumbnailRequestBuilder(@NonNull RequestManager requestManager, @NonNull Slide slide) {
+    RequestBuilder<Drawable> requestBuilder = applySizing(requestManager.load(new DecryptableUri(Objects.requireNonNull(slide.getUri())))
                                                               .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                                                               .downsample(SignalDownsampleStrategy.CENTER_OUTSIDE_NO_UPSCALE)
                                                               .transition(withCrossFade()));
@@ -551,21 +550,21 @@ public class ThumbnailView extends FrameLayout {
     boolean doNotShowMissingThumbnailImage = Build.VERSION.SDK_INT < 23;
 
     if (slide.isInProgress() || doNotShowMissingThumbnailImage) {
-      return request;
+      return requestBuilder;
     } else {
-      return request.apply(RequestOptions.errorOf(R.drawable.ic_missing_thumbnail_picture));
+      return requestBuilder.apply(RequestOptions.errorOf(R.drawable.ic_missing_thumbnail_picture));
     }
   }
 
-  public void clear(GlideRequests glideRequests) {
-    glideRequests.clear(image);
+  public void clear(RequestManager requestManager) {
+    requestManager.clear(image);
     image.setImageDrawable(null);
 
     if (transferControlViewStub.resolved()) {
       transferControlViewStub.get().clear();
     }
 
-    glideRequests.clear(blurHash);
+    requestManager.clear(blurHash);
     blurHash.setImageDrawable(null);
 
     slide = null;
@@ -594,9 +593,9 @@ public class ThumbnailView extends FrameLayout {
   }
 
 
-  private RequestBuilder<Bitmap> buildPlaceholderGlideRequest(@NonNull GlideRequests glideRequests, @NonNull Slide slide) {
-    GlideRequest<Bitmap> bitmap          = glideRequests.asBitmap();
-    BlurHash             placeholderBlur = slide.getPlaceholderBlur();
+  private RequestBuilder<Bitmap> buildPlaceholderRequestBuilder(@NonNull RequestManager requestManager, @NonNull Slide slide) {
+    RequestBuilder<Bitmap> bitmap          = requestManager.asBitmap();
+    BlurHash               placeholderBlur = slide.getPlaceholderBlur();
 
     if (placeholderBlur != null) {
       bitmap = bitmap.load(placeholderBlur);
@@ -604,7 +603,7 @@ public class ThumbnailView extends FrameLayout {
       bitmap = bitmap.load(slide.getPlaceholderRes(getContext().getTheme()));
     }
 
-    final GlideRequest<Bitmap> resizedRequest = applySizing(bitmap.diskCacheStrategy(DiskCacheStrategy.NONE));
+    final RequestBuilder<Bitmap> resizedRequest = applySizing(bitmap.diskCacheStrategy(DiskCacheStrategy.NONE));
     if (placeholderBlur != null) {
       return resizedRequest.centerCrop();
     } else {
@@ -612,7 +611,7 @@ public class ThumbnailView extends FrameLayout {
     }
   }
 
-  private <TranscodeType> GlideRequest<TranscodeType> applySizing(@NonNull GlideRequest<TranscodeType> request) {
+  private <TranscodeType> RequestBuilder<TranscodeType> applySizing(@NonNull RequestBuilder<TranscodeType> request) {
     int[] size = new int[2];
     fillTargetDimensions(size, dimens, bounds);
     if (size[WIDTH] == 0 && size[HEIGHT] == 0) {
@@ -701,23 +700,23 @@ public class ThumbnailView extends FrameLayout {
 
   private static class BlurHashClearListener implements ListenableFuture.Listener<Boolean> {
 
-    private final GlideRequests glideRequests;
-    private final ImageView     blurHash;
+    private final RequestManager requestManager;
+    private final ImageView      blurHash;
 
-    private BlurHashClearListener(@NonNull GlideRequests glideRequests, @NonNull ImageView blurHash) {
-      this.glideRequests = glideRequests;
-      this.blurHash      = blurHash;
+    private BlurHashClearListener(@NonNull RequestManager requestManager, @NonNull ImageView blurHash) {
+      this.requestManager = requestManager;
+      this.blurHash       = blurHash;
     }
 
     @Override
     public void onSuccess(Boolean result) {
-      glideRequests.clear(blurHash);
+      requestManager.clear(blurHash);
       blurHash.setImageDrawable(null);
     }
 
     @Override
     public void onFailure(ExecutionException e) {
-      glideRequests.clear(blurHash);
+      requestManager.clear(blurHash);
       blurHash.setImageDrawable(null);
     }
   }

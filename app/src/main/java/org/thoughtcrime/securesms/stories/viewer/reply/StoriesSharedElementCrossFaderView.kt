@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.util.AttributeSet
 import android.widget.ImageView
+import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
@@ -17,7 +18,6 @@ import org.thoughtcrime.securesms.animation.transitions.CrossfaderTransition
 import org.thoughtcrime.securesms.blurhash.BlurHash
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader
-import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.stories.StoryTextPostModel
 import kotlin.reflect.KProperty
 
@@ -58,7 +58,7 @@ class StoriesSharedElementCrossFaderView @JvmOverloads constructor(
 
     latestSource = storyTextPostModel
 
-    GlideApp.with(sourceView)
+    Glide.with(sourceView)
       .load(storyTextPostModel)
       .addListener(
         OnReadyListener {
@@ -70,7 +70,7 @@ class StoriesSharedElementCrossFaderView @JvmOverloads constructor(
       .centerCrop()
       .into(sourceView)
 
-    GlideApp.with(sourceBlurView).clear(sourceBlurView)
+    Glide.with(sourceBlurView).clear(sourceBlurView)
     isSourceBlurReady = true
   }
 
@@ -81,7 +81,7 @@ class StoriesSharedElementCrossFaderView @JvmOverloads constructor(
 
     latestSource = uri
 
-    GlideApp.with(sourceView)
+    Glide.with(sourceView)
       .load(DecryptableStreamUriLoader.DecryptableUri(uri))
       .addListener(
         OnReadyListener {
@@ -93,10 +93,10 @@ class StoriesSharedElementCrossFaderView @JvmOverloads constructor(
       .into(sourceView)
 
     if (blur == null) {
-      GlideApp.with(sourceBlurView).clear(sourceBlurView)
+      Glide.with(sourceBlurView).clear(sourceBlurView)
       isSourceBlurReady = true
     } else {
-      GlideApp.with(sourceBlurView)
+      Glide.with(sourceBlurView)
         .load(blur)
         .addListener(
           OnReadyListener {
@@ -128,7 +128,7 @@ class StoriesSharedElementCrossFaderView @JvmOverloads constructor(
 
     latestTarget = storyTextPostModel
 
-    GlideApp.with(targetView)
+    Glide.with(targetView)
       .load(storyTextPostModel)
       .addListener(
         OnReadyListener {
@@ -140,7 +140,7 @@ class StoriesSharedElementCrossFaderView @JvmOverloads constructor(
       .centerCrop()
       .into(targetView)
 
-    GlideApp.with(targetBlurView).clear(targetBlurView)
+    Glide.with(targetBlurView).clear(targetBlurView)
     isTargetBlurReady = true
   }
 
@@ -151,7 +151,7 @@ class StoriesSharedElementCrossFaderView @JvmOverloads constructor(
 
     latestTarget = uri
 
-    GlideApp.with(targetView)
+    Glide.with(targetView)
       .load(DecryptableStreamUriLoader.DecryptableUri(uri))
       .addListener(
         OnReadyListener {
@@ -163,10 +163,10 @@ class StoriesSharedElementCrossFaderView @JvmOverloads constructor(
       .into(targetView)
 
     if (blur == null) {
-      GlideApp.with(targetBlurView).clear(targetBlurView)
+      Glide.with(targetBlurView).clear(targetBlurView)
       isTargetBlurReady = true
     } else {
-      GlideApp.with(targetBlurView)
+      Glide.with(targetBlurView)
         .load(blur)
         .addListener(
           OnReadyListener {

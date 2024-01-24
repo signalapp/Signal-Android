@@ -35,6 +35,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.google.android.material.button.MaterialButton;
@@ -51,7 +52,6 @@ import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
-import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.ringrtc.CameraState;
@@ -546,7 +546,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
 
         if (!localAvatar.equals(previousLocalAvatar)) {
           previousLocalAvatar = localAvatar;
-          GlideApp.with(getContext().getApplicationContext())
+          Glide.with(getContext().getApplicationContext())
                   .load(localAvatar)
                   .transform(new CenterCrop(), new BlurTransformation(getContext(), 0.25f, BlurTransformation.MAX_RADIUS))
                   .diskCacheStrategy(DiskCacheStrategy.ALL)

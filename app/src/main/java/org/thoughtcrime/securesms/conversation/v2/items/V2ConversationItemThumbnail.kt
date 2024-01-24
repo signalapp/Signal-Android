@@ -115,10 +115,10 @@ class V2ConversationItemThumbnail @JvmOverloads constructor(
     thumbnailSlide = thumbnail
     this.fastPreflightId = fastPreflightId
 
-    conversationContext.glideRequests.clear(this)
+    conversationContext.requestManager.clear(this)
 
     if (placeholderTarget != null) {
-      conversationContext.glideRequests.clear(placeholderTarget)
+      conversationContext.requestManager.clear(placeholderTarget)
     }
 
     val thumbnailUri = thumbnail.uri
@@ -147,7 +147,7 @@ class V2ConversationItemThumbnail @JvmOverloads constructor(
     if (thumbnailBlur != null) {
       val placeholderTarget = PlaceholderTarget(this)
       conversationContext
-        .glideRequests
+        .requestManager
         .load(thumbnailBlur)
         .centerInside()
         .dontAnimate()
@@ -159,7 +159,7 @@ class V2ConversationItemThumbnail @JvmOverloads constructor(
 
     if (thumbnailUri != null) {
       conversationContext
-        .glideRequests
+        .requestManager
         .load(DecryptableStreamUriLoader.DecryptableUri(thumbnailUri))
         .centerInside()
         .dontAnimate()

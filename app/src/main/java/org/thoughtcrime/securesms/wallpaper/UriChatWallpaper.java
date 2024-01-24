@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
@@ -20,7 +21,6 @@ import com.bumptech.glide.request.target.Target;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.model.databaseprotos.Wallpaper;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
-import org.thoughtcrime.securesms.mms.GlideApp;
 
 import java.util.Objects;
 import java.util.concurrent.ExecutionException;
@@ -64,7 +64,7 @@ final class UriChatWallpaper implements ChatWallpaper, Parcelable {
       imageView.setImageBitmap(cached);
     } else {
       Log.d(TAG, "Not in cache or recycled. Fetching using Glide.");
-      GlideApp.with(imageView.getContext().getApplicationContext())
+      Glide.with(imageView.getContext().getApplicationContext())
               .asBitmap()
               .load(new DecryptableStreamUriLoader.DecryptableUri(uri))
               .skipMemoryCache(true)
@@ -97,7 +97,7 @@ final class UriChatWallpaper implements ChatWallpaper, Parcelable {
 
     long startTime = System.currentTimeMillis();
     try {
-      Bitmap bitmap = GlideApp.with(context.getApplicationContext())
+      Bitmap bitmap = Glide.with(context.getApplicationContext())
                               .asBitmap()
                               .load(new DecryptableStreamUriLoader.DecryptableUri(uri))
                               .skipMemoryCache(true)

@@ -6,13 +6,13 @@ import android.widget.ImageView
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
+import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.blurhash.BlurHash
-import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.stories.viewer.page.StoryCache
 import org.thoughtcrime.securesms.stories.viewer.page.StoryDisplay
 
@@ -58,7 +58,7 @@ class StoryBlurLoader(
   }
 
   fun clear() {
-    GlideApp.with(blurImage).clear(blurImage)
+    Glide.with(blurImage).clear(blurImage)
 
     blurImage.setImageDrawable(null)
   }
@@ -77,7 +77,7 @@ class StoryBlurLoader(
 
   private fun loadViaGlide(blurHash: BlurHash?, storySize: StoryDisplay.Size) {
     if (blurHash != null) {
-      GlideApp.with(blurImage)
+      Glide.with(blurImage)
         .load(blurHash)
         .override(storySize.width, storySize.height)
         .addListener(object : RequestListener<Drawable> {

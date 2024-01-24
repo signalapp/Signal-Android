@@ -3,13 +3,13 @@ package org.thoughtcrime.securesms.stories.viewer.page
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import com.bumptech.glide.Priority
+import com.bumptech.glide.RequestManager
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader
-import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.util.MediaUtil
 
 /**
@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.util.MediaUtil
  * works with Images.
  */
 class StoryCache(
-  private val glideRequests: GlideRequests,
+  private val requestManager: RequestManager,
   private val storySize: StoryDisplay.Size
 ) {
 
@@ -43,7 +43,7 @@ class StoryCache(
 
     val newMappings: Map<Uri, StoryCacheValue> = prefetchableAttachments.associateWith { attachment ->
       val imageTarget = if (MediaUtil.isImage(attachment)) {
-        glideRequests
+        requestManager
           .load(DecryptableStreamUriLoader.DecryptableUri(attachment.uri!!))
           .priority(Priority.HIGH)
           .centerInside()
@@ -53,7 +53,7 @@ class StoryCache(
       }
 
       val blurTarget = if (attachment.blurHash != null) {
-        glideRequests
+        requestManager
           .load(attachment.blurHash)
           .priority(Priority.HIGH)
           .into(StoryCacheTarget(attachment.uri!!, storySize))
@@ -74,8 +74,8 @@ class StoryCache(
     val values = ArrayList(cache.values)
 
     values.forEach { value ->
-      glideRequests.clear(value.imageTarget)
-      value.blurTarget?.let { glideRequests.clear(it) }
+      requestManager.clear(value.imageTarget)
+      value.blurTarget?.let { requestManager.clear(it) }
     }
 
     cache.clear()

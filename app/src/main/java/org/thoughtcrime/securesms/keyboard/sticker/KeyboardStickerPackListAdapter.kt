@@ -4,16 +4,16 @@ import android.content.res.ColorStateList
 import android.view.View
 import android.widget.ImageView
 import androidx.core.widget.ImageViewCompat
+import com.bumptech.glide.RequestManager
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.glide.cache.ApngOptions
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri
-import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
 
-class KeyboardStickerPackListAdapter(private val glideRequests: GlideRequests, private val allowApngAnimation: Boolean, private val onTabSelected: (StickerPack) -> Unit) : MappingAdapter() {
+class KeyboardStickerPackListAdapter(private val requestManager: RequestManager, private val allowApngAnimation: Boolean, private val onTabSelected: (StickerPack) -> Unit) : MappingAdapter() {
 
   init {
     registerFactory(StickerPack::class.java, LayoutFactory(::StickerPackViewHolder, R.layout.keyboard_pager_category_icon))
@@ -47,7 +47,7 @@ class KeyboardStickerPackListAdapter(private val glideRequests: GlideRequests, p
       if (model.loadImage) {
         ImageViewCompat.setImageTintList(icon, null)
         icon.alpha = if (model.selected) 1f else 0.5f
-        glideRequests.load(model.uri)
+        requestManager.load(model.uri)
           .set(ApngOptions.ANIMATE, allowApngAnimation)
           .into(icon)
       } else {

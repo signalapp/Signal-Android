@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.compose.runtime.Stable
+import com.bumptech.glide.Glide
 import com.bumptech.glide.load.Key
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.DownsampleStrategy
@@ -14,7 +15,6 @@ import kotlinx.parcelize.Parcelize
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.glide.BadgeSpriteTransformation
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
-import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.util.ThemeUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
@@ -130,7 +130,7 @@ data class Badge(
 
       badge.alpha = if (model.badge.isExpired() || model.isFaded) 0.5f else 1f
 
-      GlideApp.with(badge)
+      Glide.with(badge)
         .load(model.badge)
         .downsample(DownsampleStrategy.NONE)
         .diskCacheStrategy(DiskCacheStrategy.NONE)

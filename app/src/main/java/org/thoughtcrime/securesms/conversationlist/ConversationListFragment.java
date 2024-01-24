@@ -71,6 +71,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.SimpleColorFilter;
 import com.annimon.stream.Stream;
+import com.bumptech.glide.Glide;
 import com.google.android.material.animation.ArgbEvaluatorCompat;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
@@ -153,7 +154,6 @@ import org.thoughtcrime.securesms.megaphone.MegaphoneActionController;
 import org.thoughtcrime.securesms.megaphone.MegaphoneViewBuilder;
 import org.thoughtcrime.securesms.megaphone.Megaphones;
 import org.thoughtcrime.securesms.megaphone.SmsExportMegaphoneActivity;
-import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile;
 import org.thoughtcrime.securesms.permissions.Permissions;
@@ -330,7 +330,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
                                                             storyContextMenuCallbacks,
                                                             callButtonClickCallbacks,
                                                             getViewLifecycleOwner(),
-                                                            GlideApp.with(this)
+                                                            Glide.with(this)
                                                         );
                                                       },
                                                       new ConversationListSearchAdapter.ChatFilterRepository()
@@ -890,7 +890,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
 
   private void initializeListAdapters() {
-    defaultAdapter          = new ConversationListAdapter(getViewLifecycleOwner(), GlideApp.with(this), this, this);
+    defaultAdapter          = new ConversationListAdapter(getViewLifecycleOwner(), Glide.with(this), this, this);
 
     setAdapter(defaultAdapter);
 

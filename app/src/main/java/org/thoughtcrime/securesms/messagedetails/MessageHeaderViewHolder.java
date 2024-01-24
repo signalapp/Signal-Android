@@ -20,6 +20,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import androidx.media3.common.MediaItem;
 
+import com.bumptech.glide.RequestManager;
+
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.conversation.ConversationItem;
@@ -30,7 +32,6 @@ import org.thoughtcrime.securesms.conversation.ConversationItemDisplayMode;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4Playable;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicyEnforcer;
-import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
@@ -56,15 +57,15 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
   private final ViewStub      sentStub;
   private final ViewStub      receivedStub;
   private final Colorizer     colorizer;
-  private final GlideRequests glideRequests;
+  private final RequestManager requestManager;
 
   private ConversationItem conversationItem;
   private CountDownTimer   expiresUpdater;
 
-  MessageHeaderViewHolder(@NonNull View itemView, GlideRequests glideRequests, @NonNull Colorizer colorizer) {
+  MessageHeaderViewHolder(@NonNull View itemView, RequestManager requestManager, @NonNull Colorizer colorizer) {
     super(itemView);
-    this.glideRequests = glideRequests;
-    this.colorizer     = colorizer;
+    this.requestManager = requestManager;
+    this.colorizer      = colorizer;
 
     sentDate        = itemView.findViewById(R.id.message_details_header_sent_time);
     receivedDate    = itemView.findViewById(R.id.message_details_header_received_time);
@@ -101,7 +102,7 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
                           conversationMessage,
                           Optional.empty(),
                           Optional.empty(),
-                          glideRequests,
+                          requestManager,
                           Locale.getDefault(),
                           new HashSet<>(),
                           conversationMessage.getMessageRecord().getToRecipient(),
