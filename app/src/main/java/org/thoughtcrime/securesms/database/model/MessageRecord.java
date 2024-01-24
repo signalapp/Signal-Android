@@ -45,6 +45,7 @@ import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context;
 import org.thoughtcrime.securesms.database.model.databaseprotos.GroupCallUpdateDetails;
+import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExtras;
 import org.thoughtcrime.securesms.database.model.databaseprotos.ProfileChangeDetails;
 import org.thoughtcrime.securesms.database.model.databaseprotos.SessionSwitchoverEvent;
 import org.thoughtcrime.securesms.database.model.databaseprotos.ThreadMergeEvent;
@@ -104,6 +105,7 @@ public abstract class MessageRecord extends DisplayRecord {
   private final long                     receiptTimestamp;
   private final MessageId                originalMessageId;
   private final int                      revisionNumber;
+  private final MessageExtras            messageExtras;
 
   protected Boolean isJumboji = null;
 
@@ -123,7 +125,8 @@ public abstract class MessageRecord extends DisplayRecord {
                 boolean viewed,
                 long receiptTimestamp,
                 @Nullable MessageId originalMessageId,
-                int revisionNumber)
+                int revisionNumber,
+                @Nullable MessageExtras messageExtras)
   {
     super(body, fromRecipient, toRecipient, dateSent, dateReceived,
           threadId, deliveryStatus, hasDeliveryReceipt, type,
@@ -143,6 +146,7 @@ public abstract class MessageRecord extends DisplayRecord {
     this.receiptTimestamp    = receiptTimestamp;
     this.originalMessageId   = originalMessageId;
     this.revisionNumber      = revisionNumber;
+    this.messageExtras       = messageExtras;
   }
 
   public abstract boolean isMms();
@@ -287,6 +291,10 @@ public abstract class MessageRecord extends DisplayRecord {
     return selfCreatedGroup(change);
   }
 
+  @Nullable public MessageExtras getMessageExtras() {
+    return messageExtras;
+  }
+
   @VisibleForTesting
   @Nullable DecryptedGroupV2Context getDecryptedGroupV2Context() {
     if (!isGroupUpdate() || !isGroupV2()) {
@@ -315,6 +323,30 @@ public abstract class MessageRecord extends DisplayRecord {
     try {
       byte[]                         decoded                 = Base64.decode(body);
       DecryptedGroupV2Context        decryptedGroupV2Context = DecryptedGroupV2Context.ADAPTER.decode(decoded);
+      return getGv2ChangeDescription(context, decryptedGroupV2Context, recipientClickHandler);
+    } catch (IOException | IllegalArgumentException | IllegalStateException e) {
+      Log.w(TAG, "GV2 Message update detail could not be read", e);
+      return staticUpdateDescription(context.getString(R.string.MessageRecord_group_updated), R.drawable.ic_update_group_16);
+    }
+  }
+
+  public static @NonNull UpdateDescription getGv2ChangeDescription(@NonNull Context context, @NonNull MessageExtras messageExtras, @Nullable Consumer<RecipientId> recipientClickHandler) {
+    if (messageExtras.gv2UpdateDescription != null) {
+      if (messageExtras.gv2UpdateDescription.groupChangeUpdate != null) {
+        GroupsV2UpdateMessageProducer updateMessageProducer = new GroupsV2UpdateMessageProducer(context, SignalStore.account().getServiceIds(), recipientClickHandler);
+
+        return UpdateDescription.concatWithNewLines(updateMessageProducer.describeChanges(messageExtras.gv2UpdateDescription.groupChangeUpdate.updates));
+      } else if (messageExtras.gv2UpdateDescription.gv2ChangeDescription != null) {
+        return getGv2ChangeDescription(context, messageExtras.gv2UpdateDescription.gv2ChangeDescription, recipientClickHandler);
+      } else {
+        Log.w(TAG, "GV2 Update Description missing group change update!");
+      }
+    }
+    return staticUpdateDescription(context.getString(R.string.MessageRecord_group_updated), R.drawable.ic_update_group_16);
+  }
+
+  public static @NonNull UpdateDescription getGv2ChangeDescription(@NonNull Context context, @NonNull DecryptedGroupV2Context decryptedGroupV2Context, @Nullable Consumer<RecipientId> recipientClickHandler) {
+    try {
       GroupsV2UpdateMessageProducer  updateMessageProducer   = new GroupsV2UpdateMessageProducer(context, SignalStore.account().getServiceIds(), recipientClickHandler);
 
       if (decryptedGroupV2Context.change != null && ((decryptedGroupV2Context.groupState != null && decryptedGroupV2Context.groupState.revision != 0) || decryptedGroupV2Context.previousGroupState != null)) {
@@ -332,7 +364,7 @@ public abstract class MessageRecord extends DisplayRecord {
         }
         return UpdateDescription.concatWithNewLines(newGroupDescriptions);
       }
-    } catch (IOException | IllegalArgumentException | IllegalStateException e) {
+    } catch (IllegalArgumentException | IllegalStateException e) {
       Log.w(TAG, "GV2 Message update detail could not be read", e);
       return staticUpdateDescription(context.getString(R.string.MessageRecord_group_updated), R.drawable.ic_update_group_16);
     }

@@ -7,7 +7,6 @@ option java_package = "org.thoughtcrime.securesms.backup.v2.proto";
 message BackupInfo {
   uint64 version = 1;
   uint64 backupTimeMs = 2;
-  bytes  iv = 3;
 }
 
 message Frame {
@@ -207,6 +206,9 @@ message ChatItem {
     repeated SendStatus sendStatus = 1;
   }
 
+  message DirectionlessMessageDetails {
+  }
+
   uint64 chatId = 1;   // conversation id
   uint64 authorId = 2; // recipient id
   uint64 dateSent = 3;
@@ -217,8 +219,9 @@ message ChatItem {
   bool sms = 8;
 
   oneof directionalDetails {
-    IncomingMessageDetails incoming = 10;
-    OutgoingMessageDetails outgoing = 12;
+    IncomingMessageDetails incoming = 9;
+    OutgoingMessageDetails outgoing = 10;
+    DirectionlessMessageDetails directionless = 11;
   }
 
   oneof item {
@@ -415,16 +418,17 @@ message FilePointer {
 
   optional bytes key = 5;
   optional string contentType = 6;
+  // Size of fullsize decrypted media blob in bytes.
+  // Can be ignored if unset/unavailable.
   optional uint32 size = 7;
-  optional bytes digest = 8;
-  optional bytes incrementalMac = 9;
-  optional bytes incrementalMacChunkSize = 10;
-  optional string fileName = 11;
-  optional uint32 flags = 12;
-  optional uint32 width = 13;
-  optional uint32 height = 14;
-  optional string caption = 15;
-  optional string blurHash = 16;
+  optional bytes incrementalMac = 8;
+  optional bytes incrementalMacChunkSize = 9;
+  optional string fileName = 10;
+  optional uint32 flags = 11;
+  optional uint32 width = 12;
+  optional uint32 height = 13;
+  optional string caption = 14;
+  optional string blurHash = 15;
 }
 
 message Quote {
@@ -478,7 +482,7 @@ message Reaction {
 message ChatUpdateMessage {
   oneof update {
     SimpleChatUpdate simpleUpdate = 1;
-    GroupDescriptionChatUpdate groupDescription = 2;
+    GroupChangeChatUpdate groupChange = 2;
     ExpirationTimerChatUpdate expirationTimerChange = 3;
     ProfileChangeChatUpdate profileChange = 4;
     ThreadMergeChatUpdate threadMerge = 5;
@@ -533,10 +537,6 @@ message SimpleChatUpdate {
   Type type = 1;
 }
 
-message GroupDescriptionChatUpdate {
-  string newDescription = 1;
-}
-
 message ExpirationTimerChatUpdate {
   uint32 expiresInMs = 1;
 }
@@ -552,6 +552,246 @@ message ThreadMergeChatUpdate {
 
 message SessionSwitchoverChatUpdate {
   uint64 e164 = 1;
+}
+
+message GroupChangeChatUpdate {
+  message Update {
+    // Note: group expiration timer changes are represented as ExpirationTimerChatUpdate.
+    oneof update {
+      GenericGroupUpdate genericGroupUpdate = 1;
+      GroupCreationUpdate groupCreationUpdate = 2;
+      GroupNameUpdate groupNameUpdate = 3;
+      GroupAvatarUpdate groupAvatarUpdate = 4;
+      GroupDescriptionUpdate groupDescriptionUpdate = 5;
+      GroupMembershipAccessLevelChangeUpdate groupMembershipAccessLevelChangeUpdate = 6;
+      GroupAttributesAccessLevelChangeUpdate groupAttributesAccessLevelChangeUpdate = 7;
+      GroupAnnouncementOnlyChangeUpdate groupAnnouncementOnlyChangeUpdate = 8;
+      GroupAdminStatusUpdate groupAdminStatusUpdate = 9;
+      GroupMemberLeftUpdate groupMemberLeftUpdate = 10;
+      GroupMemberRemovedUpdate groupMemberRemovedUpdate = 11;
+      SelfInvitedToGroupUpdate selfInvitedToGroupUpdate = 12;
+      SelfInvitedOtherUserToGroupUpdate selfInvitedOtherUserToGroupUpdate = 13;
+      GroupUnknownInviteeUpdate groupUnknownInviteeUpdate = 14;
+      GroupInvitationAcceptedUpdate groupInvitationAcceptedUpdate = 15;
+      GroupInvitationDeclinedUpdate groupInvitationDeclinedUpdate = 16;
+      GroupMemberJoinedUpdate groupMemberJoinedUpdate = 17;
+      GroupMemberAddedUpdate groupMemberAddedUpdate = 18;
+      GroupSelfInvitationRevokedUpdate groupSelfInvitationRevokedUpdate = 19;
+      GroupInvitationRevokedUpdate groupInvitationRevokedUpdate = 20;
+      GroupJoinRequestUpdate groupJoinRequestUpdate = 21;
+      GroupJoinRequestApprovalUpdate groupJoinRequestApprovalUpdate = 22;
+      GroupJoinRequestCanceledUpdate groupJoinRequestCanceledUpdate = 23;
+      GroupInviteLinkResetUpdate groupInviteLinkResetUpdate = 24;
+      GroupInviteLinkEnabledUpdate groupInviteLinkEnabledUpdate = 25;
+      GroupInviteLinkAdminApprovalUpdate groupInviteLinkAdminApprovalUpdate = 26;
+      GroupInviteLinkDisabledUpdate groupInviteLinkDisabledUpdate = 27;
+      GroupMemberJoinedByLinkUpdate groupMemberJoinedByLinkUpdate = 28;
+      GroupV2MigrationUpdate groupV2MigrationUpdate = 29;
+      GroupV2MigrationSelfInvitedUpdate groupV2MigrationSelfInvitedUpdate = 30;
+      GroupV2MigrationInvitedMembersUpdate groupV2MigrationInvitedMembersUpdate = 31;
+      GroupV2MigrationDroppedMembersUpdate groupV2MigrationDroppedMembersUpdate = 32;
+      GroupSequenceOfRequestsAndCancelsUpdate groupSequenceOfRequestsAndCancelsUpdate = 33;
+    }
+  }
+
+  // Must be one or more; all updates batched together came from
+  // a single batched group state update.
+  repeated Update updates = 1;
+}
+
+message GenericGroupUpdate {
+  optional bytes updaterAci = 1;
+}
+
+message GroupCreationUpdate {
+  optional bytes updaterAci = 1;
+}
+
+message GroupNameUpdate {
+  optional bytes updaterAci = 1;
+  // Null value means the group name was removed.
+  optional string newGroupName = 2;
+}
+
+message GroupAvatarUpdate {
+  optional bytes updaterAci = 1;
+  bool wasRemoved = 2;
+}
+
+message GroupDescriptionUpdate {
+  optional bytes updaterAci = 1;
+  // Null value means the group description was removed.
+  optional string newDescription = 2;
+}
+
+enum GroupV2AccessLevel {
+  UNKNOWN = 0;
+  ANY = 1;
+  MEMBER = 2;
+  ADMINISTRATOR = 3;
+  UNSATISFIABLE = 4;
+}
+
+message GroupMembershipAccessLevelChangeUpdate {
+  optional bytes updaterAci = 1;
+  GroupV2AccessLevel accessLevel = 2;
+}
+
+message GroupAttributesAccessLevelChangeUpdate {
+  optional bytes updaterAci = 1;
+  GroupV2AccessLevel accessLevel = 2;
+}
+
+message GroupAnnouncementOnlyChangeUpdate {
+  optional bytes updaterAci = 1;
+  bool isAnnouncementOnly = 2;
+}
+
+message GroupAdminStatusUpdate {
+  optional bytes updaterAci = 1;
+  // The aci who had admin status granted or revoked.
+  bytes memberAci = 2;
+  bool wasAdminStatusGranted = 3;
+}
+
+message GroupMemberLeftUpdate {
+  optional bytes aci = 1;
+}
+
+message GroupMemberRemovedUpdate {
+  optional bytes removerAci = 1;
+  bytes removedAci = 2;
+}
+
+message SelfInvitedToGroupUpdate {
+  optional bytes inviterAci = 1;
+}
+
+message SelfInvitedOtherUserToGroupUpdate {
+  // If no invitee id available, use GroupUnknownInviteeUpdate
+  bytes inviteeServiceId = 1;
+}
+
+message GroupUnknownInviteeUpdate {
+  // Can be the self user.
+  optional bytes inviterAci = 1;
+  uint32 inviteeCount = 2;
+}
+
+message GroupInvitationAcceptedUpdate {
+  optional bytes inviterAci = 1;
+  bytes newMemberAci = 2;
+}
+
+message GroupInvitationDeclinedUpdate {
+  optional bytes inviterAci = 1;
+  // Note: if invited by pni, just set inviteeAci to nil.
+  optional bytes inviteeAci = 2;
+}
+
+message GroupMemberJoinedUpdate {
+  bytes newMemberAci = 1;
+}
+
+message GroupMemberAddedUpdate {
+  optional bytes updaterAci = 1;
+  bytes newMemberAci = 2;
+  bool hadOpenInvitation = 3;
+  // If hadOpenInvitation is true, optionally include aci of the inviter.
+  optional bytes inviterAci = 4;
+}
+
+// An invitation to self was revoked.
+message GroupSelfInvitationRevokedUpdate {
+  optional bytes revokerAci = 1;
+}
+
+// These invitees should never be the local user.
+// Use GroupSelfInvitationRevokedUpdate in those cases.
+// The inviter or updater can be the local user.
+message GroupInvitationRevokedUpdate {
+  message Invitee {
+    optional bytes inviterAci = 1;
+    // Prefer to use aci over pni. No need to set
+    // pni if aci is set. Both can be missing.
+    optional bytes inviteeAci = 2;
+    optional bytes inviteePni = 3;
+  }
+
+  // The member that revoked the invite(s), not the inviter!
+  // Assumed to be an admin (at the time, may no longer be an
+  // admin or even a member).
+  optional bytes updaterAci = 1;
+  repeated Invitee invitees = 2;
+}
+
+message GroupJoinRequestUpdate {
+  bytes requestorAci = 1;
+}
+
+message GroupJoinRequestApprovalUpdate {
+  bytes requestorAci = 1;
+  // The aci that approved or rejected the request.
+  optional bytes updaterAci = 2;
+  bool wasApproved = 3;
+}
+
+message GroupJoinRequestCanceledUpdate {
+  bytes requestorAci = 1;
+}
+
+// A single requestor has requested to join and cancelled
+// their request repeatedly with no other updates in between.
+// The last action encompassed by this update is always a
+// cancellation; if there was another open request immediately
+// after, it will be a separate GroupJoinRequestUpdate, either
+// in the same frame or in a subsequent frame.
+message GroupSequenceOfRequestsAndCancelsUpdate {
+  bytes requestorAci = 1;
+  uint32 count = 2;
+}
+
+message GroupInviteLinkResetUpdate {
+  optional bytes updaterAci = 1;
+}
+
+message GroupInviteLinkEnabledUpdate {
+  optional bytes updaterAci = 1;
+  bool linkRequiresAdminApproval = 2;
+}
+
+message GroupInviteLinkAdminApprovalUpdate {
+  optional bytes updaterAci = 1;
+  bool linkRequiresAdminApproval = 2;
+}
+
+message GroupInviteLinkDisabledUpdate {
+  optional bytes updaterAci = 1;
+}
+
+message GroupMemberJoinedByLinkUpdate {
+  bytes newMemberAci = 1;
+}
+
+// A gv1->gv2 migration occurred.
+message GroupV2MigrationUpdate  {}
+
+// Another user migrated gv1->gv2 but was unable to add
+// the local user and invited them instead.
+message GroupV2MigrationSelfInvitedUpdate {}
+
+// The local user migrated gv1->gv2 but was unable to
+// add some members and invited them instead.
+// (Happens if we don't have the invitee's profile key)
+message GroupV2MigrationInvitedMembersUpdate {
+  int32 invitedMembersCount = 1;
+}
+
+// The local user migrated gv1->gv2 but was unable to
+// add or invite some members and dropped them instead.
+// (Happens for e164 members where we don't have an aci).
+message GroupV2MigrationDroppedMembersUpdate {
+  int32 droppedMembersCount = 1;
 }
 
 message StickerPack {

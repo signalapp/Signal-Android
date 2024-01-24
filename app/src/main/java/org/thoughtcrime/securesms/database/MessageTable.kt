@@ -108,6 +108,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
 import org.thoughtcrime.securesms.database.model.databaseprotos.GroupCallUpdateDetails
 import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExportState
+import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExtras
 import org.thoughtcrime.securesms.database.model.databaseprotos.ProfileChangeDetails
 import org.thoughtcrime.securesms.database.model.databaseprotos.SessionSwitchoverEvent
 import org.thoughtcrime.securesms.database.model.databaseprotos.ThreadMergeEvent
@@ -207,6 +208,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     const val LATEST_REVISION_ID = "latest_revision_id"
     const val ORIGINAL_MESSAGE_ID = "original_message_id"
     const val REVISION_NUMBER = "revision_number"
+    const val MESSAGE_EXTRAS = "message_extras"
 
     const val QUOTE_NOT_PRESENT_ID = 0L
     const val QUOTE_TARGET_MISSING_ID = -1L
@@ -264,7 +266,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         $SCHEDULED_DATE INTEGER DEFAULT -1,
         $LATEST_REVISION_ID INTEGER DEFAULT NULL REFERENCES $TABLE_NAME ($ID) ON DELETE CASCADE,
         $ORIGINAL_MESSAGE_ID INTEGER DEFAULT NULL REFERENCES $TABLE_NAME ($ID) ON DELETE CASCADE,
-        $REVISION_NUMBER INTEGER DEFAULT 0
+        $REVISION_NUMBER INTEGER DEFAULT 0,
+        $MESSAGE_EXTRAS BLOB DEFAULT NULL
       )
     """
 
@@ -343,7 +346,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       SCHEDULED_DATE,
       LATEST_REVISION_ID,
       ORIGINAL_MESSAGE_ID,
-      REVISION_NUMBER
+      REVISION_NUMBER,
+      MESSAGE_EXTRAS
     )
 
     private val MMS_PROJECTION: Array<String> = MMS_PROJECTION_BASE + "NULL AS ${AttachmentTable.ATTACHMENT_JSON_ALIAS}"
@@ -4985,6 +4989,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       val originalMessageId: MessageId? = cursor.requireLong(ORIGINAL_MESSAGE_ID).let { if (it == 0L) null else MessageId(it) }
       val editCount = cursor.requireInt(REVISION_NUMBER)
       val isRead = cursor.requireBoolean(READ)
+      val messageExtraBytes = cursor.requireBlob(MESSAGE_EXTRAS)
+      val messageExtras = if (messageExtraBytes != null) MessageExtras.ADAPTER.decode(messageExtraBytes) else null
 
       if (!TextSecurePreferences.isReadReceiptsEnabled(context)) {
         hasReadReceipt = false
@@ -5072,7 +5078,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         latestRevisionId,
         originalMessageId,
         editCount,
-        isRead
+        isRead,
+        messageExtras
       )
     }
 

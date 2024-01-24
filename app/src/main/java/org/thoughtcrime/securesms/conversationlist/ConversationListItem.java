@@ -572,7 +572,11 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
       }
     } else if (MessageTypes.isGroupUpdate(thread.getType())) {
       if (thread.getRecipient().isPushV2Group()) {
-        return emphasisAdded(context, MessageRecord.getGv2ChangeDescription(context, thread.getBody(), null), defaultTint);
+        if (thread.getMessageExtras() != null) {
+          return emphasisAdded(context, MessageRecord.getGv2ChangeDescription(context, thread.getMessageExtras(), null), defaultTint);
+        } else {
+          return emphasisAdded(context, MessageRecord.getGv2ChangeDescription(context, thread.getBody(), null), defaultTint);
+        }
       } else {
         return emphasisAdded(context, context.getString(R.string.ThreadRecord_group_updated), R.drawable.ic_update_group_16, defaultTint);
       }
