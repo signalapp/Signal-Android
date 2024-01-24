@@ -288,9 +288,11 @@ public class CreateProfileFragment extends LoggingFragment {
   private void presentWhoCanFindMeDescription(PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode phoneNumberListingMode) {
     switch (phoneNumberListingMode) {
       case DISCOVERABLE:
+        binding.whoCanFindMeIcon.setImageResource(R.drawable.symbol_group_24);
         binding.whoCanFindMeDescription.setText(R.string.PhoneNumberPrivacy_everyone);
         break;
       case NOT_DISCOVERABLE:
+        binding.whoCanFindMeIcon.setImageResource(R.drawable.symbol_lock_24);
         binding.whoCanFindMeDescription.setText(R.string.PhoneNumberPrivacy_nobody);
         break;
     }
