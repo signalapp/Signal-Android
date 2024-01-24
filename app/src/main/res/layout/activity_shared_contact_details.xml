@@ -99,7 +99,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="6dp"
                                 android:tint="?attr/colorAccent"
-                                android:src="@drawable/message_24dp"/>
+                                android:src="@drawable/symbol_chat_fill_24"/>
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -123,7 +123,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="6dp"
                                 android:tint="?attr/colorAccent"
-                                android:src="@drawable/phone_24dp"/>
+                                android:src="@drawable/symbol_phone_fill_24"/>
 
                             <TextView
                                 android:layout_width="wrap_content"

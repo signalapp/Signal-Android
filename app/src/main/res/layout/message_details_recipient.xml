@@ -31,7 +31,7 @@
             app:layout_constraintEnd_toStartOf="@+id/message_details_recipient_name"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/ic_contact_picture" />
+            tools:src="@tools:sample/avatars" />
 
         <org.thoughtcrime.securesms.badges.BadgeImageView
             android:id="@+id/message_details_recipient_badge"
@@ -88,11 +88,12 @@
             style="@style/Signal.Widget.Button.Medium.Tonal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_error_white_18dp"
+            android:drawableStart="@drawable/symbol_error_circle_fill_16"
             android:text="@string/message_recipients_list_item__view"
             android:textColor="@color/signal_colorOnPrimary"
             android:visibility="gone"
             app:backgroundTint="@color/signal_colorError"
+            app:drawableTint="@color/signal_colorOnPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/message_details_recipient_timestamp"
             app:layout_constraintStart_toEndOf="@+id/message_details_recipient_ud_indicator"

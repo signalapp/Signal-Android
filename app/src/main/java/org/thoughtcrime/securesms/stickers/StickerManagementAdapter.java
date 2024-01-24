@@ -25,6 +25,8 @@ import org.thoughtcrime.securesms.database.model.StickerPackRecord;
 import org.thoughtcrime.securesms.glide.cache.ApngOptions;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideRequests;
+import org.thoughtcrime.securesms.util.DrawableUtil;
+import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.adapter.SectionedRecyclerViewAdapter;
 import org.thoughtcrime.securesms.util.adapter.StableIdGenerator;
 
@@ -304,10 +306,10 @@ final class StickerManagementAdapter extends SectionedRecyclerViewAdapter<String
 
     private static @NonNull CharSequence buildBlessedBadge(@NonNull Context context) {
       SpannableString badgeSpan = new SpannableString("  ");
-      Drawable        badge     = ContextCompat.getDrawable(context, R.drawable.ic_check_circle_white_18dp);
+      Drawable        badge     = ContextCompat.getDrawable(context, R.drawable.symbol_check_circle_fill_24);
 
-      badge.setBounds(0, 0, badge.getIntrinsicWidth(), badge.getIntrinsicHeight());
-      badge.setColorFilter(ContextCompat.getColor(context, R.color.core_ultramarine), PorterDuff.Mode.MULTIPLY);
+      badge.setBounds(0, 0, ViewUtil.dpToPx(18), ViewUtil.dpToPx(18));
+      DrawableUtil.tint(badge, ContextCompat.getColor(context, R.color.core_ultramarine));
       badgeSpan.setSpan(new ImageSpan(badge), 1, badgeSpan.length(), 0);
 
       return badgeSpan;

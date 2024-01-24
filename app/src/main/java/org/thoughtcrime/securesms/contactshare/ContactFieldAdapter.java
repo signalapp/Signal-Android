@@ -139,7 +139,6 @@ class ContactFieldAdapter extends RecyclerView.Adapter<ContactFieldAdapter.Conta
 
     final String     value;
     final String     label;
-    final int        iconResId;
     final int        maxLines;
     final Selectable selectable;
 
@@ -148,7 +147,6 @@ class ContactFieldAdapter extends RecyclerView.Adapter<ContactFieldAdapter.Conta
 
     Field(@NonNull Context context, @NonNull Phone phoneNumber, @NonNull Locale locale) {
       this.value      = ContactUtil.getPrettyPhoneNumber(phoneNumber, locale);
-      this.iconResId  = R.drawable.ic_phone_right_unlock_solid_24;
       this.iconUri    = null;
       this.maxLines   = 1;
       this.selectable = phoneNumber;
@@ -173,7 +171,6 @@ class ContactFieldAdapter extends RecyclerView.Adapter<ContactFieldAdapter.Conta
 
     Field(@NonNull Context context, @NonNull Email email) {
       this.value      = email.getEmail();
-      this.iconResId  = R.drawable.baseline_email_white_24;
       this.iconUri    = null;
       this.maxLines   = 1;
       this.selectable = email;
@@ -198,7 +195,6 @@ class ContactFieldAdapter extends RecyclerView.Adapter<ContactFieldAdapter.Conta
 
     Field(@NonNull Context context, @NonNull PostalAddress postalAddress) {
       this.value      = postalAddress.toString();
-      this.iconResId  = R.drawable.ic_location_on_white_24dp;
       this.iconUri    = null;
       this.maxLines   = 3;
       this.selectable = postalAddress;
@@ -220,7 +216,6 @@ class ContactFieldAdapter extends RecyclerView.Adapter<ContactFieldAdapter.Conta
 
     Field(@NonNull Avatar avatar) {
       this.value      = "";
-      this.iconResId  = R.drawable.baseline_account_circle_white_24;
       this.iconUri    = avatar.getAttachment() != null ? avatar.getAttachment().getUri() : null;
       this.maxLines   = 1;
       this.selectable = avatar;

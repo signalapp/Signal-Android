@@ -1587,7 +1587,7 @@
 
     <!-- DeviceProvisioningActivity -->
     <string name="DeviceProvisioningActivity_link_this_device">Link this device?</string>
-    <string name="DeviceProvisioningActivity_continue">CONTINUE</string>
+    <string name="DeviceProvisioningActivity_continue">Continue</string>
 
     <string name="DeviceProvisioningActivity_content_intro">It will be able to</string>
     <string name="DeviceProvisioningActivity_content_bullets">

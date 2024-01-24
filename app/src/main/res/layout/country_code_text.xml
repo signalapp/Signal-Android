@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="3dp"
-        android:src="@drawable/ic_add_white_original_24dp"
+        android:src="@drawable/symbol_plus_24"
         android:tint="@color/core_grey_60"
         android:contentDescription="+"
         tools:ignore="HardcodedText" />

@@ -91,6 +91,6 @@ public class AudioSlide extends Slide {
 
   @Override
   public @DrawableRes int getPlaceholderRes(Theme theme) {
-    return R.drawable.ic_audio;
+    return R.drawable.symbol_speaker_fill_24;
   }
 }

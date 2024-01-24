@@ -1567,7 +1567,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   private void setStatusIcons(MessageRecord messageRecord, boolean hasWallpaper) {
-    bodyText.setCompoundDrawablesWithIntrinsicBounds(0, 0, messageRecord.isKeyExchange() ? R.drawable.ic_menu_login : 0, 0);
+    bodyText.setCompoundDrawablesWithIntrinsicBounds(0, 0, messageRecord.isKeyExchange() ? R.drawable.symbol_key_24 : 0, 0);
 
     if (!messageRecord.isMediaPending() && messageRecord.isFailed()) {
       alertView.setFailed();

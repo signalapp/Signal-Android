@@ -193,7 +193,7 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
             MaterialAlertDialogBuilder(requireContext()).apply {
               setTitle(R.string.ApplicationPreferencesActivity_disable_passphrase)
               setMessage(R.string.ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications)
-              setIcon(R.drawable.ic_warning)
+              setIcon(R.drawable.symbol_error_triangle_fill_24)
               setPositiveButton(R.string.ApplicationPreferencesActivity_disable) { _, _ ->
                 MasterSecretUtil.changeMasterSecretPassphrase(
                   activity,

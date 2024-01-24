@@ -357,7 +357,7 @@ object NotificationFactory {
 
     builder.apply {
       setSmallIcon(R.drawable.ic_notification)
-      setLargeIcon(BitmapFactory.decodeResource(context.resources, R.drawable.ic_action_warning_red))
+      setLargeIcon(BitmapFactory.decodeResource(context.resources, R.drawable.symbol_error_triangle_fill_32))
       setContentTitle(context.getString(R.string.MessageNotifier_message_delivery_failed))
       setContentText(context.getString(R.string.MessageNotifier_failed_to_deliver_message))
       setTicker(context.getString(R.string.MessageNotifier_error_delivering_message))

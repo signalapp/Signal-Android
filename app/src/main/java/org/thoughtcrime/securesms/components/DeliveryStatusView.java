@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.components;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.AttributeSet;
@@ -146,7 +147,7 @@ public class DeliveryStatusView extends AppCompatImageView {
     setVisibility(View.VISIBLE);
     ViewUtil.setPaddingStart(this, 0);
     ViewUtil.setPaddingEnd(this, horizontalPadding);
-    setImageResource(R.drawable.ic_delivery_status_sending);
+    setImageResource(R.drawable.symbol_messagestatus_sending_24);
     updateContentDescription();
   }
 
@@ -156,7 +157,7 @@ public class DeliveryStatusView extends AppCompatImageView {
     ViewUtil.setPaddingStart(this, horizontalPadding);
     ViewUtil.setPaddingEnd(this, 0);
     clearAnimation();
-    setImageResource(R.drawable.ic_delivery_status_sent);
+    setImageResource(R.drawable.symbol_messagestatus_sent_24);
     updateContentDescription();
   }
 
@@ -166,7 +167,7 @@ public class DeliveryStatusView extends AppCompatImageView {
     ViewUtil.setPaddingStart(this, horizontalPadding);
     ViewUtil.setPaddingEnd(this, 0);
     clearAnimation();
-    setImageResource(R.drawable.ic_delivery_status_delivered);
+    setImageResource(R.drawable.symbol_messagestatus_delivered_24);
     updateContentDescription();
   }
 
@@ -176,12 +177,12 @@ public class DeliveryStatusView extends AppCompatImageView {
     ViewUtil.setPaddingStart(this, horizontalPadding);
     ViewUtil.setPaddingEnd(this, 0);
     clearAnimation();
-    setImageResource(R.drawable.ic_delivery_status_read);
+    setImageResource(R.drawable.symbol_messagestatus_read_24);
     updateContentDescription();
   }
 
   public void setTint(int color) {
-    setColorFilter(color);
+    setColorFilter(color, PorterDuff.Mode.SRC_IN);
   }
 
   private void updateContentDescription() {

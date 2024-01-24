@@ -586,7 +586,7 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
     val attachment: DatabaseAttachment = mediaItem.attachment ?: return
 
     MaterialAlertDialogBuilder(requireContext()).apply {
-      setIcon(R.drawable.ic_warning)
+      setIcon(R.drawable.symbol_error_triangle_fill_24)
       setTitle(R.string.MediaPreviewActivity_media_delete_confirmation_title)
       setMessage(R.string.MediaPreviewActivity_media_delete_confirmation_message)
       setCancelable(true)

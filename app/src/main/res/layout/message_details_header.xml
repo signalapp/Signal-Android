@@ -69,7 +69,8 @@
                 android:layout_gravity="center_vertical"
                 android:text="@string/message_recipients_list_item__resend"
                 android:visibility="gone"
-                app:icon="@drawable/ic_refresh_white_18dp"
+                app:icon="@drawable/symbol_refresh_24"
+                app:iconTint="@color/signal_colorOnPrimaryContainer"
                 tools:visibility="visible" />
 
         </LinearLayout>

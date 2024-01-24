@@ -2,14 +2,19 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape android:shape="oval">
-            <size android:height="21dp" android:width="21dp"/>
-            <solid android:color="@color/red_600"/>
-            <stroke android:color="@android:color/transparent"
-                    android:width="3dp"/>
+            <size
+                android:width="21dp"
+                android:height="21dp" />
+            <solid android:color="@color/red_600" />
+            <stroke
+                android:width="3dp"
+                android:color="@android:color/transparent" />
         </shape>
     </item>
-    <item>
-        <bitmap android:src="@drawable/ic_clear_white_24dp"
-                android:gravity="center" />
-    </item>
+    <item
+        android:bottom="2dp"
+        android:drawable="@drawable/symbol_x_white_24"
+        android:left="2dp"
+        android:right="2dp"
+        android:top="2dp" />
 </layer-list>

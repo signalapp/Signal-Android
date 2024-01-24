@@ -16,7 +16,6 @@ import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 
 /**
@@ -107,8 +106,6 @@ internal object ConversationOptionsMenu {
       if (!recipient.isGroup) {
         if (isPushAvailable) {
           menuInflater.inflate(R.menu.conversation_callable_secure, menu)
-        } else if (!recipient.isReleaseNotes && SignalStore.misc().smsExportPhase.allowSmsFeatures()) {
-          menuInflater.inflate(R.menu.conversation_callable_insecure, menu)
         }
       } else if (recipient.isGroup) {
         if (isActiveV2Group) {
@@ -141,8 +138,6 @@ internal object ConversationOptionsMenu {
         if (isPushAvailable) {
           hideMenuItem(menu, R.id.menu_call_secure)
           hideMenuItem(menu, R.id.menu_video_secure)
-        } else {
-          hideMenuItem(menu, R.id.menu_call_insecure)
         }
         hideMenuItem(menu, R.id.menu_mute_notifications)
       }
@@ -153,8 +148,6 @@ internal object ConversationOptionsMenu {
           hideMenuItem(menu, R.id.menu_video_secure)
           hideMenuItem(menu, R.id.menu_expiring_messages)
           hideMenuItem(menu, R.id.menu_expiring_messages_off)
-        } else {
-          hideMenuItem(menu, R.id.menu_call_insecure)
         }
         hideMenuItem(menu, R.id.menu_mute_notifications)
       }
@@ -199,9 +192,8 @@ internal object ConversationOptionsMenu {
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
       when (menuItem.itemId) {
-        R.id.menu_call_secure -> callback.handleDial(true)
+        R.id.menu_call_secure -> callback.handleDial()
         R.id.menu_video_secure -> callback.handleVideo()
-        R.id.menu_call_insecure -> callback.handleDial(false)
         R.id.menu_view_media -> callback.handleViewMedia()
         R.id.menu_add_shortcut -> callback.handleAddShortcut()
         R.id.menu_search -> callback.handleSearch()
@@ -266,7 +258,7 @@ internal object ConversationOptionsMenu {
     fun onOptionsMenuCreated(menu: Menu)
 
     fun handleVideo()
-    fun handleDial(isSecure: Boolean)
+    fun handleDial()
     fun handleViewMedia()
     fun handleAddShortcut()
     fun handleSearch()

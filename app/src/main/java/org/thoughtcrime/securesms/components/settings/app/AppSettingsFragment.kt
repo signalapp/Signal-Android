@@ -219,7 +219,7 @@ class AppSettingsFragment : DSLSettingsFragment(
 
       clickPref(
         title = DSLSettingsText.from(R.string.preferences__privacy),
-        icon = DSLSettingsIcon.from(R.drawable.symbol_lock_24),
+        icon = DSLSettingsIcon.from(R.drawable.symbol_lock_white_48),
         onClick = {
           findNavController().safeNavigate(R.id.action_appSettingsFragment_to_privacySettingsFragment)
         },

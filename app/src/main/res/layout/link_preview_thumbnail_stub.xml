@@ -12,5 +12,5 @@
     app:layout_constraintHeight_min="72dp"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="@+id/linkpreview_title"
-    tools:src="@drawable/ic_contact_picture"
+    tools:src="@tools:sample/avatars"
     tools:visibility="visible" />

@@ -560,7 +560,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     binding.body.setCompoundDrawablesWithIntrinsicBounds(
       0,
       0,
-      if (record.isKeyExchange) R.drawable.ic_menu_login else 0,
+      if (record.isKeyExchange) R.drawable.symbol_key_24 else 0,
       0
     )
 

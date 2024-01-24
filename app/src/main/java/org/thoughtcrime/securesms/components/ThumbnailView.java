@@ -553,7 +553,7 @@ public class ThumbnailView extends FrameLayout {
     if (slide.isInProgress() || doNotShowMissingThumbnailImage) {
       return request;
     } else {
-      return request.apply(RequestOptions.errorOf(R.drawable.ic_missing_thumbnail_picture));
+      return request.apply(RequestOptions.errorOf(R.drawable.missing_thumbnail));
     }
   }
 

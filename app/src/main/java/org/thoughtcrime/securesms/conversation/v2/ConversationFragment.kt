@@ -3094,14 +3094,9 @@ class ConversationFragment :
       this@ConversationFragment.handleVideoCall()
     }
 
-    override fun handleDial(isSecure: Boolean) {
+    override fun handleDial() {
       val recipient: Recipient = viewModel.recipientSnapshot ?: return
-
-      if (isSecure) {
-        CommunicationActions.startVoiceCall(this@ConversationFragment, recipient)
-      } else {
-        CommunicationActions.startInsecureCall(this@ConversationFragment, recipient)
-      }
+      CommunicationActions.startVoiceCall(this@ConversationFragment, recipient)
     }
 
     override fun handleViewMedia() {
@@ -3500,7 +3495,7 @@ class ConversationFragment :
           .toTypedArray()
 
         MaterialAlertDialogBuilder(requireContext())
-          .setIcon(R.drawable.ic_warning)
+          .setIcon(R.drawable.symbol_error_triangle_fill_24)
           .setTitle(R.string.ConversationFragment__no_longer_verified)
           .setItems(unverifiedNames) { _, which: Int -> VerifyIdentityActivity.startOrShowExchangeMessagesDialog(requireContext(), unverifiedIdentities[which], false) }
           .show()

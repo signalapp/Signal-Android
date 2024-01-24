@@ -7,7 +7,7 @@
             <corners android:bottomLeftRadius="0dp" android:topLeftRadius="0dp" android:topRightRadius="0dp" android:bottomRightRadius="@dimen/message_bubble_corner_radius"/>
         </shape>
     </item>
-    <item android:drawable="@drawable/ic_create_white_24dp"
+    <item android:drawable="@drawable/symbol_edit_white_24"
           android:left="5dp"
           android:right="5dp"
           android:top="5dp"

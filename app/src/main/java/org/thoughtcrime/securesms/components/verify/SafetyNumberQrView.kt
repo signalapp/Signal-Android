@@ -149,7 +149,7 @@ class SafetyNumberQrView : ConstraintLayout {
 
   fun animateVerifiedSuccess() {
     val qrBitmap = (qrCode.drawable as BitmapDrawable).bitmap
-    val qrSuccess: Bitmap = createVerifiedBitmap(qrBitmap.width, qrBitmap.height, R.drawable.ic_check_white_48dp)
+    val qrSuccess: Bitmap = createVerifiedBitmap(qrBitmap.width, qrBitmap.height, R.drawable.symbol_check_white_48)
     qrVerified.setImageBitmap(qrSuccess)
     qrVerified.background.setColorFilter(resources.getColor(R.color.green_500), PorterDuff.Mode.MULTIPLY)
     tapLabel.setText(context.getString(R.string.verify_display_fragment__successful_match))
@@ -158,7 +158,7 @@ class SafetyNumberQrView : ConstraintLayout {
 
   fun animateVerifiedFailure() {
     val qrBitmap = (qrCode.drawable as BitmapDrawable).bitmap
-    val qrSuccess: Bitmap = createVerifiedBitmap(qrBitmap.width, qrBitmap.height, R.drawable.ic_close_white_48dp)
+    val qrSuccess: Bitmap = createVerifiedBitmap(qrBitmap.width, qrBitmap.height, R.drawable.symbol_x_white_48)
     qrVerified.setImageBitmap(qrSuccess)
     qrVerified.background.setColorFilter(resources.getColor(R.color.red_500), PorterDuff.Mode.MULTIPLY)
     tapLabel.setText(context.getString(R.string.verify_display_fragment__failed_to_verify_safety_number))
