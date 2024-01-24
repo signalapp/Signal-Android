@@ -1,6 +1,5 @@
 plugins {
     id("signal-sample-app")
-    id("kotlin-kapt")
 }
 
 android {
@@ -15,5 +14,4 @@ dependencies {
     implementation(project(":image-editor"))
 
     implementation(libs.glide.glide)
-    kapt(libs.glide.compiler)
 }

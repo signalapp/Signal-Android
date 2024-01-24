@@ -1,6 +1,5 @@
 plugins {
   id("signal-library")
-  id("kotlin-kapt")
   id("com.squareup.wire")
 }
 

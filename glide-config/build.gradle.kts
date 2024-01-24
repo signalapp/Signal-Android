@@ -1,6 +1,5 @@
 plugins {
   id("signal-library")
-  id("kotlin-kapt")
 }
 
 android {
@@ -9,5 +8,4 @@ android {
 
 dependencies {
   implementation(libs.glide.glide)
-  kapt(libs.glide.compiler)
 }
