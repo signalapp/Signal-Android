@@ -32,7 +32,7 @@ class ConversationListSearchAdapter(
   storyContextMenuCallbacks: StoryContextMenuCallbacks,
   callButtonClickCallbacks: CallButtonClickCallbacks,
   lifecycleOwner: LifecycleOwner,
-  requestManager: RequestManager,
+  requestManager: RequestManager
 ) : ContactSearchAdapter(context, fixedContacts, displayOptions, onClickedCallbacks, longClickCallbacks, storyContextMenuCallbacks, callButtonClickCallbacks), TimestampPayloadSupport {
 
   companion object {
