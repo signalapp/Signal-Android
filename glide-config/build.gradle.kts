@@ -1,5 +1,6 @@
 plugins {
   id("signal-library")
+  id("com.google.devtools.ksp")
 }
 
 android {
@@ -8,4 +9,5 @@ android {
 
 dependencies {
   implementation(libs.glide.glide)
+  ksp(libs.glide.ksp)
 }
