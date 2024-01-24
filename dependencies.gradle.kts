@@ -138,7 +138,7 @@ dependencyResolutionManagement {
       library("emilsjolander-stickylistheaders", "se.emilsjolander:stickylistheaders:2.7.0")
       library("apache-httpclient-android", "org.apache.httpcomponents:httpclient-android:4.3.5")
       library("glide-glide", "com.github.bumptech.glide", "glide").versionRef("glide")
-      library("glide-compiler", "com.github.bumptech.glide", "compiler").versionRef("glide")
+      library("glide-ksp", "com.github.bumptech.glide", "ksp").versionRef("glide")
       library("roundedimageview", "com.makeramen:roundedimageview:2.1.0")
       library("materialish-progress", "com.pnikosis:materialish-progress:1.7")
       library("subsampling-scale-image-view", "com.davemorrissey.labs:subsampling-scale-image-view-androidx:3.10.0")

@@ -7,6 +7,7 @@ import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Build
+import com.bumptech.glide.Glide
 import com.bumptech.glide.load.MultiTransformation
 import com.bumptech.glide.load.Transformation
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -18,7 +19,6 @@ import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri
-import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.BitmapUtil
@@ -46,7 +46,7 @@ fun Recipient.getContactDrawable(context: Context): Drawable? {
       }
       transforms += CircleCrop()
 
-      GlideApp.with(context.applicationContext)
+      Glide.with(context.applicationContext)
         .load(contactPhoto)
         .diskCacheStrategy(DiskCacheStrategy.ALL)
         .transform(MultiTransformation(transforms))
@@ -67,7 +67,7 @@ fun Recipient.getContactDrawable(context: Context): Drawable? {
 
 fun Uri.toBitmap(context: Context, dimension: Int): Bitmap {
   return try {
-    GlideApp.with(context.applicationContext)
+    Glide.with(context.applicationContext)
       .asBitmap()
       .load(DecryptableUri(this))
       .diskCacheStrategy(DiskCacheStrategy.NONE)

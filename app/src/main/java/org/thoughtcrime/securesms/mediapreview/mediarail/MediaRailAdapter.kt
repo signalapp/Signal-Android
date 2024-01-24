@@ -4,13 +4,13 @@ import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.target.Target
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ThumbnailView
 import org.thoughtcrime.securesms.mediasend.Media
-import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
@@ -21,7 +21,7 @@ import java.util.concurrent.atomic.AtomicInteger
  * This is the RecyclerView.Adapter for the row of thumbnails present in the media viewer screen.
  */
 class MediaRailAdapter(
-  private val glideRequests: GlideRequests,
+  private val requestManager: RequestManager,
   private val onRailItemSelected: (Media) -> Unit,
   private val imageLoadingListener: ImageLoadingListener
 ) : MappingAdapter() {
@@ -77,7 +77,7 @@ class MediaRailAdapter(
     }
 
     override fun bind(model: MediaRailItem) {
-      image.setImageResource(glideRequests, model.media.uri, 0, 0, false, imageLoadingListener)
+      image.setImageResource(requestManager, model.media.uri, 0, 0, false, imageLoadingListener)
       image.setOnClickListener { onRailItemSelected(model.media) }
       captionIndicator.visibility = if (model.media.caption.isPresent) View.VISIBLE else View.GONE
 

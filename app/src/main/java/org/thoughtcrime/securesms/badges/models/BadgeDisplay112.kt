@@ -2,10 +2,10 @@ package org.thoughtcrime.securesms.badges.models
 
 import android.view.View
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.BadgeImageView
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
-import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
@@ -49,7 +49,7 @@ object BadgeDisplay112 {
 
     override fun bind(model: GiftModel) {
       titleView.visible = false
-      badgeImageView.setGiftBadge(model.giftBadge, GlideApp.with(badgeImageView))
+      badgeImageView.setGiftBadge(model.giftBadge, Glide.with(badgeImageView))
     }
   }
 }

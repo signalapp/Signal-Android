@@ -1,7 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-val signalKotlinJvmTarget: String by rootProject.extra
-
 buildscript {
   rootProject.extra["kotlin_version"] = "1.8.10"
   repositories {
@@ -31,6 +29,7 @@ buildscript {
     }
     classpath("androidx.benchmark:benchmark-gradle-plugin:1.1.0-beta04")
     classpath(files("$rootDir/wire-handler/wire-handler-1.0.0.jar"))
+    classpath("com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:1.8.10-1.0.9")
   }
 }
 
@@ -39,15 +38,6 @@ tasks.withType<Wrapper> {
 }
 
 apply(from = "${rootDir}/constants.gradle.kts")
-
-allprojects {
-  // Needed because otherwise the kapt task defaults to jvmTarget 17, which "poisons the well" and requires us to bump up too
-  tasks.withType<KotlinCompile>().configureEach {
-    kotlinOptions {
-      jvmTarget = signalKotlinJvmTarget
-    }
-  }
-}
 
 subprojects {
   if (JavaVersion.current().isJava8Compatible()) {

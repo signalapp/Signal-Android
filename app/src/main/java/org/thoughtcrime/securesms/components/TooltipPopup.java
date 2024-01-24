@@ -18,13 +18,13 @@ import androidx.annotation.Px;
 import androidx.annotation.StringRes;
 import androidx.core.content.ContextCompat;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.shape.MaterialShapeDrawable;
 import com.google.android.material.shape.ShapeAppearanceModel;
 
 import org.signal.core.util.DimensionUnit;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.mms.GlideApp;
 
 /**
  * Class for creating simple tooltips to show throughout the app. Utilizes a popup window so you
@@ -101,7 +101,7 @@ public class TooltipPopup extends PopupWindow {
     if (iconGlideModel != null) {
       ImageView iconView = getContentView().findViewById(R.id.tooltip_icon);
       iconView.setVisibility(View.VISIBLE);
-      GlideApp.with(anchor.getContext()).load(iconGlideModel).into(iconView);
+      Glide.with(anchor.getContext()).load(iconGlideModel).into(iconView);
     }
 
     setElevation(10);

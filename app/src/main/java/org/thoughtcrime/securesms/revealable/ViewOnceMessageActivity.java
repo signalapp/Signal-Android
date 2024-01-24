@@ -16,11 +16,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.bumptech.glide.Glide;
+
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
-import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.providers.BlobProvider;
@@ -141,7 +142,7 @@ public class ViewOnceMessageActivity extends PassphraseRequiredActivity implemen
     image.setVisibility(View.VISIBLE);
     duration.setVisibility(View.GONE);
 
-    GlideApp.with(this)
+    Glide.with(this)
             .load(new DecryptableUri(uri))
             .fitCenter()
             .into(image);

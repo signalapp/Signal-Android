@@ -19,6 +19,7 @@ import androidx.core.widget.ImageViewCompat;
 import androidx.transition.Transition;
 import androidx.transition.TransitionManager;
 
+import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
@@ -33,7 +34,6 @@ import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.events.CallParticipant;
-import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.AvatarUtil;
@@ -408,7 +408,7 @@ public class CallParticipantView extends ConstraintLayout {
                                                             : recipient.getContactPhoto();
     FallbackContactPhoto fallbackPhoto = recipient.getFallbackContactPhoto(FALLBACK_PHOTO_PROVIDER);
 
-    GlideApp.with(this)
+    Glide.with(this)
             .load(contactPhoto)
             .fallback(fallbackPhoto.asCallCard(getContext()))
             .error(fallbackPhoto.asCallCard(getContext()))

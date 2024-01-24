@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.components;
 
 
 import android.content.Context;
-import android.database.Cursor;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,11 +14,12 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.RequestManager;
+
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.MediaTable;
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewCache;
-import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
@@ -58,8 +58,8 @@ public class ThreadPhotoRailView extends FrameLayout {
     }
   }
 
-  public void setMediaRecords(@NonNull GlideRequests glideRequests, @NonNull List<MediaTable.MediaRecord> mediaRecords) {
-    this.recyclerView.setAdapter(new ThreadPhotoRailAdapter(getContext(), glideRequests, mediaRecords, this.listener));
+  public void setMediaRecords(@NonNull RequestManager requestManager, @NonNull List<MediaTable.MediaRecord> mediaRecords) {
+    this.recyclerView.setAdapter(new ThreadPhotoRailAdapter(getContext(), requestManager, mediaRecords, this.listener));
   }
 
   private static class ThreadPhotoRailAdapter extends RecyclerView.Adapter<ThreadPhotoRailAdapter.ThreadPhotoViewHolder> {
@@ -67,18 +67,18 @@ public class ThreadPhotoRailView extends FrameLayout {
     @SuppressWarnings("unused")
     private static final String TAG = Log.tag(ThreadPhotoRailAdapter.class);
 
-    @NonNull  private final GlideRequests glideRequests;
+    @NonNull  private final RequestManager requestManager;
 
     @Nullable private OnItemClickedListener clickedListener;
 
     private final List<MediaTable.MediaRecord> mediaRecords = new ArrayList<>();
 
     private ThreadPhotoRailAdapter(@NonNull Context context,
-                                   @NonNull GlideRequests glideRequests,
+                                   @NonNull RequestManager requestManager,
                                    @NonNull List<MediaTable.MediaRecord> mediaRecords,
                                    @Nullable OnItemClickedListener listener)
     {
-      this.glideRequests   = glideRequests;
+      this.requestManager  = requestManager;
       this.clickedListener = listener;
 
       this.mediaRecords.clear();
@@ -103,7 +103,7 @@ public class ThreadPhotoRailView extends FrameLayout {
       MediaTable.MediaRecord mediaRecord = mediaRecords.get(position);
       Slide                  slide       = MediaUtil.getSlideForAttachment(mediaRecord.getAttachment());
 
-      viewHolder.imageView.setImageResource(glideRequests, slide, false, false);
+      viewHolder.imageView.setImageResource(requestManager, slide, false, false);
       viewHolder.imageView.setOnClickListener(v -> {
         MediaPreviewCache.INSTANCE.setDrawable(viewHolder.imageView.getImageDrawable());
         if (clickedListener != null) clickedListener.onItemClicked(viewHolder.imageView, mediaRecord);

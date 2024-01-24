@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.setPadding
+import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
@@ -17,7 +18,6 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaFolder
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader
-import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
@@ -65,7 +65,7 @@ object MediaGallerySelectableItem {
 
   class FolderViewHolder(itemView: View, private val onMediaFolderClicked: OnMediaFolderClicked) : BaseViewHolder<FolderModel>(itemView) {
     override fun bind(model: FolderModel) {
-      GlideApp.with(imageView)
+      Glide.with(imageView)
         .load(DecryptableStreamUriLoader.DecryptableUri(model.mediaFolder.thumbnailUri))
         .into(imageView)
 
@@ -120,7 +120,7 @@ object MediaGallerySelectableItem {
         updateImageView(if (model.isSelected) 1f else 0f)
       }
 
-      GlideApp.with(imageView)
+      Glide.with(imageView)
         .load(DecryptableStreamUriLoader.DecryptableUri(model.media.uri))
         .addListener(ErrorLoggingRequestListener(FILE_VIEW_HOLDER_TAG))
         .into(imageView)

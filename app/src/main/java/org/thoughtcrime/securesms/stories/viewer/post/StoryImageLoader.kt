@@ -4,13 +4,13 @@ import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
+import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader
-import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.stories.viewer.page.StoryCache
 import org.thoughtcrime.securesms.stories.viewer.page.StoryDisplay
 
@@ -70,7 +70,7 @@ class StoryImageLoader(
   }
 
   fun clear() {
-    GlideApp.with(postImage).clear(postImage)
+    Glide.with(postImage).clear(postImage)
 
     postImage.setImageDrawable(null)
 
@@ -86,7 +86,7 @@ class StoryImageLoader(
 
   private fun loadViaGlide(storySize: StoryDisplay.Size) {
     Log.d(TAG, "Image not in cache. Loading via glide...")
-    GlideApp.with(postImage)
+    Glide.with(postImage)
       .load(DecryptableStreamUriLoader.DecryptableUri(imagePost.imageUri))
       .override(storySize.width, storySize.height)
       .centerInside()

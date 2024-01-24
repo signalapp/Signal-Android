@@ -25,6 +25,7 @@ import androidx.navigation.Navigation;
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 
 import com.airbnb.lottie.SimpleColorFilter;
+import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
@@ -39,7 +40,6 @@ import org.thoughtcrime.securesms.groups.ui.GroupMemberListView;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
-import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -136,7 +136,7 @@ public class AddGroupDetailsFragment extends LoggingFragment {
       if (avatarBytes == null) {
         avatar.setImageDrawable(new InsetDrawable(avatarPlaceholder, ViewUtil.dpToPx(AVATAR_PLACEHOLDER_INSET_DP)));
       } else {
-        GlideApp.with(this)
+        Glide.with(this)
                 .load(avatarBytes)
                 .circleCrop()
                 .skipMemoryCache(true)
@@ -178,7 +178,7 @@ public class AddGroupDetailsFragment extends LoggingFragment {
 
     viewModel.setAvatarMedia(result);
 
-    GlideApp.with(this)
+    Glide.with(this)
             .asBitmap()
             .load(decryptableUri)
             .skipMemoryCache(true)

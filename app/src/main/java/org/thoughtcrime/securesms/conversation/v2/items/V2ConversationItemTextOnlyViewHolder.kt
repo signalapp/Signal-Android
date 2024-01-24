@@ -531,8 +531,8 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
       binding.senderBadge.visible = shape.isEndingShape
 
       binding.senderName.text = sender.getDisplayName(context)
-      binding.senderPhoto.setAvatar(conversationContext.glideRequests, sender, false)
-      binding.senderBadge.setBadgeFromRecipient(sender, conversationContext.glideRequests)
+      binding.senderPhoto.setAvatar(conversationContext.requestManager, sender, false)
+      binding.senderBadge.setBadgeFromRecipient(sender, conversationContext.requestManager)
       binding.senderPhoto.setOnClickListener {
         conversationContext.clickListener.onGroupMemberClicked(
           conversationMessage.messageRecord.fromRecipient.id,

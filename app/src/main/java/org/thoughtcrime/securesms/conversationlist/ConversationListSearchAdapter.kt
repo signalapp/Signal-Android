@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.lifecycle.LifecycleOwner
+import com.bumptech.glide.RequestManager
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.paged.ArbitraryRepository
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchAdapter
@@ -12,7 +13,6 @@ import org.thoughtcrime.securesms.contacts.paged.ContactSearchConfiguration
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchData
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.conversationlist.model.ConversationSet
-import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
@@ -32,7 +32,7 @@ class ConversationListSearchAdapter(
   storyContextMenuCallbacks: StoryContextMenuCallbacks,
   callButtonClickCallbacks: CallButtonClickCallbacks,
   lifecycleOwner: LifecycleOwner,
-  glideRequests: GlideRequests
+  requestManager: RequestManager
 ) : ContactSearchAdapter(context, fixedContacts, displayOptions, onClickedCallbacks, longClickCallbacks, storyContextMenuCallbacks, callButtonClickCallbacks), TimestampPayloadSupport {
 
   companion object {
@@ -42,11 +42,11 @@ class ConversationListSearchAdapter(
   init {
     registerFactory(
       ThreadModel::class.java,
-      LayoutFactory({ ThreadViewHolder(onClickedCallbacks::onThreadClicked, lifecycleOwner, glideRequests, it) }, R.layout.conversation_list_item_view)
+      LayoutFactory({ ThreadViewHolder(onClickedCallbacks::onThreadClicked, lifecycleOwner, requestManager, it) }, R.layout.conversation_list_item_view)
     )
     registerFactory(
       MessageModel::class.java,
-      LayoutFactory({ MessageViewHolder(onClickedCallbacks::onMessageClicked, lifecycleOwner, glideRequests, it) }, R.layout.conversation_list_item_view)
+      LayoutFactory({ MessageViewHolder(onClickedCallbacks::onMessageClicked, lifecycleOwner, requestManager, it) }, R.layout.conversation_list_item_view)
     )
     registerFactory(
       ChatFilterMappingModel::class.java,
@@ -62,7 +62,7 @@ class ConversationListSearchAdapter(
     )
     registerFactory(
       GroupWithMembersModel::class.java,
-      LayoutFactory({ GroupWithMembersViewHolder(onClickedCallbacks::onGroupWithMembersClicked, lifecycleOwner, glideRequests, it) }, R.layout.conversation_list_item_view)
+      LayoutFactory({ GroupWithMembersViewHolder(onClickedCallbacks::onGroupWithMembersClicked, lifecycleOwner, requestManager, it) }, R.layout.conversation_list_item_view)
     )
   }
 
@@ -105,7 +105,7 @@ class ConversationListSearchAdapter(
   private class ThreadViewHolder(
     private val threadListener: OnClickedCallback<ContactSearchData.Thread>,
     private val lifecycleOwner: LifecycleOwner,
-    private val glideRequests: GlideRequests,
+    private val requestManager: RequestManager,
     itemView: View
   ) : ConversationListItemViewHolder<ThreadModel>(itemView) {
     override fun fullBind(model: ThreadModel) {
@@ -116,7 +116,7 @@ class ConversationListSearchAdapter(
       (itemView as ConversationListItem).bindThread(
         lifecycleOwner,
         model.thread.threadRecord,
-        glideRequests,
+        requestManager,
         Locale.getDefault(),
         emptySet(),
         ConversationSet(),
@@ -128,7 +128,7 @@ class ConversationListSearchAdapter(
   private class MessageViewHolder(
     private val messageListener: OnClickedCallback<ContactSearchData.Message>,
     private val lifecycleOwner: LifecycleOwner,
-    private val glideRequests: GlideRequests,
+    private val requestManager: RequestManager,
     itemView: View
   ) : ConversationListItemViewHolder<MessageModel>(itemView) {
     override fun fullBind(model: MessageModel) {
@@ -139,7 +139,7 @@ class ConversationListSearchAdapter(
       (itemView as ConversationListItem).bindMessage(
         lifecycleOwner,
         model.message.messageResult,
-        glideRequests,
+        requestManager,
         Locale.getDefault(),
         model.message.query
       )
@@ -149,7 +149,7 @@ class ConversationListSearchAdapter(
   private class GroupWithMembersViewHolder(
     private val groupWithMembersListener: OnClickedCallback<ContactSearchData.GroupWithMembers>,
     private val lifecycleOwner: LifecycleOwner,
-    private val glideRequests: GlideRequests,
+    private val requestManager: RequestManager,
     itemView: View
   ) : ConversationListItemViewHolder<GroupWithMembersModel>(itemView) {
     override fun fullBind(model: GroupWithMembersModel) {
@@ -160,7 +160,7 @@ class ConversationListSearchAdapter(
       (itemView as ConversationListItem).bindGroupWithMembers(
         lifecycleOwner,
         model.groupWithMembers,
-        glideRequests,
+        requestManager,
         Locale.getDefault()
       )
     }

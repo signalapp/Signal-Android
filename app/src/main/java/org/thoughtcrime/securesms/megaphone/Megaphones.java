@@ -11,6 +11,7 @@ import androidx.annotation.WorkerThread;
 import androidx.core.app.NotificationManagerCompat;
 
 import com.annimon.stream.Stream;
+import com.bumptech.glide.Glide;
 
 import org.signal.core.util.MapUtil;
 import org.signal.core.util.SetUtil;
@@ -28,7 +29,6 @@ import org.thoughtcrime.securesms.lock.SignalPinReminderDialog;
 import org.thoughtcrime.securesms.lock.SignalPinReminders;
 import org.thoughtcrime.securesms.lock.v2.CreateSvrPinActivity;
 import org.thoughtcrime.securesms.lock.v2.SvrMigrationActivity;
-import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.notifications.TurnOnNotificationsBottomSheet;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
@@ -273,7 +273,7 @@ public final class Megaphones {
           .setBody(record.getBody());
 
       if (record.getImageUri() != null) {
-        builder.setImageRequest(GlideApp.with(context).asDrawable().load(record.getImageUri()));
+        builder.setImageRequestBuilder(Glide.with(context).asDrawable().load(record.getImageUri()));
       }
 
       if (record.hasPrimaryAction()) {

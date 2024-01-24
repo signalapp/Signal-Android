@@ -10,24 +10,25 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.RequestManager;
+
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.conversation.ConversationMessage;
 import org.thoughtcrime.securesms.conversation.colors.Colorizer;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.databinding.MessageDetailsViewEditHistoryBinding;
-import org.thoughtcrime.securesms.mms.GlideRequests;
 
 final class MessageDetailsAdapter extends ListAdapter<MessageDetailsAdapter.MessageDetailsViewState<?>, RecyclerView.ViewHolder> {
 
   private final LifecycleOwner lifecycleOwner;
-  private final GlideRequests  glideRequests;
+  private final RequestManager requestManager;
   private final Colorizer      colorizer;
   private final Callbacks      callbacks;
 
-  MessageDetailsAdapter(@NonNull LifecycleOwner lifecycleOwner, @NonNull GlideRequests glideRequests, @NonNull Colorizer colorizer, @NonNull Callbacks callbacks) {
+  MessageDetailsAdapter(@NonNull LifecycleOwner lifecycleOwner, @NonNull RequestManager requestManager, @NonNull Colorizer colorizer, @NonNull Callbacks callbacks) {
     super(new MessageDetailsDiffer());
     this.lifecycleOwner = lifecycleOwner;
-    this.glideRequests  = glideRequests;
+    this.requestManager = requestManager;
     this.colorizer      = colorizer;
     this.callbacks      = callbacks;
   }
@@ -36,7 +37,7 @@ final class MessageDetailsAdapter extends ListAdapter<MessageDetailsAdapter.Mess
   public @NonNull RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
     switch (viewType) {
       case MessageDetailsViewState.MESSAGE_HEADER:
-        return new MessageHeaderViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.message_details_header, parent, false), glideRequests, colorizer);
+        return new MessageHeaderViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.message_details_header, parent, false), requestManager, colorizer);
       case MessageDetailsViewState.RECIPIENT_HEADER:
         return new RecipientHeaderViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.message_details_recipient_header, parent, false));
       case MessageDetailsViewState.RECIPIENT:

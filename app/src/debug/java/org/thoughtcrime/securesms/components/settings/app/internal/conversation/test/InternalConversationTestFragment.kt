@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.navGraphViewModels
+import com.bumptech.glide.Glide
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.util.concurrent.LifecycleDisposable
@@ -42,7 +43,6 @@ import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory
-import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stickers.StickerLocator
@@ -62,7 +62,7 @@ class InternalConversationTestFragment : Fragment(R.layout.conversation_test_fra
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     val adapter = ConversationAdapterV2(
       lifecycleOwner = viewLifecycleOwner,
-      glideRequests = GlideApp.with(this),
+      requestManager = Glide.with(this),
       clickListener = ClickListener(),
       hasWallpaper = springboardViewModel.hasWallpaper.value,
       colorizer = Colorizer(),

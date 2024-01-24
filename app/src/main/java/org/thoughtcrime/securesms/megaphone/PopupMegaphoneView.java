@@ -55,9 +55,9 @@ public class PopupMegaphoneView extends FrameLayout {
     this.megaphone         = megaphone;
     this.megaphoneListener = megaphoneListener;
 
-    if (megaphone.getImageRequest() != null) {
+    if (megaphone.getImageRequestBuilder() != null) {
       image.setVisibility(VISIBLE);
-      megaphone.getImageRequest().into(image);
+      megaphone.getImageRequestBuilder().into(image);
     } else if (megaphone.getLottieRes() != 0) {
       image.setVisibility(VISIBLE);
       image.setAnimation(megaphone.getLottieRes());

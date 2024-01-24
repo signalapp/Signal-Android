@@ -32,6 +32,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
+import com.bumptech.glide.RequestManager;
 import com.codewaves.stickyheadergrid.StickyHeaderGridAdapter;
 
 import org.signal.libsignal.protocol.util.Pair;
@@ -45,7 +46,6 @@ import org.thoughtcrime.securesms.database.MediaTable.MediaRecord;
 import org.thoughtcrime.securesms.database.loaders.GroupedThreadMediaLoader.GroupedThreadMedia;
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewCache;
 import org.thoughtcrime.securesms.mms.AudioSlide;
-import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -70,7 +70,7 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
 
   private final Context                        context;
   private final boolean                        showThread;
-  private final GlideRequests                  glideRequests;
+  private final RequestManager                 requestManager;
   private final ItemClickListener              itemClickListener;
   private final Map<AttachmentId, MediaRecord> selected = new HashMap<>();
   private final AudioItemListener              audioItemListener;
@@ -102,7 +102,7 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
   }
 
   MediaGalleryAllAdapter(@NonNull Context context,
-                         @NonNull GlideRequests glideRequests,
+                         @NonNull RequestManager requestManager,
                          GroupedThreadMedia media,
                          ItemClickListener clickListener,
                          @NonNull AudioItemListener audioItemListener,
@@ -110,7 +110,7 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
                          boolean showThread)
   {
     this.context           = context;
-    this.glideRequests     = glideRequests;
+    this.requestManager    = requestManager;
     this.media             = media;
     this.itemClickListener = clickListener;
     this.audioItemListener = audioItemListener;
@@ -345,7 +345,7 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
         imageFileSize.setVisibility(View.GONE);
       }
 
-      thumbnailView.setImageResource(glideRequests, slide, false, false);
+      thumbnailView.setImageResource(requestManager, slide, false, false);
       thumbnailView.setOnClickListener(view -> {
         MediaPreviewCache.INSTANCE.setDrawable(thumbnailView.getImageDrawable());
         itemClickListener.onMediaClicked(thumbnailView, mediaRecord);
@@ -366,13 +366,13 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
 
     @Override
     void rebind() {
-      thumbnailView.setImageResource(glideRequests, slide, false, false);
+      thumbnailView.setImageResource(requestManager, slide, false, false);
       super.rebind();
     }
 
     @Override
     void unbind() {
-      thumbnailView.clear(glideRequests);
+      thumbnailView.clear(requestManager);
       super.unbind();
     }
 
@@ -591,7 +591,7 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
     public void bind(@NonNull Context context, @NonNull MediaTable.MediaRecord mediaRecord, @NonNull Slide slide) {
       super.bind(context, mediaRecord, slide);
       this.slide = slide;
-      thumbnailView.setImageResource(glideRequests, slide, false, false);
+      thumbnailView.setImageResource(requestManager, slide, false, false);
       thumbnailView.setOnClickListener(view -> itemClickListener.onMediaClicked(thumbnailView, mediaRecord));
       thumbnailView.setOnLongClickListener(view -> onLongClick());
     }
@@ -611,13 +611,13 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
 
     @Override
     void rebind() {
-      thumbnailView.setImageResource(glideRequests, slide, false, false);
+      thumbnailView.setImageResource(requestManager, slide, false, false);
       super.rebind();
     }
 
     @Override
     void unbind() {
-      thumbnailView.clear(glideRequests);
+      thumbnailView.clear(requestManager);
       super.unbind();
     }
   }

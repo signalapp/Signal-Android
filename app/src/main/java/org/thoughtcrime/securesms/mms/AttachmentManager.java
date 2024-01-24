@@ -39,6 +39,8 @@ import androidx.annotation.WorkerThread;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestManager;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.util.ThreadUtil;
@@ -137,14 +139,14 @@ public class AttachmentManager {
 
   }
 
-  public void clear(@NonNull GlideRequests glideRequests, boolean animate) {
+  public void clear(@NonNull RequestManager requestManager, boolean animate) {
     if (attachmentViewStub.resolved()) {
 
       if (animate) {
         ViewUtil.fadeOut(attachmentViewStub.get(), 200).addListener(new Listener<Boolean>() {
           @Override
           public void onSuccess(Boolean result) {
-            thumbnail.clear(glideRequests);
+            thumbnail.clear(requestManager);
             attachmentViewStub.get().setVisibility(View.GONE);
             attachmentListener.onAttachmentChanged();
           }
@@ -154,7 +156,7 @@ public class AttachmentManager {
           }
         });
       } else {
-        thumbnail.clear(glideRequests);
+        thumbnail.clear(requestManager);
         attachmentViewStub.get().setVisibility(View.GONE);
         attachmentListener.onAttachmentChanged();
       }
@@ -255,7 +257,7 @@ public class AttachmentManager {
   }
 
   @SuppressLint("StaticFieldLeak")
-  public ListenableFuture<Boolean> setMedia(@NonNull final GlideRequests glideRequests,
+  public ListenableFuture<Boolean> setMedia(@NonNull final RequestManager requestManager,
                                             @NonNull final Uri uri,
                                             @NonNull final SlideFactory.MediaType mediaType,
                                             @NonNull final MediaConstraints constraints,
@@ -271,7 +273,7 @@ public class AttachmentManager {
 
       @Override
       protected void onPreExecute() {
-        thumbnail.clear(glideRequests);
+        thumbnail.clear(requestManager);
         thumbnail.showProgressSpinner();
         attachmentViewStub.get().setVisibility(View.VISIBLE);
       }
@@ -323,7 +325,7 @@ public class AttachmentManager {
             result.set(true);
           } else {
             Attachment attachment = slide.asAttachment();
-            result.deferTo(thumbnail.setImageResource(glideRequests, slide, false, true, attachment.width, attachment.height));
+            result.deferTo(thumbnail.setImageResource(requestManager, slide, false, true, attachment.width, attachment.height));
             removableMediaView.display(thumbnail, mediaType == SlideFactory.MediaType.IMAGE);
           }
 
@@ -580,7 +582,7 @@ public class AttachmentManager {
       });
 
       cleanup();
-      clear(GlideApp.with(context.getApplicationContext()), true);
+      clear(Glide.with(context.getApplicationContext()), true);
     }
   }
 

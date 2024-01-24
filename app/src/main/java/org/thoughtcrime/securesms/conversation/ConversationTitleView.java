@@ -17,12 +17,12 @@ import androidx.core.content.ContextCompat;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
+import com.bumptech.glide.RequestManager;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.avatar.view.AvatarView;
 import org.thoughtcrime.securesms.badges.BadgeImageView;
 import org.thoughtcrime.securesms.database.model.StoryViewState;
-import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.ContextUtil;
 import org.thoughtcrime.securesms.util.DrawableUtil;
@@ -106,7 +106,7 @@ public class ConversationTitleView extends ConstraintLayout {
     updateSubtitleVisibility();
   }
 
-  public void setTitle(@NonNull GlideRequests glideRequests, @Nullable Recipient recipient) {
+  public void setTitle(@NonNull RequestManager requestManager, @Nullable Recipient recipient) {
     isSelf = recipient != null && recipient.isSelf();
 
     this.subtitleContainer.setVisibility(View.VISIBLE);
@@ -144,7 +144,7 @@ public class ConversationTitleView extends ConstraintLayout {
     title.setCompoundDrawablesRelativeWithIntrinsicBounds(startDrawable, null, endDrawable, null);
 
     if (recipient != null) {
-      this.avatar.displayChatAvatar(glideRequests, recipient, false);
+      this.avatar.displayChatAvatar(requestManager, recipient, false);
     }
 
     if (recipient == null || recipient.isSelf()) {

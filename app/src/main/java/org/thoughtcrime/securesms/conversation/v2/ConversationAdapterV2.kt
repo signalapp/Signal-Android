@@ -13,6 +13,7 @@ import androidx.core.view.children
 import androidx.lifecycle.LifecycleOwner
 import androidx.media3.common.MediaItem
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.RequestManager
 import org.signal.core.util.logging.Log
 import org.signal.core.util.toOptional
 import org.thoughtcrime.securesms.BindableConversationItem
@@ -50,7 +51,6 @@ import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicyEnforcer
 import org.thoughtcrime.securesms.groups.v2.GroupDescriptionUtil
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.messagerequests.MessageRequestState
-import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.CachedInflater
@@ -63,7 +63,7 @@ import java.util.Optional
 
 class ConversationAdapterV2(
   private val lifecycleOwner: LifecycleOwner,
-  override val glideRequests: GlideRequests,
+  override val requestManager: RequestManager,
   override val clickListener: ItemClickListener,
   private var hasWallpaper: Boolean,
   private val colorizer: Colorizer,
@@ -336,7 +336,7 @@ class ConversationAdapterV2(
         model.conversationMessage,
         previousMessage,
         nextMessage,
-        glideRequests,
+        requestManager,
         Locale.getDefault(),
         _selected,
         model.conversationMessage.threadRecipient,
@@ -364,7 +364,7 @@ class ConversationAdapterV2(
         model.conversationMessage,
         previousMessage,
         nextMessage,
-        glideRequests,
+        requestManager,
         Locale.getDefault(),
         _selected,
         model.conversationMessage.threadRecipient,
@@ -392,7 +392,7 @@ class ConversationAdapterV2(
         model.conversationMessage,
         previousMessage,
         nextMessage,
-        glideRequests,
+        requestManager,
         Locale.getDefault(),
         _selected,
         model.conversationMessage.threadRecipient,
@@ -420,7 +420,7 @@ class ConversationAdapterV2(
         model.conversationMessage,
         previousMessage,
         nextMessage,
-        glideRequests,
+        requestManager,
         Locale.getDefault(),
         _selected,
         model.conversationMessage.threadRecipient,
@@ -448,7 +448,7 @@ class ConversationAdapterV2(
         model.conversationMessage,
         previousMessage,
         nextMessage,
-        glideRequests,
+        requestManager,
         Locale.getDefault(),
         _selected,
         model.conversationMessage.threadRecipient,
@@ -569,7 +569,7 @@ class ConversationAdapterV2(
       val (recipient, groupInfo, sharedGroups, messageRequestState) = model.recipientInfo
       val isSelf = recipient.id == Recipient.self().id
 
-      conversationBanner.setAvatar(glideRequests, recipient)
+      conversationBanner.setAvatar(requestManager, recipient)
       conversationBanner.showBackgroundBubble(recipient.hasWallpaper())
       val title: String = conversationBanner.setTitle(recipient)
       conversationBanner.setAbout(recipient)

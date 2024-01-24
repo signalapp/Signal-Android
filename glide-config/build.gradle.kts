@@ -1,6 +1,6 @@
 plugins {
   id("signal-library")
-  id("kotlin-kapt")
+  id("com.google.devtools.ksp")
 }
 
 android {
@@ -9,5 +9,5 @@ android {
 
 dependencies {
   implementation(libs.glide.glide)
-  kapt(libs.glide.compiler)
+  ksp(libs.glide.ksp)
 }

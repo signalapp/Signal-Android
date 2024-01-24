@@ -5,10 +5,10 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
 import androidx.core.content.res.use
+import com.bumptech.glide.RequestManager
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.AvatarImageView
 import org.thoughtcrime.securesms.database.model.StoryViewState
-import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.visible
@@ -76,7 +76,7 @@ class AvatarView @JvmOverloads constructor(
   /**
    * Displays Note-to-Self
    */
-  fun displayChatAvatar(requestManager: GlideRequests, recipient: Recipient, isQuickContactEnabled: Boolean) {
+  fun displayChatAvatar(requestManager: RequestManager, recipient: Recipient, isQuickContactEnabled: Boolean) {
     avatar.setAvatar(requestManager, recipient, isQuickContactEnabled)
   }
 

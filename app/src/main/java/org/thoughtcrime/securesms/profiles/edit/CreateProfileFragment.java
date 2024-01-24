@@ -20,6 +20,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.airbnb.lottie.SimpleColorFilter;
+import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.signal.core.util.EditTextUtil;
@@ -36,7 +37,6 @@ import org.thoughtcrime.securesms.groups.ParcelableGroupId;
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mediasend.Media;
-import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.profiles.edit.pnp.WhoCanFindMeByPhoneNumberFragment;
 import org.thoughtcrime.securesms.profiles.manage.EditProfileNameFragment;
 import org.thoughtcrime.securesms.providers.BlobProvider;
@@ -130,7 +130,7 @@ public class CreateProfileFragment extends LoggingFragment {
       if (avatarBytes != null) {
         viewModel.setAvatarMedia(media);
         viewModel.setAvatar(avatarBytes);
-        GlideApp.with(CreateProfileFragment.this)
+        Glide.with(CreateProfileFragment.this)
                 .load(avatarBytes)
                 .skipMemoryCache(true)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
@@ -252,11 +252,11 @@ public class CreateProfileFragment extends LoggingFragment {
   private void initializeProfileAvatar() {
     viewModel.avatar().observe(getViewLifecycleOwner(), bytes -> {
       if (bytes == null) {
-        GlideApp.with(this).clear(binding.avatar);
+        Glide.with(this).clear(binding.avatar);
         return;
       }
 
-      GlideApp.with(this)
+      Glide.with(this)
               .load(bytes)
               .circleCrop()
               .into(binding.avatar);

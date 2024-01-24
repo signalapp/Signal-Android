@@ -8,14 +8,14 @@ package org.thoughtcrime.securesms.conversation.v2
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.RequestManager
 import org.signal.core.util.toInt
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ConversationTypingView
-import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.recipients.Recipient
 
 class ConversationTypingIndicatorAdapter(
-  private val glideRequests: GlideRequests
+  private val requestManager: RequestManager
 ) : RecyclerView.Adapter<ConversationTypingIndicatorAdapter.ViewHolder>() {
 
   private var state: State = State()
@@ -42,16 +42,16 @@ class ConversationTypingIndicatorAdapter(
   override fun getItemCount(): Int = state.typists.isNotEmpty().toInt()
 
   override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-    holder.bind(glideRequests, state)
+    holder.bind(requestManager, state)
   }
 
   class ViewHolder(private val conversationTypingView: ConversationTypingView) : RecyclerView.ViewHolder(conversationTypingView) {
     fun bind(
-      glideRequests: GlideRequests,
+      requestManager: RequestManager,
       state: State
     ) {
       conversationTypingView.setTypists(
-        glideRequests,
+        requestManager,
         state.typists,
         state.isGroupThread,
         state.hasWallpaper

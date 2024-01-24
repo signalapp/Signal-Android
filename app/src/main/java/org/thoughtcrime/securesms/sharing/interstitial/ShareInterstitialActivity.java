@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.annimon.stream.Stream;
+import com.bumptech.glide.Glide;
 
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
@@ -18,7 +19,6 @@ import org.thoughtcrime.securesms.components.LinkPreviewView;
 import org.thoughtcrime.securesms.components.SelectionAwareEmojiEditText;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel;
-import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sharing.MultiShareArgs;
 import org.thoughtcrime.securesms.sharing.MultiShareDialogs;
@@ -156,7 +156,7 @@ public class ShareInterstitialActivity extends PassphraseRequiredActivity {
         preview.setLoading();
         viewModel.onLinkPreviewChanged(null);
       } else if (linkPreviewState.linkPreview.isPresent()) {
-        preview.setLinkPreview(GlideApp.with(this), linkPreviewState.linkPreview.get(), true);
+        preview.setLinkPreview(Glide.with(this), linkPreviewState.linkPreview.get(), true);
         viewModel.onLinkPreviewChanged(linkPreviewState.linkPreview.get());
       } else if (!linkPreviewState.hasLinks()) {
         preview.setVisibility(View.GONE);
