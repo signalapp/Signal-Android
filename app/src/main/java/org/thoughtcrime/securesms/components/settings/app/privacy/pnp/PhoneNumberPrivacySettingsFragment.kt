@@ -93,7 +93,7 @@ class PhoneNumberPrivacySettingsFragment : ComposeFragment() {
             Text(
               text = stringResource(
                 id = if (state.phoneNumberSharing) {
-                  R.string.PhoneNumberPrivacySettingsFragment__your_phone_number
+                  R.string.PhoneNumberPrivacySettingsFragment__your_phone_number_will_be
                 } else {
                   R.string.PhoneNumberPrivacySettingsFragment__nobody_will_see_your
                 }
