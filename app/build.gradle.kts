@@ -476,7 +476,6 @@ dependencies {
   implementation(project(":donations"))
   implementation(project(":contacts"))
   implementation(project(":qr"))
-  implementation(project(":sms-exporter"))
   implementation(project(":sticky-header-grid"))
   implementation(project(":photoview"))
   implementation(project(":core-ui"))

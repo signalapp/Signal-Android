@@ -24,7 +24,6 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.keyvalue.SmsExportPhase;
 import org.thoughtcrime.securesms.lock.SignalPinReminderDialog;
 import org.thoughtcrime.securesms.lock.SignalPinReminders;
 import org.thoughtcrime.securesms.lock.v2.CreateSvrPinActivity;
@@ -108,7 +107,6 @@ public final class Megaphones {
       put(Event.CLIENT_DEPRECATED, SignalStore.misc().isClientDeprecated() ? ALWAYS : NEVER);
       put(Event.NOTIFICATIONS, shouldShowNotificationsMegaphone(context) ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(30)) : NEVER);
       put(Event.GRANT_FULL_SCREEN_INTENT, shouldShowGrantFullScreenIntentPermission(context) ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(3)) : NEVER);
-      put(Event.SMS_EXPORT, new SmsExportReminderSchedule(context));
       put(Event.BACKUP_SCHEDULE_PERMISSION, shouldShowBackupSchedulePermissionMegaphone(context) ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(3)) : NEVER);
       put(Event.ONBOARDING, shouldShowOnboardingMegaphone(context) ? ALWAYS : NEVER);
       put(Event.TURN_OFF_CENSORSHIP_CIRCUMVENTION, shouldShowTurnOffCircumventionMegaphone() ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(7)) : NEVER);
@@ -141,8 +139,6 @@ public final class Megaphones {
         return buildRemoteMegaphone(context);
       case BACKUP_SCHEDULE_PERMISSION:
         return buildBackupPermissionMegaphone(context);
-      case SMS_EXPORT:
-        return buildSmsExportMegaphone(context);
       case SET_UP_YOUR_USERNAME:
         return buildSetUpYourUsernameMegaphone(context);
       case GRANT_FULL_SCREEN_INTENT:
@@ -321,24 +317,6 @@ public final class Megaphones {
         .build();
   }
 
-  private static @NonNull Megaphone buildSmsExportMegaphone(@NonNull Context context) {
-    SmsExportPhase phase = SignalStore.misc().getSmsExportPhase();
-
-    Megaphone.Builder builder = new Megaphone.Builder(Event.SMS_EXPORT, Megaphone.Style.FULLSCREEN)
-        .setOnVisibleListener((megaphone, controller) -> {
-          if (phase.isBlockingUi()) {
-            SmsExportReminderSchedule.setShowPhase3Megaphone(false);
-          }
-          controller.onMegaphoneNavigationRequested(new Intent(context, SmsExportMegaphoneActivity.class), SmsExportMegaphoneActivity.REQUEST_CODE);
-        });
-
-    if (phase.isBlockingUi()) {
-      builder.disableSnooze();
-    }
-
-    return builder.build();
-  }
-
   public static @NonNull Megaphone buildSetUpYourUsernameMegaphone(@NonNull Context context) {
     return new Megaphone.Builder(Event.SET_UP_YOUR_USERNAME, Megaphone.Style.BASIC)
         .setTitle(R.string.NewWaysToConnectDialogFragment__new_ways_to_connect)
@@ -471,7 +449,6 @@ public final class Megaphones {
     TURN_OFF_CENSORSHIP_CIRCUMVENTION("turn_off_censorship_circumvention"),
     REMOTE_MEGAPHONE("remote_megaphone"),
     BACKUP_SCHEDULE_PERMISSION("backup_schedule_permission"),
-    SMS_EXPORT("sms_export"),
     SET_UP_YOUR_USERNAME("set_up_your_username"),
     GRANT_FULL_SCREEN_INTENT("grant_full_screen_intent");
 

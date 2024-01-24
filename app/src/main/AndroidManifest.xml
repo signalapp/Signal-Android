@@ -28,11 +28,6 @@
     <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
 
-    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
-    <uses-permission android:name="android.permission.RECEIVE_MMS"/>
-    <uses-permission android:name="android.permission.READ_SMS"/>
-    <uses-permission android:name="android.permission.SEND_SMS"/>
-    <uses-permission android:name="android.permission.WRITE_SMS"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
 
@@ -1066,13 +1061,6 @@
               android:launchMode="singleTask"
               android:exported="false"/>
 
-    <activity android:name=".megaphone.SmsExportMegaphoneActivity"
-              android:theme="@style/Theme.Signal.DayNight.NoActionBar"
-              android:screenOrientation="portrait"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize|uiMode"
-              android:launchMode="singleTask"
-              android:exported="false"/>
-
     <activity android:name=".ratelimit.RecaptchaProofActivity"
               android:theme="@style/Theme.Signal.DayNight.NoActionBar"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize|uiMode"
@@ -1094,23 +1082,10 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
               android:exported="false"/>
 
-    <activity android:name=".exporter.flow.SmsExportActivity"
-              android:theme="@style/Theme.Signal.DayNight.NoActionBar"
-              android:launchMode="singleTask"
-              android:screenOrientation="portrait"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-              android:exported="false"/>
-
     <activity android:name=".components.settings.app.subscription.donate.DonateToSignalActivity"
               android:theme="@style/Theme.Signal.DayNight.NoActionBar"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
               android:exported="false"/>
-
-    <service
-        android:enabled="true"
-        android:name=".exporter.SignalSmsExportService"
-        android:foregroundServiceType="dataSync"
-        android:exported="false"/>
 
     <service
         android:enabled="true"

@@ -2,24 +2,18 @@ package org.thoughtcrime.securesms.components.settings.app.chats
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.kotlin.plusAssign
-import org.thoughtcrime.securesms.components.settings.app.chats.sms.SmsSettingsRepository
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.BackupUtil
 import org.thoughtcrime.securesms.util.ConversationUtil
 import org.thoughtcrime.securesms.util.ThrottledDebouncer
-import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.livedata.Store
 
 class ChatsSettingsViewModel @JvmOverloads constructor(
-  private val repository: ChatsSettingsRepository = ChatsSettingsRepository(),
-  smsSettingsRepository: SmsSettingsRepository = SmsSettingsRepository()
+  private val repository: ChatsSettingsRepository = ChatsSettingsRepository()
 ) : ViewModel() {
 
   private val refreshDebouncer = ThrottledDebouncer(500L)
-  private val disposables = CompositeDisposable()
 
   private val store: Store<ChatsSettingsState> = Store(
     ChatsSettingsState(
@@ -28,22 +22,11 @@ class ChatsSettingsViewModel @JvmOverloads constructor(
       keepMutedChatsArchived = SignalStore.settings().shouldKeepMutedChatsArchived(),
       useSystemEmoji = SignalStore.settings().isPreferSystemEmoji,
       enterKeySends = SignalStore.settings().isEnterKeySends,
-      chatBackupsEnabled = SignalStore.settings().isBackupEnabled && BackupUtil.canUserAccessBackupDirectory(ApplicationDependencies.getApplication()),
-      useAsDefaultSmsApp = Util.isDefaultSmsProvider(ApplicationDependencies.getApplication())
+      chatBackupsEnabled = SignalStore.settings().isBackupEnabled && BackupUtil.canUserAccessBackupDirectory(ApplicationDependencies.getApplication())
     )
   )
 
   val state: LiveData<ChatsSettingsState> = store.stateLiveData
-
-  init {
-    disposables += smsSettingsRepository.getSmsExportState().subscribe { state ->
-      store.update { it.copy(smsExportState = state) }
-    }
-  }
-
-  override fun onCleared() {
-    disposables.clear()
-  }
 
   fun setGenerateLinkPreviewsEnabled(enabled: Boolean) {
     store.update { it.copy(generateLinkPreviews = enabled) }
