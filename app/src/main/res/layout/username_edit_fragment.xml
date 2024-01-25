@@ -66,7 +66,7 @@
 
         <EditText
             android:id="@+id/username_text"
-            style="@style/Signal.Text.Body"
+            style="@style/Signal.Text.BodyLarge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/UsernameEditFragment_username"
@@ -83,7 +83,7 @@
 
     <EditText
         android:id="@+id/discriminator_text"
-        style="@style/Signal.Text.Body"
+        style="@style/Signal.Text.BodyLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/dsl_settings_gutter"
@@ -105,8 +105,8 @@
         android:id="@+id/suffix_progress"
         android:layout_width="16dp"
         android:layout_height="16dp"
-        android:layout_marginBottom="10dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="10dp"
         app:indicatorColor="@color/signal_colorOnSurfaceVariant"
         app:indicatorSize="16dp"
         app:layout_constraintBottom_toBottomOf="@id/username_text_wrapper"
@@ -134,11 +134,11 @@
 
     <TextView
         android:id="@+id/username_error"
+        style="@style/Signal.Text.BodyMedium"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="4dp"
-        android:textAppearance="@style/Signal.Text.BodyMedium"
         android:textColor="@color/signal_colorError"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@id/username_description"
@@ -164,6 +164,7 @@
 
     <org.thoughtcrime.securesms.util.views.LearnMoreTextView
         android:id="@+id/username_description"
+        style="@style/Signal.Text.BodyMedium"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dsl_settings_gutter"
@@ -171,7 +172,6 @@
         android:layout_marginEnd="@dimen/dsl_settings_gutter"
         android:layout_marginBottom="24dp"
         android:text="@string/UsernameEditFragment__usernames_let_others_message"
-        android:textAppearance="@style/Signal.Text.BodyMedium"
         android:textColor="@color/signal_colorOnSurfaceVariant"
         app:layout_constraintBottom_toTopOf="@id/username_button_barrier"
         app:layout_constraintEnd_toEndOf="parent"

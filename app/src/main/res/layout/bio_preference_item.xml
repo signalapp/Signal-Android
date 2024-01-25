@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:viewBindingIgnore="true"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/dsl_preference_item_background"
-    android:minHeight="56dp">
+    android:minHeight="56dp"
+    tools:viewBindingIgnore="true">
 
     <org.thoughtcrime.securesms.components.AvatarImageView
         android:id="@+id/icon"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
         android:importantForAccessibility="no"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,8 +24,8 @@
         android:id="@+id/badge"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="56dp"
         android:contentDescription="@string/ImageView__badge"
         app:badge_size="medium"
         app:layout_constraintStart_toStartOf="@id/icon"
@@ -35,7 +35,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="12dp"
+        android:layout_marginBottom="14dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/qr_button"
@@ -52,17 +54,6 @@
             tools:text="Peter Parker" />
 
         <org.thoughtcrime.securesms.components.emoji.EmojiTextView
-            android:id="@+id/about"
-            style="@style/Signal.Text.BodyMedium"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:textAlignment="viewStart"
-            android:textColor="@color/signal_colorOnSurfaceVariant"
-            tools:text="Crusin' the web" />
-
-        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
             android:id="@+id/summary"
             style="@style/Signal.Text.BodyMedium"
             android:layout_width="match_parent"
@@ -71,21 +62,43 @@
             android:textColor="@color/signal_colorOnSurfaceVariant"
             tools:text="+1 (999) 555-1234" />
 
+        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+            android:id="@+id/username"
+            style="@style/Signal.Text.BodyMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="viewStart"
+            android:textColor="@color/signal_colorOnSurfaceVariant"
+            android:visibility="gone"
+            tools:text="miles.07" />
+
+        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+            android:id="@+id/about"
+            style="@style/Signal.Text.BodySmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAlignment="viewStart"
+            android:textColor="@color/signal_colorOnSurfaceVariant"
+            tools:text="Crusin' the web" />
+
     </LinearLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/qr_button"
+        style="@style/Widget.Signal.Button.Icon"
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:layout_marginEnd="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:backgroundTint="@color/signal_colorSurface4"
         app:icon="@drawable/symbol_qrcode_24"
         app:iconSize="20dp"
-        app:iconTint="@color/core_black"
-        app:backgroundTint="@color/signal_light_colorSurface3"
-        style="@style/Widget.Signal.Button.Icon"/>
+        app:iconTint="@color/signal_colorOnSurface"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

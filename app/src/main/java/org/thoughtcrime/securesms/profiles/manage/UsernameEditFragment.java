@@ -194,6 +194,8 @@ public class UsernameEditFragment extends LoggingFragment {
       case DISCRIMINATOR_HAS_INVALID_CHARACTERS, DISCRIMINATOR_NOT_AVAILABLE -> getString(R.string.UsernameEditFragment__this_username_is_not_available_try_another_number);
       case DISCRIMINATOR_TOO_LONG -> getString(R.string.UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits, UsernameUtil.MAX_DISCRIMINATOR_LENGTH);
       case DISCRIMINATOR_TOO_SHORT -> getString(R.string.UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits, UsernameUtil.MIN_DISCRIMINATOR_LENGTH);
+      case DISCRIMINATOR_CANNOT_BE_00 -> getString(R.string.UsernameEditFragment__this_number_cant_be_00);
+      case DISCRIMINATOR_CANNOT_START_WITH_00 -> getString(R.string.UsernameEditFragment__this_number_cant_start_with_00);
     };
 
     int colorRes = error != null ? R.color.signal_colorError : R.color.signal_colorPrimary;

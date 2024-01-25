@@ -93,21 +93,18 @@ fun UsernameLinkShareScreen(
 
     ButtonBar(
       onShareClicked = onShareBadge,
-      onColorClicked = { navController.safeNavigate(UsernameLinkSettingsFragmentDirections.actionUsernameLinkSettingsFragmentToUsernameLinkQrColorPickerFragment()) }
-    )
-
-    LinkRow(
-      linkState = state.usernameLinkState,
-      onClick = {
+      onColorClicked = { navController.safeNavigate(UsernameLinkSettingsFragmentDirections.actionUsernameLinkSettingsFragmentToUsernameLinkQrColorPickerFragment()) },
+      onLinkClicked = {
         navController.safeNavigate(UsernameLinkSettingsFragmentDirections.actionUsernameLinkSettingsFragmentToUsernameLinkShareBottomSheet())
-      }
+      },
+      linkState = state.usernameLinkState
     )
 
     Text(
       text = stringResource(id = R.string.UsernameLinkSettings_qr_description),
       textAlign = TextAlign.Center,
       style = MaterialTheme.typography.bodyMedium,
-      modifier = Modifier.padding(bottom = 19.dp, start = 43.dp, end = 43.dp),
+      modifier = Modifier.padding(top = 42.dp, bottom = 19.dp, start = 43.dp, end = 43.dp),
       color = MaterialTheme.colorScheme.onSurfaceVariant
     )
 
@@ -127,11 +124,22 @@ fun UsernameLinkShareScreen(
 }
 
 @Composable
-private fun ButtonBar(onShareClicked: () -> Unit, onColorClicked: () -> Unit) {
+private fun ButtonBar(
+  linkState: UsernameLinkState,
+  onLinkClicked: () -> Unit,
+  onShareClicked: () -> Unit,
+  onColorClicked: () -> Unit
+) {
   Row(
     horizontalArrangement = Arrangement.spacedBy(space = 32.dp, alignment = Alignment.CenterHorizontally),
     modifier = Modifier.fillMaxWidth()
   ) {
+    Buttons.ActionButton(
+      enabled = linkState is UsernameLinkState.Present,
+      onClick = onLinkClicked,
+      iconResId = R.drawable.symbol_link_24,
+      labelResId = R.string.UsernameLinkSettings_link_button_label
+    )
     Buttons.ActionButton(
       onClick = onShareClicked,
       iconResId = R.drawable.symbol_share_android_24,

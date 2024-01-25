@@ -64,6 +64,12 @@ object UsernameUtil {
       value == null -> {
         null
       }
+      value == "00" -> {
+        InvalidReason.INVALID_NUMBER
+      }
+      value.startsWith("00") -> {
+        InvalidReason.INVALID_NUMBER_PREFIX
+      }
       value.length < MIN_DISCRIMINATOR_LENGTH -> {
         InvalidReason.TOO_SHORT
       }
@@ -83,6 +89,8 @@ object UsernameUtil {
     TOO_SHORT,
     TOO_LONG,
     INVALID_CHARACTERS,
-    STARTS_WITH_NUMBER
+    STARTS_WITH_NUMBER,
+    INVALID_NUMBER,
+    INVALID_NUMBER_PREFIX
   }
 }

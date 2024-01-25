@@ -355,7 +355,9 @@ internal class UsernameEditViewModel private constructor(private val mode: Usern
     DISCRIMINATOR_NOT_AVAILABLE,
     DISCRIMINATOR_TOO_SHORT,
     DISCRIMINATOR_TOO_LONG,
-    DISCRIMINATOR_HAS_INVALID_CHARACTERS
+    DISCRIMINATOR_HAS_INVALID_CHARACTERS,
+    DISCRIMINATOR_CANNOT_BE_00,
+    DISCRIMINATOR_CANNOT_START_WITH_00
   }
 
   enum class ButtonState {
@@ -383,6 +385,7 @@ internal class UsernameEditViewModel private constructor(private val mode: Usern
         InvalidReason.TOO_LONG -> UsernameStatus.TOO_LONG
         InvalidReason.STARTS_WITH_NUMBER -> UsernameStatus.CANNOT_START_WITH_NUMBER
         InvalidReason.INVALID_CHARACTERS -> UsernameStatus.INVALID_CHARACTERS
+        InvalidReason.INVALID_NUMBER, InvalidReason.INVALID_NUMBER_PREFIX -> error("Unexpected reason $invalidReason")
       }
     }
 
@@ -391,6 +394,8 @@ internal class UsernameEditViewModel private constructor(private val mode: Usern
         InvalidReason.TOO_SHORT -> UsernameStatus.DISCRIMINATOR_TOO_SHORT
         InvalidReason.TOO_LONG -> UsernameStatus.DISCRIMINATOR_TOO_LONG
         InvalidReason.INVALID_CHARACTERS -> UsernameStatus.DISCRIMINATOR_HAS_INVALID_CHARACTERS
+        InvalidReason.INVALID_NUMBER -> UsernameStatus.DISCRIMINATOR_CANNOT_BE_00
+        InvalidReason.INVALID_NUMBER_PREFIX -> UsernameStatus.DISCRIMINATOR_CANNOT_START_WITH_00
         else -> UsernameStatus.INVALID_GENERIC
       }
     }
