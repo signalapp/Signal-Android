@@ -4,7 +4,6 @@ import org.signal.libsignal.protocol.message.DecryptionErrorMessage
 import org.signal.libsignal.zkgroup.InvalidInputException
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
-import org.whispersystems.signalservice.api.InvalidMessageStructureException
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.internal.push.AttachmentPointer
@@ -237,7 +236,7 @@ object EnvelopeContentValidator {
     return try {
       DecryptionErrorMessage(serializedDecryptionErrorMessage)
       Result.Valid
-    } catch (e: InvalidMessageStructureException) {
+    } catch (e: Exception) {
       Result.Invalid("[DecryptionErrorMessage] Bad decryption error message!", e)
     }
   }
