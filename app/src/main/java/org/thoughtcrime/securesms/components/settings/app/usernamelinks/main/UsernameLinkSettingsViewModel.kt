@@ -217,16 +217,23 @@ class UsernameLinkSettingsViewModel : ViewModel() {
 
     val qrCodeData: QrCodeData = state.qrCodeState.data
 
-    val width = 424
-    val height = 576
-    val backgroundPadHorizontal = 64f
-    val backgroundPadVertical = 80f
+    val scaleFactor = 2
+    val width = 424 * scaleFactor
+    val height = 576 * scaleFactor
+    val backgroundPadHorizontal = 64f * scaleFactor
+    val backgroundPadVertical = 80f * scaleFactor
     val qrBorderWidth = width - (backgroundPadHorizontal * 2)
-    val qrBorderHeight = 324f
-    val qrSize = 184f
-    val qrPadding = 16f
-    val borderSizeX = 40f
-    val borderSizeY = 32f
+    val qrBorderHeight = 324f * scaleFactor
+    val qrBorderRadius = 30f * scaleFactor
+    val qrSize = 184f * scaleFactor
+    val qrPadding = 16f * scaleFactor
+    val borderSizeX = 40f * scaleFactor
+    val borderSizeY = 32f * scaleFactor
+    val helpTextHorizontalPad = 72 * scaleFactor
+    val helpTextVerticalPad = 444f * scaleFactor
+    val helpTextSize = 14f * scaleFactor
+    val usernameVerticalPad = 348f * scaleFactor
+    val usernameTextSize = 20f * scaleFactor
 
     val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888).apply {
       eraseColor(Color.TRANSPARENT)
@@ -241,7 +248,7 @@ class UsernameLinkSettingsViewModel : ViewModel() {
 
     // QR Border
     androidCanvas.withTranslation(x = backgroundPadHorizontal, y = backgroundPadVertical) {
-      drawRoundRect(0f, 0f, qrBorderWidth, qrBorderHeight, 30f, 30f, Paint().apply { color = state.qrCodeColorScheme.borderColor.toArgb() })
+      drawRoundRect(0f, 0f, qrBorderWidth, qrBorderHeight, qrBorderRadius, qrBorderRadius, Paint().apply { color = state.qrCodeColorScheme.borderColor.toArgb() })
 
       drawRoundRect(borderSizeX, borderSizeY, borderSizeX + qrSize + qrPadding * 2, borderSizeY + qrSize + qrPadding * 2, 15f, 15f, Paint().apply { color = Color.WHITE })
       drawRoundRect(
@@ -249,8 +256,8 @@ class UsernameLinkSettingsViewModel : ViewModel() {
         borderSizeY,
         borderSizeX + qrSize + qrPadding * 2,
         borderSizeY + qrSize + qrPadding * 2,
-        15f,
-        15f,
+        15f * scaleFactor,
+        15f * scaleFactor,
         Paint().apply {
           color = state.qrCodeColorScheme.outlineColor.toArgb()
           style = Paint.Style.STROKE
@@ -259,10 +266,9 @@ class UsernameLinkSettingsViewModel : ViewModel() {
       )
 
       // Draw the QR code
-      composeCanvas.translate((qrBorderWidth / 2) - (qrSize / 2), borderSizeY + qrPadding)
-
       composeCanvas.withSave {
-        composeCanvas.scale(qrSize / 300f, qrSize / 300f)
+        composeCanvas.translate((qrBorderWidth / 2) - (qrSize / 2), borderSizeY + qrPadding)
+
         canvasDrawScope.draw(
           density = object : Density {
             override val density: Float = 1f
@@ -270,7 +276,7 @@ class UsernameLinkSettingsViewModel : ViewModel() {
           },
           layoutDirection = LayoutDirection.Ltr,
           canvas = composeCanvas,
-          size = Size(300f, 300f)
+          size = Size(qrSize, qrSize)
         ) {
           drawQr(
             data = qrCodeData,
@@ -281,27 +287,26 @@ class UsernameLinkSettingsViewModel : ViewModel() {
           )
         }
       }
+    }
 
-      composeCanvas.translate(-90f, -80f)
-
-      // Draw the signal logo -- unfortunately can't have the normal QR code drawing handle it because it requires a composable ImageBitmap
-      BitmapFactory.decodeResource(ApplicationDependencies.getApplication().resources, R.drawable.qrcode_logo).also { logoBitmap ->
-        val tintedPaint = Paint().apply {
-          colorFilter = PorterDuffColorFilter(state.qrCodeColorScheme.foregroundColor.toArgb(), PorterDuff.Mode.SRC_IN)
-        }
-        val sourceRect = Rect(0, 0, logoBitmap.width, logoBitmap.height)
-
-        val destLeft = qrBorderWidth / 2f + qrPadding
-        val destTop = destLeft - 10f
-        val destRect = RectF(destLeft, destTop, destLeft + 36f, destTop + 36f)
-        drawBitmap(logoBitmap, sourceRect, destRect, tintedPaint)
+    // Draw the signal logo -- unfortunately can't have the normal QR code drawing handle it because it requires a composable ImageBitmap
+    BitmapFactory.decodeResource(ApplicationDependencies.getApplication().resources, R.drawable.qrcode_logo).also { logoBitmap ->
+      val tintedPaint = Paint().apply {
+        colorFilter = PorterDuffColorFilter(state.qrCodeColorScheme.foregroundColor.toArgb(), PorterDuff.Mode.SRC_IN)
       }
+      val sourceRect = Rect(0, 0, logoBitmap.width, logoBitmap.height)
+
+      val logoSize = 36f * scaleFactor
+      val destLeft = (width / 2f) - (logoSize / 2f)
+      val destTop = destLeft - (10f * scaleFactor) + (logoSize / 2f)
+      val destRect = RectF(destLeft, destTop, destLeft + logoSize, destTop + logoSize)
+      androidCanvas.drawBitmap(logoBitmap, sourceRect, destRect, tintedPaint)
     }
 
     // Draw the username
     val usernamePaint = Paint().apply {
       color = state.qrCodeColorScheme.textColor.toArgb()
-      textSize = 34f
+      textSize = usernameTextSize
       typeface = if (Build.VERSION.SDK_INT < 26) {
         Typeface.DEFAULT_BOLD
       } else {
@@ -314,13 +319,13 @@ class UsernameLinkSettingsViewModel : ViewModel() {
     val usernameBounds = Rect()
     usernamePaint.getTextBounds(state.username, 0, state.username.length, usernameBounds)
 
-    androidCanvas.drawText(state.username, (width / 2f) - (usernameBounds.width() / 2f), 348f + usernameBounds.height(), usernamePaint)
+    androidCanvas.drawText(state.username, (width / 2f) - (usernameBounds.width() / 2f), usernameVerticalPad + usernameBounds.height(), usernamePaint)
 
     // Draw the help text
     val helpTextPaint = TextPaint().apply {
       isAntiAlias = true
       color = 0xFF3C3C43.toInt()
-      textSize = 14f
+      textSize = helpTextSize
       typeface = if (Build.VERSION.SDK_INT < 26) {
         Typeface.DEFAULT
       } else {
@@ -331,11 +336,10 @@ class UsernameLinkSettingsViewModel : ViewModel() {
       }
     }
 
-    val helpTextHorizontalPad = 72
     val maxWidth = width - helpTextHorizontalPad * 2
     val helpTextLayout = StaticLayout(helpText, helpTextPaint, maxWidth, Layout.Alignment.ALIGN_CENTER, 1f, 0f, true)
 
-    androidCanvas.withTranslation(x = helpTextHorizontalPad.toFloat(), y = 444f) {
+    androidCanvas.withTranslation(x = helpTextHorizontalPad.toFloat(), y = helpTextVerticalPad) {
       helpTextLayout.draw(androidCanvas)
     }
 
