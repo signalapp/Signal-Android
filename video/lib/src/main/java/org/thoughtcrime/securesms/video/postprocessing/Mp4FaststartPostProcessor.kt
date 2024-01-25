@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.video.postprocessing
 import org.signal.core.util.readLength
 import org.signal.libsignal.media.Mp4Sanitizer
 import org.signal.libsignal.media.SanitizedMetadata
+import org.thoughtcrime.securesms.video.exceptions.VideoPostProcessingException
 import java.io.ByteArrayInputStream
 import java.io.FilterInputStream
 import java.io.IOException
@@ -26,7 +27,12 @@ class Mp4FaststartPostProcessor(private val inputStreamFactory: InputStreamFacto
    * It is the responsibility of the caller to close the resulting [InputStream].
    */
   fun process(inputLength: Long = calculateStreamLength(inputStreamFactory.create())): SequenceInputStream {
-    val metadata = sanitizeMetadata(inputStreamFactory.create(), inputLength)
+    val metadata = inputStreamFactory.create().use { inputStream ->
+      sanitizeMetadata(inputStream, inputLength)
+    }
+    if (metadata.sanitizedMetadata == null) {
+      throw VideoPostProcessingException("Sanitized metadata was null!")
+    }
     val inputStream = inputStreamFactory.create()
     inputStream.skip(metadata.dataOffset)
     return SequenceInputStream(ByteArrayInputStream(metadata.sanitizedMetadata), LimitedInputStream(inputStream, metadata.dataLength))

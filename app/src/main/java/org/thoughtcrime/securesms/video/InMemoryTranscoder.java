@@ -185,7 +185,7 @@ public final class InMemoryTranscoder implements Closeable {
       final Throwable cause = e.getCause();
       if (cause instanceof IOException) {
         throw (IOException) cause;
-      } else if ( cause instanceof EncodingException) {
+      } else if (cause instanceof EncodingException) {
         throw (EncodingException) cause;
       }
     }

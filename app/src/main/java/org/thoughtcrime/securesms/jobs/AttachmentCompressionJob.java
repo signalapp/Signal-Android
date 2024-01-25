@@ -40,6 +40,7 @@ import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MemoryFileDescriptor.MemoryFileException;
 import org.thoughtcrime.securesms.video.InMemoryTranscoder;
 import org.thoughtcrime.securesms.video.StreamingTranscoder;
+import org.thoughtcrime.securesms.video.exceptions.VideoPostProcessingException;
 import org.thoughtcrime.securesms.video.interfaces.TranscoderCancelationSignal;
 import org.thoughtcrime.securesms.video.TranscoderOptions;
 import org.thoughtcrime.securesms.video.exceptions.VideoSourceException;
@@ -287,7 +288,8 @@ public final class AttachmentCompressionJob extends BaseJob {
                 try {
                   return ModernDecryptingPartInputStream.createFor(attachmentSecret, file, 0);
                 } catch (IOException e) {
-                  throw new RuntimeException(e);
+                  Log.w(TAG, "IOException thrown while creating CipherInputStream.", e);
+                  throw new VideoPostProcessingException("Exception while opening InputStream!", e);
                 }
               });
 
@@ -295,6 +297,20 @@ public final class AttachmentCompressionJob extends BaseJob {
               try (MediaStream mediaStream = new MediaStream(postProcessor.process(plaintextLength), MimeTypes.VIDEO_MP4, 0, 0, true)) {
                 attachmentDatabase.updateAttachmentData(attachment, mediaStream, true);
                 faststart = true;
+              } catch (VideoPostProcessingException e) {
+                Log.w(TAG, "Exception thrown during post processing.", e);
+                final Throwable cause = e.getCause();
+                if (cause instanceof IOException) {
+                  throw (IOException) cause;
+                } else if (cause instanceof EncodingException) {
+                  throw (EncodingException) cause;
+                }
+              }
+
+              if (!faststart) {
+                try (MediaStream mediaStream = new MediaStream(ModernDecryptingPartInputStream.createFor(attachmentSecret, file, 0), MimeTypes.VIDEO_MP4, 0, 0, false)) {
+                  attachmentDatabase.updateAttachmentData(attachment, mediaStream, true);
+                }
               }
             } finally {
               if (!file.delete()) {
