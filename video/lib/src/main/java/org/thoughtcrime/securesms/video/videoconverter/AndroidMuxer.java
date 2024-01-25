@@ -51,4 +51,9 @@ final class AndroidMuxer implements Muxer {
     public void release() {
         muxer.release();
     }
+
+    @Override
+    public boolean supportsAudioRemux() {
+        return false;
+    }
 }

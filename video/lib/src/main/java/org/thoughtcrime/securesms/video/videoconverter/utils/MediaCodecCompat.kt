@@ -17,6 +17,13 @@ import java.io.IOException
 object MediaCodecCompat {
   private const val TAG = "MediaDataSourceCompat"
 
+  const val MEDIA_FORMAT_KEY_MAX_BIT_RATE = "max-bitrate"
+
+  // https://developer.android.com/reference/android/media/MediaCodec#CSD
+  const val MEDIA_FORMAT_KEY_CODEC_SPECIFIC_DATA_0 = "csd-0"
+  const val MEDIA_FORMAT_KEY_CODEC_SPECIFIC_DATA_1 = "csd-1"
+  const val MEDIA_FORMAT_KEY_CODEC_SPECIFIC_DATA_2 = "csd-2"
+
   @JvmStatic
   fun findDecoder(inputFormat: MediaFormat): Pair<MediaCodec, MediaFormat> {
     val codecs = MediaCodecList(MediaCodecList.REGULAR_CODECS)

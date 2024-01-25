@@ -24,4 +24,6 @@ public interface Muxer {
     void writeSampleData(int trackIndex, @NonNull ByteBuffer byteBuf, @NonNull MediaCodec.BufferInfo bufferInfo) throws IOException;
 
     void release();
+
+    boolean supportsAudioRemux();
 }

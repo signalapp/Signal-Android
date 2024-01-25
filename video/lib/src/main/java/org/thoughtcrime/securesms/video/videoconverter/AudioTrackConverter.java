@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.video.videoconverter;
 
+import android.annotation.SuppressLint;
 import android.media.MediaCodec;
 import android.media.MediaCodecInfo;
 import android.media.MediaExtractor;
@@ -27,7 +28,8 @@ final class AudioTrackConverter {
     private static final String OUTPUT_AUDIO_MIME_TYPE = VideoConstants.AUDIO_MIME_TYPE; // Advanced Audio Coding
     private static final int OUTPUT_AUDIO_AAC_PROFILE = MediaCodecInfo.CodecProfileLevel.AACObjectLC; //MediaCodecInfo.CodecProfileLevel.AACObjectHE;
 
-    private static final int TIMEOUT_USEC = 10000;
+    private static final int SAMPLE_BUFFER_SIZE = 16 * 1024;
+    private static final int TIMEOUT_USEC       = 10000;
 
     private final long mTimeFrom;
     private final long mTimeTo;
@@ -38,6 +40,10 @@ final class AudioTrackConverter {
     private final MediaExtractor mAudioExtractor;
     private final MediaCodec mAudioDecoder;
     private final MediaCodec mAudioEncoder;
+
+    private final boolean               skipTrancode;
+    private final ByteBuffer            instanceSampleBuffer = ByteBuffer.allocateDirect(SAMPLE_BUFFER_SIZE);
+    private final MediaCodec.BufferInfo instanceBufferInfo   = new MediaCodec.BufferInfo();
 
     private final ByteBuffer[] mAudioDecoderInputBuffers;
     private ByteBuffer[] mAudioDecoderOutputBuffers;
@@ -68,7 +74,8 @@ final class AudioTrackConverter {
             final @NonNull MediaInput input,
             final long timeFrom,
             final long timeTo,
-            final int audioBitrate) throws IOException {
+            final int audioBitrate,
+            final boolean allowSkipTranscode) throws IOException {
 
         final MediaExtractor audioExtractor = input.createExtractor();
         final int audioInputTrack = getAndSelectAudioTrackIndex(audioExtractor);
@@ -76,7 +83,7 @@ final class AudioTrackConverter {
             audioExtractor.release();
             return null;
         }
-        return new AudioTrackConverter(audioExtractor, audioInputTrack, timeFrom, timeTo, audioBitrate);
+        return new AudioTrackConverter(audioExtractor, audioInputTrack, timeFrom, timeTo, audioBitrate, allowSkipTranscode);
     }
 
     private AudioTrackConverter(
@@ -84,7 +91,8 @@ final class AudioTrackConverter {
             final int audioInputTrack,
             long timeFrom,
             long timeTo,
-            int audioBitrate) throws IOException {
+            int audioBitrate,
+            final boolean allowSkipTranscode) throws IOException {
 
         mTimeFrom = timeFrom;
         mTimeTo = timeTo;
@@ -102,6 +110,13 @@ final class AudioTrackConverter {
         final MediaFormat inputAudioFormat = mAudioExtractor.getTrackFormat(audioInputTrack);
         mInputDuration = inputAudioFormat.containsKey(MediaFormat.KEY_DURATION) ? inputAudioFormat.getLong(MediaFormat.KEY_DURATION) : 0;
 
+        skipTrancode = allowSkipTranscode && formatCanSkipTranscode(inputAudioFormat, audioBitrate);
+        if (skipTrancode) {
+            mEncoderOutputAudioFormat = inputAudioFormat;
+        }
+
+        if (VERBOSE) Log.d(TAG, "audio skipping transcoding: " + skipTrancode);
+
         final MediaFormat outputAudioFormat =
                 MediaFormat.createAudioFormat(
                         OUTPUT_AUDIO_MIME_TYPE,
@@ -109,7 +124,7 @@ final class AudioTrackConverter {
                         inputAudioFormat.getInteger(MediaFormat.KEY_CHANNEL_COUNT));
         outputAudioFormat.setInteger(MediaFormat.KEY_BIT_RATE, audioBitrate);
         outputAudioFormat.setInteger(MediaFormat.KEY_AAC_PROFILE, OUTPUT_AUDIO_AAC_PROFILE);
-        outputAudioFormat.setInteger(MediaFormat.KEY_MAX_INPUT_SIZE, 16 * 1024);
+        outputAudioFormat.setInteger(MediaFormat.KEY_MAX_INPUT_SIZE, SAMPLE_BUFFER_SIZE);
 
         // Create a MediaCodec for the desired codec, then configure it as an encoder with
         // our desired properties. Request a Surface to use for input.
@@ -135,9 +150,11 @@ final class AudioTrackConverter {
         if (mEncoderOutputAudioFormat != null) {
             Log.d(TAG, "muxer: adding audio track.");
             if (!mEncoderOutputAudioFormat.containsKey(MediaFormat.KEY_BIT_RATE)) {
+                Log.d(TAG, "muxer: fixed MediaFormat to add bitrate.");
                 mEncoderOutputAudioFormat.setInteger(MediaFormat.KEY_BIT_RATE, mAudioBitrate);
             }
             if (!mEncoderOutputAudioFormat.containsKey(MediaFormat.KEY_AAC_PROFILE)) {
+                Log.d(TAG, "muxer: fixed MediaFormat to add AAC profile.");
                 mEncoderOutputAudioFormat.setInteger(MediaFormat.KEY_AAC_PROFILE, OUTPUT_AUDIO_AAC_PROFILE);
             }
             mOutputAudioTrack = muxer.addTrack(mEncoderOutputAudioFormat);
@@ -145,6 +162,12 @@ final class AudioTrackConverter {
     }
 
     void step() throws IOException {
+
+        if (skipTrancode && mEncoderOutputAudioFormat != null) {
+            extractAndRemux();
+            return;
+        }
+
         // Extract audio from file and feed to decoder.
         // Do not extract audio if we have determined the output format but we are not yet
         // ready to mux the frames.
@@ -164,7 +187,8 @@ final class AudioTrackConverter {
                 Log.d(TAG, "audio extractor: returned buffer of size " + size);
                 Log.d(TAG, "audio extractor: returned buffer for time " + presentationTime);
             }
-            mAudioExtractorDone = size < 0 || (mTimeTo > 0 && presentationTime > mTimeTo * 1000);
+            mAudioExtractorDone = isAudioExtractorDone(size, presentationTime);
+
             if (mAudioExtractorDone) {
                 if (VERBOSE) Log.d(TAG, "audio extractor: EOS");
                 mAudioDecoder.queueInputBuffer(
@@ -388,6 +412,47 @@ final class AudioTrackConverter {
         Preconditions.checkState("no frame should be pending", -1 == mPendingAudioDecoderOutputBufferIndex);
     }
 
+    @SuppressLint("WrongConstant") // flags extracted from sample by MediaExtractor should be safe for MediaCodec.BufferInfo
+    private void extractAndRemux() throws IOException {
+        if (mMuxer == null) {
+            Log.d(TAG, "audio remuxer: tried to execute before muxer was ready");
+            return;
+        }
+        int  size             = mAudioExtractor.readSampleData(instanceSampleBuffer, 0);
+        long presentationTime = mAudioExtractor.getSampleTime();
+        int  sampleFlags      = mAudioExtractor.getSampleFlags();
+        if (VERBOSE) {
+            Log.d(TAG, "audio extractor: returned buffer of size " + size);
+            Log.d(TAG, "audio extractor: returned buffer for time " + presentationTime);
+            Log.d(TAG, "audio extractor: returned buffer with flags " + Integer.toBinaryString(sampleFlags));
+        }
+        mAudioExtractorDone = isAudioExtractorDone(size, presentationTime);
+
+        if (mAudioExtractorDone) {
+            if (VERBOSE) Log.d(TAG, "audio encoder: EOS");
+            instanceBufferInfo.set(0, 0, presentationTime, MediaCodec.BUFFER_FLAG_END_OF_STREAM);
+            mAudioEncoderDone = true;
+        } else {
+            instanceBufferInfo.set(0, size, presentationTime, sampleFlags);
+        }
+
+        mMuxer.writeSampleData(mOutputAudioTrack, instanceSampleBuffer, instanceBufferInfo);
+
+        if (VERBOSE) {
+            Log.d(TAG, "audio extractor: wrote sample at " + presentationTime);
+        }
+
+        mAudioExtractor.advance();
+
+        mAudioExtractedFrameCount++;
+        mAudioEncodedFrameCount++;
+        mMuxingAudioPresentationTime = Math.max(mMuxingAudioPresentationTime, presentationTime);
+    }
+
+    private boolean isAudioExtractorDone(int size, long presentationTime) {
+        return presentationTime == -1 || size < 0 || (mTimeTo > 0 && presentationTime > mTimeTo * 1000);
+    }
+
     private static @NonNull
     MediaCodec createAudioDecoder(final @NonNull MediaFormat inputFormat) throws IOException {
         final MediaCodec decoder = MediaCodec.createDecoderByType(MediaConverter.getMimeTypeFor(inputFormat));
@@ -419,5 +484,24 @@ final class AudioTrackConverter {
 
     private static boolean isAudioFormat(final @NonNull MediaFormat format) {
         return MediaConverter.getMimeTypeFor(format).startsWith("audio/");
+    }
+
+    /**
+     * HE-AAC input bitstreams exhibit bad decoder behavior: the decoder's output buffer's presentation timestamp is way larger than the input sample's.
+     * This mismatch propagates throughout the transcoding pipeline and results in slowed, distorted audio in the output file.
+     * To sidestep this: AAC and its variants are a supported output codec, and HE-AAC bitrates are almost always lower than our target bitrate,
+     * so we can pass through the input bitstream unaltered, relying on consumers of the output file to render HE-AAC correctly.
+     */
+    private static boolean formatCanSkipTranscode(MediaFormat audioFormat, int desiredBitrate) {
+        try {
+            int    inputBitrate  = audioFormat.getInteger(MediaFormat.KEY_BIT_RATE);
+            String inputMimeType = audioFormat.getString(MediaFormat.KEY_MIME);
+            return OUTPUT_AUDIO_MIME_TYPE.equals(inputMimeType) && inputBitrate <= desiredBitrate;
+        } catch (NullPointerException exception) {
+            if (VERBOSE) {
+                Log.d(TAG, "could not find bitrate in mediaFormat, can't skip transcoding.");
+            }
+            return false;
+        }
     }
 }

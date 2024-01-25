@@ -141,14 +141,14 @@ public final class MediaConverter {
         AudioTrackConverter audioTrackConverter = null;
 
         try {
+            muxer = mOutput.createMuxer();
+
             videoTrackConverter = VideoTrackConverter.create(mInput, mTimeFrom, mTimeTo, mVideoResolution, mVideoBitrate, mVideoCodec);
-            audioTrackConverter = AudioTrackConverter.create(mInput, mTimeFrom, mTimeTo, mAudioBitrate);
+            audioTrackConverter = AudioTrackConverter.create(mInput, mTimeFrom, mTimeTo, mAudioBitrate, muxer.supportsAudioRemux());
 
             if (videoTrackConverter == null && audioTrackConverter == null) {
                 throw new EncodingException("No video and audio tracks");
             }
-
-            muxer = mOutput.createMuxer();
 
             doExtractDecodeEditEncodeMux(
                     videoTrackConverter,
