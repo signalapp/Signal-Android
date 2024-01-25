@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.profiles.username
 
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column

@@ -42,7 +42,6 @@ import org.thoughtcrime.securesms.util.NameUtil.getAbbreviation
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog
-import org.thoughtcrime.securesms.util.visible
 import java.util.Arrays
 import java.util.Optional
 
@@ -81,22 +80,18 @@ class EditProfileFragment : LoggingFragment() {
     binding.manageProfileNameContainer.setOnClickListener { v: View -> findNavController(v).safeNavigate(EditProfileFragmentDirections.actionManageProfileName()) }
 
     binding.manageProfileUsernameContainer.setOnClickListener { v: View ->
-      if (SignalStore.uiHints().hasSeenUsernameEducation() || SignalStore.account().username != null) {
-        if (SignalStore.account().username != null) {
-          MaterialAlertDialogBuilder(requireContext(), R.style.ThemeOverlay_Signal_MaterialAlertDialog_List)
-            .setItems(R.array.username_edit_entries) { _: DialogInterface?, w: Int ->
-              when (w) {
-                0 -> findNavController(v).safeNavigate(EditProfileFragmentDirections.actionManageUsername())
-                1 -> displayConfirmUsernameDeletionDialog()
-                else -> throw IllegalStateException()
-              }
+      if (SignalStore.account().username != null) {
+        MaterialAlertDialogBuilder(requireContext(), R.style.ThemeOverlay_Signal_MaterialAlertDialog_List)
+          .setItems(R.array.username_edit_entries) { _: DialogInterface?, w: Int ->
+            when (w) {
+              0 -> findNavController(v).safeNavigate(EditProfileFragmentDirections.actionManageUsername())
+              1 -> displayConfirmUsernameDeletionDialog()
+              else -> throw IllegalStateException()
             }
-            .show()
-        } else {
-          findNavController(v).safeNavigate(EditProfileFragmentDirections.actionManageUsername())
-        }
+          }
+          .show()
       } else {
-        findNavController(v).safeNavigate(EditProfileFragmentDirections.actionManageProfileFragmentToUsernameEducationFragment())
+        findNavController(v).safeNavigate(EditProfileFragmentDirections.actionManageUsername())
       }
     }
 
@@ -322,6 +317,7 @@ class EditProfileFragment : LoggingFragment() {
         Snackbar.make(requireView(), R.string.ManageProfileFragment__username_deleted, Snackbar.LENGTH_SHORT).show()
         binding.usernameLinkContainer.visibility = View.GONE
       }
+
       UsernameDeleteResult.NETWORK_ERROR -> Snackbar.make(requireView(), R.string.ManageProfileFragment__couldnt_delete_username, Snackbar.LENGTH_SHORT).show()
     }
   }

@@ -6105,18 +6105,6 @@
     <!-- Popup menu label for clearing applied formatting -->
     <string name="TextFormatting_clear_formatting">Clear formatting</string>
 
-    <!-- UsernameEducationFragment -->
-    <!-- Continue button which takes the user to the add a username screen -->
-    <string name="UsernameEducationFragment__continue">Continue</string>
-    <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">Set up your Signal username</string>
-    <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__usernames_are_paired_with_a_set_of_digits">Usernames are paired with a set of digits and aren\'t shared on your profile</string>
-    <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">Each username has a unique QR code and link you can share with friends to start a chat with you</string>
-    <!-- Displayed as body text in the username education screen. The string references the names of settings, so they should match our translations for those settings. -->
-    <string name="UsernameEducationFragment__turn_off_phone_number_discovery">Turn off phone number discovery under Settings > Privacy > Phone number > Who can find my number, to use your username as the primary way others can contact you</string>
-
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
     <string name="UsernameEditDialog__edit_username">Edit username</string>
