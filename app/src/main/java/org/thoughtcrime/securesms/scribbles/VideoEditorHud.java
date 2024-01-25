@@ -98,7 +98,7 @@ public final class VideoEditorHud extends LinearLayout {
     long size = tryGetUriSize(getContext(), uri, Long.MAX_VALUE);
 
     if (size > maxSendSize) {
-      videoTimeLine.setTimeLimit(VideoUtil.getMaxVideoUploadDurationInSeconds(), TimeUnit.SECONDS);
+      videoTimeLine.setTimeLimit(videoBitRateCalculator.getMaxVideoUploadDurationInSeconds(), TimeUnit.SECONDS);
     }
 
     videoTimeLine.setOnRangeChangeListener(new VideoThumbnailsRangeSelectorView.OnRangeChangeListener() {

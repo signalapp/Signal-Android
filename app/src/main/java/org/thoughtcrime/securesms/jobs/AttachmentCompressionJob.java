@@ -249,10 +249,12 @@ public final class AttachmentCompressionJob extends BaseJob {
           throw new UndeliverableMessageException("Cannot get media data source for attachment.");
         }
 
-        allowSkipOnFailure = !transformProperties.getVideoEdited();
         TranscoderOptions options = null;
-        if (transformProperties.videoTrim) {
-          options = new TranscoderOptions(transformProperties.videoTrimStartTimeUs, transformProperties.videoTrimEndTimeUs);
+        if (transformProperties != null) {
+          allowSkipOnFailure = !transformProperties.getVideoEdited();
+          if (transformProperties.videoTrim) {
+            options = new TranscoderOptions(transformProperties.videoTrimStartTimeUs, transformProperties.videoTrimEndTimeUs);
+          }
         }
 
         if (FeatureFlags.useStreamingVideoMuxer()) {

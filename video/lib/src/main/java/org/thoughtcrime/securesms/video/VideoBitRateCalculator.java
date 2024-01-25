@@ -7,11 +7,6 @@ import org.thoughtcrime.securesms.video.videoconverter.utils.VideoConstants;
  */
 public final class VideoBitRateCalculator {
 
-  private static final int MAXIMUM_TARGET_VIDEO_BITRATE = VideoConstants.VIDEO_BIT_RATE;
-  private static final int LOW_RES_TARGET_VIDEO_BITRATE = 1_750_000;
-  private static final int MINIMUM_TARGET_VIDEO_BITRATE = 500_000;
-  private static final int LOW_RES_OUTPUT_FORMAT        = 480;
-
   private final long upperFileSizeLimitWithMargin;
 
   public VideoBitRateCalculator(long upperFileSizeLimit) {
@@ -22,13 +17,13 @@ public final class VideoBitRateCalculator {
    * Gets the output quality of a video of the given {@param duration}.
    */
   public TranscodingQuality getTargetQuality(long duration, int inputTotalBitRate) {
-    int maxVideoBitRate = Math.min(MAXIMUM_TARGET_VIDEO_BITRATE, inputTotalBitRate - VideoConstants.AUDIO_BIT_RATE);
-    int minVideoBitRate = Math.min(MINIMUM_TARGET_VIDEO_BITRATE, maxVideoBitRate);
+    int maxVideoBitRate = Math.min(VideoConstants.VIDEO_TARGET_BIT_RATE, inputTotalBitRate - VideoConstants.AUDIO_BIT_RATE);
+    int minVideoBitRate = Math.min(VideoConstants.VIDEO_MINIMUM_TARGET_BIT_RATE, maxVideoBitRate);
 
     int    targetVideoBitRate = Math.max(minVideoBitRate, Math.min(getTargetVideoBitRate(upperFileSizeLimitWithMargin, duration), maxVideoBitRate));
     int    bitRateRange       = maxVideoBitRate - minVideoBitRate;
     double quality            = bitRateRange == 0 ? 1 : (targetVideoBitRate - minVideoBitRate) / (double) bitRateRange;
-    int    outputResolution   = targetVideoBitRate < LOW_RES_TARGET_VIDEO_BITRATE ? LOW_RES_OUTPUT_FORMAT : VideoConstants.VIDEO_SHORT_EDGE;
+    int    outputResolution   = targetVideoBitRate < VideoConstants.LOW_RES_TARGET_VIDEO_BITRATE ? VideoConstants.LOW_RES_OUTPUT_FORMAT : VideoConstants.VIDEO_SHORT_EDGE;
 
     return new TranscodingQuality(targetVideoBitRate, VideoConstants.AUDIO_BIT_RATE, Math.max(0, Math.min(quality, 1)), duration, outputResolution);
   }
@@ -47,4 +42,8 @@ public final class VideoBitRateCalculator {
     return (int) (bytes * 8 / (durationMs / 1000f));
   }
 
+  public int getMaxVideoUploadDurationInSeconds() {
+    long totalMinimumBitrate = VideoConstants.VIDEO_MINIMUM_TARGET_BIT_RATE + VideoConstants.AUDIO_BIT_RATE;
+    return Math.toIntExact((upperFileSizeLimitWithMargin * 8) / totalMinimumBitrate);
+  }
 }

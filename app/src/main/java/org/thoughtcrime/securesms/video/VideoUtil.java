@@ -29,10 +29,6 @@ public final class VideoUtil {
     return Math.min(duration, VideoConstants.VIDEO_MAX_RECORD_LENGTH_S);
   }
 
-  public static int getMaxVideoUploadDurationInSeconds() {
-    return Math.toIntExact(TimeUnit.MINUTES.toSeconds(10));
-  }
-
   private static Size screenSize() {
     DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
     return new Size(metrics.widthPixels, metrics.heightPixels);
