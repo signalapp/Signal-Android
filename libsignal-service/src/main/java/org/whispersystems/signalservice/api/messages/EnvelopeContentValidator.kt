@@ -1,6 +1,7 @@
 package org.whispersystems.signalservice.api.messages
 
 import org.signal.libsignal.protocol.message.DecryptionErrorMessage
+import org.signal.libsignal.protocol.message.SenderKeyDistributionMessage
 import org.signal.libsignal.zkgroup.InvalidInputException
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
@@ -38,6 +39,10 @@ object EnvelopeContentValidator {
       return Result.Invalid("Envelope had an invalid sourceServiceId!")
     }
 
+    if (content.senderKeyDistributionMessage != null) {
+      validateSenderKeyDistributionMessage(content.senderKeyDistributionMessage.toByteArray())?.let { return it }
+    }
+
     // Reminder: envelope.destinationServiceId was already validated since we need that for decryption
 
     return when {
@@ -50,9 +55,9 @@ object EnvelopeContentValidator {
       content.typingMessage != null -> validateTypingMessage(envelope, content.typingMessage)
       content.decryptionErrorMessage != null -> validateDecryptionErrorMessage(content.decryptionErrorMessage.toByteArray())
       content.storyMessage != null -> validateStoryMessage(content.storyMessage)
+      content.editMessage != null -> validateEditMessage(content.editMessage)
       content.pniSignatureMessage != null -> Result.Valid
       content.senderKeyDistributionMessage != null -> Result.Valid
-      content.editMessage != null -> validateEditMessage(content.editMessage)
       else -> Result.Invalid("Content is empty!")
     }
   }
@@ -238,6 +243,15 @@ object EnvelopeContentValidator {
       Result.Valid
     } catch (e: Exception) {
       Result.Invalid("[DecryptionErrorMessage] Bad decryption error message!", e)
+    }
+  }
+
+  private fun validateSenderKeyDistributionMessage(serializedSenderKeyDistributionMessage: ByteArray): Result.Invalid? {
+    return try {
+      SenderKeyDistributionMessage(serializedSenderKeyDistributionMessage)
+      null
+    } catch (e: Exception) {
+      Result.Invalid("[SenderKeyDistributionMessage] Bad sender key distribution message!", e)
     }
   }
 
