@@ -19,7 +19,10 @@ import java.security.cert.CertificateException;
 public class SigningCertificateTest extends TestCase {
 
   static {
-    Security.insertProviderAt(Conscrypt.newProvider(), 1);
+    // https://github.com/google/conscrypt/issues/1034
+    if (!System.getProperty("os.arch").equals("aarch64")) {
+      Security.insertProviderAt(Conscrypt.newProvider(), 1);
+    }
   }
 
   public void testGoodSignature() throws CertificateException, NoSuchAlgorithmException, IOException, KeyStoreException, CertPathValidatorException, SignatureException {
