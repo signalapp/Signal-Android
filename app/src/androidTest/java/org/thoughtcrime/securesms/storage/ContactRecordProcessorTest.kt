@@ -33,7 +33,7 @@ class ContactRecordProcessorTest {
   }
 
   @Test
-  fun process_splitContact_normalSplit() {
+  fun process_splitContact_normalSplit_twoRecords() {
     // GIVEN
     val originalId = SignalDatabase.recipients.getAndPossiblyMerge(ACI_A, PNI_A, E164_A)
     setStorageId(originalId, STORAGE_ID_A)
@@ -57,6 +57,35 @@ class ContactRecordProcessorTest {
     // WHEN
     val subject = ContactRecordProcessor()
     subject.process(listOf(remote1, remote2), StorageSyncHelper.KEY_GENERATOR)
+
+    // THEN
+    val byAci: RecipientId = SignalDatabase.recipients.getByAci(ACI_A).get()
+
+    val byE164: RecipientId = SignalDatabase.recipients.getByE164(E164_A).get()
+    val byPni: RecipientId = SignalDatabase.recipients.getByPni(PNI_A).get()
+
+    assertEquals(originalId, byAci)
+    assertEquals(byE164, byPni)
+    assertNotEquals(byAci, byE164)
+  }
+
+  @Test
+  fun process_splitContact_normalSplit_oneRecord() {
+    // GIVEN
+    val originalId = SignalDatabase.recipients.getAndPossiblyMerge(ACI_A, PNI_A, E164_A)
+    setStorageId(originalId, STORAGE_ID_A)
+
+    val remote = buildRecord(
+      STORAGE_ID_B,
+      ContactRecord(
+        aci = ACI_A.toString(),
+        unregisteredAtTimestamp = 100
+      )
+    )
+
+    // WHEN
+    val subject = ContactRecordProcessor()
+    subject.process(listOf(remote), StorageSyncHelper.KEY_GENERATOR)
 
     // THEN
     val byAci: RecipientId = SignalDatabase.recipients.getByAci(ACI_A).get()

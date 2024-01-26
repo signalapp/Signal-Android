@@ -113,6 +113,7 @@ import java.util.LinkedList
 import java.util.Objects
 import java.util.Optional
 import java.util.concurrent.TimeUnit
+import kotlin.jvm.optionals.getOrNull
 import kotlin.math.max
 
 open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTable(context, databaseHelper) {
@@ -2246,12 +2247,15 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
    * Removes the target recipient's E164+PNI, then creates a new recipient with that E164+PNI.
    * Done so we can match a split contact during storage sync.
    */
-  fun splitForStorageSync(storageId: ByteArray) {
-    val record = getByStorageId(storageId)!!
-    if (record.aci == null || record.pni == null) {
-      Log.w(TAG, "Invalid state for split, ignoring.")
+  fun splitForStorageSyncIfNecessary(aci: ACI) {
+    val recipientId = getByAci(aci).getOrNull() ?: return
+    val record = getRecord(recipientId)
+
+    if (record.pni == null && record.e164 == null) {
       return
     }
+
+    Log.i(TAG, "Splitting $recipientId for storage sync", true)
 
     writableDatabase
       .update(TABLE_NAME)
