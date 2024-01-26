@@ -198,9 +198,12 @@ object ContactDiscovery {
     if (!SignalStore.settings().isNotifyWhenContactJoinsSignal) return
 
     Recipient.resolvedList(newUserIds)
-      .filter { !it.isSelf && it.hasAUserSetDisplayName(context) && !hasSession(it.id) }
-      .map { IncomingMessage.contactJoined(it.id, System.currentTimeMillis()) }
-      .map { SignalDatabase.messages.insertMessageInbox(it) }
+      .filter { !it.isSelf && it.hasAUserSetDisplayName(context) && !hasSession(it.id) && it.hasE164() }
+      .map {
+        Log.i(TAG, "Inserting 'contact joined' message for ${it.id}. E164: ${it.e164}")
+        val message = IncomingMessage.contactJoined(it.id, System.currentTimeMillis())
+        SignalDatabase.messages.insertMessageInbox(message)
+      }
       .filter { it.isPresent }
       .map { it.get() }
       .forEach { result ->
