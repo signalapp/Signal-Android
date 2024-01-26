@@ -351,15 +351,21 @@ open class MessageContentProcessor(private val context: Context) {
         warn(timestamp, "Handling encryption error.")
 
         val threadRecipient = if (exceptionMetadata.groupId != null) Recipient.externalPossiblyMigratedGroup(exceptionMetadata.groupId) else sender
-        SignalDatabase
-          .messages
-          .insertBadDecryptMessage(
-            recipientId = sender.id,
-            senderDevice = exceptionMetadata.senderDevice,
-            sentTimestamp = timestamp,
-            receivedTimestamp = System.currentTimeMillis(),
-            threadId = SignalDatabase.threads.getOrCreateThreadIdFor(threadRecipient)
-          )
+        val threadId: Long? = SignalDatabase.threads.getThreadIdFor(threadRecipient.id)
+
+        if (threadId != null) {
+          SignalDatabase
+            .messages
+            .insertBadDecryptMessage(
+              recipientId = sender.id,
+              senderDevice = exceptionMetadata.senderDevice,
+              sentTimestamp = timestamp,
+              receivedTimestamp = System.currentTimeMillis(),
+              threadId = threadId
+            )
+        } else {
+          warn(timestamp, "Could not find a thread for the target recipient. Skipping.")
+        }
       }
 
       MessageState.INVALID_VERSION -> {

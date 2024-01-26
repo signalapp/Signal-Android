@@ -8,6 +8,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.squareup.wire.internal.toUnmodifiableList
 import org.signal.core.util.PendingIntentFlags
+import org.signal.core.util.isAbsent
 import org.signal.core.util.logging.Log
 import org.signal.core.util.roundedString
 import org.signal.libsignal.metadata.InvalidMetadataMessageException
@@ -302,11 +303,22 @@ object MessageDecryptor {
 
         followUpOperations += FollowUpOperation {
           val groupId: GroupId? = protocolException.parseGroupId(envelope)
-          val threadId: Long = if (groupId != null) {
+
+          val threadId: Long? = if (groupId != null) {
+            if (SignalDatabase.groups.getGroup(groupId).isAbsent()) {
+              Log.w(TAG, "${logPrefix(envelope)} No group found for $groupId! Not inserting a retry receipt.")
+              return@FollowUpOperation null
+            }
+
             val groupRecipient: Recipient = Recipient.externalPossiblyMigratedGroup(groupId)
-            SignalDatabase.threads.getOrCreateThreadIdFor(groupRecipient)
+            SignalDatabase.threads.getThreadIdFor(groupRecipient.id)
           } else {
-            SignalDatabase.threads.getOrCreateThreadIdFor(sender)
+            SignalDatabase.threads.getThreadIdFor(sender.id)
+          }
+
+          if (threadId == null) {
+            Log.w(TAG, "${logPrefix(envelope)} Thread does not already exist for sender ${sender.id}! We will not create one just to show a retry receipt.")
+            return@FollowUpOperation null
           }
 
           ApplicationDependencies.getPendingRetryReceiptCache().insert(sender.id, senderDevice, envelope.timestamp!!, receivedTimestamp, threadId)
