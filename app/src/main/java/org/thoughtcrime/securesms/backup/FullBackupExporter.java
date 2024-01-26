@@ -580,18 +580,21 @@ public class FullBackupExporter extends FullBackupBase {
   }
 
   private static boolean isNonExpiringMessage(@NonNull Cursor cursor) {
-    long    expiresIn = CursorUtil.requireLong(cursor, MessageTable.EXPIRES_IN);
-    boolean viewOnce  = CursorUtil.requireBoolean(cursor, MessageTable.VIEW_ONCE);
+    long expireStarted = CursorUtil.requireLong(cursor, MessageTable.EXPIRE_STARTED);
+    long expiresIn     = CursorUtil.requireLong(cursor, MessageTable.EXPIRES_IN);
 
-    if (expiresIn == 0 && !viewOnce) {
+    if (expireStarted == 0 || expiresIn == 0) {
       return true;
     }
 
-    return expiresIn > EXPIRATION_BACKUP_THRESHOLD;
+    long expiresAt     = expireStarted + expiresIn;
+    long timeRemaining = expiresAt - System.currentTimeMillis();
+
+    return timeRemaining > EXPIRATION_BACKUP_THRESHOLD;
   }
 
   private static boolean isForNonExpiringMessage(@NonNull SQLiteDatabase db, long messageId) {
-    String[] columns = new String[] { MessageTable.EXPIRES_IN, MessageTable.VIEW_ONCE };
+    String[] columns = new String[] { MessageTable.EXPIRE_STARTED, MessageTable.EXPIRES_IN };
     String   where   = MessageTable.ID + " = ?";
     String[] args    = SqlUtil.buildArgs(messageId);
 
