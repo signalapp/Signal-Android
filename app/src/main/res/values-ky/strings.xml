@@ -471,7 +471,7 @@
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Тез жооп берүү үчүн билдирүүнү солго сүрүп коюңуз</string>
     <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Бир жолу көрүлүүчү нерсе жөнөтүлгөндөн кийин өчүп калат</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Бул билдирүүнү карагансыз</string>
-    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">You can add notes for yourself in this chat. If your account has any linked devices, new notes will be synced.</string>
+    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Бул маекте өзүңүзгө бир нерселерди белгилеп жазып алсаңыз болот. Аккаунтуңузга байланган түзмөктөр бар болсо, жазып алган нерселериңиз алардын баарында көрүнөт.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">Топтун %1$d катышуучусунун ысымдары бирдей.</string>
     <string name="ConversationFragment__tap_to_review">Басып карап көрүңүз</string>
     <string name="ConversationFragment__review_requests_carefully">Сурамдарды этияттап караңыз</string>
@@ -1828,7 +1828,7 @@
     <string name="AboutSheet__review_requests_carefully">Сурамдарды этияттап караңыз</string>
     <!-- Text used when user has groups in common. Placeholder is the count -->
     <plurals name="AboutSheet__d_groups_in">
-        <item quantity="other">%1$d groups in common</item>
+        <item quantity="other">%1$d орток топ</item>
     </plurals>
     <!-- Text displayed in title for external recipients -->
     <string name="AboutSheet__about">Учкай маалымат</string>
@@ -2362,7 +2362,7 @@
     <!-- Row item description for qr code and links explainer -->
     <string name="NewWaysToConnectDialogFragment__usernames_have_a_unique_qr_code">Usernames have a unique QR code and link you can share with friends to quickly start a chat with you.</string>
     <!-- Button label for not right now -->
-    <string name="NewWaysToConnectDialogFragment__not_now">Not now</string>
+    <string name="NewWaysToConnectDialogFragment__not_now">Азыр эмес</string>
     <!-- Button label for continue -->
     <string name="NewWaysToConnectDialogFragment__set_up_your_username">Set up your username</string>
 
@@ -6097,9 +6097,9 @@
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__introducing_phone_number_privacy">Introducing phone number privacy, optional usernames and links.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__dismiss">Dismiss</string>
+    <string name="SetUpYourUsername__dismiss">Жок</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__learn_more">Learn more</string>
+    <string name="SetUpYourUsername__learn_more">Кененирээк маалымат</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -6440,7 +6440,7 @@
     <!-- Button on the megaphone megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls that starts the fix process -->
     <string name="GrantFullScreenIntentPermission_megaphone_turn_on">Күйгүзүү</string>
     <!-- Button on the megaphone shown at the bottom of the chatlist when a user has disabled the system setting for showing full screen notifications used showing incoming calls that dismisses the megaphone -->
-    <string name="GrantFullScreenIntentPermission_megaphone_not_now">Not now</string>
+    <string name="GrantFullScreenIntentPermission_megaphone_not_now">Азыр эмес</string>
     <!-- Title of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
     <string name="GrantFullScreenIntentPermission_bottomsheet_title">Толук экран билдирмелерин күйгүзүү</string>
     <!-- Subtitle of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->

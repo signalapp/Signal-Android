@@ -480,7 +480,7 @@
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">जलद प्रतिसाद देण्यासाठी आपण कुठल्याही संदेशावर डावीकडे स्वाइप करू शकता</string>
     <string name="ConversationFragment_view_once_media_is_deleted_after_sending">पाठवल्यानंतर-एकदा मिडीया हटवला असल्याचे पहा</string>
     <string name="ConversationFragment_you_already_viewed_this_message">आपण आधीच हा संदेश पाहिला आहे</string>
-    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">You can add notes for yourself in this chat. If your account has any linked devices, new notes will be synced.</string>
+    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">या चॅटमध्ये आपण स्वतःसाठी टिपा जोडू शकता. जर आपल्या खात्यामध्ये लिंक केलेली डिव्हाईस असतील, तर नवीन टिपा संकालित केल्या जातील.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$dगट सदस्यांचे समान नाव आहे.</string>
     <string name="ConversationFragment__tap_to_review">पुनरावलोकन करण्यासाठी टॅप करा</string>
     <string name="ConversationFragment__review_requests_carefully">विनंत्यांचे काळजीपूर्वक पुनरावलोकन करा</string>
@@ -1901,8 +1901,8 @@
     <string name="AboutSheet__review_requests_carefully">विनंत्यांचे काळजीपूर्वक पुनरावलोकन करा</string>
     <!-- Text used when user has groups in common. Placeholder is the count -->
     <plurals name="AboutSheet__d_groups_in">
-        <item quantity="one">%1$d group in common</item>
-        <item quantity="other">%1$d groups in common</item>
+        <item quantity="one">%1$d गट समाईक</item>
+        <item quantity="other">%1$d गट समाईक</item>
     </plurals>
     <!-- Text displayed in title for external recipients -->
     <string name="AboutSheet__about">आपल्याबद्दल</string>
@@ -2430,23 +2430,23 @@
 
     <!-- NewWaysToConnectDialogFragment -->
     <!-- Fragment title, displayed at the top of the content -->
-    <string name="NewWaysToConnectDialogFragment__new_ways_to_connect">New ways to connect</string>
+    <string name="NewWaysToConnectDialogFragment__new_ways_to_connect">कनेक्ट होण्याचे नवीन मार्ग</string>
     <!-- Row item title for phone number privacy explainer -->
-    <string name="NewWaysToConnectDialogFragment__phone_number_privacy">Phone number privacy</string>
+    <string name="NewWaysToConnectDialogFragment__phone_number_privacy">फोन नंबर गोपनीयता</string>
     <!-- Row item description for phone number privacy explainer -->
     <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">Your phone number is no longer shared with chats. If your number is saved to a friend\'s contacts, they will still see it.</string>
     <!-- Row item title for usernames explainer -->
-    <string name="NewWaysToConnectDialogFragment__usernames">Usernames</string>
+    <string name="NewWaysToConnectDialogFragment__usernames">वापरकर्ता नाव</string>
     <!-- Row item description for usernames explainer -->
     <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">People can now message you using your optional username so you don\'t have to give out your phone number. Usernames aren\'t visible on your profile.</string>
     <!-- Row item title for qr code and links explainer -->
-    <string name="NewWaysToConnectDialogFragment__qr_codes_and_links">QR codes and links</string>
+    <string name="NewWaysToConnectDialogFragment__qr_codes_and_links">QR कोड्स आणि लिंक्स</string>
     <!-- Row item description for qr code and links explainer -->
-    <string name="NewWaysToConnectDialogFragment__usernames_have_a_unique_qr_code">Usernames have a unique QR code and link you can share with friends to quickly start a chat with you.</string>
+    <string name="NewWaysToConnectDialogFragment__usernames_have_a_unique_qr_code">आपल्यासह जलद चॅट्स सुरू करण्यासाठी आपल्या मित्रांसोबत आपण शेअर करू शकता असा एक असामान्य QR कोड आणि लिंक वापरकर्तानावाला आहे.</string>
     <!-- Button label for not right now -->
-    <string name="NewWaysToConnectDialogFragment__not_now">Not now</string>
+    <string name="NewWaysToConnectDialogFragment__not_now">आता नाही</string>
     <!-- Button label for continue -->
-    <string name="NewWaysToConnectDialogFragment__set_up_your_username">Set up your username</string>
+    <string name="NewWaysToConnectDialogFragment__set_up_your_username">आपले वापरकर्तानाव सेटअप करा</string>
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">व्हिडिओ प्ले करा</string>
@@ -6234,11 +6234,11 @@
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__set_up_your_signal_username">आपले Signal वापरकर्तानाव सेटअप करा</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__introducing_phone_number_privacy">Introducing phone number privacy, optional usernames and links.</string>
+    <string name="SetUpYourUsername__introducing_phone_number_privacy">फोन नंबर गोपनीयता, पर्यायी वापरकर्ता नाव आणि लिंक्स सादर करीत आहोत.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__dismiss">Dismiss</string>
+    <string name="SetUpYourUsername__dismiss">रद्द करा</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__learn_more">Learn more</string>
+    <string name="SetUpYourUsername__learn_more">अधिक जाणून घ्या</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -6584,7 +6584,7 @@
     <!-- Button on the megaphone megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls that starts the fix process -->
     <string name="GrantFullScreenIntentPermission_megaphone_turn_on">चालू करा</string>
     <!-- Button on the megaphone shown at the bottom of the chatlist when a user has disabled the system setting for showing full screen notifications used showing incoming calls that dismisses the megaphone -->
-    <string name="GrantFullScreenIntentPermission_megaphone_not_now">Not now</string>
+    <string name="GrantFullScreenIntentPermission_megaphone_not_now">आता नाही</string>
     <!-- Title of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
     <string name="GrantFullScreenIntentPermission_bottomsheet_title">पूर्ण स्क्रिन अधिसूचना सुरू करा</string>
     <!-- Subtitle of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->

@@ -471,7 +471,7 @@
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">คุณสามารถปัดด้านซ้ายเพื่อตอบข้อความอย่างรวดเร็ว</string>
     <string name="ConversationFragment_view_once_media_is_deleted_after_sending">ไฟล์สื่อแบบที่ดูได้ครั้งเดียวจะถูกลบหลังการส่ง</string>
     <string name="ConversationFragment_you_already_viewed_this_message">คุณเปิดดูข้อความนี้แล้ว</string>
-    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">You can add notes for yourself in this chat. If your account has any linked devices, new notes will be synced.</string>
+    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">คุณสามารถเพิ่มบันทึกถึงตัวเองได้ในแชทนี้ และหากบัญชีของคุณมีอุปกรณ์ที่เชื่อมโยงอยู่ บันทึกใหม่ก็จะถูกซิงค์ด้วยเช่นกัน</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">สมาชิกกลุ่ม %1$d คนมีชื่อเหมือนกัน</string>
     <string name="ConversationFragment__tap_to_review">แตะเพื่อทบทวน</string>
     <string name="ConversationFragment__review_requests_carefully">พิจารณาคำขออย่างระวัง</string>
@@ -1828,7 +1828,7 @@
     <string name="AboutSheet__review_requests_carefully">พิจารณาคำขออย่างระวัง</string>
     <!-- Text used when user has groups in common. Placeholder is the count -->
     <plurals name="AboutSheet__d_groups_in">
-        <item quantity="other">%1$d groups in common</item>
+        <item quantity="other">มี %1$d กลุ่มร่วมกัน</item>
     </plurals>
     <!-- Text displayed in title for external recipients -->
     <string name="AboutSheet__about">เกี่ยวกับ</string>
@@ -2348,23 +2348,23 @@
 
     <!-- NewWaysToConnectDialogFragment -->
     <!-- Fragment title, displayed at the top of the content -->
-    <string name="NewWaysToConnectDialogFragment__new_ways_to_connect">New ways to connect</string>
+    <string name="NewWaysToConnectDialogFragment__new_ways_to_connect">วิธีใหม่ในการติดต่อสื่อสาร</string>
     <!-- Row item title for phone number privacy explainer -->
-    <string name="NewWaysToConnectDialogFragment__phone_number_privacy">Phone number privacy</string>
+    <string name="NewWaysToConnectDialogFragment__phone_number_privacy">การรักษาความเป็นส่วนตัวของหมายเลขโทรศัพท์</string>
     <!-- Row item description for phone number privacy explainer -->
     <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">Your phone number is no longer shared with chats. If your number is saved to a friend\'s contacts, they will still see it.</string>
     <!-- Row item title for usernames explainer -->
-    <string name="NewWaysToConnectDialogFragment__usernames">Usernames</string>
+    <string name="NewWaysToConnectDialogFragment__usernames">ชื่อผู้ใช้</string>
     <!-- Row item description for usernames explainer -->
     <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">People can now message you using your optional username so you don\'t have to give out your phone number. Usernames aren\'t visible on your profile.</string>
     <!-- Row item title for qr code and links explainer -->
-    <string name="NewWaysToConnectDialogFragment__qr_codes_and_links">QR codes and links</string>
+    <string name="NewWaysToConnectDialogFragment__qr_codes_and_links">คิวอาร์โค้ดและลิงก์</string>
     <!-- Row item description for qr code and links explainer -->
-    <string name="NewWaysToConnectDialogFragment__usernames_have_a_unique_qr_code">Usernames have a unique QR code and link you can share with friends to quickly start a chat with you.</string>
+    <string name="NewWaysToConnectDialogFragment__usernames_have_a_unique_qr_code">ชื่อผู้ใช้จะมีคิวอาร์โค้ดและลิงก์เฉพาะที่คุณสามารถแชร์เพื่อให้เพื่อนเริ่มแชทด้วยได้ทันที</string>
     <!-- Button label for not right now -->
-    <string name="NewWaysToConnectDialogFragment__not_now">Not now</string>
+    <string name="NewWaysToConnectDialogFragment__not_now">ไว้ทีหลัง</string>
     <!-- Button label for continue -->
-    <string name="NewWaysToConnectDialogFragment__set_up_your_username">Set up your username</string>
+    <string name="NewWaysToConnectDialogFragment__set_up_your_username">กำหนดชื่อผู้ใช้ของคุณ</string>
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">เล่นวิดีโอ</string>
@@ -6095,11 +6095,11 @@
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__set_up_your_signal_username">ตั้งค่าชื่อผู้ใช้ Signal ของคุณ</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__introducing_phone_number_privacy">Introducing phone number privacy, optional usernames and links.</string>
+    <string name="SetUpYourUsername__introducing_phone_number_privacy">ขอแนะนำการรักษาความเป็นส่วนตัวของหมายเลขโทรศัพท์ ตัวเลือกการกำหนดชื่อผู้ใช้และลิงก์เพิ่มเติม</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__dismiss">Dismiss</string>
+    <string name="SetUpYourUsername__dismiss">ปิด</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__learn_more">Learn more</string>
+    <string name="SetUpYourUsername__learn_more">เรียนรู้เพิ่มเติม</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -6440,7 +6440,7 @@
     <!-- Button on the megaphone megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls that starts the fix process -->
     <string name="GrantFullScreenIntentPermission_megaphone_turn_on">เปิดใช้งาน</string>
     <!-- Button on the megaphone shown at the bottom of the chatlist when a user has disabled the system setting for showing full screen notifications used showing incoming calls that dismisses the megaphone -->
-    <string name="GrantFullScreenIntentPermission_megaphone_not_now">Not now</string>
+    <string name="GrantFullScreenIntentPermission_megaphone_not_now">ไว้ทีหลัง</string>
     <!-- Title of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
     <string name="GrantFullScreenIntentPermission_bottomsheet_title">เปิดการแจ้งเตือนแบบเต็มหน้าจอ</string>
     <!-- Subtitle of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->

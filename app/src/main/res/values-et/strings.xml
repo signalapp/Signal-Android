@@ -480,7 +480,7 @@
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Sa saad kiiresti vastamiseks mistahes sõnumil vasakule viibata</string>
     <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Ühekordselt vaadatav sisu kustutatakse pärast saatmist</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Sa vaatasid juba seda sõnumit</string>
-    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">You can add notes for yourself in this chat. If your account has any linked devices, new notes will be synced.</string>
+    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Selles vestluses saad enda jaoks märkmeid lisada. Kui su kontol on lingitud seadmeid, siis uued märkmed sünkroonitakse.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d grupiliikmel on sama nimi.</string>
     <string name="ConversationFragment__tap_to_review">Üle vaatamiseks koputa</string>
     <string name="ConversationFragment__review_requests_carefully">Vaata taotlused tähelepanelikult üle</string>
@@ -1901,8 +1901,8 @@
     <string name="AboutSheet__review_requests_carefully">Vaata taotlused tähelepanelikult üle</string>
     <!-- Text used when user has groups in common. Placeholder is the count -->
     <plurals name="AboutSheet__d_groups_in">
-        <item quantity="one">%1$d group in common</item>
-        <item quantity="other">%1$d groups in common</item>
+        <item quantity="one">%1$d ühine grupp</item>
+        <item quantity="other">%1$d ühist gruppi</item>
     </plurals>
     <!-- Text displayed in title for external recipients -->
     <string name="AboutSheet__about">Teave</string>
@@ -2444,7 +2444,7 @@
     <!-- Row item description for qr code and links explainer -->
     <string name="NewWaysToConnectDialogFragment__usernames_have_a_unique_qr_code">Usernames have a unique QR code and link you can share with friends to quickly start a chat with you.</string>
     <!-- Button label for not right now -->
-    <string name="NewWaysToConnectDialogFragment__not_now">Not now</string>
+    <string name="NewWaysToConnectDialogFragment__not_now">Mitte praegu</string>
     <!-- Button label for continue -->
     <string name="NewWaysToConnectDialogFragment__set_up_your_username">Set up your username</string>
 
@@ -6236,9 +6236,9 @@
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__introducing_phone_number_privacy">Introducing phone number privacy, optional usernames and links.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__dismiss">Dismiss</string>
+    <string name="SetUpYourUsername__dismiss">Tühista</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__learn_more">Learn more</string>
+    <string name="SetUpYourUsername__learn_more">Rohkem teavet</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -6584,7 +6584,7 @@
     <!-- Button on the megaphone megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls that starts the fix process -->
     <string name="GrantFullScreenIntentPermission_megaphone_turn_on">Lülita sisse</string>
     <!-- Button on the megaphone shown at the bottom of the chatlist when a user has disabled the system setting for showing full screen notifications used showing incoming calls that dismisses the megaphone -->
-    <string name="GrantFullScreenIntentPermission_megaphone_not_now">Not now</string>
+    <string name="GrantFullScreenIntentPermission_megaphone_not_now">Mitte praegu</string>
     <!-- Title of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
     <string name="GrantFullScreenIntentPermission_bottomsheet_title">Lülita sisse täisekraani formaadis teavitused</string>
     <!-- Subtitle of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
