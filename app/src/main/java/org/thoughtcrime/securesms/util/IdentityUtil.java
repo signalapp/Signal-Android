@@ -164,6 +164,7 @@ public final class IdentityUtil {
       throw new AssertionError(e);
     }
 
+    SignalDatabase.messageLog().deleteAllForRecipient(recipientId);
   }
 
   public static void saveIdentity(String user, IdentityKey identityKey) {

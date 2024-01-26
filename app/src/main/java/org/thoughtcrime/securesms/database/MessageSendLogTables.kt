@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteConstraintException
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.SqlUtil
+import org.signal.core.util.delete
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
 import org.signal.core.util.requireBoolean
@@ -313,8 +314,6 @@ class MessageSendLogTables constructor(context: Context?, databaseHelper: Signal
   }
 
   fun deleteAllRelatedToMessage(messageId: Long) {
-    if (!FeatureFlags.retryReceipts()) return
-
     val db = databaseHelper.signalWritableDatabase
     val query = "${MslPayloadTable.ID} IN (SELECT ${MslMessageTable.PAYLOAD_ID} FROM ${MslMessageTable.TABLE_NAME} WHERE ${MslMessageTable.MESSAGE_ID} = ?)"
     val args = SqlUtil.buildArgs(messageId)
@@ -323,14 +322,10 @@ class MessageSendLogTables constructor(context: Context?, databaseHelper: Signal
   }
 
   fun deleteEntryForRecipient(dateSent: Long, recipientId: RecipientId, device: Int) {
-    if (!FeatureFlags.retryReceipts()) return
-
     deleteEntriesForRecipient(listOf(dateSent), recipientId, device)
   }
 
   fun deleteEntriesForRecipient(dateSent: List<Long>, recipientId: RecipientId, device: Int) {
-    if (!FeatureFlags.retryReceipts()) return
-
     val db = databaseHelper.signalWritableDatabase
     db.beginTransaction()
     try {
@@ -360,15 +355,25 @@ class MessageSendLogTables constructor(context: Context?, databaseHelper: Signal
     }
   }
 
-  fun deleteAll() {
+  fun deleteAllForRecipient(recipientId: RecipientId) {
     if (!FeatureFlags.retryReceipts()) return
 
+    writableDatabase
+      .delete(MslRecipientTable.TABLE_NAME)
+      .where("${MslRecipientTable.RECIPIENT_ID} = ?", recipientId)
+      .run()
+
+    writableDatabase
+      .delete(MslPayloadTable.TABLE_NAME)
+      .where("${MslPayloadTable.ID} NOT IN (SELECT ${MslRecipientTable.PAYLOAD_ID} FROM ${MslRecipientTable.TABLE_NAME})")
+      .run()
+  }
+
+  fun deleteAll() {
     databaseHelper.signalWritableDatabase.delete(MslPayloadTable.TABLE_NAME, null, null)
   }
 
   fun trimOldMessages(currentTime: Long, maxAge: Long) {
-    if (!FeatureFlags.retryReceipts()) return
-
     val db = databaseHelper.signalWritableDatabase
     val query = "${MslPayloadTable.DATE_SENT} < ?"
     val args = SqlUtil.buildArgs(currentTime - maxAge)
