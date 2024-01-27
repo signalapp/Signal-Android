@@ -110,12 +110,14 @@ public final class SignalWebSocketHealthMonitor implements HealthMonitor {
   }
 
   @Override
-  public void onKeepAliveResponse(long sentTimestamp, boolean isIdentifiedWebSocket) {
+  public void onKeepAliveResponse(long sentTimestamp, boolean isIdentifiedWebSocket, boolean keepMonitoring) {
     final long keepAliveTime = System.currentTimeMillis();
     executor.execute(() -> {
       if (isIdentifiedWebSocket) {
+        identified.needsKeepAlive = keepMonitoring;
         identified.lastKeepAliveReceived = keepAliveTime;
       } else {
+        unidentified.needsKeepAlive = keepMonitoring;
         unidentified.lastKeepAliveReceived = keepAliveTime;
       }
     });
@@ -143,6 +145,13 @@ public final class SignalWebSocketHealthMonitor implements HealthMonitor {
 
     private volatile boolean needsKeepAlive;
     private volatile long    lastKeepAliveReceived;
+
+    /**
+     * Checks if a keep-alive response has not been received yet based on the provided send time.
+     */
+    private boolean isKeepAlivePending(long sendTime) {
+      return needsKeepAlive && lastKeepAliveReceived < sendTime;
+    }
   }
 
   /**
@@ -172,9 +181,8 @@ public final class SignalWebSocketHealthMonitor implements HealthMonitor {
           sleepUntil(responseRequiredTime);
 
           if (shouldKeepRunning && isKeepAliveNecessary()) {
-            if (identified.lastKeepAliveReceived < keepAliveSendTime || unidentified.lastKeepAliveReceived < keepAliveSendTime) {
+            if (identified.isKeepAlivePending(keepAliveSendTime)) {
               Log.w(TAG, "Missed keep alives, identified last: " + identified.lastKeepAliveReceived +
-                         " unidentified last: " + unidentified.lastKeepAliveReceived +
                          " needed by: " + responseRequiredTime);
               signalWebSocket.forceNewWebSockets();
             }
