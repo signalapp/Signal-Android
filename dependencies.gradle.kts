@@ -153,7 +153,6 @@ dependencyResolutionManagement {
 
       // Can"t use the newest version because it hits some weird NoClassDefFoundException
       library("jknack-handlebars", "com.github.jknack:handlebars:4.0.7")
-      library("kotlinx-collections-immutable", "org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.5")
 
       // Mp4Parser
       library("mp4parser-isoparser", "org.mp4parser", "isoparser").versionRef("mp4parser")
