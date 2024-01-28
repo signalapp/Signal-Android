@@ -50,7 +50,7 @@ allprojects {
 }
 
 subprojects {
-  if (JavaVersion.current().isJava8Compatible()) {
+  if (JavaVersion.current().isJava8Compatible) {
     allprojects {
       tasks.withType<Javadoc> {
         (options as StandardJavadocDocletOptions).addStringOption("Xdoclint:none", "-quiet")
@@ -60,16 +60,17 @@ subprojects {
 
   val skipQa = setOf("Signal-Android", "libsignal-service", "lintchecks", "benchmark", "core-util-jvm", "logging")
 
-  if (!skipQa.contains(project.name) && !project.name.endsWith("-app")) {
-    task("qa") {
-      group = "Verification"
-      description = "Quality Assurance. Run before pushing"
-      dependsOn("clean", "testReleaseUnitTest", "lintRelease")
+  tasks.register("qa") {
+    onlyIf {
+      project.name !in skipQa && !project.name.endsWith("-app")
     }
+    group = "Verification"
+    description = "Quality Assurance. Run before pushing"
+    dependsOn("clean", "testReleaseUnitTest", "lintRelease")
   }
 }
 
-task("buildQa") {
+tasks.register("buildQa") {
   group = "Verification"
   description = "Quality Assurance for build logic."
   dependsOn(
@@ -79,7 +80,7 @@ task("buildQa") {
   )
 }
 
-task("qa") {
+tasks.register("qa") {
   group = "Verification"
   description = "Quality Assurance. Run before pushing."
   dependsOn(
@@ -102,7 +103,7 @@ tasks.register("clean", Delete::class) {
   delete(rootProject.buildDir)
 }
 
-task("format") {
+tasks.register("format") {
   group = "Formatting"
   description = "Runs the ktlint formatter on all sources in this project and included builds"
   dependsOn(
