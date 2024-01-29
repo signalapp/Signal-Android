@@ -5,13 +5,13 @@ dependencyResolutionManagement {
   versionCatalogs {
     create("libs") {
       version("androidx-appcompat", "1.6.1")
-      version("androidx-activity", "1.7.2")
-      version("androidx-camera", "1.3.0-rc01")
-      version("androidx-fragment", "1.6.1")
-      version("androidx-lifecycle", "2.6.1")
+      version("androidx-activity", "1.8.2")
+      version("androidx-camera", "1.3.1")
+      version("androidx-fragment", "1.6.2")
+      version("androidx-lifecycle", "2.7.0")
       version("androidx-media3", "1.2.1")
-      version("androidx-navigation", "2.6.0")
-      version("androidx-window", "1.0.0")
+      version("androidx-navigation", "2.7.6")
+      version("androidx-window", "1.2.0")
       version("exoplayer", "2.19.0")
       version("glide", "4.15.1")
       version("kotlin", "1.8.10")
@@ -26,7 +26,7 @@ dependencyResolutionManagement {
       library("android-application", "com.android.application", "com.android.application.gradle.plugin").versionRef("android-gradle-plugin")
 
       // Compose
-      library("androidx-compose-bom", "androidx.compose:compose-bom:2023.08.00")
+      library("androidx-compose-bom", "androidx.compose:compose-bom:2023.09.01")
       library("androidx-compose-material3", "androidx.compose.material3", "material3").withoutVersion()
       library("androidx-compose-ui-tooling-preview", "androidx.compose.ui", "ui-tooling-preview").withoutVersion()
       library("androidx-compose-ui-tooling-core", "androidx.compose.ui", "ui-tooling").withoutVersion()

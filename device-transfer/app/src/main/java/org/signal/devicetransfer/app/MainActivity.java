@@ -25,6 +25,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.signal.core.util.PendingIntentFlags;
 import org.signal.devicetransfer.ClientTask;
 import org.signal.devicetransfer.DeviceToDeviceTransferService;
 import org.signal.devicetransfer.DeviceToDeviceTransferService.TransferNotificationData;
@@ -65,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
                                                 PendingIntent.getActivity(this,
                                                                           0,
                                                                           new Intent(this, MainActivity.class),
-                                                                          0));
+                                                                          PendingIntentFlags.mutable()));
 
       list.removeAllViews();
     });
@@ -77,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                                                 PendingIntent.getActivity(this,
                                                                           0,
                                                                           new Intent(this, MainActivity.class),
-                                                                          0));
+                                                                          PendingIntentFlags.mutable()));
 
       list.removeAllViews();
     });

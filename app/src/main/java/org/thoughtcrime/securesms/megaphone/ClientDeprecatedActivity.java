@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.megaphone;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -38,6 +39,7 @@ public class ClientDeprecatedActivity extends PassphraseRequiredActivity {
     theme.onResume(this);
   }
 
+  @SuppressLint("MissingSuperCall")
   @Override
   public void onBackPressed() {
     // Disabled
