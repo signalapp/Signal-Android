@@ -119,6 +119,7 @@ public final class FeatureFlags {
   private static final String NOTIFICATION_THUMBNAIL_BLOCKLIST  = "android.notificationThumbnailProductBlocklist";
   private static final String CALLING_RAISE_HAND                = "android.calling.raiseHand";
   private static final String USE_ACTIVE_CALL_MANAGER           = "android.calling.useActiveCallManager";
+  private static final String GIF_SEARCH                        = "global.gifSearch";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -190,7 +191,8 @@ public final class FeatureFlags {
       NOTIFICATION_THUMBNAIL_BLOCKLIST,
       CALLING_RAISE_HAND,
       PHONE_NUMBER_PRIVACY,
-      USE_ACTIVE_CALL_MANAGER
+      USE_ACTIVE_CALL_MANAGER,
+      GIF_SEARCH
   );
 
   @VisibleForTesting
@@ -684,6 +686,11 @@ public final class FeatureFlags {
   /** Whether or not to use active call manager instead of WebRtcCallService. */
   public static boolean useActiveCallManager() {
     return getBoolean(USE_ACTIVE_CALL_MANAGER, false);
+  }
+
+  /** Whether the in-app GIF search is available for use. */
+  public static boolean gifSearchAvailable() {
+    return getBoolean(GIF_SEARCH, true);
   }
 
   /** Only for rendering debug info. */
