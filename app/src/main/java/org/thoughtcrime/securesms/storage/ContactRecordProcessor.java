@@ -216,8 +216,9 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
     String               systemGivenName       = SignalStore.account().isPrimaryDevice() ? local.getSystemGivenName().orElse("") : remote.getSystemGivenName().orElse("");
     String               systemFamilyName      = SignalStore.account().isPrimaryDevice() ? local.getSystemFamilyName().orElse("") : remote.getSystemFamilyName().orElse("");
     String               systemNickname        = remote.getSystemNickname().orElse("");
-    boolean              matchesRemote         = doParamsMatch(remote, unknownFields, aci, pni, e164, profileGivenName, profileFamilyName, systemGivenName, systemFamilyName, systemNickname, profileKey, username, identityState, identityKey, blocked, profileSharing, archived, forcedUnread, muteUntil, hideStory, unregisteredTimestamp, hidden);
-    boolean              matchesLocal          = doParamsMatch(local, unknownFields, aci, pni, e164, profileGivenName, profileFamilyName, systemGivenName, systemFamilyName, systemNickname, profileKey, username, identityState, identityKey, blocked, profileSharing, archived, forcedUnread, muteUntil, hideStory, unregisteredTimestamp, hidden);
+    boolean              pniSignatureVerified  = remote.isPniSignatureVerified() || local.isPniSignatureVerified();
+    boolean              matchesRemote         = doParamsMatch(remote, unknownFields, aci, pni, e164, profileGivenName, profileFamilyName, systemGivenName, systemFamilyName, systemNickname, profileKey, username, identityState, identityKey, blocked, profileSharing, archived, forcedUnread, muteUntil, hideStory, unregisteredTimestamp, hidden, pniSignatureVerified);
+    boolean              matchesLocal          = doParamsMatch(local, unknownFields, aci, pni, e164, profileGivenName, profileFamilyName, systemGivenName, systemFamilyName, systemNickname, profileKey, username, identityState, identityKey, blocked, profileSharing, archived, forcedUnread, muteUntil, hideStory, unregisteredTimestamp, hidden, pniSignatureVerified);
 
     if (matchesRemote) {
       return remote;
@@ -244,6 +245,7 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
                                     .setHideStory(hideStory)
                                     .setUnregisteredTimestamp(unregisteredTimestamp)
                                     .setHidden(hidden)
+                                    .setPniSignatureVerified(pniSignatureVerified)
                                     .build();
     }
   }
@@ -295,7 +297,8 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
                                        long muteUntil,
                                        boolean hideStory,
                                        long unregisteredTimestamp,
-                                       boolean hidden)
+                                       boolean hidden,
+                                       boolean pniSignatureVerified)
   {
     return Arrays.equals(contact.serializeUnknownFields(), unknownFields) &&
            Objects.equals(contact.getAci().orElse(null), aci) &&
@@ -317,6 +320,7 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
            contact.getMuteUntil() == muteUntil &&
            contact.shouldHideStory() == hideStory &&
            contact.getUnregisteredTimestamp() == unregisteredTimestamp &&
-           contact.isHidden() == hidden;
+           contact.isHidden() == hidden &&
+           contact.isPniSignatureVerified() == pniSignatureVerified;
   }
 }

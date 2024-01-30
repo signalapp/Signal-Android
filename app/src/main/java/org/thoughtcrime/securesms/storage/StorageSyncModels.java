@@ -155,6 +155,7 @@ public final class StorageSyncModels {
                                   .setUnregisteredTimestamp(recipient.getSyncExtras().getUnregisteredTimestamp())
                                   .setHidden(recipient.getHiddenState() != Recipient.HiddenState.NOT_HIDDEN)
                                   .setUsername(recipient.getUsername())
+                                  .setPniSignatureVerified(recipient.getSyncExtras().getPniSignatureVerified())
                                   .build();
   }
 

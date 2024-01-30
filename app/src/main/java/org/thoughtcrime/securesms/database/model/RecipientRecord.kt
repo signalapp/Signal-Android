@@ -111,7 +111,8 @@ data class RecipientRecord(
     val isArchived: Boolean,
     val isForcedUnread: Boolean,
     val unregisteredTimestamp: Long,
-    val systemNickname: String?
+    val systemNickname: String?,
+    val pniSignatureVerified: Boolean
   )
 
   data class Capabilities(
