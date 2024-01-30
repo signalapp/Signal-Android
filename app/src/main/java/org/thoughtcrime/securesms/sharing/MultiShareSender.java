@@ -345,7 +345,8 @@ public final class MultiShareSender {
 
   private static Slide ensureDefaultQuality(@NonNull Context context, @NonNull ImageSlide imageSlide) {
     Attachment attachment = imageSlide.asAttachment();
-    if (attachment.transformProperties.sentMediaQuality == SentMediaQuality.HIGH.getCode()) {
+    final AttachmentTable.TransformProperties transformProperties = attachment.transformProperties;
+    if (transformProperties != null && transformProperties.sentMediaQuality == SentMediaQuality.HIGH.getCode()) {
       return new ImageSlide(
           context,
           attachment.getUri(),
