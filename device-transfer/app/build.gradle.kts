@@ -14,6 +14,9 @@ android {
 
     buildConfigField("String", "LIBSIGNAL_VERSION", "\"libsignal ${libs.versions.libsignal.client.get()}\"")
   }
+  buildFeatures {
+    buildConfig = true
+  }
 }
 
 dependencies {

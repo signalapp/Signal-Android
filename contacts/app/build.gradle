@@ -8,6 +8,9 @@ android {
     defaultConfig {
         applicationId "org.signal.contactstest"
     }
+    buildFeatures {
+        buildConfig true
+    }
 }
 
 dependencies {
