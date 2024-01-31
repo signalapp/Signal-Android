@@ -7,6 +7,8 @@ package org.thoughtcrime.securesms.video.videoconverter.mediadatasource
 
 import android.media.MediaDataSource
 import androidx.annotation.RequiresApi
+import org.signal.core.util.skipNBytesCompat
+import java.io.EOFException
 import java.io.IOException
 import java.io.InputStream
 
@@ -15,30 +17,50 @@ import java.io.InputStream
  */
 @RequiresApi(23)
 abstract class InputStreamMediaDataSource : MediaDataSource() {
+  private var lastPositionRead = -1L
+  private var lastUsedInputStream: InputStream? = null
+  private val sink = ByteArray(2048)
+
   @Throws(IOException::class)
   override fun readAt(position: Long, bytes: ByteArray?, offset: Int, length: Int): Int {
-    if (position >= size) {
+    if (position >= size || position < 0) {
       return -1
     }
 
-    createInputStream(position).use { inputStream ->
-      var totalRead = 0
-      while (totalRead < length) {
-        val read: Int = inputStream.read(bytes, offset + totalRead, length - totalRead)
-        if (read == -1) {
-          return if (totalRead == 0) {
-            -1
-          } else {
-            totalRead
-          }
-        }
-        totalRead += read
-      }
-      return totalRead
+    val inputStream = if (lastPositionRead > position || lastUsedInputStream == null) {
+      lastUsedInputStream?.close()
+      lastPositionRead = position
+      createInputStream(position)
+    } else {
+      lastUsedInputStream!!
     }
+
+    try {
+      inputStream.skipNBytesCompat(position - lastPositionRead)
+    } catch (e: EOFException) {
+      return -1
+    }
+
+    var totalRead = 0
+    while (totalRead < length) {
+      val read: Int = inputStream.read(bytes, offset + totalRead, length - totalRead)
+      if (read == -1) {
+        return if (totalRead == 0) {
+          -1
+        } else {
+          totalRead
+        }
+      }
+      totalRead += read
+    }
+    lastPositionRead = totalRead + position
+    lastUsedInputStream = inputStream
+    return totalRead
   }
 
-  abstract override fun close()
+  override fun close() {
+    lastUsedInputStream?.close()
+  }
 
   abstract override fun getSize(): Long
 
