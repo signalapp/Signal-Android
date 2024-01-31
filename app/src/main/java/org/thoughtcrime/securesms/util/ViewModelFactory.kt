@@ -53,6 +53,15 @@ class SavedStateViewModelFactory<MODEL : ViewModel>(
 }
 
 @MainThread
+inline fun <reified VM : ViewModel> ComponentActivity.viewModel(
+  noinline create: () -> VM
+): Lazy<VM> {
+  return viewModels(
+    factoryProducer = ViewModelFactory.factoryProducer(create)
+  )
+}
+
+@MainThread
 inline fun <reified VM : ViewModel> Fragment.viewModel(
   noinline create: () -> VM
 ): Lazy<VM> {

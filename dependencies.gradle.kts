@@ -72,6 +72,7 @@ dependencyResolutionManagement {
       library("androidx-multidex", "androidx.multidex:multidex:2.0.1")
       library("androidx-navigation-fragment-ktx", "androidx.navigation", "navigation-fragment-ktx").versionRef("androidx-navigation")
       library("androidx-navigation-ui-ktx", "androidx.navigation", "navigation-ui-ktx").versionRef("androidx-navigation")
+      library("androidx-navigation-compose", "androidx.navigation", "navigation-compose").versionRef("androidx-navigation")
       library("androidx-lifecycle-viewmodel-ktx", "androidx.lifecycle", "lifecycle-viewmodel-ktx").versionRef("androidx-lifecycle")
       library("androidx-lifecycle-livedata-core", "androidx.lifecycle", "lifecycle-livedata").versionRef("androidx-lifecycle")
       library("androidx-lifecycle-livedata-ktx", "androidx.lifecycle", "lifecycle-livedata-ktx").versionRef("androidx-lifecycle")

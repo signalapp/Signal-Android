@@ -758,6 +758,13 @@
         android:exported="false"/>
 
     <activity
+        android:name=".backup.v2.ui.MessageBackupsFlowActivity"
+        android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
+        android:exported="false"
+        android:theme="@style/Signal.DayNight.NoActionBar"
+        android:windowSoftInputMode="adjustResize" />
+
+    <activity
         android:name=".stories.settings.StorySettingsActivity"
         android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
         android:theme="@style/Signal.DayNight.NoActionBar"
