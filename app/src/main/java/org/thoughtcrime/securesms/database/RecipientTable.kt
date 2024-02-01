@@ -2248,7 +2248,10 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
    */
   fun splitForStorageSync(storageId: ByteArray) {
     val record = getByStorageId(storageId)!!
-    check(record.aci != null && record.pni != null)
+    if (record.aci == null || record.pni == null) {
+      Log.w(TAG, "Invalid state for split, ignoring.")
+      return
+    }
 
     writableDatabase
       .update(TABLE_NAME)
