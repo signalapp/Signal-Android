@@ -15,11 +15,10 @@ class PayPalConfirmationResultTest {
 
   companion object {
     private val PAYER_ID = "asdf"
-    private val PAYMENT_ID = "sdfg"
     private val PAYMENT_TOKEN = "dfgh"
 
-    private val TEST_URL = "${PayPalRepository.ONE_TIME_RETURN_URL}?PayerID=$PAYER_ID&paymentId=$PAYMENT_ID&token=$PAYMENT_TOKEN"
-    private val TEST_MISSING_PARAM_URL = "${PayPalRepository.ONE_TIME_RETURN_URL}?paymentId=$PAYMENT_ID&token=$PAYMENT_TOKEN"
+    private val TEST_URL = "${PayPalRepository.ONE_TIME_RETURN_URL}?PayerID=$PAYER_ID&token=$PAYMENT_TOKEN"
+    private val TEST_MISSING_PARAM_URL = "${PayPalRepository.ONE_TIME_RETURN_URL}?token=$PAYMENT_TOKEN"
   }
 
   @Test
@@ -27,7 +26,7 @@ class PayPalConfirmationResultTest {
     val result = PayPalConfirmationResult.fromUrl(TEST_URL)
 
     assertEquals(
-      PayPalConfirmationResult(PAYER_ID, PAYMENT_ID, PAYMENT_TOKEN),
+      PayPalConfirmationResult(PAYER_ID, null, PAYMENT_TOKEN),
       result
     )
   }

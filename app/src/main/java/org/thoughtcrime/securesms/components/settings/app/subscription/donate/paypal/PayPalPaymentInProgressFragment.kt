@@ -126,7 +126,7 @@ class PayPalPaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
       val listener = FragmentResultListener { _, bundle ->
         val result: PayPalConfirmationResult? = bundle.getParcelableCompat(PayPalConfirmationDialogFragment.REQUEST_KEY, PayPalConfirmationResult::class.java)
         if (result != null) {
-          emitter.onSuccess(result)
+          emitter.onSuccess(result.copy(paymentId = createPaymentIntentResponse.paymentId))
         } else {
           emitter.onError(DonationError.UserCancelledPaymentError(args.request.donateToSignalType.toErrorSource()))
         }
