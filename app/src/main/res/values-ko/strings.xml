@@ -547,7 +547,7 @@
     <!-- Message shown in top toast to indicate the named profile is on -->
     <string name="ConversationListFragment__s_on">%1$s 켜짐</string>
     <!-- -->
-    <string name="ConversationListFragment_username_recovered_toast">Your QR code and link have been reset and your username is %1$s</string>
+    <string name="ConversationListFragment_username_recovered_toast">QR 코드와 링크를 초기화했으며, 사용자 이름은 %1$s입니다.</string>
 
     <!-- ConversationListItem -->
     <string name="ConversationListItem_key_exchange_message">핵심 교환 메시지</string>
@@ -965,7 +965,7 @@
 
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
-    <string name="ManageProfileFragment__your_username">Your username, QR code and link aren\'t visible on your profile. Only share your username with people you trust.</string>
+    <string name="ManageProfileFragment__your_username">사용자 이름과 QR 코드, 링크가 프로필에 표시되지 않습니다. 신뢰하는 사람과만 사용자 이름을 공유하세요.</string>
     <string name="ManageProfileFragment_profile_name">프로필 이름</string>
     <string name="ManageProfileFragment_username">사용자 이름</string>
     <string name="ManageProfileFragment_about">정보</string>
@@ -2162,7 +2162,7 @@
     <!-- Displayed when the chosen discriminator is too long -->
     <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">사용자 이름이 잘못되었습니다. %1$d자 이하로 입력해 주세요.</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
-    <string name="UsernameEditFragment_recovery_dialog_confirmation">Recovering your username will reset your existing QR code and link. Are you sure?</string>
+    <string name="UsernameEditFragment_recovery_dialog_confirmation">사용자 이름을 복구하면 기존 QR 코드와 링크가 초기화됩니다. 계속할까요?</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="other">Signal에 연락처가 %1$d개 있습니다!</item>
@@ -2352,11 +2352,11 @@
     <!-- Row item title for phone number privacy explainer -->
     <string name="NewWaysToConnectDialogFragment__phone_number_privacy">전화번호 개인 정보 보호</string>
     <!-- Row item description for phone number privacy explainer -->
-    <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">Your phone number is no longer shared with chats. If your number is saved to a friend\'s contacts, they will still see it.</string>
+    <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">이제 전화번호가 대화와 공유되지 않습니다. 내 전화번호를 연락처에 저장한 친구는 계속 내 전화번호를 볼 수 있습니다.</string>
     <!-- Row item title for usernames explainer -->
     <string name="NewWaysToConnectDialogFragment__usernames">사용자 이름</string>
     <!-- Row item description for usernames explainer -->
-    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">People can now message you using your optional username so you don\'t have to give out your phone number. Usernames aren\'t visible on your profile.</string>
+    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">이제 나에게 메시지를 보낼 때 선택적 사용자 이름을 사용할 수 있으므로 다른 사람과 전화번호를 공유할 필요가 없습니다. 사용자 이름은 프로필에 표시되지 않습니다.</string>
     <!-- Row item title for qr code and links explainer -->
     <string name="NewWaysToConnectDialogFragment__qr_codes_and_links">QR 코드와 링크</string>
     <!-- Row item description for qr code and links explainer -->
@@ -3685,17 +3685,17 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">내 전화번호를 볼 수 있는 사람</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see_your">Nobody will see your phone number on Signal, even when messaging them.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see_your">내가 메시지를 보내는 사용자를 비롯해 아무도 Signal에서 내 전화번호를 볼 수 없습니다.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">전화번호로 나를 찾을 수 있는 사람</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
     <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">내가 메시지를 보낸 사람 또는 그룹에 내 전화번호가 표시됩니다. 내 번호를 휴대전화 연락처에 저장한 사람도 Signal에서 나를 볼 수 있습니다.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__anyone_who_has">Anyone who has your phone number will see you\'re on Signal and can start chats with you.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__anyone_who_has">내 전화번호가 있는 사람은 Signal에서 나를 보고 나와 대화를 시작할 수 있습니다.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_be_able_to_see">Nobody will be able to see you\'re on Signal unless you message them or have an existing chat with them.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_be_able_to_see">내가 메시지를 보내는 사용자 또는 기존 대화 기록이 있는 사용자를 제외하고는 아무도 Signal에서 나를 볼 수 없습니다.</string>
     <!-- Snackbar text when pressing invalid radio item -->
-    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"To change this setting, set Who can see my number to Nobody."</string>
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"이 설정을 바꾸려면 \'내 전화번호를 볼 수 있는 사람\'을 \'아무도 보지 못함\'으로 설정하세요."</string>
     <string name="PhoneNumberPrivacy_everyone">모두</string>
     <string name="PhoneNumberPrivacy_nobody">아무도</string>
     <string name="preferences_app_protection__screen_lock">화면 잠금</string>

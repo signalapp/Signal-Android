@@ -563,7 +563,7 @@
     <!-- Message shown in top toast to indicate the named profile is on -->
     <string name="ConversationListFragment__s_on">%1$son</string>
     <!-- -->
-    <string name="ConversationListFragment_username_recovered_toast">Your QR code and link have been reset and your username is %1$s</string>
+    <string name="ConversationListFragment_username_recovered_toast">QR kodea eta esteka berrezarri egin dira, eta zure erabiltzaile-izena %1$s da</string>
 
     <!-- ConversationListItem -->
     <string name="ConversationListItem_key_exchange_message">Gakoaren trukatzerako mezua</string>
@@ -999,7 +999,7 @@
 
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
-    <string name="ManageProfileFragment__your_username">Your username, QR code and link aren\'t visible on your profile. Only share your username with people you trust.</string>
+    <string name="ManageProfileFragment__your_username">Erabiltzaile-izena, QR kodea eta esteka ez daude ikusgai profilean. Partekatu erabiltzaile-izena pertsona fidagarriekin bakarrik.</string>
     <string name="ManageProfileFragment_profile_name">Profilaren izena</string>
     <string name="ManageProfileFragment_username">Erabiltzailearen izena</string>
     <string name="ManageProfileFragment_about">Honi buruz</string>
@@ -2241,7 +2241,7 @@
     <!-- Displayed when the chosen discriminator is too long -->
     <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Erabiltzaile-izenak ez du balio; idatzi gehienez %1$d digitu.</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
-    <string name="UsernameEditFragment_recovery_dialog_confirmation">Recovering your username will reset your existing QR code and link. Are you sure?</string>
+    <string name="UsernameEditFragment_recovery_dialog_confirmation">Erabiltzaile-izena berreskuratzen baduzu, lehendik dauden QR kodea eta esteka berrezarri egingo dira. Ziur zaude?</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">Kontaktu %1$d Signalen dago!</item>
@@ -2430,23 +2430,23 @@
 
     <!-- NewWaysToConnectDialogFragment -->
     <!-- Fragment title, displayed at the top of the content -->
-    <string name="NewWaysToConnectDialogFragment__new_ways_to_connect">New ways to connect</string>
+    <string name="NewWaysToConnectDialogFragment__new_ways_to_connect">Konektatzeko modu berriak</string>
     <!-- Row item title for phone number privacy explainer -->
-    <string name="NewWaysToConnectDialogFragment__phone_number_privacy">Phone number privacy</string>
+    <string name="NewWaysToConnectDialogFragment__phone_number_privacy">Telefono-zenbakiaren pribatutasuna</string>
     <!-- Row item description for phone number privacy explainer -->
-    <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">Your phone number is no longer shared with chats. If your number is saved to a friend\'s contacts, they will still see it.</string>
+    <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">Aurrerantzean, telefono-zenbakia ez da partekatuko txatetan. Lagunen batek zure telefonoa kontaktuetan gordeta badauka, ikusi ahalko du.</string>
     <!-- Row item title for usernames explainer -->
-    <string name="NewWaysToConnectDialogFragment__usernames">Usernames</string>
+    <string name="NewWaysToConnectDialogFragment__usernames">Erabiltzaile-izenak</string>
     <!-- Row item description for usernames explainer -->
-    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">People can now message you using your optional username so you don\'t have to give out your phone number. Usernames aren\'t visible on your profile.</string>
+    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">Orain, jendeak zure hautazko erabiltzaile-izena erabil dezake zuri mezuak bidaltzeko; horrela, ez duzu telefono-zenbakia ematen ibili beharko. Erabiltzaile-izenak ez daude ikusgai zure profilean.</string>
     <!-- Row item title for qr code and links explainer -->
-    <string name="NewWaysToConnectDialogFragment__qr_codes_and_links">QR codes and links</string>
+    <string name="NewWaysToConnectDialogFragment__qr_codes_and_links">QR kode eta estekak</string>
     <!-- Row item description for qr code and links explainer -->
-    <string name="NewWaysToConnectDialogFragment__usernames_have_a_unique_qr_code">Usernames have a unique QR code and link you can share with friends to quickly start a chat with you.</string>
+    <string name="NewWaysToConnectDialogFragment__usernames_have_a_unique_qr_code">Erabiltzaile-izenek QR kode eta esteka esklusibo bat dute, eta lagunekin parteka ditzakezu zurekin txatea dezaten.</string>
     <!-- Button label for not right now -->
     <string name="NewWaysToConnectDialogFragment__not_now">Orain ez</string>
     <!-- Button label for continue -->
-    <string name="NewWaysToConnectDialogFragment__set_up_your_username">Set up your username</string>
+    <string name="NewWaysToConnectDialogFragment__set_up_your_username">Konfiguratu erabiltzaile-izena</string>
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">Erreproduzitu bideoa</string>
@@ -3790,17 +3790,17 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Nork ikus dezake nire zenbakia?</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see_your">Nobody will see your phone number on Signal, even when messaging them.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see_your">Ez du inork ikusiko zure telefono-zenbakia Signal-en, ezta mezuak bidaltzen dituzunean ere.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Nork aurki nazake zenbakia erabiliz?</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
     <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">Zure mezuak jasotzen dituzten pertsonek zure telefono-zenbakia ikusi ahalko dute. Telefonoko kontaktuetan zure zenbakia duten pertsonek Signal-en ere ikusiko dute.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__anyone_who_has">Anyone who has your phone number will see you\'re on Signal and can start chats with you.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__anyone_who_has">Zure telefono-zenbakia daukaten pertsonek Signal-en zaudela ikusi eta zurekin txateatu ahalko dute.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_be_able_to_see">Nobody will be able to see you\'re on Signal unless you message them or have an existing chat with them.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_be_able_to_see">Ezingo du inork ikusi Signal-en zaudela, salbu eta mezuak bidaltzen badituzu edo lehendik txaten bat baduzu norbaitekin.</string>
     <!-- Snackbar text when pressing invalid radio item -->
-    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"To change this setting, set Who can see my number to Nobody."</string>
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"Ezarpen hori aldatzeko, joan \"Nork ikus dezake nire zenbakia?\" atalera eta aukeratu \"Inork ez\"."</string>
     <string name="PhoneNumberPrivacy_everyone">Guztiak</string>
     <string name="PhoneNumberPrivacy_nobody">Inor ez</string>
     <string name="preferences_app_protection__screen_lock">Blokeo-pantaila</string>
@@ -6234,7 +6234,7 @@
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__set_up_your_signal_username">Konfiguratu Signal-eko erabiltzaile-izena</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__introducing_phone_number_privacy">Introducing phone number privacy, optional usernames and links.</string>
+    <string name="SetUpYourUsername__introducing_phone_number_privacy">Berria: telefono-zenbakiaren pribatutasuna, hautazko erabiltzaile-izenak eta estekak.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__dismiss">Baztertu</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->

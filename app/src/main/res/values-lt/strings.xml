@@ -595,7 +595,7 @@
     <!-- Message shown in top toast to indicate the named profile is on -->
     <string name="ConversationListFragment__s_on">%1$s įjungtas</string>
     <!-- -->
-    <string name="ConversationListFragment_username_recovered_toast">Your QR code and link have been reset and your username is %1$s</string>
+    <string name="ConversationListFragment_username_recovered_toast">Jūsų QR kodas ir nuoroda nustatyti iš naujo, o naudotojo vardas yra %1$s</string>
 
     <!-- ConversationListItem -->
     <string name="ConversationListItem_key_exchange_message">Šifro apsikeitimo žinutė</string>
@@ -1067,7 +1067,7 @@
 
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
-    <string name="ManageProfileFragment__your_username">Your username, QR code and link aren\'t visible on your profile. Only share your username with people you trust.</string>
+    <string name="ManageProfileFragment__your_username">Jūsų naudotojo vardas, QR kodas ir nuoroda nematomi jūsų profilyje. Naudotojo vardą bendrinkite tik su žmonėmis, kuriais pasitikite.</string>
     <string name="ManageProfileFragment_profile_name">Profilio pavadinimas</string>
     <string name="ManageProfileFragment_username">Naudotojo vardas</string>
     <string name="ManageProfileFragment_about">Apie</string>
@@ -2399,7 +2399,7 @@
     <!-- Displayed when the chosen discriminator is too long -->
     <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Netinkamas naudotojo vardas, įveskite daugiausia %1$d skaitmenų.</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
-    <string name="UsernameEditFragment_recovery_dialog_confirmation">Recovering your username will reset your existing QR code and link. Are you sure?</string>
+    <string name="UsernameEditFragment_recovery_dialog_confirmation">Kai naudotojo vardas atkuriamas, QR kodas ir nuoroda nustatomi iš naujo. Ar tikrai to norite?</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d adresatas naudoja Signal!</item>
@@ -2594,23 +2594,23 @@
 
     <!-- NewWaysToConnectDialogFragment -->
     <!-- Fragment title, displayed at the top of the content -->
-    <string name="NewWaysToConnectDialogFragment__new_ways_to_connect">New ways to connect</string>
+    <string name="NewWaysToConnectDialogFragment__new_ways_to_connect">Nauji būdai bendrauti</string>
     <!-- Row item title for phone number privacy explainer -->
-    <string name="NewWaysToConnectDialogFragment__phone_number_privacy">Phone number privacy</string>
+    <string name="NewWaysToConnectDialogFragment__phone_number_privacy">Telefono numerio privatumas</string>
     <!-- Row item description for phone number privacy explainer -->
-    <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">Your phone number is no longer shared with chats. If your number is saved to a friend\'s contacts, they will still see it.</string>
+    <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">Jūsų telefono numeris nebėra bendrinamas su pokalbiais. Jei jūsų numeris išsaugotas draugo kontaktuose, draugas vis tiek jį matys.</string>
     <!-- Row item title for usernames explainer -->
-    <string name="NewWaysToConnectDialogFragment__usernames">Usernames</string>
+    <string name="NewWaysToConnectDialogFragment__usernames">Naudotojų vardai</string>
     <!-- Row item description for usernames explainer -->
-    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">People can now message you using your optional username so you don\'t have to give out your phone number. Usernames aren\'t visible on your profile.</string>
+    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">Dabar žmonės gali siųsti jums žinutes naudodami pasirenkamą naudotojo vardą, kad jums nereikėtų nurodyti telefono numerio. Jūsų naudotojų vardai jūsų profilyje nerodomi.</string>
     <!-- Row item title for qr code and links explainer -->
-    <string name="NewWaysToConnectDialogFragment__qr_codes_and_links">QR codes and links</string>
+    <string name="NewWaysToConnectDialogFragment__qr_codes_and_links">QR kodai ir nuorodos</string>
     <!-- Row item description for qr code and links explainer -->
-    <string name="NewWaysToConnectDialogFragment__usernames_have_a_unique_qr_code">Usernames have a unique QR code and link you can share with friends to quickly start a chat with you.</string>
+    <string name="NewWaysToConnectDialogFragment__usernames_have_a_unique_qr_code">Naudotojų vardai turi unikalų QR kodą ir nuorodą, kurią galima bendrinti su draugais, kad šie galėtų greitai pradėtų pokalbį su jumis.</string>
     <!-- Button label for not right now -->
     <string name="NewWaysToConnectDialogFragment__not_now">Ne dabar</string>
     <!-- Button label for continue -->
-    <string name="NewWaysToConnectDialogFragment__set_up_your_username">Set up your username</string>
+    <string name="NewWaysToConnectDialogFragment__set_up_your_username">Susikurkite naudotojo vardą</string>
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">Atkurti vaizdo įrašą</string>
@@ -4000,17 +4000,17 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Kas gali matyti mano tel. numerį</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see_your">Nobody will see your phone number on Signal, even when messaging them.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see_your">Niekas nematys jūsų tel. numerio programėlėje „Signal“, net kai siųsite žinutes.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Kas gali mane rasti pagal numerį</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
     <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">Tavo tel. numeris bus matomas tiems, kam rašysi, ir grupėms, kuriose rašysi žinutes. Žmonės, turintys tavo numerį tarp adresatų telefone, matys jį ir programėlėje „Signal“.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__anyone_who_has">Anyone who has your phone number will see you\'re on Signal and can start chats with you.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__anyone_who_has">Visi jūsų telefono numerį turintys žmonės matys, kad naudojatės „Signal“, ir galės su jumis pradėti pokalbį.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_be_able_to_see">Nobody will be able to see you\'re on Signal unless you message them or have an existing chat with them.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_be_able_to_see">Niekas nematys, kad naudojatės „Signal“, nebent išsiųsite jiems žinutę arba jau esate pradėję pokalbį.</string>
     <!-- Snackbar text when pressing invalid radio item -->
-    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"To change this setting, set Who can see my number to Nobody."</string>
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"Jei norite pakeisti šį nustatymą, nustatykite „Kas gali matyti mano numerį“ vertę į „Niekas“."</string>
     <string name="PhoneNumberPrivacy_everyone">Visi</string>
     <string name="PhoneNumberPrivacy_nobody">Niekas</string>
     <string name="preferences_app_protection__screen_lock">Ekrano užraktas</string>
@@ -6512,7 +6512,7 @@
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__set_up_your_signal_username">Sukurk savo „Signal“ naudotojo vardą</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__introducing_phone_number_privacy">Introducing phone number privacy, optional usernames and links.</string>
+    <string name="SetUpYourUsername__introducing_phone_number_privacy">Pristatome telefono numerio privatumą, pasirenkamus naudotojų vardus ir nuorodas.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__dismiss">Atmesti</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->

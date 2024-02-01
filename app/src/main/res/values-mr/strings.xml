@@ -563,7 +563,7 @@
     <!-- Message shown in top toast to indicate the named profile is on -->
     <string name="ConversationListFragment__s_on">%1$s चालू केले</string>
     <!-- -->
-    <string name="ConversationListFragment_username_recovered_toast">Your QR code and link have been reset and your username is %1$s</string>
+    <string name="ConversationListFragment_username_recovered_toast">आपला QR कोड आणि लिंक रिसेट करण्यात आलेली आहे आणि आपले वापरकर्ता नाव %1$s आहे</string>
 
     <!-- ConversationListItem -->
     <string name="ConversationListItem_key_exchange_message">की विनिमय संदेश</string>
@@ -999,7 +999,7 @@
 
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
-    <string name="ManageProfileFragment__your_username">Your username, QR code and link aren\'t visible on your profile. Only share your username with people you trust.</string>
+    <string name="ManageProfileFragment__your_username">आपले वापरकर्ता नाव, QR कोड आणि लिंक आपल्या फोनवर दिसत नाहीत. आपण ज्यांच्यावर विश्वास ठेवता फक्त त्याच्यासह आपले वापरकर्ता नाव शेअर करा.</string>
     <string name="ManageProfileFragment_profile_name">प्रोफाईल नाव</string>
     <string name="ManageProfileFragment_username">वापरकर्तानाव</string>
     <string name="ManageProfileFragment_about">आपल्याबद्दल</string>
@@ -2241,7 +2241,7 @@
     <!-- Displayed when the chosen discriminator is too long -->
     <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">अवैध वापरकर्ता नाव, कमाल %1$d अंक प्रविष्ट करा.</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
-    <string name="UsernameEditFragment_recovery_dialog_confirmation">Recovering your username will reset your existing QR code and link. Are you sure?</string>
+    <string name="UsernameEditFragment_recovery_dialog_confirmation">आपले वापरकर्ता नाव पुर्नप्राप्त करण्याने आपला सध्याचा QR कोड आणि लिंक रिसेट होईल. आपल्याला खात्री आहे?</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d संपर्क Signal वर आहे!</item>
@@ -2434,11 +2434,11 @@
     <!-- Row item title for phone number privacy explainer -->
     <string name="NewWaysToConnectDialogFragment__phone_number_privacy">फोन नंबर गोपनीयता</string>
     <!-- Row item description for phone number privacy explainer -->
-    <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">Your phone number is no longer shared with chats. If your number is saved to a friend\'s contacts, they will still see it.</string>
+    <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">आपला फोन नंबर यापुढे चॅट्ससह शेअर केला जाणार नाही. आपला नंबर जर मित्रांच्या संपर्कामध्ये जतन केलेला असल्यास, तो ते अद्याप पाहू शकतात.</string>
     <!-- Row item title for usernames explainer -->
     <string name="NewWaysToConnectDialogFragment__usernames">वापरकर्ता नाव</string>
     <!-- Row item description for usernames explainer -->
-    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">People can now message you using your optional username so you don\'t have to give out your phone number. Usernames aren\'t visible on your profile.</string>
+    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">लोक आपणाला आपले वैकल्पिक वापरकर्ता नाव वापरून आता संदेश करू शकतात ज्यामुळे आपणाला आपला फोन नंबर देण्याची आवश्यकता नाही. वापरकर्तानावे आपल्या प्रोफाइल वर दृश्यमान होणार नाहीत.</string>
     <!-- Row item title for qr code and links explainer -->
     <string name="NewWaysToConnectDialogFragment__qr_codes_and_links">QR कोड्स आणि लिंक्स</string>
     <!-- Row item description for qr code and links explainer -->
@@ -3790,17 +3790,17 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">माझा नंबर कोण पाहू शकते</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see_your">Nobody will see your phone number on Signal, even when messaging them.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see_your">त्यांना संदेश पाठविताना देखील, कोणीही Signal वर आपला फोन नंबर पाहू शकणार नाही.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">मला फोन नंबरद्वारे कोण शोधू शकते</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
     <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">आपण संदेश पाठवलेल्या व्यक्ती आणि गटांना आपला फोन नंबर दृश्यमान असेल. ज्या व्यक्तींकडे आपला नंबर त्यांच्या फोन संपर्कामध्ये आहे ते देखील Signal वर तो पाहू शकतील.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__anyone_who_has">Anyone who has your phone number will see you\'re on Signal and can start chats with you.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__anyone_who_has">आपला फोन नंबर असणारा कोणीही आपण Signal वर असल्याचे पाहू शकतो आणि आपणासह चॅट्स सुरु करू शकतो.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_be_able_to_see">Nobody will be able to see you\'re on Signal unless you message them or have an existing chat with them.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_be_able_to_see">आपण त्यांना संदेश पाठवल्याशिवाय किंवा त्यांच्यासोबत सध्याचे चॅट्स असल्यााशिवाय आपणाला कोणीही Signal वर पाहू शकणार नाही.</string>
     <!-- Snackbar text when pressing invalid radio item -->
-    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"To change this setting, set Who can see my number to Nobody."</string>
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"हे सेटिंग्ज बदलण्यासाठी, माझा नंबर कोण पाहू शकतो ते कोणीही नाही ला सेट करा."</string>
     <string name="PhoneNumberPrivacy_everyone">प्रत्येकजण</string>
     <string name="PhoneNumberPrivacy_nobody">कोणीही नाही</string>
     <string name="preferences_app_protection__screen_lock">स्क्रीन लॉक</string>

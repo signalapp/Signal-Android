@@ -563,7 +563,7 @@
     <!-- Message shown in top toast to indicate the named profile is on -->
     <string name="ConversationListFragment__s_on">%1$s käytössä</string>
     <!-- -->
-    <string name="ConversationListFragment_username_recovered_toast">Your QR code and link have been reset and your username is %1$s</string>
+    <string name="ConversationListFragment_username_recovered_toast">QR-koodisi ja linkkisi on palautettu oletusasetukseen ja käyttäjänimesi on %1$s</string>
 
     <!-- ConversationListItem -->
     <string name="ConversationListItem_key_exchange_message">Avaintenvaihtoviesti</string>
@@ -999,7 +999,7 @@
 
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
-    <string name="ManageProfileFragment__your_username">Your username, QR code and link aren\'t visible on your profile. Only share your username with people you trust.</string>
+    <string name="ManageProfileFragment__your_username">Käyttäjänimi, QR-koodi ja linkki eivät näy profiilissasi. Jaa käyttäjänimesi vain henkilöille, joihin luotat.</string>
     <string name="ManageProfileFragment_profile_name">Profiilin nimi</string>
     <string name="ManageProfileFragment_username">Käyttäjätunnus</string>
     <string name="ManageProfileFragment_about">Tiedot</string>
@@ -2241,7 +2241,7 @@
     <!-- Displayed when the chosen discriminator is too long -->
     <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Virheellinen käyttäjänimi, anna vähintään %1$d numeroa.</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
-    <string name="UsernameEditFragment_recovery_dialog_confirmation">Recovering your username will reset your existing QR code and link. Are you sure?</string>
+    <string name="UsernameEditFragment_recovery_dialog_confirmation">Käyttäjänimen palauttaminen palauttaa nykyisen QR-koodisi ja linkkisi oletusasetukseen. Oletko varma?</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">Signalissa on %1$d kontakti!</item>
@@ -2434,11 +2434,11 @@
     <!-- Row item title for phone number privacy explainer -->
     <string name="NewWaysToConnectDialogFragment__phone_number_privacy">Puhelinnumeron yksityisyys</string>
     <!-- Row item description for phone number privacy explainer -->
-    <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">Your phone number is no longer shared with chats. If your number is saved to a friend\'s contacts, they will still see it.</string>
+    <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">Puhelinnumeroasi ei enää jaeta keskusteluissa. Jos numerosi on tallennettu ystäväsi yhteystietoihin, hän näkee sen edelleen.</string>
     <!-- Row item title for usernames explainer -->
     <string name="NewWaysToConnectDialogFragment__usernames">Käyttäjänimet</string>
     <!-- Row item description for usernames explainer -->
-    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">People can now message you using your optional username so you don\'t have to give out your phone number. Usernames aren\'t visible on your profile.</string>
+    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">Ihmiset voivat nyt lähettää sinulle viestejä valinnaisella käyttäjänimelläsi, joten sinun ei tarvitse antaa puhelinnumeroasi. Käyttäjänimi ei näy profiilissasi.</string>
     <!-- Row item title for qr code and links explainer -->
     <string name="NewWaysToConnectDialogFragment__qr_codes_and_links">QR-koodit ja linkit</string>
     <!-- Row item description for qr code and links explainer -->
@@ -3753,7 +3753,7 @@
     <string name="BackupDialog_delete_backups">Poistetaanko varmuuskopiot?</string>
     <string name="BackupDialog_disable_and_delete_all_local_backups">Otetaanko paikalliset varmuuskopiot pois käytöstä ja poistetaanko ne?</string>
     <string name="BackupDialog_delete_backups_statement">Poista varmuuskopiot</string>
-    <string name="BackupDialog_to_enable_backups_choose_a_folder">Valitse kansio, jotta varmuuskopioit voidaan ottaa käyttöön. Varmuuskopiot tallennetaan tähän paikkaan.</string>
+    <string name="BackupDialog_to_enable_backups_choose_a_folder">Valitse kansio, jotta varmuuskopiot voidaan ottaa käyttöön. Varmuuskopiot tallennetaan tähän paikkaan.</string>
     <string name="BackupDialog_choose_folder">Valitse kansio</string>
     <string name="BackupDialog_copied_to_clipboard">Kopioitu leikepöydälle</string>
     <string name="BackupDialog_no_file_picker_available">Tiedostonvalitsinta ei ole saatavilla.</string>
@@ -3790,17 +3790,17 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Kuka voi nähdä numeroni</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see_your">Nobody will see your phone number on Signal, even when messaging them.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see_your">Kukaan ei näe puhelinnumeroasi Signalissa, vaikka lähettäisit heille viestejä.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Kuka voi löytää minut puhelinnumerolla</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
     <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">Puhelinnumerosi näkyy henkilöille ja ryhmille, joille lähetät viestejä. Henkilöt, joilla on puhelinnumerosi puhelimensa yhteystiedoissa, näkevät sen myös Signalissa.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__anyone_who_has">Anyone who has your phone number will see you\'re on Signal and can start chats with you.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__anyone_who_has">Kuka tahansa, jolla on puhelinnumerosi, näkee, että olet Signalissa, ja voi aloittaa keskustelut kanssasi.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_be_able_to_see">Nobody will be able to see you\'re on Signal unless you message them or have an existing chat with them.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_be_able_to_see">Kukaan ei näe, että olet Signalissa, ellet lähetä heille viestiä tai keskustele heidän kanssaan.</string>
     <!-- Snackbar text when pressing invalid radio item -->
-    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"To change this setting, set Who can see my number to Nobody."</string>
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"Jos haluat muuttaa tätä asetusta, määritä Kuka näkee numeroni -asetukseksi Ei kukaan."</string>
     <string name="PhoneNumberPrivacy_everyone">Kaikki</string>
     <string name="PhoneNumberPrivacy_nobody">Ei kukaan</string>
     <string name="preferences_app_protection__screen_lock">Näytön lukitus</string>

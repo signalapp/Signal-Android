@@ -595,7 +595,7 @@
     <!-- Message shown in top toast to indicate the named profile is on -->
     <string name="ConversationListFragment__s_on">%1$s uključen</string>
     <!-- -->
-    <string name="ConversationListFragment_username_recovered_toast">Your QR code and link have been reset and your username is %1$s</string>
+    <string name="ConversationListFragment_username_recovered_toast">Vaš QR kod i link su poništeni i vaše korisničko ime je %1$s</string>
 
     <!-- ConversationListItem -->
     <string name="ConversationListItem_key_exchange_message">Poruka za razmjenu ključa</string>
@@ -1067,7 +1067,7 @@
 
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
-    <string name="ManageProfileFragment__your_username">Your username, QR code and link aren\'t visible on your profile. Only share your username with people you trust.</string>
+    <string name="ManageProfileFragment__your_username">Vaše korisničko ime, QR kod i poveznica nisu vidljivi na vašem profilu. Svoje korisničko ime dijelite samo s osobama kojima vjerujete.</string>
     <string name="ManageProfileFragment_profile_name">Ime profila</string>
     <string name="ManageProfileFragment_username">Korisničko ime</string>
     <string name="ManageProfileFragment_about">O kontaktu</string>
@@ -2399,7 +2399,7 @@
     <!-- Displayed when the chosen discriminator is too long -->
     <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Nevažeće korisničko ime, unesite najviše %1$d cifri.</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
-    <string name="UsernameEditFragment_recovery_dialog_confirmation">Recovering your username will reset your existing QR code and link. Are you sure?</string>
+    <string name="UsernameEditFragment_recovery_dialog_confirmation">Oporavak vašeg korisničkog imena će poništiti vaš postojeći QR kod i vezu. Jeste li sigurni?</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d kontakt je na Signalu!</item>
@@ -2594,23 +2594,23 @@
 
     <!-- NewWaysToConnectDialogFragment -->
     <!-- Fragment title, displayed at the top of the content -->
-    <string name="NewWaysToConnectDialogFragment__new_ways_to_connect">New ways to connect</string>
+    <string name="NewWaysToConnectDialogFragment__new_ways_to_connect">Novi načini povezivanja</string>
     <!-- Row item title for phone number privacy explainer -->
-    <string name="NewWaysToConnectDialogFragment__phone_number_privacy">Phone number privacy</string>
+    <string name="NewWaysToConnectDialogFragment__phone_number_privacy">Privatnost telefonskog broja</string>
     <!-- Row item description for phone number privacy explainer -->
-    <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">Your phone number is no longer shared with chats. If your number is saved to a friend\'s contacts, they will still see it.</string>
+    <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">Vaš broj telefona se više ne dijeli s chatovima. Ako je vaš broj sačuvan u kontaktima prijatelja, oni će ga i dalje vidjeti.</string>
     <!-- Row item title for usernames explainer -->
-    <string name="NewWaysToConnectDialogFragment__usernames">Usernames</string>
+    <string name="NewWaysToConnectDialogFragment__usernames">Korisnička imena</string>
     <!-- Row item description for usernames explainer -->
-    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">People can now message you using your optional username so you don\'t have to give out your phone number. Usernames aren\'t visible on your profile.</string>
+    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">Drugi vam sada mogu slati poruke koristeći vaše opcionalno korisničko ime tako da ne morate davati svoj broj telefona. Korisnička imena nisu vidljiva na vašem profilu.</string>
     <!-- Row item title for qr code and links explainer -->
-    <string name="NewWaysToConnectDialogFragment__qr_codes_and_links">QR codes and links</string>
+    <string name="NewWaysToConnectDialogFragment__qr_codes_and_links">QR kodovi i linkovi</string>
     <!-- Row item description for qr code and links explainer -->
-    <string name="NewWaysToConnectDialogFragment__usernames_have_a_unique_qr_code">Usernames have a unique QR code and link you can share with friends to quickly start a chat with you.</string>
+    <string name="NewWaysToConnectDialogFragment__usernames_have_a_unique_qr_code">Korisnička imena imaju jedinstveni QR kod i link koji možete podijeliti s prijateljima da brzo započnu razgovor s vama.</string>
     <!-- Button label for not right now -->
     <string name="NewWaysToConnectDialogFragment__not_now">Ne sada</string>
     <!-- Button label for continue -->
-    <string name="NewWaysToConnectDialogFragment__set_up_your_username">Set up your username</string>
+    <string name="NewWaysToConnectDialogFragment__set_up_your_username">Postavite korisničko ime</string>
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">Prikaži video</string>
@@ -4000,17 +4000,17 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Ko može vidjeti moj broj</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see_your">Nobody will see your phone number on Signal, even when messaging them.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see_your">Niko neće vidjeti vaš broj telefona na Signalu, čak ni kada toj osobi šaljete poruke.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Ko me može pronaći po broju</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
     <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">Vaš broj telefona bit će vidljiv ljudima i grupama kojima šaljete poruke. Ljudi koji imaju vaš broj u svojim kontaktima također će ga vidjeti na Signalu.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__anyone_who_has">Anyone who has your phone number will see you\'re on Signal and can start chats with you.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__anyone_who_has">Svako ko ima vaš broj telefona vidjet će da ste na Signalu i može započeti razgovor s vama.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_be_able_to_see">Nobody will be able to see you\'re on Signal unless you message them or have an existing chat with them.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_be_able_to_see">Niko neće moći vidjeti da ste na Signalu osim ako toj osobi ne pošaljete poruku ili ne razgovarate s njom.</string>
     <!-- Snackbar text when pressing invalid radio item -->
-    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"To change this setting, set Who can see my number to Nobody."</string>
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"Da promijenite ovu postavku, postavite opciju Ko može vidjeti moj broj na Niko."</string>
     <string name="PhoneNumberPrivacy_everyone">Svako</string>
     <string name="PhoneNumberPrivacy_nobody">Niko</string>
     <string name="preferences_app_protection__screen_lock">Zaključavanje ekrana</string>
@@ -6512,7 +6512,7 @@
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__set_up_your_signal_username">Postavite korisničko ime za Signal</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__introducing_phone_number_privacy">Introducing phone number privacy, optional usernames and links.</string>
+    <string name="SetUpYourUsername__introducing_phone_number_privacy">Predstavljamo privatnost telefonskih brojeva, opcionalna korisnička imena i poveznice.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__dismiss">Odbaci</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->

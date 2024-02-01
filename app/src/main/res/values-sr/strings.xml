@@ -563,7 +563,7 @@
     <!-- Message shown in top toast to indicate the named profile is on -->
     <string name="ConversationListFragment__s_on">%1$s упаљено</string>
     <!-- -->
-    <string name="ConversationListFragment_username_recovered_toast">Your QR code and link have been reset and your username is %1$s</string>
+    <string name="ConversationListFragment_username_recovered_toast">Ваш QR код и линк су ресетовани, а ваше корисничко име је %1$s</string>
 
     <!-- ConversationListItem -->
     <string name="ConversationListItem_key_exchange_message">Порука размене кључева</string>
@@ -999,7 +999,7 @@
 
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
-    <string name="ManageProfileFragment__your_username">Your username, QR code and link aren\'t visible on your profile. Only share your username with people you trust.</string>
+    <string name="ManageProfileFragment__your_username">Ваше корисничко име, QR код и линк нису видљиви на вашем профилу. Корисничко име дајте само са људима којима верујете.</string>
     <string name="ManageProfileFragment_profile_name">Име на профилу</string>
     <string name="ManageProfileFragment_username">Корисничко име</string>
     <string name="ManageProfileFragment_about">О контакту</string>
@@ -2241,7 +2241,7 @@
     <!-- Displayed when the chosen discriminator is too long -->
     <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Неважеће корисничко име – унесите најмање %1$d цифара.</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
-    <string name="UsernameEditFragment_recovery_dialog_confirmation">Recovering your username will reset your existing QR code and link. Are you sure?</string>
+    <string name="UsernameEditFragment_recovery_dialog_confirmation">Ако вратите корисничко име, ресетоваће вам се постојећи QR код и линк. Да ли сте сигурни?</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d контакт је на Signal-у!</item>
@@ -2434,15 +2434,15 @@
     <!-- Row item title for phone number privacy explainer -->
     <string name="NewWaysToConnectDialogFragment__phone_number_privacy">Приватност броја телефона</string>
     <!-- Row item description for phone number privacy explainer -->
-    <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">Your phone number is no longer shared with chats. If your number is saved to a friend\'s contacts, they will still see it.</string>
+    <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">Ваш број телефона се више не дели у ћаскањима. Ако је ваш број сачуван у контактима пријатеља, они ће га и даље видети.</string>
     <!-- Row item title for usernames explainer -->
     <string name="NewWaysToConnectDialogFragment__usernames">Корисничка имена</string>
     <!-- Row item description for usernames explainer -->
-    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">People can now message you using your optional username so you don\'t have to give out your phone number. Usernames aren\'t visible on your profile.</string>
+    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">Људи сада могу да вам шаљу поруке преко вашег опционог корисничког имена, тако да не морате да дајете свој број телефона. Корисничка имена нису видљива на вашем профилу.</string>
     <!-- Row item title for qr code and links explainer -->
     <string name="NewWaysToConnectDialogFragment__qr_codes_and_links">QR кодови и линкови</string>
     <!-- Row item description for qr code and links explainer -->
-    <string name="NewWaysToConnectDialogFragment__usernames_have_a_unique_qr_code">Корисничка имена имају јединствени QR код и линк које можете да поделите са пријатељима да би брзо започели ћаскање са вама.</string>
+    <string name="NewWaysToConnectDialogFragment__usernames_have_a_unique_qr_code">Корисничка имена имају јединствени QR код и линк које можете да поделите са пријатељима да би могли брзо да започну ћаскање са вама.</string>
     <!-- Button label for not right now -->
     <string name="NewWaysToConnectDialogFragment__not_now">Не сада</string>
     <!-- Button label for continue -->
@@ -3790,17 +3790,17 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Ко може да види мој број</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see_your">Nobody will see your phone number on Signal, even when messaging them.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see_your">Ниједан корисник неће видети ваш број телефона на Signal-у, чак и ако му пошаљете поруку.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Ко може да ме пронађе преко броја телефона</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
     <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">Ваш број телефона ће бити видљив људима и групама којима шаљете поруке. Људи који имају ваш број у својим контактима на телефону такође ће га видети у Signal-у.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__anyone_who_has">Anyone who has your phone number will see you\'re on Signal and can start chats with you.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__anyone_who_has">Свако ко има ваш број телефона видеће да сте на Signal-у и моћи ће да започне ћаскање са вама.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_be_able_to_see">Nobody will be able to see you\'re on Signal unless you message them or have an existing chat with them.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_be_able_to_see">Ниједан корисник неће моћи да види да сте на Signal-у док му не пошаљете поруку или ако већ немате постојеће ћаскање са њим.</string>
     <!-- Snackbar text when pressing invalid radio item -->
-    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"To change this setting, set Who can see my number to Nobody."</string>
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"Да бисте променили ово подешавање, подесите опцију „Ко може да види мој број“ на „Нико“."</string>
     <string name="PhoneNumberPrivacy_everyone">Сви</string>
     <string name="PhoneNumberPrivacy_nobody">никога</string>
     <string name="preferences_app_protection__screen_lock">Закључавање екрана</string>

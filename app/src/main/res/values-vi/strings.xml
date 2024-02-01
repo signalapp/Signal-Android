@@ -547,7 +547,7 @@
     <!-- Message shown in top toast to indicate the named profile is on -->
     <string name="ConversationListFragment__s_on">%1$s mở</string>
     <!-- -->
-    <string name="ConversationListFragment_username_recovered_toast">Your QR code and link have been reset and your username is %1$s</string>
+    <string name="ConversationListFragment_username_recovered_toast">Mã QR và đường dẫn của bạn đã được đặt lại và tên người dùng của bạn là %1$s</string>
 
     <!-- ConversationListItem -->
     <string name="ConversationListItem_key_exchange_message">Tin nhắn trao đổi mã khóa</string>
@@ -965,7 +965,7 @@
 
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
-    <string name="ManageProfileFragment__your_username">Your username, QR code and link aren\'t visible on your profile. Only share your username with people you trust.</string>
+    <string name="ManageProfileFragment__your_username">Tên người dùng, mã QR và đường dẫn không hiển thị trên hồ sơ của bạn. Chỉ chia sẻ tên người dùng với người bạn tin tưởng.</string>
     <string name="ManageProfileFragment_profile_name">Tên hồ sơ</string>
     <string name="ManageProfileFragment_username">Tên người dùng</string>
     <string name="ManageProfileFragment_about">Thông tin</string>
@@ -2162,7 +2162,7 @@
     <!-- Displayed when the chosen discriminator is too long -->
     <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Tên người dùng không hợp lệ, nhập tối đa %1$d ký tự.</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
-    <string name="UsernameEditFragment_recovery_dialog_confirmation">Recovering your username will reset your existing QR code and link. Are you sure?</string>
+    <string name="UsernameEditFragment_recovery_dialog_confirmation">Khôi phục lại tên người dùng sẽ đặt lại mã QR và đường dẫn hiện tại của bạn. Bạn có chắc không?</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="other">%1$d liên hệ của bạn đang sử dụng Signal!</item>
@@ -2352,11 +2352,11 @@
     <!-- Row item title for phone number privacy explainer -->
     <string name="NewWaysToConnectDialogFragment__phone_number_privacy">Quyền Riêng Tư cho Số Điện Thoại</string>
     <!-- Row item description for phone number privacy explainer -->
-    <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">Your phone number is no longer shared with chats. If your number is saved to a friend\'s contacts, they will still see it.</string>
+    <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">Số điện thoại của bạn không còn được chia sẻ với các cuộc trò chuyện. Nếu số điện thoại của bạn đã được lưu vào danh bạ của một người bạn, họ vẫn có thể nhìn thấy.</string>
     <!-- Row item title for usernames explainer -->
     <string name="NewWaysToConnectDialogFragment__usernames">Tên người dùng</string>
     <!-- Row item description for usernames explainer -->
-    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">People can now message you using your optional username so you don\'t have to give out your phone number. Usernames aren\'t visible on your profile.</string>
+    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">Giờ đây mọi người có thể gửi tin nhắn cho bạn qua tên người dùng tùy chọn của bạn nên bạn không cần cung cấp số điện thoại của mình. Tên người dùng không hiển thị trên hồ sơ của bạn.</string>
     <!-- Row item title for qr code and links explainer -->
     <string name="NewWaysToConnectDialogFragment__qr_codes_and_links">Mã QR và Đường Dẫn</string>
     <!-- Row item description for qr code and links explainer -->
@@ -2364,7 +2364,7 @@
     <!-- Button label for not right now -->
     <string name="NewWaysToConnectDialogFragment__not_now">Để sau</string>
     <!-- Button label for continue -->
-    <string name="NewWaysToConnectDialogFragment__set_up_your_username">Thiết lập Tên người dùng của bạn</string>
+    <string name="NewWaysToConnectDialogFragment__set_up_your_username">Thiết lập tên người dùng của bạn</string>
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">Phát video</string>
@@ -3685,17 +3685,17 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Ai Có Thể Thấy Số Điện Thoại Của Tôi</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see_your">Nobody will see your phone number on Signal, even when messaging them.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see_your">Sẽ không có ai nhìn thấy số điện thoại của bạn trên Signal, ngay cả khi bạn nhắn tin với người đó.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Ai Có Thể Tìm Tôi Bằng Số Điện Thoại</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
     <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">Số điện thoại của bạn sẽ hiện lên cho những người và nhóm bạn nhắn tin. Những người có số điện thoại của bạn trong danh bạ điện thoại của họ cũng sẽ thấy nó trên Signal.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__anyone_who_has">Anyone who has your phone number will see you\'re on Signal and can start chats with you.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__anyone_who_has">Bất kỳ ai có số điện thoại của bạn sẽ thấy bạn trên Signal và có thể bắt đầu trò chuyện với bạn.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_be_able_to_see">Nobody will be able to see you\'re on Signal unless you message them or have an existing chat with them.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_be_able_to_see">Sẽ không có ai nhìn thấy số điện thoại của bạn trên Signal, trừ khi bạn nhắn tin với người đó hoặc đã có một cuộc trò chuyện với người đó.</string>
     <!-- Snackbar text when pressing invalid radio item -->
-    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"To change this setting, set Who can see my number to Nobody."</string>
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"Để đổi cài đặt này, đặt mục “Ai có thể thấy số của tôi” thành “Không ai cả”."</string>
     <string name="PhoneNumberPrivacy_everyone">Bất cứ ai</string>
     <string name="PhoneNumberPrivacy_nobody">Không ai</string>
     <string name="preferences_app_protection__screen_lock">Khoá màn hình</string>

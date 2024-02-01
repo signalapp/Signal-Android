@@ -563,7 +563,7 @@
     <!-- Message shown in top toast to indicate the named profile is on -->
     <string name="ConversationListFragment__s_on">%1$saktif</string>
     <!-- -->
-    <string name="ConversationListFragment_username_recovered_toast">Your QR code and link have been reset and your username is %1$s</string>
+    <string name="ConversationListFragment_username_recovered_toast">QR kodun ve bağlantın sıfırlandı ve kullanıcı adın %1$s</string>
 
     <!-- ConversationListItem -->
     <string name="ConversationListItem_key_exchange_message">Anahtar takas iletisi</string>
@@ -999,7 +999,7 @@
 
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
-    <string name="ManageProfileFragment__your_username">Your username, QR code and link aren\'t visible on your profile. Only share your username with people you trust.</string>
+    <string name="ManageProfileFragment__your_username">Kullanıcı adın, kare kodun ve bağlantın profilinde görünmez. Kullanıcı adını yalnızca güvendiğin kişilerle paylaş.</string>
     <string name="ManageProfileFragment_profile_name">Profil adı</string>
     <string name="ManageProfileFragment_username">Kullanıcı adı</string>
     <string name="ManageProfileFragment_about">Hakkında</string>
@@ -2241,7 +2241,7 @@
     <!-- Displayed when the chosen discriminator is too long -->
     <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Geçersiz kullanıcı adı, maksimum %1$d hane gir.</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
-    <string name="UsernameEditFragment_recovery_dialog_confirmation">Recovering your username will reset your existing QR code and link. Are you sure?</string>
+    <string name="UsernameEditFragment_recovery_dialog_confirmation">Kullanıcı adını kurtarmak, mevcut kare kodunu ve bağlantını sıfırlar. Emin misin?</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d kişi Signal\'e katıldı!</item>
@@ -2430,17 +2430,17 @@
 
     <!-- NewWaysToConnectDialogFragment -->
     <!-- Fragment title, displayed at the top of the content -->
-    <string name="NewWaysToConnectDialogFragment__new_ways_to_connect">Bağlanmanın Yeni Yolları</string>
+    <string name="NewWaysToConnectDialogFragment__new_ways_to_connect">Bağlanmanın yeni yolları</string>
     <!-- Row item title for phone number privacy explainer -->
-    <string name="NewWaysToConnectDialogFragment__phone_number_privacy">Telefon Numarası Gizliliği</string>
+    <string name="NewWaysToConnectDialogFragment__phone_number_privacy">Telefon numarası gizliliği</string>
     <!-- Row item description for phone number privacy explainer -->
-    <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">Your phone number is no longer shared with chats. If your number is saved to a friend\'s contacts, they will still see it.</string>
+    <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">Telefon numaran artık sohbetlerde paylaşılmıyor. Numaran bir arkadaşının kişilerinde kayıtlıysa, numaranı yine görecektir.</string>
     <!-- Row item title for usernames explainer -->
     <string name="NewWaysToConnectDialogFragment__usernames">Kullanıcı adları</string>
     <!-- Row item description for usernames explainer -->
-    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">People can now message you using your optional username so you don\'t have to give out your phone number. Usernames aren\'t visible on your profile.</string>
+    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">İnsanlar artık isteğe bağlı kullanıcı adını kullanarak sana mesaj gönderebilir böylece telefon numaranı vermene gerek kalmaz. Kullanıcı adları profilinde görünmez.</string>
     <!-- Row item title for qr code and links explainer -->
-    <string name="NewWaysToConnectDialogFragment__qr_codes_and_links">Kare Kodlar ve Bağlantılar</string>
+    <string name="NewWaysToConnectDialogFragment__qr_codes_and_links">Kare kodlar ve bağlantılar</string>
     <!-- Row item description for qr code and links explainer -->
     <string name="NewWaysToConnectDialogFragment__usernames_have_a_unique_qr_code">Kullanıcı adlarının, seninle hızla bir sohbet başlatmak için arkadaşlarınla paylaşabileceğin benzersiz bir kare kodu ve bağlantısı vardır.</string>
     <!-- Button label for not right now -->
@@ -3790,17 +3790,17 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Numaramı kimler görebilir?</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see_your">Nobody will see your phone number on Signal, even when messaging them.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see_your">Signal\'de mesajlaşırken bile hiç kimse telefon numaranı görmez.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Kimler beni numaram ile bulabilir?</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
     <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">Telefon numaran, ileti gönderdiğin kişiler ve gruplar tarafından görülür. Numaranı kişilerine ekleyen insanlar da seni Signal\'de görebilir.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__anyone_who_has">Anyone who has your phone number will see you\'re on Signal and can start chats with you.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__anyone_who_has">Telefon numaranı bilen herkes Signal\'de olduğunu görecek ve seninle sohbet başlatabilecektir.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_be_able_to_see">Nobody will be able to see you\'re on Signal unless you message them or have an existing chat with them.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_be_able_to_see">Ona mesaj göndermediğin veya mevcut bir sohbetin olmadığı sürece kimse Signal\'de olduğunu göremez.</string>
     <!-- Snackbar text when pressing invalid radio item -->
-    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"To change this setting, set Who can see my number to Nobody."</string>
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"Bu ayarı değiştirmek için Numaramı kimler görebilir seçeneğini Hiç kimse olarak ayarla."</string>
     <string name="PhoneNumberPrivacy_everyone">Herkes</string>
     <string name="PhoneNumberPrivacy_nobody">Hiç kimse</string>
     <string name="preferences_app_protection__screen_lock">Ekran kilidi</string>

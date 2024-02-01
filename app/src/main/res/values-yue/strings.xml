@@ -547,7 +547,7 @@
     <!-- Message shown in top toast to indicate the named profile is on -->
     <string name="ConversationListFragment__s_on">%1$s 揀揀單單</string>
     <!-- -->
-    <string name="ConversationListFragment_username_recovered_toast">Your QR code and link have been reset and your username is %1$s</string>
+    <string name="ConversationListFragment_username_recovered_toast">你嘅二維碼同連結已經重設，你嘅用戶名稱係 %1$s</string>
 
     <!-- ConversationListItem -->
     <string name="ConversationListItem_key_exchange_message">金鑰交換訊息</string>
@@ -965,7 +965,7 @@
 
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
-    <string name="ManageProfileFragment__your_username">Your username, QR code and link aren\'t visible on your profile. Only share your username with people you trust.</string>
+    <string name="ManageProfileFragment__your_username">你嘅用戶名稱、二維碼同連結唔會喺個人檔案度顯示。記得淨係好同你信任嘅人分享你嘅用戶名稱呀。</string>
     <string name="ManageProfileFragment_profile_name">個人資料名稱</string>
     <string name="ManageProfileFragment_username">使用者名稱</string>
     <string name="ManageProfileFragment_about">關於</string>
@@ -2162,7 +2162,7 @@
     <!-- Displayed when the chosen discriminator is too long -->
     <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">用戶名稱無效，請輸入最多 %1$d 位數字。</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
-    <string name="UsernameEditFragment_recovery_dialog_confirmation">Recovering your username will reset your existing QR code and link. Are you sure?</string>
+    <string name="UsernameEditFragment_recovery_dialog_confirmation">恢復用戶名稱會將你宜家用緊嘅二維碼同連結重設。你係咪確定？</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="other">%1$d 位聯絡人開咗 Signal 喇！</item>
@@ -2352,15 +2352,15 @@
     <!-- Row item title for phone number privacy explainer -->
     <string name="NewWaysToConnectDialogFragment__phone_number_privacy">電話號碼私隱</string>
     <!-- Row item description for phone number privacy explainer -->
-    <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">Your phone number is no longer shared with chats. If your number is saved to a friend\'s contacts, they will still see it.</string>
+    <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">你嘅電話號碼已經唔再喺聊天度共享。不過如果朋友儲存咗你做聯絡人，就會繼續睇到你嘅號碼。</string>
     <!-- Row item title for usernames explainer -->
     <string name="NewWaysToConnectDialogFragment__usernames">用戶名稱</string>
     <!-- Row item description for usernames explainer -->
-    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">People can now message you using your optional username so you don\'t have to give out your phone number. Usernames aren\'t visible on your profile.</string>
+    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">其他人而家可以用你選填嘅用戶名稱傳送訊息俾你，咁你就唔使再俾電話號碼人喇。用戶名稱唔會喺個人檔案度顯示。</string>
     <!-- Row item title for qr code and links explainer -->
     <string name="NewWaysToConnectDialogFragment__qr_codes_and_links">二維碼同連結</string>
     <!-- Row item description for qr code and links explainer -->
-    <string name="NewWaysToConnectDialogFragment__usernames_have_a_unique_qr_code">每個用戶名稱都有專屬嘅二維碼同埋連結，方便你同朋友分享，即刻開始傾計。</string>
+    <string name="NewWaysToConnectDialogFragment__usernames_have_a_unique_qr_code">每個用戶名稱都有專屬嘅二維碼同埋連結，方便你同朋友分享，即刻開始聊天。</string>
     <!-- Button label for not right now -->
     <string name="NewWaysToConnectDialogFragment__not_now">遲啲先啦</string>
     <!-- Button label for continue -->
@@ -3685,17 +3685,17 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">邊個可以睇到我嘅手機號碼</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see_your">Nobody will see your phone number on Signal, even when messaging them.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see_your">就算你傳送訊息俾人，都冇人會喺 Signal 度睇到你嘅電話號碼。</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">邊個可以用手機號碼搵到我</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
     <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">同你通訊嘅用戶同埋群組都可以睇到你嘅手機號碼。如果對方喺手機通訊錄入面儲存咗你嘅手機號碼，都會喺 Signal 度睇到。</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__anyone_who_has">Anyone who has your phone number will see you\'re on Signal and can start chats with you.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__anyone_who_has">任何有你電話號碼嘅人都會睇到你用緊 Signal，同埋可以開始聊天。</string>
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_be_able_to_see">Nobody will be able to see you\'re on Signal unless you message them or have an existing chat with them.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_be_able_to_see">除非你向對方傳送訊息或者雙方已經有聊天紀錄，如果唔係冇人會睇到你用緊 Signal。</string>
     <!-- Snackbar text when pressing invalid radio item -->
-    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"To change this setting, set Who can see my number to Nobody."</string>
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"要更改呢個設定，請將「邊個可以睇到我嘅手機號碼」設定為「邊個都唔得」。"</string>
     <string name="PhoneNumberPrivacy_everyone">任何人都得</string>
     <string name="PhoneNumberPrivacy_nobody">邊個都唔得</string>
     <string name="preferences_app_protection__screen_lock">畫面鎖</string>

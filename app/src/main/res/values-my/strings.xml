@@ -547,7 +547,7 @@
     <!-- Message shown in top toast to indicate the named profile is on -->
     <string name="ConversationListFragment__s_on">%1$s ရှိနေပါသည်</string>
     <!-- -->
-    <string name="ConversationListFragment_username_recovered_toast">Your QR code and link have been reset and your username is %1$s</string>
+    <string name="ConversationListFragment_username_recovered_toast">သင်၏ QR ကုဒ်နှင့် လင့်ခ်ကို ပြန်လည်သတ်မှတ်လိုက်ပြီး သင့်သုံးစွဲသူအမည်သည် %1$s ဖြစ်ပါသည်</string>
 
     <!-- ConversationListItem -->
     <string name="ConversationListItem_key_exchange_message">ကီးအလဲအလှယ် စာသား</string>
@@ -965,7 +965,7 @@
 
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
-    <string name="ManageProfileFragment__your_username">Your username, QR code and link aren\'t visible on your profile. Only share your username with people you trust.</string>
+    <string name="ManageProfileFragment__your_username">သင်၏ သုံးစွဲသူအမည်၊ QR ကုဒ်နှင့် လင့်ခ်တို့ကို သင့်ပရိုဖိုင်တွင် မမြင်တွေ့နိုင်ပါ။ သင့်သုံးစွဲသူအမည်ကို သင် ယုံကြည်သူများနှင့်သာ မျှဝေပေးပါ။</string>
     <string name="ManageProfileFragment_profile_name">ပရိုဖိုင်း အမည်</string>
     <string name="ManageProfileFragment_username">သုံးသူအမည်</string>
     <string name="ManageProfileFragment_about">အကြောင်း</string>
@@ -2162,7 +2162,7 @@
     <!-- Displayed when the chosen discriminator is too long -->
     <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">သုံးစွဲသူအမည် မမှန်ကန်ပါ၊ အများဆုံး ဂဏန်း %1$d လုံး ရိုက်ထည့်ပါ။</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
-    <string name="UsernameEditFragment_recovery_dialog_confirmation">Recovering your username will reset your existing QR code and link. Are you sure?</string>
+    <string name="UsernameEditFragment_recovery_dialog_confirmation">သင်၏ သုံးစွဲသူအမည်ကို ပြန်လည်ရယူပါက သင့်မူလ QR ကုဒ်နှင့် လင့်ခ်ကို ပြန်လည်သတ်မှတ်လိုက်ပါမည်။ သေချာပါသလား။</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="other">အဆက်အသွယ် %1$d ဦးသည် Signal ပေါ်ရှိပါသည်!</item>
@@ -2348,23 +2348,23 @@
 
     <!-- NewWaysToConnectDialogFragment -->
     <!-- Fragment title, displayed at the top of the content -->
-    <string name="NewWaysToConnectDialogFragment__new_ways_to_connect">New ways to connect</string>
+    <string name="NewWaysToConnectDialogFragment__new_ways_to_connect">ချိတ်ဆက်ရန် နည်းလမ်းသစ်များ</string>
     <!-- Row item title for phone number privacy explainer -->
-    <string name="NewWaysToConnectDialogFragment__phone_number_privacy">Phone number privacy</string>
+    <string name="NewWaysToConnectDialogFragment__phone_number_privacy">ဖုန်းနံပါတ် ကိုယ်ပိုင်အချက်အလက်လုံခြုံရေး</string>
     <!-- Row item description for phone number privacy explainer -->
-    <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">Your phone number is no longer shared with chats. If your number is saved to a friend\'s contacts, they will still see it.</string>
+    <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">ချက်(တ်)များတွင် သင့်ဖုန်းနံပါတ်ကို မျှဝေပေးခြင်းမပြုတော့ပါ။ သင့်ဖုန်းနံပါတ်ကို မိတ်ဆွေတစ်ဦး၏ အဆက်အသွယ်များထဲတွင် သိမ်းထားပါက ၎င်းတို့က မြင်တွေ့ရဦးမည်ဖြစ်သည်။</string>
     <!-- Row item title for usernames explainer -->
-    <string name="NewWaysToConnectDialogFragment__usernames">Usernames</string>
+    <string name="NewWaysToConnectDialogFragment__usernames">သုံးစွဲသူအမည်များ</string>
     <!-- Row item description for usernames explainer -->
-    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">People can now message you using your optional username so you don\'t have to give out your phone number. Usernames aren\'t visible on your profile.</string>
+    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">ယခုအခါ လူအများသည် သင်၏ ရွေးချယ်နိုင်သော သုံးစွဲသူအမည်ကို အသုံးပြုလျက် သင့်ထံ မက်ဆေ့ချ်ပို့နိုင်ပြီဖြစ်၍ သင့်ဖုန်းနံပါတ်ကို မပေးရတော့ပါ။ သုံးစွဲသူအမည်များကို သင့်ပရိုဖိုင်တွင် မမြင်တွေ့နိုင်ပါ။</string>
     <!-- Row item title for qr code and links explainer -->
-    <string name="NewWaysToConnectDialogFragment__qr_codes_and_links">QR codes and links</string>
+    <string name="NewWaysToConnectDialogFragment__qr_codes_and_links">QR ကုဒ်များနှင့် လင့်ခ်များ</string>
     <!-- Row item description for qr code and links explainer -->
-    <string name="NewWaysToConnectDialogFragment__usernames_have_a_unique_qr_code">Usernames have a unique QR code and link you can share with friends to quickly start a chat with you.</string>
+    <string name="NewWaysToConnectDialogFragment__usernames_have_a_unique_qr_code">သုံးစွဲသူအမည်များတွင် သင်နှင့် လျင်မြန်စွာ ချက်(တ်)စတင်နိုင်ရန် မိတ်ဆွေများထံ ဝေမျှနိုင်သည့် သီးသန့် QR ကုဒ်နှင့် လင့်ခ်တစ်ခု ရှိပါသည်။</string>
     <!-- Button label for not right now -->
     <string name="NewWaysToConnectDialogFragment__not_now">ယခု မလုပ်သေးပါ</string>
     <!-- Button label for continue -->
-    <string name="NewWaysToConnectDialogFragment__set_up_your_username">Set up your username</string>
+    <string name="NewWaysToConnectDialogFragment__set_up_your_username">သင့်သုံးစွဲသူအမည်ကို စီစဉ်သတ်မှတ်ရန်</string>
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">ဗွီဒီယိုဖွင့်ပါ</string>
@@ -3685,17 +3685,17 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">ကျွန်ုပ်၏ ဖုန်းနံပါတ်ကို မြင်နိုင်သူများ</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see_your">Nobody will see your phone number on Signal, even when messaging them.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see_your">သင် ၎င်းတို့ကို မက်ဆေ့ချ်ပို့လျှင်ပင် Signal တွင် သင့်ဖုန်းနံပါတ်ကို မည်သူမျှ မြင်တွေ့ရမည်မဟုတ်ပါ။</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">ဖုန်းနံပါတ်ဖြင့် ကျွန်ုပ်ကို ရှာနိုင်သူများ</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
     <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">သင် မက်ဆေ့ချ်ပို့သော လူများနှင့် အဖွဲ့များသည် သင့်ဖုန်းနံပါတ်ကို မြင်တွေ့ရပါမည်။ သင့်ဖုန်းနံပါတ်ကို ဖုန်းအဆက်အသွယ်များထဲတွင် ထည့်ထားသူများသည်လည်း သင့်ဖုန်းနံပါတ်ကို Signal ပေါ်တွင် တွေ့ရှိရပါမည်။</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__anyone_who_has">Anyone who has your phone number will see you\'re on Signal and can start chats with you.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__anyone_who_has">သင့်ဖုန်းနံပါတ် ရှိသူတိုင်းသည် သင် Signal သုံးနေကြောင်း မြင်တွေ့နိုင်ပြီး သင်နှင့် ချက်(တ်)စတင်နိုင်ပါသည်။</string>
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_be_able_to_see">Nobody will be able to see you\'re on Signal unless you message them or have an existing chat with them.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_be_able_to_see">သင် ၎င်းတို့ကို မက်ဆေ့ချ်မပို့ပါက သို့မဟုတ် ၎င်းတို့နှင့် ပြောလက်စ ချက်(တ်)တစ်ခု မရှိပါက သင် Signal သုံးနေကြောင်း မည်သူမျှ မြင်တွေ့ရမည်မဟုတ်ပါ။</string>
     <!-- Snackbar text when pressing invalid radio item -->
-    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"To change this setting, set Who can see my number to Nobody."</string>
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"ဤဆက်တင်ကို ပြောင်းရန် ကျွန်ုပ်၏နံပါတ်ကို မည်သူတို့မြင်တွေ့နိုင်သနည်းအား Nobody ဟု သတ်မှတ်ပါ။"</string>
     <string name="PhoneNumberPrivacy_everyone">လူသားတိုင်း</string>
     <string name="PhoneNumberPrivacy_nobody">ဘယ်သူမှ</string>
     <string name="preferences_app_protection__screen_lock">စကင်ရင် ပိတ်ထားခြင်း</string>
@@ -6095,7 +6095,7 @@
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__set_up_your_signal_username">သင်၏ Signal သုံးစွဲသူအမည်ကို သတ်မှတ်ပါ</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__introducing_phone_number_privacy">Introducing phone number privacy, optional usernames and links.</string>
+    <string name="SetUpYourUsername__introducing_phone_number_privacy">ဖုန်းနံပါတ် ကိုယ်ပိုင်အချက်အလက် လုံခြုံရေး၊ ရွေးချယ်နိုင်သော သုံးစွဲသူအမည်များနှင့် လင့်ခ်များအကြောင်း မိတ်ဆက်ပေးခြင်း။</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__dismiss">ပယ်ရန်</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->

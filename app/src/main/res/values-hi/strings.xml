@@ -563,7 +563,7 @@
     <!-- Message shown in top toast to indicate the named profile is on -->
     <string name="ConversationListFragment__s_on">%1$s ऑन है</string>
     <!-- -->
-    <string name="ConversationListFragment_username_recovered_toast">Your QR code and link have been reset and your username is %1$s</string>
+    <string name="ConversationListFragment_username_recovered_toast">आपका QR कोड और लिंक फिर से स्थापित कर दिया गया है और आपका यूज़रनेम %1$s है</string>
 
     <!-- ConversationListItem -->
     <string name="ConversationListItem_key_exchange_message">की विनिमय मेसेज</string>
@@ -999,7 +999,7 @@
 
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
-    <string name="ManageProfileFragment__your_username">Your username, QR code and link aren\'t visible on your profile. Only share your username with people you trust.</string>
+    <string name="ManageProfileFragment__your_username">आपका यूज़रनेम, QR कोड और लिंक आपके प्रोफाइल पर दिखाई नहीं दे रहे हैं। अपना यूज़रनेम केवल उन लोगों के साथ साझा करें जिन पर आपको भरोसा है।</string>
     <string name="ManageProfileFragment_profile_name">प्रोफ़ाइल नाम</string>
     <string name="ManageProfileFragment_username">उपयोगकर्ता नाम</string>
     <string name="ManageProfileFragment_about">हमारे बारे में</string>
@@ -2241,7 +2241,7 @@
     <!-- Displayed when the chosen discriminator is too long -->
     <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">अमान्य यूज़रनेम, अधिकतम %1$d अंक दर्ज करें।</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
-    <string name="UsernameEditFragment_recovery_dialog_confirmation">Recovering your username will reset your existing QR code and link. Are you sure?</string>
+    <string name="UsernameEditFragment_recovery_dialog_confirmation">आपके यूज़रनेम को रिकवर करने से आपका मौजूदा QR कोड और लिंक फिर से स्थापित हो जाएगा। क्या आपको यकीन है?</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d संपर्क सिग्नल पर है!</item>
@@ -2432,13 +2432,13 @@
     <!-- Fragment title, displayed at the top of the content -->
     <string name="NewWaysToConnectDialogFragment__new_ways_to_connect">जुड़ने के नए तरीके</string>
     <!-- Row item title for phone number privacy explainer -->
-    <string name="NewWaysToConnectDialogFragment__phone_number_privacy">फ़ोन नंबर गोपनीयता</string>
+    <string name="NewWaysToConnectDialogFragment__phone_number_privacy">फ़ोन नंबर निजता</string>
     <!-- Row item description for phone number privacy explainer -->
-    <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">Your phone number is no longer shared with chats. If your number is saved to a friend\'s contacts, they will still see it.</string>
+    <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">आपका फ़ोन नंबर अब चैट के साथ साझा नहीं किया जाएगा। यदि आपका नंबर किसी मित्र के संपर्कों में सहेजा गया है, तो भी वे इसे देखेंगे।</string>
     <!-- Row item title for usernames explainer -->
-    <string name="NewWaysToConnectDialogFragment__usernames">यूज़रनेम</string>
+    <string name="NewWaysToConnectDialogFragment__usernames">यूज़रनेम</string>
     <!-- Row item description for usernames explainer -->
-    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">People can now message you using your optional username so you don\'t have to give out your phone number. Usernames aren\'t visible on your profile.</string>
+    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">लोग अब आपका वैकल्पिक यूज़रनेम इस्तेमाल करके आपको संदेश भेज सकते हैं, ताकि आपको अपना फोन नंबर न देना पड़े। आपकी प्रोफ़ाइल पर यूज़रनेम दिखाई नहीं दे रहे हैं।</string>
     <!-- Row item title for qr code and links explainer -->
     <string name="NewWaysToConnectDialogFragment__qr_codes_and_links">QR कोड और लिंक</string>
     <!-- Row item description for qr code and links explainer -->
@@ -3790,17 +3790,17 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">मेरा नंबर कौन देख सकता है</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see_your">Nobody will see your phone number on Signal, even when messaging them.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see_your">Signal पर कोई भी आपका फोन नंबर नहीं देख पाएगा, उन्हें संदेश करते समय भी नहीं।</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">मुझे नंबर से कौन ढूंढ सकता है</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
     <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">आपका फ़ोन नंबर उन लोगों और ग्रुप्स को दिखेगा जिन्हें आप मेसेज भेजेंगे। वे लोग जिनके फोन संपर्कों में आपका नंबर है, वे भी Signal पर इसे देख पाएँगे।</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__anyone_who_has">Anyone who has your phone number will see you\'re on Signal and can start chats with you.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__anyone_who_has">जिस किसी के पास आपका फोन नंबर है, वो आपको Signal पर देख सकेगा और आपसे चैट शुरू कर सकता है।</string>
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_be_able_to_see">Nobody will be able to see you\'re on Signal unless you message them or have an existing chat with them.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_be_able_to_see">कोई भी यह नहीं देख पाएगा कि आप Signal पर हैं, जब तक कि आप उन्हें संदेश न भेजें या उनके साथ चैट न करें।</string>
     <!-- Snackbar text when pressing invalid radio item -->
-    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"To change this setting, set Who can see my number to Nobody."</string>
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"इस सेटिंग को बदलने के लिए, ‘मेरा नंबर कौन देख सकता है’ को ‘कोई नहीं’ पर सेट करें।"</string>
     <string name="PhoneNumberPrivacy_everyone">सभी</string>
     <string name="PhoneNumberPrivacy_nobody">कोई नहीं</string>
     <string name="preferences_app_protection__screen_lock">स्क्रीन लॉक</string>
