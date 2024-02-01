@@ -76,6 +76,7 @@ import org.thoughtcrime.securesms.profiles.manage.UsernameRepository.UsernameAci
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.CommunicationActions;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.UsernameUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -141,6 +142,7 @@ public final class ContactSelectionListFragment extends LoggingFragment {
   private ContactSearchMediator           contactSearchMediator;
 
   @Nullable private NewConversationCallback              newConversationCallback;
+  @Nullable private FindByCallback                       findByCallback;
   @Nullable private NewCallCallback                      newCallCallback;
   @Nullable private ScrollCallback                       scrollCallback;
   @Nullable private OnItemLongClickListener              onItemLongClickListener;
@@ -159,6 +161,10 @@ public final class ContactSelectionListFragment extends LoggingFragment {
 
     if (context instanceof NewConversationCallback) {
       newConversationCallback = (NewConversationCallback) context;
+    }
+
+    if (context instanceof FindByCallback) {
+      findByCallback = (FindByCallback) context;
     }
 
     if (context instanceof NewCallCallback) {
@@ -377,6 +383,16 @@ public final class ContactSelectionListFragment extends LoggingFragment {
               @Override
               public void onNewGroupClicked() {
                 newConversationCallback.onNewGroup(false);
+              }
+
+              @Override
+              public void onFindByPhoneNumberClicked() {
+                findByCallback.onFindByPhoneNumber();
+              }
+
+              @Override
+              public void onFindByUsernameClicked() {
+                findByCallback.onFindByUsername();
               }
 
               @Override
@@ -660,6 +676,10 @@ public final class ContactSelectionListFragment extends LoggingFragment {
     }
   }
 
+  public void addRecipientToSelectionIfAble(@NonNull RecipientId recipientId) {
+    listClickListener.onItemClick(new ContactSearchKey.RecipientSearchKey(recipientId, false));
+  }
+
   private class ListClickListener {
     public void onItemClick(ContactSearchKey contact) {
       boolean         isUnknown       = contact instanceof ContactSearchKey.UnknownRecipientKey;
@@ -874,6 +894,11 @@ public final class ContactSelectionListFragment extends LoggingFragment {
         builder.arbitrary(ContactSelectionListAdapter.ArbitraryRepository.ArbitraryRow.NEW_GROUP.getCode());
       }
 
+      if (findByCallback != null && FeatureFlags.usernames()) {
+        builder.arbitrary(ContactSelectionListAdapter.ArbitraryRepository.ArbitraryRow.FIND_BY_USERNAME.getCode());
+        builder.arbitrary(ContactSelectionListAdapter.ArbitraryRepository.ArbitraryRow.FIND_BY_PHONE_NUMBER.getCode());
+      }
+
       if (transportType != null) {
         if (!hasQuery && includeRecents) {
           builder.addSection(new ContactSearchConfiguration.Section.Recents(
@@ -891,7 +916,7 @@ public final class ContactSelectionListFragment extends LoggingFragment {
         builder.addSection(new ContactSearchConfiguration.Section.Individuals(
             includeSelf,
             transportType,
-            newCallCallback == null,
+            newCallCallback == null && findByCallback == null,
             null,
             !hideLetterHeaders()
         ));
@@ -1009,6 +1034,12 @@ public final class ContactSelectionListFragment extends LoggingFragment {
     void onInvite();
 
     void onNewGroup(boolean forceV1);
+  }
+
+  public interface FindByCallback {
+    void onFindByUsername();
+
+    void onFindByPhoneNumber();
   }
 
   public interface NewCallCallback {

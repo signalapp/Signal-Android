@@ -17,6 +17,8 @@ import org.signal.core.ui.Dialogs.SimpleMessageDialog
 
 object Dialogs {
 
+  const val NoDismiss = ""
+
   @Composable
   fun SimpleMessageDialog(
     message: String,
@@ -48,10 +50,10 @@ object Dialogs {
     title: String,
     body: String,
     confirm: String,
-    dismiss: String,
     onConfirm: () -> Unit,
     onDismiss: () -> Unit,
     modifier: Modifier = Modifier,
+    dismiss: String = NoDismiss,
     confirmColor: Color = Color.Unspecified,
     dismissColor: Color = Color.Unspecified,
     properties: DialogProperties = DialogProperties()
@@ -68,10 +70,14 @@ object Dialogs {
           Text(text = confirm, color = confirmColor)
         }
       },
-      dismissButton = {
-        TextButton(onClick = onDismiss) {
-          Text(text = dismiss, color = dismissColor)
+      dismissButton = if (dismiss.isNotEmpty()) {
+        {
+          TextButton(onClick = onDismiss) {
+            Text(text = dismiss, color = dismissColor)
+          }
         }
+      } else {
+        null
       },
       modifier = modifier,
       properties = properties

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:viewBindingIgnore="true"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:viewBindingIgnore="true">
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -21,8 +21,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:navigationIcon="@drawable/ic_arrow_left_24"
-            app:titleTextAppearance="@style/Signal.Text.Title"
-            app:title="@string/AddMembersActivity__add_members" />
+            app:title="@string/AddMembersActivity__add_members"
+            app:titleTextAppearance="@style/Signal.Text.Title" />
 
         <org.thoughtcrime.securesms.components.ContactFilterView
             android:id="@+id/contact_filter_edit_text"
@@ -30,9 +30,10 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dsl_settings_gutter"
             android:layout_marginTop="4dp"
-            android:layout_marginBottom="12dp"
             android:layout_marginRight="@dimen/dsl_settings_gutter"
-            android:minHeight="44dp" />
+            android:layout_marginBottom="12dp"
+            android:minHeight="44dp"
+            app:cfv_autoFocus="false" />
 
         <fragment
             android:id="@+id/contact_selection_list_fragment"

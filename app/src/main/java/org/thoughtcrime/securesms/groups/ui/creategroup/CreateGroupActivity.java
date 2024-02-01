@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -26,11 +27,14 @@ import org.thoughtcrime.securesms.groups.ui.creategroup.details.AddGroupDetailsA
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.recipients.ui.findby.FindByActivity;
+import org.thoughtcrime.securesms.recipients.ui.findby.FindByMode;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.signal.core.util.Stopwatch;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -38,14 +42,16 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-public class CreateGroupActivity extends ContactSelectionActivity {
+public class CreateGroupActivity extends ContactSelectionActivity implements ContactSelectionListFragment.FindByCallback {
 
   private static final String TAG = Log.tag(CreateGroupActivity.class);
 
   private static final short REQUEST_CODE_ADD_DETAILS = 17275;
 
-  private MaterialButton       skip;
-  private FloatingActionButton next;
+  private MaterialButton                     skip;
+  private FloatingActionButton               next;
+  private ActivityResultLauncher<FindByMode> findByActivityLauncher;
+
 
   public static Intent newIntent(@NonNull Context context) {
     Intent intent = new Intent(context, CreateGroupActivity.class);
@@ -77,6 +83,12 @@ public class CreateGroupActivity extends ContactSelectionActivity {
 
     skip.setOnClickListener(v -> handleNextPressed());
     next.setOnClickListener(v -> handleNextPressed());
+
+    findByActivityLauncher = registerForActivityResult(new FindByActivity.Contract(), result -> {
+      if (result != null) {
+        contactsFragment.addRecipientToSelectionIfAble(result);
+      }
+    });
   }
 
   @Override
@@ -129,6 +141,16 @@ public class CreateGroupActivity extends ContactSelectionActivity {
     } else {
       getToolbar().setTitle(getResources().getQuantityString(R.plurals.CreateGroupActivity__d_members, selectedMembers, selectedMembers));
     }
+  }
+
+  @Override
+  public void onFindByPhoneNumber() {
+    findByActivityLauncher.launch(FindByMode.PHONE_NUMBER);
+  }
+
+  @Override
+  public void onFindByUsername() {
+    findByActivityLauncher.launch(FindByMode.USERNAME);
   }
 
   private void extendSkip() {

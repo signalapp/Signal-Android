@@ -50,6 +50,8 @@ import org.thoughtcrime.securesms.groups.ui.creategroup.CreateGroupActivity;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.recipients.ui.findby.FindByActivity;
+import org.thoughtcrime.securesms.recipients.ui.findby.FindByMode;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 
@@ -70,14 +72,15 @@ import io.reactivex.rxjava3.disposables.Disposable;
  * @author Moxie Marlinspike
  */
 public class NewConversationActivity extends ContactSelectionActivity
-    implements ContactSelectionListFragment.NewConversationCallback, ContactSelectionListFragment.OnItemLongClickListener
+    implements ContactSelectionListFragment.NewConversationCallback, ContactSelectionListFragment.OnItemLongClickListener, ContactSelectionListFragment.FindByCallback
 {
 
   @SuppressWarnings("unused")
   private static final String TAG = Log.tag(NewConversationActivity.class);
 
-  private ContactsManagementViewModel    viewModel;
-  private ActivityResultLauncher<Intent> contactLauncher;
+  private ContactsManagementViewModel        viewModel;
+  private ActivityResultLauncher<Intent>     contactLauncher;
+  private ActivityResultLauncher<FindByMode> findByLauncher;
 
   private final LifecycleDisposable disposables = new LifecycleDisposable();
 
@@ -96,6 +99,12 @@ public class NewConversationActivity extends ContactSelectionActivity
     contactLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), activityResult -> {
       if (activityResult.getResultCode() != RESULT_CANCELED) {
         handleManualRefresh();
+      }
+    });
+
+    findByLauncher = registerForActivityResult(new FindByActivity.Contract(), result -> {
+      if (result != null) {
+        launch(result);
       }
     });
 
@@ -163,7 +172,12 @@ public class NewConversationActivity extends ContactSelectionActivity
   }
 
   private void launch(Recipient recipient) {
-    Disposable disposable = ConversationIntents.createBuilder(this, recipient.getId(), -1L)
+    launch(recipient.getId());
+  }
+
+
+  private void launch(RecipientId recipientId) {
+    Disposable disposable = ConversationIntents.createBuilder(this, recipientId, -1L)
                                                .map(builder -> builder
                                                    .withDraftText(getIntent().getStringExtra(Intent.EXTRA_TEXT))
                                                    .withDataUri(getIntent().getData())
@@ -232,6 +246,16 @@ public class NewConversationActivity extends ContactSelectionActivity
   public void onNewGroup(boolean forceV1) {
     handleCreateGroup();
     finish();
+  }
+
+  @Override
+  public void onFindByUsername() {
+    findByLauncher.launch(FindByMode.USERNAME);
+  }
+
+  @Override
+  public void onFindByPhoneNumber() {
+    findByLauncher.launch(FindByMode.PHONE_NUMBER);
   }
 
   @Override
