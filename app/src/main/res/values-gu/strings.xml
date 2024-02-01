@@ -608,9 +608,9 @@
     <!-- Toolbar title for this screen -->
     <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">મને નંબરથી કોણ શોધી શકે?</string>
     <!-- Description for radio item stating anyone can see your phone number -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">તમારો ફોન નંબર જેની પણ સંપર્ક સૂચિમાં હશે તે કોઈ પણ તમને Signalમાં સંપર્ક તરીકે જોશે. અન્ય લોકો તમારો નંબર સર્ચ કરીને તમને શોધી શકશે.</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">Anyone who has your phone number will see you\'re on Signal and can start chats with you.</string>
     <!-- Description for radio item stating no one will be able to see your phone number -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">Signal પર કોઈ પણ તમને તમારા ફોન નંબરથી શોધી નહીં શકે.</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Nobody will be able to see you\'re on Signal unless you message them or have an existing chat with them.</string>
 
     <!-- ChooseBackupFragment -->
     <string name="ChooseBackupFragment__restore_from_backup">બૅકઅપમાંથી રિસ્ટોર કરીએ?</string>
@@ -1587,7 +1587,7 @@
 
     <!-- DeviceProvisioningActivity -->
     <string name="DeviceProvisioningActivity_link_this_device">આ ઉપકરણને લિંક કરીએ?</string>
-    <string name="DeviceProvisioningActivity_continue">ચાલુ રાખો</string>
+    <string name="DeviceProvisioningActivity_continue">Continue</string>
 
     <string name="DeviceProvisioningActivity_content_intro">તે સમર્થ હશે</string>
     <string name="DeviceProvisioningActivity_content_bullets">
@@ -2240,6 +2240,10 @@
     <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">અમાન્ય યુઝરનેમ, ઓછામાં ઓછા %1$d અંકો દાખલ કરો.</string>
     <!-- Displayed when the chosen discriminator is too long -->
     <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">અમાન્ય યુઝરનેમ, વધુમાં વધુ %1$d અંકો દાખલ કરો.</string>
+    <!-- Displayed when the chosen discriminator is 00 -->
+    <string name="UsernameEditFragment__this_number_cant_be_00">This number can\'t be 00. Enter a digit between 1–9</string>
+    <!-- Displayed when the chosen discriminator starts with 00 -->
+    <string name="UsernameEditFragment__this_number_cant_start_with_00">This number can\'t start with 00. Enter a digit between 1–9</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">તમારું યુઝરનેમ નામ રિકવર કરવાથી તમારો હાલનો QR કોડ અને લિંક ફરીથી સેટ થશે. તમને ખાતરી છે?</string>
 
@@ -3794,7 +3798,7 @@
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">મને નંબરથી કોણ શોધી શકે</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">તમારો ફોન નંબર એ લોકો અને ગ્રૂપને દેખાશે જેમને તમે મેસેજ કરો છો. જે લોકોના ફોન સંપર્કોમાં તમારો નંબર હશે તેઓ પણ તેને Signal પર જોશે.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number_will_be">Your phone number will be visible to people and groups you message.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
     <string name="PhoneNumberPrivacySettingsFragment__anyone_who_has">જેમની પાસે તમારો ફોન નંબર હોય તે કોઈ પણને દેખાશે કે તમે Signal પર છો અને તમારી સાથે ચેટ શરૂ કરી શકે છે.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
@@ -4413,27 +4417,6 @@
     <!-- ChatsSettingsFragment -->
     <string name="ChatsSettingsFragment__keyboard">કીબોર્ડ</string>
     <string name="ChatsSettingsFragment__enter_key_sends">કી મોકલો દાખલ કરો</string>
-
-    <!--SmsSettingsFragment -->
-    <string name="SmsSettingsFragment__use_as_default_sms_app">ડિફોલ્ટ SMS એપ્લિકેશન તરીકે ઉપયોગ કરો</string>
-    <!-- Preference title to export sms -->
-    <string name="SmsSettingsFragment__export_sms_messages">SMS મેસેજ એક્સપોર્ટ કરો</string>
-    <!-- Preference title to re-export sms -->
-    <string name="SmsSettingsFragment__export_sms_messages_again">SMS મેસેજ ફરીથી એક્સપોર્ટ કરો</string>
-    <!-- Preference title to delete sms -->
-    <string name="SmsSettingsFragment__remove_sms_messages">SMS મેસેજ દૂર કરો</string>
-    <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Signalમાંથી SMS મેસેજ દૂર કરીએ છીએ…</string>
-    <!-- Snackbar text to indicate can delete later -->
-    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">તમે કોઈપણ સમયે સેટિંગ્સમાં Signalમાંથી SMS મેસેજ દૂર કરી શકો છો.</string>
-    <!-- Description for export sms preference -->
-    <string name="SmsSettingsFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">તમે તમારા SMS મેસેજને તમારા ફોનના SMS ડેટાબેઝમાં એક્સપોર્ટ કરી શકો છો</string>
-    <!-- Description for re-export sms preference -->
-    <string name="SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages">ફરીથી એક્સપોર્ટ કરવાથી મેસેજ ડુપ્લિકેટ થઈ શકે છે.</string>
-    <!-- Description for remove sms preference -->
-    <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">સ્ટોરેજ સ્પેસ ખાલી કરવા Signalમાંથી SMS મેસેજ દૂર કરો.</string>
-    <!-- Information message shown at the top of sms settings to indicate it is being removed soon. -->
-    <string name="SmsSettingsFragment__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging">એન્ક્રિપ્ટ કરેલ મેસેજિંગ પર ધ્યાન આપવા માટે SMS માટેનું સમર્થન ટૂંક સમયમાં જ દૂર કરવામાં આવશે.</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">મેસેજ</string>
@@ -5825,48 +5808,6 @@
     <!-- Generic title for overflow menus -->
     <string name="OverflowMenu__overflow_menu">ઓવરફ્લો મેનૂ</string>
 
-    <!-- SMS Export Service -->
-    <!-- Displayed in the notification while export is running -->
-    <string name="SignalSmsExportService__exporting_messages">મેસેજ એક્સપોર્ટ થાય છે…</string>
-    <!-- Displayed in the notification title when export completes -->
-    <string name="SignalSmsExportService__signal_sms_export_complete">Signal SMS એક્સપોર્ટ પૂર્ણ</string>
-    <!-- Displayed in the notification message when export completes -->
-    <string name="SignalSmsExportService__tap_to_return_to_signal">Signal પર પાછા ફરવા ટૅપ કરો</string>
-
-    <!-- ExportYourSmsMessagesFragment -->
-    <!-- Title of the screen -->
-    <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">તમારા SMS મેસેજ એક્સપોર્ટ કરો</string>
-    <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">તમે તમારા SMS મેસેજને તમારા ફોનના SMS ડેટાબેઝમાં એક્સપોર્ટ કરી શકો છો અને તમને તેને Signal પર રાખવા અથવા તેમાંથી દૂર કરવાનો વિકલ્પ મળશે. આનાથી તમારા ફોન પરની અન્ય SMS ઍપને તેને ઇમ્પોર્ટ કરવાની મંજૂરી મળે છે. આ તમારા SMS હિસ્ટ્રી શેર કરી શકાય તેવી ફાઇલ બનાવતું નથી.</string>
-    <!-- Button label to begin export -->
-    <string name="ExportYourSmsMessagesFragment__continue">ચાલુ રાખો</string>
-
-    <!-- ExportingSmsMessagesFragment -->
-    <!-- Title of the screen -->
-    <string name="ExportingSmsMessagesFragment__exporting_sms_messages">SMS મેસેજ એક્સપોર્ટ કરવા</string>
-    <!-- Message of the screen when exporting sms messages -->
-    <string name="ExportingSmsMessagesFragment__this_may_take_awhile">આમાં થોડો સમય લાગી શકે છે</string>
-    <!-- Progress indicator for export -->
-    <plurals name="ExportingSmsMessagesFragment__exporting_d_of_d">
-        <item quantity="one">%2$dમાંથી %1$d એક્સપોર્ટ થાય છે…</item>
-        <item quantity="other">%2$dમાંથી %1$d એક્સપોર્ટ થાય છે…</item>
-    </plurals>
-    <!-- Alert dialog title shown when we think a user may not have enough local storage available to export sms messages -->
-    <string name="ExportingSmsMessagesFragment__you_may_not_have_enough_disk_space">તમારી પાસે પૂરતી ડિસ્ક સ્પેસ ન હોય તેમ લાગે છે</string>
-    <!-- Alert dialog message shown when we think a user may not have enough local storage available to export sms messages, placeholder is the file size, e.g., 128kB -->
-    <string name="ExportingSmsMessagesFragment__you_need_approximately_s_to_export_your_messages_ensure_you_have_enough_space_before_continuing">તમારા મેસેજને એક્સપોર્ટ માટે તમારે આશરે %1$s ની જરૂર છે, ચાલુ રાખતા પહેલા તમારી પાસે પૂરતી સ્પેસ છે તેની ખાતરી કરો.</string>
-    <!-- Alert dialog button to continue with exporting sms after seeing the lack of storage warning -->
-    <string name="ExportingSmsMessagesFragment__continue_anyway">કોઈપણ રીતે ચાલુ રાખો</string>
-    <!-- Dialog text shown when Signal isn\'t granted the sms permission needed to export messages, different than being selected as the sms app -->
-    <string name="ExportingSmsMessagesFragment__signal_needs_the_sms_permission_to_be_able_to_export_your_sms_messages">તમારા SMS મેસેજને એક્સપોર્ટ કરવામાં સક્ષમ થવા માટે Signalને SMS પરવાનગીની જરૂર છે.</string>
-
-    <!-- ChooseANewDefaultSmsAppFragment -->
-    <!-- Title of the screen -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_a_new">ડિફોલ્ટ SMS ઍપ પસંદ કરો</string>
-    <!-- Button label to launch picker -->
-    <string name="ChooseANewDefaultSmsAppFragment__continue">ચાલુ રાખો</string>
-    <!-- Button label for when done with changing default SMS app -->
-    <string name="ChooseANewDefaultSmsAppFragment__done">થઈ ગયું</string>
     <!-- First step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_1">1</string>
     <!-- Second step number/bullet for choose new default sms app instructions -->
@@ -5875,47 +5816,6 @@
     <string name="ChooseANewDefaultSmsAppFragment__bullet_3">3</string>
     <!-- Fourth step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_4">4</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">સેટિંગ્સમાં \"ડિફોલ્ટ ઍપ્સ\" સ્ક્રીન ખોલવા માટે \"ચાલુ રાખો\" પર ટૅપ કરો</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">સૂચિમાંથી \"SMS ઍપ\" પસંદ કરો</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">SMS મેસેજિંગ માટે વાપરવા માટે બીજી ઍપ પસંદ કરો</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Signal પર પાછા ફરો</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">તમારા ફોનની સેટિંગ્સ ઍપ ખોલો</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">\"ઍપ્સ\"&gt; \"ડિફોલ્ટ ઍપ્સ\"&gt; \"SMS ઍપ\" પર નેવિગેટ કરો</string>
-
-    <!-- RemoveSmsMessagesDialogFragment -->
-    <!-- Action button to keep messages -->
-    <string name="RemoveSmsMessagesDialogFragment__keep_messages">નવા મેસેજ</string>
-    <!-- Action button to remove messages -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_messages">મેસેજ દૂર કરો</string>
-    <!-- Title of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Signalમાંથી SMS મેસેજ દૂર કરવા છે?</string>
-    <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">સ્ટોરેજ સ્પેસ ખાલી કરવા હવે તમે Signalમાંથી SMS મેસેજ દૂર કરી શકો છો. તમે તેને દૂર કરી નાખો તો પણ તે તમારા ફોન પરની અન્ય SMS ઍપ માટે ઉપલબ્ધ રહેશે.</string>
-
-    <!-- ReExportSmsMessagesDialogFragment -->
-    <!-- Action button to re-export messages -->
-    <string name="ReExportSmsMessagesDialogFragment__continue">ચાલુ રાખો</string>
-    <!-- Action button to cancel re-export process -->
-    <string name="ReExportSmsMessagesDialogFragment__cancel">રદ કરો</string>
-    <!-- Title of dialog -->
-    <string name="ReExportSmsMessagesDialogFragment__export_sms_again">SMS ફરીથી એક્સપોર્ટ કરવા છે?</string>
-    <!-- Message of dialog -->
-    <string name="ReExportSmsMessagesDialogFragment__you_already_exported_your_sms_messages">તમે પહેલાંથી જ તમારા SMS મેસેજ એક્સપોર્ટ કર્યા છે.\nચેતવણી: જો તમે ચાલુ રાખશો, તો તમારી પાસે ડુપ્લિકેટ મેસેજ રહી શકે છે.</string>
-
-    <!-- SetSignalAsDefaultSmsAppFragment -->
-    <!-- Title of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Signalને ડિફોલ્ટ SMS ઍપ તરીકે સેટ કરો</string>
-    <!-- Message of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">તમારા SMS મેસેજને એક્સપોર્ટ કરવા માટે, તમારે Signalને ડિફોલ્ટ SMS ઍપ તરીકે સેટ કરવાની જરૂર છે.</string>
-    <!-- Button label to start export -->
-    <string name="SetSignalAsDefaultSmsAppFragment__next">આગળ</string>
-
     <!-- BackupSchedulePermission Megaphone -->
     <!-- The title on an alert window that explains to the user that we are unable to backup their messages -->
     <string name="BackupSchedulePermissionMegaphone__cant_back_up_chats">ચેટનું બેકઅપ લઈ શકાતું નથી</string>
@@ -5933,45 +5833,6 @@
     <string name="BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders">\"એલાર્મ અને રીમાઇન્ડર સેટિંગ્સને મંજૂરી આપો\" ચાલુ કરો.</string>
     <!-- Re-enable backups permission bottom sheet call to action button to open settings -->
     <string name="BackupSchedulePermissionMegaphone__go_to_settings">સેટિંગ્સ પર જાઓ</string>
-
-    <!-- SmsExportMegaphoneActivity -->
-    <!-- Phase 2 title of full screen megaphone indicating sms will no longer be supported in the near future -->
-    <string name="SmsExportMegaphoneActivity__signal_will_no_longer_support_sms">Signal હવે SMSને સપોર્ટ કરશે નહીં</string>
-    <!-- Phase 3 title of full screen megaphone indicating sms is longer supported  -->
-    <string name="SmsExportMegaphoneActivity__signal_no_longer_supports_sms">Signal હવે SMSને સપોર્ટ કરતું નથી</string>
-    <!-- The text on a button in a popup that, when clicked, will dismiss the popup and schedule the prompt to occur at a later time. -->
-    <string name="SmsExportMegaphoneActivity__remind_me_later">મને પછી યાદ કરાવો</string>
-    <!-- The text on a button in a popup that, when clicked, will navigate the user to a web article on SMS removal -->
-
-    <!-- Title for screen shown after sms export has completed -->
-    <string name="ExportSmsCompleteFragment__export_complete">એક્સપોર્ટ પૂર્ણ</string>
-    <!-- Button to continue to next screen -->
-    <string name="ExportSmsCompleteFragment__next">આગળ</string>
-    <!-- Message showing summary of sms export counts -->
-    <plurals name="ExportSmsCompleteFragment__d_of_d_messages_exported">
-        <item quantity="one">%2$d માંથી %1$d મેસેજ એક્સપોર્ટ થયો</item>
-        <item quantity="other">%1$d માંથી %2$d મેસેજ એક્સપોર્ટ થયા</item>
-    </plurals>
-
-    <!-- Title of screen shown when some sms messages did not export -->
-    <string name="ExportSmsPartiallyComplete__export_partially_complete">એક્સપોર્ટ આંશિક રીતે પૂર્ણ</string>
-    <!-- Debug step 1 on screen shown when some sms messages did not export -->
-    <string name="ExportSmsPartiallyComplete__ensure_you_have_an_additional_s_free_on_your_phone_to_export_your_messages">તમારા મેસેજને એક્સપોર્ટ કરવા માટે તમારી પાસે તમારા ફોન પર વધારાની %1$s ખાલી છે તેની ખાતરી કરો</string>
-    <!-- Debug step 2 on screen shown when some sms messages dit not export -->
-    <string name="ExportSmsPartiallyComplete__retry_export_which_will_only_retry_messages_that_have_not_yet_been_exported">એક્સપોર્ટ કરવાનો ફરીથી પ્રયાસ કરો, જે ફક્ત એવા મેસેજને જ ફરી પ્રયાસ કરશે જે હજી સુધી એક્સપોર્ટ કરવામાં આવ્યા નથી</string>
-    <!-- Partial sentence for Debug step 3 on screen shown when some sms messages did not export, is combined with \'contact us\' -->
-    <string name="ExportSmsPartiallyComplete__if_the_problem_persists">જો સમસ્યા ચાલુ રહે, </string>
-    <!-- Partial sentence for deubg step 3 on screen shown when some sms messages did not export, combined with \'If the problem persists\', link text to open contact support view -->
-    <string name="ExportSmsPartiallyComplete__contact_us">અમારો સંપર્ક કરો</string>
-    <!-- Button text to retry sms export -->
-    <string name="ExportSmsPartiallyComplete__retry">ફરી પ્રયાસ કરો</string>
-    <!-- Button text to continue sms export flow and not retry failed message exports -->
-    <string name="ExportSmsPartiallyComplete__continue_anyway">કોઈપણ રીતે ચાલુ રાખો</string>
-    <!-- Title of screen shown when all sms messages failed to export -->
-    <string name="ExportSmsFullError__error_exporting_sms_messages">SMS મેસેજ એક્સપોર્ટ કરવામાં ભૂલ આવી</string>
-    <!-- Helper text shown when all sms messages failed to export -->
-    <string name="ExportSmsFullError__please_try_again_if_the_problem_persists">કૃપા કરીને ફરીથી પ્રયાસ કરો. જો સમસ્યા ચાલુ રહે, </string>
-
 
     <!-- DonateToSignalFragment -->
     <!-- Title below avatar -->
@@ -6217,19 +6078,6 @@
     <!-- Displayed in the "clear filter" item in the chat feed if the user opened the filter from the overflow menu -->
     <string name="ChatFilter__tip_pull_down">ટિપ: ફિલ્ટર કરવા માટે ચેટ સૂચિ પર નીચે ખેંચો</string>
 
-    <!-- Title for screen describing that sms support is going to be removed soon -->
-    <string name="SmsRemoval_title_going_away">SMS સપોર્ટ બંધ થઈ રહ્યો છે</string>
-    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
-    <string name="SmsRemoval_info_bullet_1">Signal ઍપમાં SMS મેસેજિંગ હવે ટૂંક સમયમાં સપોર્ટ થશે નહીં.</string>
-    <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_2">SMS મેસેજ Signal મેસેજ કરતાં અલગ હોય છે. <b>આ એન્ક્રિપ્ટેડ Signal મેસેજિંગને અસર કરતું નથી જે કામ કરવાનું ચાલુ રાખશે.</b></string>
-    <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_3">તમે તમારા SMS મેસેજને એક્સપોર્ટ કરી શકો છો અને નવી SMS ઍપ પસંદ કરી શકો છો.</string>
-    <!-- Bullet point message shown on describing screen as first bullet variant why sms is being removed when user is locked out of sms -->
-    <string name="SmsRemoval_info_bullet_1_phase_3">Signalએ SMS મેસેજ મોકલવા માટેનો સપોર્ટ દૂર કર્યો છે.</string>
-    <!-- Button label on sms removal info/megaphone to start the export SMS flow -->
-    <string name="SmsRemoval_export_sms">SMS એક્સપોર્ટ કરો</string>
-
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__set_up_your_signal_username">તમારું Signal યુઝરનેમ સેટ કરો</string>
@@ -6253,18 +6101,6 @@
     <string name="TextFormatting_spoiler">મેસેજ ઝાંખો કરનાર</string>
     <!-- Popup menu label for clearing applied formatting -->
     <string name="TextFormatting_clear_formatting">ફોર્મેટિંગ દૂર કરો</string>
-
-    <!-- UsernameEducationFragment -->
-    <!-- Continue button which takes the user to the add a username screen -->
-    <string name="UsernameEducationFragment__continue">ચાલુ રાખો</string>
-    <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">તમારું Signal યુઝરનેમ સેટ કરો</string>
-    <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__usernames_are_paired_with_a_set_of_digits">યુઝરનેમને અંકોના સમૂહ સાથે જોડવામાં આવે છે અને તમારી પ્રોફાઇલ પર શેર કરવામાં આવતાં નથી</string>
-    <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">દરેક યુઝરનેમમાં એક અનન્ય QR કોડ અને લિંક હોય છે જે તમે તમારા મિત્રો તમારી સાથે ચેટ શરૂ કરી શકે તે માટે તેમની સાથે શેર કરી શકો છો</string>
-    <!-- Displayed as body text in the username education screen. The string references the names of settings, so they should match our translations for those settings. -->
-    <string name="UsernameEducationFragment__turn_off_phone_number_discovery">અન્ય લોકો તમારો સંપર્ક કરી શકે તેની પ્રાથમિક રીત તરીકે તમારા યુઝરનેમનો ઉપયોગ કરવા માટે \'સેટિંગ્સ &gt; ગોપનીયતા &gt; ફોન નંબર &gt; મારો નંબર કોણ શોધી શકે છે\' પર જઈને ફોન નંબરની શોધ બંધ કરો</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
@@ -6503,6 +6339,8 @@
     <!-- Displayed as body in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">આ લિંક હવેથી જેમની પણ પાસે હશે તે કોઈ પણ માટે કામ નહીં કરે.</string>
 
+    <!-- Button label for the link button in the username link settings -->
+    <string name="UsernameLinkSettings_link_button_label">Link</string>
     <!-- Button label for the share button in the username link settings -->
     <string name="UsernameLinkSettings_share_button_label">શેર કરો</string>
     <!-- Button label for the color selector button in the username link settings -->
@@ -6547,6 +6385,8 @@
     <string name="UsernameLinkSettings_reset_link_result_network_unavailable">તમારી પાસે નેટવર્ક એક્સેસ નથી. તમારી લિંક ફરીથી સેટ કરવામાં આવી ન હતી. પછી ફરી પ્રયાસ કરો.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">તમારી લિંકને ફરીથી સેટ કરવાનો પ્રયાસ કરતી વખતે નેટવર્ક ભૂલ આવી. પછી ફરી પ્રયાસ કરો.</string>
+    <!-- Shown on the generated username qr code image to explain how to use it. -->
+    <string name="UsernameLinkSettings_scan_this_qr_code">Scan this QR code with your phone to chat with me on Signal.</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
     <string name="UsernameLinkShareBottomSheet_title">આ લિંક ધરાવતી કોઈ પણ વ્યક્તિ તમારું યુઝરનેમ જોઈ શકે છે અને તમારી સાથે ચેટ શરૂ કરી શકે છે. તમને ભરોસો હોય તેવા લોકો સાથે જ તેને શેર કરો.</string>

@@ -608,9 +608,9 @@
     <!-- Toolbar title for this screen -->
     <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">ვის შეუძლია ნომრით მიპოვოს?</string>
     <!-- Description for radio item stating anyone can see your phone number -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">ნებისმიერს, ვისაც შენი ტელეფონის ნომერი თავის კონტაქტებში აქვს, Signal-ის კონტაქტებში გნახავენ. სხვები შენს მოძებნას შენი ნომრით შეძლებენ საძიებო ველში.</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">Anyone who has your phone number will see you\'re on Signal and can start chats with you.</string>
     <!-- Description for radio item stating no one will be able to see your phone number -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">Signal-ზე ვერავინ შეძლებს შენს მოძებნას მობილურის ნომრით.</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Nobody will be able to see you\'re on Signal unless you message them or have an existing chat with them.</string>
 
     <!-- ChooseBackupFragment -->
     <string name="ChooseBackupFragment__restore_from_backup">აღვადგინოთ სარეზერვო კოპიიდან?</string>
@@ -1587,7 +1587,7 @@
 
     <!-- DeviceProvisioningActivity -->
     <string name="DeviceProvisioningActivity_link_this_device">მივაბათ ეს მოწყობილობა?</string>
-    <string name="DeviceProvisioningActivity_continue">გაგრძელება</string>
+    <string name="DeviceProvisioningActivity_continue">Continue</string>
 
     <string name="DeviceProvisioningActivity_content_intro">ის შეძლებს, რომ</string>
     <string name="DeviceProvisioningActivity_content_bullets">
@@ -2240,6 +2240,10 @@
     <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">მომხმარებლის სახელი არასწორია, შეიყვანე მინიმუმ %1$d ციფრი.</string>
     <!-- Displayed when the chosen discriminator is too long -->
     <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">მომხმარებლის სახელი არასწორია, შეიყვანე მინიმუმ %1$d ციფრი.</string>
+    <!-- Displayed when the chosen discriminator is 00 -->
+    <string name="UsernameEditFragment__this_number_cant_be_00">This number can\'t be 00. Enter a digit between 1–9</string>
+    <!-- Displayed when the chosen discriminator starts with 00 -->
+    <string name="UsernameEditFragment__this_number_cant_start_with_00">This number can\'t start with 00. Enter a digit between 1–9</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">შენი მომხმარებლის სახელის აღდგენა შენს ამჟამინდელ QR კოდსა და ბმულს შეცვლის. დარწმუნებული ხარ?</string>
 
@@ -3794,7 +3798,7 @@
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">ვის შეუძლია ნომრით მიპოვოს</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">შენი ტელეფონის ნომერი ხილული იქნება ყველა ადამიანისა და ჯგუფისთვის, ვისთანაც მიმოწერა გაქვს. ადამიანები, რომლებსაც შენი ნომერი სატელეფონო კონტაქტებში აქვთ, მას Signal-ზეც ნახავენ.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number_will_be">Your phone number will be visible to people and groups you message.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
     <string name="PhoneNumberPrivacySettingsFragment__anyone_who_has">ნებისმიერს, ვისაც შენი მობილურის ნომერი აქვს, დაინახავს, რომ Signal-ზე ხარ და შენთან ჩატის წამოწყებას შეძლებს.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
@@ -4413,27 +4417,6 @@
     <!-- ChatsSettingsFragment -->
     <string name="ChatsSettingsFragment__keyboard">კლავიატურა</string>
     <string name="ChatsSettingsFragment__enter_key_sends">\"Enter\" კლავიში გზავნის</string>
-
-    <!--SmsSettingsFragment -->
-    <string name="SmsSettingsFragment__use_as_default_sms_app">ნაგულისხმევ SMS აპად გამოყენება</string>
-    <!-- Preference title to export sms -->
-    <string name="SmsSettingsFragment__export_sms_messages">SMS შეტყობინებების ექსპორტირება</string>
-    <!-- Preference title to re-export sms -->
-    <string name="SmsSettingsFragment__export_sms_messages_again">SMS შეტყობინებების ხელახლა ექსპორტირება</string>
-    <!-- Preference title to delete sms -->
-    <string name="SmsSettingsFragment__remove_sms_messages">SMS შეტყობინებების წაშლა</string>
-    <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">ვშლით SMS შეტყობინებებს Signal-იდან…</string>
-    <!-- Snackbar text to indicate can delete later -->
-    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">SMS შეტყობინებების Signal-იდან წაშლა ნებისმიერ დროს შეგიძლია პარამეტრებში.</string>
-    <!-- Description for export sms preference -->
-    <string name="SmsSettingsFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">შენი SMS შეტყობინებების ექსპორტირება შენი ტელეფონის SMS მონაცემთა ბაზაში შეგიძლია.</string>
-    <!-- Description for re-export sms preference -->
-    <string name="SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages">ხელახლა ექსპორტირებამ შესაძლოა გამოიწვიოს შეტყობინებების დუბლირება.</string>
-    <!-- Description for remove sms preference -->
-    <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">წაშალე SMS შეტყობინებები Signal-იდან მეხსიერებაში ადგილის გასასუფთავებლად.</string>
-    <!-- Information message shown at the top of sms settings to indicate it is being removed soon. -->
-    <string name="SmsSettingsFragment__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging">SMS შეტყობინებების მხარდაჭერა მალე გაუქმდება დაშიფრულ შეტყობინებებზე ფოკუსირებისთვის.</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">შეტყობინებები</string>
@@ -5825,48 +5808,6 @@
     <!-- Generic title for overflow menus -->
     <string name="OverflowMenu__overflow_menu">დამატებითი მენიუ</string>
 
-    <!-- SMS Export Service -->
-    <!-- Displayed in the notification while export is running -->
-    <string name="SignalSmsExportService__exporting_messages">მიმდინარეობს შეტყობინებების ექსპორტირება</string>
-    <!-- Displayed in the notification title when export completes -->
-    <string name="SignalSmsExportService__signal_sms_export_complete">Signal-ის SMS-ების ექსპორტირება დასრულებულია</string>
-    <!-- Displayed in the notification message when export completes -->
-    <string name="SignalSmsExportService__tap_to_return_to_signal">დააჭირე Signal-ზე დასაბრუნებლად</string>
-
-    <!-- ExportYourSmsMessagesFragment -->
-    <!-- Title of the screen -->
-    <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">დააექსპორტე შენი SMS შეტყობინებები</string>
-    <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">შენი SMS შეტყობინებების ექსპორტირება შენი ტელეფონის SMS მონაცემთა ბაზაში შეგიძლია და შესაძლებლობა გექნება ისინი შეინახო ან წაშალო Signal-იდან. ეს შენს ტელეფონზე არსებულ სხვა SMS აპებს მათი იმპორტირების საშუალებას აძლევს. ეს არ ქმნის შენი SMS ისტორიის გაზიარებად ფაილს.</string>
-    <!-- Button label to begin export -->
-    <string name="ExportYourSmsMessagesFragment__continue">გაგრძელება</string>
-
-    <!-- ExportingSmsMessagesFragment -->
-    <!-- Title of the screen -->
-    <string name="ExportingSmsMessagesFragment__exporting_sms_messages">მიმდინარეობს SMS შეტყობინებების ექსპორტირება</string>
-    <!-- Message of the screen when exporting sms messages -->
-    <string name="ExportingSmsMessagesFragment__this_may_take_awhile">შეიძლება ამას ცოტა დრო დასჭირდეს</string>
-    <!-- Progress indicator for export -->
-    <plurals name="ExportingSmsMessagesFragment__exporting_d_of_d">
-        <item quantity="one">მიმდინარეობს ექსპორტირება %2$d-დან %1$d…</item>
-        <item quantity="other">მიმდინარეობს ექსპორტირება %2$d-დან %1$d…</item>
-    </plurals>
-    <!-- Alert dialog title shown when we think a user may not have enough local storage available to export sms messages -->
-    <string name="ExportingSmsMessagesFragment__you_may_not_have_enough_disk_space">შეიძლება, არასაკმარისი მეხსიერება გაქვს დისკზე</string>
-    <!-- Alert dialog message shown when we think a user may not have enough local storage available to export sms messages, placeholder is the file size, e.g., 128kB -->
-    <string name="ExportingSmsMessagesFragment__you_need_approximately_s_to_export_your_messages_ensure_you_have_enough_space_before_continuing">შენი შეტყობინებების ექსპორტირებისთვის დაახლოებით %1$s დაგჭირდება. გაგრძელებამდე დარწმუნდი, რომ საკმარისი ადგილი გაქვს მეხსიერებაში.</string>
-    <!-- Alert dialog button to continue with exporting sms after seeing the lack of storage warning -->
-    <string name="ExportingSmsMessagesFragment__continue_anyway">გაგრძელების დასტური</string>
-    <!-- Dialog text shown when Signal isn\'t granted the sms permission needed to export messages, different than being selected as the sms app -->
-    <string name="ExportingSmsMessagesFragment__signal_needs_the_sms_permission_to_be_able_to_export_your_sms_messages">Signal-ს SMS-ის ნებართვა სჭირდება, რათა შენი SMS შეტყობინებების ექსპორტირება შეძლოს.</string>
-
-    <!-- ChooseANewDefaultSmsAppFragment -->
-    <!-- Title of the screen -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_a_new">ახალი ნაგულისხმევი SMS აპის არჩევა</string>
-    <!-- Button label to launch picker -->
-    <string name="ChooseANewDefaultSmsAppFragment__continue">გაგრძელება</string>
-    <!-- Button label for when done with changing default SMS app -->
-    <string name="ChooseANewDefaultSmsAppFragment__done">შესრულებულია</string>
     <!-- First step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_1">1</string>
     <!-- Second step number/bullet for choose new default sms app instructions -->
@@ -5875,47 +5816,6 @@
     <string name="ChooseANewDefaultSmsAppFragment__bullet_3">3</string>
     <!-- Fourth step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_4">4</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">დააჭირე \"გაგრძელებას\", რათა \"ნაგულისხმები აპების\" ეკრანი გახსნა პარამეტრებში.</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">აირჩიე \"SMS აპი\" სიიდან</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">SMS შეტყობინებებისთვის გამოსაყენებლად სხვა აპი აირჩიე</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Signal-ზე დაბრუნება</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">გახსენი შენი ტელეფონის პარამეტრების აპი</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">აირჩიე \"აპები\" &gt; \"ნაგულისხმევი აპები\" &gt; \"SMS აპი\"</string>
-
-    <!-- RemoveSmsMessagesDialogFragment -->
-    <!-- Action button to keep messages -->
-    <string name="RemoveSmsMessagesDialogFragment__keep_messages">შეტყობინებების შენახვა</string>
-    <!-- Action button to remove messages -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_messages">შეტყობინებების წაშლა</string>
-    <!-- Title of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">წავშალოთ SMS შეტყობინებები Signal-იდან?</string>
-    <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">მეხსიერების გასასუფთავებლად ახლა უკვე შეგიძლია Signal-იდან SMS შეტყობინებები წაშალო. ისინი ისევ ხელმისაწვდომი იქნება შენი ტელეფონის სხვა SMS აპებისთვის, მაშინაც კი, თუ მათ წაშლი.</string>
-
-    <!-- ReExportSmsMessagesDialogFragment -->
-    <!-- Action button to re-export messages -->
-    <string name="ReExportSmsMessagesDialogFragment__continue">გაგრძელება</string>
-    <!-- Action button to cancel re-export process -->
-    <string name="ReExportSmsMessagesDialogFragment__cancel">გაუქმება</string>
-    <!-- Title of dialog -->
-    <string name="ReExportSmsMessagesDialogFragment__export_sms_again">დავაექსპორტიროთ SMS-ები თავიდან?</string>
-    <!-- Message of dialog -->
-    <string name="ReExportSmsMessagesDialogFragment__you_already_exported_your_sms_messages">შენი SMS შეტყობინებები უკვე დაექსპორტირებულია.\nგაფრთხილება: თუ განაგრძობ, შეიძლება შეტყობინებები გაგიმეორდეს.</string>
-
-    <!-- SetSignalAsDefaultSmsAppFragment -->
-    <!-- Title of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">დააყენე Signal-ი ძირითად SMS აპად</string>
-    <!-- Message of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">იმისათვის, რომ შენი SMS შეტყობინებების ექსპორტირება მოახერხო, Signal-ი ძირითად SMS აპად უნდა დააყენო.</string>
-    <!-- Button label to start export -->
-    <string name="SetSignalAsDefaultSmsAppFragment__next">შემდეგი</string>
-
     <!-- BackupSchedulePermission Megaphone -->
     <!-- The title on an alert window that explains to the user that we are unable to backup their messages -->
     <string name="BackupSchedulePermissionMegaphone__cant_back_up_chats">ჩატების სარეზერვო კოპიების გაკეთება ვერ მოხერხდა</string>
@@ -5933,45 +5833,6 @@
     <string name="BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders">ჩართე \"შეტყობინებების და შეხსენებების დაყენების დაშვება.\"</string>
     <!-- Re-enable backups permission bottom sheet call to action button to open settings -->
     <string name="BackupSchedulePermissionMegaphone__go_to_settings">შედი პარამეტრებში</string>
-
-    <!-- SmsExportMegaphoneActivity -->
-    <!-- Phase 2 title of full screen megaphone indicating sms will no longer be supported in the near future -->
-    <string name="SmsExportMegaphoneActivity__signal_will_no_longer_support_sms">SMS შეტყობინებების გაგზავნას Signal-ით ვეღარ შეძლებ</string>
-    <!-- Phase 3 title of full screen megaphone indicating sms is longer supported  -->
-    <string name="SmsExportMegaphoneActivity__signal_no_longer_supports_sms">სიგნალს აღარ აქვს SMS-ის მხარდაჭერა</string>
-    <!-- The text on a button in a popup that, when clicked, will dismiss the popup and schedule the prompt to occur at a later time. -->
-    <string name="SmsExportMegaphoneActivity__remind_me_later">მოგვიანებით შემახსენე</string>
-    <!-- The text on a button in a popup that, when clicked, will navigate the user to a web article on SMS removal -->
-
-    <!-- Title for screen shown after sms export has completed -->
-    <string name="ExportSmsCompleteFragment__export_complete">ექსპორტირება დასრულებულია</string>
-    <!-- Button to continue to next screen -->
-    <string name="ExportSmsCompleteFragment__next">შემდეგი</string>
-    <!-- Message showing summary of sms export counts -->
-    <plurals name="ExportSmsCompleteFragment__d_of_d_messages_exported">
-        <item quantity="one">%1$d ექსპორტირებული შეტყობინება %2$d-დან</item>
-        <item quantity="other">%1$d ექსპორტირებული შეტყობინება %2$d-დან</item>
-    </plurals>
-
-    <!-- Title of screen shown when some sms messages did not export -->
-    <string name="ExportSmsPartiallyComplete__export_partially_complete">ექსპორტირება ნაწილობრივ დასრულებულია</string>
-    <!-- Debug step 1 on screen shown when some sms messages did not export -->
-    <string name="ExportSmsPartiallyComplete__ensure_you_have_an_additional_s_free_on_your_phone_to_export_your_messages">დარწმუნდი, რომ დამატებით თავისუფალი %1$s გაქვს ტელეფონში, რათა შენი შეტყობინებების ექსპორტირება შეძლო</string>
-    <!-- Debug step 2 on screen shown when some sms messages dit not export -->
-    <string name="ExportSmsPartiallyComplete__retry_export_which_will_only_retry_messages_that_have_not_yet_been_exported">თავიდან სცადე ექსპორტირება, რაც მხოლოდ იმ შეტყობინებების ექსპორტირებას გააგრძელებს, რომლებიც ჯერ არ არის ექსპორტირებული</string>
-    <!-- Partial sentence for Debug step 3 on screen shown when some sms messages did not export, is combined with \'contact us\' -->
-    <string name="ExportSmsPartiallyComplete__if_the_problem_persists">თუ პრობლემა ვერ მოგვარდა, </string>
-    <!-- Partial sentence for deubg step 3 on screen shown when some sms messages did not export, combined with \'If the problem persists\', link text to open contact support view -->
-    <string name="ExportSmsPartiallyComplete__contact_us">დაგვიკავშირდი</string>
-    <!-- Button text to retry sms export -->
-    <string name="ExportSmsPartiallyComplete__retry">თავიდან ცდა</string>
-    <!-- Button text to continue sms export flow and not retry failed message exports -->
-    <string name="ExportSmsPartiallyComplete__continue_anyway">გაგრძელების დასტური</string>
-    <!-- Title of screen shown when all sms messages failed to export -->
-    <string name="ExportSmsFullError__error_exporting_sms_messages">SMS-ების ექსპორტირებისას მოხდა შეცდომა</string>
-    <!-- Helper text shown when all sms messages failed to export -->
-    <string name="ExportSmsFullError__please_try_again_if_the_problem_persists">გთხოვთ, თავიდან სცადო. თუ პრობლემა ვერ მოგვარდა, </string>
-
 
     <!-- DonateToSignalFragment -->
     <!-- Title below avatar -->
@@ -6217,19 +6078,6 @@
     <!-- Displayed in the "clear filter" item in the chat feed if the user opened the filter from the overflow menu -->
     <string name="ChatFilter__tip_pull_down">რჩევა: გასაფილტრად ჩატების სია დაბლა ჩამოქაჩე</string>
 
-    <!-- Title for screen describing that sms support is going to be removed soon -->
-    <string name="SmsRemoval_title_going_away">SMS-ის მხარდაჭერა აღარ გვექნება</string>
-    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
-    <string name="SmsRemoval_info_bullet_1">მალე Signal-ის აპს SMS მიმოწერის მხარდაჭერა აღარ ექნება.</string>
-    <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_2">SMS წერილები Signal-ის წერილებისგან განსხვავდება. <b>ამას გავლენა არ ექნება Signal-ის დაშიფრულ მიმოწერაზე, რომელიც ისევ იმუშავებს.</b></string>
-    <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_3">შეგიძლია შენი SMS წერილები დააექსპორტო და ახალი SMS აპი აირჩიო.</string>
-    <!-- Bullet point message shown on describing screen as first bullet variant why sms is being removed when user is locked out of sms -->
-    <string name="SmsRemoval_info_bullet_1_phase_3">Signal-მა SMS შეტყობინებების გაგზავნის მხარდაჭერა გააუქმა.</string>
-    <!-- Button label on sms removal info/megaphone to start the export SMS flow -->
-    <string name="SmsRemoval_export_sms">SMS-ის ექსპორტირება</string>
-
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__set_up_your_signal_username">შექმენი შენი Signal-ის მომხმარებლის სახელი</string>
@@ -6253,18 +6101,6 @@
     <string name="TextFormatting_spoiler">სპოილერი</string>
     <!-- Popup menu label for clearing applied formatting -->
     <string name="TextFormatting_clear_formatting">ფორმატირების გასუფთავება</string>
-
-    <!-- UsernameEducationFragment -->
-    <!-- Continue button which takes the user to the add a username screen -->
-    <string name="UsernameEducationFragment__continue">გაგრძელება</string>
-    <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">შექმენი შენი Signal-ის მომხმარებლის სახელი</string>
-    <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__usernames_are_paired_with_a_set_of_digits">მომხმარებლის სახელები დაკავშირებულია ციფრების ნაკრებთან და შენს პროფილზე გაზიარებული არ არის</string>
-    <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">თითოეულ მომხმარებლის სახელს აქვს უნიკალური QR კოდი და ბმული, რომელიც შეგიძლია მეგობრებს შენთან ჩატის დასაწყებად გაუზიარო</string>
-    <!-- Displayed as body text in the username education screen. The string references the names of settings, so they should match our translations for those settings. -->
-    <string name="UsernameEducationFragment__turn_off_phone_number_discovery">გამორთე ტელეფონის ნომრის აღმოჩენა სექციაში: პარამეტრები &gt; ტელეფონის ნომერი &gt; ვის შეუძლია ჩემი ნომრის პოვნა, რათა შენი მომხმარებლის სახელი იყოს ძირითადი გზა, რომლითაც სხვები შენთან დაკავშირებას შეძლებენ</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
@@ -6503,6 +6339,8 @@
     <!-- Displayed as body in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">მათთვის, ვისაც ეს ბმული აქვს, ის აღარ იმუშავებს.</string>
 
+    <!-- Button label for the link button in the username link settings -->
+    <string name="UsernameLinkSettings_link_button_label">Link</string>
     <!-- Button label for the share button in the username link settings -->
     <string name="UsernameLinkSettings_share_button_label">გაზიარება</string>
     <!-- Button label for the color selector button in the username link settings -->
@@ -6547,6 +6385,8 @@
     <string name="UsernameLinkSettings_reset_link_result_network_unavailable">ინტერნეტზე წვდომა არ გაქვს. შენი ბმული ახლიდან ვერ დაყენდა. მოგვიანებით სცადე.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">შენი ბმულის ახლიდან დაყენებისას ქსელის ხარვეზი დაფიქსირდა. მოგვიანებით სცადე.</string>
+    <!-- Shown on the generated username qr code image to explain how to use it. -->
+    <string name="UsernameLinkSettings_scan_this_qr_code">Scan this QR code with your phone to chat with me on Signal.</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
     <string name="UsernameLinkShareBottomSheet_title">ამ ბმულით ნებისმიერი შეძლებს შენი მომხმარებლის სახელის ნახვას და შენთან ჩატის დაწყებას. ის მხოლოდ მათ გაუზიარე, ვისაც ენდობი.</string>

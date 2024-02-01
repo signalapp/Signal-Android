@@ -608,9 +608,9 @@
     <!-- Toolbar title for this screen -->
     <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">నంబర్ ద్వారా నన్ను ఎవరు కనుగొనగలరు?</string>
     <!-- Description for radio item stating anyone can see your phone number -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">వారి కాంటాక్ట్స్‌లో మీ ఫోన్ నంబర్ ఉన్న ఎవరైనా మిమ్మల్ని Signal లో వారి కాంటాక్ట్ లాగా చూస్తారు. ఇతరులు శోధనలో మీ నంబర్‌తో మిమ్మల్ని కనుగొనగలుగుతారు.</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">Anyone who has your phone number will see you\'re on Signal and can start chats with you.</string>
     <!-- Description for radio item stating no one will be able to see your phone number -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">Signal లో ఎవరూ కూడా మీ ఫోన్ నంబర్‌తో మిమ్మల్ని కనుగొనలేరు.</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Nobody will be able to see you\'re on Signal unless you message them or have an existing chat with them.</string>
 
     <!-- ChooseBackupFragment -->
     <string name="ChooseBackupFragment__restore_from_backup">ప్రత్యామ్నాయ నుండి పునరుద్ధరించాలా?</string>
@@ -1587,7 +1587,7 @@
 
     <!-- DeviceProvisioningActivity -->
     <string name="DeviceProvisioningActivity_link_this_device">ఈ పరికరం బంధము చేయాలా?</string>
-    <string name="DeviceProvisioningActivity_continue">కొనసాగించు</string>
+    <string name="DeviceProvisioningActivity_continue">Continue</string>
 
     <string name="DeviceProvisioningActivity_content_intro">ఇది చెయ్యగలరు</string>
     <string name="DeviceProvisioningActivity_content_bullets">
@@ -2240,6 +2240,10 @@
     <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">యూజర్‌నేమ్ చెల్లుబాటు కాదు, కనీసం %1$d అంకెలను ఎంటర్ చేయండి.</string>
     <!-- Displayed when the chosen discriminator is too long -->
     <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">యూజర్‌నేమ్ చెల్లుబాటు కాదు, గరిష్టంగా %1$d అంకెలను ఎంటర్ చేయండి.</string>
+    <!-- Displayed when the chosen discriminator is 00 -->
+    <string name="UsernameEditFragment__this_number_cant_be_00">This number can\'t be 00. Enter a digit between 1–9</string>
+    <!-- Displayed when the chosen discriminator starts with 00 -->
+    <string name="UsernameEditFragment__this_number_cant_start_with_00">This number can\'t start with 00. Enter a digit between 1–9</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">మీ యూజర్‌నేమ్‌ను పునరుద్ధరించడం వలన మీ ప్రస్తుత QR కోడ్ మరియు లింక్ రీసెట్ చేయబడతాయి. ఖచ్చితంగా చేయాలా?</string>
 
@@ -3794,7 +3798,7 @@
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">నంబర్ ద్వారా నన్ను ఎవరు కనుగొనగలరు</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">మీరు సందేశం పంపే వ్యక్తులు మరియు గ్రూప్‌లకు మీ ఫోన్ నంబర్ కనిపిస్తుంది. వారి ఫోన్ పరిచయాలలో మీ నంబర్ ఉన్న వ్యక్తులు కూడా దీన్ని Signal లో చూస్తారు.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number_will_be">Your phone number will be visible to people and groups you message.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
     <string name="PhoneNumberPrivacySettingsFragment__anyone_who_has">మీ ఫోన్ నంబర్‌ను కలిగి ఉన్న ఎవరైనా మీరు Signal లో ఉన్నట్లు చూస్తారు మరియు మీతో చాట్‌లను ప్రారంభించగలరు.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
@@ -4413,27 +4417,6 @@
     <!-- ChatsSettingsFragment -->
     <string name="ChatsSettingsFragment__keyboard">కీబోర్డ్</string>
     <string name="ChatsSettingsFragment__enter_key_sends">ఎంటర్ కీ పంపుతుంది</string>
-
-    <!--SmsSettingsFragment -->
-    <string name="SmsSettingsFragment__use_as_default_sms_app">అప్రమేయ SMS అప్లికేషన్ ని ఉపయోగించండి</string>
-    <!-- Preference title to export sms -->
-    <string name="SmsSettingsFragment__export_sms_messages">SMS సందేశాలను ఎగుమతి చేయండి</string>
-    <!-- Preference title to re-export sms -->
-    <string name="SmsSettingsFragment__export_sms_messages_again">SMS సందేశాలను మళ్ళీ ఎగుమతి చేయండి</string>
-    <!-- Preference title to delete sms -->
-    <string name="SmsSettingsFragment__remove_sms_messages">SMS సందేశాలను తొలగించండి</string>
-    <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Signal నుంచి SMS సందేశాలను తొలగిస్తోంది…</string>
-    <!-- Snackbar text to indicate can delete later -->
-    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">మీరు ఏ సమయంలోనైనా సెట్టింగ్‌లలో Signal నుంచి SMS సందేశాలను తొలగించవచ్చు.</string>
-    <!-- Description for export sms preference -->
-    <string name="SmsSettingsFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">మీ ఫోన్ యొక్క SMS డేటాబేస్‌కు మీ SMS సందేశాలను మీరు ఎగుమతి చేయవచ్చు</string>
-    <!-- Description for re-export sms preference -->
-    <string name="SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages">మళ్ళీ ఎగుమతి చేయడం వల్ల నకిలీ సందేశాలకు దారితీయగలదు.</string>
-    <!-- Description for remove sms preference -->
-    <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">నిల్వ స్థలాన్ని ఖాళీ చేయడానికి Signal నుంచి SMS సందేశాలను తొలగించండి.</string>
-    <!-- Information message shown at the top of sms settings to indicate it is being removed soon. -->
-    <string name="SmsSettingsFragment__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging">ఎన్‌క్రిప్ట్ చేసిన సందేశాలు పంపడంపై దృష్టి పెట్టడానికి త్వరలో SMS మద్దతు తొలగించబడుతుంది.</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">సందేశాలు</string>
@@ -5825,48 +5808,6 @@
     <!-- Generic title for overflow menus -->
     <string name="OverflowMenu__overflow_menu">ఓవర్‌ఫ్లో మెనూ</string>
 
-    <!-- SMS Export Service -->
-    <!-- Displayed in the notification while export is running -->
-    <string name="SignalSmsExportService__exporting_messages">సందేశాలను ఎగుమతి చేస్తోంది…</string>
-    <!-- Displayed in the notification title when export completes -->
-    <string name="SignalSmsExportService__signal_sms_export_complete">Signal SMS ఎగుమతి పూర్తయింది</string>
-    <!-- Displayed in the notification message when export completes -->
-    <string name="SignalSmsExportService__tap_to_return_to_signal">Signal కు తిరిగి రావడానికి తట్టండి</string>
-
-    <!-- ExportYourSmsMessagesFragment -->
-    <!-- Title of the screen -->
-    <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">మీ SMS సందేశాలను ఎగుమతి చేయండి</string>
-    <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">మీ ఫోన్ యొక్క SMS డేటాబేస్‌కు మీ SMS సందేశాలను మీరు ఎగుమతి చేయవచ్చు మరియు Signal నుంచి వాటిని ఉంచడం లేదా తొలగించడానికి మీకు వికల్పం ఉంటుంది. ఇది మీ ఫోన్‌లోని ఇతర SMS యాప్స్ వాటిని దిగుమతి చేసుకోవడానికి అనుమతిస్తుంది. ఇది మీ SMS చరిత్ర యొక్క పంచుకోదగ్గ ఫైల్‌ను సృష్టించదు.</string>
-    <!-- Button label to begin export -->
-    <string name="ExportYourSmsMessagesFragment__continue">కొనసాగు</string>
-
-    <!-- ExportingSmsMessagesFragment -->
-    <!-- Title of the screen -->
-    <string name="ExportingSmsMessagesFragment__exporting_sms_messages">SMS సందేశాలను ఎగుమతి చేస్తోంది</string>
-    <!-- Message of the screen when exporting sms messages -->
-    <string name="ExportingSmsMessagesFragment__this_may_take_awhile">దీనికి కొంత సమయం పట్టవచ్చు</string>
-    <!-- Progress indicator for export -->
-    <plurals name="ExportingSmsMessagesFragment__exporting_d_of_d">
-        <item quantity="one">%2$d యొక్క %1$d ని ఎగుమతి చేస్తోంది…</item>
-        <item quantity="other">%2$d యొక్క %1$d లను ఎగుమతి చేస్తోంది…</item>
-    </plurals>
-    <!-- Alert dialog title shown when we think a user may not have enough local storage available to export sms messages -->
-    <string name="ExportingSmsMessagesFragment__you_may_not_have_enough_disk_space">మీకు తగినంత డిస్క్ స్థలం ఉండకపోవచ్చు.</string>
-    <!-- Alert dialog message shown when we think a user may not have enough local storage available to export sms messages, placeholder is the file size, e.g., 128kB -->
-    <string name="ExportingSmsMessagesFragment__you_need_approximately_s_to_export_your_messages_ensure_you_have_enough_space_before_continuing">మీ సందేశాలను ఎగుమతి చేయడానికి మీకు సుమారుగా %1$s అవసరం, కొనసాగడానికి ముందు మీకు తగినంత స్థలం ఉందని నిర్ధారించుకోండి.</string>
-    <!-- Alert dialog button to continue with exporting sms after seeing the lack of storage warning -->
-    <string name="ExportingSmsMessagesFragment__continue_anyway">ఏమైనాగాని కొనసాగండి</string>
-    <!-- Dialog text shown when Signal isn\'t granted the sms permission needed to export messages, different than being selected as the sms app -->
-    <string name="ExportingSmsMessagesFragment__signal_needs_the_sms_permission_to_be_able_to_export_your_sms_messages">మీ SMS సందేశాలను ఎగుమతి చేయడానికి Signal కు SMS అనుమతి అవసరం.</string>
-
-    <!-- ChooseANewDefaultSmsAppFragment -->
-    <!-- Title of the screen -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_a_new">కొత్త డిఫాల్ట్ SMS యాప్‌ను ఎంచుకోండి</string>
-    <!-- Button label to launch picker -->
-    <string name="ChooseANewDefaultSmsAppFragment__continue">కొనసాగు</string>
-    <!-- Button label for when done with changing default SMS app -->
-    <string name="ChooseANewDefaultSmsAppFragment__done">పూర్తయింది</string>
     <!-- First step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_1">1</string>
     <!-- Second step number/bullet for choose new default sms app instructions -->
@@ -5875,47 +5816,6 @@
     <string name="ChooseANewDefaultSmsAppFragment__bullet_3">3</string>
     <!-- Fourth step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_4">4</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">సెట్టింగ్‌లలో ‘‘డిఫాల్ట్ యాప్స్’’ స్క్రీన్ తెరవడానికి ‘‘కొనసాగండి’’ పై తట్టండి</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">జాబితా నుంచి ‘‘SMS యాప్’’ ను ఎంచుకోండి</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">SMS సందేశాలు పంపడానికి మరో యాప్‌ను ఎంచుకోండి</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Signal కు తిరిగి రండి</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">మీ ఫోన్ యొక్క సెట్టింగ్‌ల యాప్‌ను తెరవండి</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">\"యాప్స్\" &gt; \"డిఫాల్ట్ యాప్స్\" &gt; \"SMS యాప్\" కు వెళ్లండి</string>
-
-    <!-- RemoveSmsMessagesDialogFragment -->
-    <!-- Action button to keep messages -->
-    <string name="RemoveSmsMessagesDialogFragment__keep_messages">సందేశాలను ఉంచుకోండి</string>
-    <!-- Action button to remove messages -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_messages">సందేశాలను తొలగించండి</string>
-    <!-- Title of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Signal నుంచి SMS సందేశాలను తొలగించేదా?</string>
-    <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">నిల్వ స్థలాన్ని ఖాళీ చేయడానికి Signal నుంచి SMS సందేశాలను మీరు ఇప్పుడు తొలగించవచ్చు. ఒకవేళ మీరు వాటిని తొలగించినప్పటికీ మీ ఫోన్‌లో ఇతర SMS యాప్‌లకు అవి ఇంకా అందుబాటులో ఉంటాయి.</string>
-
-    <!-- ReExportSmsMessagesDialogFragment -->
-    <!-- Action button to re-export messages -->
-    <string name="ReExportSmsMessagesDialogFragment__continue">కొనసాగు</string>
-    <!-- Action button to cancel re-export process -->
-    <string name="ReExportSmsMessagesDialogFragment__cancel">రద్దు</string>
-    <!-- Title of dialog -->
-    <string name="ReExportSmsMessagesDialogFragment__export_sms_again">SMS ను మళ్ళీ ఎగుమతి చేసేదా?</string>
-    <!-- Message of dialog -->
-    <string name="ReExportSmsMessagesDialogFragment__you_already_exported_your_sms_messages">మీ SMS సందేశాలను మీరు ఇప్పటికే ఎగుమతి చేశారు.\nహెచ్చరిక: ఒకవేళ మీరు కొనసాగితే, మీరు నకిలీ సందేశాలతో ముగించవచ్చు.</string>
-
-    <!-- SetSignalAsDefaultSmsAppFragment -->
-    <!-- Title of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Signal ను డిఫాల్ట్ SMS యాప్‌గా సెట్ చేయండి</string>
-    <!-- Message of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">మీ SMS సందేశాలను ఎగుమతి చేయడానికి, మీరు Signal ను డిఫాల్ట్ SMS యాప్‌గా సెట్ చేయాల్సి ఉంటుంది.</string>
-    <!-- Button label to start export -->
-    <string name="SetSignalAsDefaultSmsAppFragment__next">తరువాత</string>
-
     <!-- BackupSchedulePermission Megaphone -->
     <!-- The title on an alert window that explains to the user that we are unable to backup their messages -->
     <string name="BackupSchedulePermissionMegaphone__cant_back_up_chats">చాట్‌ల‌ను బ్యాకప్ చేయలేము</string>
@@ -5933,45 +5833,6 @@
     <string name="BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders">‘‘సెట్టింగ్స్ అలారమ్‌లు మరియు రిమైండర్లను అనుమతించండి’’ ఆన్ చేయండి.</string>
     <!-- Re-enable backups permission bottom sheet call to action button to open settings -->
     <string name="BackupSchedulePermissionMegaphone__go_to_settings">సెట్టింగ్‌లకు వెళ్లండి</string>
-
-    <!-- SmsExportMegaphoneActivity -->
-    <!-- Phase 2 title of full screen megaphone indicating sms will no longer be supported in the near future -->
-    <string name="SmsExportMegaphoneActivity__signal_will_no_longer_support_sms">SMS లకు Signal ఇకపై మద్దతు ఇవ్వదు</string>
-    <!-- Phase 3 title of full screen megaphone indicating sms is longer supported  -->
-    <string name="SmsExportMegaphoneActivity__signal_no_longer_supports_sms">SMS లకు Signal మద్దతు ఇవ్వదు</string>
-    <!-- The text on a button in a popup that, when clicked, will dismiss the popup and schedule the prompt to occur at a later time. -->
-    <string name="SmsExportMegaphoneActivity__remind_me_later">తరువాత నాకు గుర్తు చేయండి</string>
-    <!-- The text on a button in a popup that, when clicked, will navigate the user to a web article on SMS removal -->
-
-    <!-- Title for screen shown after sms export has completed -->
-    <string name="ExportSmsCompleteFragment__export_complete">ఎగుమతి పూర్తయింది</string>
-    <!-- Button to continue to next screen -->
-    <string name="ExportSmsCompleteFragment__next">తరువాత</string>
-    <!-- Message showing summary of sms export counts -->
-    <plurals name="ExportSmsCompleteFragment__d_of_d_messages_exported">
-        <item quantity="one">%2$d యొక్క %1$d సందేశం ఎగుమతి చేయబడింది</item>
-        <item quantity="other">%2$d యొక్క %1$d సందేశాలు ఎగుమతి చేయబడినాయి</item>
-    </plurals>
-
-    <!-- Title of screen shown when some sms messages did not export -->
-    <string name="ExportSmsPartiallyComplete__export_partially_complete">ఎగుమతి పాక్షికంగా పూర్తయింది</string>
-    <!-- Debug step 1 on screen shown when some sms messages did not export -->
-    <string name="ExportSmsPartiallyComplete__ensure_you_have_an_additional_s_free_on_your_phone_to_export_your_messages">మీ సందేశాలను ఎగుమతి చేయడానికి మీ ఫోన్‌లో మీకు అదనంగా %1$s ఖాళీ ఉందని నిర్ధారించుకోండి</string>
-    <!-- Debug step 2 on screen shown when some sms messages dit not export -->
-    <string name="ExportSmsPartiallyComplete__retry_export_which_will_only_retry_messages_that_have_not_yet_been_exported">ఎగుమతిని మళ్లీ ప్రయత్నించండి, ఇది ఇంకా ఎగుమతి చేయబడని సందేశాలను మాత్రమే తిరిగి ప్రయత్నిస్తుంది</string>
-    <!-- Partial sentence for Debug step 3 on screen shown when some sms messages did not export, is combined with \'contact us\' -->
-    <string name="ExportSmsPartiallyComplete__if_the_problem_persists">ఒకవేళ సమస్య ఇంకా కొనసాగితే, </string>
-    <!-- Partial sentence for deubg step 3 on screen shown when some sms messages did not export, combined with \'If the problem persists\', link text to open contact support view -->
-    <string name="ExportSmsPartiallyComplete__contact_us">మమ్మల్ని సంప్రదించండి</string>
-    <!-- Button text to retry sms export -->
-    <string name="ExportSmsPartiallyComplete__retry">మళ్ళీ ప్రయత్నించు</string>
-    <!-- Button text to continue sms export flow and not retry failed message exports -->
-    <string name="ExportSmsPartiallyComplete__continue_anyway">ఏమైనాగాని కొనసాగండి</string>
-    <!-- Title of screen shown when all sms messages failed to export -->
-    <string name="ExportSmsFullError__error_exporting_sms_messages">SMS సందేశాలను ఎగుమతి చేయడంలో లోపం</string>
-    <!-- Helper text shown when all sms messages failed to export -->
-    <string name="ExportSmsFullError__please_try_again_if_the_problem_persists">దయచేసి మళ్ళీ ప్రయత్నించండి. ఒకవేళ సమస్య ఇంకా కొనసాగితే, </string>
-
 
     <!-- DonateToSignalFragment -->
     <!-- Title below avatar -->
@@ -6217,19 +6078,6 @@
     <!-- Displayed in the "clear filter" item in the chat feed if the user opened the filter from the overflow menu -->
     <string name="ChatFilter__tip_pull_down">చిట్కా: ఫిల్టర్ చేయడానికి చాట్ జాబితాపై కిందకు లాగండి</string>
 
-    <!-- Title for screen describing that sms support is going to be removed soon -->
-    <string name="SmsRemoval_title_going_away">SMS మద్దతు కనుమరుగవబోతోంది</string>
-    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
-    <string name="SmsRemoval_info_bullet_1">Signal యాప్‌లో SMS మెసేజింగ్‌కు త్వరలో మద్దతు తొలగించబడుతుంది.</string>
-    <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_2">SMS సందేశాలు Signal సందేశాల కంటే భిన్నంగా ఉంటాయి. <b>ఇది ఎన్‌క్రిప్ట్ చేసిన Signal మెసేజింగ్‌ను ప్రభావితం చేయదు, ఇది పని చేయడం కొనసాగుతుంది.</b></string>
-    <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_3">మీరు మీ SMS సందేశాలను ఎగుమతి చేయవచ్చు మరియు కొత్త SMS యాప్‌ను ఎంచుకోవచ్చు.</string>
-    <!-- Bullet point message shown on describing screen as first bullet variant why sms is being removed when user is locked out of sms -->
-    <string name="SmsRemoval_info_bullet_1_phase_3">SMS సందేశాలను పంపడానికి Signal మద్దతును తొలగించింది.</string>
-    <!-- Button label on sms removal info/megaphone to start the export SMS flow -->
-    <string name="SmsRemoval_export_sms">SMS ఎగుమతి చేయండి</string>
-
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__set_up_your_signal_username">మీ Signal యూజర్‌నేమ్‌ను సెటప్ చేయండి</string>
@@ -6253,18 +6101,6 @@
     <string name="TextFormatting_spoiler">స్పాయిలర్</string>
     <!-- Popup menu label for clearing applied formatting -->
     <string name="TextFormatting_clear_formatting">ఫార్మాటింగ్‌ను క్లియర్ చేయండి</string>
-
-    <!-- UsernameEducationFragment -->
-    <!-- Continue button which takes the user to the add a username screen -->
-    <string name="UsernameEducationFragment__continue">కొనసాగండి</string>
-    <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">మీ Signal యూజర్‌నేమ్‌ను సెటప్ చేయండి</string>
-    <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__usernames_are_paired_with_a_set_of_digits">యూజర్‌నేమ్స్ అంకెల సెట్‌తో జత చేయబడ్డాయి మరియు మీ ప్రొఫైల్‌లో పంచుకోబడలేదు</string>
-    <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">మీతో చాట్ ప్రారంభించడానికి మీరు స్నేహితులతో పంచుకోగల సాటిలేని QR కోడ్ మరియు లింక్ ప్రతి యూజర్‌నేమ్‌కు ఉంటుంది</string>
-    <!-- Displayed as body text in the username education screen. The string references the names of settings, so they should match our translations for those settings. -->
-    <string name="UsernameEducationFragment__turn_off_phone_number_discovery">ఇతరులు మిమ్మల్ని సంప్రదించడానికి మీ యూజర్‌నేమ్‌ను ప్రాథమిక మార్గంగా ఉపయోగించడానికి, సెట్టింగ్స్ &gt; గోప్యత &gt; ఫోన్ నంబర్ &gt; నా నంబర్‌ను ఎవరు కనుగొనగలరు కింద ఫోన్ నంబర్ కనుగొనడాన్ని ఆఫ్ చేయండి</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
@@ -6503,6 +6339,8 @@
     <!-- Displayed as body in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">ఈ లింక్‌ను కలిగి ఉన్న ఎవరికైనా ఇకపై పని చేయదు.</string>
 
+    <!-- Button label for the link button in the username link settings -->
+    <string name="UsernameLinkSettings_link_button_label">Link</string>
     <!-- Button label for the share button in the username link settings -->
     <string name="UsernameLinkSettings_share_button_label">పంచుకోండి</string>
     <!-- Button label for the color selector button in the username link settings -->
@@ -6547,6 +6385,8 @@
     <string name="UsernameLinkSettings_reset_link_result_network_unavailable">మీకు నెట్‌వర్క్ యాక్సెస్ లేదు. మీ లింక్ రీసెట్ చేయబడలేదు. తరువాత మళ్ళీ ప్రయత్నించండి.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">మీ లింక్‌ను రీసెట్ చేయడానికి ప్రయత్నిస్తున్నప్పుడు నెట్‌వర్క్ లోపం ఏర్పడింది. తరువాత మళ్ళీ ప్రయత్నించండి.</string>
+    <!-- Shown on the generated username qr code image to explain how to use it. -->
+    <string name="UsernameLinkSettings_scan_this_qr_code">Scan this QR code with your phone to chat with me on Signal.</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
     <string name="UsernameLinkShareBottomSheet_title">ఈ లింక్‌ను కలిగి ఉన్న ఎవరైనా మీ యూజర్‌నేమ్‌ను చూడగలరు మరియు మీతో చాటింగ్ ప్రారంభించగలరు. మీకు నమ్మకం ఉన్న వ్యక్తులతో మాత్రమే దీనిని పంచుకోండి.</string>
