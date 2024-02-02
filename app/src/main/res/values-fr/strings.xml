@@ -46,14 +46,14 @@
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Signal et les notifications de message seront déverrouillées en permanence.</string>
     <string name="ApplicationPreferencesActivity_disable">Désactiver</string>
     <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Désactiver les messages et appels Signal ?</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Désactivez les messages et appels Signal en vous désinscrivant du serveur. Vous devrez réinscrire votre numéro de téléphone pour les réutiliser à l’avenir.</string>
+    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Pour désactiver les messages et les appels Signal, désinscrivez-vous du serveur. Vous devrez réenregistrer votre numéro de mobile pour les réutiliser.</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Erreur de connexion au serveur.</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Un NIP est requis pour le blocage de l’inscription. Pour désactiver le NIP, veuillez d’abord désactiver le blocage de l’inscription.</string>
-    <string name="ApplicationPreferencesActivity_pin_created">Le NIP a été créé.</string>
-    <string name="ApplicationPreferencesActivity_pin_disabled">Le NIP a été désactivé.</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Enregistrer une phrase de récupération des paiements</string>
+    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Le blocage d’inscription nécessite l’utilisation d’un code PIN. Pour désactiver le code PIN, commencez par désactiver le blocage d’inscription.</string>
+    <string name="ApplicationPreferencesActivity_pin_created">Code PIN créé.</string>
+    <string name="ApplicationPreferencesActivity_pin_disabled">Code PIN désactivé.</string>
+    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Enregistrer une phrase de récupération pour les paiements</string>
     <string name="ApplicationPreferencesActivity_record_phrase">Enregistrez la phrase</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Avant de pouvoir désactiver votre NIP, vous devez enregistrer votre phrase de récupération des paiements pour vous permettre de récupérer votre compte de paiements.</string>
+    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Avant de désactiver votre code PIN, vous devez enregistrer la phrase de récupération qui vous permettra de récupérer votre compte de paiements.</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -67,7 +67,7 @@
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__9" translatable="false">9</string> -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__0" translatable="false">0</string> -->
     <!-- Back button on numeric keyboard -->
-    <string name="NumericKeyboardView__backspace">Retour en arrière</string>
+    <string name="NumericKeyboardView__backspace">Retour arrière</string>
 
     <!-- DraftDatabase -->
     <string name="DraftDatabase_Draft_image_snippet">(image)</string>
@@ -109,7 +109,7 @@
 
     <!-- Fcm notifications -->
     <!-- Notification we show when there may be messages for you, but we cannot connect to the server to check -->
-    <string name="FcmFetchManager__you_may_have_messages">Vous pourriez avoir de nouveaux messages</string>
+    <string name="FcmFetchManager__you_may_have_messages">Vous avez peut-être de nouveaux messages</string>
 
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">Utilisateurs bloqués</string>
@@ -608,9 +608,9 @@
     <!-- Toolbar title for this screen -->
     <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Qui peut me retrouver par mon numéro ?</string>
     <!-- Description for radio item stating anyone can see your phone number -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">Anyone who has your phone number will see you\'re on Signal and can start chats with you.</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">Toutes les personnes possédant votre numéro de téléphone verront que vous utilisez Signal et pourront commencer une conversation avec vous.</string>
     <!-- Description for radio item stating no one will be able to see your phone number -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Nobody will be able to see you\'re on Signal unless you message them or have an existing chat with them.</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Personne ne verra votre numéro de téléphone sur Signal, à moins que vous leur envoyiez un message ou que vous ayez déjà une conversation existante avec eux.</string>
 
     <!-- ChooseBackupFragment -->
     <string name="ChooseBackupFragment__restore_from_backup">Restaurer d’une sauvegarde ?</string>
@@ -1587,7 +1587,7 @@
 
     <!-- DeviceProvisioningActivity -->
     <string name="DeviceProvisioningActivity_link_this_device">Relier cet appareil ?</string>
-    <string name="DeviceProvisioningActivity_continue">Continue</string>
+    <string name="DeviceProvisioningActivity_continue">Poursuivre</string>
 
     <string name="DeviceProvisioningActivity_content_intro">Il pourra</string>
     <string name="DeviceProvisioningActivity_content_bullets">
@@ -3798,7 +3798,7 @@
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Qui peut me retrouver grâce à mon numéro de téléphone</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number_will_be">Your phone number will be visible to people and groups you message.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number_will_be">Votre numéro de téléphone sera visible par les personnes et les groupes avec lesquels vous échangez des messages.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
     <string name="PhoneNumberPrivacySettingsFragment__anyone_who_has">Toutes les personnes possédant votre numéro de téléphone verront que vous utilisez Signal et pourront commencer une conversation avec vous.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
@@ -5975,6 +5975,12 @@
     <string name="IdealTransferDetailsFragment__email">Adresse courriel</string>
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">Choisissez votre banque</string>
+    <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">Confirm your donation with %1$s</string>
+    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
+    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">To setup your recurring donation tap continue to confirm a €0,01 charge with your bank. This will be automatically refunded and allows your €5/month donation to debited from your account.</string>
+    <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
+    <string name="IdealTransferDetailsFragment__continue">Continue</string>
 
     <!-- IdealTransferDetailsBankSelectionDialogFragment -->
     <!-- Title of the screen, displayed in the toolbar -->
@@ -6340,7 +6346,7 @@
     <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">Ce lien ne fonctionnera plus pour les personnes qui le possèdent.</string>
 
     <!-- Button label for the link button in the username link settings -->
-    <string name="UsernameLinkSettings_link_button_label">Link</string>
+    <string name="UsernameLinkSettings_link_button_label">lien</string>
     <!-- Button label for the share button in the username link settings -->
     <string name="UsernameLinkSettings_share_button_label">Partager</string>
     <!-- Button label for the color selector button in the username link settings -->
@@ -6386,7 +6392,7 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">Une erreur réseau s’est produite lors de la tentative de réinitialisation de votre lien. Réessayez plus tard.</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
-    <string name="UsernameLinkSettings_scan_this_qr_code">Scan this QR code with your phone to chat with me on Signal.</string>
+    <string name="UsernameLinkSettings_scan_this_qr_code">Scannez ce code QR pour discuter avec moi sur Signal.</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
     <string name="UsernameLinkShareBottomSheet_title">Toute personne disposant de ce lien peut voir votre nom d\'utilisateur et démarrer une conversation avec vous. À ne partager qu\'avec des personnes de confiance.</string>

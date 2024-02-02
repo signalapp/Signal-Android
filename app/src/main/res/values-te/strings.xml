@@ -608,9 +608,9 @@
     <!-- Toolbar title for this screen -->
     <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">నంబర్ ద్వారా నన్ను ఎవరు కనుగొనగలరు?</string>
     <!-- Description for radio item stating anyone can see your phone number -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">Anyone who has your phone number will see you\'re on Signal and can start chats with you.</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">మీ ఫోన్ నంబర్‌ను కలిగి ఉన్న ఎవరైనా మీరు Signal లో ఉన్నట్లు చూస్తారు మరియు మీతో చాట్‌లను ప్రారంభించగలరు.</string>
     <!-- Description for radio item stating no one will be able to see your phone number -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Nobody will be able to see you\'re on Signal unless you message them or have an existing chat with them.</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">మీరు వారికి సందేశం పంపితే లేదా వారితో ఇప్పటికే చాట్ చేస్తే తప్ప మీరు Signal లో ఉన్నారని ఎవరూ చూడలేరు.</string>
 
     <!-- ChooseBackupFragment -->
     <string name="ChooseBackupFragment__restore_from_backup">ప్రత్యామ్నాయ నుండి పునరుద్ధరించాలా?</string>
@@ -1587,7 +1587,7 @@
 
     <!-- DeviceProvisioningActivity -->
     <string name="DeviceProvisioningActivity_link_this_device">ఈ పరికరం బంధము చేయాలా?</string>
-    <string name="DeviceProvisioningActivity_continue">Continue</string>
+    <string name="DeviceProvisioningActivity_continue">కొనసాగండి</string>
 
     <string name="DeviceProvisioningActivity_content_intro">ఇది చెయ్యగలరు</string>
     <string name="DeviceProvisioningActivity_content_bullets">
@@ -3798,7 +3798,7 @@
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">నంబర్ ద్వారా నన్ను ఎవరు కనుగొనగలరు</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number_will_be">Your phone number will be visible to people and groups you message.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number_will_be">మీరు సందేశం పంపిన వ్యక్తులకు మరియు సమూహాలకు మీ ఫోన్ నంబర్ కనిపిస్తుంది.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
     <string name="PhoneNumberPrivacySettingsFragment__anyone_who_has">మీ ఫోన్ నంబర్‌ను కలిగి ఉన్న ఎవరైనా మీరు Signal లో ఉన్నట్లు చూస్తారు మరియు మీతో చాట్‌లను ప్రారంభించగలరు.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
@@ -5975,6 +5975,12 @@
     <string name="IdealTransferDetailsFragment__email">ఇమెయిల్</string>
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">మీ బ్యాంక్‌ను ఎంచుకోండి</string>
+    <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">Confirm your donation with %1$s</string>
+    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
+    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">To setup your recurring donation tap continue to confirm a €0,01 charge with your bank. This will be automatically refunded and allows your €5/month donation to debited from your account.</string>
+    <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
+    <string name="IdealTransferDetailsFragment__continue">Continue</string>
 
     <!-- IdealTransferDetailsBankSelectionDialogFragment -->
     <!-- Title of the screen, displayed in the toolbar -->

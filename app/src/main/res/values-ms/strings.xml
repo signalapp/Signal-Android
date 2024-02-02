@@ -592,9 +592,9 @@
     <!-- Toolbar title for this screen -->
     <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Siapa yang boleh cari saya melalui nombor?</string>
     <!-- Description for radio item stating anyone can see your phone number -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">Anyone who has your phone number will see you\'re on Signal and can start chats with you.</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">Sesiapa yang mempunyai nombor telefon anda akan dapat melihat anda di Signal dan boleh mula bersembang dengan anda.</string>
     <!-- Description for radio item stating no one will be able to see your phone number -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Nobody will be able to see you\'re on Signal unless you message them or have an existing chat with them.</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Tiada sesiapa boleh melihat anda di Signal melainkan anda menghantar mesej kepada mereka atau mempunyai sembang sedia ada dengan mereka.</string>
 
     <!-- ChooseBackupFragment -->
     <string name="ChooseBackupFragment__restore_from_backup">Memulihkan daripada sandaran?</string>
@@ -1529,7 +1529,7 @@
 
     <!-- DeviceProvisioningActivity -->
     <string name="DeviceProvisioningActivity_link_this_device">Pautkan peranti ini?</string>
-    <string name="DeviceProvisioningActivity_continue">Continue</string>
+    <string name="DeviceProvisioningActivity_continue">Teruskan</string>
 
     <string name="DeviceProvisioningActivity_content_intro">ia akan dapat</string>
     <string name="DeviceProvisioningActivity_content_bullets">
@@ -3693,7 +3693,7 @@
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Siapa boleh cari saya dengan nombor</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number_will_be">Your phone number will be visible to people and groups you message.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number_will_be">Nombor telefon anda akan dapat dilihat oleh semua orang dan kumpulan yang anda hantar mesej.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
     <string name="PhoneNumberPrivacySettingsFragment__anyone_who_has">Sesiapa yang mempunyai nombor telefon anda akan dapat melihat anda di Signal dan boleh mula bersembang dengan anda.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
@@ -5839,6 +5839,12 @@
     <string name="IdealTransferDetailsFragment__email">E-mel</string>
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">Pilih bank anda</string>
+    <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">Confirm your donation with %1$s</string>
+    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
+    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">To setup your recurring donation tap continue to confirm a €0,01 charge with your bank. This will be automatically refunded and allows your €5/month donation to debited from your account.</string>
+    <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
+    <string name="IdealTransferDetailsFragment__continue">Continue</string>
 
     <!-- IdealTransferDetailsBankSelectionDialogFragment -->
     <!-- Title of the screen, displayed in the toolbar -->
@@ -6200,7 +6206,7 @@
     <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">Pautan ini tidak akan berfungsi lagi untuk sesiapa yang mempunyainya.</string>
 
     <!-- Button label for the link button in the username link settings -->
-    <string name="UsernameLinkSettings_link_button_label">Link</string>
+    <string name="UsernameLinkSettings_link_button_label">pautan</string>
     <!-- Button label for the share button in the username link settings -->
     <string name="UsernameLinkSettings_share_button_label">Kongsi</string>
     <!-- Button label for the color selector button in the username link settings -->
@@ -6246,7 +6252,7 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">Ralat rangkaian berlaku semasa cuba menetapkan semula pautan anda. Cuba lagi kemudian.</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
-    <string name="UsernameLinkSettings_scan_this_qr_code">Scan this QR code with your phone to chat with me on Signal.</string>
+    <string name="UsernameLinkSettings_scan_this_qr_code">Imbas kod QR ini dengan telefon anda untuk sembang dengan saya di Signal.</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
     <string name="UsernameLinkShareBottomSheet_title">Sesiapa sahaja yang mempunyai pautan ini boleh melihat nama pengguna anda dan memulakan sembang dengan anda. Hanya kongsi dengan orang yang anda percayai.</string>
