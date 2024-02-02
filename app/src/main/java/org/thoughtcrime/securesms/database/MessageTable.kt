@@ -2947,11 +2947,11 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       ApplicationDependencies.getDatabaseObserver().notifyStoryObservers(message.threadRecipient.id)
     }
 
-    notifyConversationListListeners()
-
     if (!message.isIdentityVerified && !message.isIdentityDefault) {
-      TrimThreadJob.enqueueAsync(threadId)
+      ThreadUpdateJob.enqueue(threadId)
     }
+
+    TrimThreadJob.enqueueAsync(threadId)
 
     return messageId
   }

@@ -336,7 +336,7 @@ object SyncMessageProcessor {
       messageId = SignalDatabase.messages.insertMessageOutbox(outgoingTextMessage, threadId, false, null)
       SignalDatabase.messages.markUnidentified(messageId, sent.isUnidentified(toRecipient.serviceId.orNull()))
     }
-    SignalDatabase.threads.update(threadId, true)
+
     SignalDatabase.messages.markAsSent(messageId, true)
     if (targetMessage.expireStarted > 0) {
       SignalDatabase.messages.markExpireStarted(messageId, targetMessage.expireStarted)
@@ -590,7 +590,6 @@ object SyncMessageProcessor {
       )
 
       SignalDatabase.messages.markAsSent(messageId, true)
-      SignalDatabase.threads.update(threadId, true)
     }
 
     return threadId
@@ -835,7 +834,6 @@ object SyncMessageProcessor {
       messageId = SignalDatabase.messages.insertMessageOutbox(outgoingTextMessage, threadId, false, null)
       SignalDatabase.messages.markUnidentified(messageId, sent.isUnidentified(recipient.serviceId.orNull()))
     }
-    SignalDatabase.threads.update(threadId, true)
     SignalDatabase.messages.markAsSent(messageId, true)
     if (expiresInMillis > 0) {
       SignalDatabase.messages.markExpireStarted(messageId, sent.expirationStartTimestamp ?: 0)
