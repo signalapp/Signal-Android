@@ -10,6 +10,7 @@ class LabsValues internal constructor(store: KeyValueStore) : SignalStoreValues(
     const val GROUP_SUGGESTIONS_FOR_MEMBERS: String = "labs.group_suggestions_for_members"
     const val BETTER_SEARCH: String = "labs.better_search"
     const val AUTO_LOWER_HAND: String = "labs.auto_lower_hand"
+    const val NEW_APNG_RENDERER: String = "labs.new_apng_renderer"
   }
 
   public override fun onFirstEverAppLaunch() = Unit
@@ -27,6 +28,8 @@ class LabsValues internal constructor(store: KeyValueStore) : SignalStoreValues(
   var betterSearch by booleanValue(BETTER_SEARCH, true).falseForExternalUsers()
 
   var autoLowerHand by booleanValue(AUTO_LOWER_HAND, true).falseForExternalUsers()
+
+  var newApngRenderer by booleanValue(NEW_APNG_RENDERER, true).falseForExternalUsers()
 
   private fun SignalStoreValueDelegate<Boolean>.falseForExternalUsers(): SignalStoreValueDelegate<Boolean> {
     return this.map { actualValue -> RemoteConfig.internalUser && actualValue }

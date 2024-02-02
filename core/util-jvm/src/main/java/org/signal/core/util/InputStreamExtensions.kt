@@ -10,6 +10,7 @@ import java.io.ByteArrayOutputStream
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
+import kotlin.jvm.Throws
 import kotlin.math.min
 
 /**
@@ -105,6 +106,13 @@ fun InputStream.readLength(): Long {
   }
 
   return count
+}
+
+/**
+ * Reads a 32-bit unsigned integer from the stream.
+ */
+fun InputStream.readUInt(): UInt {
+  return this.readNBytesOrThrow(4).toUInt()
 }
 
 /**

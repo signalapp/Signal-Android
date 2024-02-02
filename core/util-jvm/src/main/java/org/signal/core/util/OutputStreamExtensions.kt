@@ -6,6 +6,8 @@
 package org.signal.core.util
 
 import java.io.OutputStream
+import java.nio.ByteBuffer
+import java.nio.ByteOrder
 
 /**
  * Writes a 32-bit variable-length integer to the stream.
@@ -29,4 +31,12 @@ fun OutputStream.writeVarInt32(value: Int) {
       write(lowestSevenBits or 0x80)
     }
   }
+}
+
+/**
+ * Writes a 32-bit unsigned integer to the stream.
+ */
+fun OutputStream.writeUInt(value: UInt) {
+  // Note that casting to an int here is fine, because at the end of the day, we're just writing 4 bytes to the stream
+  this.write(ByteBuffer.allocate(4).order(ByteOrder.BIG_ENDIAN).putInt(value.toInt()).array())
 }

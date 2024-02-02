@@ -613,6 +613,7 @@ dependencies {
   implementation(project(":core:models-jvm"))
   implementation(project(":feature:camera"))
   implementation(project(":feature:registration"))
+  implementation(project(":lib:apng"))
 
   implementation(libs.androidx.fragment.ktx)
   implementation(libs.androidx.appcompat) {

@@ -142,6 +142,15 @@ private fun LabsSettingsContent(
           onCheckChanged = { onEvent(LabsSettingsEvents.ToggleAutoLowerHand(it)) }
         )
       }
+
+      item {
+        Rows.ToggleRow(
+          checked = state.newApngRenderer,
+          text = "New APNG Renderer",
+          label = "Use the new custom APNG renderer instead of the existing third-party library. Requires an app restart to take effect.",
+          onCheckChanged = { onEvent(LabsSettingsEvents.ToggleNewApngRenderer(it)) }
+        )
+      }
     }
   }
 }
