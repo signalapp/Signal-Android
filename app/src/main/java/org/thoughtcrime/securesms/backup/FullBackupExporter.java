@@ -580,9 +580,9 @@ public class FullBackupExporter extends FullBackupBase {
   }
 
   private static boolean isNonExpiringMessage(@NonNull SQLiteDatabase db, @NonNull Cursor cursor) {
+    long id                = CursorUtil.requireLong(cursor, MessageTable.ID);
     long expireStarted     = CursorUtil.requireLong(cursor, MessageTable.EXPIRE_STARTED);
     long expiresIn         = CursorUtil.requireLong(cursor, MessageTable.EXPIRES_IN);
-    long originalMessageId = CursorUtil.requireLong(cursor, MessageTable.ORIGINAL_MESSAGE_ID);
     long latestRevisionId  = CursorUtil.requireLong(cursor, MessageTable.LATEST_REVISION_ID);
 
     long expiresAt     = expireStarted + expiresIn;
@@ -592,11 +592,7 @@ public class FullBackupExporter extends FullBackupBase {
       return false;
     }
 
-    if (originalMessageId > 0 && !isForNonExpiringMessage(db, originalMessageId)) {
-      return false;
-    }
-
-    if (latestRevisionId > 0 && !isForNonExpiringMessage(db, latestRevisionId)) {
+    if (latestRevisionId > 0 && latestRevisionId != id && !isForNonExpiringMessage(db, latestRevisionId)) {
       return false;
     }
 
@@ -604,7 +600,7 @@ public class FullBackupExporter extends FullBackupBase {
   }
 
   private static boolean isForNonExpiringMessage(@NonNull SQLiteDatabase db, long messageId) {
-    String[] columns = new String[] { MessageTable.EXPIRE_STARTED, MessageTable.EXPIRES_IN, MessageTable.LATEST_REVISION_ID, MessageTable.ORIGINAL_MESSAGE_ID };
+    String[] columns = new String[] { MessageTable.ID, MessageTable.EXPIRE_STARTED, MessageTable.EXPIRES_IN, MessageTable.LATEST_REVISION_ID };
     String   where   = MessageTable.ID + " = ?";
     String[] args    = SqlUtil.buildArgs(messageId);
 
