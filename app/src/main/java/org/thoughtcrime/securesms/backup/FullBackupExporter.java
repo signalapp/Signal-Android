@@ -588,11 +588,11 @@ public class FullBackupExporter extends FullBackupBase {
     long expiresAt     = expireStarted + expiresIn;
     long timeRemaining = expiresAt - System.currentTimeMillis();
 
-    if (expireStarted > 0 && timeRemaining <= EXPIRATION_BACKUP_THRESHOLD) {
-      return false;
+    if (latestRevisionId > 0 && latestRevisionId != id ) {
+      return isForNonExpiringMessage(db, latestRevisionId);
     }
 
-    if (latestRevisionId > 0 && latestRevisionId != id && !isForNonExpiringMessage(db, latestRevisionId)) {
+    if (expireStarted > 0 && timeRemaining <= EXPIRATION_BACKUP_THRESHOLD) {
       return false;
     }
 
