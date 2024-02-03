@@ -86,9 +86,9 @@ class TranscodeWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(
     }
 
     val transcoder = if (resolution > 0 && desiredBitrate > 0) {
-      StreamingTranscoder(datasource, null, desiredBitrate, resolution)
+      StreamingTranscoder(datasource, null, desiredBitrate, resolution, false)
     } else {
-      StreamingTranscoder(datasource, null, DEFAULT_FILE_SIZE_LIMIT)
+      StreamingTranscoder(datasource, null, DEFAULT_FILE_SIZE_LIMIT, true)
     }
 
     setForeground(createForegroundInfo(-1, notificationId))

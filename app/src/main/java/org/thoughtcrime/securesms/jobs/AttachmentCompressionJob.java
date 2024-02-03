@@ -258,7 +258,7 @@ public final class AttachmentCompressionJob extends BaseJob {
         }
 
         if (FeatureFlags.useStreamingVideoMuxer()) {
-          StreamingTranscoder transcoder = new StreamingTranscoder(dataSource, options, constraints.getCompressedVideoMaxSize(context));
+          StreamingTranscoder transcoder = new StreamingTranscoder(dataSource, options, constraints.getCompressedVideoMaxSize(context), FeatureFlags.allowAudioRemuxing());
 
           if (transcoder.isTranscodeRequired()) {
             Log.i(TAG, "Compressing with streaming muxer");

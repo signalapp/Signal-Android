@@ -63,6 +63,7 @@ public final class MediaConverter {
     private int mVideoBitrate = 2000000; // 2Mbps
     private @VideoCodec String mVideoCodec = VIDEO_CODEC_H264;
     private int mAudioBitrate = 128000; // 128Kbps
+    private boolean mAllowAudioRemux = false;
 
     private Listener mListener;
     private boolean mCancelled;
@@ -131,6 +132,10 @@ public final class MediaConverter {
         mListener = listener;
     }
 
+    public void setAllowAudioRemux(boolean allow) {
+        mAllowAudioRemux = allow;
+    }
+
     @WorkerThread
     @RequiresApi(23)
     public void convert() throws EncodingException, IOException {
@@ -144,7 +149,7 @@ public final class MediaConverter {
             muxer = mOutput.createMuxer();
 
             videoTrackConverter = VideoTrackConverter.create(mInput, mTimeFrom, mTimeTo, mVideoResolution, mVideoBitrate, mVideoCodec);
-            audioTrackConverter = AudioTrackConverter.create(mInput, mTimeFrom, mTimeTo, mAudioBitrate, muxer.supportsAudioRemux());
+            audioTrackConverter = AudioTrackConverter.create(mInput, mTimeFrom, mTimeTo, mAudioBitrate, mAllowAudioRemux && muxer.supportsAudioRemux());
 
             if (videoTrackConverter == null && audioTrackConverter == null) {
                 throw new EncodingException("No video and audio tracks");

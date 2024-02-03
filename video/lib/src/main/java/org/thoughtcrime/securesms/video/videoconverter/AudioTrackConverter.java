@@ -41,7 +41,6 @@ final class AudioTrackConverter {
     private final MediaCodec mAudioDecoder;
     private final MediaCodec mAudioEncoder;
 
-    private final boolean               skipTrancode;
     private final ByteBuffer            instanceSampleBuffer = ByteBuffer.allocateDirect(SAMPLE_BUFFER_SIZE);
     private final MediaCodec.BufferInfo instanceBufferInfo   = new MediaCodec.BufferInfo();
 
@@ -57,8 +56,9 @@ final class AudioTrackConverter {
     boolean mAudioExtractorDone;
     private boolean mAudioDecoderDone;
     boolean mAudioEncoderDone;
+    private boolean skipTrancode;
 
-    private int mOutputAudioTrack = -1;
+    private int     mOutputAudioTrack = -1;
 
     private int mPendingAudioDecoderOutputBufferIndex = -1;
     long mMuxingAudioPresentationTime;
@@ -164,8 +164,13 @@ final class AudioTrackConverter {
     void step() throws IOException {
 
         if (skipTrancode && mEncoderOutputAudioFormat != null) {
-            extractAndRemux();
-            return;
+            try {
+                extractAndRemux();
+                return;
+            } catch (IllegalArgumentException e) {
+                Log.w(TAG, "Remuxer threw an exception! Disabling remux.", e);
+                skipTrancode = false;
+            }
         }
 
         // Extract audio from file and feed to decoder.

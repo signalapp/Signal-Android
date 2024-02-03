@@ -39,17 +39,20 @@ public final class StreamingTranscoder {
   private final           boolean            transcodeRequired;
   private final           long               fileSizeEstimate;
   private final @Nullable TranscoderOptions  options;
+  private final           boolean            allowAudioRemux;
 
   /**
    * @param upperSizeLimit A upper size to transcode to. The actual output size can be up to 10% smaller.
    */
   public StreamingTranscoder(@NonNull MediaDataSource dataSource,
                              @Nullable TranscoderOptions options,
-                             long upperSizeLimit)
+                             long upperSizeLimit,
+                             boolean allowAudioRemux)
       throws IOException, VideoSourceException
   {
     this.dataSource = dataSource;
     this.options    = options;
+    this.allowAudioRemux = allowAudioRemux;
 
     final MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
     try {
@@ -81,11 +84,13 @@ public final class StreamingTranscoder {
   public StreamingTranscoder(@NonNull MediaDataSource dataSource,
                              @Nullable TranscoderOptions options,
                              int videoBitrate,
-                             int shortEdge)
+                             int shortEdge,
+                             boolean allowAudioRemux)
       throws IOException, VideoSourceException
   {
-    this.dataSource = dataSource;
-    this.options    = options;
+    this.dataSource      = dataSource;
+    this.options         = options;
+    this.allowAudioRemux = allowAudioRemux;
 
     final MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
     try {
@@ -142,7 +147,7 @@ public final class StreamingTranscoder {
 
     final long startTime = System.currentTimeMillis();
 
-    final MediaConverter          converter               = new MediaConverter();
+    final MediaConverter converter = new MediaConverter();
 
     converter.setInput(new MediaDataSourceMediaInput(dataSource));
     final CountingOutputStream outStream;
@@ -155,6 +160,7 @@ public final class StreamingTranscoder {
     converter.setVideoResolution(targetQuality.getOutputResolution());
     converter.setVideoBitrate(targetQuality.getTargetVideoBitRate());
     converter.setAudioBitrate(targetQuality.getTargetAudioBitRate());
+    converter.setAllowAudioRemux(allowAudioRemux);
 
     if (options != null) {
       if (options.endTimeUs > 0) {
