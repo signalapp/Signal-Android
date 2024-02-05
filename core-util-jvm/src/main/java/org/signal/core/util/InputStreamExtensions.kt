@@ -5,9 +5,9 @@
 
 package org.signal.core.util
 
-import java.io.EOFException
 import java.io.IOException
 import java.io.InputStream
+import kotlin.jvm.Throws
 
 /**
  * Reads a 32-bit variable-length integer from the stream.
@@ -79,27 +79,4 @@ fun InputStream.readLength(): Long {
   }
 
   return count
-}
-
-/**
- * Backported from AOSP API 31 source code.
- *
- * @param count number of bytes to skip
- */
-@Throws(IOException::class)
-fun InputStream.skipNBytesCompat(count: Long) {
-  var n = count
-  while (n > 0) {
-    val ns = skip(n)
-    if (ns in 1..n) {
-      n -= ns
-    } else if (ns == 0L) {
-      if (read() == -1) {
-        throw EOFException()
-      }
-      n--
-    } else {
-      throw IOException("Unable to skip exactly")
-    }
-  }
 }
