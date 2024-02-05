@@ -4186,7 +4186,7 @@
     <string name="payment_info_card_hide_this_card">Diese Karte ausblenden?</string>
     <string name="payment_info_card_hide">Ausblenden</string>
     <!-- Title of save recovery phrase card -->
-    <string name="payment_info_card_save_recovery_phrase">Speichere deinen Wiederherstellungssatz</string>
+    <string name="payment_info_card_save_recovery_phrase">Speichere deine Wiederherstellungsphrase</string>
     <string name="payment_info_card_your_recovery_phrase_gives_you">Deine Wiederherstellungsphrase gibt dir eine weitere Möglichkeit, dein Zahlungskonto wiederherzustellen.</string>
     <!-- Button in save recovery phrase card -->
     <string name="payment_info_card_save_your_phrase">Speichere deinen Satz</string>
@@ -4214,16 +4214,16 @@
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">Wiederherstellungsphrase</string>
     <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Wiederherstellungsphrase anzeigen</string>
     <!-- Title in save recovery phrase screen -->
-    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Speichere deinen Wiederherstellungssatz</string>
+    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Speichere deine Wiederherstellungsphrase</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Wiederherstellungsphrase eingeben</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
         <item quantity="one">Dein Kontostand wird beim erneuten Installieren von Signal automatisch wiederhergestellt, falls du deine Signal-PIN bestätigst. Du kannst dein Guthaben auch mit einer Wiederherstellungsphrase wiederherstellen. Das ist eine Phrase mit %1$d-Wort, die nur du kennst. Schreibe sie auf und bewahre sie an einem sicheren Ort auf.</item>
         <item quantity="other">Dein Kontostand wird beim erneuten Installieren von Signal automatisch wiederhergestellt, falls du deine Signal-PIN bestätigst. Du kannst dein Guthaben auch mit einer Wiederherstellungsphrase wiederherstellen. Das ist eine Phrase mit %1$d-Wort, die nur du kennst. Schreibe sie auf und bewahre sie an einem sicheren Ort auf.</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
-    <string name="PaymentsRecoveryStartFragment__got_balance">Du hast ein Guthaben! Zeit, deinen Wiederherstellungssatz zu speichern – ein Schlüssel mit 24 Wörtern, mit dem du dein Guthaben wiederherstellen kannst.</string>
+    <string name="PaymentsRecoveryStartFragment__got_balance">Du hast ein Guthaben! Zeit, deine Wiederherstellungsphrase zu speichern – ein Schlüssel mit 24 Wörtern, mit dem du dein Guthaben wiederherstellen kannst.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">Zeit, deinen Wiederherstellungssatz zu speichern – ein Schlüssel mit 24 Wörtern, mit dem du dein Guthaben wiederherstellen kannst.</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">Zeit, deine Wiederherstellungsphrase zu speichern – ein Schlüssel mit 24 Wörtern, mit dem du dein Guthaben wiederherstellen kannst.</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Deine Wiederherstellungsphrase ist ein einzigartiger Satz mit %1$d Wörtern. Verwende sie, um deinen Kontostand wiederherzustellen.</string>
     <string name="PaymentsRecoveryStartFragment__start">Starten</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">Manuell eingeben</string>
@@ -4231,9 +4231,9 @@
     <!-- Alert dialog title which asks before going back if user wants to save recovery phrase -->
     <string name="PaymentsRecoveryStartFragment__continue_without_saving">Ohne Speichern fortfahren?</string>
     <!-- Alert dialog description to let user know why recovery phrase needs to be saved -->
-    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Mit deinem Wiederherstellungssatz kannst du im schlimmsten Fall dein Guthaben wiederherstellen. Wir empfehlen dir dringend, ihn zu speichern.</string>
+    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Mit deiner Wiederherstellungsphrase kannst du im schlimmsten Fall dein Guthaben wiederherstellen. Wir empfehlen dir dringend, sie zu speichern.</string>
     <!-- Alert dialog option to skip recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Wiederherstellungssatz überspringen</string>
+    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Wiederherstellungsphrase überspringen</string>
     <!-- Alert dialog option to cancel dialog-->
     <string name="PaymentsRecoveryStartFragment__cancel">Abbrechen</string>
 

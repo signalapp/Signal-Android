@@ -2399,9 +2399,9 @@
     <!-- Displayed when the chosen discriminator is too long -->
     <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Недійсне ім\'я користувача, введіть максимум %1$d цифр.</string>
     <!-- Displayed when the chosen discriminator is 00 -->
-    <string name="UsernameEditFragment__this_number_cant_be_00">This number can\'t be 00. Enter a digit between 1–9</string>
+    <string name="UsernameEditFragment__this_number_cant_be_00">Номер не може бути 00. Введіть цифру від 1 до 9</string>
     <!-- Displayed when the chosen discriminator starts with 00 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_00">This number can\'t start with 00. Enter a digit between 1–9</string>
+    <string name="UsernameEditFragment__this_number_cant_start_with_00">Номер не може починатися з 00. Введіть цифру від 1 до 9</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">Якщо відновити ім\'я користувача, поточні QR-код і посилання буде скинуто. Відновити ім\'я?</string>
 
@@ -6626,7 +6626,7 @@
     <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">Посилання більше не працюватиме для тих, хто його має.</string>
 
     <!-- Button label for the link button in the username link settings -->
-    <string name="UsernameLinkSettings_link_button_label">посилання</string>
+    <string name="UsernameLinkSettings_link_button_label">Посилання</string>
     <!-- Button label for the share button in the username link settings -->
     <string name="UsernameLinkSettings_share_button_label">Поділитися</string>
     <!-- Button label for the color selector button in the username link settings -->

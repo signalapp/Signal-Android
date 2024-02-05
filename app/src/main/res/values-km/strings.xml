@@ -2162,9 +2162,9 @@
     <!-- Displayed when the chosen discriminator is too long -->
     <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">ឈ្មោះអ្នកប្រើមិនត្រឹមត្រូវ។ សូមបញ្ចូលលេខយ៉ាងច្រើនបំផុត %1$d ខ្ទង់។</string>
     <!-- Displayed when the chosen discriminator is 00 -->
-    <string name="UsernameEditFragment__this_number_cant_be_00">This number can\'t be 00. Enter a digit between 1–9</string>
+    <string name="UsernameEditFragment__this_number_cant_be_00">លេខនេះមិនអាចជា 00 ទេ។ បញ្ចូលលេខមួយខ្ទង់ចន្លោះពី 1–9</string>
     <!-- Displayed when the chosen discriminator starts with 00 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_00">This number can\'t start with 00. Enter a digit between 1–9</string>
+    <string name="UsernameEditFragment__this_number_cant_start_with_00">លេខនេះមិនអាចចាប់ផ្តើមដោយលេខ 00 ទេ។ បញ្ចូលលេខមួយខ្ទង់ចន្លោះពី 1–9</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">ការស្តារយកឈ្មោះអ្នកប្រើរបស់អ្នកមកវិញនឹងកំណត់ឡើងវិញនូវកូដ QR និងតំណដែលមានស្រាប់របស់អ្នក។ តើអ្នកប្រាកដឬទេ?</string>
 
@@ -6206,7 +6206,7 @@
     <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">តំណនេះនឹងលែងដំណើរការសម្រាប់នរណាដែលមានវាទៀតហើយ។</string>
 
     <!-- Button label for the link button in the username link settings -->
-    <string name="UsernameLinkSettings_link_button_label">Link</string>
+    <string name="UsernameLinkSettings_link_button_label">តំណ</string>
     <!-- Button label for the share button in the username link settings -->
     <string name="UsernameLinkSettings_share_button_label">ចែករំលែក</string>
     <!-- Button label for the color selector button in the username link settings -->
@@ -6252,7 +6252,7 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">បញ្ហាបណ្តាញមួយបានកើតឡើង ខណៈពេលព្យាយាមកំណត់តំណរបស់អ្នកឡើងវិញ។ សូមព្យាយាមម្តងទៀតនៅពេលក្រោយ។</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
-    <string name="UsernameLinkSettings_scan_this_qr_code">Scan this QR code with your phone to chat with me on Signal.</string>
+    <string name="UsernameLinkSettings_scan_this_qr_code">ស្គែនកូដ QR នេះដោយប្រើទូរសព្ទរបស់អ្នក ដើម្បីជជែកជាមួយខ្ញុំនៅលើ Signal។</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
     <string name="UsernameLinkShareBottomSheet_title">អ្នកដែលមានតំណនេះអាចមើលឈ្មោះអ្នកប្រើរបស់អ្នក និងចាប់ផ្តើមការជជែកជាមួយអ្នកបាន។ សូមចែករំលែកវាជាមួយមនុស្សដែលអ្នកទុកចិត្តប៉ុណ្ណោះ។</string>

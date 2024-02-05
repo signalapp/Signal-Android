@@ -2241,9 +2241,9 @@
     <!-- Displayed when the chosen discriminator is too long -->
     <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Erabiltzaile-izenak ez du balio; idatzi gehienez %1$d digitu.</string>
     <!-- Displayed when the chosen discriminator is 00 -->
-    <string name="UsernameEditFragment__this_number_cant_be_00">This number can\'t be 00. Enter a digit between 1–9</string>
+    <string name="UsernameEditFragment__this_number_cant_be_00">Zenbaki hau ezin da 00 izan. Idatzi 1 eta 9 arteko digitu bat</string>
     <!-- Displayed when the chosen discriminator starts with 00 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_00">This number can\'t start with 00. Enter a digit between 1–9</string>
+    <string name="UsernameEditFragment__this_number_cant_start_with_00">Zenbaki honek ezin du 00 izan hasieran. Idatzi 1 eta 9 arteko digitu bat</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">Erabiltzaile-izena berreskuratzen baduzu, lehendik dauden QR kodea eta esteka berrezarri egingo dira. Ziur zaude?</string>
 
@@ -6346,7 +6346,7 @@
     <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">Esteka dutenek ezingo dute erabili.</string>
 
     <!-- Button label for the link button in the username link settings -->
-    <string name="UsernameLinkSettings_link_button_label">Link</string>
+    <string name="UsernameLinkSettings_link_button_label">Esteka</string>
     <!-- Button label for the share button in the username link settings -->
     <string name="UsernameLinkSettings_share_button_label">Partekatu</string>
     <!-- Button label for the color selector button in the username link settings -->
@@ -6392,7 +6392,7 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">Sareko errore bat gertatu da esteka berrezartzen saiatzean. Saiatu berriro geroago.</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
-    <string name="UsernameLinkSettings_scan_this_qr_code">Scan this QR code with your phone to chat with me on Signal.</string>
+    <string name="UsernameLinkSettings_scan_this_qr_code">Signal-en nirekin txateatzeko, eskaneatu QR kode hau telefonoarekin.</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
     <string name="UsernameLinkShareBottomSheet_title">Esteka hau duen edonork ikusi ahalko du zure erabiltzaile-izena, eta zurekin txateatzen hasi ahalko da. Parteka ezazu jende fidagarriarekin bakarrik.</string>

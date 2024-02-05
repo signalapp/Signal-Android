@@ -2241,9 +2241,9 @@
     <!-- Displayed when the chosen discriminator is too long -->
     <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">მომხმარებლის სახელი არასწორია, შეიყვანე მინიმუმ %1$d ციფრი.</string>
     <!-- Displayed when the chosen discriminator is 00 -->
-    <string name="UsernameEditFragment__this_number_cant_be_00">This number can\'t be 00. Enter a digit between 1–9</string>
+    <string name="UsernameEditFragment__this_number_cant_be_00">ეს რიცხვი ვერ იქნება 00. შეიყვანე ციფრი 1–9-მდე</string>
     <!-- Displayed when the chosen discriminator starts with 00 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_00">This number can\'t start with 00. Enter a digit between 1–9</string>
+    <string name="UsernameEditFragment__this_number_cant_start_with_00">ეს რიცხვი 00-ით ვერ დაიწყება. შეიყვანე ციფრი 1–9-მდე</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">შენი მომხმარებლის სახელის აღდგენა შენს ამჟამინდელ QR კოდსა და ბმულს შეცვლის. დარწმუნებული ხარ?</string>
 
@@ -6346,7 +6346,7 @@
     <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">მათთვის, ვისაც ეს ბმული აქვს, ის აღარ იმუშავებს.</string>
 
     <!-- Button label for the link button in the username link settings -->
-    <string name="UsernameLinkSettings_link_button_label">Link</string>
+    <string name="UsernameLinkSettings_link_button_label">ბმული</string>
     <!-- Button label for the share button in the username link settings -->
     <string name="UsernameLinkSettings_share_button_label">გაზიარება</string>
     <!-- Button label for the color selector button in the username link settings -->
@@ -6392,7 +6392,7 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">შენი ბმულის ახლიდან დაყენებისას ქსელის ხარვეზი დაფიქსირდა. მოგვიანებით სცადე.</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
-    <string name="UsernameLinkSettings_scan_this_qr_code">Scan this QR code with your phone to chat with me on Signal.</string>
+    <string name="UsernameLinkSettings_scan_this_qr_code">Signal-ზე ჩემთან მიმოწერის დასაწყებად შენი მობილურით ეს QR კოდი დაასკანირე</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
     <string name="UsernameLinkShareBottomSheet_title">ამ ბმულით ნებისმიერი შეძლებს შენი მომხმარებლის სახელის ნახვას და შენთან ჩატის დაწყებას. ის მხოლოდ მათ გაუზიარე, ვისაც ენდობი.</string>

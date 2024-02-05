@@ -2241,9 +2241,9 @@
     <!-- Displayed when the chosen discriminator is too long -->
     <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">अवैध वापरकर्ता नाव, कमाल %1$d अंक प्रविष्ट करा.</string>
     <!-- Displayed when the chosen discriminator is 00 -->
-    <string name="UsernameEditFragment__this_number_cant_be_00">This number can\'t be 00. Enter a digit between 1–9</string>
+    <string name="UsernameEditFragment__this_number_cant_be_00">हा क्रमांक 00 असू शकत नाही. 1–9 मधील अंक प्रविष्ट करा</string>
     <!-- Displayed when the chosen discriminator starts with 00 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_00">This number can\'t start with 00. Enter a digit between 1–9</string>
+    <string name="UsernameEditFragment__this_number_cant_start_with_00">हा क्रमांक 00 ने सुरु होऊ शकत नाही. 1–9 मधील अंक प्रविष्ट करा</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">आपले वापरकर्ता नाव पुर्नप्राप्त करण्याने आपला सध्याचा QR कोड आणि लिंक रिसेट होईल. आपल्याला खात्री आहे?</string>
 

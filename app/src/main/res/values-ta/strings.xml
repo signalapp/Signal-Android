@@ -2241,9 +2241,9 @@
     <!-- Displayed when the chosen discriminator is too long -->
     <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">தவறான பயனர்பெயர், அதிகபட்சம் %1$d இலக்கங்களை உள்ளிடவும்.</string>
     <!-- Displayed when the chosen discriminator is 00 -->
-    <string name="UsernameEditFragment__this_number_cant_be_00">This number can\'t be 00. Enter a digit between 1–9</string>
+    <string name="UsernameEditFragment__this_number_cant_be_00">இந்த எண் 00 ஆக இருக்கக் கூடாது. 1–9 க்கு இடையேயுள்ள ஒரு எண்ணை உள்ளிடவும்</string>
     <!-- Displayed when the chosen discriminator starts with 00 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_00">This number can\'t start with 00. Enter a digit between 1–9</string>
+    <string name="UsernameEditFragment__this_number_cant_start_with_00">இந்த எண் 00 ஐக் கொண்டு தொடங்கக் கூடாது. 1–9 க்கு இடையேயுள்ள ஒரு எண்ணை உள்ளிடவும்</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">உங்கள் பயனர் பெயரை மீட்டமைப்பது உங்கள் தற்போதைய QR குறியீடு மற்றும் இணைப்பை மீட்டமைக்கும். நீங்கள் உறுதியாக உள்ளீர்களா?</string>
 
@@ -6346,7 +6346,7 @@
     <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">இந்த இணைப்பை வைத்திருக்கும் எவருக்கும் இது இனி வேலை செய்யாது.</string>
 
     <!-- Button label for the link button in the username link settings -->
-    <string name="UsernameLinkSettings_link_button_label">Link</string>
+    <string name="UsernameLinkSettings_link_button_label">இணைப்பு</string>
     <!-- Button label for the share button in the username link settings -->
     <string name="UsernameLinkSettings_share_button_label">பகிர்</string>
     <!-- Button label for the color selector button in the username link settings -->
@@ -6392,7 +6392,7 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">உங்கள் இணைப்பை மீட்டமைக்க முயலும்போது நெட்வர்க் பிழை ஏற்பட்டது. பின்னர் மீண்டும் முயலவும்.</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
-    <string name="UsernameLinkSettings_scan_this_qr_code">Scan this QR code with your phone to chat with me on Signal.</string>
+    <string name="UsernameLinkSettings_scan_this_qr_code">என்னுடன் சிக்னலில் சாட் செய்ய இந்த QR குறியீட்டை உங்கள் ஃபோன் மூலம் ஸ்கேன் செய்யவும்.</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
     <string name="UsernameLinkShareBottomSheet_title">இந்த இணைப்பைக் கொண்டுள்ள எவரும் உங்கள் பயனர் பெயரைப் பார்த்து உங்களுடன் சாட் செய்யத் தொடங்கலாம். நீங்கள் நம்பும் நபர்களுடன் மட்டும் பகிரவும்.</string>

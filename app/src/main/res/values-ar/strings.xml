@@ -2557,9 +2557,9 @@
     <!-- Displayed when the chosen discriminator is too long -->
     <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">اسم مستخدم غير صحيح، أدخل %1$d رمزًا كحد أقصى.</string>
     <!-- Displayed when the chosen discriminator is 00 -->
-    <string name="UsernameEditFragment__this_number_cant_be_00">This number can\'t be 00. Enter a digit between 1–9</string>
+    <string name="UsernameEditFragment__this_number_cant_be_00">لا يُمكن لهذا الرقم أن يكون 00. أدخل رقمًا بين 1 –9</string>
     <!-- Displayed when the chosen discriminator starts with 00 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_00">This number can\'t start with 00. Enter a digit between 1–9</string>
+    <string name="UsernameEditFragment__this_number_cant_start_with_00">لا يُمكن لهذا الرقم أن يبدأ بـ 00. أدخل رقمًا بين 1 –9</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">سيُؤدي استرداد اسم المُستخدم الخاص بك إلى إعادة تعيين رمز ورابط الاستجابة السريعة الخاصين بك. هل أنت مُتأكد؟</string>
 

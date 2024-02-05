@@ -53,7 +53,7 @@
     <string name="ApplicationPreferencesActivity_pin_disabled">Code PIN désactivé.</string>
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Enregistrer une phrase de récupération pour les paiements</string>
     <string name="ApplicationPreferencesActivity_record_phrase">Enregistrez la phrase</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Avant de désactiver votre code PIN, vous devez enregistrer la phrase de récupération qui vous permettra de récupérer votre compte de paiements.</string>
+    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Avant de désactiver votre code PIN, vous devez enregistrer la phrase de récupération qui vous permettra de récupérer votre compte de paiement.</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -617,7 +617,7 @@
     <string name="ChooseBackupFragment__restore_your_messages_and_media">Restaurez vos messages et médias d’une sauvegarde locale. Si vous ne les restaurez pas maintenant, vous ne pourrez pas le faire plus tard.</string>
     <string name="ChooseBackupFragment__icon_content_description">Restaurez à partir de l’icône de sauvegarde</string>
     <string name="ChooseBackupFragment__choose_backup">Choisir une sauvegarde</string>
-    <string name="ChooseBackupFragment__learn_more">En apprendre davantage</string>
+    <string name="ChooseBackupFragment__learn_more">En savoir plus</string>
     <string name="ChooseBackupFragment__no_file_browser_available">Aucun navigateur de fichiers n’est proposé</string>
 
     <!-- RestoreBackupFragment -->
@@ -645,7 +645,7 @@
     <string name="BackupsPreferenceFragment__turn_on">Activer</string>
     <string name="BackupsPreferenceFragment__turn_off">Désactiver</string>
     <string name="BackupsPreferenceFragment__to_restore_a_backup">"Pour restaurer une sauvegarde, installez un nouvel exemplaire de Signal. Ouvrez l’appli, touchez « Restaurer la sauvegarde », puis trouvez un fichier de sauvegarde. %1$s"</string>
-    <string name="BackupsPreferenceFragment__learn_more">En apprendre davantage</string>
+    <string name="BackupsPreferenceFragment__learn_more">En savoir plus</string>
     <string name="BackupsPreferenceFragment__in_progress">En cours…</string>
     <!-- Status text shown in backup preferences when verifying a backup -->
     <string name="BackupsPreferenceFragment__verifying_backup">Vérification de la sauvegarde…</string>
@@ -1160,7 +1160,7 @@
     <string name="InviteActivity_no_app_to_share_to">Vous semblez n’avoir aucune appli vers laquelle partager.</string>
 
     <!-- LearnMoreTextView -->
-    <string name="LearnMoreTextView_learn_more">En apprendre davantage</string>
+    <string name="LearnMoreTextView_learn_more">En savoir plus</string>
 
     <string name="SpanUtil__read_more">Lire la suite</string>
 
@@ -2617,7 +2617,7 @@
 
     <!-- ConversationUpdateItem -->
     <string name="ConversationUpdateItem_loading">Chargement</string>
-    <string name="ConversationUpdateItem_learn_more">En apprendre davantage</string>
+    <string name="ConversationUpdateItem_learn_more">En savoir plus</string>
     <string name="ConversationUpdateItem_join_call">Me joindre à l’appel</string>
     <string name="ConversationUpdateItem_return_to_call">Revenir à l’appel</string>
     <string name="ConversationUpdateItem_call_is_full">L’appel est complet</string>
@@ -3222,7 +3222,7 @@
     <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Utilisez Signal pour envoyer et recevoir des MobileCoin, une monnaie numérique visant à protéger vos données. Activez pour commencer.</string>
     <string name="PaymentsHomeFragment__activate_payments">Activer les paiements</string>
     <string name="PaymentsHomeFragment__activating_payments">Activation des paiements…</string>
-    <string name="PaymentsHomeFragment__restore_payments_account">Restaurer un compte de paiements</string>
+    <string name="PaymentsHomeFragment__restore_payments_account">Restaurer un compte de paiement</string>
     <string name="PaymentsHomeFragment__no_recent_activity_yet">Aucune activité récente pour le moment</string>
     <string name="PaymentsHomeFragment__recent_activity">Activité récente</string>
     <string name="PaymentsHomeFragment__see_all">Tout afficher</string>
@@ -3635,13 +3635,13 @@
     <!-- KbsSplashFragment -->
     <string name="KbsSplashFragment__introducing_pins">Nous présentons les NIP</string>
     <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Les NIP font en sorte que les informations sont enregistrées chiffrées dans Signal afin que vous seul puissiez y accéder. Votre profil, vos paramètres et vos contacts seront restaurés quand vous réinstallerez Signal. Vous n’aurez pas besoin de votre NIP pour ouvrir l’appli.</string>
-    <string name="KbsSplashFragment__learn_more">En apprendre davantage</string>
+    <string name="KbsSplashFragment__learn_more">En savoir plus</string>
   <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
     <string name="KbsSplashFragment__registration_lock_equals_pin">Blocage de l’inscription = NIP</string>
     <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Votre blocage de l’inscription s’appelle désormais un NIP et il accomplit encore plus. Mettez-le à jour maintenant.</string>
     <string name="KbsSplashFragment__update_pin">Mettre le NIP à jour</string>
     <string name="KbsSplashFragment__create_your_pin">Créer votre NIP</string>
-    <string name="KbsSplashFragment__learn_more_about_pins">En apprendre davantage sur les NIP</string>
+    <string name="KbsSplashFragment__learn_more_about_pins">En savoir plus sur les codes PIN</string>
     <string name="KbsSplashFragment__disable_pin">Désactiver le NIP</string>
 
     <!-- KBS Reminder Dialog -->
@@ -3656,7 +3656,7 @@
     <string name="AccountLockedFragment__account_locked">Le compte est verrouillé</string>
     <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Votre compte a été verrouillé afin de protéger vos données personnelles et votre sécurité. Après %1$d jours d’inactivité dans votre compte, vous pourrez réinscrire ce numéro de téléphone sans avoir besoin de votre PIN. Tout le contenu sera supprimé.</string>
     <string name="AccountLockedFragment__next">Suivant</string>
-    <string name="AccountLockedFragment__learn_more">En apprendre davantage</string>
+    <string name="AccountLockedFragment__learn_more">En savoir plus</string>
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- KbsLockFragment -->
@@ -4089,7 +4089,7 @@
     <string name="DeleteAccountFragment__delete_account">Supprimer le compte</string>
     <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">la suppression des informations de votre compte et de votre photo de profil</string>
     <string name="DeleteAccountFragment__delete_all_your_messages">La suppression de tous vos messages</string>
-    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Supprimer %1$s de votre compte de paiements</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Supprimer %1$s de votre compte de paiement</string>
     <string name="DeleteAccountFragment__no_country_code">Aucun indicatif de pays n’a été indiqué</string>
     <string name="DeleteAccountFragment__no_number">Aucun numéro n’a été indiqué</string>
     <string name="DeleteAccountFragment__the_phone_number">Le numéro de téléphone que vous avez saisi ne correspond pas à celui de votre compte.</string>
@@ -4187,7 +4187,7 @@
     <string name="payment_info_card_hide">Cacher</string>
     <!-- Title of save recovery phrase card -->
     <string name="payment_info_card_save_recovery_phrase">Enregistrer une phrase de récupération</string>
-    <string name="payment_info_card_your_recovery_phrase_gives_you">Votre phrase de récupération vous offre une autre façon de restaurer votre compte de paiements.</string>
+    <string name="payment_info_card_your_recovery_phrase_gives_you">La phrase de récupération est un autre moyen de restaurer votre compte de paiement.</string>
     <!-- Button in save recovery phrase card -->
     <string name="payment_info_card_save_your_phrase">Enregistrer votre phrase</string>
     <string name="payment_info_card_update_your_pin">Mettez votre NIP à jour</string>
@@ -5009,7 +5009,7 @@
     <!-- Stripe decline code verify on Google Pay and try again -->
     <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">Vérifiez que votre mode de paiement est à jour dans Google Pay puis réessayez.</string>
     <!-- Stripe decline code learn more action label -->
-    <string name="DeclineCode__learn_more">En apprendre davantage</string>
+    <string name="DeclineCode__learn_more">En savoir plus</string>
     <!-- Stripe decline code contact issuer -->
     <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">Vérifiez que votre mode de paiement est à jour dans Google Pay puis réessayez. Si le problème persiste, contactez votre banque.</string>
     <!-- Stripe decline code purchase not supported -->

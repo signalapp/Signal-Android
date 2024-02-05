@@ -2162,9 +2162,9 @@
     <!-- Displayed when the chosen discriminator is too long -->
     <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Nama pengguna tidak valid, masukkan maksimal %1$d digit.</string>
     <!-- Displayed when the chosen discriminator is 00 -->
-    <string name="UsernameEditFragment__this_number_cant_be_00">This number can\'t be 00. Enter a digit between 1–9</string>
+    <string name="UsernameEditFragment__this_number_cant_be_00">Nomor tidak boleh 00. Masukkan angka antara 1–9</string>
     <!-- Displayed when the chosen discriminator starts with 00 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_00">This number can\'t start with 00. Enter a digit between 1–9</string>
+    <string name="UsernameEditFragment__this_number_cant_start_with_00">Nomor tidak boleh dimulai dengan 00. Masukkan angka antara 1–9</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">Jika nama pengguna Anda dipulihkan, kode QR dan tautan yang ada akan direset. Anda yakin?</string>
 
@@ -6206,7 +6206,7 @@
     <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">Tautan ini tidak berfungsi lagi bagi siapa pun yang memilikinya.</string>
 
     <!-- Button label for the link button in the username link settings -->
-    <string name="UsernameLinkSettings_link_button_label">tautan</string>
+    <string name="UsernameLinkSettings_link_button_label">Tautan</string>
     <!-- Button label for the share button in the username link settings -->
     <string name="UsernameLinkSettings_share_button_label">Bagikan</string>
     <!-- Button label for the color selector button in the username link settings -->
