@@ -2320,9 +2320,9 @@
     <!-- Displayed when the chosen discriminator is too long -->
     <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Nederīgs lietotāja vārds. Ievadiet ne vairāk kā %1$d skaitļus.</string>
     <!-- Displayed when the chosen discriminator is 00 -->
-    <string name="UsernameEditFragment__this_number_cant_be_00">This number can\'t be 00. Enter a digit between 1–9</string>
+    <string name="UsernameEditFragment__this_number_cant_be_00">Šis numurs nedrīkst būt 00. Ievadiet ciparu no 1 līdz 9.</string>
     <!-- Displayed when the chosen discriminator starts with 00 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_00">This number can\'t start with 00. Enter a digit between 1–9</string>
+    <string name="UsernameEditFragment__this_number_cant_start_with_00">Šis numurs nedrīkst sākties ar 00. Ievadiet ciparu no 1 līdz 9.</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">Mainot lietotāja vārdu, tiks atiestatīts esošais QR kods un saite. Vai tiešām turpināt?</string>
 
@@ -6486,7 +6486,7 @@
     <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">Šī saite turpmāk nebūs izmantojama.</string>
 
     <!-- Button label for the link button in the username link settings -->
-    <string name="UsernameLinkSettings_link_button_label">Link</string>
+    <string name="UsernameLinkSettings_link_button_label">Saite</string>
     <!-- Button label for the share button in the username link settings -->
     <string name="UsernameLinkSettings_share_button_label">Kopīgot</string>
     <!-- Button label for the color selector button in the username link settings -->
@@ -6532,7 +6532,7 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">Mēģinot atiestatīt jūsu saiti, radās tīkla kļūda. Lūdzu, mēģiniet vēlāk.</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
-    <string name="UsernameLinkSettings_scan_this_qr_code">Scan this QR code with your phone to chat with me on Signal.</string>
+    <string name="UsernameLinkSettings_scan_this_qr_code">Noskenē šo QR kodu ar savu tālruni, lai sarunātos ar mani pakalpojumā Signal.</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
     <string name="UsernameLinkShareBottomSheet_title">Ikviens, kuram ir pieejama šī saite, var skatīt jūsu lietotāja vārdu un uzsākt sarunu ar jums. Kopīgojiet šo saiti tikai ar uzticamiem cilvēkiem.</string>

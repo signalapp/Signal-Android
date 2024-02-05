@@ -2399,9 +2399,9 @@
     <!-- Displayed when the chosen discriminator is too long -->
     <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Nevažeće korisničko ime, unesite najviše %1$d cifri.</string>
     <!-- Displayed when the chosen discriminator is 00 -->
-    <string name="UsernameEditFragment__this_number_cant_be_00">This number can\'t be 00. Enter a digit between 1–9</string>
+    <string name="UsernameEditFragment__this_number_cant_be_00">Ovaj broj ne može biti 00. Unesite brojku između 1-9</string>
     <!-- Displayed when the chosen discriminator starts with 00 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_00">This number can\'t start with 00. Enter a digit between 1–9</string>
+    <string name="UsernameEditFragment__this_number_cant_start_with_00">Ovaj broj ne može početi sa 00. Unesite brojku između 1-9</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">Oporavak vašeg korisničkog imena će poništiti vaš postojeći QR kod i vezu. Jeste li sigurni?</string>
 
@@ -6626,7 +6626,7 @@
     <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">Ovaj link više neće raditi ni za koga ko ga koristi.</string>
 
     <!-- Button label for the link button in the username link settings -->
-    <string name="UsernameLinkSettings_link_button_label">Link</string>
+    <string name="UsernameLinkSettings_link_button_label">Poveznica</string>
     <!-- Button label for the share button in the username link settings -->
     <string name="UsernameLinkSettings_share_button_label">Dijeli</string>
     <!-- Button label for the color selector button in the username link settings -->
@@ -6672,7 +6672,7 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">Došlo je do mrežne greške prilikom pokušaja poništavanja vaše veze. Pokušajte ponovo kasnije.</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
-    <string name="UsernameLinkSettings_scan_this_qr_code">Scan this QR code with your phone to chat with me on Signal.</string>
+    <string name="UsernameLinkSettings_scan_this_qr_code">Skenirajte ovaj QR kod telefonom da razgovarate sa mnom na Signalu.</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
     <string name="UsernameLinkShareBottomSheet_title">Svako s ovom poveznicom može vidjeti vaše korisničko ime i započeti chat s vama. Podijelite ga samo sa ljudima kojima vjerujete.</string>

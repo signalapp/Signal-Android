@@ -3798,7 +3798,7 @@
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Wer mich anhand der Rufnummer finden kann</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number_will_be">Deine Telefonnummer ist für Personen und Gruppen sichtbar, mit denen du Nachrichten austauscht.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number_will_be">Deine Telefonnummer ist für Personen und Gruppen sichtbar, mit denen du Nachrichten austauschst.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
     <string name="PhoneNumberPrivacySettingsFragment__anyone_who_has">Wer deine Telefonnummer hat, sieht, dass du bei Signal bist und kann mit dir chatten.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->

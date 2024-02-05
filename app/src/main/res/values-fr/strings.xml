@@ -3222,7 +3222,7 @@
     <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Utilisez Signal pour envoyer et recevoir des MobileCoin, une monnaie numérique visant à protéger vos données. Activez pour commencer.</string>
     <string name="PaymentsHomeFragment__activate_payments">Activer les paiements</string>
     <string name="PaymentsHomeFragment__activating_payments">Activation des paiements…</string>
-    <string name="PaymentsHomeFragment__restore_payments_account">Restaurer un compte de paiement</string>
+    <string name="PaymentsHomeFragment__restore_payments_account">Récupérer un compte de paiement</string>
     <string name="PaymentsHomeFragment__no_recent_activity_yet">Aucune activité récente pour le moment</string>
     <string name="PaymentsHomeFragment__recent_activity">Activité récente</string>
     <string name="PaymentsHomeFragment__see_all">Tout afficher</string>
@@ -3573,7 +3573,7 @@
     <!-- reminder_header -->
     <string name="reminder_header_push_title">Activer les messages et appels Signal</string>
     <string name="reminder_header_push_text">Survoltez votre expérience de communication.</string>
-    <string name="reminder_header_service_outage_text">Signal éprouve des difficultés techniques. Nous mettons tout en œuvre pour restaurer le service aussi rapidement que possible.</string>
+    <string name="reminder_header_service_outage_text">Petit souci technique… Nous mettons tout en œuvre pour restaurer le service le plus rapidement possible.</string>
     <string name="reminder_header_progress">%1$d %%</string>
     <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user\'s contacts -->
     <string name="reminder_cds_warning_body">La fonction de découverte des contacts privés de Signal ne peut temporairement pas traiter les contacts de votre téléphone.</string>
@@ -6380,7 +6380,7 @@
     <!-- App bar title for the username QR code color picker screen -->
     <string name="UsernameLinkSettings_color_picker_app_bar_title">Couleur</string>
     <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
-    <string name="UsernameLinkSettings_qr_result_invalid">Le code QR n’était pas valide.</string>
+    <string name="UsernameLinkSettings_qr_result_invalid">Le code QR est incorrect.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
     <string name="UsernameLinkSettings_qr_result_not_found">Impossible de trouver l’utilisateur %1$s.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
