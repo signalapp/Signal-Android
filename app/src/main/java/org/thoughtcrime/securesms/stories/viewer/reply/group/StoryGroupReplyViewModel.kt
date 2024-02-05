@@ -2,20 +2,17 @@ package org.thoughtcrime.securesms.stories.viewer.reply.group
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.paging.ProxyPagingController
-import org.thoughtcrime.securesms.conversation.colors.NameColors
 import org.thoughtcrime.securesms.database.model.MessageId
-import org.thoughtcrime.securesms.groups.GroupId
-import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.rx.RxStore
 
 class StoryGroupReplyViewModel(storyId: Long, repository: StoryGroupReplyRepository) : ViewModel() {
 
-  private val sessionMemberCache: MutableMap<GroupId, Set<Recipient>> = NameColors.createSessionMembersCache()
   private val store = RxStore(StoryGroupReplyState())
   private val disposables = CompositeDisposable()
 
@@ -41,7 +38,8 @@ class StoryGroupReplyViewModel(storyId: Long, repository: StoryGroupReplyReposit
         }
       }
 
-    disposables += repository.getNameColorsMap(storyId, sessionMemberCache)
+    disposables += repository.getNameColorsMap(storyId)
+      .observeOn(AndroidSchedulers.mainThread())
       .subscribeBy { nameColors ->
         store.update { state ->
           state.copy(nameColors = nameColors)
