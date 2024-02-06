@@ -894,7 +894,7 @@ public final class ContactSelectionListFragment extends LoggingFragment {
         builder.arbitrary(ContactSelectionListAdapter.ArbitraryRepository.ArbitraryRow.NEW_GROUP.getCode());
       }
 
-      if (findByCallback != null && FeatureFlags.usernames()) {
+      if (findByCallback != null) {
         builder.arbitrary(ContactSelectionListAdapter.ArbitraryRepository.ArbitraryRow.FIND_BY_USERNAME.getCode());
         builder.arbitrary(ContactSelectionListAdapter.ArbitraryRepository.ArbitraryRow.FIND_BY_PHONE_NUMBER.getCode());
       }

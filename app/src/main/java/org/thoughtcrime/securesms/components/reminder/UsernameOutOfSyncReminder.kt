@@ -4,7 +4,6 @@ import android.content.Context
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.keyvalue.AccountValues.UsernameSyncState
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.FeatureFlags
 
 /**
  * Displays a reminder message when the local username gets out of sync with
@@ -42,14 +41,10 @@ class UsernameOutOfSyncReminder : Reminder(NO_RESOURCE) {
   companion object {
     @JvmStatic
     fun isEligible(): Boolean {
-      return if (FeatureFlags.usernames()) {
-        when (SignalStore.account().usernameSyncState) {
-          UsernameSyncState.USERNAME_AND_LINK_CORRUPTED -> true
-          UsernameSyncState.LINK_CORRUPTED -> true
-          UsernameSyncState.IN_SYNC -> false
-        }
-      } else {
-        false
+      return when (SignalStore.account().usernameSyncState) {
+        UsernameSyncState.USERNAME_AND_LINK_CORRUPTED -> true
+        UsernameSyncState.LINK_CORRUPTED -> true
+        UsernameSyncState.IN_SYNC -> false
       }
     }
   }

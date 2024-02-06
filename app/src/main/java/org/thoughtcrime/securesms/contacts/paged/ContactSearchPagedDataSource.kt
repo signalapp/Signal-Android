@@ -20,7 +20,6 @@ import org.thoughtcrime.securesms.search.MessageResult
 import org.thoughtcrime.securesms.search.MessageSearchResult
 import org.thoughtcrime.securesms.search.SearchRepository
 import org.thoughtcrime.securesms.search.ThreadSearchResult
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.UsernameUtil
 import java.util.concurrent.TimeUnit
 
@@ -189,14 +188,10 @@ class ContactSearchPagedDataSource(
       return false
     }
 
-    return if (FeatureFlags.usernames()) {
-      NumberUtil.isVisuallyValidNumberOrEmail(query)
-    } else {
-      NumberUtil.isValidSmsOrEmail(query)
-    }
+    return NumberUtil.isVisuallyValidNumberOrEmail(query)
   }
   private fun isPossiblyUsername(query: String?): Boolean {
-    return query != null && FeatureFlags.usernames() && UsernameUtil.isValidUsernameForSearch(query)
+    return query != null && UsernameUtil.isValidUsernameForSearch(query)
   }
   private fun getPossiblePhoneNumber(section: ContactSearchConfiguration.Section.PhoneNumber, query: String?): List<ContactSearchData> {
     return if (isPossiblyPhoneNumber(query)) {

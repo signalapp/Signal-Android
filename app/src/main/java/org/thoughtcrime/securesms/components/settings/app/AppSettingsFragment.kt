@@ -363,7 +363,7 @@ class AppSettingsFragment : DSLSettingsFragment(
       summaryView.visibility = View.VISIBLE
       avatarView.visibility = View.VISIBLE
 
-      if (FeatureFlags.usernames() && SignalStore.account().usernameSyncState == AccountValues.UsernameSyncState.IN_SYNC) {
+      if (SignalStore.account().usernameSyncState == AccountValues.UsernameSyncState.IN_SYNC) {
         qrButton.visibility = View.VISIBLE
         qrButton.isClickable = true
         qrButton.setOnClickListener { model.onQrButtonClicked() }

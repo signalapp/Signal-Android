@@ -107,10 +107,6 @@ class EditProfileViewModel extends ViewModel {
     return UsernameRepository.deleteUsernameAndLink().observeOn(AndroidSchedulers.mainThread());
   }
 
-  public boolean shouldShowUsername() {
-    return FeatureFlags.usernames();
-  }
-
   public void onAvatarSelected(@NonNull Context context, @Nullable Media media) {
     previousAvatar = internalAvatarState.getValue() != null ? internalAvatarState.getValue().getAvatar() : null;
 

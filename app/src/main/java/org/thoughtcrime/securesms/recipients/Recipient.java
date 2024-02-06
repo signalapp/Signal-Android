@@ -680,11 +680,7 @@ public class Recipient {
   }
 
   public @NonNull Optional<String> getUsername() {
-    if (FeatureFlags.usernames()) {
-      return OptionalUtil.absentIfEmpty(username);
-    } else {
-      return Optional.empty();
-    }
+    return OptionalUtil.absentIfEmpty(username);
   }
 
   public @NonNull Optional<String> getE164() {

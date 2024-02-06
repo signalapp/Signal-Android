@@ -103,7 +103,7 @@ public abstract class ContactSelectionActivity extends PassphraseRequiredActivit
   private void initializeContactFilterView() {
     this.contactFilterView = findViewById(R.id.contact_filter_edit_text);
 
-    if (getResources().getDisplayMetrics().heightPixels >= DimensionUnit.DP.toPixels(600) || !FeatureFlags.usernames()) {
+    if (getResources().getDisplayMetrics().heightPixels >= DimensionUnit.DP.toPixels(600)) {
       this.contactFilterView.focusAndShowKeyboard();
     }
   }

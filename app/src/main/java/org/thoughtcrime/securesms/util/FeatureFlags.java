@@ -107,7 +107,6 @@ public final class FeatureFlags {
   public  static final String PROMPT_FOR_NOTIFICATION_LOGS      = "android.logs.promptNotifications";
   private static final String PROMPT_FOR_NOTIFICATION_CONFIG    = "android.logs.promptNotificationsConfig";
   public  static final String PROMPT_BATTERY_SAVER              = "android.promptBatterySaver";
-  public  static final String USERNAMES                         = "android.usernames";
   public  static final String INSTANT_VIDEO_PLAYBACK            = "android.instantVideoPlayback.1";
   public  static final String CRASH_PROMPT_CONFIG               = "android.crashPromptConfig";
   private static final String SEPA_DEBIT_DONATIONS              = "android.sepa.debit.donations.5";
@@ -180,7 +179,6 @@ public final class FeatureFlags {
       PROMPT_FOR_NOTIFICATION_LOGS,
       PROMPT_FOR_NOTIFICATION_CONFIG,
       PROMPT_BATTERY_SAVER,
-      USERNAMES,
       INSTANT_VIDEO_PLAYBACK,
       CRASH_PROMPT_CONFIG,
       SEPA_DEBIT_DONATIONS,
@@ -259,7 +257,6 @@ public final class FeatureFlags {
       PROMPT_FOR_NOTIFICATION_LOGS,
       PROMPT_FOR_NOTIFICATION_CONFIG,
       PROMPT_BATTERY_SAVER,
-      USERNAMES,
       CRASH_PROMPT_CONFIG,
       CALLING_REACTIONS,
       NOTIFICATION_THUMBNAIL_BLOCKLIST,
@@ -342,11 +339,6 @@ public final class FeatureFlags {
     Log.i(TAG, "[Memory] After : " + result.getMemory().toString());
     Log.i(TAG, "[Disk]   Before: " + disk.toString());
     Log.i(TAG, "[Disk]   After : " + result.getDisk().toString());
-  }
-
-  /** Creating usernames, sending messages by username. */
-  public static synchronized boolean usernames() {
-    return getBoolean(USERNAMES, false) || phoneNumberPrivacy();
   }
 
   /**

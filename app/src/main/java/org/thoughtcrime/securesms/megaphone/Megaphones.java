@@ -397,8 +397,7 @@ public final class Megaphones {
     long                                                    phoneNumberDiscoveryDisabledAt = SignalStore.phoneNumberPrivacy().getPhoneNumberDiscoverabilityModeTimestamp();
     PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode listingMode                    = SignalStore.phoneNumberPrivacy().getPhoneNumberDiscoverabilityMode();
 
-    return FeatureFlags.usernames() &&
-           !hasUsername &&
+    return !hasUsername &&
            listingMode.isUndiscoverable() &&
            !hasCompleted &&
            phoneNumberDiscoveryDisabledAt > 0 &&

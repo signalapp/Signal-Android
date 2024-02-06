@@ -155,9 +155,7 @@ public class RefreshOwnProfileJob extends BaseJob {
 
     StoryOnboardingDownloadJob.Companion.enqueueIfNeeded();
 
-    if (FeatureFlags.usernames()) {
-      checkUsernameIsInSync();
-    }
+    checkUsernameIsInSync();
   }
 
   private void setExpiringProfileKeyCredential(@NonNull Recipient recipient,
