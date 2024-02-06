@@ -19,7 +19,7 @@ class PhoneNumberPrivacySettingsViewModel : ViewModel() {
   private val _state = mutableStateOf(
     PhoneNumberPrivacySettingsState(
       phoneNumberSharing = SignalStore.phoneNumberPrivacy().isPhoneNumberSharingEnabled,
-      discoverableByPhoneNumber = SignalStore.phoneNumberPrivacy().isDiscoverableByPhoneNumber
+      discoverableByPhoneNumber = SignalStore.phoneNumberPrivacy().phoneNumberDiscoverabilityMode != PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE
     )
   )
 
@@ -60,7 +60,7 @@ class PhoneNumberPrivacySettingsViewModel : ViewModel() {
   fun refresh() {
     _state.value = PhoneNumberPrivacySettingsState(
       phoneNumberSharing = SignalStore.phoneNumberPrivacy().isPhoneNumberSharingEnabled,
-      discoverableByPhoneNumber = SignalStore.phoneNumberPrivacy().isDiscoverableByPhoneNumber
+      discoverableByPhoneNumber = SignalStore.phoneNumberPrivacy().phoneNumberDiscoverabilityMode != PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE
     )
   }
 }

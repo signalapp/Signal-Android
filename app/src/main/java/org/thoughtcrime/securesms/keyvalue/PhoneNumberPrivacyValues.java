@@ -23,10 +23,9 @@ public final class PhoneNumberPrivacyValues extends SignalStoreValues {
 
   @Override
   void onFirstEverAppLaunch() {
-    // TODO [ALAN] PhoneNumberPrivacy: During registration, set the attribute to so that new registrations start out as not listed
-    //getStore().beginWrite()
-    //          .putInteger(LISTING_MODE, PhoneNumberListingMode.UNLISTED.serialize())
-    //          .apply();
+    getStore().beginWrite()
+              .putInteger(DISCOVERABILITY_MODE, PhoneNumberDiscoverabilityMode.UNDECIDED.serialize())
+              .apply();
   }
 
   @Override
@@ -53,11 +52,8 @@ public final class PhoneNumberPrivacyValues extends SignalStoreValues {
     putInteger(SHARING_MODE, phoneNumberSharingMode.serialize());
   }
 
-  public boolean isDiscoverableByPhoneNumber() {
-    return getPhoneNumberDiscoverabilityMode() == PhoneNumberDiscoverabilityMode.DISCOVERABLE;
-  }
-
   public @NonNull PhoneNumberDiscoverabilityMode getPhoneNumberDiscoverabilityMode() {
+    // The default for existing users is to be discoverable, but new users are set to UNDECIDED in onFirstEverAppLaunch
     return PhoneNumberDiscoverabilityMode.deserialize(getInteger(DISCOVERABILITY_MODE, PhoneNumberDiscoverabilityMode.DISCOVERABLE.serialize()));
   }
 
@@ -120,20 +116,14 @@ public final class PhoneNumberPrivacyValues extends SignalStoreValues {
 
   public enum PhoneNumberDiscoverabilityMode {
     DISCOVERABLE(0),
-    NOT_DISCOVERABLE(1);
+    NOT_DISCOVERABLE(1),
+    /** The user is going through registration and has not yet chosen a discoverability setting */
+    UNDECIDED(2);
 
     private final int code;
 
     PhoneNumberDiscoverabilityMode(int code) {
       this.code = code;
-    }
-
-    public boolean isDiscoverable() {
-      return this == DISCOVERABLE;
-    }
-
-    public boolean isUndiscoverable() {
-      return this == NOT_DISCOVERABLE;
     }
 
     public int serialize() {

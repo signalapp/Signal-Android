@@ -17,6 +17,7 @@ class WhoCanFindMeByPhoneNumberRepository {
     return when (SignalStore.phoneNumberPrivacy().phoneNumberDiscoverabilityMode) {
       PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode.DISCOVERABLE -> WhoCanFindMeByPhoneNumberState.EVERYONE
       PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE -> WhoCanFindMeByPhoneNumberState.NOBODY
+      PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode.UNDECIDED -> WhoCanFindMeByPhoneNumberState.EVERYONE
     }
   }
 

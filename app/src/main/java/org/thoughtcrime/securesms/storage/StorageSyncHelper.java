@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob;
 import org.thoughtcrime.securesms.jobs.StorageSyncJob;
 import org.thoughtcrime.securesms.keyvalue.AccountValues;
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues;
+import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.payments.Entropy;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -147,7 +148,7 @@ public final class StorageSyncHelper {
                                                                  .setReadReceiptsEnabled(TextSecurePreferences.isReadReceiptsEnabled(context))
                                                                  .setSealedSenderIndicatorsEnabled(TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(context))
                                                                  .setLinkPreviewsEnabled(SignalStore.settings().isLinkPreviewsEnabled())
-                                                                 .setUnlistedPhoneNumber(SignalStore.phoneNumberPrivacy().getPhoneNumberDiscoverabilityMode().isUndiscoverable())
+                                                                 .setUnlistedPhoneNumber(SignalStore.phoneNumberPrivacy().getPhoneNumberDiscoverabilityMode() == PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE)
                                                                  .setPhoneNumberSharingMode(StorageSyncModels.localToRemotePhoneNumberSharingMode(SignalStore.phoneNumberPrivacy().getPhoneNumberSharingMode()))
                                                                  .setPinnedConversations(StorageSyncModels.localToRemotePinnedConversations(pinned))
                                                                  .setPreferContactAvatars(SignalStore.settings().isPreferSystemContactPhotos())
@@ -196,7 +197,7 @@ public final class StorageSyncHelper {
     TextSecurePreferences.setTypingIndicatorsEnabled(context, update.getNew().isTypingIndicatorsEnabled());
     TextSecurePreferences.setShowUnidentifiedDeliveryIndicatorsEnabled(context, update.getNew().isSealedSenderIndicatorsEnabled());
     SignalStore.settings().setLinkPreviewsEnabled(update.getNew().isLinkPreviewsEnabled());
-    SignalStore.phoneNumberPrivacy().setPhoneNumberDiscoverabilityMode(update.getNew().isPhoneNumberUnlisted() ? PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE : PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode.DISCOVERABLE);
+    SignalStore.phoneNumberPrivacy().setPhoneNumberDiscoverabilityMode(update.getNew().isPhoneNumberUnlisted() ? PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE : PhoneNumberDiscoverabilityMode.DISCOVERABLE);
     SignalStore.phoneNumberPrivacy().setPhoneNumberSharingMode(StorageSyncModels.remoteToLocalPhoneNumberSharingMode(update.getNew().getPhoneNumberSharingMode()));
     SignalStore.settings().setPreferSystemContactPhotos(update.getNew().isPreferContactAvatars());
     SignalStore.paymentsValues().setEnabledAndEntropy(update.getNew().getPayments().isEnabled(), Entropy.fromBytes(update.getNew().getPayments().getEntropy().orElse(null)));

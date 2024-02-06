@@ -286,6 +286,7 @@ public class CreateProfileFragment extends LoggingFragment {
   private void presentWhoCanFindMeDescription(PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode phoneNumberListingMode) {
     switch (phoneNumberListingMode) {
       case DISCOVERABLE:
+      case UNDECIDED:
         binding.whoCanFindMeIcon.setImageResource(R.drawable.symbol_group_24);
         binding.whoCanFindMeDescription.setText(R.string.PhoneNumberPrivacy_everyone);
         break;
