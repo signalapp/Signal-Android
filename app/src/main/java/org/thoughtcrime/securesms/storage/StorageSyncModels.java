@@ -65,9 +65,8 @@ public final class StorageSyncModels {
   }
 
   public static AccountRecord.PhoneNumberSharingMode localToRemotePhoneNumberSharingMode(PhoneNumberPrivacyValues.PhoneNumberSharingMode phoneNumberPhoneNumberSharingMode) {
-    // TODO [pnp] When we launch usernames, we want DEFAULT to map to NOBODY. In fact, we can just pass a boolean into this function instead of an enum.
     switch (phoneNumberPhoneNumberSharingMode) {
-      case DEFAULT  : return AccountRecord.PhoneNumberSharingMode.UNKNOWN;
+      case DEFAULT  : return AccountRecord.PhoneNumberSharingMode.NOBODY;
       case EVERYBODY: return AccountRecord.PhoneNumberSharingMode.EVERYBODY;
       case NOBODY   : return AccountRecord.PhoneNumberSharingMode.NOBODY;
       default       : throw new AssertionError();

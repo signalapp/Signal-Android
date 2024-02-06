@@ -43,10 +43,9 @@ public final class PhoneNumberPrivacyValues extends SignalStoreValues {
   }
 
   public boolean isPhoneNumberSharingEnabled() {
-    // TODO [pnp] When we launch usernames, the default should return false
     return switch (getPhoneNumberSharingMode()) {
-      case DEFAULT, EVERYBODY -> true;
-      case NOBODY -> false;
+      case EVERYBODY -> true;
+      case DEFAULT, NOBODY -> false;
     };
   }
 

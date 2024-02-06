@@ -691,7 +691,7 @@ public class Recipient {
    * Whether or not we should show this user's e164 in the interface.
    */
   public boolean shouldShowE164() {
-    return hasE164() && (isSystemContact() || getPhoneNumberSharing() != PhoneNumberSharingState.DISABLED);
+    return hasE164() && (isSystemContact() || getPhoneNumberSharing() == PhoneNumberSharingState.ENABLED);
   }
 
   public @NonNull Optional<String> getEmail() {
