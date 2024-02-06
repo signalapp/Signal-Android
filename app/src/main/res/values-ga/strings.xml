@@ -2478,9 +2478,9 @@
     <!-- Displayed when the chosen discriminator is too long -->
     <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Ainm úsáideora neamhbhailí, cuir isteach uaslíon de %1$d dhigit.</string>
     <!-- Displayed when the chosen discriminator is 00 -->
-    <string name="UsernameEditFragment__this_number_cant_be_00">This number can\'t be 00. Enter a digit between 1–9</string>
+    <string name="UsernameEditFragment__this_number_cant_be_00">Ní féidir 00 a bheith san uimhir seo. Cuir isteach digit idir 1 agus 9</string>
     <!-- Displayed when the chosen discriminator starts with 00 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_00">This number can\'t start with 00. Enter a digit between 1–9</string>
+    <string name="UsernameEditFragment__this_number_cant_start_with_00">Ní féidir leis an uimhir seo tosú le 00. Cuir isteach digit idir 1 agus 9</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">Athshocrófar do chód QR agus nasc reatha le hathshlánú d\'ainm úsáideora. An bhfuil tú cinnte?</string>
 
@@ -6766,7 +6766,7 @@
     <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">Ní oibreoidh an nasc seo a thuilleadh do dhuine ar bith ag a bhfuil sé.</string>
 
     <!-- Button label for the link button in the username link settings -->
-    <string name="UsernameLinkSettings_link_button_label">nasc</string>
+    <string name="UsernameLinkSettings_link_button_label">Nasc</string>
     <!-- Button label for the share button in the username link settings -->
     <string name="UsernameLinkSettings_share_button_label">Comhroinn</string>
     <!-- Button label for the color selector button in the username link settings -->
