@@ -25,15 +25,18 @@ public class DeviceContactsInputStreamTest {
   public void read() throws IOException, InvalidInputException {
     ByteArrayOutputStream      byteArrayOut  = new ByteArrayOutputStream();
     DeviceContactsOutputStream output        = new DeviceContactsOutputStream(byteArrayOut);
-    SignalServiceAddress       addressFirst  = new SignalServiceAddress(ACI.from(UUID.randomUUID()), "+1404555555");
-    SignalServiceAddress       addressSecond = new SignalServiceAddress(ACI.from(UUID.randomUUID()), "+1444555555");
+    Optional<ACI>              aciFirst      = Optional.of(ACI.from(UUID.randomUUID()));
+    Optional<String>           e164First     = Optional.of("+1404555555");
+    Optional<ACI>              aciSecond     = Optional.of(ACI.from(UUID.randomUUID()));
+    Optional<String>           e164Second    = Optional.of("+1444555555");
 
     DeviceContact first = new DeviceContact(
-        addressFirst,
+        aciFirst,
+        e164First,
         Optional.of("Teal'c"),
         Optional.empty(),
         Optional.of("ultramarine"),
-        Optional.of(new VerifiedMessage(addressFirst, generateIdentityKey(), VerifiedMessage.VerifiedState.DEFAULT, System.currentTimeMillis())),
+        Optional.of(new VerifiedMessage(new SignalServiceAddress(aciFirst.get(), e164First), generateIdentityKey(), VerifiedMessage.VerifiedState.DEFAULT, System.currentTimeMillis())),
         Optional.of(generateProfileKey()),
         false,
         Optional.of(0),
@@ -42,11 +45,12 @@ public class DeviceContactsInputStreamTest {
     );
 
     DeviceContact second = new DeviceContact(
-        addressSecond,
+        aciSecond,
+        e164Second,
         Optional.of("Bra'tac"),
         Optional.empty(),
         Optional.of("ultramarine"),
-        Optional.of(new VerifiedMessage(addressSecond, generateIdentityKey(), VerifiedMessage.VerifiedState.DEFAULT, System.currentTimeMillis())),
+        Optional.of(new VerifiedMessage(new SignalServiceAddress(aciSecond.get(), e164Second), generateIdentityKey(), VerifiedMessage.VerifiedState.DEFAULT, System.currentTimeMillis())),
         Optional.of(generateProfileKey()),
         false,
         Optional.of(0),
@@ -65,13 +69,15 @@ public class DeviceContactsInputStreamTest {
     DeviceContact             readFirst  = input.read();
     DeviceContact             readSecond = input.read();
 
-    assertEquals(first.getAddress(), readFirst.getAddress());
+    assertEquals(first.getAci(), readFirst.getAci());
+    assertEquals(first.getE164(), readFirst.getE164());
     assertEquals(first.getName(), readFirst.getName());
     assertEquals(first.getColor(), readFirst.getColor());
     assertEquals(first.getVerified().get().getIdentityKey(), readFirst.getVerified().get().getIdentityKey());
     assertEquals(first.isArchived(), readFirst.isArchived());
 
-    assertEquals(second.getAddress(), readSecond.getAddress());
+    assertEquals(second.getAci(), readSecond.getAci());
+    assertEquals(second.getE164(), readSecond.getE164());
     assertEquals(second.getName(), readSecond.getName());
     assertEquals(second.getColor(), readSecond.getColor());
     assertEquals(second.getVerified().get().getIdentityKey(), readSecond.getVerified().get().getIdentityKey());

@@ -3458,7 +3458,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
   fun getRecipientsForMultiDeviceSync(): List<Recipient> {
     val subquery = "SELECT ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} FROM ${ThreadTable.TABLE_NAME}"
-    val selection = "$REGISTERED = ? AND $GROUP_ID IS NULL AND $ID != ? AND ($SYSTEM_CONTACT_URI NOT NULL OR $ID IN ($subquery))"
+    val selection = "$REGISTERED = ? AND $GROUP_ID IS NULL AND $ID != ? AND ($ACI_COLUMN NOT NULL OR $E164 NOT NULL) AND ($SYSTEM_CONTACT_URI NOT NULL OR $ID IN ($subquery))"
     val args = arrayOf(RegisteredState.REGISTERED.id.toString(), Recipient.self().id.serialize())
     val recipients: MutableList<Recipient> = ArrayList()
 

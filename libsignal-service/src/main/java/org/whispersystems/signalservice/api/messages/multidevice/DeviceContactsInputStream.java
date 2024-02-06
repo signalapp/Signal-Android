@@ -14,6 +14,7 @@ import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentStream;
 import org.whispersystems.signalservice.api.push.ServiceId;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.internal.push.ContactDetails;
 import org.whispersystems.signalservice.internal.util.Util;
@@ -45,7 +46,8 @@ public class DeviceContactsInputStream extends ChunkedInputStream {
       throw new IOException("Missing contact address!");
     }
 
-    SignalServiceAddress                    address       = new SignalServiceAddress(ServiceId.parseOrThrow(details.aci), details.number);
+    Optional<ACI>                           aci           = Optional.ofNullable(ACI.parseOrNull(details.aci));
+    Optional<String>                        e164          = Optional.ofNullable(details.number);
     Optional<String>                        name          = Optional.ofNullable(details.name);
     Optional<SignalServiceAttachmentStream> avatar        = Optional.empty();
     Optional<String>                        color         = details.color != null ? Optional.of(details.color) : Optional.empty();
@@ -108,7 +110,7 @@ public class DeviceContactsInputStream extends ChunkedInputStream {
     blocked  = details.blocked;
     archived = details.archived;
 
-    return new DeviceContact(address, name, avatar, color, verified, profileKey, blocked, expireTimer, inboxPosition, archived);
+    return new DeviceContact(aci, e164, name, avatar, color, verified, profileKey, blocked, expireTimer, inboxPosition, archived);
   }
 
 }
