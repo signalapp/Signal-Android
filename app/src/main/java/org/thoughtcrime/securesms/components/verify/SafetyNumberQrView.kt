@@ -9,7 +9,6 @@ import android.animation.ValueAnimator
 import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.Outline
 import android.graphics.PorterDuff
@@ -26,12 +25,14 @@ import android.widget.TextView
 import androidx.annotation.DrawableRes
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.toBitmap
 import androidx.core.widget.ImageViewCompat
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import org.signal.core.util.dp
 import org.signal.libsignal.protocol.fingerprint.Fingerprint
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.qr.QrCodeUtil
+import org.thoughtcrime.securesms.util.ContextUtil
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.visible
 import java.nio.charset.Charset
@@ -211,7 +212,7 @@ class SafetyNumberQrView : ConstraintLayout {
   private fun createVerifiedBitmap(width: Int, height: Int, @DrawableRes id: Int): Bitmap {
     val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
     val canvas = Canvas(bitmap)
-    val check = BitmapFactory.decodeResource(resources, id)
+    val check = ContextUtil.requireDrawable(context, id).toBitmap()
     val offset = ((width - check.width) / 2).toFloat()
     canvas.drawBitmap(check, offset, offset, null)
     return bitmap
