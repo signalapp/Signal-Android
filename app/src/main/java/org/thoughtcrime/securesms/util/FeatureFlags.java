@@ -83,7 +83,6 @@ public final class FeatureFlags {
   private static final String SOFTWARE_AEC_BLOCKLIST_MODELS     = "android.calling.softwareAecBlockList";
   private static final String USE_HARDWARE_AEC_IF_OLD           = "android.calling.useHardwareAecIfOlderThanApi29";
   private static final String PAYMENTS_COUNTRY_BLOCKLIST        = "global.payments.disabledRegions";
-  public  static final String PHONE_NUMBER_PRIVACY              = "android.pnp";
   private static final String STORIES_AUTO_DOWNLOAD_MAXIMUM     = "android.stories.autoDownloadMaximum";
   private static final String TELECOM_MANUFACTURER_ALLOWLIST    = "android.calling.telecomAllowList";
   private static final String TELECOM_MODEL_BLOCKLIST           = "android.calling.telecomModelBlockList";
@@ -188,7 +187,6 @@ public final class FeatureFlags {
       CALLING_REACTIONS,
       NOTIFICATION_THUMBNAIL_BLOCKLIST,
       CALLING_RAISE_HAND,
-      PHONE_NUMBER_PRIVACY,
       USE_ACTIVE_CALL_MANAGER,
       GIF_SEARCH,
       AUDIO_REMUXING,
@@ -261,7 +259,6 @@ public final class FeatureFlags {
       CALLING_REACTIONS,
       NOTIFICATION_THUMBNAIL_BLOCKLIST,
       CALLING_RAISE_HAND,
-      PHONE_NUMBER_PRIVACY,
       VIDEO_RECORD_1X_ZOOM
   );
 
@@ -367,14 +364,6 @@ public final class FeatureFlags {
   /** The raw client expiration JSON string. */
   public static String clientExpiration() {
     return getString(CLIENT_EXPIRATION, null);
-  }
-
-  /**
-   * Whether phone number privacy is enabled.
-   * IMPORTANT: This is under active development. Enabling this *will* break your contacts in terrible, irreversible ways.
-   */
-  public static boolean phoneNumberPrivacy() {
-    return getBoolean(PHONE_NUMBER_PRIVACY, false) || Environment.IS_PNP;
   }
 
   /** Whether to use the custom streaming muxer or built in android muxer. */
@@ -595,15 +584,6 @@ public final class FeatureFlags {
   /** Maximum attachment ciphertext size when sending in bytes */
   public static long maxAttachmentSizeBytes() {
     return getLong(MAX_ATTACHMENT_SIZE_BYTES, ByteUnit.MEGABYTES.toBytes(100));
-  }
-
-  /** True if you should use CDS in compat mode (i.e. request ACI's even if you don't know the access key), otherwise false. */
-  public static boolean cdsCompatMode() {
-    if (phoneNumberPrivacy()) {
-      return false;
-    } else {
-      return !getBoolean(CDS_DISABLE_COMPAT_MODE, false);
-    }
   }
 
   /**

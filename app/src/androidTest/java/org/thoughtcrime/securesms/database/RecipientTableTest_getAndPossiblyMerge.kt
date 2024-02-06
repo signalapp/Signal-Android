@@ -41,8 +41,6 @@ import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.FeatureFlags
-import org.thoughtcrime.securesms.util.FeatureFlagsAccessor
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.ServiceId.PNI
@@ -58,7 +56,6 @@ class RecipientTableTest_getAndPossiblyMerge {
     SignalStore.account().setE164(E164_SELF)
     SignalStore.account().setAci(ACI_SELF)
     SignalStore.account().setPni(PNI_SELF)
-    FeatureFlagsAccessor.forceValue(FeatureFlags.PHONE_NUMBER_PRIVACY, true)
   }
 
   @Test

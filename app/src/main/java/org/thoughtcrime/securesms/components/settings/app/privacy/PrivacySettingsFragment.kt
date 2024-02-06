@@ -40,7 +40,6 @@ import org.thoughtcrime.securesms.service.KeyCachingService
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.ConversationUtil
 import org.thoughtcrime.securesms.util.ExpirationUtil
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
@@ -119,18 +118,16 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
 
   private fun getConfiguration(state: PrivacySettingsState): DSLConfiguration {
     return configure {
-      if (FeatureFlags.phoneNumberPrivacy()) {
-        clickPref(
-          title = DSLSettingsText.from(R.string.preferences_app_protection__phone_number),
-          summary = DSLSettingsText.from(R.string.preferences_app_protection__choose_who_can_see),
-          onClick = {
-            Navigation.findNavController(requireView())
-              .safeNavigate(R.id.action_privacySettingsFragment_to_phoneNumberPrivacySettingsFragment)
-          }
-        )
+      clickPref(
+        title = DSLSettingsText.from(R.string.preferences_app_protection__phone_number),
+        summary = DSLSettingsText.from(R.string.preferences_app_protection__choose_who_can_see),
+        onClick = {
+          Navigation.findNavController(requireView())
+            .safeNavigate(R.id.action_privacySettingsFragment_to_phoneNumberPrivacySettingsFragment)
+        }
+      )
 
-        dividerPref()
-      }
+      dividerPref()
 
       clickPref(
         title = DSLSettingsText.from(R.string.PrivacySettingsFragment__blocked),

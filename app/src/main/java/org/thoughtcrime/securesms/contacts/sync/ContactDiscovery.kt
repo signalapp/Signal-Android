@@ -25,7 +25,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.registration.RegistrationUtil
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
@@ -70,7 +69,7 @@ object ContactDiscovery {
       context = context,
       descriptor = "refresh-all",
       refresh = {
-        ContactDiscoveryRefreshV2.refreshAll(context, useCompat = FeatureFlags.cdsCompatMode())
+        ContactDiscoveryRefreshV2.refreshAll(context)
       },
       removeSystemContactLinksIfMissing = true,
       notifyOfNewUsers = notifyOfNewUsers,
@@ -87,9 +86,7 @@ object ContactDiscovery {
     refreshRecipients(
       context = context,
       descriptor = "refresh-multiple",
-      refresh = {
-        ContactDiscoveryRefreshV2.refresh(context, recipients, useCompat = FeatureFlags.cdsCompatMode())
-      },
+      refresh = { ContactDiscoveryRefreshV2.refresh(context, recipients) },
       removeSystemContactLinksIfMissing = false,
       notifyOfNewUsers = notifyOfNewUsers
     )
@@ -103,9 +100,7 @@ object ContactDiscovery {
     val result: RefreshResult = refreshRecipients(
       context = context,
       descriptor = "refresh-single",
-      refresh = {
-        ContactDiscoveryRefreshV2.refresh(context, listOf(recipient), useCompat = FeatureFlags.cdsCompatMode(), timeoutMs = timeoutMs)
-      },
+      refresh = { ContactDiscoveryRefreshV2.refresh(context, listOf(recipient), timeoutMs = timeoutMs) },
       removeSystemContactLinksIfMissing = false,
       notifyOfNewUsers = notifyOfNewUsers
     )

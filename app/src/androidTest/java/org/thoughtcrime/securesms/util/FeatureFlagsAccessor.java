@@ -6,6 +6,6 @@ package org.thoughtcrime.securesms.util;
 public final class FeatureFlagsAccessor {
 
   public static void forceValue(String key, Object value) {
-    FeatureFlags.FORCED_VALUES.put(FeatureFlags.PHONE_NUMBER_PRIVACY, true);
+    FeatureFlags.FORCED_VALUES.put(key, value);
   }
 }
