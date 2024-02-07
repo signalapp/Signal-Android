@@ -1241,6 +1241,13 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     return getThreadIdIfExistsFor(recipientId) > -1
   }
 
+  fun hasActiveThread(recipientId: RecipientId): Boolean {
+    return readableDatabase
+      .exists(TABLE_NAME)
+      .where("$RECIPIENT_ID = ? AND $ACTIVE = 1", recipientId)
+      .run()
+  }
+
   fun updateLastSeenAndMarkSentAndLastScrolledSilenty(threadId: Long) {
     writableDatabase
       .update(TABLE_NAME)

@@ -198,7 +198,7 @@ object ContactDiscoveryRefreshV2 {
 
   private fun hasCommunicatedWith(recipient: Recipient): Boolean {
     val localAci = SignalStore.account().requireAci()
-    return SignalDatabase.threads.hasThread(recipient.id) || (recipient.hasServiceId() && SignalDatabase.sessions.hasSessionFor(localAci, recipient.requireServiceId().toString()))
+    return SignalDatabase.threads.hasActiveThread(recipient.id) || (recipient.hasServiceId() && SignalDatabase.sessions.hasSessionFor(localAci, recipient.requireServiceId().toString()))
   }
 
   /**
