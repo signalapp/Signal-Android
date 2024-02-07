@@ -3799,17 +3799,19 @@
     <!-- Subtext below option to launch into phone number privacy settings screen -->
     <string name="preferences_app_protection__choose_who_can_see">Choose who can see your phone number and who can contact you on Signal with it.</string>
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
-    <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Who can see my number</string>
-    <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see_your">Nobody will see your phone number on Signal, even when messaging them.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">Who can see my number</string>
+    <!-- Subtext below radio buttons when who can see my number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">Your phone number will be visible to people and groups you message.</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Your phone number will not be visible to anyone unless they have it saved in their phone\'s contacts.</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Your phone number will not be visible to anyone.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
-    <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Who can find me by number</string>
-    <!-- Subtext below radio buttons when who can see my number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number_will_be">Your phone number will be visible to people and groups you message.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Who can find me by number</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__anyone_who_has">Anyone who has your phone number will see you\'re on Signal and can start chats with you.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">Anyone who has your phone number will see you\'re on Signal and can start chats with you.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_be_able_to_see">Nobody will be able to see you\'re on Signal unless you message them or have an existing chat with them.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">Nobody will be able to see you\'re on Signal unless you message them or have an existing chat with them.</string>
     <!-- Snackbar text when pressing invalid radio item -->
     <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">To change this setting, set "Who can see my number" to "Nobody".</string>
     <string name="PhoneNumberPrivacy_everyone">Everyone</string>
