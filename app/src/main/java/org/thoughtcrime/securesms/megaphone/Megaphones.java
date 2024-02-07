@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -103,7 +104,7 @@ public final class Megaphones {
    * This is also when you would hide certain megaphones based on things like {@link FeatureFlags}.
    */
   private static Map<Event, MegaphoneSchedule> buildDisplayOrder(@NonNull Context context, @NonNull Map<Event, MegaphoneRecord> records) {
-    return new LinkedHashMap<Event, MegaphoneSchedule>() {{
+    return new LinkedHashMap<>() {{
       put(Event.PINS_FOR_ALL, new PinsForAllSchedule());
       put(Event.CLIENT_DEPRECATED, SignalStore.misc().isClientDeprecated() ? ALWAYS : NEVER);
       put(Event.NOTIFICATIONS, shouldShowNotificationsMegaphone(context) ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(30)) : NEVER);
@@ -117,6 +118,7 @@ public final class Megaphones {
 
       // Feature-introduction megaphones should *probably* be added below this divider
       put(Event.ADD_A_PROFILE_PHOTO, shouldShowAddAProfilePhotoMegaphone(context) ? ALWAYS : NEVER);
+      put(Event.PNP_LAUNCH, shouldShowPnpLaunchMegaphone() ? ALWAYS : NEVER);
     }};
   }
 
@@ -144,7 +146,8 @@ public final class Megaphones {
         return buildSetUpYourUsernameMegaphone(context);
       case GRANT_FULL_SCREEN_INTENT:
         return buildGrantFullScreenIntentPermission(context);
-
+      case PNP_LAUNCH:
+        return buildPnpLaunchMegaphone();
       default:
         throw new IllegalArgumentException("Event not handled!");
     }
@@ -332,6 +335,20 @@ public final class Megaphones {
         .build();
   }
 
+  public static @NonNull Megaphone buildPnpLaunchMegaphone() {
+    return new Megaphone.Builder(Event.PNP_LAUNCH, Megaphone.Style.BASIC)
+        .setTitle(R.string.PnpLaunchMegaphone_title)
+        .setBody(R.string.PnpLaunchMegaphone_body)
+        .setImage(R.drawable.usernames_megaphone)
+        .setActionButton(R.string.PnpLaunchMegaphone_learn_more, (megaphone, controller) -> {
+          controller.onMegaphoneDialogFragmentRequested(new NewWaysToConnectDialogFragment());
+        })
+        .setSecondaryButton(R.string.PnpLaunchMegaphone_dismiss, (megaphone, controller) -> {
+          controller.onMegaphoneCompleted(Event.PNP_LAUNCH);
+        })
+        .build();
+  }
+
   public static @NonNull Megaphone buildGrantFullScreenIntentPermission(@NonNull Context context) {
     return new Megaphone.Builder(Event.GRANT_FULL_SCREEN_INTENT, Megaphone.Style.BASIC)
         .setTitle(R.string.GrantFullScreenIntentPermission_megaphone_title)
@@ -405,6 +422,10 @@ public final class Megaphones {
            (System.currentTimeMillis() - phoneNumberDiscoveryDisabledAt) >= TimeUnit.DAYS.toMillis(3);
   }
 
+  private static boolean shouldShowPnpLaunchMegaphone() {
+    return TextUtils.isEmpty(SignalStore.account().getUsername());
+  }
+
   private static boolean shouldShowGrantFullScreenIntentPermission(@NonNull Context context) {
     return Build.VERSION.SDK_INT >= 34 && !NotificationManagerCompat.from(context).canUseFullScreenIntent();
   }
@@ -450,6 +471,7 @@ public final class Megaphones {
     REMOTE_MEGAPHONE("remote_megaphone"),
     BACKUP_SCHEDULE_PERMISSION("backup_schedule_permission"),
     SET_UP_YOUR_USERNAME("set_up_your_username"),
+    PNP_LAUNCH("pnp_launch"),
     GRANT_FULL_SCREEN_INTENT("grant_full_screen_intent");
 
     private final String key;

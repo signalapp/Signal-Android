@@ -80,17 +80,19 @@ private fun NewWaysToConnectDialogContent(
     navigationIconPainter = painterResource(id = R.drawable.symbol_x_24)
   ) {
     Column(modifier = Modifier.padding(it)) {
-      Text(
-        text = stringResource(id = R.string.NewWaysToConnectDialogFragment__new_ways_to_connect),
-        style = MaterialTheme.typography.headlineMedium,
-        textAlign = TextAlign.Center,
-        modifier = Modifier
-          .fillMaxWidth()
-          .padding(horizontal = dimensionResource(id = R.dimen.core_ui__gutter))
-          .padding(top = 16.dp, bottom = 36.dp)
-      )
-
       LazyColumn(modifier = Modifier.weight(1f)) {
+        item {
+          Text(
+            text = stringResource(id = R.string.NewWaysToConnectDialogFragment__new_ways_to_connect),
+            style = MaterialTheme.typography.headlineMedium,
+            textAlign = TextAlign.Center,
+            modifier = Modifier
+              .fillMaxWidth()
+              .padding(horizontal = dimensionResource(id = R.dimen.core_ui__gutter))
+              .padding(top = 4.dp, bottom = 36.dp)
+          )
+        }
+
         item {
           NewWaysToConnectRowItem(
             title = stringResource(id = R.string.NewWaysToConnectDialogFragment__phone_number_privacy),
@@ -120,7 +122,7 @@ private fun NewWaysToConnectDialogContent(
         onClick = onSetUpUsernameClick,
         modifier = Modifier
           .padding(horizontal = dimensionResource(id = R.dimen.core_ui__gutter))
-          .padding(top = 36.dp)
+          .padding(top = 16.dp)
           .defaultMinSize(minWidth = 221.dp)
           .align(alignment = Alignment.CenterHorizontally)
       ) {
@@ -133,8 +135,10 @@ private fun NewWaysToConnectDialogContent(
         onClick = onNotNowClick,
         modifier = Modifier
           .padding(
-            horizontal = dimensionResource(id = R.dimen.core_ui__gutter),
-            vertical = 36.dp
+            start = dimensionResource(id = R.dimen.core_ui__gutter),
+            end = dimensionResource(id = R.dimen.core_ui__gutter),
+            top = 8.dp,
+            bottom = 16.dp
           )
           .defaultMinSize(minWidth = 221.dp)
           .align(alignment = Alignment.CenterHorizontally)

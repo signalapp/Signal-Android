@@ -2522,7 +2522,7 @@
     <!-- Button label for not right now -->
     <string name="NewWaysToConnectDialogFragment__not_now">Not now</string>
     <!-- Button label for continue -->
-    <string name="NewWaysToConnectDialogFragment__set_up_your_username">Set up your username</string>
+    <string name="NewWaysToConnectDialogFragment__set_up_your_username">Set up username</string>
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">Play video</string>
@@ -6175,6 +6175,15 @@
     <string name="SetUpYourUsername__dismiss">Dismiss</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__learn_more">Learn more</string>
+
+    <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
+    <string name="PnpLaunchMegaphone_title">New ways to connect</string>
+    <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
+    <string name="PnpLaunchMegaphone_body">Introducing phone number privacy, optional usernames and links.</string>
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
+    <string name="PnpLaunchMegaphone_dismiss">Dismiss</string>
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
+    <string name="PnpLaunchMegaphone_learn_more">Learn more</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
