@@ -143,9 +143,10 @@ public class ApplicationMigrations {
     static final int SELF_REGISTERTED_STATE        = 99;
     static final int SVR2_ENCLAVE_UPDATE           = 100;
     static final int STORAGE_LOCAL_UNKNOWNS_FIX    = 101;
+    static final int PNP_LAUNCH                    = 102;
   }
 
-  public static final int CURRENT_VERSION = 101;
+  public static final int CURRENT_VERSION = 102;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -650,6 +651,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.STORAGE_LOCAL_UNKNOWNS_FIX) {
       jobs.put(Version.STORAGE_LOCAL_UNKNOWNS_FIX, new StorageFixLocalUnknownMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.PNP_LAUNCH) {
+      jobs.put(Version.PNP_LAUNCH, new PnpLaunchMigrationJob());
     }
 
     return jobs;
