@@ -632,6 +632,9 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
       }
 
       binding.footerDate.setText(errorMessage)
+      binding.footerDate.setOnClickListener {
+        conversationContext.clickListener.onMessageWithErrorClicked(record)
+      }
     } else if (record.isPendingInsecureSmsFallback) {
       binding.footerDate.setText(R.string.ConversationItem_click_to_approve_unencrypted)
     } else if (record.isRateLimited) {
