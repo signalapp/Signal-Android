@@ -251,6 +251,7 @@ class ChangeNumberRepository(
       val pniIdentityKeyPair = IdentityKeyPair(metadata.pniIdentityKeyPair.toByteArray())
       val pniRegistrationId = metadata.pniRegistrationId
       val pniSignedPreyKeyId = metadata.pniSignedPreKeyId
+      val pniLastResortKyberPreKeyId = metadata.pniLastResortKyberPreKeyId
 
       val pniProtocolStore = ApplicationDependencies.getProtocolStore().pni()
       val pniMetadataStore = SignalStore.account().pniPreKeys
@@ -259,16 +260,22 @@ class ChangeNumberRepository(
       SignalStore.account().setPniIdentityKeyAfterChangeNumber(pniIdentityKeyPair)
 
       val signedPreKey = pniProtocolStore.loadSignedPreKey(pniSignedPreyKeyId)
-      val oneTimePreKeys = PreKeyUtil.generateAndStoreOneTimeEcPreKeys(pniProtocolStore, pniMetadataStore)
+      val oneTimeEcPreKeys = PreKeyUtil.generateAndStoreOneTimeEcPreKeys(pniProtocolStore, pniMetadataStore)
+      val lastResortKyberPreKey = pniProtocolStore.loadLastResortKyberPreKeys().firstOrNull { it.id == pniLastResortKyberPreKeyId }
+      val oneTimeKyberPreKeys = PreKeyUtil.generateAndStoreOneTimeKyberPreKeys(pniProtocolStore, pniMetadataStore)
+
+      if (lastResortKyberPreKey == null) {
+        Log.w(TAG, "Last-resort kyber prekey is missing!")
+      }
 
       pniMetadataStore.activeSignedPreKeyId = signedPreKey.id
       accountManager.setPreKeys(
         PreKeyUpload(
           serviceIdType = ServiceIdType.PNI,
           signedPreKey = signedPreKey,
-          oneTimeEcPreKeys = oneTimePreKeys,
-          lastResortKyberPreKey = null,
-          oneTimeKyberPreKeys = null
+          oneTimeEcPreKeys = oneTimeEcPreKeys,
+          lastResortKyberPreKey = lastResortKyberPreKey,
+          oneTimeKyberPreKeys = oneTimeKyberPreKeys
         )
       )
       pniMetadataStore.isSignedPreKeyRegistered = true
@@ -395,7 +402,8 @@ class ChangeNumberRepository(
       previousPni = SignalStore.account().pni!!.toByteString(),
       pniIdentityKeyPair = pniIdentity.serialize().toByteString(),
       pniRegistrationId = pniRegistrationIds[primaryDeviceId]!!,
-      pniSignedPreKeyId = devicePniSignedPreKeys[primaryDeviceId]!!.keyId
+      pniSignedPreKeyId = devicePniSignedPreKeys[primaryDeviceId]!!.keyId,
+      pniLastResortKyberPreKeyId = devicePniLastResortKyberPreKeys[primaryDeviceId]!!.keyId
     )
 
     return ChangeNumberRequestData(request, metadata)
