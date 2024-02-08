@@ -28,6 +28,7 @@ class SignedPreKeyTable(context: Context, databaseHelper: SignalDatabase) : Data
     const val PRIVATE_KEY = "private_key"
     const val SIGNATURE = "signature"
     const val TIMESTAMP = "timestamp"
+
     const val CREATE_TABLE = """
       CREATE TABLE $TABLE_NAME (
         $ID INTEGER PRIMARY KEY,
@@ -40,10 +41,12 @@ class SignedPreKeyTable(context: Context, databaseHelper: SignalDatabase) : Data
         UNIQUE($ACCOUNT_ID, $KEY_ID)
     )
     """
+
+    const val PNI_ACCOUNT_ID = "PNI"
   }
 
   fun get(serviceId: ServiceId, keyId: Int): SignedPreKeyRecord? {
-    readableDatabase.query(TABLE_NAME, null, "$ACCOUNT_ID = ? AND $KEY_ID = ?", SqlUtil.buildArgs(serviceId, keyId), null, null, null).use { cursor ->
+    readableDatabase.query(TABLE_NAME, null, "$ACCOUNT_ID = ? AND $KEY_ID = ?", SqlUtil.buildArgs(serviceId.toAccountId(), keyId), null, null, null).use { cursor ->
       if (cursor.moveToFirst()) {
         try {
           val publicKey = Curve.decodePoint(Base64.decode(cursor.requireNonNullString(PUBLIC_KEY)), 0)
@@ -64,7 +67,7 @@ class SignedPreKeyTable(context: Context, databaseHelper: SignalDatabase) : Data
   fun getAll(serviceId: ServiceId): List<SignedPreKeyRecord> {
     val results: MutableList<SignedPreKeyRecord> = LinkedList()
 
-    readableDatabase.query(TABLE_NAME, null, "$ACCOUNT_ID = ?", SqlUtil.buildArgs(serviceId), null, null, null).use { cursor ->
+    readableDatabase.query(TABLE_NAME, null, "$ACCOUNT_ID = ?", SqlUtil.buildArgs(serviceId.toAccountId()), null, null, null).use { cursor ->
       while (cursor.moveToNext()) {
         try {
           val keyId = cursor.requireInt(KEY_ID)
@@ -86,7 +89,7 @@ class SignedPreKeyTable(context: Context, databaseHelper: SignalDatabase) : Data
 
   fun insert(serviceId: ServiceId, keyId: Int, record: SignedPreKeyRecord) {
     val contentValues = contentValuesOf(
-      ACCOUNT_ID to serviceId.toString(),
+      ACCOUNT_ID to serviceId.toAccountId(),
       KEY_ID to keyId,
       PUBLIC_KEY to Base64.encodeWithPadding(record.keyPair.publicKey.serialize()),
       PRIVATE_KEY to Base64.encodeWithPadding(record.keyPair.privateKey.serialize()),
@@ -97,6 +100,13 @@ class SignedPreKeyTable(context: Context, databaseHelper: SignalDatabase) : Data
   }
 
   fun delete(serviceId: ServiceId, keyId: Int) {
-    writableDatabase.delete(TABLE_NAME, "$ACCOUNT_ID = ? AND $KEY_ID = ?", SqlUtil.buildArgs(serviceId, keyId))
+    writableDatabase.delete(TABLE_NAME, "$ACCOUNT_ID = ? AND $KEY_ID = ?", SqlUtil.buildArgs(serviceId.toAccountId(), keyId))
+  }
+
+  private fun ServiceId.toAccountId(): String {
+    return when (this) {
+      is ServiceId.ACI -> this.toString()
+      is ServiceId.PNI -> PNI_ACCOUNT_ID
+    }
   }
 }

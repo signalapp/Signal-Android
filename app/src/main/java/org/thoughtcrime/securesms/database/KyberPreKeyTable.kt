@@ -49,13 +49,15 @@ class KyberPreKeyTable(context: Context, databaseHelper: SignalDatabase) : Datab
     val CREATE_INDEXES = arrayOf(
       "CREATE INDEX IF NOT EXISTS $INDEX_ACCOUNT_KEY ON $TABLE_NAME ($ACCOUNT_ID, $KEY_ID, $LAST_RESORT, $SERIALIZED)"
     )
+
+    const val PNI_ACCOUNT_ID = "PNI"
   }
 
   fun get(serviceId: ServiceId, keyId: Int): KyberPreKey? {
     return readableDatabase
       .select(LAST_RESORT, SERIALIZED)
       .from("$TABLE_NAME INDEXED BY $INDEX_ACCOUNT_KEY")
-      .where("$ACCOUNT_ID = ? AND $KEY_ID = ?", serviceId, keyId)
+      .where("$ACCOUNT_ID = ? AND $KEY_ID = ?", serviceId.toAccountId(), keyId)
       .run()
       .readToSingleObject { cursor ->
         KyberPreKey(
@@ -69,7 +71,7 @@ class KyberPreKeyTable(context: Context, databaseHelper: SignalDatabase) : Datab
     return readableDatabase
       .select(LAST_RESORT, SERIALIZED)
       .from("$TABLE_NAME INDEXED BY $INDEX_ACCOUNT_KEY")
-      .where("$ACCOUNT_ID = ?", serviceId)
+      .where("$ACCOUNT_ID = ?", serviceId.toAccountId())
       .run()
       .readToList { cursor ->
         KyberPreKey(
@@ -83,7 +85,7 @@ class KyberPreKeyTable(context: Context, databaseHelper: SignalDatabase) : Datab
     return readableDatabase
       .select(LAST_RESORT, SERIALIZED)
       .from("$TABLE_NAME INDEXED BY $INDEX_ACCOUNT_KEY")
-      .where("$ACCOUNT_ID = ? AND $LAST_RESORT = ?", serviceId, 1)
+      .where("$ACCOUNT_ID = ? AND $LAST_RESORT = ?", serviceId.toAccountId(), 1)
       .run()
       .readToList { cursor ->
         KyberPreKey(
@@ -96,7 +98,7 @@ class KyberPreKeyTable(context: Context, databaseHelper: SignalDatabase) : Datab
   fun contains(serviceId: ServiceId, keyId: Int): Boolean {
     return readableDatabase
       .exists("$TABLE_NAME INDEXED BY $INDEX_ACCOUNT_KEY")
-      .where("$ACCOUNT_ID = ? AND $KEY_ID = ?", serviceId, keyId)
+      .where("$ACCOUNT_ID = ? AND $KEY_ID = ?", serviceId.toAccountId(), keyId)
       .run()
   }
 
@@ -104,7 +106,7 @@ class KyberPreKeyTable(context: Context, databaseHelper: SignalDatabase) : Datab
     writableDatabase
       .insertInto(TABLE_NAME)
       .values(
-        ACCOUNT_ID to serviceId.toString(),
+        ACCOUNT_ID to serviceId.toAccountId(),
         KEY_ID to keyId,
         TIMESTAMP to record.timestamp,
         SERIALIZED to record.serialize(),
@@ -116,14 +118,14 @@ class KyberPreKeyTable(context: Context, databaseHelper: SignalDatabase) : Datab
   fun deleteIfNotLastResort(serviceId: ServiceId, keyId: Int) {
     writableDatabase
       .delete("$TABLE_NAME INDEXED BY $INDEX_ACCOUNT_KEY")
-      .where("$ACCOUNT_ID = ? AND $KEY_ID = ? AND $LAST_RESORT = ?", serviceId, keyId, 0)
+      .where("$ACCOUNT_ID = ? AND $KEY_ID = ? AND $LAST_RESORT = ?", serviceId.toAccountId(), keyId, 0)
       .run()
   }
 
   fun delete(serviceId: ServiceId, keyId: Int) {
     writableDatabase
       .delete("$TABLE_NAME INDEXED BY $INDEX_ACCOUNT_KEY")
-      .where("$ACCOUNT_ID = ? AND $KEY_ID = ?", serviceId, keyId)
+      .where("$ACCOUNT_ID = ? AND $KEY_ID = ?", serviceId.toAccountId(), keyId)
       .run()
   }
 
@@ -131,7 +133,7 @@ class KyberPreKeyTable(context: Context, databaseHelper: SignalDatabase) : Datab
     writableDatabase
       .update(TABLE_NAME)
       .values(STALE_TIMESTAMP to staleTime)
-      .where("$ACCOUNT_ID = ? AND $STALE_TIMESTAMP = 0 AND $LAST_RESORT = 0", serviceId)
+      .where("$ACCOUNT_ID = ? AND $STALE_TIMESTAMP = 0 AND $LAST_RESORT = 0", serviceId.toAccountId())
       .run()
   }
 
@@ -161,8 +163,8 @@ class KyberPreKeyTable(context: Context, databaseHelper: SignalDatabase) : Datab
               LIMIT $minCount
             )
         """,
-        serviceId,
-        serviceId
+        serviceId.toAccountId(),
+        serviceId.toAccountId()
       )
       .run()
 
@@ -173,4 +175,11 @@ class KyberPreKeyTable(context: Context, databaseHelper: SignalDatabase) : Datab
     val record: KyberPreKeyRecord,
     val lastResort: Boolean
   )
+
+  private fun ServiceId.toAccountId(): String {
+    return when (this) {
+      is ServiceId.ACI -> this.toString()
+      is ServiceId.PNI -> PNI_ACCOUNT_ID
+    }
+  }
 }
