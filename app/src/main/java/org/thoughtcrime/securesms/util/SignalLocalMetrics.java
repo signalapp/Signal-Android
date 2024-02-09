@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.util;
 
+import android.os.SystemClock;
+
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -212,6 +214,11 @@ public final class SignalLocalMetrics {
     public static void onMessageReceived(long serverReceiveTimestamp, long serverDeliverTimestamp, boolean highPriority) {
       String name    = highPriority ? NAME_HIGH : NAME_LOW;
       long   latency = serverDeliverTimestamp - serverReceiveTimestamp;
+
+      if (latency > SystemClock.elapsedRealtime()) {
+        // Ignore messages with latency that would be before device boot time
+        return;
+      }
 
       String id = name + System.currentTimeMillis();
       LocalMetrics.getInstance().start(id, name);
