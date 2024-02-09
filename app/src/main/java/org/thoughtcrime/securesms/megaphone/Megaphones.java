@@ -14,12 +14,14 @@ import androidx.core.app.NotificationManagerCompat;
 import com.annimon.stream.Stream;
 import com.bumptech.glide.Glide;
 
+import org.checkerframework.checker.units.qual.A;
 import org.signal.core.util.MapUtil;
 import org.signal.core.util.SetUtil;
 import org.signal.core.util.TranslationDetection;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MegaphoneRecord;
 import org.thoughtcrime.securesms.database.model.RemoteMegaphoneRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -37,6 +39,7 @@ import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.profiles.manage.EditProfileActivity;
 import org.thoughtcrime.securesms.profiles.username.NewWaysToConnectDialogFragment;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper;
@@ -342,9 +345,18 @@ public final class Megaphones {
         .setImage(R.drawable.usernames_megaphone)
         .setActionButton(R.string.PnpLaunchMegaphone_learn_more, (megaphone, controller) -> {
           controller.onMegaphoneDialogFragmentRequested(new NewWaysToConnectDialogFragment());
+          controller.onMegaphoneCompleted(Event.PNP_LAUNCH);
+
+          SignalStore.uiHints().setHasCompletedUsernameOnboarding(true);
+          SignalDatabase.recipients().markNeedsSync(Recipient.self().getId());
+          StorageSyncHelper.scheduleSyncForDataChange();
         })
         .setSecondaryButton(R.string.PnpLaunchMegaphone_dismiss, (megaphone, controller) -> {
           controller.onMegaphoneCompleted(Event.PNP_LAUNCH);
+
+          SignalStore.uiHints().setHasCompletedUsernameOnboarding(true);
+          SignalDatabase.recipients().markNeedsSync(Recipient.self().getId());
+          StorageSyncHelper.scheduleSyncForDataChange();
         })
         .build();
   }
@@ -423,7 +435,7 @@ public final class Megaphones {
   }
 
   private static boolean shouldShowPnpLaunchMegaphone() {
-    return TextUtils.isEmpty(SignalStore.account().getUsername());
+    return TextUtils.isEmpty(SignalStore.account().getUsername()) && !SignalStore.uiHints().hasCompletedUsernameOnboarding();
   }
 
   private static boolean shouldShowGrantFullScreenIntentPermission(@NonNull Context context) {

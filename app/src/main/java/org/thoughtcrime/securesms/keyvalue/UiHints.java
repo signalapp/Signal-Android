@@ -14,7 +14,6 @@ public class UiHints extends SignalStoreValues {
   private static final String HAS_SET_OR_SKIPPED_USERNAME_CREATION   = "uihints.has_set_or_skipped_username_creation";
   private static final String NEVER_DISPLAY_PULL_TO_FILTER_TIP       = "uihints.never_display_pull_to_filter_tip";
   private static final String HAS_SEEN_SCHEDULED_MESSAGES_INFO_ONCE  = "uihints.has_seen_scheduled_messages_info_once";
-  private static final String HAS_SEEN_USERNAME_EDUCATION            = "uihints.has_seen_username_education";
   private static final String HAS_SEEN_TEXT_FORMATTING_ALERT         = "uihints.text_formatting.has_seen_alert";
   private static final String HAS_NOT_SEEN_EDIT_MESSAGE_BETA_ALERT   = "uihints.edit_message.has_not_seen_beta_alert";
   private static final String HAS_SEEN_SAFETY_NUMBER_NUX             = "uihints.has_seen_safety_number_nux";
@@ -23,6 +22,7 @@ public class UiHints extends SignalStoreValues {
   private static final String DISMISSED_BATTERY_SAVER_PROMPT         = "uihints.declined_battery_saver_prompt";
   private static final String LAST_BATTERY_SAVER_PROMPT              = "uihints.last_battery_saver_prompt";
   private static final String LAST_CRASH_PROMPT                      = "uihints.last_crash_prompt";
+  private static final String HAS_COMPLETED_USERNAME_ONBOARDING      = "uihints.has_completed_username_onboarding";
 
   UiHints(@NonNull KeyValueStore store) {
     super(store);
@@ -35,7 +35,7 @@ public class UiHints extends SignalStoreValues {
 
   @Override
   @NonNull List<String> getKeysToIncludeInBackup() {
-    return Arrays.asList(NEVER_DISPLAY_PULL_TO_FILTER_TIP, HAS_SEEN_USERNAME_EDUCATION, HAS_SEEN_TEXT_FORMATTING_ALERT);
+    return Arrays.asList(NEVER_DISPLAY_PULL_TO_FILTER_TIP, HAS_COMPLETED_USERNAME_ONBOARDING, HAS_SEEN_TEXT_FORMATTING_ALERT);
   }
 
   public void markHasSeenGroupSettingsMenuToast() {
@@ -70,18 +70,13 @@ public class UiHints extends SignalStoreValues {
     putBoolean(HAS_SET_OR_SKIPPED_USERNAME_CREATION, true);
   }
 
-  public void markHasSeenUsernameEducation() {
-    putBoolean(HAS_SEEN_USERNAME_EDUCATION, true);
+  public void setHasCompletedUsernameOnboarding(boolean value) {
+    putBoolean(HAS_COMPLETED_USERNAME_ONBOARDING, value);
   }
 
-  public boolean hasSeenUsernameEducation() {
-    return getBoolean(HAS_SEEN_USERNAME_EDUCATION, false);
+  public boolean hasCompletedUsernameOnboarding() {
+    return getBoolean(HAS_COMPLETED_USERNAME_ONBOARDING, false);
   }
-
-  public void clearHasSeenUsernameEducation() {
-    putBoolean(HAS_SEEN_USERNAME_EDUCATION, false);
-  }
-
 
   public void resetNeverDisplayPullToRefreshCount() {
     putInteger(NEVER_DISPLAY_PULL_TO_FILTER_TIP, 0);

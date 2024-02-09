@@ -125,6 +125,7 @@ public class AccountRecordProcessor extends DefaultStorageRecordProcessor<Signal
     boolean                              hasViewedOnboardingStory      = remote.hasViewedOnboardingStory() || local.hasViewedOnboardingStory();
     boolean                              storiesDisabled               = remote.isStoriesDisabled();
     boolean                              hasSeenGroupStoryEducation    = remote.hasSeenGroupStoryEducationSheet() || local.hasSeenGroupStoryEducationSheet();
+    boolean                              hasSeenUsernameOnboarding     = remote.hasCompletedUsernameOnboarding() || local.hasCompletedUsernameOnboarding();
     String                               username                      = remote.getUsername();
     AccountRecord.UsernameLink           usernameLink                  = remote.getUsernameLink();
     boolean                              matchesRemote                 = doParamsMatch(remote, unknownFields, givenName, familyName, avatarUrlPath, profileKey, noteToSelfArchived, noteToSelfForcedUnread, readReceipts, typingIndicators, sealedSenderIndicators, linkPreviews, phoneNumberSharingMode, unlisted, pinnedConversations, preferContactAvatars, payments, universalExpireTimer, primarySendsSms, e164, defaultReactions, subscriber, displayBadgesOnProfile, subscriptionManuallyCancelled, keepMutedChatsArchived, hasSetMyStoriesPrivacy, hasViewedOnboardingStory, storiesDisabled, storyViewReceiptsState, username, usernameLink);
@@ -163,6 +164,7 @@ public class AccountRecordProcessor extends DefaultStorageRecordProcessor<Signal
                                                                    .setHasViewedOnboardingStory(hasViewedOnboardingStory)
                                                                    .setStoriesDisabled(storiesDisabled)
                                                                    .setHasSeenGroupStoryEducationSheet(hasSeenGroupStoryEducation)
+                                                                   .setHasCompletedUsernameOnboarding(hasSeenUsernameOnboarding)
                                                                    .setUsername(username)
                                                                    .setUsernameLink(usernameLink);
 
@@ -216,6 +218,7 @@ public class AccountRecordProcessor extends DefaultStorageRecordProcessor<Signal
                                        boolean keepMutedChatsArchived,
                                        boolean hasSetMyStoriesPrivacy,
                                        boolean hasViewedOnboardingStory,
+                                       boolean hasCompletedUsernameOnboarding,
                                        boolean storiesDisabled,
                                        @NonNull OptionalBool storyViewReceiptsState,
                                        @Nullable String username,
@@ -247,6 +250,7 @@ public class AccountRecordProcessor extends DefaultStorageRecordProcessor<Signal
            contact.isKeepMutedChatsArchived() == keepMutedChatsArchived &&
            contact.hasSetMyStoriesPrivacy() == hasSetMyStoriesPrivacy &&
            contact.hasViewedOnboardingStory() == hasViewedOnboardingStory &&
+           contact.hasCompletedUsernameOnboarding() == hasCompletedUsernameOnboarding &&
            contact.isStoriesDisabled() == storiesDisabled &&
            contact.getStoryViewReceiptsState().equals(storyViewReceiptsState) &&
            Objects.equals(contact.getUsername(), username) &&

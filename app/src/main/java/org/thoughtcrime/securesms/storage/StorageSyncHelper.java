@@ -165,7 +165,8 @@ public final class StorageSyncHelper {
                                                                  .setStoriesDisabled(SignalStore.storyValues().isFeatureDisabled())
                                                                  .setStoryViewReceiptsState(storyViewReceiptsState)
                                                                  .setHasSeenGroupStoryEducationSheet(SignalStore.storyValues().getUserHasSeenGroupStoryEducationSheet())
-                                                                 .setUsername(SignalStore.account().getUsername());
+                                                                 .setUsername(SignalStore.account().getUsername())
+                                                                 .setHasCompletedUsernameOnboarding(SignalStore.uiHints().hasCompletedUsernameOnboarding());
 
     if (!self.getPnpCapability().isSupported()) {
       account.setE164(self.requireE164());
@@ -209,6 +210,7 @@ public final class StorageSyncHelper {
     SignalStore.storyValues().setUserHasViewedOnboardingStory(update.getNew().hasViewedOnboardingStory());
     SignalStore.storyValues().setFeatureDisabled(update.getNew().isStoriesDisabled());
     SignalStore.storyValues().setUserHasSeenGroupStoryEducationSheet(update.getNew().hasSeenGroupStoryEducationSheet());
+    SignalStore.uiHints().setHasCompletedUsernameOnboarding(update.getNew().hasCompletedUsernameOnboarding());
 
     if (update.getNew().getStoryViewReceiptsState() == OptionalBool.UNSET) {
       SignalStore.storyValues().setViewedReceiptsEnabled(update.getNew().isReadReceiptsEnabled());

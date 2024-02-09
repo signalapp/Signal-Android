@@ -717,13 +717,6 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       )
 
       clickPref(
-        title = DSLSettingsText.from("Clear Username education ui hint"),
-        onClick = {
-          SignalStore.uiHints().clearHasSeenUsernameEducation()
-        }
-      )
-
-      clickPref(
         title = DSLSettingsText.from("Corrupt username"),
         summary = DSLSettingsText.from("Changes our local username without telling the server so it falls out of sync. Refresh profile afterwards to trigger corruption."),
         onClick = {
