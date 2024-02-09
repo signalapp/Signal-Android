@@ -179,7 +179,18 @@
     <string name="BlockUnblockDialog_unblock_s">Unblock %1$s?</string>
     <string name="BlockUnblockDialog_block">Block</string>
     <string name="BlockUnblockDialog_block_and_leave">Block and Leave</string>
-    <string name="BlockUnblockDialog_report_spam_and_block">Report spam and block</string>
+    <!-- Dialog button label to report as spam and block the person -->
+    <string name="BlockUnblockDialog_report_spam_and_block">Report and block</string>
+    <!-- Dialog title for reporting spam -->
+    <string name="BlockUnblockDialog_report_spam_title">Report spam?</string>
+    <!-- Dialog button to report as spam only -->
+    <string name="BlockUnblockDialog_report_spam">Report spam</string>
+    <!-- Dialog message when reporting spam of an individual (1:1 conversation) -->
+    <string name="BlockUnblockDialog_report_spam_description">Signal will be notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
+    <!-- Dialog message when reporting spam of a group and we can determine the group member that invited you, placeholder is a name -->
+    <string name="BlockUnblockDialog_report_spam_group_named_adder">Signal will be notified that %1$s, who invited you to this group, may be sending spam. Signal can’t see the content of any chats.</string>
+    <!-- Dialog message when reporting spam of a group and we cannot determine the group member that invited you -->
+    <string name="BlockUnblockDialog_report_spam_group_unknown_adder">Signal will be notified that the person who invited you to this group may be sending spam. Signal can’t see the content of any chats.</string>
 
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">Today</string>
@@ -510,6 +521,55 @@
     <string name="ConversationFragment__content_description_launch_signal_button">Open Signal</string>
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
     <string name="ConversationFragment__no_longer_verified">No longer verified</string>
+    <!-- Button shown in conversation header when in a message request state and no groups in common to show new message safety tips -->
+    <string name="ConversationFragment_safety_tips">Safety tips</string>
+    <!-- Menu option to report spam in a conversation -->
+    <string name="ConversationFragment_report_spam">Report spam</string>
+    <!-- Menu option to block in a conversation -->
+    <string name="ConversationFragment_block">Block</string>
+    <!-- Menu otpion to accept a message request in a conversation -->
+    <string name="ConversationFragment_accept">Accept</string>
+    <!-- Menu option to delete an entire chat in a conversation -->
+    <string name="ConversationFragment_delete_chat">Delete chat</string>
+    <!-- Menu option to unblock in a conversation -->
+    <string name="ConversationFragment_unblock">Unblock</string>
+    <!-- Menu option to report spam in a conversation -->
+    <string name="ConversationFragment_reported_spam">Reported spam</string>
+    <!-- Dialog message shown after reporting spam and tapping the conversation item -->
+    <string name="ConversationFragment_reported_spam_message">Signal has been be notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
+    <!-- Toast shown after reporting spam and tapping the conversation item -->
+    <string name="ConversationFragment_reported_as_spam">Reported as spam</string>
+    <!-- Toast shown after reporting and blocking a conversation -->
+    <string name="ConversationFragment_reported_as_spam_and_blocked">Reported as spam and blocked</string>
+    <!-- Dialog message shown after accepting a message request and tapping on options from the conversation event -->
+    <string name="ConversationFragment_you_accepted_a_message_request_from_s">You accepted a message request from %1$s. If this was a mistake, you can choose an action below.</string>
+
+    <!-- Title of Safety Tips bottom sheet dialog -->
+    <string name="SafetyTips_title">Safety Tips</string>
+    <!-- Dialog subtitle when showign tips for a 1:1 conversation -->
+    <string name="SafetyTips_subtitle_individual">Be careful when accepting message requests from people you don’t know. Watch out for:</string>
+    <!-- Dialog subtitle when showing tips for a group conversation -->
+    <string name="SafetyTips_subtitle_group">Review this request carefully. None of your contacts or people you chat with are in this group. Here are a few things to watch out for:</string>
+    <!-- Button text to move to the previous tip-->
+    <string name="SafetyTips_previous_tip">Previous tip</string>
+    <!-- Button text to move to the next tip -->
+    <string name="SafetyTips_next_tip">Next tip</string>
+    <!-- Title of tip 1 -->
+    <string name="SafetyTips_tip1_title">Crypto or money scams</string>
+    <!-- Message of tip 1 -->
+    <string name="SafetyTips_tip1_message">If someone you don’t know messages about cryptocurrency (like Bitcoin) or an financial opportunity, be careful—it’s likely spam.</string>
+    <!-- Title of tip 2 -->
+    <string name="SafetyTips_tip2_title">Vague or irrelevant messages</string>
+    <!-- Message of tip 2 -->
+    <string name="SafetyTips_tip2_message">Spammers often start with a simple message like “Hi” to draw you in. If you respond they may engage you further.</string>
+    <!-- Title of tip 3 -->
+    <string name="SafetyTips_tip3_title">Messages with links</string>
+    <!-- Message of tip 3 -->
+    <string name="SafetyTips_tip3_message">Be careful of messages from people you don’t know that have links to websites. Never visit links from people you don’t trust.</string>
+    <!-- Title of tip 4 -->
+    <string name="SafetyTips_tip4_title">Fake businesses and institutions</string>
+    <!-- Message of tip 4 -->
+    <string name="SafetyTips_tip4_message">Be careful of businesses or government agencies contacting you. Messages involving tax agencies, couriers, and more can be spam.</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Clear filter</string>
@@ -1536,6 +1596,10 @@
     <string name="MessageRecord__you_can_no_longer_send_sms_messages_in_signal">You can no longer send SMS messages in Signal. Invite %1$s to Signal to keep the conversation here.</string>
     <!-- Body for quote when message being quoted is an in-app payment message -->
     <string name="MessageRecord__payment_s">Payment: %1$s</string>
+    <!-- Update message shown in chat after reporting it as spam -->
+    <string name="MessageRecord_reported_as_spam">Reported as spam</string>
+    <!-- Update message shown in chat after accept a message request -->
+    <string name="MessageRecord_you_accepted_the_message_request">You accepted the message request</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Accept</string>
@@ -1582,6 +1646,8 @@
         <item quantity="one">%d additional group</item>
         <item quantity="other">%d additional groups</item>
     </plurals>
+    <!-- Button label to report spam for a conversation when in a message request state -->
+    <string name="MessageRequestBottomView_report">Report…</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passphrases don\'t match!</string>
@@ -2648,6 +2714,8 @@
     <string name="ConversationUpdateItem_activate_payments">Activate payments</string>
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">You have removed this person, messaging them again will add them back to your list.</string>
+    <!-- Update item button text shown for the accepted message request update message -->
+    <string name="ConversationUpdateItem_options">Options</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Play … Pause</string>

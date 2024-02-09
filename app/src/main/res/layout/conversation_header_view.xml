@@ -142,11 +142,27 @@
             android:textAppearance="@style/Signal.Text.BodyMedium"
             android:visibility="gone"
             app:layout_constrainedWidth="true"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/message_request_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/message_request_subtitle"
-            tools:text="Member of NYC Rock Climbers, Dinner Party and Friends" />
+            app:layout_goneMarginTop="0dp"
+            tools:text="Member of NYC Rock Climbers, Dinner Party and Friends"
+            tools:visibility="visible" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/message_request_button"
+            style="@style/Widget.Signal.Button.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:textColor="@color/signal_colorOnSurface"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/message_request_description"
+            tools:text="Safety tips" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

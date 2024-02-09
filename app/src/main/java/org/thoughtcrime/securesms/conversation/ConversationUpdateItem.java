@@ -566,6 +566,22 @@ public final class ConversationUpdateItem extends FrameLayout
           eventListener.onSendPaymentClicked(conversationMessage.getMessageRecord().getFromRecipient().getId());
         }
       });
+    } else if (conversationMessage.getMessageRecord().isReportedSpam()) {
+      actionButton.setText(R.string.ConversationUpdateItem_learn_more);
+      actionButton.setVisibility(VISIBLE);
+      actionButton.setOnClickListener(v -> {
+        if (batchSelected.isEmpty() && eventListener != null) {
+          eventListener.onReportSpamLearnMoreClicked();
+        }
+      });
+    } else if (conversationMessage.getMessageRecord().isMessageRequestAccepted()) {
+      actionButton.setText(R.string.ConversationUpdateItem_options);
+      actionButton.setVisibility(VISIBLE);
+      actionButton.setOnClickListener(v -> {
+        if (batchSelected.isEmpty() && eventListener != null) {
+          eventListener.onMessageRequestAcceptOptionsClicked();
+        }
+      });
     } else{
       actionButton.setVisibility(GONE);
       actionButton.setOnClickListener(null);

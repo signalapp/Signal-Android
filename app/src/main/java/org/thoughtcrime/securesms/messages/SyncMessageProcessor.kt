@@ -73,9 +73,6 @@ import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.toSignalServic
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.type
 import org.thoughtcrime.securesms.mms.MmsException
 import org.thoughtcrime.securesms.mms.OutgoingMessage
-import org.thoughtcrime.securesms.mms.OutgoingMessage.Companion.endSessionMessage
-import org.thoughtcrime.securesms.mms.OutgoingMessage.Companion.expirationUpdateMessage
-import org.thoughtcrime.securesms.mms.OutgoingMessage.Companion.text
 import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver
 import org.thoughtcrime.securesms.payments.MobileCoinPublicAddress
@@ -122,6 +119,7 @@ import org.whispersystems.signalservice.internal.push.Verified
 import java.io.IOException
 import java.util.Optional
 import java.util.UUID
+import java.util.concurrent.TimeUnit
 import kotlin.time.Duration
 
 object SyncMessageProcessor {
@@ -576,7 +574,7 @@ object SyncMessageProcessor {
     log(envelopeTimestamp, "Synchronize end session message.")
 
     val recipient: Recipient = getSyncMessageDestination(sent)
-    val outgoingEndSessionMessage: OutgoingMessage = endSessionMessage(recipient, sent.timestamp!!)
+    val outgoingEndSessionMessage: OutgoingMessage = OutgoingMessage.endSessionMessage(recipient, sent.timestamp!!)
     val threadId: Long = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
 
     if (!recipient.isGroup) {
@@ -624,7 +622,7 @@ object SyncMessageProcessor {
     }
 
     val recipient: Recipient = getSyncMessageDestination(sent)
-    val expirationUpdateMessage: OutgoingMessage = expirationUpdateMessage(recipient, if (sideEffect) sent.timestamp!! - 1 else sent.timestamp!!, sent.message!!.expireTimerDuration.inWholeMilliseconds)
+    val expirationUpdateMessage: OutgoingMessage = OutgoingMessage.expirationUpdateMessage(recipient, if (sideEffect) sent.timestamp!! - 1 else sent.timestamp!!, sent.message!!.expireTimerDuration.inWholeMilliseconds)
     val threadId: Long = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
     val messageId: Long = SignalDatabase.messages.insertMessageOutbox(expirationUpdateMessage, threadId, false, null)
 
@@ -830,7 +828,7 @@ object SyncMessageProcessor {
       messageId = SignalDatabase.messages.insertMessageOutbox(outgoingMessage, threadId, false, GroupReceiptTable.STATUS_UNKNOWN, null)
       updateGroupReceiptStatus(sent, messageId, recipient.requireGroupId())
     } else {
-      val outgoingTextMessage = text(threadRecipient = recipient, body = body, expiresIn = expiresInMillis, sentTimeMillis = sent.timestamp!!, bodyRanges = bodyRanges)
+      val outgoingTextMessage = OutgoingMessage.text(threadRecipient = recipient, body = body, expiresIn = expiresInMillis, sentTimeMillis = sent.timestamp!!, bodyRanges = bodyRanges)
       messageId = SignalDatabase.messages.insertMessageOutbox(outgoingTextMessage, threadId, false, null)
       SignalDatabase.messages.markUnidentified(messageId, sent.isUnidentified(recipient.serviceId.orNull()))
     }
@@ -1058,6 +1056,12 @@ object SyncMessageProcessor {
       MessageRequestResponse.Type.ACCEPT -> {
         SignalDatabase.recipients.setProfileSharing(recipient.id, true)
         SignalDatabase.recipients.setBlocked(recipient.id, false)
+        SignalDatabase.messages.insertMessageOutbox(
+          OutgoingMessage.messageRequestAcceptMessage(recipient, System.currentTimeMillis(), TimeUnit.SECONDS.toMillis(recipient.expiresInSeconds.toLong())),
+          threadId,
+          false,
+          null
+        )
       }
       MessageRequestResponse.Type.DELETE -> {
         SignalDatabase.recipients.setProfileSharing(recipient.id, false)
@@ -1075,6 +1079,24 @@ object SyncMessageProcessor {
         if (threadId > 0) {
           SignalDatabase.threads.deleteConversation(threadId)
         }
+      }
+      MessageRequestResponse.Type.SPAM -> {
+        SignalDatabase.messages.insertMessageOutbox(
+          OutgoingMessage.reportSpamMessage(recipient, System.currentTimeMillis(), TimeUnit.SECONDS.toMillis(recipient.expiresInSeconds.toLong())),
+          threadId,
+          false,
+          null
+        )
+      }
+      MessageRequestResponse.Type.BLOCK_AND_SPAM -> {
+        SignalDatabase.recipients.setBlocked(recipient.id, true)
+        SignalDatabase.recipients.setProfileSharing(recipient.id, false)
+        SignalDatabase.messages.insertMessageOutbox(
+          OutgoingMessage.reportSpamMessage(recipient, System.currentTimeMillis(), TimeUnit.SECONDS.toMillis(recipient.expiresInSeconds.toLong())),
+          threadId,
+          false,
+          null
+        )
       }
       else -> warn("Got an unknown response type! Skipping")
     }

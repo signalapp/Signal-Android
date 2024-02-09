@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.conversation.v2
 
 import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import org.signal.core.util.Result
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason
@@ -53,6 +54,14 @@ class MessageRequestViewModel(
     return recipientId
       .flatMap { recipientId ->
         messageRequestRepository.unblockAndAccept(recipientId)
+      }
+      .observeOn(AndroidSchedulers.mainThread())
+  }
+
+  fun onReportSpam(): Completable {
+    return recipientId
+      .flatMapCompletable { recipientId ->
+        messageRequestRepository.reportSpamMessageRequest(recipientId, threadId)
       }
       .observeOn(AndroidSchedulers.mainThread())
   }

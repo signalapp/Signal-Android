@@ -120,6 +120,12 @@ public class ConversationHeaderView extends ConstraintLayout {
     return binding.messageRequestDescription;
   }
 
+  public void setButton(@NonNull CharSequence button, Runnable onClick) {
+    binding.messageRequestButton.setText(button);
+    binding.messageRequestButton.setOnClickListener(v -> onClick.run());
+    binding.messageRequestButton.setVisibility(View.VISIBLE);
+  }
+
   public void showBackgroundBubble(boolean enabled) {
     if (enabled) {
       setBackgroundResource(R.drawable.wallpaper_bubble_background_18);
@@ -144,6 +150,10 @@ public class ConversationHeaderView extends ConstraintLayout {
 
   public void hideDescription() {
     binding.messageRequestDescription.setVisibility(View.GONE);
+  }
+
+  public void hideButton() {
+    binding.messageRequestButton.setVisibility(View.GONE);
   }
 
   public void setLinkifyDescription(boolean enable) {

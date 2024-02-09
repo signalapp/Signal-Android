@@ -1607,6 +1607,12 @@ public class SignalServiceMessageSender {
       case BLOCK_AND_DELETE:
         responseMessage.type(SyncMessage.MessageRequestResponse.Type.BLOCK_AND_DELETE);
         break;
+      case SPAM:
+        responseMessage.type(SyncMessage.MessageRequestResponse.Type.SPAM);
+        break;
+      case BLOCK_AND_SPAM:
+        responseMessage.type(SyncMessage.MessageRequestResponse.Type.BLOCK_AND_SPAM);
+        break;
       default:
         Log.w(TAG, "Unknown type!");
         responseMessage.type(SyncMessage.MessageRequestResponse.Type.UNKNOWN);

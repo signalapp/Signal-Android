@@ -50,7 +50,6 @@ import org.thoughtcrime.securesms.databinding.V2ConversationItemTextOnlyOutgoing
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicyEnforcer
 import org.thoughtcrime.securesms.groups.v2.GroupDescriptionUtil
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.messagerequests.MessageRequestState
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.CachedInflater
@@ -594,13 +593,25 @@ class ConversationAdapterV2(
         }
       }
 
-      if (sharedGroups.isEmpty() || isSelf) {
+      conversationBanner.hideButton()
+
+      if (messageRequestState?.isAccepted == false && sharedGroups.isEmpty() && !isSelf && !recipient.isGroup) {
+        conversationBanner.setDescription(context.getString(R.string.ConversationUpdateItem_no_groups_in_common_review_requests_carefully), R.drawable.symbol_error_circle_24)
+        conversationBanner.setButton(context.getString(R.string.ConversationFragment_safety_tips)) {
+          clickListener.onShowSafetyTips(false)
+        }
+      } else if (messageRequestState?.isAccepted == false && recipient.isGroup && !groupInfo.hasExistingContacts) {
+        conversationBanner.setDescription(context.getString(R.string.ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully), R.drawable.symbol_error_circle_24)
+        conversationBanner.setButton(context.getString(R.string.ConversationFragment_safety_tips)) {
+          clickListener.onShowSafetyTips(true)
+        }
+      } else if (sharedGroups.isEmpty() || isSelf) {
         if (TextUtils.isEmpty(groupInfo.description)) {
           conversationBanner.setLinkifyDescription(false)
           conversationBanner.hideDescription()
         } else {
           conversationBanner.setLinkifyDescription(true)
-          val linkifyWebLinks = messageRequestState == MessageRequestState.NONE
+          val linkifyWebLinks = messageRequestState?.isAccepted == true
           conversationBanner.showDescription()
 
           GroupDescriptionUtil.setText(

@@ -50,7 +50,9 @@ data class OutgoingMessage(
   val isIdentityVerified: Boolean = false,
   val isIdentityDefault: Boolean = false,
   val scheduledDate: Long = -1,
-  val messageToEdit: Long = 0
+  val messageToEdit: Long = 0,
+  val isReportSpam: Boolean = false,
+  val isMessageRequestAccept: Boolean = false
 ) {
 
   val isV2Group: Boolean = messageGroupContext != null && GroupV2UpdateMessageUtil.isGroupV2(messageGroupContext)
@@ -396,6 +398,30 @@ data class OutgoingMessage(
         threadRecipient = threadRecipient,
         sentTimeMillis = sentTimeMillis,
         isEndSession = true,
+        isUrgent = false,
+        isSecure = true
+      )
+    }
+
+    @JvmStatic
+    fun reportSpamMessage(threadRecipient: Recipient, sentTimeMillis: Long, expiresIn: Long): OutgoingMessage {
+      return OutgoingMessage(
+        threadRecipient = threadRecipient,
+        sentTimeMillis = sentTimeMillis,
+        expiresIn = expiresIn,
+        isReportSpam = true,
+        isUrgent = false,
+        isSecure = true
+      )
+    }
+
+    @JvmStatic
+    fun messageRequestAcceptMessage(threadRecipient: Recipient, sentTimeMillis: Long, expiresIn: Long): OutgoingMessage {
+      return OutgoingMessage(
+        threadRecipient = threadRecipient,
+        sentTimeMillis = sentTimeMillis,
+        expiresIn = expiresIn,
+        isMessageRequestAccept = true,
         isUrgent = false,
         isSecure = true
       )

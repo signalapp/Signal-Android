@@ -322,5 +322,11 @@ class V2ConversationItemShapeTest {
     override fun onItemClick(item: MultiselectPart?) = Unit
 
     override fun onItemLongClick(itemView: View?, item: MultiselectPart?) = Unit
+
+    override fun onShowSafetyTips(forGroup: Boolean) = Unit
+
+    override fun onReportSpamLearnMoreClicked() = Unit
+
+    override fun onMessageRequestAcceptOptionsClicked() = Unit
   }
 }

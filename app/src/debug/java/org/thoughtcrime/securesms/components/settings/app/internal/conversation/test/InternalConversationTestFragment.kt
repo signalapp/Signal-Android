@@ -298,5 +298,17 @@ class InternalConversationTestFragment : Fragment(R.layout.conversation_test_fra
     override fun onItemLongClick(itemView: View?, item: MultiselectPart?) {
       Toast.makeText(requireContext(), "Can't touch this.", Toast.LENGTH_SHORT).show()
     }
+
+    override fun onShowSafetyTips(forGroup: Boolean) {
+      Toast.makeText(requireContext(), "Can't touch this.", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onReportSpamLearnMoreClicked() {
+      Toast.makeText(requireContext(), "Can't touch this.", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onMessageRequestAcceptOptionsClicked() {
+      Toast.makeText(requireContext(), "Can't touch this.", Toast.LENGTH_SHORT).show()
+    }
   }
 }

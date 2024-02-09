@@ -271,6 +271,10 @@ public abstract class MessageRecord extends DisplayRecord {
    } else if (isPaymentsActivated()) {
       return isOutgoing() ? staticUpdateDescription(context.getString(R.string.MessageRecord_you_activated_payments), R.drawable.ic_card_activate_payments)
                           : fromRecipient(getFromRecipient(), r -> context.getString(R.string.MessageRecord_can_accept_payments, r.getShortDisplayName(context)), R.drawable.ic_card_activate_payments);
+    } else if (isReportedSpam()) {
+      return staticUpdateDescription(context.getString(R.string.MessageRecord_reported_as_spam), R.drawable.symbol_spam_16);
+    } else if (isMessageRequestAccepted()) {
+      return staticUpdateDescription(context.getString(R.string.MessageRecord_you_accepted_the_message_request), R.drawable.symbol_thread_16);
     }
 
     return null;
@@ -632,7 +636,7 @@ public abstract class MessageRecord extends DisplayRecord {
            isEndSession() || isIdentityUpdate() || isIdentityVerified() || isIdentityDefault() ||
            isProfileChange() || isGroupV1MigrationEvent() || isChatSessionRefresh() || isBadDecryptType() ||
            isChangeNumber() || isBoostRequest() || isThreadMergeEventType() || isSmsExportType() || isSessionSwitchoverEventType() ||
-           isPaymentsRequestToActivate() || isPaymentsActivated();
+           isPaymentsRequestToActivate() || isPaymentsActivated() || isReportedSpam() || isMessageRequestAccepted();
   }
 
   public boolean isMediaPending() {

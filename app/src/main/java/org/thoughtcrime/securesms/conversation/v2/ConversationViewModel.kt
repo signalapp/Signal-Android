@@ -132,9 +132,11 @@ class ConversationViewModel(
   private val _inputReadyState: Observable<InputReadyState>
   val inputReadyState: Observable<InputReadyState>
 
-  private val hasMessageRequestStateSubject: BehaviorSubject<Boolean> = BehaviorSubject.createDefault(false)
+  private val hasMessageRequestStateSubject: BehaviorSubject<MessageRequestState> = BehaviorSubject.createDefault(MessageRequestState())
   val hasMessageRequestState: Boolean
-    get() = hasMessageRequestStateSubject.value ?: false
+    get() = hasMessageRequestStateSubject.value?.state != MessageRequestState.State.NONE
+  val messageRequestState: MessageRequestState
+    get() = hasMessageRequestStateSubject.value ?: MessageRequestState()
 
   private val refreshReminder: Subject<Unit> = PublishSubject.create()
   val reminder: Observable<Optional<Reminder>>
@@ -239,7 +241,7 @@ class ConversationViewModel(
         isUnauthorized = TextSecurePreferences.isUnauthorizedReceived(ApplicationDependencies.getApplication())
       )
     }.doOnNext {
-      hasMessageRequestStateSubject.onNext(it.messageRequestState != MessageRequestState.NONE)
+      hasMessageRequestStateSubject.onNext(it.messageRequestState)
     }
     inputReadyState = _inputReadyState.observeOn(AndroidSchedulers.mainThread())
 

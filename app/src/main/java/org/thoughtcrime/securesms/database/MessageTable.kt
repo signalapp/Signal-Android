@@ -405,6 +405,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
           $LATEST_REVISION_ID IS NULL AND
           $TYPE & ${MessageTypes.KEY_EXCHANGE_IDENTITY_DEFAULT_BIT} = 0 AND
           $TYPE & ${MessageTypes.KEY_EXCHANGE_IDENTITY_VERIFIED_BIT} = 0 AND
+          $TYPE & ${MessageTypes.SPECIAL_TYPES_MASK} != ${MessageTypes.SPECIAL_TYPE_REPORTED_SPAM} AND
+          $TYPE & ${MessageTypes.SPECIAL_TYPES_MASK} != ${MessageTypes.SPECIAL_TYPE_MESSAGE_REQUEST_ACCEPTED} AND
           $TYPE NOT IN (
             ${MessageTypes.PROFILE_CHANGE_TYPE}, 
             ${MessageTypes.GV1_MIGRATION_TYPE},
@@ -1728,7 +1730,9 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         $TYPE != ${MessageTypes.CHANGE_NUMBER_TYPE} AND
         $TYPE != ${MessageTypes.SMS_EXPORT_TYPE} AND
         $TYPE != ${MessageTypes.BOOST_REQUEST_TYPE} AND
-        $TYPE & ${MessageTypes.GROUP_V2_LEAVE_BITS} != ${MessageTypes.GROUP_V2_LEAVE_BITS}
+        $TYPE & ${MessageTypes.GROUP_V2_LEAVE_BITS} != ${MessageTypes.GROUP_V2_LEAVE_BITS} AND
+        $TYPE & ${MessageTypes.SPECIAL_TYPES_MASK} != ${MessageTypes.SPECIAL_TYPE_REPORTED_SPAM} AND
+        $TYPE & ${MessageTypes.SPECIAL_TYPES_MASK} != ${MessageTypes.SPECIAL_TYPE_MESSAGE_REQUEST_ACCEPTED}
       )
     """
 
@@ -2388,6 +2392,18 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
           sentTimeMillis = timestamp,
           expiresIn = expiresIn
         )
+      } else if (MessageTypes.isReportedSpam(outboxType)) {
+        OutgoingMessage.reportSpamMessage(
+          threadRecipient = threadRecipient,
+          sentTimeMillis = timestamp,
+          expiresIn = expiresIn
+        )
+      } else if (MessageTypes.isMessageRequestAccepted(outboxType)) {
+        OutgoingMessage.messageRequestAcceptMessage(
+          threadRecipient = threadRecipient,
+          sentTimeMillis = timestamp,
+          expiresIn = expiresIn
+        )
       } else {
         val giftBadge: GiftBadge? = if (body != null && MessageTypes.isGiftBadge(outboxType)) {
           GiftBadge.ADAPTER.decode(Base64.decode(body))
@@ -2552,7 +2568,15 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
     val isNotStoryGroupReply = retrieved.parentStoryId == null || !retrieved.parentStoryId.isGroupReply()
 
-    if (!MessageTypes.isPaymentsActivated(type) && !MessageTypes.isPaymentsRequestToActivate(type) && !MessageTypes.isExpirationTimerUpdate(type) && !retrieved.storyType.isStory && isNotStoryGroupReply && !silent) {
+    if (!MessageTypes.isPaymentsActivated(type) &&
+      !MessageTypes.isPaymentsRequestToActivate(type) &&
+      !MessageTypes.isReportedSpam(type) &&
+      !MessageTypes.isMessageRequestAccepted(type) &&
+      !MessageTypes.isExpirationTimerUpdate(type) &&
+      !retrieved.storyType.isStory &&
+      isNotStoryGroupReply &&
+      !silent
+    ) {
       val incrementUnreadMentions = retrieved.mentions.isNotEmpty() && retrieved.mentions.any { it.recipientId == Recipient.self().id }
       threads.incrementUnread(threadId, 1, if (incrementUnreadMentions) 1 else 0)
       ThreadUpdateJob.enqueue(threadId)
@@ -2779,6 +2803,22 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         throw MmsException("Cannot insert message with multiple special types.")
       }
       type = type or MessageTypes.SPECIAL_TYPE_PAYMENTS_ACTIVATED
+      hasSpecialType = true
+    }
+
+    if (message.isReportSpam) {
+      if (hasSpecialType) {
+        throw MmsException("Cannot insert message with multiple special types.")
+      }
+      type = type or MessageTypes.SPECIAL_TYPE_REPORTED_SPAM
+      hasSpecialType = true
+    }
+
+    if (message.isMessageRequestAccept) {
+      if (hasSpecialType) {
+        throw MmsException("Cannot insert message with multiple special types.")
+      }
+      type = type or MessageTypes.SPECIAL_TYPE_MESSAGE_REQUEST_ACCEPTED
       hasSpecialType = true
     }
 
@@ -3533,6 +3573,13 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       .run()
   }
 
+  fun hasReportSpamMessage(threadId: Long): Boolean {
+    return readableDatabase
+      .exists(TABLE_NAME)
+      .where("$THREAD_ID = $threadId AND ($TYPE & ${MessageTypes.SPECIAL_TYPES_MASK}) = ${MessageTypes.SPECIAL_TYPE_REPORTED_SPAM}")
+      .run()
+  }
+
   private val outgoingInsecureMessageClause = "($TYPE & ${MessageTypes.BASE_TYPE_MASK}) = ${MessageTypes.BASE_SENT_TYPE} AND NOT ($TYPE & ${MessageTypes.SECURE_MESSAGE_BIT})"
   private val outgoingSecureMessageClause = "($TYPE & ${MessageTypes.BASE_TYPE_MASK}) = ${MessageTypes.BASE_SENT_TYPE} AND ($TYPE & ${MessageTypes.SECURE_MESSAGE_BIT or MessageTypes.PUSH_MESSAGE_BIT})"
 
@@ -4009,6 +4056,33 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     return getReportSpamMessageServerGuids(threadId, timestamp)
       .sortedBy { it.dateReceived }
       .take(limit)
+  }
+
+  fun getGroupReportSpamMessageServerData(threadId: Long, inviter: RecipientId, timestamp: Long, limit: Int): List<ReportSpamData> {
+    val data: MutableList<ReportSpamData> = ArrayList()
+
+    val incomingGroupUpdateClause = "($TYPE & ${MessageTypes.BASE_TYPE_MASK}) = ${MessageTypes.BASE_INBOX_TYPE} AND ($TYPE & ${MessageTypes.GROUP_UPDATE_BIT}) != 0"
+
+    readableDatabase
+      .select(FROM_RECIPIENT_ID, SERVER_GUID, DATE_RECEIVED)
+      .from(TABLE_NAME)
+      .where("$FROM_RECIPIENT_ID = ? AND $THREAD_ID = ? AND $DATE_RECEIVED <= ? AND $incomingGroupUpdateClause", inviter, threadId, timestamp)
+      .orderBy("$DATE_RECEIVED DESC")
+      .limit(limit)
+      .run()
+      .forEach { cursor ->
+        val serverGuid: String? = cursor.requireString(SERVER_GUID)
+
+        if (serverGuid != null && serverGuid.isNotEmpty()) {
+          data += ReportSpamData(
+            recipientId = RecipientId.from(cursor.requireLong(FROM_RECIPIENT_ID)),
+            serverGuid = serverGuid,
+            dateReceived = cursor.requireLong(DATE_RECEIVED)
+          )
+        }
+      }
+
+    return data
   }
 
   @Throws(NoSuchMessageException::class)

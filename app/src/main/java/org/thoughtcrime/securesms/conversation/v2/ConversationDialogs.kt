@@ -10,12 +10,10 @@ import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.concurrent.SimpleTask
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
-import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord.NoGroupsInCommon
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.sms.MessageSender
-import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.verify.VerifyIdentityActivity
 
 /**
@@ -82,24 +80,7 @@ object ConversationDialogs {
     dialog.show()
   }
 
-  fun displayInMemoryMessageDialog(context: Context, messageRecord: MessageRecord) {
-    if (messageRecord is NoGroupsInCommon) {
-      val isGroup = messageRecord.isGroup
-      MaterialAlertDialogBuilder(context, R.style.ThemeOverlay_Signal_MaterialAlertDialog)
-        .setMessage(
-          if (isGroup) {
-            R.string.GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group
-          } else {
-            R.string.GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person
-          }
-        )
-        .setNeutralButton(R.string.GroupsInCommonMessageRequest__about_message_requests) { _, _ ->
-          CommunicationActions.openBrowserLink(context, context.getString(R.string.GroupsInCommonMessageRequest__support_article))
-        }
-        .setPositiveButton(R.string.GroupsInCommonMessageRequest__okay, null)
-        .show()
-    }
-  }
+  fun displayInMemoryMessageDialog(context: Context, messageRecord: MessageRecord) = Unit
 
   fun displayMessageCouldNotBeSentDialog(context: Context, messageRecord: MessageRecord) {
     MaterialAlertDialogBuilder(context)

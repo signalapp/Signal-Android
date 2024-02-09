@@ -469,8 +469,8 @@ class GroupsV2StateProcessorTest {
     profileAndMessageHelper.masterKey = masterKey
 
     val updateMessageContextArgs = mutableListOf<DecryptedGroupV2Context>()
-    every { profileAndMessageHelper.insertUpdateMessages(any(), any(), any()) } answers { callOriginal() }
-    every { profileAndMessageHelper.storeMessage(capture(updateMessageContextArgs), any()) } returns Unit
+    every { profileAndMessageHelper.insertUpdateMessages(any(), any(), any(), any()) } answers { callOriginal() }
+    every { profileAndMessageHelper.storeMessage(capture(updateMessageContextArgs), any(), any()) } returns Unit
 
     given {
       localState(
@@ -520,8 +520,8 @@ class GroupsV2StateProcessorTest {
     profileAndMessageHelper.masterKey = masterKey
 
     val updateMessageContextArgs = mutableListOf<DecryptedGroupV2Context>()
-    every { profileAndMessageHelper.insertUpdateMessages(any(), any(), any()) } answers { callOriginal() }
-    every { profileAndMessageHelper.storeMessage(capture(updateMessageContextArgs), any()) } returns Unit
+    every { profileAndMessageHelper.insertUpdateMessages(any(), any(), any(), any()) } answers { callOriginal() }
+    every { profileAndMessageHelper.storeMessage(capture(updateMessageContextArgs), any(), any()) } returns Unit
 
     given {
       localState(

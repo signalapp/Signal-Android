@@ -54,7 +54,11 @@ public class MultiDeviceMessageRequestResponseJob extends BaseJob {
   }
 
   public static @NonNull MultiDeviceMessageRequestResponseJob forBlockAndReportSpam(@NonNull RecipientId threadRecipient) {
-    return new MultiDeviceMessageRequestResponseJob(threadRecipient, Type.BLOCK);
+    return new MultiDeviceMessageRequestResponseJob(threadRecipient, Type.BLOCK_AND_SPAM);
+  }
+
+  public static @NonNull MultiDeviceMessageRequestResponseJob forReportSpam(@NonNull RecipientId threadRecipient) {
+    return new MultiDeviceMessageRequestResponseJob(threadRecipient, Type.SPAM);
   }
 
   private MultiDeviceMessageRequestResponseJob(@NonNull RecipientId threadRecipient, @NonNull Type type) {
@@ -135,6 +139,10 @@ public class MultiDeviceMessageRequestResponseJob extends BaseJob {
         return MessageRequestResponseMessage.Type.BLOCK;
       case BLOCK_AND_DELETE:
         return MessageRequestResponseMessage.Type.BLOCK_AND_DELETE;
+      case SPAM:
+        return MessageRequestResponseMessage.Type.SPAM;
+      case BLOCK_AND_SPAM:
+        return MessageRequestResponseMessage.Type.BLOCK_AND_SPAM;
       default:
         return MessageRequestResponseMessage.Type.UNKNOWN;
     }
@@ -151,7 +159,7 @@ public class MultiDeviceMessageRequestResponseJob extends BaseJob {
   }
 
   private enum Type {
-    UNKNOWN(0), ACCEPT(1), DELETE(2), BLOCK(3), BLOCK_AND_DELETE(4);
+    UNKNOWN(0), ACCEPT(1), DELETE(2), BLOCK(3), BLOCK_AND_DELETE(4), SPAM(5), BLOCK_AND_SPAM(6);
 
     private final int value;
 

@@ -257,6 +257,10 @@ class MessageQuotesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment() {
       dismiss()
       getAdapterListener().onEditedIndicatorClicked(messageRecord)
     }
+
+    override fun onShowSafetyTips(forGroup: Boolean) = Unit
+    override fun onReportSpamLearnMoreClicked() = Unit
+    override fun onMessageRequestAcceptOptionsClicked() = Unit
   }
 
   companion object {

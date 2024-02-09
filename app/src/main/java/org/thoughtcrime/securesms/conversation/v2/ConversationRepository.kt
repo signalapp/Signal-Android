@@ -366,7 +366,7 @@ class ConversationRepository(
 
   fun getRequestReviewState(recipient: Recipient, group: GroupRecord?, messageRequest: MessageRequestState): Single<RequestReviewState> {
     return Single.fromCallable {
-      if (group == null && messageRequest != MessageRequestState.INDIVIDUAL) {
+      if (group == null && messageRequest.state != MessageRequestState.State.INDIVIDUAL) {
         return@fromCallable RequestReviewState()
       }
 

@@ -200,11 +200,12 @@ public final class GroupManager {
                                                                                @Nullable GroupSecretParams groupSecretParams,
                                                                                int revision,
                                                                                long timestamp,
-                                                                               @Nullable byte[] signedGroupChange)
+                                                                               @Nullable byte[] signedGroupChange,
+                                                                               @Nullable String serverGuid)
       throws GroupChangeBusyException, IOException, GroupNotAMemberException
   {
     try (GroupManagerV2.GroupUpdater updater = new GroupManagerV2(context).updater(groupMasterKey)) {
-      return updater.updateLocalToServerRevision(revision, timestamp, groupRecord, groupSecretParams, signedGroupChange);
+      return updater.updateLocalToServerRevision(revision, timestamp, groupRecord, groupSecretParams, signedGroupChange, serverGuid);
     }
   }
 

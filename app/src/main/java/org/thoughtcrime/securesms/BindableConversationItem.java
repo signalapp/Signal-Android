@@ -123,5 +123,8 @@ public interface BindableConversationItem extends Unbindable, GiphyMp4Playable, 
     void onEditedIndicatorClicked(@NonNull MessageRecord messageRecord);
     void onShowGroupDescriptionClicked(@NonNull String groupName, @NonNull String description, boolean shouldLinkifyWebLinks);
     void onJoinCallLink(@NonNull CallLinkRootKey callLinkRootKey);
+    void onShowSafetyTips(boolean forGroup);
+    void onReportSpamLearnMoreClicked();
+    void onMessageRequestAcceptOptionsClicked();
   }
 }
