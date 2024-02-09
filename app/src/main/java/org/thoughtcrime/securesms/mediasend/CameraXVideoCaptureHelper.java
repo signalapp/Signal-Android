@@ -74,7 +74,7 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
         } else {
           try {
             debouncer.clear();
-            cameraController.setZoomRatio(Objects.requireNonNull(cameraController.getZoomState().getValue()).getMinZoomRatio());
+            cameraController.setZoomRatio(1.0f);
             memoryFileDescriptor.seek(0);
             callback.onVideoSaved(memoryFileDescriptor.getFileDescriptor());
           } catch (IOException e) {
@@ -142,7 +142,7 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
   @SuppressLint("RestrictedApi")
   private void beginCameraRecording() {
     cameraXModePolicy.setToVideo(cameraController);
-    this.cameraController.setZoomRatio(Objects.requireNonNull(this.cameraController.getZoomState().getValue()).getMinZoomRatio());
+    this.cameraController.setZoomRatio(1.0f);
     callback.onVideoRecordStarted();
     shrinkCaptureArea();
 
