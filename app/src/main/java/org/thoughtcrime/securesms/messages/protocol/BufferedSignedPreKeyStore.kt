@@ -24,7 +24,7 @@ class BufferedSignedPreKeyStore(private val selfServiceId: ServiceId) : SignedPr
   @kotlin.jvm.Throws(InvalidKeyIdException::class)
   override fun loadSignedPreKey(id: Int): SignedPreKeyRecord {
     return store.computeIfAbsent(id) {
-      SignalDatabase.signedPreKeys.get(selfServiceId, id) ?: throw InvalidKeyIdException("Missing one-time prekey with ID: $id")
+      SignalDatabase.signedPreKeys.get(selfServiceId, id) ?: throw InvalidKeyIdException("Missing signed prekey with ID: $id")
     }
   }
 

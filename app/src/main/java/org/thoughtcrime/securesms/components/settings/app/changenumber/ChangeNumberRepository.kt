@@ -233,6 +233,7 @@ class ChangeNumberRepository(
 
     SignalStore.account().setE164(e164)
     SignalStore.account().setPni(pni)
+    ApplicationDependencies.resetProtocolStores()
 
     ApplicationDependencies.getGroupsV2Authorization().clear()
 
