@@ -117,7 +117,7 @@ public final class FeatureFlags {
   private static final String CALLING_REACTIONS                 = "android.calling.reactions";
   private static final String NOTIFICATION_THUMBNAIL_BLOCKLIST  = "android.notificationThumbnailProductBlocklist";
   private static final String CALLING_RAISE_HAND                = "android.calling.raiseHand";
-  private static final String USE_ACTIVE_CALL_MANAGER           = "android.calling.useActiveCallManager.2";
+  private static final String USE_ACTIVE_CALL_MANAGER           = "android.calling.useActiveCallManager.3";
   private static final String GIF_SEARCH                        = "global.gifSearch";
   private static final String AUDIO_REMUXING                    = "android.media.audioRemux";
 

@@ -11,11 +11,17 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.net.ConnectivityManager
+import android.os.Build
 import android.telephony.PhoneStateListener
 import android.telephony.TelephonyManager
 import androidx.annotation.MainThread
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.os.bundleOf
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.disposables.Disposable
+import io.reactivex.rxjava3.kotlin.subscribeBy
+import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
@@ -190,6 +196,7 @@ class ActiveCallManager(
 
     private var hangUpRtcOnDeviceCallAnswered: PhoneStateListener? = null
     private var notification: Notification? = null
+    private var notificationDisposable: Disposable = Disposable.disposed()
 
     override fun onCreate() {
       super.onCreate()
@@ -205,6 +212,8 @@ class ActiveCallManager(
     }
 
     override fun onDestroy() {
+      notificationDisposable.dispose()
+
       super.onDestroy()
 
       if (!AndroidTelecomUtil.telecomSupported) {
@@ -219,18 +228,35 @@ class ActiveCallManager(
         return CallNotificationBuilder.getStoppingNotification(this)
       }
 
-      val recipientId: RecipientId = intent.getParcelableExtra(EXTRA_RECIPIENT_ID)!!
+      val recipient: Recipient = Recipient.resolved(intent.getParcelableExtra(EXTRA_RECIPIENT_ID)!!)
       val isVideoCall = intent.getBooleanExtra(EXTRA_IS_VIDEO_CALL, false)
+      val requiresAsyncNotificationLoad = Build.VERSION.SDK_INT <= 29
 
-      notification = CallNotificationBuilder.getCallInProgressNotification(
-        this,
-        CallNotificationBuilder.TYPE_ESTABLISHED,
-        Recipient.resolved(recipientId),
-        isVideoCall,
-        false
-      )
+      notification = createNotification(recipient, isVideoCall, skipAvatarLoad = requiresAsyncNotificationLoad)
+
+      if (requiresAsyncNotificationLoad) {
+        notificationDisposable = Single.fromCallable { createNotification(recipient, isVideoCall, skipAvatarLoad = false) }
+          .observeOn(Schedulers.io())
+          .observeOn(AndroidSchedulers.mainThread())
+          .subscribeBy {
+            notification = it
+            if (NotificationManagerCompat.from(this).activeNotifications.any { n -> n.id == notificationId }) {
+              NotificationManagerCompat.from(application).notify(notificationId, notification!!)
+            }
+          }
+      }
 
       return notification!!
+    }
+
+    private fun createNotification(recipient: Recipient, isVideoCall: Boolean, skipAvatarLoad: Boolean): Notification {
+      return CallNotificationBuilder.getCallInProgressNotification(
+        this,
+        CallNotificationBuilder.TYPE_ESTABLISHED,
+        recipient,
+        isVideoCall,
+        skipAvatarLoad
+      )
     }
 
     @Suppress("deprecation")
