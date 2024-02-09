@@ -524,7 +524,10 @@
         <item quantity="other">This will permanently delete all %1$d selected chats.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Deleting</string>
-    <string name="ConversationListFragment_deleting_selected_conversations">Deleting selected chats…</string>
+    <plurals name="ConversationListFragment_deleting_selected_conversations">
+        <item quantity="one">Deleting selected chat…</item>
+        <item quantity="other">Deleting selected chats…</item>
+    </plurals>
     <plurals name="ConversationListFragment_conversations_archived">
         <item quantity="one">Chat archived</item>
         <item quantity="other">%d chats archived</item>

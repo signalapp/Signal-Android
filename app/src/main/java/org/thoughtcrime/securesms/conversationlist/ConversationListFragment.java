@@ -1201,7 +1201,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
           protected void onPreExecute() {
             dialog = SignalProgressDialog.show(requireActivity(),
                                                context.getString(R.string.ConversationListFragment_deleting),
-                                               context.getString(R.string.ConversationListFragment_deleting_selected_conversations),
+                                               context.getResources().getQuantityString(R.plurals.ConversationListFragment_deleting_selected_conversations, conversationsCount),
                                                true,
                                                false);
           }
