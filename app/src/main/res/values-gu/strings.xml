@@ -179,7 +179,18 @@
     <string name="BlockUnblockDialog_unblock_s">%1$sને અનબ્લૉક કરવા છે?</string>
     <string name="BlockUnblockDialog_block">બ્લૉક કરો</string>
     <string name="BlockUnblockDialog_block_and_leave">બ્લૉક કરો અને નીકળો</string>
-    <string name="BlockUnblockDialog_report_spam_and_block">સ્પામ તરીકે રિપોર્ટ કરો અને બ્લૉક કરો</string>
+    <!-- Dialog button label to report as spam and block the person -->
+    <string name="BlockUnblockDialog_report_spam_and_block">Report and block</string>
+    <!-- Dialog title for reporting spam -->
+    <string name="BlockUnblockDialog_report_spam_title">Report spam?</string>
+    <!-- Dialog button to report as spam only -->
+    <string name="BlockUnblockDialog_report_spam">Report spam</string>
+    <!-- Dialog message when reporting spam of an individual (1:1 conversation) -->
+    <string name="BlockUnblockDialog_report_spam_description">Signal will be notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
+    <!-- Dialog message when reporting spam of a group and we can determine the group member that invited you, placeholder is a name -->
+    <string name="BlockUnblockDialog_report_spam_group_named_adder">Signal will be notified that %1$s, who invited you to this group, may be sending spam. Signal can’t see the content of any chats.</string>
+    <!-- Dialog message when reporting spam of a group and we cannot determine the group member that invited you -->
+    <string name="BlockUnblockDialog_report_spam_group_unknown_adder">Signal will be notified that the person who invited you to this group may be sending spam. Signal can’t see the content of any chats.</string>
 
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">આજે</string>
@@ -510,6 +521,55 @@
     <string name="ConversationFragment__content_description_launch_signal_button">Signal ઓપન કરો</string>
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
     <string name="ConversationFragment__no_longer_verified">હવે ચકસાયેલ રહ્યો નથી</string>
+    <!-- Button shown in conversation header when in a message request state and no groups in common to show new message safety tips -->
+    <string name="ConversationFragment_safety_tips">Safety tips</string>
+    <!-- Menu option to report spam in a conversation -->
+    <string name="ConversationFragment_report_spam">Report spam</string>
+    <!-- Menu option to block in a conversation -->
+    <string name="ConversationFragment_block">Block</string>
+    <!-- Menu otpion to accept a message request in a conversation -->
+    <string name="ConversationFragment_accept">Accept</string>
+    <!-- Menu option to delete an entire chat in a conversation -->
+    <string name="ConversationFragment_delete_chat">Delete chat</string>
+    <!-- Menu option to unblock in a conversation -->
+    <string name="ConversationFragment_unblock">Unblock</string>
+    <!-- Menu option to report spam in a conversation -->
+    <string name="ConversationFragment_reported_spam">Reported spam</string>
+    <!-- Dialog message shown after reporting spam and tapping the conversation item -->
+    <string name="ConversationFragment_reported_spam_message">Signal has been be notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
+    <!-- Toast shown after reporting spam and tapping the conversation item -->
+    <string name="ConversationFragment_reported_as_spam">Reported as spam</string>
+    <!-- Toast shown after reporting and blocking a conversation -->
+    <string name="ConversationFragment_reported_as_spam_and_blocked">Reported as spam and blocked</string>
+    <!-- Dialog message shown after accepting a message request and tapping on options from the conversation event -->
+    <string name="ConversationFragment_you_accepted_a_message_request_from_s">You accepted a message request from %1$s. If this was a mistake, you can choose an action below.</string>
+
+    <!-- Title of Safety Tips bottom sheet dialog -->
+    <string name="SafetyTips_title">Safety Tips</string>
+    <!-- Dialog subtitle when showign tips for a 1:1 conversation -->
+    <string name="SafetyTips_subtitle_individual">Be careful when accepting message requests from people you don’t know. Watch out for:</string>
+    <!-- Dialog subtitle when showing tips for a group conversation -->
+    <string name="SafetyTips_subtitle_group">Review this request carefully. None of your contacts or people you chat with are in this group. Here are a few things to watch out for:</string>
+    <!-- Button text to move to the previous tip-->
+    <string name="SafetyTips_previous_tip">Previous tip</string>
+    <!-- Button text to move to the next tip -->
+    <string name="SafetyTips_next_tip">Next tip</string>
+    <!-- Title of tip 1 -->
+    <string name="SafetyTips_tip1_title">Crypto or money scams</string>
+    <!-- Message of tip 1 -->
+    <string name="SafetyTips_tip1_message">If someone you don’t know messages about cryptocurrency (like Bitcoin) or an financial opportunity, be careful—it’s likely spam.</string>
+    <!-- Title of tip 2 -->
+    <string name="SafetyTips_tip2_title">Vague or irrelevant messages</string>
+    <!-- Message of tip 2 -->
+    <string name="SafetyTips_tip2_message">Spammers often start with a simple message like “Hi” to draw you in. If you respond they may engage you further.</string>
+    <!-- Title of tip 3 -->
+    <string name="SafetyTips_tip3_title">Messages with links</string>
+    <!-- Message of tip 3 -->
+    <string name="SafetyTips_tip3_message">Be careful of messages from people you don’t know that have links to websites. Never visit links from people you don’t trust.</string>
+    <!-- Title of tip 4 -->
+    <string name="SafetyTips_tip4_title">Fake businesses and institutions</string>
+    <!-- Message of tip 4 -->
+    <string name="SafetyTips_tip4_message">Be careful of businesses or government agencies contacting you. Messages involving tax agencies, couriers, and more can be spam.</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">ફિલ્ટર દૂર કરો</string>
@@ -524,7 +584,10 @@
         <item quantity="other">આ પસંદ કરેલી બધી %1$d ચેટને કાયમ માટે ડિલીટ કરશે.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">કાઢી નાખો</string>
-    <string name="ConversationListFragment_deleting_selected_conversations">પસંદ કરેલી ચેટ ડિલીટ થઈ રહી છે…</string>
+    <plurals name="ConversationListFragment_deleting_selected_conversations">
+        <item quantity="one">Deleting selected chat…</item>
+        <item quantity="other">Deleting selected chats…</item>
+    </plurals>
     <plurals name="ConversationListFragment_conversations_archived">
         <item quantity="one">ચેટ આર્કાઇવ કરી</item>
         <item quantity="other">%1$d ચેટ આર્કાઇવ કરી</item>
@@ -1533,6 +1596,10 @@
     <string name="MessageRecord__you_can_no_longer_send_sms_messages_in_signal">તમે Signalમાં હવે SMS મેસેજ મોકલી શકતા નથી. વાતચીત અહીં રાખવા માટે %1$s ને Signal પર આમંત્રિત કરો.</string>
     <!-- Body for quote when message being quoted is an in-app payment message -->
     <string name="MessageRecord__payment_s">પેમેન્ટ: %1$s</string>
+    <!-- Update message shown in chat after reporting it as spam -->
+    <string name="MessageRecord_reported_as_spam">Reported as spam</string>
+    <!-- Update message shown in chat after accept a message request -->
+    <string name="MessageRecord_you_accepted_the_message_request">You accepted the message request</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">સ્વીકાર</string>
@@ -1579,6 +1646,8 @@
         <item quantity="one">%1$d વધારાના જૂથો</item>
         <item quantity="other">%1$d વધારાના જૂથો</item>
     </plurals>
+    <!-- Button label to report spam for a conversation when in a message request state -->
+    <string name="MessageRequestBottomView_report">Report…</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">પાસફ્રેઝ મેળ ખાતા નથી!</string>
@@ -2567,6 +2636,10 @@
         <item quantity="one">%1$d સભ્યો</item>
         <item quantity="other">%1$d સભ્યો</item>
     </plurals>
+    <!-- Text on row item to find user by phone number -->
+    <string name="ContactSelectionListFragment__find_by_phone_number">ફોન નંબર દ્વારા શોધો</string>
+    <!-- Text on row item to find user by username -->
+    <string name="ContactSelectionListFragment__find_by_username">ઉપયોગકર્તા નામ દ્વારા શોધો</string>
 
     <!-- contact_selection_list_fragment -->
     <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal ને તમારા સંપર્કોને પ્રદર્શિત કરવા માટે તેમને એક્સેસની જરૂર છે.</string>
@@ -2638,6 +2711,8 @@
     <string name="ConversationUpdateItem_activate_payments">પેમેન્ટ સક્રિય કરો</string>
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">તમે આ વ્યક્તિને દૂર કરી છે, તેમને ફરીથી મેસેજ કરવાથી તેઓ તમારી સૂચિમાં પાછા ઉમેરાઈ જશે.</string>
+    <!-- Update item button text shown for the accepted message request update message -->
+    <string name="ConversationUpdateItem_options">Options</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">ચાલુ કરો … અટકાવો</string>
@@ -3792,17 +3867,19 @@
     <!-- Subtext below option to launch into phone number privacy settings screen -->
     <string name="preferences_app_protection__choose_who_can_see">તમારો ફોન નંબર કોણ જોઈ શકે અને Signal પર તેના વડે કોણ તમારો સંપર્ક કરી શકે તે પસંદ કરો.</string>
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
-    <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">મારો નંબર કોણ જોઈ શકે</string>
-    <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see_your">Signal પર કોઈ પણ તમારો ફોન નંબર જોશે નહીં, તેમને મેસેજ કરતાં હો ત્યારે પણ નહીં.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">મારો નંબર કોણ જોઈ શકે</string>
+    <!-- Subtext below radio buttons when who can see my number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">તમારો ફોન નંબર તે લોકો અને ગ્રૂપને દેખાશે જેમને તમે મેસેજ કરો છો.</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Your phone number will not be visible to anyone unless they have it saved in their phone\'s contacts.</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Your phone number will not be visible to anyone.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
-    <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">મને નંબરથી કોણ શોધી શકે</string>
-    <!-- Subtext below radio buttons when who can see my number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number_will_be">તમારો ફોન નંબર તે લોકો અને ગ્રૂપને દેખાશે જેમને તમે મેસેજ કરો છો.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">મને નંબરથી કોણ શોધી શકે</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__anyone_who_has">જેમની પાસે તમારો ફોન નંબર હોય તે કોઈ પણને દેખાશે કે તમે Signal પર છો અને તમારી સાથે ચેટ શરૂ કરી શકે છે.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">જેમની પાસે તમારો ફોન નંબર હોય તે કોઈ પણને દેખાશે કે તમે Signal પર છો અને તમારી સાથે ચેટ શરૂ કરી શકે છે.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_be_able_to_see">તમે Signal પર છો તે કોઈ જોઈ શકશે નહીં, જ્યાં સુધી તમે તેમને મેસેજ ન કરો અથવા તેમની સાથે તમારી કોઈ ચેટ અસ્તિત્વમાં હોય.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">તમે Signal પર છો તે કોઈ જોઈ શકશે નહીં, જ્યાં સુધી તમે તેમને મેસેજ ન કરો અથવા તેમની સાથે તમારી કોઈ ચેટ અસ્તિત્વમાં હોય.</string>
     <!-- Snackbar text when pressing invalid radio item -->
     <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"આ સેટિંગ બદલવા માટે, \"મારો નંબર કોણ જોઈ શકે છે\" ને \"કોઈ નહીં\" પર સેટ કરો."</string>
     <string name="PhoneNumberPrivacy_everyone">બધા</string>
@@ -3833,6 +3910,8 @@
     <string name="prompt_passphrase_activity__signal_is_locked">Signal લૉક છે</string>
     <string name="prompt_passphrase_activity__tap_to_unlock">અનલૉક કરવા માટે ટેપ કરો</string>
     <string name="Recipient_unknown">અજાણ્યું</string>
+    <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
+    <string name="Recipient_deleted_account">Deleted account</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
     <string name="preferences_account_reregister">એકાઉન્ટને ફરીથી રજીસ્ટર કરો</string>
@@ -5976,11 +6055,11 @@
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">તમારી બેંક પસંદ કરો</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">Confirm your donation with %1$s</string>
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">%1$s સાથે તમારા દાનની પુષ્ટિ કરો</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
     <string name="IdealTransferDetailsFragment__monthly_ideal_warning">To setup your recurring donation tap continue to confirm a €0,01 charge with your bank. This will be automatically refunded and allows your €5/month donation to debited from your account.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
-    <string name="IdealTransferDetailsFragment__continue">Continue</string>
+    <string name="IdealTransferDetailsFragment__continue">ચાલુ રાખો</string>
 
     <!-- IdealTransferDetailsBankSelectionDialogFragment -->
     <!-- Title of the screen, displayed in the toolbar -->
@@ -6448,6 +6527,42 @@
     <string name="MonthlyDonationCanceled__renew_button">સબ્સ્ક્રિપ્શન રિન્યૂ કરો</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, second button to dismiss the dialog entirely -->
     <string name="MonthlyDonationCanceled__not_now_button">અત્યારે નહીં</string>
+
+    <!-- FindByActivity -->
+    <!-- Title of activity when finding by username -->
+    <string name="FindByActivity__find_by_username">ઉપયોગકર્તા નામ દ્વારા શોધો</string>
+    <!-- Title of activity when finding by phone number -->
+    <string name="FindByActivity__find_by_phone_number">ફોન નંબર દ્વારા શોધો</string>
+    <!-- Title of screen to select a country code -->
+    <string name="FindByActivity__select_country_code">દેશ કોડ પસંદ કરો</string>
+    <!-- Entry placeholder for find by username -->
+    <string name="FindByActivity__username">વપરાશકર્તા નામ</string>
+    <!-- Entry placeholder for find by phone number -->
+    <string name="FindByActivity__phone_number">ફોન નંબર</string>
+    <!-- Help text under user entry for find by username -->
+    <string name="FindByActivity__enter_a_full_username">Enter a full username with its pair of digits.</string>
+    <!-- Content description for next action button -->
+    <string name="FindByActivity__next">આગળ</string>
+    <!-- Placeholder text for search input for selecting country code -->
+    <string name="FindByActivity__search">શોધો</string>
+    <!-- Dialog title for invalid username -->
+    <string name="FindByActivity__invalid_username">અમાન્ય યુઝરનેમ</string>
+    <!-- Dialog title for invalid phone number -->
+    <string name="FindByActivity__invalid_phone_number">અમાન્ય ફોન નંબર</string>
+    <!-- Dialog title when phone number is not a registered signal user -->
+    <string name="FindByActivity__invite_to_signal">Signal માટે આમંત્રણ આપો</string>
+    <!-- Dialog title when username is not found -->
+    <string name="FindByActivity__username_not_found">વપરાશકર્તા નામ મળ્યું નથી</string>
+    <!-- Dialog body for invalid username. Placeholder is the entered username. -->
+    <string name="FindByActivity__s_is_not_a_valid_username">%1$s is not a valid username. Make sure you\'ve entered the complete username followed by its set of digits.</string>
+    <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
+    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s is not valid phone number. Try again with a valid phone number</string>
+    <!-- Dialog body for not found username -->
+    <string name="FindByActivity__s_is_not_a_signal_user">\"%1$s\" Signal વપરાશકર્તા નથી. કૃપા કરીને વપરાશકર્તા નામ તપાસો અને ફરીથી પ્રયાસ કરો.</string>
+    <!-- Dialog body for not found phone number -->
+    <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s એ Signal ઉપયોગકર્તા નથી. શું તમે આ નંબરને આમંત્રિત કરવા માંગો છો?</string>
+    <!-- Dialog action to invite the phone number to Signal -->
+    <string name="FindByActivity__invite">આમંત્રિત</string>
 
     <!-- EOF -->
 </resources>
