@@ -1064,7 +1064,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">आपका यूज़रनेम, QR कोड और लिंक आपके प्रोफाइल पर दिखाई नहीं दे रहे हैं। अपना यूज़रनेम केवल उन लोगों के साथ साझा करें जिन पर आपको भरोसा है।</string>
     <string name="ManageProfileFragment_profile_name">प्रोफ़ाइल नाम</string>
-    <string name="ManageProfileFragment_username">उपयोगकर्ता नाम</string>
+    <string name="ManageProfileFragment_username">यूज़रनेम</string>
     <string name="ManageProfileFragment_about">हमारे बारे में</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">अवतार सेट करने में विफल</string>
     <string name="ManageProfileFragment_badges">बैज</string>
@@ -2285,15 +2285,15 @@
     <string name="UsernameEditFragment__add_a_username">कोई यूज़रनेम जोड़ें</string>
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">अपना यूज़रनेम चुनें</string>
-    <string name="UsernameEditFragment_username">उपयोगकर्ता नाम</string>
+    <string name="UsernameEditFragment_username">यूज़रनेम</string>
     <string name="UsernameEditFragment_delete">डिलीट करें</string>
     <string name="UsernameEditFragment_successfully_removed_username">सफलतापूर्वक उपयोगकर्ता नाम हटा दिया गया।</string>
     <string name="UsernameEditFragment_encountered_a_network_error">एक नेटवर्क त्रुटि का सामना करना पड़ा|</string>
-    <string name="UsernameEditFragment_this_username_is_taken">इस उपयोगकर्ता का नाम ले लिया गया है|</string>
+    <string name="UsernameEditFragment_this_username_is_taken">यह यूज़रनेम ले लिया गया है।</string>
     <string name="UsernameEditFragment_usernames_can_only_include">यूज़रनेम में केवल a–Z, 0–9, और अंडरस्कोर शामिल हो सकते हैं।</string>
-    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">उपयोगकर्ता नाम एक संख्या से शुरू नहीं हो सकते हैं।</string>
-    <string name="UsernameEditFragment_username_is_invalid">उपयोगकर्ता का नाम अमान्य है।</string>
-    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">उपयोगकर्ता नाम %1$d और %2$d वर्णों के बीच होना चाहिए।</string>
+    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">यूज़रनेम एक संख्या से शुरू नहीं हो सकते हैं।</string>
+    <string name="UsernameEditFragment_username_is_invalid">यूज़रनेम अमान्य है।</string>
+    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">यूज़रनेम %1$d और %2$d वर्णों के बीच होना चाहिए।</string>
     <!-- Explanation about what usernames provide -->
     <string name="UsernameEditFragment__usernames_let_others_message">यूज़रनेम से अन्य लोग बिना आपके फ़ोन नंबर के, आपको संदेश भेज सकते हैं। वे कुछ अंकों के समूह में होते हैं ताकि आपको अपना पता निजी रखने में मदद मिल सके।</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
@@ -2625,8 +2625,8 @@
     <!-- ContactSelectionListFragment-->
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal को आपके संपर्कों को प्रदर्शित करने के लिए संपर्क अनुमति की आवश्यकता होती है, लेकिन इसे स्थायी रूप से अस्वीकार कर दिया गया है। कृपया ऐप सेटिंग्स मेनू पर जारी रखें, \"अनुमतियां\" चुनें, और \"संपर्क\" सक्षम करें।</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">संपर्क पुनर्प्राप्त करने में त्रुटि, अपना नेटवर्क कनेक्शन जांचें</string>
-    <string name="ContactSelectionListFragment_username_not_found">उपयोगकर्ता नाम नहीं मिला</string>
-    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" एक Signal उपयोगकर्ता नहीं है। कृपया उपयोगकर्ता नाम जांचें और पुनः प्रयास करें।"</string>
+    <string name="ContactSelectionListFragment_username_not_found">यूज़रनेम नहीं मिला</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s एक Signal यूज़र नहीं है। कृपया यूज़रनेम जांचें और पुनः प्रयास करें।"</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">आपको खुद को ग्रुप में जोड़ने की ज़रूरत नहीं है।</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">अधिकतम ग्रुप साइज़ पूरा हो गया</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal के ग्रुप्स में अधिकतम %1$d मेंबर हो सकते हैं।</string>
@@ -3125,7 +3125,7 @@
     <string name="preferences__mmsc_url">MMSC URL</string>
     <string name="preferences__mms_proxy_host">MMS Proxy Host</string>
     <string name="preferences__mms_proxy_port">MMS Proxy Port</string>
-    <string name="preferences__mmsc_username">MMSC उपयोगकर्ता नाम</string>
+    <string name="preferences__mmsc_username">MMSC यूज़रनेम</string>
     <string name="preferences__mmsc_password">MMSC पासवर्ड</string>
     <string name="preferences__sms_delivery_reports">SMS वितरण रिपोर्ट</string>
     <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">आपके द्वारा भेजे जाने वाले प्रत्येक SMS मेसेज के लिए डिलीवरी रिपोर्ट का अनुरोध करें</string>
@@ -3871,9 +3871,9 @@
     <!-- Subtext below radio buttons when who can see my number is set to everybody -->
     <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">आपका फ़ोन नंबर उन लोगों और ग्रुप्स को दिखेगा जिन्हें आप संदेश भेजेंगे।</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Your phone number will not be visible to anyone unless they have it saved in their phone\'s contacts.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">आपका फोन नंबर किसी को तब तक नहीं दिखाई देगा जब तक कि उन्होंने इसे अपने फोन के संपर्कों में न सहेजा हो।</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Your phone number will not be visible to anyone.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">आपका फोन नंबर किसी को दिखाई नहीं देगा।</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">मुझे नंबर से कौन ढूंढ सकता है</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
@@ -3911,7 +3911,7 @@
     <string name="prompt_passphrase_activity__tap_to_unlock">अनलॉक करने के लिए टैप करें</string>
     <string name="Recipient_unknown">अनजान</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
-    <string name="Recipient_deleted_account">Deleted account</string>
+    <string name="Recipient_deleted_account">डिलीट किया गया अकाउंट</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
     <string name="preferences_account_reregister">खाता पुन: पंजीकृत करें</string>
@@ -6057,7 +6057,7 @@
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
     <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">%1$s से अपने दान की पुष्टि करें</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">To setup your recurring donation tap continue to confirm a €0,01 charge with your bank. This will be automatically refunded and allows your €5/month donation to debited from your account.</string>
+    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">अपना आवर्ती दान सेटअप करने के लिए, अपने बैंक से €0,01 शुल्क की पुष्टि करने के लिए जारी रखें पर टैप करें। यह स्वचालित रूप से वापस कर दिया जाएगा और आपके €5/माह के दान को आपके अकाउंट से डेबिट किया जा सकेगा।</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">जारी रखें</string>
 
@@ -6540,7 +6540,7 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">फोन नंबर</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_a_full_username">Enter a full username with its pair of digits.</string>
+    <string name="FindByActivity__enter_a_full_username">अंकों के जोड़े के साथ पूरा यूज़रनेम दर्ज करें।</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">अगला</string>
     <!-- Placeholder text for search input for selecting country code -->
@@ -6554,9 +6554,9 @@
     <!-- Dialog title when username is not found -->
     <string name="FindByActivity__username_not_found">उपयोगकर्ता नाम नहीं मिला</string>
     <!-- Dialog body for invalid username. Placeholder is the entered username. -->
-    <string name="FindByActivity__s_is_not_a_valid_username">%1$s is not a valid username. Make sure you\'ve entered the complete username followed by its set of digits.</string>
+    <string name="FindByActivity__s_is_not_a_valid_username">%1$s मान्य यूज़रनेम नहीं है। सुनिश्चित करें कि आपने पूरा यूज़रनेम और उसके बाद उसके अंकों का सेट दर्ज किया है।</string>
     <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
-    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s is not valid phone number. Try again with a valid phone number</string>
+    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s मान्य फोन नंबर नहीं है। किसी मान्य फ़ोन नंबर से फिर से प्रयास करें</string>
     <!-- Dialog body for not found username -->
     <string name="FindByActivity__s_is_not_a_signal_user">\"%1$s\" एक Signal उपयोगकर्ता नहीं है। कृपया उपयोगकर्ता नाम जांचें और पुनः प्रयास करें।</string>
     <!-- Dialog body for not found phone number -->

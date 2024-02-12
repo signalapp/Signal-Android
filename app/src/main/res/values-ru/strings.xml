@@ -4083,9 +4083,9 @@
     <!-- Subtext below radio buttons when who can see my number is set to everybody -->
     <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">Ваш номер телефона будет виден людям и группам, которым вы отправляете сообщения.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Your phone number will not be visible to anyone unless they have it saved in their phone\'s contacts.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Ваш номер телефона никому не будет виден, если только он не сохранен в контактах телефона пользователя.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Your phone number will not be visible to anyone.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Ваш номер телефона никому не будет виден.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Кто может найти меня по номеру?</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
@@ -4123,7 +4123,7 @@
     <string name="prompt_passphrase_activity__tap_to_unlock">РАЗБЛОКИРОВАТЬ</string>
     <string name="Recipient_unknown">Неизвестный</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
-    <string name="Recipient_deleted_account">Deleted account</string>
+    <string name="Recipient_deleted_account">Удалённая учётная запись</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
     <string name="preferences_account_reregister">Повторно зарегистрировать учётную запись</string>
@@ -6331,7 +6331,7 @@
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
     <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">Подтвердить пожертвование через %1$s</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">To setup your recurring donation tap continue to confirm a €0,01 charge with your bank. This will be automatically refunded and allows your €5/month donation to debited from your account.</string>
+    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">Для настройки регулярного пожертвования нажмите «Продолжить», чтобы подтвердить списание средств в размере 0,01 евро в вашем банке. Эта сумма будет автоматически возвращена, и это позволит списывать с вашего счёта пожертвование в размере 5 евро в месяц.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">Продолжить</string>
 
@@ -6826,7 +6826,7 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">Номер телефона</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_a_full_username">Enter a full username with its pair of digits.</string>
+    <string name="FindByActivity__enter_a_full_username">Введите полное имя пользователя с парой цифр.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">Далее</string>
     <!-- Placeholder text for search input for selecting country code -->
@@ -6840,9 +6840,9 @@
     <!-- Dialog title when username is not found -->
     <string name="FindByActivity__username_not_found">Имя пользователя не найдено</string>
     <!-- Dialog body for invalid username. Placeholder is the entered username. -->
-    <string name="FindByActivity__s_is_not_a_valid_username">%1$s is not a valid username. Make sure you\'ve entered the complete username followed by its set of digits.</string>
+    <string name="FindByActivity__s_is_not_a_valid_username">%1$s – недействительное имя пользователя. Убедитесь, что вы ввели полное имя пользователя с последующим набором цифр.</string>
     <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
-    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s is not valid phone number. Try again with a valid phone number</string>
+    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s – недействительный номер телефона. Повторите попытку с правильным номером телефона</string>
     <!-- Dialog body for not found username -->
     <string name="FindByActivity__s_is_not_a_signal_user">«%1$s» — не пользователь Signal. Пожалуйста, проверьте имя пользователя и попробуйте ещё раз.</string>
     <!-- Dialog body for not found phone number -->

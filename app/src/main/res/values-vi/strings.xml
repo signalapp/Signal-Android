@@ -3765,9 +3765,9 @@
     <!-- Subtext below radio buttons when who can see my number is set to everybody -->
     <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">Số điện thoại của bạn sẽ được hiển thị với những người và nhóm bạn nhắn tin.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Your phone number will not be visible to anyone unless they have it saved in their phone\'s contacts.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Số điện thoại của bạn sẽ không hiển thị với bất kỳ ai trừ trường hợp người đó đã lưu số của bạn trong danh bạ trên máy họ.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Your phone number will not be visible to anyone.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Số điện thoại của bạn sẽ không hiển thị với bất kỳ ai.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Ai Có Thể Tìm Tôi Bằng Số Điện Thoại</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
@@ -3805,7 +3805,7 @@
     <string name="prompt_passphrase_activity__tap_to_unlock">NHẤN ĐỂ MỞ KHOÁ</string>
     <string name="Recipient_unknown">Vô danh</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
-    <string name="Recipient_deleted_account">Deleted account</string>
+    <string name="Recipient_deleted_account">Tài khoản đã xóa</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
     <string name="preferences_account_reregister">Đăng ký lại tài khoản</string>
@@ -5920,7 +5920,7 @@
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
     <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">Xác Nhận Khoản Ủng Hộ với %1$s</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">To setup your recurring donation tap continue to confirm a €0,01 charge with your bank. This will be automatically refunded and allows your €5/month donation to debited from your account.</string>
+    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">Để thiết lập khoản ủng hộ định kỳ, nhấn tiếp tục để xác nhận trả một khoản €0,01 qua ngân hàng. Khoản này sẽ được tự động hoàn lại và cho phép khoản ủng hộ €5/tháng được trừ từ tài khoản của bạn.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">Tiếp tục</string>
 
@@ -6397,7 +6397,7 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">Số điện thoại</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_a_full_username">Enter a full username with its pair of digits.</string>
+    <string name="FindByActivity__enter_a_full_username">Nhập tên người dùng đầy đủ bao gồm cả dãy số.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">Tiếp</string>
     <!-- Placeholder text for search input for selecting country code -->
@@ -6411,9 +6411,9 @@
     <!-- Dialog title when username is not found -->
     <string name="FindByActivity__username_not_found">Không tìm thấy tên người dùng</string>
     <!-- Dialog body for invalid username. Placeholder is the entered username. -->
-    <string name="FindByActivity__s_is_not_a_valid_username">%1$s is not a valid username. Make sure you\'ve entered the complete username followed by its set of digits.</string>
+    <string name="FindByActivity__s_is_not_a_valid_username">Tên người dùng %1$s không hợp lệ. Đảm bảo rằng bạn đã nhập đầy đủ tên người dùng có dãy số phía sau.</string>
     <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
-    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s is not valid phone number. Try again with a valid phone number</string>
+    <string name="FindByActivity__s_is_not_a_valid_phone_number">Số điện thoại %1$s không hợp lệ. Thử lại với một số điện thoại hợp lệ</string>
     <!-- Dialog body for not found username -->
     <string name="FindByActivity__s_is_not_a_signal_user">\"%1$s\" không phải người dùng Signal. Hãy kiểm tra tên người dùng và thử lại.</string>
     <!-- Dialog body for not found phone number -->

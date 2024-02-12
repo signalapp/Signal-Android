@@ -3871,9 +3871,9 @@
     <!-- Subtext below radio buttons when who can see my number is set to everybody -->
     <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">Numri i telefonit do të shfaqet tek të gjithë personat dhe grupet që iu shkruan.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Your phone number will not be visible to anyone unless they have it saved in their phone\'s contacts.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Numri i telefonit nuk do t\'i shfaqet askujt, përveç nëse personat e kanë atë të ruajtur në kontaktet e tyre të telefonit.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Your phone number will not be visible to anyone.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Numri i telefonit nuk do t\'i shfaqet askujt.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Kush mund të më gjejë nëpërmjet numrit</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
@@ -3911,7 +3911,7 @@
     <string name="prompt_passphrase_activity__tap_to_unlock">PREKENI QË TË SHKYÇET</string>
     <string name="Recipient_unknown">I panjohur</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
-    <string name="Recipient_deleted_account">Deleted account</string>
+    <string name="Recipient_deleted_account">Fshij llogarinë</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
     <string name="preferences_account_reregister">Regjistro sërish llogarinë</string>
@@ -6055,9 +6055,9 @@
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">Zgjidh bankën</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">Confirm your donation with %1$s</string>
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">Konfirmo dhurimin tënd me %1$s</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">To setup your recurring donation tap continue to confirm a €0,01 charge with your bank. This will be automatically refunded and allows your €5/month donation to debited from your account.</string>
+    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">Për të konfiguruar dhurimin tënd të përsëritur, kliko për të konfirmuar një tarifë prej 0,01 € me bankën tënde. Kjo do të rimbursohet automatikisht dhe lejon që dhurimi yt prej 5 €/muaj të debitohet nga llogaria jote.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">Vazhdo</string>
 
@@ -6540,13 +6540,13 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">Numër telefoni</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_a_full_username">Enter a full username with its pair of digits.</string>
+    <string name="FindByActivity__enter_a_full_username">Vendos emrin e plotë të përdoruesit bashkë me grupin e shifrave.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">Tjetër</string>
     <!-- Placeholder text for search input for selecting country code -->
     <string name="FindByActivity__search">Kërko</string>
     <!-- Dialog title for invalid username -->
-    <string name="FindByActivity__invalid_username">Invalid username</string>
+    <string name="FindByActivity__invalid_username">Emër i pavlefshëm përdoruesi</string>
     <!-- Dialog title for invalid phone number -->
     <string name="FindByActivity__invalid_phone_number">Numër Telefoni i Pavlefshëm</string>
     <!-- Dialog title when phone number is not a registered signal user -->
@@ -6554,13 +6554,13 @@
     <!-- Dialog title when username is not found -->
     <string name="FindByActivity__username_not_found">Emri i përdoruesit s\\’u gjet</string>
     <!-- Dialog body for invalid username. Placeholder is the entered username. -->
-    <string name="FindByActivity__s_is_not_a_valid_username">%1$s is not a valid username. Make sure you\'ve entered the complete username followed by its set of digits.</string>
+    <string name="FindByActivity__s_is_not_a_valid_username">%1$s nuk është emër i vlefshëm përdoruesi. Sigurohu që ke vendosur emrin e plotë të përdoruesit të ndjekur nga grupi përkatës i shifrave.</string>
     <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
-    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s is not valid phone number. Try again with a valid phone number</string>
+    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s nuk është numër i vlefshëm telefoni. Provo sërish me një numër telefoni të vlefshëm</string>
     <!-- Dialog body for not found username -->
     <string name="FindByActivity__s_is_not_a_signal_user">\"%1$s\" s\\’është përdorues Signal-i. Ju lutemi, kontrolloni emrin e përdoruesit dhe riprovoni.</string>
     <!-- Dialog body for not found phone number -->
-    <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s is not a Signal user. Would you like to invite this number?</string>
+    <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s nuk është përdorues i Signal. Dëshiron të ftosh këtë numër?</string>
     <!-- Dialog action to invite the phone number to Signal -->
     <string name="FindByActivity__invite">Fto</string>
 

@@ -3765,9 +3765,9 @@
     <!-- Subtext below radio buttons when who can see my number is set to everybody -->
     <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">Nomor telepon Anda akan terlihat oleh orang dan grup yang Anda kirimi pesan.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Your phone number will not be visible to anyone unless they have it saved in their phone\'s contacts.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Nomor telepon Anda tidak akan terlihat oleh siapa pun kecuali jika nomor telepon tersebut tersimpan di kontak telepon mereka.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Your phone number will not be visible to anyone.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Nomor telepon Anda tidak akan terlihat oleh siapa pun.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Siapa bisa menemukan saya dengan nomor telepon</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
@@ -3805,7 +3805,7 @@
     <string name="prompt_passphrase_activity__tap_to_unlock">KETUK UNTUK MEMBUKA</string>
     <string name="Recipient_unknown">Tidak dikenal</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
-    <string name="Recipient_deleted_account">Deleted account</string>
+    <string name="Recipient_deleted_account">Akun terhapus</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
     <string name="preferences_account_reregister">Daftar ulang akun</string>
@@ -5920,7 +5920,7 @@
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
     <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">Konfirmasi Donasi Anda dengan %1$s</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">To setup your recurring donation tap continue to confirm a €0,01 charge with your bank. This will be automatically refunded and allows your €5/month donation to debited from your account.</string>
+    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">Untuk atur donasi berulang, ketuk lanjutkan untuk konfirmasi biaya €0,01 di bank Anda. Biaya ini otomatis akan dikembalikan kepada Anda dan mengizinkan donasi €5/bulan ditarik dari rekening Anda.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">Lanjutkan</string>
 
@@ -6397,7 +6397,7 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">Nomor telepon</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_a_full_username">Enter a full username with its pair of digits.</string>
+    <string name="FindByActivity__enter_a_full_username">Masukkan nama pengguna lengkap dengan set digit angka pasangannya.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">Berikutnya</string>
     <!-- Placeholder text for search input for selecting country code -->
@@ -6411,9 +6411,9 @@
     <!-- Dialog title when username is not found -->
     <string name="FindByActivity__username_not_found">Nama pengguna tidak ditemukan</string>
     <!-- Dialog body for invalid username. Placeholder is the entered username. -->
-    <string name="FindByActivity__s_is_not_a_valid_username">%1$s is not a valid username. Make sure you\'ve entered the complete username followed by its set of digits.</string>
+    <string name="FindByActivity__s_is_not_a_valid_username">%1$s bukan nama pengguna yang valid. Pastikan Anda telah memasukkan nama pengguna yang lengkap diikuti dengan set digit angkanya.</string>
     <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
-    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s is not valid phone number. Try again with a valid phone number</string>
+    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s bukan nomor telepon yang valid. Coba lagi dengan nomor telepon yang valid</string>
     <!-- Dialog body for not found username -->
     <string name="FindByActivity__s_is_not_a_signal_user">\"%1$s\" bukan pengguna Signal. Cek kembali dan coba lagi.</string>
     <!-- Dialog body for not found phone number -->

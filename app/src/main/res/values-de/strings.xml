@@ -46,7 +46,7 @@
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Dies entsperrt dauerhaft Signal und Benachrichtigungen über Nachrichten.</string>
     <string name="ApplicationPreferencesActivity_disable">Deaktivieren</string>
     <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signal-Nachrichten und ‑Anrufe deaktivieren?</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Signal-Nachrichten und ‑Anrufe durch Löschen deiner Registrierung vom Server deaktivieren. Du wirst deine Rufnummer erneut registrieren müssen, um zukünftig wieder verschlüsselt zu kommunizieren.</string>
+    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Signal-Nachrichten und ‑Anrufe durch Löschen deiner Registrierung vom Server deaktivieren. Du wirst deine Telefonnummer erneut registrieren müssen, um zukünftig wieder verschlüsselt zu kommunizieren.</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Fehler beim Verbinden mit Server!</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PINs sind für die Registrierungssperre erforderlich. Zum Deaktivieren deiner PIN musst du daher zuerst auch die Registrierungssperre deaktivieren.</string>
     <string name="ApplicationPreferencesActivity_pin_created">PIN erstellt.</string>
@@ -253,7 +253,7 @@
     <string name="CommunicationActions_cancel">Abbrechen</string>
     <string name="CommunicationActions_call">Anrufen</string>
     <string name="CommunicationActions_insecure_call">Unverschlüsselter Anruf</string>
-    <string name="CommunicationActions_carrier_charges_may_apply">Möglicherweise fallen Mobilfunkgebühren an. Die gewählte Rufnummer ist nicht bei Signal registriert. Daher wird dieser Anruf über deinen Mobilfunkanbieter und nicht über das Internet erfolgen.</string>
+    <string name="CommunicationActions_carrier_charges_may_apply">Möglicherweise fallen Mobilfunkgebühren an. Die gewählte Telefonnummer ist nicht bei Signal registriert. Daher wird dieser Anruf über deinen Mobilfunkanbieter und nicht über das Internet erfolgen.</string>
     <string name="CommunicationActions_cant_join_call">Anrufbeitritt nicht möglich</string>
     <string name="CommunicationActions_this_call_link_is_no_longer_valid">Dieser Anruflink ist nicht mehr gültig.</string>
     <!-- Title on dialog when call link url cannot be parsed -->
@@ -349,7 +349,7 @@
     <string name="ConversationActivity_send_edit">Bearbeitete Nachricht senden</string>
     <string name="ConversationActivity_compose_message">Nachricht verfassen</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Leider ist ein Fehler beim Hinzufügen des Anhangs aufgetreten.</string>
-    <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Mobilrufnummer oder E-Mail-Adresse des Empfängers ist ungültig!</string>
+    <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Mobilnummer oder E-Mail-Adresse des Empfängers ist ungültig!</string>
     <string name="ConversationActivity_message_is_empty_exclamation">Die Nachricht ist leer!</string>
     <string name="ConversationActivity_group_members">Gruppenmitglieder</string>
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
@@ -1545,7 +1545,7 @@
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Du hast deine Sicherheitsnummer mit %1$s als nicht verifiziert markiert.</string>
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Du hast deine Sicherheitsnummer mit %1$s von einem anderen Gerät aus als nicht verifiziert markiert.</string>
     <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Eine Nachricht von %1$s konnte nicht zugestellt werden</string>
-    <string name="MessageRecord_s_changed_their_phone_number">Die Rufnummer von %1$s hat sich geändert.</string>
+    <string name="MessageRecord_s_changed_their_phone_number">Die Telefonnummer von %1$s hat sich geändert.</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Dir gefällt diese neue Funktion? Unterstütze Signal mit einer einmaligen Spende.</string>
     <!-- Update item message shown when we merge two threads together. First placeholder is a name, second placeholder is a phone number. -->
@@ -1780,8 +1780,8 @@
     <string name="RedPhone_busy">Besetzt</string>
     <string name="RedPhone_recipient_unavailable">Empfänger nicht erreichbar</string>
     <string name="RedPhone_network_failed">Netzwerkfehler!</string>
-    <string name="RedPhone_number_not_registered">Rufnummer nicht registriert!</string>
-    <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Die gewählte Rufnummer unterstützt keine verschlüsselten Anrufe!</string>
+    <string name="RedPhone_number_not_registered">Telefonnummer nicht registriert!</string>
+    <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Die gewählte Telefonnummer unterstützt keine verschlüsselten Anrufe!</string>
     <string name="RedPhone_got_it">Verstanden</string>
 
     <!-- Valentine\'s Day Megaphone -->
@@ -2022,19 +2022,19 @@
     <string name="RegistrationActivity_select_your_country">Wähle dein Land aus</string>
     <string name="RegistrationActivity_you_must_specify_your_country_code">Du musst deine Landesvorwahl angeben
     </string>
-    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">Bitte gib eine gültige Rufnummer ein, um Signal zu registrieren.</string>
-    <string name="RegistrationActivity_invalid_number">Ungültige Rufnummer</string>
-    <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Die angegebene Rufnummer (%1$s) ist ungültig.
+    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">Bitte gib eine gültige Telefonnummer ein, um Signal zu registrieren.</string>
+    <string name="RegistrationActivity_invalid_number">Ungültige Telefonnummer</string>
+    <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Die angegebene Telefonnummer (%1$s) ist ungültig.
     </string>
 
     <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">Ist die unten stehende Rufnummer richtig?</string>
+    <string name="RegistrationActivity_phone_number_verification_dialog_title">Ist die unten stehende Telefonnummer richtig?</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
     <string name="RegistrationActivity_additional_verification_required">Zusätzliche Verifizierung erforderlich</string>
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
     <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">Ein Verifizierungscode wird an diese Nummer gesendet. Es können Tarife anfallen.</string>
-    <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Du erhälst einen Anruf zur Verifikation dieser Rufnummer.</string>
-    <string name="RegistrationActivity_edit_number">Rufnummer bearbeiten</string>
+    <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Du erhälst einen Anruf zur Verifikation dieser Telefonnummer.</string>
+    <string name="RegistrationActivity_edit_number">Telefonnummer bearbeiten</string>
     <string name="RegistrationActivity_missing_google_play_services">Fehlende Google-Play-Dienste</string>
     <string name="RegistrationActivity_this_device_is_missing_google_play_services">Auf diesem Gerät fehlen die Google-Play-Dienste. Signal kann immer noch verwendet werden, allerdings beeinträchtigt diese Konfiguration eventuell die Zuverlässigkeit oder die Leistung.\n\nFalls du kein erfahrener Nutzer bist, kein Custom-ROM verwendest oder glaubst, dass diese Meldung irrtümlich angezeigt wird, kontaktiere bitte support@signal.org für Hilfe bei der Problembehandlung.</string>
     <string name="RegistrationActivity_i_understand">Verstanden</string>
@@ -2043,7 +2043,7 @@
     <string name="RegistrationActivity_terms_and_privacy">Nutzungsbedingungen und Datenschutzerklärung</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal benötigt die Berechtigungen »Kontakte« und »Speicher«, um dir das Kontaktieren deiner Freunde und das Senden von Nachrichten zu erleichtern. Deine Kontakte werden mittels Signals vertraulicher Kontaktfindung auf die Signal-Server hochgeladen. Das heißt, sie sind Ende-zu-Ende-verschlüsselt und somit zu keiner Zeit dem Signal-Dienst bekannt.</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal benötigt die Berechtigung »Kontakte«, um dir das Kontaktieren deiner Freunde zu erleichtern. Deine Kontakte werden mittels Signals vertraulicher Kontaktfindung auf die Signal-Server hochgeladen. Das heißt, sie sind Ende-zu-Ende-verschlüsselt und somit zu keiner Zeit dem Signal-Dienst bekannt.</string>
-    <string name="RegistrationActivity_rate_limited_to_service">Du hast zu oft versucht, diese Rufnummer zu registrieren. Bitte versuche es später erneut.</string>
+    <string name="RegistrationActivity_rate_limited_to_service">Du hast zu oft versucht, diese Telefonnummer zu registrieren. Bitte versuche es später erneut.</string>
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">Du hast zu oft versucht, diese Nummer zu registrieren. Bitte versuche es erneut in %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Keine Verbindung zum Dienst möglich. Bitte überprüfe deine Netzverbindung und versuche es erneut.</string>
@@ -2052,8 +2052,8 @@
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">Ein Verifizierungscode kann nicht angefordert werden. Bitte überprüfe deine Netzverbindung und versuche es erneut.</string>
     <string name="RegistrationActivity_non_standard_number_format">Nicht standardisiertes Zahlenformat</string>
-    <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Die eingegebene Rufnummer (%1$s) scheint nicht im Standardformat zu sein.\n\nHast du %2$s gemeint?</string>
-    <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Rufnummernformat</string>
+    <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Die eingegebene Telefonnummer (%1$s) scheint nicht im Standardformat zu sein.\n\nHast du %2$s gemeint?</string>
+    <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Telefonnummernformat</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
     <string name="RegistrationActivity_call_requested">Anruf angefragt</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
@@ -2073,12 +2073,12 @@
     <string name="RegistrationActivity_continue">Weiter</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Nimm Privatsphäre mit dir.\nSei du selbst in jeder Nachricht.</string>
     <!-- Title of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_phone_number">Rufnummer</string>
+    <string name="RegistrationActivity_phone_number">Telefonnummer</string>
     <!-- Subtitle of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Gib deine Rufnummer ein, um zu beginnen.</string>
+    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Gib deine Telefonnummer ein, um zu beginnen.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Gib den Code ein, den wir an %1$s gesendet haben</string>
 
-    <string name="RegistrationActivity_phone_number_description">Rufnummer</string>
+    <string name="RegistrationActivity_phone_number_description">Telefonnummer</string>
     <string name="RegistrationActivity_country_code_description">Landesvorwahl</string>
     <string name="RegistrationActivity_call">Mich anrufen</string>
     <string name="RegistrationActivity_verification_code">Verifikationscode</string>
@@ -2086,7 +2086,7 @@
     <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_title">Probleme bei der Anmeldung?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Vergewissere dich, dass dein Mobiltelefon ein Mobilfunksignal hat, um deine SMS oder deinen Anruf zu empfangen\n • Bestätige, dass du unter dieser Rufnummer einen Anruf empfangen kannst\n • Überprüfe, ob du deine Rufnummer richtig eingegeben hast.</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Vergewissere dich, dass dein Mobiltelefon ein Mobilfunksignal hat, um deine SMS oder deinen Anruf zu empfangen\n • Bestätige, dass du unter dieser Telefonnummer einen Anruf empfangen kannst\n • Überprüfe, ob du deine Telefonnummer richtig eingegeben hast.</string>
     <!--    A call to action for a user having trouble entering the verification to seek further help. -->
     <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">Für weitere Infos folge bitte diesen Schritten zur Fehlerbehebung oder kontaktiere den Support</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
@@ -2540,7 +2540,7 @@
 
     <!-- UnauthorizedReminder -->
     <!-- Message shown in a reminder banner when the user\'s device is no longer registered -->
-    <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Dieses Gerät ist nicht mehr registriert. Das liegt wahrscheinlich daran, dass du deine Rufnummer mit Signal auf einem anderen Gerät registriert hast.</string>
+    <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Dieses Gerät ist nicht mehr registriert. Das liegt wahrscheinlich daran, dass du deine Telefonnummer mit Signal auf einem anderen Gerät registriert hast.</string>
     <!-- Action in reminder banner that will take user to re-register -->
     <string name="UnauthorizedReminder_reregister_action">Gerät erneut registrieren</string>
 
@@ -2637,7 +2637,7 @@
         <item quantity="other">%1$d Mitglieder</item>
     </plurals>
     <!-- Text on row item to find user by phone number -->
-    <string name="ContactSelectionListFragment__find_by_phone_number">Nach Rufnummer suchen</string>
+    <string name="ContactSelectionListFragment__find_by_phone_number">Nach Telefonnummer suchen</string>
     <!-- Text on row item to find user by username -->
     <string name="ContactSelectionListFragment__find_by_username">Nach Nutzernamen suchen</string>
 
@@ -3244,7 +3244,7 @@
     <string name="preferences_communication__censorship_circumvention">Zensurumgehung</string>
     <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Bei Aktivierung wird Signal versuchen, Zensurmaßnahmen zu umgehen. Aktiviere diese Funktion nur dann, wenn du dich an einem Ort befindest, an dem Signal zensiert wird.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Die Zensurumgehung wurde aufgrund der Rufnummer deines Nutzerkontos aktiviert.</string>
+    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Die Zensurumgehung wurde aufgrund der Telefonnummer deines Nutzerkontos aktiviert.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
     <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Du hast die Zensurumgehung manuell deaktiviert.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
@@ -3729,7 +3729,7 @@
 
     <!-- AccountLockedFragment -->
     <string name="AccountLockedFragment__account_locked">Konto gesperrt</string>
-    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Dein Konto wurde gesperrt, um deine Privatsphäre und Sicherheit zu schützen. Nach Ablauf von %1$d Tagen ohne Kontoaktivität kannst du diese Rufnummer ohne PIN erneut registrieren. Alle Inhalte werden dabei gelöscht.</string>
+    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Dein Konto wurde gesperrt, um deine Privatsphäre und Sicherheit zu schützen. Nach Ablauf von %1$d Tagen ohne Kontoaktivität kannst du diese Telefonnummer ohne PIN erneut registrieren. Alle Inhalte werden dabei gelöscht.</string>
     <string name="AccountLockedFragment__next">Weiter</string>
     <string name="AccountLockedFragment__learn_more">Mehr erfahren</string>
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
@@ -3852,7 +3852,7 @@
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Dein Backup enthält eine sehr große Datei, die nicht gesichert werden kann. Bitte lösche sie und erstelle ein neues Backup.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Antippen zum Verwalten von Datensicherungen.</string>
-    <string name="RegistrationActivity_wrong_number">Falsche Rufnummer?</string>
+    <string name="RegistrationActivity_wrong_number">Falsche Telefonnummer?</string>
     <!--    Countdown to when the user can request a new code via phone call during registration.-->
     <string name="RegistrationActivity_call_me_instead_available_in">Ruf mich an (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
@@ -3863,11 +3863,11 @@
     <string name="BackupUtil_never">Nie</string>
     <string name="BackupUtil_unknown">Unbekannt</string>
     <!-- Phone number heading displayed as a screen title -->
-    <string name="preferences_app_protection__phone_number">Rufnummer</string>
+    <string name="preferences_app_protection__phone_number">Telefonnummer</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
-    <string name="preferences_app_protection__choose_who_can_see">Lege fest, wer deine Rufnummer sehen kann und wer dich auf Signal mit ihr kontaktieren kann.</string>
+    <string name="preferences_app_protection__choose_who_can_see">Lege fest, wer deine Telefonnummer sehen kann und wer dich auf Signal mit ihr kontaktieren kann.</string>
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
-    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">Wer meine Rufnummer sehen kann</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">Wer meine Telefonnummer sehen kann</string>
     <!-- Subtext below radio buttons when who can see my number is set to everybody -->
     <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">Deine Telefonnummer ist für Personen und Gruppen sichtbar, mit denen du Nachrichten austauschst.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
@@ -3875,7 +3875,7 @@
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
     <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Your phone number will not be visible to anyone.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
-    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Wer mich anhand der Rufnummer finden kann</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Wer mich anhand der Telefonnummer finden kann</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
     <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">Wer deine Telefonnummer hat, sieht, dass du bei Signal bist und kann mit dir chatten.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
@@ -4164,14 +4164,14 @@
 
     <!-- DeleteAccountFragment -->
     <string name="DeleteAccountFragment__deleting_your_account_will">Das Löschen deines Kontos wird:</string>
-    <string name="DeleteAccountFragment__enter_your_phone_number">Gib deine Rufnummer ein</string>
+    <string name="DeleteAccountFragment__enter_your_phone_number">Gib deine Telefonnummer ein</string>
     <string name="DeleteAccountFragment__delete_account">Dein Konto löschen</string>
     <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Deine Kontodetails und dein Profilfoto löschen</string>
     <string name="DeleteAccountFragment__delete_all_your_messages">Alle deine Nachrichten löschen</string>
     <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Lösche %1$s in deinem Zahlungskonto</string>
     <string name="DeleteAccountFragment__no_country_code">Keine Ländervorwahl angegeben</string>
-    <string name="DeleteAccountFragment__no_number">Keine Rufnummer angegeben</string>
-    <string name="DeleteAccountFragment__the_phone_number">Die eingegebene Rufnummer entspricht nicht der deines Kontos.</string>
+    <string name="DeleteAccountFragment__no_number">Keine Telefonnummer angegeben</string>
+    <string name="DeleteAccountFragment__the_phone_number">Die eingegebene Telefonnummer entspricht nicht der deines Kontos.</string>
     <string name="DeleteAccountFragment__are_you_sure">Möchtest du dein Nutzerkonto wirklich löschen?</string>
     <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Dies löscht dein Signal-Konto und setzt die App in ihren Ursprungszustand zurück. Die App wird nach Abschluss des Vorgangs geschlossen.</string>
     <string name="DeleteAccountFragment__failed_to_delete_local_data">Die lokalen Daten konnten nicht gelöscht werden. In Androids App-Einstellungen kannst du sie manuell löschen.</string>
@@ -4391,7 +4391,7 @@
     <string name="AccountSettingsFragment__account">Konto</string>
     <string name="AccountSettingsFragment__youll_be_asked_less_frequently">PIN-Erinnerungen aktivieren. Diese werden seltener angezeigt, wenn du die PIN regelmäßig korrekt eingibst.</string>
     <string name="AccountSettingsFragment__require_your_signal_pin">Signal-PIN Eingabe erforderlich machen, sobald du deine Telefonnummer erneut bei Signal registrierst.</string>
-    <string name="AccountSettingsFragment__change_phone_number">Rufnummer ändern</string>
+    <string name="AccountSettingsFragment__change_phone_number">Telefonnummer ändern</string>
     <!-- Account setting that allows user to request and export their signal account data -->
     <string name="AccountSettingsFragment__request_account_data">Deine Kontodaten</string>
 
@@ -4437,56 +4437,56 @@
     <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Dein Bericht wird nur zum Zeitpunkt des Exports generiert und nicht von Signal auf deinem Gerät gespeichert.</string>
 
     <!-- ChangeNumberFragment -->
-    <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Verwende diese Funktion, um deine aktuelle Rufnummer auf eine neue Rufnummer zu ändern. Du kannst diese Änderung nicht rückgängig machen.\n\nBevor du fortfährst, vergewissere dich, dass deine neue Rufnummer SMS oder Anrufe empfangen kann.</string>
+    <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Verwende diese Funktion, um deine aktuelle Telefonnummer auf eine neue Telefonnummer zu ändern. Du kannst diese Änderung nicht rückgängig machen.\n\nBevor du fortfährst, vergewissere dich, dass deine neue Nummer SMS oder Anrufe empfangen kann.</string>
     <string name="ChangeNumberFragment__continue">Fortfahren</string>
     <!-- Message shown on dialog after your number has been changed successfully. -->
-    <string name="ChangeNumber__your_phone_number_has_changed_to_s">Deine Rufnummer wurde zu %1$s geändert.</string>
+    <string name="ChangeNumber__your_phone_number_has_changed_to_s">Deine Telefonnummer wurde zu %1$s geändert.</string>
     <!-- Confirmation button to dismiss number changed dialog -->
     <string name="ChangeNumber__okay">OK</string>
 
     <!-- ChangeNumberEnterPhoneNumberFragment -->
-    <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Rufnummer ändern</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Deine alte Rufnummer</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Alte Rufnummer</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Deine neue Rufnummer</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Neue Rufnummer</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Die eingegebene Rufnummer entspricht nicht der deines Kontos.</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Du musst die Ländervorwahl deiner alten Rufnummer angeben</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Du musst deine alte Rufnummer angeben</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Du musst die Ländervorwahl deiner neuen Rufnummer angeben</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Du musst deine neue Rufnummer angeben</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Telefonnummer ändern</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Deine alte Telefonnummer</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Alte Telefonnummer</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Deine neue Telefonnummer</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Neue Telefonnummer</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Die eingegebene Telefonnummer entspricht nicht der deines Kontos.</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Du musst die Ländervorwahl deiner alten Telefonnummer angeben</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Du musst deine alte Telefonnummer angeben</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Du musst die Ländervorwahl deiner neuen Telefonnummer angeben</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Du musst deine neue Telefonnummer angeben</string>
 
     <!-- ChangeNumberVerifyFragment -->
-    <string name="ChangeNumberVerifyFragment__change_number">Rufnummern ändern</string>
+    <string name="ChangeNumberVerifyFragment__change_number">Telefonnummer ändern</string>
     <string name="ChangeNumberVerifyFragment__verifying_s">%1$s wird verifiziert</string>
     <string name="ChangeNumberVerifyFragment__captcha_required">Captcha erforderlich</string>
 
     <!-- ChangeNumberConfirmFragment -->
-    <string name="ChangeNumberConfirmFragment__change_number">Rufnummer ändern</string>
-    <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Du bist dabei, deine Rufnummer von %1$s zu %2$s zu ändern.\n\nÜberprüfe vor dem Fortfahren, ob die folgende Nummer korrekt ist.</string>
-    <string name="ChangeNumberConfirmFragment__edit_number">Rufnummer bearbeiten</string>
+    <string name="ChangeNumberConfirmFragment__change_number">Telefonnummer ändern</string>
+    <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Du bist dabei, deine Telefonnummer von %1$s zu %2$s zu ändern.\n\nÜberprüfe vor dem Fortfahren, ob die folgende Nummer korrekt ist.</string>
+    <string name="ChangeNumberConfirmFragment__edit_number">Telefonnummer bearbeiten</string>
 
     <!-- ChangeNumberRegistrationLockFragment -->
-    <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Änderung der Signal-Rufnummer – Hilfe benötigt für PIN für Android (v2-PIN)</string>
+    <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Änderung der Signal-Telefonnummer – Hilfe benötigt für PIN für Android (v2-PIN)</string>
 
     <!-- ChangeNumberPinDiffersFragment -->
     <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">PINs stimmen nicht überein.</string>
-    <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">Die mit deiner neuen Rufnummer verknüpfte PIN unterscheidet sich von der PIN deiner alten Rufnummer. Möchtest du deine alte PIN beibehalten oder sie aktualisieren?</string>
+    <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">Die mit deiner neuen Telefonnummer verknüpfte PIN unterscheidet sich von der PIN deiner alten Telefonnummer. Möchtest du deine alte PIN beibehalten oder sie aktualisieren?</string>
     <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Alte PIN beibehalten</string>
     <string name="ChangeNumberPinDiffersFragment__update_pin">PIN aktualisieren</string>
     <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Alte PIN beibehalten?</string>
 
     <!-- ChangeNumberLockActivity -->
     <!-- Info message shown to user if something crashed the app during the change number attempt and we were unable to confirm the change so we force them into this screen to check before letting them use the app -->
-    <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Offenbar hast du versucht, deine Rufnummer zu ändern, und wir konnten nicht feststellen, ob dies erfolgreich war.\n\nWird erneut überprüft …</string>
+    <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Offenbar hast du versucht, deine Telefonnummer zu ändern, und wir konnten nicht feststellen, ob dies erfolgreich war.\n\nWird erneut überprüft …</string>
     <!-- Dialog title shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow -->
     <string name="ChangeNumberLockActivity__change_status_confirmed">Änderungsstatus bestätigt</string>
     <!-- Dialog message shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow -->
-    <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Deine Rufnummer wurde als %1$s bestätigt. Wenn dies nicht deine neue Rufnummer ist, beginne bitte den Prozess der Rufnummernänderung erneut.</string>
+    <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Deine Telefonnummer wurde als %1$s bestätigt. Wenn dies nicht deine neue Telefonnummer ist, beginne bitte den Prozess der Nummernänderung erneut.</string>
     <!-- Dialog title shown if we were not able to confirm your phone number with the server and thus cannot let leave the change flow yet after a crash during the regular flow -->
     <string name="ChangeNumberLockActivity__change_status_unconfirmed">Änderungsstatus unbestätigt</string>
     <!-- Dialog message shown when we can\'t verify the phone number on the server, only shown if there was a network error communicating with the server after a crash during the regular flow -->
-    <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Wir konnten den Status deiner Anfrage auf Rufnummernänderung nicht feststellen.\n\n(Fehler: %1$s)</string>
+    <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Wir konnten den Status deiner Anfrage auf Telefonnummernänderung nicht feststellen.\n\n(Fehler: %1$s)</string>
     <!-- Dialog button to retry confirming the number on the server -->
     <string name="ChangeNumberLockActivity__retry">Erneut versuchen</string>
     <!-- Dialog button shown to leave the app when in the unconfirmed change status after a crash in the regular flow -->
@@ -4705,8 +4705,8 @@
     <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
     <string name="ConversationSettingsFragment__conversation_muted_until_s">Chat stummgeschaltet bis %1$s</string>
     <string name="ConversationSettingsFragment__conversation_muted_forever">Chat dauerhaft stummgeschaltet</string>
-    <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Rufnummer in Zwischenablage kopiert.</string>
-    <string name="ConversationSettingsFragment__phone_number">Rufnummer</string>
+    <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefonnummer in Zwischenablage kopiert.</string>
+    <string name="ConversationSettingsFragment__phone_number">Telefonnummer</string>
     <string name="ConversationSettingsFragment__get_badges">Unterstütze Signal und erhalte Abzeichen für dein Profil. Tippe auf ein Abzeichen, um mehr zu erfahren.</string>
 
     <!-- PermissionsSettingsFragment -->
@@ -6532,13 +6532,13 @@
     <!-- Title of activity when finding by username -->
     <string name="FindByActivity__find_by_username">Nach Nutzernamen suchen</string>
     <!-- Title of activity when finding by phone number -->
-    <string name="FindByActivity__find_by_phone_number">Nach Rufnummer suchen</string>
+    <string name="FindByActivity__find_by_phone_number">Nach Telefonnummer suchen</string>
     <!-- Title of screen to select a country code -->
     <string name="FindByActivity__select_country_code">Landesvorwahl auswählen</string>
     <!-- Entry placeholder for find by username -->
     <string name="FindByActivity__username">Nutzername</string>
     <!-- Entry placeholder for find by phone number -->
-    <string name="FindByActivity__phone_number">Rufnummer</string>
+    <string name="FindByActivity__phone_number">Telefonnummer</string>
     <!-- Help text under user entry for find by username -->
     <string name="FindByActivity__enter_a_full_username">Enter a full username with its pair of digits.</string>
     <!-- Content description for next action button -->
@@ -6548,7 +6548,7 @@
     <!-- Dialog title for invalid username -->
     <string name="FindByActivity__invalid_username">Ungültiger Nutzername</string>
     <!-- Dialog title for invalid phone number -->
-    <string name="FindByActivity__invalid_phone_number">Ungültige Rufnummer</string>
+    <string name="FindByActivity__invalid_phone_number">Ungültige Telefonnummer</string>
     <!-- Dialog title when phone number is not a registered signal user -->
     <string name="FindByActivity__invite_to_signal">Zu Signal einladen</string>
     <!-- Dialog title when username is not found -->

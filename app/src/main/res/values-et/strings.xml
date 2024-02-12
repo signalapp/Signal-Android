@@ -2290,7 +2290,7 @@
     <string name="UsernameEditFragment_successfully_removed_username">Kasutajanimi edukalt eemaldatud.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Esines võrgutõrge.</string>
     <string name="UsernameEditFragment_this_username_is_taken">See kasutajanimi on võetud.</string>
-    <string name="UsernameEditFragment_usernames_can_only_include">Kasutajanimed võivad sisaldada ainult a-Z, 0-9 ja alakriipse.</string>
+    <string name="UsernameEditFragment_usernames_can_only_include">Kasutajanimed võivad sisaldada ainult a–Z, 0–9 ja alakriipse.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Kasutajanimed ei tohi alata numbriga.</string>
     <string name="UsernameEditFragment_username_is_invalid">Kasutajanimi on sobimatu.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Kasutajanimede pikkus peab olema %1$d ja %2$d tähemärgi vahel.</string>
@@ -2626,7 +2626,7 @@
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal vajab kontaktide kuvamiseks neile ligipääsu, kuid see on püsivalt keelatud. Palun ava rakenduse sätete menüü, vali \"Õigused\" ja luba \"Kontaktid\".</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Kontaktide laadimisel tekkis tõrge. Kontrolli võrguühendust.</string>
     <string name="ContactSelectionListFragment_username_not_found">Kasutajanime ei leitud</string>
-    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" ei ole Signali kasutaja. Palun kontrolli kasutajanime ja proovi uuesti."</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"„%1$s“ ei ole Signali kasutaja. Palun kontrolli kasutajanime ja proovi uuesti."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Sa ei pea ennast gruppi lisama</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">Maksimaalne grupisuurus täitunud</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signali grupis võib olla maksimaalselt %1$d liiget.</string>
@@ -3871,9 +3871,9 @@
     <!-- Subtext below radio buttons when who can see my number is set to everybody -->
     <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">Sinu telefoninumber kuvatakse inimestele ja gruppidele, kellega suhtled.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Your phone number will not be visible to anyone unless they have it saved in their phone\'s contacts.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Sinu telefoninumber ei ole mitte kellelegi nähtav, kui see ei ole neil telefoni kontaktide hulka salvestatud.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Your phone number will not be visible to anyone.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Sinu telefoninumber ei ole mitte kellelegi nähtav.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Kes mind numbri järgi leida saavad</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
@@ -3911,7 +3911,7 @@
     <string name="prompt_passphrase_activity__tap_to_unlock">KOPUTA AVAMISEKS</string>
     <string name="Recipient_unknown">Tundmatu</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
-    <string name="Recipient_deleted_account">Deleted account</string>
+    <string name="Recipient_deleted_account">Kustutatud konto</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
     <string name="preferences_account_reregister">Registreeri konto uuesti</string>
@@ -6055,9 +6055,9 @@
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">Vali oma pank</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">Confirm your donation with %1$s</string>
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">%1$s annetuse kinnitamine</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">To setup your recurring donation tap continue to confirm a €0,01 charge with your bank. This will be automatically refunded and allows your €5/month donation to debited from your account.</string>
+    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">Korduva annetuse seadistamiseks toksa Jätka, et kinnitada 0,01 € tasumine oma pangast. See tagastatakse sulle automaatselt ning edaspidi võetakse su kontolt 5 € kuus annetuseks.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">Jätka</string>
 
@@ -6540,13 +6540,13 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">Telefoninumber</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_a_full_username">Enter a full username with its pair of digits.</string>
+    <string name="FindByActivity__enter_a_full_username">Sisesta täielik kasutajanimi koos selle numbripaariga.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">Edasi</string>
     <!-- Placeholder text for search input for selecting country code -->
     <string name="FindByActivity__search">Otsi</string>
     <!-- Dialog title for invalid username -->
-    <string name="FindByActivity__invalid_username">Invalid username</string>
+    <string name="FindByActivity__invalid_username">Kehtetu kasutajanimi</string>
     <!-- Dialog title for invalid phone number -->
     <string name="FindByActivity__invalid_phone_number">Vigane telefoninumber</string>
     <!-- Dialog title when phone number is not a registered signal user -->
@@ -6554,13 +6554,13 @@
     <!-- Dialog title when username is not found -->
     <string name="FindByActivity__username_not_found">Kasutajanime ei leitud</string>
     <!-- Dialog body for invalid username. Placeholder is the entered username. -->
-    <string name="FindByActivity__s_is_not_a_valid_username">%1$s is not a valid username. Make sure you\'ve entered the complete username followed by its set of digits.</string>
+    <string name="FindByActivity__s_is_not_a_valid_username">%1$s ei ole kehtiv kasutajanimi. Veendu, et sisestasid korrektse kasutajanime koos selle kahekohalise numbriga.</string>
     <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
-    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s is not valid phone number. Try again with a valid phone number</string>
+    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s ei ole kehtiv telefoninumber. Proovi uuesti kehtiva telefoninumbriga</string>
     <!-- Dialog body for not found username -->
     <string name="FindByActivity__s_is_not_a_signal_user">\"%1$s\" ei ole Signali kasutaja. Palun kontrolli kasutajanime ja proovi uuesti.</string>
     <!-- Dialog body for not found phone number -->
-    <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s is not a Signal user. Would you like to invite this number?</string>
+    <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s ei ole Signali kasutaja. Kas tahaksid seda numbrit liituma kutsuda?</string>
     <!-- Dialog action to invite the phone number to Signal -->
     <string name="FindByActivity__invite">Kutsu</string>
 

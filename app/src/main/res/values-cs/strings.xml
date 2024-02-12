@@ -4083,9 +4083,9 @@
     <!-- Subtext below radio buttons when who can see my number is set to everybody -->
     <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">Vaše telefonní číslo bude viditelné pro lidi a skupiny, se kterými si píšete.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Your phone number will not be visible to anyone unless they have it saved in their phone\'s contacts.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Vaše telefonní číslo nikdo neuvidí, pokud ho nemá uložené v kontaktech svého telefonu.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Your phone number will not be visible to anyone.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Vaše telefonní číslo nikdo neuvidí.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Kdo mě může najít podle čísla</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
@@ -4123,7 +4123,7 @@
     <string name="prompt_passphrase_activity__tap_to_unlock">KLEPNUTÍM ODEMKNĚTE</string>
     <string name="Recipient_unknown">Neznámý</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
-    <string name="Recipient_deleted_account">Deleted account</string>
+    <string name="Recipient_deleted_account">Smazaný účet</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
     <string name="preferences_account_reregister">Opětovná registrace účtu</string>
@@ -6331,7 +6331,7 @@
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
     <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">Potvrďte svůj příspěvek u banky %1$s</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">To setup your recurring donation tap continue to confirm a €0,01 charge with your bank. This will be automatically refunded and allows your €5/month donation to debited from your account.</string>
+    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">Chcete-li nastavit svůj pravidelný příspěvek, klepněte na pokračovat a potvrďte poplatek 0,01 € u své banky. Ten vám bude automaticky vrácen a umožní, aby se z vašeho účtu odečítal příspěvek ve výši 5 € měsíčně.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">Pokračovat</string>
 
@@ -6826,7 +6826,7 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">Telefonní číslo</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_a_full_username">Enter a full username with its pair of digits.</string>
+    <string name="FindByActivity__enter_a_full_username">Zadejte celé uživatelské jméno s příslušnou dvojicí číslic.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">Další</string>
     <!-- Placeholder text for search input for selecting country code -->
@@ -6840,9 +6840,9 @@
     <!-- Dialog title when username is not found -->
     <string name="FindByActivity__username_not_found">Uživatelské jméno nebylo nalezeno</string>
     <!-- Dialog body for invalid username. Placeholder is the entered username. -->
-    <string name="FindByActivity__s_is_not_a_valid_username">%1$s is not a valid username. Make sure you\'ve entered the complete username followed by its set of digits.</string>
+    <string name="FindByActivity__s_is_not_a_valid_username">%1$s není platné uživatelské jméno. Ujistěte se, že jste zadali celé uživatelské jméno následované kombinací číslic.</string>
     <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
-    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s is not valid phone number. Try again with a valid phone number</string>
+    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s není platné telefonní číslo. Zkuste to znovu s platným telefonním číslem.</string>
     <!-- Dialog body for not found username -->
     <string name="FindByActivity__s_is_not_a_signal_user">\"%1$s\" není uživatel Signal. Prosím zkontrolujte uživatelské jméno a zkuste to znovu.</string>
     <!-- Dialog body for not found phone number -->

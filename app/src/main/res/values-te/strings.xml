@@ -3871,9 +3871,9 @@
     <!-- Subtext below radio buttons when who can see my number is set to everybody -->
     <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">మీరు సందేశం పంపిన వ్యక్తులకు మరియు సమూహాలకు మీ ఫోన్ నంబర్ కనిపిస్తుంది.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Your phone number will not be visible to anyone unless they have it saved in their phone\'s contacts.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">మీ ఫోన్ నంబర్‌ను వారి ఫోన్ కాంటాక్ట్‌లలో వారు సేవ్ చేసుకుంటే తప్ప అది ఎవరికీ కనిపించదు.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Your phone number will not be visible to anyone.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">మీ ఫోన్ నంబర్ ఎవరికీ కనిపించదు.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">నంబర్ ద్వారా నన్ను ఎవరు కనుగొనగలరు</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
@@ -3911,7 +3911,7 @@
     <string name="prompt_passphrase_activity__tap_to_unlock">అన్లాక్ చేయడానికి ట్యాప్ చేయండి</string>
     <string name="Recipient_unknown">తెలియని</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
-    <string name="Recipient_deleted_account">Deleted account</string>
+    <string name="Recipient_deleted_account">తొలగించబడిన ఖాతా</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
     <string name="preferences_account_reregister">ఖాతాను తిరిగి నమోదు చేయండి</string>
@@ -6055,9 +6055,9 @@
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">మీ బ్యాంక్‌ను ఎంచుకోండి</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">Confirm your donation with %1$s</string>
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">%1$s తో మీ విరాళాన్ని నిర్ధారించండి</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">To setup your recurring donation tap continue to confirm a €0,01 charge with your bank. This will be automatically refunded and allows your €5/month donation to debited from your account.</string>
+    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">మీ పునరావృత విరాళాన్ని సెటప్ చేయడానికి, మీ బ్యాంక్‌తో €0,01 ఛార్జీని నిర్ధారించేందుకు కొనసాగించండిని తట్టండి. ఇది ఆటోమేటిక్‌గా రీఫండ్ చేయబడుతుంది మరియు మీ ఖాతా నుండి మీ నెలకు €5 విరాళాన్ని డెబిట్ చేయడానికి అనుమతిస్తుంది.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">కొనసాగండి</string>
 
@@ -6540,13 +6540,13 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">ఫోన్ నంబర్</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_a_full_username">Enter a full username with its pair of digits.</string>
+    <string name="FindByActivity__enter_a_full_username">పూర్తి యూజర్‌నేమ్‌ను దాని అంకెల జతతో ఎంటర్ చేయండి.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">తరువాత</string>
     <!-- Placeholder text for search input for selecting country code -->
     <string name="FindByActivity__search">వెతకండి</string>
     <!-- Dialog title for invalid username -->
-    <string name="FindByActivity__invalid_username">Invalid username</string>
+    <string name="FindByActivity__invalid_username">చెల్లని యూజర్‌నేమ్</string>
     <!-- Dialog title for invalid phone number -->
     <string name="FindByActivity__invalid_phone_number">చెల్లని ఫోన్ నంబర్</string>
     <!-- Dialog title when phone number is not a registered signal user -->
@@ -6554,13 +6554,13 @@
     <!-- Dialog title when username is not found -->
     <string name="FindByActivity__username_not_found">వినియోగదారు పేరు కనుగొనబడలేదు</string>
     <!-- Dialog body for invalid username. Placeholder is the entered username. -->
-    <string name="FindByActivity__s_is_not_a_valid_username">%1$s is not a valid username. Make sure you\'ve entered the complete username followed by its set of digits.</string>
+    <string name="FindByActivity__s_is_not_a_valid_username">%1$s చెల్లుబాటయ్యే యూజర్‌నేమ్ కాదు. మీరు పూర్తి యూజర్‌నేమ్‌ను దాని అంకెల జతతో ఎంటర్ చేశారని నిర్ధారించుకోండి.</string>
     <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
-    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s is not valid phone number. Try again with a valid phone number</string>
+    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s చెల్లుబాటయ్యే ఫోన్ నంబర్ కాదు. చెల్లుబాటు అయ్యే ఫోన్ నంబర్‌తో మళ్ళీ ప్రయత్నించండి</string>
     <!-- Dialog body for not found username -->
     <string name="FindByActivity__s_is_not_a_signal_user">\"%1$s\" Signal యూజర్ కాదు. దయచేసి వినియోగదారు పేరును తనిఖీ చేసి, మళ్లీ ప్రయత్నించండి.</string>
     <!-- Dialog body for not found phone number -->
-    <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s is not a Signal user. Would you like to invite this number?</string>
+    <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s Signal యూజర్ కాదు. మీరు ఈ నంబర్‌ను ఆహ్వానించాలని అనుకుంటున్నారా?</string>
     <!-- Dialog action to invite the phone number to Signal -->
     <string name="FindByActivity__invite">ఆహ్వానించండి</string>
 

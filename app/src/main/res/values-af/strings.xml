@@ -3871,9 +3871,9 @@
     <!-- Subtext below radio buttons when who can see my number is set to everybody -->
     <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">Jou foonnommer sal sigbaar wees vir mense en groepe aan wie jy boodskappe stuur.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Your phone number will not be visible to anyone unless they have it saved in their phone\'s contacts.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Jou foonnommer sal nie vir enigiemand sigbaar wees nie, tensy hulle dit in hul foon se kontakte gestoor het.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Your phone number will not be visible to anyone.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Jou foonnommer sal nie vir enigiemand sigbaar wees nie.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Wie my volgens my nommer kan vind</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
@@ -3911,7 +3911,7 @@
     <string name="prompt_passphrase_activity__tap_to_unlock">TIK OM TE ONTSLUIT</string>
     <string name="Recipient_unknown">Onbekend</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
-    <string name="Recipient_deleted_account">Deleted account</string>
+    <string name="Recipient_deleted_account">Geskrapte rekening</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
     <string name="preferences_account_reregister">Herregistreer rekening</string>
@@ -6055,9 +6055,9 @@
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">Kies jou bank</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">Confirm your donation with %1$s</string>
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">Bevestig jou skenking met %1$s</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">To setup your recurring donation tap continue to confirm a €0,01 charge with your bank. This will be automatically refunded and allows your €5/month donation to debited from your account.</string>
+    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">Om jou herhalende skenking op te stel, tik op gaan voort om \'n €0.01-debiet by jou bank te bevestig. Dit sal outomaties terugbetaal word en laat toe dat jou €5/maand-skenking van jou rekening gedebiteer word.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">Gaan voort</string>
 
@@ -6540,13 +6540,13 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">Telefoonnommer</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_a_full_username">Enter a full username with its pair of digits.</string>
+    <string name="FindByActivity__enter_a_full_username">Voer \'n volledige gebruikersnaam met sy paar syfers in.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">Volgende</string>
     <!-- Placeholder text for search input for selecting country code -->
     <string name="FindByActivity__search">Soek</string>
     <!-- Dialog title for invalid username -->
-    <string name="FindByActivity__invalid_username">Invalid username</string>
+    <string name="FindByActivity__invalid_username">Ongeldige gebruikersnaam</string>
     <!-- Dialog title for invalid phone number -->
     <string name="FindByActivity__invalid_phone_number">Ongeldige telefoonnommer</string>
     <!-- Dialog title when phone number is not a registered signal user -->
@@ -6554,13 +6554,13 @@
     <!-- Dialog title when username is not found -->
     <string name="FindByActivity__username_not_found">Gebruikersnaam nie gevind nie</string>
     <!-- Dialog body for invalid username. Placeholder is the entered username. -->
-    <string name="FindByActivity__s_is_not_a_valid_username">%1$s is not a valid username. Make sure you\'ve entered the complete username followed by its set of digits.</string>
+    <string name="FindByActivity__s_is_not_a_valid_username">%1$s is nie \'n geldige gebruikernaam nie. Maak seker dat jy die volledige gebruikersnaam ingevoer het, gevolg deur sy stel syfers.</string>
     <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
-    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s is not valid phone number. Try again with a valid phone number</string>
+    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s is nie geldige telefoonnommer nie. Probeer weer met \'n geldige telefoonnommer</string>
     <!-- Dialog body for not found username -->
     <string name="FindByActivity__s_is_not_a_signal_user">\"%1$s\" is nie \'n Signal-gebruiker nie. Kontroleer asb. die gebruikersnaam en probeer weer.</string>
     <!-- Dialog body for not found phone number -->
-    <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s is not a Signal user. Would you like to invite this number?</string>
+    <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s is nie \'n Signal-gebruiker nie. Wil jy graag hierdie nommer uitnooi?</string>
     <!-- Dialog action to invite the phone number to Signal -->
     <string name="FindByActivity__invite">Nooi uit</string>
 

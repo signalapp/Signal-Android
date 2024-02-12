@@ -2289,13 +2289,13 @@
     <string name="UsernameEditFragment_delete">Elimina</string>
     <string name="UsernameEditFragment_successfully_removed_username">Nome utente rimosso con successo.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Si è verificato un errore di rete.</string>
-    <string name="UsernameEditFragment_this_username_is_taken">Questo nome utente è preso.</string>
+    <string name="UsernameEditFragment_this_username_is_taken">Questo nome utente è già in uso.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">I nomi utente possono includere solo a–Z, 0–9 e trattini bassi.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">I nomi utente non possono iniziare con un numero.</string>
     <string name="UsernameEditFragment_username_is_invalid">Il nome utente non è valido.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">I nomi utente devono contenere da %1$d a %2$d caratteri.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Usando un nome utente, una persona può chattare con te senza bisogno di conoscere il tuo numero di telefono. I nomi utenti vengono combinati con una serie di numeri per aumentare il livello di privacy.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">Usando un nome utente, una persona può chattare con te senza bisogno di conoscere il tuo numero di telefono. I nomi utente vengono combinati con una serie di numeri per aumentare il livello di privacy.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">Cosa rappresenta questo numero?</string>
     <string name="UsernameEditFragment__these_digits_help_keep">Questi numeri aiutano a proteggere la privacy del tuo nome utente, così puoi evitare di ricevere messaggi non desiderati. Ti consigliamo di condividere il tuo nome utente solamente con le persone e i gruppi con cui vuoi chattare su Signal. Se cambi il nome utente, riceverai una nuova serie di numeri.</string>
@@ -3125,7 +3125,7 @@
     <string name="preferences__mmsc_url">URL MMSC</string>
     <string name="preferences__mms_proxy_host">MMS Host Proxy</string>
     <string name="preferences__mms_proxy_port">MMS Porta Proxy</string>
-    <string name="preferences__mmsc_username">MMSC Username</string>
+    <string name="preferences__mmsc_username">Utente MMSC</string>
     <string name="preferences__mmsc_password">MMSC Password</string>
     <string name="preferences__sms_delivery_reports">Rapporti di consegna SMS</string>
     <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Richiedi un rapporto di consegna per ogni SMS inviato</string>
@@ -3871,9 +3871,9 @@
     <!-- Subtext below radio buttons when who can see my number is set to everybody -->
     <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">Il tuo numero di telefono sarà visibile a tutte le persone e ai gruppi a cui invii messaggi.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Your phone number will not be visible to anyone unless they have it saved in their phone\'s contacts.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Il tuo numero di telefono non sarà visibile a nessuno, a meno che qualcuno non lo abbia già tra i contatti del proprio telefono.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Your phone number will not be visible to anyone.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Nessuna persona potrà vedere il tuo numero di telefono.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Chi può trovarmi tramite il mio numero</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
@@ -3911,7 +3911,7 @@
     <string name="prompt_passphrase_activity__tap_to_unlock">TOCCA PER SBLOCCARE</string>
     <string name="Recipient_unknown">Sconosciuto</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
-    <string name="Recipient_deleted_account">Deleted account</string>
+    <string name="Recipient_deleted_account">Account eliminato</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
     <string name="preferences_account_reregister">Registra di nuovo l\'account</string>
@@ -6057,7 +6057,7 @@
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
     <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">Conferma la tua donazione con %1$s</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">To setup your recurring donation tap continue to confirm a €0,01 charge with your bank. This will be automatically refunded and allows your €5/month donation to debited from your account.</string>
+    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">Per impostare la tua donazione ricorrente, tocca su Continua per confermare un addebito di 0,01€ sulla tua carta o sul tuo conto. Questa transazione sarà rimborsata automaticamente e ci consentirà di addebitarti la tua donazione di 5€ al mese.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">Continua</string>
 
@@ -6540,7 +6540,7 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">Numero di telefono</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_a_full_username">Enter a full username with its pair of digits.</string>
+    <string name="FindByActivity__enter_a_full_username">Inserisci un nome utente completo con la coppia di cifre corrispondente.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">Avanti</string>
     <!-- Placeholder text for search input for selecting country code -->
@@ -6554,9 +6554,9 @@
     <!-- Dialog title when username is not found -->
     <string name="FindByActivity__username_not_found">Nome utente non trovato</string>
     <!-- Dialog body for invalid username. Placeholder is the entered username. -->
-    <string name="FindByActivity__s_is_not_a_valid_username">%1$s is not a valid username. Make sure you\'ve entered the complete username followed by its set of digits.</string>
+    <string name="FindByActivity__s_is_not_a_valid_username">%1$s non è un nome utente valido. Assicurati di aver inserito il nome utente corretto seguito dalla serie numerica corrispondente.</string>
     <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
-    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s is not valid phone number. Try again with a valid phone number</string>
+    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s non è un numero di telefono corretto. Prova a inserirne un altro valido.</string>
     <!-- Dialog body for not found username -->
     <string name="FindByActivity__s_is_not_a_signal_user">\"%1$s\" non è un utente Signal. Controlla il nome utente e riprova.</string>
     <!-- Dialog body for not found phone number -->

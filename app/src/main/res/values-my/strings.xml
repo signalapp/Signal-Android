@@ -1029,7 +1029,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">သင်၏ သုံးစွဲသူအမည်၊ QR ကုဒ်နှင့် လင့်ခ်တို့ကို သင့်ပရိုဖိုင်တွင် မမြင်တွေ့နိုင်ပါ။ သင့်သုံးစွဲသူအမည်ကို သင် ယုံကြည်သူများနှင့်သာ မျှဝေပေးပါ။</string>
     <string name="ManageProfileFragment_profile_name">ပရိုဖိုင်း အမည်</string>
-    <string name="ManageProfileFragment_username">သုံးသူအမည်</string>
+    <string name="ManageProfileFragment_username">သုံးစွဲသူအမည်</string>
     <string name="ManageProfileFragment_about">အကြောင်း</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">ကိုယ်စားပြုရုပ်ပုံ တင်ရန်မအောင်မြင်ပါ</string>
     <string name="ManageProfileFragment_badges">ဘဲ့ဂျ်များ</string>
@@ -2205,15 +2205,15 @@
     <string name="UsernameEditFragment__add_a_username">သုံးစွဲသူအမည် ပေါင်းထည့်ရန်</string>
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">သင်၏ သုံးစွဲသူအမည်ကို ရွေးရန်</string>
-    <string name="UsernameEditFragment_username">အသုံးပြုသူအမည်</string>
+    <string name="UsernameEditFragment_username">သုံးစွဲသူအမည်</string>
     <string name="UsernameEditFragment_delete">ဖျက်ရန်</string>
     <string name="UsernameEditFragment_successfully_removed_username">အသုံးပြုသူအမည်ကို အောင်မြင်စွာ ဖယ်ရှားခဲ့ပြီး။</string>
     <string name="UsernameEditFragment_encountered_a_network_error">ကွန်ယက်အမှားတစ်ခုနှင့် ကြုံတွေ့ခဲ့ရသည်။</string>
-    <string name="UsernameEditFragment_this_username_is_taken">ဤအသုံးပြုသူအမည်ကို ယူထားပြီးပါပြီ။</string>
-    <string name="UsernameEditFragment_usernames_can_only_include">အသုံးပြုသူအမည်များတွင် A–Z၊ 0-9 နှင့် \"_\" သင်္ကေတများသာ ပါဝင်နိုင်ပါသည်။</string>
-    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">အသုံးပြုသူအမည်များသည်ည် နံပါတ်နှင့် စတင်၍ မရပါ။</string>
-    <string name="UsernameEditFragment_username_is_invalid">အသုံးပြုသူအမည် မမှန်ကန်ပါ</string>
-    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">အသုံးပြုသူအမည်များသည် %1$d နှင့် %2$d ကြား အက္ခရာလုံး အရေတွက်ရှိရပါမည် ။</string>
+    <string name="UsernameEditFragment_this_username_is_taken">ဤသုံးစွဲသူအမည်ကို ယူထားပြီးပါပြီ။</string>
+    <string name="UsernameEditFragment_usernames_can_only_include">သုံးစွဲသူအမည်များတွင် A–Z၊ 0-9 နှင့် \"_\" သင်္ကေတများသာ ပါဝင်နိုင်ပါသည်။</string>
+    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">သုံးစွဲသူအမည်များသည် နံပါတ်နှင့် စတင်၍ မရပါ။</string>
+    <string name="UsernameEditFragment_username_is_invalid">သုံးစွဲသူအမည် မမှန်ကန်ပါ</string>
+    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">သုံးစွဲသူအမည်များသည် %1$d နှင့် %2$d ကြား အက္ခရာလုံး အရေတွက်ရှိရပါမည် ။</string>
     <!-- Explanation about what usernames provide -->
     <string name="UsernameEditFragment__usernames_let_others_message">သုံးစွဲသူအမည်များသည် သင့်ဖုန်းနံပါတ် မလိုဘဲ အခြားသူများအား သင့်ထံ မက်ဆေ့ချ်ပို့နိုင်စေပါသည်။ သင့်လိပ်စာကို သီးသန့်လျှို့ဝှက်ထားရာတွင် အကူအညီဖြစ်စေရန် ၎င်းတို့အား ဂဏန်းအစုံလိုက်ဖြင့် တွဲထားပါသည်။</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
@@ -2541,8 +2541,8 @@
     <!-- ContactSelectionListFragment-->
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">အဆက်အသွယ်များ၏ အချက်အလက်များကို ပို့နိုင်ရန် Signalမှ အဆက်အသွယ်များအား အသုံးပြုခွင့် ရရန်လိုအပ်သည်။ သို့သော် လုံးဝခွင့်မပြုပါ ဟုရွေးထားပြီး ဖြစ်နေသဖြင့် အပ်ပလီကေးရှင်း အပြင်အဆင်သို့ သွား၍ ခွင့်ပြုချက်များကို ရွေးချယ်ကာ အဆက်အသွယ်များကို အသုံးပြုနိုင်အောင် ပြုလုပ်ပါ။</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">သင့်မိတ်ဆွေများစာရင်းများကို ပြန်လည်ထုတ်ယူ၍မရရှိနိုင်ပါ။ သင့်၏ အင်တာနက်ကွန်ယက်ကို ပြန်လည်စစ်ဆေးပါ။</string>
-    <string name="ContactSelectionListFragment_username_not_found">အသုံးပြုသူအမည်မတွေ့ပါ</string>
-    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" သည် Signal သုံးသူမဟုတ်ပါ။​ သုံးသူအမည်ကို အပြည့်အဝ မှန်ကန်စွာ ဖြည့်ထားရန် သေချာစေပါ။"</string>
+    <string name="ContactSelectionListFragment_username_not_found">သုံးစွဲသူအမည်မတွေ့ပါ</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s သည် Signal သုံးသူမဟုတ်ပါ။ သုံးစွဲသူအမည်ကို အပြည့်အဝ မှန်ကန်စွာ ဖြည့်ထားရန် သေချာစေပါ။"</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">သင်ကိုယ်တိုင် အဖွဲ့ထဲထည့်ရန် မလိုအပ်ပါ</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">အများဆုံးဆံ့နိုင်သော အဖွဲ့ဝင် အရေအတွက် ပြည့်ပါပြီ</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal အဖွဲ့များထဲတွင် အဖွဲ့ဝင် အများဆုံး %1$d ဦးဆံ့ပါသည်။</string>
@@ -3030,7 +3030,7 @@
     <string name="preferences__mmsc_url">MMSC URL</string>
     <string name="preferences__mms_proxy_host">MMS Proxy Host</string>
     <string name="preferences__mms_proxy_port">MMS Proxy Port</string>
-    <string name="preferences__mmsc_username">MMSC အသုံးပြုသူအမည်</string>
+    <string name="preferences__mmsc_username">MMSC သုံးစွဲသူအမည်</string>
     <string name="preferences__mmsc_password">MMSC စကားဝှက်</string>
     <string name="preferences__sms_delivery_reports">SMS ပို့ပြီးကြောင်း အသိပေးခြင်း</string>
     <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">SMS တစ်ခုပို့ပြီးတိုင်း ပို့ပြီးကြောင်း အသိပေးပါ။</string>
@@ -3765,9 +3765,9 @@
     <!-- Subtext below radio buttons when who can see my number is set to everybody -->
     <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">သင်၏ ဖုန်းနံပါတ်ကို သင် မက်ဆေ့ခ်ျပို့ထားသော လူများနှင့် အဖွဲ့များ မြင်နိုင်ပါမည်။</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Your phone number will not be visible to anyone unless they have it saved in their phone\'s contacts.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">သင့်ဖုန်းနံပါတ်ကို မိမိဖုန်း၏ အဆက်အသွယ်များထဲတွင် သိမ်းဆည်းမထားပါက ၎င်းကို မည်သူမျှ တွေ့မြင်ရမည်မဟုတ်ပါ။</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Your phone number will not be visible to anyone.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">သင့်ဖုန်းနံပါတ်ကို မည်သူမျှ မြင်တွေ့ရမည်မဟုတ်ပါ။</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">ဖုန်းနံပါတ်ဖြင့် ကျွန်ုပ်ကို ရှာနိုင်သူများ</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
@@ -3805,7 +3805,7 @@
     <string name="prompt_passphrase_activity__tap_to_unlock">လော့ခ်ဖြည်ရန် စကင်ရင်ကို နှိပ်ပါ</string>
     <string name="Recipient_unknown">အမျိုးအမည်မသိ</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
-    <string name="Recipient_deleted_account">Deleted account</string>
+    <string name="Recipient_deleted_account">ဖျက်ထားသော အကောင့်</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
     <string name="preferences_account_reregister">အကောင့်ကို ပြန်လည်၍မှတ်ပုံတင်ရန်</string>
@@ -5918,9 +5918,9 @@
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">သင့်ဘဏ်ကို ရွေးချယ်ပါ</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">Confirm your donation with %1$s</string>
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">%1$s ဖြင့် သင်၏ လှူဒါန်းမှုကို အတည်ပြုပါ</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">To setup your recurring donation tap continue to confirm a €0,01 charge with your bank. This will be automatically refunded and allows your €5/month donation to debited from your account.</string>
+    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">သင်၏ ထပ်တလဲလဲလှူဒါန်းမှုကို သတ်မှတ်ရန်အတွက် သင့်ဘဏ်တွင် €0,01 ကောက်ခံမှုကို အတည်ပြုရန် ဆက်လုပ်မည်ကို နှိပ်ပါ။ ၎င်းကို အလိုအလျောက် ပြန်အမ်းပေးမည်ဖြစ်ပြီး သင်၏ တစ်လလျှင် €5 လှူဒါန်းမှုကို သင့်အကောင့်မှ ထုတ်ယူခွင့်ပြုပါမည်။</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">ဆက်လုပ်ရန်</string>
 
@@ -6397,13 +6397,13 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">ဖုန်းနံပါတ်</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_a_full_username">Enter a full username with its pair of digits.</string>
+    <string name="FindByActivity__enter_a_full_username">သုံးစွဲသူအမည် အပြည့်အစုံကို ၎င်း၏ ဂဏန်းနှစ်လုံးတွဲနှင့်အတူ ရိုက်ထည့်ပါ။</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">ဆက်သွားမည်</string>
     <!-- Placeholder text for search input for selecting country code -->
     <string name="FindByActivity__search">ရှာရန်</string>
     <!-- Dialog title for invalid username -->
-    <string name="FindByActivity__invalid_username">Invalid username</string>
+    <string name="FindByActivity__invalid_username">သုံးစွဲသူအမည် မမှန်ကန်ပါ</string>
     <!-- Dialog title for invalid phone number -->
     <string name="FindByActivity__invalid_phone_number">မဆီလျော်သည့် ဖုန်းနံပါတ် </string>
     <!-- Dialog title when phone number is not a registered signal user -->
@@ -6411,13 +6411,13 @@
     <!-- Dialog title when username is not found -->
     <string name="FindByActivity__username_not_found">အသုံးပြုသူအမည်မတွေ့ပါ</string>
     <!-- Dialog body for invalid username. Placeholder is the entered username. -->
-    <string name="FindByActivity__s_is_not_a_valid_username">%1$s is not a valid username. Make sure you\'ve entered the complete username followed by its set of digits.</string>
+    <string name="FindByActivity__s_is_not_a_valid_username">%1$s သည် မှန်ကန်သော သုံးစွဲသူအမည်တစ်ခု မဟုတ်ပါ။ သုံးစွဲသူအမည် အပြည့်အစုံကို ၎င်း၏နောက်တွင် ဂဏန်းနှစ်လုံးတွဲနှင့်အတူ ရိုက်ထည့်ထားကြောင်း သေချာပါစေ။</string>
     <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
-    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s is not valid phone number. Try again with a valid phone number</string>
+    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s သည် မှန်ကန်သောဖုန်းနံပါတ် မဟုတ်ပါ။ မှန်ကန်သောဖုန်းနံပါတ်တစ်ခုဖြင့် ထပ်မံကြိုးစားကြည့်ပါ</string>
     <!-- Dialog body for not found username -->
     <string name="FindByActivity__s_is_not_a_signal_user">\"%1$s\" သည် Signal သုံးသူမဟုတ်ပါ။​ သုံးသူအမည်ကို အပြည့်အဝ မှန်ကန်စွာ ဖြည့်ထားရန် သေချာစေပါ။</string>
     <!-- Dialog body for not found phone number -->
-    <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s is not a Signal user. Would you like to invite this number?</string>
+    <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s သည် Signal သုံးစွဲသူ မဟုတ်ပါ။ ဤနံပါတ်ကို ဖိတ်ကြားလိုပါသလား။</string>
     <!-- Dialog action to invite the phone number to Signal -->
     <string name="FindByActivity__invite">ဖိတ်ခေါ်မယ်</string>
 

@@ -1064,7 +1064,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">ਤੁਹਾਡੇ ਵਰਤੋਂਕਾਰ ਨਾਂ, QR ਕੋਡ ਅਤੇ ਲਿੰਕ ਨੂੰ ਤੁਹਾਡੀ ਪ੍ਰੋਫਾਈਲ \'ਤੇ ਦਿਖਾਇਆ ਨਹੀਂ ਜਾਂਦਾ ਹੈ। ਆਪਣਾ ਵਰਤੋਂਕਾਰ ਨਾਂ ਸਿਰਫ਼ ਉਹਨਾਂ ਲੋਕਾਂ ਨਾਲ ਸਾਂਝਾ ਕਰੋ ਜਿਹਨਾਂ ਉੱਤੇ ਤੁਸੀਂ ਭਰੋਸਾ ਕਰਦੇ ਹੋ।</string>
     <string name="ManageProfileFragment_profile_name">ਪ੍ਰੋਫਾਈਲ ਨਾਂ</string>
-    <string name="ManageProfileFragment_username">ਵਰਤੋਂਕਾਰ-ਨਾਂ</string>
+    <string name="ManageProfileFragment_username">ਵਰਤੋਂਕਾਰ ਨਾਂ</string>
     <string name="ManageProfileFragment_about">ਇਸ ਬਾਰੇ</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">ਅਵਤਾਰ ਬਣਾਉਣਾ ਅਸਫਲ ਰਿਹਾ</string>
     <string name="ManageProfileFragment_badges">ਬੈਜ</string>
@@ -1076,9 +1076,9 @@
     <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
     <string name="ManageProfileFragment__link_tooltip_body">ਆਪਣਾ ਵਿਲੱਖਣ QR ਕੋਡ ਜਾਂ ਲਿੰਕ ਸਾਂਝਾ ਕਰਕੇ ਹੋਰਾਂ ਨੂੰ ਤੁਹਾਡੇ ਨਾਲ ਚੈਟ ਸ਼ੁਰੂ ਕਰਨ ਦੀ ਸਹੂਲਤ ਦਿਓ।</string>
     <!-- Snackbar message after creating username -->
-    <string name="ManageProfileFragment__username_created">ਵਰਤੋਂਕਾਰ ਨਾਮ ਬਣਾਇਆ ਗਿਆ</string>
+    <string name="ManageProfileFragment__username_created">ਵਰਤੋਂਕਾਰ ਨਾਂ ਬਣਾਇਆ ਗਿਆ</string>
     <!-- Snackbar message after copying username -->
-    <string name="ManageProfileFragment__username_copied">ਵਰਤੋਂਕਾਰ ਨਾਮ ਕਾਪੀ ਕੀਤਾ ਗਿਆ</string>
+    <string name="ManageProfileFragment__username_copied">ਵਰਤੋਂਕਾਰ ਨਾਂ ਕਾਪੀ ਕੀਤਾ ਗਿਆ</string>
     <!-- Snackbar message after network failure while trying to delete username -->
     <string name="ManageProfileFragment__couldnt_delete_username">ਵਰਤੋਂਕਾਰ ਨਾਂ ਮਿਟਾ ਨਹੀਂ ਸਕੇ। ਬਾਅਦ ਵਿੱਚ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
     <!-- Snackbar message after successful deletion of username -->
@@ -2284,18 +2284,18 @@
     <!-- Toolbar title when entering from registration -->
     <string name="UsernameEditFragment__add_a_username">ਵਰਤੋਂਕਾਰ ਨਾਂ ਸ਼ਾਮਲ ਕਰੋ</string>
     <!-- Instructional text at the top of the username edit screen -->
-    <string name="UsernameEditFragment__choose_your_username">ਆਪਣਾ ਵਰਤੋਂਕਾਰ ਨਾਮ ਚੁਣੋ</string>
-    <string name="UsernameEditFragment_username">ਵਰਤੋਂਕਾਰ-ਨਾਂ</string>
+    <string name="UsernameEditFragment__choose_your_username">ਆਪਣਾ ਵਰਤੋਂਕਾਰ ਨਾਂ ਚੁਣੋ</string>
+    <string name="UsernameEditFragment_username">ਵਰਤੋਂਕਾਰ ਨਾਂ</string>
     <string name="UsernameEditFragment_delete">ਮਿਟਾਓ</string>
     <string name="UsernameEditFragment_successfully_removed_username">ਵਰਤੋਂਕਾਰ-ਨਾਂ ਸਫਲਤਾਪੂਰਵਕ ਹਟਾਇਆ ਗਿਆ।</string>
     <string name="UsernameEditFragment_encountered_a_network_error">ਨੈੱਟਵਰਕ ਗਲਤੀ ਆਈ ਹੈ।</string>
-    <string name="UsernameEditFragment_this_username_is_taken">ਇਹ ਵਰਤੋਂਕਾਰ-ਨਾਂ ਮੱਲਿਆ ਜਾ ਚੁੱਕਾ ਹੈ।</string>
-    <string name="UsernameEditFragment_usernames_can_only_include">ਵਰਤੋਂਕਾਰ-ਨਾਂਵਾਂ ਵਿੱਚ ਸਿਰਫ਼ a– Z, 0-9 ਅਤੇ ਅੰਡਰਸਕੋਰ ਸ਼ਾਮਲ ਹੋ ਸਕਦੇ ਹਨ।</string>
-    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ਵਰਤੋਂਕਾਰ-ਨਾਂ ਅੰਕ ਨਾਲ ਸ਼ੁਰੂ ਨਹੀ ਹੋ ਸਕਦਾ ਹੈ।</string>
-    <string name="UsernameEditFragment_username_is_invalid">ਵਰਤੋਂਕਾਰ-ਨਾਂ ਗੈਰਵਾਜਬ ਹੈ।</string>
-    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ਵਰਤੋਂਕਾਰ-ਨਾਂ %1$d ਅਤੇ %2$d ਅੱਖਰਾਂ ਦੇ ਵਿਚਕਾਰ ਹੋਣਾ ਜ਼ਰੂਰੀ ਹੈ।</string>
+    <string name="UsernameEditFragment_this_username_is_taken">ਇਹ ਵਰਤੋਂਕਾਰ ਨਾਂ ਕੋਈ ਹੋਰ ਵਰਤ ਰਿਹਾ ਹੈ।</string>
+    <string name="UsernameEditFragment_usernames_can_only_include">ਵਰਤੋਂਕਾਰ ਨਾਂ ਵਿੱਚ ਸਿਰਫ਼ a–Z, 0–9 ਅਤੇ ਅੰਡਰਸਕੋਰ ਸ਼ਾਮਲ ਹੋ ਸਕਦੇ ਹਨ।</string>
+    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ਵਰਤੋਂਕਾਰ ਨਾਂ ਅੰਕ ਨਾਲ ਸ਼ੁਰੂ ਨਹੀਂ ਹੋ ਸਕਦਾ ਹੈ।</string>
+    <string name="UsernameEditFragment_username_is_invalid">ਵਰਤੋਂਕਾਰ ਨਾਂ ਅਵੈਧ ਹੈ।</string>
+    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ਵਰਤੋਂਕਾਰ ਨਾਂ ਦੇ ਵਿੱਚ %1$d ਤੋਂ %2$d ਅੱਖਰ ਹੋਣੇ ਲਾਜ਼ਮੀ ਹਨ।</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">ਤੁਹਾਡੇ ਫ਼ੋਨ ਨੰਬਰ ਦੀ ਲੋੜ ਪਏ ਬਿਨਾਂ ਲੋਕ ਵਰਤੋਂਕਾਰ ਨਾਮ ਰਾਹੀਂ ਤੁਹਾਨੂੰ ਸੁਨੇਹਾ ਭੇਜ ਸਕਦੇ ਹਨ। ਤੁਹਾਡੇ ਪਤੇ ਨੂੰ ਪ੍ਰਾਈਵੇਟ ਰੱਖਣ ਲਈ ਵਰਤੋਂਕਾਰ ਨਾਮ ਦੇ ਵਿੱਚ ਕੁਝ ਅੰਕ ਸ਼ਾਮਲ ਕਰ ਦਿੱਤੇ ਜਾਂਦੇ ਹਨ।</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">ਤੁਹਾਡੇ ਫ਼ੋਨ ਨੰਬਰ ਦੀ ਲੋੜ ਪਏ ਬਿਨਾਂ ਲੋਕ ਵਰਤੋਂਕਾਰ ਨਾਂ ਰਾਹੀਂ ਤੁਹਾਨੂੰ ਸੁਨੇਹਾ ਭੇਜ ਸਕਦੇ ਹਨ। ਤੁਹਾਡੇ ਪਤੇ ਨੂੰ ਪ੍ਰਾਈਵੇਟ ਰੱਖਣ ਲਈ ਵਰਤੋਂਕਾਰ ਨਾਂ ਦੇ ਵਿੱਚ ਅੰਕਾਂ ਦਾ ਜੋੜਾ ਵੀ ਸ਼ਾਮਲ ਕੀਤਾ ਜਾਂਦਾ ਹੈ।</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">ਇਹ ਨੰਬਰ ਕੀ ਹੈ?</string>
     <string name="UsernameEditFragment__these_digits_help_keep">ਇਹ ਅੰਕ ਤੁਹਾਡੇ ਵਰਤੋਂਕਾਰ ਨਾਮ ਨੂੰ ਪ੍ਰਾਈਵੇਟ ਰੱਖਣ ਵਿੱਚ ਮਦਦ ਕਰਦੇ ਹਨ ਤਾਂ ਜੋ ਤੁਸੀਂ ਅਣਚਾਹੇ ਸੁਨੇਹਿਆਂ ਤੋਂ ਬਚ ਸਕੋ। ਆਪਣਾ ਵਰਤੋਂਕਾਰ ਨਾਮ ਸਿਰਫ਼ ਉਹਨਾਂ ਲੋਕਾਂ ਅਤੇ ਗਰੁੱਪਾਂ ਨਾਲ ਸਾਂਝਾ ਕਰੋ ਜਿਹਨਾਂ ਨਾਲ ਤੁਸੀਂ ਚੈਟ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ। ਜੇਕਰ ਤੁਸੀਂ ਵਰਤੋਂਕਾਰ ਨਾਮ ਬਦਲਦੇ ਹੋ ਤਾਂ ਅੰਕਾਂ ਨੂੰ ਵੀ ਬਦਲ ਦਿੱਤਾ ਜਾਵੇਗਾ।</string>
@@ -2323,7 +2323,7 @@
 
     <!-- UsernameShareBottomSheet -->
     <!-- Explanation of what the sheet enables the user to do -->
-    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">ਵਰਤੋਂਕਾਰ ਨਾਮ ਦਾ ਲਿੰਕ ਕਾਪੀ ਜਾਂ ਸਾਂਝਾ ਕਰੋ</string>
+    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">ਵਰਤੋਂਕਾਰ ਨਾਂ ਦਾ ਲਿੰਕ ਕਾਪੀ ਜਾਂ ਸਾਂਝਾ ਕਰੋ</string>
 
     <!-- VerifyIdentityActivity -->
     <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">ਤੁਹਾਡੇ ਸੰਪਰਕ ਨਾ-ਅਨੁਕੂਲ QR ਕੋਡ ਫ਼ਾਰਮੈਟ ਦੇ ਨਾਲ Signal ਦੇ ਨਵਾਂ ਵਰਜ਼ਨ ਨੂੰ ਚਲਾ ਰਹੇ ਹਨ। ਉਹਨਾਂ ਨਾਲ ਮਿਲਾ ਕੇ ਅੱਪਡੇਟ ਕਰੋ।</string>
@@ -2625,8 +2625,8 @@
     <!-- ContactSelectionListFragment-->
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal ਨੂੰ ਸੰਪਰਕ ਜਾਣਕਾਰੀ ਦਿਖਾਉਣ ਲਈ ਸੰਪਰਕਾਂ ਦੀ ਇਜਾਜ਼ਤ ਦੀ ਲੋੜ ਹੈ, ਪਰ ਇਸ ਲਈ ਸਥਾਈ ਤੌਰ ’ਤੇ ਇਨਕਾਰ ਕਰ ਦਿੱਤਾ ਗਿਆ ਹੈ। ਐਪ ਸੈਟਿੰਗਾਂ ਮੇਨੂ ’ਤੇ ਜਾਰੀ ਰੱਖੋ, \"ਇਜਾਜ਼ਤਾਂ\" ਚੁਣੋ, ਅਤੇ \"ਸੰਪਰਕ\" ਸਮਰੱਥ ਕਰੋ।</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">ਸੰਪਰਕਾਂ ਨੂੰ ਮੁੜ ਪ੍ਰਾਪਤ ਕਰਨ ਵਿੱਚ ਤਰੁੱਟੀ, ਆਪਣੇ ਨੈੱਟਵਰਕ ਕਨੈਕਸ਼ਨ ਦੀ ਜਾਂਚ ਕਰੋ</string>
-    <string name="ContactSelectionListFragment_username_not_found">ਉਪਭੋਗਤਾ ਨਾਮ ਨਹੀਂ ਮਿਲਿਆ</string>
-    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" ਕੋਈ Signal ਵਰਤੋਂਕਾਰ ਨਹੀਂ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਵਰਤੋਂਕਾਰ-ਨਾਂ ਦੀ ਜਾਂਚ ਕਰੋ ਅਤੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"</string>
+    <string name="ContactSelectionListFragment_username_not_found">ਵਰਤੋਂਕਾਰ ਨਾਂ ਨਹੀਂ ਲੱਭਿਆ</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s Signal ਦੇ ਵਰਤੋਂਕਾਰ ਨਹੀਂ ਹਨ। ਕਿਰਪਾ ਕਰਕੇ ਵਰਤੋਂਕਾਰ ਨਾਂ ਦੀ ਜਾਂਚ ਕਰੋ ਅਤੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">ਤੁਹਾਨੂੰ ਆਪਣੇ-ਆਪ ਨੂੰ ਗਰੁੱਪ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰਨ ਦੀ ਜ਼ਰੂਰਤ ਨਹੀਂ ਹੈ</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">ਗਰੁੱਪ ਦੇ ਵੱਧ ਤੋਂ ਵੱਧ ਅਕਾਰ ਦੀ ਸੀਮਾ ਪੂਰੀ ਹੋਈ।</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal ਗਰੁੱਪਾਂ ਵਿੱਚ ਵੱਧ ਤੋਂ ਵੱਧ %1$d ਮੈਂਬਰ ਹੋ ਸਕਦੇ ਹਨ।</string>
@@ -3871,9 +3871,9 @@
     <!-- Subtext below radio buttons when who can see my number is set to everybody -->
     <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">ਤੁਹਾਡਾ ਫ਼ੋਨ ਨੰਬਰ ਉਹਨਾਂ ਲੋਕਾਂ ਅਤੇ ਗਰੁੱਪਾਂ ਨੂੰ ਦਿਖਾਈ ਦੇਵੇਗਾ ਜਿਹਨਾਂ ਨੂੰ ਤੁਸੀਂ ਸੁਨੇਹਾ ਭੇਜਦੇ ਹੋ।</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Your phone number will not be visible to anyone unless they have it saved in their phone\'s contacts.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">ਤੁਹਾਡਾ ਫ਼ੋਨ ਨੰਬਰ ਕਿਸੇ ਨੂੰ ਵੀ ਉਦੋਂ ਤੱਕ ਦਿਖਾਈ ਨਹੀਂ ਦੇਵੇਗਾ ਜਦੋਂ ਤੱਕ ਉਹ ਇਸਨੂੰ ਆਪਣੇ ਫ਼ੋਨ ਦੇ ਸੰਪਰਕਾਂ ਵਿੱਚ ਸੇਵ ਨਹੀਂ ਕਰ ਲੈਂਦੇ।</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Your phone number will not be visible to anyone.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">ਤੁਹਾਡਾ ਫ਼ੋਨ ਨੰਬਰ ਕਿਸੇ ਨੂੰ ਵੀ ਦਿਖਾਈ ਨਹੀਂ ਦੇਵੇਗਾ।</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">ਮੈਨੂੰ ਮੇਰੇ ਨੰਬਰ ਨਾਲ ਕੌਣ ਲੱਭ ਸਕਦਾ ਹੈ</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
@@ -3911,7 +3911,7 @@
     <string name="prompt_passphrase_activity__tap_to_unlock">ਅਨਲੌਕ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ</string>
     <string name="Recipient_unknown">ਅਣਜਾਣ</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
-    <string name="Recipient_deleted_account">Deleted account</string>
+    <string name="Recipient_deleted_account">ਮਿਟਾਇਆ ਗਿਆ ਖਾਤਾ</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
     <string name="preferences_account_reregister">ਖਾਤਾ ਮੁੜ ਰਜਿਸਟਰ ਕਰੋ</string>
@@ -6055,9 +6055,9 @@
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">ਆਪਣਾ ਬੈਂਕ ਚੁਣੋ</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">Confirm your donation with %1$s</string>
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">%1$s ਨਾਲ ਆਪਣੇ ਦਾਨ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">To setup your recurring donation tap continue to confirm a €0,01 charge with your bank. This will be automatically refunded and allows your €5/month donation to debited from your account.</string>
+    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">ਆਪਣੇ ਵਾਰ-ਵਾਰ ਦਿੱਤੇ ਜਾਣ ਵਾਲੇ ਦਾਨ ਨੂੰ ਸੈੱਟਅੱਪ ਕਰਨ ਲਈ, ਆਪਣੇ ਬੈਂਕ ਤੋਂ €0,01 ਦਾ ਖਰਚਾ ਲੈਣ ਦੀ ਪੁਸ਼ਟੀ ਕਰਨ ਲਈ ਜਾਰੀ ਰੱਖੋ \'ਤੇ ਟੈਪ ਕਰੋ। ਇਹ ਰਕਮ ਆਪਣੇ-ਆਪ ਰਿਫੰਡ ਕਰ ਦਿੱਤੀ ਜਾਵੇਗੀ ਅਤੇ ਇਸ ਨਾਲ ਤੁਹਾਡੇ ਖਾਤੇ ਵਿੱਚੋਂ €5/ਮਹੀਨੇ ਦਾ ਦਾਨ ਡੈਬਿਟ ਕਰਨ ਦੀ ਇਜਾਜ਼ਤ ਦਿੱਤੀ ਜਾਂਦੀ ਹੈ।</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">ਜਾਰੀ ਰੱਖੋ</string>
 
@@ -6540,13 +6540,13 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">ਫ਼ੋਨ ਨੰਬਰ</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_a_full_username">Enter a full username with its pair of digits.</string>
+    <string name="FindByActivity__enter_a_full_username">ਪੂਰੇ ਵਰਤੋਂਕਾਰ ਨਾਂ ਨੂੰ ਉਸਦੇ ਅੰਕਾਂ ਦੇ ਜੋੜੇ ਦੇ ਨਾਲ ਦਰਜ ਕਰੋ।</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">ਅੱਗੇ</string>
     <!-- Placeholder text for search input for selecting country code -->
     <string name="FindByActivity__search">ਖੋਜੋ</string>
     <!-- Dialog title for invalid username -->
-    <string name="FindByActivity__invalid_username">Invalid username</string>
+    <string name="FindByActivity__invalid_username">ਵਰਤੋਂਕਾਰ ਨਾਂ ਅਵੈਧ ਹੈ</string>
     <!-- Dialog title for invalid phone number -->
     <string name="FindByActivity__invalid_phone_number">ਅਵੈਧ ਫੋਨ ਨੰਬਰ</string>
     <!-- Dialog title when phone number is not a registered signal user -->
@@ -6554,13 +6554,13 @@
     <!-- Dialog title when username is not found -->
     <string name="FindByActivity__username_not_found">ਉਪਭੋਗਤਾ ਨਾਮ ਨਹੀਂ ਮਿਲਿਆ</string>
     <!-- Dialog body for invalid username. Placeholder is the entered username. -->
-    <string name="FindByActivity__s_is_not_a_valid_username">%1$s is not a valid username. Make sure you\'ve entered the complete username followed by its set of digits.</string>
+    <string name="FindByActivity__s_is_not_a_valid_username">%1$s ਇੱਕ ਵੈਧ ਵਰਤੋਂਕਾਰ ਨਾਂ ਨਹੀਂ ਹੈ। ਇਹ ਪੱਕਾ ਕਰੋ ਕਿ ਤੁਸੀਂ ਪੂਰਾ ਵਰਤੋਂਕਾਰ ਨਾਂ ਅਤੇ ਫਿਰ ਉਸਦੇ ਅੰਕਾਂ ਦੇ ਜੋੜੇ ਨੂੰ ਦਰਜ ਕੀਤਾ ਹੈ।</string>
     <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
-    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s is not valid phone number. Try again with a valid phone number</string>
+    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s ਵੈਧ ਫ਼ੋਨ ਨੰਬਰ ਨਹੀਂ ਹੈ। ਇੱਕ ਵੈਧ ਫ਼ੋਨ ਨੰਬਰ ਨਾਲ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ</string>
     <!-- Dialog body for not found username -->
     <string name="FindByActivity__s_is_not_a_signal_user">\"%1$s\" ਕੋਈ Signal ਵਰਤੋਂਕਾਰ ਨਹੀਂ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਵਰਤੋਂਕਾਰ-ਨਾਂ ਦੀ ਜਾਂਚ ਕਰੋ ਅਤੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
     <!-- Dialog body for not found phone number -->
-    <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s is not a Signal user. Would you like to invite this number?</string>
+    <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s Signal ਦੇ ਵਰਤੋਂਕਾਰ ਨਹੀਂ ਹਨ। ਕੀ ਤੁਸੀਂ ਇਸ ਨੰਬਰ ਨੂੰ ਸੱਦਾ ਦੇਣਾ ਚਾਹੋਗੇ?</string>
     <!-- Dialog action to invite the phone number to Signal -->
     <string name="FindByActivity__invite">ਸੱਦਾ</string>
 

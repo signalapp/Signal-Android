@@ -4295,9 +4295,9 @@
     <!-- Subtext below radio buttons when who can see my number is set to everybody -->
     <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">سَيكون رقم هاتفك مرئيًا للأشخاص والمجموعات التي تراسلها.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Your phone number will not be visible to anyone unless they have it saved in their phone\'s contacts.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">لن يكون رقم هاتفك مرئيًا لأي أحد إلا إذا كان مسجلاً على هاتفه في جهات اتصاله.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Your phone number will not be visible to anyone.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">رقم هاتفك لن يكون مرئيًا لأي أحد.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">مَن يُمكنه العثور عليَّ باستخدام رقمي</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
@@ -4335,7 +4335,7 @@
     <string name="prompt_passphrase_activity__tap_to_unlock">أنقُر لفك القُفل</string>
     <string name="Recipient_unknown">مجهول</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
-    <string name="Recipient_deleted_account">Deleted account</string>
+    <string name="Recipient_deleted_account">حساب محذوف</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
     <string name="preferences_account_reregister">إعادة-تسجيل الحساب</string>
@@ -6605,7 +6605,7 @@
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
     <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">تأكيد التبرّع عبر %1$s</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">To setup your recurring donation tap continue to confirm a €0,01 charge with your bank. This will be automatically refunded and allows your €5/month donation to debited from your account.</string>
+    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">لإعداد تبرّعك المُتكرر، انقر على مواصلة لتأكيد خصم €0,01 مع بنكك. سَيتم استرداد هذه القيمة تلقائيًا وسيسمح هذا بخصم تبرّعك بقيمة €5/الشهر من حسابك.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">مواصلة</string>
 
@@ -7112,7 +7112,7 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">رقم الهاتف</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_a_full_username">Enter a full username with its pair of digits.</string>
+    <string name="FindByActivity__enter_a_full_username">أدخل اسم مستخدم كامل مع زوج الأرقام الخاص به.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">التالي</string>
     <!-- Placeholder text for search input for selecting country code -->
@@ -7126,9 +7126,9 @@
     <!-- Dialog title when username is not found -->
     <string name="FindByActivity__username_not_found">لم يتم العثور على اسم المستخدم</string>
     <!-- Dialog body for invalid username. Placeholder is the entered username. -->
-    <string name="FindByActivity__s_is_not_a_valid_username">%1$s is not a valid username. Make sure you\'ve entered the complete username followed by its set of digits.</string>
+    <string name="FindByActivity__s_is_not_a_valid_username">%1$s ليس اسم مستخدم صالح. تأكد من أنك أدخلت اسم المستخدم كاملاً متبوعًا بمجموعة الأرقام الخاصة به.</string>
     <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
-    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s is not valid phone number. Try again with a valid phone number</string>
+    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s ليس رقم هاتف صحيح. أعد المحاولة مرة أخرى باستخدام رقم هاتف صحيح</string>
     <!-- Dialog body for not found username -->
     <string name="FindByActivity__s_is_not_a_signal_user">\"%1$s\" ليس مستخدم لسيجنال. يرجى التحقق من اسم المستخدم والمحاولة ثانية.</string>
     <!-- Dialog body for not found phone number -->

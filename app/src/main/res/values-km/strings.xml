@@ -1029,7 +1029,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">ឈ្មោះអ្នកប្រើ កូដ QR និងតំណរបស់អ្នកមិនអាចមើលឃើញនៅលើប្រូហ្វាល់របស់អ្នកទេ។ សូមចែករំលែកឈ្មោះអ្នកប្រើរបស់អ្នកជាមួយមនុស្សដែលអ្នកទុកចិត្តប៉ុណ្ណោះ។</string>
     <string name="ManageProfileFragment_profile_name">ឈ្មោះប្រវត្តិរូប</string>
-    <string name="ManageProfileFragment_username">ឈ្មោះអ្នកប្រើប្រាស់</string>
+    <string name="ManageProfileFragment_username">ឈ្មោះអ្នកប្រើ</string>
     <string name="ManageProfileFragment_about">អំពី</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">បានបរាជ័យក្នុងការកំណត់រូបតំណាង</string>
     <string name="ManageProfileFragment_badges">ស្លាក</string>
@@ -2205,15 +2205,15 @@
     <string name="UsernameEditFragment__add_a_username">បញ្ចូលឈ្មោះអ្នកប្រើ</string>
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">ជ្រើសរើសឈ្មោះអ្នកប្រើរបស់អ្នក</string>
-    <string name="UsernameEditFragment_username">ឈ្មោះអ្នកប្រើប្រាស់</string>
+    <string name="UsernameEditFragment_username">ឈ្មោះអ្នកប្រើ</string>
     <string name="UsernameEditFragment_delete">លុប</string>
     <string name="UsernameEditFragment_successfully_removed_username">លុបឈ្មោះអ្នកប្រើបានជោគជ័យ។</string>
     <string name="UsernameEditFragment_encountered_a_network_error">បានជួបប្រទះកំហុសបណ្តាញ។</string>
-    <string name="UsernameEditFragment_this_username_is_taken">ឈ្មោះអ្នកប្រើនេះត្រូវបានយក។</string>
-    <string name="UsernameEditFragment_usernames_can_only_include">ឈ្មោះអ្នកប្រើប្រាស់អាចរួមបញ្ចូលតែ a–Z, 0–9, និង គូស​ក្រោម។</string>
-    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ឈ្មោះអ្នកប្រើប្រាស់មិនអាចចាប់ផ្តើមពីលេខ។</string>
-    <string name="UsernameEditFragment_username_is_invalid">ឈ្មោះអ្នកប្រើប្រាស់មិនត្រឹមត្រូវ។</string>
-    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ឈ្មោះអ្នកប្រើប្រាស់ត្រូវនៅចន្លោះតួអក្សរ%1$d និង%2$d ។</string>
+    <string name="UsernameEditFragment_this_username_is_taken">ឈ្មោះអ្នកប្រើនេះត្រូវបានយកហើយ។</string>
+    <string name="UsernameEditFragment_usernames_can_only_include">ឈ្មោះអ្នកប្រើអាចរួមបញ្ចូលតែ a–Z, 0–9, និងបន្ទាត់ពីក្រោមប៉ុណ្ណោះ។</string>
+    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ឈ្មោះអ្នកប្រើមិនអាចចាប់ផ្តើមដោយលេខបានទេ។</string>
+    <string name="UsernameEditFragment_username_is_invalid">ឈ្មោះអ្នកប្រើមិនត្រឹមត្រូវទេ។</string>
+    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ឈ្មោះអ្នកប្រើត្រូវតែនៅចន្លោះតួអក្សរ %1$d និង %2$d។</string>
     <!-- Explanation about what usernames provide -->
     <string name="UsernameEditFragment__usernames_let_others_message">ឈ្មោះអ្នកប្រើអនុញ្ញាតឱ្យអ្នកដទៃផ្ញើសារមកអ្នកដោយមិនត្រូវការលេខទូរសព្ទរបស់អ្នក។ ពួកវាត្រូវបានផ្គូផ្គងជាមួយនឹងសំណុំលេខដើម្បីជួយរក្សាអាសយដ្ឋានរបស់អ្នកជាឯកជន។</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
@@ -2541,8 +2541,8 @@
     <!-- ContactSelectionListFragment-->
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signalត្រូវការសិទ្ធិប្រើប្រាស់បញ្ជី​ទំនាក់ទំនង ដើម្បីបង្ហាញបញ្ជីទំនាក់ទំនងរបស់អ្នក ប៉ុន្តែវាត្រូវបានបដិសេធរហូត។ សូមបន្តទៅ ការកំណត់ ជ្រើសរើស \"អនុញ្ញាត\" និងបើក \"បញ្ជីទំនាក់ទំនង\"។</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">មានបញ្ហាក្នុងការទាញយកបញ្ជីទំនាក់ទំនង, សូមពិនិត្យការតភ្ជាប់បណ្តាញរបស់អ្នក</string>
-    <string name="ContactSelectionListFragment_username_not_found">រកមិនឃើញឈ្មោះអ្នកប្រើប្រាស់</string>
-    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" មិនមែនជាអ្នកប្រើប្រាស់ Signal ទេ។ សូមពិនិត្យឈ្មោះអ្នកប្រើប្រាស់ និងសាកល្បងម្តងទៀត។"</string>
+    <string name="ContactSelectionListFragment_username_not_found">រកមិនឃើញឈ្មោះអ្នកប្រើ</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s មិនមែនជាអ្នកប្រើ Signal ទេ។ សូមពិនិត្យឈ្មោះអ្នកប្រើ រួចព្យាយាមម្តងទៀត។"</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">អ្នកមិនចាំបាច់បន្ថែមខ្លួនឯងចូលក្នុងក្រុមទេ</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">បានឈានដល់ទំហំក្រុមអតិបរមា</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">ក្រុម Signal អាចមានសមាជិកអតិបរមាចំនួន %1$d ។</string>
@@ -3765,9 +3765,9 @@
     <!-- Subtext below radio buttons when who can see my number is set to everybody -->
     <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">លេខទូរសព្ទរបស់អ្នកនឹងអាចមើលឃើញដោយមនុស្ស និងក្រុមដែលអ្នកផ្ញើសារ។</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Your phone number will not be visible to anyone unless they have it saved in their phone\'s contacts.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">លេខទូរសព្ទរបស់អ្នកនឹងមិនអាចមើលឃើញដោយនរណាម្នាក់ឡើយ លើកលែងតែពួកគេបានរក្សាទុកវានៅក្នុងបញ្ជីទំនាក់ទំនងរបស់ទូរសព្ទពួកគេ។</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Your phone number will not be visible to anyone.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">លេខទូរសព្ទរបស់អ្នកនឹងមិនអាចមើលឃើញដោយនរណាម្នាក់ឡើយ។</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">អ្នកដែលអាចរកខ្ញុំឃើញតាមលេខរបស់ខ្ញុំ</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
@@ -3805,7 +3805,7 @@
     <string name="prompt_passphrase_activity__tap_to_unlock">ចុច ដើម្បីដោះសោរ</string>
     <string name="Recipient_unknown">មិនស្គាល់</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
-    <string name="Recipient_deleted_account">Deleted account</string>
+    <string name="Recipient_deleted_account">បានលុបគណនី</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
     <string name="preferences_account_reregister">ចុះឈ្មោះគណនីឡើងវិញ</string>
@@ -5918,9 +5918,9 @@
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">ជ្រើសរើសធនាគាររបស់អ្នក</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">Confirm your donation with %1$s</string>
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">បញ្ជាក់ការបរិច្ចាគរបស់អ្នកជាមួយ %1$s</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">To setup your recurring donation tap continue to confirm a €0,01 charge with your bank. This will be automatically refunded and allows your €5/month donation to debited from your account.</string>
+    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">ដើម្បីរៀបចំសម្រាប់ការបរិច្ចាគជាថ្មីទៀតរបស់អ្នក សូមចុច បន្ត ដើម្បីបញ្ជាក់ការគិតប្រាក់ €0,01 ជាមួយធនាគាររបស់អ្នក។ វានឹងត្រូវបានបង្វិលសងវិញដោយស្វ័យប្រវត្តិ ហើយអនុញ្ញាតឱ្យមានការដកប្រាក់ពីគណនីរបស់អ្នក សម្រាប់ការបរិច្ចាគ €5/ខែរបស់អ្នក។</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">បន្ត</string>
 
@@ -6397,13 +6397,13 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">លេខទូរសព្ទ</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_a_full_username">Enter a full username with its pair of digits.</string>
+    <string name="FindByActivity__enter_a_full_username">បញ្ចូលឈ្មោះអ្នកប្រើពេញលេញ រួចសញ្ញាចុចមួយនិងលេខពីរខ្ទង់។</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">បន្ទាប់</string>
     <!-- Placeholder text for search input for selecting country code -->
     <string name="FindByActivity__search">ស្វែងរក</string>
     <!-- Dialog title for invalid username -->
-    <string name="FindByActivity__invalid_username">Invalid username</string>
+    <string name="FindByActivity__invalid_username">ឈ្មោះអ្នកប្រើមិនត្រឹមត្រូវទេ</string>
     <!-- Dialog title for invalid phone number -->
     <string name="FindByActivity__invalid_phone_number">លេខទូរសព្ទមិនត្រឹមត្រូវ</string>
     <!-- Dialog title when phone number is not a registered signal user -->
@@ -6411,13 +6411,13 @@
     <!-- Dialog title when username is not found -->
     <string name="FindByActivity__username_not_found">រកមិនឃើញឈ្មោះអ្នកប្រើប្រាស់</string>
     <!-- Dialog body for invalid username. Placeholder is the entered username. -->
-    <string name="FindByActivity__s_is_not_a_valid_username">%1$s is not a valid username. Make sure you\'ve entered the complete username followed by its set of digits.</string>
+    <string name="FindByActivity__s_is_not_a_valid_username">%1$s មិនមែនជាឈ្មោះត្រឹមត្រូវទេ។ ត្រូវប្រាកដថាអ្នកបានបញ្ចូលឈ្មោះអ្នកប្រើពេញលេញជាមួយសញ្ញាចុចមួយ និងលេខពីរខ្ទង់។</string>
     <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
-    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s is not valid phone number. Try again with a valid phone number</string>
+    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s មិនមែនជាលេខទូរសព្ទត្រឹមត្រូវទេ។ ព្យាយាមម្តងទៀតដោយប្រើលេខទូរសព្ទត្រឹមត្រូវ</string>
     <!-- Dialog body for not found username -->
     <string name="FindByActivity__s_is_not_a_signal_user">\"%1$s\" មិនមែនជាអ្នកប្រើប្រាស់ Signal ទេ។ សូមពិនិត្យឈ្មោះអ្នកប្រើប្រាស់ និងសាកល្បងម្តងទៀត។</string>
     <!-- Dialog body for not found phone number -->
-    <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s is not a Signal user. Would you like to invite this number?</string>
+    <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s មិនមែនជាអ្នកប្រើ Signal ទេ។ តើអ្នកចង់អញ្ជើញលេខនេះឬទេ?</string>
     <!-- Dialog action to invite the phone number to Signal -->
     <string name="FindByActivity__invite">អញ្ជើញ</string>
 

@@ -3871,9 +3871,9 @@
     <!-- Subtext below radio buttons when who can see my number is set to everybody -->
     <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">আপনার ফোন নম্বরটি সকল মানুষ এবং গ্ৰুপের কাছে দৃশ্যমান হবে।</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Your phone number will not be visible to anyone unless they have it saved in their phone\'s contacts.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">আপনার ফোন নম্বরটি কেউ দেখতে পাবেন না, যদি না তারা এটি তাদের ফোনের কন্টাক্টে সেভ করে থাকেন।</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Your phone number will not be visible to anyone.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">আপনার ফোন নম্বর কেউ দেখতে পাবেন না।</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">নম্বরের মাধ্যমে কে আমাকে খুঁজে পাবেন</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
@@ -3911,7 +3911,7 @@
     <string name="prompt_passphrase_activity__tap_to_unlock">লক্ খুলতে ট্যাপ করুন</string>
     <string name="Recipient_unknown">অজানা</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
-    <string name="Recipient_deleted_account">Deleted account</string>
+    <string name="Recipient_deleted_account">মুছে ফেলা অ্যাকাউন্ট</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
     <string name="preferences_account_reregister">অ্যাকাউন্ট পুনরায় নিবন্ধন করুন</string>
@@ -6057,7 +6057,7 @@
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
     <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">%1$s-এর মাধ্যমে আপনার ডোনেশন নিশ্চিত করুন</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">To setup your recurring donation tap continue to confirm a €0,01 charge with your bank. This will be automatically refunded and allows your €5/month donation to debited from your account.</string>
+    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">আপনার পুনরাবৃত্ত ডোনেশন সেটআপ করতে, আপনার ব্যাংকের মাধ্যমে €0,01 চার্জ নিশ্চিত করতে \'চালিয়ে যান\' ট্যাপ করুন। এটি স্বয়ংক্রিয়ভাবে ফেরত দেওয়া হবে এবং এটি আপনার অ্যাকাউন্ট থেকে আপনার €5/মাসের ডোনেশন ডেবিট করার অনুমতি দেয়।</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">চালিয়ে যান</string>
 
@@ -6540,7 +6540,7 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">ফোন নম্বর</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_a_full_username">Enter a full username with its pair of digits.</string>
+    <string name="FindByActivity__enter_a_full_username">এক জোড়া ডিজিট সহ একটি সম্পূর্ণ ব্যবহারকারীর নাম লিখুন।</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">পরবর্তী</string>
     <!-- Placeholder text for search input for selecting country code -->
@@ -6554,9 +6554,9 @@
     <!-- Dialog title when username is not found -->
     <string name="FindByActivity__username_not_found">ব্যবহারকারীর নাম খুঁজে পাওয়া যায়নি</string>
     <!-- Dialog body for invalid username. Placeholder is the entered username. -->
-    <string name="FindByActivity__s_is_not_a_valid_username">%1$s is not a valid username. Make sure you\'ve entered the complete username followed by its set of digits.</string>
+    <string name="FindByActivity__s_is_not_a_valid_username">ব্যবহারকারীর নাম হিসেবে %1$s নামটি কার্যকর নয়। নিশ্চিত করুন যে আপনি সম্পূর্ণ ব্যবহারকারীর নামের পরে তার ডিজিটগুলো লিখেছেন।</string>
     <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
-    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s is not valid phone number. Try again with a valid phone number</string>
+    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s কার্যকর ফোন নম্বর নয়। একটি সঠিক ফোন নম্বর দিয়ে আবার চেষ্টা করুন</string>
     <!-- Dialog body for not found username -->
     <string name="FindByActivity__s_is_not_a_signal_user">\"%1$s\" কোনও Signal ব্যবহারকারী নয়। দয়া করে ব্যবহারকারীর নামটি পরীক্ষা করুন এবং আবার চেষ্টা করুন।</string>
     <!-- Dialog body for not found phone number -->

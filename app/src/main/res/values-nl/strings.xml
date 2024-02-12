@@ -1086,7 +1086,7 @@
     <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
     <string name="ManageProfileFragment__delete_username_dialog_title">Gebruikersnaam verwijderen?</string>
     <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_body">"Hiermee wordt je gebruikersnaam verwijderd en worden je QR-code en link uitgeschakeld. %1$s kan hierna door anderen worden geclaimd. Weet je het zeker?"</string>
+    <string name="ManageProfileFragment__delete_username_dialog_body">"Hiermee wordt je gebruikersnaam verwijderd en worden je QR-code en link uitgeschakeld. “%1$s” kan hierna door anderen worden geclaimd. Weet je het zeker?"</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
