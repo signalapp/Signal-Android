@@ -1,6 +1,9 @@
-package org.whispersystems.signalservice.internal.util.concurrent;
+/*
+ * Copyright 2024 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
 
-import org.signal.libsignal.protocol.logging.Log;
+package org.signal.core.util.concurrent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,7 +78,6 @@ public final class CascadingFuture<T> implements ListenableFuture<T> {
         @Override
         public void onFailure(ExecutionException e) {
           if (callables.isEmpty() || !exceptionChecker.shouldContinue(e)) {
-            Log.w(TAG, e);
             result.setException(e.getCause());
           } else if (!result.isCancelled()) {
             doNext(callables, exceptionChecker);
@@ -86,7 +88,6 @@ public final class CascadingFuture<T> implements ListenableFuture<T> {
       if (callables.isEmpty() || !exceptionChecker.shouldContinue(e)) {
         result.setException(e.getCause());
       } else if (!result.isCancelled()) {
-        Log.w(TAG, e);
         doNext(callables, exceptionChecker);
       }
     }

@@ -1,4 +1,9 @@
-package org.whispersystems.signalservice.internal.util.concurrent;
+/*
+ * Copyright 2024 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
+package org.signal.core.util.concurrent;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -14,6 +19,18 @@ public class SettableFuture<T> implements ListenableFuture<T> {
   private          boolean   canceled;
   private volatile T         result;
   private volatile Throwable exception;
+
+  public SettableFuture() { }
+
+  public SettableFuture(T value) {
+    this.result    = value;
+    this.completed = true;
+  }
+
+  public SettableFuture(Throwable throwable) {
+    this.exception = throwable;
+    this.completed = true;
+  }
 
   @Override
   public synchronized boolean cancel(boolean mayInterruptIfRunning) {
@@ -61,6 +78,20 @@ public class SettableFuture<T> implements ListenableFuture<T> {
 
     notifyAllListeners();
     return true;
+  }
+
+  public void deferTo(ListenableFuture<T> other) {
+    other.addListener(new Listener<T>() {
+      @Override
+      public void onSuccess(T result) {
+        SettableFuture.this.set(result);
+      }
+
+      @Override
+      public void onFailure(ExecutionException e) {
+        SettableFuture.this.setException(e.getCause());
+      }
+    });
   }
 
   @Override

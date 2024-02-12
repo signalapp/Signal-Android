@@ -6,6 +6,9 @@
 
 package org.whispersystems.signalservice.api;
 
+import org.signal.core.util.concurrent.FutureTransformers;
+import org.signal.core.util.concurrent.ListenableFuture;
+import org.signal.core.util.concurrent.SettableFuture;
 import org.signal.libsignal.protocol.InvalidMessageException;
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
@@ -29,9 +32,6 @@ import org.whispersystems.signalservice.internal.push.IdentityCheckResponse;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
 import org.whispersystems.signalservice.internal.sticker.Pack;
 import org.whispersystems.signalservice.internal.util.Util;
-import org.whispersystems.signalservice.internal.util.concurrent.FutureTransformers;
-import org.whispersystems.signalservice.internal.util.concurrent.ListenableFuture;
-import org.whispersystems.signalservice.internal.util.concurrent.SettableFuture;
 import org.whispersystems.signalservice.internal.websocket.ResponseMapper;
 
 import java.io.File;
