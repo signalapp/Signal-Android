@@ -54,7 +54,7 @@ fun UsernameLinkShareScreen(
   onLinkResultHandled: () -> Unit,
   snackbarHostState: SnackbarHostState,
   scope: CoroutineScope,
-  navController: NavController,
+  navController: NavController?,
   onShareBadge: () -> Unit,
   modifier: Modifier = Modifier,
   onResetClicked: () -> Unit
@@ -93,9 +93,9 @@ fun UsernameLinkShareScreen(
 
     ButtonBar(
       onShareClicked = onShareBadge,
-      onColorClicked = { navController.safeNavigate(UsernameLinkSettingsFragmentDirections.actionUsernameLinkSettingsFragmentToUsernameLinkQrColorPickerFragment()) },
+      onColorClicked = { navController?.safeNavigate(UsernameLinkSettingsFragmentDirections.actionUsernameLinkSettingsFragmentToUsernameLinkQrColorPickerFragment()) },
       onLinkClicked = {
-        navController.safeNavigate(UsernameLinkSettingsFragmentDirections.actionUsernameLinkSettingsFragmentToUsernameLinkShareBottomSheet())
+        navController?.safeNavigate(UsernameLinkSettingsFragmentDirections.actionUsernameLinkSettingsFragmentToUsernameLinkShareBottomSheet())
       },
       linkState = state.usernameLinkState
     )
