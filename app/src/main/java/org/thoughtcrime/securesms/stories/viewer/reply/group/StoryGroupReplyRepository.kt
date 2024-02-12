@@ -11,6 +11,7 @@ import org.signal.paging.PagingController
 import org.thoughtcrime.securesms.conversation.colors.GroupAuthorNameColorHelper
 import org.thoughtcrime.securesms.conversation.colors.NameColor
 import org.thoughtcrime.securesms.database.DatabaseObserver
+import org.thoughtcrime.securesms.database.NoSuchMessageException
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
@@ -54,8 +55,17 @@ class StoryGroupReplyRepository {
   fun getNameColorsMap(storyId: Long): Observable<Map<RecipientId, NameColor>> {
     return Single
       .fromCallable {
-        val groupId = SignalDatabase.messages.getMessageRecord(storyId).toRecipient.groupId
-        GroupAuthorNameColorHelper().getColorMap(groupId.get())
+        try {
+          val messageRecord = SignalDatabase.messages.getMessageRecord(storyId)
+          val groupId = messageRecord.toRecipient.groupId.or { messageRecord.fromRecipient.groupId }
+          if (groupId.isPresent) {
+            GroupAuthorNameColorHelper().getColorMap(groupId.get())
+          } else {
+            emptyMap()
+          }
+        } catch (e: NoSuchMessageException) {
+          emptyMap()
+        }
       }
       .toObservable()
   }
