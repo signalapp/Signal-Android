@@ -126,28 +126,6 @@ class EditProfileFragment : LoggingFragment() {
         AvatarPreviewActivity.createTransitionBundle(requireActivity(), binding.manageProfileAvatar)
       )
     }
-
-    if (SignalStore.account().username != null && SignalStore.account().usernameSyncState != AccountValues.UsernameSyncState.USERNAME_AND_LINK_CORRUPTED) {
-      binding.usernameLinkContainer.setOnClickListener {
-        findNavController().safeNavigate(EditProfileFragmentDirections.actionManageProfileFragmentToUsernameLinkFragment())
-      }
-
-      if (SignalStore.account().usernameSyncState == AccountValues.UsernameSyncState.LINK_CORRUPTED) {
-        binding.linkErrorIndicator.visibility = View.VISIBLE
-      } else {
-        binding.linkErrorIndicator.visibility = View.GONE
-      }
-
-      if (SignalStore.tooltips().showProfileSettingsQrCodeTooltop()) {
-        binding.usernameLinkTooltip.visibility = View.VISIBLE
-        binding.linkTooltipCloseButton.setOnClickListener {
-          binding.usernameLinkTooltip.visibility = View.GONE
-          SignalStore.tooltips().markProfileSettingsQrCodeTooltipSeen()
-        }
-      }
-    } else {
-      binding.usernameLinkContainer.visibility = View.GONE
-    }
   }
 
   private fun initializeViewModel() {
@@ -240,6 +218,31 @@ class EditProfileFragment : LoggingFragment() {
       binding.usernameErrorIndicator.visibility = View.VISIBLE
     } else {
       binding.usernameErrorIndicator.visibility = View.GONE
+    }
+
+    if (SignalStore.account().username != null && SignalStore.account().usernameSyncState != AccountValues.UsernameSyncState.USERNAME_AND_LINK_CORRUPTED) {
+      binding.usernameLinkContainer.setOnClickListener {
+        findNavController().safeNavigate(EditProfileFragmentDirections.actionManageProfileFragmentToUsernameLinkFragment())
+      }
+
+      if (SignalStore.account().usernameSyncState == AccountValues.UsernameSyncState.LINK_CORRUPTED) {
+        binding.linkErrorIndicator.visibility = View.VISIBLE
+      } else {
+        binding.linkErrorIndicator.visibility = View.GONE
+      }
+
+      if (SignalStore.tooltips().showProfileSettingsQrCodeTooltop()) {
+        binding.usernameLinkTooltip.visibility = View.VISIBLE
+        binding.linkTooltipCloseButton.setOnClickListener {
+          binding.usernameLinkTooltip.visibility = View.GONE
+          SignalStore.tooltips().markProfileSettingsQrCodeTooltipSeen()
+        }
+      }
+
+      binding.usernameInfoText.setText(R.string.ManageProfileFragment__your_username)
+    } else {
+      binding.usernameLinkContainer.visibility = View.GONE
+      binding.usernameInfoText.setText(R.string.ManageProfileFragment__username_footer_no_username)
     }
   }
 
