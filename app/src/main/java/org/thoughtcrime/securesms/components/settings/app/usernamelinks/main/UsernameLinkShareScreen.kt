@@ -44,6 +44,8 @@ import org.thoughtcrime.securesms.components.settings.app.usernamelinks.Username
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.main.UsernameLinkSettingsState.ActiveTab
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
+import org.whispersystems.signalservice.api.push.UsernameLinkComponents
+import java.util.UUID
 
 /**
  * A screen that shows all the data around your username link and how to share it, including a QR code.
@@ -67,6 +69,12 @@ fun UsernameLinkShareScreen(
     }
     UsernameLinkResetResult.NetworkError -> {
       ResetLinkResultDialog(stringResource(R.string.UsernameLinkSettings_reset_link_result_network_error), onDismiss = onLinkResultHandled)
+    }
+    UsernameLinkResetResult.UnexpectedError -> {
+      ResetLinkResultDialog(stringResource(R.string.UsernameLinkSettings_reset_link_result_unknown_error), onDismiss = onLinkResultHandled)
+    }
+    is UsernameLinkResetResult.Success -> {
+      ResetLinkResultDialog(stringResource(R.string.UsernameLinkSettings_reset_link_result_success), onDismiss = onLinkResultHandled)
     }
     else -> {}
   }
@@ -212,6 +220,82 @@ private fun ScreenPreview() {
     Surface {
       UsernameLinkShareScreen(
         state = previewState(),
+        snackbarHostState = SnackbarHostState(),
+        scope = rememberCoroutineScope(),
+        navController = NavController(LocalContext.current),
+        onShareBadge = {},
+        onResetClicked = {},
+        onLinkResultHandled = {}
+      )
+    }
+  }
+}
+
+@Preview(name = "Light Theme", group = "screen", uiMode = Configuration.UI_MODE_NIGHT_NO)
+@Preview(name = "Dark Theme", group = "screen", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun ScreenPreviewResetSuccess() {
+  SignalTheme {
+    Surface {
+      UsernameLinkShareScreen(
+        state = previewState().copy(usernameLinkResetResult = UsernameLinkResetResult.Success(UsernameLinkComponents(Util.getSecretBytes(32), UUID.randomUUID()))),
+        snackbarHostState = SnackbarHostState(),
+        scope = rememberCoroutineScope(),
+        navController = NavController(LocalContext.current),
+        onShareBadge = {},
+        onResetClicked = {},
+        onLinkResultHandled = {}
+      )
+    }
+  }
+}
+
+@Preview(name = "Light Theme", group = "screen", uiMode = Configuration.UI_MODE_NIGHT_NO)
+@Preview(name = "Dark Theme", group = "screen", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun ScreenPreviewResetNetworkError() {
+  SignalTheme {
+    Surface {
+      UsernameLinkShareScreen(
+        state = previewState().copy(usernameLinkResetResult = UsernameLinkResetResult.NetworkError),
+        snackbarHostState = SnackbarHostState(),
+        scope = rememberCoroutineScope(),
+        navController = NavController(LocalContext.current),
+        onShareBadge = {},
+        onResetClicked = {},
+        onLinkResultHandled = {}
+      )
+    }
+  }
+}
+
+@Preview(name = "Light Theme", group = "screen", uiMode = Configuration.UI_MODE_NIGHT_NO)
+@Preview(name = "Dark Theme", group = "screen", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun ScreenPreviewResetNetworkUnavailable() {
+  SignalTheme {
+    Surface {
+      UsernameLinkShareScreen(
+        state = previewState().copy(usernameLinkResetResult = UsernameLinkResetResult.NetworkUnavailable),
+        snackbarHostState = SnackbarHostState(),
+        scope = rememberCoroutineScope(),
+        navController = NavController(LocalContext.current),
+        onShareBadge = {},
+        onResetClicked = {},
+        onLinkResultHandled = {}
+      )
+    }
+  }
+}
+
+@Preview(name = "Light Theme", group = "screen", uiMode = Configuration.UI_MODE_NIGHT_NO)
+@Preview(name = "Dark Theme", group = "screen", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun ScreenPreviewResetUnexpectedError() {
+  SignalTheme {
+    Surface {
+      UsernameLinkShareScreen(
+        state = previewState().copy(usernameLinkResetResult = UsernameLinkResetResult.UnexpectedError),
         snackbarHostState = SnackbarHostState(),
         scope = rememberCoroutineScope(),
         navController = NavController(LocalContext.current),
