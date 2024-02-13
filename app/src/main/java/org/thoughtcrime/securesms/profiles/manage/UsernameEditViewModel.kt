@@ -12,6 +12,7 @@ import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.PublishSubject
 import org.signal.core.util.Result
+import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.usernames.Username
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
@@ -128,7 +129,10 @@ internal class UsernameEditViewModel private constructor(private val mode: Usern
     events.onNext(Event.SKIPPED)
   }
 
-  fun onUsernameSubmitted() {
+  /**
+   * @param userConfirmedResetOk True if the user is submitting this after confirming that they're ok with resetting their username via [Event.NEEDS_CONFIRM_RESET].
+   */
+  fun onUsernameSubmitted(userConfirmedResetOk: Boolean) {
     if (!NetworkUtil.isConnected(ApplicationDependencies.getApplication())) {
       events.onNext(Event.NETWORK_FAILURE)
       return
@@ -137,6 +141,11 @@ internal class UsernameEditViewModel private constructor(private val mode: Usern
     val editState = stateMachineStore.state
     val usernameState = uiState.state.usernameState
     val isCaseChange = isCaseChange(editState)
+
+    if (!isCaseChange && SignalStore.account().username.isNotNullOrBlank() && !userConfirmedResetOk) {
+      events.onNext(Event.NEEDS_CONFIRM_RESET)
+      return
+    }
 
     if (usernameState !is UsernameState.Reserved && usernameState !is UsernameState.CaseChange) {
       Log.w(TAG, "Username was submitted, current state is invalid! State: ${usernameState.javaClass.simpleName}")
@@ -365,7 +374,7 @@ internal class UsernameEditViewModel private constructor(private val mode: Usern
   }
 
   enum class Event {
-    NETWORK_FAILURE, SUBMIT_SUCCESS, DELETE_SUCCESS, SUBMIT_FAIL_INVALID, SUBMIT_FAIL_TAKEN, SKIPPED
+    NETWORK_FAILURE, SUBMIT_SUCCESS, DELETE_SUCCESS, SUBMIT_FAIL_INVALID, SUBMIT_FAIL_TAKEN, SKIPPED, NEEDS_CONFIRM_RESET
   }
 
   class Factory(private val mode: UsernameEditMode) : ViewModelProvider.Factory {

@@ -109,7 +109,7 @@ public class UsernameEditFragment extends LoggingFragment {
 
     binding.usernameSubmitButton.setOnClickListener(v -> promptOrSubmitUsername());
     binding.usernameDeleteButton.setOnClickListener(v -> viewModel.onUsernameDeleted());
-    binding.usernameDoneButton.setOnClickListener(v -> viewModel.onUsernameSubmitted());
+    binding.usernameDoneButton.setOnClickListener(v -> viewModel.onUsernameSubmitted(false));
     binding.usernameSkipButton.setOnClickListener(v -> viewModel.onUsernameSkipped());
 
     binding.usernameText.addTextChangedListener(new SimpleTextWatcher() {
@@ -156,13 +156,13 @@ public class UsernameEditFragment extends LoggingFragment {
       new MaterialAlertDialogBuilder(requireContext())
           .setMessage(R.string.UsernameEditFragment_recovery_dialog_confirmation)
           .setPositiveButton(android.R.string.ok, ((dialog, which) -> {
-            viewModel.onUsernameSubmitted();
+            viewModel.onUsernameSubmitted(true);
             dialog.dismiss();
           }))
           .setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.dismiss())
           .show();
     } else {
-      viewModel.onUsernameSubmitted();
+      viewModel.onUsernameSubmitted(false);
     }
   }
 
@@ -356,6 +356,12 @@ public class UsernameEditFragment extends LoggingFragment {
       case SKIPPED:
         closeScreen();
         break;
+      case NEEDS_CONFIRM_RESET:
+        new MaterialAlertDialogBuilder(requireContext())
+            .setMessage(R.string.UsernameEditFragment_change_confirmation_message)
+            .setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.dismiss())
+            .setPositiveButton(R.string.UsernameEditFragment_continue, (dialog, which) -> viewModel.onUsernameSubmitted(true))
+            .show();
     }
   }
 
