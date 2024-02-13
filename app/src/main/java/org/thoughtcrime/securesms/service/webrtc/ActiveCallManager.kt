@@ -236,7 +236,7 @@ class ActiveCallManager(
 
       if (requiresAsyncNotificationLoad) {
         notificationDisposable = Single.fromCallable { createNotification(recipient, isVideoCall, skipAvatarLoad = false) }
-          .observeOn(Schedulers.io())
+          .subscribeOn(Schedulers.io())
           .observeOn(AndroidSchedulers.mainThread())
           .subscribeBy {
             notification = it
