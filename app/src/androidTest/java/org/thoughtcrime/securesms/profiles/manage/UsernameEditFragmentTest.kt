@@ -57,23 +57,6 @@ class UsernameEditFragmentTest {
     InstrumentationApplicationDependencyProvider.clearHandlers()
   }
 
-  @Test
-  fun testUsernameCreationInRegistration() {
-    val scenario = createScenario(UsernameEditMode.REGISTRATION)
-
-    scenario.moveToState(Lifecycle.State.RESUMED)
-
-    onView(withId(R.id.toolbar)).check { view, noViewFoundException ->
-      noViewFoundException.assertIsNull()
-      val toolbar = view as Toolbar
-
-      toolbar.navigationIcon.assertIsNull()
-    }
-
-    onView(withText(R.string.UsernameEditFragment__add_a_username)).check(matches(isDisplayed()))
-    onView(withContentDescription(R.string.load_more_header__loading)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.GONE)))
-  }
-
   @Ignore("Flakey espresso test.")
   @Test
   fun testUsernameCreationOutsideOfRegistration() {
@@ -108,7 +91,7 @@ class UsernameEditFragmentTest {
       }
     )
 
-    val scenario = createScenario(UsernameEditMode.REGISTRATION)
+    val scenario = createScenario(UsernameEditMode.NORMAL)
     scenario.moveToState(Lifecycle.State.RESUMED)
 
     onView(withId(R.id.username_text)).perform(typeText(nickname))

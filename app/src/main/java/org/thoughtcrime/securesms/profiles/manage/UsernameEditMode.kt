@@ -9,11 +9,6 @@ enum class UsernameEditMode {
   /** A typical launch, no special conditions. */
   NORMAL,
 
-  /** Screen is launched during registration, includes special first-time flows. */
-  REGISTRATION,
-
   /** Screen was launched because the username was in a bad state and needs to be recovered. Shows a special dialog. */
-  RECOVERY;
-
-  val allowsDelete get() = this == NORMAL || this == RECOVERY
+  RECOVERY
 }

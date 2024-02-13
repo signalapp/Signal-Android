@@ -976,11 +976,6 @@
               android:windowSoftInputMode="stateVisible|adjustResize"
               android:exported="false"/>
 
-    <activity android:name=".profiles.username.AddAUsernameActivity"
-              android:theme="@style/Signal.DayNight.NoActionBar"
-              android:windowSoftInputMode="stateVisible|adjustResize"
-              android:exported="false"/>
-
     <activity android:name=".profiles.manage.EditProfileActivity"
               android:theme="@style/TextSecure.LightTheme"
               android:windowSoftInputMode="stateVisible|adjustResize"

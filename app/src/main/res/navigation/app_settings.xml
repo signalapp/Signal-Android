@@ -585,7 +585,7 @@
 
     <action
         android:id="@+id/action_direct_to_usernameRecovery"
-        app:destination="@id/create_username"
+        app:destination="@id/createUsernameFragment"
         app:enterAnim="@anim/fragment_open_enter"
         app:exitAnim="@anim/fragment_open_exit"
         app:popEnterAnim="@anim/fragment_close_enter"
@@ -936,9 +936,18 @@
 
     </fragment>
 
+    <fragment
+        android:id="@+id/createUsernameFragment"
+        android:name="org.thoughtcrime.securesms.profiles.manage.UsernameEditFragment"
+        tools:layout="@layout/username_edit_fragment">
+
+        <argument
+            android:name="mode"
+            android:defaultValue="NORMAL"
+            app:argType="org.thoughtcrime.securesms.profiles.manage.UsernameEditMode" />
+    </fragment>
 
     <include app:graph="@navigation/username_link_settings" />
-    <include app:graph="@navigation/create_username" />
     <include app:graph="@navigation/story_privacy_settings" />
 
 </navigation>

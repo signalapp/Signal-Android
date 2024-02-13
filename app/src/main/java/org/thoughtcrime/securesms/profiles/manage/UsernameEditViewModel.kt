@@ -84,7 +84,7 @@ internal class UsernameEditViewModel private constructor(private val mode: Usern
     uiState.update { state: State ->
       if (nickname.isBlank() && SignalStore.account().username != null) {
         return@update State(
-          buttonState = if (mode.allowsDelete) ButtonState.DELETE else ButtonState.SUBMIT_DISABLED,
+          buttonState = ButtonState.DELETE,
           usernameStatus = UsernameStatus.NONE,
           usernameState = UsernameState.NoUsername
         )
@@ -106,7 +106,7 @@ internal class UsernameEditViewModel private constructor(private val mode: Usern
     uiState.update { state: State ->
       if (discriminator.isBlank() && SignalStore.account().username != null) {
         return@update State(
-          buttonState = if (mode.allowsDelete) ButtonState.DELETE else ButtonState.SUBMIT_DISABLED,
+          buttonState = ButtonState.DELETE,
           usernameStatus = UsernameStatus.NONE,
           usernameState = UsernameState.NoUsername
         )
