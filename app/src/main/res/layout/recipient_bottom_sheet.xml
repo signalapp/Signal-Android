@@ -11,6 +11,18 @@
         android:layout_height="wrap_content"
         tools:theme="@style/Theme.Signal.RoundedBottomSheet.Light">
 
+        <ImageView
+            android:id="@+id/handle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:importantForAccessibility="no"
+            app:srcCompat="@drawable/bottom_sheet_handle"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
         <org.thoughtcrime.securesms.avatar.view.AvatarView
             android:id="@+id/rbs_recipient_avatar"
             android:layout_width="80dp"
@@ -20,7 +32,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/handle" />
 
         <org.thoughtcrime.securesms.badges.BadgeImageView
             android:id="@+id/rbs_badge"
@@ -72,7 +84,7 @@
             android:textColor="@color/signal_text_secondary"
             app:emoji_forceCustom="true"
             app:layout_constraintTop_toBottomOf="@id/rbs_full_name"
-            tools:text="🕷🕷🕷Hangin' on the web🕷🕷" />
+            tools:text="🕷🕷🕷 Hangin' on the web 🕷🕷🕷" />
 
         <TextView
             android:id="@+id/rbs_note_to_self_description"
