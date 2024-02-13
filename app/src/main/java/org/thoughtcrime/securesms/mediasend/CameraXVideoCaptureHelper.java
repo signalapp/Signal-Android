@@ -31,6 +31,7 @@ import org.thoughtcrime.securesms.mediasend.camerax.CameraXModePolicy;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.util.ContextUtil;
 import org.thoughtcrime.securesms.util.Debouncer;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.MemoryFileDescriptor;
 import org.thoughtcrime.securesms.video.VideoUtil;
 
@@ -42,7 +43,7 @@ import java.util.concurrent.TimeUnit;
 @RequiresApi(26)
 class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener {
 
-  private static final String TAG               = CameraXVideoCaptureHelper.class.getName();
+  private static final String TAG               = Log.tag(CameraXVideoCaptureHelper.class);
   private static final String VIDEO_DEBUG_LABEL = "video-capture";
   private static final long   VIDEO_SIZE        = 10 * 1024 * 1024;
 
@@ -74,7 +75,7 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
         } else {
           try {
             debouncer.clear();
-            cameraController.setZoomRatio(Objects.requireNonNull(cameraController.getZoomState().getValue()).getMinZoomRatio());
+            cameraController.setZoomRatio(getDefaultVideoZoomRatio());
             memoryFileDescriptor.seek(0);
             callback.onVideoSaved(memoryFileDescriptor.getFileDescriptor());
           } catch (IOException e) {
@@ -142,7 +143,7 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
   @SuppressLint("RestrictedApi")
   private void beginCameraRecording() {
     cameraXModePolicy.setToVideo(cameraController);
-    this.cameraController.setZoomRatio(Objects.requireNonNull(this.cameraController.getZoomState().getValue()).getMinZoomRatio());
+    this.cameraController.setZoomRatio(getDefaultVideoZoomRatio());
     callback.onVideoRecordStarted();
     shrinkCaptureArea();
 
@@ -232,8 +233,8 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
   @Override
   public void onZoomIncremented(float increment) {
     ZoomState zoomState = Objects.requireNonNull(cameraController.getZoomState().getValue());
-    float range = zoomState.getMaxZoomRatio() - zoomState.getMinZoomRatio();
-    cameraController.setZoomRatio((range * increment) + zoomState.getMinZoomRatio());
+    float range = zoomState.getMaxZoomRatio() - getDefaultVideoZoomRatio();
+    cameraController.setZoomRatio((range * increment) + getDefaultVideoZoomRatio());
   }
 
   @Override
@@ -252,6 +253,14 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
         VIDEO_DEBUG_LABEL,
         VIDEO_SIZE
     );
+  }
+
+  public float getDefaultVideoZoomRatio() {
+    if (FeatureFlags.startVideoRecordAt1x()) {
+      return 1f;
+    } else {
+      return Objects.requireNonNull(cameraController.getZoomState().getValue()).getMinZoomRatio();
+    }
   }
 
   interface Callback {

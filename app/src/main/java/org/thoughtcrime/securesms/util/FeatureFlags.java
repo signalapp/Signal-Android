@@ -120,6 +120,7 @@ public final class FeatureFlags {
   private static final String USE_ACTIVE_CALL_MANAGER           = "android.calling.useActiveCallManager.4";
   private static final String GIF_SEARCH                        = "global.gifSearch";
   private static final String AUDIO_REMUXING                    = "android.media.audioRemux";
+  private static final String VIDEO_RECORD_1X_ZOOM              = "android.media.videoCaptureDefaultZoom";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -192,7 +193,8 @@ public final class FeatureFlags {
       PHONE_NUMBER_PRIVACY,
       USE_ACTIVE_CALL_MANAGER,
       GIF_SEARCH,
-      AUDIO_REMUXING
+      AUDIO_REMUXING,
+      VIDEO_RECORD_1X_ZOOM
   );
 
   @VisibleForTesting
@@ -262,7 +264,8 @@ public final class FeatureFlags {
       CALLING_REACTIONS,
       NOTIFICATION_THUMBNAIL_BLOCKLIST,
       CALLING_RAISE_HAND,
-      PHONE_NUMBER_PRIVACY
+      PHONE_NUMBER_PRIVACY,
+      VIDEO_RECORD_1X_ZOOM
   );
 
   /**
@@ -688,6 +691,11 @@ public final class FeatureFlags {
   /** Allow media converters to remux audio instead of transcoding it. */
   public static boolean allowAudioRemuxing() {
     return getBoolean(AUDIO_REMUXING, false);
+  }
+
+  /** Get the default video zoom, expressed as 10x the actual Float value due to the service limiting us to whole numbers. */
+  public static boolean startVideoRecordAt1x() {
+    return getBoolean(VIDEO_RECORD_1X_ZOOM, false);
   }
 
   /** Only for rendering debug info. */
