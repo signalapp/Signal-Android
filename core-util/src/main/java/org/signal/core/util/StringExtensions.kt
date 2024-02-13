@@ -54,3 +54,7 @@ fun String?.nullIfBlank(): String? {
     null
   }
 }
+
+fun CharSequence?.isNotNullOrBlank(): Boolean {
+  return !this.isNullOrBlank()
+}
