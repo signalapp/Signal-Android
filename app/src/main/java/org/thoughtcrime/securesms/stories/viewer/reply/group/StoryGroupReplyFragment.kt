@@ -271,8 +271,7 @@ class StoryGroupReplyFragment :
                 onCopyClick = { s -> onCopyClick(s) },
                 onMentionClick = { recipientId ->
                   RecipientBottomSheetDialogFragment
-                    .create(recipientId, null)
-                    .show(childFragmentManager, null)
+                    .show(childFragmentManager, recipientId, null)
                 },
                 onDeleteClick = { m -> onDeleteClick(m) },
                 onTapForDetailsClick = { m -> onTapForDetailsClick(m) }

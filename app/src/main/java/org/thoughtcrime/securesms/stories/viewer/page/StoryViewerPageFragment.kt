@@ -933,8 +933,7 @@ class StoryViewerPageFragment :
   private fun onSenderClicked(senderId: RecipientId) {
     viewModel.setIsDisplayingRecipientBottomSheet(true)
     RecipientBottomSheetDialogFragment
-      .create(senderId, null)
-      .show(childFragmentManager, "BOTTOM")
+      .show(childFragmentManager, senderId, null)
   }
 
   private fun presentBottomBar(post: StoryPost, replyState: StoryViewerPageState.ReplyState, isReceiptsEnabled: Boolean) {

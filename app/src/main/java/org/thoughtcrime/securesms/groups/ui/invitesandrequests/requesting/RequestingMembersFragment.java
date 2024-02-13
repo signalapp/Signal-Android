@@ -55,8 +55,7 @@ public class RequestingMembersFragment extends Fragment {
     requestingMembers.initializeAdapter(getViewLifecycleOwner());
 
     requestingMembers.setRecipientClickListener(recipient -> {
-      RecipientBottomSheetDialogFragment.create(recipient.getId(), null)
-                                        .show(requireActivity().getSupportFragmentManager(), BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG);
+      RecipientBottomSheetDialogFragment.show(requireActivity().getSupportFragmentManager(), recipient.getId(), null);
     });
 
     requestingMembers.setAdminActionsListener(new AdminActionsListener() {

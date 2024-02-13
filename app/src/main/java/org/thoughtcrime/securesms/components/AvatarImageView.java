@@ -244,8 +244,7 @@ public final class AvatarImageView extends AppCompatImageView {
                                 ConversationSettingsActivity.createTransitionBundle(context, this));
         } else {
           if (context instanceof FragmentActivity) {
-            RecipientBottomSheetDialogFragment.create(recipient.getId(), null)
-                                              .show(((FragmentActivity) context).getSupportFragmentManager(), "BOTTOM");
+            RecipientBottomSheetDialogFragment.show(((FragmentActivity) context).getSupportFragmentManager(), recipient.getId(), null);
           } else {
             context.startActivity(ConversationSettingsActivity.forRecipient(context, recipient.getId()),
                                   ConversationSettingsActivity.createTransitionBundle(context, this));

@@ -54,7 +54,6 @@ public final class GroupMembersDialog {
   }
 
   private void contactClick(@NonNull Recipient recipient) {
-    RecipientBottomSheetDialogFragment.create(recipient.getId(), groupRecipient.requireGroupId())
-                                      .show(fragmentActivity.getSupportFragmentManager(), "BOTTOM");
+    RecipientBottomSheetDialogFragment.show(fragmentActivity.getSupportFragmentManager(), recipient.getId(), groupRecipient.requireGroupId());
   }
 }

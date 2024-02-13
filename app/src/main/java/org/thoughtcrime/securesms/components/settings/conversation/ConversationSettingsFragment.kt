@@ -695,7 +695,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
               recipient = member.member,
               isAdmin = member.isAdmin,
               onClick = {
-                RecipientBottomSheetDialogFragment.create(member.member.id, groupState.groupId).show(parentFragmentManager, "BOTTOM")
+                RecipientBottomSheetDialogFragment.show(parentFragmentManager, member.member.id, groupState.groupId)
               }
             )
           )

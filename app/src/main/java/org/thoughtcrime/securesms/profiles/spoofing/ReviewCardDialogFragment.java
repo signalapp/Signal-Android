@@ -175,8 +175,7 @@ public class ReviewCardDialogFragment extends FullScreenDialogFragment {
 
     @Override
     public void onCardClicked(@NonNull ReviewCard card) {
-      RecipientBottomSheetDialogFragment.create(card.getReviewRecipient().getId(), null)
-                                        .show(requireFragmentManager(), null);
+      RecipientBottomSheetDialogFragment.show(getParentFragmentManager(), card.getReviewRecipient().getId(), null);
     }
 
     @Override

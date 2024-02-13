@@ -2725,7 +2725,7 @@ class ConversationFragment :
 
     override fun onGroupMemberClicked(recipientId: RecipientId, groupId: GroupId) {
       context ?: return
-      RecipientBottomSheetDialogFragment.create(recipientId, groupId).show(childFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
+      RecipientBottomSheetDialogFragment.show(childFragmentManager, recipientId, groupId)
     }
 
     override fun onMessageWithErrorClicked(messageRecord: MessageRecord) {
@@ -2858,10 +2858,11 @@ class ConversationFragment :
     override fun onRecipientNameClicked(target: RecipientId) {
       context ?: return
       disposables += viewModel.recipient.firstOrError().observeOn(AndroidSchedulers.mainThread()).subscribeBy {
-        RecipientBottomSheetDialogFragment.create(
+        RecipientBottomSheetDialogFragment.show(
+          parentFragmentManager,
           target,
           it.groupId.orElse(null)
-        ).show(parentFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
+        )
       }
     }
 

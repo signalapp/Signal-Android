@@ -19,6 +19,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -41,6 +42,7 @@ import org.thoughtcrime.securesms.recipients.RecipientExporter;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.recipients.ui.about.AboutSheet;
+import org.thoughtcrime.securesms.recipients.ui.about.AboutSheetKt;
 import org.thoughtcrime.securesms.util.BottomSheetUtil;
 import org.thoughtcrime.securesms.util.ContextUtil;
 import org.thoughtcrime.securesms.util.SpanUtil;
@@ -89,20 +91,23 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
 
   private ButtonStripPreference.ViewHolder buttonStripViewHolder;
 
-  public static BottomSheetDialogFragment create(@NonNull RecipientId recipientId,
-                                                 @Nullable GroupId groupId)
-  {
-    Bundle                             args     = new Bundle();
-    RecipientBottomSheetDialogFragment fragment = new RecipientBottomSheetDialogFragment();
+  public static void show(FragmentManager fragmentManager, @NonNull RecipientId recipientId, @Nullable GroupId groupId) {
+    Recipient recipient = Recipient.resolved(recipientId);
+    if (recipient.isSelf()) {
+      AboutSheet.create(recipient).show(fragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG);
+    } else {
+      Bundle                             args     = new Bundle();
+      RecipientBottomSheetDialogFragment fragment = new RecipientBottomSheetDialogFragment();
 
-    args.putString(ARGS_RECIPIENT_ID, recipientId.serialize());
-    if (groupId != null) {
-      args.putString(ARGS_GROUP_ID, groupId.toString());
+      args.putString(ARGS_RECIPIENT_ID, recipientId.serialize());
+      if (groupId != null) {
+        args.putString(ARGS_GROUP_ID, groupId.toString());
+      }
+
+      fragment.setArguments(args);
+
+      fragment.show(fragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG);
     }
-
-    fragment.setArguments(args);
-
-    return fragment;
   }
 
   @Override
