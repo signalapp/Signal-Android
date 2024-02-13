@@ -1162,7 +1162,7 @@
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
     <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">Wystąpił błąd z Twoją nazwą użytkownika — nie jest już przypisana do Twojego konta. Możesz spróbować ustawić ją ponownie lub wybrać nową nazwę.</string>
     <!-- Displayed above the conversation list when a user needs to address an issue with their username link -->
-    <string name="UsernameOutOfSyncReminder__link_corrupt">Coś poszło nie tak z kodem QR i linkiem do nazwy użytkownika – jest nieważny. Utwórz nowy link do udostępniania innym.</string>
+    <string name="UsernameOutOfSyncReminder__link_corrupt">Coś poszło nie tak z kodem QR i linkiem do nazwy użytkownika — są nieważne. Utwórz nowy link do udostępniania innym.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
     <string name="UsernameOutOfSyncReminder__fix_now">Napraw błąd teraz</string>
 
@@ -5749,7 +5749,7 @@
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Zaakceptowanie prośby o kontakt</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Posiadanie ich w systemowej książce kontaktów</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Posiadanie ich w kontaktach systemowych</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Twoje kontakty widzą Twoje imię i zdjęcie, a także widzą posty w „Moja relacja”, chyba że je przed nimi ukryjesz."</string>
     <!-- Clickable option to add a viewer to a custom story -->

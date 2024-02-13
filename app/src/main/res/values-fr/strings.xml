@@ -2637,9 +2637,9 @@
         <item quantity="other">%1$d membres</item>
     </plurals>
     <!-- Text on row item to find user by phone number -->
-    <string name="ContactSelectionListFragment__find_by_phone_number">Trouver par numéro de téléphone</string>
+    <string name="ContactSelectionListFragment__find_by_phone_number">Rechercher par numéro de téléphone</string>
     <!-- Text on row item to find user by username -->
-    <string name="ContactSelectionListFragment__find_by_username">Trouver par nom d’utilisateur</string>
+    <string name="ContactSelectionListFragment__find_by_username">Rechercher par nom d’utilisateur</string>
 
     <!-- contact_selection_list_fragment -->
     <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal a besoin d’accéder à vos contacts afin de les afficher.</string>
@@ -3871,11 +3871,11 @@
     <!-- Subtext below radio buttons when who can see my number is set to everybody -->
     <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">Seuls les contacts et les groupes avec lesquels vous échangez des messages pourront voir votre numéro de téléphone.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Your phone number will not be visible to anyone unless they have it saved in their phone\'s contacts.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Personne n’aura accès à votre numéro, sauf les utilisateurs qui l’ont déjà enregistré dans les contacts de leur téléphone.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Your phone number will not be visible to anyone.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Personne n’aura accès à votre numéro de téléphone.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
-    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Qui peut me retrouver grâce à mon numéro de téléphone</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Qui peut me trouver grâce à mon numéro de téléphone</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
     <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">Toutes les personnes disposant de votre numéro de téléphone pourront voir que vous utilisez Signal et lancer une conversation avec vous.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
@@ -3911,7 +3911,7 @@
     <string name="prompt_passphrase_activity__tap_to_unlock">TOUCHEZ POUR DÉVERROUILLER</string>
     <string name="Recipient_unknown">Inconnu</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
-    <string name="Recipient_deleted_account">Deleted account</string>
+    <string name="Recipient_deleted_account">Compte supprimé</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
     <string name="preferences_account_reregister">Réinscrire le compte</string>
@@ -6057,7 +6057,7 @@
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
     <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">Confirmez votre don %1$s</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">To setup your recurring donation tap continue to confirm a €0,01 charge with your bank. This will be automatically refunded and allows your €5/month donation to debited from your account.</string>
+    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">Pour configurer votre don mensuel, appuyez sur « Continuer ». Vous confirmez ainsi le prélèvement de 0,01 € auprès de votre banque. Cette somme sera automatiquement remboursée et permettra de confirmer le prélèvement de 5 €/mois sur votre compte.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">Poursuivre</string>
 
@@ -6530,37 +6530,37 @@
 
     <!-- FindByActivity -->
     <!-- Title of activity when finding by username -->
-    <string name="FindByActivity__find_by_username">Trouver par nom d’utilisateur</string>
+    <string name="FindByActivity__find_by_username">Rechercher par nom d’utilisateur</string>
     <!-- Title of activity when finding by phone number -->
-    <string name="FindByActivity__find_by_phone_number">Trouver par numéro de téléphone</string>
+    <string name="FindByActivity__find_by_phone_number">Rechercher par numéro de téléphone</string>
     <!-- Title of screen to select a country code -->
-    <string name="FindByActivity__select_country_code">Sélectionner l’indicatif de pays</string>
+    <string name="FindByActivity__select_country_code">Sélectionner l’indicatif du pays</string>
     <!-- Entry placeholder for find by username -->
     <string name="FindByActivity__username">Nom d’utilisateur</string>
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">Numéro de téléphone</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_a_full_username">Enter a full username with its pair of digits.</string>
+    <string name="FindByActivity__enter_a_full_username">Entrez un nom d’utilisateur complet, avec ses deux chiffres associés.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">Suivant</string>
     <!-- Placeholder text for search input for selecting country code -->
-    <string name="FindByActivity__search">Chercher</string>
+    <string name="FindByActivity__search">Rechercher</string>
     <!-- Dialog title for invalid username -->
-    <string name="FindByActivity__invalid_username">Nom d’utilisateur invalide</string>
+    <string name="FindByActivity__invalid_username">Nom d’utilisateur incorrect</string>
     <!-- Dialog title for invalid phone number -->
-    <string name="FindByActivity__invalid_phone_number">Le numéro de téléphone est invalide</string>
+    <string name="FindByActivity__invalid_phone_number">Numéro de téléphone incorrect</string>
     <!-- Dialog title when phone number is not a registered signal user -->
-    <string name="FindByActivity__invite_to_signal">Inviter à Signal</string>
+    <string name="FindByActivity__invite_to_signal">Inviter sur Signal</string>
     <!-- Dialog title when username is not found -->
-    <string name="FindByActivity__username_not_found">Le nom d’utilisateur est introuvable</string>
+    <string name="FindByActivity__username_not_found">Nom d’utilisateur introuvable</string>
     <!-- Dialog body for invalid username. Placeholder is the entered username. -->
-    <string name="FindByActivity__s_is_not_a_valid_username">%1$s is not a valid username. Make sure you\'ve entered the complete username followed by its set of digits.</string>
+    <string name="FindByActivity__s_is_not_a_valid_username">%1$s n’est pas un nom d’utilisateur valide. Le nom d’utilisateur complet doit comporter un point suivi d’une série de chiffres associés.</string>
     <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
-    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s is not valid phone number. Try again with a valid phone number</string>
+    <string name="FindByActivity__s_is_not_a_valid_phone_number">Le numéro %1$s est incorrect. Veuillez réessayer avec un numéro de téléphone valide.</string>
     <!-- Dialog body for not found username -->
-    <string name="FindByActivity__s_is_not_a_signal_user">« %1$s » n’est pas un utilisateur de Signal. Veuillez confirmer le nom d’utilisateur et réessayer.</string>
+    <string name="FindByActivity__s_is_not_a_signal_user">« %1$s » ne correspond à aucun utilisateur Signal. Veuillez vérifier le nom d’utilisateur et réessayer.</string>
     <!-- Dialog body for not found phone number -->
-    <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s n’utilise pas Signal. Souhaitez-vous inviter ce numéro ?</string>
+    <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s n’utilise pas Signal. Voulez-vous inviter ce numéro ?</string>
     <!-- Dialog action to invite the phone number to Signal -->
     <string name="FindByActivity__invite">Inviter</string>
 

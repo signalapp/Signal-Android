@@ -1076,9 +1076,9 @@
     <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
     <string name="ManageProfileFragment__link_tooltip_body">আপনার অনন্য QR কোড বা লিংক শেয়ার করে অন্যদের আপনার সাথে চ্যাট শুরু করার সুযোগ দিন।</string>
     <!-- Snackbar message after creating username -->
-    <string name="ManageProfileFragment__username_created">ইউজারনেম তৈরি করা হয়েছে</string>
+    <string name="ManageProfileFragment__username_created">ব্যবহারকারীর নাম তৈরি করা হয়েছে</string>
     <!-- Snackbar message after copying username -->
-    <string name="ManageProfileFragment__username_copied">ইউজারনেম কপি করা হয়েছে</string>
+    <string name="ManageProfileFragment__username_copied">ব্যবহারকারীর নাম কপি করা হয়েছে</string>
     <!-- Snackbar message after network failure while trying to delete username -->
     <string name="ManageProfileFragment__couldnt_delete_username">ইউজারনেম মুছে ফেলা যায়নি। পরবর্তীতে আবার চেষ্টা করুন।</string>
     <!-- Snackbar message after successful deletion of username -->
@@ -2282,20 +2282,20 @@
     <!-- Placeholder text for custom discriminator -->
     <string name="UsernameEditFragment__00">00</string>
     <!-- Toolbar title when entering from registration -->
-    <string name="UsernameEditFragment__add_a_username">একটি ইউজারনেম যোগ করুন</string>
+    <string name="UsernameEditFragment__add_a_username">একটি ব্যবহারকারীর নাম যোগ করুন</string>
     <!-- Instructional text at the top of the username edit screen -->
-    <string name="UsernameEditFragment__choose_your_username">আপনার ইউজারনেম বেছে নিন</string>
+    <string name="UsernameEditFragment__choose_your_username">আপনার ব্যবহারকারীর নাম বেছে নিন</string>
     <string name="UsernameEditFragment_username">ব্যবহারকারীর নাম</string>
     <string name="UsernameEditFragment_delete">মুছে ফেলুন</string>
     <string name="UsernameEditFragment_successfully_removed_username">সফলভাবে ব্যবহারকারীর নাম মুছে ফেলা হয়েছে।</string>
     <string name="UsernameEditFragment_encountered_a_network_error">একটি নেটওয়ার্ক ত্রুটি সম্মুখীন।</string>
-    <string name="UsernameEditFragment_this_username_is_taken">এই ব্যবহারকারীর নাম নেওয়া হয়েছে|</string>
-    <string name="UsernameEditFragment_usernames_can_only_include">ব্যবহারকারী নামে কেবল a–Z, 0–9, ও আন্ডারস্কোর থাকা যাবে।</string>
-    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ব্যবহারকারীর নাম সংখ্যা দিয়ে শুরু করতে পারে না।</string>
-    <string name="UsernameEditFragment_username_is_invalid">ব্যবহারকারীর নাম অবৈধ|</string>
-    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ব্যবহারকারীর নামগুলি অবশ্যই %1$d এবং %2$d অক্ষরের মধ্যে থাকতে হবে।</string>
+    <string name="UsernameEditFragment_this_username_is_taken">এই ব্যবহারকারীর নাম ব্যবহৃত হয়েছে।</string>
+    <string name="UsernameEditFragment_usernames_can_only_include">ব্যবহারকারীর নামে থাকতে পারবে শুধুমাত্র a–Z, 0–9, ও আন্ডারস্কোর।</string>
+    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ব্যবহারকারীর নাম সংখ্যা দিয়ে শুরু করতে পারবে না।</string>
+    <string name="UsernameEditFragment_username_is_invalid">ব্যবহারকারীর নাম অকার্যকর।</string>
+    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ব্যবহারকারীর নামগুলো অবশ্যই %1$d এবং %2$d অক্ষরের মধ্যে থাকতে হবে।</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">ইউজারনেম ব্যবহার করলে আপনার ফোন নাম্বার ছাড়াই অন্যরা আপনাকে ম্যাসেজ দিতে পারবেন৷ আপনার ঠিকানা গোপন রাখতে সাহায্য করার জন্য এগুলো একগুচ্ছ সংখ্যার যুক্ত করা হয়৷</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">ব্যবহারকারীর নাম ব্যবহার করলে আপনার ফোন নম্বর ছাড়াই অন্যরা আপনাকে মেসেজ দিতে পারবেন। আপনার ঠিকানা গোপন রাখতে সাহায্য করার জন্য এগুলো একগুচ্ছ সংখ্যার সাথে যুক্ত করা হয়।</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">এই নম্বরটি কী?</string>
     <string name="UsernameEditFragment__these_digits_help_keep">এই সংখ্যাগুলো আপনার ব্যবহারকারীর নামটি গোপন রাখতে সাহায্য করে, যাতে আপনি অবাঞ্ছিত ম্যাসেজ এড়িয়ে যেতে পারেন৷ আপনি যে ব্যক্তি ও গ্রুপের সাথে চ্যাট করতে চান শুধুমাত্র তাদের সাথে আপনার ব্যবহারকারীর নামটি শেয়ার করুন। ব্যবহারকারীর নামটি পরিবর্তন করলে আপনি নতুন একগুচ্ছ সংখ্যা পাবেন।</string>
@@ -2626,7 +2626,7 @@
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">আপনার পরিচিতিসমূহ দেখানোর জন্য Signal এর পরিচিতি পাঠের অনুমতি প্রয়োজন তবে এটি স্থায়ীভাবে অস্বীকার করা হয়েছে। দয়া করে অ্যাপ্লিকেশন সেটিংসে যান এবং \"অনুমতিগুলি\" নির্বাচন করুন এবং \"পরিচিতি\" সক্ষম করুন।</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">পরিচিতি পুনরুদ্ধারে ত্রুটি, আপনার নেটওয়ার্ক সংযোগটি পরীক্ষা করুন</string>
     <string name="ContactSelectionListFragment_username_not_found">ব্যবহারকারীর নাম খুঁজে পাওয়া যায়নি</string>
-    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" কোনও Signal ব্যবহারকারী নয়। দয়া করে ব্যবহারকারীর নামটি পরীক্ষা করুন এবং আবার চেষ্টা করুন।"</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" কোনো Signal ব্যবহারকারী নয়। দয়া করে ব্যবহারকারীর নামটি পরীক্ষা করুন এবং আবার চেষ্টা করুন।"</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">আপনার নিজেকে এই গ্রুপটিতে যোগ করার দরকার নেই</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">গ্রুপের সদস্য সর্বোচ্চ সংখ্যায় পৌঁছেছে</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal গ্রুপে সর্বোচ্চ %1$d জন সদস্য থাকতে পারবে।</string>
@@ -3125,7 +3125,7 @@
     <string name="preferences__mmsc_url">এমএমএসসি ইউআরএল</string>
     <string name="preferences__mms_proxy_host">এমএমএস হোস্ট প্রক্সি</string>
     <string name="preferences__mms_proxy_port">এমএমএস প্রক্সি পোর্ট</string>
-    <string name="preferences__mmsc_username">এমএমএসসি ব্যবহারকারী নাম</string>
+    <string name="preferences__mmsc_username">MMSC ব্যবহারকারী নাম</string>
     <string name="preferences__mmsc_password">এমএমএসসি পাসওয়ার্ড</string>
     <string name="preferences__sms_delivery_reports">এসএমএস বিতরণ রিপোর্ট</string>
     <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">আপনার প্রেরিত প্রতিটি এসএমএস বার্তার জন্য একটি বিতরণ রিপোর্টের জন্য অনুরোধ করুন</string>

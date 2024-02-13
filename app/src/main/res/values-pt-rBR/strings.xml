@@ -48,12 +48,12 @@
     <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Desabilitar mensagens e chamadas do Signal?</string>
     <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Desabilitar mensagens e chamadas do Signal descadastrando-o do servidor. Você precisará recadastrar seu número de telefone para usar o Signal novamente no futuro.</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Erro ao conectar-se com o servidor!</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Um PIN é necessário para o desbloqueio de registro. Para desabilitar o PIN, por favor, primeiro desabilite o desbloqueio de registro.</string>
+    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Um PIN é necessário para o desbloqueio de registro. Para desabilitar o PIN, primeiro desabilite o desbloqueio de registro.</string>
     <string name="ApplicationPreferencesActivity_pin_created">PIN criado.</string>
     <string name="ApplicationPreferencesActivity_pin_disabled">PIN desativado.</string>
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Gravar a senha de recuperação de pagamentos</string>
     <string name="ApplicationPreferencesActivity_record_phrase">Gravar senha</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Antes de desabilitar seu PIN, você deve gravar a sua senha de recuperação de pagamentos para garantir que você possa recuperar a sua conta de pagamentos.</string>
+    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Antes de desabilitar seu PIN, você precisa gravar a sua senha de recuperação de pagamentos para garantir que possa recuperar a sua conta de pagamentos.</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -82,15 +82,15 @@
     <string name="AttachmentKeyboard_file">Arquivo</string>
     <string name="AttachmentKeyboard_contact">Contato</string>
     <string name="AttachmentKeyboard_location">Localização</string>
-    <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal precisa de permissão para mostrar suas fotos e vídeos.</string>
+    <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">O Signal precisa de permissão para mostrar suas fotos e vídeos.</string>
     <string name="AttachmentKeyboard_give_access">Permitir acesso</string>
     <string name="AttachmentKeyboard_payment">Pagamento</string>
 
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Não foi possível encontrar um aplicativo para selecionar arquivos.</string>
-    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">O Signal precisa da permissão Armazenamento para anexar fotos, vídeos ou áudio, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Armazenamento\".</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">O Signal precisa da permissão Contatos para anexar informações de contato, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Contatos\".</string>
-    <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">O Signal precisa da permissão Localização para anexar uma localização, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Localização\".</string>
+    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">O Signal precisa da permissão Armazenamento para anexar fotos, vídeos ou áudio, mas ela foi permanentemente negada. Vá até o menu de configurações de aplicativos, selecione \"Permissões\" e habilite \"Armazenamento\".</string>
+    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">O Signal precisa da permissão Contatos para anexar informações de contato, mas ela foi permanentemente negada. Vá até o menu de configurações de aplicativos, selecione \"Permissões\" e habilite \"Contatos\".</string>
+    <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">O Signal precisa da permissão Localização para anexar uma localização, mas ela foi permanentemente negada. Vá até o menu de configurações de aplicativos, selecione \"Permissões\" e habilite \"Localização\".</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
     <string name="AttachmentManager__not_activated_payments">%1$s não ativou Pagamentos </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
@@ -2291,9 +2291,9 @@
     <string name="UsernameEditFragment_encountered_a_network_error">Foi encontrado um erro de rede.</string>
     <string name="UsernameEditFragment_this_username_is_taken">Este nome de usuário já está sendo utilizado.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">Os nomes de usuário só podem incluir a–Z, 0–9, e sublinhado.</string>
-    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Nomes de usuários não podem começar com um número.</string>
+    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Os nomes de usuários não podem começar com um número.</string>
     <string name="UsernameEditFragment_username_is_invalid">Nome de usuário inválido.</string>
-    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Nomes de usuário devem conter no mínimo %1$d e no máximo %2$d caracteres.</string>
+    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Os nomes de usuário devem conter no mínimo %1$d e no máximo %2$d caracteres.</string>
     <!-- Explanation about what usernames provide -->
     <string name="UsernameEditFragment__usernames_let_others_message">Os nomes de usuário permitem que outras pessoas enviem mensagens para você sem precisar do seu número de telefone. Eles são pareados com um conjunto de dígitos para ajudar a manter seu endereço privado.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->

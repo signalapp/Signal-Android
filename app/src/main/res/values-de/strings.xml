@@ -665,11 +665,11 @@
     <!-- Displayed at the top of the screen and explains how profiles can be viewed. -->
     <string name="ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message">Profile sind für Personen, an die du Nachrichten schickst, Kontakte und Gruppen sichtbar.</string>
     <!-- Title of clickable row to select phone number privacy settings -->
-    <string name="ProfileCreateFragment__who_can_find_me">Wer kann mich anhand der Nummer finden?</string>
+    <string name="ProfileCreateFragment__who_can_find_me">Wer kann mich anhand der Telefonnummer finden?</string>
 
     <!-- WhoCanSeeMyPhoneNumberFragment -->
     <!-- Toolbar title for this screen -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Wer kann mich anhand der Nummer finden?</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Wer kann mich anhand der Telefonnummer finden?</string>
     <!-- Description for radio item stating anyone can see your phone number -->
     <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">Wer deine Telefonnummer hat, sieht, dass du bei Signal bist und kann mit dir chatten.</string>
     <!-- Description for radio item stating no one will be able to see your phone number -->
@@ -2295,10 +2295,10 @@
     <string name="UsernameEditFragment_username_is_invalid">Nutzername ist ungültig.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Nutzernamen dürfen aus %1$d bis %2$d Zeichen bestehen.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Über Usernamen können andere dir Nachrichten schicken, ohne dass sie deine Telefonnummer brauchen. Sie sind mit einer Reihe von Ziffern gekoppelt, damit deine Adresse geheim bleibt.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">Über Usernamen können andere dir Nachrichten schicken, ohne dass sie deine Telefonnummer brauchen. Sie sind mit einer Ziffernfolge gekoppelt, damit deine Adresse geheim bleibt.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">Was ist das für eine Nummer?</string>
-    <string name="UsernameEditFragment__these_digits_help_keep">Diese Ziffern helfen, deinen Nutzernamen privat zu halten, damit du keine unerwünschten Nachrichten erhältst. Teile deinen Nutzernamen nur mit den Personen und Gruppen, mit denen du chatten möchtest. Wenn du deinen Nutzernamen änderst, bekommst du einen neuen Zifferncode.</string>
+    <string name="UsernameEditFragment__these_digits_help_keep">Diese Ziffern helfen, deinen Nutzernamen privat zu halten, damit du keine unerwünschten Nachrichten erhältst. Teile deinen Nutzernamen nur mit den Personen und Gruppen, mit denen du chatten möchtest. Wenn du deinen Nutzernamen änderst, bekommst du eine neue Ziffernfolge.</string>
     <!-- Button to allow user to skip -->
     <string name="UsernameEditFragment__skip">Überspringen</string>
     <!-- Content description for done button -->
@@ -3867,15 +3867,15 @@
     <!-- Subtext below option to launch into phone number privacy settings screen -->
     <string name="preferences_app_protection__choose_who_can_see">Lege fest, wer deine Telefonnummer sehen kann und wer dich auf Signal mit ihr kontaktieren kann.</string>
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
-    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">Wer meine Telefonnummer sehen kann</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">Wer kann meine Telefonnummer sehen</string>
     <!-- Subtext below radio buttons when who can see my number is set to everybody -->
     <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">Deine Telefonnummer ist für Personen und Gruppen sichtbar, mit denen du Nachrichten austauschst.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Your phone number will not be visible to anyone unless they have it saved in their phone\'s contacts.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Deine Telefonnummer ist für niemanden sichtbar, außer sie ist in den Telefonkontakten derjenigen Person gespeichert.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Your phone number will not be visible to anyone.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Deine Telefonnummer ist für niemanden sichtbar.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
-    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Wer mich anhand der Telefonnummer finden kann</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Wer kann mich anhand der Telefonnummer finden</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
     <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">Wer deine Telefonnummer hat, sieht, dass du bei Signal bist und kann mit dir chatten.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
@@ -3911,7 +3911,7 @@
     <string name="prompt_passphrase_activity__tap_to_unlock">ZUM ENTSPERREN ANTIPPEN</string>
     <string name="Recipient_unknown">Unbekannt</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
-    <string name="Recipient_deleted_account">Deleted account</string>
+    <string name="Recipient_deleted_account">Gelöschtes Konto</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
     <string name="preferences_account_reregister">Konto erneut registrieren</string>
@@ -6057,7 +6057,7 @@
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
     <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">Bestätige deine Spende bei %1$s</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">To setup your recurring donation tap continue to confirm a €0,01 charge with your bank. This will be automatically refunded and allows your €5/month donation to debited from your account.</string>
+    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">Wenn du deine wiederkehrende monatliche Spende einrichtest, tippe auf »Weiter«, um die Abbuchung von 0,01 € bei deiner Bank zu bestätigen. Dieser Betrag wird automatisch erstattet und erlaubt die Abbuchung deiner Spende in Höhe von 5 € pro Monat von deinem Konto.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">Fortfahren</string>
 
@@ -6540,7 +6540,7 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">Telefonnummer</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_a_full_username">Enter a full username with its pair of digits.</string>
+    <string name="FindByActivity__enter_a_full_username">Gib einen vollständigen Nutzernamen mit dem entsprechenden Ziffernpaar ein.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">Weiter</string>
     <!-- Placeholder text for search input for selecting country code -->
@@ -6554,13 +6554,13 @@
     <!-- Dialog title when username is not found -->
     <string name="FindByActivity__username_not_found">Nutzername nicht gefunden</string>
     <!-- Dialog body for invalid username. Placeholder is the entered username. -->
-    <string name="FindByActivity__s_is_not_a_valid_username">%1$s is not a valid username. Make sure you\'ve entered the complete username followed by its set of digits.</string>
+    <string name="FindByActivity__s_is_not_a_valid_username">%1$s ist kein gültiger Nutzername. Stelle sicher, dass du den vollständigen Nutzernamen gefolgt von den Ziffern eingegeben hast.</string>
     <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
-    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s is not valid phone number. Try again with a valid phone number</string>
+    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s ist keine gültige Telefonnummer. Versuche es noch einmal mit einer gültigen Telefonnummer.</string>
     <!-- Dialog body for not found username -->
     <string name="FindByActivity__s_is_not_a_signal_user">»%1$s« ist kein Signal-Nutzer. Bitte überprüfe den Nutzernamen und versuche es erneut.</string>
     <!-- Dialog body for not found phone number -->
-    <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s ist kein Signal-User Möchtest du diese Nummer einladen?</string>
+    <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s ist kein Signal-Nutzer. Möchtest du diese Nummer einladen?</string>
     <!-- Dialog action to invite the phone number to Signal -->
     <string name="FindByActivity__invite">Einladen</string>
 

@@ -3765,9 +3765,9 @@
     <!-- Subtext below radio buttons when who can see my number is set to everybody -->
     <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">تېلېفون نومۇرىڭىزنى سىز ئۇچۇر يوللىغان كىشىلەر ۋە گۇرۇپپىدىكىلەر كۆرەلەيدۇ.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Your phone number will not be visible to anyone unless they have it saved in their phone\'s contacts.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">تېلېفون نومۇرىڭىزنى ئۆزىنىڭ ئالاقىداشلار تىزىملىكىدە ساقلىمىغانلا بولسا، ھېچكىم تېلېفون نومۇرىڭىزنى كۆرەلمەيدۇ.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Your phone number will not be visible to anyone.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">تېلېفون نومۇرىڭىزنى ھېچكىم كۆرەلمەيدۇ.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">تېلېفون نومۇرۇم بىلەن مېنى تاپالايدىغانلار</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
@@ -3805,7 +3805,7 @@
     <string name="prompt_passphrase_activity__tap_to_unlock">چېكىلسە قۇلۇپ ئاچىدۇ</string>
     <string name="Recipient_unknown">نامەلۇم</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
-    <string name="Recipient_deleted_account">Deleted account</string>
+    <string name="Recipient_deleted_account">ھېساباتنى ئۆچۈرۈش</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
     <string name="preferences_account_reregister">ھېساباتنى قايتا تىزىملىتىش</string>
@@ -5920,7 +5920,7 @@
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
     <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">%1$s بىلەن قىلغان ئىئانىڭىزنى جەزملەشتۈرۈڭ</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">To setup your recurring donation tap continue to confirm a €0,01 charge with your bank. This will be automatically refunded and allows your €5/month donation to debited from your account.</string>
+    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">تەكرار ئىئانە قىلىشنى تەڭشەشتىن بۇرۇن، چېكىپ بانكا بىلەن €0,01 ھەقنى جەزملەشتۈرۈڭ. بۇ سومما ئاپتوماتىك قايتۇرۇلىدۇ ۋە ئايلىق €5 ئىئانىڭىزنى بانكا ھېساباتىڭىزدىن تۇتىدۇ.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">داۋاملاشتۇرۇش</string>
 
@@ -6397,7 +6397,7 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">تېلېفون نومۇرىڭىز</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_a_full_username">Enter a full username with its pair of digits.</string>
+    <string name="FindByActivity__enter_a_full_username">ئىشلەتكۈچى نامىنى ئۆزىنىڭ ماس نومۇرى بىلەن تولۇق كىرگۈزۈڭ.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">كېيىنكى</string>
     <!-- Placeholder text for search input for selecting country code -->
@@ -6411,9 +6411,9 @@
     <!-- Dialog title when username is not found -->
     <string name="FindByActivity__username_not_found">ئىشلەتكۈچى ئىسمى تېپىلمىدى</string>
     <!-- Dialog body for invalid username. Placeholder is the entered username. -->
-    <string name="FindByActivity__s_is_not_a_valid_username">%1$s is not a valid username. Make sure you\'ve entered the complete username followed by its set of digits.</string>
+    <string name="FindByActivity__s_is_not_a_valid_username">%1$s ئىناۋەتلىك ئىشلەتكۈچى نامى ئەمەس. ئىشلەتكۈچى نامىنى تولۇق كىرگۈزۈشكە ۋە ئۇنىڭغا ماس كېلىدىغان بىر يۈرۈش رەقەمنى كىرگۈزۈشكە كاپالەتلىك قىلىڭ.</string>
     <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
-    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s is not valid phone number. Try again with a valid phone number</string>
+    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s بولسا ئىناۋەتلىك تېلېفون نومۇرى ئەمەس. ئىناۋەتلىك تېلېفون نومۇرى بىلەن قايتا سىناڭ</string>
     <!-- Dialog body for not found username -->
     <string name="FindByActivity__s_is_not_a_signal_user">%1$s بولسا Signal ئىشلەتكۈچى ئەمەس. ئىشلەتكۈچى نامىنى تەكشۈرۈپ قايتا سىناڭ.</string>
     <!-- Dialog body for not found phone number -->

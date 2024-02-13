@@ -2449,11 +2449,11 @@
     <string name="UsernameEditFragment_delete">Видалити</string>
     <string name="UsernameEditFragment_successfully_removed_username">Псевдонім успішно видалено.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Виникла помилка мережі.</string>
-    <string name="UsernameEditFragment_this_username_is_taken">Цей псевдонім вже використовується.</string>
-    <string name="UsernameEditFragment_usernames_can_only_include">Псевдоніми можуть мати лише такі символи: a–Z, 0–9 та нижнє підкреслювання.</string>
-    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Псевдонім не може починатися з цифри.</string>
-    <string name="UsernameEditFragment_username_is_invalid">Псевдонім невірний.</string>
-    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Псевдонім складається з символів кількістю від %1$d до %2$d.</string>
+    <string name="UsernameEditFragment_this_username_is_taken">Це ім\'я користувача вже використовується.</string>
+    <string name="UsernameEditFragment_usernames_can_only_include">Імена користувачів можуть мати лише такі символи: a–Z, 0–9 та нижнє підкреслювання.</string>
+    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Ім\'я користувача не може починатися з цифри.</string>
+    <string name="UsernameEditFragment_username_is_invalid">Ім\'я користувача невірний.</string>
+    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Ім\'я користувача складається з символів кількістю від %1$d до %2$d.</string>
     <!-- Explanation about what usernames provide -->
     <string name="UsernameEditFragment__usernames_let_others_message">Завдяки імені користувача вам зможуть писати люди, які не знають вашого номеру телефону. Поряд із іменем є кілька цифр, які захищають конфіденційність вашої адреси.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->

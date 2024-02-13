@@ -4171,7 +4171,7 @@
     <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Избришете %1$s од вашата сметка за плаќања</string>
     <string name="DeleteAccountFragment__no_country_code">Не е внесен повикувачки број на државата</string>
     <string name="DeleteAccountFragment__no_number">Не е внесен број</string>
-    <string name="DeleteAccountFragment__the_phone_number">Бројот што го внесовте не се совпаѓа со Вашите сметки.</string>
+    <string name="DeleteAccountFragment__the_phone_number">Телефонскиот број што го внесовте не се совпаѓа со Вашите сметки.</string>
     <string name="DeleteAccountFragment__are_you_sure">Сигурни сте дека сакате да ја избришете вашата сметка?</string>
     <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Ова ќе ја избрише вашата Signal сметка и ќе ја ресетира апликацијата. Апликацијата ќе се затвори по завршување на процесот.</string>
     <string name="DeleteAccountFragment__failed_to_delete_local_data">Не успеаја да се избришат локалните податоци. Можете рачно да ги исчистите во системските поставувања на апликацијата.</string>

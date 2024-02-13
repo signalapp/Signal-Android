@@ -46,7 +46,7 @@
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Signal eta mezu jakinarazpenak iraunkorki desbloketuako dira.</string>
     <string name="ApplicationPreferencesActivity_disable">Desaktibatu</string>
     <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Desaktibatu Signal-en mezuak eta deiak?</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Desaktibatu Signal-en mezu eta deiak zerbitzaritik deserregistratuz. Zure telefono zenbakia bererregistratu beharko duzu mezu eta deiak berriro erabili ahal izateko.</string>
+    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Desaktibatu Signal-en mezu eta deiak zerbitzaritik deserregistratuz. Zure telefono-zenbakia bererregistratu beharko duzu mezu eta deiak berriro erabili ahal izateko.</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Errorea zerbitzariarekin konektatzerakoan!</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PINak beharrezkoak dira erregistratzeko blokeoa aktibatzeko. Pinak desaktibatzeko, mesedez, lehenago desaktibatu erregistratzeko blokeoa.</string>
     <string name="ApplicationPreferencesActivity_pin_created">Sortu da PINa.</string>
@@ -1063,8 +1063,8 @@
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Erabiltzaile-izena, QR kodea eta esteka ez daude ikusgai profilean. Partekatu erabiltzaile-izena pertsona fidagarriekin bakarrik.</string>
-    <string name="ManageProfileFragment_profile_name">Profilaren izena</string>
-    <string name="ManageProfileFragment_username">Erabiltzailearen izena</string>
+    <string name="ManageProfileFragment_profile_name">Profileko izena</string>
+    <string name="ManageProfileFragment_username">Erabiltzaile-izena</string>
     <string name="ManageProfileFragment_about">Honi buruz</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">Huts egin du zure irudia ezartzeak</string>
     <string name="ManageProfileFragment_badges">Bereizgarriak</string>
@@ -1381,8 +1381,8 @@
     </plurals>
 
     <!-- Profile change updates -->
-    <string name="MessageRecord_changed_their_profile_name_to">%1$s erabiltzaileak bere profilaren izena aldatu du. Orain %2$s da.</string>
-    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s erabiltzaileak bere profilaren izena aldatu du. Lehen %2$s zen eta orain %3$s da.</string>
+    <string name="MessageRecord_changed_their_profile_name_to">%1$s erabiltzaileak bere profileko izena aldatu du. Orain %2$s da.</string>
+    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s erabiltzaileak bere profileko izena aldatu du. Lehen %2$s zen eta orain %3$s da.</string>
     <string name="MessageRecord_changed_their_profile">%1$s erabiltzaileak bere profila aldatu du.</string>
 
     <!-- GV2 specific -->
@@ -1545,7 +1545,7 @@
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">%1$s erabiltzailearekin duzun segurtasun zenbakia ez egiaztatutzat markatu duzu</string>
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">%1$s erabiltzailearekin duzun segurtasun zenbakia ez egiaztatutzat markatu duzu beste gailu batetik </string>
     <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Ezin izan da entregatu %1$s(r)en mezu bat</string>
-    <string name="MessageRecord_s_changed_their_phone_number">%1$s(e)k bere telefono zenbakia aldatu du.</string>
+    <string name="MessageRecord_s_changed_their_phone_number">%1$s(e)k bere telefono-zenbakia aldatu du.</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Eginbide berri hau gustatzen zaizu? Lagundu Signal-i dohaintza puntual batekin.</string>
     <!-- Update item message shown when we merge two threads together. First placeholder is a name, second placeholder is a phone number. -->
@@ -1961,7 +1961,7 @@
 
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
-    <string name="AboutSheet__signal_connection">Signal konexioa</string>
+    <string name="AboutSheet__signal_connection">Signal-eko konexioa</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s zure sistemako kontaktuetan dago</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -2078,7 +2078,7 @@
     <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Hasteko, idatzi zure telefono-zenbakia.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Sartu %1$s telefonora bidali dugun kodea.</string>
 
-    <string name="RegistrationActivity_phone_number_description">Telefono zenbakia</string>
+    <string name="RegistrationActivity_phone_number_description">Telefono-zenbakia</string>
     <string name="RegistrationActivity_country_code_description">Herrialde kodea</string>
     <string name="RegistrationActivity_call">Deitu</string>
     <string name="RegistrationActivity_verification_code">Egiaztapen-kodea</string>
@@ -2285,15 +2285,15 @@
     <string name="UsernameEditFragment__add_a_username">Gehitu erabiltzaile-izen bat</string>
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">Aukeratu erabiltzaile-izena</string>
-    <string name="UsernameEditFragment_username">Erabiltzailearen izena</string>
+    <string name="UsernameEditFragment_username">Erabiltzaile-izena</string>
     <string name="UsernameEditFragment_delete">Ezabatu</string>
     <string name="UsernameEditFragment_successfully_removed_username">Kendu da erabiltzaile-izena.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Sare errore bat izan da.</string>
-    <string name="UsernameEditFragment_this_username_is_taken">Erabiltzaile izen hau hartuta dago.</string>
-    <string name="UsernameEditFragment_usernames_can_only_include">Erabiltzaile izenetan bakarrik ondokoak daude onartuta: a-Z, 0-9 eta azpimarrak.</string>
-    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Erabiltzaile izenak ezin dira zenbaki batez hasi.</string>
-    <string name="UsernameEditFragment_username_is_invalid">Erabiltzaile izena baliogabea da.</string>
-    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Erabiltzaile izenek %1$d eta %2$d karaktere bitartean egon behar dira.</string>
+    <string name="UsernameEditFragment_this_username_is_taken">Erabiltzaile-izen hau hartuta dago.</string>
+    <string name="UsernameEditFragment_usernames_can_only_include">Erabiltzaile-izenetan bakarrik ondokoak daude onartuta: a-Z, 0-9 eta azpimarrak.</string>
+    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Erabiltzaile-izenak ezin dira zenbaki batez hasi.</string>
+    <string name="UsernameEditFragment_username_is_invalid">Erabiltzaile-izena baliogabea da.</string>
+    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Erabiltzaile-izenek %1$d eta %2$d karaktere bitartean egon behar dira.</string>
     <!-- Explanation about what usernames provide -->
     <string name="UsernameEditFragment__usernames_let_others_message">Erabiltzaile-izenei esker, beste erabiltzaileek zure telefono-zenbakiaren beharrik gabe bidal diezazkizukete mezuak. Digitu multzo batekin parekatuta daude, zure helbidea pribatu mantentzeko.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
@@ -2625,8 +2625,8 @@
     <!-- ContactSelectionListFragment-->
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Singnalek Kontaktuen baimena behar du kontaktuak erakusteko baina ukatu egin diozu. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\" eta aktibatu \"Kontaktuak\".</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Errorea kontaktuak jasotzean, egiaztatu zure konexioa.</string>
-    <string name="ContactSelectionListFragment_username_not_found">Erabiltzaile izena ez da aurkitu</string>
-    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" ez da Signal erabiltzaile bat. Mesedez, egiaztatu erabiltzaile izena eta saia zaitez berriro."</string>
+    <string name="ContactSelectionListFragment_username_not_found">Erabiltzaile-izena ez da aurkitu</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" ez da Signal erabiltzaile bat. Mesedez, egiaztatu erabiltzaile-izena eta saia zaitez berriro."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Ez daukazu zertan zeure burua taldera gehitu</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">Taldearen gehienezko tamainara iritsi da</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal taldeek izan dezaketen gehienezko kide kopurua %1$d da.</string>
@@ -3125,7 +3125,7 @@
     <string name="preferences__mmsc_url">MMSC URLa</string>
     <string name="preferences__mms_proxy_host">MMS Proxy Ostalaria</string>
     <string name="preferences__mms_proxy_port">MMS Proxy Ataka:</string>
-    <string name="preferences__mmsc_username">MMSC Erabiltzailea</string>
+    <string name="preferences__mmsc_username">MMSC erabiltzaile-izena</string>
     <string name="preferences__mmsc_password">MMSC Pasaesaldia</string>
     <string name="preferences__sms_delivery_reports">SMS banaketaren txostenak</string>
     <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Bidaltzen duzun SMS mezu bakoitzeko banaketa txosten bat eskatu</string>
@@ -3244,7 +3244,7 @@
     <string name="preferences_communication__censorship_circumvention">Zentsura ekiditeko aukera</string>
     <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Aukera aktibatuta egonez gero, Signal zentsura ekiditen saiatuko da. Ez aktibatu aukera hau Signal zentsuratuta dagoen kokaen batean egon ezik.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Zentsura ekiditeko aukera zure kontuaren telefono zenbakian oinarrituta aktibatu da.</string>
+    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Zentsura ekiditeko aukera zure kontuaren telefono-zenbakian oinarrituta aktibatu da.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
     <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Zentsura ekideteko aukera manualki desaktibatu duzu.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
@@ -4164,14 +4164,14 @@
 
     <!-- DeleteAccountFragment -->
     <string name="DeleteAccountFragment__deleting_your_account_will">Kontua ezabatuz gero:</string>
-    <string name="DeleteAccountFragment__enter_your_phone_number">Idatzi zure telefono zenbakia</string>
+    <string name="DeleteAccountFragment__enter_your_phone_number">Idatzi zure telefono-zenbakia</string>
     <string name="DeleteAccountFragment__delete_account">Ezabatu kontua</string>
     <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Ezabatu kontuko informazioa eta profileko argazkia</string>
     <string name="DeleteAccountFragment__delete_all_your_messages">Ezabatu mezu guztiak</string>
     <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Ezabatu %1$s ordainketa-kontuan</string>
     <string name="DeleteAccountFragment__no_country_code">Ez duzu herrialde-kodea idatzi</string>
     <string name="DeleteAccountFragment__no_number">Ez duzu zenbakia idatzi</string>
-    <string name="DeleteAccountFragment__the_phone_number">Idatzi duzun telefono zenbakia eta zure kontuarena ez datoz bat.</string>
+    <string name="DeleteAccountFragment__the_phone_number">Idatzi duzun telefono-zenbakia eta zure kontuarena ez datoz bat.</string>
     <string name="DeleteAccountFragment__are_you_sure">Ziur zaude kontua ezabatu nahi duzula?</string>
     <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Signal-eko kontua ezabatuko da, eta aplikazioa berrezarriko. Aplikazioa itxi egingo da prozesua amaitu ondoren.</string>
     <string name="DeleteAccountFragment__failed_to_delete_local_data">Ezin izan dira ezabatu datu lokalak. Sistemaren aplikazioen ezarpenetan ezabatu beharko dituzu.</string>
@@ -4391,7 +4391,7 @@
     <string name="AccountSettingsFragment__account">Kontua</string>
     <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Gero eta gutxiago galdetuko dizute denbora joan ahala</string>
     <string name="AccountSettingsFragment__require_your_signal_pin">Eskatu Signal PIN zure telefono-zenbakia Signal-en berriro erregistratzeko</string>
-    <string name="AccountSettingsFragment__change_phone_number">Aldatu telefono zenbakia</string>
+    <string name="AccountSettingsFragment__change_phone_number">Aldatu telefono-zenbakia</string>
     <!-- Account setting that allows user to request and export their signal account data -->
     <string name="AccountSettingsFragment__request_account_data">Zure kontuaren datuak</string>
 
@@ -4447,10 +4447,10 @@
     <!-- ChangeNumberEnterPhoneNumberFragment -->
     <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Aldatu zenbakia</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Zure zenbaki zaharra</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Telefono zenbaki zaharra</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Telefono-zenbaki zaharra</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Zure zenbaki berria</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Telefono zenbaki berria</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Idatzi duzun telefono zenbakia eta zure kontuarena ez datoz bat.</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Telefono-zenbaki berria</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Idatzi duzun telefono-zenbakia eta zure kontuarena ez datoz bat.</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Zure zenbaki zaharraren herrialde-kodea zehaztu behar duzu</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Zure telefono-zenbaki zaharra zehaztu behar duzu</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Zure zenbaki berriaren herrialde-kodea zehaztu behar duzu</string>
@@ -4706,7 +4706,7 @@
     <string name="ConversationSettingsFragment__conversation_muted_until_s">Txataren jakinarazpenak desaktibatuta daude %1$s arte</string>
     <string name="ConversationSettingsFragment__conversation_muted_forever">Txataren jakinarazpenak betiko desaktibatuta daude</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefono-zenbakia arbelean kopiatu da.</string>
-    <string name="ConversationSettingsFragment__phone_number">Telefono zenbakia</string>
+    <string name="ConversationSettingsFragment__phone_number">Telefono-zenbakia</string>
     <string name="ConversationSettingsFragment__get_badges">Lortu zure profilerako bereizgarriak Signal-i lagunduz. Sakatu bereizgarri bat gehiago jakiteko.</string>
 
     <!-- PermissionsSettingsFragment -->
@@ -5145,7 +5145,7 @@
     <!-- Title of create notification profile screen -->
     <string name="EditNotificationProfileFragment__name_your_profile">Izena eman zure profilari</string>
     <!-- Hint text for create/edit notification profile name -->
-    <string name="EditNotificationProfileFragment__profile_name">Profilaren izena</string>
+    <string name="EditNotificationProfileFragment__profile_name">Profileko izena</string>
     <!-- Name has a max length, this shows how many characters are used out of the max -->
     <string name="EditNotificationProfileFragment__count">%1$d / %2$d</string>
     <!-- Call to action button to continue to the next step -->
@@ -5831,7 +5831,7 @@
     <!-- Subtitle of initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Aukeratu nork ikus ditzakeen \"Nire istorioa\" ataleko argitalpenak. Nahi duzunean alda ditzakezu ezarpenak.</string>
     <!-- All connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Signal konexio guztiak</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Signal-eko konexio guztiak</string>
     <!-- All connections except option for initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__all_except">Denak hauek izan ezik…</string>
     <!-- Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
@@ -6536,7 +6536,7 @@
     <!-- Title of screen to select a country code -->
     <string name="FindByActivity__select_country_code">Herrialdearen kodea aukeratu</string>
     <!-- Entry placeholder for find by username -->
-    <string name="FindByActivity__username">Erabiltzailearen izena</string>
+    <string name="FindByActivity__username">Erabiltzaile-izena</string>
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">Telefono-zenbakia</string>
     <!-- Help text under user entry for find by username -->
@@ -6548,17 +6548,17 @@
     <!-- Dialog title for invalid username -->
     <string name="FindByActivity__invalid_username">Erabiltzaile-izenak ez du balio</string>
     <!-- Dialog title for invalid phone number -->
-    <string name="FindByActivity__invalid_phone_number">Telefono zenbaki baliogabea</string>
+    <string name="FindByActivity__invalid_phone_number">Telefono-zenbaki baliogabea</string>
     <!-- Dialog title when phone number is not a registered signal user -->
     <string name="FindByActivity__invite_to_signal">Gonbidatu Signal erabiltzera</string>
     <!-- Dialog title when username is not found -->
-    <string name="FindByActivity__username_not_found">Erabiltzaile izena ez da aurkitu</string>
+    <string name="FindByActivity__username_not_found">Erabiltzaile-izena ez da aurkitu</string>
     <!-- Dialog body for invalid username. Placeholder is the entered username. -->
     <string name="FindByActivity__s_is_not_a_valid_username">%1$s ez da baliozkoa erabiltzaile-izen gisa. Ziurtatu erabiltzaile-izen osoa idatzi duzula, dagokion digitu-multzoarekin.</string>
     <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
     <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s ez da baliozkoa telefono-zenbaki gisa. Idatzi baliozko telefono-zenbaki bat eta saiatu berriro.</string>
     <!-- Dialog body for not found username -->
-    <string name="FindByActivity__s_is_not_a_signal_user">\"%1$s\" ez da Signal erabiltzaile bat. Mesedez, egiaztatu erabiltzaile izena eta saia zaitez berriro.</string>
+    <string name="FindByActivity__s_is_not_a_signal_user">\"%1$s\" ez da Signal erabiltzaile bat. Mesedez, egiaztatu erabiltzaile-izena eta saia zaitez berriro.</string>
     <!-- Dialog body for not found phone number -->
     <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s ez da Signal-en erabiltzailea. Zenbaki hori gonbidatu nahi duzu?</string>
     <!-- Dialog action to invite the phone number to Signal -->

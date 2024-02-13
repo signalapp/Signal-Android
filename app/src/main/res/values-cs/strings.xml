@@ -2455,7 +2455,7 @@
     <string name="UsernameEditFragment_username_is_invalid">Uživatelské jméno je neplatné.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Uživatelská jména musí mít %1$d až %2$d znaků.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Uživatelská jména umožňují ostatním posílat vám zprávy, aniž by k tomu potřebovali vaše telefonní číslo. Jsou spárována se sadou číslic, které pomáhají udržet vaši adresu v soukromí.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">Uživatelská jména umožňují ostatním posílat vám zprávy, aniž by k tomu potřebovali vaše telefonní číslo. Jsou spárována s kombinací číslic, které pomáhají udržet vaši adresu v soukromí.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">O jakou sadu číslic se jedná?</string>
     <string name="UsernameEditFragment__these_digits_help_keep">Tyto číslice pomáhají udržet vaše uživatelské jméno v soukromí, abyste se vyhnuli nechtěným zprávám. Uživatelské jméno sdílejte pouze s lidmi a skupinami, se kterými chcete chatovat. Pokud uživatelské jméno změníte, dostanete novou sadu číslic.</string>
@@ -2794,7 +2794,7 @@
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal potřebuje oprávnění pro přístup ke kontaktům, aby vám je mohl zobrazit, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Kontakty\".</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Nepodařilo se načíst kontakty, zkontrolujte připojení k síti.</string>
     <string name="ContactSelectionListFragment_username_not_found">Uživatelské jméno nebylo nalezeno</string>
-    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" není uživatel Signal. Prosím zkontrolujte uživatelské jméno a zkuste to znovu."</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" není uživatel Signal. Zkontrolujte prosím uživatelské jméno a zkuste to znovu."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Nemusíte se přidávat do skupiny</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">Dosažena maximální velikost skupiny</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Skupiny Signal mohou mít maximálně %1$d členů.</string>
@@ -3315,7 +3315,7 @@
     <string name="preferences__mmsc_url">MMSC URL</string>
     <string name="preferences__mms_proxy_host">MMS Proxy server</string>
     <string name="preferences__mms_proxy_port">MMS Proxy Port</string>
-    <string name="preferences__mmsc_username">MMSC Jméno</string>
+    <string name="preferences__mmsc_username">MMSC uživatelské jméno</string>
     <string name="preferences__mmsc_password">MMSC Heslo</string>
     <string name="preferences__sms_delivery_reports">Doručenky SMS</string>
     <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">U každé odeslané zprávy požadovat potvrzení o doručení</string>

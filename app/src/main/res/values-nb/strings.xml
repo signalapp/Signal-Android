@@ -1076,7 +1076,7 @@
     <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
     <string name="ManageProfileFragment__link_tooltip_body">Del din unike QR-kode eller lenke og la andre starte nye samtaler med deg.</string>
     <!-- Snackbar message after creating username -->
-    <string name="ManageProfileFragment__username_created">Brukernavnet er lagret</string>
+    <string name="ManageProfileFragment__username_created">Brukernavnet er opprettet</string>
     <!-- Snackbar message after copying username -->
     <string name="ManageProfileFragment__username_copied">Brukernavnet er kopiert</string>
     <!-- Snackbar message after network failure while trying to delete username -->
@@ -2290,12 +2290,12 @@
     <string name="UsernameEditFragment_successfully_removed_username">Brukernavnet er fjernet.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Det oppstod en nettverksfeil.</string>
     <string name="UsernameEditFragment_this_username_is_taken">Dette brukernavnet er tatt.</string>
-    <string name="UsernameEditFragment_usernames_can_only_include">Brukernavn kan bare inneholde a–Z, 0–9, og understrek.</string>
+    <string name="UsernameEditFragment_usernames_can_only_include">Brukernavn kan bare inneholde a–Z, 0–9 og understrek.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Brukernavn kan ikke begynne med et tall.</string>
     <string name="UsernameEditFragment_username_is_invalid">Brukernavnet er ugyldig.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Brukernavn må være mellom %1$d og %2$d tegn.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Brukernavnet gjør det mulig for andre å sende deg meldinger uten telefonnummeret ditt. Det er koblet til en nummerrekke for å holde adressen din skjult.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">Brukernavnet gjør det mulig for andre å sende deg meldinger uten telefonnummeret ditt. Det er koblet til en tallrekke for å holde adressen din skjult.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">Hva er dette nummeret?</string>
     <string name="UsernameEditFragment__these_digits_help_keep">Disse tallene holder brukernavnet ditt skjult slik at du unngår uønskede meldinger. Det kan være lurt å bare dele brukernavnet ditt med personer og grupper du vil chatte med. Du får en ny tallrekke hvis du bytter brukernavnet ditt.</string>
@@ -2323,7 +2323,7 @@
 
     <!-- UsernameShareBottomSheet -->
     <!-- Explanation of what the sheet enables the user to do -->
-    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Kopier eller del en brukerprofillenke</string>
+    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Kopier eller del en brukernavnlenke</string>
 
     <!-- VerifyIdentityActivity -->
     <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Kontakten kjører en nyere versjon av Signal og bruker et QR-kodeformat som ikke kan brukes med din versjon. Oppdater Signal for å sammenligne.</string>
@@ -2626,7 +2626,7 @@
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal krever tillatelse fra systemet for å kunne vise kontakter, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Kontakter».</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Klarte ikke å hente kontakter. Kontroller nettforbindelse</string>
     <string name="ContactSelectionListFragment_username_not_found">Brukernavn ikke funnet</string>
-    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" er ikke en Signal-bruker. Kontroller brukernavnet og prøv igjen."</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"«%1$s» er ikke en Signal-bruker. Kontroller brukernavnet, og prøv igjen."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Det er ikke nødvendig å legge deg selv til gruppen</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">Maksimum antall på gruppestørrelse er oppnådd</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal grupper kan ha maksimum %1$dmedlemmer.</string>

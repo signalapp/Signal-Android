@@ -2444,12 +2444,12 @@
     <!-- Toolbar title when entering from registration -->
     <string name="UsernameEditFragment__add_a_username">Dodaj korisničko ime</string>
     <!-- Instructional text at the top of the username edit screen -->
-    <string name="UsernameEditFragment__choose_your_username">Odaberite korisničko ime</string>
+    <string name="UsernameEditFragment__choose_your_username">Odaberi korisničko ime</string>
     <string name="UsernameEditFragment_username">Korisničko ime</string>
     <string name="UsernameEditFragment_delete">Izbriši</string>
     <string name="UsernameEditFragment_successfully_removed_username">Uspješno je uklonjeno korisničko ime.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Došlo je do greške u mreži.</string>
-    <string name="UsernameEditFragment_this_username_is_taken">Ovo korisničko ime već je rezervisano.</string>
+    <string name="UsernameEditFragment_this_username_is_taken">Ovo korisničko ime već je zauzeto.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">Korisničko ime može sadržavati samo slova bez kvačica, brojeve i donju crtu.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Korisničko ime ne može početi brojem.</string>
     <string name="UsernameEditFragment_username_is_invalid">Korisničko ime nije valjano.</string>
@@ -2485,7 +2485,7 @@
 
     <!-- UsernameShareBottomSheet -->
     <!-- Explanation of what the sheet enables the user to do -->
-    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Kopirajte ili dijelite link korisničkog imena</string>
+    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Kopirajte ili dijelite poveznicu korisničkog imena</string>
 
     <!-- VerifyIdentityActivity -->
     <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Ova osoba koristi noviju verziju Signala, sa nekompatibilnim QR kōdom. Molimo nadogradite Signal da uporedite.</string>

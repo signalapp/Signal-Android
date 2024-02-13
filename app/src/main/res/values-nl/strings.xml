@@ -2290,15 +2290,15 @@
     <string name="UsernameEditFragment_successfully_removed_username">Gebruikersnaam succesvol verwijderd.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Er is een netwerkfout opgetreden.</string>
     <string name="UsernameEditFragment_this_username_is_taken">Deze gebruikersnaam is al in gebruik.</string>
-    <string name="UsernameEditFragment_usernames_can_only_include">Gebruikersnamen mogen alleen uit de karakters a-Z, 0-9 en _ bestaan.</string>
+    <string name="UsernameEditFragment_usernames_can_only_include">Gebruikersnamen mogen alleen uit a-z, 0-9 en _ bestaan.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Gebruikersnamen mogen niet met een cijfer beginnen.</string>
     <string name="UsernameEditFragment_username_is_invalid">Gebruikersnaam is ongeldig.</string>
-    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Gebruikersnamen moeten uit ten minste %1$d en maximaal %2$d karakters bestaan.</string>
+    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Gebruikersnamen moeten uit minimaal %1$d en maximaal %2$d karakters bestaan.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Gebruikersnamen zorgen ervoor dat anderen jou berichten kunnen sturen zonder je telefoonnummer nodig te hebben. Ze zijn gekoppeld aan een cijferset zodat jouw adres privé blijft.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">Gebruikersnamen zorgen ervoor dat anderen jou berichten kunnen sturen zonder je telefoonnummer nodig te hebben. Ze zijn gekoppeld aan een cijfercombinatie zodat jouw adres privé blijft.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">Wat is dit nummer?</string>
-    <string name="UsernameEditFragment__these_digits_help_keep">Deze cijfers helpen om je gebruikersnaam privé te houden zodat je ongewenste berichten kunt voorkomen. Deel je gebruikersnaam alleen met mensen en groepen waarmee je zou willen chatten. Als je je gebruikersnaam wijzigt, krijg je een nieuwe cijferset.</string>
+    <string name="UsernameEditFragment__these_digits_help_keep">Deze cijfers helpen om je gebruikersnaam privé te houden zodat je ongewenste berichten kunt voorkomen. Deel je gebruikersnaam alleen met mensen en groepen waarmee je zou willen chatten. Als je je gebruikersnaam wijzigt, krijg je een nieuwe cijfercombinatie.</string>
     <!-- Button to allow user to skip -->
     <string name="UsernameEditFragment__skip">Overslaan</string>
     <!-- Content description for done button -->
@@ -2626,7 +2626,7 @@
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal heeft toegang tot je lijst met contacten nodig om je contacten weer te kunnen geven, maar toestemming om contacten in te zien is pertinent geweigerd. Ga naar de instellingen voor deze app, tik op ‘Machtigingen’ en schakel ‘Contacten’ in.</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Fout bij het ophalen van contactpersonen, ga na dat je netwerkverbinding werkt</string>
     <string name="ContactSelectionListFragment_username_not_found">Gebruikersnaam niet gevonden</string>
-    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"“%1$s” is geen Signal-gebruiker. Kijk de gebruikersnaam na en probeer het opnieuw."</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"“%1$s” is geen Signal-gebruiker. Controleer de gebruikersnaam en probeer het opnieuw."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Het is niet nodig om jezelf toe te voegen aan de groep</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">De maximale groepsgrootte is bereikt</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal groepen kunnen uit maximaal %1$d leden bestaan.</string>
@@ -3871,11 +3871,11 @@
     <!-- Subtext below radio buttons when who can see my number is set to everybody -->
     <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">Je telefoonnummer is zichtbaar voor de personen en groepen aan wie je een bericht stuurt.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Your phone number will not be visible to anyone unless they have it saved in their phone\'s contacts.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Je telefoonnummer is voor niemand zichtbaar, tenzij het is opgeslagen in de contacten van hun telefoon.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Your phone number will not be visible to anyone.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Je telefoonnummer is voor niemand zichtbaar.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
-    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Wie kan mij vinden via mijn nummer</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Wie kan mij via mijn nummer vinden</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
     <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">Iedereen die je telefoonnummer heeft, kan zien dat je een Signal-gebruiker bent en kan een chat met je beginnen.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
@@ -3911,7 +3911,7 @@
     <string name="prompt_passphrase_activity__tap_to_unlock">TIK OM TE ONTGRENDELEN</string>
     <string name="Recipient_unknown">Onbekend</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
-    <string name="Recipient_deleted_account">Deleted account</string>
+    <string name="Recipient_deleted_account">Verwijderd account</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
     <string name="preferences_account_reregister">Account opnieuw registreren</string>
@@ -5466,7 +5466,7 @@
     <string name="MyStorySettingsFragment__who_can_view_this_story">Wie kan dit verhaal bekijken</string>
     <!-- Clickable option for selecting people to hide your story from -->
     <!-- Privacy setting title for sending stories to all your signal connections -->
-    <string name="MyStorySettingsFragment__all_signal_connections">Alle contacten op Signal</string>
+    <string name="MyStorySettingsFragment__all_signal_connections">Alle Signal-contacten</string>
     <!-- Privacy setting description for sending stories to all your signal connections -->
     <!-- Privacy setting title for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__all_except">Iedereen behalve…</string>
@@ -5831,7 +5831,7 @@
     <!-- Subtitle of initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Kies wie je verhaal kan zien. Je kunt altijd wijzigingen aanbrengen in je instellingen.</string>
     <!-- All connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Alle contacten op Signal</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Alle Signal-contacten</string>
     <!-- All connections except option for initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__all_except">Iedereen behalve…</string>
     <!-- Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
@@ -6057,7 +6057,7 @@
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
     <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">Bevestig je donatie via %1$s</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">To setup your recurring donation tap continue to confirm a €0,01 charge with your bank. This will be automatically refunded and allows your €5/month donation to debited from your account.</string>
+    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">Om je maandelijkse donatie in te stellen, tik op doorgaan om dit met een afschrijving van € 0,01 bij je bank te bevestigen. Dit bedrag wordt automatisch teruggestort en maakt het mogelijk om je donatie van € 5/maand van je rekening af te schrijven.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">Doorgaan</string>
 
@@ -6540,7 +6540,7 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">Telefoonnummer</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_a_full_username">Enter a full username with its pair of digits.</string>
+    <string name="FindByActivity__enter_a_full_username">Voer een volledige gebruikersnaam met bijbehorende cijfercombinatie in.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">Volgende</string>
     <!-- Placeholder text for search input for selecting country code -->
@@ -6554,11 +6554,11 @@
     <!-- Dialog title when username is not found -->
     <string name="FindByActivity__username_not_found">Gebruikersnaam niet gevonden</string>
     <!-- Dialog body for invalid username. Placeholder is the entered username. -->
-    <string name="FindByActivity__s_is_not_a_valid_username">%1$s is not a valid username. Make sure you\'ve entered the complete username followed by its set of digits.</string>
+    <string name="FindByActivity__s_is_not_a_valid_username">%1$s is geen geldige gebruikersnaam. Zorg ervoor dat je de volledige gebruikersnaam hebt ingevoerd, inclusief de punt en bijbehorende cijfercombinatie.</string>
     <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
-    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s is not valid phone number. Try again with a valid phone number</string>
+    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s is geen geldig telefoonnummer. Probeer het opnieuw met een geldig telefoonnummer</string>
     <!-- Dialog body for not found username -->
-    <string name="FindByActivity__s_is_not_a_signal_user">“%1$s” is geen Signal-gebruiker. Kijk de gebruikersnaam na en probeer het opnieuw.</string>
+    <string name="FindByActivity__s_is_not_a_signal_user">“%1$s” is geen Signal-gebruiker. Controleer de gebruikersnaam en probeer het opnieuw.</string>
     <!-- Dialog body for not found phone number -->
     <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s is geen Signal-gebruiker. Wil je dit nummer uitnodigen?</string>
     <!-- Dialog action to invite the phone number to Signal -->

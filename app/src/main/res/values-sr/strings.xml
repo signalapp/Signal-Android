@@ -1381,8 +1381,8 @@
     </plurals>
 
     <!-- Profile change updates -->
-    <string name="MessageRecord_changed_their_profile_name_to">%1$s су променили име профила на %2$s.</string>
-    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s су променили име профила од %2$s на %3$s.</string>
+    <string name="MessageRecord_changed_their_profile_name_to">%1$s је променио/ла име на профилу на %2$s.</string>
+    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s је променио/ла име на профилу са %2$s на %3$s.</string>
     <string name="MessageRecord_changed_their_profile">%1$s су променили профил.</string>
 
     <!-- GV2 specific -->
@@ -2284,21 +2284,21 @@
     <!-- Toolbar title when entering from registration -->
     <string name="UsernameEditFragment__add_a_username">Унесите корисничко име</string>
     <!-- Instructional text at the top of the username edit screen -->
-    <string name="UsernameEditFragment__choose_your_username">Izaberite korisničko ime</string>
+    <string name="UsernameEditFragment__choose_your_username">Изаберите корисничко име</string>
     <string name="UsernameEditFragment_username">Корисничко име</string>
     <string name="UsernameEditFragment_delete">Обриши</string>
     <string name="UsernameEditFragment_successfully_removed_username">Корисничко име уклоњено.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Дошло је до грешке мреже.</string>
-    <string name="UsernameEditFragment_this_username_is_taken">Ово корисничко име је узето.</string>
+    <string name="UsernameEditFragment_this_username_is_taken">Ово корисничко име је заузето.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">Корисничко име може да садржи a-Z, 0-9 и _</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Корисничко име не може започети бројем.</string>
     <string name="UsernameEditFragment_username_is_invalid">Корисничко име је неважеће.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Корисничко име мора садржати између %1$d и %2$d карактера.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Korisnička imena omogućavaju drugima da vam šalju poruke bez vašeg broja telefona. Ona se uparuju sa brojem koji omogućava da vaša adresa ostane privatna.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">Корисничка имена омогућавају другима да вам шаљу поруке без вашег броја телефона. Она се упарују са бројем који омогућава да ваша адреса остане приватна.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">Šta znači ovaj broj?</string>
-    <string name="UsernameEditFragment__these_digits_help_keep">Ovaj broj omogućava da vaše korisničko ime ostane privatno kako biste izbegli neželjene poruke. Podelite svoje korisničko ime samo sa ljudima i grupama sa kojima biste želeli da ćaskate. Ako promenite korisničko ime, biće vam dodeljen novi broj.</string>
+    <string name="UsernameEditFragment__these_digits_help_keep">Овај број омогућава да ваше корисничко име остане приватно како бисте избегли нежељене поруке. Поделите своје корисничко име само са људима и групама са којима бисте желели да ћаскате. Ако промените корисничко име, биће вам додељен нови број.</string>
     <!-- Button to allow user to skip -->
     <string name="UsernameEditFragment__skip">Прескочи</string>
     <!-- Content description for done button -->
@@ -2308,7 +2308,7 @@
     <!-- Displayed when the chosen discriminator is too short -->
     <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Неважеће корисничко име – унесите најмање %1$d цифре.</string>
     <!-- Displayed when the chosen discriminator is too long -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Неважеће корисничко име – унесите најмање %1$d цифара.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Неважеће корисничко име – унесите највише %1$d цифара.</string>
     <!-- Displayed when the chosen discriminator is 00 -->
     <string name="UsernameEditFragment__this_number_cant_be_00">Овај број не може бити 00. Унесите цифру од 1 до 9</string>
     <!-- Displayed when the chosen discriminator starts with 00 -->
@@ -2323,7 +2323,7 @@
 
     <!-- UsernameShareBottomSheet -->
     <!-- Explanation of what the sheet enables the user to do -->
-    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Kopiranje ili deljenje linka korisničkog imena</string>
+    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Копирање или дељење линка корисничког имена</string>
 
     <!-- VerifyIdentityActivity -->
     <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Ваш контакт има новије издање Signal-a са некомпатибилним форматом бар-кôда. Ажурирајте Signal да бисте могли да упоређујете.</string>
@@ -4171,7 +4171,7 @@
     <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Обрисати %1$s на рачуну плаћања</string>
     <string name="DeleteAccountFragment__no_country_code">Није изабран позивни број државе</string>
     <string name="DeleteAccountFragment__no_number">Није наведен број</string>
-    <string name="DeleteAccountFragment__the_phone_number">Унет телефонски број се не подудара са вашим налогом.</string>
+    <string name="DeleteAccountFragment__the_phone_number">Унети број телефона се не подудара са бројем на вашем налогу.</string>
     <string name="DeleteAccountFragment__are_you_sure">Да ли заиста желите да обришете ваш налог?</string>
     <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Овим ћете избрисати налог на Signal-у и ресетовати апликацију. Апликација ће се затворити након завршетка поступка.</string>
     <string name="DeleteAccountFragment__failed_to_delete_local_data">Брисање локалних података није успело. Можете их ручно обрисати у поставкама апликације система.</string>
@@ -4390,7 +4390,7 @@
     <!-- AccountSettingsFragment -->
     <string name="AccountSettingsFragment__account">Налог</string>
     <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Временом ће бити тражено све ређе</string>
-    <string name="AccountSettingsFragment__require_your_signal_pin">Захтева Signal PIN да поново региструјете свој телефонски број Signal-ом</string>
+    <string name="AccountSettingsFragment__require_your_signal_pin">Обавезан Signal PIN за поновно регистровање броја телефона на Signal-у</string>
     <string name="AccountSettingsFragment__change_phone_number">Промена броја телефона</string>
     <!-- Account setting that allows user to request and export their signal account data -->
     <string name="AccountSettingsFragment__request_account_data">Подаци са налога</string>
@@ -4437,7 +4437,7 @@
     <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Извештај се генерише само у тренутку извоза и Signal га не чува на вашем уређају.</string>
 
     <!-- ChangeNumberFragment -->
-    <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Користите ово да промените свој тренутни телефонски број на нови телефонски број. Не можете поништити ову промену.\n\nПре него што наставите, проверите да ли ваш нови број може да прима СМС или позиве.</string>
+    <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Користите ову опцију да промените свој тренутни број телефона на нови број телефона. Не можете опозвати ову промену.\n\nПре него што наставите, проверите да ли ваш нови број може да прима SMS поруке или позиве.</string>
     <string name="ChangeNumberFragment__continue">Настави</string>
     <!-- Message shown on dialog after your number has been changed successfully. -->
     <string name="ChangeNumber__your_phone_number_has_changed_to_s">Ваш број телефона је промењен на %1$s</string>
@@ -4447,14 +4447,14 @@
     <!-- ChangeNumberEnterPhoneNumberFragment -->
     <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Променити број</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Ваш стари број</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Стари број</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Стари број телефона</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Ваш нови број</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Нови број</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Унет телефонски број се не подудара са вашим налогом.</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Нови број телефона</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Унети број телефона се не подудара са бројем на вашем налогу.</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Морате навести код државе свог старог броја</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Морате навести Ваш стари број</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Морате навести ваш стари број телефона</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Морате навести код државе свог новог броја</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Морате навести Ваш нови број</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Морате навести ваш нови број телефона</string>
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">Променити број</string>
@@ -4463,7 +4463,7 @@
 
     <!-- ChangeNumberConfirmFragment -->
     <string name="ChangeNumberConfirmFragment__change_number">Промени број</string>
-    <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Ускоро ћете променити свој телефонски број од %1$s на %2$s.\n\nПре него што наставите, проверите да ли је доњи број тачан.</string>
+    <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Променићете свој број телефона са %1$s на %2$s.\n\nПре него што наставите, проверите да ли је број наведен у наставку тачан.</string>
     <string name="ChangeNumberConfirmFragment__edit_number">Измени број</string>
 
     <!-- ChangeNumberRegistrationLockFragment -->
@@ -5466,7 +5466,7 @@
     <string name="MyStorySettingsFragment__who_can_view_this_story">Ко може да види ову причу</string>
     <!-- Clickable option for selecting people to hide your story from -->
     <!-- Privacy setting title for sending stories to all your signal connections -->
-    <string name="MyStorySettingsFragment__all_signal_connections">Sve Signal veze</string>
+    <string name="MyStorySettingsFragment__all_signal_connections">Све Signal везе</string>
     <!-- Privacy setting description for sending stories to all your signal connections -->
     <!-- Privacy setting title for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__all_except">Svi osim…</string>
@@ -5495,9 +5495,9 @@
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Дозволите људима који могу да виде вашу причу да реагују и одговоре на њу</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
-    <string name="SignalConnectionsBottomSheet___signal_connections">Signal veze</string>
+    <string name="SignalConnectionsBottomSheet___signal_connections">Signal везе</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
-    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal veze su ljudi kojima verujete i koje ste izabrali na neki od sledećih načina:</string>
+    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal везе су људи којима верујете и које сте изабрали на неки од следећих начина:</string>
     <!-- Signal connections sheet bullet point 1 -->
     <string name="SignalConnectionsBottomSheet__starting_a_conversation">Започели сте ћаскање</string>
     <!-- Signal connections sheet bullet point 2 -->
@@ -5831,7 +5831,7 @@
     <!-- Subtitle of initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Бирајте ко може да види објаве у „Мојој причи“. Увек можете да промените подешавања.</string>
     <!-- All connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Sve Signal veze</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Све Signal везе</string>
     <!-- All connections except option for initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__all_except">Svi osim…</string>
     <!-- Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
@@ -6433,7 +6433,7 @@
     <!-- Description text for QR code and links in the username link settings -->
     <string name="UsernameLinkSettings_qr_description">Делите свој QR код и линк само са људима којима верујете. Ако их поделите са другима, они ће моћи да виде ваше корисничко име и започну ћаскање са вама.</string>
     <!-- Content of a toast that will show after the username is copied to the clipboard -->
-    <string name="UsernameLinkSettings_username_copied_toast">Korisničko ime je kopirano</string>
+    <string name="UsernameLinkSettings_username_copied_toast">Корисничко име је копирано</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">Линк је копиран</string>
     <!-- Content of a text field that is shown when the user has not yet set a username link -->

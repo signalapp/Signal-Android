@@ -2284,7 +2284,7 @@
     <!-- Toolbar title when entering from registration -->
     <string name="UsernameEditFragment__add_a_username">Felhasználónév hozzáadása</string>
     <!-- Instructional text at the top of the username edit screen -->
-    <string name="UsernameEditFragment__choose_your_username">Válaszd ki a felhasználónevet</string>
+    <string name="UsernameEditFragment__choose_your_username">Válaszd ki a felhasználóneved</string>
     <string name="UsernameEditFragment_username">Felhasználónév</string>
     <string name="UsernameEditFragment_delete">Törlés</string>
     <string name="UsernameEditFragment_successfully_removed_username">A felhasználónév eltávolítása sikeres volt.</string>

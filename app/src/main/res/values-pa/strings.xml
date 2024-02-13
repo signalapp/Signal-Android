@@ -1090,7 +1090,7 @@
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
-    <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">ਤੁਹਾਡੇ ਵਰਤੋਂਕਾਰ ਨਾਂ ਨਾਲ ਕੁਝ ਗਲਤ ਵਾਪਰ ਗਿਆ ਹੈ, ਇਹ ਹੁਣ ਤੁਹਾਵਰਤੋਂਕਾਰ ਨਾਂਡੇ ਖਾਤੇ ਨੂੰ ਅਸਾਈਨ ਨਹੀਂ ਕੀਤਾ ਗਿਆ ਹੈ। ਤੁਸੀਂ ਇਸਨੂੰ ਦੁਬਾਰਾ ਸੈੱਟ ਕਰਨ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰ ਸਕਦੇ ਹੋ ਜਾਂ ਇੱਕ ਨਵਾਂ ਵਰਤੋਂਕਾਰ ਨਾਂ ਚੁਣ ਸਕਦੇ ਹੋ।</string>
+    <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">ਤੁਹਾਡੇ ਵਰਤੋਂਕਾਰ ਨਾਂ ਨਾਲ ਕੁਝ ਗਲਤ ਵਾਪਰ ਗਿਆ ਹੈ, ਇਹ ਹੁਣ ਤੁਹਾਡੇ ਖਾਤੇ ਨੂੰ ਅਸਾਈਨ ਨਹੀਂ ਕੀਤਾ ਗਿਆ ਹੈ। ਤੁਸੀਂ ਇਸਨੂੰ ਦੁਬਾਰਾ ਸੈੱਟ ਕਰਨ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰ ਸਕਦੇ ਹੋ ਜਾਂ ਇੱਕ ਨਵਾਂ ਵਰਤੋਂਕਾਰ ਨਾਂ ਚੁਣ ਸਕਦੇ ਹੋ।</string>
     <!-- Displayed above the conversation list when a user needs to address an issue with their username link -->
     <string name="UsernameOutOfSyncReminder__link_corrupt">ਤੁਹਾਡੇ QR ਕੋਡ ਅਤੇ ਵਰਤੋਂਕਾਰ ਨਾਂ ਦੇ ਲਿੰਕ ਨਾਲ ਕੁਝ ਗਲਤ ਵਾਪਰ ਗਿਆ ਹੈ, ਇਹ ਹੁਣ ਵੈਧ ਨਹੀਂ ਹੈ। ਦੂਜਿਆਂ ਨਾਲ ਸਾਂਝਾ ਕਰਨ ਲਈ ਇੱਕ ਨਵਾਂ ਲਿੰਕ ਬਣਾਓ।</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
@@ -2298,7 +2298,7 @@
     <string name="UsernameEditFragment__usernames_let_others_message">ਤੁਹਾਡੇ ਫ਼ੋਨ ਨੰਬਰ ਦੀ ਲੋੜ ਪਏ ਬਿਨਾਂ ਲੋਕ ਵਰਤੋਂਕਾਰ ਨਾਂ ਰਾਹੀਂ ਤੁਹਾਨੂੰ ਸੁਨੇਹਾ ਭੇਜ ਸਕਦੇ ਹਨ। ਤੁਹਾਡੇ ਪਤੇ ਨੂੰ ਪ੍ਰਾਈਵੇਟ ਰੱਖਣ ਲਈ ਵਰਤੋਂਕਾਰ ਨਾਂ ਦੇ ਵਿੱਚ ਅੰਕਾਂ ਦਾ ਜੋੜਾ ਵੀ ਸ਼ਾਮਲ ਕੀਤਾ ਜਾਂਦਾ ਹੈ।</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">ਇਹ ਨੰਬਰ ਕੀ ਹੈ?</string>
-    <string name="UsernameEditFragment__these_digits_help_keep">ਇਹ ਅੰਕ ਤੁਹਾਡੇ ਵਰਤੋਂਕਾਰ ਨਾਮ ਨੂੰ ਪ੍ਰਾਈਵੇਟ ਰੱਖਣ ਵਿੱਚ ਮਦਦ ਕਰਦੇ ਹਨ ਤਾਂ ਜੋ ਤੁਸੀਂ ਅਣਚਾਹੇ ਸੁਨੇਹਿਆਂ ਤੋਂ ਬਚ ਸਕੋ। ਆਪਣਾ ਵਰਤੋਂਕਾਰ ਨਾਮ ਸਿਰਫ਼ ਉਹਨਾਂ ਲੋਕਾਂ ਅਤੇ ਗਰੁੱਪਾਂ ਨਾਲ ਸਾਂਝਾ ਕਰੋ ਜਿਹਨਾਂ ਨਾਲ ਤੁਸੀਂ ਚੈਟ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ। ਜੇਕਰ ਤੁਸੀਂ ਵਰਤੋਂਕਾਰ ਨਾਮ ਬਦਲਦੇ ਹੋ ਤਾਂ ਅੰਕਾਂ ਨੂੰ ਵੀ ਬਦਲ ਦਿੱਤਾ ਜਾਵੇਗਾ।</string>
+    <string name="UsernameEditFragment__these_digits_help_keep">ਇਹ ਅੰਕ ਤੁਹਾਡੇ ਵਰਤੋਂਕਾਰ ਨਾਂ ਨੂੰ ਪ੍ਰਾਈਵੇਟ ਰੱਖਣ ਵਿੱਚ ਮਦਦ ਕਰਦੇ ਹਨ ਤਾਂ ਜੋ ਤੁਸੀਂ ਅਣਚਾਹੇ ਸੁਨੇਹਿਆਂ ਤੋਂ ਬਚ ਸਕੋ। ਆਪਣਾ ਵਰਤੋਂਕਾਰ ਨਾਂ ਸਿਰਫ਼ ਉਹਨਾਂ ਲੋਕਾਂ ਅਤੇ ਗਰੁੱਪਾਂ ਨਾਲ ਸਾਂਝਾ ਕਰੋ ਜਿਹਨਾਂ ਨਾਲ ਤੁਸੀਂ ਚੈਟ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ। ਜੇਕਰ ਤੁਸੀਂ ਵਰਤੋਂਕਾਰ ਨਾਂ ਬਦਲਦੇ ਹੋ ਤਾਂ ਅੰਕਾਂ ਨੂੰ ਵੀ ਬਦਲ ਦਿੱਤਾ ਜਾਵੇਗਾ।</string>
     <!-- Button to allow user to skip -->
     <string name="UsernameEditFragment__skip">ਛੱਡੋ</string>
     <!-- Content description for done button -->

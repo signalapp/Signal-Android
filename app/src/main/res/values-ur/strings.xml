@@ -1063,8 +1063,8 @@
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">آپ کا یوزر نیم، QR کوڈ اور لنک آپ کی پروفائل پر نظر نہیں آتے۔ اپنا یوزر نیم صرف ان لوگوں کے ساتھ شیئر کریں جن پر آپ کو اعتماد ہو۔</string>
-    <string name="ManageProfileFragment_profile_name">پروفائل کا نام</string>
-    <string name="ManageProfileFragment_username">صارف کا نام</string>
+    <string name="ManageProfileFragment_profile_name">پروفائل نیم</string>
+    <string name="ManageProfileFragment_username">یوزر نیم</string>
     <string name="ManageProfileFragment_about">متعلق</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">اوتار سیٹ کرنے میں ناکام</string>
     <string name="ManageProfileFragment_badges">بیجز</string>
@@ -1076,9 +1076,9 @@
     <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
     <string name="ManageProfileFragment__link_tooltip_body">دوسروں کے ساتھ اپنا منفرد QR کوڈ یا لنک شیئر کر کے انہیں اپنے ساتھ چیٹ شروع کرنے کی اجازت دیں۔</string>
     <!-- Snackbar message after creating username -->
-    <string name="ManageProfileFragment__username_created">صارفی نام تخلیق کیا گیا</string>
+    <string name="ManageProfileFragment__username_created">یوزر نیم بنا دیا گیا</string>
     <!-- Snackbar message after copying username -->
-    <string name="ManageProfileFragment__username_copied">صارفی نام کاپی کیا گیا</string>
+    <string name="ManageProfileFragment__username_copied">یوزر نیم کاپی کیا گیا</string>
     <!-- Snackbar message after network failure while trying to delete username -->
     <string name="ManageProfileFragment__couldnt_delete_username">یوزر نیم حذف نہیں کر سکے۔ بعد میں دوبارہ کوشش کریں۔</string>
     <!-- Snackbar message after successful deletion of username -->
@@ -1381,8 +1381,8 @@
     </plurals>
 
     <!-- Profile change updates -->
-    <string name="MessageRecord_changed_their_profile_name_to">%1$s نے اپنے پروفائل کا نام تبدیل%2$s کر دیا۔</string>
-    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s نے اپنے پروفائل کا نام %2$sسےتبدیل کر کے%3$sکر دیا۔</string>
+    <string name="MessageRecord_changed_their_profile_name_to">%1$s نے اپنا پروفائل نیم تبدیل%2$s کر دیا۔</string>
+    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s نے اپنا پروفائل نیم %2$sسےتبدیل کر کے%3$sکر دیا۔</string>
     <string name="MessageRecord_changed_their_profile">%1$s نے پروفائل تبدیل کیا۔</string>
 
     <!-- GV2 specific -->
@@ -1961,7 +1961,7 @@
 
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
-    <string name="AboutSheet__signal_connection">Signal کنکشن</string>
+    <string name="AboutSheet__signal_connection">Signal کنیکشن</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s آپ کے سسٹم کے روابط میں موجود ہے</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -2282,20 +2282,20 @@
     <!-- Placeholder text for custom discriminator -->
     <string name="UsernameEditFragment__00">00</string>
     <!-- Toolbar title when entering from registration -->
-    <string name="UsernameEditFragment__add_a_username">صارفی نام شامل کریں</string>
+    <string name="UsernameEditFragment__add_a_username">یوزر نیم شامل کریں</string>
     <!-- Instructional text at the top of the username edit screen -->
-    <string name="UsernameEditFragment__choose_your_username">اپنا صارفی نام منتخب کریں</string>
-    <string name="UsernameEditFragment_username">صارف کا نام</string>
+    <string name="UsernameEditFragment__choose_your_username">اپنا یوزر نیم منتخب کریں</string>
+    <string name="UsernameEditFragment_username">یوزر نیم</string>
     <string name="UsernameEditFragment_delete">حذف کریں</string>
-    <string name="UsernameEditFragment_successfully_removed_username">کامیابی کے ساتھ صارف نام ہٹا دیا گیا۔</string>
+    <string name="UsernameEditFragment_successfully_removed_username">کامیابی کے ساتھ یوزر نیم ہٹا دیا گیا۔</string>
     <string name="UsernameEditFragment_encountered_a_network_error">نیٹ ورک کی خرابی کا سامنا کرنا پڑا۔</string>
-    <string name="UsernameEditFragment_this_username_is_taken">یہ صارف نام لیا گیا ہے۔</string>
-    <string name="UsernameEditFragment_usernames_can_only_include">صارف ناموں میں صرف – Z-A ، 0–9 ، اور انڈر سکور شامل ہوسکتے ہیں۔</string>
-    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">صارف نام کسی نمبر کے ساتھ شروع نہیں ہوسکتے ہیں۔</string>
-    <string name="UsernameEditFragment_username_is_invalid">صارف کا نام غلط ہے.</string>
-    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">صارف نام %1$dاور%2$d حرف کے درمیان ہونا چاہئے۔</string>
+    <string name="UsernameEditFragment_this_username_is_taken">یہ یوزر نیم لے لیا گیا ہے۔</string>
+    <string name="UsernameEditFragment_usernames_can_only_include">یوزر نیمز میں صرف – Z-A ، 0–9 ، اور انڈر سکور شامل ہوسکتے ہیں۔</string>
+    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">یوزر نیمز کسی نمبر کے ساتھ شروع نہیں ہوسکتے ہیں۔</string>
+    <string name="UsernameEditFragment_username_is_invalid">یوزر نیم غلط ہے.</string>
+    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">یوزر نیمز %1$dاور%2$d حرف کے درمیان ہونا چاہئے۔</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">صارفی نام آپ کے فون نمبر کے بغیر دوسروں کو آپ کو میسج کرنے کی اجازت دیتے ہیں۔ انہیں آپ کا پتہ نجی رکھنے کے لیے اعداد کے مجموعے کے ساتھ جوڑا گیا ہے۔</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">یوزر نیمز آپ کے فون نمبر کے بغیر دوسروں کو آپ کو میسج کرنے کی اجازت دیتے ہیں۔ انہیں آپ کا پتہ نجی رکھنے کے لیے اعداد کے مجموعے کے ساتھ جوڑا گیا ہے۔</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">یہ نمبر کیا ہے؟</string>
     <string name="UsernameEditFragment__these_digits_help_keep">یہ اعداد آپ کا یوزر نیم نجی رکھنے میں مدد کرتے ہیں تاکہ آپ غیر مطلوبہ میسجز سے بچ سکیں۔ اپنا یوزر نیم صرف ان لوگوں اور گروپس کے ساتھ شیئر کریں جن کے ساتھ آپ چیٹ کرنا چاہتے ہیں۔ اگر آپ یوزر نیمز تبدیل کرتے ہیں تو آپ کو اعداد کا نیا مجموعہ ملے گا۔</string>
@@ -2323,7 +2323,7 @@
 
     <!-- UsernameShareBottomSheet -->
     <!-- Explanation of what the sheet enables the user to do -->
-    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">صارفی نام کا لنک کاپی یا شیئر کریں</string>
+    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">یوزر نیم کا لنک کاپی یا شیئر کریں</string>
 
     <!-- VerifyIdentityActivity -->
     <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">آپ کا رابطہ غیر متوازن QR کوڈ وضع کے ساتھ Signal کا ایک نیا ورژن چل رہا ہے۔ براہ کرم موازنہ کرنے کے لئے اپ ڈیٹ کریں.</string>
@@ -2625,8 +2625,8 @@
     <!-- ContactSelectionListFragment-->
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">رابطے ظاہر کرنے کیلئے Signal کو رابطوں کی اجازت کی ضرورت ہے،لیکن یہ مستقل طور پر انکاری ہے۔ برائے مہربانی ایپ کی ترتیبات میں جائیں، \"اجازت نامہ\"منتخب کریں، اور \"رابطے\" فعال کریں۔</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">رابطے دوبارہ حاصل کرنے میں خرابی،اپنا نیٹ ورک کنکشن چیک کریں</string>
-    <string name="ContactSelectionListFragment_username_not_found">صارف نام نہیں ملا</string>
-    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" Signal صارف نہیں ہے۔ براہ کرم صارف کا نام چیک کریں اور دوبارہ کوشش کریں۔"</string>
+    <string name="ContactSelectionListFragment_username_not_found">یوزر نیم نہیں ملا</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" Signal یوزر نہیں ہے۔ براہ کرم یوزر نیم چیک کریں اور دوبارہ کوشش کریں۔"</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">آپ کو اپنے آپ کو گروپ میں شامل کرنے کی ضرورت نہیں ہے</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">گروپ کا زیادہ سے زیادہ سائز پہنچ گیا</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal گروپس میں زیادہ سے زیادہ %1$dممبر ہوسکتے ہیں۔</string>
@@ -2639,7 +2639,7 @@
     <!-- Text on row item to find user by phone number -->
     <string name="ContactSelectionListFragment__find_by_phone_number">فون نمبر سے تلاش کریں</string>
     <!-- Text on row item to find user by username -->
-    <string name="ContactSelectionListFragment__find_by_username">صارفی نام سے تلاش کریں</string>
+    <string name="ContactSelectionListFragment__find_by_username">یوزر نیم سے تلاش کریں</string>
 
     <!-- contact_selection_list_fragment -->
     <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal کو ظاہر کرنے کے لئے آپ کے رابطوں تک رسائی کی ضرورت ہے۔</string>
@@ -3125,7 +3125,7 @@
     <string name="preferences__mmsc_url">ایم ایم ایس سی یو آر ایل</string>
     <string name="preferences__mms_proxy_host">ایم ایم ایس پراکسی میزبان</string>
     <string name="preferences__mms_proxy_port">ایم ایم ایس پروکسی پورٹ</string>
-    <string name="preferences__mmsc_username">ایم ایم ایس سی صارف کا نام</string>
+    <string name="preferences__mmsc_username">ایم ایم ایس سی یوزر نیم</string>
     <string name="preferences__mmsc_password">ایم ایم ایس سی پاسورڈ</string>
     <string name="preferences__sms_delivery_reports">ایس ایم ایس کی ترسیل کی رپورٹ</string>
     <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">اپنے بھیجنے والے ہر ایس ایم ایس پیغام کے لئے ڈیلیوری رپورٹ کی درخواست کریں</string>
@@ -4140,7 +4140,7 @@
     <string name="ReviewCard__block">بلاک کریں</string>
     <string name="ReviewCard__delete">حذف کریں</string>
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
-    <string name="ReviewCard__s_recently_changed">%1$s نے حال ہی میں اپنی پروفائل کا نام %2$s سے %3$s میں تبدیل کیا ہے</string>
+    <string name="ReviewCard__s_recently_changed">%1$s نے حال ہی میں اپنا پروفائل نیم %2$s سے %3$s میں تبدیل کیا ہے</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
     <string name="ReviewCard__s_is_in_your_system_contacts">%1$s آپ کے سسٹم کے روابط میں موجود ہے</string>
 
@@ -5145,7 +5145,7 @@
     <!-- Title of create notification profile screen -->
     <string name="EditNotificationProfileFragment__name_your_profile">اپنی پروفائل کو نام دیں</string>
     <!-- Hint text for create/edit notification profile name -->
-    <string name="EditNotificationProfileFragment__profile_name">پروفائل کا نام</string>
+    <string name="EditNotificationProfileFragment__profile_name">پروفائل نیم</string>
     <!-- Name has a max length, this shows how many characters are used out of the max -->
     <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
     <!-- Call to action button to continue to the next step -->
@@ -5466,7 +5466,7 @@
     <string name="MyStorySettingsFragment__who_can_view_this_story">کون یہ سٹوری دیکھ سکتا ہے</string>
     <!-- Clickable option for selecting people to hide your story from -->
     <!-- Privacy setting title for sending stories to all your signal connections -->
-    <string name="MyStorySettingsFragment__all_signal_connections">تمام Signal کنکشنز</string>
+    <string name="MyStorySettingsFragment__all_signal_connections">تمام Signal کنیکشنز</string>
     <!-- Privacy setting description for sending stories to all your signal connections -->
     <!-- Privacy setting title for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__all_except">تمام ماسوائے…</string>
@@ -5495,9 +5495,9 @@
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">جو لوگ آپ کی سٹوری دیکھ سکتے ہیں انہیں اس پر ری ایکٹ کرنے اور جواب دینے کی اجازت دیں</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
-    <string name="SignalConnectionsBottomSheet___signal_connections">Signal کنکشنز</string>
+    <string name="SignalConnectionsBottomSheet___signal_connections">Signal کنیکشنز</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
-    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal کنکشنز وہ لوگ ہیں جن پر اعتماد کرنے کا آپ نے انتخاب کیا ہے، یا تو بذریعہ:</string>
+    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal کنیکشنز وہ لوگ ہیں جن پر اعتماد کرنے کا آپ نے انتخاب کیا ہے، یا تو بذریعہ:</string>
     <!-- Signal connections sheet bullet point 1 -->
     <string name="SignalConnectionsBottomSheet__starting_a_conversation">چیٹ شروع ہو رہی ہے</string>
     <!-- Signal connections sheet bullet point 2 -->
@@ -5831,7 +5831,7 @@
     <!-- Subtitle of initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">ان کا انتخاب کریں جو میری سٹوری پر پوسٹس دیکھ سکتے ہیں۔ آپ سیٹنگز میں ہمیشہ تبدیلیاں کر سکتے ہیں۔</string>
     <!-- All connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">تمام Signal کنکشنز</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">تمام Signal کنیکشنز</string>
     <!-- All connections except option for initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__all_except">تمام ماسوائے…</string>
     <!-- Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
@@ -6433,7 +6433,7 @@
     <!-- Description text for QR code and links in the username link settings -->
     <string name="UsernameLinkSettings_qr_description">اپنا QR کوڈ صرف ان لوگوں کے ساتھ شیئر کریں جن پر آپ اعتماد کرتے ہیں۔ شیئر کیے جانے پر دوسرے افراد آپ کا یوزر نیم دیکھ سکیں گے اور آپ کے ساتھ چیٹ شروع کر سکیں گے۔</string>
     <!-- Content of a toast that will show after the username is copied to the clipboard -->
-    <string name="UsernameLinkSettings_username_copied_toast">صارفی نام کاپی کیا گیا</string>
+    <string name="UsernameLinkSettings_username_copied_toast">یوزر نیم کاپی کیا گیا</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">لنک کاپی کر لیا</string>
     <!-- Content of a text field that is shown when the user has not yet set a username link -->
@@ -6530,13 +6530,13 @@
 
     <!-- FindByActivity -->
     <!-- Title of activity when finding by username -->
-    <string name="FindByActivity__find_by_username">صارفی نام سے تلاش کریں</string>
+    <string name="FindByActivity__find_by_username">یوزر نیم سے تلاش کریں</string>
     <!-- Title of activity when finding by phone number -->
     <string name="FindByActivity__find_by_phone_number">فون نمبر سے تلاش کریں</string>
     <!-- Title of screen to select a country code -->
     <string name="FindByActivity__select_country_code">ملک کے کوڈ کا انتخاب کریں</string>
     <!-- Entry placeholder for find by username -->
-    <string name="FindByActivity__username">صارف کا نام</string>
+    <string name="FindByActivity__username">یوزر نیم</string>
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">فون نمبر</string>
     <!-- Help text under user entry for find by username -->
@@ -6552,13 +6552,13 @@
     <!-- Dialog title when phone number is not a registered signal user -->
     <string name="FindByActivity__invite_to_signal">Signal میں مدعو کریں</string>
     <!-- Dialog title when username is not found -->
-    <string name="FindByActivity__username_not_found">صارف نام نہیں ملا</string>
+    <string name="FindByActivity__username_not_found">یوزر نیم نہیں ملا</string>
     <!-- Dialog body for invalid username. Placeholder is the entered username. -->
     <string name="FindByActivity__s_is_not_a_valid_username">%1$s درست یوزر نیم نہیں ہے۔ یقینی بنائیں کہ آپ نے پورا یوزر نیم اور اس کے بعد اس کے ہندسوں کا سیٹ درج کیا ہے۔</string>
     <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
     <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s درست فون نمبر نہیں ہے۔ درست فون نمبر کے ساتھ دوبارہ کوشش کریں</string>
     <!-- Dialog body for not found username -->
-    <string name="FindByActivity__s_is_not_a_signal_user">\"%1$s\" Signal صارف نہیں ہے۔ براہ کرم صارف کا نام چیک کریں اور دوبارہ کوشش کریں۔</string>
+    <string name="FindByActivity__s_is_not_a_signal_user">\"%1$s\" Signal یوزر نہیں ہے۔ براہ کرم یوزر نیم چیک کریں اور دوبارہ کوشش کریں۔</string>
     <!-- Dialog body for not found phone number -->
     <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s Signal یوزر نہیں ہے۔ کیا آپ اس نمبر کو مدعو کرنا چاہیں گے؟</string>
     <!-- Dialog action to invite the phone number to Signal -->

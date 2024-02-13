@@ -1064,7 +1064,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Käyttäjänimi, QR-koodi ja linkki eivät näy profiilissasi. Jaa käyttäjänimesi vain henkilöille, joihin luotat.</string>
     <string name="ManageProfileFragment_profile_name">Profiilin nimi</string>
-    <string name="ManageProfileFragment_username">Käyttäjätunnus</string>
+    <string name="ManageProfileFragment_username">Käyttäjänimi</string>
     <string name="ManageProfileFragment_about">Tiedot</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">Avatarin asettaminen epäonnistui</string>
     <string name="ManageProfileFragment_badges">Merkit</string>
@@ -1381,8 +1381,8 @@
     </plurals>
 
     <!-- Profile change updates -->
-    <string name="MessageRecord_changed_their_profile_name_to">%1$s muutti profiilinimekseen %2$s.</string>
-    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s muutti profiilinimensä %2$s nimeksi %3$s.</string>
+    <string name="MessageRecord_changed_their_profile_name_to">%1$s muutti profiilinsa nimeksi %2$s.</string>
+    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s muutti profiilinsa nimen %2$s nimeksi %3$s.</string>
     <string name="MessageRecord_changed_their_profile">%1$s muutti profiiliaan.</string>
 
     <!-- GV2 specific -->
@@ -2285,15 +2285,15 @@
     <string name="UsernameEditFragment__add_a_username">Lisää käyttäjänimi</string>
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">Valitse käyttäjänimi</string>
-    <string name="UsernameEditFragment_username">Käyttäjätunnus</string>
+    <string name="UsernameEditFragment_username">Käyttäjänimi</string>
     <string name="UsernameEditFragment_delete">Poista</string>
-    <string name="UsernameEditFragment_successfully_removed_username">Käyttäjätunnuksen poisto onnistui.</string>
+    <string name="UsernameEditFragment_successfully_removed_username">Käyttäjänimen poisto onnistui.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Verkkovirhe.</string>
-    <string name="UsernameEditFragment_this_username_is_taken">Tämä käyttäjätunnus on varattu.</string>
-    <string name="UsernameEditFragment_usernames_can_only_include">Käyttäjätunnukset voivat sisältää vain merkkejä a–z, 0–9 ja alaviivoja.</string>
-    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Käyttäjätunnus ei voi alkaa numerolla.</string>
-    <string name="UsernameEditFragment_username_is_invalid">Käyttäjätunnus on virheellinen.</string>
-    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Käyttäjätunnuksen on oltava %1$d–%2$d merkkiä pitkä.</string>
+    <string name="UsernameEditFragment_this_username_is_taken">Tämä käyttäjänimi on varattu.</string>
+    <string name="UsernameEditFragment_usernames_can_only_include">Käyttäjänimet voivat sisältää vain merkkejä a–z, 0–9 ja alaviivoja.</string>
+    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Käyttäjänimi ei voi alkaa numerolla.</string>
+    <string name="UsernameEditFragment_username_is_invalid">Käyttäjänimi on virheellinen.</string>
+    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Käyttäjänimen on oltava %1$d–%2$d merkkiä pitkä.</string>
     <!-- Explanation about what usernames provide -->
     <string name="UsernameEditFragment__usernames_let_others_message">Käyttäjänimien avulla muut voivat lähettää sinulle viestejä ilman puhelinnumeroasi. Käyttäjänimi on liitetty numerosarjaan osoitteesi yksityisyyden suojaamiseksi.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
@@ -2625,8 +2625,8 @@
     <!-- ContactSelectionListFragment-->
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal tarvitsee luvan käyttää laitteesi yhteystietoja voidakseen näyttää ne, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Yhteystiedot\".</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Yhteystietojen haussa tapahtui virhe. Tarkista verkkoyhteytesi.</string>
-    <string name="ContactSelectionListFragment_username_not_found">Käyttäjätunnusta ei löydy</string>
-    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s ei käytä Signalia. Tarkista käyttäjätunnus ja yritä uudelleen."</string>
+    <string name="ContactSelectionListFragment_username_not_found">Käyttäjänimeä ei löydy</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s ei käytä Signalia. Tarkista käyttäjänimi ja yritä uudelleen."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Sinun ei tarvitse lisätä itseäsi ryhmään</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">Ryhmän enimmäiskoko saavutettu</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal-ryhmissä voi olla enintään %1$d jäsentä.</string>
@@ -2639,7 +2639,7 @@
     <!-- Text on row item to find user by phone number -->
     <string name="ContactSelectionListFragment__find_by_phone_number">Etsi puhelinnumerolla</string>
     <!-- Text on row item to find user by username -->
-    <string name="ContactSelectionListFragment__find_by_username">Etsi käyttäjätunnuksella</string>
+    <string name="ContactSelectionListFragment__find_by_username">Etsi käyttäjänimellä</string>
 
     <!-- contact_selection_list_fragment -->
     <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal tarvitsee luvan käyttää yhteystietojasi, jotta se voi näyttää ne.</string>
@@ -3125,7 +3125,7 @@
     <string name="preferences__mmsc_url">MMSC URL</string>
     <string name="preferences__mms_proxy_host">MMS-välityspalvelin</string>
     <string name="preferences__mms_proxy_port">MMS-välityspalvelimen portti</string>
-    <string name="preferences__mmsc_username">MMSC-käyttäjätunnus</string>
+    <string name="preferences__mmsc_username">MMSC-käyttäjänimi</string>
     <string name="preferences__mmsc_password">MMSC-salasana</string>
     <string name="preferences__sms_delivery_reports">Tekstiviestien toimitusvahvistukset</string>
     <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Pyydä vahvistus jokaisen lähetetyn tekstiviestin toimituksesta</string>
@@ -6530,13 +6530,13 @@
 
     <!-- FindByActivity -->
     <!-- Title of activity when finding by username -->
-    <string name="FindByActivity__find_by_username">Etsi käyttäjätunnuksella</string>
+    <string name="FindByActivity__find_by_username">Etsi käyttäjänimellä</string>
     <!-- Title of activity when finding by phone number -->
     <string name="FindByActivity__find_by_phone_number">Etsi puhelinnumerolla</string>
     <!-- Title of screen to select a country code -->
     <string name="FindByActivity__select_country_code">Valitse maatunnus</string>
     <!-- Entry placeholder for find by username -->
-    <string name="FindByActivity__username">Käyttäjätunnus</string>
+    <string name="FindByActivity__username">Käyttäjänimi</string>
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">Puhelinnumero</string>
     <!-- Help text under user entry for find by username -->
@@ -6552,13 +6552,13 @@
     <!-- Dialog title when phone number is not a registered signal user -->
     <string name="FindByActivity__invite_to_signal">Kutsu Signaliin</string>
     <!-- Dialog title when username is not found -->
-    <string name="FindByActivity__username_not_found">Käyttäjätunnusta ei löydy</string>
+    <string name="FindByActivity__username_not_found">Käyttäjänimeä ei löydy</string>
     <!-- Dialog body for invalid username. Placeholder is the entered username. -->
     <string name="FindByActivity__s_is_not_a_valid_username">%1$s ei ole kelvollinen käyttäjänimi. Varmista, että olet syöttänyt koko käyttäjänimen ja sen numerosarjan.</string>
     <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
     <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s ei ole kelvollinen puhelinnumero. Yritä uudelleen kelvollisella puhelinnumerolla</string>
     <!-- Dialog body for not found username -->
-    <string name="FindByActivity__s_is_not_a_signal_user">%1$s ei käytä Signalia. Tarkista käyttäjätunnus ja yritä uudelleen.</string>
+    <string name="FindByActivity__s_is_not_a_signal_user">%1$s ei käytä Signalia. Tarkista käyttäjänimi ja yritä uudelleen.</string>
     <!-- Dialog body for not found phone number -->
     <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s ei ole Signalin käyttäjä. Haluatko kutsua tämän numeron?</string>
     <!-- Dialog action to invite the phone number to Signal -->

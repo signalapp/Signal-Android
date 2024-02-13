@@ -1860,7 +1860,7 @@
     <!-- Utilized in the lobby before joining a call link -->
     <string name="WebRtcCallView__signal_call_link">Σύνδεσμος κλήσης Signal</string>
     <!-- Warning displayed when entering a call via a link -->
-    <string name="WebRtcCallView__anyone_who_joins">Όποιος συμμετέχει στην κλήση μέσω του συνδέσμου θα μπορεί να δει το όνομα, τη φωτογραφία και τον τηλεφωνικό αριθμό σου.</string>
+    <string name="WebRtcCallView__anyone_who_joins">Όποιος συμμετέχει στην κλήση μέσω του συνδέσμου θα μπορεί να δει το όνομα, τη φωτογραφία και τον αριθμό τηλεφώνου σου.</string>
     <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
     <string name="WebRtcCallView__waiting_to_be_let_in">Σε αναμονή για προσθήκη…</string>
 
@@ -4452,9 +4452,9 @@
     <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Νέος αριθμός τηλεφώνου</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Ο αριθμός τηλεφώνου που έγραψες δεν αντιστοιχεί στο λογαριασμό σου.</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Πρέπει να προσδιορίσεις τον κωδικό χώρας του παλιού σου αριθμού</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Πρέπει να προσδιορίσεις τον παλιό σου αριθμό</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Πρέπει να προσδιορίσεις τον παλιό αριθμό τηλεφώνου σου</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Πρέπει να προσδιορίσεις τον κωδικό χώρας του νέου σου αριθμού</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Πρέπει να προσδιορίσεις το νέο σου αριθμό</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Πρέπει να προσδιορίσεις τον νέο αριθμό τηλεφώνου σου</string>
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">Αλλαγή αριθμού</string>
@@ -4463,7 +4463,7 @@
 
     <!-- ChangeNumberConfirmFragment -->
     <string name="ChangeNumberConfirmFragment__change_number">Αλλαγή αριθμού</string>
-    <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Πρόκειται να αλλάξεις τον αριθμό σου από τον %1$s στον %2$s.\n\nΠριν συνεχίσεις, παρακαλώ επιβεβαίωσε πως ο παρακάτω αριθμός είναι σωστός.</string>
+    <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Πρόκειται να αλλάξεις τον αριθμό τηλεφώνου σου από τον %1$s στον %2$s.\n\nΠριν συνεχίσεις, παρακαλώ επιβεβαίωσε πως ο παρακάτω αριθμός είναι σωστός.</string>
     <string name="ChangeNumberConfirmFragment__edit_number">Επεξεργασία αριθμού</string>
 
     <!-- ChangeNumberRegistrationLockFragment -->
@@ -5503,7 +5503,7 @@
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Έχεις αποδεχτεί ένα αίτημα μηνύματος</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Τα έχεις στις επαφές της συσκευής σου</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Τα έχεις στις επαφές του συστήματός σου</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Οι επαφές σου μπορούν να δουν το όνομα και τη φωτογραφία σου, και μπορούν να δουν δημοσιεύσεις στην \"Ιστορία μου\", εκτός αν την κρύψεις από αυτούς."</string>
     <!-- Clickable option to add a viewer to a custom story -->

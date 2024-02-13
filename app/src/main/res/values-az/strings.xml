@@ -1078,7 +1078,7 @@
     <!-- Snackbar message after creating username -->
     <string name="ManageProfileFragment__username_created">İstifadəçi adı yaradıldı</string>
     <!-- Snackbar message after copying username -->
-    <string name="ManageProfileFragment__username_copied">İstifadəçi adı köçürüldü</string>
+    <string name="ManageProfileFragment__username_copied">İstifadəçi adı kopyalandı</string>
     <!-- Snackbar message after network failure while trying to delete username -->
     <string name="ManageProfileFragment__couldnt_delete_username">İstifadəçi adını silmək mümkün olmadı. Daha sonra yenidən cəhd edin.</string>
     <!-- Snackbar message after successful deletion of username -->
@@ -2285,7 +2285,7 @@
     <string name="UsernameEditFragment__add_a_username">Bir istifadəçi adı əlavə edin</string>
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">İstifadəçi adınızı seçin</string>
-    <string name="UsernameEditFragment_username">istifadəçi adı</string>
+    <string name="UsernameEditFragment_username">İstifadəçi adı</string>
     <string name="UsernameEditFragment_delete">Sil</string>
     <string name="UsernameEditFragment_successfully_removed_username">İstifadəçi adı uğurla çıxarıldı.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Şəbəkə xətası ilə qarşılaşıldı.</string>
@@ -5466,7 +5466,7 @@
     <string name="MyStorySettingsFragment__who_can_view_this_story">Bu hekayəni kimlər görə bilər</string>
     <!-- Clickable option for selecting people to hide your story from -->
     <!-- Privacy setting title for sending stories to all your signal connections -->
-    <string name="MyStorySettingsFragment__all_signal_connections">Bütün Signal bağlantıları</string>
+    <string name="MyStorySettingsFragment__all_signal_connections">Bütün Signal kontaktları</string>
     <!-- Privacy setting description for sending stories to all your signal connections -->
     <!-- Privacy setting title for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__all_except">Aşağıdakılar xaricində hamısı…</string>
@@ -5495,9 +5495,9 @@
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Hekayələrinizi görən şəxslərin reaksiya və cavab verməsinə icazə verin</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
-    <string name="SignalConnectionsBottomSheet___signal_connections">Signal Bağlantıları</string>
+    <string name="SignalConnectionsBottomSheet___signal_connections">Signal kontaktları</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
-    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal Bağlantıları aşağıdakı üsullardan biri ilə etibar etməyi seçdiyiniz insanlardır:</string>
+    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal kontaktları aşağıdakı üsullardan biri ilə etibar etməyi seçdiyiniz insanlardır:</string>
     <!-- Signal connections sheet bullet point 1 -->
     <string name="SignalConnectionsBottomSheet__starting_a_conversation">Bir çata başlamaq</string>
     <!-- Signal connections sheet bullet point 2 -->
@@ -5831,7 +5831,7 @@
     <!-- Subtitle of initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Hekayəmdən paylaşdıqlarımı kimlərin görə biləcəyini seçin. Parametrlərə keçərək hər zaman dəyişiklik edə bilərsiniz.</string>
     <!-- All connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Bütün Signal bağlantıları</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Bütün Signal kontaktları</string>
     <!-- All connections except option for initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__all_except">Aşağıdakılar xaricində hamısı…</string>
     <!-- Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time -->

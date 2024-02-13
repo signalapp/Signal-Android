@@ -2290,7 +2290,7 @@
     <string name="UsernameEditFragment_successfully_removed_username">نام کاربری با موفقیت حذف شد.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">خطای شبکه رخ داد.</string>
     <string name="UsernameEditFragment_this_username_is_taken">این نام کاربری گرفته شده است.</string>
-    <string name="UsernameEditFragment_usernames_can_only_include">نام‌های کاربری فقط می‌توانند شامل a-Z ،0-9 و _ باشند.</string>
+    <string name="UsernameEditFragment_usernames_can_only_include">نام‌های کاربری فقط می‌توانند حاوی حروف A تا Z، اعداد ۰ تا ۹ و _ باشند.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">نام‌های کاربری نمی‌توانند با عدد آغاز شوند.</string>
     <string name="UsernameEditFragment_username_is_invalid">نام کاربری نامعتبر است.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">نام‌های کاربری باید بین %1$d و %2$d نویسه باشند.</string>
@@ -2626,7 +2626,7 @@
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">سیگنال برای نشان دادن مخاطبین شما نیاز به دسترسی مخاطبین دارد، اما این دسترسی داده نشده است. لطفاً به بخش مدیریت برنامه‌ها در تنظیمات تلفن همراه خود رفته، در بخش «مجوزها» گزینهٔ «مخاطبین» را فعال کنید.</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">خطا در بازیابی مخاطبین، اتصال اینترنت خود را بررسی کنید</string>
     <string name="ContactSelectionListFragment_username_not_found">نام کاربری یافت نشد</string>
-    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" یک کاربر سیگنال نیست. لطفاً نام کاربری را بررسی کرده و دوباره تلاش کنید."</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" کاربر سیگنال نیست. لطفاً نام کاربری را بررسی کرده و دوباره تلاش کنید."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">نیازی نیست که خود را به گروه اضافه کنید</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">به حداکثر اندازهٔ گروه رسیدید</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">گروه‌های سیگنال می‌توانند حداکثر %1$d عضو داشته باشند.</string>
@@ -3871,9 +3871,9 @@
     <!-- Subtext below radio buttons when who can see my number is set to everybody -->
     <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">شماره‌تلفن شما برای افراد و گروه‌هایی که به آن‌ها پیام می‌دهید قابل مشاهده خواهد بود.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Your phone number will not be visible to anyone unless they have it saved in their phone\'s contacts.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">شماره تلفن شما برای هیچ‌کس قابل مشاهده نیست، به‌جز کسانی که شما را در مخاطبان تلفن خود ذخیره کرده‌اند.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Your phone number will not be visible to anyone.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">شماره تلفن شما برای هیچ‌کس قابل مشاهده نیست.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">چه‌کسی می‌تواند من را با شماره تلفنم پیدا کند</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
@@ -3911,7 +3911,7 @@
     <string name="prompt_passphrase_activity__tap_to_unlock">برای باز کردن قفل ضربه بزنید</string>
     <string name="Recipient_unknown">ناشناخته</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
-    <string name="Recipient_deleted_account">Deleted account</string>
+    <string name="Recipient_deleted_account">حساب پاک‌شده</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
     <string name="preferences_account_reregister">ثبت دوبارۀ حساب</string>
@@ -6057,7 +6057,7 @@
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
     <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">کمک مالی خود را با %1$s تأیید کنید</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">To setup your recurring donation tap continue to confirm a €0,01 charge with your bank. This will be automatically refunded and allows your €5/month donation to debited from your account.</string>
+    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">برای راه‌اندازی کمک مالی مکرر خود، روی «ادامه» ضربه بزنید تا هزینه ۰,۰۱ یورو را با بانک خود تأیید کنید. این مبلغ به‌طور خودکار به شما برگردانده می‌شود و اجازه می‌دهد که کمک مالی شما به مبلغ ۵ یورو در ماه از حساب‌تان برداشت شود.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">ادامه</string>
 
@@ -6540,7 +6540,7 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">شماره تلفن</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_a_full_username">Enter a full username with its pair of digits.</string>
+    <string name="FindByActivity__enter_a_full_username">یک نام کاربری کامل با دو رقم آن وارد کنید.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">بعدی</string>
     <!-- Placeholder text for search input for selecting country code -->
@@ -6554,9 +6554,9 @@
     <!-- Dialog title when username is not found -->
     <string name="FindByActivity__username_not_found">نام کاربری یافت نشد</string>
     <!-- Dialog body for invalid username. Placeholder is the entered username. -->
-    <string name="FindByActivity__s_is_not_a_valid_username">%1$s is not a valid username. Make sure you\'ve entered the complete username followed by its set of digits.</string>
+    <string name="FindByActivity__s_is_not_a_valid_username">‏%1$s نام کاربری معتبری نیست. مطمئن شوید که نام کاربری را کامل و همراه با مجموعه ارقام بعد از آن وارد کرده‌اید.</string>
     <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
-    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s is not valid phone number. Try again with a valid phone number</string>
+    <string name="FindByActivity__s_is_not_a_valid_phone_number">‏%1$s شماره تلفن معتبری نیست. با یک شماره تلفن معتبر دوباره امتحان کنید</string>
     <!-- Dialog body for not found username -->
     <string name="FindByActivity__s_is_not_a_signal_user">\"%1$s\" یک کاربر سیگنال نیست. لطفاً نام کاربری را بررسی کرده و دوباره تلاش کنید.</string>
     <!-- Dialog body for not found phone number -->

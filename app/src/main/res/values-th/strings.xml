@@ -1335,7 +1335,7 @@
 
     <!-- Profile change updates -->
     <string name="MessageRecord_changed_their_profile_name_to">%1$s เปลี่ยนชื่อโปรไฟล์เป็น %2$s</string>
-    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s ได้เปลี่ยนชื่อโปรไฟล์จาก %2$s เป็น %3$s</string>
+    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s เปลี่ยนชื่อโปรไฟล์จาก %2$s เป็น %3$s</string>
     <string name="MessageRecord_changed_their_profile">%1$s ได้เปลี่ยนโปรไฟล์ใหม่</string>
 
     <!-- GV2 specific -->
@@ -1492,7 +1492,7 @@
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">คุณทำเครื่องหมายว่า หมายเลขความปลอดภัยของคุณกับ %1$s ยังไม่ถูกตรวจยืนยัน</string>
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">คุณทำเครื่องหมายจากอีกอุปกรณ์ว่า หมายเลขความปลอดภัยของคุณกับ %1$s ยังไม่ถูกตรวจยืนยัน</string>
     <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">ไม่สามารถส่งข้อความจาก %1$s ได้</string>
-    <string name="MessageRecord_s_changed_their_phone_number">%1$s เปลี่ยนเบอร์โทรศัพท์</string>
+    <string name="MessageRecord_s_changed_their_phone_number">%1$s เปลี่ยนหมายเลขโทรศัพท์</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">ชอบฟีเจอร์ใหม่นี้ใช่ไหม ช่วยสนับสนุน Signal ด้วยการบริจาคแบบครั้งเดียว</string>
     <!-- Update item message shown when we merge two threads together. First placeholder is a name, second placeholder is a phone number. -->
@@ -2542,7 +2542,7 @@
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">เพื่อที่จะแสดงผู้ติดต่อของคุณ Signal ต้องได้รับอนุญาตให้เข้าถึงผู้ติดต่อ แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ผู้ติดต่อ\"</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">เกิดข้อผิดพลาดระหว่างดึงผู้ติดต่อ ตรวจสอบการเชื่อมต่อเครือข่ายของคุณ</string>
     <string name="ContactSelectionListFragment_username_not_found">ไม่พบชื่อผู้ใช้</string>
-    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$sไม่ใช่ผู้ใช้ Signal โปรดตรวจสอบชื่อผู้ใช้และลองอีกครั้ง"</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s ไม่ใช่ผู้ใช้ Signal โปรดตรวจสอบชื่อผู้ใช้และลองอีกครั้ง"</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">คุณไม่จำเป็นต้องเพิ่มตัวเองเข้ากลุ่ม</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">จำนวนสมาชิกในกลุ่มถึงขีดจำกัดแล้ว</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">กลุ่ม Signal มีสมาชิกได้สูงสุด %1$d คน</string>
@@ -5374,13 +5374,13 @@
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">เครือข่าย Signal</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
-    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">เครือข่าย Signal คือคนที่คุณได้เลือกที่จะไว้ใจ ด้วยการ:</string>
+    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">เครือข่าย Signal คือคนที่คุณเลือกที่จะไว้ใจ ด้วยการ:</string>
     <!-- Signal connections sheet bullet point 1 -->
     <string name="SignalConnectionsBottomSheet__starting_a_conversation">เริ่มต้นการแชท</string>
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">รับคำขอส่งข้อความ</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">มีรายชื่ออยู่ในระบบผู้ติดต่อของคุณ</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">บันทึกไว้ในรายชื่อผู้ติดต่อของระบบคุณ</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"เครือข่ายของคุณจะเห็นชื่อและรูปภาพของคุณ รวมถึงโพสต์ใน \"สตอรี่ของฉัน\" เว้นแต่ว่าคุณจะซ่อนสตอรี่นั้นจากพวกเขา"</string>
     <!-- Clickable option to add a viewer to a custom story -->
@@ -6415,7 +6415,7 @@
     <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
     <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s เป็นหมายเลขโทรศัพท์ที่ไม่ถูกต้อง ลองใหม่อีกครั้งด้วยหมายเลขโทรศัพท์ที่ถูกต้อง</string>
     <!-- Dialog body for not found username -->
-    <string name="FindByActivity__s_is_not_a_signal_user">%1$sไม่ใช่ผู้ใช้ Signal โปรดตรวจสอบชื่อผู้ใช้และลองอีกครั้ง</string>
+    <string name="FindByActivity__s_is_not_a_signal_user">%1$s ไม่ใช่ผู้ใช้ Signal โปรดตรวจสอบชื่อผู้ใช้และลองอีกครั้ง</string>
     <!-- Dialog body for not found phone number -->
     <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s ไม่ได้เป็นผู้ใช้ Signal คุณต้องการเชิญเจ้าของหมายเลขนี้มาใช้งานหรือไม่</string>
     <!-- Dialog action to invite the phone number to Signal -->

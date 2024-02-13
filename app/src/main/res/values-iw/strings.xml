@@ -705,7 +705,7 @@
     <!-- Toolbar title for this screen -->
     <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">מי יכול למצוא אותי לפי המספר שלי?</string>
     <!-- Description for radio item stating anyone can see your phone number -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">כל מי שיש להם את המספר הטלפון שלך יראו אותך ב–Signal ויוכלו להתחיל איתך צ׳אט.</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">כל מי שיש להם את מספר הטלפון שלך יראו אותך ב–Signal ויוכלו להתחיל איתך צ׳אט.</string>
     <!-- Description for radio item stating no one will be able to see your phone number -->
     <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">אנשים לא יוכלו לראות אותך ב–Signal אלא אם שלחת להם הודעה או שיש לך צ\'אט קיים איתם.</string>
 
@@ -1651,7 +1651,7 @@
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">סימנת את מספר הביטחון שלך עם %1$s כבלתי מוודא</string>
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">סימנת את מספר הבטיחות שלך עם %1$s כבלתי מוודא ממכשיר אחר</string>
     <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">הודעה מאת %1$s לא יכלה להימסר</string>
-    <string name="MessageRecord_s_changed_their_phone_number">%1$s שינה/שינתה את המספר שלו/שלה.</string>
+    <string name="MessageRecord_s_changed_their_phone_number">%1$s שינה/שינתה את מספר הטלפון שלו/שלה.</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">אהבת את הפיצ׳ר החדש הזה? אפשר לסייע ולתמוך ב–Signal באמצעות תרומה חד פעמית.</string>
     <!-- Update item message shown when we merge two threads together. First placeholder is a name, second placeholder is a phone number. -->
@@ -2452,7 +2452,7 @@
     <string name="UsernameEditFragment_this_username_is_taken">שם משתמש זה תפוס.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">שמות משתמש יכולים להכיל רק a–Z, 0–9, וקווים תחתונים.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">שמות משתמש אינם יכולים להתחיל במספר.</string>
-    <string name="UsernameEditFragment_username_is_invalid">שם משתמש בלתי תקף.</string>
+    <string name="UsernameEditFragment_username_is_invalid">שם משתמש לא חוקי.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">שמות משתמש חייבים להיות בין %1$d לבין %2$d תווים.</string>
     <!-- Explanation about what usernames provide -->
     <string name="UsernameEditFragment__usernames_let_others_message">שמות משתמש מאפשרים לאחרים לשלוח לך הודעה בלי להזדקק למספר הטלפון שלך. הם מוצמדים לסט של ספרות כדי לעזור לשמור על פרטיות הכתובת שלך.</string>
@@ -2794,7 +2794,7 @@
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal דורש את הרשאת אנשי הקשר על מנת להציג את אנשי הקשר שלך, אבל היא נדחתה לצמיתות. אנא המשך אל תפריט הגדרות היישום, בחר \"הרשאות\" ואפשר את \"אנשי קשר\".</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">שגיאה באחזור אנשי קשר, בדוק את חיבור הרשת שלך</string>
     <string name="ContactSelectionListFragment_username_not_found">שם משתמש לא נמצא</string>
-    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" הוא לא משתמש Signal. אנא בדוק את שם המשתמש ונסה שוב."</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s לא משתמש/ת Signal. יש לבדוק את שם המשתמש ולנסות שוב."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">אתה לא צריך להוסיף את עצמך אל הקבוצה</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">גודל קבוצה מרבי הושג</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">קבוצות Signal יכולות להכיל מרב של %1$d חברי קבוצה.</string>
@@ -4089,7 +4089,7 @@
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">מי יכול למצוא אותי לפי המספר שלי</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">כל מי שיש להם את המספר הטלפון שלך יראו אותך ב–Signal ויוכלו להתחיל איתך צ׳אט.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">כל מי שיש להם את מספר הטלפון שלך יראו אותך ב–Signal ויוכלו להתחיל איתך צ׳אט.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
     <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">אנשים לא יוכלו לראות אותך ב–Signal אלא אם שלחת להם הודעה או שיש לך צ\'אט קיים איתם.</string>
     <!-- Snackbar text when pressing invalid radio item -->
@@ -4667,10 +4667,10 @@
     <!-- ChangeNumberEnterPhoneNumberFragment -->
     <string name="ChangeNumberEnterPhoneNumberFragment__change_number">שנה מספר</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">המספר הישן שלך</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">מספר ישן של טלפון</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">מספר טלפון ישן</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">המספר החדש שלך</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">מספר חדש של טלפון</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">מספר הטלפון שהכנסת אינו תואם אל מספר הטלפון של החשבון שלך.</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">מספר טלפון חדש</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">מספר הטלפון שהכנסת אינו תואם את מספר הטלפון של החשבון שלך.</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">אתה חייב לציין את קוד המדינה של המספר הישן שלך</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">אתה חייב לציין את מספר הטלפון הישן שלך</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">אתה חייב לציין את קוד המדינה של המספר החדש שלך</string>
@@ -5749,7 +5749,7 @@
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">אישור בקשת הודעה</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">שמירה באנשי הקשר שלך</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">שמירה באנשי הקשר של המערכת שלך</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"חברי ה–Signal שלך יכולים לראות את השם והתמונה שלך, והם יכולים לראות פוסטים של \"הסטורי שלי\" אלא אם הסתרת אותם מהם."</string>
     <!-- Clickable option to add a viewer to a custom story -->
@@ -6443,7 +6443,7 @@
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__set_up_your_signal_username">כדאי להגדיר את שם המשתמש שלך ב–Signal</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__introducing_phone_number_privacy">מעכשיו פרטיות מספר טלפון, שמות משתמש אופציונליים ולינקים.</string>
+    <string name="SetUpYourUsername__introducing_phone_number_privacy">מעכשיו: פרטיות מספר טלפון, שמות משתמש אופציונליים ולינקים.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__dismiss">ביטול</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->

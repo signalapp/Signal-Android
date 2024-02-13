@@ -1064,7 +1064,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Tu alias, código QR y enlace no son visibles en tu perfil. Comparte tu alias solo con personas de confianza.</string>
     <string name="ManageProfileFragment_profile_name">Nombre de perfil</string>
-    <string name="ManageProfileFragment_username">Alias (nombre de usuari@)</string>
+    <string name="ManageProfileFragment_username">Alias</string>
     <string name="ManageProfileFragment_about">Biografía</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">Fallo al seleccionar foto de perfil</string>
     <string name="ManageProfileFragment_badges">Insignias</string>
@@ -1076,9 +1076,9 @@
     <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
     <string name="ManageProfileFragment__link_tooltip_body">Deja que otras personas inicien un chat contigo compartiendo tu código QR o enlace único.</string>
     <!-- Snackbar message after creating username -->
-    <string name="ManageProfileFragment__username_created">Se ha creado el nombre de usuario</string>
+    <string name="ManageProfileFragment__username_created">Se ha creado el alias</string>
     <!-- Snackbar message after copying username -->
-    <string name="ManageProfileFragment__username_copied">Se ha copiado el nombre de usuario</string>
+    <string name="ManageProfileFragment__username_copied">Se ha copiado el alias</string>
     <!-- Snackbar message after network failure while trying to delete username -->
     <string name="ManageProfileFragment__couldnt_delete_username">No se ha podido eliminar el alias. Inténtalo de nuevo más tarde.</string>
     <!-- Snackbar message after successful deletion of username -->
@@ -2284,8 +2284,8 @@
     <!-- Toolbar title when entering from registration -->
     <string name="UsernameEditFragment__add_a_username">Añadir un alias</string>
     <!-- Instructional text at the top of the username edit screen -->
-    <string name="UsernameEditFragment__choose_your_username">Elige tu nombre de usuario</string>
-    <string name="UsernameEditFragment_username">Alias (nombre de usuari@)</string>
+    <string name="UsernameEditFragment__choose_your_username">Elige tu alias</string>
+    <string name="UsernameEditFragment_username">Alias</string>
     <string name="UsernameEditFragment_delete">Eliminar</string>
     <string name="UsernameEditFragment_successfully_removed_username">Alias eliminado con éxito.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Fallo en la conexión de red.</string>
@@ -2295,7 +2295,7 @@
     <string name="UsernameEditFragment_username_is_invalid">Alias no válido.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">El alias debe contener entre %1$d y %2$d caracteres.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Los nombres de usuario les permiten a otras personas mandarte un mensaje sin necesidad de tu número de teléfono. Funcionan conjuntamente con una serie de dígitos para ayudarte a mantener tu dirección en privado.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">Los alias les permiten a otras personas mandarte un mensaje sin necesidad de tu número de teléfono. Funcionan conjuntamente con una serie de dígitos para ayudarte a mantener tu dirección en privado.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">¿Qué es este número?</string>
     <string name="UsernameEditFragment__these_digits_help_keep">Estos dígitos te ayudarán a mantener tu nombre de usuario en privado para así evitar que recibas mensajes no deseados. Comparte tu nombre de usuario solo con aquellas personas y grupos con los que quieras charlar. Si cambias tu nombre de usuario, recibirás una nueva serie de dígitos.</string>
@@ -2323,7 +2323,7 @@
 
     <!-- UsernameShareBottomSheet -->
     <!-- Explanation of what the sheet enables the user to do -->
-    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Copiar o compartir un enlace de nombre de usuario</string>
+    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Copiar o compartir un enlace de alias</string>
 
     <!-- VerifyIdentityActivity -->
     <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Esta persona usa una versión de Signal con un formato de código QR incompatible. Por favor, pídele que actualice para verificar.</string>
@@ -3125,7 +3125,7 @@
     <string name="preferences__mmsc_url">URL de MMSC</string>
     <string name="preferences__mms_proxy_host">Proxy MMS</string>
     <string name="preferences__mms_proxy_port">Puerto de proxy MMS</string>
-    <string name="preferences__mmsc_username">Nombre de usuari@ de MMSC</string>
+    <string name="preferences__mmsc_username">Alias de MMSC</string>
     <string name="preferences__mmsc_password">Contraseña de MMSC</string>
     <string name="preferences__sms_delivery_reports">Confirmación de entrega de SMS</string>
     <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Solicita la confirmación de entrega de SMS para todos los SMS enviados.</string>

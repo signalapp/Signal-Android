@@ -609,7 +609,7 @@
     <!-- Message shown in top toast to indicate the named profile is on -->
     <string name="ConversationListFragment__s_on">%1$s 有効</string>
     <!-- -->
-    <string name="ConversationListFragment_username_recovered_toast">QRコードとリンクはリセットされ、ユーザー名は%1$sです</string>
+    <string name="ConversationListFragment_username_recovered_toast">QRコードとリンクはリセットされ、ユーザーネームは%1$sです</string>
 
     <!-- ConversationListItem -->
     <string name="ConversationListItem_key_exchange_message">鍵交換のメッセージ</string>
@@ -1028,8 +1028,8 @@
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">ユーザーネーム、QRコード、リンクはプロフィールに表示されません。ユーザーネームは信頼できる人とのみ共有してください。</string>
-    <string name="ManageProfileFragment_profile_name">プロフィール名</string>
-    <string name="ManageProfileFragment_username">ユーザー名</string>
+    <string name="ManageProfileFragment_profile_name">プロフィールネーム</string>
+    <string name="ManageProfileFragment_username">ユーザーネーム</string>
     <string name="ManageProfileFragment_about">自己紹介</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">アバターの設定に失敗しました</string>
     <string name="ManageProfileFragment_badges">バッジ</string>
@@ -1037,25 +1037,25 @@
     <string name="ManageProfileFragment_link_setting_text">QR コードもしくはリンク</string>
     <string name="ManageProfileFragment__edit_photo">画像を編集</string>
     <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
-    <string name="ManageProfileFragment__link_tooltip_title">ユーザー名を共有する</string>
+    <string name="ManageProfileFragment__link_tooltip_title">ユーザーネームを共有する</string>
     <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
     <string name="ManageProfileFragment__link_tooltip_body">QRコードかリンクを共有すると、相手はあなたとチャットを開始できます。</string>
     <!-- Snackbar message after creating username -->
-    <string name="ManageProfileFragment__username_created">ユーザー名を作成しました</string>
+    <string name="ManageProfileFragment__username_created">ユーザーネームを作成しました</string>
     <!-- Snackbar message after copying username -->
-    <string name="ManageProfileFragment__username_copied">ユーザー名をコピーしました</string>
+    <string name="ManageProfileFragment__username_copied">ユーザーネームをコピーしました</string>
     <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">ユーザー名を削除できませんでした。あとで再度試してください。</string>
+    <string name="ManageProfileFragment__couldnt_delete_username">ユーザーネームを削除できませんでした。あとで再度試してください。</string>
     <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">ユーザー名を削除しました</string>
+    <string name="ManageProfileFragment__username_deleted">ユーザーネームを削除しました</string>
     <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_title">ユーザー名を消去しますか？</string>
+    <string name="ManageProfileFragment__delete_username_dialog_title">ユーザーネームを消去しますか？</string>
     <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
     <string name="ManageProfileFragment__delete_username_dialog_body">"これにより、ユーザーネームが削除され、QRコードとリンクが無効になります。「%1$s」は他のユーザーに使用可能となります。本当に消去しますか？"</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
-    <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">ユーザー名に問題が発生したため、アカウントに割り当てられていません。もう一度設定し直すか、新しいものを選んでみてください。</string>
+    <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">ユーザーネームに問題が発生したため、アカウントに割り当てられていません。もう一度設定し直すか、新しいものを選んでみてください。</string>
     <!-- Displayed above the conversation list when a user needs to address an issue with their username link -->
     <string name="UsernameOutOfSyncReminder__link_corrupt">QRコードとユーザーネームのリンクに問題が発生したため、無効になりました。新しいリンクを作成して他のユーザーと共有してください。</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
@@ -1334,8 +1334,8 @@
     </plurals>
 
     <!-- Profile change updates -->
-    <string name="MessageRecord_changed_their_profile_name_to">%1$s がプロフィール名を %2$s に変更しました。</string>
-    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s がプロフィール名を %2$s から %3$s に変更しました。</string>
+    <string name="MessageRecord_changed_their_profile_name_to">%1$s がプロフィールネームを %2$s に変更しました。</string>
+    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s がプロフィールネームを %2$s から %3$s に変更しました。</string>
     <string name="MessageRecord_changed_their_profile">%1$s がプロフィールを更新しました。</string>
 
     <!-- GV2 specific -->
@@ -2202,23 +2202,23 @@
     <!-- Placeholder text for custom discriminator -->
     <string name="UsernameEditFragment__00">00</string>
     <!-- Toolbar title when entering from registration -->
-    <string name="UsernameEditFragment__add_a_username">ユーザー名を追加する</string>
+    <string name="UsernameEditFragment__add_a_username">ユーザーネームを追加する</string>
     <!-- Instructional text at the top of the username edit screen -->
-    <string name="UsernameEditFragment__choose_your_username">ユーザー名を選択してください</string>
-    <string name="UsernameEditFragment_username">ユーザー名</string>
+    <string name="UsernameEditFragment__choose_your_username">ユーザーネームを選択してください</string>
+    <string name="UsernameEditFragment_username">ユーザーネーム</string>
     <string name="UsernameEditFragment_delete">消去する</string>
-    <string name="UsernameEditFragment_successfully_removed_username">ユーザー名を削除しました。</string>
+    <string name="UsernameEditFragment_successfully_removed_username">ユーザーネームを削除しました。</string>
     <string name="UsernameEditFragment_encountered_a_network_error">ネットワークエラーが発生しました。</string>
-    <string name="UsernameEditFragment_this_username_is_taken">このユーザー名は既に使用されています。</string>
-    <string name="UsernameEditFragment_usernames_can_only_include">ユーザー名には半角の英数字とアンダーバーのみ使用できます。</string>
-    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ユーザー名の先頭に数字は使用できません。</string>
-    <string name="UsernameEditFragment_username_is_invalid">無効なユーザー名です。</string>
-    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ユーザー名は%1$dから%2$d文字にしてください。</string>
+    <string name="UsernameEditFragment_this_username_is_taken">このユーザーネームは既に使用されています。</string>
+    <string name="UsernameEditFragment_usernames_can_only_include">ユーザーネームには半角の英数字とアンダーバーのみ使用できます。</string>
+    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ユーザーネームの先頭に数字は使用できません。</string>
+    <string name="UsernameEditFragment_username_is_invalid">無効なユーザーネームです。</string>
+    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ユーザーネームは%1$dから%2$d文字にしてください。</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">ユーザー名を使用すると、電話番号なしでメッセージを送れます。ユーザー名は、一連の数字と対になっているのでアドレスを非公開にすることができます。</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">ユーザーネームを使用すると、電話番号なしでメッセージを送れます。ユーザーネームは、一連の数字と対になっているのでアドレスを非公開にすることができます。</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">この数字は何ですか？</string>
-    <string name="UsernameEditFragment__these_digits_help_keep">これらの数字は、ユーザー名を非公開にし、不要なメッセージを避けるのに役立ちます。ユーザー名は、チャットをしたい人やグループとだけ共有してください。ユーザー名を変更すると、新しい数字と対になります。</string>
+    <string name="UsernameEditFragment__these_digits_help_keep">これらの数字は、ユーザーネームを非公開にし、不要なメッセージを避けるのに役立ちます。ユーザーネームは、チャットをしたい人やグループとだけ共有してください。ユーザーネームを変更すると、新しい数字と対になります。</string>
     <!-- Button to allow user to skip -->
     <string name="UsernameEditFragment__skip">スキップ</string>
     <!-- Content description for done button -->
@@ -2242,7 +2242,7 @@
 
     <!-- UsernameShareBottomSheet -->
     <!-- Explanation of what the sheet enables the user to do -->
-    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">ユーザー名のリンクをコピーまたは共有する</string>
+    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">ユーザーネームのリンクをコピーまたは共有する</string>
 
     <!-- VerifyIdentityActivity -->
     <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">連絡先の相手は互換性のないQRコード形式を使った新しいバージョンのSignalを使っています。Signalをアップデートしてから比較してください。</string>
@@ -2541,8 +2541,8 @@
     <!-- ContactSelectionListFragment-->
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">連絡先を表示するには、Signalに連絡先へのアクセス許可が必要ですが、無効になっています。アプリ設定メニューの「アプリの権限」で「連絡先」を有効にしてください。</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">連絡先の取得中にエラーが発生しました。ネットワーク接続を確認してください。</string>
-    <string name="ContactSelectionListFragment_username_not_found">ユーザー名が見つかりませんでした</string>
-    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"「%1$s」はSignalユーザーではありません。ユーザー名を確認してもう一度試してください。"</string>
+    <string name="ContactSelectionListFragment_username_not_found">ユーザーネームが見つかりませんでした</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"「%1$s」はSignalユーザーではありません。ユーザーネームを確認してもう一度試してください。"</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">自分自身をグループに追加する必要はありません</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">グループのサイズが最大値に達しました</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signalグループは最大%1$d名まで参加できます。</string>
@@ -2554,7 +2554,7 @@
     <!-- Text on row item to find user by phone number -->
     <string name="ContactSelectionListFragment__find_by_phone_number">電話番号で検索</string>
     <!-- Text on row item to find user by username -->
-    <string name="ContactSelectionListFragment__find_by_username">ユーザー名で検索</string>
+    <string name="ContactSelectionListFragment__find_by_username">ユーザーネームで検索</string>
 
     <!-- contact_selection_list_fragment -->
     <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">連絡先を表示するには、Signalに連絡先へのアクセスを許可してください。</string>
@@ -3030,7 +3030,7 @@
     <string name="preferences__mmsc_url">MMSC URL</string>
     <string name="preferences__mms_proxy_host">MMSプロキシホスト</string>
     <string name="preferences__mms_proxy_port">MMSプロキシポート</string>
-    <string name="preferences__mmsc_username">MMSCユーザー名</string>
+    <string name="preferences__mmsc_username">MMSCユーザーネーム</string>
     <string name="preferences__mmsc_password">MMSCパスワード</string>
     <string name="preferences__sms_delivery_reports">SMS配送レポート</string>
     <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">送信するすべてのSMSメッセージで配送レポートを要求します。</string>
@@ -4032,7 +4032,7 @@
     <string name="ReviewCard__block">ブロックする</string>
     <string name="ReviewCard__delete">消去する</string>
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
-    <string name="ReviewCard__s_recently_changed">%1$s は、最近プロフィール名を %2$s から %3$s に変更しました</string>
+    <string name="ReviewCard__s_recently_changed">%1$s は、最近プロフィールネームを %2$s から %3$s に変更しました</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
     <string name="ReviewCard__s_is_in_your_system_contacts">%1$s はシステムの連絡先に含まれています</string>
 
@@ -5028,7 +5028,7 @@
     <!-- Title of create notification profile screen -->
     <string name="EditNotificationProfileFragment__name_your_profile">プロファイル名の選択</string>
     <!-- Hint text for create/edit notification profile name -->
-    <string name="EditNotificationProfileFragment__profile_name">プロファイル名</string>
+    <string name="EditNotificationProfileFragment__profile_name">プロフィールネーム</string>
     <!-- Name has a max length, this shows how many characters are used out of the max -->
     <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
     <!-- Call to action button to continue to the next step -->
@@ -6027,7 +6027,7 @@
 
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__set_up_your_signal_username">Signalユーザー名を設定する</string>
+    <string name="SetUpYourUsername__set_up_your_signal_username">Signalユーザーネームを設定する</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__introducing_phone_number_privacy">電話番号保護、オプションのユーザーネーム、リンクについてご紹介します。</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
@@ -6051,9 +6051,9 @@
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">ユーザー名の編集</string>
+    <string name="UsernameEditDialog__edit_username">ユーザーネームの編集</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">ユーザー名の消去</string>
+    <string name="UsernameEditDialog__delete_username">ユーザーネームの消去</string>
 
     <!-- Time duration picker -->
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
@@ -6290,9 +6290,9 @@
     <!-- Button label for the color selector button in the username link settings -->
     <string name="UsernameLinkSettings_color_button_label">色</string>
     <!-- Description text for QR code and links in the username link settings -->
-    <string name="UsernameLinkSettings_qr_description">QR コードとリンクは、信頼できる人とのみ共有してください。共有すると、相手はお客様のユーザー名を見たりチャットしたりできるようになります。</string>
+    <string name="UsernameLinkSettings_qr_description">QR コードとリンクは、信頼できる人とのみ共有してください。共有すると、相手はお客様のユーザーネームを見たりチャットしたりできるようになります。</string>
     <!-- Content of a toast that will show after the username is copied to the clipboard -->
-    <string name="UsernameLinkSettings_username_copied_toast">ユーザー名をコピーしました</string>
+    <string name="UsernameLinkSettings_username_copied_toast">ユーザーネームをコピーしました</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">リンクをコピーしました</string>
     <!-- Content of a text field that is shown when the user has not yet set a username link -->
@@ -6320,7 +6320,7 @@
     <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
     <string name="UsernameLinkSettings_qr_result_invalid">QRコードが無効です。</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
-    <string name="UsernameLinkSettings_qr_result_not_found">ユーザー名「%1$s」を持つユーザーは見つかりませんでした。</string>
+    <string name="UsernameLinkSettings_qr_result_not_found">ユーザーネーム「%1$s」を持つユーザーは見つかりませんでした。</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
     <string name="UsernameLinkSettings_qr_result_not_found_no_username">このユーザーは見つかりませんでした。</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
@@ -6333,7 +6333,7 @@
     <string name="UsernameLinkSettings_scan_this_qr_code">このQRコードをお使いの携帯電話でスキャンして、Signalで私とチャットしましょう。</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
-    <string name="UsernameLinkShareBottomSheet_title">このリンクからは、誰でもあなたのユーザー名を閲覧したりチャットを始めることができますので、信頼できる人とのみ共有してください</string>
+    <string name="UsernameLinkShareBottomSheet_title">このリンクからは、誰でもあなたのユーザーネームを閲覧したりチャットを始めることができますので、信頼できる人とのみ共有してください</string>
     <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
     <string name="UsernameLinkShareBottomSheet_copy_link">リンクをコピーする</string>
     <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
@@ -6387,13 +6387,13 @@
 
     <!-- FindByActivity -->
     <!-- Title of activity when finding by username -->
-    <string name="FindByActivity__find_by_username">ユーザー名で検索</string>
+    <string name="FindByActivity__find_by_username">ユーザーネームで検索</string>
     <!-- Title of activity when finding by phone number -->
     <string name="FindByActivity__find_by_phone_number">電話番号で検索</string>
     <!-- Title of screen to select a country code -->
     <string name="FindByActivity__select_country_code">国番号を選択してください</string>
     <!-- Entry placeholder for find by username -->
-    <string name="FindByActivity__username">ユーザー名</string>
+    <string name="FindByActivity__username">ユーザーネーム</string>
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">電話番号</string>
     <!-- Help text under user entry for find by username -->
@@ -6403,19 +6403,19 @@
     <!-- Placeholder text for search input for selecting country code -->
     <string name="FindByActivity__search">検索</string>
     <!-- Dialog title for invalid username -->
-    <string name="FindByActivity__invalid_username">無効なユーザー名です</string>
+    <string name="FindByActivity__invalid_username">無効なユーザーネームです</string>
     <!-- Dialog title for invalid phone number -->
     <string name="FindByActivity__invalid_phone_number">無効な電話番号</string>
     <!-- Dialog title when phone number is not a registered signal user -->
     <string name="FindByActivity__invite_to_signal">Signalへの招待</string>
     <!-- Dialog title when username is not found -->
-    <string name="FindByActivity__username_not_found">ユーザー名が見つかりませんでした</string>
+    <string name="FindByActivity__username_not_found">ユーザーネームが見つかりませんでした</string>
     <!-- Dialog body for invalid username. Placeholder is the entered username. -->
     <string name="FindByActivity__s_is_not_a_valid_username">%1$s は有効なユーザーネームではありません。数字とセットになっている正確なユーザーネームを入力しているか確認しててください。</string>
     <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
     <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s は有効な電話場号ではありません。有効な電話番号でもう一度かけ直してください</string>
     <!-- Dialog body for not found username -->
-    <string name="FindByActivity__s_is_not_a_signal_user">「%1$s」はSignalユーザーではありません。ユーザー名を確認してもう一度試してください。</string>
+    <string name="FindByActivity__s_is_not_a_signal_user">「%1$s」はSignalユーザーではありません。ユーザーネームを確認してもう一度試してください。</string>
     <!-- Dialog body for not found phone number -->
     <string name="FindByActivity__s_is_not_a_signal_user_would">%1$sさんはSignalユーザーではありません。この番号をSignalに招待しますか？</string>
     <!-- Dialog action to invite the phone number to Signal -->

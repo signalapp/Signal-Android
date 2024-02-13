@@ -1029,7 +1029,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">你嘅用戶名稱、二維碼同連結唔會喺個人檔案度顯示。記得淨係好同你信任嘅人分享你嘅用戶名稱呀。</string>
     <string name="ManageProfileFragment_profile_name">個人資料名稱</string>
-    <string name="ManageProfileFragment_username">使用者名稱</string>
+    <string name="ManageProfileFragment_username">用戶名稱</string>
     <string name="ManageProfileFragment_about">關於</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">頭像設定唔到</string>
     <string name="ManageProfileFragment_badges">襟章</string>
@@ -2205,15 +2205,15 @@
     <string name="UsernameEditFragment__add_a_username">新增用戶名稱</string>
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">選擇你嘅用戶名稱</string>
-    <string name="UsernameEditFragment_username">使用者名稱</string>
+    <string name="UsernameEditFragment_username">用戶名稱</string>
     <string name="UsernameEditFragment_delete">刪除</string>
     <string name="UsernameEditFragment_successfully_removed_username">成功移除咗用戶名稱。</string>
     <string name="UsernameEditFragment_encountered_a_network_error">網絡有問題。</string>
-    <string name="UsernameEditFragment_this_username_is_taken">呢個使用者名稱已經畀人用咗喇。</string>
-    <string name="UsernameEditFragment_usernames_can_only_include">使用者名稱只可以用 a–Z、0–9 同底線符號。</string>
-    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">使用者名稱冇得用數目字開頭。</string>
-    <string name="UsernameEditFragment_username_is_invalid">使用者名稱無效。</string>
-    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">使用者名稱一定要係 %1$d 至 %2$d 個字元之間。</string>
+    <string name="UsernameEditFragment_this_username_is_taken">呢個用戶名稱已經畀人用咗喇。</string>
+    <string name="UsernameEditFragment_usernames_can_only_include">用戶名稱只可以用 a–Z、0–9 同底線符號。</string>
+    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">用戶名稱冇得用數目字開頭。</string>
+    <string name="UsernameEditFragment_username_is_invalid">用戶名稱無效。</string>
+    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">用戶名稱一定要係 %1$d 至 %2$d 個字元之間。</string>
     <!-- Explanation about what usernames provide -->
     <string name="UsernameEditFragment__usernames_let_others_message">用戶名稱可以俾其他人唔使用你個電話號碼搜尋，都可以傳送訊息俾你。系統會將用戶名稱同一組數字配對，咁就可以幫你嘅地址保密。</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
@@ -2541,8 +2541,8 @@
     <!-- ContactSelectionListFragment-->
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal 要攞「聯絡人」權限，先可以羅列您啲聯絡人出嚟，但權限已被永久拒絕。請到呢個 app 嘅設定功能表，揀選「權限」，然後啟用「聯絡人」。</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">提取聯絡人嘅時候發生錯誤，請檢查您嘅網絡連線</string>
-    <string name="ContactSelectionListFragment_username_not_found">使用者名稱搵唔到</string>
-    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"「%1$s」唔係 Signal 使用者。請檢查使用者名稱，然後再試下啦。"</string>
+    <string name="ContactSelectionListFragment_username_not_found">搵唔到用戶名稱</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"「%1$s」唔係 Signal 用戶。請檢查用戶名稱，然後再試過啦。"</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">您唔使加自己入個谷度</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">谷嘅人數已經到頂</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal 嘅谷最多可以有 %1$d 位成員。</string>
@@ -3030,7 +3030,7 @@
     <string name="preferences__mmsc_url">MMSC URL</string>
     <string name="preferences__mms_proxy_host">MMS 代理伺服器主機</string>
     <string name="preferences__mms_proxy_port">MMS 代理伺服器連接埠</string>
-    <string name="preferences__mmsc_username">MMSC 使用者名稱</string>
+    <string name="preferences__mmsc_username">MMSC 用戶名稱</string>
     <string name="preferences__mmsc_password">MMSC 密碼</string>
     <string name="preferences__sms_delivery_reports">短訊傳遞報告</string>
     <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">您發送嘅每一個短訊都要攞返份傳遞報告</string>

@@ -1204,7 +1204,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">اسم المُستخدم الخاص بك ليس مرئيًا على حسابك الشخصي، وكذلك رمز ورابط الاستجابة السريعة الخاصين بك. شارك اسم المُستخدم الخاص بك فقط مع الناس الذين تثق بهم.</string>
     <string name="ManageProfileFragment_profile_name">اسم الحساب</string>
-    <string name="ManageProfileFragment_username">اسم المستخدم</string>
+    <string name="ManageProfileFragment_username">اسم المُستخدم</string>
     <string name="ManageProfileFragment_about">حول</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">فشل ضبط صورة حسابك</string>
     <string name="ManageProfileFragment_badges">الشارات</string>
@@ -1216,9 +1216,9 @@
     <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
     <string name="ManageProfileFragment__link_tooltip_body">اسمح للآخرين ببدء محادثة معك عبر مشاركة رمز أو رابط الاستجابة السريع الفريد الخاص بك.</string>
     <!-- Snackbar message after creating username -->
-    <string name="ManageProfileFragment__username_created">تم إنشاء اسم المستخدم</string>
+    <string name="ManageProfileFragment__username_created">تم إنشاء اسم المُستخدم</string>
     <!-- Snackbar message after copying username -->
-    <string name="ManageProfileFragment__username_copied">تم نسخ اسم المستخدم</string>
+    <string name="ManageProfileFragment__username_copied">تم نسخ اسم المُستخدم</string>
     <!-- Snackbar message after network failure while trying to delete username -->
     <string name="ManageProfileFragment__couldnt_delete_username">تعذّر حذف اسم المستخدم. يُرجى المحاولة مرة أخرى لاحقًا.</string>
     <!-- Snackbar message after successful deletion of username -->
@@ -2604,16 +2604,16 @@
     <!-- Toolbar title when entering from registration -->
     <string name="UsernameEditFragment__add_a_username">إضافة اسم مُستخدم</string>
     <!-- Instructional text at the top of the username edit screen -->
-    <string name="UsernameEditFragment__choose_your_username">يُرجى اختيار اسم المستخدم</string>
-    <string name="UsernameEditFragment_username">اسم المستخدم</string>
+    <string name="UsernameEditFragment__choose_your_username">يُرجى اختيار اسم المُستخدم</string>
+    <string name="UsernameEditFragment_username">اسم المُستخدم</string>
     <string name="UsernameEditFragment_delete">حذف</string>
     <string name="UsernameEditFragment_successfully_removed_username">تم حذف اسم المستخدم بنجاح.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">حدث خطأ فى الشبكة</string>
-    <string name="UsernameEditFragment_this_username_is_taken">اسم المستخدم هذا غير متوفّر.</string>
+    <string name="UsernameEditFragment_this_username_is_taken">اسم المُستخدم هذا غير متوفّر.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">الأسماء يجب أن تحتوي فقط على الحروف الأبجدية، 0-9، أو \"_\".</string>
-    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">اسم المستخدم لا يمكن أن يبدأ برقم.</string>
-    <string name="UsernameEditFragment_username_is_invalid">اسم المستخدم غير صالح</string>
-    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">اسم المستخدم لا بد أن يكون بين %1$d و%2$d رمز.</string>
+    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">اسم المُستخدم لا يمكن أن يبدأ برقم.</string>
+    <string name="UsernameEditFragment_username_is_invalid">اسم المُستخدم غير صالح</string>
+    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">اسم المُستخدم لا بد أن يكون بين %1$d و%2$d رمز.</string>
     <!-- Explanation about what usernames provide -->
     <string name="UsernameEditFragment__usernames_let_others_message">تسمح أسماء المُستخدمين للآخرين بمراسلتك دون الحاجة إلى رقم هاتفك. يتم إقرانها بمجموعة من الأرقام للمساعدة في الحفاظ على خصوصية عنوانك.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
@@ -2647,7 +2647,7 @@
 
     <!-- UsernameShareBottomSheet -->
     <!-- Explanation of what the sheet enables the user to do -->
-    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">نسخ أو مشاركة رابط اسم المستخدم</string>
+    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">نسخ أو مشاركة رابط اسم المُستخدم</string>
 
     <!-- VerifyIdentityActivity -->
     <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">جهة الاتصال هذه تستخدم نسخة أحدث من تطبيق سيجنال وصيغة رمز الاستجابة السريع أو QR فيها لا تتوافق مع نسختك. يرجى تحديث النسخة للمقارنة.</string>
@@ -2961,8 +2961,8 @@
     <!-- ContactSelectionListFragment-->
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">يحتاج سيجنال إلى أذن الوصول إلى جهات الاتصال من أجل عرضها لك، ولكن تم إيقاف الإذن على نحو دائم. الرجاء زيارة إعدادات التطبيق، اختيار \"الأذونات\"، ثم تفعيل \"جهات الاتصال\".</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">خطأ في جلب جهات الاتصال، يُرجى التحقق مِن اتصالك بالشبكة</string>
-    <string name="ContactSelectionListFragment_username_not_found">لم يتم العثور على اسم المستخدم</string>
-    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" ليس مستخدم لسيجنال. يرجى التحقق من اسم المستخدم والمحاولة ثانية."</string>
+    <string name="ContactSelectionListFragment_username_not_found">لم يتم العثور على اسم المُستخدم</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" ليس مُستخدم لِسيجنال. يرجى التحقّق من اسم المُستخدم والمحاولة ثانية."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">ليست بحاجة إلى إضافة نفسك للمجموعة</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">وصلت المجموعة إلى الحد الأقصى.</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">أقصى حد للأعضاء في مجموعات سيجنال هو %1$d عضوا.</string>
@@ -3505,7 +3505,7 @@
     <string name="preferences__mmsc_url">رابط MMSC</string>
     <string name="preferences__mms_proxy_host">مستضيف خدمة MMS</string>
     <string name="preferences__mms_proxy_port">منفذ الوسيط MMS</string>
-    <string name="preferences__mmsc_username">اسم المستخدم MMSC</string>
+    <string name="preferences__mmsc_username">اسم المُستخدم MMSC</string>
     <string name="preferences__mmsc_password">كلمة السر MMSC</string>
     <string name="preferences__sms_delivery_reports">تقارير تسليم رسائل SMS</string>
     <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">طلب تقرير تسليم لكل رسالة SMS ترسلها</string>

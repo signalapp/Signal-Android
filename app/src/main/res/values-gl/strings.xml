@@ -46,7 +46,7 @@
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Isto desbloqueará de xeito permanente Signal e as notificacións de mensaxes.</string>
     <string name="ApplicationPreferencesActivity_disable">Desactivar</string>
     <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Desactivar as mensaxes e chamadas en Signal?</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Desactiva as mensaxes e chamadas en Signal anulando o rexistro no servidor. Necesitarás volver rexistrar o teu número en caso de querer usalo de novo.</string>
+    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Desactiva as mensaxes e chamadas en Signal anulando o rexistro no servidor. Necesitarás volver rexistrar o teu número de teléfono en caso de querer usalo de novo.</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Erro ao se conectar ao servidor!</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PINs requírense para o bloqueo do rexistro. Para desactivar PINs, primeiro desactiva o bloqueo do rexistro.</string>
     <string name="ApplicationPreferencesActivity_pin_created">PIN establecido.</string>
@@ -1963,7 +1963,7 @@
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">Conexións de Signal</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
-    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s está na túa lista de contactos</string>
+    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s está na túa listaxe de contactos do sistema</string>
     <!-- Notice in a row when user has no groups in common -->
     <string name="AboutSheet__you_have_no_groups_in_common">Non tedes grupos en común</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
@@ -3729,7 +3729,7 @@
 
     <!-- AccountLockedFragment -->
     <string name="AccountLockedFragment__account_locked">Conta bloqueada</string>
-    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">A túa conta foi bloqueada para protexer a túa privacidade e seguridade. Após %1$d días de inactividade na conta poderás volver a rexistrar este número sen precisar dun PIN. Eliminarase todo o contido.</string>
+    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">A túa conta foi bloqueada para protexer a túa privacidade e seguridade. Após %1$d días de inactividade na conta poderás volver a rexistrar este número de teléfono sen precisar dun PIN. Eliminarase todo o contido.</string>
     <string name="AccountLockedFragment__next">Seguinte</string>
     <string name="AccountLockedFragment__learn_more">Saber máis</string>
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
@@ -4142,7 +4142,7 @@
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
     <string name="ReviewCard__s_recently_changed">%1$s cambiou recentemente o seu nome de perfil de %2$s a %3$s</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
-    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s está na túa lista de contactos</string>
+    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s está na túa listaxe de contactos do sistema</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$suniuse</string>
@@ -5503,7 +5503,7 @@
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Aceptar unha solicitude de mensaxe</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Pertencen á túa lista de contactos</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Pertencen á túa listaxe de contactos do sistema</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"As túas conexións poden ver o teu nome e a túa foto, ademais das publicacións en «A miña historia» se non llelas ocultas."</string>
     <!-- Clickable option to add a viewer to a custom story -->

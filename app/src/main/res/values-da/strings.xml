@@ -1961,7 +1961,7 @@
 
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
-    <string name="AboutSheet__signal_connection">Signal-forbindelse</string>
+    <string name="AboutSheet__signal_connection">Signal-kontakt</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s er i dine systemkontakter</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -5466,7 +5466,7 @@
     <string name="MyStorySettingsFragment__who_can_view_this_story">Hvem kan se denne historie?</string>
     <!-- Clickable option for selecting people to hide your story from -->
     <!-- Privacy setting title for sending stories to all your signal connections -->
-    <string name="MyStorySettingsFragment__all_signal_connections">Alle Signal-forbindelser</string>
+    <string name="MyStorySettingsFragment__all_signal_connections">Alle Signal-kontakter</string>
     <!-- Privacy setting description for sending stories to all your signal connections -->
     <!-- Privacy setting title for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__all_except">Alle med undtagelse af…</string>
@@ -5495,15 +5495,15 @@
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Lad folk, der kan se din historie, reagere og svare</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
-    <string name="SignalConnectionsBottomSheet___signal_connections">Signal-forbindelser</string>
+    <string name="SignalConnectionsBottomSheet___signal_connections">Signal-kontakter</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
-    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal-forbindelser er personer, som du har valgt at have tillid til, enten ved:</string>
+    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal-kontakter er personer, som du har valgt at stole på, enten ved:</string>
     <!-- Signal connections sheet bullet point 1 -->
     <string name="SignalConnectionsBottomSheet__starting_a_conversation">Starter en chat</string>
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Acceptere en beskedanmodning</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Have dem i dit systems kontakter</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Have dem i dine systemkontakter</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Dine kontakter kan se dit navn og billede. De kan også se indlæg i \"Min historie\", medmindre du skjuler det for dem."</string>
     <!-- Clickable option to add a viewer to a custom story -->

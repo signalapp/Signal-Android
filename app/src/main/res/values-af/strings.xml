@@ -1064,7 +1064,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Jou gebruikersnaam, QR-kode en skakel is nie op jou profiel sigbaar nie. Deel net jou gebruikersnaam met mense wat jy vertrou.</string>
     <string name="ManageProfileFragment_profile_name">Profielnaam</string>
-    <string name="ManageProfileFragment_username">Gebruikernaam</string>
+    <string name="ManageProfileFragment_username">Gebruikersnaam</string>
     <string name="ManageProfileFragment_about">Meer oor</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">Kon nie avatar stel nie</string>
     <string name="ManageProfileFragment_badges">Wapens</string>
@@ -2295,7 +2295,7 @@
     <string name="UsernameEditFragment_username_is_invalid">Ongeldige gebruikersnaam.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Gebruikersname moet tussen %1$d en %2$d karakters lank wees.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Gebruikersname laat toe dat andere aan jou boodskappe kan stuur sonder dat hulle jou telefoonnommer nodig het. Hulle word gekoppel aan \'n stel syfers om jou adres privaat te help hou.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">Gebruikersname laat toe dat andere vir jou boodskappe kan stuur sonder dat hulle jou telefoonnommer nodig het. Hulle word gekoppel aan \'n stel syfers om jou adres privaat te help hou.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">Wat beteken hierdie syfers?</string>
     <string name="UsernameEditFragment__these_digits_help_keep">Hierdie syfers help om jou gebruikersnaam privaat te hou sodat jy ongevraagde boodskappe kan voorkom. Deel jou gebruikersnaam slegs met die mense en groepe met wie jy wil klets. As jy gebruikersname verander, sal jy \'n nuwe stel syfers ontvang.</string>

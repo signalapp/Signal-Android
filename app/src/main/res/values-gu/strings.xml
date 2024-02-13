@@ -1064,7 +1064,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">તમારું યુઝરનેમ, QR કોડ અને લિંક તમારી પ્રોફાઇલ પર દેખાતા નથી. તમારું યુઝરનેમ ફક્ત એવા લોકો સાથે જ શેર કરો જેમના પર તમને વિશ્વાસ હોય.</string>
     <string name="ManageProfileFragment_profile_name">પ્રોફાઇલ નામ</string>
-    <string name="ManageProfileFragment_username">વપરાશકર્તા નામ</string>
+    <string name="ManageProfileFragment_username">યુઝરનેમ</string>
     <string name="ManageProfileFragment_about">વિશે</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">અવતાર સેટ કરવામાં નિષ્ફળ</string>
     <string name="ManageProfileFragment_badges">બૅજ</string>
@@ -2282,18 +2282,18 @@
     <!-- Placeholder text for custom discriminator -->
     <string name="UsernameEditFragment__00">00</string>
     <!-- Toolbar title when entering from registration -->
-    <string name="UsernameEditFragment__add_a_username">વપરાશકર્તાનામ ઉમેરો</string>
+    <string name="UsernameEditFragment__add_a_username">યુઝરનેમ ઉમેરો</string>
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">તમારું યુઝરનેમ પસંદ કરો</string>
-    <string name="UsernameEditFragment_username">વપરાશકર્તા નામ</string>
+    <string name="UsernameEditFragment_username">યુઝરનેમ</string>
     <string name="UsernameEditFragment_delete">ડિલીટ કરો</string>
     <string name="UsernameEditFragment_successfully_removed_username">યુઝરનેમ સફળતાપૂર્વક દૂર કર્યું.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">નેટવર્ક ભૂલ મળી.</string>
-    <string name="UsernameEditFragment_this_username_is_taken">આ વપરાશકર્તા નામ લેવામાં આવ્યું છે.</string>
-    <string name="UsernameEditFragment_usernames_can_only_include">વપરાશકર્તાનામોમાં માત્ર a–Z, 0–9 અને અન્ડરસ્કોર શામેલ હોઈ શકે છે.</string>
-    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">વપરાશકર્તાનામ સંખ્યા સાથે શરૂ થઈ શકતા નથી.</string>
-    <string name="UsernameEditFragment_username_is_invalid">વપરાશકર્તા નામ અમાન્ય છે.</string>
-    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">વપરાશકર્તાનામો %1$d અને %2$d અક્ષરોની વચ્ચે હોવા જોઈએ.</string>
+    <string name="UsernameEditFragment_this_username_is_taken">આ યુઝરનેમ લેવાઈ ગયું છે.</string>
+    <string name="UsernameEditFragment_usernames_can_only_include">યુઝરનેમમાં માત્ર a–Z, 0–9 અને અન્ડરસ્કોર શામેલ હોઈ શકે છે.</string>
+    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">યુઝરનેમ સંખ્યા સાથે શરૂ થઈ શકતા નથી.</string>
+    <string name="UsernameEditFragment_username_is_invalid">યુઝરનેમ અમાન્ય છે.</string>
+    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">યુઝરનેમ %1$d અને %2$d અક્ષરોની વચ્ચે હોવા જોઈએ.</string>
     <!-- Explanation about what usernames provide -->
     <string name="UsernameEditFragment__usernames_let_others_message">યુઝરનેમ અન્ય લોકોને તમારા ફોન નંબરની જરૂર વગર તમને મેસેજ કરવા દે છે. તમારા સરનામાને ખાનગી રાખવામાં મદદ કરવા માટે તેમને થોડા અંકો સાથે જોડવામાં આવે છે.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
@@ -2625,8 +2625,8 @@
     <!-- ContactSelectionListFragment-->
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">તમારા સંપર્કોને પ્રદર્શિત કરવા માટે Signal ને સંપર્કોની પરવાનગીની જરૂર હોય છે, પરંતુ તે કાયમી ધોરણે નામંજૂર કરવામાં આવી છે. કૃપા કરીને એપ્લિકેશન સેટિંગ્સ મેનૂ પર ચાલુ રાખો, \"પરવાનગી\" પસંદ કરો અને \"સંપર્કો\" ને સક્ષમ કરો.</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">કૃપા કરીને એપ્લિકેશન સેટિંગ્સ મેનૂ પર ચાલુ રાખો, \"પરવાનગી\" પસંદ કરો અને \"સંપર્કો\" ને સક્ષમ કરો.</string>
-    <string name="ContactSelectionListFragment_username_not_found">વપરાશકર્તા નામ મળ્યું નથી</string>
-    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" Signal વપરાશકર્તા નથી. કૃપા કરીને વપરાશકર્તા નામ તપાસો અને ફરીથી પ્રયાસ કરો."</string>
+    <string name="ContactSelectionListFragment_username_not_found">યુઝરનેમ મળ્યું નથી</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" Signal ઉપયોગકર્તા નથી. કૃપા કરીને યુઝરનેમ તપાસો અને ફરીથી પ્રયાસ કરો."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">તમારે તમારી જાતને ગ્રુપમાં ઉમેરવાની જરૂર નથી</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">મહત્તમ ગ્રુપ કદ પહોંચી ગયું</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal ગ્રુપમાં મહત્તમ %1$d સભ્યો હોઈ શકે છે.</string>
@@ -3125,7 +3125,7 @@
     <string name="preferences__mmsc_url">MMSC URL</string>
     <string name="preferences__mms_proxy_host">MMS પ્રોક્સી હોસ્ટ</string>
     <string name="preferences__mms_proxy_port">MMS પ્રોક્સી હોસ્ટ</string>
-    <string name="preferences__mmsc_username">MMSC વપરાશકર્તા નામ</string>
+    <string name="preferences__mmsc_username">MMSC યુઝરનેમ</string>
     <string name="preferences__mmsc_password">MMSC પાસવર્ડ</string>
     <string name="preferences__sms_delivery_reports">SMS ડિલિવરી અહેવાલો</string>
     <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">તમે મોકલો છો તે દરેક SMS મેસેજ માટે ડિલિવરી રિપોર્ટની વિનંતી કરો</string>

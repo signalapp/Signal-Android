@@ -46,7 +46,7 @@
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Baineann sé seo glas de Signal agus de fógraí teachtaireachta go deo.</string>
     <string name="ApplicationPreferencesActivity_disable">Díchumasaigh</string>
     <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Díchumasiagh teachtaireachtaí agus glaonna Signal?</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Díchumasaigh teachtaireachtaí agus glaonna Signal trí dhíclárú ón bhfreastalaí. Ba chóir duit do uimhir fóin a athchlárú chun iad a úsáid arís sa todhchaí.</string>
+    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Díchumasaigh teachtaireachtaí agus glaonna Signal trí dhíchlárú ón bhfreastalaí. Ba chóir duit do uimhir ghutháin a athchlárú chun iad a úsáid arís sa todhchaí.</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Tharla botún ag déanamh teagmháil leis an bhfreastalaí!</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Tá UAP de dhíth chun glas clárúcháin a úsáid. Caithfidh tú an glas clárúcháin a dhíchumasú sula mbeidh tú in ann an UAP a dhíchumasú.</string>
     <string name="ApplicationPreferencesActivity_pin_created">Cruthaíodh an UAP.</string>
@@ -1522,8 +1522,8 @@
     </plurals>
 
     <!-- Profile change updates -->
-    <string name="MessageRecord_changed_their_profile_name_to">D\'athraigh %1$s a (h)ainm próifíle go %2$s.</string>
-    <string name="MessageRecord_changed_their_profile_name_from_to">D\'athraigh %1$s a ainm/hainm ó %2$s go %3$s.</string>
+    <string name="MessageRecord_changed_their_profile_name_to">D\'athraigh %1$s an t-ainm próifíle go %2$s.</string>
+    <string name="MessageRecord_changed_their_profile_name_from_to">D\'athraigh %1$s an t-ainm próifíle ó %2$s go %3$s.</string>
     <string name="MessageRecord_changed_their_profile">D\'athraigh %1$s an phróifíl aige/aici.</string>
 
     <!-- GV2 specific -->
@@ -1704,7 +1704,7 @@
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Ní dheimhnigh tú do uimhir shábhála le %1$s</string>
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Ní dheimhnigh tú do uimhir shábhála le %1$s ón ghléas eile.</string>
     <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Níorbh fhéidir teachtaireacht ó %1$s a sheachadadh</string>
-    <string name="MessageRecord_s_changed_their_phone_number">%1$s changed their phone number.</string>
+    <string name="MessageRecord_s_changed_their_phone_number">D\'athraigh %1$s an t-ainm próifíle.</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">An maith leat an ghné nua seo? Cuidigh le tacú le Signal le tabhartas aonuaire.</string>
     <!-- Update item message shown when we merge two threads together. First placeholder is a name, second placeholder is a phone number. -->
@@ -2892,7 +2892,7 @@
         <item quantity="other">%1$d ball</item>
     </plurals>
     <!-- Text on row item to find user by phone number -->
-    <string name="ContactSelectionListFragment__find_by_phone_number">Cuardaigh de réir uimhreach gutháin</string>
+    <string name="ContactSelectionListFragment__find_by_phone_number">Cuardaigh de réir uimhir ghutháin</string>
     <!-- Text on row item to find user by username -->
     <string name="ContactSelectionListFragment__find_by_username">Aimsigh de réir ainm úsáideora</string>
 
@@ -3410,7 +3410,7 @@
     <string name="preferences__mmsc_url">MMSC URL</string>
     <string name="preferences__mms_proxy_host">Óstach Seachfhreastalaí MMS</string>
     <string name="preferences__mms_proxy_port">Port Seachfhreastalaí MMS</string>
-    <string name="preferences__mmsc_username">Ainm Úsáideora MMSC</string>
+    <string name="preferences__mmsc_username">Ainm úsáideora MMSC</string>
     <string name="preferences__mmsc_password">Focal faire MMSC</string>
     <string name="preferences__sms_delivery_reports">Tuairiscí seachadta SMS</string>
     <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Iarr tuairisc seachadta do gach teachtaireacht SMS a sheolann tú</string>
@@ -4195,7 +4195,7 @@
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Na daoine atá in ann mé a aimsiú le m\'uimhir</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">Aon duine a bhfuil d\'uimhir ghutháin aige/aici, feicfidh sé/sí go bhfuil tú ar Signal agus beidh sé/sí in ann tosú ar chomhrá leat.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">Aon duine ag a bhfuil d\'uimhir ghutháin, feicfidh sé/sí go bhfuil tú ar Signal agus beidh in ann tosú ar chomhrá leat.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
     <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">Beidh tú dofheicthe ar Signal ag daoine ach amháin má sheolann tú teachtaireacht chucu nó má tá comhrá ar siúl agat leo.</string>
     <!-- Snackbar text when pressing invalid radio item -->
@@ -4721,7 +4721,7 @@
     <string name="AccountSettingsFragment__account">Cuntas</string>
     <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Ní iarrfar ort chomh minic le himeacht ama</string>
     <string name="AccountSettingsFragment__require_your_signal_pin">Éiligh d\'UAP Signal le d\'uimhir ghutháin a chlárú le Signal arís</string>
-    <string name="AccountSettingsFragment__change_phone_number">Change Phone Number</string>
+    <string name="AccountSettingsFragment__change_phone_number">Athraigh uimhir ghutháin</string>
     <!-- Account setting that allows user to request and export their signal account data -->
     <string name="AccountSettingsFragment__request_account_data">Sonraí do chuntais</string>
 
@@ -4770,14 +4770,14 @@
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Use this to change your current phone number to a new phone number. You can’t undo this change.\n\nBefore continuing, make sure your new number can receive SMS or calls.</string>
     <string name="ChangeNumberFragment__continue">Ar Aghaidh</string>
     <!-- Message shown on dialog after your number has been changed successfully. -->
-    <string name="ChangeNumber__your_phone_number_has_changed_to_s">Your phone number has been changed to %1$s</string>
+    <string name="ChangeNumber__your_phone_number_has_changed_to_s">Tá d\'uimhir ghutháin athraithe go %1$s</string>
     <!-- Confirmation button to dismiss number changed dialog -->
     <string name="ChangeNumber__okay">Tá go maith</string>
 
     <!-- ChangeNumberEnterPhoneNumberFragment -->
     <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Athraigh Uimhir</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Your Old Number</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">An tsean-uimhir ghutháin</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">An tseanuimhir ghutháin</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Your New Number</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Uimhir ghutháin nua</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Ní mheaitseálann an uimhir ghutháin a chuir tú isteach le huimhir do chuntais.</string>
@@ -4793,7 +4793,7 @@
 
     <!-- ChangeNumberConfirmFragment -->
     <string name="ChangeNumberConfirmFragment__change_number">Athraigh Uimhir</string>
-    <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">You are about to change your phone number from %1$s to %2$s.\n\nBefore proceeding, please verify that the below number is correct.</string>
+    <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Tá tú ar tí d\'uimhir ghutháin a athrú ó %1$s go %2$s.\n\nRoimh leanúint ar aghaidh, fíoraigh go bhfuil an uimhir thíos ceart.</string>
     <string name="ChangeNumberConfirmFragment__edit_number">Edit Number</string>
 
     <!-- ChangeNumberRegistrationLockFragment -->
@@ -5042,7 +5042,7 @@
     <string name="ConversationSettingsFragment__conversation_muted_until_s">Comhrá balbhaithe go dtí %1$s</string>
     <string name="ConversationSettingsFragment__conversation_muted_forever">Comhrá balbhaithe go deo</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Uimhir ghutháin cóipeáilte chuig an ngearrthaisce.</string>
-    <string name="ConversationSettingsFragment__phone_number">Uimhir Ghutháin</string>
+    <string name="ConversationSettingsFragment__phone_number">Uimhir ghutháin</string>
     <string name="ConversationSettingsFragment__get_badges">Faigh suaitheantais do do phróifíl trí thacú le Signal. Tapáil ar shuaitheantas chun tuilleadh a fhail amach.</string>
 
     <!-- PermissionsSettingsFragment -->
@@ -5496,7 +5496,7 @@
     <!-- Title of create notification profile screen -->
     <string name="EditNotificationProfileFragment__name_your_profile">Ainmnigh do phróifíl</string>
     <!-- Hint text for create/edit notification profile name -->
-    <string name="EditNotificationProfileFragment__profile_name">Ainm Próifíle</string>
+    <string name="EditNotificationProfileFragment__profile_name">Ainm próifíle</string>
     <!-- Name has a max length, this shows how many characters are used out of the max -->
     <string name="EditNotificationProfileFragment__count">%1$d / %2$d</string>
     <!-- Call to action button to continue to the next step -->
@@ -5872,7 +5872,7 @@
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Trí iarratas teachtaireachta a ghlacadh</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Trína gcur le do theagmhálaithe córais</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Trína gcur le teagmhálaithe do chórais</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Is féidir le do theagmhálaithe d\'ainm agus do ghrianghraf, agus postálacha \"Mo Scéal\", a fheiceáil, mura gcuireann tú na rudaí sin i bhfolach orthu."</string>
     <!-- Clickable option to add a viewer to a custom story -->
@@ -6239,7 +6239,7 @@
     <!-- Subtitle of initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Roghnaigh an lucht féachana ar phostálacha ar Mo Scéal. Is féidir leat athruithe a dhéanamh i socruithe i gcónaí.</string>
     <!-- All connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Gach Teagmhálaí Signal</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Gach teagmhálaí Signal</string>
     <!-- All connections except option for initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__all_except">Gach duine seachas…</string>
     <!-- Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
@@ -6961,7 +6961,7 @@
     <!-- Title of activity when finding by username -->
     <string name="FindByActivity__find_by_username">Aimsigh de réir ainm úsáideora</string>
     <!-- Title of activity when finding by phone number -->
-    <string name="FindByActivity__find_by_phone_number">Cuardaigh de réir uimhreach gutháin</string>
+    <string name="FindByActivity__find_by_phone_number">Cuardaigh de réir uimhir ghutháin</string>
     <!-- Title of screen to select a country code -->
     <string name="FindByActivity__select_country_code">Roghnaigh Cód Tíre</string>
     <!-- Entry placeholder for find by username -->
@@ -6977,7 +6977,7 @@
     <!-- Dialog title for invalid username -->
     <string name="FindByActivity__invalid_username">Ainm úsáideora neamhbhailí</string>
     <!-- Dialog title for invalid phone number -->
-    <string name="FindByActivity__invalid_phone_number">Uimhir Ghutháin Neamhbhailí</string>
+    <string name="FindByActivity__invalid_phone_number">Uimhir ghutháin neamhbhailí</string>
     <!-- Dialog title when phone number is not a registered signal user -->
     <string name="FindByActivity__invite_to_signal">Tabhair cuireadh chuig Signal</string>
     <!-- Dialog title when username is not found -->

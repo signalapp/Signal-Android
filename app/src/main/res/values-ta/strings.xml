@@ -2290,7 +2290,7 @@
     <string name="UsernameEditFragment_successfully_removed_username">பயனர்பெயர் வெற்றிகரமாக அகற்றப்பட்டது.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">பிணைய பிழையை எதிர்கொண்டது.</string>
     <string name="UsernameEditFragment_this_username_is_taken">இந்த பயனர்பெயர் எடுக்கப்பட்டது.</string>
-    <string name="UsernameEditFragment_usernames_can_only_include">பயனர்பெயர்களில் அ - ஃ, a-Z, 0–9 மற்றும் அடிக்கோடிட்டுக் காட்டலாம்.</string>
+    <string name="UsernameEditFragment_usernames_can_only_include">பயனர்பெயர்களில் அ - ஃ, a–Z, 0–9 மற்றும் அடிக்கோடிட்டுக் காட்டலாம்.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">பயனர்பெயர்கள் எண்ணுடன் தொடங்க முடியாது.</string>
     <string name="UsernameEditFragment_username_is_invalid">பயனர்பெயர் தவறானது.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">பயனர்பெயர்கள் %1$d மற்றும் %2$d எழுத்துக்களுக்கு இடையில் இருக்க வேண்டும்.</string>
@@ -2626,7 +2626,7 @@
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">உங்கள் தொடர்புகளைக் காண்பிக்க Signal கு தொடர்புகளின் அனுமதி தேவைப்படுகிறது, ஆனால் அது நிரந்தரமாக மறுக்கப்பட்டது. பயன்பாடு அமைப்புகள் மெனுவில் தொடரவும், \"அனுமதிகள்\" என்பதைத் தேர்ந்தெடுத்து, \"தொடர்புகளை\" இயக்கவும்.</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">தொடர்புகளை மீட்டெடுப்பதில் பிழை, உங்கள் பிணைய இணைப்பைச் சரிபார்க்கவும்</string>
     <string name="ContactSelectionListFragment_username_not_found">பயனர்பெயர் கிடைக்கவில்லை</string>
-    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" Signal பயனர் அல்ல. தயவுசெய்து பயனர்பெயரை சரிபார்த்து மீண்டும் முயற்சிக்கவும்."</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s Signal பயனர் அல்ல. தயவுசெய்து பயனர்பெயரை சரிபார்த்து மீண்டும் முயற்சிக்கவும்."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">உங்களை நீங்களே குழுவில் சேர்க்க தேவையில்லை</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">அதிகபட்ச குழு அளவு எட்டப்பட்டுள்ளது</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">சிக்னல் குழுக்கள் அதிகபட்சம் %1$d உறுப்பினர்களைக் கொண்டிருக்கலாம்.</string>

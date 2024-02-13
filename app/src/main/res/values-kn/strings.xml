@@ -1064,7 +1064,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">ನಿಮ್ಮ ಯೂಸರ್‌ನೇಮ್, QR ಕೋಡ್ ಮತ್ತು ಲಿಂಕ್ ನಿಮ್ಮ ಪ್ರೊಫೈಲ್‌ನಲ್ಲಿ ಗೋಚರಿಸುವುದಿಲ್ಲ. ನೀವು ನಂಬುವ ಜನರೊಂದಿಗೆ ಮಾತ್ರ ನಿಮ್ಮ ಯೂಸರ್‌ನೇಮ್‌ ಅನ್ನು ಹಂಚಿಕೊಳ್ಳಿ.</string>
     <string name="ManageProfileFragment_profile_name">ಪ್ರೊಫೈಲ್ ಹೆಸರು</string>
-    <string name="ManageProfileFragment_username">ಬಳಕೆದಾರ ಹೆಸರು</string>
+    <string name="ManageProfileFragment_username">ಯೂಸರ್ ನೇಮ್</string>
     <string name="ManageProfileFragment_about">ಬಗ್ಗೆ</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">ಅವತಾರ್ ನಿಗದಿಪಡಿಸಲು ವಿಫಲವಾಗಿದೆ</string>
     <string name="ManageProfileFragment_badges">ಬ್ಯಾಡ್ಜ್‌ಗಳು</string>
@@ -1076,9 +1076,9 @@
     <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
     <string name="ManageProfileFragment__link_tooltip_body">ನಿಮ್ಮ ಅನನ್ಯ QR ಕೋಡ್ ಅಥವಾ ಲಿಂಕ್ ಅನ್ನು ಹಂಚಿಕೊಳ್ಳುವ ಮೂಲಕ ಇತರರು ನಿಮ್ಮೊಂದಿಗೆ ಚಾಟ್ ಆರಂಭಿಸಲು ಅವಕಾಶ ಮಾಡಿಕೊಡಿ.</string>
     <!-- Snackbar message after creating username -->
-    <string name="ManageProfileFragment__username_created">Username ರಚಿಸಲಾಗಿದೆ</string>
+    <string name="ManageProfileFragment__username_created">ಯೂಸರ್ ನೇಮ್ ರಚಿಸಲಾಗಿದೆ</string>
     <!-- Snackbar message after copying username -->
-    <string name="ManageProfileFragment__username_copied">Username ಅನ್ನು ನಕಲಿಸಲಾಗಿದೆ</string>
+    <string name="ManageProfileFragment__username_copied">ಯೂಸರ್ ನೇಮ್ ಅನ್ನು ನಕಲಿಸಲಾಗಿದೆ</string>
     <!-- Snackbar message after network failure while trying to delete username -->
     <string name="ManageProfileFragment__couldnt_delete_username">ಯೂಸರ್‌ನೇಮ್ ಅಳಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ನಂತರ ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
     <!-- Snackbar message after successful deletion of username -->
@@ -2284,18 +2284,18 @@
     <!-- Toolbar title when entering from registration -->
     <string name="UsernameEditFragment__add_a_username">ಯೂಸರ್‌ನೇಮ್ ಸೇರಿಸಿ</string>
     <!-- Instructional text at the top of the username edit screen -->
-    <string name="UsernameEditFragment__choose_your_username">ನಿಮ್ಮ Username ಅನ್ನು ಆಯ್ಕೆ ಮಾಡಿಕೊಳ್ಳಿ</string>
-    <string name="UsernameEditFragment_username">ಬಳಕೆದಾರ ಹೆಸರು</string>
+    <string name="UsernameEditFragment__choose_your_username">ನಿಮ್ಮ ಯೂಸರ್ ನೇಮ್ ಅನ್ನು ಆಯ್ಕೆ ಮಾಡಿಕೊಳ್ಳಿ</string>
+    <string name="UsernameEditFragment_username">ಯೂಸರ್ ನೇಮ್</string>
     <string name="UsernameEditFragment_delete">ಅಳಿಸಿ</string>
     <string name="UsernameEditFragment_successfully_removed_username">ಬಳಕೆದಾರ ಹೆಸರನ್ನು ಯಶಸ್ವಿಯಾಗಿ ತೆಗೆದುಹಾಕಲಾಗಿದೆ.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">ನೆಟ್‌ವರ್ಕ್ ದೋಷವನ್ನು ಎದುರಿಸಿದೆ.</string>
-    <string name="UsernameEditFragment_this_username_is_taken">ಈ ಬಳಕೆದಾರ ಹೆಸರು ತೆಗೆದುಕೊಳ್ಳಲಾಗಿದೆ.</string>
-    <string name="UsernameEditFragment_usernames_can_only_include">ಬಳಕೆದಾರ ಹೆಸರುಗಳು a-Z, 0-9, ಮತ್ತು ಅಡಿಗೆರೆಗಳನ್ನು ಮಾತ್ರ ಒಳಗೊಂಡಿರಬಹುದು.</string>
-    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ಬಳಕೆದಾರ ಹೆಸರುಗಳು ಸಂಖ್ಯೆಯಿಂದ ಪ್ರಾರಂಭವಾಗುವುದಿಲ್ಲ.</string>
-    <string name="UsernameEditFragment_username_is_invalid">ಬಳಕೆದಾರ ಹೆಸರು ಅಮಾನ್ಯವಾಗಿದೆ.</string>
-    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ಬಳಕೆದಾರ ಹೆಸರುಗಳ %1$d ಮತ್ತು %2$d ಅಕ್ಷರಗಳ ನಡುವೆ ಇರಬೇಕು.</string>
+    <string name="UsernameEditFragment_this_username_is_taken">ಈ ಯೂಸರ್ ನೇಮ್ ತೆಗೆದುಕೊಳ್ಳಲಾಗಿದೆ.</string>
+    <string name="UsernameEditFragment_usernames_can_only_include">ಯೂಸರ್ ನೇಮ್ ಗಳು a-Z, 0-9, ಮತ್ತು ಅಡಿಗೆರೆಗಳನ್ನು ಮಾತ್ರ ಒಳಗೊಂಡಿರಬಹುದು.</string>
+    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ಯೂಸರ್ ನೇಮ್ ಗಳು ಸಂಖ್ಯೆಯಿಂದ ಪ್ರಾರಂಭವಾಗುವುದಿಲ್ಲ.</string>
+    <string name="UsernameEditFragment_username_is_invalid">ಯೂಸರ್ ನೇಮ್ ಅಮಾನ್ಯವಾಗಿದೆ.</string>
+    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ಯೂಸರ್ ನೇಮ್ ಗಳ %1$d ಮತ್ತು %2$d ಅಕ್ಷರಗಳ ನಡುವೆ ಇರಬೇಕು.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Username ಗಳು ಇತರರಿಗೆ ನಿಮ್ಮ ಫೋನ್ ಸಂಖ್ಯೆಯ ಅಗತ್ಯವಿಲ್ಲದೆ ಮೆಸೇಜ್ ಮಾಡಲು ಅನುಮತಿಸುತ್ತದೆ. ನಿಮ್ಮ ವಿಳಾಸವನ್ನು ಗೌಪ್ಯವಾಗಿ ಇರಿಸುವಂತೆ ಅಂಕಿಗಳ ಸೆಟ್‌ನೊಂದಿಗೆ ಅವುಗಳನ್ನು pair ಮಾಡುತ್ತದೆ.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">ಯೂಸರ್ ನೇಮ್ ಗಳು ಇತರರಿಗೆ ನಿಮ್ಮ ಫೋನ್ ಸಂಖ್ಯೆಯ ಅಗತ್ಯವಿಲ್ಲದೆ ಮೆಸೇಜ್ ಮಾಡಲು ಅನುಮತಿಸುತ್ತದೆ. ನಿಮ್ಮ ವಿಳಾಸವನ್ನು ಗೌಪ್ಯವಾಗಿ ಇರಿಸುವಂತೆ ಅಂಕಿಗಳ ಸೆಟ್‌ನೊಂದಿಗೆ ಅವುಗಳನ್ನು pair ಮಾಡುತ್ತದೆ.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">ಈ ಸಂಖ್ಯೆ ಏನು?</string>
     <string name="UsernameEditFragment__these_digits_help_keep">ಈ ಅಂಕಿಗಳು ನಿಮ್ಮ ಯೂಸರ್‌ನೇಮ್ ಅನ್ನು ಗೌಪ್ಯವಾಗಿ ಇರಿಸಲು ಸಹಕರಿಸುತ್ತವೆ. ಇದರಿಂದಾಗಿ ನೀವು ಬೇಡದ ಮೆಸೇಜ್‌ಗಳನ್ನು ತಪ್ಪಿಸಬಹುದು. ನಿಮ್ಮ ಯೂಸರ್‌ನೇಮ್ ಅನ್ನು ನೀವು ಚಾಟ್ ಮಾಡಲು ಬಯಸುವ ಜನರು ಮತ್ತು ಗ್ರೂಪ್‌ಗಳೊಂದಿಗೆ ಮಾತ್ರ ಹಂಚಿಕೊಳ್ಳಿ. ನೀವು ಯೂಸರ್‌ನೇಮ್ ಬದಲಾಯಿಸಿದರೆ, ನೀವು ಹೊಸ ಅಂಕಿಗಳ ಸೆಟ್ ಅನ್ನು ಪಡೆಯುತ್ತೀರಿ.</string>
@@ -2323,7 +2323,7 @@
 
     <!-- UsernameShareBottomSheet -->
     <!-- Explanation of what the sheet enables the user to do -->
-    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">username link ಅನ್ನು ನಕಲಿಸಿ ಅಥವಾ ಹಂಚಿಕೊಳ್ಳಿ</string>
+    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">ಯೂಸರ್ ನೇಮ್ ಲಿಂಕ್ ಅನ್ನು ನಕಲಿಸಿ ಅಥವಾ ಹಂಚಿಕೊಳ್ಳಿ</string>
 
     <!-- VerifyIdentityActivity -->
     <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">ನಿಮ್ಮ ಸಂಪರ್ಕವು ಕ್ಯುಆರ್‌ ಕೋಡ್ ಫಾರ್ಮ್ಯಾಟ್‌ಗೆ ಹೊಂದಿಕೊಳ್ಳದ Signal ನ ಇತ್ತೀಚಿನ ಆವೃತ್ತಿಯನ್ನು ರನ್ ಮಾಡುತ್ತಿದೆ. ಹೋಲಿಕೆ ಮಾಡಲು ದಯವಿಟ್ಟು ನವೀಕರಿಸಿ.</string>
@@ -2625,8 +2625,8 @@
     <!-- ContactSelectionListFragment-->
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">ನಿಮ್ಮ ಸಂಪರ್ಕಗಳನ್ನು ತೋರಿಸಲು Signal ಗೆ ಸಂಪರ್ಕಗಳ ಅನುಮತಿ ಅಗತ್ಯವಿದೆ, ಆದರೆ ಅದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಅಪ್ಲಿಕೇಶನ್ ಸೆಟ್ಟಿಂಗ್‌ ಮೆನುಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆಮಾಡಿ ಮತ್ತು \"ಸಂಪರ್ಕಗಳು\" ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">ಸಂಪರ್ಕಗಳನ್ನು ಹಿಂಪಡೆಯುವಲ್ಲಿ ದೋಷ, ನಿಮ್ಮ ನೆಟ್‌ವರ್ಕ್ ಸಂಪರ್ಕ ಪರಿಶೀಲಿಸಿ</string>
-    <string name="ContactSelectionListFragment_username_not_found">ಬಳಕೆದಾರ ಹೆಸರು ಕಂಡುಬಂದಿಲ್ಲ</string>
-    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" Signal ಬಳಕೆದಾರರಲ್ಲ. ದಯವಿಟ್ಟು ಬಳಕೆದಾರ ಹೆಸರನ್ನು ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಪುನಃ ಪ್ರಯತ್ನಿಸಿ."</string>
+    <string name="ContactSelectionListFragment_username_not_found">ಯೂಸರ್ ನೇಮ್ ಕಂಡುಬಂದಿಲ್ಲ</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" Signal ಬಳಕೆದಾರರಲ್ಲ. ದಯವಿಟ್ಟು ಯೂಸರ್ ನೇಮ್ ಅನ್ನು ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಪುನಃ ಪ್ರಯತ್ನಿಸಿ."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">ಗ್ರೂಪ್‌ಗೆ ನಿಮ್ಮನ್ನು ನೀವು ಸೇರಿಸಬೇಕಿಲ್ಲ</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">ಗರಿಷ್ಠ ಗ್ರೂಪ್ ಗಾತ್ರ ತಲುಪಿದೆ</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal ಗ್ರೂಪ್‌ಗಳು ಗರಿಷ್ಠ %1$d ಸದಸ್ಯರನ್ನು ಹೊಂದಬಹುದು.</string>
@@ -3125,7 +3125,7 @@
     <string name="preferences__mmsc_url">ಎಂಎಂಎಸ್‌ಸಿ URL</string>
     <string name="preferences__mms_proxy_host">ಎಂಎಂಎಸ್ ಪ್ರಾಕ್ಸಿ ಹೋಸ್ಟ್</string>
     <string name="preferences__mms_proxy_port">ಎಂಎಂಎಸ್ ಪ್ರಾಕ್ಸಿ ಪೋರ್ಟ್</string>
-    <string name="preferences__mmsc_username">ಎಂಎಂಎಸ್‌ಸಿ ಬಳಕೆದಾರ ಹೆಸರು</string>
+    <string name="preferences__mmsc_username">ಎಂಎಂಎಸ್‌ಸಿ ಯೂಸರ್ ನೇಮ್</string>
     <string name="preferences__mmsc_password">ಎಂಎಂಎಸ್‌ಸಿ ಪಾಸ್ವರ್ಡ್</string>
     <string name="preferences__sms_delivery_reports">ಎಸ್‌ಎಂಎಸ್ ಡೆಲಿವರಿ ವರದಿಗಳು</string>
     <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">ನೀವು ಕಳುಹಿಸುವ ಪ್ರತಿ ಎಸ್.ಎಮ್.ಎಸ್ ಸಂದೇಶಕ್ಕೂ ವಿತರಣಾ ವರದಿಯನ್ನು ವಿನಂತಿಸಿ</string>

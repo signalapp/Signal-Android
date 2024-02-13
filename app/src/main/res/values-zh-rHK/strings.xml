@@ -1029,7 +1029,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">你的個人資料不會顯示用戶名稱、二維碼及連結。僅與你信任的人分享你的用戶名稱。</string>
     <string name="ManageProfileFragment_profile_name">個人資料名稱</string>
-    <string name="ManageProfileFragment_username">使用者名稱</string>
+    <string name="ManageProfileFragment_username">用戶名稱</string>
     <string name="ManageProfileFragment_about">關於</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">設定頭像失敗</string>
     <string name="ManageProfileFragment_badges">徽章</string>
@@ -2205,15 +2205,15 @@
     <string name="UsernameEditFragment__add_a_username">新增用戶名稱</string>
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">選擇你的用戶名稱</string>
-    <string name="UsernameEditFragment_username">使用者名稱</string>
+    <string name="UsernameEditFragment_username">用戶名稱</string>
     <string name="UsernameEditFragment_delete">刪除</string>
     <string name="UsernameEditFragment_successfully_removed_username">已成功移除使用者名稱。</string>
     <string name="UsernameEditFragment_encountered_a_network_error">遇到網絡問題。</string>
-    <string name="UsernameEditFragment_this_username_is_taken">此使用者名稱已有人使用。</string>
-    <string name="UsernameEditFragment_usernames_can_only_include">使用者名稱僅可包含 a–Z、0–9 以及底線。</string>
-    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">使用者名稱不得以數字開首。</string>
-    <string name="UsernameEditFragment_username_is_invalid">使用者名稱無效。</string>
-    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">使用者名稱長度必須介乎 %1$d 和 %2$d 個字元。</string>
+    <string name="UsernameEditFragment_this_username_is_taken">此用戶名稱已有人使用。</string>
+    <string name="UsernameEditFragment_usernames_can_only_include">用戶名稱僅可包含 a–Z、0–9 以及底線。</string>
+    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">用戶名稱不得以數字開首。</string>
+    <string name="UsernameEditFragment_username_is_invalid">用戶名稱無效。</string>
+    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">用戶名稱長度必須介乎 %1$d 和 %2$d 個字元。</string>
     <!-- Explanation about what usernames provide -->
     <string name="UsernameEditFragment__usernames_let_others_message">用戶名稱讓其他人無需透過你的電話號碼，已可向你傳送訊息。系統會將用戶名稱與一組數字配對，從而為你的地址保密。</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
@@ -2541,8 +2541,8 @@
     <!-- ContactSelectionListFragment-->
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal 需要聯絡人權限才可顯示您的聯絡人，但已被永久拒絕。請前往應用程式設定功能表，選擇「權限」，然後啟用「聯絡人」。</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">提取聯絡人時發生錯誤，請檢查您的網絡連線</string>
-    <string name="ContactSelectionListFragment_username_not_found">找不到使用者名稱</string>
-    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"「%1$s」並非 Signal 使用者。請檢查使用者名稱，然後再試一次。"</string>
+    <string name="ContactSelectionListFragment_username_not_found">找不到用戶名稱</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"「%1$s」並非 Signal 使用者。請檢查用戶名稱，然後再試一次。"</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">您不用將自己加入群組</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">已到達群組人數上限</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal 群組最多只得有 %1$d 個成員。</string>
@@ -3030,7 +3030,7 @@
     <string name="preferences__mmsc_url">MMSC URL</string>
     <string name="preferences__mms_proxy_host">MMS 代理伺服器主機</string>
     <string name="preferences__mms_proxy_port">MMS 代理伺服器連接埠</string>
-    <string name="preferences__mmsc_username">MMSC 使用者名稱</string>
+    <string name="preferences__mmsc_username">MMSC 用戶名稱</string>
     <string name="preferences__mmsc_password">MMSC 密碼</string>
     <string name="preferences__sms_delivery_reports">短訊傳遞報告</string>
     <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">為您傳送的每一則短訊訊息都要求傳遞報告</string>
@@ -3765,9 +3765,9 @@
     <!-- Subtext below radio buttons when who can see my number is set to everybody -->
     <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">所有你傳送訊息的人和群組都能看見你的電話號碼。</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Your phone number will not be visible to anyone unless they have it saved in their phone\'s contacts.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">你的電話號碼不會被任何人看到，除非他們將其儲存在手機通訊錄中。</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Your phone number will not be visible to anyone.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">你的電話號碼不會被任何人看到。</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">誰可以透過電話號碼找到我</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
@@ -3805,7 +3805,7 @@
     <string name="prompt_passphrase_activity__tap_to_unlock">輕觸以解除鎖定</string>
     <string name="Recipient_unknown">未知</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
-    <string name="Recipient_deleted_account">Deleted account</string>
+    <string name="Recipient_deleted_account">刪除帳戶</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
     <string name="preferences_account_reregister">重新註冊帳戶</string>
@@ -5920,7 +5920,7 @@
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
     <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">與 %1$s 確認你的捐款</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">To setup your recurring donation tap continue to confirm a €0,01 charge with your bank. This will be automatically refunded and allows your €5/month donation to debited from your account.</string>
+    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">要設定你的定期捐款，請點選「繼續」以向銀行確認 €0.01 的費用。這筆款項將自動退還，並允許從你的帳戶中扣除每月 €5 的捐款。</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">繼續</string>
 
@@ -6397,7 +6397,7 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">電話號碼</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_a_full_username">Enter a full username with its pair of digits.</string>
+    <string name="FindByActivity__enter_a_full_username">輸入完整的用戶名稱及其配對數字。</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">下一步</string>
     <!-- Placeholder text for search input for selecting country code -->
@@ -6411,9 +6411,9 @@
     <!-- Dialog title when username is not found -->
     <string name="FindByActivity__username_not_found">找不到使用者名稱</string>
     <!-- Dialog body for invalid username. Placeholder is the entered username. -->
-    <string name="FindByActivity__s_is_not_a_valid_username">%1$s is not a valid username. Make sure you\'ve entered the complete username followed by its set of digits.</string>
+    <string name="FindByActivity__s_is_not_a_valid_username">%1$s 不是有效的用戶名稱。請確保你已輸入完整的用戶名稱，以及隨後的一組數字。</string>
     <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
-    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s is not valid phone number. Try again with a valid phone number</string>
+    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s 不是有效的用戶名稱。請使用有效的電話號碼重試</string>
     <!-- Dialog body for not found username -->
     <string name="FindByActivity__s_is_not_a_signal_user">「%1$s」並非 Signal 使用者。請檢查使用者名稱，然後再試一次。</string>
     <!-- Dialog body for not found phone number -->
