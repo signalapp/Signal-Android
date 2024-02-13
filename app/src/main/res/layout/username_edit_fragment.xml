@@ -40,8 +40,9 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/username_edit_box_fill"
+        android:layout_marginEnd="@dimen/dsl_settings_gutter"
         app:layout_constraintBottom_toBottomOf="@id/username_text_wrapper"
-        app:layout_constraintEnd_toEndOf="@id/discriminator_text"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/username_text_wrapper"
         app:layout_constraintTop_toTopOf="@id/username_text_wrapper" />
 
@@ -86,7 +87,6 @@
         style="@style/Signal.Text.BodyLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/dsl_settings_gutter"
         android:background="@null"
         android:hint="@string/UsernameEditFragment__00"
         android:imeOptions="actionDone"
@@ -98,7 +98,7 @@
         android:paddingHorizontal="16dp"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="@id/username_text_wrapper"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/username_box_fill"
         tools:text="21" />
 
     <com.google.android.material.progressindicator.CircularProgressIndicator

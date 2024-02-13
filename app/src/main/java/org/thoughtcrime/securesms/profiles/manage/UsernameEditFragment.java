@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
 import org.thoughtcrime.securesms.databinding.UsernameEditFragmentBinding;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.FragmentResultContract;
 import org.thoughtcrime.securesms.util.UsernameUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -164,8 +165,6 @@ public class UsernameEditFragment extends LoggingFragment {
   }
 
   private void onUiStateChanged(@NonNull UsernameEditViewModel.State state) {
-    TextInputLayout usernameInputWrapper = binding.usernameTextWrapper;
-
     presentProgressState(state.usernameState);
     presentButtonState(state.buttonState);
     presentSummary(state.usernameState);
@@ -196,6 +195,14 @@ public class UsernameEditFragment extends LoggingFragment {
     binding.usernameError.setVisibility(error != null ? View.VISIBLE : View.GONE);
     binding.usernameError.setText(error);
     binding.root.setLayoutTransition(STATIC_LAYOUT);
+
+    if (state.usernameState.getDiscriminator() == null && SignalStore.account().getUsername() == null) {
+      binding.discriminatorText.setVisibility(View.GONE);
+      binding.divider.setVisibility(View.GONE);
+    } else {
+      binding.discriminatorText.setVisibility(View.VISIBLE);
+      binding.divider.setVisibility(View.VISIBLE);
+    }
   }
 
   private void presentButtonState(@NonNull UsernameEditViewModel.ButtonState buttonState) {
