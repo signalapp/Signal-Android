@@ -29,9 +29,10 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener;
 import org.thoughtcrime.securesms.conversation.ConversationItemDisplayMode;
+import org.thoughtcrime.securesms.conversation.v2.computed.FormattedDate;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -301,7 +302,9 @@ public class ConversationItemFooter extends ConstraintLayout {
 
   private void presentDate(@NonNull MessageRecord messageRecord, @NonNull Locale locale, @NonNull ConversationItemDisplayMode displayMode) {
     dateView.forceLayout();
-    if (messageRecord.isFailed()) {
+    if (messageRecord.isMediaPending()) {
+      dateView.setText(null);
+    } else if (messageRecord.isFailed()) {
       int errorMsg;
       if (messageRecord.hasFailedWithNetworkFailures()) {
         errorMsg = R.string.ConversationItem_error_network_not_delivered;
@@ -325,15 +328,18 @@ public class ConversationItemFooter extends ConstraintLayout {
           timestamp = messageRecord.getDateSent();
         }
       }
-      String date = DateUtils.getDatelessRelativeTimeSpanString(getContext(), locale, timestamp);
+      FormattedDate date = DateUtils.getDatelessRelativeTimeSpanFormattedDate(getContext(), locale, timestamp);
+      String dateLabel = date.getValue();
       if (displayMode != ConversationItemDisplayMode.Detailed.INSTANCE && messageRecord.isEditMessage() && messageRecord.isLatestRevision()) {
-        if (DateUtils.isNow(timestamp)) {
-          date = getContext().getString(R.string.ConversationItem_edited_now_timestamp_footer);
+        if (date.isNow()) {
+          dateLabel = getContext().getString(R.string.ConversationItem_edited_now_timestamp_footer);
+        } else if (date.isRelative()) {
+          dateLabel = getContext().getString(R.string.ConversationItem_edited_relative_timestamp_footer, date.getValue());
         } else {
-          date = getContext().getString(R.string.ConversationItem_edited_timestamp_footer, date);
+          dateLabel = getContext().getString(R.string.ConversationItem_edited_absolute_timestamp_footer, date.getValue());
         }
       }
-      dateView.setText(date);
+      dateView.setText(dateLabel);
     }
   }
 

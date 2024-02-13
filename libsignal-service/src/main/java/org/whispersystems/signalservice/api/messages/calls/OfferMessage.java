@@ -5,19 +5,13 @@ import org.whispersystems.signalservice.internal.push.CallMessage;
 public class OfferMessage {
 
   private final long   id;
-  private final String sdp;
   private final Type   type;
   private final byte[] opaque;
 
-  public OfferMessage(long id, String sdp, Type type, byte[] opaque) {
+  public OfferMessage(long id, Type type, byte[] opaque) {
     this.id     = id;
-    this.sdp    = sdp;
     this.type   = type;
     this.opaque = opaque;
-  }
-
-  public String getSdp() {
-    return sdp;
   }
 
   public long getId() {

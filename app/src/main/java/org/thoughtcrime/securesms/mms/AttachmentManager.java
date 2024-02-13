@@ -35,12 +35,18 @@ import android.widget.Toast;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.WorkerThread;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestManager;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.util.ThreadUtil;
+import org.signal.core.util.concurrent.ListenableFuture;
+import org.signal.core.util.concurrent.ListenableFuture.Listener;
+import org.signal.core.util.concurrent.SettableFuture;
 import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
@@ -80,9 +86,6 @@ import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ProfileUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener;
-import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
-import org.thoughtcrime.securesms.util.concurrent.ListenableFuture.Listener;
-import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 import org.thoughtcrime.securesms.util.views.Stub;
 import org.whispersystems.signalservice.api.util.ExpiringProfileCredentialUtil;
 
@@ -136,14 +139,14 @@ public class AttachmentManager {
 
   }
 
-  public void clear(@NonNull GlideRequests glideRequests, boolean animate) {
+  public void clear(@NonNull RequestManager requestManager, boolean animate) {
     if (attachmentViewStub.resolved()) {
 
       if (animate) {
         ViewUtil.fadeOut(attachmentViewStub.get(), 200).addListener(new Listener<Boolean>() {
           @Override
           public void onSuccess(Boolean result) {
-            thumbnail.clear(glideRequests);
+            thumbnail.clear(requestManager);
             attachmentViewStub.get().setVisibility(View.GONE);
             attachmentListener.onAttachmentChanged();
           }
@@ -153,7 +156,7 @@ public class AttachmentManager {
           }
         });
       } else {
-        thumbnail.clear(glideRequests);
+        thumbnail.clear(requestManager);
         attachmentViewStub.get().setVisibility(View.GONE);
         attachmentListener.onAttachmentChanged();
       }
@@ -254,7 +257,7 @@ public class AttachmentManager {
   }
 
   @SuppressLint("StaticFieldLeak")
-  public ListenableFuture<Boolean> setMedia(@NonNull final GlideRequests glideRequests,
+  public ListenableFuture<Boolean> setMedia(@NonNull final RequestManager requestManager,
                                             @NonNull final Uri uri,
                                             @NonNull final SlideFactory.MediaType mediaType,
                                             @NonNull final MediaConstraints constraints,
@@ -266,28 +269,32 @@ public class AttachmentManager {
     final SettableFuture<Boolean> result = new SettableFuture<>();
 
     new AsyncTask<Void, Void, Slide>() {
+      private boolean areConstraintsSatisfied = false;
+
       @Override
       protected void onPreExecute() {
-        thumbnail.clear(glideRequests);
+        thumbnail.clear(requestManager);
         thumbnail.showProgressSpinner();
         attachmentViewStub.get().setVisibility(View.VISIBLE);
       }
 
       @Override
       protected @Nullable Slide doInBackground(Void... params) {
+        Slide slide;
         try {
           if (PartAuthority.isLocalUri(uri)) {
-            return getManuallyCalculatedSlideInfo(uri, width, height);
+            slide = getManuallyCalculatedSlideInfo(uri, width, height);
           } else {
             Slide result = getContentResolverSlideInfo(uri, width, height);
-
-            if (result == null) return getManuallyCalculatedSlideInfo(uri, width, height);
-            else                return result;
+            slide = (result == null) ? getManuallyCalculatedSlideInfo(uri, width, height) : result;
           }
         } catch (IOException e) {
           Log.w(TAG, e);
           return null;
         }
+
+        this.areConstraintsSatisfied = areConstraintsSatisfied(context, slide, constraints);
+        return slide;
       }
 
       @Override
@@ -298,7 +305,7 @@ public class AttachmentManager {
                          R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
                          Toast.LENGTH_SHORT).show();
           result.set(false);
-        } else if (!areConstraintsSatisfied(context, slide, constraints)) {
+        } else if (!areConstraintsSatisfied) {
           attachmentViewStub.get().setVisibility(View.GONE);
           Toast.makeText(context,
                          R.string.ConversationActivity_attachment_exceeds_size_limits,
@@ -318,7 +325,7 @@ public class AttachmentManager {
             result.set(true);
           } else {
             Attachment attachment = slide.asAttachment();
-            result.deferTo(thumbnail.setImageResource(glideRequests, slide, false, true, attachment.getWidth(), attachment.getHeight()));
+            result.deferTo(thumbnail.setImageResource(requestManager, slide, false, true, attachment.width, attachment.height));
             removableMediaView.display(thumbnail, mediaType == SlideFactory.MediaType.IMAGE);
           }
 
@@ -524,6 +531,7 @@ public class AttachmentManager {
     }
   }
 
+  @WorkerThread
   private boolean areConstraintsSatisfied(final @NonNull  Context context,
                                           final @Nullable Slide slide,
                                           final @NonNull  MediaConstraints constraints)
@@ -540,7 +548,7 @@ public class AttachmentManager {
           MediaIntentFactory.UNKNOWN_TIMESTAMP,
           slide.getUri(),
           slide.getContentType(),
-          slide.asAttachment().getSize(),
+          slide.asAttachment().size,
           slide.getCaption().orElse(null),
           false,
           false,
@@ -574,7 +582,7 @@ public class AttachmentManager {
       });
 
       cleanup();
-      clear(GlideApp.with(context.getApplicationContext()), true);
+      clear(Glide.with(context.getApplicationContext()), true);
     }
   }
 

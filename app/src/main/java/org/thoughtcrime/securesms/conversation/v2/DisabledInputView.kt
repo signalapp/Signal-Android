@@ -17,7 +17,6 @@ import androidx.core.content.ContextCompat
 import com.google.android.material.button.MaterialButton
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.messagerequests.MessageRequestState
-import org.thoughtcrime.securesms.messagerequests.MessageRequestViewModel
 import org.thoughtcrime.securesms.messagerequests.MessageRequestsBottomView
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.SpanUtil
@@ -80,13 +79,14 @@ class DisabledInputView @JvmOverloads constructor(
       existingView = messageRequestView,
       create = { MessageRequestsBottomView(context) },
       bind = {
-        setMessageData(MessageRequestViewModel.MessageData(recipient, messageRequestState))
+        setMessageRequestData(recipient, messageRequestState)
         setWallpaperEnabled(recipient.hasWallpaper())
 
         setAcceptOnClickListener { listener?.onAcceptMessageRequestClicked() }
-        setDeleteOnClickListener { listener?.onDeleteGroupClicked() }
+        setDeleteOnClickListener { listener?.onDeleteClicked() }
         setBlockOnClickListener { listener?.onBlockClicked() }
         setUnblockOnClickListener { listener?.onUnblockClicked() }
+        setReportOnClickListener { listener?.onReportSpamClicked() }
       }
     )
   }
@@ -226,10 +226,11 @@ class DisabledInputView @JvmOverloads constructor(
     fun onCancelGroupRequestClicked()
     fun onShowAdminsBottomSheetDialog()
     fun onAcceptMessageRequestClicked()
-    fun onDeleteGroupClicked()
+    fun onDeleteClicked()
     fun onBlockClicked()
     fun onUnblockClicked()
     fun onInviteToSignal(recipient: Recipient)
     fun onUnmuteReleaseNotesChannel()
+    fun onReportSpamClicked()
   }
 }

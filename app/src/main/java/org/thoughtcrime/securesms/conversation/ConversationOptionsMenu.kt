@@ -16,7 +16,7 @@ import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.messagerequests.MessageRequestState
 import org.thoughtcrime.securesms.recipients.Recipient
 
 /**
@@ -54,12 +54,29 @@ internal object ConversationOptionsMenu {
         hasActiveGroupCall,
         distributionType,
         threadId,
-        isInMessageRequest,
+        messageRequestState,
         isInBubble
       ) = callback.getSnapshot()
 
       if (recipient == null) {
         Log.w(TAG, "Recipient is null, no menu")
+        return
+      }
+
+      if (!messageRequestState.isAccepted) {
+        menuInflater.inflate(R.menu.conversation_message_request, menu)
+
+        if (messageRequestState.isBlocked) {
+          hideMenuItem(menu, R.id.menu_block)
+          hideMenuItem(menu, R.id.menu_accept)
+        } else {
+          hideMenuItem(menu, R.id.menu_unblock)
+        }
+
+        if (messageRequestState.reportedAsSpam) {
+          hideMenuItem(menu, R.id.menu_report_spam)
+        }
+
         return
       }
 
@@ -84,12 +101,6 @@ internal object ConversationOptionsMenu {
         return
       }
 
-      if (isInMessageRequest && !recipient.isBlocked) {
-        if (isActiveGroup) {
-          menuInflater.inflate(R.menu.conversation_message_requests_group, menu)
-        }
-      }
-
       if (isPushAvailable) {
         if (recipient.expiresInSeconds > 0) {
           if (!isInActiveGroup) {
@@ -107,8 +118,6 @@ internal object ConversationOptionsMenu {
       if (!recipient.isGroup) {
         if (isPushAvailable) {
           menuInflater.inflate(R.menu.conversation_callable_secure, menu)
-        } else if (!recipient.isReleaseNotes && SignalStore.misc().smsExportPhase.allowSmsFeatures()) {
-          menuInflater.inflate(R.menu.conversation_callable_insecure, menu)
         }
       } else if (recipient.isGroup) {
         if (isActiveV2Group) {
@@ -123,17 +132,13 @@ internal object ConversationOptionsMenu {
 
       menuInflater.inflate(R.menu.conversation, menu)
 
-      if (isInMessageRequest && !recipient.isBlocked) {
-        hideMenuItem(menu, R.id.menu_conversation_settings)
-      }
-
       if (!recipient.isGroup && !isPushAvailable && !recipient.isReleaseNotes) {
         menuInflater.inflate(R.menu.conversation_insecure, menu)
       }
 
       if (recipient.isMuted) menuInflater.inflate(R.menu.conversation_muted, menu) else menuInflater.inflate(R.menu.conversation_unmuted, menu)
 
-      if (!recipient.isGroup && (recipient.contactUri == null) && !recipient.isReleaseNotes && !recipient.isSelf && recipient.hasE164()) {
+      if (!recipient.isGroup && recipient.contactUri == null && !recipient.isReleaseNotes && !recipient.isSelf && recipient.hasE164() && recipient.shouldShowE164()) {
         menuInflater.inflate(R.menu.conversation_add_to_contacts, menu)
       }
 
@@ -141,8 +146,6 @@ internal object ConversationOptionsMenu {
         if (isPushAvailable) {
           hideMenuItem(menu, R.id.menu_call_secure)
           hideMenuItem(menu, R.id.menu_video_secure)
-        } else {
-          hideMenuItem(menu, R.id.menu_call_insecure)
         }
         hideMenuItem(menu, R.id.menu_mute_notifications)
       }
@@ -153,8 +156,6 @@ internal object ConversationOptionsMenu {
           hideMenuItem(menu, R.id.menu_video_secure)
           hideMenuItem(menu, R.id.menu_expiring_messages)
           hideMenuItem(menu, R.id.menu_expiring_messages_off)
-        } else {
-          hideMenuItem(menu, R.id.menu_call_insecure)
         }
         hideMenuItem(menu, R.id.menu_mute_notifications)
       }
@@ -199,9 +200,8 @@ internal object ConversationOptionsMenu {
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
       when (menuItem.itemId) {
-        R.id.menu_call_secure -> callback.handleDial(true)
+        R.id.menu_call_secure -> callback.handleDial()
         R.id.menu_video_secure -> callback.handleVideo()
-        R.id.menu_call_insecure -> callback.handleDial(false)
         R.id.menu_view_media -> callback.handleViewMedia()
         R.id.menu_add_shortcut -> callback.handleAddShortcut()
         R.id.menu_search -> callback.handleSearch()
@@ -216,6 +216,11 @@ internal object ConversationOptionsMenu {
         R.id.menu_expiring_messages_off, R.id.menu_expiring_messages -> callback.handleSelectMessageExpiration()
         R.id.menu_create_bubble -> callback.handleCreateBubble()
         R.id.home -> callback.handleGoHome()
+        R.id.menu_block -> callback.handleBlock()
+        R.id.menu_unblock -> callback.handleUnblock()
+        R.id.menu_report_spam -> callback.handleReportSpam()
+        R.id.menu_accept -> callback.handleMessageRequestAccept()
+        R.id.menu_delete_chat -> callback.handleDeleteConversation()
         R.id.edittext_bold,
         R.id.edittext_italic,
         R.id.edittext_strikethrough,
@@ -252,7 +257,7 @@ internal object ConversationOptionsMenu {
     val hasActiveGroupCall: Boolean,
     val distributionType: Int,
     val threadId: Long,
-    val isInMessageRequest: Boolean,
+    val messageRequestState: MessageRequestState,
     val isInBubble: Boolean
   )
 
@@ -266,7 +271,7 @@ internal object ConversationOptionsMenu {
     fun onOptionsMenuCreated(menu: Menu)
 
     fun handleVideo()
-    fun handleDial(isSecure: Boolean)
+    fun handleDial()
     fun handleViewMedia()
     fun handleAddShortcut()
     fun handleSearch()
@@ -284,5 +289,10 @@ internal object ConversationOptionsMenu {
     fun showExpiring(recipient: Recipient)
     fun clearExpiring()
     fun handleFormatText(@IdRes id: Int)
+    fun handleBlock()
+    fun handleUnblock()
+    fun handleReportSpam()
+    fun handleMessageRequestAccept()
+    fun handleDeleteConversation()
   }
 }

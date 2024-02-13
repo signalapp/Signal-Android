@@ -27,7 +27,7 @@ import org.thoughtcrime.securesms.util.MediaUtil
 object FakeMessageRecords {
 
   fun buildDatabaseAttachment(
-    attachmentId: AttachmentId = AttachmentId(1, 1),
+    attachmentId: AttachmentId = AttachmentId(1),
     mmsId: Long = 1,
     hasData: Boolean = true,
     hasThumbnail: Boolean = true,
@@ -69,7 +69,6 @@ object FakeMessageRecords {
       cdnNumber,
       location,
       key,
-      relay,
       digest,
       incrementalDigest,
       incrementalMacChunkSize,
@@ -183,7 +182,9 @@ object FakeMessageRecords {
       -1,
       null,
       null,
-      0
+      0,
+      false,
+      null
     )
   }
 }

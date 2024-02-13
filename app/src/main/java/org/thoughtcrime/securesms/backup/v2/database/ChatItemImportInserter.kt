@@ -10,16 +10,19 @@ import androidx.core.content.contentValuesOf
 import org.signal.core.util.Base64
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.logging.Log
+import org.signal.core.util.requireLong
 import org.signal.core.util.toInt
 import org.thoughtcrime.securesms.backup.v2.BackupState
 import org.thoughtcrime.securesms.backup.v2.proto.BodyRange
 import org.thoughtcrime.securesms.backup.v2.proto.ChatItem
 import org.thoughtcrime.securesms.backup.v2.proto.ChatUpdateMessage
+import org.thoughtcrime.securesms.backup.v2.proto.IndividualCallChatUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.Quote
 import org.thoughtcrime.securesms.backup.v2.proto.Reaction
 import org.thoughtcrime.securesms.backup.v2.proto.SendStatus
 import org.thoughtcrime.securesms.backup.v2.proto.SimpleChatUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.StandardMessage
+import org.thoughtcrime.securesms.database.CallTable
 import org.thoughtcrime.securesms.database.GroupReceiptTable
 import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.MessageTypes
@@ -31,6 +34,8 @@ import org.thoughtcrime.securesms.database.documents.NetworkFailure
 import org.thoughtcrime.securesms.database.documents.NetworkFailureSet
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.database.model.databaseprotos.ProfileChangeDetails
+import org.thoughtcrime.securesms.database.model.databaseprotos.SessionSwitchoverEvent
+import org.thoughtcrime.securesms.database.model.databaseprotos.ThreadMergeEvent
 import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -131,7 +136,7 @@ class ChatItemImportInserter(
       return
     }
 
-    buffer.messages += chatItem.toMessageContentValues(fromLocalRecipientId, chatLocalRecipientId, localThreadId)
+    buffer.messages += chatItem.toMessageInsert(fromLocalRecipientId, chatLocalRecipientId, localThreadId)
     buffer.reactions += chatItem.toReactionContentValues(messageId)
     buffer.groupReceipts += chatItem.toGroupReceiptContentValues(messageId, chatBackupRecipientId)
 
@@ -148,8 +153,18 @@ class ChatItemImportInserter(
       return false
     }
 
-    SqlUtil.buildBulkInsert(MessageTable.TABLE_NAME, MESSAGE_COLUMNS, buffer.messages).forEach {
-      db.execSQL(it.where, it.whereArgs)
+    buildBulkInsert(MessageTable.TABLE_NAME, MESSAGE_COLUMNS, buffer.messages).forEach {
+      db.rawQuery("${it.query.where} RETURNING ${MessageTable.ID}", it.query.whereArgs).use { cursor ->
+        var index = 0
+        while (cursor.moveToNext()) {
+          val rowId = cursor.requireLong(MessageTable.ID)
+          val followup = it.inserts[index].followUp
+          if (followup != null) {
+            followup(rowId)
+          }
+          index++
+        }
+      }
     }
 
     SqlUtil.buildBulkInsert(ReactionTable.TABLE_NAME, REACTION_COLUMNS, buffer.reactions).forEach {
@@ -164,6 +179,33 @@ class ChatItemImportInserter(
 
     return true
   }
+
+  private fun buildBulkInsert(tableName: String, columns: Array<String>, messageInserts: List<MessageInsert>, maxQueryArgs: Int = 999): List<BatchInsert> {
+    val batchSize = maxQueryArgs / columns.size
+
+    return messageInserts
+      .chunked(batchSize)
+      .map { batch: List<MessageInsert> -> BatchInsert(batch, SqlUtil.buildSingleBulkInsert(tableName, columns, batch.map { it.contentValues })) }
+      .toList()
+  }
+
+  private fun ChatItem.toMessageInsert(fromRecipientId: RecipientId, chatRecipientId: RecipientId, threadId: Long): MessageInsert {
+    val contentValues = this.toMessageContentValues(fromRecipientId, chatRecipientId, threadId)
+
+    var followUp: ((Long) -> Unit)? = null
+    if (this.updateMessage != null) {
+      if (this.updateMessage.callingMessage != null && this.updateMessage.callingMessage.callId != null) {
+        followUp = { messageRowId ->
+          val callContentValues = ContentValues()
+          callContentValues.put(CallTable.MESSAGE_ID, messageRowId)
+          db.update(CallTable.TABLE_NAME, SQLiteDatabase.CONFLICT_IGNORE, callContentValues, "${CallTable.CALL_ID} = ?", SqlUtil.buildArgs(this.updateMessage.callingMessage.callId))
+        }
+      }
+    }
+    return MessageInsert(contentValues, followUp)
+  }
+
+  private class BatchInsert(val inserts: List<MessageInsert>, val query: SqlUtil.Query)
 
   private fun ChatItem.toMessageContentValues(fromRecipientId: RecipientId, chatRecipientId: RecipientId, threadId: Long): ContentValues {
     val contentValues = ContentValues()
@@ -338,6 +380,36 @@ class ChatItemImportInserter(
           .encode()
         put(MessageTable.BODY, Base64.encodeWithPadding(profileChangeDetails))
       }
+      updateMessage.sessionSwitchover != null -> {
+        typeFlags = MessageTypes.SESSION_SWITCHOVER_TYPE
+        val sessionSwitchoverDetails = SessionSwitchoverEvent(e164 = updateMessage.sessionSwitchover.e164.toString()).encode()
+        put(MessageTable.BODY, Base64.encodeWithPadding(sessionSwitchoverDetails))
+      }
+      updateMessage.threadMerge != null -> {
+        typeFlags = MessageTypes.THREAD_MERGE_TYPE
+        val threadMergeDetails = ThreadMergeEvent(previousE164 = updateMessage.threadMerge.previousE164.toString()).encode()
+        put(MessageTable.BODY, Base64.encodeWithPadding(threadMergeDetails))
+      }
+      updateMessage.callingMessage != null -> {
+        when {
+          updateMessage.callingMessage.callId != null -> {
+            typeFlags = backupState.callIdToType[updateMessage.callingMessage.callId]!!
+          }
+          updateMessage.callingMessage.callMessage != null -> {
+            typeFlags = when (updateMessage.callingMessage.callMessage.type) {
+              IndividualCallChatUpdate.Type.INCOMING_AUDIO_CALL -> MessageTypes.INCOMING_AUDIO_CALL_TYPE
+              IndividualCallChatUpdate.Type.INCOMING_VIDEO_CALL -> MessageTypes.INCOMING_VIDEO_CALL_TYPE
+              IndividualCallChatUpdate.Type.OUTGOING_AUDIO_CALL -> MessageTypes.OUTGOING_AUDIO_CALL_TYPE
+              IndividualCallChatUpdate.Type.OUTGOING_VIDEO_CALL -> MessageTypes.OUTGOING_VIDEO_CALL_TYPE
+              IndividualCallChatUpdate.Type.MISSED_AUDIO_CALL -> MessageTypes.MISSED_AUDIO_CALL_TYPE
+              IndividualCallChatUpdate.Type.MISSED_VIDEO_CALL -> MessageTypes.MISSED_VIDEO_CALL_TYPE
+              IndividualCallChatUpdate.Type.UNKNOWN -> typeFlags
+            }
+          }
+        }
+        // Calls don't use the incoming/outgoing flags, so we overwrite the flags here
+        this.put(MessageTable.TYPE, typeFlags)
+      }
     }
     this.put(MessageTable.TYPE, getAsLong(MessageTable.TYPE) or typeFlags)
   }
@@ -431,8 +503,10 @@ class ChatItemImportInserter(
     }
   }
 
+  private class MessageInsert(val contentValues: ContentValues, val followUp: ((Long) -> Unit)?)
+
   private class Buffer(
-    val messages: MutableList<ContentValues> = mutableListOf(),
+    val messages: MutableList<MessageInsert> = mutableListOf(),
     val reactions: MutableList<ContentValues> = mutableListOf(),
     val groupReceipts: MutableList<ContentValues> = mutableListOf()
   ) {

@@ -1,8 +1,46 @@
+:root {
+  --background-color: #fff;
+  --table-header-background-color: #f0f0f0;
+  --text-color: #000;
+  --border-color: #000;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #333;
+    --table-header-background-color: #444;
+    --text-color: #fff;
+    --border-color: #888;
+  }
+
+  a {
+    color: #aaf;
+  }
+}
+
+[data-theme="dark"] {
+  --background-color: #333;
+  --table-header-background-color: #444;
+  --text-color: #fff;
+  --border-color: #888;
+
+  a {
+    color: #aaf;
+  }
+}
+
 html, body {
   font-family: 'Roboto Mono', monospace;
   font-variant-ligatures: none;
   font-size: 12px;
   width: 100%;
+  background: var(--background-color);
+  color: var(--text-color);
+}
+
+body {
+  margin: 0;
+  padding: 8px;
 }
 
 select, input, button {
@@ -20,9 +58,24 @@ table, th, td {
   color: #000;
 }
 
+.handsontable th {
+  color: var(--text-color);
+  background: var(--table-header-background-color);
+}
+
+.handsontable thead th.ht__highlight {
+  color: var(--text-color);
+  background: var(--table-header-background-color);
+}
+
+.handsontable td {
+  color: var(--text-color);
+  background: var(--background-color);
+}
+
 .query-input {
   width: calc(100% - 18px);
-  border: 1px solid black;
+  border: 1px solid var(--border-color);
   border-radius: 4px;
   height: 200px;
   margin-bottom: 2px;
@@ -42,18 +95,18 @@ ol.tabs {
   list-style-type: none;
   display: inline-block;
   padding: 8px;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--border-color);
   font-size: 1rem;
 }
 
 .tabs li.active {
-  border: 1px solid black;
+  border: 1px solid var(--border-color);
   border-bottom: 0;
 }
 
 .tabs a {
   text-decoration: none;
-  color: black;
+  color: var(--text-color);
 }
 
 .collapse-header {
@@ -101,4 +154,10 @@ table.device-info, table.device-info tr, table.device-info td {
   width: calc(100% - 18px);
   height: 0.75rem;
   margin-bottom: 8px;
+}
+
+#theme-toggle {
+  position: absolute;
+  top: 8px;
+  right: 8px;
 }

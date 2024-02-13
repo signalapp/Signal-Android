@@ -57,14 +57,12 @@ import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.IdentityKey;
 import org.thoughtcrime.securesms.components.TooltipPopup;
 import org.thoughtcrime.securesms.components.sensors.DeviceOrientationMonitor;
-import org.thoughtcrime.securesms.components.webrtc.CallLinkInfoSheet;
 import org.thoughtcrime.securesms.components.webrtc.CallLinkProfileKeySender;
 import org.thoughtcrime.securesms.components.webrtc.CallOverflowPopupWindow;
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantsListUpdatePopupWindow;
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantsState;
 import org.thoughtcrime.securesms.components.webrtc.CallStateUpdatePopupWindow;
 import org.thoughtcrime.securesms.components.webrtc.CallToastPopupWindow;
-import org.thoughtcrime.securesms.components.webrtc.controls.ControlsAndInfoViewModel;
 import org.thoughtcrime.securesms.components.webrtc.GroupCallSafetyNumberChangeNotificationUtil;
 import org.thoughtcrime.securesms.components.webrtc.InCallStatus;
 import org.thoughtcrime.securesms.components.webrtc.PendingParticipantsBottomSheet;
@@ -76,6 +74,7 @@ import org.thoughtcrime.securesms.components.webrtc.WebRtcCallViewModel;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcControls;
 import org.thoughtcrime.securesms.components.webrtc.WifiToCellularPopupWindow;
 import org.thoughtcrime.securesms.components.webrtc.controls.ControlsAndInfoController;
+import org.thoughtcrime.securesms.components.webrtc.controls.ControlsAndInfoViewModel;
 import org.thoughtcrime.securesms.components.webrtc.participantslist.CallParticipantsListDialog;
 import org.thoughtcrime.securesms.components.webrtc.requests.CallLinkIncomingRequestSheet;
 import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeDialog;
@@ -84,7 +83,6 @@ import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.messagerequests.CalleeMustAcceptMessageRequestActivity;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDialogFragment;
-import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet;
@@ -198,10 +196,13 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     initializeViewModel(isLandscapeEnabled);
     initializePictureInPictureParams();
 
-    controlsAndInfo = new ControlsAndInfoController(callScreen, callOverflowPopupWindow, viewModel, controlsAndInfoViewModel);
+    controlsAndInfo = new ControlsAndInfoController(this, callScreen, callOverflowPopupWindow, viewModel, controlsAndInfoViewModel);
     controlsAndInfo.addVisibilityListener(new FadeCallback());
 
-    fullscreenHelper.showAndHideWithSystemUI(getWindow(), findViewById(R.id.webrtc_call_view_toolbar_text), findViewById(R.id.webrtc_call_view_toolbar_no_text));
+    fullscreenHelper.showAndHideWithSystemUI(getWindow(),
+                                             findViewById(R.id.call_screen_header_gradient),
+                                             findViewById(R.id.webrtc_call_view_toolbar_text),
+                                             findViewById(R.id.webrtc_call_view_toolbar_no_text));
 
     lifecycleDisposable.add(controlsAndInfo);
 
@@ -437,7 +438,13 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     participantUpdateWindow    = new CallParticipantsListUpdatePopupWindow(callScreen);
     callStateUpdatePopupWindow = new CallStateUpdatePopupWindow(callScreen);
     wifiToCellularPopupWindow  = new WifiToCellularPopupWindow(callScreen);
-    callOverflowPopupWindow    = new CallOverflowPopupWindow(this, callScreen);
+    callOverflowPopupWindow    = new CallOverflowPopupWindow(this, callScreen, () -> {
+      CallParticipantsState state = viewModel.getCallParticipantsStateSnapshot();
+      if (state == null) {
+        return false;
+      }
+      return state.getLocalParticipant().isHandRaised();
+    });
   }
 
   private void initializeViewModel(boolean isLandscapeEnabled) {
@@ -758,7 +765,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     if (isFinishing()) return; // XXX Stuart added this check above, not sure why, so I'm repeating in ignorance. - moxie
     new MaterialAlertDialogBuilder(this)
         .setTitle(R.string.RedPhone_number_not_registered)
-        .setIcon(R.drawable.ic_warning)
+        .setIcon(R.drawable.symbol_error_triangle_fill_24)
         .setMessage(R.string.RedPhone_the_number_you_dialed_does_not_support_secure_voice)
         .setCancelable(true)
         .setPositiveButton(R.string.RedPhone_got_it, (d, w) -> handleTerminate(event.getRecipient(), HangupMessage.Type.NORMAL))
@@ -862,6 +869,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
 
     viewModel.setRecipient(event.getRecipient());
     callScreen.setRecipient(event.getRecipient());
+    controlsAndInfoViewModel.setRecipient(event.getRecipient());
 
     switch (event.getState()) {
       case CALL_PRE_JOIN:
@@ -1080,6 +1088,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     @Override
     public void onLocalPictureInPictureClicked() {
       viewModel.onLocalPictureInPictureClicked();
+      controlsAndInfo.restartHideControlsTimer();
     }
 
     @Override
@@ -1096,13 +1105,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
 
     @Override
     public void onCallInfoClicked() {
-      LiveRecipient liveRecipient = viewModel.getRecipient();
-
-      if (liveRecipient.get().isCallLink()) {
-        CallLinkInfoSheet.show(getSupportFragmentManager(), liveRecipient.get().requireCallLinkRoomId());
-      } else {
-        controlsAndInfo.showCallInfo();
-      }
+      controlsAndInfo.showCallInfo();
     }
 
     @Override

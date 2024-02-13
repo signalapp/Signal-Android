@@ -8,6 +8,7 @@ import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.database.RecipientTable.MentionSetting
+import org.thoughtcrime.securesms.database.RecipientTable.PhoneNumberSharingState
 import org.thoughtcrime.securesms.database.RecipientTable.RegisteredState
 import org.thoughtcrime.securesms.database.RecipientTable.UnidentifiedAccessMode
 import org.thoughtcrime.securesms.database.RecipientTable.VibrateState
@@ -79,7 +80,8 @@ class RecipientDetails private constructor(
   @JvmField val isReleaseChannel: Boolean,
   @JvmField val needsPniSignature: Boolean,
   @JvmField val callLinkRoomId: CallLinkRoomId?,
-  @JvmField val groupRecord: Optional<GroupRecord>
+  @JvmField val groupRecord: Optional<GroupRecord>,
+  @JvmField val phoneNumberSharing: PhoneNumberSharingState
 ) {
 
   @VisibleForTesting
@@ -143,7 +145,8 @@ class RecipientDetails private constructor(
     isReleaseChannel = isReleaseChannel,
     needsPniSignature = record.needsPniSignature,
     callLinkRoomId = record.callLinkRoomId,
-    groupRecord = groupRecord
+    groupRecord = groupRecord,
+    phoneNumberSharing = record.phoneNumberSharing
   )
 
   companion object {
@@ -271,7 +274,8 @@ class RecipientDetails private constructor(
         needsPniSignature = false,
         isActiveGroup = false,
         callLinkRoomId = null,
-        groupRecord = Optional.empty()
+        groupRecord = Optional.empty(),
+        phoneNumberSharing = PhoneNumberSharingState.UNKNOWN
       )
     }
   }

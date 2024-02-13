@@ -9,7 +9,6 @@ import android.animation.ValueAnimator
 import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.Outline
 import android.graphics.PorterDuff
@@ -26,12 +25,14 @@ import android.widget.TextView
 import androidx.annotation.DrawableRes
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.toBitmap
 import androidx.core.widget.ImageViewCompat
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import org.signal.core.util.dp
 import org.signal.libsignal.protocol.fingerprint.Fingerprint
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.qr.QrCodeUtil
+import org.thoughtcrime.securesms.util.ContextUtil
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.visible
 import java.nio.charset.Charset
@@ -149,7 +150,7 @@ class SafetyNumberQrView : ConstraintLayout {
 
   fun animateVerifiedSuccess() {
     val qrBitmap = (qrCode.drawable as BitmapDrawable).bitmap
-    val qrSuccess: Bitmap = createVerifiedBitmap(qrBitmap.width, qrBitmap.height, R.drawable.ic_check_white_48dp)
+    val qrSuccess: Bitmap = createVerifiedBitmap(qrBitmap.width, qrBitmap.height, R.drawable.symbol_check_white_48)
     qrVerified.setImageBitmap(qrSuccess)
     qrVerified.background.setColorFilter(resources.getColor(R.color.green_500), PorterDuff.Mode.MULTIPLY)
     tapLabel.setText(context.getString(R.string.verify_display_fragment__successful_match))
@@ -158,7 +159,7 @@ class SafetyNumberQrView : ConstraintLayout {
 
   fun animateVerifiedFailure() {
     val qrBitmap = (qrCode.drawable as BitmapDrawable).bitmap
-    val qrSuccess: Bitmap = createVerifiedBitmap(qrBitmap.width, qrBitmap.height, R.drawable.ic_close_white_48dp)
+    val qrSuccess: Bitmap = createVerifiedBitmap(qrBitmap.width, qrBitmap.height, R.drawable.symbol_x_white_48)
     qrVerified.setImageBitmap(qrSuccess)
     qrVerified.background.setColorFilter(resources.getColor(R.color.red_500), PorterDuff.Mode.MULTIPLY)
     tapLabel.setText(context.getString(R.string.verify_display_fragment__failed_to_verify_safety_number))
@@ -211,7 +212,7 @@ class SafetyNumberQrView : ConstraintLayout {
   private fun createVerifiedBitmap(width: Int, height: Int, @DrawableRes id: Int): Bitmap {
     val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
     val canvas = Canvas(bitmap)
-    val check = BitmapFactory.decodeResource(resources, id)
+    val check = ContextUtil.requireDrawable(context, id).toBitmap()
     val offset = ((width - check.width) / 2).toFloat()
     canvas.drawBitmap(check, offset, offset, null)
     return bitmap

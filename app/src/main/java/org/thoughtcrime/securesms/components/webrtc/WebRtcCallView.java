@@ -24,6 +24,8 @@ import androidx.annotation.RequiresApi;
 import androidx.annotation.StringRes;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
+import androidx.compose.ui.platform.ComposeView;
+import androidx.constraintlayout.widget.Barrier;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.constraintlayout.widget.Guideline;
@@ -34,6 +36,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.google.android.material.button.MaterialButton;
@@ -50,7 +53,6 @@ import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
-import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.ringrtc.CameraState;
@@ -89,7 +91,6 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
   private TextView                      recipientName;
   private TextView                      status;
   private TextView                      incomingRingStatus;
-  private ConstraintLayout              participantsParent;
   private ControlsListener              controlsListener;
   private RecipientId                   recipientId;
   private ImageView                     answer;
@@ -110,8 +111,8 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
   private Stub<FrameLayout>             groupCallSpeakerHint;
   private Stub<View>                    groupCallFullStub;
   private View                          errorButton;
-  private boolean                       controlsVisible = true;
   private Guideline                     showParticipantsGuideline;
+  private Guideline                     aboveControlsGuideline;
   private Guideline                     topFoldGuideline;
   private Guideline                     callScreenTopFoldGuideline;
   private AvatarImageView               largeHeaderAvatar;
@@ -123,7 +124,9 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
   private Stub<View>                    callLinkWarningCard;
   private RecyclerView                  groupReactionsFeed;
   private MultiReactionBurstLayout      reactionViews;
-  private Guideline                     aboveControlsGuideline;
+  private ComposeView                   raiseHandSnackbar;
+  private Barrier                       pipBottomBoundaryBarrier;
+
 
 
   private WebRtcCallParticipantsPagerAdapter    pagerAdapter;
@@ -172,7 +175,6 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     recipientName                 = findViewById(R.id.call_screen_recipient_name);
     status                        = findViewById(R.id.call_screen_status);
     incomingRingStatus            = findViewById(R.id.call_screen_incoming_ring_status);
-    participantsParent            = findViewById(R.id.call_screen_participants_parent);
     answer                        = findViewById(R.id.call_screen_answer_call);
     answerWithoutVideoLabel       = findViewById(R.id.call_screen_answer_without_video_label);
     cameraDirectionToggle         = findViewById(R.id.call_screen_camera_direction_toggle);
@@ -191,6 +193,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     groupCallSpeakerHint          = new Stub<>(findViewById(R.id.call_screen_group_call_speaker_hint));
     groupCallFullStub             = new Stub<>(findViewById(R.id.group_call_call_full_view));
     showParticipantsGuideline     = findViewById(R.id.call_screen_show_participants_guideline);
+    aboveControlsGuideline        = findViewById(R.id.call_screen_above_controls_guideline);
     topFoldGuideline              = findViewById(R.id.fold_top_guideline);
     callScreenTopFoldGuideline    = findViewById(R.id.fold_top_call_screen_guideline);
     largeHeaderAvatar             = findViewById(R.id.call_screen_header_avatar);
@@ -201,7 +204,8 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     callLinkWarningCard           = new Stub<>(findViewById(R.id.call_screen_call_link_warning));
     groupReactionsFeed            = findViewById(R.id.call_screen_reactions_feed);
     reactionViews                 = findViewById(R.id.call_screen_reactions_container);
-    aboveControlsGuideline        = findViewById(R.id.call_screen_above_controls_guideline);
+    raiseHandSnackbar             = findViewById(R.id.call_screen_raise_hand_view);
+    pipBottomBoundaryBarrier      = findViewById(R.id.pip_bottom_boundary_barrier);
 
     View decline      = findViewById(R.id.call_screen_decline_call);
     View answerLabel  = findViewById(R.id.call_screen_answer_call_label);
@@ -354,6 +358,12 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     rotatableControls.add(decline);
     rotatableControls.add(smallLocalAudioIndicator);
     rotatableControls.add(ringToggle);
+
+    pipBottomBoundaryBarrier.addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
+      if (bottom != oldBottom) {
+        onBarrierBottomChanged(bottom);
+      }
+    });
   }
 
   @Override
@@ -369,10 +379,13 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
 
   @Override
   public void onWindowSystemUiVisibilityChanged(int visible) {
+    final Guideline statusBarGuideline = getStatusBarGuideline();
     if ((visible & SYSTEM_UI_FLAG_HIDE_NAVIGATION) == 0) {
       pictureInPictureGestureHelper.setTopVerticalBoundary(collapsedToolbar.getBottom());
+    } else if (statusBarGuideline != null) {
+      pictureInPictureGestureHelper.setTopVerticalBoundary(statusBarGuideline.getBottom());
     } else {
-      pictureInPictureGestureHelper.setTopVerticalBoundary(getStatusBarGuideline().getBottom());
+      Log.d(TAG, "Could not update PiP gesture helper.");
     }
   }
 
@@ -460,9 +473,11 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
 
     updateLocalCallParticipant(state.getLocalRenderState(), state.getLocalParticipant(), displaySmallSelfPipInLandscape);
 
-    if (state.isLargeVideoGroup() && !state.isInPipMode() && !state.isFolded()) {
+    if (state.isLargeVideoGroup()) {
+      moveSnackbarAboveParticipantRail(true);
       adjustLayoutForLargeCount();
     } else {
+      moveSnackbarAboveParticipantRail(state.isViewingFocusedParticipant());
       adjustLayoutForSmallCount();
     }
   }
@@ -540,7 +555,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
 
         if (!localAvatar.equals(previousLocalAvatar)) {
           previousLocalAvatar = localAvatar;
-          GlideApp.with(getContext().getApplicationContext())
+          Glide.with(getContext().getApplicationContext())
                   .load(localAvatar)
                   .transform(new CenterCrop(), new BlurTransformation(getContext(), 0.25f, BlurTransformation.MAX_RADIUS))
                   .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -587,10 +602,6 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     } else {
       return largeHeader;
     }
-  }
-
-  public @NonNull View getPopupAnchor() {
-    return aboveControlsGuideline;
   }
 
   public void setStatusFromHangupType(@NonNull HangupMessage.Type hangupType) {
@@ -728,11 +739,15 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
       visibleViewSet.add(groupReactionsFeed);
     }
 
+    if (webRtcControls.displayRaiseHand()) {
+      visibleViewSet.add(raiseHandSnackbar);
+    }
+
     boolean forceUpdate = webRtcControls.adjustForFold() && !controls.adjustForFold();
     controls = webRtcControls;
 
     if (!controls.isFadeOutEnabled()) {
-      controlsVisible = true;
+      boolean controlsVisible = true;
     }
 
     allTimeVisibleViews.addAll(visibleViewSet);
@@ -834,6 +849,33 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
                           ConstraintSet.TOP,
                           ViewUtil.dpToPx(layoutPositions.reactionBottomMargin));
 
+    constraintSet.connect(pendingParticipantsViewStub.getId(),
+                          ConstraintSet.BOTTOM,
+                          layoutPositions.reactionBottomViewId,
+                          ConstraintSet.TOP,
+                          ViewUtil.dpToPx(layoutPositions.reactionBottomMargin));
+
+    constraintSet.applyTo(this);
+  }
+
+  private void moveSnackbarAboveParticipantRail(boolean aboveRail) {
+    if (aboveRail) {
+      updatePendingParticipantsBottomConstraint(callParticipantsRecycler);
+    } else {
+      updatePendingParticipantsBottomConstraint(aboveControlsGuideline);
+    }
+  }
+
+  private void updatePendingParticipantsBottomConstraint(View anchor) {
+    ConstraintSet constraintSet = new ConstraintSet();
+    constraintSet.clone(this);
+
+    constraintSet.connect(R.id.call_screen_pending_recipients,
+                          ConstraintSet.BOTTOM,
+                          anchor.getId(),
+                          ConstraintSet.TOP,
+                          ViewUtil.dpToPx(8));
+
     constraintSet.applyTo(this);
   }
 
@@ -905,10 +947,12 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     ringToggle.setActivated(enabled);
   }
 
-  public void onControlTopChanged(int top) {
-    pictureInPictureGestureHelper.setBottomVerticalBoundary(top);
+  public void onControlTopChanged() {
+    onBarrierBottomChanged(pipBottomBoundaryBarrier.getBottom());
+  }
 
-    aboveControlsGuideline.setGuidelineBegin(top);
+  private void onBarrierBottomChanged(int barrierBottom) {
+    pictureInPictureGestureHelper.setBottomVerticalBoundary(barrierBottom);
   }
 
   public interface ControlsListener {

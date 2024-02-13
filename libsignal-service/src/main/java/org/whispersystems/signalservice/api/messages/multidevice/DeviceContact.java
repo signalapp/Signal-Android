@@ -8,13 +8,16 @@ package org.whispersystems.signalservice.api.messages.multidevice;
 
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentStream;
+import org.whispersystems.signalservice.api.push.ServiceId;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.util.Optional;
 
 public class DeviceContact {
 
-  private final SignalServiceAddress                    address;
+  private final Optional<ACI>                           aci;
+  private final Optional<String>                        e164;
   private final Optional<String>                        name;
   private final Optional<SignalServiceAttachmentStream> avatar;
   private final Optional<String>                        color;
@@ -25,7 +28,8 @@ public class DeviceContact {
   private final Optional<Integer>                       inboxPosition;
   private final boolean                                 archived;
 
-  public DeviceContact(SignalServiceAddress address,
+  public DeviceContact(Optional<ACI> aci,
+                       Optional<String> e164,
                        Optional<String> name,
                        Optional<SignalServiceAttachmentStream> avatar,
                        Optional<String> color,
@@ -36,7 +40,12 @@ public class DeviceContact {
                        Optional<Integer> inboxPosition,
                        boolean archived)
   {
-    this.address         = address;
+    if (aci.isEmpty() && e164.isEmpty()) {
+      throw new IllegalArgumentException("Must have either ACI or E164");
+    }
+
+    this.aci             = aci;
+    this.e164            = e164;
     this.name            = name;
     this.avatar          = avatar;
     this.color           = color;
@@ -56,8 +65,12 @@ public class DeviceContact {
     return name;
   }
 
-  public SignalServiceAddress getAddress() {
-    return address;
+  public Optional<ACI> getAci() {
+    return aci;
+  }
+
+  public Optional<String> getE164() {
+    return e164;
   }
 
   public Optional<String> getColor() {

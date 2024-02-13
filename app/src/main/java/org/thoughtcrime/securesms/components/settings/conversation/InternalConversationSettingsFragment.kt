@@ -128,6 +128,16 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
           title = DSLSettingsText.from("Sealed Sender Mode"),
           summary = DSLSettingsText.from(recipient.unidentifiedAccessMode.toString())
         )
+
+        textPref(
+          title = DSLSettingsText.from("Phone Number Sharing"),
+          summary = DSLSettingsText.from(recipient.phoneNumberSharing.name)
+        )
+
+        textPref(
+          title = DSLSettingsText.from("Phone Number Discoverability"),
+          summary = DSLSettingsText.from(SignalDatabase.recipients.getPhoneNumberDiscoverability(recipient.id)?.name ?: "null")
+        )
       }
 
       textPref(

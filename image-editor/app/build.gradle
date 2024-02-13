@@ -1,6 +1,6 @@
 plugins {
     id("signal-sample-app")
-    id("kotlin-kapt")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -15,5 +15,5 @@ dependencies {
     implementation(project(":image-editor"))
 
     implementation(libs.glide.glide)
-    kapt(libs.glide.compiler)
+    ksp(libs.glide.ksp)
 }

@@ -77,7 +77,7 @@ class V2ConversationItemMediaViewHolder<Model : MappingModel<Model>>(
 
     binding.quoteStub.visibility = View.VISIBLE
     quoteView.setQuote(
-      conversationContext.glideRequests,
+      conversationContext.requestManager,
       quote.id,
       Recipient.live(quote.author).get(),
       quote.displayText,

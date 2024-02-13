@@ -51,47 +51,17 @@ public class SignalSealedSessionCipher {
     }
   }
 
-  // TODO: Revert the change here to use the libsignal SealedSessionCipher when the API changes
-  public byte[] multiRecipientEncrypt(SignalProtocolStore signalProtocolStore, List<SignalProtocolAddress> recipients, Map<SignalProtocolAddress, SessionRecord> sessionMap, UnidentifiedSenderMessageContent content)
+  public byte[] multiRecipientEncrypt(List<SignalProtocolAddress> recipients, Map<SignalProtocolAddress, SessionRecord> sessionMap, UnidentifiedSenderMessageContent content)
       throws InvalidKeyException, UntrustedIdentityException, NoSessionException, InvalidRegistrationIdException
   {
     try (SignalSessionLock.Lock unused = lock.acquire()) {
-      if (sessionMap == null) {
-        return cipher.multiRecipientEncrypt(recipients, content);
-      }
       List<SessionRecord> recipientSessions = recipients.stream().map(sessionMap::get).collect(Collectors.toList());
-      if (recipientSessions.stream().anyMatch(Objects::isNull)) {
-        throw new NoSessionException("Failed to find one or more sessions.");
-      }
-      // Unsafely access the native handles for the recipients and sessions,
-      // because try-with-resources syntax doesn't support a List of resources.
-      long[] recipientHandles = new long[recipients.size()];
-      int i = 0;
-      for (SignalProtocolAddress nextRecipient : recipients) {
-        recipientHandles[i] = nextRecipient.unsafeNativeHandleWithoutGuard();
-        i++;
+
+      if (recipientSessions.contains(null)) {
+        throw new NoSessionException("No session for some recipients");
       }
 
-      long[] recipientSessionHandles = new long[recipientSessions.size()];
-      i = 0;
-      for (SessionRecord nextSession : recipientSessions) {
-        recipientSessionHandles[i] = nextSession.unsafeNativeHandleWithoutGuard();
-        i++;
-      }
-
-      try (NativeHandleGuard contentGuard = new NativeHandleGuard(content)) {
-        byte[] result =
-            Native.SealedSessionCipher_MultiRecipientEncrypt(
-                recipientHandles,
-                recipientSessionHandles,
-                contentGuard.nativeHandle(),
-                signalProtocolStore);
-        // Manually keep the lists of recipients and sessions from being garbage collected
-        // while we're using their native handles.
-        Native.keepAlive(recipients);
-        Native.keepAlive(recipientSessions);
-        return result;
-      }
+      return cipher.multiRecipientEncrypt(recipients, recipientSessions, content);
     }
   }
 

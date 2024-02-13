@@ -39,7 +39,6 @@ class EditMessageSyncProcessorTest {
     )
 
     private val IGNORE_ATTACHMENT_COLUMNS = listOf(
-      AttachmentTable.UNIQUE_ID,
       AttachmentTable.TRANSFER_FILE
     )
   }

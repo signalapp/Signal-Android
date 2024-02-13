@@ -12,6 +12,7 @@ import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.backup.v2.database.ChatItemImportInserter
 import org.thoughtcrime.securesms.backup.v2.database.clearAllDataForBackupRestore
 import org.thoughtcrime.securesms.backup.v2.processor.AccountDataProcessor
+import org.thoughtcrime.securesms.backup.v2.processor.CallLogBackupProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.ChatBackupProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.ChatItemBackupProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.RecipientBackupProcessor
@@ -21,12 +22,16 @@ import org.thoughtcrime.securesms.backup.v2.stream.EncryptedBackupWriter
 import org.thoughtcrime.securesms.backup.v2.stream.PlainTextBackupReader
 import org.thoughtcrime.securesms.backup.v2.stream.PlainTextBackupWriter
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.whispersystems.signalservice.api.NetworkResult
+import org.whispersystems.signalservice.api.archive.ArchiveServiceCredential
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
+import kotlin.time.Duration.Companion.milliseconds
 
 object BackupRepository {
 
@@ -64,6 +69,11 @@ object BackupRepository {
         ChatBackupProcessor.export { frame ->
           writer.write(frame)
           eventTimer.emit("thread")
+        }
+
+        CallLogBackupProcessor.export { frame ->
+          writer.write(frame)
+          eventTimer.emit("call")
         }
 
         ChatItemBackupProcessor.export { frame ->
@@ -127,6 +137,11 @@ object BackupRepository {
             eventTimer.emit("chat")
           }
 
+          frame.call != null -> {
+            CallLogBackupProcessor.import(frame.call, backupState)
+            eventTimer.emit("call")
+          }
+
           frame.chatItem != null -> {
             chatItemInserter.insert(frame.chatItem)
             eventTimer.emit("chatItem")
@@ -149,6 +164,93 @@ object BackupRepository {
     Log.d(TAG, "import() ${eventTimer.stop().summary}")
   }
 
+  /**
+   * Returns an object with details about the remote backup state.
+   */
+  fun getRemoteBackupState(): NetworkResult<BackupMetadata> {
+    val api = ApplicationDependencies.getSignalServiceAccountManager().archiveApi
+    val backupKey = SignalStore.svr().getOrCreateMasterKey().deriveBackupKey()
+
+    return api
+      .triggerBackupIdReservation(backupKey)
+      .then { getAuthCredential() }
+      .then { credential ->
+        api.setPublicKey(backupKey, credential)
+          .also { Log.i(TAG, "PublicKeyResult: $it") }
+          .map { credential }
+      }
+      .then { credential ->
+        api.getBackupInfo(backupKey, credential)
+          .map { it to credential }
+      }
+      .then { pair ->
+        val (info, credential) = pair
+        api.debugGetUploadedMediaItemMetadata(backupKey, credential)
+          .also { Log.i(TAG, "MediaItemMetadataResult: $it") }
+          .map { mediaObjects ->
+            BackupMetadata(
+              usedSpace = info.usedSpace ?: 0,
+              mediaCount = mediaObjects.size.toLong()
+            )
+          }
+      }
+  }
+
+  /**
+   * A simple test method that just hits various network endpoints. Only useful for the playground.
+   *
+   * @return True if successful, otherwise false.
+   */
+  fun uploadBackupFile(backupStream: InputStream, backupStreamLength: Long): Boolean {
+    val api = ApplicationDependencies.getSignalServiceAccountManager().archiveApi
+    val backupKey = SignalStore.svr().getOrCreateMasterKey().deriveBackupKey()
+
+    return api
+      .triggerBackupIdReservation(backupKey)
+      .then { getAuthCredential() }
+      .then { credential ->
+        api.setPublicKey(backupKey, credential)
+          .also { Log.i(TAG, "PublicKeyResult: $it") }
+          .map { credential }
+      }
+      .then { credential ->
+        api.getMessageBackupUploadForm(backupKey, credential)
+          .also { Log.i(TAG, "UploadFormResult: $it") }
+      }
+      .then { form ->
+        api.getBackupResumableUploadUrl(form)
+          .also { Log.i(TAG, "ResumableUploadUrlResult: $it") }
+          .map { form to it }
+      }
+      .then { formAndUploadUrl ->
+        val (form, resumableUploadUrl) = formAndUploadUrl
+        api.uploadBackupFile(form, resumableUploadUrl, backupStream, backupStreamLength)
+          .also { Log.i(TAG, "UploadBackupFileResult: $it") }
+      }
+      .also { Log.i(TAG, "OverallResult: $it") } is NetworkResult.Success
+  }
+
+  /**
+   * Retrieves an auth credential, preferring a cached value if available.
+   */
+  private fun getAuthCredential(): NetworkResult<ArchiveServiceCredential> {
+    val currentTime = System.currentTimeMillis()
+
+    val credential = SignalStore.backup().credentialsByDay.getForCurrentTime(currentTime.milliseconds)
+
+    if (credential != null) {
+      return NetworkResult.Success(credential)
+    }
+
+    Log.w(TAG, "No credentials found for today, need to fetch new ones! This shouldn't happen under normal circumstances. We should ensure the routine fetch is running properly.")
+
+    return ApplicationDependencies.getSignalServiceAccountManager().archiveApi.getServiceCredentials(currentTime).map { result ->
+      SignalStore.backup().addCredentials(result.credentials.toList())
+      SignalStore.backup().clearCredentialsOlderThan(currentTime)
+      SignalStore.backup().credentialsByDay.getForCurrentTime(currentTime.milliseconds)!!
+    }
+  }
+
   data class SelfData(
     val aci: ACI,
     val pni: PNI,
@@ -162,4 +264,10 @@ class BackupState {
   val chatIdToLocalThreadId = HashMap<Long, Long>()
   val chatIdToLocalRecipientId = HashMap<Long, RecipientId>()
   val chatIdToBackupRecipientId = HashMap<Long, Long>()
+  val callIdToType = HashMap<Long, Long>()
 }
+
+class BackupMetadata(
+  val usedSpace: Long,
+  val mediaCount: Long
+)

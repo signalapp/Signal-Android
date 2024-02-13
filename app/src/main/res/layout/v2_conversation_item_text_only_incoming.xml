@@ -56,7 +56,7 @@
         tools:visibility="gone" />
 
     <!-- Body -->
-    <LinearLayout
+    <org.thoughtcrime.securesms.conversation.v2.items.ShrinkWrapLinearLayout
         android:id="@+id/conversation_item_body_wrapper"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -104,10 +104,11 @@
             app:emoji_maxLength="1000"
             app:emoji_renderMentions="true"
             app:emoji_renderSpoilers="true"
+            app:emoji_shrinkWrap="true"
             app:measureLastLine="true"
             app:scaleEmojis="true"
             tools:text="Testy test test test" />
-    </LinearLayout>
+    </org.thoughtcrime.securesms.conversation.v2.items.ShrinkWrapLinearLayout>
 
     <!-- Footer -->
     <View
@@ -155,9 +156,9 @@
         android:id="@+id/footer_end_pad"
         android:layout_width="@dimen/message_bubble_horizontal_padding"
         android:layout_height="@dimen/message_bubble_horizontal_padding"
-        app:layout_constraintTop_toTopOf="@id/conversation_item_footer_date"
         app:layout_constraintBottom_toBottomOf="@id/conversation_item_body_wrapper"
-        app:layout_constraintEnd_toEndOf="@id/conversation_item_body_wrapper" />
+        app:layout_constraintEnd_toEndOf="@id/conversation_item_body_wrapper"
+        app:layout_constraintTop_toTopOf="@id/conversation_item_footer_date" />
 
     <!-- End Footer -->
 

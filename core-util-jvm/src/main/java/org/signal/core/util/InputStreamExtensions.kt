@@ -70,7 +70,7 @@ fun InputStream.readNBytesOrThrow(length: Int): ByteArray {
 }
 
 @Throws(IOException::class)
-fun InputStream.readLength(): Long? {
+fun InputStream.readLength(): Long {
   val buffer = ByteArray(4096)
   var count = 0L
 

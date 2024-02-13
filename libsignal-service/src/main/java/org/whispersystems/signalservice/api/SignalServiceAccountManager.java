@@ -6,6 +6,8 @@
 
 package org.whispersystems.signalservice.api;
 
+import com.squareup.wire.FieldEncoding;
+
 import org.signal.libsignal.protocol.IdentityKeyPair;
 import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.protocol.ecc.ECPublicKey;
@@ -21,6 +23,7 @@ import org.whispersystems.signalservice.api.account.ChangePhoneNumberRequest;
 import org.whispersystems.signalservice.api.account.PniKeyDistributionRequest;
 import org.whispersystems.signalservice.api.account.PreKeyCollection;
 import org.whispersystems.signalservice.api.account.PreKeyUpload;
+import org.whispersystems.signalservice.api.archive.ArchiveApi;
 import org.whispersystems.signalservice.api.crypto.ProfileCipher;
 import org.whispersystems.signalservice.api.crypto.ProfileCipherOutputStream;
 import org.whispersystems.signalservice.api.groupsv2.ClientZkOperations;
@@ -562,10 +565,17 @@ public class SignalServiceAccountManager {
 
     manifestRecordBuilder.identifiers(
         manifest.getStorageIds().stream()
-                .map(id -> new ManifestRecord.Identifier.Builder()
-                                                        .raw(ByteString.of(id.getRaw()))
-                                                        .type(ManifestRecord.Identifier.Type.Companion.fromValue(id.getType()))
-                                                        .build())
+                .map(id -> {
+                  ManifestRecord.Identifier.Builder builder = new ManifestRecord.Identifier.Builder()
+                      .raw(ByteString.of(id.getRaw()));
+                  if (!id.isUnknown()) {
+                    builder.type(ManifestRecord.Identifier.Type.Companion.fromValue(id.getType()));
+                  } else {
+                    builder.type(ManifestRecord.Identifier.Type.UNKNOWN);
+                    builder.addUnknownField(2, FieldEncoding.VARINT, id.getType());
+                  }
+                  return builder.build();
+                })
                 .collect(Collectors.toList())
     );
 
@@ -712,17 +722,19 @@ public class SignalServiceAccountManager {
                                               String aboutEmoji,
                                               Optional<PaymentAddress> paymentsAddress,
                                               AvatarUploadParams avatar,
-                                              List<String> visibleBadgeIds)
+                                              List<String> visibleBadgeIds,
+                                              boolean phoneNumberSharing)
       throws IOException
   {
     if (name == null) name = "";
 
-    ProfileCipher     profileCipher               = new ProfileCipher(profileKey);
-    byte[]            ciphertextName              = profileCipher.encryptString(name, ProfileCipher.getTargetNameLength(name));
-    byte[]            ciphertextAbout             = profileCipher.encryptString(about, ProfileCipher.getTargetAboutLength(about));
-    byte[]            ciphertextEmoji             = profileCipher.encryptString(aboutEmoji, ProfileCipher.EMOJI_PADDED_LENGTH);
-    byte[]            ciphertextMobileCoinAddress = paymentsAddress.map(address -> profileCipher.encryptWithLength(address.encode(), ProfileCipher.PAYMENTS_ADDRESS_CONTENT_SIZE)).orElse(null);
-    ProfileAvatarData profileAvatarData           = null;
+    ProfileCipher     profileCipher                = new ProfileCipher(profileKey);
+    byte[]            ciphertextName               = profileCipher.encryptString(name, ProfileCipher.getTargetNameLength(name));
+    byte[]            ciphertextAbout              = profileCipher.encryptString(about, ProfileCipher.getTargetAboutLength(about));
+    byte[]            ciphertextEmoji              = profileCipher.encryptString(aboutEmoji, ProfileCipher.EMOJI_PADDED_LENGTH);
+    byte[]            ciphertextMobileCoinAddress  = paymentsAddress.map(address -> profileCipher.encryptWithLength(address.encode(), ProfileCipher.PAYMENTS_ADDRESS_CONTENT_SIZE)).orElse(null);
+    byte[]            cipherTextPhoneNumberSharing = profileCipher.encryptBoolean(phoneNumberSharing);
+    ProfileAvatarData profileAvatarData            = null;
 
     if (avatar.stream != null && !avatar.keepTheSame) {
       profileAvatarData = new ProfileAvatarData(avatar.stream.getStream(),
@@ -736,6 +748,7 @@ public class SignalServiceAccountManager {
                                                                              ciphertextAbout,
                                                                              ciphertextEmoji,
                                                                              ciphertextMobileCoinAddress,
+                                                                             cipherTextPhoneNumberSharing,
                                                                              avatar.hasAvatar,
                                                                              avatar.keepTheSame,
                                                                              profileKey.getCommitment(aci.getLibSignalAci()).serialize(),
@@ -770,8 +783,32 @@ public class SignalServiceAccountManager {
     return this.pushServiceSocket.reserveUsername(usernameHashes);
   }
 
-  public void confirmUsername(String username, ReserveUsernameResponse reserveUsernameResponse) throws IOException {
-    this.pushServiceSocket.confirmUsername(username, reserveUsernameResponse);
+  public UsernameLinkComponents confirmUsernameAndCreateNewLink(Username username) throws IOException {
+    try {
+      UsernameLink link    = username.generateLink();
+      UUID        serverId = this.pushServiceSocket.confirmUsernameAndCreateNewLink(username, link);
+
+      return new UsernameLinkComponents(link.getEntropy(), serverId);
+    } catch (BaseUsernameException e) {
+      throw new AssertionError(e);
+    }
+  }
+
+  public UsernameLinkComponents reclaimUsernameAndLink(Username username, UsernameLinkComponents linkComponents) throws IOException {
+    try {
+      UsernameLink link     = username.generateLink(linkComponents.getEntropy());
+      UUID         serverId = this.pushServiceSocket.confirmUsernameAndCreateNewLink(username, link);
+
+      return new UsernameLinkComponents(link.getEntropy(), serverId);
+    } catch (BaseUsernameException e) {
+      throw new AssertionError(e);
+    }
+  }
+
+  public UsernameLinkComponents updateUsernameLink(UsernameLink newUsernameLink) throws IOException {
+      UUID serverId = this.pushServiceSocket.createUsernameLink(Base64.encodeUrlSafeWithoutPadding(newUsernameLink.getEncryptedUsername()), true);
+
+      return new UsernameLinkComponents(newUsernameLink.getEntropy(), serverId);
   }
 
   public void deleteUsername() throws IOException {
@@ -781,7 +818,7 @@ public class SignalServiceAccountManager {
   public UsernameLinkComponents createUsernameLink(Username username) throws IOException {
     try {
       UsernameLink link     = username.generateLink();
-      UUID         serverId = this.pushServiceSocket.createUsernameLink(Base64.encodeUrlSafeWithPadding(link.getEncryptedUsername()));
+      UUID         serverId = this.pushServiceSocket.createUsernameLink(Base64.encodeUrlSafeWithPadding(link.getEncryptedUsername()), false);
 
       return new UsernameLinkComponents(link.getEntropy(), serverId);
     } catch (BaseUsernameException e) {
@@ -832,6 +869,10 @@ public class SignalServiceAccountManager {
 
   public GroupsV2Api getGroupsV2Api() {
     return new GroupsV2Api(pushServiceSocket, groupsV2Operations);
+  }
+
+  public ArchiveApi getArchiveApi() {
+    return ArchiveApi.create(pushServiceSocket, configuration.getBackupServerPublicParams(), credentials.getAci());
   }
 
   public AuthCredentials getPaymentsAuthorization() throws IOException {

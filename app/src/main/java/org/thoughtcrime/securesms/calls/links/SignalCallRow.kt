@@ -119,7 +119,8 @@ fun SignalCallRow(
         .align(CenterVertically)
     ) {
       Text(
-        text = callLink.state.name.ifEmpty { stringResource(id = R.string.CreateCallLinkBottomSheetDialogFragment__signal_call) }
+        text = callLink.state.name.ifEmpty { stringResource(id = R.string.CreateCallLinkBottomSheetDialogFragment__signal_call) },
+        color = MaterialTheme.colorScheme.onSurface
       )
       Text(
         text = callUrl,

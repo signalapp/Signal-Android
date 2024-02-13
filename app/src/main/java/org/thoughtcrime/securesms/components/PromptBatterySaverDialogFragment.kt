@@ -13,16 +13,19 @@ import androidx.annotation.RequiresApi
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentManager
 import org.signal.core.util.concurrent.LifecycleDisposable
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.databinding.PromptBatterySaverBottomSheetBinding
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.BottomSheetUtil
+import org.thoughtcrime.securesms.util.LocalMetrics
 import org.thoughtcrime.securesms.util.PowerManagerCompat
 
 @RequiresApi(23)
 class PromptBatterySaverDialogFragment : FixedRoundedCornerBottomSheetDialogFragment() {
 
   companion object {
+    private val TAG = Log.tag(PromptBatterySaverDialogFragment::class.java)
 
     @JvmStatic
     fun show(fragmentManager: FragmentManager) {
@@ -51,8 +54,11 @@ class PromptBatterySaverDialogFragment : FixedRoundedCornerBottomSheetDialogFrag
 
     binding.continueButton.setOnClickListener {
       PowerManagerCompat.requestIgnoreBatteryOptimizations(requireContext())
+      Log.i(TAG, "Requested to ignore battery optimizations, clearing local metrics.")
+      LocalMetrics.clear()
     }
     binding.dismissButton.setOnClickListener {
+      Log.i(TAG, "User denied request to ignore battery optimizations.")
       SignalStore.uiHints().markDismissedBatterySaverPrompt()
       dismiss()
     }

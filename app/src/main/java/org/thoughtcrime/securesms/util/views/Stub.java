@@ -15,6 +15,10 @@ public class Stub<T extends View> {
     this.viewStub = viewStub;
   }
 
+  public int getId() {
+    return (viewStub != null) ? viewStub.getId() : view.getId();
+  }
+
   public T get() {
     if (view == null) {
       //noinspection unchecked

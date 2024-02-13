@@ -106,7 +106,7 @@ public class SignalServiceCipher {
                                                                                                  contentHint.getType(),
                                                                                                  groupId);
 
-    return sessionCipher.multiRecipientEncrypt(signalProtocolStore, destinations, sessionMap, messageContent);
+    return sessionCipher.multiRecipientEncrypt(destinations, sessionMap, messageContent);
   }
 
   public OutgoingPushMessage encrypt(SignalProtocolAddress destination,

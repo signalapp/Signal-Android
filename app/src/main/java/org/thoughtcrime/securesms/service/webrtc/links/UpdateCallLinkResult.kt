@@ -13,7 +13,7 @@ sealed interface UpdateCallLinkResult {
     val state: SignalCallLinkState
   ) : UpdateCallLinkResult
 
-  class Failure(
+  data class Failure(
     val status: Short
   ) : UpdateCallLinkResult
 

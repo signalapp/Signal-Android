@@ -5,6 +5,7 @@ import android.net.Uri
 import androidx.core.content.contentValuesOf
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.delete
+import org.signal.core.util.deleteAll
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
 import org.signal.core.util.requireNonNullString
@@ -71,9 +72,7 @@ class DraftTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
   }
 
   fun clearAllDrafts() {
-    writableDatabase
-      .delete(TABLE_NAME)
-      .run()
+    writableDatabase.deleteAll(TABLE_NAME)
   }
 
   fun getDrafts(threadId: Long): Drafts {

@@ -22,7 +22,7 @@ data class LinkPreviewViewThumbnailState(
   fun applyState(thumbnail: Stub<OutlinedThumbnailView>) {
     if (thumbnail.resolved()) {
       thumbnail.get().setCorners(cornerTopLeft, cornerTopRight, cornerBottomRight, cornerBottomLeft)
-      thumbnail.get().setDownloadClickListener(downloadListener)
+      thumbnail.get().setStartTransferClickListener(downloadListener)
     }
   }
 }

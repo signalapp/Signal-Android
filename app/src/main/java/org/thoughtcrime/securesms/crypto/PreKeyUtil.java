@@ -188,7 +188,7 @@ public class PreKeyUtil {
     return record;
   }
 
-  public synchronized static @NonNull KyberPreKeyRecord generateLastRestortKyberPreKey(int id, @NonNull ECPrivateKey privateKey) {
+  public synchronized static @NonNull KyberPreKeyRecord generateLastResortKyberPreKey(int id, @NonNull ECPrivateKey privateKey) {
     Log.i(TAG, "Generating last resort kyber prekey...");
     return generateKyberPreKey(id, privateKey);
   }
@@ -201,8 +201,8 @@ public class PreKeyUtil {
   }
 
   public synchronized static void storeLastResortKyberPreKey(@NonNull SignalServiceAccountDataStore protocolStore, @NonNull PreKeyMetadataStore metadataStore, KyberPreKeyRecord record) {
-    Log.i(TAG, "Storing kyber prekeys...");
-    protocolStore.storeKyberPreKey(record.getId(), record);
+    Log.i(TAG, "Storing last resort kyber prekeys...");
+    protocolStore.storeLastResortKyberPreKey(record.getId(), record);
     metadataStore.setNextKyberPreKeyId((record.getId() + 1) % Medium.MAX_VALUE);
   }
 

@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.SmoothScroller
+import com.bumptech.glide.Glide
 import com.google.android.material.appbar.AppBarLayout
 import org.signal.libsignal.protocol.util.Pair
 import org.thoughtcrime.securesms.LoggingFragment
@@ -16,7 +17,6 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyboard.emoji.KeyboardPageSearchView
-import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.stickers.StickerEventListener
 import org.thoughtcrime.securesms.stickers.StickerRolloverTouchListener
 import org.thoughtcrime.securesms.stickers.StickerRolloverTouchListener.RolloverStickerRetriever
@@ -57,8 +57,8 @@ open class StickerKeyboardPageFragment :
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
 
-    val glideRequests = GlideApp.with(this)
-    stickerListAdapter = KeyboardStickerListAdapter(glideRequests, this, DeviceProperties.shouldAllowApngStickerAnimation(requireContext()))
+    val requestManager = Glide.with(this)
+    stickerListAdapter = KeyboardStickerListAdapter(requestManager, this, DeviceProperties.shouldAllowApngStickerAnimation(requireContext()))
     layoutManager = GridLayoutManager(requireContext(), 2).apply {
       spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
         override fun getSpanSize(position: Int): Int {
@@ -70,7 +70,7 @@ open class StickerKeyboardPageFragment :
         }
       }
     }
-    listTouchListener = StickerRolloverTouchListener(requireContext(), glideRequests, this, this)
+    listTouchListener = StickerRolloverTouchListener(requireContext(), requestManager, this, this)
 
     stickerList = view.findViewById(R.id.sticker_keyboard_list)
     stickerList.layoutManager = layoutManager
@@ -81,7 +81,7 @@ open class StickerKeyboardPageFragment :
 
     stickerPacksRecycler = view.findViewById(R.id.sticker_packs_recycler)
 
-    stickerPacksAdapter = KeyboardStickerPackListAdapter(glideRequests, DeviceProperties.shouldAllowApngStickerAnimation(requireContext()), this::onTabSelected)
+    stickerPacksAdapter = KeyboardStickerPackListAdapter(requestManager, DeviceProperties.shouldAllowApngStickerAnimation(requireContext()), this::onTabSelected)
     stickerPacksRecycler.adapter = stickerPacksAdapter
 
     appBarLayout = view.findViewById(R.id.sticker_keyboard_search_appbar)

@@ -1,0 +1,187 @@
+package org.thoughtcrime.securesms.attachments
+
+import android.net.Uri
+import android.os.Parcel
+import org.signal.core.util.Base64.encodeWithPadding
+import org.thoughtcrime.securesms.blurhash.BlurHash
+import org.thoughtcrime.securesms.database.AttachmentTable
+import org.thoughtcrime.securesms.stickers.StickerLocator
+import org.whispersystems.signalservice.api.InvalidMessageStructureException
+import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
+import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
+import org.whispersystems.signalservice.api.util.AttachmentPointerUtil
+import org.whispersystems.signalservice.internal.push.DataMessage
+import java.util.Optional
+
+class PointerAttachment : Attachment {
+  private constructor(
+    contentType: String,
+    transferState: Int,
+    size: Long,
+    fileName: String?,
+    cdnNumber: Int,
+    location: String,
+    key: String?,
+    digest: ByteArray?,
+    incrementalDigest: ByteArray?,
+    incrementalMacChunkSize: Int,
+    fastPreflightId: String?,
+    voiceNote: Boolean,
+    borderless: Boolean,
+    videoGif: Boolean,
+    width: Int,
+    height: Int,
+    uploadTimestamp: Long,
+    caption: String?,
+    stickerLocator: StickerLocator?,
+    blurHash: BlurHash?
+  ) : super(
+    contentType = contentType,
+    transferState = transferState,
+    size = size,
+    fileName = fileName,
+    cdnNumber = cdnNumber,
+    remoteLocation = location,
+    remoteKey = key,
+    remoteDigest = digest,
+    incrementalDigest = incrementalDigest,
+    fastPreflightId = fastPreflightId,
+    voiceNote = voiceNote,
+    borderless = borderless,
+    videoGif = videoGif,
+    width = width,
+    height = height,
+    incrementalMacChunkSize = incrementalMacChunkSize,
+    quote = false,
+    uploadTimestamp = uploadTimestamp,
+    caption = caption,
+    stickerLocator = stickerLocator,
+    blurHash = blurHash,
+    audioHash = null,
+    transformProperties = null
+  )
+
+  constructor(parcel: Parcel) : super(parcel)
+
+  override val uri: Uri? = null
+  override val publicUri: Uri? = null
+
+  companion object {
+    @JvmStatic
+    fun forPointers(pointers: Optional<List<SignalServiceAttachment>>): List<Attachment> {
+      if (!pointers.isPresent) {
+        return emptyList()
+      }
+
+      return pointers.get()
+        .map { forPointer(Optional.ofNullable(it)) }
+        .filter { it.isPresent }
+        .map { it.get() }
+    }
+
+    @JvmStatic
+    @JvmOverloads
+    fun forPointer(pointer: Optional<SignalServiceAttachment>, stickerLocator: StickerLocator? = null, fastPreflightId: String? = null): Optional<Attachment> {
+      if (!pointer.isPresent || !pointer.get().isPointer) {
+        return Optional.empty()
+      }
+
+      val encodedKey: String? = if (pointer.get().asPointer().key != null) {
+        encodeWithPadding(pointer.get().asPointer().key)
+      } else {
+        null
+      }
+
+      return Optional.of(
+        PointerAttachment(
+          contentType = pointer.get().contentType,
+          transferState = AttachmentTable.TRANSFER_PROGRESS_PENDING,
+          size = pointer.get().asPointer().size.orElse(0).toLong(),
+          fileName = pointer.get().asPointer().fileName.orElse(null),
+          cdnNumber = pointer.get().asPointer().cdnNumber,
+          location = pointer.get().asPointer().remoteId.toString(),
+          key = encodedKey,
+          digest = pointer.get().asPointer().digest.orElse(null),
+          incrementalDigest = pointer.get().asPointer().incrementalDigest.orElse(null),
+          incrementalMacChunkSize = pointer.get().asPointer().incrementalMacChunkSize,
+          fastPreflightId = fastPreflightId,
+          voiceNote = pointer.get().asPointer().voiceNote,
+          borderless = pointer.get().asPointer().isBorderless,
+          videoGif = pointer.get().asPointer().isGif,
+          width = pointer.get().asPointer().width,
+          height = pointer.get().asPointer().height,
+          uploadTimestamp = pointer.get().asPointer().uploadTimestamp,
+          caption = pointer.get().asPointer().caption.orElse(null),
+          stickerLocator = stickerLocator,
+          blurHash = BlurHash.parseOrNull(pointer.get().asPointer().blurHash.orElse(null))
+        )
+      )
+    }
+
+    fun forPointer(pointer: SignalServiceDataMessage.Quote.QuotedAttachment): Optional<Attachment> {
+      val thumbnail = pointer.thumbnail
+
+      return Optional.of(
+        PointerAttachment(
+          contentType = pointer.contentType,
+          transferState = AttachmentTable.TRANSFER_PROGRESS_PENDING,
+          size = (if (thumbnail != null) thumbnail.asPointer().size.orElse(0) else 0).toLong(),
+          fileName = pointer.fileName,
+          cdnNumber = thumbnail?.asPointer()?.cdnNumber ?: 0,
+          location = thumbnail?.asPointer()?.remoteId?.toString() ?: "0",
+          key = if (thumbnail != null && thumbnail.asPointer().key != null) encodeWithPadding(thumbnail.asPointer().key) else null,
+          digest = thumbnail?.asPointer()?.digest?.orElse(null),
+          incrementalDigest = thumbnail?.asPointer()?.incrementalDigest?.orElse(null),
+          incrementalMacChunkSize = thumbnail?.asPointer()?.incrementalMacChunkSize ?: 0,
+          fastPreflightId = null,
+          voiceNote = false,
+          borderless = false,
+          videoGif = false,
+          width = thumbnail?.asPointer()?.width ?: 0,
+          height = thumbnail?.asPointer()?.height ?: 0,
+          uploadTimestamp = thumbnail?.asPointer()?.uploadTimestamp ?: 0,
+          caption = thumbnail?.asPointer()?.caption?.orElse(null),
+          stickerLocator = null,
+          blurHash = null
+        )
+      )
+    }
+
+    fun forPointer(quotedAttachment: DataMessage.Quote.QuotedAttachment): Optional<Attachment> {
+      val thumbnail: SignalServiceAttachment? = try {
+        if (quotedAttachment.thumbnail != null) {
+          AttachmentPointerUtil.createSignalAttachmentPointer(quotedAttachment.thumbnail)
+        } else {
+          null
+        }
+      } catch (e: InvalidMessageStructureException) {
+        return Optional.empty()
+      }
+
+      return Optional.of(
+        PointerAttachment(
+          contentType = quotedAttachment.contentType!!,
+          transferState = AttachmentTable.TRANSFER_PROGRESS_PENDING,
+          size = (if (thumbnail != null) thumbnail.asPointer().size.orElse(0) else 0).toLong(),
+          fileName = quotedAttachment.fileName,
+          cdnNumber = thumbnail?.asPointer()?.cdnNumber ?: 0,
+          location = thumbnail?.asPointer()?.remoteId?.toString() ?: "0",
+          key = if (thumbnail != null && thumbnail.asPointer().key != null) encodeWithPadding(thumbnail.asPointer().key) else null,
+          digest = thumbnail?.asPointer()?.digest?.orElse(null),
+          incrementalDigest = thumbnail?.asPointer()?.incrementalDigest?.orElse(null),
+          incrementalMacChunkSize = thumbnail?.asPointer()?.incrementalMacChunkSize ?: 0,
+          fastPreflightId = null,
+          voiceNote = false,
+          borderless = false,
+          videoGif = false,
+          width = thumbnail?.asPointer()?.width ?: 0,
+          height = thumbnail?.asPointer()?.height ?: 0,
+          uploadTimestamp = thumbnail?.asPointer()?.uploadTimestamp ?: 0,
+          caption = thumbnail?.asPointer()?.caption?.orElse(null),
+          stickerLocator = null,
+          blurHash = null
+        )
+      )
+    }
+  }
+}

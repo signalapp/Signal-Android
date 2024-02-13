@@ -42,6 +42,7 @@ import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.views.Stub
+import org.thoughtcrime.securesms.util.visible
 
 class AppSettingsFragment : DSLSettingsFragment(
   titleId = R.string.text_secure_normal__menu_settings,
@@ -219,7 +220,7 @@ class AppSettingsFragment : DSLSettingsFragment(
 
       clickPref(
         title = DSLSettingsText.from(R.string.preferences__privacy),
-        icon = DSLSettingsIcon.from(R.drawable.symbol_lock_24),
+        icon = DSLSettingsIcon.from(R.drawable.symbol_lock_white_48),
         onClick = {
           findNavController().safeNavigate(R.id.action_appSettingsFragment_to_privacySettingsFragment)
         },
@@ -340,6 +341,7 @@ class AppSettingsFragment : DSLSettingsFragment(
     private val aboutView: EmojiTextView = itemView.findViewById(R.id.about)
     private val badgeView: BadgeImageView = itemView.findViewById(R.id.badge)
     private val qrButton: View = itemView.findViewById(R.id.qr_button)
+    private val usernameView: TextView = itemView.findViewById(R.id.username)
 
     init {
       aboutView.setOverflowText(" ")
@@ -352,6 +354,8 @@ class AppSettingsFragment : DSLSettingsFragment(
 
       titleView.text = model.recipient.profileName.toString()
       summaryView.text = PhoneNumberFormatter.prettyPrint(model.recipient.requireE164())
+      usernameView.text = model.recipient.username.orElse("")
+      usernameView.visible = model.recipient.username.isPresent
       avatarView.setRecipient(Recipient.self())
       badgeView.setBadgeFromRecipient(Recipient.self())
 

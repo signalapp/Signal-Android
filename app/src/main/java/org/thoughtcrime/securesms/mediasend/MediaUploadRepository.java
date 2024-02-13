@@ -100,7 +100,7 @@ public class MediaUploadRepository {
       return oldProperties == newProperties;
     }
 
-    return !newProperties.isVideoEdited() && oldProperties.getSentMediaQuality() == newProperties.getSentMediaQuality();
+    return !newProperties.getVideoEdited() && oldProperties.sentMediaQuality == newProperties.sentMediaQuality;
   }
 
   public void cancelUpload(@NonNull Media media) {
@@ -161,6 +161,7 @@ public class MediaUploadRepository {
     if (result != null) {
       Stream.of(result.getJobIds()).forEach(jobManager::cancel);
       uploadResults.remove(media);
+      SignalDatabase.attachments().deleteAttachment(result.getAttachmentId());
     }
   }
 

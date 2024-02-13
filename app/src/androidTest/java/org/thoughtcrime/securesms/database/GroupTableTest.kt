@@ -7,7 +7,7 @@ import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.signal.core.util.delete
+import org.signal.core.util.deleteAll
 import org.signal.core.util.readToList
 import org.signal.core.util.requireLong
 import org.signal.core.util.withinTransaction
@@ -33,8 +33,8 @@ class GroupTableTest {
   fun setUp() {
     groupTable = SignalDatabase.groups
 
-    groupTable.writableDatabase.delete(GroupTable.TABLE_NAME).run()
-    groupTable.writableDatabase.delete(GroupTable.MembershipTable.TABLE_NAME).run()
+    groupTable.writableDatabase.deleteAll(GroupTable.TABLE_NAME)
+    groupTable.writableDatabase.deleteAll(GroupTable.MembershipTable.TABLE_NAME)
   }
 
   @Test

@@ -15,7 +15,6 @@ import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.ConversationMessage.ConversationMessageFactory
 import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord.NoGroupsInCommon
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord.RemovedContactHidden
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord.UniversalExpireTimerUpdate
 import org.thoughtcrime.securesms.database.model.MessageRecord
@@ -72,7 +71,6 @@ class ConversationDataSource(
     val startTime = System.currentTimeMillis()
     val size: Int = getSizeInternal() +
       THREAD_HEADER_COUNT +
-      messageRequestData.includeWarningUpdateMessage().toInt() +
       messageRequestData.isHidden.toInt() +
       showUniversalExpireTimerUpdate.toInt()
 
@@ -107,10 +105,6 @@ class ConversationDataSource(
           records.add(record)
         }
       }
-
-    if (messageRequestData.includeWarningUpdateMessage() && (start + length >= totalSize)) {
-      records.add(NoGroupsInCommon(threadId, messageRequestData.isGroup))
-    }
 
     if (messageRequestData.isHidden && (start + length >= totalSize)) {
       records.add(RemovedContactHidden(threadId))

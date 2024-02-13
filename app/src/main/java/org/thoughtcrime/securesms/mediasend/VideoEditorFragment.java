@@ -128,7 +128,7 @@ public class VideoEditorFragment extends Fragment implements VideoEditorHud.Even
         player.clip(data.startTimeUs, data.endTimeUs, autoplay);
       }
       try {
-        hud.setVideoSource(slide, new VideoBitRateCalculator(maxOutput), maxSend);
+        hud.setVideoSource(slide, new VideoBitRateCalculator(maxOutput), maxOutput);
         hud.setVisibility(View.VISIBLE);
         startPositionUpdates();
       } catch (IOException e) {

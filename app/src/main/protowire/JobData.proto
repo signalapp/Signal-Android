@@ -33,7 +33,7 @@ message CallLinkUpdateSendJobData {
 }
 
 message AttachmentUploadJobData {
-  uint64 attachmentRowId = 1;
-  uint64 attachmentUniqueId = 2;
+  uint64 attachmentId = 1;
+  reserved /*attachmentUniqueId*/ 2;
   optional ResumableUpload uploadSpec = 3;
 }

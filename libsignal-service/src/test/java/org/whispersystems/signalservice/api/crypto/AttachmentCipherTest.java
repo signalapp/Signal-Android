@@ -29,7 +29,10 @@ import static org.whispersystems.signalservice.testutil.LibSignalLibraryUtil.ass
 public final class AttachmentCipherTest {
 
   static {
-    Security.insertProviderAt(Conscrypt.newProvider(), 1);
+    // https://github.com/google/conscrypt/issues/1034
+    if (!System.getProperty("os.arch").equals("aarch64")) {
+      Security.insertProviderAt(Conscrypt.newProvider(), 1);
+    }
   }
 
   @Test

@@ -142,6 +142,10 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
       .readToSingleLong()
       .let { RecipientId.from(it) }
 
+    if (state.revoked) {
+      SignalDatabase.calls.updateAdHocCallEventDeletionTimestamps()
+    }
+
     Recipient.live(recipientId).refresh()
     ApplicationDependencies.getDatabaseObserver().notifyCallLinkObservers(roomId)
     ApplicationDependencies.getDatabaseObserver().notifyCallUpdateObservers()

@@ -3,7 +3,7 @@
     <item android:drawable="@drawable/webrtc_call_screen_circle_green" />
     <item
         android:bottom="14dp"
-        android:drawable="@drawable/phone_24dp"
+        android:drawable="@drawable/symbol_phone_fill_white_24"
         android:left="14dp"
         android:right="14dp"
         android:top="14dp" />

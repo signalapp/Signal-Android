@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rounded_inset_ripple_background"
+    android:minHeight="@dimen/contact_selection_item_height"
+    android:paddingStart="@dimen/dsl_settings_gutter"
+    android:paddingEnd="@dimen/dsl_settings_gutter"
+    tools:viewBindingIgnore="true">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/invite_image"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@color/signal_colorSurfaceVariant"
+        android:importantForAccessibility="no"
+        app:srcCompat="@drawable/symbol_at_24"
+        app:contentPadding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Signal.Circle"
+        app:tint="@color/signal_colorOnSurfaceVariant" />
+
+    <TextView
+        android:id="@+id/invite_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:ellipsize="marquee"
+        android:labelFor="@id/action_icon"
+        android:singleLine="true"
+        android:text="@string/ContactSelectionListFragment__find_by_username"
+        android:textAppearance="@style/Signal.Text.BodyLarge"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/invite_image"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -39,6 +39,7 @@ public final class MiscellaneousValues extends SignalStoreValues {
   private static final String LAST_CONSISTENCY_CHECK_TIME    = "misc.last_consistency_check_time";
   private static final String SERVER_TIME_OFFSET             = "misc.server_time_offset";
   private static final String LAST_SERVER_TIME_OFFSET_UPDATE = "misc.last_server_time_offset_update";
+  private static final String NEEDS_USERNAME_RESTORE         = "misc.needs_username_restore";
 
   MiscellaneousValues(@NonNull KeyValueStore store) {
     super(store);
@@ -47,6 +48,7 @@ public final class MiscellaneousValues extends SignalStoreValues {
   @Override
   void onFirstEverAppLaunch() {
     putLong(MESSAGE_REQUEST_ENABLE_TIME, 0);
+    putBoolean(NEEDS_USERNAME_RESTORE, true);
   }
 
   @Override
@@ -330,5 +332,16 @@ public final class MiscellaneousValues extends SignalStoreValues {
    */
   public long getLastKnownServerTimeOffsetUpdateTime() {
     return getLong(LAST_SERVER_TIME_OFFSET_UPDATE, 0);
+  }
+
+  /**
+   * Whether or not we should attempt to restore the user's username and link.
+   */
+  public boolean needsUsernameRestore() {
+    return getBoolean(NEEDS_USERNAME_RESTORE, false);
+  }
+
+  public void setNeedsUsernameRestore(boolean value) {
+    putBoolean(NEEDS_USERNAME_RESTORE, value);
   }
 }

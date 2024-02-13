@@ -12,11 +12,11 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 
-import org.signal.imageeditor.app.GlideApp;
 import org.signal.imageeditor.core.Bounds;
 import org.signal.imageeditor.core.Renderer;
 import org.signal.imageeditor.core.RendererContext;
@@ -47,7 +47,7 @@ public final class UriRenderer implements Renderer, Parcelable {
     if (bitmap != null && bitmap.isRecycled()) bitmap = null;
 
     if (bitmap == null) {
-      GlideApp.with(rendererContext.context)
+      Glide.with(rendererContext.context)
               .asBitmap()
               .load(imageUri)
               .diskCacheStrategy(DiskCacheStrategy.ALL)

@@ -130,7 +130,7 @@
             </org.thoughtcrime.securesms.components.AnimatingToggle>
 
             <ImageButton android:id="@+id/ok_button"
-                         android:src="@drawable/ic_arrow_forward"
+                         android:src="@drawable/symbol_arrow_right_24"
                          android:contentDescription="@string/PassphrasePromptActivity_ok_button_content_description"
                          android:background="@null"
                          android:text="@string/prompt_passphrase_activity__unlock"
@@ -142,7 +142,8 @@
                          android:paddingStart="5dp"
                          android:paddingTop="5dp"
                          android:paddingEnd="10dp"
-                         android:paddingBottom="5dp"/>
+                         android:paddingBottom="5dp"
+                         app:tint="@color/signal_icon_tint_primary"/>
         </RelativeLayout>
 
     </LinearLayout>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_block"
+        android:title="@string/ConversationFragment_block" />
+
+    <item
+        android:id="@+id/menu_unblock"
+        android:title="@string/ConversationFragment_unblock" />
+
+    <item
+        android:id="@+id/menu_report_spam"
+        android:title="@string/ConversationFragment_report_spam" />
+
+    <item
+        android:id="@+id/menu_accept"
+        android:title="@string/ConversationFragment_accept" />
+
+    <item
+        android:id="@+id/menu_delete_chat"
+        android:title="@string/ConversationFragment_delete_chat" />
+</menu>

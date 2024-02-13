@@ -98,7 +98,19 @@ public final class PinValues extends SignalStoreValues {
   }
 
   public @NonNull PinKeyboardType getKeyboardType() {
-    return PinKeyboardType.fromCode(getStore().getString(KEYBOARD_TYPE, null));
+    String pin = SignalStore.svr().getPin();
+
+    if (pin == null) {
+      return PinKeyboardType.fromCode(getStore().getString(KEYBOARD_TYPE, null));
+    }
+
+    for (char c : pin.toCharArray()) {
+      if (!Character.isDigit(c)) {
+        return PinKeyboardType.ALPHA_NUMERIC;
+      }
+    }
+
+    return PinKeyboardType.NUMERIC;
   }
 
   public void setNextReminderIntervalToAtMost(long maxInterval) {

@@ -2,7 +2,9 @@ package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.Layout;
@@ -33,6 +35,7 @@ import androidx.annotation.StringRes;
 import androidx.annotation.StyleRes;
 import androidx.core.content.ContextCompat;
 
+import org.signal.core.util.DimensionUnit;
 import org.thoughtcrime.securesms.R;
 
 public final class SpanUtil {
@@ -113,9 +116,13 @@ public final class SpanUtil {
   }
 
   public static CharSequence buildImageSpan(@NonNull Drawable drawable) {
-    SpannableString imageSpan = new SpannableString(" ");
-
     int flag = Build.VERSION.SDK_INT >= 29 ? DynamicDrawableSpan.ALIGN_CENTER : DynamicDrawableSpan.ALIGN_BASELINE;
+
+    return buildImageSpan(drawable, flag);
+  }
+
+  private static CharSequence buildImageSpan(@NonNull Drawable drawable, int flag) {
+    SpannableString imageSpan = new SpannableString(" ");
 
     imageSpan.setSpan(new ImageSpan(drawable, flag), 0, imageSpan.length(), 0);
 
@@ -128,9 +135,21 @@ public final class SpanUtil {
     return imageSpan;
   }
 
+  public static CharSequence space(int width, @NonNull DimensionUnit widthUnit) {
+    Drawable drawable = new ColorDrawable(Color.TRANSPARENT);
+    drawable.setBounds(0, 0, (int) widthUnit.toPixels(width), 1);
+
+    return buildCenteredImageSpan(drawable);
+  }
+
   public static void appendCenteredImageSpan(@NonNull SpannableStringBuilder builder, @NonNull Drawable drawable, int width, int height) {
     drawable.setBounds(0, 0, ViewUtil.dpToPx(width), ViewUtil.dpToPx(height));
     builder.append(" ").append(SpanUtil.buildCenteredImageSpan(drawable));
+  }
+
+  public static void appendBottomImageSpan(@NonNull SpannableStringBuilder builder, @NonNull Drawable drawable, int width, int height) {
+    drawable.setBounds(0, 0, ViewUtil.dpToPx(width), ViewUtil.dpToPx(height));
+    builder.append(SpanUtil.buildImageSpan(drawable, DynamicDrawableSpan.ALIGN_BOTTOM));
   }
 
   public static CharSequence learnMore(@NonNull Context context,

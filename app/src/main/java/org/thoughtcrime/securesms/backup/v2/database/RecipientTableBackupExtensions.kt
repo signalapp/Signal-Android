@@ -10,7 +10,7 @@ import android.database.Cursor
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.Base64
 import org.signal.core.util.SqlUtil
-import org.signal.core.util.delete
+import org.signal.core.util.deleteAll
 import org.signal.core.util.logging.Log
 import org.signal.core.util.nullIfBlank
 import org.signal.core.util.requireBoolean
@@ -155,7 +155,7 @@ fun RecipientTable.restoreSelfFromBackup(accountData: AccountData, selfId: Recip
 }
 
 fun RecipientTable.clearAllDataForBackupRestore() {
-  writableDatabase.delete(RecipientTable.TABLE_NAME).run()
+  writableDatabase.deleteAll(RecipientTable.TABLE_NAME)
   SqlUtil.resetAutoIncrementValue(writableDatabase, RecipientTable.TABLE_NAME)
 
   RecipientId.clearCache()

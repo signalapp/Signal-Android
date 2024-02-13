@@ -13,7 +13,6 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -64,13 +63,8 @@ public class EditProfileActivity extends PassphraseRequiredActivity implements R
       navController.setGraph(graph, extras != null ? extras : new Bundle());
 
       if (extras != null && extras.getBoolean(START_AT_USERNAME, false)) {
-        if (SignalStore.uiHints().hasSeenUsernameEducation()) {
-          NavDirections action = EditProfileFragmentDirections.actionManageUsername();
-          SafeNavigation.safeNavigate(navController, action);
-        } else {
-          NavDirections action = EditProfileFragmentDirections.actionManageProfileFragmentToUsernameEducationFragment();
-          SafeNavigation.safeNavigate(navController, action);
-        }
+        NavDirections action = EditProfileFragmentDirections.actionManageUsername();
+        SafeNavigation.safeNavigate(navController, action);
       }
 
       if (extras != null && extras.getBoolean(START_AT_AVATAR, false)) {

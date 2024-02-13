@@ -108,6 +108,8 @@ public class GroupActionProcessor extends DeviceAwareActionProcessor {
         videoSink = new BroadcastVideoSink();
       }
 
+      long handRaisedTimestamp = callParticipant != null ? callParticipant.getHandRaisedTimestamp() : CallParticipant.HAND_LOWERED;
+
       builder.putParticipant(callParticipantId,
                              CallParticipant.createRemote(callParticipantId,
                                                           recipient,
@@ -116,6 +118,7 @@ public class GroupActionProcessor extends DeviceAwareActionProcessor {
                                                           device.getForwardingVideo() == null || device.getForwardingVideo(),
                                                           Boolean.FALSE.equals(device.getAudioMuted()),
                                                           Boolean.FALSE.equals(device.getVideoMuted()),
+                                                          handRaisedTimestamp,
                                                           device.getSpeakerTime(),
                                                           device.getMediaKeysReceived(),
                                                           device.getAddedTime(),

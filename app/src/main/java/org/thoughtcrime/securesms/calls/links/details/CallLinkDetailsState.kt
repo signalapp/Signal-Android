@@ -9,7 +9,6 @@ import androidx.compose.runtime.Immutable
 import org.thoughtcrime.securesms.database.CallLinkTable
 
 @Immutable
-@Deprecated("Merge with ControlsAndInfoState")
 data class CallLinkDetailsState(
   val displayRevocationDialog: Boolean = false,
   val callLink: CallLinkTable.CallLink? = null

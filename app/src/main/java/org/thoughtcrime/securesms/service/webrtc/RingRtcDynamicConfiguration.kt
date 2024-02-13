@@ -11,21 +11,19 @@ import org.thoughtcrime.securesms.util.FeatureFlags
  */
 object RingRtcDynamicConfiguration {
 
+  private val KNOWN_ISSUE_ROMS = "(lineage|calyxos)".toRegex(RegexOption.IGNORE_CASE)
+
   @JvmStatic
   fun getAudioProcessingMethod(): AudioProcessingMethod {
     if (SignalStore.internalValues().callingAudioProcessingMethod() != AudioProcessingMethod.Default) {
       return SignalStore.internalValues().callingAudioProcessingMethod()
     }
 
-    val useAec3: Boolean = FeatureFlags.useAec3()
-
     return when {
-      isHardwareBlocklisted() && useAec3 -> AudioProcessingMethod.ForceSoftwareAec3
-      isHardwareBlocklisted() -> AudioProcessingMethod.ForceSoftwareAecM
+      isHardwareBlocklisted() || isKnownFaultyHardwareImplementation() -> AudioProcessingMethod.ForceSoftwareAec3
       isSoftwareBlocklisted() -> AudioProcessingMethod.ForceHardware
       Build.VERSION.SDK_INT < 29 && FeatureFlags.useHardwareAecIfOlderThanApi29() -> AudioProcessingMethod.ForceHardware
-      Build.VERSION.SDK_INT < 29 && useAec3 -> AudioProcessingMethod.ForceSoftwareAec3
-      Build.VERSION.SDK_INT < 29 -> AudioProcessingMethod.ForceSoftwareAecM
+      Build.VERSION.SDK_INT < 29 -> AudioProcessingMethod.ForceSoftwareAec3
       else -> AudioProcessingMethod.ForceHardware
     }
   }
@@ -37,6 +35,12 @@ object RingRtcDynamicConfiguration {
 
   private fun isHardwareBlocklisted(): Boolean {
     return FeatureFlags.hardwareAecBlocklistModels().asListContains(Build.MODEL)
+  }
+
+  fun isKnownFaultyHardwareImplementation(): Boolean {
+    return Build.PRODUCT.contains(KNOWN_ISSUE_ROMS) ||
+      Build.DISPLAY.contains(KNOWN_ISSUE_ROMS) ||
+      Build.HOST.contains(KNOWN_ISSUE_ROMS)
   }
 
   private fun isSoftwareBlocklisted(): Boolean {

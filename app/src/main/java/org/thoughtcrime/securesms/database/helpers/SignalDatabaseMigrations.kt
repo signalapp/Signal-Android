@@ -71,6 +71,12 @@ import org.thoughtcrime.securesms.database.helpers.migration.V210_FixPniPossible
 import org.thoughtcrime.securesms.database.helpers.migration.V211_ReceiptColumnRenames
 import org.thoughtcrime.securesms.database.helpers.migration.V212_RemoveDistributionListUniqueConstraint
 import org.thoughtcrime.securesms.database.helpers.migration.V213_FixUsernameInE164Column
+import org.thoughtcrime.securesms.database.helpers.migration.V214_PhoneNumberSharingColumn
+import org.thoughtcrime.securesms.database.helpers.migration.V215_RemoveAttachmentUniqueId
+import org.thoughtcrime.securesms.database.helpers.migration.V216_PhoneNumberDiscoverable
+import org.thoughtcrime.securesms.database.helpers.migration.V217_MessageTableExtrasColumn
+import org.thoughtcrime.securesms.database.helpers.migration.V218_RecipientPniSignatureVerified
+import org.thoughtcrime.securesms.database.helpers.migration.V219_PniPreKeyStores
 
 /**
  * Contains all of the database migrations for [SignalDatabase]. Broken into a separate file for cleanliness.
@@ -144,10 +150,16 @@ object SignalDatabaseMigrations {
     210 to V210_FixPniPossibleColumns,
     211 to V211_ReceiptColumnRenames,
     212 to V212_RemoveDistributionListUniqueConstraint,
-    213 to V213_FixUsernameInE164Column
+    213 to V213_FixUsernameInE164Column,
+    214 to V214_PhoneNumberSharingColumn,
+    215 to V215_RemoveAttachmentUniqueId,
+    216 to V216_PhoneNumberDiscoverable,
+    217 to V217_MessageTableExtrasColumn,
+    218 to V218_RecipientPniSignatureVerified,
+    219 to V219_PniPreKeyStores
   )
 
-  const val DATABASE_VERSION = 213
+  const val DATABASE_VERSION = 219
 
   @JvmStatic
   fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {

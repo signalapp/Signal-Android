@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.video.exo.SignalMediaSourceFactory
 @OptIn(UnstableApi::class)
 class VoiceNotePlayer @JvmOverloads constructor(
   context: Context,
-  private val internalPlayer: ExoPlayer = ExoPlayer.Builder(context)
+  internalPlayer: ExoPlayer = ExoPlayer.Builder(context)
     .setRenderersFactory(WorkaroundRenderersFactory(context))
     .setMediaSourceFactory(SignalMediaSourceFactory(context))
     .setLoadControl(
@@ -33,13 +33,6 @@ class VoiceNotePlayer @JvmOverloads constructor(
 
   init {
     setAudioAttributes(AudioAttributes.Builder().setContentType(C.AUDIO_CONTENT_TYPE_MUSIC).setUsage(C.USAGE_MEDIA).build(), true)
-  }
-
-  /**
-   * Required to expose this because this is unique to [ExoPlayer], not the generic [androidx.media3.common.Player] interface.
-   */
-  fun setAudioAttributes(audioAttributes: AudioAttributes, handleAudioFocus: Boolean) {
-    internalPlayer.setAudioAttributes(audioAttributes, handleAudioFocus)
   }
 
   override fun seekTo(windowIndex: Int, positionMs: Long) {
@@ -66,7 +59,8 @@ class VoiceNotePlayer @JvmOverloads constructor(
  */
 @OptIn(androidx.media3.common.util.UnstableApi::class)
 class WorkaroundRenderersFactory(val context: Context) : DefaultRenderersFactory(context) {
-  override fun buildAudioSink(context: Context, enableFloatOutput: Boolean, enableAudioTrackPlaybackParams: Boolean, enableOffload: Boolean): AudioSink? {
-    return RetryableInitAudioSink(context, enableFloatOutput, enableAudioTrackPlaybackParams, enableOffload)
+
+  override fun buildAudioSink(context: Context, enableFloatOutput: Boolean, enableAudioTrackPlaybackParams: Boolean): AudioSink {
+    return RetryableInitAudioSink(context, enableFloatOutput, enableAudioTrackPlaybackParams)
   }
 }

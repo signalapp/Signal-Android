@@ -7,6 +7,9 @@ import android.view.ContextThemeWrapper
 import android.view.View
 import android.widget.ImageView
 import androidx.test.core.app.ApplicationProvider
+import com.bumptech.glide.Glide
+import com.bumptech.glide.RequestBuilder
+import com.bumptech.glide.RequestManager
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Before
@@ -26,9 +29,6 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.Shadows.shadowOf
 import org.robolectric.annotation.Config
 import org.thoughtcrime.securesms.blurhash.BlurHash
-import org.thoughtcrime.securesms.mms.GlideApp
-import org.thoughtcrime.securesms.mms.GlideRequest
-import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.util.visible
 
 @RunWith(RobolectricTestRunner::class)
@@ -42,21 +42,21 @@ class StoryFirstTimeNavigationViewTest {
   private lateinit var testSubject: StoryFirstTimeNavigationView
 
   @Mock
-  private lateinit var glideApp: MockedStatic<GlideApp>
+  private lateinit var glide: MockedStatic<Glide>
 
   @Mock
-  private lateinit var glideRequests: GlideRequests
+  private lateinit var requestManager: RequestManager
 
   @Mock
-  private lateinit var glideRequest: GlideRequest<Drawable>
+  private lateinit var requestBuilder: RequestBuilder<Drawable>
 
   @Before
   fun setUp() {
     testSubject = StoryFirstTimeNavigationView(ContextThemeWrapper(ApplicationProvider.getApplicationContext(), org.thoughtcrime.securesms.R.style.Signal_DayNight))
 
-    whenever(GlideApp.with(any<View>())).thenReturn(glideRequests)
-    whenever(glideRequests.load(any<BlurHash>())).thenReturn(glideRequest)
-    whenever(glideRequest.addListener(any())).thenReturn(glideRequest)
+    whenever(Glide.with(any<View>())).thenReturn(requestManager)
+    whenever(requestManager.load(any<BlurHash>())).thenReturn(requestBuilder)
+    whenever(requestBuilder.addListener(any())).thenReturn(requestBuilder)
   }
 
   @Test
@@ -95,7 +95,7 @@ class StoryFirstTimeNavigationViewTest {
     testSubject.setBlurHash(BlurHash.parseOrNull("0000")!!)
 
     val blurHashView = testSubject.findViewById<ImageView>(org.thoughtcrime.securesms.R.id.edu_blur_hash)
-    verify(glideRequest).into(eq(blurHashView))
+    verify(requestBuilder).into(eq(blurHashView))
   }
 
   @Test
@@ -107,7 +107,7 @@ class StoryFirstTimeNavigationViewTest {
 
     val blurHashView = testSubject.findViewById<ImageView>(org.thoughtcrime.securesms.R.id.edu_blur_hash)
     assertFalse(blurHashView.visible)
-    verify(glideRequests).clear(blurHashView)
+    verify(requestManager).clear(blurHashView)
   }
 
   @Test
@@ -123,7 +123,7 @@ class StoryFirstTimeNavigationViewTest {
     testSubject.setBlurHash(BlurHash.parseOrNull("0000")!!)
 
     val blurHashView = testSubject.findViewById<ImageView>(org.thoughtcrime.securesms.R.id.edu_blur_hash)
-    verify(glideRequest, never()).into(eq(blurHashView))
+    verify(requestBuilder, never()).into(eq(blurHashView))
   }
 
   @Test

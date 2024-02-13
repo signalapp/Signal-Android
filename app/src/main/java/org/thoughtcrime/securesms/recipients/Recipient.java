@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette;
 import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.RecipientTable.MentionSetting;
+import org.thoughtcrime.securesms.database.RecipientTable.PhoneNumberSharingState;
 import org.thoughtcrime.securesms.database.RecipientTable.RegisteredState;
 import org.thoughtcrime.securesms.database.RecipientTable.UnidentifiedAccessMode;
 import org.thoughtcrime.securesms.database.RecipientTable.VibrateState;
@@ -137,6 +138,7 @@ public class Recipient {
   private final boolean                      needsPniSignature;
   private final CallLinkRoomId               callLinkRoomId;
   private final Optional<GroupRecord>        groupRecord;
+  private final PhoneNumberSharingState      phoneNumberSharing;
 
   /**
    * Returns a {@link LiveRecipient}, which contains a {@link Recipient} that may or may not be
@@ -426,6 +428,7 @@ public class Recipient {
     this.isActiveGroup                = false;
     this.callLinkRoomId               = null;
     this.groupRecord                  = Optional.empty();
+    this.phoneNumberSharing           = PhoneNumberSharingState.UNKNOWN;
   }
 
   public Recipient(@NonNull RecipientId id, @NonNull RecipientDetails details, boolean resolved) {
@@ -481,6 +484,7 @@ public class Recipient {
     this.isActiveGroup                = details.isActiveGroup;
     this.callLinkRoomId               = details.callLinkRoomId;
     this.groupRecord                  = details.groupRecord;
+    this.phoneNumberSharing           = details.phoneNumberSharing;
   }
 
   public @NonNull RecipientId getId() {
@@ -557,7 +561,7 @@ public class Recipient {
     String name = getNameFromLocalData(context);
 
     if (Util.isEmpty(name)) {
-      name = context.getString(R.string.Recipient_unknown);
+      name = getUnknownDisplayName(context);
     }
 
     return StringUtil.isolateBidi(name);
@@ -571,7 +575,7 @@ public class Recipient {
     }
 
     if (Util.isEmpty(name)) {
-      name = StringUtil.isolateBidi(context.getString(R.string.Recipient_unknown));
+      name = StringUtil.isolateBidi(getUnknownDisplayName(context));
     }
 
     return StringUtil.isolateBidi(name);
@@ -655,6 +659,14 @@ public class Recipient {
     return StringUtil.isolateBidi(name);
   }
 
+  private String getUnknownDisplayName(@NonNull Context context) {
+    if (getRegistered() == RegisteredState.NOT_REGISTERED) {
+      return context.getString(R.string.Recipient_deleted_account);
+    } else {
+      return context.getString(R.string.Recipient_unknown);
+    }
+  }
+
   public @NonNull Optional<ServiceId> getServiceId() {
     return OptionalUtil.or(Optional.ofNullable(aci), Optional.ofNullable(pni));
   }
@@ -677,6 +689,13 @@ public class Recipient {
 
   public @NonNull Optional<String> getE164() {
     return Optional.ofNullable(e164);
+  }
+
+  /**
+   * Whether or not we should show this user's e164 in the interface.
+   */
+  public boolean shouldShowE164() {
+    return hasE164() && (isSystemContact() || getPhoneNumberSharing() != PhoneNumberSharingState.DISABLED);
   }
 
   public @NonNull Optional<String> getEmail() {
@@ -1230,6 +1249,10 @@ public class Recipient {
     return Objects.requireNonNull(callLinkRoomId);
   }
 
+  public PhoneNumberSharingState getPhoneNumberSharing() {
+    return phoneNumberSharing;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -1386,7 +1409,8 @@ public class Recipient {
            hasGroupsInCommon == other.hasGroupsInCommon &&
            Objects.equals(badges, other.badges) &&
            isActiveGroup == other.isActiveGroup &&
-           Objects.equals(callLinkRoomId, other.callLinkRoomId);
+           Objects.equals(callLinkRoomId, other.callLinkRoomId) &&
+           phoneNumberSharing == other.phoneNumberSharing;
   }
 
   private static boolean allContentsAreTheSame(@NonNull List<Recipient> a, @NonNull List<Recipient> b) {

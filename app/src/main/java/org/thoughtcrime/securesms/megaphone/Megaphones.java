@@ -11,6 +11,7 @@ import androidx.annotation.WorkerThread;
 import androidx.core.app.NotificationManagerCompat;
 
 import com.annimon.stream.Stream;
+import com.bumptech.glide.Glide;
 
 import org.signal.core.util.MapUtil;
 import org.signal.core.util.SetUtil;
@@ -24,16 +25,15 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.keyvalue.SmsExportPhase;
 import org.thoughtcrime.securesms.lock.SignalPinReminderDialog;
 import org.thoughtcrime.securesms.lock.SignalPinReminders;
 import org.thoughtcrime.securesms.lock.v2.CreateSvrPinActivity;
 import org.thoughtcrime.securesms.lock.v2.SvrMigrationActivity;
-import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.notifications.TurnOnNotificationsBottomSheet;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.profiles.manage.EditProfileActivity;
+import org.thoughtcrime.securesms.profiles.username.NewWaysToConnectDialogFragment;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.ServiceUtil;
@@ -107,7 +107,6 @@ public final class Megaphones {
       put(Event.CLIENT_DEPRECATED, SignalStore.misc().isClientDeprecated() ? ALWAYS : NEVER);
       put(Event.NOTIFICATIONS, shouldShowNotificationsMegaphone(context) ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(30)) : NEVER);
       put(Event.GRANT_FULL_SCREEN_INTENT, shouldShowGrantFullScreenIntentPermission(context) ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(3)) : NEVER);
-      put(Event.SMS_EXPORT, new SmsExportReminderSchedule(context));
       put(Event.BACKUP_SCHEDULE_PERMISSION, shouldShowBackupSchedulePermissionMegaphone(context) ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(3)) : NEVER);
       put(Event.ONBOARDING, shouldShowOnboardingMegaphone(context) ? ALWAYS : NEVER);
       put(Event.TURN_OFF_CENSORSHIP_CIRCUMVENTION, shouldShowTurnOffCircumventionMegaphone() ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(7)) : NEVER);
@@ -140,8 +139,6 @@ public final class Megaphones {
         return buildRemoteMegaphone(context);
       case BACKUP_SCHEDULE_PERMISSION:
         return buildBackupPermissionMegaphone(context);
-      case SMS_EXPORT:
-        return buildSmsExportMegaphone(context);
       case SET_UP_YOUR_USERNAME:
         return buildSetUpYourUsernameMegaphone(context);
       case GRANT_FULL_SCREEN_INTENT:
@@ -276,7 +273,7 @@ public final class Megaphones {
           .setBody(record.getBody());
 
       if (record.getImageUri() != null) {
-        builder.setImageRequest(GlideApp.with(context).asDrawable().load(record.getImageUri()));
+        builder.setImageRequestBuilder(Glide.with(context).asDrawable().load(record.getImageUri()));
       }
 
       if (record.hasPrimaryAction()) {
@@ -320,33 +317,15 @@ public final class Megaphones {
         .build();
   }
 
-  private static @NonNull Megaphone buildSmsExportMegaphone(@NonNull Context context) {
-    SmsExportPhase phase = SignalStore.misc().getSmsExportPhase();
-
-    Megaphone.Builder builder = new Megaphone.Builder(Event.SMS_EXPORT, Megaphone.Style.FULLSCREEN)
-        .setOnVisibleListener((megaphone, controller) -> {
-          if (phase.isBlockingUi()) {
-            SmsExportReminderSchedule.setShowPhase3Megaphone(false);
-          }
-          controller.onMegaphoneNavigationRequested(new Intent(context, SmsExportMegaphoneActivity.class), SmsExportMegaphoneActivity.REQUEST_CODE);
-        });
-
-    if (phase.isBlockingUi()) {
-      builder.disableSnooze();
-    }
-
-    return builder.build();
-  }
-
   public static @NonNull Megaphone buildSetUpYourUsernameMegaphone(@NonNull Context context) {
     return new Megaphone.Builder(Event.SET_UP_YOUR_USERNAME, Megaphone.Style.BASIC)
-        .setTitle(R.string.SetUpYourUsername__set_up_your_signal_username)
-        .setBody(R.string.SetUpYourUsername__usernames_let_others)
-        .setImage(R.drawable.usernames_64)
-        .setActionButton(R.string.SetUpYourUsername__continue, (megaphone, controller) -> {
-          controller.onMegaphoneNavigationRequested(EditProfileActivity.getIntentForUsernameEdit(context));
+        .setTitle(R.string.NewWaysToConnectDialogFragment__new_ways_to_connect)
+        .setBody(R.string.SetUpYourUsername__introducing_phone_number_privacy)
+        .setImage(R.drawable.usernames_megaphone)
+        .setActionButton(R.string.SetUpYourUsername__learn_more, (megaphone, controller) -> {
+          controller.onMegaphoneDialogFragmentRequested(new NewWaysToConnectDialogFragment());
         })
-        .setSecondaryButton(R.string.SetUpYourUsername__not_now, (megaphone, controller) -> {
+        .setSecondaryButton(R.string.SetUpYourUsername__dismiss, (megaphone, controller) -> {
           controller.onMegaphoneCompleted(Event.SET_UP_YOUR_USERNAME);
         })
         .build();
@@ -360,7 +339,7 @@ public final class Megaphones {
         .setActionButton(R.string.GrantFullScreenIntentPermission_megaphone_turn_on, (megaphone, controller) -> {
           controller.onMegaphoneDialogFragmentRequested(TurnOnNotificationsBottomSheet.turnOnFullScreenIntentFragment(context));
         })
-        .setSecondaryButton(R.string.SetUpYourUsername__not_now, (megaphone, controller) -> {
+        .setSecondaryButton(R.string.GrantFullScreenIntentPermission_megaphone_not_now, (megaphone, controller) -> {
           controller.onMegaphoneCompleted(Event.GRANT_FULL_SCREEN_INTENT);
         })
         .build();
@@ -415,12 +394,12 @@ public final class Megaphones {
   private static boolean shouldShowSetUpYourUsernameMegaphone(@NonNull Map<Event, MegaphoneRecord> records) {
     boolean                                         hasUsername                    = SignalStore.account().isRegistered() && SignalStore.account().getUsername() != null;
     boolean                                         hasCompleted                   = MapUtil.mapOrDefault(records, Event.SET_UP_YOUR_USERNAME, MegaphoneRecord::isFinished, false);
-    long                                            phoneNumberDiscoveryDisabledAt = SignalStore.phoneNumberPrivacy().getPhoneNumberListingModeTimestamp();
-    PhoneNumberPrivacyValues.PhoneNumberListingMode listingMode                    = SignalStore.phoneNumberPrivacy().getPhoneNumberListingMode();
+    long                                                    phoneNumberDiscoveryDisabledAt = SignalStore.phoneNumberPrivacy().getPhoneNumberDiscoverabilityModeTimestamp();
+    PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode listingMode                    = SignalStore.phoneNumberPrivacy().getPhoneNumberDiscoverabilityMode();
 
     return FeatureFlags.usernames() &&
            !hasUsername &&
-           listingMode.isUnlisted() &&
+           listingMode.isUndiscoverable() &&
            !hasCompleted &&
            phoneNumberDiscoveryDisabledAt > 0 &&
            (System.currentTimeMillis() - phoneNumberDiscoveryDisabledAt) >= TimeUnit.DAYS.toMillis(3);
@@ -470,7 +449,6 @@ public final class Megaphones {
     TURN_OFF_CENSORSHIP_CIRCUMVENTION("turn_off_censorship_circumvention"),
     REMOTE_MEGAPHONE("remote_megaphone"),
     BACKUP_SCHEDULE_PERMISSION("backup_schedule_permission"),
-    SMS_EXPORT("sms_export"),
     SET_UP_YOUR_USERNAME("set_up_your_username"),
     GRANT_FULL_SCREEN_INTENT("grant_full_screen_intent");
 

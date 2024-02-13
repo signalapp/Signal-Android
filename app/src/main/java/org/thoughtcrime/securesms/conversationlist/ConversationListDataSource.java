@@ -84,7 +84,12 @@ abstract class ConversationListDataSource implements PagedDataSource<Long, Conve
         if (!MessageTypes.isGroupV2(record.getType())) {
           needsResolve.add(record.getRecipient().getId());
         } else if (MessageTypes.isGroupUpdate(record.getType())) {
-          UpdateDescription description = MessageRecord.getGv2ChangeDescription(ApplicationDependencies.getApplication(), record.getBody(), null);
+          UpdateDescription description;
+          if (record.getMessageExtras() != null) {
+            description = MessageRecord.getGv2ChangeDescription(ApplicationDependencies.getApplication(), record.getMessageExtras(), null);
+          } else {
+            description = MessageRecord.getGv2ChangeDescription(ApplicationDependencies.getApplication(), record.getBody(), null);
+          }
           needsResolve.addAll(description.getMentioned().stream().map(RecipientId::from).collect(Collectors.toList()));
         }
       }

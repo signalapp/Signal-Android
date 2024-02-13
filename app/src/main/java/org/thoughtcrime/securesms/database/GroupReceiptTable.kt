@@ -6,6 +6,7 @@ import android.database.Cursor
 import androidx.core.content.contentValuesOf
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.delete
+import org.signal.core.util.deleteAll
 import org.signal.core.util.forEach
 import org.signal.core.util.readToList
 import org.signal.core.util.requireBoolean
@@ -172,7 +173,7 @@ class GroupReceiptTable(context: Context?, databaseHelper: SignalDatabase?) : Da
   }
 
   fun deleteAllRows() {
-    writableDatabase.delete(TABLE_NAME).run()
+    writableDatabase.deleteAll(TABLE_NAME)
   }
 
   override fun remapRecipient(fromId: RecipientId, toId: RecipientId) {

@@ -438,7 +438,7 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
   public static void showWarningDialog(Context context, OnClickListener onAcceptListener, int count) {
     AlertDialog.Builder builder = new MaterialAlertDialogBuilder(context);
     builder.setTitle(R.string.ConversationFragment_save_to_sd_card);
-    builder.setIcon(R.drawable.ic_warning);
+    builder.setIcon(R.drawable.symbol_error_triangle_fill_24);
     builder.setCancelable(true);
     builder.setMessage(context.getResources().getQuantityString(R.plurals.ConversationFragment_saving_n_media_to_storage_warning,
                                                                 count, count));

@@ -6,5 +6,5 @@
 
 <resources>
 
-    <style name="Theme.Signal" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.Signal" parent="Theme.AppCompat.DayNight" />
 </resources>

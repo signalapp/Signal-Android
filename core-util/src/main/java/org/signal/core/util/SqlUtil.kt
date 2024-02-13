@@ -393,7 +393,7 @@ object SqlUtil {
       .toList()
   }
 
-  private fun buildSingleBulkInsert(tableName: String, columns: Array<String>, contentValues: List<ContentValues>): Query {
+  fun buildSingleBulkInsert(tableName: String, columns: Array<String>, contentValues: List<ContentValues>): Query {
     val builder = StringBuilder()
     builder.append("INSERT INTO ").append(tableName).append(" (")
 

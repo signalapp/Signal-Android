@@ -34,9 +34,9 @@ data class ConversationItemThumbnailState(
     @IgnoredOnParcel
     private val clickListener: SlideClickListener? = null,
     @IgnoredOnParcel
-    private val downloadClickListener: SlidesClickedListener? = null,
+    private val startTransferClickListener: SlidesClickedListener? = null,
     @IgnoredOnParcel
-    private val cancelDownloadClickListener: SlidesClickedListener? = null,
+    private val cancelTransferClickListener: SlidesClickedListener? = null,
     @IgnoredOnParcel
     private val playVideoClickListener: SlideClickListener? = null,
     @IgnoredOnParcel
@@ -63,8 +63,8 @@ data class ConversationItemThumbnailState(
       thumbnailView.get().isClickable = clickable
       thumbnailView.get().setRadii(cornerTopLeft, cornerTopRight, cornerBottomRight, cornerBottomLeft)
       thumbnailView.get().setThumbnailClickListener(clickListener)
-      thumbnailView.get().setDownloadClickListener(downloadClickListener)
-      thumbnailView.get().setCancelDownloadClickListener(cancelDownloadClickListener)
+      thumbnailView.get().setStartTransferClickListener(startTransferClickListener)
+      thumbnailView.get().setCancelTransferClickListener(cancelTransferClickListener)
       thumbnailView.get().setPlayVideoClickListener(playVideoClickListener)
       thumbnailView.get().setOnLongClickListener(longClickListener)
       thumbnailView.get().setBounds(minWidth, maxWidth, minHeight, maxHeight)
@@ -78,9 +78,9 @@ data class ConversationItemThumbnailState(
     @IgnoredOnParcel
     private val clickListener: SlideClickListener? = null,
     @IgnoredOnParcel
-    private val downloadClickListener: SlidesClickedListener? = null,
+    private val startTransferClickListener: SlidesClickedListener? = null,
     @IgnoredOnParcel
-    private val cancelDownloadClickListener: SlidesClickedListener? = null,
+    private val cancelTransferClickListener: SlidesClickedListener? = null,
     @IgnoredOnParcel
     private val playVideoClickListener: SlideClickListener? = null,
     @IgnoredOnParcel
@@ -103,8 +103,8 @@ data class ConversationItemThumbnailState(
       albumView.get().isClickable = clickable
       albumView.get().setRadii(cornerTopLeft, cornerTopRight, cornerBottomRight, cornerBottomLeft)
       albumView.get().setThumbnailClickListener(clickListener)
-      albumView.get().setDownloadClickListener(downloadClickListener)
-      albumView.get().setCancelDownloadClickListener(cancelDownloadClickListener)
+      albumView.get().setStartTransferClickListener(startTransferClickListener)
+      albumView.get().setCancelTransferClickListener(cancelTransferClickListener)
       albumView.get().setPlayVideoClickListener(playVideoClickListener)
       albumView.get().setOnLongClickListener(longClickListener)
       albumView.get().setCellBackgroundColor(cellBackgroundColor)

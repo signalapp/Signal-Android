@@ -115,6 +115,13 @@ sealed class AudioManagerCommand : Parcelable {
     }
   }
 
+  class PlayStateChangeUp : AudioManagerCommand() {
+    companion object {
+      @JvmField
+      val CREATOR: Parcelable.Creator<PlayStateChangeUp> = ParcelCheat { PlayStateChangeUp() }
+    }
+  }
+
   class ParcelCheat<T>(private val createFrom: (Parcel) -> T) : Parcelable.Creator<T> {
     override fun createFromParcel(parcel: Parcel): T = createFrom(parcel)
     override fun newArray(size: Int): Array<T?> = throw UnsupportedOperationException()

@@ -43,6 +43,6 @@ public class MessageRequestResponseMessage {
   }
 
   public enum Type {
-    UNKNOWN, ACCEPT, DELETE, BLOCK, BLOCK_AND_DELETE, UNBLOCK_AND_ACCEPT
+    UNKNOWN, ACCEPT, DELETE, BLOCK, BLOCK_AND_DELETE, UNBLOCK_AND_ACCEPT, SPAM, BLOCK_AND_SPAM
   }
 }

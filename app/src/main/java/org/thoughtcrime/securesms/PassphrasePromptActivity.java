@@ -374,7 +374,7 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     @Override
     public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
       Log.i(TAG, "onAuthenticationSucceeded");
-      fingerprintPrompt.setImageResource(R.drawable.ic_check_white_48dp);
+      fingerprintPrompt.setImageResource(R.drawable.symbol_check_white_48);
       fingerprintPrompt.getBackground().setColorFilter(getResources().getColor(R.color.green_500), PorterDuff.Mode.SRC_IN);
       fingerprintPrompt.animate().setInterpolator(new BounceInterpolator()).scaleX(1.1f).scaleY(1.1f).setDuration(500).setListener(new AnimationCompleteListener() {
         @Override
@@ -388,7 +388,7 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     public void onAuthenticationFailed() {
       Log.w(TAG, "onAuthenticationFailed()");
 
-      fingerprintPrompt.setImageResource(R.drawable.ic_close_white_48dp);
+      fingerprintPrompt.setImageResource(R.drawable.symbol_x_white_48);
       fingerprintPrompt.getBackground().setColorFilter(getResources().getColor(R.color.red_500), PorterDuff.Mode.SRC_IN);
 
       TranslateAnimation shake = new TranslateAnimation(0, 30, 0, 0);

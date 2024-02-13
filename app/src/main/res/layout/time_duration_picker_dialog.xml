@@ -68,12 +68,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/duration_layout" />
 
-    <org.thoughtcrime.securesms.components.NumericKeyboardView
-        android:id="@+id/duration_keyboard"
+    <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/duration_header" />
+        app:layout_constraintTop_toBottomOf="@+id/duration_header">
 
+        <org.thoughtcrime.securesms.components.NumericKeyboardView
+            android:id="@+id/duration_keyboard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

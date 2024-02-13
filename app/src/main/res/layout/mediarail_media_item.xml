@@ -32,14 +32,15 @@
         android:layout_gravity="center"
         android:src="@drawable/mediapreview_rail_item_overlay_unselected"/>
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/rail_item_caption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start|top"
         android:layout_marginStart="2dp"
-        android:src="@drawable/ic_caption_28"
+        android:src="@drawable/symbol_caption_24"
         android:visibility="gone"
+        app:tint="@color/core_white"
         tools:visibility="visible"/>
 
 </FrameLayout>

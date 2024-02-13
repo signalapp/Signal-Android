@@ -29,7 +29,7 @@
         android:layout_marginStart="24dp"
         android:contentDescription="@string/ContactShareEditActivity__avatar"
         android:visibility="gone"
-        tools:src="@drawable/ic_contact_picture"
+        tools:src="@tools:sample/avatars"
         tools:visibility="visible" />
 
     <LinearLayout

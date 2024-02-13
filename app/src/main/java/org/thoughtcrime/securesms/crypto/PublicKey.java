@@ -37,13 +37,6 @@ public class PublicKey {
   private final ECPublicKey publicKey;
   private int id;
 	
-  public PublicKey(PublicKey publicKey) {
-    this.id        = publicKey.id;
-		
-    // FIXME :: This not strictly an accurate copy constructor.
-    this.publicKey = publicKey.publicKey;
-  }
-	
   public PublicKey(int id, ECPublicKey publicKey) {
     this.publicKey = publicKey;
     this.id        = id;
@@ -57,10 +50,6 @@ public class PublicKey {
 
     this.id        = Conversions.byteArrayToMedium(bytes, offset);
     this.publicKey = Curve.decodePoint(bytes, offset + 3);
-  }
-
-  public PublicKey(byte[] bytes) throws InvalidKeyException {
-    this(bytes, 0);
   }
 
   public int getType() {
@@ -77,20 +66,6 @@ public class PublicKey {
 	
   public ECPublicKey getKey() {
     return publicKey;
-  }
-	
-  public String getFingerprint() {
-    return Hex.toString(getFingerprintBytes());
-  }
-	
-  public byte[] getFingerprintBytes() {
-    try {
-      MessageDigest md = MessageDigest.getInstance("SHA-1");
-      return md.digest(serialize());
-    } catch (NoSuchAlgorithmException nsae) {
-      Log.w(TAG, "LocalKeyPair", nsae);
-      throw new IllegalArgumentException("SHA-1 isn't supported!");
-    }
   }
 	
   public byte[] serialize() {

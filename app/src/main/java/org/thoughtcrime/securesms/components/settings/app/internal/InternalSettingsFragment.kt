@@ -615,6 +615,13 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         }
       )
 
+      clickPref(
+        title = DSLSettingsText.from("Add donate_friend remote megaphone"),
+        onClick = {
+          viewModel.addRemoteDonateFriendMegaphone()
+        }
+      )
+
       dividerPref()
 
       sectionHeaderPref(DSLSettingsText.from("CDS"))
@@ -724,7 +731,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
             .setTitle("Corrupt your username?")
             .setMessage("Are you sure? You might not be able to get your original username back.")
             .setPositiveButton(android.R.string.ok) { _, _ ->
-              val random = "${(1..5).map { ('a'..'z').random() }.joinToString(separator = "") }.${Random.nextInt(1, 100)}"
+              val random = "${(1..5).map { ('a'..'z').random() }.joinToString(separator = "") }.${Random.nextInt(10, 100)}"
 
               SignalStore.account().username = random
               SignalDatabase.recipients.setUsername(Recipient.self().id, random)

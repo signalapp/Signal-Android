@@ -47,9 +47,7 @@ class MediaPreviewRepository {
         val mediaRecords = mutableListOf<MediaTable.MediaRecord>()
         var startingRow = -1
         while (cursor.moveToNext()) {
-          if (startingAttachmentId.rowId == cursor.requireLong(AttachmentTable.ROW_ID) &&
-            startingAttachmentId.uniqueId == cursor.requireLong(AttachmentTable.UNIQUE_ID)
-          ) {
+          if (startingAttachmentId.id == cursor.requireLong(AttachmentTable.ID)) {
             startingRow = cursor.position
             break
           }

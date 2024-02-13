@@ -148,6 +148,23 @@ inline fun <K, V> Cursor.readToMap(predicate: (Pair<K, V>) -> Boolean = { true }
   return readToList(predicate, mapper).associate { it }
 }
 
+/**
+ * Groups the cursor by the given key, and returns a map of keys to lists of values.
+ */
+inline fun <K, V> Cursor.groupBy(mapper: (Cursor) -> Pair<K, V>): Map<K, List<V>> {
+  val map: MutableMap<K, MutableList<V>> = mutableMapOf()
+
+  use {
+    while (moveToNext()) {
+      val pair = mapper(this)
+      val list = map.getOrPut(pair.first) { mutableListOf() }
+      list += pair.second
+    }
+  }
+
+  return map
+}
+
 inline fun <T> Cursor.readToSet(predicate: (T) -> Boolean = { true }, mapper: (Cursor) -> T): Set<T> {
   val set = mutableSetOf<T>()
   use {

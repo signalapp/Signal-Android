@@ -61,8 +61,8 @@ class AttachmentTableTest {
       false
     )
 
-    val attachment1Info = SignalDatabase.attachments.getAttachmentDataFileInfo(attachment.attachmentId, AttachmentTable.DATA)
-    val attachment2Info = SignalDatabase.attachments.getAttachmentDataFileInfo(attachment2.attachmentId, AttachmentTable.DATA)
+    val attachment1Info = SignalDatabase.attachments.getAttachmentDataFileInfo(attachment.attachmentId, AttachmentTable.DATA_FILE)
+    val attachment2Info = SignalDatabase.attachments.getAttachmentDataFileInfo(attachment2.attachmentId, AttachmentTable.DATA_FILE)
 
     assertNotEquals(attachment1Info, attachment2Info)
   }
@@ -89,8 +89,8 @@ class AttachmentTableTest {
       true
     )
 
-    val attachment1Info = SignalDatabase.attachments.getAttachmentDataFileInfo(attachment.attachmentId, AttachmentTable.DATA)
-    val attachment2Info = SignalDatabase.attachments.getAttachmentDataFileInfo(attachment2.attachmentId, AttachmentTable.DATA)
+    val attachment1Info = SignalDatabase.attachments.getAttachmentDataFileInfo(attachment.attachmentId, AttachmentTable.DATA_FILE)
+    val attachment2Info = SignalDatabase.attachments.getAttachmentDataFileInfo(attachment2.attachmentId, AttachmentTable.DATA_FILE)
 
     assertNotEquals(attachment1Info, attachment2Info)
   }
@@ -124,9 +124,9 @@ class AttachmentTableTest {
     SignalDatabase.attachments.updateAttachmentData(standardDatabaseAttachment, createMediaStream(compressedData), false)
 
     // THEN
-    val previousInfo = SignalDatabase.attachments.getAttachmentDataFileInfo(previousDatabaseAttachmentId, AttachmentTable.DATA)!!
-    val standardInfo = SignalDatabase.attachments.getAttachmentDataFileInfo(standardDatabaseAttachment.attachmentId, AttachmentTable.DATA)!!
-    val highInfo = SignalDatabase.attachments.getAttachmentDataFileInfo(highDatabaseAttachment.attachmentId, AttachmentTable.DATA)!!
+    val previousInfo = SignalDatabase.attachments.getAttachmentDataFileInfo(previousDatabaseAttachmentId, AttachmentTable.DATA_FILE)!!
+    val standardInfo = SignalDatabase.attachments.getAttachmentDataFileInfo(standardDatabaseAttachment.attachmentId, AttachmentTable.DATA_FILE)!!
+    val highInfo = SignalDatabase.attachments.getAttachmentDataFileInfo(highDatabaseAttachment.attachmentId, AttachmentTable.DATA_FILE)!!
 
     assertNotEquals(standardInfo, highInfo)
     standardInfo.file assertIs previousInfo.file
@@ -158,9 +158,9 @@ class AttachmentTableTest {
     val secondHighDatabaseAttachment = SignalDatabase.attachments.insertAttachmentForPreUpload(secondHighQualityPreUpload)
 
     // THEN
-    val standardInfo = SignalDatabase.attachments.getAttachmentDataFileInfo(standardDatabaseAttachment.attachmentId, AttachmentTable.DATA)!!
-    val highInfo = SignalDatabase.attachments.getAttachmentDataFileInfo(highDatabaseAttachment.attachmentId, AttachmentTable.DATA)!!
-    val secondHighInfo = SignalDatabase.attachments.getAttachmentDataFileInfo(secondHighDatabaseAttachment.attachmentId, AttachmentTable.DATA)!!
+    val standardInfo = SignalDatabase.attachments.getAttachmentDataFileInfo(standardDatabaseAttachment.attachmentId, AttachmentTable.DATA_FILE)!!
+    val highInfo = SignalDatabase.attachments.getAttachmentDataFileInfo(highDatabaseAttachment.attachmentId, AttachmentTable.DATA_FILE)!!
+    val secondHighInfo = SignalDatabase.attachments.getAttachmentDataFileInfo(secondHighDatabaseAttachment.attachmentId, AttachmentTable.DATA_FILE)!!
 
     highInfo.file assertIsNot standardInfo.file
     secondHighInfo.file assertIs highInfo.file

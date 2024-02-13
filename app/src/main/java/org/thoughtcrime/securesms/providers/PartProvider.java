@@ -68,7 +68,7 @@ public final class PartProvider extends BaseContentProvider {
 
   static {
     uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-    uriMatcher.addURI(CONTENT_AUTHORITY, "part/*/#", SINGLE_ROW);
+    uriMatcher.addURI(CONTENT_AUTHORITY, "part/#", SINGLE_ROW);
   }
 
   @Override
@@ -78,8 +78,7 @@ public final class PartProvider extends BaseContentProvider {
   }
 
   public static Uri getContentUri(AttachmentId attachmentId) {
-    Uri uri = Uri.withAppendedPath(CONTENT_URI, String.valueOf(attachmentId.getUniqueId()));
-    return ContentUris.withAppendedId(uri, attachmentId.getRowId());
+    return ContentUris.withAppendedId(CONTENT_URI, attachmentId.id);
   }
 
   @Override
@@ -134,8 +133,8 @@ public final class PartProvider extends BaseContentProvider {
       DatabaseAttachment attachment    = SignalDatabase.attachments().getAttachment(partUriParser.getPartId());
 
       if (attachment != null) {
-        Log.i(TAG, "getType() called: " + uri + " It's " + attachment.getContentType());
-        return attachment.getContentType();
+        Log.i(TAG, "getType() called: " + uri + " It's " + attachment.contentType);
+        return attachment.contentType;
       }
     }
 
@@ -163,15 +162,15 @@ public final class PartProvider extends BaseContentProvider {
 
       if (attachment == null) return null;
 
-      long fileSize = attachment.getSize();
+      long fileSize = attachment.size;
 
       if (fileSize <= 0) {
         Log.w(TAG, "Empty file " + fileSize);
         return null;
       }
 
-      String fileName = attachment.getFileName() != null ? attachment.getFileName()
-                                                         : createFileNameForMimeType(attachment.getContentType());
+      String fileName = attachment.fileName != null ? attachment.fileName
+                                                    : createFileNameForMimeType(attachment.contentType);
 
       return createCursor(projection, fileName, fileSize);
     } else {
@@ -229,9 +228,9 @@ public final class PartProvider extends BaseContentProvider {
     @Override
     public long onGetSize() throws ErrnoException {
       DatabaseAttachment attachment = attachments.getAttachment(attachmentId);
-      if (attachment != null && attachment.getSize() > 0) {
+      if (attachment != null && attachment.size > 0) {
         Log.i(TAG, attachmentId + ":getSize");
-        return attachment.getSize();
+        return attachment.size;
       } else {
         Log.w(TAG, attachmentId + ":getSize:attachment is null or size is 0");
         throw new ErrnoException("Attachment is invalid", OsConstants.ENOENT);
@@ -242,7 +241,7 @@ public final class PartProvider extends BaseContentProvider {
     public int onRead(long offset, int size, byte[] data) throws ErrnoException {
       try {
         DatabaseAttachment attachment = attachments.getAttachment(attachmentId);
-        if (attachment == null || attachment.getSize() <= 0) {
+        if (attachment == null || attachment.size <= 0) {
           Log.w(TAG, attachmentId + ":onRead:attachment is null or size is 0");
           throw new ErrnoException("Attachment is invalid", OsConstants.ENOENT);
         }

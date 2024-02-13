@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -20,20 +21,24 @@ import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.SelectionLimits;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.recipients.ui.findby.FindByActivity;
+import org.thoughtcrime.securesms.recipients.ui.findby.FindByMode;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
 
-public class AddMembersActivity extends PushContactSelectionActivity {
+public class AddMembersActivity extends PushContactSelectionActivity implements ContactSelectionListFragment.FindByCallback {
 
   public static final String GROUP_ID           = "group_id";
   public static final String ANNOUNCEMENT_GROUP = "announcement_group";
 
-  private View                done;
-  private AddMembersViewModel viewModel;
+  private View                               done;
+  private AddMembersViewModel                viewModel;
+  private ActivityResultLauncher<FindByMode> findByActivityLauncher;
 
   public static @NonNull Intent createIntent(@NonNull Context context,
                                              @NonNull GroupId groupId,
@@ -70,6 +75,12 @@ public class AddMembersActivity extends PushContactSelectionActivity {
     );
 
     disableDone();
+
+    findByActivityLauncher = registerForActivityResult(new FindByActivity.Contract(), result -> {
+      if (result != null) {
+        contactsFragment.addRecipientToSelectionIfAble(result);
+      }
+    });
   }
 
   @Override
@@ -117,6 +128,16 @@ public class AddMembersActivity extends PushContactSelectionActivity {
     } else {
       getToolbar().setTitle(getResources().getQuantityString(R.plurals.CreateGroupActivity__d_members, selectedContactsCount, selectedContactsCount));
     }
+  }
+
+  @Override
+  public void onFindByPhoneNumber() {
+    findByActivityLauncher.launch(FindByMode.PHONE_NUMBER);
+  }
+
+  @Override
+  public void onFindByUsername() {
+    findByActivityLauncher.launch(FindByMode.USERNAME);
   }
 
   private void enableDone() {

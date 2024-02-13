@@ -43,6 +43,7 @@ import org.thoughtcrime.securesms.components.menu.ActionItem
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.notifications.manual.NotificationProfileSelectionFragment
 import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsActivity
+import org.thoughtcrime.securesms.conversation.ConversationUpdateTick
 import org.thoughtcrime.securesms.conversation.SignalBottomActionBarController
 import org.thoughtcrime.securesms.conversationlist.ConversationFilterBehavior
 import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationFilterSource
@@ -81,6 +82,8 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
   private val disposables = LifecycleDisposable()
   private val callLogContextMenu = CallLogContextMenu(this, this)
   private val callLogActionMode = CallLogActionMode(CallLogActionModeCallback())
+  private val conversationUpdateTick: ConversationUpdateTick = ConversationUpdateTick(this::onTimestampTick)
+  private var callLogAdapter: CallLogAdapter? = null
 
   private lateinit var signalBottomActionBarController: SignalBottomActionBarController
 
@@ -115,20 +118,22 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     requireActivity().addMenuProvider(menuProvider, viewLifecycleOwner)
     initializeSharedElementTransition()
 
-    val adapter = CallLogAdapter(this)
+    viewLifecycleOwner.lifecycle.addObserver(conversationUpdateTick)
+
+    val callLogAdapter = CallLogAdapter(this)
     disposables.bindTo(viewLifecycleOwner)
-    adapter.setPagingController(viewModel.controller)
+    callLogAdapter.setPagingController(viewModel.controller)
 
     val scrollToPositionDelegate = ScrollToPositionDelegate(
       recyclerView = binding.recycler,
-      canJumpToPosition = { adapter.isAvailableAround(it) }
+      canJumpToPosition = { callLogAdapter.isAvailableAround(it) }
     )
 
     disposables += scrollToPositionDelegate
     disposables += Flowables.combineLatest(viewModel.data, viewModel.selected)
       .observeOn(AndroidSchedulers.mainThread())
       .subscribe { (data, selected) ->
-        val filteredCount = adapter.submitCallRows(
+        val filteredCount = callLogAdapter.submitCallRows(
           data,
           selected,
           scrollToPositionDelegate::notifyListCommitted
@@ -147,7 +152,8 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
         }
       }
 
-    binding.recycler.adapter = adapter
+    binding.recycler.adapter = callLogAdapter
+    this.callLogAdapter = callLogAdapter
 
     requireListener<Material3OnScrollHelperBinder>().bindScrollHelper(binding.recycler)
     binding.fab.setOnClickListener {
@@ -198,6 +204,10 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     initializeSearchAction()
     ApplicationDependencies.getDeletedCallEventManager().scheduleIfNecessary()
     viewModel.markAllCallEventsRead()
+  }
+
+  private fun onTimestampTick() {
+    callLogAdapter?.onTimestampTick()
   }
 
   private fun initializeSharedElementTransition() {

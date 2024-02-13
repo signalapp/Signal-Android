@@ -12,6 +12,6 @@
     android:text="@string/QuoteView_original_missing"
     android:textAppearance="@style/Signal.Text.MaterialCaption"
     android:textColor="@color/core_grey_90"
-    app:drawableStartCompat="@drawable/ic_broken_link"
+    app:drawableStartCompat="@drawable/symbol_link_slash_16"
     app:drawableTint="@color/quote_missing_icon_color"
     tools:visibility="gone" />

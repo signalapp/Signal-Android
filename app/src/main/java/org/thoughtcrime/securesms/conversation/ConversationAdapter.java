@@ -39,6 +39,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import androidx.media3.common.MediaItem;
 
+import com.bumptech.glide.RequestManager;
+
 import org.signal.core.util.logging.Log;
 import org.signal.paging.PagingController;
 import org.thoughtcrime.securesms.BindableConversationItem;
@@ -50,7 +52,6 @@ import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4Playable;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicyEnforcer;
-import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.DateUtils;
@@ -99,7 +100,7 @@ public class ConversationAdapter
   private final ItemClickListener clickListener;
   private final Context           context;
   private final LifecycleOwner    lifecycleOwner;
-  private final GlideRequests     glideRequests;
+  private final RequestManager    requestManager;
   private final Locale            locale;
   private final Set<MultiselectPart>         selected;
   private final Calendar                     calendar;
@@ -119,7 +120,7 @@ public class ConversationAdapter
 
   public ConversationAdapter(@NonNull Context context,
                       @NonNull LifecycleOwner lifecycleOwner,
-                      @NonNull GlideRequests glideRequests,
+                      @NonNull RequestManager requestManager,
                       @NonNull Locale locale,
                       @Nullable ItemClickListener clickListener,
                       boolean hasWallpaper,
@@ -137,10 +138,10 @@ public class ConversationAdapter
       }
     });
 
-    this.lifecycleOwner = lifecycleOwner;
-    this.context        = context;
+    this.lifecycleOwner               = lifecycleOwner;
+    this.context                      = context;
 
-    this.glideRequests                = glideRequests;
+    this.requestManager               = requestManager;
     this.locale                       = locale;
     this.clickListener                = clickListener;
     this.selected                     = new HashSet<>();
@@ -276,7 +277,7 @@ public class ConversationAdapter
                                                   conversationMessage,
                                                   Optional.ofNullable(previousMessage != null ? previousMessage.getMessageRecord() : null),
                                                   Optional.ofNullable(nextMessage != null ? nextMessage.getMessageRecord() : null),
-                                                  glideRequests,
+                                                  requestManager,
                                                   locale,
                                                   selected,
                                                   conversationMessage.getThreadRecipient(),

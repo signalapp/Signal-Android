@@ -23,7 +23,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -56,6 +55,7 @@ import com.google.accompanist.permissions.rememberPermissionState
 import kotlinx.coroutines.CoroutineScope
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.Dialogs
+import org.signal.core.ui.Snackbars
 import org.signal.core.ui.theme.SignalTheme
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.thoughtcrime.securesms.R
@@ -89,7 +89,9 @@ class UsernameLinkSettingsFragment : ComposeFragment() {
     val navController: NavController by remember { mutableStateOf(findNavController()) }
     var showResetDialog: Boolean by remember { mutableStateOf(false) }
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
-    val cameraPermissionState: PermissionState = rememberPermissionState(permission = android.Manifest.permission.CAMERA)
+    val cameraPermissionState: PermissionState = rememberPermissionState(permission = android.Manifest.permission.CAMERA) {
+      viewModel.onTabSelected(ActiveTab.Scan)
+    }
     val linkCopiedEvent: UUID? by viewModel.linkCopiedEvent
 
     val linkCopiedString = stringResource(R.string.UsernameLinkSettings_link_copied_toast)
@@ -101,7 +103,7 @@ class UsernameLinkSettingsFragment : ComposeFragment() {
     }
 
     Scaffold(
-      snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
+      snackbarHost = { Snackbars.Host(snackbarHostState) },
       topBar = {
         TopAppBarContent(
           activeTab = state.activeTab,
@@ -123,6 +125,7 @@ class UsernameLinkSettingsFragment : ComposeFragment() {
         enter = slideInHorizontally(initialOffsetX = { fullWidth -> -fullWidth }),
         exit = slideOutHorizontally(targetOffsetX = { fullWidth -> -fullWidth })
       ) {
+        val helpText = stringResource(id = R.string.UsernameLinkSettings_scan_this_qr_code)
         UsernameLinkShareScreen(
           state = state,
           snackbarHostState = snackbarHostState,
@@ -130,7 +133,7 @@ class UsernameLinkSettingsFragment : ComposeFragment() {
           modifier = Modifier.padding(contentPadding),
           navController = navController,
           onShareBadge = {
-            shareQrBadge(viewModel.generateQrCodeImage())
+            shareQrBadge(viewModel.generateQrCodeImage(helpText))
           },
           onResetClicked = { showResetDialog = true },
           onLinkResultHandled = { viewModel.onUsernameLinkResetResultHandled() }

@@ -94,7 +94,7 @@ class IncomingMessage(
     }
 
     @JvmStatic
-    fun groupUpdate(from: RecipientId, timestamp: Long, groupId: GroupId, groupContext: DecryptedGroupV2Context): IncomingMessage {
+    fun groupUpdate(from: RecipientId, timestamp: Long, groupId: GroupId, groupContext: DecryptedGroupV2Context, serverGuid: String?): IncomingMessage {
       val messageGroupContext = MessageGroupContext(groupContext)
 
       return IncomingMessage(
@@ -104,6 +104,7 @@ class IncomingMessage(
         serverTimeMillis = timestamp,
         groupId = groupId,
         groupContext = messageGroupContext,
+        serverGuid = serverGuid,
         body = messageGroupContext.encodedGroupContext,
         type = MessageType.GROUP_UPDATE
       )

@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.components.settings.app.changenumber
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -47,6 +48,7 @@ class ChangeNumberLockActivity : PassphraseRequiredActivity() {
     dynamicTheme.onResume(this)
   }
 
+  @SuppressLint("MissingSuperCall")
   override fun onBackPressed() = Unit
 
   private fun checkWhoAmI() {

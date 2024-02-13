@@ -60,9 +60,8 @@ public final class LegacyAttachmentUploadJob extends BaseJob {
 
   private static final long UPLOAD_REUSE_THRESHOLD = TimeUnit.DAYS.toMillis(3);
 
-  private static final String KEY_ROW_ID      = "row_id";
-  private static final String KEY_UNIQUE_ID   = "unique_id";
-  private static final String KEY_FORCE_V2    = "force_v2";
+  private static final String KEY_ROW_ID   = "row_id";
+  private static final String KEY_FORCE_V2 = "force_v2";
 
   /**
    * Foreground notification shows while uploading attachments above this.
@@ -81,8 +80,7 @@ public final class LegacyAttachmentUploadJob extends BaseJob {
 
   @Override
   public @Nullable byte[] serialize() {
-    return new JsonJobData.Builder().putLong(KEY_ROW_ID, attachmentId.getRowId())
-                                    .putLong(KEY_UNIQUE_ID, attachmentId.getUniqueId())
+    return new JsonJobData.Builder().putLong(KEY_ROW_ID, attachmentId.id)
                                     .putBoolean(KEY_FORCE_V2, forceV2)
                                     .serialize();
   }
@@ -126,22 +124,22 @@ public final class LegacyAttachmentUploadJob extends BaseJob {
       throw new InvalidAttachmentException("Cannot find the specified attachment.");
     }
 
-    long timeSinceUpload = System.currentTimeMillis() - databaseAttachment.getUploadTimestamp();
-    if (timeSinceUpload < UPLOAD_REUSE_THRESHOLD && !TextUtils.isEmpty(databaseAttachment.getLocation())) {
+    long timeSinceUpload = System.currentTimeMillis() - databaseAttachment.uploadTimestamp;
+    if (timeSinceUpload < UPLOAD_REUSE_THRESHOLD && !TextUtils.isEmpty(databaseAttachment.remoteLocation)) {
       Log.i(TAG, "We can re-use an already-uploaded file. It was uploaded " + timeSinceUpload + " ms ago. Skipping.");
       return;
-    } else if (databaseAttachment.getUploadTimestamp() > 0) {
+    } else if (databaseAttachment.uploadTimestamp > 0) {
       Log.i(TAG, "This file was previously-uploaded, but too long ago to be re-used. Age: " + timeSinceUpload + " ms");
     }
 
-    Log.i(TAG, "Uploading attachment for message " + databaseAttachment.getMmsId() + " with ID " + databaseAttachment.getAttachmentId());
+    Log.i(TAG, "Uploading attachment for message " + databaseAttachment.mmsId + " with ID " + databaseAttachment.attachmentId);
 
     try (NotificationController notification = getNotificationForAttachment(databaseAttachment)) {
       try (SignalServiceAttachmentStream localAttachment = getAttachmentFor(databaseAttachment, notification, resumableUploadSpec)) {
         SignalServiceAttachmentPointer remoteAttachment = messageSender.uploadAttachment(localAttachment);
-        Attachment                     attachment       = PointerAttachment.forPointer(Optional.of(remoteAttachment), null, databaseAttachment.getFastPreflightId()).get();
+        Attachment                     attachment       = PointerAttachment.forPointer(Optional.of(remoteAttachment), null, databaseAttachment.fastPreflightId).get();
 
-        database.updateAttachmentAfterUpload(databaseAttachment.getAttachmentId(), attachment, remoteAttachment.getUploadTimestamp());
+        database.updateAttachmentAfterUpload(databaseAttachment.attachmentId, attachment, remoteAttachment.getUploadTimestamp());
       }
     } catch (NonSuccessfulResumableUploadResponseCodeException e) {
       if (e.getCode() == 400) {
@@ -152,7 +150,7 @@ public final class LegacyAttachmentUploadJob extends BaseJob {
   }
 
   private @Nullable NotificationController getNotificationForAttachment(@NonNull Attachment attachment) {
-    if (attachment.getSize() >= FOREGROUND_LIMIT) {
+    if (attachment.size >= FOREGROUND_LIMIT) {
       try {
         return ForegroundServiceUtil.startGenericTaskWhenCapable(context, context.getString(R.string.AttachmentUploadJob_uploading_media));
       } catch (UnableToStartException e) {
@@ -179,7 +177,7 @@ public final class LegacyAttachmentUploadJob extends BaseJob {
   }
 
   private @NonNull SignalServiceAttachmentStream getAttachmentFor(Attachment attachment, @Nullable NotificationController notification, @Nullable ResumableUploadSpec resumableUploadSpec) throws InvalidAttachmentException {
-    if (attachment.getUri() == null || attachment.getSize() == 0) {
+    if (attachment.getUri() == null || attachment.size == 0) {
       throw new InvalidAttachmentException(new IOException("Assertion failed, outgoing attachment has no data!"));
     }
 
@@ -187,17 +185,17 @@ public final class LegacyAttachmentUploadJob extends BaseJob {
       InputStream is = PartAuthority.getAttachmentStream(context, attachment.getUri());
       SignalServiceAttachment.Builder builder = SignalServiceAttachment.newStreamBuilder()
                                                                        .withStream(is)
-                                                                       .withContentType(attachment.getContentType())
-                                                                       .withLength(attachment.getSize())
-                                                                       .withFileName(attachment.getFileName())
-                                                                       .withVoiceNote(attachment.isVoiceNote())
-                                                                       .withBorderless(attachment.isBorderless())
-                                                                       .withGif(attachment.isVideoGif())
-                                                                       .withFaststart(attachment.getTransformProperties().isMp4Faststart())
-                                                                       .withWidth(attachment.getWidth())
-                                                                       .withHeight(attachment.getHeight())
+                                                                       .withContentType(attachment.contentType)
+                                                                       .withLength(attachment.size)
+                                                                       .withFileName(attachment.fileName)
+                                                                       .withVoiceNote(attachment.voiceNote)
+                                                                       .withBorderless(attachment.borderless)
+                                                                       .withGif(attachment.videoGif)
+                                                                       .withFaststart(attachment.transformProperties.mp4FastStart)
+                                                                       .withWidth(attachment.width)
+                                                                       .withHeight(attachment.height)
                                                                        .withUploadTimestamp(System.currentTimeMillis())
-                                                                       .withCaption(attachment.getCaption())
+                                                                       .withCaption(attachment.caption)
                                                                        .withCancelationSignal(this::isCanceled)
                                                                        .withResumableUploadSpec(resumableUploadSpec)
                                                                        .withListener(new SignalServiceAttachment.ProgressListener() {
@@ -214,9 +212,9 @@ public final class LegacyAttachmentUploadJob extends BaseJob {
                                                                            return isCanceled();
                                                                          }
                                                                        });
-      if (MediaUtil.isImageType(attachment.getContentType())) {
+      if (MediaUtil.isImageType(attachment.contentType)) {
         return builder.withBlurHash(getImageBlurHash(attachment)).build();
-      } else if (MediaUtil.isVideoType(attachment.getContentType())) {
+      } else if (MediaUtil.isVideoType(attachment.contentType)) {
         return builder.withBlurHash(getVideoBlurHash(attachment)).build();
       } else {
         return builder.build();
@@ -227,7 +225,7 @@ public final class LegacyAttachmentUploadJob extends BaseJob {
   }
 
   private @Nullable String getImageBlurHash(@NonNull Attachment attachment) throws IOException {
-    if (attachment.getBlurHash() != null) return attachment.getBlurHash().getHash();
+    if (attachment.blurHash != null) return attachment.blurHash.getHash();
     if (attachment.getUri() == null) return null;
 
     try (InputStream inputStream = PartAuthority.getAttachmentStream(context, attachment.getUri())) {
@@ -236,8 +234,8 @@ public final class LegacyAttachmentUploadJob extends BaseJob {
   }
 
   private @Nullable String getVideoBlurHash(@NonNull Attachment attachment) throws IOException {
-    if (attachment.getBlurHash() != null) {
-      return attachment.getBlurHash().getHash();
+    if (attachment.blurHash != null) {
+      return attachment.blurHash.getHash();
     }
 
     if (Build.VERSION.SDK_INT < 23) {
@@ -276,7 +274,7 @@ public final class LegacyAttachmentUploadJob extends BaseJob {
     public @NonNull LegacyAttachmentUploadJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
       JsonJobData data = JsonJobData.deserialize(serializedData);
 
-      return new LegacyAttachmentUploadJob(parameters, new AttachmentId(data.getLong(KEY_ROW_ID), data.getLong(KEY_UNIQUE_ID)), data.getBooleanOrDefault(KEY_FORCE_V2, false));
+      return new LegacyAttachmentUploadJob(parameters, new AttachmentId(data.getLong(KEY_ROW_ID)), data.getBooleanOrDefault(KEY_FORCE_V2, false));
     }
   }
 }

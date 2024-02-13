@@ -177,9 +177,11 @@ object Buttons {
     onClick: () -> Unit,
     @DrawableRes iconResId: Int,
     @StringRes labelResId: Int,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true
   ) {
     ActionButton(
+      enabled = enabled,
       onClick = onClick,
       label = stringResource(labelResId),
       modifier = modifier

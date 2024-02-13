@@ -8,11 +8,13 @@ option java_multiple_files = true;
 message MobileCoinLedger {
 
   message OwnedTXO {
-    uint64 amount          = 1;
-    bytes  keyImage        = 2;
-    bytes  publicKey       = 3;
-    Block  receivedInBlock = 4;
-    Block  spentInBlock    = 5;
+    uint64 deprecatedAmount = 1;
+    bytes  amount           = 6;
+    bytes  keyImage         = 2;
+    bytes  publicKey        = 3;
+    Block  receivedInBlock  = 4;
+    Block  spentInBlock     = 5;
+    // Next is 7
   }
 
   message Block {
@@ -20,12 +22,15 @@ message MobileCoinLedger {
     uint64 timestamp   = 2;
   }
 
-           uint64   balance             = 1;
-           uint64   transferableBalance = 2;
-           Block    highestBlock        = 3;
-           uint64   asOfTimeStamp       = 4;
-  repeated OwnedTXO spentTxos           = 5;
-  repeated OwnedTXO unspentTxos         = 6;
+           uint64   deprecatedBalance             = 1;
+           bytes    balance                       = 7;
+           uint64   deprecatedTransferableBalance = 2;
+           bytes    transferableBalance           = 8;
+           Block    highestBlock                  = 3;
+           uint64   asOfTimeStamp                 = 4;
+  repeated OwnedTXO spentTxos                     = 5;
+  repeated OwnedTXO unspentTxos                   = 6;
+  // Next is 9
 }
 
 message PaymentMetaData {

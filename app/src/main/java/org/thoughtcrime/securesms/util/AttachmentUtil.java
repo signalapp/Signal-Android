@@ -37,15 +37,15 @@ public class AttachmentUtil {
     }
 
     Set<String> allowedTypes = getAllowedAutoDownloadTypes(context);
-    String      contentType  = attachment.getContentType();
+    String      contentType  = attachment.contentType;
 
-    if (attachment.isVoiceNote()                                                       ||
-        (MediaUtil.isAudio(attachment) && TextUtils.isEmpty(attachment.getFileName())) ||
-        MediaUtil.isLongTextType(attachment.getContentType())                          ||
+    if (attachment.voiceNote ||
+        (MediaUtil.isAudio(attachment) && TextUtils.isEmpty(attachment.fileName)) ||
+        MediaUtil.isLongTextType(attachment.contentType) ||
         attachment.isSticker())
     {
       return true;
-    } else if (attachment.isVideoGif()) {
+    } else if (attachment.videoGif) {
       boolean allowed = NotInCallConstraint.isNotInConnectedCall() && allowedTypes.contains("image");
       if (!allowed) {
         Log.w(TAG, "Not auto downloading. inCall: " + NotInCallConstraint.isNotInConnectedCall() + " allowedType: " + allowedTypes.contains("image"));
@@ -74,8 +74,8 @@ public class AttachmentUtil {
   public static void deleteAttachment(@NonNull Context context,
                                       @NonNull DatabaseAttachment attachment)
   {
-    AttachmentId attachmentId    = attachment.getAttachmentId();
-    long         mmsId           = attachment.getMmsId();
+    AttachmentId attachmentId    = attachment.attachmentId;
+    long         mmsId           = attachment.mmsId;
     int          attachmentCount = SignalDatabase.attachments()
                                                  .getAttachmentsForMessage(mmsId)
                                                  .size();
@@ -104,7 +104,7 @@ public class AttachmentUtil {
   @WorkerThread
   private static boolean isFromTrustedConversation(@NonNull Context context, @NonNull DatabaseAttachment attachment) {
     try {
-      MessageRecord message = SignalDatabase.messages().getMessageRecord(attachment.getMmsId());
+      MessageRecord message = SignalDatabase.messages().getMessageRecord(attachment.mmsId);
 
       Recipient fromRecipient = message.getFromRecipient();
       Recipient toRecipient   = SignalDatabase.threads().getRecipientForThreadId(message.getThreadId());

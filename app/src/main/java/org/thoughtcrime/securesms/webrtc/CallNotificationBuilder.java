@@ -29,7 +29,7 @@ import org.thoughtcrime.securesms.util.ConversationUtil;
 
 public class CallNotificationBuilder {
 
-  private static final int WEBRTC_NOTIFICATION         = 313388;
+  public  static final int WEBRTC_NOTIFICATION         = 313388;
   private static final int WEBRTC_NOTIFICATION_RINGING = 313389;
 
   public static final int TYPE_INCOMING_RINGING    = 1;
@@ -114,7 +114,7 @@ public class CallNotificationBuilder {
       if (deviceVersionSupportsIncomingCallStyle()) {
         builder.setStyle(NotificationCompat.CallStyle.forIncomingCall(
             person,
-            getServicePendingIntent(context, WebRtcCallService.denyCallIntent(context)),
+           WebRtcCallService.denyCallIntent(context),
             getActivityPendingIntent(context, isVideoCall ? LaunchCallScreenIntentState.VIDEO : LaunchCallScreenIntentState.AUDIO)
         ).setIsVideo(isVideoCall));
       }
@@ -122,7 +122,7 @@ public class CallNotificationBuilder {
       return builder.build();
     } else if (type == TYPE_OUTGOING_RINGING) {
       builder.setContentText(context.getString(R.string.NotificationBarManager__establishing_signal_call));
-      builder.addAction(getServiceNotificationAction(context, WebRtcCallService.hangupIntent(context), R.drawable.ic_call_end_grey600_32dp, R.string.NotificationBarManager__cancel_call));
+      builder.addAction(getServiceNotificationAction(context, WebRtcCallService.hangupIntent(context), R.drawable.symbol_phone_down_fill_24, R.string.NotificationBarManager__cancel_call));
       return builder.build();
     } else {
       builder.setContentText(getOngoingCallContentText(context, recipient, isVideoCall));
@@ -138,7 +138,7 @@ public class CallNotificationBuilder {
       if (deviceVersionSupportsIncomingCallStyle()) {
         builder.setStyle(NotificationCompat.CallStyle.forOngoingCall(
             person,
-            getServicePendingIntent(context, WebRtcCallService.hangupIntent(context))
+            WebRtcCallService.hangupIntent(context)
         ).setIsVideo(isVideoCall));
       }
 
@@ -214,13 +214,8 @@ public class CallNotificationBuilder {
     }
   }
 
-  private static PendingIntent getServicePendingIntent(@NonNull Context context, @NonNull Intent intent) {
-    return Build.VERSION.SDK_INT >= 26 ? PendingIntent.getForegroundService(context, 0, intent, PendingIntentFlags.mutable())
-                                       : PendingIntent.getService(context, 0, intent, PendingIntentFlags.mutable());
-  }
-
-  private static NotificationCompat.Action getServiceNotificationAction(Context context, Intent intent, int iconResId, int titleResId) {
-    return new NotificationCompat.Action(iconResId, context.getString(titleResId), getServicePendingIntent(context, intent));
+  private static NotificationCompat.Action getServiceNotificationAction(Context context, PendingIntent intent, int iconResId, int titleResId) {
+    return new NotificationCompat.Action(iconResId, context.getString(titleResId), intent);
   }
 
   private static PendingIntent getActivityPendingIntent(@NonNull Context context, @NonNull LaunchCallScreenIntentState launchCallScreenIntentState) {

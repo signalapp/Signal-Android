@@ -198,15 +198,18 @@ object ContactDiscovery {
     if (!SignalStore.settings().isNotifyWhenContactJoinsSignal) return
 
     Recipient.resolvedList(newUserIds)
-      .filter { !it.isSelf && it.hasAUserSetDisplayName(context) && !hasSession(it.id) }
-      .map { IncomingMessage.contactJoined(it.id, System.currentTimeMillis()) }
-      .map { SignalDatabase.messages.insertMessageInbox(it) }
+      .filter { !it.isSelf && it.hasAUserSetDisplayName(context) && !hasSession(it.id) && it.hasE164() }
+      .map {
+        Log.i(TAG, "Inserting 'contact joined' message for ${it.id}. E164: ${it.e164}")
+        val message = IncomingMessage.contactJoined(it.id, System.currentTimeMillis())
+        SignalDatabase.messages.insertMessageInbox(message)
+      }
       .filter { it.isPresent }
       .map { it.get() }
       .forEach { result ->
         val hour = Calendar.getInstance()[Calendar.HOUR_OF_DAY]
         if (hour in 9..22) {
-          ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(result.threadId), true)
+          ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(result.threadId))
         } else {
           Log.i(TAG, "Not notifying of a new user due to the time of day. (Hour: $hour)")
         }

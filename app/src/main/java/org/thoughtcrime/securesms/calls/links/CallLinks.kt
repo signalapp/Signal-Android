@@ -58,7 +58,7 @@ object CallLinks {
       return false
     }
 
-    if (!url.startsWith(HTTPS_LINK_PREFIX) || !url.startsWith(SNGL_LINK_PREFIX)) {
+    if (!url.startsWith(HTTPS_LINK_PREFIX) && !url.startsWith(SNGL_LINK_PREFIX)) {
       return false
     }
 

@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.LocaleFeatureFlags;
 import org.thoughtcrime.securesms.util.Util;
 
@@ -66,8 +67,12 @@ public class PushMediaConstraints extends MediaConstraints {
 
   @Override
   public long getCompressedVideoMaxSize(Context context) {
-    return Util.isLowMemory(context) ? 30 * MB
-                                     : 50 * MB;
+    if (FeatureFlags.useStreamingVideoMuxer()) {
+      return getMaxAttachmentSize();
+    } else {
+      return Util.isLowMemory(context) ? 30 * MB
+                                       : 50 * MB;
+    }
   }
 
   @Override

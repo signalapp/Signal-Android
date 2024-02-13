@@ -56,17 +56,13 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
   /**
    * For contact records specifically, we have some extra work that needs to be done before we process all of the records.
    *
-   * We have to look and see if there is an unregistered ACI-only record and another E164/PNI-only record that points to the
-   * same local contact row.
-   *
-   * If so, we actually want to mimic the split and turn them into two separate contact rows locally. The reasons are nuanced,
-   * but the TL;DR is that we want to split unregistered users into separate rows so that a user could re-register and get a
-   * different ACI.
+   * We have to find all unregistered ACI-only records and split them into two separate contact rows locally, if necessary.
+   * The reasons are nuanced, but the TL;DR is that we want to split unregistered users into separate rows so that a user
+   * could re-register and get a different ACI.
    */
   @Override
   public void process(@NonNull Collection<SignalContactRecord> remoteRecords, @NonNull StorageKeyGenerator keyGenerator) throws IOException {
     List<SignalContactRecord> unregisteredAciOnly = new ArrayList<>();
-    List<SignalContactRecord> pniE164Only         = new ArrayList<>();
 
     for (SignalContactRecord remoteRecord : remoteRecords) {
       if (isInvalid(remoteRecord)) {
@@ -75,38 +71,14 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
 
       if (remoteRecord.getUnregisteredTimestamp() > 0 && remoteRecord.getAci().isPresent() && remoteRecord.getPni().isEmpty() && remoteRecord.getNumber().isEmpty()) {
         unregisteredAciOnly.add(remoteRecord);
-      } else if (remoteRecord.getAci().isEmpty()) {
-        pniE164Only.add(remoteRecord);
       }
     }
 
-    if (unregisteredAciOnly.isEmpty() || pniE164Only.isEmpty()) {
-      super.process(remoteRecords, keyGenerator);
-      return;
-    }
-
-    Log.i(TAG, "We have some unregistered ACI-only contacts as well as some PNI-only contacts. Need to do an intersection to detect any possible required splits.");
-
-    TreeSet<SignalContactRecord> localMatches = new TreeSet<>(this);
-
-    for (SignalContactRecord aciOnly : unregisteredAciOnly) {
-      Optional<SignalContactRecord> localMatch = getMatching(aciOnly, keyGenerator);
-
-      if (localMatch.isPresent()) {
-        localMatches.add(localMatch.get());
+    if (unregisteredAciOnly.size() > 0) {
+      for (SignalContactRecord aciOnly : unregisteredAciOnly) {
+        SignalDatabase.recipients().splitForStorageSyncIfNecessary(aciOnly.getAci().get());
       }
     }
-
-    for (SignalContactRecord pniOnly : pniE164Only) {
-      Optional<SignalContactRecord> localMatch = getMatching(pniOnly, keyGenerator);
-
-      if (localMatch.isPresent() && localMatches.contains(localMatch.get())) {
-        Log.w(TAG, "Found a situation where we need to split our local record in two in order to match the remote state.");
-
-        SignalDatabase.recipients().splitForStorageSync(localMatch.get().getId().getRaw());
-      }
-    }
-
 
     super.process(remoteRecords, keyGenerator);
   }
@@ -244,8 +216,9 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
     String               systemGivenName       = SignalStore.account().isPrimaryDevice() ? local.getSystemGivenName().orElse("") : remote.getSystemGivenName().orElse("");
     String               systemFamilyName      = SignalStore.account().isPrimaryDevice() ? local.getSystemFamilyName().orElse("") : remote.getSystemFamilyName().orElse("");
     String               systemNickname        = remote.getSystemNickname().orElse("");
-    boolean              matchesRemote         = doParamsMatch(remote, unknownFields, aci, pni, e164, profileGivenName, profileFamilyName, systemGivenName, systemFamilyName, systemNickname, profileKey, username, identityState, identityKey, blocked, profileSharing, archived, forcedUnread, muteUntil, hideStory, unregisteredTimestamp, hidden);
-    boolean              matchesLocal          = doParamsMatch(local, unknownFields, aci, pni, e164, profileGivenName, profileFamilyName, systemGivenName, systemFamilyName, systemNickname, profileKey, username, identityState, identityKey, blocked, profileSharing, archived, forcedUnread, muteUntil, hideStory, unregisteredTimestamp, hidden);
+    boolean              pniSignatureVerified  = remote.isPniSignatureVerified() || local.isPniSignatureVerified();
+    boolean              matchesRemote         = doParamsMatch(remote, unknownFields, aci, pni, e164, profileGivenName, profileFamilyName, systemGivenName, systemFamilyName, systemNickname, profileKey, username, identityState, identityKey, blocked, profileSharing, archived, forcedUnread, muteUntil, hideStory, unregisteredTimestamp, hidden, pniSignatureVerified);
+    boolean              matchesLocal          = doParamsMatch(local, unknownFields, aci, pni, e164, profileGivenName, profileFamilyName, systemGivenName, systemFamilyName, systemNickname, profileKey, username, identityState, identityKey, blocked, profileSharing, archived, forcedUnread, muteUntil, hideStory, unregisteredTimestamp, hidden, pniSignatureVerified);
 
     if (matchesRemote) {
       return remote;
@@ -272,6 +245,7 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
                                     .setHideStory(hideStory)
                                     .setUnregisteredTimestamp(unregisteredTimestamp)
                                     .setHidden(hidden)
+                                    .setPniSignatureVerified(pniSignatureVerified)
                                     .build();
     }
   }
@@ -323,7 +297,8 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
                                        long muteUntil,
                                        boolean hideStory,
                                        long unregisteredTimestamp,
-                                       boolean hidden)
+                                       boolean hidden,
+                                       boolean pniSignatureVerified)
   {
     return Arrays.equals(contact.serializeUnknownFields(), unknownFields) &&
            Objects.equals(contact.getAci().orElse(null), aci) &&
@@ -345,6 +320,7 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
            contact.getMuteUntil() == muteUntil &&
            contact.shouldHideStory() == hideStory &&
            contact.getUnregisteredTimestamp() == unregisteredTimestamp &&
-           contact.isHidden() == hidden;
+           contact.isHidden() == hidden &&
+           contact.isPniSignatureVerified() == pniSignatureVerified;
   }
 }

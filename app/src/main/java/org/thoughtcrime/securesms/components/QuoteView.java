@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.shape.CornerFamily;
@@ -32,7 +33,6 @@ import org.thoughtcrime.securesms.conversation.MessageStyler;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
-import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.QuoteModel;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
@@ -193,7 +193,7 @@ public class QuoteView extends ConstraintLayout implements RecipientForeverObser
     }
   }
 
-  public void setQuote(GlideRequests glideRequests,
+  public void setQuote(RequestManager requestManager,
                        long id,
                        @NonNull Recipient author,
                        @Nullable CharSequence body,
@@ -213,7 +213,7 @@ public class QuoteView extends ConstraintLayout implements RecipientForeverObser
     this.author.observeForever(this);
     setQuoteAuthor(author);
     setQuoteText(resolveBody(body, quoteType), attachments, originalMissing, storyReaction);
-    setQuoteAttachment(glideRequests, body, attachments, originalMissing);
+    setQuoteAttachment(requestManager, body, attachments, originalMissing);
     setQuoteMissingFooter(originalMissing);
     applyColorTheme();
   }
@@ -347,7 +347,7 @@ public class QuoteView extends ConstraintLayout implements RecipientForeverObser
     }
   }
 
-  private void setQuoteAttachment(@NonNull GlideRequests glideRequests, @NonNull CharSequence body, @NonNull SlideDeck slideDeck, boolean originalMissing) {
+  private void setQuoteAttachment(@NonNull RequestManager requestManager, @NonNull CharSequence body, @NonNull SlideDeck slideDeck, boolean originalMissing) {
     boolean outgoing = messageType != MessageType.INCOMING && messageType != MessageType.STORY_REPLY_INCOMING;
     boolean preview  = messageType == MessageType.PREVIEW || messageType == MessageType.STORY_REPLY_PREVIEW;
 
@@ -359,7 +359,7 @@ public class QuoteView extends ConstraintLayout implements RecipientForeverObser
       attachmentVideoOVerlayStub.setVisibility(GONE);
       attachmentNameViewStub.setVisibility(GONE);
       thumbnailView.setVisibility(VISIBLE);
-      glideRequests.load(model)
+      requestManager.load(model)
                    .centerCrop()
                    .override(thumbWidth, thumbHeight)
                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
@@ -377,7 +377,7 @@ public class QuoteView extends ConstraintLayout implements RecipientForeverObser
       attachmentVideoOVerlayStub.setVisibility(GONE);
       attachmentNameViewStub.setVisibility(GONE);
       thumbnailView.setVisibility(VISIBLE);
-      glideRequests.load(R.drawable.ic_gift_thumbnail)
+      requestManager.load(R.drawable.ic_gift_thumbnail)
                    .centerCrop()
                    .override(thumbWidth, thumbHeight)
                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
@@ -404,7 +404,7 @@ public class QuoteView extends ConstraintLayout implements RecipientForeverObser
       if (imageVideoSlide.hasVideo() && !imageVideoSlide.isVideoGif()) {
         attachmentVideoOVerlayStub.setVisibility(VISIBLE);
       }
-      glideRequests.load(new DecryptableUri(imageVideoSlide.getUri()))
+      requestManager.load(new DecryptableUri(imageVideoSlide.getUri()))
                    .centerCrop()
                    .override(thumbWidth, thumbHeight)
                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)

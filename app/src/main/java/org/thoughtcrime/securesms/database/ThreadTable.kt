@@ -6,7 +6,6 @@ import android.content.Context
 import android.database.Cursor
 import android.database.MergeCursor
 import android.net.Uri
-import androidx.annotation.VisibleForTesting
 import androidx.core.content.contentValuesOf
 import com.fasterxml.jackson.annotation.JsonProperty
 import org.json.JSONObject
@@ -26,6 +25,7 @@ import org.signal.core.util.requireString
 import org.signal.core.util.select
 import org.signal.core.util.toInt
 import org.signal.core.util.update
+import org.signal.core.util.updateAll
 import org.signal.core.util.withinTransaction
 import org.signal.libsignal.zkgroup.InvalidInputException
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
@@ -44,6 +44,7 @@ import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
+import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExtras
 import org.thoughtcrime.securesms.database.model.serialize
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.groups.BadGroupIdException
@@ -97,6 +98,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     const val SNIPPET_URI = "snippet_uri"
     const val SNIPPET_CONTENT_TYPE = "snippet_content_type"
     const val SNIPPET_EXTRAS = "snippet_extras"
+    const val SNIPPET_MESSAGE_EXTRAS = "snippet_message_extras"
     const val ARCHIVED = "archived"
     const val STATUS = "status"
     const val HAS_DELIVERY_RECEIPT = "has_delivery_receipt"
@@ -137,7 +139,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         $LAST_SCROLLED INTEGER DEFAULT 0, 
         $PINNED INTEGER DEFAULT 0, 
         $UNREAD_SELF_MENTION_COUNT INTEGER DEFAULT 0,
-        $ACTIVE INTEGER DEFAULT 0
+        $ACTIVE INTEGER DEFAULT 0,
+        $SNIPPET_MESSAGE_EXTRAS BLOB DEFAULT NULL
       )
     """
 
@@ -164,6 +167,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       SNIPPET_URI,
       SNIPPET_CONTENT_TYPE,
       SNIPPET_EXTRAS,
+      SNIPPET_MESSAGE_EXTRAS,
       ARCHIVED,
       STATUS,
       HAS_DELIVERY_RECEIPT,
@@ -223,7 +227,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     expiresIn: Long,
     readReceiptCount: Int,
     unreadCount: Int,
-    unreadMentionCount: Int
+    unreadMentionCount: Int,
+    messageExtras: MessageExtras?
   ) {
     var extraSerialized: String? = null
 
@@ -249,7 +254,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       EXPIRES_IN to expiresIn,
       ACTIVE to 1,
       UNREAD_COUNT to unreadCount,
-      UNREAD_SELF_MENTION_COUNT to unreadMentionCount
+      UNREAD_SELF_MENTION_COUNT to unreadMentionCount,
+      SNIPPET_MESSAGE_EXTRAS to messageExtras?.encode()
     )
 
     writableDatabase
@@ -403,7 +409,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
   fun setAllThreadsRead(): List<MarkedMessageInfo> {
     writableDatabase
-      .update(TABLE_NAME)
+      .updateAll(TABLE_NAME)
       .values(
         READ to ReadStatus.READ.serialize(),
         UNREAD_COUNT to 0,
@@ -1107,14 +1113,6 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     ConversationUtil.clearShortcuts(context, recipientIds)
   }
 
-  @VisibleForTesting
-  fun clearForTests() {
-    writableDatabase.withinTransaction {
-      deleteAllConversations()
-      it.delete(TABLE_NAME).run()
-    }
-  }
-
   @SuppressLint("DiscouragedApi")
   fun deleteAllConversations() {
     writableDatabase.withinTransaction { db ->
@@ -1243,6 +1241,13 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     return getThreadIdIfExistsFor(recipientId) > -1
   }
 
+  fun hasActiveThread(recipientId: RecipientId): Boolean {
+    return readableDatabase
+      .exists(TABLE_NAME)
+      .where("$RECIPIENT_ID = ? AND $ACTIVE = 1", recipientId)
+      .run()
+  }
+
   fun updateLastSeenAndMarkSentAndLastScrolledSilenty(threadId: Long) {
     writableDatabase
       .update(TABLE_NAME)
@@ -1294,7 +1299,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     writableDatabase.withinTransaction { db ->
       applyStorageSyncUpdate(recipientId, record.isNoteToSelfArchived, record.isNoteToSelfForcedUnread)
 
-      db.update(TABLE_NAME)
+      db.updateAll(TABLE_NAME)
         .values(PINNED to 0)
         .run()
 
@@ -1487,7 +1492,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
             expiresIn = 0,
             readReceiptCount = 0,
             unreadCount = 0,
-            unreadMentionCount = 0
+            unreadMentionCount = 0,
+            messageExtras = null
           )
         }
         return@withinTransaction true
@@ -1516,7 +1522,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         expiresIn = record.expiresIn,
         readReceiptCount = record.hasReadReceipt().toInt(),
         unreadCount = unreadCount,
-        unreadMentionCount = unreadMentionCount
+        unreadMentionCount = unreadMentionCount,
+        messageExtras = record.messageExtras
       )
 
       if (notifyListeners) {
@@ -1664,36 +1671,43 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
   }
 
   private fun SQLiteDatabase.deactivateThread(query: SqlUtil.Query?) {
-    val update = update(TABLE_NAME)
-      .values(
-        DATE to 0,
-        MEANINGFUL_MESSAGES to 0,
-        READ to ReadStatus.READ.serialize(),
-        TYPE to 0,
-        ERROR to 0,
-        SNIPPET to null,
-        SNIPPET_TYPE to 0,
-        SNIPPET_URI to null,
-        SNIPPET_CONTENT_TYPE to null,
-        SNIPPET_EXTRAS to null,
-        UNREAD_COUNT to 0,
-        ARCHIVED to 0,
-        STATUS to 0,
-        HAS_DELIVERY_RECEIPT to 0,
-        HAS_READ_RECEIPT to 0,
-        EXPIRES_IN to 0,
-        LAST_SEEN to 0,
-        HAS_SENT to 0,
-        LAST_SCROLLED to 0,
-        PINNED to 0,
-        UNREAD_SELF_MENTION_COUNT to 0,
-        ACTIVE to 0
-      )
+    val contentValues = contentValuesOf(
+      DATE to 0,
+      MEANINGFUL_MESSAGES to 0,
+      READ to ReadStatus.READ.serialize(),
+      TYPE to 0,
+      ERROR to 0,
+      SNIPPET to null,
+      SNIPPET_TYPE to 0,
+      SNIPPET_URI to null,
+      SNIPPET_CONTENT_TYPE to null,
+      SNIPPET_EXTRAS to null,
+      SNIPPET_MESSAGE_EXTRAS to null,
+      UNREAD_COUNT to 0,
+      ARCHIVED to 0,
+      STATUS to 0,
+      HAS_DELIVERY_RECEIPT to 0,
+      HAS_READ_RECEIPT to 0,
+      EXPIRES_IN to 0,
+      LAST_SEEN to 0,
+      HAS_SENT to 0,
+      LAST_SCROLLED to 0,
+      PINNED to 0,
+      UNREAD_SELF_MENTION_COUNT to 0,
+      ACTIVE to 0
+    )
 
     if (query != null) {
-      update.where(query.where, query.whereArgs).run()
+      writableDatabase
+        .update(TABLE_NAME)
+        .values(contentValues)
+        .where(query.where, query.whereArgs)
+        .run()
     } else {
-      update.run()
+      writableDatabase
+        .updateAll(TABLE_NAME)
+        .values(contentValues)
+        .run()
     }
   }
 
@@ -1900,6 +1914,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
       val hasReadReceipt = TextSecurePreferences.isReadReceiptsEnabled(context) && cursor.requireBoolean(HAS_READ_RECEIPT)
       val extraString = cursor.getString(cursor.getColumnIndexOrThrow(SNIPPET_EXTRAS))
+      val messageExtras = cursor.getBlob(cursor.getColumnIndexOrThrow(SNIPPET_MESSAGE_EXTRAS))
       val extra: Extra? = if (extraString != null) {
         try {
           val jsonObject = SaneJSONObject(JSONObject(extraString))

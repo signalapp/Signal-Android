@@ -3,34 +3,26 @@ package org.thoughtcrime.securesms.profiles.spoofing;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackPhoto20dp;
 import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
+import org.thoughtcrime.securesms.databinding.ReviewBannerViewBinding;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
 /**
  * Banner displayed within a conversation when a review is suggested.
  */
-public class ReviewBannerView extends LinearLayout {
+public class ReviewBannerView extends FrameLayout {
 
-  private ImageView       bannerIcon;
-  private TextView        bannerMessage;
-  private View            bannerClose;
-  private AvatarImageView topLeftAvatar;
-  private AvatarImageView bottomRightAvatar;
-  private View            stroke;
-  private OnHideListener  onHideListener;
+  private ReviewBannerViewBinding binding;
+  private OnHideListener          onHideListener;
 
   public ReviewBannerView(@NonNull Context context, @Nullable AttributeSet attrs) {
     super(context, attrs);
@@ -44,19 +36,14 @@ public class ReviewBannerView extends LinearLayout {
   protected void onFinishInflate() {
     super.onFinishInflate();
 
-    bannerIcon        = findViewById(R.id.banner_icon);
-    bannerMessage     = findViewById(R.id.banner_message);
-    bannerClose       = findViewById(R.id.banner_close);
-    topLeftAvatar     = findViewById(R.id.banner_avatar_1);
-    bottomRightAvatar = findViewById(R.id.banner_avatar_2);
-    stroke            = findViewById(R.id.banner_avatar_stroke);
+    binding = ReviewBannerViewBinding.bind(this);
 
     FallbackPhotoProvider provider = new FallbackPhotoProvider();
 
-    topLeftAvatar.setFallbackPhotoProvider(provider);
-    bottomRightAvatar.setFallbackPhotoProvider(provider);
+    binding.bannerBottomRightAvatar.setFallbackPhotoProvider(provider);
+    binding.bannerTopLeftAvatar.setFallbackPhotoProvider(provider);
 
-    bannerClose.setOnClickListener(v -> {
+    binding.bannerClose.setOnClickListener(v -> {
       if (onHideListener != null && onHideListener.onHide()) {
         return;
       }
@@ -70,26 +57,32 @@ public class ReviewBannerView extends LinearLayout {
   }
 
   public void setBannerMessage(@Nullable CharSequence charSequence) {
-    bannerMessage.setText(charSequence);
+    binding.bannerMessage.setText(charSequence);
   }
 
   public void setBannerIcon(@Nullable Drawable icon) {
-    bannerIcon.setImageDrawable(icon);
+    binding.bannerIcon.setImageDrawable(icon);
 
-    bannerIcon.setVisibility(VISIBLE);
-    topLeftAvatar.setVisibility(GONE);
-    bottomRightAvatar.setVisibility(GONE);
-    stroke.setVisibility(GONE);
+    binding.bannerIcon.setVisibility(VISIBLE);
+    binding.bannerTopLeftAvatar.setVisibility(GONE);
+    binding.bannerBottomRightAvatar.setVisibility(GONE);
+    binding.bannerAvatarStroke.setVisibility(GONE);
   }
 
   public void setBannerRecipient(@NonNull Recipient recipient) {
-    topLeftAvatar.setAvatar(recipient);
-    bottomRightAvatar.setAvatar(recipient);
+    binding.bannerTopLeftAvatar.setAvatar(recipient);
+    binding.bannerBottomRightAvatar.setAvatar(recipient);
 
-    bannerIcon.setVisibility(GONE);
-    topLeftAvatar.setVisibility(VISIBLE);
-    bottomRightAvatar.setVisibility(VISIBLE);
-    stroke.setVisibility(VISIBLE);
+    binding.bannerIcon.setVisibility(GONE);
+    binding.bannerTopLeftAvatar.setVisibility(VISIBLE);
+    binding.bannerBottomRightAvatar.setVisibility(VISIBLE);
+    binding.bannerAvatarStroke.setVisibility(VISIBLE);
+  }
+
+  @Override
+  public void setOnClickListener(@Nullable OnClickListener l) {
+    super.setOnClickListener(l);
+    binding.bannerTapToReview.setOnClickListener(l);
   }
 
   private static final class FallbackPhotoProvider extends Recipient.FallbackPhotoProvider {

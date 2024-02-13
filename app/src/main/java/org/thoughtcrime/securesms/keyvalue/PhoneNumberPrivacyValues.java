@@ -9,9 +9,9 @@ import java.util.List;
 
 public final class PhoneNumberPrivacyValues extends SignalStoreValues {
 
-  public static final String SHARING_MODE      = "phoneNumberPrivacy.sharingMode";
-  public static final String LISTING_MODE      = "phoneNumberPrivacy.listingMode";
-  public static final String LISTING_TIMESTAMP = "phoneNumberPrivacy.listingMode.timestamp";
+  public static final String SHARING_MODE              = "phoneNumberPrivacy.sharingMode";
+  public static final String DISCOVERABILITY_MODE      = "phoneNumberPrivacy.listingMode";
+  public static final String DISCOVERABILITY_TIMESTAMP = "phoneNumberPrivacy.listingMode.timestamp";
 
   private static final Collection<CertificateType> ACI_AND_E164_CERTIFICATE = Collections.singletonList(CertificateType.ACI_AND_E164);
   private static final Collection<CertificateType> ACI_ONLY_CERTIFICATE     = Collections.singletonList(CertificateType.ACI_ONLY);
@@ -31,7 +31,7 @@ public final class PhoneNumberPrivacyValues extends SignalStoreValues {
 
   @Override
   @NonNull List<String> getKeysToIncludeInBackup() {
-    return Arrays.asList(SHARING_MODE, LISTING_MODE, LISTING_TIMESTAMP);
+    return Arrays.asList(SHARING_MODE, DISCOVERABILITY_MODE, DISCOVERABILITY_TIMESTAMP);
   }
 
   /**
@@ -55,23 +55,23 @@ public final class PhoneNumberPrivacyValues extends SignalStoreValues {
   }
 
   public boolean isDiscoverableByPhoneNumber() {
-    return getPhoneNumberListingMode() == PhoneNumberPrivacyValues.PhoneNumberListingMode.LISTED;
+    return getPhoneNumberDiscoverabilityMode() == PhoneNumberDiscoverabilityMode.DISCOVERABLE;
   }
 
-  public @NonNull PhoneNumberListingMode getPhoneNumberListingMode() {
-    return PhoneNumberListingMode.deserialize(getInteger(LISTING_MODE, PhoneNumberListingMode.LISTED.serialize()));
+  public @NonNull PhoneNumberDiscoverabilityMode getPhoneNumberDiscoverabilityMode() {
+    return PhoneNumberDiscoverabilityMode.deserialize(getInteger(DISCOVERABILITY_MODE, PhoneNumberDiscoverabilityMode.DISCOVERABLE.serialize()));
   }
 
-  public void setPhoneNumberListingMode(@NonNull PhoneNumberListingMode phoneNumberListingMode) {
+  public void setPhoneNumberDiscoverabilityMode(@NonNull PhoneNumberDiscoverabilityMode phoneNumberDiscoverabilityMode) {
     getStore()
         .beginWrite()
-        .putInteger(LISTING_MODE, phoneNumberListingMode.serialize())
-        .putLong(LISTING_TIMESTAMP, System.currentTimeMillis())
+        .putInteger(DISCOVERABILITY_MODE, phoneNumberDiscoverabilityMode.serialize())
+        .putLong(DISCOVERABILITY_TIMESTAMP, System.currentTimeMillis())
         .apply();
   }
 
-  public long getPhoneNumberListingModeTimestamp() {
-    return getLong(LISTING_TIMESTAMP, 0);
+  public long getPhoneNumberDiscoverabilityModeTimestamp() {
+    return getLong(DISCOVERABILITY_TIMESTAMP, 0);
   }
 
   /**
@@ -119,30 +119,30 @@ public final class PhoneNumberPrivacyValues extends SignalStoreValues {
     }
   }
 
-  public enum PhoneNumberListingMode {
-    LISTED(0),
-    UNLISTED(1);
+  public enum PhoneNumberDiscoverabilityMode {
+    DISCOVERABLE(0),
+    NOT_DISCOVERABLE(1);
 
     private final int code;
 
-    PhoneNumberListingMode(int code) {
+    PhoneNumberDiscoverabilityMode(int code) {
       this.code = code;
     }
 
     public boolean isDiscoverable() {
-      return this == LISTED;
+      return this == DISCOVERABLE;
     }
 
-    public boolean isUnlisted() {
-      return this == UNLISTED;
+    public boolean isUndiscoverable() {
+      return this == NOT_DISCOVERABLE;
     }
 
     public int serialize() {
       return code;
     }
 
-    public static PhoneNumberListingMode deserialize(int code) {
-      for (PhoneNumberListingMode value : PhoneNumberListingMode.values()) {
+    public static PhoneNumberDiscoverabilityMode deserialize(int code) {
+      for (PhoneNumberDiscoverabilityMode value : PhoneNumberDiscoverabilityMode.values()) {
         if (value.code == code) {
           return value;
         }

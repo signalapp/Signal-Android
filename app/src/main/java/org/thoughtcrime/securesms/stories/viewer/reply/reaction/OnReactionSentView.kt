@@ -11,13 +11,14 @@ import org.thoughtcrime.securesms.components.emoji.EmojiImageView
 
 class OnReactionSentView @JvmOverloads constructor(
   context: Context,
-  attrs: AttributeSet? = null
+  attrs: AttributeSet? = null,
+  layoutRes: Int = R.layout.on_reaction_sent_view
 ) : FrameLayout(context, attrs) {
 
   var callback: Callback? = null
 
   init {
-    inflate(context, R.layout.on_reaction_sent_view, this)
+    inflate(context, layoutRes, this)
   }
 
   private val motionLayout: MotionLayout = findViewById(R.id.motion_layout)

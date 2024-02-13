@@ -11,9 +11,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
+
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
-import org.thoughtcrime.securesms.mms.GlideApp;
 
 public class MediaSendGifFragment extends Fragment implements MediaSendPageFragment {
 
@@ -41,7 +42,7 @@ public class MediaSendGifFragment extends Fragment implements MediaSendPageFragm
     super.onViewCreated(view, savedInstanceState);
 
     uri = getArguments().getParcelable(KEY_URI);
-    GlideApp.with(this).load(new DecryptableStreamUriLoader.DecryptableUri(uri)).fitCenter().into((ImageView) view);
+    Glide.with(this).load(new DecryptableStreamUriLoader.DecryptableUri(uri)).fitCenter().into((ImageView) view);
   }
 
   @Override

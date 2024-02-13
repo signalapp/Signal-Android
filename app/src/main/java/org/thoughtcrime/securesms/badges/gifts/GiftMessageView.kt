@@ -9,13 +9,13 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.use
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
+import com.bumptech.glide.RequestManager
 import com.google.android.material.button.MaterialButton
 import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.BadgeImageView
 import org.thoughtcrime.securesms.badges.gifts.Gifts.formatExpiry
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
-import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.recipients.Recipient
 
 /**
@@ -50,7 +50,7 @@ class GiftMessageView @JvmOverloads constructor(
     }
   }
 
-  fun setGiftBadge(glideRequests: GlideRequests, giftBadge: GiftBadge, isOutgoing: Boolean, callback: Callback, fromRecipient: Recipient, toRecipient: Recipient) {
+  fun setGiftBadge(requestManager: RequestManager, giftBadge: GiftBadge, isOutgoing: Boolean, callback: Callback, fromRecipient: Recipient, toRecipient: Recipient) {
     descriptionView.text = giftBadge.formatExpiry(context)
     actionView.icon = null
     actionView.setOnClickListener { callback.onViewGiftBadgeClicked() }
@@ -88,7 +88,7 @@ class GiftMessageView @JvmOverloads constructor(
       )
     }
 
-    badgeView.setGiftBadge(giftBadge, glideRequests)
+    badgeView.setGiftBadge(giftBadge, requestManager)
   }
 
   fun onGiftNotOpened() {

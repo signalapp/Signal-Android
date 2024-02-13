@@ -79,8 +79,14 @@
     <dimen name="reaction_scrubber_anim_start_translation_y">25dp</dimen>
     <dimen name="reaction_scrubber_anim_end_translation_y">0dp</dimen>
     <dimen name="reaction_scrubber_width">320dp</dimen>
+
     <dimen name="calling_reaction_scrubber_margin">4dp</dimen>
     <dimen name="calling_reaction_emoji_height">48dp</dimen>
+
+    <dimen name="calling_reaction_popup_menu_width">320dp</dimen>
+    <dimen name="calling_reaction_popup_menu_height">120dp</dimen>
+
+    <dimen name="calling_raise_hand_snackbar_margin">16dp</dimen>
 
     <dimen name="conversation_item_reply_size">38dp</dimen>
     <dimen name="conversation_item_avatar_size">28dp</dimen>
@@ -161,7 +167,7 @@
     <dimen name="transfer_split_top_padding">32dp</dimen>
     <dimen name="transfer_item_spacing">24dp</dimen>
     <dimen name="transfer_control_view_progressbar_to_textview_margin">2dp</dimen>
-    <dimen name="transfer_control_view_parent_to_textview_margin">8dp</dimen>
+    <dimen name="transfer_control_view_parent_to_textview_margin">4dp</dimen>
     <dimen name="transfer_control_view_primary_background_height">44dp</dimen>
 
     <dimen name="create_payment_key_width">80dp</dimen>

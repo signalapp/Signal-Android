@@ -101,7 +101,7 @@
             android:focusable="true"
             android:nextFocusLeft="@+id/container"
             android:nextFocusRight="@+id/container"
-            android:src="@drawable/ic_close_white_24dp"
+            android:src="@drawable/symbol_x_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

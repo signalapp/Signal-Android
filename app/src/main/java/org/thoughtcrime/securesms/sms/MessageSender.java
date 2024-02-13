@@ -344,7 +344,7 @@ public class MessageSender {
           List<AttachmentId> attachmentIds     = new ArrayList<>(preUploadAttachmentIds.size());
 
           for (int i = 0; i < preUploadAttachments.size(); i++) {
-            AttachmentId attachmentId = attachmentDatabase.insertAttachmentForPreUpload(preUploadAttachments.get(i)).getAttachmentId();
+            AttachmentId attachmentId = attachmentDatabase.insertAttachmentForPreUpload(preUploadAttachments.get(i)).attachmentId;
             attachmentCopies.get(i).add(attachmentId);
             attachmentIds.add(attachmentId);
           }
@@ -418,14 +418,14 @@ public class MessageSender {
       DatabaseAttachment databaseAttachment = attachmentDatabase.insertAttachmentForPreUpload(attachment);
 
       Job compressionJob = AttachmentCompressionJob.fromAttachment(databaseAttachment, false, -1);
-      Job uploadJob      = new AttachmentUploadJob(databaseAttachment.getAttachmentId());
+      Job uploadJob      = new AttachmentUploadJob(databaseAttachment.attachmentId);
 
       ApplicationDependencies.getJobManager()
                              .startChain(compressionJob)
                              .then(uploadJob)
                              .enqueue();
 
-      return new PreUploadResult(media, databaseAttachment.getAttachmentId(), Arrays.asList(compressionJob.getId(), uploadJob.getId()));
+      return new PreUploadResult(media, databaseAttachment.attachmentId, Arrays.asList(compressionJob.getId(), uploadJob.getId()));
     } catch (MmsException e) {
       Log.w(TAG, "preUploadPushAttachment() - Failed to upload!", e);
       return null;
@@ -645,7 +645,7 @@ public class MessageSender {
                                                              .toList();
 
       List<AttachmentMarkUploadedJob> fakeUploadJobs = Stream.of(attachments)
-                                                             .map(a -> new AttachmentMarkUploadedJob(messageId, ((DatabaseAttachment) a).getAttachmentId()))
+                                                             .map(a -> new AttachmentMarkUploadedJob(messageId, ((DatabaseAttachment) a).attachmentId))
                                                              .toList();
 
       ApplicationDependencies.getJobManager().startChain(compressionJobs)
@@ -723,7 +723,7 @@ public class MessageSender {
 
     @Override
     public @NonNull String toString() {
-      return "{ID: " + attachmentId.getRowId() + ", URI: " + media.getUri() + ", Jobs: " + jobIds.stream().map(j -> "JOB::" + j).collect(Collectors.toList()) + "}";
+      return "{ID: " + attachmentId.id + ", URI: " + media.getUri() + ", Jobs: " + jobIds.stream().map(j -> "JOB::" + j).collect(Collectors.toList()) + "}";
     }
   }
 

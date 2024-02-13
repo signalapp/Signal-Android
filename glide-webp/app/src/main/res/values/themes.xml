@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright 2023 Signal Messenger, LLC
-  ~ SPDX-License-Identifier: AGPL-3.0-only
-  -->
-
-<resources>
-    <style name="Theme.Signal" parent="Theme.AppCompat.NoActionBar" />
-</resources>

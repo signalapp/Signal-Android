@@ -15,7 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.media.MediaInput;
+import org.thoughtcrime.securesms.video.interfaces.MediaInput;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
@@ -28,8 +28,8 @@ public class VideoThumbnailsView extends View {
 
   private static final String TAG = Log.tag(VideoThumbnailsView.class);
 
-  private          MediaInput                    input;
-  private volatile ArrayList<Bitmap>             thumbnails;
+  private          MediaInput        input;
+  private volatile ArrayList<Bitmap> thumbnails;
   private          AsyncTask<Void, Bitmap, Void> thumbnailsTask;
   private          OnDurationListener            durationListener;
 

@@ -151,12 +151,18 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
         return;
       }
 
+      if (!recipient.hasE164() && !recipient.hasAci()) {
+        Log.w(TAG, recipientId + " has no valid identifier!");
+        return;
+      }
+
       Optional<IdentityRecord>  identityRecord  = ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecord(recipient.getId());
       Optional<VerifiedMessage> verifiedMessage = getVerifiedMessage(recipient, identityRecord);
       Map<RecipientId, Integer> inboxPositions  = SignalDatabase.threads().getInboxPositions();
       Set<RecipientId>          archived        = SignalDatabase.threads().getArchivedRecipients();
 
-      out.write(new DeviceContact(RecipientUtil.toSignalServiceAddress(context, recipient),
+      out.write(new DeviceContact(recipient.getAci(),
+                                  recipient.getE164(),
                                   Optional.ofNullable(recipient.isGroup() || recipient.isSystemContact() ? recipient.getDisplayName(context) : null),
                                   getSystemAvatar(recipient.getContactUri()),
                                   Optional.of(ChatColorsMapper.getMaterialColor(recipient.getChatColors()).serialize()),
@@ -222,7 +228,8 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
         Optional<Integer>         expireTimer   = recipient.getExpiresInSeconds() > 0 ? Optional.of(recipient.getExpiresInSeconds()) : Optional.empty();
         Optional<Integer>         inboxPosition = Optional.ofNullable(inboxPositions.get(recipient.getId()));
 
-        out.write(new DeviceContact(RecipientUtil.toSignalServiceAddress(context, recipient),
+        out.write(new DeviceContact(recipient.getAci(),
+                                    recipient.getE164(),
                                     name,
                                     getSystemAvatar(recipient.getContactUri()),
                                     Optional.of(ChatColorsMapper.getMaterialColor(recipient.getChatColors()).serialize()),
@@ -239,7 +246,8 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
       byte[]    profileKey = self.getProfileKey();
 
       if (profileKey != null) {
-        out.write(new DeviceContact(RecipientUtil.toSignalServiceAddress(context, self),
+        out.write(new DeviceContact(Optional.of(SignalStore.account().getAci()),
+                                    Optional.of(SignalStore.account().getE164()),
                                     Optional.empty(),
                                     Optional.empty(),
                                     Optional.of(ChatColorsMapper.getMaterialColor(self.getChatColors()).serialize()),

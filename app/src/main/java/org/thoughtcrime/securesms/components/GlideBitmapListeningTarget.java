@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 
-import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
+import org.signal.core.util.concurrent.SettableFuture;
 
 public class GlideBitmapListeningTarget extends BitmapImageViewTarget {
 

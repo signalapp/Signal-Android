@@ -68,14 +68,15 @@ object RecipientDatabaseTestUtils {
     about: String? = null,
     aboutEmoji: String? = null,
     syncExtras: RecipientRecord.SyncExtras = RecipientRecord.SyncExtras(
-      null,
-      null,
-      null,
-      IdentityTable.VerifiedStatus.DEFAULT,
-      false,
-      false,
-      0,
-      null
+      storageProto = null,
+      groupMasterKey = null,
+      identityKey = null,
+      identityStatus = IdentityTable.VerifiedStatus.DEFAULT,
+      isArchived = false,
+      isForcedUnread = false,
+      unregisteredTimestamp = 0,
+      systemNickname = null,
+      pniSignatureVerified = false
     ),
     extras: Recipient.Extras? = null,
     hasGroupsInCommon: Boolean = false,
@@ -146,7 +147,8 @@ object RecipientDatabaseTestUtils {
         badges = badges,
         needsPniSignature = false,
         hiddenState = Recipient.HiddenState.NOT_HIDDEN,
-        callLinkRoomId = null
+        callLinkRoomId = null,
+        phoneNumberSharing = RecipientTable.PhoneNumberSharingState.UNKNOWN
       ),
       participantIds = participants,
       isReleaseChannel = isReleaseChannel,

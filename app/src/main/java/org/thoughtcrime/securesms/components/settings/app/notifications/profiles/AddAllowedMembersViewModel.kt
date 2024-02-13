@@ -30,6 +30,16 @@ class AddAllowedMembersViewModel(private val profileId: Long, private val reposi
       .observeOn(AndroidSchedulers.mainThread())
   }
 
+  fun toggleAllowAllMentions(): Single<NotificationProfile> {
+    return repository.toggleAllowAllMentions(profileId)
+      .observeOn(AndroidSchedulers.mainThread())
+  }
+
+  fun toggleAllowAllCalls(): Single<NotificationProfile> {
+    return repository.toggleAllowAllCalls(profileId)
+      .observeOn(AndroidSchedulers.mainThread())
+  }
+
   data class NotificationProfileAndRecipients(val profile: NotificationProfile, val recipients: List<Recipient>)
 
   class Factory(private val profileId: Long) : ViewModelProvider.Factory {

@@ -5,114 +5,153 @@
 
 package org.thoughtcrime.video.app
 
+import android.content.Context
+import android.content.Intent
+import android.content.SharedPreferences
+import android.media.MediaScannerConnection
 import android.os.Bundle
-import android.util.Log
-import androidx.activity.ComponentActivity
+import android.os.Environment
 import androidx.activity.compose.setContent
-import androidx.activity.result.PickVisualMediaRequest
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.viewModels
-import androidx.annotation.OptIn
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Button
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.viewinterop.AndroidView
-import androidx.media3.common.util.UnstableApi
-import androidx.media3.exoplayer.ExoPlayer
-import androidx.media3.exoplayer.source.MediaSource
-import androidx.media3.ui.PlayerView
+import org.signal.core.util.logging.AndroidLogger
+import org.signal.core.util.logging.Log
+import org.thoughtcrime.video.app.playback.PlaybackTestActivity
+import org.thoughtcrime.video.app.transcode.TranscodeTestActivity
+import org.thoughtcrime.video.app.ui.composables.LabeledButton
 import org.thoughtcrime.video.app.ui.theme.SignalTheme
 
 /**
  * Main activity for this sample app.
  */
-class MainActivity : ComponentActivity() {
-  private val viewModel: MainScreenViewModel by viewModels()
-  private lateinit var exoPlayer: ExoPlayer
+class MainActivity : AppCompatActivity() {
+  companion object {
+    private val TAG = Log.tag(MainActivity::class.java)
+    private var appLaunch = true
+  }
+
+  private val sharedPref: SharedPreferences by lazy {
+    getSharedPreferences(
+      getString(R.string.preference_file_key),
+      Context.MODE_PRIVATE
+    )
+  }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    viewModel.initialize(this)
-    exoPlayer = ExoPlayer.Builder(this).build()
+    Log.initialize(AndroidLogger())
+
+    val startPlaybackScreen = { saveChoice: Boolean -> proceed(Screen.TEST_PLAYBACK, saveChoice) }
+    val startTranscodeScreen = { saveChoice: Boolean -> proceed(Screen.TEST_TRANSCODE, saveChoice) }
     setContent {
-      SignalTheme {
-        Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-          Column(
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
+      Body(startPlaybackScreen, startTranscodeScreen)
+    }
+    refreshMediaProviderForExternalStorage(this, arrayOf("video/*"))
+    if (appLaunch) {
+      appLaunch = false
+      getLaunchChoice()?.let {
+        proceed(it, false)
+      }
+    }
+  }
+
+  @Composable
+  private fun Body(startPlaybackScreen: (Boolean) -> Unit, startTranscodeScreen: (Boolean) -> Unit) {
+    var rememberChoice by remember { mutableStateOf(getLaunchChoice() != null) }
+    SignalTheme {
+      Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
+        Column(
+          verticalArrangement = Arrangement.Center,
+          horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+          LabeledButton("Test Playback") {
+            startPlaybackScreen(rememberChoice)
+          }
+          LabeledButton("Test Transcode") {
+            startTranscodeScreen(rememberChoice)
+          }
+          Row(
+            verticalAlignment = Alignment.CenterVertically
           ) {
-            val videoUri = viewModel.selectedVideo
-            if (videoUri == null) {
-              LabeledButton("Select Video") { pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.VideoOnly)) }
-            } else {
-              LabeledButton("Play Video") { viewModel.updateMediaSource(this@MainActivity) }
-              LabeledButton("Play Video with slow download") { viewModel.updateMediaSourceTrickle(this@MainActivity) }
-              ExoVideoView(source = viewModel.mediaSource, exoPlayer = exoPlayer)
-            }
+            Checkbox(
+              checked = rememberChoice,
+              onCheckedChange = { isChecked ->
+                rememberChoice = isChecked
+                if (!isChecked) {
+                  clearLaunchChoice()
+                }
+              }
+            )
+            Text(text = "Remember & Skip This Screen", style = MaterialTheme.typography.labelLarge)
           }
         }
       }
     }
   }
 
-  override fun onPause() {
-    super.onPause()
-    exoPlayer.pause()
+  private fun getLaunchChoice(): Screen? {
+    val screenName = sharedPref.getString(getString(R.string.preference_activity_shortcut_key), null) ?: return null
+    return Screen.valueOf(screenName)
   }
 
-  override fun onDestroy() {
-    super.onDestroy()
-    viewModel.releaseCache()
-    exoPlayer.stop()
-    exoPlayer.release()
-  }
-
-  /**
-   * This launches the system media picker and stores the resulting URI.
-   */
-  private val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
-    if (uri != null) {
-      Log.d("PhotoPicker", "Selected URI: $uri")
-      viewModel.selectedVideo = uri
-      viewModel.updateMediaSource(this)
-    } else {
-      Log.d("PhotoPicker", "No media selected")
+  private fun clearLaunchChoice() {
+    with(sharedPref.edit()) {
+      remove(getString(R.string.preference_activity_shortcut_key))
+      apply()
     }
   }
-}
 
-@Composable
-fun LabeledButton(buttonLabel: String, modifier: Modifier = Modifier, onClick: () -> Unit) {
-  Button(onClick = onClick, modifier = modifier) {
-    Text(buttonLabel)
-  }
-}
-
-@OptIn(UnstableApi::class)
-@Composable
-fun ExoVideoView(source: MediaSource, exoPlayer: ExoPlayer, modifier: Modifier = Modifier) {
-  exoPlayer.playWhenReady = false
-  exoPlayer.setMediaSource(source)
-  exoPlayer.prepare()
-  AndroidView(factory = { context ->
-    PlayerView(context).apply {
-      player = exoPlayer
+  private fun saveLaunchChoice(choice: Screen) {
+    with(sharedPref.edit()) {
+      putString(getString(R.string.preference_activity_shortcut_key), choice.name)
+      apply()
     }
-  }, modifier = modifier)
-}
+  }
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-  SignalTheme {
-    LabeledButton("Preview Render") {}
+  private fun refreshMediaProviderForExternalStorage(context: Context, mimeTypes: Array<String>) {
+    val rootPath = Environment.getExternalStorageDirectory().absolutePath
+    MediaScannerConnection.scanFile(
+      context,
+      arrayOf<String>(rootPath),
+      mimeTypes
+    ) { _, _ ->
+      Log.i(TAG, "Re-scan of external storage for media completed.")
+    }
+  }
+
+  private fun proceed(screen: Screen, saveChoice: Boolean) {
+    if (saveChoice) {
+      saveLaunchChoice(screen)
+    }
+    when (screen) {
+      Screen.TEST_PLAYBACK -> startActivity(Intent(this, PlaybackTestActivity::class.java))
+      Screen.TEST_TRANSCODE -> startActivity(Intent(this, TranscodeTestActivity::class.java))
+    }
+  }
+
+  private enum class Screen {
+    TEST_PLAYBACK,
+    TEST_TRANSCODE
+  }
+
+  @Preview
+  @Composable
+  private fun PreviewBody() {
+    Body({}, {})
   }
 }

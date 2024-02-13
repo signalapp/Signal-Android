@@ -4,15 +4,16 @@
  */
 package org.thoughtcrime.securesms.components.transfercontrols
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Build
-import android.text.format.Formatter
+import android.text.StaticLayout
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.children
+import androidx.core.view.updateLayoutParams
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -25,17 +26,19 @@ import org.thoughtcrime.securesms.databinding.TransferControlsViewBinding
 import org.thoughtcrime.securesms.events.PartProgressEvent
 import org.thoughtcrime.securesms.mms.Slide
 import org.thoughtcrime.securesms.util.MediaUtil
+import org.thoughtcrime.securesms.util.ThrottledDebouncer
 import org.thoughtcrime.securesms.util.ViewUtil
-import org.thoughtcrime.securesms.util.concurrent.ListenableFuture
 import org.thoughtcrime.securesms.util.visible
 import java.util.UUID
-import java.util.concurrent.ExecutionException
+import kotlin.math.ceil
+import kotlin.math.roundToInt
 
 class TransferControlView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : ConstraintLayout(context, attrs, defStyleAttr) {
   private val uuid = UUID.randomUUID().toString()
   private val binding: TransferControlsViewBinding
 
   private var state = TransferControlViewState()
+  private val progressUpdateDebouncer: ThrottledDebouncer = ThrottledDebouncer(100)
 
   init {
     tag = uuid
@@ -58,8 +61,10 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
 
   private fun updateState(stateFactory: (TransferControlViewState) -> TransferControlViewState) {
     val newState = stateFactory.invoke(state)
-    if (newState != state) {
-      applyState(newState)
+    if (newState != state && !(deriveMode(state) == Mode.GONE && deriveMode(newState) == Mode.GONE)) {
+      progressUpdateDebouncer.publish {
+        applyState(newState)
+      }
     }
     state = newState
   }
@@ -213,7 +218,7 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
   }
 
   private fun displayPendingGallery(currentState: TransferControlViewState) {
-    binding.primaryProgressView.startClickListener = currentState.downloadClickedListener
+    binding.primaryProgressView.startClickListener = currentState.startTransferClickListener
     applyFocusableAndClickable(
       currentState,
       listOf(binding.primaryProgressView, binding.primaryDetailsText, binding.primaryBackground),
@@ -226,26 +231,28 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
       secondaryDetailsText = currentState.showSecondaryText
     )
 
-    binding.primaryDetailsText.setOnClickListener(currentState.downloadClickedListener)
-    binding.primaryBackground.setOnClickListener(currentState.downloadClickedListener)
+    binding.primaryDetailsText.setOnClickListener(currentState.startTransferClickListener)
+    binding.primaryBackground.setOnClickListener(currentState.startTransferClickListener)
 
     binding.primaryDetailsText.translationX = if (ViewUtil.isLtr(this)) {
       ViewUtil.dpToPx(-PRIMARY_TEXT_OFFSET_DP).toFloat()
     } else {
       ViewUtil.dpToPx(PRIMARY_TEXT_OFFSET_DP).toFloat()
     }
-    val remainingSlides = currentState.slides.filterNot { it.transferState == AttachmentTable.TRANSFER_PROGRESS_DONE }
-    val downloadCount = remainingSlides.size
-    binding.primaryDetailsText.text = context.resources.getQuantityString(R.plurals.TransferControlView_n_items, downloadCount, downloadCount)
-    val byteCount = remainingSlides.sumOf { it.asAttachment().size }
-    binding.secondaryDetailsText.text = Formatter.formatShortFileSize(context, byteCount)
+    setSecondaryDetailsText(currentState)
   }
 
   private fun displayPendingGalleryWithPlayable(currentState: TransferControlViewState) {
-    binding.secondaryProgressView.startClickListener = currentState.downloadClickedListener
+    binding.secondaryProgressView.startClickListener = currentState.startTransferClickListener
+    binding.secondaryDetailsText.setOnClickListener(currentState.startTransferClickListener)
+    binding.secondaryBackground.setOnClickListener(currentState.startTransferClickListener)
     super.setClickable(false)
     binding.secondaryProgressView.isClickable = currentState.showSecondaryText
     binding.secondaryProgressView.isFocusable = currentState.showSecondaryText
+    binding.secondaryDetailsText.isClickable = currentState.showSecondaryText
+    binding.secondaryDetailsText.isFocusable = currentState.showSecondaryText
+    binding.secondaryBackground.isClickable = currentState.showSecondaryText
+    binding.secondaryBackground.isFocusable = currentState.showSecondaryText
     binding.primaryProgressView.isClickable = false
     binding.primaryProgressView.isFocusable = false
     showAllViews(
@@ -257,17 +264,16 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
     )
 
     binding.secondaryProgressView.setStopped(false)
+    setSecondaryDetailsText(currentState)
     binding.secondaryDetailsText.translationX = if (ViewUtil.isLtr(this)) {
       ViewUtil.dpToPx(-SECONDARY_TEXT_OFFSET_DP).toFloat()
     } else {
       ViewUtil.dpToPx(SECONDARY_TEXT_OFFSET_DP).toFloat()
     }
-    val byteCount = currentState.slides.sumOf { it.asAttachment().size }
-    binding.secondaryDetailsText.text = Formatter.formatShortFileSize(context, byteCount)
   }
 
   private fun displayPendingSingleItem(currentState: TransferControlViewState) {
-    binding.primaryProgressView.startClickListener = currentState.downloadClickedListener
+    binding.primaryProgressView.startClickListener = currentState.startTransferClickListener
     applyFocusableAndClickable(currentState, listOf(binding.primaryProgressView), listOf(binding.secondaryProgressView, binding.playVideoButton))
     binding.primaryProgressView.setStopped(false)
     showAllViews(
@@ -276,19 +282,20 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
       secondaryProgressView = false,
       secondaryDetailsText = currentState.showSecondaryText
     )
-    val byteCount = currentState.slides.sumOf { it.asAttachment().size }
-    binding.secondaryDetailsText.translationX = if (ViewUtil.isLtr(this)) {
-      ViewUtil.dpToPx(-SECONDARY_TEXT_OFFSET_DP).toFloat()
-    } else {
-      ViewUtil.dpToPx(SECONDARY_TEXT_OFFSET_DP).toFloat()
-    }
-    binding.secondaryDetailsText.text = Formatter.formatShortFileSize(context, byteCount)
+    binding.secondaryDetailsText.translationX = 0f
+    setSecondaryDetailsText(currentState)
   }
 
   private fun displayPendingPlayableVideo(currentState: TransferControlViewState) {
-    binding.secondaryProgressView.startClickListener = currentState.downloadClickedListener
+    binding.secondaryProgressView.startClickListener = currentState.startTransferClickListener
+    binding.secondaryDetailsText.setOnClickListener(currentState.startTransferClickListener)
+    binding.secondaryBackground.setOnClickListener(currentState.startTransferClickListener)
     binding.playVideoButton.setOnClickListener(currentState.instantPlaybackClickListener)
-    applyFocusableAndClickable(currentState, listOf(binding.secondaryProgressView, binding.playVideoButton), listOf(binding.primaryProgressView))
+    applyFocusableAndClickable(
+      currentState,
+      listOf(binding.secondaryProgressView, binding.secondaryDetailsText, binding.secondaryBackground, binding.playVideoButton),
+      listOf(binding.primaryProgressView)
+    )
     binding.secondaryProgressView.setStopped(false)
     showAllViews(
       primaryProgressView = false,
@@ -296,13 +303,12 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
       secondaryDetailsText = currentState.showSecondaryText,
       secondaryProgressView = currentState.showSecondaryText
     )
+    setSecondaryDetailsText(currentState)
     binding.secondaryDetailsText.translationX = if (ViewUtil.isLtr(this)) {
       ViewUtil.dpToPx(-SECONDARY_TEXT_OFFSET_DP).toFloat()
     } else {
       ViewUtil.dpToPx(SECONDARY_TEXT_OFFSET_DP).toFloat()
     }
-    val byteCount = currentState.slides.sumOf { it.asAttachment().size }
-    binding.secondaryDetailsText.text = Formatter.formatShortFileSize(context, byteCount)
   }
 
   private fun displayDownloadingGallery(currentState: TransferControlViewState) {
@@ -316,17 +322,17 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
 
     val progress = calculateProgress(currentState)
     if (progress == 0f) {
-      binding.secondaryProgressView.setUploading(progress)
+      binding.secondaryProgressView.setProgress(progress)
     } else {
-      binding.secondaryProgressView.cancelClickListener = currentState.cancelDownloadClickedListener
-      binding.secondaryProgressView.setDownloading(progress)
+      binding.secondaryProgressView.cancelClickListener = currentState.cancelTransferClickedListener
+      binding.secondaryProgressView.setProgress(progress)
     }
     binding.secondaryDetailsText.translationX = 0f
-    binding.secondaryDetailsText.text = deriveSecondaryDetailsText(currentState)
+    setSecondaryDetailsText(currentState)
   }
 
   private fun displayDownloadingSingleItem(currentState: TransferControlViewState) {
-    binding.primaryProgressView.cancelClickListener = currentState.cancelDownloadClickedListener
+    binding.primaryProgressView.cancelClickListener = currentState.cancelTransferClickedListener
     applyFocusableAndClickable(currentState, listOf(binding.primaryProgressView), listOf(binding.secondaryProgressView, binding.playVideoButton))
     showAllViews(
       playVideoButton = false,
@@ -337,16 +343,16 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
 
     val progress = calculateProgress(currentState)
     if (progress == 0f) {
-      binding.primaryProgressView.setUploading(progress)
+      binding.primaryProgressView.setProgress(progress)
     } else {
-      binding.primaryProgressView.setDownloading(progress)
+      binding.primaryProgressView.setProgress(progress)
     }
     binding.secondaryDetailsText.translationX = 0f
-    binding.secondaryDetailsText.text = deriveSecondaryDetailsText(currentState)
+    setSecondaryDetailsText(currentState)
   }
 
   private fun displayDownloadingPlayableVideo(currentState: TransferControlViewState) {
-    binding.secondaryProgressView.cancelClickListener = currentState.cancelDownloadClickedListener
+    binding.secondaryProgressView.cancelClickListener = currentState.cancelTransferClickedListener
     applyFocusableAndClickable(currentState, listOf(binding.secondaryProgressView, binding.playVideoButton), listOf(binding.primaryProgressView))
     showAllViews(
       primaryDetailsText = false,
@@ -358,16 +364,16 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
 
     val progress = calculateProgress(currentState)
     if (progress == 0f) {
-      binding.secondaryProgressView.setUploading(progress)
+      binding.secondaryProgressView.setProgress(progress)
     } else {
-      binding.secondaryProgressView.setDownloading(progress)
+      binding.secondaryProgressView.setProgress(progress)
     }
     binding.secondaryDetailsText.translationX = 0f
-    binding.secondaryDetailsText.text = deriveSecondaryDetailsText(currentState)
+    setSecondaryDetailsText(currentState)
   }
 
   private fun displayUploadingSingleItem(currentState: TransferControlViewState) {
-    binding.secondaryProgressView.startClickListener = currentState.downloadClickedListener
+    binding.secondaryProgressView.cancelClickListener = currentState.cancelTransferClickedListener
     applyFocusableAndClickable(currentState, listOf(binding.secondaryProgressView), listOf(binding.primaryProgressView, binding.playVideoButton))
     showAllViews(
       playVideoButton = false,
@@ -377,18 +383,14 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
     )
 
     val progress = calculateProgress(currentState)
-    binding.secondaryProgressView.setUploading(progress)
+    binding.secondaryProgressView.setProgress(progress)
 
     binding.secondaryDetailsText.translationX = 0f
-    binding.secondaryDetailsText.text = deriveSecondaryDetailsText(currentState)
+    setSecondaryDetailsText(currentState)
   }
 
   private fun displayUploadingGallery(currentState: TransferControlViewState) {
-    if (currentState.downloadClickedListener == null) {
-      Log.w(TAG, "No click listener set for retry!")
-    }
-
-    binding.secondaryProgressView.startClickListener = currentState.downloadClickedListener
+    binding.secondaryProgressView.cancelClickListener = currentState.cancelTransferClickedListener
     applyFocusableAndClickable(currentState, listOf(binding.secondaryProgressView), listOf(binding.primaryProgressView, binding.playVideoButton))
     showAllViews(
       playVideoButton = false,
@@ -397,18 +399,18 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
     )
 
     val progress = calculateProgress(currentState)
-    binding.secondaryProgressView.setUploading(progress)
+    binding.secondaryProgressView.setProgress(progress)
 
     binding.secondaryDetailsText.translationX = 0f
-    binding.secondaryDetailsText.text = deriveSecondaryDetailsText(currentState)
+    setSecondaryDetailsText(currentState)
   }
 
   private fun displayRetry(currentState: TransferControlViewState, isUploading: Boolean) {
-    if (currentState.downloadClickedListener == null) {
+    if (currentState.startTransferClickListener == null) {
       Log.w(TAG, "No click listener set for retry!")
     }
 
-    binding.secondaryProgressView.startClickListener = currentState.downloadClickedListener
+    binding.secondaryProgressView.startClickListener = currentState.startTransferClickListener
     applyFocusableAndClickable(
       currentState,
       listOf(binding.secondaryProgressView, binding.secondaryDetailsText, binding.secondaryBackground),
@@ -420,21 +422,21 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
       primaryDetailsText = false,
       secondaryDetailsText = currentState.showSecondaryText
     )
+    binding.secondaryBackground.setOnClickListener(currentState.startTransferClickListener)
+    binding.secondaryDetailsText.setOnClickListener(currentState.startTransferClickListener)
+    binding.secondaryProgressView.setStopped(isUploading)
+    setSecondaryDetailsText(currentState)
     binding.secondaryDetailsText.translationX = if (ViewUtil.isLtr(this)) {
       ViewUtil.dpToPx(-RETRY_SECONDARY_TEXT_OFFSET_DP).toFloat()
     } else {
       ViewUtil.dpToPx(RETRY_SECONDARY_TEXT_OFFSET_DP).toFloat()
     }
-    binding.secondaryBackground.setOnClickListener(currentState.downloadClickedListener)
-    binding.secondaryDetailsText.setOnClickListener(currentState.downloadClickedListener)
-    binding.secondaryProgressView.setStopped(isUploading)
-    binding.secondaryDetailsText.text = resources.getString(R.string.NetworkFailure__retry)
   }
 
   private fun displayChildrenAsGone() {
     children.forEach {
       if (it.visible && it.animation == null) {
-        ViewUtil.fadeOut(it, 250).addListener(AnimationCleanup(it))
+        ViewUtil.fadeOut(it, 250)
       }
     }
   }
@@ -549,7 +551,7 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
       for (slide in slides) {
         val attachment = slide.asAttachment()
         if (attachment.transferState == AttachmentTable.TRANSFER_PROGRESS_DONE) {
-          networkProgress[attachment] = Progress(1L, attachment.size)
+          networkProgress[attachment] = Progress(attachment.size, attachment.size)
         } else if (!MediaUtil.isInstantVideoSupported(slide)) {
           allStreamableOrDone = false
         }
@@ -590,11 +592,11 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
     return true
   }
 
-  fun setDownloadClickListener(listener: OnClickListener) {
-    verboseLog("downloadClickListener update")
+  fun setTransferClickListener(listener: OnClickListener) {
+    verboseLog("transferClickListener update")
     updateState {
       it.copy(
-        downloadClickedListener = listener
+        startTransferClickListener = listener
       )
     }
   }
@@ -603,7 +605,7 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
     verboseLog("cancelClickListener update")
     updateState {
       it.copy(
-        cancelDownloadClickedListener = listener
+        cancelTransferClickedListener = listener
       )
     }
   }
@@ -642,8 +644,8 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
   }
 
   private fun isCompressing(state: TransferControlViewState): Boolean {
-    // We never get a completion event so it never actually reaches 100%
-    return state.compressionProgress.sumTotal() > 0 && state.compressionProgress.values.map { it.completed.toFloat() / it.total }.sum() < 0.99f
+    val total = state.compressionProgress.sumTotal()
+    return total > 0 && state.compressionProgress.sumCompleted() / total < 0.99f
   }
 
   private fun calculateProgress(state: TransferControlViewState): Float {
@@ -654,14 +656,62 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
     return weightedProgress / weightedTotal
   }
 
-  @SuppressLint("SetTextI18n")
-  private fun deriveSecondaryDetailsText(currentState: TransferControlViewState): String {
-    return if (isCompressing(currentState)) {
-      return context.getString(R.string.TransferControlView__processing)
-    } else {
-      val progressText = Formatter.formatShortFileSize(context, currentState.networkProgress.sumCompleted())
-      val totalText = Formatter.formatShortFileSize(context, currentState.networkProgress.sumTotal())
-      context.resources.getString(R.string.TransferControlView__download_progress, progressText, totalText)
+  private fun setSecondaryDetailsText(currentState: TransferControlViewState) {
+    when (deriveMode(currentState)) {
+      Mode.PENDING_GALLERY -> {
+        binding.secondaryDetailsText.updateLayoutParams {
+          width = ViewGroup.LayoutParams.WRAP_CONTENT
+        }
+        val remainingSlides = currentState.slides.filterNot { it.transferState == AttachmentTable.TRANSFER_PROGRESS_DONE }
+        val downloadCount = remainingSlides.size
+        binding.primaryDetailsText.text = context.resources.getQuantityString(R.plurals.TransferControlView_n_items, downloadCount, downloadCount)
+        val mebibyteCount = (currentState.networkProgress.sumTotal() - currentState.networkProgress.sumCompleted()) / MEBIBYTE
+        binding.secondaryDetailsText.text = context.getString(R.string.TransferControlView__filesize, mebibyteCount)
+      }
+
+      Mode.PENDING_GALLERY_CONTAINS_PLAYABLE -> {
+        binding.secondaryDetailsText.updateLayoutParams {
+          width = ViewGroup.LayoutParams.WRAP_CONTENT
+        }
+        val mebibyteCount = (currentState.networkProgress.sumTotal() - currentState.networkProgress.sumCompleted()) / MEBIBYTE
+        binding.secondaryDetailsText.text = context.getString(R.string.TransferControlView__filesize, mebibyteCount)
+      }
+
+      Mode.PENDING_SINGLE_ITEM, Mode.PENDING_VIDEO_PLAYABLE -> {
+        binding.secondaryDetailsText.updateLayoutParams {
+          width = ViewGroup.LayoutParams.WRAP_CONTENT
+        }
+        val mebibyteCount = (currentState.slides.sumOf { it.asAttachment().size }) / MEBIBYTE
+        binding.secondaryDetailsText.text = context.getString(R.string.TransferControlView__filesize, mebibyteCount)
+      }
+
+      Mode.DOWNLOADING_GALLERY, Mode.DOWNLOADING_SINGLE_ITEM, Mode.DOWNLOADING_VIDEO_PLAYABLE, Mode.UPLOADING_GALLERY, Mode.UPLOADING_SINGLE_ITEM -> {
+        if (currentState.networkProgress.sumCompleted() == 0L || isCompressing(currentState)) {
+          binding.secondaryDetailsText.updateLayoutParams {
+            width = ViewGroup.LayoutParams.WRAP_CONTENT
+          }
+          binding.secondaryDetailsText.text = context.getString(R.string.TransferControlView__processing)
+        } else {
+          val progressMiB = currentState.networkProgress.sumCompleted() / MEBIBYTE
+          val totalMiB = currentState.networkProgress.sumTotal() / MEBIBYTE
+          val completedLabel = context.resources.getString(R.string.TransferControlView__download_progress, totalMiB, totalMiB)
+          val desiredWidth = StaticLayout.getDesiredWidth(completedLabel, binding.secondaryDetailsText.paint)
+          binding.secondaryDetailsText.text = context.resources.getString(R.string.TransferControlView__download_progress, progressMiB, totalMiB)
+          val roundedWidth = ceil(desiredWidth.toDouble()).roundToInt() + binding.secondaryDetailsText.compoundPaddingLeft + binding.secondaryDetailsText.compoundPaddingRight
+          binding.secondaryDetailsText.updateLayoutParams {
+            width = roundedWidth
+          }
+        }
+      }
+
+      Mode.RETRY_DOWNLOADING, Mode.RETRY_UPLOADING -> {
+        binding.secondaryDetailsText.text = resources.getString(R.string.NetworkFailure__retry)
+        binding.secondaryDetailsText.updateLayoutParams {
+          width = ViewGroup.LayoutParams.WRAP_CONTENT
+        }
+      }
+
+      Mode.GONE -> Unit
     }
   }
 
@@ -678,9 +728,10 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
     private const val TAG = "TransferControlView"
     private const val VERBOSE_DEVELOPMENT_LOGGING = false
     private const val UPLOAD_TASK_WEIGHT = 1
-    private const val SECONDARY_TEXT_OFFSET_DP = 3
+    private const val SECONDARY_TEXT_OFFSET_DP = 6
     private const val RETRY_SECONDARY_TEXT_OFFSET_DP = 6
     private const val PRIMARY_TEXT_OFFSET_DP = 4
+    private const val MEBIBYTE = 1048576f
 
     /**
      * A weighting compared to [UPLOAD_TASK_WEIGHT]
@@ -739,15 +790,5 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
     RETRY_DOWNLOADING,
     RETRY_UPLOADING,
     GONE
-  }
-
-  private class AnimationCleanup(val animatedView: View) : ListenableFuture.Listener<Boolean> {
-    override fun onSuccess(result: Boolean?) {
-      animatedView.clearAnimation()
-    }
-
-    override fun onFailure(e: ExecutionException?) {
-      animatedView.clearAnimation()
-    }
   }
 }

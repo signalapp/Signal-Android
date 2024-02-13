@@ -29,8 +29,7 @@
             android:cropToPadding="true"
             android:layout_gravity="start|top"
             android:foreground="@drawable/contact_photo_background"
-            app:fallbackImageSize="small"
-            tools:src="@drawable/ic_contact_picture" />
+            app:fallbackImageSize="small" />
 
         <org.thoughtcrime.securesms.badges.BadgeImageView
             android:id="@+id/badge"

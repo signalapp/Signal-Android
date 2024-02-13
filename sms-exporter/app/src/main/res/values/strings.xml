@@ -1,6 +1,0 @@
-<resources>
-    <string name="app_name">Sms Exporter Test App</string>
-    <string name="set_as_default_sms_app">Set as default SMS app</string>
-    <string name="clear_default_sms_app">Clear default SMS app</string>
-    <string name="export_sms">Export SMS</string>
-</resources>

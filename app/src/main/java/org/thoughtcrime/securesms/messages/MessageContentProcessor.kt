@@ -228,10 +228,11 @@ open class MessageContentProcessor(private val context: Context) {
       groupId: GroupId.V2,
       groupV2: GroupContextV2,
       senderRecipient: Recipient,
-      groupSecretParams: GroupSecretParams? = null
+      groupSecretParams: GroupSecretParams? = null,
+      serverGuid: String? = null
     ): Gv2PreProcessResult {
       val preUpdateGroupRecord = SignalDatabase.groups.getGroup(groupId)
-      val groupUpdateResult = updateGv2GroupFromServerOrP2PChange(context, timestamp, groupV2, preUpdateGroupRecord, groupSecretParams)
+      val groupUpdateResult = updateGv2GroupFromServerOrP2PChange(context, timestamp, groupV2, preUpdateGroupRecord, groupSecretParams, serverGuid)
       if (groupUpdateResult == null) {
         log(timestamp, "Ignoring GV2 message for group we are not currently in $groupId")
         return Gv2PreProcessResult.IGNORE
@@ -272,13 +273,14 @@ open class MessageContentProcessor(private val context: Context) {
       timestamp: Long,
       groupV2: GroupContextV2,
       localRecord: Optional<GroupRecord>,
-      groupSecretParams: GroupSecretParams? = null
+      groupSecretParams: GroupSecretParams? = null,
+      serverGuid: String? = null
     ): GroupsV2StateProcessor.GroupUpdateResult? {
       return try {
         val signedGroupChange: ByteArray? = if (groupV2.hasSignedGroupChange) groupV2.signedGroupChange else null
         val updatedTimestamp = if (signedGroupChange != null) timestamp else timestamp - 1
         if (groupV2.revision != null) {
-          GroupManager.updateGroupFromServer(context, groupV2.groupMasterKey, localRecord, groupSecretParams, groupV2.revision!!, updatedTimestamp, signedGroupChange)
+          GroupManager.updateGroupFromServer(context, groupV2.groupMasterKey, localRecord, groupSecretParams, groupV2.revision!!, updatedTimestamp, signedGroupChange, serverGuid)
         } else {
           warn(timestamp, "Ignore group update message without a revision")
           null
@@ -351,15 +353,21 @@ open class MessageContentProcessor(private val context: Context) {
         warn(timestamp, "Handling encryption error.")
 
         val threadRecipient = if (exceptionMetadata.groupId != null) Recipient.externalPossiblyMigratedGroup(exceptionMetadata.groupId) else sender
-        SignalDatabase
-          .messages
-          .insertBadDecryptMessage(
-            recipientId = sender.id,
-            senderDevice = exceptionMetadata.senderDevice,
-            sentTimestamp = timestamp,
-            receivedTimestamp = System.currentTimeMillis(),
-            threadId = SignalDatabase.threads.getOrCreateThreadIdFor(threadRecipient)
-          )
+        val threadId: Long? = SignalDatabase.threads.getThreadIdFor(threadRecipient.id)
+
+        if (threadId != null) {
+          SignalDatabase
+            .messages
+            .insertBadDecryptMessage(
+              recipientId = sender.id,
+              senderDevice = exceptionMetadata.senderDevice,
+              sentTimestamp = timestamp,
+              receivedTimestamp = System.currentTimeMillis(),
+              threadId = threadId
+            )
+        } else {
+          warn(timestamp, "Could not find a thread for the target recipient. Skipping.")
+        }
       }
 
       MessageState.INVALID_VERSION -> {

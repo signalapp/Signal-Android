@@ -4,13 +4,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
+import org.signal.libsignal.usernames.BaseUsernameException;
+import org.signal.libsignal.usernames.Username;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.JobTracker;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.keyvalue.AccountValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.profiles.manage.UsernameRepository;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
@@ -109,6 +113,16 @@ public class StorageAccountRestoreJob extends BaseJob {
       SignalDatabase.getRawDatabase().setTransactionSuccessful();
     } finally {
       SignalDatabase.getRawDatabase().endTransaction();
+    }
+
+    // We will try to reclaim the username here, as early as possible, but the registration flow also enqueues a username restore job,
+    // so failing here isn't a huge deal
+    if (SignalStore.account().getUsername() != null) {
+      Log.i(TAG, "Attempting to reclaim username...");
+      UsernameRepository.UsernameReclaimResult result = UsernameRepository.reclaimUsernameIfNecessary();
+      Log.i(TAG, "Username reclaim result: " + result.name());
+    } else {
+      Log.i(TAG, "No username to reclaim.");
     }
 
     JobManager jobManager = ApplicationDependencies.getJobManager();

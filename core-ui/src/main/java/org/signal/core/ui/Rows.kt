@@ -18,9 +18,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.dimensionResource
@@ -40,21 +40,25 @@ object Rows {
     selected: Boolean,
     text: String,
     modifier: Modifier = Modifier,
-    label: String? = null
+    label: String? = null,
+    enabled: Boolean = true
   ) {
     Row(
       modifier = modifier
         .fillMaxWidth()
         .padding(defaultPadding()),
-      verticalAlignment = Alignment.CenterVertically
+      verticalAlignment = CenterVertically
     ) {
       RadioButton(
+        enabled = enabled,
         selected = selected,
         onClick = null,
         modifier = Modifier.padding(end = 24.dp)
       )
 
-      Column {
+      Column(
+        modifier = Modifier.alpha(if (enabled) 1f else 0.4f)
+      ) {
         Text(
           text = text,
           style = MaterialTheme.typography.bodyLarge
@@ -76,6 +80,7 @@ object Rows {
   fun ToggleRow(
     checked: Boolean,
     text: String,
+    textColor: Color = MaterialTheme.colorScheme.onSurface,
     onCheckChanged: (Boolean) -> Unit,
     modifier: Modifier = Modifier
   ) {
@@ -86,6 +91,7 @@ object Rows {
     ) {
       Text(
         text = text,
+        color = textColor,
         modifier = Modifier
           .weight(1f)
           .align(CenterVertically)

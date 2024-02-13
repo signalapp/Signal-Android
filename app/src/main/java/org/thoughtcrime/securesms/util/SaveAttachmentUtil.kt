@@ -55,7 +55,7 @@ object SaveAttachmentUtil {
   fun showWarningDialog(context: Context, count: Int, onAcceptListener: OnClickListener) {
     MaterialAlertDialogBuilder(context)
       .setTitle(R.string.ConversationFragment_save_to_sd_card)
-      .setIcon(R.drawable.ic_warning)
+      .setIcon(R.drawable.symbol_error_triangle_fill_24)
       .setCancelable(true)
       .setMessage(context.resources.getQuantityString(R.plurals.ConversationFragment_saving_n_media_to_storage_warning, count, count))
       .setPositiveButton(R.string.yes, onAcceptListener)

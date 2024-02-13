@@ -6,6 +6,7 @@ import android.database.Cursor
 import android.text.TextUtils
 import androidx.annotation.WorkerThread
 import androidx.core.content.contentValuesOf
+import okio.ByteString
 import org.intellij.lang.annotations.Language
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.SqlUtil.appendArg
@@ -32,6 +33,7 @@ import org.signal.core.util.withinTransaction
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.storageservice.protos.groups.Member
 import org.signal.storageservice.protos.groups.local.DecryptedGroup
+import org.signal.storageservice.protos.groups.local.DecryptedPendingMember
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchSortOrder
 import org.thoughtcrime.securesms.contacts.paged.collections.ContactSearchIterator
 import org.thoughtcrime.securesms.crypto.SenderKeyUtil
@@ -57,6 +59,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPoin
 import org.whispersystems.signalservice.api.push.DistributionId
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
+import org.whispersystems.signalservice.api.push.ServiceId.ACI.Companion.parseOrNull
 import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import java.io.Closeable
 import java.security.SecureRandom
@@ -637,6 +640,27 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
 
       recipients
     }
+  }
+
+  fun getGroupInviter(groupId: GroupId): Recipient? {
+    val groupRecord: Optional<GroupRecord> = getGroup(groupId)
+
+    if (groupRecord.isPresent && groupRecord.get().isV2Group) {
+      val pendingMembers: List<DecryptedPendingMember> = groupRecord.get().requireV2GroupProperties().decryptedGroup.pendingMembers
+      val invitedByAci: ByteString? = DecryptedGroupUtil.findPendingByServiceId(pendingMembers, Recipient.self().requireAci())
+        .or { DecryptedGroupUtil.findPendingByServiceId(pendingMembers, Recipient.self().requirePni()) }
+        .map { it.addedByAci }
+        .orElse(null)
+
+      if (invitedByAci != null) {
+        val serviceId: ServiceId? = parseOrNull(invitedByAci)
+        if (serviceId != null) {
+          return Recipient.externalPush(serviceId)
+        }
+      }
+    }
+
+    return null
   }
 
   @CheckReturnValue

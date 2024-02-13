@@ -191,4 +191,6 @@
 
     <color name="num_pad_key_background">@color/transparent_white_20</color>
 
+    <color name="safety_tip_background">@color/signal_dark_colorSecondaryContainer</color>
+    <color name="safety_tip_image_background">@color/signal_dark_colorSecondary</color>
 </resources>

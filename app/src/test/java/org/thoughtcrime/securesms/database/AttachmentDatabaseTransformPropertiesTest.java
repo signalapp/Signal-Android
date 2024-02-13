@@ -21,8 +21,8 @@ public class AttachmentDatabaseTransformPropertiesTest {
 
     AttachmentTable.TransformProperties properties = AttachmentTable.TransformProperties.parse(json);
 
-    assertEquals(0, properties.getSentMediaQuality());
-    assertEquals(SentMediaQuality.STANDARD, SentMediaQuality.fromCode(properties.getSentMediaQuality()));
+    assertEquals(0, properties.sentMediaQuality);
+    assertEquals(SentMediaQuality.STANDARD, SentMediaQuality.fromCode(properties.sentMediaQuality));
   }
 
 }

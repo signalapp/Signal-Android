@@ -20,18 +20,17 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
     private const val THREAD_RECIPIENT_ID = "THREAD_RECIPIENT_ID"
     private val BASE_MEDIA_QUERY = """
       SELECT 
-        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.ROW_ID} AS ${AttachmentTable.ROW_ID}, 
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.ID} AS ${AttachmentTable.ID}, 
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.CONTENT_TYPE}, 
-        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.UNIQUE_ID}, 
-        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.MMS_ID}, 
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.MESSAGE_ID}, 
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.TRANSFER_STATE}, 
-        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.SIZE}, 
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.DATA_SIZE}, 
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.FILE_NAME}, 
-        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.DATA}, 
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.DATA_FILE}, 
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.CDN_NUMBER},
-        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.CONTENT_LOCATION},
-        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.CONTENT_DISPOSITION},
-        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.DIGEST}, 
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.REMOTE_LOCATION},
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.REMOTE_KEY},
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.REMOTE_DIGEST}, 
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.FAST_PREFLIGHT_ID},
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.VOICE_NOTE}, 
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.BORDERLESS}, 
@@ -43,14 +42,13 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.STICKER_PACK_KEY}, 
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.STICKER_ID}, 
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.STICKER_EMOJI}, 
-        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.VISUAL_HASH}, 
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.BLUR_HASH}, 
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.TRANSFORM_PROPERTIES}, 
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.DISPLAY_ORDER}, 
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.CAPTION}, 
-        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.NAME}, 
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.UPLOAD_TIMESTAMP}, 
-        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.MAC_DIGEST}, 
-        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.INCREMENTAL_MAC_CHUNK_SIZE}, 
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.REMOTE_INCREMENTAL_DIGEST}, 
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.REMOTE_INCREMENTAL_DIGEST_CHUNK_SIZE}, 
         ${MessageTable.TABLE_NAME}.${MessageTable.TYPE}, 
         ${MessageTable.TABLE_NAME}.${MessageTable.DATE_SENT}, 
         ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED}, 
@@ -60,10 +58,10 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
         ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} as $THREAD_RECIPIENT_ID 
       FROM 
         ${AttachmentTable.TABLE_NAME} 
-        LEFT JOIN ${MessageTable.TABLE_NAME} ON ${AttachmentTable.TABLE_NAME}.${AttachmentTable.MMS_ID} = ${MessageTable.TABLE_NAME}.${MessageTable.ID} 
+        LEFT JOIN ${MessageTable.TABLE_NAME} ON ${AttachmentTable.TABLE_NAME}.${AttachmentTable.MESSAGE_ID} = ${MessageTable.TABLE_NAME}.${MessageTable.ID} 
         LEFT JOIN ${ThreadTable.TABLE_NAME} ON ${ThreadTable.TABLE_NAME}.${ThreadTable.ID} = ${MessageTable.TABLE_NAME}.${MessageTable.THREAD_ID} 
       WHERE 
-        ${AttachmentTable.MMS_ID} IN (
+        ${AttachmentTable.MESSAGE_ID} IN (
           SELECT ${MessageTable.ID} 
           FROM ${MessageTable.TABLE_NAME} 
           WHERE ${MessageTable.THREAD_ID} __EQUALITY__ ?
@@ -86,20 +84,20 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
 
     private val UNIQUE_MEDIA_QUERY = """
         SELECT 
-          MAX(${AttachmentTable.SIZE}) as ${AttachmentTable.SIZE}, 
+          MAX(${AttachmentTable.DATA_SIZE}) as ${AttachmentTable.DATA_SIZE}, 
           ${AttachmentTable.CONTENT_TYPE} 
         FROM 
           ${AttachmentTable.TABLE_NAME} 
         WHERE 
           ${AttachmentTable.STICKER_PACK_ID} IS NULL AND 
           ${AttachmentTable.TRANSFER_STATE} = ${AttachmentTable.TRANSFER_PROGRESS_DONE} 
-        GROUP BY ${AttachmentTable.DATA}
+        GROUP BY ${AttachmentTable.DATA_FILE}
       """
 
     private val GALLERY_MEDIA_QUERY = String.format(
       BASE_MEDIA_QUERY,
       """
-        ${AttachmentTable.DATA} IS NOT NULL AND
+        ${AttachmentTable.DATA_FILE} IS NOT NULL AND
         ${AttachmentTable.CONTENT_TYPE} NOT LIKE 'image/svg%' AND 
         (${AttachmentTable.CONTENT_TYPE} LIKE 'image/%' OR ${AttachmentTable.CONTENT_TYPE} LIKE 'video/%')
       """
@@ -108,7 +106,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
     private val GALLERY_MEDIA_QUERY_INCLUDING_TEMP_VIDEOS = String.format(
       BASE_MEDIA_QUERY,
       """
-        (${AttachmentTable.DATA} IS NOT NULL OR (${AttachmentTable.CONTENT_TYPE} LIKE 'video/%' AND ${AttachmentTable.MAC_DIGEST} IS NOT NULL)) AND
+        (${AttachmentTable.DATA_FILE} IS NOT NULL OR (${AttachmentTable.CONTENT_TYPE} LIKE 'video/%' AND ${AttachmentTable.REMOTE_INCREMENTAL_DIGEST} IS NOT NULL)) AND
         ${AttachmentTable.CONTENT_TYPE} NOT LIKE 'image/svg%' AND 
         (${AttachmentTable.CONTENT_TYPE} LIKE 'image/%' OR ${AttachmentTable.CONTENT_TYPE} LIKE 'video/%')
       """
@@ -117,17 +115,17 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
     private val AUDIO_MEDIA_QUERY = String.format(
       BASE_MEDIA_QUERY,
       """
-        ${AttachmentTable.DATA} IS NOT NULL AND
+        ${AttachmentTable.DATA_FILE} IS NOT NULL AND
         ${AttachmentTable.CONTENT_TYPE} LIKE 'audio/%'
       """
     )
 
-    private val ALL_MEDIA_QUERY = String.format(BASE_MEDIA_QUERY, "${AttachmentTable.DATA} IS NOT NULL AND ${AttachmentTable.CONTENT_TYPE} NOT LIKE 'text/x-signal-plain'")
+    private val ALL_MEDIA_QUERY = String.format(BASE_MEDIA_QUERY, "${AttachmentTable.DATA_FILE} IS NOT NULL AND ${AttachmentTable.CONTENT_TYPE} NOT LIKE 'text/x-signal-plain'")
 
     private val DOCUMENT_MEDIA_QUERY = String.format(
       BASE_MEDIA_QUERY,
       """
-        ${AttachmentTable.DATA} IS NOT NULL AND
+        ${AttachmentTable.DATA_FILE} IS NOT NULL AND
         (
           ${AttachmentTable.CONTENT_TYPE} LIKE 'image/svg%' OR 
           (
@@ -185,7 +183,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
 
     readableDatabase.rawQuery(UNIQUE_MEDIA_QUERY, null).use { cursor ->
       while (cursor.moveToNext()) {
-        val size: Int = cursor.requireInt(AttachmentTable.SIZE)
+        val size: Int = cursor.requireInt(AttachmentTable.DATA_SIZE)
         val type: String = cursor.requireNonNullString(AttachmentTable.CONTENT_TYPE)
 
         when (MediaUtil.getSlideTypeFromContentType(type)) {
@@ -253,21 +251,21 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
   enum class Sorting(order: String) {
     Newest(
       """
-        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.MMS_ID} DESC, 
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.MESSAGE_ID} DESC, 
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.DISPLAY_ORDER} DESC, 
-        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.ROW_ID} DESC
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.ID} DESC
       """
     ),
     Oldest(
       """
-        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.MMS_ID} ASC, 
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.MESSAGE_ID} ASC, 
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.DISPLAY_ORDER} DESC, 
-        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.ROW_ID} ASC
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.ID} ASC
       """
     ),
     Largest(
       """
-        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.SIZE} DESC, 
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.DATA_SIZE} DESC, 
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.DISPLAY_ORDER} DESC
       """
     );

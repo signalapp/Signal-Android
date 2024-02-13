@@ -42,7 +42,7 @@ class StoryContextMenuTest {
   @Test
   fun `Given a story with an attachment, when I share, then I expect the correct stream, type, and flag`() {
     // GIVEN
-    val attachmentId = AttachmentId(1, 2)
+    val attachmentId = AttachmentId(1)
     val storyRecord = FakeMessageRecords.buildMediaMmsMessageRecord(
       storyType = StoryType.STORY_WITH_REPLIES,
       slideDeck = SlideDeck().apply {

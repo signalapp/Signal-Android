@@ -69,7 +69,7 @@ class EditProfileViewModel extends ViewModel {
 
     SignalExecutors.BOUNDED.execute(() -> {
       onRecipientChanged(Recipient.self().fresh());
-      ApplicationDependencies.getJobManager().add(RetrieveProfileJob.forRecipient(Recipient.self().getId()));
+      RetrieveProfileJob.enqueue(Recipient.self().getId());
     });
 
     Recipient.self().live().observeForever(observer);
@@ -104,7 +104,7 @@ class EditProfileViewModel extends ViewModel {
   }
 
   public Single<UsernameRepository.UsernameDeleteResult> deleteUsername() {
-    return UsernameRepository.deleteUsername().observeOn(AndroidSchedulers.mainThread());
+    return UsernameRepository.deleteUsernameAndLink().observeOn(AndroidSchedulers.mainThread());
   }
 
   public boolean shouldShowUsername() {

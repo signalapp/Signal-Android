@@ -119,8 +119,7 @@ class BackupFrameOutputStream extends FullBackupBase.BackupStream {
     try {
       write(outputStream, new BackupFrame.Builder()
           .attachment(new Attachment.Builder()
-                          .rowId(attachmentId.getRowId())
-                          .attachmentId(attachmentId.getUniqueId())
+                          .rowId(attachmentId.id)
                           .length(Util.toIntExact(size))
                           .build())
           .build());

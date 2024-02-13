@@ -190,7 +190,7 @@ class RecipientTableTest {
     val mainId = SignalDatabase.recipients.getAndPossiblyMerge(ACI_A, PNI_A, E164_A)
     val mainRecord = SignalDatabase.recipients.getRecord(mainId)
 
-    SignalDatabase.recipients.splitForStorageSync(mainRecord.storageId!!)
+    SignalDatabase.recipients.splitForStorageSyncIfNecessary(mainRecord.aci!!)
 
     val byAci: RecipientId = SignalDatabase.recipients.getByAci(ACI_A).get()
 

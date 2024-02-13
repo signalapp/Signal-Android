@@ -11,6 +11,8 @@ package signal;
 option java_package        = "org.thoughtcrime.securesms.database.model.databaseprotos";
 option java_multiple_files = true;
 
+import Backup.proto;
+
 // DEPRECATED -- only here for database migrations
 message ReactionList {
     option deprecated = true;
@@ -243,10 +245,11 @@ message SignalStoreList {
 }
 
 message PendingChangeNumberMetadata {
-    bytes previousPni        = 1;
-    bytes pniIdentityKeyPair = 2;
-    int32 pniRegistrationId  = 3;
-    int32 pniSignedPreKeyId  = 4;
+    bytes previousPni                = 1;
+    bytes pniIdentityKeyPair         = 2;
+    int32 pniRegistrationId          = 3;
+    int32 pniSignedPreKeyId          = 4;
+    int32 pniLastResortKyberPreKeyId = 5;
 }
 
 message MessageExportState {
@@ -370,4 +373,13 @@ message ExternalLaunchTransactionState {
     StripeIntentAccessor stripeIntentAccessor = 1;
     GatewayRequest       gatewayRequest       = 2;
     string               paymentSourceType    = 3;
+}
+
+message MessageExtras {
+    GV2UpdateDescription gv2UpdateDescription = 1;
+}
+
+message GV2UpdateDescription {
+    optional DecryptedGroupV2Context gv2ChangeDescription = 1;
+    backup.GroupChangeChatUpdate groupChangeUpdate = 2;
 }

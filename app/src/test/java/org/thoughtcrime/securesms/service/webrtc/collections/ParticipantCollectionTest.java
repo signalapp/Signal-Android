@@ -243,6 +243,7 @@ public class ParticipantCollectionTest {
         false,
         false,
         false,
+        CallParticipant.HAND_LOWERED,
         lastSpoke,
         false,
         added,

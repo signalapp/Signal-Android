@@ -56,7 +56,8 @@ public class InMemoryMessageRecord extends MessageRecord {
           false,
           -1,
           null,
-          0);
+          0,
+          null);
   }
 
   @Override
@@ -80,45 +81,6 @@ public class InMemoryMessageRecord extends MessageRecord {
 
   public @StringRes int getActionButtonText() {
     return 0;
-  }
-
-  /**
-   * Warning message to show during message request state if you do not have groups in common
-   * with an individual or do not know anyone in the group.
-   */
-  public static final class NoGroupsInCommon extends InMemoryMessageRecord {
-    private final boolean isGroup;
-
-    public NoGroupsInCommon(long threadId, boolean isGroup) {
-      super(NO_GROUPS_IN_COMMON_ID, "", Recipient.UNKNOWN, threadId, 0);
-      this.isGroup = isGroup;
-    }
-
-    @Override
-    public @Nullable UpdateDescription getUpdateDisplayBody(@NonNull Context context, @Nullable Consumer<RecipientId> recipientClickHandler) {
-      return UpdateDescription.staticDescription(context.getString(isGroup ? R.string.ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully
-                                                                           : R.string.ConversationUpdateItem_no_groups_in_common_review_requests_carefully),
-                                                 R.drawable.symbol_info_compact_16);
-    }
-
-    @Override
-    public boolean isUpdate() {
-      return true;
-    }
-
-    @Override
-    public boolean showActionButton() {
-      return true;
-    }
-
-    public boolean isGroup() {
-      return isGroup;
-    }
-
-    @Override
-    public @StringRes int getActionButtonText() {
-      return R.string.ConversationUpdateItem_learn_more;
-    }
   }
 
   public static final class RemovedContactHidden extends InMemoryMessageRecord {

@@ -11,10 +11,11 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.RequestManager;
+
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.FromTextView;
-import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.adapter.SectionedRecyclerViewAdapter;
 import org.thoughtcrime.securesms.util.adapter.StableIdGenerator;
@@ -35,7 +36,7 @@ class CameraContactAdapter extends SectionedRecyclerViewAdapter<String, CameraCo
   private static final String TAG_ALL    = "all";
   private static final String TAG_GROUPS = "groups";
 
-  private final GlideRequests         glideRequests;
+  private final RequestManager        requestManager;
   private final Set<Recipient>        selected;
   private final CameraContactListener cameraContactListener;
 
@@ -50,8 +51,8 @@ class CameraContactAdapter extends SectionedRecyclerViewAdapter<String, CameraCo
     add(groups);
   }};
 
-  CameraContactAdapter(@NonNull GlideRequests glideRequests, @NonNull CameraContactListener listener) {
-    this.glideRequests         = glideRequests;
+  CameraContactAdapter(@NonNull RequestManager requestManager, @NonNull CameraContactListener listener) {
+    this.requestManager        = requestManager;
     this.selected              = new HashSet<>();
     this.cameraContactListener = listener;
   }
@@ -114,7 +115,7 @@ class CameraContactAdapter extends SectionedRecyclerViewAdapter<String, CameraCo
 
   @Override
   protected void bindViewHolder(@NonNull RecyclerView.ViewHolder holder, @NonNull ContactSection section, int localPosition) {
-    section.bind(holder, localPosition, selected, glideRequests, cameraContactListener);
+    section.bind(holder, localPosition, selected, requestManager, cameraContactListener);
   }
 
   @Override
@@ -179,14 +180,14 @@ class CameraContactAdapter extends SectionedRecyclerViewAdapter<String, CameraCo
     void bind(@NonNull RecyclerView.ViewHolder viewHolder,
               int localPosition,
               @NonNull Set<Recipient> selected,
-              @NonNull GlideRequests glideRequests,
+              @NonNull RequestManager requestManager,
               @NonNull CameraContactListener cameraContactListener)
     {
       if (localPosition == 0) {
         ((HeaderViewHolder) viewHolder).bind(titleResId);
       } else {
         Recipient recipient = recipients.get(localPosition - 1);
-        ((ContactViewHolder) viewHolder).bind(recipient, selected.contains(recipient), glideRequests, cameraContactListener);
+        ((ContactViewHolder) viewHolder).bind(recipient, selected.contains(recipient), requestManager, cameraContactListener);
       }
     }
   }
@@ -221,10 +222,10 @@ class CameraContactAdapter extends SectionedRecyclerViewAdapter<String, CameraCo
 
     void bind(@NonNull Recipient recipient,
               boolean selected,
-              @NonNull GlideRequests glideRequests,
+              @NonNull RequestManager requestManager,
               @NonNull CameraContactListener listener)
     {
-      avatar.setAvatar(glideRequests, recipient, false);
+      avatar.setAvatar(requestManager, recipient, false);
       name.setText(recipient);
       itemView.setOnClickListener(v -> listener.onContactClicked(recipient));
       checkbox.setChecked(selected);

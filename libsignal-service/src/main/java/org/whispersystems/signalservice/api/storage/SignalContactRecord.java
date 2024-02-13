@@ -157,6 +157,10 @@ public final class SignalContactRecord implements SignalRecord {
         diff.add("Hidden");
       }
 
+      if (isPniSignatureVerified() != that.isPniSignatureVerified()) {
+        diff.add("PniSignatureVerified");
+      }
+
       if (!Objects.equals(this.hasUnknownFields(), that.hasUnknownFields())) {
         diff.add("UnknownFields");
       }
@@ -263,6 +267,10 @@ public final class SignalContactRecord implements SignalRecord {
 
   public boolean isHidden() {
     return proto.hidden;
+  }
+
+  public boolean isPniSignatureVerified() {
+    return proto.pniSignatureVerified;
   }
 
   /**
@@ -398,6 +406,11 @@ public final class SignalContactRecord implements SignalRecord {
 
     public Builder setHidden(boolean hidden) {
       builder.hidden(hidden);
+      return this;
+    }
+
+    public Builder setPniSignatureVerified(boolean verified) {
+      builder.pniSignatureVerified(verified);
       return this;
     }
 

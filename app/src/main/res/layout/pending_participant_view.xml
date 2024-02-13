@@ -8,7 +8,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:minHeight="72dp"
-    app:cardBackgroundColor="@color/signal_colorSurface3"
+    app:cardBackgroundColor="@color/signal_colorSurface1"
     app:cardCornerRadius="18dp"
     app:cardElevation="0dp"
     tools:layout_marginHorizontal="24dp"

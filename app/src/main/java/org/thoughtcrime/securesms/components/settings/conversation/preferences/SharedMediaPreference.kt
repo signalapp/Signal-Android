@@ -1,11 +1,11 @@
 package org.thoughtcrime.securesms.components.settings.conversation.preferences
 
 import android.view.View
+import com.bumptech.glide.Glide
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ThreadPhotoRailView
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
 import org.thoughtcrime.securesms.database.MediaTable
-import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
@@ -40,7 +40,7 @@ object SharedMediaPreference {
     private val rail: ThreadPhotoRailView = itemView.findViewById(R.id.rail_view)
 
     override fun bind(model: Model) {
-      rail.setMediaRecords(GlideApp.with(rail), model.mediaRecords)
+      rail.setMediaRecords(Glide.with(rail), model.mediaRecords)
       rail.setListener { v, m ->
         model.onMediaRecordClick(v, m, ViewUtil.isLtr(rail))
       }

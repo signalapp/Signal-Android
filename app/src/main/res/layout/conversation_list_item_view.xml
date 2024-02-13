@@ -57,7 +57,7 @@
         app:layout_constraintStart_toEndOf="@id/conversation_list_item_check_container"
         app:layout_constraintTop_toTopOf="@id/conversation_list_item_name"
         app:layout_goneMarginStart="0dp"
-        tools:src="@drawable/ic_contact_picture" />
+        tools:src="@tools:sample/avatars" />
 
     <org.thoughtcrime.securesms.components.FromTextView
         android:id="@+id/conversation_list_item_name"

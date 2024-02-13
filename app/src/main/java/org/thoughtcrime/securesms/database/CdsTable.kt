@@ -5,6 +5,7 @@ import android.content.Context
 import androidx.core.content.contentValuesOf
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.delete
+import org.signal.core.util.deleteAll
 import org.signal.core.util.logging.Log
 import org.signal.core.util.requireNonNullString
 import org.signal.core.util.select
@@ -106,8 +107,6 @@ class CdsTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTable
    * Wipes the entire table.
    */
   fun clearAll() {
-    writableDatabase
-      .delete(TABLE_NAME)
-      .run()
+    writableDatabase.deleteAll(TABLE_NAME)
   }
 }

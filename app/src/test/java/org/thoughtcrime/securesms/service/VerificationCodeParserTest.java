@@ -80,7 +80,9 @@ public class VerificationCodeParserTest extends BaseUnitTest {
         {"<#>Jou Signal verifikasiekode is: 054247\nabAbCDEFO1g", "054247"},
 
         {"【SIGNAL】 Your code is: 423-431", "423431"},
-        {"<#>【SIGNAL】<#> Your code: 298-763\nabAbCDEFO1g", "298763"}
+        {"<#>【SIGNAL】<#> Your code: 298-763\nabAbCDEFO1g", "298763"},
+
+        {"SIGNAL: Your code is: 123456\nDo not share this code\n\nabAbCDEFO1g", "123456"}
     });
   }
 

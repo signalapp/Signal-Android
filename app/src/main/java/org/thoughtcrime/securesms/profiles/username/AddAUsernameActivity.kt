@@ -5,6 +5,7 @@ import androidx.navigation.fragment.NavHostFragment
 import org.thoughtcrime.securesms.BaseActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.profiles.manage.UsernameEditFragmentArgs
+import org.thoughtcrime.securesms.profiles.manage.UsernameEditMode
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
 import org.thoughtcrime.securesms.util.DynamicTheme
 
@@ -23,7 +24,7 @@ class AddAUsernameActivity : BaseActivity() {
           R.id.fragment_container,
           NavHostFragment.create(
             R.navigation.create_username,
-            UsernameEditFragmentArgs.Builder().setIsInRegistration(true).build().toBundle()
+            UsernameEditFragmentArgs.Builder().setMode(UsernameEditMode.REGISTRATION).build().toBundle()
           )
         )
         .commit()

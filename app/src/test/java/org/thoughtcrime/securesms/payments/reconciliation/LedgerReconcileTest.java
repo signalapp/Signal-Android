@@ -257,16 +257,11 @@ public final class LedgerReconcileTest {
     if (mob.isNegative()) {
       throw new AssertionError();
     }
-    MobileCoinLedger.OwnedTXO.Builder builder = new MobileCoinLedger.OwnedTXO.Builder()
-                                                                             .receivedInBlock(receivedBlock)
-                                                                             .keyImage(keyImage)
-                                                                             .publicKey(publicKey);
-    try {
-      builder.amount(Uint64Util.bigIntegerToUInt64(mob.toPicoMobBigInteger()));
-    } catch (Uint64RangeException e) {
-      throw new AssertionError(e);
-    }
-    return builder;
+    return new MobileCoinLedger.OwnedTXO.Builder()
+                                        .amount(ByteString.of(mob.toPicoMobBigInteger().toByteArray()))
+                                        .receivedInBlock(receivedBlock)
+                                        .keyImage(keyImage)
+                                        .publicKey(publicKey);
   }
 
   private static Payment payment(String note, Money.MobileCoin valueAndDirection, Set<ByteString> keyImages, Set<ByteString> publicKeys) {

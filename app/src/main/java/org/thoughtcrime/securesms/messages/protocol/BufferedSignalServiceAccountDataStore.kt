@@ -200,6 +200,7 @@ class BufferedSignalServiceAccountDataStore(selfServiceId: ServiceId) : SignalSe
   fun flushToDisk(persistentStore: SignalServiceAccountDataStore) {
     identityStore.flushToDisk(persistentStore)
     oneTimePreKeyStore.flushToDisk(persistentStore)
+    kyberPreKeyStore.flushToDisk(persistentStore)
     signedPreKeyStore.flushToDisk(persistentStore)
     sessionStore.flushToDisk(persistentStore)
     senderKeyStore.flushToDisk(persistentStore)

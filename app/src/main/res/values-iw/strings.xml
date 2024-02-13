@@ -179,7 +179,18 @@
     <string name="BlockUnblockDialog_unblock_s">לבטל חסימה של %1$s?</string>
     <string name="BlockUnblockDialog_block">חסימה</string>
     <string name="BlockUnblockDialog_block_and_leave">חסימה ועזיבה</string>
-    <string name="BlockUnblockDialog_report_spam_and_block">דיווח על דואר זבל וחסימה</string>
+    <!-- Dialog button label to report as spam and block the person -->
+    <string name="BlockUnblockDialog_report_spam_and_block">Report and block</string>
+    <!-- Dialog title for reporting spam -->
+    <string name="BlockUnblockDialog_report_spam_title">Report spam?</string>
+    <!-- Dialog button to report as spam only -->
+    <string name="BlockUnblockDialog_report_spam">Report spam</string>
+    <!-- Dialog message when reporting spam of an individual (1:1 conversation) -->
+    <string name="BlockUnblockDialog_report_spam_description">Signal will be notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
+    <!-- Dialog message when reporting spam of a group and we can determine the group member that invited you, placeholder is a name -->
+    <string name="BlockUnblockDialog_report_spam_group_named_adder">Signal will be notified that %1$s, who invited you to this group, may be sending spam. Signal can’t see the content of any chats.</string>
+    <!-- Dialog message when reporting spam of a group and we cannot determine the group member that invited you -->
+    <string name="BlockUnblockDialog_report_spam_group_unknown_adder">Signal will be notified that the person who invited you to this group may be sending spam. Signal can’t see the content of any chats.</string>
 
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">היום</string>
@@ -325,10 +336,12 @@
     <string name="ConversationItem_cant_download_image_you_will_need_to_send_it_again">הורדת התמונה נכשלה. עליך לשלוח אותה שוב.</string>
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">הורדת הסרטון נכשלה. עליך לשלוח אותו שוב.</string>
-    <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp represents a message that has been edited extremely recently. -->
+    <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp represents a message that has been edited within the last minute. -->
     <string name="ConversationItem_edited_now_timestamp_footer">נערך עכשיו</string>
-    <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">נערך %1$s</string>
+    <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. This is displayed when the edit has occurred between 1-59 minutes ago. -->
+    <string name="ConversationItem_edited_relative_timestamp_footer">נערך %1$s</string>
+    <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. This is displayed when the edit occurred at least 1 hour ago. -->
+    <string name="ConversationItem_edited_absolute_timestamp_footer">נערך %1$s</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
     <string name="ConversationItem__join_call">הצטרפות לשיחה</string>
 
@@ -366,6 +379,8 @@
     <string name="ConversationActivity_transport_insecure_mms">MMS בלתי מאובטח</string>
     <!-- A title for the option to send an SMS with a placeholder to put the name of their SIM card -->
     <string name="ConversationActivity_transport_signal">הודעת Signal</string>
+    <!-- The content description for button to send a message in a conversation -->
+    <string name="ConversationActivity_send_message_content_description">שלח הודעה</string>
     <string name="ConversationActivity_lets_switch_to_signal">בוא נחליף אל Signal %1$s</string>
     <string name="ConversationActivity_specify_recipient">אנא בחר איש קשר</string>
     <string name="ConversationActivity_attachment_exceeds_size_limits">הצרופה חורגת ממגבלות הגודל עבור הסוג של ההודעה שאתה שולח.</string>
@@ -494,7 +509,7 @@
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">אתה יכול להחליק שמאלה על הודעה כלשהי כדי להשיב בזריזות</string>
     <string name="ConversationFragment_view_once_media_is_deleted_after_sending">מדיה לצפייה חד–פעמית נמחקת לאחר השליחה</string>
     <string name="ConversationFragment_you_already_viewed_this_message">צפית כבר בהודעה זו</string>
-    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">אפשר להוסיף הערות לעצמך בצ\'אט זה.\nאם מקושרים לחשבון שלך מכשירים כלשהם, הערות חדשות יסונכרנו.</string>
+    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">אפשר להוסיף הערות לעצמך בצ\'אט זה. אם מקושרים לחשבון שלך מכשירים כלשהם, הערות חדשות יסונכרנו.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">אל %1$d חברי קבוצה יש אותו שם.</string>
     <string name="ConversationFragment__tap_to_review">הקש כדי לסקור</string>
     <string name="ConversationFragment__review_requests_carefully">סקור בקשות בזהירות</string>
@@ -524,6 +539,55 @@
     <string name="ConversationFragment__content_description_launch_signal_button">פתיחת Signal</string>
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
     <string name="ConversationFragment__no_longer_verified">כבר לא מאומת</string>
+    <!-- Button shown in conversation header when in a message request state and no groups in common to show new message safety tips -->
+    <string name="ConversationFragment_safety_tips">Safety tips</string>
+    <!-- Menu option to report spam in a conversation -->
+    <string name="ConversationFragment_report_spam">Report spam</string>
+    <!-- Menu option to block in a conversation -->
+    <string name="ConversationFragment_block">Block</string>
+    <!-- Menu otpion to accept a message request in a conversation -->
+    <string name="ConversationFragment_accept">Accept</string>
+    <!-- Menu option to delete an entire chat in a conversation -->
+    <string name="ConversationFragment_delete_chat">Delete chat</string>
+    <!-- Menu option to unblock in a conversation -->
+    <string name="ConversationFragment_unblock">Unblock</string>
+    <!-- Menu option to report spam in a conversation -->
+    <string name="ConversationFragment_reported_spam">Reported spam</string>
+    <!-- Dialog message shown after reporting spam and tapping the conversation item -->
+    <string name="ConversationFragment_reported_spam_message">Signal has been be notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
+    <!-- Toast shown after reporting spam and tapping the conversation item -->
+    <string name="ConversationFragment_reported_as_spam">Reported as spam</string>
+    <!-- Toast shown after reporting and blocking a conversation -->
+    <string name="ConversationFragment_reported_as_spam_and_blocked">Reported as spam and blocked</string>
+    <!-- Dialog message shown after accepting a message request and tapping on options from the conversation event -->
+    <string name="ConversationFragment_you_accepted_a_message_request_from_s">You accepted a message request from %1$s. If this was a mistake, you can choose an action below.</string>
+
+    <!-- Title of Safety Tips bottom sheet dialog -->
+    <string name="SafetyTips_title">Safety Tips</string>
+    <!-- Dialog subtitle when showign tips for a 1:1 conversation -->
+    <string name="SafetyTips_subtitle_individual">Be careful when accepting message requests from people you don’t know. Watch out for:</string>
+    <!-- Dialog subtitle when showing tips for a group conversation -->
+    <string name="SafetyTips_subtitle_group">Review this request carefully. None of your contacts or people you chat with are in this group. Here are a few things to watch out for:</string>
+    <!-- Button text to move to the previous tip-->
+    <string name="SafetyTips_previous_tip">Previous tip</string>
+    <!-- Button text to move to the next tip -->
+    <string name="SafetyTips_next_tip">Next tip</string>
+    <!-- Title of tip 1 -->
+    <string name="SafetyTips_tip1_title">Crypto or money scams</string>
+    <!-- Message of tip 1 -->
+    <string name="SafetyTips_tip1_message">If someone you don’t know messages about cryptocurrency (like Bitcoin) or an financial opportunity, be careful—it’s likely spam.</string>
+    <!-- Title of tip 2 -->
+    <string name="SafetyTips_tip2_title">Vague or irrelevant messages</string>
+    <!-- Message of tip 2 -->
+    <string name="SafetyTips_tip2_message">Spammers often start with a simple message like “Hi” to draw you in. If you respond they may engage you further.</string>
+    <!-- Title of tip 3 -->
+    <string name="SafetyTips_tip3_title">Messages with links</string>
+    <!-- Message of tip 3 -->
+    <string name="SafetyTips_tip3_message">Be careful of messages from people you don’t know that have links to websites. Never visit links from people you don’t trust.</string>
+    <!-- Title of tip 4 -->
+    <string name="SafetyTips_tip4_title">Fake businesses and institutions</string>
+    <!-- Message of tip 4 -->
+    <string name="SafetyTips_tip4_message">Be careful of businesses or government agencies contacting you. Messages involving tax agencies, couriers, and more can be spam.</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">ניקוי מסנן</string>
@@ -542,7 +606,12 @@
         <item quantity="other">זה ימחק לצמיתות את כל %1$d הצ׳אטים שנבחרו.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">מוחק</string>
-    <string name="ConversationListFragment_deleting_selected_conversations">מוחקים צ׳אטים שנבחרו…</string>
+    <plurals name="ConversationListFragment_deleting_selected_conversations">
+        <item quantity="one">Deleting selected chat…</item>
+        <item quantity="two">Deleting selected chats…</item>
+        <item quantity="many">Deleting selected chats…</item>
+        <item quantity="other">Deleting selected chats…</item>
+    </plurals>
     <plurals name="ConversationListFragment_conversations_archived">
         <item quantity="one">צ׳אט אוחסן בארכיון</item>
         <item quantity="two">%1$d צ׳אטים אוחסנו בארכיון</item>
@@ -590,6 +659,8 @@
     <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">הפעל או כבה את פרופיל ההתראות שלך כאן.</string>
     <!-- Message shown in top toast to indicate the named profile is on -->
     <string name="ConversationListFragment__s_on">%1$s מופעל</string>
+    <!-- -->
+    <string name="ConversationListFragment_username_recovered_toast">קוד ה–QR והלינק שלך אופסו ושם המשתמש שלך הוא %1$s</string>
 
     <!-- ConversationListItem -->
     <string name="ConversationListItem_key_exchange_message">הודעת החלפת מפתחות</string>
@@ -634,9 +705,9 @@
     <!-- Toolbar title for this screen -->
     <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">מי יכול למצוא אותי לפי המספר שלי?</string>
     <!-- Description for radio item stating anyone can see your phone number -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">כל אחד שיש לו את המספר שלך ברשימת אנשי הקשר יוכל לראות אותך באנשי הקשר ב-Signal. אחרים יוכלו למצוא אותך באמצעות המספר שלך בחיפוש.</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">כל מי שיש להם את המספר הטלפון שלך יראו אותך ב–Signal ויוכלו להתחיל איתך צ׳אט.</string>
     <!-- Description for radio item stating no one will be able to see your phone number -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">אף אחד ב-Signal לא יוכל למצוא אותך באמצעות מספר הטלפון שלך.</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">אנשים לא יוכלו לראות אותך ב–Signal אלא אם שלחת להם הודעה או שיש לך צ\'אט קיים איתם.</string>
 
     <!-- ChooseBackupFragment -->
     <string name="ChooseBackupFragment__restore_from_backup">לשחזר מגיבוי?</string>
@@ -1060,6 +1131,8 @@
     <string name="GroupMentionSettingDialog_dont_notify_me">אל תיידע אותי</string>
 
     <!-- ManageProfileFragment -->
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
+    <string name="ManageProfileFragment__your_username">שם המשתמש, קוד ה–QR והלינק שלך לא גלויים בפרופיל שלך. כדאי לשתף את שם המשתמש שלך רק עם אנשים שבוטחים בהם.</string>
     <string name="ManageProfileFragment_profile_name">שם פרופיל</string>
     <string name="ManageProfileFragment_username">שם משתמש</string>
     <string name="ManageProfileFragment_about">אודות</string>
@@ -1367,6 +1440,10 @@
     <string name="MessageRecord_missed_voice_call">שיחה קולית שלא נענתה</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">שיחת וידאו שלא נענתה</string>
+    <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
+    <string name="MessageRecord_missed_voice_call_notification_profile">שיחה קולית שלא נענתה בזמן שפרופיל ההתראות פועל</string>
+    <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
+    <string name="MessageRecord_missed_video_call_notification_profile">שיחת וידאו שלא נענתה בזמן שפרופיל ההתראות פועל</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
     <string name="MessageRecord_you_declined_a_voice_call">דחית שיחה קולית</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
@@ -1629,6 +1706,10 @@
     <string name="MessageRecord__you_can_no_longer_send_sms_messages_in_signal">אין לך יותר אפשרות לשלוח הודעות SMS ב–Signal. אפשר להזמין את %1$s ל–Signal כדי להשאיר את השיחה כאן.</string>
     <!-- Body for quote when message being quoted is an in-app payment message -->
     <string name="MessageRecord__payment_s">תשלום: %1$s</string>
+    <!-- Update message shown in chat after reporting it as spam -->
+    <string name="MessageRecord_reported_as_spam">Reported as spam</string>
+    <!-- Update message shown in chat after accept a message request -->
+    <string name="MessageRecord_you_accepted_the_message_request">You accepted the message request</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">אשר</string>
@@ -1683,6 +1764,8 @@
         <item quantity="many">%1$d קבוצות נוספות</item>
         <item quantity="other">%1$d קבוצות נוספות</item>
     </plurals>
+    <!-- Button label to report spam for a conversation when in a message request state -->
+    <string name="MessageRequestBottomView_report">Report…</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">משפטי־סיסמה אינם תואמים!</string>
@@ -1990,6 +2073,61 @@
     <!-- A text description of the earpiece icon, used for accessibility. -->
     <string name="WebRtcAudioOutputBottomSheet__earpiece_icon_content_description">סמל שמייצג אוזנייה של מכשיר.</string>
 
+    <!-- A clickable button to "raise your hand" in a group call to signify you have something to say -->
+    <string name="CallOverflowPopupWindow__raise_hand">הרמת יד</string>
+    <!-- A description of a clickable image representing a raised hand -->
+    <string name="CallOverflowPopupWindow__raise_hand_illustration_content_description">הרמת יד</string>
+    <!-- A dialog prompt to confirm you want to lower your hand -->
+    <string name="CallOverflowPopupWindow__lower_your_hand">להוריד את היד?</string>
+    <!-- A dialog button to confirm you would like to lower your hand -->
+    <string name="CallOverflowPopupWindow__lower_hand">הורדת יד</string>
+    <!-- A negative button for a dialog confirming the user wants to lower their hand (withdraw a raised hand) -->
+    <string name="CallOverflowPopupWindow__cancel">ביטול</string>
+    <!-- A notification to the user that they successfully raised their hand -->
+    <string name="CallOverflowPopupWindow__you_raised_your_hand">הרמת יד</string>
+    <!-- A button to take you to a list of participants with raised hands -->
+    <string name="CallOverflowPopupWindow__view">הצגה</string>
+
+    <!-- A notification to the user that one or more participants in the call successfully raised their hand. In the singular case, it is a name. In the plural case, it is a name or "You" -->
+    <plurals name="CallOverflowPopupWindow__raised_a_hand">
+        <item quantity="one">%1$s הרים/ה יד</item>
+        <item quantity="two">%1$s + %2$d הרימו יד</item>
+        <item quantity="many">%1$s + %2$d הרימו יד</item>
+        <item quantity="other">%1$s + %2$d הרימו יד</item>
+    </plurals>
+
+    <!-- A badge to show how many hands are raised. The first string may be a name or "You" -->
+    <plurals name="CallRaiseHandSnackbar_raised_hands">
+        <item quantity="one">%1$s</item>
+        <item quantity="two">%1$s +%2$d</item>
+        <item quantity="many">%1$s +%2$d</item>
+        <item quantity="other">%1$s +%2$d</item>
+    </plurals>
+
+    <!-- An accessibility label for screen readers on a view that can be expanded -->
+    <string name="CallOverflowPopupWindow__expand_snackbar_accessibility_label">להרחיב תצוגת הרמת ידיים</string>
+
+    <!-- AboutSheet -->
+    <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
+    <string name="AboutSheet__signal_connection">חבר/ת Signal</string>
+    <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
+    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s נמצא/ת באנשי הקשר של המערכת שלך</string>
+    <!-- Notice in a row when user has no groups in common -->
+    <string name="AboutSheet__you_have_no_groups_in_common">אין קבוצות משותפות</string>
+    <!-- Notice when a user is not a connection to review requests carefully -->
+    <string name="AboutSheet__review_requests_carefully">סקור בקשות בזהירות</string>
+    <!-- Text used when user has groups in common. Placeholder is the count -->
+    <plurals name="AboutSheet__d_groups_in">
+        <item quantity="one">קבוצה %1$d במשותף</item>
+        <item quantity="two">%1$d קבוצות במשותף</item>
+        <item quantity="many">%1$d קבוצות במשותף</item>
+        <item quantity="other">%1$d קבוצות במשותף</item>
+    </plurals>
+    <!-- Text displayed in title for external recipients -->
+    <string name="AboutSheet__about">אודות</string>
+    <!-- Text displayed in title for you -->
+    <string name="AboutSheet__you">אתה</string>
+
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call">
         <item quantity="one">בשיחה הזו (%1$d)</item>
@@ -2008,6 +2146,12 @@
         <item quantity="two">Signal תודיע ל(%1$d)</item>
         <item quantity="many">Signal תודיע ל(%1$d)</item>
         <item quantity="other">Signal תודיע ל(%1$d)</item>
+    </plurals>
+    <plurals name="CallParticipantsListDialog__raised_hands">
+        <item quantity="one">יד מורמת (%1$d)</item>
+        <item quantity="two">ידיים מורמות (%1$d)</item>
+        <item quantity="many">ידיים מורמות (%1$d)</item>
+        <item quantity="other">ידיים מורמות (%1$d)</item>
     </plurals>
 
     <!-- CallParticipantView -->
@@ -2122,6 +2266,12 @@
     <string name="RevealableMessageView_view_video">הצג סרטון</string>
     <string name="RevealableMessageView_viewed">הוצג</string>
     <string name="RevealableMessageView_media">מדיה</string>
+
+    <!-- ReviewBannerView -->
+    <!-- ReviewBannerView text when a name conflict has been found -->
+    <string name="ReviewBannerView__name_conflict_found">נמצאה התנגשות שמות</string>
+    <!-- Button label to view name conflicts -->
+    <string name="ReviewBannerView__view">הצגה</string>
 
     <!-- Search -->
     <string name="SearchFragment_no_results">תוצאות לא נמצאו עבור \'%1$s\'</string>
@@ -2289,6 +2439,8 @@
     <string name="UnverifiedSendDialog_send">שלח</string>
 
     <!-- UsernameEditFragment -->
+    <!-- Placeholder text for custom discriminator -->
+    <string name="UsernameEditFragment__00">00</string>
     <!-- Toolbar title when entering from registration -->
     <string name="UsernameEditFragment__add_a_username">הוספת שם משתמש</string>
     <!-- Instructional text at the top of the username edit screen -->
@@ -2311,6 +2463,18 @@
     <string name="UsernameEditFragment__skip">דלג</string>
     <!-- Content description for done button -->
     <string name="UsernameEditFragment__done">סיים</string>
+    <!-- Displayed when the chosen discriminator is not available for the given nickname -->
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">שם המשתמש הזה לא זמין, כדאי לנסות מספר אחר.</string>
+    <!-- Displayed when the chosen discriminator is too short -->
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">שם משתמש לא חוקי, יש להזין לפחות %1$d ספרות.</string>
+    <!-- Displayed when the chosen discriminator is too long -->
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">שם משתמש לא חוקי, יש להזין עד %1$d ספרות.</string>
+    <!-- Displayed when the chosen discriminator is 00 -->
+    <string name="UsernameEditFragment__this_number_cant_be_00">המספר הזה לא יכול להיות 00. יש להזין ספרה בין 9–1</string>
+    <!-- Displayed when the chosen discriminator starts with 00 -->
+    <string name="UsernameEditFragment__this_number_cant_start_with_00">המספר הזה לא יכול להתחיל ב–00. יש להזין ספרה בין 9–1</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
+    <string name="UsernameEditFragment_recovery_dialog_confirmation">שחזור שם המשתמש שלך יאפס את קוד ה–QR והלינק הקיימים שלך. להמשיך?</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">איש קשר %1$d ב־Signal!</item>
@@ -2503,6 +2667,26 @@
     <!-- Notification subtext for group stories -->
     <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s • סטורי</string>
 
+    <!-- NewWaysToConnectDialogFragment -->
+    <!-- Fragment title, displayed at the top of the content -->
+    <string name="NewWaysToConnectDialogFragment__new_ways_to_connect">דרכים חדשות להתחבר</string>
+    <!-- Row item title for phone number privacy explainer -->
+    <string name="NewWaysToConnectDialogFragment__phone_number_privacy">פרטיות מספר טלפון</string>
+    <!-- Row item description for phone number privacy explainer -->
+    <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">מספר הטלפון שלך כבר לא משותף עם צ\'אטים. אם המספר שלך שמור באנשי הקשר של חבר או חברה, הם עדיין יראו אותו.</string>
+    <!-- Row item title for usernames explainer -->
+    <string name="NewWaysToConnectDialogFragment__usernames">שמות משתמש</string>
+    <!-- Row item description for usernames explainer -->
+    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">אנשים יכולים לשלוח לך הודעות באמצעות שם המשתמש האופציונלי שלך, כך שכבר אין צורך לתת את מספר הטלפון שלך. שמות משתמש לא גלויים בפרופיל שלך.</string>
+    <!-- Row item title for qr code and links explainer -->
+    <string name="NewWaysToConnectDialogFragment__qr_codes_and_links">קודי QR ולינקים</string>
+    <!-- Row item description for qr code and links explainer -->
+    <string name="NewWaysToConnectDialogFragment__usernames_have_a_unique_qr_code">לכל שם משתמש יש קוד QR ולינק ייחודיים שאפשר לשתף עם חברים כדי שהם יוכלו להתחיל איתך צ׳אט במהירות.</string>
+    <!-- Button label for not right now -->
+    <string name="NewWaysToConnectDialogFragment__not_now">לא עכשיו</string>
+    <!-- Button label for continue -->
+    <string name="NewWaysToConnectDialogFragment__set_up_your_username">הגדרת שם המשתמש שלך</string>
+
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">נגן סרטון</string>
     <string name="ThumbnailView_Has_a_caption_description">יש כיתוב</string>
@@ -2516,8 +2700,10 @@
     </plurals>
     <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
     <string name="TransferControlView__processing">מעבדים…</string>
-    <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
-    <string name="TransferControlView__download_progress">%1$s/%2$s</string>
+    <!-- Status update label used while the device is transmitting data over the network. Will take the form of "1.0 MB/2.0 MB" -->
+    <string name="TransferControlView__download_progress">%1$1.1f MB/%2$2.1f MB</string>
+    <!-- Attachment file size label for not-yet-downloaded images and video. Will take the form of "1.0 MB" -->
+    <string name="TransferControlView__filesize">%1$1.1f MB</string>
 
 
     <!-- UnauthorizedReminder -->
@@ -2620,6 +2806,10 @@
         <item quantity="many">%1$d חברי קבוצה</item>
         <item quantity="other">%1$d חברי קבוצה</item>
     </plurals>
+    <!-- Text on row item to find user by phone number -->
+    <string name="ContactSelectionListFragment__find_by_phone_number">מצא לפי מספר טלפון</string>
+    <!-- Text on row item to find user by username -->
+    <string name="ContactSelectionListFragment__find_by_username">מצא לפי שם משתמש</string>
 
     <!-- contact_selection_list_fragment -->
     <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal צריך הרשאה אל אנשי הקשר שלך על מנת להציגם.</string>
@@ -2695,6 +2885,8 @@
     <string name="ConversationUpdateItem_activate_payments">הפעל תשלומים</string>
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">הסרת את האדם הזה, שליחת הודעה תוסיף אותו או אותה מחדש לרשימה שלך.</string>
+    <!-- Update item button text shown for the accepted message request update message -->
+    <string name="ConversationUpdateItem_options">Options</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">נגן … השהה</string>
@@ -3887,13 +4079,21 @@
     <!-- Subtext below option to launch into phone number privacy settings screen -->
     <string name="preferences_app_protection__choose_who_can_see">אפשר לבחור מי יוכל לראות את מספר הטלפון שלך ומי יוכל ליצור איתך קשר באמצעותו ב–Signal.</string>
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
-    <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">מי יכול לראות את המספר שלי</string>
-    <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">אף אחד לא יראה את מספר הטלפון שלך ב–Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">מי יכול לראות את המספר שלי</string>
+    <!-- Subtext below radio buttons when who can see my number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">מספר הטלפון שלך יהיה גלוי לכל האנשים והקבוצות ששלחת להם הודעה.</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">מספר הטלפון שלך לא יהיה גלוי לאף אחד אלא אם כן המספר שמור ברשימת אנשי הקשר שלו או שלה.</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">מספר הטלפון שלך לא יהיה גלוי לאף אחד.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
-    <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">מי יכול למצוא אותי לפי המספר שלי</string>
-    <!-- Subtext below radio buttons when who can see my number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">מספר הטלפון שלך יהיה גלוי לאנשים וקבוצות שיקבלו ממך הודעה. אנשים שיש להם את המספר שלך באנשי הקשר של הטלפון שלהם יראו אותו גם ב–Signal.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">מי יכול למצוא אותי לפי המספר שלי</string>
+    <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">כל מי שיש להם את המספר הטלפון שלך יראו אותך ב–Signal ויוכלו להתחיל איתך צ׳אט.</string>
+    <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">אנשים לא יוכלו לראות אותך ב–Signal אלא אם שלחת להם הודעה או שיש לך צ\'אט קיים איתם.</string>
+    <!-- Snackbar text when pressing invalid radio item -->
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"כדי לשנות את ההגדרה הזו, יש להגדיר את ׳מי יכול לראות את המספר שלי׳ כ׳אף אחד׳."</string>
     <string name="PhoneNumberPrivacy_everyone">כולם</string>
     <string name="PhoneNumberPrivacy_nobody">אף אחד</string>
     <string name="preferences_app_protection__screen_lock">נעילת מסך</string>
@@ -3922,6 +4122,8 @@
     <string name="prompt_passphrase_activity__signal_is_locked">Signal נעול</string>
     <string name="prompt_passphrase_activity__tap_to_unlock">הקש כדי לשחרר נעילה</string>
     <string name="Recipient_unknown">בלתי ידוע</string>
+    <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
+    <string name="Recipient_deleted_account">חשבון שנמחק</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
     <string name="preferences_account_reregister">רישום מחדש של חשבון</string>
@@ -4147,14 +4349,16 @@
     <string name="ReviewCardDialogFragment__failed_to_remove_group_member">הסרת חבר/ת קבוצה נכשלה.</string>
 
     <!-- ReviewCard -->
-    <string name="ReviewCard__member">חבר קבוצה</string>
     <string name="ReviewCard__request">בקשה</string>
     <string name="ReviewCard__your_contact">איש הקשר שלך</string>
     <string name="ReviewCard__remove_from_group">הסרה מהקבוצה</string>
     <string name="ReviewCard__update_contact">עדכן איש קשר</string>
     <string name="ReviewCard__block">חסימה</string>
     <string name="ReviewCard__delete">מחיקה</string>
-    <string name="ReviewCard__recently_changed">שינה/שינתה לאחרונה את שם הפרופיל מן %1$s אל %2$s</string>
+    <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
+    <string name="ReviewCard__s_recently_changed">%1$s החליף/ה לאחרונה את שם הפרופיל מ%2$s ל%3$s</string>
+    <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
+    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s נמצא/ת באנשי הקשר של המערכת שלך</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s הצטרף/ה</string>
@@ -4513,27 +4717,6 @@
     <string name="ChatsSettingsFragment__keyboard">מקלדת</string>
     <string name="ChatsSettingsFragment__enter_key_sends">מקש Enter שולח</string>
 
-    <!--SmsSettingsFragment -->
-    <string name="SmsSettingsFragment__use_as_default_sms_app">השתמש כיישום המסרונים ברירת המחדל</string>
-    <!-- Preference title to export sms -->
-    <string name="SmsSettingsFragment__export_sms_messages">ייצוא הודעות SMS</string>
-    <!-- Preference title to re-export sms -->
-    <string name="SmsSettingsFragment__export_sms_messages_again">ייצוא מחדש של הודעות SMS</string>
-    <!-- Preference title to delete sms -->
-    <string name="SmsSettingsFragment__remove_sms_messages">הסרת הודעות SMS</string>
-    <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">מסירים הודעות SMS מ–Signal…</string>
-    <!-- Snackbar text to indicate can delete later -->
-    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">יש לך אפשרות להסיר הודעות SMS מ–Signal בהגדרות בכל עת.</string>
-    <!-- Description for export sms preference -->
-    <string name="SmsSettingsFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">יש לך אפשרות לייצא את הודעות ה–SMS שלך למסד נתוני ה–SMS של הטלפון שלך.</string>
-    <!-- Description for re-export sms preference -->
-    <string name="SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages">ייצוא מחדש עלול לגרום להודעות כפולות.</string>
-    <!-- Description for remove sms preference -->
-    <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">אפשר להסיר הודעות SMS מ–Signal כדי לפנות שטח אחסון.</string>
-    <!-- Information message shown at the top of sms settings to indicate it is being removed soon. -->
-    <string name="SmsSettingsFragment__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging">התמיכה ב–SMS תוסר בקרוב כדי להתמקד בהודעות מוצפנות.</string>
-
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">הודעות</string>
     <string name="NotificationsSettingsFragment__calls">שיחות</string>
@@ -4636,7 +4819,7 @@
 
     <!-- CustomChatColorCreatorFragment -->
     <string name="CustomChatColorCreatorFragment__solid">מוצק</string>
-    <string name="CustomChatColorCreatorFragment__gradient">שיפוע</string>
+    <string name="CustomChatColorCreatorFragment__gradient">גרדיאנט</string>
     <string name="CustomChatColorCreatorFragment__hue">גוון</string>
     <string name="CustomChatColorCreatorFragment__saturation">רוויה</string>
 
@@ -4667,7 +4850,7 @@
     <string name="EditReactionsFragment__reset">אפס</string>
     <string name="EditReactionsFragment_save">שמור</string>
     <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">מתאים באופן אוטומטי את הצבע אל הטפט</string>
-    <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">גרור את השינוי אל כיוון השיפוע</string>
+    <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">יש לגרור כדי לשנות את כיוון שינוי הצבע בגרדיאנט</string>
 
     <!-- AddAProfilePhotoMegaphone -->
     <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">הוסף תמונת פרופיל</string>
@@ -5228,6 +5411,12 @@
     <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">הוסף אנשים וקבוצות שאתה רוצה לקבל מהם התראות ושיחות כאשר הפרופיל הזה מופעל</string>
     <!-- Button text that launches the contact picker to select from -->
     <string name="AddAllowedMembers__add_people_or_groups">הוסף אנשים או קבוצות</string>
+    <!-- Title for exceptions section of add people to notification profile screen in create flow -->
+    <string name="AddAllowedMembers__exceptions">יוצאי דופן</string>
+    <!-- List preference to toggle that allows calls through the notification profile during create flow -->
+    <string name="AddAllowedMembers__allow_all_calls">לאפשר את כל השיחות</string>
+    <!-- List preference to toggle that allows mentions through the notification profile during create flow -->
+    <string name="AddAllowedMembers__notify_for_all_mentions">להתריע על כל האזכורים</string>
 
     <!-- Call to action button on contact picker for adding to profile -->
     <string name="SelectRecipientsFragment__add">הוסף</string>
@@ -5876,10 +6065,10 @@
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">כל חברי ה-Signal נסקרו, יש ללחוץ על שליחה כדי להמשיך.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
     <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
-        <item quantity="one">יש לך חבר או חברת Signal %1$d שיתכן והתקינו מחדש את Signal או החליפו מכשירים. כדאי לסקור את מספרי הבטיחות שלהם לפני שיתוף הסטורי, או להסיר אותם מהסטורי במידת הצורך.</item>
-        <item quantity="two">יש לך %1$d חברי Signal שיתכן והתקינו מחדש את Signal או החליפו מכשירים. כדאי לסקור את מספרי הבטיחות שלהם לפני שיתוף הסטורי, או להסיר אותם מהסטורי במידת הצורך.</item>
-        <item quantity="many">יש לך %1$d חברי Signal שיתכן והתקינו מחדש את Signal או החליפו מכשירים. כדאי לסקור את מספרי הבטיחות שלהם לפני שיתוף הסטורי, או להסיר אותם מהסטורי במידת הצורך.</item>
-        <item quantity="other">יש לך %1$d חברי Signal שיתכן והתקינו מחדש את Signal או החליפו מכשירים. כדאי לסקור את מספרי הבטיחות שלהם לפני שיתוף הסטורי, או להסיר אותם מהסטורי במידת הצורך.</item>
+        <item quantity="one">יתכן שחבר או חברת Signal %1$d התקינו מחדש את Signal או החליפו מכשירים. יש לך אפשרות לסקור את מספר הבטיחות שלהם או להמשיך עם השליחה.</item>
+        <item quantity="two">יתכן ש–%1$d חברי Signal התקינו מחדש את Signal או החליפו מכשירים. יש לך אפשרות לסקור את מספרי הבטיחות שלהם או להמשיך עם השליחה.</item>
+        <item quantity="many">יתכן ש–%1$d חברי Signal התקינו מחדש את Signal או החליפו מכשירים. יש לך אפשרות לסקור את מספרי הבטיחות שלהם או להמשיך עם השליחה.</item>
+        <item quantity="other">יתכן ש–%1$d חברי Signal התקינו מחדש את Signal או החליפו מכשירים. יש לך אפשרות לסקור את מספרי הבטיחות שלהם או להמשיך עם השליחה.</item>
     </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">אימות מספר בטיחות</string>
@@ -5970,50 +6159,6 @@
     <!-- Generic title for overflow menus -->
     <string name="OverflowMenu__overflow_menu">תפריט אפשרויות נוספות</string>
 
-    <!-- SMS Export Service -->
-    <!-- Displayed in the notification while export is running -->
-    <string name="SignalSmsExportService__exporting_messages">מייצאים הודעות…</string>
-    <!-- Displayed in the notification title when export completes -->
-    <string name="SignalSmsExportService__signal_sms_export_complete">ייצוא הודעות SMS מ–Signal הושלם</string>
-    <!-- Displayed in the notification message when export completes -->
-    <string name="SignalSmsExportService__tap_to_return_to_signal">אפשר ללחוץ כדי לחזור ל–Signal</string>
-
-    <!-- ExportYourSmsMessagesFragment -->
-    <!-- Title of the screen -->
-    <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">ייצוא הודעות ה-SMS שלך</string>
-    <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">אפשר לייצא את הודעות ה–SMS שלך למסד נתוני ה–SMS של הטלפון שלך ותהיה לך האפשרות לשמור או להסיר אותן מ–Signal. זה מאפשר לאפליקציות SMS אחרות בטלפון שלך לייבא אותן. זה לא יוצר קובץ ניתן לשיתוף של היסטוריית הודעות ה–SMS שלך.</string>
-    <!-- Button label to begin export -->
-    <string name="ExportYourSmsMessagesFragment__continue">המשך</string>
-
-    <!-- ExportingSmsMessagesFragment -->
-    <!-- Title of the screen -->
-    <string name="ExportingSmsMessagesFragment__exporting_sms_messages">מייצאים הודעות SMS</string>
-    <!-- Message of the screen when exporting sms messages -->
-    <string name="ExportingSmsMessagesFragment__this_may_take_awhile">זה עשוי לקחת זמן</string>
-    <!-- Progress indicator for export -->
-    <plurals name="ExportingSmsMessagesFragment__exporting_d_of_d">
-        <item quantity="one">מייצאים %1$d מתוך %2$d…</item>
-        <item quantity="two">מייצאים %1$d מתוך %2$d…</item>
-        <item quantity="many">מייצאים %1$d מתוך %2$d…</item>
-        <item quantity="other">מייצאים %1$d מתוך %2$d…</item>
-    </plurals>
-    <!-- Alert dialog title shown when we think a user may not have enough local storage available to export sms messages -->
-    <string name="ExportingSmsMessagesFragment__you_may_not_have_enough_disk_space">יתכן שאין לך מספיק נפח אחסון פנוי</string>
-    <!-- Alert dialog message shown when we think a user may not have enough local storage available to export sms messages, placeholder is the file size, e.g., 128kB -->
-    <string name="ExportingSmsMessagesFragment__you_need_approximately_s_to_export_your_messages_ensure_you_have_enough_space_before_continuing">צריך בערך %1$s כדי לייצא את ההודעות שלך, כדאי לוודא שיש לך מספיק מקום לפני שממשיכים.</string>
-    <!-- Alert dialog button to continue with exporting sms after seeing the lack of storage warning -->
-    <string name="ExportingSmsMessagesFragment__continue_anyway">להמשיך בכל זאת</string>
-    <!-- Dialog text shown when Signal isn\'t granted the sms permission needed to export messages, different than being selected as the sms app -->
-    <string name="ExportingSmsMessagesFragment__signal_needs_the_sms_permission_to_be_able_to_export_your_sms_messages">Signal צריכה הרשאת SMS כדי לאפשר ייצוא של הודעות ה–SMS שלך.</string>
-
-    <!-- ChooseANewDefaultSmsAppFragment -->
-    <!-- Title of the screen -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_a_new">בחירת אפליקציית ברירת מחדל חדשה ל-SMS</string>
-    <!-- Button label to launch picker -->
-    <string name="ChooseANewDefaultSmsAppFragment__continue">המשך</string>
-    <!-- Button label for when done with changing default SMS app -->
-    <string name="ChooseANewDefaultSmsAppFragment__done">סיים</string>
     <!-- First step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_1">1</string>
     <!-- Second step number/bullet for choose new default sms app instructions -->
@@ -6022,47 +6167,6 @@
     <string name="ChooseANewDefaultSmsAppFragment__bullet_3">3</string>
     <!-- Fourth step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_4">4</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">לוחצים על ״המשך״ כדי לפתוח את מסך ״אפליקציות ברירת המחדל״ בהגדרות</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">בוחרים ״אפליקציית SMS״ מהרשימה</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">בוחרים אפליקציה אחרת לשימוש עבור הודעות SMS</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">חוזרים ל–Signal</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">פותחים את את הגדרות הטלפון</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">מנווטים ל״אפליקציות״ &gt; ״אפליקציות ברירת מחדל״ &gt; ״אפליקציית SMS״</string>
-
-    <!-- RemoveSmsMessagesDialogFragment -->
-    <!-- Action button to keep messages -->
-    <string name="RemoveSmsMessagesDialogFragment__keep_messages">שמירת הודעות</string>
-    <!-- Action button to remove messages -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_messages">הסרת הודעות</string>
-    <!-- Title of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">להסיר הודעות SMS מ-Signal?</string>
-    <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">אפשר להסיר הודעות SMS מ–Signal כדי לפנות שטח אחסון. הן עדיין יהיו זמינות לאפליקציות SMS אחרות בטלפון שלך גם לאחר ההסרה.</string>
-
-    <!-- ReExportSmsMessagesDialogFragment -->
-    <!-- Action button to re-export messages -->
-    <string name="ReExportSmsMessagesDialogFragment__continue">המשך</string>
-    <!-- Action button to cancel re-export process -->
-    <string name="ReExportSmsMessagesDialogFragment__cancel">בטל</string>
-    <!-- Title of dialog -->
-    <string name="ReExportSmsMessagesDialogFragment__export_sms_again">לייצא SMS מחדש?</string>
-    <!-- Message of dialog -->
-    <string name="ReExportSmsMessagesDialogFragment__you_already_exported_your_sms_messages">כבר ייצאת את הודעות ה-SMS שלך.\nאזהרה: המשך עלול לגרום להודעות כפולות.</string>
-
-    <!-- SetSignalAsDefaultSmsAppFragment -->
-    <!-- Title of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">הגדרה של Signal כאפליקציית ברירת המחדל ל–SMS</string>
-    <!-- Message of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">כדי לייצא את הודעות ה–SMS שלך, צריך להגדיר את Signal כאפליקציית ברירת המחדל ל-SMS.</string>
-    <!-- Button label to start export -->
-    <string name="SetSignalAsDefaultSmsAppFragment__next">הבא</string>
-
     <!-- BackupSchedulePermission Megaphone -->
     <!-- The title on an alert window that explains to the user that we are unable to backup their messages -->
     <string name="BackupSchedulePermissionMegaphone__cant_back_up_chats">לא ניתן לגבות צ׳אטים</string>
@@ -6080,47 +6184,6 @@
     <string name="BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders">מפעילים את ״הפעלת התראות ותזכורות.״</string>
     <!-- Re-enable backups permission bottom sheet call to action button to open settings -->
     <string name="BackupSchedulePermissionMegaphone__go_to_settings">מעבר להגדרות</string>
-
-    <!-- SmsExportMegaphoneActivity -->
-    <!-- Phase 2 title of full screen megaphone indicating sms will no longer be supported in the near future -->
-    <string name="SmsExportMegaphoneActivity__signal_will_no_longer_support_sms">Signal לא תתמוך עוד ב–SMS</string>
-    <!-- Phase 3 title of full screen megaphone indicating sms is longer supported  -->
-    <string name="SmsExportMegaphoneActivity__signal_no_longer_supports_sms">Signal כבר לא תומכת ב–SMS</string>
-    <!-- The text on a button in a popup that, when clicked, will dismiss the popup and schedule the prompt to occur at a later time. -->
-    <string name="SmsExportMegaphoneActivity__remind_me_later">הזכירו לי מאוחר יותר</string>
-    <!-- The text on a button in a popup that, when clicked, will navigate the user to a web article on SMS removal -->
-
-    <!-- Title for screen shown after sms export has completed -->
-    <string name="ExportSmsCompleteFragment__export_complete">הייצוא הושלם</string>
-    <!-- Button to continue to next screen -->
-    <string name="ExportSmsCompleteFragment__next">הבא</string>
-    <!-- Message showing summary of sms export counts -->
-    <plurals name="ExportSmsCompleteFragment__d_of_d_messages_exported">
-        <item quantity="one">הודעה %1$d מתוך %2$d יוצאה</item>
-        <item quantity="two">%1$d הודעות מתוך %2$d יוצאו</item>
-        <item quantity="many">%1$d הודעות מתוך %2$d יוצאו</item>
-        <item quantity="other">%1$d הודעות מתוך %2$d יוצאו</item>
-    </plurals>
-
-    <!-- Title of screen shown when some sms messages did not export -->
-    <string name="ExportSmsPartiallyComplete__export_partially_complete">הייצוא הושלם חלקית</string>
-    <!-- Debug step 1 on screen shown when some sms messages did not export -->
-    <string name="ExportSmsPartiallyComplete__ensure_you_have_an_additional_s_free_on_your_phone_to_export_your_messages">כדאי לוודא שיש לך %1$s פנויים נוספים בטלפון כדי לייצא את ההודעות שלך</string>
-    <!-- Debug step 2 on screen shown when some sms messages dit not export -->
-    <string name="ExportSmsPartiallyComplete__retry_export_which_will_only_retry_messages_that_have_not_yet_been_exported">כדאי לנסות לייצא שוב. ניסיון הייצוא החוזר יחול רק על הודעות שעדיין לא יוצאו</string>
-    <!-- Partial sentence for Debug step 3 on screen shown when some sms messages did not export, is combined with \'contact us\' -->
-    <string name="ExportSmsPartiallyComplete__if_the_problem_persists">אם הבעיה נמשכת, </string>
-    <!-- Partial sentence for deubg step 3 on screen shown when some sms messages did not export, combined with \'If the problem persists\', link text to open contact support view -->
-    <string name="ExportSmsPartiallyComplete__contact_us">צור קשר</string>
-    <!-- Button text to retry sms export -->
-    <string name="ExportSmsPartiallyComplete__retry">נסה שוב</string>
-    <!-- Button text to continue sms export flow and not retry failed message exports -->
-    <string name="ExportSmsPartiallyComplete__continue_anyway">להמשיך בכל זאת</string>
-    <!-- Title of screen shown when all sms messages failed to export -->
-    <string name="ExportSmsFullError__error_exporting_sms_messages">שגיאה בייצוא הודעות SMS</string>
-    <!-- Helper text shown when all sms messages failed to export -->
-    <string name="ExportSmsFullError__please_try_again_if_the_problem_persists">יש לנסות שוב. אם הבעיה נמשכת, </string>
-
 
     <!-- DonateToSignalFragment -->
     <!-- Title below avatar -->
@@ -6265,6 +6328,12 @@
     <string name="IdealTransferDetailsFragment__email">דוא״ל</string>
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">בחירת הבנק שלך</string>
+    <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">אישור התרומה שלך עם %1$s</string>
+    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
+    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">כדי להגדיר את התרומה החוזרת שלך, יש ללחוץ על המשך כדי לאשר חיוב של €0.01 בבנק שלך. זה יוחזר אוטומטית ויאפשר לחייב את התרומה החוזרת שלך על סך €5 לחודש מהחשבון שלך.</string>
+    <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
+    <string name="IdealTransferDetailsFragment__continue">המשך</string>
 
     <!-- IdealTransferDetailsBankSelectionDialogFragment -->
     <!-- Title of the screen, displayed in the toolbar -->
@@ -6370,28 +6439,15 @@
     <!-- Displayed in the "clear filter" item in the chat feed if the user opened the filter from the overflow menu -->
     <string name="ChatFilter__tip_pull_down">טיפ: אפשר לגרור למטה את רשימת הצ׳אטים כדי לסנן</string>
 
-    <!-- Title for screen describing that sms support is going to be removed soon -->
-    <string name="SmsRemoval_title_going_away">נפרדים מהתמיכה ב–SMS</string>
-    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
-    <string name="SmsRemoval_info_bullet_1">בקרוב לא תהיה תמיכה בהודעות SMS באפליקציית Signal.</string>
-    <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_2">הודעות SMS שונות מהודעות Signal. <b>זה לא ישפיע על שליחת הודעות מוצפנת ב–Signal, שתמשיך לפעול.</b></string>
-    <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_3">אפשר לייצא את הודעות ה–SMS שלך ולבחור אפליקציית SMS חדשה.</string>
-    <!-- Bullet point message shown on describing screen as first bullet variant why sms is being removed when user is locked out of sms -->
-    <string name="SmsRemoval_info_bullet_1_phase_3">Signal הסירה את התמיכה בשליחת הודעות SMS.</string>
-    <!-- Button label on sms removal info/megaphone to start the export SMS flow -->
-    <string name="SmsRemoval_export_sms">ייצוא SMS</string>
-
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__set_up_your_signal_username">כדאי להגדיר את שם המשתמש שלך ב–Signal</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">שמות משתמש מאפשרים לאחרים לשלוח לך הודעה בלי להזדקק למספר הטלפון שלך</string>
+    <string name="SetUpYourUsername__introducing_phone_number_privacy">מעכשיו פרטיות מספר טלפון, שמות משתמש אופציונליים ולינקים.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__not_now">לא עכשיו</string>
+    <string name="SetUpYourUsername__dismiss">ביטול</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__continue">המשך</string>
+    <string name="SetUpYourUsername__learn_more">למידע נוסף</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -6406,18 +6462,6 @@
     <string name="TextFormatting_spoiler">ספוילר</string>
     <!-- Popup menu label for clearing applied formatting -->
     <string name="TextFormatting_clear_formatting">ניקוי עיצוב</string>
-
-    <!-- UsernameEducationFragment -->
-    <!-- Continue button which takes the user to the add a username screen -->
-    <string name="UsernameEducationFragment__continue">המשך</string>
-    <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">הגדרת שם המשתמש שלך ב–Signal</string>
-    <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__usernames_are_paired_with_a_set_of_digits">שמות משתמש מוצמדים לסט של ספרות ולא משותפים בפרופיל שלך</string>
-    <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">לכל שם משתמש יש לינק וקוד QR ייחודי שאפשר לשתף עם חברים כדי שהם יוכלו להתחיל איתך צ׳אט</string>
-    <!-- Displayed as body text in the username education screen. The string references the names of settings, so they should match our translations for those settings. -->
-    <string name="UsernameEducationFragment__turn_off_phone_number_discovery">אפשר לכבות את גילוי מספר הטלפון תחת הגדרות &gt; פרטיות &gt; מספר טלפון &gt; מי יכול למצוא את המספר שלי, כדי להשתמש בשם המשתמש שלך בתור הדרך העיקרית שבה אנשים יכולים ליצור איתך קשר</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
@@ -6444,6 +6488,8 @@
     <string name="CallLogAdapter__outgoing">שיחה יוצאת</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">שיחה שלא נענתה</string>
+    <!-- Displayed for missed calls declined by notification profile -->
+    <string name="CallLogAdapter__missed_notification_profile">שיחות שלא נענו בזמן שפרופיל ההתראות פועל</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">הצטרפות</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -6557,6 +6603,8 @@
     <string name="CallPreference__group_call">שיחה קבוצתית</string>
     <!-- Missed group call in call info -->
     <string name="CallPreference__missed_group_call">שיחה קבוצתית שלא נענתה</string>
+    <!-- Missed group call while notification profile on in call info -->
+    <string name="CallPreference__missed_group_call_notification_profile">שיחה קבוצתית שלא נענתה בזמן שפרופיל ההתראות פועל</string>
     <!-- Incoming group call in call info -->
     <string name="CallPreference__incoming_group_call">שיחה קבוצתית נכנסת</string>
     <!-- Outgoing group call in call info -->
@@ -6658,6 +6706,8 @@
     <!-- Displayed as body in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">הלינק הזה לא יעבוד יותר לאף אחד.</string>
 
+    <!-- Button label for the link button in the username link settings -->
+    <string name="UsernameLinkSettings_link_button_label">לינק</string>
     <!-- Button label for the share button in the username link settings -->
     <string name="UsernameLinkSettings_share_button_label">שתף</string>
     <!-- Button label for the color selector button in the username link settings -->
@@ -6702,6 +6752,8 @@
     <string name="UsernameLinkSettings_reset_link_result_network_unavailable">אין לך גישה לרשת. הלינק שלך לא אופס. יש לנסות שוב מאוחר יותר.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">שגיאת רשת התרחשה בעת הניסיון לאפס את הלינק שלך. יש לנסות שוב מאוחר יותר.</string>
+    <!-- Shown on the generated username qr code image to explain how to use it. -->
+    <string name="UsernameLinkSettings_scan_this_qr_code">אפשר לסרוק את קוד ה–QR הזה עם הטלפון שלך כדי לשוחח איתי ב–Signal.</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
     <string name="UsernameLinkShareBottomSheet_title">כל מי שיש לו את הלינק הזה יוכל לראות את שם המשתמש שלך ולהתחיל איתך צ׳אט. חשוב לשתף רק עם אנשים שבוטחים בהם.</string>
@@ -6742,6 +6794,8 @@
     <string name="GrantFullScreenIntentPermission_megaphone_body">ככה אף פעם לא מפספסים שיחה מאנשי הקשר והקבוצות שלך.</string>
     <!-- Button on the megaphone megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls that starts the fix process -->
     <string name="GrantFullScreenIntentPermission_megaphone_turn_on">הפעלה</string>
+    <!-- Button on the megaphone shown at the bottom of the chatlist when a user has disabled the system setting for showing full screen notifications used showing incoming calls that dismisses the megaphone -->
+    <string name="GrantFullScreenIntentPermission_megaphone_not_now">לא עכשיו</string>
     <!-- Title of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
     <string name="GrantFullScreenIntentPermission_bottomsheet_title">הפעלת התראות במסך מלא</string>
     <!-- Subtitle of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
@@ -6759,6 +6813,42 @@
     <string name="MonthlyDonationCanceled__renew_button">חידוש מנוי</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, second button to dismiss the dialog entirely -->
     <string name="MonthlyDonationCanceled__not_now_button">לא עכשיו</string>
+
+    <!-- FindByActivity -->
+    <!-- Title of activity when finding by username -->
+    <string name="FindByActivity__find_by_username">מצא לפי שם משתמש</string>
+    <!-- Title of activity when finding by phone number -->
+    <string name="FindByActivity__find_by_phone_number">מצא לפי מספר טלפון</string>
+    <!-- Title of screen to select a country code -->
+    <string name="FindByActivity__select_country_code">בחר קוד מדינה</string>
+    <!-- Entry placeholder for find by username -->
+    <string name="FindByActivity__username">שם משתמש</string>
+    <!-- Entry placeholder for find by phone number -->
+    <string name="FindByActivity__phone_number">מספר טלפון</string>
+    <!-- Help text under user entry for find by username -->
+    <string name="FindByActivity__enter_a_full_username">יש להזין שם משתמש מלא עם צמד הספרות שלו.</string>
+    <!-- Content description for next action button -->
+    <string name="FindByActivity__next">הבא</string>
+    <!-- Placeholder text for search input for selecting country code -->
+    <string name="FindByActivity__search">חפש</string>
+    <!-- Dialog title for invalid username -->
+    <string name="FindByActivity__invalid_username">שם משתמש לא חוקי</string>
+    <!-- Dialog title for invalid phone number -->
+    <string name="FindByActivity__invalid_phone_number">מספר טלפון לא תקין</string>
+    <!-- Dialog title when phone number is not a registered signal user -->
+    <string name="FindByActivity__invite_to_signal">הזמנה אל Signal</string>
+    <!-- Dialog title when username is not found -->
+    <string name="FindByActivity__username_not_found">שם משתמש לא נמצא</string>
+    <!-- Dialog body for invalid username. Placeholder is the entered username. -->
+    <string name="FindByActivity__s_is_not_a_valid_username">%1$s הוא לא שם משתמש חוקי. כדאי לוודא שהכנסת את שם המשתמש המלא ואחריו סט הספרות שלו.</string>
+    <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
+    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s הוא לא מספר טלפון חוקי. יש לנסות שוב עם מספר טלפון תקין</string>
+    <!-- Dialog body for not found username -->
+    <string name="FindByActivity__s_is_not_a_signal_user">\"%1$s\" הוא לא משתמש Signal. אנא בדוק את שם המשתמש ונסה שוב.</string>
+    <!-- Dialog body for not found phone number -->
+    <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s לא משתמש/ת ב–Signal. רוצה להזמין את המספר הזה?</string>
+    <!-- Dialog action to invite the phone number to Signal -->
+    <string name="FindByActivity__invite">הזמן</string>
 
     <!-- EOF -->
 </resources>
