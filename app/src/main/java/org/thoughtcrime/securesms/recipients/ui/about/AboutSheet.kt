@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.recipients.ui.about
 
+import android.content.res.Configuration
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -26,7 +27,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
@@ -38,6 +38,7 @@ import androidx.core.widget.TextViewCompat
 import org.signal.core.ui.BottomSheets
 import org.signal.core.ui.theme.SignalTheme
 import org.signal.core.util.getParcelableCompat
+import org.signal.core.util.isNotNullOrBlank
 import org.thoughtcrime.securesms.AvatarPreviewActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.AvatarImage
@@ -81,11 +82,27 @@ class AboutSheet : ComposeBottomSheetDialogFragment() {
   override fun SheetContent() {
     val recipient by viewModel.recipient
     val groupsInCommonCount by viewModel.groupsInCommonCount
+    val verified by viewModel.verified
 
     if (recipient.isPresent) {
-      AboutSheetContent(
-        recipient = recipient.get(),
-        groupsInCommonCount = groupsInCommonCount,
+      Content(
+        model = AboutModel(
+          isSelf = recipient.get().isSelf,
+          hasAvatar = recipient.get().profileAvatarFileDetails.hasFile(),
+          displayName = recipient.get().getDisplayName(requireContext()),
+          shortName = recipient.get().getShortDisplayName(requireContext()),
+          about = recipient.get().about,
+          verified = verified,
+          recipientForAvatar = recipient.get(),
+          formattedE164 = if (recipient.get().hasE164() && recipient.get().shouldShowE164()) {
+            PhoneNumberFormatter.get(requireContext()).prettyPrintFormat(recipient.get().requireE164())
+          } else {
+            null
+          },
+          groupsInCommon = groupsInCommonCount,
+          profileSharing = recipient.get().isProfileSharing,
+          systemContact = recipient.get().isSystemContact
+        ),
         onClickSignalConnections = this::openSignalConnectionsSheet,
         onAvatarClicked = this::openProfilePhotoViewer
       )
@@ -102,25 +119,23 @@ class AboutSheet : ComposeBottomSheetDialogFragment() {
   }
 }
 
-@Preview
-@Composable
-private fun AboutSheetContentPreview() {
-  SignalTheme {
-    Surface {
-      AboutSheetContent(
-        recipient = Recipient.UNKNOWN,
-        groupsInCommonCount = 0,
-        onClickSignalConnections = {},
-        onAvatarClicked = {}
-      )
-    }
-  }
-}
+private data class AboutModel(
+  val isSelf: Boolean,
+  val displayName: String,
+  val shortName: String,
+  val about: String?,
+  val verified: Boolean,
+  val hasAvatar: Boolean,
+  val recipientForAvatar: Recipient,
+  val formattedE164: String?,
+  val profileSharing: Boolean,
+  val systemContact: Boolean,
+  val groupsInCommon: Int
+)
 
 @Composable
-private fun AboutSheetContent(
-  recipient: Recipient,
-  groupsInCommonCount: Int,
+private fun Content(
+  model: AboutModel,
   onClickSignalConnections: () -> Unit,
   onAvatarClicked: () -> Unit
 ) {
@@ -131,8 +146,8 @@ private fun AboutSheetContent(
     BottomSheets.Handle(modifier = Modifier.padding(top = 6.dp))
   }
 
-  val avatarOnClick = remember(recipient.profileAvatarFileDetails.hasFile()) {
-    if (recipient.profileAvatarFileDetails.hasFile()) {
+  val avatarOnClick = remember(model.hasAvatar) {
+    if (model.hasAvatar) {
       onAvatarClicked
     } else {
       { }
@@ -141,7 +156,7 @@ private fun AboutSheetContent(
 
   Column(horizontalAlignment = Alignment.CenterHorizontally) {
     AvatarImage(
-      recipient = recipient,
+      recipient = model.recipientForAvatar,
       modifier = Modifier
         .padding(top = 56.dp)
         .size(240.dp)
@@ -150,7 +165,7 @@ private fun AboutSheetContent(
     )
 
     Text(
-      text = stringResource(id = if (recipient.isSelf) R.string.AboutSheet__you else R.string.AboutSheet__about),
+      text = stringResource(id = if (model.isSelf) R.string.AboutSheet__you else R.string.AboutSheet__about),
       style = MaterialTheme.typography.headlineMedium,
       modifier = Modifier
         .fillMaxWidth()
@@ -158,22 +173,19 @@ private fun AboutSheetContent(
         .padding(top = 20.dp, bottom = 14.dp)
     )
 
-    val context = LocalContext.current
-    val displayName = remember(recipient) { recipient.getDisplayName(context) }
-
     AboutRow(
       startIcon = painterResource(R.drawable.symbol_person_24),
-      text = displayName,
+      text = model.displayName,
       modifier = Modifier.fillMaxWidth()
     )
 
-    if (!recipient.about.isNullOrBlank()) {
+    if (model.about.isNotNullOrBlank()) {
       AboutRow(
         startIcon = painterResource(R.drawable.symbol_edit_24),
         text = {
           Row {
             AndroidView(factory = ::EmojiTextView) {
-              it.text = recipient.combinedAboutAndEmoji
+              it.text = model.about
 
               TextViewCompat.setTextAppearance(it, R.style.Signal_Text_BodyLarge)
             }
@@ -183,7 +195,16 @@ private fun AboutSheetContent(
       )
     }
 
-    if (recipient.isProfileSharing) {
+    if (model.verified) {
+      AboutRow(
+        startIcon = painterResource(id = R.drawable.check),
+        text = stringResource(id = R.string.AboutSheet__verified),
+        modifier = Modifier.align(alignment = Alignment.Start),
+        onClick = onClickSignalConnections
+      )
+    }
+
+    if (model.profileSharing || model.systemContact) {
       AboutRow(
         startIcon = painterResource(id = R.drawable.symbol_connections_24),
         text = stringResource(id = R.string.AboutSheet__signal_connection),
@@ -191,36 +212,38 @@ private fun AboutSheetContent(
         modifier = Modifier.align(alignment = Alignment.Start),
         onClick = onClickSignalConnections
       )
+    } else {
+      AboutRow(
+        startIcon = painterResource(id = R.drawable.chat_x),
+        text = stringResource(id = R.string.AboutSheet__no_direct_message, model.shortName),
+        modifier = Modifier.align(alignment = Alignment.Start),
+        onClick = onClickSignalConnections
+      )
     }
 
-    val shortName = remember(recipient) { recipient.getShortDisplayName(context) }
-    if (recipient.isSystemContact) {
+    if (model.systemContact) {
       AboutRow(
         startIcon = painterResource(id = R.drawable.symbol_person_circle_24),
-        text = stringResource(id = R.string.AboutSheet__s_is_in_your_system_contacts, shortName),
+        text = stringResource(id = R.string.AboutSheet__s_is_in_your_system_contacts, model.shortName),
         modifier = Modifier.fillMaxWidth()
       )
     }
 
-    if (recipient.e164.isPresent && recipient.shouldShowE164()) {
-      val e164 = remember(recipient.e164.get()) {
-        PhoneNumberFormatter.get(context).prettyPrintFormat(recipient.e164.get())
-      }
-
+    if (model.formattedE164.isNotNullOrBlank()) {
       AboutRow(
         startIcon = painterResource(R.drawable.symbol_phone_24),
-        text = e164,
+        text = model.formattedE164,
         modifier = Modifier.fillMaxWidth()
       )
     }
 
-    val groupsInCommonText = if (recipient.hasGroupsInCommon()) {
-      pluralStringResource(id = R.plurals.AboutSheet__d_groups_in, groupsInCommonCount, groupsInCommonCount)
+    val groupsInCommonText = if (model.groupsInCommon > 0) {
+      pluralStringResource(id = R.plurals.AboutSheet__d_groups_in, model.groupsInCommon, model.groupsInCommon)
     } else {
       stringResource(id = R.string.AboutSheet__you_have_no_groups_in_common)
     }
 
-    val groupsInCommonIcon = if (!recipient.isProfileSharing && groupsInCommonCount == 0) {
+    val groupsInCommonIcon = if (!model.profileSharing && model.groupsInCommon == 0) {
       painterResource(R.drawable.symbol_error_circle_24)
     } else {
       painterResource(R.drawable.symbol_group_24)
@@ -233,20 +256,6 @@ private fun AboutSheetContent(
     )
 
     Spacer(modifier = Modifier.size(26.dp))
-  }
-}
-
-@Preview
-@Composable
-private fun AboutRowPreview() {
-  SignalTheme {
-    Surface {
-      AboutRow(
-        startIcon = painterResource(R.drawable.symbol_person_24),
-        text = "Maya Johnson",
-        endIcon = painterResource(id = R.drawable.symbol_chevron_right_compact_bold_16)
-      )
-    }
   }
 }
 
@@ -314,6 +323,129 @@ private fun AboutRow(
         painter = endIcon,
         contentDescription = null,
         tint = MaterialTheme.colorScheme.outline
+      )
+    }
+  }
+}
+
+@Preview(name = "Light Theme", group = "content", uiMode = Configuration.UI_MODE_NIGHT_NO)
+@Preview(name = "Dark Theme", group = "content", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun ContentPreviewDefault() {
+  SignalTheme {
+    Surface {
+      Content(
+        model = AboutModel(
+          isSelf = false,
+          hasAvatar = true,
+          displayName = "Peter Parker",
+          shortName = "Peter",
+          about = "Photographer for the Daily Bugle.",
+          verified = true,
+          recipientForAvatar = Recipient.UNKNOWN,
+          formattedE164 = "(123) 456-7890",
+          profileSharing = true,
+          systemContact = true,
+          groupsInCommon = 0
+        ),
+        onClickSignalConnections = {},
+        onAvatarClicked = {}
+      )
+    }
+  }
+}
+
+@Preview(name = "Light Theme", group = "content", uiMode = Configuration.UI_MODE_NIGHT_NO)
+@Preview(name = "Dark Theme", group = "content", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun ContentPreviewInContactsNotProfileSharing() {
+  SignalTheme {
+    Surface {
+      Content(
+        model = AboutModel(
+          isSelf = false,
+          hasAvatar = true,
+          displayName = "Peter Parker",
+          shortName = "Peter",
+          about = "Photographer for the Daily Bugle.",
+          verified = false,
+          recipientForAvatar = Recipient.UNKNOWN,
+          formattedE164 = null,
+          profileSharing = false,
+          systemContact = true,
+          groupsInCommon = 3
+        ),
+        onClickSignalConnections = {},
+        onAvatarClicked = {}
+      )
+    }
+  }
+}
+
+@Preview(name = "Light Theme", group = "content", uiMode = Configuration.UI_MODE_NIGHT_NO)
+@Preview(name = "Dark Theme", group = "content", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun ContentPreviewGroupsInCommonNoE164() {
+  SignalTheme {
+    Surface {
+      Content(
+        model = AboutModel(
+          isSelf = false,
+          hasAvatar = true,
+          displayName = "Peter Parker",
+          shortName = "Peter",
+          about = "Photographer for the Daily Bugle.",
+          verified = false,
+          recipientForAvatar = Recipient.UNKNOWN,
+          formattedE164 = null,
+          profileSharing = true,
+          systemContact = false,
+          groupsInCommon = 3
+        ),
+        onClickSignalConnections = {},
+        onAvatarClicked = {}
+      )
+    }
+  }
+}
+
+@Preview(name = "Light Theme", group = "content", uiMode = Configuration.UI_MODE_NIGHT_NO)
+@Preview(name = "Dark Theme", group = "content", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun ContentPreviewNotAConnection() {
+  SignalTheme {
+    Surface {
+      Content(
+        model = AboutModel(
+          isSelf = false,
+          hasAvatar = true,
+          displayName = "Peter Parker",
+          shortName = "Peter",
+          about = "Photographer for the Daily Bugle.",
+          verified = false,
+          recipientForAvatar = Recipient.UNKNOWN,
+          formattedE164 = null,
+          profileSharing = false,
+          systemContact = false,
+          groupsInCommon = 3
+        ),
+        onClickSignalConnections = {},
+        onAvatarClicked = {}
+      )
+    }
+  }
+}
+
+@Preview(name = "Light Theme", group = "about row", uiMode = Configuration.UI_MODE_NIGHT_NO)
+@Preview(name = "Dark Theme", group = "about row", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun AboutRowPreview() {
+  SignalTheme {
+    Surface {
+      AboutRow(
+        startIcon = painterResource(R.drawable.symbol_person_24),
+        text = "Maya Johnson",
+        endIcon = painterResource(id = R.drawable.symbol_chevron_right_compact_bold_16)
       )
     }
   }

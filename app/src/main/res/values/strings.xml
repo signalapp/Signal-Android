@@ -1965,6 +1965,10 @@
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">Signal connection</string>
+    <!-- Displayed in a sheet row describing that the user has marked this contact as 'verified' from within the app -->
+    <string name="AboutSheet__verified">Verified</string>
+    <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person's name. -->
+    <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s is in your system contacts</string>
     <!-- Notice in a row when user has no groups in common -->
