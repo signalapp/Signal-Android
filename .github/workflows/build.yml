@@ -25,7 +25,7 @@ jobs:
         uses: gradle/wrapper-validation-action@v1
 
       - name: Find android
-        run: ls ${ANDROID_HOME}/
+        run: ls ${ANDROID_HOME}/build-tools/
 
       - name: Build with Gradle
         run: ./gradlew assemblePlayProdRelease
