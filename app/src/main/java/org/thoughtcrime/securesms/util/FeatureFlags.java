@@ -119,7 +119,7 @@ public final class FeatureFlags {
   private static final String CALLING_RAISE_HAND                = "android.calling.raiseHand";
   private static final String USE_ACTIVE_CALL_MANAGER           = "android.calling.useActiveCallManager.4";
   private static final String GIF_SEARCH                        = "global.gifSearch";
-  private static final String AUDIO_REMUXING                    = "android.media.audioRemux";
+  private static final String AUDIO_REMUXING                    = "android.media.audioRemux.1";
   private static final String VIDEO_RECORD_1X_ZOOM              = "android.media.videoCaptureDefaultZoom";
 
   /**
