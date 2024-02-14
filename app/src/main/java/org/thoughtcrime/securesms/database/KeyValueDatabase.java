@@ -78,8 +78,8 @@ public class KeyValueDatabase extends SQLiteOpenHelper implements SignalDatabase
 
     db.execSQL(CREATE_TABLE);
 
-    if (SignalDatabase.hasTable("key_value")) {
-      Log.i(TAG, "Found old key_value table. Migrating data.");
+    if (SignalDatabase.hasTable(TABLE_NAME)) {
+      Log.i(TAG, "Found old "+TABLE_NAME+" table. Migrating data.");
       migrateDataFromPreviousDatabase(SignalDatabase.getRawDatabase(), db);
     }
   }
@@ -96,9 +96,9 @@ public class KeyValueDatabase extends SQLiteOpenHelper implements SignalDatabase
     db.setForeignKeyConstraintsEnabled(true);
 
     SignalExecutors.BOUNDED.execute(() -> {
-      if (SignalDatabase.hasTable("key_value")) {
-        Log.i(TAG, "Dropping original key_value table from the main database.");
-        SignalDatabase.getRawDatabase().execSQL("DROP TABLE key_value");
+      if (SignalDatabase.hasTable(TABLE_NAME)) {
+        Log.i(TAG, "Dropping original "+TABLE_NAME+" table from the main database.");
+        SignalDatabase.getRawDatabase().execSQL("DROP TABLE "+TABLE_NAME);
       }
     });
   }
@@ -194,7 +194,7 @@ public class KeyValueDatabase extends SQLiteOpenHelper implements SignalDatabase
   }
 
   private static void migrateDataFromPreviousDatabase(@NonNull SQLiteDatabase oldDb, @NonNull SQLiteDatabase newDb) {
-    try (Cursor cursor = oldDb.rawQuery("SELECT * FROM key_value", null)) {
+    try (Cursor cursor = oldDb.rawQuery("SELECT * FROM "+TABLE_NAME, null)) {
       while (cursor.moveToNext()) {
         int type = CursorUtil.requireInt(cursor, "type");
         ContentValues values = new ContentValues();
