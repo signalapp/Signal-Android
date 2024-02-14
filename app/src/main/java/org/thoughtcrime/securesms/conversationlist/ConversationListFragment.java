@@ -139,6 +139,7 @@ import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
 import org.thoughtcrime.securesms.groups.SelectionLimits;
+import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob;
 import org.thoughtcrime.securesms.jobs.ServiceOutageDetectionJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.v2.CreateSvrPinActivity;
@@ -1055,6 +1056,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       } else if (CdsPermanentErrorReminder.isEligible()) {
         return Optional.of(new CdsPermanentErrorReminder());
       } else if (UsernameOutOfSyncReminder.isEligible()) {
+        ApplicationDependencies.getJobManager().add(new RefreshOwnProfileJob());
         return Optional.of(new UsernameOutOfSyncReminder());
       } else {
         return Optional.<Reminder>empty();
