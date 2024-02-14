@@ -116,7 +116,7 @@ public class AccountRecordProcessor extends DefaultStorageRecordProcessor<Signal
     boolean                              preferContactAvatars          = remote.isPreferContactAvatars();
     int                                  universalExpireTimer          = remote.getUniversalExpireTimer();
     boolean                              primarySendsSms               = SignalStore.account().isPrimaryDevice() ? local.isPrimarySendsSms() : remote.isPrimarySendsSms();
-    String                               e164                          = SignalStore.account().isPrimaryDevice() && !self.getPnpCapability().isSupported() ? local.getE164() : remote.getE164();
+    String                               e164                          = SignalStore.account().isPrimaryDevice() ? local.getE164() : remote.getE164();
     List<String>                         defaultReactions              = remote.getDefaultReactions().size() > 0 ? remote.getDefaultReactions() : local.getDefaultReactions();
     boolean                              displayBadgesOnProfile        = remote.isDisplayBadgesOnProfile();
     boolean                              subscriptionManuallyCancelled = remote.isSubscriptionManuallyCancelled();

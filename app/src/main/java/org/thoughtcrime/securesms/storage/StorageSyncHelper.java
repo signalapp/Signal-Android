@@ -168,10 +168,6 @@ public final class StorageSyncHelper {
                                                                  .setUsername(SignalStore.account().getUsername())
                                                                  .setHasCompletedUsernameOnboarding(SignalStore.uiHints().hasCompletedUsernameOnboarding());
 
-    if (!self.getPnpCapability().isSupported()) {
-      account.setE164(self.requireE164());
-    }
-
     UsernameLinkComponents linkComponents = SignalStore.account().getUsernameLink();
     if (linkComponents != null) {
       account.setUsernameLink(new AccountRecord.UsernameLink.Builder()
