@@ -39,6 +39,13 @@ object MediaCodecCompat {
       } else {
         findBackupDecoderForDolbyVision(inputFormat) ?: throw IOException("Can't create decoder for $mimeType!")
       }
+    } else if (mimeType != null) {
+      try {
+        val decoder = MediaCodec.createDecoderByType(mimeType)
+        return Pair(decoder, inputFormat)
+      } catch (iae: IllegalArgumentException) {
+        throw IOException("Can't create decoder for $mimeType, which is not a valid MIME type.", iae)
+      }
     }
 
     throw IOException("Can't create decoder for $mimeType!")
