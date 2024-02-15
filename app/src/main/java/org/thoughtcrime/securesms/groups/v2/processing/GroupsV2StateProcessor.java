@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.groups.GroupsV2Authorization;
 import org.thoughtcrime.securesms.groups.v2.ProfileKeySet;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobs.AvatarGroupsV2DownloadJob;
+import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.LeaveGroupV2Job;
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
@@ -352,6 +353,10 @@ public class GroupsV2StateProcessor {
       }
       profileAndMessageHelper.persistLearnedProfileKeys(inputGroupState);
 
+      if (!signedGroupChange.promotePendingPniAciMembers.isEmpty()) {
+        ApplicationDependencies.getJobManager().add(new DirectoryRefreshJob(false));
+      }
+
       GlobalGroupState remainingWork = advanceGroupStateResult.getNewGlobalGroupState();
       if (remainingWork.getServerHistory().size() > 0) {
         info(String.format(Locale.US, "There are more revisions on the server for this group, scheduling for later, V[%d..%d]", newLocalState.revision + 1, remainingWork.getLatestRevisionNumber()));
@@ -443,6 +448,7 @@ public class GroupsV2StateProcessor {
       ProfileKeySet    profileKeys           = new ProfileKeySet();
       DecryptedGroup   finalState            = localState;
       GlobalGroupState finalGlobalGroupState = inputGroupState;
+      boolean          performCdsLookup      = false;
 
       boolean hasMore = true;
 
@@ -474,8 +480,13 @@ public class GroupsV2StateProcessor {
           if (entry.getGroup() != null) {
             profileKeys.addKeysFromGroupState(entry.getGroup());
           }
+
           if (entry.getChange() != null) {
             profileKeys.addKeysFromGroupChange(entry.getChange());
+
+            if (!entry.getChange().promotePendingPniAciMembers.isEmpty()) {
+              performCdsLookup = true;
+            }
           }
         }
 
@@ -495,6 +506,10 @@ public class GroupsV2StateProcessor {
       }
 
       profileAndMessageHelper.persistLearnedProfileKeys(profileKeys);
+
+      if (performCdsLookup) {
+        ApplicationDependencies.getJobManager().add(new DirectoryRefreshJob(false));
+      }
 
       if (finalGlobalGroupState.getServerHistory().size() > 0) {
         info(String.format(Locale.US, "There are more revisions on the server for this group, scheduling for later, V[%d..%d]", finalState.revision + 1, finalGlobalGroupState.getLatestRevisionNumber()));

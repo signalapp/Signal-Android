@@ -61,10 +61,6 @@ public final class ProfileKeySet {
     for (DecryptedMember member : change.promotePendingPniAciMembers) {
       addMemberKey(member, editor);
     }
-
-    for (DecryptedMember member : change.promotePendingPniAciMembers) {
-      addMemberKey(member, editor);
-    }
   }
 
   /**
