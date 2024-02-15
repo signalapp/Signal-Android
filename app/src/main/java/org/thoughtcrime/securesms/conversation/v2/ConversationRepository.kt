@@ -370,8 +370,16 @@ class ConversationRepository(
         return@fromCallable RequestReviewState()
       }
 
-      if (group == null && ReviewUtil.isRecipientReviewSuggested(recipient.id)) {
-        return@fromCallable RequestReviewState(individualReviewState = IndividualReviewState(recipient))
+      if (group == null) {
+        val recipientsToReview = ReviewUtil.getRecipientsToPromptForReview(recipient.id)
+        if (recipientsToReview.size > 0) {
+          return@fromCallable RequestReviewState(
+            individualReviewState = IndividualReviewState(
+              target = recipient,
+              firstDuplicate = Recipient.resolvedList(recipientsToReview)[0]
+            )
+          )
+        }
       }
 
       if (group != null && group.isV2Group) {
@@ -383,6 +391,7 @@ class ConversationRepository(
             groupReviewState = GroupReviewState(
               groupId,
               duplicateRecipients[0],
+              duplicateRecipients[1],
               duplicateRecipients.size
             )
           )

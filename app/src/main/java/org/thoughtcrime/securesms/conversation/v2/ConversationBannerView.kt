@@ -6,7 +6,6 @@
 package org.thoughtcrime.securesms.conversation.v2
 
 import android.content.Context
-import android.text.SpannableStringBuilder
 import android.transition.ChangeBounds
 import android.transition.Slide
 import android.transition.TransitionManager
@@ -15,8 +14,6 @@ import android.util.AttributeSet
 import android.view.Gravity
 import android.view.View
 import androidx.appcompat.widget.LinearLayoutCompat
-import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.transition.addListener
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.identity.UnverifiedBannerView
@@ -28,9 +25,7 @@ import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.profiles.spoofing.ReviewBannerView
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.ContextUtil
 import org.thoughtcrime.securesms.util.IdentityUtil
-import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.views.Stub
 import org.thoughtcrime.securesms.util.visible
@@ -114,20 +109,12 @@ class ConversationBannerView @JvmOverloads constructor(
       stub = reviewBannerStub
     ) {
       if (requestReviewState.individualReviewState != null) {
-        val message: CharSequence = SpannableStringBuilder()
-          .append(SpanUtil.bold(context.getString(R.string.ConversationFragment__review_requests_carefully)))
-          .append(" ")
-          .append(context.getString(R.string.ConversationFragment__signal_found_another_contact_with_the_same_name))
-
-        setBannerMessage(message)
-
-        val drawable = ContextUtil.requireDrawable(context, R.drawable.symbol_info_24).mutate()
-        DrawableCompat.setTint(drawable, ContextCompat.getColor(context, R.color.signal_icon_tint_primary))
-        setBannerIcon(drawable)
-        setOnClickListener { listener?.onRequestReviewIndividual(requestReviewState.individualReviewState.recipient.id) }
+        setBannerMessage(context.getString(R.string.ConversationFragment__review_banner_body))
+        setBannerRecipients(requestReviewState.individualReviewState.target, requestReviewState.individualReviewState.firstDuplicate)
+        setOnClickListener { listener?.onRequestReviewIndividual(requestReviewState.individualReviewState.target.id) }
       } else if (requestReviewState.groupReviewState != null) {
         setBannerMessage(context.getString(R.string.ConversationFragment__d_group_members_have_the_same_name, requestReviewState.groupReviewState.count))
-        setBannerRecipient(requestReviewState.groupReviewState.recipient)
+        setBannerRecipients(requestReviewState.groupReviewState.target, requestReviewState.groupReviewState.firstDuplicate)
         setOnClickListener { listener?.onReviewGroupMembers(requestReviewState.groupReviewState.groupId) }
       }
 

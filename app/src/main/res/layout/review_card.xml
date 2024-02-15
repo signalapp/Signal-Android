@@ -19,19 +19,6 @@
         app:layout_constraintStart_toStartOf="@id/card_avatar"
         app:layout_constraintTop_toTopOf="@id/card_avatar" />
 
-    <TextView
-        android:id="@+id/card_title"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:gravity="center_vertical"
-        android:textAppearance="@style/TextAppearance.Signal.Body2.Bold"
-        android:textColor="@color/signal_text_secondary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Member" />
 
     <org.thoughtcrime.securesms.components.AvatarImageView
         android:id="@+id/card_avatar"
@@ -40,7 +27,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/card_title"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_goneMarginTop="16dp"
         tools:src="@drawable/ic_person_large" />
 

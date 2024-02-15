@@ -494,8 +494,8 @@
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">You can add notes for yourself in this chat. If your account has any linked devices, new notes will be synced.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d group members have the same name.</string>
     <string name="ConversationFragment__tap_to_review">Tap to review</string>
-    <string name="ConversationFragment__review_requests_carefully">Review requests carefully</string>
-    <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal found another contact with the same name.</string>
+    <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
+    <string name="ConversationFragment__review_banner_body">This person has the same name as another contact</string>
     <string name="ConversationFragment_contact_us">Contact us</string>
     <string name="ConversationFragment_verify">Verify</string>
     <string name="ConversationFragment_not_now">Not now</string>
@@ -4127,8 +4127,10 @@
     <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" has been unblocked.</string>
 
     <!-- ReviewCardDialogFragment -->
-    <string name="ReviewCardDialogFragment__review_members">Review Members</string>
-    <string name="ReviewCardDialogFragment__review_request">Review Request</string>
+    <!-- Title of a screen where the user will be prompted to review group members with the same name -->
+    <string name="ReviewCardDialogFragment__review_members">Review members</string>
+    <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
+    <string name="ReviewCardDialogFragment__review_request">Review request</string>
     <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d group members have the same name, review the members below and choose to take action.</string>
     <string name="ReviewCardDialogFragment__if_youre_not_sure">If you\'re not sure who the request is from, review the contacts below and take action.</string>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">No other groups in common.</string>
