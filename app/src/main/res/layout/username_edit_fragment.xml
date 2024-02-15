@@ -92,7 +92,7 @@
         android:imeOptions="actionDone"
         android:importantForAutofill="no"
         android:inputType="number"
-        android:maxLength="19"
+        android:maxLength="9"
         android:maxLines="1"
         android:minHeight="48dp"
         android:paddingHorizontal="16dp"
