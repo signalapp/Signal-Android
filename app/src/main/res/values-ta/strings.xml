@@ -1063,6 +1063,8 @@
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">உங்கள் பயனர் பெயர், QR குறியீடு மற்றும் இணைப்பு ஆகியவை உங்கள் புரொஃபைலில் தெரியாது. உங்களுக்கு நம்பிக்கையானர்வர்களுடன் மட்டும் உங்கள் பயனர் பெயரைப் பகிரவும்.</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">People can now message you using your optional username so you don\'t have to give out your phone number. </string> -->
     <string name="ManageProfileFragment_profile_name">சுயவிவரப் பெயர்</string>
     <string name="ManageProfileFragment_username">பயனர்பெயர்</string>
     <string name="ManageProfileFragment_about">பற்றி</string>
@@ -1962,6 +1964,10 @@
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">சிக்னல் இணைப்பு</string>
+    <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">Verified</string> -->
+    <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string> -->
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">உங்கள் சிஸ்டம் தொடர்புகளில் %1$s உள்ளார்</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -2315,6 +2321,10 @@
     <string name="UsernameEditFragment__this_number_cant_start_with_00">இந்த எண் 00 ஐக் கொண்டு தொடங்கக் கூடாது. 1–9 க்கு இடையேயுள்ள ஒரு எண்ணை உள்ளிடவும்</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">உங்கள் பயனர் பெயரை மீட்டமைப்பது உங்கள் தற்போதைய QR குறியீடு மற்றும் இணைப்பை மீட்டமைக்கும். நீங்கள் உறுதியாக உள்ளீர்களா?</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">Changing your username will reset your existing QR code and link. Are you sure?</string> -->
+    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">Continue</string> -->
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d தொடர்பு Signal-இல் உள்ளார்!</item>
@@ -2519,7 +2529,7 @@
     <!-- Button label for not right now -->
     <string name="NewWaysToConnectDialogFragment__not_now">இப்போது வேண்டாம்</string>
     <!-- Button label for continue -->
-    <string name="NewWaysToConnectDialogFragment__set_up_your_username">உங்கள் பயனர் பெயரை அமைக்கவும்</string>
+    <string name="NewWaysToConnectDialogFragment__set_up_your_username">பயனர் பெயரை அமைக்கவும்</string>
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">காணொளியை ஓட்டு</string>
@@ -6173,6 +6183,15 @@
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__learn_more">மேலும் அறிக</string>
 
+    <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_title">இணைவதற்கான புதிய வழிகள்</string> -->
+    <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_body">தொலைபேசி எண் தனியுரிமை, விருப்பத் தேர்ந்தெடுப்புக்குரிய பயனர் பெயர்கள் மற்றும் இணைப்புகளை அறிமுகப்படுத்துகிறோம்.</string> -->
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_dismiss">நிராகரி</string> -->
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_learn_more">மேலும் அறிக</string> -->
+
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
     <string name="TextFormatting_bold">போல்டு</string>
@@ -6470,6 +6489,10 @@
     <string name="UsernameLinkSettings_reset_link_result_network_unavailable">உங்களிடம் நெட்வர்க் அணுகல் இல்லை. உங்கள் இணைப்பு மீட்டமைக்கப்படவில்லை. பின்னர் மீண்டும் முயலவும்.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">உங்கள் இணைப்பை மீட்டமைக்க முயலும்போது நெட்வர்க் பிழை ஏற்பட்டது. பின்னர் மீண்டும் முயலவும்.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string> -->
+    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">Your QR code and link have been reset and a new QR code and link has been created.</string> -->
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">என்னுடன் சிக்னலில் சாட் செய்ய இந்த QR குறியீட்டை உங்கள் ஃபோன் மூலம் ஸ்கேன் செய்யவும்.</string>
 

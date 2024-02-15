@@ -46,7 +46,7 @@
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Hii itafungua kabisa Signal na arifu za ujumbe</string>
     <string name="ApplicationPreferencesActivity_disable">Lemaza</string>
     <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Lemaza jumbe za Signal na simu?</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Lemaza jumbe na simu za Signal kwa kutosajili kutoka kwenye seva. Utatakiwa kusajili tena numberi yako ya simu ili uzitumie tena baadae.</string>
+    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Lemaza jumbe na simu za Signal kwa kutosajili kutoka kwenye seva. Utatakiwa kusajili tena nambari yako ya simu ili uzitumie tena baadae.</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Hitilafu kuunganisha kwa mtambo.</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Nambari za Siri zinahitajika kwenye kufuli ya usajili. Ili kulemaza Nambari za Siri, tafadhali kwanza lemaza kufuli ya usajili.</string>
     <string name="ApplicationPreferencesActivity_pin_created">Nenosiri limeundwa.</string>
@@ -1063,7 +1063,9 @@
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Jina lako la mtumiaji, code yako ya QR na kiungo havionekani kwenye wasifu wako. Shiriki jina lako la mtumiaji na watu unaowaamini tu.</string>
-    <string name="ManageProfileFragment_profile_name">Jina la wasifa</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">People can now message you using your optional username so you don\'t have to give out your phone number. </string> -->
+    <string name="ManageProfileFragment_profile_name">Jina la wasifu</string>
     <string name="ManageProfileFragment_username">Jina la mtumiaji</string>
     <string name="ManageProfileFragment_about">Kuhusu</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">Umbo halijawekwa</string>
@@ -1545,7 +1547,7 @@
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Umeweka alama kwenye nambari yako ya usalama na %1$s kuwa haijahakikishwa</string>
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Umeweka alama kwenye nambari yako ya usalama na %1$s kuwa haijahakikishwa kutoka kwa kifaa kingine</string>
     <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Ujumbe kutoka %1$s haukuweza kuwasilishwa</string>
-    <string name="MessageRecord_s_changed_their_phone_number">%1$s amebadili namba yake ya simu.</string>
+    <string name="MessageRecord_s_changed_their_phone_number">%1$s amebadili nambari yake ya simu.</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Umependelea kipengele hiki kipya? Saidia kuiunga mkono Signal kwa mchango wa mara moja.</string>
     <!-- Update item message shown when we merge two threads together. First placeholder is a name, second placeholder is a phone number. -->
@@ -1961,9 +1963,13 @@
 
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
-    <string name="AboutSheet__signal_connection">Muunganisho wa Signal</string>
+    <string name="AboutSheet__signal_connection">Signal Connection</string>
+    <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">Verified</string> -->
+    <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string> -->
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
-    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s yupo kwenye wawasiliani wako</string>
+    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s yupo kwenye wawasiliani wako wa simu</string>
     <!-- Notice in a row when user has no groups in common -->
     <string name="AboutSheet__you_have_no_groups_in_common">Hamna vikundi mnavyoshiriki pamoja</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
@@ -2028,7 +2034,7 @@
     </string>
 
     <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">Je, namba iliyo hapa chini ni sahihi?</string>
+    <string name="RegistrationActivity_phone_number_verification_dialog_title">Je, nambari iliyo hapa chini ni sahihi?</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
     <string name="RegistrationActivity_additional_verification_required">Uthibitishaji wa ziada unahitajika</string>
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
@@ -2086,7 +2092,7 @@
     <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_title">Unasumbuka kujisajili?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Hakikisha namba yako inapata mtandao wa simu ili kupokea SMS au kupigiwa simu\n • Hakikisha kama unaweza kupokea simu kwenye nambari\n • Angalia kama umeingiza vyema nambari za simu.</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Hakikisha nambari yako inapata mtandao wa simu ili kupokea SMS au kupigiwa simu\n • Hakikisha kama unaweza kupokea simu kwenye nambari\n • Angalia kama umeingiza vyema nambari za simu.</string>
     <!--    A call to action for a user having trouble entering the verification to seek further help. -->
     <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">Kwa habari zaidi, tafadhali fuata maelekezo haya ya kutatua tatizo au Wasiliana na Msaada</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
@@ -2315,6 +2321,10 @@
     <string name="UsernameEditFragment__this_number_cant_start_with_00">Nambari hii haiwezi kuanza na 00. Ingiza tarakimu kati ya 1–9</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">Kurejesha jina lako la mtumiaji kutaweka upya mipangilio ya code ya QR na kiungo kilichopo. Una uhakika?</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">Changing your username will reset your existing QR code and link. Are you sure?</string> -->
+    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">Continue</string> -->
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">Anwani %1$diko katika Signal!</item>
@@ -2519,7 +2529,7 @@
     <!-- Button label for not right now -->
     <string name="NewWaysToConnectDialogFragment__not_now">Sio sasa</string>
     <!-- Button label for continue -->
-    <string name="NewWaysToConnectDialogFragment__set_up_your_username">Weka jina lako la mtumiaji</string>
+    <string name="NewWaysToConnectDialogFragment__set_up_your_username">Weka jina la mtumiaji</string>
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">Cheza video</string>
@@ -2637,7 +2647,7 @@
         <item quantity="other">Wanachama %1$d</item>
     </plurals>
     <!-- Text on row item to find user by phone number -->
-    <string name="ContactSelectionListFragment__find_by_phone_number">Tafuta kwa namba ya simu</string>
+    <string name="ContactSelectionListFragment__find_by_phone_number">Tafuta kwa nambari ya simu</string>
     <!-- Text on row item to find user by username -->
     <string name="ContactSelectionListFragment__find_by_username">Tafuta kwa jina la mtumiaji</string>
 
@@ -4142,7 +4152,7 @@
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
     <string name="ReviewCard__s_recently_changed">Hivi karibuni %1$s amebadili jina la wasifu wake kutoka %2$s kwenda %3$s</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
-    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s yupo kwenye wawasiliani wako</string>
+    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s yupo kwenye wawasiliani wako wa simu</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s amejiunga</string>
@@ -5466,7 +5476,7 @@
     <string name="MyStorySettingsFragment__who_can_view_this_story">Nani anaweza kutazama stori hii</string>
     <!-- Clickable option for selecting people to hide your story from -->
     <!-- Privacy setting title for sending stories to all your signal connections -->
-    <string name="MyStorySettingsFragment__all_signal_connections">Signal connections wote</string>
+    <string name="MyStorySettingsFragment__all_signal_connections">Signal Connections wote</string>
     <!-- Privacy setting description for sending stories to all your signal connections -->
     <!-- Privacy setting title for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__all_except">Wote isipokuwa….</string>
@@ -5503,7 +5513,7 @@
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Kukubali ombi la ujumbe</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Kuwa nao kwenye mfumo wako wa wawasiliani</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Kuwa nao kwenye mfumo wako wa wawasiliani wa simu</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Connections wako wanaweza kuona jina lako na picha yako, na wanaweza pia kuona post za Stori Yangu labda kama utawaficha."</string>
     <!-- Clickable option to add a viewer to a custom story -->
@@ -5831,7 +5841,7 @@
     <!-- Subtitle of initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Chagua nani anayeweza kuona maudhui ya Stori Yangu. Unaweza kufanya mabadiliko kwenye mipangilio.</string>
     <!-- All connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Signal connections wote</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Signal Connections wote</string>
     <!-- All connections except option for initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__all_except">Wote isipokuwa….</string>
     <!-- Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
@@ -6173,6 +6183,15 @@
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__learn_more">Jifunze zaidi</string>
 
+    <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_title">Njia mpya za kufahamiana</string> -->
+    <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_body">Tunatambulisha faragha ya nambari ya simu, majina ya watumiaji ya hiari na viungo.</string> -->
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_dismiss">Tupilia mbali</string> -->
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_learn_more">Jifunze zaidi</string> -->
+
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
     <string name="TextFormatting_bold">Kooza</string>
@@ -6470,6 +6489,10 @@
     <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Hauna ufikiaji wa mtandao. Kiungo chako hakikuwekwa upya. Jaribu tena baadaye.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">Hitilafu ya kimtandao imetokea wakati wa kuweka upya kiungo chako. Jaribu tena baadaye.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string> -->
+    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">Your QR code and link have been reset and a new QR code and link has been created.</string> -->
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Skani code hii ya QR kupitia simu yako ili upige gumzo nami kwenye Signal.</string>
 
@@ -6532,7 +6555,7 @@
     <!-- Title of activity when finding by username -->
     <string name="FindByActivity__find_by_username">Tafuta kwa jina la mtumiaji</string>
     <!-- Title of activity when finding by phone number -->
-    <string name="FindByActivity__find_by_phone_number">Tafuta kwa namba ya simu</string>
+    <string name="FindByActivity__find_by_phone_number">Tafuta kwa nambari ya simu</string>
     <!-- Title of screen to select a country code -->
     <string name="FindByActivity__select_country_code">Chagua Nambari ya Nchi</string>
     <!-- Entry placeholder for find by username -->

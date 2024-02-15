@@ -1133,7 +1133,9 @@
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Ім\'я користувача, QR-код і посилання не відображаються у вашому профілі. Діліться іменем користувача тільки з людьми, яким довіряєте.</string>
-    <string name="ManageProfileFragment_profile_name">Ім’я облікового запису</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">People can now message you using your optional username so you don\'t have to give out your phone number. </string> -->
+    <string name="ManageProfileFragment_profile_name">Ім’я профілю</string>
     <string name="ManageProfileFragment_username">Ім\'я користувача</string>
     <string name="ManageProfileFragment_about">Про себе</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">Не вдалось встановити фото профілю</string>
@@ -1475,8 +1477,8 @@
     </plurals>
 
     <!-- Profile change updates -->
-    <string name="MessageRecord_changed_their_profile_name_to">У %1$s ім\'я профілю змінено на %2$s.</string>
-    <string name="MessageRecord_changed_their_profile_name_from_to">У %1$s ім\'я профілю змінено з %2$s на %3$s.</string>
+    <string name="MessageRecord_changed_their_profile_name_to">%1$s змінює своє ім\'я профілю на %2$s.</string>
+    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s змінює своє ім\'я профілю з %2$s на %3$s.</string>
     <string name="MessageRecord_changed_their_profile">%1$s змінив (-а) свій профіль.</string>
 
     <!-- GV2 specific -->
@@ -1651,7 +1653,7 @@
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Ваш номер безпеки із %1$s є НЕперевіреним</string>
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Ваш номер безпеки із %1$s є НЕперевіреним</string>
     <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Повідомлення від %1$s неможливо доставити</string>
-    <string name="MessageRecord_s_changed_their_phone_number">%1$s змінив номер телефону.</string>
+    <string name="MessageRecord_s_changed_their_phone_number">%1$s змінює номер телефону.</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Подобається нова функція? Підтримайте Signal за допомогою разового доната.</string>
     <!-- Update item message shown when we merge two threads together. First placeholder is a name, second placeholder is a phone number. -->
@@ -2110,8 +2112,12 @@
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">Контакт Signal</string>
+    <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">Verified</string> -->
+    <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string> -->
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
-    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s є у ваших системних контактах</string>
+    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s є в контактах вашого пристрою</string>
     <!-- Notice in a row when user has no groups in common -->
     <string name="AboutSheet__you_have_no_groups_in_common">Ви не маєте спільних груп</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
@@ -2246,7 +2252,7 @@
     <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_title">Виникли проблеми з реєстрацією?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Перевірте сигнал стільникової мережі на вашому телефоні для отримання SMS чи виклику\n • Переконайтеся, що ви можете отримувати телефонні виклики на цей номер\n • Перевірте правильність введеного номеру телефону.</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Перевірте сигнал стільникової мережі на вашому телефоні для отримання SMS чи виклику\n • Переконайтеся, що ви можете отримувати телефонні виклики на цей номер\n • Перевірте правильність введеного номера телефону.</string>
     <!--    A call to action for a user having trouble entering the verification to seek further help. -->
     <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">Щоб отримати додаткову інформацію, виконайте ці кроки з вирішення проблем або зверніться до служби підтримки</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
@@ -2447,15 +2453,15 @@
     <string name="UsernameEditFragment__choose_your_username">Виберіть ім’я користувача</string>
     <string name="UsernameEditFragment_username">Ім\'я користувача</string>
     <string name="UsernameEditFragment_delete">Видалити</string>
-    <string name="UsernameEditFragment_successfully_removed_username">Псевдонім успішно видалено.</string>
+    <string name="UsernameEditFragment_successfully_removed_username">Ім\'я користувача видалено.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Виникла помилка мережі.</string>
     <string name="UsernameEditFragment_this_username_is_taken">Це ім\'я користувача вже використовується.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">Імена користувачів можуть мати лише такі символи: a–Z, 0–9 та нижнє підкреслювання.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Ім\'я користувача не може починатися з цифри.</string>
-    <string name="UsernameEditFragment_username_is_invalid">Ім\'я користувача невірний.</string>
+    <string name="UsernameEditFragment_username_is_invalid">Невірне ім\'я користувача.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Ім\'я користувача складається з символів кількістю від %1$d до %2$d.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Завдяки імені користувача вам зможуть писати люди, які не знають вашого номеру телефону. Поряд із іменем є кілька цифр, які захищають конфіденційність вашої адреси.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">Завдяки імені користувача вам зможуть писати люди, які не знають вашого номера телефону. Поряд із іменем є кілька цифр, які захищають конфіденційність вашої адреси.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">Що означають ці цифри?</string>
     <string name="UsernameEditFragment__these_digits_help_keep">Ці цифри допомагають захистити вас від небажаних повідомлень. Діліться своїм іменем користувача тільки з тими людьми і групами, з якими ви хочете спілкуватися. Якщо змінити ім\'я користувача, цифри також зміняться.</string>
@@ -2475,6 +2481,10 @@
     <string name="UsernameEditFragment__this_number_cant_start_with_00">Номер не може починатися з 00. Введіть цифру від 1 до 9</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">Якщо відновити ім\'я користувача, поточні QR-код і посилання буде скинуто. Відновити ім\'я?</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">Changing your username will reset your existing QR code and link. Are you sure?</string> -->
+    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">Continue</string> -->
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d контакт у Signal!</item>
@@ -2685,7 +2695,7 @@
     <!-- Button label for not right now -->
     <string name="NewWaysToConnectDialogFragment__not_now">Не зараз</string>
     <!-- Button label for continue -->
-    <string name="NewWaysToConnectDialogFragment__set_up_your_username">Установити ім\'я користувача</string>
+    <string name="NewWaysToConnectDialogFragment__set_up_your_username">Установити ім\'я</string>
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">Відтворити відео</string>
@@ -2794,7 +2804,7 @@
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal потребує дозволів \"Контакти\", щоб показати контакти, але наразі доступу немає. Будь ласка, перейдіть до налаштувань додатку, оберіть \"Дозволи\", та увімкніть \"Контакти\".</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Не вдалося отримати список контактів, перевірте з\'єднання</string>
     <string name="ContactSelectionListFragment_username_not_found">Ім\'я користувача не знайдено</string>
-    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" - не є користувачем Signal. Будь ласка, перевірте ім\'я користувача і спробуйте ще раз."</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"«%1$s» — не є користувачем Signal. Будь ласка, перевірте ім\'я користувача і спробуйте ще раз."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Вам не потрібно додавати себе в групу</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">Досягнуто максимального розміру групи</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">У групах Signal можуть перебувати максимум %1$d учасників.</string>
@@ -3315,7 +3325,7 @@
     <string name="preferences__mmsc_url">MMSC URL</string>
     <string name="preferences__mms_proxy_host">Хост MMS проксі</string>
     <string name="preferences__mms_proxy_port">Порт MMS проксі</string>
-    <string name="preferences__mmsc_username">Користувач MMSC</string>
+    <string name="preferences__mmsc_username">Ім\'я користувача MMSC</string>
     <string name="preferences__mmsc_password">Пароль MMSC</string>
     <string name="preferences__sms_delivery_reports">Звіти про доставку SMS</string>
     <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Запитувати звіт про доставку для кожного відісланого вами SMS</string>
@@ -3438,7 +3448,7 @@
     <string name="preferences_communication__censorship_circumvention">Обхід цензури</string>
     <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Якщо увімкнено, Signal намагатиметься обійти цензуру. Не вмикайте цю функцію, якщо ви не в місці, де Signal заблоковано.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Обхід цензури було активовано враховуючи номер мобільного цього акаунта.</string>
+    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Обхід цензури було активовано враховуючи номер телефону цього акаунта.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
     <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Ви вручну відключили обхід цензури.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
@@ -3931,7 +3941,7 @@
 
     <!-- AccountLockedFragment -->
     <string name="AccountLockedFragment__account_locked">Обліковий запис заблоковано</string>
-    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Ваш обліковий запис заблоковано для захисту Вашої конфіденційності та безпеки. Через %1$d днів бездіяльності у Вашому аккаунті Ви зможете перереєструвати цей номер телефону, без PIN-коду. Весь вміст буде видалено.</string>
+    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Ваш акаунт заблоковано для захисту вашої конфіденційності та безпеки. Через %1$d дн. бездіяльності в акаунті ви зможете перереєструвати цей номер телефону без PIN-коду. Весь вміст буде видалено.</string>
     <string name="AccountLockedFragment__next">Далі</string>
     <string name="AccountLockedFragment__learn_more">Дізнатися більше</string>
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
@@ -4356,9 +4366,9 @@
     <string name="ReviewCard__block">Заблокувати</string>
     <string name="ReviewCard__delete">Видалити</string>
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
-    <string name="ReviewCard__s_recently_changed">Нещодавня дія: %1$s змінює своє ім\'я профілю (%2$s → %3$s)</string>
+    <string name="ReviewCard__s_recently_changed">%1$s змінює своє ім\'я профілю з %2$s на %3$s</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
-    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s є у ваших системних контактах</string>
+    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s є в контактах вашого пристрою</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">Приєднався: %1$s</string>
@@ -4387,7 +4397,7 @@
     <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Видаліть %1$s зі свого платіжного рахунку</string>
     <string name="DeleteAccountFragment__no_country_code">Код країни не вказано</string>
     <string name="DeleteAccountFragment__no_number">Номер не вказано</string>
-    <string name="DeleteAccountFragment__the_phone_number">Наданий номер телефону не належить до вашого облікового запису.</string>
+    <string name="DeleteAccountFragment__the_phone_number">Наданий номер телефону не належить до вашого акаунту.</string>
     <string name="DeleteAccountFragment__are_you_sure">Ви дійсно хочете видалити обліковий запис?</string>
     <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Ця дія видалить ваш акаунт Signal і відновить початковий стан застосунку. Після завершення застосунок закриється.</string>
     <string name="DeleteAccountFragment__failed_to_delete_local_data">Не вдалося видалити локальні дані. Ви можете видалити їх вручну в системних налаштуваннях програми.</string>
@@ -4660,7 +4670,7 @@
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Скористайтесь цим, аби змінити свій поточний номер телефону на новий. Ви не можете скасувати цю зміну.\n\nПерш ніж продовжити, переконайтеся, що ваш новий номер може отримувати SMS або дзвінки.</string>
     <string name="ChangeNumberFragment__continue">Продовжити</string>
     <!-- Message shown on dialog after your number has been changed successfully. -->
-    <string name="ChangeNumber__your_phone_number_has_changed_to_s">Ваш номер телефона змінено на %1$s</string>
+    <string name="ChangeNumber__your_phone_number_has_changed_to_s">Ваш номер телефону змінено на %1$s</string>
     <!-- Confirmation button to dismiss number changed dialog -->
     <string name="ChangeNumber__okay">Добре</string>
 
@@ -4670,7 +4680,7 @@
     <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Старий номер телефону</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Ваш новий номер</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Новий номер телефону</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Наданий номер телефону не належить до вашого облікового запису.</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Наданий номер телефону не належить до вашого акаунту.</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Потрібно вказати країну вашого старого номеру телефону</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Потрібно вказати ваш старий номер телефону</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Потрібно вказати країну вашого нового номеру телефону</string>
@@ -5379,7 +5389,7 @@
     <!-- Title of create notification profile screen -->
     <string name="EditNotificationProfileFragment__name_your_profile">Ім\'я профілю</string>
     <!-- Hint text for create/edit notification profile name -->
-    <string name="EditNotificationProfileFragment__profile_name">Ім’я облікового запису</string>
+    <string name="EditNotificationProfileFragment__profile_name">Ім’я профілю</string>
     <!-- Name has a max length, this shows how many characters are used out of the max -->
     <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
     <!-- Call to action button to continue to the next step -->
@@ -5708,7 +5718,7 @@
     <string name="MyStorySettingsFragment__who_can_view_this_story">Хто може бачити цю сторі</string>
     <!-- Clickable option for selecting people to hide your story from -->
     <!-- Privacy setting title for sending stories to all your signal connections -->
-    <string name="MyStorySettingsFragment__all_signal_connections">Усі контакти в Signal</string>
+    <string name="MyStorySettingsFragment__all_signal_connections">Усі контакти Signal</string>
     <!-- Privacy setting description for sending stories to all your signal connections -->
     <!-- Privacy setting title for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__all_except">Усі, крім…</string>
@@ -5741,15 +5751,15 @@
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Дозвольте глядачам своїх сторіз реагувати і відповідати на них</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
-    <string name="SignalConnectionsBottomSheet___signal_connections">Контакти в Signal</string>
+    <string name="SignalConnectionsBottomSheet___signal_connections">Контакти Signal</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
-    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Контакти в Signal — це люди, яким ви вирішили довіряти одним із таких способів:</string>
+    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Контакти Signal — це люди, яким ви вирішили довіряти одним із таких способів:</string>
     <!-- Signal connections sheet bullet point 1 -->
     <string name="SignalConnectionsBottomSheet__starting_a_conversation">Почали з ними чат</string>
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Схвалили запит на листування</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Вони є у ваших контактах</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Вони є в контактах вашого пристрою</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Ваші контакти можуть бачити ваше ім\'я та фото, а також публікації у розділі «Мої сторіз», якщо ви їх не приховали."</string>
     <!-- Clickable option to add a viewer to a custom story -->
@@ -6103,7 +6113,7 @@
     <!-- Subtitle of initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Оберіть, хто може переглядати дописи в розділі «Мої сторіз». Вибір можна змінити в налаштуваннях у будь-який час.</string>
     <!-- All connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Усі знайомі в Signal</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Усі контакти Signal</string>
     <!-- All connections except option for initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__all_except">Усі, крім…</string>
     <!-- Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
@@ -6449,6 +6459,15 @@
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__learn_more">Подробиці</string>
 
+    <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_title">Нові способи додавання контактів</string> -->
+    <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_body">Представляємо конфіденційність номера телефону, додаткові імена користувачів і посилання.</string> -->
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_dismiss">Відхилити</string> -->
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_learn_more">Подробиці</string> -->
+
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
     <string name="TextFormatting_bold">Жирний</string>
@@ -6713,7 +6732,7 @@
     <!-- Button label for the color selector button in the username link settings -->
     <string name="UsernameLinkSettings_color_button_label">Колір</string>
     <!-- Description text for QR code and links in the username link settings -->
-    <string name="UsernameLinkSettings_qr_description">Діліться QR-кодом і посиланням лише з людьми, яким ви довіряєте. Якщо ви поділитесь, користувач зможе побачити ваше ім\'я в застосунку і розпочати з вами чат.</string>
+    <string name="UsernameLinkSettings_qr_description">Діліться QR-кодом і посиланням лише з людьми, яким ви довіряєте. Якщо ви поділитесь, користувач зможе побачити ваше ім\'я користувача і розпочати з вами чат.</string>
     <!-- Content of a toast that will show after the username is copied to the clipboard -->
     <string name="UsernameLinkSettings_username_copied_toast">Ім’я користувача скопійовано</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
@@ -6752,6 +6771,10 @@
     <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Немає доступу до мережі. Посилання не було скинуто. Спробуйте знову пізніше.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">Під час спроби скинути посилання сталася помилка мережі. Спробуйте знову пізніше.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string> -->
+    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">Your QR code and link have been reset and a new QR code and link has been created.</string> -->
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Проскануйте цей QR-код телефоном, щоб написати мені в Signal.</string>
 
@@ -6844,7 +6867,7 @@
     <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
     <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s — недійсний номер телефону. Спробуйте ще раз, використовуючи дійсний номер телефону</string>
     <!-- Dialog body for not found username -->
-    <string name="FindByActivity__s_is_not_a_signal_user">\"%1$s\" - не є користувачем Signal. Будь ласка, перевірте ім\'я користувача і спробуйте ще раз.</string>
+    <string name="FindByActivity__s_is_not_a_signal_user">«%1$s» — не є користувачем Signal. Будь ласка, перевірте ім\'я користувача і спробуйте ще раз.</string>
     <!-- Dialog body for not found phone number -->
     <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s не користується Signal. Ви хочете запросити абонента з цим номером?</string>
     <!-- Dialog action to invite the phone number to Signal -->

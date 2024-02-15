@@ -46,7 +46,7 @@
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Signal et les notifications de message seront déverrouillées en permanence.</string>
     <string name="ApplicationPreferencesActivity_disable">Désactiver</string>
     <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Désactiver les messages et appels Signal ?</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Pour désactiver les messages et les appels Signal, désinscrivez-vous du serveur. Vous devrez réenregistrer votre numéro de mobile pour les réutiliser.</string>
+    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Pour désactiver les messages et les appels Signal, désinscrivez-vous du serveur. Vous devrez réenregistrer votre numéro de téléphone pour les réutiliser.</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Erreur de connexion au serveur.</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Le blocage d’inscription nécessite l’utilisation d’un code PIN. Pour désactiver le code PIN, commencez par désactiver le blocage d’inscription.</string>
     <string name="ApplicationPreferencesActivity_pin_created">Code PIN créé.</string>
@@ -404,8 +404,8 @@
     <string name="ConversationActivity_search_position">%1$d sur %2$d</string>
     <string name="ConversationActivity_no_results">Il n’y a aucun résultat</string>
 
-    <string name="ConversationActivity_sticker_pack_installed">Le paquet d’autocollants a été installé</string>
-    <string name="ConversationActivity_new_say_it_with_stickers">Nouveauté ! Dites-le avec des autocollants</string>
+    <string name="ConversationActivity_sticker_pack_installed">Pack de stickers installé</string>
+    <string name="ConversationActivity_new_say_it_with_stickers">Nouveauté : dites-le avec des stickers</string>
 
     <string name="ConversationActivity_cancel">Annuler</string>
     <string name="ConversationActivity_delete_conversation">Supprimer la conversation ?</string>
@@ -1063,6 +1063,8 @@
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Votre nom d’utilisateur, votre code QR et votre lien ne s’affichent pas dans votre profil. Partagez votre nom d’utilisateur uniquement avec les personnes en qui vous avez confiance.</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">People can now message you using your optional username so you don\'t have to give out your phone number. </string> -->
     <string name="ManageProfileFragment_profile_name">Nom de profil</string>
     <string name="ManageProfileFragment_username">Nom d’utilisateur</string>
     <string name="ManageProfileFragment_about">À propos</string>
@@ -1072,13 +1074,13 @@
     <string name="ManageProfileFragment_link_setting_text">Code QR ou lien</string>
     <string name="ManageProfileFragment__edit_photo">Modifier la photo</string>
     <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
-    <string name="ManageProfileFragment__link_tooltip_title">Partagez votre pseudo</string>
+    <string name="ManageProfileFragment__link_tooltip_title">Partagez votre nom d’utilisateur</string>
     <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
     <string name="ManageProfileFragment__link_tooltip_body">Proposez de converser avec d\'autres personnes en leur partageant votre code QR ou un lien unique.</string>
     <!-- Snackbar message after creating username -->
-    <string name="ManageProfileFragment__username_created">Pseudo créé</string>
+    <string name="ManageProfileFragment__username_created">Nom d’utilisateur créé</string>
     <!-- Snackbar message after copying username -->
-    <string name="ManageProfileFragment__username_copied">Pseudo copié</string>
+    <string name="ManageProfileFragment__username_copied">Nom d’utilisateur copié</string>
     <!-- Snackbar message after network failure while trying to delete username -->
     <string name="ManageProfileFragment__couldnt_delete_username">Impossible de supprimer le nom d’utilisateur. Réessayez plus tard.</string>
     <!-- Snackbar message after successful deletion of username -->
@@ -1961,9 +1963,13 @@
 
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
-    <string name="AboutSheet__signal_connection">Connexions Signal</string>
+    <string name="AboutSheet__signal_connection">Contact Signal</string>
+    <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">Verified</string> -->
+    <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string> -->
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
-    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s se trouve dans vos contacts</string>
+    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s se trouve dans vos contacts système</string>
     <!-- Notice in a row when user has no groups in common -->
     <string name="AboutSheet__you_have_no_groups_in_common">Aucun groupe en commun</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
@@ -2148,7 +2154,7 @@
 
     <!-- Slide -->
     <string name="Slide_image">Image</string>
-    <string name="Slide_sticker">Autocollant</string>
+    <string name="Slide_sticker">Sticker</string>
     <string name="Slide_audio">Son</string>
     <string name="Slide_video">Vidéo</string>
 
@@ -2158,14 +2164,14 @@
     <string name="SmsMessageRecord_duplicate_message">Message en double.</string>
 
     <!-- StickerManagementActivity -->
-    <string name="StickerManagementActivity_stickers">Autocollants</string>
+    <string name="StickerManagementActivity_stickers">Stickers</string>
 
     <!-- StickerManagementAdapter -->
-    <string name="StickerManagementAdapter_installed_stickers">Autocollants installés</string>
-    <string name="StickerManagementAdapter_stickers_you_received">Autocollants que vous avez reçus</string>
+    <string name="StickerManagementAdapter_installed_stickers">Stickers installés</string>
+    <string name="StickerManagementAdapter_stickers_you_received">Stickers reçus</string>
     <string name="StickerManagementAdapter_signal_artist_series">Séries des artistes de Signal</string>
-    <string name="StickerManagementAdapter_no_stickers_installed">Aucun autocollant n’est installé</string>
-    <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Les autocollants des messages entrants apparaîtront ici</string>
+    <string name="StickerManagementAdapter_no_stickers_installed">Aucun sticker n’est installé</string>
+    <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Les stickers des messages entrants s’afficheront ici</string>
     <string name="StickerManagementAdapter_untitled">Sans titre</string>
     <string name="StickerManagementAdapter_unknown">Inconnu</string>
 
@@ -2175,8 +2181,8 @@
     <string name="StickerPackPreviewActivity_install">Installer</string>
     <!-- Label for a button that, if pressed, will uninstall the sticker pack that is currently being previewed. -->
     <string name="StickerPackPreviewActivity_remove">Désinstaller</string>
-    <string name="StickerPackPreviewActivity_stickers">Autocollants</string>
-    <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Échec de chargement du paquet d’autocollants</string>
+    <string name="StickerPackPreviewActivity_stickers">Stickers</string>
+    <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Chargement du pack de stickers impossible</string>
 
     <!-- SubmitDebugLogActivity -->
     <string name="SubmitDebugLogActivity_edit">Modifier</string>
@@ -2211,7 +2217,7 @@
     <string name="ThreadRecord_secure_session_reset">La session sécurisée a été réinitialisée.</string>
     <string name="ThreadRecord_draft">Brouillon :</string>
     <string name="ThreadRecord_media_message">Message multimédia</string>
-    <string name="ThreadRecord_sticker">Autocollant</string>
+    <string name="ThreadRecord_sticker">Sticker</string>
     <string name="ThreadRecord_view_once_photo">Photo éphémère</string>
     <string name="ThreadRecord_view_once_video">Vidéo éphémère</string>
     <string name="ThreadRecord_view_once_media">Média éphémère</string>
@@ -2284,7 +2290,7 @@
     <!-- Toolbar title when entering from registration -->
     <string name="UsernameEditFragment__add_a_username">Ajouter un nom d\'utilisateur</string>
     <!-- Instructional text at the top of the username edit screen -->
-    <string name="UsernameEditFragment__choose_your_username">Choisissez votre pseudo</string>
+    <string name="UsernameEditFragment__choose_your_username">Choisissez votre nom d\'utilisatuer</string>
     <string name="UsernameEditFragment_username">Nom d’utilisateur</string>
     <string name="UsernameEditFragment_delete">Supprimer</string>
     <string name="UsernameEditFragment_successfully_removed_username">Le nom d’utilisateur a été effacé avec succès.</string>
@@ -2298,7 +2304,7 @@
     <string name="UsernameEditFragment__usernames_let_others_message">Le nom d’utilisateur vous permet de recevoir des messages sans communiquer votre numéro de téléphone. Il est associé à une série de chiffres, afin de protéger la confidentialité de votre adresse.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">Qu\'est-ce que ce numéro ?</string>
-    <string name="UsernameEditFragment__these_digits_help_keep">Ces chiffres servent à préserver la confidentialité de votre identité correspondant au pseudo choisi et ainsi d\'éviter les messages indésirables. Ne partagez votre pseudo qu\'avec les personnes et les groupes avec lesquels vous souhaitez échanger. Si vous changez votre pseudo, un nouvel ensemble de chiffres vous sera attribué.</string>
+    <string name="UsernameEditFragment__these_digits_help_keep">Ces chiffres servent à préserver la confidentialité de votre identité correspondant au nom d\'utilisatuer choisi et ainsi d\'éviter les messages indésirables. Ne partagez votre nom d’utilisateur qu\'avec les personnes et les groupes avec lesquels vous souhaitez échanger. Si vous changez votre nom d’utilisateur, un nouvel ensemble de chiffres vous sera attribué.</string>
     <!-- Button to allow user to skip -->
     <string name="UsernameEditFragment__skip">Ignorer</string>
     <!-- Content description for done button -->
@@ -2315,6 +2321,10 @@
     <string name="UsernameEditFragment__this_number_cant_start_with_00">Ce chiffre ne peut pas commencer par 00. Il doit être compris entre 1 et 9.</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">Récupérer votre nom d’utilisateur entraîne la réinitialisation de votre lien et code QR existants. Êtes-vous sûr de vouloir continuer ?</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">Changing your username will reset your existing QR code and link. Are you sure?</string> -->
+    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">Continue</string> -->
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d contact est sur Signal !</item>
@@ -2432,7 +2442,7 @@
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">A réagi par %1$s à votre média éphémère.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
     <string name="MessageNotifier_reacted_s_to_your_payment">A réagi par %1$s à votre paiement.</string>
-    <string name="MessageNotifier_reacted_s_to_your_sticker">A réagi par %1$s à votre autocollant.</string>
+    <string name="MessageNotifier_reacted_s_to_your_sticker">a réagi par %1$s à votre sticker.</string>
     <string name="MessageNotifier_this_message_was_deleted">Ce message a été supprimé.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Désactiver les notifications pour les contacts qui se sont joints à Signal ? Vous pouvez les réactiver dans Signal &gt; Paramètres &gt; Notifications</string>
@@ -2519,7 +2529,7 @@
     <!-- Button label for not right now -->
     <string name="NewWaysToConnectDialogFragment__not_now">Pas maintenant</string>
     <!-- Button label for continue -->
-    <string name="NewWaysToConnectDialogFragment__set_up_your_username">Choisissez votre nom d’utilisateur</string>
+    <string name="NewWaysToConnectDialogFragment__set_up_your_username">Configurer le nom d’utilisateur</string>
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">Lire la vidéo</string>
@@ -2724,7 +2734,7 @@
     <string name="QuoteView_photo">Photo</string>
     <string name="QuoteView_gif">GIF</string>
     <string name="QuoteView_view_once_media">Média éphémère</string>
-    <string name="QuoteView_sticker">Autocollant</string>
+    <string name="QuoteView_sticker">Sticker</string>
     <string name="QuoteView_you">Vous</string>
     <string name="QuoteView_original_missing">Le message original est introuvable</string>
     <!-- Author formatting for group stories -->
@@ -4142,7 +4152,7 @@
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
     <string name="ReviewCard__s_recently_changed">%1$s a récemment changé son nom de profil de %2$s à %3$s</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
-    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s se trouve dans vos contacts</string>
+    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s se trouve dans vos contacts système</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s s’est joint</string>
@@ -5466,7 +5476,7 @@
     <string name="MyStorySettingsFragment__who_can_view_this_story">Qui peut voir cette Story ?</string>
     <!-- Clickable option for selecting people to hide your story from -->
     <!-- Privacy setting title for sending stories to all your signal connections -->
-    <string name="MyStorySettingsFragment__all_signal_connections">Toutes les connexions Signal</string>
+    <string name="MyStorySettingsFragment__all_signal_connections">Tous les contacts Signal</string>
     <!-- Privacy setting description for sending stories to all your signal connections -->
     <!-- Privacy setting title for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__all_except">Tout sauf…</string>
@@ -5495,15 +5505,15 @@
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Laisser les personnes qui peuvent voir votre Story réagir et y répondre</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
-    <string name="SignalConnectionsBottomSheet___signal_connections">Connexions Signal</string>
+    <string name="SignalConnectionsBottomSheet___signal_connections">Contacts Signal</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
-    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Les connexions Signal correspondent aux contacts auxquels vous avez choisi de faire confiance, soit par :</string>
+    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Les contacts Signal correspondent aux contacts auxquels vous avez choisi de faire confiance, soit par :</string>
     <!-- Signal connections sheet bullet point 1 -->
     <string name="SignalConnectionsBottomSheet__starting_a_conversation">Commencer une conversation</string>
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Acceptant une demande d’échange de messages</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Les ayant comme contacts dans votre système</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Les ayant comme contacts système</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Vos connexions peuvent voir vos nom et photo ainsi que vos publications dans « Mes stories » à moins que vous ne cachiez ces publications pour elles."</string>
     <!-- Clickable option to add a viewer to a custom story -->
@@ -5831,7 +5841,7 @@
     <!-- Subtitle of initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Choisissez les contacts autorisés à voir votre story. Vous pouvez modifier ces préférences à tout moment dans les paramètres.</string>
     <!-- All connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Toutes les relations Signal</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Tous les contacts Signal</string>
     <!-- All connections except option for initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__all_except">Tout sauf…</string>
     <!-- Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
@@ -6173,6 +6183,15 @@
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__learn_more">En savoir plus</string>
 
+    <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_title">De nouvelles façons de rester en contact</string> -->
+    <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_body">Protégez votre numéro de téléphone, choisissez un nom d’utilisateur facultatif et découvrez les liens de conversation.</string> -->
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_dismiss">Fermer</string> -->
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_learn_more">En savoir plus</string> -->
+
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
     <string name="TextFormatting_bold">Gras</string>
@@ -6433,7 +6452,7 @@
     <!-- Description text for QR code and links in the username link settings -->
     <string name="UsernameLinkSettings_qr_description">Partagez votre code QR et votre lien unique avec les personnes en qui vous avez confiance. Lorsque vous les partagez, les autres utilisateurs pourront voir votre nom d’utilisateur et démarrer une conversation avec vous.</string>
     <!-- Content of a toast that will show after the username is copied to the clipboard -->
-    <string name="UsernameLinkSettings_username_copied_toast">Pseudo copié</string>
+    <string name="UsernameLinkSettings_username_copied_toast">Nom d’utilisateur copié</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">Le lien a été copié</string>
     <!-- Content of a text field that is shown when the user has not yet set a username link -->
@@ -6470,6 +6489,10 @@
     <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Vous n’avez pas accès au réseau. Votre lien n’a pas été réinitialisé. Réessayez plus tard.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">Une erreur réseau s’est produite lors de la tentative de réinitialisation de votre lien. Réessayez plus tard.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string> -->
+    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">Your QR code and link have been reset and a new QR code and link has been created.</string> -->
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Et si on discutait sur Signal ? Scannez ce code QR pour me contacter.</string>
 

@@ -671,7 +671,7 @@
     <!-- Toolbar title for this screen -->
     <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Wie kan my volgens my nommer vind?</string>
     <!-- Description for radio item stating anyone can see your phone number -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">Enigiemand wat jou foonnommer het, sal sien jy is op Signal en kan met jou begin klets.</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">Enigiemand wat jou telefoonnommer het, sal sien jy is op Signal en kan met jou begin klets.</string>
     <!-- Description for radio item stating no one will be able to see your phone number -->
     <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Niemand sal kan sien jy is op Signal nie, tensy jy vir hulle \'n boodskap stuur of \'n bestaande klets met hulle het.</string>
 
@@ -1063,6 +1063,8 @@
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Jou gebruikersnaam, QR-kode en skakel is nie op jou profiel sigbaar nie. Deel net jou gebruikersnaam met mense wat jy vertrou.</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">People can now message you using your optional username so you don\'t have to give out your phone number. </string> -->
     <string name="ManageProfileFragment_profile_name">Profielnaam</string>
     <string name="ManageProfileFragment_username">Gebruikersnaam</string>
     <string name="ManageProfileFragment_about">Meer oor</string>
@@ -1090,9 +1092,9 @@
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
-    <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">Iets het verkeerd geloop met jou gebruikernaam, dit is nie meer aan jou rekening toegewys nie. Jy kan probeer om dit weer op te stel of \'n nuwe een kies.</string>
+    <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">Iets het verkeerd geloop met jou gebruikersnaam, dit is nie meer aan jou rekening toegewys nie. Jy kan probeer om dit weer op te stel of \'n nuwe een kies.</string>
     <!-- Displayed above the conversation list when a user needs to address an issue with their username link -->
-    <string name="UsernameOutOfSyncReminder__link_corrupt">Iets het verkeerd geloop met jou QR-kode en gebruikernaamskakel, dis nie meer geldig nie. Skep \'n nuwe skakel om met ander te deel.</string>
+    <string name="UsernameOutOfSyncReminder__link_corrupt">Iets het verkeerd geloop met jou QR-kode en gebruikersnaamskakel, dis nie meer geldig nie. Skep \'n nuwe skakel om met ander te deel.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
     <string name="UsernameOutOfSyncReminder__fix_now">Stel nou reg</string>
 
@@ -1961,7 +1963,11 @@
 
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
-    <string name="AboutSheet__signal_connection">Signal-verbinding</string>
+    <string name="AboutSheet__signal_connection">Signal-kontak</string>
+    <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">Verified</string> -->
+    <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string> -->
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s is in jou stelselkontakte</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -2053,7 +2059,7 @@
     <string name="RegistrationActivity_unable_to_request_verification_code">Kan nie \'n verifiëringskode aanvra nie. Gaan asseblief netwerkverbinding na en probeer weer.</string>
     <string name="RegistrationActivity_non_standard_number_format">Niestandaard-nommerformaat</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Die nommer wat jy ingesleutel het (%1$s), lyk of dit in \'n niestandaard-formaat is. \n\nHet jy %2$s bedoel?</string>
-    <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Foonnommerformaat</string>
+    <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Telefoonnommerformaat</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
     <string name="RegistrationActivity_call_requested">Oproep versoek</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
@@ -2086,7 +2092,7 @@
     <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_title">Probleme met registrasie?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Maak seker dat jou foon \'n selsein het om jou SMS of oproep te ontvang\n • Bevestig dat jy \'n foonoproep na die nommer kan ontvang\n • Kontroleer dat jy jou foonnommer korrek ingesleutel het.</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Maak seker dat jou foon \'n selsein het om jou SMS of oproep te ontvang\n • Bevestig dat jy \'n foonoproep na die nommer kan ontvang\n • Kontroleer dat jy jou telefoonnommer korrek ingevoer het.</string>
     <!--    A call to action for a user having trouble entering the verification to seek further help. -->
     <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">Vir meer inligting, volg asseblief hierdie foutopsporingstappe of kontak Steundiens</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
@@ -2304,17 +2310,21 @@
     <!-- Content description for done button -->
     <string name="UsernameEditFragment__done">Klaar</string>
     <!-- Displayed when the chosen discriminator is not available for the given nickname -->
-    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">Hierdie gebruikernaam is nie beskikbaar nie, probeer \'n ander nommer.</string>
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">Hierdie gebruikersnaam is nie beskikbaar nie, probeer \'n ander nommer.</string>
     <!-- Displayed when the chosen discriminator is too short -->
     <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Ongeldige gebruikernaam, voer \'n minimum van %1$d syfers in.</string>
     <!-- Displayed when the chosen discriminator is too long -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Ongeldige gebruikernaam, voer \'n maksimum van %1$d syfers in.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Ongeldige gebruikersnaam, voer \'n maksimum van %1$d syfers in.</string>
     <!-- Displayed when the chosen discriminator is 00 -->
     <string name="UsernameEditFragment__this_number_cant_be_00">Hierdie nommer kan nie 00 wees nie. Voer \'n syfer tussen 1 en 9 in</string>
     <!-- Displayed when the chosen discriminator starts with 00 -->
     <string name="UsernameEditFragment__this_number_cant_start_with_00">Hierdie nommer kan nie met 00 begin nie. Voer \'n syfer tussen 1 en 9 in</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">As jy jou gebruikersnaam herwin, sal dit jou bestaande QR-kode en skakel terugstel. Is jy seker?</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">Changing your username will reset your existing QR code and link. Are you sure?</string> -->
+    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">Continue</string> -->
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d kontak is op Signal!</item>
@@ -2511,7 +2521,7 @@
     <!-- Row item title for usernames explainer -->
     <string name="NewWaysToConnectDialogFragment__usernames">Gebruikersname</string>
     <!-- Row item description for usernames explainer -->
-    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">Mense kan nou vir jou \'n boodskap stuur deur jou opsionele gebruikersnaam te gebruik sodat jy nie jou foonnommer vir mense hoef te gee nie. Gebruikersname is nie op jou profiel sigbaar nie.</string>
+    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">Mense kan nou vir jou \'n boodskap stuur deur jou opsionele gebruikersnaam te gebruik sodat jy nie jou telefoonnommer vir mense hoef te gee nie. Gebruikersname is nie op jou profiel sigbaar nie.</string>
     <!-- Row item title for qr code and links explainer -->
     <string name="NewWaysToConnectDialogFragment__qr_codes_and_links">QR-kodes en skakels</string>
     <!-- Row item description for qr code and links explainer -->
@@ -2519,7 +2529,7 @@
     <!-- Button label for not right now -->
     <string name="NewWaysToConnectDialogFragment__not_now">Nie nou nie</string>
     <!-- Button label for continue -->
-    <string name="NewWaysToConnectDialogFragment__set_up_your_username">Stel jou gebruikersnaam op</string>
+    <string name="NewWaysToConnectDialogFragment__set_up_your_username">Stel gebruikersnaam op</string>
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">Speel video</string>
@@ -3729,7 +3739,7 @@
 
     <!-- AccountLockedFragment -->
     <string name="AccountLockedFragment__account_locked">Rekening gesluit</string>
-    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Jou rekening is gesluit om jou privaatheid en sekuriteit te beskerm. Ná %1$d dae van onaktiwiteit in jou rekening sal jy hierdie foonnommer kan herregistreer sonder dat jy jou PIN nodig het. Alle inhoud sal geskrap word.</string>
+    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Jou rekening is gesluit om jou privaatheid en sekuriteit te beskerm. Ná %1$d dae van onaktiwiteit in jou rekening sal jy hierdie telefoonnommer kan herregistreer sonder dat jy jou PIN nodig het. Alle inhoud sal geskrap word.</string>
     <string name="AccountLockedFragment__next">Volgende</string>
     <string name="AccountLockedFragment__learn_more">Vind meer uit</string>
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
@@ -3869,15 +3879,15 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">Wie my nommer kan sien</string>
     <!-- Subtext below radio buttons when who can see my number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">Jou foonnommer sal sigbaar wees vir mense en groepe aan wie jy boodskappe stuur.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">Jou telefoonnommer sal sigbaar wees vir mense en groepe aan wie jy boodskappe stuur.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Jou foonnommer sal nie vir enigiemand sigbaar wees nie, tensy hulle dit in hul foon se kontakte gestoor het.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Jou telefoonnommer sal nie vir enigiemand sigbaar wees nie, tensy hulle dit in hul foon se kontakte gestoor het.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Jou foonnommer sal nie vir enigiemand sigbaar wees nie.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Jou telefoonnommer sal nie vir enigiemand sigbaar wees nie.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Wie my volgens my nommer kan vind</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">Enigiemand wat jou foonnommer het, sal sien jy is op Signal en kan met jou begin klets.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">Enigiemand wat jou telefoonnommer het, sal sien jy is op Signal en kan met jou begin klets.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
     <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">Niemand sal kan sien jy is op Signal nie, tensy jy vir hulle \'n boodskap stuur of \'n bestaande klets met hulle het.</string>
     <!-- Snackbar text when pressing invalid radio item -->
@@ -4164,14 +4174,14 @@
 
     <!-- DeleteAccountFragment -->
     <string name="DeleteAccountFragment__deleting_your_account_will">Die skrap van jou rekening sal:</string>
-    <string name="DeleteAccountFragment__enter_your_phone_number">Voer jou foonnommer in</string>
+    <string name="DeleteAccountFragment__enter_your_phone_number">Voer jou telefoonnommer in</string>
     <string name="DeleteAccountFragment__delete_account">Skrap rekening</string>
     <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Jou rekeninginligting en profielfoto skrap</string>
     <string name="DeleteAccountFragment__delete_all_your_messages">Al jou boodskappe skrap</string>
     <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Skrap %1$s in jou betalingsrekening</string>
     <string name="DeleteAccountFragment__no_country_code">Geen landkode aangedui nie</string>
     <string name="DeleteAccountFragment__no_number">Geen nommer aangedui nie</string>
-    <string name="DeleteAccountFragment__the_phone_number">Die foonnommer wat jy ingevoer het stem nie met dié van jou rekening ooreen nie.</string>
+    <string name="DeleteAccountFragment__the_phone_number">Die telefoonnommer wat jy ingevoer het stem nie met dié van jou rekening ooreen nie.</string>
     <string name="DeleteAccountFragment__are_you_sure">Is jy seker jy wil jou rekening skrap?</string>
     <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Dit sal jou Signal-rekening skrap en die toepassing terugstel. Die toepassing sal toemaak nadat die proses voltooi is.</string>
     <string name="DeleteAccountFragment__failed_to_delete_local_data">Kon nie lokale data skrap nie. Jy kan dit handmatig in die stelsel-toepassingsinstellings skrap.</string>
@@ -4390,7 +4400,7 @@
     <!-- AccountSettingsFragment -->
     <string name="AccountSettingsFragment__account">Rekening</string>
     <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Jy sal mettertyd al hoe minder gevra word</string>
-    <string name="AccountSettingsFragment__require_your_signal_pin">Jou Signal-PIN is nodig om weer jou telefoonnommer met Signal te registreer.</string>
+    <string name="AccountSettingsFragment__require_your_signal_pin">Jou Signal-PIN is nodig om weer jou telefoonnommer met Signal te registreer</string>
     <string name="AccountSettingsFragment__change_phone_number">Verander telefoonnommer</string>
     <!-- Account setting that allows user to request and export their signal account data -->
     <string name="AccountSettingsFragment__request_account_data">Jou rekeningdata</string>
@@ -4450,7 +4460,7 @@
     <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Ou telefoonnommer</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Jou nuwe nommer</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Nuwe telefoonnommer</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Die foonnommer wat jy ingevoer het stem nie met dié van jou rekening ooreen nie.</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Die telefoonnommer wat jy ingevoer het stem nie met dié van jou rekening ooreen nie.</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Jy moet jou ou nommer se landkode spesifiseer</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Jy moet jou ou telefoonnommer spesifiseer</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Jy moet jou nuwe nommer se landkode spesifiseer</string>
@@ -5466,7 +5476,7 @@
     <string name="MyStorySettingsFragment__who_can_view_this_story">Wie hierdie storie kan sien</string>
     <!-- Clickable option for selecting people to hide your story from -->
     <!-- Privacy setting title for sending stories to all your signal connections -->
-    <string name="MyStorySettingsFragment__all_signal_connections">Alle Signal-verbindings</string>
+    <string name="MyStorySettingsFragment__all_signal_connections">Alle Signal-kontakte</string>
     <!-- Privacy setting description for sending stories to all your signal connections -->
     <!-- Privacy setting title for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__all_except">Almal behalwe…</string>
@@ -5495,9 +5505,9 @@
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Laat toe dat mense wat na jou storie kan kyk, daarop reageer en antwoord</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
-    <string name="SignalConnectionsBottomSheet___signal_connections">Signal-verbindings</string>
+    <string name="SignalConnectionsBottomSheet___signal_connections">Signal-kontakte</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
-    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal-verbindings is mense wat jy gekies het om te vertrou, hetsy deur:</string>
+    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal-kontakte is mense wat jy gekies het om te vertrou, hetsy deur:</string>
     <!-- Signal connections sheet bullet point 1 -->
     <string name="SignalConnectionsBottomSheet__starting_a_conversation">Besig om \'n klets te begin</string>
     <!-- Signal connections sheet bullet point 2 -->
@@ -5831,7 +5841,7 @@
     <!-- Subtitle of initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Kies wie plasings in My Storie kan sien. Jy kan altyd veranderinge in instellings maak.</string>
     <!-- All connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Alle Signal-verbindings</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Alle Signal-kontakte</string>
     <!-- All connections except option for initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__all_except">Almal behalwe…</string>
     <!-- Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
@@ -6173,6 +6183,15 @@
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__learn_more">Vind meer uit</string>
 
+    <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_title">Nuwe maniere om kontak te maak</string> -->
+    <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_body">Ons stel bekend telefoonnommerprivaatheid, opsionele gebruikersname en skakels.</string> -->
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_dismiss">Wys weg</string> -->
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_learn_more">Vind meer uit</string> -->
+
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
     <string name="TextFormatting_bold">Vetdruk</string>
@@ -6461,7 +6480,7 @@
     <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
     <string name="UsernameLinkSettings_qr_result_invalid">Die QR-kode was ongeldig.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
-    <string name="UsernameLinkSettings_qr_result_not_found">\'n Gebruiker met gebruikernaam %1$s kon nie gevind word nie.</string>
+    <string name="UsernameLinkSettings_qr_result_not_found">\'n Gebruiker met gebruikersnaam %1$s kon nie gevind word nie.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
     <string name="UsernameLinkSettings_qr_result_not_found_no_username">Hierdie gebruiker kon nie gevind word nie.</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
@@ -6470,6 +6489,10 @@
     <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Jy het nie netwerktoegang nie. Jou skakel is nie teruggestel nie. Probeer later weer.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">\'n Netwerkfout het voorgekom terwyl jy probeer het om jou skakel terug te stel. Probeer later weer.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string> -->
+    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">Your QR code and link have been reset and a new QR code and link has been created.</string> -->
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Skandeer hierdie QR-kode met jou foon om met my op Signal te klets.</string>
 
@@ -6554,7 +6577,7 @@
     <!-- Dialog title when username is not found -->
     <string name="FindByActivity__username_not_found">Gebruikersnaam nie gevind nie</string>
     <!-- Dialog body for invalid username. Placeholder is the entered username. -->
-    <string name="FindByActivity__s_is_not_a_valid_username">%1$s is nie \'n geldige gebruikernaam nie. Maak seker dat jy die volledige gebruikersnaam ingevoer het, gevolg deur sy stel syfers.</string>
+    <string name="FindByActivity__s_is_not_a_valid_username">%1$s is nie \'n geldige gebruikersnaam nie. Maak seker dat jy die volledige gebruikersnaam ingevoer het, gevolg deur sy stel syfers.</string>
     <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
     <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s is nie geldige telefoonnommer nie. Probeer weer met \'n geldige telefoonnommer</string>
     <!-- Dialog body for not found username -->

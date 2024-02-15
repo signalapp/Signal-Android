@@ -1133,6 +1133,8 @@
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Vaše používateľské meno, QR kód a odkaz sa nezobrazujú vo vašom profile. Svoje používateľské meno zdieľajte iba s ľuďmi, ktorým dôverujete.</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">People can now message you using your optional username so you don\'t have to give out your phone number. </string> -->
     <string name="ManageProfileFragment_profile_name">Názov profilu</string>
     <string name="ManageProfileFragment_username">Používateľské meno</string>
     <string name="ManageProfileFragment_about">Informácie</string>
@@ -1475,8 +1477,8 @@
     </plurals>
 
     <!-- Profile change updates -->
-    <string name="MessageRecord_changed_their_profile_name_to">%1$s zmenil/a svoj názov profilu na %2$s.</string>
-    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s zmenil/a svoj názov profilu z %2$s na %3$s.</string>
+    <string name="MessageRecord_changed_their_profile_name_to">%1$s zmenil/a názov svojho profilu na %2$s.</string>
+    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s zmenil/a názov svojho profilu z %2$s na %3$s.</string>
     <string name="MessageRecord_changed_their_profile">%1$s zmenil/a svoj profil.</string>
 
     <!-- GV2 specific -->
@@ -2110,6 +2112,10 @@
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">Signal spojenie</string>
+    <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">Verified</string> -->
+    <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string> -->
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s je vo vašich systémových kontaktoch</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -2475,6 +2481,10 @@
     <string name="UsernameEditFragment__this_number_cant_start_with_00">Toto číslo nemôže začínať na 00. Zadajte číslicu medzi 1–9</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">Obnovením používateľského mena sa resetuje váš existujúci QR kód a odkaz. Naozaj chcete pokračovať?</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">Changing your username will reset your existing QR code and link. Are you sure?</string> -->
+    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">Continue</string> -->
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d váš kontakt začal používať Signal!</item>
@@ -2794,7 +2804,7 @@
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal potrebuje prístup ku kontaktom aby mohol zobraziť Vaše kontakty, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Kontakty\".</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Nepodarilo sa načítať kontakty. Skontrolujte svoje sieťové pripojenie</string>
     <string name="ContactSelectionListFragment_username_not_found">Používateľské meno sa nenašlo</string>
-    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"„%1$s“ nie je používateľ Signalu. Skontrolujte používateľské meno a skúste znova."</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"„%1$s“ nie je používateľ Signalu. Skontrolujte používateľské meno a skúste to znova."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Nie je potrebné pridávať samého seba do skupiny</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">Dosiahnutá maximálna veľkosť skupiny</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal skupiny môžu mať maximálne %1$d členov.</string>
@@ -3438,7 +3448,7 @@
     <string name="preferences_communication__censorship_circumvention">Obchádzanie cenzúry</string>
     <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Keď je povolené, Signal sa pokúsi obísť cenzúru. Nepovoľujte v umiestneniach, kde Signal nie je cenzurovaný.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Obchádzanie cenzúry bolo zapnuté na základe telefónneho čísla vašeho účtu.</string>
+    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Obchádzanie cenzúry bolo zapnuté na základe telefónneho čísla vášho účtu.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
     <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Obchádzanie cenzúry ste manuálne vypli.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
@@ -4356,7 +4366,7 @@
     <string name="ReviewCard__block">Blokovať</string>
     <string name="ReviewCard__delete">Vymazať</string>
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
-    <string name="ReviewCard__s_recently_changed">Používateľ %1$s si nedávno zmenil svoje používateľské meno z %2$s na %3$s</string>
+    <string name="ReviewCard__s_recently_changed">%1$s nedávno zmenil/a názov svojho profilu z %2$s na %3$s</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
     <string name="ReviewCard__s_is_in_your_system_contacts">%1$s je vo vašich systémových kontaktoch</string>
 
@@ -4610,7 +4620,7 @@
     <!-- AccountSettingsFragment -->
     <string name="AccountSettingsFragment__account">Účet</string>
     <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Postupom času sa vás budeme pýtať menej často</string>
-    <string name="AccountSettingsFragment__require_your_signal_pin">Na opätovné zaregistrovanie telefónneho čísla v aplikácii Signal vyžadujte svojim Signal PIN</string>
+    <string name="AccountSettingsFragment__require_your_signal_pin">Na opätovné zaregistrovanie telefónneho čísla v aplikácii Signal si vyžiadajte svoj Signal PIN</string>
     <string name="AccountSettingsFragment__change_phone_number">Zmeniť telefónne číslo</string>
     <!-- Account setting that allows user to request and export their signal account data -->
     <string name="AccountSettingsFragment__request_account_data">Údaje o vašom účte</string>
@@ -4683,7 +4693,7 @@
 
     <!-- ChangeNumberConfirmFragment -->
     <string name="ChangeNumberConfirmFragment__change_number">Zmeniť číslo</string>
-    <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Chystáte sa zmeniť svoje telefónne číslo z %1$ss na %2$s. \n\nPred pokračovaním overte, či je nižšie uvedené číslo správne.</string>
+    <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Chystáte sa zmeniť svoje telefónne číslo z %1$s na %2$s.\n\nPred pokračovaním overte, či je nižšie uvedené číslo správne.</string>
     <string name="ChangeNumberConfirmFragment__edit_number">Úprav číslo</string>
 
     <!-- ChangeNumberRegistrationLockFragment -->
@@ -6449,6 +6459,15 @@
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__learn_more">Zistiť viac</string>
 
+    <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_title">Nové spôsoby, ako sa spojiť</string> -->
+    <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_body">Predstavujeme funkciu utajenia telefónneho čísla, voliteľné používateľské mená a odkazy.</string> -->
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_dismiss">Zrušiť</string> -->
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_learn_more">Zistiť viac</string> -->
+
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
     <string name="TextFormatting_bold">Tučné</string>
@@ -6752,11 +6771,15 @@
     <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Nemáte prístup k sieti. Váš odkaz nebol zresetovaný. Skúste to znova neskôr.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">Pri pokuse o resetovanie vášho odkazu sa vyskytla chyba siete. Skúste to znova neskôr.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string> -->
+    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">Your QR code and link have been reset and a new QR code and link has been created.</string> -->
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Naskenujte tento QR kód pomocou telefónu a četujte so mnou v aplikácii Signal.</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
-    <string name="UsernameLinkShareBottomSheet_title">Ktokoľvek s týmto odkazom si môže zobraziť vaše používateľské meno a začať s vami čet. Zdieľajte ho iba s ľuďmi, ktorým dôverujete.</string>
+    <string name="UsernameLinkShareBottomSheet_title">Ktokoľvek s týmto odkazom si môže pozrieť vaše používateľské meno a začať s vami čet. Zdieľajte ho iba s ľuďmi, ktorým dôverujete.</string>
     <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
     <string name="UsernameLinkShareBottomSheet_copy_link">Skopírovať odkaz</string>
     <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
@@ -6844,7 +6867,7 @@
     <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
     <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s nie je platné telefónne číslo. Skúste to znovu s platným telefónnym číslom</string>
     <!-- Dialog body for not found username -->
-    <string name="FindByActivity__s_is_not_a_signal_user">„%1$s“ nie je používateľ Signalu. Skontrolujte používateľské meno a skúste znova.</string>
+    <string name="FindByActivity__s_is_not_a_signal_user">„%1$s“ nie je používateľ Signalu. Skontrolujte používateľské meno a skúste to znova.</string>
     <!-- Dialog body for not found phone number -->
     <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s nepoužíva Signal. Chceli by ste pozvať toto číslo?</string>
     <!-- Dialog action to invite the phone number to Signal -->

@@ -1063,6 +1063,8 @@
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Вашето корисничко име, QR код и линк не се видливи на вашиот профил. Споделувајте го вашето корисничко име само со луѓе на кои им верувате.</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">People can now message you using your optional username so you don\'t have to give out your phone number. </string> -->
     <string name="ManageProfileFragment_profile_name">Име на профил</string>
     <string name="ManageProfileFragment_username">Корисничко име</string>
     <string name="ManageProfileFragment_about">За</string>
@@ -1962,8 +1964,12 @@
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">Signal врска</string>
+    <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">Verified</string> -->
+    <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string> -->
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
-    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s е во контактите на вашиот телефон</string>
+    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s е во вашите системски контакти</string>
     <!-- Notice in a row when user has no groups in common -->
     <string name="AboutSheet__you_have_no_groups_in_common">Немате заеднички групи</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
@@ -2315,6 +2321,10 @@
     <string name="UsernameEditFragment__this_number_cant_start_with_00">Овој број не може да почнува со 00. Внесете цифра од 1 до 9</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">Менувањето на вашето корисничко име ќе ги ресетира вашите постоечки QR код и линк. Дали сте сигурни?</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">Changing your username will reset your existing QR code and link. Are you sure?</string> -->
+    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">Continue</string> -->
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d контакт е на Signal!</item>
@@ -2519,7 +2529,7 @@
     <!-- Button label for not right now -->
     <string name="NewWaysToConnectDialogFragment__not_now">Не сега</string>
     <!-- Button label for continue -->
-    <string name="NewWaysToConnectDialogFragment__set_up_your_username">Поставете го вашето корисничко име</string>
+    <string name="NewWaysToConnectDialogFragment__set_up_your_username">Поставете корисничко име</string>
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">Пушти видео</string>
@@ -4142,7 +4152,7 @@
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
     <string name="ReviewCard__s_recently_changed">%1$s неодамна го смени името на профилот од %2$s во %3$s</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
-    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s е во контактите на вашиот телефон</string>
+    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s е во вашите системски контакти</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s се приклучи</string>
@@ -5503,7 +5513,7 @@
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Прифаќање на барање за разговор</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Ги имате во контактите на телефонот</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Ги имате во вашите системски контакти</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Вашите врски можат да ги видат вашето име и слика и да ги гледаат објавите во „Моја приказна”, освен ако не ги скриете од нив."</string>
     <!-- Clickable option to add a viewer to a custom story -->
@@ -6173,6 +6183,15 @@
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__learn_more">Дознајте повеќе</string>
 
+    <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_title">Нови начини за поврзување</string> -->
+    <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_body">Воведуваме приватност на телефонски број, опционални кориснички имиња и линкови.</string> -->
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_dismiss">Откажи</string> -->
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_learn_more">Дознајте повеќе</string> -->
+
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
     <string name="TextFormatting_bold">Задебелени букви</string>
@@ -6470,6 +6489,10 @@
     <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Немате пристап до мрежа. Вашиот линк не беше ресетиран. Обидете се повторно подоцна.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">Се јави мрежна грешка додека се обидувавте да го ресетирате вашиот линк. Обидете се повторно подоцна.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string> -->
+    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">Your QR code and link have been reset and a new QR code and link has been created.</string> -->
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Скенирај го овој QR код со твојот телефон за да разговараме на Signal.</string>
 

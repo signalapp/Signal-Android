@@ -1028,6 +1028,8 @@
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">ឈ្មោះអ្នកប្រើ កូដ QR និងតំណរបស់អ្នកមិនអាចមើលឃើញនៅលើប្រូហ្វាល់របស់អ្នកទេ។ សូមចែករំលែកឈ្មោះអ្នកប្រើរបស់អ្នកជាមួយមនុស្សដែលអ្នកទុកចិត្តប៉ុណ្ណោះ។</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">People can now message you using your optional username so you don\'t have to give out your phone number. </string> -->
     <string name="ManageProfileFragment_profile_name">ឈ្មោះប្រវត្តិរូប</string>
     <string name="ManageProfileFragment_username">ឈ្មោះអ្នកប្រើ</string>
     <string name="ManageProfileFragment_about">អំពី</string>
@@ -1888,8 +1890,12 @@
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">អ្នកភ្ជាប់ទំនាក់ទំនងក្នុង Signal</string>
+    <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">Verified</string> -->
+    <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string> -->
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
-    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s ស្ថិតនៅក្នុងបញ្ជីទំនាក់ទំនងរបស់អ្នក</string>
+    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s ស្ថិតនៅក្នុងប្រព័ន្ធទំនាក់ទំនងរបស់អ្នក</string>
     <!-- Notice in a row when user has no groups in common -->
     <string name="AboutSheet__you_have_no_groups_in_common">អ្នកមិនមានក្រុមរួមទេ</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
@@ -2235,6 +2241,10 @@
     <string name="UsernameEditFragment__this_number_cant_start_with_00">លេខនេះមិនអាចចាប់ផ្តើមដោយលេខ 00 ទេ។ បញ្ចូលលេខមួយខ្ទង់ចន្លោះពី 1–9</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">ការស្តារយកឈ្មោះអ្នកប្រើរបស់អ្នកមកវិញនឹងកំណត់ឡើងវិញនូវកូដ QR និងតំណដែលមានស្រាប់របស់អ្នក។ តើអ្នកប្រាកដឬទេ?</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">Changing your username will reset your existing QR code and link. Are you sure?</string> -->
+    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">Continue</string> -->
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="other">លេខទំនាក់ទំនង%1$dនៅលើ Signal!</item>
@@ -2436,7 +2446,7 @@
     <!-- Button label for not right now -->
     <string name="NewWaysToConnectDialogFragment__not_now">ឥឡូវកុំទាន់</string>
     <!-- Button label for continue -->
-    <string name="NewWaysToConnectDialogFragment__set_up_your_username">បង្កើតឈ្មោះអ្នកប្រើរបស់អ្នក</string>
+    <string name="NewWaysToConnectDialogFragment__set_up_your_username">បង្កើតឈ្មោះអ្នកប្រើ</string>
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">ចាក់ វីដេអូ</string>
@@ -4034,7 +4044,7 @@
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
     <string name="ReviewCard__s_recently_changed">%1$s ទើបតែប្តូរឈ្មោះប្រូហ្វាល់របស់គាត់ពី %2$s ទៅជា %3$s</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
-    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s ស្ថិតនៅក្នុងបញ្ជីទំនាក់ទំនងរបស់អ្នក</string>
+    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s ស្ថិតនៅក្នុងប្រព័ន្ធទំនាក់ទំនងរបស់អ្នក</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s បានចូលរួម</string>
@@ -5380,7 +5390,7 @@
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">ទទួលយកសំណើសារ</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">មានពួកគេនៅក្នុងបញ្ជីទំនាក់ទំនងរបស់អ្នក</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">មានពួកគេនៅក្នុងប្រព័ន្ធទំនាក់ទំនងរបស់អ្នក</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"អ្នកភ្ជាប់ទំនាក់ទំនងជាមួយអ្នកអាចមើលឃើញឈ្មោះ និងរូបថតរបស់អ្នក ហើយអាចមើលឃើញសារបង្ហោះទៅកាន់រឿងរ៉ាវរបស់ខ្ញុំ លើកលែងតែអ្នកលាក់វាមិនឲ្យពួកគេឃើញ។"</string>
     <!-- Clickable option to add a viewer to a custom story -->
@@ -6035,6 +6045,15 @@
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__learn_more">ស្វែងយល់បន្ថែម</string>
 
+    <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_title">វិធីថ្មីៗដើម្បីភ្ជាប់</string> -->
+    <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_body">សូមណែនាំឯកជនភាពនៃលេខទូរសព្ទ ឈ្មោះអ្នកប្រើតាមជម្រើស និងតំណ។</string> -->
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_dismiss">បិទ</string> -->
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_learn_more">ស្វែងយល់បន្ថែម</string> -->
+
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
     <string name="TextFormatting_bold">ដិត</string>
@@ -6329,6 +6348,10 @@
     <string name="UsernameLinkSettings_reset_link_result_network_unavailable">អ្នកមិនមានសិទ្ធិចូលប្រើបណ្តាញទេ។ តំណរបស់អ្នកមិនត្រូវបានកំណត់ឡើងវិញទេ។ សូមព្យាយាមម្តងទៀតនៅពេលក្រោយ។</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">បញ្ហាបណ្តាញមួយបានកើតឡើង ខណៈពេលព្យាយាមកំណត់តំណរបស់អ្នកឡើងវិញ។ សូមព្យាយាមម្តងទៀតនៅពេលក្រោយ។</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string> -->
+    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">Your QR code and link have been reset and a new QR code and link has been created.</string> -->
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">ស្គែនកូដ QR នេះដោយប្រើទូរសព្ទរបស់អ្នក ដើម្បីជជែកជាមួយខ្ញុំនៅលើ Signal។</string>
 

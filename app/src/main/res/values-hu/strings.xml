@@ -46,7 +46,7 @@
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Ez véglegesen fel fogja oldani a Signalt és az üzenet értesítéseket.</string>
     <string name="ApplicationPreferencesActivity_disable">Letiltás</string>
     <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Letiltod a Signal üzeneteket és hívásokat?</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Signal üzenetek és hívások letiltása a kiszolgálóról történő leregisztrálással. Ha a jövőben újra szeretnéd használni ezeket a szolgáltatásokat, akkor újra kell regisztrálnod telefonszámoddal.</string>
+    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Signal üzenetek és hívások letiltása a kiszolgálóról való leregisztrálással. Ha a jövőben újra szeretnéd használni ezeket a szolgáltatásokat, újra kell regisztrálnod a telefonszámoddal.</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Hiba történt a kiszolgálóhoz történő kapcsolódás során!</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">A regisztrációs zárhoz PIN kódra van szükség. A PIN kód letiltásához előbb ki kell kapcsolni a regisztrációs zárat.</string>
     <string name="ApplicationPreferencesActivity_pin_created">PIN kód létrehozva.</string>
@@ -626,7 +626,7 @@
     <!-- Message shown in top toast to indicate the named profile is on -->
     <string name="ConversationListFragment__s_on">%1$s bekapcsolva</string>
     <!-- -->
-    <string name="ConversationListFragment_username_recovered_toast">A QR-kódod és hivatkozásod visszaállításra került, a felhasználóneved pedig %1$s</string>
+    <string name="ConversationListFragment_username_recovered_toast">A QR-kódod és a hivatkozásod visszaállításra került, a felhasználóneved pedig %1$s</string>
 
     <!-- ConversationListItem -->
     <string name="ConversationListItem_key_exchange_message">Kulcs-csere üzenet</string>
@@ -1063,6 +1063,8 @@
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">A felhasználóneved, a QR-kódod és a hivatkozásod nem látható a profilodban. Csak olyanokkal oszd meg a felhasználónevedet, akikben megbízol.</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">People can now message you using your optional username so you don\'t have to give out your phone number. </string> -->
     <string name="ManageProfileFragment_profile_name">Profilnév</string>
     <string name="ManageProfileFragment_username">Felhasználónév</string>
     <string name="ManageProfileFragment_about">Névjegy</string>
@@ -1086,7 +1088,7 @@
     <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
     <string name="ManageProfileFragment__delete_username_dialog_title">Felhasználónév törlése?</string>
     <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_body">"Ezzel eltávolítod a felhasználónevedet, és érvénytelenné teszed a QR-kódot és a hivatkozást. A(z) „ %1$s” név elérhető lesz más felhasználók számára. Biztos vagy benne?"</string>
+    <string name="ManageProfileFragment__delete_username_dialog_body">"Ezzel eltávolítod a felhasználónevedet, és érvénytelenné teszed a QR-kódot és a hivatkozást. A(z) %1$s név elérhető lesz más felhasználók számára. Biztos vagy benne?"</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
@@ -1381,8 +1383,8 @@
     </plurals>
 
     <!-- Profile change updates -->
-    <string name="MessageRecord_changed_their_profile_name_to">%1$s megváltoztatta profilnevét erre: %2$s</string>
-    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s megváltoztatta profilnevét. Korábbi név: %2$s, új név: %3$s</string>
+    <string name="MessageRecord_changed_their_profile_name_to">%1$s megváltoztatta a profilnevét %2$s névre.</string>
+    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s megváltoztatta a profilnevét %2$s névről %3$s névre.</string>
     <string name="MessageRecord_changed_their_profile">%1$s megváltoztatta profilját.</string>
 
     <!-- GV2 specific -->
@@ -1961,7 +1963,11 @@
 
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
-    <string name="AboutSheet__signal_connection">Signal Névjegyek</string>
+    <string name="AboutSheet__signal_connection">Signal Névjegy</string>
+    <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">Verified</string> -->
+    <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string> -->
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s szerepel a rendszernévjegyeid között</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -2315,6 +2321,10 @@
     <string name="UsernameEditFragment__this_number_cant_start_with_00">Ez a szám nem kezdődhet 00-val. Írj be egy számjegyet 1 és 9 között</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">A felhasználónév helyreállítása visszaállítja a meglévő QR-kódot és hivatkozást. Biztos vagy benne?</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">Changing your username will reset your existing QR code and link. Are you sure?</string> -->
+    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">Continue</string> -->
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d ismerős már elérhető Signalon!</item>
@@ -2519,7 +2529,7 @@
     <!-- Button label for not right now -->
     <string name="NewWaysToConnectDialogFragment__not_now">Később</string>
     <!-- Button label for continue -->
-    <string name="NewWaysToConnectDialogFragment__set_up_your_username">Állítsd be a felhasználónevedet</string>
+    <string name="NewWaysToConnectDialogFragment__set_up_your_username">Felhasználónév beállítása</string>
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">Videó lejátszása</string>
@@ -2626,7 +2636,7 @@
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">A Signalnak szüksége van a Névjegyek engedélyre annak érdekében, hogy megjelenítse a névjegyeid, de ez jelenleg nincs megadva. Kérlek menj az alkalmazásbeállításokhoz, válaszd az \"Engedélyek\"-et és engedélyezd a \"Névjegyek\"-et.</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Hiba történt a névjegyek betöltése során, ellenőrizd a hálózati kapcsolatod</string>
     <string name="ContactSelectionListFragment_username_not_found">A felhasználónév nem található</string>
-    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" nem Signal felhasználó. Kérlek ellenőrizd a felhasználónevet, majd próbáld újra."</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s nem Signal-felhasználó. Kérjük, ellenőrizd a felhasználónevet, majd próbáld újra."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Nem szükséges saját magadat a csoporthoz adnod</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">A csoport elérte maximális taglétszámát</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">A Signal csoportok legfeljebb %1$d tagból állhatnak.</string>
@@ -4140,7 +4150,7 @@
     <string name="ReviewCard__block">Letiltás</string>
     <string name="ReviewCard__delete">Törlés</string>
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
-    <string name="ReviewCard__s_recently_changed">%1$s a közelmúltban megváltoztatta a profilnevét. Régi név: %2$s, új név: %3$s</string>
+    <string name="ReviewCard__s_recently_changed">%1$s a közelmúltban megváltoztatta a profilnevét %2$s névről %3$s névre</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
     <string name="ReviewCard__s_is_in_your_system_contacts">%1$s szerepel a rendszernévjegyeid között</string>
 
@@ -4440,7 +4450,7 @@
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Itt a Signal által regisztrált, aktuálisan használt telefonszámodat változtathatod meg egy másikra. Ez a művelet nem vonható vissza.\n\nKezdés előtt győződj meg róla, hogy az új számon tudsz SMS-t, vagy hívást fogadni!</string>
     <string name="ChangeNumberFragment__continue">Folytatás</string>
     <!-- Message shown on dialog after your number has been changed successfully. -->
-    <string name="ChangeNumber__your_phone_number_has_changed_to_s">Telefonszámod megváltozott erre: %1$s</string>
+    <string name="ChangeNumber__your_phone_number_has_changed_to_s">Telefonszámod megváltozott a(z) %1$s telefonszámra</string>
     <!-- Confirmation button to dismiss number changed dialog -->
     <string name="ChangeNumber__okay">OK</string>
 
@@ -4463,7 +4473,7 @@
 
     <!-- ChangeNumberConfirmFragment -->
     <string name="ChangeNumberConfirmFragment__change_number">Szám megváltoztatása</string>
-    <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Telefonszámod megváltoztatására készülsz erről: %1$s erre: %2$s.\n\nMielőtt nekikezdenénk, kérjük ellenőrizd, hogy a megfelelő számot adtad-e meg!</string>
+    <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Telefonszámod megváltoztatására készülsz. Régi telefonszám: %1$s, új telefonszám: %2$s.\n\nMielőtt nekikezdenénk, kérjük ellenőrizd, hogy a megfelelő számot adtad-e meg!</string>
     <string name="ChangeNumberConfirmFragment__edit_number">Szám szerkesztése</string>
 
     <!-- ChangeNumberRegistrationLockFragment -->
@@ -4705,7 +4715,7 @@
     <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
     <string name="ConversationSettingsFragment__conversation_muted_until_s">A csevegés némítva eddig: %1$s</string>
     <string name="ConversationSettingsFragment__conversation_muted_forever">A csevegés örökre elnémítva</string>
-    <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefonszám másolva a vágólapra.</string>
+    <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefonszám átmásolva a vágólapra.</string>
     <string name="ConversationSettingsFragment__phone_number">Telefonszám</string>
     <string name="ConversationSettingsFragment__get_badges">Szerezz jelvényeket a profilképedre a Signal támogatásával. Koppints az egyik jelvényre a további tudnivalókért!</string>
 
@@ -5466,7 +5476,7 @@
     <string name="MyStorySettingsFragment__who_can_view_this_story">Ki tekintheti meg ezt a Történetet?</string>
     <!-- Clickable option for selecting people to hide your story from -->
     <!-- Privacy setting title for sending stories to all your signal connections -->
-    <string name="MyStorySettingsFragment__all_signal_connections">Minden Signal-névjegy</string>
+    <string name="MyStorySettingsFragment__all_signal_connections">Minden Signal Névjegy</string>
     <!-- Privacy setting description for sending stories to all your signal connections -->
     <!-- Privacy setting title for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__all_except">Mindenki, kivéve…</string>
@@ -5495,15 +5505,15 @@
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Reakciók és válaszok engedélyezése azok számára, akik megtekinthetik a Történetet</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
-    <string name="SignalConnectionsBottomSheet___signal_connections">Signal-névjegyek</string>
+    <string name="SignalConnectionsBottomSheet___signal_connections">Signal Névjegyek</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
-    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">A Signal-névjegyek olyan személyek, akikkel kapcsolatban úgy döntöttél, hogy megbízol a következők valamelyike által:</string>
+    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">A Signal Névjegyek olyan személyek, akikkel kapcsolatban úgy döntöttél, hogy megbízol a következők valamelyike által:</string>
     <!-- Signal connections sheet bullet point 1 -->
     <string name="SignalConnectionsBottomSheet__starting_a_conversation">Csevegés indítása</string>
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Elfogadtál tőlük egy felkérést</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Szerepelnek a telefonkönyvedben</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Szerepelnek a rendszernévjegyeid között</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"A névjegyeid megtekinthetik a neved, a profilképedet, valamint a „Történeteim” szekcióba posztoltakat, kivéve ha kifejezetten elrejtetted azokat előlük."</string>
     <!-- Clickable option to add a viewer to a custom story -->
@@ -5831,7 +5841,7 @@
     <!-- Subtitle of initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Válaszd ki, ki láthatja a Történeteidet. Ezeket a beállításokat bármikor módosíthatod.</string>
     <!-- All connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Minden Signal-névjegy</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Minden Signal Névjegy</string>
     <!-- All connections except option for initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__all_except">Mindenki, kivéve…</string>
     <!-- Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
@@ -6167,11 +6177,20 @@
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__set_up_your_signal_username">Állítsd be a Signal-felhasználóneved</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__introducing_phone_number_privacy">Bemutatjuk a telefonszám-védelmet, az opcionális felhasználóneveket és a linkeket.</string>
+    <string name="SetUpYourUsername__introducing_phone_number_privacy">Bemutatjuk a telefonszám-védelmet, az opcionális felhasználóneveket és a hivatkozásokat.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__dismiss">Elvetés</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__learn_more">Tudj meg többet</string>
+
+    <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_title">Új csatlakozási módok</string> -->
+    <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_body">Bemutatjuk a telefonszám-védelmet, az opcionális felhasználóneveket és a linkeket.</string> -->
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_dismiss">Elvetés</string> -->
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_learn_more">Tudj meg többet</string> -->
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -6470,6 +6489,10 @@
     <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Nincs hálózati hozzáférésed. A hivatkozás nem került visszaállításra. Próbáld újra később!</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">Hálózati hiba lépett fel a hivatkozás visszaállítása közben. Próbáld újra később!</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string> -->
+    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">Your QR code and link have been reset and a new QR code and link has been created.</string> -->
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Olvasd be ezt a QR-kódot a telefonoddal és csevegj velem a Signalban.</string>
 
@@ -6558,7 +6581,7 @@
     <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
     <string name="FindByActivity__s_is_not_a_valid_phone_number">A(z) %1$s érvénytelen telefonszám. Próbáld újra egy érvényes telefonszámmal</string>
     <!-- Dialog body for not found username -->
-    <string name="FindByActivity__s_is_not_a_signal_user">\"%1$s\" nem Signal felhasználó. Kérlek ellenőrizd a felhasználónevet, majd próbáld újra.</string>
+    <string name="FindByActivity__s_is_not_a_signal_user">%1$s nem Signal-felhasználó. Kérjük, ellenőrizd a felhasználónevet, majd próbáld újra.</string>
     <!-- Dialog body for not found phone number -->
     <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s nem Signal-felhasználó. Szeretnéd meghívni ezt a számot?</string>
     <!-- Dialog action to invite the phone number to Signal -->

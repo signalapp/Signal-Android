@@ -1028,7 +1028,9 @@
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">你的個人資料不會顯示用戶名稱、二維碼及連結。僅與你信任的人分享你的用戶名稱。</string>
-    <string name="ManageProfileFragment_profile_name">個人資料名稱</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">People can now message you using your optional username so you don\'t have to give out your phone number. </string> -->
+    <string name="ManageProfileFragment_profile_name">個人檔案名稱</string>
     <string name="ManageProfileFragment_username">用戶名稱</string>
     <string name="ManageProfileFragment_about">關於</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">設定頭像失敗</string>
@@ -1334,8 +1336,8 @@
     </plurals>
 
     <!-- Profile change updates -->
-    <string name="MessageRecord_changed_their_profile_name_to">%1$s 已將個人資料名稱改為 %2$s。</string>
-    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s 已將個人資料名稱 %2$s 改為 %3$s。</string>
+    <string name="MessageRecord_changed_their_profile_name_to">%1$s 已將個人檔案名稱改為 %2$s。</string>
+    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s 已將個人檔案名稱 %2$s 改為 %3$s。</string>
     <string name="MessageRecord_changed_their_profile">%1$s 已變更其個人資料。</string>
 
     <!-- GV2 specific -->
@@ -1888,8 +1890,12 @@
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">Signal 人脈</string>
+    <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">Verified</string> -->
+    <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string> -->
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
-    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s 在你的系統聯絡人中</string>
+    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s 在你的系統通訊錄中</string>
     <!-- Notice in a row when user has no groups in common -->
     <string name="AboutSheet__you_have_no_groups_in_common">你沒有共同的群組</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
@@ -1943,7 +1949,7 @@
     <string name="RegistrationActivity_select_your_country">選擇你的國家</string>
     <string name="RegistrationActivity_you_must_specify_your_country_code">你必須標明 國家編號
     </string>
-    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">請輸入有效的手機號碼以註冊。</string>
+    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">請輸入有效的電話號碼以註冊。</string>
     <string name="RegistrationActivity_invalid_number">電話號碼無效</string>
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">你所標明的號碼 (%1$s) 無效
     </string>
@@ -2207,7 +2213,7 @@
     <string name="UsernameEditFragment__choose_your_username">選擇你的用戶名稱</string>
     <string name="UsernameEditFragment_username">用戶名稱</string>
     <string name="UsernameEditFragment_delete">刪除</string>
-    <string name="UsernameEditFragment_successfully_removed_username">已成功移除使用者名稱。</string>
+    <string name="UsernameEditFragment_successfully_removed_username">已成功移除用戶名稱。</string>
     <string name="UsernameEditFragment_encountered_a_network_error">遇到網絡問題。</string>
     <string name="UsernameEditFragment_this_username_is_taken">此用戶名稱已有人使用。</string>
     <string name="UsernameEditFragment_usernames_can_only_include">用戶名稱僅可包含 a–Z、0–9 以及底線。</string>
@@ -2235,6 +2241,10 @@
     <string name="UsernameEditFragment__this_number_cant_start_with_00">此數字不能以 00 為首。請輸入 1–9 之間的數字</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">恢復用戶名稱將重設你現有的二維碼和連結。你確定嗎？</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">Changing your username will reset your existing QR code and link. Are you sure?</string> -->
+    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">Continue</string> -->
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="other">%1$d 個聯絡人現已使用 Signal！</item>
@@ -2436,7 +2446,7 @@
     <!-- Button label for not right now -->
     <string name="NewWaysToConnectDialogFragment__not_now">現在不要</string>
     <!-- Button label for continue -->
-    <string name="NewWaysToConnectDialogFragment__set_up_your_username">設定你的用戶名稱</string>
+    <string name="NewWaysToConnectDialogFragment__set_up_your_username">設定用戶名稱</string>
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">播放影片</string>
@@ -2554,7 +2564,7 @@
     <!-- Text on row item to find user by phone number -->
     <string name="ContactSelectionListFragment__find_by_phone_number">以電話號碼搜尋</string>
     <!-- Text on row item to find user by username -->
-    <string name="ContactSelectionListFragment__find_by_username">以使用者名稱搜尋</string>
+    <string name="ContactSelectionListFragment__find_by_username">以用戶名稱搜尋</string>
 
     <!-- contact_selection_list_fragment -->
     <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal 需要存取您的聯絡人以便為您顯示。</string>
@@ -4032,9 +4042,9 @@
     <string name="ReviewCard__block">封鎖</string>
     <string name="ReviewCard__delete">刪除</string>
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
-    <string name="ReviewCard__s_recently_changed">%1$s 最近將個人資料名稱從 %2$s 更改為 %3$s</string>
+    <string name="ReviewCard__s_recently_changed">%1$s 最近將個人檔案名稱從 %2$s 更改為 %3$s</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
-    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s 在你的系統聯絡人中</string>
+    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s 在你的系統通訊錄中</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s 已加入</string>
@@ -5028,7 +5038,7 @@
     <!-- Title of create notification profile screen -->
     <string name="EditNotificationProfileFragment__name_your_profile">為您的情景命名</string>
     <!-- Hint text for create/edit notification profile name -->
-    <string name="EditNotificationProfileFragment__profile_name">情景名稱</string>
+    <string name="EditNotificationProfileFragment__profile_name">個人檔案名稱</string>
     <!-- Name has a max length, this shows how many characters are used out of the max -->
     <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
     <!-- Call to action button to continue to the next step -->
@@ -5345,7 +5355,7 @@
     <string name="MyStorySettingsFragment__who_can_view_this_story">誰可以瀏覽此限時動態</string>
     <!-- Clickable option for selecting people to hide your story from -->
     <!-- Privacy setting title for sending stories to all your signal connections -->
-    <string name="MyStorySettingsFragment__all_signal_connections">所有 Signal 的人脈</string>
+    <string name="MyStorySettingsFragment__all_signal_connections">所有 Signal 人脈</string>
     <!-- Privacy setting description for sending stories to all your signal connections -->
     <!-- Privacy setting title for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__all_except">所有人，除了…</string>
@@ -5372,7 +5382,7 @@
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">讓瀏覽限時動態的人表達心情和回覆</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
-    <string name="SignalConnectionsBottomSheet___signal_connections">Signal 的人脈</string>
+    <string name="SignalConnectionsBottomSheet___signal_connections">Signal 人脈</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
     <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal 人脈是你透過以下方式選擇而值得信任的人：</string>
     <!-- Signal connections sheet bullet point 1 -->
@@ -5380,7 +5390,7 @@
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">接受一則訊息請求</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">系統聯絡人中存在對方</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">系統通訊錄中存在對方</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"你的人脈可以看見你的名稱和照片。除非你對他們隱藏，否則他們亦可看見「我的限時動態」中的貼文。"</string>
     <!-- Clickable option to add a viewer to a custom story -->
@@ -5695,7 +5705,7 @@
     <!-- Subtitle of initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">選擇誰可以看到「我的限時動態」貼文。你可以隨時在設定中作出更改。</string>
     <!-- All connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">所有 Signal 的人脈</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">所有 Signal 人脈</string>
     <!-- All connections except option for initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__all_except">所有人，除了…</string>
     <!-- Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
@@ -6035,6 +6045,15 @@
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__learn_more">了解更多</string>
 
+    <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_title">新的連結方式</string> -->
+    <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_body">引入電話號碼隱私、自選用戶名稱和連結。</string> -->
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_dismiss">解除</string> -->
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_learn_more">了解更多</string> -->
+
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
     <string name="TextFormatting_bold">粗體</string>
@@ -6329,6 +6348,10 @@
     <string name="UsernameLinkSettings_reset_link_result_network_unavailable">你沒有使用網路連線。你的連結未能重設，請稍後再試。</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">嘗試重設連結時發生網路錯誤。請稍後再試。</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string> -->
+    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">Your QR code and link have been reset and a new QR code and link has been created.</string> -->
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">用你的手機掃描此二維碼，開始與我在 Signal 上聊天。</string>
 
@@ -6387,13 +6410,13 @@
 
     <!-- FindByActivity -->
     <!-- Title of activity when finding by username -->
-    <string name="FindByActivity__find_by_username">以使用者名稱搜尋</string>
+    <string name="FindByActivity__find_by_username">以用戶名稱搜尋</string>
     <!-- Title of activity when finding by phone number -->
     <string name="FindByActivity__find_by_phone_number">以電話號碼搜尋</string>
     <!-- Title of screen to select a country code -->
     <string name="FindByActivity__select_country_code">選取國家代碼</string>
     <!-- Entry placeholder for find by username -->
-    <string name="FindByActivity__username">使用者名稱</string>
+    <string name="FindByActivity__username">用戶名稱</string>
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">電話號碼</string>
     <!-- Help text under user entry for find by username -->
@@ -6409,13 +6432,13 @@
     <!-- Dialog title when phone number is not a registered signal user -->
     <string name="FindByActivity__invite_to_signal">邀請加入 Signal</string>
     <!-- Dialog title when username is not found -->
-    <string name="FindByActivity__username_not_found">找不到使用者名稱</string>
+    <string name="FindByActivity__username_not_found">找不到用戶名稱</string>
     <!-- Dialog body for invalid username. Placeholder is the entered username. -->
     <string name="FindByActivity__s_is_not_a_valid_username">%1$s 不是有效的用戶名稱。請確保你已輸入完整的用戶名稱，以及隨後的一組數字。</string>
     <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
     <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s 不是有效的用戶名稱。請使用有效的電話號碼重試</string>
     <!-- Dialog body for not found username -->
-    <string name="FindByActivity__s_is_not_a_signal_user">「%1$s」並非 Signal 使用者。請檢查使用者名稱，然後再試一次。</string>
+    <string name="FindByActivity__s_is_not_a_signal_user">「%1$s」並非 Signal 使用者。請檢查用戶名稱，然後再試一次。</string>
     <!-- Dialog body for not found phone number -->
     <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s 不是 Signal 用戶。你想向此號碼發出邀請嗎？</string>
     <!-- Dialog action to invite the phone number to Signal -->

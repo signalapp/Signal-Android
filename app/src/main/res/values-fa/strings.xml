@@ -46,7 +46,7 @@
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">این گزینه باعث باز شدن دائمی قفل سیگنال و اعلان‌ها‌ی پیام خواهد شد.</string>
     <string name="ApplicationPreferencesActivity_disable">غیرفعال کردن</string>
     <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">غیرفعال کردن تماس‌ها و پیام‌های سیگنال؟</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">غیرفعال کردن پیام‌ها و تماس‌های سیگنال از طریق لغو عضو‌‌یت از سرور. در آینده برای استفاده از سیگنال باید دوباره از طریق شماره‌تلفن خود ثبت‌نام کنید.</string>
+    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">غیرفعال کردن پیام‌ها و تماس‌های سیگنال از طریق لغو عضو‌‌یت از سرور. در آینده برای استفاده از سیگنال باید دوباره از طریق شماره تلفن خود ثبت‌نام کنید.</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">خطا در اتصال به سرور!</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">پین‌ها برای قفل ثبت‌نام لازم هستند. برای غیرفعال کردن پین‌ها، لطفاً ابتدا قفل ثبت‌نام را غیرفعال کنید.</string>
     <string name="ApplicationPreferencesActivity_pin_created">پین ایجاد شد.</string>
@@ -1063,7 +1063,9 @@
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">نام کاربری، کد QR و پیوند شما در نمایۀ شما قابل مشاهده نیست. نام کاربری خود را فقط با افراد مورد اعتمادتان به اشتراک بگذارید.</string>
-    <string name="ManageProfileFragment_profile_name">نام پروفایل</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">People can now message you using your optional username so you don\'t have to give out your phone number. </string> -->
+    <string name="ManageProfileFragment_profile_name">نام نمایه</string>
     <string name="ManageProfileFragment_username">نام کاربری</string>
     <string name="ManageProfileFragment_about">درباره</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">تنظیم آواتار ناموفق بود</string>
@@ -1381,8 +1383,8 @@
     </plurals>
 
     <!-- Profile change updates -->
-    <string name="MessageRecord_changed_their_profile_name_to">%1$s نام پروفایل خود را به %2$s تغییر داد.</string>
-    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s نام پروفایل خود را از %2$s به %3$s تغییر داد.</string>
+    <string name="MessageRecord_changed_their_profile_name_to">%1$s نام نمایه خود را به %2$s تغییر داد.</string>
+    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s نام نمایه خود را از %2$s به %3$s تغییر داد.</string>
     <string name="MessageRecord_changed_their_profile">%1$s پروفایل خود را تغییر داد.</string>
 
     <!-- GV2 specific -->
@@ -1545,7 +1547,7 @@
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">شما شمارهٔ ایمنی خود را با %1$s وارسی نشده علامت زدید</string>
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">شما شمارهٔ ایمنی خود را با %1$s از طریق دستگاه یک دستگاه دیگر وارسی نشده علامت زدید</string>
     <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">یک پیام از %1$s نتوانست تحویل داده شود</string>
-    <string name="MessageRecord_s_changed_their_phone_number">%1$s شماره‌تلفن خود را تغییر داد.</string>
+    <string name="MessageRecord_s_changed_their_phone_number">%1$s شماره تلفن خود را تغییر داد.</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">این قابلیت جدید را می‌پسندید؟ با کمک مالی یک‌باره از سیگنال پشتیبانی کنید.</string>
     <!-- Update item message shown when we merge two threads together. First placeholder is a name, second placeholder is a phone number. -->
@@ -1962,6 +1964,10 @@
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">آشنا در سیگنال</string>
+    <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">Verified</string> -->
+    <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string> -->
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s در مخاطبان سیستم شما است</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -2053,7 +2059,7 @@
     <string name="RegistrationActivity_unable_to_request_verification_code">امکان درخواست کد تأیید وجود ندارد. لطفاً اتصال شبکه خود را بررسی و دوباره امتحان کنید.</string>
     <string name="RegistrationActivity_non_standard_number_format">قالب شمارهٔ غیر-استاندارد</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">به نظر می‌رسد شماره‌ای که وارد کردید (%1$s) در قالبی غیر-استاندارد باشد.\n\nآیا منظورتان %2$s بود؟</string>
-    <string name="RegistrationActivity_signal_android_phone_number_format">سیگنال اندروید - قالب شماره‌تلفن</string>
+    <string name="RegistrationActivity_signal_android_phone_number_format">سیگنال اندروید - قالب شماره تلفن</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
     <string name="RegistrationActivity_call_requested">درخواست تماس داده شد</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
@@ -2075,10 +2081,10 @@
     <!-- Title of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_phone_number">شماره تلفن</string>
     <!-- Subtitle of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">برای شروع، شماره‌تلفن خود را وارد کنید.</string>
+    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">برای شروع، شماره تلفن خود را وارد کنید.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">کد‌ی را که به %1$s ارسال کردیم وارد کنید</string>
 
-    <string name="RegistrationActivity_phone_number_description">شماره‌تلفن</string>
+    <string name="RegistrationActivity_phone_number_description">شماره تلفن</string>
     <string name="RegistrationActivity_country_code_description">کد کشور</string>
     <string name="RegistrationActivity_call">تماس</string>
     <string name="RegistrationActivity_verification_code">کد تآیید</string>
@@ -2086,7 +2092,7 @@
     <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_title">مشکلی در ثبت‌نام دارید؟</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• مطمئن شوید که تلفنتان برای دریافت پیامک یا تماس آنتن دارد\n • تأیید کنید که می‌توانید با این شماره تماس تلفنی دریافت کنید\n • بررسی کنید که شماره تلفن خود را به‌درستی وارد کرده‌اید.</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• مطمئن شوید که تلفنتان برای دریافت پیامک یا تماس آنتن دارد\n • تأیید کنید که می‌توانید با این شماره تلفن تماس دریافت کنید\n • بررسی کنید که شماره تلفن خود را به‌درستی وارد کرده‌اید.</string>
     <!--    A call to action for a user having trouble entering the verification to seek further help. -->
     <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">برای اطلاعات بیشتر، لطفاً این مراحل عیب‌یابی را دنبال کنید یا با پشتیبانی تماس بگیرید</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
@@ -2295,7 +2301,7 @@
     <string name="UsernameEditFragment_username_is_invalid">نام کاربری نامعتبر است.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">نام‌های کاربری باید بین %1$d و %2$d نویسه باشند.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">نام کاربری به دیگران اجازه می‌دهد بدون نیاز به شماره تلفن‌تان به شما پیام بدهند. نام کاربری با مجموعه‌ای از ارقام ادغام می‌شود تا کمک کند نشانی شما خصوصی بماند.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">نام کاربری به دیگران اجازه می‌دهد بدون نیاز به شماره تلفن تان به شما پیام بدهند. نام کاربری با مجموعه‌ای از ارقام ادغام می‌شود تا کمک کند نشانی شما خصوصی بماند.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">این عدد چیست؟</string>
     <string name="UsernameEditFragment__these_digits_help_keep">این ارقام به خصوصی ماندن نام کاربری شما کمک می‌کند تا بتوانید از پیام‌های ناخواسته جلوگیری کنید. نام کاربری خود را فقط با افراد و گروه‌هایی که می‌خواهید با آنها گفتگو کنید به اشتراک بگذارید. اگر نام کاربری را تغییر دهید، مجموعه ارقام جدیدی دریافت خواهید کرد.</string>
@@ -2315,6 +2321,10 @@
     <string name="UsernameEditFragment__this_number_cant_start_with_00">این عدد نمی‌تواند با ۰۰ شروع شود. رقمی بین ۱ تا ۹ انتخاب کنید</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">بازیابی نام کاربری‌تان موجب بازنشانی پیوند و کد QR فعلی شما می‌شود. مطمئن هستید؟</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">Changing your username will reset your existing QR code and link. Are you sure?</string> -->
+    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">Continue</string> -->
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d مخاطب در سیگنال هست!</item>
@@ -2519,7 +2529,7 @@
     <!-- Button label for not right now -->
     <string name="NewWaysToConnectDialogFragment__not_now">حالا نه</string>
     <!-- Button label for continue -->
-    <string name="NewWaysToConnectDialogFragment__set_up_your_username">تنظیم نام کاربری</string>
+    <string name="NewWaysToConnectDialogFragment__set_up_your_username">راه‌اندازی نام کاربری</string>
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">پخش ویدئو</string>
@@ -3244,7 +3254,7 @@
     <string name="preferences_communication__censorship_circumvention">عبور از فیلترینگ</string>
     <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">اگر فعال شود، سیگنال اقدام به دور زدن فیلترینگ خواهد کرد. تنها در صورتی این قابلیت را فعال کنید که سیگنال در محل شما مسدود شده است.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">عبور از فیلترینگ بر اساس شماره‌تلفن شما فعال شد.</string>
+    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">عبور از فیلترینگ بر اساس شماره تلفن شما فعال شد.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
     <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">شما عبور از فیلترینگ را به صورت دستی غیرفعال کردید.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
@@ -3729,7 +3739,7 @@
 
     <!-- AccountLockedFragment -->
     <string name="AccountLockedFragment__account_locked">حساب کاربری قفل شد</string>
-    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">حساب کاربری شما به منظور حفاظت از حریم خصوصی و امنیت شما قفل شده است. پس از %1$d روز عدم فعالیت در حساب کاربری‌تان، می‌توانید دوباره با این شماره‌تلفن و بدون نیاز به پین ثبت‌نام کنید. تمام محتوا پاک خواهد شد.</string>
+    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">حساب کاربری شما به منظور حفاظت از حریم خصوصی و امنیت شما قفل شده است. پس از %1$d روز عدم فعالیت در حساب کاربری‌تان، می‌توانید دوباره با این شماره تلفن و بدون نیاز به پین ثبت‌نام کنید. تمام محتوا پاک خواهد شد.</string>
     <string name="AccountLockedFragment__next">بعدی</string>
     <string name="AccountLockedFragment__learn_more">اطلاعات بیشتر</string>
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
@@ -3869,7 +3879,7 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">چه‌کسی می‌تواند شماره من را ببیند</string>
     <!-- Subtext below radio buttons when who can see my number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">شماره‌تلفن شما برای افراد و گروه‌هایی که به آن‌ها پیام می‌دهید قابل مشاهده خواهد بود.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">شماره تلفن شما برای افراد و گروه‌هایی که به آن‌ها پیام می‌دهید قابل مشاهده خواهد بود.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
     <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">شماره تلفن شما برای هیچ‌کس قابل مشاهده نیست، به‌جز کسانی که شما را در مخاطبان تلفن خود ذخیره کرده‌اند.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
@@ -4140,7 +4150,7 @@
     <string name="ReviewCard__block">مسدود کردن</string>
     <string name="ReviewCard__delete">پاک کردن</string>
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
-    <string name="ReviewCard__s_recently_changed">%1$s اخیراً نام پروفایل خود را از %2$s به %3$s تغییر داده است</string>
+    <string name="ReviewCard__s_recently_changed">%1$s اخیراً نام نمایه خود را از %2$s به %3$s تغییر داده است</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
     <string name="ReviewCard__s_is_in_your_system_contacts">%1$s در مخاطبان سیستم شما است</string>
 
@@ -4164,14 +4174,14 @@
 
     <!-- DeleteAccountFragment -->
     <string name="DeleteAccountFragment__deleting_your_account_will">پاک کردن حساب‌تان:</string>
-    <string name="DeleteAccountFragment__enter_your_phone_number">شماره‌تلفن خود را وارد کنید</string>
+    <string name="DeleteAccountFragment__enter_your_phone_number">شماره تلفن خود را وارد کنید</string>
     <string name="DeleteAccountFragment__delete_account">پاک کردن حساب</string>
     <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">اطلاعات حساب و عکس نمایه‌تان را پاک خواهد کرد</string>
     <string name="DeleteAccountFragment__delete_all_your_messages">همه پیام‌هایتان را پاک خواهد کرد</string>
     <string name="DeleteAccountFragment__delete_s_in_your_payments_account">%1$s را در حساب پرداخت‌های خود پاک کنید</string>
     <string name="DeleteAccountFragment__no_country_code">هیچ کد کشوری وارد نشده است</string>
     <string name="DeleteAccountFragment__no_number">هیچ شماره‌ای وارد نشده است</string>
-    <string name="DeleteAccountFragment__the_phone_number">شماره‌تلفنی که وارد کردید با حساب کاربری شما همخوانی ندارد.</string>
+    <string name="DeleteAccountFragment__the_phone_number">شماره تلفنی که وارد کردید با حساب کاربری شما همخوانی ندارد.</string>
     <string name="DeleteAccountFragment__are_you_sure">آیا از پاک کردن حساب کاربری خود اطمینان دارید؟</string>
     <string name="DeleteAccountFragment__this_will_delete_your_signal_account">این گزینه، حساب کاربری سیگنال شما را پاک کرده و برنامه را بازنشانی می‌کند. برنامه پس از تکمیل فرایند بسته خواهد شد.</string>
     <string name="DeleteAccountFragment__failed_to_delete_local_data">پاک کردن داده‌های محلی موفق نبود. شما می‌توانید آن را به صورت دستی در بخش تنظیمات برنامهٔ سیستم پاک کنید.</string>
@@ -4390,8 +4400,8 @@
     <!-- AccountSettingsFragment -->
     <string name="AccountSettingsFragment__account">حساب کاربری</string>
     <string name="AccountSettingsFragment__youll_be_asked_less_frequently">به مرور زمان از شما کمتر پرسیده خواهد شد</string>
-    <string name="AccountSettingsFragment__require_your_signal_pin">درخواست پین سیگنال شما برای ثبت‌نام دوباره با شماره‌تلفن شما در سیگنال</string>
-    <string name="AccountSettingsFragment__change_phone_number">تغییر شماره‌تلفن</string>
+    <string name="AccountSettingsFragment__require_your_signal_pin">درخواست پین سیگنال شما برای ثبت‌نام دوباره با شماره تلفن شما در سیگنال</string>
+    <string name="AccountSettingsFragment__change_phone_number">تغییر شماره تلفن</string>
     <!-- Account setting that allows user to request and export their signal account data -->
     <string name="AccountSettingsFragment__request_account_data">اطلاعات حساب شما</string>
 
@@ -4437,24 +4447,24 @@
     <string name="ExportAccountDataFragment__report_not_stored_disclaimer">گزارش شما فقط هنگام خروجی گرفتن تولید می‌شود و سیگنال آن را در دستگاهتان ذخیره نمی‌کند.</string>
 
     <!-- ChangeNumberFragment -->
-    <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">از این گزینه برای تغییر شماره‌تلفن فعلی خود به یک شماره‌تلفن جدید استفاده کنید. شما نمی‌توانید این تغییر را بازگردانی کنید.\n\n قبل از ادامه، مطمئن شوید که شمارهٔ جدید شما می‌تواند پیامک یا تماس دریافت کند.</string>
+    <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">از این گزینه برای تغییر شماره تلفن فعلی خود به یک شماره‌تلفن جدید استفاده کنید. شما نمی‌توانید این تغییر را بازگردانی کنید.\n\n قبل از ادامه، مطمئن شوید که شمارهٔ جدید شما می‌تواند پیامک یا تماس دریافت کند.</string>
     <string name="ChangeNumberFragment__continue">ادامه</string>
     <!-- Message shown on dialog after your number has been changed successfully. -->
-    <string name="ChangeNumber__your_phone_number_has_changed_to_s">شماره‌تلفن شما به %1$s تغییر یافت</string>
+    <string name="ChangeNumber__your_phone_number_has_changed_to_s">شماره تلفن شما به %1$s تغییر یافت</string>
     <!-- Confirmation button to dismiss number changed dialog -->
     <string name="ChangeNumber__okay">خوب</string>
 
     <!-- ChangeNumberEnterPhoneNumberFragment -->
     <string name="ChangeNumberEnterPhoneNumberFragment__change_number">تغییر شماره</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">شمارهٔ قدیمی شما</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">شماره‌تلفن قدیمی</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">شماره تلفن قدیمی</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">شمارهٔ جدید شما</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">شماره‌تلفن جدید</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">شماره‌تلفنی که وارد کردید با حساب کاربری شما همخوانی ندارد.</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">شماره تلفن جدید</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">شماره تلفنی که وارد کردید با حساب کاربری شما همخوانی ندارد.</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">شما باید کد کشور شمارهٔ قدیمی خود را مشخص کنید</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">شما باید شماره‌تلفن جدید خود را مشخص کنید</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">شما باید شماره تلفن جدید خود را مشخص کنید</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">شما باید کد کشور شمارهٔ جدید خود را مشخص کنید</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">شما باید شماره‌تلفن جدید خود را مشخص کنید</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">شما باید شماره تلفن جدید خود را مشخص کنید</string>
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">تغییر شماره</string>
@@ -4463,7 +4473,7 @@
 
     <!-- ChangeNumberConfirmFragment -->
     <string name="ChangeNumberConfirmFragment__change_number">تغییر شماره</string>
-    <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">شما در آستانهٔ تغییر دادن شماره‌تلفن خود از %1$s به %2$s هستید.\n\nپیش از ادامه دادن، لطفاً تصدیق کنید که شمارهٔ پایین صحیح است.</string>
+    <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">شما در آستانهٔ تغییر دادن شماره تلفن خود از %1$s به %2$s هستید.\n\nپیش از ادامه دادن، لطفاً تصدیق کنید که شمارهٔ پایین صحیح است.</string>
     <string name="ChangeNumberConfirmFragment__edit_number">ویرایش شماره</string>
 
     <!-- ChangeNumberRegistrationLockFragment -->
@@ -4705,8 +4715,8 @@
     <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
     <string name="ConversationSettingsFragment__conversation_muted_until_s">گفتگو تا %1$s بی‌صدا شد</string>
     <string name="ConversationSettingsFragment__conversation_muted_forever">گفتگو به‌طور دائم بی‌صدا شد</string>
-    <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">شماره‌تلفن در کلیپ‌بورد کپی شد.</string>
-    <string name="ConversationSettingsFragment__phone_number">شماره‌تلفن</string>
+    <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">شماره تلفن در کلیپ‌بورد کپی شد.</string>
+    <string name="ConversationSettingsFragment__phone_number">شماره تلفن</string>
     <string name="ConversationSettingsFragment__get_badges">با حمایت از سیگنال نشان‌هایی برای نمایه‌تان دریافت کنید. برای اطلاعات بیشتر روی نشان ضربه بزنید.</string>
 
     <!-- PermissionsSettingsFragment -->
@@ -5145,7 +5155,7 @@
     <!-- Title of create notification profile screen -->
     <string name="EditNotificationProfileFragment__name_your_profile">پروفایل خود را نام‌گذاری کنید</string>
     <!-- Hint text for create/edit notification profile name -->
-    <string name="EditNotificationProfileFragment__profile_name">نام پروفایل</string>
+    <string name="EditNotificationProfileFragment__profile_name">نام نمایه</string>
     <!-- Name has a max length, this shows how many characters are used out of the max -->
     <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
     <!-- Call to action button to continue to the next step -->
@@ -5503,7 +5513,7 @@
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">پذیرش درخواست تبادل پیام</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">بودن آن‌ها در مخاطبین سیستم شما</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">بودن آن‌ها در مخاطبان سیستم شما</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"آشنایان شما می‌توانند نام و عکس شما را ببینند، و می‌توانند پست‌های \"استوری من\" را ببینند، مگر اینکه آن را از آن‌ها مخفی کنید."</string>
     <!-- Clickable option to add a viewer to a custom story -->
@@ -6173,6 +6183,15 @@
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__learn_more">اطلاعات بیشتر</string>
 
+    <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_title">روش‌های جدید برقراری ارتباط</string> -->
+    <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_body">معرفی حریم شخصی شماره تلفن، نام کاربری انتخابی و پیوندها.</string> -->
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_dismiss">رد کردن</string> -->
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_learn_more">اطلاعات بیشتر</string> -->
+
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
     <string name="TextFormatting_bold">پررنگ</string>
@@ -6470,6 +6489,10 @@
     <string name="UsernameLinkSettings_reset_link_result_network_unavailable">به شبکه دسترسی ندارید. پیوند شما بازنشانی نشد. بعداً دوباره امتحان کنید.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">هنگام بازنشانی پیوند شما یک خطای شبکه رخ داد. بعداً دوباره امتحان کنید.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string> -->
+    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">Your QR code and link have been reset and a new QR code and link has been created.</string> -->
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">برای گفتگو با من در سیگنال، این کد QR را با تلفن خود اسکن کنید.</string>
 

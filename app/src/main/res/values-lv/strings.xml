@@ -643,7 +643,7 @@
     <!-- Message shown in top toast to indicate the named profile is on -->
     <string name="ConversationListFragment__s_on">%1$s ieslēgts</string>
     <!-- -->
-    <string name="ConversationListFragment_username_recovered_toast">Jūsu QR kods un saite ir atiestatīti, un jūsu lietotāja vārds ir %1$s</string>
+    <string name="ConversationListFragment_username_recovered_toast">Jūsu QR kods un saite ir atiestatīti, un jūsu lietotājvārds ir %1$s</string>
 
     <!-- ConversationListItem -->
     <string name="ConversationListItem_key_exchange_message">Atslēgu apmaiņas ziņa</string>
@@ -1097,7 +1097,9 @@
 
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
-    <string name="ManageProfileFragment__your_username">Jūsu lietotāja vārds, QR kods un saite jūsu profilā nav redzami. Kopīgojiet savu lietotāja vārdu tikai ar uzticamiem cilvēkiem.</string>
+    <string name="ManageProfileFragment__your_username">Jūsu lietotājvārds, QR kods un saite jūsu profilā nav redzami. Kopīgojiet savu lietotājvārdu tikai ar uzticamiem cilvēkiem.</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">People can now message you using your optional username so you don\'t have to give out your phone number. </string> -->
     <string name="ManageProfileFragment_profile_name">Profila nosaukums</string>
     <string name="ManageProfileFragment_username">Lietotājvārds</string>
     <string name="ManageProfileFragment_about">Par</string>
@@ -1119,15 +1121,15 @@
     <!-- Snackbar message after successful deletion of username -->
     <string name="ManageProfileFragment__username_deleted">Lietotājvārds izdzēsts</string>
     <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_title">Vai dzēst lietotāja vārdu?</string>
+    <string name="ManageProfileFragment__delete_username_dialog_title">Vai dzēst lietotājvārdu?</string>
     <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_body">"Tādējādi tiks dzēsts jūsu lietotāja vārds, un jūsu QR kods un saite vairs nedarbosies. Lietotājvārds \"%1$s\" būs pieejams citiem lietotājiem. Vai tiešām vēlaties dzēst?"</string>
+    <string name="ManageProfileFragment__delete_username_dialog_body">"Tādējādi tiks dzēsts jūsu lietotājvārds, un jūsu QR kods un saite vairs nedarbosies. Lietotājvārds \"%1$s\" būs pieejams citiem lietotājiem. Vai tiešām vēlaties dzēst?"</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
-    <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">Radās problēma ar jūsu lietotāja vārdu, tas vairs nav piešķirts jūsu kontam. Varat mēģināt iestatīt to vēlreiz vai izvēlēties jaunu.</string>
+    <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">Radās problēma ar jūsu lietotājvārdu, tas vairs nav piešķirts jūsu kontam. Varat mēģināt iestatīt to vēlreiz vai izvēlēties jaunu.</string>
     <!-- Displayed above the conversation list when a user needs to address an issue with their username link -->
-    <string name="UsernameOutOfSyncReminder__link_corrupt">Radās problēma saistībā ar jūsu QR kodu un lietotāja vārda saiti. Tā vairs nav derīga. Izveidojiet jaunu saiti, lai kopīgotu to ar citiem.</string>
+    <string name="UsernameOutOfSyncReminder__link_corrupt">Radās problēma saistībā ar jūsu QR kodu un lietotājvārda saiti. Tā vairs nav derīga. Izveidojiet jaunu saiti, lai kopīgotu to ar citiem.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
     <string name="UsernameOutOfSyncReminder__fix_now">Labot</string>
 
@@ -1598,7 +1600,7 @@
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Jūs atzīmējāt savu drošības kodu ar %1$s kā nepārbaudītu.</string>
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Jūs atzīmējāt savu drošības kodu ar %1$s kā nepārbaudītu no citas ierīces</string>
     <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%1$s ziņu nevarēja piegādāt</string>
-    <string name="MessageRecord_s_changed_their_phone_number">%1$s nomainīja savu telefona numuru.</string>
+    <string name="MessageRecord_s_changed_their_phone_number">%1$s nomainīja savu tālruņa numuru.</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Jums patīk šī jaunā funkcija? Palīdziet atbalstīt Signal ar vienreizēju ziedojumu.</string>
     <!-- Update item message shown when we merge two threads together. First placeholder is a name, second placeholder is a phone number. -->
@@ -2036,8 +2038,12 @@
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">Signal kontaktpersona</string>
+    <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">Verified</string> -->
+    <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string> -->
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
-    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s ir kontaktpersona jūsu sistēmā</string>
+    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s ir jūsu kontaktpersona sistēmā</string>
     <!-- Notice in a row when user has no groups in common -->
     <string name="AboutSheet__you_have_no_groups_in_common">Jums nav kopīgu grupu</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
@@ -2132,7 +2138,7 @@
     <string name="RegistrationActivity_unable_to_request_verification_code">Nevar pieprasīt verifikācijas kodu. Lūdzu, pārbaudiet tīkla savienojumu un mēģiniet vēlreiz.</string>
     <string name="RegistrationActivity_non_standard_number_format">Nestandarta numura formāts</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Izskatās, ka numurs, kuru ievadījāt (%1$s), ir nestandarta formātā.\n\nVai domājāt %2$s?</string>
-    <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Telefona Numura Formāts</string>
+    <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - tālruņa Numura Formāts</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
     <string name="RegistrationActivity_call_requested">Pieprasīts zvans</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
@@ -2384,17 +2390,21 @@
     <!-- Content description for done button -->
     <string name="UsernameEditFragment__done">Darīts</string>
     <!-- Displayed when the chosen discriminator is not available for the given nickname -->
-    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">Šis lietotāja vārds nav pieejams. Mēģiniet izmantot citu skaitli.</string>
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">Šis lietotājvārds nav pieejams. Mēģiniet izmantot citu skaitli.</string>
     <!-- Displayed when the chosen discriminator is too short -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Nederīgs lietotāja vārds. Ievadiet vismaz %1$d skaitļus.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Nederīgs lietotājvārds. Ievadiet vismaz %1$d skaitļus.</string>
     <!-- Displayed when the chosen discriminator is too long -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Nederīgs lietotāja vārds. Ievadiet ne vairāk kā %1$d skaitļus.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Nederīgs lietotājvārds. Ievadiet ne vairāk kā %1$d skaitļus.</string>
     <!-- Displayed when the chosen discriminator is 00 -->
     <string name="UsernameEditFragment__this_number_cant_be_00">Šis numurs nedrīkst būt 00. Ievadiet ciparu no 1 līdz 9.</string>
     <!-- Displayed when the chosen discriminator starts with 00 -->
     <string name="UsernameEditFragment__this_number_cant_start_with_00">Šis numurs nedrīkst sākties ar 00. Ievadiet ciparu no 1 līdz 9.</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
-    <string name="UsernameEditFragment_recovery_dialog_confirmation">Mainot lietotāja vārdu, tiks atiestatīts esošais QR kods un saite. Vai tiešām turpināt?</string>
+    <string name="UsernameEditFragment_recovery_dialog_confirmation">Mainot lietotājvārdu, tiks atiestatīts esošais QR kods un saite. Vai tiešām turpināt?</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">Changing your username will reset your existing QR code and link. Are you sure?</string> -->
+    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">Continue</string> -->
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="zero">%1$d kontaktpersona lieto Signal!</item>
@@ -2592,13 +2602,13 @@
     <!-- Row item description for phone number privacy explainer -->
     <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">Jūsu tālruņa numurs vairs nav redzams sarunu biedriem. Ja draugi ir saglabājuši jūsu numuru kontaktpersonu sarakstā, tad viņiem tas joprojām būs redzams.</string>
     <!-- Row item title for usernames explainer -->
-    <string name="NewWaysToConnectDialogFragment__usernames">Lietotāju vārdi</string>
+    <string name="NewWaysToConnectDialogFragment__usernames">Lietotājvārdi</string>
     <!-- Row item description for usernames explainer -->
-    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">Tagad cilvēki var nosūtīt jums ziņas, izmantojot jūsu izvēles lietotāja vārdu. Tālruņa numuri vairs nav nepieciešami. Lietotāja vārds nav redzams jūsu profilā.</string>
+    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">Tagad cilvēki var nosūtīt jums ziņas, izmantojot jūsu izvēles lietotājvārdu. Tālruņa numuri vairs nav nepieciešami. Lietotājvārds nav redzams jūsu profilā.</string>
     <!-- Row item title for qr code and links explainer -->
     <string name="NewWaysToConnectDialogFragment__qr_codes_and_links">QR kodi un saites</string>
     <!-- Row item description for qr code and links explainer -->
-    <string name="NewWaysToConnectDialogFragment__usernames_have_a_unique_qr_code">Lietotāju vārdiem ir piesaistīti unikāli QR kodi, kurus varat nosūtīt draugiem, lai ātri uzsāktu sarunu.</string>
+    <string name="NewWaysToConnectDialogFragment__usernames_have_a_unique_qr_code">Lietotājvārdiem ir piesaistīti unikāli QR kodi, kurus varat nosūtīt draugiem, lai ātri uzsāktu sarunu.</string>
     <!-- Button label for not right now -->
     <string name="NewWaysToConnectDialogFragment__not_now">Ne tagad</string>
     <!-- Button label for continue -->
@@ -2724,7 +2734,7 @@
     <!-- Text on row item to find user by phone number -->
     <string name="ContactSelectionListFragment__find_by_phone_number">Meklēt pēc tālruņa numura</string>
     <!-- Text on row item to find user by username -->
-    <string name="ContactSelectionListFragment__find_by_username">Atrast pēc lietotājvārds</string>
+    <string name="ContactSelectionListFragment__find_by_username">Atrast pēc lietotājvārda</string>
 
     <!-- contact_selection_list_fragment -->
     <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal nepieciešama pieeja jūsu kontaktiem, lai varētu tos parādīt.</string>
@@ -3220,7 +3230,7 @@
     <string name="preferences__mmsc_url">MMSC URL</string>
     <string name="preferences__mms_proxy_host">MMS Proxy Host</string>
     <string name="preferences__mms_proxy_port">MMS Proxy Port</string>
-    <string name="preferences__mmsc_username">MMSC Lietotājvārds</string>
+    <string name="preferences__mmsc_username">MMSC lietotājvārds</string>
     <string name="preferences__mmsc_password">MMSC Parole</string>
     <string name="preferences__sms_delivery_reports">SMS piegādes atskaites</string>
     <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Pieprasīt piegādes atskaiti par katru nosūtīto īsziņu</string>
@@ -4248,9 +4258,9 @@
     <string name="ReviewCard__block">Bloķēt</string>
     <string name="ReviewCard__delete">Dzēst</string>
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
-    <string name="ReviewCard__s_recently_changed">%1$s nesen mainīja sava profila vārdu no %2$s uz %3$s</string>
+    <string name="ReviewCard__s_recently_changed">%1$s nesen mainīja sava profila nosaukumu no %2$s uz %3$s</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
-    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s ir kontaktpersona jūsu sistēmā</string>
+    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s ir jūsu kontaktpersona sistēmā</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s pievienojās</string>
@@ -4501,7 +4511,7 @@
     <string name="AccountSettingsFragment__account">Konts</string>
     <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Laika gaitā jums tiks jautāts retāk</string>
     <string name="AccountSettingsFragment__require_your_signal_pin">Pieprasīt savu Signal PIN, lai vēlreiz reģistrētu savu tālruņa numuru lietotnē Signal</string>
-    <string name="AccountSettingsFragment__change_phone_number">Mainīt telefona numuru</string>
+    <string name="AccountSettingsFragment__change_phone_number">Mainīt tālruņa numuru</string>
     <!-- Account setting that allows user to request and export their signal account data -->
     <string name="AccountSettingsFragment__request_account_data">Jūsu konta dati</string>
 
@@ -4547,24 +4557,24 @@
     <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Pārskats tiek izveidots tikai eksportēšanas laikā, un Signal to nesaglabā jūsu ierīcē.</string>
 
     <!-- ChangeNumberFragment -->
-    <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Lietojiet šo, lai mainītu savu pašreizējo telefona numuru uz jaunu. Jūs nevarat atsaukt šo izmaiņu.\n\nPirms turpināt, pārliecinieties, ka uz savu jauno numuru varat saņemt SMS un zvanus.</string>
+    <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Lietojiet šo, lai mainītu savu pašreizējo tālruņa numuru uz jaunu. Jūs nevarat atsaukt šo izmaiņu.\n\nPirms turpināt, pārliecinieties, ka uz savu jauno numuru varat saņemt SMS un zvanus.</string>
     <string name="ChangeNumberFragment__continue">Turpināt</string>
     <!-- Message shown on dialog after your number has been changed successfully. -->
-    <string name="ChangeNumber__your_phone_number_has_changed_to_s">Jūsu telefona numurs ir nomainīts uz %1$s</string>
+    <string name="ChangeNumber__your_phone_number_has_changed_to_s">Jūsu tālruņa numurs ir nomainīts uz %1$s</string>
     <!-- Confirmation button to dismiss number changed dialog -->
     <string name="ChangeNumber__okay">Labi</string>
 
     <!-- ChangeNumberEnterPhoneNumberFragment -->
     <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Izmainīt numuru</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Jūsu vecais numurs</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Vecais telefona numurs</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Vecais tālruņa numurs</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Jūsu jaunais numurs</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Jaunais telefona numurs</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Jaunais tālruņa numurs</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Ievadītais tālruņa numurs neatbilst jūsu kontā norādītajam.</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Jums jānorāda sava vecā numura valsts kods</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Jums jānorāda savs vecais telefona numurs</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Jums jānorāda savs vecais tālruņa numurs</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Jums jānorāda sava jaunā numura valsts kods</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Jums jānorāda savs jaunais telefona numurs</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Jums jānorāda savs jaunais tālruņa numurs</string>
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">Izmainīt numuru</string>
@@ -4573,7 +4583,7 @@
 
     <!-- ChangeNumberConfirmFragment -->
     <string name="ChangeNumberConfirmFragment__change_number">Mainīt numuru</string>
-    <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Jūs tūdaļ mainīsiet savu telefona numuru no %1$s uz %2$s.\n\nPirms turpināt, lūdzu pārbaudiet, ka numurs zemāk ir pareizs.</string>
+    <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Jūs tūdaļ mainīsiet savu tālruņa numuru no %1$s uz %2$s.\n\nPirms turpināt, lūdzu pārbaudiet, ka numurs zemāk ir pareizs.</string>
     <string name="ChangeNumberConfirmFragment__edit_number">Rediģēt numuru</string>
 
     <!-- ChangeNumberRegistrationLockFragment -->
@@ -5587,7 +5597,7 @@
     <string name="MyStorySettingsFragment__who_can_view_this_story">Kas var skatīt šo stāstu</string>
     <!-- Clickable option for selecting people to hide your story from -->
     <!-- Privacy setting title for sending stories to all your signal connections -->
-    <string name="MyStorySettingsFragment__all_signal_connections">Visi Signal draugi</string>
+    <string name="MyStorySettingsFragment__all_signal_connections">Visas Signal kontaktpersonas</string>
     <!-- Privacy setting description for sending stories to all your signal connections -->
     <!-- Privacy setting title for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__all_except">Visi, izņemot…</string>
@@ -5618,15 +5628,15 @@
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Ļaut reaģēt un atbildēt tiem cilvēkiem, kuri var skatīt jūsu stāstu</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
-    <string name="SignalConnectionsBottomSheet___signal_connections">Signal draugi</string>
+    <string name="SignalConnectionsBottomSheet___signal_connections">Signal kontaktpersona</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
-    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal draugi ir personas, kurām izvēlējāties uzticēties kādā no šiem veidiem:</string>
+    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal kontaktpersonas ir personas, kurām izvēlējāties uzticēties kādā no šiem veidiem:</string>
     <!-- Signal connections sheet bullet point 1 -->
     <string name="SignalConnectionsBottomSheet__starting_a_conversation">Sākam sarunu</string>
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Ziņas pieprasījuma akceptēšanas</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Pievienošanas savā kontaktu sarakstā</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Pievienošanas savā sistēmā kā kontaktpersonu</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Jūsu kontakti var redzēt jūsu vārdu un attēlu, un var redzēt jaunumus \"Mani stāsti\" sadaļā, ja vien jūs to neesat paslēpis no viņiem."</string>
     <!-- Clickable option to add a viewer to a custom story -->
@@ -5967,7 +5977,7 @@
     <!-- Subtitle of initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Izvēlieties, kas var redzēt ierakstus sadaļā \"Mans stāsts\". Iestatījumus varat mainīt jebkurā brīdī.</string>
     <!-- All connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Visi Signal draugi</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Visas Signal kontaktpersonas</string>
     <!-- All connections except option for initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__all_except">Visi, izņemot…</string>
     <!-- Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
@@ -6305,11 +6315,20 @@
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__set_up_your_signal_username">Izveidojiet savu Signal lietotājvārdu</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__introducing_phone_number_privacy">Jaunumi: tālruņu numuru privātums, izvēles lietotāju vārdi un saites.</string>
+    <string name="SetUpYourUsername__introducing_phone_number_privacy">Jaunumi: tālruņu numuru privātums, izvēles lietotājvārdi un saites.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__dismiss">Nerādīt</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__learn_more">Uzzināt vairāk</string>
+
+    <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_title">Jauni saziņas veidi</string> -->
+    <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_body">Jaunumi: tālruņu numuru privātums, izvēles lietotāju vārdi un saites.</string> -->
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_dismiss">Nerādīt</string> -->
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_learn_more">Uzzināt vairāk</string> -->
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -6611,11 +6630,15 @@
     <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Jums nav piekļuves tīklam. Jūsu saite netika atiestatīta. Lūdzu, mēģiniet vēlāk.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">Mēģinot atiestatīt jūsu saiti, radās tīkla kļūda. Lūdzu, mēģiniet vēlāk.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string> -->
+    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">Your QR code and link have been reset and a new QR code and link has been created.</string> -->
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Noskenē šo QR kodu ar savu tālruni, lai sarunātos ar mani pakalpojumā Signal.</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
-    <string name="UsernameLinkShareBottomSheet_title">Ikviens, kuram ir pieejama šī saite, var skatīt jūsu lietotāja vārdu un uzsākt sarunu ar jums. Kopīgojiet šo saiti tikai ar uzticamiem cilvēkiem.</string>
+    <string name="UsernameLinkShareBottomSheet_title">Ikviens, kuram ir pieejama šī saite, var skatīt jūsu lietotājvārdu un uzsākt sarunu ar jums. Kopīgojiet šo saiti tikai ar uzticamiem cilvēkiem.</string>
     <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
     <string name="UsernameLinkShareBottomSheet_copy_link">Kopēt saiti</string>
     <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
@@ -6673,7 +6696,7 @@
 
     <!-- FindByActivity -->
     <!-- Title of activity when finding by username -->
-    <string name="FindByActivity__find_by_username">Atrast pēc lietotājvārds</string>
+    <string name="FindByActivity__find_by_username">Atrast pēc lietotājvārda</string>
     <!-- Title of activity when finding by phone number -->
     <string name="FindByActivity__find_by_phone_number">Meklēt pēc tālruņa numura</string>
     <!-- Title of screen to select a country code -->
@@ -6683,13 +6706,13 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">Tālruņa numurs</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_a_full_username">Ievadiet pilnu lietotāja vārdu un tā abus ciparus.</string>
+    <string name="FindByActivity__enter_a_full_username">Ievadiet pilnu lietotājvārdu un tā abus ciparus.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">Tālāk</string>
     <!-- Placeholder text for search input for selecting country code -->
     <string name="FindByActivity__search">Meklēt</string>
     <!-- Dialog title for invalid username -->
-    <string name="FindByActivity__invalid_username">Nederīgs lietotāja vārds</string>
+    <string name="FindByActivity__invalid_username">Nederīgs lietotājvārds</string>
     <!-- Dialog title for invalid phone number -->
     <string name="FindByActivity__invalid_phone_number">Nederīgs tālruņa numurs</string>
     <!-- Dialog title when phone number is not a registered signal user -->
@@ -6697,7 +6720,7 @@
     <!-- Dialog title when username is not found -->
     <string name="FindByActivity__username_not_found">Lietotājvārds netika atrasts</string>
     <!-- Dialog body for invalid username. Placeholder is the entered username. -->
-    <string name="FindByActivity__s_is_not_a_valid_username">%1$s nav derīgs lietotāja vārds. Jāievada pilns lietotāja vārds, tostarp tam piesaistītā ciparu kombinācija.</string>
+    <string name="FindByActivity__s_is_not_a_valid_username">%1$s nav derīgs lietotājvārds. Jāievada pilns lietotājvārds, tostarp tam piesaistītā ciparu kombinācija.</string>
     <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
     <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s nav derīgs tālruņa numurs. Mēģiniet vēlreiz, izmantojot derīgu tālruņa numuru.</string>
     <!-- Dialog body for not found username -->

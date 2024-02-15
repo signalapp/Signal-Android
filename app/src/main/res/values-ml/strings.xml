@@ -1063,7 +1063,9 @@
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">നിങ്ങളുടെ ഉപയോക്തൃനാമവും QR കോഡും ലിങ്കും നിങ്ങളുടെ പ്രൊഫൈലിൽ ദൃശ്യമല്ല. നിങ്ങൾക്ക് വിശ്വാസമുള്ള ആളുകളുമായി മാത്രം നിങ്ങളുടെ ഉപയോക്തൃനാമം പങ്കിടുക.</string>
-    <string name="ManageProfileFragment_profile_name">പ്രൊഫൈലിന്റെ പേര്</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">People can now message you using your optional username so you don\'t have to give out your phone number. </string> -->
+    <string name="ManageProfileFragment_profile_name">പ്രൊഫൈൽ നാമം</string>
     <string name="ManageProfileFragment_username">ഉപയോക്തൃനാമം</string>
     <string name="ManageProfileFragment_about">എന്നെ പറ്റി</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">അവതാർ സജ്ജമാക്കാന്‍ കഴിഞ്ഞില്ല</string>
@@ -1382,7 +1384,7 @@
 
     <!-- Profile change updates -->
     <string name="MessageRecord_changed_their_profile_name_to">%1$s അവരുടെ പ്രൊഫൈൽ നാമം %2$s എന്ന് മാറ്റി.</string>
-    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s അവരുടെ പ്രൊഫൈലിന്റെ പേര് %2$sയിൽ നിന്ന് %3$sലേക്ക് മാറ്റി.</string>
+    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s അവരുടെ പ്രൊഫൈൽ നാമം %2$sയിൽ നിന്ന് %3$sലേക്ക് മാറ്റി.</string>
     <string name="MessageRecord_changed_their_profile">%1$s അവരുടെ പ്രൊഫൈൽ മാറ്റി </string>
 
     <!-- GV2 specific -->
@@ -1962,6 +1964,10 @@
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">Signal കണക്ഷൻ</string>
+    <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">Verified</string> -->
+    <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string> -->
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s നിങ്ങളുടെ സിസ്റ്റം കോൺടാക്റ്റുകളിൽ ഉണ്ട്</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -2315,6 +2321,10 @@
     <string name="UsernameEditFragment__this_number_cant_start_with_00">ഈ സംഖ്യ 00-ൽ ആരംഭിക്കാൻ കഴിയില്ല. 1-നും 9-നും ഇടയിലുള്ള ഒരു അക്കം നൽകുക</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">നിങ്ങളുടെ ഉപയോക്തൃനാമം വീണ്ടെടുക്കുന്നതിലൂടെ നിങ്ങളുടെ നിലവിലുള്ള QR കോഡും ലിങ്കും പുനഃക്രമീകരിക്കും. ഉറപ്പാണോ?</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">Changing your username will reset your existing QR code and link. Are you sure?</string> -->
+    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">Continue</string> -->
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">Signal-ൽ‌ %1$d കോൺ‌ടാക്റ്റ് ഉണ്ട്!</item>
@@ -2519,7 +2529,7 @@
     <!-- Button label for not right now -->
     <string name="NewWaysToConnectDialogFragment__not_now">ഇപ്പോൾ വേണ്ട</string>
     <!-- Button label for continue -->
-    <string name="NewWaysToConnectDialogFragment__set_up_your_username">നിങ്ങളുടെ ഉപയോക്തൃനാമം സജ്ജീകരിക്കുക</string>
+    <string name="NewWaysToConnectDialogFragment__set_up_your_username">ഉപയോക്തൃനാമം സജ്ജീകരിക്കുക</string>
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">വീഡിയോ പ്ലേ ചെയ്യുക</string>
@@ -4140,7 +4150,7 @@
     <string name="ReviewCard__block">ബ്ലോക്ക് ചെയ്യുക</string>
     <string name="ReviewCard__delete">ഇല്ലാതാക്കൂ</string>
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
-    <string name="ReviewCard__s_recently_changed">%1$s, അടുത്തിടെ തന്റെ പ്രൊഫൈൽ പേര് %2$s എന്നതിൽ നിന്ന് %3$s എന്നാക്കി</string>
+    <string name="ReviewCard__s_recently_changed">%1$s, അടുത്തിടെ തന്റെ പ്രൊഫൈൽ നാമം %2$s എന്നതിൽ നിന്ന് %3$s എന്നാക്കി</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
     <string name="ReviewCard__s_is_in_your_system_contacts">%1$s നിങ്ങളുടെ സിസ്റ്റം കോൺടാക്റ്റുകളിൽ ഉണ്ട്</string>
 
@@ -5145,7 +5155,7 @@
     <!-- Title of create notification profile screen -->
     <string name="EditNotificationProfileFragment__name_your_profile">പ്രൊഫൈലിന് പേര് നൽകുക</string>
     <!-- Hint text for create/edit notification profile name -->
-    <string name="EditNotificationProfileFragment__profile_name">പ്രൊഫൈലിന്റെ പേര്</string>
+    <string name="EditNotificationProfileFragment__profile_name">പ്രൊഫൈൽ നാമം</string>
     <!-- Name has a max length, this shows how many characters are used out of the max -->
     <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
     <!-- Call to action button to continue to the next step -->
@@ -6173,6 +6183,15 @@
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__learn_more">കൂടുതലറിയുക</string>
 
+    <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_title">കണക്റ്റ് ചെയ്യാനുള്ള പുതിയ മാർഗങ്ങൾ</string> -->
+    <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_body">ഫോൺ നമ്പർ സ്വകാര്യത, ഓപ്ഷണൽ ഉപയോക്തൃനാമങ്ങൾ, ലിങ്കുകൾ എന്നിവ അവതരിപ്പിക്കുന്നു.</string> -->
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_dismiss">ഒഴിവാക്കുക</string> -->
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_learn_more">കൂടുതലറിയുക</string> -->
+
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
     <string name="TextFormatting_bold">ബോൾഡ്</string>
@@ -6470,6 +6489,10 @@
     <string name="UsernameLinkSettings_reset_link_result_network_unavailable">നിങ്ങൾക്ക് നെറ്റ്‌വർക്ക് ആക്‌സസ് ഇല്ല. നിങ്ങളുടെ ലിങ്ക് റീസെറ്റ് ചെയ്‌തില്ല. പിന്നീട് വീണ്ടും ശ്രമിക്കുക.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">നിങ്ങളുടെ ലിങ്ക് പുനഃക്രമീകരിക്കാൻ ശ്രമിക്കുമ്പോൾ നെറ്റ്‌വർക്ക് പിശകുണ്ടായി. പിന്നീട് വീണ്ടും ശ്രമിക്കുക.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string> -->
+    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">Your QR code and link have been reset and a new QR code and link has been created.</string> -->
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Signal-ൽ ഞാനുമായി ചാറ്റ് ചെയ്യാൻ ഈ QR കോഡ് സ്കാൻ ചെയ്യുക.</string>
 

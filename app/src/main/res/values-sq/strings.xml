@@ -1063,8 +1063,10 @@
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Emri i përdoruesit, kodi QR dhe lidhja nuk shfaqen në profil. Ndaje emrin e përdoruesit vetëm me njerëzit e besueshëm.</string>
-    <string name="ManageProfileFragment_profile_name">Emër profili</string>
-    <string name="ManageProfileFragment_username">Përdoruesi</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">People can now message you using your optional username so you don\'t have to give out your phone number. </string> -->
+    <string name="ManageProfileFragment_profile_name">Emri i profilit</string>
+    <string name="ManageProfileFragment_username">Emri i përdoruesit</string>
     <string name="ManageProfileFragment_about">Rreth</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">S\\’u arrit të caktohej avatar</string>
     <string name="ManageProfileFragment_badges">Distinktivët</string>
@@ -1961,7 +1963,11 @@
 
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
-    <string name="AboutSheet__signal_connection">Lidhja e Signal</string>
+    <string name="AboutSheet__signal_connection">Kontaktet e Signal</string>
+    <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">Verified</string> -->
+    <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string> -->
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s është në kontaktet e sistemit</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -2053,7 +2059,7 @@
     <string name="RegistrationActivity_unable_to_request_verification_code">Nuk mund të kërkohet një kod verifikimi. Të lutem, kontrollo lidhjen me rrjetin dhe riprovo.</string>
     <string name="RegistrationActivity_non_standard_number_format">Format jostandard numrash</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Numri që dhatë (%1$s) duket të jetë në një format jo standard.\n\nKishit ndërmend %2$s?</string>
-    <string name="RegistrationActivity_signal_android_phone_number_format">Signal për Android - Format Numrash Telefoni</string>
+    <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Formati i numrit të telefonit</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
     <string name="RegistrationActivity_call_requested">U kërkua thirrje</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
@@ -2285,7 +2291,7 @@
     <string name="UsernameEditFragment__add_a_username">Shto një emër përdoruesi</string>
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">Zgjidh emrin tënd të përdoruesit</string>
-    <string name="UsernameEditFragment_username">Emër përdoruesi</string>
+    <string name="UsernameEditFragment_username">Emri i përdoruesit</string>
     <string name="UsernameEditFragment_delete">Fshije</string>
     <string name="UsernameEditFragment_successfully_removed_username">Emri i përdoruesit u hoq me sukses.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">U has një gabim rrjeti.</string>
@@ -2295,10 +2301,10 @@
     <string name="UsernameEditFragment_username_is_invalid">Emri i përdoruesit është i pavlefshëm.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Emrat e përdoruesit duhet të jenë mes %1$d dhe %2$d shenjash.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Emrat e përdoruesve lejojnë që të tjerët të të dërgojnë mesazhe, pa pasur nevojë për numrin tënd të telefonit. Ata binjakëzohen me një bashkësi shifrash për ruajtur fshehtësinë e adresës tënde.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">Emrat e përdoruesve lejojnë që të tjerët të të dërgojnë mesazhe, pa pasur nevojë për numrin tënd të telefonit. Ata binjakëzohen me një bashkësi shifrash për të ruajtur fshehtësinë e adresës tënde.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">Çfarë është ky numër?</string>
-    <string name="UsernameEditFragment__these_digits_help_keep">Këto shifra ndihmojnë të ruash fshehtësinë e emrit tënd, që të shmangësh mesazhet e padëshiruara. Ndaj emrin e përdoruesit vetëm me personat dhe grupet me të cilat dëshiron të bisedosh. Nëse ndryshon emrin e përdoruesit, atëherë do të marrësh një bashkësi të re shifrash.</string>
+    <string name="UsernameEditFragment__these_digits_help_keep">Këto shifra ndihmojnë të ruash fshehtësinë e emrit tënd të përdoruesit, që të shmangësh mesazhet e padëshiruara. Ndaj emrin e përdoruesit vetëm me personat dhe grupet me të cilat dëshiron të bisedosh. Nëse ndryshon emrin e përdoruesit, atëherë do të marrësh një bashkësi të re shifrash.</string>
     <!-- Button to allow user to skip -->
     <string name="UsernameEditFragment__skip">Anashkaloje</string>
     <!-- Content description for done button -->
@@ -2315,6 +2321,10 @@
     <string name="UsernameEditFragment__this_number_cant_start_with_00">Numri nuk mund të fillojë me 00. Vendos një shifër nga 1-9</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">Rivendosja e emrit të përdoruesit do të rivendosë edhe kodin QR me lidhjen ekzistuese. Je i sigurt?</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">Changing your username will reset your existing QR code and link. Are you sure?</string> -->
+    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">Continue</string> -->
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d kontakt është në Signal!</item>
@@ -2519,7 +2529,7 @@
     <!-- Button label for not right now -->
     <string name="NewWaysToConnectDialogFragment__not_now">Jo tani</string>
     <!-- Button label for continue -->
-    <string name="NewWaysToConnectDialogFragment__set_up_your_username">Vendos emrin e përdoruesit</string>
+    <string name="NewWaysToConnectDialogFragment__set_up_your_username">Konfiguro emrin e përdoruesit</string>
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">Luaje videon</string>
@@ -2637,9 +2647,9 @@
         <item quantity="other">%1$d anëtarë</item>
     </plurals>
     <!-- Text on row item to find user by phone number -->
-    <string name="ContactSelectionListFragment__find_by_phone_number">Gjeni sipas numri telefoni</string>
+    <string name="ContactSelectionListFragment__find_by_phone_number">Gjeni sipas numrit të telefonit</string>
     <!-- Text on row item to find user by username -->
-    <string name="ContactSelectionListFragment__find_by_username">Gjeni sipas emri përdoruesi</string>
+    <string name="ContactSelectionListFragment__find_by_username">Gjeni sipas emrit të përdoruesit</string>
 
     <!-- contact_selection_list_fragment -->
     <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Që të mund t\\’i shfaqë, Signal-i lyp leje përdorimi të kontakteve.</string>
@@ -3125,7 +3135,7 @@
     <string name="preferences__mmsc_url">URL MMSC</string>
     <string name="preferences__mms_proxy_host">Strehë Ndërmjetësi MMS</string>
     <string name="preferences__mms_proxy_port">Portë Ndërmjetësi MMS</string>
-    <string name="preferences__mmsc_username">Emër përdoruesi MMSC</string>
+    <string name="preferences__mmsc_username">Emri i përdoruesit MMSC</string>
     <string name="preferences__mmsc_password">Fjalëkalim MMSC</string>
     <string name="preferences__sms_delivery_reports">Raporte dërgimi SMS-sh</string>
     <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Kërko raport dorëzimi për çdo mesazh SMS që dërgoni</string>
@@ -4391,7 +4401,7 @@
     <string name="AccountSettingsFragment__account">Llogari</string>
     <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Me kalimin e kohës, do të pyeteni më rrallë</string>
     <string name="AccountSettingsFragment__require_your_signal_pin">Kërko që PIN-i i Signal-it tuaj të riregjistrojë numrin e telefonit tuaj me Signal-in</string>
-    <string name="AccountSettingsFragment__change_phone_number">Ndryshoni numër telefoni</string>
+    <string name="AccountSettingsFragment__change_phone_number">Ndryshoni numrin e telefonit</string>
     <!-- Account setting that allows user to request and export their signal account data -->
     <string name="AccountSettingsFragment__request_account_data">Të dhënat e llogarisë tënde</string>
 
@@ -4447,9 +4457,9 @@
     <!-- ChangeNumberEnterPhoneNumberFragment -->
     <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Ndrysho Numrin</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Numri juaj i vjetër</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Numër telefoni i vjetër</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Numti i vjetër i telefonit</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Numri juaj i ri</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Numër telefoni i ri</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Numri i ri i telefonit</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Numri i telefonit që dhatë nuk përputhet me atë të llogarisë tuaj.</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Duhet të jepni kod vendi të numrit tuaj të vjetër</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Duhet të jepni numrin tuaj të vjetër të telefonit</string>
@@ -5145,7 +5155,7 @@
     <!-- Title of create notification profile screen -->
     <string name="EditNotificationProfileFragment__name_your_profile">Jepni emër për profilin tuaj</string>
     <!-- Hint text for create/edit notification profile name -->
-    <string name="EditNotificationProfileFragment__profile_name">Emër profili</string>
+    <string name="EditNotificationProfileFragment__profile_name">Emri i profilit</string>
     <!-- Name has a max length, this shows how many characters are used out of the max -->
     <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
     <!-- Call to action button to continue to the next step -->
@@ -5831,7 +5841,7 @@
     <!-- Subtitle of initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Zgjidh personat që mund t\'i shikojë postimet te \"Postimet e mia të përkohshme\". Ndryshimet mund të bëhen gjithmonë te parametrat.</string>
     <!-- All connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Të gjitha lidhjet e Signalit</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Të gjitha kontaktet e Signal</string>
     <!-- All connections except option for initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__all_except">Të gjithë përveç…</string>
     <!-- Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
@@ -6173,6 +6183,15 @@
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__learn_more">Mëso më shumë</string>
 
+    <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_title">Mënyra të reja për t\'u lidhur</string> -->
+    <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_body">Prezantimi i privatësisë së numrave të telefonit, emrave opsionalë të përdoruesve dhe lidhjeve.</string> -->
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_dismiss">Kaloje</string> -->
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_learn_more">Mëso më shumë</string> -->
+
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
     <string name="TextFormatting_bold">I theksuar</string>
@@ -6470,6 +6489,10 @@
     <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Nuk ke akses në rrjet. Lidhja jote nuk u rikthye. Provo sërish më vonë.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">Ndodhi një gabim në rrjet gjatë përpjekjes për të rivendosur lidhjen tënde. Provo sërish më vonë.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string> -->
+    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">Your QR code and link have been reset and a new QR code and link has been created.</string> -->
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Skano kodin QR nga telefoni për të biseduar me mua në Signal.</string>
 
@@ -6530,13 +6553,13 @@
 
     <!-- FindByActivity -->
     <!-- Title of activity when finding by username -->
-    <string name="FindByActivity__find_by_username">Gjeni sipas emri përdoruesi</string>
+    <string name="FindByActivity__find_by_username">Gjeni sipas emrit të përdoruesit</string>
     <!-- Title of activity when finding by phone number -->
-    <string name="FindByActivity__find_by_phone_number">Gjeni sipas numri telefoni</string>
+    <string name="FindByActivity__find_by_phone_number">Gjeni sipas numrit të telefonit</string>
     <!-- Title of screen to select a country code -->
     <string name="FindByActivity__select_country_code">Përzgjidhni Kod Vendi</string>
     <!-- Entry placeholder for find by username -->
-    <string name="FindByActivity__username">Emër përdoruesi</string>
+    <string name="FindByActivity__username">Emri i përdoruesit</string>
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">Numër telefoni</string>
     <!-- Help text under user entry for find by username -->
@@ -6546,9 +6569,9 @@
     <!-- Placeholder text for search input for selecting country code -->
     <string name="FindByActivity__search">Kërko</string>
     <!-- Dialog title for invalid username -->
-    <string name="FindByActivity__invalid_username">Emër i pavlefshëm përdoruesi</string>
+    <string name="FindByActivity__invalid_username">Emër i pavlefshëm i përdoruesit</string>
     <!-- Dialog title for invalid phone number -->
-    <string name="FindByActivity__invalid_phone_number">Numër Telefoni i Pavlefshëm</string>
+    <string name="FindByActivity__invalid_phone_number">Numri i telefonit i Pavlefshëm</string>
     <!-- Dialog title when phone number is not a registered signal user -->
     <string name="FindByActivity__invite_to_signal">Ftoje në Signal</string>
     <!-- Dialog title when username is not found -->

@@ -46,7 +46,7 @@
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">এটি স্থায়ীভাবে Signal এবং বার্তা নোটিফিকেশনগুলিকে আনলক করবে।</string>
     <string name="ApplicationPreferencesActivity_disable">নিষ্ক্রিয় করুন</string>
     <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signal বার্তা ও কল বন্ধ করবেন?</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Signal বার্তা ও কল সমূহ বন্ধ করতে সার্ভার থেকে নিবন্ধন বাতিল করুন। ভবিষ্যতে পুনরায় ব্যাবহার করতে হলে আপনাকে আপনার ফোন নাম্বার পুনঃ নিবন্ধন করতে হবে।</string>
+    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Signal মেসেজ ও কল সমূহ বন্ধ করতে সার্ভার থেকে নিবন্ধন বাতিল করুন। ভবিষ্যতে পুনরায় ব্যাবহার করতে হলে আপনাকে আপনার ফোন নম্বর পুনঃ নিবন্ধন করতে হবে।</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">সার্ভারের সাথে সংযোগ স্থাপনে ব্যর্থ!</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">রেজিস্ট্রেশন লকের জন্য পিনসমূহ আবশ্যক। পিনসমূহ নিষ্ক্রিয় করতে আগে রেজিস্ট্রেশন লক নিষ্ক্রিয় করুন।</string>
     <string name="ApplicationPreferencesActivity_pin_created">পিন তৈরি করা হয়েছে।</string>
@@ -1063,6 +1063,8 @@
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">আপনার ব্যবহারকারীর নাম, QR কোড এবং লিংক আপনার প্রোফাইলে দৃশ্যমান নয়। শুধুমাত্র আপনি আস্থা রাখতে পারেন এমন ব্যক্তিদের সাথে আপনার ব্যবহারকারীর নাম শেয়ার করুন।</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">People can now message you using your optional username so you don\'t have to give out your phone number. </string> -->
     <string name="ManageProfileFragment_profile_name">প্রোফাইল নাম</string>
     <string name="ManageProfileFragment_username">ব্যবহারকারীর নাম</string>
     <string name="ManageProfileFragment_about">সম্বন্ধে</string>
@@ -1080,9 +1082,9 @@
     <!-- Snackbar message after copying username -->
     <string name="ManageProfileFragment__username_copied">ব্যবহারকারীর নাম কপি করা হয়েছে</string>
     <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">ইউজারনেম মুছে ফেলা যায়নি। পরবর্তীতে আবার চেষ্টা করুন।</string>
+    <string name="ManageProfileFragment__couldnt_delete_username">ব্যবহারকারীর নাম মুছে ফেলা যায়নি। পরবর্তীতে আবার চেষ্টা করুন।</string>
     <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">ইউজারনেম মুছে ফেলা হয়েছে</string>
+    <string name="ManageProfileFragment__username_deleted">ব্যবহারকারীর নাম মুছে ফেলা হয়েছে</string>
     <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
     <string name="ManageProfileFragment__delete_username_dialog_title">ব্যবহারকারীর নাম মুছে ফেলবেন?</string>
     <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
@@ -1381,8 +1383,8 @@
     </plurals>
 
     <!-- Profile change updates -->
-    <string name="MessageRecord_changed_their_profile_name_to">%1$s তাদের প্রোফাইলের নাম পরিবর্তন করে %2$s করেছে।</string>
-    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s তাদের প্রোফাইলের নাম %2$s থেকে %3$s এ পরিবর্তন করেছেন।</string>
+    <string name="MessageRecord_changed_their_profile_name_to">%1$s তাদের প্রোফাইলের নাম পরিবর্তন করে %2$s করেছেন।</string>
+    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s তাদের প্রোফাইলের নাম %2$s থেকে %3$s-এ পরিবর্তন করেছেন।</string>
     <string name="MessageRecord_changed_their_profile">%1$s তাদের প্রোফাইল পরিবর্তন করেছে।</string>
 
     <!-- GV2 specific -->
@@ -1545,7 +1547,7 @@
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">আপনি %1$sএর নিরাপত্তা নাম্বার অযাচিত নির্বাচন করেছেন</string>
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">আপনি অন্য একটি ডিভাইস থেকে %1$s এর নিরাপত্তা নাম্বার অযাচিত নির্বাচন করেছেন</string>
     <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%1$s এর থেকে একটি বার্তা সরবরাহ করা যায়নি</string>
-    <string name="MessageRecord_s_changed_their_phone_number">%1$s তাদের ফোন নাম্বার পৰিবৰ্তন করেছেন।</string>
+    <string name="MessageRecord_s_changed_their_phone_number">%1$s তাদের ফোন নম্বর পরিবর্তন করেছেন।</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">এই নতুন ফিচারটি পছন্দ হয়েছে? একটি এককালীন ডোনেশন দিয়ে Signal-কে সাহায্য করুন।</string>
     <!-- Update item message shown when we merge two threads together. First placeholder is a name, second placeholder is a phone number. -->
@@ -1962,6 +1964,10 @@
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">Signal কানেকশন</string>
+    <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">Verified</string> -->
+    <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string> -->
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s আপনার সিস্টেমের কন্টাক্টে আছেন</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -2053,7 +2059,7 @@
     <string name="RegistrationActivity_unable_to_request_verification_code">যাচাইকরণ কোডের জন্য অনুরোধ করতে সক্ষম নয়। অনুগ্রহ করে আপনার নেটওয়ার্ক সংযোগ ঠিক আছে কি না দেখুন এবং আবার চেষ্টা করুন।</string>
     <string name="RegistrationActivity_non_standard_number_format">নন-স্ট্যান্ডার্ড নম্বর বিন্যাস</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">আপনি যে নম্বরটি প্রবেশ করেছেন (%1$s) সেটি একটি অ-মানক বিন্যাস বলে মনে হচ্ছে।\n\nআপনি কি %2$s বলতে চান?</string>
-    <string name="RegistrationActivity_signal_android_phone_number_format">সিগন্যাল অ্যান্ড্রয়েড - ফোন নম্বর ফর্ম্যাট</string>
+    <string name="RegistrationActivity_signal_android_phone_number_format">Signal অ্যান্ড্রয়েড - ফোন নম্বর ফর্ম্যাট</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
     <string name="RegistrationActivity_call_requested">কল অনুরোধ করা হয়েছে</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
@@ -2078,7 +2084,7 @@
     <string name="RegistrationActivity_enter_your_phone_number_to_get_started">শুরু করতে আপনার ফোন নম্বর লিখুন।</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">%1$s-তে পাঠানো কোড টি এন্টার করুন</string>
 
-    <string name="RegistrationActivity_phone_number_description">ফোন নাম্বার</string>
+    <string name="RegistrationActivity_phone_number_description">ফোন নম্বর</string>
     <string name="RegistrationActivity_country_code_description">দেশ কোড</string>
     <string name="RegistrationActivity_call">কল করুন</string>
     <string name="RegistrationActivity_verification_code">যাচাইকরণ কোড</string>
@@ -2298,7 +2304,7 @@
     <string name="UsernameEditFragment__usernames_let_others_message">ব্যবহারকারীর নাম ব্যবহার করলে আপনার ফোন নম্বর ছাড়াই অন্যরা আপনাকে মেসেজ দিতে পারবেন। আপনার ঠিকানা গোপন রাখতে সাহায্য করার জন্য এগুলো একগুচ্ছ সংখ্যার সাথে যুক্ত করা হয়।</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">এই নম্বরটি কী?</string>
-    <string name="UsernameEditFragment__these_digits_help_keep">এই সংখ্যাগুলো আপনার ব্যবহারকারীর নামটি গোপন রাখতে সাহায্য করে, যাতে আপনি অবাঞ্ছিত ম্যাসেজ এড়িয়ে যেতে পারেন৷ আপনি যে ব্যক্তি ও গ্রুপের সাথে চ্যাট করতে চান শুধুমাত্র তাদের সাথে আপনার ব্যবহারকারীর নামটি শেয়ার করুন। ব্যবহারকারীর নামটি পরিবর্তন করলে আপনি নতুন একগুচ্ছ সংখ্যা পাবেন।</string>
+    <string name="UsernameEditFragment__these_digits_help_keep">এই সংখ্যাগুলো আপনার ব্যবহারকারীর নামটি গোপন রাখতে সাহায্য করে, যাতে আপনি অবাঞ্ছিত মেসেজ এড়িয়ে যেতে পারেন৷ আপনি যে ব্যক্তি ও গ্রুপের সাথে চ্যাট করতে চান শুধুমাত্র তাদের সাথে আপনার ব্যবহারকারীর নামটি শেয়ার করুন। ব্যবহারকারীর নামটি পরিবর্তন করলে আপনি নতুন একগুচ্ছ সংখ্যা পাবেন।</string>
     <!-- Button to allow user to skip -->
     <string name="UsernameEditFragment__skip">বাদ দিয়ে যান</string>
     <!-- Content description for done button -->
@@ -2315,6 +2321,10 @@
     <string name="UsernameEditFragment__this_number_cant_start_with_00">এই সংখ্যাটি 00 দিয়ে শুরু হতে পারবে না। 1–9-এর মধ্যে একটি সংখ্যা লিখুন</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">আপনার ব্যবহারকারীর নাম পুনরুদ্ধার করা হলে আপনার বিদ্যমান QR কোড এবং লিংক রিসেট করা হবে। আপনি কি নিশ্চিত?</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">Changing your username will reset your existing QR code and link. Are you sure?</string> -->
+    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">Continue</string> -->
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d টি কন্ট্যাক্ট Signal ব্যবহার করছে!</item>
@@ -2511,7 +2521,7 @@
     <!-- Row item title for usernames explainer -->
     <string name="NewWaysToConnectDialogFragment__usernames">ব্যবহারকারীর নাম</string>
     <!-- Row item description for usernames explainer -->
-    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">লোকজন এখন আপনার ঐচ্ছিক ব্যবহারকারীর নাম ব্যবহার করে আপনাকে মেসেজ পাঠাতে পারবেন যাতে আপনাকে আপনার ফোন নম্বর দিতে না হয়। ব্যবহারকারীর নামগুলো আপনার প্রোফাইলে দৃশ্যমান নয়।</string>
+    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">লোকজন এখন আপনার ঐচ্ছিক ব্যবহারকারীর নাম ব্যবহার করে আপনাকে মেসেজ পাঠাতে পারবেন যাতে আপনাকে আপনার ফোন নম্বর দিতে না হয়। ব্যবহারকারীর নাম আপনার প্রোফাইলে দৃশ্যমান নয়।</string>
     <!-- Row item title for qr code and links explainer -->
     <string name="NewWaysToConnectDialogFragment__qr_codes_and_links">QR কোড ও লিংক</string>
     <!-- Row item description for qr code and links explainer -->
@@ -2519,7 +2529,7 @@
     <!-- Button label for not right now -->
     <string name="NewWaysToConnectDialogFragment__not_now">এখন না</string>
     <!-- Button label for continue -->
-    <string name="NewWaysToConnectDialogFragment__set_up_your_username">আপনার ব্যবহারকারীর নাম সেট আপ করুন</string>
+    <string name="NewWaysToConnectDialogFragment__set_up_your_username">ব্যবহারকারীর নাম সেট আপ করুন</string>
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">ভিডিও চালান</string>
@@ -2637,7 +2647,7 @@
         <item quantity="other">%1$d জন সদস্য</item>
     </plurals>
     <!-- Text on row item to find user by phone number -->
-    <string name="ContactSelectionListFragment__find_by_phone_number">ফোন নাম্বার দিয়ে খুঁজুন</string>
+    <string name="ContactSelectionListFragment__find_by_phone_number">ফোন নম্বর দিয়ে খুঁজুন</string>
     <!-- Text on row item to find user by username -->
     <string name="ContactSelectionListFragment__find_by_username">ব্যবহারকারীর নাম দিয়ে খুঁজুন</string>
 
@@ -4440,7 +4450,7 @@
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">আপনার বর্তমান ফোন নম্বরটি একটি নতুন ফোন নম্বরে পরিবর্তন করতে এটি ব্যবহার করুন। আপনি এই পরিবর্তনটি পূর্বাবস্থায় ফেরাতে পারবেন না।\n\nচালিয়ে যাওয়ার আগে, নিশ্চিত করুন যে আপনার নতুন নম্বরটি SMS বা কল পেতে পারে।</string>
     <string name="ChangeNumberFragment__continue">চালিয়ে যান</string>
     <!-- Message shown on dialog after your number has been changed successfully. -->
-    <string name="ChangeNumber__your_phone_number_has_changed_to_s">আপনার ফোন নাম্বার পরিবর্তন করে %1$s করা হয়েছে</string>
+    <string name="ChangeNumber__your_phone_number_has_changed_to_s">আপনার ফোন নম্বর পরিবর্তন করে %1$s করা হয়েছে</string>
     <!-- Confirmation button to dismiss number changed dialog -->
     <string name="ChangeNumber__okay">ঠিক আছে</string>
 
@@ -4463,7 +4473,7 @@
 
     <!-- ChangeNumberConfirmFragment -->
     <string name="ChangeNumberConfirmFragment__change_number">নম্বর পরিবর্তন করুন</string>
-    <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">আপনি আপনার ফোন নম্বর %1$s থেকে %2$s এ পরিবর্তন করতে চলেছেন৷\n\nএগিয়ে যাওয়ার আগে, দয়া করে যাচাই করুন যে নীচের নম্বরটি সঠিক।</string>
+    <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">আপনি আপনার ফোন নম্বর %1$s থেকে %2$s এ পরিবর্তন করতে চলেছেন।\n\nএগিয়ে যাওয়ার আগে, দয়া করে যাচাই করুন যে নিচের নম্বরটি সঠিক।</string>
     <string name="ChangeNumberConfirmFragment__edit_number">নম্বর সম্পাদনা</string>
 
     <!-- ChangeNumberRegistrationLockFragment -->
@@ -4705,7 +4715,7 @@
     <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
     <string name="ConversationSettingsFragment__conversation_muted_until_s">%1$s পর্যন্ত চ্যাট মিউট করা হয়েছে</string>
     <string name="ConversationSettingsFragment__conversation_muted_forever">চ্যাট সবসময়ের জন্য মিউট করা হয়েছে</string>
-    <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">ফোন নাম্বার ক্লিপবোর্ডে কপি করা হয়েছে।</string>
+    <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">ফোন নম্বর ক্লিপবোর্ডে কপি করা হয়েছে।</string>
     <string name="ConversationSettingsFragment__phone_number">ফোন নাম্বার</string>
     <string name="ConversationSettingsFragment__get_badges">Signal-কে সমর্থন করে আপনার প্রোফাইলের জন্য ব্যাজ অর্জন করুন। আরও জানতে একটি ব্যাজে ট্যাপ করুন।</string>
 
@@ -5503,7 +5513,7 @@
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">ম্যাসেজ অনুরোধ গ্রহণ</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">আপনার সিস্টেম কন্ট্যাক্টে তাদের রাখা</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">আপনার সিস্টেম কন্টাক্টে তাদের রাখা</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"আপনার কানেকশনরা আপনার নাম ও ছবি দেখতে পারবেন এবং \"আমার স্টোরি\"-এর পোস্টগুলো দেখতে পারবেন, যদি আপনি এটি তাদের কাছ থেকে লুকিয়ে না রাখেন।"</string>
     <!-- Clickable option to add a viewer to a custom story -->
@@ -6173,6 +6183,15 @@
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__learn_more">আরো জানুন</string>
 
+    <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_title">সংযোগ করার নতুন উপায়</string> -->
+    <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_body">ফোন নম্বরের গোপনীয়তা, ঐচ্ছিক ব্যবহারকারীর নাম ও লিংক চালু হচ্ছে।</string> -->
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_dismiss">বাতিল করুন</string> -->
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_learn_more">আরো জানুন</string> -->
+
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
     <string name="TextFormatting_bold">বোল্ড</string>
@@ -6433,7 +6452,7 @@
     <!-- Description text for QR code and links in the username link settings -->
     <string name="UsernameLinkSettings_qr_description">শুধু তাদের সাথেই আপনার কোড ও লিংক শেয়ার করুন যাদের উপর আপনি আস্থা রাখতে পারেন। শেয়ার করা হলে অন্যরা আপনার ব্যবহারকারীর নাম দেখতে পাবেন এবং আপনার সাথে চ্যাট শুরু করতে পারবেন।</string>
     <!-- Content of a toast that will show after the username is copied to the clipboard -->
-    <string name="UsernameLinkSettings_username_copied_toast">ইউজারনেম কপি করা হয়েছে</string>
+    <string name="UsernameLinkSettings_username_copied_toast">ব্যবহারকারীর নাম কপি করা হয়েছে</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">লিংক কপি করা হয়েছে</string>
     <!-- Content of a text field that is shown when the user has not yet set a username link -->
@@ -6470,6 +6489,10 @@
     <string name="UsernameLinkSettings_reset_link_result_network_unavailable">আপনার নেটওয়ার্ক অ্যাক্সেস নেই। আপনার লিংক রিসেট করা হয়নি। পরে আবার চেষ্টা করুন।</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">আপনার লিংক রিসেট চেষ্টা করার সময় নেটওয়ার্কে একটি ত্রুটি ঘটেছে। পরে আবার চেষ্টা করুন।</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string> -->
+    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">Your QR code and link have been reset and a new QR code and link has been created.</string> -->
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Signal-এ আমার সাথে চ্যাট করতে আপনার ফোন দিয়ে এই QR কোডটি স্ক্যান করুন।</string>
 
@@ -6532,7 +6555,7 @@
     <!-- Title of activity when finding by username -->
     <string name="FindByActivity__find_by_username">ব্যবহারকারীর নাম দিয়ে খুঁজুন</string>
     <!-- Title of activity when finding by phone number -->
-    <string name="FindByActivity__find_by_phone_number">ফোন নাম্বার দিয়ে খুঁজুন</string>
+    <string name="FindByActivity__find_by_phone_number">ফোন নম্বর দিয়ে খুঁজুন</string>
     <!-- Title of screen to select a country code -->
     <string name="FindByActivity__select_country_code">দেশ কোড নির্বাচন করুন</string>
     <!-- Entry placeholder for find by username -->
@@ -6546,7 +6569,7 @@
     <!-- Placeholder text for search input for selecting country code -->
     <string name="FindByActivity__search">খুঁজুন</string>
     <!-- Dialog title for invalid username -->
-    <string name="FindByActivity__invalid_username">ইউজারনেমটি অকার্যকর</string>
+    <string name="FindByActivity__invalid_username">ব্যবহারকারীর নামটি অকার্যকর</string>
     <!-- Dialog title for invalid phone number -->
     <string name="FindByActivity__invalid_phone_number">ভুল ফোন নম্বর</string>
     <!-- Dialog title when phone number is not a registered signal user -->

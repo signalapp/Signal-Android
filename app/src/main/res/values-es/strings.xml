@@ -1063,6 +1063,8 @@
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Tu alias, código QR y enlace no son visibles en tu perfil. Comparte tu alias solo con personas de confianza.</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">People can now message you using your optional username so you don\'t have to give out your phone number. </string> -->
     <string name="ManageProfileFragment_profile_name">Nombre de perfil</string>
     <string name="ManageProfileFragment_username">Alias</string>
     <string name="ManageProfileFragment_about">Biografía</string>
@@ -1381,8 +1383,8 @@
     </plurals>
 
     <!-- Profile change updates -->
-    <string name="MessageRecord_changed_their_profile_name_to">%1$s ha cambiado su nombre a %2$s.</string>
-    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s ha cambiado su nombre de %2$s a %3$s.</string>
+    <string name="MessageRecord_changed_their_profile_name_to">%1$s ha cambiado su nombre de perfil a %2$s.</string>
+    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s ha cambiado su nombre de perfil de %2$s a %3$s.</string>
     <string name="MessageRecord_changed_their_profile">%1$s ha cambiado su nombre.</string>
 
     <!-- GV2 specific -->
@@ -1962,6 +1964,10 @@
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">Conexión de Signal</string>
+    <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">Verified</string> -->
+    <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string> -->
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s está entre tus contactos del sistema</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -2298,7 +2304,7 @@
     <string name="UsernameEditFragment__usernames_let_others_message">Los alias les permiten a otras personas mandarte un mensaje sin necesidad de tu número de teléfono. Funcionan conjuntamente con una serie de dígitos para ayudarte a mantener tu dirección en privado.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">¿Qué es este número?</string>
-    <string name="UsernameEditFragment__these_digits_help_keep">Estos dígitos te ayudarán a mantener tu nombre de usuario en privado para así evitar que recibas mensajes no deseados. Comparte tu nombre de usuario solo con aquellas personas y grupos con los que quieras charlar. Si cambias tu nombre de usuario, recibirás una nueva serie de dígitos.</string>
+    <string name="UsernameEditFragment__these_digits_help_keep">Estos dígitos te ayudarán a mantener tu alias en privado para así evitar que recibas mensajes no deseados. Comparte tu alias solo con aquellas personas y grupos con los que quieras charlar. Si cambias tu alias, recibirás una nueva serie de dígitos.</string>
     <!-- Button to allow user to skip -->
     <string name="UsernameEditFragment__skip">Omitir</string>
     <!-- Content description for done button -->
@@ -2315,6 +2321,10 @@
     <string name="UsernameEditFragment__this_number_cant_start_with_00">Este número no puede empezar con 00. Introduce un dígito del 1 al 9</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">Recuperar tu alias restablecerá tu código QR y tu enlace. ¿Seguro que quieres hacer esto? ¿Seguro que quieres hacer esto?</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">Changing your username will reset your existing QR code and link. Are you sure?</string> -->
+    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">Continue</string> -->
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">¡%1$d contacto usa Signal!</item>
@@ -2519,7 +2529,7 @@
     <!-- Button label for not right now -->
     <string name="NewWaysToConnectDialogFragment__not_now">Ahora no</string>
     <!-- Button label for continue -->
-    <string name="NewWaysToConnectDialogFragment__set_up_your_username">Configurar tu alias</string>
+    <string name="NewWaysToConnectDialogFragment__set_up_your_username">Configurar alias</string>
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">Reproducir vídeo</string>
@@ -5466,7 +5476,7 @@
     <string name="MyStorySettingsFragment__who_can_view_this_story">Quién puede ver esta historia</string>
     <!-- Clickable option for selecting people to hide your story from -->
     <!-- Privacy setting title for sending stories to all your signal connections -->
-    <string name="MyStorySettingsFragment__all_signal_connections">Todos los contactos de Signal</string>
+    <string name="MyStorySettingsFragment__all_signal_connections">Todas las conexiones de Signal</string>
     <!-- Privacy setting description for sending stories to all your signal connections -->
     <!-- Privacy setting title for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__all_except">Todos excepto…</string>
@@ -5495,9 +5505,9 @@
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Permite a personas que pueden ver tu historia responder y reaccionar</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
-    <string name="SignalConnectionsBottomSheet___signal_connections">Contactos de Signal</string>
+    <string name="SignalConnectionsBottomSheet___signal_connections">Conexiones de Signal</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
-    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Los contactos de Signal son personas en las que has indicado que confías, ya sea a través de:</string>
+    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Las Conexiones de Signal son personas en las que has indicado que confías, ya sea a través de:</string>
     <!-- Signal connections sheet bullet point 1 -->
     <string name="SignalConnectionsBottomSheet__starting_a_conversation">Iniciar un chat</string>
     <!-- Signal connections sheet bullet point 2 -->
@@ -5831,7 +5841,7 @@
     <!-- Subtitle of initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Elige quién puede ver lo que subes a tu historia. Siempre puedes hacer cambios en tus ajustes.</string>
     <!-- All connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Todos los contactos de Signal</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Todas las conexiones de Signal</string>
     <!-- All connections except option for initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__all_except">Todos excepto…</string>
     <!-- Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
@@ -6173,6 +6183,15 @@
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__learn_more">Saber más</string>
 
+    <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_title">Nuevas formas de conectarte</string> -->
+    <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_body">Presentamos la privacidad del número de teléfono, los alias opcionales y los enlaces.</string> -->
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_dismiss">Ignorar</string> -->
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_learn_more">Saber más</string> -->
+
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
     <string name="TextFormatting_bold">Negrita</string>
@@ -6191,7 +6210,7 @@
     <!-- Option to open username editor displayed as a list item in a dialog -->
     <string name="UsernameEditDialog__edit_username">Editar alias</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">Eliminar alias (nombre de usuarix)</string>
+    <string name="UsernameEditDialog__delete_username">Eliminar alias</string>
 
     <!-- Time duration picker -->
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
@@ -6433,7 +6452,7 @@
     <!-- Description text for QR code and links in the username link settings -->
     <string name="UsernameLinkSettings_qr_description">Comparte tu código QR y enlace solo con personas en las que confíes. Cuando lo compartas, otras personas podrán ver tu alias e iniciar un chat contigo.</string>
     <!-- Content of a toast that will show after the username is copied to the clipboard -->
-    <string name="UsernameLinkSettings_username_copied_toast">Se ha copiado el nombre de usuario</string>
+    <string name="UsernameLinkSettings_username_copied_toast">Se ha copiado el alias</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">Enlace copiado</string>
     <!-- Content of a text field that is shown when the user has not yet set a username link -->
@@ -6470,6 +6489,10 @@
     <string name="UsernameLinkSettings_reset_link_result_network_unavailable">No tienes acceso a la red. No se ha reiniciado tu enlace. Inténtalo de nuevo más tarde.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">Se ha producido un fallo al tratar de reiniciar tu enlace. Inténtalo de nuevo más tarde.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string> -->
+    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">Your QR code and link have been reset and a new QR code and link has been created.</string> -->
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Escanea este código QR con tu teléfono para chatear conmigo en Signal.</string>
 
@@ -6536,7 +6559,7 @@
     <!-- Title of screen to select a country code -->
     <string name="FindByActivity__select_country_code">Seleccionar código de país</string>
     <!-- Entry placeholder for find by username -->
-    <string name="FindByActivity__username">Alias (nombre de usuari@)</string>
+    <string name="FindByActivity__username">Alias</string>
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">Número de teléfono</string>
     <!-- Help text under user entry for find by username -->

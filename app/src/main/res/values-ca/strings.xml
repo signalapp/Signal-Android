@@ -1062,9 +1062,11 @@
 
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
-    <string name="ManageProfileFragment__your_username">El teu nom d\'usuari, codi QR i enllaç no són visibles al teu perfil. Comparteix el teu àlies només amb persones de confiança.</string>
+    <string name="ManageProfileFragment__your_username">El teu àlies, codi QR i enllaç no són visibles al teu perfil. Comparteix el teu àlies només amb persones de confiança.</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">People can now message you using your optional username so you don\'t have to give out your phone number. </string> -->
     <string name="ManageProfileFragment_profile_name">Nom del perfil</string>
-    <string name="ManageProfileFragment_username">Nom d\'usuari</string>
+    <string name="ManageProfileFragment_username">Àlies</string>
     <string name="ManageProfileFragment_about">Quant a</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">Ha fallat establir l\'avatar.</string>
     <string name="ManageProfileFragment_badges">Insígnies</string>
@@ -1076,23 +1078,23 @@
     <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
     <string name="ManageProfileFragment__link_tooltip_body">Deixa que altres persones comencin un xat amb tu compartint el teu codi QR o enllaç únic.</string>
     <!-- Snackbar message after creating username -->
-    <string name="ManageProfileFragment__username_created">S\'ha creat el nom d\'usuari</string>
+    <string name="ManageProfileFragment__username_created">S\'ha creat l\'àlies</string>
     <!-- Snackbar message after copying username -->
-    <string name="ManageProfileFragment__username_copied">S\'ha copiat el nom d\'usuari</string>
+    <string name="ManageProfileFragment__username_copied">S\'ha copiat l\'àlies</string>
     <!-- Snackbar message after network failure while trying to delete username -->
     <string name="ManageProfileFragment__couldnt_delete_username">No s\'ha pogut eliminar l\'àlies. Torna-ho a provar més tard.</string>
     <!-- Snackbar message after successful deletion of username -->
     <string name="ManageProfileFragment__username_deleted">Àlies eliminat</string>
     <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_title">Eliminar nom d\'usuari?</string>
+    <string name="ManageProfileFragment__delete_username_dialog_title">Eliminar àlies?</string>
     <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_body">"Això eliminarà el teu nom d\'usuari i desactivarà el teu codi QR i enllaç. %1$s estarà disponible perquè altres puguin utilitzar-lo. Segur que vols fer això?"</string>
+    <string name="ManageProfileFragment__delete_username_dialog_body">"Això eliminarà el teu àlies i desactivarà el teu codi QR i enllaç. %1$s estarà disponible perquè altres puguin utilitzar-lo. Segur que vols fer això?"</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
     <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">S\'ha produït un error amb el teu àlies, ja no està assignat al teu compte. Pots provar de configurar-lo de nou o triar-ne un de diferent.</string>
     <!-- Displayed above the conversation list when a user needs to address an issue with their username link -->
-    <string name="UsernameOutOfSyncReminder__link_corrupt">S\'ha produït un error amb el codi QR i enllaç del teu nom d\'usuari, ja no és vàlid. Crea un nou enllaç per compartir. Crea un nou enllaç per compartir.</string>
+    <string name="UsernameOutOfSyncReminder__link_corrupt">S\'ha produït un error amb el codi QR i enllaç del teu àlies, ja no és vàlid. Crea un nou enllaç per compartir. Crea un nou enllaç per compartir.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
     <string name="UsernameOutOfSyncReminder__fix_now">Reparar-ho ara</string>
 
@@ -1962,6 +1964,10 @@
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">Connexió de Signal</string>
+    <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">Verified</string> -->
+    <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string> -->
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s és als contactes del teu sistema</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -2282,39 +2288,43 @@
     <!-- Placeholder text for custom discriminator -->
     <string name="UsernameEditFragment__00">00</string>
     <!-- Toolbar title when entering from registration -->
-    <string name="UsernameEditFragment__add_a_username">Afegeix un nom d\'usuari</string>
+    <string name="UsernameEditFragment__add_a_username">Afegeix un àlies</string>
     <!-- Instructional text at the top of the username edit screen -->
-    <string name="UsernameEditFragment__choose_your_username">Tria un nom d\'usuari</string>
-    <string name="UsernameEditFragment_username">Nom d\'usuari</string>
+    <string name="UsernameEditFragment__choose_your_username">Tria un àlies</string>
+    <string name="UsernameEditFragment_username">Àlies</string>
     <string name="UsernameEditFragment_delete">Suprimeix</string>
-    <string name="UsernameEditFragment_successfully_removed_username">El nom d\'usuari s\'ha suprimit correctament.</string>
+    <string name="UsernameEditFragment_successfully_removed_username">L\'àlies s\'ha eliminat correctament.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Hi ha hagut un error de xarxa.</string>
-    <string name="UsernameEditFragment_this_username_is_taken">Aquest nom d\'usuari ja està agafat.</string>
-    <string name="UsernameEditFragment_usernames_can_only_include">Els noms d\'usuari solo poden incloure a-z, 0-9 i _.</string>
-    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Els noms d\'usuari no poden començar amb un número.</string>
-    <string name="UsernameEditFragment_username_is_invalid">El nom d\'usuari no és vàlid.</string>
-    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Els noms d\'usuari han de tenir entre %1$d i %2$d caràcters.</string>
+    <string name="UsernameEditFragment_this_username_is_taken">Aquest àlies ja està agafat.</string>
+    <string name="UsernameEditFragment_usernames_can_only_include">Els àlies només poden incloure a-z, 0-9 i _.</string>
+    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Els àlies no poden començar amb un número.</string>
+    <string name="UsernameEditFragment_username_is_invalid">L\'àlies no és vàlid.</string>
+    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Els àlies han de tenir entre %1$d i %2$d caràcters.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Els noms d\'usuari permeten a altres persones enviar-te un missatge sense necessitat del teu número de telèfon. Funcionen conjuntament amb una sèrie de dígits per ajudar-te a mantenir privada la teva adreça.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">Els àlies permeten a altres persones enviar-te un missatge sense necessitat del teu número de telèfon. Funcionen conjuntament amb una sèrie de dígits per ajudar-te a mantenir privada la teva adreça.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">Què és aquest número?</string>
-    <string name="UsernameEditFragment__these_digits_help_keep">Aquests dígits ajudaran a mantenir el teu nom d\'usuari en privat per tal d\'evitar rebre missatges no desitjats. Comparteix el teu nom d\'usuari només amb aquelles persones i grups amb les que desitges parlar. Si canvies el teu nom d\'usuari, rebràs una nova sèrie de dígits.</string>
+    <string name="UsernameEditFragment__these_digits_help_keep">Aquests dígits ajudaran a mantenir el teu àlies en privat per tal d\'evitar rebre missatges no desitjats. Comparteix el teu àlies només amb aquelles persones i grups amb les que desitges parlar. Si canvies el teu àlies, rebràs una nova sèrie de dígits.</string>
     <!-- Button to allow user to skip -->
     <string name="UsernameEditFragment__skip">Omet</string>
     <!-- Content description for done button -->
     <string name="UsernameEditFragment__done">Fet</string>
     <!-- Displayed when the chosen discriminator is not available for the given nickname -->
-    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">Aquest nom d\'usuari no està disponible, prova un altre número.</string>
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">Aquest àlies no està disponible, prova un altre número.</string>
     <!-- Displayed when the chosen discriminator is too short -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Nom d\'usuari no vàlid, introdueix %1$d dígits com a mínim.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Àlies no vàlid, introdueix %1$d dígits com a mínim.</string>
     <!-- Displayed when the chosen discriminator is too long -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Nom d\'usuari no vàlid, introdueix %1$d dígits com a màxim.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Àlies no vàlid, introdueix %1$d dígits com a màxim.</string>
     <!-- Displayed when the chosen discriminator is 00 -->
     <string name="UsernameEditFragment__this_number_cant_be_00">El número no pot ser 00. Introdueix un dígit entre 1 i 9</string>
     <!-- Displayed when the chosen discriminator starts with 00 -->
     <string name="UsernameEditFragment__this_number_cant_start_with_00">El número no pot començar amb 00. Introdueix un dígit entre 1 i 9</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
-    <string name="UsernameEditFragment_recovery_dialog_confirmation">Recuperar el teu àlies restablirà el teu codi QR i enllaç actuals. ¿Segur que vols continuar?</string>
+    <string name="UsernameEditFragment_recovery_dialog_confirmation">Recuperar el teu àlies restablirà el teu codi QR i enllaç actuals. Segur que vols fer això?</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">Changing your username will reset your existing QR code and link. Are you sure?</string> -->
+    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">Continue</string> -->
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d contacte és al Signal!</item>
@@ -2323,7 +2333,7 @@
 
     <!-- UsernameShareBottomSheet -->
     <!-- Explanation of what the sheet enables the user to do -->
-    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Copiar o compartir un enllaç de nom d\'usuari</string>
+    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Copiar o compartir un enllaç d\'àlies</string>
 
     <!-- VerifyIdentityActivity -->
     <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">El vostre contacte està fent servir una versió nova del Signal amb un format del codi QR no compatible. Actualitzeu-la per comparar-lo.</string>
@@ -2519,7 +2529,7 @@
     <!-- Button label for not right now -->
     <string name="NewWaysToConnectDialogFragment__not_now">Ara no</string>
     <!-- Button label for continue -->
-    <string name="NewWaysToConnectDialogFragment__set_up_your_username">Configura el teu àlies</string>
+    <string name="NewWaysToConnectDialogFragment__set_up_your_username">Configurar l\'àlies</string>
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">Reprodueix el vídeo</string>
@@ -2625,8 +2635,8 @@
     <!-- ContactSelectionListFragment-->
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">El Signal necessita el permís de l\'aplicació dels contactes per tal de mostrar-ne els vostres, però s\'ha denegat permanentment. Si us plau, continueu cap al menú de configuració de l\'aplicació, seleccioneu Permisos i activeu-hi els contactes.</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Error en recuperar els contactes. Comproveu la connexió de xarxa.</string>
-    <string name="ContactSelectionListFragment_username_not_found">No s\'ha trobat el nom d\'usuari.</string>
-    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s no és un usuari del Signal. Si us plau, comproveu-ne el nom i torneu-ho a provar."</string>
+    <string name="ContactSelectionListFragment_username_not_found">No s\'ha trobat l\'àlies.</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s no és un usuari del Signal. Si us plau, comproveu-ne l\'àlies i torneu-ho a provar."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">No cal que us afegiu al grup.</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">S\'ha assolit la mida màxima del grup.</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Els grups del Signal poden tenir un màxim de %1$d membres.</string>
@@ -2639,7 +2649,7 @@
     <!-- Text on row item to find user by phone number -->
     <string name="ContactSelectionListFragment__find_by_phone_number">Cerca per número de telèfon</string>
     <!-- Text on row item to find user by username -->
-    <string name="ContactSelectionListFragment__find_by_username">Cerca per nom d\'usuari</string>
+    <string name="ContactSelectionListFragment__find_by_username">Cerca per àlies</string>
 
     <!-- contact_selection_list_fragment -->
     <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">El Signal necessita accés als contactes per tal de mostrar-los.</string>
@@ -3125,7 +3135,7 @@
     <string name="preferences__mmsc_url">URL d\'MMSC</string>
     <string name="preferences__mms_proxy_host">Amfitrió intermedi d\'MMS</string>
     <string name="preferences__mms_proxy_port">Port Proxy d\'MMS</string>
-    <string name="preferences__mmsc_username">Nom d\'usuari d\'MMSC</string>
+    <string name="preferences__mmsc_username">Àlies d\'MMSC</string>
     <string name="preferences__mmsc_password">Contrasenya de MMSC</string>
     <string name="preferences__sms_delivery_reports">Informes de lliurament d\'SMS</string>
     <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Demana un informe de lliurament per cada missatge SMS que envieu.</string>
@@ -5466,7 +5476,7 @@
     <string name="MyStorySettingsFragment__who_can_view_this_story">Qui pot veure aquesta història</string>
     <!-- Clickable option for selecting people to hide your story from -->
     <!-- Privacy setting title for sending stories to all your signal connections -->
-    <string name="MyStorySettingsFragment__all_signal_connections">Tots els contactes de Signal</string>
+    <string name="MyStorySettingsFragment__all_signal_connections">Totes les connexions de Signal</string>
     <!-- Privacy setting description for sending stories to all your signal connections -->
     <!-- Privacy setting title for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__all_except">Tothom excepte…</string>
@@ -5495,9 +5505,9 @@
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Permet que les persones que poden veure la història hi reaccionin i hi responguin.</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
-    <string name="SignalConnectionsBottomSheet___signal_connections">Contactes de Signal</string>
+    <string name="SignalConnectionsBottomSheet___signal_connections">Connexions de Signal</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
-    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Els contactes de Signal són aquelles persones en les quals has indicat que confies, ja sigui:</string>
+    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Les Connexions de Signal són aquelles persones en les quals has indicat que confies, ja sigui:</string>
     <!-- Signal connections sheet bullet point 1 -->
     <string name="SignalConnectionsBottomSheet__starting_a_conversation">Començar xat</string>
     <!-- Signal connections sheet bullet point 2 -->
@@ -6167,11 +6177,20 @@
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__set_up_your_signal_username">Configura el teu àlies de Signal</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__introducing_phone_number_privacy">Presentem la privacitat del número de telèfon, els noms d\'usuari opcionals i els enllaços.</string>
+    <string name="SetUpYourUsername__introducing_phone_number_privacy">Presentem la privacitat del número de telèfon, els àlies opcionals i els enllaços.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__dismiss">Descarta</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__learn_more">Més informació</string>
+
+    <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_title">Noves maneres de connectar-te</string> -->
+    <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_body">Presentem la privacitat del número de telèfon, els noms d\'usuari opcionals i els enllaços.</string> -->
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_dismiss">Descarta</string> -->
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_learn_more">Més informació</string> -->
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -6431,9 +6450,9 @@
     <!-- Button label for the color selector button in the username link settings -->
     <string name="UsernameLinkSettings_color_button_label">Color</string>
     <!-- Description text for QR code and links in the username link settings -->
-    <string name="UsernameLinkSettings_qr_description">Comparteix el teu codi QR i enllaç només amb persones de confiança. Quan ho comparteixis, els altres podran veure el teu nom d\'usuari i iniciar un xat amb tu.</string>
+    <string name="UsernameLinkSettings_qr_description">Comparteix el teu codi QR i enllaç només amb persones de confiança. Quan ho comparteixis, els altres podran veure el teu àlies i iniciar un xat amb tu.</string>
     <!-- Content of a toast that will show after the username is copied to the clipboard -->
-    <string name="UsernameLinkSettings_username_copied_toast">S\'ha copiat el nom d\'usuari</string>
+    <string name="UsernameLinkSettings_username_copied_toast">S\'ha copiat l\'àlies</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">Enllaç copiat</string>
     <!-- Content of a text field that is shown when the user has not yet set a username link -->
@@ -6470,6 +6489,10 @@
     <string name="UsernameLinkSettings_reset_link_result_network_unavailable">No tens accés a la xarxa. El teu enllaç no s\'ha restablert. Torna-ho a provar més tard.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">S\'ha produït un error de xarxa en intentar restablir l\'enllaç. Torna-ho a provar més tard.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string> -->
+    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">Your QR code and link have been reset and a new QR code and link has been created.</string> -->
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Escaneja aquest codi QR amb el teu telèfon per xatejar amb mi a Signal.</string>
 
@@ -6530,13 +6553,13 @@
 
     <!-- FindByActivity -->
     <!-- Title of activity when finding by username -->
-    <string name="FindByActivity__find_by_username">Cerca per nom d\'usuari</string>
+    <string name="FindByActivity__find_by_username">Cerca per àlies</string>
     <!-- Title of activity when finding by phone number -->
     <string name="FindByActivity__find_by_phone_number">Cerca per número de telèfon</string>
     <!-- Title of screen to select a country code -->
     <string name="FindByActivity__select_country_code">Trieu un codi internacional</string>
     <!-- Entry placeholder for find by username -->
-    <string name="FindByActivity__username">Nom d\'usuari</string>
+    <string name="FindByActivity__username">Àlies</string>
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">Número de telèfon</string>
     <!-- Help text under user entry for find by username -->
@@ -6552,13 +6575,13 @@
     <!-- Dialog title when phone number is not a registered signal user -->
     <string name="FindByActivity__invite_to_signal">Convida al Signal</string>
     <!-- Dialog title when username is not found -->
-    <string name="FindByActivity__username_not_found">No s\'ha trobat el nom d\'usuari.</string>
+    <string name="FindByActivity__username_not_found">No s\'ha trobat l\'àlies.</string>
     <!-- Dialog body for invalid username. Placeholder is the entered username. -->
     <string name="FindByActivity__s_is_not_a_valid_username">%1$s no és un àlies vàlid. Assegurat que has escrit l\'àlies complet seguit pel seu conjunt de dígits.</string>
     <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
     <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s no és un número de telèfon vàlid. Torna-ho a provar amb un número de telèfon vàlid</string>
     <!-- Dialog body for not found username -->
-    <string name="FindByActivity__s_is_not_a_signal_user">%1$s no és un usuari del Signal. Si us plau, comproveu-ne el nom i torneu-ho a provar.</string>
+    <string name="FindByActivity__s_is_not_a_signal_user">%1$s no és un usuari del Signal. Si us plau, comproveu-ne l\'àlies i torneu-ho a provar.</string>
     <!-- Dialog body for not found phone number -->
     <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s no fa servir Signal. Vols convidar aquest número?</string>
     <!-- Dialog action to invite the phone number to Signal -->

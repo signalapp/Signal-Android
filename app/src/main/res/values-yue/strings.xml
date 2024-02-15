@@ -654,7 +654,7 @@
     <!-- Toolbar title for this screen -->
     <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">邊個可以用電話號碼搵到我？</string>
     <!-- Description for radio item stating anyone can see your phone number -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">任何有你電話號碼嘅人都會睇到你用緊 Signal，同埋可以開始聊天。</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">任何有你電話冧把嘅人都會睇到你用緊 Signal，同埋可以開始聊天。</string>
     <!-- Description for radio item stating no one will be able to see your phone number -->
     <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">除非你向對方傳送訊息或者雙方已經有聊天紀錄，如果唔係冇人會睇到你用緊 Signal。</string>
 
@@ -1028,7 +1028,9 @@
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">你嘅用戶名稱、二維碼同連結唔會喺個人檔案度顯示。記得淨係好同你信任嘅人分享你嘅用戶名稱呀。</string>
-    <string name="ManageProfileFragment_profile_name">個人資料名稱</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">People can now message you using your optional username so you don\'t have to give out your phone number. </string> -->
+    <string name="ManageProfileFragment_profile_name">個人檔名</string>
     <string name="ManageProfileFragment_username">用戶名稱</string>
     <string name="ManageProfileFragment_about">關於</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">頭像設定唔到</string>
@@ -1334,8 +1336,8 @@
     </plurals>
 
     <!-- Profile change updates -->
-    <string name="MessageRecord_changed_their_profile_name_to">%1$s 將佢個人資料嘅名轉咗做 %2$s。</string>
-    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s 將佢先前個人資料嘅名 %2$s 轉咗做 %3$s。</string>
+    <string name="MessageRecord_changed_their_profile_name_to">%1$s 將佢個人檔名轉咗做 %2$s。</string>
+    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s 將佢先前個人檔名 %2$s 轉咗做 %3$s。</string>
     <string name="MessageRecord_changed_their_profile">%1$s 轉咗佢嘅個人資料。</string>
 
     <!-- GV2 specific -->
@@ -1793,7 +1795,7 @@
     <!-- Utilized in the lobby before joining a call link -->
     <string name="WebRtcCallView__signal_call_link">Signal 通話連結</string>
     <!-- Warning displayed when entering a call via a link -->
-    <string name="WebRtcCallView__anyone_who_joins">透過連結加入呢個通話嘅人都會睇到你個名、相同電話號碼。</string>
+    <string name="WebRtcCallView__anyone_who_joins">透過連結加入呢個通話嘅人都會睇到你個名、相同電話冧把。</string>
     <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
     <string name="WebRtcCallView__waiting_to_be_let_in">等緊入去…</string>
 
@@ -1888,6 +1890,10 @@
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">Signal 人脈</string>
+    <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">Verified</string> -->
+    <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string> -->
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s 係你嘅聯絡人</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -1949,7 +1955,7 @@
     </string>
 
     <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">以下嘅手機號碼係咪正確？</string>
+    <string name="RegistrationActivity_phone_number_verification_dialog_title">以下嘅電話冧把係咪正確？</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
     <string name="RegistrationActivity_additional_verification_required">需要額外驗證</string>
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
@@ -1993,9 +1999,9 @@
     <string name="RegistrationActivity_continue">繼續</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">讓私隱與您同在。\n每封訊息都做返自己、講人話。</string>
     <!-- Title of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_phone_number">手機號碼</string>
+    <string name="RegistrationActivity_phone_number">電話冧把</string>
     <!-- Subtitle of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">請輸入你嘅手機號碼嚟開始使用。</string>
+    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">請輸入你嘅電話冧把嚟開始使用。</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">請輸入剛才發送到 %1$s 嘅代碼</string>
 
     <string name="RegistrationActivity_phone_number_description">電話冧把</string>
@@ -2006,7 +2012,7 @@
     <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_title">註冊時出現問題﹖</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• 確認你嘅手機有流動網絡訊號嚟接收 SMS 或來電⏎ • 確認你嘅手機號碼可以接收來電⏎ • 檢查你輸入嘅手機號碼係咪正確。</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• 確認你嘅手機有流動網絡訊號嚟接收 SMS 或來電⏎ • 確認你嘅電話冧把可以接收來電⏎ • 檢查你輸入嘅電話冧把係咪正確。</string>
     <!--    A call to action for a user having trouble entering the verification to seek further help. -->
     <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">如果需要更多資訊，請你跟住呢啲疑難排解步驟去做，又或者聯絡支援</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
@@ -2215,7 +2221,7 @@
     <string name="UsernameEditFragment_username_is_invalid">用戶名稱無效。</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">用戶名稱一定要係 %1$d 至 %2$d 個字元之間。</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">用戶名稱可以俾其他人唔使用你個電話號碼搜尋，都可以傳送訊息俾你。系統會將用戶名稱同一組數字配對，咁就可以幫你嘅地址保密。</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">用戶名稱可以俾其他人唔使用你個電話冧把搜尋，都可以傳送訊息俾你。系統會將用戶名稱同一組數字配對，咁就可以幫你嘅地址保密。</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">呢個號碼係咩嚟？</string>
     <string name="UsernameEditFragment__these_digits_help_keep">呢組數字可以將你嘅用戶名稱保密，以免你受到無謂嘅訊息滋擾。請你淨係同你想同佢通訊嘅聯絡人同埋群組分享你嘅用戶名稱。如果你改咗個用戶名稱，就會收到一組新嘅數字。</string>
@@ -2235,6 +2241,10 @@
     <string name="UsernameEditFragment__this_number_cant_start_with_00">呢個數字唔可以用 00 開頭。請輸入 1–9 之間嘅數字</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">恢復用戶名稱會將你宜家用緊嘅二維碼同連結重設。你係咪確定？</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">Changing your username will reset your existing QR code and link. Are you sure?</string> -->
+    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">Continue</string> -->
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="other">%1$d 位聯絡人開咗 Signal 喇！</item>
@@ -2422,13 +2432,13 @@
     <!-- Fragment title, displayed at the top of the content -->
     <string name="NewWaysToConnectDialogFragment__new_ways_to_connect">全新連繫方式</string>
     <!-- Row item title for phone number privacy explainer -->
-    <string name="NewWaysToConnectDialogFragment__phone_number_privacy">電話號碼私隱</string>
+    <string name="NewWaysToConnectDialogFragment__phone_number_privacy">電話冧把私隱</string>
     <!-- Row item description for phone number privacy explainer -->
-    <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">你嘅電話號碼已經唔再喺聊天度共享。不過如果朋友儲存咗你做聯絡人，就會繼續睇到你嘅號碼。</string>
+    <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">你嘅電話冧把已經唔再喺聊天度共享。不過如果朋友儲存咗你做聯絡人，就會繼續睇到你嘅號碼。</string>
     <!-- Row item title for usernames explainer -->
     <string name="NewWaysToConnectDialogFragment__usernames">用戶名稱</string>
     <!-- Row item description for usernames explainer -->
-    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">其他人而家可以用你選填嘅用戶名稱傳送訊息俾你，咁你就唔使再俾電話號碼人喇。用戶名稱唔會喺個人檔案度顯示。</string>
+    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">其他人而家可以用你選填嘅用戶名稱傳送訊息俾你，咁你就唔使再俾電話冧把人喇。用戶名稱唔會喺個人檔案度顯示。</string>
     <!-- Row item title for qr code and links explainer -->
     <string name="NewWaysToConnectDialogFragment__qr_codes_and_links">二維碼同連結</string>
     <!-- Row item description for qr code and links explainer -->
@@ -2436,7 +2446,7 @@
     <!-- Button label for not right now -->
     <string name="NewWaysToConnectDialogFragment__not_now">遲啲先啦</string>
     <!-- Button label for continue -->
-    <string name="NewWaysToConnectDialogFragment__set_up_your_username">設定你嘅用戶名稱</string>
+    <string name="NewWaysToConnectDialogFragment__set_up_your_username">設定用戶名稱</string>
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">播片</string>
@@ -2552,9 +2562,9 @@
         <item quantity="other">%1$d 位成員</item>
     </plurals>
     <!-- Text on row item to find user by phone number -->
-    <string name="ContactSelectionListFragment__find_by_phone_number">用電話號碼嚟搵</string>
+    <string name="ContactSelectionListFragment__find_by_phone_number">用電話冧把嚟搵</string>
     <!-- Text on row item to find user by username -->
-    <string name="ContactSelectionListFragment__find_by_username">用使用者個名嚟搵</string>
+    <string name="ContactSelectionListFragment__find_by_username">用用戶名稱嚟搵</string>
 
     <!-- contact_selection_list_fragment -->
     <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal 要存取您嘅聯絡人，先可以顯示畀您睇。</string>
@@ -3628,7 +3638,7 @@
 
     <!-- AccountLockedFragment -->
     <string name="AccountLockedFragment__account_locked">帳戶已上鎖</string>
-    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">為咗保障你嘅私隱同安全，我哋會將你嘅帳戶暫時鎖定。閒置 %1$d 日之後，你就可以喺冇 PIN 碼嘅情況下重新註冊呢個手機號碼，而所有資料都會被刪除。</string>
+    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">為咗保障你嘅私隱同安全，我哋會將你嘅帳戶暫時鎖定。閒置 %1$d 日之後，你就可以喺冇 PIN 碼嘅情況下重新註冊呢個電話冧把，而所有資料都會被刪除。</string>
     <string name="AccountLockedFragment__next">下一步</string>
     <string name="AccountLockedFragment__learn_more">講多啲畀我聽</string>
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
@@ -3757,21 +3767,21 @@
     <string name="BackupUtil_never">唔使喇</string>
     <string name="BackupUtil_unknown">未知</string>
     <!-- Phone number heading displayed as a screen title -->
-    <string name="preferences_app_protection__phone_number">手機號碼</string>
+    <string name="preferences_app_protection__phone_number">電話冧把</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
-    <string name="preferences_app_protection__choose_who_can_see">選擇邊個可以睇到你嘅手機號碼，同埋喺 Signal 度用手機號碼聯絡你。</string>
+    <string name="preferences_app_protection__choose_who_can_see">選擇邊個可以睇到你嘅電話冧把，同埋喺 Signal 度用手機號碼聯絡你。</string>
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">邊個可以睇到我嘅手機號碼</string>
     <!-- Subtext below radio buttons when who can see my number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">你嘅聯絡對象同群組都會睇到你嘅電話號碼。</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">你嘅聯絡對象同群組都會睇到你嘅電話冧把。</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">其他人唔會睇到你嘅電話號碼，除非對方將號碼儲存咗喺手機通訊錄度。</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">其他人唔會睇到你嘅電話冧把，除非對方將號碼儲存咗喺手機通訊錄度。</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">冇人會睇到你嘅電話號碼。</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">冇人會睇到你嘅電話冧把。</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">邊個可以用手機號碼搵到我</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">任何有你電話號碼嘅人都會睇到你用緊 Signal，同埋可以開始聊天。</string>
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">任何有你電話冧把嘅人都會睇到你用緊 Signal，同埋可以開始聊天。</string>
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
     <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">除非你向對方傳送訊息或者雙方已經有聊天紀錄，如果唔係冇人會睇到你用緊 Signal。</string>
     <!-- Snackbar text when pressing invalid radio item -->
@@ -4032,7 +4042,7 @@
     <string name="ReviewCard__block">封鎖</string>
     <string name="ReviewCard__delete">刪除</string>
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
-    <string name="ReviewCard__s_recently_changed">%1$s 最近將個人資料嘅名由 %2$s 改咗做 %3$s</string>
+    <string name="ReviewCard__s_recently_changed">%1$s 最近將個人檔名由 %2$s 改咗做 %3$s</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
     <string name="ReviewCard__s_is_in_your_system_contacts">%1$s 係你嘅聯絡人</string>
 
@@ -5380,7 +5390,7 @@
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">接受過佢嘅訊息請求</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">系統聯絡人入面有佢喺度</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">系統通訊錄入面有佢喺度</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"您嘅交遊可以見到您嘅名同相，亦可以見到「我嘅是日花生」入面嘅貼文，除非您隱藏唔俾佢哋睇到嘅話，則屬例外。"</string>
     <!-- Clickable option to add a viewer to a custom story -->
@@ -5695,7 +5705,7 @@
     <!-- Subtitle of initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">選擇邊個可以睇到「我嘅限時動態」貼文。你隨時可以喺設定入面更改。</string>
     <!-- All connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">所有 Signal 嘅人脈</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">所有 Signal 人脈</string>
     <!-- All connections except option for initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__all_except">所有人，除咗…</string>
     <!-- Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
@@ -6029,11 +6039,20 @@
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__set_up_your_signal_username">設定你嘅 Signal 用戶名稱</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__introducing_phone_number_privacy">包括電話號碼私隱、可以選填嘅用戶名稱同連結功能。</string>
+    <string name="SetUpYourUsername__introducing_phone_number_privacy">包括電話冧把私隱、可以選填嘅用戶名稱同連結功能。</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__dismiss">關閉</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__learn_more">了解詳情</string>
+
+    <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_title">全新連繫方式</string> -->
+    <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_body">包括電話號碼私隱、可以選填嘅用戶名稱同連結功能。</string> -->
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_dismiss">關閉</string> -->
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_learn_more">了解詳情</string> -->
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -6329,6 +6348,10 @@
     <string name="UsernameLinkSettings_reset_link_result_network_unavailable">冇網路連線。你嘅連結仲未重設到。請你遲啲再試過啦。</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">嘗試重設連結時，網路發生錯誤。請你遲啲再試過啦。</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string> -->
+    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">Your QR code and link have been reset and a new QR code and link has been created.</string> -->
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">用電話掃描呢個二維碼，就開始喺 Signal 同我聊天喇。</string>
 
@@ -6387,15 +6410,15 @@
 
     <!-- FindByActivity -->
     <!-- Title of activity when finding by username -->
-    <string name="FindByActivity__find_by_username">用使用者個名嚟搵</string>
+    <string name="FindByActivity__find_by_username">用用戶名稱嚟搵</string>
     <!-- Title of activity when finding by phone number -->
-    <string name="FindByActivity__find_by_phone_number">用電話號碼嚟搵</string>
+    <string name="FindByActivity__find_by_phone_number">用電話冧把嚟搵</string>
     <!-- Title of screen to select a country code -->
     <string name="FindByActivity__select_country_code">揀選國碼</string>
     <!-- Entry placeholder for find by username -->
-    <string name="FindByActivity__username">使用者名稱</string>
+    <string name="FindByActivity__username">用戶名稱</string>
     <!-- Entry placeholder for find by phone number -->
-    <string name="FindByActivity__phone_number">手機號碼</string>
+    <string name="FindByActivity__phone_number">電話冧把</string>
     <!-- Help text under user entry for find by username -->
     <string name="FindByActivity__enter_a_full_username">輸入完整嘅用戶名稱同專屬嘅兩位數字。</string>
     <!-- Content description for next action button -->
@@ -6409,13 +6432,13 @@
     <!-- Dialog title when phone number is not a registered signal user -->
     <string name="FindByActivity__invite_to_signal">拉隊嚟 Signal</string>
     <!-- Dialog title when username is not found -->
-    <string name="FindByActivity__username_not_found">使用者名稱搵唔到</string>
+    <string name="FindByActivity__username_not_found">用戶名稱搵唔到</string>
     <!-- Dialog body for invalid username. Placeholder is the entered username. -->
     <string name="FindByActivity__s_is_not_a_valid_username">%1$s 唔係有效嘅用戶名稱。請確保你輸入咗完整嘅用戶名稱，後面加埋專屬嘅兩位數字。</string>
     <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
-    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s 唔係有效嘅電話號碼。請使用有效嘅電話號碼再試一次</string>
+    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s 唔係有效嘅電話冧把。請使用有效嘅電話冧把再試一次</string>
     <!-- Dialog body for not found username -->
-    <string name="FindByActivity__s_is_not_a_signal_user">「%1$s」唔係 Signal 使用者。請檢查使用者名稱，然後再試下啦。</string>
+    <string name="FindByActivity__s_is_not_a_signal_user">「%1$s」唔係 Signal 使用者。請檢查用戶名稱，然後再試下啦。</string>
     <!-- Dialog body for not found phone number -->
     <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s 唔係 Signal 嘅用戶。你想唔想向呢個號碼發出邀請？</string>
     <!-- Dialog action to invite the phone number to Signal -->

@@ -1133,7 +1133,9 @@
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Jūsų naudotojo vardas, QR kodas ir nuoroda nematomi jūsų profilyje. Naudotojo vardą bendrinkite tik su žmonėmis, kuriais pasitikite.</string>
-    <string name="ManageProfileFragment_profile_name">Profilio pavadinimas</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">People can now message you using your optional username so you don\'t have to give out your phone number. </string> -->
+    <string name="ManageProfileFragment_profile_name">Profilio vardas</string>
     <string name="ManageProfileFragment_username">Naudotojo vardas</string>
     <string name="ManageProfileFragment_about">Apie</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">Nepavyko nustatyti avataro</string>
@@ -2109,7 +2111,11 @@
 
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
-    <string name="AboutSheet__signal_connection">„Signal“ ryšys</string>
+    <string name="AboutSheet__signal_connection">„Signal“ kontaktas</string>
+    <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">Verified</string> -->
+    <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string> -->
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s yra jūsų sistemos kontaktuose</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -2186,7 +2192,7 @@
     </string>
 
     <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">Ar toliau nurodytas tel. numeris teisingas?</string>
+    <string name="RegistrationActivity_phone_number_verification_dialog_title">Ar toliau nurodytas telefono numeris teisingas?</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
     <string name="RegistrationActivity_additional_verification_required">Reikalingas papildomas patvirtinimas</string>
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
@@ -2475,6 +2481,10 @@
     <string name="UsernameEditFragment__this_number_cant_start_with_00">Šis skaičius negali prasidėti 00. Įveskite skaitmenį nuo 1 iki 9</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">Kai naudotojo vardas atkuriamas, QR kodas ir nuoroda nustatomi iš naujo. Ar tikrai to norite?</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">Changing your username will reset your existing QR code and link. Are you sure?</string> -->
+    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">Continue</string> -->
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d adresatas naudoja Signal!</item>
@@ -4077,7 +4087,7 @@
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">Telefono numeris</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
-    <string name="preferences_app_protection__choose_who_can_see">Pasirink, kas gali matyti tavo tel. numerį, ir kas gali juo su tavimi susisiekti per „Signal“.</string>
+    <string name="preferences_app_protection__choose_who_can_see">Pasirink, kas gali matyti tavo telefono numerį, ir kas gali juo su tavimi susisiekti per „Signal“.</string>
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">Kas gali matyti mano tel. numerį</string>
     <!-- Subtext below radio buttons when who can see my number is set to everybody -->
@@ -5379,7 +5389,7 @@
     <!-- Title of create notification profile screen -->
     <string name="EditNotificationProfileFragment__name_your_profile">Suteikite profiliui pavadinimą</string>
     <!-- Hint text for create/edit notification profile name -->
-    <string name="EditNotificationProfileFragment__profile_name">Profilio pavadinimas</string>
+    <string name="EditNotificationProfileFragment__profile_name">Profilio vardas</string>
     <!-- Name has a max length, this shows how many characters are used out of the max -->
     <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
     <!-- Call to action button to continue to the next step -->
@@ -5749,7 +5759,7 @@
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Priimdami iš jų žinutės užklausą</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Turėdami juos savo sistemos adresatų sąraše</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Turėdami juos savo sistemos kontaktų sąraše</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Tavo kontaktai gali matyti tavo vardą ir nuotrauką bei žiūrėti tavo istorijos įrašus, nebent ją paslėpsi."</string>
     <!-- Clickable option to add a viewer to a custom story -->
@@ -6449,6 +6459,15 @@
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__learn_more">Sužinoti daugiau</string>
 
+    <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_title">Nauji būdai bendrauti</string> -->
+    <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_body">Pristatome telefono numerio privatumą, pasirenkamus naudotojų vardus ir nuorodas.</string> -->
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_dismiss">Atmesti</string> -->
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_learn_more">Sužinoti daugiau</string> -->
+
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
     <string name="TextFormatting_bold">Paryškintas</string>
@@ -6752,6 +6771,10 @@
     <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Tu neturi prieigos prie tinklo. Tavo nuoroda nebuvo nustatyta iš naujo. Pabandyk vėliau.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">Bandant iš naujo nustatyti tavo nuorodą įvyko tinklo klaida. Pabandyk vėliau.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string> -->
+    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">Your QR code and link have been reset and a new QR code and link has been created.</string> -->
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Nuskaitykite šį QR kodą telefonu, kad galėtumėte kalbėtis su manimi per „Signal“.</string>
 

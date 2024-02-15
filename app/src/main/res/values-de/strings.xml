@@ -1063,6 +1063,8 @@
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Dein Nutzername, der QR-Code und der Link sind in deinem Profil nicht sichtbar. Teile deinen Nutzernamen nur mit Leuten, denen du vertraust.</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">People can now message you using your optional username so you don\'t have to give out your phone number. </string> -->
     <string name="ManageProfileFragment_profile_name">Profilname</string>
     <string name="ManageProfileFragment_username">Nutzername</string>
     <string name="ManageProfileFragment_about">Info</string>
@@ -1076,9 +1078,9 @@
     <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
     <string name="ManageProfileFragment__link_tooltip_body">Erlaube es anderen, einen Chat mit dir zu beginnen, indem du deinen einzigartigen QR-Code oder Link mit ihnen teilst.</string>
     <!-- Snackbar message after creating username -->
-    <string name="ManageProfileFragment__username_created">Username erstellt</string>
+    <string name="ManageProfileFragment__username_created">Nutzername erstellt</string>
     <!-- Snackbar message after copying username -->
-    <string name="ManageProfileFragment__username_copied">Username kopiert</string>
+    <string name="ManageProfileFragment__username_copied">Nutzername kopiert</string>
     <!-- Snackbar message after network failure while trying to delete username -->
     <string name="ManageProfileFragment__couldnt_delete_username">Nutzername konnte nicht gelöscht werden. Versuche es später erneut.</string>
     <!-- Snackbar message after successful deletion of username -->
@@ -1962,8 +1964,12 @@
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">Signal-Verbindung</string>
+    <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">Verified</string> -->
+    <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string> -->
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
-    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s ist in deinen Systemkontakten</string>
+    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s ist in deinen Telefonkontakten</string>
     <!-- Notice in a row when user has no groups in common -->
     <string name="AboutSheet__you_have_no_groups_in_common">Ihr habt keine gemeinsamen Gruppen</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
@@ -2284,7 +2290,7 @@
     <!-- Toolbar title when entering from registration -->
     <string name="UsernameEditFragment__add_a_username">Einen Nutzernamen hinzufügen</string>
     <!-- Instructional text at the top of the username edit screen -->
-    <string name="UsernameEditFragment__choose_your_username">Wähle deinen Usernamen</string>
+    <string name="UsernameEditFragment__choose_your_username">Wähle deinen Nutzernamen</string>
     <string name="UsernameEditFragment_username">Nutzername</string>
     <string name="UsernameEditFragment_delete">Löschen</string>
     <string name="UsernameEditFragment_successfully_removed_username">Nutzername erfolgreich entfernt.</string>
@@ -2295,7 +2301,7 @@
     <string name="UsernameEditFragment_username_is_invalid">Nutzername ist ungültig.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Nutzernamen dürfen aus %1$d bis %2$d Zeichen bestehen.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Über Usernamen können andere dir Nachrichten schicken, ohne dass sie deine Telefonnummer brauchen. Sie sind mit einer Ziffernfolge gekoppelt, damit deine Adresse geheim bleibt.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">Über Nutzernamen können andere dir Nachrichten schicken, ohne dass sie deine Telefonnummer brauchen. Sie sind mit einer Ziffernfolge gekoppelt, damit deine Adresse geheim bleibt.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">Was ist das für eine Nummer?</string>
     <string name="UsernameEditFragment__these_digits_help_keep">Diese Ziffern helfen, deinen Nutzernamen privat zu halten, damit du keine unerwünschten Nachrichten erhältst. Teile deinen Nutzernamen nur mit den Personen und Gruppen, mit denen du chatten möchtest. Wenn du deinen Nutzernamen änderst, bekommst du eine neue Ziffernfolge.</string>
@@ -2315,6 +2321,10 @@
     <string name="UsernameEditFragment__this_number_cant_start_with_00">Diese Nummer darf nicht mit 00 anfangen. Verwende eine andere Zahl von 1 bis 9</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">Wenn du deinen Nutzernamen wiederherstellst, werden dein bestehender QR-Code und dein Link ersetzt und neu erstellt. Bist du dir sicher?</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">Changing your username will reset your existing QR code and link. Are you sure?</string> -->
+    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">Continue</string> -->
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d Kontakt ist bei Signal!</item>
@@ -2323,7 +2333,7 @@
 
     <!-- UsernameShareBottomSheet -->
     <!-- Explanation of what the sheet enables the user to do -->
-    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Einen Usernamen-Link kopieren oder teilen</string>
+    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Einen Nutzernamen-Link kopieren oder teilen</string>
 
     <!-- VerifyIdentityActivity -->
     <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Dein Kontakt verwendet eine neuere Signal-Version mit einem inkompatiblen QR-Code-Format. Zum Vergleichen bitte aktualisieren.</string>
@@ -2519,7 +2529,7 @@
     <!-- Button label for not right now -->
     <string name="NewWaysToConnectDialogFragment__not_now">Jetzt nicht</string>
     <!-- Button label for continue -->
-    <string name="NewWaysToConnectDialogFragment__set_up_your_username">Richte deinen Nutzernamen ein</string>
+    <string name="NewWaysToConnectDialogFragment__set_up_your_username">Nutzernamen einrichten</string>
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">Video abspielen</string>
@@ -4142,7 +4152,7 @@
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
     <string name="ReviewCard__s_recently_changed">%1$s hat kürzlich den Profilnamen von %2$s zu %3$s geändert</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
-    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s ist in deinen Systemkontakten</string>
+    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s ist in deinen Telefonkontakten</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s ist beigetreten</string>
@@ -5503,7 +5513,7 @@
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Annehmen einer Unterhaltungsanfrage</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Speicherung in den Systemkontakten</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Speicherung in den Telefonkontakten</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Deine Verbindungen können deinen Namen und dein Foto sowie Beiträge unter »Meine Story« sehen, es sei denn, du verbirgst sie vor ihnen."</string>
     <!-- Clickable option to add a viewer to a custom story -->
@@ -6173,6 +6183,15 @@
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__learn_more">Mehr erfahren</string>
 
+    <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_title">Neue Möglichkeiten, um sich zu verbinden</string> -->
+    <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_body">Wir führen Datenschutz bei Telefonnummern, optionale Nutzernamen und Links ein.</string> -->
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_dismiss">Verwerfen</string> -->
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_learn_more">Mehr erfahren</string> -->
+
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
     <string name="TextFormatting_bold">Fett</string>
@@ -6433,7 +6452,7 @@
     <!-- Description text for QR code and links in the username link settings -->
     <string name="UsernameLinkSettings_qr_description">Teile deinen QR-Code und Link nur mit Personen, denen du vertraust. Wenn du diese freigibst, können andere deinen Nutzernamen sehen und einen Chat mit dir beginnen.</string>
     <!-- Content of a toast that will show after the username is copied to the clipboard -->
-    <string name="UsernameLinkSettings_username_copied_toast">Username kopiert</string>
+    <string name="UsernameLinkSettings_username_copied_toast">Nutzername kopiert</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">Link kopiert</string>
     <!-- Content of a text field that is shown when the user has not yet set a username link -->
@@ -6470,6 +6489,10 @@
     <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Du hast keinen Zugriff aufs Netzwerk. Dein Link wurde nicht zurückgesetzt. Versuche es später erneut.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">Beim Zurücksetzen deines Links ist ein Netzwerkfehler aufgetreten. Versuche es später erneut.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string> -->
+    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">Your QR code and link have been reset and a new QR code and link has been created.</string> -->
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Scanne diesen QR-Code mit deinem Smartphone, um mit mir auf Signal zu chatten.</string>
 

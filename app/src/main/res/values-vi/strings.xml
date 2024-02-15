@@ -1028,6 +1028,8 @@
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Tên người dùng, mã QR và đường dẫn không hiển thị trên hồ sơ của bạn. Chỉ chia sẻ tên người dùng với người bạn tin tưởng.</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">People can now message you using your optional username so you don\'t have to give out your phone number. </string> -->
     <string name="ManageProfileFragment_profile_name">Tên hồ sơ</string>
     <string name="ManageProfileFragment_username">Tên người dùng</string>
     <string name="ManageProfileFragment_about">Thông tin</string>
@@ -1037,7 +1039,7 @@
     <string name="ManageProfileFragment_link_setting_text">Mã QR hoặc Đường Dẫn</string>
     <string name="ManageProfileFragment__edit_photo">Tùy chỉnh ảnh</string>
     <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
-    <string name="ManageProfileFragment__link_tooltip_title">Chia sẻ Tên Người Dùng của bạn</string>
+    <string name="ManageProfileFragment__link_tooltip_title">Chia sẻ tên người dùng của bạn</string>
     <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
     <string name="ManageProfileFragment__link_tooltip_body">Cho phép người khác bắt đầu một cuộc trò chuyện với bạn bằng cách chia sẻ mã QR hoặc đường dẫn riêng của bạn.</string>
     <!-- Snackbar message after creating username -->
@@ -1492,7 +1494,7 @@
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Bạn đã hủy xác minh mã số an toàn với %1$s</string>
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Bạn đã hủy xác minh mã số an toàn với %1$s từ thiết bị khác</string>
     <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Một tin nhắn từ %1$s không thể được gửi</string>
-    <string name="MessageRecord_s_changed_their_phone_number">%1$s đã đổi số điện thoại của mình.</string>
+    <string name="MessageRecord_s_changed_their_phone_number">%1$s đã đổi số điện thoại của họ.</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Bạn thích tính năng mới này? Hãy hỗ trợ Signal với khoản ủng hộ một lần.</string>
     <!-- Update item message shown when we merge two threads together. First placeholder is a name, second placeholder is a phone number. -->
@@ -1888,8 +1890,12 @@
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">Liên hệ Signal</string>
+    <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">Verified</string> -->
+    <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string> -->
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
-    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s có trong danh bạ trên hệ thống của bạn</string>
+    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s có trong danh bạ của thiết bị</string>
     <!-- Notice in a row when user has no groups in common -->
     <string name="AboutSheet__you_have_no_groups_in_common">Các bạn không có nhóm chung</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
@@ -2210,15 +2216,15 @@
     <string name="UsernameEditFragment_successfully_removed_username">Xóa tên người dùng thành công.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Lỗi mạng.</string>
     <string name="UsernameEditFragment_this_username_is_taken">Tên người dùng này đã được sử dụng.</string>
-    <string name="UsernameEditFragment_usernames_can_only_include">Tên người dùng chỉ được chứa kí tự a-Z, 0-9 và dấu gạch dưới.</string>
-    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Tên người dùng không thể bắt đầu bằng một số.</string>
+    <string name="UsernameEditFragment_usernames_can_only_include">Tên người dùng chỉ có thể chứa a–Z, 0–9 và dấu gạch dưới.</string>
+    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Tên người dùng không thể bắt đầu bằng một chữ số.</string>
     <string name="UsernameEditFragment_username_is_invalid">Tên người dùng không hợp lệ.</string>
-    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Tên người dùng phải nằm trong khoảng từ %1$d đến %2$d kí tự.</string>
+    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Tên người dùng phải nằm trong khoảng từ %1$d đến %2$d ký tự.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Tên người dùng giúp các thành viên khác nhắn tin cho bạn mà không cần có số điện thoại của bạn. Tên người dùng được ghép với một dãy ký tự để giúp giữ bí mật thông tin của bạn.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">Tên người dùng giúp các thành viên khác nhắn tin cho bạn mà không cần có số điện thoại của bạn. Tên người dùng được ghép với một dãy số để giúp giữ bí mật thông tin của bạn.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">Số này là gì?</string>
-    <string name="UsernameEditFragment__these_digits_help_keep">Các ký tự này giúp giữ bí mật tên người dùng của bạn giúp bạn tránh các tin nhắn ngoài ý muốn. Chỉ chia sẻ tên người dùng của bạn với những người hoặc nhóm bạn muốn trò chuyện. Nếu bạn đổi tên người dùng, bạn sẽ nhận được một dãy ký tự mới.</string>
+    <string name="UsernameEditFragment__these_digits_help_keep">Các số này giúp giữ bí mật tên người dùng của bạn giúp bạn tránh các tin nhắn ngoài ý muốn. Chỉ chia sẻ tên người dùng của bạn với những người hoặc nhóm bạn muốn trò chuyện. Nếu bạn đổi tên người dùng, bạn sẽ nhận được một dãy số mới.</string>
     <!-- Button to allow user to skip -->
     <string name="UsernameEditFragment__skip">Bỏ qua</string>
     <!-- Content description for done button -->
@@ -2226,15 +2232,19 @@
     <!-- Displayed when the chosen discriminator is not available for the given nickname -->
     <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">Tên người dùng này không khả dụng, thử một số khác.</string>
     <!-- Displayed when the chosen discriminator is too short -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Tên người dùng không hợp lệ, nhập tối thiểu %1$d ký tự.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Tên người dùng không hợp lệ, nhập tối thiểu %1$d số.</string>
     <!-- Displayed when the chosen discriminator is too long -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Tên người dùng không hợp lệ, nhập tối đa %1$d ký tự.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Tên người dùng không hợp lệ, nhập tối đa %1$d số.</string>
     <!-- Displayed when the chosen discriminator is 00 -->
     <string name="UsernameEditFragment__this_number_cant_be_00">Số này không thể là 00. Nhập một ký tự trong khoảng 1–9</string>
     <!-- Displayed when the chosen discriminator starts with 00 -->
     <string name="UsernameEditFragment__this_number_cant_start_with_00">Số này không thể bắt đầu với 00. Nhập một ký tự trong khoảng 1–9</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">Khôi phục lại tên người dùng sẽ đặt lại mã QR và đường dẫn hiện tại của bạn. Bạn có chắc không?</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">Changing your username will reset your existing QR code and link. Are you sure?</string> -->
+    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">Continue</string> -->
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="other">%1$d liên hệ của bạn đang sử dụng Signal!</item>
@@ -2422,9 +2432,9 @@
     <!-- Fragment title, displayed at the top of the content -->
     <string name="NewWaysToConnectDialogFragment__new_ways_to_connect">Cách Mới để Kết Nối</string>
     <!-- Row item title for phone number privacy explainer -->
-    <string name="NewWaysToConnectDialogFragment__phone_number_privacy">Quyền Riêng Tư cho Số Điện Thoại</string>
+    <string name="NewWaysToConnectDialogFragment__phone_number_privacy">Sự riêng tư cho số điện thoại</string>
     <!-- Row item description for phone number privacy explainer -->
-    <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">Số điện thoại của bạn không còn được chia sẻ với các cuộc trò chuyện. Nếu số điện thoại của bạn đã được lưu vào danh bạ của một người bạn, họ vẫn có thể nhìn thấy.</string>
+    <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">Số điện thoại của bạn không còn được chia sẻ với các cuộc trò chuyện. Nếu số của bạn đã được lưu vào danh bạ của một người bạn, họ vẫn có thể nhìn thấy số đó.</string>
     <!-- Row item title for usernames explainer -->
     <string name="NewWaysToConnectDialogFragment__usernames">Tên người dùng</string>
     <!-- Row item description for usernames explainer -->
@@ -2436,7 +2446,7 @@
     <!-- Button label for not right now -->
     <string name="NewWaysToConnectDialogFragment__not_now">Để sau</string>
     <!-- Button label for continue -->
-    <string name="NewWaysToConnectDialogFragment__set_up_your_username">Thiết lập tên người dùng của bạn</string>
+    <string name="NewWaysToConnectDialogFragment__set_up_your_username">Thiết lập tên người dùng</string>
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">Phát video</string>
@@ -2542,7 +2552,7 @@
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal cần quyền truy cập Danh bạ để hiển thị thông tin liên lạc nhưng đã bị từ chối vĩnh viễn. Vui lòng mở cài đặt ứng dụng, chọn \"Quyền\" và bật \"Danh bạ\".</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Lỗi nhận liên hệ, vui lòng kiểm tra kết nối mạng</string>
     <string name="ContactSelectionListFragment_username_not_found">Không tìm thấy tên người dùng</string>
-    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" không phải người dùng Signal. Hãy kiểm tra tên người dùng và thử lại."</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s không phải người dùng Signal. Hãy kiểm tra tên người dùng và thử lại."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Bạn không cần tự thêm mình vào nhóm</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">Đã đạt kích cỡ nhóm tối đa</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Nhóm Signal có thể có tối đa %1$d thành viên.</string>
@@ -3147,7 +3157,7 @@
     <string name="preferences_communication__censorship_circumvention">Tránh kiểm duyệt</string>
     <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Nếu được bật, Signal sẽ thử tránh kiểm duyệt. Không bật tính năng này trừ khi bạn đang ở một nơi đang chặn Signal.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Tránh Kiểm duyệt đã được bật dựa trên số điện thoại trong tài khoản của bạn.</string>
+    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Tránh kiểm duyệt đã được bật dựa trên số điện thoại trong tài khoản của bạn.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
     <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Bạn vừa tắt tính năng tránh kiểm duyệt theo cách thủ công.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
@@ -4032,9 +4042,9 @@
     <string name="ReviewCard__block">Chặn</string>
     <string name="ReviewCard__delete">Xóa</string>
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
-    <string name="ReviewCard__s_recently_changed">%1$s đã thay đổi tên hồ sơ của mình gần đây từ %2$s thành %3$s</string>
+    <string name="ReviewCard__s_recently_changed">%1$s gần đây đã đổi tên hồ sơ từ %2$s thành %3$s</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
-    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s có trong danh bạ trên hệ thống của bạn</string>
+    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s có trong danh bạ của thiết bị</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s đã tham gia</string>
@@ -4281,7 +4291,7 @@
     <string name="AccountSettingsFragment__account">Tài khoản</string>
     <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Bạn sẽ dần được hỏi ít thường xuyên hơn qua thời gian</string>
     <string name="AccountSettingsFragment__require_your_signal_pin">Yêu cầu mã PIN Signal của bạn để đăng ký lại số điện thoại của bạn với Signal</string>
-    <string name="AccountSettingsFragment__change_phone_number">Thay đổi số điện thoại</string>
+    <string name="AccountSettingsFragment__change_phone_number">Đổi số điện thoại</string>
     <!-- Account setting that allows user to request and export their signal account data -->
     <string name="AccountSettingsFragment__request_account_data">Dữ liệu tài khoản của bạn</string>
 
@@ -4327,7 +4337,7 @@
     <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Báo cáo của bạn chỉ được tạo ra tại thời điểm bạn chọn xuất báo cáo và không được lưu bởi Signal trên thiết bị của bạn.</string>
 
     <!-- ChangeNumberFragment -->
-    <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Dùng để thay đổi số điện thoại hiện tại của bạn sang một số khác. Bạn không thể khôi phục thay đổi này. /n/n Trước khi tiếp tục, hãy chắc chắn rằng số điện thoại mới của bạn đang hoạt động bình thường.</string>
+    <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Dùng để thay đổi số điện thoại hiện tại của bạn sang một số khác. Bạn không thể khôi phục thay đổi này.\n\nTrước khi tiếp tục, hãy chắc chắn rằng số điện thoại mới của bạn đang hoạt động bình thường.</string>
     <string name="ChangeNumberFragment__continue">Tiếp tục</string>
     <!-- Message shown on dialog after your number has been changed successfully. -->
     <string name="ChangeNumber__your_phone_number_has_changed_to_s">Số điện thoại của bạn đã được đổi thành %1$s</string>
@@ -4353,7 +4363,7 @@
 
     <!-- ChangeNumberConfirmFragment -->
     <string name="ChangeNumberConfirmFragment__change_number">Thay đổi số</string>
-    <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Số điện thoại của bạn sẽ thay đổi từ số %1$ssang số %2$s. /n/n Trước khi bắt đầu thay đổi, vui lòng xác nhấn số của bạn bên dưới là chính xác.</string>
+    <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Số điện thoại của bạn sẽ thay đổi từ số %1$s thành số %2$s.\n\nTrước khi bắt đầu thay đổi, vui lòng xác nhận số của bạn bên dưới là chính xác.</string>
     <string name="ChangeNumberConfirmFragment__edit_number">Sửa số</string>
 
     <!-- ChangeNumberRegistrationLockFragment -->
@@ -5372,15 +5382,15 @@
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Cho phép những người có thể xem story của bạn bày tỏ cảm xúc và trả lời</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
-    <string name="SignalConnectionsBottomSheet___signal_connections">Các Liên hệ Signal</string>
+    <string name="SignalConnectionsBottomSheet___signal_connections">Liên hệ Signal</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
-    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Các Liên hệ Signal là những người bạn chọn để tin tưởng, bằng việc:</string>
+    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Liên hệ Signal là những người bạn chọn để tin tưởng, bằng việc:</string>
     <!-- Signal connections sheet bullet point 1 -->
     <string name="SignalConnectionsBottomSheet__starting_a_conversation">Đang bắt đầu cuộc trò chuyện</string>
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Chấp nhận yêu cầu gửi tin nhắn</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Có những người này trong danh bạ trên hệ thống</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Có những người này trong danh bạ của thiết bị</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Các liên hệ của bạn có thể thấy tên và ảnh của bạn, và có thể thấy các bài đăng lên \"Story của tôi\" trừ khi bạn ẩn story với các liên hệ."</string>
     <!-- Clickable option to add a viewer to a custom story -->
@@ -6029,11 +6039,20 @@
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__set_up_your_signal_username">Đặt tên người dùng Signal của bạn</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__introducing_phone_number_privacy">Giới thiệu về quyền riêng tư cho số điện thoại, tên người dùng và đường dẫn tùy chọn.</string>
+    <string name="SetUpYourUsername__introducing_phone_number_privacy">Sự riêng tư cho số điện thoại, tên người dùng và đường dẫn tùy chọn.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__dismiss">Bỏ qua</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__learn_more">Tìm hiểu thêm</string>
+
+    <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_title">Cách Mới để Kết Nối</string> -->
+    <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_body">Giới thiệu về quyền riêng tư cho số điện thoại, tên người dùng và đường dẫn tùy chọn.</string> -->
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_dismiss">Bỏ qua</string> -->
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_learn_more">Tìm hiểu thêm</string> -->
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -6320,7 +6339,7 @@
     <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
     <string name="UsernameLinkSettings_qr_result_invalid">Mã QR không hợp lệ.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
-    <string name="UsernameLinkSettings_qr_result_not_found">Không thể tìm thấy người dùng có tên người dùng %1$s .</string>
+    <string name="UsernameLinkSettings_qr_result_not_found">Không thể tìm thấy người dùng có tên người dùng %1$s.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
     <string name="UsernameLinkSettings_qr_result_not_found_no_username">Không thể tìm thấy người dùng này.</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
@@ -6329,6 +6348,10 @@
     <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Bạn không có quyền truy cập mạng. Đường dẫn của bạn chưa được đặt lại. Thử lại sau.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">Có lỗi kết nối mạng khi đang tiến hành đặt lại đường dẫn. Thử lại sau.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string> -->
+    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">Your QR code and link have been reset and a new QR code and link has been created.</string> -->
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Quét mã QR này bằng điện thoại của bạn để trò chuyện với tôi trên Signal.</string>
 
@@ -6405,7 +6428,7 @@
     <!-- Dialog title for invalid username -->
     <string name="FindByActivity__invalid_username">Tên người dùng không hợp lệ</string>
     <!-- Dialog title for invalid phone number -->
-    <string name="FindByActivity__invalid_phone_number">Số Điện thoại Không hợp lệ</string>
+    <string name="FindByActivity__invalid_phone_number">Số điện thoại không hợp lệ</string>
     <!-- Dialog title when phone number is not a registered signal user -->
     <string name="FindByActivity__invite_to_signal">Mời dùng Signal</string>
     <!-- Dialog title when username is not found -->

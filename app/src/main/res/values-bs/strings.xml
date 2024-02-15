@@ -1133,6 +1133,8 @@
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Vaše korisničko ime, QR kod i poveznica nisu vidljivi na vašem profilu. Svoje korisničko ime dijelite samo s osobama kojima vjerujete.</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">People can now message you using your optional username so you don\'t have to give out your phone number. </string> -->
     <string name="ManageProfileFragment_profile_name">Ime profila</string>
     <string name="ManageProfileFragment_username">Korisničko ime</string>
     <string name="ManageProfileFragment_about">O kontaktu</string>
@@ -2110,6 +2112,10 @@
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">Signal veza</string>
+    <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">Verified</string> -->
+    <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string> -->
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s je u vašim sistemskim kontaktima</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -2180,7 +2186,7 @@
     <string name="RegistrationActivity_select_your_country">Odaberite svoju zemlju</string>
     <string name="RegistrationActivity_you_must_specify_your_country_code">Morate precizirati kōd svoje države
     </string>
-    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">Molimo unesite važeći telefonski broj za registraciju.</string>
+    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">Molimo unesite važeći broj telefona za registraciju.</string>
     <string name="RegistrationActivity_invalid_number">Nevažeći broj</string>
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Broji koji ste unijeli (%1$s) nije važeći.
     </string>
@@ -2211,7 +2217,7 @@
     <string name="RegistrationActivity_unable_to_request_verification_code">Nije moguće zatražiti verifikacioni kȏd. Provjerite internet konekciju i pokušajte ponovo.</string>
     <string name="RegistrationActivity_non_standard_number_format">Nestandardni oblik broja</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Broj koji ste unijeli (%1$s) izgleda nije standardnog oblika.\n\nJeste li mislili na %2$s?</string>
-    <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android – oblik telefonskog broja</string>
+    <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android – oblik broja telefona</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
     <string name="RegistrationActivity_call_requested">Zahtijevan poziv</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
@@ -2475,6 +2481,10 @@
     <string name="UsernameEditFragment__this_number_cant_start_with_00">Ovaj broj ne može početi sa 00. Unesite brojku između 1-9</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">Oporavak vašeg korisničkog imena će poništiti vaš postojeći QR kod i vezu. Jeste li sigurni?</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">Changing your username will reset your existing QR code and link. Are you sure?</string> -->
+    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">Continue</string> -->
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d kontakt je na Signalu!</item>
@@ -2671,7 +2681,7 @@
     <!-- Fragment title, displayed at the top of the content -->
     <string name="NewWaysToConnectDialogFragment__new_ways_to_connect">Novi načini povezivanja</string>
     <!-- Row item title for phone number privacy explainer -->
-    <string name="NewWaysToConnectDialogFragment__phone_number_privacy">Privatnost telefonskog broja</string>
+    <string name="NewWaysToConnectDialogFragment__phone_number_privacy">Privatnost broja telefona</string>
     <!-- Row item description for phone number privacy explainer -->
     <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">Vaš broj telefona se više ne dijeli s chatovima. Ako je vaš broj sačuvan u kontaktima prijatelja, oni će ga i dalje vidjeti.</string>
     <!-- Row item title for usernames explainer -->
@@ -3931,7 +3941,7 @@
 
     <!-- AccountLockedFragment -->
     <string name="AccountLockedFragment__account_locked">Račun je zaključan</string>
-    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Vaš je račun zaključan kako bi se zaštitila Vaša privatnost i sigurnost. Nakon %1$d dana neaktivnosti računa moći ćete se ponovo registrovati pomoću ovoga telefonskog broja a bez PIN-a. Sav raniji sadržaj računa bit će izbrisan.</string>
+    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Vaš je račun zaključan kako bi se zaštitila Vaša privatnost i sigurnost. Nakon %1$d dana neaktivnosti računa moći ćete se ponovo registrovati pomoću ovoga broja telefona a bez PIN-a. Sav raniji sadržaj računa bit će izbrisan.</string>
     <string name="AccountLockedFragment__next">Dalje</string>
     <string name="AccountLockedFragment__learn_more">Saznaj više</string>
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
@@ -4610,7 +4620,7 @@
     <!-- AccountSettingsFragment -->
     <string name="AccountSettingsFragment__account">Račun</string>
     <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Bit ćete podsjećani sve rjeđe i rjeđe</string>
-    <string name="AccountSettingsFragment__require_your_signal_pin">Zahtijevajte svoj Signal PIN da bi se Vaš telefonski broj mogao ponovo registrovati na Signal</string>
+    <string name="AccountSettingsFragment__require_your_signal_pin">Zahtijevajte svoj Signal PIN da bi se Vaš broj telefona mogao ponovo registrovati na Signal</string>
     <string name="AccountSettingsFragment__change_phone_number">Promijeni broj telefona</string>
     <!-- Account setting that allows user to request and export their signal account data -->
     <string name="AccountSettingsFragment__request_account_data">Podaci o vašem računu</string>
@@ -4672,9 +4682,9 @@
     <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Novi broj telefona</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Broj telefona koji ste unijeli ne podudara se s onim na Vašem računu.</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Morate navesti kōd države za svoj stari broj</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Morate unijeti svoj stari telefonski broj</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Morate unijeti svoj stari broj telefona</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Morate navesti kōd države za svoj novi broj</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Morate unijeti svoj novi telefonski broj</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Morate unijeti svoj novi broj telefona</string>
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">Promijeni broj</string>
@@ -4929,7 +4939,7 @@
     <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
     <string name="ConversationSettingsFragment__conversation_muted_until_s">Zvuk chata je isključen do %1$s</string>
     <string name="ConversationSettingsFragment__conversation_muted_forever">Zvuk chata je trajno isključen</string>
-    <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefonski broj kopiran je u međuspremnik.</string>
+    <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Broj telefona kopiran je u međuspremnik.</string>
     <string name="ConversationSettingsFragment__phone_number">Broj telefona</string>
     <string name="ConversationSettingsFragment__get_badges">Nabavite značke za svoj profil tako što ćete podržati Signal. Pritisnite značku kako biste saznali više.</string>
 
@@ -5749,7 +5759,7 @@
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Prihvatam zahtjev za komunikaciju</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Imate ih u svojim kontaktima na telefonu</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Imate ih u svojim sistemskim kontaktima</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Vaši kontakti mogu vidjeti vaše ime i fotografiju, a mogu vidjeti i objave u \"Moja priča\", izuzev ako to ne sakrijete od njih."</string>
     <!-- Clickable option to add a viewer to a custom story -->
@@ -6443,11 +6453,20 @@
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__set_up_your_signal_username">Postavite korisničko ime za Signal</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__introducing_phone_number_privacy">Predstavljamo privatnost telefonskih brojeva, opcionalna korisnička imena i poveznice.</string>
+    <string name="SetUpYourUsername__introducing_phone_number_privacy">Predstavljamo privatnost brojeva telefona, opcionalna korisnička imena i poveznice.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__dismiss">Odbaci</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__learn_more">Saznaj više</string>
+
+    <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_title">Novi načini povezivanja</string> -->
+    <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_body">Predstavljamo privatnost telefonskih brojeva, opcionalna korisnička imena i poveznice.</string> -->
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_dismiss">Odbaci</string> -->
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
+  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_learn_more">Saznaj više</string> -->
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -6752,6 +6771,10 @@
     <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Nemate pristup mreži. Vaš link nije poništen. Pokušajte ponovo kasnije.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">Došlo je do mrežne greške prilikom pokušaja poništavanja vaše veze. Pokušajte ponovo kasnije.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string> -->
+    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">Your QR code and link have been reset and a new QR code and link has been created.</string> -->
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Skenirajte ovaj QR kod telefonom da razgovarate sa mnom na Signalu.</string>
 
@@ -6834,7 +6857,7 @@
     <!-- Dialog title for invalid username -->
     <string name="FindByActivity__invalid_username">Nevažeće korisničko ime</string>
     <!-- Dialog title for invalid phone number -->
-    <string name="FindByActivity__invalid_phone_number">Nevažeći telefonski broj</string>
+    <string name="FindByActivity__invalid_phone_number">Nevažeći broj telefona</string>
     <!-- Dialog title when phone number is not a registered signal user -->
     <string name="FindByActivity__invite_to_signal">Pozovite na Signal</string>
     <!-- Dialog title when username is not found -->
