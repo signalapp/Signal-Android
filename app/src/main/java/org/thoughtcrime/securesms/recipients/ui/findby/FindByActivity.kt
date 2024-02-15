@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.recipients.ui.findby
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContract
@@ -124,7 +125,7 @@ class FindByActivity : PassphraseRequiredActivity() {
               navigationIconPainter = painterResource(id = R.drawable.symbol_arrow_left_24)
             ) {
               val context = LocalContext.current
-              FindByContent(
+              Content(
                 paddingValues = it,
                 state = state,
                 onUserEntryChanged = viewModel::onUserEntryChanged,
@@ -265,25 +266,8 @@ class FindByActivity : PassphraseRequiredActivity() {
   }
 }
 
-@Preview
 @Composable
-private fun FindByContentPreview() {
-  Previews.Preview {
-    FindByContent(
-      paddingValues = PaddingValues(0.dp),
-      state = FindByState(
-        mode = FindByMode.PHONE_NUMBER,
-        userEntry = ""
-      ),
-      onUserEntryChanged = {},
-      onNextClick = {},
-      onSelectCountryPrefixClick = {}
-    )
-  }
-}
-
-@Composable
-private fun FindByContent(
+private fun Content(
   paddingValues: PaddingValues,
   state: FindByState,
   onUserEntryChanged: (String) -> Unit,
@@ -368,7 +352,7 @@ private fun FindByContent(
 
     if (state.mode == FindByMode.USERNAME) {
       Text(
-        text = stringResource(id = R.string.FindByActivity__enter_a_full_username),
+        text = stringResource(id = R.string.FindByActivity__enter_username_description),
         style = MaterialTheme.typography.bodyMedium,
         color = MaterialTheme.colorScheme.onSurfaceVariant,
         modifier = Modifier
@@ -432,20 +416,6 @@ private fun PhoneNumberEntryPrefix(
         .padding(vertical = 2.dp)
         .padding(start = 8.dp)
         .height(20.dp)
-    )
-  }
-}
-
-@Preview
-@Composable
-private fun SelectCountryScreenPreview() {
-  Previews.Preview {
-    SelectCountryScreen(
-      paddingValues = PaddingValues(0.dp),
-      searchEntry = "",
-      onSearchEntryChanged = {},
-      supportedCountryPrefixes = FindByState(mode = FindByMode.PHONE_NUMBER).supportedCountryPrefixes,
-      onCountryPrefixSelected = {}
     )
   }
 }
@@ -553,6 +523,57 @@ private fun CountryPrefixRowItem(
       text = countryPrefix.toString(),
       color = MaterialTheme.colorScheme.onSurfaceVariant,
       style = MaterialTheme.typography.bodyMedium
+    )
+  }
+}
+
+@Preview(name = "Light Theme", group = "content", uiMode = Configuration.UI_MODE_NIGHT_NO)
+@Preview(name = "Dark Theme", group = "content", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun ContentPreviewPhoneNumber() {
+  Previews.Preview {
+    Content(
+      paddingValues = PaddingValues(0.dp),
+      state = FindByState(
+        mode = FindByMode.PHONE_NUMBER,
+        userEntry = ""
+      ),
+      onUserEntryChanged = {},
+      onNextClick = {},
+      onSelectCountryPrefixClick = {}
+    )
+  }
+}
+
+@Preview(name = "Light Theme", group = "content", uiMode = Configuration.UI_MODE_NIGHT_NO)
+@Preview(name = "Dark Theme", group = "content", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun ContentPreviewUsername() {
+  Previews.Preview {
+    Content(
+      paddingValues = PaddingValues(0.dp),
+      state = FindByState(
+        mode = FindByMode.USERNAME,
+        userEntry = ""
+      ),
+      onUserEntryChanged = {},
+      onNextClick = {},
+      onSelectCountryPrefixClick = {}
+    )
+  }
+}
+
+@Preview(name = "Light Theme", group = "select country", uiMode = Configuration.UI_MODE_NIGHT_NO)
+@Preview(name = "Dark Theme", group = "select country", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun SelectCountryScreenPreview() {
+  Previews.Preview {
+    SelectCountryScreen(
+      paddingValues = PaddingValues(0.dp),
+      searchEntry = "",
+      onSearchEntryChanged = {},
+      supportedCountryPrefixes = FindByState(mode = FindByMode.PHONE_NUMBER).supportedCountryPrefixes,
+      onCountryPrefixSelected = {}
     )
   }
 }

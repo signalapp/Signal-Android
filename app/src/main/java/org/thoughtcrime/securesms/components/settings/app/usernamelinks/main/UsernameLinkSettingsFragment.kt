@@ -357,7 +357,7 @@ private fun previewPermissionState(): PermissionState {
 
 private val previewLifecycleOwner: LifecycleOwner = object : LifecycleOwner {
   override val lifecycle: Lifecycle
-    get() = TODO("Not yet implemented")
+    get() = throw UnsupportedOperationException("Only for tests")
 }
 
 private fun shareQrBadge(activity: Activity, badge: Bitmap?) {

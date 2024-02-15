@@ -6566,7 +6566,7 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">Phone number</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_a_full_username">Enter a full username with its pair of digits.</string>
+    <string name="FindByActivity__enter_username_description">Enter a username followed by a dot and its set of numbers.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">Next</string>
     <!-- Placeholder text for search input for selecting country code -->
