@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.profiles.manage.UsernameRepository
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.registration.util.CountryPrefix
 import org.thoughtcrime.securesms.util.UsernameUtil
+import org.whispersystems.signalservice.api.util.PhoneNumberFormatter
 import java.util.concurrent.TimeUnit
 
 class FindByViewModel(
@@ -104,12 +105,20 @@ class FindByViewModel(
         ContactDiscovery.refresh(context, recipient, false, TimeUnit.SECONDS.toMillis(10))
         val resolved = Recipient.resolved(recipient.id)
         if (!resolved.isRegistered) {
-          FindByResult.NotFound(recipient.id)
+          if (PhoneNumberFormatter.isValidNumber(nationalNumber, countryCode.toString())) {
+            FindByResult.NotFound(recipient.id)
+          } else {
+            FindByResult.InvalidEntry
+          }
         } else {
           FindByResult.Success(recipient.id)
         }
       } catch (e: Exception) {
-        FindByResult.NotFound(recipient.id)
+        if (PhoneNumberFormatter.isValidNumber(nationalNumber, countryCode.toString())) {
+          FindByResult.NotFound(recipient.id)
+        } else {
+          FindByResult.InvalidEntry
+        }
       }
     } else {
       FindByResult.Success(recipient.id)

@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Signal.Circle"
         app:srcCompat="@drawable/symbol_number_24"
-        app:tint="@color/signal_colorOnSurfaceVariant" />
+        app:tint="@color/signal_colorOnSecondaryContainer" />
 
     <TextView
         android:id="@+id/invite_text"

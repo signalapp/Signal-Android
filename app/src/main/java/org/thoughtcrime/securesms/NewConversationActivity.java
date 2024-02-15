@@ -80,6 +80,7 @@ public class NewConversationActivity extends ContactSelectionActivity
 
   private ContactsManagementViewModel        viewModel;
   private ActivityResultLauncher<Intent>     contactLauncher;
+  private ActivityResultLauncher<Intent>     createGroupLauncher;
   private ActivityResultLauncher<FindByMode> findByLauncher;
 
   private final LifecycleDisposable disposables = new LifecycleDisposable();
@@ -105,6 +106,12 @@ public class NewConversationActivity extends ContactSelectionActivity
     findByLauncher = registerForActivityResult(new FindByActivity.Contract(), result -> {
       if (result != null) {
         launch(result);
+      }
+    });
+
+    createGroupLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+      if (result.getResultCode() == RESULT_OK) {
+        finish();
       }
     });
 
@@ -220,7 +227,7 @@ public class NewConversationActivity extends ContactSelectionActivity
   }
 
   private void handleCreateGroup() {
-    startActivity(CreateGroupActivity.newIntent(this));
+    createGroupLauncher.launch(CreateGroupActivity.newIntent(this));
   }
 
   private void handleInvite() {
@@ -245,7 +252,7 @@ public class NewConversationActivity extends ContactSelectionActivity
   @Override
   public void onNewGroup(boolean forceV1) {
     handleCreateGroup();
-    finish();
+//    finish();
   }
 
   @Override
