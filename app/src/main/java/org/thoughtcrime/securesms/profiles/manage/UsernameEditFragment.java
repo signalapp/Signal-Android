@@ -158,7 +158,7 @@ public class UsernameEditFragment extends LoggingFragment {
 
   private void onLearnMore(@Nullable View unused) {
     new MaterialAlertDialogBuilder(requireContext())
-        .setTitle(new StringBuilder("#\n").append(getString(R.string.UsernameEditFragment__what_is_this_number)))
+        .setTitle(getString(R.string.UsernameEditFragment__what_is_this_number))
         .setMessage(R.string.UsernameEditFragment__these_digits_help_keep)
         .setPositiveButton(android.R.string.ok, (dialog, which) -> {})
         .show();
