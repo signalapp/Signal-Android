@@ -494,8 +494,8 @@
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">شما می‌توانید برای خودتان در این گفتگو یادداشت اضافه کنید. اگر حساب کاربری شما هرگونه دستگاه پیوند داده شدهٔ جدیدی داشته باشد، یادداشت‌های جدید همگام‌سازی خواهند شد.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d عضو گروه نام یکسانی دارند.</string>
     <string name="ConversationFragment__tap_to_review">برای بازنگری ضربه بزنید</string>
-    <string name="ConversationFragment__review_requests_carefully">درخواست‌ها را با دقت بازنگری کنید</string>
-    <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">سیگنال مخاطب دیگری را با نام یکسان پیدا کرد.</string>
+    <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
+    <string name="ConversationFragment__review_banner_body">This person has the same name as another contact</string>
     <string name="ConversationFragment_contact_us">تماس با ما</string>
     <string name="ConversationFragment_verify">وارسی</string>
     <string name="ConversationFragment_not_now">حالا نه</string>
@@ -1064,7 +1064,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">نام کاربری، کد QR و پیوند شما در نمایۀ شما قابل مشاهده نیست. نام کاربری خود را فقط با افراد مورد اعتمادتان به اشتراک بگذارید.</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">اکنون افراد می‌توانند با استفاده از نام کاربری اختیاری‌تان به شما پیام بدهند، پس دیگر لازم نیست شماره تلفن خود را به کسی بدهید. </string> -->
+    <string name="ManageProfileFragment__username_footer_no_username">اکنون افراد می‌توانند با استفاده از نام کاربری اختیاری‌تان به شما پیام بدهند، پس دیگر لازم نیست شماره تلفن خود را به کسی بدهید. </string>
     <string name="ManageProfileFragment_profile_name">نام نمایه</string>
     <string name="ManageProfileFragment_username">نام کاربری</string>
     <string name="ManageProfileFragment_about">درباره</string>
@@ -1965,9 +1965,9 @@
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">آشنا در سیگنال</string>
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
-  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">تأیید شده</string> -->
+    <string name="AboutSheet__verified">تأیید شده</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
-  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string> -->
+    <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s در مخاطبان سیستم شما است</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -2301,7 +2301,7 @@
     <string name="UsernameEditFragment_username_is_invalid">نام کاربری نامعتبر است.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">نام‌های کاربری باید بین %1$d و %2$d نویسه باشند.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">نام کاربری به دیگران اجازه می‌دهد بدون نیاز به شماره تلفن تان به شما پیام بدهند. نام کاربری با مجموعه‌ای از ارقام ادغام می‌شود تا کمک کند نشانی شما خصوصی بماند.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">Usernames are always paired with a set of numbers.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">این عدد چیست؟</string>
     <string name="UsernameEditFragment__these_digits_help_keep">این ارقام به خصوصی ماندن نام کاربری شما کمک می‌کند تا بتوانید از پیام‌های ناخواسته جلوگیری کنید. نام کاربری خود را فقط با افراد و گروه‌هایی که می‌خواهید با آنها گفتگو کنید به اشتراک بگذارید. اگر نام کاربری را تغییر دهید، مجموعه ارقام جدیدی دریافت خواهید کرد.</string>
@@ -2322,9 +2322,9 @@
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">بازیابی نام کاربری‌تان موجب بازنشانی پیوند و کد QR فعلی شما می‌شود. مطمئن هستید؟</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">تغییر نام کاربری‌تان موجب بازنشانی کد و پیوند QR فعلی شما می‌شود. مطمئن هستید؟</string> -->
+    <string name="UsernameEditFragment_change_confirmation_message">تغییر نام کاربری‌تان موجب بازنشانی کد و پیوند QR فعلی شما می‌شود. مطمئن هستید؟</string>
     <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">ادامه</string> -->
+    <string name="UsernameEditFragment_continue">ادامه</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d مخاطب در سیگنال هست!</item>
@@ -4124,8 +4124,10 @@
     <string name="BlockedUsersActivity__s_has_been_unblocked">«%1$s» رفع مسدودیت شده است.</string>
 
     <!-- ReviewCardDialogFragment -->
-    <string name="ReviewCardDialogFragment__review_members">بازبینی اعضا</string>
-    <string name="ReviewCardDialogFragment__review_request">بازبینی درخواست</string>
+    <!-- Title of a screen where the user will be prompted to review group members with the same name -->
+    <string name="ReviewCardDialogFragment__review_members">Review members</string>
+    <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
+    <string name="ReviewCardDialogFragment__review_request">Review request</string>
     <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d عضو گروه نام یکسان دارند، اعضا را در پایین مرور کنید و اقدام لازم را انجام دهید.</string>
     <string name="ReviewCardDialogFragment__if_youre_not_sure">اگر مطمئن نیستید که فرستندهٔ درخواست چه کسی است، مخاطبین را در پایین مرور کنید و اقدام لازم را انجام دهید.</string>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">هیچ گروه مشترک دیگری وجود ندارد.</string>
@@ -6184,13 +6186,13 @@
     <string name="SetUpYourUsername__learn_more">اطلاعات بیشتر</string>
 
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_title">روش‌های جدید برقراری ارتباط</string> -->
+    <string name="PnpLaunchMegaphone_title">روش‌های جدید برقراری ارتباط</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_body">معرفی حریم شخصی شماره تلفن، نام کاربری انتخابی و پیوندها.</string> -->
+    <string name="PnpLaunchMegaphone_body">معرفی حریم شخصی شماره تلفن، نام کاربری انتخابی و پیوندها.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_dismiss">رد کردن</string> -->
+    <string name="PnpLaunchMegaphone_dismiss">رد کردن</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_learn_more">اطلاعات بیشتر</string> -->
+    <string name="PnpLaunchMegaphone_learn_more">اطلاعات بیشتر</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -6490,9 +6492,9 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">هنگام بازنشانی پیوند شما یک خطای شبکه رخ داد. بعداً دوباره امتحان کنید.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string> -->
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string>
     <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">پیوند و کد QR شما بازنشانی شده و پیوند و کد QR جدیدتان ایجاد شده است.</string> -->
+    <string name="UsernameLinkSettings_reset_link_result_success">پیوند و کد QR شما بازنشانی شده و پیوند و کد QR جدیدتان ایجاد شده است.</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">برای گفتگو با من در سیگنال، این کد QR را با تلفن خود اسکن کنید.</string>
 
@@ -6563,7 +6565,7 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">شماره تلفن</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_a_full_username">یک نام کاربری کامل با دو رقم آن وارد کنید.</string>
+    <string name="FindByActivity__enter_username_description">Enter a username followed by a dot and its set of numbers.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">بعدی</string>
     <!-- Placeholder text for search input for selecting country code -->

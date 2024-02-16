@@ -485,8 +485,8 @@
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Бул маекте өзүңүзгө бир нерселерди белгилеп жазып алсаңыз болот. Аккаунтуңузга байланган түзмөктөр бар болсо, жазып алган нерселериңиз алардын баарында көрүнөт.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">Топтун %1$d катышуучусунун ысымдары бирдей.</string>
     <string name="ConversationFragment__tap_to_review">Басып карап көрүңүз</string>
-    <string name="ConversationFragment__review_requests_carefully">Сурамдарды этияттап караңыз</string>
-    <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal ысымы окшош дагы бир байланышты тапты.</string>
+    <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
+    <string name="ConversationFragment__review_banner_body">This person has the same name as another contact</string>
     <string name="ConversationFragment_contact_us">Биз менен байланышыңыз</string>
     <string name="ConversationFragment_verify">Ооба</string>
     <string name="ConversationFragment_not_now">Азыр эмес</string>
@@ -1029,7 +1029,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Профилиңизде колдонуучу атыңыз, QR кодуңуз жана шилтемеңиз көрүнбөйт. Колдонуучу атыңызды ишенген адамдарыңыз менен гана бөлүшө аласыз.</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">Башкалар менен сүйлөшүүдө өзүңүз каалагандай колдонуучу атты колдонуп, телефон номериңизди жашырып койсоңуз болот. </string> -->
+    <string name="ManageProfileFragment__username_footer_no_username">Башкалар менен сүйлөшүүдө өзүңүз каалагандай колдонуучу атты колдонуп, телефон номериңизди жашырып койсоңуз болот. </string>
     <string name="ManageProfileFragment_profile_name">Профилдин аталышы</string>
     <string name="ManageProfileFragment_username">Колдонуучунун аты</string>
     <string name="ManageProfileFragment_about">Учкай маалымат</string>
@@ -1891,9 +1891,9 @@
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">Signal байланышы</string>
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
-  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">Ырасталды</string> -->
+    <string name="AboutSheet__verified">Ырасталды</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
-  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string> -->
+    <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s системаңыздагы байланыштардын бири</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -2221,7 +2221,7 @@
     <string name="UsernameEditFragment_username_is_invalid">Колдонуучунун аты туура эмес.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Колдонуучунун аты %1$d баштап %2$d чейин белгиден турушу керек.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Адамдар сиз менен телефон номериңиз эмес, колдонуучу атыңыз аркылуу жазыша алышат. Дарегиңизди купуя сактоо үчүн колдонуучу атыңызга бир нече сан кошулат.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">Usernames are always paired with a set of numbers.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">Бул эмне деген сан?</string>
     <string name="UsernameEditFragment__these_digits_help_keep">Бул сандар колдонуучу атыңызды купуя кылып, сизди кереги жок билдирүүлөрдөн сактайт. Колдонуучу атыңызды сүйлөшкүңүз келген адамдарга жана топторго бериңиз. Колдонуучу атыңызды өзгөртсөңүз, бул сандар да өзгөрөт.</string>
@@ -2242,9 +2242,9 @@
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">Колдонуучу атыңызды калыбына келтирсеңиз, учурдагы QR кодуңуз жана шилтемеңиз кайра коюлат. Чын элеби?</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">Колдонуучу атыңызды өзгөртсөңүз, учурдагы QR кодуңуз менен шилтемеңиз да өзгөрүлөт. Чын элеби?</string> -->
+    <string name="UsernameEditFragment_change_confirmation_message">Колдонуучу атыңызды өзгөртсөңүз, учурдагы QR кодуңуз менен шилтемеңиз да өзгөрүлөт. Чын элеби?</string>
     <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">Улантуу</string> -->
+    <string name="UsernameEditFragment_continue">Улантуу</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="other">Signal\'да %1$dбайланышыңыз бар!</item>
@@ -4018,8 +4018,10 @@
     <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" бөгөттөн чыгарылды.</string>
 
     <!-- ReviewCardDialogFragment -->
-    <string name="ReviewCardDialogFragment__review_members">Мүчөлөрдү карап чыгуу</string>
-    <string name="ReviewCardDialogFragment__review_request">Өтүнүчтү карап чыгуу</string>
+    <!-- Title of a screen where the user will be prompted to review group members with the same name -->
+    <string name="ReviewCardDialogFragment__review_members">Review members</string>
+    <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
+    <string name="ReviewCardDialogFragment__review_request">Review request</string>
     <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d топ мүчөсүнүн аты бирдей, төмөндөгү мүчөлөрдү карап чыгып, чара көрүүнү тандаңыз.</string>
     <string name="ReviewCardDialogFragment__if_youre_not_sure">Эгер бул өтүнүч кимден экенин билбесеңиз, төмөнкү мүчөлөрдү карап чыгып, чара көрүңүз.</string>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">Башка орток топтор жок.</string>
@@ -6046,13 +6048,13 @@
     <string name="SetUpYourUsername__learn_more">Кененирээк маалымат</string>
 
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_title">Байланышуунун жаңы жолдору</string> -->
+    <string name="PnpLaunchMegaphone_title">Байланышуунун жаңы жолдору</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_body">Телефон номериңиз корголуп, каалагандай колдонуучу аттар менен шилтемелерди колдоносуз.</string> -->
+    <string name="PnpLaunchMegaphone_body">Телефон номериңиз корголуп, каалагандай колдонуучу аттар менен шилтемелерди колдоносуз.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_dismiss">Жок</string> -->
+    <string name="PnpLaunchMegaphone_dismiss">Жок</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_learn_more">Кененирээк маалымат</string> -->
+    <string name="PnpLaunchMegaphone_learn_more">Кененирээк маалымат</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -6349,9 +6351,9 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">Шилтемеңизди кайра коюп жатканда тармакта ката кетти. Бир аздан соң кайталаңыз.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string> -->
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string>
     <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">QR кодуңуз менен шилтеме кайра коюлуп, жаңы QR код жана шилтеме түзүлдү.</string> -->
+    <string name="UsernameLinkSettings_reset_link_result_success">QR кодуңуз менен шилтеме кайра коюлуп, жаңы QR код жана шилтеме түзүлдү.</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Signal\'дан мени менен сүйлөшкүңүз келсе, телефонуңуздагы QR кодду скандаңыз.</string>
 
@@ -6420,7 +6422,7 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">Телефон номериңиз</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_a_full_username">Колдонуучунун атын эки саны менен кошо киргизиңиз.</string>
+    <string name="FindByActivity__enter_username_description">Enter a username followed by a dot and its set of numbers.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">Кийинки</string>
     <!-- Placeholder text for search input for selecting country code -->

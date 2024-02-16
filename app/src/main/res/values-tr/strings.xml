@@ -46,7 +46,7 @@
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Bu işlem Signal ve ileti bildirimlerinin kilidini kalıcı olarak açacaktır.</string>
     <string name="ApplicationPreferencesActivity_disable">Devre dışı bırak</string>
     <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signal iletilerini ve aramalarını devre dışı bırak?</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Sunucudaki kaydınızı silerek Signal iletilerini ve aramalarını devre dışı bırakın. Bu özellikleri gelecekte yeniden kullanabilmeniz için telefon numaranızı tekrar kaydetmeniz gerekir.</string>
+    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Sunucudaki kaydını silerek Signal mesajlarını ve aramalarını devre dışı bırak. Bu özellikleri gelecekte yeniden kullanabilmen için telefon numaranı tekrar kaydetmen gerekir.</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Sunucuya bağlanırken hata!</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Kayıt kilidi için PIN gereklidir. PIN\'i devre dışı bırakmak için, lütfen ilk önce kayıt kilidini devre dışı bırakın.</string>
     <string name="ApplicationPreferencesActivity_pin_created">PIN oluşturuldu.</string>
@@ -494,8 +494,8 @@
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Bu sohbette kendine notlar ekleyebilirsin. Eğer hesabına bağlı cihaz bulunuyorsa yeni notlar senkronize edilir.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d grup üyesi aynı ada sahip.</string>
     <string name="ConversationFragment__tap_to_review">Gözden geçirmek için dokunun</string>
-    <string name="ConversationFragment__review_requests_carefully">İstekleri dikkatlice inceleyin</string>
-    <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal aynı ada sahip başka bir kişi buldu.</string>
+    <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
+    <string name="ConversationFragment__review_banner_body">This person has the same name as another contact</string>
     <string name="ConversationFragment_contact_us">Bizimle iletişime geçin</string>
     <string name="ConversationFragment_verify">Doğrula</string>
     <string name="ConversationFragment_not_now">Şimdi değil</string>
@@ -626,7 +626,7 @@
     <!-- Message shown in top toast to indicate the named profile is on -->
     <string name="ConversationListFragment__s_on">%1$saktif</string>
     <!-- -->
-    <string name="ConversationListFragment_username_recovered_toast">QR kodun ve bağlantın sıfırlandı ve kullanıcı adın %1$s</string>
+    <string name="ConversationListFragment_username_recovered_toast">Kare kodun ve bağlantın sıfırlandı ve kullanıcı adın %1$s</string>
 
     <!-- ConversationListItem -->
     <string name="ConversationListItem_key_exchange_message">Anahtar takas iletisi</string>
@@ -1064,7 +1064,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Kullanıcı adın, kare kodun ve bağlantın profilinde görünmez. Kullanıcı adını yalnızca güvendiğin kişilerle paylaş.</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">İnsanlar artık isteğe bağlı kullanıcı adını kullanarak sana mesaj gönderebilir böylece telefon numaranı vermene gerek kalmaz. </string> -->
+    <string name="ManageProfileFragment__username_footer_no_username">İnsanlar artık isteğe bağlı kullanıcı adını kullanarak sana mesaj gönderebilir böylece telefon numaranı vermene gerek kalmaz. </string>
     <string name="ManageProfileFragment_profile_name">Profil adı</string>
     <string name="ManageProfileFragment_username">Kullanıcı adı</string>
     <string name="ManageProfileFragment_about">Hakkında</string>
@@ -1963,11 +1963,11 @@
 
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
-    <string name="AboutSheet__signal_connection">Signal bağlantısı</string>
+    <string name="AboutSheet__signal_connection">Signal kişisi</string>
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
-  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">Doğrulandı</string> -->
+    <string name="AboutSheet__verified">Doğrulandı</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
-  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string> -->
+    <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s sistem kişilerin arasında</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -2301,7 +2301,7 @@
     <string name="UsernameEditFragment_username_is_invalid">Kullanıcı adı geçersiz.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Kullanıcı adları %1$d ve %2$d karakter aralığında olmalıdır.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Kullanıcı adları, telefon numarana ihtiyaç duymadan diğer kullanıcıların sana mesaj göndermesini sağlar. Adresini gizli tutmaya yardımcı olmak için, kullanıcı adın bir dizi rakamla eşleştirilir.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">Usernames are always paired with a set of numbers.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">Bu numara kimin?</string>
     <string name="UsernameEditFragment__these_digits_help_keep">Bu rakamlar, istenmeyen mesajlar almaman için kullanıcı adının gizli kalmasına yardımcı olur. Kullanıcı adını yalnızca sohbet etmek istediğin kişi ve gruplarla paylaş. Kullanıcı adını değiştirdiğinde yeni bir rakam dizisiyle eşleştirilirsin.</string>
@@ -2322,9 +2322,9 @@
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">Kullanıcı adını kurtarmak, mevcut kare kodunu ve bağlantını sıfırlar. Emin misin?</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">Kullanıcı adını değiştirmek, mevcut kare kodunu ve bağlantını sıfırlar. Emin misin?</string> -->
+    <string name="UsernameEditFragment_change_confirmation_message">Kullanıcı adını değiştirmek, mevcut kare kodunu ve bağlantını sıfırlar. Emin misin?</string>
     <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">Devam et</string> -->
+    <string name="UsernameEditFragment_continue">Devam et</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d kişi Signal\'e katıldı!</item>
@@ -4124,8 +4124,10 @@
     <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" kişisinin engeli kaldırıldı.</string>
 
     <!-- ReviewCardDialogFragment -->
-    <string name="ReviewCardDialogFragment__review_members">Üyeleri İncelle</string>
-    <string name="ReviewCardDialogFragment__review_request">İsteği İncele</string>
+    <!-- Title of a screen where the user will be prompted to review group members with the same name -->
+    <string name="ReviewCardDialogFragment__review_members">Review members</string>
+    <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
+    <string name="ReviewCardDialogFragment__review_request">Review request</string>
     <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d grup üyesi aynı ada sahip, aşağıdan inceleyerek tercih yapabilirsiniz.</string>
     <string name="ReviewCardDialogFragment__if_youre_not_sure">İsteğin kimden geldiğinden emin değilseniz, aşağıdaki kişileri inceleyerek tercih yapabilirsiniz.</string>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">Başka ortak grup yok.</string>
@@ -4174,14 +4176,14 @@
 
     <!-- DeleteAccountFragment -->
     <string name="DeleteAccountFragment__deleting_your_account_will">Hesabını sildiğinde:</string>
-    <string name="DeleteAccountFragment__enter_your_phone_number">Telefon numaranızı girin</string>
+    <string name="DeleteAccountFragment__enter_your_phone_number">Telefon numaranı gir</string>
     <string name="DeleteAccountFragment__delete_account">Hesabı sil</string>
     <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Hesap bilgilerin ve profil resmin silinir</string>
     <string name="DeleteAccountFragment__delete_all_your_messages">Tüm iletilerin silinir</string>
     <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Ödemeler hesabından %1$s silinir</string>
     <string name="DeleteAccountFragment__no_country_code">Ülke kodu belirtilmedi</string>
     <string name="DeleteAccountFragment__no_number">Telefon numarası belirtilmedi</string>
-    <string name="DeleteAccountFragment__the_phone_number">Girmiş olduğunuz numara hesabınızla uyuşmuyor.</string>
+    <string name="DeleteAccountFragment__the_phone_number">Girmiş olduğun telefon numarası hesabınla uyuşmuyor.</string>
     <string name="DeleteAccountFragment__are_you_sure">Hesabını silmek istediğinden emin misin?</string>
     <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Bu işlem Signal hesabını silecek ve uygulamayı sıfırlayacak. İşlem tamamlandıktan sonra uygulama kapanır.</string>
     <string name="DeleteAccountFragment__failed_to_delete_local_data">Yerel veriler silinemedi. Sistemindeki uygulama ayarlarından elle silebilirsin.</string>
@@ -4400,7 +4402,7 @@
     <!-- AccountSettingsFragment -->
     <string name="AccountSettingsFragment__account">Hesap</string>
     <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Zaman geçtikçe daha az sorulacaktır</string>
-    <string name="AccountSettingsFragment__require_your_signal_pin">Telefon numaranız Signal\'e tekrar kaydedilirken Signal PIN\'i istensin.</string>
+    <string name="AccountSettingsFragment__require_your_signal_pin">Telefon numaran Signal\'e tekrar kaydedilirken Signal PIN\'i istensin.</string>
     <string name="AccountSettingsFragment__change_phone_number">Telefon numarası değiştir</string>
     <!-- Account setting that allows user to request and export their signal account data -->
     <string name="AccountSettingsFragment__request_account_data">Hesap verilerin</string>
@@ -4447,10 +4449,10 @@
     <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Raporun yalnızca dışa aktarım sırasında oluşturulur ve Signal tarafından cihazında saklanmaz.</string>
 
     <!-- ChangeNumberFragment -->
-    <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Geçerli telefon numaranızı yeni bir telefon numarasına değiştirmek için bunu kullanın. Bu değişikliği geri alamazsınız.devam etmeden önce, yeni numaranızın SMS veya arama alabildiğinden emin olun.</string>
+    <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Geçerli telefon numaranı yeni bir telefon numarasıyla değiştirmek için bunu kullan. Bu değişikliği geri alamazsın.\n\nDevam etmeden önce, yeni numaranın SMS veya arama alabildiğinden emin ol.</string>
     <string name="ChangeNumberFragment__continue">Devam Et</string>
     <!-- Message shown on dialog after your number has been changed successfully. -->
-    <string name="ChangeNumber__your_phone_number_has_changed_to_s">Telefon numaranız %1$sile değiştirildi.</string>
+    <string name="ChangeNumber__your_phone_number_has_changed_to_s">Telefon numaran %1$s ile değiştirildi</string>
     <!-- Confirmation button to dismiss number changed dialog -->
     <string name="ChangeNumber__okay">Tamam</string>
 
@@ -4460,11 +4462,11 @@
     <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Eski telefon numarası</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Yeni numaranız</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Yeni telefon numarası</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Girmiş olduğunuz numara hesabınızla uyuşmuyor.</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Girmiş olduğun telefon numarası hesabınla uyuşmuyor.</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Eski numaranızın ülke kodunu belirtmeniz gerekir</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Eski telefon numaranızı belirtmeniz gerekir</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Eski telefon numaranı belirtmen gerekir</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Yeni numaranızın ülke kodunu belirtmeniz gerekir</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Yeni telefon numaranızı belirtmeniz gerekir</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Yeni telefon numaranı belirtmen gerekir</string>
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">Numarayı Değiştir</string>
@@ -4473,7 +4475,7 @@
 
     <!-- ChangeNumberConfirmFragment -->
     <string name="ChangeNumberConfirmFragment__change_number">Numarayı değiştir</string>
-    <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Telefon numaranızı (%1$s --&gt; %2$s) değiştirmek üzeresiniz.\n\nDevam etmeden önce lütfen aşağıdaki numaranın doğru olduğundan emin olun.</string>
+    <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Telefon numaranı (%1$s --&gt; %2$s) değiştirmek üzeresin.\n\nDevam etmeden önce lütfen aşağıdaki numaranın doğru olduğundan emin ol.</string>
     <string name="ChangeNumberConfirmFragment__edit_number">Numarayı düzenle</string>
 
     <!-- ChangeNumberRegistrationLockFragment -->
@@ -5476,7 +5478,7 @@
     <string name="MyStorySettingsFragment__who_can_view_this_story">Bu hikayeyi kimler görüntüleyebilir</string>
     <!-- Clickable option for selecting people to hide your story from -->
     <!-- Privacy setting title for sending stories to all your signal connections -->
-    <string name="MyStorySettingsFragment__all_signal_connections">Tüm Signal bağlantıları</string>
+    <string name="MyStorySettingsFragment__all_signal_connections">Tüm Signal kişileri</string>
     <!-- Privacy setting description for sending stories to all your signal connections -->
     <!-- Privacy setting title for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__all_except">dışında hepsi</string>
@@ -5505,15 +5507,15 @@
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Hikayeni görebilecek kişilerin tepki ve yanıt vermesine izin ver</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
-    <string name="SignalConnectionsBottomSheet___signal_connections">Signal Bağlantıları</string>
+    <string name="SignalConnectionsBottomSheet___signal_connections">Signal Kişileri</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
-    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal Bağlantıları, aşağıdaki yöntemlerle güvenmeyi tercih ettiğin kişilerdir:</string>
+    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal Kişileri aşağıdaki yöntemlerle güvenmeyi tercih ettiğin kişilerdir:</string>
     <!-- Signal connections sheet bullet point 1 -->
     <string name="SignalConnectionsBottomSheet__starting_a_conversation">Bir sohbet başlatma</string>
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Bir mesaj isteğini kabul etmek</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Bunları sistem bağlantılarınızda bulundurmak</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Bunları sistem kişilerin arasında bulundurmak</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Bağlantıların, adını ve fotoğrafını görebilir ve onlardan gizlemediğin sürece \"Hikayem\" kısmındaki gönderileri görüntüleyebilir."</string>
     <!-- Clickable option to add a viewer to a custom story -->
@@ -5841,7 +5843,7 @@
     <!-- Subtitle of initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Hikayem\'deki gönderilerini kimlerin görebileceğini seç. Ayarlarda istediğin zaman değişiklik yapabilirsin.</string>
     <!-- All connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Tüm Signal bağlantıları</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Tüm Signal kişileri</string>
     <!-- All connections except option for initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__all_except">dışında hepsi</string>
     <!-- Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
@@ -6184,13 +6186,13 @@
     <string name="SetUpYourUsername__learn_more">Daha fazlasını öğren</string>
 
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_title">Bağlanmanın yeni yolları</string> -->
+    <string name="PnpLaunchMegaphone_title">Bağlanmanın yeni yolları</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_body">Telefon numarası gizliliği, isteğe bağlı kullanıcı adları ve bağlantılar.</string> -->
+    <string name="PnpLaunchMegaphone_body">Telefon numarası gizliliği, isteğe bağlı kullanıcı adları ve bağlantılar.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_dismiss">Kapat</string> -->
+    <string name="PnpLaunchMegaphone_dismiss">Kapat</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_learn_more">Daha fazlasını öğren</string> -->
+    <string name="PnpLaunchMegaphone_learn_more">Daha fazlasını öğren</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -6480,7 +6482,7 @@
     <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
     <string name="UsernameLinkSettings_qr_result_invalid">QR kod geçersizdi.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
-    <string name="UsernameLinkSettings_qr_result_not_found">%1$s adlı bir kullanıcı bulunamadı.</string>
+    <string name="UsernameLinkSettings_qr_result_not_found">%1$s kullanıcı adlı bir kullanıcı bulunamadı.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
     <string name="UsernameLinkSettings_qr_result_not_found_no_username">Kullanıcı bulunamadı.</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
@@ -6490,9 +6492,9 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">Bağlantın sıfırlanırken bir ağ hatası oluştu. Daha sonra tekrar dene.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string> -->
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string>
     <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">Kare kodun ve bağlantın sıfırlandı ve yeni bir kare kod ve bağlantı oluşturuldu.</string> -->
+    <string name="UsernameLinkSettings_reset_link_result_success">Kare kodun ve bağlantın sıfırlandı ve yeni bir kare kod ve bağlantı oluşturuldu.</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Benimle Signal\'de sohbet etmek için telefonunla bu kare kodu tara.</string>
 
@@ -6563,7 +6565,7 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">Telefon numarası</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_a_full_username">Basamak çiftiyle birlikte tam bir kullanıcı adı gir.</string>
+    <string name="FindByActivity__enter_username_description">Enter a username followed by a dot and its set of numbers.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">İleri</string>
     <!-- Placeholder text for search input for selecting country code -->

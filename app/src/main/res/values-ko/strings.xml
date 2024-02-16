@@ -485,8 +485,8 @@
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">이 대화에는 나를 위한 메모를 남길 수 있습니다. 내 계정에 연결된 기기가 있다면 새 메모가 같이 동기화됩니다.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d명의 그룹 멤버가 이름이 같습니다.</string>
     <string name="ConversationFragment__tap_to_review">탭하여 검토하세요.</string>
-    <string name="ConversationFragment__review_requests_carefully">신중하게 요청을 검토하세요.</string>
-    <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal이 같은 이름의 다른 연락처를 찾았습니다.</string>
+    <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
+    <string name="ConversationFragment__review_banner_body">This person has the same name as another contact</string>
     <string name="ConversationFragment_contact_us">문의하기</string>
     <string name="ConversationFragment_verify">검증</string>
     <string name="ConversationFragment_not_now">나중에</string>
@@ -1029,7 +1029,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">사용자 이름과 QR 코드, 링크가 프로필에 표시되지 않습니다. 신뢰하는 사람과만 사용자 이름을 공유하세요.</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">이제 나에게 메시지를 보낼 때 선택적 사용자 이름을 사용할 수 있으므로 다른 사람과 전화번호를 공유할 필요가 없습니다. </string> -->
+    <string name="ManageProfileFragment__username_footer_no_username">이제 나에게 메시지를 보낼 때 선택적 사용자 이름을 사용할 수 있으므로 다른 사람과 전화번호를 공유할 필요가 없습니다. </string>
     <string name="ManageProfileFragment_profile_name">프로필 이름</string>
     <string name="ManageProfileFragment_username">사용자 이름</string>
     <string name="ManageProfileFragment_about">정보</string>
@@ -1891,9 +1891,9 @@
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">Signal 커넥션</string>
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
-  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">검증함</string> -->
+    <string name="AboutSheet__verified">검증함</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
-  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string> -->
+    <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s 님이 내 기기 연락처에 있습니다.</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -2221,7 +2221,7 @@
     <string name="UsernameEditFragment_username_is_invalid">잘못된 사용자 이름입니다.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">사용자 이름은 %1$d~%2$d자여야 합니다.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">사용자 이름을 사용하면 다른 사람들이 내 전화번호 없이도 내게 메시지를 보낼 수 있습니다. 사용자 이름은 사용자의 주소를 비공개로 유지할 수 있도록 일련번호와 함께 짝지어 쓰입니다.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">Usernames are always paired with a set of numbers.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">이 번호는 무엇인가요?</string>
     <string name="UsernameEditFragment__these_digits_help_keep">이 일련번호는 사용자 이름을 비공개로 유지하여 원치 않는 메시지를 피할 수 있도록 도와줍니다. 대화를 원하는 사용자 및 그룹과만 사용자 이름을 공유하세요. 사용자 이름을 변경하면 새로운 일련번호가 부여됩니다.</string>
@@ -2242,9 +2242,9 @@
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">사용자 이름을 복구하면 기존 QR 코드와 링크가 초기화됩니다. 계속할까요?</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">사용자 이름을 변경하면 기존 QR 코드와 링크가 초기화됩니다. 계속할까요?</string> -->
+    <string name="UsernameEditFragment_change_confirmation_message">사용자 이름을 변경하면 기존 QR 코드와 링크가 초기화됩니다. 계속할까요?</string>
     <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">계속</string> -->
+    <string name="UsernameEditFragment_continue">계속</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="other">Signal에 연락처가 %1$d개 있습니다!</item>
@@ -4018,8 +4018,10 @@
     <string name="BlockedUsersActivity__s_has_been_unblocked">\'%1$s\' 님을 차단 해제했습니다.</string>
 
     <!-- ReviewCardDialogFragment -->
-    <string name="ReviewCardDialogFragment__review_members">멤버 검토</string>
-    <string name="ReviewCardDialogFragment__review_request">검토 요청</string>
+    <!-- Title of a screen where the user will be prompted to review group members with the same name -->
+    <string name="ReviewCardDialogFragment__review_members">Review members</string>
+    <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
+    <string name="ReviewCardDialogFragment__review_request">Review request</string>
     <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d명의 그룹 멤버가 같은 이름을 가지고 있습니다. 아래 멤버를 검토한 후 조치를 취하세요.</string>
     <string name="ReviewCardDialogFragment__if_youre_not_sure">요청의 출처가 확실하지 않은 경우 아래 연락처를 검토하고 조치를 취하세요.</string>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">공통된 다른 그룹이 없습니다.</string>
@@ -6046,13 +6048,13 @@
     <string name="SetUpYourUsername__learn_more">자세히 알아보기</string>
 
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_title">새로운 연락 방법</string> -->
+    <string name="PnpLaunchMegaphone_title">새로운 연락 방법</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_body">전화번호 개인 정보 보호와 선택적 사용자 이름 및 링크를 소개합니다.</string> -->
+    <string name="PnpLaunchMegaphone_body">전화번호 개인 정보 보호와 선택적 사용자 이름 및 링크를 소개합니다.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_dismiss">취소</string> -->
+    <string name="PnpLaunchMegaphone_dismiss">취소</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_learn_more">자세히 알아보기</string> -->
+    <string name="PnpLaunchMegaphone_learn_more">자세히 알아보기</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -6349,9 +6351,9 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">링크를 초기화하는 중에 네트워크 오류가 발생했습니다. 나중에 다시 시도하세요.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string> -->
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string>
     <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">QR 코드와 링크를 초기화하고 새 QR 코드와 링크를 만들었습니다.</string> -->
+    <string name="UsernameLinkSettings_reset_link_result_success">QR 코드와 링크를 초기화하고 새 QR 코드와 링크를 만들었습니다.</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Signal에서 나와 대화하려면 휴대전화로 이 QR 코드를 스캔하세요.</string>
 
@@ -6420,7 +6422,7 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">전화번호</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_a_full_username">전체 사용자 이름과 해당 이름에 짝지어진 숫자를 함께 입력해 주세요.</string>
+    <string name="FindByActivity__enter_username_description">Enter a username followed by a dot and its set of numbers.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">다음</string>
     <!-- Placeholder text for search input for selecting country code -->

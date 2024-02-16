@@ -530,8 +530,8 @@
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">يُمكِنُك إضافة مُلاحظات لنفسك في هذه الدردشة. إذا كان حسابك يحتوي على أي أجهزة مُرتبطة، ستتم مُزامنة المُلاحظات.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d عضوا بالمجموعة لهم نفس اﻻسم.</string>
     <string name="ConversationFragment__tap_to_review">يُرجى اللمس للمراجعة</string>
-    <string name="ConversationFragment__review_requests_carefully">مراجعة الطلبات بعناية</string>
-    <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">وجد سيجنال جهة اتصال أخرى بنفس الاسم.</string>
+    <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
+    <string name="ConversationFragment__review_banner_body">This person has the same name as another contact</string>
     <string name="ConversationFragment_contact_us">تواصل معنا</string>
     <string name="ConversationFragment_verify">تحقق</string>
     <string name="ConversationFragment_not_now">ليس الآن</string>
@@ -1204,7 +1204,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">اسم المُستخدم الخاص بك ليس مرئيًا على حسابك الشخصي، وكذلك رمز ورابط الاستجابة السريعة الخاصين بك. شارك اسم المُستخدم الخاص بك فقط مع الناس الذين تثق بهم.</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">يُمكن للناس مراسلتك الآن باستخدام اسم المُستخدم الاختياري الخاص بك حتى لا تضطر إلى إعطاء رقم هاتفك. </string> -->
+    <string name="ManageProfileFragment__username_footer_no_username">يُمكن للناس مراسلتك الآن باستخدام اسم المُستخدم الاختياري الخاص بك حتى لا تضطر إلى إعطاء رقم هاتفك. </string>
     <string name="ManageProfileFragment_profile_name">اسم الحساب</string>
     <string name="ManageProfileFragment_username">اسم المُستخدم</string>
     <string name="ManageProfileFragment_about">حول</string>
@@ -2261,9 +2261,9 @@
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">جهة اتصال سيجنال</string>
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
-  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">متحقق منه</string> -->
+    <string name="AboutSheet__verified">متحقق منه</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
-  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string> -->
+    <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s موجود في جهات اتصال حسابك</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -2621,7 +2621,7 @@
     <string name="UsernameEditFragment_username_is_invalid">اسم المُستخدم غير صالح</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">اسم المُستخدم لا بد أن يكون بين %1$d و%2$d رمز.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">تسمح أسماء المُستخدمين للآخرين بمراسلتك دون الحاجة إلى رقم هاتفك. يتم إقرانها بمجموعة من الأرقام للمساعدة في الحفاظ على خصوصية عنوانك.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">Usernames are always paired with a set of numbers.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">ماذا يعني هذا الرقم؟</string>
     <string name="UsernameEditFragment__these_digits_help_keep">تُساعد هذه الأرقام في الحفاظ على خصوصية اسم المُستخدم الخاص بك حتى تتجنب الرسائل غير مرغوب فيها. شارك اسم المُستخدم الخاص بك مع الأشخاص والمجموعات الذين ترغب في الدردشة معهم. إذا قمت بتغيير أسماء المُستخدمين، سَتحصل على مجموعة جديدة من الأرقام.</string>
@@ -2642,9 +2642,9 @@
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">سيُؤدي استرداد اسم المُستخدم الخاص بك إلى إعادة تعيين رمز ورابط الاستجابة السريعة الخاصين بك. هل أنت مُتأكد؟</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">سيُؤدي تغيير اسم المُستخدم الخاص بك إلى إعادة تعيين رمز الاستجابة السريع والرابط الحاليين الخاصين بك. هل أنت متأكد؟</string> -->
+    <string name="UsernameEditFragment_change_confirmation_message">سيُؤدي تغيير اسم المُستخدم الخاص بك إلى إعادة تعيين رمز الاستجابة السريع والرابط الحاليين الخاصين بك. هل أنت متأكد؟</string>
     <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">مواصلة</string> -->
+    <string name="UsernameEditFragment_continue">مواصلة</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="zero">%1$d جهة اتصال تستخدم سيجنال!‏</item>
@@ -4548,8 +4548,10 @@
     <string name="BlockedUsersActivity__s_has_been_unblocked">تم إلغاء حظر \"%1$s\".</string>
 
     <!-- ReviewCardDialogFragment -->
-    <string name="ReviewCardDialogFragment__review_members">مراجعة الأعضاء</string>
-    <string name="ReviewCardDialogFragment__review_request">طلب المراجعة</string>
+    <!-- Title of a screen where the user will be prompted to review group members with the same name -->
+    <string name="ReviewCardDialogFragment__review_members">Review members</string>
+    <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
+    <string name="ReviewCardDialogFragment__review_request">Review request</string>
     <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d من أعضاء المجموعة يحملون نفس الاسم، يُرجى مراجعة اﻷعضاء أسفله ثم القيام باﻹجراء المناسب.</string>
     <string name="ReviewCardDialogFragment__if_youre_not_sure">إذا التبس عليك مصدر الطلب، يُرجى مراجعة جهات الاتصال أدناه والقيام بالإجراء المناسب.</string>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">لا وجود لمجموعات أخرى مشتركة.</string>
@@ -6736,13 +6738,13 @@
     <string name="SetUpYourUsername__learn_more">معرفة المزيد</string>
 
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_title">طرق جديدة للاتصال</string> -->
+    <string name="PnpLaunchMegaphone_title">طرق جديدة للاتصال</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_body">نُقدم لكم خصوصية رقم الهاتف وأسماء المستخدمين الاختيارية والروابط.</string> -->
+    <string name="PnpLaunchMegaphone_body">نُقدم لكم خصوصية رقم الهاتف وأسماء المستخدمين الاختيارية والروابط.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_dismiss">تجاهُل</string> -->
+    <string name="PnpLaunchMegaphone_dismiss">تجاهُل</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_learn_more">معرفة المزيد</string> -->
+    <string name="PnpLaunchMegaphone_learn_more">معرفة المزيد</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -7054,9 +7056,9 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">لقد حدث خطأ في الشبكة أثناء محاولة إعادة تعيين رابطك. يُرجى المحاولة مرة أخرى لاحقًا.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string> -->
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string>
     <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">تمت إعادة تعيين رمز ورابط الاستجابة السريعة وتم إنشاء رمز ورابط الاستجابة السريعة جديدين.</string> -->
+    <string name="UsernameLinkSettings_reset_link_result_success">تمت إعادة تعيين رمز ورابط الاستجابة السريعة وتم إنشاء رمز ورابط الاستجابة السريعة جديدين.</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">امسح رمز الاستجابة السريعة هذا باستخدام هاتفك للدردشة معي على سيجنال.</string>
 
@@ -7135,7 +7137,7 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">رقم الهاتف</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_a_full_username">أدخل اسم مُستخدم كامل مع زوج الأرقام الخاص به.</string>
+    <string name="FindByActivity__enter_username_description">Enter a username followed by a dot and its set of numbers.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">التالي</string>
     <!-- Placeholder text for search input for selecting country code -->

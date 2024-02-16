@@ -494,8 +494,8 @@
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">ਤੁਸੀਂ ਇਸ ਚੈਟ ਵਿੱਚ ਖੁਦ ਲਈ ਨੋਟ ਸ਼ਾਮਲ ਕਰ ਸਕਦੇ ਹੋ। ਜੇਕਰ ਤੁਸੀਂ ਆਪਣੇ ਖਾਤੇ ਦੇ ਨਾਲ ਹੋਰ ਡਿਵਾਈਸਾਂ ਨੂੰ ਲਿੰਕ ਕੀਤਾ ਹੋਇਆ ਹੈ, ਤਾਂ ਨਵੇਂ ਨੋਟਸ ਉਹਨਾਂ ਨਾਲ ਵੀ ਸਿੰਕ ਕੀਤੇ ਜਾਣਗੇ।</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">ਗਰੁੱਪ ਦੇ %1$d ਮੈਂਬਰਾਂ ਦਾ ਇੱਕੋ ਨਾਮ ਹੈ।</string>
     <string name="ConversationFragment__tap_to_review">ਸਮੀਖਿਆ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ</string>
-    <string name="ConversationFragment__review_requests_carefully">ਬੇਨਤੀਆਂ ਦੀ ਧਿਆਨ ਨਾਲ ਸਮੀਖਿਆ ਕਰੋ</string>
-    <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal ਨੂੰ ਇਸੇ ਨਾਮ ਨਾਲ ਇੱਕ ਹੋਰ ਸੰਪਰਕ ਮਿਲਿਆ।</string>
+    <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
+    <string name="ConversationFragment__review_banner_body">This person has the same name as another contact</string>
     <string name="ConversationFragment_contact_us">ਸਾਡੇ ਨਾਲ ਸੰਪਰਕ ਕਰੋ</string>
     <string name="ConversationFragment_verify">ਤਸਦੀਕ ਕਰੋ</string>
     <string name="ConversationFragment_not_now">ਹੁਣੇ ਨਹੀਂ</string>
@@ -1064,7 +1064,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">ਤੁਹਾਡੇ ਵਰਤੋਂਕਾਰ ਨਾਂ, QR ਕੋਡ ਅਤੇ ਲਿੰਕ ਨੂੰ ਤੁਹਾਡੀ ਪ੍ਰੋਫਾਈਲ \'ਤੇ ਦਿਖਾਇਆ ਨਹੀਂ ਜਾਂਦਾ ਹੈ। ਆਪਣਾ ਵਰਤੋਂਕਾਰ ਨਾਂ ਸਿਰਫ਼ ਉਹਨਾਂ ਲੋਕਾਂ ਨਾਲ ਸਾਂਝਾ ਕਰੋ ਜਿਹਨਾਂ ਉੱਤੇ ਤੁਸੀਂ ਭਰੋਸਾ ਕਰਦੇ ਹੋ।</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">ਲੋਕ ਹੁਣ ਤੁਹਾਡੇ ਵਿਕਲਪਿਕ ਵਰਤੋਂਕਾਰ ਨਾਂ ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਤੁਹਾਨੂੰ ਸੁਨੇਹਾ ਭੇਜ ਸਕਦੇ ਹਨ ਤਾਂ ਜੋ ਤੁਹਾਨੂੰ ਆਪਣਾ ਫ਼ੋਨ ਨੰਬਰ ਦੇਣ ਦੀ ਲੋੜ ਨਾ ਪਵੇ। </string> -->
+    <string name="ManageProfileFragment__username_footer_no_username">ਲੋਕ ਹੁਣ ਤੁਹਾਡੇ ਵਿਕਲਪਿਕ ਵਰਤੋਂਕਾਰ ਨਾਂ ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਤੁਹਾਨੂੰ ਸੁਨੇਹਾ ਭੇਜ ਸਕਦੇ ਹਨ ਤਾਂ ਜੋ ਤੁਹਾਨੂੰ ਆਪਣਾ ਫ਼ੋਨ ਨੰਬਰ ਦੇਣ ਦੀ ਲੋੜ ਨਾ ਪਵੇ। </string>
     <string name="ManageProfileFragment_profile_name">ਪ੍ਰੋਫਾਈਲ ਨਾਂ</string>
     <string name="ManageProfileFragment_username">ਵਰਤੋਂਕਾਰ ਨਾਂ</string>
     <string name="ManageProfileFragment_about">ਇਸ ਬਾਰੇ</string>
@@ -1965,9 +1965,9 @@
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">Signal ਕਨੈਕਸ਼ਨ</string>
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
-  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">ਤਸਦੀਕਸ਼ੁਦਾ</string> -->
+    <string name="AboutSheet__verified">ਤਸਦੀਕਸ਼ੁਦਾ</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
-  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string> -->
+    <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s ਤੁਹਾਡੇ ਸਿਸਟਮ ਦੇ ਸੰਪਰਕਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਹਨ</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -2301,7 +2301,7 @@
     <string name="UsernameEditFragment_username_is_invalid">ਵਰਤੋਂਕਾਰ ਨਾਂ ਅਵੈਧ ਹੈ।</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ਵਰਤੋਂਕਾਰ ਨਾਂ ਦੇ ਵਿੱਚ %1$d ਤੋਂ %2$d ਅੱਖਰ ਹੋਣੇ ਲਾਜ਼ਮੀ ਹਨ।</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">ਤੁਹਾਡੇ ਫ਼ੋਨ ਨੰਬਰ ਦੀ ਲੋੜ ਪਏ ਬਿਨਾਂ ਲੋਕ ਵਰਤੋਂਕਾਰ ਨਾਂ ਰਾਹੀਂ ਤੁਹਾਨੂੰ ਸੁਨੇਹਾ ਭੇਜ ਸਕਦੇ ਹਨ। ਤੁਹਾਡੇ ਪਤੇ ਨੂੰ ਪ੍ਰਾਈਵੇਟ ਰੱਖਣ ਲਈ ਵਰਤੋਂਕਾਰ ਨਾਂ ਦੇ ਵਿੱਚ ਅੰਕਾਂ ਦਾ ਜੋੜਾ ਵੀ ਸ਼ਾਮਲ ਕੀਤਾ ਜਾਂਦਾ ਹੈ।</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">Usernames are always paired with a set of numbers.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">ਇਹ ਨੰਬਰ ਕੀ ਹੈ?</string>
     <string name="UsernameEditFragment__these_digits_help_keep">ਇਹ ਅੰਕ ਤੁਹਾਡੇ ਵਰਤੋਂਕਾਰ ਨਾਂ ਨੂੰ ਪ੍ਰਾਈਵੇਟ ਰੱਖਣ ਵਿੱਚ ਮਦਦ ਕਰਦੇ ਹਨ ਤਾਂ ਜੋ ਤੁਸੀਂ ਅਣਚਾਹੇ ਸੁਨੇਹਿਆਂ ਤੋਂ ਬਚ ਸਕੋ। ਆਪਣਾ ਵਰਤੋਂਕਾਰ ਨਾਂ ਸਿਰਫ਼ ਉਹਨਾਂ ਲੋਕਾਂ ਅਤੇ ਗਰੁੱਪਾਂ ਨਾਲ ਸਾਂਝਾ ਕਰੋ ਜਿਹਨਾਂ ਨਾਲ ਤੁਸੀਂ ਚੈਟ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ। ਜੇਕਰ ਤੁਸੀਂ ਵਰਤੋਂਕਾਰ ਨਾਂ ਬਦਲਦੇ ਹੋ ਤਾਂ ਅੰਕਾਂ ਨੂੰ ਵੀ ਬਦਲ ਦਿੱਤਾ ਜਾਵੇਗਾ।</string>
@@ -2322,9 +2322,9 @@
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">ਆਪਣੇ ਵਰਤੋਂਕਾਰ ਨਾਂ ਨੂੰ ਰਿਕਵਰ ਕਰਨ ਨਾਲ ਤੁਹਾਡਾ ਮੌਜੂਦਾ QR ਕੋਡ ਅਤੇ ਲਿੰਕ ਰੀਸੈੱਟ ਹੋ ਜਾਵੇਗਾ। ਕੀ ਤੁਸੀਂ ਪੱਕਾ ਅਜਿਹਾ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">ਆਪਣੇ ਵਰਤੋਂਕਾਰ ਨਾਂ ਨੂੰ ਬਦਲਣ ਨਾਲ ਤੁਹਾਡਾ ਮੌਜੂਦਾ QR ਕੋਡ ਅਤੇ ਲਿੰਕ ਰੀਸੈਟ ਹੋ ਜਾਵੇਗਾ। ਕੀ ਤੁਸੀਂ ਪੱਕਾ ਅਜਿਹਾ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?</string> -->
+    <string name="UsernameEditFragment_change_confirmation_message">ਆਪਣੇ ਵਰਤੋਂਕਾਰ ਨਾਂ ਨੂੰ ਬਦਲਣ ਨਾਲ ਤੁਹਾਡਾ ਮੌਜੂਦਾ QR ਕੋਡ ਅਤੇ ਲਿੰਕ ਰੀਸੈਟ ਹੋ ਜਾਵੇਗਾ। ਕੀ ਤੁਸੀਂ ਪੱਕਾ ਅਜਿਹਾ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
     <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">ਜਾਰੀ ਰੱਖੋ</string> -->
+    <string name="UsernameEditFragment_continue">ਜਾਰੀ ਰੱਖੋ</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d ਸੰਪਰਕ Signal ਉੱਤੇ ਹੈ!</item>
@@ -4124,8 +4124,10 @@
     <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" ਉੱਤੋਂ ਪਾਬੰਦੀ ਹਟਾ ਦਿੱਤੀ ਗਈ ਹੈ।</string>
 
     <!-- ReviewCardDialogFragment -->
-    <string name="ReviewCardDialogFragment__review_members">ਮੈਂਬਰ ਦੀ ਪੜਤਾਲ</string>
-    <string name="ReviewCardDialogFragment__review_request">ਬੇਨਤੀ ਦੀ ਸਮੀਖਿਆ ਕਰੋ</string>
+    <!-- Title of a screen where the user will be prompted to review group members with the same name -->
+    <string name="ReviewCardDialogFragment__review_members">Review members</string>
+    <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
+    <string name="ReviewCardDialogFragment__review_request">Review request</string>
     <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d ਗਰੁੱਪ ਮੈਂਬਰਾਂ ਦੇ ਨਾਂ ਇੱਕੋ ਜਿਹੇ ਹਨ, ਹੇਠਲੇ ਮੈਂਬਰਾਂ ਦੀ ਸਮੀਖਿਆ ਕਰੋ ਅਤੇ ਕਾਰਵਾਈ ਦੀ ਚੋਣ ਕਰੋ।</string>
     <string name="ReviewCardDialogFragment__if_youre_not_sure">ਜੇ ਤੁਹਾਨੂੰ ਇਹ ਪੱਕਾ ਨਹੀਂ ਪਤਾ ਹੈ ਕਿ ਬੇਨਤੀ ਕਿਸ ਤੋਂ ਆਈ ਹੈ, ਤਾਂ ਹੇਠਲੇ ਸੰਪਰਕਾਂ ਦੀ ਸਮੀਖਿਆ ਕਰੋ ਅਤੇ ਕਾਰਵਾਈ ਕਰੋ।</string>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">ਕੋਈ ਹੋਰ ਗਰੁੱਪ ਸਾਂਝੇ ਨਹੀਂ।</string>
@@ -6184,13 +6186,13 @@
     <string name="SetUpYourUsername__learn_more">ਹੋਰ ਜਾਣੋ</string>
 
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_title">ਕਨੈਕਟ ਕਰਨ ਦੇ ਨਵੇਂ ਤਰੀਕੇ</string> -->
+    <string name="PnpLaunchMegaphone_title">ਕਨੈਕਟ ਕਰਨ ਦੇ ਨਵੇਂ ਤਰੀਕੇ</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_body">ਪੇਸ਼ ਹੈ ਫ਼ੋਨ ਨੰਬਰ ਦੀ ਪਰਦੇਦਾਰੀ, ਵਿਕਲਪਿਕ ਵਰਤੋਂਕਾਰ ਨਾਂ ਅਤੇ ਲਿੰਕ।</string> -->
+    <string name="PnpLaunchMegaphone_body">ਪੇਸ਼ ਹੈ ਫ਼ੋਨ ਨੰਬਰ ਦੀ ਪਰਦੇਦਾਰੀ, ਵਿਕਲਪਿਕ ਵਰਤੋਂਕਾਰ ਨਾਂ ਅਤੇ ਲਿੰਕ।</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_dismiss">ਖਾਰਜ ਕਰੋ</string> -->
+    <string name="PnpLaunchMegaphone_dismiss">ਖਾਰਜ ਕਰੋ</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_learn_more">ਹੋਰ ਜਾਣੋ</string> -->
+    <string name="PnpLaunchMegaphone_learn_more">ਹੋਰ ਜਾਣੋ</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -6490,9 +6492,9 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">ਤੁਹਾਡੇ ਲਿੰਕ ਨੂੰ ਰੀਸੈੱਟ ਕਰਨ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰਦੇ ਸਮੇਂ ਨੈੱਟਵਰਕ ਵਿੱਚ ਕੋਈ ਗੜਬੜੀ ਆਈ ਸੀ। ਬਾਅਦ ਵਿੱਚ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string> -->
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string>
     <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">ਤੁਹਾਡਾ QR ਕੋਡ ਅਤੇ ਲਿੰਕ ਰੀਸੈੱਟ ਕਰ ਦਿੱਤਾ ਗਿਆ ਹੈ ਅਤੇ ਇੱਕ ਨਵਾਂ QR ਕੋਡ ਅਤੇ ਲਿੰਕ ਬਣਾਇਆ ਗਿਆ ਹੈ।</string> -->
+    <string name="UsernameLinkSettings_reset_link_result_success">ਤੁਹਾਡਾ QR ਕੋਡ ਅਤੇ ਲਿੰਕ ਰੀਸੈੱਟ ਕਰ ਦਿੱਤਾ ਗਿਆ ਹੈ ਅਤੇ ਇੱਕ ਨਵਾਂ QR ਕੋਡ ਅਤੇ ਲਿੰਕ ਬਣਾਇਆ ਗਿਆ ਹੈ।</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Signal ਉੱਤੇ ਮੇਰੇ ਨਾਲ ਚੈਟ ਕਰਨ ਲਈ ਆਪਣੇ ਫ਼ੋਨ ਦੇ ਨਾਲ QR ਕੋਡ ਸਕੈਨ ਕਰੋ।</string>
 
@@ -6563,7 +6565,7 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">ਫ਼ੋਨ ਨੰਬਰ</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_a_full_username">ਪੂਰੇ ਵਰਤੋਂਕਾਰ ਨਾਂ ਨੂੰ ਉਸਦੇ ਅੰਕਾਂ ਦੇ ਜੋੜੇ ਦੇ ਨਾਲ ਦਰਜ ਕਰੋ।</string>
+    <string name="FindByActivity__enter_username_description">Enter a username followed by a dot and its set of numbers.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">ਅੱਗੇ</string>
     <!-- Placeholder text for search input for selecting country code -->

@@ -485,8 +485,8 @@
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">你可以喺聊天入面新增一啲俾自己嘅筆記。如果你嘅帳戶連結咗其他裝置，新嘅筆記會自動同步。</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">個谷有 %1$d 位成員撞名。</string>
     <string name="ConversationFragment__tap_to_review">撳一下細閱</string>
-    <string name="ConversationFragment__review_requests_carefully">請求要金睛火眼睇清楚</string>
-    <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal 搵到另一位聯絡人，都係同一個名。</string>
+    <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
+    <string name="ConversationFragment__review_banner_body">This person has the same name as another contact</string>
     <string name="ConversationFragment_contact_us">聯絡我哋</string>
     <string name="ConversationFragment_verify">驗證</string>
     <string name="ConversationFragment_not_now">遲啲先啦</string>
@@ -1029,7 +1029,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">你嘅用戶名稱、二維碼同連結唔會喺個人檔案度顯示。記得淨係好同你信任嘅人分享你嘅用戶名稱呀。</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">其他人而家可以用你選填嘅用戶名稱傳送訊息俾你，咁你就唔使再俾電話冧把人喇。 </string> -->
+    <string name="ManageProfileFragment__username_footer_no_username">其他人而家可以用你選填嘅用戶名稱傳送訊息俾你，咁你就唔使再俾電話冧把人喇。 </string>
     <string name="ManageProfileFragment_profile_name">個人檔名</string>
     <string name="ManageProfileFragment_username">用戶名稱</string>
     <string name="ManageProfileFragment_about">關於</string>
@@ -1891,9 +1891,9 @@
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">Signal 人脈</string>
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
-  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">驗證咗</string> -->
+    <string name="AboutSheet__verified">驗證咗</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
-  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string> -->
+    <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s 係你嘅聯絡人</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -2221,7 +2221,7 @@
     <string name="UsernameEditFragment_username_is_invalid">用戶名稱無效。</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">用戶名稱一定要係 %1$d 至 %2$d 個字元之間。</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">用戶名稱可以俾其他人唔使用你個電話冧把搜尋，都可以傳送訊息俾你。系統會將用戶名稱同一組數字配對，咁就可以幫你嘅地址保密。</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">Usernames are always paired with a set of numbers.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">呢個號碼係咩嚟？</string>
     <string name="UsernameEditFragment__these_digits_help_keep">呢組數字可以將你嘅用戶名稱保密，以免你受到無謂嘅訊息滋擾。請你淨係同你想同佢通訊嘅聯絡人同埋群組分享你嘅用戶名稱。如果你改咗個用戶名稱，就會收到一組新嘅數字。</string>
@@ -2242,9 +2242,9 @@
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">恢復用戶名稱會將你宜家用緊嘅二維碼同連結重設。你係咪確定？</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">更改用戶名稱會將你宜家用緊嘅二維碼同連結重設。你係咪確定？</string> -->
+    <string name="UsernameEditFragment_change_confirmation_message">更改用戶名稱會將你宜家用緊嘅二維碼同連結重設。你係咪確定？</string>
     <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">繼續</string> -->
+    <string name="UsernameEditFragment_continue">繼續</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="other">%1$d 位聯絡人開咗 Signal 喇！</item>
@@ -4018,8 +4018,10 @@
     <string name="BlockedUsersActivity__s_has_been_unblocked">解除封鎖咗「%1$s」。</string>
 
     <!-- ReviewCardDialogFragment -->
-    <string name="ReviewCardDialogFragment__review_members">批閱成員</string>
-    <string name="ReviewCardDialogFragment__review_request">批閱請求</string>
+    <!-- Title of a screen where the user will be prompted to review group members with the same name -->
+    <string name="ReviewCardDialogFragment__review_members">Review members</string>
+    <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
+    <string name="ReviewCardDialogFragment__review_request">Review request</string>
     <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">個谷嘅 %1$d 位成員撞名，請批閱下列成員並視乎情況做要做嘅嘢。</string>
     <string name="ReviewCardDialogFragment__if_youre_not_sure">假如您唔肯定係邊個發出請求，請批閱下列嘅聯絡人並去做要做嘅嘢。</string>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">無其他有緣相遇嘅谷。</string>
@@ -6046,13 +6048,13 @@
     <string name="SetUpYourUsername__learn_more">了解詳情</string>
 
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_title">全新連繫方式</string> -->
+    <string name="PnpLaunchMegaphone_title">全新連繫方式</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_body">包括電話號碼私隱、可以選填嘅用戶名稱同連結功能。</string> -->
+    <string name="PnpLaunchMegaphone_body">包括電話號碼私隱、可以選填嘅用戶名稱同連結功能。</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_dismiss">關閉</string> -->
+    <string name="PnpLaunchMegaphone_dismiss">關閉</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_learn_more">了解詳情</string> -->
+    <string name="PnpLaunchMegaphone_learn_more">了解詳情</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -6349,9 +6351,9 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">嘗試重設連結時，網路發生錯誤。請你遲啲再試過啦。</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string> -->
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string>
     <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">你嘅二維碼同連結已經重設，系統建立咗一個新嘅二維碼同連結。</string> -->
+    <string name="UsernameLinkSettings_reset_link_result_success">你嘅二維碼同連結已經重設，系統建立咗一個新嘅二維碼同連結。</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">用電話掃描呢個二維碼，就開始喺 Signal 同我聊天喇。</string>
 
@@ -6420,7 +6422,7 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">電話冧把</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_a_full_username">輸入完整嘅用戶名稱同專屬嘅兩位數字。</string>
+    <string name="FindByActivity__enter_username_description">Enter a username followed by a dot and its set of numbers.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">下一步</string>
     <!-- Placeholder text for search input for selecting country code -->

@@ -485,8 +485,8 @@
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Anda dapat menambahkan catatan untuk diri sendiri dalam obrolan ini. Jika akun Anda terhubung ke perangkat lain, catatan baru akan disinkronkan.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d anggota grup memiliki nama yang sama.</string>
     <string name="ConversationFragment__tap_to_review">Ketuk untuk meninjau</string>
-    <string name="ConversationFragment__review_requests_carefully">Tinjau permintaan dengan hati-hati</string>
-    <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal menemukan kontak lain dengan nama yang sama.</string>
+    <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
+    <string name="ConversationFragment__review_banner_body">This person has the same name as another contact</string>
     <string name="ConversationFragment_contact_us">Hubungi kami</string>
     <string name="ConversationFragment_verify">Verifikasi</string>
     <string name="ConversationFragment_not_now">Nanti saja</string>
@@ -1029,7 +1029,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Nama pengguna, kode QR, dan tautan Anda tidak terlihat di profil. Hanya bagikan nama pengguna ke orang yang Anda percayai.</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">Orang lain kini bisa mengirimi Anda pesan lewat nama pengguna opsional, sehingga tidak perlu memberikan nomor telepon. </string> -->
+    <string name="ManageProfileFragment__username_footer_no_username">Orang lain kini bisa mengirimi Anda pesan lewat nama pengguna opsional, sehingga tidak perlu memberikan nomor telepon. </string>
     <string name="ManageProfileFragment_profile_name">Nama profil</string>
     <string name="ManageProfileFragment_username">Nama Pengguna</string>
     <string name="ManageProfileFragment_about">Tentang</string>
@@ -1891,9 +1891,9 @@
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">Koneksi Signal</string>
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
-  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">Terverifikasi</string> -->
+    <string name="AboutSheet__verified">Terverifikasi</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
-  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string> -->
+    <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s ada di kontak sistem Anda</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -2221,7 +2221,7 @@
     <string name="UsernameEditFragment_username_is_invalid">Nama pengguna tidak valid.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Nama pengguna harus terdiri antara %1$d dan %2$d karakter.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Dengan nama pengguna, orang lain dapat mengirimi Anda pesan tanpa memerlukan nomor telepon Anda. Nama pengguna dipasangkan dengan serangkaian angka untuk membantu memastikan alamat Anda tetap privat.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">Usernames are always paired with a set of numbers.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">Nomor apa ini?</string>
     <string name="UsernameEditFragment__these_digits_help_keep">Angka ini membantu memastikan nama pengguna Anda tetap privat dan mencegah pesan yang tidak diinginkan. Bagikan nama pengguna Anda hanya dengan orang dan grup yang diinginkan. Jika mengganti nama pengguna, Anda akan mendapatkan serangkaian angka baru.</string>
@@ -2242,9 +2242,9 @@
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">Jika nama pengguna Anda dipulihkan, kode QR dan tautan yang ada akan direset. Anda yakin?</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">Jika Anda mengubah nama pengguna, tautan dan kode QR yang ada akan direset. Anda yakin?</string> -->
+    <string name="UsernameEditFragment_change_confirmation_message">Jika Anda mengubah nama pengguna, tautan dan kode QR yang ada akan direset. Anda yakin?</string>
     <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">Lanjutkan</string> -->
+    <string name="UsernameEditFragment_continue">Lanjutkan</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="other">%1$d kontak ada di Signal!</item>
@@ -4018,8 +4018,10 @@
     <string name="BlockedUsersActivity__s_has_been_unblocked">Blokir \"%1$s\" telah dibuka.</string>
 
     <!-- ReviewCardDialogFragment -->
-    <string name="ReviewCardDialogFragment__review_members">Tinjau Anggota</string>
-    <string name="ReviewCardDialogFragment__review_request">Tinjau Permintaan</string>
+    <!-- Title of a screen where the user will be prompted to review group members with the same name -->
+    <string name="ReviewCardDialogFragment__review_members">Review members</string>
+    <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
+    <string name="ReviewCardDialogFragment__review_request">Review request</string>
     <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$danggota grup memiliki nama yang sama, tinjau anggota-anggota di bawah dan pilih tindakan.</string>
     <string name="ReviewCardDialogFragment__if_youre_not_sure">Jika anda tidak yakin dari mana permintaannya berasal, tinjau kontak-kontak dibawah dan ambil tindakan.</string>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">Tidak ada grup lain yang sama.</string>
@@ -6046,13 +6048,13 @@
     <string name="SetUpYourUsername__learn_more">Pelajari selengkapnya</string>
 
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_title">Cara baru untuk terhubung</string> -->
+    <string name="PnpLaunchMegaphone_title">Cara baru untuk terhubung</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_body">Memperkenalkan privasi nomor telepon, nama pengguna opsional, dan tautan.</string> -->
+    <string name="PnpLaunchMegaphone_body">Memperkenalkan privasi nomor telepon, nama pengguna opsional, dan tautan.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_dismiss">Tutup</string> -->
+    <string name="PnpLaunchMegaphone_dismiss">Tutup</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_learn_more">Pelajari selengkapnya</string> -->
+    <string name="PnpLaunchMegaphone_learn_more">Pelajari selengkapnya</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -6349,9 +6351,9 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">Terjadi kesalahan jaringan saat mencoba mereset tautan. Coba lagi nanti.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string> -->
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string>
     <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">Kode QR dan tautan Anda telah direset dan kode QR serta tautan baru telah dibuat.</string> -->
+    <string name="UsernameLinkSettings_reset_link_result_success">Kode QR dan tautan Anda telah direset dan kode QR serta tautan baru telah dibuat.</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Pindai kode QR ini dengan ponsel untuk mengobrol dengan saya di Signal.</string>
 
@@ -6420,7 +6422,7 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">Nomor telepon</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_a_full_username">Masukkan nama pengguna lengkap dengan set digit angka pasangannya.</string>
+    <string name="FindByActivity__enter_username_description">Enter a username followed by a dot and its set of numbers.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">Berikutnya</string>
     <!-- Placeholder text for search input for selecting country code -->

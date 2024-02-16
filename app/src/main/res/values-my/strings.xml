@@ -485,8 +485,8 @@
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">ဤချက်(တ်)တွင် သင်ကိုယ်တိုင်အတွက် မှတ်စုများ ထည့်နိုင်ပါသည်။ သင့်အကောင့်နှင့် ချိတ်ထားသည့် စက်များရှိပါက မှတ်စုအသစ်များကို ချိန်ကိုက်ပါမည်။</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$dအဖွဲ့ဝင်များသည်တူညီသောနာမည်ရှိသည်။</string>
     <string name="ConversationFragment__tap_to_review">ပြန်လည်သုံးသပ်ရန်ကိုအသာပုတ်ပါ</string>
-    <string name="ConversationFragment__review_requests_carefully">တောင်းဆိုမှုများကိုအသေအချာပြန်လည်စစ်ဆေးပါ</string>
-    <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal သည်ထိုအမည်နှင့်အတူအခြားအဆက်အသွယ်လည်းရှိသည်</string>
+    <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
+    <string name="ConversationFragment__review_banner_body">This person has the same name as another contact</string>
     <string name="ConversationFragment_contact_us">ကျွန်ုပ်တို့ကိုဆက်သွယ်ရန်</string>
     <string name="ConversationFragment_verify">စစ်ဆေးအတည်ပြုသည်</string>
     <string name="ConversationFragment_not_now">အခုမဟုတ်သေးပါ။</string>
@@ -1029,7 +1029,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">သင်၏ သုံးစွဲသူအမည်၊ QR ကုဒ်နှင့် လင့်ခ်တို့ကို သင့်ပရိုဖိုင်တွင် မမြင်တွေ့နိုင်ပါ။ သင့်သုံးစွဲသူအမည်ကို သင် ယုံကြည်သူများနှင့်သာ မျှဝေပေးပါ။</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">ယခုအခါ လူအများသည် သင်၏ ရွေးချယ်နိုင်သော သုံးစွဲသူအမည်ကို အသုံးပြုလျက် သင့်ထံ မက်ဆေ့ချ်ပို့နိုင်ပြီဖြစ်၍ သင့်ဖုန်းနံပါတ်ကို မပေးရတော့ပါ။ </string> -->
+    <string name="ManageProfileFragment__username_footer_no_username">ယခုအခါ လူအများသည် သင်၏ ရွေးချယ်နိုင်သော သုံးစွဲသူအမည်ကို အသုံးပြုလျက် သင့်ထံ မက်ဆေ့ချ်ပို့နိုင်ပြီဖြစ်၍ သင့်ဖုန်းနံပါတ်ကို မပေးရတော့ပါ။ </string>
     <string name="ManageProfileFragment_profile_name">ပရိုဖိုင်း အမည်</string>
     <string name="ManageProfileFragment_username">သုံးစွဲသူအမည်</string>
     <string name="ManageProfileFragment_about">အကြောင်း</string>
@@ -1891,9 +1891,9 @@
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">Signal အဆက်အသွယ်</string>
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
-  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">အတည်ပြုပြီး</string> -->
+    <string name="AboutSheet__verified">အတည်ပြုပြီး</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
-  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string> -->
+    <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s သည် သင့်စနစ်ထဲရှိ အဆက်အသွယ်များတွင် ရှိပြီးဖြစ်သည်</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -2221,7 +2221,7 @@
     <string name="UsernameEditFragment_username_is_invalid">သုံးစွဲသူအမည် မမှန်ကန်ပါ</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">သုံးစွဲသူအမည်များသည် %1$d နှင့် %2$d ကြား အက္ခရာလုံး အရေတွက်ရှိရပါမည် ။</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">သုံးစွဲသူအမည်များသည် သင့်ဖုန်းနံပါတ် မလိုဘဲ အခြားသူများအား သင့်ထံ မက်ဆေ့ချ်ပို့နိုင်စေပါသည်။ သင့်လိပ်စာကို သီးသန့်လျှို့ဝှက်ထားရာတွင် အကူအညီဖြစ်စေရန် ၎င်းတို့အား ဂဏန်းအစုံလိုက်ဖြင့် တွဲထားပါသည်။</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">Usernames are always paired with a set of numbers.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">ဤနံပါတ်က ဘာလဲ။</string>
     <string name="UsernameEditFragment__these_digits_help_keep">ဤဂဏန်းများသည် သင့်သုံးစွဲသူအမည်ကို သီးသန့်လျှို့ဝှက်ပေးထားသောကြောင့် မလိုချင်သည့် မက်ဆေ့ချ်များ ရရှိခြင်းမှ ရှောင်နိုင်ပါသည်။ သင့်သုံးစွဲသူအမည်ကို သင် ချက်(တ်)လိုသည့် လူများ၊ အဖွဲ့များထံသာ ဝေမျှပါ။ သုံးစွဲသူအမည်ကို ပြောင်းလိုက်ပါက ဂဏန်းတွဲအသစ်တစ်ခုကို ရရှိပါမည်။</string>
@@ -2242,9 +2242,9 @@
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">သင်၏ သုံးစွဲသူအမည်ကို ပြန်လည်ရယူပါက သင့်မူလ QR ကုဒ်နှင့် လင့်ခ်ကို ပြန်လည်သတ်မှတ်လိုက်ပါမည်။ သေချာပါသလား။</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">သင်၏ သုံးစွဲသူအမည်ကို ပြောင်းပါက သင့်မူလ QR ကုဒ်နှင့် လင့်ခ်ကို ပြန်လည်သတ်မှတ်လိုက်ပါမည်။ သေချာပါသလား။</string> -->
+    <string name="UsernameEditFragment_change_confirmation_message">သင်၏ သုံးစွဲသူအမည်ကို ပြောင်းပါက သင့်မူလ QR ကုဒ်နှင့် လင့်ခ်ကို ပြန်လည်သတ်မှတ်လိုက်ပါမည်။ သေချာပါသလား။</string>
     <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">ဆက်လုပ်ရန်</string> -->
+    <string name="UsernameEditFragment_continue">ဆက်လုပ်ရန်</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="other">အဆက်အသွယ် %1$d ဦးသည် Signal ပေါ်ရှိပါသည်!</item>
@@ -4018,8 +4018,10 @@
     <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" ကို ဘလော့ခ်ဖြေပြီးပါပြီ။</string>
 
     <!-- ReviewCardDialogFragment -->
-    <string name="ReviewCardDialogFragment__review_members">အဖွဲ့ဝင်များကို ပြန်လည်စစ်ဆေးပါ</string>
-    <string name="ReviewCardDialogFragment__review_request">တောင်းဆိုမှုကို ပြန်လည်ဆန်းစစ်ပါ</string>
+    <!-- Title of a screen where the user will be prompted to review group members with the same name -->
+    <string name="ReviewCardDialogFragment__review_members">Review members</string>
+    <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
+    <string name="ReviewCardDialogFragment__review_request">Review request</string>
     <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">အဖွဲ့ဝင် %1$d ဦးသည် အမည်တူနေပါသည်၊ အောက်ပါအဖွဲ့ဝင်များကို စစ်ဆေးပါ သို့မဟုတ် လုပ်ဆောင်ချက်တစ်ခုလုပ်ရန် ရွေးချယ်ပါ။</string>
     <string name="ReviewCardDialogFragment__if_youre_not_sure">မည်သူမှ တောင်းဆိုသည်ကို မသေချာပါက အောက်ပါ အဆက်အသွယ်များကို ပြန်လည်စစ်ဆေးပြီး လုပ်ဆောင်ချက်တစ်ခု ရွေးပါ။</string>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">အခြား တူညီသော အဖွဲ့များမရှိပါ</string>
@@ -6046,13 +6048,13 @@
     <string name="SetUpYourUsername__learn_more">ပိုမိုလေ့လာရန်</string>
 
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_title">ချိတ်ဆက်ရန် နည်းလမ်းသစ်များ</string> -->
+    <string name="PnpLaunchMegaphone_title">ချိတ်ဆက်ရန် နည်းလမ်းသစ်များ</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_body">ဖုန်းနံပါတ် ကိုယ်ပိုင်အချက်အလက် လုံခြုံရေး၊ ရွေးချယ်နိုင်သော သုံးစွဲသူအမည်များနှင့် လင့်ခ်များအကြောင်း မိတ်ဆက်ပေးခြင်း။</string> -->
+    <string name="PnpLaunchMegaphone_body">ဖုန်းနံပါတ် ကိုယ်ပိုင်အချက်အလက် လုံခြုံရေး၊ ရွေးချယ်နိုင်သော သုံးစွဲသူအမည်များနှင့် လင့်ခ်များအကြောင်း မိတ်ဆက်ပေးခြင်း။</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_dismiss">ပယ်ရန်</string> -->
+    <string name="PnpLaunchMegaphone_dismiss">ပယ်ရန်</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_learn_more">ပိုမိုလေ့လာရန်</string> -->
+    <string name="PnpLaunchMegaphone_learn_more">ပိုမိုလေ့လာရန်</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -6349,9 +6351,9 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">သင်၏လင့်ခ်ကို ပြန်လည်သတ်မှတ်ရန် ကြိုးစားစဉ် ကွန်ရက်ချို့ယွင်းချက်တစ်ခု ဖြစ်ပွားခဲ့ပါသည်။ နောက်မှ ထပ်ကြိုးစားကြည့်ပါ။</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string> -->
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string>
     <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">သင့် QR ကုဒ်နှင့် လင့်ခ်ကို ပြန်လည်သတ်မှတ်လိုက်ပြီဖြစ်ပြီး QR ကုဒ်နှင့် လင့်ခ် အသစ်တစ်ခုကို ဖန်တီးလိုက်ပါပြီ။</string> -->
+    <string name="UsernameLinkSettings_reset_link_result_success">သင့် QR ကုဒ်နှင့် လင့်ခ်ကို ပြန်လည်သတ်မှတ်လိုက်ပြီဖြစ်ပြီး QR ကုဒ်နှင့် လင့်ခ် အသစ်တစ်ခုကို ဖန်တီးလိုက်ပါပြီ။</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">ကျွန်ုပ်နှင့် Signal တွင် ချက်(တ်)ရန်အတွက် ဤ QR ကုဒ်ကို သင့်ဖုန်းဖြင့် စကန်ဖတ်ပါ။</string>
 
@@ -6420,7 +6422,7 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">ဖုန်းနံပါတ်</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_a_full_username">သုံးစွဲသူအမည် အပြည့်အစုံကို ၎င်း၏ ဂဏန်းနှစ်လုံးတွဲနှင့်အတူ ရိုက်ထည့်ပါ။</string>
+    <string name="FindByActivity__enter_username_description">Enter a username followed by a dot and its set of numbers.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">ဆက်သွားမည်</string>
     <!-- Placeholder text for search input for selecting country code -->

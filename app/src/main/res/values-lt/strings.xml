@@ -512,8 +512,8 @@
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Šiame pokalbyje gali pridėti sau priminimų. Jei yra su paskyra susietų įrenginių, nauji priminimai bus sinchronizuoti.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d grupės nariai(-ių) turi tokį patį vardą.</string>
     <string name="ConversationFragment__tap_to_review">Bakstelėkite norėdami peržiūrėti</string>
-    <string name="ConversationFragment__review_requests_carefully">Atidžiai peržiūrėkite prašymus</string>
-    <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal rado kitą adresatą tokiu pačiu vardu.</string>
+    <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
+    <string name="ConversationFragment__review_banner_body">This person has the same name as another contact</string>
     <string name="ConversationFragment_contact_us">Susisiekite su mumis</string>
     <string name="ConversationFragment_verify">Patvirtinti</string>
     <string name="ConversationFragment_not_now">Ne dabar</string>
@@ -1134,7 +1134,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Jūsų naudotojo vardas, QR kodas ir nuoroda nematomi jūsų profilyje. Naudotojo vardą bendrinkite tik su žmonėmis, kuriais pasitikite.</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">Dabar žmonės gali siųsti jums žinutes naudodami pasirenkamą naudotojo vardą, kad jums nereikėtų nurodyti telefono numerio. </string> -->
+    <string name="ManageProfileFragment__username_footer_no_username">Dabar žmonės gali siųsti jums žinutes naudodami pasirenkamą naudotojo vardą, kad jums nereikėtų nurodyti telefono numerio. </string>
     <string name="ManageProfileFragment_profile_name">Profilio vardas</string>
     <string name="ManageProfileFragment_username">Naudotojo vardas</string>
     <string name="ManageProfileFragment_about">Apie</string>
@@ -2113,9 +2113,9 @@
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">„Signal“ kontaktas</string>
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
-  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">Patvirtinta(s)</string> -->
+    <string name="AboutSheet__verified">Patvirtinta(s)</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
-  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string> -->
+    <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s yra jūsų sistemos kontaktuose</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -2461,7 +2461,7 @@
     <string name="UsernameEditFragment_username_is_invalid">Naudotojo vardas netinkamas.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Naudotojo varduose turi būti nuo %1$d iki %2$d simbolių.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Turėdami jūsų naudotojo vardą žmonės gali siųsti jums žinutes be jūsų telefono numerio. Šis vardas susiejamas su skaitmenų kombinacija, kad būtų išsaugotas jūsų adreso privatumas.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">Usernames are always paired with a set of numbers.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">Kas tai per skaičius?</string>
     <string name="UsernameEditFragment__these_digits_help_keep">Šie skaitmenys padeda užtikrinti tavo naudotojo vardo privatumą, kad išvengtum nepageidaujamų žinučių. Savo naudotojo vardą pasakyk tik tiems žmonėms ir grupėms, su kuriomis nori bendrauti. Pakeitus naudotojo vardą, suteikiama nauja skaitmenų kombinacija.</string>
@@ -2482,9 +2482,9 @@
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">Kai naudotojo vardas atkuriamas, QR kodas ir nuoroda nustatomi iš naujo. Ar tikrai to norite?</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">Pakeitus naudotojo vardą, tavo QR kodas ir nuoroda bus nustatyta iš naujo. Ar tikrai to nori?</string> -->
+    <string name="UsernameEditFragment_change_confirmation_message">Pakeitus naudotojo vardą, tavo QR kodas ir nuoroda bus nustatyta iš naujo. Ar tikrai to nori?</string>
     <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">Tęsti</string> -->
+    <string name="UsernameEditFragment_continue">Tęsti</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d adresatas naudoja Signal!</item>
@@ -4336,8 +4336,10 @@
     <string name="BlockedUsersActivity__s_has_been_unblocked">Naudotojas %1$s atblokuotas.</string>
 
     <!-- ReviewCardDialogFragment -->
-    <string name="ReviewCardDialogFragment__review_members">Peržiūrėti narius</string>
-    <string name="ReviewCardDialogFragment__review_request">Peržiūrėti prašymą</string>
+    <!-- Title of a screen where the user will be prompted to review group members with the same name -->
+    <string name="ReviewCardDialogFragment__review_members">Review members</string>
+    <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
+    <string name="ReviewCardDialogFragment__review_request">Review request</string>
     <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d grupės nariai(-ių) turi tokį patį vardą, peržiūrėkite žemiau esančius narius ir pasirinkite norėdami imtis veiksmų.</string>
     <string name="ReviewCardDialogFragment__if_youre_not_sure">Jei nesate tikri, nuo ko yra gautas prašymas, peržiūrėkite žemiau esančius adresatus ir imkitės veiksmų.</string>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">Nėra kitų bendrų grupių.</string>
@@ -6460,13 +6462,13 @@
     <string name="SetUpYourUsername__learn_more">Sužinoti daugiau</string>
 
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_title">Nauji būdai bendrauti</string> -->
+    <string name="PnpLaunchMegaphone_title">Nauji būdai bendrauti</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_body">Pristatome telefono numerio privatumą, pasirenkamus naudotojų vardus ir nuorodas.</string> -->
+    <string name="PnpLaunchMegaphone_body">Pristatome telefono numerio privatumą, pasirenkamus naudotojų vardus ir nuorodas.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_dismiss">Atmesti</string> -->
+    <string name="PnpLaunchMegaphone_dismiss">Atmesti</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_learn_more">Sužinoti daugiau</string> -->
+    <string name="PnpLaunchMegaphone_learn_more">Sužinoti daugiau</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -6772,9 +6774,9 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">Bandant iš naujo nustatyti tavo nuorodą įvyko tinklo klaida. Pabandyk vėliau.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string> -->
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string>
     <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">Jūsų QR kodas ir nuoroda nustatyti iš naujo. Sukurtas naujas QR kodas ir nuoroda.</string> -->
+    <string name="UsernameLinkSettings_reset_link_result_success">Jūsų QR kodas ir nuoroda nustatyti iš naujo. Sukurtas naujas QR kodas ir nuoroda.</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Nuskaitykite šį QR kodą telefonu, kad galėtumėte kalbėtis su manimi per „Signal“.</string>
 
@@ -6849,7 +6851,7 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">Telefono numeris</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_a_full_username">Įveskite visą naudotojo vardą su skaitmenų pora.</string>
+    <string name="FindByActivity__enter_username_description">Enter a username followed by a dot and its set of numbers.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">Kitas</string>
     <!-- Placeholder text for search input for selecting country code -->

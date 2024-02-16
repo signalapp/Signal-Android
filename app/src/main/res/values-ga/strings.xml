@@ -521,8 +521,8 @@
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Is féidir leat nótaí a chur leis duit féin sa chomhrá seo. Má tá aon ghléasanna nasctha le do chuntas, déanfar nótaí nua a shioncronú.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">Tá an t-ainm céanna ag an líon seo ball: %1$d.</string>
     <string name="ConversationFragment__tap_to_review">Cnag air chun é a athbhreithniú</string>
-    <string name="ConversationFragment__review_requests_carefully">Déan iarratais a athbhreithniú go cúramach</string>
-    <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">D\'aimsigh Signal teagmhálaí eile leis an ainm céanna.</string>
+    <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
+    <string name="ConversationFragment__review_banner_body">This person has the same name as another contact</string>
     <string name="ConversationFragment_contact_us">Déan teagmháil linn</string>
     <string name="ConversationFragment_verify">Deimhnigh</string>
     <string name="ConversationFragment_not_now">Ní anois</string>
@@ -1169,7 +1169,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Níl d\'ainm úsáideora, cód QR ná nasc infheicthe ar do phróifíl. Ná comhroinn d\'ainm úsáideora ach amháin le daoine a bhfuil muinín agat iontu.</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">Is féidir le daoine teachtaireacht a sheoladh chugat anois trí d\'ainm úsáideora roghnach ionas nach gá duit d\'uimhir ghutháin a thabhairt amach. </string> -->
+    <string name="ManageProfileFragment__username_footer_no_username">Is féidir le daoine teachtaireacht a sheoladh chugat anois trí d\'ainm úsáideora roghnach ionas nach gá duit d\'uimhir ghutháin a thabhairt amach. </string>
     <string name="ManageProfileFragment_profile_name">Ainm Próifíle</string>
     <string name="ManageProfileFragment_username">Ainm úsáideora</string>
     <string name="ManageProfileFragment_about">Maidir leis</string>
@@ -2187,9 +2187,9 @@
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">Nasc Signal</string>
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
-  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">Deimhnithe</string> -->
+    <string name="AboutSheet__verified">Deimhnithe</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
-  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string> -->
+    <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">Tá %1$s i dteagmhálaithe do chórais</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -2541,7 +2541,7 @@
     <string name="UsernameEditFragment_username_is_invalid">Níl an t-ainm úsáideora bailí.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Ní mór go mbeidh an líon carachtar idir %1$d agus %2$d in ainmneacha úsáideora.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Is féidir le daoine eile ainmneacha úsáideora a úsáid chun teachtaireachtaí a sheoladh chugat; ní bhíonn uimhir ghutháin uathu sa chás sin. Bíonn ainmneacha úsáideora péireáilte le tacar digití chun cabhrú le do sheoladh a choimeád príobháideach.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">Usernames are always paired with a set of numbers.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">Cad í an uimhir seo?</string>
     <string name="UsernameEditFragment__these_digits_help_keep">Cabhraíonn na digití seo le d\'ainm úsáideora a choimeád príobháideach agus teachtaireachtaí gan iarraidh a sheachaint. Ná comhroinn d\'ainm úsáideora ach le daoine agus le grúpaí ar mhaith leat comhrá a dhéanamh leo. Má athraíonn tú d\'ainm úsáideora gheobhaidh tú tacar nua digití.</string>
@@ -2562,9 +2562,9 @@
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">Athshocrófar do chód QR agus nasc reatha le hathshlánú d\'ainm úsáideora. An bhfuil tú cinnte?</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">Athshocrófar an cód QR agus an nasc atá agat cheana féin má athraíonn tú d\'ainm úsáideora. An bhfuil tú cinnte?</string> -->
+    <string name="UsernameEditFragment_change_confirmation_message">Athshocrófar an cód QR agus an nasc atá agat cheana féin má athraíonn tú d\'ainm úsáideora. An bhfuil tú cinnte?</string>
     <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">Ar aghaidh</string> -->
+    <string name="UsernameEditFragment_continue">Ar aghaidh</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">Tá %1$d teagmhálaí ar Signal!</item>
@@ -4442,8 +4442,10 @@
     <string name="BlockedUsersActivity__s_has_been_unblocked">Bac bainte de \"%1$s\".</string>
 
     <!-- ReviewCardDialogFragment -->
-    <string name="ReviewCardDialogFragment__review_members">Review Members</string>
-    <string name="ReviewCardDialogFragment__review_request">Review Request</string>
+    <!-- Title of a screen where the user will be prompted to review group members with the same name -->
+    <string name="ReviewCardDialogFragment__review_members">Review members</string>
+    <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
+    <string name="ReviewCardDialogFragment__review_request">Review request</string>
     <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">Tá an t-ainm céanna ag an líon seo ball den ghrúpa: %1$d, athbhreithnigh na baill thíos agus déan gníomh.</string>
     <string name="ReviewCardDialogFragment__if_youre_not_sure">Mura bhfuil tú cinnte faoin duine a sheol an t-iarratas, déan athbhreithniú ar na teagmhálaithe thíos agus déan gníomh.</string>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">No other groups in common.</string>
@@ -6598,13 +6600,13 @@
     <string name="SetUpYourUsername__learn_more">Tuilleadh faisnéise</string>
 
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_title">Bealaí nua le nascadh</string> -->
+    <string name="PnpLaunchMegaphone_title">Bealaí nua le nascadh</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_body">Tús eolais ar phríobháideacht ar uimhreacha gutháin, ainmneacha úsáideora roghnacha agus naisc.</string> -->
+    <string name="PnpLaunchMegaphone_body">Tús eolais ar phríobháideacht ar uimhreacha gutháin, ainmneacha úsáideora roghnacha agus naisc.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_dismiss">Ruaig</string> -->
+    <string name="PnpLaunchMegaphone_dismiss">Ruaig</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_learn_more">Tuilleadh faisnéise</string> -->
+    <string name="PnpLaunchMegaphone_learn_more">Tuilleadh faisnéise</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -6913,9 +6915,9 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">Tharla earráid líonra agus do nasc á athshocrú. Triail arís níos déanaí.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string> -->
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string>
     <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">Athshocraíodh do chód QR agus nasc agus cruthaíodh cód QR agus nasc nua.</string> -->
+    <string name="UsernameLinkSettings_reset_link_result_success">Athshocraíodh do chód QR agus nasc agus cruthaíodh cód QR agus nasc nua.</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Scan an cód QR seo le do ghuthán chun comhrá a dhéanamh liom ar Signal.</string>
 
@@ -6992,7 +6994,7 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">Uimhir ghutháin</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_a_full_username">Cuir isteach ainm úsáideora iomlán agus a dhá dhigit.</string>
+    <string name="FindByActivity__enter_username_description">Enter a username followed by a dot and its set of numbers.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">Ar aghaidh</string>
     <!-- Placeholder text for search input for selecting country code -->

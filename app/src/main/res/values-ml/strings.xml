@@ -494,8 +494,8 @@
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">ഈ സംഭാഷണത്തിൽ നിങ്ങൾക്കായി കുറിപ്പുകൾ ചേർക്കാൻ കഴിയും. നിങ്ങളുടെ അക്കൗണ്ടിൽ ലിങ്ക് ചെയ്ത ഉപകരണങ്ങളുണ്ടെങ്കിൽ, പുതിയ കുറിപ്പുകൾ സമന്വയിപ്പിക്കും.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d ഗ്രൂപ്പ് അംഗങ്ങൾക്ക് ഒരേ പേരാണ്.</string>
     <string name="ConversationFragment__tap_to_review">അവലോകനം ചെയ്യാൻ ടാപ്പുചെയ്യുക</string>
-    <string name="ConversationFragment__review_requests_carefully">അഭ്യർത്ഥനകൾ ശ്രദ്ധാപൂർവ്വം അവലോകനം ചെയ്യുക</string>
-    <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal ഇതേ പേരിൽ മറ്റൊരു കോൺ‌ടാക്റ്റ് കണ്ടെത്തി.</string>
+    <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
+    <string name="ConversationFragment__review_banner_body">This person has the same name as another contact</string>
     <string name="ConversationFragment_contact_us">ഞങ്ങളെ സമീപിക്കുക</string>
     <string name="ConversationFragment_verify">ഉറപ്പാക്കു</string>
     <string name="ConversationFragment_not_now">ഇപ്പോൾ വേണ്ട</string>
@@ -1064,7 +1064,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">നിങ്ങളുടെ ഉപയോക്തൃനാമവും QR കോഡും ലിങ്കും നിങ്ങളുടെ പ്രൊഫൈലിൽ ദൃശ്യമല്ല. നിങ്ങൾക്ക് വിശ്വാസമുള്ള ആളുകളുമായി മാത്രം നിങ്ങളുടെ ഉപയോക്തൃനാമം പങ്കിടുക.</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">നിങ്ങളുടെ ഓപ്‌ഷണൽ ഉപയോക്തൃനാമം ഉപയോഗിച്ച് ആളുകൾക്ക് ഇപ്പോൾ നിങ്ങൾക്ക് സന്ദേശമയയ്‌ക്കാൻ കഴിയും, അതിനാൽ നിങ്ങളുടെ ഫോൺ നമ്പർ നൽകേണ്ടതില്ല. </string> -->
+    <string name="ManageProfileFragment__username_footer_no_username">നിങ്ങളുടെ ഓപ്‌ഷണൽ ഉപയോക്തൃനാമം ഉപയോഗിച്ച് ആളുകൾക്ക് ഇപ്പോൾ നിങ്ങൾക്ക് സന്ദേശമയയ്‌ക്കാൻ കഴിയും, അതിനാൽ നിങ്ങളുടെ ഫോൺ നമ്പർ നൽകേണ്ടതില്ല. </string>
     <string name="ManageProfileFragment_profile_name">പ്രൊഫൈൽ നാമം</string>
     <string name="ManageProfileFragment_username">ഉപയോക്തൃനാമം</string>
     <string name="ManageProfileFragment_about">എന്നെ പറ്റി</string>
@@ -1965,9 +1965,9 @@
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">Signal കണക്ഷൻ</string>
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
-  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">പരിശോധിച്ചു</string> -->
+    <string name="AboutSheet__verified">പരിശോധിച്ചു</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
-  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string> -->
+    <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s നിങ്ങളുടെ സിസ്റ്റം കോൺടാക്റ്റുകളിൽ ഉണ്ട്</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -2301,7 +2301,7 @@
     <string name="UsernameEditFragment_username_is_invalid">ഉപയോക്തൃനാമം അസാധുവാണ്.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ഉപയോക്തൃനാമങ്ങൾ %1$d മുതൽ %2$d വരെ പ്രതീകങ്ങൾ ആയിരിക്കണം.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">നിങ്ങളുടെ ഫോൺ നമ്പറില്ലാതെ നിങ്ങൾക്ക് സന്ദേശം അയയ്ക്കാൻ ഉപയോക്തൃനാമങ്ങൾ മറ്റുള്ളവരെ അനുവദിക്കുന്നു. നിങ്ങളുടെ മേൽവിലാസം സ്വകാര്യമായി സൂക്ഷിക്കുന്നതിന്, അത് ഒരു കൂട്ടം അക്കങ്ങളുമായി ജോടിയാക്കിയിരിക്കുന്നു.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">Usernames are always paired with a set of numbers.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">ഈ നമ്പർ എന്താണ്?</string>
     <string name="UsernameEditFragment__these_digits_help_keep">അനാവശ്യ സന്ദേശങ്ങൾ ഒഴിവാക്കാൻ നിങ്ങളെ സഹായിക്കുന്നതിന്, ഈ അക്കങ്ങൾ നിങ്ങളുടെ ഉപയോക്തൃനാമം സ്വകാര്യമായി സൂക്ഷിക്കുന്നു. നിങ്ങൾ ചാറ്റ് ചെയ്യാൻ ആഗ്രഹിക്കുന്ന ആളുകളുമായും ഗ്രൂപ്പുകളുമായും മാത്രം നിങ്ങളുടെ ഉപയോക്തൃനാമം പങ്കിടുക. നിങ്ങൾ ഉപയോക്തൃനാമം മാറ്റുകയാണെങ്കിൽ, നിങ്ങൾക്ക് പുതിയ ഒരു കൂട്ടം അക്കങ്ങൾ ലഭിക്കുന്നതാണ്.</string>
@@ -2322,9 +2322,9 @@
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">നിങ്ങളുടെ ഉപയോക്തൃനാമം വീണ്ടെടുക്കുന്നതിലൂടെ നിങ്ങളുടെ നിലവിലുള്ള QR കോഡും ലിങ്കും പുനഃക്രമീകരിക്കും. ഉറപ്പാണോ?</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">നിങ്ങളുടെ ഉപയോക്തൃനാമം മാറ്റുന്നത് നിങ്ങളുടെ നിലവിലുള്ള QR കോഡും ലിങ്കും പുനഃക്രമീകരിക്കും. ഉറപ്പാണോ?</string> -->
+    <string name="UsernameEditFragment_change_confirmation_message">നിങ്ങളുടെ ഉപയോക്തൃനാമം മാറ്റുന്നത് നിങ്ങളുടെ നിലവിലുള്ള QR കോഡും ലിങ്കും പുനഃക്രമീകരിക്കും. ഉറപ്പാണോ?</string>
     <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">തുടരുക</string> -->
+    <string name="UsernameEditFragment_continue">തുടരുക</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">Signal-ൽ‌ %1$d കോൺ‌ടാക്റ്റ് ഉണ്ട്!</item>
@@ -4124,8 +4124,10 @@
     <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" എന്നയാളെ അൺബ്ലോക്ക് ചെയ്തു.</string>
 
     <!-- ReviewCardDialogFragment -->
-    <string name="ReviewCardDialogFragment__review_members">അംഗങ്ങളെ അവലോകനം ചെയ്യുക</string>
-    <string name="ReviewCardDialogFragment__review_request">അഭ്യർത്ഥന അവലോകനം ചെയ്യുക</string>
+    <!-- Title of a screen where the user will be prompted to review group members with the same name -->
+    <string name="ReviewCardDialogFragment__review_members">Review members</string>
+    <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
+    <string name="ReviewCardDialogFragment__review_request">Review request</string>
     <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d ഗ്രൂപ്പ് അംഗങ്ങൾക്ക് സമാന പേരുണ്ട്, ചുവടെയുള്ള അംഗങ്ങളെ അവലോകനം ചെയ്ത് നടപടിയെടുക്കാൻ തിരഞ്ഞെടുക്കുക.</string>
     <string name="ReviewCardDialogFragment__if_youre_not_sure">അഭ്യർത്ഥന ആരാണ് നിങ്ങൾക്ക് അയച്ചതെന്ന് ഉറപ്പില്ലെങ്കിൽ, ചുവടെയുള്ള കോൺടാക്റ്റുകൾ അവലോകനം ചെയ്ത് നടപടിയെടുക്കുക.</string>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">സാമാന്യമായി മറ്റ് ഗ്രൂപ്പുകളൊന്നുമില്ല.</string>
@@ -6184,13 +6186,13 @@
     <string name="SetUpYourUsername__learn_more">കൂടുതലറിയുക</string>
 
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_title">കണക്റ്റ് ചെയ്യാനുള്ള പുതിയ മാർഗങ്ങൾ</string> -->
+    <string name="PnpLaunchMegaphone_title">കണക്റ്റ് ചെയ്യാനുള്ള പുതിയ മാർഗങ്ങൾ</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_body">ഫോൺ നമ്പർ സ്വകാര്യത, ഓപ്ഷണൽ ഉപയോക്തൃനാമങ്ങൾ, ലിങ്കുകൾ എന്നിവ അവതരിപ്പിക്കുന്നു.</string> -->
+    <string name="PnpLaunchMegaphone_body">ഫോൺ നമ്പർ സ്വകാര്യത, ഓപ്ഷണൽ ഉപയോക്തൃനാമങ്ങൾ, ലിങ്കുകൾ എന്നിവ അവതരിപ്പിക്കുന്നു.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_dismiss">ഒഴിവാക്കുക</string> -->
+    <string name="PnpLaunchMegaphone_dismiss">ഒഴിവാക്കുക</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_learn_more">കൂടുതലറിയുക</string> -->
+    <string name="PnpLaunchMegaphone_learn_more">കൂടുതലറിയുക</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -6490,9 +6492,9 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">നിങ്ങളുടെ ലിങ്ക് പുനഃക്രമീകരിക്കാൻ ശ്രമിക്കുമ്പോൾ നെറ്റ്‌വർക്ക് പിശകുണ്ടായി. പിന്നീട് വീണ്ടും ശ്രമിക്കുക.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string> -->
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string>
     <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">നിങ്ങളുടെ QR കോഡും ലിങ്കും പുനഃക്രമീകരിച്ചു, പുതിയൊരു QR കോഡും ലിങ്കും സൃഷ്‌ടിച്ചു.</string> -->
+    <string name="UsernameLinkSettings_reset_link_result_success">നിങ്ങളുടെ QR കോഡും ലിങ്കും പുനഃക്രമീകരിച്ചു, പുതിയൊരു QR കോഡും ലിങ്കും സൃഷ്‌ടിച്ചു.</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Signal-ൽ ഞാനുമായി ചാറ്റ് ചെയ്യാൻ ഈ QR കോഡ് സ്കാൻ ചെയ്യുക.</string>
 
@@ -6563,7 +6565,7 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">ഫോൺ നമ്പർ</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_a_full_username">രണ്ട് അക്കങ്ങൾ അടക്കം ഉപയോക്തൃനാമം പൂർണ്ണമായും നൽകുക.</string>
+    <string name="FindByActivity__enter_username_description">Enter a username followed by a dot and its set of numbers.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">അടുത്തത്</string>
     <!-- Placeholder text for search input for selecting country code -->

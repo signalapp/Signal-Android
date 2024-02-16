@@ -494,8 +494,8 @@
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Μπορείς να προσθέσεις σημειώσεις για δική σου χρήση σε αυτήν τη συνομιλία. Εάν ο λογαριασμός σου είναι συνδεμένος με άλλες συσκευές, οι νέες σημειώσεις θα συγχρονίζονται.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d μέλη της ομάδας έχουν το ίδιο όνομα.</string>
     <string name="ConversationFragment__tap_to_review">Πάτα για επιθεώρηση</string>
-    <string name="ConversationFragment__review_requests_carefully">Επιθεώρησε τα αιτήματα προσεκτικά</string>
-    <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Το Signal βρήκε και άλλη επαφή με το ίδιο όνομα.</string>
+    <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
+    <string name="ConversationFragment__review_banner_body">This person has the same name as another contact</string>
     <string name="ConversationFragment_contact_us">Επικοινώνησε μαζί μας</string>
     <string name="ConversationFragment_verify">Επιβεβαίωση</string>
     <string name="ConversationFragment_not_now">Όχι τώρα</string>
@@ -1064,7 +1064,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Το όνομα χρήστη, ο κωδικός QR και ο σύνδεσμός σου δεν είναι ορατά στο προφίλ σου. Να μοιράζεσαι μόνο το όνομα χρήστη σου με άτομα που εμπιστεύεσαι.</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">Οι χρήστες μπορούν πλέον να σου στέλνουν μήνυμα χρησιμοποιώντας το προαιρετικό όνομα χρήστη σου, ώστε να μη χρειάζεται να δώσεις τον αριθμό τηλεφώνου σου. </string> -->
+    <string name="ManageProfileFragment__username_footer_no_username">Οι χρήστες μπορούν πλέον να σου στέλνουν μήνυμα χρησιμοποιώντας το προαιρετικό όνομα χρήστη σου, ώστε να μη χρειάζεται να δώσεις τον αριθμό τηλεφώνου σου. </string>
     <string name="ManageProfileFragment_profile_name">Όνομα προφίλ</string>
     <string name="ManageProfileFragment_username">Όνομα χρήστη</string>
     <string name="ManageProfileFragment_about">Πληροφορίες</string>
@@ -1965,9 +1965,9 @@
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">Επαφές Signal</string>
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
-  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">Επιβεβαιωμένος</string> -->
+    <string name="AboutSheet__verified">Επιβεβαιωμένος</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
-  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string> -->
+    <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">Ο χρήστης %1$s βρίσκεται στις επαφές του συστήματός σου</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -2301,7 +2301,7 @@
     <string name="UsernameEditFragment_username_is_invalid">Το όνομα χρήστη δεν είναι έγκυρο.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Τα ονόματα χρήστη πρέπει να είναι από %1$d εώς %2$d χαρακτήρες.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Τα ονόματα χρήστη επιτρέπουν σε άλλους χρήστες να σου στείλουν μηνύματα χωρίς τον αριθμό τηλεφώνου σου. Είναι συνδεδεμένα με ένα σετ ψηφίων ώστε να διατηρούν απόρρητη τη διεύθυνσή σου.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">Usernames are always paired with a set of numbers.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">Τι είναι αυτός ο αριθμός;</string>
     <string name="UsernameEditFragment__these_digits_help_keep">Αυτά τα ψηφία διατηρούν απόρρητο το δικό σου όνομα χρήστη ώστε να μη λαμβάνεις ανεπιθύμητα μηνύματα. Να μοιράζεσαι το δικό σου όνομα χρήστη μόνο με άτομα και ομάδες που θέλεις να συνομιλείς. Εάν θέλεις να αλλάξεις όνομα χρήστη, θα λάβεις έναν νέο σετ ψηφίων.</string>
@@ -2322,9 +2322,9 @@
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">Η ανάκτηση του ονόματος χρήστη θα επαναφέρει τον υπάρχοντα κωδικό QR και τον σύνδεσμό σου. Σίγουρα;</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">Η αλλαγή του ονόματος χρήστη σου θα επαναφέρει τον υπάρχοντα κωδικό QR και τον σύνδεσμό σου. Είσαι σίγουρος/η;</string> -->
+    <string name="UsernameEditFragment_change_confirmation_message">Η αλλαγή του ονόματος χρήστη σου θα επαναφέρει τον υπάρχοντα κωδικό QR και τον σύνδεσμό σου. Είσαι σίγουρος/η;</string>
     <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">Συνέχεια</string> -->
+    <string name="UsernameEditFragment_continue">Συνέχεια</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d επαφή είναι στο Signal!</item>
@@ -4124,8 +4124,10 @@
     <string name="BlockedUsersActivity__s_has_been_unblocked">Ο αποκλεισμός του/της \"%1$s\" καταργήθηκε.</string>
 
     <!-- ReviewCardDialogFragment -->
-    <string name="ReviewCardDialogFragment__review_members">Ανασκόπηση μελών</string>
-    <string name="ReviewCardDialogFragment__review_request">Εξέταση αιτήματος</string>
+    <!-- Title of a screen where the user will be prompted to review group members with the same name -->
+    <string name="ReviewCardDialogFragment__review_members">Review members</string>
+    <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
+    <string name="ReviewCardDialogFragment__review_request">Review request</string>
     <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d μέλη της ομάδας έχουν το ίδιο όνομα, εξέτασε τα παρακάτω μέλη, και διάλεξε τί ενέργεια να κάνεις.</string>
     <string name="ReviewCardDialogFragment__if_youre_not_sure">Αν δεν είσαι σίγουρος/η από ποιόν είναι το αίτημα, εξέτασε τις παρακάτω επαφές, και κάνε κάποια ενέργεια.</string>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">Καμμία άλλη κοινή ομάδα</string>
@@ -6184,13 +6186,13 @@
     <string name="SetUpYourUsername__learn_more">Μάθε περισσότερα</string>
 
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_title">Νέοι τρόποι σύνδεσης</string> -->
+    <string name="PnpLaunchMegaphone_title">Νέοι τρόποι σύνδεσης</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_body">Παρουσιάζουμε το απόρρητο των αριθμών τηλεφώνου, τα προαιρετικά ονόματα χρηστών και τους συνδέσμους.</string> -->
+    <string name="PnpLaunchMegaphone_body">Παρουσιάζουμε το απόρρητο των αριθμών τηλεφώνου, τα προαιρετικά ονόματα χρηστών και τους συνδέσμους.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_dismiss">Απόρριψη</string> -->
+    <string name="PnpLaunchMegaphone_dismiss">Απόρριψη</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_learn_more">Μάθε περισσότερα</string> -->
+    <string name="PnpLaunchMegaphone_learn_more">Μάθε περισσότερα</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -6490,9 +6492,9 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">Προέκυψε σφάλμα δικτύου κατά την προσπάθεια επαναφοράς του συνδέσμου. Δοκίμασε ξανά αργότερα.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string> -->
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string>
     <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">Έχει γίνει επαναφορά του κωδικού QR και του συνδέσμου σου και έχει δημιουργηθεί ένας νέος κωδικός QR και ένας νέος σύνδεσμος.</string> -->
+    <string name="UsernameLinkSettings_reset_link_result_success">Έχει γίνει επαναφορά του κωδικού QR και του συνδέσμου σου και έχει δημιουργηθεί ένας νέος κωδικός QR και ένας νέος σύνδεσμος.</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Σάρωσε αυτόν τον κωδικό QR με το τηλέφωνό σου για να συνομιλήσεις μαζί μου στο Signal.</string>
 
@@ -6563,7 +6565,7 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">Αριθμός τηλεφώνου</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_a_full_username">Γράψε ένα πλήρες όνομα χρήστη με το ζεύγος των ψηφίων του.</string>
+    <string name="FindByActivity__enter_username_description">Enter a username followed by a dot and its set of numbers.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">Επόμενο</string>
     <!-- Placeholder text for search input for selecting country code -->

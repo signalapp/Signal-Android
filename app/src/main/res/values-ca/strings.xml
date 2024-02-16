@@ -494,8 +494,8 @@
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">En aquest xat, pots afegir notes per a tu mateix. Si hi ha algun dispositiu enllaçat, s\'hi sincronitzaran les notes noves.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d membres del grup tenen el mateix nom.</string>
     <string name="ConversationFragment__tap_to_review">Feu un toc per revisar-ho</string>
-    <string name="ConversationFragment__review_requests_carefully">Reviseu les sol·licituds amb atenció.</string>
-    <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">El Signal ha trobat un altre contacte amb el mateix nom.</string>
+    <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
+    <string name="ConversationFragment__review_banner_body">This person has the same name as another contact</string>
     <string name="ConversationFragment_contact_us">Contacteu-nos</string>
     <string name="ConversationFragment_verify">Verificació</string>
     <string name="ConversationFragment_not_now">Ara no</string>
@@ -1064,7 +1064,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">El teu àlies, codi QR i enllaç no són visibles al teu perfil. Comparteix el teu àlies només amb persones de confiança.</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">Ara, la gent et pot enviar missatges fent servir el teu àlies opcional, i no caldrà que donis el teu número de telèfon. </string> -->
+    <string name="ManageProfileFragment__username_footer_no_username">Ara, la gent et pot enviar missatges fent servir el teu àlies opcional, i no caldrà que donis el teu número de telèfon. </string>
     <string name="ManageProfileFragment_profile_name">Nom del perfil</string>
     <string name="ManageProfileFragment_username">Àlies</string>
     <string name="ManageProfileFragment_about">Quant a</string>
@@ -1965,9 +1965,9 @@
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">Connexió de Signal</string>
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
-  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">Verificat</string> -->
+    <string name="AboutSheet__verified">Verificat</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
-  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string> -->
+    <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s és als contactes del teu sistema</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -2301,7 +2301,7 @@
     <string name="UsernameEditFragment_username_is_invalid">L\'àlies no és vàlid.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Els àlies han de tenir entre %1$d i %2$d caràcters.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Els àlies permeten a altres persones enviar-te un missatge sense necessitat del teu número de telèfon. Funcionen conjuntament amb una sèrie de dígits per ajudar-te a mantenir privada la teva adreça.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">Usernames are always paired with a set of numbers.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">Què és aquest número?</string>
     <string name="UsernameEditFragment__these_digits_help_keep">Aquests dígits ajudaran a mantenir el teu àlies en privat per tal d\'evitar rebre missatges no desitjats. Comparteix el teu àlies només amb aquelles persones i grups amb les que desitges parlar. Si canvies el teu àlies, rebràs una nova sèrie de dígits.</string>
@@ -2322,9 +2322,9 @@
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">Recuperar el teu àlies restablirà el teu codi QR i enllaç actuals. Segur que vols fer això?</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">Canviar el teu àlies restablirà el teu codi QR i enllaç actuals. Segur que vols fer això?</string> -->
+    <string name="UsernameEditFragment_change_confirmation_message">Canviar el teu àlies restablirà el teu codi QR i enllaç actuals. Segur que vols fer això?</string>
     <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">Continuar</string> -->
+    <string name="UsernameEditFragment_continue">Continuar</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d contacte és al Signal!</item>
@@ -4124,8 +4124,10 @@
     <string name="BlockedUsersActivity__s_has_been_unblocked">S\'ha desbloquejat a %1$s.</string>
 
     <!-- ReviewCardDialogFragment -->
-    <string name="ReviewCardDialogFragment__review_members">Reviseu els mebres</string>
-    <string name="ReviewCardDialogFragment__review_request">Reviseu la sol·licitud</string>
+    <!-- Title of a screen where the user will be prompted to review group members with the same name -->
+    <string name="ReviewCardDialogFragment__review_members">Review members</string>
+    <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
+    <string name="ReviewCardDialogFragment__review_request">Review request</string>
     <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d membres del grup tenen el mateix nom. Reviseu els membres que es mostren a continuació.</string>
     <string name="ReviewCardDialogFragment__if_youre_not_sure">Si no esteu segur de qui prové la sol·licitud, reviseu els contactes que hi ha a continuació.</string>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">Cap altre grup en comú</string>
@@ -6184,13 +6186,13 @@
     <string name="SetUpYourUsername__learn_more">Més informació</string>
 
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_title">Noves maneres de connectar-te</string> -->
+    <string name="PnpLaunchMegaphone_title">Noves maneres de connectar-te</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_body">Presentem la privacitat del número de telèfon, els noms d\'usuari opcionals i els enllaços.</string> -->
+    <string name="PnpLaunchMegaphone_body">Presentem la privacitat del número de telèfon, els noms d\'usuari opcionals i els enllaços.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_dismiss">Descarta</string> -->
+    <string name="PnpLaunchMegaphone_dismiss">Descarta</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_learn_more">Més informació</string> -->
+    <string name="PnpLaunchMegaphone_learn_more">Més informació</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -6490,9 +6492,9 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">S\'ha produït un error de xarxa en intentar restablir l\'enllaç. Torna-ho a provar més tard.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string> -->
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string>
     <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">El teu codi QR i l\'enllaç s\'han restablert, i s\'ha creat un nou codi QR i enllaç.</string> -->
+    <string name="UsernameLinkSettings_reset_link_result_success">El teu codi QR i l\'enllaç s\'han restablert, i s\'ha creat un nou codi QR i enllaç.</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Escaneja aquest codi QR amb el teu telèfon per xatejar amb mi a Signal.</string>
 
@@ -6563,7 +6565,7 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">Número de telèfon</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_a_full_username">Introdueix un àlies complet amb el seu parell de dígits.</string>
+    <string name="FindByActivity__enter_username_description">Enter a username followed by a dot and its set of numbers.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">Següent</string>
     <!-- Placeholder text for search input for selecting country code -->

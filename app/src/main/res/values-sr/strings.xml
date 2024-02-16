@@ -494,8 +494,8 @@
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Можете додати личне белешке у ово ћаскање. Ако на налогу имате повезане уређаје, нове белешке ће бити синхронизоване.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d чланова групе имају исти назив.</string>
     <string name="ConversationFragment__tap_to_review">Додирните за преглед</string>
-    <string name="ConversationFragment__review_requests_carefully">Пажљиво прегледајте захтеве</string>
-    <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Услуга Signal је пронашла други контакт са истим називом.</string>
+    <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
+    <string name="ConversationFragment__review_banner_body">This person has the same name as another contact</string>
     <string name="ConversationFragment_contact_us">Контактирај нас</string>
     <string name="ConversationFragment_verify">Овери</string>
     <string name="ConversationFragment_not_now">Не сада</string>
@@ -1064,7 +1064,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Ваше корисничко име, QR код и линк нису видљиви на вашем профилу. Корисничко име дајте само са људима којима верујете.</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">Људи сада могу да вам шаљу поруке преко вашег опционог корисничког имена, тако да не морате да дајете свој број телефона. </string> -->
+    <string name="ManageProfileFragment__username_footer_no_username">Људи сада могу да вам шаљу поруке преко вашег опционог корисничког имена, тако да не морате да дајете свој број телефона. </string>
     <string name="ManageProfileFragment_profile_name">Име на профилу</string>
     <string name="ManageProfileFragment_username">Корисничко име</string>
     <string name="ManageProfileFragment_about">О контакту</string>
@@ -1965,9 +1965,9 @@
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">Signal веза</string>
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
-  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">Верификован корисник</string> -->
+    <string name="AboutSheet__verified">Верификован корисник</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
-  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string> -->
+    <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s је у вашим системским контактима</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -2301,7 +2301,7 @@
     <string name="UsernameEditFragment_username_is_invalid">Корисничко име је неважеће.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Корисничко име мора садржати између %1$d и %2$d карактера.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Корисничка имена омогућавају другима да вам шаљу поруке без вашег броја телефона. Она се упарују са бројем који омогућава да ваша адреса остане приватна.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">Usernames are always paired with a set of numbers.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">Šta znači ovaj broj?</string>
     <string name="UsernameEditFragment__these_digits_help_keep">Овај број омогућава да ваше корисничко име остане приватно како бисте избегли нежељене поруке. Поделите своје корисничко име само са људима и групама са којима бисте желели да ћаскате. Ако промените корисничко име, биће вам додељен нови број.</string>
@@ -2322,9 +2322,9 @@
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">Ако вратите корисничко име, ресетоваће вам се постојећи QR код и линк. Да ли сте сигурни?</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">Ако промените корисничко име, ресетоваће вам се постојећи QR код и линк. Да ли сте сигурни?</string> -->
+    <string name="UsernameEditFragment_change_confirmation_message">Ако промените корисничко име, ресетоваће вам се постојећи QR код и линк. Да ли сте сигурни?</string>
     <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">Настави</string> -->
+    <string name="UsernameEditFragment_continue">Настави</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d контакт је на Signal-у!</item>
@@ -4124,8 +4124,10 @@
     <string name="BlockedUsersActivity__s_has_been_unblocked">Корисник је одблокиран (%1$s).</string>
 
     <!-- ReviewCardDialogFragment -->
-    <string name="ReviewCardDialogFragment__review_members">Прегледајте чланове</string>
-    <string name="ReviewCardDialogFragment__review_request">Прегледајте захтев</string>
+    <!-- Title of a screen where the user will be prompted to review group members with the same name -->
+    <string name="ReviewCardDialogFragment__review_members">Review members</string>
+    <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
+    <string name="ReviewCardDialogFragment__review_request">Review request</string>
     <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d чланова групе имају исто име, прегледајте чланове у наставку и одаберите акцију.</string>
     <string name="ReviewCardDialogFragment__if_youre_not_sure">Ако нисте сигурни од кога потиче захтев, прегледајте доње контакте и предузмите мере.</string>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">Нема других заједничких група</string>
@@ -6184,13 +6186,13 @@
     <string name="SetUpYourUsername__learn_more">Сазнајте више</string>
 
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_title">Нови начини повезивања</string> -->
+    <string name="PnpLaunchMegaphone_title">Нови начини повезивања</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_body">Представљамо приватност бројева телефона, опциона корисничка имена и линкове.</string> -->
+    <string name="PnpLaunchMegaphone_body">Представљамо приватност бројева телефона, опциона корисничка имена и линкове.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_dismiss">Одбаци</string> -->
+    <string name="PnpLaunchMegaphone_dismiss">Одбаци</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_learn_more">Сазнајте више</string> -->
+    <string name="PnpLaunchMegaphone_learn_more">Сазнајте више</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -6490,9 +6492,9 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">Дошло је до грешке на мрежи приликом покушаја ресетовања линка. Пробајте поново касније.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string> -->
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string>
     <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">Ваш QR код и линк су ресетовани и креирани су нови QR код и линк.</string> -->
+    <string name="UsernameLinkSettings_reset_link_result_success">Ваш QR код и линк су ресетовани и креирани су нови QR код и линк.</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Скенирај овај QR код телефоном да ћаскаш са мном на Signal-у.</string>
 
@@ -6563,7 +6565,7 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">Број телефона</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_a_full_username">Унесите пуно корисничко име заједно са његовим паром цифара.</string>
+    <string name="FindByActivity__enter_username_description">Enter a username followed by a dot and its set of numbers.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">Даље</string>
     <!-- Placeholder text for search input for selecting country code -->

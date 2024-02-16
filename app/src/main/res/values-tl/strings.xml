@@ -180,17 +180,17 @@
     <string name="BlockUnblockDialog_block">I-block</string>
     <string name="BlockUnblockDialog_block_and_leave">I-block at Umalis</string>
     <!-- Dialog button label to report as spam and block the person -->
-    <string name="BlockUnblockDialog_report_spam_and_block">Report and block</string>
+    <string name="BlockUnblockDialog_report_spam_and_block">Iulat at harangin</string>
     <!-- Dialog title for reporting spam -->
-    <string name="BlockUnblockDialog_report_spam_title">Report spam?</string>
+    <string name="BlockUnblockDialog_report_spam_title">Gusto mong iulat bilang spam?</string>
     <!-- Dialog button to report as spam only -->
-    <string name="BlockUnblockDialog_report_spam">Report spam</string>
+    <string name="BlockUnblockDialog_report_spam">Iulat bilang spam</string>
     <!-- Dialog message when reporting spam of an individual (1:1 conversation) -->
-    <string name="BlockUnblockDialog_report_spam_description">Signal will be notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="BlockUnblockDialog_report_spam_description">Aabisuhan ang signal na maaaring nagpapadala ng spam ang taong ito. Hindi nababasa ng Signal ang nilalaman ng anumang mga chat.</string>
     <!-- Dialog message when reporting spam of a group and we can determine the group member that invited you, placeholder is a name -->
-    <string name="BlockUnblockDialog_report_spam_group_named_adder">Signal will be notified that %1$s, who invited you to this group, may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="BlockUnblockDialog_report_spam_group_named_adder">Ang Signal ay aabisuhan na si %1$s, na siyang nag-imbita sa iyo sa grupong ito, ay maaaring nagpapadala ng spam. Hindi nababasa ng Signal ang nilalaman ng anumang chat.</string>
     <!-- Dialog message when reporting spam of a group and we cannot determine the group member that invited you -->
-    <string name="BlockUnblockDialog_report_spam_group_unknown_adder">Signal will be notified that the person who invited you to this group may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="BlockUnblockDialog_report_spam_group_unknown_adder">Ang Signal ay aabisuhan na ang taong nag-imbita sa iyo sa grupong ito ay maaaring nagpapadala ng spam. Hindi nababasa ng Signal ang nilalaman ng anumang chat.</string>
 
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">Ngayong araw</string>
@@ -494,8 +494,8 @@
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Pwede kang maglagay ng notes para sa sarili mo sa chat na ito. Kung may linked devices ang account mo, isy-sync ang bagong notes.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d na group members ay may parehong pangalan.</string>
     <string name="ConversationFragment__tap_to_review">I-tap para ma-review</string>
-    <string name="ConversationFragment__review_requests_carefully">I-review ang requests nang maigi</string>
-    <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Nakakita ang Signal ng isa pang contact na may kaparehong pangalan.</string>
+    <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
+    <string name="ConversationFragment__review_banner_body">This person has the same name as another contact</string>
     <string name="ConversationFragment_contact_us">Kontakin kami</string>
     <string name="ConversationFragment_verify">Iberipika</string>
     <string name="ConversationFragment_not_now">Hindi ngayon</string>
@@ -522,54 +522,54 @@
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
     <string name="ConversationFragment__no_longer_verified">Hindi na verified</string>
     <!-- Button shown in conversation header when in a message request state and no groups in common to show new message safety tips -->
-    <string name="ConversationFragment_safety_tips">Safety tips</string>
+    <string name="ConversationFragment_safety_tips">Tips Para Sa Kaligtasan</string>
     <!-- Menu option to report spam in a conversation -->
-    <string name="ConversationFragment_report_spam">Report spam</string>
+    <string name="ConversationFragment_report_spam">Iulat bilang spam</string>
     <!-- Menu option to block in a conversation -->
     <string name="ConversationFragment_block">I-block</string>
     <!-- Menu otpion to accept a message request in a conversation -->
     <string name="ConversationFragment_accept">Tanggapin</string>
     <!-- Menu option to delete an entire chat in a conversation -->
-    <string name="ConversationFragment_delete_chat">Delete chat</string>
+    <string name="ConversationFragment_delete_chat">Burahin ang chat</string>
     <!-- Menu option to unblock in a conversation -->
     <string name="ConversationFragment_unblock">I-unblock</string>
     <!-- Menu option to report spam in a conversation -->
-    <string name="ConversationFragment_reported_spam">Reported spam</string>
+    <string name="ConversationFragment_reported_spam">Naiulat na spam</string>
     <!-- Dialog message shown after reporting spam and tapping the conversation item -->
-    <string name="ConversationFragment_reported_spam_message">Signal has been be notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="ConversationFragment_reported_spam_message">Naabisuhan na ang Signal na maaaring nagpapadala ng spam ang taong ito. Hindi nababasa ng Signal ang nilalaman ng anumang mga chat.</string>
     <!-- Toast shown after reporting spam and tapping the conversation item -->
-    <string name="ConversationFragment_reported_as_spam">Reported as spam</string>
+    <string name="ConversationFragment_reported_as_spam">Iniulat bilang spam</string>
     <!-- Toast shown after reporting and blocking a conversation -->
-    <string name="ConversationFragment_reported_as_spam_and_blocked">Reported as spam and blocked</string>
+    <string name="ConversationFragment_reported_as_spam_and_blocked">Iniulat bilang spam at hinarang na</string>
     <!-- Dialog message shown after accepting a message request and tapping on options from the conversation event -->
-    <string name="ConversationFragment_you_accepted_a_message_request_from_s">You accepted a message request from %1$s. If this was a mistake, you can choose an action below.</string>
+    <string name="ConversationFragment_you_accepted_a_message_request_from_s">Tinanggap mo ang message request mula kay %1$s. Kung nagkamali ka lang, maaari kang pumili ng isang aksyon sa ibaba.</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
-    <string name="SafetyTips_title">Safety Tips</string>
+    <string name="SafetyTips_title">Tips Para Sa Kaligtasan</string>
     <!-- Dialog subtitle when showign tips for a 1:1 conversation -->
-    <string name="SafetyTips_subtitle_individual">Be careful when accepting message requests from people you don’t know. Watch out for:</string>
+    <string name="SafetyTips_subtitle_individual">Mag-ingat sa pagtanggap ng mga message request mula sa mga taong hindi mo kilala. Mag-ingat sa:</string>
     <!-- Dialog subtitle when showing tips for a group conversation -->
-    <string name="SafetyTips_subtitle_group">Review this request carefully. None of your contacts or people you chat with are in this group. Here are a few things to watch out for:</string>
+    <string name="SafetyTips_subtitle_group">Araling maigi ang request na ito. Wala sa grupong ito ang sinumang kontak o tao na ka-chat mo. Narito ang ilang bagay na dapat bantayan:</string>
     <!-- Button text to move to the previous tip-->
-    <string name="SafetyTips_previous_tip">Previous tip</string>
+    <string name="SafetyTips_previous_tip">Bumalik sa nakaraang tip</string>
     <!-- Button text to move to the next tip -->
-    <string name="SafetyTips_next_tip">Next tip</string>
+    <string name="SafetyTips_next_tip">Pumunta sa kasunod na tip</string>
     <!-- Title of tip 1 -->
-    <string name="SafetyTips_tip1_title">Crypto or money scams</string>
+    <string name="SafetyTips_tip1_title">Mga scam kaugnay ng crypto o pera</string>
     <!-- Message of tip 1 -->
-    <string name="SafetyTips_tip1_message">If someone you don’t know messages about cryptocurrency (like Bitcoin) or an financial opportunity, be careful—it’s likely spam.</string>
+    <string name="SafetyTips_tip1_message">Kung ang isang hindi mo kakilala ay nag-mensahe tungkol sa cryptocurrency (tulad ng Bitcoin) o tungkol sa isang oportunidad na pinansyal, mag-ingat—malamang scam iyan.</string>
     <!-- Title of tip 2 -->
-    <string name="SafetyTips_tip2_title">Vague or irrelevant messages</string>
+    <string name="SafetyTips_tip2_title">Malabo o walang kaugnayang mga mensahe</string>
     <!-- Message of tip 2 -->
-    <string name="SafetyTips_tip2_message">Spammers often start with a simple message like “Hi” to draw you in. If you respond they may engage you further.</string>
+    <string name="SafetyTips_tip2_message">Ang mga spammer ay madalas na nag-uumpisa sa isang simpleng mensahe tulad ng \"Hi\" para maakit ka. Kapag sumagot ka, maaari ka nilang kausapin pa.</string>
     <!-- Title of tip 3 -->
-    <string name="SafetyTips_tip3_title">Messages with links</string>
+    <string name="SafetyTips_tip3_title">Mga mensahe na may mga link</string>
     <!-- Message of tip 3 -->
-    <string name="SafetyTips_tip3_message">Be careful of messages from people you don’t know that have links to websites. Never visit links from people you don’t trust.</string>
+    <string name="SafetyTips_tip3_message">Mag-ingat sa mga mensahe mula sa mga taong hindi mo kilala na may mga link papunta sa ibang website. Huwag na huwag i-click ang anumang link mula sa taong hindi mo pinagkakatiwalaan.</string>
     <!-- Title of tip 4 -->
-    <string name="SafetyTips_tip4_title">Fake businesses and institutions</string>
+    <string name="SafetyTips_tip4_title">Mga pekeng negosyo at institusyon</string>
     <!-- Message of tip 4 -->
-    <string name="SafetyTips_tip4_message">Be careful of businesses or government agencies contacting you. Messages involving tax agencies, couriers, and more can be spam.</string>
+    <string name="SafetyTips_tip4_message">Mag-ingat sa mga negosyo o ahensya ng gobyerno na nakikipag-ugnayan sa iyo. Maaaring spam ang mga mensaheng may kaugnayan sa mga ahensya ng buwis, courier, at iba pa.</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">I-clear ang filter</string>
@@ -585,8 +585,8 @@
     </plurals>
     <string name="ConversationListFragment_deleting">Binubura</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
-        <item quantity="one">Deleting selected chat…</item>
-        <item quantity="other">Deleting selected chats…</item>
+        <item quantity="one">Binubura ang piniling chat…</item>
+        <item quantity="other">Binubura ang mga piniling chat…</item>
     </plurals>
     <plurals name="ConversationListFragment_conversations_archived">
         <item quantity="one">Na-archive na ang chat</item>
@@ -1064,7 +1064,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Hindi makakakita ang iyong username, QR code at link sa profile mo. I-share lamang ang iyong username sa mga taong pinagkakatiwalaan mo.</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">Pwede ka na nilang i-message gamit ang optional username mo para hindi mo na ibigay ang iyong phone number. </string> -->
+    <string name="ManageProfileFragment__username_footer_no_username">Pwede ka na nilang i-message gamit ang optional username mo para hindi mo na ibigay ang iyong phone number. </string>
     <string name="ManageProfileFragment_profile_name">Profile name</string>
     <string name="ManageProfileFragment_username">Username</string>
     <string name="ManageProfileFragment_about">About</string>
@@ -1599,9 +1599,9 @@
     <!-- Body for quote when message being quoted is an in-app payment message -->
     <string name="MessageRecord__payment_s">Payment: %1$s</string>
     <!-- Update message shown in chat after reporting it as spam -->
-    <string name="MessageRecord_reported_as_spam">Reported as spam</string>
+    <string name="MessageRecord_reported_as_spam">Iniulat bilang spam</string>
     <!-- Update message shown in chat after accept a message request -->
-    <string name="MessageRecord_you_accepted_the_message_request">You accepted the message request</string>
+    <string name="MessageRecord_you_accepted_the_message_request">Tinanggap mo ang message request</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Tanggapin</string>
@@ -1649,7 +1649,7 @@
         <item quantity="other">%1$d additional groups</item>
     </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
-    <string name="MessageRequestBottomView_report">Report…</string>
+    <string name="MessageRequestBottomView_report">Iulat…</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Hindi tugma ang mga passphrase!</string>
@@ -1965,9 +1965,9 @@
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">Signal connection</string>
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
-  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">Beripikado</string> -->
+    <string name="AboutSheet__verified">Beripikado</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
-  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string> -->
+    <string name="AboutSheet__no_direct_message">Walang direktang message kay %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">Si %1$s ay nasa system contacts mo</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -2301,7 +2301,7 @@
     <string name="UsernameEditFragment_username_is_invalid">Ang username ay hindi valid.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Ang mga username ay kailangang nasa pagitan ng %1$d at %2$d ang bilang ng mga character.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Sa pamamagitan ng usernames, pwede kang i-message ng ibang tao nang hindi nalalaman ang phone number mo. Nakakonekta ito sa isang set ng mga number para tulungan kang mapanatiling private ang address mo.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">Usernames are always paired with a set of numbers.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">Para saan ang number na ito?</string>
     <string name="UsernameEditFragment__these_digits_help_keep">Ang numbers na ito\'y nakatutulong para mapanatiling private ang username mo at makaiwas ka sa anumang mensaheng hindi mo gustong matanggap. I-share lamang ang iyong username sa mga tao at groups na gusto mong maka-chat. Kung magpapalit ka ng username, magkakaroon ka ng bagong set of digits.</string>
@@ -2322,9 +2322,9 @@
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">Ma-re-reset ang iyong existing QR code at link kapag ni-recover mo ang username mo. Sigurado ka na ba?</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">Kapag nagpalit ka ng username, mare-reset ang iyong existing QR code at link. Sigurado ka ba?</string> -->
+    <string name="UsernameEditFragment_change_confirmation_message">Kapag nagpalit ka ng username, mare-reset ang iyong existing QR code at link. Sigurado ka ba?</string>
     <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">Magpatuloy</string> -->
+    <string name="UsernameEditFragment_continue">Magpatuloy</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d kontak ay nasa Signal!</item>
@@ -2722,7 +2722,7 @@
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">Tinanggal mo na ang taong ito, mababalik s\'ya sa list mo kapag nag-message ka ulit sa kanya.</string>
     <!-- Update item button text shown for the accepted message request update message -->
-    <string name="ConversationUpdateItem_options">Options</string>
+    <string name="ConversationUpdateItem_options">Mga pagpipilian</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">I-play … I-pause</string>
@@ -4124,8 +4124,10 @@
     <string name="BlockedUsersActivity__s_has_been_unblocked">In-unblock si \"%1$s\".</string>
 
     <!-- ReviewCardDialogFragment -->
-    <string name="ReviewCardDialogFragment__review_members">I-review ang Members</string>
-    <string name="ReviewCardDialogFragment__review_request">I-review ang Request</string>
+    <!-- Title of a screen where the user will be prompted to review group members with the same name -->
+    <string name="ReviewCardDialogFragment__review_members">Review members</string>
+    <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
+    <string name="ReviewCardDialogFragment__review_request">Review request</string>
     <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d group members ang may parehong pangalan, i-review ang members sa baba at piliing mag-take action.</string>
     <string name="ReviewCardDialogFragment__if_youre_not_sure">Kung hindi ka sigurado kung kanino galing ang request na ito, i-review ang contacts sa baba and take action.</string>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">Walang other groups in common.</string>
@@ -6184,13 +6186,13 @@
     <string name="SetUpYourUsername__learn_more">Matuto pa</string>
 
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_title">Mga bagong paraan para makipag-connect</string> -->
+    <string name="PnpLaunchMegaphone_title">Mga bagong paraan para makipag-connect</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_body">Ipinakikilala ang phone number privacy, optional usernames, at links.</string> -->
+    <string name="PnpLaunchMegaphone_body">Ipinakikilala ang phone number privacy, optional usernames, at links.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_dismiss">I-dismiss</string> -->
+    <string name="PnpLaunchMegaphone_dismiss">I-dismiss</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
-  <!-- Removed by excludeNonTranslatables <string name="PnpLaunchMegaphone_learn_more">Matuto pa</string> -->
+    <string name="PnpLaunchMegaphone_learn_more">Matuto pa</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -6490,9 +6492,9 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">Nagkaroon ng network error habang sinusubukang i-reset ang link mo. Subukan ulit mamaya.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string> -->
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">Nagkaroon ng hindi inaasahang error habang sinusubukang i-reset ang iyong link. Subukan ulit mamaya.</string>
     <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">Ang iyong QR code at link ay reset na at mayroon ka na ring bagong QR code at link.</string> -->
+    <string name="UsernameLinkSettings_reset_link_result_success">Ang iyong QR code at link ay reset na at mayroon ka na ring bagong QR code at link.</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">I-scan ang QR code na ito gamit ang phone mo para maka-chat ako sa Signal.</string>
 
@@ -6563,7 +6565,7 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">Phone number</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_a_full_username">Maglagay ng username na may kasamang numero.</string>
+    <string name="FindByActivity__enter_username_description">Enter a username followed by a dot and its set of numbers.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">Susunod</string>
     <!-- Placeholder text for search input for selecting country code -->
