@@ -526,13 +526,13 @@
     <!-- Menu option to report spam in a conversation -->
     <string name="ConversationFragment_report_spam">Report spam</string>
     <!-- Menu option to block in a conversation -->
-    <string name="ConversationFragment_block">Block</string>
+    <string name="ConversationFragment_block">தடைசெய்</string>
     <!-- Menu otpion to accept a message request in a conversation -->
-    <string name="ConversationFragment_accept">Accept</string>
+    <string name="ConversationFragment_accept">ஒப்புக்கொள்</string>
     <!-- Menu option to delete an entire chat in a conversation -->
     <string name="ConversationFragment_delete_chat">Delete chat</string>
     <!-- Menu option to unblock in a conversation -->
-    <string name="ConversationFragment_unblock">Unblock</string>
+    <string name="ConversationFragment_unblock">தடைநீக்கு</string>
     <!-- Menu option to report spam in a conversation -->
     <string name="ConversationFragment_reported_spam">Reported spam</string>
     <!-- Dialog message shown after reporting spam and tapping the conversation item -->
@@ -1062,11 +1062,11 @@
 
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
-    <string name="ManageProfileFragment__your_username">உங்கள் பயனர் பெயர், QR குறியீடு மற்றும் இணைப்பு ஆகியவை உங்கள் புரொஃபைலில் தெரியாது. உங்களுக்கு நம்பிக்கையானர்வர்களுடன் மட்டும் உங்கள் பயனர் பெயரைப் பகிரவும்.</string>
+    <string name="ManageProfileFragment__your_username">உங்கள் பயனர் பெயர், QR குறியீடு மற்றும் இணைப்பு ஆகியவை உங்கள் ப்ரொஃபைலில் தெரியாது. உங்களுக்கு நம்பிக்கையானர்வர்களுடன் மட்டும் உங்கள் பயனர் பெயரைப் பகிரவும்.</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">People can now message you using your optional username so you don\'t have to give out your phone number. </string> -->
-    <string name="ManageProfileFragment_profile_name">சுயவிவரப் பெயர்</string>
-    <string name="ManageProfileFragment_username">பயனர்பெயர்</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">உங்கள் விருப்பத் தேர்ந்தெடுப்புக்குரிய பயனர் பெயரைப் பயன்படுத்தி மக்கள் இப்போது உங்களுக்கு மெசேஜ் அனுப்ப முடியும் என்பதால், உங்கள் தொலைபேசி எண்ணை நீங்கள் பகிர வேண்டியதில்லை. </string> -->
+    <string name="ManageProfileFragment_profile_name">ப்ரொஃபைல் பெயர்</string>
+    <string name="ManageProfileFragment_username">பயனர் பெயர்</string>
     <string name="ManageProfileFragment_about">பற்றி</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">சித்தரிப்பு அமைப்பதில் தோல்வி</string>
     <string name="ManageProfileFragment_badges">பேட்ஜ்கள்</string>
@@ -1074,15 +1074,15 @@
     <string name="ManageProfileFragment_link_setting_text">QR குறியீடு அல்லது இணைப்பு</string>
     <string name="ManageProfileFragment__edit_photo">படத்தை திருத்த</string>
     <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
-    <string name="ManageProfileFragment__link_tooltip_title">உங்கள் பயனர்பெயரைப் பகிரவும்</string>
+    <string name="ManageProfileFragment__link_tooltip_title">உங்கள் பயனர் பெயரைப் பகிரவும்</string>
     <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
     <string name="ManageProfileFragment__link_tooltip_body">உங்களின் தனிப்பட்ட QR குறியீடு அல்லது இணைப்பை பகிர்வதன் மூலம் மற்றவர்கள் உங்களுடன் சாட் செய்யத் தொடங்க அனுமதிக்கவும்.</string>
     <!-- Snackbar message after creating username -->
-    <string name="ManageProfileFragment__username_created">பயனர்பெயர் உருவாக்கப்பட்டது</string>
+    <string name="ManageProfileFragment__username_created">பயனர் பெயர் உருவாக்கப்பட்டது</string>
     <!-- Snackbar message after copying username -->
-    <string name="ManageProfileFragment__username_copied">பயனர்பெயர் நகலெடுக்கப்பட்டது</string>
+    <string name="ManageProfileFragment__username_copied">பயனர் பெயர் நகலெடுக்கப்பட்டது</string>
     <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">பயனர்பெயரை நீக்க முடியவில்லை. பின்னர் மீண்டும் முயலவும்.</string>
+    <string name="ManageProfileFragment__couldnt_delete_username">பயனர் பெயரை நீக்க முடியவில்லை. பின்னர் மீண்டும் முயலவும்.</string>
     <!-- Snackbar message after successful deletion of username -->
     <string name="ManageProfileFragment__username_deleted">பயனர் பெயர் நீக்கப்பட்டது</string>
     <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
@@ -1092,9 +1092,9 @@
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
-    <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">உங்கள் பயனர்பெயரில் ஏதோ தவறாகிவிட்டது, அது இனி உங்கள் கணக்கில் ஒதுக்கப்படாது. நீங்கள் முயற்சி செய்து மீண்டும் அமைக்கலாம் அல்லது புதியதைத் தேர்ந்தெடுக்கலாம்.</string>
+    <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">உங்கள் பயனர் பெயரில் ஏதோ தவறாகிவிட்டது, அது இனி உங்கள் கணக்கில் ஒதுக்கப்படாது. நீங்கள் முயற்சி செய்து மீண்டும் அமைக்கலாம் அல்லது புதியதைத் தேர்ந்தெடுக்கலாம்.</string>
     <!-- Displayed above the conversation list when a user needs to address an issue with their username link -->
-    <string name="UsernameOutOfSyncReminder__link_corrupt">உங்கள் QR குறியீடு மற்றும் பயனர்பெயர் இணைப்பில் ஏதோ தவறு நடந்துவிட்டது, அது இனி செல்லுபடியாகாது. மற்றவர்களுடன் பகிர புதிய இணைப்பை உருவாக்கவும்.</string>
+    <string name="UsernameOutOfSyncReminder__link_corrupt">உங்கள் QR குறியீடு மற்றும் பயனர் பெயர் இணைப்பில் ஏதோ தவறு நடந்துவிட்டது, அது இனி செல்லுபடியாகாது. மற்றவர்களுடன் பகிர புதிய இணைப்பை உருவாக்கவும்.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
     <string name="UsernameOutOfSyncReminder__fix_now">இப்பொழுதே சரிபார்</string>
 
@@ -1383,8 +1383,8 @@
     </plurals>
 
     <!-- Profile change updates -->
-    <string name="MessageRecord_changed_their_profile_name_to">%1$s அவர்களின் சுயவிவரப் பெயரை %2$s பெயருக்கு மாற்றப்பட்டுள்ளது .</string>
-    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s அவர்களின் சுயவிவரப் பெயரை %2$s இருந்து %3$s பெயருக்கு மாற்றப்பட்டுள்ளது .</string>
+    <string name="MessageRecord_changed_their_profile_name_to">%1$s அவர்களின் ப்ரொஃபைல் பெயரை %2$s பெயருக்கு மாற்றப்பட்டுள்ளது .</string>
+    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s அவர்களின் ப்ரொஃபைல் பெயரை %2$s இருந்து %3$s பெயருக்கு மாற்றப்பட்டுள்ளது .</string>
     <string name="MessageRecord_changed_their_profile">%1$s சுயவிவரத்தை மாற்றினர்.</string>
 
     <!-- GV2 specific -->
@@ -1965,7 +1965,7 @@
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">சிக்னல் இணைப்பு</string>
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
-  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">Verified</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">சரிபார்க்கப்பட்டது</string> -->
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
   <!-- Removed by excludeNonTranslatables <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string> -->
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
@@ -2028,13 +2028,13 @@
     <string name="RegistrationActivity_select_your_country">உங்கள் நாட்டை தேர்ந்தெடுக்கவும்</string>
     <string name="RegistrationActivity_you_must_specify_your_country_code">நீங்கள் கண்டிப்பாக குறிப்பிடவேண்டியது உங்கள்: நாட்டின் குறியீடு
     </string>
-    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">பதிவு செய்ய சரியான ஃபோன் எண்ணை உள்ளிடவும்.</string>
+    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">பதிவு செய்ய சரியான தொலைபேசி எண்ணை உள்ளிடவும்.</string>
     <string name="RegistrationActivity_invalid_number">செல்லா எண்</string>
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">நீங்கள் குறிப்பிட்ட எண் (%1$s) செல்லாது.
     </string>
 
     <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">கீழே உள்ள மொபைல் எண் சரியானதா?</string>
+    <string name="RegistrationActivity_phone_number_verification_dialog_title">கீழே உள்ள தொலைபேசி எண் சரியானதா?</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
     <string name="RegistrationActivity_additional_verification_required">கூடுதல் சரிபார்ப்பு தேவை</string>
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
@@ -2079,9 +2079,9 @@
     <string name="RegistrationActivity_continue">தொடர்</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">உங்களுடன் தனியுரிமையைப் பெறுங்கள். ஒவ்வொரு செய்தியிலும் நீங்கள் நீங்கலாய் இருங்கள் .</string>
     <!-- Title of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_phone_number">ஃபோன் எண்</string>
+    <string name="RegistrationActivity_phone_number">தொலைபேசி எண்</string>
     <!-- Subtitle of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">தொடங்குவதற்கு உங்கள் மொபைல் எண்ணை உள்ளிடவும்.</string>
+    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">தொடங்குவதற்கு உங்கள் தொலைபேசி எண்ணை உள்ளிடவும்.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">நாங்கள் அனுப்பிய குறியீட்டை %1$s க்கு உள்ளிடவும்</string>
 
     <string name="RegistrationActivity_phone_number_description">தொலைபேசி எண்</string>
@@ -2092,7 +2092,7 @@
     <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_title">பதிவு செய்வதில் சிக்கல் உள்ளதா?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• உங்கள் SMS அல்லது அழைப்பு பெற உங்கள் ஃபோனில் செல்லுலார் சிக்னல் உள்ளதா என்பதை உறுதிப்படுத்தவும் \n • எண்\n க்கு ஃபோன் அழைப்பைப் பெற முடியுமா என்பதை உறுதிப்படுத்தவும் • உங்கள் ஃபோன் எண்ணை சரியாக உள்ளிட்டுள்ளீர்களா எனச் சரிபார்க்கவும்.</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• உங்கள் SMS அல்லது அழைப்பு பெற உங்கள் ஃபோனில் செல்லுலார் சிக்னல் உள்ளதா என்பதை உறுதிப்படுத்தவும் \n • எண்\n க்கு ஃபோன் அழைப்பைப் பெற முடியுமா என்பதை உறுதிப்படுத்தவும் • உங்கள் தொலைபேசி எண்ணை சரியாக உள்ளிட்டுள்ளீர்களா எனச் சரிபார்க்கவும்.</string>
     <!--    A call to action for a user having trouble entering the verification to seek further help. -->
     <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">மேலும் தகவலுக்கு, இந்த சரிசெய்தல் படிகளைப் பின்பற்றவும் அல்லது ஆதரவைத் தொடர்பு கொள்ளவும்</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
@@ -2290,31 +2290,31 @@
     <!-- Toolbar title when entering from registration -->
     <string name="UsernameEditFragment__add_a_username">ஒரு பயனர் பெயரைச் சேர்க்கவும்</string>
     <!-- Instructional text at the top of the username edit screen -->
-    <string name="UsernameEditFragment__choose_your_username">உங்கள் பயனர்பெயரைத் தேர்வு செய்யவும்</string>
-    <string name="UsernameEditFragment_username">பயனர்பெயர்</string>
+    <string name="UsernameEditFragment__choose_your_username">உங்கள் பயனர் பெயரைத் தேர்வு செய்யவும்</string>
+    <string name="UsernameEditFragment_username">பயனர் பெயர்</string>
     <string name="UsernameEditFragment_delete">நீக்கு</string>
-    <string name="UsernameEditFragment_successfully_removed_username">பயனர்பெயர் வெற்றிகரமாக அகற்றப்பட்டது.</string>
+    <string name="UsernameEditFragment_successfully_removed_username">பயனர் பெயர் வெற்றிகரமாக அகற்றப்பட்டது.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">பிணைய பிழையை எதிர்கொண்டது.</string>
-    <string name="UsernameEditFragment_this_username_is_taken">இந்த பயனர்பெயர் எடுக்கப்பட்டது.</string>
-    <string name="UsernameEditFragment_usernames_can_only_include">பயனர்பெயர்களில் அ - ஃ, a–Z, 0–9 மற்றும் அடிக்கோடிட்டுக் காட்டலாம்.</string>
-    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">பயனர்பெயர்கள் எண்ணுடன் தொடங்க முடியாது.</string>
-    <string name="UsernameEditFragment_username_is_invalid">பயனர்பெயர் தவறானது.</string>
-    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">பயனர்பெயர்கள் %1$d மற்றும் %2$d எழுத்துக்களுக்கு இடையில் இருக்க வேண்டும்.</string>
+    <string name="UsernameEditFragment_this_username_is_taken">இந்த பயனர் பெயர் எடுக்கப்பட்டது.</string>
+    <string name="UsernameEditFragment_usernames_can_only_include">பயனர் பெயர்களில் அ - ஃ, a–Z, 0–9 மற்றும் அடிக்கோடிட்டுக் காட்டலாம்.</string>
+    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">பயனர் பெயர் எண்ணுடன் தொடங்க முடியாது.</string>
+    <string name="UsernameEditFragment_username_is_invalid">பயனர் பெயர் தவறானது.</string>
+    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">பயனர் பெயர்கள் %1$d மற்றும் %2$d எழுத்துக்களுக்கு இடையில் இருக்க வேண்டும்.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">பயனர்பெயர்கள் உங்கள் தொலைபேசி எண் இல்லாமல் மற்றவர்கள் உங்களுக்கு செய்தி அனுப்ப அனுமதிக்கும். உங்கள் முகவரியைத் தனிப்பட்டதாக வைத்திருக்க உதவுவதற்காக இலக்கங்களின் தொகுப்புடன் அவை இணைக்கப்பட்டுள்ளன.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">பயனர் பெயர்கள் உங்கள் தொலைபேசி எண் இல்லாமல் மற்றவர்கள் உங்களுக்கு செய்தி அனுப்ப அனுமதிக்கும். உங்கள் முகவரியைத் தனிப்பட்டதாக வைத்திருக்க உதவுவதற்காக இலக்கங்களின் தொகுப்புடன் அவை இணைக்கப்பட்டுள்ளன.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">இந்த எண் என்ன?</string>
-    <string name="UsernameEditFragment__these_digits_help_keep">இந்த இலக்கங்கள் உங்கள் பயனர்பெயரை தனிப்பட்டதாக வைத்திருக்க உதவுவதால் நீங்கள் தேவையற்ற செய்திகளைத் தவிர்க்கலாம். நீங்கள் சாட் செய்ய விரும்பும் நபர்கள் மற்றும் குழுக்களுடன் மட்டும் உங்கள் பயனர்பெயரைப் பகிரவும். நீங்கள் பயனர்பெயர்களை மாற்றினால், புதிய இலக்கங்களின் ஒரு தொகுப்பைப் பெறுவீர்கள்.</string>
+    <string name="UsernameEditFragment__these_digits_help_keep">இந்த இலக்கங்கள் உங்கள் பயனர் பெயரைத் தனிப்பட்டதாக வைத்திருக்க உதவுவதால் நீங்கள் தேவையற்ற செய்திகளைத் தவிர்க்கலாம். நீங்கள் சாட் செய்ய விரும்பும் நபர்கள் மற்றும் குழுக்களுடன் மட்டும் உங்கள் பயனர் பெயரைப் பகிரவும். நீங்கள் பயனர் பெயர்களை மாற்றினால், புதிய இலக்கங்களின் ஒரு தொகுப்பைப் பெறுவீர்கள்.</string>
     <!-- Button to allow user to skip -->
     <string name="UsernameEditFragment__skip">தவிர்</string>
     <!-- Content description for done button -->
     <string name="UsernameEditFragment__done">முடிந்தது</string>
     <!-- Displayed when the chosen discriminator is not available for the given nickname -->
-    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">இந்த பயனர்பெயர் கிடைக்கப்பெறவில்லை, வேறு எண்ணை முயலவும்.</string>
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">இந்த பயனர் பெயர் கிடைக்கப்பெறவில்லை, வேறு எண்ணை முயலவும்.</string>
     <!-- Displayed when the chosen discriminator is too short -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">தவறான பயனர்பெயர், குறைந்தபட்சம் %1$d இலக்கங்களை உள்ளிடவும்.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">தவறான பயனர் பெயர், குறைந்தபட்சம் %1$d இலக்கங்களை உள்ளிடவும்.</string>
     <!-- Displayed when the chosen discriminator is too long -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">தவறான பயனர்பெயர், அதிகபட்சம் %1$d இலக்கங்களை உள்ளிடவும்.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">தவறான பயனர் பெயர், அதிகபட்சம் %1$d இலக்கங்களை உள்ளிடவும்.</string>
     <!-- Displayed when the chosen discriminator is 00 -->
     <string name="UsernameEditFragment__this_number_cant_be_00">இந்த எண் 00 ஆக இருக்கக் கூடாது. 1–9 க்கு இடையேயுள்ள ஒரு எண்ணை உள்ளிடவும்</string>
     <!-- Displayed when the chosen discriminator starts with 00 -->
@@ -2322,9 +2322,9 @@
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">உங்கள் பயனர் பெயரை மீட்டமைப்பது உங்கள் தற்போதைய QR குறியீடு மற்றும் இணைப்பை மீட்டமைக்கும். நீங்கள் உறுதியாக உள்ளீர்களா?</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">Changing your username will reset your existing QR code and link. Are you sure?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">உங்கள் பயனர் பெயரை மாற்றுவது உங்கள் தற்போதைய QR குறியீடு மற்றும் இணைப்பை மீட்டமைக்கும். உறுதியாக உள்ளீர்களா?</string> -->
     <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">Continue</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">தொடர்க</string> -->
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d தொடர்பு Signal-இல் உள்ளார்!</item>
@@ -2333,7 +2333,7 @@
 
     <!-- UsernameShareBottomSheet -->
     <!-- Explanation of what the sheet enables the user to do -->
-    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">ஒரு பயனர்பெயர் இணைப்பை நகலெடுக்கவும் அல்லது பகிரவும்</string>
+    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">ஒரு பயனர் பெயர் இணைப்பை நகலெடுக்கவும் அல்லது பகிரவும்</string>
 
     <!-- VerifyIdentityActivity -->
     <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">உங்கள் தொடர்பு, பொருந்தாத QR குறியீடு வடிவத்துடன் Signal புதிய பதிப்பை இயக்குகிறது. ஒப்பீடு செய்ய புதுப்பிக்கவும்.</string>
@@ -2521,7 +2521,7 @@
     <!-- Row item title for usernames explainer -->
     <string name="NewWaysToConnectDialogFragment__usernames">பயனர் பெயர்கள்</string>
     <!-- Row item description for usernames explainer -->
-    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">உங்கள் விருப்பத் தேர்ந்தெடுப்புக்குரிய பயனர் பெயரைப் பயன்படுத்தி மக்கள் இப்போது உங்களுக்கு மெசேஜ் அனுப்ப முடியும் என்பதால், உங்கள் தொலைபேசி எண்ணை நீங்கள் பகிர வேண்டியதில்லை. உங்கள் புரொஃபைலில் பயனர் பெயர்கள் தெரியாது.</string>
+    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">உங்கள் விருப்பத் தேர்ந்தெடுப்புக்குரிய பயனர் பெயரைப் பயன்படுத்தி மக்கள் இப்போது உங்களுக்கு மெசேஜ் அனுப்ப முடியும் என்பதால், உங்கள் தொலைபேசி எண்ணை நீங்கள் பகிர வேண்டியதில்லை. உங்கள் ப்ரொஃபைலில் பயனர் பெயர்கள் தெரியாது.</string>
     <!-- Row item title for qr code and links explainer -->
     <string name="NewWaysToConnectDialogFragment__qr_codes_and_links">QR குறியீடுகள் மற்றும் இணைப்புகள்</string>
     <!-- Row item description for qr code and links explainer -->
@@ -2550,7 +2550,7 @@
 
     <!-- UnauthorizedReminder -->
     <!-- Message shown in a reminder banner when the user\'s device is no longer registered -->
-    <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">இந்த டிவைஸ் இனி பதிவுசெய்யப்பட்டிருக்காது. உங்கள் மொபைல் எண்ணை Signal இல் வேறு டிவைஸில் பதிவு செய்ததால் இது நிகழலாம்.</string>
+    <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">இந்த டிவைஸ் இனி பதிவுசெய்யப்பட்டிருக்காது. உங்கள் தொலைபேசி எண்ணை சிக்னலில் வேறு டிவைஸில் பதிவு செய்ததால் இது நிகழலாம்.</string>
     <!-- Action in reminder banner that will take user to re-register -->
     <string name="UnauthorizedReminder_reregister_action">டிவைஸை மீண்டும் பதிவு செய்க</string>
 
@@ -2635,8 +2635,8 @@
     <!-- ContactSelectionListFragment-->
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">உங்கள் தொடர்புகளைக் காண்பிக்க Signal கு தொடர்புகளின் அனுமதி தேவைப்படுகிறது, ஆனால் அது நிரந்தரமாக மறுக்கப்பட்டது. பயன்பாடு அமைப்புகள் மெனுவில் தொடரவும், \"அனுமதிகள்\" என்பதைத் தேர்ந்தெடுத்து, \"தொடர்புகளை\" இயக்கவும்.</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">தொடர்புகளை மீட்டெடுப்பதில் பிழை, உங்கள் பிணைய இணைப்பைச் சரிபார்க்கவும்</string>
-    <string name="ContactSelectionListFragment_username_not_found">பயனர்பெயர் கிடைக்கவில்லை</string>
-    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s Signal பயனர் அல்ல. தயவுசெய்து பயனர்பெயரை சரிபார்த்து மீண்டும் முயற்சிக்கவும்."</string>
+    <string name="ContactSelectionListFragment_username_not_found">பயனர் பெயர் கிடைக்கவில்லை</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s சிக்னல் பயனர் அல்ல. தயவுசெய்து பயனர் பெயரைச் சரிபார்த்து மீண்டும் முயற்சிக்கவும்."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">உங்களை நீங்களே குழுவில் சேர்க்க தேவையில்லை</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">அதிகபட்ச குழு அளவு எட்டப்பட்டுள்ளது</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">சிக்னல் குழுக்கள் அதிகபட்சம் %1$d உறுப்பினர்களைக் கொண்டிருக்கலாம்.</string>
@@ -3135,7 +3135,7 @@
     <string name="preferences__mmsc_url">MMSC URL</string>
     <string name="preferences__mms_proxy_host">MMS Proxy Host</string>
     <string name="preferences__mms_proxy_port">MMS Proxy Port</string>
-    <string name="preferences__mmsc_username">MMSC பயனர்பெயர்</string>
+    <string name="preferences__mmsc_username">MMSC பயனர் பெயர்</string>
     <string name="preferences__mmsc_password">MMSC கடவுச்சொல்</string>
     <string name="preferences__sms_delivery_reports">SMS விநியோக அறிக்கைகள்</string>
     <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">நீங்கள் அனுப்பும் அனைத்து SMS-க்கும் விநியோக அறிக்கைகளை கோரவும்</string>
@@ -3739,7 +3739,7 @@
 
     <!-- AccountLockedFragment -->
     <string name="AccountLockedFragment__account_locked">கணக்கில் பூட்டப்பட்டுள்ளது</string>
-    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">உங்கள் தனியுரிமை மற்றும் பாதுகாப்பைப் பாதுகாக்க உங்கள் கணக்கு பூட்டப்பட்டுள்ளது. உங்கள் கணக்கில் %1$d நாட்கள் செயலற்ற நிலையில் இருந்தபின், உங்கள் பின் தேவைப்படாமல் இந்த மொபைல் எண்ணை மீண்டும் பதிவு செய்ய முடியும். எல்லா உள்ளடக்கமும் நீக்கப்படும்.</string>
+    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">உங்கள் தனியுரிமை மற்றும் பாதுகாப்பைப் பாதுகாக்க உங்கள் கணக்கு பூட்டப்பட்டுள்ளது. உங்கள் கணக்கில் %1$d நாட்கள் செயலற்ற நிலையில் இருந்தபின், உங்கள் பின் தேவைப்படாமல் இந்த தொலைபேசி எண்ணை மீண்டும் பதிவு செய்ய முடியும். எல்லா உள்ளடக்கமும் நீக்கப்படும்.</string>
     <string name="AccountLockedFragment__next">அடுத்தது</string>
     <string name="AccountLockedFragment__learn_more">மேலும் அறிக</string>
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
@@ -3873,17 +3873,17 @@
     <string name="BackupUtil_never">ஒருபோதுமில்லை</string>
     <string name="BackupUtil_unknown">முன் தெரிந்திராத</string>
     <!-- Phone number heading displayed as a screen title -->
-    <string name="preferences_app_protection__phone_number">ஃபோன் எண்</string>
+    <string name="preferences_app_protection__phone_number">தொலைபேசி எண்</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
-    <string name="preferences_app_protection__choose_who_can_see">உங்கள் ஃபோன் எண்ணை யார் பார்க்கலாம் மற்றும் யார் உங்களை Signal இல் தொடர்பு கொள்ளலாம் என்பதைத் தேர்வுசெய்யவும்.</string>
+    <string name="preferences_app_protection__choose_who_can_see">உங்கள் தொலைபேசி எண்ணை யார் பார்க்கலாம் மற்றும் யார் உங்களை சிக்னலில் தொடர்பு கொள்ளலாம் என்பதைத் தேர்வுசெய்யவும்.</string>
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">எனது எண்ணை யார் பார்க்கலாம்</string>
     <!-- Subtext below radio buttons when who can see my number is set to everybody -->
     <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">நீங்கள் மெசேஜ் அனுப்பும் அனைத்து நபர்களுக்கும் குழுக்களுக்கும் உங்கள் தொலைபேசி எண் புலனாகும்.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">உங்கள் ஃபோன் நம்பரை அவர்கள் ஃபோனின் தொடர்புகளில் சேமித்து வைத்திருக்கும் வரை, அது யாருக்கும் காட்டப்படாது.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">உங்கள்தொலைபேசி எண்ணை அவர்கள் ஃபோனின் தொடர்புகளில் சேமித்து வைத்திருக்கும் வரை, அது யாருக்கும் காட்டப்படாது.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">உங்கள் ஃபோன் நம்பர் யாருக்கும் காட்டப்படாது.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">உங்கள் தொலைபேசி எண் யாருக்கும் காட்டப்படாது.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">எண் மூலம் என்னை யார் கண்டுபிடிக்க முடியும்</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
@@ -5155,7 +5155,7 @@
     <!-- Title of create notification profile screen -->
     <string name="EditNotificationProfileFragment__name_your_profile">உங்கள் சுயவிவரத்திற்குப் பெயரிடவும்</string>
     <!-- Hint text for create/edit notification profile name -->
-    <string name="EditNotificationProfileFragment__profile_name">சுயவிவரப் பெயர்</string>
+    <string name="EditNotificationProfileFragment__profile_name">ப்ரொஃபைல் பெயர்</string>
     <!-- Name has a max length, this shows how many characters are used out of the max -->
     <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
     <!-- Call to action button to continue to the next step -->
@@ -6175,7 +6175,7 @@
 
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__set_up_your_signal_username">உங்கள் Signal பயனர் பெயரை அமைக்கவும்</string>
+    <string name="SetUpYourUsername__set_up_your_signal_username">உங்கள் சிக்னல் பயனர் பெயரை அமைக்கவும்</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__introducing_phone_number_privacy">தொலைபேசி எண் தனியுரிமை, விருப்பத் தேர்ந்தெடுப்புக்குரிய பயனர் பெயர்கள் மற்றும் இணைப்புகளை அறிமுகப்படுத்துகிறோம்.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
@@ -6452,7 +6452,7 @@
     <!-- Description text for QR code and links in the username link settings -->
     <string name="UsernameLinkSettings_qr_description">உங்கள் QR குறியீடு மற்றும் இணைப்பை நீங்கள் நம்பும் நபர்களுடன் மட்டும் பகிரவும். பகிரப்படும் போது மற்றவர்கள் உங்கள் பயனர் பெயரைப் பார்த்து உங்களுடன் சாட் செய்ய முடியும்.</string>
     <!-- Content of a toast that will show after the username is copied to the clipboard -->
-    <string name="UsernameLinkSettings_username_copied_toast">பயனர்பெயர் நகலெடுக்கப்பட்டது</string>
+    <string name="UsernameLinkSettings_username_copied_toast">பயனர் பெயர் நகலெடுக்கப்பட்டது</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">இணைப்பு நகலெடுக்கப்பட்டது</string>
     <!-- Content of a text field that is shown when the user has not yet set a username link -->
@@ -6492,7 +6492,7 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
   <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string> -->
     <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">Your QR code and link have been reset and a new QR code and link has been created.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">உங்கள் QR குறியீடு மற்றும் இணைப்பு மீட்டமைக்கப்பட்டு புதிய QR குறியீடு மற்றும் இணைப்பு உருவாக்கப்பட்டுள்ளது.</string> -->
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">என்னுடன் சிக்னலில் சாட் செய்ய இந்த QR குறியீட்டை உங்கள் ஃபோன் மூலம் ஸ்கேன் செய்யவும்.</string>
 
@@ -6559,9 +6559,9 @@
     <!-- Title of screen to select a country code -->
     <string name="FindByActivity__select_country_code">நாட்டின் குறியீட்டைத் தேர்ந்தெடுக்கவும்</string>
     <!-- Entry placeholder for find by username -->
-    <string name="FindByActivity__username">பயனர்பெயர்</string>
+    <string name="FindByActivity__username">பயனர் பெயர்</string>
     <!-- Entry placeholder for find by phone number -->
-    <string name="FindByActivity__phone_number">ஃபோன் எண்</string>
+    <string name="FindByActivity__phone_number">தொலைபேசி எண்</string>
     <!-- Help text under user entry for find by username -->
     <string name="FindByActivity__enter_a_full_username">முழு பயனர் பெயரை அதன் இரண்டு எண்களுடன் உள்ளிடவும்.</string>
     <!-- Content description for next action button -->

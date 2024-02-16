@@ -562,13 +562,13 @@
     <!-- Menu option to report spam in a conversation -->
     <string name="ConversationFragment_report_spam">Report spam</string>
     <!-- Menu option to block in a conversation -->
-    <string name="ConversationFragment_block">Block</string>
+    <string name="ConversationFragment_block">حظر</string>
     <!-- Menu otpion to accept a message request in a conversation -->
-    <string name="ConversationFragment_accept">Accept</string>
+    <string name="ConversationFragment_accept">موافقة</string>
     <!-- Menu option to delete an entire chat in a conversation -->
     <string name="ConversationFragment_delete_chat">Delete chat</string>
     <!-- Menu option to unblock in a conversation -->
-    <string name="ConversationFragment_unblock">Unblock</string>
+    <string name="ConversationFragment_unblock">رفع الحظر</string>
     <!-- Menu option to report spam in a conversation -->
     <string name="ConversationFragment_reported_spam">Reported spam</string>
     <!-- Dialog message shown after reporting spam and tapping the conversation item -->
@@ -1204,7 +1204,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">اسم المُستخدم الخاص بك ليس مرئيًا على حسابك الشخصي، وكذلك رمز ورابط الاستجابة السريعة الخاصين بك. شارك اسم المُستخدم الخاص بك فقط مع الناس الذين تثق بهم.</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">People can now message you using your optional username so you don\'t have to give out your phone number. </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">يُمكن للناس مراسلتك الآن باستخدام اسم المُستخدم الاختياري الخاص بك حتى لا تضطر إلى إعطاء رقم هاتفك. </string> -->
     <string name="ManageProfileFragment_profile_name">اسم الحساب</string>
     <string name="ManageProfileFragment_username">اسم المُستخدم</string>
     <string name="ManageProfileFragment_about">حول</string>
@@ -1222,19 +1222,19 @@
     <!-- Snackbar message after copying username -->
     <string name="ManageProfileFragment__username_copied">تم نسخ اسم المُستخدم</string>
     <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">تعذّر حذف اسم المستخدم. يُرجى المحاولة مرة أخرى لاحقًا.</string>
+    <string name="ManageProfileFragment__couldnt_delete_username">تعذّر حذف اسم المُستخدم. يُرجى المحاولة مرة أخرى لاحقًا.</string>
     <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">تم حذف اسم المستخدم</string>
+    <string name="ManageProfileFragment__username_deleted">تم حذف اسم المُستخدم</string>
     <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_title">حذف اسم المستخدم؟</string>
+    <string name="ManageProfileFragment__delete_username_dialog_title">حذف اسم المُستخدم؟</string>
     <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_body">"سيُؤدي هذا إلى إزالة اسم المستخدم الخاص بك وتعطيل رمز الاستجابة السريع والرابط الخاصين بك. \"%1$s\" سيُصبح متاحًا للآخرين ليستفيدوا منه. هل أنت متأكد؟"</string>
+    <string name="ManageProfileFragment__delete_username_dialog_body">"سيُؤدي هذا إلى إزالة اسم المُستخدم الخاص بك وتعطيل رمز الاستجابة السريع والرابط الخاصين بك. \"%1$s\" سيُصبح متاحًا للآخرين ليستفيدوا منه. هل أنت متأكد؟"</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
-    <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">حدثت مشكلة مع اسم المستخدم الخاص بك ولم يعد مخصصًا لحسابك. يمكنك محاولة تعيينه من جديد أو اختيار اسم مستخدم جديد.</string>
+    <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">حدثت مشكلة مع اسم المُستخدم الخاص بك ولم يعد مخصصًا لحسابك. يمكنك محاولة تعيينه من جديد أو اختيار اسم مُستخدم جديد.</string>
     <!-- Displayed above the conversation list when a user needs to address an issue with their username link -->
-    <string name="UsernameOutOfSyncReminder__link_corrupt">حدث خطأ ما مع رمز الاستجابة السريع ورابط اسم المستخدم الخاصين بك، حيث لم يعد صالحًا. أنشئ رابطًا جديدًا للمشاركة مع الآخرين.</string>
+    <string name="UsernameOutOfSyncReminder__link_corrupt">حدث خطأ ما مع رمز الاستجابة السريع ورابط اسم المُستخدم الخاصين بك، حيث لم يعد صالحًا. أنشئ رابطًا جديدًا للمشاركة مع الآخرين.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
     <string name="UsernameOutOfSyncReminder__fix_now">إصلاح الآن</string>
 
@@ -1571,8 +1571,8 @@
     </plurals>
 
     <!-- Profile change updates -->
-    <string name="MessageRecord_changed_their_profile_name_to">غيّر %1$s اسمه إلى %2$s.</string>
-    <string name="MessageRecord_changed_their_profile_name_from_to">غيّر %1$s اسمه من %2$s إلى %3$s.</string>
+    <string name="MessageRecord_changed_their_profile_name_to">غيّر %1$s اسم حسابه الشخصي إلى %2$s.</string>
+    <string name="MessageRecord_changed_their_profile_name_from_to">غيّر %1$s اسم حسابه الشخصي من %2$s إلى %3$s.</string>
     <string name="MessageRecord_changed_their_profile">غيّر %1$s صفحة حسابه الشخصي.</string>
 
     <!-- GV2 specific -->
@@ -2259,13 +2259,13 @@
 
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
-    <string name="AboutSheet__signal_connection">جهات اتصال Signal</string>
+    <string name="AboutSheet__signal_connection">جهة اتصال سيجنال</string>
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
-  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">Verified</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">متحقق منه</string> -->
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
   <!-- Removed by excludeNonTranslatables <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string> -->
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
-    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s موجود في جهات اتصالك</string>
+    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s موجود في جهات اتصال حسابك</string>
     <!-- Notice in a row when user has no groups in common -->
     <string name="AboutSheet__you_have_no_groups_in_common">لا توجد مجموعات مُشتركة بينكم</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
@@ -2613,10 +2613,10 @@
     <string name="UsernameEditFragment__choose_your_username">يُرجى اختيار اسم المُستخدم</string>
     <string name="UsernameEditFragment_username">اسم المُستخدم</string>
     <string name="UsernameEditFragment_delete">حذف</string>
-    <string name="UsernameEditFragment_successfully_removed_username">تم حذف اسم المستخدم بنجاح.</string>
+    <string name="UsernameEditFragment_successfully_removed_username">تم حذف اسم المُستخدم بنجاح.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">حدث خطأ فى الشبكة</string>
     <string name="UsernameEditFragment_this_username_is_taken">اسم المُستخدم هذا غير متوفّر.</string>
-    <string name="UsernameEditFragment_usernames_can_only_include">الأسماء يجب أن تحتوي فقط على الحروف الأبجدية، 0-9، أو \"_\".</string>
+    <string name="UsernameEditFragment_usernames_can_only_include">أسماء المُستخدمين يجب أن تحتوي فقط على الحروف الأبجدية، 0-9، أو \"_\".</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">اسم المُستخدم لا يمكن أن يبدأ برقم.</string>
     <string name="UsernameEditFragment_username_is_invalid">اسم المُستخدم غير صالح</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">اسم المُستخدم لا بد أن يكون بين %1$d و%2$d رمز.</string>
@@ -2624,17 +2624,17 @@
     <string name="UsernameEditFragment__usernames_let_others_message">تسمح أسماء المُستخدمين للآخرين بمراسلتك دون الحاجة إلى رقم هاتفك. يتم إقرانها بمجموعة من الأرقام للمساعدة في الحفاظ على خصوصية عنوانك.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">ماذا يعني هذا الرقم؟</string>
-    <string name="UsernameEditFragment__these_digits_help_keep">تُساعد هذه الأرقام في الحفاظ على خصوصية اسم المستخدم الخاص بك حتى تتجنب الرسائل غير مرغوب فيها. شارك اسم المستخدم الخاص بك مع الأشخاص والمجموعات الذين ترغب في الدردشة معهم. إذا قمت بتغيير أسماء المستخدمين، سَتحصل على مجموعة جديدة من الأرقام.</string>
+    <string name="UsernameEditFragment__these_digits_help_keep">تُساعد هذه الأرقام في الحفاظ على خصوصية اسم المُستخدم الخاص بك حتى تتجنب الرسائل غير مرغوب فيها. شارك اسم المُستخدم الخاص بك مع الأشخاص والمجموعات الذين ترغب في الدردشة معهم. إذا قمت بتغيير أسماء المُستخدمين، سَتحصل على مجموعة جديدة من الأرقام.</string>
     <!-- Button to allow user to skip -->
     <string name="UsernameEditFragment__skip">تخطّي</string>
     <!-- Content description for done button -->
     <string name="UsernameEditFragment__done">تمّ</string>
     <!-- Displayed when the chosen discriminator is not available for the given nickname -->
-    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">اسم المستخدم هذا ليس موجودًا، جرّب رقمًا آخر.</string>
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">اسم المُستخدم هذا ليس موجودًا، جرّب رقمًا آخر.</string>
     <!-- Displayed when the chosen discriminator is too short -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">اسم مستخدم غير صحيح، أدخل رمزيْن %1$d على الأقل.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">اسم مُستخدم غير صحيح، أدخل رمزيْن %1$d على الأقل.</string>
     <!-- Displayed when the chosen discriminator is too long -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">اسم مستخدم غير صحيح، أدخل %1$d رمزًا كحد أقصى.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">اسم مُستخدم غير صحيح، أدخل %1$d رمزًا كحد أقصى.</string>
     <!-- Displayed when the chosen discriminator is 00 -->
     <string name="UsernameEditFragment__this_number_cant_be_00">لا يُمكن لهذا الرقم أن يكون 00. أدخل رقمًا بين 1 –9</string>
     <!-- Displayed when the chosen discriminator starts with 00 -->
@@ -2642,9 +2642,9 @@
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">سيُؤدي استرداد اسم المُستخدم الخاص بك إلى إعادة تعيين رمز ورابط الاستجابة السريعة الخاصين بك. هل أنت مُتأكد؟</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">Changing your username will reset your existing QR code and link. Are you sure?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">سيُؤدي تغيير اسم المُستخدم الخاص بك إلى إعادة تعيين رمز الاستجابة السريع والرابط الحاليين الخاصين بك. هل أنت متأكد؟</string> -->
     <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">Continue</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">مواصلة</string> -->
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="zero">%1$d جهة اتصال تستخدم سيجنال!‏</item>
@@ -2853,7 +2853,7 @@
     <!-- Row item title for usernames explainer -->
     <string name="NewWaysToConnectDialogFragment__usernames">أسماء المُستخدمين</string>
     <!-- Row item description for usernames explainer -->
-    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">يُمكن للناس مراسلتك الآن باستخدام اسم المستخدم الاختياري الخاص بك حتى لا تضطر إلى إعطاء رقم هاتفك. أسماء المستخدمين ليست مرئية على حسابك الشخصي.</string>
+    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">يُمكن للناس مراسلتك الآن باستخدام اسم المُستخدم الاختياري الخاص بك حتى لا تضطر إلى إعطاء رقم هاتفك. أسماء المُستخدمين ليست مرئية على حسابك الشخصي.</string>
     <!-- Row item title for qr code and links explainer -->
     <string name="NewWaysToConnectDialogFragment__qr_codes_and_links">رموز أو رابط الاستجابة السريعة</string>
     <!-- Row item description for qr code and links explainer -->
@@ -2989,7 +2989,7 @@
     <!-- Text on row item to find user by phone number -->
     <string name="ContactSelectionListFragment__find_by_phone_number">العثور عبر رقم الهاتف</string>
     <!-- Text on row item to find user by username -->
-    <string name="ContactSelectionListFragment__find_by_username">العثور عبر اسم المستخدم</string>
+    <string name="ContactSelectionListFragment__find_by_username">العثور عبر اسم المُستخدم</string>
 
     <!-- contact_selection_list_fragment -->
     <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">سيجنال بحاجة إلى الوصول إلى جهات الاتصال لديك وذلك بغرض عرضها.</string>
@@ -4584,7 +4584,7 @@
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
     <string name="ReviewCard__s_recently_changed">غيّر مؤخرًا %1$s اسم حسابه الشخصي من %2$s إلى %3$s</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
-    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s موجود في جهات اتصالك</string>
+    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s موجود في جهات اتصال نظامك</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">انضم %1$s</string>
@@ -5623,7 +5623,7 @@
     <!-- Title of create notification profile screen -->
     <string name="EditNotificationProfileFragment__name_your_profile">تسمية هيئة إشعارك</string>
     <!-- Hint text for create/edit notification profile name -->
-    <string name="EditNotificationProfileFragment__profile_name">اسم الحساب</string>
+    <string name="EditNotificationProfileFragment__profile_name">اسم الحساب الشخصي</string>
     <!-- Name has a max length, this shows how many characters are used out of the max -->
     <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
     <!-- Call to action button to continue to the next step -->
@@ -5960,7 +5960,7 @@
     <string name="MyStorySettingsFragment__who_can_view_this_story">من يُمكنه مُشاهدة هذه القصة</string>
     <!-- Clickable option for selecting people to hide your story from -->
     <!-- Privacy setting title for sending stories to all your signal connections -->
-    <string name="MyStorySettingsFragment__all_signal_connections">جميع جهات الاتصال في سيجنال</string>
+    <string name="MyStorySettingsFragment__all_signal_connections">جميع جهات اتصال سيجنال</string>
     <!-- Privacy setting description for sending stories to all your signal connections -->
     <!-- Privacy setting title for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__all_except">الكل إلا…</string>
@@ -5997,9 +5997,9 @@
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">تمكين الأفراد الذين يُمكنهم مشاهدة قصتك من التفاعل والرد عليها</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
-    <string name="SignalConnectionsBottomSheet___signal_connections">جهات الاتصال في سيجنال</string>
+    <string name="SignalConnectionsBottomSheet___signal_connections">جهة اتصال سيجنال</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
-    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">جهات الاتصال في سيجنال هم أشخاص اخترت أن تثق بهم سواءً عبر:</string>
+    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">جهات اتصال سيجنال هم أشخاص اخترت أن تثق بهم سواءً عبر:</string>
     <!-- Signal connections sheet bullet point 1 -->
     <string name="SignalConnectionsBottomSheet__starting_a_conversation">بدء دردشة</string>
     <!-- Signal connections sheet bullet point 2 -->
@@ -6385,7 +6385,7 @@
     <!-- Subtitle of initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">اختيار من يُمكنه رؤية منشورات في قصتي. يُمكنك إحداث تغييرات في أي وقت في الإعدادات.</string>
     <!-- All connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">كل معارف ‫سيجنال</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">كل جهات اتصال سيجنال</string>
     <!-- All connections except option for initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__all_except">الكل إلا…</string>
     <!-- Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
@@ -7014,9 +7014,9 @@
     <!-- Button label for the color selector button in the username link settings -->
     <string name="UsernameLinkSettings_color_button_label">اللون</string>
     <!-- Description text for QR code and links in the username link settings -->
-    <string name="UsernameLinkSettings_qr_description">لا تُشارك الرمز المربع الخاص بك والرابط إلاّ مع الأشخاص الذين تثق بهم. عند المشاركة، سيتمكن الآخرون من رؤية اسم المستخدم الخاص بك وبدء محادثة معك.</string>
+    <string name="UsernameLinkSettings_qr_description">لا تُشارك الرمز المربع الخاص بك والرابط إلاّ مع الأشخاص الذين تثق بهم. عند المشاركة، سيتمكن الآخرون من رؤية اسم المُستخدم الخاص بك وبدء محادثة معك.</string>
     <!-- Content of a toast that will show after the username is copied to the clipboard -->
-    <string name="UsernameLinkSettings_username_copied_toast">تم نسخ اسم المستخدم</string>
+    <string name="UsernameLinkSettings_username_copied_toast">تم نسخ اسم المُستخدم</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">نُسخَ الرابط</string>
     <!-- Content of a text field that is shown when the user has not yet set a username link -->
@@ -7044,7 +7044,7 @@
     <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
     <string name="UsernameLinkSettings_qr_result_invalid">رمز الاستجابة السريع غير صالح.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
-    <string name="UsernameLinkSettings_qr_result_not_found">تعذّر العثور على مستخدم باسم المستخدم %1$s.</string>
+    <string name="UsernameLinkSettings_qr_result_not_found">تعذّر العثور على مُستخدم باسم المُستخدم %1$s.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
     <string name="UsernameLinkSettings_qr_result_not_found_no_username">تعذّر العثور على هذا المستخدم.</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
@@ -7056,12 +7056,12 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
   <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string> -->
     <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">Your QR code and link have been reset and a new QR code and link has been created.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">تمت إعادة تعيين رمز ورابط الاستجابة السريعة وتم إنشاء رمز ورابط الاستجابة السريعة جديدين.</string> -->
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">امسح رمز الاستجابة السريعة هذا باستخدام هاتفك للدردشة معي على سيجنال.</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
-    <string name="UsernameLinkShareBottomSheet_title">يُمكن لأي شخص يتوفر على هذا الرابط رؤية اسم المستخدم الخاص بك وبدء محادثة جديدة معك. شاركه مع من تثق فقط.</string>
+    <string name="UsernameLinkShareBottomSheet_title">يُمكن لأي شخص يتوفر على هذا الرابط رؤية اسم المُستخدم الخاص بك وبدء محادثة جديدة معك. شاركه مع من تثق فقط.</string>
     <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
     <string name="UsernameLinkShareBottomSheet_copy_link">نسخ الرابط</string>
     <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
@@ -7125,35 +7125,35 @@
 
     <!-- FindByActivity -->
     <!-- Title of activity when finding by username -->
-    <string name="FindByActivity__find_by_username">العثور عبر اسم المستخدم</string>
+    <string name="FindByActivity__find_by_username">العثور عبر اسم المُستخدم</string>
     <!-- Title of activity when finding by phone number -->
     <string name="FindByActivity__find_by_phone_number">العثور عبر رقم الهاتف</string>
     <!-- Title of screen to select a country code -->
     <string name="FindByActivity__select_country_code">اختر رمز الدولة</string>
     <!-- Entry placeholder for find by username -->
-    <string name="FindByActivity__username">اسم المستخدم</string>
+    <string name="FindByActivity__username">اسم المُستخدم</string>
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">رقم الهاتف</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_a_full_username">أدخل اسم مستخدم كامل مع زوج الأرقام الخاص به.</string>
+    <string name="FindByActivity__enter_a_full_username">أدخل اسم مُستخدم كامل مع زوج الأرقام الخاص به.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">التالي</string>
     <!-- Placeholder text for search input for selecting country code -->
     <string name="FindByActivity__search">بحث</string>
     <!-- Dialog title for invalid username -->
-    <string name="FindByActivity__invalid_username">اسم مستخدم غير صالح</string>
+    <string name="FindByActivity__invalid_username">اسم مُستخدم غير صالح</string>
     <!-- Dialog title for invalid phone number -->
     <string name="FindByActivity__invalid_phone_number">رقم الهاتف خاطئ</string>
     <!-- Dialog title when phone number is not a registered signal user -->
     <string name="FindByActivity__invite_to_signal">ادعُ إلى سيجنال</string>
     <!-- Dialog title when username is not found -->
-    <string name="FindByActivity__username_not_found">لم يتم العثور على اسم المستخدم</string>
+    <string name="FindByActivity__username_not_found">لم يتم العثور على اسم المُستخدم</string>
     <!-- Dialog body for invalid username. Placeholder is the entered username. -->
-    <string name="FindByActivity__s_is_not_a_valid_username">%1$s ليس اسم مستخدم صالح. تأكد من أنك أدخلت اسم المستخدم كاملاً متبوعًا بمجموعة الأرقام الخاصة به.</string>
+    <string name="FindByActivity__s_is_not_a_valid_username">%1$s ليس اسم مُستخدم صالح. تأكد من أنك أدخلت اسم المُستخدم كاملاً متبوعًا بمجموعة الأرقام الخاصة به.</string>
     <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
     <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s ليس رقم هاتف صحيح. أعد المحاولة مرة أخرى باستخدام رقم هاتف صحيح</string>
     <!-- Dialog body for not found username -->
-    <string name="FindByActivity__s_is_not_a_signal_user">\"%1$s\" ليس مستخدم لسيجنال. يرجى التحقق من اسم المستخدم والمحاولة ثانية.</string>
+    <string name="FindByActivity__s_is_not_a_signal_user">\"%1$s\" ليس مُستخدم لسيجنال. يرجى التحقق من اسم المُستخدم والمحاولة ثانية.</string>
     <!-- Dialog body for not found phone number -->
     <string name="FindByActivity__s_is_not_a_signal_user_would">لم يعُد %1$s من مستخدمي سيجنال. هل تريد دعوة هذا الرقم؟</string>
     <!-- Dialog action to invite the phone number to Signal -->

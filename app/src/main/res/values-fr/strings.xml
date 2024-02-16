@@ -225,7 +225,7 @@
     <string name="CameraContacts_you_can_only_use_the_camera_button">Vous ne pouvez utiliser le bouton Appareil photo que pour envoyer des photos à des contacts Signal. </string>
     <string name="CameraContacts_cant_find_who_youre_looking_for">Éprouvez-vous des difficultés à trouver qui vous cherchiez ?</string>
     <string name="CameraContacts_invite_a_contact_to_join_signal">Inviter un contact à se joindre à Signal</string>
-    <string name="CameraContacts__menu_search">Chercher</string>
+    <string name="CameraContacts__menu_search">Rechercher</string>
 
     <!-- Censorship Circumvention Megaphone -->
     <!-- Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed -->
@@ -526,13 +526,13 @@
     <!-- Menu option to report spam in a conversation -->
     <string name="ConversationFragment_report_spam">Report spam</string>
     <!-- Menu option to block in a conversation -->
-    <string name="ConversationFragment_block">Block</string>
+    <string name="ConversationFragment_block">Bloquer</string>
     <!-- Menu otpion to accept a message request in a conversation -->
-    <string name="ConversationFragment_accept">Accept</string>
+    <string name="ConversationFragment_accept">Accepter</string>
     <!-- Menu option to delete an entire chat in a conversation -->
     <string name="ConversationFragment_delete_chat">Delete chat</string>
     <!-- Menu option to unblock in a conversation -->
-    <string name="ConversationFragment_unblock">Unblock</string>
+    <string name="ConversationFragment_unblock">Débloquer</string>
     <!-- Menu option to report spam in a conversation -->
     <string name="ConversationFragment_reported_spam">Reported spam</string>
     <!-- Dialog message shown after reporting spam and tapping the conversation item -->
@@ -1064,7 +1064,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Votre nom d’utilisateur, votre code QR et votre lien ne s’affichent pas dans votre profil. Partagez votre nom d’utilisateur uniquement avec les personnes en qui vous avez confiance.</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">People can now message you using your optional username so you don\'t have to give out your phone number. </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">Vous pouvez désormais être contacté grâce à votre nom d’utilisateur facultatif et ainsi éviter de partager votre numéro de téléphone. </string> -->
     <string name="ManageProfileFragment_profile_name">Nom de profil</string>
     <string name="ManageProfileFragment_username">Nom d’utilisateur</string>
     <string name="ManageProfileFragment_about">À propos</string>
@@ -1965,7 +1965,7 @@
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">Contact Signal</string>
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
-  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">Verified</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">Confirmé</string> -->
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
   <!-- Removed by excludeNonTranslatables <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string> -->
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
@@ -2171,7 +2171,7 @@
     <string name="StickerManagementAdapter_stickers_you_received">Stickers reçus</string>
     <string name="StickerManagementAdapter_signal_artist_series">Séries des artistes de Signal</string>
     <string name="StickerManagementAdapter_no_stickers_installed">Aucun sticker n’est installé</string>
-    <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Les stickers des messages entrants s’afficheront ici</string>
+    <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Les stickers des messages reçus s’affichent ici</string>
     <string name="StickerManagementAdapter_untitled">Sans titre</string>
     <string name="StickerManagementAdapter_unknown">Inconnu</string>
 
@@ -2322,9 +2322,9 @@
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">Récupérer votre nom d’utilisateur entraîne la réinitialisation de votre lien et code QR existants. Êtes-vous sûr de vouloir continuer ?</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">Changing your username will reset your existing QR code and link. Are you sure?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">Modifier votre nom d’utilisateur entraîne la réinitialisation de votre lien et code QR existants. Êtes-vous sûr de vouloir continuer ?</string> -->
     <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">Continue</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">Poursuivre</string> -->
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d contact est sur Signal !</item>
@@ -2494,7 +2494,7 @@
     <string name="SearchToolbar_search">Recherche</string>
     <!-- Hint when searching filtered chat content -->
     <string name="SearchToolbar_search_unread_chats">Rechercher les conversations non lues</string>
-    <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Chercher des conversations, contacts et messages</string>
+    <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Rechercher des conversations, des contacts et des messages</string>
 
     <!-- Material3 Search Toolbar -->
     <string name="Material3SearchToolbar__close">Fermer</string>
@@ -2783,7 +2783,7 @@
 
     <!-- country_selection_fragment -->
     <string name="country_selection_fragment__loading_countries">Chargement des pays…</string>
-    <string name="country_selection_fragment__search">Chercher</string>
+    <string name="country_selection_fragment__search">Rechercher</string>
     <string name="country_selection_fragment__no_matching_countries">Aucun pays ne correspond</string>
 
     <!-- device_add_fragment -->
@@ -2854,7 +2854,7 @@
     </plurals>
 
     <!-- giphy_activity -->
-    <string name="giphy_activity_toolbar__search_gifs">Chercher des GIF</string>
+    <string name="giphy_activity_toolbar__search_gifs">Rechercher des GIF</string>
 
     <!-- giphy_fragment -->
     <string name="giphy_fragment__nothing_found">Aucun résultat</string>
@@ -2890,8 +2890,8 @@
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">Problème de remise</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Un message, un autocollant, une réaction ou un accusé de lecture de %1$s n’a pas pu vous être remis. Cette personne pourrait avoir tenté de vous l’envoyer directement ou dans un groupe.</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Un message, un autocollant, une réaction ou un accusé de lecture de %1$s n’a pas pu vous être remis.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Impossible de distribuer du contenu de %1$s. Il peut s’agir d’un message, d’un sticker, d’une réaction ou d’une confirmation de lecture que ce contact vous a envoyés directement ou dans un groupe.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Impossible de distribuer du contenu de %1$s. Il peut s’agir d’un message, d’un sticker, d’une réaction ou d’une confirmation de lecture.</string>
 
     <!-- profile_create_activity -->
     <string name="CreateProfileActivity_first_name_required">Prénom (requis)</string>
@@ -3187,8 +3187,8 @@
     <string name="preferences__support_wifi_calling">Mode de compatibilité « Appels Wi-Fi »</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Activer si votre appareil transmet les textos et les messages multimédias par Wi-Fi (n’activer que si les « Appels Wi-Fi » sont activés sur votre appareil)</string>
     <string name="preferences__incognito_keyboard">Clavier incognito</string>
-    <string name="preferences__read_receipts">Accusés de lecture</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Si les accusés de lecture sont désactivés, vous ne pourrez pas voir les accusés de lecture d’autrui.</string>
+    <string name="preferences__read_receipts">Confirmations de lecture</string>
+    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Si vous désactivez les confirmations de lecture, vous ne recevrez pas de confirmations de lecture de la part de vos contacts.</string>
     <string name="preferences__typing_indicators">Indicateurs de saisie</string>
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Si les indicateurs de saisie sont désactivés, vous ne serez pas en mesure de voir les indicateurs de saisie d’autrui.</string>
     <string name="preferences__request_keyboard_to_disable">Demander au clavier de désactiver l’apprentissage personnalisé.</string>
@@ -3583,7 +3583,7 @@
 
     <!-- conversation_list -->
     <string name="conversation_list_settings_shortcut">Raccourci des paramètres</string>
-    <string name="conversation_list_search_description">Chercher</string>
+    <string name="conversation_list_search_description">Rechercher</string>
     <string name="conversation_list__pinned">Épinglées</string>
     <string name="conversation_list__chats">Conversations</string>
     <!-- A warning shown in a toast that tells you that you can\'t pin any more chats. Pinning a chat means keeping the chat at the top of your chat list. The placeholder represents how many chats you\'re allowed to pin. -->
@@ -4202,7 +4202,7 @@
     <string name="DeleteAccountFragment__there_was_a_problem">Il y a eu un problème lors de la suppression. Vérifiez votre connexion réseau et réessayez.</string>
 
     <!-- DeleteAccountCountryPickerFragment -->
-    <string name="DeleteAccountCountryPickerFragment__search_countries">Chercher les pays</string>
+    <string name="DeleteAccountCountryPickerFragment__search_countries">Rechercher des pays</string>
 
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__skip">Ignorer</string>
@@ -4654,18 +4654,18 @@
     <!-- KeyboardPagerFragment -->
     <string name="KeyboardPagerFragment_emoji">Émoji</string>
     <string name="KeyboardPagerFragment_open_emoji_search">Ouvrir la recherche d’émojis</string>
-    <string name="KeyboardPagerFragment_open_sticker_search">Ouvrir la recherche d’autocollants</string>
+    <string name="KeyboardPagerFragment_open_sticker_search">Rechercher des stickers</string>
     <string name="KeyboardPagerFragment_open_gif_search">Ouvrir la recherche de GIF</string>
-    <string name="KeyboardPagerFragment_stickers">Autocollants</string>
+    <string name="KeyboardPagerFragment_stickers">Stickers</string>
     <string name="KeyboardPagerFragment_backspace">Retour en arrière</string>
     <string name="KeyboardPagerFragment_gifs">GIF</string>
-    <string name="KeyboardPagerFragment_search_emoji">Chercher un émoji</string>
+    <string name="KeyboardPagerFragment_search_emoji">Rechercher un émoji</string>
     <string name="KeyboardPagerfragment_back_to_emoji">Retour aux émojis</string>
     <string name="KeyboardPagerfragment_clear_search_entry">Effacer l’historique de recherche</string>
-    <string name="KeyboardPagerFragment_search_giphy">Chercher dans GIPHY</string>
+    <string name="KeyboardPagerFragment_search_giphy">Rechercher dans GIPHY</string>
 
     <!-- StickerSearchDialogFragment -->
-    <string name="StickerSearchDialogFragment_search_stickers">Chercher des autocollants</string>
+    <string name="StickerSearchDialogFragment_search_stickers">Rechercher des stickers</string>
     <string name="StickerSearchDialogFragment_no_results_found">Aucun résultat trouvé</string>
     <string name="EmojiSearchFragment__no_results_found">Aucun résultat trouvé</string>
     <string name="NotificationsSettingsFragment__unknown_ringtone">Sonnerie inconnue</string>
@@ -4694,7 +4694,7 @@
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__muted">En sourdine</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__search">Chercher</string>
+    <string name="ConversationSettingsFragment__search">Rechercher</string>
     <string name="ConversationSettingsFragment__disappearing_messages">Messages éphémères</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">Sons et notifications</string>
   <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
@@ -4786,7 +4786,7 @@
     </plurals>
 
     <!-- ContactFilterView -->
-    <string name="ContactFilterView__search_name_or_number">Chercher un nom ou un numéro</string>
+    <string name="ContactFilterView__search_name_or_number">Rechercher un nom ou un numéro</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -4871,7 +4871,7 @@
     <string name="ImageEditorHud__cancel">Annuler</string>
     <string name="ImageEditorHud__draw">Dessiner</string>
     <string name="ImageEditorHud__write_text">Écrire du texte</string>
-    <string name="ImageEditorHud__add_a_sticker">Ajouter un autocollant</string>
+    <string name="ImageEditorHud__add_a_sticker">Ajouter un sticker</string>
     <string name="ImageEditorHud__blur">Flouter</string>
     <string name="ImageEditorHud__done_editing">Fini de modifier</string>
     <string name="ImageEditorHud__clear_all">Tout enlever</string>
@@ -5549,7 +5549,7 @@
     <!-- Displayed prior to the user entering a URL for a text post -->
     <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Partager un lien avec les personnes qui voient votre Story</string>
     <!-- Hint text for searching for a story text post recipient. -->
-    <string name="TextStoryPostSendFragment__search">Chercher</string>
+    <string name="TextStoryPostSendFragment__search">Rechercher</string>
     <!-- Toast shown when an unexpected error occurs while sending a text story -->
     <!-- Toast shown when a trying to add a link preview to a text story post and the link/url is not valid (e.g., missing .com at the end) -->
     <string name="TextStoryPostSendFragment__please_enter_a_valid_link">Veuillez saisir un lien valide.</string>
@@ -6492,7 +6492,7 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
   <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string> -->
     <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">Your QR code and link have been reset and a new QR code and link has been created.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">Nous avons réinitialisé votre lien et votre code QR, et en avons généré de nouveaux.</string> -->
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Et si on discutait sur Signal ? Scannez ce code QR pour me contacter.</string>
 

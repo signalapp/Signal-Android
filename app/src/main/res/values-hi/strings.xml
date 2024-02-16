@@ -526,13 +526,13 @@
     <!-- Menu option to report spam in a conversation -->
     <string name="ConversationFragment_report_spam">Report spam</string>
     <!-- Menu option to block in a conversation -->
-    <string name="ConversationFragment_block">Block</string>
+    <string name="ConversationFragment_block">ब्लॉक करें</string>
     <!-- Menu otpion to accept a message request in a conversation -->
-    <string name="ConversationFragment_accept">Accept</string>
+    <string name="ConversationFragment_accept">स्वीकृत</string>
     <!-- Menu option to delete an entire chat in a conversation -->
     <string name="ConversationFragment_delete_chat">Delete chat</string>
     <!-- Menu option to unblock in a conversation -->
-    <string name="ConversationFragment_unblock">Unblock</string>
+    <string name="ConversationFragment_unblock">अनब्लॉक करें</string>
     <!-- Menu option to report spam in a conversation -->
     <string name="ConversationFragment_reported_spam">Reported spam</string>
     <!-- Dialog message shown after reporting spam and tapping the conversation item -->
@@ -1064,7 +1064,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">आपका यूज़रनेम, QR कोड और लिंक आपके प्रोफाइल पर दिखाई नहीं दे रहे हैं। अपना यूज़रनेम केवल उन लोगों के साथ साझा करें जिन पर आपको भरोसा है।</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">People can now message you using your optional username so you don\'t have to give out your phone number. </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">लोग अब आपका वैकल्पिक यूज़रनेम इस्तेमाल करके आपको संदेश भेज सकते हैं, ताकि आपको अपना फोन नंबर न देना पड़े। </string> -->
     <string name="ManageProfileFragment_profile_name">प्रोफ़ाइल नाम</string>
     <string name="ManageProfileFragment_username">यूज़रनेम</string>
     <string name="ManageProfileFragment_about">हमारे बारे में</string>
@@ -1094,7 +1094,7 @@
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
     <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">आपके यूज़रनेम में कुछ गलत है, यह अब आपके अकाउंट के लिए असाइन नहीं है। आप इसे फिर से सेट करने की कोशिश कर सकते हैं या एक नया चुन सकते हैं।</string>
     <!-- Displayed above the conversation list when a user needs to address an issue with their username link -->
-    <string name="UsernameOutOfSyncReminder__link_corrupt">आपके QR कोड और उपयोगकर्ता नाम लिंक में कुछ गड़बड़ है, यह अब मान्य नहीं है। दूसरों के साथ साझा करने के लिए एक नया लिंक बनाएं।</string>
+    <string name="UsernameOutOfSyncReminder__link_corrupt">आपके QR कोड और यूज़रनेम लिंक में कुछ गड़बड़ है, यह अब मान्य नहीं है। दूसरों के साथ साझा करने के लिए एक नया लिंक बनाएं।</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
     <string name="UsernameOutOfSyncReminder__fix_now">अभी ठीक करें</string>
 
@@ -1383,8 +1383,8 @@
     </plurals>
 
     <!-- Profile change updates -->
-    <string name="MessageRecord_changed_their_profile_name_to">%1$s ने अपना प्रोफाइल नाम बदल कर %2$s रख दिया है।</string>
-    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s ने अपना प्रोफाइल नाम %2$s से बदल कर %3$s रख लिया।</string>
+    <string name="MessageRecord_changed_their_profile_name_to">%1$s ने अपना प्रोफ़ाइल नाम बदल कर %2$s रख दिया है।</string>
+    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s ने अपना प्रोफ़ाइल नाम %2$s से बदल कर %3$s रख लिया।</string>
     <string name="MessageRecord_changed_their_profile">%1$s ने अपनी प्रोफाइल को बदल लिया।</string>
 
     <!-- GV2 specific -->
@@ -1547,7 +1547,7 @@
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">आपने %1$s के साथ अपना सुरक्षा नंबर असत्यापित मार्क करा हुआ है</string>
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">आपने %1$s के साथ अपना सुरक्षा नंबर किसी और डिवाइस से असत्यापित मार्क करा हुआ है</string>
     <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%1$s से एक संदेश डिलीवर नहीं किया जा सका</string>
-    <string name="MessageRecord_s_changed_their_phone_number">%1$s ने अपने फ़ोन नंबर बदल दिए।</string>
+    <string name="MessageRecord_s_changed_their_phone_number">%1$s ने अपने फोन नंबर बदल दिए।</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">यह नया फ़ीचर पसंद आया? एक बार का दान देकर Signal को सहयोग देने में मदद करें।</string>
     <!-- Update item message shown when we merge two threads together. First placeholder is a name, second placeholder is a phone number. -->
@@ -1965,7 +1965,7 @@
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">Signal कनेक्शन</string>
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
-  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">Verified</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">सत्यापित</string> -->
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
   <!-- Removed by excludeNonTranslatables <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string> -->
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
@@ -2028,7 +2028,7 @@
     <string name="RegistrationActivity_select_your_country">अपने देश का चयन करें</string>
     <string name="RegistrationActivity_you_must_specify_your_country_code">आपको अपना देश कोड निर्दिष्ट करना होगा
     </string>
-    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">कृपया पंजीकरन के लिये कोई वैध फ़ोन नंबर डालें।</string>
+    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">कृपया पंजीकरन के लिये कोई वैध फोन नंबर डालें।</string>
     <string name="RegistrationActivity_invalid_number">अवैध नंबर</string>
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">आपके द्वारा निर्दिष्ट नंबर (%1$s) अमान्य है।
     </string>
@@ -2059,7 +2059,7 @@
     <string name="RegistrationActivity_unable_to_request_verification_code">सत्यापन कोड का अनुरोध करने में असमर्थ। कृपया नेटवर्क जाँचें और फिर से प्रयास करें।</string>
     <string name="RegistrationActivity_non_standard_number_format">नॉन-स्टैंडर्ड नंबर फ़ॉर्मैट</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">आपके ज़रिए दर्ज किया गया नंबर (%1$s) एक नॉन-स्टैंडर्ड फ़ॉर्मैट लगता है.\n\nक्या आपका मतलब %2$s था?</string>
-    <string name="RegistrationActivity_signal_android_phone_number_format">Signal एंड्रॉइड - फ़ोन नंबर का फ़ॉर्मेट</string>
+    <string name="RegistrationActivity_signal_android_phone_number_format">Signal एंड्रॉइड - फोन नंबर का फ़ॉर्मेट</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
     <string name="RegistrationActivity_call_requested">कॉल की मांग की गई</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
@@ -2293,7 +2293,7 @@
     <string name="UsernameEditFragment__choose_your_username">अपना यूज़रनेम चुनें</string>
     <string name="UsernameEditFragment_username">यूज़रनेम</string>
     <string name="UsernameEditFragment_delete">डिलीट करें</string>
-    <string name="UsernameEditFragment_successfully_removed_username">सफलतापूर्वक उपयोगकर्ता नाम हटा दिया गया।</string>
+    <string name="UsernameEditFragment_successfully_removed_username">सफलतापूर्वक यूज़रनेम हटा दिया गया।</string>
     <string name="UsernameEditFragment_encountered_a_network_error">एक नेटवर्क त्रुटि का सामना करना पड़ा|</string>
     <string name="UsernameEditFragment_this_username_is_taken">यह यूज़रनेम ले लिया गया है।</string>
     <string name="UsernameEditFragment_usernames_can_only_include">यूज़रनेम में केवल a–Z, 0–9, और अंडरस्कोर शामिल हो सकते हैं।</string>
@@ -2301,7 +2301,7 @@
     <string name="UsernameEditFragment_username_is_invalid">यूज़रनेम अमान्य है।</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">यूज़रनेम %1$d और %2$d वर्णों के बीच होना चाहिए।</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">यूज़रनेम से अन्य लोग बिना आपके फ़ोन नंबर के, आपको संदेश भेज सकते हैं। वे कुछ अंकों के समूह में होते हैं ताकि आपको अपना पता निजी रखने में मदद मिल सके।</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">यूज़रनेम से अन्य लोग बिना आपके फोन नंबर के, आपको संदेश भेज सकते हैं। वे कुछ अंकों के समूह में होते हैं ताकि आपको अपना पता निजी रखने में मदद मिल सके।</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">यह नंबर क्या है?</string>
     <string name="UsernameEditFragment__these_digits_help_keep">यह अंक आपको अपना यूज़रनेम निजी रखने में मदद करते हैं ताकि आप अवांछित संदेशों से बच सकें। अपना यूज़रनेम केवल उन लोगों और ग्रुप्स के साथ शेयर करें जिनके साथ आप चैट करना चाहते हैं। यदि आप अपना यूज़रनेम बदलते हैं तो आपको अंकों का एक नया सेट मिलेगा।</string>
@@ -2322,9 +2322,9 @@
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">आपके यूज़रनेम को रिकवर करने से आपका मौजूदा QR कोड और लिंक फिर से स्थापित हो जाएगा। क्या आपको यकीन है?</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">Changing your username will reset your existing QR code and link. Are you sure?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">आपका यूज़रनेम बदलने से आपका मौजूदा QR कोड और लिंक फिर से स्थापित हो जाएगा। क्या आपको यकीन है?</string> -->
     <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">Continue</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">जारी रखें</string> -->
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d संपर्क सिग्नल पर है!</item>
@@ -2515,9 +2515,9 @@
     <!-- Fragment title, displayed at the top of the content -->
     <string name="NewWaysToConnectDialogFragment__new_ways_to_connect">जुड़ने के नए तरीके</string>
     <!-- Row item title for phone number privacy explainer -->
-    <string name="NewWaysToConnectDialogFragment__phone_number_privacy">फ़ोन नंबर निजता</string>
+    <string name="NewWaysToConnectDialogFragment__phone_number_privacy">फोन नंबर निजता</string>
     <!-- Row item description for phone number privacy explainer -->
-    <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">आपका फ़ोन नंबर अब चैट के साथ साझा नहीं किया जाएगा। यदि आपका नंबर किसी मित्र के संपर्कों में सहेजा गया है, तो भी वे इसे देखेंगे।</string>
+    <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">आपका फोन नंबर अब चैट के साथ साझा नहीं किया जाएगा। यदि आपका नंबर किसी मित्र के संपर्कों में सहेजा गया है, तो भी वे इसे देखेंगे।</string>
     <!-- Row item title for usernames explainer -->
     <string name="NewWaysToConnectDialogFragment__usernames">यूज़रनेम</string>
     <!-- Row item description for usernames explainer -->
@@ -2647,7 +2647,7 @@
         <item quantity="other">%1$d मेंबर्स</item>
     </plurals>
     <!-- Text on row item to find user by phone number -->
-    <string name="ContactSelectionListFragment__find_by_phone_number">फ़ोन नंबर द्वारा खोजें</string>
+    <string name="ContactSelectionListFragment__find_by_phone_number">फोन नंबर द्वारा खोजें</string>
     <!-- Text on row item to find user by username -->
     <string name="ContactSelectionListFragment__find_by_username">यूज़रनेम द्वारा खोजें</string>
 
@@ -3254,7 +3254,7 @@
     <string name="preferences_communication__censorship_circumvention">सेंसरशिप उपाय</string>
     <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">यदि चालू किया गया तो Signal आपके लिए सेंसर-कार्य तोड़ने की कोशिश करेगा। यदि आप किसी सेन्सरशिप वाली जगह पर नहीं हैं तो इस फ़ीचर को चालू ना करें।</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">आपके खाते के फ़ोन नंबर के आधार पर सेंसरशिप से बचाव सक्षम कर दिया गया है।</string>
+    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">आपके खाते के फोन नंबर के आधार पर सेंसरशिप से बचाव सक्षम कर दिया गया है।</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
     <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">आपने खुद सेंसरशिप से बचाव अक्षम कर दिया है।</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
@@ -3879,7 +3879,7 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">मेरा नंबर कौन देख सकता है</string>
     <!-- Subtext below radio buttons when who can see my number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">आपका फ़ोन नंबर उन लोगों और ग्रुप्स को दिखेगा जिन्हें आप संदेश भेजेंगे।</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">आपका फोन नंबर उन लोगों और ग्रुप्स को दिखेगा जिन्हें आप संदेश भेजेंगे।</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
     <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">आपका फोन नंबर किसी को तब तक नहीं दिखाई देगा जब तक कि उन्होंने इसे अपने फोन के संपर्कों में न सहेजा हो।</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
@@ -4174,7 +4174,7 @@
 
     <!-- DeleteAccountFragment -->
     <string name="DeleteAccountFragment__deleting_your_account_will">अपना खाता मिटाने से:</string>
-    <string name="DeleteAccountFragment__enter_your_phone_number">अपना फ़ोन नंबर दर्ज करें</string>
+    <string name="DeleteAccountFragment__enter_your_phone_number">अपना फोन नंबर दर्ज करें</string>
     <string name="DeleteAccountFragment__delete_account">अकाउंट डिलीट करें</string>
     <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">अपने अकाउंट की जानकारी और प्रोफाइल तस्वीर डिलीट करें</string>
     <string name="DeleteAccountFragment__delete_all_your_messages">अपने सभी मेसेज डिलीट करें</string>
@@ -4400,8 +4400,8 @@
     <!-- AccountSettingsFragment -->
     <string name="AccountSettingsFragment__account">खाता</string>
     <string name="AccountSettingsFragment__youll_be_asked_less_frequently">समय के साथ-साथ आपसे कम बार पूछा जाएगा</string>
-    <string name="AccountSettingsFragment__require_your_signal_pin">आपके फ़ोन नंबर को Signal पर दोबारा रजिस्टर करने के लिए आपका Signal PIN आवश्यक होता है</string>
-    <string name="AccountSettingsFragment__change_phone_number">फ़ोन नंबर बदलें</string>
+    <string name="AccountSettingsFragment__require_your_signal_pin">आपके फोन नंबर को Signal पर दोबारा रजिस्टर करने के लिए आपका Signal PIN आवश्यक होता है</string>
+    <string name="AccountSettingsFragment__change_phone_number">फोन नंबर बदलें</string>
     <!-- Account setting that allows user to request and export their signal account data -->
     <string name="AccountSettingsFragment__request_account_data">आपका अकाउंट डेटा</string>
 
@@ -4447,24 +4447,24 @@
     <string name="ExportAccountDataFragment__report_not_stored_disclaimer">आपकी रिपोर्ट केवल निर्यात के समय उत्पन्न होती है और आपके डिवाइस पर Signal द्वारा संग्रहित नहीं की जाती है।</string>
 
     <!-- ChangeNumberFragment -->
-    <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">अपने मौजूदा फ़ोन नंबर को नए फ़ोन नंबर में बदलने के लिए इसका इस्तेमाल करें. आप इस बदलाव को पहले जैसा नहीं कर सकते.\n\nजारी रखने से पहले, पक्का करें कि आपके नए नंबर पर SMS या कॉल आ सकते हैं.</string>
+    <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">अपने मौजूदा फोन नंबर को नए फोन नंबर में बदलने के लिए इसका इस्तेमाल करें. आप इस बदलाव को पहले जैसा नहीं कर सकते.\n\nजारी रखने से पहले, पक्का करें कि आपके नए नंबर पर SMS या कॉल आ सकते हैं.</string>
     <string name="ChangeNumberFragment__continue">आगे</string>
     <!-- Message shown on dialog after your number has been changed successfully. -->
-    <string name="ChangeNumber__your_phone_number_has_changed_to_s">आपका फ़ोन नंबर बदलकर %1$s हो गया है।</string>
+    <string name="ChangeNumber__your_phone_number_has_changed_to_s">आपका फोन नंबर बदलकर %1$s हो गया है।</string>
     <!-- Confirmation button to dismiss number changed dialog -->
     <string name="ChangeNumber__okay">ठीक है</string>
 
     <!-- ChangeNumberEnterPhoneNumberFragment -->
     <string name="ChangeNumberEnterPhoneNumberFragment__change_number">नंबर बदलें</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">आपका पुराना नंबर</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">पुराना फ़ोन नंबर</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">पुराना फोन नंबर</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">आपका नया नंबर</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">नया फ़ोन नंबर</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">नया फोन नंबर</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">आपने जो फोन नंबर दर्ज किया है, वह आपके खाते के फोन नंबर से मेल नहीं खाता।</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">आपको अपने पुराने नंबर का देश कोड स्पष्ट करना होगा</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">आपको अपना पुराना फ़ोन नंबर स्पष्ट करना होगा</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">आपको अपना पुराना फोन नंबर स्पष्ट करना होगा</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">आपको अपने नए नंबर का देश कोड स्पष्ट करना होगा</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">आपको अपना नया फ़ोन नंबर स्पष्ट करना होगा</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">आपको अपना नया फोन नंबर स्पष्ट करना होगा</string>
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">नंबर बदलें</string>
@@ -4473,7 +4473,7 @@
 
     <!-- ChangeNumberConfirmFragment -->
     <string name="ChangeNumberConfirmFragment__change_number">नंबर बदलें</string>
-    <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">आप अपने फ़ोन नंबर को %1$s से %2$s में बदलने वाले हैं.\n\nआगे बढ़ने से पहले, कृपया जांच लें कि नीचे दिया गया नंबर सही है.</string>
+    <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">आप अपने फोन नंबर को %1$s से %2$s में बदलने वाले हैं.\n\nआगे बढ़ने से पहले, कृपया जांच लें कि नीचे दिया गया नंबर सही है.</string>
     <string name="ChangeNumberConfirmFragment__edit_number">नंबर संपादित करें</string>
 
     <!-- ChangeNumberRegistrationLockFragment -->
@@ -4715,7 +4715,7 @@
     <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
     <string name="ConversationSettingsFragment__conversation_muted_until_s">चैट को %1$s तक म्यूट किया गया है</string>
     <string name="ConversationSettingsFragment__conversation_muted_forever">चैट को हमेशा के लिए म्यूट किया गया है</string>
-    <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">फ़ोन नंबर को क्लिपबोर्ड पर कॉपी किया गया।</string>
+    <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">फोन नंबर को क्लिपबोर्ड पर कॉपी किया गया।</string>
     <string name="ConversationSettingsFragment__phone_number">फोन नंबर</string>
     <string name="ConversationSettingsFragment__get_badges">Signal का समर्थन करके अपनी प्रोफ़ाइल के लिए बैज पाएं। अधिक जानने के लिए किसी बैज पर टैप करें।</string>
 
@@ -6175,9 +6175,9 @@
 
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__set_up_your_signal_username">अपना Signal उपयोगकर्ता नाम सेटअप करें</string>
+    <string name="SetUpYourUsername__set_up_your_signal_username">अपना Signal यूज़रनेम सेटअप करें</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__introducing_phone_number_privacy">फ़ोन नंबर गोपनीयता, वैकल्पिक यूज़रनेम और लिंक का परिचय।</string>
+    <string name="SetUpYourUsername__introducing_phone_number_privacy">फोन नंबर गोपनीयता, वैकल्पिक यूज़रनेम और लिंक का परिचय।</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__dismiss">हटाएँ</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
@@ -6208,9 +6208,9 @@
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">उपयोगकर्ता नाम संपादित करें</string>
+    <string name="UsernameEditDialog__edit_username">यूज़रनेम संपादित करें</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">यूज़र नाम डिलीट करें</string>
+    <string name="UsernameEditDialog__delete_username">यूज़रनेम डिलीट करें</string>
 
     <!-- Time duration picker -->
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
@@ -6450,7 +6450,7 @@
     <!-- Button label for the color selector button in the username link settings -->
     <string name="UsernameLinkSettings_color_button_label">रंग</string>
     <!-- Description text for QR code and links in the username link settings -->
-    <string name="UsernameLinkSettings_qr_description">केवल अपना QR कोड साझा करें और उन लोगों के साथ लिंक करें, जिन पर आप भरोसा करते हैं। साझा किए जाने पर अन्य लोग आपका उपयोगकर्ता नाम देख सकेंगे और आपके साथ चैट शुरू कर सकेंगे।</string>
+    <string name="UsernameLinkSettings_qr_description">केवल अपना QR कोड साझा करें और उन लोगों के साथ लिंक करें, जिन पर आप भरोसा करते हैं। साझा किए जाने पर अन्य लोग आपका यूज़रनेम देख सकेंगे और आपके साथ चैट शुरू कर सकेंगे।</string>
     <!-- Content of a toast that will show after the username is copied to the clipboard -->
     <string name="UsernameLinkSettings_username_copied_toast">यूज़रनेम कॉपी किया गया</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
@@ -6492,7 +6492,7 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
   <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string> -->
     <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">Your QR code and link have been reset and a new QR code and link has been created.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">आपका QR कोड और लिंक फिर से स्थापित कर दिया गया है और एक नया QR कोड और लिंक बनाया गया है।</string> -->
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Signal पर मुझसे चैट करने के लिए इस QR कोड को अपने फोन से स्कैन करें।</string>
 
@@ -6555,11 +6555,11 @@
     <!-- Title of activity when finding by username -->
     <string name="FindByActivity__find_by_username">यूज़रनेम द्वारा खोजें</string>
     <!-- Title of activity when finding by phone number -->
-    <string name="FindByActivity__find_by_phone_number">फ़ोन नंबर द्वारा खोजें</string>
+    <string name="FindByActivity__find_by_phone_number">फोन नंबर द्वारा खोजें</string>
     <!-- Title of screen to select a country code -->
     <string name="FindByActivity__select_country_code">देश कोड चुनें</string>
     <!-- Entry placeholder for find by username -->
-    <string name="FindByActivity__username">उपयोगकर्ता नाम</string>
+    <string name="FindByActivity__username">यूज़रनेम</string>
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">फोन नंबर</string>
     <!-- Help text under user entry for find by username -->
@@ -6571,17 +6571,17 @@
     <!-- Dialog title for invalid username -->
     <string name="FindByActivity__invalid_username">अमान्य यूज़रनेम</string>
     <!-- Dialog title for invalid phone number -->
-    <string name="FindByActivity__invalid_phone_number">अमान्य फ़ोन नंबर</string>
+    <string name="FindByActivity__invalid_phone_number">अमान्य फोन नंबर</string>
     <!-- Dialog title when phone number is not a registered signal user -->
     <string name="FindByActivity__invite_to_signal">Signal का उपयोग करने के लिए आमंत्रित करें</string>
     <!-- Dialog title when username is not found -->
-    <string name="FindByActivity__username_not_found">उपयोगकर्ता नाम नहीं मिला</string>
+    <string name="FindByActivity__username_not_found">यूज़रनेम नहीं मिला</string>
     <!-- Dialog body for invalid username. Placeholder is the entered username. -->
     <string name="FindByActivity__s_is_not_a_valid_username">%1$s मान्य यूज़रनेम नहीं है। सुनिश्चित करें कि आपने पूरा यूज़रनेम और उसके बाद उसके अंकों का सेट दर्ज किया है।</string>
     <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
-    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s मान्य फोन नंबर नहीं है। किसी मान्य फ़ोन नंबर से फिर से प्रयास करें</string>
+    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s मान्य फोन नंबर नहीं है। किसी मान्य फोन नंबर से फिर से प्रयास करें</string>
     <!-- Dialog body for not found username -->
-    <string name="FindByActivity__s_is_not_a_signal_user">\"%1$s\" एक Signal उपयोगकर्ता नहीं है। कृपया उपयोगकर्ता नाम जांचें और पुनः प्रयास करें।</string>
+    <string name="FindByActivity__s_is_not_a_signal_user">\"%1$s\" एक Signal यूज़र नहीं है। कृपया यूज़रनेम जांचें और पुनः प्रयास करें।</string>
     <!-- Dialog body for not found phone number -->
     <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s एक Signal यूज़र नहीं है। क्या आप इस नंबर को आमंत्रित करना चाहेंगे?</string>
     <!-- Dialog action to invite the phone number to Signal -->

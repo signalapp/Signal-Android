@@ -526,13 +526,13 @@
     <!-- Menu option to report spam in a conversation -->
     <string name="ConversationFragment_report_spam">Report spam</string>
     <!-- Menu option to block in a conversation -->
-    <string name="ConversationFragment_block">Block</string>
+    <string name="ConversationFragment_block">Blloko</string>
     <!-- Menu otpion to accept a message request in a conversation -->
-    <string name="ConversationFragment_accept">Accept</string>
+    <string name="ConversationFragment_accept">Pranoje</string>
     <!-- Menu option to delete an entire chat in a conversation -->
     <string name="ConversationFragment_delete_chat">Delete chat</string>
     <!-- Menu option to unblock in a conversation -->
-    <string name="ConversationFragment_unblock">Unblock</string>
+    <string name="ConversationFragment_unblock">Zhblloko</string>
     <!-- Menu option to report spam in a conversation -->
     <string name="ConversationFragment_reported_spam">Reported spam</string>
     <!-- Dialog message shown after reporting spam and tapping the conversation item -->
@@ -1064,7 +1064,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Emri i përdoruesit, kodi QR dhe lidhja nuk shfaqen në profil. Ndaje emrin e përdoruesit vetëm me njerëzit e besueshëm.</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">People can now message you using your optional username so you don\'t have to give out your phone number. </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">Njerëzit tani mund të të dërgojnë mesazhe duke përdorur emrin opsional të përdoruesit që të mos kesh nevojë të japësh numrin e telefonit. </string> -->
     <string name="ManageProfileFragment_profile_name">Emri i profilit</string>
     <string name="ManageProfileFragment_username">Emri i përdoruesit</string>
     <string name="ManageProfileFragment_about">Rreth</string>
@@ -1965,7 +1965,7 @@
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">Kontaktet e Signal</string>
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
-  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">Verified</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">Verifiikuar</string> -->
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
   <!-- Removed by excludeNonTranslatables <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string> -->
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
@@ -2288,17 +2288,17 @@
     <!-- Placeholder text for custom discriminator -->
     <string name="UsernameEditFragment__00">00</string>
     <!-- Toolbar title when entering from registration -->
-    <string name="UsernameEditFragment__add_a_username">Shto një emër përdoruesi</string>
+    <string name="UsernameEditFragment__add_a_username">Shto emrin e përdoruesit</string>
     <!-- Instructional text at the top of the username edit screen -->
-    <string name="UsernameEditFragment__choose_your_username">Zgjidh emrin tënd të përdoruesit</string>
+    <string name="UsernameEditFragment__choose_your_username">Zgjidh emrin e përdoruesit</string>
     <string name="UsernameEditFragment_username">Emri i përdoruesit</string>
     <string name="UsernameEditFragment_delete">Fshije</string>
     <string name="UsernameEditFragment_successfully_removed_username">Emri i përdoruesit u hoq me sukses.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">U has një gabim rrjeti.</string>
     <string name="UsernameEditFragment_this_username_is_taken">Ky emër përdoruesi është i zënë.</string>
-    <string name="UsernameEditFragment_usernames_can_only_include">Emrat e përdoruesve mund të përmbajnë vetëm a-Z, 0-9, dhe nënvija.</string>
-    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Emrat e përdoruesve s\\’mund të fillojnë me një numër.</string>
-    <string name="UsernameEditFragment_username_is_invalid">Emri i përdoruesit është i pavlefshëm.</string>
+    <string name="UsernameEditFragment_usernames_can_only_include">Emrat e përdoruesve mund të përmbajnë vetëm a-Z, 0-9 dhe nënvija.</string>
+    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Emrat e përdoruesve nuk mund të fillojnë me numër.</string>
+    <string name="UsernameEditFragment_username_is_invalid">Emri i pavlefshëm përdoruesi.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Emrat e përdoruesit duhet të jenë mes %1$d dhe %2$d shenjash.</string>
     <!-- Explanation about what usernames provide -->
     <string name="UsernameEditFragment__usernames_let_others_message">Emrat e përdoruesve lejojnë që të tjerët të të dërgojnë mesazhe, pa pasur nevojë për numrin tënd të telefonit. Ata binjakëzohen me një bashkësi shifrash për të ruajtur fshehtësinë e adresës tënde.</string>
@@ -2322,9 +2322,9 @@
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">Rivendosja e emrit të përdoruesit do të rivendosë edhe kodin QR me lidhjen ekzistuese. Je i sigurt?</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">Changing your username will reset your existing QR code and link. Are you sure?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">Ndryshimi i emrit të përdoruesit do të rivendosë kodin QR dhe lidhjen ekzistuese. Je i sigurt?</string> -->
     <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">Continue</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">Vazhdo</string> -->
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d kontakt është në Signal!</item>
@@ -2333,7 +2333,7 @@
 
     <!-- UsernameShareBottomSheet -->
     <!-- Explanation of what the sheet enables the user to do -->
-    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Kopjo ose shpërndaj linkun e një emri përdoruesi</string>
+    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Kopjo ose shpërndaj linkun e emrit të përdoruesit</string>
 
     <!-- VerifyIdentityActivity -->
     <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Kontakti juaj xhiron një version më të ri të Signal-it, me një format kodi QR të papërputhshëm. Ju lutemi, që të krahasohen, përditësojeni.</string>
@@ -2635,8 +2635,8 @@
     <!-- ContactSelectionListFragment-->
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Që të mund të shfaqë kontaktet tuaja, Signal-i lyp leje mbi Kontaktet, por këto i janë mohuar. Ju lutemi, kaloni te menuja e rregullimeve të aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Kontakte\".</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Gabim në marrje kontaktesh, kontrolloni lidhjen tuaj në rrjet</string>
-    <string name="ContactSelectionListFragment_username_not_found">Emri i përdoruesit s\\’u gjet</string>
-    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" s\\’është përdorues Signal-i. Ju lutemi, kontrolloni emrin e përdoruesit dhe riprovoni."</string>
+    <string name="ContactSelectionListFragment_username_not_found">Emri i përdoruesit nuk u gjet</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" nuk është përdorues i Signal Ju lutemi, kontrollo emrin e përdoruesit dhe riprovo."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">S\\’ju duhet të shtoni veten te grupi</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">U mbërrit në kufi madhësie grupesh</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Grupet Signal mund të keni një maksimum prej %1$d anëtarësh.</string>
@@ -6492,7 +6492,7 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
   <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string> -->
     <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">Your QR code and link have been reset and a new QR code and link has been created.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">Lidhja dhe kodi QR janë rivendosur dhe është krijuar lidhje dhe kod QR i ri.</string> -->
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Skano kodin QR nga telefoni për të biseduar me mua në Signal.</string>
 

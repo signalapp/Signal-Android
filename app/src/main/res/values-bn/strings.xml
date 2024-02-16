@@ -526,13 +526,13 @@
     <!-- Menu option to report spam in a conversation -->
     <string name="ConversationFragment_report_spam">Report spam</string>
     <!-- Menu option to block in a conversation -->
-    <string name="ConversationFragment_block">Block</string>
+    <string name="ConversationFragment_block">ব্লক করুন</string>
     <!-- Menu otpion to accept a message request in a conversation -->
-    <string name="ConversationFragment_accept">Accept</string>
+    <string name="ConversationFragment_accept">মানছি</string>
     <!-- Menu option to delete an entire chat in a conversation -->
     <string name="ConversationFragment_delete_chat">Delete chat</string>
     <!-- Menu option to unblock in a conversation -->
-    <string name="ConversationFragment_unblock">Unblock</string>
+    <string name="ConversationFragment_unblock">আনব্লক করুন</string>
     <!-- Menu option to report spam in a conversation -->
     <string name="ConversationFragment_reported_spam">Reported spam</string>
     <!-- Dialog message shown after reporting spam and tapping the conversation item -->
@@ -1064,7 +1064,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">আপনার ব্যবহারকারীর নাম, QR কোড এবং লিংক আপনার প্রোফাইলে দৃশ্যমান নয়। শুধুমাত্র আপনি আস্থা রাখতে পারেন এমন ব্যক্তিদের সাথে আপনার ব্যবহারকারীর নাম শেয়ার করুন।</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">People can now message you using your optional username so you don\'t have to give out your phone number. </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageProfileFragment__username_footer_no_username">লোকজন এখন আপনার ঐচ্ছিক ব্যবহারকারীর নাম ব্যবহার করে আপনাকে মেসেজ পাঠাতে পারবেন যাতে আপনাকে আপনার ফোন নম্বর দিতে না হয়। </string> -->
     <string name="ManageProfileFragment_profile_name">প্রোফাইল নাম</string>
     <string name="ManageProfileFragment_username">ব্যবহারকারীর নাম</string>
     <string name="ManageProfileFragment_about">সম্বন্ধে</string>
@@ -1965,7 +1965,7 @@
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">Signal কানেকশন</string>
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
-  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">Verified</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="AboutSheet__verified">যাচাই করা হয়েছে</string> -->
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
   <!-- Removed by excludeNonTranslatables <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string> -->
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
@@ -2322,9 +2322,9 @@
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">আপনার ব্যবহারকারীর নাম পুনরুদ্ধার করা হলে আপনার বিদ্যমান QR কোড এবং লিংক রিসেট করা হবে। আপনি কি নিশ্চিত?</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">Changing your username will reset your existing QR code and link. Are you sure?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_change_confirmation_message">আপনার \'ব্যবহারকারীর নাম\' পরিবর্তন করলে আপনার বিদ্যমান QR কোড ও লিংক রিসেট করা হবে। আপনি কি নিশ্চিত?</string> -->
     <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">Continue</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_continue">চালিয়ে যান</string> -->
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d টি কন্ট্যাক্ট Signal ব্যবহার করছে!</item>
@@ -6492,7 +6492,7 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
   <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string> -->
     <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
-  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">Your QR code and link have been reset and a new QR code and link has been created.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UsernameLinkSettings_reset_link_result_success">আপনার QR কোড ও লিংক রিসেট করা হয়েছে এবং একটি নতুন QR কোড ও লিংক তৈরি করা হয়েছে।</string> -->
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Signal-এ আমার সাথে চ্যাট করতে আপনার ফোন দিয়ে এই QR কোডটি স্ক্যান করুন।</string>
 
