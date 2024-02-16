@@ -73,6 +73,7 @@ import org.signal.core.util.logging.Log;
 import org.signal.ringrtc.CallLinkRootKey;
 import org.thoughtcrime.securesms.BindableConversationItem;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.badges.BadgeImageView;
@@ -108,8 +109,8 @@ import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.MediaTable;
 import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.Quote;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
@@ -128,6 +129,7 @@ import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideClickListener;
+import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.mms.SlidesClickedListener;
 import org.thoughtcrime.securesms.mms.TextSlide;
 import org.thoughtcrime.securesms.mms.VideoSlide;
@@ -1307,7 +1309,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       if (joinCallLinkStub.resolved()) joinCallLinkStub.get().setVisibility(View.GONE);
       paymentViewStub.setVisibility(View.GONE);
 
-      List<Slide> thumbnailSlides = ((MmsMessageRecord) messageRecord).getSlideDeck().getThumbnailSlides();
+      final SlideDeck slideDeck       = ((MmsMessageRecord) messageRecord).getSlideDeck();
+      List<Slide>     thumbnailSlides = slideDeck.getThumbnailSlides();
       mediaThumbnailStub.require().setMinimumThumbnailWidth(readDimen(isCaptionlessMms(messageRecord) ? R.dimen.media_bubble_min_width_solo
                                                                                                       : R.dimen.media_bubble_min_width_with_content));
       mediaThumbnailStub.require().setMaximumThumbnailHeight(readDimen(isContentCondensed() ? R.dimen.media_bubble_max_height_condensed
@@ -1328,7 +1331,11 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         mediaThumbnailStub.require().setStartTransferClickListener(downloadClickListener);
       } else {
         mediaThumbnailStub.require().setConversationColor(Color.TRANSPARENT);
-        mediaThumbnailStub.require().setStartTransferClickListener(new ResendClickListener(messageRecord));
+        if (doAnySlidesLackData(slideDeck)) {
+          mediaThumbnailStub.require().setStartTransferClickListener(downloadClickListener);
+        } else {
+          mediaThumbnailStub.require().setStartTransferClickListener(new ResendClickListener(messageRecord));
+        }
       }
 
       mediaThumbnailStub.require().setBorderless(false);
@@ -2015,6 +2022,15 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
   private int readDimen(@NonNull Context context, @DimenRes int dimenId) {
     return context.getResources().getDimensionPixelOffset(dimenId);
+  }
+
+  private boolean doAnySlidesLackData(SlideDeck deck) {
+    for (Attachment attachment : deck.asAttachments()) {
+      if (attachment instanceof DatabaseAttachment && !((DatabaseAttachment) attachment).hasData) {
+        return true;
+      }
+    }
+    return false;
   }
 
   /// Event handlers
