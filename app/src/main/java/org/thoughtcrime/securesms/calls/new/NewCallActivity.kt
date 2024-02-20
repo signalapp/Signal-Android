@@ -40,7 +40,9 @@ class NewCallActivity : ContactSelectionActivity(), ContactSelectionListFragment
   override fun onSelectionChanged() = Unit
 
   override fun onBeforeContactSelected(isFromUnknownSearchKey: Boolean, recipientId: Optional<RecipientId?>, number: String?, callback: Consumer<Boolean?>) {
-    if (isFromUnknownSearchKey) {
+    if (recipientId.isPresent) {
+      launch(Recipient.resolved(recipientId.get()))
+    } else {
       Log.i(TAG, "[onContactSelected] Maybe creating a new recipient.")
       if (SignalStore.account().isRegistered) {
         Log.i(TAG, "[onContactSelected] Doing contact refresh.")
