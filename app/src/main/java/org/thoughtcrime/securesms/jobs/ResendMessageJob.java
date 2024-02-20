@@ -131,6 +131,8 @@ public class ResendMessageJob extends BaseJob {
       ThreadUtil.sleep(10000);
     }
 
+    Log.i(TAG, "[" + sentTimestamp + " ] Resending message to " + recipientId + " (urgent: " + urgent + ", contentHint: " + contentHint.name() + ", groupId: " + groupId + ", distributionId: " + distributionId + ")");
+
     SignalServiceMessageSender messageSender = ApplicationDependencies.getSignalServiceMessageSender();
     Recipient                  recipient     = Recipient.resolved(recipientId);
 
@@ -174,7 +176,20 @@ public class ResendMessageJob extends BaseJob {
       contentToSend = contentToSend.newBuilder().senderKeyDistributionMessage(distributionBytes).build();
     }
 
-    SendMessageResult result = messageSender.resendContent(address, access, sentTimestamp, contentToSend, contentHint, Optional.ofNullable(groupId).map(GroupId::getDecodedId), urgent);
+    SendMessageResult result;
+
+    try {
+      result = messageSender.resendContent(address, access, sentTimestamp, contentToSend, contentHint, Optional.ofNullable(groupId).map(GroupId::getDecodedId), urgent);
+    } catch (IllegalStateException e) {
+      Log.w(TAG, "Failed to resend content. Archiving session and trying again.", e);
+      ApplicationDependencies.getProtocolStore().aci().sessions().archiveSessions(recipientId, SignalServiceAddress.DEFAULT_DEVICE_ID);
+      ApplicationDependencies.getProtocolStore().aci().sessions().archiveSiblingSessions(recipient.requireServiceId().toProtocolAddress(SignalServiceAddress.DEFAULT_DEVICE_ID));
+      ApplicationDependencies.getProtocolStore().pni().sessions().archiveSessions(recipientId, SignalServiceAddress.DEFAULT_DEVICE_ID);
+      ApplicationDependencies.getProtocolStore().pni().sessions().archiveSiblingSessions(recipient.requireServiceId().toProtocolAddress(SignalServiceAddress.DEFAULT_DEVICE_ID));
+      SignalDatabase.senderKeyShared().deleteAllFor(recipientId);
+
+      result = messageSender.resendContent(address, access, sentTimestamp, contentToSend, contentHint, Optional.ofNullable(groupId).map(GroupId::getDecodedId), urgent);
+    }
 
     if (result.isSuccess() && distributionId != null) {
       List<SignalProtocolAddress> addresses = result.getSuccess()
