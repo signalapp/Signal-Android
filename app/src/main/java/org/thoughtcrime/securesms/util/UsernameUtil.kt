@@ -1,6 +1,19 @@
 package org.thoughtcrime.securesms.util
 
 import org.signal.core.util.logging.Log
+import org.signal.libsignal.usernames.BadDiscriminatorCharacterException
+import org.signal.libsignal.usernames.BadNicknameCharacterException
+import org.signal.libsignal.usernames.BaseUsernameException
+import org.signal.libsignal.usernames.CannotBeEmptyException
+import org.signal.libsignal.usernames.CannotStartWithDigitException
+import org.signal.libsignal.usernames.DiscriminatorCannotBeEmptyException
+import org.signal.libsignal.usernames.DiscriminatorCannotBeSingleDigitException
+import org.signal.libsignal.usernames.DiscriminatorCannotBeZeroException
+import org.signal.libsignal.usernames.DiscriminatorCannotHaveLeadingZerosException
+import org.signal.libsignal.usernames.DiscriminatorTooLargeException
+import org.signal.libsignal.usernames.NicknameTooLongException
+import org.signal.libsignal.usernames.NicknameTooShortException
+import org.signal.libsignal.usernames.Username
 import java.util.Locale
 import java.util.regex.Pattern
 
@@ -36,52 +49,75 @@ object UsernameUtil {
   }
 
   @JvmStatic
-  fun checkUsername(value: String?): InvalidReason? {
-    return when {
-      value == null -> {
-        InvalidReason.TOO_SHORT
-      }
-      value.length < MIN_NICKNAME_LENGTH -> {
-        InvalidReason.TOO_SHORT
-      }
-      value.length > MAX_NICKNAME_LENGTH -> {
-        InvalidReason.TOO_LONG
-      }
-      DIGIT_START_PATTERN.matcher(value).matches() -> {
-        InvalidReason.STARTS_WITH_NUMBER
-      }
-      !FULL_PATTERN.matcher(value).matches() -> {
-        InvalidReason.INVALID_CHARACTERS
-      }
-      else -> {
-        null
-      }
+  fun checkNickname(value: String?): InvalidReason? {
+    if (value == null) {
+      return InvalidReason.TOO_SHORT
+    }
+
+    return try {
+      // We only want to check the nickname, so we pass in a known-valid discriminator
+      Username.fromParts(value, "01", MIN_NICKNAME_LENGTH, MAX_NICKNAME_LENGTH)
+      null
+    } catch (e: BadNicknameCharacterException) {
+      InvalidReason.INVALID_CHARACTERS
+    } catch (e: CannotBeEmptyException) {
+      InvalidReason.TOO_SHORT
+    } catch (e: CannotStartWithDigitException) {
+      InvalidReason.STARTS_WITH_NUMBER
+    } catch (e: NicknameTooLongException) {
+      InvalidReason.TOO_LONG
+    } catch (e: NicknameTooShortException) {
+      InvalidReason.TOO_SHORT
+    } catch (e: BaseUsernameException) {
+      Log.w(TAG, "Unhandled verification exception!", e)
+      InvalidReason.INVALID_CHARACTERS
     }
   }
 
   fun checkDiscriminator(value: String?): InvalidReason? {
-    return when {
-      value == null -> {
-        null
-      }
-      value == "00" -> {
-        InvalidReason.INVALID_NUMBER
-      }
-      value.startsWith("00") -> {
-        InvalidReason.INVALID_NUMBER_PREFIX
-      }
-      value.length < MIN_DISCRIMINATOR_LENGTH -> {
+    if (value == null) {
+      return null
+    }
+
+    if (value.length < MIN_DISCRIMINATOR_LENGTH) {
+      return InvalidReason.TOO_SHORT
+    }
+
+    if (value.length > MAX_DISCRIMINATOR_LENGTH) {
+      return InvalidReason.TOO_LONG
+    }
+
+    return try {
+      // We only want to check the discriminator, so we pass in a known-valid nickname
+      Username.fromParts("spiderman", value, MIN_NICKNAME_LENGTH, MAX_NICKNAME_LENGTH)
+      null
+    } catch (e: BadDiscriminatorCharacterException) {
+      InvalidReason.INVALID_CHARACTERS
+    } catch (e: DiscriminatorCannotBeEmptyException) {
+      InvalidReason.TOO_SHORT
+    } catch (e: DiscriminatorCannotBeSingleDigitException) {
+      InvalidReason.TOO_SHORT
+    } catch (e: DiscriminatorCannotBeZeroException) {
+      if (value.length < 2) {
         InvalidReason.TOO_SHORT
+      } else if (value == "00") {
+        InvalidReason.INVALID_NUMBER_00
+      } else {
+        InvalidReason.INVALID_NUMBER_PREFIX_0
       }
-      value.length > MAX_DISCRIMINATOR_LENGTH -> {
-        InvalidReason.TOO_LONG
+    } catch (e: DiscriminatorCannotHaveLeadingZerosException) {
+      if (value.length < 2) {
+        InvalidReason.TOO_SHORT
+      } else if (value == "00") {
+        InvalidReason.INVALID_NUMBER_00
+      } else {
+        InvalidReason.INVALID_NUMBER_PREFIX_0
       }
-      value.toIntOrNull() == null -> {
-        InvalidReason.INVALID_CHARACTERS
-      }
-      else -> {
-        null
-      }
+    } catch (e: DiscriminatorTooLargeException) {
+      InvalidReason.TOO_LONG
+    } catch (e: BaseUsernameException) {
+      Log.w(TAG, "Unhandled verification exception!", e)
+      InvalidReason.INVALID_CHARACTERS
     }
   }
 
@@ -91,6 +127,7 @@ object UsernameUtil {
     INVALID_CHARACTERS,
     STARTS_WITH_NUMBER,
     INVALID_NUMBER,
-    INVALID_NUMBER_PREFIX
+    INVALID_NUMBER_00,
+    INVALID_NUMBER_PREFIX_0
   }
 }

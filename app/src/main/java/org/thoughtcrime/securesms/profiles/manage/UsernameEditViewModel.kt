@@ -22,7 +22,7 @@ import org.thoughtcrime.securesms.profiles.manage.UsernameRepository.UsernameSet
 import org.thoughtcrime.securesms.util.NetworkUtil
 import org.thoughtcrime.securesms.util.UsernameUtil.InvalidReason
 import org.thoughtcrime.securesms.util.UsernameUtil.checkDiscriminator
-import org.thoughtcrime.securesms.util.UsernameUtil.checkUsername
+import org.thoughtcrime.securesms.util.UsernameUtil.checkNickname
 import org.thoughtcrime.securesms.util.rx.RxStore
 import org.whispersystems.signalservice.api.util.Usernames
 import java.util.concurrent.TimeUnit
@@ -159,7 +159,7 @@ internal class UsernameEditViewModel private constructor(private val mode: Usern
       return
     }
 
-    val invalidReason: InvalidReason? = checkUsername(usernameState.getNickname())
+    val invalidReason: InvalidReason? = checkNickname(usernameState.getNickname())
     if (invalidReason != null) {
       Log.w(TAG, "Username was submitted, but did not pass validity checks. Reason: $invalidReason")
       uiState.update { it.copy(buttonState = ButtonState.SUBMIT_DISABLED, usernameStatus = mapNicknameError(invalidReason)) }
@@ -257,7 +257,7 @@ internal class UsernameEditViewModel private constructor(private val mode: Usern
       return
     }
 
-    val invalidReason: InvalidReason? = checkUsername(nickname)
+    val invalidReason: InvalidReason? = checkNickname(nickname)
     if (invalidReason != null) {
       uiState.update { uiState ->
         uiState.copy(
@@ -366,7 +366,7 @@ internal class UsernameEditViewModel private constructor(private val mode: Usern
     DISCRIMINATOR_TOO_LONG,
     DISCRIMINATOR_HAS_INVALID_CHARACTERS,
     DISCRIMINATOR_CANNOT_BE_00,
-    DISCRIMINATOR_CANNOT_START_WITH_00
+    DISCRIMINATOR_CANNOT_START_WITH_0
   }
 
   enum class ButtonState {
@@ -394,7 +394,9 @@ internal class UsernameEditViewModel private constructor(private val mode: Usern
         InvalidReason.TOO_LONG -> UsernameStatus.TOO_LONG
         InvalidReason.STARTS_WITH_NUMBER -> UsernameStatus.CANNOT_START_WITH_NUMBER
         InvalidReason.INVALID_CHARACTERS -> UsernameStatus.INVALID_CHARACTERS
-        InvalidReason.INVALID_NUMBER, InvalidReason.INVALID_NUMBER_PREFIX -> error("Unexpected reason $invalidReason")
+        InvalidReason.INVALID_NUMBER,
+        InvalidReason.INVALID_NUMBER_00,
+        InvalidReason.INVALID_NUMBER_PREFIX_0 -> error("Unexpected reason $invalidReason")
       }
     }
 
@@ -403,8 +405,8 @@ internal class UsernameEditViewModel private constructor(private val mode: Usern
         InvalidReason.TOO_SHORT -> UsernameStatus.DISCRIMINATOR_TOO_SHORT
         InvalidReason.TOO_LONG -> UsernameStatus.DISCRIMINATOR_TOO_LONG
         InvalidReason.INVALID_CHARACTERS -> UsernameStatus.DISCRIMINATOR_HAS_INVALID_CHARACTERS
-        InvalidReason.INVALID_NUMBER -> UsernameStatus.DISCRIMINATOR_CANNOT_BE_00
-        InvalidReason.INVALID_NUMBER_PREFIX -> UsernameStatus.DISCRIMINATOR_CANNOT_START_WITH_00
+        InvalidReason.INVALID_NUMBER_00 -> UsernameStatus.DISCRIMINATOR_CANNOT_BE_00
+        InvalidReason.INVALID_NUMBER_PREFIX_0 -> UsernameStatus.DISCRIMINATOR_CANNOT_START_WITH_0
         else -> UsernameStatus.INVALID_GENERIC
       }
     }
