@@ -386,7 +386,7 @@ internal class UsernameEditViewModel private constructor(private val mode: Usern
   companion object {
     private val TAG = Log.tag(UsernameEditViewModel::class.java)
 
-    private const val NICKNAME_PUBLISHER_DEBOUNCE_TIMEOUT_MILLIS: Long = 1000
+    private const val NICKNAME_PUBLISHER_DEBOUNCE_TIMEOUT_MILLIS: Long = 500
 
     private fun mapNicknameError(invalidReason: InvalidReason): UsernameStatus {
       return when (invalidReason) {
