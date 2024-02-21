@@ -100,9 +100,9 @@ dependencyResolutionManagement {
       // Google
       library("google-protobuf-javalite", "com.google.protobuf:protobuf-javalite:3.11.4")
       library("google-libphonenumber", "com.googlecode.libphonenumber:libphonenumber:8.13.23")
-      library("google-play-services-maps", "com.google.android.gms:play-services-maps:18.1.0")
-      library("google-play-services-auth", "com.google.android.gms:play-services-auth:20.3.0")
-      library("google-play-services-wallet", "com.google.android.gms:play-services-wallet:19.1.0")
+      library("google-play-services-maps", "com.google.android.gms:play-services-maps:18.2.0")
+      library("google-play-services-auth", "com.google.android.gms:play-services-auth:21.0.0")
+      library("google-play-services-wallet", "com.google.android.gms:play-services-wallet:19.2.1")
       library("google-zxing-android-integration", "com.google.zxing:android-integration:3.3.0")
       library("google-zxing-core", "com.google.zxing:core:3.4.1")
       library("google-ez-vcard", "com.googlecode.ez-vcard:ez-vcard:0.9.11")
