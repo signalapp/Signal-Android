@@ -657,12 +657,16 @@ open class MessageContentProcessor(private val context: Context) {
       return
     }
 
-    if (decryptionErrorMessage.ratchetKey.isPresent &&
-      ratchetKeyMatches(requester, metadata.sourceDeviceId, decryptionErrorMessage.ratchetKey.get())
-    ) {
-      warn(envelope.timestamp!!, "[RetryReceipt-I] Ratchet key matches. Archiving the session.")
-      ApplicationDependencies.getProtocolStore().aci().sessions().archiveSession(requester.requireServiceId(), metadata.sourceDeviceId)
-      archivedSession = true
+    if (decryptionErrorMessage.ratchetKey.isPresent) {
+      if (ratchetKeyMatches(requester, metadata.sourceDeviceId, decryptionErrorMessage.ratchetKey.get())) {
+        warn(envelope.timestamp!!, "[RetryReceipt-I] Ratchet key matches. Archiving the session.")
+        ApplicationDependencies.getProtocolStore().aci().sessions().archiveSession(requester.requireServiceId(), metadata.sourceDeviceId)
+        archivedSession = true
+      } else {
+        log(envelope.timestamp!!, "[RetryReceipt-I] Ratchet key does not match. Leaving the session as-is.")
+      }
+    } else {
+      warn(envelope.timestamp!!, "[RetryReceipt-I] Missing ratchet key! Can't archive session.")
     }
 
     if (messageLogEntry != null) {
