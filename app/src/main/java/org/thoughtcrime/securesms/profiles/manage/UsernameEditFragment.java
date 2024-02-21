@@ -141,7 +141,7 @@ public class UsernameEditFragment extends LoggingFragment {
   }
 
   private void promptOrSubmitUsername() {
-    if (args.getMode() == UsernameEditMode.RECOVERY) {
+    if (viewModel.isSameUsernameRecovery()) {
       new MaterialAlertDialogBuilder(requireContext())
           .setMessage(R.string.UsernameEditFragment_recovery_dialog_confirmation)
           .setPositiveButton(android.R.string.ok, ((dialog, which) -> {

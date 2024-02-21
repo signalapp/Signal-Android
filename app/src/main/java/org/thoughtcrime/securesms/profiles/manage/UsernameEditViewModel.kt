@@ -35,8 +35,6 @@ import java.util.concurrent.TimeUnit
  * Usernames are made up of two discrete components, a nickname and a discriminator. They are formatted thusly:
  *
  * [nickname].[discriminator]
- *
- * The nickname is user-controlled, whereas the discriminator is controlled by the server.
  */
 internal class UsernameEditViewModel private constructor(private val mode: UsernameEditMode) : ViewModel() {
   private val events: PublishSubject<Event> = PublishSubject.create()
@@ -71,6 +69,7 @@ internal class UsernameEditViewModel private constructor(private val mode: Usern
 
     if (mode == UsernameEditMode.RECOVERY) {
       onNicknameUpdated(SignalStore.account().username?.split(Usernames.DELIMITER)?.first() ?: "")
+      onDiscriminatorUpdated(SignalStore.account().username?.split(Usernames.DELIMITER)?.last() ?: "")
     }
   }
 
@@ -127,6 +126,13 @@ internal class UsernameEditViewModel private constructor(private val mode: Usern
   fun onUsernameSkipped() {
     SignalStore.uiHints().markHasSetOrSkippedUsernameCreation()
     events.onNext(Event.SKIPPED)
+  }
+
+  fun isSameUsernameRecovery(): Boolean {
+    val usernameState = uiState.state.usernameState
+    return mode == UsernameEditMode.RECOVERY &&
+      usernameState is UsernameState.Reserved &&
+      usernameState.requireUsername().username.lowercase() == SignalStore.account().username?.lowercase()
   }
 
   /**
