@@ -5,6 +5,8 @@
 
 package org.signal.core.util
 
+import java.util.Locale
+
 /**
  * Rounds a number to the specified number of places. e.g.
  *
@@ -12,5 +14,5 @@ package org.signal.core.util
  * 1.123456f.roundedString(5) = 1.12346
  */
 fun Double.roundedString(places: Int): String {
-  return String.format("%.${places}f", this)
+  return String.format(Locale.US, "%.${places}f", this)
 }
