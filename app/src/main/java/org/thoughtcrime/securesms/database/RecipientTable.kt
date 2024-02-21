@@ -4112,7 +4112,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         PROFILE_FAMILY_NAME to null,
         PROFILE_JOINED_NAME to null,
         LAST_PROFILE_FETCH to 0,
-        PROFILE_AVATAR to null
+        PROFILE_AVATAR to null,
+        PROFILE_SHARING to 0
       )
       .run {
         if (recipientId == null) {

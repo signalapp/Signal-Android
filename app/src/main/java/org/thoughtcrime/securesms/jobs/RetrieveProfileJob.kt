@@ -384,9 +384,12 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
         }
 
         if (writeChangeEvent || localDisplayName.isEmpty()) {
+          ApplicationDependencies.getDatabaseObserver().notifyConversationListListeners()
           val threadId = SignalDatabase.threads.getThreadIdFor(recipient.id)
           if (threadId != null) {
-            ApplicationDependencies.getMessageNotifier().updateNotification(context, forConversation(threadId))
+            SignalDatabase.runPostSuccessfulTransaction {
+              ApplicationDependencies.getMessageNotifier().updateNotification(context, forConversation(threadId))
+            }
           }
         }
 
