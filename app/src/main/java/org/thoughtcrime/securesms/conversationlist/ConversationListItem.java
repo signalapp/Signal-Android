@@ -334,7 +334,13 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
 
     fromView.setText(recipient.get(), false);
 
-    updateDateView = () -> dateView.setText(DateUtils.getBriefRelativeTimeSpanString(getContext(), locale, groupWithMembers.getDate()));
+    updateDateView = () -> {
+      if (groupWithMembers.getDate() > 0) {
+        dateView.setText(DateUtils.getBriefRelativeTimeSpanString(getContext(), locale, groupWithMembers.getDate()));
+      } else {
+        dateView.setText("");
+      }
+    };
     updateDateView.run();
     archivedView.setVisibility(GONE);
     unreadIndicator.setVisibility(GONE);
