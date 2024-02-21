@@ -190,7 +190,15 @@ public class LinkPreviewRepository {
           return;
         }
 
-        String           body        = OkHttpUtil.readAsString(response.body(), FAILSAFE_MAX_TEXT_SIZE);
+        String body;
+        try {
+          body = OkHttpUtil.readAsString(response.body(), FAILSAFE_MAX_TEXT_SIZE);
+        } catch (IOException e) {
+          Log.w(TAG, "Failed to read body", e);
+          callback.accept(Metadata.empty());
+          return;
+        }
+
         OpenGraph        openGraph   = LinkPreviewUtil.parseOpenGraphFields(body);
         Optional<String> title       = openGraph.getTitle();
         Optional<String> description = openGraph.getDescription();
