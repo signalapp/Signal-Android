@@ -6435,6 +6435,8 @@
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
     <string name="CallLinkDetailsFragment__call_details">Call details</string>
+    <!-- Displayed in a text row, allowing the user to click and edit a call name -->
+    <string name="CallLinkDetailsFragment__edit_call_name">Edit call name</string>
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
     <string name="CallLinkDetailsFragment__add_call_name">Add call name</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->

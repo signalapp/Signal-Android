@@ -290,7 +290,11 @@ private fun CallInfo(
         }
 
         Rows.TextRow(
-          text = stringResource(id = R.string.CallLinkDetailsFragment__add_call_name),
+          text = if (controlAndInfoState.callLink.state.name.isNotEmpty()) {
+            stringResource(id = R.string.CallLinkDetailsFragment__edit_call_name)
+          } else {
+            stringResource(id = R.string.CallLinkDetailsFragment__add_call_name)
+          },
           onClick = onEditNameClicked
         )
         Rows.ToggleRow(
