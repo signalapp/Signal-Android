@@ -180,17 +180,17 @@
     <string name="BlockUnblockDialog_block">ဘလော့ခ်ရန်</string>
     <string name="BlockUnblockDialog_block_and_leave">ဘလော့ခ်ပြီး ထွက်ရန်</string>
     <!-- Dialog button label to report as spam and block the person -->
-    <string name="BlockUnblockDialog_report_spam_and_block">Report and block</string>
+    <string name="BlockUnblockDialog_report_spam_and_block">ရီပို့(တ်) လုပ်ပြီး ဘလော့ခ်မည်</string>
     <!-- Dialog title for reporting spam -->
-    <string name="BlockUnblockDialog_report_spam_title">Report spam?</string>
+    <string name="BlockUnblockDialog_report_spam_title">လိမ်လည်မှုအဖြစ် ရီပို့(တ်)လုပ်မည်လား။</string>
     <!-- Dialog button to report as spam only -->
-    <string name="BlockUnblockDialog_report_spam">Report spam</string>
+    <string name="BlockUnblockDialog_report_spam">လိမ်လည်မှုအဖြစ် ရီပို့(တ်)လုပ်မည်</string>
     <!-- Dialog message when reporting spam of an individual (1:1 conversation) -->
-    <string name="BlockUnblockDialog_report_spam_description">Signal will be notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="BlockUnblockDialog_report_spam_description">ဤပုဂ္ဂိုလ်သည် လိမ်လည်ရန် စာပို့နေခြင်း ဖြစ်နိုင်ကြောင်း Signal ထံ အကြောင်းကြားပါမည်။ Signal သည် မည်သည့်ချက်(တ်)၏ အကြောင်းအရာကိုမျှ မမြင်နိုင်ပါ။</string>
     <!-- Dialog message when reporting spam of a group and we can determine the group member that invited you, placeholder is a name -->
-    <string name="BlockUnblockDialog_report_spam_group_named_adder">Signal will be notified that %1$s, who invited you to this group, may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="BlockUnblockDialog_report_spam_group_named_adder">ဤအဖွဲ့သို့ သင့်ကို ဖိတ်ခေါ်ခဲ့သော %1$s သည် လိမ်လည်ရန် စာပို့နေခြင်း ဖြစ်နိုင်ကြောင်း Signal ထံ အကြောင်းကြားပါမည်။ Signal သည် မည်သည့်ချက်(တ်)၏ အကြောင်းအရာကိုမျှ မမြင်နိုင်ပါ။</string>
     <!-- Dialog message when reporting spam of a group and we cannot determine the group member that invited you -->
-    <string name="BlockUnblockDialog_report_spam_group_unknown_adder">Signal will be notified that the person who invited you to this group may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="BlockUnblockDialog_report_spam_group_unknown_adder">ဤအဖွဲ့သို့ သင့်ကို ဖိတ်ခေါ်ခဲ့သူသည် လိမ်လည်ရန် စာပို့နေခြင်း ဖြစ်နိုင်ကြောင်း Signal ထံ အကြောင်းကြားပါမည်။ Signal သည် မည်သည့်ချက်(တ်)၏ အကြောင်းအရာကိုမျှ မမြင်နိုင်ပါ။</string>
 
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">ယနေ့</string>
@@ -486,7 +486,7 @@
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$dအဖွဲ့ဝင်များသည်တူညီသောနာမည်ရှိသည်။</string>
     <string name="ConversationFragment__tap_to_review">ပြန်လည်သုံးသပ်ရန်ကိုအသာပုတ်ပါ</string>
     <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
-    <string name="ConversationFragment__review_banner_body">This person has the same name as another contact</string>
+    <string name="ConversationFragment__review_banner_body">ဤပုဂ္ဂိုလ်သည် အခြားအဆက်အသွယ်တစ်ဦးနှင့် အမည်တူနေသည်</string>
     <string name="ConversationFragment_contact_us">ကျွန်ုပ်တို့ကိုဆက်သွယ်ရန်</string>
     <string name="ConversationFragment_verify">စစ်ဆေးအတည်ပြုသည်</string>
     <string name="ConversationFragment_not_now">အခုမဟုတ်သေးပါ။</string>
@@ -513,54 +513,54 @@
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
     <string name="ConversationFragment__no_longer_verified">အတည်ပြု၍ မရတော့ပါ</string>
     <!-- Button shown in conversation header when in a message request state and no groups in common to show new message safety tips -->
-    <string name="ConversationFragment_safety_tips">Safety tips</string>
+    <string name="ConversationFragment_safety_tips">ဘေးကင်းရေး အကြံပြုချက်များ</string>
     <!-- Menu option to report spam in a conversation -->
-    <string name="ConversationFragment_report_spam">Report spam</string>
+    <string name="ConversationFragment_report_spam">လိမ်လည်မှုအဖြစ် ရီပို့(တ်)လုပ်မည်</string>
     <!-- Menu option to block in a conversation -->
     <string name="ConversationFragment_block">ဘလော့ခ်ရန်</string>
     <!-- Menu otpion to accept a message request in a conversation -->
     <string name="ConversationFragment_accept">လက်ခံသည်</string>
     <!-- Menu option to delete an entire chat in a conversation -->
-    <string name="ConversationFragment_delete_chat">Delete chat</string>
+    <string name="ConversationFragment_delete_chat">ချက်(တ်)ကို ဖျက်ရန်</string>
     <!-- Menu option to unblock in a conversation -->
     <string name="ConversationFragment_unblock">ဘလော့ခ်ဖြေရန်</string>
-    <!-- Menu option to report spam in a conversation -->
-    <string name="ConversationFragment_reported_spam">Reported spam</string>
+    <!-- Dialog title shown after reporting spam and tapping the conversation item -->
+    <string name="ConversationFragment_reported_spam">လိမ်လည်မှု ရီပို့(တ်)လုပ်ပြီးပါပြီ</string>
     <!-- Dialog message shown after reporting spam and tapping the conversation item -->
-    <string name="ConversationFragment_reported_spam_message">Signal has been be notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="ConversationFragment_reported_spam_message">Signal has been notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
     <!-- Toast shown after reporting spam and tapping the conversation item -->
-    <string name="ConversationFragment_reported_as_spam">Reported as spam</string>
+    <string name="ConversationFragment_reported_as_spam">လိမ်လည်မှုအဖြစ် ရီပို့(တ်)လုပ်ပြီးပါပြီ</string>
     <!-- Toast shown after reporting and blocking a conversation -->
-    <string name="ConversationFragment_reported_as_spam_and_blocked">Reported as spam and blocked</string>
+    <string name="ConversationFragment_reported_as_spam_and_blocked">လိမ်လည်မှုအဖြစ် ရီပို့(တ်)လုပ်ပြီး ဘလော့ခ်ပြီးပါပြီ</string>
     <!-- Dialog message shown after accepting a message request and tapping on options from the conversation event -->
-    <string name="ConversationFragment_you_accepted_a_message_request_from_s">You accepted a message request from %1$s. If this was a mistake, you can choose an action below.</string>
+    <string name="ConversationFragment_you_accepted_a_message_request_from_s">%1$s ထံမှ မက်ဆေ့ချ်တောင်းဆိုချက်တစ်ခုကို သင် လက်ခံခဲ့ပါသည်။ ၎င်းသည် မှားယွင်းခဲ့ခြင်းဖြစ်ပါက အောက်ပါလုပ်ဆောင်ချက်တစ်ခုကို ရွေးချယ်နိုင်ပါသည်။</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
-    <string name="SafetyTips_title">Safety Tips</string>
+    <string name="SafetyTips_title">ဘေးကင်းရေး အကြံပြုချက်များ</string>
     <!-- Dialog subtitle when showign tips for a 1:1 conversation -->
-    <string name="SafetyTips_subtitle_individual">Be careful when accepting message requests from people you don’t know. Watch out for:</string>
+    <string name="SafetyTips_subtitle_individual">သင်မသိသူများထံမှ မက်ဆေ့ချ်တောင်းဆိုချက်များကို လက်ခံသောအခါ သတိထားပါ။ ဤသည်တို့ကို သတိပြုပါ-</string>
     <!-- Dialog subtitle when showing tips for a group conversation -->
-    <string name="SafetyTips_subtitle_group">Review this request carefully. None of your contacts or people you chat with are in this group. Here are a few things to watch out for:</string>
+    <string name="SafetyTips_subtitle_group">ဤတောင်းဆိုချက်ကို သေချာစွာစိစစ်ပါ။ သင့်အဆက်အသွယ်များ သို့မဟုတ် သင် ချက်(တ်)ထားသူများထဲမှ မည်သူမျှ ဤအဖွဲ့တွင် မပါဝင်ပါ။ ဤသည်တို့မှာ သတိထားရမည့်အချက်အချို့ ဖြစ်ပါသည်-</string>
     <!-- Button text to move to the previous tip-->
-    <string name="SafetyTips_previous_tip">Previous tip</string>
+    <string name="SafetyTips_previous_tip">ယခင်အကြံပြုချက်</string>
     <!-- Button text to move to the next tip -->
-    <string name="SafetyTips_next_tip">Next tip</string>
+    <string name="SafetyTips_next_tip">နောက်ထပ်အကြံပြုချက်</string>
     <!-- Title of tip 1 -->
-    <string name="SafetyTips_tip1_title">Crypto or money scams</string>
+    <string name="SafetyTips_tip1_title">ခရစ်ပ်တို သို့မဟုတ် ငွေကြေး လိမ်လည်မှုများ</string>
     <!-- Message of tip 1 -->
-    <string name="SafetyTips_tip1_message">If someone you don’t know messages about cryptocurrency (like Bitcoin) or an financial opportunity, be careful—it’s likely spam.</string>
+    <string name="SafetyTips_tip1_message">If someone you don’t know messages about cryptocurrency (like Bitcoin) or a financial opportunity, be careful—it’s likely spam.</string>
     <!-- Title of tip 2 -->
-    <string name="SafetyTips_tip2_title">Vague or irrelevant messages</string>
+    <string name="SafetyTips_tip2_title">မရှင်းလင်းသော သို့မဟုတ် မသက်ဆိုင်သော မက်ဆေ့ချ်များ</string>
     <!-- Message of tip 2 -->
-    <string name="SafetyTips_tip2_message">Spammers often start with a simple message like “Hi” to draw you in. If you respond they may engage you further.</string>
+    <string name="SafetyTips_tip2_message">လိမ်လည်ရန်စာပို့သူများသည် \"Hi\" ကဲ့သို့သော ရိုးရှင်းသည့်မက်ဆေ့ချ်ဖြင့် သင့်ကို ဆွဲဆောင်လေ့ရှိပါသည်။ သင် တုံ့ပြန်လိုက်ပါက သင့်ကို ထပ်မံဆက်သွယ်နိုင်ပါသည်။</string>
     <!-- Title of tip 3 -->
-    <string name="SafetyTips_tip3_title">Messages with links</string>
+    <string name="SafetyTips_tip3_title">လင့်ခ်ပါသော မက်ဆေ့ချ်များ</string>
     <!-- Message of tip 3 -->
-    <string name="SafetyTips_tip3_message">Be careful of messages from people you don’t know that have links to websites. Never visit links from people you don’t trust.</string>
+    <string name="SafetyTips_tip3_message">သင်မသိသူများထံမှ ဝက်ဘ်ဆိုက်လင့်ခ်များပါသော မက်ဆေ့ချ်များကို သတိထားပါ။ သင် မယုံကြည်သောသူများထံမှ လင့်ခ်များကို ဘယ်တော့မှဝင်မကြည့်ပါနှင့်။</string>
     <!-- Title of tip 4 -->
-    <string name="SafetyTips_tip4_title">Fake businesses and institutions</string>
+    <string name="SafetyTips_tip4_title">စီးပွားရေးလုပ်ငန်းနှင့် အဖွဲ့အစည်း အတုများ</string>
     <!-- Message of tip 4 -->
-    <string name="SafetyTips_tip4_message">Be careful of businesses or government agencies contacting you. Messages involving tax agencies, couriers, and more can be spam.</string>
+    <string name="SafetyTips_tip4_message">သင့်ထံဆက်သွယ်လာသော စီးပွားရေးလုပ်ငန်း သို့မဟုတ် အစိုးရအေဂျင်စီများကို သတိပြုပါ။ အခွန်အေဂျင်စီများ၊ စာပို့သူများနှင့် အခြားအရာများ ပါဝင်သော မက်ဆေ့ချ်များသည် လိမ်လည်မှုဖြစ်နိုင်ပါသည်။</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">စစ်ထုတ်မှုကို ရှင်းရန်</string>
@@ -574,7 +574,7 @@
     </plurals>
     <string name="ConversationListFragment_deleting">ဖျက်နေသည်</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
-        <item quantity="other">Deleting selected chats…</item>
+        <item quantity="other">ရွေးထားသော ချက်(တ်)များကို ဖျက်နေဆဲ…</item>
     </plurals>
     <plurals name="ConversationListFragment_conversations_archived">
         <item quantity="other">ချက်(တ်) %1$d ခုကို စုစည်းပြီး</item>
@@ -1544,9 +1544,9 @@
     <!-- Body for quote when message being quoted is an in-app payment message -->
     <string name="MessageRecord__payment_s">ငွေပေးချေမှု- %1$s</string>
     <!-- Update message shown in chat after reporting it as spam -->
-    <string name="MessageRecord_reported_as_spam">Reported as spam</string>
+    <string name="MessageRecord_reported_as_spam">လိမ်လည်မှုအဖြစ် ရီပို့(တ်)လုပ်ပြီးပါပြီ</string>
     <!-- Update message shown in chat after accept a message request -->
-    <string name="MessageRecord_you_accepted_the_message_request">You accepted the message request</string>
+    <string name="MessageRecord_you_accepted_the_message_request">မက်ဆေ့ချ် တောင်းဆိုမှုကို သင် လက်ခံခဲ့သည်</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">လက်ခံသည်</string>
@@ -1590,7 +1590,7 @@
         <item quantity="other">%1$d နောက်ထပ်အဖွဲ့များ</item>
     </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
-    <string name="MessageRequestBottomView_report">Report…</string>
+    <string name="MessageRequestBottomView_report">ရီပို့(တ်)လုပ်ရန်…</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">စကားဝှက်များ မတူညီပါ။</string>
@@ -1893,7 +1893,7 @@
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
     <string name="AboutSheet__verified">အတည်ပြုပြီး</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
-    <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string>
+    <string name="AboutSheet__no_direct_message">%1$s နှင့် တိုက်ရိုက်မက်ဆေ့ချ် မရှိပါ</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s သည် သင့်စနစ်ထဲရှိ အဆက်အသွယ်များတွင် ရှိပြီးဖြစ်သည်</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -2221,7 +2221,7 @@
     <string name="UsernameEditFragment_username_is_invalid">သုံးစွဲသူအမည် မမှန်ကန်ပါ</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">သုံးစွဲသူအမည်များသည် %1$d နှင့် %2$d ကြား အက္ခရာလုံး အရေတွက်ရှိရပါမည် ။</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Usernames are always paired with a set of numbers.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">သုံးစွဲသူအမည်များကို ကိန်းဂဏန်းတွဲတစ်ခုနှင့် အမြဲတွဲဖက်ထားပါသည်။</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">ဤနံပါတ်က ဘာလဲ။</string>
     <string name="UsernameEditFragment__these_digits_help_keep">ဤဂဏန်းများသည် သင့်သုံးစွဲသူအမည်ကို သီးသန့်လျှို့ဝှက်ပေးထားသောကြောင့် မလိုချင်သည့် မက်ဆေ့ချ်များ ရရှိခြင်းမှ ရှောင်နိုင်ပါသည်။ သင့်သုံးစွဲသူအမည်ကို သင် ချက်(တ်)လိုသည့် လူများ၊ အဖွဲ့များထံသာ ဝေမျှပါ။ သုံးစွဲသူအမည်ကို ပြောင်းလိုက်ပါက ဂဏန်းတွဲအသစ်တစ်ခုကို ရရှိပါမည်။</string>
@@ -2237,8 +2237,8 @@
     <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">သုံးစွဲသူအမည် မမှန်ကန်ပါ၊ အများဆုံး ဂဏန်း %1$d လုံး ရိုက်ထည့်ပါ။</string>
     <!-- Displayed when the chosen discriminator is 00 -->
     <string name="UsernameEditFragment__this_number_cant_be_00">ဤနံပါတ်သည် 00 ဖြစ်၍မရပါ။ 1–9 အကြား ကိန်းဂဏန်းတစ်ခု ရိုက်ထည့်ပါ</string>
-    <!-- Displayed when the chosen discriminator starts with 00 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_00">ဤနံပါတ်သည် 00 ဖြင့် စတင်၍မရပါ။ 1–9 အကြား ကိန်းဂဏန်းတစ်ခု ရိုက်ထည့်ပါ</string>
+    <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">Numbers with more than 2 digits can\'t start with 0</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">သင်၏ သုံးစွဲသူအမည်ကို ပြန်လည်ရယူပါက သင့်မူလ QR ကုဒ်နှင့် လင့်ခ်ကို ပြန်လည်သတ်မှတ်လိုက်ပါမည်။ သေချာပါသလား။</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
@@ -2635,7 +2635,7 @@
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">ဤလူကို ဖယ်ရှားထားပါသည်၊ ထိုသူတို့ထံ မက်ဆေ့ချ်ပို့ခြင်းဖြင့် ထိုသူတို့ကို သင့်စာရင်းတွင် ပြန်လည်ပေါင်းထည့်ပေးသွားပါမည်။</string>
     <!-- Update item button text shown for the accepted message request update message -->
-    <string name="ConversationUpdateItem_options">Options</string>
+    <string name="ConversationUpdateItem_options">ရွေးချယ်စရာများ</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">ဖွင့်မယ် … ခေတ္တရပ်မယ်</string>
@@ -4019,9 +4019,9 @@
 
     <!-- ReviewCardDialogFragment -->
     <!-- Title of a screen where the user will be prompted to review group members with the same name -->
-    <string name="ReviewCardDialogFragment__review_members">Review members</string>
+    <string name="ReviewCardDialogFragment__review_members">မန်ဘာများကို ပြန်လည်သုံးသပ်ရန်</string>
     <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
-    <string name="ReviewCardDialogFragment__review_request">Review request</string>
+    <string name="ReviewCardDialogFragment__review_request">ပြန်လည်သုံးသပ်မှု တောင်းဆိုချက်</string>
     <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">အဖွဲ့ဝင် %1$d ဦးသည် အမည်တူနေပါသည်၊ အောက်ပါအဖွဲ့ဝင်များကို စစ်ဆေးပါ သို့မဟုတ် လုပ်ဆောင်ချက်တစ်ခုလုပ်ရန် ရွေးချယ်ပါ။</string>
     <string name="ReviewCardDialogFragment__if_youre_not_sure">မည်သူမှ တောင်းဆိုသည်ကို မသေချာပါက အောက်ပါ အဆက်အသွယ်များကို ပြန်လည်စစ်ဆေးပြီး လုပ်ဆောင်ချက်တစ်ခု ရွေးပါ။</string>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">အခြား တူညီသော အဖွဲ့များမရှိပါ</string>
@@ -6351,7 +6351,7 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">သင်၏လင့်ခ်ကို ပြန်လည်သတ်မှတ်ရန် ကြိုးစားစဉ် ကွန်ရက်ချို့ယွင်းချက်တစ်ခု ဖြစ်ပွားခဲ့ပါသည်။ နောက်မှ ထပ်ကြိုးစားကြည့်ပါ။</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
-    <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">သင်၏လင့်ခ်ကို ပြန်လည်သတ်မှတ်ရန် ကြိုးစားနေစဉ် မမျှော်လင့်သော ချို့ယွင်းချက်တစ်ခု ဖြစ်သွားပါသည်။ နောက်မှ ထပ်ကြိုးစားကြည့်ပါ။</string>
     <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
     <string name="UsernameLinkSettings_reset_link_result_success">သင့် QR ကုဒ်နှင့် လင့်ခ်ကို ပြန်လည်သတ်မှတ်လိုက်ပြီဖြစ်ပြီး QR ကုဒ်နှင့် လင့်ခ် အသစ်တစ်ခုကို ဖန်တီးလိုက်ပါပြီ။</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
@@ -6422,7 +6422,7 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">ဖုန်းနံပါတ်</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_username_description">Enter a username followed by a dot and its set of numbers.</string>
+    <string name="FindByActivity__enter_username_description">သုံးစွဲသူအမည်ကို ၎င်း၏နောက်တွင် အစက်တစ်စက်နှင့် ကိန်းဂဏန်းတွဲတစ်ခုနှင့်အတူ ရိုက်ထည့်ပါ။</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">ဆက်သွားမည်</string>
     <!-- Placeholder text for search input for selecting country code -->

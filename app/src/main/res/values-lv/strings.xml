@@ -504,7 +504,7 @@
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d grupas dalībniekiem ir vienāds vārds.</string>
     <string name="ConversationFragment__tap_to_review">Pieskarties, lai pārskatītu</string>
     <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
-    <string name="ConversationFragment__review_banner_body">This person has the same name as another contact</string>
+    <string name="ConversationFragment__review_banner_body">Šai personai ir tāds pats vārds kā citai kontaktpersonai</string>
     <string name="ConversationFragment_contact_us">Sazināties ar mums</string>
     <string name="ConversationFragment_verify">Pārbaudīt</string>
     <string name="ConversationFragment_not_now">Ne tagad</string>
@@ -542,10 +542,10 @@
     <string name="ConversationFragment_delete_chat">Dzēst sarunu</string>
     <!-- Menu option to unblock in a conversation -->
     <string name="ConversationFragment_unblock">Atbloķēt</string>
-    <!-- Menu option to report spam in a conversation -->
+    <!-- Dialog title shown after reporting spam and tapping the conversation item -->
     <string name="ConversationFragment_reported_spam">Ziņots par surogātpastu</string>
     <!-- Dialog message shown after reporting spam and tapping the conversation item -->
-    <string name="ConversationFragment_reported_spam_message">Signal saņēma ziņu, ka šī persona, iespējams, sūta surogātpastu. Signal pārstāvjiem nav redzams nevienas sarunas saturs.</string>
+    <string name="ConversationFragment_reported_spam_message">Signal has been notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
     <!-- Toast shown after reporting spam and tapping the conversation item -->
     <string name="ConversationFragment_reported_as_spam">Atzīmēts kā surogātpasts</string>
     <!-- Toast shown after reporting and blocking a conversation -->
@@ -566,7 +566,7 @@
     <!-- Title of tip 1 -->
     <string name="SafetyTips_tip1_title">Kriptovalūtu vai naudas krāpšana</string>
     <!-- Message of tip 1 -->
-    <string name="SafetyTips_tip1_message">Ja nepazīstama persona jums atsūta ziņu par kriptovalūtām (piemēram, Bitcoin) vai par izdevību nopelnīt, uzmanieties — tas, visticamāk, ir surogātpasts.</string>
+    <string name="SafetyTips_tip1_message">If someone you don’t know messages about cryptocurrency (like Bitcoin) or a financial opportunity, be careful—it’s likely spam.</string>
     <!-- Title of tip 2 -->
     <string name="SafetyTips_tip2_title">Neskaidras vai neatbilstošas ziņas</string>
     <!-- Message of tip 2 -->
@@ -2381,7 +2381,7 @@
     <string name="UsernameEditFragment_username_is_invalid">Lietotājvārds nav derīgs.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Lietotājvārdiem jābūt starp %1$d un %2$d rakstzīmēm.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Usernames are always paired with a set of numbers.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">Lietotājvārdiem vienmēr ir piesaistīta ciparu kombinācija.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">Ko nozīmē šis numurs?</string>
     <string name="UsernameEditFragment__these_digits_help_keep">Šie cipari palīdz saglabāt jūsu lietotājvārdu slepenībā un izvairīties no nevēlamām ziņām. Izpaudiet savu lietotājvārdu tikai lietotājiem un grupām, ar kurām vēlaties čatot. Ja mainīsiet lietotājvārdu, saņemsiet jaunu ciparu virkni.</string>
@@ -2397,8 +2397,8 @@
     <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Nederīgs lietotājvārds. Ievadiet ne vairāk kā %1$d skaitļus.</string>
     <!-- Displayed when the chosen discriminator is 00 -->
     <string name="UsernameEditFragment__this_number_cant_be_00">Šis numurs nedrīkst būt 00. Ievadiet ciparu no 1 līdz 9.</string>
-    <!-- Displayed when the chosen discriminator starts with 00 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_00">Šis numurs nedrīkst sākties ar 00. Ievadiet ciparu no 1 līdz 9.</string>
+    <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">Numbers with more than 2 digits can\'t start with 0</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">Mainot lietotājvārdu, tiks atiestatīts esošais QR kods un saite. Vai tiešām turpināt?</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
@@ -4231,9 +4231,9 @@
 
     <!-- ReviewCardDialogFragment -->
     <!-- Title of a screen where the user will be prompted to review group members with the same name -->
-    <string name="ReviewCardDialogFragment__review_members">Review members</string>
+    <string name="ReviewCardDialogFragment__review_members">Pārskatīt dalībniekus</string>
     <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
-    <string name="ReviewCardDialogFragment__review_request">Review request</string>
+    <string name="ReviewCardDialogFragment__review_request">Pārskatīt pieprasījumu</string>
     <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d grupas dalībniekiem ir vienāds vārds; pārskatiet tālāk norādītos dalībniekus un izvēlieties rīkoties.</string>
     <string name="ReviewCardDialogFragment__if_youre_not_sure">Ja nezināt, no kā ir pieprasījums, pārskatiet tālāk norādītās kontaktpersonas un rīkojieties.</string>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">Nav citu kopīgu grupu.</string>
@@ -6708,7 +6708,7 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">Tālruņa numurs</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_username_description">Enter a username followed by a dot and its set of numbers.</string>
+    <string name="FindByActivity__enter_username_description">Ievadiet lietotāja vārdu, lieciet aiz tā punktu un tad ierakstiet tam piesaistīto ciparu kombināciju.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">Tālāk</string>
     <!-- Placeholder text for search input for selecting country code -->

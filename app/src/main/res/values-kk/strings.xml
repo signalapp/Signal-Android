@@ -180,17 +180,17 @@
     <string name="BlockUnblockDialog_block">Блоктау</string>
     <string name="BlockUnblockDialog_block_and_leave">Блоктап, шығып кету</string>
     <!-- Dialog button label to report as spam and block the person -->
-    <string name="BlockUnblockDialog_report_spam_and_block">Report and block</string>
+    <string name="BlockUnblockDialog_report_spam_and_block">Хабарлау және блоктау</string>
     <!-- Dialog title for reporting spam -->
-    <string name="BlockUnblockDialog_report_spam_title">Report spam?</string>
+    <string name="BlockUnblockDialog_report_spam_title">Спам деп хабарлау керек пе?</string>
     <!-- Dialog button to report as spam only -->
-    <string name="BlockUnblockDialog_report_spam">Report spam</string>
+    <string name="BlockUnblockDialog_report_spam">Спам деп хабарлау</string>
     <!-- Dialog message when reporting spam of an individual (1:1 conversation) -->
-    <string name="BlockUnblockDialog_report_spam_description">Signal will be notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="BlockUnblockDialog_report_spam_description">Бұл адамның спам жіберіп жатуы мүмкін екендігі туралы Signal-ға хабарландыру жіберіледі. Signal ешбір чатта не жазылып жатқанын көре алмайды.</string>
     <!-- Dialog message when reporting spam of a group and we can determine the group member that invited you, placeholder is a name -->
-    <string name="BlockUnblockDialog_report_spam_group_named_adder">Signal will be notified that %1$s, who invited you to this group, may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="BlockUnblockDialog_report_spam_group_named_adder">Сізді осы топқа шақырған %1$s спам жіберген жағдайда Signal ол туралы хабарландыру алады. Signal ешбір чатта не жазылып жатқанын көре алмайды.</string>
     <!-- Dialog message when reporting spam of a group and we cannot determine the group member that invited you -->
-    <string name="BlockUnblockDialog_report_spam_group_unknown_adder">Signal will be notified that the person who invited you to this group may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="BlockUnblockDialog_report_spam_group_unknown_adder">Сізді осы топқа шақырған адам спам жіберген жағдайда Signal ол туралы хабарландыру алады. Signal ешбір чатта не жазылып жатқанын көре алмайды.</string>
 
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">Бүгін</string>
@@ -495,7 +495,7 @@
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d топ мүшесінің аты бірдей.</string>
     <string name="ConversationFragment__tap_to_review">Көру үшін түртіңіз</string>
     <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
-    <string name="ConversationFragment__review_banner_body">This person has the same name as another contact</string>
+    <string name="ConversationFragment__review_banner_body">Бұл адамның аты басқа контактінің атымен бірдей</string>
     <string name="ConversationFragment_contact_us">Байланыс мәліметі</string>
     <string name="ConversationFragment_verify">Тексеру</string>
     <string name="ConversationFragment_not_now">Кейін</string>
@@ -522,54 +522,54 @@
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
     <string name="ConversationFragment__no_longer_verified">Бұдан былай верификацияланбайды</string>
     <!-- Button shown in conversation header when in a message request state and no groups in common to show new message safety tips -->
-    <string name="ConversationFragment_safety_tips">Safety tips</string>
+    <string name="ConversationFragment_safety_tips">Қауіпсіздікке қатысты кеңестер</string>
     <!-- Menu option to report spam in a conversation -->
-    <string name="ConversationFragment_report_spam">Report spam</string>
+    <string name="ConversationFragment_report_spam">Спам деп хабарлау</string>
     <!-- Menu option to block in a conversation -->
     <string name="ConversationFragment_block">Блоктау</string>
     <!-- Menu otpion to accept a message request in a conversation -->
     <string name="ConversationFragment_accept">Қабылдау</string>
     <!-- Menu option to delete an entire chat in a conversation -->
-    <string name="ConversationFragment_delete_chat">Delete chat</string>
+    <string name="ConversationFragment_delete_chat">Чатты жою</string>
     <!-- Menu option to unblock in a conversation -->
     <string name="ConversationFragment_unblock">Блоктан шығару</string>
-    <!-- Menu option to report spam in a conversation -->
-    <string name="ConversationFragment_reported_spam">Reported spam</string>
+    <!-- Dialog title shown after reporting spam and tapping the conversation item -->
+    <string name="ConversationFragment_reported_spam">Спам деп хабарланды</string>
     <!-- Dialog message shown after reporting spam and tapping the conversation item -->
-    <string name="ConversationFragment_reported_spam_message">Signal has been be notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="ConversationFragment_reported_spam_message">Signal has been notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
     <!-- Toast shown after reporting spam and tapping the conversation item -->
-    <string name="ConversationFragment_reported_as_spam">Reported as spam</string>
+    <string name="ConversationFragment_reported_as_spam">Спам деп хабарланды</string>
     <!-- Toast shown after reporting and blocking a conversation -->
-    <string name="ConversationFragment_reported_as_spam_and_blocked">Reported as spam and blocked</string>
+    <string name="ConversationFragment_reported_as_spam_and_blocked">Спам деп хабарланып, блокталды</string>
     <!-- Dialog message shown after accepting a message request and tapping on options from the conversation event -->
-    <string name="ConversationFragment_you_accepted_a_message_request_from_s">You accepted a message request from %1$s. If this was a mistake, you can choose an action below.</string>
+    <string name="ConversationFragment_you_accepted_a_message_request_from_s">%1$s деген кісіден хат алмасуға деген өтінішті қабылдадыңыз. Егер байқамай қабылдап қойсаңыз, төмендегі әрекетті орындауыңызға болады.</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
-    <string name="SafetyTips_title">Safety Tips</string>
+    <string name="SafetyTips_title">Қауіпсіздікке қатысты кеңестер</string>
     <!-- Dialog subtitle when showign tips for a 1:1 conversation -->
-    <string name="SafetyTips_subtitle_individual">Be careful when accepting message requests from people you don’t know. Watch out for:</string>
+    <string name="SafetyTips_subtitle_individual">Бейтаныс адамдардың хат арқылы жіберетін өтініштеріне сақ болыңыз. Мынадай хаттардан сақ болыңыз:</string>
     <!-- Dialog subtitle when showing tips for a group conversation -->
-    <string name="SafetyTips_subtitle_group">Review this request carefully. None of your contacts or people you chat with are in this group. Here are a few things to watch out for:</string>
+    <string name="SafetyTips_subtitle_group">Осы өтінішті мұқият қарап шығыңыз. Бұл топта сіздің контактілеріңіз немесе ортақ чатыңыз бар адам жоқ. Төменде назар аударуды қажет ететін бірнеше мәселе қарастырылған:</string>
     <!-- Button text to move to the previous tip-->
-    <string name="SafetyTips_previous_tip">Previous tip</string>
+    <string name="SafetyTips_previous_tip">Алдыңғы кеңес</string>
     <!-- Button text to move to the next tip -->
-    <string name="SafetyTips_next_tip">Next tip</string>
+    <string name="SafetyTips_next_tip">Келесі кеңес</string>
     <!-- Title of tip 1 -->
-    <string name="SafetyTips_tip1_title">Crypto or money scams</string>
+    <string name="SafetyTips_tip1_title">Криптовалютаға немесе ақшаға қатысты алаяқтық</string>
     <!-- Message of tip 1 -->
-    <string name="SafetyTips_tip1_message">If someone you don’t know messages about cryptocurrency (like Bitcoin) or an financial opportunity, be careful—it’s likely spam.</string>
+    <string name="SafetyTips_tip1_message">If someone you don’t know messages about cryptocurrency (like Bitcoin) or a financial opportunity, be careful—it’s likely spam.</string>
     <!-- Title of tip 2 -->
-    <string name="SafetyTips_tip2_title">Vague or irrelevant messages</string>
+    <string name="SafetyTips_tip2_title">Күмәнді немесе тақырыпқа қатысы жоқ хаттар</string>
     <!-- Message of tip 2 -->
-    <string name="SafetyTips_tip2_message">Spammers often start with a simple message like “Hi” to draw you in. If you respond they may engage you further.</string>
+    <string name="SafetyTips_tip2_message">Спам жіберушілер әдетте сіздің назарыңызды аудару үшін жай ғана \"Сәлем\" деп бастайды. Ондай хаттарға жауап берсеңіз, олар сізді әрі қарай қызықтыра түседі.</string>
     <!-- Title of tip 3 -->
-    <string name="SafetyTips_tip3_title">Messages with links</string>
+    <string name="SafetyTips_tip3_title">Сілтемесі бар хаттар</string>
     <!-- Message of tip 3 -->
-    <string name="SafetyTips_tip3_message">Be careful of messages from people you don’t know that have links to websites. Never visit links from people you don’t trust.</string>
+    <string name="SafetyTips_tip3_message">Қандай да бір веб-сайттарға сілтеме берген бейтаныс адамдардың хаттарынан қауіптене берсеңіз болады. Сенімсіз адамдардан келген сілтемелерді мүлде ашпаңыз.</string>
     <!-- Title of tip 4 -->
-    <string name="SafetyTips_tip4_title">Fake businesses and institutions</string>
+    <string name="SafetyTips_tip4_title">Жалған компаниялар мен мекемелер</string>
     <!-- Message of tip 4 -->
-    <string name="SafetyTips_tip4_message">Be careful of businesses or government agencies contacting you. Messages involving tax agencies, couriers, and more can be spam.</string>
+    <string name="SafetyTips_tip4_message">Сізге хабарласқан компаниялардан немесе мемлекеттік органдардан сақ болыңыз. Салық агенттіктерінен, курьерлерден және т.с.с. келген хаттар спам болуы мүмкін.</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Сүзгіні тазалау</string>
@@ -585,8 +585,8 @@
     </plurals>
     <string name="ConversationListFragment_deleting">Жою</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
-        <item quantity="one">Deleting selected chat…</item>
-        <item quantity="other">Deleting selected chats…</item>
+        <item quantity="one">Таңдалған чатты жою…</item>
+        <item quantity="other">Таңдалған чаттарды жою…</item>
     </plurals>
     <plurals name="ConversationListFragment_conversations_archived">
         <item quantity="one">Чат мұрағатталды</item>
@@ -1599,9 +1599,9 @@
     <!-- Body for quote when message being quoted is an in-app payment message -->
     <string name="MessageRecord__payment_s">Төлем: %1$s</string>
     <!-- Update message shown in chat after reporting it as spam -->
-    <string name="MessageRecord_reported_as_spam">Reported as spam</string>
+    <string name="MessageRecord_reported_as_spam">Спам деп хабарланды</string>
     <!-- Update message shown in chat after accept a message request -->
-    <string name="MessageRecord_you_accepted_the_message_request">You accepted the message request</string>
+    <string name="MessageRecord_you_accepted_the_message_request">Хат алмасу туралы өтінішті қабылдадыңыз</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Қабылдау</string>
@@ -1649,7 +1649,7 @@
         <item quantity="other">Қосымша %1$d топ</item>
     </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
-    <string name="MessageRequestBottomView_report">Report…</string>
+    <string name="MessageRequestBottomView_report">Хабарлау…</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Құпия сөйлемдер сәйкес келмейді!</string>
@@ -1967,7 +1967,7 @@
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
     <string name="AboutSheet__verified">Тексерілді</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
-    <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string>
+    <string name="AboutSheet__no_direct_message">%1$s деген кісімен тікелей хат алмаспағансыз</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s сіздің жүйелік контактілеріңізде бар</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -2301,7 +2301,7 @@
     <string name="UsernameEditFragment_username_is_invalid">Пайдаланушы аты дұрыс емес.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Пайдаланушы аттары %1$d және %2$d таңба аралығында болуы керек.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Usernames are always paired with a set of numbers.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">Пайдаланушы аттары міндетті түрде сандар жинағымен жұптасады.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">Бұл қандай нөмір?</string>
     <string name="UsernameEditFragment__these_digits_help_keep">Бұл цифрлар пайдаланушы атыңызды құпия сақтайды, соның арқасында қажетсіз хаттар алмайсыз. Пайдаланушы атыңызды тек сөйлескіңіз келетін адамдармен және топтармен бөлісіңіз. Пайдаланушы атыңызды өзгертсеңіз, сізге жаңа цифрлар жинағы беріледі.</string>
@@ -2317,8 +2317,8 @@
     <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Пайдаланушы аты дұрыс емес, ең көбі %1$d сан енгізіңіз.</string>
     <!-- Displayed when the chosen discriminator is 00 -->
     <string name="UsernameEditFragment__this_number_cant_be_00">Бұл нөмір 00 болмауы керек. 1 және 9 аралығындағы санды енгізіңіз</string>
-    <!-- Displayed when the chosen discriminator starts with 00 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_00">Бұл нөмір 00-ден басталмауы керек. 1 және 9 аралығындағы санды енгізіңіз</string>
+    <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">Numbers with more than 2 digits can\'t start with 0</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">Пайдаланушы атыңызды қалпына келтірсеңіз, бұрынғы QR кодыңыз бен сілтемеңіз де қайта орнатылады. Сенімдісіз бе?</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
@@ -2722,7 +2722,7 @@
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">Бұл адамды өшіріп тастағансыз, онымен қайта хат алмассаңыз, ол кісі тізіміңізге тағы қосылады.</string>
     <!-- Update item button text shown for the accepted message request update message -->
-    <string name="ConversationUpdateItem_options">Options</string>
+    <string name="ConversationUpdateItem_options">Опциялар</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Ойнату … Кідірту</string>
@@ -4125,9 +4125,9 @@
 
     <!-- ReviewCardDialogFragment -->
     <!-- Title of a screen where the user will be prompted to review group members with the same name -->
-    <string name="ReviewCardDialogFragment__review_members">Review members</string>
+    <string name="ReviewCardDialogFragment__review_members">Топ мүшелерін қарап шығу</string>
     <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
-    <string name="ReviewCardDialogFragment__review_request">Review request</string>
+    <string name="ReviewCardDialogFragment__review_request">Өтінішті қарап шығу</string>
     <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d топ мүшесінің аттары бірдей, төмендегі топ мүшелерін қарап шығып, тиісті шара қолданыңыз.</string>
     <string name="ReviewCardDialogFragment__if_youre_not_sure">Бұл өтініштің кімнен келгенін біле алмасаңыз, төмендегі контактілерді қарап шығып, тиісті шара қолданыңыз.</string>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">Басқа ортақ топтар жоқ.</string>
@@ -6492,7 +6492,7 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">Сілтемені қалпына келтіріп жатқанда желі қатесі пайда болды. Кейінірек қайталап көріңіз.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
-    <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">Сілтемені қалпына келтіру кезінде күтпеген қате шықты. Кейінірек қайталап көріңіз.</string>
     <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
     <string name="UsernameLinkSettings_reset_link_result_success">QR кодыңыз бен сілтемеңіз қалпына келтірілді және жаңа QR коды мен сілтеме жасалды.</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
@@ -6565,7 +6565,7 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">Телефон нөмірі</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_username_description">Enter a username followed by a dot and its set of numbers.</string>
+    <string name="FindByActivity__enter_username_description">Пайдаланушы атынан кейін нүкте қойып, сандар жинағын енгізіңіз.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">Келесі</string>
     <!-- Placeholder text for search input for selecting country code -->

@@ -43,11 +43,11 @@
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Du hast noch keine Passphrase festgelegt!</string>
     <string name="ApplicationPreferencesActivity_disable_passphrase">Passphrase deaktivieren?</string>
-    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Dies entsperrt dauerhaft Signal und Benachrichtigungen über Nachrichten.</string>
+    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Dies entsperrt Signal und Benachrichtigungen über Nachrichten dauerhaft.</string>
     <string name="ApplicationPreferencesActivity_disable">Deaktivieren</string>
     <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signal-Nachrichten und ‑Anrufe deaktivieren?</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Signal-Nachrichten und ‑Anrufe durch Löschen deiner Registrierung vom Server deaktivieren. Du wirst deine Telefonnummer erneut registrieren müssen, um zukünftig wieder verschlüsselt zu kommunizieren.</string>
-    <string name="ApplicationPreferencesActivity_error_connecting_to_server">Fehler beim Verbinden mit Server!</string>
+    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Signal-Nachrichten und ‑Anrufe durch Löschen deiner Registrierung vom Server deaktivieren. Du musst deine Telefonnummer erneut registrieren um in Zukunft wieder mit Signal zu kommunizieren.</string>
+    <string name="ApplicationPreferencesActivity_error_connecting_to_server">Fehler beim Verbinden mit dem Server!</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PINs sind für die Registrierungssperre erforderlich. Zum Deaktivieren deiner PIN musst du daher zuerst auch die Registrierungssperre deaktivieren.</string>
     <string name="ApplicationPreferencesActivity_pin_created">PIN erstellt.</string>
     <string name="ApplicationPreferencesActivity_pin_disabled">PIN deaktiviert.</string>
@@ -109,7 +109,7 @@
 
     <!-- Fcm notifications -->
     <!-- Notification we show when there may be messages for you, but we cannot connect to the server to check -->
-    <string name="FcmFetchManager__you_may_have_messages">Du hast vielleicht neue Nachrichten</string>
+    <string name="FcmFetchManager__you_may_have_messages">Du könntest neue Nachrichten haben</string>
 
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">Blockierte Nutzer</string>
@@ -175,22 +175,22 @@
     <!-- Message shown on block dialog when blocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Signal-Versionshinweise und Neuigkeiten blockieren.</string>
     <!-- Message shown on unblock dialog when unblocking the Signal release notes recipient -->
-    <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Signal-Versionshinweise und Neuigkeiten entsperren</string>
+    <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Signal-Versionshinweise und Neuigkeiten wieder erhalten</string>
     <string name="BlockUnblockDialog_unblock_s">%1$s freigeben?</string>
     <string name="BlockUnblockDialog_block">Blockieren</string>
     <string name="BlockUnblockDialog_block_and_leave">Blockieren und verlassen</string>
     <!-- Dialog button label to report as spam and block the person -->
-    <string name="BlockUnblockDialog_report_spam_and_block">Report and block</string>
+    <string name="BlockUnblockDialog_report_spam_and_block">Melden und blockieren</string>
     <!-- Dialog title for reporting spam -->
-    <string name="BlockUnblockDialog_report_spam_title">Report spam?</string>
+    <string name="BlockUnblockDialog_report_spam_title">Spam melden?</string>
     <!-- Dialog button to report as spam only -->
-    <string name="BlockUnblockDialog_report_spam">Report spam</string>
+    <string name="BlockUnblockDialog_report_spam">Spam melden</string>
     <!-- Dialog message when reporting spam of an individual (1:1 conversation) -->
-    <string name="BlockUnblockDialog_report_spam_description">Signal will be notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="BlockUnblockDialog_report_spam_description">Signal wird benachrichtigt, dass diese Person möglicherweise Spam versendet. Signal kann den Inhalt von Chats nicht sehen.</string>
     <!-- Dialog message when reporting spam of a group and we can determine the group member that invited you, placeholder is a name -->
-    <string name="BlockUnblockDialog_report_spam_group_named_adder">Signal will be notified that %1$s, who invited you to this group, may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="BlockUnblockDialog_report_spam_group_named_adder">Signal wird benachrichtigt, dass %1$s, der dich zu dieser Gruppe eingeladen hat, möglicherweise Spam versendet. Signal kann den Inhalt von Chats nicht sehen.</string>
     <!-- Dialog message when reporting spam of a group and we cannot determine the group member that invited you -->
-    <string name="BlockUnblockDialog_report_spam_group_unknown_adder">Signal will be notified that the person who invited you to this group may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="BlockUnblockDialog_report_spam_group_unknown_adder">Signal wird benachrichtigt, dass die Person, die dich zu dieser Gruppe eingeladen hat, möglicherweise Spam versendet. Signal kann den Inhalt von Chats nicht sehen.</string>
 
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">Heute</string>
@@ -254,12 +254,12 @@
     <string name="CommunicationActions_call">Anrufen</string>
     <string name="CommunicationActions_insecure_call">Unverschlüsselter Anruf</string>
     <string name="CommunicationActions_carrier_charges_may_apply">Möglicherweise fallen Mobilfunkgebühren an. Die gewählte Telefonnummer ist nicht bei Signal registriert. Daher wird dieser Anruf über deinen Mobilfunkanbieter und nicht über das Internet erfolgen.</string>
-    <string name="CommunicationActions_cant_join_call">Anrufbeitritt nicht möglich</string>
+    <string name="CommunicationActions_cant_join_call">Beitreten des Anrufs nicht möglich</string>
     <string name="CommunicationActions_this_call_link_is_no_longer_valid">Dieser Anruflink ist nicht mehr gültig.</string>
     <!-- Title on dialog when call link url cannot be parsed -->
     <string name="CommunicationActions_invalid_link">Ungültiger Link</string>
     <!-- Message on dialog when call link url cannot be parsed -->
-    <string name="CommunicationActions_this_is_not_a_valid_call_link">Dies ist kein gültiger Anruflink. Vergewissere dich, dass der gesamte Link vollständig und fehlerfrei ist, bevor du versuchst, dich anzumelden.</string>
+    <string name="CommunicationActions_this_is_not_a_valid_call_link">Dies ist kein gültiger Anruflink. Vergewissere dich, dass der Link vollständig und fehlerfrei ist, bevor du versuchst, teilzunehmen.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -309,9 +309,9 @@
     <string name="ConversationItem_error_network_not_delivered">Versand gescheitert</string>
     <string name="ConversationItem_group_action_left">%1$s hat die Gruppe verlassen.</string>
     <string name="ConversationItem_send_paused">Senden pausiert</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Versand gescheitert. Für Rückgriff auf unverschlüsselten Versand antippen.</string>
-    <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Rückgriff auf unverschlüsselte SMS?</string>
-    <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Rückgriff auf unverschlüsselte MMS?</string>
+    <string name="ConversationItem_click_to_approve_unencrypted">Versand gescheitert. Antippen um auf unverschlüsselten Versand auszuweichen.</string>
+    <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Auf unverschlüsselte SMS ausweichen?</string>
+    <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Auf unverschlüsselte MMS ausweichen?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Diese Nachricht wird <b>nicht</b> verschlüsselt, da der Empfänger Signal nicht mehr verwendet.\n\nUnverschlüsselte Nachricht senden?</string>
     <string name="ConversationItem_unable_to_open_media">Keine App zum Öffnen dieser Medieninhalte gefunden.</string>
     <string name="ConversationItem_copied_text">%1$s kopiert</string>
@@ -333,7 +333,7 @@
     <!-- Dialog error message shown when user can\'t download a their own image message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_image_you_will_need_to_send_it_again">Bild kann nicht heruntergeladen werden. Du musst es erneut verschicken.</string>
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
-    <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Nachricht kann nicht heruntergeladen werden. Du musst es erneut verschicken.</string>
+    <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Video kann nicht heruntergeladen werden. Du musst es erneut verschicken.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp represents a message that has been edited within the last minute. -->
     <string name="ConversationItem_edited_now_timestamp_footer">Wurde eben bearbeitet</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. This is displayed when the edit has occurred between 1-59 minutes ago. -->
@@ -380,7 +380,7 @@
     <string name="ConversationActivity_attachment_exceeds_size_limits">Anhang zu groß für die zu sendende Nachrichtenart.</string>
     <string name="ConversationActivity_unable_to_record_audio">Audioaufnahme nicht möglich!</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">Du kannst keine Nachrichten an diese Gruppe senden, da du kein Gruppenmitglied mehr bist.</string>
-    <string name="ConversationActivity_only_s_can_send_messages">Nur %1$s dürfen Nachrichten senden.</string>
+    <string name="ConversationActivity_only_s_can_send_messages">Nur %1$s können Nachrichten senden.</string>
     <string name="ConversationActivity_admins">Admins</string>
     <string name="ConversationActivity_message_an_admin">Schreib einem Admin</string>
     <string name="ConversationActivity_cant_start_group_call">Starten eines Gruppenanrufs nicht möglich</string>
@@ -472,7 +472,7 @@
         <item quantity="other">%1$d Anhänge werden im Gerätespeicher gespeichert …</item>
     </plurals>
     <string name="ConversationFragment_pending">Ausstehend …</string>
-    <string name="ConversationFragment_push">Internet (Signal Protocol)</string>
+    <string name="ConversationFragment_push">Internet (Signal- Protokoll)</string>
     <string name="ConversationFragment_mms">MMS</string>
     <string name="ConversationFragment_sms">SMS</string>
     <string name="ConversationFragment_deleting">Löschen</string>
@@ -495,7 +495,7 @@
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d Gruppenmitglieder haben denselben Namen.</string>
     <string name="ConversationFragment__tap_to_review">Zum Prüfen antippen</string>
     <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
-    <string name="ConversationFragment__review_banner_body">This person has the same name as another contact</string>
+    <string name="ConversationFragment__review_banner_body">Diese Person hat denselben Namen wie ein anderer Kontakt</string>
     <string name="ConversationFragment_contact_us">Kontaktiere uns</string>
     <string name="ConversationFragment_verify">Verifizieren</string>
     <string name="ConversationFragment_not_now">Jetzt nicht</string>
@@ -522,54 +522,54 @@
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
     <string name="ConversationFragment__no_longer_verified">Nicht mehr verifiziert</string>
     <!-- Button shown in conversation header when in a message request state and no groups in common to show new message safety tips -->
-    <string name="ConversationFragment_safety_tips">Safety tips</string>
+    <string name="ConversationFragment_safety_tips">Sicherheitstipps</string>
     <!-- Menu option to report spam in a conversation -->
-    <string name="ConversationFragment_report_spam">Report spam</string>
+    <string name="ConversationFragment_report_spam">Spam melden</string>
     <!-- Menu option to block in a conversation -->
     <string name="ConversationFragment_block">Blockieren</string>
     <!-- Menu otpion to accept a message request in a conversation -->
     <string name="ConversationFragment_accept">Annehmen</string>
     <!-- Menu option to delete an entire chat in a conversation -->
-    <string name="ConversationFragment_delete_chat">Delete chat</string>
+    <string name="ConversationFragment_delete_chat">Chat löschen</string>
     <!-- Menu option to unblock in a conversation -->
     <string name="ConversationFragment_unblock">Freigeben</string>
-    <!-- Menu option to report spam in a conversation -->
-    <string name="ConversationFragment_reported_spam">Reported spam</string>
+    <!-- Dialog title shown after reporting spam and tapping the conversation item -->
+    <string name="ConversationFragment_reported_spam">Spam gemeldet</string>
     <!-- Dialog message shown after reporting spam and tapping the conversation item -->
-    <string name="ConversationFragment_reported_spam_message">Signal has been be notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="ConversationFragment_reported_spam_message">Signal has been notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
     <!-- Toast shown after reporting spam and tapping the conversation item -->
-    <string name="ConversationFragment_reported_as_spam">Reported as spam</string>
+    <string name="ConversationFragment_reported_as_spam">Als Spam gemeldet</string>
     <!-- Toast shown after reporting and blocking a conversation -->
-    <string name="ConversationFragment_reported_as_spam_and_blocked">Reported as spam and blocked</string>
+    <string name="ConversationFragment_reported_as_spam_and_blocked">Als Spam gemeldet und blockiert</string>
     <!-- Dialog message shown after accepting a message request and tapping on options from the conversation event -->
-    <string name="ConversationFragment_you_accepted_a_message_request_from_s">You accepted a message request from %1$s. If this was a mistake, you can choose an action below.</string>
+    <string name="ConversationFragment_you_accepted_a_message_request_from_s">Du hast eine Unterhaltungsanfrage von %1$s angenommen. Wenn das ein Fehler war, kannst du unten eine Aktion auswählen.</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
-    <string name="SafetyTips_title">Safety Tips</string>
+    <string name="SafetyTips_title">Sicherheitstipps</string>
     <!-- Dialog subtitle when showign tips for a 1:1 conversation -->
-    <string name="SafetyTips_subtitle_individual">Be careful when accepting message requests from people you don’t know. Watch out for:</string>
+    <string name="SafetyTips_subtitle_individual">Sei vorsichtig, wenn du Unterhaltungsanfragen von Personen annimmst, die du nicht kennst. Achte auf:</string>
     <!-- Dialog subtitle when showing tips for a group conversation -->
-    <string name="SafetyTips_subtitle_group">Review this request carefully. None of your contacts or people you chat with are in this group. Here are a few things to watch out for:</string>
+    <string name="SafetyTips_subtitle_group">Prüfe diese Anfrage sorgfältig. Keiner deiner Kontakte oder Personen, mit denen du chattest, ist in dieser Gruppe. Hier sind ein paar Dinge, auf die du achten solltest:</string>
     <!-- Button text to move to the previous tip-->
-    <string name="SafetyTips_previous_tip">Previous tip</string>
+    <string name="SafetyTips_previous_tip">Vorheriger Tipp</string>
     <!-- Button text to move to the next tip -->
-    <string name="SafetyTips_next_tip">Next tip</string>
+    <string name="SafetyTips_next_tip">Nächster Tipp</string>
     <!-- Title of tip 1 -->
-    <string name="SafetyTips_tip1_title">Crypto or money scams</string>
+    <string name="SafetyTips_tip1_title">Krypto- oder Geldbetrug</string>
     <!-- Message of tip 1 -->
-    <string name="SafetyTips_tip1_message">If someone you don’t know messages about cryptocurrency (like Bitcoin) or an financial opportunity, be careful—it’s likely spam.</string>
+    <string name="SafetyTips_tip1_message">If someone you don’t know messages about cryptocurrency (like Bitcoin) or a financial opportunity, be careful—it’s likely spam.</string>
     <!-- Title of tip 2 -->
-    <string name="SafetyTips_tip2_title">Vague or irrelevant messages</string>
+    <string name="SafetyTips_tip2_title">Vage oder irrelevante Nachrichten</string>
     <!-- Message of tip 2 -->
-    <string name="SafetyTips_tip2_message">Spammers often start with a simple message like “Hi” to draw you in. If you respond they may engage you further.</string>
+    <string name="SafetyTips_tip2_message">Spammer beginnen oft mit einer einfachen Nachricht wie „Hallo“, um dich anzulocken. Wenn du antwortest, wirst du möglicherweise weiter kontaktiert.</string>
     <!-- Title of tip 3 -->
-    <string name="SafetyTips_tip3_title">Messages with links</string>
+    <string name="SafetyTips_tip3_title">Nachrichten mit Links</string>
     <!-- Message of tip 3 -->
-    <string name="SafetyTips_tip3_message">Be careful of messages from people you don’t know that have links to websites. Never visit links from people you don’t trust.</string>
+    <string name="SafetyTips_tip3_message">Sei vorsichtig bei Nachrichten von Personen, die du nicht kennst und die Links zu Websites enthalten. Folge niemals Links von Personen, denen du nicht vertraust.</string>
     <!-- Title of tip 4 -->
-    <string name="SafetyTips_tip4_title">Fake businesses and institutions</string>
+    <string name="SafetyTips_tip4_title">Gefälschte Unternehmen und Institutionen</string>
     <!-- Message of tip 4 -->
-    <string name="SafetyTips_tip4_message">Be careful of businesses or government agencies contacting you. Messages involving tax agencies, couriers, and more can be spam.</string>
+    <string name="SafetyTips_tip4_message">Sei vorsichtig, wenn Unternehmen oder Regierungsbehörden dich kontaktieren. Nachrichten, bei denen es um Steuerbehörden, Kuriere usw. geht, können Spam sein.</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Filter entfernen</string>
@@ -585,8 +585,8 @@
     </plurals>
     <string name="ConversationListFragment_deleting">Löschen</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
-        <item quantity="one">Deleting selected chat…</item>
-        <item quantity="other">Deleting selected chats…</item>
+        <item quantity="one">Ausgewählten Chat löschen …</item>
+        <item quantity="other">Ausgewählte Chats löschen …</item>
     </plurals>
     <plurals name="ConversationListFragment_conversations_archived">
         <item quantity="one">Chat archiviert</item>
@@ -1599,9 +1599,9 @@
     <!-- Body for quote when message being quoted is an in-app payment message -->
     <string name="MessageRecord__payment_s">Zahlung: %1$s</string>
     <!-- Update message shown in chat after reporting it as spam -->
-    <string name="MessageRecord_reported_as_spam">Reported as spam</string>
+    <string name="MessageRecord_reported_as_spam">Als Spam gemeldet</string>
     <!-- Update message shown in chat after accept a message request -->
-    <string name="MessageRecord_you_accepted_the_message_request">You accepted the message request</string>
+    <string name="MessageRecord_you_accepted_the_message_request">Du hast die Unterhaltungsanfrage angenommen</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Annehmen</string>
@@ -1649,7 +1649,7 @@
         <item quantity="other">%1$d weitere Gruppen</item>
     </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
-    <string name="MessageRequestBottomView_report">Report…</string>
+    <string name="MessageRequestBottomView_report">Melden …</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passphrasen stimmen nicht überein!</string>
@@ -1967,7 +1967,7 @@
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
     <string name="AboutSheet__verified">Verifiziert</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
-    <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string>
+    <string name="AboutSheet__no_direct_message">Keine Direktnachrichten mit %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s ist in deinen Telefonkontakten</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -2301,7 +2301,7 @@
     <string name="UsernameEditFragment_username_is_invalid">Nutzername ist ungültig.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Nutzernamen dürfen aus %1$d bis %2$d Zeichen bestehen.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Usernames are always paired with a set of numbers.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">Nutzernamen sind immer mit einer Reihe von Zahlen gekoppelt.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">Was ist das für eine Nummer?</string>
     <string name="UsernameEditFragment__these_digits_help_keep">Diese Ziffern helfen, deinen Nutzernamen privat zu halten, damit du keine unerwünschten Nachrichten erhältst. Teile deinen Nutzernamen nur mit den Personen und Gruppen, mit denen du chatten möchtest. Wenn du deinen Nutzernamen änderst, bekommst du eine neue Ziffernfolge.</string>
@@ -2317,8 +2317,8 @@
     <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Ungültiger Nutzername, bitte gib maximal %1$d Ziffern ein.</string>
     <!-- Displayed when the chosen discriminator is 00 -->
     <string name="UsernameEditFragment__this_number_cant_be_00">Diese Nummer darf nicht 00 sein. Verwende eine andere Zahl von 1 bis 9</string>
-    <!-- Displayed when the chosen discriminator starts with 00 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_00">Diese Nummer darf nicht mit 00 anfangen. Verwende eine andere Zahl von 1 bis 9</string>
+    <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">Numbers with more than 2 digits can\'t start with 0</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">Wenn du deinen Nutzernamen wiederherstellst, werden dein bestehender QR-Code und dein Link ersetzt und neu erstellt. Bist du dir sicher?</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
@@ -2722,7 +2722,7 @@
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">Diese Person wurde entfernt. Wenn du ihr erneut eine Nachricht schickst, wird sie wieder zur Liste hinzugefügt.</string>
     <!-- Update item button text shown for the accepted message request update message -->
-    <string name="ConversationUpdateItem_options">Options</string>
+    <string name="ConversationUpdateItem_options">Optionen</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Abspielen … Pause</string>
@@ -4125,9 +4125,9 @@
 
     <!-- ReviewCardDialogFragment -->
     <!-- Title of a screen where the user will be prompted to review group members with the same name -->
-    <string name="ReviewCardDialogFragment__review_members">Review members</string>
+    <string name="ReviewCardDialogFragment__review_members">Mitglieder prüfen</string>
     <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
-    <string name="ReviewCardDialogFragment__review_request">Review request</string>
+    <string name="ReviewCardDialogFragment__review_request">Anfrage prüfen</string>
     <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d Gruppenmitglieder haben denselben Namen. Prüfe die folgenden Mitglieder und handle entsprechend.</string>
     <string name="ReviewCardDialogFragment__if_youre_not_sure">Falls du dir über die Herkunft der Anfrage unsicher bist, prüfe die folgenden Kontakte und handle entsprechend.</string>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">Keine anderen gemeinsamen Gruppen.</string>
@@ -6492,7 +6492,7 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">Beim Zurücksetzen deines Links ist ein Netzwerkfehler aufgetreten. Versuche es später erneut.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
-    <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">Beim Zurücksetzen deines Links ist ein unerwarteter Fehler aufgetreten. Versuche es später erneut.</string>
     <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
     <string name="UsernameLinkSettings_reset_link_result_success">Dein QR-Code und dein Link wurden zurückgesetzt. Ein neuer QR-Code und ein neuer Link wurden erstellt.</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
@@ -6565,7 +6565,7 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">Telefonnummer</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_username_description">Enter a username followed by a dot and its set of numbers.</string>
+    <string name="FindByActivity__enter_username_description">Gib einen Nutzernamen gefolgt von einem Punkt und den dazugehörigen Ziffern ein.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">Weiter</string>
     <!-- Placeholder text for search input for selecting country code -->

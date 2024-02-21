@@ -180,17 +180,17 @@
     <string name="BlockUnblockDialog_block">封鎖</string>
     <string name="BlockUnblockDialog_block_and_leave">封鎖同退出</string>
     <!-- Dialog button label to report as spam and block the person -->
-    <string name="BlockUnblockDialog_report_spam_and_block">Report and block</string>
+    <string name="BlockUnblockDialog_report_spam_and_block">舉報同封鎖report</string>
     <!-- Dialog title for reporting spam -->
-    <string name="BlockUnblockDialog_report_spam_title">Report spam?</string>
+    <string name="BlockUnblockDialog_report_spam_title">係咪要舉報垃圾訊息呀？</string>
     <!-- Dialog button to report as spam only -->
-    <string name="BlockUnblockDialog_report_spam">Report spam</string>
+    <string name="BlockUnblockDialog_report_spam">舉報垃圾訊息</string>
     <!-- Dialog message when reporting spam of an individual (1:1 conversation) -->
-    <string name="BlockUnblockDialog_report_spam_description">Signal will be notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="BlockUnblockDialog_report_spam_description">Signal 將會收到通知，指呢個人可能發送垃圾訊息。Signal 睇唔到任何聊天內容。</string>
     <!-- Dialog message when reporting spam of a group and we can determine the group member that invited you, placeholder is a name -->
-    <string name="BlockUnblockDialog_report_spam_group_named_adder">Signal will be notified that %1$s, who invited you to this group, may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="BlockUnblockDialog_report_spam_group_named_adder">Signal 將會收到通知，指邀請你加入呢個群組嘅 %1$s 可能發送垃圾訊息。Signal 睇唔到任何聊天內容。</string>
     <!-- Dialog message when reporting spam of a group and we cannot determine the group member that invited you -->
-    <string name="BlockUnblockDialog_report_spam_group_unknown_adder">Signal will be notified that the person who invited you to this group may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="BlockUnblockDialog_report_spam_group_unknown_adder">Signal 將會收到通知，指邀請你加入呢個群組嘅人可能發送垃圾訊息。Signal 睇唔到任何聊天內容。</string>
 
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">今日</string>
@@ -486,7 +486,7 @@
     <string name="ConversationFragment__d_group_members_have_the_same_name">個谷有 %1$d 位成員撞名。</string>
     <string name="ConversationFragment__tap_to_review">撳一下細閱</string>
     <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
-    <string name="ConversationFragment__review_banner_body">This person has the same name as another contact</string>
+    <string name="ConversationFragment__review_banner_body">呢個人同另一個聯絡人同名</string>
     <string name="ConversationFragment_contact_us">聯絡我哋</string>
     <string name="ConversationFragment_verify">驗證</string>
     <string name="ConversationFragment_not_now">遲啲先啦</string>
@@ -513,54 +513,54 @@
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
     <string name="ConversationFragment__no_longer_verified">唔再經驗證</string>
     <!-- Button shown in conversation header when in a message request state and no groups in common to show new message safety tips -->
-    <string name="ConversationFragment_safety_tips">Safety tips</string>
+    <string name="ConversationFragment_safety_tips">安全貼士</string>
     <!-- Menu option to report spam in a conversation -->
-    <string name="ConversationFragment_report_spam">Report spam</string>
+    <string name="ConversationFragment_report_spam">舉報垃圾訊息</string>
     <!-- Menu option to block in a conversation -->
     <string name="ConversationFragment_block">封鎖</string>
     <!-- Menu otpion to accept a message request in a conversation -->
     <string name="ConversationFragment_accept">接受</string>
     <!-- Menu option to delete an entire chat in a conversation -->
-    <string name="ConversationFragment_delete_chat">Delete chat</string>
+    <string name="ConversationFragment_delete_chat">刪除聊天</string>
     <!-- Menu option to unblock in a conversation -->
     <string name="ConversationFragment_unblock">解除封鎖</string>
-    <!-- Menu option to report spam in a conversation -->
-    <string name="ConversationFragment_reported_spam">Reported spam</string>
+    <!-- Dialog title shown after reporting spam and tapping the conversation item -->
+    <string name="ConversationFragment_reported_spam">已舉報垃圾訊息</string>
     <!-- Dialog message shown after reporting spam and tapping the conversation item -->
-    <string name="ConversationFragment_reported_spam_message">Signal has been be notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="ConversationFragment_reported_spam_message">Signal has been notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
     <!-- Toast shown after reporting spam and tapping the conversation item -->
-    <string name="ConversationFragment_reported_as_spam">Reported as spam</string>
+    <string name="ConversationFragment_reported_as_spam">已舉報垃圾訊息</string>
     <!-- Toast shown after reporting and blocking a conversation -->
-    <string name="ConversationFragment_reported_as_spam_and_blocked">Reported as spam and blocked</string>
+    <string name="ConversationFragment_reported_as_spam_and_blocked">已舉報同封鎖垃圾訊息</string>
     <!-- Dialog message shown after accepting a message request and tapping on options from the conversation event -->
-    <string name="ConversationFragment_you_accepted_a_message_request_from_s">You accepted a message request from %1$s. If this was a mistake, you can choose an action below.</string>
+    <string name="ConversationFragment_you_accepted_a_message_request_from_s">你接受咗 %1$s 嘅訊息請求。如果唔小心㩒錯咗，可以選擇以下操作。</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
-    <string name="SafetyTips_title">Safety Tips</string>
+    <string name="SafetyTips_title">安全貼士</string>
     <!-- Dialog subtitle when showign tips for a 1:1 conversation -->
-    <string name="SafetyTips_subtitle_individual">Be careful when accepting message requests from people you don’t know. Watch out for:</string>
+    <string name="SafetyTips_subtitle_individual">接受陌生人嘅訊息請求時要小心。注意：</string>
     <!-- Dialog subtitle when showing tips for a group conversation -->
-    <string name="SafetyTips_subtitle_group">Review this request carefully. None of your contacts or people you chat with are in this group. Here are a few things to watch out for:</string>
+    <string name="SafetyTips_subtitle_group">小心睇清楚請求內容。呢個群組入面冇任何你嘅聯絡人或者聊天對象。請留意以下細節：</string>
     <!-- Button text to move to the previous tip-->
-    <string name="SafetyTips_previous_tip">Previous tip</string>
+    <string name="SafetyTips_previous_tip">上一個貼士</string>
     <!-- Button text to move to the next tip -->
-    <string name="SafetyTips_next_tip">Next tip</string>
+    <string name="SafetyTips_next_tip">下一個貼士</string>
     <!-- Title of tip 1 -->
-    <string name="SafetyTips_tip1_title">Crypto or money scams</string>
+    <string name="SafetyTips_tip1_title">加密貨幣或者金錢詐騙</string>
     <!-- Message of tip 1 -->
-    <string name="SafetyTips_tip1_message">If someone you don’t know messages about cryptocurrency (like Bitcoin) or an financial opportunity, be careful—it’s likely spam.</string>
+    <string name="SafetyTips_tip1_message">If someone you don’t know messages about cryptocurrency (like Bitcoin) or a financial opportunity, be careful—it’s likely spam.</string>
     <!-- Title of tip 2 -->
-    <string name="SafetyTips_tip2_title">Vague or irrelevant messages</string>
+    <string name="SafetyTips_tip2_title">內容含糊或者唔關事嘅訊息</string>
     <!-- Message of tip 2 -->
-    <string name="SafetyTips_tip2_message">Spammers often start with a simple message like “Hi” to draw you in. If you respond they may engage you further.</string>
+    <string name="SafetyTips_tip2_message">垃圾訊息通常會用「Hi」開頭嚟吸引你。如果你應機，佢哋可能就會繼續拉你入局。</string>
     <!-- Title of tip 3 -->
-    <string name="SafetyTips_tip3_title">Messages with links</string>
+    <string name="SafetyTips_tip3_title">附有連結嘅訊息</string>
     <!-- Message of tip 3 -->
-    <string name="SafetyTips_tip3_message">Be careful of messages from people you don’t know that have links to websites. Never visit links from people you don’t trust.</string>
+    <string name="SafetyTips_tip3_message">收到附有網站連結嘅陌生訊息時要小心。千祈唔好㩒入可疑人士發送嘅連結。</string>
     <!-- Title of tip 4 -->
-    <string name="SafetyTips_tip4_title">Fake businesses and institutions</string>
+    <string name="SafetyTips_tip4_title">假冒企業同機構</string>
     <!-- Message of tip 4 -->
-    <string name="SafetyTips_tip4_message">Be careful of businesses or government agencies contacting you. Messages involving tax agencies, couriers, and more can be spam.</string>
+    <string name="SafetyTips_tip4_message">收到嚟自企業或者政府機構嘅訊息時要小心。涉及稅務機關、快遞公司嘅訊息可能係垃圾訊息。</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">清除篩選條件</string>
@@ -574,7 +574,7 @@
     </plurals>
     <string name="ConversationListFragment_deleting">刪除緊</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
-        <item quantity="other">Deleting selected chats…</item>
+        <item quantity="other">刪除緊揀選咗嘅聊天…</item>
     </plurals>
     <plurals name="ConversationListFragment_conversations_archived">
         <item quantity="other">封存咗 %1$d 個聊天</item>
@@ -1544,9 +1544,9 @@
     <!-- Body for quote when message being quoted is an in-app payment message -->
     <string name="MessageRecord__payment_s">付款：%1$s</string>
     <!-- Update message shown in chat after reporting it as spam -->
-    <string name="MessageRecord_reported_as_spam">Reported as spam</string>
+    <string name="MessageRecord_reported_as_spam">已舉報垃圾訊息</string>
     <!-- Update message shown in chat after accept a message request -->
-    <string name="MessageRecord_you_accepted_the_message_request">You accepted the message request</string>
+    <string name="MessageRecord_you_accepted_the_message_request">你接受咗訊息請求</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">接受</string>
@@ -1590,7 +1590,7 @@
         <item quantity="other">其餘 %1$d 個谷</item>
     </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
-    <string name="MessageRequestBottomView_report">Report…</string>
+    <string name="MessageRequestBottomView_report">舉報…</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">兩次所打嘅密碼有出入噃！</string>
@@ -1893,7 +1893,7 @@
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
     <string name="AboutSheet__verified">驗證咗</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
-    <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string>
+    <string name="AboutSheet__no_direct_message">冇同%1$s嘅直接訊息</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s 係你嘅聯絡人</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -2221,7 +2221,7 @@
     <string name="UsernameEditFragment_username_is_invalid">用戶名稱無效。</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">用戶名稱一定要係 %1$d 至 %2$d 個字元之間。</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Usernames are always paired with a set of numbers.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">用戶名稱一定會配對一組數字。</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">呢個號碼係咩嚟？</string>
     <string name="UsernameEditFragment__these_digits_help_keep">呢組數字可以將你嘅用戶名稱保密，以免你受到無謂嘅訊息滋擾。請你淨係同你想同佢通訊嘅聯絡人同埋群組分享你嘅用戶名稱。如果你改咗個用戶名稱，就會收到一組新嘅數字。</string>
@@ -2237,8 +2237,8 @@
     <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">用戶名稱無效，請輸入最多 %1$d 位數字。</string>
     <!-- Displayed when the chosen discriminator is 00 -->
     <string name="UsernameEditFragment__this_number_cant_be_00">呢個數字唔可以係 00。請輸入 1–9 之間嘅數字</string>
-    <!-- Displayed when the chosen discriminator starts with 00 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_00">呢個數字唔可以用 00 開頭。請輸入 1–9 之間嘅數字</string>
+    <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">Numbers with more than 2 digits can\'t start with 0</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">恢復用戶名稱會將你宜家用緊嘅二維碼同連結重設。你係咪確定？</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
@@ -2635,7 +2635,7 @@
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">你已經移除咗呢個人。如果宜家傳送訊息俾佢嘅話，佢就會重新加返入你嘅聯絡人清單。</string>
     <!-- Update item button text shown for the accepted message request update message -->
-    <string name="ConversationUpdateItem_options">Options</string>
+    <string name="ConversationUpdateItem_options">選項</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">播放 … 暫停</string>
@@ -4019,9 +4019,9 @@
 
     <!-- ReviewCardDialogFragment -->
     <!-- Title of a screen where the user will be prompted to review group members with the same name -->
-    <string name="ReviewCardDialogFragment__review_members">Review members</string>
+    <string name="ReviewCardDialogFragment__review_members">檢查吓成員名單</string>
     <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
-    <string name="ReviewCardDialogFragment__review_request">Review request</string>
+    <string name="ReviewCardDialogFragment__review_request">審查請求</string>
     <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">個谷嘅 %1$d 位成員撞名，請批閱下列成員並視乎情況做要做嘅嘢。</string>
     <string name="ReviewCardDialogFragment__if_youre_not_sure">假如您唔肯定係邊個發出請求，請批閱下列嘅聯絡人並去做要做嘅嘢。</string>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">無其他有緣相遇嘅谷。</string>
@@ -6351,7 +6351,7 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">嘗試重設連結時，網路發生錯誤。請你遲啲再試過啦。</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
-    <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">嘗試重設連結時，發生咗無法預計嘅錯誤。請你遲啲再試過啦。</string>
     <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
     <string name="UsernameLinkSettings_reset_link_result_success">你嘅二維碼同連結已經重設，系統建立咗一個新嘅二維碼同連結。</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
@@ -6422,7 +6422,7 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">電話冧把</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_username_description">Enter a username followed by a dot and its set of numbers.</string>
+    <string name="FindByActivity__enter_username_description">輸入用戶名稱，後面加一點同埋佢嘅配對數字。</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">下一步</string>
     <!-- Placeholder text for search input for selecting country code -->

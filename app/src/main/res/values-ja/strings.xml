@@ -180,17 +180,17 @@
     <string name="BlockUnblockDialog_block">ブロックする</string>
     <string name="BlockUnblockDialog_block_and_leave">ブロックして抜ける</string>
     <!-- Dialog button label to report as spam and block the person -->
-    <string name="BlockUnblockDialog_report_spam_and_block">Report and block</string>
+    <string name="BlockUnblockDialog_report_spam_and_block">報告してブロックする</string>
     <!-- Dialog title for reporting spam -->
-    <string name="BlockUnblockDialog_report_spam_title">Report spam?</string>
+    <string name="BlockUnblockDialog_report_spam_title">スパムとして報告しますか？</string>
     <!-- Dialog button to report as spam only -->
-    <string name="BlockUnblockDialog_report_spam">Report spam</string>
+    <string name="BlockUnblockDialog_report_spam">スパムとして報告する</string>
     <!-- Dialog message when reporting spam of an individual (1:1 conversation) -->
-    <string name="BlockUnblockDialog_report_spam_description">Signal will be notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="BlockUnblockDialog_report_spam_description">この人物がスパムを送信している可能性をSignalに通知します。Signalはチャットの内容を見ることはできません。</string>
     <!-- Dialog message when reporting spam of a group and we can determine the group member that invited you, placeholder is a name -->
-    <string name="BlockUnblockDialog_report_spam_group_named_adder">Signal will be notified that %1$s, who invited you to this group, may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="BlockUnblockDialog_report_spam_group_named_adder">Signalは、このグループへあなたを招待している%1$sがスパムを送信している可能性をお知らせします。Signalはチャットの内容を見ることはできません。</string>
     <!-- Dialog message when reporting spam of a group and we cannot determine the group member that invited you -->
-    <string name="BlockUnblockDialog_report_spam_group_unknown_adder">Signal will be notified that the person who invited you to this group may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="BlockUnblockDialog_report_spam_group_unknown_adder">このグループへあなたを招待している相手がスパムを送信している可能性をSignalに通知します。Signalはチャットの内容を見ることはできません。</string>
 
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">今日</string>
@@ -486,7 +486,7 @@
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d人のグループメンバーが同じ名前です。</string>
     <string name="ConversationFragment__tap_to_review">タップして確認</string>
     <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
-    <string name="ConversationFragment__review_banner_body">This person has the same name as another contact</string>
+    <string name="ConversationFragment__review_banner_body">この人物は、別の連絡先と同じ名前です</string>
     <string name="ConversationFragment_contact_us">お問い合わせ</string>
     <string name="ConversationFragment_verify">検証する</string>
     <string name="ConversationFragment_not_now">今はしない</string>
@@ -513,54 +513,54 @@
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
     <string name="ConversationFragment__no_longer_verified">連絡先の相手を確認できません</string>
     <!-- Button shown in conversation header when in a message request state and no groups in common to show new message safety tips -->
-    <string name="ConversationFragment_safety_tips">Safety tips</string>
+    <string name="ConversationFragment_safety_tips">安全な使い方のヒント</string>
     <!-- Menu option to report spam in a conversation -->
-    <string name="ConversationFragment_report_spam">Report spam</string>
+    <string name="ConversationFragment_report_spam">スパムとして報告する</string>
     <!-- Menu option to block in a conversation -->
     <string name="ConversationFragment_block">ブロックする</string>
     <!-- Menu otpion to accept a message request in a conversation -->
     <string name="ConversationFragment_accept">承認</string>
     <!-- Menu option to delete an entire chat in a conversation -->
-    <string name="ConversationFragment_delete_chat">Delete chat</string>
+    <string name="ConversationFragment_delete_chat">チャットを消去する</string>
     <!-- Menu option to unblock in a conversation -->
     <string name="ConversationFragment_unblock">ブロック解除</string>
-    <!-- Menu option to report spam in a conversation -->
-    <string name="ConversationFragment_reported_spam">Reported spam</string>
+    <!-- Dialog title shown after reporting spam and tapping the conversation item -->
+    <string name="ConversationFragment_reported_spam">スパムとして報告する</string>
     <!-- Dialog message shown after reporting spam and tapping the conversation item -->
-    <string name="ConversationFragment_reported_spam_message">Signal has been be notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="ConversationFragment_reported_spam_message">Signal has been notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
     <!-- Toast shown after reporting spam and tapping the conversation item -->
-    <string name="ConversationFragment_reported_as_spam">Reported as spam</string>
+    <string name="ConversationFragment_reported_as_spam">スパムとして報告する</string>
     <!-- Toast shown after reporting and blocking a conversation -->
-    <string name="ConversationFragment_reported_as_spam_and_blocked">Reported as spam and blocked</string>
+    <string name="ConversationFragment_reported_as_spam_and_blocked">スパムとして報告し、ブロックしました</string>
     <!-- Dialog message shown after accepting a message request and tapping on options from the conversation event -->
-    <string name="ConversationFragment_you_accepted_a_message_request_from_s">You accepted a message request from %1$s. If this was a mistake, you can choose an action below.</string>
+    <string name="ConversationFragment_you_accepted_a_message_request_from_s">%1$sからのメッセージ申請を承認しました。取り消したい場合は、以下のアクションを選択できます。</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
-    <string name="SafetyTips_title">Safety Tips</string>
+    <string name="SafetyTips_title">安全な使い方のヒント</string>
     <!-- Dialog subtitle when showign tips for a 1:1 conversation -->
-    <string name="SafetyTips_subtitle_individual">Be careful when accepting message requests from people you don’t know. Watch out for:</string>
+    <string name="SafetyTips_subtitle_individual">知らない人からのメッセージリクエストにはご注意ください。次の点にご注意ください。</string>
     <!-- Dialog subtitle when showing tips for a group conversation -->
-    <string name="SafetyTips_subtitle_group">Review this request carefully. None of your contacts or people you chat with are in this group. Here are a few things to watch out for:</string>
+    <string name="SafetyTips_subtitle_group">慎重にこの申請を確認してください。このグループには、あなたの連絡先やチャット相手は誰もいません。以下は注意すべき点です。</string>
     <!-- Button text to move to the previous tip-->
-    <string name="SafetyTips_previous_tip">Previous tip</string>
+    <string name="SafetyTips_previous_tip">前のヒント</string>
     <!-- Button text to move to the next tip -->
-    <string name="SafetyTips_next_tip">Next tip</string>
+    <string name="SafetyTips_next_tip">次のヒント</string>
     <!-- Title of tip 1 -->
-    <string name="SafetyTips_tip1_title">Crypto or money scams</string>
+    <string name="SafetyTips_tip1_title">暗号通貨または金銭詐欺</string>
     <!-- Message of tip 1 -->
-    <string name="SafetyTips_tip1_message">If someone you don’t know messages about cryptocurrency (like Bitcoin) or an financial opportunity, be careful—it’s likely spam.</string>
+    <string name="SafetyTips_tip1_message">If someone you don’t know messages about cryptocurrency (like Bitcoin) or a financial opportunity, be careful—it’s likely spam.</string>
     <!-- Title of tip 2 -->
-    <string name="SafetyTips_tip2_title">Vague or irrelevant messages</string>
+    <string name="SafetyTips_tip2_title">曖昧または関連性がないメッセージ</string>
     <!-- Message of tip 2 -->
-    <string name="SafetyTips_tip2_message">Spammers often start with a simple message like “Hi” to draw you in. If you respond they may engage you further.</string>
+    <string name="SafetyTips_tip2_message">スパマーは、大抵の場合「こんにちは」などのシンプルなメッセージであなたの気を引きます。返信すると、彼らはさらにあなたの注意を引こうとするでしょう。</string>
     <!-- Title of tip 3 -->
-    <string name="SafetyTips_tip3_title">Messages with links</string>
+    <string name="SafetyTips_tip3_title">リンクを含むメッセージ</string>
     <!-- Message of tip 3 -->
-    <string name="SafetyTips_tip3_message">Be careful of messages from people you don’t know that have links to websites. Never visit links from people you don’t trust.</string>
+    <string name="SafetyTips_tip3_message">知らない人からのメッセージで、ウェブサイトへのリンクが含まれている場合は注意が必要です。信頼していない人が送ってきたウェブサイトのリンクは開かないようにしましょう。</string>
     <!-- Title of tip 4 -->
-    <string name="SafetyTips_tip4_title">Fake businesses and institutions</string>
+    <string name="SafetyTips_tip4_title">偽の企業や団体</string>
     <!-- Message of tip 4 -->
-    <string name="SafetyTips_tip4_message">Be careful of businesses or government agencies contacting you. Messages involving tax agencies, couriers, and more can be spam.</string>
+    <string name="SafetyTips_tip4_message">企業や政府機関からの連絡にはご注意ください。税務署や宅配業者などのメッセージはスパムである可能性があります。</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">検索条件を解除する</string>
@@ -574,7 +574,7 @@
     </plurals>
     <string name="ConversationListFragment_deleting">削除しています</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
-        <item quantity="other">Deleting selected chats…</item>
+        <item quantity="other">選択したチャットを消去中です…</item>
     </plurals>
     <plurals name="ConversationListFragment_conversations_archived">
         <item quantity="other">%1$d 件のチャットをアーカイブしました</item>
@@ -1544,9 +1544,9 @@
     <!-- Body for quote when message being quoted is an in-app payment message -->
     <string name="MessageRecord__payment_s">支払い： %1$s</string>
     <!-- Update message shown in chat after reporting it as spam -->
-    <string name="MessageRecord_reported_as_spam">Reported as spam</string>
+    <string name="MessageRecord_reported_as_spam">スパムとして報告する</string>
     <!-- Update message shown in chat after accept a message request -->
-    <string name="MessageRecord_you_accepted_the_message_request">You accepted the message request</string>
+    <string name="MessageRecord_you_accepted_the_message_request">メッセージ申請を承認しました</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">承認する</string>
@@ -1590,7 +1590,7 @@
         <item quantity="other">ほか%1$dグループ</item>
     </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
-    <string name="MessageRequestBottomView_report">Report…</string>
+    <string name="MessageRequestBottomView_report">報告する</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">パスフレーズが一致しません！</string>
@@ -1893,7 +1893,7 @@
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
     <string name="AboutSheet__verified">検証済み</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
-    <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string>
+    <string name="AboutSheet__no_direct_message">%1$sとのダイレクトメッセージはありません</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s はシステムの連絡先に含まれています</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -2221,7 +2221,7 @@
     <string name="UsernameEditFragment_username_is_invalid">無効なユーザーネームです。</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ユーザーネームは%1$dから%2$d文字にしてください。</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Usernames are always paired with a set of numbers.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">ユーザーネームは、常に一組の数字とペアになっています。</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">この数字は何ですか？</string>
     <string name="UsernameEditFragment__these_digits_help_keep">これらの数字は、ユーザーネームを非公開にし、不要なメッセージを避けるのに役立ちます。ユーザーネームは、チャットをしたい人やグループとだけ共有してください。ユーザーネームを変更すると、新しい数字と対になります。</string>
@@ -2237,8 +2237,8 @@
     <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">ユーザーネームが無効です。入力できる数字は、最大で%1$d桁までです。</string>
     <!-- Displayed when the chosen discriminator is 00 -->
     <string name="UsernameEditFragment__this_number_cant_be_00">この数字を00にすることはできません。1–9の数字を入力してください</string>
-    <!-- Displayed when the chosen discriminator starts with 00 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_00">この数字を00で始めることはできません。1–9の数字を入力してください</string>
+    <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">Numbers with more than 2 digits can\'t start with 0</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">ユーザーネームを復元すると、これまでのQRコードとリンクがリセットされます。本当に復元しますか？</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
@@ -2635,7 +2635,7 @@
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">過去に削除したメンバーです。メッセージを送ると、このメンバーはリストに再度追加されます。</string>
     <!-- Update item button text shown for the accepted message request update message -->
-    <string name="ConversationUpdateItem_options">Options</string>
+    <string name="ConversationUpdateItem_options">オプション</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">再生 … 停止</string>
@@ -4019,9 +4019,9 @@
 
     <!-- ReviewCardDialogFragment -->
     <!-- Title of a screen where the user will be prompted to review group members with the same name -->
-    <string name="ReviewCardDialogFragment__review_members">Review members</string>
+    <string name="ReviewCardDialogFragment__review_members">メンバーの確認</string>
     <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
-    <string name="ReviewCardDialogFragment__review_request">Review request</string>
+    <string name="ReviewCardDialogFragment__review_request">申請の確認</string>
     <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d人のグループメンバーが同じ名前です。以下のメンバーを確認して、対応してください。</string>
     <string name="ReviewCardDialogFragment__if_youre_not_sure">この申請者が誰であるか不確かな場合、以下の連絡先を確認して対応してください。</string>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">他の共通のグループはありません</string>
@@ -6351,7 +6351,7 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">リンクのリセット中にネットワークエラーが発生しました。あとで再度試してください。</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
-    <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">リンクをリセット中に予期しないエラーが発生しました。あとで再度試してください。</string>
     <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
     <string name="UsernameLinkSettings_reset_link_result_success">QRコードとリンクがリセットされ、新しいQRコードとリンクが作成されました。</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
@@ -6422,7 +6422,7 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">電話番号</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_username_description">Enter a username followed by a dot and its set of numbers.</string>
+    <string name="FindByActivity__enter_username_description">ユーザーネームの後ろに「.（ドット）」と、対になる数字を入力してください。</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">次へ</string>
     <!-- Placeholder text for search input for selecting country code -->

@@ -180,17 +180,17 @@
     <string name="BlockUnblockDialog_block">차단</string>
     <string name="BlockUnblockDialog_block_and_leave">차단하고 나가기</string>
     <!-- Dialog button label to report as spam and block the person -->
-    <string name="BlockUnblockDialog_report_spam_and_block">Report and block</string>
+    <string name="BlockUnblockDialog_report_spam_and_block">신고 및 차단</string>
     <!-- Dialog title for reporting spam -->
-    <string name="BlockUnblockDialog_report_spam_title">Report spam?</string>
+    <string name="BlockUnblockDialog_report_spam_title">스팸으로 신고할까요?</string>
     <!-- Dialog button to report as spam only -->
-    <string name="BlockUnblockDialog_report_spam">Report spam</string>
+    <string name="BlockUnblockDialog_report_spam">스팸 신고</string>
     <!-- Dialog message when reporting spam of an individual (1:1 conversation) -->
-    <string name="BlockUnblockDialog_report_spam_description">Signal will be notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="BlockUnblockDialog_report_spam_description">Signal에 이 사람이 스팸을 보내는 것 같다는 알림이 전송됩니다. Signal은 대화의 내용을 볼 수 없습니다.</string>
     <!-- Dialog message when reporting spam of a group and we can determine the group member that invited you, placeholder is a name -->
-    <string name="BlockUnblockDialog_report_spam_group_named_adder">Signal will be notified that %1$s, who invited you to this group, may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="BlockUnblockDialog_report_spam_group_named_adder">Signal에 나를 이 그룹에 초대한 %1$s 님이 스팸을 보내는 것 같다는 알림이 전송됩니다. Signal은 대화의 내용을 볼 수 없습니다.</string>
     <!-- Dialog message when reporting spam of a group and we cannot determine the group member that invited you -->
-    <string name="BlockUnblockDialog_report_spam_group_unknown_adder">Signal will be notified that the person who invited you to this group may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="BlockUnblockDialog_report_spam_group_unknown_adder">Signal에 나를 이 그룹에 초대한 사람이 스팸을 보내는 것 같다는 알림이 전송됩니다. Signal은 대화의 내용을 볼 수 없습니다.</string>
 
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">오늘</string>
@@ -486,7 +486,7 @@
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d명의 그룹 멤버가 이름이 같습니다.</string>
     <string name="ConversationFragment__tap_to_review">탭하여 검토하세요.</string>
     <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
-    <string name="ConversationFragment__review_banner_body">This person has the same name as another contact</string>
+    <string name="ConversationFragment__review_banner_body">이 사람의 이름이 연락처의 다른 사람과 이름이 같습니다.</string>
     <string name="ConversationFragment_contact_us">문의하기</string>
     <string name="ConversationFragment_verify">검증</string>
     <string name="ConversationFragment_not_now">나중에</string>
@@ -513,54 +513,54 @@
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
     <string name="ConversationFragment__no_longer_verified">더 이상 유효하지 않음</string>
     <!-- Button shown in conversation header when in a message request state and no groups in common to show new message safety tips -->
-    <string name="ConversationFragment_safety_tips">Safety tips</string>
+    <string name="ConversationFragment_safety_tips">안전 팁</string>
     <!-- Menu option to report spam in a conversation -->
-    <string name="ConversationFragment_report_spam">Report spam</string>
+    <string name="ConversationFragment_report_spam">스팸 신고</string>
     <!-- Menu option to block in a conversation -->
     <string name="ConversationFragment_block">차단</string>
     <!-- Menu otpion to accept a message request in a conversation -->
     <string name="ConversationFragment_accept">수락</string>
     <!-- Menu option to delete an entire chat in a conversation -->
-    <string name="ConversationFragment_delete_chat">Delete chat</string>
+    <string name="ConversationFragment_delete_chat">대화 삭제</string>
     <!-- Menu option to unblock in a conversation -->
     <string name="ConversationFragment_unblock">차단 해제</string>
-    <!-- Menu option to report spam in a conversation -->
-    <string name="ConversationFragment_reported_spam">Reported spam</string>
+    <!-- Dialog title shown after reporting spam and tapping the conversation item -->
+    <string name="ConversationFragment_reported_spam">스팸으로 신고함</string>
     <!-- Dialog message shown after reporting spam and tapping the conversation item -->
-    <string name="ConversationFragment_reported_spam_message">Signal has been be notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="ConversationFragment_reported_spam_message">Signal has been notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
     <!-- Toast shown after reporting spam and tapping the conversation item -->
-    <string name="ConversationFragment_reported_as_spam">Reported as spam</string>
+    <string name="ConversationFragment_reported_as_spam">스팸으로 신고함</string>
     <!-- Toast shown after reporting and blocking a conversation -->
-    <string name="ConversationFragment_reported_as_spam_and_blocked">Reported as spam and blocked</string>
+    <string name="ConversationFragment_reported_as_spam_and_blocked">스팸으로 신고하고 차단했습니다.</string>
     <!-- Dialog message shown after accepting a message request and tapping on options from the conversation event -->
-    <string name="ConversationFragment_you_accepted_a_message_request_from_s">You accepted a message request from %1$s. If this was a mistake, you can choose an action below.</string>
+    <string name="ConversationFragment_you_accepted_a_message_request_from_s">%1$s 님이 보낸 메시지 요청을 수락했습니다. 실수로 수락한 경우 아래에서 조치를 선택할 수 있습니다.</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
-    <string name="SafetyTips_title">Safety Tips</string>
+    <string name="SafetyTips_title">안전 팁</string>
     <!-- Dialog subtitle when showign tips for a 1:1 conversation -->
-    <string name="SafetyTips_subtitle_individual">Be careful when accepting message requests from people you don’t know. Watch out for:</string>
+    <string name="SafetyTips_subtitle_individual">모르는 사람이 보내는 메시지 요청을 수락할 때 조심하세요. 다음에 유의하세요.</string>
     <!-- Dialog subtitle when showing tips for a group conversation -->
-    <string name="SafetyTips_subtitle_group">Review this request carefully. None of your contacts or people you chat with are in this group. Here are a few things to watch out for:</string>
+    <string name="SafetyTips_subtitle_group">이 요청을 신중하게 검토하세요. 내 연락처 또는 나와 대화한 사람이 이 그룹에 없습니다. 다음에 유의하세요.</string>
     <!-- Button text to move to the previous tip-->
-    <string name="SafetyTips_previous_tip">Previous tip</string>
+    <string name="SafetyTips_previous_tip">이전 팁</string>
     <!-- Button text to move to the next tip -->
-    <string name="SafetyTips_next_tip">Next tip</string>
+    <string name="SafetyTips_next_tip">다음 팁</string>
     <!-- Title of tip 1 -->
-    <string name="SafetyTips_tip1_title">Crypto or money scams</string>
+    <string name="SafetyTips_tip1_title">암호화폐 또는 금융 사기</string>
     <!-- Message of tip 1 -->
-    <string name="SafetyTips_tip1_message">If someone you don’t know messages about cryptocurrency (like Bitcoin) or an financial opportunity, be careful—it’s likely spam.</string>
+    <string name="SafetyTips_tip1_message">If someone you don’t know messages about cryptocurrency (like Bitcoin) or a financial opportunity, be careful—it’s likely spam.</string>
     <!-- Title of tip 2 -->
-    <string name="SafetyTips_tip2_title">Vague or irrelevant messages</string>
+    <string name="SafetyTips_tip2_title">모호하거나 관련이 없는 메시지</string>
     <!-- Message of tip 2 -->
-    <string name="SafetyTips_tip2_message">Spammers often start with a simple message like “Hi” to draw you in. If you respond they may engage you further.</string>
+    <string name="SafetyTips_tip2_message">스팸을 보내는 사람은 상대의 주의를 끌기 위해 \'안녕하세요\'와 같은 간단한 메시지로 대화를 시작합니다. 반응할 경우 대화에 더 말려들 수 있습니다.</string>
     <!-- Title of tip 3 -->
-    <string name="SafetyTips_tip3_title">Messages with links</string>
+    <string name="SafetyTips_tip3_title">링크가 있는 메시지</string>
     <!-- Message of tip 3 -->
-    <string name="SafetyTips_tip3_message">Be careful of messages from people you don’t know that have links to websites. Never visit links from people you don’t trust.</string>
+    <string name="SafetyTips_tip3_message">모르는 사람이 보내는 링크나 웹사이트가 있는 메시지를 조심하세요. 신뢰할 수 없는 사람이 보내는 링크를 절대 방문하지 마세요.</string>
     <!-- Title of tip 4 -->
-    <string name="SafetyTips_tip4_title">Fake businesses and institutions</string>
+    <string name="SafetyTips_tip4_title">가짜 비즈니스 또는 기관</string>
     <!-- Message of tip 4 -->
-    <string name="SafetyTips_tip4_message">Be careful of businesses or government agencies contacting you. Messages involving tax agencies, couriers, and more can be spam.</string>
+    <string name="SafetyTips_tip4_message">비즈니스 또는 정부 기관에서 오는 연락을 조심하세요. 국세청, 배송 업체 등과 관련된 메시지는 스팸일 수 있습니다.</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">필터 지우기</string>
@@ -574,7 +574,7 @@
     </plurals>
     <string name="ConversationListFragment_deleting">삭제 중</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
-        <item quantity="other">Deleting selected chats…</item>
+        <item quantity="other">선택한 대화를 삭제하는 중…</item>
     </plurals>
     <plurals name="ConversationListFragment_conversations_archived">
         <item quantity="other">%1$d개 대화를 보관함</item>
@@ -1544,9 +1544,9 @@
     <!-- Body for quote when message being quoted is an in-app payment message -->
     <string name="MessageRecord__payment_s">결제: %1$s</string>
     <!-- Update message shown in chat after reporting it as spam -->
-    <string name="MessageRecord_reported_as_spam">Reported as spam</string>
+    <string name="MessageRecord_reported_as_spam">스팸으로 신고함</string>
     <!-- Update message shown in chat after accept a message request -->
-    <string name="MessageRecord_you_accepted_the_message_request">You accepted the message request</string>
+    <string name="MessageRecord_you_accepted_the_message_request">메시지 요청을 수락했습니다.</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">수락</string>
@@ -1590,7 +1590,7 @@
         <item quantity="other">%1$d개의 추가 그룹</item>
     </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
-    <string name="MessageRequestBottomView_report">Report…</string>
+    <string name="MessageRequestBottomView_report">신고…</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">암호가 일치하지 않습니다!</string>
@@ -1893,7 +1893,7 @@
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
     <string name="AboutSheet__verified">검증함</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
-    <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string>
+    <string name="AboutSheet__no_direct_message">%1$s 님과 직접 주고받은 메시지가 없음</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s 님이 내 기기 연락처에 있습니다.</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -2221,7 +2221,7 @@
     <string name="UsernameEditFragment_username_is_invalid">잘못된 사용자 이름입니다.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">사용자 이름은 %1$d~%2$d자여야 합니다.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Usernames are always paired with a set of numbers.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">사용자 이름은 항상 숫자와 짝지어 쓰입니다.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">이 번호는 무엇인가요?</string>
     <string name="UsernameEditFragment__these_digits_help_keep">이 일련번호는 사용자 이름을 비공개로 유지하여 원치 않는 메시지를 피할 수 있도록 도와줍니다. 대화를 원하는 사용자 및 그룹과만 사용자 이름을 공유하세요. 사용자 이름을 변경하면 새로운 일련번호가 부여됩니다.</string>
@@ -2237,8 +2237,8 @@
     <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">사용자 이름이 잘못되었습니다. %1$d자 이하로 입력해 주세요.</string>
     <!-- Displayed when the chosen discriminator is 00 -->
     <string name="UsernameEditFragment__this_number_cant_be_00">이 번호는 00일 수 없습니다. 1–9 중 하나를 입력하세요.</string>
-    <!-- Displayed when the chosen discriminator starts with 00 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_00">이 번호는 00으로 시작할 수 없습니다. 1–9 중 하나를 입력하세요.</string>
+    <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">Numbers with more than 2 digits can\'t start with 0</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">사용자 이름을 복구하면 기존 QR 코드와 링크가 초기화됩니다. 계속할까요?</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
@@ -2635,7 +2635,7 @@
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">이전에 제거한 사용자입니다. 해당 사용자에게 메시지를 보내면 사용자가 목록에 다시 추가됩니다.</string>
     <!-- Update item button text shown for the accepted message request update message -->
-    <string name="ConversationUpdateItem_options">Options</string>
+    <string name="ConversationUpdateItem_options">옵션</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">재생 … 일시 정지</string>
@@ -4019,9 +4019,9 @@
 
     <!-- ReviewCardDialogFragment -->
     <!-- Title of a screen where the user will be prompted to review group members with the same name -->
-    <string name="ReviewCardDialogFragment__review_members">Review members</string>
+    <string name="ReviewCardDialogFragment__review_members">구성원 검토</string>
     <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
-    <string name="ReviewCardDialogFragment__review_request">Review request</string>
+    <string name="ReviewCardDialogFragment__review_request">검토 요청</string>
     <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d명의 그룹 멤버가 같은 이름을 가지고 있습니다. 아래 멤버를 검토한 후 조치를 취하세요.</string>
     <string name="ReviewCardDialogFragment__if_youre_not_sure">요청의 출처가 확실하지 않은 경우 아래 연락처를 검토하고 조치를 취하세요.</string>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">공통된 다른 그룹이 없습니다.</string>
@@ -6351,7 +6351,7 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">링크를 초기화하는 중에 네트워크 오류가 발생했습니다. 나중에 다시 시도하세요.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
-    <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">링크를 초기화하는 동안 예기치 못한 오류가 발생했습니다. 나중에 다시 시도하세요.</string>
     <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
     <string name="UsernameLinkSettings_reset_link_result_success">QR 코드와 링크를 초기화하고 새 QR 코드와 링크를 만들었습니다.</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
@@ -6422,7 +6422,7 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">전화번호</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_username_description">Enter a username followed by a dot and its set of numbers.</string>
+    <string name="FindByActivity__enter_username_description">사용자 이름 뒤에 마침표와 해당 세트 번호를 입력하세요.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">다음</string>
     <!-- Placeholder text for search input for selecting country code -->

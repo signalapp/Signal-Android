@@ -180,17 +180,17 @@
     <string name="BlockUnblockDialog_block">بلاک کریں</string>
     <string name="BlockUnblockDialog_block_and_leave">بلاک کریں اور چھوڑ دیں</string>
     <!-- Dialog button label to report as spam and block the person -->
-    <string name="BlockUnblockDialog_report_spam_and_block">Report and block</string>
+    <string name="BlockUnblockDialog_report_spam_and_block">رپورٹ کریں اور بلاک کریں</string>
     <!-- Dialog title for reporting spam -->
-    <string name="BlockUnblockDialog_report_spam_title">Report spam?</string>
+    <string name="BlockUnblockDialog_report_spam_title">اسپام کو رپورٹ کریں؟</string>
     <!-- Dialog button to report as spam only -->
-    <string name="BlockUnblockDialog_report_spam">Report spam</string>
+    <string name="BlockUnblockDialog_report_spam">اسپام کو رپورٹ کریں</string>
     <!-- Dialog message when reporting spam of an individual (1:1 conversation) -->
-    <string name="BlockUnblockDialog_report_spam_description">Signal will be notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="BlockUnblockDialog_report_spam_description">Signal کو مطلع کیا جائے گا کہ یہ فرد اسپام بھیج رہا ہو سکتا ہے۔ Signal کسی چیٹس کا مواد نہیں دیکھ سکتا۔</string>
     <!-- Dialog message when reporting spam of a group and we can determine the group member that invited you, placeholder is a name -->
-    <string name="BlockUnblockDialog_report_spam_group_named_adder">Signal will be notified that %1$s, who invited you to this group, may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="BlockUnblockDialog_report_spam_group_named_adder">Signal کو مطلع کیا جائے گا کہ %1$s، جس نے آپ کو اس گروپ میں مدعو کیا، وہ ہو سکتا ہے اسپام بھیج رہا ہو۔ Signal کسی چیٹس کا مواد نہیں دیکھ سکتا۔</string>
     <!-- Dialog message when reporting spam of a group and we cannot determine the group member that invited you -->
-    <string name="BlockUnblockDialog_report_spam_group_unknown_adder">Signal will be notified that the person who invited you to this group may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="BlockUnblockDialog_report_spam_group_unknown_adder">Signal کو مطلع کیا جائے گا کہ جس فرد نے آپ کو اس گروپ میں مدعو کیا ہو سکتا ہے اسپام بھیج رہا ہو۔ Signal کسی چیٹس کا مواد نہیں دیکھ سکتا۔</string>
 
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">آج</string>
@@ -495,7 +495,7 @@
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d گروپ ممبروں کا ایک ہی نام ہے۔</string>
     <string name="ConversationFragment__tap_to_review">جائزہ لینے کے لئے ٹیپ کریں</string>
     <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
-    <string name="ConversationFragment__review_banner_body">This person has the same name as another contact</string>
+    <string name="ConversationFragment__review_banner_body">اس فرد اور ایک اور رابطے کا نام ایک جیسا ہے</string>
     <string name="ConversationFragment_contact_us">ہم سے رابطہ کریں</string>
     <string name="ConversationFragment_verify">تصدیق کریں</string>
     <string name="ConversationFragment_not_now">ابھی نہیں</string>
@@ -522,54 +522,54 @@
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
     <string name="ConversationFragment__no_longer_verified">مزید تصدیق شدہ نہیں ہے</string>
     <!-- Button shown in conversation header when in a message request state and no groups in common to show new message safety tips -->
-    <string name="ConversationFragment_safety_tips">Safety tips</string>
+    <string name="ConversationFragment_safety_tips">حفاظتی تجاویز</string>
     <!-- Menu option to report spam in a conversation -->
-    <string name="ConversationFragment_report_spam">Report spam</string>
+    <string name="ConversationFragment_report_spam">اسپام کو رپورٹ کریں</string>
     <!-- Menu option to block in a conversation -->
     <string name="ConversationFragment_block">بلاک کریں</string>
     <!-- Menu otpion to accept a message request in a conversation -->
     <string name="ConversationFragment_accept">قبول کریں</string>
     <!-- Menu option to delete an entire chat in a conversation -->
-    <string name="ConversationFragment_delete_chat">Delete chat</string>
+    <string name="ConversationFragment_delete_chat">چیٹ حذف کریں</string>
     <!-- Menu option to unblock in a conversation -->
     <string name="ConversationFragment_unblock">اَن بلاک کریں</string>
-    <!-- Menu option to report spam in a conversation -->
-    <string name="ConversationFragment_reported_spam">Reported spam</string>
+    <!-- Dialog title shown after reporting spam and tapping the conversation item -->
+    <string name="ConversationFragment_reported_spam">اسپام کی رپورٹ کی گئی</string>
     <!-- Dialog message shown after reporting spam and tapping the conversation item -->
-    <string name="ConversationFragment_reported_spam_message">Signal has been be notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="ConversationFragment_reported_spam_message">Signal has been notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
     <!-- Toast shown after reporting spam and tapping the conversation item -->
-    <string name="ConversationFragment_reported_as_spam">Reported as spam</string>
+    <string name="ConversationFragment_reported_as_spam">اسپام کے طور پر رپورٹ کیا گیا</string>
     <!-- Toast shown after reporting and blocking a conversation -->
-    <string name="ConversationFragment_reported_as_spam_and_blocked">Reported as spam and blocked</string>
+    <string name="ConversationFragment_reported_as_spam_and_blocked">اسپام کے طور پر رپورٹ اور بلاک کیا گیا</string>
     <!-- Dialog message shown after accepting a message request and tapping on options from the conversation event -->
-    <string name="ConversationFragment_you_accepted_a_message_request_from_s">You accepted a message request from %1$s. If this was a mistake, you can choose an action below.</string>
+    <string name="ConversationFragment_you_accepted_a_message_request_from_s">آپ نے %1$s کی طرف سے میسج کی درخواست قبول کی۔ اگر یہ ایک غلطی تھی، تو آپ درج ذیل سے کوئی ایکشن منتخب کر سکتے ہیں۔</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
-    <string name="SafetyTips_title">Safety Tips</string>
+    <string name="SafetyTips_title">حفاظتی تجاویز</string>
     <!-- Dialog subtitle when showign tips for a 1:1 conversation -->
-    <string name="SafetyTips_subtitle_individual">Be careful when accepting message requests from people you don’t know. Watch out for:</string>
+    <string name="SafetyTips_subtitle_individual">ایسے افراد جن کو آپ جانتے نہیں ہیں کی طرف سے میسج کی درخواستوں کو قبول کرتے ہوئے احتیاط برتیں۔ درج ذیل کے حوالے سے احتیاط کریں:</string>
     <!-- Dialog subtitle when showing tips for a group conversation -->
-    <string name="SafetyTips_subtitle_group">Review this request carefully. None of your contacts or people you chat with are in this group. Here are a few things to watch out for:</string>
+    <string name="SafetyTips_subtitle_group">اس درخواست کا بغور جائزہ لیں۔ آپ کے روابط یا جن لوگوں کے ساتھ آپ چیٹ کرتے ہیں ان میں سے کوئی بھی اس گروپ میں نہیں ہے۔ دھیان رکھنے کی کچھ چیزیں یہ ہیں:</string>
     <!-- Button text to move to the previous tip-->
-    <string name="SafetyTips_previous_tip">Previous tip</string>
+    <string name="SafetyTips_previous_tip">سابقہ تجویز</string>
     <!-- Button text to move to the next tip -->
-    <string name="SafetyTips_next_tip">Next tip</string>
+    <string name="SafetyTips_next_tip">اگلی تجویز</string>
     <!-- Title of tip 1 -->
-    <string name="SafetyTips_tip1_title">Crypto or money scams</string>
+    <string name="SafetyTips_tip1_title">کرپٹو یا پیسے کے سکیمز</string>
     <!-- Message of tip 1 -->
-    <string name="SafetyTips_tip1_message">If someone you don’t know messages about cryptocurrency (like Bitcoin) or an financial opportunity, be careful—it’s likely spam.</string>
+    <string name="SafetyTips_tip1_message">If someone you don’t know messages about cryptocurrency (like Bitcoin) or a financial opportunity, be careful—it’s likely spam.</string>
     <!-- Title of tip 2 -->
-    <string name="SafetyTips_tip2_title">Vague or irrelevant messages</string>
+    <string name="SafetyTips_tip2_title">مبہم اور غیر متعلقہ میسجز</string>
     <!-- Message of tip 2 -->
-    <string name="SafetyTips_tip2_message">Spammers often start with a simple message like “Hi” to draw you in. If you respond they may engage you further.</string>
+    <string name="SafetyTips_tip2_message">اسپام کرنے والے افراد آپ کو مائل کرنے کے لیے اکثر \"ہائے\" جیسے عام میسجز سے آغاز کرتے ہیں۔ اگر آپ جواب دیں تو وہ آپ کو مزید مشغول کر سکتے ہیں۔</string>
     <!-- Title of tip 3 -->
-    <string name="SafetyTips_tip3_title">Messages with links</string>
+    <string name="SafetyTips_tip3_title">لنکس والے میسجز</string>
     <!-- Message of tip 3 -->
-    <string name="SafetyTips_tip3_message">Be careful of messages from people you don’t know that have links to websites. Never visit links from people you don’t trust.</string>
+    <string name="SafetyTips_tip3_message">ایسے افراد جن کو آپ جانتے نہیں ہیں کی طرف سے ویب سائٹس کے لنکس والے میسجز کے حوالے سے احتیاط برتیں۔ ایسے افراد جن پر آپ کو اعتماد نہیں کی طرف سے لنکس کبھی ملاحظہ نہ کریں۔</string>
     <!-- Title of tip 4 -->
-    <string name="SafetyTips_tip4_title">Fake businesses and institutions</string>
+    <string name="SafetyTips_tip4_title">جعلی کاروبار اور ادارے</string>
     <!-- Message of tip 4 -->
-    <string name="SafetyTips_tip4_message">Be careful of businesses or government agencies contacting you. Messages involving tax agencies, couriers, and more can be spam.</string>
+    <string name="SafetyTips_tip4_message">آپ سے رابطہ کرنے والے کاروباری یا حکومتی اداروں کے حوالے سے احتیاط برتیں۔ ٹیکس اداروں، کوریئرز اور مزید کی طرف سے میسجز اسپام ہو سکتے ہیں۔</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">فلٹر کو صاف کریں</string>
@@ -585,8 +585,8 @@
     </plurals>
     <string name="ConversationListFragment_deleting">حذف ہو رہا ہے</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
-        <item quantity="one">Deleting selected chat…</item>
-        <item quantity="other">Deleting selected chats…</item>
+        <item quantity="one">منتخب کردہ چیٹ حذف کر رہے ہیں…</item>
+        <item quantity="other">منتخب کردہ چیٹس حذف کر رہے ہیں…</item>
     </plurals>
     <plurals name="ConversationListFragment_conversations_archived">
         <item quantity="one">آرکائیو کردہ چیٹ</item>
@@ -1599,9 +1599,9 @@
     <!-- Body for quote when message being quoted is an in-app payment message -->
     <string name="MessageRecord__payment_s">پیمنٹ: %1$s</string>
     <!-- Update message shown in chat after reporting it as spam -->
-    <string name="MessageRecord_reported_as_spam">Reported as spam</string>
+    <string name="MessageRecord_reported_as_spam">اسپام کے طور پر رپورٹ کیا گیا</string>
     <!-- Update message shown in chat after accept a message request -->
-    <string name="MessageRecord_you_accepted_the_message_request">You accepted the message request</string>
+    <string name="MessageRecord_you_accepted_the_message_request">آپ نے میسج کی درخواست قبول کی</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">قبول کریں</string>
@@ -1649,7 +1649,7 @@
         <item quantity="other">%1$dاضافی گروپس</item>
     </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
-    <string name="MessageRequestBottomView_report">Report…</string>
+    <string name="MessageRequestBottomView_report">رپورٹ کریں…</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">پاسفریز میچ نہیں ہوا!</string>
@@ -1967,7 +1967,7 @@
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
     <string name="AboutSheet__verified">تصدیق شدہ</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
-    <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string>
+    <string name="AboutSheet__no_direct_message">%1$s کے ساتھ کوئی براہ راست میسجز نہیں</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s آپ کے سسٹم کے روابط میں موجود ہے</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -2301,7 +2301,7 @@
     <string name="UsernameEditFragment_username_is_invalid">یوزر نیم غلط ہے.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">یوزر نیمز %1$dاور%2$d حرف کے درمیان ہونا چاہئے۔</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Usernames are always paired with a set of numbers.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">یوزر نیمز کو ہمیشہ نمبرز کے سیٹ کے ساتھ جوڑا جاتا ہے۔</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">یہ نمبر کیا ہے؟</string>
     <string name="UsernameEditFragment__these_digits_help_keep">یہ اعداد آپ کا یوزر نیم نجی رکھنے میں مدد کرتے ہیں تاکہ آپ غیر مطلوبہ میسجز سے بچ سکیں۔ اپنا یوزر نیم صرف ان لوگوں اور گروپس کے ساتھ شیئر کریں جن کے ساتھ آپ چیٹ کرنا چاہتے ہیں۔ اگر آپ یوزر نیمز تبدیل کرتے ہیں تو آپ کو اعداد کا نیا مجموعہ ملے گا۔</string>
@@ -2317,8 +2317,8 @@
     <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">غلط یوزر نیم، زیادہ سے زیادہ %1$d ہندسے درج کریں۔</string>
     <!-- Displayed when the chosen discriminator is 00 -->
     <string name="UsernameEditFragment__this_number_cant_be_00">یہ نمبر 00 نہیں ہو سکتا۔ 1–9 کے درمیان کا کوئی ہندسہ درج کریں</string>
-    <!-- Displayed when the chosen discriminator starts with 00 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_00">یہ نمبر 00 سے شروع نہیں ہو سکتا۔ 1–9 کے درمیان کا کوئی ہندسہ درج کریں</string>
+    <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">Numbers with more than 2 digits can\'t start with 0</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">اپنا یوزر نیم بازیافت کرنے سے آپ کا موجودہ QR کوڈ اور لنک ری سیٹ ہو جائے گا۔ کیا واقعی ایسا چاہتے ہیں؟</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
@@ -2722,7 +2722,7 @@
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">آپ نے اس فرد کو ہٹا دیا ہے، انہیں دوبارہ میسج کرنے سے وہ دوبارہ آپ کی فہرست میں شامل ہو جائیں گے۔</string>
     <!-- Update item button text shown for the accepted message request update message -->
-    <string name="ConversationUpdateItem_options">Options</string>
+    <string name="ConversationUpdateItem_options">آپشنز</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">چلائیں ۔۔۔ روکیں</string>
@@ -4125,9 +4125,9 @@
 
     <!-- ReviewCardDialogFragment -->
     <!-- Title of a screen where the user will be prompted to review group members with the same name -->
-    <string name="ReviewCardDialogFragment__review_members">Review members</string>
+    <string name="ReviewCardDialogFragment__review_members">ممبران کا جائزہ لیں</string>
     <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
-    <string name="ReviewCardDialogFragment__review_request">Review request</string>
+    <string name="ReviewCardDialogFragment__review_request">نظرثانی کی درخواست</string>
     <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$dگروپ ممبران کا ایک ہی نام ہے ، ذیل ممبران کا جائزہ لیں اور کارروائی کرنے کا انتخاب کریں۔</string>
     <string name="ReviewCardDialogFragment__if_youre_not_sure">اگر آپ کو یقین نہیں ہے کہ درخواست کس کی ہے تو ، نیچے دیئے گئے رابطوں کا جائزہ لیں اور کارروائی کریں۔</string>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">کوئی دوسرا گروہ مشترکہ نہیں۔</string>
@@ -6492,7 +6492,7 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">آپ کا لنک ری سیٹ کرتے ہوئے ایک نیٹ ورک نقص پیش آ گیا۔ بعد میں دوبارہ کوشش کریں۔</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
-    <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">آپ کا لنک ری سیٹ کرتے ہوئے ایک غیر متوقع نقص پیش آیا۔ بعد میں دوبارہ کوشش کریں۔</string>
     <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
     <string name="UsernameLinkSettings_reset_link_result_success">آپ کا QR کوڈ اور لنک ری سیٹ کر دیا گیا ہے اور ایک نیا QR کوڈ اور لنک بنایا گیا ہے۔</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
@@ -6565,7 +6565,7 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">فون نمبر</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_username_description">Enter a username followed by a dot and its set of numbers.</string>
+    <string name="FindByActivity__enter_username_description">کوئی یوزر نیم درج کریں جس کے بعد نقطہ اور اس کے نمبرز کا سیٹ ہو۔</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">اگلا</string>
     <!-- Placeholder text for search input for selecting country code -->

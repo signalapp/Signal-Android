@@ -180,17 +180,17 @@
     <string name="BlockUnblockDialog_block">Blokeeri</string>
     <string name="BlockUnblockDialog_block_and_leave">Blokeeri ja lahku</string>
     <!-- Dialog button label to report as spam and block the person -->
-    <string name="BlockUnblockDialog_report_spam_and_block">Report and block</string>
+    <string name="BlockUnblockDialog_report_spam_and_block">Teata ja blokeeri</string>
     <!-- Dialog title for reporting spam -->
-    <string name="BlockUnblockDialog_report_spam_title">Report spam?</string>
+    <string name="BlockUnblockDialog_report_spam_title">Kas teatada rämpspostist?</string>
     <!-- Dialog button to report as spam only -->
-    <string name="BlockUnblockDialog_report_spam">Report spam</string>
+    <string name="BlockUnblockDialog_report_spam">Teata rämpspostist</string>
     <!-- Dialog message when reporting spam of an individual (1:1 conversation) -->
-    <string name="BlockUnblockDialog_report_spam_description">Signal will be notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="BlockUnblockDialog_report_spam_description">Signalit teavitatakse, et see isik võib olla rämpsposti edastaja. Signal ei näe ühegi vestluse sisu.</string>
     <!-- Dialog message when reporting spam of a group and we can determine the group member that invited you, placeholder is a name -->
-    <string name="BlockUnblockDialog_report_spam_group_named_adder">Signal will be notified that %1$s, who invited you to this group, may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="BlockUnblockDialog_report_spam_group_named_adder">Signalit teavitatakse, et %1$s, kes sind sellesse gruppi kutsus, võib olla rämpsposti edastaja. Signal ei näe ühegi vestluse sisu.</string>
     <!-- Dialog message when reporting spam of a group and we cannot determine the group member that invited you -->
-    <string name="BlockUnblockDialog_report_spam_group_unknown_adder">Signal will be notified that the person who invited you to this group may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="BlockUnblockDialog_report_spam_group_unknown_adder">Signalit teavitatakse, et isik, kes sind sellesse gruppi kutsus, võib olla rämpsposti edastaja. Signal ei näe ühegi vestluse sisu.</string>
 
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">Täna</string>
@@ -495,7 +495,7 @@
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d grupiliikmel on sama nimi.</string>
     <string name="ConversationFragment__tap_to_review">Üle vaatamiseks koputa</string>
     <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
-    <string name="ConversationFragment__review_banner_body">This person has the same name as another contact</string>
+    <string name="ConversationFragment__review_banner_body">Sel isikul on sama nimi nagu teisel kontakti</string>
     <string name="ConversationFragment_contact_us">Võta meiega ühendust</string>
     <string name="ConversationFragment_verify">Kinnita</string>
     <string name="ConversationFragment_not_now">Mitte praegu</string>
@@ -522,54 +522,54 @@
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
     <string name="ConversationFragment__no_longer_verified">Ei ole enam kinnitatud</string>
     <!-- Button shown in conversation header when in a message request state and no groups in common to show new message safety tips -->
-    <string name="ConversationFragment_safety_tips">Safety tips</string>
+    <string name="ConversationFragment_safety_tips">Ohutusnõuanded</string>
     <!-- Menu option to report spam in a conversation -->
-    <string name="ConversationFragment_report_spam">Report spam</string>
+    <string name="ConversationFragment_report_spam">Teata rämpspostist</string>
     <!-- Menu option to block in a conversation -->
     <string name="ConversationFragment_block">Blokeeri</string>
     <!-- Menu otpion to accept a message request in a conversation -->
     <string name="ConversationFragment_accept">Nõustun</string>
     <!-- Menu option to delete an entire chat in a conversation -->
-    <string name="ConversationFragment_delete_chat">Delete chat</string>
+    <string name="ConversationFragment_delete_chat">Kustuta vestlus</string>
     <!-- Menu option to unblock in a conversation -->
     <string name="ConversationFragment_unblock">Eemalda blokeering</string>
-    <!-- Menu option to report spam in a conversation -->
-    <string name="ConversationFragment_reported_spam">Reported spam</string>
+    <!-- Dialog title shown after reporting spam and tapping the conversation item -->
+    <string name="ConversationFragment_reported_spam">Rämpspostist teatatud</string>
     <!-- Dialog message shown after reporting spam and tapping the conversation item -->
-    <string name="ConversationFragment_reported_spam_message">Signal has been be notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="ConversationFragment_reported_spam_message">Signal has been notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
     <!-- Toast shown after reporting spam and tapping the conversation item -->
-    <string name="ConversationFragment_reported_as_spam">Reported as spam</string>
+    <string name="ConversationFragment_reported_as_spam">Rämpspostist teatatud</string>
     <!-- Toast shown after reporting and blocking a conversation -->
-    <string name="ConversationFragment_reported_as_spam_and_blocked">Reported as spam and blocked</string>
+    <string name="ConversationFragment_reported_as_spam_and_blocked">Rämpspostist teatatud ja blokeeritud</string>
     <!-- Dialog message shown after accepting a message request and tapping on options from the conversation event -->
-    <string name="ConversationFragment_you_accepted_a_message_request_from_s">You accepted a message request from %1$s. If this was a mistake, you can choose an action below.</string>
+    <string name="ConversationFragment_you_accepted_a_message_request_from_s">Sa võtsid vastu sõnumitaotluse kasutajalt %1$s. Kui tegid seda kogemata, saad valida ühe järgmistest tegevustest.</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
-    <string name="SafetyTips_title">Safety Tips</string>
+    <string name="SafetyTips_title">Ohutusnõuanded</string>
     <!-- Dialog subtitle when showign tips for a 1:1 conversation -->
-    <string name="SafetyTips_subtitle_individual">Be careful when accepting message requests from people you don’t know. Watch out for:</string>
+    <string name="SafetyTips_subtitle_individual">Ole ettevaatlik, kui võtad vastu sõnumitaotlusi inimestelt, keda sa ei tunne. Ettevaatlikult tuleb suhtuda järgmisse:</string>
     <!-- Dialog subtitle when showing tips for a group conversation -->
-    <string name="SafetyTips_subtitle_group">Review this request carefully. None of your contacts or people you chat with are in this group. Here are a few things to watch out for:</string>
+    <string name="SafetyTips_subtitle_group">Vaata see taotlus hoolikalt üle. Mitte keegi su kontaktidest ega vestluskaaslastest ei ole selles grupis. Mõned asjad, mida jälgida:</string>
     <!-- Button text to move to the previous tip-->
-    <string name="SafetyTips_previous_tip">Previous tip</string>
+    <string name="SafetyTips_previous_tip">Eelmine nõuanne</string>
     <!-- Button text to move to the next tip -->
-    <string name="SafetyTips_next_tip">Next tip</string>
+    <string name="SafetyTips_next_tip">Järgmine nõuanne</string>
     <!-- Title of tip 1 -->
-    <string name="SafetyTips_tip1_title">Crypto or money scams</string>
+    <string name="SafetyTips_tip1_title">Krüpto- või rahapettused</string>
     <!-- Message of tip 1 -->
-    <string name="SafetyTips_tip1_message">If someone you don’t know messages about cryptocurrency (like Bitcoin) or an financial opportunity, be careful—it’s likely spam.</string>
+    <string name="SafetyTips_tip1_message">If someone you don’t know messages about cryptocurrency (like Bitcoin) or a financial opportunity, be careful—it’s likely spam.</string>
     <!-- Title of tip 2 -->
-    <string name="SafetyTips_tip2_title">Vague or irrelevant messages</string>
+    <string name="SafetyTips_tip2_title">Ebamäärased või juhuslikud sõnumid</string>
     <!-- Message of tip 2 -->
-    <string name="SafetyTips_tip2_message">Spammers often start with a simple message like “Hi” to draw you in. If you respond they may engage you further.</string>
+    <string name="SafetyTips_tip2_message">Petturid alustavad sageli vestlust lihtsalt sõnaga „Tere“, et sind õnge võtta. Kui sa vastad, võivad nad sind sügavamale sisse mässida.</string>
     <!-- Title of tip 3 -->
-    <string name="SafetyTips_tip3_title">Messages with links</string>
+    <string name="SafetyTips_tip3_title">Linkidega sõnumid</string>
     <!-- Message of tip 3 -->
-    <string name="SafetyTips_tip3_message">Be careful of messages from people you don’t know that have links to websites. Never visit links from people you don’t trust.</string>
+    <string name="SafetyTips_tip3_message">Ole ettevaatlik, kui sulle tundmatu isik saadab sõnumi, kus on mõni link veebilehele. Ära kunagi ava linke, mille on saatnud sinu jaoks mitteusaldusväärne isik.</string>
     <!-- Title of tip 4 -->
-    <string name="SafetyTips_tip4_title">Fake businesses and institutions</string>
+    <string name="SafetyTips_tip4_title">Võltsärid ja -asutused</string>
     <!-- Message of tip 4 -->
-    <string name="SafetyTips_tip4_message">Be careful of businesses or government agencies contacting you. Messages involving tax agencies, couriers, and more can be spam.</string>
+    <string name="SafetyTips_tip4_message">Ole ettevaatlik, kui näib, et sinuga üritab ühendust võtta ettevõte või valitsusasutus. Maksuameti, kullerifirma jm poolt tulnud sõnumid võivad olla rämpspost.</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Eemalda filter</string>
@@ -585,8 +585,8 @@
     </plurals>
     <string name="ConversationListFragment_deleting">Kustutan</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
-        <item quantity="one">Deleting selected chat…</item>
-        <item quantity="other">Deleting selected chats…</item>
+        <item quantity="one">Valitud vestluse kustutamine …</item>
+        <item quantity="other">Valitud vestluste kustutamine …</item>
     </plurals>
     <plurals name="ConversationListFragment_conversations_archived">
         <item quantity="one">Vestlus arhiveeritud</item>
@@ -1599,9 +1599,9 @@
     <!-- Body for quote when message being quoted is an in-app payment message -->
     <string name="MessageRecord__payment_s">Makse: %1$s</string>
     <!-- Update message shown in chat after reporting it as spam -->
-    <string name="MessageRecord_reported_as_spam">Reported as spam</string>
+    <string name="MessageRecord_reported_as_spam">Rämpspostist teatatud</string>
     <!-- Update message shown in chat after accept a message request -->
-    <string name="MessageRecord_you_accepted_the_message_request">You accepted the message request</string>
+    <string name="MessageRecord_you_accepted_the_message_request">Sa võtsid sõnumitaotluse vastu</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Nõustun</string>
@@ -1649,7 +1649,7 @@
         <item quantity="other">%1$d lisagrupp</item>
     </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
-    <string name="MessageRequestBottomView_report">Report…</string>
+    <string name="MessageRequestBottomView_report">Teata …</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Salasõnad ei ole samad!</string>
@@ -1967,7 +1967,7 @@
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
     <string name="AboutSheet__verified">Kontrollitud</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
-    <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string>
+    <string name="AboutSheet__no_direct_message">Sinul ja kasutajal %1$s ei ole otsesõnumeid</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s on sinu süsteemi kontaktide hulgas</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -2301,7 +2301,7 @@
     <string name="UsernameEditFragment_username_is_invalid">Kasutajanimi on sobimatu.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Kasutajanimede pikkus peab olema %1$d ja %2$d tähemärgi vahel.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Usernames are always paired with a set of numbers.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">Kasutajanimedel on alati juures numbrikombinatsioon.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">Mis number see on?</string>
     <string name="UsernameEditFragment__these_digits_help_keep">See kood aitab su kasutajanime privaatsena hoida, et saaksid vältida soovimatuid sõnumeid. Jaga oma kasutajanime ainult inimeste ja gruppidega, kellega soovid vestelda. Kui kasutajanime muudad, saadetakse sulle uus kood.</string>
@@ -2317,8 +2317,8 @@
     <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Kehtetu kasutajanimi, sisesta maksimaalselt %1$d tähemärki.</string>
     <!-- Displayed when the chosen discriminator is 00 -->
     <string name="UsernameEditFragment__this_number_cant_be_00">See number ei saa olla 00. Sisesta number vahemikus 1–9</string>
-    <!-- Displayed when the chosen discriminator starts with 00 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_00">Selle numbri algus ei saa olla 00. Sisesta number vahemikus 1–9</string>
+    <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">Numbers with more than 2 digits can\'t start with 0</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">Kasutajanime taastades lähtestad olemasoleva QR-koodi ja lingi. Kas oled kindel?</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
@@ -2722,7 +2722,7 @@
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">Oled selle isiku eemaldanud. Kui talle sõnumi saadad, lisatakse ta uuesti sinu kontaktide hulka.</string>
     <!-- Update item button text shown for the accepted message request update message -->
-    <string name="ConversationUpdateItem_options">Options</string>
+    <string name="ConversationUpdateItem_options">Valikud</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Esita … Peata</string>
@@ -4125,9 +4125,9 @@
 
     <!-- ReviewCardDialogFragment -->
     <!-- Title of a screen where the user will be prompted to review group members with the same name -->
-    <string name="ReviewCardDialogFragment__review_members">Review members</string>
+    <string name="ReviewCardDialogFragment__review_members">Vaata liikmed üle</string>
     <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
-    <string name="ReviewCardDialogFragment__review_request">Review request</string>
+    <string name="ReviewCardDialogFragment__review_request">Vaata taotlus üle</string>
     <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d grupi liiget on sama nimega, kontrolli allpool liikmeid ja vali, mida teha.</string>
     <string name="ReviewCardDialogFragment__if_youre_not_sure">Kui sa pole kindel, kellelt soov on, siis vaata kontaktid allpool üle ja vali tegevus.</string>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">Muid ühised gruppe pole.</string>
@@ -4152,7 +4152,7 @@
     <string name="ReviewCard__block">Blokeeri</string>
     <string name="ReviewCard__delete">Kustuta</string>
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
-    <string name="ReviewCard__s_recently_changed">%1$s muutis hiljuti oma profiili nime %2$s nimeks %3$s</string>
+    <string name="ReviewCard__s_recently_changed">%1$s muutis hiljuti oma profiilinime %2$s nimeks %3$s</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
     <string name="ReviewCard__s_is_in_your_system_contacts">%1$s on sinu süsteemi kontaktide hulgas</string>
 
@@ -5515,7 +5515,7 @@
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">võttes vastu sõnumitaotluse</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">olles salvestanud nende kontakti oma telefoni</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Olles salvestanud ta oma süsteemi kontaktide hulka</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Sinu kontaktid näevad sinu nime ja fotot ning postitusi „Minu loo“ alla, kui sa neid nende eest ei peida."</string>
     <!-- Clickable option to add a viewer to a custom story -->
@@ -6482,7 +6482,7 @@
     <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
     <string name="UsernameLinkSettings_qr_result_invalid">QR-kood on kehtetu.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
-    <string name="UsernameLinkSettings_qr_result_not_found">Kasutajat nimega %1$s ei leitud</string>
+    <string name="UsernameLinkSettings_qr_result_not_found">Kasutajat kasutajanimega %1$s ei leitud</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
     <string name="UsernameLinkSettings_qr_result_not_found_no_username">Seda kasutajat ei leitud.</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
@@ -6492,7 +6492,7 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">Sinu lingi lähtestamise ajal tekkis võrgu viga. Proovi hiljem uuesti.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
-    <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">Sinu lingi lähtestamisel tekkis ootamatu viga. Proovi hiljem uuesti.</string>
     <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
     <string name="UsernameLinkSettings_reset_link_result_success">Sinu QR-kood ja link on lähtestatud ja uus QR-kood ja link on loodud.</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
@@ -6565,7 +6565,7 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">Telefoninumber</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_username_description">Enter a username followed by a dot and its set of numbers.</string>
+    <string name="FindByActivity__enter_username_description">Sisesta kasutajanimi koos punkti ja numbrikombinatsiooniga.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">Edasi</string>
     <!-- Placeholder text for search input for selecting country code -->

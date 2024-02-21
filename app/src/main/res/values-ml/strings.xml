@@ -180,17 +180,17 @@
     <string name="BlockUnblockDialog_block">ബ്ലോക്ക് ചെയ്യുക</string>
     <string name="BlockUnblockDialog_block_and_leave">ബ്ലോക്ക് ചെയ്ത ശേഷം പുറത്തുകടക്കുക</string>
     <!-- Dialog button label to report as spam and block the person -->
-    <string name="BlockUnblockDialog_report_spam_and_block">Report and block</string>
+    <string name="BlockUnblockDialog_report_spam_and_block">റിപ്പോർട്ട് ചെയ്ത് ബ്ലോക്ക് ചെയ്യുക</string>
     <!-- Dialog title for reporting spam -->
-    <string name="BlockUnblockDialog_report_spam_title">Report spam?</string>
+    <string name="BlockUnblockDialog_report_spam_title">സ്പാം റിപ്പോർട്ട് ചെയ്യണോ?</string>
     <!-- Dialog button to report as spam only -->
-    <string name="BlockUnblockDialog_report_spam">Report spam</string>
+    <string name="BlockUnblockDialog_report_spam">സ്പാം റിപ്പോർട്ട് ചെയ്യുക</string>
     <!-- Dialog message when reporting spam of an individual (1:1 conversation) -->
-    <string name="BlockUnblockDialog_report_spam_description">Signal will be notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="BlockUnblockDialog_report_spam_description">ഈ വ്യക്തി സ്‌പാം ആകാം അയയ്ക്കുന്നതെന്ന് Signal-ന് അറിയിപ്പ് ലഭിക്കും. Signal-ന് ഒരു ചാറ്റിന്റെയും ഉള്ളടക്കം കാണാൻ കഴിയില്ല.</string>
     <!-- Dialog message when reporting spam of a group and we can determine the group member that invited you, placeholder is a name -->
-    <string name="BlockUnblockDialog_report_spam_group_named_adder">Signal will be notified that %1$s, who invited you to this group, may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="BlockUnblockDialog_report_spam_group_named_adder">നിങ്ങളെ ഈ ഗ്രൂപ്പിലേക്ക് ക്ഷണിച്ച %1$s, സ്‌പാം ആകാം അയയ്ക്കുന്നതെന്ന് Signal-ന് അറിയിപ്പ് ലഭിക്കും. Signal-ന് ഒരു ചാറ്റിന്റെയും ഉള്ളടക്കം കാണാൻ കഴിയില്ല.</string>
     <!-- Dialog message when reporting spam of a group and we cannot determine the group member that invited you -->
-    <string name="BlockUnblockDialog_report_spam_group_unknown_adder">Signal will be notified that the person who invited you to this group may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="BlockUnblockDialog_report_spam_group_unknown_adder">നിങ്ങളെ ഈ ഗ്രൂപ്പിലേക്ക് ക്ഷണിച്ച വ്യക്തി, സ്‌പാം ആകാം അയയ്ക്കുന്നതെന്ന് Signal-ന് അറിയിപ്പ് ലഭിക്കും. Signal-ന് ഒരു ചാറ്റിന്റെയും ഉള്ളടക്കം കാണാൻ കഴിയില്ല.</string>
 
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">ഇന്ന്</string>
@@ -495,7 +495,7 @@
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d ഗ്രൂപ്പ് അംഗങ്ങൾക്ക് ഒരേ പേരാണ്.</string>
     <string name="ConversationFragment__tap_to_review">അവലോകനം ചെയ്യാൻ ടാപ്പുചെയ്യുക</string>
     <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
-    <string name="ConversationFragment__review_banner_body">This person has the same name as another contact</string>
+    <string name="ConversationFragment__review_banner_body">ഈ വ്യക്തിക്കും മറ്റൊരു കോൺടാക്റ്റിനും ഒരേ പേരാണ്</string>
     <string name="ConversationFragment_contact_us">ഞങ്ങളെ സമീപിക്കുക</string>
     <string name="ConversationFragment_verify">ഉറപ്പാക്കു</string>
     <string name="ConversationFragment_not_now">ഇപ്പോൾ വേണ്ട</string>
@@ -522,54 +522,54 @@
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
     <string name="ConversationFragment__no_longer_verified">ഇപ്പോൾ പരിശോധിച്ചുറപ്പിച്ചതല്ല</string>
     <!-- Button shown in conversation header when in a message request state and no groups in common to show new message safety tips -->
-    <string name="ConversationFragment_safety_tips">Safety tips</string>
+    <string name="ConversationFragment_safety_tips">സുരക്ഷാ നുറുങ്ങുകൾ</string>
     <!-- Menu option to report spam in a conversation -->
-    <string name="ConversationFragment_report_spam">Report spam</string>
+    <string name="ConversationFragment_report_spam">സ്പാം റിപ്പോർട്ട് ചെയ്യുക</string>
     <!-- Menu option to block in a conversation -->
     <string name="ConversationFragment_block">ബ്ലോക്ക് ചെയ്യുക</string>
     <!-- Menu otpion to accept a message request in a conversation -->
     <string name="ConversationFragment_accept">സ്വീകരിക്കുക</string>
     <!-- Menu option to delete an entire chat in a conversation -->
-    <string name="ConversationFragment_delete_chat">Delete chat</string>
+    <string name="ConversationFragment_delete_chat">ചാറ്റ് ഇല്ലാതാക്കുക</string>
     <!-- Menu option to unblock in a conversation -->
     <string name="ConversationFragment_unblock">അൺബ്ലോക്ക് ചെയ്യുക</string>
-    <!-- Menu option to report spam in a conversation -->
-    <string name="ConversationFragment_reported_spam">Reported spam</string>
+    <!-- Dialog title shown after reporting spam and tapping the conversation item -->
+    <string name="ConversationFragment_reported_spam">സ്പാം റിപ്പോർട്ട് ചെയ്തു</string>
     <!-- Dialog message shown after reporting spam and tapping the conversation item -->
-    <string name="ConversationFragment_reported_spam_message">Signal has been be notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="ConversationFragment_reported_spam_message">Signal has been notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
     <!-- Toast shown after reporting spam and tapping the conversation item -->
-    <string name="ConversationFragment_reported_as_spam">Reported as spam</string>
+    <string name="ConversationFragment_reported_as_spam">സ്പാം റിപ്പോർട്ട് ചെയ്തു</string>
     <!-- Toast shown after reporting and blocking a conversation -->
-    <string name="ConversationFragment_reported_as_spam_and_blocked">Reported as spam and blocked</string>
+    <string name="ConversationFragment_reported_as_spam_and_blocked">സ്പാം ആയി റിപ്പോർട്ട് ചെയ്ത ശേഷം ബ്ലോക്ക് ചെയ്തു</string>
     <!-- Dialog message shown after accepting a message request and tapping on options from the conversation event -->
-    <string name="ConversationFragment_you_accepted_a_message_request_from_s">You accepted a message request from %1$s. If this was a mistake, you can choose an action below.</string>
+    <string name="ConversationFragment_you_accepted_a_message_request_from_s">നിങ്ങൾ %1$s എന്നയാളിൽ നിന്നുള്ള സന്ദേശ അഭ്യർത്ഥന സ്വീകരിച്ചു. ഇത് അബദ്ധത്തിൽ സംഭവിച്ചതാണെങ്കിൽ, ചുവടെ നൽകിയിരിക്കുന്ന ഏതെങ്കിലും നടപടി നിങ്ങൾക്ക് തിരഞ്ഞെടുക്കാം.</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
-    <string name="SafetyTips_title">Safety Tips</string>
+    <string name="SafetyTips_title">സുരക്ഷാ നുറുങ്ങുകൾ</string>
     <!-- Dialog subtitle when showign tips for a 1:1 conversation -->
-    <string name="SafetyTips_subtitle_individual">Be careful when accepting message requests from people you don’t know. Watch out for:</string>
+    <string name="SafetyTips_subtitle_individual">നിങ്ങൾക്ക് പരിചയമില്ലാത്ത ആളുകളിൽ നിന്നുള്ള സന്ദേശ അഭ്യർത്ഥനകൾ സ്വീകരിക്കുമ്പോൾ ശ്രദ്ധിക്കുക. ഇവ ശ്രദ്ധിക്കുക:</string>
     <!-- Dialog subtitle when showing tips for a group conversation -->
-    <string name="SafetyTips_subtitle_group">Review this request carefully. None of your contacts or people you chat with are in this group. Here are a few things to watch out for:</string>
+    <string name="SafetyTips_subtitle_group">ഈ അഭ്യർത്ഥന ശ്രദ്ധാപൂർവ്വം അവലോകനം ചെയ്യുക. നിങ്ങളുടെ കോൺടാക്റ്റുകളിലുള്ളവരോ നിങ്ങൾ ചാറ്റ് ചെയ്യുന്നവരോ ഈ ഗ്രൂപ്പിൽ ഇല്ല. ശ്രദ്ധിക്കേണ്ട ചില കാര്യങ്ങൾ ഇവയാണ്:</string>
     <!-- Button text to move to the previous tip-->
-    <string name="SafetyTips_previous_tip">Previous tip</string>
+    <string name="SafetyTips_previous_tip">മുമ്പത്തെ നുറുങ്ങ്</string>
     <!-- Button text to move to the next tip -->
-    <string name="SafetyTips_next_tip">Next tip</string>
+    <string name="SafetyTips_next_tip">അടുത്ത നുറുങ്ങ്</string>
     <!-- Title of tip 1 -->
-    <string name="SafetyTips_tip1_title">Crypto or money scams</string>
+    <string name="SafetyTips_tip1_title">ക്രിപ്റ്റോ അല്ലെങ്കിൽ പണം തട്ടിപ്പുകൾ</string>
     <!-- Message of tip 1 -->
-    <string name="SafetyTips_tip1_message">If someone you don’t know messages about cryptocurrency (like Bitcoin) or an financial opportunity, be careful—it’s likely spam.</string>
+    <string name="SafetyTips_tip1_message">If someone you don’t know messages about cryptocurrency (like Bitcoin) or a financial opportunity, be careful—it’s likely spam.</string>
     <!-- Title of tip 2 -->
-    <string name="SafetyTips_tip2_title">Vague or irrelevant messages</string>
+    <string name="SafetyTips_tip2_title">അവ്യക്തമോ അപ്രസക്തമോ ആയ സന്ദേശങ്ങൾ</string>
     <!-- Message of tip 2 -->
-    <string name="SafetyTips_tip2_message">Spammers often start with a simple message like “Hi” to draw you in. If you respond they may engage you further.</string>
+    <string name="SafetyTips_tip2_message">നിങ്ങളുടെ ശ്രദ്ധ ആകർഷിക്കാൻ \"ഹായ്\" പോലുള്ള ലളിതമായ സന്ദേശം അയച്ചാണ് സ്‌പാമർമാർ പലപ്പോഴും ചാറ്റ് ആരംഭിക്കുന്നത്. നിങ്ങൾ പ്രതികരിച്ചാൽ അവർ നിങ്ങൾക്ക് കൂടുതൽ സന്ദേശങ്ങളയച്ച് ഇടപഴകാൻ പ്രേരിപ്പിക്കും.</string>
     <!-- Title of tip 3 -->
-    <string name="SafetyTips_tip3_title">Messages with links</string>
+    <string name="SafetyTips_tip3_title">ലിങ്കുകളുള്ള സന്ദേശങ്ങൾ</string>
     <!-- Message of tip 3 -->
-    <string name="SafetyTips_tip3_message">Be careful of messages from people you don’t know that have links to websites. Never visit links from people you don’t trust.</string>
+    <string name="SafetyTips_tip3_message">നിങ്ങൾക്ക് പരിചയമില്ലാത്ത ആളുകളിൽ നിന്ന്, വെബ്‌സൈറ്റുകളിലേക്കുള്ള ലിങ്കുകളുള്ള സന്ദേശങ്ങൾ ലഭിച്ചാൽ അത് ശ്രദ്ധയോടെ കൈകാര്യം ചെയ്യുക. നിങ്ങൾക്ക് വിശ്വാസമില്ലാത്ത ആളുകൾ അയയ്ക്കുന്ന ലിങ്കുകൾ ഒരിക്കലും സന്ദർശിക്കരുത്.</string>
     <!-- Title of tip 4 -->
-    <string name="SafetyTips_tip4_title">Fake businesses and institutions</string>
+    <string name="SafetyTips_tip4_title">വ്യാജ ബിസിനസുകളും സ്ഥാപനങ്ങളും</string>
     <!-- Message of tip 4 -->
-    <string name="SafetyTips_tip4_message">Be careful of businesses or government agencies contacting you. Messages involving tax agencies, couriers, and more can be spam.</string>
+    <string name="SafetyTips_tip4_message">നിങ്ങളെ ബന്ധപ്പെടുന്ന ബിസിനസ്സുകളെയോ സർക്കാർ ഏജൻസികളെയോ ശ്രദ്ധയോടെ കൈകാര്യം ചെയ്യുക. ടാക്സ് ഏജൻസികൾ, കൊറിയറുകൾ എന്നിവയും മറ്റും ഉൾപ്പെടുന്ന സന്ദേശങ്ങൾ സ്പാം ആകാം.</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">ഫിൽട്ടർ മായ്‌ക്കുക</string>
@@ -585,8 +585,8 @@
     </plurals>
     <string name="ConversationListFragment_deleting">ഇല്ലാതാക്കുന്നു</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
-        <item quantity="one">Deleting selected chat…</item>
-        <item quantity="other">Deleting selected chats…</item>
+        <item quantity="one">തിരഞ്ഞെടുത്ത ചാറ്റ് ഇല്ലാതാക്കുന്നു…</item>
+        <item quantity="other">തിരഞ്ഞെടുത്ത ചാറ്റുകൾ ഇല്ലാതാക്കുന്നു…</item>
     </plurals>
     <plurals name="ConversationListFragment_conversations_archived">
         <item quantity="one">ചാറ്റ് ആർക്കൈവ് ചെയ്‌തു</item>
@@ -1599,9 +1599,9 @@
     <!-- Body for quote when message being quoted is an in-app payment message -->
     <string name="MessageRecord__payment_s">പേയ്മെന്റ്: %1$s</string>
     <!-- Update message shown in chat after reporting it as spam -->
-    <string name="MessageRecord_reported_as_spam">Reported as spam</string>
+    <string name="MessageRecord_reported_as_spam">സ്പാം റിപ്പോർട്ട് ചെയ്തു</string>
     <!-- Update message shown in chat after accept a message request -->
-    <string name="MessageRecord_you_accepted_the_message_request">You accepted the message request</string>
+    <string name="MessageRecord_you_accepted_the_message_request">സന്ദേശ അഭ്യർത്ഥന നിങ്ങൾ സ്വീകരിച്ചു</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">സ്വീകരിക്കുക</string>
@@ -1649,7 +1649,7 @@
         <item quantity="other">%1$d അധിക ഗ്രൂപ്പുകൾ</item>
     </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
-    <string name="MessageRequestBottomView_report">Report…</string>
+    <string name="MessageRequestBottomView_report">റിപ്പോർട്ട് ചെയ്യുക…</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">രഹസ്യവാചകങ്ങൾ പൊരുത്തപ്പെടുന്നില്ല!</string>
@@ -1967,7 +1967,7 @@
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
     <string name="AboutSheet__verified">പരിശോധിച്ചു</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
-    <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string>
+    <string name="AboutSheet__no_direct_message">%1$s എന്നയാൾക്ക് നേരിട്ട് സന്ദേശങ്ങളൊന്നും അയച്ചിട്ടില്ല</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s നിങ്ങളുടെ സിസ്റ്റം കോൺടാക്റ്റുകളിൽ ഉണ്ട്</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -2301,7 +2301,7 @@
     <string name="UsernameEditFragment_username_is_invalid">ഉപയോക്തൃനാമം അസാധുവാണ്.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ഉപയോക്തൃനാമങ്ങൾ %1$d മുതൽ %2$d വരെ പ്രതീകങ്ങൾ ആയിരിക്കണം.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Usernames are always paired with a set of numbers.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">ഉപയോക്തൃനാമങ്ങൾക്കൊപ്പം ഒരു കൂട്ടം സംഖ്യകളും ഉണ്ടാകും.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">ഈ നമ്പർ എന്താണ്?</string>
     <string name="UsernameEditFragment__these_digits_help_keep">അനാവശ്യ സന്ദേശങ്ങൾ ഒഴിവാക്കാൻ നിങ്ങളെ സഹായിക്കുന്നതിന്, ഈ അക്കങ്ങൾ നിങ്ങളുടെ ഉപയോക്തൃനാമം സ്വകാര്യമായി സൂക്ഷിക്കുന്നു. നിങ്ങൾ ചാറ്റ് ചെയ്യാൻ ആഗ്രഹിക്കുന്ന ആളുകളുമായും ഗ്രൂപ്പുകളുമായും മാത്രം നിങ്ങളുടെ ഉപയോക്തൃനാമം പങ്കിടുക. നിങ്ങൾ ഉപയോക്തൃനാമം മാറ്റുകയാണെങ്കിൽ, നിങ്ങൾക്ക് പുതിയ ഒരു കൂട്ടം അക്കങ്ങൾ ലഭിക്കുന്നതാണ്.</string>
@@ -2317,8 +2317,8 @@
     <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">ഉപയോക്തൃനാമം അസാധുവാണ്, പരമാവധി %1$d അക്കങ്ങൾ നൽകുക.</string>
     <!-- Displayed when the chosen discriminator is 00 -->
     <string name="UsernameEditFragment__this_number_cant_be_00">ഈ സംഖ്യ 00 ആകാൻ പാടില്ല. 1-നും 9-നും ഇടയിലുള്ള ഒരു അക്കം നൽകുക</string>
-    <!-- Displayed when the chosen discriminator starts with 00 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_00">ഈ സംഖ്യ 00-ൽ ആരംഭിക്കാൻ കഴിയില്ല. 1-നും 9-നും ഇടയിലുള്ള ഒരു അക്കം നൽകുക</string>
+    <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">Numbers with more than 2 digits can\'t start with 0</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">നിങ്ങളുടെ ഉപയോക്തൃനാമം വീണ്ടെടുക്കുന്നതിലൂടെ നിങ്ങളുടെ നിലവിലുള്ള QR കോഡും ലിങ്കും പുനഃക്രമീകരിക്കും. ഉറപ്പാണോ?</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
@@ -2722,7 +2722,7 @@
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">നിങ്ങൾ ഈ വ്യക്തിയെ നീക്കം ചെയ്തു, അവർക്ക് വീണ്ടും സന്ദേശം അയയ്ക്കുന്നതിലൂടെ വീണ്ടും അവരെ ലിസ്റ്റിലേക്ക് ചേർക്കും.</string>
     <!-- Update item button text shown for the accepted message request update message -->
-    <string name="ConversationUpdateItem_options">Options</string>
+    <string name="ConversationUpdateItem_options">ഓപ്ഷനുകൾ</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">പ്ലേ … പോസ്</string>
@@ -4125,9 +4125,9 @@
 
     <!-- ReviewCardDialogFragment -->
     <!-- Title of a screen where the user will be prompted to review group members with the same name -->
-    <string name="ReviewCardDialogFragment__review_members">Review members</string>
+    <string name="ReviewCardDialogFragment__review_members">അംഗങ്ങളെ അവലോകനം ചെയ്യുക</string>
     <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
-    <string name="ReviewCardDialogFragment__review_request">Review request</string>
+    <string name="ReviewCardDialogFragment__review_request">അവലോകന അഭ്യർത്ഥന</string>
     <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d ഗ്രൂപ്പ് അംഗങ്ങൾക്ക് സമാന പേരുണ്ട്, ചുവടെയുള്ള അംഗങ്ങളെ അവലോകനം ചെയ്ത് നടപടിയെടുക്കാൻ തിരഞ്ഞെടുക്കുക.</string>
     <string name="ReviewCardDialogFragment__if_youre_not_sure">അഭ്യർത്ഥന ആരാണ് നിങ്ങൾക്ക് അയച്ചതെന്ന് ഉറപ്പില്ലെങ്കിൽ, ചുവടെയുള്ള കോൺടാക്റ്റുകൾ അവലോകനം ചെയ്ത് നടപടിയെടുക്കുക.</string>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">സാമാന്യമായി മറ്റ് ഗ്രൂപ്പുകളൊന്നുമില്ല.</string>
@@ -6492,7 +6492,7 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">നിങ്ങളുടെ ലിങ്ക് പുനഃക്രമീകരിക്കാൻ ശ്രമിക്കുമ്പോൾ നെറ്റ്‌വർക്ക് പിശകുണ്ടായി. പിന്നീട് വീണ്ടും ശ്രമിക്കുക.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
-    <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">നിങ്ങളുടെ ലിങ്ക് പുനഃക്രമീകരിക്കാൻ ശ്രമിക്കുന്നതിനിടയിൽ ഒരു അപ്രതീക്ഷിത പിശക് സംഭവിച്ചു. പിന്നീട് വീണ്ടും ശ്രമിക്കുക.</string>
     <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
     <string name="UsernameLinkSettings_reset_link_result_success">നിങ്ങളുടെ QR കോഡും ലിങ്കും പുനഃക്രമീകരിച്ചു, പുതിയൊരു QR കോഡും ലിങ്കും സൃഷ്‌ടിച്ചു.</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
@@ -6565,7 +6565,7 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">ഫോൺ നമ്പർ</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_username_description">Enter a username followed by a dot and its set of numbers.</string>
+    <string name="FindByActivity__enter_username_description">ഡോട്ടും തുടർന്ന് വരുന്ന സംഖ്യകളും ഉൾപ്പെടെയുള്ള ഉപയോക്തൃനാമം നൽകുക.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">അടുത്തത്</string>
     <!-- Placeholder text for search input for selecting country code -->

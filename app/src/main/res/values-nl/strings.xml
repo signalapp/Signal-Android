@@ -180,17 +180,17 @@
     <string name="BlockUnblockDialog_block">Blokkeren</string>
     <string name="BlockUnblockDialog_block_and_leave">Blokkeren en verlaten</string>
     <!-- Dialog button label to report as spam and block the person -->
-    <string name="BlockUnblockDialog_report_spam_and_block">Report and block</string>
+    <string name="BlockUnblockDialog_report_spam_and_block">Rapporteren en blokkeren</string>
     <!-- Dialog title for reporting spam -->
-    <string name="BlockUnblockDialog_report_spam_title">Report spam?</string>
+    <string name="BlockUnblockDialog_report_spam_title">Spam melden?</string>
     <!-- Dialog button to report as spam only -->
-    <string name="BlockUnblockDialog_report_spam">Report spam</string>
+    <string name="BlockUnblockDialog_report_spam">Spam melden</string>
     <!-- Dialog message when reporting spam of an individual (1:1 conversation) -->
-    <string name="BlockUnblockDialog_report_spam_description">Signal will be notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="BlockUnblockDialog_report_spam_description">Signal wordt op de hoogte gebracht dat deze persoon mogelijk spam verstuurt. Signal kan de inhoud van chats niet zien.</string>
     <!-- Dialog message when reporting spam of a group and we can determine the group member that invited you, placeholder is a name -->
-    <string name="BlockUnblockDialog_report_spam_group_named_adder">Signal will be notified that %1$s, who invited you to this group, may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="BlockUnblockDialog_report_spam_group_named_adder">Signal wordt op de hoogte gebracht dat %1$s, die je voor deze groep heeft uitgenodigd, mogelijk spam verstuurt. Signal kan de inhoud van chats niet zien.</string>
     <!-- Dialog message when reporting spam of a group and we cannot determine the group member that invited you -->
-    <string name="BlockUnblockDialog_report_spam_group_unknown_adder">Signal will be notified that the person who invited you to this group may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="BlockUnblockDialog_report_spam_group_unknown_adder">Signal wordt op de hoogte gebracht dat de persoon die je voor deze groep heeft uitgenodigd mogelijk spam verstuurt. Signal kan de inhoud van chats niet zien.</string>
 
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">Vandaag</string>
@@ -360,7 +360,7 @@
     <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
     <plurals name="ConversationActivity_edit_message_too_many_edits">
         <item quantity="one">Dit bericht kan slechts %1$d keer bewerkt worden.</item>
-        <item quantity="other">Dit bericht kan slechts %1$d keren bewerkt worden.</item>
+        <item quantity="other">Dit bericht kan slechts %1$d keer bewerkt worden.</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Ongeldige ontvanger!</string>
@@ -495,7 +495,7 @@
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d groepsleden hebben dezelfde naam.</string>
     <string name="ConversationFragment__tap_to_review">Tik hier om ze te vergelijken</string>
     <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
-    <string name="ConversationFragment__review_banner_body">This person has the same name as another contact</string>
+    <string name="ConversationFragment__review_banner_body">Deze persoon heeft dezelfde naam als een andere contactpersoon.</string>
     <string name="ConversationFragment_contact_us">Neem contact met ons op</string>
     <string name="ConversationFragment_verify">Verifiëren</string>
     <string name="ConversationFragment_not_now">Niet nu</string>
@@ -522,54 +522,54 @@
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
     <string name="ConversationFragment__no_longer_verified">Niet langer geverifieerd</string>
     <!-- Button shown in conversation header when in a message request state and no groups in common to show new message safety tips -->
-    <string name="ConversationFragment_safety_tips">Safety tips</string>
+    <string name="ConversationFragment_safety_tips">Veiligheidstips</string>
     <!-- Menu option to report spam in a conversation -->
-    <string name="ConversationFragment_report_spam">Report spam</string>
+    <string name="ConversationFragment_report_spam">Spam melden</string>
     <!-- Menu option to block in a conversation -->
     <string name="ConversationFragment_block">Blokkeren</string>
     <!-- Menu otpion to accept a message request in a conversation -->
-    <string name="ConversationFragment_accept">Aanvaarden</string>
+    <string name="ConversationFragment_accept">Accepteren</string>
     <!-- Menu option to delete an entire chat in a conversation -->
-    <string name="ConversationFragment_delete_chat">Delete chat</string>
+    <string name="ConversationFragment_delete_chat">Chat verwijderen</string>
     <!-- Menu option to unblock in a conversation -->
     <string name="ConversationFragment_unblock">Deblokkeren</string>
-    <!-- Menu option to report spam in a conversation -->
-    <string name="ConversationFragment_reported_spam">Reported spam</string>
+    <!-- Dialog title shown after reporting spam and tapping the conversation item -->
+    <string name="ConversationFragment_reported_spam">Gemeld als spam</string>
     <!-- Dialog message shown after reporting spam and tapping the conversation item -->
-    <string name="ConversationFragment_reported_spam_message">Signal has been be notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="ConversationFragment_reported_spam_message">Signal has been notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
     <!-- Toast shown after reporting spam and tapping the conversation item -->
-    <string name="ConversationFragment_reported_as_spam">Reported as spam</string>
+    <string name="ConversationFragment_reported_as_spam">Gemeld als spam</string>
     <!-- Toast shown after reporting and blocking a conversation -->
-    <string name="ConversationFragment_reported_as_spam_and_blocked">Reported as spam and blocked</string>
+    <string name="ConversationFragment_reported_as_spam_and_blocked">Gemeld als spam en geblokkeerd</string>
     <!-- Dialog message shown after accepting a message request and tapping on options from the conversation event -->
-    <string name="ConversationFragment_you_accepted_a_message_request_from_s">You accepted a message request from %1$s. If this was a mistake, you can choose an action below.</string>
+    <string name="ConversationFragment_you_accepted_a_message_request_from_s">Je hebt een gespreksverzoek van %1$s geaccepteerd. Als dit een vergissing was, kun je hieronder een actie kiezen.</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
-    <string name="SafetyTips_title">Safety Tips</string>
+    <string name="SafetyTips_title">Veiligheidstips</string>
     <!-- Dialog subtitle when showign tips for a 1:1 conversation -->
-    <string name="SafetyTips_subtitle_individual">Be careful when accepting message requests from people you don’t know. Watch out for:</string>
+    <string name="SafetyTips_subtitle_individual">Wees voorzichtig met het accepteren van gespreksverzoeken van mensen die je niet kent. Kijk uit voor:</string>
     <!-- Dialog subtitle when showing tips for a group conversation -->
-    <string name="SafetyTips_subtitle_group">Review this request carefully. None of your contacts or people you chat with are in this group. Here are a few things to watch out for:</string>
+    <string name="SafetyTips_subtitle_group">Bekijk dit verzoek zorgvuldig. Geen van je contacten of mensen met wie je chat, maakt deel uit van deze groep. Hier zijn een paar dingen om op te letten:</string>
     <!-- Button text to move to the previous tip-->
-    <string name="SafetyTips_previous_tip">Previous tip</string>
+    <string name="SafetyTips_previous_tip">Vorige tip</string>
     <!-- Button text to move to the next tip -->
-    <string name="SafetyTips_next_tip">Next tip</string>
+    <string name="SafetyTips_next_tip">Volgende tip</string>
     <!-- Title of tip 1 -->
-    <string name="SafetyTips_tip1_title">Crypto or money scams</string>
+    <string name="SafetyTips_tip1_title">Crypto- of geldscams</string>
     <!-- Message of tip 1 -->
-    <string name="SafetyTips_tip1_message">If someone you don’t know messages about cryptocurrency (like Bitcoin) or an financial opportunity, be careful—it’s likely spam.</string>
+    <string name="SafetyTips_tip1_message">If someone you don’t know messages about cryptocurrency (like Bitcoin) or a financial opportunity, be careful—it’s likely spam.</string>
     <!-- Title of tip 2 -->
-    <string name="SafetyTips_tip2_title">Vague or irrelevant messages</string>
+    <string name="SafetyTips_tip2_title">Vage of irrelevante berichten</string>
     <!-- Message of tip 2 -->
-    <string name="SafetyTips_tip2_message">Spammers often start with a simple message like “Hi” to draw you in. If you respond they may engage you further.</string>
+    <string name="SafetyTips_tip2_message">Spammers beginnen vaak met een eenvoudig bericht als “Hallo” om je te lokken. Als je reageert, proberen ze je aan de praat te houden.</string>
     <!-- Title of tip 3 -->
-    <string name="SafetyTips_tip3_title">Messages with links</string>
+    <string name="SafetyTips_tip3_title">Berichten met links</string>
     <!-- Message of tip 3 -->
-    <string name="SafetyTips_tip3_message">Be careful of messages from people you don’t know that have links to websites. Never visit links from people you don’t trust.</string>
+    <string name="SafetyTips_tip3_message">Wees voorzichtig met berichten van mensen die je niet kent die links bevatten. Klik nooit op links van mensen die je niet vertrouwt.</string>
     <!-- Title of tip 4 -->
-    <string name="SafetyTips_tip4_title">Fake businesses and institutions</string>
+    <string name="SafetyTips_tip4_title">Nepbedrijven en -instellingen</string>
     <!-- Message of tip 4 -->
-    <string name="SafetyTips_tip4_message">Be careful of businesses or government agencies contacting you. Messages involving tax agencies, couriers, and more can be spam.</string>
+    <string name="SafetyTips_tip4_message">Wees voorzichtig met bedrijven of overheidsinstanties die je benaderen. Berichten van de belastingdienst, koeriers en andere bedrijven kunnen spam zijn.</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Filter verwijderen</string>
@@ -585,8 +585,8 @@
     </plurals>
     <string name="ConversationListFragment_deleting">Aan het verwijderen</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
-        <item quantity="one">Deleting selected chat…</item>
-        <item quantity="other">Deleting selected chats…</item>
+        <item quantity="one">Geselecteerde chat verwijderen…</item>
+        <item quantity="other">Geselecteerde chats verwijderen…</item>
     </plurals>
     <plurals name="ConversationListFragment_conversations_archived">
         <item quantity="one">Chat gearchiveerd</item>
@@ -865,14 +865,14 @@
         <item quantity="one">Uitnodiging verstuurd</item>
         <item quantity="other">%1$d uitnodigingen verstuurd</item>
     </plurals>
-    <string name="GroupManagement_invite_single_user">“%1$s” kan niet direct door jou worden toegevoegd aan de groep.\n\nIn plaats daarvan heeft deze persoon een uitnodiging gekregen om lid te worden van de groep, en zal geen groepsberichten kunnen zien totdat die de uitnodiging aanvaardt.</string>
-    <string name="GroupManagement_invite_multiple_users">Deze personen kunnen niet direct door jou aan de groep worden toegevoegd.\n\n In plaats daarvan hebben ze een uitnodiging gekregen om lid te worden van de groep, en ze zullen geen groepsberichten kunnen zien totdat ze de uitnodiging hebben aanvaard.</string>
+    <string name="GroupManagement_invite_single_user">“%1$s” kan niet direct door jou worden toegevoegd aan de groep.\n\nIn plaats daarvan heeft deze persoon een uitnodiging gekregen om lid te worden van de groep, en zal geen groepsberichten kunnen zien totdat die de uitnodiging heeft geaccepteerd.</string>
+    <string name="GroupManagement_invite_multiple_users">Deze personen kunnen niet direct door jou aan de groep worden toegevoegd.\n\n In plaats daarvan hebben ze een uitnodiging gekregen om lid te worden van de groep, en ze zullen geen groepsberichten kunnen zien totdat ze de uitnodiging hebben geaccepteerd.</string>
 
     <!-- GroupsV1MigrationLearnMoreBottomSheetDialogFragment -->
     <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Wat zijn ‘nieuwe-stijl’ groepen?</string>
     <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Nieuwe-stijl groepen hebben functionaliteiten waaronder @vermeldingen en groepsbeheer en in de toekomst zullen er meer functionaliteiten aan worden toegevoegd.</string>
     <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Alle gespreksgeschiedenis en media van voor het omzetten zijn behouden gebleven.</string>
-    <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Om weer lid te worden van deze groep zul je een uitnodiging moeten aanvaarden. Je zult geen berichten van deze groep ontvangen zolang je dat nog niet hebt gedaan.</string>
+    <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Om weer lid te worden van deze groep zul je een uitnodiging moeten accepteren. Je zult geen berichten van deze groep ontvangen zolang je dat nog niet hebt gedaan.</string>
     <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
         <item quantity="one">Dit groepslid zal opnieuw een uitnodiging om tot de groep toe te treden moeten accepteren en zal geen berichten krijgen zolang dit is geaccepteerd:</item>
         <item quantity="other">Deze groepsleden zullen opnieuw een uitnodiging om tot de groep toe te treden moeten accepteren en zullen geen berichten krijgen zolang ze dit hebben geaccepteerd:</item>
@@ -977,7 +977,7 @@
     <string name="PendingMembersActivity_you_have_no_pending_invites">Er zijn geen door jou verzonden uitnodigingen in afwachting van een reactie.</string>
     <string name="PendingMembersActivity_invites_by_other_group_members">Personen die door andere leden voor de groep zijn uitgenodigd</string>
     <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Er zijn geen door andere groepsleden verzonden uitnodigingen in afwachting van een reactie.</string>
-    <string name="PendingMembersActivity_missing_detail_explanation">Profielinformatie van personen die door andere groepsleden zijn uitgenodigd wordt niet weergegeven. Pas als een genodigde er voor kiest de uitnodiging te aanvaarden, dan zullen op dat moment diens profielnaam, -foto en -omschrijving zichtbaar worden voor de groep. Zolang deze personen de uitnodiging niet aanvaard hebben zullen ze nog geen groepsberichten ontvangen.</string>
+    <string name="PendingMembersActivity_missing_detail_explanation">Profielinformatie van personen die door andere groepsleden zijn uitgenodigd wordt niet weergegeven. Pas als een genodigde er voor kiest de uitnodiging te accepteren, dan zullen op dat moment diens profielnaam, -foto en -omschrijving zichtbaar worden voor de groep. Zolang deze personen de uitnodiging niet geaccepteerd hebben zullen ze nog geen groepsberichten ontvangen.</string>
 
     <string name="PendingMembersActivity_revoke_invite">Uitnodiging intrekken</string>
     <string name="PendingMembersActivity_revoke_invites">Uitnodigingen intrekken</string>
@@ -1452,8 +1452,8 @@
     </plurals>
 
     <!-- GV2 invitation acceptance -->
-    <string name="MessageRecord_you_accepted_invite">Je hebt een uitnodiging om lid te worden van de groep aanvaard.</string>
-    <string name="MessageRecord_s_accepted_invite">%1$s heeft een uitnodiging om lid te worden van de groep aanvaard.</string>
+    <string name="MessageRecord_you_accepted_invite">Je hebt een uitnodiging om lid te worden van de groep geaccepteerd.</string>
+    <string name="MessageRecord_s_accepted_invite">%1$s heeft een uitnodiging om lid te worden van de groep geaccepteerd.</string>
     <string name="MessageRecord_you_added_invited_member_s">Je hebt de uitgenodigde %1$s toegevoegd.</string>
     <string name="MessageRecord_s_added_invited_member_s">%1$s heeft voorheen uitgenodigde %2$s toegevoegd.</string>
 
@@ -1599,19 +1599,19 @@
     <!-- Body for quote when message being quoted is an in-app payment message -->
     <string name="MessageRecord__payment_s">Betaling: %1$s</string>
     <!-- Update message shown in chat after reporting it as spam -->
-    <string name="MessageRecord_reported_as_spam">Reported as spam</string>
+    <string name="MessageRecord_reported_as_spam">Gemeld als spam</string>
     <!-- Update message shown in chat after accept a message request -->
-    <string name="MessageRecord_you_accepted_the_message_request">You accepted the message request</string>
+    <string name="MessageRecord_you_accepted_the_message_request">Je hebt het gespreksverzoek geaccepteerd</string>
 
     <!-- MessageRequestBottomView -->
-    <string name="MessageRequestBottomView_accept">Aanvaarden</string>
+    <string name="MessageRequestBottomView_accept">Accepteren</string>
     <string name="MessageRequestBottomView_continue">Gesprek voortzetten</string>
     <string name="MessageRequestBottomView_delete">Verwijderen</string>
     <string name="MessageRequestBottomView_block">Blokkeren</string>
     <string name="MessageRequestBottomView_unblock">Deblokkeren</string>
     <!-- Text explaining a message request from someone you\'ve removed before -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">Wil je berichten van %1$s ontvangen, en sta je toe dat diegene je profielnaam, -foto en -omschrijving kan zien? Je hebt deze persoon in het verleden verwijderd.</string>
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Wil je berichten van %1$s ontvangen, en sta je toe dat diegene je profielnaam, -foto en -omschrijving kan zien? Als je leesbevestigingen hebt ingeschakeld kan hij of zij die nog niet zien totdat je de uitnodiging hebt aanvaard.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Wil je berichten van %1$s ontvangen, en sta je toe dat diegene je profielnaam, -foto en -omschrijving kan zien? Personen weten niet dat je hun berichten hebt gezien totdat je het gespreksverzoek hebt geaccepteerd.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Wil je berichten van %1$s ontvangen, en sta je toe dat diegene je profielnaam, -foto en -omschrijving kan zien? Totdat je deze persoon hebt gedeblokkeerd, zul je geen berichten ontvangen.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
@@ -1621,9 +1621,9 @@
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Dit is een verouderde groep en deze kan niet meer gebruikt worden. Maak een nieuwe groep om nieuwe functies zoals @vermeldingen en beheerders te activeren.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Deze verouderde groep kan niet langer gebruikt worden omdat die teveel leden heeft. Het maximum ledenaantal voor een groep is %1$d.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Doorgaan met deze chat met %1$s en je naam en foto met hen delen?</string>
-    <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Wil je lid worden van deze groep, en sta je toe dat alle leden van de groep je profielnaam, -foto en -omschrijving kunnen zien? Als je leesbevestigingen hebt ingeschakeld kunnen de leden van deze groep die nog niet zien totdat je de uitnodiging hebt aanvaard.</string>
-    <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Wil je lid worden van deze groep, en sta je toe dat alle leden van de groep je profielnaam, -foto en -omschrijving kunnen zien? Je kunt hun berichten nog niet zien totdat je de uitnodiging hebt aanvaard.</string>
-    <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Je bent door iemand met wie je eerder een gesprek hebt gehad of met wie je in dezelfde groep zat toegevoegd aan deze groep. Wil je lid blijven van deze groep? Als je leesbevestigingen hebt ingeschakeld kunnen de leden van deze groep die nog niet zien totdat je de uitnodiging hebt aanvaard.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Wil je lid worden van deze groep, en sta je toe dat alle leden van de groep je profielnaam, -foto en -omschrijving kunnen zien? Leden van de groep weten niet dat je hun berichten hebt gezien totdat je het gespreksverzoek hebt geaccepteerd.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Wil je lid worden van deze groep, en sta je toe dat alle leden van de groep je profielnaam, -foto en -omschrijving kunnen zien? Je kunt hun berichten nog niet zien totdat je de uitnodiging hebt geaccepteerd.</string>
+    <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Wil je lid worden van deze groep? Leden van de groep weten niet dat je hun berichten hebt gezien totdat je het gespreksverzoek hebt geaccepteerd.</string>
     <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Wil je weer berichten van deze groep ontvangen en sta je toe dat alle leden je profielnaam, -foto en -omschrijving kunnen zien? Totdat je de groep hebt gedeblokkeerd, zul je geen berichten ontvangen.</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">Weergeven</string>
@@ -1649,7 +1649,7 @@
         <item quantity="other">%1$d extra groepen</item>
     </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
-    <string name="MessageRequestBottomView_report">Report…</string>
+    <string name="MessageRequestBottomView_report">Rapporteren…</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Wachtwoorden komen niet overeen!</string>
@@ -1698,7 +1698,7 @@
     <string name="PlacePickerActivity_title">Kaart</string>
 
     <string name="PlacePickerActivity_drop_pin">Aanwijzer</string>
-    <string name="PlacePickerActivity_accept_address">Adres aanvaarden</string>
+    <string name="PlacePickerActivity_accept_address">Adres accepteren</string>
 
     <!-- PlayServicesProblemFragment -->
     <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">De versie van Google Play Services die je in gebruik hebt werkt niet zoals het hoort. Installeer Google Play Services opnieuw en probeer het opnieuw.</string>
@@ -1967,7 +1967,7 @@
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
     <string name="AboutSheet__verified">Geverifieerd</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
-    <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string>
+    <string name="AboutSheet__no_direct_message">Geen directe berichten met %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s staat in je systeemcontactenlijst</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -2301,7 +2301,7 @@
     <string name="UsernameEditFragment_username_is_invalid">Gebruikersnaam is ongeldig.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Gebruikersnamen moeten uit minimaal %1$d en maximaal %2$d karakters bestaan.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Usernames are always paired with a set of numbers.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">Gebruikersnamen zijn altijd gekoppeld aan een cijfercombinatie.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">Wat is dit nummer?</string>
     <string name="UsernameEditFragment__these_digits_help_keep">Deze cijfers helpen om je gebruikersnaam privé te houden zodat je ongewenste berichten kunt voorkomen. Deel je gebruikersnaam alleen met mensen en groepen waarmee je zou willen chatten. Als je je gebruikersnaam wijzigt, krijg je een nieuwe cijfercombinatie.</string>
@@ -2317,8 +2317,8 @@
     <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Ongeldige gebruikersnaam, voer maximaal %1$d cijfers in.</string>
     <!-- Displayed when the chosen discriminator is 00 -->
     <string name="UsernameEditFragment__this_number_cant_be_00">Dit nummer kan niet 00 zijn. Voer een cijfer tussen 1-9 in</string>
-    <!-- Displayed when the chosen discriminator starts with 00 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_00">Dit nummer kan niet beginnen met 00. Voer een cijfer tussen 1-9 in</string>
+    <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">Numbers with more than 2 digits can\'t start with 0</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">Wanneer je je gebruikersnaam herstelt, werken je bestaande QR-code en link niet langer en worden deze vernieuwd. Weet je het zeker?</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
@@ -2722,7 +2722,7 @@
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">Je hebt deze persoon verwijderd. Als je hem of haar opnieuw een bericht stuurt, wordt diegene weer aan je lijst toegevoegd.</string>
     <!-- Update item button text shown for the accepted message request update message -->
-    <string name="ConversationUpdateItem_options">Options</string>
+    <string name="ConversationUpdateItem_options">Opties</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Afspelen … Pauzeren</string>
@@ -2759,7 +2759,7 @@
 
     <!-- safety_number_change_dialog -->
     <string name="safety_number_change_dialog__safety_number_changes">Veranderingen in veiligheidsnummer</string>
-    <string name="safety_number_change_dialog__accept">Aanvaarden</string>
+    <string name="safety_number_change_dialog__accept">Accepteren</string>
     <string name="safety_number_change_dialog__call_anyway">Toch bellen</string>
     <string name="safety_number_change_dialog__join_call">Aan oproep deelnemen</string>
     <string name="safety_number_change_dialog__continue_call">Oproep voortzetten</string>
@@ -3867,7 +3867,7 @@
     <string name="RegistrationActivity_call_me_instead_available_in">Bel me (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
     <string name="RegistrationActivity_resend_sms_available_in">Code opnieuw versturen (%1$02d:%2$02d)</string>
-    <string name="RegistrationActivity_contact_signal_support">Contact opnemen met Signal-ondersteuning</string>
+    <string name="RegistrationActivity_contact_signal_support">Contact opnemen met Signal Support</string>
     <string name="RegistrationActivity_code_support_subject">Signal-registratie - Verificatiecode voor Android</string>
     <string name="RegistrationActivity_incorrect_code">Onjuiste code</string>
     <string name="BackupUtil_never">Nooit</string>
@@ -4125,11 +4125,11 @@
 
     <!-- ReviewCardDialogFragment -->
     <!-- Title of a screen where the user will be prompted to review group members with the same name -->
-    <string name="ReviewCardDialogFragment__review_members">Review members</string>
+    <string name="ReviewCardDialogFragment__review_members">Groepsleden vergelijken</string>
     <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
-    <string name="ReviewCardDialogFragment__review_request">Review request</string>
-    <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d groepsleden hebben dezelfde naam. Vergelijk deze groepsleden hieronder en neem actie indien je denkt dat een van hen zich probeert voor te doen als de ander.</string>
-    <string name="ReviewCardDialogFragment__if_youre_not_sure">Vergelijk, als je niet zeker bent van wie het gespreksverzoek afkomstig is, de personen hieronder en neem actie indien je denkt dat een van hen zich probeert voor te doen als de ander.</string>
+    <string name="ReviewCardDialogFragment__review_request">Personen vergelijken</string>
+    <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d groepsleden hebben dezelfde naam. Vergelijk deze groepsleden hieronder en onderneem actie indien je denkt dat een van hen zich probeert voor te doen als de ander.</string>
+    <string name="ReviewCardDialogFragment__if_youre_not_sure">Vergelijk, als je niet zeker bent van wie het gespreksverzoek afkomstig is, de personen hieronder en onderneem actie indien je denkt dat een van hen zich probeert voor te doen als de ander.</string>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">Geen andere gemeenschappelijke groepen</string>
     <string name="ReviewCardDialogFragment__no_groups_in_common">Geen gemeenschappelijke groepen</string>
     <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
@@ -4373,7 +4373,7 @@
 
     <!-- CanNotSendPaymentDialog -->
     <string name="CanNotSendPaymentDialog__cant_send_payment">Kan betaling niet verzenden</string>
-    <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Deze persoon moet eerst een gespreksverzoek van je aanvaarden voordat je een betaling kunt verzenden naar deze persoon.</string>
+    <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Deze persoon moet eerst een gespreksverzoek van je accepteren voordat je een betaling kunt verzenden naar deze persoon.</string>
     <string name="CanNotSendPaymentDialog__send_a_message">Een bericht verzenden</string>
 
     <!-- GroupsInCommonMessageRequest -->
@@ -6476,7 +6476,7 @@
     <!-- Label for a tab that shows a screen to scan a QR code -->
     <string name="UsernameLinkSettings_scan_tab_name">Scannen</string>
     <!-- Description text shown underneath the username QR code scanner -->
-    <string name="UsernameLinkSettings_qr_scan_description">Scan de QR-code op het apparaat van je chatpartner.</string>
+    <string name="UsernameLinkSettings_qr_scan_description">Scan de QR-code op het apparaat van je contact.</string>
     <!-- App bar title for the username QR code color picker screen -->
     <string name="UsernameLinkSettings_color_picker_app_bar_title">Kleur</string>
     <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
@@ -6492,7 +6492,7 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">Er is een netwerkfout opgetreden tijdens het vernieuwen van je link. Probeer het later opnieuw.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
-    <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">Er is een onverwachte fout opgetreden bij het vernieuwen van je link. Probeer het later opnieuw.</string>
     <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
     <string name="UsernameLinkSettings_reset_link_result_success">Je QR-code en link zijn vernieuwd, een nieuwe QR-code en link zijn beschikbaar.</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
@@ -6565,7 +6565,7 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">Telefoonnummer</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_username_description">Enter a username followed by a dot and its set of numbers.</string>
+    <string name="FindByActivity__enter_username_description">Voer een gebruikersnaam in, gevolgd door een punt en de bijbehorende cijfercombinatie.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">Volgende</string>
     <!-- Placeholder text for search input for selecting country code -->

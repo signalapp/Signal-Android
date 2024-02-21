@@ -495,7 +495,7 @@
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d gruppemedlemmer har samme navn.</string>
     <string name="ConversationFragment__tap_to_review">Tryk for at gennemgå</string>
     <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
-    <string name="ConversationFragment__review_banner_body">This person has the same name as another contact</string>
+    <string name="ConversationFragment__review_banner_body">Denne person har samme navn som en anden kontaktperson</string>
     <string name="ConversationFragment_contact_us">Kontakt os</string>
     <string name="ConversationFragment_verify">Bekræft</string>
     <string name="ConversationFragment_not_now">Ikke nu</string>
@@ -533,10 +533,10 @@
     <string name="ConversationFragment_delete_chat">Slet chat</string>
     <!-- Menu option to unblock in a conversation -->
     <string name="ConversationFragment_unblock">Fjern blokering</string>
-    <!-- Menu option to report spam in a conversation -->
+    <!-- Dialog title shown after reporting spam and tapping the conversation item -->
     <string name="ConversationFragment_reported_spam">Rapporteret spam</string>
     <!-- Dialog message shown after reporting spam and tapping the conversation item -->
-    <string name="ConversationFragment_reported_spam_message">Signal har fået besked om at denne person muligvis sender spam. Signal kan ikke se indholdet af nogen chats.</string>
+    <string name="ConversationFragment_reported_spam_message">Signal has been notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
     <!-- Toast shown after reporting spam and tapping the conversation item -->
     <string name="ConversationFragment_reported_as_spam">Rapporteret som spam</string>
     <!-- Toast shown after reporting and blocking a conversation -->
@@ -557,7 +557,7 @@
     <!-- Title of tip 1 -->
     <string name="SafetyTips_tip1_title">Krypto- eller pengesvindel</string>
     <!-- Message of tip 1 -->
-    <string name="SafetyTips_tip1_message">Pas på, hvis du får en besked om kryptovalutaer (såsom Bitcoin) eller en økonomisk mulighed fra en, du ikke kender – det er sandsynligvis spam.</string>
+    <string name="SafetyTips_tip1_message">If someone you don’t know messages about cryptocurrency (like Bitcoin) or a financial opportunity, be careful—it’s likely spam.</string>
     <!-- Title of tip 2 -->
     <string name="SafetyTips_tip2_title">Uklare eller irrelevante beskeder</string>
     <!-- Message of tip 2 -->
@@ -2301,7 +2301,7 @@
     <string name="UsernameEditFragment_username_is_invalid">Brugernavn er ugyldigt.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Brugernavne skal være på mellem %1$d og %2$d tegn.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Usernames are always paired with a set of numbers.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">Brugernavne er altid parret med en række tal.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">Hvad er dette nummer?</string>
     <string name="UsernameEditFragment__these_digits_help_keep">Disse tal hjælper dig med at holde dit brugernavn hemmeligt, så du undgår uønskede beskeder. Del dit brugernavn med de mennesker og grupper, du gerne vil snakke med. Hvis du ændrer brugernavn, får du et nyt sæt tal.</string>
@@ -2317,8 +2317,8 @@
     <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Ugyldigt brugernavn, angiv maks. %1$d cifre.</string>
     <!-- Displayed when the chosen discriminator is 00 -->
     <string name="UsernameEditFragment__this_number_cant_be_00">Dette nummer må ikke være 00. Angiv et tal mellem 1-9</string>
-    <!-- Displayed when the chosen discriminator starts with 00 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_00">Dette nummer må ikke starte med 00. Angiv et tal mellem 1-9</string>
+    <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">Numbers with more than 2 digits can\'t start with 0</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">Hvis du gendanner dit brugernavn, nulstilles din eksisterende QR-kode og dit link. Er du sikker?</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
@@ -4125,9 +4125,9 @@
 
     <!-- ReviewCardDialogFragment -->
     <!-- Title of a screen where the user will be prompted to review group members with the same name -->
-    <string name="ReviewCardDialogFragment__review_members">Review members</string>
+    <string name="ReviewCardDialogFragment__review_members">Gennemgå medlemmer</string>
     <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
-    <string name="ReviewCardDialogFragment__review_request">Review request</string>
+    <string name="ReviewCardDialogFragment__review_request">Gennemgå anmodning</string>
     <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d medlemmer af gruppen har det samme navn, gennemgå medlemmer herunder og vælg en handling.</string>
     <string name="ReviewCardDialogFragment__if_youre_not_sure">Hvis du ikke er sikker på hvem forespørgslen er fra, gennemgå kontakterne herunder og vælg en handling.</string>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">Ingen andre grupper til fælles</string>
@@ -6565,7 +6565,7 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">Telefonnummer</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_username_description">Enter a username followed by a dot and its set of numbers.</string>
+    <string name="FindByActivity__enter_username_description">Angiv et brugernavn efterfulgt af et punktum og de tilhørende tal.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">Næste</string>
     <!-- Placeholder text for search input for selecting country code -->

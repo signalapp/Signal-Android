@@ -180,17 +180,17 @@
     <string name="BlockUnblockDialog_block">บล็อก</string>
     <string name="BlockUnblockDialog_block_and_leave">บล็อกและออก</string>
     <!-- Dialog button label to report as spam and block the person -->
-    <string name="BlockUnblockDialog_report_spam_and_block">Report and block</string>
+    <string name="BlockUnblockDialog_report_spam_and_block">รายงานและบล็อก</string>
     <!-- Dialog title for reporting spam -->
-    <string name="BlockUnblockDialog_report_spam_title">Report spam?</string>
+    <string name="BlockUnblockDialog_report_spam_title">รายงานว่าเป็นสแปมหรือไม่</string>
     <!-- Dialog button to report as spam only -->
-    <string name="BlockUnblockDialog_report_spam">Report spam</string>
+    <string name="BlockUnblockDialog_report_spam">รายงานว่าเป็นสแปม</string>
     <!-- Dialog message when reporting spam of an individual (1:1 conversation) -->
-    <string name="BlockUnblockDialog_report_spam_description">Signal will be notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="BlockUnblockDialog_report_spam_description">Signal จะได้รับแจ้งว่าบุคคลนี้อาจส่งข้อความสแปม โดย Signal จะไม่สามารถเห็นเนื้อหาใดๆ ของแชท</string>
     <!-- Dialog message when reporting spam of a group and we can determine the group member that invited you, placeholder is a name -->
-    <string name="BlockUnblockDialog_report_spam_group_named_adder">Signal will be notified that %1$s, who invited you to this group, may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="BlockUnblockDialog_report_spam_group_named_adder">Signal จะได้รับแจ้งว่า %1$s ซึ่งเป็นคนเชิญคุณเข้ากลุ่มนี้อาจส่งข้อความสแปม โดย Signal จะไม่สามารถเห็นเนื้อหาใดๆ ของแชท</string>
     <!-- Dialog message when reporting spam of a group and we cannot determine the group member that invited you -->
-    <string name="BlockUnblockDialog_report_spam_group_unknown_adder">Signal will be notified that the person who invited you to this group may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="BlockUnblockDialog_report_spam_group_unknown_adder">Signal จะได้รับแจ้งว่าคนที่เชิญคุณเข้ากลุ่มนี้อาจส่งข้อความสแปม โดย Signal จะไม่สามารถเห็นเนื้อหาใดๆ ของแชท</string>
 
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">วันนี้</string>
@@ -486,7 +486,7 @@
     <string name="ConversationFragment__d_group_members_have_the_same_name">สมาชิกกลุ่ม %1$d คนมีชื่อเหมือนกัน</string>
     <string name="ConversationFragment__tap_to_review">แตะเพื่อทบทวน</string>
     <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
-    <string name="ConversationFragment__review_banner_body">This person has the same name as another contact</string>
+    <string name="ConversationFragment__review_banner_body">ผู้ใช้คนนี้ใช้ชื่อเหมือนกันกับผู้ติดต่ออีกคน</string>
     <string name="ConversationFragment_contact_us">ติดต่อเรา</string>
     <string name="ConversationFragment_verify">ตรวจยืนยัน</string>
     <string name="ConversationFragment_not_now">ไม่ใช่ตอนนี้</string>
@@ -513,54 +513,54 @@
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
     <string name="ConversationFragment__no_longer_verified">ไม่ได้อยู่ในสถานะยืนยันแล้ว</string>
     <!-- Button shown in conversation header when in a message request state and no groups in common to show new message safety tips -->
-    <string name="ConversationFragment_safety_tips">Safety tips</string>
+    <string name="ConversationFragment_safety_tips">คำแนะนำเพื่อความปลอดภัย</string>
     <!-- Menu option to report spam in a conversation -->
-    <string name="ConversationFragment_report_spam">Report spam</string>
+    <string name="ConversationFragment_report_spam">รายงานว่าเป็นสแปม</string>
     <!-- Menu option to block in a conversation -->
     <string name="ConversationFragment_block">บล็อก</string>
     <!-- Menu otpion to accept a message request in a conversation -->
     <string name="ConversationFragment_accept">ตอบรับ</string>
     <!-- Menu option to delete an entire chat in a conversation -->
-    <string name="ConversationFragment_delete_chat">Delete chat</string>
+    <string name="ConversationFragment_delete_chat">ลบแชท</string>
     <!-- Menu option to unblock in a conversation -->
     <string name="ConversationFragment_unblock">เลิกบล็อก</string>
-    <!-- Menu option to report spam in a conversation -->
-    <string name="ConversationFragment_reported_spam">Reported spam</string>
+    <!-- Dialog title shown after reporting spam and tapping the conversation item -->
+    <string name="ConversationFragment_reported_spam">รายงานว่าเป็นสแปมแล้ว</string>
     <!-- Dialog message shown after reporting spam and tapping the conversation item -->
-    <string name="ConversationFragment_reported_spam_message">Signal has been be notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="ConversationFragment_reported_spam_message">Signal has been notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
     <!-- Toast shown after reporting spam and tapping the conversation item -->
-    <string name="ConversationFragment_reported_as_spam">Reported as spam</string>
+    <string name="ConversationFragment_reported_as_spam">รายงานว่าเป็นสแปมแล้ว</string>
     <!-- Toast shown after reporting and blocking a conversation -->
-    <string name="ConversationFragment_reported_as_spam_and_blocked">Reported as spam and blocked</string>
+    <string name="ConversationFragment_reported_as_spam_and_blocked">รายงานว่าเป็นสแปมและบล็อกแล้ว</string>
     <!-- Dialog message shown after accepting a message request and tapping on options from the conversation event -->
-    <string name="ConversationFragment_you_accepted_a_message_request_from_s">You accepted a message request from %1$s. If this was a mistake, you can choose an action below.</string>
+    <string name="ConversationFragment_you_accepted_a_message_request_from_s">คุณตอบรับคำขอส่งข้อความจาก %1$s แล้ว หากนี่เป็นข้อผิดพลาด คุณสามารถดูตัวเลือกด้านล่างเพื่อดำเนินการ</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
-    <string name="SafetyTips_title">Safety Tips</string>
+    <string name="SafetyTips_title">คำแนะนำเพื่อความปลอดภัย</string>
     <!-- Dialog subtitle when showign tips for a 1:1 conversation -->
-    <string name="SafetyTips_subtitle_individual">Be careful when accepting message requests from people you don’t know. Watch out for:</string>
+    <string name="SafetyTips_subtitle_individual">โปรดใช้ความระมัดระวังในการตอบรับคำขอส่งข้อความจากคนที่คุณไม่รู้จัก ลองตรวจสอบตามข้อสังเกตนี้:</string>
     <!-- Dialog subtitle when showing tips for a group conversation -->
-    <string name="SafetyTips_subtitle_group">Review this request carefully. None of your contacts or people you chat with are in this group. Here are a few things to watch out for:</string>
+    <string name="SafetyTips_subtitle_group">โปรดพิจารณาคำขอนี้อย่างถี่ถ้วน กลุ่มนี้ไม่มีสมาชิกที่เป็นผู้ติดต่อของคุณหรือผู้ใช้ที่คุณแชทด้วย ใช้ความระมัดระวังและลองตรวจสอบตามข้อสังเกตนี้:</string>
     <!-- Button text to move to the previous tip-->
-    <string name="SafetyTips_previous_tip">Previous tip</string>
+    <string name="SafetyTips_previous_tip">คำแนะนำก่อนหน้า</string>
     <!-- Button text to move to the next tip -->
-    <string name="SafetyTips_next_tip">Next tip</string>
+    <string name="SafetyTips_next_tip">คำแนะนำถัดไป</string>
     <!-- Title of tip 1 -->
-    <string name="SafetyTips_tip1_title">Crypto or money scams</string>
+    <string name="SafetyTips_tip1_title">การหลอกลวงทางการเงินหรือคริปโต</string>
     <!-- Message of tip 1 -->
-    <string name="SafetyTips_tip1_message">If someone you don’t know messages about cryptocurrency (like Bitcoin) or an financial opportunity, be careful—it’s likely spam.</string>
+    <string name="SafetyTips_tip1_message">If someone you don’t know messages about cryptocurrency (like Bitcoin) or a financial opportunity, be careful—it’s likely spam.</string>
     <!-- Title of tip 2 -->
-    <string name="SafetyTips_tip2_title">Vague or irrelevant messages</string>
+    <string name="SafetyTips_tip2_title">ข้อความคลุมเครือหรือไม่เจาะจง</string>
     <!-- Message of tip 2 -->
-    <string name="SafetyTips_tip2_message">Spammers often start with a simple message like “Hi” to draw you in. If you respond they may engage you further.</string>
+    <string name="SafetyTips_tip2_message">ผู้ส่งสแปมมักเริ่มต้นส่งข้อความด้วยคำทักทายทั่วไป เช่น “สวัสดี” เพื่อเรียกความสนใจของคุณ หากคุณตอบข้อความ คนพวกนั้นอาจชวนคุณพูดคุยต่อไปเรื่อยๆ</string>
     <!-- Title of tip 3 -->
-    <string name="SafetyTips_tip3_title">Messages with links</string>
+    <string name="SafetyTips_tip3_title">ข้อความที่แนบลิงก์</string>
     <!-- Message of tip 3 -->
-    <string name="SafetyTips_tip3_message">Be careful of messages from people you don’t know that have links to websites. Never visit links from people you don’t trust.</string>
+    <string name="SafetyTips_tip3_message">ระวังข้อความจากคนแปลกหน้าที่มีลิงก์ไปยังเว็บไซต์ อย่ากดลิงก์จากผู้ใช้ที่คุณไม่ไว้วางใจโดยเด็ดขาด</string>
     <!-- Title of tip 4 -->
-    <string name="SafetyTips_tip4_title">Fake businesses and institutions</string>
+    <string name="SafetyTips_tip4_title">ธุรกิจและหน่วยงานปลอม</string>
     <!-- Message of tip 4 -->
-    <string name="SafetyTips_tip4_message">Be careful of businesses or government agencies contacting you. Messages involving tax agencies, couriers, and more can be spam.</string>
+    <string name="SafetyTips_tip4_message">ระวังให้มากเมื่อได้รับการติดต่อจากหน่วยงานรัฐหรือธุรกิจห้างร้าน ข้อความที่เกี่ยวกับสำนักงานภาษี บริษัทขนส่ง หรือหน่วยงานใกล้เคียงกันนี้อาจเป็นสแปม</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">ล้างตัวกรอง</string>
@@ -574,7 +574,7 @@
     </plurals>
     <string name="ConversationListFragment_deleting">กำลังลบ</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
-        <item quantity="other">Deleting selected chats…</item>
+        <item quantity="other">กำลังลบแชทที่เลือก…</item>
     </plurals>
     <plurals name="ConversationListFragment_conversations_archived">
         <item quantity="other">จัดเก็บแชท %1$d รายการในที่เก็บถาวร</item>
@@ -1544,9 +1544,9 @@
     <!-- Body for quote when message being quoted is an in-app payment message -->
     <string name="MessageRecord__payment_s">การชำระเงิน: %1$s</string>
     <!-- Update message shown in chat after reporting it as spam -->
-    <string name="MessageRecord_reported_as_spam">Reported as spam</string>
+    <string name="MessageRecord_reported_as_spam">รายงานว่าเป็นสแปมแล้ว</string>
     <!-- Update message shown in chat after accept a message request -->
-    <string name="MessageRecord_you_accepted_the_message_request">You accepted the message request</string>
+    <string name="MessageRecord_you_accepted_the_message_request">คุณตอบรับคำขอส่งข้อความแล้ว</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">ตอบรับ</string>
@@ -1590,7 +1590,7 @@
         <item quantity="other">%1$d กลุ่มเพิ่มเติม</item>
     </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
-    <string name="MessageRequestBottomView_report">Report…</string>
+    <string name="MessageRequestBottomView_report">รายงาน…</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">วลีรหัสผ่านไม่ถูกต้อง!</string>
@@ -1893,7 +1893,7 @@
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
     <string name="AboutSheet__verified">ตรวจยืนยันแล้ว</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
-    <string name="AboutSheet__no_direct_message">No direct messages with %1$s</string>
+    <string name="AboutSheet__no_direct_message">ไม่มีข้อความส่วนตัวกับ %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s อยู่ในรายชื่อผู้ติดต่อของระบบคุณ</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -2221,7 +2221,7 @@
     <string name="UsernameEditFragment_username_is_invalid">ชื่อผู้ใช้ไม่ถูกต้อง</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ชื่อผู้ใช้ต้องมีอักขระ %1$d ถึง %2$d ตัว</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Usernames are always paired with a set of numbers.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">ชื่อผู้ใช้จะต้องมีชุดตัวเลขร่วมด้วยเสมอ</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">ตัวเลขนี้คืออะไร</string>
     <string name="UsernameEditFragment__these_digits_help_keep">ตัวเลขนี้จะช่วยรักษาความเป็นส่วนตัวให้ชื่อผู้ใช้ของคุณ ป้องกันไม่ให้คุณได้รับข้อความที่ไม่พึงประสงค์ เราขอแนะนำให้แชร์ชื่อผู้ใช้ของคุณเฉพาะกับคนและกลุ่มที่คุณอยากติดต่อด้วยเท่านั้น โดยหากเปลี่ยนชื่อผู้ใช้ คุณก็จะได้รับชุดตัวเลขใหม่</string>
@@ -2237,8 +2237,8 @@
     <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">ชื่อผู้ใช้ไม่ถูกต้อง ต้องกรอกตัวเลขไม่เกิน %1$d หลัก</string>
     <!-- Displayed when the chosen discriminator is 00 -->
     <string name="UsernameEditFragment__this_number_cant_be_00">ไม่สามารถใช้ตัวเลข 00 ได้ โปรดกรอกตัวเลข 1–9</string>
-    <!-- Displayed when the chosen discriminator starts with 00 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_00">ไม่สามารถขึ้นต้นด้วยตัวเลข 00 ได้ โปรดกรอกตัวเลข 1–9</string>
+    <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">Numbers with more than 2 digits can\'t start with 0</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">การกู้คืนชื่อผู้ใช้จะทำให้คิวอาร์โค้ดและลิงก์ที่มีอยู่เดิมของคุณถูกรีเซ็ต ต้องการดำเนินการต่อหรือไม่</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
@@ -2635,7 +2635,7 @@
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">คุณลบผู้ใช้คนนี้แล้ว การส่งข้อความหาผู้ใช้อีกครั้งจะเป็นการเพิ่มคนคนนั้นกลับเข้ามาในรายชื่อผู้ติดต่อของคุณ</string>
     <!-- Update item button text shown for the accepted message request update message -->
-    <string name="ConversationUpdateItem_options">Options</string>
+    <string name="ConversationUpdateItem_options">ตัวเลือก</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">เล่น … หยุดชั่วคราว</string>
@@ -4019,9 +4019,9 @@
 
     <!-- ReviewCardDialogFragment -->
     <!-- Title of a screen where the user will be prompted to review group members with the same name -->
-    <string name="ReviewCardDialogFragment__review_members">Review members</string>
+    <string name="ReviewCardDialogFragment__review_members">พิจารณาสมาชิก</string>
     <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
-    <string name="ReviewCardDialogFragment__review_request">Review request</string>
+    <string name="ReviewCardDialogFragment__review_request">พิจารณาคำขอ</string>
     <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">สมาชิกในกลุ่ม %1$d คน มีชื่อเหมือนกัน พิจารณาสมาชิกด้านล่างแล้วเลือกตัดสินใจ</string>
     <string name="ReviewCardDialogFragment__if_youre_not_sure">หากคุณไม่มั่นใจว่าคำขอมาจากใคร คุณสามารถพิจารณาได้จากรายชื่อผู้ติดต่อด้านล่างแล้วเลือกตัดสินใจ</string>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">ไม่มีกลุ่มอื่นร่วมกัน</string>
@@ -6351,7 +6351,7 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">เกิดข้อผิดพลาดด้านเครือข่ายขณะพยายามรีเซ็ตลิงก์ของคุณโปรดลองอีกครั้งในภายหลัง</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
-    <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">เกิดข้อผิดพลาดที่ไม่คาดคิดขึ้นขณะพยายามรีเซ็ตลิงก์ของคุณ โปรดลองอีกครั้งในภายหลัง</string>
     <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
     <string name="UsernameLinkSettings_reset_link_result_success">รีเซ็ตคิวอาร์โค้ดและลิงก์ของคุณแล้ว และสร้างคิวอาร์โค้ดและลิงก์ใหม่เรียบร้อยแล้ว</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
@@ -6422,7 +6422,7 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">หมายเลขโทรศัพท์</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_username_description">Enter a username followed by a dot and its set of numbers.</string>
+    <string name="FindByActivity__enter_username_description">ป้อนชื่อผู้ใช้แล้วตามด้วยจุดและชุดตัวเลข</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">ดำเนินการต่อ</string>
     <!-- Placeholder text for search input for selecting country code -->
