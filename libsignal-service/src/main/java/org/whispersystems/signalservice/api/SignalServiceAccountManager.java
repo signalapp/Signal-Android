@@ -351,16 +351,6 @@ public class SignalServiceAccountManager {
   }
 
   /**
-   * Set the client's signed prekey.
-   *
-   * @param signedPreKey The client's new signed prekey.
-   * @throws IOException
-   */
-  public void setSignedPreKey(ServiceIdType serviceIdType, SignedPreKeyRecord signedPreKey) throws IOException {
-    this.pushServiceSocket.setCurrentSignedPreKey(serviceIdType, signedPreKey);
-  }
-
-  /**
    * @return True if the identifier corresponds to a registered user, otherwise false.
    */
   public boolean isIdentifierRegistered(ServiceId identifier) throws IOException {
