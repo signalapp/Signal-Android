@@ -210,7 +210,6 @@ public class PushServiceSocket {
 
   private static final String TAG = PushServiceSocket.class.getSimpleName();
 
-  private static final String VERIFY_ACCOUNT_CODE_PATH   = "/v1/accounts/code/%s";
   private static final String REGISTER_GCM_PATH          = "/v1/accounts/gcm/";
   private static final String TURN_SERVER_INFO           = "/v1/accounts/turn";
   private static final String SET_ACCOUNT_ATTRIBUTES     = "/v1/accounts/attributes/";
@@ -237,7 +236,6 @@ public class PushServiceSocket {
   private static final String PROVISIONING_MESSAGE_PATH = "/v1/provisioning/%s";
   private static final String DEVICE_PATH               = "/v1/devices/%s";
 
-  private static final String DIRECTORY_AUTH_PATH       = "/v1/directory/auth";
   private static final String MESSAGE_PATH              = "/v1/messages/%s";
   private static final String GROUP_MESSAGE_PATH        = "/v1/messages/multi_recipient?ts=%s&online=%s&urgent=%s&story=%s";
   private static final String SENDER_ACK_MESSAGE_PATH   = "/v1/messages/%s/%d";
@@ -252,9 +250,6 @@ public class PushServiceSocket {
 
   private static final String SENDER_CERTIFICATE_PATH         = "/v1/certificate/delivery";
   private static final String SENDER_CERTIFICATE_NO_E164_PATH = "/v1/certificate/delivery?includeE164=false";
-
-  private static final String KBS_AUTH_PATH                  = "/v1/backup/auth";
-  private static final String KBS_AUTH_CHECK_PATH            = "/v1/backup/auth/check";
 
   private static final String ATTACHMENT_KEY_DOWNLOAD_PATH   = "attachments/%s";
   private static final String ATTACHMENT_ID_DOWNLOAD_PATH    = "attachments/%d";
