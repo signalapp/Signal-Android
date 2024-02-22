@@ -652,7 +652,7 @@ public class Recipient {
     String name = Util.getFirstNonEmpty(getGroupName(context),
                                         getSystemProfileName().getGivenName(),
                                         getProfileName().getGivenName(),
-                                        getE164().orElse(null),
+                                        shouldShowE164() ? getE164().orElse(null) : null,
                                         getUsername().orElse(null),
                                         getDisplayName(context));
 

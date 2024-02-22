@@ -98,7 +98,7 @@ public final class GroupsV2UpdateMessageProducerTest {
   private static Recipient recipientWithName(RecipientId id, String name) {
     Recipient recipient = mock(Recipient.class);
     when(recipient.getId()).thenReturn(id);
-    when(recipient.getDisplayName(any())).thenReturn(name);
+    when(recipient.getDisplayNameOrUsername(any())).thenReturn(name);
     return recipient;
   }
 

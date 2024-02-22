@@ -1541,7 +1541,7 @@ final class GroupsV2UpdateMessageProducer {
         String beforeChunk = template.substring(startIndex, nearestPosition);
 
         builder.append(beforeChunk);
-        builder.append(SpanUtil.clickable(Recipient.resolved(recipientId).getDisplayName(context), ContextCompat.getColor(context, R.color.conversation_item_update_text_color), v -> {
+        builder.append(SpanUtil.clickable(Recipient.resolved(recipientId).getDisplayNameOrUsername(context), ContextCompat.getColor(context, R.color.conversation_item_update_text_color), v -> {
           if (!recipientId.isUnknown() && clickHandler != null) {
             clickHandler.accept(recipientId);
           }
