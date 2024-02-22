@@ -304,7 +304,7 @@ class UsernameLinkSettingsViewModel : ViewModel() {
     }
 
     // Draw the username
-    val usernamePaint = Paint().apply {
+    val usernamePaint = TextPaint().apply {
       color = state.qrCodeColorScheme.textColor.toArgb()
       textSize = usernameTextSize
       typeface = if (Build.VERSION.SDK_INT < 26) {
@@ -316,10 +316,18 @@ class UsernameLinkSettingsViewModel : ViewModel() {
           .build()
       }
     }
-    val usernameBounds = Rect()
-    usernamePaint.getTextBounds(state.username, 0, state.username.length, usernameBounds)
 
-    androidCanvas.drawText(state.username, (width / 2f) - (usernameBounds.width() / 2f), usernameVerticalPad + usernameBounds.height(), usernamePaint)
+    val usernameMaxWidth = qrBorderWidth - borderSizeX * 2f
+    val usernameLayout = StaticLayout(state.username, usernamePaint, usernameMaxWidth.toInt(), Layout.Alignment.ALIGN_CENTER, 1f, 0f, true)
+    val usernameVerticalOffset = when (usernameLayout.lineCount) {
+      1 -> 0f
+      2 -> usernameTextSize / 2f
+      else -> usernameTextSize
+    }
+
+    androidCanvas.withTranslation(x = backgroundPadHorizontal + borderSizeX, y = usernameVerticalPad - usernameVerticalOffset) {
+      usernameLayout.draw(this)
+    }
 
     // Draw the help text
     val helpTextPaint = TextPaint().apply {
