@@ -34,7 +34,7 @@ import java.util.concurrent.TimeUnit
  * A note on naming conventions:
  * Usernames are made up of two discrete components, a nickname and a discriminator. They are formatted thusly:
  *
- * [nickname].[discriminator]
+ * nickname.discriminator
  */
 internal class UsernameEditViewModel private constructor(private val mode: UsernameEditMode) : ViewModel() {
   private val events: PublishSubject<Event> = PublishSubject.create()
@@ -207,6 +207,11 @@ internal class UsernameEditViewModel private constructor(private val mode: Usern
           uiState.update { State(ButtonState.SUBMIT, UsernameStatus.NONE, it.usernameState) }
           events.onNext(Event.NETWORK_FAILURE)
         }
+
+        UsernameSetResult.RATE_LIMIT_ERROR -> {
+          uiState.update { State(ButtonState.SUBMIT, UsernameStatus.NONE, it.usernameState) }
+          events.onNext(Event.RATE_LIMIT_EXCEEDED)
+        }
       }
     }
   }
@@ -343,6 +348,11 @@ internal class UsernameEditViewModel private constructor(private val mode: Usern
               events.onNext(Event.NETWORK_FAILURE)
             }
 
+            UsernameSetResult.RATE_LIMIT_ERROR -> {
+              uiState.update { State(ButtonState.SUBMIT, UsernameStatus.NONE, UsernameState.NoUsername) }
+              events.onNext(Event.RATE_LIMIT_EXCEEDED)
+            }
+
             UsernameSetResult.CANDIDATE_GENERATION_ERROR -> {
               // TODO -- Retry
               uiState.update { State(ButtonState.SUBMIT_DISABLED, UsernameStatus.TAKEN, UsernameState.NoUsername) }
@@ -380,7 +390,7 @@ internal class UsernameEditViewModel private constructor(private val mode: Usern
   }
 
   enum class Event {
-    NETWORK_FAILURE, SUBMIT_SUCCESS, DELETE_SUCCESS, SUBMIT_FAIL_INVALID, SUBMIT_FAIL_TAKEN, SKIPPED, NEEDS_CONFIRM_RESET
+    NETWORK_FAILURE, SUBMIT_SUCCESS, DELETE_SUCCESS, SUBMIT_FAIL_INVALID, SUBMIT_FAIL_TAKEN, SKIPPED, NEEDS_CONFIRM_RESET, RATE_LIMIT_EXCEEDED
   }
 
   class Factory(private val mode: UsernameEditMode) : ViewModelProvider.Factory {

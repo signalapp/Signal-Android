@@ -23,6 +23,7 @@ import org.whispersystems.signalservice.api.SignalServiceAccountManager
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.UsernameLinkComponents
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
+import org.whispersystems.signalservice.api.push.exceptions.RateLimitException
 import org.whispersystems.signalservice.api.push.exceptions.UsernameIsNotAssociatedWithAnAccountException
 import org.whispersystems.signalservice.api.push.exceptions.UsernameIsNotReservedException
 import org.whispersystems.signalservice.api.push.exceptions.UsernameMalformedException
@@ -379,6 +380,9 @@ object UsernameRepository {
     } catch (e: UsernameMalformedException) {
       Log.w(TAG, "[reserveUsername] Username malformed.")
       failure(UsernameSetResult.USERNAME_INVALID)
+    } catch (e: RateLimitException) {
+      Log.w(TAG, "[reserveUsername] Rate limit exceeded.")
+      failure(UsernameSetResult.RATE_LIMIT_ERROR)
     } catch (e: IOException) {
       Log.w(TAG, "[reserveUsername] Generic network exception.", e)
       failure(UsernameSetResult.NETWORK_ERROR)
@@ -501,7 +505,7 @@ object UsernameRepository {
   }
 
   enum class UsernameSetResult {
-    SUCCESS, USERNAME_UNAVAILABLE, USERNAME_INVALID, NETWORK_ERROR, CANDIDATE_GENERATION_ERROR
+    SUCCESS, USERNAME_UNAVAILABLE, USERNAME_INVALID, NETWORK_ERROR, CANDIDATE_GENERATION_ERROR, RATE_LIMIT_ERROR
   }
 
   enum class UsernameReclaimResult {

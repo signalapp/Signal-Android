@@ -317,6 +317,9 @@ public class UsernameEditFragment extends LoggingFragment {
       case NETWORK_FAILURE:
         Toast.makeText(requireContext(), R.string.UsernameEditFragment_encountered_a_network_error, Toast.LENGTH_SHORT).show();
         break;
+      case RATE_LIMIT_EXCEEDED:
+        Toast.makeText(requireContext(), R.string.UsernameEditFragment_rate_limit_exceeded_error, Toast.LENGTH_SHORT).show();
+        break;
       case SKIPPED:
         closeScreen();
         break;
