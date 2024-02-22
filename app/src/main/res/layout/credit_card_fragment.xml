@@ -38,6 +38,7 @@
         android:layout_marginHorizontal="24dp"
         android:layout_marginTop="36dp"
         android:hint="@string/CreditCardFragment__card_number"
+        android:theme="@style/Signal.ThemeOverlay.TextInputLayout"
         app:errorEnabled="true"
         app:layout_constraintTop_toBottomOf="@id/description">
 
@@ -65,6 +66,7 @@
         android:layout_marginTop="18dp"
         android:hint="@string/CreditCardFragment__mm_yy"
         android:paddingEnd="18dp"
+        android:theme="@style/Signal.ThemeOverlay.TextInputLayout"
         app:errorEnabled="true"
         app:layout_constraintEnd_toStartOf="@id/card_cvv_wrapper"
         app:layout_constraintStart_toStartOf="parent"
@@ -92,6 +94,7 @@
         android:layout_marginEnd="24dp"
         android:hint="@string/CreditCardFragment__cvv"
         android:paddingStart="18dp"
+        android:theme="@style/Signal.ThemeOverlay.TextInputLayout"
         app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/card_expiry_wrapper"
