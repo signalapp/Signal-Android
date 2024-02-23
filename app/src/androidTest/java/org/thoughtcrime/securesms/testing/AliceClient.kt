@@ -40,7 +40,7 @@ class AliceClient(val serviceId: ServiceId, val e164: String, val trustRoot: ECK
     ApplicationDependencies.getIncomingMessageObserver()
       .processEnvelope(bufferedStore, envelope, serverDeliveredTimestamp)
       ?.mapNotNull { it.run() }
-      ?.forEach { ApplicationDependencies.getJobManager().add(it) }
+      ?.forEach { it.enqueue() }
 
     bufferedStore.flushToDisk()
     val end = System.currentTimeMillis()

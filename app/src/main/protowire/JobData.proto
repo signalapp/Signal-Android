@@ -37,3 +37,7 @@ message AttachmentUploadJobData {
   reserved /*attachmentUniqueId*/ 2;
   optional ResumableUpload uploadSpec = 3;
 }
+
+message PreKeysSyncJobData {
+  bool forceRefreshRequested = 1;
+}

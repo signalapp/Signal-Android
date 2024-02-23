@@ -121,6 +121,9 @@ public final class FeatureFlags {
   private static final String GIF_SEARCH                        = "global.gifSearch";
   private static final String AUDIO_REMUXING                    = "android.media.audioRemux.1";
   private static final String VIDEO_RECORD_1X_ZOOM              = "android.media.videoCaptureDefaultZoom";
+  private static final String RETRY_RECEIPT_MAX_COUNT           = "android.retryReceipt.maxCount";
+  private static final String RETRY_RECEIPT_MAX_COUNT_RESET_AGE = "android.retryReceipt.maxCountResetAge";
+  private static final String PREKEY_FORCE_REFRESH_INTERVAL     = "android.prekeyForceRefreshInterval";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -194,7 +197,10 @@ public final class FeatureFlags {
       USE_ACTIVE_CALL_MANAGER,
       GIF_SEARCH,
       AUDIO_REMUXING,
-      VIDEO_RECORD_1X_ZOOM
+      VIDEO_RECORD_1X_ZOOM,
+      RETRY_RECEIPT_MAX_COUNT,
+      RETRY_RECEIPT_MAX_COUNT_RESET_AGE,
+      PREKEY_FORCE_REFRESH_INTERVAL
   );
 
   @VisibleForTesting
@@ -265,7 +271,10 @@ public final class FeatureFlags {
       NOTIFICATION_THUMBNAIL_BLOCKLIST,
       CALLING_RAISE_HAND,
       PHONE_NUMBER_PRIVACY,
-      VIDEO_RECORD_1X_ZOOM
+      VIDEO_RECORD_1X_ZOOM,
+      RETRY_RECEIPT_MAX_COUNT,
+      RETRY_RECEIPT_MAX_COUNT_RESET_AGE,
+      PREKEY_FORCE_REFRESH_INTERVAL
   );
 
   /**
@@ -452,6 +461,20 @@ public final class FeatureFlags {
   /** How old a message is allowed to be while still resending in response to a retry receipt . */
   public static long retryRespondMaxAge() {
     return getLong(RETRY_RESPOND_MAX_AGE, TimeUnit.DAYS.toMillis(14));
+  }
+
+  /**
+   * The max number of retry receipts sends we allow (within @link{#retryReceiptMaxCountResetAge()}) before we consider the volume too large and stop responding.
+   */
+  public static long retryReceiptMaxCount() {
+    return getLong(RETRY_RECEIPT_MAX_COUNT, 10);
+  }
+
+  /**
+   * If the last retry receipt send was older than this, then we reset the retry receipt sent count. (For use with @link{#retryReceiptMaxCount()})
+   */
+  public static long retryReceiptMaxCountResetAge() {
+    return getLong(RETRY_RECEIPT_MAX_COUNT_RESET_AGE, TimeUnit.HOURS.toMillis(3));
   }
 
   /** How long a sender key can live before it needs to be rotated. */
@@ -696,6 +719,11 @@ public final class FeatureFlags {
   /** Get the default video zoom, expressed as 10x the actual Float value due to the service limiting us to whole numbers. */
   public static boolean startVideoRecordAt1x() {
     return getBoolean(VIDEO_RECORD_1X_ZOOM, false);
+  }
+
+  /** How often we allow a forced prekey refresh. */
+  public static long preKeyForceRefreshInterval() {
+    return getLong(PREKEY_FORCE_REFRESH_INTERVAL, TimeUnit.HOURS.toMillis(1));
   }
 
   /** Only for rendering debug info. */
