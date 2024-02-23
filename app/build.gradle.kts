@@ -22,15 +22,15 @@ plugins {
 apply(from = "static-ips.gradle.kts")
 
 val canonicalVersionCode = 1393
-val canonicalVersionName = "6.47.4"
+val canonicalVersionName = "6.47.5"
 
 val postFixSize = 100
 val abiPostFix: Map<String, Int> = mapOf(
-  "universal" to 0,
-  "armeabi-v7a" to 1,
-  "arm64-v8a" to 2,
-  "x86" to 3,
-  "x86_64" to 4
+  "universal" to 5,
+  "armeabi-v7a" to 6,
+  "arm64-v8a" to 7,
+  "x86" to 8,
+  "x86_64" to 9
 )
 
 val keystores: Map<String, Properties?> = mapOf("debug" to loadKeystoreProperties("keystore.debug.properties"))
