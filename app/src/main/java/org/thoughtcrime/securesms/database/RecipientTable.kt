@@ -2944,10 +2944,10 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         primaryId = data.byAci,
         secondaryId = data.byPni
       )
-    } else if (data.pniRecord.aci == null && data.pniRecord.e164 == data.e164) {
+    } else if (data.pniRecord.aci == null && (data.e164 == null || data.pniRecord.e164 == data.e164)) {
       // The PNI record also has the E164 on it with no ACI. We're going to be stealing all of it's fields,
       // so this is basically a merge with a little bit of extra prep.
-      breadCrumbs += "PniRecordHasMatchingE164AndNoAci"
+      breadCrumbs += "PniRecordHasNoAci"
 
       if (data.aciRecord.pni != null) {
         operations += PnpOperation.RemovePni(data.byAci)
@@ -2972,10 +2972,10 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         secondaryId = data.byPni
       )
     } else {
-      // The PNI record either has an ACI or a non-matching e164, meaning we need to steal what we need and leave the rest behind
+      // The PNI record has a different ACI, meaning we need to steal what we need and leave the rest behind
 
       breadCrumbs += if (data.pniRecord.aci != null && data.pniRecord.e164 != data.e164) {
-        "PniRecordHasAciAndNonMatchingE164"
+        "PniRecordHasAci"
       } else if (data.pniRecord.aci != null) {
         "PniRecordHasAci"
       } else {
