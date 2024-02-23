@@ -40,6 +40,7 @@ public final class MiscellaneousValues extends SignalStoreValues {
   private static final String SERVER_TIME_OFFSET             = "misc.server_time_offset";
   private static final String LAST_SERVER_TIME_OFFSET_UPDATE = "misc.last_server_time_offset_update";
   private static final String NEEDS_USERNAME_RESTORE         = "misc.needs_username_restore";
+  private static final String LAST_FORCED_PREKEY_REFRESH     = "misc.last_forced_prekey_refresh";
 
   MiscellaneousValues(@NonNull KeyValueStore store) {
     super(store);
@@ -343,5 +344,19 @@ public final class MiscellaneousValues extends SignalStoreValues {
 
   public void setNeedsUsernameRestore(boolean value) {
     putBoolean(NEEDS_USERNAME_RESTORE, value);
+  }
+
+  /**
+   * Set the last time we successfully completed a forced prekey refresh.
+   */
+  public void setLastForcedPreKeyRefresh(long time) {
+    putLong(LAST_FORCED_PREKEY_REFRESH, time);
+  }
+
+  /**
+   * Get the last time we successfully completed a forced prekey refresh.
+   */
+  public long getLastForcedPreKeyRefresh() {
+    return getLong(LAST_FORCED_PREKEY_REFRESH, 0);
   }
 }

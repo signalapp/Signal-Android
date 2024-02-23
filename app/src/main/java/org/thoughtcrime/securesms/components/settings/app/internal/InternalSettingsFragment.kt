@@ -187,6 +187,48 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       )
 
       clickPref(
+        title = DSLSettingsText.from("Log dump PreKey ServiceId-KeyIds"),
+        onClick = {
+          logPreKeyIds()
+        }
+      )
+
+      clickPref(
+        title = DSLSettingsText.from("Retry all jobs now"),
+        summary = DSLSettingsText.from("Clear backoff intervals, app will restart"),
+        onClick = {
+          SimpleTask.run({
+            JobDatabase.getInstance(ApplicationDependencies.getApplication()).debugResetBackoffInterval()
+          }) {
+            AppUtil.restart(requireContext())
+          }
+        }
+      )
+
+      clickPref(
+        title = DSLSettingsText.from("Delete all prekeys"),
+        summary = DSLSettingsText.from("Deletes all signed/last-resort/one-time prekeys for both ACI and PNI accounts. WILL cause problems."),
+        onClick = {
+          MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Delete all prekeys?")
+            .setMessage("Are you sure? This will delete all prekeys for both ACI and PNI accounts. This WILL cause problems.")
+            .setPositiveButton(android.R.string.ok) { _, _ ->
+              SignalDatabase.signedPreKeys.debugDeleteAll()
+              SignalDatabase.oneTimePreKeys.debugDeleteAll()
+              SignalDatabase.kyberPreKeys.debugDeleteAll()
+
+              Toast.makeText(requireContext(), "All prekeys deleted!", Toast.LENGTH_SHORT).show()
+            }
+            .setNegativeButton(android.R.string.cancel, null)
+            .show()
+        }
+      )
+
+      dividerPref()
+
+      sectionHeaderPref(DSLSettingsText.from("Logging"))
+
+      clickPref(
         title = DSLSettingsText.from("Clear all logs"),
         onClick = {
           SimpleTask.run({
@@ -227,21 +269,10 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       )
 
       clickPref(
-        title = DSLSettingsText.from("Log dump PreKey ServiceId-KeyIds"),
+        title = DSLSettingsText.from("Clear local metrics"),
+        summary = DSLSettingsText.from("Click to clear all local metrics state."),
         onClick = {
-          logPreKeyIds()
-        }
-      )
-
-      clickPref(
-        title = DSLSettingsText.from("Retry all jobs now"),
-        summary = DSLSettingsText.from("Clear backoff intervals, app will restart"),
-        onClick = {
-          SimpleTask.run({
-            JobDatabase.getInstance(ApplicationDependencies.getApplication()).debugResetBackoffInterval()
-          }) {
-            AppUtil.restart(requireContext())
-          }
+          clearAllLocalMetricsState()
         }
       )
 
@@ -431,18 +462,6 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         isChecked = state.delayResends,
         onClick = {
           viewModel.setDelayResends(!state.delayResends)
-        }
-      )
-
-      dividerPref()
-
-      sectionHeaderPref(DSLSettingsText.from("Local Metrics"))
-
-      clickPref(
-        title = DSLSettingsText.from("Clear local metrics"),
-        summary = DSLSettingsText.from("Click to clear all local metrics state."),
-        onClick = {
-          clearAllLocalMetricsState()
         }
       )
 
