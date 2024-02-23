@@ -2295,6 +2295,8 @@
     <string name="UsernameEditFragment_delete">ഇല്ലാതാക്കൂ</string>
     <string name="UsernameEditFragment_successfully_removed_username">ഉപയോക്തൃനാമം നീക്കം ചെയ്തു.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">ഒരു നെറ്റ്‌വർക്ക് പിശക് നേരിട്ടു.</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">Too many attempts made, please try again later.</string>
     <string name="UsernameEditFragment_this_username_is_taken">ഈ ഉപയോക്തൃനാമം എടുത്തിട്ടുണ്ട്.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">ഉപയോക്തൃനാമങ്ങളിൽ a–Z, 0–9, അണ്ടർ സ്കോറുകൾ എന്നിവ മാത്രമേ ഉൾപ്പെടുത്താനാകൂ.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ഉപയോക്തൃനാമം ഒരു നമ്പറിൽ ആരംഭിക്കാൻ കഴിയില്ല.</string>

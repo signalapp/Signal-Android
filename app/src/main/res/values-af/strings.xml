@@ -2295,6 +2295,8 @@
     <string name="UsernameEditFragment_delete">Skrap</string>
     <string name="UsernameEditFragment_successfully_removed_username">Gebruikersnaam suksesvol verwyder.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Netwerkfout teëgekom.</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">Too many attempts made, please try again later.</string>
     <string name="UsernameEditFragment_this_username_is_taken">Hierdie gebruikersnaam is reeds in gebruik.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">Gebruikersname kan slegs a–Z, 0–9 en onderstrepings bevat.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Gebruikersname kan nie met \'n syfer begin nie.</string>
@@ -3152,7 +3154,7 @@
     <string name="preferences__dark_theme">Donker</string>
     <string name="preferences__appearance">Voorkoms</string>
     <string name="preferences__theme">Tema</string>
-    <string name="preferences__chat_color_and_wallpaper">Kletskleur &amp; amp; muurpapier</string>
+    <string name="preferences__chat_color_and_wallpaper">Kletskleur &amp; muurpapier</string>
     <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
     <string name="preferences__app_icon">Toepassingikoon</string>
     <!-- Approval for changing the app icon. -->

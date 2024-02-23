@@ -2375,6 +2375,8 @@
     <string name="UsernameEditFragment_delete">Șterge</string>
     <string name="UsernameEditFragment_successfully_removed_username">Numele de utilizator a fost eliminat cu succes.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">A apărut o eroare de rețea.</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">Too many attempts made, please try again later.</string>
     <string name="UsernameEditFragment_this_username_is_taken">Acest nume de utilizator este luat.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">Numele de utilizatori pot conține doar a-Z, 0-9, și _.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Numele de utilizator nu pot începe cu un număr.</string>

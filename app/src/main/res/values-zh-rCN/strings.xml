@@ -2215,6 +2215,8 @@
     <string name="UsernameEditFragment_delete">删除</string>
     <string name="UsernameEditFragment_successfully_removed_username">成功移除用户名。</string>
     <string name="UsernameEditFragment_encountered_a_network_error">网络出错。</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">Too many attempts made, please try again later.</string>
     <string name="UsernameEditFragment_this_username_is_taken">该用户名已有人使用。</string>
     <string name="UsernameEditFragment_usernames_can_only_include">用户名仅能包含字母、数字和下划线。</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">用户名不能以数字开头。</string>

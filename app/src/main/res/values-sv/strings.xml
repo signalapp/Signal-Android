@@ -536,7 +536,7 @@
     <!-- Dialog title shown after reporting spam and tapping the conversation item -->
     <string name="ConversationFragment_reported_spam">Rapporterade skräppost</string>
     <!-- Dialog message shown after reporting spam and tapping the conversation item -->
-    <string name="ConversationFragment_reported_spam_message">Signal has been notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="ConversationFragment_reported_spam_message">Signal har meddelats att denna person kanske skickar skräppost. Signal kan inte se innehållet i några chattar.</string>
     <!-- Toast shown after reporting spam and tapping the conversation item -->
     <string name="ConversationFragment_reported_as_spam">Rapporterad som skräppost</string>
     <!-- Toast shown after reporting and blocking a conversation -->
@@ -557,7 +557,7 @@
     <!-- Title of tip 1 -->
     <string name="SafetyTips_tip1_title">Krypto- eller penningbedrägerier</string>
     <!-- Message of tip 1 -->
-    <string name="SafetyTips_tip1_message">If someone you don’t know messages about cryptocurrency (like Bitcoin) or a financial opportunity, be careful—it’s likely spam.</string>
+    <string name="SafetyTips_tip1_message">Om någon du inte känner skickar meddelanden om kryptovalutor (som Bitcoin) eller en finansiell möjlighet ska du vara försiktig – det är sannolikt skräppost.</string>
     <!-- Title of tip 2 -->
     <string name="SafetyTips_tip2_title">Vaga eller irrelevanta meddelanden</string>
     <!-- Message of tip 2 -->
@@ -2295,6 +2295,8 @@
     <string name="UsernameEditFragment_delete">Ta bort</string>
     <string name="UsernameEditFragment_successfully_removed_username">Användarnamn borttaget.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Stött på ett nätverksfel.</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">Too many attempts made, please try again later.</string>
     <string name="UsernameEditFragment_this_username_is_taken">Detta användarnamn är taget.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">Användarnamn kan bara innehålla a–Z, 0–9 och understreck.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Användarnamn kan inte börja med en siffra.</string>
@@ -2318,7 +2320,7 @@
     <!-- Displayed when the chosen discriminator is 00 -->
     <string name="UsernameEditFragment__this_number_cant_be_00">Det här numret kan inte vara 00. Ange en siffra mellan 1–9</string>
     <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_0">Numbers with more than 2 digits can\'t start with 0</string>
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">Nummer med fler än 2 siffror kan inte börja med 0</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">Om du återställer ditt användarnamn återställs din befintliga QR-kod och länk. Är du säker?</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->

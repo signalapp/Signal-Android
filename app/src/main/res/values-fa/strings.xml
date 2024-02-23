@@ -19,7 +19,7 @@
   <!-- Removed by excludeNonTranslatables <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string> -->
 
     <string name="yes">بله</string>
-    <string name="no">خیر</string>
+    <string name="no">نه</string>
     <string name="delete">پاک کردن</string>
     <string name="please_wait">لطفاً صبر کنید…</string>
     <string name="save">ذخیره</string>
@@ -186,11 +186,11 @@
     <!-- Dialog button to report as spam only -->
     <string name="BlockUnblockDialog_report_spam">به‌عنوان هرزنامه گزارش شود</string>
     <!-- Dialog message when reporting spam of an individual (1:1 conversation) -->
-    <string name="BlockUnblockDialog_report_spam_description">سیگنال مطلع خواهد شد که این فرد ممکن است در حال ارسال هرزنامه باشد. سیگنال نمی‌تواند محتوای گفتگوها را ببیند.</string>
+    <string name="BlockUnblockDialog_report_spam_description">سیگنال مطلع خواهد شد که این فرد ممکن است در حال ارسال هرزنامه باشد. سیگنال نمی‌تواند محتوای هیچ گفتگویی را ببیند.</string>
     <!-- Dialog message when reporting spam of a group and we can determine the group member that invited you, placeholder is a name -->
-    <string name="BlockUnblockDialog_report_spam_group_named_adder">سیگنال مطلع خواهد شد که %1$s که شما را به این گروه دعوت کرده ممکن است در حال ارسال هرزنامه باشد. سیگنال نمی‌تواند محتوای گفتگوها را ببیند.</string>
+    <string name="BlockUnblockDialog_report_spam_group_named_adder">سیگنال مطلع خواهد شد که %1$s که شما را به این گروه دعوت کرده ممکن است در حال ارسال هرزنامه باشد. سیگنال نمی‌تواند محتوای هیچ گفتگویی را ببیند.</string>
     <!-- Dialog message when reporting spam of a group and we cannot determine the group member that invited you -->
-    <string name="BlockUnblockDialog_report_spam_group_unknown_adder">سیگنال مطلع خواهد شد که فردی که شما را به این گروه دعوت کرده ممکن است در حال ارسال هرزنامه باشد. سیگنال نمی‌تواند محتوای گفتگوها را ببیند.</string>
+    <string name="BlockUnblockDialog_report_spam_group_unknown_adder">سیگنال مطلع خواهد شد که فردی که شما را به این گروه دعوت کرده ممکن است در حال ارسال هرزنامه باشد. سیگنال نمی‌تواند محتوای هیچ گفتگویی را ببیند.</string>
 
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">امروز</string>
@@ -530,7 +530,7 @@
     <!-- Menu otpion to accept a message request in a conversation -->
     <string name="ConversationFragment_accept">پذیرفتن</string>
     <!-- Menu option to delete an entire chat in a conversation -->
-    <string name="ConversationFragment_delete_chat">حذف گفتگو</string>
+    <string name="ConversationFragment_delete_chat">پاک کردن گفتگو</string>
     <!-- Menu option to unblock in a conversation -->
     <string name="ConversationFragment_unblock">رفع مسدودیت</string>
     <!-- Dialog title shown after reporting spam and tapping the conversation item -->
@@ -551,21 +551,21 @@
     <!-- Dialog subtitle when showing tips for a group conversation -->
     <string name="SafetyTips_subtitle_group">این درخواست را بادقت مرور کنید. هیچ‌یک از مخاطبان شما یا کسانی که با آن‌ها گفتگو می‌کنید در این گروه نیستند. چند چیز که باید در مورد آن‌ها احتیاط کنید:</string>
     <!-- Button text to move to the previous tip-->
-    <string name="SafetyTips_previous_tip">نکته قبلی</string>
+    <string name="SafetyTips_previous_tip">نکتۀ قبلی</string>
     <!-- Button text to move to the next tip -->
-    <string name="SafetyTips_next_tip">نکته بعدی</string>
+    <string name="SafetyTips_next_tip">نکتۀ بعدی</string>
     <!-- Title of tip 1 -->
-    <string name="SafetyTips_tip1_title">هرزنامه‌های پولی یا رمزارز</string>
+    <string name="SafetyTips_tip1_title">کلاه‌برداری‌های پولی یا رمزارز</string>
     <!-- Message of tip 1 -->
     <string name="SafetyTips_tip1_message">If someone you don’t know messages about cryptocurrency (like Bitcoin) or a financial opportunity, be careful—it’s likely spam.</string>
     <!-- Title of tip 2 -->
     <string name="SafetyTips_tip2_title">پیام‌های مبهم یا نامرتبط</string>
     <!-- Message of tip 2 -->
-    <string name="SafetyTips_tip2_message">ارسال‌کنندگان هرزنامه معمولاً با پیام ساده‌ای مثل «سلام» شروع می‌کنند تا شما را درگیر کنند. اگر پاسخ دهید ممکن است درگیر ادامه ماجرا شوید.</string>
+    <string name="SafetyTips_tip2_message">ارسال‌کنندگان هرزنامه معمولاً با پیام ساده‌ای مثل «سلام» شروع می‌کنند تا شما را درگیر کنند. اگر پاسخ دهید ممکن است گفتگو را بیشتر پیش ببرند تا شما را درگیر کنند.</string>
     <!-- Title of tip 3 -->
     <string name="SafetyTips_tip3_title">پیام‌های دارای پیوند</string>
     <!-- Message of tip 3 -->
-    <string name="SafetyTips_tip3_message">در مورد پیام‌هایی که از افراد ناشناس دریافت می‌کنید و داخل آن‌ها پیوند به وب‌سایت‌ها وجود دارد احتیاط کنید. هیچ‌وقت پیوندی که از افراد غیرقابل‌اعتماد دریافت کرده‌اید را باز نکنید.</string>
+    <string name="SafetyTips_tip3_message">در مورد پیام‌هایی که از افراد ناشناس دریافت می‌کنید و داخل آن‌ها پیوند به وب‌سایتی وجود دارد احتیاط کنید. هیچ‌وقت پیوندی که از افراد غیرقابل‌اعتماد دریافت کرده‌اید را باز نکنید.</string>
     <!-- Title of tip 4 -->
     <string name="SafetyTips_tip4_title">کسب‌وکارها و سازمان‌های جعلی</string>
     <!-- Message of tip 4 -->
@@ -2295,6 +2295,8 @@
     <string name="UsernameEditFragment_delete">پاک کردن</string>
     <string name="UsernameEditFragment_successfully_removed_username">نام کاربری با موفقیت حذف شد.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">خطای شبکه رخ داد.</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">Too many attempts made, please try again later.</string>
     <string name="UsernameEditFragment_this_username_is_taken">این نام کاربری گرفته شده است.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">نام‌های کاربری فقط می‌توانند حاوی حروف A تا Z، اعداد ۰ تا ۹ و _ باشند.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">نام‌های کاربری نمی‌توانند با عدد آغاز شوند.</string>
@@ -6565,7 +6567,7 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">شماره تلفن</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_username_description">نام کاربری و سپس نقطه و مجموعه اعداد آن را وارد کنید.</string>
+    <string name="FindByActivity__enter_username_description">یک نام کاربری و سپس یک نقطه و مجموعۀ اعداد آن را وارد کنید.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">بعدی</string>
     <!-- Placeholder text for search input for selecting country code -->

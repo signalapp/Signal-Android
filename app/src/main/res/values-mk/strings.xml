@@ -2295,6 +2295,8 @@
     <string name="UsernameEditFragment_delete">Избриши</string>
     <string name="UsernameEditFragment_successfully_removed_username">Успешно отстрането корисничко име.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Се случи мрежна грешка.</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">Too many attempts made, please try again later.</string>
     <string name="UsernameEditFragment_this_username_is_taken">Корисничкото име е веќе во употреба.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">Корисничките имиња можат да се состојат од а-Ш, 0-9 и долни цртички.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Корисничкото име не може да започне со број.</string>

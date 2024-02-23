@@ -2215,6 +2215,8 @@
     <string name="UsernameEditFragment_delete">Hapus</string>
     <string name="UsernameEditFragment_successfully_removed_username">Nama pengguna berhasil dihapus.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Terjadi galat jaringan.</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">Too many attempts made, please try again later.</string>
     <string name="UsernameEditFragment_this_username_is_taken">Nama pengguna telah digunakan.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">Nama pengguna hanya boleh berisi a–Z, 0–9, dan garisbawah.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Nama pengguna tidak boleh dimulai dengan angka.</string>

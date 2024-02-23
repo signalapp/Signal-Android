@@ -1967,7 +1967,7 @@
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
     <string name="AboutSheet__verified">Verifiziert</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
-    <string name="AboutSheet__no_direct_message">Keine Direktnachrichten mit %1$s</string>
+    <string name="AboutSheet__no_direct_message">Keine Einzelchats mit %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s ist in deinen Telefonkontakten</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -2295,6 +2295,8 @@
     <string name="UsernameEditFragment_delete">Löschen</string>
     <string name="UsernameEditFragment_successfully_removed_username">Nutzername erfolgreich entfernt.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Ein Netzfehler ist aufgetreten.</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">Too many attempts made, please try again later.</string>
     <string name="UsernameEditFragment_this_username_is_taken">Dieser Nutzername ist vergeben.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">Nutzernamen dürfen nur a–Z, 0–9 und Unterstriche beinhalten.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Nutzernamen dürfen nicht mit einer Ziffer beginnen.</string>

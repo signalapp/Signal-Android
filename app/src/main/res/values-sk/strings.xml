@@ -2455,6 +2455,8 @@
     <string name="UsernameEditFragment_delete">Vymazať</string>
     <string name="UsernameEditFragment_successfully_removed_username">Používateľské meno bolo úspešne odstránené.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Vyskytla sa chyba siete.</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">Too many attempts made, please try again later.</string>
     <string name="UsernameEditFragment_this_username_is_taken">Toto používateľské meno je obsadené.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">Používateľské mená môžu obsahovať iba znaky a-Z, 0-9 a podčiarkovníky.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Používateľské mená nemôžu začínať číslicou.</string>

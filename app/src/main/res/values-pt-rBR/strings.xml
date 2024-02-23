@@ -2295,6 +2295,8 @@
     <string name="UsernameEditFragment_delete">Apagar</string>
     <string name="UsernameEditFragment_successfully_removed_username">Usuário excluído com sucesso</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Foi encontrado um erro de rede.</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">Too many attempts made, please try again later.</string>
     <string name="UsernameEditFragment_this_username_is_taken">Este nome de usuário já está sendo utilizado.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">Os nomes de usuário só podem incluir a–Z, 0–9, e sublinhado.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Os nomes de usuários não podem começar com um número.</string>

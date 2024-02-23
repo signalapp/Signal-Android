@@ -1601,7 +1601,7 @@
     <!-- Update message shown in chat after reporting it as spam -->
     <string name="MessageRecord_reported_as_spam">Signalé comme spam</string>
     <!-- Update message shown in chat after accept a message request -->
-    <string name="MessageRecord_you_accepted_the_message_request">Vous avez accepté la demande de message</string>
+    <string name="MessageRecord_you_accepted_the_message_request">Vous avez accepté l’invitation par message</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Accepter</string>
@@ -2207,7 +2207,7 @@
     <string name="SupportEmailUtil_device_info">Info sur l’appareil :</string>
     <string name="SupportEmailUtil_android_version">Version d’Android :</string>
     <string name="SupportEmailUtil_signal_version">Version de Signal :</string>
-    <string name="SupportEmailUtil_signal_package">Paquet Signal :</string>
+    <string name="SupportEmailUtil_signal_package">Package Signal :</string>
     <string name="SupportEmailUtil_registration_lock">Blocage de l’inscription :</string>
     <string name="SupportEmailUtil_locale">Paramètres régionaux :</string>
 
@@ -2295,6 +2295,8 @@
     <string name="UsernameEditFragment_delete">Supprimer</string>
     <string name="UsernameEditFragment_successfully_removed_username">Le nom d’utilisateur a été effacé avec succès.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Une erreur réseau est survenue.</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">Too many attempts made, please try again later.</string>
     <string name="UsernameEditFragment_this_username_is_taken">Ce nom d’utilisateur existe déjà.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">Les noms d’utilisateur ne peuvent inclure que des caractères de A à Z, 0 à 9 et des tirets bas.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Un nom d’utilisateur ne peut pas commencer par un chiffre.</string>
@@ -2588,7 +2590,7 @@
 
     <!-- WebRtcAudioOutputToggle -->
     <!-- Label for a dialog asking the user to switch the audio output device during a call -->
-    <string name="WebRtcAudioOutputToggle__audio_output">Sortie son</string>
+    <string name="WebRtcAudioOutputToggle__audio_output">Sortie audio</string>
     <!-- Audio output option referring to the earpiece built into the phone -->
     <string name="WebRtcAudioOutputToggle__phone_earpiece">Écouteur de téléphone</string>
     <!-- Audio output option referring to the louder speaker built into the phone -->
@@ -2677,8 +2679,8 @@
     <string name="conversation_activity__emoji_toggle_description">Afficher/masquer le clavier des émojis</string>
     <string name="conversation_activity__attachment_thumbnail">Imagette de fichiers joints</string>
     <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Afficher/masquer le tiroir de l’appareil photo à basse résolution</string>
-    <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Enregistrer et envoyer une fichier son joint</string>
-    <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Verrouiller l’enregistrement de fichiers son joints</string>
+    <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Enregistrer et envoyer un message vocal en pièce jointe</string>
+    <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Verrouiller l’enregistrement de pièces jointes au format audio</string>
     <string name="conversation_activity__message_could_not_be_sent">Le message n’a pas pu être envoyé. Veuillez vérifier votre connexion et réessayer.</string>
 
     <!-- conversation_input_panel -->

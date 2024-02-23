@@ -2295,6 +2295,8 @@
     <string name="UsernameEditFragment_delete">حذف کریں</string>
     <string name="UsernameEditFragment_successfully_removed_username">کامیابی کے ساتھ یوزر نیم ہٹا دیا گیا۔</string>
     <string name="UsernameEditFragment_encountered_a_network_error">نیٹ ورک کی خرابی کا سامنا کرنا پڑا۔</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">Too many attempts made, please try again later.</string>
     <string name="UsernameEditFragment_this_username_is_taken">یہ یوزر نیم لے لیا گیا ہے۔</string>
     <string name="UsernameEditFragment_usernames_can_only_include">یوزر نیمز میں صرف – Z-A ، 0–9 ، اور انڈر سکور شامل ہوسکتے ہیں۔</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">یوزر نیمز کسی نمبر کے ساتھ شروع نہیں ہوسکتے ہیں۔</string>

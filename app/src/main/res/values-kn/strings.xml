@@ -2295,6 +2295,8 @@
     <string name="UsernameEditFragment_delete">ಅಳಿಸಿ</string>
     <string name="UsernameEditFragment_successfully_removed_username">ಬಳಕೆದಾರ ಹೆಸರನ್ನು ಯಶಸ್ವಿಯಾಗಿ ತೆಗೆದುಹಾಕಲಾಗಿದೆ.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">ನೆಟ್‌ವರ್ಕ್ ದೋಷವನ್ನು ಎದುರಿಸಿದೆ.</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">Too many attempts made, please try again later.</string>
     <string name="UsernameEditFragment_this_username_is_taken">ಈ ಯೂಸರ್ ನೇಮ್ ತೆಗೆದುಕೊಳ್ಳಲಾಗಿದೆ.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">ಯೂಸರ್ ನೇಮ್ ಗಳು a-Z, 0-9, ಮತ್ತು ಅಡಿಗೆರೆಗಳನ್ನು ಮಾತ್ರ ಒಳಗೊಂಡಿರಬಹುದು.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ಯೂಸರ್ ನೇಮ್ ಗಳು ಸಂಖ್ಯೆಯಿಂದ ಪ್ರಾರಂಭವಾಗುವುದಿಲ್ಲ.</string>

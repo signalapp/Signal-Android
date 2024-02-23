@@ -2295,6 +2295,8 @@
     <string name="UsernameEditFragment_delete">Διαγραφή</string>
     <string name="UsernameEditFragment_successfully_removed_username">Το όνομα χρήστη αφαιρέθηκε με επιτυχία.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Υπήρξε σφάλμα δικτύου.</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">Too many attempts made, please try again later.</string>
     <string name="UsernameEditFragment_this_username_is_taken">Αυτό το όνομα χρήστη χρησιμοποιείται ήδη.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">Τα ονόματα χρήστη μπορούν να περιέχουν μόνο λατινικούς χαρακτήρες a-Z, αριθμούς 0-9 και κάτω παύλες.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Τα ονόματα χρήστη δεν μπορούν να αρχίζουν με αριθμό</string>

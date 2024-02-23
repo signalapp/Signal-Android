@@ -2295,6 +2295,8 @@
     <string name="UsernameEditFragment_delete">წაშლა</string>
     <string name="UsernameEditFragment_successfully_removed_username">მომხმარებლის სახელი წარმატებით წაიშალა.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">ქსელის ხარვეზს გადავაწყდით.</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">Too many attempts made, please try again later.</string>
     <string name="UsernameEditFragment_this_username_is_taken">ეს მომხმარებლის სახელი დაკავებულია.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">მომხმარებლის სახელი შეიძლება შეიცავდეს მხოლოდ a–Z, 0–9 და ქვედა ტირეს.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">მომხმარებლის სახელი ციფრით ვერ დაიწყება.</string>

@@ -2295,6 +2295,8 @@
     <string name="UsernameEditFragment_delete">ડિલીટ કરો</string>
     <string name="UsernameEditFragment_successfully_removed_username">યુઝરનેમ સફળતાપૂર્વક દૂર કર્યું.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">નેટવર્ક ભૂલ મળી.</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">Too many attempts made, please try again later.</string>
     <string name="UsernameEditFragment_this_username_is_taken">આ યુઝરનેમ લેવાઈ ગયું છે.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">યુઝરનેમમાં માત્ર a–Z, 0–9 અને અન્ડરસ્કોર શામેલ હોઈ શકે છે.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">યુઝરનેમ સંખ્યા સાથે શરૂ થઈ શકતા નથી.</string>
@@ -3152,7 +3154,7 @@
     <string name="preferences__dark_theme">ડાર્ક</string>
     <string name="preferences__appearance">દેખાવ</string>
     <string name="preferences__theme">થીમ</string>
-    <string name="preferences__chat_color_and_wallpaper">ચેટ કલર &amp; amp; વૉલપેપર</string>
+    <string name="preferences__chat_color_and_wallpaper">ચેટ કલર &amp; વૉલપેપર</string>
     <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
     <string name="preferences__app_icon">ઍપ આઇકન</string>
     <!-- Approval for changing the app icon. -->

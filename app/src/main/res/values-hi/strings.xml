@@ -536,7 +536,7 @@
     <!-- Dialog title shown after reporting spam and tapping the conversation item -->
     <string name="ConversationFragment_reported_spam">रिपोर्ट किया गया स्पैम</string>
     <!-- Dialog message shown after reporting spam and tapping the conversation item -->
-    <string name="ConversationFragment_reported_spam_message">Signal has been notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="ConversationFragment_reported_spam_message">Signal को सूचित किया गया है कि यह व्यक्ति स्पैम भेज सकता है। Signal किसी भी चैट की सामग्री नहीं देख सकता।</string>
     <!-- Toast shown after reporting spam and tapping the conversation item -->
     <string name="ConversationFragment_reported_as_spam">स्पैम के रूप में रिपोर्ट किया गया</string>
     <!-- Toast shown after reporting and blocking a conversation -->
@@ -557,7 +557,7 @@
     <!-- Title of tip 1 -->
     <string name="SafetyTips_tip1_title">क्रिप्टो या मनी स्कैम</string>
     <!-- Message of tip 1 -->
-    <string name="SafetyTips_tip1_message">If someone you don’t know messages about cryptocurrency (like Bitcoin) or a financial opportunity, be careful—it’s likely spam.</string>
+    <string name="SafetyTips_tip1_message">यदि कोई व्यक्ति जिसे आप नहीं जानते हैं, क्रिप्टोकरेंसी (जैसे बिटकॉइन) या वित्तीय अवसर के बारे में संदेश भेजता है, तो सावधान रहें - यह संभावित रूप से स्पैम है।</string>
     <!-- Title of tip 2 -->
     <string name="SafetyTips_tip2_title">अस्पष्ट या अप्रासंगिक संदेश</string>
     <!-- Message of tip 2 -->
@@ -2295,6 +2295,8 @@
     <string name="UsernameEditFragment_delete">डिलीट करें</string>
     <string name="UsernameEditFragment_successfully_removed_username">सफलतापूर्वक यूज़रनेम हटा दिया गया।</string>
     <string name="UsernameEditFragment_encountered_a_network_error">एक नेटवर्क त्रुटि का सामना करना पड़ा|</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">Too many attempts made, please try again later.</string>
     <string name="UsernameEditFragment_this_username_is_taken">यह यूज़रनेम ले लिया गया है।</string>
     <string name="UsernameEditFragment_usernames_can_only_include">यूज़रनेम में केवल a–Z, 0–9, और अंडरस्कोर शामिल हो सकते हैं।</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">यूज़रनेम एक संख्या से शुरू नहीं हो सकते हैं।</string>
@@ -2318,7 +2320,7 @@
     <!-- Displayed when the chosen discriminator is 00 -->
     <string name="UsernameEditFragment__this_number_cant_be_00">यह संख्या 00 नहीं हो सकती। 1-9 के बीच का कोई अंक दर्ज करें</string>
     <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_0">Numbers with more than 2 digits can\'t start with 0</string>
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">2 से अधिक अंकों वाली संखाएं 0 से शुरू नहीं हो सकतीं</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">आपके यूज़रनेम को रिकवर करने से आपका मौजूदा QR कोड और लिंक फिर से स्थापित हो जाएगा। क्या आपको यकीन है?</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->

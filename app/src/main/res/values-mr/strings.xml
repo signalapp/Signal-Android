@@ -2295,6 +2295,8 @@
     <string name="UsernameEditFragment_delete">हटवा</string>
     <string name="UsernameEditFragment_successfully_removed_username">वापरकर्तानाव यशस्वीरीत्या काढून टाकले.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">एक नेटवर्क त्रुटी आढळली.</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">Too many attempts made, please try again later.</string>
     <string name="UsernameEditFragment_this_username_is_taken">हे वापरकर्तानाव घेतलेले आहे.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">वापरकर्तानावांमध्ये फक्त a–Z, 0–9, आणि अंडरस्कोर याचा समावेश असू शकतो.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">वापरकर्तानाव अंकांसोबत सोबत चालू होऊ शकत नाही.</string>

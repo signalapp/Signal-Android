@@ -536,7 +536,7 @@
     <!-- Dialog title shown after reporting spam and tapping the conversation item -->
     <string name="ConversationFragment_reported_spam">Спам је пријављен</string>
     <!-- Dialog message shown after reporting spam and tapping the conversation item -->
-    <string name="ConversationFragment_reported_spam_message">Signal has been notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="ConversationFragment_reported_spam_message">Signal је обавештен да ова особа можда шаље спам. Signal не може да види садржај ниједног ћаскања.</string>
     <!-- Toast shown after reporting spam and tapping the conversation item -->
     <string name="ConversationFragment_reported_as_spam">Пријављено је као спам</string>
     <!-- Toast shown after reporting and blocking a conversation -->
@@ -557,7 +557,7 @@
     <!-- Title of tip 1 -->
     <string name="SafetyTips_tip1_title">Крипто или новчане преваре</string>
     <!-- Message of tip 1 -->
-    <string name="SafetyTips_tip1_message">If someone you don’t know messages about cryptocurrency (like Bitcoin) or a financial opportunity, be careful—it’s likely spam.</string>
+    <string name="SafetyTips_tip1_message">Ако вам неко кога не познајете шаље поруке о криптовалути (као што је Bitcoin) или некој финансијској прилици, будите опрезни – вероватно је у питању спам.</string>
     <!-- Title of tip 2 -->
     <string name="SafetyTips_tip2_title">Нејасне или неповезане поруке</string>
     <!-- Message of tip 2 -->
@@ -2295,6 +2295,8 @@
     <string name="UsernameEditFragment_delete">Обриши</string>
     <string name="UsernameEditFragment_successfully_removed_username">Корисничко име уклоњено.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Дошло је до грешке мреже.</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">Too many attempts made, please try again later.</string>
     <string name="UsernameEditFragment_this_username_is_taken">Ово корисничко име је заузето.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">Корисничко име може да садржи a-Z, 0-9 и _</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Корисничко име не може започети бројем.</string>
@@ -2318,7 +2320,7 @@
     <!-- Displayed when the chosen discriminator is 00 -->
     <string name="UsernameEditFragment__this_number_cant_be_00">Овај број не може бити 00. Унесите цифру од 1 до 9</string>
     <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_0">Numbers with more than 2 digits can\'t start with 0</string>
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">Бројеви са више од 2 цифре не могу да почињу са 0</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">Ако вратите корисничко име, ресетоваће вам се постојећи QR код и линк. Да ли сте сигурни?</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->

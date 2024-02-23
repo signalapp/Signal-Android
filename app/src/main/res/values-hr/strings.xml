@@ -2455,6 +2455,8 @@
     <string name="UsernameEditFragment_delete">Izbriši</string>
     <string name="UsernameEditFragment_successfully_removed_username">Korisničko ime uspješno je uklonjeno.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Došlo je do mrežne pogreške.</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">Too many attempts made, please try again later.</string>
     <string name="UsernameEditFragment_this_username_is_taken">Korisničko ime je zauzeto.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">Korisnička imena smiju sadržavati samo a-Z, 0-9 i podvlake.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Korisnička imena ne mogu započinjati s brojem.</string>

@@ -2215,6 +2215,8 @@
     <string name="UsernameEditFragment_delete">ลบ</string>
     <string name="UsernameEditFragment_successfully_removed_username">ลบชื่อผู้ใช้สำเร็จแล้ว</string>
     <string name="UsernameEditFragment_encountered_a_network_error">พบความผิดพลาดของเครือข่าย</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">Too many attempts made, please try again later.</string>
     <string name="UsernameEditFragment_this_username_is_taken">มีผู้ใช้ชื่อนี้แล้ว</string>
     <string name="UsernameEditFragment_usernames_can_only_include">ชื่อผู้ใช้จะมีได้เฉพาะ a-Z, 0-9 และ _</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ชื่อผู้ใช้ไม่สามารถเริ่มต้นด้วยตัวเลข</string>

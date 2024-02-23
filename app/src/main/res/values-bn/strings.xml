@@ -2295,6 +2295,8 @@
     <string name="UsernameEditFragment_delete">মুছে ফেলুন</string>
     <string name="UsernameEditFragment_successfully_removed_username">সফলভাবে ব্যবহারকারীর নাম মুছে ফেলা হয়েছে।</string>
     <string name="UsernameEditFragment_encountered_a_network_error">একটি নেটওয়ার্ক ত্রুটি সম্মুখীন।</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">Too many attempts made, please try again later.</string>
     <string name="UsernameEditFragment_this_username_is_taken">এই ব্যবহারকারীর নাম ব্যবহৃত হয়েছে।</string>
     <string name="UsernameEditFragment_usernames_can_only_include">ব্যবহারকারীর নামে থাকতে পারবে শুধুমাত্র a–Z, 0–9, ও আন্ডারস্কোর।</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ব্যবহারকারীর নাম সংখ্যা দিয়ে শুরু করতে পারবে না।</string>

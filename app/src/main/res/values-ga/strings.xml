@@ -2535,6 +2535,8 @@
     <string name="UsernameEditFragment_delete">Scrios</string>
     <string name="UsernameEditFragment_successfully_removed_username">D\'éirigh le hainm úsáideora a bhaint.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Tharla earráid líonra</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">Too many attempts made, please try again later.</string>
     <string name="UsernameEditFragment_this_username_is_taken">Tá an t-ainm úsáideora sin gafa cheana.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">Ní cheadaítear ach a-Z, 0-9, agus fostríoca in ainmneacha úsáideora.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Ní cheadaítear uimhir ag tús ainm úsáideora.</string>

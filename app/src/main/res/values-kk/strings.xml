@@ -2295,6 +2295,8 @@
     <string name="UsernameEditFragment_delete">Жою</string>
     <string name="UsernameEditFragment_successfully_removed_username">Пайдаланушы аты өшірілді.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Желі қатесі анықталды.</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">Too many attempts made, please try again later.</string>
     <string name="UsernameEditFragment_this_username_is_taken">Бұл пайдаланушы аты бос емес.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">Пайдаланушы аттарында a–Z, 0–9 және астыңғы сызықтар бола алады.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Пайдаланушы аттары саннан басталмауы керек.</string>

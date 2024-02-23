@@ -2215,6 +2215,8 @@
     <string name="UsernameEditFragment_delete">លុប</string>
     <string name="UsernameEditFragment_successfully_removed_username">លុបឈ្មោះអ្នកប្រើបានជោគជ័យ។</string>
     <string name="UsernameEditFragment_encountered_a_network_error">បានជួបប្រទះកំហុសបណ្តាញ។</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">Too many attempts made, please try again later.</string>
     <string name="UsernameEditFragment_this_username_is_taken">ឈ្មោះអ្នកប្រើនេះត្រូវបានយកហើយ។</string>
     <string name="UsernameEditFragment_usernames_can_only_include">ឈ្មោះអ្នកប្រើអាចរួមបញ្ចូលតែ a–Z, 0–9, និងបន្ទាត់ពីក្រោមប៉ុណ្ណោះ។</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ឈ្មោះអ្នកប្រើមិនអាចចាប់ផ្តើមដោយលេខបានទេ។</string>

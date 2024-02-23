@@ -2295,6 +2295,8 @@
     <string name="UsernameEditFragment_delete">ਮਿਟਾਓ</string>
     <string name="UsernameEditFragment_successfully_removed_username">ਵਰਤੋਂਕਾਰ-ਨਾਂ ਸਫਲਤਾਪੂਰਵਕ ਹਟਾਇਆ ਗਿਆ।</string>
     <string name="UsernameEditFragment_encountered_a_network_error">ਨੈੱਟਵਰਕ ਗਲਤੀ ਆਈ ਹੈ।</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">Too many attempts made, please try again later.</string>
     <string name="UsernameEditFragment_this_username_is_taken">ਇਹ ਵਰਤੋਂਕਾਰ ਨਾਂ ਕੋਈ ਹੋਰ ਵਰਤ ਰਿਹਾ ਹੈ।</string>
     <string name="UsernameEditFragment_usernames_can_only_include">ਵਰਤੋਂਕਾਰ ਨਾਂ ਵਿੱਚ ਸਿਰਫ਼ a–Z, 0–9 ਅਤੇ ਅੰਡਰਸਕੋਰ ਸ਼ਾਮਲ ਹੋ ਸਕਦੇ ਹਨ।</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ਵਰਤੋਂਕਾਰ ਨਾਂ ਅੰਕ ਨਾਲ ਸ਼ੁਰੂ ਨਹੀਂ ਹੋ ਸਕਦਾ ਹੈ।</string>

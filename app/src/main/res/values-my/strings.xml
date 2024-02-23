@@ -2215,6 +2215,8 @@
     <string name="UsernameEditFragment_delete">ဖျက်ရန်</string>
     <string name="UsernameEditFragment_successfully_removed_username">အသုံးပြုသူအမည်ကို အောင်မြင်စွာ ဖယ်ရှားခဲ့ပြီး။</string>
     <string name="UsernameEditFragment_encountered_a_network_error">ကွန်ယက်အမှားတစ်ခုနှင့် ကြုံတွေ့ခဲ့ရသည်။</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">Too many attempts made, please try again later.</string>
     <string name="UsernameEditFragment_this_username_is_taken">ဤသုံးစွဲသူအမည်ကို ယူထားပြီးပါပြီ။</string>
     <string name="UsernameEditFragment_usernames_can_only_include">သုံးစွဲသူအမည်များတွင် A–Z၊ 0-9 နှင့် \"_\" သင်္ကေတများသာ ပါဝင်နိုင်ပါသည်။</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">သုံးစွဲသူအမည်များသည် နံပါတ်နှင့် စတင်၍ မရပါ။</string>

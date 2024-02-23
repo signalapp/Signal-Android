@@ -2295,6 +2295,8 @@
     <string name="UsernameEditFragment_delete">Sil</string>
     <string name="UsernameEditFragment_successfully_removed_username">İstifadəçi adı uğurla çıxarıldı.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Şəbəkə xətası ilə qarşılaşıldı.</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">Too many attempts made, please try again later.</string>
     <string name="UsernameEditFragment_this_username_is_taken">Bu istifadəçi adı götürülüb.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">İstifadəçi adları yalnız a–Z, 0–9 və altdan xətt ehtiva edə bilər.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">İstifadəçi adı nömrə ilə başlaya bilməz.</string>

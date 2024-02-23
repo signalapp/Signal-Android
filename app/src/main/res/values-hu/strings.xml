@@ -2295,6 +2295,8 @@
     <string name="UsernameEditFragment_delete">Törlés</string>
     <string name="UsernameEditFragment_successfully_removed_username">A felhasználónév eltávolítása sikeres volt.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Hálózati hiba történt.</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">Too many attempts made, please try again later.</string>
     <string name="UsernameEditFragment_this_username_is_taken">A felhasználónév foglalt.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">A felhasználónevek csak a-Z, 0-9 és alsóvonás karaktereket tartalmazhatnak.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">A felhasználónevek nem kezdődhetnek számmal.</string>

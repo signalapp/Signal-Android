@@ -2295,6 +2295,8 @@
     <string name="UsernameEditFragment_delete">Изтриване</string>
     <string name="UsernameEditFragment_successfully_removed_username">Успешно премахнато потребителско име.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Възникна мрежова грешка.</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">Too many attempts made, please try again later.</string>
     <string name="UsernameEditFragment_this_username_is_taken">Това потребителско име е взето.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">Потребителските имена могат да включват само a–Z, 0–9 и долни черти.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Потребителските имена не могат да започват с цифра.</string>

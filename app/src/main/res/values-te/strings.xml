@@ -2295,6 +2295,8 @@
     <string name="UsernameEditFragment_delete">తొలగించండి</string>
     <string name="UsernameEditFragment_successfully_removed_username">యూజర్‌నేమ్‌ను విజయవంతంగా తొలగించాము.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">నెట్‌వర్క్ లోపాన్ని ఎదుర్కొంది.</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">Too many attempts made, please try again later.</string>
     <string name="UsernameEditFragment_this_username_is_taken">ఈ వినియోగదారు పేరు తీసుకోబడింది.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">వినియోగదారు పేర్లు a-Z, 0-9 మరియు అండర్ స్కోర్‌లను మాత్రమే కలిగి ఉంటాయి.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">వినియోగదారు పేర్లు సంఖ్యతో ప్రారంభం కావు.</string>
