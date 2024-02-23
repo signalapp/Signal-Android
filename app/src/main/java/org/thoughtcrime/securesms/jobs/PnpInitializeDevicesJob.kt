@@ -98,10 +98,11 @@ class PnpInitializeDevicesJob private constructor(parameters: Parameters) : Base
 
       try {
         Log.i(TAG, "Initializing PNI for linked devices")
-        initializeDevices(e164)
+        val result: VerifyResponseWithoutKbs = initializeDevices(e164)
           .map(::VerifyResponseWithoutKbs)
           .safeBlockingGet()
-          .resultOrThrow
+
+        result.error?.let { throw it }
       } catch (e: InterruptedException) {
         throw IOException("Retry", e)
       } catch (t: Throwable) {
