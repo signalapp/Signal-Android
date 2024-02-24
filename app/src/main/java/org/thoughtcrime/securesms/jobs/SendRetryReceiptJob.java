@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.InvalidMessageException;
+import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.protocol.message.DecryptionErrorMessage;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -119,7 +120,7 @@ public final class SendRetryReceiptJob extends BaseJob {
         }
 
         return new SendRetryReceiptJob(recipientId, groupId, errorMessage, parameters);
-     } catch (InvalidMessageException e) {
+     } catch (InvalidKeyException | InvalidMessageException e) {
         throw new AssertionError(e);
       }
     }
