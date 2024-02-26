@@ -8,6 +8,10 @@ package org.thoughtcrime.securesms.backup.v2
 import org.signal.core.util.EventTimer
 import org.signal.core.util.logging.Log
 import org.signal.core.util.withinTransaction
+import org.signal.libsignal.messagebackup.MessageBackup
+import org.signal.libsignal.messagebackup.MessageBackup.ValidationResult
+import org.signal.libsignal.messagebackup.MessageBackupKey
+import org.signal.libsignal.protocol.ServiceId.Aci
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.backup.v2.database.ChatItemImportInserter
 import org.thoughtcrime.securesms.backup.v2.database.clearAllDataForBackupRestore
@@ -16,6 +20,7 @@ import org.thoughtcrime.securesms.backup.v2.processor.CallLogBackupProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.ChatBackupProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.ChatItemBackupProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.RecipientBackupProcessor
+import org.thoughtcrime.securesms.backup.v2.proto.BackupInfo
 import org.thoughtcrime.securesms.backup.v2.stream.BackupExportWriter
 import org.thoughtcrime.securesms.backup.v2.stream.EncryptedBackupReader
 import org.thoughtcrime.securesms.backup.v2.stream.EncryptedBackupWriter
@@ -23,6 +28,8 @@ import org.thoughtcrime.securesms.backup.v2.stream.PlainTextBackupReader
 import org.thoughtcrime.securesms.backup.v2.stream.PlainTextBackupWriter
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.groups.GroupId
+import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.NetworkResult
@@ -36,6 +43,7 @@ import kotlin.time.Duration.Companion.milliseconds
 object BackupRepository {
 
   private val TAG = Log.tag(BackupRepository::class.java)
+  private const val VERSION = 1L
 
   fun export(plaintext: Boolean = false): ByteArray {
     val eventTimer = EventTimer()
@@ -52,7 +60,15 @@ object BackupRepository {
       )
     }
 
+    val exportState = ExportState()
+
     writer.use {
+      writer.write(
+        BackupInfo(
+          version = VERSION,
+          backupTimeMs = System.currentTimeMillis()
+        )
+      )
       // Note: Without a transaction, we may export inconsistent state. But because we have a transaction,
       // writes from other threads are blocked. This is something to think more about.
       SignalDatabase.rawDatabase.withinTransaction {
@@ -61,12 +77,12 @@ object BackupRepository {
           eventTimer.emit("account")
         }
 
-        RecipientBackupProcessor.export {
+        RecipientBackupProcessor.export(exportState) {
           writer.write(it)
           eventTimer.emit("recipient")
         }
 
-        ChatBackupProcessor.export { frame ->
+        ChatBackupProcessor.export(exportState) { frame ->
           writer.write(frame)
           eventTimer.emit("thread")
         }
@@ -76,7 +92,7 @@ object BackupRepository {
           eventTimer.emit("call")
         }
 
-        ChatItemBackupProcessor.export { frame ->
+        ChatItemBackupProcessor.export(exportState) { frame ->
           writer.write(frame)
           eventTimer.emit("message")
         }
@@ -86,6 +102,13 @@ object BackupRepository {
     Log.d(TAG, "export() ${eventTimer.stop().summary}")
 
     return outputStream.toByteArray()
+  }
+
+  fun validate(length: Long, inputStreamFactory: () -> InputStream, selfData: SelfData): ValidationResult {
+    val masterKey = SignalStore.svr().getOrCreateMasterKey()
+    val key = MessageBackupKey(masterKey.serialize(), Aci.parseFromBinary(selfData.aci.toByteArray()))
+
+    return MessageBackup.validate(key, inputStreamFactory, length)
   }
 
   fun import(length: Long, inputStreamFactory: () -> InputStream, selfData: SelfData, plaintext: Boolean = false) {
@@ -100,6 +123,15 @@ object BackupRepository {
         streamLength = length,
         dataStream = inputStreamFactory
       )
+    }
+
+    val header = frameReader.getHeader()
+    if (header == null) {
+      Log.e(TAG, "Backup is missing header!")
+      return
+    } else if (header.version > VERSION) {
+      Log.e(TAG, "Backup version is newer than we understand: ${header.version}")
+      return
     }
 
     // Note: Without a transaction, bad imports could lead to lost data. But because we have a transaction,
@@ -117,6 +149,7 @@ object BackupRepository {
       SignalDatabase.recipients.setProfileKey(selfId, selfData.profileKey)
       SignalDatabase.recipients.setProfileSharing(selfId, true)
 
+      eventTimer.emit("setup")
       val backupState = BackupState()
       val chatItemInserter: ChatItemImportInserter = ChatItemBackupProcessor.beginImport(backupState)
 
@@ -158,6 +191,14 @@ object BackupRepository {
 
       backupState.chatIdToLocalThreadId.values.forEach {
         SignalDatabase.threads.update(it, unarchive = false, allowDeletion = false)
+      }
+    }
+
+    val groups = SignalDatabase.groups.getGroups()
+    while (groups.hasNext()) {
+      val group = groups.next()
+      if (group.id.isV2) {
+        ApplicationDependencies.getJobManager().add(RequestGroupV2InfoJob(group.id as GroupId.V2))
       }
     }
 
@@ -257,6 +298,11 @@ object BackupRepository {
     val e164: String,
     val profileKey: ProfileKey
   )
+}
+
+class ExportState {
+  val recipientIds = HashSet<Long>()
+  val threadIds = HashSet<Long>()
 }
 
 class BackupState {

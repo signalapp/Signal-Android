@@ -39,17 +39,12 @@ fun CallTable.restoreCallLogFromBackup(call: BackupCall, backupState: BackupStat
     Call.Type.UNKNOWN_TYPE -> return
   }
 
-  val event = when (call.event) {
-    Call.Event.DELETE -> CallTable.Event.DELETE
-    Call.Event.JOINED -> CallTable.Event.JOINED
-    Call.Event.GENERIC_GROUP_CALL -> CallTable.Event.GENERIC_GROUP_CALL
-    Call.Event.DECLINED -> CallTable.Event.DECLINED
-    Call.Event.ACCEPTED -> CallTable.Event.ACCEPTED
-    Call.Event.MISSED -> CallTable.Event.MISSED
-    Call.Event.OUTGOING_RING -> CallTable.Event.OUTGOING_RING
-    Call.Event.OUTGOING -> CallTable.Event.ONGOING
-    Call.Event.NOT_ACCEPTED -> CallTable.Event.NOT_ACCEPTED
-    Call.Event.UNKNOWN_EVENT -> return
+  val event = when (call.state) {
+    Call.State.MISSED -> CallTable.Event.MISSED
+    Call.State.COMPLETED -> CallTable.Event.ACCEPTED
+    Call.State.DECLINED_BY_USER -> CallTable.Event.DECLINED
+    Call.State.DECLINED_BY_NOTIFICATION_PROFILE -> CallTable.Event.MISSED_NOTIFICATION_PROFILE
+    Call.State.UNKNOWN_EVENT -> return
   }
 
   val direction = if (call.outgoing) CallTable.Direction.OUTGOING else CallTable.Direction.INCOMING
@@ -102,18 +97,18 @@ class CallLogIterator(private val cursor: Cursor) : Iterator<BackupCall?>, Close
       },
       timestamp = cursor.requireLong(CallTable.TIMESTAMP),
       ringerRecipientId = if (cursor.isNull(CallTable.RINGER)) null else cursor.requireLong(CallTable.RINGER),
-      event = when (event) {
-        CallTable.Event.ONGOING -> Call.Event.OUTGOING
-        CallTable.Event.OUTGOING_RING -> Call.Event.OUTGOING_RING
-        CallTable.Event.ACCEPTED -> Call.Event.ACCEPTED
-        CallTable.Event.DECLINED -> Call.Event.DECLINED
-        CallTable.Event.GENERIC_GROUP_CALL -> Call.Event.GENERIC_GROUP_CALL
-        CallTable.Event.JOINED -> Call.Event.JOINED
-        CallTable.Event.MISSED,
-        CallTable.Event.MISSED_NOTIFICATION_PROFILE -> Call.Event.MISSED
-        CallTable.Event.DELETE -> Call.Event.DELETE
-        CallTable.Event.RINGING -> Call.Event.UNKNOWN_EVENT
-        CallTable.Event.NOT_ACCEPTED -> Call.Event.NOT_ACCEPTED
+      state = when (event) {
+        CallTable.Event.ONGOING -> Call.State.COMPLETED
+        CallTable.Event.OUTGOING_RING -> Call.State.COMPLETED
+        CallTable.Event.ACCEPTED -> Call.State.COMPLETED
+        CallTable.Event.DECLINED -> Call.State.DECLINED_BY_USER
+        CallTable.Event.GENERIC_GROUP_CALL -> Call.State.COMPLETED
+        CallTable.Event.JOINED -> Call.State.COMPLETED
+        CallTable.Event.MISSED -> Call.State.MISSED
+        CallTable.Event.MISSED_NOTIFICATION_PROFILE -> Call.State.DECLINED_BY_NOTIFICATION_PROFILE
+        CallTable.Event.DELETE -> Call.State.COMPLETED
+        CallTable.Event.RINGING -> Call.State.MISSED
+        CallTable.Event.NOT_ACCEPTED -> Call.State.MISSED
       }
     )
   }

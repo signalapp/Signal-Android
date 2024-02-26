@@ -121,6 +121,7 @@ message Group {
   bool whitelisted = 2;
   bool hideStory = 3;
   StorySendMode storySendMode = 4;
+  string name = 5;
 }
 
 message Self {}
@@ -173,17 +174,12 @@ message Call {
     AD_HOC_CALL = 4;
   }
 
-  enum Event {
+  enum State {
     UNKNOWN_EVENT = 0;
-    OUTGOING = 1; // 1:1 calls only
-    ACCEPTED = 2; // 1:1 and group calls. Group calls: You accepted a ring.
-    NOT_ACCEPTED = 3; // 1:1 calls only,
-    MISSED = 4; // 1:1 and group. Group calls: The remote ring has expired or was cancelled by the ringer.
-    DELETE = 5; // 1:1 and Group/Ad-Hoc Calls.
-    GENERIC_GROUP_CALL = 6; // Group/Ad-Hoc Calls only. Initial state
-    JOINED = 7; // Group Calls: User has joined the group call.
-    DECLINED = 8; // Group Calls: If you declined a ring.
-    OUTGOING_RING = 9; // Group Calls: If you are ringing a group.
+    COMPLETED = 1; // A call that was successfully completed or was accepted and in-progress at the time of the backup.
+    DECLINED_BY_USER = 2; // An incoming call that was manually declined by the user.
+    DECLINED_BY_NOTIFICATION_PROFILE = 3; // An incoming call that was automatically declined by an active notification profile.
+    MISSED = 4; // An incoming call that either expired, was cancelled by the sender, or was auto-rejected due to already being in a different call.
   }
 
   uint64 callId = 1;
@@ -192,7 +188,7 @@ message Call {
   bool outgoing = 4;
   uint64 timestamp = 5;
   optional uint64 ringerRecipientId = 6;
-  Event event = 7;
+  State state = 7;
 }
 
 message ChatItem {
@@ -227,10 +223,9 @@ message ChatItem {
   oneof item {
     StandardMessage standardMessage = 13;
     ContactMessage contactMessage = 14;
-    VoiceMessage voiceMessage = 15;
-    StickerMessage stickerMessage = 16;
-    RemoteDeletedMessage remoteDeletedMessage = 17;
-    ChatUpdateMessage updateMessage = 18;
+    StickerMessage stickerMessage = 15;
+    RemoteDeletedMessage remoteDeletedMessage = 16;
+    ChatUpdateMessage updateMessage = 17;
   }
 }
 
@@ -262,7 +257,7 @@ message Text {
 message StandardMessage {
   optional Quote quote = 1;
   optional Text text = 2;
-  repeated FilePointer attachments = 3;
+  repeated MessageAttachment attachments = 3;
   repeated LinkPreview linkPreview = 4;
   optional FilePointer longText = 5;
   repeated Reaction reactions = 6;
@@ -330,27 +325,17 @@ message ContactAttachment {
     optional string country = 9;
   }
 
-  message Avatar {
-    FilePointer avatar = 1;
-  }
-
   optional Name name = 1;
   repeated Phone number = 3;
   repeated Email email = 4;
   repeated PostalAddress address = 5;
-  optional Avatar avatar = 6;
+  optional string avatarUrlPath = 6;
   optional string organization = 7;
 }
 
 message DocumentMessage {
   Text text = 1;
   FilePointer document = 2;
-  repeated Reaction reactions = 3;
-}
-
-message VoiceMessage {
-  optional Quote quote = 1;
-  FilePointer audio = 2;
   repeated Reaction reactions = 3;
 }
 
@@ -367,6 +352,11 @@ message Sticker {
   bytes packKey = 2;
   uint32 stickerId = 3;
   optional string emoji = 4;
+  // Stickers are uploaded to be sent as attachments; we also
+  // back them up as normal attachments when they are in messages.
+  // DO NOT treat this as the definitive source of a sticker in
+  // an installed StickerPack that shares the same packId.
+  FilePointer data = 5;
 }
 
 message LinkPreview {
@@ -377,23 +367,42 @@ message LinkPreview {
   optional uint64 date = 5;
 }
 
+// A FilePointer on a message that has additional
+// metadata that applies only to message attachments.
+message MessageAttachment {
+  // Similar to SignalService.AttachmentPointer.Flags,
+  // but explicitly mutually exclusive. Note the different raw values
+  // (non-zero starting values are not supported in proto3.)
+  enum Flag {
+    NONE = 0;
+    VOICE_MESSAGE = 1;
+    BORDERLESS = 2;
+    GIF = 3;
+  }
+
+  FilePointer pointer = 1;
+  Flag flag = 2;
+}
+
 message FilePointer {
+  // References attachments in the backup (media) storage tier.
   message BackupLocator {
     string mediaName = 1;
     uint32 cdnNumber = 2;
   }
 
+  // References attachments in the transit storage tier.
+  // May be downloaded or not when the backup is generated;
+  // primarily for free-tier users who cannot copy the
+  // attachments to the backup (media) storage tier.
   message AttachmentLocator {
     string cdnKey = 1;
     uint32 cdnNumber = 2;
     uint64 uploadTimestamp = 3;
   }
 
-  message LegacyAttachmentLocator {
-    fixed64 cdnId = 1;
-  }
-
-  // An attachment that was backed up without being downloaded.
+  // An attachment that was copied from the transit storage tier
+  // to the backup (media) storage tier up without being downloaded.
   // Its MediaName should be generated as “{sender_aci}_{cdn_attachment_key}”,
   // but should eventually transition to a BackupLocator with mediaName
   // being the content hash once it is downloaded.
@@ -403,17 +412,10 @@ message FilePointer {
     uint32 cdnNumber = 3;
   }
 
-  enum Flags {
-    VOICE_MESSAGE = 0;
-    BORDERLESS = 1;
-    GIF = 2;
-  }
-
   oneof locator {
     BackupLocator backupLocator = 1;
     AttachmentLocator attachmentLocator= 2;
-    LegacyAttachmentLocator legacyAttachmentLocator = 3;
-    UndownloadedBackupLocator undownloadedBackupLocator = 4;
+    UndownloadedBackupLocator undownloadedBackupLocator = 3;
   }
 
   optional bytes key = 5;
@@ -424,11 +426,10 @@ message FilePointer {
   optional bytes incrementalMac = 8;
   optional bytes incrementalMacChunkSize = 9;
   optional string fileName = 10;
-  optional uint32 flags = 11;
-  optional uint32 width = 12;
-  optional uint32 height = 13;
-  optional string caption = 14;
-  optional string blurHash = 15;
+  optional uint32 width = 11;
+  optional uint32 height = 12;
+  optional string caption = 13;
+  optional string blurHash = 14;
 }
 
 message Quote {
@@ -441,7 +442,7 @@ message Quote {
   message QuotedAttachment {
     optional string contentType = 1;
     optional string fileName = 2;
-    optional FilePointer thumbnail = 3;
+    optional MessageAttachment thumbnail = 3;
   }
 
   optional uint64 targetSentTimestamp = 1; // null if the target message could not be found at time of quote insert
@@ -509,11 +510,12 @@ message IndividualCallChatUpdate {
     MISSED_AUDIO_CALL = 5;
     MISSED_VIDEO_CALL = 6;
   }
+
   Type type = 1;
 }
 
 message GroupCallChatUpdate {
-  bytes startedCallAci = 1;
+  optional bytes startedCallAci = 1;
   uint64 startedCallTimestamp = 2;
   repeated bytes inCallAcis = 3;
 }
@@ -658,7 +660,7 @@ message GroupAdminStatusUpdate {
 }
 
 message GroupMemberLeftUpdate {
-  optional bytes aci = 1;
+  bytes aci = 1;
 }
 
 message GroupMemberRemovedUpdate {
@@ -787,14 +789,14 @@ message GroupV2MigrationSelfInvitedUpdate {}
 // add some members and invited them instead.
 // (Happens if we don't have the invitee's profile key)
 message GroupV2MigrationInvitedMembersUpdate {
-  int32 invitedMembersCount = 1;
+  uint32 invitedMembersCount = 1;
 }
 
 // The local user migrated gv1->gv2 but was unable to
 // add or invite some members and dropped them instead.
 // (Happens for e164 members where we don't have an aci).
 message GroupV2MigrationDroppedMembersUpdate {
-  int32 droppedMembersCount = 1;
+  uint32 droppedMembersCount = 1;
 }
 
 // For 1:1 timer updates, use ExpirationTimerChatUpdate.
@@ -804,14 +806,14 @@ message GroupExpirationTimerUpdate {
 }
 
 message StickerPack {
-  bytes id = 1;
-  bytes key = 2;
+  bytes packId = 1;
+  bytes packKey = 2;
   string title = 3;
   string author = 4;
   repeated StickerPackSticker stickers = 5; // First one should be cover sticker.
 }
 
 message StickerPackSticker {
-  FilePointer data = 1;
-  string emoji = 2;
+  string emoji = 1;
+  uint32 id = 2;
 }

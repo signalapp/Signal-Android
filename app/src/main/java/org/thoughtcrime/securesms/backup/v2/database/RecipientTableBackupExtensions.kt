@@ -22,23 +22,30 @@ import org.signal.core.util.select
 import org.signal.core.util.toInt
 import org.signal.core.util.update
 import org.signal.libsignal.zkgroup.InvalidInputException
+import org.signal.libsignal.zkgroup.groups.GroupMasterKey
+import org.signal.storageservice.protos.groups.local.DecryptedGroup
 import org.thoughtcrime.securesms.backup.v2.BackupState
 import org.thoughtcrime.securesms.backup.v2.proto.AccountData
 import org.thoughtcrime.securesms.backup.v2.proto.Contact
 import org.thoughtcrime.securesms.backup.v2.proto.Group
 import org.thoughtcrime.securesms.backup.v2.proto.Self
+import org.thoughtcrime.securesms.conversation.colors.AvatarColorHash
 import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.RecipientTableCursorUtil
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.databaseprotos.RecipientExtras
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.groups.GroupId
+import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.ServiceId.PNI
+import org.whispersystems.signalservice.api.util.toByteArray
 import java.io.Closeable
 
 typealias BackupRecipient = org.thoughtcrime.securesms.backup.v2.proto.Recipient
@@ -94,7 +101,8 @@ fun RecipientTable.getGroupsForBackup(): BackupGroupIterator {
       "${RecipientTable.TABLE_NAME}.${RecipientTable.MUTE_UNTIL}",
       "${RecipientTable.TABLE_NAME}.${RecipientTable.EXTRAS}",
       "${GroupTable.TABLE_NAME}.${GroupTable.V2_MASTER_KEY}",
-      "${GroupTable.TABLE_NAME}.${GroupTable.SHOW_AS_STORY_STATE}"
+      "${GroupTable.TABLE_NAME}.${GroupTable.SHOW_AS_STORY_STATE}",
+      "${GroupTable.TABLE_NAME}.${GroupTable.TITLE}"
     )
     .from(
       """
@@ -102,6 +110,7 @@ fun RecipientTable.getGroupsForBackup(): BackupGroupIterator {
         INNER JOIN ${GroupTable.TABLE_NAME} ON ${RecipientTable.TABLE_NAME}.${RecipientTable.ID} = ${GroupTable.TABLE_NAME}.${GroupTable.RECIPIENT_ID}
       """
     )
+    .where("${GroupTable.TABLE_NAME}.${GroupTable.V2_MASTER_KEY} IS NOT NULL")
     .run()
 
   return BackupGroupIterator(cursor)
@@ -115,6 +124,7 @@ fun RecipientTable.restoreRecipientFromBackup(recipient: BackupRecipient, backup
   // TODO Also, should we move this when statement up to mimic the export? Kinda weird that this calls distributionListTable functions
   return when {
     recipient.contact != null -> restoreContactFromBackup(recipient.contact)
+    recipient.group != null -> restoreGroupFromBackup(recipient.group)
     recipient.distributionList != null -> SignalDatabase.distributionLists.restoreFromBackup(recipient.distributionList, backupState)
     recipient.self != null -> Recipient.self().id
     else -> {
@@ -193,6 +203,41 @@ private fun RecipientTable.restoreContactFromBackup(contact: Contact): Recipient
   return id
 }
 
+private fun RecipientTable.restoreGroupFromBackup(group: Group): RecipientId {
+  val masterKey = GroupMasterKey(group.masterKey.toByteArray())
+  val groupId = GroupId.v2(masterKey)
+
+  val placeholderState = DecryptedGroup.Builder()
+    .revision(GroupsV2StateProcessor.PLACEHOLDER_REVISION)
+    .build()
+
+  val values = ContentValues().apply {
+    put(RecipientTable.GROUP_ID, groupId.toString())
+    put(RecipientTable.AVATAR_COLOR, AvatarColorHash.forGroupId(groupId).serialize())
+    put(RecipientTable.PROFILE_SHARING, group.whitelisted)
+    put(RecipientTable.TYPE, RecipientTable.RecipientType.GV2.id)
+    put(RecipientTable.STORAGE_SERVICE_ID, Base64.encodeWithPadding(StorageSyncHelper.generateKey()))
+    if (group.hideStory) {
+      val extras = RecipientExtras.Builder().hideStory(true).build()
+      put(RecipientTable.EXTRAS, extras.encode())
+    }
+  }
+
+  val recipientId = writableDatabase.insert(RecipientTable.TABLE_NAME, null, values)
+  val groupValues = ContentValues().apply {
+    put(GroupTable.RECIPIENT_ID, recipientId)
+    put(GroupTable.GROUP_ID, groupId.toString())
+    put(GroupTable.TITLE, group.name)
+    put(GroupTable.V2_MASTER_KEY, masterKey.serialize())
+    put(GroupTable.V2_DECRYPTED_GROUP, placeholderState.encode())
+    put(GroupTable.V2_REVISION, placeholderState.revision)
+    put(GroupTable.SHOW_AS_STORY_STATE, group.storySendMode.toGroupShowAsStoryState().code)
+  }
+  writableDatabase.insert(GroupTable.TABLE_NAME, null, groupValues)
+
+  return RecipientId.from(recipientId)
+}
+
 private fun Contact.toLocalExtras(): RecipientExtras {
   return RecipientExtras(
     hideStory = this.hideStory
@@ -235,8 +280,8 @@ class BackupContactIterator(private val cursor: Cursor, private val selfId: Long
     return BackupRecipient(
       id = id,
       contact = Contact(
-        aci = aci?.toByteArray()?.toByteString(),
-        pni = pni?.toByteArray()?.toByteString(),
+        aci = aci?.rawUuid?.toByteArray()?.toByteString(),
+        pni = pni?.rawUuid?.toByteArray()?.toByteString(),
         username = cursor.requireString(RecipientTable.USERNAME),
         e164 = cursor.requireString(RecipientTable.E164)?.e164ToLong(),
         blocked = cursor.requireBoolean(RecipientTable.BLOCKED),
@@ -280,7 +325,8 @@ class BackupGroupIterator(private val cursor: Cursor) : Iterator<BackupRecipient
         masterKey = cursor.requireNonNullBlob(GroupTable.V2_MASTER_KEY).toByteString(),
         whitelisted = cursor.requireBoolean(RecipientTable.PROFILE_SHARING),
         hideStory = extras?.hideStory() ?: false,
-        storySendMode = showAsStoryState.toGroupStorySendMode()
+        storySendMode = showAsStoryState.toGroupStorySendMode(),
+        name = cursor.requireString(GroupTable.TITLE) ?: ""
       )
     )
   }
@@ -321,6 +367,14 @@ private fun GroupTable.ShowAsStoryState.toGroupStorySendMode(): Group.StorySendM
     GroupTable.ShowAsStoryState.ALWAYS -> Group.StorySendMode.ENABLED
     GroupTable.ShowAsStoryState.NEVER -> Group.StorySendMode.DISABLED
     GroupTable.ShowAsStoryState.IF_ACTIVE -> Group.StorySendMode.DEFAULT
+  }
+}
+
+private fun Group.StorySendMode.toGroupShowAsStoryState(): GroupTable.ShowAsStoryState {
+  return when (this) {
+    Group.StorySendMode.ENABLED -> GroupTable.ShowAsStoryState.ALWAYS
+    Group.StorySendMode.DISABLED -> GroupTable.ShowAsStoryState.NEVER
+    Group.StorySendMode.DEFAULT -> GroupTable.ShowAsStoryState.IF_ACTIVE
   }
 }
 

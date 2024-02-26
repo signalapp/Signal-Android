@@ -48,6 +48,7 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
   private val viewModel: InternalBackupPlaygroundViewModel by viewModels()
   private lateinit var exportFileLauncher: ActivityResultLauncher<Intent>
   private lateinit var importFileLauncher: ActivityResultLauncher<Intent>
+  private lateinit var validateFileLauncher: ActivityResultLauncher<Intent>
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -68,6 +69,16 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
         result.data?.data?.let { uri ->
           requireContext().contentResolver.getLength(uri)?.let { length ->
             viewModel.import(length) { requireContext().contentResolver.openInputStream(uri)!! }
+          }
+        } ?: Toast.makeText(requireContext(), "No URI selected", Toast.LENGTH_SHORT).show()
+      }
+    }
+
+    validateFileLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+      if (result.resultCode == RESULT_OK) {
+        result.data?.data?.let { uri ->
+          requireContext().contentResolver.getLength(uri)?.let { length ->
+            viewModel.validate(length) { requireContext().contentResolver.openInputStream(uri)!! }
           }
         } ?: Toast.makeText(requireContext(), "No URI selected", Toast.LENGTH_SHORT).show()
       }
@@ -103,7 +114,16 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
         exportFileLauncher.launch(intent)
       },
       onUploadToRemoteClicked = { viewModel.uploadBackupToRemote() },
-      onCheckRemoteBackupStateClicked = { viewModel.checkRemoteBackupState() }
+      onCheckRemoteBackupStateClicked = { viewModel.checkRemoteBackupState() },
+      onValidateFileClicked = {
+        val intent = Intent().apply {
+          action = Intent.ACTION_GET_CONTENT
+          type = "application/octet-stream"
+          addCategory(Intent.CATEGORY_OPENABLE)
+        }
+
+        validateFileLauncher.launch(intent)
+      }
     )
   }
 
@@ -120,6 +140,7 @@ fun Screen(
   onImportFileClicked: () -> Unit = {},
   onPlaintextClicked: () -> Unit = {},
   onSaveToDiskClicked: () -> Unit = {},
+  onValidateFileClicked: () -> Unit = {},
   onUploadToRemoteClicked: () -> Unit = {},
   onCheckRemoteBackupStateClicked: () -> Unit = {}
 ) {
@@ -163,6 +184,12 @@ fun Screen(
         onClick = onImportFileClicked
       ) {
         Text("Import from file")
+      }
+
+      Buttons.LargeTonal(
+        onClick = onValidateFileClicked
+      ) {
+        Text("Validate file")
       }
 
       Spacer(modifier = Modifier.height(16.dp))

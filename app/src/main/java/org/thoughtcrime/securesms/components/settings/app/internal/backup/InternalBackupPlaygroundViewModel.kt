@@ -78,6 +78,19 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
       }
   }
 
+  fun validate(length: Long, inputStreamFactory: () -> InputStream) {
+    val self = Recipient.self()
+    val selfData = BackupRepository.SelfData(self.aci.get(), self.pni.get(), self.e164.get(), ProfileKey(self.profileKey))
+
+    disposables += Single.fromCallable { BackupRepository.validate(length, inputStreamFactory, selfData) }
+      .subscribeOn(Schedulers.io())
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribe { nothing ->
+        backupData = null
+        _state.value = _state.value.copy(backupState = BackupState.NONE)
+      }
+  }
+
   fun onPlaintextToggled() {
     _state.value = _state.value.copy(plaintext = !_state.value.plaintext)
   }

@@ -28,6 +28,8 @@ import org.thoughtcrime.securesms.backup.v2.proto.DistributionList as BackupDist
 
 private val TAG = Log.tag(DistributionListTables::class.java)
 
+data class DistributionRecipient(val id: RecipientId, val record: DistributionListRecord)
+
 fun DistributionListTables.getAllForBackup(): List<BackupRecipient> {
   val records = readableDatabase
     .select()
@@ -36,30 +38,34 @@ fun DistributionListTables.getAllForBackup(): List<BackupRecipient> {
     .readToList { cursor ->
       val id: DistributionListId = DistributionListId.from(cursor.requireLong(DistributionListTables.ListTable.ID))
       val privacyMode: DistributionListPrivacyMode = cursor.requireObject(DistributionListTables.ListTable.PRIVACY_MODE, DistributionListPrivacyMode.Serializer)
-
-      DistributionListRecord(
-        id = id,
-        name = cursor.requireNonNullString(DistributionListTables.ListTable.NAME),
-        distributionId = DistributionId.from(cursor.requireNonNullString(DistributionListTables.ListTable.DISTRIBUTION_ID)),
-        allowsReplies = CursorUtil.requireBoolean(cursor, DistributionListTables.ListTable.ALLOWS_REPLIES),
-        rawMembers = getRawMembers(id, privacyMode),
-        members = getMembers(id),
-        deletedAtTimestamp = 0L,
-        isUnknown = CursorUtil.requireBoolean(cursor, DistributionListTables.ListTable.IS_UNKNOWN),
-        privacyMode = privacyMode
+      val recipientId: RecipientId = RecipientId.from(cursor.requireLong(DistributionListTables.ListTable.RECIPIENT_ID))
+      DistributionRecipient(
+        id = recipientId,
+        record = DistributionListRecord(
+          id = id,
+          name = cursor.requireNonNullString(DistributionListTables.ListTable.NAME),
+          distributionId = DistributionId.from(cursor.requireNonNullString(DistributionListTables.ListTable.DISTRIBUTION_ID)),
+          allowsReplies = CursorUtil.requireBoolean(cursor, DistributionListTables.ListTable.ALLOWS_REPLIES),
+          rawMembers = getRawMembers(id, privacyMode),
+          members = getMembers(id),
+          deletedAtTimestamp = 0L,
+          isUnknown = CursorUtil.requireBoolean(cursor, DistributionListTables.ListTable.IS_UNKNOWN),
+          privacyMode = privacyMode
+        )
       )
     }
 
   return records
-    .map { record ->
+    .map { recipient ->
       BackupRecipient(
+        id = recipient.id.toLong(),
         distributionList = BackupDistributionList(
-          name = record.name,
-          distributionId = record.distributionId.asUuid().toByteArray().toByteString(),
-          allowReplies = record.allowsReplies,
-          deletionTimestamp = record.deletedAtTimestamp,
-          privacyMode = record.privacyMode.toBackupPrivacyMode(),
-          memberRecipientIds = record.members.map { it.toLong() }
+          name = recipient.record.name,
+          distributionId = recipient.record.distributionId.asUuid().toByteArray().toByteString(),
+          allowReplies = recipient.record.allowsReplies,
+          deletionTimestamp = recipient.record.deletedAtTimestamp,
+          privacyMode = recipient.record.privacyMode.toBackupPrivacyMode(),
+          memberRecipientIds = recipient.record.members.map { it.toLong() }
         )
       )
     }

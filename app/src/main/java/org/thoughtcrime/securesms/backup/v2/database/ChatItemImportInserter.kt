@@ -154,7 +154,6 @@ class ChatItemImportInserter(
     if (buffer.size == 0) {
       return false
     }
-
     buildBulkInsert(MessageTable.TABLE_NAME, MESSAGE_COLUMNS, buffer.messages).forEach {
       db.rawQuery("${it.query.where} RETURNING ${MessageTable.ID}", it.query.whereArgs).use { cursor ->
         var index = 0
@@ -178,6 +177,8 @@ class ChatItemImportInserter(
     }
 
     messageId = SqlUtil.getNextAutoIncrementId(db, MessageTable.TABLE_NAME)
+
+    buffer.reset()
 
     return true
   }
@@ -245,6 +246,7 @@ class ChatItemImportInserter(
       contentValues.put(MessageTable.HAS_DELIVERY_RECEIPT, 0)
       contentValues.put(MessageTable.UNIDENTIFIED, this.sealedSender?.toInt())
       contentValues.put(MessageTable.READ, this.incoming?.read?.toInt() ?: 0)
+      contentValues.put(MessageTable.NOTIFIED, 1)
     }
 
     contentValues.put(MessageTable.QUOTE_ID, 0)
@@ -267,7 +269,6 @@ class ChatItemImportInserter(
     val reactions: List<Reaction> = when {
       this.standardMessage != null -> this.standardMessage.reactions
       this.contactMessage != null -> this.contactMessage.reactions
-      this.voiceMessage != null -> this.voiceMessage.reactions
       this.stickerMessage != null -> this.stickerMessage.reactions
       else -> emptyList()
     }
@@ -525,5 +526,11 @@ class ChatItemImportInserter(
   ) {
     val size: Int
       get() = listOf(messages.size, reactions.size, groupReceipts.size).max()
+
+    fun reset() {
+      messages.clear()
+      reactions.clear()
+      groupReceipts.clear()
+    }
   }
 }
