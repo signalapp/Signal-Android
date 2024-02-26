@@ -125,12 +125,6 @@ object RecipientDatabaseTestUtils {
         unidentifiedAccessMode = unidentifiedAccessMode,
         capabilities = RecipientRecord.Capabilities(
           rawBits = capabilities,
-          groupsV1MigrationCapability = Recipient.Capability.deserialize(Bitmask.read(capabilities, RecipientTable.Capabilities.GROUPS_V1_MIGRATION, RecipientTable.Capabilities.BIT_LENGTH).toInt()),
-          senderKeyCapability = Recipient.Capability.deserialize(Bitmask.read(capabilities, RecipientTable.Capabilities.SENDER_KEY, RecipientTable.Capabilities.BIT_LENGTH).toInt()),
-          announcementGroupCapability = Recipient.Capability.deserialize(Bitmask.read(capabilities, RecipientTable.Capabilities.ANNOUNCEMENT_GROUPS, RecipientTable.Capabilities.BIT_LENGTH).toInt()),
-          changeNumberCapability = Recipient.Capability.deserialize(Bitmask.read(capabilities, RecipientTable.Capabilities.CHANGE_NUMBER, RecipientTable.Capabilities.BIT_LENGTH).toInt()),
-          storiesCapability = Recipient.Capability.deserialize(Bitmask.read(capabilities, RecipientTable.Capabilities.STORIES, RecipientTable.Capabilities.BIT_LENGTH).toInt()),
-          giftBadgesCapability = Recipient.Capability.deserialize(Bitmask.read(capabilities, RecipientTable.Capabilities.GIFT_BADGES, RecipientTable.Capabilities.BIT_LENGTH).toInt()),
           pnpCapability = Recipient.Capability.deserialize(Bitmask.read(capabilities, RecipientTable.Capabilities.PNP, RecipientTable.Capabilities.BIT_LENGTH).toInt()),
           paymentActivation = Recipient.Capability.deserialize(Bitmask.read(capabilities, RecipientTable.Capabilities.PAYMENT_ACTIVATION, RecipientTable.Capabilities.BIT_LENGTH).toInt())
         ),

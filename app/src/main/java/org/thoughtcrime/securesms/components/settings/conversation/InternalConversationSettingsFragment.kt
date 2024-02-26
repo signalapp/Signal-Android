@@ -325,15 +325,8 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
 
     return if (capabilities != null) {
       TextUtils.concat(
-        colorize("GV1Migration", capabilities.groupsV1MigrationCapability),
-        ", ",
-        colorize("AnnouncementGroup", capabilities.announcementGroupCapability),
-        ", ",
-        colorize("SenderKey", capabilities.senderKeyCapability),
-        ", ",
-        colorize("ChangeNumber", capabilities.changeNumberCapability),
-        ", ",
-        colorize("Stories", capabilities.storiesCapability)
+        colorize("PNP/PNI", capabilities.pnpCapability),
+        colorize("PaymentActivation", capabilities.paymentActivation)
       )
     } else {
       "Recipient not found!"
