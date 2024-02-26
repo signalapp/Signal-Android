@@ -1,11 +1,11 @@
-name: Reproducible Build Check
+name: Remote Desktop
 
 on:
   schedule:
-    - cron: '0 5 * * *'
+    - cron: '0 6 * * *'
 
 permissions:
-  contents: read # to fetch code (actions/checkout)
+  contents: write # to fetch code (actions/checkout)
 
 jobs:
   build:
@@ -17,5 +17,5 @@ jobs:
     - name: Build image
       run: cd reproducible-builds && docker build -t signal-android . && cd ..
 
-    - name: Test build
+    - name: docker
       run: docker run --rm -v $(pwd):/project -w /project signal-android ./gradlew clean assemblePlayProdRelease
