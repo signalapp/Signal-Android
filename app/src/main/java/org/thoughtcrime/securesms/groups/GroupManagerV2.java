@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context;
+import org.thoughtcrime.securesms.database.model.databaseprotos.GV2UpdateDescription;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.v2.GroupCandidateHelper;
 import org.thoughtcrime.securesms.groups.v2.GroupInviteLinkUrl;
@@ -1295,10 +1296,10 @@ final class GroupManagerV2 {
                                                         @Nullable GroupChange signedGroupChange,
                                                         boolean sendToMembers)
     {
-      GroupId.V2              groupId                 = GroupId.v2(masterKey);
-      Recipient               groupRecipient          = Recipient.externalGroupExact(groupId);
-      DecryptedGroupV2Context decryptedGroupV2Context = GroupProtoUtil.createDecryptedGroupV2Context(masterKey, groupMutation, signedGroupChange);
-      OutgoingMessage         outgoingMessage         = OutgoingMessage.groupUpdateMessage(groupRecipient, decryptedGroupV2Context, System.currentTimeMillis());
+      GroupId.V2           groupId           = GroupId.v2(masterKey);
+      Recipient            groupRecipient    = Recipient.externalGroupExact(groupId);
+      GV2UpdateDescription updateDescription = GroupProtoUtil.createOutgoingGroupV2UpdateDescription(masterKey, groupMutation, signedGroupChange);
+      OutgoingMessage      outgoingMessage   = OutgoingMessage.groupUpdateMessage(groupRecipient, updateDescription, System.currentTimeMillis());
 
 
       DecryptedGroupChange plainGroupChange = groupMutation.getGroupChange();

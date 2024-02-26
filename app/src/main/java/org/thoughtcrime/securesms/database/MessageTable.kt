@@ -2305,6 +2305,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       val parentStoryId = ParentStoryId.deserialize(cursor.requireLong(PARENT_STORY_ID))
       val messageRangesData = cursor.requireBlob(MESSAGE_RANGES)
       val scheduledDate = cursor.requireLong(SCHEDULED_DATE)
+      val messageExtrasBytes = cursor.requireBlob(MESSAGE_EXTRAS)
+      val messageExtras = if (messageExtrasBytes != null) MessageExtras.ADAPTER.decode(messageExtrasBytes) else null
 
       val quoteId = cursor.requireLong(QUOTE_ID)
       val quoteAuthor = cursor.requireLong(QUOTE_AUTHOR)
@@ -2357,7 +2359,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       if (body != null && (MessageTypes.isGroupQuit(outboxType) || MessageTypes.isGroupUpdate(outboxType))) {
         OutgoingMessage.groupUpdateMessage(
           threadRecipient = threadRecipient,
-          groupContext = MessageGroupContext(body, MessageTypes.isGroupV2(outboxType)),
+          groupContext = if (messageExtras != null) MessageGroupContext(messageExtras, MessageTypes.isGroupV2(outboxType)) else MessageGroupContext(body, MessageTypes.isGroupV2(outboxType)),
           avatar = attachments,
           sentTimeMillis = timestamp,
           expiresIn = 0,
@@ -2859,6 +2861,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     contentValues.put(PARENT_STORY_ID, if (message.parentStoryId != null) message.parentStoryId.serialize() else 0)
     contentValues.put(SCHEDULED_DATE, message.scheduledDate)
     contentValues.putNull(LATEST_REVISION_ID)
+    contentValues.put(MESSAGE_EXTRAS, message.messageExtras?.encode())
 
     if (editedMessage != null) {
       contentValues.put(ORIGINAL_MESSAGE_ID, editedMessage.getOriginalOrOwnMessageId().id)
@@ -5062,7 +5065,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       val editCount = cursor.requireInt(REVISION_NUMBER)
       val isRead = cursor.requireBoolean(READ)
       val messageExtraBytes = cursor.requireBlob(MESSAGE_EXTRAS)
-      val messageExtras = if (messageExtraBytes != null) MessageExtras.ADAPTER.decode(messageExtraBytes) else null
+      val messageExtras = messageExtraBytes?.let { MessageExtras.ADAPTER.decode(it) }
 
       if (!TextSecurePreferences.isReadReceiptsEnabled(context)) {
         hasReadReceipt = false

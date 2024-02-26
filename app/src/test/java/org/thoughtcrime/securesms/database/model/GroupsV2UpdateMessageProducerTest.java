@@ -24,6 +24,8 @@ import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.protos.groups.local.DecryptedMember;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
+import org.thoughtcrime.securesms.backup.v2.proto.GroupChangeChatUpdate;
+import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.signalservice.api.push.ServiceId;
@@ -34,6 +36,7 @@ import org.whispersystems.signalservice.api.push.ServiceIds;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -62,6 +65,8 @@ public final class GroupsV2UpdateMessageProducerTest {
   private ACI alice;
   private ACI bob;
 
+  private ServiceIds selfIds;
+
   private GroupsV2UpdateMessageProducer producer;
 
   @Rule
@@ -79,6 +84,8 @@ public final class GroupsV2UpdateMessageProducerTest {
     alice = ACI.from(UUID.randomUUID());
     bob   = ACI.from(UUID.randomUUID());
 
+    selfIds = new ServiceIds(you, PNI.from(UUID.randomUUID()));
+
     recipientIdMockedStatic.when(() -> RecipientId.from(anyLong())).thenCallRealMethod();
 
     RecipientId aliceId = RecipientId.from(1);
@@ -87,7 +94,7 @@ public final class GroupsV2UpdateMessageProducerTest {
     Recipient aliceRecipient = recipientWithName(aliceId, "Alice");
     Recipient bobRecipient   = recipientWithName(bobId, "Bob");
 
-    producer = new GroupsV2UpdateMessageProducer(ApplicationProvider.getApplicationContext(), new ServiceIds(you, PNI.from(UUID.randomUUID())), null);
+    producer = new GroupsV2UpdateMessageProducer(ApplicationProvider.getApplicationContext(), selfIds, null);
 
     recipientIdMockedStatic.when(() -> RecipientId.from(alice)).thenReturn(aliceId);
     recipientIdMockedStatic.when(() -> RecipientId.from(bob)).thenReturn(bobId);
@@ -1422,6 +1429,27 @@ public final class GroupsV2UpdateMessageProducerTest {
     assertEquals("Alice said hello to Bob, and Bob said hello back to Alice.", result.toString());
   }
 
+  private @NonNull String describeConvertedNewGroup(@NonNull DecryptedGroup groupState, @NonNull DecryptedGroupChange groupChange) {
+    GroupChangeChatUpdate update = GroupsV2UpdateMessageConverter.translateDecryptedChangeNewGroup(selfIds, new DecryptedGroupV2Context.Builder()
+        .change(groupChange)
+        .groupState(groupState)
+        .build());
+
+    return producer.describeChanges(update.updates).get(0).getSpannable().toString();
+  }
+
+  private @NonNull List<String> describeConvertedChange(@Nullable DecryptedGroup previousGroupState, @NonNull DecryptedGroupChange change) {
+    GroupChangeChatUpdate update = GroupsV2UpdateMessageConverter.translateDecryptedChangeUpdate(selfIds, new DecryptedGroupV2Context.Builder()
+        .change(change)
+        .previousGroupState(previousGroupState)
+        .build());
+
+    return Stream.of(producer.describeChanges(update.updates))
+                                        .map(UpdateDescription::getSpannable)
+                                        .map(Spannable::toString)
+                                        .toList();
+  }
+
   private @NonNull List<String> describeChange(@NonNull DecryptedGroupChange change) {
     return describeChange(null, change);
   }
@@ -1429,10 +1457,20 @@ public final class GroupsV2UpdateMessageProducerTest {
   private @NonNull List<String> describeChange(@Nullable DecryptedGroup previousGroupState,
                                                   @NonNull DecryptedGroupChange change)
   {
-    return Stream.of(producer.describeChanges(previousGroupState, change))
-                 .map(UpdateDescription::getSpannable)
-                 .map(Spannable::toString)
-                 .toList();
+    List<String> convertedChange = describeConvertedChange(previousGroupState, change);
+    List<String> describedChange = Stream.of(producer.describeChanges(previousGroupState, change))
+                                         .map(UpdateDescription::getSpannable)
+                                         .map(Spannable::toString)
+                                         .toList();
+    assertEquals(describedChange.size(), convertedChange.size());
+
+    ListIterator<String> convertedIterator = convertedChange.listIterator();
+    ListIterator<String> describedIterator = describedChange.listIterator();
+
+    while (convertedIterator.hasNext()) {
+      assertEquals(describedIterator.next(), convertedIterator.next());
+    }
+    return describedChange;
   }
 
   private @NonNull String describeNewGroup(@NonNull DecryptedGroup group) {
@@ -1440,7 +1478,12 @@ public final class GroupsV2UpdateMessageProducerTest {
   }
 
   private @NonNull String describeNewGroup(@NonNull DecryptedGroup group, @NonNull DecryptedGroupChange groupChange) {
-    return producer.describeNewGroup(group, groupChange).getSpannable().toString();
+    String newGroupString = producer.describeNewGroup(group, groupChange).getSpannable().toString();
+    String convertedGroupString = describeConvertedNewGroup(group, groupChange);
+
+    assertEquals(newGroupString, convertedGroupString);
+
+    return newGroupString;
   }
 
   private static GroupStateBuilder newGroupBy(ACI foundingMember, int revision) {

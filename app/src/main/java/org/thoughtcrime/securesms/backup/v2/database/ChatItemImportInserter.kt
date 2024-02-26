@@ -33,6 +33,8 @@ import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchSet
 import org.thoughtcrime.securesms.database.documents.NetworkFailure
 import org.thoughtcrime.securesms.database.documents.NetworkFailureSet
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
+import org.thoughtcrime.securesms.database.model.databaseprotos.GV2UpdateDescription
+import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExtras
 import org.thoughtcrime.securesms.database.model.databaseprotos.ProfileChangeDetails
 import org.thoughtcrime.securesms.database.model.databaseprotos.SessionSwitchoverEvent
 import org.thoughtcrime.securesms.database.model.databaseprotos.ThreadMergeEvent
@@ -409,6 +411,17 @@ class ChatItemImportInserter(
         }
         // Calls don't use the incoming/outgoing flags, so we overwrite the flags here
         this.put(MessageTable.TYPE, typeFlags)
+      }
+      updateMessage.groupChange != null -> {
+        put(MessageTable.BODY, "")
+        put(
+          MessageTable.MESSAGE_EXTRAS,
+          MessageExtras(
+            gv2UpdateDescription =
+            GV2UpdateDescription(groupChangeUpdate = updateMessage.groupChange)
+          ).encode()
+        )
+        typeFlags = MessageTypes.GROUP_V2_BIT or MessageTypes.GROUP_UPDATE_BIT
       }
     }
     this.put(MessageTable.TYPE, getAsLong(MessageTable.TYPE) or typeFlags)

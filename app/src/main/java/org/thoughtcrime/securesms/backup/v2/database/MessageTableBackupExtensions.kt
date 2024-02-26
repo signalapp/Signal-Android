@@ -47,7 +47,8 @@ fun MessageTable.getMessagesForBackup(): ChatItemExportIterator {
       MessageTable.READ,
       MessageTable.NETWORK_FAILURES,
       MessageTable.MISMATCHED_IDENTITIES,
-      "${MessageTable.TYPE} & ${MessageTypes.BASE_TYPE_MASK} AS ${ChatItemExportIterator.COLUMN_BASE_TYPE}"
+      "${MessageTable.TYPE} & ${MessageTypes.BASE_TYPE_MASK} AS ${ChatItemExportIterator.COLUMN_BASE_TYPE}",
+      MessageTable.MESSAGE_EXTRAS
     )
     .from(MessageTable.TABLE_NAME)
     .where(

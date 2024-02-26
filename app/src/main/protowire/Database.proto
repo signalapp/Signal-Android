@@ -376,7 +376,10 @@ message ExternalLaunchTransactionState {
 }
 
 message MessageExtras {
-    GV2UpdateDescription gv2UpdateDescription = 1;
+    oneof extra {
+        GV2UpdateDescription gv2UpdateDescription = 1;
+        signalservice.GroupContext gv1Context = 2;
+    }
 }
 
 message GV2UpdateDescription {

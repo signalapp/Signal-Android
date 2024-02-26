@@ -1929,7 +1929,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
       val hasReadReceipt = TextSecurePreferences.isReadReceiptsEnabled(context) && cursor.requireBoolean(HAS_READ_RECEIPT)
       val extraString = cursor.getString(cursor.getColumnIndexOrThrow(SNIPPET_EXTRAS))
-      val messageExtras = cursor.getBlob(cursor.getColumnIndexOrThrow(SNIPPET_MESSAGE_EXTRAS))
+      val messageExtraBytes = cursor.getBlob(cursor.getColumnIndexOrThrow(SNIPPET_MESSAGE_EXTRAS))
+      val messageExtras = if (messageExtraBytes != null) MessageExtras.ADAPTER.decode(messageExtraBytes) else null
       val extra: Extra? = if (extraString != null) {
         try {
           val jsonObject = SaneJSONObject(JSONObject(extraString))
@@ -1974,6 +1975,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         .setPinned(cursor.requireBoolean(PINNED))
         .setUnreadSelfMentionsCount(cursor.requireInt(UNREAD_SELF_MENTION_COUNT))
         .setExtra(extra)
+        .setSnippetMessageExtras(messageExtras)
         .build()
     }
 

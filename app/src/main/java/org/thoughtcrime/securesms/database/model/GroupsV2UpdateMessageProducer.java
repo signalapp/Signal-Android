@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.backup.v2.proto.GroupAvatarUpdate;
 import org.thoughtcrime.securesms.backup.v2.proto.GroupChangeChatUpdate;
 import org.thoughtcrime.securesms.backup.v2.proto.GroupCreationUpdate;
 import org.thoughtcrime.securesms.backup.v2.proto.GroupDescriptionUpdate;
+import org.thoughtcrime.securesms.backup.v2.proto.GroupExpirationTimerUpdate;
 import org.thoughtcrime.securesms.backup.v2.proto.GroupInvitationAcceptedUpdate;
 import org.thoughtcrime.securesms.backup.v2.proto.GroupInvitationDeclinedUpdate;
 import org.thoughtcrime.securesms.backup.v2.proto.GroupInvitationRevokedUpdate;
@@ -44,11 +45,13 @@ import org.thoughtcrime.securesms.backup.v2.proto.GroupJoinRequestApprovalUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.GroupJoinRequestCanceledUpdate;
 import org.thoughtcrime.securesms.backup.v2.proto.GroupJoinRequestUpdate;
 import org.thoughtcrime.securesms.backup.v2.proto.GroupMemberAddedUpdate;
+import org.thoughtcrime.securesms.backup.v2.proto.GroupMemberJoinedByLinkUpdate;
 import org.thoughtcrime.securesms.backup.v2.proto.GroupMemberJoinedUpdate;
 import org.thoughtcrime.securesms.backup.v2.proto.GroupMemberLeftUpdate;
 import org.thoughtcrime.securesms.backup.v2.proto.GroupMemberRemovedUpdate;
 import org.thoughtcrime.securesms.backup.v2.proto.GroupMembershipAccessLevelChangeUpdate;
 import org.thoughtcrime.securesms.backup.v2.proto.GroupNameUpdate;
+import org.thoughtcrime.securesms.backup.v2.proto.GroupSelfInvitationRevokedUpdate;
 import org.thoughtcrime.securesms.backup.v2.proto.GroupUnknownInviteeUpdate;
 import org.thoughtcrime.securesms.backup.v2.proto.GroupV2AccessLevel;
 import org.thoughtcrime.securesms.backup.v2.proto.GroupV2MigrationDroppedMembersUpdate;
@@ -57,6 +60,7 @@ import org.thoughtcrime.securesms.backup.v2.proto.GroupV2MigrationSelfInvitedUpd
 import org.thoughtcrime.securesms.backup.v2.proto.GroupV2MigrationUpdate;
 import org.thoughtcrime.securesms.backup.v2.proto.SelfInvitedOtherUserToGroupUpdate;
 import org.thoughtcrime.securesms.backup.v2.proto.SelfInvitedToGroupUpdate;
+import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context;
 import org.thoughtcrime.securesms.database.model.databaseprotos.GV2UpdateDescription;
 import org.thoughtcrime.securesms.groups.GV2AccessLevelUtil;
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange;
@@ -145,6 +149,9 @@ final class GroupsV2UpdateMessageProducer {
     for (GroupChangeChatUpdate.Update update : groupUpdates) {
       describeUpdate(update, updates);
     }
+    if (updates.isEmpty()) {
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_group_updated), R.drawable.ic_update_group_16));
+    }
 
     return updates;
   }
@@ -210,6 +217,41 @@ final class GroupsV2UpdateMessageProducer {
       describeGroupV2MigrationInvitedMembersUpdate(update.groupV2MigrationInvitedMembersUpdate, updates);
     } else if (update.groupV2MigrationSelfInvitedUpdate != null) {
       describeGroupV2MigrationSelfInvitedUpdate(update.groupV2MigrationSelfInvitedUpdate, updates);
+    } else if (update.groupMemberJoinedByLinkUpdate != null) {
+      describeGroupMemberJoinedByLinkUpdate(update.groupMemberJoinedByLinkUpdate, updates);
+    } else if (update.groupExpirationTimerUpdate != null) {
+      describeGroupExpirationTimerUpdate(update.groupExpirationTimerUpdate, updates);
+    } else if (update.groupSelfInvitationRevokedUpdate != null) {
+      describeGroupSelfInvitationRevokedUpdate(update.groupSelfInvitationRevokedUpdate, updates);
+    }
+  }
+
+  private void describeGroupSelfInvitationRevokedUpdate(@NonNull GroupSelfInvitationRevokedUpdate update, @NonNull List<UpdateDescription> updates) {
+    if (update.revokerAci == null) {
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_an_admin_revoked_your_invitation_to_the_group), R.drawable.ic_update_group_decline_16));
+    } else {
+      updates.add(updateDescription(R.string.MessageRecord_s_revoked_your_invitation_to_the_group, update.revokerAci, R.drawable.ic_update_group_decline_16));
+    }
+  }
+  private void describeGroupExpirationTimerUpdate(@NonNull GroupExpirationTimerUpdate update, @NonNull List<UpdateDescription> updates) {
+    String time = ExpirationUtil.getExpirationDisplayValue(context, update.expiresInMs / 1000);
+    if (update.updaterAci == null) {
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_disappearing_message_time_set_to_s, time), R.drawable.ic_update_timer_16));
+    } else {
+      boolean editorIsYou = selfIds.matches(update.updaterAci);
+      if (editorIsYou) {
+        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_set_disappearing_message_time_to_s, time), R.drawable.ic_update_timer_16));
+      } else {
+        updates.add(updateDescription(R.string.MessageRecord_s_set_disappearing_message_time_to_s, update.updaterAci, time, R.drawable.ic_update_timer_16));
+      }
+    }
+  }
+
+  private void describeGroupMemberJoinedByLinkUpdate(@NonNull GroupMemberJoinedByLinkUpdate update, @NonNull List<UpdateDescription> updates) {
+    if (selfIds.matches(update.newMemberAci)) {
+      updates.add(0, updateDescription(context.getString(R.string.MessageRecord_you_joined_the_group_via_the_group_link), R.drawable.ic_update_group_accept_16));
+    } else {
+      updates.add(updateDescription(R.string.MessageRecord_s_joined_the_group_via_the_group_link, update.newMemberAci, R.drawable.ic_update_group_accept_16));
     }
   }
 
@@ -254,12 +296,10 @@ final class GroupsV2UpdateMessageProducer {
   }
 
   private void describeInviteLinkDisabledUpdate(@NonNull GroupInviteLinkDisabledUpdate update, @NonNull List<UpdateDescription> updates) {
-    boolean editorIsYou = selfIds.matches(update.updaterAci);
-
     if (update.updaterAci == null) {
       updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_link_has_been_turned_off), R.drawable.ic_update_group_role_16));
     } else {
-      if (editorIsYou) {
+      if (selfIds.matches(update.updaterAci)) {
         updates.add(updateDescription(context.getString(R.string.MessageRecord_you_turned_off_the_group_link), R.drawable.ic_update_group_role_16));
       } else {
         updates.add(updateDescription(R.string.MessageRecord_s_turned_off_the_group_link, update.updaterAci, R.drawable.ic_update_group_role_16));
@@ -268,7 +308,6 @@ final class GroupsV2UpdateMessageProducer {
   }
 
   private void describeInviteLinkEnabledUpdate(@NonNull GroupInviteLinkEnabledUpdate update, @NonNull List<UpdateDescription> updates) {
-    boolean editorIsYou = selfIds.matches(update.updaterAci);
 
     if (update.updaterAci == null) {
       if (update.linkRequiresAdminApproval) {
@@ -277,7 +316,7 @@ final class GroupsV2UpdateMessageProducer {
         updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off), R.drawable.ic_update_group_role_16));
       }
     } else {
-      if (editorIsYou) {
+      if (selfIds.matches(update.updaterAci)) {
         if (update.linkRequiresAdminApproval) {
           updates.add(updateDescription(context.getString(R.string.MessageRecord_you_turned_on_the_group_link_with_admin_approval_on), R.drawable.ic_update_group_role_16));
         } else {
@@ -366,7 +405,7 @@ final class GroupsV2UpdateMessageProducer {
   private void describeGroupInvitationRevokedUpdate(@NonNull GroupInvitationRevokedUpdate update, @NonNull List<UpdateDescription> updates) {
     int revokedMeCount = 0;
     for (GroupInvitationRevokedUpdate.Invitee invitee : update.invitees) {
-      if (selfIds.matches(invitee.inviteeAci) || selfIds.matches(invitee.inviteePni)) {
+      if ((invitee.inviteeAci != null && selfIds.matches(invitee.inviteeAci)) || (invitee.inviteePni != null && selfIds.matches(invitee.inviteePni))) {
         revokedMeCount++;
       }
     }
@@ -409,17 +448,21 @@ final class GroupsV2UpdateMessageProducer {
       } else {
         updates.add(updateDescription(R.string.MessageRecord_s_joined_the_group, update.newMemberAci, R.drawable.ic_update_group_add_16));
       }
-    } else if (update.hadOpenInvitation) {
-      if (selfIds.matches(update.updaterAci)) {
-        updates.add(updateDescription(R.string.MessageRecord_you_added_invited_member_s, update.newMemberAci, R.drawable.ic_update_group_add_16));
-      } else {
-        updates.add(updateDescription(R.string.MessageRecord_s_added_invited_member_s, update.updaterAci, update.newMemberAci, R.drawable.ic_update_group_add_16));
-      }
     } else {
       if (newMemberIsYou) {
         updates.add(0, updateDescription(R.string.MessageRecord_s_added_you, update.updaterAci, R.drawable.ic_update_group_add_16));
+      } else if (selfIds.matches(update.updaterAci)) {
+        if (update.hadOpenInvitation) {
+          updates.add(updateDescription(R.string.MessageRecord_you_added_invited_member_s, update.newMemberAci, R.drawable.ic_update_group_add_16));
+        } else {
+          updates.add(updateDescription(R.string.MessageRecord_you_added_s, update.newMemberAci, R.drawable.ic_update_group_add_16));
+        }
       } else {
-        updates.add(updateDescription(R.string.MessageRecord_s_added_s, update.updaterAci, update.newMemberAci, R.drawable.ic_update_group_add_16));
+        if (update.hadOpenInvitation) {
+          updates.add(updateDescription(R.string.MessageRecord_s_added_invited_member_s, update.updaterAci, update.newMemberAci, R.drawable.ic_update_group_add_16));
+        } else {
+          updates.add(updateDescription(R.string.MessageRecord_s_added_s, update.updaterAci, update.newMemberAci, R.drawable.ic_update_group_add_16));
+        }
       }
     }
   }
