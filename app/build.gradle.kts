@@ -40,8 +40,6 @@ val selectableVariants = listOf(
   "nightlyProdPerf",
   "nightlyProdRelease",
   "nightlyStagingRelease",
-  "nightlyPnpPerf",
-  "nightlyPnpRelease",
   "playProdDebug",
   "playProdSpinner",
   "playProdCanary",
@@ -54,8 +52,6 @@ val selectableVariants = listOf(
   "playStagingSpinner",
   "playStagingPerf",
   "playStagingInstrumentation",
-  "playPnpDebug",
-  "playPnpSpinner",
   "playStagingRelease",
   "websiteProdSpinner",
   "websiteProdRelease"
@@ -394,15 +390,6 @@ android {
 
       buildConfigField("String", "BUILD_ENVIRONMENT_TYPE", "\"Staging\"")
       buildConfigField("String", "STRIPE_PUBLISHABLE_KEY", "\"pk_test_sngOd8FnXNkpce9nPXawKrJD00kIDngZkD\"")
-    }
-
-    create("pnp") {
-      dimension = "environment"
-
-      initWith(getByName("staging"))
-      applicationIdSuffix = ".pnp"
-
-      buildConfigField("String", "BUILD_ENVIRONMENT_TYPE", "\"Pnp\"")
     }
   }
 
