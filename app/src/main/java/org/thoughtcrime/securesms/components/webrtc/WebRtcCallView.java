@@ -842,6 +842,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     previousLayoutPositions = layoutPositions;
 
     ConstraintSet constraintSet = new ConstraintSet();
+    constraintSet.setForceId(false);
     constraintSet.clone(this);
 
     constraintSet.connect(R.id.call_screen_participants_parent,
@@ -875,6 +876,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
 
   private void updatePendingParticipantsBottomConstraint(View anchor) {
     ConstraintSet constraintSet = new ConstraintSet();
+    constraintSet.setForceId(false);
     constraintSet.clone(this);
 
     constraintSet.connect(R.id.call_screen_pending_recipients,
