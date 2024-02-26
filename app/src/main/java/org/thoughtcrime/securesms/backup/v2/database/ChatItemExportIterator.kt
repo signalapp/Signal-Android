@@ -42,6 +42,7 @@ import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchSet
 import org.thoughtcrime.securesms.database.documents.NetworkFailureSet
 import org.thoughtcrime.securesms.database.model.GroupCallUpdateDetailsUtil
 import org.thoughtcrime.securesms.database.model.GroupsV2UpdateMessageConverter
+import org.thoughtcrime.securesms.database.model.Mention
 import org.thoughtcrime.securesms.database.model.ReactionRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context
@@ -104,6 +105,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
     }
 
     val reactionsById: Map<Long, List<ReactionRecord>> = SignalDatabase.reactions.getReactionsForMessages(records.keys)
+    val mentionsById: Map<Long, List<Mention>> = SignalDatabase.mentions.getMentionsForMessages(records.keys)
     val groupReceiptsById: Map<Long, List<GroupReceiptTable.GroupReceiptInfo>> = SignalDatabase.groupReceipts.getGroupReceiptInfoForMessages(records.keys)
 
     for ((id, record) in records) {
@@ -232,7 +234,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
           Log.w(TAG, "Record missing a body, skipping")
           continue
         }
-        else -> builder.standardMessage = record.toTextMessage(reactionsById[id])
+        else -> builder.standardMessage = record.toTextMessage(reactionsById[id], mentions = mentionsById[id])
       }
 
       buffer += builder.build()
@@ -286,12 +288,12 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
     }
   }
 
-  private fun BackupMessageRecord.toTextMessage(reactionRecords: List<ReactionRecord>?): StandardMessage {
+  private fun BackupMessageRecord.toTextMessage(reactionRecords: List<ReactionRecord>?, mentions: List<Mention>?): StandardMessage {
     return StandardMessage(
       quote = this.toQuote(),
       text = Text(
         body = this.body!!,
-        bodyRanges = this.bodyRanges?.toBackupBodyRanges() ?: emptyList()
+        bodyRanges = (this.bodyRanges?.toBackupBodyRanges() ?: emptyList()) + (mentions?.toBackupBodyRanges() ?: emptyList())
       ),
       // TODO Link previews!
       linkPreview = emptyList(),
@@ -319,6 +321,16 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
     }
   }
 
+  private fun List<Mention>.toBackupBodyRanges(): List<BackupBodyRange> {
+    return this.map {
+      BackupBodyRange(
+        start = it.start,
+        length = it.length,
+        mentionAci = SignalDatabase.recipients.getRecord(it.recipientId).aci?.toByteString()
+      )
+    }
+  }
+
   private fun ByteArray.toBackupBodyRanges(): List<BackupBodyRange> {
     val decoded: BodyRangeList = try {
       BodyRangeList.ADAPTER.decode(this)
@@ -331,7 +343,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
       BackupBodyRange(
         start = it.start,
         length = it.length,
-        mentionAci = it.mentionUuid?.let { UuidUtil.parseOrThrow(it) }?.toByteArray()?.toByteString(),
+        mentionAci = it.mentionUuid?.let { uuid -> UuidUtil.parseOrThrow(uuid) }?.toByteArray()?.toByteString(),
         style = it.style?.toBackupBodyRangeStyle()
       )
     }

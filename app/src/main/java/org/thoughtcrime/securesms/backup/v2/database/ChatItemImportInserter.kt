@@ -28,10 +28,12 @@ import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.MessageTypes
 import org.thoughtcrime.securesms.database.ReactionTable
 import org.thoughtcrime.securesms.database.SQLiteDatabase
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchSet
 import org.thoughtcrime.securesms.database.documents.NetworkFailure
 import org.thoughtcrime.securesms.database.documents.NetworkFailureSet
+import org.thoughtcrime.securesms.database.model.Mention
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.database.model.databaseprotos.GV2UpdateDescription
 import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExtras
@@ -42,6 +44,7 @@ import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.JsonUtils
+import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.util.UuidUtil
 
 /**
@@ -205,6 +208,27 @@ class ChatItemImportInserter(
         }
       }
     }
+    if (this.standardMessage != null) {
+      val bodyRanges = this.standardMessage.text?.bodyRanges
+      if (!bodyRanges.isNullOrEmpty()) {
+        val mentions = bodyRanges.filter { it.mentionAci != null && it.start != null && it.length != null }
+          .mapNotNull {
+            val aci = ServiceId.ACI.parseOrNull(it.mentionAci!!)
+
+            if (aci != null && !aci.isUnknown) {
+              val id = RecipientId.from(aci)
+              Mention(id, it.start!!, it.length!!)
+            } else {
+              null
+            }
+          }
+        if (mentions.isNotEmpty()) {
+          followUp = { messageId ->
+            SignalDatabase.mentions.insert(threadId, messageId, mentions)
+          }
+        }
+      }
+    }
     return MessageInsert(contentValues, followUp)
   }
 
@@ -345,7 +369,7 @@ class ChatItemImportInserter(
       this.put(MessageTable.BODY, standardMessage.text.body)
 
       if (standardMessage.text.bodyRanges.isNotEmpty()) {
-        this.put(MessageTable.MESSAGE_RANGES, standardMessage.text.bodyRanges.toLocalBodyRanges()?.encode() as ByteArray?)
+        this.put(MessageTable.MESSAGE_RANGES, standardMessage.text.bodyRanges.toLocalBodyRanges()?.encode())
       }
     }
 
