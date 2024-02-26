@@ -30,6 +30,7 @@ import org.whispersystems.signalservice.api.groupsv2.ClientZkOperations;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Api;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations;
 import org.whispersystems.signalservice.api.kbs.MasterKey;
+import org.whispersystems.signalservice.api.keys.KeysApi;
 import org.whispersystems.signalservice.api.messages.calls.TurnServerInfo;
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceInfo;
 import org.whispersystems.signalservice.api.payments.CurrencyConversions;
@@ -862,6 +863,10 @@ public class SignalServiceAccountManager {
 
   public ArchiveApi getArchiveApi() {
     return ArchiveApi.create(pushServiceSocket, configuration.getBackupServerPublicParams(), credentials.getAci());
+  }
+
+  public KeysApi getKeysApi() {
+    return KeysApi.create(pushServiceSocket);
   }
 
   public AuthCredentials getPaymentsAuthorization() throws IOException {

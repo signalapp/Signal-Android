@@ -231,6 +231,8 @@ public class PushServiceSocket {
   private static final String PREKEY_METADATA_PATH      = "/v2/keys?identity=%s";
   private static final String PREKEY_PATH               = "/v2/keys?identity=%s";
   private static final String PREKEY_DEVICE_PATH        = "/v2/keys/%s/%s?pq=true";
+  private static final String PREKEY_CHECK_PATH        = "/v2/keys/check";
+
 
   private static final String PROVISIONING_CODE_PATH    = "/v1/devices/provisioning/code";
   private static final String PROVISIONING_MESSAGE_PATH = "/v1/provisioning/%s";
@@ -872,6 +874,17 @@ public class PushServiceSocket {
     } catch (NotFoundException nfe) {
       throw new UnregisteredUserException(destination.getIdentifier(), nfe);
     }
+  }
+
+  public void checkRepeatedUsePreKeys(ServiceIdType serviceIdType, byte[] digest) throws IOException {
+    String body = JsonUtil.toJson(new CheckRepeatedUsedPreKeysRequest(serviceIdType.toString(), digest));
+
+    makeServiceRequest(PREKEY_CHECK_PATH, "POST", body, NO_HEADERS, (responseCode, body1) -> {
+      // Must override this handling because otherwise code assumes a device mismatch error
+      if  (responseCode == 409) {
+        throw new NonSuccessfulResponseCodeException(409);
+      }
+    }, Optional.empty());
   }
 
   public void retrieveAttachment(int cdnNumber, SignalServiceAttachmentRemoteId cdnPath, File destination, long maxSizeBytes, ProgressListener listener)

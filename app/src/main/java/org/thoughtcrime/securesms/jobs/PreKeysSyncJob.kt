@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.protos.PreKeysSyncJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.FeatureFlags
+import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.SignalServiceAccountDataStore
 import org.whispersystems.signalservice.api.account.PreKeyUpload
 import org.whispersystems.signalservice.api.push.ServiceId
@@ -22,7 +23,9 @@ import org.whispersystems.signalservice.api.push.ServiceIdType
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 import org.whispersystems.signalservice.internal.push.OneTimePreKeyCounts
+import java.io.IOException
 import java.util.concurrent.TimeUnit
+import kotlin.jvm.Throws
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.DurationUnit
@@ -121,9 +124,17 @@ class PreKeysSyncJob private constructor(
     }
 
     val forceRotation = if (forceRotationRequested) {
-      val timeSinceLastForcedRotation = System.currentTimeMillis() - SignalStore.misc().lastForcedPreKeyRefresh
-      // We check < 0 in case someone changed their clock and had a bad value set
-      timeSinceLastForcedRotation > FeatureFlags.preKeyForceRefreshInterval() || timeSinceLastForcedRotation < 0
+      if (!checkPreKeyConsistency(ServiceIdType.ACI, ApplicationDependencies.getProtocolStore().aci(), SignalStore.account().aciPreKeys)) {
+        warn(TAG, ServiceIdType.ACI, "Prekey consistency check failed! Must rotate keys!")
+        true
+      } else if (!checkPreKeyConsistency(ServiceIdType.PNI, ApplicationDependencies.getProtocolStore().pni(), SignalStore.account().pniPreKeys)) {
+        warn(TAG, ServiceIdType.PNI, "Prekey consistency check failed! Must rotate keys!")
+        true
+      } else {
+        val timeSinceLastForcedRotation = System.currentTimeMillis() - SignalStore.misc().lastForcedPreKeyRefresh
+        // We check < 0 in case someone changed their clock and had a bad value set
+        timeSinceLastForcedRotation > FeatureFlags.preKeyForceRefreshInterval() || timeSinceLastForcedRotation < 0
+      }
     } else {
       false
     }
@@ -237,6 +248,29 @@ class PreKeysSyncJob private constructor(
     } else {
       log(serviceIdType, "No need to rotate last-resort kyber prekey. TimeSinceLastRotation: $timeSinceLastSignedPreKeyRotation ms (${timeSinceLastSignedPreKeyRotation.milliseconds.toDouble(DurationUnit.DAYS).roundedString(2)} days)")
       null
+    }
+  }
+
+  @Throws(IOException::class)
+  private fun checkPreKeyConsistency(serviceIdType: ServiceIdType, protocolStore: SignalServiceAccountDataStore, metadataStore: PreKeyMetadataStore): Boolean {
+    val result: NetworkResult<Unit> = ApplicationDependencies.getSignalServiceAccountManager().keysApi.checkRepeatedUseKeys(
+      serviceIdType = serviceIdType,
+      identityKey = protocolStore.identityKeyPair.publicKey,
+      signedPreKeyId = metadataStore.activeSignedPreKeyId,
+      signedPreKey = protocolStore.loadSignedPreKey(metadataStore.activeSignedPreKeyId).keyPair.publicKey,
+      lastResortKyberKeyId = metadataStore.lastResortKyberPreKeyId,
+      lastResortKyberKey = protocolStore.loadKyberPreKey(metadataStore.lastResortKyberPreKeyId).keyPair.publicKey
+    )
+
+    return when (result) {
+      is NetworkResult.Success -> true
+      is NetworkResult.NetworkError -> throw result.throwable ?: PushNetworkException("Network error")
+      is NetworkResult.ApplicationError -> throw result.throwable
+      is NetworkResult.StatusCodeError -> if (result.code == 409) {
+        false
+      } else {
+        throw NonSuccessfulResponseCodeException(result.code)
+      }
     }
   }
 
