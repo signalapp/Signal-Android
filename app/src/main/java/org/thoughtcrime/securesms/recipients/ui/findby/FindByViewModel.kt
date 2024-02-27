@@ -28,9 +28,7 @@ class FindByViewModel(
 ) : ViewModel() {
 
   private val internalState = mutableStateOf(
-    FindByState(
-      mode = mode
-    )
+    FindByState.startingState(self = Recipient.self(), mode = mode)
   )
 
   val state: State<FindByState> = internalState
