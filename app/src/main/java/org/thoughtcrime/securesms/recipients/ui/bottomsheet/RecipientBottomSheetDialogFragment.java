@@ -184,7 +184,7 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
       }
 
       String name = recipient.isSelf() ? requireContext().getString(R.string.note_to_self)
-                                       : recipient.getDisplayNameOrUsername(requireContext());
+                                       : recipient.getDisplayName(requireContext());
       fullName.setVisibility(TextUtils.isEmpty(name) ? View.GONE : View.VISIBLE);
       SpannableStringBuilder nameBuilder = new SpannableStringBuilder(name);
       if (recipient.showVerified()) {

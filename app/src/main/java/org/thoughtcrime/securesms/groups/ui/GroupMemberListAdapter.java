@@ -399,7 +399,7 @@ final class GroupMemberListAdapter extends RecyclerView.Adapter<GroupMemberListA
 
       GroupMemberEntry.PendingMember pendingMember = (GroupMemberEntry.PendingMember) memberEntry;
 
-      bindImageAndText(pendingMember.getInvitee(), pendingMember.getInvitee().getDisplayNameOrUsername(context), pendingMember.getInvitee().getCombinedAboutAndEmoji());
+      bindImageAndText(pendingMember.getInvitee(), pendingMember.getInvitee().getDisplayName(context), pendingMember.getInvitee().getCombinedAboutAndEmoji());
       bindRecipientClick(pendingMember.getInvitee());
 
       if (pendingMember.isCancellable() && adminActionsListener != null) {

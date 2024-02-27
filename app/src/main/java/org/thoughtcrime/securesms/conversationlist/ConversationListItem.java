@@ -299,7 +299,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     joinMembersDisposable.dispose();
     setSubjectViewText(null);
 
-    fromView.setText(recipient.get(), recipient.get().getDisplayNameOrUsername(getContext()), false, null, false);
+    fromView.setText(recipient.get(), recipient.get().getDisplayName(getContext()), false, null, false);
     setSubjectViewText(SearchUtil.getHighlightedSpan(locale, searchStyleFactory, messageResult.getBodySnippet(), highlightSubstring, SearchUtil.MATCH_ALL));
 
     updateDateView = () -> dateView.setText(DateUtils.getBriefRelativeTimeSpanString(getContext(), locale, messageResult.getReceivedTimestampMs()));

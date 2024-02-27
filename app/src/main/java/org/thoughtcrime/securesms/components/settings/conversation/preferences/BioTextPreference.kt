@@ -45,7 +45,7 @@ object BioTextPreference {
       val name = if (recipient.isSelf) {
         context.getString(R.string.note_to_self)
       } else {
-        recipient.getDisplayNameOrUsername(context)
+        recipient.getDisplayName(context)
       }
 
       if (!recipient.showVerified() && !recipient.isIndividual) {

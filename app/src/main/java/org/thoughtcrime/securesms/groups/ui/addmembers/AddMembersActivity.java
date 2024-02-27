@@ -162,7 +162,7 @@ public class AddMembersActivity extends PushContactSelectionActivity implements 
     Recipient recipient = Util.firstNonNull(state.getRecipient(), Recipient.UNKNOWN);
 
     String message = getResources().getQuantityString(R.plurals.AddMembersActivity__add_d_members_to_s, state.getSelectionCount(),
-                                                      recipient.getDisplayNameOrUsername(this), state.getGroupTitle(), state.getSelectionCount());
+                                                      recipient.getDisplayName(this), state.getGroupTitle(), state.getSelectionCount());
 
     new MaterialAlertDialogBuilder(this)
                    .setMessage(message)

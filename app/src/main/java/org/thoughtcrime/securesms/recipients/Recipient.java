@@ -544,10 +544,6 @@ public class Recipient {
     }
   }
 
-  public boolean hasName() {
-    return groupName != null;
-  }
-
   /**
    * False iff it {@link #getDisplayName} would fall back to e164, email or unknown.
    */
@@ -561,21 +557,11 @@ public class Recipient {
     String name = getNameFromLocalData(context);
 
     if (Util.isEmpty(name)) {
+      name = username;
+    }
+
+    if (Util.isEmpty(name)) {
       name = getUnknownDisplayName(context);
-    }
-
-    return StringUtil.isolateBidi(name);
-  }
-
-  public @NonNull String getDisplayNameOrUsername(@NonNull Context context) {
-    String name = getNameFromLocalData(context);
-
-    if (Util.isEmpty(name)) {
-      name = StringUtil.isolateBidi(username);
-    }
-
-    if (Util.isEmpty(name)) {
-      name = StringUtil.isolateBidi(getUnknownDisplayName(context));
     }
 
     return StringUtil.isolateBidi(name);
@@ -643,16 +629,6 @@ public class Recipient {
     String name = Util.getFirstNonEmpty(getGroupName(context),
                                         getSystemProfileName().getGivenName(),
                                         getProfileName().getGivenName(),
-                                        getDisplayName(context));
-
-    return StringUtil.isolateBidi(name);
-  }
-
-  public @NonNull String getShortDisplayNameIncludingUsername(@NonNull Context context) {
-    String name = Util.getFirstNonEmpty(getGroupName(context),
-                                        getSystemProfileName().getGivenName(),
-                                        getProfileName().getGivenName(),
-                                        shouldShowE164() ? getE164().orElse(null) : null,
                                         getUsername().orElse(null),
                                         getDisplayName(context));
 

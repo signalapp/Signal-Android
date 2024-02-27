@@ -33,7 +33,7 @@ public final class GroupInviteSentDialog {
                                                  .setTitle(context.getResources().getQuantityString(R.plurals.GroupManagement_invitation_sent, size, size))
                                                  .setPositiveButton(android.R.string.ok, null);
     if (size == 1) {
-      builder.setMessage(context.getString(R.string.GroupManagement_invite_single_user, recipients.get(0).getDisplayNameOrUsername(context)));
+      builder.setMessage(context.getString(R.string.GroupManagement_invite_single_user, recipients.get(0).getDisplayName(context)));
     } else {
       builder.setMessage(R.string.GroupManagement_invite_multiple_users)
              .setView(R.layout.dialog_multiple_group_invites_sent);

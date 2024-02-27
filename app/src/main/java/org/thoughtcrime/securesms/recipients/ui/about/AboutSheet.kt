@@ -89,8 +89,8 @@ class AboutSheet : ComposeBottomSheetDialogFragment() {
         model = AboutModel(
           isSelf = recipient.get().isSelf,
           hasAvatar = recipient.get().profileAvatarFileDetails.hasFile(),
-          displayName = recipient.get().getDisplayNameOrUsername(requireContext()),
-          shortName = recipient.get().getShortDisplayNameIncludingUsername(requireContext()),
+          displayName = recipient.get().getDisplayName(requireContext()),
+          shortName = recipient.get().getShortDisplayName(requireContext()),
           about = recipient.get().about,
           verified = verified,
           recipientForAvatar = recipient.get(),

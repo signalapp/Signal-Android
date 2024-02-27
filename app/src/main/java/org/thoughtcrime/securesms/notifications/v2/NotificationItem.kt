@@ -93,7 +93,7 @@ sealed class NotificationItem(val threadRecipient: Recipient, protected val reco
       context.getString(R.string.SingleRecipientNotificationBuilder_new_message)
     } else {
       SpannableStringBuilder().apply {
-        append(Util.getBoldedString(authorRecipient.getShortDisplayNameIncludingUsername(context)))
+        append(Util.getBoldedString(authorRecipient.getShortDisplayName(context)))
         if (threadRecipient != authorRecipient) {
           append(Util.getBoldedString("@${threadRecipient.getDisplayName(context)}"))
         }

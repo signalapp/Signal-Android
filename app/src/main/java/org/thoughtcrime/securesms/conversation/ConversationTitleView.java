@@ -207,7 +207,7 @@ public class ConversationTitleView extends ConstraintLayout {
   }
 
   private void setIndividualRecipientTitle(@NonNull Recipient recipient) {
-    final String displayName = recipient.getDisplayNameOrUsername(getContext());
+    final String displayName = recipient.getDisplayName(getContext());
     this.title.setText(displayName);
     this.subtitle.setText(null);
     updateSubtitleVisibility();
