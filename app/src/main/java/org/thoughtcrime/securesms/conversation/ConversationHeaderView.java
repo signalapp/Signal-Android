@@ -177,12 +177,12 @@ public class ConversationHeaderView extends ConstraintLayout {
   private @NonNull CharSequence prependIcon(@NonNull CharSequence input, @DrawableRes int iconRes) {
     Drawable drawable = ContextCompat.getDrawable(getContext(), iconRes);
     Preconditions.checkNotNull(drawable);
-    drawable.setBounds(0, 0, (int) DimensionUnit.DP.toPixels(20), (int) DimensionUnit.DP.toPixels(20));
+    drawable.setBounds(0, 0, (int) DimensionUnit.SP.toPixels(20), (int) DimensionUnit.SP.toPixels(20));
     drawable.setColorFilter(ContextCompat.getColor(getContext(), R.color.signal_colorOnSurface), PorterDuff.Mode.SRC_ATOP);
 
     return new SpannableStringBuilder()
         .append(SpanUtil.buildCenteredImageSpan(drawable))
-        .append(SpanUtil.space(8, DimensionUnit.DP))
+        .append(SpanUtil.space(8, DimensionUnit.SP))
         .append(input);
   }
 
