@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.glide.GiftBadgeModel
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.ScreenDensity
 import org.thoughtcrime.securesms.util.ThemeUtil
+import org.thoughtcrime.securesms.util.visible
 
 class BadgeImageView @JvmOverloads constructor(
   context: Context,
@@ -97,6 +98,10 @@ class BadgeImageView @JvmOverloads constructor(
         .clear(this)
       clearDrawable()
     }
+  }
+
+  fun isShowingBadge(): Boolean {
+    return drawable != null
   }
 
   private fun clearDrawable() {

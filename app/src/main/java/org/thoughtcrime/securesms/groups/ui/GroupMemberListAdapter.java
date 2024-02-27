@@ -257,6 +257,7 @@ final class GroupMemberListAdapter extends RecyclerView.Adapter<GroupMemberListA
       if (this.badge != null) {
         this.badge.setBadgeFromRecipient(recipient);
         this.badge.setClickable(false);
+        this.badge.setVisibility(this.badge.isShowingBadge() ? View.VISIBLE : View.GONE);
       }
 
       if (this.about != null) {

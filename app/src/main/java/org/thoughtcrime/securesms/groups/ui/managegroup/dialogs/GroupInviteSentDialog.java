@@ -31,9 +31,6 @@ public final class GroupInviteSentDialog {
 
     AlertDialog.Builder builder = new MaterialAlertDialogBuilder(context)
                                                  .setTitle(context.getResources().getQuantityString(R.plurals.GroupManagement_invitation_sent, size, size))
-                                                 // TODO: GV2 Need a URL for learn more
-                                                 //  .setNegativeButton(R.string.GroupManagement_learn_more, (dialog, which) -> {
-                                                 //  })
                                                  .setPositiveButton(android.R.string.ok, null);
     if (size == 1) {
       builder.setMessage(context.getString(R.string.GroupManagement_invite_single_user, recipients.get(0).getDisplayNameOrUsername(context)));
