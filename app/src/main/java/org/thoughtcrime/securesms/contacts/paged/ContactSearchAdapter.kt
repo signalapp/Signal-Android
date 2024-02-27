@@ -1,11 +1,13 @@
 package org.thoughtcrime.securesms.contacts.paged
 
 import android.content.Context
+import android.text.SpannableStringBuilder
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.core.content.ContextCompat
 import com.google.android.material.button.MaterialButton
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
@@ -28,6 +30,8 @@ import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
 import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.util.ContextUtil
+import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
@@ -500,7 +504,19 @@ open class ContactSearchAdapter(
         return
       }
 
-      name.setText(getRecipient(model))
+      val recipient = getRecipient(model)
+      val suffix: CharSequence? = if (recipient.isSystemContact && !recipient.showVerified()) {
+        SpannableStringBuilder().apply {
+          val drawable = ContextUtil.requireDrawable(context, R.drawable.symbol_person_circle_24).apply {
+            setTint(ContextCompat.getColor(context, R.color.signal_colorOnSurface))
+          }
+          SpanUtil.appendCenteredImageSpan(this, drawable, 16, 16)
+        }
+      } else {
+        null
+      }
+      name.setText(recipient, suffix)
+
       badge.setBadgeFromRecipient(getRecipient(model))
 
       bindAvatar(model)

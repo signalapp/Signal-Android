@@ -9,7 +9,6 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
-import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.SimpleEmojiTextView;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -20,8 +19,6 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 
 public class FromTextView extends SimpleEmojiTextView {
 
-  private static final String TAG = Log.tag(FromTextView.class);
-
   public FromTextView(Context context) {
     super(context);
   }
@@ -31,22 +28,18 @@ public class FromTextView extends SimpleEmojiTextView {
   }
 
   public void setText(Recipient recipient) {
-    setText(recipient, true);
+    setText(recipient, null);
   }
 
-  public void setText(Recipient recipient, boolean read) {
-    setText(recipient, read, null);
+  public void setText(Recipient recipient, @Nullable CharSequence suffix) {
+    setText(recipient, recipient.getDisplayName(getContext()), suffix);
   }
 
-  public void setText(Recipient recipient, boolean read, @Nullable String suffix) {
-    setText(recipient, recipient.getDisplayName(getContext()), read, suffix);
+  public void setText(Recipient recipient, @Nullable CharSequence fromString, @Nullable CharSequence suffix) {
+    setText(recipient, fromString, suffix, true);
   }
 
-  public void setText(Recipient recipient, @Nullable CharSequence fromString, boolean read, @Nullable String suffix) {
-    setText(recipient, fromString, read, suffix, true);
-  }
-
-  public void setText(Recipient recipient, @Nullable CharSequence fromString, boolean read, @Nullable String suffix, boolean asThread) {
+  public void setText(Recipient recipient, @Nullable CharSequence fromString, @Nullable CharSequence suffix, boolean asThread) {
     SpannableStringBuilder builder  = new SpannableStringBuilder();
 
     if (asThread && recipient.isSelf()) {

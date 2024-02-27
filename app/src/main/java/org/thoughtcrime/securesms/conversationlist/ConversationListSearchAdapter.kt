@@ -120,7 +120,8 @@ class ConversationListSearchAdapter(
         Locale.getDefault(),
         emptySet(),
         ConversationSet(),
-        model.thread.query
+        model.thread.query,
+        true
       )
     }
   }

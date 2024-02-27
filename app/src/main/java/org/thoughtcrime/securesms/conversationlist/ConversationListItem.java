@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms.conversationlist;
 import android.content.Context;
 import android.graphics.Rect;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
@@ -78,6 +79,7 @@ import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.search.MessageResult;
+import org.thoughtcrime.securesms.util.ContextUtil;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
@@ -211,7 +213,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
                    @NonNull Set<Long> typingThreads,
                    @NonNull ConversationSet selectedConversations)
   {
-    bindThread(lifecycleOwner, thread, glideRequests, locale, typingThreads, selectedConversations, null);
+    bindThread(lifecycleOwner, thread, glideRequests, locale, typingThreads, selectedConversations, null, false);
   }
 
   public void bindThread(@NonNull LifecycleOwner lifecycleOwner,
@@ -220,7 +222,8 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
                          @NonNull Locale locale,
                          @NonNull Set<Long> typingThreads,
                          @NonNull ConversationSet selectedConversations,
-                         @Nullable String highlightSubstring)
+                         @Nullable String highlightSubstring,
+                         boolean appendSystemContactIcon)
   {
     this.threadId           = thread.getThreadId();
     this.requestManager     = requestManager;
@@ -234,12 +237,20 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     observeDisplayBody(null, null);
     joinMembersDisposable.dispose();
 
+    SpannableStringBuilder suffix = null;
+    if (appendSystemContactIcon && recipient.get().isSystemContact() && !recipient.get().showVerified()) {
+      suffix = new SpannableStringBuilder();
+      Drawable drawable = ContextUtil.requireDrawable(getContext(), R.drawable.symbol_person_circle_24);
+      drawable.setTint(ContextCompat.getColor(getContext(), R.color.signal_colorOnSurface));
+      SpanUtil.appendCenteredImageSpan(suffix, drawable, 16, 16);
+    }
+
     if (highlightSubstring != null) {
       String name = recipient.get().isSelf() ? getContext().getString(R.string.note_to_self) : recipient.get().getDisplayName(getContext());
 
-      this.fromView.setText(recipient.get(), SearchUtil.getHighlightedSpan(locale, searchStyleFactory, name, highlightSubstring, SearchUtil.MATCH_ALL), true, null);
+      this.fromView.setText(recipient.get(), SearchUtil.getHighlightedSpan(locale, searchStyleFactory, name, highlightSubstring, SearchUtil.MATCH_ALL), suffix);
     } else {
-      this.fromView.setText(recipient.get(), false);
+      this.fromView.setText(recipient.get(), suffix);
     }
 
     this.typingThreads = typingThreads;
@@ -299,7 +310,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     joinMembersDisposable.dispose();
     setSubjectViewText(null);
 
-    fromView.setText(recipient.get(), recipient.get().getDisplayName(getContext()), false, null, false);
+    fromView.setText(recipient.get(), recipient.get().getDisplayName(getContext()), null, false);
     setSubjectViewText(SearchUtil.getHighlightedSpan(locale, searchStyleFactory, messageResult.getBodySnippet(), highlightSubstring, SearchUtil.MATCH_ALL));
 
     updateDateView = () -> dateView.setText(DateUtils.getBriefRelativeTimeSpanString(getContext(), locale, messageResult.getReceivedTimestampMs()));
@@ -332,7 +343,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
       setSubjectViewText(SearchUtil.getHighlightedSpan(locale, searchStyleFactory, joined, highlightSubstring, SearchUtil.MATCH_ALL));
     });
 
-    fromView.setText(recipient.get(), false);
+    fromView.setText(recipient.get());
 
     updateDateView = () -> {
       if (groupWithMembers.getDate() > 0) {
@@ -554,9 +565,9 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
       } else {
         name = recipient.getDisplayName(getContext());
       }
-      fromView.setText(recipient, SearchUtil.getHighlightedSpan(locale, searchStyleFactory, new SpannableString(name), highlightSubstring, SearchUtil.MATCH_ALL), true, null, thread != null);
+      fromView.setText(recipient, SearchUtil.getHighlightedSpan(locale, searchStyleFactory, new SpannableString(name), highlightSubstring, SearchUtil.MATCH_ALL), null, thread != null);
     } else {
-      fromView.setText(recipient, false);
+      fromView.setText(recipient);
     }
     contactPhotoImage.setAvatar(requestManager, recipient, !batchMode, false);
     setBadgeFromRecipient(recipient);
