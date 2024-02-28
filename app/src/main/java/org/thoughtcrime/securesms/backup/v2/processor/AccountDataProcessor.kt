@@ -28,6 +28,7 @@ import org.whispersystems.signalservice.api.push.UsernameLinkComponents
 import org.whispersystems.signalservice.api.storage.StorageRecordProtoUtil.defaultAccountRecord
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
 import org.whispersystems.signalservice.api.util.UuidUtil
+import kotlin.jvm.optionals.getOrNull
 
 object AccountDataProcessor {
 
@@ -47,12 +48,11 @@ object AccountDataProcessor {
           familyName = self.profileName.familyName,
           avatarUrlPath = self.profileAvatar ?: "",
           subscriptionManuallyCancelled = SignalStore.donationsValues().isUserManuallyCancelled(),
-          username = SignalStore.account().username,
+          username = self.username.getOrNull(),
           subscriberId = subscriber?.subscriberId?.bytes?.toByteString() ?: defaultAccountRecord.subscriberId,
           subscriberCurrencyCode = subscriber?.currencyCode ?: defaultAccountRecord.subscriberCurrencyCode,
           accountSettings = AccountData.AccountSettings(
             storyViewReceiptsEnabled = SignalStore.storyValues().viewedReceiptsEnabled,
-            noteToSelfMarkedUnread = record != null && record.syncExtras.isForcedUnread,
             typingIndicators = TextSecurePreferences.isTypingIndicatorsEnabled(context),
             readReceipts = TextSecurePreferences.isReadReceiptsEnabled(context),
             sealedSenderIndicators = TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(context),
@@ -61,13 +61,14 @@ object AccountDataProcessor {
             phoneNumberSharingMode = SignalStore.phoneNumberPrivacy().phoneNumberSharingMode.toBackupPhoneNumberSharingMode(),
             preferContactAvatars = SignalStore.settings().isPreferSystemContactPhotos,
             universalExpireTimer = SignalStore.settings().universalExpireTimer,
-            preferredReactionEmoji = SignalStore.emojiValues().reactions,
+            preferredReactionEmoji = SignalStore.emojiValues().rawReactions,
             storiesDisabled = SignalStore.storyValues().isFeatureDisabled,
             hasViewedOnboardingStory = SignalStore.storyValues().userHasViewedOnboardingStory,
             hasSetMyStoriesPrivacy = SignalStore.storyValues().userHasBeenNotifiedAboutStories,
             keepMutedChatsArchived = SignalStore.settings().shouldKeepMutedChatsArchived(),
             displayBadgesOnProfile = SignalStore.donationsValues().getDisplayBadgesOnProfile(),
-            hasSeenGroupStoryEducationSheet = SignalStore.storyValues().userHasSeenGroupStoryEducationSheet
+            hasSeenGroupStoryEducationSheet = SignalStore.storyValues().userHasSeenGroupStoryEducationSheet,
+            hasCompletedUsernameOnboarding = SignalStore.uiHints().hasCompletedUsernameOnboarding()
           )
         )
       )
@@ -121,6 +122,14 @@ object AccountDataProcessor {
           UuidUtil.parseOrThrow(accountData.usernameLink.serverId.toByteArray())
         )
         SignalStore.misc().usernameQrCodeColorScheme = accountData.usernameLink.color.toLocalUsernameColor()
+      }
+
+      if (settings.preferredReactionEmoji.isNotEmpty()) {
+        SignalStore.emojiValues().reactions = settings.preferredReactionEmoji
+      }
+
+      if (settings.hasCompletedUsernameOnboarding) {
+        SignalStore.uiHints().setHasCompletedUsernameOnboarding(true)
       }
     }
 
