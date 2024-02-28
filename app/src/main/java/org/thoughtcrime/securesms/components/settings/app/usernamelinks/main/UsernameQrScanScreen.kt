@@ -1,11 +1,15 @@
 package org.thoughtcrime.securesms.components.settings.app.usernamelinks.main
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -15,19 +19,26 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.core.app.TaskStackBuilder
 import androidx.lifecycle.LifecycleOwner
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.google.accompanist.permissions.MultiplePermissionsState
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import org.signal.core.ui.Dialogs
+import org.signal.core.ui.theme.SignalTheme
 import org.signal.qr.QrScannerView
+import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXModelBlocklist
 import org.thoughtcrime.securesms.util.CommunicationActions
@@ -36,36 +47,51 @@ import java.util.concurrent.TimeUnit
 /**
  * A screen that allows you to scan a QR code to start a chat.
  */
+@OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun UsernameQrScanScreen(
   lifecycleOwner: LifecycleOwner,
   disposables: CompositeDisposable,
+  galleryPermissionState: MultiplePermissionsState,
   qrScanResult: QrScanResult?,
   onQrCodeScanned: (String) -> Unit,
   onQrResultHandled: () -> Unit,
+  onOpenGalleryClicked: () -> Unit,
   modifier: Modifier = Modifier
 ) {
   val path = remember { Path() }
 
   when (qrScanResult) {
     QrScanResult.InvalidData -> {
-      QrScanResultDialog(stringResource(R.string.UsernameLinkSettings_qr_result_invalid), onDismiss = onQrResultHandled)
+      QrScanResultDialog(message = stringResource(R.string.UsernameLinkSettings_qr_result_invalid), onDismiss = onQrResultHandled)
     }
 
     QrScanResult.NetworkError -> {
-      QrScanResultDialog(stringResource(R.string.UsernameLinkSettings_qr_result_network_error), onDismiss = onQrResultHandled)
+      QrScanResultDialog(message = stringResource(R.string.UsernameLinkSettings_qr_result_network_error), onDismiss = onQrResultHandled)
+    }
+
+    QrScanResult.QrNotFound -> {
+      QrScanResultDialog(
+        title = stringResource(R.string.UsernameLinkSettings_qr_code_not_found),
+        message = stringResource(R.string.UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code),
+        onDismiss = onQrResultHandled
+      )
     }
 
     is QrScanResult.NotFound -> {
       if (qrScanResult.username != null) {
-        QrScanResultDialog(stringResource(R.string.UsernameLinkSettings_qr_result_not_found, qrScanResult.username), onDismiss = onQrResultHandled)
+        QrScanResultDialog(message = stringResource(R.string.UsernameLinkSettings_qr_result_not_found, qrScanResult.username), onDismiss = onQrResultHandled)
       } else {
-        QrScanResultDialog(stringResource(R.string.UsernameLinkSettings_qr_result_not_found_no_username), onDismiss = onQrResultHandled)
+        QrScanResultDialog(message = stringResource(R.string.UsernameLinkSettings_qr_result_not_found_no_username), onDismiss = onQrResultHandled)
       }
     }
 
     is QrScanResult.Success -> {
-      CommunicationActions.startConversation(LocalContext.current, qrScanResult.recipient, null)
+      val taskStack = TaskStackBuilder
+        .create(LocalContext.current)
+        .addNextIntent(MainActivity.clearTop(LocalContext.current))
+
+      CommunicationActions.startConversation(LocalContext.current, qrScanResult.recipient, null, taskStack)
       onQrResultHandled()
     }
 
@@ -77,25 +103,52 @@ fun UsernameQrScanScreen(
       .fillMaxWidth()
       .fillMaxHeight()
   ) {
-    AndroidView(
-      factory = { context ->
-        val view = QrScannerView(context)
-        disposables += view.qrData.throttleFirst(3000, TimeUnit.MILLISECONDS).subscribe { data ->
-          onQrCodeScanned(data)
-        }
-        view
-      },
-      update = { view ->
-        view.start(lifecycleOwner = lifecycleOwner, forceLegacy = CameraXModelBlocklist.isBlocklisted())
-      },
+    Box(
       modifier = Modifier
         .fillMaxWidth()
         .weight(1f, true)
-        .drawWithContent {
-          drawContent()
-          drawQrCrosshair(path)
+    ) {
+      AndroidView(
+        factory = { context ->
+          val view = QrScannerView(context)
+          disposables += view.qrData.throttleFirst(3000, TimeUnit.MILLISECONDS).subscribe { data ->
+            onQrCodeScanned(data)
+          }
+          view
+        },
+        update = { view ->
+          view.start(lifecycleOwner = lifecycleOwner, forceLegacy = CameraXModelBlocklist.isBlocklisted())
+        },
+        modifier = Modifier
+          .fillMaxWidth()
+          .fillMaxHeight()
+          .drawWithContent {
+            drawContent()
+            drawQrCrosshair(path)
+          }
+      )
+
+      FloatingActionButton(
+        shape = CircleShape,
+        containerColor = SignalTheme.colors.colorSurface1,
+        modifier = Modifier
+          .align(Alignment.BottomCenter)
+          .padding(bottom = 24.dp),
+        onClick = {
+          if (galleryPermissionState.allPermissionsGranted) {
+            onOpenGalleryClicked()
+          } else {
+            galleryPermissionState.launchMultiplePermissionRequest()
+          }
         }
-    )
+      ) {
+        Image(
+          painter = painterResource(id = R.drawable.symbol_album_24),
+          contentDescription = null,
+          colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface)
+        )
+      }
+    }
 
     Row(
       modifier = Modifier
@@ -114,8 +167,9 @@ fun UsernameQrScanScreen(
 }
 
 @Composable
-private fun QrScanResultDialog(message: String, onDismiss: () -> Unit) {
+private fun QrScanResultDialog(title: String? = null, message: String, onDismiss: () -> Unit) {
   Dialogs.SimpleMessageDialog(
+    title = title,
     message = message,
     dismiss = stringResource(id = android.R.string.ok),
     onDismiss = onDismiss

@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.components.settings.app.usernamelinks.main
 
+import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
@@ -9,6 +10,7 @@ import android.graphics.PorterDuffColorFilter
 import android.graphics.Rect
 import android.graphics.RectF
 import android.graphics.Typeface
+import android.net.Uri
 import android.os.Build
 import android.text.Layout
 import android.text.StaticLayout
@@ -25,13 +27,18 @@ import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.core.graphics.withTranslation
 import androidx.lifecycle.ViewModel
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DecodeFormat
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
+import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import org.signal.core.util.logging.Log
+import org.signal.core.util.toOptional
+import org.signal.qr.QrProcessor
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCodeData
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCodeState
@@ -191,6 +198,29 @@ class UsernameLinkSettingsViewModel : ViewModel() {
 
   fun onLinkCopied() {
     _linkCopiedEvent.value = UUID.randomUUID()
+  }
+
+  fun scanImage(context: Context, uri: Uri) {
+    val loadBitmap = Glide.with(context)
+      .asBitmap()
+      .format(DecodeFormat.PREFER_ARGB_8888)
+      .load(uri)
+      .submit()
+
+    disposable += Single.fromFuture(loadBitmap)
+      .subscribeOn(Schedulers.io())
+      .map { QrProcessor().getScannedData(it).toOptional() }
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribeBy {
+        if (it.isPresent) {
+          onQrCodeScanned(it.get())
+        } else {
+          _state.value = _state.value.copy(
+            qrScanResult = QrScanResult.QrNotFound,
+            indeterminateProgress = false
+          )
+        }
+      }
   }
 
   private fun generateQrCodeData(url: Optional<String>): Single<Optional<QrCodeData>> {

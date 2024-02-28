@@ -1,5 +1,6 @@
 package org.signal.qr
 
+import android.graphics.Bitmap
 import androidx.camera.core.ImageProxy
 import com.google.zxing.BinaryBitmap
 import com.google.zxing.ChecksumException
@@ -8,10 +9,12 @@ import com.google.zxing.FormatException
 import com.google.zxing.LuminanceSource
 import com.google.zxing.NotFoundException
 import com.google.zxing.PlanarYUVLuminanceSource
+import com.google.zxing.RGBLuminanceSource
 import com.google.zxing.Result
 import com.google.zxing.common.HybridBinarizer
 import com.google.zxing.qrcode.QRCodeReader
 import org.signal.core.util.logging.Log
+import java.nio.IntBuffer
 
 /**
  * Wraps [QRCodeReader] for use from API19 or API21+.
@@ -33,6 +36,16 @@ class QrProcessor {
     height: Int
   ): String? {
     return getScannedData(PlanarYUVLuminanceSource(data, width, height, 0, 0, width, height, false))
+  }
+
+  fun getScannedData(bitmap: Bitmap?): String? {
+    if (bitmap == null) {
+      return null
+    }
+
+    val buffer = IntBuffer.allocate((bitmap.byteCount / 4) + 1)
+    bitmap.copyPixelsToBuffer(buffer)
+    return getScannedData(RGBLuminanceSource(bitmap.width, bitmap.height, buffer.array()))
   }
 
   private fun getScannedData(source: LuminanceSource): String? {

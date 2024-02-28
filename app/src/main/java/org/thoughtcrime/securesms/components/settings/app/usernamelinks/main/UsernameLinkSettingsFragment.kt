@@ -8,6 +8,8 @@ import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
@@ -52,9 +54,11 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.google.accompanist.permissions.MultiplePermissionsState
 import com.google.accompanist.permissions.PermissionState
 import com.google.accompanist.permissions.PermissionStatus
 import com.google.accompanist.permissions.isGranted
+import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import com.google.accompanist.permissions.rememberPermissionState
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import kotlinx.coroutines.CoroutineScope
@@ -69,6 +73,7 @@ import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCodeSt
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.UsernameQrCodeColorScheme
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.main.UsernameLinkSettingsState.ActiveTab
 import org.thoughtcrime.securesms.compose.ComposeFragment
+import org.thoughtcrime.securesms.permissions.PermissionCompat
 import org.thoughtcrime.securesms.providers.BlobProvider
 import java.io.ByteArrayOutputStream
 import java.util.UUID
@@ -78,6 +83,18 @@ class UsernameLinkSettingsFragment : ComposeFragment() {
 
   private val viewModel: UsernameLinkSettingsViewModel by viewModels()
   private val disposables: LifecycleDisposable = LifecycleDisposable()
+
+  private lateinit var galleryLauncher: ActivityResultLauncher<Unit>
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+
+    galleryLauncher = registerForActivityResult(UsernameQrImageSelectionActivity.Contract()) { uri ->
+      if (uri != null) {
+        viewModel.scanImage(requireContext(), uri)
+      }
+    }
+  }
 
   override fun onStart() {
     super.onStart()
@@ -99,18 +116,28 @@ class UsernameLinkSettingsFragment : ComposeFragment() {
       viewModel.onTabSelected(ActiveTab.Scan)
     }
 
+    val galleryPermissionState: MultiplePermissionsState = rememberMultiplePermissionsState(permissions = PermissionCompat.forImages().toList()) { grants ->
+      if (grants.values.all { it }) {
+        galleryLauncher.launch(Unit)
+      } else {
+        Toast.makeText(requireContext(), R.string.ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission, Toast.LENGTH_SHORT).show()
+      }
+    }
+
     MainScreen(
       state = state,
       navController = navController,
       lifecycleOwner = viewLifecycleOwner,
       disposables = disposables.disposables,
       cameraPermissionState = cameraPermissionState,
+      galleryPermissionState = galleryPermissionState,
       onCodeTabSelected = { viewModel.onTabSelected(ActiveTab.Code) },
       onScanTabSelected = { viewModel.onTabSelected(ActiveTab.Scan) },
       onUsernameLinkResetResultHandled = { viewModel.onUsernameLinkResetResultHandled() },
       onShareBadge = { shareQrBadge(requireActivity(), viewModel.generateQrCodeImage(helpText)) },
       onQrCodeScanned = { data -> viewModel.onQrCodeScanned(data) },
       onQrResultHandled = { viewModel.onQrResultHandled() },
+      onOpenGalleryClicked = { galleryLauncher.launch(Unit) },
       onLinkReset = { viewModel.onUsernameLinkReset() },
       onBackNavigationPressed = { requireActivity().onBackPressed() },
       linkCopiedEvent = linkCopiedEvent
@@ -127,6 +154,7 @@ class UsernameLinkSettingsFragment : ComposeFragment() {
   }
 }
 
+@OptIn(ExperimentalPermissionsApi::class)
 @Composable
 private fun MainScreen(
   state: UsernameLinkSettingsState,
@@ -134,12 +162,14 @@ private fun MainScreen(
   lifecycleOwner: LifecycleOwner = previewLifecycleOwner,
   disposables: CompositeDisposable = CompositeDisposable(),
   cameraPermissionState: PermissionState = previewPermissionState(),
+  galleryPermissionState: MultiplePermissionsState = previewMultiplePermissionState(),
   onCodeTabSelected: () -> Unit = {},
   onScanTabSelected: () -> Unit = {},
   onUsernameLinkResetResultHandled: () -> Unit = {},
   onShareBadge: () -> Unit = {},
   onQrCodeScanned: (String) -> Unit = {},
   onQrResultHandled: () -> Unit = {},
+  onOpenGalleryClicked: () -> Unit = {},
   onLinkReset: () -> Unit = {},
   onBackNavigationPressed: () -> Unit = {},
   linkCopiedEvent: UUID? = null
@@ -201,9 +231,11 @@ private fun MainScreen(
       UsernameQrScanScreen(
         lifecycleOwner = lifecycleOwner,
         disposables = disposables,
+        galleryPermissionState = galleryPermissionState,
         qrScanResult = state.qrScanResult,
         onQrCodeScanned = onQrCodeScanned,
         onQrResultHandled = onQrResultHandled,
+        onOpenGalleryClicked = onOpenGalleryClicked,
         modifier = Modifier.padding(contentPadding)
       )
     }
@@ -352,6 +384,16 @@ private fun previewPermissionState(): PermissionState {
     override val permission: String = ""
     override val status: PermissionStatus = PermissionStatus.Granted
     override fun launchPermissionRequest() = Unit
+  }
+}
+
+private fun previewMultiplePermissionState(): MultiplePermissionsState {
+  return object : MultiplePermissionsState {
+    override val allPermissionsGranted: Boolean = true
+    override val permissions: List<PermissionState> = emptyList()
+    override val revokedPermissions: List<PermissionState> = emptyList()
+    override val shouldShowRationale: Boolean = false
+    override fun launchMultiplePermissionRequest() = Unit
   }
 }
 

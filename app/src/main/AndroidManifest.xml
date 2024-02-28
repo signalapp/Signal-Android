@@ -1084,6 +1084,11 @@
               android:theme="@style/Theme.Signal.WallpaperCropper"
               android:exported="false"/>
 
+    <activity android:name=".components.settings.app.usernamelinks.main.UsernameQrImageSelectionActivity"
+        android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
+        android:theme="@style/TextSecure.DarkNoActionBar"
+        android:exported="false"/>
+
     <activity android:name=".reactions.edit.EditReactionsActivity"
               android:theme="@style/Theme.Signal.DayNight.NoActionBar"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
