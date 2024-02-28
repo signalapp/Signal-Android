@@ -4906,6 +4906,20 @@
     <string name="MediaReviewImagePageFragment__discard_changes">Discard changes?</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">You\'ll lose any changes you\'ve made to this photo.</string>
 
+    <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
+    <string name="MediaCaptureFragment_username_dialog_title">Found %1$s</string>
+    <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
+    <string name="MediaCaptureFragment_username_dialog_body">Start a chat with \"%1$s\"</string>
+    <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
+    <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">Go to chat</string>
+
+    <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+    <string name="MediaCaptureFragment_device_link_dialog_title">Link device?</string>
+    <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+    <string name="MediaCaptureFragment_device_link_dialog_body">It looks like you\'re trying to link a Signal device. Tap continue and scan the code again to link it.</string>
+    <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
+    <string name="MediaCaptureFragment_device_link_dialog_continue">Continue</string>
+
 
     <string name="BadgesOverviewFragment__my_badges">My badges</string>
     <string name="BadgesOverviewFragment__featured_badge">Featured badge</string>

@@ -15,7 +15,6 @@ import androidx.annotation.MainThread
 import androidx.annotation.RequiresApi
 import androidx.annotation.RequiresPermission
 import androidx.camera.core.Camera
-import androidx.camera.core.CameraProvider
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.FocusMeteringAction
 import androidx.camera.core.FocusMeteringResult
@@ -72,6 +71,7 @@ class SignalCameraController(val context: Context, val lifecycleOwner: Lifecycle
   private val cameraProviderFuture: ListenableFuture<ProcessCameraProvider> = ProcessCameraProvider.getInstance(context)
   private val viewPort: ViewPort? = previewView.getViewPort(Surface.ROTATION_0)
   private val initializationCompleteListeners: MutableSet<InitializationListener> = mutableSetOf()
+  private val customUseCases: MutableList<UseCase> = mutableListOf()
 
   private var imageRotation = 0
   private var recording: Recording? = null
@@ -127,6 +127,19 @@ class SignalCameraController(val context: Context, val lifecycleOwner: Lifecycle
     } catch (e: Exception) {
       Log.e(TAG, "Use case binding failed", e)
     }
+  }
+
+  @MainThread
+  fun addUseCase(useCase: UseCase) {
+    ThreadUtil.assertMainThread()
+
+    customUseCases += useCase
+
+    if (isRecording()) {
+      stopRecording()
+    }
+
+    tryToBindCamera()
   }
 
   @MainThread
@@ -285,7 +298,7 @@ class SignalCameraController(val context: Context, val lifecycleOwner: Lifecycle
   }
 
   @MainThread
-  private fun tryToBindCamera(restoreStateRunnable: (() -> Unit)?) {
+  private fun tryToBindCamera(restoreStateRunnable: (() -> Unit)? = null) {
     ThreadUtil.assertMainThread()
     try {
       bindToLifecycleInternal()
@@ -353,6 +366,11 @@ class SignalCameraController(val context: Context, val lifecycleOwner: Lifecycle
     } else {
       cameraProvider.unbind(videoCaptureUseCase)
     }
+
+    for (useCase in customUseCases) {
+      addUseCase(useCase)
+    }
+
     if (viewPort != null) {
       setViewPort(viewPort)
     } else {
@@ -425,6 +443,6 @@ class SignalCameraController(val context: Context, val lifecycleOwner: Lifecycle
   }
 
   interface InitializationListener {
-    fun onInitialized(cameraProvider: CameraProvider)
+    fun onInitialized(cameraProvider: ProcessCameraProvider)
   }
 }

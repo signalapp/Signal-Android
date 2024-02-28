@@ -311,6 +311,10 @@ object UsernameRepository {
     return BASE_URL + base64
   }
 
+  fun isValidLink(url: String): Boolean {
+    return parseLink(url) != null
+  }
+
   @JvmStatic
   fun onUsernameConsistencyValidated() {
     SignalStore.account().usernameSyncState = AccountValues.UsernameSyncState.IN_SYNC

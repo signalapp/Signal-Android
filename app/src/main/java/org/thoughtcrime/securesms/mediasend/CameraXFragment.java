@@ -28,9 +28,12 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.camera.core.CameraSelector;
+import androidx.camera.core.ImageAnalysis;
 import androidx.camera.core.ImageCapture;
 import androidx.camera.core.ImageCaptureException;
 import androidx.camera.core.ImageProxy;
+import androidx.camera.core.resolutionselector.ResolutionSelector;
+import androidx.camera.core.resolutionselector.ResolutionStrategy;
 import androidx.camera.view.PreviewView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
@@ -42,6 +45,7 @@ import com.google.android.material.card.MaterialCardView;
 import org.signal.core.util.Stopwatch;
 import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
+import org.signal.qr.QrProcessor;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener;
@@ -61,6 +65,8 @@ import org.thoughtcrime.securesms.video.VideoUtil;
 
 import java.io.FileDescriptor;
 import java.io.IOException;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.Disposable;
@@ -71,8 +77,9 @@ import io.reactivex.rxjava3.disposables.Disposable;
  */
 public class CameraXFragment extends LoggingFragment implements CameraFragment {
 
-  private static final String TAG              = Log.tag(CameraXFragment.class);
-  private static final String IS_VIDEO_ENABLED = "is_video_enabled";
+  private static final String TAG                = Log.tag(CameraXFragment.class);
+  private static final String IS_VIDEO_ENABLED   = "is_video_enabled";
+  private static final String IS_QR_SCAN_ENABLED = "is_qr_scan_enabled";
 
 
   private static final Rational              ASPECT_RATIO_16_9  = new Rational(16, 9);
@@ -90,24 +97,30 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
   private CameraScreenBrightnessController cameraScreenBrightnessController;
   private boolean                          isMediaSelected;
 
+  private final Executor    qrAnalysisExecutor = Executors.newSingleThreadExecutor();
+  private final QrProcessor qrProcessor        = new QrProcessor();
+
   public static CameraXFragment newInstanceForAvatarCapture() {
     CameraXFragment fragment = new CameraXFragment();
     Bundle          args     = new Bundle();
 
     args.putBoolean(IS_VIDEO_ENABLED, false);
+    args.putBoolean(IS_QR_SCAN_ENABLED, false);
     fragment.setArguments(args);
 
     return fragment;
   }
 
-  public static CameraXFragment newInstance() {
+  public static CameraXFragment newInstance(boolean qrScanEnabled) {
     CameraXFragment fragment = new CameraXFragment();
 
-    fragment.setArguments(new Bundle());
+    Bundle args = new Bundle();
+    args.putBoolean(IS_QR_SCAN_ENABLED, qrScanEnabled);
+
+    fragment.setArguments(args);
 
     return fragment;
   }
-
   @Override
   public void onAttach(@NonNull Context context) {
     super.onAttach(context);
@@ -155,6 +168,26 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
 
     onOrientationChanged();
     cameraController.bindToLifecycle(() -> Log.d(TAG, "Camera init complete from onViewCreated"));
+
+    if (requireArguments().getBoolean(IS_QR_SCAN_ENABLED, false)) {
+      ImageAnalysis imageAnalysis = new ImageAnalysis.Builder()
+          .setResolutionSelector(new ResolutionSelector.Builder().setResolutionStrategy(ResolutionStrategy.HIGHEST_AVAILABLE_STRATEGY).build())
+          .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
+          .build();
+
+      imageAnalysis.setAnalyzer(qrAnalysisExecutor, imageProxy -> {
+        try {
+          String data = qrProcessor.getScannedData(imageProxy);
+          if (data != null) {
+            controller.onQrCodeFound(data);
+          }
+        } finally {
+          imageProxy.close();
+        }
+      });
+
+      cameraController.addUseCase(imageAnalysis);
+    }
 
     view.addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
       // Let's assume portrait for now, so 9:16

@@ -181,16 +181,18 @@ public class AvatarSelectionActivity extends AppCompatActivity implements Camera
 
   @Override
   public void onMainImageLoaded() {
-
   }
 
   @Override
   public void onMainImageFailedToLoad() {
-
   }
 
   @Override
   public void restoreState() {
+  }
+
+  @Override
+  public void onQrCodeFound(@NonNull String data) {
   }
 
   public boolean popToRoot() {
