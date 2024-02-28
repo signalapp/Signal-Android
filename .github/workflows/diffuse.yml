@@ -38,7 +38,7 @@ jobs:
 
     - name: Build with Gradle
       if: steps.cache-base.outputs.cache-hit != 'true'
-      run: ./gradlew assemblePlayProdRelease --parallel
+      run: ./gradlew assemblePlayProdRelease
 
     - name: Copy base apk
       if: steps.cache-base.outputs.cache-hit != 'true'
@@ -50,7 +50,7 @@ jobs:
         clean: 'false'
 
     - name: Build with Gradle
-      run: ./gradlew assemblePlayProdRelease --parallel
+      run: ./gradlew assemblePlayProdRelease
 
     - name: Copy PR apk
       run: mv app/build/outputs/apk/playProd/release/*arm64*.apk diffuse-new.apk

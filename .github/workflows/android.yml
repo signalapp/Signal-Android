@@ -32,7 +32,7 @@ jobs:
       uses: gradle/wrapper-validation-action@v1
 
     - name: Build with Gradle
-      run: ./gradlew qa --parallel
+      run: ./gradlew qa
 
     - name: Archive reports for failed build
       if: ${{ failure() }}
