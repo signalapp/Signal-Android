@@ -34,6 +34,7 @@ fun DistributionListTables.getAllForBackup(): List<BackupRecipient> {
   val records = readableDatabase
     .select()
     .from(DistributionListTables.ListTable.TABLE_NAME)
+    .where(DistributionListTables.ListTable.IS_NOT_DELETED)
     .run()
     .readToList { cursor ->
       val id: DistributionListId = DistributionListId.from(cursor.requireLong(DistributionListTables.ListTable.ID))

@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.RecipientExtras
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -127,6 +128,7 @@ fun RecipientTable.restoreRecipientFromBackup(recipient: BackupRecipient, backup
     recipient.group != null -> restoreGroupFromBackup(recipient.group)
     recipient.distributionList != null -> SignalDatabase.distributionLists.restoreFromBackup(recipient.distributionList, backupState)
     recipient.self != null -> Recipient.self().id
+    recipient.releaseNotes != null -> restoreReleaseNotes()
     else -> {
       Log.w(TAG, "Unrecognized recipient type!")
       null
@@ -187,6 +189,7 @@ private fun RecipientTable.restoreContactFromBackup(contact: Contact): Recipient
     .values(
       RecipientTable.BLOCKED to contact.blocked,
       RecipientTable.HIDDEN to contact.hidden,
+      RecipientTable.TYPE to RecipientTable.RecipientType.INDIVIDUAL.id,
       RecipientTable.PROFILE_FAMILY_NAME to contact.profileFamilyName.nullIfBlank(),
       RecipientTable.PROFILE_GIVEN_NAME to contact.profileGivenName.nullIfBlank(),
       RecipientTable.PROFILE_JOINED_NAME to ProfileName.fromParts(contact.profileGivenName.nullIfBlank(), contact.profileFamilyName.nullIfBlank()).toString().nullIfBlank(),
@@ -201,6 +204,15 @@ private fun RecipientTable.restoreContactFromBackup(contact: Contact): Recipient
     .run()
 
   return id
+}
+
+private fun RecipientTable.restoreReleaseNotes(): RecipientId {
+  val releaseChannelId: RecipientId = insertReleaseChannelRecipient()
+  SignalStore.releaseChannelValues().setReleaseChannelRecipientId(releaseChannelId)
+
+  setProfileName(releaseChannelId, ProfileName.asGiven("Signal"))
+  setMuted(releaseChannelId, Long.MAX_VALUE)
+  return releaseChannelId
 }
 
 private fun RecipientTable.restoreGroupFromBackup(group: Group): RecipientId {

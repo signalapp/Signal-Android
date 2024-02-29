@@ -28,10 +28,22 @@ object RecipientBackupProcessor {
 
   fun export(state: ExportState, emitter: BackupFrameEmitter) {
     val selfId = Recipient.self().id.toLong()
+    val releaseChannelId = SignalStore.releaseChannelValues().releaseChannelRecipientId
+    if (releaseChannelId != null) {
+      emitter.emit(
+        Frame(
+          recipient = BackupRecipient(
+            id = releaseChannelId.toLong(),
+            releaseNotes = ReleaseNotes()
+          )
+        )
+      )
+    }
 
     SignalDatabase.recipients.getContactsForBackup(selfId).use { reader ->
       for (backupRecipient in reader) {
         if (backupRecipient != null) {
+          state.recipientIds.add(backupRecipient.id)
           emitter.emit(Frame(recipient = backupRecipient))
         }
       }
@@ -47,18 +59,6 @@ object RecipientBackupProcessor {
     SignalDatabase.distributionLists.getAllForBackup().forEach {
       state.recipientIds.add(it.id)
       emitter.emit(Frame(recipient = it))
-    }
-
-    val releaseChannelId = SignalStore.releaseChannelValues().releaseChannelRecipientId
-    if (releaseChannelId != null) {
-      emitter.emit(
-        Frame(
-          recipient = BackupRecipient(
-            id = releaseChannelId.toLong(),
-            releaseNotes = ReleaseNotes()
-          )
-        )
-      )
     }
   }
 
