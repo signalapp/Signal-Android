@@ -27,8 +27,6 @@ import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.core.graphics.withTranslation
 import androidx.lifecycle.ViewModel
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.DecodeFormat
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -37,8 +35,6 @@ import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import org.signal.core.util.logging.Log
-import org.signal.core.util.toOptional
-import org.signal.qr.QrProcessor
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCodeData
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCodeState
@@ -48,7 +44,6 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository.toLink
-import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.NetworkUtil
 import org.whispersystems.signalservice.api.push.UsernameLinkComponents
 import java.util.Optional
@@ -171,16 +166,7 @@ class UsernameLinkSettingsViewModel : ViewModel() {
       indeterminateProgress = true
     )
 
-    disposable += UsernameRepository.fetchUsernameAndAciFromLink(url)
-      .map { result ->
-        when (result) {
-          is UsernameRepository.UsernameLinkConversionResult.Success -> QrScanResult.Success(Recipient.externalUsername(result.aci, result.username.toString()))
-          is UsernameRepository.UsernameLinkConversionResult.Invalid -> QrScanResult.InvalidData
-          is UsernameRepository.UsernameLinkConversionResult.NotFound -> QrScanResult.NotFound(result.username?.toString())
-          is UsernameRepository.UsernameLinkConversionResult.NetworkError -> QrScanResult.NetworkError
-        }
-      }
-      .subscribeOn(Schedulers.io())
+    disposable += UsernameQrScanRepository.lookupUsernameUrl(url)
       .observeOn(AndroidSchedulers.mainThread())
       .subscribe { result ->
         _state.value = _state.value.copy(
@@ -201,25 +187,17 @@ class UsernameLinkSettingsViewModel : ViewModel() {
   }
 
   fun scanImage(context: Context, uri: Uri) {
-    val loadBitmap = Glide.with(context)
-      .asBitmap()
-      .format(DecodeFormat.PREFER_ARGB_8888)
-      .load(uri)
-      .submit()
+    _state.value = _state.value.copy(
+      indeterminateProgress = true
+    )
 
-    disposable += Single.fromFuture(loadBitmap)
-      .subscribeOn(Schedulers.io())
-      .map { QrProcessor().getScannedData(it).toOptional() }
+    disposable += UsernameQrScanRepository.scanImageUriForQrCode(context, uri)
       .observeOn(AndroidSchedulers.mainThread())
-      .subscribeBy {
-        if (it.isPresent) {
-          onQrCodeScanned(it.get())
-        } else {
-          _state.value = _state.value.copy(
-            qrScanResult = QrScanResult.QrNotFound,
-            indeterminateProgress = false
-          )
-        }
+      .subscribeBy { result ->
+        _state.value = _state.value.copy(
+          qrScanResult = result,
+          indeterminateProgress = false
+        )
       }
   }
 

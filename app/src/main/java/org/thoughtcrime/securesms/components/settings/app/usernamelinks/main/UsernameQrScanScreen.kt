@@ -24,39 +24,33 @@ import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
-import androidx.core.app.TaskStackBuilder
 import androidx.lifecycle.LifecycleOwner
-import com.google.accompanist.permissions.ExperimentalPermissionsApi
-import com.google.accompanist.permissions.MultiplePermissionsState
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import org.signal.core.ui.Dialogs
 import org.signal.core.ui.theme.SignalTheme
 import org.signal.qr.QrScannerView
-import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXModelBlocklist
-import org.thoughtcrime.securesms.util.CommunicationActions
+import org.thoughtcrime.securesms.recipients.Recipient
 import java.util.concurrent.TimeUnit
 
 /**
  * A screen that allows you to scan a QR code to start a chat.
  */
-@OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun UsernameQrScanScreen(
   lifecycleOwner: LifecycleOwner,
   disposables: CompositeDisposable,
-  galleryPermissionState: MultiplePermissionsState,
   qrScanResult: QrScanResult?,
   onQrCodeScanned: (String) -> Unit,
   onQrResultHandled: () -> Unit,
   onOpenGalleryClicked: () -> Unit,
+  onRecipientFound: (Recipient) -> Unit,
   modifier: Modifier = Modifier
 ) {
   val path = remember { Path() }
@@ -87,12 +81,7 @@ fun UsernameQrScanScreen(
     }
 
     is QrScanResult.Success -> {
-      val taskStack = TaskStackBuilder
-        .create(LocalContext.current)
-        .addNextIntent(MainActivity.clearTop(LocalContext.current))
-
-      CommunicationActions.startConversation(LocalContext.current, qrScanResult.recipient, null, taskStack)
-      onQrResultHandled()
+      onRecipientFound(qrScanResult.recipient)
     }
 
     null -> {}
@@ -134,13 +123,7 @@ fun UsernameQrScanScreen(
         modifier = Modifier
           .align(Alignment.BottomCenter)
           .padding(bottom = 24.dp),
-        onClick = {
-          if (galleryPermissionState.allPermissionsGranted) {
-            onOpenGalleryClicked()
-          } else {
-            galleryPermissionState.launchMultiplePermissionRequest()
-          }
-        }
+        onClick = onOpenGalleryClicked
       ) {
         Image(
           painter = painterResource(id = R.drawable.symbol_album_24),

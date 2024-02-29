@@ -42,11 +42,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.app.ShareCompat
+import androidx.core.app.TaskStackBuilder
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -67,6 +69,7 @@ import org.signal.core.ui.Dialogs
 import org.signal.core.ui.Snackbars
 import org.signal.core.ui.theme.SignalTheme
 import org.signal.core.util.concurrent.LifecycleDisposable
+import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCodeData
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCodeState
@@ -75,6 +78,7 @@ import org.thoughtcrime.securesms.components.settings.app.usernamelinks.main.Use
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.permissions.PermissionCompat
 import org.thoughtcrime.securesms.providers.BlobProvider
+import org.thoughtcrime.securesms.util.CommunicationActions
 import java.io.ByteArrayOutputStream
 import java.util.UUID
 
@@ -130,14 +134,19 @@ class UsernameLinkSettingsFragment : ComposeFragment() {
       lifecycleOwner = viewLifecycleOwner,
       disposables = disposables.disposables,
       cameraPermissionState = cameraPermissionState,
-      galleryPermissionState = galleryPermissionState,
       onCodeTabSelected = { viewModel.onTabSelected(ActiveTab.Code) },
       onScanTabSelected = { viewModel.onTabSelected(ActiveTab.Scan) },
       onUsernameLinkResetResultHandled = { viewModel.onUsernameLinkResetResultHandled() },
       onShareBadge = { shareQrBadge(requireActivity(), viewModel.generateQrCodeImage(helpText)) },
       onQrCodeScanned = { data -> viewModel.onQrCodeScanned(data) },
       onQrResultHandled = { viewModel.onQrResultHandled() },
-      onOpenGalleryClicked = { galleryLauncher.launch(Unit) },
+      onOpenGalleryClicked = {
+        if (galleryPermissionState.allPermissionsGranted) {
+          galleryLauncher.launch(Unit)
+        } else {
+          galleryPermissionState.launchMultiplePermissionRequest()
+        }
+      },
       onLinkReset = { viewModel.onUsernameLinkReset() },
       onBackNavigationPressed = { requireActivity().onBackPressed() },
       linkCopiedEvent = linkCopiedEvent
@@ -162,7 +171,6 @@ private fun MainScreen(
   lifecycleOwner: LifecycleOwner = previewLifecycleOwner,
   disposables: CompositeDisposable = CompositeDisposable(),
   cameraPermissionState: PermissionState = previewPermissionState(),
-  galleryPermissionState: MultiplePermissionsState = previewMultiplePermissionState(),
   onCodeTabSelected: () -> Unit = {},
   onScanTabSelected: () -> Unit = {},
   onUsernameLinkResetResultHandled: () -> Unit = {},
@@ -174,6 +182,8 @@ private fun MainScreen(
   onBackNavigationPressed: () -> Unit = {},
   linkCopiedEvent: UUID? = null
 ) {
+  val context = LocalContext.current
+
   val snackbarHostState: SnackbarHostState = remember { SnackbarHostState() }
   val scope: CoroutineScope = rememberCoroutineScope()
   var showResetDialog: Boolean by remember { mutableStateOf(false) }
@@ -231,12 +241,18 @@ private fun MainScreen(
       UsernameQrScanScreen(
         lifecycleOwner = lifecycleOwner,
         disposables = disposables,
-        galleryPermissionState = galleryPermissionState,
         qrScanResult = state.qrScanResult,
         onQrCodeScanned = onQrCodeScanned,
         onQrResultHandled = onQrResultHandled,
         onOpenGalleryClicked = onOpenGalleryClicked,
-        modifier = Modifier.padding(contentPadding)
+        modifier = Modifier.padding(contentPadding),
+        onRecipientFound = { recipient ->
+          val taskStack = TaskStackBuilder
+            .create(context)
+            .addNextIntent(MainActivity.clearTop(context))
+
+          CommunicationActions.startConversation(context, recipient, null, taskStack)
+        }
       )
     }
   }
@@ -384,16 +400,6 @@ private fun previewPermissionState(): PermissionState {
     override val permission: String = ""
     override val status: PermissionStatus = PermissionStatus.Granted
     override fun launchPermissionRequest() = Unit
-  }
-}
-
-private fun previewMultiplePermissionState(): MultiplePermissionsState {
-  return object : MultiplePermissionsState {
-    override val allPermissionsGranted: Boolean = true
-    override val permissions: List<PermissionState> = emptyList()
-    override val revokedPermissions: List<PermissionState> = emptyList()
-    override val shouldShowRationale: Boolean = false
-    override fun launchMultiplePermissionRequest() = Unit
   }
 }
 

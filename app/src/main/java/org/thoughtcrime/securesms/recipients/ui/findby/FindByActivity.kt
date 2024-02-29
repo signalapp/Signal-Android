@@ -10,6 +10,7 @@ import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.compose.setContent
+import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
@@ -26,6 +27,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -77,6 +79,7 @@ import org.signal.core.ui.theme.SignalTheme
 import org.signal.core.util.getParcelableExtraCompat
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.settings.app.usernamelinks.main.UsernameQrScannerActivity
 import org.thoughtcrime.securesms.invites.InviteActions
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberVisualTransformation
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -101,6 +104,13 @@ class FindByActivity : PassphraseRequiredActivity() {
   }
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
+    val qrScanLauncher: ActivityResultLauncher<Unit> = registerForActivityResult(UsernameQrScannerActivity.Contract()) { recipientId ->
+      if (recipientId != null) {
+        setResult(RESULT_OK, Intent().putExtra(RECIPIENT_ID, recipientId))
+        finishAfterTransition()
+      }
+    }
+
     setContent {
       val state by viewModel.state
 
@@ -145,6 +155,9 @@ class FindByActivity : PassphraseRequiredActivity() {
                 },
                 onSelectCountryPrefixClick = {
                   navController.navigate("select-country-prefix")
+                },
+                onQrCodeScanClicked = {
+                  qrScanLauncher.launch(Unit)
                 }
               )
             }
@@ -273,7 +286,8 @@ private fun Content(
   state: FindByState,
   onUserEntryChanged: (String) -> Unit,
   onNextClick: () -> Unit,
-  onSelectCountryPrefixClick: () -> Unit
+  onSelectCountryPrefixClick: () -> Unit,
+  onQrCodeScanClicked: () -> Unit
 ) {
   val placeholderLabel = remember(state.mode) {
     if (state.mode == FindByMode.PHONE_NUMBER) R.string.FindByActivity__phone_number else R.string.FindByActivity__username
@@ -364,6 +378,23 @@ private fun Content(
           .padding(horizontal = dimensionResource(id = R.dimen.core_ui__gutter))
           .padding(top = 8.dp)
       )
+
+      Spacer(modifier = Modifier.height(32.dp))
+
+      Box(
+        modifier = Modifier.fillMaxWidth(),
+        contentAlignment = Alignment.Center
+      ) {
+        Buttons.Small(onClick = onQrCodeScanClicked) {
+          Icon(painter = painterResource(id = R.drawable.symbol_qrcode_24), contentDescription = stringResource(id = R.string.FindByActivity__qr_scan_button))
+          Spacer(modifier = Modifier.width(10.dp))
+          Text(
+            text = stringResource(id = R.string.FindByActivity__qr_scan_button),
+            style = MaterialTheme.typography.labelMedium,
+            color = MaterialTheme.colorScheme.onSurface
+          )
+        }
+      }
     }
 
     Spacer(modifier = Modifier.weight(1f))
@@ -541,8 +572,8 @@ private fun CountryPrefixRowItem(
   }
 }
 
-@Preview(name = "Light Theme", group = "content", uiMode = Configuration.UI_MODE_NIGHT_NO)
-@Preview(name = "Dark Theme", group = "content", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Preview(name = "Light Theme", group = "content - phone", uiMode = Configuration.UI_MODE_NIGHT_NO)
+@Preview(name = "Dark Theme", group = "content - phone", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun ContentPreviewPhoneNumber() {
   Previews.Preview {
@@ -554,13 +585,14 @@ private fun ContentPreviewPhoneNumber() {
       ),
       onUserEntryChanged = {},
       onNextClick = {},
-      onSelectCountryPrefixClick = {}
+      onSelectCountryPrefixClick = {},
+      onQrCodeScanClicked = {}
     )
   }
 }
 
-@Preview(name = "Light Theme", group = "content", uiMode = Configuration.UI_MODE_NIGHT_NO)
-@Preview(name = "Dark Theme", group = "content", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Preview(name = "Light Theme", group = "content - username", uiMode = Configuration.UI_MODE_NIGHT_NO)
+@Preview(name = "Dark Theme", group = "content - username", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun ContentPreviewUsername() {
   Previews.Preview {
@@ -572,7 +604,8 @@ private fun ContentPreviewUsername() {
       ),
       onUserEntryChanged = {},
       onNextClick = {},
-      onSelectCountryPrefixClick = {}
+      onSelectCountryPrefixClick = {},
+      onQrCodeScanClicked = {}
     )
   }
 }
