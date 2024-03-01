@@ -813,6 +813,9 @@ public final class GroupSendUtil {
     }
 
     @Override
+    public void onMessageEncrypted() {}
+
+    @Override
     public void onMessageSent() {
       SignalLocalMetrics.GroupMessageSend.onLegacyMessageSent(messageId);
     }

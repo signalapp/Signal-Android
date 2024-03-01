@@ -232,10 +232,14 @@ public class MessageSender {
       Recipient recipient         = message.getThreadRecipient();
       long      messageId         = database.insertMessageOutbox(applyUniversalExpireTimerIfNecessary(context, recipient, message, allocatedThreadId), allocatedThreadId, sendType != SendType.SIGNAL, insertListener);
 
-      if (message.getThreadRecipient().isGroup() && message.getAttachments().isEmpty() && message.getLinkPreviews().isEmpty() && message.getSharedContacts().isEmpty()) {
-        SignalLocalMetrics.GroupMessageSend.onInsertedIntoDatabase(messageId, metricId);
+      if (message.getThreadRecipient().isGroup()) {
+        if (message.getAttachments().isEmpty() && message.getLinkPreviews().isEmpty() && message.getSharedContacts().isEmpty()) {
+          SignalLocalMetrics.GroupMessageSend.onInsertedIntoDatabase(messageId, metricId);
+        } else {
+          SignalLocalMetrics.GroupMessageSend.cancel(messageId);
+        }
       } else {
-        SignalLocalMetrics.GroupMessageSend.cancel(metricId);
+        SignalLocalMetrics.IndividualMessageSend.onInsertedIntoDatabase(messageId, metricId);
       }
 
       sendMessageInternal(context, recipient, sendType, messageId, Collections.emptyList(), message.getScheduledDate() > 0);
