@@ -126,7 +126,8 @@ object ContactDiscoveryRefreshV2 {
         SignalDatabase.recipients.getAllServiceIdProfileKeyPairs(),
         Optional.ofNullable(token),
         BuildConfig.CDSI_MRENCLAVE,
-        timeoutMs
+        timeoutMs,
+        if (FeatureFlags.useLibsignalNetForCdsiLookup()) BuildConfig.LIBSIGNAL_NET_ENV else null
       ) { tokenToSave ->
         stopwatch.split("network-pre-token")
         if (!isPartialRefresh) {

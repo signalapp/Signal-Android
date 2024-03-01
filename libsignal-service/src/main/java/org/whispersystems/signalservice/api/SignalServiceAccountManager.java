@@ -8,6 +8,7 @@ package org.whispersystems.signalservice.api;
 
 import com.squareup.wire.FieldEncoding;
 
+import org.signal.libsignal.net.Network;
 import org.signal.libsignal.protocol.IdentityKeyPair;
 import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.protocol.ecc.ECPublicKey;
@@ -129,7 +130,6 @@ public class SignalServiceAccountManager {
   private final String                     userAgent;
   private final GroupsV2Operations         groupsV2Operations;
   private final SignalServiceConfiguration configuration;
-
 
   /**
    * Construct a SignalServiceAccountManager.
@@ -365,11 +365,12 @@ public class SignalServiceAccountManager {
                                                            Optional<byte[]> token,
                                                            String mrEnclave,
                                                            Long timeoutMs,
+                                                           @Nullable Network.Environment libsignalNetEnv,
                                                            Consumer<byte[]> tokenSaver)
       throws IOException
   {
     CdsiAuthResponse                                auth    = pushServiceSocket.getCdsiAuth();
-    CdsiV2Service                                   service = new CdsiV2Service(configuration, mrEnclave);
+    CdsiV2Service                                   service = new CdsiV2Service(configuration, mrEnclave, libsignalNetEnv);
     CdsiV2Service.Request                           request = new CdsiV2Service.Request(previousE164s, newE164s, serviceIds, token);
     Single<ServiceResponse<CdsiV2Service.Response>> single  = service.getRegisteredUsers(auth.getUsername(), auth.getPassword(), request, tokenSaver);
 

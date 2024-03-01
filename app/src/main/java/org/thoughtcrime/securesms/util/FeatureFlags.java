@@ -123,6 +123,7 @@ public final class FeatureFlags {
   private static final String RETRY_RECEIPT_MAX_COUNT           = "android.retryReceipt.maxCount";
   private static final String RETRY_RECEIPT_MAX_COUNT_RESET_AGE = "android.retryReceipt.maxCountResetAge";
   private static final String PREKEY_FORCE_REFRESH_INTERVAL     = "android.prekeyForceRefreshInterval";
+  private static final String CDSI_LIBSIGNAL_NET                = "android.cds.libsignal";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -198,7 +199,8 @@ public final class FeatureFlags {
       VIDEO_RECORD_1X_ZOOM,
       RETRY_RECEIPT_MAX_COUNT,
       RETRY_RECEIPT_MAX_COUNT_RESET_AGE,
-      PREKEY_FORCE_REFRESH_INTERVAL
+      PREKEY_FORCE_REFRESH_INTERVAL,
+      CDSI_LIBSIGNAL_NET
   );
 
   @VisibleForTesting
@@ -271,7 +273,8 @@ public final class FeatureFlags {
       VIDEO_RECORD_1X_ZOOM,
       RETRY_RECEIPT_MAX_COUNT,
       RETRY_RECEIPT_MAX_COUNT_RESET_AGE,
-      PREKEY_FORCE_REFRESH_INTERVAL
+      PREKEY_FORCE_REFRESH_INTERVAL,
+      CDSI_LIBSIGNAL_NET
   );
 
   /**
@@ -704,6 +707,11 @@ public final class FeatureFlags {
   /** How often we allow a forced prekey refresh. */
   public static long preKeyForceRefreshInterval() {
     return getLong(PREKEY_FORCE_REFRESH_INTERVAL, TimeUnit.HOURS.toMillis(1));
+  }
+
+  /** Make CDSI lookups via libsignal-net instead of native websocket. */
+  public static boolean useLibsignalNetForCdsiLookup() {
+    return getBoolean(CDSI_LIBSIGNAL_NET, false);
   }
 
   /** Only for rendering debug info. */

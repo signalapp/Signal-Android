@@ -2,6 +2,10 @@ package org.whispersystems.signalservice.api.services;
 
 import org.signal.cdsi.proto.ClientRequest;
 import org.signal.cdsi.proto.ClientResponse;
+import org.signal.core.util.logging.Log;
+import org.signal.libsignal.net.CdsiLookupRequest;
+import org.signal.libsignal.net.CdsiLookupResponse;
+import org.signal.libsignal.net.Network;
 import org.signal.libsignal.protocol.util.ByteUtil;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
@@ -16,6 +20,7 @@ import org.whispersystems.signalservice.internal.configuration.SignalServiceConf
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.time.Duration;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -24,9 +29,11 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
+import java.util.concurrent.Future;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
+import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Single;
 import okio.ByteString;
 
@@ -40,16 +47,35 @@ public final class CdsiV2Service {
   private static final UUID EMPTY_UUID         = new UUID(0, 0);
   private static final int  RESPONSE_ITEM_SIZE = 8 + 16 + 16; // 1 uint64 + 2 UUIDs
 
-  private final CdsiSocket cdsiSocket;
+  private static final Duration LIBSIGNAL_CDSI_TIMEOUT = Duration.ofSeconds(10);
 
-  public CdsiV2Service(SignalServiceConfiguration configuration, String mrEnclave) {
-    this.cdsiSocket = new CdsiSocket(configuration, mrEnclave);
-  }
+  private final CdsiRequestHandler cdsiRequestHandler;
+
+  public CdsiV2Service(SignalServiceConfiguration configuration, String mrEnclave, Network.Environment libsignalEnv) {
+
+    if (libsignalEnv != null) {
+      Network network = new Network(libsignalEnv);
+      this.cdsiRequestHandler = (username, password, request, tokenSaver) -> {
+        try {
+          Log.i(TAG, "Starting CDSI lookup via libsignal-net");
+          Future<CdsiLookupResponse> cdsiRequest = network.cdsiLookup(username, password, buildLibsignalRequest(request), LIBSIGNAL_CDSI_TIMEOUT, tokenSaver);
+          return Single.fromFuture(cdsiRequest).map(CdsiV2Service::parseLibsignalResponse).toObservable();
+        } catch (Exception exception) {
+          return Observable.error(exception);
+        }
+      };
+    } else {
+      CdsiSocket cdsiSocket = new CdsiSocket(configuration, mrEnclave);
+      this.cdsiRequestHandler = (username, password, request, tokenSaver) -> {
+        return cdsiSocket
+            .connect(username, password, buildClientRequest(request), tokenSaver)
+            .map(CdsiV2Service::parseEntries);
+      };
+      }
+    }
 
   public Single<ServiceResponse<Response>> getRegisteredUsers(String username, String password, Request request, Consumer<byte[]> tokenSaver) {
-    return cdsiSocket
-        .connect(username, password, buildClientRequest(request), tokenSaver)
-        .map(CdsiV2Service::parseEntries)
+    return cdsiRequestHandler.handleRequest(username, password, request, tokenSaver)
         .collect(Collectors.toList())
         .flatMap(pages -> {
           Map<String, ResponseItem> all       = new HashMap<>();
@@ -139,6 +165,18 @@ public final class CdsiV2Service {
     return ByteString.of(os.toByteArray());
   }
 
+  private static CdsiLookupRequest buildLibsignalRequest(Request request) {
+    HashMap<org.signal.libsignal.protocol.ServiceId, ProfileKey> serviceIds = new HashMap<>(request.serviceIds.size());
+    request.serviceIds.forEach((key, value) -> serviceIds.put(key.getLibSignalServiceId(), value));
+    return new CdsiLookupRequest(request.previousE164s, request.newE164s, serviceIds, false, Optional.ofNullable(request.token));
+  }
+
+  private static Response parseLibsignalResponse(CdsiLookupResponse response) {
+    HashMap<String, ResponseItem> responses = new HashMap<>(response.entries().size());
+    response.entries().forEach((key, value) -> responses.put(key, new ResponseItem(new PNI(value.pni), Optional.ofNullable(value.aci).map(ACI::new))));
+    return new Response(responses, response.debugPermitsUsed);
+  }
+
   private static List<Long> parseAndSortE164Strings(Collection<String> e164s) {
     return e164s.stream()
                 .map(Long::parseLong)
@@ -215,5 +253,9 @@ public final class CdsiV2Service {
     public boolean hasAci() {
       return aci.isPresent();
     }
+  }
+
+  private interface CdsiRequestHandler {
+    Observable<Response> handleRequest(String username, String password, Request request, Consumer<byte[]> tokenSaver);
   }
 }
