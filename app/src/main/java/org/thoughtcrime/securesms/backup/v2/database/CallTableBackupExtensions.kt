@@ -57,7 +57,8 @@ fun CallTable.restoreCallLogFromBackup(call: BackupCall, backupState: BackupStat
     CallTable.TYPE to CallTable.Type.serialize(type),
     CallTable.DIRECTION to CallTable.Direction.serialize(direction),
     CallTable.EVENT to CallTable.Event.serialize(event),
-    CallTable.TIMESTAMP to call.timestamp
+    CallTable.TIMESTAMP to call.timestamp,
+    CallTable.RINGER to if (call.ringerRecipientId != null) backupState.backupToLocalRecipientId[call.ringerRecipientId]?.toLong() else null
   )
 
   writableDatabase.insert(CallTable.TABLE_NAME, SQLiteDatabase.CONFLICT_IGNORE, values)

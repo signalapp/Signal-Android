@@ -333,6 +333,99 @@ class ImportExportTest {
     )
   }
 
+  @Test
+  fun calls() {
+    val individualCalls = ArrayList<Call>()
+    val groupCalls = ArrayList<Call>()
+    val states = arrayOf(Call.State.MISSED, Call.State.COMPLETED, Call.State.DECLINED_BY_USER, Call.State.DECLINED_BY_NOTIFICATION_PROFILE)
+    val types = arrayOf(Call.Type.VIDEO_CALL, Call.Type.AD_HOC_CALL, Call.Type.AUDIO_CALL)
+    var id = 1L
+    var timestamp = 12345L
+
+    for (state in states) {
+      for (type in types) {
+        individualCalls.add(
+          Call(
+            callId = id++,
+            conversationRecipientId = 3,
+            type = type,
+            state = state,
+            timestamp = timestamp++,
+            ringerRecipientId = 3,
+            outgoing = true
+          )
+        )
+        individualCalls.add(
+          Call(
+            callId = id++,
+            conversationRecipientId = 3,
+            type = type,
+            state = state,
+            timestamp = timestamp++,
+            ringerRecipientId = selfRecipient.id,
+            outgoing = false
+          )
+        )
+      }
+      groupCalls.add(
+        Call(
+          callId = id++,
+          conversationRecipientId = 4,
+          type = Call.Type.GROUP_CALL,
+          state = state,
+          timestamp = timestamp++,
+          ringerRecipientId = 3,
+          outgoing = true
+        )
+      )
+      groupCalls.add(
+        Call(
+          callId = id++,
+          conversationRecipientId = 4,
+          type = Call.Type.GROUP_CALL,
+          state = state,
+          timestamp = timestamp++,
+          ringerRecipientId = selfRecipient.id,
+          outgoing = false
+        )
+      )
+    }
+
+    importExport(
+      *standardFrames,
+      Recipient(
+        id = 3,
+        contact = Contact(
+          aci = TestRecipientUtils.nextAci().toByteString(),
+          pni = TestRecipientUtils.nextPni().toByteString(),
+          username = "coolusername",
+          e164 = 141255501234,
+          blocked = false,
+          hidden = false,
+          registered = Contact.Registered.REGISTERED,
+          unregisteredTimestamp = 0L,
+          profileKey = TestRecipientUtils.generateProfileKey().toByteString(),
+          profileSharing = true,
+          profileGivenName = "Alexa",
+          profileFamilyName = "Kim",
+          hideStory = true
+        )
+      ),
+      Recipient(
+        id = 4,
+        group = Group(
+          masterKey = TestRecipientUtils.generateGroupMasterKey().toByteString(),
+          whitelisted = true,
+          hideStory = true,
+          storySendMode = Group.StorySendMode.DEFAULT,
+          name = "Cool test group"
+        )
+      ),
+      *individualCalls.toArray(),
+      *groupCalls.toArray()
+    )
+  }
+
   /**
    * Export passed in frames as a backup. Does not automatically include
    * any standard frames (e.g. backup header).
