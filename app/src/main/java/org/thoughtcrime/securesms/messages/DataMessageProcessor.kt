@@ -46,6 +46,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.groups.BadGroupIdException
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob
+import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob
 import org.thoughtcrime.securesms.jobs.GroupCallPeekJob
 import org.thoughtcrime.securesms.jobs.GroupV2UpdateSelfProfileKeyJob
 import org.thoughtcrime.securesms.jobs.PaymentLedgerUpdateJob
@@ -57,6 +58,7 @@ import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
 import org.thoughtcrime.securesms.jobs.SendDeliveryReceiptJob
 import org.thoughtcrime.securesms.jobs.TrimThreadJob
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil
 import org.thoughtcrime.securesms.messages.MessageContentProcessor.Companion.debug
@@ -87,6 +89,7 @@ import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.EarlyMessageCacheEntry
+import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.LinkUtil
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.MessageConstraintsUtil
@@ -149,23 +152,26 @@ object DataMessageProcessor {
       localMetrics?.onGv2Processed()
     }
 
+    var insertResult: InsertResult? = null
     var messageId: MessageId? = null
     when {
       message.isInvalid -> handleInvalidMessage(context, senderRecipient.id, groupId, envelope.timestamp!!)
-      message.isEndSession -> messageId = handleEndSessionMessage(context, senderRecipient.id, envelope, metadata)
-      message.isExpirationUpdate -> messageId = handleExpirationUpdate(envelope, metadata, senderRecipient.id, threadRecipient.id, groupId, message.expireTimerDuration, receivedTime, false)
-      message.isStoryReaction -> messageId = handleStoryReaction(context, envelope, metadata, message, senderRecipient.id, groupId)
+      message.isEndSession -> insertResult = handleEndSessionMessage(context, senderRecipient.id, envelope, metadata)
+      message.isExpirationUpdate -> insertResult = handleExpirationUpdate(envelope, metadata, senderRecipient.id, threadRecipient.id, groupId, message.expireTimerDuration, receivedTime, false)
+      message.isStoryReaction -> insertResult = handleStoryReaction(context, envelope, metadata, message, senderRecipient.id, groupId)
       message.reaction != null -> messageId = handleReaction(context, envelope, message, senderRecipient.id, earlyMessageCacheEntry)
       message.hasRemoteDelete -> messageId = handleRemoteDelete(context, envelope, message, senderRecipient.id, earlyMessageCacheEntry)
-      message.isPaymentActivationRequest -> messageId = handlePaymentActivation(envelope, metadata, message, senderRecipient.id, receivedTime, isActivatePaymentsRequest = true, isPaymentsActivated = false)
-      message.isPaymentActivated -> messageId = handlePaymentActivation(envelope, metadata, message, senderRecipient.id, receivedTime, isActivatePaymentsRequest = false, isPaymentsActivated = true)
-      message.payment != null -> messageId = handlePayment(context, envelope, metadata, message, senderRecipient.id, receivedTime)
-      message.storyContext != null -> messageId = handleStoryReply(context, envelope, metadata, message, senderRecipient, groupId, receivedTime)
-      message.giftBadge != null -> messageId = handleGiftMessage(context, envelope, metadata, message, senderRecipient, threadRecipient.id, receivedTime)
-      message.isMediaMessage -> messageId = handleMediaMessage(context, envelope, metadata, message, senderRecipient, threadRecipient, groupId, receivedTime, localMetrics)
-      message.body != null -> messageId = handleTextMessage(context, envelope, metadata, message, senderRecipient, threadRecipient, groupId, receivedTime, localMetrics)
+      message.isPaymentActivationRequest -> insertResult = handlePaymentActivation(envelope, metadata, message, senderRecipient.id, receivedTime, isActivatePaymentsRequest = true, isPaymentsActivated = false)
+      message.isPaymentActivated -> insertResult = handlePaymentActivation(envelope, metadata, message, senderRecipient.id, receivedTime, isActivatePaymentsRequest = false, isPaymentsActivated = true)
+      message.payment != null -> insertResult = handlePayment(context, envelope, metadata, message, senderRecipient.id, receivedTime)
+      message.storyContext != null -> insertResult = handleStoryReply(context, envelope, metadata, message, senderRecipient, groupId, receivedTime)
+      message.giftBadge != null -> insertResult = handleGiftMessage(context, envelope, metadata, message, senderRecipient, threadRecipient.id, receivedTime)
+      message.isMediaMessage -> insertResult = handleMediaMessage(context, envelope, metadata, message, senderRecipient, threadRecipient, groupId, receivedTime, localMetrics)
+      message.body != null -> insertResult = handleTextMessage(context, envelope, metadata, message, senderRecipient, threadRecipient, groupId, receivedTime, localMetrics)
       message.groupCallUpdate != null -> handleGroupCallUpdateMessage(envelope, message, senderRecipient.id, groupId)
     }
+
+    messageId = messageId ?: insertResult?.messageId?.let { MessageId(it) }
 
     if (groupId != null) {
       val unknownGroup = when (groupProcessResult) {
@@ -211,6 +217,18 @@ object DataMessageProcessor {
         }
       }
     }
+
+    if (insertResult != null && insertResult.threadWasNewlyCreated && !threadRecipient.isGroup && !threadRecipient.isSelf && !senderRecipient.isSystemContact) {
+      val timeSinceLastSync = System.currentTimeMillis() - SignalStore.misc().lastCdsForegroundSyncTime
+      if (timeSinceLastSync > FeatureFlags.cdsForegroundSyncInterval() || timeSinceLastSync < 0) {
+        log(envelope.timestamp!!, "New 1:1 chat. Scheduling a CDS sync to see if they match someone in our contacts.")
+        ApplicationDependencies.getJobManager().add(DirectoryRefreshJob(false))
+        SignalStore.misc().lastCdsForegroundSyncTime = System.currentTimeMillis()
+      } else {
+        warn(envelope.timestamp!!, "New 1:1 chat, but performed a CDS sync $timeSinceLastSync ms ago, which is less than our threshold. Skipping CDS sync.")
+      }
+    }
+
     localMetrics?.onPostProcessComplete()
     localMetrics?.complete(groupId != null)
   }
@@ -269,7 +287,7 @@ object DataMessageProcessor {
     senderRecipientId: RecipientId,
     envelope: Envelope,
     metadata: EnvelopeMetadata
-  ): MessageId? {
+  ): InsertResult? {
     log(envelope.timestamp!!, "End session message.")
 
     val incomingMessage = IncomingMessage(
@@ -288,7 +306,7 @@ object DataMessageProcessor {
       ApplicationDependencies.getProtocolStore().aci().deleteAllSessions(metadata.sourceServiceId.toString())
       SecurityEvent.broadcastSecurityUpdateEvent(context)
       ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(insertResult.threadId))
-      MessageId(insertResult.messageId)
+      insertResult
     } else {
       null
     }
@@ -308,7 +326,7 @@ object DataMessageProcessor {
     expiresIn: Duration,
     receivedTime: Long,
     sideEffect: Boolean
-  ): MessageId? {
+  ): InsertResult? {
     log(envelope.timestamp!!, "Expiration update. Side effect: $sideEffect")
 
     if (groupId != null) {
@@ -337,7 +355,7 @@ object DataMessageProcessor {
       SignalDatabase.recipients.setExpireMessages(threadRecipientId, expiresIn.inWholeSeconds.toInt())
 
       if (insertResult != null) {
-        return MessageId(insertResult.messageId)
+        return insertResult
       }
     } catch (e: MmsException) {
       throw StorageFailedException(e, metadata.sourceServiceId.toString(), metadata.sourceDeviceId)
@@ -373,7 +391,7 @@ object DataMessageProcessor {
     message: DataMessage,
     senderRecipientId: RecipientId,
     groupId: GroupId.V2?
-  ): MessageId? {
+  ): InsertResult? {
     log(envelope.timestamp!!, "Story reaction.")
 
     val storyContext = message.storyContext!!
@@ -449,7 +467,7 @@ object DataMessageProcessor {
         }
 
         if (parentStoryId.isDirectReply()) {
-          MessageId(insertResult.messageId)
+          insertResult
         } else {
           null
         }
@@ -584,7 +602,7 @@ object DataMessageProcessor {
     receivedTime: Long,
     isActivatePaymentsRequest: Boolean,
     isPaymentsActivated: Boolean
-  ): MessageId? {
+  ): InsertResult? {
     log(envelope.timestamp!!, "Payment activation request: $isActivatePaymentsRequest activated: $isPaymentsActivated")
     Preconditions.checkArgument(isActivatePaymentsRequest || isPaymentsActivated)
 
@@ -600,11 +618,7 @@ object DataMessageProcessor {
         type = if (isActivatePaymentsRequest) MessageType.ACTIVATE_PAYMENTS_REQUEST else MessageType.PAYMENTS_ACTIVATED
       )
 
-      val insertResult: InsertResult? = SignalDatabase.messages.insertMessageInbox(mediaMessage, -1).orNull()
-
-      if (insertResult != null) {
-        return MessageId(insertResult.messageId)
-      }
+      return SignalDatabase.messages.insertMessageInbox(mediaMessage, -1).orNull()
     } catch (e: MmsException) {
       throw StorageFailedException(e, metadata.sourceServiceId.toString(), metadata.sourceDeviceId)
     }
@@ -619,7 +633,7 @@ object DataMessageProcessor {
     message: DataMessage,
     senderRecipientId: RecipientId,
     receivedTime: Long
-  ): MessageId? {
+  ): InsertResult? {
     log(envelope.timestamp!!, "Payment message.")
 
     if (message.payment?.notification?.mobileCoin?.receipt == null) {
@@ -657,9 +671,8 @@ object DataMessageProcessor {
 
       val insertResult: InsertResult? = SignalDatabase.messages.insertMessageInbox(mediaMessage, -1).orNull()
       if (insertResult != null) {
-        val messageId = MessageId(insertResult.messageId)
         ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(insertResult.threadId))
-        return messageId
+        return insertResult
       }
     } catch (e: PublicKeyConflictException) {
       warn(envelope.timestamp!!, "Ignoring payment with public key already in database")
@@ -688,7 +701,7 @@ object DataMessageProcessor {
     senderRecipient: Recipient,
     groupId: GroupId.V2?,
     receivedTime: Long
-  ): MessageId? {
+  ): InsertResult? {
     log(envelope.timestamp!!, "Story reply.")
 
     val storyContext: DataMessage.StoryContext = message.storyContext!!
@@ -784,7 +797,7 @@ object DataMessageProcessor {
         }
 
         if (parentStoryId.isDirectReply()) {
-          MessageId.fromNullable(insertResult.messageId)
+          insertResult
         } else {
           null
         }
@@ -808,7 +821,7 @@ object DataMessageProcessor {
     senderRecipient: Recipient,
     threadRecipientId: RecipientId,
     receivedTime: Long
-  ): MessageId? {
+  ): InsertResult? {
     log(message.timestamp!!, "Gift message.")
 
     val giftBadge: DataMessage.GiftBadge = message.giftBadge!!
@@ -844,7 +857,7 @@ object DataMessageProcessor {
     return if (insertResult != null) {
       ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(insertResult.threadId))
       TrimThreadJob.enqueueAsync(insertResult.threadId)
-      MessageId(insertResult.messageId)
+      insertResult
     } else {
       null
     }
@@ -861,7 +874,7 @@ object DataMessageProcessor {
     groupId: GroupId.V2?,
     receivedTime: Long,
     localMetrics: SignalLocalMetrics.MessageReceive?
-  ): MessageId? {
+  ): InsertResult? {
     log(envelope.timestamp!!, "Media message.")
 
     notifyTypingStoppedFromIncomingMessage(context, senderRecipient, threadRecipient.id, metadata.sourceDeviceId)
@@ -936,7 +949,7 @@ object DataMessageProcessor {
         }
       }
 
-      MessageId(insertResult.messageId)
+      insertResult
     } else {
       null
     }
@@ -953,7 +966,7 @@ object DataMessageProcessor {
     groupId: GroupId.V2?,
     receivedTime: Long,
     localMetrics: SignalLocalMetrics.MessageReceive?
-  ): MessageId? {
+  ): InsertResult? {
     log(envelope.timestamp!!, "Text message.")
 
     val body = message.body ?: ""
@@ -980,7 +993,7 @@ object DataMessageProcessor {
 
     return if (insertResult != null) {
       ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(insertResult.threadId))
-      MessageId(insertResult.messageId)
+      insertResult
     } else {
       null
     }

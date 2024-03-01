@@ -62,6 +62,7 @@ public final class FeatureFlags {
   private static final String CLIENT_EXPIRATION                 = "android.clientExpiration";
   private static final String CUSTOM_VIDEO_MUXER                = "android.customVideoMuxer.1";
   private static final String CDS_REFRESH_INTERVAL              = "cds.syncInterval.seconds";
+  private static final String CDS_FOREGROUND_SYNC_INTERVAL      = "cds.foregroundSyncInterval.seconds";
   private static final String AUTOMATIC_SESSION_RESET           = "android.automaticSessionReset.2";
   private static final String AUTOMATIC_SESSION_INTERVAL        = "android.automaticSessionResetInterval";
   private static final String DEFAULT_MAX_BACKOFF               = "android.defaultMaxBackoff";
@@ -136,6 +137,7 @@ public final class FeatureFlags {
       CLIENT_EXPIRATION,
       CUSTOM_VIDEO_MUXER,
       CDS_REFRESH_INTERVAL,
+      CDS_FOREGROUND_SYNC_INTERVAL,
       GROUP_NAME_MAX_LENGTH,
       AUTOMATIC_SESSION_RESET,
       AUTOMATIC_SESSION_INTERVAL,
@@ -226,6 +228,7 @@ public final class FeatureFlags {
       CLIENT_EXPIRATION,
       CUSTOM_VIDEO_MUXER,
       CDS_REFRESH_INTERVAL,
+      CDS_FOREGROUND_SYNC_INTERVAL,
       GROUP_NAME_MAX_LENGTH,
       AUTOMATIC_SESSION_RESET,
       AUTOMATIC_SESSION_INTERVAL,
@@ -383,6 +386,11 @@ public final class FeatureFlags {
   /** The time in between routine CDS refreshes, in seconds. */
   public static int cdsRefreshIntervalSeconds() {
     return getInteger(CDS_REFRESH_INTERVAL, (int) TimeUnit.HOURS.toSeconds(48));
+  }
+
+  /** The minimum time in between foreground CDS refreshes initiated via message requests, in milliseconds. */
+  public static Long cdsForegroundSyncInterval() {
+    return TimeUnit.SECONDS.toMillis(getInteger(CDS_FOREGROUND_SYNC_INTERVAL, (int) TimeUnit.HOURS.toSeconds(4)));
   }
 
   public static @NonNull SelectionLimits shareSelectionLimit() {
