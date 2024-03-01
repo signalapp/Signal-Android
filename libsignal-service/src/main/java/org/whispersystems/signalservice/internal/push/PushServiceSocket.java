@@ -230,7 +230,7 @@ public class PushServiceSocket {
 
   private static final String PREKEY_METADATA_PATH      = "/v2/keys?identity=%s";
   private static final String PREKEY_PATH               = "/v2/keys?identity=%s";
-  private static final String PREKEY_DEVICE_PATH        = "/v2/keys/%s/%s?pq=true";
+  private static final String PREKEY_DEVICE_PATH        = "/v2/keys/%s/%s";
   private static final String PREKEY_CHECK_PATH        = "/v2/keys/check";
 
 
