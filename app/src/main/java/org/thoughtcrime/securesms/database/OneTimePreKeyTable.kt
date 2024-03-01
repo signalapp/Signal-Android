@@ -32,7 +32,7 @@ class OneTimePreKeyTable(context: Context, databaseHelper: SignalDatabase) : Dat
       CREATE TABLE $TABLE_NAME (
         $ID INTEGER PRIMARY KEY,
         $ACCOUNT_ID TEXT NOT NULL,
-        $KEY_ID INTEGER UNIQUE, 
+        $KEY_ID INTEGER NOT NULL, 
         $PUBLIC_KEY TEXT NOT NULL, 
         $PRIVATE_KEY TEXT NOT NULL,
         $STALE_TIMESTAMP INTEGER NOT NULL DEFAULT 0,

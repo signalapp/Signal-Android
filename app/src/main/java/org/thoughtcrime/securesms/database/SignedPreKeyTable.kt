@@ -34,7 +34,7 @@ class SignedPreKeyTable(context: Context, databaseHelper: SignalDatabase) : Data
       CREATE TABLE $TABLE_NAME (
         $ID INTEGER PRIMARY KEY,
         $ACCOUNT_ID TEXT NOT NULL,
-        $KEY_ID INTEGER UNIQUE, 
+        $KEY_ID INTEGER NOT NULL, 
         $PUBLIC_KEY TEXT NOT NULL,
         $PRIVATE_KEY TEXT NOT NULL,
         $SIGNATURE TEXT NOT NULL, 

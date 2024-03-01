@@ -36,7 +36,7 @@ class KyberPreKeyTable(context: Context, databaseHelper: SignalDatabase) : Datab
       CREATE TABLE $TABLE_NAME (
         $ID INTEGER PRIMARY KEY,
         $ACCOUNT_ID TEXT NOT NULL,
-        $KEY_ID INTEGER UNIQUE NOT NULL, 
+        $KEY_ID INTEGER NOT NULL, 
         $TIMESTAMP INTEGER NOT NULL,
         $LAST_RESORT INTEGER NOT NULL,
         $SERIALIZED BLOB NOT NULL,
