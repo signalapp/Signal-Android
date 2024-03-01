@@ -279,6 +279,7 @@ class ChangeNumberRepository(
         )
       )
       pniMetadataStore.isSignedPreKeyRegistered = true
+      pniMetadataStore.lastResortKyberPreKeyId = pniLastResortKyberPreKeyId
 
       pniProtocolStore.identities().saveIdentityWithoutSideEffects(
         Recipient.self().id,
