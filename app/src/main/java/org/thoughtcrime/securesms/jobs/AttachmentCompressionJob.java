@@ -40,10 +40,10 @@ import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MemoryFileDescriptor.MemoryFileException;
 import org.thoughtcrime.securesms.video.InMemoryTranscoder;
 import org.thoughtcrime.securesms.video.StreamingTranscoder;
-import org.thoughtcrime.securesms.video.exceptions.VideoPostProcessingException;
-import org.thoughtcrime.securesms.video.interfaces.TranscoderCancelationSignal;
 import org.thoughtcrime.securesms.video.TranscoderOptions;
+import org.thoughtcrime.securesms.video.exceptions.VideoPostProcessingException;
 import org.thoughtcrime.securesms.video.exceptions.VideoSourceException;
+import org.thoughtcrime.securesms.video.interfaces.TranscoderCancelationSignal;
 import org.thoughtcrime.securesms.video.postprocessing.Mp4FaststartPostProcessor;
 import org.thoughtcrime.securesms.video.videoconverter.exceptions.EncodingException;
 
@@ -258,7 +258,7 @@ public final class AttachmentCompressionJob extends BaseJob {
         }
 
         if (FeatureFlags.useStreamingVideoMuxer()) {
-          StreamingTranscoder transcoder = new StreamingTranscoder(dataSource, options, constraints.getCompressedVideoMaxSize(context), FeatureFlags.allowAudioRemuxing());
+          StreamingTranscoder transcoder = new StreamingTranscoder(dataSource, options, constraints.getVideoTranscodingSettings(), constraints.getCompressedVideoMaxSize(context), FeatureFlags.allowAudioRemuxing());
 
           if (transcoder.isTranscodeRequired()) {
             Log.i(TAG, "Compressing with streaming muxer");
@@ -327,7 +327,7 @@ public final class AttachmentCompressionJob extends BaseJob {
             Log.i(TAG, "Transcode was not required");
           }
         } else {
-          try (InMemoryTranscoder transcoder = new InMemoryTranscoder(context, dataSource, options, constraints.getCompressedVideoMaxSize(context))) {
+          try (InMemoryTranscoder transcoder = new InMemoryTranscoder(context, dataSource, options, constraints.getVideoTranscodingSettings(), constraints.getCompressedVideoMaxSize(context))) {
             if (transcoder.isTranscodeRequired()) {
               Log.i(TAG, "Compressing with android in-memory muxer");
 

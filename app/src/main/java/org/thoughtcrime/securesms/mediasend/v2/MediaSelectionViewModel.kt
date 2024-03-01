@@ -25,23 +25,26 @@ import io.reactivex.rxjava3.subjects.Subject
 import org.signal.core.util.BreakIteratorCompat
 import org.signal.core.util.getParcelableArrayListCompat
 import org.signal.core.util.getParcelableCompat
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.conversation.MessageSendType
 import org.thoughtcrime.securesms.conversation.MessageStyler
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult
-import org.thoughtcrime.securesms.mediasend.VideoEditorFragment
 import org.thoughtcrime.securesms.mediasend.v2.review.AddMessageCharacterCount
+import org.thoughtcrime.securesms.mediasend.v2.videos.VideoTrimData
 import org.thoughtcrime.securesms.mms.MediaConstraints
 import org.thoughtcrime.securesms.mms.SentMediaQuality
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.scribbles.ImageEditorFragment
 import org.thoughtcrime.securesms.stories.Stories
+import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.livedata.Store
 import java.util.Collections
+import kotlin.time.Duration.Companion.milliseconds
 
 /**
  * ViewModel which maintains the list of selected media and other shared values.
@@ -57,6 +60,8 @@ class MediaSelectionViewModel(
   private val repository: MediaSelectionRepository,
   private val identityChangesSince: Long = System.currentTimeMillis()
 ) : ViewModel() {
+
+  private val TAG = Log.tag(MediaSelectionViewModel::class.java)
 
   private val selectedMediaSubject: Subject<List<Media>> = BehaviorSubject.create()
 
@@ -181,9 +186,16 @@ class MediaSelectionViewModel(
         .subscribe { filterResult ->
           if (filterResult.filteredMedia.isNotEmpty()) {
             store.update {
+              val initializedVideoEditorStates = filterResult.filteredMedia.filterNot { media -> it.editorStateMap.containsKey(media.uri) }
+                .filter { media -> MediaUtil.isNonGifVideo(media) }
+                .associate { video: Media ->
+                  val duration = video.duration.milliseconds.inWholeMicroseconds
+                  video.uri to VideoTrimData(false, duration, 0, duration)
+                }
               it.copy(
                 selectedMedia = filterResult.filteredMedia,
-                focusedMedia = it.focusedMedia ?: filterResult.filteredMedia.first()
+                focusedMedia = it.focusedMedia ?: filterResult.filteredMedia.first(),
+                editorStateMap = it.editorStateMap + initializedVideoEditorStates
               )
             }
 
@@ -290,16 +302,17 @@ class MediaSelectionViewModel(
     }
   }
 
-  fun setFocusedMedia(media: Media) {
+  fun onPageChanged(media: Media) {
     store.update { it.copy(focusedMedia = media) }
   }
 
-  fun setFocusedMedia(position: Int) {
+  fun onPageChanged(position: Int) {
     store.update {
       if (position >= it.selectedMedia.size) {
         it.copy(focusedMedia = null)
       } else {
-        it.copy(focusedMedia = it.selectedMedia[position])
+        val focusedMedia: Media = it.selectedMedia[position]
+        it.copy(focusedMedia = focusedMedia)
       }
     }
   }
@@ -484,7 +497,7 @@ class MediaSelectionViewModel(
     val value: Any = if (getBoolean(BUNDLE_IS_IMAGE)) {
       ImageEditorFragment.Data(this)
     } else {
-      VideoEditorFragment.Data.fromBundle(this)
+      VideoTrimData.fromBundle(this)
     }
 
     return key to value
@@ -499,8 +512,8 @@ class MediaSelectionViewModel(
         }
       }
 
-      is VideoEditorFragment.Data -> {
-        value.bundle.apply {
+      is VideoTrimData -> {
+        value.toBundle().apply {
           putParcelable(BUNDLE_URI, key)
           putBoolean(BUNDLE_IS_IMAGE, false)
         }
@@ -527,6 +540,23 @@ class MediaSelectionViewModel(
     private const val STATE_CAMERA_FIRST_CAPTURE = "$STATE_PREFIX.camera_first_capture"
     private const val STATE_EDITORS = "$STATE_PREFIX.editors"
     private const val STATE_EDITOR_COUNT = "$STATE_PREFIX.editor_count"
+
+    @JvmStatic
+    fun clampToMaxClipDuration(data: VideoTrimData, maxVideoDurationUs: Long, clampEnd: Boolean): VideoTrimData {
+      if (!MediaConstraints.isVideoTranscodeAvailable()) {
+        return data
+      }
+
+      if ((data.endTimeUs - data.startTimeUs) <= maxVideoDurationUs) {
+        return data
+      }
+
+      return data.copy(
+        isDurationEdited = true,
+        startTimeUs = if (!clampEnd) data.endTimeUs - maxVideoDurationUs else data.startTimeUs,
+        endTimeUs = if (clampEnd) data.startTimeUs + maxVideoDurationUs else data.endTimeUs
+      )
+    }
   }
 
   class Factory(

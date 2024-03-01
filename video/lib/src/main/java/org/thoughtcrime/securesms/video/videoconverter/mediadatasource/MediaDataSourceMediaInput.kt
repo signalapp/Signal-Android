@@ -23,6 +23,10 @@ class MediaDataSourceMediaInput(private val mediaDataSource: MediaDataSource) : 
     }
   }
 
+  override fun hasSameInput(other: MediaInput): Boolean {
+    return other is MediaDataSourceMediaInput && other.mediaDataSource == this.mediaDataSource
+  }
+
   @Throws(IOException::class)
   override fun close() {
     mediaDataSource.close()

@@ -24,6 +24,7 @@ import androidx.work.WorkerParameters
 import org.signal.core.util.getLength
 import org.signal.core.util.readLength
 import org.thoughtcrime.securesms.video.StreamingTranscoder
+import org.thoughtcrime.securesms.video.TranscodingPreset
 import org.thoughtcrime.securesms.video.postprocessing.Mp4FaststartPostProcessor
 import org.thoughtcrime.securesms.video.videoconverter.mediadatasource.InputStreamMediaDataSource
 import org.thoughtcrime.securesms.video.videoconverter.utils.VideoConstants
@@ -41,6 +42,12 @@ class TranscodeWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(
   @UnstableApi
   override suspend fun doWork(): Result {
     val logPrefix = "[Job ${id.toString().takeLast(4)}]"
+
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+      Log.w(TAG, "$logPrefix Transcoder is only supported on API 26+!")
+      return Result.failure()
+    }
+
     val notificationId = inputData.getInt(KEY_NOTIFICATION_ID, -1)
     if (notificationId < 0) {
       Log.w(TAG, "$logPrefix Notification ID was null!")
@@ -60,8 +67,11 @@ class TranscodeWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(
     }
 
     val postProcessForFastStart = inputData.getBoolean(KEY_ENABLE_FASTSTART, true)
+    val transcodingPreset = inputData.getString(KEY_TRANSCODING_PRESET_NAME)
     val resolution = inputData.getInt(KEY_SHORT_EDGE, -1)
-    val desiredBitrate = inputData.getInt(KEY_BIT_RATE, -1)
+    val videoBitrate = inputData.getInt(KEY_VIDEO_BIT_RATE, -1)
+    val audioBitrate = inputData.getInt(KEY_AUDIO_BIT_RATE, -1)
+    val audioRemux = inputData.getBoolean(KEY_ENABLE_AUDIO_REMUX, true)
 
     val input = DocumentFile.fromSingleUri(applicationContext, Uri.parse(inputUri))?.name
     if (input == null) {
@@ -80,15 +90,14 @@ class TranscodeWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(
     }
 
     val datasource = WorkerMediaDataSource(applicationContext, Uri.parse(inputUri))
-    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
-      Log.w(TAG, "$logPrefix Transcoder is only supported on API 26+!")
-      return Result.failure()
-    }
 
-    val transcoder = if (resolution > 0 && desiredBitrate > 0) {
-      StreamingTranscoder(datasource, null, desiredBitrate, resolution, false)
+    val transcoder = if (resolution > 0 && videoBitrate > 0) {
+      Log.d(TAG, "$logPrefix Initializing StreamingTranscoder with custom parameters: B:V=$videoBitrate, B:A=$audioBitrate, res=$resolution, audioRemux=$audioRemux")
+      StreamingTranscoder.createManuallyForTesting(datasource, null, videoBitrate, audioBitrate, resolution, audioRemux)
+    } else if (transcodingPreset != null) {
+      StreamingTranscoder(datasource, null, TranscodingPreset.valueOf(transcodingPreset), DEFAULT_FILE_SIZE_LIMIT, audioRemux)
     } else {
-      StreamingTranscoder(datasource, null, DEFAULT_FILE_SIZE_LIMIT, true)
+      throw IllegalArgumentException("Improper input data! No TranscodingPreset defined, or invalid manual parameters!")
     }
 
     setForeground(createForegroundInfo(-1, notificationId))
@@ -213,13 +222,16 @@ class TranscodeWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(
     private const val TAG = "TranscodeWorker"
     private const val OUTPUT_FILE_EXTENSION = ".mp4"
     private const val TEMP_FILE_EXTENSION = ".tmp"
-    private const val DEFAULT_FILE_SIZE_LIMIT: Long = 50 * 1024 * 1024
+    private const val DEFAULT_FILE_SIZE_LIMIT: Long = 100 * 1024 * 1024
     const val KEY_INPUT_URI = "input_uri"
     const val KEY_OUTPUT_URI = "output_uri"
+    const val KEY_TRANSCODING_PRESET_NAME = "transcoding_quality_preset"
     const val KEY_PROGRESS = "progress"
     const val KEY_LONG_EDGE = "resolution_long_edge"
     const val KEY_SHORT_EDGE = "resolution_short_edge"
-    const val KEY_BIT_RATE = "video_bit_rate"
+    const val KEY_VIDEO_BIT_RATE = "video_bit_rate"
+    const val KEY_AUDIO_BIT_RATE = "audio_bit_rate"
+    const val KEY_ENABLE_AUDIO_REMUX = "audio_remux"
     const val KEY_ENABLE_FASTSTART = "video_enable_faststart"
     const val KEY_NOTIFICATION_ID = "notification_id"
   }

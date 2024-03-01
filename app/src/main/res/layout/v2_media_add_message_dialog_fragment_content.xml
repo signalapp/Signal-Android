@@ -9,7 +9,7 @@
         android:id="@+id/background_holder"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/core_grey_95"
+        android:background="@color/signal_colorSurface1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="@id/input_barrier" />
 
@@ -23,7 +23,7 @@
     <View
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/rounded_rectangle_secondary_dark"
+        android:background="@drawable/rounded_rectangle_container_primary_32"
         app:layout_constraintBottom_toBottomOf="@id/add_a_message_input"
         app:layout_constraintEnd_toEndOf="@id/add_a_message_limit"
         app:layout_constraintStart_toStartOf="@id/emoji_toggle"
@@ -40,6 +40,7 @@
         android:contentDescription="@string/conversation_activity__emoji_toggle_description"
         android:paddingStart="8dp"
         android:paddingEnd="6dp"
+        app:tint="@color/signal_colorOnSurface"
         app:layout_constraintBottom_toTopOf="@id/emoji_drawer_stub"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -59,6 +60,7 @@
         android:minHeight="36dp"
         android:paddingEnd="10dp"
         android:textAppearance="@style/Signal.Text.Body"
+        android:textColor="@color/signal_colorOnSurface"
         app:layout_constraintBottom_toTopOf="@id/emoji_drawer_stub"
         app:layout_constraintEnd_toStartOf="@id/add_a_message_limit"
         app:layout_constraintStart_toEndOf="@id/emoji_toggle"
@@ -72,7 +74,7 @@
         android:layout_marginEnd="6dp"
         android:paddingEnd="12dp"
         android:textAppearance="@style/Signal.Text.BodySmall"
-        android:textColor="@color/signal_colorOnSurfaceVariant"
+        android:textColor="@color/signal_colorOnSurface"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/add_a_message_input"
         app:layout_constraintEnd_toStartOf="@id/confirm_button"

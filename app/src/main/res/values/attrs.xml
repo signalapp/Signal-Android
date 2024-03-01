@@ -280,8 +280,6 @@
         <attr name="thumbWidth" format="dimension" />
         <attr name="thumbColorEdited" format="color" />
         <attr name="thumbColor" format="color" />
-        <attr name="cursorWidth" format="dimension" />
-        <attr name="cursorColor" format="color" />
         <attr name="thumbTouchRadius" format="dimension" />
         <attr name="thumbHintTextSize" format="dimension" />
         <attr name="thumbHintTextColor" format="color" />

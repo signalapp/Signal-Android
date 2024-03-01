@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.util
 
 import android.view.animation.Animation
+import android.view.animation.Interpolator
+import androidx.core.view.animation.PathInterpolatorCompat
 
 fun Animation.setListeners(
   onAnimationStart: (animation: Animation?) -> Unit = { },
@@ -21,3 +23,5 @@ fun Animation.setListeners(
     }
   })
 }
+
+fun createDefaultCubicBezierInterpolator(): Interpolator = PathInterpolatorCompat.create(0.17f, 0.17f, 0f, 1f)

@@ -244,7 +244,7 @@ public class LinkPreviewRepository {
                 bitmap,
                 maxDimension,
                 mediaConfig.getMaxImageFileSize(),
-                mediaConfig.getQualitySetting()
+                mediaConfig.getImageQualitySetting()
             );
 
             if (result != null) {

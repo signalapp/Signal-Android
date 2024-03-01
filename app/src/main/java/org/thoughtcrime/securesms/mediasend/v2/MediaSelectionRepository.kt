@@ -29,8 +29,8 @@ import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult
 import org.thoughtcrime.securesms.mediasend.MediaTransform
 import org.thoughtcrime.securesms.mediasend.MediaUploadRepository
 import org.thoughtcrime.securesms.mediasend.SentMediaQualityTransform
-import org.thoughtcrime.securesms.mediasend.VideoEditorFragment
 import org.thoughtcrime.securesms.mediasend.VideoTrimTransform
+import org.thoughtcrime.securesms.mediasend.v2.videos.VideoTrimData
 import org.thoughtcrime.securesms.mms.GifSlide
 import org.thoughtcrime.securesms.mms.ImageSlide
 import org.thoughtcrime.securesms.mms.MediaConstraints
@@ -270,7 +270,7 @@ class MediaSelectionRepository(context: Context) {
         }
       }
 
-      if (state is VideoEditorFragment.Data && state.isDurationEdited) {
+      if (state is VideoTrimData && state.isDurationEdited) {
         modelsToRender[it] = VideoTrimTransform(state)
       }
 

@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MemoryFileDescriptor;
+import org.thoughtcrime.securesms.video.TranscodingPreset;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -39,6 +40,10 @@ public abstract class MediaConstraints {
   public abstract int getImageMaxWidth(Context context);
   public abstract int getImageMaxHeight(Context context);
   public abstract int getImageMaxSize(Context context);
+
+  public TranscodingPreset getVideoTranscodingSettings() {
+    return TranscodingPreset.LEVEL_1;
+  }
 
   public boolean isHighQuality() {
     return false;

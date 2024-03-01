@@ -15,4 +15,6 @@ import java.io.IOException
 interface MediaInput : Closeable {
   @Throws(IOException::class)
   fun createExtractor(): MediaExtractor
+
+  fun hasSameInput(other: MediaInput): Boolean
 }

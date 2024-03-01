@@ -41,9 +41,7 @@ class MediaReviewVideoPageFragment : Fragment(R.layout.fragment_container), Vide
 
   private fun saveEditorState() {
     val saveState = videoEditorFragment.saveState()
-    if (saveState != null) {
-      sharedViewModel.setEditorState(requireUri(), saveState)
-    }
+    sharedViewModel.setEditorState(requireUri(), saveState)
   }
 
   override fun onPlayerReady() {
@@ -67,7 +65,7 @@ class MediaReviewVideoPageFragment : Fragment(R.layout.fragment_container), Vide
   }
 
   private fun restoreVideoEditorState() {
-    val data = sharedViewModel.getEditorState(requireUri()) as? VideoEditorFragment.Data
+    val data = sharedViewModel.getEditorState(requireUri()) as? VideoTrimData
 
     if (data != null) {
       videoEditorFragment.restoreState(data)
@@ -82,7 +80,6 @@ class MediaReviewVideoPageFragment : Fragment(R.layout.fragment_container), Vide
     } else {
       val videoEditorFragment = VideoEditorFragment.newInstance(
         requireUri(),
-        requireMaxCompressedVideoSize(),
         requireMaxAttachmentSize(),
         requireIsVideoGif(),
         requireMaxVideoDuration()
@@ -101,8 +98,7 @@ class MediaReviewVideoPageFragment : Fragment(R.layout.fragment_container), Vide
   }
 
   private fun requireUri(): Uri = requireNotNull(requireArguments().getParcelableCompat(ARG_URI, Uri::class.java))
-  private fun requireMaxCompressedVideoSize(): Long = sharedViewModel.getMediaConstraints().getCompressedVideoMaxSize(requireContext()).toLong()
-  private fun requireMaxAttachmentSize(): Long = sharedViewModel.getMediaConstraints().getVideoMaxSize(requireContext()).toLong()
+  private fun requireMaxAttachmentSize(): Long = sharedViewModel.getMediaConstraints().getVideoMaxSize(requireContext())
   private fun requireIsVideoGif(): Boolean = requireNotNull(requireArguments().getBoolean(ARG_IS_VIDEO_GIF))
   private fun requireMaxVideoDuration(): Long = if (sharedViewModel.isStory() && !MediaConstraints.isVideoTranscodeAvailable()) Stories.MAX_VIDEO_DURATION_MILLIS else Long.MAX_VALUE
 

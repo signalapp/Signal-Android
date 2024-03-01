@@ -10,21 +10,19 @@ import androidx.annotation.NonNull;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.video.videoconverter.utils.VideoConstants;
 
-import java.util.concurrent.TimeUnit;
-
 public final class VideoUtil {
 
   private VideoUtil() { }
 
   public static Size getVideoRecordingSize() {
     return isPortrait(screenSize())
-           ? new Size(VideoConstants.VIDEO_SHORT_EDGE, VideoConstants.VIDEO_LONG_EDGE)
-           : new Size(VideoConstants.VIDEO_LONG_EDGE, VideoConstants.VIDEO_SHORT_EDGE);
+           ? new Size(VideoConstants.VIDEO_SHORT_EDGE_HD, VideoConstants.VIDEO_LONG_EDGE_HD)
+           : new Size(VideoConstants.VIDEO_LONG_EDGE_HD, VideoConstants.VIDEO_SHORT_EDGE_HD);
   }
 
   public static int getMaxVideoRecordDurationInSeconds(@NonNull Context context, @NonNull MediaConstraints mediaConstraints) {
     long allowedSize = mediaConstraints.getCompressedVideoMaxSize(context);
-    int duration     = (int) Math.floor((float) allowedSize / VideoConstants.TOTAL_BYTES_PER_SECOND);
+    int duration     = (int) Math.floor((float) allowedSize / VideoConstants.MAX_ALLOWED_BYTES_PER_SECOND);
 
     return Math.min(duration, VideoConstants.VIDEO_MAX_RECORD_LENGTH_S);
   }

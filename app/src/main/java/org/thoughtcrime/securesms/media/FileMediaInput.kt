@@ -20,5 +20,9 @@ class FileMediaInput(private val file: File) : MediaInput {
     return extractor
   }
 
+  override fun hasSameInput(other: MediaInput): Boolean {
+    return other is FileMediaInput && other.file == this.file
+  }
+
   override fun close() {}
 }

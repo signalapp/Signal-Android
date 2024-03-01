@@ -4,35 +4,44 @@ import android.animation.Animator
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.view.View
+import android.view.animation.Interpolator
 import androidx.core.animation.doOnEnd
-import org.thoughtcrime.securesms.util.ContextUtil
+import org.thoughtcrime.securesms.mediasend.v2.MediaAnimations
 import org.thoughtcrime.securesms.util.visible
 
 object MediaReviewAnimatorController {
 
-  fun getSlideInAnimator(view: View): Animator {
-    return if (ContextUtil.getAnimationScale(view.context) == 0f) {
-      view.translationY = 0f
-      ValueAnimator.ofFloat(0f, 1f)
-    } else {
-      ObjectAnimator.ofFloat(view, "translationY", view.translationY, 0f)
-    }
-  }
-
-  fun getFadeInAnimator(view: View, isEnabled: Boolean = true): Animator {
+  fun getFadeInAnimator(view: View, interpolator: Interpolator = MediaAnimations.interpolator, isEnabled: Boolean = true): Animator {
     view.visible = true
     view.isEnabled = isEnabled
 
-    return ObjectAnimator.ofFloat(view, "alpha", view.alpha, 1f)
+    return ObjectAnimator.ofFloat(view, "alpha", view.alpha, 1f).apply {
+      setInterpolator(interpolator)
+    }
   }
 
-  fun getFadeOutAnimator(view: View, isEnabled: Boolean = false): Animator {
+  fun getFadeOutAnimator(view: View, interpolator: Interpolator = MediaAnimations.interpolator, isEnabled: Boolean = false): Animator {
     view.isEnabled = isEnabled
 
-    val animator = ObjectAnimator.ofFloat(view, "alpha", view.alpha, 0f)
+    val animator = ObjectAnimator.ofFloat(view, "alpha", view.alpha, 0f).apply {
+      setInterpolator(interpolator)
+    }
 
     animator.doOnEnd { view.visible = false }
 
     return animator
+  }
+
+  fun getHeightAnimator(view: View, start: Int, end: Int, interpolator: Interpolator = MediaAnimations.interpolator): Animator {
+    return ValueAnimator.ofInt(start, end).apply {
+      setInterpolator(interpolator)
+      addUpdateListener {
+        val animatedValue = it.animatedValue as Int
+        val layoutParams = view.layoutParams
+        layoutParams.height = animatedValue
+        view.layoutParams = layoutParams
+      }
+      duration = 120
+    }
   }
 }

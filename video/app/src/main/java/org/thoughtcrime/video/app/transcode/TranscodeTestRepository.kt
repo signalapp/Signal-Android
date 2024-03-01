@@ -16,6 +16,7 @@ import androidx.work.WorkQuery
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
 import org.signal.core.util.readToList
+import org.thoughtcrime.securesms.video.TranscodingPreset
 import java.util.UUID
 import kotlin.math.absoluteValue
 import kotlin.random.Random
@@ -27,7 +28,13 @@ class TranscodeTestRepository(context: Context) {
   private val workManager = WorkManager.getInstance(context)
   private val usedNotificationIds = emptySet<Int>()
 
-  fun transcode(selectedVideos: List<Uri>, outputDirectory: Uri, forceSequentialProcessing: Boolean, customTranscodingOptions: CustomTranscodingOptions?): Map<UUID, Uri> {
+  private fun transcode(selectedVideos: List<Uri>, outputDirectory: Uri, forceSequentialProcessing: Boolean, transcodingPreset: TranscodingPreset? = null, customTranscodingOptions: CustomTranscodingOptions? = null): Map<UUID, Uri> {
+    if (customTranscodingOptions == null && transcodingPreset == null) {
+      throw IllegalArgumentException("Must define either custom options or transcoding preset!")
+    } else if (customTranscodingOptions != null && transcodingPreset != null) {
+      throw IllegalArgumentException("Cannot define both custom options and transcoding preset!")
+    }
+
     if (selectedVideos.isEmpty()) {
       return emptyMap()
     }
@@ -42,11 +49,15 @@ class TranscodeTestRepository(context: Context) {
         .putString(TranscodeWorker.KEY_OUTPUT_URI, outputDirectory.toString())
         .putInt(TranscodeWorker.KEY_NOTIFICATION_ID, notificationId)
 
-      if (customTranscodingOptions != null) {
+      if (transcodingPreset != null) {
+        inputData.putString(TranscodeWorker.KEY_TRANSCODING_PRESET_NAME, transcodingPreset.name)
+      } else if (customTranscodingOptions != null) {
         inputData.putInt(TranscodeWorker.KEY_LONG_EDGE, customTranscodingOptions.videoResolution.longEdge)
         inputData.putInt(TranscodeWorker.KEY_SHORT_EDGE, customTranscodingOptions.videoResolution.shortEdge)
-        inputData.putInt(TranscodeWorker.KEY_BIT_RATE, customTranscodingOptions.bitrate)
+        inputData.putInt(TranscodeWorker.KEY_VIDEO_BIT_RATE, customTranscodingOptions.videoBitrate)
+        inputData.putInt(TranscodeWorker.KEY_AUDIO_BIT_RATE, customTranscodingOptions.audioBitrate)
         inputData.putBoolean(TranscodeWorker.KEY_ENABLE_FASTSTART, customTranscodingOptions.enableFastStart)
+        inputData.putBoolean(TranscodeWorker.KEY_ENABLE_AUDIO_REMUX, customTranscodingOptions.enableAudioRemux)
       }
 
       val transcodeRequest = OneTimeWorkRequestBuilder<TranscodeWorker>()
@@ -67,6 +78,14 @@ class TranscodeTestRepository(context: Context) {
       workManager.enqueue(requests)
     }
     return idsToUris
+  }
+
+  fun transcodeWithCustomOptions(selectedVideos: List<Uri>, outputDirectory: Uri, forceSequentialProcessing: Boolean, customTranscodingOptions: CustomTranscodingOptions?): Map<UUID, Uri> {
+    return transcode(selectedVideos, outputDirectory, forceSequentialProcessing, customTranscodingOptions = customTranscodingOptions)
+  }
+
+  fun transcodeWithPresetOptions(selectedVideos: List<Uri>, outputDirectory: Uri, forceSequentialProcessing: Boolean, transcodingPreset: TranscodingPreset): Map<UUID, Uri> {
+    return transcode(selectedVideos, outputDirectory, forceSequentialProcessing, transcodingPreset)
   }
 
   fun getTranscodingJobsAsFlow(jobIds: List<UUID>): Flow<MutableList<WorkInfo>> {
@@ -117,7 +136,7 @@ class TranscodeTestRepository(context: Context) {
 
   private data class FileMetadata(val documentId: String, val label: String, val size: Long)
 
-  data class CustomTranscodingOptions(val videoResolution: VideoResolution, val bitrate: Int, val enableFastStart: Boolean)
+  data class CustomTranscodingOptions(val videoResolution: VideoResolution, val videoBitrate: Int, val audioBitrate: Int, val enableFastStart: Boolean, val enableAudioRemux: Boolean)
 
   companion object {
     private const val TAG = "TranscodingTestRepository"

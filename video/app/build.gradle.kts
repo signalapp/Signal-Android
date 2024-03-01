@@ -66,6 +66,7 @@ dependencies {
   implementation(project(":video"))
   implementation(project(":core-util"))
   implementation("androidx.work:work-runtime-ktx:2.9.0")
+  implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
   implementation(libs.androidx.compose.ui.tooling.core)
   implementation(libs.androidx.compose.ui.test.manifest)
   androidTestImplementation(testLibs.junit.junit)

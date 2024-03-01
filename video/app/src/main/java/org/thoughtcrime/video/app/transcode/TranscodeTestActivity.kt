@@ -22,11 +22,15 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.unit.dp
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -43,6 +47,7 @@ import org.thoughtcrime.video.app.ui.theme.SignalTheme
 class TranscodeTestActivity : AppCompatActivity() {
   private val TAG = "TranscodeTestActivity"
   private val viewModel: TranscodeTestViewModel by viewModels()
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     viewModel.initialize(this)
@@ -60,28 +65,19 @@ class TranscodeTestActivity : AppCompatActivity() {
     setContent {
       SignalTheme {
         Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-          val videoUris = viewModel.selectedVideos
-          val outputDir = viewModel.outputDirectory
           val transcodingJobs = viewModel.getTranscodingJobsAsState().collectAsState(emptyList())
           if (transcodingJobs.value.isNotEmpty()) {
             TranscodingJobProgress(transcodingJobs = transcodingJobs.value, resetButtonOnClick = { viewModel.reset() })
-          } else if (videoUris.isEmpty()) {
+          } else if (viewModel.selectedVideos.isEmpty()) {
             SelectInput { pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.VideoOnly)) }
-          } else if (outputDir == null) {
+          } else if (viewModel.outputDirectory == null) {
             SelectOutput { outputDirRequest.launch(null) }
           } else {
             ConfigureEncodingParameters(
-              videoUris = videoUris,
-              onAutoSettingsCheckChanged = { viewModel.useAutoTranscodingSettings = it },
-              onRadioButtonSelected = { viewModel.videoResolution = it },
-              onSliderValueChanged = { viewModel.videoMegaBitrate = it },
-              onFastStartSettingCheckChanged = { viewModel.enableFastStart = it },
-              onSequentialSettingCheckChanged = { viewModel.forceSequentialQueueProcessing = it },
-              buttonClickListener = {
-                viewModel.transcode()
-                viewModel.selectedVideos = emptyList()
-                viewModel.resetOutputDirectory()
-              }
+              modifier = Modifier
+                .padding(horizontal = 16.dp)
+                .verticalScroll(rememberScrollState()),
+              viewModel = viewModel
             )
           }
         }

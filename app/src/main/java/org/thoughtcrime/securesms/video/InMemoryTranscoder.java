@@ -17,8 +17,8 @@ import org.thoughtcrime.securesms.video.exceptions.VideoSizeException;
 import org.thoughtcrime.securesms.video.exceptions.VideoSourceException;
 import org.thoughtcrime.securesms.video.interfaces.TranscoderCancelationSignal;
 import org.thoughtcrime.securesms.video.postprocessing.Mp4FaststartPostProcessor;
-import org.thoughtcrime.securesms.video.videoconverter.exceptions.EncodingException;
 import org.thoughtcrime.securesms.video.videoconverter.MediaConverter;
+import org.thoughtcrime.securesms.video.videoconverter.exceptions.EncodingException;
 import org.thoughtcrime.securesms.video.videoconverter.mediadatasource.MediaDataSourceMediaInput;
 
 import java.io.Closeable;
@@ -51,7 +51,7 @@ public final class InMemoryTranscoder implements Closeable {
   /**
    * @param upperSizeLimit A upper size to transcode to. The actual output size can be up to 10% smaller.
    */
-  public InMemoryTranscoder(@NonNull Context context, @NonNull MediaDataSource dataSource, @Nullable TranscoderOptions options, long upperSizeLimit) throws IOException, VideoSourceException {
+  public InMemoryTranscoder(@NonNull Context context, @NonNull MediaDataSource dataSource, @Nullable TranscoderOptions options, @NonNull TranscodingPreset preset, long upperSizeLimit) throws IOException, VideoSourceException {
     this.context    = context;
     this.dataSource = dataSource;
     this.options    = options;
@@ -71,8 +71,8 @@ public final class InMemoryTranscoder implements Closeable {
     }
 
     this.inSize         = dataSource.getSize();
-    this.inputBitRate   = VideoBitRateCalculator.bitRate(inSize, duration);
-    this.targetQuality  = new VideoBitRateCalculator(upperSizeLimit).getTargetQuality(duration, inputBitRate);
+    this.inputBitRate   = TranscodingQuality.bitRate(inSize, duration);
+    this.targetQuality  = TranscodingQuality.createFromPreset(preset, duration);
     this.upperSizeLimit = upperSizeLimit;
 
     this.transcodeRequired = inputBitRate >= targetQuality.getTargetTotalBitRate() * 1.2 || inSize > upperSizeLimit || containsLocation(mediaMetadataRetriever) || options != null;
@@ -80,7 +80,7 @@ public final class InMemoryTranscoder implements Closeable {
       Log.i(TAG, "Video is within 20% of target bitrate, below the size limit, contained no location metadata or custom options.");
     }
 
-    this.fileSizeEstimate   = targetQuality.getFileSizeEstimate();
+    this.fileSizeEstimate   = targetQuality.getByteCountEstimate();
     this.memoryFileEstimate = (long) (fileSizeEstimate * 1.1);
   }
 
@@ -168,7 +168,7 @@ public final class InMemoryTranscoder implements Closeable {
                              (outSize * 100d) / inSize,
                              (outSize * 100d) / fileSizeEstimate,
                              (outSize * 100d) / memoryFileEstimate,
-                             numberFormat.format(VideoBitRateCalculator.bitRate(outSize, duration))));
+                             numberFormat.format(TranscodingQuality.bitRate(outSize, duration))));
 
     if (outSize > upperSizeLimit) {
       throw new VideoSizeException("Size constraints could not be met!");

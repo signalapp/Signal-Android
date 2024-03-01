@@ -1324,7 +1324,7 @@ class AttachmentTable(
             useTemplateUpload = possibleTemplate.uploadTimestamp > attachment.uploadTimestamp &&
               possibleTemplate.transferState == TRANSFER_PROGRESS_DONE &&
               possibleTemplate.transformProperties?.shouldSkipTransform() == true && possibleTemplate.remoteDigest != null &&
-              attachment.transformProperties?.videoEdited == false && possibleTemplate.transformProperties?.sentMediaQuality == attachment.transformProperties?.sentMediaQuality
+              attachment.transformProperties?.videoEdited == false && possibleTemplate.transformProperties.sentMediaQuality == attachment.transformProperties.sentMediaQuality
 
             if (useTemplateUpload) {
               Log.i(TAG, "Found a duplicate attachment upon insertion. Using it as a template.")
