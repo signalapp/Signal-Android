@@ -12,8 +12,6 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContract
-import androidx.compose.animation.slideInHorizontally
-import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement.Absolute.spacedBy
 import androidx.compose.foundation.layout.Box
@@ -69,6 +67,8 @@ import androidx.navigation.compose.dialog
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import kotlinx.coroutines.launch
+import org.signal.core.ui.Animations.navHostSlideInTransition
+import org.signal.core.ui.Animations.navHostSlideOutTransition
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.Dialogs
 import org.signal.core.ui.Dividers
@@ -120,10 +120,10 @@ class FindByActivity : PassphraseRequiredActivity() {
         NavHost(
           navController = navController,
           startDestination = "find-by-content",
-          enterTransition = { slideInHorizontally(initialOffsetX = { it }) },
-          exitTransition = { slideOutHorizontally(targetOffsetX = { -it }) },
-          popEnterTransition = { slideInHorizontally(initialOffsetX = { -it }) },
-          popExitTransition = { slideOutHorizontally(targetOffsetX = { it }) }
+          enterTransition = { navHostSlideInTransition { it } },
+          exitTransition = { navHostSlideOutTransition { -it } },
+          popEnterTransition = { navHostSlideInTransition { -it } },
+          popExitTransition = { navHostSlideOutTransition { it } }
         ) {
           composable("find-by-content") {
             val title = remember(state.mode) {
