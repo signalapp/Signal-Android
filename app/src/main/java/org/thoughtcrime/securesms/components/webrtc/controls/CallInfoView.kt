@@ -229,8 +229,7 @@ private fun CallInfo(
       }
     }
 
-    var includeAdminControlsDivider = true
-    if (controlAndInfoState.callLink == null || participantsState.isOngoing()) {
+    if (!participantsState.inCallLobby || participantsState.isOngoing()) {
       item {
         Box(
           modifier = Modifier
@@ -245,8 +244,6 @@ private fun CallInfo(
           )
         }
       }
-    } else {
-      includeAdminControlsDivider = false
     }
 
     if (!participantsState.inCallLobby || participantsState.isOngoing()) {
@@ -290,7 +287,7 @@ private fun CallInfo(
 
     if (controlAndInfoState.callLink?.credentials?.adminPassBytes != null) {
       item {
-        if (includeAdminControlsDivider) {
+        if (!participantsState.inCallLobby) {
           Dividers.Default()
         }
 
