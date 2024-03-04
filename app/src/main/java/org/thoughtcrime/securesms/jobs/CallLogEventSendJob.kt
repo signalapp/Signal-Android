@@ -41,6 +41,21 @@ class CallLogEventSendJob private constructor(
         type = SyncMessage.CallLogEvent.Type.CLEAR
       )
     )
+
+    fun forMarkedAsRead(
+      timestamp: Long
+    ) = CallLogEventSendJob(
+      Parameters.Builder()
+        .setQueue("CallLogEventSendJob")
+        .setLifespan(TimeUnit.DAYS.toMillis(1))
+        .setMaxAttempts(Parameters.UNLIMITED)
+        .addConstraint(NetworkConstraint.KEY)
+        .build(),
+      SyncMessage.CallLogEvent(
+        timestamp = timestamp,
+        type = SyncMessage.CallLogEvent.Type.MARKED_AS_READ
+      )
+    )
   }
 
   override fun serialize(): ByteArray = CallLogEventSendJobData.Builder()

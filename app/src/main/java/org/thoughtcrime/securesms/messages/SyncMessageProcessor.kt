@@ -1197,16 +1197,23 @@ object SyncMessageProcessor {
   }
 
   private fun handleSynchronizeCallLogEvent(callLogEvent: CallLogEvent, envelopeTimestamp: Long) {
-    if (callLogEvent.type != CallLogEvent.Type.CLEAR) {
-      log(envelopeTimestamp, "Synchronize call log event has an invalid type ${callLogEvent.type}, ignoring.")
-      return
-    } else if (callLogEvent.timestamp == null) {
+    if (callLogEvent.timestamp == null) {
       log(envelopeTimestamp, "Synchronize call log event has null timestamp")
       return
     }
 
-    SignalDatabase.calls.deleteNonAdHocCallEventsOnOrBefore(callLogEvent.timestamp!!)
-    SignalDatabase.callLinks.deleteNonAdminCallLinksOnOrBefore(callLogEvent.timestamp!!)
+    when (callLogEvent.type) {
+      CallLogEvent.Type.CLEAR -> {
+        SignalDatabase.calls.deleteNonAdHocCallEventsOnOrBefore(callLogEvent.timestamp!!)
+        SignalDatabase.callLinks.deleteNonAdminCallLinksOnOrBefore(callLogEvent.timestamp!!)
+      }
+
+      CallLogEvent.Type.MARKED_AS_READ -> {
+        SignalDatabase.calls.markAllCallEventsRead(callLogEvent.timestamp!!)
+      }
+
+      else -> log(envelopeTimestamp, "Synchronize call log event has an invalid type ${callLogEvent.type}, ignoring.")
+    }
   }
 
   private fun handleSynchronizeCallLink(callLinkUpdate: CallLinkUpdate, envelopeTimestamp: Long) {

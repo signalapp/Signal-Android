@@ -7,6 +7,7 @@ import androidx.core.content.contentValuesOf
 import org.signal.core.util.IntSerializer
 import org.signal.core.util.Serializer
 import org.signal.core.util.SqlUtil
+import org.signal.core.util.count
 import org.signal.core.util.delete
 import org.signal.core.util.deleteAll
 import org.signal.core.util.flatten
@@ -60,9 +61,10 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     const val TIMESTAMP = "timestamp"
     const val RINGER = "ringer"
     const val DELETION_TIMESTAMP = "deletion_timestamp"
+    const val READ = "read"
 
     //language=sql
-    val CREATE_TABLE = """
+    const val CREATE_TABLE = """
       CREATE TABLE $TABLE_NAME (
         $ID INTEGER PRIMARY KEY,
         $CALL_ID INTEGER NOT NULL,
@@ -74,6 +76,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
         $TIMESTAMP INTEGER NOT NULL,
         $RINGER INTEGER DEFAULT NULL,
         $DELETION_TIMESTAMP INTEGER DEFAULT 0,
+        $READ INTEGER DEFAULT 1,
         UNIQUE ($CALL_ID, $PEER) ON CONFLICT FAIL
       )
     """
@@ -85,12 +88,29 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     )
   }
 
+  fun markAllCallEventsRead(timestamp: Long = Long.MAX_VALUE) {
+    writableDatabase.update(TABLE_NAME)
+      .values(READ to ReadState.serialize(ReadState.READ))
+      .where("$TIMESTAMP <= ?", timestamp)
+      .run()
+
+    notifyConversationListListeners()
+  }
+
+  fun getUnreadMissedCallCount(): Long {
+    return readableDatabase
+      .count()
+      .from(TABLE_NAME)
+      .where("$EVENT = ? AND $READ = ?", Event.serialize(Event.MISSED), ReadState.serialize(ReadState.UNREAD))
+      .run()
+      .readToSingleLong()
+  }
+
   fun insertOneToOneCall(callId: Long, timestamp: Long, peer: RecipientId, type: Type, direction: Direction, event: Event) {
     val messageType: Long = Call.getMessageType(type, direction, event)
 
     writableDatabase.withinTransaction {
       val result = SignalDatabase.messages.insertCallLog(peer, messageType, timestamp, direction == Direction.OUTGOING)
-
       val values = contentValuesOf(
         CALL_ID to callId,
         MESSAGE_ID to result.messageId,
@@ -98,7 +118,8 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
         TYPE to Type.serialize(type),
         DIRECTION to Direction.serialize(direction),
         EVENT to Event.serialize(event),
-        TIMESTAMP to timestamp
+        TIMESTAMP to timestamp,
+        READ to ReadState.serialize(ReadState.UNREAD)
       )
 
       writableDatabase.insert(TABLE_NAME, null, values)
@@ -114,7 +135,10 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     return writableDatabase.withinTransaction {
       writableDatabase
         .update(TABLE_NAME)
-        .values(EVENT to Event.serialize(event))
+        .values(
+          EVENT to Event.serialize(event),
+          READ to ReadState.serialize(ReadState.UNREAD)
+        )
         .where("$CALL_ID = ?", callId)
         .run()
 
@@ -1357,6 +1381,21 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
           CallEvent.Direction.INCOMING -> INCOMING
           CallEvent.Direction.OUTGOING -> OUTGOING
         }
+      }
+    }
+  }
+
+  enum class ReadState(private val code: Int) {
+    UNREAD(0),
+    READ(1);
+
+    companion object Serializer : IntSerializer<ReadState> {
+      override fun serialize(data: ReadState): Int {
+        return data.code
+      }
+
+      override fun deserialize(data: Int): ReadState {
+        return ReadState.values().first { it.code == data }
       }
     }
   }

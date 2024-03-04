@@ -28,6 +28,6 @@ class ConversationListTabRepository {
   }
 
   fun getNumberOfUnseenCalls(): Flowable<Long> {
-    return RxDatabaseObserver.conversationList.map { SignalDatabase.messages.getUnreadMisedCallCount() }
+    return RxDatabaseObserver.conversationList.map { SignalDatabase.calls.getUnreadMissedCallCount() }
   }
 }

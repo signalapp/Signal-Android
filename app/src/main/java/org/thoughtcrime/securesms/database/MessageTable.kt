@@ -774,7 +774,6 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   }
 
   fun insertCallLog(recipientId: RecipientId, type: Long, timestamp: Long, outgoing: Boolean): InsertResult {
-    val unread = MessageTypes.isMissedAudioCall(type) || MessageTypes.isMissedVideoCall(type)
     val recipient = Recipient.resolved(recipientId)
     val threadIdResult = threads.getOrCreateThreadIdResultFor(recipient.id, recipient.isGroup)
     val threadId = threadIdResult.threadId
@@ -785,16 +784,12 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       TO_RECIPIENT_ID to if (outgoing) recipientId.serialize() else Recipient.self().id.serialize(),
       DATE_RECEIVED to System.currentTimeMillis(),
       DATE_SENT to timestamp,
-      READ to if (unread) 0 else 1,
+      READ to 1,
       TYPE to type,
       THREAD_ID to threadId
     )
 
     val messageId = writableDatabase.insert(TABLE_NAME, null, values)
-
-    if (unread) {
-      threads.incrementUnread(threadId, 1, 0)
-    }
 
     threads.update(threadId, true)
 
@@ -809,22 +804,16 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   }
 
   fun updateCallLog(messageId: Long, type: Long) {
-    val unread = MessageTypes.isMissedAudioCall(type) || MessageTypes.isMissedVideoCall(type)
-
     writableDatabase
       .update(TABLE_NAME)
       .values(
         TYPE to type,
-        READ to if (unread) 0 else 1
+        READ to 1
       )
       .where("$ID = ?", messageId)
       .run()
 
     val threadId = getThreadIdForMessage(messageId)
-
-    if (unread) {
-      threads.incrementUnread(threadId, 1, 0)
-    }
 
     threads.update(threadId, true)
 
@@ -1281,7 +1270,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     return MmsReader(rawQueryWithAttachments(query, args, false, limit.toLong()))
   }
 
-  fun getUnreadMisedCallCount(): Long {
+  fun getUnreadMissedCallCount(): Long {
     return readableDatabase
       .select("COUNT(*)")
       .from(TABLE_NAME)

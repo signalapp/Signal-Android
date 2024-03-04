@@ -43,7 +43,8 @@ class CallLogRepository(
 
   fun markAllCallEventsRead() {
     SignalExecutors.BOUNDED_IO.execute {
-      SignalDatabase.messages.markAllCallEventsRead()
+      SignalDatabase.calls.markAllCallEventsRead()
+      ApplicationDependencies.getJobManager().add(CallLogEventSendJob.forMarkedAsRead(System.currentTimeMillis()))
     }
   }
 
