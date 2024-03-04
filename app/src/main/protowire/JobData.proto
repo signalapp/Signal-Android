@@ -29,7 +29,13 @@ message CallLogEventSendJobData {
 }
 
 message CallLinkUpdateSendJobData {
-  string callLinkRoomId = 1;
+  enum Type {
+    UPDATE = 0;
+    DELETE = 1;
+  }
+
+  string        callLinkRoomId = 1;
+  optional Type type           = 2;
 }
 
 message AttachmentUploadJobData {

@@ -1223,6 +1223,13 @@ object SyncMessageProcessor {
     }
 
     val roomId = CallLinkRoomId.fromCallLinkRootKey(callLinkRootKey)
+    if (callLinkUpdate.type == CallLinkUpdate.Type.DELETE) {
+      log(envelopeTimestamp, "Synchronize call link deletion.")
+      SignalDatabase.callLinks.deleteCallLink(roomId)
+
+      return
+    }
+
     if (SignalDatabase.callLinks.callLinkExists(roomId)) {
       log(envelopeTimestamp, "Synchronize call link for a link we already know about. Updating credentials.")
       SignalDatabase.callLinks.updateCallLinkCredentials(

@@ -393,7 +393,7 @@ class ControlsAndInfoController(
     controlsAndInfoViewModel.setApproveAllMembers(checked)
       .observeOn(AndroidSchedulers.mainThread())
       .subscribeBy(onSuccess = {
-        if (it !is UpdateCallLinkResult.Success) {
+        if (it !is UpdateCallLinkResult.Update) {
           Log.w(TAG, "Failed to change restrictions. $it")
           toastFailure()
         }
@@ -419,7 +419,7 @@ class ControlsAndInfoController(
       .observeOn(AndroidSchedulers.mainThread())
       .subscribeBy(
         onSuccess = {
-          if (it !is UpdateCallLinkResult.Success) {
+          if (it !is UpdateCallLinkResult.Update) {
             Log.w(TAG, "Failed to set name. $it")
             toastFailure()
           }

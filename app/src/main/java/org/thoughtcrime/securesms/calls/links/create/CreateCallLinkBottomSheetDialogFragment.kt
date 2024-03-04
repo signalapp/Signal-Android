@@ -159,7 +159,7 @@ class CreateCallLinkBottomSheetDialogFragment : ComposeBottomSheetDialogFragment
 
   private fun setCallName(callName: String) {
     lifecycleDisposable += viewModel.setCallName(callName).subscribeBy(onSuccess = {
-      if (it !is UpdateCallLinkResult.Success) {
+      if (it !is UpdateCallLinkResult.Update) {
         Log.w(TAG, "Failed to update call link name")
         toastFailure()
       }
@@ -168,7 +168,7 @@ class CreateCallLinkBottomSheetDialogFragment : ComposeBottomSheetDialogFragment
 
   private fun setApproveAllMembers(approveAllMembers: Boolean) {
     lifecycleDisposable += viewModel.setApproveAllMembers(approveAllMembers).subscribeBy(onSuccess = {
-      if (it !is UpdateCallLinkResult.Success) {
+      if (it !is UpdateCallLinkResult.Update) {
         Log.w(TAG, "Failed to update call link restrictions")
         toastFailure()
       }
@@ -177,7 +177,7 @@ class CreateCallLinkBottomSheetDialogFragment : ComposeBottomSheetDialogFragment
 
   private fun toggleApproveAllMembers() {
     lifecycleDisposable += viewModel.toggleApproveAllMembers().subscribeBy(onSuccess = {
-      if (it !is UpdateCallLinkResult.Success) {
+      if (it !is UpdateCallLinkResult.Update) {
         Log.w(TAG, "Failed to update call link restrictions")
         toastFailure()
       }

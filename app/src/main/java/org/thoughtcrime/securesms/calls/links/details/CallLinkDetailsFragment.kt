@@ -141,9 +141,9 @@ class CallLinkDetailsFragment : ComposeFragment(), CallLinkDetailsCallback {
 
   override fun onDeleteConfirmed() {
     viewModel.setDisplayRevocationDialog(false)
-    lifecycleDisposable += viewModel.revoke().observeOn(AndroidSchedulers.mainThread()).subscribeBy(onSuccess = {
+    lifecycleDisposable += viewModel.delete().observeOn(AndroidSchedulers.mainThread()).subscribeBy(onSuccess = {
       when (it) {
-        is UpdateCallLinkResult.Success -> ActivityCompat.finishAfterTransition(requireActivity())
+        is UpdateCallLinkResult.Update -> ActivityCompat.finishAfterTransition(requireActivity())
         else -> {
           Log.w(TAG, "Failed to revoke. $it")
           toastFailure()
@@ -158,7 +158,7 @@ class CallLinkDetailsFragment : ComposeFragment(), CallLinkDetailsCallback {
 
   override fun onApproveAllMembersChanged(checked: Boolean) {
     lifecycleDisposable += viewModel.setApproveAllMembers(checked).observeOn(AndroidSchedulers.mainThread()).subscribeBy(onSuccess = {
-      if (it !is UpdateCallLinkResult.Success) {
+      if (it !is UpdateCallLinkResult.Update) {
         Log.w(TAG, "Failed to change restrictions. $it")
         toastFailure()
       }
@@ -167,7 +167,7 @@ class CallLinkDetailsFragment : ComposeFragment(), CallLinkDetailsCallback {
 
   private fun setName(name: String) {
     lifecycleDisposable += viewModel.setName(name).observeOn(AndroidSchedulers.mainThread()).subscribeBy(onSuccess = {
-      if (it !is UpdateCallLinkResult.Success) {
+      if (it !is UpdateCallLinkResult.Update) {
         Log.w(TAG, "Failed to set name. $it")
         toastFailure()
       }

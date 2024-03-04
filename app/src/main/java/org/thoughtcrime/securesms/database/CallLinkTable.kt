@@ -231,6 +231,37 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
     }
   }
 
+  /**
+   * Puts the call link into the "revoked" state which will hide it from the UI and
+   * delete it after a few days.
+   */
+  fun markRevoked(
+    roomId: CallLinkRoomId
+  ) {
+    writableDatabase.withinTransaction { db ->
+      db.update(TABLE_NAME)
+        .values("$REVOKED" to true)
+        .where("$ROOM_ID", roomId)
+        .run()
+
+      SignalDatabase.calls.updateAdHocCallEventDeletionTimestamps()
+    }
+  }
+
+  /**
+   * Deletes the call link. This should only happen *after* we send out a sync message
+   * or receive a sync message which deletes the corresponding link.
+   */
+  fun deleteCallLink(
+    roomId: CallLinkRoomId
+  ) {
+    writableDatabase.withinTransaction { db ->
+      db.delete(TABLE_NAME)
+        .where("$ROOM_ID", roomId)
+        .run()
+    }
+  }
+
   fun deleteNonAdminCallLinks(roomIds: Set<CallLinkRoomId>) {
     val queries = SqlUtil.buildCollectionQuery(ROOM_ID, roomIds)
 

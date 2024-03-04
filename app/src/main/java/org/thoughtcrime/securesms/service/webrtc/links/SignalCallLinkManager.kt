@@ -171,7 +171,7 @@ class SignalCallLinkManager(
         name
       ) { result ->
         if (result.isSuccess) {
-          emitter.onSuccess(UpdateCallLinkResult.Success(result.value!!.toAppState()))
+          emitter.onSuccess(UpdateCallLinkResult.Update(result.value!!.toAppState()))
         } else {
           emitter.onSuccess(UpdateCallLinkResult.Failure(result.status))
         }
@@ -198,7 +198,7 @@ class SignalCallLinkManager(
         restrictions
       ) { result ->
         if (result.isSuccess) {
-          emitter.onSuccess(UpdateCallLinkResult.Success(result.value!!.toAppState()))
+          emitter.onSuccess(UpdateCallLinkResult.Update(result.value!!.toAppState()))
         } else {
           emitter.onSuccess(UpdateCallLinkResult.Failure(result.status))
         }
@@ -206,9 +206,8 @@ class SignalCallLinkManager(
     }
   }
 
-  fun updateCallLinkRevoked(
-    credentials: CallLinkCredentials,
-    revoked: Boolean
+  fun deleteCallLink(
+    credentials: CallLinkCredentials
   ): Single<UpdateCallLinkResult> {
     if (credentials.adminPassBytes == null) {
       return Single.just(UpdateCallLinkResult.NotAuthorized)
@@ -217,15 +216,14 @@ class SignalCallLinkManager(
     return Single.create { emitter ->
       val credentialPresentation = requestCallLinkAuthCredentialPresentation(credentials.linkKeyBytes)
 
-      callManager.updateCallLinkRevoked(
+      callManager.deleteCallLink(
         SignalStore.internalValues().groupCallingServer(),
         credentialPresentation.serialize(),
         CallLinkRootKey(credentials.linkKeyBytes),
-        credentials.adminPassBytes,
-        revoked
+        credentials.adminPassBytes
       ) { result ->
-        if (result.isSuccess) {
-          emitter.onSuccess(UpdateCallLinkResult.Success(result.value!!.toAppState()))
+        if (result.isSuccess && result.value == true) {
+          emitter.onSuccess(UpdateCallLinkResult.Delete(credentials.roomId))
         } else {
           emitter.onSuccess(UpdateCallLinkResult.Failure(result.status))
         }
