@@ -2491,7 +2491,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       SERVER_GUID to retrieved.serverGuid,
       LATEST_REVISION_ID to null,
       ORIGINAL_MESSAGE_ID to editedMessage?.getOriginalOrOwnMessageId()?.id,
-      REVISION_NUMBER to (editedMessage?.revisionNumber?.inc() ?: 0)
+      REVISION_NUMBER to (editedMessage?.revisionNumber?.inc() ?: 0),
+      MESSAGE_EXTRAS to (retrieved.messageExtras?.encode())
     )
 
     val quoteAttachments: MutableList<Attachment> = mutableListOf()
