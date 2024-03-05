@@ -45,7 +45,7 @@
         android:layout_gravity="center"
         android:scaleType="centerInside"
         android:visibility="gone"
-        app:srcCompat="@drawable/ic_arrow_down_24"
+        app:srcCompat="@drawable/symbol_arrow_down_24"
         app:tint="@color/core_white"
         tools:visibility="visible" />
 

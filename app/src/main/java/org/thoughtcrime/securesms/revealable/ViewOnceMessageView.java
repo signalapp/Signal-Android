@@ -122,16 +122,16 @@ public class ViewOnceMessageView extends LinearLayout {
       if (messageRecord.isViewed()) {
         iconColor = openedIconColor;
         text.setText(R.string.RevealableMessageView_viewed);
-        icon.setImageResource(R.drawable.ic_viewed_once_24);
+        icon.setImageResource(R.drawable.symbol_view_once_dash_24);
       } else {
         iconColor = unopenedIconColor;
         text.setText(R.string.RevealableMessageView_media);
-        icon.setImageResource(R.drawable.ic_view_once_24);
+        icon.setImageResource(R.drawable.symbol_view_once_24);
       }
     } else if (ViewOnceUtil.isViewable(messageRecord)) {
       iconColor = unopenedIconColor;
       text.setText(getDescriptionId(messageRecord));
-      icon.setImageResource(R.drawable.ic_view_once_24);
+      icon.setImageResource(R.drawable.symbol_view_once_24);
     } else if (networkInProgress(messageRecord)) {
       iconColor = unopenedIconColor;
       text.setText("");
@@ -140,11 +140,11 @@ public class ViewOnceMessageView extends LinearLayout {
     } else if (requiresTapToDownload(messageRecord)) {
       iconColor = unopenedIconColor;
       text.setText(formatFileSize(messageRecord));
-      icon.setImageResource(R.drawable.ic_arrow_down_circle_outline_24);
+      icon.setImageResource(R.drawable.symbol_arrow_circle_down_24);
     } else {
       iconColor = openedIconColor;
       text.setText(R.string.RevealableMessageView_viewed);
-      icon.setImageResource(R.drawable.ic_viewed_once_24);
+      icon.setImageResource(R.drawable.symbol_view_once_dash_24);
     }
 
     text.setTextColor(textColor);

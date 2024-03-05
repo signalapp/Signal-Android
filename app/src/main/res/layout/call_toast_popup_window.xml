@@ -26,7 +26,7 @@
             android:gravity="center"
             android:text="@string/CallToastPopupWindow__swipe_to_view_screen_share"
             android:textAppearance="@style/TextAppearance.Signal.Body2"
-            app:drawableStartCompat="@drawable/ic_arrow_down"
+            app:drawableStartCompat="@drawable/symbol_arrow_down_24"
             app:drawableTint="@color/signal_text_primary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

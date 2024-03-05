@@ -367,7 +367,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
       getString(R.string.MediaReviewFragment__photo_set_to_view_once)
     }
 
-    MediaReviewToastPopupWindow.show(controls, R.drawable.ic_view_once_24, description)
+    MediaReviewToastPopupWindow.show(controls, R.drawable.symbol_view_once_24, description)
   }
 
   private fun presentQualityToggleToast(state: MediaSelectionState) {
@@ -494,8 +494,8 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
     }
 
     val sendButtonForegroundDrawable = when {
-      recipient != null -> ContextCompat.getDrawable(requireContext(), R.drawable.ic_send_24)
-      else -> ContextCompat.getDrawable(requireContext(), R.drawable.ic_arrow_end_24)
+      recipient != null -> ContextCompat.getDrawable(requireContext(), R.drawable.symbol_send_24)
+      else -> ContextCompat.getDrawable(requireContext(), R.drawable.symbol_arrow_end_24)
     }
 
     val sendButtonForegroundTint = when {

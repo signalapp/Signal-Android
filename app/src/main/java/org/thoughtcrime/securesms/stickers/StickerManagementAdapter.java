@@ -287,7 +287,7 @@ final class StickerManagementAdapter extends SectionedRecyclerViewAdapter<String
         shareButtonImage.setVisibility(View.VISIBLE);
         shareButton.setOnClickListener(v -> eventListener.onStickerPackShareClicked(stickerPack.getPackId(), stickerPack.getPackKey()));
       } else {
-        actionButtonImage.setImageResource(R.drawable.ic_arrow_down);
+        actionButtonImage.setImageResource(R.drawable.symbol_arrow_down_24);
         actionButton.setOnClickListener(v -> eventListener.onStickerPackInstallClicked(stickerPack.getPackId(), stickerPack.getPackKey()));
 
         shareButton.setVisibility(View.GONE);

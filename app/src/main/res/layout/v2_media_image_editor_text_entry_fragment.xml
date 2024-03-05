@@ -47,7 +47,7 @@
             app:backgroundTint="@color/transparent_black_40"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/ic_text_tool_24"
+            app:srcCompat="@drawable/symbol_text_square_24"
             app:tint="@color/core_white" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

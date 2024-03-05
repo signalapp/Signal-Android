@@ -5,11 +5,11 @@
             <item>
                 <shape android:shape="oval">
                     <size android:width="36dp" android:height="36dp" />
-                    <solid android:color="@color/core_white" />
+                    <solid android:color="@color/signal_dark_colorOnPrimaryContainer" />
                     <padding android:bottom="6dp" android:left="6dp" android:right="6dp" android:top="6dp" />
                 </shape>
             </item>
-            <item android:drawable="@drawable/ic_draw_24" />
+            <item android:drawable="@drawable/symbol_draw_24" />
         </layer-list>
     </item>
     <item>
@@ -20,7 +20,7 @@
                     <padding android:bottom="6dp" android:left="6dp" android:right="6dp" android:top="6dp" />
                 </shape>
             </item>
-            <item android:drawable="@drawable/ic_draw_white_24" />
+            <item android:drawable="@drawable/symbol_draw_24_dark_onsurface" />
         </layer-list>
     </item>
 </selector>
