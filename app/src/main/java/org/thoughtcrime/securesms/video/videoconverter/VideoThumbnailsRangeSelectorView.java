@@ -4,8 +4,10 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
@@ -27,9 +29,10 @@ public final class VideoThumbnailsRangeSelectorView extends VideoThumbnailsView 
 
   private static final String TAG = Log.tag(VideoThumbnailsRangeSelectorView.class);
 
-  private static final long  MINIMUM_SELECTABLE_RANGE = TimeUnit.MILLISECONDS.toMicros(500);
-  private static final int   ANIMATION_DURATION_MS    = 100;
-  private static final float THUMB_RECT_CORNER_RADIUS = ViewUtil.dpToPx(4);
+  private static final long  MINIMUM_SELECTABLE_RANGE    = TimeUnit.MILLISECONDS.toMicros(500);
+  private static final int   ANIMATION_DURATION_MS       = 100;
+  private static final float THUMB_RECT_CORNER_RADIUS    = ViewUtil.dpToPx(4);
+  private static final float ACTIVE_REGION_CORNER_RADIUS = ViewUtil.dpToPx(8);
 
   private final Paint    paint                    = new Paint(Paint.ANTI_ALIAS_FLAG);
   private final Paint    paintGrey                = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -37,6 +40,7 @@ public final class VideoThumbnailsRangeSelectorView extends VideoThumbnailsView 
   private final Paint    thumbTimeBackgroundPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
   private final Rect     tempDrawRect             = new Rect();
   private final RectF    timePillRect             = new RectF();
+  private final Path     activeRegionPath         = new Path();
 
   @Px       private int                   left;
   @Px       private int                   right;
@@ -178,10 +182,19 @@ public final class VideoThumbnailsRangeSelectorView extends VideoThumbnailsView 
     canvas.translate(getPaddingLeft(), getPaddingTop());
 
     // draw greyed out areas
-    tempDrawRect.set(0, 0, left - 1, drawableHeight);
-    canvas.drawRect(tempDrawRect, paintGrey);
-    tempDrawRect.set(right + 1, 0, drawableWidth, drawableHeight);
-    canvas.drawRect(tempDrawRect, paintGrey);
+    if (Build.VERSION.SDK_INT >= 26) {
+      activeRegionPath.reset();
+      timePillRect.set(left + 1, 0, right - 1, drawableHeight);
+      activeRegionPath.addRoundRect(timePillRect, ACTIVE_REGION_CORNER_RADIUS, ACTIVE_REGION_CORNER_RADIUS, Path.Direction.CW);
+      canvas.clipOutPath(activeRegionPath);
+      tempDrawRect.set(0, 0, drawableWidth, drawableHeight);
+      canvas.drawRect(tempDrawRect, paintGrey);
+    } else {
+      tempDrawRect.set(0, 0, left - 1, drawableHeight);
+      canvas.drawRect(tempDrawRect, paintGrey);
+      tempDrawRect.set(right + 1, 0, drawableWidth, drawableHeight);
+      canvas.drawRect(tempDrawRect, paintGrey);
+    }
 
     canvas.restore();
 
