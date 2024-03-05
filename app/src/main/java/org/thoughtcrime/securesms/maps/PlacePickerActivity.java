@@ -68,12 +68,13 @@ public final class PlacePickerActivity extends AppCompatActivity {
 
   private final DynamicTheme dynamicTheme = new DynamicNoActionBarTheme();
 
-  private SingleAddressBottomSheet bottomSheet;
-  private Address                  currentAddress;
-  private LatLng                   initialLocation;
-  private LatLng                   currentLocation = new LatLng(0, 0);
-  private AddressLookup            addressLookup;
-  private GoogleMap                googleMap;
+  private SingleAddressBottomSheet               bottomSheet;
+  private Address                                currentAddress;
+  private LatLng                                 initialLocation;
+  private LatLng                                 currentLocation = new LatLng(0, 0);
+  private AddressLookup                          addressLookup;
+  private GoogleMap                              googleMap;
+  private SimpleProgressDialog.DismissibleDialog dismissibleDialog;
 
   public static void startActivityForResultAtCurrentLocation(@NonNull Fragment fragment, int requestCode, @ColorInt int chatColor) {
     fragment.startActivityForResult(new Intent(fragment.requireActivity(), PlacePickerActivity.class).putExtra(KEY_CHAT_COLOR, chatColor), requestCode);
@@ -190,12 +191,11 @@ public final class PlacePickerActivity extends AppCompatActivity {
     String      address      = currentAddress != null && currentAddress.getAddressLine(0) != null ? currentAddress.getAddressLine(0) : "";
     AddressData addressData  = new AddressData(currentLocation.latitude, currentLocation.longitude, address);
 
-    SimpleProgressDialog.DismissibleDialog dismissibleDialog = SimpleProgressDialog.showDelayed(this);
+    dismissibleDialog = SimpleProgressDialog.showDelayed(this);
     MapView mapView = findViewById(R.id.map_view);
     SignalMapView.snapshot(currentLocation, mapView).addListener(new ListenableFuture.Listener<>() {
       @Override
       public void onSuccess(Bitmap result) {
-        dismissibleDialog.dismiss();
         byte[] blob = BitmapUtil.toByteArray(result);
         Uri uri = BlobProvider.getInstance()
                               .forData(blob)
@@ -238,6 +238,13 @@ public final class PlacePickerActivity extends AppCompatActivity {
     if (addressLookup != null) {
       addressLookup.cancel(true);
     }
+  }
+
+  @Override protected void onDestroy() {
+    if (dismissibleDialog != null) {
+      dismissibleDialog.dismissNow();
+    }
+    super.onDestroy();
   }
 
   @SuppressLint("StaticFieldLeak")
