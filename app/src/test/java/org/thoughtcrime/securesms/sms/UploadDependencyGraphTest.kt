@@ -255,7 +255,8 @@ class UploadDependencyGraphTest {
       audioHash = attachment.audioHash,
       transformProperties = attachment.transformProperties,
       displayOrder = 0,
-      uploadTimestamp = attachment.uploadTimestamp
+      uploadTimestamp = attachment.uploadTimestamp,
+      dataHash = null
     )
   }
 

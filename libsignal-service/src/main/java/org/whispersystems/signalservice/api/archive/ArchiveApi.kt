@@ -125,7 +125,7 @@ class ArchiveApi(
    * Retrieves all media items in the user's archive. Note that this could be a very large number of items, making this only suitable for debugging.
    * Use [getArchiveMediaItemsPage] in production.
    */
-  fun debugGetUploadedMediaItemMetadata(backupKey: BackupKey, serviceCredential: ArchiveServiceCredential): NetworkResult<List<ArchiveGetMediaItemsResponse.StoredMediaObject>> {
+  fun debugGetUploadedMediaItemMetadata(backupKey: BackupKey, serviceCredential: ArchiveServiceCredential): NetworkResult<List<StoredMediaObject>> {
     return NetworkResult.fromFetch {
       val zkCredential = getZkCredential(backupKey, serviceCredential)
       val presentationData = CredentialPresentationData.from(backupKey, zkCredential, backupServerPublicParams)
@@ -154,7 +154,58 @@ class ArchiveApi(
       val zkCredential = getZkCredential(backupKey, serviceCredential)
       val presentationData = CredentialPresentationData.from(backupKey, zkCredential, backupServerPublicParams)
 
-      pushServiceSocket.getArchiveMediaItemsPage(presentationData.toArchiveCredentialPresentation(), 512, cursor)
+      pushServiceSocket.getArchiveMediaItemsPage(presentationData.toArchiveCredentialPresentation(), limit, cursor)
+    }
+  }
+
+  /**
+   * Copy and re-encrypt media from the attachments cdn into the backup cdn.
+   */
+  fun archiveAttachmentMedia(
+    backupKey: BackupKey,
+    serviceCredential: ArchiveServiceCredential,
+    item: ArchiveMediaRequest
+  ): NetworkResult<ArchiveMediaResponse> {
+    return NetworkResult.fromFetch {
+      val zkCredential = getZkCredential(backupKey, serviceCredential)
+      val presentationData = CredentialPresentationData.from(backupKey, zkCredential, backupServerPublicParams)
+
+      pushServiceSocket.archiveAttachmentMedia(presentationData.toArchiveCredentialPresentation(), item)
+    }
+  }
+
+  /**
+   * Copy and re-encrypt media from the attachments cdn into the backup cdn.
+   */
+  fun archiveAttachmentMedia(
+    backupKey: BackupKey,
+    serviceCredential: ArchiveServiceCredential,
+    items: List<ArchiveMediaRequest>
+  ): NetworkResult<BatchArchiveMediaResponse> {
+    return NetworkResult.fromFetch {
+      val zkCredential = getZkCredential(backupKey, serviceCredential)
+      val presentationData = CredentialPresentationData.from(backupKey, zkCredential, backupServerPublicParams)
+
+      val request = BatchArchiveMediaRequest(items = items)
+
+      pushServiceSocket.archiveAttachmentMedia(presentationData.toArchiveCredentialPresentation(), request)
+    }
+  }
+
+  /**
+   * Delete media from the backup cdn.
+   */
+  fun deleteArchivedMedia(
+    backupKey: BackupKey,
+    serviceCredential: ArchiveServiceCredential,
+    mediaToDelete: List<DeleteArchivedMediaRequest.ArchivedMediaObject>
+  ): NetworkResult<Unit> {
+    return NetworkResult.fromFetch {
+      val zkCredential = getZkCredential(backupKey, serviceCredential)
+      val presentationData = CredentialPresentationData.from(backupKey, zkCredential, backupServerPublicParams)
+      val request = DeleteArchivedMediaRequest(mediaToDelete = mediaToDelete)
+
+      pushServiceSocket.deleteArchivedMedia(presentationData.toArchiveCredentialPresentation(), request)
     }
   }
 

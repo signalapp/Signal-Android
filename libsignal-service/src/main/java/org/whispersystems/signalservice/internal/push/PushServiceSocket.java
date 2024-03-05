@@ -19,7 +19,6 @@ import org.signal.libsignal.protocol.ecc.ECPublicKey;
 import org.signal.libsignal.protocol.kem.KEMPublicKey;
 import org.signal.libsignal.protocol.logging.Log;
 import org.signal.libsignal.protocol.state.PreKeyBundle;
-import org.signal.libsignal.protocol.state.SignedPreKeyRecord;
 import org.signal.libsignal.protocol.util.Pair;
 import org.signal.libsignal.usernames.BaseUsernameException;
 import org.signal.libsignal.usernames.Username;
@@ -50,10 +49,15 @@ import org.whispersystems.signalservice.api.account.PreKeyUpload;
 import org.whispersystems.signalservice.api.archive.ArchiveCredentialPresentation;
 import org.whispersystems.signalservice.api.archive.ArchiveGetBackupInfoResponse;
 import org.whispersystems.signalservice.api.archive.ArchiveGetMediaItemsResponse;
+import org.whispersystems.signalservice.api.archive.ArchiveMediaRequest;
+import org.whispersystems.signalservice.api.archive.ArchiveMediaResponse;
 import org.whispersystems.signalservice.api.archive.ArchiveMessageBackupUploadFormResponse;
 import org.whispersystems.signalservice.api.archive.ArchiveServiceCredentialsResponse;
 import org.whispersystems.signalservice.api.archive.ArchiveSetBackupIdRequest;
 import org.whispersystems.signalservice.api.archive.ArchiveSetPublicKeyRequest;
+import org.whispersystems.signalservice.api.archive.BatchArchiveMediaRequest;
+import org.whispersystems.signalservice.api.archive.BatchArchiveMediaResponse;
+import org.whispersystems.signalservice.api.archive.DeleteArchivedMediaRequest;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.groupsv2.CredentialResponse;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2AuthorizationString;
@@ -305,11 +309,15 @@ public class PushServiceSocket {
   private static final String BACKUP_AUTH_CHECK = "/v2/backup/auth/check";
 
   private static final String ARCHIVE_CREDENTIALS         = "/v1/archives/auth?redemptionStartSeconds=%d&redemptionEndSeconds=%d";
+  private static final String ARCHIVE_READ_CREDENTIALS    = "/v1/archives/auth/read";
   private static final String ARCHIVE_BACKUP_ID           = "/v1/archives/backupid";
   private static final String ARCHIVE_PUBLIC_KEY          = "/v1/archives/keys";
   private static final String ARCHIVE_INFO                = "/v1/archives";
   private static final String ARCHIVE_MESSAGE_UPLOAD_FORM = "/v1/archives/upload/form";
+  private static final String ARCHIVE_MEDIA               = "/v1/archives/media";
   private static final String ARCHIVE_MEDIA_LIST          = "/v1/archives/media?limit=%d";
+  private static final String ARCHIVE_MEDIA_BATCH         = "/v1/archives/media/batch";
+  private static final String ARCHIVE_MEDIA_DELETE        = "/v1/archives/media/delete";
 
   private static final String CALL_LINK_CREATION_AUTH = "/v1/call-link/create-auth";
   private static final String SERVER_DELIVERED_TIMESTAMP_HEADER = "X-Signal-Timestamp";
@@ -494,18 +502,14 @@ public class PushServiceSocket {
   }
 
   public void setArchivePublicKey(ECPublicKey publicKey, ArchiveCredentialPresentation credentialPresentation) throws IOException {
-    Map<String, String> headers = new HashMap<>();
-    headers.put("X-Signal-ZK-Auth", Base64.encodeWithPadding(credentialPresentation.getPresentation()));
-    headers.put("X-Signal-ZK-Auth-Signature", Base64.encodeWithPadding(credentialPresentation.getSignedPresentation()));
+    Map<String, String> headers = credentialPresentation.toHeaders();
 
     String body = JsonUtil.toJson(new ArchiveSetPublicKeyRequest(publicKey));
     makeServiceRequestWithoutAuthentication(ARCHIVE_PUBLIC_KEY, "PUT", body, headers, NO_HANDLER);
   }
 
   public ArchiveGetBackupInfoResponse getArchiveBackupInfo(ArchiveCredentialPresentation credentialPresentation) throws IOException {
-    Map<String, String> headers = new HashMap<>();
-    headers.put("X-Signal-ZK-Auth", Base64.encodeWithPadding(credentialPresentation.getPresentation()));
-    headers.put("X-Signal-ZK-Auth-Signature", Base64.encodeWithPadding(credentialPresentation.getSignedPresentation()));
+    Map<String, String> headers = credentialPresentation.toHeaders();
 
     String response = makeServiceRequestWithoutAuthentication(ARCHIVE_INFO, "GET", null, headers, NO_HANDLER);
     return JsonUtil.fromJson(response, ArchiveGetBackupInfoResponse.class);
@@ -529,9 +533,7 @@ public class PushServiceSocket {
    * @param cursor A token that can be read from your previous response, telling the server where to start the next page.
    */
   public ArchiveGetMediaItemsResponse getArchiveMediaItemsPage(ArchiveCredentialPresentation credentialPresentation, int limit, String cursor) throws IOException {
-    Map<String, String> headers = new HashMap<>();
-    headers.put("X-Signal-ZK-Auth", Base64.encodeWithPadding(credentialPresentation.getPresentation()));
-    headers.put("X-Signal-ZK-Auth-Signature", Base64.encodeWithPadding(credentialPresentation.getSignedPresentation()));
+    Map<String, String> headers = credentialPresentation.toHeaders();
 
     String url = String.format(Locale.US, ARCHIVE_MEDIA_LIST, limit);
 
@@ -544,10 +546,39 @@ public class PushServiceSocket {
     return JsonUtil.fromJson(response, ArchiveGetMediaItemsResponse.class);
   }
 
+  /**
+   * Copy and re-encrypt media from the attachments cdn into the backup cdn.
+   */
+  public ArchiveMediaResponse archiveAttachmentMedia(@Nonnull ArchiveCredentialPresentation credentialPresentation, @Nonnull ArchiveMediaRequest request) throws IOException {
+    Map<String, String> headers = credentialPresentation.toHeaders();
+
+    String response = makeServiceRequestWithoutAuthentication(ARCHIVE_MEDIA, "PUT", JsonUtil.toJson(request), headers, NO_HANDLER);
+
+    return JsonUtil.fromJson(response, ArchiveMediaResponse.class);
+  }
+
+  /**
+   * Copy and re-encrypt media from the attachments cdn into the backup cdn.
+   */
+  public BatchArchiveMediaResponse archiveAttachmentMedia(@Nonnull ArchiveCredentialPresentation credentialPresentation, @Nonnull BatchArchiveMediaRequest request) throws IOException {
+    Map<String, String> headers = credentialPresentation.toHeaders();
+
+    String response = makeServiceRequestWithoutAuthentication(ARCHIVE_MEDIA_BATCH, "PUT", JsonUtil.toJson(request), headers, NO_HANDLER);
+
+    return JsonUtil.fromJson(response, BatchArchiveMediaResponse.class);
+  }
+
+  /**
+   * Delete media from the backup cdn.
+   */
+  public void deleteArchivedMedia(@Nonnull ArchiveCredentialPresentation credentialPresentation, @Nonnull DeleteArchivedMediaRequest request) throws IOException {
+    Map<String, String> headers = credentialPresentation.toHeaders();
+
+    makeServiceRequestWithoutAuthentication(ARCHIVE_MEDIA_DELETE, "POST", JsonUtil.toJson(request), headers, NO_HANDLER);
+  }
+
   public ArchiveMessageBackupUploadFormResponse getArchiveMessageBackupUploadForm(ArchiveCredentialPresentation credentialPresentation) throws IOException {
-    Map<String, String> headers = new HashMap<>();
-    headers.put("X-Signal-ZK-Auth", Base64.encodeWithPadding(credentialPresentation.getPresentation()));
-    headers.put("X-Signal-ZK-Auth-Signature", Base64.encodeWithPadding(credentialPresentation.getSignedPresentation()));
+    Map<String, String> headers = credentialPresentation.toHeaders();
 
     String response = makeServiceRequestWithoutAuthentication(ARCHIVE_MESSAGE_UPLOAD_FORM, "GET", null, headers, NO_HANDLER);
     return JsonUtil.fromJson(response, ArchiveMessageBackupUploadFormResponse.class);
@@ -2126,7 +2157,7 @@ public class PushServiceSocket {
         throw new ServerRejectedException();
     }
 
-    if (responseCode != 200 && responseCode != 202 && responseCode != 204) {
+    if (responseCode != 200 && responseCode != 202 && responseCode != 204 && responseCode != 207) {
       throw new NonSuccessfulResponseCodeException(responseCode, "Bad response: " + responseCode + " " + responseMessage);
     }
 

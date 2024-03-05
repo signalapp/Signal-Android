@@ -55,7 +55,8 @@ object FakeMessageRecords {
     audioHash: AudioHash? = null,
     transformProperties: AttachmentTable.TransformProperties? = null,
     displayOrder: Int = 0,
-    uploadTimestamp: Long = 200
+    uploadTimestamp: Long = 200,
+    dataHash: String? = null
   ): DatabaseAttachment {
     return DatabaseAttachment(
       attachmentId,
@@ -85,7 +86,8 @@ object FakeMessageRecords {
       audioHash,
       transformProperties,
       displayOrder,
-      uploadTimestamp
+      uploadTimestamp,
+      dataHash
     )
   }
 

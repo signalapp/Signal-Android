@@ -22,6 +22,9 @@ class DatabaseAttachment : Attachment {
   @JvmField
   val hasData: Boolean
 
+  @JvmField
+  val dataHash: String?
+
   private val hasThumbnail: Boolean
   val displayOrder: Int
 
@@ -53,7 +56,8 @@ class DatabaseAttachment : Attachment {
     audioHash: AudioHash?,
     transformProperties: TransformProperties?,
     displayOrder: Int,
-    uploadTimestamp: Long
+    uploadTimestamp: Long,
+    dataHash: String?
   ) : super(
     contentType = contentType!!,
     transferState = transferProgress,
@@ -81,6 +85,7 @@ class DatabaseAttachment : Attachment {
     this.attachmentId = attachmentId
     this.mmsId = mmsId
     this.hasData = hasData
+    this.dataHash = dataHash
     this.hasThumbnail = hasThumbnail
     this.displayOrder = displayOrder
   }
@@ -88,6 +93,7 @@ class DatabaseAttachment : Attachment {
   constructor(parcel: Parcel) : super(parcel) {
     attachmentId = ParcelCompat.readParcelable(parcel, AttachmentId::class.java.classLoader, AttachmentId::class.java)!!
     hasData = ParcelUtil.readBoolean(parcel)
+    dataHash = parcel.readString()
     hasThumbnail = ParcelUtil.readBoolean(parcel)
     mmsId = parcel.readLong()
     displayOrder = parcel.readInt()
@@ -97,6 +103,7 @@ class DatabaseAttachment : Attachment {
     super.writeToParcel(dest, flags)
     dest.writeParcelable(attachmentId, 0)
     ParcelUtil.writeBoolean(dest, hasData)
+    dest.writeString(dataHash)
     ParcelUtil.writeBoolean(dest, hasThumbnail)
     dest.writeLong(mmsId)
     dest.writeInt(displayOrder)

@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.backup.v2
 
+import org.signal.core.util.Base64
 import org.signal.core.util.EventTimer
 import org.signal.core.util.logging.Log
 import org.signal.core.util.withinTransaction
@@ -13,6 +14,7 @@ import org.signal.libsignal.messagebackup.MessageBackup.ValidationResult
 import org.signal.libsignal.messagebackup.MessageBackupKey
 import org.signal.libsignal.protocol.ServiceId.Aci
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
+import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.backup.v2.database.ChatItemImportInserter
 import org.thoughtcrime.securesms.backup.v2.database.clearAllDataForBackupRestore
 import org.thoughtcrime.securesms.backup.v2.processor.AccountDataProcessor
@@ -33,9 +35,17 @@ import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.NetworkResult
+import org.whispersystems.signalservice.api.archive.ArchiveGetMediaItemsResponse
+import org.whispersystems.signalservice.api.archive.ArchiveMediaRequest
+import org.whispersystems.signalservice.api.archive.ArchiveMediaResponse
 import org.whispersystems.signalservice.api.archive.ArchiveServiceCredential
+import org.whispersystems.signalservice.api.archive.BatchArchiveMediaResponse
+import org.whispersystems.signalservice.api.archive.DeleteArchivedMediaRequest
+import org.whispersystems.signalservice.api.backup.BackupKey
+import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.ServiceId.PNI
+import org.whispersystems.signalservice.internal.crypto.PaddingInputStream
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
 import kotlin.time.Duration.Companion.milliseconds
@@ -272,6 +282,77 @@ object BackupRepository {
   }
 
   /**
+   * Returns an object with details about the remote backup state.
+   */
+  fun debugGetArchivedMediaState(): NetworkResult<List<ArchiveGetMediaItemsResponse.StoredMediaObject>> {
+    val api = ApplicationDependencies.getSignalServiceAccountManager().archiveApi
+    val backupKey = SignalStore.svr().getOrCreateMasterKey().deriveBackupKey()
+
+    return api
+      .triggerBackupIdReservation(backupKey)
+      .then { getAuthCredential() }
+      .then { credential ->
+        api.debugGetUploadedMediaItemMetadata(backupKey, credential)
+      }
+  }
+
+  fun archiveMedia(attachment: DatabaseAttachment): NetworkResult<ArchiveMediaResponse> {
+    val api = ApplicationDependencies.getSignalServiceAccountManager().archiveApi
+    val backupKey = SignalStore.svr().getOrCreateMasterKey().deriveBackupKey()
+
+    return api
+      .triggerBackupIdReservation(backupKey)
+      .then { getAuthCredential() }
+      .then { credential ->
+        api.archiveAttachmentMedia(
+          backupKey = backupKey,
+          serviceCredential = credential,
+          item = attachment.toArchiveMediaRequest(backupKey)
+        )
+      }
+      .also { Log.i(TAG, "backupMediaResult: $it") }
+  }
+
+  fun archiveMedia(attachments: List<DatabaseAttachment>): NetworkResult<BatchArchiveMediaResponse> {
+    val api = ApplicationDependencies.getSignalServiceAccountManager().archiveApi
+    val backupKey = SignalStore.svr().getOrCreateMasterKey().deriveBackupKey()
+
+    return api
+      .triggerBackupIdReservation(backupKey)
+      .then { getAuthCredential() }
+      .then { credential ->
+        api.archiveAttachmentMedia(
+          backupKey = backupKey,
+          serviceCredential = credential,
+          items = attachments.map { it.toArchiveMediaRequest(backupKey) }
+        )
+      }
+      .also { Log.i(TAG, "backupMediaResult: $it") }
+  }
+
+  fun deleteArchivedMedia(attachments: List<DatabaseAttachment>): NetworkResult<Unit> {
+    val api = ApplicationDependencies.getSignalServiceAccountManager().archiveApi
+    val backupKey = SignalStore.svr().getOrCreateMasterKey().deriveBackupKey()
+
+    val mediaToDelete = attachments.map {
+      DeleteArchivedMediaRequest.ArchivedMediaObject(
+        cdn = 3, // TODO [cody] store and reuse backup cdn returned from copy/move call
+        mediaId = backupKey.deriveMediaId(Base64.decode(it.dataHash!!)).toString()
+      )
+    }
+
+    return getAuthCredential()
+      .then { credential ->
+        api.deleteArchivedMedia(
+          backupKey = backupKey,
+          serviceCredential = credential,
+          mediaToDelete = mediaToDelete
+        )
+      }
+      .also { Log.i(TAG, "deleteBackupMediaResult: $it") }
+  }
+
+  /**
    * Retrieves an auth credential, preferring a cached value if available.
    */
   private fun getAuthCredential(): NetworkResult<ArchiveServiceCredential> {
@@ -298,6 +379,21 @@ object BackupRepository {
     val e164: String,
     val profileKey: ProfileKey
   )
+
+  private fun DatabaseAttachment.toArchiveMediaRequest(backupKey: BackupKey): ArchiveMediaRequest {
+    val mediaSecrets = backupKey.deriveMediaSecrets(Base64.decode(dataHash!!))
+    return ArchiveMediaRequest(
+      sourceAttachment = ArchiveMediaRequest.SourceAttachment(
+        cdn = cdnNumber,
+        key = remoteLocation!!
+      ),
+      objectLength = AttachmentCipherStreamUtil.getCiphertextLength(PaddingInputStream.getPaddedSize(size)).toInt(),
+      mediaId = mediaSecrets.id.toString(),
+      hmacKey = Base64.encodeWithPadding(mediaSecrets.macKey),
+      encryptionKey = Base64.encodeWithPadding(mediaSecrets.cipherKey),
+      iv = Base64.encodeWithPadding(mediaSecrets.iv)
+    )
+  }
 }
 
 class ExportState {
