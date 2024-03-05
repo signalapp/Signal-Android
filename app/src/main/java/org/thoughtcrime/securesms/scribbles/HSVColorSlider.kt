@@ -155,6 +155,11 @@ object HSVColorSlider {
     val radii: FloatArray = (1..8).map { 50f }.toFloatArray()
     val bounds = RectF()
     val clipPath = Path()
+    val paint = Paint().apply {
+      color = Color.WHITE
+      style = Paint.Style.STROKE
+      strokeWidth = ViewUtil.dpToPx(4).toFloat()
+    }
 
     return customizeOnDraw { wrapped, canvas ->
       canvas.save()
@@ -164,6 +169,7 @@ object HSVColorSlider {
       clipPath.rewind()
       clipPath.addRoundRect(bounds, radii, Path.Direction.CW)
 
+      canvas.drawPath(clipPath, paint)
       canvas.clipPath(clipPath)
       wrapped.draw(canvas)
       canvas.restore()

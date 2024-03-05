@@ -198,7 +198,7 @@
             android:id="@+id/image_editor_hud_draw_color_bar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="20dp"
             android:splitTrack="false"
             android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@id/image_editor_hud_top_of_button_bar_spacing"
