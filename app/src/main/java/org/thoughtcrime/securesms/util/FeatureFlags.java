@@ -124,6 +124,7 @@ public final class FeatureFlags {
   private static final String RETRY_RECEIPT_MAX_COUNT_RESET_AGE = "android.retryReceipt.maxCountResetAge";
   private static final String PREKEY_FORCE_REFRESH_INTERVAL     = "android.prekeyForceRefreshInterval";
   private static final String CDSI_LIBSIGNAL_NET                = "android.cds.libsignal";
+  private static final String RX_MESSAGE_SEND                   = "android.rxMessageSend";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -200,7 +201,8 @@ public final class FeatureFlags {
       RETRY_RECEIPT_MAX_COUNT,
       RETRY_RECEIPT_MAX_COUNT_RESET_AGE,
       PREKEY_FORCE_REFRESH_INTERVAL,
-      CDSI_LIBSIGNAL_NET
+      CDSI_LIBSIGNAL_NET,
+      RX_MESSAGE_SEND
   );
 
   @VisibleForTesting
@@ -274,7 +276,8 @@ public final class FeatureFlags {
       RETRY_RECEIPT_MAX_COUNT,
       RETRY_RECEIPT_MAX_COUNT_RESET_AGE,
       PREKEY_FORCE_REFRESH_INTERVAL,
-      CDSI_LIBSIGNAL_NET
+      CDSI_LIBSIGNAL_NET,
+      RX_MESSAGE_SEND
   );
 
   /**
@@ -712,6 +715,11 @@ public final class FeatureFlags {
   /** Make CDSI lookups via libsignal-net instead of native websocket. */
   public static boolean useLibsignalNetForCdsiLookup() {
     return getBoolean(CDSI_LIBSIGNAL_NET, false);
+  }
+
+  /** Use Rx threading model to do sends. */
+  public static boolean useRxMessageSending() {
+    return getBoolean(RX_MESSAGE_SEND, false);
   }
 
   /** Only for rendering debug info. */
