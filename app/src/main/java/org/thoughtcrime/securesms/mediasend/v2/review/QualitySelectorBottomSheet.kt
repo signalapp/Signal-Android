@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -67,9 +68,15 @@ private fun Content(quality: SentMediaQuality, onQualitySelected: (SentMediaQual
       color = MaterialTheme.colorScheme.onSurface,
       modifier = Modifier.padding(top = 20.dp, bottom = 14.dp)
     )
-    Row(horizontalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.fillMaxWidth().padding(bottom = 20.dp)) {
+    Row(
+      horizontalArrangement = Arrangement.SpaceEvenly,
+      modifier = Modifier
+        .fillMaxWidth()
+        .padding(bottom = 20.dp)
+    ) {
       val standardQuality = quality == SentMediaQuality.STANDARD
       Button(
+        modifier = Modifier.defaultMinSize(minWidth = 174.dp, minHeight = 60.dp),
         onClick = { onQualitySelected(SentMediaQuality.STANDARD) },
         shape = RoundedCornerShape(percent = 25),
         colors = if (standardQuality) ButtonDefaults.filledTonalButtonColors() else ButtonDefaults.textButtonColors(),
@@ -79,6 +86,7 @@ private fun Content(quality: SentMediaQuality, onQualitySelected: (SentMediaQual
         ButtonLabel(title = stringResource(id = R.string.QualitySelectorBottomSheetDialog__standard), description = stringResource(id = R.string.QualitySelectorBottomSheetDialog__faster_less_data))
       }
       Button(
+        modifier = Modifier.defaultMinSize(minWidth = 174.dp, minHeight = 60.dp),
         onClick = { onQualitySelected(SentMediaQuality.HIGH) },
         shape = RoundedCornerShape(percent = 25),
         colors = if (!standardQuality) ButtonDefaults.filledTonalButtonColors() else ButtonDefaults.textButtonColors(),
