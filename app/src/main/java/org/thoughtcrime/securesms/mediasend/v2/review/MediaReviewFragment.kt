@@ -696,36 +696,36 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
   private fun computeSaveButtonAnimators(state: MediaSelectionState): List<Animator> {
     return if (state.isTouchEnabled && !MediaUtil.isVideo(state.focusedMedia?.mimeType)) {
       listOf(
-        MediaReviewAnimatorController.getFadeInAnimator(saveButton, MediaAnimations.toolIconInterpolator)
+        MediaReviewAnimatorController.getFadeInAnimator(saveButton)
       )
     } else {
       listOf(
-        MediaReviewAnimatorController.getFadeOutAnimator(saveButton, MediaAnimations.toolIconInterpolator)
+        MediaReviewAnimatorController.getFadeOutAnimator(saveButton)
       )
     }
   }
 
   private fun computeQualityButtonAnimators(state: MediaSelectionState): List<Animator> {
     return if (state.isTouchEnabled && !state.isStory) {
-      listOf(MediaReviewAnimatorController.getFadeInAnimator(qualityButton, MediaAnimations.toolIconInterpolator))
+      listOf(MediaReviewAnimatorController.getFadeInAnimator(qualityButton))
     } else {
-      listOf(MediaReviewAnimatorController.getFadeOutAnimator(qualityButton, MediaAnimations.toolIconInterpolator))
+      listOf(MediaReviewAnimatorController.getFadeOutAnimator(qualityButton))
     }
   }
 
   private fun computeCropAndRotateButtonAnimators(state: MediaSelectionState): List<Animator> {
     return if (state.isTouchEnabled && MediaUtil.isImageAndNotGif(state.focusedMedia?.mimeType ?: "")) {
-      listOf(MediaReviewAnimatorController.getFadeInAnimator(cropAndRotateButton, MediaAnimations.toolIconInterpolator))
+      listOf(MediaReviewAnimatorController.getFadeInAnimator(cropAndRotateButton))
     } else {
-      listOf(MediaReviewAnimatorController.getFadeOutAnimator(cropAndRotateButton, MediaAnimations.toolIconInterpolator))
+      listOf(MediaReviewAnimatorController.getFadeOutAnimator(cropAndRotateButton))
     }
   }
 
   private fun computeDrawToolButtonAnimators(state: MediaSelectionState): List<Animator> {
     return if (state.isTouchEnabled && MediaUtil.isImageAndNotGif(state.focusedMedia?.mimeType ?: "")) {
-      listOf(MediaReviewAnimatorController.getFadeInAnimator(drawToolButton, MediaAnimations.toolIconInterpolator))
+      listOf(MediaReviewAnimatorController.getFadeInAnimator(drawToolButton))
     } else {
-      listOf(MediaReviewAnimatorController.getFadeOutAnimator(drawToolButton, MediaAnimations.toolIconInterpolator))
+      listOf(MediaReviewAnimatorController.getFadeOutAnimator(drawToolButton))
     }
   }
 

@@ -11,20 +11,20 @@ import org.thoughtcrime.securesms.util.visible
 
 object MediaReviewAnimatorController {
 
-  fun getFadeInAnimator(view: View, interpolator: Interpolator = MediaAnimations.interpolator, isEnabled: Boolean = true): Animator {
+  fun getFadeInAnimator(view: View, isEnabled: Boolean = true): Animator {
     view.visible = true
     view.isEnabled = isEnabled
 
     return ObjectAnimator.ofFloat(view, "alpha", view.alpha, 1f).apply {
-      setInterpolator(interpolator)
+      interpolator = MediaAnimations.interpolator
     }
   }
 
-  fun getFadeOutAnimator(view: View, interpolator: Interpolator = MediaAnimations.interpolator, isEnabled: Boolean = false): Animator {
+  fun getFadeOutAnimator(view: View, isEnabled: Boolean = false): Animator {
     view.isEnabled = isEnabled
 
     val animator = ObjectAnimator.ofFloat(view, "alpha", view.alpha, 0f).apply {
-      setInterpolator(interpolator)
+      interpolator = MediaAnimations.interpolator
     }
 
     animator.doOnEnd { view.visible = false }
