@@ -23,24 +23,19 @@ import org.thoughtcrime.securesms.util.Throttler
 import org.thoughtcrime.securesms.video.VideoPlayer
 import org.thoughtcrime.securesms.video.VideoPlayer.PlayerCallback
 import org.thoughtcrime.securesms.video.videoconverter.VideoThumbnailsRangeSelectorView
-import org.thoughtcrime.securesms.video.videoconverter.VideoThumbnailsRangeSelectorView.OnRangeChangeListener
-import org.thoughtcrime.securesms.video.videoconverter.VideoThumbnailsRangeSelectorView.Thumb
+import org.thoughtcrime.securesms.video.videoconverter.VideoThumbnailsRangeSelectorView.PositionDragListener
 import java.io.IOException
-import java.util.concurrent.TimeUnit
-import kotlin.math.max
 
-class VideoEditorFragment : Fragment(), OnRangeChangeListener, MediaSendPageFragment {
+class VideoEditorFragment : Fragment(), PositionDragListener, MediaSendPageFragment {
   private val sharedViewModel: MediaSelectionViewModel by viewModels(ownerProducer = { requireActivity() })
   private val videoScanThrottle = Throttler(150)
   private val handler = Handler(Looper.getMainLooper())
 
-  private var data = VideoTrimData()
   private var canEdit = false
   private var isVideoGif = false
   private var isInEdit = false
   private var isFocused = false
   private var wasPlayingBeforeEdit = false
-  private var maxVideoDurationUs: Long = 0
   private var maxSend: Long = 0
   private lateinit var uri: Uri
   private lateinit var controller: Controller
@@ -86,7 +81,6 @@ class VideoEditorFragment : Fragment(), OnRangeChangeListener, MediaSendPageFrag
     uri = requireArguments().getParcelable(KEY_URI)!!
     isVideoGif = requireArguments().getBoolean(KEY_IS_VIDEO_GIF)
     maxSend = requireArguments().getLong(KEY_MAX_SEND)
-    maxVideoDurationUs = TimeUnit.MILLISECONDS.toMicros(requireArguments().getLong(KEY_MAX_DURATION))
 
     val state = sharedViewModel.state.value!!
     val slide = VideoSlide(requireContext(), uri, 0, isVideoGif)
@@ -136,15 +130,24 @@ class VideoEditorFragment : Fragment(), OnRangeChangeListener, MediaSendPageFrag
       })
     }
 
-    sharedViewModel.state.observe(viewLifecycleOwner) { state ->
-      val focusedMedia = state.focusedMedia
-      val currentlyFocused = focusedMedia?.uri != null && focusedMedia.uri == uri
-      if (MediaConstraints.isVideoTranscodeAvailable() && canEdit && !isFocused && currentlyFocused) {
-        bindVideoTimeline(state)
-      }
-
-      if (!currentlyFocused) {
-        stopPositionUpdates()
+    sharedViewModel.state.observe(viewLifecycleOwner) { incomingState ->
+      val focusedUri = incomingState.focusedMedia?.uri
+      val currentlyFocused = focusedUri != null && focusedUri == uri
+      if (MediaConstraints.isVideoTranscodeAvailable() && canEdit) {
+        if (currentlyFocused) {
+          if (!isFocused) {
+            bindVideoTimeline(incomingState)
+          } else {
+            val videoTrimData = if (focusedUri != null) {
+              incomingState.getOrCreateVideoTrimData(focusedUri)
+            } else {
+              VideoTrimData()
+            }
+            onEditVideoDuration(videoTrimData, incomingState.isTouchEnabled)
+          }
+        } else {
+          stopPositionUpdates()
+        }
       }
       isFocused = currentlyFocused
     }
@@ -160,13 +163,15 @@ class VideoEditorFragment : Fragment(), OnRangeChangeListener, MediaSendPageFrag
     val autoplay = isVideoGif
     val slide = VideoSlide(requireContext(), uri, 0, autoplay)
 
+    val data = state.getOrCreateVideoTrimData(uri)
     if (data.isDurationEdited) {
       player.clip(data.startTimeUs, data.endTimeUs, autoplay)
     }
+
     if (slide.hasVideo()) {
       canEdit = true
       try {
-        videoTimeLine.setOnRangeChangeListener(this)
+        videoTimeLine.registerPlayerOnRangeChangeListener(this)
 
         hud.visibility = View.VISIBLE
         startPositionUpdates()
@@ -182,16 +187,6 @@ class VideoEditorFragment : Fragment(), OnRangeChangeListener, MediaSendPageFrag
 
   override fun onEndPositionDrag(position: Long) {
     onSeek(position, true)
-  }
-
-  @RequiresApi(23)
-  override fun onRangeDrag(minValueUs: Long, maxValueUs: Long, durationUs: Long, thumb: Thumb) {
-    onEditVideoDuration(durationUs, minValueUs, maxValueUs, thumb == Thumb.MIN, false)
-  }
-
-  @RequiresApi(23)
-  override fun onRangeDragEnd(minValueUs: Long, maxValueUs: Long, durationUs: Long, thumb: Thumb) {
-    onEditVideoDuration(durationUs, minValueUs, maxValueUs, thumb == Thumb.MIN, true)
   }
 
   override fun onDestroyView() {
@@ -241,17 +236,9 @@ class VideoEditorFragment : Fragment(), OnRangeChangeListener, MediaSendPageFrag
     return uri
   }
 
-  override fun saveState(): Any {
-    return data
-  }
+  override fun saveState(): Any = Unit
 
-  override fun restoreState(state: Any) {
-    if (state is VideoTrimData) {
-      data = state
-    } else {
-      Log.w(TAG, "Received a bad saved state. Received class: " + state.javaClass.name)
-    }
-  }
+  override fun restoreState(state: Any) = Unit
 
   override fun notifyHidden() {
     pausePlayback()
@@ -263,18 +250,8 @@ class VideoEditorFragment : Fragment(), OnRangeChangeListener, MediaSendPageFrag
   }
 
   @RequiresApi(23)
-  private fun onEditVideoDuration(totalDurationUs: Long, startTimeUs: Long, endTimeUs: Long, fromEdited: Boolean, editingComplete: Boolean) {
-    controller.onTouchEventsNeeded(!editingComplete)
-
+  private fun onEditVideoDuration(data: VideoTrimData, editingComplete: Boolean) {
     hud.hidePlayButton()
-
-    val clampedStartTime = max(startTimeUs.toDouble(), 0.0).toLong()
-
-    val wasEdited = data.isDurationEdited
-    val durationEdited = clampedStartTime > 0 || endTimeUs < totalDurationUs
-    val endMoved = data.endTimeUs != endTimeUs
-
-    val updatedData = MediaSelectionViewModel.clampToMaxClipDuration(VideoTrimData(durationEdited, totalDurationUs, clampedStartTime, endTimeUs), maxVideoDurationUs, !endMoved)
 
     if (editingComplete) {
       isInEdit = false
@@ -289,10 +266,10 @@ class VideoEditorFragment : Fragment(), OnRangeChangeListener, MediaSendPageFrag
       if (!editingComplete) {
         player.removeClip(false)
       }
-      player.playbackPosition = if (fromEdited || editingComplete) clampedStartTime / 1000 else endTimeUs / 1000
+      player.playbackPosition = if (editingComplete) data.startTimeUs / 1000 else data.endTimeUs / 1000
       if (editingComplete) {
-        if (durationEdited) {
-          player.clip(clampedStartTime, endTimeUs, wasPlayingBeforeEdit)
+        if (data.isDurationEdited) {
+          player.clip(data.startTimeUs, data.endTimeUs, wasPlayingBeforeEdit)
         } else {
           player.removeClip(wasPlayingBeforeEdit)
         }
@@ -301,18 +278,6 @@ class VideoEditorFragment : Fragment(), OnRangeChangeListener, MediaSendPageFrag
           hud.showPlayButton()
         }
       }
-    }
-
-    if (!wasEdited && durationEdited) {
-      controller.onVideoBeginEdit(uri)
-    }
-
-    if (editingComplete) {
-      controller.onVideoEndEdit(uri)
-    }
-
-    uri.let {
-      sharedViewModel.setEditorState(it, updatedData)
     }
   }
 
@@ -333,10 +298,6 @@ class VideoEditorFragment : Fragment(), OnRangeChangeListener, MediaSendPageFrag
     fun onPlayerError()
 
     fun onTouchEventsNeeded(needed: Boolean)
-
-    fun onVideoBeginEdit(uri: Uri)
-
-    fun onVideoEndEdit(uri: Uri)
   }
 
   companion object {
@@ -345,14 +306,12 @@ class VideoEditorFragment : Fragment(), OnRangeChangeListener, MediaSendPageFrag
     private const val KEY_URI = "uri"
     private const val KEY_MAX_SEND = "max_send_size"
     private const val KEY_IS_VIDEO_GIF = "is_video_gif"
-    private const val KEY_MAX_DURATION = "max_duration"
 
-    fun newInstance(uri: Uri, maxAttachmentSize: Long, isVideoGif: Boolean, maxVideoDuration: Long): VideoEditorFragment {
+    fun newInstance(uri: Uri, maxAttachmentSize: Long, isVideoGif: Boolean): VideoEditorFragment {
       val args = Bundle()
       args.putParcelable(KEY_URI, uri)
       args.putLong(KEY_MAX_SEND, maxAttachmentSize)
       args.putBoolean(KEY_IS_VIDEO_GIF, isVideoGif)
-      args.putLong(KEY_MAX_DURATION, maxVideoDuration)
 
       val fragment = VideoEditorFragment()
       fragment.arguments = args

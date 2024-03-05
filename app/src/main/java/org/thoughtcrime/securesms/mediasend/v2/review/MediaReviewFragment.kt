@@ -43,7 +43,6 @@ import org.thoughtcrime.securesms.conversation.ScheduleMessageTimePickerBottomSh
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardActivity
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.media.DecryptableUriMediaInput
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult
 import org.thoughtcrime.securesms.mediasend.v2.HudCommand
@@ -77,7 +76,7 @@ import kotlin.math.roundToInt
 /**
  * Allows the user to view and edit selected media.
  */
-class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), ScheduleMessageTimePickerBottomSheet.ScheduleCallback {
+class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), ScheduleMessageTimePickerBottomSheet.ScheduleCallback, VideoThumbnailsRangeSelectorView.RangeDragListener {
 
   private val sharedViewModel: MediaSelectionViewModel by viewModels(
     ownerProducer = { requireActivity() }
@@ -296,6 +295,10 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
         sharedViewModel.onPageChanged(position)
       }
     })
+
+    if (MediaConstraints.isVideoTranscodeAvailable()) {
+      videoTimeLine.registerEditorOnRangeChangeListener(this)
+    }
 
     val selectionAdapter = MappingAdapter(false)
     MediaReviewAddItem.register(selectionAdapter) {
@@ -527,7 +530,8 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
       return
     }
     val uri = mediaItem.uri
-    videoTimeLine.setInput(DecryptableUriMediaInput.createForUri(requireContext(), uri))
+    videoTimeLine.unregisterPlayerOnRangeChangeListener()
+    videoTimeLine.setInput(uri)
     val size: Long = tryGetUriSize(requireContext(), uri, Long.MAX_VALUE)
     val maxSend = sharedViewModel.getMediaConstraints().getVideoMaxSize(requireContext())
     if (size > maxSend) {
@@ -535,7 +539,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
     }
 
     if (state.isTouchEnabled) {
-      val data = state.getVideoTrimData(uri) ?: return
+      val data = state.getOrCreateVideoTrimData(uri)
 
       if (data.totalInputDurationUs > 0) {
         videoTimeLine.setRange(data.startTimeUs, data.endTimeUs)
@@ -545,9 +549,9 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
 
   private fun presentVideoSizeHint(state: MediaSelectionState) {
     val focusedMedia = state.focusedMedia ?: return
-    val trimData = state.getVideoTrimData(focusedMedia.uri)
+    val trimData = state.getOrCreateVideoTrimData(focusedMedia.uri)
 
-    videoSizeHint.text = if (state.isVideoTrimmingVisible && trimData != null) {
+    videoSizeHint.text = if (state.isVideoTrimmingVisible) {
       val seconds = trimData.getDuration().inWholeSeconds
       val bytes = TranscodingQuality.createFromPreset(state.transcodingPreset, trimData.getDuration().inWholeMilliseconds).byteCountEstimate
       String.format(Locale.getDefault(), "%d:%02d • %s", seconds / 60, seconds % 60, MemoryUnitFormat.formatBytes(bytes, MemoryUnitFormat.MEGA_BYTES, true))
@@ -768,5 +772,9 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
   override fun onScheduleSend(scheduledTime: Long) {
     scheduledSendTime = scheduledTime
     sendButton.performClick()
+  }
+
+  override fun onRangeDrag(minValue: Long, maxValue: Long, duration: Long, end: Boolean) {
+    sharedViewModel.onEditVideoDuration(context = requireContext(), totalDurationUs = duration, startTimeUs = minValue, endTimeUs = maxValue, touchEnabled = end)
   }
 }

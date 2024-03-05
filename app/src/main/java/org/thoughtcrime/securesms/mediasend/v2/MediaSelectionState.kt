@@ -45,8 +45,8 @@ data class MediaSelectionState(
 
   val canSend = !isSent && selectedMedia.isNotEmpty()
 
-  fun getVideoTrimData(uri: Uri): VideoTrimData? {
-    return editorStateMap[uri] as? VideoTrimData
+  fun getOrCreateVideoTrimData(uri: Uri): VideoTrimData {
+    return editorStateMap[uri] as? VideoTrimData ?: VideoTrimData()
   }
 
   enum class ViewOnceToggleState(val code: Int) {

@@ -10,8 +10,6 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.mediasend.VideoEditorFragment
 import org.thoughtcrime.securesms.mediasend.v2.HudCommand
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionViewModel
-import org.thoughtcrime.securesms.mms.MediaConstraints
-import org.thoughtcrime.securesms.stories.Stories
 
 private const val VIDEO_EDITOR_TAG = "video.editor.fragment"
 
@@ -34,16 +32,6 @@ class MediaReviewVideoPageFragment : Fragment(R.layout.fragment_container), Vide
     restoreVideoEditorState()
   }
 
-  override fun onSaveInstanceState(outState: Bundle) {
-    super.onSaveInstanceState(outState)
-    saveEditorState()
-  }
-
-  private fun saveEditorState() {
-    val saveState = videoEditorFragment.saveState()
-    sharedViewModel.setEditorState(requireUri(), saveState)
-  }
-
   override fun onPlayerReady() {
     sharedViewModel.sendCommand(HudCommand.ResumeEntryTransition)
   }
@@ -55,15 +43,6 @@ class MediaReviewVideoPageFragment : Fragment(R.layout.fragment_container), Vide
   override fun onTouchEventsNeeded(needed: Boolean) {
     sharedViewModel.setTouchEnabled(!needed)
   }
-
-  override fun onVideoBeginEdit(uri: Uri) {
-    sharedViewModel.onVideoBeginEdit(uri)
-  }
-
-  override fun onVideoEndEdit(uri: Uri) {
-    saveEditorState()
-  }
-
   private fun restoreVideoEditorState() {
     val data = sharedViewModel.getEditorState(requireUri()) as? VideoTrimData
 
@@ -81,8 +60,7 @@ class MediaReviewVideoPageFragment : Fragment(R.layout.fragment_container), Vide
       val videoEditorFragment = VideoEditorFragment.newInstance(
         requireUri(),
         requireMaxAttachmentSize(),
-        requireIsVideoGif(),
-        requireMaxVideoDuration()
+        requireIsVideoGif()
       )
 
       childFragmentManager.beginTransaction()
@@ -100,7 +78,6 @@ class MediaReviewVideoPageFragment : Fragment(R.layout.fragment_container), Vide
   private fun requireUri(): Uri = requireNotNull(requireArguments().getParcelableCompat(ARG_URI, Uri::class.java))
   private fun requireMaxAttachmentSize(): Long = sharedViewModel.getMediaConstraints().getVideoMaxSize(requireContext())
   private fun requireIsVideoGif(): Boolean = requireNotNull(requireArguments().getBoolean(ARG_IS_VIDEO_GIF))
-  private fun requireMaxVideoDuration(): Long = if (sharedViewModel.isStory() && !MediaConstraints.isVideoTranscodeAvailable()) Stories.MAX_VIDEO_DURATION_MILLIS else Long.MAX_VALUE
 
   companion object {
     private const val ARG_URI = "arg.uri"

@@ -44,7 +44,9 @@ import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.livedata.Store
 import java.util.Collections
+import kotlin.math.max
 import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * ViewModel which maintains the list of selected media and other shared values.
@@ -342,6 +344,31 @@ class MediaSelectionViewModel(
     store.update { it.copy(viewOnceToggleState = it.viewOnceToggleState.next()) }
   }
 
+  fun onEditVideoDuration(context: Context, totalDurationUs: Long, startTimeUs: Long, endTimeUs: Long, touchEnabled: Boolean) {
+    store.update {
+      val uri = it.focusedMedia?.uri ?: return@update it
+      val data = it.getOrCreateVideoTrimData(uri)
+      val clampedStartTime = max(startTimeUs.toDouble(), 0.0).toLong()
+
+      val alreadyEdited = data.isDurationEdited
+      val durationEdited = clampedStartTime > 0 || endTimeUs < totalDurationUs
+      val endMoved = data.endTimeUs != endTimeUs
+      val maxVideoDurationUs: Long = if (it.isStory && !MediaConstraints.isVideoTranscodeAvailable()) {
+        Stories.MAX_VIDEO_DURATION_MILLIS
+      } else {
+        it.transcodingPreset.calculateMaxVideoUploadDurationInSeconds(getMediaConstraints().getVideoMaxSize(context)).seconds.inWholeMicroseconds
+      }
+      val updatedData = clampToMaxClipDuration(VideoTrimData(durationEdited, totalDurationUs, clampedStartTime, endTimeUs), maxVideoDurationUs, !alreadyEdited || !endMoved)
+      if (!alreadyEdited && durationEdited) {
+        cancelUpload(MediaBuilder.buildMedia(uri))
+      }
+      it.copy(
+        isTouchEnabled = touchEnabled,
+        editorStateMap = it.editorStateMap + (uri to updatedData)
+      )
+    }
+  }
+
   fun getEditorState(uri: Uri): Any? {
     return store.state.editorStateMap[uri]
   }
@@ -350,10 +377,6 @@ class MediaSelectionViewModel(
     store.update {
       it.copy(editorStateMap = it.editorStateMap + (uri to state))
     }
-  }
-
-  fun onVideoBeginEdit(uri: Uri) {
-    cancelUpload(MediaBuilder.buildMedia(uri))
   }
 
   fun send(

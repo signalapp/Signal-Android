@@ -51,7 +51,8 @@ public final class VideoThumbnailsRangeSelectorView extends VideoThumbnailsView 
             private long                  downMax;
             private Thumb                 dragThumb;
             private Thumb                 lastDragThumb;
-            private OnRangeChangeListener onRangeChangeListener;
+            private PositionDragListener  playerOnRangeChangeListener;
+            private RangeDragListener     editorOnRangeChangeListener;
   @Px       private int                   thumbSizePixels;
   @Px       private int                   thumbTouchRadius;
   @ColorInt private int                   thumbColor;
@@ -109,15 +110,7 @@ public final class VideoThumbnailsRangeSelectorView extends VideoThumbnailsView 
 
   @Override
   protected void afterDurationChange(long duration) {
-    super.afterDurationChange(duration);
-
-    if (maxValue != null && duration < maxValue) {
-      maxValue = duration;
-    }
-
-    if (minValue != null && duration < minValue) {
-      minValue = duration;
-    }
+     maxValue = duration;
 
     if (duration > 0) {
       if (externalMaxValue != null) {
@@ -131,15 +124,21 @@ public final class VideoThumbnailsRangeSelectorView extends VideoThumbnailsView 
       }
     }
 
-    if (onRangeChangeListener != null) {
-      onRangeChangeListener.onRangeDragEnd(getMinValue(), getMaxValue(), getDuration(), Thumb.MIN);
-    }
+    onRangeDrag(getMinValue(), getMaxValue(), duration, true);
 
     invalidate();
   }
 
-  public void setOnRangeChangeListener(OnRangeChangeListener onRangeChangeListener) {
-    this.onRangeChangeListener = onRangeChangeListener;
+  public void registerPlayerOnRangeChangeListener(PositionDragListener playerOnRangeChangeListener) {
+    this.playerOnRangeChangeListener = playerOnRangeChangeListener;
+  }
+
+  public void registerEditorOnRangeChangeListener(RangeDragListener editorOnRangeChangeListener) {
+    this.editorOnRangeChangeListener = editorOnRangeChangeListener;
+  }
+
+  public void unregisterPlayerOnRangeChangeListener() {
+    this.playerOnRangeChangeListener = null;
   }
 
   public void setActualPosition(long position) {
@@ -349,22 +348,22 @@ public final class VideoThumbnailsRangeSelectorView extends VideoThumbnailsView 
           changed = setMaxValue(downMax + delta);
           break;
       }
-      if (changed && onRangeChangeListener != null) {
+      if (changed) {
         if (dragThumb == Thumb.POSITION) {
-          onRangeChangeListener.onPositionDrag(dragPosition);
+          onPositionDrag(dragPosition);
         } else {
-          onRangeChangeListener.onRangeDrag(getMinValue(), getMaxValue(), getDuration(), dragThumb);
+          onRangeDrag(getMinValue(), getMaxValue(), getDuration(), false);
         }
       }
       return true;
     }
 
     if (actionMasked == MotionEvent.ACTION_UP) {
-      if (onRangeChangeListener != null) {
+      if (editorOnRangeChangeListener != null) {
         if (dragThumb == Thumb.POSITION) {
-          onRangeChangeListener.onEndPositionDrag(dragPosition);
+          onEndPositionDrag(dragPosition);
         } else {
-          onRangeChangeListener.onRangeDragEnd(getMinValue(), getMaxValue(), getDuration(), dragThumb);
+          onRangeDrag(getMinValue(), getMaxValue(), getDuration(), true);
         }
         lastDragThumb = dragThumb;
         dragEndTimeMs = System.currentTimeMillis();
@@ -418,20 +417,36 @@ public final class VideoThumbnailsRangeSelectorView extends VideoThumbnailsView 
     maximumSelectableRangeMicros = timeUnit.toMicros(t);
   }
 
+  private void onPositionDrag(long position) {
+    if (playerOnRangeChangeListener != null) {
+      playerOnRangeChangeListener.onPositionDrag(position);
+    }
+  }
+
+  private void onEndPositionDrag(long position) {
+    if (playerOnRangeChangeListener != null) {
+      playerOnRangeChangeListener.onEndPositionDrag(position);
+    }
+  }
+
+  private void onRangeDrag(long minValue, long maxValue, long duration, boolean end) {
+    if (editorOnRangeChangeListener != null) {
+      editorOnRangeChangeListener.onRangeDrag(minValue, maxValue, duration, end);
+    }
+  }
+
   public enum Thumb {
     MIN,
     MAX,
     POSITION
   }
 
-  public interface OnRangeChangeListener {
-
+  public interface PositionDragListener {
     void onPositionDrag(long position);
-
     void onEndPositionDrag(long position);
+  }
 
-    void onRangeDrag(long minValue, long maxValue, long duration, Thumb thumb);
-
-    void onRangeDragEnd(long minValue, long maxValue, long duration, Thumb thumb);
+  public interface RangeDragListener {
+    void onRangeDrag(long minValue, long maxValue, long duration, boolean start);
   }
 }

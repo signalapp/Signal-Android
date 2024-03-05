@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.AttributeSet;
 import android.view.View;
@@ -16,6 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.media.DecryptableUriMediaInput;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.video.interfaces.MediaInput;
 
@@ -26,10 +28,12 @@ import java.util.Arrays;
 import java.util.List;
 
 @RequiresApi(api = 23)
-public class VideoThumbnailsView extends View {
+abstract public class VideoThumbnailsView extends View {
 
   private static final String TAG           = Log.tag(VideoThumbnailsView.class);
   private static final int    CORNER_RADIUS = ViewUtil.dpToPx(8);
+
+  protected Uri currentUri;
 
   private          MediaInput                    input;
   private volatile ArrayList<Bitmap>             thumbnails;
@@ -55,12 +59,13 @@ public class VideoThumbnailsView extends View {
     super(context, attrs, defStyleAttr);
   }
 
-  public void setInput(@NonNull MediaInput input) {
-    if (this.input != null && input.hasSameInput(this.input)) {
+  public void setInput(@NonNull Uri uri) throws IOException {
+    if (uri.equals(this.currentUri)) {
       return;
     }
 
-    this.input      = input;
+    this.currentUri = uri;
+    this.input      = DecryptableUriMediaInput.createForUri(getContext(), uri);
     this.thumbnails = null;
     if (thumbnailsTask != null) {
       thumbnailsTask.cancel(true);
@@ -163,15 +168,14 @@ public class VideoThumbnailsView extends View {
     }
   }
 
-  public void setDuration(long duration) {
+  private void setDuration(long duration) {
     if (this.duration != duration) {
       this.duration = duration;
       afterDurationChange(duration);
     }
   }
 
-  protected void afterDurationChange(long duration) {
-  }
+  abstract void afterDurationChange(long duration);
 
   public long getDuration() {
     return duration;
@@ -241,14 +245,10 @@ public class VideoThumbnailsView extends View {
       VideoThumbnailsView view       = viewReference.get();
       List<Bitmap>        thumbnails = view != null ? view.thumbnails : null;
       if (view != null) {
-        view.setDuration(duration);
+        view.setDuration(ThumbnailsTask.this.duration);
         view.invalidate();
         Log.i(TAG, "onPostExecute, we have " + (thumbnails != null ? thumbnails.size() : "null") + " thumbs");
       }
     }
-  }
-
-  public interface OnDurationListener {
-    void onDurationKnown(long duration);
   }
 }
