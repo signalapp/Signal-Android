@@ -68,6 +68,8 @@ public final class SimpleProgressDialog {
 
     ThreadUtil.runOnMainDelayed(showRunnable, delayMs);
 
+    final AtomicReference<Runnable> dismissRunnable = new AtomicReference<>(null);
+
     return new DismissibleDialog() {
       @Override
       public void dismiss() {
@@ -79,7 +81,8 @@ public final class SimpleProgressDialog {
             long remainingTimeMs  = minimumShowTimeMs - beenShowingForMs;
 
             if (remainingTimeMs > 0) {
-              ThreadUtil.runOnMainDelayed(alertDialog::dismiss, remainingTimeMs);
+              dismissRunnable.set(alertDialog::dismiss);
+              ThreadUtil.runOnMainDelayed(dismissRunnable.get(), remainingTimeMs);
             } else {
               alertDialog.dismiss();
             }
@@ -90,6 +93,13 @@ public final class SimpleProgressDialog {
       @Override
       public void dismissNow() {
         ThreadUtil.cancelRunnableOnMain(showRunnable);
+
+        // Avoid dismissing the dialog a second time, potentially after its activity is already destroyed
+        Runnable cancelDismissRunnable = dismissRunnable.getAndSet(null);
+        if (cancelDismissRunnable != null) {
+          ThreadUtil.cancelRunnableOnMain(cancelDismissRunnable);
+        }
+
         ThreadUtil.runOnMain(() -> {
           AlertDialog alertDialog = dialogAtomicReference.getAndSet(null);
           if (alertDialog != null) {
