@@ -2953,7 +2953,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         secondaryId = data.byPni
       )
     } else if (data.pniRecord.aci == null && (data.e164 == null || data.pniRecord.e164 == data.e164)) {
-      // The PNI record also has the E164 on it with no ACI. We're going to be stealing all of it's fields,
+      // The PNI has no ACI and possibly some e164. We're going to be stealing all of it's fields,
       // so this is basically a merge with a little bit of extra prep.
       breadCrumbs += "PniRecordHasNoAci"
 
@@ -2961,7 +2961,9 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         operations += PnpOperation.RemovePni(data.byAci)
       }
 
-      if (data.aciRecord.e164 != null && data.aciRecord.e164 != data.e164) {
+      val newE164 = data.pniRecord.e164 ?: data.e164
+
+      if (data.aciRecord.e164 != null && data.aciRecord.e164 != newE164 && newE164 != null) {
         operations += PnpOperation.RemoveE164(data.byAci)
 
         // This also becomes a change number event
@@ -2970,7 +2972,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
           operations += PnpOperation.ChangeNumberInsert(
             recipientId = data.byAci,
             oldE164 = data.aciRecord.e164,
-            newE164 = data.e164!!
+            newE164 = newE164
           )
         }
       }
