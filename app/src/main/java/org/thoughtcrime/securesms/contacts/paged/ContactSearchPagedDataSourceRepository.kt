@@ -34,8 +34,8 @@ open class ContactSearchPagedDataSourceRepository(
       .getLatestActiveStorySendTimestamps(System.currentTimeMillis() - activeStoryCutoffDuration)
   }
 
-  open fun querySignalContacts(query: String?, includeSelf: Boolean): Cursor? {
-    return contactRepository.querySignalContacts(query ?: "", includeSelf)
+  open fun querySignalContacts(contactsSearchQuery: RecipientTable.ContactSearchQuery): Cursor? {
+    return contactRepository.querySignalContacts(contactsSearchQuery)
   }
 
   open fun querySignalContactLetterHeaders(query: String?, includeSelf: Boolean, includePush: Boolean, includeSms: Boolean): Map<RecipientId, String> {

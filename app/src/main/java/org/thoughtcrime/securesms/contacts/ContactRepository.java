@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
 import org.signal.libsignal.protocol.util.Pair;
+import org.thoughtcrime.securesms.contacts.paged.ContactSearchSortOrder;
 import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
@@ -108,15 +109,15 @@ public class ContactRepository {
 
   @WorkerThread
   public @NonNull Cursor querySignalContacts(@NonNull String query) {
-    return querySignalContacts(query, true);
+    return querySignalContacts(new RecipientTable.ContactSearchQuery(query, true, ContactSearchSortOrder.NATURAL));
   }
 
   @WorkerThread
-  public @NonNull Cursor querySignalContacts(@NonNull String query, boolean includeSelf) {
-    Cursor cursor = TextUtils.isEmpty(query) ? recipientTable.getSignalContacts(includeSelf)
-                                             : recipientTable.querySignalContacts(query, includeSelf);
+  public @NonNull Cursor querySignalContacts(@NonNull RecipientTable.ContactSearchQuery contactSearchQuery) {
+    Cursor cursor = TextUtils.isEmpty(contactSearchQuery.getQuery()) ? recipientTable.getSignalContacts(contactSearchQuery.getIncludeSelf())
+                                                                     : recipientTable.querySignalContacts(contactSearchQuery);
 
-    cursor = handleNoteToSelfQuery(query, includeSelf, cursor);
+    cursor = handleNoteToSelfQuery(contactSearchQuery.getQuery(), contactSearchQuery.getIncludeSelf(), cursor);
 
     return new SearchCursorWrapper(cursor, SEARCH_CURSOR_MAPPERS);
   }

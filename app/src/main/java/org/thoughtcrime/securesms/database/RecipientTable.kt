@@ -46,6 +46,7 @@ import org.thoughtcrime.securesms.badges.Badges.toDatabaseBadge
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.color.MaterialColor
 import org.thoughtcrime.securesms.color.MaterialColor.UnknownColorException
+import org.thoughtcrime.securesms.contacts.paged.ContactSearchSortOrder
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.conversation.colors.AvatarColorHash
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
@@ -3238,7 +3239,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     return getSignalContacts(includeSelf)?.count ?: 0
   }
 
-  fun getSignalContacts(includeSelf: Boolean, orderBy: String? = null): Cursor? {
+  private fun getSignalContacts(includeSelf: Boolean, orderBy: String? = null): Cursor? {
     val searchSelection = ContactSearchSelection.Builder()
       .withRegistered(true)
       .withGroups(false)
@@ -3249,20 +3250,39 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     return readableDatabase.query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, orderBy)
   }
 
-  fun querySignalContacts(inputQuery: String, includeSelf: Boolean): Cursor? {
-    val query = SqlUtil.buildCaseInsensitiveGlobPattern(inputQuery)
+  fun querySignalContacts(contactSearchQuery: ContactSearchQuery): Cursor? {
+    val query = SqlUtil.buildCaseInsensitiveGlobPattern(contactSearchQuery.query)
 
     val searchSelection = ContactSearchSelection.Builder()
       .withRegistered(true)
       .withGroups(false)
-      .excludeId(if (includeSelf) null else Recipient.self().id)
+      .excludeId(if (contactSearchQuery.includeSelf) null else Recipient.self().id)
       .withSearchQuery(query)
       .build()
     val selection = searchSelection.where
     val args = searchSelection.args
-    val orderBy = "$SORT_NAME, $SYSTEM_JOINED_NAME, $SEARCH_PROFILE_NAME, $E164"
+    val orderBy = "${if (contactSearchQuery.contactSearchSortOrder == ContactSearchSortOrder.RECENCY) "${ThreadTable.TABLE_NAME}.${ThreadTable.DATE} DESC, " else ""}$SORT_NAME, $SYSTEM_JOINED_NAME, $SEARCH_PROFILE_NAME, $E164"
 
-    return readableDatabase.query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, orderBy)
+    return if (contactSearchQuery.contactSearchSortOrder == ContactSearchSortOrder.RECENCY) {
+      val ambiguous = listOf(ID)
+      val projection = SEARCH_PROJECTION.map {
+        if (it in ambiguous) "$TABLE_NAME.$it" else it
+      } + "${ThreadTable.TABLE_NAME}.${ThreadTable.DATE}"
+
+      //language=roomsql
+      readableDatabase.query(
+        """
+          SELECT ${projection.joinToString(",")}
+          FROM $TABLE_NAME
+          JOIN ${ThreadTable.TABLE_NAME} ON ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} = $TABLE_NAME.$ID
+          WHERE $selection
+          ORDER BY $orderBy
+        """.trimIndent(),
+        args
+      )
+    } else {
+      readableDatabase.query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, orderBy)
+    }
   }
 
   fun querySignalContactLetterHeaders(inputQuery: String, includeSelf: Boolean, includePush: Boolean, includeSms: Boolean): Map<RecipientId, String> {
@@ -4336,6 +4356,12 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   class MissingRecipientException(id: RecipientId?) : IllegalStateException("Failed to find recipient with ID: $id")
 
   private class GetOrInsertResult(val recipientId: RecipientId, val neededInsert: Boolean)
+
+  data class ContactSearchQuery(
+    val query: String,
+    val includeSelf: Boolean,
+    val contactSearchSortOrder: ContactSearchSortOrder = ContactSearchSortOrder.NATURAL
+  )
 
   @VisibleForTesting
   internal class ContactSearchSelection private constructor(val where: String, val args: Array<String>) {

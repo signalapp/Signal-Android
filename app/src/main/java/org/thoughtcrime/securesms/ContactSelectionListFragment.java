@@ -919,7 +919,8 @@ public final class ContactSelectionListFragment extends LoggingFragment {
             transportType,
             !hideHeader,
             null,
-            !hideLetterHeaders()
+            !hideLetterHeaders(),
+            newConversationCallback != null ? ContactSearchSortOrder.RECENCY : ContactSearchSortOrder.NATURAL
         ));
       }
 

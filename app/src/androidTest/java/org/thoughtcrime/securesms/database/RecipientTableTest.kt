@@ -57,7 +57,7 @@ class RecipientTableTest {
     SignalDatabase.recipients.setProfileName(hiddenRecipient, ProfileName.fromParts("Hidden", "Person"))
     SignalDatabase.recipients.markHidden(hiddenRecipient)
 
-    val results = SignalDatabase.recipients.querySignalContacts("Hidden", false)!!
+    val results = SignalDatabase.recipients.querySignalContacts(RecipientTable.ContactSearchQuery("Hidden", false))!!
 
     assertEquals(0, results.count)
   }
@@ -128,7 +128,7 @@ class RecipientTableTest {
     SignalDatabase.recipients.setProfileName(blockedRecipient, ProfileName.fromParts("Blocked", "Person"))
     SignalDatabase.recipients.setBlocked(blockedRecipient, true)
 
-    val results = SignalDatabase.recipients.querySignalContacts("Blocked", false)!!
+    val results = SignalDatabase.recipients.querySignalContacts(RecipientTable.ContactSearchQuery("Blocked", false))!!
 
     assertEquals(0, results.count)
   }

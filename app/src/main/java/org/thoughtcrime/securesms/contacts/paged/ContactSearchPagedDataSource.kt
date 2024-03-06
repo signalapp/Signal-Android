@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.contacts.paged.collections.ContactSearchIterat
 import org.thoughtcrime.securesms.contacts.paged.collections.CursorSearchIterator
 import org.thoughtcrime.securesms.contacts.paged.collections.StoriesSearchCollection
 import org.thoughtcrime.securesms.database.GroupTable
+import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
 import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.database.model.ThreadRecord
@@ -210,7 +211,10 @@ class ContactSearchPagedDataSource(
 
   private fun getNonGroupSearchIterator(section: ContactSearchConfiguration.Section.Individuals, query: String?): ContactSearchIterator<Cursor> {
     return when (section.transportType) {
-      ContactSearchConfiguration.TransportType.PUSH -> CursorSearchIterator(wrapRecipientCursor(contactSearchPagedDataSourceRepository.querySignalContacts(query, section.includeSelf)))
+      ContactSearchConfiguration.TransportType.PUSH -> {
+        val searchQuery = RecipientTable.ContactSearchQuery(query ?: "", section.includeSelf, section.pushSearchResultsSortOrder)
+        CursorSearchIterator(wrapRecipientCursor(contactSearchPagedDataSourceRepository.querySignalContacts(searchQuery)))
+      }
       ContactSearchConfiguration.TransportType.SMS -> CursorSearchIterator(wrapRecipientCursor(contactSearchPagedDataSourceRepository.queryNonSignalContacts(query)))
       ContactSearchConfiguration.TransportType.ALL -> CursorSearchIterator(wrapRecipientCursor(contactSearchPagedDataSourceRepository.queryNonGroupContacts(query, section.includeSelf)))
     }
