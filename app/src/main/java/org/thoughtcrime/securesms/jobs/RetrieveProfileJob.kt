@@ -54,6 +54,12 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
   constructor(recipientIds: Set<RecipientId>) : this(
     Parameters.Builder()
       .addConstraint(NetworkConstraint.KEY)
+      .apply {
+        if (recipientIds.size < 5) {
+          setQueue(recipientIds.map { it.toLong() }.sorted().joinToString(separator = "_", prefix = QUEUE_PREFIX))
+          setMaxInstancesForQueue(2)
+        }
+      }
       .setMaxAttempts(3)
       .build(),
     recipientIds.toMutableSet()
@@ -364,6 +370,16 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
       val remoteProfileName = ProfileName.fromSerialized(plaintextProfileName)
       val localProfileName = recipient.profileName
 
+      if (localProfileName.isEmpty &&
+        !recipient.isSystemContact &&
+        recipient.isProfileSharing &&
+        !recipient.isGroup &&
+        !recipient.isSelf
+      ) {
+        Log.i(TAG, "Learned profile name for first time, insert event")
+        SignalDatabase.messages.insertLearnedProfileNameChangeMessage(recipient, recipient.getDisplayName(context))
+      }
+
       if (remoteProfileName != localProfileName) {
         Log.i(TAG, "Profile name updated. Writing new value.")
         SignalDatabase.recipients.setProfileName(recipient.id, remoteProfileName)
@@ -490,6 +506,7 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
     private val TAG = Log.tag(RetrieveProfileJob::class.java)
     private const val KEY_RECIPIENTS = "recipients"
     private const val DEDUPE_KEY_RETRIEVE_AVATAR = KEY + "_RETRIEVE_PROFILE_AVATAR"
+    private const val QUEUE_PREFIX = "RetrieveProfileJob_"
 
     /**
      * Submits the necessary job to refresh the profile of the requested recipient. Works for any

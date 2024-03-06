@@ -996,8 +996,10 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   fun insertProfileNameChangeMessages(recipient: Recipient, newProfileName: String, previousProfileName: String) {
     writableDatabase.withinTransaction { db ->
       val groupRecords = groups.getGroupsContainingMember(recipient.id, false)
-      val profileChangeDetails = ProfileChangeDetails(profileNameChange = ProfileChangeDetails.StringChange(previous = previousProfileName, newValue = newProfileName))
-        .encode()
+
+      val extras = MessageExtras(
+        profileChangeDetails = ProfileChangeDetails(profileNameChange = ProfileChangeDetails.StringChange(previous = previousProfileName, newValue = newProfileName))
+      )
 
       val threadIdsToUpdate = mutableListOf<Long?>().apply {
         add(threads.getThreadIdFor(recipient.id))
@@ -1020,12 +1022,39 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
             READ to 1,
             TYPE to MessageTypes.PROFILE_CHANGE_TYPE,
             THREAD_ID to threadId,
-            BODY to Base64.encodeWithPadding(profileChangeDetails)
+            MESSAGE_EXTRAS to extras.encode()
           )
           db.insert(TABLE_NAME, null, values)
           notifyConversationListeners(threadId)
           TrimThreadJob.enqueueAsync(threadId)
         }
+    }
+  }
+
+  fun insertLearnedProfileNameChangeMessage(recipient: Recipient, previousDisplayName: String) {
+    val threadId: Long? = SignalDatabase.threads.getThreadIdFor(recipient.id)
+
+    if (threadId != null) {
+      val extras = MessageExtras(
+        profileChangeDetails = ProfileChangeDetails(learnedProfileName = ProfileChangeDetails.StringChange(previous = previousDisplayName))
+      )
+
+      writableDatabase
+        .insertInto(TABLE_NAME)
+        .values(
+          FROM_RECIPIENT_ID to recipient.id.serialize(),
+          FROM_DEVICE_ID to 1,
+          TO_RECIPIENT_ID to Recipient.self().id.serialize(),
+          DATE_RECEIVED to System.currentTimeMillis(),
+          DATE_SENT to System.currentTimeMillis(),
+          READ to 1,
+          TYPE to MessageTypes.PROFILE_CHANGE_TYPE,
+          THREAD_ID to threadId,
+          MESSAGE_EXTRAS to extras.encode()
+        )
+        .run()
+
+      notifyConversationListeners(threadId)
     }
   }
 
