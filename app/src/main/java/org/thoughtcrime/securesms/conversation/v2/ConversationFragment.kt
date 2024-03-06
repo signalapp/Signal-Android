@@ -2867,11 +2867,8 @@ class ConversationFragment :
     }
 
     override fun onInviteToSignalClicked() {
-      val recipient = viewModel.recipientSnapshot ?: return
       InviteActions.inviteUserToSignal(
         requireContext(),
-        recipient,
-        binding.conversationInputPanel.embeddedTextEditor::appendInvite,
         this@ConversationFragment::startActivity
       )
     }
@@ -3328,8 +3325,6 @@ class ConversationFragment :
 
       InviteActions.inviteUserToSignal(
         context = requireContext(),
-        recipient = recipient,
-        appendInviteToComposer = composeText::appendInvite,
         launchIntent = this@ConversationFragment::startActivity
       )
     }
@@ -3742,8 +3737,6 @@ class ConversationFragment :
     override fun onInviteToSignal(recipient: Recipient) {
       InviteActions.inviteUserToSignal(
         context = requireContext(),
-        recipient = recipient,
-        appendInviteToComposer = null,
         launchIntent = this@ConversationFragment::startActivity
       )
     }

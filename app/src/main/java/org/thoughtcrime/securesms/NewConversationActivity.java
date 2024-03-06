@@ -50,6 +50,7 @@ import org.thoughtcrime.securesms.groups.ui.creategroup.CreateGroupActivity;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.recipients.RecipientRepository;
 import org.thoughtcrime.securesms.recipients.ui.findby.FindByActivity;
 import org.thoughtcrime.securesms.recipients.ui.findby.FindByMode;
 import org.thoughtcrime.securesms.util.CommunicationActions;
@@ -132,33 +133,19 @@ public class NewConversationActivity extends ContactSelectionActivity
 
         AlertDialog progress = SimpleProgressDialog.show(this);
 
-        SimpleTask.run(getLifecycle(), () -> {
-          Recipient resolved = Recipient.external(this, number);
-
-          if (!resolved.isRegistered() || !resolved.hasServiceId()) {
-            Log.i(TAG, "[onContactSelected] Not registered or no UUID. Doing a directory refresh.");
-            try {
-              ContactDiscovery.refresh(this, resolved, false, TimeUnit.SECONDS.toMillis(10));
-              resolved = Recipient.resolved(resolved.getId());
-            } catch (IOException e) {
-              Log.w(TAG, "[onContactSelected] Failed to refresh directory for new contact.");
-              return null;
-            }
-          }
-
-          return resolved;
-        }, resolved -> {
+        SimpleTask.run(getLifecycle(), () -> RecipientRepository.lookupNewE164(this, number), result -> {
           progress.dismiss();
 
-          if (resolved != null) {
+          if (result instanceof RecipientRepository.LookupResult.Success) {
+            Recipient resolved = Recipient.resolved(((RecipientRepository.LookupResult.Success) result).getRecipientId());
             if (smsSupported || resolved.isRegistered() && resolved.hasServiceId()) {
               launch(resolved);
-            } else {
-              new MaterialAlertDialogBuilder(this)
-                  .setMessage(getString(R.string.NewConversationActivity__s_is_not_a_signal_user, resolved.getDisplayName(this)))
-                  .setPositiveButton(android.R.string.ok, null)
-                  .show();
             }
+          } else if (result instanceof RecipientRepository.LookupResult.NotFound || result instanceof RecipientRepository.LookupResult.InvalidEntry) {
+            new MaterialAlertDialogBuilder(this)
+                .setMessage(getString(R.string.NewConversationActivity__s_is_not_a_signal_user, number))
+                .setPositiveButton(android.R.string.ok, null)
+                .show();
           } else {
             new MaterialAlertDialogBuilder(this)
                 .setMessage(R.string.NetworkFailure__network_error_check_your_connection_and_try_again)

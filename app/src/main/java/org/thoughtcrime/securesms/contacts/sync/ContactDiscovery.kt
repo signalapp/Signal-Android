@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.registration.RegistrationUtil
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
+import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.util.UuidUtil
 import java.io.IOException
@@ -110,6 +111,19 @@ object ContactDiscovery {
     } else {
       RecipientTable.RegisteredState.NOT_REGISTERED
     }
+  }
+
+  /**
+   * Looks up the PNI/ACI for an E164. Only creates a recipient if the number is in the CDS directory.
+   * Use sparingly! This will always use up the user's CDS quota. Always prefer other syncing methods for bulk lookups.
+   *
+   * Returns a [LookupResult] if the E164 is in the CDS directory, or null if it is not.
+   * Important: Just because a user is not in the directory does not mean they are not registered. They could have discoverability off.
+   */
+  @Throws(IOException::class)
+  @WorkerThread
+  fun lookupE164(e164: String): LookupResult? {
+    return ContactDiscoveryRefreshV2.lookupE164(e164)
   }
 
   @JvmStatic
@@ -278,7 +292,7 @@ object ContactDiscovery {
   /**
    * Whether or not a session exists with the provided recipient.
    */
-  fun hasSession(id: RecipientId): Boolean {
+  private fun hasSession(id: RecipientId): Boolean {
     val recipient = Recipient.resolved(id)
 
     if (!recipient.hasServiceId()) {
@@ -294,5 +308,11 @@ object ContactDiscovery {
   class RefreshResult(
     val registeredIds: Set<RecipientId>,
     val rewrites: Map<String, String>
+  )
+
+  data class LookupResult(
+    val recipientId: RecipientId,
+    val pni: ServiceId.PNI,
+    val aci: ServiceId.ACI?
   )
 }

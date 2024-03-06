@@ -14,14 +14,11 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import org.signal.core.util.concurrent.safeBlockingGet
-import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery
-import org.thoughtcrime.securesms.phonenumbers.NumberUtil
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.recipients.RecipientRepository
 import org.thoughtcrime.securesms.registration.util.CountryPrefix
 import org.thoughtcrime.securesms.util.UsernameUtil
-import org.whispersystems.signalservice.api.util.PhoneNumberFormatter
-import java.util.concurrent.TimeUnit
 
 class FindByViewModel(
   mode: FindByMode
@@ -86,40 +83,13 @@ class FindByViewModel(
     val countryCode = stateSnapshot.selectedCountryPrefix.digits
     val nationalNumber = stateSnapshot.userEntry.removePrefix(countryCode.toString())
 
-    val e164 = "$countryCode$nationalNumber"
+    val e164 = "+$countryCode$nationalNumber"
 
-    if (!NumberUtil.isVisuallyValidNumber(e164)) {
-      return FindByResult.InvalidEntry
-    }
-
-    val recipient = try {
-      Recipient.external(context, e164)
-    } catch (e: Exception) {
-      return FindByResult.InvalidEntry
-    }
-
-    return if (!recipient.isRegistered || !recipient.hasServiceId()) {
-      try {
-        ContactDiscovery.refresh(context, recipient, false, TimeUnit.SECONDS.toMillis(10))
-        val resolved = Recipient.resolved(recipient.id)
-        if (!resolved.isRegistered) {
-          if (PhoneNumberFormatter.isValidNumber(nationalNumber, countryCode.toString())) {
-            FindByResult.NotFound(recipient.id)
-          } else {
-            FindByResult.InvalidEntry
-          }
-        } else {
-          FindByResult.Success(recipient.id)
-        }
-      } catch (e: Exception) {
-        if (PhoneNumberFormatter.isValidNumber(nationalNumber, countryCode.toString())) {
-          FindByResult.NotFound(recipient.id)
-        } else {
-          FindByResult.InvalidEntry
-        }
-      }
-    } else {
-      FindByResult.Success(recipient.id)
+    return when (val result = RecipientRepository.lookupNewE164(context, e164)) {
+      RecipientRepository.LookupResult.InvalidEntry -> FindByResult.InvalidEntry
+      RecipientRepository.LookupResult.NetworkError -> FindByResult.NetworkError
+      is RecipientRepository.LookupResult.NotFound -> FindByResult.NotFound(result.recipientId)
+      is RecipientRepository.LookupResult.Success -> FindByResult.Success(result.recipientId)
     }
   }
 }

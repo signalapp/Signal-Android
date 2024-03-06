@@ -11,4 +11,5 @@ sealed interface FindByResult {
   data class Success(val recipientId: RecipientId) : FindByResult
   object InvalidEntry : FindByResult
   data class NotFound(val recipientId: RecipientId = RecipientId.UNKNOWN) : FindByResult
+  object NetworkError : FindByResult
 }

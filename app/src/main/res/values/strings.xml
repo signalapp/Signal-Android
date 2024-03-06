@@ -6646,6 +6646,8 @@
     <string name="FindByActivity__invite">Invite</string>
     <!-- Button label for a button that will launch a camera to scan a username QR code -->
     <string name="FindByActivity__qr_scan_button">Scan QR code</string>
+    <!-- Content of a dialog indicating that we could not perform the requested action because we encountered a network error. -->
+    <string name="FindByActivity__network_error_dialog">Encountered a network error. Try again later.</string>
 
     <!-- EOF -->
 </resources>

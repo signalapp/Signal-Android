@@ -84,7 +84,6 @@ import org.thoughtcrime.securesms.components.settings.app.usernamelinks.main.Use
 import org.thoughtcrime.securesms.invites.InviteActions
 import org.thoughtcrime.securesms.permissions.compose.Permissions
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberVisualTransformation
-import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.registration.util.CountryPrefix
 import org.thoughtcrime.securesms.util.viewModel
@@ -161,6 +160,7 @@ class FindByActivity : PassphraseRequiredActivity() {
 
                       FindByResult.InvalidEntry -> navController.navigate("invalid-entry")
                       is FindByResult.NotFound -> navController.navigate("not-found/${result.recipientId.toLong()}")
+                      is FindByResult.NetworkError -> navController.navigate("network-error")
                     }
                   }
                 },
@@ -221,6 +221,16 @@ class FindByActivity : PassphraseRequiredActivity() {
           }
 
           dialog(
+            route = "network-error"
+          ) {
+            Dialogs.SimpleMessageDialog(
+              message = getString(R.string.FindByActivity__network_error_dialog),
+              dismiss = getString(android.R.string.ok),
+              onDismiss = { navController.popBackStack() }
+            )
+          }
+
+          dialog(
             route = "not-found/{recipientId}",
             arguments = listOf(navArgument("recipientId") { type = NavType.LongType })
           ) { navBackStackEntry ->
@@ -260,15 +270,10 @@ class FindByActivity : PassphraseRequiredActivity() {
               dismiss = dismiss,
               onConfirm = {
                 if (state.mode == FindByMode.PHONE_NUMBER) {
-                  val recipientId = navBackStackEntry.arguments?.getLong("recipientId")?.takeIf { it > 0 }?.let { RecipientId.from(it) } ?: RecipientId.UNKNOWN
-                  if (recipientId != RecipientId.UNKNOWN) {
-                    InviteActions.inviteUserToSignal(
-                      context,
-                      Recipient.resolved(recipientId),
-                      null,
-                      this@FindByActivity::startActivity
-                    )
-                  }
+                  InviteActions.inviteUserToSignal(
+                    context,
+                    this@FindByActivity::startActivity
+                  )
                 }
               },
               onDismiss = { navController.popBackStack() }
@@ -427,6 +432,10 @@ private fun Content(
           contentDescription = stringResource(id = R.string.FindByActivity__next)
         )
       }
+    }
+
+    if (state.isLookupInProgress) {
+      Dialogs.IndeterminateProgressDialog()
     }
 
     LaunchedEffect(Unit) {

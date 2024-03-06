@@ -433,6 +433,15 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     return readableDatabase.exists(TABLE_NAME).where("$ACI_COLUMN = ? AND $PNI_COLUMN = ?", serviceId.toString(), pni.toString()).run()
   }
 
+  fun getByE164IfRegisteredAndDiscoverable(e164: String): RecipientId? {
+    return readableDatabase
+      .select(ID)
+      .from(TABLE_NAME)
+      .where("$E164 = ? AND $REGISTERED = ${RegisteredState.REGISTERED.id} AND $PHONE_NUMBER_DISCOVERABLE = ${PhoneNumberDiscoverableState.DISCOVERABLE.id} AND ($PNI_COLUMN NOT NULL OR $ACI_COLUMN NOT NULL)", e164)
+      .run()
+      .readToSingleObject { RecipientId.from(it.requireLong(ID)) }
+  }
+
   @JvmOverloads
   fun getAndPossiblyMerge(serviceId: ServiceId?, e164: String?, changeSelf: Boolean = false): RecipientId {
     require(serviceId != null || e164 != null) { "Must provide an ACI or E164!" }
@@ -2265,6 +2274,10 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       .run()
 
     getAndPossiblyMerge(null, record.pni, record.e164)
+  }
+
+  fun processIndividualCdsLookup(aci: ACI?, pni: PNI, e164: String): RecipientId {
+    return getAndPossiblyMerge(aci = aci, pni = pni, e164 = e164)
   }
 
   /**

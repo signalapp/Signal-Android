@@ -87,6 +87,42 @@ object ContactDiscoveryRefreshV2 {
   }
 
   @Throws(IOException::class)
+  @WorkerThread
+  @Synchronized
+  fun lookupE164(e164: String): ContactDiscovery.LookupResult? {
+    val response: CdsiV2Service.Response = try {
+      ApplicationDependencies.getSignalServiceAccountManager().getRegisteredUsersWithCdsi(
+        emptySet(),
+        setOf(e164),
+        SignalDatabase.recipients.getAllServiceIdProfileKeyPairs(),
+        Optional.empty(),
+        BuildConfig.CDSI_MRENCLAVE,
+        10_000,
+        if (FeatureFlags.useLibsignalNetForCdsiLookup()) BuildConfig.LIBSIGNAL_NET_ENV else null
+      ) {
+        Log.i(TAG, "Ignoring token for one-off lookup.")
+      }
+    } catch (e: CdsiResourceExhaustedException) {
+      Log.w(TAG, "CDS resource exhausted! Can try again in ${e.retryAfterSeconds} seconds.")
+      SignalStore.misc().cdsBlockedUtil = System.currentTimeMillis() + e.retryAfterSeconds.seconds.inWholeMilliseconds
+      throw e
+    } catch (e: CdsiInvalidTokenException) {
+      Log.w(TAG, "We did not provide a token, but still got a token error! Unexpected, but ignoring.")
+      throw e
+    }
+
+    return response.results[e164]?.let { item ->
+      val id = SignalDatabase.recipients.processIndividualCdsLookup(e164 = e164, aci = item.aci.orElse(null), pni = item.pni)
+
+      ContactDiscovery.LookupResult(
+        recipientId = id,
+        pni = item.pni,
+        aci = item.aci?.orElse(null)
+      )
+    }
+  }
+
+  @Throws(IOException::class)
   private fun refreshInternal(
     recipientE164s: Set<String>,
     systemE164s: Set<String>,
