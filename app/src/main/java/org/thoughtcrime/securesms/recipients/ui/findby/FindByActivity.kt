@@ -420,7 +420,7 @@ private fun Content(
       modifier = Modifier.fillMaxWidth()
     ) {
       Buttons.LargeTonal(
-        enabled = !state.isLookupInProgress,
+        enabled = !state.isLookupInProgress && state.userEntry.isNotBlank(),
         onClick = onNextClick,
         contentPadding = PaddingValues(0.dp),
         modifier = Modifier
