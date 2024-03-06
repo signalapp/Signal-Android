@@ -9,6 +9,7 @@ import android.graphics.Rect
 import android.net.Uri
 import android.os.Bundle
 import android.provider.OpenableColumns
+import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -323,7 +324,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
 
       presentSendButton(state.sendType, state.recipient)
       presentPager(state)
-      presentAddMessageEntry(state.message)
+      presentAddMessageEntry(state.viewOnceToggleState, state.message)
       presentImageQualityToggle(state)
       if (state.quality != sentMediaQuality) {
         presentQualityToggleToast(state)
@@ -462,9 +463,18 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
       )
   }
 
-  private fun presentAddMessageEntry(message: CharSequence?) {
-    if (!message.isNullOrEmpty()) {
-      addMessageButton.setText(message, TextView.BufferType.SPANNABLE)
+  private fun presentAddMessageEntry(viewOnceState: MediaSelectionState.ViewOnceToggleState, message: CharSequence?) {
+    when (viewOnceState) {
+      MediaSelectionState.ViewOnceToggleState.INFINITE -> {
+        if (!message.isNullOrEmpty()) {
+          addMessageButton.gravity = Gravity.CENTER_VERTICAL
+          addMessageButton.setText(message, TextView.BufferType.SPANNABLE)
+        }
+      }
+      MediaSelectionState.ViewOnceToggleState.ONCE -> {
+        addMessageButton.gravity = Gravity.CENTER
+        addMessageButton.setText(R.string.MediaReviewFragment__view_once_message)
+      }
     }
   }
 
@@ -494,7 +504,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
     }
 
     val sendButtonForegroundDrawable = when {
-      recipient != null -> ContextCompat.getDrawable(requireContext(), R.drawable.symbol_send_24)
+      recipient != null -> ContextCompat.getDrawable(requireContext(), R.drawable.symbol_send_fill_24)
       else -> ContextCompat.getDrawable(requireContext(), R.drawable.symbol_arrow_end_24)
     }
 

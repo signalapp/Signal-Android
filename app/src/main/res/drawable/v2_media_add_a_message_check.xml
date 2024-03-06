@@ -5,7 +5,7 @@
             <size
                 android:width="32dp"
                 android:height="32dp" />
-            <solid android:color="@color/core_ultramarine_light" />
+            <solid android:color="@color/signal_light_colorPrimary" />
             <padding
                 android:bottom="4dp"
                 android:left="4dp"
@@ -13,5 +13,5 @@
                 android:top="4dp" />
         </shape>
     </item>
-    <item android:drawable="@drawable/ic_check_24_white" />
+    <item android:drawable="@drawable/symbol_check_white_24" />
 </layer-list>

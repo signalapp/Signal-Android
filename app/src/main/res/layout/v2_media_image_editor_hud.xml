@@ -60,13 +60,13 @@
 
         <ImageView
             android:id="@+id/image_editor_hud_cancel_button"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginStart="10dp"
             android:layout_marginBottom="10dp"
             android:alpha="0"
             android:background="@drawable/circle_tintable"
-            android:backgroundTint="@color/signal_dark_colorPrimaryContainer"
+            android:backgroundTint="@color/signal_dark_colorSurfaceVariant"
             android:contentDescription="@string/ImageEditorHud__cancel"
             android:padding="6dp"
             android:translationY="56dp"
@@ -82,12 +82,11 @@
 
         <ImageView
             android:id="@+id/image_editor_hud_draw_button"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginBottom="10dp"
             android:alpha="0"
             android:contentDescription="@string/ImageEditorHud__draw"
-            android:padding="6dp"
             android:translationY="56dp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -102,12 +101,11 @@
 
         <ImageView
             android:id="@+id/image_editor_hud_text_button"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginBottom="10dp"
             android:alpha="0"
             android:contentDescription="@string/ImageEditorHud__write_text"
-            android:padding="6dp"
             android:translationY="56dp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -122,12 +120,11 @@
 
         <ImageView
             android:id="@+id/image_editor_hud_sticker_button"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginBottom="10dp"
             android:alpha="0"
             android:contentDescription="@string/ImageEditorHud__add_a_sticker"
-            android:padding="6dp"
             android:translationY="56dp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -142,12 +139,11 @@
 
         <ImageView
             android:id="@+id/image_editor_hud_blur_button"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginBottom="10dp"
             android:alpha="0"
             android:contentDescription="@string/ImageEditorHud__blur"
-            android:padding="6dp"
             android:translationY="56dp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -162,13 +158,13 @@
 
         <ImageView
             android:id="@+id/image_editor_hud_done_button"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:alpha="0"
             android:background="@drawable/circle_tintable"
-            android:backgroundTint="@color/signal_dark_colorPrimaryContainer"
+            android:backgroundTint="@color/signal_dark_colorSurfaceVariant"
             android:contentDescription="@string/ImageEditorHud__done_editing"
             android:padding="6dp"
             android:translationY="56dp"
