@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
@@ -185,25 +187,20 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
                                        : recipient.getDisplayName(requireContext());
       fullName.setVisibility(TextUtils.isEmpty(name) ? View.GONE : View.VISIBLE);
       SpannableStringBuilder nameBuilder = new SpannableStringBuilder(name);
-      boolean appendedToName = false;
       if (recipient.showVerified()) {
-        appendedToName = true;
-        SpanUtil.appendCenteredImageSpan(nameBuilder, ContextUtil.requireDrawable(requireContext(), R.drawable.ic_official_28), 28, 28);
+        SpanUtil.appendCenteredImageSpanWithoutSpace(nameBuilder, new ColorDrawable(Color.TRANSPARENT), 8, 8);
+        SpanUtil.appendCenteredImageSpanWithoutSpace(nameBuilder, ContextUtil.requireDrawable(requireContext(), R.drawable.ic_official_28), 28, 28);
       } else if (recipient.isSystemContact()) {
-        appendedToName = true;
         Drawable drawable = ContextUtil.requireDrawable(requireContext(), R.drawable.symbol_person_circle_24);
         drawable.setTint(ContextCompat.getColor(requireContext(), R.color.signal_colorOnSurface));
-        SpanUtil.appendCenteredImageSpan(nameBuilder, drawable, 24, 24);
+        SpanUtil.appendCenteredImageSpanWithoutSpace(nameBuilder, new ColorDrawable(Color.TRANSPARENT), 8, 8);
+        SpanUtil.appendCenteredImageSpanWithoutSpace(nameBuilder, drawable, 24, 24);
       }
 
       if (!recipient.isSelf() && recipient.isIndividual()) {
         Drawable drawable = ContextUtil.requireDrawable(requireContext(), R.drawable.symbol_chevron_right_24);
         drawable.setBounds(0, 0, (int) DimensionUnit.DP.toPixels(24), (int) DimensionUnit.DP.toPixels(24));
         drawable.setTint(ContextCompat.getColor(requireContext(), R.color.signal_colorOutline));
-
-        if (!appendedToName) {
-          nameBuilder.append(" ");
-        }
         nameBuilder.append(SpanUtil.buildCenteredImageSpan(drawable));
 
         fullName.setText(nameBuilder);

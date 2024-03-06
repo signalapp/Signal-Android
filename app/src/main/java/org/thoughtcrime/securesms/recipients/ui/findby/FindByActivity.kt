@@ -66,6 +66,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.dialog
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import kotlinx.coroutines.launch
 import org.signal.core.ui.Animations.navHostSlideInTransition
 import org.signal.core.ui.Animations.navHostSlideOutTransition
@@ -81,6 +82,7 @@ import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.main.UsernameQrScannerActivity
 import org.thoughtcrime.securesms.invites.InviteActions
+import org.thoughtcrime.securesms.permissions.compose.Permissions
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberVisualTransformation
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -103,6 +105,7 @@ class FindByActivity : PassphraseRequiredActivity() {
     FindByViewModel(FindByMode.valueOf(intent.getStringExtra(MODE)!!))
   }
 
+  @OptIn(ExperimentalPermissionsApi::class)
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
     val qrScanLauncher: ActivityResultLauncher<Unit> = registerForActivityResult(UsernameQrScannerActivity.Contract()) { recipientId ->
       if (recipientId != null) {
@@ -136,6 +139,14 @@ class FindByActivity : PassphraseRequiredActivity() {
               navigationIconPainter = painterResource(id = R.drawable.symbol_arrow_left_24)
             ) {
               val context = LocalContext.current
+
+              val cameraPermissionController = Permissions.cameraPermissionHandler(
+                rationale = stringResource(id = R.string.PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera),
+                onPermissionGranted = {
+                  qrScanLauncher.launch(Unit)
+                }
+              )
+
               Content(
                 paddingValues = it,
                 state = state,
@@ -157,7 +168,7 @@ class FindByActivity : PassphraseRequiredActivity() {
                   navController.navigate("select-country-prefix")
                 },
                 onQrCodeScanClicked = {
-                  qrScanLauncher.launch(Unit)
+                  cameraPermissionController.request()
                 }
               )
             }

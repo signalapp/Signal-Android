@@ -398,15 +398,22 @@ open class ContactSearchAdapter(
     override fun bind(model: UnknownRecipientModel) {
       checkbox.visible = displayCheckBox
       checkbox.isSelected = false
-      name.setText(
-        when (model.data.mode) {
-          ContactSearchConfiguration.NewRowMode.NEW_CALL -> R.string.contact_selection_list__new_call
-          ContactSearchConfiguration.NewRowMode.NEW_CONVERSATION -> R.string.contact_selection_list__unknown_contact
-          ContactSearchConfiguration.NewRowMode.BLOCK -> R.string.contact_selection_list__unknown_contact_block
-          ContactSearchConfiguration.NewRowMode.ADD_TO_GROUP -> R.string.contact_selection_list__unknown_contact_add_to_group
-        }
-      )
-      number.text = model.data.query
+      val nameText = when (model.data.mode) {
+        ContactSearchConfiguration.NewRowMode.NEW_CALL -> R.string.contact_selection_list__new_call
+        ContactSearchConfiguration.NewRowMode.NEW_CONVERSATION -> -1
+        ContactSearchConfiguration.NewRowMode.BLOCK -> R.string.contact_selection_list__unknown_contact_block
+        ContactSearchConfiguration.NewRowMode.ADD_TO_GROUP -> R.string.contact_selection_list__unknown_contact_add_to_group
+      }
+
+      if (nameText > 0) {
+        name.setText(nameText)
+        number.text = model.data.query
+        number.visible = true
+      } else {
+        name.text = model.data.query
+        number.visible = false
+      }
+
       itemView.setOnClickListener {
         onClick.onClicked(itemView, model.data, false)
       }

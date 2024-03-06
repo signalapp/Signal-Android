@@ -1,17 +1,34 @@
 package org.signal.core.ui
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.AlertDialogDefaults
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import org.signal.core.ui.Dialogs.PermissionRationaleDialog
 import org.signal.core.ui.Dialogs.SimpleAlertDialog
 import org.signal.core.ui.Dialogs.SimpleMessageDialog
 
@@ -31,7 +48,11 @@ object Dialogs {
   ) {
     androidx.compose.material3.AlertDialog(
       onDismissRequest = onDismiss,
-      title = if (title == null) null else { { Text(text = title) } },
+      title = if (title == null) {
+        null
+      } else {
+        { Text(text = title) }
+      },
       text = { Text(text = message) },
       confirmButton = {
         TextButton(onClick = {
@@ -103,6 +124,82 @@ object Dialogs {
       },
       modifier = Modifier
         .size(100.dp)
+    )
+  }
+
+  @OptIn(ExperimentalLayoutApi::class)
+  @Composable
+  fun PermissionRationaleDialog(
+    icon: Painter,
+    rationale: String,
+    confirm: String,
+    dismiss: String,
+    onConfirm: () -> Unit,
+    onDismiss: () -> Unit
+  ) {
+    Dialog(
+      onDismissRequest = onDismiss
+    ) {
+      Surface(
+        modifier = Modifier
+          .background(
+            color = MaterialTheme.colorScheme.secondaryContainer,
+            shape = AlertDialogDefaults.shape
+          )
+          .clip(AlertDialogDefaults.shape)
+      ) {
+        Column {
+          Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier
+              .fillMaxWidth()
+              .background(color = MaterialTheme.colorScheme.primary)
+              .padding(40.dp)
+          ) {
+            Icon(
+              painter = icon,
+              contentDescription = null,
+              tint = MaterialTheme.colorScheme.onPrimary
+            )
+          }
+          Text(
+            text = rationale,
+            modifier = Modifier
+              .padding(top = 20.dp)
+              .padding(horizontal = 20.dp)
+          )
+
+          FlowRow(
+            horizontalArrangement = Arrangement.End,
+            modifier = Modifier
+              .fillMaxWidth()
+              .padding(24.dp)
+          ) {
+            TextButton(onClick = onDismiss) {
+              Text(text = dismiss)
+            }
+
+            TextButton(onClick = onConfirm) {
+              Text(text = confirm)
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@Preview
+@Composable
+private fun PermissionRationaleDialogPreview() {
+  Previews.Preview {
+    PermissionRationaleDialog(
+      icon = painterResource(id = android.R.drawable.ic_menu_camera),
+      rationale = "This is rationale text about why we need permission.",
+      confirm = "Continue",
+      dismiss = "Not now",
+      onConfirm = {},
+      onDismiss = {}
     )
   }
 }
