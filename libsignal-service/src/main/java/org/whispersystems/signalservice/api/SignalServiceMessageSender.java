@@ -7,6 +7,7 @@ package org.whispersystems.signalservice.api;
 
 import org.signal.core.util.Base64;
 import org.signal.libsignal.metadata.certificate.SenderCertificate;
+import org.signal.libsignal.protocol.IdentityKey;
 import org.signal.libsignal.protocol.IdentityKeyPair;
 import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.protocol.InvalidRegistrationIdException;
@@ -1399,9 +1400,21 @@ public class SignalServiceMessageSender {
     List<SyncMessage.Sent.UnidentifiedDeliveryStatus> unidentifiedDeliveryStatuses = new ArrayList<>(sendMessageResults.size());
     for (SendMessageResult result : sendMessageResults) {
       if (result.getSuccess() != null) {
+        ByteString identity = null;
+
+        if (result.getAddress().getServiceId() instanceof PNI) {
+          IdentityKey identityKey = aciStore.getIdentity(result.getAddress().getServiceId().toProtocolAddress(SignalServiceAddress.DEFAULT_DEVICE_ID));
+          if (identityKey != null) {
+            identity = ByteString.of(identityKey.getPublicKey().serialize());
+          } else {
+            Log.w(TAG, "[" + timestamp + "] Could not find an identity for PNI when sending sync message! " + result.getAddress().getServiceId());
+          }
+        }
+
         unidentifiedDeliveryStatuses.add(new SyncMessage.Sent.UnidentifiedDeliveryStatus.Builder()
                                                                                         .destinationServiceId(result.getAddress().getServiceId().toString())
                                                                                         .unidentified(result.getSuccess().isUnidentified())
+                                                                                        .destinationIdentityKey(identity)
                                                                                         .build());
       }
     }

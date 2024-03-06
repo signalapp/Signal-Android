@@ -395,7 +395,7 @@ object MessageDecryptor {
     val aciAddress = SignalProtocolAddress(aci.toString(), deviceId)
     val pniAddress = SignalProtocolAddress(pni.toString(), deviceId)
     val aciIdentity = protocolStore.getAciStore().getIdentity(aciAddress)
-    val pniIdentity = protocolStore.getAciStore().getIdentity(pniAddress)
+    var pniIdentity = protocolStore.getAciStore().getIdentity(pniAddress)
 
     if (aciIdentity == null) {
       Log.w(TAG, "${logPrefix(envelope, aci)}[validatePniSignature] No identity found for ACI address $aciAddress")
@@ -404,7 +404,18 @@ object MessageDecryptor {
 
     if (pniIdentity == null) {
       Log.w(TAG, "${logPrefix(envelope, aci)}[validatePniSignature] No identity found for PNI address $pniAddress")
-      return
+      if (deviceId != SignalServiceAddress.DEFAULT_DEVICE_ID) {
+        pniIdentity = protocolStore.getAciStore().getIdentity(SignalProtocolAddress(pni.toString(), SignalServiceAddress.DEFAULT_DEVICE_ID))
+
+        if (pniIdentity != null) {
+          Log.w(TAG, "${logPrefix(envelope, aci)}[validatePniSignature] Found PNI identity when looking up device 1. Using that.")
+        } else {
+          Log.w(TAG, "${logPrefix(envelope, aci)}[validatePniSignature] No PNI identity when looking up device 1 either.")
+          return
+        }
+      } else {
+        return
+      }
     }
 
     if (pniIdentity.verifyAlternateIdentity(aciIdentity, pniSignatureMessage.signature!!.toByteArray())) {

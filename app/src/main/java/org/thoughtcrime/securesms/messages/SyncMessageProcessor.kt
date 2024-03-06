@@ -6,6 +6,9 @@ import com.mobilecoin.lib.exceptions.SerializationException
 import okio.ByteString
 import org.signal.core.util.Hex
 import org.signal.core.util.orNull
+import org.signal.libsignal.protocol.IdentityKey
+import org.signal.libsignal.protocol.InvalidKeyException
+import org.signal.libsignal.protocol.SignalProtocolAddress
 import org.signal.libsignal.protocol.util.Pair
 import org.signal.ringrtc.CallException
 import org.signal.ringrtc.CallLinkRootKey
@@ -96,6 +99,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPoin
 import org.whispersystems.signalservice.api.push.DistributionId
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
+import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.storage.StorageKey
 import org.whispersystems.signalservice.internal.push.Content
@@ -169,6 +173,8 @@ object SyncMessageProcessor {
     log(envelope.timestamp!!, "Processing sent transcript for message with ID ${sent.timestamp!!}")
 
     try {
+      handlePniIdentityKeys(envelope, sent)
+
       if (sent.storyMessage != null || sent.storyMessageRecipients.isNotEmpty()) {
         handleSynchronizeSentStoryMessage(envelope, sent)
         return
@@ -243,6 +249,34 @@ object SyncMessageProcessor {
       ApplicationDependencies.getMessageNotifier().setLastDesktopActivityTimestamp(sent.timestamp!!)
     } catch (e: MmsException) {
       throw StorageFailedException(e, metadata.sourceServiceId.toString(), metadata.sourceDeviceId)
+    }
+  }
+
+  private fun handlePniIdentityKeys(envelope: Envelope, sent: Sent) {
+    for (status in sent.unidentifiedStatus) {
+      if (status.destinationIdentityKey == null) {
+        continue
+      }
+
+      val pni = PNI.parsePrefixedOrNull(status.destinationServiceId)
+      if (pni == null) {
+        continue
+      }
+
+      val address = SignalProtocolAddress(pni.toString(), SignalServiceAddress.DEFAULT_DEVICE_ID)
+
+      if (ApplicationDependencies.getProtocolStore().aci().identities().getIdentity(address) != null) {
+        log(envelope.timestamp!!, "Ignoring identity on sent transcript for $pni because we already have one.")
+        continue
+      }
+
+      try {
+        log(envelope.timestamp!!, "Saving identity from sent transcript for $pni")
+        val identityKey = IdentityKey(status.destinationIdentityKey!!.toByteArray())
+        ApplicationDependencies.getProtocolStore().aci().identities().saveIdentity(address, identityKey)
+      } catch (e: InvalidKeyException) {
+        warn(envelope.timestamp!!, "Failed to deserialize identity key for $pni")
+      }
     }
   }
 
