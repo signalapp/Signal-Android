@@ -411,10 +411,7 @@ public class StorageSyncJob extends BaseJob {
     new GroupV1RecordProcessor(context).process(records.gv1, StorageSyncHelper.KEY_GENERATOR);
     new GroupV2RecordProcessor(context).process(records.gv2, StorageSyncHelper.KEY_GENERATOR);
     new AccountRecordProcessor(context, freshSelf()).process(records.account, StorageSyncHelper.KEY_GENERATOR);
-
-    if (getKnownTypes().contains(ManifestRecord.Identifier.Type.STORY_DISTRIBUTION_LIST.getValue())) {
-      new StoryDistributionListRecordProcessor().process(records.storyDistributionLists, StorageSyncHelper.KEY_GENERATOR);
-    }
+    new StoryDistributionListRecordProcessor().process(records.storyDistributionLists, StorageSyncHelper.KEY_GENERATOR);
   }
 
   private static @NonNull List<StorageId> getAllLocalStorageIds(@NonNull Recipient self) {
