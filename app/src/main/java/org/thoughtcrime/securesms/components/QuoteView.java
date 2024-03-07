@@ -351,6 +351,13 @@ public class QuoteView extends ConstraintLayout implements RecipientForeverObser
     boolean outgoing = messageType != MessageType.INCOMING && messageType != MessageType.STORY_REPLY_INCOMING;
     boolean preview  = messageType == MessageType.PREVIEW || messageType == MessageType.STORY_REPLY_PREVIEW;
 
+    if (isStoryReply() && originalMissing) {
+      thumbnailView.setVisibility(GONE);
+      attachmentVideoOVerlayStub.setVisibility(GONE);
+      attachmentNameViewStub.setVisibility(GONE);
+      return;
+    }
+
     // TODO [alex] -- do we need this? mainView.setMinimumHeight(isStoryReply() && originalMissing ? 0 : thumbHeight);
     thumbnailView.setPadding(0, 0, 0, 0);
 
