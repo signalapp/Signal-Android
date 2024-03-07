@@ -1691,7 +1691,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
     val query = meaningfulQuery and isNotJoinedType
     val hasMeaningfulMessages = readableDatabase
-      .exists(TABLE_NAME)
+      .exists("$TABLE_NAME INDEXED BY $INDEX_THREAD_STORY_SCHEDULED_DATE_LATEST_REVISION_ID")
       .where(query.where, query.whereArgs)
       .run()
 
@@ -1705,7 +1705,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
     val query = buildMeaningfulMessagesQuery(threadId)
     return readableDatabase
-      .exists(TABLE_NAME)
+      .exists("$TABLE_NAME INDEXED BY $INDEX_THREAD_STORY_SCHEDULED_DATE_LATEST_REVISION_ID")
       .where(query.where, query.whereArgs)
       .run()
   }
@@ -1722,7 +1722,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
     return readableDatabase
       .select(ID, HAS_DELIVERY_RECEIPT, HAS_READ_RECEIPT, TYPE)
-      .from(TABLE_NAME)
+      .from("$TABLE_NAME INDEXED BY $INDEX_THREAD_STORY_SCHEDULED_DATE_LATEST_REVISION_ID")
       .where(query.where, query.whereArgs)
       .orderBy("$DATE_RECEIVED DESC")
       .limit(1)
@@ -1746,7 +1746,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
   private fun buildMeaningfulMessagesQuery(threadId: Long): SqlUtil.Query {
     val query = """
-      $THREAD_ID = ? AND
+      $THREAD_ID = $threadId AND
       $STORY_TYPE = 0 AND
       $LATEST_REVISION_ID IS NULL AND
       $PARENT_STORY_ID <= 0 AND
@@ -1762,7 +1762,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       )
     """
 
-    return SqlUtil.buildQuery(query, threadId)
+    return SqlUtil.buildQuery(query)
   }
 
   fun setNetworkFailures(messageId: Long, failures: Set<NetworkFailure?>?) {
