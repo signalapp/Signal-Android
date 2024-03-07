@@ -74,7 +74,7 @@ public final class GroupsV1MigrationSuggestionsDialog {
   }
 
   private void onAddClicked(@NonNull DialogInterface rootDialog) {
-    SimpleProgressDialog.DismissibleDialog progressDialog = SimpleProgressDialog.showDelayed(fragmentActivity, 300, 0);
+    SimpleProgressDialog.DismissibleDialog progressDialog = SimpleProgressDialog.showDelayed(fragmentActivity, fragmentActivity, 300, 0);
     SimpleTask.run(SignalExecutors.UNBOUNDED, () -> {
       try {
         GroupManager.addMembers(fragmentActivity, groupId.requirePush(), suggestions);

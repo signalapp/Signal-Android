@@ -6,6 +6,9 @@ import androidx.annotation.AnyThread;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.lifecycle.DefaultLifecycleObserver;
+import androidx.lifecycle.LifecycleObserver;
+import androidx.lifecycle.LifecycleOwner;
 
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
@@ -38,8 +41,10 @@ public final class SimpleProgressDialog {
   }
 
   @AnyThread
-  public static @NonNull DismissibleDialog showDelayed(@NonNull Context context) {
-    return showDelayed(context, 300, 1000);
+  public static @NonNull DismissibleDialog showDelayed(@NonNull Context context,
+                                                       @NonNull LifecycleOwner lifecycleOwner)
+  {
+    return showDelayed(context, lifecycleOwner, 300, 1000);
   }
 
   /**
@@ -55,61 +60,59 @@ public final class SimpleProgressDialog {
    */
   @AnyThread
   public static @NonNull DismissibleDialog showDelayed(@NonNull Context context,
+                                                       @NonNull LifecycleOwner lifecycleOwner,
                                                        int delayMs,
                                                        int minimumShowTimeMs)
   {
     AtomicReference<AlertDialog> dialogAtomicReference = new AtomicReference<>();
     AtomicLong                   shownAt               = new AtomicLong();
 
-    Runnable showRunnable = () -> {
-      Log.i(TAG, "Taking some time. Showing a progress dialog.");
-      shownAt.set(System.currentTimeMillis());
-      dialogAtomicReference.set(show(context));
+    final AtomicReference<Runnable> showRunnable = new AtomicReference<>(null);
+
+    final Runnable tryDismiss = () -> {
+      AlertDialog alertDialog = dialogAtomicReference.getAndSet(null);
+      if (alertDialog != null) {
+        alertDialog.dismiss();
+      }
     };
 
-    ThreadUtil.runOnMainDelayed(showRunnable, delayMs);
-
-    final AtomicReference<Runnable> dismissRunnable = new AtomicReference<>(null);
-
-    return new DismissibleDialog() {
+    DismissibleDialog dialog = new DismissibleDialog() {
       @Override
       public void dismiss() {
-        ThreadUtil.cancelRunnableOnMain(showRunnable);
-        ThreadUtil.runOnMain(() -> {
-          AlertDialog alertDialog = dialogAtomicReference.getAndSet(null);
-          if (alertDialog != null) {
-            long beenShowingForMs = System.currentTimeMillis() - shownAt.get();
-            long remainingTimeMs  = minimumShowTimeMs - beenShowingForMs;
+        ThreadUtil.cancelRunnableOnMain(showRunnable.get());
 
-            if (remainingTimeMs > 0) {
-              dismissRunnable.set(alertDialog::dismiss);
-              ThreadUtil.runOnMainDelayed(dismissRunnable.get(), remainingTimeMs);
-            } else {
-              alertDialog.dismiss();
-            }
-          }
-        });
+        long beenShowingForMs = System.currentTimeMillis() - shownAt.get();
+        long remainingTimeMs  = minimumShowTimeMs + 1000 - beenShowingForMs;
+        long timeUntilDismiss = Math.max(remainingTimeMs, 0);
+
+        ThreadUtil.runOnMainDelayed(tryDismiss, timeUntilDismiss);
       }
 
       @Override
       public void dismissNow() {
-        ThreadUtil.cancelRunnableOnMain(showRunnable);
-
-        // Avoid dismissing the dialog a second time, potentially after its activity is already destroyed
-        Runnable cancelDismissRunnable = dismissRunnable.getAndSet(null);
-        if (cancelDismissRunnable != null) {
-          ThreadUtil.cancelRunnableOnMain(cancelDismissRunnable);
-        }
-
-        ThreadUtil.runOnMain(() -> {
-          AlertDialog alertDialog = dialogAtomicReference.getAndSet(null);
-          if (alertDialog != null) {
-            alertDialog.dismiss();
-          }
-        });
+        ThreadUtil.cancelRunnableOnMain(showRunnable.get());
+        ThreadUtil.runOnMain(tryDismiss);
       }
     };
-  }
+
+    showRunnable.set(() -> {
+      Log.i(TAG, "Taking some time. Showing a progress dialog.");
+      shownAt.set(System.currentTimeMillis());
+      dialogAtomicReference.set(show(context));
+
+      LifecycleObserver observer = new DefaultLifecycleObserver() {
+        @Override public void onStop(@NonNull LifecycleOwner owner) {
+          // avoid leaking the dialog when its parent activity is destroyed
+          tryDismiss.run();
+        }
+      };
+      lifecycleOwner.getLifecycle().addObserver(observer);
+    });
+
+    ThreadUtil.runOnMainDelayed(showRunnable.get(), delayMs);
+
+    return dialog;
+  };
 
   public interface DismissibleDialog {
     @AnyThread

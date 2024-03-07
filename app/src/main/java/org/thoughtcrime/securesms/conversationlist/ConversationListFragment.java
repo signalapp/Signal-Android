@@ -1300,7 +1300,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   }
 
   private void updateMute(@NonNull Collection<Conversation> conversations, long until) {
-    SimpleProgressDialog.DismissibleDialog dialog = SimpleProgressDialog.showDelayed(requireContext(), 250, 250);
+    SimpleProgressDialog.DismissibleDialog dialog = SimpleProgressDialog.showDelayed(requireContext(), this, 250, 250);
 
     SimpleTask.run(SignalExecutors.BOUNDED, () -> {
       List<RecipientId> recipientIds = conversations.stream()
