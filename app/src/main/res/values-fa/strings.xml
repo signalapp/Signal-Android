@@ -536,7 +536,7 @@
     <!-- Dialog title shown after reporting spam and tapping the conversation item -->
     <string name="ConversationFragment_reported_spam">به‌عنوان هرزنامه گزارش شد</string>
     <!-- Dialog message shown after reporting spam and tapping the conversation item -->
-    <string name="ConversationFragment_reported_spam_message">Signal has been notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="ConversationFragment_reported_spam_message">سیگنال مطلع شده است که این فرد ممکن است در حال ارسال هرزنامه باشد. سیگنال نمی‌تواند محتوای هیچ گفتگویی را ببیند.</string>
     <!-- Toast shown after reporting spam and tapping the conversation item -->
     <string name="ConversationFragment_reported_as_spam">به‌عنوان هرزنامه گزارش شد</string>
     <!-- Toast shown after reporting and blocking a conversation -->
@@ -557,7 +557,7 @@
     <!-- Title of tip 1 -->
     <string name="SafetyTips_tip1_title">کلاه‌برداری‌های پولی یا رمزارز</string>
     <!-- Message of tip 1 -->
-    <string name="SafetyTips_tip1_message">If someone you don’t know messages about cryptocurrency (like Bitcoin) or a financial opportunity, be careful—it’s likely spam.</string>
+    <string name="SafetyTips_tip1_message">اگر فرد ناشناسی دربارۀ رمزارز (مثل بیت‌کوین) یا فرصتی مالی به شما پیام داد، مراقب باشید—احتمالاً هرزنامه است.</string>
     <!-- Title of tip 2 -->
     <string name="SafetyTips_tip2_title">پیام‌های مبهم یا نامرتبط</string>
     <!-- Message of tip 2 -->
@@ -1386,6 +1386,8 @@
     <string name="MessageRecord_changed_their_profile_name_to">%1$s نام نمایه خود را به %2$s تغییر داد.</string>
     <string name="MessageRecord_changed_their_profile_name_from_to">%1$s نام نمایه خود را از %2$s به %3$s تغییر داد.</string>
     <string name="MessageRecord_changed_their_profile">%1$s پروفایل خود را تغییر داد.</string>
+    <!-- Conversation update event message shown when you\'ve started a conversation by phone number or username and then learn their profile name. placeholder is username or phone number -->
+    <string name="MessageRecord_started_this_chat">You started this chat with %1$s.</string>
 
     <!-- GV2 specific -->
     <string name="MessageRecord_you_created_the_group">شما گروه را ایجاد کردید.</string>
@@ -1861,8 +1863,10 @@
     <string name="WebRtcCallView__disconnected">ارتباط قطع شد</string>
     <!-- Utilized in the lobby before joining a call link -->
     <string name="WebRtcCallView__signal_call_link">پیوند تماس سیگنال</string>
-    <!-- Warning displayed when entering a call via a link -->
-    <string name="WebRtcCallView__anyone_who_joins">هر کسی که از طریق پیوند به این تماس بپیوندد، قادر به دیدن نام، عکس و شماره تلفن شما خواهد بود.</string>
+    <!-- Warning displayed when entering a call via a link and you have Phone Number Privacy disabled-->
+    <string name="WebRtcCallView__anyone_who_joins_pnp_disabled">Anyone who joins this call via the link will see your name, photo, and phone number.</string>
+    <!-- Warning displayed when entering a call via a link and you have Phone Number Privacy enabled-->
+    <string name="WebRtcCallView__anyone_who_joins_pnp_enabled">Anyone who joins this call via the link will see your name and photo.</string>
     <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
     <string name="WebRtcCallView__waiting_to_be_let_in">در انتظار اجازه ورود…</string>
 
@@ -2296,7 +2300,7 @@
     <string name="UsernameEditFragment_successfully_removed_username">نام کاربری با موفقیت حذف شد.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">خطای شبکه رخ داد.</string>
     <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
-    <string name="UsernameEditFragment_rate_limit_exceeded_error">Too many attempts made, please try again later.</string>
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">تعداد تلاش‌های ناموفق بیش از حد مجاز بود؛ لطفاً بعداً دوباره امتحان کنید.</string>
     <string name="UsernameEditFragment_this_username_is_taken">این نام کاربری گرفته شده است.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">نام‌های کاربری فقط می‌توانند حاوی حروف A تا Z، اعداد ۰ تا ۹ و _ باشند.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">نام‌های کاربری نمی‌توانند با عدد آغاز شوند.</string>
@@ -2320,7 +2324,7 @@
     <!-- Displayed when the chosen discriminator is 00 -->
     <string name="UsernameEditFragment__this_number_cant_be_00">این عدد نمی‌تواند ۰۰ باشد. رقمی بین ۱ تا ۹ انتخاب کنید</string>
     <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_0">Numbers with more than 2 digits can\'t start with 0</string>
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">اعداد دارای بیش از ۲ رقم نمی‌توانند با ۰ شروع شوند</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">بازیابی نام کاربری‌تان موجب بازنشانی پیوند و کد QR فعلی شما می‌شود. مطمئن هستید؟</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
@@ -3894,6 +3898,12 @@
     <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">هیچ‌کسی قادر به مشاهدۀ آنلاین بودن شما در سیگنال نیست، مگر اینکه به کسی پیام دهید یا گفتگویی فعلی با او داشته باشید.</string>
     <!-- Snackbar text when pressing invalid radio item -->
     <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"برای تغییر این تنظیمات، «چه‌کسی می‌تواند شمارۀ من را ببیند» را روی «هیچ‌کس» تنظیم کنید."</string>
+    <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Are you sure?</string>
+    <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Setting \"Who can find me by number\" to \"Nobody\" will make it harder for people to find you on Signal.</string>
+    <!-- Dialog button text for canceling change action -->
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">Cancel</string>
     <string name="PhoneNumberPrivacy_everyone">همه</string>
     <string name="PhoneNumberPrivacy_nobody">هیچ‌کس</string>
     <string name="preferences_app_protection__screen_lock">قفل صفحه</string>
@@ -4391,11 +4401,16 @@
     <string name="GroupDescriptionDialog__group_description">توضیحات گروه</string>
 
     <!-- QualitySelectorBottomSheetDialog -->
+    <!-- Label for our standard quality media conversion. -->
     <string name="QualitySelectorBottomSheetDialog__standard">استاندارد</string>
+    <!-- Description for our standard quality media conversion. -->
     <string name="QualitySelectorBottomSheetDialog__faster_less_data">سریع‌تر، دادهٔ کمتر</string>
+    <!-- Label for our high quality media conversion. This has better quality than standard. -->
     <string name="QualitySelectorBottomSheetDialog__high">عالی</string>
+    <!-- Label for our high quality media conversion. This has better quality than standard. -->
     <string name="QualitySelectorBottomSheetDialog__slower_more_data">آهسته‌تر، دادهٔ بیشتر</string>
-    <string name="QualitySelectorBottomSheetDialog__photo_quality">کیفیت عکس</string>
+    <!-- Title heading for our media conversion quality selector. -->
+    <string name="QualitySelectorBottomSheetDialog__media_quality">Media quality</string>
 
     <!-- AppSettingsFragment -->
     <string name="AppSettingsFragment__invite_your_friends">دوستان خود را دعوت کنید</string>
@@ -4871,6 +4886,22 @@
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">یک یا چند مورد بسیار بزرگ بودند</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">یک یا چند مورد نامعتبر بودند</string>
     <string name="MediaReviewFragment__too_many_items_selected">موارد بسیار زیادی انتخاب شده است</string>
+    <!-- Small notification presented to the user when they set their video to view-once mode -->
+    <string name="MediaReviewFragment__video_set_to_view_once">Video set to view once</string>
+    <!-- Small notification presented to the user when they set their photo to view-once mode -->
+    <string name="MediaReviewFragment__photo_set_to_view_once">Photo sent to view once</string>
+    <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
+    <string name="MediaReviewFragment__video_set_to_high_quality">Video set to high quality</string>
+    <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
+    <string name="MediaReviewFragment__video_set_to_standard_quality">Video set to standard quality</string>
+    <!-- Small notification presented to the user when they set their still image to be sent in high visual quality. -->
+    <string name="MediaReviewFragment__photo_set_to_high_quality">Photo set to high quality</string>
+    <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
+    <string name="MediaReviewFragment__photo_set_to_standard_quality">Photo set to standard quality</string>
+    <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
+    <string name="MediaReviewFragment__items_set_to_high_quality">%1$d items set to high quality</string>
+    <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
+    <string name="MediaReviewFragment__items_set_to_standard_quality">%1$d items set to standard quality</string>
 
     <string name="ImageEditorHud__cancel">لغو</string>
     <string name="ImageEditorHud__draw">کشیدن</string>
@@ -4894,6 +4925,20 @@
     <string name="MediaReviewImagePageFragment__discard">دور انداختن</string>
     <string name="MediaReviewImagePageFragment__discard_changes">نادیده گرفتن تغییرات</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">شما هر تغییری که روی این عکس انجام داده‌اید را از دست خواهید داد.</string>
+
+    <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
+    <string name="MediaCaptureFragment_username_dialog_title">Found %1$s</string>
+    <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
+    <string name="MediaCaptureFragment_username_dialog_body">Start a chat with \"%1$s\"</string>
+    <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
+    <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">Go to chat</string>
+
+    <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+    <string name="MediaCaptureFragment_device_link_dialog_title">Link device?</string>
+    <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+    <string name="MediaCaptureFragment_device_link_dialog_body">It looks like you\'re trying to link a Signal device. Tap continue and scan the code again to link it.</string>
+    <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
+    <string name="MediaCaptureFragment_device_link_dialog_continue">Continue</string>
 
 
     <string name="BadgesOverviewFragment__my_badges">نشان‌های من</string>
@@ -4993,7 +5038,7 @@
     <!-- Displayed as a subtitle on a row in the Manage Donations screen when payment for a donation is pending -->
     <string name="MySupportPreference__payment_pending">پرداخت در انتظار تأیید</string>
     <!-- Displayed as a dialog message when clicking on a donation row that is pending. Placeholder is a formatted fiat amount -->
-    <string name="MySupportPreference__your_bank_transfer_of_s">انتقال بانکی شما به مبلغ %1$s در انتظار تأیید است. تکمیل پردازش انتقال‌های بانکی معمولاً ۱ روز کاری طول می‌کشد.  </string>
+    <string name="MySupportPreference__your_bank_transfer_of_s">Your bank transfer of %1$s is pending. Bank transfers can take 1 to 14 business days to complete.  </string>
     <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
     <string name="MySupportPreference__learn_more">اطلاعات بیشتر</string>
 
@@ -5937,9 +5982,9 @@
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
     <string name="DonateToSignalFragment__you_have_a_donation_pending">یک کمک مالی در انتظار تأیید دارید</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">پردازش انتقال‌های بانکی معمولاً ۱ روز کاری طول می‌کشد. لطفاً قبل از به‌روزرسانی اشتراک خود، صبر کنید تا این پرداخت تکمیل شود.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Bank transfers can take 1 to 14 business days to process. Please wait until this payment completes before updating your subscription.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">پردازش انتقال‌های بانکی معمولاً ۱ روز کاری طول می‌کشد. لطفاً قبل از اهدای کمک مالی دیگر، صبر کنید تا این پرداخت تکمیل شود.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Bank transfers can take 1 to 14 business days to process. Please wait until this payment completes before making another donation.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
     <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">اهدای مالی شما هنوز در حال پردازش است. بسته به اتصال اینترنت شما، این پردازش ممکن است چند دقیقه طول بکشد. لطفاً قبل از به‌روزرسانی اشتراک خود، صبر کنید تا این پرداخت تکمیل شود.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
@@ -6091,7 +6136,7 @@
     <!-- Top text block of donation pending sheet displayed after one-time donation via a bank transfer. Placeholder is the badge name. -->
     <string name="DonationPendingBottomSheet__your_one_time_donation_is_pending">کمک مالی یکباره شما در انتظار تأیید است. وقتی کمک مالی دریافت شود، می‌توانید نشان %1$s را در نمایه‌تان نمایش دهید.</string>
     <!-- Bottom text block of donation pending sheet displayed after donating via a bank transfer. Placeholder is for learn more. -->
-    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">پردازش انتقال‌های بانکی معمولاً ۱ روز کاری طول می‌کشد. %1$s</string>
+    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Bank transfers can take 1 to 14 business days to process. %1$s</string>
     <!-- Learn more text for donation pending sheet displayed after donating via a bank transfer. -->
     <string name="DonationPendingBottomSheet__learn_more">اطلاعات بیشتر</string>
     <!-- Confirmation button for donation pending sheet displayed after donating via a bank transfer. -->
@@ -6432,6 +6477,8 @@
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
     <string name="CallLinkDetailsFragment__call_details">جزئیات تماس</string>
+    <!-- Displayed in a text row, allowing the user to click and edit a call name -->
+    <string name="CallLinkDetailsFragment__edit_call_name">Edit call name</string>
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
     <string name="CallLinkDetailsFragment__add_call_name">افزودن نام تماس</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
@@ -6499,6 +6546,10 @@
     <string name="UsernameLinkSettings_reset_link_result_success">پیوند و کد QR شما بازنشانی شده و پیوند و کد QR جدیدتان ایجاد شده است.</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">برای گفتگو با من در سیگنال، این کد QR را با تلفن خود اسکن کنید.</string>
+    <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_qr_code_not_found">QR code not found</string>
+    <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Try scanning another image containing a Signal QR code.</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
     <string name="UsernameLinkShareBottomSheet_title">هر کسی که این لینک را داشته باشند می‌تواند نام کاربری شما را مشاهده کند و گفتگویی را با شما آغاز کند. آن را فقط با کسانی به اشتراک بگذارید که به آن‌ها اعتماد دارید.</string>
@@ -6590,6 +6641,10 @@
     <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s کاربر سیگنال نیست. آیا می خواهید این شماره را دعوت کنید؟</string>
     <!-- Dialog action to invite the phone number to Signal -->
     <string name="FindByActivity__invite">دعوت</string>
+    <!-- Button label for a button that will launch a camera to scan a username QR code -->
+    <string name="FindByActivity__qr_scan_button">Scan QR code</string>
+    <!-- Content of a dialog indicating that we could not perform the requested action because we encountered a network error. -->
+    <string name="FindByActivity__network_error_dialog">Encountered a network error. Try again later.</string>
 
     <!-- EOF -->
 </resources>

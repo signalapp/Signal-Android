@@ -88,7 +88,7 @@
 
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Impossible de trouver une appli pour sélectionner le média.</string>
-    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Pour joindre des photos, des vidéos ou de l’audio, Signal doit accéder au stockage de l’appareil, mais vous ne lui avez pas accordé l’accès. Pour l’autoriser à y accéder, ouvrez l’application « Paramètres » de votre appareil, appuyez sur « Applications », puis sélectionnez « Autorisations » et activez « Stockage ».</string>
+    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Pour joindre des photos, des vidéos ou de l’audio, Signal doit accéder au stockage de l’appareil, mais vous lui en avez interdit l’accès. Pour l’autoriser à y accéder, ouvrez l’application « Paramètres » de votre appareil, appuyez sur « Applications », puis sélectionnez « Autorisations » et activez « Stockage ».</string>
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal exige l’autorisation Contacts afin de joindre des coordonnées de contact, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Contacts ».</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal exige l’autorisation Position afin de joindre une position géographique, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Position ».</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
@@ -249,7 +249,7 @@
     <string name="CommunicationActions_no_browser_found">Aucun navigateur Web n’a été trouvé.</string>
     <string name="CommunicationActions_send_email">Envoyer un courriel</string>
     <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Un appel cellulaire est déjà en cours.</string>
-    <string name="CommunicationActions_start_voice_call">Lancer un appel audio ?</string>
+    <string name="CommunicationActions_start_voice_call">Passer un appel vocal ?</string>
     <string name="CommunicationActions_cancel">Annuler</string>
     <string name="CommunicationActions_call">Appeler</string>
     <string name="CommunicationActions_insecure_call">Appel non sécurisé</string>
@@ -378,7 +378,7 @@
     <string name="ConversationActivity_lets_switch_to_signal">Passons à Signal %1$s</string>
     <string name="ConversationActivity_specify_recipient">Veuillez choisir un contact</string>
     <string name="ConversationActivity_attachment_exceeds_size_limits">Le fichier joint dépasse la limite de taille pour le type de message que vous envoyez.</string>
-    <string name="ConversationActivity_unable_to_record_audio">Impossible d’enregistrer le son.</string>
+    <string name="ConversationActivity_unable_to_record_audio">Enregistrement audio impossible.</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">Vous ne pouvez pas envoyer de messages à ce groupe, car vous n’en faites plus partie.</string>
     <string name="ConversationActivity_only_s_can_send_messages">Seuls les %1$s peuvent envoyer des messages.</string>
     <string name="ConversationActivity_admins">administrateurs</string>
@@ -390,7 +390,7 @@
     <string name="ConversationActivity_cancel_request">Annuler la demande</string>
 
     <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Pour envoyer des messages audio, autorisez l’accès de Signal à votre microphone.</string>
-    <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal exige l’autorisation Microphone afin d’envoyer des messages audio, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner Autorisations et activer Microphone.</string>
+    <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Pour envoyer des messages audio, Signal doit être autorisé à accéder à l’application Microphone, mais vous lui en avez interdit l’accès. Pour l’autoriser à y accéder, ouvrez l’application « Paramètres » de votre appareil, appuyez sur « Applications », puis sélectionnez « Autorisations » et activez « Microphone ».</string>
     <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal a besoin des autorisations Microphone et Appareil photo pour appeler %1$s, mais elles ont été refusées définitivement. Veuillez accéder aux paramètres de l’appli, sélectionner Autorisations et activer Microphone et Appareil photo.</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Pour prendre des photos et des vidéos, autorisez l’accès de Signal à l’appareil photo.</string>
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal a besoin de l’autorisation Appareil photo afin de prendre des photos ou des vidéos, mais elle a été refusée définitivement. Veuillez accéder aux paramètres de l’appli, sélectionner Autorisations et activer Appareil photo.</string>
@@ -536,7 +536,7 @@
     <!-- Dialog title shown after reporting spam and tapping the conversation item -->
     <string name="ConversationFragment_reported_spam">Signalé comme spam</string>
     <!-- Dialog message shown after reporting spam and tapping the conversation item -->
-    <string name="ConversationFragment_reported_spam_message">Signal has been notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="ConversationFragment_reported_spam_message">Signal a été informé que cet utilisateur envoie peut-être des spams. Nous n’avons cependant jamais accès au contenu des conversations.</string>
     <!-- Toast shown after reporting spam and tapping the conversation item -->
     <string name="ConversationFragment_reported_as_spam">Signalé comme spam</string>
     <!-- Toast shown after reporting and blocking a conversation -->
@@ -557,7 +557,7 @@
     <!-- Title of tip 1 -->
     <string name="SafetyTips_tip1_title">Escroqueries financières ou liées aux crypto-monnaies</string>
     <!-- Message of tip 1 -->
-    <string name="SafetyTips_tip1_message">If someone you don’t know messages about cryptocurrency (like Bitcoin) or a financial opportunity, be careful—it’s likely spam.</string>
+    <string name="SafetyTips_tip1_message">Si un utilisateur que vous ne connaissez pas vous envoie des messages à propos de crypto-monnaies (comme Bitcoin) ou d’une opportunité financière à saisir, soyez vigilant : il s’agit probablement d’un spam.</string>
     <!-- Title of tip 2 -->
     <string name="SafetyTips_tip2_title">Messages au contenu vague ou insignifiant</string>
     <!-- Message of tip 2 -->
@@ -1241,7 +1241,7 @@
     <!-- MediaOverviewActivity -->
     <string name="MediaOverviewActivity_Media">Médias</string>
     <string name="MediaOverviewActivity_Files">Fichiers</string>
-    <string name="MediaOverviewActivity_Audio">Son</string>
+    <string name="MediaOverviewActivity_Audio">Audio</string>
     <string name="MediaOverviewActivity_All">Tout</string>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
         <item quantity="one">Supprimer l\'élément sélectionné ?</item>
@@ -1277,7 +1277,7 @@
         <item quantity="other">%1$d sélectionnées (%2$s)</item>
     </plurals>
     <string name="MediaOverviewActivity_file">Fichier</string>
-    <string name="MediaOverviewActivity_audio">Son</string>
+    <string name="MediaOverviewActivity_audio">Audio</string>
     <string name="MediaOverviewActivity_video">Vidéo</string>
     <string name="MediaOverviewActivity_image">Image</string>
   <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_detail_line_2_part" translatable="false">%1$s · %2$s</string> -->
@@ -1386,6 +1386,8 @@
     <string name="MessageRecord_changed_their_profile_name_to">%1$s a changé son nom de profil en %2$s.</string>
     <string name="MessageRecord_changed_their_profile_name_from_to">%1$s a changé son nom de profil de %2$s à %3$s.</string>
     <string name="MessageRecord_changed_their_profile">%1$s a changé son profil.</string>
+    <!-- Conversation update event message shown when you\'ve started a conversation by phone number or username and then learn their profile name. placeholder is username or phone number -->
+    <string name="MessageRecord_started_this_chat">You started this chat with %1$s.</string>
 
     <!-- GV2 specific -->
     <string name="MessageRecord_you_created_the_group">Vous avez créé le groupe.</string>
@@ -1861,8 +1863,10 @@
     <string name="WebRtcCallView__disconnected">L’application est déconnectée</string>
     <!-- Utilized in the lobby before joining a call link -->
     <string name="WebRtcCallView__signal_call_link">Lien de l’appel Signal</string>
-    <!-- Warning displayed when entering a call via a link -->
-    <string name="WebRtcCallView__anyone_who_joins">Toute personne rejoignant cet appel via le lien verra votre nom, photo et numéro de téléphone.</string>
+    <!-- Warning displayed when entering a call via a link and you have Phone Number Privacy disabled-->
+    <string name="WebRtcCallView__anyone_who_joins_pnp_disabled">Anyone who joins this call via the link will see your name, photo, and phone number.</string>
+    <!-- Warning displayed when entering a call via a link and you have Phone Number Privacy enabled-->
+    <string name="WebRtcCallView__anyone_who_joins_pnp_enabled">Anyone who joins this call via the link will see your name and photo.</string>
     <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
     <string name="WebRtcCallView__waiting_to_be_let_in">En attente d’admission…</string>
 
@@ -1921,7 +1925,7 @@
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">Erreur d’interface utilisateur. Veuillez signaler cette erreur aux développeurs.</string>
     <!-- Error message when the user is trying to change audio outputs but none are present. -->
-    <string name="WebRtcAudioOutputToggleButton_no_eligible_audio_i_o_detected">Aucun audio éligible I/O n’a été détecté.</string>
+    <string name="WebRtcAudioOutputToggleButton_no_eligible_audio_i_o_detected">Aucune E/S audio éligible n’a été détectée.</string>
     <!-- A text description of the bluetooth icon, used for accessibility. -->
     <string name="WebRtcAudioOutputBottomSheet__bluetooth_icon_content_description">L’icône d’un appareil Bluetooth.</string>
     <!-- A text description of the headset icon, used for accessibility. -->
@@ -2005,9 +2009,9 @@
     <!-- CallParticipantView -->
     <string name="CallParticipantView__s_is_blocked">%1$s est bloqué</string>
     <string name="CallParticipantView__more_info">Plus de précisions</string>
-    <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Vous ne recevrez ni leur son ni leur vidéo et ils ne recevront pas les vôtres.</string>
-    <string name="CallParticipantView__cant_receive_audio_video_from_s">Impossible de recevoir ni le son ni la vidéo de %1$s</string>
-    <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Impossible de recevoir ni le son ni la vidéo de %1$s</string>
+    <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Vous ne recevrez ni l’audio, ni la vidéo de cet utilisateur, et il ne recevra pas les vôtres.</string>
+    <string name="CallParticipantView__cant_receive_audio_video_from_s">Impossible de recevoir l’audio et la vidéo de %1$s</string>
+    <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Impossible de recevoir l’audio et la vidéo de %1$s</string>
     <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Cette personne n’a peut-être pas confirmé le changement de votre numéro de sécurité, il y a peut-être un problème avec son appareil ou elle vous a bloqué.</string>
 
     <!-- CallToastPopupWindow -->
@@ -2155,7 +2159,7 @@
     <!-- Slide -->
     <string name="Slide_image">Image</string>
     <string name="Slide_sticker">Sticker</string>
-    <string name="Slide_audio">Son</string>
+    <string name="Slide_audio">Audio</string>
     <string name="Slide_video">Vidéo</string>
 
     <!-- SmsMessageRecord -->
@@ -2296,7 +2300,7 @@
     <string name="UsernameEditFragment_successfully_removed_username">Le nom d’utilisateur a été effacé avec succès.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Une erreur réseau est survenue.</string>
     <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
-    <string name="UsernameEditFragment_rate_limit_exceeded_error">Too many attempts made, please try again later.</string>
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">Vous avez dépassé le nombre de tentatives autorisées. Veuillez réessayer ultérieurement.</string>
     <string name="UsernameEditFragment_this_username_is_taken">Ce nom d’utilisateur existe déjà.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">Les noms d’utilisateur ne peuvent inclure que des caractères de A à Z, 0 à 9 et des tirets bas.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Un nom d’utilisateur ne peut pas commencer par un chiffre.</string>
@@ -2320,7 +2324,7 @@
     <!-- Displayed when the chosen discriminator is 00 -->
     <string name="UsernameEditFragment__this_number_cant_be_00">Ce chiffre ne peut pas être 00. Il doit être compris entre 1 et 9.</string>
     <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_0">Numbers with more than 2 digits can\'t start with 0</string>
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">Les séries comportant plus de 2 chiffres ne peuvent pas commencer par un 0.</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">Récupérer votre nom d’utilisateur entraîne la réinitialisation de votre lien et code QR existants. Êtes-vous sûr de vouloir continuer ?</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
@@ -2440,7 +2444,7 @@
     <string name="MessageNotifier_reacted_s_to_your_image">A réagi par %1$s à votre image.</string>
     <string name="MessageNotifier_reacted_s_to_your_gif">A réagi par %1$s à votre GIF.</string>
     <string name="MessageNotifier_reacted_s_to_your_file">A réagi par %1$s à votre fichier.</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">A réagi par %1$s à votre message vocal.</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">a réagi par %1$s à votre message audio.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">A réagi par %1$s à votre média éphémère.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
     <string name="MessageNotifier_reacted_s_to_your_payment">A réagi par %1$s à votre paiement.</string>
@@ -2679,7 +2683,7 @@
     <string name="conversation_activity__emoji_toggle_description">Afficher/masquer le clavier des émojis</string>
     <string name="conversation_activity__attachment_thumbnail">Imagette de fichiers joints</string>
     <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Afficher/masquer le tiroir de l’appareil photo à basse résolution</string>
-    <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Enregistrer et envoyer un message vocal en pièce jointe</string>
+    <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Enregistrer et envoyer un message audio en pièce jointe</string>
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Verrouiller l’enregistrement de pièces jointes au format audio</string>
     <string name="conversation_activity__message_could_not_be_sent">Le message n’a pas pu être envoyé. Veuillez vérifier votre connexion et réessayer.</string>
 
@@ -2731,7 +2735,7 @@
     <string name="audio_view__download_accessibility_description">Télécharger</string>
 
     <!-- QuoteView -->
-    <string name="QuoteView_audio">Son</string>
+    <string name="QuoteView_audio">Audio</string>
     <string name="QuoteView_video">Vidéo</string>
     <string name="QuoteView_photo">Photo</string>
     <string name="QuoteView_gif">GIF</string>
@@ -3059,7 +3063,7 @@
     <string name="arrays__no_name_or_message">Ni nom ni message</string>
 
     <string name="arrays__images">Images</string>
-    <string name="arrays__audio">Son</string>
+    <string name="arrays__audio">Audio</string>
     <string name="arrays__video">Vidéo</string>
     <string name="arrays__documents">Documents</string>
 
@@ -3086,7 +3090,7 @@
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__pref_keep_muted_chats_archived">Garder les conversations en mode silencieux archivées</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Les conversations en mode silencieux sont archivées, y compris après réception d’un nouveau message.</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Les conversations mises en sourdine restent archivées, même lorsque vous recevez un nouveau message.</string>
     <string name="preferences__generate_link_previews">Générer des aperçus de lien</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Pour les messages que vous envoyez, récupérez des aperçus de lien directement des sites Web.</string>
     <string name="preferences__change_passphrase">Changer la phrase de passe</string>
@@ -3205,7 +3209,7 @@
     <string name="preferences_storage__photos">Photos</string>
     <string name="preferences_storage__videos">Vidéos</string>
     <string name="preferences_storage__files">Fichiers</string>
-    <string name="preferences_storage__audio">Son</string>
+    <string name="preferences_storage__audio">Audio</string>
     <string name="preferences_storage__review_storage">État de l\'espace de stockage</string>
     <string name="preferences_storage__delete_older_messages">Supprimer les anciens messages ?</string>
     <string name="preferences_storage__clear_message_history">Effacer l’historique des messages ?</string>
@@ -3894,6 +3898,12 @@
     <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">Personne ne saura que vous utilisez Signal, hormis les utilisateurs à qui vous envoyez un message ou avec qui vous avez déjà démarré une conversation.</string>
     <!-- Snackbar text when pressing invalid radio item -->
     <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"Pour changer ce paramètre, réglez l’option « Qui peut voir mon numéro » sur « Personne »."</string>
+    <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Are you sure?</string>
+    <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Setting \"Who can find me by number\" to \"Nobody\" will make it harder for people to find you on Signal.</string>
+    <!-- Dialog button text for canceling change action -->
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">Cancel</string>
     <string name="PhoneNumberPrivacy_everyone">Tout le monde</string>
     <string name="PhoneNumberPrivacy_nobody">Personne</string>
     <string name="preferences_app_protection__screen_lock">Verrou d’écran</string>
@@ -4391,11 +4401,16 @@
     <string name="GroupDescriptionDialog__group_description">Description du groupe</string>
 
     <!-- QualitySelectorBottomSheetDialog -->
+    <!-- Label for our standard quality media conversion. -->
     <string name="QualitySelectorBottomSheetDialog__standard">Standard</string>
+    <!-- Description for our standard quality media conversion. -->
     <string name="QualitySelectorBottomSheetDialog__faster_less_data">Plus rapide, moins de données</string>
+    <!-- Label for our high quality media conversion. This has better quality than standard. -->
     <string name="QualitySelectorBottomSheetDialog__high">Élevée</string>
+    <!-- Label for our high quality media conversion. This has better quality than standard. -->
     <string name="QualitySelectorBottomSheetDialog__slower_more_data">Lent, plus lourd</string>
-    <string name="QualitySelectorBottomSheetDialog__photo_quality">Qualité d’image</string>
+    <!-- Title heading for our media conversion quality selector. -->
+    <string name="QualitySelectorBottomSheetDialog__media_quality">Media quality</string>
 
     <!-- AppSettingsFragment -->
     <string name="AppSettingsFragment__invite_your_friends">Invitez vos amis</string>
@@ -4758,7 +4773,7 @@
     <!-- Context menu item message -->
     <string name="NewConversationActivity__message">Message</string>
     <!-- Context menu item audio call -->
-    <string name="NewConversationActivity__audio_call">Appel audio</string>
+    <string name="NewConversationActivity__audio_call">Appel vocal</string>
     <!-- Context menu item video call -->
     <string name="NewConversationActivity__video_call">Appel vidéo</string>
     <!-- Context menu item remove -->
@@ -4871,6 +4886,22 @@
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">Un élément ou plus étaient trop grands</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">Un élément ou plus étaient invalides</string>
     <string name="MediaReviewFragment__too_many_items_selected">Trop d’éléments sélectionnés</string>
+    <!-- Small notification presented to the user when they set their video to view-once mode -->
+    <string name="MediaReviewFragment__video_set_to_view_once">Video set to view once</string>
+    <!-- Small notification presented to the user when they set their photo to view-once mode -->
+    <string name="MediaReviewFragment__photo_set_to_view_once">Photo sent to view once</string>
+    <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
+    <string name="MediaReviewFragment__video_set_to_high_quality">Video set to high quality</string>
+    <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
+    <string name="MediaReviewFragment__video_set_to_standard_quality">Video set to standard quality</string>
+    <!-- Small notification presented to the user when they set their still image to be sent in high visual quality. -->
+    <string name="MediaReviewFragment__photo_set_to_high_quality">Photo set to high quality</string>
+    <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
+    <string name="MediaReviewFragment__photo_set_to_standard_quality">Photo set to standard quality</string>
+    <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
+    <string name="MediaReviewFragment__items_set_to_high_quality">%1$d items set to high quality</string>
+    <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
+    <string name="MediaReviewFragment__items_set_to_standard_quality">%1$d items set to standard quality</string>
 
     <string name="ImageEditorHud__cancel">Annuler</string>
     <string name="ImageEditorHud__draw">Dessiner</string>
@@ -4894,6 +4925,20 @@
     <string name="MediaReviewImagePageFragment__discard">Abandonner</string>
     <string name="MediaReviewImagePageFragment__discard_changes">Abandonner les changements ?</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Vous perdrez toutes les modifications apportées à cette photo.</string>
+
+    <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
+    <string name="MediaCaptureFragment_username_dialog_title">Found %1$s</string>
+    <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
+    <string name="MediaCaptureFragment_username_dialog_body">Start a chat with \"%1$s\"</string>
+    <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
+    <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">Go to chat</string>
+
+    <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+    <string name="MediaCaptureFragment_device_link_dialog_title">Link device?</string>
+    <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+    <string name="MediaCaptureFragment_device_link_dialog_body">It looks like you\'re trying to link a Signal device. Tap continue and scan the code again to link it.</string>
+    <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
+    <string name="MediaCaptureFragment_device_link_dialog_continue">Continue</string>
 
 
     <string name="BadgesOverviewFragment__my_badges">Mes macarons</string>
@@ -4993,7 +5038,7 @@
     <!-- Displayed as a subtitle on a row in the Manage Donations screen when payment for a donation is pending -->
     <string name="MySupportPreference__payment_pending">Paiement en attente</string>
     <!-- Displayed as a dialog message when clicking on a donation row that is pending. Placeholder is a formatted fiat amount -->
-    <string name="MySupportPreference__your_bank_transfer_of_s">Votre virement de %1$s est en attente. Le traitement des virements prend généralement 1 jour ouvré.  </string>
+    <string name="MySupportPreference__your_bank_transfer_of_s">Your bank transfer of %1$s is pending. Bank transfers can take 1 to 14 business days to complete.  </string>
     <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
     <string name="MySupportPreference__learn_more">En savoir plus</string>
 
@@ -5937,9 +5982,9 @@
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
     <string name="DonateToSignalFragment__you_have_a_donation_pending">Un don en attente</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Le traitement des virements bancaires prend généralement 1 jour ouvré. Veuillez attendre que ce paiement soit finalisé avant de mettre votre don à jour.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Bank transfers can take 1 to 14 business days to process. Please wait until this payment completes before updating your subscription.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Le traitement des virements bancaires prend généralement 1 jour ouvré. Veuillez attendre que ce paiement soit finalisé avant d’effectuer un autre don.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Bank transfers can take 1 to 14 business days to process. Please wait until this payment completes before making another donation.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
     <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Votre don est en cours de traitement. Cela peut prendre quelques minutes en fonction de votre connexion. Veuillez attendre que ce paiement soit finalisé avant de mettre votre don à jour.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
@@ -6091,7 +6136,7 @@
     <!-- Top text block of donation pending sheet displayed after one-time donation via a bank transfer. Placeholder is the badge name. -->
     <string name="DonationPendingBottomSheet__your_one_time_donation_is_pending">Votre don ponctuel est en attente. Une fois votre don reçu, vous pourrez afficher le macaron %1$s dans votre profil.</string>
     <!-- Bottom text block of donation pending sheet displayed after donating via a bank transfer. Placeholder is for learn more. -->
-    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Le traitement des virements bancaires prend généralement 1 jour ouvré. %1$s</string>
+    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Bank transfers can take 1 to 14 business days to process. %1$s</string>
     <!-- Learn more text for donation pending sheet displayed after donating via a bank transfer. -->
     <string name="DonationPendingBottomSheet__learn_more">En savoir plus</string>
     <!-- Confirmation button for donation pending sheet displayed after donating via a bank transfer. -->
@@ -6254,7 +6299,7 @@
     <!-- Displayed as a context menu item to start a video call -->
     <string name="CallContextMenu__video_call">Appel vidéo</string>
     <!-- Displayed as a context menu item to start an audio call -->
-    <string name="CallContextMenu__audio_call">Appel audio</string>
+    <string name="CallContextMenu__audio_call">Appel vocal</string>
     <!-- Displayed as a context menu item to go to chat -->
     <string name="CallContextMenu__go_to_chat">Accéder à la conversation</string>
     <!-- Displayed as a context menu item to see call info -->
@@ -6432,6 +6477,8 @@
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
     <string name="CallLinkDetailsFragment__call_details">Détails de l’appel</string>
+    <!-- Displayed in a text row, allowing the user to click and edit a call name -->
+    <string name="CallLinkDetailsFragment__edit_call_name">Edit call name</string>
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
     <string name="CallLinkDetailsFragment__add_call_name">Ajouter un libellé d’appel</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
@@ -6499,6 +6546,10 @@
     <string name="UsernameLinkSettings_reset_link_result_success">Nous avons réinitialisé votre lien et votre code QR, et en avons généré de nouveaux.</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Et si on discutait sur Signal ? Scannez ce code QR pour me contacter.</string>
+    <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_qr_code_not_found">QR code not found</string>
+    <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Try scanning another image containing a Signal QR code.</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
     <string name="UsernameLinkShareBottomSheet_title">Toute personne disposant de ce lien peut voir votre nom d\'utilisateur et démarrer une conversation avec vous. À ne partager qu\'avec des personnes de confiance.</string>
@@ -6590,6 +6641,10 @@
     <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s n’utilise pas Signal. Voulez-vous inviter ce numéro ?</string>
     <!-- Dialog action to invite the phone number to Signal -->
     <string name="FindByActivity__invite">Inviter</string>
+    <!-- Button label for a button that will launch a camera to scan a username QR code -->
+    <string name="FindByActivity__qr_scan_button">Scan QR code</string>
+    <!-- Content of a dialog indicating that we could not perform the requested action because we encountered a network error. -->
+    <string name="FindByActivity__network_error_dialog">Encountered a network error. Try again later.</string>
 
     <!-- EOF -->
 </resources>

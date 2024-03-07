@@ -180,7 +180,7 @@
     <string name="BlockUnblockDialog_block">Blokkeren</string>
     <string name="BlockUnblockDialog_block_and_leave">Blokkeren en verlaten</string>
     <!-- Dialog button label to report as spam and block the person -->
-    <string name="BlockUnblockDialog_report_spam_and_block">Rapporteren en blokkeren</string>
+    <string name="BlockUnblockDialog_report_spam_and_block">Melden en blokkeren</string>
     <!-- Dialog title for reporting spam -->
     <string name="BlockUnblockDialog_report_spam_title">Spam melden?</string>
     <!-- Dialog button to report as spam only -->
@@ -254,12 +254,12 @@
     <string name="CommunicationActions_call">Bellen</string>
     <string name="CommunicationActions_insecure_call">Onbeveiligde oproep</string>
     <string name="CommunicationActions_carrier_charges_may_apply">Je mobielentelefonie-aanbieder brengt misschien extra kosten in rekening. Het nummer dat je wil bellen is niet geregistreerd bij Signal. Deze oproep zal via het telefonienetwerk lopen, niet over internet.</string>
-    <string name="CommunicationActions_cant_join_call">Kan niet deelnemen aan gesprek</string>
+    <string name="CommunicationActions_cant_join_call">Kan niet deelnemen aan oproep</string>
     <string name="CommunicationActions_this_call_link_is_no_longer_valid">De oproeplink is niet langer geldig.</string>
     <!-- Title on dialog when call link url cannot be parsed -->
     <string name="CommunicationActions_invalid_link">Ongeldige link</string>
     <!-- Message on dialog when call link url cannot be parsed -->
-    <string name="CommunicationActions_this_is_not_a_valid_call_link">Dit is geen geldige groepslink. Ga na dat je de volledige link gebruikt met de juiste karakters voordat je probeert deel te nemen.</string>
+    <string name="CommunicationActions_this_is_not_a_valid_call_link">Dit is geen geldige oproeplink. Ga na dat je de volledige link gebruikt met de juiste karakters voordat je probeert deel te nemen.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -536,7 +536,7 @@
     <!-- Dialog title shown after reporting spam and tapping the conversation item -->
     <string name="ConversationFragment_reported_spam">Gemeld als spam</string>
     <!-- Dialog message shown after reporting spam and tapping the conversation item -->
-    <string name="ConversationFragment_reported_spam_message">Signal has been notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="ConversationFragment_reported_spam_message">Signal is op de hoogte gebracht dat deze persoon mogelijk spam verstuurt. Signal kan de inhoud van chats niet zien.</string>
     <!-- Toast shown after reporting spam and tapping the conversation item -->
     <string name="ConversationFragment_reported_as_spam">Gemeld als spam</string>
     <!-- Toast shown after reporting and blocking a conversation -->
@@ -557,7 +557,7 @@
     <!-- Title of tip 1 -->
     <string name="SafetyTips_tip1_title">Crypto- of geldscams</string>
     <!-- Message of tip 1 -->
-    <string name="SafetyTips_tip1_message">If someone you don’t know messages about cryptocurrency (like Bitcoin) or a financial opportunity, be careful—it’s likely spam.</string>
+    <string name="SafetyTips_tip1_message">Als iemand die je niet kent je berichten stuurt over cryptocurrency (zoals Bitcoin) of een financiële investering, wees dan voorzichtig — het is waarschijnlijk spam.</string>
     <!-- Title of tip 2 -->
     <string name="SafetyTips_tip2_title">Vage of irrelevante berichten</string>
     <!-- Message of tip 2 -->
@@ -1036,7 +1036,7 @@
     </plurals>
 
     <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Je hebt geen recht om dit te doen</string>
-    <string name="ManageGroupActivity_not_capable">Één of meer van de door jou toegevoegde personen ondersteunen de vernieuwde groepen nog niet. Zij moeten Signal bijwerken.</string>
+    <string name="ManageGroupActivity_not_capable">Eén of meer van de door jou toegevoegde personen ondersteunen de vernieuwde groepen nog niet. Zij moeten Signal bijwerken.</string>
     <string name="ManageGroupActivity_not_announcement_capable">Ten minste een persoon die je hebt toegevoegd moet eerst Signal bijwerken voordat ze aan mededelingsgroepen kunnen worden toegevoegd.</string>
     <string name="ManageGroupActivity_failed_to_update_the_group">Bijwerken van de groep is mislukt</string>
     <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Je bent geen lid van deze groep</string>
@@ -1047,7 +1047,7 @@
     <string name="ManageGroupActivity_legacy_group">Verouderde groep</string>
     <string name="ManageGroupActivity_legacy_group_learn_more">Dit is een verouderde groep. Om nieuwe functionaliteiten zoals groepsbeheer te kunnen gebruiken moet je een nieuwe groep aanmaken.</string>
     <string name="ManageGroupActivity_legacy_group_upgrade">Dit is een verouderde groep; om nieuwe functionaliteiten te kunnen gebruiken zoals @vermeldingen en beheerders,</string>
-    <string name="ManageGroupActivity_legacy_group_too_large">Deze verouderde groep kan niet worden omgezet naar een nieuwe-stijl groep omdat het teveel leden bevat. Het maximum ledenaantal voor een groep is %1$d.</string>
+    <string name="ManageGroupActivity_legacy_group_too_large">Deze verouderde groep kan niet worden omgezet naar een nieuwe-stijl groep omdat het te veel leden bevat. Het maximum ledenaantal voor een groep is %1$d.</string>
     <string name="ManageGroupActivity_upgrade_this_group">moet je deze groep omzetten.</string>
     <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Dit is een onbeveiligde mms-groep. Om beveiligde berichten uit te wisselen en om functionaliteiten te kunnen gebruiken zoals groepsnamen en groepsbeheer, moet je je contactpersonen uitnodigen om Signal Messenger te gebruiken.</string>
     <string name="ManageGroupActivity_invite_now">Nu uitnodigen</string>
@@ -1192,7 +1192,7 @@
     <string name="RequestConfirmationDialog_add_s_to_the_group">“%1$s” toevoegen aan de groep?</string>
     <string name="RequestConfirmationDialog_deny_request_from_s">Verzoek van “%1$s” afwijzen?</string>
     <!-- Confirm dialog message shown when deny a group link join request and group link is enabled. -->
-    <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">Wil je het lidmaatschapverzoek van “%1$s” afwijzen? Als je dit doet dan kan deze persoon niet opnieuw via de groepslink verzoeken om lid te worden van de groep.</string>
+    <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">Wil je het lidmaatschapsverzoek van “%1$s” afwijzen? Als je dit doet dan kan deze persoon niet opnieuw via de groepslink verzoeken om lid te worden van de groep.</string>
     <string name="RequestConfirmationDialog_add">Toevoegen</string>
     <string name="RequestConfirmationDialog_deny">Afwijzen</string>
 
@@ -1386,6 +1386,8 @@
     <string name="MessageRecord_changed_their_profile_name_to">%1$s heeft diens profielnaam naar “%2$s” gewijzigd.</string>
     <string name="MessageRecord_changed_their_profile_name_from_to">%1$s heeft diens profielnaam van “%2$s” naar “%3$s” gewijzigd.</string>
     <string name="MessageRecord_changed_their_profile">%1$s heeft diens profiel aangepast.</string>
+    <!-- Conversation update event message shown when you\'ve started a conversation by phone number or username and then learn their profile name. placeholder is username or phone number -->
+    <string name="MessageRecord_started_this_chat">You started this chat with %1$s.</string>
 
     <!-- GV2 specific -->
     <string name="MessageRecord_you_created_the_group">Je hebt de groep aangemaakt.</string>
@@ -1619,7 +1621,7 @@
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Wil je updates en nieuws van %1$s ontvangen? Je zult geen berichten ontvangen totdat je diegene hebt gedeblokkeerd.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Wil je je profielnaam, -foto en -omschrijving voor deze groep zichtbaar maken om je chat met de groep voort te kunnen zetten?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Dit is een verouderde groep en deze kan niet meer gebruikt worden. Maak een nieuwe groep om nieuwe functies zoals @vermeldingen en beheerders te activeren.</string>
-    <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Deze verouderde groep kan niet langer gebruikt worden omdat die teveel leden heeft. Het maximum ledenaantal voor een groep is %1$d.</string>
+    <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Deze verouderde groep kan niet langer gebruikt worden omdat die te veel leden heeft. Het maximum ledenaantal voor een groep is %1$d.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Doorgaan met deze chat met %1$s en je naam en foto met hen delen?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Wil je lid worden van deze groep, en sta je toe dat alle leden van de groep je profielnaam, -foto en -omschrijving kunnen zien? Leden van de groep weten niet dat je hun berichten hebt gezien totdat je het gespreksverzoek hebt geaccepteerd.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Wil je lid worden van deze groep, en sta je toe dat alle leden van de groep je profielnaam, -foto en -omschrijving kunnen zien? Je kunt hun berichten nog niet zien totdat je de uitnodiging hebt geaccepteerd.</string>
@@ -1717,7 +1719,7 @@
         <item quantity="one">Je hebt nog %1$d poging resterend. Wanneer je geen pogingen meer over hebt, dan kun je nog wel een nieuwe pincode aanmaken. Je kunt je opnieuw registreren en je account gebruiken maar je verliest wel een aantal opgeslagen instellingen, zoals je profielinformatie.</item>
         <item quantity="other">Je hebt nog %1$d pogingen resterend. Wanneer je geen pogingen meer over hebt, dan kun je nog wel een nieuwe pincode aanmaken. Je kunt je opnieuw registreren en je account gebruiken maar je verliest wel een aantal opgeslagen instellingen, zoals je profielinformatie.</item>
     </plurals>
-    <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal-registratratie - Ik heb hulp nodig bij de Signal-pincode op een Android-apparaat</string>
+    <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal-registratie - Ik heb hulp nodig bij de Signal-pincode op een Android-apparaat</string>
 
     <!-- PinRestoreLockedFragment -->
     <string name="PinRestoreLockedFragment_create_your_pin">Pincode aanmaken</string>
@@ -1814,8 +1816,8 @@
     <string name="WebRtcCallActivity__approve_all">Alle goedkeuren</string>
     <!-- Message for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__d_people_will_be_added_to_the_call">
-        <item quantity="one">%1$d persoon wordt aan het gesprek toegevoegd.</item>
-        <item quantity="other">%1$d personen worden aan het gesprek toegevoegd.</item>
+        <item quantity="one">%1$d persoon wordt aan de oproep toegevoegd.</item>
+        <item quantity="other">%1$d personen worden aan de oproep toegevoegd.</item>
     </plurals>
     <!-- Title for dialog to deny all requests -->
     <plurals name="WebRtcCallActivity__deny_d_requests">
@@ -1824,8 +1826,8 @@
     </plurals>
     <!-- Message for dialog to deny all requests -->
     <plurals name="WebRtcCallActivity__d_people_will_not_be_added_to_the_call">
-        <item quantity="one">%1$d persoon wordt niet toegevoegd aan het gesprek.</item>
-        <item quantity="other">%1$d personen worden niet toegevoegd aan het gesprek.</item>
+        <item quantity="one">%1$d persoon wordt niet toegevoegd aan de oproep.</item>
+        <item quantity="other">%1$d personen worden niet toegevoegd aan de oproep.</item>
     </plurals>
     <!-- Positive action for call link deny all dialog -->
     <string name="WebRtcCallActivity__deny_all">Alle weigeren</string>
@@ -1844,9 +1846,9 @@
     <!-- Message of dialog displayed when a user\'s join request is denied for call link entry -->
     <string name="WebRtcCallActivity__your_request_to_join_this_call_has_been_denied">Je verzoek om deel te nemen aan deze oproep is geweigerd.</string>
     <!-- Title of dialog displayed when a user is removed from a call link -->
-    <string name="WebRtcCallActivity__removed_from_call">Verwijderd van oproep</string>
+    <string name="WebRtcCallActivity__removed_from_call">Verwijderd uit oproep</string>
     <!-- Message of dialog displayed when a user is removed from a call link -->
-    <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">Iemand heeft je uit het gesprek verwijderd.</string>
+    <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">Iemand heeft je uit de oproep verwijderd.</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal-oproep</string>
@@ -1861,10 +1863,12 @@
     <string name="WebRtcCallView__disconnected">Verbinding verbroken</string>
     <!-- Utilized in the lobby before joining a call link -->
     <string name="WebRtcCallView__signal_call_link">Signal oproeplink</string>
-    <!-- Warning displayed when entering a call via a link -->
-    <string name="WebRtcCallView__anyone_who_joins">Iedereen die via de link aan deze oproep deelneemt, ziet je naam, foto en telefoonnummer.</string>
+    <!-- Warning displayed when entering a call via a link and you have Phone Number Privacy disabled-->
+    <string name="WebRtcCallView__anyone_who_joins_pnp_disabled">Anyone who joins this call via the link will see your name, photo, and phone number.</string>
+    <!-- Warning displayed when entering a call via a link and you have Phone Number Privacy enabled-->
+    <string name="WebRtcCallView__anyone_who_joins_pnp_enabled">Anyone who joins this call via the link will see your name and photo.</string>
     <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
-    <string name="WebRtcCallView__waiting_to_be_let_in">Aan het wachten om binnengelaten te worden…</string>
+    <string name="WebRtcCallView__waiting_to_be_let_in">Aan het wachten op toelating…</string>
 
     <string name="WebRtcCallView__signal_will_ring_s">Signal zal %1$s bellen</string>
     <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal zal %1$s en %2$s bellen</string>
@@ -2072,7 +2076,7 @@
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">We moeten verifiëren dat je een mens bent.</string>
     <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
-    <string name="RegistrationActivity_voice_call">Audio-oproep</string>
+    <string name="RegistrationActivity_voice_call">Spraakoproep</string>
     <!-- Dialog button to cancel the pending action and return to the previous state. -->
     <string name="RegistrationActivity_cancel">Annuleren</string>
     <string name="RegistrationActivity_next">Volgende</string>
@@ -2296,7 +2300,7 @@
     <string name="UsernameEditFragment_successfully_removed_username">Gebruikersnaam succesvol verwijderd.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Er is een netwerkfout opgetreden.</string>
     <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
-    <string name="UsernameEditFragment_rate_limit_exceeded_error">Too many attempts made, please try again later.</string>
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">Je hebt te veel pogingen gedaan. Probeer het later opnieuw.</string>
     <string name="UsernameEditFragment_this_username_is_taken">Deze gebruikersnaam is al in gebruik.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">Gebruikersnamen mogen alleen uit a-z, 0-9 en _ bestaan.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Gebruikersnamen mogen niet met een cijfer beginnen.</string>
@@ -2320,7 +2324,7 @@
     <!-- Displayed when the chosen discriminator is 00 -->
     <string name="UsernameEditFragment__this_number_cant_be_00">Dit nummer kan niet 00 zijn. Voer een cijfer tussen 1-9 in</string>
     <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_0">Numbers with more than 2 digits can\'t start with 0</string>
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">Een cijfercombinatie van meer dan 2 cijfers kan niet met 0 beginnen</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">Wanneer je je gebruikersnaam herstelt, werken je bestaande QR-code en link niet langer en worden deze vernieuwd. Weet je het zeker?</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
@@ -2888,7 +2892,7 @@
 
     <!-- prompt_mms_activity -->
     <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal heeft mms-instellingen nodig om via je telefoonabonnement media te kunnen verzenden. Je apparaat biedt deze informatie niet aan Signal aan, wat wel vaker voorkomt bij apparaten met abonnementsvergrendeling en andere beperkende configuraties.</string>
-    <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Om media- en groepsberichten te verzenden tik je op ‘Oké’ en voer je de gevraagde gegevens in. De mms-instellingen voor je provider kunnen meestal gevonden worden door on-line te zoeken naar ‘naam-van-je-provider APN’. Dit hoef je maar één keer te doen.</string>
+    <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Om media- en groepsberichten te verzenden tik je op ‘Oké’ en voer je de gevraagde gegevens in. De mms-instellingen voor je provider kunnen meestal gevonden worden door online te zoeken naar ‘naam-van-je-provider APN’. Dit hoef je maar één keer te doen.</string>
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">Afleveringsprobleem</string>
@@ -2937,7 +2941,7 @@
     <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">Vergelijk bovenstaande nummers met het apparaat van je contact om end-to-end-versleuteling met %1$s te verifiëren. Je kunt ook de QR-code op het apparaat van je contact scannen.</string>
     <string name="verify_display_fragment__tap_to_scan">Tik om te scannen</string>
     <string name="verify_display_fragment__successful_match">De nummers komen overeen</string>
-    <string name="verify_display_fragment__failed_to_verify_safety_number">Verifieren niet gelukt</string>
+    <string name="verify_display_fragment__failed_to_verify_safety_number">Verifiëren niet gelukt</string>
     <string name="verify_display_fragment__loading">Aan het laden…</string>
     <string name="verify_display_fragment__mark_as_verified">Als geverifieerd markeren</string>
     <string name="verify_display_fragment__clear_verification">Verificatie ongedaan maken</string>
@@ -3894,6 +3898,12 @@
     <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">Niemand kan zien dat je een Signal-gebruiker bent, tenzij je hen een bericht stuurt of een bestaande chat met iemand hebt.</string>
     <!-- Snackbar text when pressing invalid radio item -->
     <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"Om deze instelling te wijzigen, stel je ‘Wie kan mijn nummer zien’ in op ‘Niemand’."</string>
+    <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Are you sure?</string>
+    <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Setting \"Who can find me by number\" to \"Nobody\" will make it harder for people to find you on Signal.</string>
+    <!-- Dialog button text for canceling change action -->
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">Cancel</string>
     <string name="PhoneNumberPrivacy_everyone">Iedereen</string>
     <string name="PhoneNumberPrivacy_nobody">Niemand</string>
     <string name="preferences_app_protection__screen_lock">Appvergrendeling</string>
@@ -4180,8 +4190,8 @@
     <string name="DeleteAccountFragment__deleting_your_account_will">Het verwijderen van je account zal:</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">Voer je telefoonnummer in</string>
     <string name="DeleteAccountFragment__delete_account">Account verwijderen</string>
-    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo"> Je accountinformatie en profielfoto verwijderen</string>
-    <string name="DeleteAccountFragment__delete_all_your_messages"> Al je berichten verwijderen</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Je accountinformatie en profielfoto verwijderen</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">Al je berichten verwijderen</string>
     <string name="DeleteAccountFragment__delete_s_in_your_payments_account">%1$s verwijderen van je betalingsaccount</string>
     <string name="DeleteAccountFragment__no_country_code">Er is geen landcode gespecificeerd</string>
     <string name="DeleteAccountFragment__no_number">Er is geen telefoonnummer ingevuld</string>
@@ -4391,11 +4401,16 @@
     <string name="GroupDescriptionDialog__group_description">Groepsomschrijving</string>
 
     <!-- QualitySelectorBottomSheetDialog -->
+    <!-- Label for our standard quality media conversion. -->
     <string name="QualitySelectorBottomSheetDialog__standard">Standaard</string>
+    <!-- Description for our standard quality media conversion. -->
     <string name="QualitySelectorBottomSheetDialog__faster_less_data">Sneller, minder dataverbruik</string>
+    <!-- Label for our high quality media conversion. This has better quality than standard. -->
     <string name="QualitySelectorBottomSheetDialog__high">Hoog</string>
+    <!-- Label for our high quality media conversion. This has better quality than standard. -->
     <string name="QualitySelectorBottomSheetDialog__slower_more_data">Langzamer, meer dataverbruik</string>
-    <string name="QualitySelectorBottomSheetDialog__photo_quality">Afbeeldingskwaliteit</string>
+    <!-- Title heading for our media conversion quality selector. -->
+    <string name="QualitySelectorBottomSheetDialog__media_quality">Media quality</string>
 
     <!-- AppSettingsFragment -->
     <string name="AppSettingsFragment__invite_your_friends">Vrienden uitnodigen</string>
@@ -4758,7 +4773,7 @@
     <!-- Context menu item message -->
     <string name="NewConversationActivity__message">Berichten</string>
     <!-- Context menu item audio call -->
-    <string name="NewConversationActivity__audio_call">Audio-oproep</string>
+    <string name="NewConversationActivity__audio_call">Spraakoproep</string>
     <!-- Context menu item video call -->
     <string name="NewConversationActivity__video_call">Video-oproep</string>
     <!-- Context menu item remove -->
@@ -4871,6 +4886,22 @@
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">Een of meerdere items zijn te groot</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">Een of meerdere items zijn ongeldig</string>
     <string name="MediaReviewFragment__too_many_items_selected">Te veel items geselecteerd</string>
+    <!-- Small notification presented to the user when they set their video to view-once mode -->
+    <string name="MediaReviewFragment__video_set_to_view_once">Video set to view once</string>
+    <!-- Small notification presented to the user when they set their photo to view-once mode -->
+    <string name="MediaReviewFragment__photo_set_to_view_once">Photo sent to view once</string>
+    <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
+    <string name="MediaReviewFragment__video_set_to_high_quality">Video set to high quality</string>
+    <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
+    <string name="MediaReviewFragment__video_set_to_standard_quality">Video set to standard quality</string>
+    <!-- Small notification presented to the user when they set their still image to be sent in high visual quality. -->
+    <string name="MediaReviewFragment__photo_set_to_high_quality">Photo set to high quality</string>
+    <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
+    <string name="MediaReviewFragment__photo_set_to_standard_quality">Photo set to standard quality</string>
+    <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
+    <string name="MediaReviewFragment__items_set_to_high_quality">%1$d items set to high quality</string>
+    <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
+    <string name="MediaReviewFragment__items_set_to_standard_quality">%1$d items set to standard quality</string>
 
     <string name="ImageEditorHud__cancel">Annuleren</string>
     <string name="ImageEditorHud__draw">Tekenen</string>
@@ -4894,6 +4925,20 @@
     <string name="MediaReviewImagePageFragment__discard">Verwerpen</string>
     <string name="MediaReviewImagePageFragment__discard_changes">Aanpassingen verwerpen?</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Veranderingen die je aan deze afbeelding hebt gemaakt zullen verloren gaan.</string>
+
+    <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
+    <string name="MediaCaptureFragment_username_dialog_title">Found %1$s</string>
+    <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
+    <string name="MediaCaptureFragment_username_dialog_body">Start a chat with \"%1$s\"</string>
+    <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
+    <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">Go to chat</string>
+
+    <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+    <string name="MediaCaptureFragment_device_link_dialog_title">Link device?</string>
+    <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+    <string name="MediaCaptureFragment_device_link_dialog_body">It looks like you\'re trying to link a Signal device. Tap continue and scan the code again to link it.</string>
+    <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
+    <string name="MediaCaptureFragment_device_link_dialog_continue">Continue</string>
 
 
     <string name="BadgesOverviewFragment__my_badges">Jouw badges</string>
@@ -4993,7 +5038,7 @@
     <!-- Displayed as a subtitle on a row in the Manage Donations screen when payment for a donation is pending -->
     <string name="MySupportPreference__payment_pending">Betaling in behandeling</string>
     <!-- Displayed as a dialog message when clicking on a donation row that is pending. Placeholder is a formatted fiat amount -->
-    <string name="MySupportPreference__your_bank_transfer_of_s">Je bankoverschrijving van %1$s is in behandeling. De verwerking van een bankoverschrijving duurt doorgaans 1 werkdag.  </string>
+    <string name="MySupportPreference__your_bank_transfer_of_s">Your bank transfer of %1$s is pending. Bank transfers can take 1 to 14 business days to complete.  </string>
     <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
     <string name="MySupportPreference__learn_more">Meer lezen</string>
 
@@ -5937,9 +5982,9 @@
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
     <string name="DonateToSignalFragment__you_have_a_donation_pending">Je donatie is in behandeling</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">De verwerking van een bankoverschrijving duurt doorgaans 1 werkdag. Wacht tot deze betaling is voltooid voordat je je maandelijkse donatie bijwerkt.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Bank transfers can take 1 to 14 business days to process. Please wait until this payment completes before updating your subscription.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">De verwerking van een bankoverschrijving duurt doorgaans 1 werkdag. Wacht tot deze betaling is voltooid voordat je nog een donatie doet.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Bank transfers can take 1 to 14 business days to process. Please wait until this payment completes before making another donation.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
     <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Je donatie is nog in behandeling. Dit kan een paar minuten duren afhankelijk van je internetverbinding. Wacht tot deze betaling is voltooid voordat je je maandelijkse donatie bijwerkt.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
@@ -6091,7 +6136,7 @@
     <!-- Top text block of donation pending sheet displayed after one-time donation via a bank transfer. Placeholder is the badge name. -->
     <string name="DonationPendingBottomSheet__your_one_time_donation_is_pending">Je eenmalige donatie is in behandeling. De ‘%1$s’-badge kun je op je profiel weergeven wanneer je donatie is ontvangen.</string>
     <!-- Bottom text block of donation pending sheet displayed after donating via a bank transfer. Placeholder is for learn more. -->
-    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">De verwerking van een bankoverschrijving duurt doorgaans 1 werkdag. %1$s</string>
+    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Bank transfers can take 1 to 14 business days to process. %1$s</string>
     <!-- Learn more text for donation pending sheet displayed after donating via a bank transfer. -->
     <string name="DonationPendingBottomSheet__learn_more">Meer lezen</string>
     <!-- Confirmation button for donation pending sheet displayed after donating via a bank transfer. -->
@@ -6248,13 +6293,13 @@
     <!-- Accessibility description for the video call button -->
     <string name="CallLogAdapter__start_a_video_call">Start een video-oproep</string>
     <!-- Accessibility description for the voice call button -->
-    <string name="CallLogAdapter__start_a_voice_call">Start een audio-oproep</string>
+    <string name="CallLogAdapter__start_a_voice_call">Start een spraakoproep</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
     <string name="CallContextMenu__video_call">Video-oproep</string>
     <!-- Displayed as a context menu item to start an audio call -->
-    <string name="CallContextMenu__audio_call">Audio-oproep</string>
+    <string name="CallContextMenu__audio_call">Spraakoproep</string>
     <!-- Displayed as a context menu item to go to chat -->
     <string name="CallContextMenu__go_to_chat">Chat openen</string>
     <!-- Displayed as a context menu item to see call info -->
@@ -6432,6 +6477,8 @@
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
     <string name="CallLinkDetailsFragment__call_details">Gegevens van oproep</string>
+    <!-- Displayed in a text row, allowing the user to click and edit a call name -->
+    <string name="CallLinkDetailsFragment__edit_call_name">Edit call name</string>
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
     <string name="CallLinkDetailsFragment__add_call_name">Oproepnaam toevoegen</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
@@ -6499,6 +6546,10 @@
     <string name="UsernameLinkSettings_reset_link_result_success">Je QR-code en link zijn vernieuwd, een nieuwe QR-code en link zijn beschikbaar.</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Scan deze QR-code met je telefoon om met mij te chatten op Signal.</string>
+    <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_qr_code_not_found">QR code not found</string>
+    <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Try scanning another image containing a Signal QR code.</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
     <string name="UsernameLinkShareBottomSheet_title">Iedereen met deze link kan jouw gebruikersnaam zien en een chat met je starten. Deel deze alleen met mensen die je vertrouwt.</string>
@@ -6590,6 +6641,10 @@
     <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s is geen Signal-gebruiker. Wil je dit nummer uitnodigen?</string>
     <!-- Dialog action to invite the phone number to Signal -->
     <string name="FindByActivity__invite">Uitnodigen</string>
+    <!-- Button label for a button that will launch a camera to scan a username QR code -->
+    <string name="FindByActivity__qr_scan_button">Scan QR code</string>
+    <!-- Content of a dialog indicating that we could not perform the requested action because we encountered a network error. -->
+    <string name="FindByActivity__network_error_dialog">Encountered a network error. Try again later.</string>
 
     <!-- EOF -->
 </resources>

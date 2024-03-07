@@ -563,7 +563,7 @@
     <!-- Dialog title shown after reporting spam and tapping the conversation item -->
     <string name="ConversationFragment_reported_spam">Tuairiscigh turscar</string>
     <!-- Dialog message shown after reporting spam and tapping the conversation item -->
-    <string name="ConversationFragment_reported_spam_message">Signal has been notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="ConversationFragment_reported_spam_message">Cuireadh in iúl do Signal go bhféadfadh go bhfuil an duine seo ag seoladh turscair. Ní féidir le Signal inneachar comhráite a fheiceáil.</string>
     <!-- Toast shown after reporting spam and tapping the conversation item -->
     <string name="ConversationFragment_reported_as_spam">Tuairiscithe mar thurscar</string>
     <!-- Toast shown after reporting and blocking a conversation -->
@@ -584,7 +584,7 @@
     <!-- Title of tip 1 -->
     <string name="SafetyTips_tip1_title">Camscéimeanna criptea-airgeadra nó airgid</string>
     <!-- Message of tip 1 -->
-    <string name="SafetyTips_tip1_message">If someone you don’t know messages about cryptocurrency (like Bitcoin) or a financial opportunity, be careful—it’s likely spam.</string>
+    <string name="SafetyTips_tip1_message">Má fhaigheann tú teachtaireacht faoi chriptea-airgeadra (amhail Bitcoin) nó faoi dheis airgeadais ó dhuine éigin nach bhfuil aithne agat air nó uirthi, bí cúramach — seans maith gur turscar atá ann.</string>
     <!-- Title of tip 2 -->
     <string name="SafetyTips_tip2_title">Teachtaireachtaí doiléire nó nach mbaineann le hábhar</string>
     <!-- Message of tip 2 -->
@@ -1527,6 +1527,8 @@
     <string name="MessageRecord_changed_their_profile_name_to">D\'athraigh %1$s an t-ainm próifíle go %2$s.</string>
     <string name="MessageRecord_changed_their_profile_name_from_to">D\'athraigh %1$s an t-ainm próifíle ó %2$s go %3$s.</string>
     <string name="MessageRecord_changed_their_profile">D\'athraigh %1$s an phróifíl aige/aici.</string>
+    <!-- Conversation update event message shown when you\'ve started a conversation by phone number or username and then learn their profile name. placeholder is username or phone number -->
+    <string name="MessageRecord_started_this_chat">You started this chat with %1$s.</string>
 
     <!-- GV2 specific -->
     <string name="MessageRecord_you_created_the_group">Chruthaigh tú an grúpa.</string>
@@ -2062,8 +2064,10 @@
     <string name="WebRtcCallView__disconnected">Dícheangailte</string>
     <!-- Utilized in the lobby before joining a call link -->
     <string name="WebRtcCallView__signal_call_link">Nasc glao Signal</string>
-    <!-- Warning displayed when entering a call via a link -->
-    <string name="WebRtcCallView__anyone_who_joins">Aon duine a théann isteach sa ghlao seo tríd an nasc, feicfidh an duine sin d\'ainm, do ghrianghraf agus d\'uimhir ghutháin.</string>
+    <!-- Warning displayed when entering a call via a link and you have Phone Number Privacy disabled-->
+    <string name="WebRtcCallView__anyone_who_joins_pnp_disabled">Anyone who joins this call via the link will see your name, photo, and phone number.</string>
+    <!-- Warning displayed when entering a call via a link and you have Phone Number Privacy enabled-->
+    <string name="WebRtcCallView__anyone_who_joins_pnp_enabled">Anyone who joins this call via the link will see your name and photo.</string>
     <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
     <string name="WebRtcCallView__waiting_to_be_let_in">Ag fanacht le go ligfear isteach…</string>
 
@@ -2536,7 +2540,7 @@
     <string name="UsernameEditFragment_successfully_removed_username">D\'éirigh le hainm úsáideora a bhaint.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Tharla earráid líonra</string>
     <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
-    <string name="UsernameEditFragment_rate_limit_exceeded_error">Too many attempts made, please try again later.</string>
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">An iomarca iarrachtaí déanta, triail arís ar ball é.</string>
     <string name="UsernameEditFragment_this_username_is_taken">Tá an t-ainm úsáideora sin gafa cheana.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">Ní cheadaítear ach a-Z, 0-9, agus fostríoca in ainmneacha úsáideora.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Ní cheadaítear uimhir ag tús ainm úsáideora.</string>
@@ -2560,7 +2564,7 @@
     <!-- Displayed when the chosen discriminator is 00 -->
     <string name="UsernameEditFragment__this_number_cant_be_00">Ní féidir 00 a bheith san uimhir seo. Cuir isteach digit idir 1 agus 9</string>
     <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_0">Numbers with more than 2 digits can\'t start with 0</string>
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">Ní féidir le huimhreacha a bhfuil níos mó ná 2 dhigit iontu tosú le 0</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">Athshocrófar do chód QR agus nasc reatha le hathshlánú d\'ainm úsáideora. An bhfuil tú cinnte?</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
@@ -4212,6 +4216,12 @@
     <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">Beidh tú dofheicthe ar Signal ag daoine ach amháin má sheolann tú teachtaireacht chucu nó má tá comhrá ar siúl agat leo.</string>
     <!-- Snackbar text when pressing invalid radio item -->
     <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"Leis an socrú sin a athrú, socraigh Daoine atá in ann m\'uimhir a fheiceáil go Duine ar bith."</string>
+    <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Are you sure?</string>
+    <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Setting \"Who can find me by number\" to \"Nobody\" will make it harder for people to find you on Signal.</string>
+    <!-- Dialog button text for canceling change action -->
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">Cancel</string>
     <string name="PhoneNumberPrivacy_everyone">Gach duine</string>
     <string name="PhoneNumberPrivacy_nobody">Duine ar bith</string>
     <string name="preferences_app_protection__screen_lock">Glas an scáileáin</string>
@@ -4721,11 +4731,16 @@
     <string name="GroupDescriptionDialog__group_description">Group Description</string>
 
     <!-- QualitySelectorBottomSheetDialog -->
+    <!-- Label for our standard quality media conversion. -->
     <string name="QualitySelectorBottomSheetDialog__standard">Caighdeánach</string>
+    <!-- Description for our standard quality media conversion. -->
     <string name="QualitySelectorBottomSheetDialog__faster_less_data">Níos tapúla, níos lú sonraí</string>
+    <!-- Label for our high quality media conversion. This has better quality than standard. -->
     <string name="QualitySelectorBottomSheetDialog__high">Ard</string>
+    <!-- Label for our high quality media conversion. This has better quality than standard. -->
     <string name="QualitySelectorBottomSheetDialog__slower_more_data">Níos moille, níos mó sonraí</string>
-    <string name="QualitySelectorBottomSheetDialog__photo_quality">Cáilíocht an ghrianghraif</string>
+    <!-- Title heading for our media conversion quality selector. -->
+    <string name="QualitySelectorBottomSheetDialog__media_quality">Media quality</string>
 
     <!-- AppSettingsFragment -->
     <string name="AppSettingsFragment__invite_your_friends">Tabhair Cuireadh do Chairde</string>
@@ -5222,6 +5237,22 @@
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">Bhí mír amháin nó níos mó rómhór</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">Bhí mír amháin nó níos mó neamhbhailí</string>
     <string name="MediaReviewFragment__too_many_items_selected">Roghnaíodh an iomarca nithe</string>
+    <!-- Small notification presented to the user when they set their video to view-once mode -->
+    <string name="MediaReviewFragment__video_set_to_view_once">Video set to view once</string>
+    <!-- Small notification presented to the user when they set their photo to view-once mode -->
+    <string name="MediaReviewFragment__photo_set_to_view_once">Photo sent to view once</string>
+    <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
+    <string name="MediaReviewFragment__video_set_to_high_quality">Video set to high quality</string>
+    <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
+    <string name="MediaReviewFragment__video_set_to_standard_quality">Video set to standard quality</string>
+    <!-- Small notification presented to the user when they set their still image to be sent in high visual quality. -->
+    <string name="MediaReviewFragment__photo_set_to_high_quality">Photo set to high quality</string>
+    <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
+    <string name="MediaReviewFragment__photo_set_to_standard_quality">Photo set to standard quality</string>
+    <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
+    <string name="MediaReviewFragment__items_set_to_high_quality">%1$d items set to high quality</string>
+    <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
+    <string name="MediaReviewFragment__items_set_to_standard_quality">%1$d items set to standard quality</string>
 
     <string name="ImageEditorHud__cancel">Cealaigh</string>
     <string name="ImageEditorHud__draw">Tarraing</string>
@@ -5245,6 +5276,20 @@
     <string name="MediaReviewImagePageFragment__discard">Cuileáil</string>
     <string name="MediaReviewImagePageFragment__discard_changes">Cuileáil Athruithe?</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Caillfidh tú aon athruithe a rinne tú ar an ngrianghraf seo.</string>
+
+    <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
+    <string name="MediaCaptureFragment_username_dialog_title">Found %1$s</string>
+    <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
+    <string name="MediaCaptureFragment_username_dialog_body">Start a chat with \"%1$s\"</string>
+    <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
+    <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">Go to chat</string>
+
+    <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+    <string name="MediaCaptureFragment_device_link_dialog_title">Link device?</string>
+    <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+    <string name="MediaCaptureFragment_device_link_dialog_body">It looks like you\'re trying to link a Signal device. Tap continue and scan the code again to link it.</string>
+    <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
+    <string name="MediaCaptureFragment_device_link_dialog_continue">Continue</string>
 
 
     <string name="BadgesOverviewFragment__my_badges">Mo shuaitheantais</string>
@@ -5344,7 +5389,7 @@
     <!-- Displayed as a subtitle on a row in the Manage Donations screen when payment for a donation is pending -->
     <string name="MySupportPreference__payment_pending">Íocaíocht ar feitheamh</string>
     <!-- Displayed as a dialog message when clicking on a donation row that is pending. Placeholder is a formatted fiat amount -->
-    <string name="MySupportPreference__your_bank_transfer_of_s">Tá d\'aistriú bainc %1$s ar feitheamh. Is gnách go gcríochnaítear aistrithe bainc laistigh de 1 lá gnó amháin.  </string>
+    <string name="MySupportPreference__your_bank_transfer_of_s">Your bank transfer of %1$s is pending. Bank transfers can take 1 to 14 business days to complete.  </string>
     <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
     <string name="MySupportPreference__learn_more">Tuilleadh faisnéise</string>
 
@@ -6345,9 +6390,9 @@
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
     <string name="DonateToSignalFragment__you_have_a_donation_pending">Tá tabhartas ar feitheamh agat</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Is gnách go bpróiseáiltear aistrithe bainc laistigh de 1 lá gnó amháin. Fan go gcríochnófar an íocaíocht seo roimh do shíntiús a nuashonrú.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Bank transfers can take 1 to 14 business days to process. Please wait until this payment completes before updating your subscription.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Is gnách go bpróiseáiltear aistrithe bainc laistigh de 1 lá gnó amháin. Fan go gcríochnófar an íocaíocht seo roimh thabhartas eile a thabhairt.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Bank transfers can take 1 to 14 business days to process. Please wait until this payment completes before making another donation.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
     <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Tá do thabhartas á phróiseáil fós. D\'fheadfaí go mbeadh cúpla nóiméad i gceist leis sin ag brath ar do nasc. Fan go gcríochnófar an íocaíocht seo roimh do shíntiús a nuashonrú.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
@@ -6502,7 +6547,7 @@
     <!-- Top text block of donation pending sheet displayed after one-time donation via a bank transfer. Placeholder is the badge name. -->
     <string name="DonationPendingBottomSheet__your_one_time_donation_is_pending">Tá do thabhartas aonuaire ar feitheamh. Beidh tú in ann an suaitheantas %1$s a thaispeáint ar do phróifíl nuair a fhaightear do thabhartas.</string>
     <!-- Bottom text block of donation pending sheet displayed after donating via a bank transfer. Placeholder is for learn more. -->
-    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Is gnách go bpróiseáiltear aistrithe bainc laistigh de 1 lá gnó amháin. %1$s</string>
+    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Bank transfers can take 1 to 14 business days to process. %1$s</string>
     <!-- Learn more text for donation pending sheet displayed after donating via a bank transfer. -->
     <string name="DonationPendingBottomSheet__learn_more">Tuilleadh faisnéise</string>
     <!-- Confirmation button for donation pending sheet displayed after donating via a bank transfer. -->
@@ -6855,6 +6900,8 @@
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
     <string name="CallLinkDetailsFragment__call_details">Sonraí an ghlao</string>
+    <!-- Displayed in a text row, allowing the user to click and edit a call name -->
+    <string name="CallLinkDetailsFragment__edit_call_name">Edit call name</string>
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
     <string name="CallLinkDetailsFragment__add_call_name">Cuir ainm an ghlao leis</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
@@ -6922,6 +6969,10 @@
     <string name="UsernameLinkSettings_reset_link_result_success">Athshocraíodh do chód QR agus nasc agus cruthaíodh cód QR agus nasc nua.</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Scan an cód QR seo le do ghuthán chun comhrá a dhéanamh liom ar Signal.</string>
+    <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_qr_code_not_found">QR code not found</string>
+    <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Try scanning another image containing a Signal QR code.</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
     <string name="UsernameLinkShareBottomSheet_title">Aon duine a bhfuil an nasc sin acu, beidh siad in ann féachaint ar d\'ainm úsáideora agus tús a chur le comhrá leat. Ná comhroinn é ach le daoine a bhfuil muinín agat iontu.</string>
@@ -7019,6 +7070,10 @@
     <string name="FindByActivity__s_is_not_a_signal_user_would">Ní úsáideoir Signal é/í %1$s. Ar mhaith leat cuireadh a thabhairt don uimhir seo?</string>
     <!-- Dialog action to invite the phone number to Signal -->
     <string name="FindByActivity__invite">Tabhair cuireadh</string>
+    <!-- Button label for a button that will launch a camera to scan a username QR code -->
+    <string name="FindByActivity__qr_scan_button">Scan QR code</string>
+    <!-- Content of a dialog indicating that we could not perform the requested action because we encountered a network error. -->
+    <string name="FindByActivity__network_error_dialog">Encountered a network error. Try again later.</string>
 
     <!-- EOF -->
 </resources>

@@ -1386,7 +1386,7 @@
     <string name="MessageRecord_changed_their_profile_name_to">%1$s changed their profile name to %2$s.</string>
     <string name="MessageRecord_changed_their_profile_name_from_to">%1$s changed their profile name from %2$s to %3$s.</string>
     <string name="MessageRecord_changed_their_profile">%1$s changed their profile.</string>
-    <!-- Conversation update event message shown when you've started a conversation by phone number or username and then learn their profile name. placeholder is username or phone number -->
+    <!-- Conversation update event message shown when you\'ve started a conversation by phone number or username and then learn their profile name. placeholder is username or phone number -->
     <string name="MessageRecord_started_this_chat">You started this chat with %1$s.</string>
 
     <!-- GV2 specific -->

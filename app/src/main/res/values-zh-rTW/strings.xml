@@ -527,7 +527,7 @@
     <!-- Dialog title shown after reporting spam and tapping the conversation item -->
     <string name="ConversationFragment_reported_spam">已舉報垃圾訊息</string>
     <!-- Dialog message shown after reporting spam and tapping the conversation item -->
-    <string name="ConversationFragment_reported_spam_message">Signal has been notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="ConversationFragment_reported_spam_message">Signal 剛收到通知，此人可能正在發送垃圾訊息。Signal 不能看到任何聊天內容。</string>
     <!-- Toast shown after reporting spam and tapping the conversation item -->
     <string name="ConversationFragment_reported_as_spam">已舉報垃圾訊息</string>
     <!-- Toast shown after reporting and blocking a conversation -->
@@ -548,7 +548,7 @@
     <!-- Title of tip 1 -->
     <string name="SafetyTips_tip1_title">加密貨幣或金錢詐騙</string>
     <!-- Message of tip 1 -->
-    <string name="SafetyTips_tip1_message">If someone you don’t know messages about cryptocurrency (like Bitcoin) or a financial opportunity, be careful—it’s likely spam.</string>
+    <string name="SafetyTips_tip1_message">如果陌生人發送了有關加密貨幣（如比特幣）或提供賺錢機會的訊息，請小心— 這可能是垃圾訊息。</string>
     <!-- Title of tip 2 -->
     <string name="SafetyTips_tip2_title">模糊或不相關的訊息</string>
     <!-- Message of tip 2 -->
@@ -1339,6 +1339,8 @@
     <string name="MessageRecord_changed_their_profile_name_to">%1$s變更他們的個人資訊名稱為%2$s。</string>
     <string name="MessageRecord_changed_their_profile_name_from_to">%1$s變更他們的個人資訊名稱從%2$s改為%3$s。</string>
     <string name="MessageRecord_changed_their_profile">%1$s已變更他們個人資訊。</string>
+    <!-- Conversation update event message shown when you\'ve started a conversation by phone number or username and then learn their profile name. placeholder is username or phone number -->
+    <string name="MessageRecord_started_this_chat">You started this chat with %1$s.</string>
 
     <!-- GV2 specific -->
     <string name="MessageRecord_you_created_the_group">你建立了一個群組。</string>
@@ -1794,8 +1796,10 @@
     <string name="WebRtcCallView__disconnected">已斷線</string>
     <!-- Utilized in the lobby before joining a call link -->
     <string name="WebRtcCallView__signal_call_link">Signal 通話連結</string>
-    <!-- Warning displayed when entering a call via a link -->
-    <string name="WebRtcCallView__anyone_who_joins">透過連結加入此通話的人都會看到你的姓名、相片和電話號碼。</string>
+    <!-- Warning displayed when entering a call via a link and you have Phone Number Privacy disabled-->
+    <string name="WebRtcCallView__anyone_who_joins_pnp_disabled">Anyone who joins this call via the link will see your name, photo, and phone number.</string>
+    <!-- Warning displayed when entering a call via a link and you have Phone Number Privacy enabled-->
+    <string name="WebRtcCallView__anyone_who_joins_pnp_enabled">Anyone who joins this call via the link will see your name and photo.</string>
     <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
     <string name="WebRtcCallView__waiting_to_be_let_in">正在等待獲准加入…</string>
 
@@ -2216,7 +2220,7 @@
     <string name="UsernameEditFragment_successfully_removed_username">成功移除使用者名稱。</string>
     <string name="UsernameEditFragment_encountered_a_network_error">網路連接錯誤。</string>
     <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
-    <string name="UsernameEditFragment_rate_limit_exceeded_error">Too many attempts made, please try again later.</string>
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">嘗試次數過多，請稍後再試。</string>
     <string name="UsernameEditFragment_this_username_is_taken">這個使用者名稱已經被使用。</string>
     <string name="UsernameEditFragment_usernames_can_only_include">使用者名稱只能包含a–Z，0–9和底線。</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">使用者名稱不可以以數字開頭。</string>
@@ -2240,7 +2244,7 @@
     <!-- Displayed when the chosen discriminator is 00 -->
     <string name="UsernameEditFragment__this_number_cant_be_00">此數字不能為 00。請輸入 1–9 之間的數字</string>
     <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_0">Numbers with more than 2 digits can\'t start with 0</string>
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">超過 2 位數的數字不能以 0 為首</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">恢復用戶名稱將重設你現有的二維碼和連結。你確定嗎？</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
@@ -3788,6 +3792,12 @@
     <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">除非你向對方傳送訊息或與對方已有聊天記錄，否則沒有人能看到你使用 Signal。</string>
     <!-- Snackbar text when pressing invalid radio item -->
     <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"若要變更此設定，請將「誰可以看到我的號碼」設定為「沒有人」。"</string>
+    <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Are you sure?</string>
+    <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Setting \"Who can find me by number\" to \"Nobody\" will make it harder for people to find you on Signal.</string>
+    <!-- Dialog button text for canceling change action -->
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">Cancel</string>
     <string name="PhoneNumberPrivacy_everyone">所有人</string>
     <string name="PhoneNumberPrivacy_nobody">沒有人</string>
     <string name="preferences_app_protection__screen_lock">螢幕鎖定</string>
@@ -4281,11 +4291,16 @@
     <string name="GroupDescriptionDialog__group_description">群組描述</string>
 
     <!-- QualitySelectorBottomSheetDialog -->
+    <!-- Label for our standard quality media conversion. -->
     <string name="QualitySelectorBottomSheetDialog__standard">標準</string>
+    <!-- Description for our standard quality media conversion. -->
     <string name="QualitySelectorBottomSheetDialog__faster_less_data">更快，更少數據</string>
+    <!-- Label for our high quality media conversion. This has better quality than standard. -->
     <string name="QualitySelectorBottomSheetDialog__high">高</string>
+    <!-- Label for our high quality media conversion. This has better quality than standard. -->
     <string name="QualitySelectorBottomSheetDialog__slower_more_data">較慢，數據更多</string>
-    <string name="QualitySelectorBottomSheetDialog__photo_quality">照片畫質</string>
+    <!-- Title heading for our media conversion quality selector. -->
+    <string name="QualitySelectorBottomSheetDialog__media_quality">Media quality</string>
 
     <!-- AppSettingsFragment -->
     <string name="AppSettingsFragment__invite_your_friends">邀請你的朋友</string>
@@ -4754,6 +4769,22 @@
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">一件或多件項目容量太大</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">一項或多項無效</string>
     <string name="MediaReviewFragment__too_many_items_selected">選擇的項目太多</string>
+    <!-- Small notification presented to the user when they set their video to view-once mode -->
+    <string name="MediaReviewFragment__video_set_to_view_once">Video set to view once</string>
+    <!-- Small notification presented to the user when they set their photo to view-once mode -->
+    <string name="MediaReviewFragment__photo_set_to_view_once">Photo sent to view once</string>
+    <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
+    <string name="MediaReviewFragment__video_set_to_high_quality">Video set to high quality</string>
+    <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
+    <string name="MediaReviewFragment__video_set_to_standard_quality">Video set to standard quality</string>
+    <!-- Small notification presented to the user when they set their still image to be sent in high visual quality. -->
+    <string name="MediaReviewFragment__photo_set_to_high_quality">Photo set to high quality</string>
+    <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
+    <string name="MediaReviewFragment__photo_set_to_standard_quality">Photo set to standard quality</string>
+    <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
+    <string name="MediaReviewFragment__items_set_to_high_quality">%1$d items set to high quality</string>
+    <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
+    <string name="MediaReviewFragment__items_set_to_standard_quality">%1$d items set to standard quality</string>
 
     <string name="ImageEditorHud__cancel">取消</string>
     <string name="ImageEditorHud__draw">繪圖</string>
@@ -4777,6 +4808,20 @@
     <string name="MediaReviewImagePageFragment__discard">放棄</string>
     <string name="MediaReviewImagePageFragment__discard_changes">放棄更改？</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">你將遺失對此照片所做的任何更改。</string>
+
+    <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
+    <string name="MediaCaptureFragment_username_dialog_title">Found %1$s</string>
+    <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
+    <string name="MediaCaptureFragment_username_dialog_body">Start a chat with \"%1$s\"</string>
+    <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
+    <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">Go to chat</string>
+
+    <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+    <string name="MediaCaptureFragment_device_link_dialog_title">Link device?</string>
+    <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+    <string name="MediaCaptureFragment_device_link_dialog_body">It looks like you\'re trying to link a Signal device. Tap continue and scan the code again to link it.</string>
+    <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
+    <string name="MediaCaptureFragment_device_link_dialog_continue">Continue</string>
 
 
     <string name="BadgesOverviewFragment__my_badges">我的徽章</string>
@@ -4876,7 +4921,7 @@
     <!-- Displayed as a subtitle on a row in the Manage Donations screen when payment for a donation is pending -->
     <string name="MySupportPreference__payment_pending">付款正待處理</string>
     <!-- Displayed as a dialog message when clicking on a donation row that is pending. Placeholder is a formatted fiat amount -->
-    <string name="MySupportPreference__your_bank_transfer_of_s">你 %1$s 的銀行轉帳正待處理。 銀行轉帳通常需要 1 個工作天才能完成。  </string>
+    <string name="MySupportPreference__your_bank_transfer_of_s">Your bank transfer of %1$s is pending. Bank transfers can take 1 to 14 business days to complete.  </string>
     <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
     <string name="MySupportPreference__learn_more">了解更多</string>
 
@@ -5801,9 +5846,9 @@
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
     <string name="DonateToSignalFragment__you_have_a_donation_pending">你有捐款正待處理</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">銀行轉帳通常需要 1 個工作天來處理。 請等待付款完成後，才更新你的捐款。</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Bank transfers can take 1 to 14 business days to process. Please wait until this payment completes before updating your subscription.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">銀行轉帳通常需要 1 個工作天來處理。 請等待付款完成後，才進行另一次捐款。</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Bank transfers can take 1 to 14 business days to process. Please wait until this payment completes before making another donation.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
     <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">你的捐款仍在處理中。 可能需時幾分鐘，視乎你的連線而定。請等待付款完成後，才更新你的定期贊助。</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
@@ -5954,7 +5999,7 @@
     <!-- Top text block of donation pending sheet displayed after one-time donation via a bank transfer. Placeholder is the badge name. -->
     <string name="DonationPendingBottomSheet__your_one_time_donation_is_pending">你的單次捐款正待處理。 收到捐款後，你便能在個人資料中顯示 %1$s 徽章。</string>
     <!-- Bottom text block of donation pending sheet displayed after donating via a bank transfer. Placeholder is for learn more. -->
-    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">銀行轉帳通常需要 1 個工作天來處理。 %1$s</string>
+    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Bank transfers can take 1 to 14 business days to process. %1$s</string>
     <!-- Learn more text for donation pending sheet displayed after donating via a bank transfer. -->
     <string name="DonationPendingBottomSheet__learn_more">了解更多</string>
     <!-- Confirmation button for donation pending sheet displayed after donating via a bank transfer. -->
@@ -6291,6 +6336,8 @@
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
     <string name="CallLinkDetailsFragment__call_details">通話詳情</string>
+    <!-- Displayed in a text row, allowing the user to click and edit a call name -->
+    <string name="CallLinkDetailsFragment__edit_call_name">Edit call name</string>
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
     <string name="CallLinkDetailsFragment__add_call_name">新增通話名稱</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
@@ -6358,6 +6405,10 @@
     <string name="UsernameLinkSettings_reset_link_result_success">你的二維碼和連結已重設，並且已建立一個新的二維碼及連結。</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">用你的手機掃描此二維碼，開始與我在 Signal 上聊天。</string>
+    <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_qr_code_not_found">QR code not found</string>
+    <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Try scanning another image containing a Signal QR code.</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
     <string name="UsernameLinkShareBottomSheet_title">任何人憑此連結將可檢視你的用戶名稱，並開始與你聊天。請只與你信任的人分享此連結。</string>
@@ -6447,6 +6498,10 @@
     <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s 不是 Signal 用戶。你想向此號碼發出邀請嗎？</string>
     <!-- Dialog action to invite the phone number to Signal -->
     <string name="FindByActivity__invite">邀請</string>
+    <!-- Button label for a button that will launch a camera to scan a username QR code -->
+    <string name="FindByActivity__qr_scan_button">Scan QR code</string>
+    <!-- Content of a dialog indicating that we could not perform the requested action because we encountered a network error. -->
+    <string name="FindByActivity__network_error_dialog">Encountered a network error. Try again later.</string>
 
     <!-- EOF -->
 </resources>

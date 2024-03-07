@@ -536,7 +536,7 @@
     <!-- Dialog title shown after reporting spam and tapping the conversation item -->
     <string name="ConversationFragment_reported_spam">Έγινε αναφορά ως ανεπιθύμητο</string>
     <!-- Dialog message shown after reporting spam and tapping the conversation item -->
-    <string name="ConversationFragment_reported_spam_message">Signal has been notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="ConversationFragment_reported_spam_message">Το Signal έχει ειδοποιηθεί ότι αυτό το άτομο ενδέχεται να στέλνει spam. Το Signal δεν μπορεί να δει το περιεχόμενο οποιασδήποτε συνομιλίας.</string>
     <!-- Toast shown after reporting spam and tapping the conversation item -->
     <string name="ConversationFragment_reported_as_spam">Έγινε αναφορά ως ανεπιθύμητο</string>
     <!-- Toast shown after reporting and blocking a conversation -->
@@ -557,7 +557,7 @@
     <!-- Title of tip 1 -->
     <string name="SafetyTips_tip1_title">Απάτες κρυπτονομισμάτων ή χρημάτων</string>
     <!-- Message of tip 1 -->
-    <string name="SafetyTips_tip1_message">If someone you don’t know messages about cryptocurrency (like Bitcoin) or a financial opportunity, be careful—it’s likely spam.</string>
+    <string name="SafetyTips_tip1_message">Αν κάποιος που δεν γνωρίζεις στείλει μηνύματα σχετικά με κρυπτονόμισμα (όπως Bitcoin) ή μια οικονομική ευκαιρία, πρόσεξε—είναι πιθανό να πρόκειται για spam.</string>
     <!-- Title of tip 2 -->
     <string name="SafetyTips_tip2_title">Ασαφή ή άσχετα μηνύματα</string>
     <!-- Message of tip 2 -->
@@ -1386,6 +1386,8 @@
     <string name="MessageRecord_changed_their_profile_name_to">Ο/Η %1$s άλλαξε το όνομα προφίλ του/της σε %2$s.</string>
     <string name="MessageRecord_changed_their_profile_name_from_to">Ο/Η %1$s άλλαξε το όνομα προφίλ του/της από %2$s σε %3$s.</string>
     <string name="MessageRecord_changed_their_profile">Ο/Η %1$s άλλαξε το προφίλ του/της.</string>
+    <!-- Conversation update event message shown when you\'ve started a conversation by phone number or username and then learn their profile name. placeholder is username or phone number -->
+    <string name="MessageRecord_started_this_chat">You started this chat with %1$s.</string>
 
     <!-- GV2 specific -->
     <string name="MessageRecord_you_created_the_group">Δημιούργησες την ομάδα.</string>
@@ -1861,8 +1863,10 @@
     <string name="WebRtcCallView__disconnected">Αποσυνδέθηκε</string>
     <!-- Utilized in the lobby before joining a call link -->
     <string name="WebRtcCallView__signal_call_link">Σύνδεσμος κλήσης Signal</string>
-    <!-- Warning displayed when entering a call via a link -->
-    <string name="WebRtcCallView__anyone_who_joins">Όποιος συμμετέχει στην κλήση μέσω του συνδέσμου θα μπορεί να δει το όνομα, τη φωτογραφία και τον αριθμό τηλεφώνου σου.</string>
+    <!-- Warning displayed when entering a call via a link and you have Phone Number Privacy disabled-->
+    <string name="WebRtcCallView__anyone_who_joins_pnp_disabled">Anyone who joins this call via the link will see your name, photo, and phone number.</string>
+    <!-- Warning displayed when entering a call via a link and you have Phone Number Privacy enabled-->
+    <string name="WebRtcCallView__anyone_who_joins_pnp_enabled">Anyone who joins this call via the link will see your name and photo.</string>
     <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
     <string name="WebRtcCallView__waiting_to_be_let_in">Σε αναμονή για προσθήκη…</string>
 
@@ -2296,7 +2300,7 @@
     <string name="UsernameEditFragment_successfully_removed_username">Το όνομα χρήστη αφαιρέθηκε με επιτυχία.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Υπήρξε σφάλμα δικτύου.</string>
     <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
-    <string name="UsernameEditFragment_rate_limit_exceeded_error">Too many attempts made, please try again later.</string>
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">Προσπάθησες πάρα πολλές φορές. Δοκίμασε ξανά αργότερα.</string>
     <string name="UsernameEditFragment_this_username_is_taken">Αυτό το όνομα χρήστη χρησιμοποιείται ήδη.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">Τα ονόματα χρήστη μπορούν να περιέχουν μόνο λατινικούς χαρακτήρες a-Z, αριθμούς 0-9 και κάτω παύλες.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Τα ονόματα χρήστη δεν μπορούν να αρχίζουν με αριθμό</string>
@@ -2320,7 +2324,7 @@
     <!-- Displayed when the chosen discriminator is 00 -->
     <string name="UsernameEditFragment__this_number_cant_be_00">Αυτός ο αριθμός δεν μπορεί να είναι 00. Γράψε ένα ψηφίο μεταξύ 1–9</string>
     <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_0">Numbers with more than 2 digits can\'t start with 0</string>
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">Οι αριθμοί με περισσότερα από 2 ψηφία δεν μπορούν να αρχίζουν με 0</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">Η ανάκτηση του ονόματος χρήστη θα επαναφέρει τον υπάρχοντα κωδικό QR και τον σύνδεσμό σου. Σίγουρα;</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
@@ -3894,6 +3898,12 @@
     <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">Κανείς δεν θα μπορεί να δει ότι είσαι στο Signal εκτός και αν στείλεις μήνυμα ή δεν έχεις ήδη μια συνομιλία μαζί του.</string>
     <!-- Snackbar text when pressing invalid radio item -->
     <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"Για να αλλάξεις αυτή τη ρύθμιση, όρισε την επιλογή \"Ποιος μπορεί να δει τον αριθμό μου\" σε \"Κανείς\"."</string>
+    <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Are you sure?</string>
+    <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Setting \"Who can find me by number\" to \"Nobody\" will make it harder for people to find you on Signal.</string>
+    <!-- Dialog button text for canceling change action -->
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">Cancel</string>
     <string name="PhoneNumberPrivacy_everyone">Όλοι</string>
     <string name="PhoneNumberPrivacy_nobody">Κανένας</string>
     <string name="preferences_app_protection__screen_lock">Κλείδωμα οθόνης</string>
@@ -4391,11 +4401,16 @@
     <string name="GroupDescriptionDialog__group_description">Περιγραφή ομάδας</string>
 
     <!-- QualitySelectorBottomSheetDialog -->
+    <!-- Label for our standard quality media conversion. -->
     <string name="QualitySelectorBottomSheetDialog__standard">Κανονική</string>
+    <!-- Description for our standard quality media conversion. -->
     <string name="QualitySelectorBottomSheetDialog__faster_less_data">Γρηγορότερα, λιγότερα δεδομένα</string>
+    <!-- Label for our high quality media conversion. This has better quality than standard. -->
     <string name="QualitySelectorBottomSheetDialog__high">Υψηλή</string>
+    <!-- Label for our high quality media conversion. This has better quality than standard. -->
     <string name="QualitySelectorBottomSheetDialog__slower_more_data">Πιο αργά, περισσότερα δεδομένα</string>
-    <string name="QualitySelectorBottomSheetDialog__photo_quality">Ποιότητα φωτογραφίας</string>
+    <!-- Title heading for our media conversion quality selector. -->
+    <string name="QualitySelectorBottomSheetDialog__media_quality">Media quality</string>
 
     <!-- AppSettingsFragment -->
     <string name="AppSettingsFragment__invite_your_friends">Προσκάλεσε τους φίλους σου</string>
@@ -4871,6 +4886,22 @@
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">Ένα ή περισσότερα αντικείμενα ήταν πολύ μεγάλα</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">Ένα ή περισσότερα αντικείμενα δεν ήταν έγκυρα</string>
     <string name="MediaReviewFragment__too_many_items_selected">Επιλέχθηκαν πάρα πολλά αντικείμενα</string>
+    <!-- Small notification presented to the user when they set their video to view-once mode -->
+    <string name="MediaReviewFragment__video_set_to_view_once">Video set to view once</string>
+    <!-- Small notification presented to the user when they set their photo to view-once mode -->
+    <string name="MediaReviewFragment__photo_set_to_view_once">Photo sent to view once</string>
+    <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
+    <string name="MediaReviewFragment__video_set_to_high_quality">Video set to high quality</string>
+    <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
+    <string name="MediaReviewFragment__video_set_to_standard_quality">Video set to standard quality</string>
+    <!-- Small notification presented to the user when they set their still image to be sent in high visual quality. -->
+    <string name="MediaReviewFragment__photo_set_to_high_quality">Photo set to high quality</string>
+    <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
+    <string name="MediaReviewFragment__photo_set_to_standard_quality">Photo set to standard quality</string>
+    <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
+    <string name="MediaReviewFragment__items_set_to_high_quality">%1$d items set to high quality</string>
+    <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
+    <string name="MediaReviewFragment__items_set_to_standard_quality">%1$d items set to standard quality</string>
 
     <string name="ImageEditorHud__cancel">Ακύρωση</string>
     <string name="ImageEditorHud__draw">Σχεδίαση</string>
@@ -4894,6 +4925,20 @@
     <string name="MediaReviewImagePageFragment__discard">Απόρριψη</string>
     <string name="MediaReviewImagePageFragment__discard_changes">Απόρριψη αλλαγών;</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Θα χάσεις όλες τις αλλαγές που έχεις κάνει σε αυτή τη φωτογραφία.</string>
+
+    <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
+    <string name="MediaCaptureFragment_username_dialog_title">Found %1$s</string>
+    <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
+    <string name="MediaCaptureFragment_username_dialog_body">Start a chat with \"%1$s\"</string>
+    <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
+    <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">Go to chat</string>
+
+    <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+    <string name="MediaCaptureFragment_device_link_dialog_title">Link device?</string>
+    <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+    <string name="MediaCaptureFragment_device_link_dialog_body">It looks like you\'re trying to link a Signal device. Tap continue and scan the code again to link it.</string>
+    <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
+    <string name="MediaCaptureFragment_device_link_dialog_continue">Continue</string>
 
 
     <string name="BadgesOverviewFragment__my_badges">Τα σήματά μου</string>
@@ -4993,7 +5038,7 @@
     <!-- Displayed as a subtitle on a row in the Manage Donations screen when payment for a donation is pending -->
     <string name="MySupportPreference__payment_pending">Η πληρωμή εκκρεμεί</string>
     <!-- Displayed as a dialog message when clicking on a donation row that is pending. Placeholder is a formatted fiat amount -->
-    <string name="MySupportPreference__your_bank_transfer_of_s">Η τραπεζική μεταφορά %1$s εκκρεμεί. Οι τραπεζικές μεταφορές συνήθως χρειάζονται 1 εργάσιμη ημέρα για να ολοκληρωθούν.  </string>
+    <string name="MySupportPreference__your_bank_transfer_of_s">Your bank transfer of %1$s is pending. Bank transfers can take 1 to 14 business days to complete.  </string>
     <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
     <string name="MySupportPreference__learn_more">Μάθε περισσότερα</string>
 
@@ -5937,9 +5982,9 @@
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
     <string name="DonateToSignalFragment__you_have_a_donation_pending">Μια δωρεά σου εκκρεμεί</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Οι τραπεζικές μεταφορές συνήθως χρειάζονται 1 εργάσιμη ημέρα για να διεκπεραιωθούν. Περίμενε μέχρι να ολοκληρωθεί αυτή η πληρωμή προτού ενημερώσεις τη συνδρομή σου.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Bank transfers can take 1 to 14 business days to process. Please wait until this payment completes before updating your subscription.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Οι τραπεζικές μεταφορές συνήθως χρειάζονται 1 εργάσιμη ημέρα για να διεκπεραιωθούν. Περίμενε μέχρι να ολοκληρωθεί αυτή η πληρωμή προτού κάνεις άλλη δωρεά.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Bank transfers can take 1 to 14 business days to process. Please wait until this payment completes before making another donation.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
     <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Η δωρεά σου είναι ακόμη σε επεξεργασία. Μπορεί να διαρκέσει μερικά λεπτά, ανάλογα με τη σύνδεσή σου. Περίμενε μέχρι να ολοκληρωθεί αυτή η πληρωμή προτού ενημερώσεις τη συνδρομή σου.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
@@ -6091,7 +6136,7 @@
     <!-- Top text block of donation pending sheet displayed after one-time donation via a bank transfer. Placeholder is the badge name. -->
     <string name="DonationPendingBottomSheet__your_one_time_donation_is_pending">Η μεμονωμένη δωρεά σου εκκρεμεί. Θα μπορείς να εμφανίσεις το σήμα %1$s στο προφίλ σου όταν λάβουμε τη δωρεά σου.</string>
     <!-- Bottom text block of donation pending sheet displayed after donating via a bank transfer. Placeholder is for learn more. -->
-    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Οι τραπεζικές μεταφορές συνήθως χρειάζονται 1 εργάσιμη ημέρα για να διεκπεραιωθούν. %1$s</string>
+    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Bank transfers can take 1 to 14 business days to process. %1$s</string>
     <!-- Learn more text for donation pending sheet displayed after donating via a bank transfer. -->
     <string name="DonationPendingBottomSheet__learn_more">Μάθε περισσότερα</string>
     <!-- Confirmation button for donation pending sheet displayed after donating via a bank transfer. -->
@@ -6432,6 +6477,8 @@
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
     <string name="CallLinkDetailsFragment__call_details">Λεπτομέρειες κλήσης</string>
+    <!-- Displayed in a text row, allowing the user to click and edit a call name -->
+    <string name="CallLinkDetailsFragment__edit_call_name">Edit call name</string>
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
     <string name="CallLinkDetailsFragment__add_call_name">Προσθήκη ονόματος κλήσης</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
@@ -6499,6 +6546,10 @@
     <string name="UsernameLinkSettings_reset_link_result_success">Έχει γίνει επαναφορά του κωδικού QR και του συνδέσμου σου και έχει δημιουργηθεί ένας νέος κωδικός QR και ένας νέος σύνδεσμος.</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Σάρωσε αυτόν τον κωδικό QR με το τηλέφωνό σου για να συνομιλήσεις μαζί μου στο Signal.</string>
+    <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_qr_code_not_found">QR code not found</string>
+    <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Try scanning another image containing a Signal QR code.</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
     <string name="UsernameLinkShareBottomSheet_title">Με αυτόν τον σύνδεσμο, οποιοδήποτε άτομο μπορεί να δει το όνομα χρήστη σου και να ξεκινήσει μια συνομιλία μαζί σου. Μοιράσου τον μόνο με άτομα που εμπιστεύεσαι.</string>
@@ -6590,6 +6641,10 @@
     <string name="FindByActivity__s_is_not_a_signal_user_would">Το άτομο %1$s δεν χρησιμοποιεί το Signal. Θέλεις να καλέσεις αυτόν τον αριθμό;</string>
     <!-- Dialog action to invite the phone number to Signal -->
     <string name="FindByActivity__invite">Πρόσκληση</string>
+    <!-- Button label for a button that will launch a camera to scan a username QR code -->
+    <string name="FindByActivity__qr_scan_button">Scan QR code</string>
+    <!-- Content of a dialog indicating that we could not perform the requested action because we encountered a network error. -->
+    <string name="FindByActivity__network_error_dialog">Encountered a network error. Try again later.</string>
 
     <!-- EOF -->
 </resources>

@@ -536,7 +536,7 @@
     <!-- Dialog title shown after reporting spam and tapping the conversation item -->
     <string name="ConversationFragment_reported_spam">ஸ்பேம் எனப் புகாரளிக்கப்பட்டது</string>
     <!-- Dialog message shown after reporting spam and tapping the conversation item -->
-    <string name="ConversationFragment_reported_spam_message">Signal has been notified that this person may be sending spam. Signal can’t see the content of any chats.</string>
+    <string name="ConversationFragment_reported_spam_message">இந்த நபர் ஸ்பேமை அனுப்பியிருக்கலாம் என்பதை சிக்னல் உங்களுக்குத் தெரிவித்தது. சாட்களின் உள்ளடக்கம் எதையும் சிக்னலால் பார்க்க முடியவில்லை.</string>
     <!-- Toast shown after reporting spam and tapping the conversation item -->
     <string name="ConversationFragment_reported_as_spam">ஸ்பேம் எனப் புகாரளிக்கப்பட்டது</string>
     <!-- Toast shown after reporting and blocking a conversation -->
@@ -557,7 +557,7 @@
     <!-- Title of tip 1 -->
     <string name="SafetyTips_tip1_title">கிரிப்டோ அல்லது பண மோசடிகள்</string>
     <!-- Message of tip 1 -->
-    <string name="SafetyTips_tip1_message">If someone you don’t know messages about cryptocurrency (like Bitcoin) or a financial opportunity, be careful—it’s likely spam.</string>
+    <string name="SafetyTips_tip1_message">கிரிப்டோகரன்சி (பிட்காயின் போன்றவை) அல்லது நிதி வாய்ப்பு பற்றிய மெசேஜ்களை உங்களுக்குப் பரீட்சயமற்ற ஒருவர் அனுப்பியிருந்தால், எச்சரிக்கையுடன் இருங்கள்—அது ஸ்பேமாக இருக்கலாம்.</string>
     <!-- Title of tip 2 -->
     <string name="SafetyTips_tip2_title">தெளிவற்ற அல்லது பொருத்தமற்ற மெசேஜ்கள்</string>
     <!-- Message of tip 2 -->
@@ -1386,6 +1386,8 @@
     <string name="MessageRecord_changed_their_profile_name_to">%1$s அவர்களின் ப்ரொஃபைல் பெயரை %2$s பெயருக்கு மாற்றப்பட்டுள்ளது .</string>
     <string name="MessageRecord_changed_their_profile_name_from_to">%1$s அவர்களின் ப்ரொஃபைல் பெயரை %2$s இருந்து %3$s பெயருக்கு மாற்றப்பட்டுள்ளது .</string>
     <string name="MessageRecord_changed_their_profile">%1$s சுயவிவரத்தை மாற்றினர்.</string>
+    <!-- Conversation update event message shown when you\'ve started a conversation by phone number or username and then learn their profile name. placeholder is username or phone number -->
+    <string name="MessageRecord_started_this_chat">You started this chat with %1$s.</string>
 
     <!-- GV2 specific -->
     <string name="MessageRecord_you_created_the_group">நீங்கள் குழுவை உருவாக்கியது.</string>
@@ -1861,8 +1863,10 @@
     <string name="WebRtcCallView__disconnected">துண்டிக்கப்பட்டது</string>
     <!-- Utilized in the lobby before joining a call link -->
     <string name="WebRtcCallView__signal_call_link">Signal அழைப்பு இணைப்பு</string>
-    <!-- Warning displayed when entering a call via a link -->
-    <string name="WebRtcCallView__anyone_who_joins">இணைப்பின் மூலம் இந்த அழைப்பில் சேரும் எவரும் உங்கள் பெயர், புகைப்படம் மற்றும் தொலைபேசி எண்ணைப் பார்ப்பார்கள்.</string>
+    <!-- Warning displayed when entering a call via a link and you have Phone Number Privacy disabled-->
+    <string name="WebRtcCallView__anyone_who_joins_pnp_disabled">Anyone who joins this call via the link will see your name, photo, and phone number.</string>
+    <!-- Warning displayed when entering a call via a link and you have Phone Number Privacy enabled-->
+    <string name="WebRtcCallView__anyone_who_joins_pnp_enabled">Anyone who joins this call via the link will see your name and photo.</string>
     <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
     <string name="WebRtcCallView__waiting_to_be_let_in">அனுமதிக்கக் காத்திருக்கிறது…</string>
 
@@ -2296,7 +2300,7 @@
     <string name="UsernameEditFragment_successfully_removed_username">பயனர் பெயர் வெற்றிகரமாக அகற்றப்பட்டது.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">பிணைய பிழையை எதிர்கொண்டது.</string>
     <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
-    <string name="UsernameEditFragment_rate_limit_exceeded_error">Too many attempts made, please try again later.</string>
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">பல முயற்சிகள் எடுக்கப்பட்டுவிட்டன, தயவுசெய்து பின்னர் மீண்டும் முயற்சிக்கவும்.</string>
     <string name="UsernameEditFragment_this_username_is_taken">இந்த பயனர் பெயர் எடுக்கப்பட்டது.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">பயனர் பெயர்களில் அ - ஃ, a–Z, 0–9 மற்றும் அடிக்கோடிட்டுக் காட்டலாம்.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">பயனர் பெயர் எண்ணுடன் தொடங்க முடியாது.</string>
@@ -2320,7 +2324,7 @@
     <!-- Displayed when the chosen discriminator is 00 -->
     <string name="UsernameEditFragment__this_number_cant_be_00">இந்த எண் 00 ஆக இருக்கக் கூடாது. 1–9 க்கு இடையேயுள்ள ஒரு எண்ணை உள்ளிடவும்</string>
     <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_0">Numbers with more than 2 digits can\'t start with 0</string>
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">2 இலக்கங்களுக்கு மேல் உள்ள எண்கள் 0 இல் தொடங்கக் கூடாது</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">உங்கள் பயனர் பெயரை மீட்டமைப்பது உங்கள் தற்போதைய QR குறியீடு மற்றும் இணைப்பை மீட்டமைக்கும். நீங்கள் உறுதியாக உள்ளீர்களா?</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
@@ -3894,6 +3898,12 @@
     <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">நீங்கள் அவர்களுக்கு மெசேஜ் அனுப்பாத வரை அல்லது அவர்களுடன் ஏற்கனவே சாட் செய்யாத வரை, நீங்கள் சிக்னலை பயன்படுத்திக் கொண்டிருப்பதை யாராலும் பார்க்க முடியாது.</string>
     <!-- Snackbar text when pressing invalid radio item -->
     <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"இந்த அமைப்பை மாற்ற, எனது எண்ணை யார் பார்க்கலாம் என்னும் ஆப்ஷனில் யாரும் இல்லை என மாற்றி அமைக்கவும்."</string>
+    <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Are you sure?</string>
+    <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Setting \"Who can find me by number\" to \"Nobody\" will make it harder for people to find you on Signal.</string>
+    <!-- Dialog button text for canceling change action -->
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">Cancel</string>
     <string name="PhoneNumberPrivacy_everyone">எல்லோரும்</string>
     <string name="PhoneNumberPrivacy_nobody">ஒருவருமில்லை</string>
     <string name="preferences_app_protection__screen_lock">திரை பூட்டு</string>
@@ -4391,11 +4401,16 @@
     <string name="GroupDescriptionDialog__group_description">குழு விளக்கம்</string>
 
     <!-- QualitySelectorBottomSheetDialog -->
+    <!-- Label for our standard quality media conversion. -->
     <string name="QualitySelectorBottomSheetDialog__standard">தரநிலை</string>
+    <!-- Description for our standard quality media conversion. -->
     <string name="QualitySelectorBottomSheetDialog__faster_less_data">வேகமான, குறைந்த இணைய தரவு</string>
+    <!-- Label for our high quality media conversion. This has better quality than standard. -->
     <string name="QualitySelectorBottomSheetDialog__high">உயர்</string>
+    <!-- Label for our high quality media conversion. This has better quality than standard. -->
     <string name="QualitySelectorBottomSheetDialog__slower_more_data">மெதுவான, அதிகமான இணைய தரவு</string>
-    <string name="QualitySelectorBottomSheetDialog__photo_quality">புகைப்பட தரம்</string>
+    <!-- Title heading for our media conversion quality selector. -->
+    <string name="QualitySelectorBottomSheetDialog__media_quality">Media quality</string>
 
     <!-- AppSettingsFragment -->
     <string name="AppSettingsFragment__invite_your_friends">நண்பர்களை அழைக்கவும்</string>
@@ -4871,6 +4886,22 @@
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">ஒன்று அல்லது அதற்கு மேற்பட்ட பொருட்கள் மிகப் பெரியதாக இருந்தன</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">ஒன்று அல்லது அதற்கு மேற்பட்ட பொருட்கள் செல்லாதவை</string>
     <string name="MediaReviewFragment__too_many_items_selected">பல பொருட்கள் தேர்ந்தெடுக்கப்பட்டுள்ளன</string>
+    <!-- Small notification presented to the user when they set their video to view-once mode -->
+    <string name="MediaReviewFragment__video_set_to_view_once">Video set to view once</string>
+    <!-- Small notification presented to the user when they set their photo to view-once mode -->
+    <string name="MediaReviewFragment__photo_set_to_view_once">Photo sent to view once</string>
+    <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
+    <string name="MediaReviewFragment__video_set_to_high_quality">Video set to high quality</string>
+    <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
+    <string name="MediaReviewFragment__video_set_to_standard_quality">Video set to standard quality</string>
+    <!-- Small notification presented to the user when they set their still image to be sent in high visual quality. -->
+    <string name="MediaReviewFragment__photo_set_to_high_quality">Photo set to high quality</string>
+    <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
+    <string name="MediaReviewFragment__photo_set_to_standard_quality">Photo set to standard quality</string>
+    <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
+    <string name="MediaReviewFragment__items_set_to_high_quality">%1$d items set to high quality</string>
+    <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
+    <string name="MediaReviewFragment__items_set_to_standard_quality">%1$d items set to standard quality</string>
 
     <string name="ImageEditorHud__cancel">ரத்து</string>
     <string name="ImageEditorHud__draw">வரை</string>
@@ -4894,6 +4925,20 @@
     <string name="MediaReviewImagePageFragment__discard">புறந்தள்ளு</string>
     <string name="MediaReviewImagePageFragment__discard_changes">மாற்றங்களைக் கைவிடுவதா?</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">இந்தப் புகைப்படத்தில் நீங்கள் செய்த மாற்றங்களை இழப்பீர்கள்.</string>
+
+    <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
+    <string name="MediaCaptureFragment_username_dialog_title">Found %1$s</string>
+    <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
+    <string name="MediaCaptureFragment_username_dialog_body">Start a chat with \"%1$s\"</string>
+    <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
+    <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">Go to chat</string>
+
+    <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+    <string name="MediaCaptureFragment_device_link_dialog_title">Link device?</string>
+    <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+    <string name="MediaCaptureFragment_device_link_dialog_body">It looks like you\'re trying to link a Signal device. Tap continue and scan the code again to link it.</string>
+    <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
+    <string name="MediaCaptureFragment_device_link_dialog_continue">Continue</string>
 
 
     <string name="BadgesOverviewFragment__my_badges">எனது பேட்ஜ்கள்</string>
@@ -4993,7 +5038,7 @@
     <!-- Displayed as a subtitle on a row in the Manage Donations screen when payment for a donation is pending -->
     <string name="MySupportPreference__payment_pending">கட்டணம் நிலுவையில் உள்ளது</string>
     <!-- Displayed as a dialog message when clicking on a donation row that is pending. Placeholder is a formatted fiat amount -->
-    <string name="MySupportPreference__your_bank_transfer_of_s">உங்கள் %1$s வங்கிப் பரிமாற்றம் நிலுவையில் உள்ளது. வங்கிப் பரிமாற்றங்கள் முடிவதற்கு வழக்கமாக 1 வணிக நாள் எடுக்கும்.  </string>
+    <string name="MySupportPreference__your_bank_transfer_of_s">Your bank transfer of %1$s is pending. Bank transfers can take 1 to 14 business days to complete.  </string>
     <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
     <string name="MySupportPreference__learn_more">மேலும் அறிக</string>
 
@@ -5937,9 +5982,9 @@
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
     <string name="DonateToSignalFragment__you_have_a_donation_pending">உங்களிடம் ஒரு நன்கொடை நிலுவையில் உள்ளது</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">வங்கி பரிமாற்றங்களுக்குப் பொதுவாக 1 வணிக நாள் எடுக்கும். உங்கள் சந்தாவைப் புதுப்பிக்கும் முன், இந்தக் கட்டணம் முடியும் வரை காத்திருக்கவும்.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Bank transfers can take 1 to 14 business days to process. Please wait until this payment completes before updating your subscription.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">வங்கி பரிமாற்றங்களுக்குப் பொதுவாக 1 வணிக நாள் எடுக்கும். மற்றொரு நன்கொடை அளிப்பதற்கு முன், இந்தக் கட்டணம் முடியும் வரை காத்திருக்கவும்.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Bank transfers can take 1 to 14 business days to process. Please wait until this payment completes before making another donation.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
     <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">உங்கள் நன்கொடை இன்னும் செயல்படுத்தப்படுகிறது. உங்கள் இணைப்பைப் பொறுத்து இதற்குச் சில நிமிடங்கள் ஆகலாம். உங்கள் சந்தாவைப் புதுப்பிக்கும் முன், இந்தக் கட்டணம் முடியும் வரை காத்திருக்கவும்.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
@@ -6091,7 +6136,7 @@
     <!-- Top text block of donation pending sheet displayed after one-time donation via a bank transfer. Placeholder is the badge name. -->
     <string name="DonationPendingBottomSheet__your_one_time_donation_is_pending">உங்கள் ஒருமுறைக்கான நன்கொடை நிலுவையில் உள்ளது. உங்கள் நன்கொடை பெறப்பட்டதும், உங்கள் புரொஃபைலில் %1$s பேட்ஜைக் காட்ட முடியும்.</string>
     <!-- Bottom text block of donation pending sheet displayed after donating via a bank transfer. Placeholder is for learn more. -->
-    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">வங்கி பரிமாற்றங்களுக்குப் பொதுவாக 1 வணிக நாள் எடுக்கும். %1$s</string>
+    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Bank transfers can take 1 to 14 business days to process. %1$s</string>
     <!-- Learn more text for donation pending sheet displayed after donating via a bank transfer. -->
     <string name="DonationPendingBottomSheet__learn_more">மேலும் அறிக</string>
     <!-- Confirmation button for donation pending sheet displayed after donating via a bank transfer. -->
@@ -6432,6 +6477,8 @@
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
     <string name="CallLinkDetailsFragment__call_details">அழைப்பு விவரங்கள்</string>
+    <!-- Displayed in a text row, allowing the user to click and edit a call name -->
+    <string name="CallLinkDetailsFragment__edit_call_name">Edit call name</string>
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
     <string name="CallLinkDetailsFragment__add_call_name">அழைப்பின் பெயரைச் சேர்க்கவும்</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
@@ -6499,6 +6546,10 @@
     <string name="UsernameLinkSettings_reset_link_result_success">உங்கள் QR குறியீடு மற்றும் இணைப்பு மீட்டமைக்கப்பட்டு புதிய QR குறியீடு மற்றும் இணைப்பு உருவாக்கப்பட்டுள்ளது.</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">என்னுடன் சிக்னலில் சாட் செய்ய இந்த QR குறியீட்டை உங்கள் ஃபோன் மூலம் ஸ்கேன் செய்யவும்.</string>
+    <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_qr_code_not_found">QR code not found</string>
+    <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Try scanning another image containing a Signal QR code.</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
     <string name="UsernameLinkShareBottomSheet_title">இந்த இணைப்பைக் கொண்டுள்ள எவரும் உங்கள் பயனர் பெயரைப் பார்த்து உங்களுடன் சாட் செய்யத் தொடங்கலாம். நீங்கள் நம்பும் நபர்களுடன் மட்டும் பகிரவும்.</string>
@@ -6590,6 +6641,10 @@
     <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s ஒரு சிக்னல் பயனர் அல்ல. இந்த எண்ணை அழைக்க நீங்கள் விரும்புகிறீர்களா?</string>
     <!-- Dialog action to invite the phone number to Signal -->
     <string name="FindByActivity__invite">அழை</string>
+    <!-- Button label for a button that will launch a camera to scan a username QR code -->
+    <string name="FindByActivity__qr_scan_button">Scan QR code</string>
+    <!-- Content of a dialog indicating that we could not perform the requested action because we encountered a network error. -->
+    <string name="FindByActivity__network_error_dialog">Encountered a network error. Try again later.</string>
 
     <!-- EOF -->
 </resources>
