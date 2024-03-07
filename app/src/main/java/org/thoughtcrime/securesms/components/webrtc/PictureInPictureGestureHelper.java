@@ -16,6 +16,7 @@ import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.core.view.GestureDetectorCompat;
 
+import org.signal.core.util.DimensionUnit;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.TouchInterceptingFrameLayout;
@@ -24,9 +25,10 @@ import java.util.Arrays;
 
 public class PictureInPictureGestureHelper extends GestureDetector.SimpleOnGestureListener {
 
-  private static final float        DECELERATION_RATE   = 0.99f;
-  private static final Interpolator FLING_INTERPOLATOR  = new ViscousFluidInterpolator();
-  private static final Interpolator ADJUST_INTERPOLATOR = new AccelerateDecelerateInterpolator();
+  private static final float        DECELERATION_RATE                        = 0.99f;
+  private static final Interpolator FLING_INTERPOLATOR                       = new ViscousFluidInterpolator();
+  private static final Interpolator ADJUST_INTERPOLATOR                      = new AccelerateDecelerateInterpolator();
+  private static final int          HORIZONTAL_PARTICIPANTS_CONTAINER_HEIGHT = (int) DimensionUnit.DP.toPixels(36);
 
   private final ViewGroup parent;
   private final View      child;
@@ -34,7 +36,7 @@ public class PictureInPictureGestureHelper extends GestureDetector.SimpleOnGestu
 
   private int             pipWidth;
   private int             pipHeight;
-  private int             activePointerId        = MotionEvent.INVALID_POINTER_ID;
+  private int             activePointerId              = MotionEvent.INVALID_POINTER_ID;
   private float           lastTouchX;
   private float           lastTouchY;
   private int             extraPaddingTop;
@@ -45,9 +47,10 @@ public class PictureInPictureGestureHelper extends GestureDetector.SimpleOnGestu
   private int             maximumFlingVelocity;
   private boolean         isLockedToBottomEnd;
   private Interpolator    interpolator;
-  private Corner          currentCornerPosition  = Corner.BOTTOM_RIGHT;
-  private int             previousTopBoundary    = -1;
-  private int             previousBottomBoundary = -1;
+  private Corner          currentCornerPosition        = Corner.BOTTOM_RIGHT;
+  private int             previousTopBoundary          = -1;
+  private int             previousBottomBoundary       = -1;
+  private boolean         displayBelowVerticalBoundary = false;
 
   @SuppressLint("ClickableViewAccessibility")
   public static PictureInPictureGestureHelper applyTo(@NonNull View child) {
@@ -132,7 +135,25 @@ public class PictureInPictureGestureHelper extends GestureDetector.SimpleOnGestu
 
     extraPaddingBottom = parent.getMeasuredHeight() + parent.getTop() - bottomBoundary;
 
+    if (displayBelowVerticalBoundary) {
+      extraPaddingBottom -= (int) DimensionUnit.DP.toPixels(HORIZONTAL_PARTICIPANTS_CONTAINER_HEIGHT);
+    }
+
     ViewUtil.setBottomMargin(child, extraPaddingBottom + framePadding);
+  }
+
+  public void setDisplayBelowVerticalBoundary(boolean displayBelowVerticalBoundary) {
+    if (this.displayBelowVerticalBoundary == displayBelowVerticalBoundary) {
+      return;
+    }
+
+    this.displayBelowVerticalBoundary = displayBelowVerticalBoundary;
+
+    int bottomBoundary = previousBottomBoundary;
+
+    previousBottomBoundary = -1;
+
+    setBottomVerticalBoundary(bottomBoundary);
   }
 
   private boolean onGestureFinished(MotionEvent e) {
@@ -301,7 +322,7 @@ public class PictureInPictureGestureHelper extends GestureDetector.SimpleOnGestu
    * User drag is implemented by translating the view from the current gravity anchor (corner). When the user drags
    * to a new corner, we need to adjust the translations for the new corner so the animation of translation X/Y to 0
    * works correctly.
-   *
+   * <p>
    * For example, if in bottom right and need to move to top right, we need to calculate a new translation Y since instead
    * of being translated up from bottom it's translated down from the top.
    */
