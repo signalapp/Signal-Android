@@ -53,16 +53,15 @@ object BioTextPreference {
       }
 
       return SpannableStringBuilder(name).apply {
-        var appendedToName = false
         if (recipient.showVerified()) {
-          SpanUtil.appendCenteredImageSpan(this, ContextUtil.requireDrawable(context, R.drawable.ic_official_28), 28, 28)
-          appendedToName = true
+          SpanUtil.appendSpacer(this, 8)
+          SpanUtil.appendCenteredImageSpanWithoutSpace(this, ContextUtil.requireDrawable(context, R.drawable.ic_official_28), 28, 28)
         } else if (recipient.isSystemContact) {
           val drawable = ContextUtil.requireDrawable(context, R.drawable.symbol_person_circle_24).apply {
             setTint(ContextCompat.getColor(context, R.color.signal_colorOnSurface))
           }
-          SpanUtil.appendCenteredImageSpan(this, drawable, 24, 24)
-          appendedToName = true
+          SpanUtil.appendSpacer(this, 8)
+          SpanUtil.appendCenteredImageSpanWithoutSpace(this, drawable, 24, 24)
         }
 
         if (recipient.isIndividual && !recipient.isSelf) {
@@ -71,9 +70,6 @@ object BioTextPreference {
             setTint(ContextCompat.getColor(context, R.color.signal_colorOutline))
           }
 
-          if (!appendedToName) {
-            append(" ")
-          }
           append(SpanUtil.buildCenteredImageSpan(drawable))
         }
       }

@@ -188,12 +188,12 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
       fullName.setVisibility(TextUtils.isEmpty(name) ? View.GONE : View.VISIBLE);
       SpannableStringBuilder nameBuilder = new SpannableStringBuilder(name);
       if (recipient.showVerified()) {
-        SpanUtil.appendCenteredImageSpanWithoutSpace(nameBuilder, new ColorDrawable(Color.TRANSPARENT), 8, 8);
+        SpanUtil.appendSpacer(nameBuilder, 8);
         SpanUtil.appendCenteredImageSpanWithoutSpace(nameBuilder, ContextUtil.requireDrawable(requireContext(), R.drawable.ic_official_28), 28, 28);
       } else if (recipient.isSystemContact()) {
         Drawable drawable = ContextUtil.requireDrawable(requireContext(), R.drawable.symbol_person_circle_24);
         drawable.setTint(ContextCompat.getColor(requireContext(), R.color.signal_colorOnSurface));
-        SpanUtil.appendCenteredImageSpanWithoutSpace(nameBuilder, new ColorDrawable(Color.TRANSPARENT), 8, 8);
+        SpanUtil.appendSpacer(nameBuilder, 8);
         SpanUtil.appendCenteredImageSpanWithoutSpace(nameBuilder, drawable, 24, 24);
       }
 
