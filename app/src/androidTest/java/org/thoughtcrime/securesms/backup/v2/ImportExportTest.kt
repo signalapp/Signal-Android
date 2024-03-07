@@ -9,9 +9,12 @@ import okio.ByteString.Companion.toByteString
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
+import org.signal.libsignal.messagebackup.MessageBackup
+import org.signal.libsignal.messagebackup.MessageBackupKey
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.backup.v2.proto.AccountData
 import org.thoughtcrime.securesms.backup.v2.proto.BackupInfo
+import org.thoughtcrime.securesms.backup.v2.proto.BodyRange
 import org.thoughtcrime.securesms.backup.v2.proto.Call
 import org.thoughtcrime.securesms.backup.v2.proto.Chat
 import org.thoughtcrime.securesms.backup.v2.proto.ChatItem
@@ -19,10 +22,15 @@ import org.thoughtcrime.securesms.backup.v2.proto.Contact
 import org.thoughtcrime.securesms.backup.v2.proto.DistributionList
 import org.thoughtcrime.securesms.backup.v2.proto.Frame
 import org.thoughtcrime.securesms.backup.v2.proto.Group
+import org.thoughtcrime.securesms.backup.v2.proto.Quote
+import org.thoughtcrime.securesms.backup.v2.proto.Reaction
 import org.thoughtcrime.securesms.backup.v2.proto.Recipient
 import org.thoughtcrime.securesms.backup.v2.proto.ReleaseNotes
 import org.thoughtcrime.securesms.backup.v2.proto.Self
+import org.thoughtcrime.securesms.backup.v2.proto.SendStatus
+import org.thoughtcrime.securesms.backup.v2.proto.StandardMessage
 import org.thoughtcrime.securesms.backup.v2.proto.StickerPack
+import org.thoughtcrime.securesms.backup.v2.proto.Text
 import org.thoughtcrime.securesms.backup.v2.stream.EncryptedBackupReader
 import org.thoughtcrime.securesms.backup.v2.stream.EncryptedBackupWriter
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -34,6 +42,7 @@ import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.util.ArrayList
 import java.util.UUID
+import java.util.concurrent.TimeUnit
 import kotlin.random.Random
 import kotlin.time.Duration.Companion.days
 
@@ -53,7 +62,7 @@ class ImportExportTest {
     val releaseNotes = Recipient(id = 2, releaseNotes = ReleaseNotes())
     val standardAccountData = AccountData(
       profileKey = SELF_PROFILE_KEY.serialize().toByteString(),
-      username = "testusername",
+      username = "self.01",
       usernameLink = null,
       givenName = "Peter",
       familyName = "Parker",
@@ -79,6 +88,24 @@ class ImportExportTest {
         hasCompletedUsernameOnboarding = true,
         phoneNumberSharingMode = AccountData.PhoneNumberSharingMode.EVERYBODY,
         preferredReactionEmoji = listOf("a", "b", "c")
+      )
+    )
+    val alice = Recipient(
+      id = 3,
+      contact = Contact(
+        aci = TestRecipientUtils.nextAci().toByteString(),
+        pni = TestRecipientUtils.nextPni().toByteString(),
+        username = "cool.01",
+        e164 = 141255501234,
+        blocked = false,
+        hidden = false,
+        registered = Contact.Registered.REGISTERED,
+        unregisteredTimestamp = 0L,
+        profileKey = TestRecipientUtils.generateProfileKey().toByteString(),
+        profileSharing = true,
+        profileGivenName = "Alexa",
+        profileFamilyName = "Kim",
+        hideStory = true
       )
     )
 
@@ -111,7 +138,7 @@ class ImportExportTest {
         contact = Contact(
           aci = TestRecipientUtils.nextAci().toByteString(),
           pni = TestRecipientUtils.nextPni().toByteString(),
-          username = "coolusername",
+          username = "cool.01",
           e164 = 141255501234,
           blocked = true,
           hidden = true,
@@ -181,7 +208,7 @@ class ImportExportTest {
         contact = Contact(
           aci = TestRecipientUtils.nextAci().toByteString(),
           pni = TestRecipientUtils.nextPni().toByteString(),
-          username = "coolusername",
+          username = "cool.01",
           e164 = 141255501234,
           blocked = true,
           hidden = true,
@@ -251,7 +278,7 @@ class ImportExportTest {
       contact = Contact(
         aci = TestRecipientUtils.nextAci().toByteString(),
         pni = TestRecipientUtils.nextPni().toByteString(),
-        username = "coolusername",
+        username = "cool.01",
         e164 = 141255501234,
         blocked = true,
         hidden = true,
@@ -296,7 +323,7 @@ class ImportExportTest {
         contact = Contact(
           aci = TestRecipientUtils.nextAci().toByteString(),
           pni = TestRecipientUtils.nextPni().toByteString(),
-          username = "coolusername",
+          username = "cool.01",
           e164 = 141255501234,
           blocked = false,
           hidden = false,
@@ -398,7 +425,7 @@ class ImportExportTest {
         contact = Contact(
           aci = TestRecipientUtils.nextAci().toByteString(),
           pni = TestRecipientUtils.nextPni().toByteString(),
-          username = "coolusername",
+          username = "cool.01",
           e164 = 141255501234,
           blocked = false,
           hidden = false,
@@ -423,6 +450,397 @@ class ImportExportTest {
       ),
       *individualCalls.toArray(),
       *groupCalls.toArray()
+    )
+  }
+
+  @Test
+  fun messageWithOnlyText() {
+    var dateSent = System.currentTimeMillis()
+    val sendStatuses = enumerateSendStatuses(alice.id)
+    val incomingMessageDetails = enumerateIncomingMessageDetails(dateSent + 200)
+    val outgoingMessages = ArrayList<ChatItem>()
+    val incomingMessages = ArrayList<ChatItem>()
+    for (sendStatus in sendStatuses) {
+      outgoingMessages.add(
+        ChatItem(
+          chatId = 1,
+          authorId = selfRecipient.id,
+          dateSent = dateSent++,
+          expireStartDate = dateSent + 1000,
+          expiresInMs = TimeUnit.DAYS.toMillis(2),
+          sms = false,
+          outgoing = ChatItem.OutgoingMessageDetails(
+            sendStatus = listOf(sendStatus)
+          ),
+          standardMessage = StandardMessage(
+            text = Text(
+              body = "Text only body"
+            )
+          )
+        )
+      )
+    }
+    dateSent++
+    for (incomingDetail in incomingMessageDetails) {
+      incomingMessages.add(
+        ChatItem(
+          chatId = 1,
+          authorId = alice.id,
+          dateSent = dateSent++,
+          expireStartDate = dateSent + 1000,
+          expiresInMs = TimeUnit.DAYS.toMillis(2),
+          sms = false,
+          incoming = incomingDetail,
+          standardMessage = StandardMessage(
+            text = Text(
+              body = "Text only body"
+            )
+          )
+        )
+      )
+    }
+
+    importExport(
+      *standardFrames,
+      alice,
+      buildChat(alice, 1),
+      *outgoingMessages.toArray(),
+      *incomingMessages.toArray()
+    )
+  }
+
+  @Test
+  fun messageWithTextMentionsBodyRangesAndReactions() {
+    val time = System.currentTimeMillis()
+    importExport(
+      *standardFrames,
+      alice,
+      buildChat(alice, 1),
+      ChatItem(
+        chatId = 1,
+        authorId = selfRecipient.id,
+        dateSent = 100,
+        expireStartDate = time,
+        expiresInMs = TimeUnit.DAYS.toMillis(2),
+        incoming = ChatItem.IncomingMessageDetails(
+          dateReceived = 105,
+          dateServerSent = 104,
+          read = true,
+          sealedSender = true
+        ),
+        standardMessage = StandardMessage(
+          text = Text(
+            body = "Hey check this out I love spans!",
+            bodyRanges = listOf(
+              BodyRange(
+                start = 6,
+                length = 3,
+                style = BodyRange.Style.BOLD
+              ),
+              BodyRange(
+                start = 10,
+                length = 3,
+                style = BodyRange.Style.ITALIC
+              ),
+              BodyRange(
+                start = 14,
+                length = 3,
+                style = BodyRange.Style.SPOILER
+              ),
+              BodyRange(
+                start = 18,
+                length = 3,
+                style = BodyRange.Style.STRIKETHROUGH
+              ),
+              BodyRange(
+                start = 22,
+                length = 3,
+                style = BodyRange.Style.MONOSPACE
+              ),
+              BodyRange(
+                start = 4,
+                length = 0,
+                mentionAci = alice.contact!!.aci
+              )
+            )
+          ),
+          reactions = listOf(
+            Reaction(emoji = "F", authorId = selfRecipient.id, sentTimestamp = 302, receivedTimestamp = 303),
+            Reaction(emoji = "F", authorId = alice.id, sentTimestamp = 301, receivedTimestamp = 302)
+          )
+        )
+      )
+    )
+  }
+
+  @Test
+  fun messageWithTextAndQuotes() {
+    val spans = listOf(
+      BodyRange(
+        start = 6,
+        length = 3,
+        style = BodyRange.Style.BOLD
+      ),
+      BodyRange(
+        start = 10,
+        length = 3,
+        style = BodyRange.Style.ITALIC
+      ),
+      BodyRange(
+        start = 14,
+        length = 3,
+        style = BodyRange.Style.SPOILER
+      ),
+      BodyRange(
+        start = 18,
+        length = 3,
+        style = BodyRange.Style.STRIKETHROUGH
+      ),
+      BodyRange(
+        start = 22,
+        length = 3,
+        style = BodyRange.Style.MONOSPACE
+      )
+    )
+    val time = System.currentTimeMillis()
+    importExport(
+      *standardFrames,
+      alice,
+      buildChat(alice, 1),
+      ChatItem(
+        chatId = 1,
+        authorId = selfRecipient.id,
+        dateSent = 100,
+        expireStartDate = time,
+        expiresInMs = TimeUnit.DAYS.toMillis(2),
+        incoming = ChatItem.IncomingMessageDetails(
+          dateReceived = 105,
+          dateServerSent = 104,
+          read = true,
+          sealedSender = true
+        ),
+        standardMessage = StandardMessage(
+          text = Text(
+            body = "Hey check this out I love spans!",
+            bodyRanges = spans
+          )
+        )
+      ),
+      ChatItem(
+        chatId = 1,
+        authorId = selfRecipient.id,
+        dateSent = 101,
+        expireStartDate = time,
+        expiresInMs = TimeUnit.DAYS.toMillis(2),
+        incoming = ChatItem.IncomingMessageDetails(
+          dateReceived = 105,
+          dateServerSent = 104,
+          read = true,
+          sealedSender = true
+        ),
+        standardMessage = StandardMessage(
+          text = Text(
+            body = "I quoted an existing message"
+          ),
+          quote = Quote(
+            targetSentTimestamp = 100,
+            authorId = alice.id,
+            type = Quote.Type.NORMAL,
+            text = "Hey check this out I love spans!",
+            bodyRanges = spans
+          )
+        )
+      ),
+      ChatItem(
+        chatId = 1,
+        authorId = selfRecipient.id,
+        dateSent = 102,
+        expireStartDate = time,
+        expiresInMs = TimeUnit.DAYS.toMillis(2),
+        incoming = ChatItem.IncomingMessageDetails(
+          dateReceived = 105,
+          dateServerSent = 104,
+          read = true,
+          sealedSender = true
+        ),
+        standardMessage = StandardMessage(
+          text = Text(
+            body = "I quoted an non-existing message"
+          ),
+          quote = Quote(
+            targetSentTimestamp = 60,
+            authorId = alice.id,
+            type = Quote.Type.NORMAL,
+            text = "Hey check this out I love spans!",
+            bodyRanges = spans
+          )
+        )
+      )
+    )
+  }
+
+  @Test
+  fun messagesNearExpirationNotExported() {
+    val chat = buildChat(alice, 1)
+    val expirationNotStarted = ChatItem(
+      chatId = 1,
+      authorId = alice.id,
+      dateSent = 101,
+      expireStartDate = null,
+      expiresInMs = TimeUnit.DAYS.toMillis(1),
+      sms = false,
+      incoming = ChatItem.IncomingMessageDetails(
+        dateReceived = 100,
+        dateServerSent = 100,
+        read = true
+      ),
+      standardMessage = StandardMessage(
+        text = Text(
+          body = "Expiration not started but less than or equal to 1 day"
+        )
+      )
+    )
+    import(
+      *standardFrames,
+      alice,
+      chat,
+      ChatItem(
+        chatId = 1,
+        authorId = alice.id,
+        dateSent = 100,
+        expireStartDate = System.currentTimeMillis(),
+        expiresInMs = TimeUnit.DAYS.toMillis(1),
+        sms = false,
+        incoming = ChatItem.IncomingMessageDetails(
+          dateReceived = 100,
+          dateServerSent = 100,
+          read = true
+        ),
+        standardMessage = StandardMessage(
+          text = Text(
+            body = "Near expiration"
+          )
+        )
+      ),
+      expirationNotStarted
+    )
+    val exported = export()
+    val expected = exportFrames(
+      *standardFrames,
+      alice,
+      chat,
+      expirationNotStarted
+    )
+    compare(expected, exported)
+  }
+
+  fun enumerateIncomingMessageDetails(dateSent: Long): List<ChatItem.IncomingMessageDetails> {
+    val details = mutableListOf<ChatItem.IncomingMessageDetails>()
+    details.add(
+      ChatItem.IncomingMessageDetails(
+        dateReceived = dateSent + 1,
+        dateServerSent = dateSent,
+        read = true,
+        sealedSender = true
+      )
+    )
+    details.add(
+      ChatItem.IncomingMessageDetails(
+        dateReceived = dateSent + 1,
+        dateServerSent = dateSent,
+        read = true,
+        sealedSender = false
+      )
+    )
+    details.add(
+      ChatItem.IncomingMessageDetails(
+        dateReceived = dateSent + 1,
+        dateServerSent = dateSent,
+        read = false,
+        sealedSender = true
+      )
+    )
+    details.add(
+      ChatItem.IncomingMessageDetails(
+        dateReceived = dateSent + 1,
+        dateServerSent = dateSent,
+        read = false,
+        sealedSender = false
+      )
+    )
+    return details
+  }
+
+  fun enumerateSendStatuses(recipientId: Long): List<SendStatus> {
+    val statuses = ArrayList<SendStatus>()
+    val sealedSenderStates = listOf(true, false)
+    for (sealedSender in sealedSenderStates) {
+      statuses.add(
+        SendStatus(
+          recipientId = recipientId,
+          deliveryStatus = SendStatus.Status.DELIVERED,
+          sealedSender = sealedSender,
+          lastStatusUpdateTimestamp = -1
+        )
+      )
+      statuses.add(
+        SendStatus(
+          recipientId = recipientId,
+          deliveryStatus = SendStatus.Status.PENDING,
+          sealedSender = sealedSender,
+          lastStatusUpdateTimestamp = -1,
+          networkFailure = true
+        )
+      )
+      statuses.add(
+        SendStatus(
+          recipientId = recipientId,
+          deliveryStatus = SendStatus.Status.SENT,
+          sealedSender = sealedSender,
+          lastStatusUpdateTimestamp = -1
+        )
+      )
+      statuses.add(
+        SendStatus(
+          recipientId = recipientId,
+          deliveryStatus = SendStatus.Status.READ,
+          sealedSender = sealedSender,
+          lastStatusUpdateTimestamp = -1
+        )
+      )
+      statuses.add(
+        SendStatus(
+          recipientId = recipientId,
+          deliveryStatus = SendStatus.Status.PENDING,
+          sealedSender = sealedSender,
+          networkFailure = true,
+          lastStatusUpdateTimestamp = -1
+        )
+      )
+      statuses.add(
+        SendStatus(
+          recipientId = recipientId,
+          deliveryStatus = SendStatus.Status.FAILED,
+          sealedSender = sealedSender,
+          identityKeyMismatch = true,
+          lastStatusUpdateTimestamp = -1
+        )
+      )
+    }
+    return statuses
+  }
+
+  private fun buildChat(recipient: Recipient, id: Long): Chat {
+    return Chat(
+      id = id,
+      recipientId = recipient.id,
+      archived = false,
+      pinnedOrder = 0,
+      expirationTimerMs = 0,
+      muteUntilMs = 0,
+      markedUnread = false,
+      dontNotifyForMentionsIfMuted = false,
+      wallpaper = null
     )
   }
 
@@ -468,7 +886,18 @@ class ImportExportTest {
   /**
    * Export our current database as a backup.
    */
-  private fun export() = BackupRepository.export()
+  private fun export(): ByteArray {
+    val exportData = BackupRepository.export()
+    return exportData
+  }
+
+  private fun validate(importData: ByteArray): MessageBackup.ValidationResult {
+    val factory = { ByteArrayInputStream(importData) }
+    val masterKey = SignalStore.svr().getOrCreateMasterKey()
+    val key = MessageBackupKey(masterKey.serialize(), org.signal.libsignal.protocol.ServiceId.Aci.parseFromBinary(SELF_ACI.toByteArray()))
+
+    return MessageBackup.validate(key, factory, importData.size.toLong())
+  }
 
   /**
    * Imports the passed in frames and then exports them.
@@ -552,7 +981,7 @@ class ImportExportTest {
     prettyAssertEquals(accountImported, accountExported)
     prettyAssertEquals(recipientsImported, recipientsExported) { it.id }
     prettyAssertEquals(chatsImported, chatsExported) { it.id }
-    prettyAssertEquals(chatItemsImported, chatItemsExported)
+    prettyAssertEquals(chatItemsImported, chatItemsExported) { it.dateSent }
     prettyAssertEquals(callsImported, callsExported) { it.callId }
     prettyAssertEquals(stickersImported, stickersExported) { it.packId }
   }

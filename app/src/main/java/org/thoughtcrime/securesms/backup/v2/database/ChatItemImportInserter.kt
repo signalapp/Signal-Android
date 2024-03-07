@@ -268,7 +268,7 @@ class ChatItemImportInserter(
       contentValues.put(MessageTable.VIEWED_COLUMN, 0)
       contentValues.put(MessageTable.HAS_READ_RECEIPT, 0)
       contentValues.put(MessageTable.HAS_DELIVERY_RECEIPT, 0)
-      contentValues.put(MessageTable.UNIDENTIFIED, this.sealedSender?.toInt())
+      contentValues.put(MessageTable.UNIDENTIFIED, this.incoming?.sealedSender?.toInt() ?: 0)
       contentValues.put(MessageTable.READ, this.incoming?.read?.toInt() ?: 0)
       contentValues.put(MessageTable.NOTIFIED, 1)
     }
@@ -428,8 +428,10 @@ class ChatItemImportInserter(
               IndividualCallChatUpdate.Type.INCOMING_VIDEO_CALL -> MessageTypes.INCOMING_VIDEO_CALL_TYPE
               IndividualCallChatUpdate.Type.OUTGOING_AUDIO_CALL -> MessageTypes.OUTGOING_AUDIO_CALL_TYPE
               IndividualCallChatUpdate.Type.OUTGOING_VIDEO_CALL -> MessageTypes.OUTGOING_VIDEO_CALL_TYPE
-              IndividualCallChatUpdate.Type.MISSED_AUDIO_CALL -> MessageTypes.MISSED_AUDIO_CALL_TYPE
-              IndividualCallChatUpdate.Type.MISSED_VIDEO_CALL -> MessageTypes.MISSED_VIDEO_CALL_TYPE
+              IndividualCallChatUpdate.Type.MISSED_INCOMING_AUDIO_CALL -> MessageTypes.MISSED_AUDIO_CALL_TYPE
+              IndividualCallChatUpdate.Type.MISSED_INCOMING_VIDEO_CALL -> MessageTypes.MISSED_VIDEO_CALL_TYPE
+              IndividualCallChatUpdate.Type.UNANSWERED_OUTGOING_AUDIO_CALL -> MessageTypes.OUTGOING_AUDIO_CALL_TYPE
+              IndividualCallChatUpdate.Type.UNANSWERED_OUTGOING_VIDEO_CALL -> MessageTypes.OUTGOING_VIDEO_CALL_TYPE
               IndividualCallChatUpdate.Type.UNKNOWN -> typeFlags
             }
           }
@@ -508,7 +510,7 @@ class ChatItemImportInserter(
     }
 
     return BodyRangeList(
-      ranges = this.map { bodyRange ->
+      ranges = this.filter { it.mentionAci == null }.map { bodyRange ->
         BodyRangeList.BodyRange(
           mentionUuid = bodyRange.mentionAci?.let { UuidUtil.fromByteString(it) }?.toString(),
           style = bodyRange.style?.let {

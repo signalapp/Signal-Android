@@ -188,10 +188,10 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
           } else {
             when {
               MessageTypes.isMissedAudioCall(record.type) -> {
-                builder.updateMessage = ChatUpdateMessage(callingMessage = CallChatUpdate(callMessage = IndividualCallChatUpdate(type = IndividualCallChatUpdate.Type.MISSED_AUDIO_CALL)))
+                builder.updateMessage = ChatUpdateMessage(callingMessage = CallChatUpdate(callMessage = IndividualCallChatUpdate(type = IndividualCallChatUpdate.Type.MISSED_INCOMING_AUDIO_CALL)))
               }
               MessageTypes.isMissedVideoCall(record.type) -> {
-                builder.updateMessage = ChatUpdateMessage(callingMessage = CallChatUpdate(callMessage = IndividualCallChatUpdate(type = IndividualCallChatUpdate.Type.MISSED_VIDEO_CALL)))
+                builder.updateMessage = ChatUpdateMessage(callingMessage = CallChatUpdate(callMessage = IndividualCallChatUpdate(type = IndividualCallChatUpdate.Type.MISSED_INCOMING_VIDEO_CALL)))
               }
               MessageTypes.isIncomingAudioCall(record.type) -> {
                 builder.updateMessage = ChatUpdateMessage(callingMessage = CallChatUpdate(callMessage = IndividualCallChatUpdate(type = IndividualCallChatUpdate.Type.INCOMING_AUDIO_CALL)))
@@ -268,7 +268,6 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
       chatId = record.threadId
       authorId = record.fromRecipientId
       dateSent = record.dateSent
-      sealedSender = record.sealedSender
       expireStartDate = if (record.expireStarted > 0) record.expireStarted else null
       expiresInMs = if (record.expiresIn > 0) record.expiresIn else null
       revisions = emptyList()
@@ -282,7 +281,8 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
         incoming = ChatItem.IncomingMessageDetails(
           dateServerSent = record.dateServer,
           dateReceived = record.dateReceived,
-          read = record.read
+          read = record.read,
+          sealedSender = record.sealedSender
         )
       }
     }

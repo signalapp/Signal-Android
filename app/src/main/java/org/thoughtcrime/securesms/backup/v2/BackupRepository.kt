@@ -70,13 +70,13 @@ object BackupRepository {
       )
     }
 
-    val exportState = ExportState()
+    val exportState = ExportState(System.currentTimeMillis())
 
     writer.use {
       writer.write(
         BackupInfo(
           version = VERSION,
-          backupTimeMs = System.currentTimeMillis()
+          backupTimeMs = exportState.backupTime
         )
       )
       // Note: Without a transaction, we may export inconsistent state. But because we have a transaction,
@@ -396,7 +396,7 @@ object BackupRepository {
   }
 }
 
-class ExportState {
+class ExportState(val backupTime: Long) {
   val recipientIds = HashSet<Long>()
   val threadIds = HashSet<Long>()
 }
