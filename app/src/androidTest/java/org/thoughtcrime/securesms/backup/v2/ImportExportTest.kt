@@ -18,19 +18,25 @@ import org.thoughtcrime.securesms.backup.v2.proto.BodyRange
 import org.thoughtcrime.securesms.backup.v2.proto.Call
 import org.thoughtcrime.securesms.backup.v2.proto.Chat
 import org.thoughtcrime.securesms.backup.v2.proto.ChatItem
+import org.thoughtcrime.securesms.backup.v2.proto.ChatUpdateMessage
 import org.thoughtcrime.securesms.backup.v2.proto.Contact
 import org.thoughtcrime.securesms.backup.v2.proto.DistributionList
+import org.thoughtcrime.securesms.backup.v2.proto.ExpirationTimerChatUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.Frame
 import org.thoughtcrime.securesms.backup.v2.proto.Group
+import org.thoughtcrime.securesms.backup.v2.proto.ProfileChangeChatUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.Quote
 import org.thoughtcrime.securesms.backup.v2.proto.Reaction
 import org.thoughtcrime.securesms.backup.v2.proto.Recipient
 import org.thoughtcrime.securesms.backup.v2.proto.ReleaseNotes
 import org.thoughtcrime.securesms.backup.v2.proto.Self
 import org.thoughtcrime.securesms.backup.v2.proto.SendStatus
+import org.thoughtcrime.securesms.backup.v2.proto.SessionSwitchoverChatUpdate
+import org.thoughtcrime.securesms.backup.v2.proto.SimpleChatUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.StandardMessage
 import org.thoughtcrime.securesms.backup.v2.proto.StickerPack
 import org.thoughtcrime.securesms.backup.v2.proto.Text
+import org.thoughtcrime.securesms.backup.v2.proto.ThreadMergeChatUpdate
 import org.thoughtcrime.securesms.backup.v2.stream.EncryptedBackupReader
 import org.thoughtcrime.securesms.backup.v2.stream.EncryptedBackupWriter
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -732,6 +738,187 @@ class ImportExportTest {
       expirationNotStarted
     )
     compare(expected, exported)
+  }
+
+  @Test
+  fun simpleChatUpdateMessage() {
+    var dateSentStart = 100L
+    val updateMessages = ArrayList<ChatItem>()
+    for (i in 1..11) {
+      updateMessages.add(
+        ChatItem(
+          chatId = 1,
+          authorId = alice.id,
+          dateSent = dateSentStart++,
+          incoming = ChatItem.IncomingMessageDetails(
+            dateReceived = dateSentStart,
+            dateServerSent = dateSentStart,
+            read = true,
+            sealedSender = true
+          ),
+          updateMessage = ChatUpdateMessage(
+            simpleUpdate = SimpleChatUpdate(
+              type = SimpleChatUpdate.Type.fromValue(i)!!
+            )
+          )
+        )
+      )
+    }
+    importExport(
+      *standardFrames,
+      alice,
+      buildChat(alice, 1),
+      *updateMessages.toArray()
+    )
+  }
+
+  @Test
+  fun expirationTimerUpdateMessage() {
+    var dateSentStart = 100L
+    importExport(
+      *standardFrames,
+      alice,
+      buildChat(alice, 1),
+      ChatItem(
+        chatId = 1,
+        authorId = alice.id,
+        dateSent = dateSentStart++,
+        incoming = ChatItem.IncomingMessageDetails(
+          dateReceived = dateSentStart,
+          dateServerSent = dateSentStart,
+          read = true,
+          sealedSender = true
+        ),
+        updateMessage = ChatUpdateMessage(
+          expirationTimerChange = ExpirationTimerChatUpdate(
+            1000
+          )
+        )
+      ),
+      ChatItem(
+        chatId = 1,
+        authorId = selfRecipient.id,
+        dateSent = dateSentStart++,
+        outgoing = ChatItem.OutgoingMessageDetails(
+          sendStatus = listOf(
+            SendStatus(alice.id, deliveryStatus = SendStatus.Status.READ, sealedSender = true, lastStatusUpdateTimestamp = -1)
+          )
+        ),
+        updateMessage = ChatUpdateMessage(
+          expirationTimerChange = ExpirationTimerChatUpdate(
+            0
+          )
+        )
+      ),
+      ChatItem(
+        chatId = 1,
+        authorId = selfRecipient.id,
+        dateSent = dateSentStart++,
+        outgoing = ChatItem.OutgoingMessageDetails(
+          sendStatus = listOf(SendStatus(alice.id, deliveryStatus = SendStatus.Status.READ, sealedSender = true, lastStatusUpdateTimestamp = -1))
+        ),
+        updateMessage = ChatUpdateMessage(
+          expirationTimerChange = ExpirationTimerChatUpdate(
+            10000
+          )
+        )
+      ),
+      ChatItem(
+        chatId = 1,
+        authorId = alice.id,
+        dateSent = dateSentStart++,
+        incoming = ChatItem.IncomingMessageDetails(
+          dateReceived = dateSentStart,
+          dateServerSent = dateSentStart,
+          read = true,
+          sealedSender = true
+        ),
+        updateMessage = ChatUpdateMessage(
+          expirationTimerChange = ExpirationTimerChatUpdate(
+            0
+          )
+        )
+      )
+    )
+  }
+
+  @Test
+  fun profileChangeChatUpdateMessage() {
+    var dateSentStart = 100L
+    importExport(
+      *standardFrames,
+      alice,
+      buildChat(alice, 1),
+      ChatItem(
+        chatId = 1,
+        authorId = alice.id,
+        dateSent = dateSentStart++,
+        incoming = ChatItem.IncomingMessageDetails(
+          dateReceived = dateSentStart,
+          dateServerSent = dateSentStart,
+          read = true,
+          sealedSender = true
+        ),
+        updateMessage = ChatUpdateMessage(
+          profileChange = ProfileChangeChatUpdate(
+            previousName = "Aliceee Kim",
+            newName = "Alice Kim"
+          )
+        )
+      )
+    )
+  }
+
+  @Test
+  fun threadMergeChatUpdate() {
+    var dateSentStart = 100L
+    importExport(
+      *standardFrames,
+      alice,
+      buildChat(alice, 1),
+      ChatItem(
+        chatId = 1,
+        authorId = alice.id,
+        dateSent = dateSentStart++,
+        incoming = ChatItem.IncomingMessageDetails(
+          dateReceived = dateSentStart,
+          dateServerSent = dateSentStart,
+          read = true,
+          sealedSender = true
+        ),
+        updateMessage = ChatUpdateMessage(
+          threadMerge = ThreadMergeChatUpdate(
+            previousE164 = 141255501237
+          )
+        )
+      )
+    )
+  }
+
+  @Test
+  fun sessionSwitchoverChatUpdate() {
+    var dateSentStart = 100L
+    importExport(
+      *standardFrames,
+      alice,
+      buildChat(alice, 1),
+      ChatItem(
+        chatId = 1,
+        authorId = alice.id,
+        dateSent = dateSentStart++,
+        incoming = ChatItem.IncomingMessageDetails(
+          dateReceived = dateSentStart,
+          dateServerSent = dateSentStart,
+          read = true,
+          sealedSender = true
+        ),
+        updateMessage = ChatUpdateMessage(
+          sessionSwitchover = SessionSwitchoverChatUpdate(
+            e164 = 141255501237
+          )
+        )
+      )
+    )
   }
 
   fun enumerateIncomingMessageDetails(dateSent: Long): List<ChatItem.IncomingMessageDetails> {

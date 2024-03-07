@@ -244,7 +244,7 @@ class ChatItemImportInserter(
     contentValues.put(MessageTable.TO_RECIPIENT_ID, (if (this.outgoing != null) chatRecipientId else selfId).serialize())
     contentValues.put(MessageTable.THREAD_ID, threadId)
     contentValues.put(MessageTable.DATE_RECEIVED, this.incoming?.dateReceived ?: this.dateSent)
-    contentValues.put(MessageTable.RECEIPT_TIMESTAMP, this.outgoing?.sendStatus?.maxOf { it.lastStatusUpdateTimestamp } ?: 0)
+    contentValues.put(MessageTable.RECEIPT_TIMESTAMP, this.outgoing?.sendStatus?.maxOfOrNull { it.lastStatusUpdateTimestamp } ?: 0)
     contentValues.putNull(MessageTable.LATEST_REVISION_ID)
     contentValues.putNull(MessageTable.ORIGINAL_MESSAGE_ID)
     contentValues.put(MessageTable.REVISION_NUMBER, 0)
@@ -382,23 +382,24 @@ class ChatItemImportInserter(
     var typeFlags: Long = 0
     when {
       updateMessage.simpleUpdate != null -> {
+        val typeWithoutBase = (getAsLong(MessageTable.TYPE) and MessageTypes.BASE_TYPE_MASK.inv())
         typeFlags = when (updateMessage.simpleUpdate.type) {
-          SimpleChatUpdate.Type.UNKNOWN -> 0
-          SimpleChatUpdate.Type.JOINED_SIGNAL -> MessageTypes.JOINED_TYPE
-          SimpleChatUpdate.Type.IDENTITY_UPDATE -> MessageTypes.KEY_EXCHANGE_IDENTITY_UPDATE_BIT
-          SimpleChatUpdate.Type.IDENTITY_VERIFIED -> MessageTypes.KEY_EXCHANGE_IDENTITY_VERIFIED_BIT
-          SimpleChatUpdate.Type.IDENTITY_DEFAULT -> MessageTypes.KEY_EXCHANGE_IDENTITY_DEFAULT_BIT
+          SimpleChatUpdate.Type.UNKNOWN -> typeWithoutBase
+          SimpleChatUpdate.Type.JOINED_SIGNAL -> MessageTypes.JOINED_TYPE or typeWithoutBase
+          SimpleChatUpdate.Type.IDENTITY_UPDATE -> MessageTypes.KEY_EXCHANGE_IDENTITY_UPDATE_BIT or typeWithoutBase
+          SimpleChatUpdate.Type.IDENTITY_VERIFIED -> MessageTypes.KEY_EXCHANGE_IDENTITY_VERIFIED_BIT or typeWithoutBase
+          SimpleChatUpdate.Type.IDENTITY_DEFAULT -> MessageTypes.KEY_EXCHANGE_IDENTITY_DEFAULT_BIT or typeWithoutBase
           SimpleChatUpdate.Type.CHANGE_NUMBER -> MessageTypes.CHANGE_NUMBER_TYPE
           SimpleChatUpdate.Type.BOOST_REQUEST -> MessageTypes.BOOST_REQUEST_TYPE
-          SimpleChatUpdate.Type.END_SESSION -> MessageTypes.END_SESSION_BIT
-          SimpleChatUpdate.Type.CHAT_SESSION_REFRESH -> MessageTypes.ENCRYPTION_REMOTE_FAILED_BIT
-          SimpleChatUpdate.Type.BAD_DECRYPT -> MessageTypes.BAD_DECRYPT_TYPE
-          SimpleChatUpdate.Type.PAYMENTS_ACTIVATED -> MessageTypes.SPECIAL_TYPE_PAYMENTS_ACTIVATED
-          SimpleChatUpdate.Type.PAYMENT_ACTIVATION_REQUEST -> MessageTypes.SPECIAL_TYPE_PAYMENTS_ACTIVATE_REQUEST
+          SimpleChatUpdate.Type.END_SESSION -> MessageTypes.END_SESSION_BIT or typeWithoutBase
+          SimpleChatUpdate.Type.CHAT_SESSION_REFRESH -> MessageTypes.ENCRYPTION_REMOTE_FAILED_BIT or typeWithoutBase
+          SimpleChatUpdate.Type.BAD_DECRYPT -> MessageTypes.BAD_DECRYPT_TYPE or typeWithoutBase
+          SimpleChatUpdate.Type.PAYMENTS_ACTIVATED -> MessageTypes.SPECIAL_TYPE_PAYMENTS_ACTIVATED or typeWithoutBase
+          SimpleChatUpdate.Type.PAYMENT_ACTIVATION_REQUEST -> MessageTypes.SPECIAL_TYPE_PAYMENTS_ACTIVATE_REQUEST or typeWithoutBase
         }
       }
       updateMessage.expirationTimerChange != null -> {
-        typeFlags = MessageTypes.EXPIRATION_TIMER_UPDATE_BIT
+        typeFlags = getAsLong(MessageTable.TYPE) or MessageTypes.EXPIRATION_TIMER_UPDATE_BIT
         put(MessageTable.EXPIRES_IN, updateMessage.expirationTimerChange.expiresInMs.toLong())
       }
       updateMessage.profileChange != null -> {
@@ -408,12 +409,12 @@ class ChatItemImportInserter(
         put(MessageTable.BODY, Base64.encodeWithPadding(profileChangeDetails))
       }
       updateMessage.sessionSwitchover != null -> {
-        typeFlags = MessageTypes.SESSION_SWITCHOVER_TYPE
+        typeFlags = MessageTypes.SESSION_SWITCHOVER_TYPE or (getAsLong(MessageTable.TYPE) and MessageTypes.BASE_TYPE_MASK.inv())
         val sessionSwitchoverDetails = SessionSwitchoverEvent(e164 = updateMessage.sessionSwitchover.e164.toString()).encode()
         put(MessageTable.BODY, Base64.encodeWithPadding(sessionSwitchoverDetails))
       }
       updateMessage.threadMerge != null -> {
-        typeFlags = MessageTypes.THREAD_MERGE_TYPE
+        typeFlags = MessageTypes.THREAD_MERGE_TYPE or (getAsLong(MessageTable.TYPE) and MessageTypes.BASE_TYPE_MASK.inv())
         val threadMergeDetails = ThreadMergeEvent(previousE164 = updateMessage.threadMerge.previousE164.toString()).encode()
         put(MessageTable.BODY, Base64.encodeWithPadding(threadMergeDetails))
       }
@@ -448,10 +449,10 @@ class ChatItemImportInserter(
             GV2UpdateDescription(groupChangeUpdate = updateMessage.groupChange)
           ).encode()
         )
-        typeFlags = MessageTypes.GROUP_V2_BIT or MessageTypes.GROUP_UPDATE_BIT
+        typeFlags = getAsLong(MessageTable.TYPE) or MessageTypes.GROUP_V2_BIT or MessageTypes.GROUP_UPDATE_BIT
       }
     }
-    this.put(MessageTable.TYPE, getAsLong(MessageTable.TYPE) or typeFlags)
+    this.put(MessageTable.TYPE, typeFlags)
   }
 
   private fun ContentValues.addQuote(quote: Quote) {

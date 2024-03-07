@@ -54,14 +54,6 @@ fun MessageTable.getMessagesForBackup(backupTime: Long): ChatItemExportIterator 
     .from(MessageTable.TABLE_NAME)
     .where(
       """
-      ($BASE_TYPE IN (
-        ${MessageTypes.BASE_INBOX_TYPE},
-        ${MessageTypes.BASE_OUTBOX_TYPE},
-        ${MessageTypes.BASE_SENT_TYPE},
-        ${MessageTypes.BASE_SENDING_TYPE},
-        ${MessageTypes.BASE_SENT_FAILED_TYPE}
-      ) OR ${MessageTable.IS_CALL_TYPE_CLAUSE})
-      AND 
       (
         ${MessageTable.EXPIRE_STARTED} = 0 
         OR 

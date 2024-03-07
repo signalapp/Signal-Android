@@ -117,14 +117,23 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
         MessageTypes.isIdentityUpdate(record.type) -> builder.updateMessage = ChatUpdateMessage(simpleUpdate = SimpleChatUpdate(type = SimpleChatUpdate.Type.IDENTITY_UPDATE))
         MessageTypes.isIdentityVerified(record.type) -> builder.updateMessage = ChatUpdateMessage(simpleUpdate = SimpleChatUpdate(type = SimpleChatUpdate.Type.IDENTITY_VERIFIED))
         MessageTypes.isIdentityDefault(record.type) -> builder.updateMessage = ChatUpdateMessage(simpleUpdate = SimpleChatUpdate(type = SimpleChatUpdate.Type.IDENTITY_DEFAULT))
-        MessageTypes.isChangeNumber(record.type) -> builder.updateMessage = ChatUpdateMessage(simpleUpdate = SimpleChatUpdate(type = SimpleChatUpdate.Type.CHANGE_NUMBER))
-        MessageTypes.isBoostRequest(record.type) -> builder.updateMessage = ChatUpdateMessage(simpleUpdate = SimpleChatUpdate(type = SimpleChatUpdate.Type.BOOST_REQUEST))
+        MessageTypes.isChangeNumber(record.type) -> {
+          builder.updateMessage = ChatUpdateMessage(simpleUpdate = SimpleChatUpdate(type = SimpleChatUpdate.Type.CHANGE_NUMBER))
+          builder.sms = false
+        }
+        MessageTypes.isBoostRequest(record.type) -> {
+          builder.updateMessage = ChatUpdateMessage(simpleUpdate = SimpleChatUpdate(type = SimpleChatUpdate.Type.BOOST_REQUEST))
+          builder.sms = false
+        }
         MessageTypes.isEndSessionType(record.type) -> builder.updateMessage = ChatUpdateMessage(simpleUpdate = SimpleChatUpdate(type = SimpleChatUpdate.Type.END_SESSION))
         MessageTypes.isChatSessionRefresh(record.type) -> builder.updateMessage = ChatUpdateMessage(simpleUpdate = SimpleChatUpdate(type = SimpleChatUpdate.Type.CHAT_SESSION_REFRESH))
         MessageTypes.isBadDecryptType(record.type) -> builder.updateMessage = ChatUpdateMessage(simpleUpdate = SimpleChatUpdate(type = SimpleChatUpdate.Type.BAD_DECRYPT))
         MessageTypes.isPaymentsActivated(record.type) -> builder.updateMessage = ChatUpdateMessage(simpleUpdate = SimpleChatUpdate(type = SimpleChatUpdate.Type.PAYMENTS_ACTIVATED))
         MessageTypes.isPaymentsRequestToActivate(record.type) -> builder.updateMessage = ChatUpdateMessage(simpleUpdate = SimpleChatUpdate(type = SimpleChatUpdate.Type.PAYMENT_ACTIVATION_REQUEST))
-        MessageTypes.isExpirationTimerUpdate(record.type) -> builder.updateMessage = ChatUpdateMessage(expirationTimerChange = ExpirationTimerChatUpdate((record.expiresIn / 1000).toInt()))
+        MessageTypes.isExpirationTimerUpdate(record.type) -> {
+          builder.updateMessage = ChatUpdateMessage(expirationTimerChange = ExpirationTimerChatUpdate(record.expiresIn.toInt()))
+          builder.expiresInMs = null
+        }
         MessageTypes.isProfileChange(record.type) -> {
           builder.updateMessage = ChatUpdateMessage(
             profileChange = try {
@@ -140,6 +149,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
               ProfileChangeChatUpdate()
             }
           )
+          builder.sms = false
         }
         MessageTypes.isSessionSwitchoverType(record.type) -> {
           builder.updateMessage = ChatUpdateMessage(
