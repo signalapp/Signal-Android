@@ -431,8 +431,8 @@ public class CommunicationActions {
                .execute();
   }
 
-  private static void handleE164Link(Activity activity, String e164) {
-    SimpleProgressDialog.DismissibleDialog dialog = SimpleProgressDialog.showDelayed(activity, 500, 500);
+  private static void handleE164Link(FragmentActivity activity, String e164) {
+    SimpleProgressDialog.DismissibleDialog dialog = SimpleProgressDialog.showDelayed(activity, activity, 500, 500);
 
     SimpleTask.run(() -> {
       Recipient recipient = Recipient.external(activity, e164);
@@ -461,8 +461,8 @@ public class CommunicationActions {
     });
   }
 
-  private static void handleUsernameLink(Activity activity, String link) {
-    SimpleProgressDialog.DismissibleDialog dialog = SimpleProgressDialog.showDelayed(activity, 500, 500);
+  private static void handleUsernameLink(FragmentActivity activity, String link) {
+    SimpleProgressDialog.DismissibleDialog dialog = SimpleProgressDialog.showDelayed(activity, activity, 500, 500);
 
     SimpleTask.run(() -> {
       try {
