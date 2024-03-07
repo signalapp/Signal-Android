@@ -20,23 +20,29 @@ import androidx.core.graphics.drawable.DrawableCompat;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import org.signal.core.util.DimensionUnit;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
+import java.util.Objects;
+
 public class RationaleDialog {
 
   public static MaterialAlertDialogBuilder createFor(@NonNull Context context, @NonNull String message, @DrawableRes int... drawables) {
-    View      view   = LayoutInflater.from(context).inflate(R.layout.permissions_rationale_dialog, null);
-    ViewGroup header = view.findViewById(R.id.header_container);
-    TextView  text   = view.findViewById(R.id.message);
+    View      view    = LayoutInflater.from(context).inflate(R.layout.permissions_rationale_dialog, null);
+    ViewGroup header  = view.findViewById(R.id.header_container);
+    TextView  text    = view.findViewById(R.id.message);
+    int       iconSize = (int) DimensionUnit.DP.toPixels(32);
 
     for (int i=0;i<drawables.length;i++) {
-      Drawable drawable = ContextCompat.getDrawable(context, drawables[i]);
+      Drawable drawable = Objects.requireNonNull(ContextCompat.getDrawable(context, drawables[i]));
       DrawableCompat.setTint(drawable, ContextCompat.getColor(context, R.color.white));
       ImageView imageView = new ImageView(context);
       imageView.setImageDrawable(drawable);
-      imageView.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+
+      imageView.setLayoutParams(new LayoutParams(iconSize, iconSize));
+      imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
 
       header.addView(imageView);
 

@@ -31,6 +31,7 @@ import androidx.compose.ui.window.DialogProperties
 import org.signal.core.ui.Dialogs.PermissionRationaleDialog
 import org.signal.core.ui.Dialogs.SimpleAlertDialog
 import org.signal.core.ui.Dialogs.SimpleMessageDialog
+import org.signal.core.ui.theme.SignalTheme
 
 object Dialogs {
 
@@ -138,12 +139,14 @@ object Dialogs {
     onDismiss: () -> Unit
   ) {
     Dialog(
-      onDismissRequest = onDismiss
+      onDismissRequest = onDismiss,
+      properties = DialogProperties(usePlatformDefaultWidth = false)
     ) {
       Surface(
         modifier = Modifier
+          .fillMaxWidth(fraction = 0.75f)
           .background(
-            color = MaterialTheme.colorScheme.secondaryContainer,
+            color = SignalTheme.colors.colorSurface2,
             shape = AlertDialogDefaults.shape
           )
           .clip(AlertDialogDefaults.shape)
@@ -154,26 +157,28 @@ object Dialogs {
             modifier = Modifier
               .fillMaxWidth()
               .background(color = MaterialTheme.colorScheme.primary)
-              .padding(40.dp)
+              .padding(48.dp)
           ) {
             Icon(
               painter = icon,
               contentDescription = null,
-              tint = MaterialTheme.colorScheme.onPrimary
+              tint = MaterialTheme.colorScheme.onPrimary,
+              modifier = Modifier.size(32.dp)
             )
           }
           Text(
             text = rationale,
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier
-              .padding(top = 20.dp)
-              .padding(horizontal = 20.dp)
+              .padding(horizontal = 24.dp, vertical = 16.dp)
           )
 
           FlowRow(
             horizontalArrangement = Arrangement.End,
             modifier = Modifier
               .fillMaxWidth()
-              .padding(24.dp)
+              .padding(start = 24.dp, end = 24.dp, bottom = 24.dp)
           ) {
             TextButton(onClick = onDismiss) {
               Text(text = dismiss)
