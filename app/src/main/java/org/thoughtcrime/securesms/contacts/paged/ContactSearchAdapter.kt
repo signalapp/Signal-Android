@@ -394,6 +394,8 @@ open class ContactSearchAdapter(
     private val checkbox: CheckBox = itemView.findViewById(R.id.check_box)
     private val name: FromTextView = itemView.findViewById(R.id.name)
     private val number: TextView = itemView.findViewById(R.id.number)
+    private val headerGroup: View = itemView.findViewById(R.id.contact_header)
+    private val headerText: TextView = itemView.findViewById(R.id.section_header)
 
     override fun bind(model: UnknownRecipientModel) {
       checkbox.visible = displayCheckBox
@@ -412,6 +414,19 @@ open class ContactSearchAdapter(
       } else {
         name.text = model.data.query
         number.visible = false
+      }
+
+      if (model.data.mode == ContactSearchConfiguration.NewRowMode.NEW_CONVERSATION) {
+        headerGroup.visible = true
+        headerText.setText(
+          if (model.data.sectionKey == ContactSearchConfiguration.SectionKey.PHONE_NUMBER) {
+            R.string.FindByActivity__find_by_phone_number
+          } else {
+            R.string.FindByActivity__find_by_username
+          }
+        )
+      } else {
+        headerGroup.visible = false
       }
 
       itemView.setOnClickListener {
