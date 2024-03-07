@@ -18,7 +18,7 @@
         android:importantForAccessibility="no"
         android:scaleType="centerInside"
         android:src="@drawable/symbol_invite_24"
-        app:tint="@color/signal_colorOnSurfaceVariant"
+        app:tint="@color/signal_colorOnSurface"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
