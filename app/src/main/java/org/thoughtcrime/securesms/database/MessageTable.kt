@@ -4861,6 +4861,13 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     return type
   }
 
+  fun threadContainsSms(threadId: Long): Boolean {
+    return readableDatabase
+      .exists(TABLE_NAME)
+      .where(getInsecureMessageClause(threadId))
+      .run()
+  }
+
   protected enum class ReceiptType(val columnName: String, val groupStatus: Int) {
     READ(HAS_READ_RECEIPT, GroupReceiptTable.STATUS_READ),
     DELIVERY(HAS_DELIVERY_RECEIPT, GroupReceiptTable.STATUS_DELIVERED),

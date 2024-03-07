@@ -18,7 +18,8 @@ class InputReadyState(
   val messageRequestState: MessageRequestState,
   val groupRecord: GroupRecord?,
   val isClientExpired: Boolean,
-  val isUnauthorized: Boolean
+  val isUnauthorized: Boolean,
+  val threadContainsSms: Boolean
 ) {
   private val selfMemberLevel: GroupTable.MemberLevel? = groupRecord?.memberLevel(Recipient.self())
 

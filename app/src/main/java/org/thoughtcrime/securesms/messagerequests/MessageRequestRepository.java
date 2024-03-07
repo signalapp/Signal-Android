@@ -150,6 +150,10 @@ public final class MessageRequestRepository {
     }
   }
 
+  public boolean threadContainsSms(long threadId) {
+    return SignalDatabase.messages().threadContainsSms(threadId);
+  }
+
   private boolean reportedAsSpam(long threadId) {
     return SignalDatabase.messages().hasReportSpamMessage(threadId) ||
            SignalDatabase.messages().getOutgoingSecureMessageCount(threadId) > 0;
