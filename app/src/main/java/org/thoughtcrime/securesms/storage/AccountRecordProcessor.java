@@ -157,6 +157,7 @@ public class AccountRecordProcessor extends DefaultStorageRecordProcessor<Signal
                                                                    .setPrimarySendsSms(primarySendsSms)
                                                                    .setDefaultReactions(defaultReactions)
                                                                    .setSubscriber(subscriber)
+                                                                   .setStoryViewReceiptsState(storyViewReceiptsState)
                                                                    .setDisplayBadgesOnProfile(displayBadgesOnProfile)
                                                                    .setSubscriptionManuallyCancelled(subscriptionManuallyCancelled)
                                                                    .setKeepMutedChatsArchived(keepMutedChatsArchived)
