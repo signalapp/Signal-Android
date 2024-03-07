@@ -426,6 +426,8 @@
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported">Die SMS-Nachrichtübermittlung wird in Signal nicht länger unterstützt.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Die SMS-Nachrichtübermittlung wird in Signal nicht länger unterstützt. Lade %1$s zu Signal ein, damit die Unterhaltung hier weitergeht.</string>
+    <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
+    <string name="ConversationActivity__this_person_is_no_longer_using_signal">This person is no longer using Signal. Invite them to Signal to keep the conversation here.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">Zu Signal einladen</string>
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
@@ -1349,11 +1351,11 @@
     <!-- Update message shown when receiving an incoming 1:1 video call and answered -->
     <string name="MessageRecord_incoming_video_call">Eingehender Videoanruf</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and not answered -->
-    <string name="MessageRecord_missed_voice_call">Entgangener Sprachanruf</string>
+    <string name="MessageRecord_missed_voice_call">Verpasster Sprachanruf</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
-    <string name="MessageRecord_missed_video_call">Entgangener Videoanruf</string>
+    <string name="MessageRecord_missed_video_call">Verpasster Videoanruf</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
-    <string name="MessageRecord_missed_voice_call_notification_profile">Entgangener Sprachanruf bei aktiviertem Benachrichtigungsprofil</string>
+    <string name="MessageRecord_missed_voice_call_notification_profile">Verpasster Sprachanruf bei aktiviertem Benachrichtigungsprofil</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
     <string name="MessageRecord_missed_video_call_notification_profile">Verpasster Videoanruf bei aktiviertem Benachrichtigungsprofil</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
@@ -3160,25 +3162,25 @@
     <string name="preferences__theme">Design</string>
     <string name="preferences__chat_color_and_wallpaper">Chat-Farbe und Hintergrund</string>
     <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
-    <string name="preferences__app_icon">App-Icon</string>
+    <string name="preferences__app_icon">App-Symbol</string>
     <!-- Approval for changing the app icon. -->
     <string name="preferences__app_icon_dialog_ok">OK</string>
     <!-- Cancelling the operation of changing the app icon. -->
     <string name="preferences__app_icon_dialog_cancel">Abbrechen</string>
     <!-- Title for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_title">Ändere App-Icon und Name zu »%1$s«</string>
+    <string name="preferences__app_icon_dialog_title">Ändere App-Symbol und Name zu »%1$s«</string>
     <!-- Description for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_description">Signal muss beendet werden, um das App-Icon und den Namen zu ändern. Bei Benachrichtigungen werden immer das Standard-Icon von Signal und der Name angezeigt.</string>
+    <string name="preferences__app_icon_dialog_description">Signal muss beendet werden, um das App-Symbol und den Namen zu ändern. Bei Benachrichtigungen werden immer das Standardsymbol von Signal und der Name angezeigt.</string>
     <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
-    <string name="preferences__app_icon_warning_learn_more">Wähle ein App-Icon und einen Namen aus, die dann auf dem Startbildschirm und im App-Drawer deines Mobiltelefons angezeigt werden. Bei Benachrichtigungen werden immer das Standard-Icon von Signal und der Name angezeigt. Mehr erfahren</string>
+    <string name="preferences__app_icon_warning_learn_more">Wähle ein App-Symbol und einen Namen aus, die dann auf dem Startbildschirm und im App-Drawer deines Mobiltelefons angezeigt werden. Bei Benachrichtigungen werden immer das Standard-Icon von Signal und der Name angezeigt. Mehr erfahren</string>
     <!-- Visible warning label for the limitations of changing the app icon. -->
-    <string name="preferences__app_icon_warning">App-Icons und Namen werden auf dem Startbildschirm und im App-Drawer deines Mobiltelefons angezeigt.</string>
+    <string name="preferences__app_icon_warning">App-Symbole und Namen werden auf dem Startbildschirm und im App-Drawer deines Mobiltelefons angezeigt.</string>
     <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
     <string name="preferences__app_icon_notification_warning">Bei Benachrichtigungen werden immer das Standard-Icon von Signal und der Name angezeigt.</string>
     <!--Call to action to get more information about the limitations of the change app icon functionality. -->
     <string name="preferences__app_icon_learn_more">Mehr erfahren</string>
     <!--Text description of a graphic illustrating the limitations of the app icon change. -->
-    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Grafik, die zeigt, wo das neue App-Icon zu sehen sein wird.</string>
+    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Grafik, die zeigt, wo das neue App-Symbol zu sehen sein wird.</string>
     <string name="preferences__disable_pin">PIN deaktivieren</string>
     <string name="preferences__enable_pin">PIN aktivieren</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Falls du deine PIN deaktivierst, wirst du bei erneutem Registrieren von Signal alle Daten verlieren, sofern du sie nicht manuell per Datensicherung sicherst und wiederherstellst. Bei deaktivierter PIN kannst du die Registrierungssperre nicht einschalten.</string>
@@ -3618,7 +3620,7 @@
     <string name="conversation__menu_group_settings">Gruppeneinstellungen</string>
     <string name="conversation__menu_leave_group">Gruppe verlassen</string>
     <string name="conversation__menu_view_all_media">Medienübersicht</string>
-    <string name="conversation__menu_conversation_settings">Chateinstellungen</string>
+    <string name="conversation__menu_conversation_settings">Chat-Einstellungen</string>
     <string name="conversation__menu_add_shortcut">Zum Startbildschirm hinzufügen</string>
     <string name="conversation__menu_create_bubble">Bubble erstellen</string>
     <!-- Overflow menu option that allows formatting of text -->
@@ -6249,7 +6251,7 @@
     <!-- Popup menu label for applying strikethrough style -->
     <string name="TextFormatting_strikethrough">Durchgestrichen</string>
     <!-- Popup menu label for applying monospace font style -->
-    <string name="TextFormatting_monospace">Nichtproportionale Schriftart</string>
+    <string name="TextFormatting_monospace">Monospace</string>
     <!-- Popup menu label for applying spoiler style -->
     <string name="TextFormatting_spoiler">Spoiler</string>
     <!-- Popup menu label for clearing applied formatting -->
@@ -6281,7 +6283,7 @@
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">Verpasst</string>
     <!-- Displayed for missed calls declined by notification profile -->
-    <string name="CallLogAdapter__missed_notification_profile">Entgangen bei aktiviertem Benachrichtigungsprofil</string>
+    <string name="CallLogAdapter__missed_notification_profile">Verpasst bei aktiviertem Benachrichtigungsprofil</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">Beitreten</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -6328,7 +6330,7 @@
     <!-- Action bar menu item to delete all call events -->
     <string name="CallLogFragment__clear_call_history">Anrufverlauf leeren</string>
     <!-- Action bar menu item to only display missed calls -->
-    <string name="CallLogFragment__filter_missed_calls">Entgangene Anrufe filtern</string>
+    <string name="CallLogFragment__filter_missed_calls">Verpasste Anrufe filtern</string>
     <!-- Action bar menu item to clear missed call filter -->
     <string name="CallLogFragment__clear_filter">Filter entfernen</string>
     <!-- Action bar menu item to open settings -->
@@ -6338,7 +6340,7 @@
     <!-- Call log new call content description -->
     <string name="CallLogFragment__start_a_new_call">Neuen Anruf starten</string>
     <!-- Filter pull text when pulled -->
-    <string name="CallLogFragment__filtered_by_missed">Gefiltert nach Entgangen</string>
+    <string name="CallLogFragment__filtered_by_missed">Verpasste Anrufe gefiltert</string>
     <!-- Bottom bar option to select all call entries -->
     <string name="CallLogFragment__select_all">Alle auswählen</string>
     <!-- Bottom bar option to delete all selected call entries and dialog action to confirm deletion -->
@@ -6388,9 +6390,9 @@
     <!-- Generic group call in call info -->
     <string name="CallPreference__group_call">Gruppenanruf</string>
     <!-- Missed group call in call info -->
-    <string name="CallPreference__missed_group_call">Entgangener Gruppenanruf</string>
+    <string name="CallPreference__missed_group_call">Verpasster Gruppenanruf</string>
     <!-- Missed group call while notification profile on in call info -->
-    <string name="CallPreference__missed_group_call_notification_profile">Entgangener Gruppenanruf bei aktiviertem Benachrichtigungsprofil</string>
+    <string name="CallPreference__missed_group_call_notification_profile">Verpasster Gruppenanruf bei aktiviertem Benachrichtigungsprofil</string>
     <!-- Incoming group call in call info -->
     <string name="CallPreference__incoming_group_call">Eingehender Gruppenanruf</string>
     <!-- Outgoing group call in call info -->

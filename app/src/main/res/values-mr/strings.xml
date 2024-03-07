@@ -426,6 +426,8 @@
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported">SMS संदेशन यापुढे Signal मध्ये समर्थित नाही.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">SMS संदेशन यापुढे Signal मध्ये समर्थित नाही. संभाषण येथे ठेवण्यासाठी %1$s ला Signal वर आमंत्रित करा.</string>
+    <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
+    <string name="ConversationActivity__this_person_is_no_longer_using_signal">This person is no longer using Signal. Invite them to Signal to keep the conversation here.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">Signal वर आमंत्रित करा</string>
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
