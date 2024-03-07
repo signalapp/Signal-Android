@@ -132,6 +132,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"
+        android:alpha="0.7"
         android:autoLink="none"
         android:ellipsize="end"
         android:linksClickable="false"
@@ -148,6 +149,7 @@
         android:layout_width="12dp"
         android:layout_height="12dp"
         android:layout_marginBottom="@dimen/message_bubble_bottom_padding"
+        android:alpha="0.7"
         app:layout_constraintBottom_toBottomOf="@id/conversation_item_footer_date"
         app:layout_constraintEnd_toStartOf="@id/footer_end_pad"
         app:layout_constraintTop_toTopOf="@id/conversation_item_footer_date" />
