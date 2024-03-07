@@ -262,7 +262,7 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
 
   @Override
   public int compare(@NonNull SignalContactRecord lhs, @NonNull SignalContactRecord rhs) {
-    if (Objects.equals(lhs.getAci(), rhs.getAci()) ||
+    if ((lhs.getAci().isPresent() && Objects.equals(lhs.getAci(), rhs.getAci())) ||
         (lhs.getNumber().isPresent() && Objects.equals(lhs.getNumber(), rhs.getNumber())) ||
         (lhs.getPni().isPresent() && Objects.equals(lhs.getPni(), rhs.getPni())))
     {
