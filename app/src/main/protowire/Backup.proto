@@ -423,7 +423,7 @@ message FilePointer {
   // Can be ignored if unset/unavailable.
   optional uint32 size = 7;
   optional bytes incrementalMac = 8;
-  optional bytes incrementalMacChunkSize = 9;
+  optional uint32 incrementalMacChunkSize = 9;
   optional string fileName = 10;
   optional uint32 width = 11;
   optional uint32 height = 12;

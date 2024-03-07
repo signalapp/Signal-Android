@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.backup.v2
 
+import io.mockk.InternalPlatformDsl.toArray
 import okio.ByteString.Companion.toByteString
 import org.junit.Assert
 import org.junit.Before
@@ -22,8 +23,10 @@ import org.thoughtcrime.securesms.backup.v2.proto.ChatUpdateMessage
 import org.thoughtcrime.securesms.backup.v2.proto.Contact
 import org.thoughtcrime.securesms.backup.v2.proto.DistributionList
 import org.thoughtcrime.securesms.backup.v2.proto.ExpirationTimerChatUpdate
+import org.thoughtcrime.securesms.backup.v2.proto.FilePointer
 import org.thoughtcrime.securesms.backup.v2.proto.Frame
 import org.thoughtcrime.securesms.backup.v2.proto.Group
+import org.thoughtcrime.securesms.backup.v2.proto.MessageAttachment
 import org.thoughtcrime.securesms.backup.v2.proto.ProfileChangeChatUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.Quote
 import org.thoughtcrime.securesms.backup.v2.proto.Reaction
@@ -738,6 +741,46 @@ class ImportExportTest {
       expirationNotStarted
     )
     compare(expected, exported)
+  }
+
+  @Test
+  fun messageWithAttachmentsAndQuoteAttachments() {
+    var dateSent = System.currentTimeMillis()
+    importExport(
+      *standardFrames,
+      alice,
+      buildChat(alice, 1),
+      ChatItem(
+        chatId = 1,
+        authorId = selfRecipient.id,
+        dateSent = dateSent++,
+        sms = false,
+        outgoing = ChatItem.OutgoingMessageDetails(
+          sendStatus = listOf(SendStatus(alice.id, deliveryStatus = SendStatus.Status.READ, lastStatusUpdateTimestamp = -1))
+        ),
+        standardMessage = StandardMessage(
+          attachments = listOf(
+            MessageAttachment(
+              pointer = FilePointer(
+                attachmentLocator = FilePointer.AttachmentLocator(
+                  cdnKey = "coolCdnKey",
+                  cdnNumber = 2,
+                  uploadTimestamp = System.currentTimeMillis()
+                ),
+                key = (1..32).map { it.toByte() }.toByteArray().toByteString(),
+                contentType = "image/png",
+                size = 12345,
+                fileName = "very_cool_picture.png",
+                width = 100,
+                height = 200,
+                caption = "Love this cool picture!",
+                incrementalMacChunkSize = 0
+              )
+            )
+          )
+        )
+      )
+    )
   }
 
   @Test

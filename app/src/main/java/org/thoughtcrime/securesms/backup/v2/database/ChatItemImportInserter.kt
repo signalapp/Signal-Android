@@ -10,13 +10,17 @@ import androidx.core.content.contentValuesOf
 import org.signal.core.util.Base64
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.logging.Log
+import org.signal.core.util.orNull
 import org.signal.core.util.requireLong
 import org.signal.core.util.toInt
+import org.thoughtcrime.securesms.attachments.Attachment
+import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.backup.v2.BackupState
 import org.thoughtcrime.securesms.backup.v2.proto.BodyRange
 import org.thoughtcrime.securesms.backup.v2.proto.ChatItem
 import org.thoughtcrime.securesms.backup.v2.proto.ChatUpdateMessage
 import org.thoughtcrime.securesms.backup.v2.proto.IndividualCallChatUpdate
+import org.thoughtcrime.securesms.backup.v2.proto.MessageAttachment
 import org.thoughtcrime.securesms.backup.v2.proto.Quote
 import org.thoughtcrime.securesms.backup.v2.proto.Reaction
 import org.thoughtcrime.securesms.backup.v2.proto.SendStatus
@@ -44,8 +48,12 @@ import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.JsonUtils
+import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer
+import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId
+import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.util.UuidUtil
+import java.util.Optional
 
 /**
  * An object that will ingest all fo the [ChatItem]s you want to write, buffer them until hitting a specified batch size, and then batch insert them
@@ -226,6 +234,17 @@ class ChatItemImportInserter(
           followUp = { messageId ->
             SignalDatabase.mentions.insert(threadId, messageId, mentions)
           }
+        }
+      }
+      val attachments = this.standardMessage.attachments.mapNotNull { attachment ->
+        attachment.toLocalAttachment()
+      }
+      val quoteAttachments = this.standardMessage.quote?.attachments?.mapNotNull {
+        it.toLocalAttachment()
+      } ?: emptyList()
+      if (attachments.isNotEmpty()) {
+        followUp = { messageRowId ->
+          SignalDatabase.attachments.insertAttachmentsForMessage(messageRowId, attachments, quoteAttachments)
         }
       }
     }
@@ -542,6 +561,39 @@ class ChatItemImportInserter(
       SendStatus.Status.VIEWED -> GroupReceiptTable.STATUS_VIEWED
       SendStatus.Status.SKIPPED -> GroupReceiptTable.STATUS_SKIPPED
     }
+  }
+
+  private fun MessageAttachment.toLocalAttachment(contentType: String? = pointer?.contentType, fileName: String? = pointer?.fileName): Attachment? {
+    if (pointer == null) return null
+    if (pointer.attachmentLocator != null) {
+      val signalAttachmentPointer = SignalServiceAttachmentPointer(
+        pointer.attachmentLocator.cdnNumber,
+        SignalServiceAttachmentRemoteId.from(pointer.attachmentLocator.cdnKey),
+        contentType,
+        pointer.key?.toByteArray(),
+        Optional.ofNullable(pointer.size),
+        Optional.empty(),
+        pointer.width ?: 0,
+        pointer.height ?: 0,
+        Optional.empty(),
+        Optional.ofNullable(pointer.incrementalMac?.toByteArray()),
+        pointer.incrementalMacChunkSize ?: 0,
+        Optional.ofNullable(fileName),
+        flag == MessageAttachment.Flag.VOICE_MESSAGE,
+        flag == MessageAttachment.Flag.BORDERLESS,
+        flag == MessageAttachment.Flag.GIF,
+        Optional.ofNullable(pointer.caption),
+        Optional.ofNullable(pointer.blurHash),
+        pointer.attachmentLocator.uploadTimestamp
+      )
+      return PointerAttachment.forPointer(Optional.of(signalAttachmentPointer)).orNull()
+    }
+    return null
+  }
+
+  private fun Quote.QuotedAttachment.toLocalAttachment(): Attachment? {
+    return thumbnail?.toLocalAttachment(this.contentType, this.fileName)
+      ?: if (this.contentType == null) null else PointerAttachment.forPointer(SignalServiceDataMessage.Quote.QuotedAttachment(contentType = this.contentType!!, fileName = this.fileName, thumbnail = null)).orNull()
   }
 
   private class MessageInsert(val contentValues: ContentValues, val followUp: ((Long) -> Unit)?)
