@@ -4894,7 +4894,7 @@
     <!-- Small notification presented to the user when they set their video to view-once mode -->
     <string name="MediaReviewFragment__video_set_to_view_once">Video set to view once</string>
     <!-- Small notification presented to the user when they set their photo to view-once mode -->
-    <string name="MediaReviewFragment__photo_set_to_view_once">Photo sent to view once</string>
+    <string name="MediaReviewFragment__photo_set_to_view_once">Photo set to view once</string>
     <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
     <string name="MediaReviewFragment__video_set_to_high_quality">Video set to high quality</string>
     <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
