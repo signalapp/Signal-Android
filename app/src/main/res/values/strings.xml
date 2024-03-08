@@ -4904,9 +4904,15 @@
     <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
     <string name="MediaReviewFragment__photo_set_to_standard_quality">Photo set to standard quality</string>
     <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
-    <string name="MediaReviewFragment__items_set_to_high_quality">%d items set to high quality</string>
+    <plurals name="MediaReviewFragment__items_set_to_high_quality">
+        <item quantity="one">%1$d item set to high quality</item>
+        <item quantity="other">%1$d items set to high quality</item>
+    </plurals>
     <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
-    <string name="MediaReviewFragment__items_set_to_standard_quality">%d items set to standard quality</string>
+    <plurals name="MediaReviewFragment__items_set_to_standard_quality">
+        <item quantity="one">%d item set to standard quality</item>
+        <item quantity="other">%d items set to standard quality</item>
+    </plurals>
 
     <string name="ImageEditorHud__cancel">Cancel</string>
     <string name="ImageEditorHud__draw">Draw</string>

@@ -397,9 +397,9 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
       }
     } else {
       if (state.quality == SentMediaQuality.HIGH) {
-        getString(R.string.MediaReviewFragment__items_set_to_high_quality, mediaList.size)
+        resources.getQuantityString(R.plurals.MediaReviewFragment__items_set_to_high_quality, mediaList.size, mediaList.size)
       } else {
-        getString(R.string.MediaReviewFragment__items_set_to_standard_quality, mediaList.size)
+        resources.getQuantityString(R.plurals.MediaReviewFragment__items_set_to_standard_quality, mediaList.size, mediaList.size)
       }
     }
 
