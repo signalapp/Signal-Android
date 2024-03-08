@@ -23,9 +23,11 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.MainActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.backup.v2.ui.MessageBackupsTestRestoreActivity;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.ProfileUploadJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -236,7 +238,9 @@ public class PinRestoreEntryFragment extends LoggingFragment {
 
     Activity activity = requireActivity();
 
-    if (Recipient.self().getProfileName().isEmpty() || !AvatarHelper.hasAvatar(activity, Recipient.self().getId())) {
+    if (BuildConfig.MESSAGE_BACKUP_RESTORE_ENABLED) {
+      startActivity(MessageBackupsTestRestoreActivity.Companion.getIntent(activity));
+    } else if (Recipient.self().getProfileName().isEmpty() || !AvatarHelper.hasAvatar(activity, Recipient.self().getId())) {
       final Intent main    = MainActivity.clearTop(activity);
       final Intent profile = CreateProfileActivity.getIntentForUserProfile(activity);
 

@@ -961,6 +961,10 @@
               android:windowSoftInputMode="stateVisible|adjustResize"
               android:exported="false"/>
 
+    <activity android:name=".backup.v2.ui.MessageBackupsTestRestoreActivity"
+              android:theme="@style/TextSecure.LightRegistrationTheme"
+              android:exported="false"/>
+
     <activity android:name=".profiles.manage.EditProfileActivity"
               android:theme="@style/TextSecure.LightTheme"
               android:windowSoftInputMode="stateVisible|adjustResize"
