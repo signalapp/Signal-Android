@@ -25,7 +25,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingHorizontal="18dp"
+        android:paddingHorizontal="10dp"
         android:paddingBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,7 +39,11 @@
             android:layout_marginStart="6dp"
             android:layout_marginEnd="6dp"
             android:layout_weight="1"
-            android:text="@string/MessageRequestBottomView_block" />
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:text="@string/MessageRequestBottomView_block"
+            app:autoSizeMinTextSize="13sp"
+            app:autoSizeTextType="uniform" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/message_request_delete"
@@ -49,7 +53,11 @@
             android:layout_marginStart="6dp"
             android:layout_marginEnd="6dp"
             android:layout_weight="1"
-            android:text="@string/MessageRequestBottomView_delete" />
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:text="@string/MessageRequestBottomView_delete"
+            app:autoSizeMinTextSize="13sp"
+            app:autoSizeTextType="uniform" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/message_request_report"
@@ -59,7 +67,11 @@
             android:layout_marginStart="6dp"
             android:layout_marginEnd="6dp"
             android:layout_weight="1"
-            android:text="@string/MessageRequestBottomView_report" />
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:text="@string/MessageRequestBottomView_report"
+            app:autoSizeMinTextSize="13sp"
+            app:autoSizeTextType="uniform" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/message_request_accept"
@@ -69,7 +81,11 @@
             android:layout_marginStart="6dp"
             android:layout_marginEnd="6dp"
             android:layout_weight="1"
-            android:text="@string/MessageRequestBottomView_accept" />
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:text="@string/MessageRequestBottomView_accept"
+            app:autoSizeMinTextSize="13sp"
+            app:autoSizeTextType="uniform" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/message_request_unblock"
@@ -79,7 +95,11 @@
             android:layout_marginStart="6dp"
             android:layout_marginEnd="6dp"
             android:layout_weight="1"
-            android:text="@string/MessageRequestBottomView_unblock" />
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:text="@string/MessageRequestBottomView_unblock"
+            app:autoSizeMinTextSize="13sp"
+            app:autoSizeTextType="uniform" />
 
     </LinearLayout>
 
