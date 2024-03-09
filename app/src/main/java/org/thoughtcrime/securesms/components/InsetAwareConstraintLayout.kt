@@ -130,9 +130,9 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
 
     if (previousKeyboardHeight != keyboardInsets.bottom) {
       keyboardStateListeners.forEach {
-        if (previousKeyboardHeight <= 0) {
+        if (previousKeyboardHeight <= 0 && keyboardInsets.bottom > 0) {
           it.onKeyboardShown()
-        } else {
+        } else if (previousKeyboardHeight > 0 && keyboardInsets.bottom <= 0) {
           it.onKeyboardHidden()
         }
       }
