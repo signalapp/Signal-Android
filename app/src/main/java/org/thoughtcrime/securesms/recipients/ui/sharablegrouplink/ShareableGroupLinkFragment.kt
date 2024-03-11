@@ -50,7 +50,7 @@ class ShareableGroupLinkFragment : DSLSettingsFragment(
       { busy ->
         if (busy) {
           if (busyDialog == null) {
-            busyDialog = SimpleProgressDialog.showDelayed(requireContext(), this)
+            busyDialog = SimpleProgressDialog.showDelayed(requireContext(), viewLifecycleOwner)
           }
         } else {
           busyDialog?.dismiss()
