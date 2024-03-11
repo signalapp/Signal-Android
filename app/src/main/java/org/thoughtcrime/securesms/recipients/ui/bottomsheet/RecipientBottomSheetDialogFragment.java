@@ -36,6 +36,7 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsIcon;
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.ButtonStripPreference;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackPhoto80dp;
+import org.thoughtcrime.securesms.fonts.SignalSymbols;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -191,17 +192,22 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
         SpanUtil.appendSpacer(nameBuilder, 8);
         SpanUtil.appendCenteredImageSpanWithoutSpace(nameBuilder, ContextUtil.requireDrawable(requireContext(), R.drawable.ic_official_28), 28, 28);
       } else if (recipient.isSystemContact()) {
-        Drawable drawable = ContextUtil.requireDrawable(requireContext(), R.drawable.symbol_person_circle_24);
-        drawable.setTint(ContextCompat.getColor(requireContext(), R.color.signal_colorOnSurface));
-        SpanUtil.appendSpacer(nameBuilder, 8);
-        SpanUtil.appendCenteredImageSpanWithoutSpace(nameBuilder, drawable, 24, 24);
+        CharSequence systemContactGlyph = SignalSymbols.INSTANCE.getSpannedString(requireContext(),
+                                                                                  SignalSymbols.Weight.BOLD,
+                                                                                  SignalSymbols.Glyph.PERSON_CIRCLE);
+
+        nameBuilder.append(" ");
+        nameBuilder.append(SpanUtil.ofSize(systemContactGlyph, 20));
       }
 
       if (!recipient.isSelf() && recipient.isIndividual()) {
-        Drawable drawable = ContextUtil.requireDrawable(requireContext(), R.drawable.symbol_chevron_right_24);
-        drawable.setBounds(0, 0, (int) DimensionUnit.DP.toPixels(24), (int) DimensionUnit.DP.toPixels(24));
-        drawable.setTint(ContextCompat.getColor(requireContext(), R.color.signal_colorOutline));
-        nameBuilder.append(SpanUtil.buildCenteredImageSpan(drawable));
+        CharSequence chevronGlyph = SignalSymbols.INSTANCE.getSpannedString(requireContext(),
+                                                                            SignalSymbols.Weight.BOLD,
+                                                                            SignalSymbols.Glyph.CHEVRON_RIGHT);
+
+        nameBuilder.append(" ");
+        nameBuilder.append(SpanUtil.color(ContextCompat.getColor(requireContext(), R.color.signal_colorOutline),
+                                          SpanUtil.ofSize(chevronGlyph, 24)));
 
         fullName.setText(nameBuilder);
         fullName.setOnClickListener(v -> {

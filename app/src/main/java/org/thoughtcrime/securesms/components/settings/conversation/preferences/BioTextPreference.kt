@@ -7,9 +7,9 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import org.signal.core.util.dp
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
+import org.thoughtcrime.securesms.fonts.SignalSymbols
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.ContextUtil
 import org.thoughtcrime.securesms.util.ServiceUtil
@@ -57,20 +57,31 @@ object BioTextPreference {
           SpanUtil.appendSpacer(this, 8)
           SpanUtil.appendCenteredImageSpanWithoutSpace(this, ContextUtil.requireDrawable(context, R.drawable.ic_official_28), 28, 28)
         } else if (recipient.isSystemContact) {
-          val drawable = ContextUtil.requireDrawable(context, R.drawable.symbol_person_circle_24).apply {
-            setTint(ContextCompat.getColor(context, R.color.signal_colorOnSurface))
+          val systemContactGlyph = SignalSymbols.getSpannedString(
+            context,
+            SignalSymbols.Weight.BOLD,
+            SignalSymbols.Glyph.PERSON_CIRCLE
+          ).let {
+            SpanUtil.ofSize(it, 20)
           }
-          SpanUtil.appendSpacer(this, 8)
-          SpanUtil.appendCenteredImageSpanWithoutSpace(this, drawable, 24, 24)
+
+          append(" ")
+          append(systemContactGlyph)
         }
 
         if (recipient.isIndividual && !recipient.isSelf) {
-          val drawable = ContextUtil.requireDrawable(context, R.drawable.symbol_chevron_right_24).apply {
-            setBounds(0, 0, 24.dp, 24.dp)
-            setTint(ContextCompat.getColor(context, R.color.signal_colorOutline))
+          val chevronGlyph = SignalSymbols.getSpannedString(
+            context,
+            SignalSymbols.Weight.BOLD,
+            SignalSymbols.Glyph.CHEVRON_RIGHT
+          ).let {
+            SpanUtil.ofSize(it, 24)
+          }.let {
+            SpanUtil.color(ContextCompat.getColor(context, R.color.signal_colorOutline), it)
           }
 
-          append(SpanUtil.buildCenteredImageSpan(drawable))
+          append(" ")
+          append(chevronGlyph)
         }
       }
     }
