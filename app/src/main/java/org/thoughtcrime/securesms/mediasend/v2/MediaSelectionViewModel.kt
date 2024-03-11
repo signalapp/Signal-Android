@@ -350,16 +350,18 @@ class MediaSelectionViewModel(
       val data = it.getOrCreateVideoTrimData(uri)
       val clampedStartTime = max(startTimeUs.toDouble(), 0.0).toLong()
 
-      val alreadyEdited = data.isDurationEdited
+      val unedited = !data.isDurationEdited
       val durationEdited = clampedStartTime > 0 || endTimeUs < totalDurationUs
-      val endMoved = data.endTimeUs != endTimeUs
+      val isEntireDuration = startTimeUs == 0L && endTimeUs == totalDurationUs
+      val endMoved = !isEntireDuration && data.endTimeUs != endTimeUs
       val maxVideoDurationUs: Long = if (it.isStory && !MediaConstraints.isVideoTranscodeAvailable()) {
         Stories.MAX_VIDEO_DURATION_MILLIS
       } else {
         it.transcodingPreset.calculateMaxVideoUploadDurationInSeconds(getMediaConstraints().getVideoMaxSize(context)).seconds.inWholeMicroseconds
       }
-      val updatedData = clampToMaxClipDuration(VideoTrimData(durationEdited, totalDurationUs, clampedStartTime, endTimeUs), maxVideoDurationUs, !alreadyEdited || !endMoved)
-      if (!alreadyEdited && durationEdited) {
+      val preserveStartTime = unedited || !endMoved
+      val updatedData = clampToMaxClipDuration(VideoTrimData(durationEdited, totalDurationUs, clampedStartTime, endTimeUs), maxVideoDurationUs, preserveStartTime)
+      if (unedited && durationEdited) {
         cancelUpload(MediaBuilder.buildMedia(uri))
       }
       it.copy(
@@ -565,7 +567,7 @@ class MediaSelectionViewModel(
     private const val STATE_EDITOR_COUNT = "$STATE_PREFIX.editor_count"
 
     @JvmStatic
-    fun clampToMaxClipDuration(data: VideoTrimData, maxVideoDurationUs: Long, clampEnd: Boolean): VideoTrimData {
+    fun clampToMaxClipDuration(data: VideoTrimData, maxVideoDurationUs: Long, preserveStartTime: Boolean): VideoTrimData {
       if (!MediaConstraints.isVideoTranscodeAvailable()) {
         return data
       }
@@ -576,8 +578,8 @@ class MediaSelectionViewModel(
 
       return data.copy(
         isDurationEdited = true,
-        startTimeUs = if (!clampEnd) data.endTimeUs - maxVideoDurationUs else data.startTimeUs,
-        endTimeUs = if (clampEnd) data.startTimeUs + maxVideoDurationUs else data.endTimeUs
+        startTimeUs = if (!preserveStartTime) data.endTimeUs - maxVideoDurationUs else data.startTimeUs,
+        endTimeUs = if (preserveStartTime) data.startTimeUs + maxVideoDurationUs else data.endTimeUs
       )
     }
   }
