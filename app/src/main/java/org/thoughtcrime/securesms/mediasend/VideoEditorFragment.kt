@@ -147,6 +147,7 @@ class VideoEditorFragment : Fragment(), PositionDragListener, MediaSendPageFragm
           }
         } else {
           stopPositionUpdates()
+          player.pause()
         }
       }
       isFocused = currentlyFocused
