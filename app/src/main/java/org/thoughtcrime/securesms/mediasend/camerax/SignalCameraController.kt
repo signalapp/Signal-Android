@@ -16,6 +16,7 @@ import androidx.annotation.RequiresApi
 import androidx.annotation.RequiresPermission
 import androidx.camera.core.Camera
 import androidx.camera.core.CameraSelector
+import androidx.camera.core.DisplayOrientedMeteringPointFactory
 import androidx.camera.core.FocusMeteringAction
 import androidx.camera.core.FocusMeteringResult
 import androidx.camera.core.ImageCapture
@@ -43,11 +44,14 @@ import androidx.core.content.ContextCompat
 import androidx.core.util.Consumer
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
+import com.google.common.util.concurrent.FutureCallback
+import com.google.common.util.concurrent.Futures
 import com.google.common.util.concurrent.ListenableFuture
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import java.util.concurrent.ExecutionException
+import org.thoughtcrime.securesms.util.ViewUtil
+import org.thoughtcrime.securesms.util.visible
 import java.util.concurrent.Executor
 
 /**
@@ -55,9 +59,17 @@ import java.util.concurrent.Executor
  *
  * The API is a subset of the [CameraController] class, but with a few additions such as [setImageRotation].
  */
-class SignalCameraController(val context: Context, val lifecycleOwner: LifecycleOwner, private val previewView: PreviewView) {
+class SignalCameraController(
+  private val context: Context,
+  private val lifecycleOwner: LifecycleOwner,
+  private val previewView: PreviewView,
+  private val focusIndicator: View
+) {
   companion object {
     val TAG = Log.tag(SignalCameraController::class.java)
+
+    private const val AF_SIZE = 1.0f / 6.0f
+    private const val AE_SIZE = AF_SIZE * 1.5f
 
     @JvmStatic
     private fun isLandscape(surfaceRotation: Int): Boolean {
@@ -73,6 +85,8 @@ class SignalCameraController(val context: Context, val lifecycleOwner: Lifecycle
   private val initializationCompleteListeners: MutableSet<InitializationListener> = mutableSetOf()
   private val customUseCases: MutableList<UseCase> = mutableListOf()
 
+  private var tapToFocusEvents = 0
+
   private var imageRotation = 0
   private var recording: Recording? = null
   private var previewTargetSize: Size? = null
@@ -85,7 +99,7 @@ class SignalCameraController(val context: Context, val lifecycleOwner: Lifecycle
   private var videoCaptureUseCase: VideoCapture<Recorder> = createVideoCaptureRecorder()
 
   private lateinit var cameraProvider: ProcessCameraProvider
-  private lateinit var camera: Camera
+  private lateinit var cameraProperty: Camera
 
   @RequiresPermission(Manifest.permission.CAMERA)
   fun bindToLifecycle(onCameraBoundListener: Runnable) {
@@ -117,13 +131,14 @@ class SignalCameraController(val context: Context, val lifecycleOwner: Lifecycle
         Log.d(TAG, "Camera provider not yet initialized.")
         return
       }
-      camera = cameraProvider.bindToLifecycle(
+      val camera = cameraProvider.bindToLifecycle(
         lifecycleOwner,
         cameraSelector,
         buildUseCaseGroup()
       )
 
-      initializeTapToFocus()
+      initializeTapToFocus(camera)
+      this.cameraProperty = camera
     } catch (e: Exception) {
       Log.e(TAG, "Use case binding failed", e)
     }
@@ -254,13 +269,13 @@ class SignalCameraController(val context: Context, val lifecycleOwner: Lifecycle
   @MainThread
   fun setZoomRatio(ratio: Float): ListenableFuture<Void> {
     ThreadUtil.assertMainThread()
-    return camera.cameraControl.setZoomRatio(ratio)
+    return cameraProperty.cameraControl.setZoomRatio(ratio)
   }
 
   @MainThread
   fun getZoomState(): LiveData<ZoomState> {
     ThreadUtil.assertMainThread()
-    return camera.cameraInfo.zoomState
+    return cameraProperty.cameraInfo.zoomState
   }
 
   @MainThread
@@ -379,14 +394,14 @@ class SignalCameraController(val context: Context, val lifecycleOwner: Lifecycle
   }.build()
 
   @MainThread
-  private fun initializeTapToFocus() {
+  private fun initializeTapToFocus(camera: Camera) {
     ThreadUtil.assertMainThread()
     previewView.setOnTouchListener { v: View?, event: MotionEvent ->
       if (event.action == MotionEvent.ACTION_DOWN) {
         return@setOnTouchListener true
       }
       if (event.action == MotionEvent.ACTION_UP) {
-        focusAndMeterOnPoint(event.x, event.y)
+        focusAndMeterOnPoint(camera, event.x, event.y)
         v?.performClick()
         return@setOnTouchListener true
       }
@@ -395,27 +410,42 @@ class SignalCameraController(val context: Context, val lifecycleOwner: Lifecycle
   }
 
   @MainThread
-  private fun focusAndMeterOnPoint(x: Float, y: Float) {
+  private fun focusAndMeterOnPoint(camera: Camera, x: Float, y: Float) {
     ThreadUtil.assertMainThread()
-    if (this::camera.isInitialized) {
-      Log.d(TAG, "Can't tap to focus before camera is initialized.")
-      return
-    }
-    val factory = previewView.meteringPointFactory
-    val point = factory.createPoint(x, y)
-    val action = FocusMeteringAction.Builder(point).build()
+    val meteringPointFactory = DisplayOrientedMeteringPointFactory(previewView.display, camera.cameraInfo, previewView.width.toFloat(), previewView.height.toFloat())
+    val afPoint = meteringPointFactory.createPoint(x, y, AF_SIZE)
+    val aePoint = meteringPointFactory.createPoint(x, y, AE_SIZE)
+    val action = FocusMeteringAction.Builder(afPoint, FocusMeteringAction.FLAG_AF)
+      .addPoint(aePoint, FocusMeteringAction.FLAG_AE)
+      .build()
 
-    val future: ListenableFuture<FocusMeteringResult> = camera.cameraControl.startFocusAndMetering(action)
-    future.addListener({
-      try {
-        val result = future.get()
-        Log.d(TAG, "Tap to focus was successful? ${result.isFocusSuccessful}")
-      } catch (e: ExecutionException) {
-        Log.d(TAG, "Tap to focus could not be completed due to an exception.", e)
-      } catch (e: InterruptedException) {
-        Log.d(TAG, "Tap to focus could not be completed due to an exception.", e)
-      }
-    }, ContextCompat.getMainExecutor(context))
+    focusIndicator.x = x - (focusIndicator.width / 2)
+    focusIndicator.y = y - (focusIndicator.height / 2)
+    focusIndicator.visible = true
+
+    tapToFocusEvents += 1
+
+    Futures.addCallback(
+      camera.cameraControl.startFocusAndMetering(action),
+      object : FutureCallback<FocusMeteringResult> {
+        override fun onSuccess(result: FocusMeteringResult?) {
+          Log.d(TAG, "Tap to focus was successful? ${result?.isFocusSuccessful}")
+          tapToFocusEvents -= 1
+          if (tapToFocusEvents <= 0) {
+            ViewUtil.fadeOut(focusIndicator, 80)
+          }
+        }
+
+        override fun onFailure(t: Throwable) {
+          Log.d(TAG, "Tap to focus could not be completed due to an exception.", t)
+          tapToFocusEvents -= 1
+          if (tapToFocusEvents <= 0) {
+            ViewUtil.fadeOut(focusIndicator, 80)
+          }
+        }
+      },
+      ContextCompat.getMainExecutor(context)
+    )
   }
 
   private fun isRecording(): Boolean {

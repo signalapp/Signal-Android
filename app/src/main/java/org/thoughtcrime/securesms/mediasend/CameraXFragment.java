@@ -156,7 +156,9 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
 
     Log.d(TAG, "Starting CameraX with mode policy " + cameraXModePolicy.getClass().getSimpleName());
 
-    cameraController = new SignalCameraController(requireContext(), getViewLifecycleOwner(), previewView);
+    View focusIndicator = view.findViewById(R.id.camerax_focus_indicator);
+
+    cameraController = new SignalCameraController(requireContext(), getViewLifecycleOwner(), previewView, focusIndicator);
     cameraXModePolicy.initialize(cameraController);
 
     cameraScreenBrightnessController = new CameraScreenBrightnessController(
