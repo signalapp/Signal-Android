@@ -2000,9 +2000,9 @@
     <!-- Utilized in the lobby before joining a call link -->
     <string name="WebRtcCallView__signal_call_link">Посилання на виклик у Signal</string>
     <!-- Warning displayed when entering a call via a link and you have Phone Number Privacy disabled-->
-    <string name="WebRtcCallView__anyone_who_joins_pnp_disabled">Anyone who joins this call via the link will see your name, photo, and phone number.</string>
+    <string name="WebRtcCallView__anyone_who_joins_pnp_disabled">Усі, хто приєднається до виклику за цим посиланням, зможуть бачити ваше ім\'я, фото і номер телефону.</string>
     <!-- Warning displayed when entering a call via a link and you have Phone Number Privacy enabled-->
-    <string name="WebRtcCallView__anyone_who_joins_pnp_enabled">Anyone who joins this call via the link will see your name and photo.</string>
+    <string name="WebRtcCallView__anyone_who_joins_pnp_enabled">Усі, хто приєднається до цього виклику за посиланням, зможуть бачити ваше ім\'я і фото.</string>
     <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
     <string name="WebRtcCallView__waiting_to_be_let_in">Очікування на дозвіл…</string>
 
@@ -2856,7 +2856,7 @@
     <string name="conversation_activity__sim_n">SIM %1$d</string>
     <string name="conversation_activity__send">Надіслати</string>
     <string name="conversation_activity__compose_description">Написання повідомлення</string>
-    <string name="conversation_activity__emoji_toggle_description">Відрити клавіатуру emoji</string>
+    <string name="conversation_activity__emoji_toggle_description">Відрити клавіатуру емоджі</string>
     <string name="conversation_activity__attachment_thumbnail">Мініатюра вкладення</string>
     <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Увімк/вимк скриньку вкладень камери</string>
     <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Записати та надіслати аудіо вкладення</string>
@@ -3430,7 +3430,7 @@
     </plurals>
 
     <string name="preferences_storage__custom">Користувацький</string>
-    <string name="preferences_advanced__use_system_emoji">Використовувати emoji системи</string>
+    <string name="preferences_advanced__use_system_emoji">Використовувати системні емоджі</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Ретранслювати всі виклики через сервер Signal, щоби ваш контакт не міг розкрити вашу IP-адресу. Увімкнення цієї функції знизить якість виклику.</string>
     <string name="preferences_advanced__always_relay_calls">Завжди ретранслювати дзвінки</string>
     <!-- Privacy settings payments section title -->
@@ -4113,11 +4113,11 @@
     <!-- Snackbar text when pressing invalid radio item -->
     <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"Щоб змінити це налаштування, виберіть «Ніхто» для параметра «Хто може бачити мій номер»."</string>
     <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Are you sure?</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Відновити ім\'я?</string>
     <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
     <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Setting \"Who can find me by number\" to \"Nobody\" will make it harder for people to find you on Signal.</string>
     <!-- Dialog button text for canceling change action -->
-    <string name="PhoneNumberPrivacySettingsFragment__cancel">Cancel</string>
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">Скасувати</string>
     <string name="PhoneNumberPrivacy_everyone">Всі</string>
     <string name="PhoneNumberPrivacy_nobody">Ніхто</string>
     <string name="preferences_app_protection__screen_lock">Блокування екрану</string>
@@ -4632,7 +4632,7 @@
     <!-- Label for our high quality media conversion. This has better quality than standard. -->
     <string name="QualitySelectorBottomSheetDialog__slower_more_data">Повільніше, більше даних</string>
     <!-- Title heading for our media conversion quality selector. -->
-    <string name="QualitySelectorBottomSheetDialog__media_quality">Media quality</string>
+    <string name="QualitySelectorBottomSheetDialog__media_quality">Якість медіа</string>
 
     <!-- AppSettingsFragment -->
     <string name="AppSettingsFragment__invite_your_friends">Запросити ваших друзів</string>
@@ -4877,7 +4877,7 @@
 
     <!-- EditReactionsFragment -->
     <string name="EditReactionsFragment__customize_reactions">Налаштуйте реакції</string>
-    <string name="EditReactionsFragment__tap_to_replace_an_emoji">Торкніться, щоб замінити смайлик</string>
+    <string name="EditReactionsFragment__tap_to_replace_an_emoji">Торкніться, щоб замінити емоджі</string>
     <string name="EditReactionsFragment__reset">Скинути</string>
     <string name="EditReactionsFragment_save">Зберегти</string>
     <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Автоматично припасувати колір до шпалер</string>
@@ -4904,8 +4904,8 @@
     <string name="KeyboardPagerFragment_stickers">Наліпки</string>
     <string name="KeyboardPagerFragment_backspace">Backspace</string>
     <string name="KeyboardPagerFragment_gifs">GIF-файли</string>
-    <string name="KeyboardPagerFragment_search_emoji">Пошук смайликів</string>
-    <string name="KeyboardPagerfragment_back_to_emoji">Повернутись до смайликів</string>
+    <string name="KeyboardPagerFragment_search_emoji">Пошук емоджі</string>
+    <string name="KeyboardPagerfragment_back_to_emoji">Повернутися до емоджі</string>
     <string name="KeyboardPagerfragment_clear_search_entry">Очистити пошук введених даних</string>
     <string name="KeyboardPagerFragment_search_giphy">Пошук GIF-файлів</string>
 
@@ -5125,7 +5125,7 @@
     <!-- Small notification presented to the user when they set their video to view-once mode -->
     <string name="MediaReviewFragment__video_set_to_view_once">Video set to view once</string>
     <!-- Small notification presented to the user when they set their photo to view-once mode -->
-    <string name="MediaReviewFragment__photo_set_to_view_once">Photo sent to view once</string>
+    <string name="MediaReviewFragment__photo_set_to_view_once">Photo set to view once</string>
     <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
     <string name="MediaReviewFragment__video_set_to_high_quality">Video set to high quality</string>
     <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
@@ -5135,9 +5135,19 @@
     <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
     <string name="MediaReviewFragment__photo_set_to_standard_quality">Photo set to standard quality</string>
     <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
-    <string name="MediaReviewFragment__items_set_to_high_quality">%1$d items set to high quality</string>
+    <plurals name="MediaReviewFragment__items_set_to_high_quality">
+        <item quantity="one">%1$d item set to high quality</item>
+        <item quantity="few">%1$d items set to high quality</item>
+        <item quantity="many">%1$d items set to high quality</item>
+        <item quantity="other">%1$d items set to high quality</item>
+    </plurals>
     <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
-    <string name="MediaReviewFragment__items_set_to_standard_quality">%1$d items set to standard quality</string>
+    <plurals name="MediaReviewFragment__items_set_to_standard_quality">
+        <item quantity="one">%1$d item set to standard quality</item>
+        <item quantity="few">%1$d items set to standard quality</item>
+        <item quantity="many">%1$d items set to standard quality</item>
+        <item quantity="other">%1$d items set to standard quality</item>
+    </plurals>
 
     <string name="ImageEditorHud__cancel">Скасувати</string>
     <string name="ImageEditorHud__draw">Малювати</string>
@@ -5167,14 +5177,14 @@
     <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
     <string name="MediaCaptureFragment_username_dialog_body">Start a chat with \"%1$s\"</string>
     <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
-    <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">Go to chat</string>
+    <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">До чату</string>
 
     <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
     <string name="MediaCaptureFragment_device_link_dialog_title">Link device?</string>
     <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
     <string name="MediaCaptureFragment_device_link_dialog_body">It looks like you\'re trying to link a Signal device. Tap continue and scan the code again to link it.</string>
     <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
-    <string name="MediaCaptureFragment_device_link_dialog_continue">Continue</string>
+    <string name="MediaCaptureFragment_device_link_dialog_continue">Продовжити</string>
 
 
     <string name="BadgesOverviewFragment__my_badges">Мої значки</string>
@@ -6762,7 +6772,7 @@
     <!-- Displayed in action bar at the top of the fragment -->
     <string name="CallLinkDetailsFragment__call_details">Деталі виклику</string>
     <!-- Displayed in a text row, allowing the user to click and edit a call name -->
-    <string name="CallLinkDetailsFragment__edit_call_name">Edit call name</string>
+    <string name="CallLinkDetailsFragment__edit_call_name">Змінити назву виклику</string>
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
     <string name="CallLinkDetailsFragment__add_call_name">Додати назву дзвінка</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
@@ -6930,9 +6940,9 @@
     <!-- Dialog action to invite the phone number to Signal -->
     <string name="FindByActivity__invite">Запросити</string>
     <!-- Button label for a button that will launch a camera to scan a username QR code -->
-    <string name="FindByActivity__qr_scan_button">Scan QR code</string>
+    <string name="FindByActivity__qr_scan_button">Сканувати QR-код</string>
     <!-- Content of a dialog indicating that we could not perform the requested action because we encountered a network error. -->
-    <string name="FindByActivity__network_error_dialog">Encountered a network error. Try again later.</string>
+    <string name="FindByActivity__network_error_dialog">Виникла помилка мережі. Спробуйте пізніше.</string>
 
     <!-- EOF -->
 </resources>
