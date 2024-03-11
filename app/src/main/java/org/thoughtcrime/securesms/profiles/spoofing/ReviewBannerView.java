@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackPhoto20dp;
 import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
+import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
 import org.thoughtcrime.securesms.databinding.ReviewBannerViewBinding;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -99,7 +100,7 @@ public class ReviewBannerView extends FrameLayout {
 
     @Override
     public @NonNull FallbackContactPhoto getPhotoForLocalNumber() {
-      throw new UnsupportedOperationException("This provider does not support local number");
+      return new ResourceContactPhoto(R.drawable.symbol_note_light_24, R.drawable.symbol_note_light_24);
     }
 
     @NonNull
