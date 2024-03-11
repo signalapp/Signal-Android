@@ -66,7 +66,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.dialog
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import kotlinx.coroutines.launch
 import org.signal.core.ui.Animations.navHostSlideInTransition
 import org.signal.core.ui.Animations.navHostSlideOutTransition
@@ -86,6 +85,7 @@ import org.thoughtcrime.securesms.permissions.compose.Permissions
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberVisualTransformation
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.registration.util.CountryPrefix
+import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
 import org.thoughtcrime.securesms.util.viewModel
 import org.whispersystems.signalservice.api.util.PhoneNumberFormatter
 
@@ -94,6 +94,8 @@ import org.whispersystems.signalservice.api.util.PhoneNumberFormatter
  * retrieve a RecipientId for that data.
  */
 class FindByActivity : PassphraseRequiredActivity() {
+
+  private val theme = DynamicNoActionBarTheme()
 
   companion object {
     private const val MODE = "FindByActivity.mode"
@@ -104,8 +106,9 @@ class FindByActivity : PassphraseRequiredActivity() {
     FindByViewModel(FindByMode.valueOf(intent.getStringExtra(MODE)!!))
   }
 
-  @OptIn(ExperimentalPermissionsApi::class)
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
+    theme.onCreate(this)
+
     val qrScanLauncher: ActivityResultLauncher<Unit> = registerForActivityResult(UsernameQrScannerActivity.Contract()) { recipientId ->
       if (recipientId != null) {
         setResult(RESULT_OK, Intent().putExtra(RECIPIENT_ID, recipientId))
@@ -282,6 +285,11 @@ class FindByActivity : PassphraseRequiredActivity() {
         }
       }
     }
+  }
+
+  override fun onResume() {
+    super.onResume()
+    theme.onResume(this)
   }
 
   class Contract : ActivityResultContract<FindByMode, RecipientId?>() {
