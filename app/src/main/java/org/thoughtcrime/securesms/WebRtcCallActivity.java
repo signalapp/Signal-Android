@@ -299,6 +299,8 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
       requestNewSizesThrottle.clear();
     }
 
+    ApplicationDependencies.getSignalCallManager().setEnableVideo(false);
+
     if (!viewModel.isCallStarting()) {
       CallParticipantsState state = viewModel.getCallParticipantsStateSnapshot();
       if (state != null && state.getCallState().isPreJoinOrNetworkUnavailable()) {
