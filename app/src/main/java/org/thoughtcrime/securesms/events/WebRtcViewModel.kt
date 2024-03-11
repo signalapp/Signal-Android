@@ -47,7 +47,10 @@ class WebRtcViewModel(state: WebRtcServiceState) {
       get() = this == CALL_PRE_JOIN || this == NETWORK_FAILURE
 
     val isPassedPreJoin: Boolean
-      get() = ordinal > ordinal
+      get() = ordinal > CALL_PRE_JOIN.ordinal
+
+    val inOngoingCall: Boolean
+      get() = this == CALL_INCOMING || this == CALL_OUTGOING || this == CALL_CONNECTED || this == CALL_RINGING || this == CALL_RECONNECTING
   }
 
   enum class GroupCallState {
