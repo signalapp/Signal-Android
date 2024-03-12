@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.attachments
 
 import android.net.Uri
 import android.os.Parcel
+import androidx.annotation.VisibleForTesting
 import org.signal.core.util.Base64.encodeWithPadding
 import org.thoughtcrime.securesms.blurhash.BlurHash
 import org.thoughtcrime.securesms.database.AttachmentTable
@@ -14,7 +15,8 @@ import org.whispersystems.signalservice.internal.push.DataMessage
 import java.util.Optional
 
 class PointerAttachment : Attachment {
-  private constructor(
+  @VisibleForTesting
+  constructor(
     contentType: String,
     transferState: Int,
     size: Long,

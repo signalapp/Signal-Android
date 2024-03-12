@@ -194,7 +194,7 @@ public class FullBackupImporter extends FullBackupBase {
   private static void processAttachment(@NonNull Context context, @NonNull AttachmentSecret attachmentSecret, @NonNull SQLiteDatabase db, @NonNull Attachment attachment, BackupRecordInputStream inputStream)
       throws IOException
   {
-    File                       dataFile      = AttachmentTable.newFile(context);
+    File                       dataFile      = AttachmentTable.newDataFile(context);
     Pair<byte[], OutputStream> output        = ModernEncryptingPartOutputStream.createFor(attachmentSecret, dataFile, false);
     boolean                    isLegacyTable = SqlUtil.tableExists(db, "part");
 

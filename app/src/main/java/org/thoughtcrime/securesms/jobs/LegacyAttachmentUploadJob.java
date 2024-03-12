@@ -139,7 +139,7 @@ public final class LegacyAttachmentUploadJob extends BaseJob {
         SignalServiceAttachmentPointer remoteAttachment = messageSender.uploadAttachment(localAttachment);
         Attachment                     attachment       = PointerAttachment.forPointer(Optional.of(remoteAttachment), null, databaseAttachment.fastPreflightId).get();
 
-        database.updateAttachmentAfterUpload(databaseAttachment.attachmentId, attachment, remoteAttachment.getUploadTimestamp());
+        database.finalizeAttachmentAfterUpload(databaseAttachment.attachmentId, attachment, remoteAttachment.getUploadTimestamp());
       }
     } catch (NonSuccessfulResumableUploadResponseCodeException e) {
       if (e.getCode() == 400) {

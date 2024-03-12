@@ -7,7 +7,6 @@ package org.signal.core.util
 
 import java.io.IOException
 import java.io.InputStream
-import kotlin.jvm.Throws
 
 /**
  * Reads a 32-bit variable-length integer from the stream.
@@ -79,4 +78,12 @@ fun InputStream.readLength(): Long {
   }
 
   return count
+}
+
+/**
+ * Reads the contents of the stream and discards them.
+ */
+@Throws(IOException::class)
+fun InputStream.drain() {
+  this.readLength()
 }

@@ -205,7 +205,7 @@ public final class AttachmentCompressionJob extends BaseJob {
       } else if (constraints.canResize(attachment)) {
         Log.i(TAG, "Compressing image.");
         try (MediaStream converted = compressImage(context, attachment, constraints)) {
-          attachmentDatabase.updateAttachmentData(attachment, converted, false);
+          attachmentDatabase.updateAttachmentData(attachment, converted);
         }
         attachmentDatabase.markAttachmentAsTransformed(attachmentId, false);
       } else if (constraints.isSatisfied(context, attachment)) {
@@ -263,7 +263,7 @@ public final class AttachmentCompressionJob extends BaseJob {
             Log.i(TAG, "Compressing with streaming muxer");
             AttachmentSecret attachmentSecret = AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret();
 
-            File file = AttachmentTable.newFile(context);
+            File file = AttachmentTable.newDataFile(context);
             file.deleteOnExit();
 
             boolean faststart = false;
@@ -296,7 +296,7 @@ public final class AttachmentCompressionJob extends BaseJob {
 
               final long plaintextLength = ModernEncryptingPartOutputStream.getPlaintextLength(file.length());
               try (MediaStream mediaStream = new MediaStream(postProcessor.process(plaintextLength), MimeTypes.VIDEO_MP4, 0, 0, true)) {
-                attachmentDatabase.updateAttachmentData(attachment, mediaStream, true);
+                attachmentDatabase.updateAttachmentData(attachment, mediaStream);
                 faststart = true;
               } catch (VideoPostProcessingException e) {
                 Log.w(TAG, "Exception thrown during post processing.", e);
@@ -310,7 +310,7 @@ public final class AttachmentCompressionJob extends BaseJob {
 
               if (!faststart) {
                 try (MediaStream mediaStream = new MediaStream(ModernDecryptingPartInputStream.createFor(attachmentSecret, file, 0), MimeTypes.VIDEO_MP4, 0, 0, false)) {
-                  attachmentDatabase.updateAttachmentData(attachment, mediaStream, true);
+                  attachmentDatabase.updateAttachmentData(attachment, mediaStream);
                 }
               }
             } finally {
@@ -339,7 +339,7 @@ public final class AttachmentCompressionJob extends BaseJob {
                                                           100,
                                                           percent));
               }, cancelationSignal)) {
-                attachmentDatabase.updateAttachmentData(attachment, mediaStream, true);
+                attachmentDatabase.updateAttachmentData(attachment, mediaStream);
                 attachmentDatabase.markAttachmentAsTransformed(attachment.attachmentId, mediaStream.getFaststart());
               }
 

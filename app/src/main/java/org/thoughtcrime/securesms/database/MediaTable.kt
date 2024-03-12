@@ -49,7 +49,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.UPLOAD_TIMESTAMP}, 
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.REMOTE_INCREMENTAL_DIGEST}, 
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.REMOTE_INCREMENTAL_DIGEST_CHUNK_SIZE},
-        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.DATA_HASH},
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.DATA_HASH_END},
         ${MessageTable.TABLE_NAME}.${MessageTable.TYPE}, 
         ${MessageTable.TABLE_NAME}.${MessageTable.DATE_SENT}, 
         ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED}, 
@@ -71,13 +71,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
         ${MessageTable.VIEW_ONCE} = 0 AND 
         ${MessageTable.STORY_TYPE} = 0 AND
         ${MessageTable.LATEST_REVISION_ID} IS NULL AND 
-        (
-          ${AttachmentTable.QUOTE} = 0 OR 
-          (
-            ${AttachmentTable.QUOTE} = 1 AND 
-            ${AttachmentTable.DATA_HASH} IS NULL
-          )
-        ) AND 
+        ${AttachmentTable.QUOTE} = 0 AND 
         ${AttachmentTable.STICKER_PACK_ID} IS NULL AND 
         ${MessageTable.TABLE_NAME}.${MessageTable.FROM_RECIPIENT_ID} > 0 AND 
         $THREAD_RECIPIENT_ID > 0
