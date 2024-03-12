@@ -118,7 +118,7 @@ object BackupRepository {
     val masterKey = SignalStore.svr().getOrCreateMasterKey()
     val key = MessageBackupKey(masterKey.serialize(), Aci.parseFromBinary(selfData.aci.toByteArray()))
 
-    return MessageBackup.validate(key, inputStreamFactory, length)
+    return MessageBackup.validate(key, MessageBackup.Purpose.REMOTE_BACKUP, inputStreamFactory, length)
   }
 
   fun import(length: Long, inputStreamFactory: () -> InputStream, selfData: SelfData, plaintext: Boolean = false) {

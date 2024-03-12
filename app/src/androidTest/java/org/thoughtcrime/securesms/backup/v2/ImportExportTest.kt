@@ -1126,7 +1126,7 @@ class ImportExportTest {
     val masterKey = SignalStore.svr().getOrCreateMasterKey()
     val key = MessageBackupKey(masterKey.serialize(), org.signal.libsignal.protocol.ServiceId.Aci.parseFromBinary(SELF_ACI.toByteArray()))
 
-    return MessageBackup.validate(key, factory, importData.size.toLong())
+    return MessageBackup.validate(key, MessageBackup.Purpose.REMOTE_BACKUP, factory, importData.size.toLong())
   }
 
   /**
