@@ -93,7 +93,6 @@ public class DeviceContactsOutputStream extends ChunkedOutputStream {
       contactDetails.inboxPosition(contact.getInboxPosition().get());
     }
 
-    contactDetails.blocked(contact.isBlocked());
     contactDetails.archived(contact.isArchived());
 
     byte[] serializedContactDetails = contactDetails.build().encode();

@@ -741,7 +741,7 @@ message ContactDetails {
   optional string   color         = 4;
   optional Verified verified      = 5;
   optional bytes    profileKey    = 6;
-  optional bool     blocked       = 7;
+  reserved          /*blocked*/     7;
   optional uint32   expireTimer   = 8;
   optional uint32   inboxPosition = 10;
   optional bool     archived      = 11;

@@ -122,8 +122,6 @@ class MultiDeviceContactSyncJob(parameters: Parameters, private val attachmentPo
         }
       }
 
-      recipients.setBlocked(recipient.id, contact.isBlocked)
-
       val threadRecord = threads.getThreadRecord(threads.getThreadIdFor(recipient.id))
       if (threadRecord != null && contact.isArchived != threadRecord.isArchived) {
         if (contact.isArchived) {

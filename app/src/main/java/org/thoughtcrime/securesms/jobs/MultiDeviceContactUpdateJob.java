@@ -168,7 +168,6 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
                                   Optional.of(ChatColorsMapper.getMaterialColor(recipient.getChatColors()).serialize()),
                                   verifiedMessage,
                                   ProfileKeyUtil.profileKeyOptional(recipient.getProfileKey()),
-                                  recipient.isBlocked(),
                                   recipient.getExpiresInSeconds() > 0 ? Optional.of(recipient.getExpiresInSeconds())
                                                                       : Optional.empty(),
                                   Optional.ofNullable(inboxPositions.get(recipientId)),
@@ -235,7 +234,6 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
                                     Optional.of(ChatColorsMapper.getMaterialColor(recipient.getChatColors()).serialize()),
                                     verified,
                                     profileKey,
-                                    blocked,
                                     expireTimer,
                                     inboxPosition,
                                     archived.contains(recipient.getId())));
@@ -253,7 +251,6 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
                                     Optional.of(ChatColorsMapper.getMaterialColor(self.getChatColors()).serialize()),
                                     Optional.empty(),
                                     ProfileKeyUtil.profileKeyOptionalOrThrow(self.getProfileKey()),
-                                    false,
                                     self.getExpiresInSeconds() > 0 ? Optional.of(self.getExpiresInSeconds()) : Optional.empty(),
                                     Optional.ofNullable(inboxPositions.get(self.getId())),
                                     archived.contains(self.getId())));

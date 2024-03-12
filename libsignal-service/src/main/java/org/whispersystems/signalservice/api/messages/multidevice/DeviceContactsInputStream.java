@@ -53,7 +53,6 @@ public class DeviceContactsInputStream extends ChunkedInputStream {
     Optional<String>                        color         = details.color != null ? Optional.of(details.color) : Optional.empty();
     Optional<VerifiedMessage>               verified      = Optional.empty();
     Optional<ProfileKey>                    profileKey    = Optional.empty();
-    boolean                                 blocked       = false;
     Optional<Integer>                       expireTimer   = Optional.empty();
     Optional<Integer>                       inboxPosition = Optional.empty();
     boolean                                 archived      = false;
@@ -107,10 +106,9 @@ public class DeviceContactsInputStream extends ChunkedInputStream {
       inboxPosition = Optional.of(details.inboxPosition);
     }
 
-    blocked  = details.blocked;
     archived = details.archived;
 
-    return new DeviceContact(aci, e164, name, avatar, color, verified, profileKey, blocked, expireTimer, inboxPosition, archived);
+    return new DeviceContact(aci, e164, name, avatar, color, verified, profileKey, expireTimer, inboxPosition, archived);
   }
 
 }
