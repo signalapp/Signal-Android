@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.keyboard.KeyboardPage
 import org.thoughtcrime.securesms.keyboard.KeyboardPagerViewModel
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mediasend.v2.HudCommand
+import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionState
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionViewModel
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -105,6 +106,10 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
 
     binding.hud.setOnClickListener { dismissAllowingStateLoss() }
 
+    binding.content.viewOnceToggle.setOnClickListener {
+      viewModel.incrementViewOnceState()
+    }
+
     val confirm: View = view.findViewById(R.id.confirm_button)
     confirm.setOnClickListener { dismissAllowingStateLoss() }
 
@@ -124,6 +129,14 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
         }
       }
     )
+
+    viewModel.state.observe(viewLifecycleOwner) { state ->
+      binding.content.viewOnceToggle.displayedChild = if (state.viewOnceToggleState == MediaSelectionState.ViewOnceToggleState.ONCE) 1 else 0
+      if (state.viewOnceToggleState == MediaSelectionState.ViewOnceToggleState.ONCE) {
+        binding.content.addAMessageInput.text = null
+        dismiss()
+      }
+    }
 
     initializeMentions()
   }
