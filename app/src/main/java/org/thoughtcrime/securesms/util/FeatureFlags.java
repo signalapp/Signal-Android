@@ -123,7 +123,7 @@ public final class FeatureFlags {
   private static final String RETRY_RECEIPT_MAX_COUNT           = "android.retryReceipt.maxCount";
   private static final String RETRY_RECEIPT_MAX_COUNT_RESET_AGE = "android.retryReceipt.maxCountResetAge";
   private static final String PREKEY_FORCE_REFRESH_INTERVAL     = "android.prekeyForceRefreshInterval";
-  private static final String CDSI_LIBSIGNAL_NET                = "android.cds.libsignal";
+  private static final String CDSI_LIBSIGNAL_NET                = "android.cds.libsignal.2";
   private static final String RX_MESSAGE_SEND                   = "android.rxMessageSend";
 
   /**
