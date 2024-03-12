@@ -45,6 +45,7 @@ import org.thoughtcrime.securesms.components.settings.app.notifications.manual.N
 import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsActivity
 import org.thoughtcrime.securesms.conversation.ConversationUpdateTick
 import org.thoughtcrime.securesms.conversation.SignalBottomActionBarController
+import org.thoughtcrime.securesms.conversation.v2.ConversationDialogs
 import org.thoughtcrime.securesms.conversationlist.ConversationFilterBehavior
 import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationFilterSource
 import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationListFilterPullView.OnCloseClicked
@@ -376,8 +377,12 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     CommunicationActions.startVoiceCall(this, recipient)
   }
 
-  override fun onStartVideoCallClicked(recipient: Recipient) {
-    CommunicationActions.startVideoCall(this, recipient)
+  override fun onStartVideoCallClicked(recipient: Recipient, canUserBeginCall: Boolean) {
+    if (canUserBeginCall) {
+      CommunicationActions.startVideoCall(this, recipient)
+    } else {
+      ConversationDialogs.displayCannotStartGroupCallDueToPermissionsDialog(requireContext())
+    }
   }
 
   override fun startSelection(call: CallLogRow) {
