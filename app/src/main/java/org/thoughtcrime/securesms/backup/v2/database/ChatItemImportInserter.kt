@@ -28,11 +28,15 @@ import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.MessageTypes
 import org.thoughtcrime.securesms.database.ReactionTable
 import org.thoughtcrime.securesms.database.SQLiteDatabase
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchSet
 import org.thoughtcrime.securesms.database.documents.NetworkFailure
 import org.thoughtcrime.securesms.database.documents.NetworkFailureSet
+import org.thoughtcrime.securesms.database.model.Mention
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
+import org.thoughtcrime.securesms.database.model.databaseprotos.GV2UpdateDescription
+import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExtras
 import org.thoughtcrime.securesms.database.model.databaseprotos.ProfileChangeDetails
 import org.thoughtcrime.securesms.database.model.databaseprotos.SessionSwitchoverEvent
 import org.thoughtcrime.securesms.database.model.databaseprotos.ThreadMergeEvent
@@ -40,6 +44,7 @@ import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.JsonUtils
+import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.util.UuidUtil
 
 /**
@@ -152,7 +157,6 @@ class ChatItemImportInserter(
     if (buffer.size == 0) {
       return false
     }
-
     buildBulkInsert(MessageTable.TABLE_NAME, MESSAGE_COLUMNS, buffer.messages).forEach {
       db.rawQuery("${it.query.where} RETURNING ${MessageTable.ID}", it.query.whereArgs).use { cursor ->
         var index = 0
@@ -177,6 +181,8 @@ class ChatItemImportInserter(
 
     messageId = SqlUtil.getNextAutoIncrementId(db, MessageTable.TABLE_NAME)
 
+    buffer.reset()
+
     return true
   }
 
@@ -199,6 +205,27 @@ class ChatItemImportInserter(
           val callContentValues = ContentValues()
           callContentValues.put(CallTable.MESSAGE_ID, messageRowId)
           db.update(CallTable.TABLE_NAME, SQLiteDatabase.CONFLICT_IGNORE, callContentValues, "${CallTable.CALL_ID} = ?", SqlUtil.buildArgs(this.updateMessage.callingMessage.callId))
+        }
+      }
+    }
+    if (this.standardMessage != null) {
+      val bodyRanges = this.standardMessage.text?.bodyRanges
+      if (!bodyRanges.isNullOrEmpty()) {
+        val mentions = bodyRanges.filter { it.mentionAci != null && it.start != null && it.length != null }
+          .mapNotNull {
+            val aci = ServiceId.ACI.parseOrNull(it.mentionAci!!)
+
+            if (aci != null && !aci.isUnknown) {
+              val id = RecipientId.from(aci)
+              Mention(id, it.start!!, it.length!!)
+            } else {
+              null
+            }
+          }
+        if (mentions.isNotEmpty()) {
+          followUp = { messageId ->
+            SignalDatabase.mentions.insert(threadId, messageId, mentions)
+          }
         }
       }
     }
@@ -243,6 +270,7 @@ class ChatItemImportInserter(
       contentValues.put(MessageTable.HAS_DELIVERY_RECEIPT, 0)
       contentValues.put(MessageTable.UNIDENTIFIED, this.sealedSender?.toInt())
       contentValues.put(MessageTable.READ, this.incoming?.read?.toInt() ?: 0)
+      contentValues.put(MessageTable.NOTIFIED, 1)
     }
 
     contentValues.put(MessageTable.QUOTE_ID, 0)
@@ -265,7 +293,6 @@ class ChatItemImportInserter(
     val reactions: List<Reaction> = when {
       this.standardMessage != null -> this.standardMessage.reactions
       this.contactMessage != null -> this.contactMessage.reactions
-      this.voiceMessage != null -> this.voiceMessage.reactions
       this.stickerMessage != null -> this.stickerMessage.reactions
       else -> emptyList()
     }
@@ -342,7 +369,7 @@ class ChatItemImportInserter(
       this.put(MessageTable.BODY, standardMessage.text.body)
 
       if (standardMessage.text.bodyRanges.isNotEmpty()) {
-        this.put(MessageTable.MESSAGE_RANGES, standardMessage.text.bodyRanges.toLocalBodyRanges()?.encode() as ByteArray?)
+        this.put(MessageTable.MESSAGE_RANGES, standardMessage.text.bodyRanges.toLocalBodyRanges()?.encode())
       }
     }
 
@@ -409,6 +436,17 @@ class ChatItemImportInserter(
         }
         // Calls don't use the incoming/outgoing flags, so we overwrite the flags here
         this.put(MessageTable.TYPE, typeFlags)
+      }
+      updateMessage.groupChange != null -> {
+        put(MessageTable.BODY, "")
+        put(
+          MessageTable.MESSAGE_EXTRAS,
+          MessageExtras(
+            gv2UpdateDescription =
+            GV2UpdateDescription(groupChangeUpdate = updateMessage.groupChange)
+          ).encode()
+        )
+        typeFlags = MessageTypes.GROUP_V2_BIT or MessageTypes.GROUP_UPDATE_BIT
       }
     }
     this.put(MessageTable.TYPE, getAsLong(MessageTable.TYPE) or typeFlags)
@@ -512,5 +550,11 @@ class ChatItemImportInserter(
   ) {
     val size: Int
       get() = listOf(messages.size, reactions.size, groupReceipts.size).max()
+
+    fun reset() {
+      messages.clear()
+      reactions.clear()
+      groupReceipts.clear()
+    }
   }
 }

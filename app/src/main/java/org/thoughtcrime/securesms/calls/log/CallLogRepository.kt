@@ -43,7 +43,8 @@ class CallLogRepository(
 
   fun markAllCallEventsRead() {
     SignalExecutors.BOUNDED_IO.execute {
-      SignalDatabase.messages.markAllCallEventsRead()
+      SignalDatabase.calls.markAllCallEventsRead()
+      ApplicationDependencies.getJobManager().add(CallLogEventSendJob.forMarkedAsRead(System.currentTimeMillis()))
     }
   }
 
@@ -101,7 +102,7 @@ class CallLogRepository(
       }
 
       SignalDatabase.callLinks.getAllAdminCallLinksExcept(emptySet())
-    }.flatMap(this::revokeAndCollectResults).map { 0 }.subscribeOn(Schedulers.io())
+    }.flatMap(this::deleteAndCollectResults).map { 0 }.subscribeOn(Schedulers.io())
   }
 
   /**
@@ -117,7 +118,7 @@ class CallLogRepository(
       val allCallLinkIds = SignalDatabase.calls.getCallLinkRoomIdsFromCallRowIds(selectedCallRowIds) + selectedRoomIds
       SignalDatabase.callLinks.deleteNonAdminCallLinks(allCallLinkIds)
       SignalDatabase.callLinks.getAdminCallLinks(allCallLinkIds)
-    }.flatMap(this::revokeAndCollectResults).subscribeOn(Schedulers.io())
+    }.flatMap(this::deleteAndCollectResults).subscribeOn(Schedulers.io())
   }
 
   /**
@@ -133,16 +134,16 @@ class CallLogRepository(
       val allCallLinkIds = SignalDatabase.calls.getCallLinkRoomIdsFromCallRowIds(selectedCallRowIds) + selectedRoomIds
       SignalDatabase.callLinks.deleteAllNonAdminCallLinksExcept(allCallLinkIds)
       SignalDatabase.callLinks.getAllAdminCallLinksExcept(allCallLinkIds)
-    }.flatMap(this::revokeAndCollectResults).subscribeOn(Schedulers.io())
+    }.flatMap(this::deleteAndCollectResults).subscribeOn(Schedulers.io())
   }
 
-  private fun revokeAndCollectResults(callLinksToRevoke: Set<CallLinkTable.CallLink>): Single<Int> {
+  private fun deleteAndCollectResults(callLinksToRevoke: Set<CallLinkTable.CallLink>): Single<Int> {
     return Single.merge(
       callLinksToRevoke.map {
-        updateCallLinkRepository.revokeCallLink(it.credentials!!)
+        updateCallLinkRepository.deleteCallLink(it.credentials!!)
       }
     ).reduce(0) { acc, current ->
-      acc + (if (current is UpdateCallLinkResult.Success) 0 else 1)
+      acc + (if (current is UpdateCallLinkResult.Update) 0 else 1)
     }.doOnTerminate {
       SignalDatabase.calls.updateAdHocCallEventDeletionTimestamps()
     }.doOnDispose {

@@ -147,8 +147,8 @@ class ControlsAndInfoController(
       webRtcCallView.post { onControlTopChanged() }
     }
 
-    raiseHandComposeView.addOnLayoutChangeListener { _, _, top, _, bottom, _, _, _, _ ->
-      onControlTopChanged(composeViewSize = bottom - top)
+    raiseHandComposeView.addOnLayoutChangeListener { _, _, _, _, _, _, _, _, _ ->
+      onControlTopChanged()
     }
 
     callControls.viewTreeObserver.addOnGlobalLayoutListener {
@@ -184,8 +184,6 @@ class ControlsAndInfoController(
 
         callInfoComposeView.alpha = alphaCallInfo(slideOffset)
         callInfoComposeView.translationY = infoTranslationDistance - (infoTranslationDistance * callInfoComposeView.alpha)
-
-        onControlTopChanged()
       }
     })
 
@@ -210,10 +208,10 @@ class ControlsAndInfoController(
       }
   }
 
-  fun onControlTopChanged(composeViewSize: Int = raiseHandComposeView.height) {
+  fun onControlTopChanged() {
     val guidelineTop = max(frame.top, coordinator.height - behavior.peekHeight)
     aboveControlsGuideline.setGuidelineBegin(guidelineTop)
-    webRtcCallView.onControlTopChanged(guidelineTop, composeViewSize)
+    webRtcCallView.onControlTopChanged()
   }
 
   fun addVisibilityListener(listener: BottomSheetVisibilityListener): Boolean {
@@ -395,7 +393,7 @@ class ControlsAndInfoController(
     controlsAndInfoViewModel.setApproveAllMembers(checked)
       .observeOn(AndroidSchedulers.mainThread())
       .subscribeBy(onSuccess = {
-        if (it !is UpdateCallLinkResult.Success) {
+        if (it !is UpdateCallLinkResult.Update) {
           Log.w(TAG, "Failed to change restrictions. $it")
           toastFailure()
         }
@@ -421,7 +419,7 @@ class ControlsAndInfoController(
       .observeOn(AndroidSchedulers.mainThread())
       .subscribeBy(
         onSuccess = {
-          if (it !is UpdateCallLinkResult.Success) {
+          if (it !is UpdateCallLinkResult.Update) {
             Log.w(TAG, "Failed to set name. $it")
             toastFailure()
           }

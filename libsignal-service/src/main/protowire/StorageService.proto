@@ -99,7 +99,8 @@ message ContactRecord {
   string        systemFamilyName        = 18;
   string        systemNickname          = 19;
   bool          hidden                  = 20;
-  // NEXT ID: 21
+  bool          pniSignatureVerified    = 21;
+  // NEXT ID: 22
 }
 
 message GroupV1Record {

@@ -5,6 +5,7 @@ import android.database.Cursor
 import androidx.core.content.contentValuesOf
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.delete
+import org.signal.core.util.deleteAll
 import org.signal.core.util.firstOrNull
 import org.signal.core.util.logging.Log
 import org.signal.core.util.requireLong
@@ -123,8 +124,6 @@ class SenderKeyTable internal constructor(context: Context?, databaseHelper: Sig
    * Deletes all database state.
    */
   fun deleteAll() {
-    writableDatabase
-      .delete(TABLE_NAME)
-      .run()
+    writableDatabase.deleteAll(TABLE_NAME)
   }
 }

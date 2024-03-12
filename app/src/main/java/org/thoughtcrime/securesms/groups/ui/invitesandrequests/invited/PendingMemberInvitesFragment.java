@@ -52,9 +52,7 @@ public class PendingMemberInvitesFragment extends Fragment {
     youInvited.initializeAdapter(getViewLifecycleOwner());
     othersInvited.initializeAdapter(getViewLifecycleOwner());
 
-    youInvited.setRecipientClickListener(recipient ->
-      RecipientBottomSheetDialogFragment.create(recipient.getId(), null)
-                                        .show(requireActivity().getSupportFragmentManager(), BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG));
+    youInvited.setRecipientClickListener(recipient -> RecipientBottomSheetDialogFragment.show(requireActivity().getSupportFragmentManager(), recipient.getId(), null));
 
     youInvited.setAdminActionsListener(new AdminActionsListener() {
 

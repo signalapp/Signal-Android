@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.search;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.database.MergeCursor;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
@@ -14,7 +13,6 @@ import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.CursorUtil;
 import org.signal.core.util.StringUtil;
-import org.signal.core.util.concurrent.LatestPrioritizedSerialExecutor;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.contacts.ContactRepository;
@@ -52,7 +50,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.Executor;
-import java.util.function.Consumer;
 
 import static org.thoughtcrime.securesms.database.SearchTable.SNIPPET_WRAP;
 
@@ -72,8 +69,7 @@ public class SearchRepository {
   private final MentionTable      mentionTable;
   private final MessageTable      messageTable;
 
-  private final LatestPrioritizedSerialExecutor searchExecutor;
-  private final Executor                        serialExecutor;
+  private final Executor serialExecutor;
 
   public SearchRepository(@NonNull String noteToSelfTitle) {
     this.context           = ApplicationDependencies.getApplication().getApplicationContext();
@@ -84,7 +80,6 @@ public class SearchRepository {
     this.mentionTable      = SignalDatabase.mentions();
     this.messageTable      = SignalDatabase.messages();
     this.contactRepository = new ContactRepository(context, noteToSelfTitle);
-    this.searchExecutor    = new LatestPrioritizedSerialExecutor(SignalExecutors.BOUNDED);
     this.serialExecutor    = new SerialExecutor(SignalExecutors.BOUNDED);
   }
 
@@ -96,17 +91,6 @@ public class SearchRepository {
     Log.d(TAG, "[threads] Search took " + (System.currentTimeMillis() - start) + " ms");
 
     return new ThreadSearchResult(result, query);
-  }
-
-  public void queryContacts(@NonNull String query, @NonNull Consumer<ContactSearchResult> callback) {
-    searchExecutor.execute(1, () -> {
-      long            start  = System.currentTimeMillis();
-      List<Recipient> result = queryContacts(query);
-
-      Log.d(TAG, "[contacts] Search took " + (System.currentTimeMillis() - start) + " ms");
-
-      callback.accept(new ContactSearchResult(result, query));
-    });
   }
 
   @WorkerThread
@@ -137,27 +121,6 @@ public class SearchRepository {
 
       callback.onResult(mergeMessagesAndMentions(messages, mentionMessages));
     });
-  }
-
-  private List<Recipient> queryContacts(String query) {
-    if (Util.isEmpty(query)) {
-      return Collections.emptyList();
-    }
-
-    Cursor contacts = null;
-
-    try {
-      Cursor textSecureContacts = contactRepository.querySignalContacts(query);
-      Cursor systemContacts     = contactRepository.queryNonSignalContacts(query);
-
-      contacts = new MergeCursor(new Cursor[] { textSecureContacts, systemContacts });
-
-      return readToList(contacts, new RecipientModelBuilder(), 250);
-    } finally {
-      if (contacts != null) {
-        contacts.close();
-      }
-    }
   }
 
   private @NonNull List<ThreadRecord> queryConversations(@NonNull String query, boolean unreadOnly) {

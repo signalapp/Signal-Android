@@ -29,11 +29,21 @@ message CallLogEventSendJobData {
 }
 
 message CallLinkUpdateSendJobData {
-  string callLinkRoomId = 1;
+  enum Type {
+    UPDATE = 0;
+    DELETE = 1;
+  }
+
+  string        callLinkRoomId = 1;
+  optional Type type           = 2;
 }
 
 message AttachmentUploadJobData {
-  uint64 attachmentRowId = 1;
-  uint64 attachmentUniqueId = 2;
+  uint64 attachmentId = 1;
+  reserved /*attachmentUniqueId*/ 2;
   optional ResumableUpload uploadSpec = 3;
+}
+
+message PreKeysSyncJobData {
+  bool forceRefreshRequested = 1;
 }

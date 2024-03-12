@@ -95,8 +95,7 @@ fun ResultItem(result: InternalSearchResult, modifier: Modifier = Modifier) {
       .clickable {
         if (activity != null) {
           RecipientBottomSheetDialogFragment
-            .create(result.id, result.groupId)
-            .show(activity.supportFragmentManager, "TAG")
+            .show(activity.supportFragmentManager, result.id, result.groupId)
         }
       }
       .padding(8.dp)

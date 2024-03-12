@@ -19,6 +19,8 @@ import android.renderscript.ScriptIntrinsicBlur;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
@@ -31,8 +33,6 @@ import org.signal.imageeditor.core.SelectableRenderer;
 import org.signal.imageeditor.core.model.EditorElement;
 import org.signal.imageeditor.core.model.EditorModel;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
-import org.thoughtcrime.securesms.mms.GlideApp;
-import org.thoughtcrime.securesms.mms.GlideRequest;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 
 import java.util.concurrent.ExecutionException;
@@ -94,13 +94,13 @@ public final class UriGlideRenderer implements SelectableRenderer {
     if (getBitmap() == null) {
       if (rendererContext.isBlockingLoad()) {
         try {
-          Bitmap bitmap = getBitmapGlideRequest(rendererContext.context, false).submit().get();
+          Bitmap bitmap = getGlideRequestBuilder(rendererContext.context, false).submit().get();
           setBitmap(rendererContext, bitmap);
         } catch (ExecutionException | InterruptedException e) {
           throw new RuntimeException(e);
         }
       } else {
-        getBitmapGlideRequest(rendererContext.context, true).into(new CustomTarget<Bitmap>() {
+        getGlideRequestBuilder(rendererContext.context, true).into(new CustomTarget<Bitmap>() {
           @Override
           public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
             setBitmap(rendererContext, resource);
@@ -181,7 +181,7 @@ public final class UriGlideRenderer implements SelectableRenderer {
     }
   }
 
-  private GlideRequest<Bitmap> getBitmapGlideRequest(@NonNull Context context, boolean preview) {
+  private RequestBuilder<Bitmap> getGlideRequestBuilder(@NonNull Context context, boolean preview) {
     int width  = this.maxWidth;
     int height = this.maxHeight;
 
@@ -190,7 +190,7 @@ public final class UriGlideRenderer implements SelectableRenderer {
       height = Math.min(height, PREVIEW_DIMENSION_LIMIT);
     }
 
-    return GlideApp.with(context)
+    return Glide.with(context)
                    .asBitmap()
                    .override(width, height)
                    .centerInside()

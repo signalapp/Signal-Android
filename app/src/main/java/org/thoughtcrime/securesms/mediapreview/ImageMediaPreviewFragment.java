@@ -9,10 +9,11 @@ import android.view.ViewGroup;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestManager;
+
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.ZoomingImageView;
-import org.thoughtcrime.securesms.mms.GlideApp;
-import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
@@ -33,7 +34,7 @@ public final class ImageMediaPreviewFragment extends MediaPreviewFragment {
                            Bundle savedInstanceState)
   {
     View             view             = inflater.inflate(R.layout.media_preview_image_fragment, container, false);
-    GlideRequests    glideRequests    = GlideApp.with(requireActivity());
+    RequestManager   requestManager   = Glide.with(requireActivity());
     Bundle           arguments        = requireArguments();
     Uri              uri              = arguments.getParcelable(DATA_URI);
     String           contentType      = arguments.getString(DATA_CONTENT_TYPE);
@@ -49,7 +50,7 @@ public final class ImageMediaPreviewFragment extends MediaPreviewFragment {
     }
 
     //noinspection ConstantConditions
-    zoomingImageView.setImageUri(glideRequests, uri, contentType, () -> events.onMediaReady());
+    zoomingImageView.setImageUri(requestManager, uri, contentType, () -> events.onMediaReady());
 
     zoomingImageView.setOnClickListener(v -> events.singleTapOnMedia());
 

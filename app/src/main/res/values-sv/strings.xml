@@ -179,7 +179,18 @@
     <string name="BlockUnblockDialog_unblock_s">Avblockera %1$s?</string>
     <string name="BlockUnblockDialog_block">Blockera</string>
     <string name="BlockUnblockDialog_block_and_leave">Blockera och lämna</string>
-    <string name="BlockUnblockDialog_report_spam_and_block">Rapportera skräppost och blockera</string>
+    <!-- Dialog button label to report as spam and block the person -->
+    <string name="BlockUnblockDialog_report_spam_and_block">Rapportera och blockera</string>
+    <!-- Dialog title for reporting spam -->
+    <string name="BlockUnblockDialog_report_spam_title">Rapportera skräppost?</string>
+    <!-- Dialog button to report as spam only -->
+    <string name="BlockUnblockDialog_report_spam">Rapportera skräppost</string>
+    <!-- Dialog message when reporting spam of an individual (1:1 conversation) -->
+    <string name="BlockUnblockDialog_report_spam_description">Signal kommer att meddelas om att denna person kanske skickar skräppost. Signal kan inte se innehållet i några chattar.</string>
+    <!-- Dialog message when reporting spam of a group and we can determine the group member that invited you, placeholder is a name -->
+    <string name="BlockUnblockDialog_report_spam_group_named_adder">Signal kommer att meddelas om att %1$s, som bjöd in dig till denna grupp, kanske skickar skräppost. Signal kan inte se innehållet i några chattar.</string>
+    <!-- Dialog message when reporting spam of a group and we cannot determine the group member that invited you -->
+    <string name="BlockUnblockDialog_report_spam_group_unknown_adder">Signal kommer att meddelas om att den person som bjöd in dig till denna grupp kanske skickar skräppost. Signal kan inte se innehållet i några chattar.</string>
 
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">Idag</string>
@@ -415,6 +426,8 @@
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported">Sms-meddelanden stöds inte längre i Signal.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Sms-meddelanden stöds inte längre i Signal. Bjud in %1$s till Signal för att hålla konversationen här.</string>
+    <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
+    <string name="ConversationActivity__this_person_is_no_longer_using_signal">Den här personen använder inte längre Signal. Bjud in dem till Signal för att hålla konversationen här.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">Bjud in till Signal</string>
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
@@ -483,8 +496,8 @@
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Du kan lägga till anteckningar för dig själv i denna chatt. Om ditt konto har några länkade enheter synkroniseras nya anteckningar.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d gruppmedlemmar har samma namn.</string>
     <string name="ConversationFragment__tap_to_review">Tryck för att granska</string>
-    <string name="ConversationFragment__review_requests_carefully">Granska förfrågningar noggrant</string>
-    <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal hittade en annan kontakt med samma namn.</string>
+    <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
+    <string name="ConversationFragment__review_banner_body">Den här personen har samma namn som en annan kontakt</string>
     <string name="ConversationFragment_contact_us">Kontakta oss</string>
     <string name="ConversationFragment_verify">Verifiera</string>
     <string name="ConversationFragment_not_now">Inte nu</string>
@@ -510,6 +523,55 @@
     <string name="ConversationFragment__content_description_launch_signal_button">Öppna Signal</string>
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
     <string name="ConversationFragment__no_longer_verified">Inte längre verifierad</string>
+    <!-- Button shown in conversation header when in a message request state and no groups in common to show new message safety tips -->
+    <string name="ConversationFragment_safety_tips">Säkerhetstips</string>
+    <!-- Menu option to report spam in a conversation -->
+    <string name="ConversationFragment_report_spam">Rapportera skräppost</string>
+    <!-- Menu option to block in a conversation -->
+    <string name="ConversationFragment_block">Blockera</string>
+    <!-- Menu otpion to accept a message request in a conversation -->
+    <string name="ConversationFragment_accept">Acceptera</string>
+    <!-- Menu option to delete an entire chat in a conversation -->
+    <string name="ConversationFragment_delete_chat">Ta bort chatt</string>
+    <!-- Menu option to unblock in a conversation -->
+    <string name="ConversationFragment_unblock">Avblockera</string>
+    <!-- Dialog title shown after reporting spam and tapping the conversation item -->
+    <string name="ConversationFragment_reported_spam">Rapporterade skräppost</string>
+    <!-- Dialog message shown after reporting spam and tapping the conversation item -->
+    <string name="ConversationFragment_reported_spam_message">Signal har meddelats att denna person kanske skickar skräppost. Signal kan inte se innehållet i några chattar.</string>
+    <!-- Toast shown after reporting spam and tapping the conversation item -->
+    <string name="ConversationFragment_reported_as_spam">Rapporterad som skräppost</string>
+    <!-- Toast shown after reporting and blocking a conversation -->
+    <string name="ConversationFragment_reported_as_spam_and_blocked">Rapporterad som skräppost och blockerad</string>
+    <!-- Dialog message shown after accepting a message request and tapping on options from the conversation event -->
+    <string name="ConversationFragment_you_accepted_a_message_request_from_s">Du har accepterat en meddelandeförfrågan från %1$s. Om detta var ett misstag kan du välja en åtgärd nedan.</string>
+
+    <!-- Title of Safety Tips bottom sheet dialog -->
+    <string name="SafetyTips_title">Säkerhetstips</string>
+    <!-- Dialog subtitle when showign tips for a 1:1 conversation -->
+    <string name="SafetyTips_subtitle_individual">Var försiktig när du accepterar meddelandeförfrågningar från personer du inte känner. Se upp för:</string>
+    <!-- Dialog subtitle when showing tips for a group conversation -->
+    <string name="SafetyTips_subtitle_group">Granska denna förfrågan noggrant. Inga av dina kontakter eller personer som du chattar med finns i den här gruppen. Här är några saker att tänka på:</string>
+    <!-- Button text to move to the previous tip-->
+    <string name="SafetyTips_previous_tip">Föregående tips</string>
+    <!-- Button text to move to the next tip -->
+    <string name="SafetyTips_next_tip">Nästa tips</string>
+    <!-- Title of tip 1 -->
+    <string name="SafetyTips_tip1_title">Krypto- eller penningbedrägerier</string>
+    <!-- Message of tip 1 -->
+    <string name="SafetyTips_tip1_message">Om någon du inte känner skickar meddelanden om kryptovalutor (som Bitcoin) eller en finansiell möjlighet ska du vara försiktig – det är sannolikt skräppost.</string>
+    <!-- Title of tip 2 -->
+    <string name="SafetyTips_tip2_title">Vaga eller irrelevanta meddelanden</string>
+    <!-- Message of tip 2 -->
+    <string name="SafetyTips_tip2_message">Spammare börjar ofta med ett enkelt meddelande som \"Hej\" för att locka dig. Om du svarar kan de ta ytterligare kontakt med dig.</string>
+    <!-- Title of tip 3 -->
+    <string name="SafetyTips_tip3_title">Meddelanden med länkar</string>
+    <!-- Message of tip 3 -->
+    <string name="SafetyTips_tip3_message">Var försiktig med meddelanden från personer du inte känner som innehåller länkar till webbplatser. Klicka aldrig på länkar från personer som du inte litar på.</string>
+    <!-- Title of tip 4 -->
+    <string name="SafetyTips_tip4_title">Falska företag och institutioner</string>
+    <!-- Message of tip 4 -->
+    <string name="SafetyTips_tip4_message">Var försiktig om företag eller myndigheter kontaktar dig. Meddelanden som rör skattemyndigheter, kurirer och annat kan vara skräppost.</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Rensa filter</string>
@@ -524,7 +586,10 @@
         <item quantity="other">Detta kommer att ta bort alla %1$d valda chattar permanent.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Tar bort</string>
-    <string name="ConversationListFragment_deleting_selected_conversations">Tar bort valda chattar …</string>
+    <plurals name="ConversationListFragment_deleting_selected_conversations">
+        <item quantity="one">Tar bort vald chatt …</item>
+        <item quantity="other">Tar bort valda chattar …</item>
+    </plurals>
     <plurals name="ConversationListFragment_conversations_archived">
         <item quantity="one">Chat arkiverad</item>
         <item quantity="other">%1$d chattar arkiverade</item>
@@ -562,6 +627,8 @@
     <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">Slå på eller av din aviseringsprofil här.</string>
     <!-- Message shown in top toast to indicate the named profile is on -->
     <string name="ConversationListFragment__s_on">%1$s på</string>
+    <!-- -->
+    <string name="ConversationListFragment_username_recovered_toast">Din QR-kod och länk har återställts och ditt användarnamn är %1$s</string>
 
     <!-- ConversationListItem -->
     <string name="ConversationListItem_key_exchange_message">Nyckelutbytesmeddelande</string>
@@ -606,9 +673,9 @@
     <!-- Toolbar title for this screen -->
     <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Vem kan hitta mig med nummer?</string>
     <!-- Description for radio item stating anyone can see your phone number -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">Alla som har ditt telefonnummer i sina kontakter ser dig som en kontakt på Signal. Andra kommer att kunna hitta dig med ditt nummer i sökningen.</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">Alla som har ditt telefonnummer ser att du är på Signal och kan börja chatta med dig.</string>
     <!-- Description for radio item stating no one will be able to see your phone number -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">Ingen på Signal kommer kunna hitta dig med ditt telefonnummer.</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Ingen kommer att kunna se att du är på Signal om du inte skickar ett meddelande eller har en befintlig chatt med dem.</string>
 
     <!-- ChooseBackupFragment -->
     <string name="ChooseBackupFragment__restore_from_backup">Återställ från säkerhetskopia?</string>
@@ -996,6 +1063,10 @@
     <string name="GroupMentionSettingDialog_dont_notify_me">Meddela inte mig</string>
 
     <!-- ManageProfileFragment -->
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
+    <string name="ManageProfileFragment__your_username">Ditt användarnamn, QR-kod och länk syns inte på din profil. Dela bara ditt användarnamn med personer du litar på.</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
+    <string name="ManageProfileFragment__username_footer_no_username">Nu går det att skicka meddelanden till dig med ditt valfria användarnamn så att du inte behöver ange ditt telefonnummer. </string>
     <string name="ManageProfileFragment_profile_name">Profilnamn</string>
     <string name="ManageProfileFragment_username">Användarnamn</string>
     <string name="ManageProfileFragment_about">Om</string>
@@ -1283,6 +1354,10 @@
     <string name="MessageRecord_missed_voice_call">Missat röstsamtal</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">Missat videosamtal</string>
+    <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
+    <string name="MessageRecord_missed_voice_call_notification_profile">Missat röstsamtal medan aviseringsprofilen var aktiverad</string>
+    <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
+    <string name="MessageRecord_missed_video_call_notification_profile">Missat videosamtal medan aviseringsprofilen var aktiverad</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
     <string name="MessageRecord_you_declined_a_voice_call">Du avböjde ett röstsamtal</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
@@ -1313,6 +1388,8 @@
     <string name="MessageRecord_changed_their_profile_name_to">%1$s ändrade sitt profilnamn till %2$s.</string>
     <string name="MessageRecord_changed_their_profile_name_from_to">%1$s ändrade sitt profilnamn från %2$s till %3$s.</string>
     <string name="MessageRecord_changed_their_profile">%1$s ändrade sin profil.</string>
+    <!-- Conversation update event message shown when you\'ve started a conversation by phone number or username and then learn their profile name. placeholder is username or phone number -->
+    <string name="MessageRecord_started_this_chat">Du startade den här chatten med %1$s.</string>
 
     <!-- GV2 specific -->
     <string name="MessageRecord_you_created_the_group">Du skapade gruppen.</string>
@@ -1525,6 +1602,10 @@
     <string name="MessageRecord__you_can_no_longer_send_sms_messages_in_signal">Du kan inte längre skicka sms i Signal. Bjud in %1$s till Signal för att hålla konversationen här.</string>
     <!-- Body for quote when message being quoted is an in-app payment message -->
     <string name="MessageRecord__payment_s">Betalning: %1$s</string>
+    <!-- Update message shown in chat after reporting it as spam -->
+    <string name="MessageRecord_reported_as_spam">Rapporterad som skräppost</string>
+    <!-- Update message shown in chat after accept a message request -->
+    <string name="MessageRecord_you_accepted_the_message_request">Du accepterade meddelandeförfrågan</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Acceptera</string>
@@ -1571,6 +1652,8 @@
         <item quantity="one">%1$d ytterligare grupp</item>
         <item quantity="other">%1$d ytterligare grupper</item>
     </plurals>
+    <!-- Button label to report spam for a conversation when in a message request state -->
+    <string name="MessageRequestBottomView_report">Rapportera …</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Lösenorden matchar inte!</string>
@@ -1579,7 +1662,7 @@
 
     <!-- DeviceProvisioningActivity -->
     <string name="DeviceProvisioningActivity_link_this_device">Länka denna enhet?</string>
-    <string name="DeviceProvisioningActivity_continue">FORTSÄTT</string>
+    <string name="DeviceProvisioningActivity_continue">Fortsätt</string>
 
     <string name="DeviceProvisioningActivity_content_intro">Den kommer att kunna</string>
     <string name="DeviceProvisioningActivity_content_bullets">
@@ -1782,8 +1865,10 @@
     <string name="WebRtcCallView__disconnected">Frånkopplad</string>
     <!-- Utilized in the lobby before joining a call link -->
     <string name="WebRtcCallView__signal_call_link">Signal-samtalslänk</string>
-    <!-- Warning displayed when entering a call via a link -->
-    <string name="WebRtcCallView__anyone_who_joins">Alla som använder länken för att gå med i detta samtal kommer att se ditt namn, foto, och telefonnummer.</string>
+    <!-- Warning displayed when entering a call via a link and you have Phone Number Privacy disabled-->
+    <string name="WebRtcCallView__anyone_who_joins_pnp_disabled">Alla som använder länken för att gå med i detta samtal kommer att se ditt namn, foto, och telefonnummer.</string>
+    <!-- Warning displayed when entering a call via a link and you have Phone Number Privacy enabled-->
+    <string name="WebRtcCallView__anyone_who_joins_pnp_enabled">Alla som ansluter sig till detta samtal via länken kommer att se ditt namn och foto.</string>
     <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
     <string name="WebRtcCallView__waiting_to_be_let_in">Väntar på att släppas in …</string>
 
@@ -1885,6 +1970,10 @@
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">Signal-förbindelse</string>
+    <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
+    <string name="AboutSheet__verified">Verifierat</string>
+    <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
+    <string name="AboutSheet__no_direct_message">Inga direktmeddelanden med %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s finns i dina systemkontakter</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -1892,7 +1981,10 @@
     <!-- Notice when a user is not a connection to review requests carefully -->
     <string name="AboutSheet__review_requests_carefully">Granska förfrågningar noggrant</string>
     <!-- Text used when user has groups in common. Placeholder is the count -->
-    <string name="AboutSheet__d_groups_in_common">%1$d grupper gemensamt</string>
+    <plurals name="AboutSheet__d_groups_in">
+        <item quantity="one">%1$d grupp gemensamt</item>
+        <item quantity="other">%1$d grupper gemensamt</item>
+    </plurals>
     <!-- Text displayed in title for external recipients -->
     <string name="AboutSheet__about">Om</string>
     <!-- Text displayed in title for you -->
@@ -2199,6 +2291,8 @@
     <string name="UnverifiedSendDialog_send">Skicka</string>
 
     <!-- UsernameEditFragment -->
+    <!-- Placeholder text for custom discriminator -->
+    <string name="UsernameEditFragment__00">00</string>
     <!-- Toolbar title when entering from registration -->
     <string name="UsernameEditFragment__add_a_username">Lägg till ett användarnamn</string>
     <!-- Instructional text at the top of the username edit screen -->
@@ -2207,13 +2301,15 @@
     <string name="UsernameEditFragment_delete">Ta bort</string>
     <string name="UsernameEditFragment_successfully_removed_username">Användarnamn borttaget.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Stött på ett nätverksfel.</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">För många försök har gjorts. Försök igen senare.</string>
     <string name="UsernameEditFragment_this_username_is_taken">Detta användarnamn är taget.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">Användarnamn kan bara innehålla a–Z, 0–9 och understreck.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Användarnamn kan inte börja med en siffra.</string>
     <string name="UsernameEditFragment_username_is_invalid">Användarnamnet är ogiltigt.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Användarnamn måste vara mellan %1$d och %2$d tecken.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Användarnamn låter andra skicka meddelanden till dig utan att de behöver ditt telefonnummer. De kopplas till en uppsättning siffror för att hålla din adress privat.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">Användarnamn är alltid kopplade till en uppsättning siffror.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">Vad är det här för nummer?</string>
     <string name="UsernameEditFragment__these_digits_help_keep">De här siffrorna håller ditt användarnamn privat, så du slipper få oönskade meddelanden. Dela endast ditt användarnamn med personer och grupper som du vill ha kontakt med. Du får nya siffror om du byter användarnamn.</string>
@@ -2221,6 +2317,22 @@
     <string name="UsernameEditFragment__skip">Hoppa över</string>
     <!-- Content description for done button -->
     <string name="UsernameEditFragment__done">Klar</string>
+    <!-- Displayed when the chosen discriminator is not available for the given nickname -->
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">Det här användarnamnet är inte tillgängligt. Prova ett annat nummer.</string>
+    <!-- Displayed when the chosen discriminator is too short -->
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Ogiltigt användarnamn. Ange minst %1$d siffror.</string>
+    <!-- Displayed when the chosen discriminator is too long -->
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Ogiltigt användarnamn. Ange högst %1$d siffror.</string>
+    <!-- Displayed when the chosen discriminator is 00 -->
+    <string name="UsernameEditFragment__this_number_cant_be_00">Det här numret kan inte vara 00. Ange en siffra mellan 1–9</string>
+    <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">Nummer med fler än 2 siffror kan inte börja med 0</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
+    <string name="UsernameEditFragment_recovery_dialog_confirmation">Om du återställer ditt användarnamn återställs din befintliga QR-kod och länk. Är du säker?</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
+    <string name="UsernameEditFragment_change_confirmation_message">Om du ändrar ditt användarnamn återställs din befintliga QR-kod och länk. Är du säker?</string>
+    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
+    <string name="UsernameEditFragment_continue">Fortsätt</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d kontakt finns på Signal!</item>
@@ -2407,6 +2519,26 @@
     <!-- Notification subtext for group stories -->
     <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s · Story</string>
 
+    <!-- NewWaysToConnectDialogFragment -->
+    <!-- Fragment title, displayed at the top of the content -->
+    <string name="NewWaysToConnectDialogFragment__new_ways_to_connect">Nya sätt att skapa kontakt</string>
+    <!-- Row item title for phone number privacy explainer -->
+    <string name="NewWaysToConnectDialogFragment__phone_number_privacy">Integritet för telefonnummer</string>
+    <!-- Row item description for phone number privacy explainer -->
+    <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">Ditt telefonnummer delas inte längre med chattar. Om ditt nummer sparas i en väns kontakter kommer de fortfarande att se det.</string>
+    <!-- Row item title for usernames explainer -->
+    <string name="NewWaysToConnectDialogFragment__usernames">Användarnamn</string>
+    <!-- Row item description for usernames explainer -->
+    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">Nu går det att skicka meddelanden till dig med ditt valfria användarnamn så att du inte behöver ange ditt telefonnummer. Användarnamn syns inte i din profil.</string>
+    <!-- Row item title for qr code and links explainer -->
+    <string name="NewWaysToConnectDialogFragment__qr_codes_and_links">QR-koder och länkar</string>
+    <!-- Row item description for qr code and links explainer -->
+    <string name="NewWaysToConnectDialogFragment__usernames_have_a_unique_qr_code">Användarnamn har en unik QR-kod och länk som du kan dela med vänner för att snabbt starta en chatt med dig.</string>
+    <!-- Button label for not right now -->
+    <string name="NewWaysToConnectDialogFragment__not_now">Inte nu</string>
+    <!-- Button label for continue -->
+    <string name="NewWaysToConnectDialogFragment__set_up_your_username">Ställ in användarnamn</string>
+
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">Spela video</string>
     <string name="ThumbnailView_Has_a_caption_description">Har en bildtext</string>
@@ -2420,6 +2552,8 @@
     <string name="TransferControlView__processing">Bearbetar …</string>
     <!-- Status update label used while the device is transmitting data over the network. Will take the form of "1.0 MB/2.0 MB" -->
     <string name="TransferControlView__download_progress">%1$1.1f MB/%2$2.1f MB</string>
+    <!-- Attachment file size label for not-yet-downloaded images and video. Will take the form of "1.0 MB" -->
+    <string name="TransferControlView__filesize">%1$1.1f MB</string>
 
 
     <!-- UnauthorizedReminder -->
@@ -2520,6 +2654,10 @@
         <item quantity="one">%1$d medlem</item>
         <item quantity="other">%1$d medlemmar</item>
     </plurals>
+    <!-- Text on row item to find user by phone number -->
+    <string name="ContactSelectionListFragment__find_by_phone_number">Hitta via telefonnummer</string>
+    <!-- Text on row item to find user by username -->
+    <string name="ContactSelectionListFragment__find_by_username">Hitta via användarnamn</string>
 
     <!-- contact_selection_list_fragment -->
     <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal behöver åtkomst till dina kontakter för att visa dem.</string>
@@ -2591,6 +2729,8 @@
     <string name="ConversationUpdateItem_activate_payments">Aktivera betalningar</string>
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">Du har tagit bort den här personen. Om du skickar meddelanden till hen igen så kommer personen att läggas tillbaka till din lista.</string>
+    <!-- Update item button text shown for the accepted message request update message -->
+    <string name="ConversationUpdateItem_options">Alternativ</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Spela … Pausa</string>
@@ -3745,13 +3885,27 @@
     <!-- Subtext below option to launch into phone number privacy settings screen -->
     <string name="preferences_app_protection__choose_who_can_see">Välj vem som kan se ditt telefonnummer och vem som kan använda det för att kontakta dig på Signal.</string>
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
-    <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Vem kan se mitt nummer</string>
-    <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Ingen kommer att se ditt telefonnummer på Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">Vem kan se mitt nummer</string>
+    <!-- Subtext below radio buttons when who can see my number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">Ditt telefonnummer kommer att vara synligt för personer och grupper som du skickar meddelanden till.</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Ditt telefonnummer kommer inte att vara synligt för någon om de inte har det sparat i telefonens kontakter.</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Ditt telefonnummer kommer inte att vara synligt för någon.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
-    <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Vem kan hitta mig med nummer</string>
-    <!-- Subtext below radio buttons when who can see my number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">Ditt telefonnummer kommer att vara synligt för personer och grupper som du skickar meddelanden till. Personer som har ditt nummer i sina telefonkontakter ser det också på Signal.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Vem kan hitta mig med nummer</string>
+    <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">Alla som har ditt telefonnummer ser att du är på Signal och kan börja chatta med dig.</string>
+    <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">Ingen kommer att kunna se att du är på Signal om du inte skickar ett meddelande eller har en befintlig chatt med dem.</string>
+    <!-- Snackbar text when pressing invalid radio item -->
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"Om du vill ändra den här inställningen ställer du in Vem kan se mitt nummer till Ingen."</string>
+    <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Är du säker?</string>
+    <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Om du ställer in \"Vem kan hitta mig med nummer\" till \"Ingen\" blir det svårare för andra att hitta dig på Signal.</string>
+    <!-- Dialog button text for canceling change action -->
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">Avbryt</string>
     <string name="PhoneNumberPrivacy_everyone">Alla</string>
     <string name="PhoneNumberPrivacy_nobody">Ingen</string>
     <string name="preferences_app_protection__screen_lock">Skärmlås</string>
@@ -3780,6 +3934,8 @@
     <string name="prompt_passphrase_activity__signal_is_locked">Signal är låst</string>
     <string name="prompt_passphrase_activity__tap_to_unlock">TRYCK FÖR ATT LÅSA UPP</string>
     <string name="Recipient_unknown">Okänt</string>
+    <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
+    <string name="Recipient_deleted_account">Raderat konto</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
     <string name="preferences_account_reregister">Registrera om konto</string>
@@ -3982,7 +4138,9 @@
     <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" har avblockerats.</string>
 
     <!-- ReviewCardDialogFragment -->
+    <!-- Title of a screen where the user will be prompted to review group members with the same name -->
     <string name="ReviewCardDialogFragment__review_members">Granska medlemmar</string>
+    <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
     <string name="ReviewCardDialogFragment__review_request">Granska förfrågan</string>
     <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d gruppmedlemmar har samma namn, granska medlemmarna nedan och välj att vidta åtgärder.</string>
     <string name="ReviewCardDialogFragment__if_youre_not_sure">Om du inte är säker på vem förfrågan kommer från, granska kontakterna nedan och vidta åtgärder.</string>
@@ -4245,11 +4403,16 @@
     <string name="GroupDescriptionDialog__group_description">Gruppbeskrivning</string>
 
     <!-- QualitySelectorBottomSheetDialog -->
+    <!-- Label for our standard quality media conversion. -->
     <string name="QualitySelectorBottomSheetDialog__standard">Standard</string>
+    <!-- Description for our standard quality media conversion. -->
     <string name="QualitySelectorBottomSheetDialog__faster_less_data">Snabbare, mindre data</string>
+    <!-- Label for our high quality media conversion. This has better quality than standard. -->
     <string name="QualitySelectorBottomSheetDialog__high">Hög</string>
+    <!-- Label for our high quality media conversion. This has better quality than standard. -->
     <string name="QualitySelectorBottomSheetDialog__slower_more_data">Långsammare, mera data</string>
-    <string name="QualitySelectorBottomSheetDialog__photo_quality">Fotokvalitet</string>
+    <!-- Title heading for our media conversion quality selector. -->
+    <string name="QualitySelectorBottomSheetDialog__media_quality">Mediekvalitet</string>
 
     <!-- AppSettingsFragment -->
     <string name="AppSettingsFragment__invite_your_friends">Bjud in dina vänner</string>
@@ -4364,27 +4527,6 @@
     <!-- ChatsSettingsFragment -->
     <string name="ChatsSettingsFragment__keyboard">Tangentbord</string>
     <string name="ChatsSettingsFragment__enter_key_sends">Enter-tangenten skickar</string>
-
-    <!--SmsSettingsFragment -->
-    <string name="SmsSettingsFragment__use_as_default_sms_app">Använd som standardapp för SMS</string>
-    <!-- Preference title to export sms -->
-    <string name="SmsSettingsFragment__export_sms_messages">Exportera sms</string>
-    <!-- Preference title to re-export sms -->
-    <string name="SmsSettingsFragment__export_sms_messages_again">Exportera sms igen</string>
-    <!-- Preference title to delete sms -->
-    <string name="SmsSettingsFragment__remove_sms_messages">Ta bort sms</string>
-    <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Tar bort sms från Signal …</string>
-    <!-- Snackbar text to indicate can delete later -->
-    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">Du kan när som helst ta bort sms från Signal i Inställningar.</string>
-    <!-- Description for export sms preference -->
-    <string name="SmsSettingsFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">Du kan exportera dina sms till telefonens sms-databas.</string>
-    <!-- Description for re-export sms preference -->
-    <string name="SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages">Om du exporterar igen kan det resultera i dubbletter av meddelanden.</string>
-    <!-- Description for remove sms preference -->
-    <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">Ta bort sms-meddelanden från Signal för att rensa lagringsutrymme.</string>
-    <!-- Information message shown at the top of sms settings to indicate it is being removed soon. -->
-    <string name="SmsSettingsFragment__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging">Sms-stöd kommer snart att tas bort för att fokusera på krypterade meddelanden.</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Meddelanden</string>
@@ -4746,6 +4888,28 @@
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">Ett eller flera objekt var för stora</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">Ett eller flera objekt var ogiltiga</string>
     <string name="MediaReviewFragment__too_many_items_selected">För många objekt valda</string>
+    <!-- Small notification presented to the user when they set their video to view-once mode -->
+    <string name="MediaReviewFragment__video_set_to_view_once">Video inställd för att visas en gång</string>
+    <!-- Small notification presented to the user when they set their photo to view-once mode -->
+    <string name="MediaReviewFragment__photo_set_to_view_once">Photo set to view once</string>
+    <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
+    <string name="MediaReviewFragment__video_set_to_high_quality">Video inställd på hög kvalitet</string>
+    <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
+    <string name="MediaReviewFragment__video_set_to_standard_quality">Video inställd på standardkvalitet</string>
+    <!-- Small notification presented to the user when they set their still image to be sent in high visual quality. -->
+    <string name="MediaReviewFragment__photo_set_to_high_quality">Foto inställt på hög kvalitet</string>
+    <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
+    <string name="MediaReviewFragment__photo_set_to_standard_quality">Foto inställt på standardkvalitet</string>
+    <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
+    <plurals name="MediaReviewFragment__items_set_to_high_quality">
+        <item quantity="one">%1$d item set to high quality</item>
+        <item quantity="other">%1$d items set to high quality</item>
+    </plurals>
+    <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
+    <plurals name="MediaReviewFragment__items_set_to_standard_quality">
+        <item quantity="one">%1$d item set to standard quality</item>
+        <item quantity="other">%1$d items set to standard quality</item>
+    </plurals>
 
     <string name="ImageEditorHud__cancel">Avbryt</string>
     <string name="ImageEditorHud__draw">Dra</string>
@@ -4769,6 +4933,20 @@
     <string name="MediaReviewImagePageFragment__discard">Kassera</string>
     <string name="MediaReviewImagePageFragment__discard_changes">Kassera ändringar?</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Du förlorar alla ändringar du har gjort på detta foto.</string>
+
+    <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
+    <string name="MediaCaptureFragment_username_dialog_title">Hittade %1$s</string>
+    <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
+    <string name="MediaCaptureFragment_username_dialog_body">Starta en chatt med \"%1$s\"</string>
+    <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
+    <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">Gå till chatt</string>
+
+    <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+    <string name="MediaCaptureFragment_device_link_dialog_title">Länka enhet?</string>
+    <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+    <string name="MediaCaptureFragment_device_link_dialog_body">Det verkar som om du försöker länka en Signal-enhet. Tryck på fortsätt och skanna koden igen för att länka den.</string>
+    <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
+    <string name="MediaCaptureFragment_device_link_dialog_continue">Fortsätt</string>
 
 
     <string name="BadgesOverviewFragment__my_badges">Mina märken</string>
@@ -4868,7 +5046,7 @@
     <!-- Displayed as a subtitle on a row in the Manage Donations screen when payment for a donation is pending -->
     <string name="MySupportPreference__payment_pending">Betalning väntar</string>
     <!-- Displayed as a dialog message when clicking on a donation row that is pending. Placeholder is a formatted fiat amount -->
-    <string name="MySupportPreference__your_bank_transfer_of_s">Din banköverföring på %1$s väntar. Banköverföringar tar vanligtvis 1 arbetsdag att slutföra.  </string>
+    <string name="MySupportPreference__your_bank_transfer_of_s">Din banköverföring på %1$s väntar. Banköverföringar kan ta 1 till 14 arbetsdagar att genomföra.  </string>
     <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
     <string name="MySupportPreference__learn_more">Läs mer</string>
 
@@ -5066,6 +5244,12 @@
     <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">Lägg till personer och grupper du vill ha aviseringar och samtal från när denna profil är på</string>
     <!-- Button text that launches the contact picker to select from -->
     <string name="AddAllowedMembers__add_people_or_groups">Lägg till personer eller grupper</string>
+    <!-- Title for exceptions section of add people to notification profile screen in create flow -->
+    <string name="AddAllowedMembers__exceptions">Undantag</string>
+    <!-- List preference to toggle that allows calls through the notification profile during create flow -->
+    <string name="AddAllowedMembers__allow_all_calls">Tillåt alla samtal</string>
+    <!-- List preference to toggle that allows mentions through the notification profile during create flow -->
+    <string name="AddAllowedMembers__notify_for_all_mentions">Meddela för alla omnämnanden</string>
 
     <!-- Call to action button on contact picker for adding to profile -->
     <string name="SelectRecipientsFragment__add">Lägg till</string>
@@ -5680,8 +5864,8 @@
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Alla förbindelser har granskats. Klicka på skicka för att fortsätta.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
     <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
-        <item quantity="one">Du har %1$d förbindelse som kan ha installerat om Signal eller bytt enhet. Innan du delar din berättelse med hen, granska säkerhetsnumret eller överväg att ta bort hen från din story.</item>
-        <item quantity="other">Du har %1$d förbindelser som kan ha installerat om Signal eller bytt enhet. Innan du delar din berättelse med dem, granska deras säkerhetsnummer eller överväg att ta bort dem från din story.</item>
+        <item quantity="one">%1$d förbindelse kan ha installerat om Signal eller bytt enhet. Du kan granska hens säkerhetsnummer eller fortsätta med att skicka.</item>
+        <item quantity="other">%1$d förbindelser kan ha installerat om Signal eller bytt enhet. Du kan granska deras säkerhetsnummer eller fortsätta med att skicka.</item>
     </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Verifiera säkerhetsnummer</string>
@@ -5770,48 +5954,6 @@
     <!-- Generic title for overflow menus -->
     <string name="OverflowMenu__overflow_menu">Överflödesmeny</string>
 
-    <!-- SMS Export Service -->
-    <!-- Displayed in the notification while export is running -->
-    <string name="SignalSmsExportService__exporting_messages">Exporterar meddelanden …</string>
-    <!-- Displayed in the notification title when export completes -->
-    <string name="SignalSmsExportService__signal_sms_export_complete">Export av Signal-sms slutförd</string>
-    <!-- Displayed in the notification message when export completes -->
-    <string name="SignalSmsExportService__tap_to_return_to_signal">Tryck för att återgå till Signal</string>
-
-    <!-- ExportYourSmsMessagesFragment -->
-    <!-- Title of the screen -->
-    <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">Exportera dina sms</string>
-    <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">Du kan exportera dina sms till telefonens sms-databas och du kan välja att behålla eller ta bort dem från Signal. Detta gör att andra sms-appar på din telefon kan importera dem. Detta skapar inte en delbar fil med din sms-historik.</string>
-    <!-- Button label to begin export -->
-    <string name="ExportYourSmsMessagesFragment__continue">Fortsätt</string>
-
-    <!-- ExportingSmsMessagesFragment -->
-    <!-- Title of the screen -->
-    <string name="ExportingSmsMessagesFragment__exporting_sms_messages">Exporterar sms</string>
-    <!-- Message of the screen when exporting sms messages -->
-    <string name="ExportingSmsMessagesFragment__this_may_take_awhile">Det kan ta en stund</string>
-    <!-- Progress indicator for export -->
-    <plurals name="ExportingSmsMessagesFragment__exporting_d_of_d">
-        <item quantity="one">Exporterar %1$d av %2$d …</item>
-        <item quantity="other">Exporterar %1$d av %2$d …</item>
-    </plurals>
-    <!-- Alert dialog title shown when we think a user may not have enough local storage available to export sms messages -->
-    <string name="ExportingSmsMessagesFragment__you_may_not_have_enough_disk_space">Du kanske inte har tillräckligt med diskutrymme</string>
-    <!-- Alert dialog message shown when we think a user may not have enough local storage available to export sms messages, placeholder is the file size, e.g., 128kB -->
-    <string name="ExportingSmsMessagesFragment__you_need_approximately_s_to_export_your_messages_ensure_you_have_enough_space_before_continuing">Du behöver ungefär %1$s för att exportera dina meddelanden. Se till att du har tillräckligt med utrymme innan du fortsätter.</string>
-    <!-- Alert dialog button to continue with exporting sms after seeing the lack of storage warning -->
-    <string name="ExportingSmsMessagesFragment__continue_anyway">Fortsätt ändå</string>
-    <!-- Dialog text shown when Signal isn\'t granted the sms permission needed to export messages, different than being selected as the sms app -->
-    <string name="ExportingSmsMessagesFragment__signal_needs_the_sms_permission_to_be_able_to_export_your_sms_messages">Signal behöver sms-behörighet för att kunna exportera dina sms-meddelanden.</string>
-
-    <!-- ChooseANewDefaultSmsAppFragment -->
-    <!-- Title of the screen -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_a_new">Välj en ny standardapp för sms</string>
-    <!-- Button label to launch picker -->
-    <string name="ChooseANewDefaultSmsAppFragment__continue">Fortsätt</string>
-    <!-- Button label for when done with changing default SMS app -->
-    <string name="ChooseANewDefaultSmsAppFragment__done">Klar</string>
     <!-- First step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_1">1</string>
     <!-- Second step number/bullet for choose new default sms app instructions -->
@@ -5820,47 +5962,6 @@
     <string name="ChooseANewDefaultSmsAppFragment__bullet_3">3</string>
     <!-- Fourth step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_4">4</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">Tryck på Fortsätt för att öppna sidan Standardappar i Inställningar</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">Välj Sms-app från listan</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">Välj en annan app att använda för sms</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Återgå till Signal</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">Öppna Inställningar på telefonen</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">Navigera till Appar &gt; Standardappar &gt; Sms-app</string>
-
-    <!-- RemoveSmsMessagesDialogFragment -->
-    <!-- Action button to keep messages -->
-    <string name="RemoveSmsMessagesDialogFragment__keep_messages">Spara meddelanden</string>
-    <!-- Action button to remove messages -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_messages">Ta bort meddelanden</string>
-    <!-- Title of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Ta bort sms från Signal?</string>
-    <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Du kan nu ta bort sms från Signal för att frigöra lagringsutrymme. De kommer fortfarande att vara tillgängliga för andra sms-appar på din telefon, även om du tar bort dem.</string>
-
-    <!-- ReExportSmsMessagesDialogFragment -->
-    <!-- Action button to re-export messages -->
-    <string name="ReExportSmsMessagesDialogFragment__continue">Fortsätt</string>
-    <!-- Action button to cancel re-export process -->
-    <string name="ReExportSmsMessagesDialogFragment__cancel">Avbryt</string>
-    <!-- Title of dialog -->
-    <string name="ReExportSmsMessagesDialogFragment__export_sms_again">Exportera sms igen?</string>
-    <!-- Message of dialog -->
-    <string name="ReExportSmsMessagesDialogFragment__you_already_exported_your_sms_messages">Du har redan exporterat dina sms.\nVARNING: Om du fortsätter kan du få dubbletter av meddelanden.</string>
-
-    <!-- SetSignalAsDefaultSmsAppFragment -->
-    <!-- Title of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Ställ in Signal som standardapp för sms</string>
-    <!-- Message of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">För att exportera dina sms måste du ställa in Signal som standardapp för sms.</string>
-    <!-- Button label to start export -->
-    <string name="SetSignalAsDefaultSmsAppFragment__next">Nästa</string>
-
     <!-- BackupSchedulePermission Megaphone -->
     <!-- The title on an alert window that explains to the user that we are unable to backup their messages -->
     <string name="BackupSchedulePermissionMegaphone__cant_back_up_chats">Det går inte att säkerhetskopiera chattar</string>
@@ -5879,45 +5980,6 @@
     <!-- Re-enable backups permission bottom sheet call to action button to open settings -->
     <string name="BackupSchedulePermissionMegaphone__go_to_settings">Gå till inställningar</string>
 
-    <!-- SmsExportMegaphoneActivity -->
-    <!-- Phase 2 title of full screen megaphone indicating sms will no longer be supported in the near future -->
-    <string name="SmsExportMegaphoneActivity__signal_will_no_longer_support_sms">Signal kommer sluta stöda sms</string>
-    <!-- Phase 3 title of full screen megaphone indicating sms is longer supported  -->
-    <string name="SmsExportMegaphoneActivity__signal_no_longer_supports_sms">Signal stöder inte längre sms</string>
-    <!-- The text on a button in a popup that, when clicked, will dismiss the popup and schedule the prompt to occur at a later time. -->
-    <string name="SmsExportMegaphoneActivity__remind_me_later">Påminn mig senare</string>
-    <!-- The text on a button in a popup that, when clicked, will navigate the user to a web article on SMS removal -->
-
-    <!-- Title for screen shown after sms export has completed -->
-    <string name="ExportSmsCompleteFragment__export_complete">Exporten är klar</string>
-    <!-- Button to continue to next screen -->
-    <string name="ExportSmsCompleteFragment__next">Nästa</string>
-    <!-- Message showing summary of sms export counts -->
-    <plurals name="ExportSmsCompleteFragment__d_of_d_messages_exported">
-        <item quantity="one">%1$d av %2$d meddelande har exporterats</item>
-        <item quantity="other">%1$d av %2$d meddelanden har exporterats</item>
-    </plurals>
-
-    <!-- Title of screen shown when some sms messages did not export -->
-    <string name="ExportSmsPartiallyComplete__export_partially_complete">Exporten delvis slutförd</string>
-    <!-- Debug step 1 on screen shown when some sms messages did not export -->
-    <string name="ExportSmsPartiallyComplete__ensure_you_have_an_additional_s_free_on_your_phone_to_export_your_messages">Se till att du har ytterligare %1$s ledigt på din telefon för att exportera dina meddelanden</string>
-    <!-- Debug step 2 on screen shown when some sms messages dit not export -->
-    <string name="ExportSmsPartiallyComplete__retry_export_which_will_only_retry_messages_that_have_not_yet_been_exported">Försök exportera igen, med endast meddelanden som ännu inte har exporterats</string>
-    <!-- Partial sentence for Debug step 3 on screen shown when some sms messages did not export, is combined with \'contact us\' -->
-    <string name="ExportSmsPartiallyComplete__if_the_problem_persists">Om problemet kvarstår, </string>
-    <!-- Partial sentence for deubg step 3 on screen shown when some sms messages did not export, combined with \'If the problem persists\', link text to open contact support view -->
-    <string name="ExportSmsPartiallyComplete__contact_us">Kontakta oss</string>
-    <!-- Button text to retry sms export -->
-    <string name="ExportSmsPartiallyComplete__retry">Försök igen</string>
-    <!-- Button text to continue sms export flow and not retry failed message exports -->
-    <string name="ExportSmsPartiallyComplete__continue_anyway">Fortsätt ändå</string>
-    <!-- Title of screen shown when all sms messages failed to export -->
-    <string name="ExportSmsFullError__error_exporting_sms_messages">Fel vid export av sms</string>
-    <!-- Helper text shown when all sms messages failed to export -->
-    <string name="ExportSmsFullError__please_try_again_if_the_problem_persists">Försök igen. Om problemet kvarstår, </string>
-
-
     <!-- DonateToSignalFragment -->
     <!-- Title below avatar -->
     <string name="DonateToSignalFragment__privacy_over_profit">Integritet före profit</string>
@@ -5928,9 +5990,9 @@
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
     <string name="DonateToSignalFragment__you_have_a_donation_pending">Du har en väntande donation</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Banköverföringar tar vanligtvis 1 arbetsdag att bearbeta. Vänta tills denna betalning slutförs innan du uppdaterar ditt abonnemang.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Banköverföringar kan ta 1 till 14 arbetsdagar att bearbeta. Vänta tills denna betalning slutförs innan du uppdaterar ditt abonnemang.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Banköverföringar tar vanligtvis 1 arbetsdag att bearbeta. Vänta tills denna betalning slutförs innan du gör en ny donation.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Banköverföringar kan ta 1 till 14 arbetsdagar att bearbeta. Vänta tills denna betalning slutförs innan du gör en ny donation.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
     <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Din donation bearbetas fortfarande. Detta kan ta några minuter beroende på din anslutning. Vänta tills denna betalning slutförs innan du uppdaterar ditt abonnemang.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
@@ -6059,6 +6121,12 @@
     <string name="IdealTransferDetailsFragment__email">E-post</string>
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">Välj din bank</string>
+    <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">Bekräfta din donation med %1$s</string>
+    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
+    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">För att ställa in din återkommande donation, tryck på fortsätt för att bekräfta en debitering på 0,01 € med din bank. Detta återbetalas automatiskt och gör att din donation på 5 €/månad kan debiteras från ditt konto.</string>
+    <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
+    <string name="IdealTransferDetailsFragment__continue">Fortsätt</string>
 
     <!-- IdealTransferDetailsBankSelectionDialogFragment -->
     <!-- Title of the screen, displayed in the toolbar -->
@@ -6076,7 +6144,7 @@
     <!-- Top text block of donation pending sheet displayed after one-time donation via a bank transfer. Placeholder is the badge name. -->
     <string name="DonationPendingBottomSheet__your_one_time_donation_is_pending">Din engångsdonation väntar. Du kommer att kunna visa %1$s-märket på din profil när din donation tas emot.</string>
     <!-- Bottom text block of donation pending sheet displayed after donating via a bank transfer. Placeholder is for learn more. -->
-    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Banköverföringar tar vanligtvis 1 arbetsdag att bearbeta. %1$s</string>
+    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Banköverföringar kan ta 1 till 14 arbetsdagar att bearbeta. %1$s</string>
     <!-- Learn more text for donation pending sheet displayed after donating via a bank transfer. -->
     <string name="DonationPendingBottomSheet__learn_more">Läs mer</string>
     <!-- Confirmation button for donation pending sheet displayed after donating via a bank transfer. -->
@@ -6162,28 +6230,24 @@
     <!-- Displayed in the "clear filter" item in the chat feed if the user opened the filter from the overflow menu -->
     <string name="ChatFilter__tip_pull_down">Tips: Dra ner på chattlistan för att filtrera</string>
 
-    <!-- Title for screen describing that sms support is going to be removed soon -->
-    <string name="SmsRemoval_title_going_away">Stöd för sms kommer försvinna</string>
-    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
-    <string name="SmsRemoval_info_bullet_1">Sms i Signal-appen stöds snart inte längre.</string>
-    <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_2">Sms skiljer sig från Signal-meddelanden. <b>Detta påverkar inte krypterade Signal-meddelanden som fortsätter att fungera.</b></string>
-    <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_3">Du kan exportera dina sms och välja en ny sms-app.</string>
-    <!-- Bullet point message shown on describing screen as first bullet variant why sms is being removed when user is locked out of sms -->
-    <string name="SmsRemoval_info_bullet_1_phase_3">Signal har tagit bort stöd för att skicka sms.</string>
-    <!-- Button label on sms removal info/megaphone to start the export SMS flow -->
-    <string name="SmsRemoval_export_sms">Exportera sms</string>
-
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__set_up_your_signal_username">Ställ in ditt Signal-användarnamn</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">Användarnamn låter andra skicka meddelanden till dig utan att de behöver ditt telefonnummer</string>
+    <string name="SetUpYourUsername__introducing_phone_number_privacy">Vi introducerar sekretess för telefonnummer, valfria användarnamn och länkar.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__not_now">Inte nu</string>
+    <string name="SetUpYourUsername__dismiss">Avfärda</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__continue">Fortsätt</string>
+    <string name="SetUpYourUsername__learn_more">Läs mer</string>
+
+    <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
+    <string name="PnpLaunchMegaphone_title">Nya sätt att skapa kontakt</string>
+    <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
+    <string name="PnpLaunchMegaphone_body">Vi introducerar sekretess för telefonnummer, valfria användarnamn och länkar.</string>
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
+    <string name="PnpLaunchMegaphone_dismiss">Avfärda</string>
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
+    <string name="PnpLaunchMegaphone_learn_more">Läs mer</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -6198,18 +6262,6 @@
     <string name="TextFormatting_spoiler">Spoiler</string>
     <!-- Popup menu label for clearing applied formatting -->
     <string name="TextFormatting_clear_formatting">Rensa formatering</string>
-
-    <!-- UsernameEducationFragment -->
-    <!-- Continue button which takes the user to the add a username screen -->
-    <string name="UsernameEducationFragment__continue">Fortsätt</string>
-    <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">Ställ in ditt Signal-användarnamn</string>
-    <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__usernames_are_paired_with_a_set_of_digits">Användarnamn paras ihop med en uppsättning siffror och delas inte i din profil</string>
-    <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">Varje användarnamn har en unik QR-kod och länk som du kan dela med dina vänner för att starta en chatt med dig</string>
-    <!-- Displayed as body text in the username education screen. The string references the names of settings, so they should match our translations for those settings. -->
-    <string name="UsernameEducationFragment__turn_off_phone_number_discovery">För att använda ditt användarnamn som det primära sättet andra kan kontakta dig på kan du stänga av upptäckt av telefonnummer under Inställningar &gt; Integritet &gt; Telefonnummer &gt; Vem kan hitta mitt nummer</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
@@ -6236,6 +6288,8 @@
     <string name="CallLogAdapter__outgoing">Utgående</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">Missat</string>
+    <!-- Displayed for missed calls declined by notification profile -->
+    <string name="CallLogAdapter__missed_notification_profile">Missad när aviseringsprofilen var på</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">Gå med</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -6343,6 +6397,8 @@
     <string name="CallPreference__group_call">Gruppsamtal</string>
     <!-- Missed group call in call info -->
     <string name="CallPreference__missed_group_call">Missat gruppsamtal</string>
+    <!-- Missed group call while notification profile on in call info -->
+    <string name="CallPreference__missed_group_call_notification_profile">Missat gruppsamtal medan aviseringsprofilen var aktiverad</string>
     <!-- Incoming group call in call info -->
     <string name="CallPreference__incoming_group_call">Inkommande gruppsamtal</string>
     <!-- Outgoing group call in call info -->
@@ -6429,6 +6485,8 @@
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
     <string name="CallLinkDetailsFragment__call_details">Samtalsuppgifter</string>
+    <!-- Displayed in a text row, allowing the user to click and edit a call name -->
+    <string name="CallLinkDetailsFragment__edit_call_name">Redigera samtalsnamn</string>
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
     <string name="CallLinkDetailsFragment__add_call_name">Lägg till samtalsnamn</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
@@ -6444,6 +6502,8 @@
     <!-- Displayed as body in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">Den här länken fungerar inte längre för alla som har den.</string>
 
+    <!-- Button label for the link button in the username link settings -->
+    <string name="UsernameLinkSettings_link_button_label">Länk</string>
     <!-- Button label for the share button in the username link settings -->
     <string name="UsernameLinkSettings_share_button_label">Dela</string>
     <!-- Button label for the color selector button in the username link settings -->
@@ -6488,6 +6548,16 @@
     <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Du har ingen nätverksåtkomst. Din länk återställdes inte. Försök igen senare.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">Ett nätverksfel uppstod när du försökte återställa länken. Försök igen senare.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">Ett oväntat fel inträffade när du försökte återställa din länk. Försök igen senare.</string>
+    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
+    <string name="UsernameLinkSettings_reset_link_result_success">Din QR-kod och länk har återställts och en ny QR-kod och länk har skapats.</string>
+    <!-- Shown on the generated username qr code image to explain how to use it. -->
+    <string name="UsernameLinkSettings_scan_this_qr_code">Skanna denna QR-kod med din telefon för att chatta med mig på Signal.</string>
+    <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_qr_code_not_found">QR-koden hittades inte</string>
+    <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Försök att skanna en annan bild som innehåller en QR-kod från Signal.</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
     <string name="UsernameLinkShareBottomSheet_title">Alla med denna länk kan se ditt användarnamn och starta en chatt med dig. Dela den bara med personer du litar på.</string>
@@ -6524,6 +6594,8 @@
     <string name="GrantFullScreenIntentPermission_megaphone_body">Missa aldrig ett samtal från dina kontakter och grupper.</string>
     <!-- Button on the megaphone megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls that starts the fix process -->
     <string name="GrantFullScreenIntentPermission_megaphone_turn_on">Aktivera</string>
+    <!-- Button on the megaphone shown at the bottom of the chatlist when a user has disabled the system setting for showing full screen notifications used showing incoming calls that dismisses the megaphone -->
+    <string name="GrantFullScreenIntentPermission_megaphone_not_now">Inte nu</string>
     <!-- Title of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
     <string name="GrantFullScreenIntentPermission_bottomsheet_title">Aktivera helskärmsaviseringar</string>
     <!-- Subtitle of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
@@ -6541,6 +6613,46 @@
     <string name="MonthlyDonationCanceled__renew_button">Förnya abonnemang</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, second button to dismiss the dialog entirely -->
     <string name="MonthlyDonationCanceled__not_now_button">Inte nu</string>
+
+    <!-- FindByActivity -->
+    <!-- Title of activity when finding by username -->
+    <string name="FindByActivity__find_by_username">Hitta via användarnamn</string>
+    <!-- Title of activity when finding by phone number -->
+    <string name="FindByActivity__find_by_phone_number">Hitta via telefonnummer</string>
+    <!-- Title of screen to select a country code -->
+    <string name="FindByActivity__select_country_code">Välj landskod</string>
+    <!-- Entry placeholder for find by username -->
+    <string name="FindByActivity__username">Användarnamn</string>
+    <!-- Entry placeholder for find by phone number -->
+    <string name="FindByActivity__phone_number">Telefonnummer</string>
+    <!-- Help text under user entry for find by username -->
+    <string name="FindByActivity__enter_username_description">Ange ett användarnamn följt av en punkt och dess sifferkombination.</string>
+    <!-- Content description for next action button -->
+    <string name="FindByActivity__next">Nästa</string>
+    <!-- Placeholder text for search input for selecting country code -->
+    <string name="FindByActivity__search">Sök</string>
+    <!-- Dialog title for invalid username -->
+    <string name="FindByActivity__invalid_username">Ogiltigt användarnamn</string>
+    <!-- Dialog title for invalid phone number -->
+    <string name="FindByActivity__invalid_phone_number">Ogiltigt telefonnummer</string>
+    <!-- Dialog title when phone number is not a registered signal user -->
+    <string name="FindByActivity__invite_to_signal">Bjud in till Signal</string>
+    <!-- Dialog title when username is not found -->
+    <string name="FindByActivity__username_not_found">Användarnamn hittades inte</string>
+    <!-- Dialog body for invalid username. Placeholder is the entered username. -->
+    <string name="FindByActivity__s_is_not_a_valid_username">%1$s är inte ett giltigt användarnamn. Kontrollera att du har angett hela användarnamnet följt av dess uppsättning siffror.</string>
+    <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
+    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s är inte ett giltigt telefonnummer. Försök igen med ett giltigt telefonnummer</string>
+    <!-- Dialog body for not found username -->
+    <string name="FindByActivity__s_is_not_a_signal_user">\"%1$s\" är inte en Signal-användare. Kontrollera användarnamnet och försök igen.</string>
+    <!-- Dialog body for not found phone number -->
+    <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s är inte en Signal-användare. Vill du bjuda in det här numret?</string>
+    <!-- Dialog action to invite the phone number to Signal -->
+    <string name="FindByActivity__invite">Bjud in</string>
+    <!-- Button label for a button that will launch a camera to scan a username QR code -->
+    <string name="FindByActivity__qr_scan_button">Skanna QR-kod</string>
+    <!-- Content of a dialog indicating that we could not perform the requested action because we encountered a network error. -->
+    <string name="FindByActivity__network_error_dialog">Påträffade ett nätverksfel. Försök igen senare.</string>
 
     <!-- EOF -->
 </resources>

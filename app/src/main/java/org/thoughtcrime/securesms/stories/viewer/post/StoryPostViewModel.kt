@@ -41,18 +41,18 @@ class StoryPostViewModel(private val repository: StoryTextPostRepository) : View
           store.update { StoryPostState.None() }
         } else if (storyPostContent.isVideo()) {
           store.update {
-            val shouldSkipTransform = storyPostContent.attachment.transformProperties.shouldSkipTransform()
+            val shouldSkipTransform = storyPostContent.attachment.transformProperties?.shouldSkipTransform() == true
 
             val clipStart: Duration = if (shouldSkipTransform) {
               0L.microseconds
             } else {
-              storyPostContent.attachment.transformProperties.videoTrimStartTimeUs.microseconds
+              storyPostContent.attachment.transformProperties?.videoTrimStartTimeUs?.microseconds ?: 0L.microseconds
             }
 
             val clipEnd: Duration = if (shouldSkipTransform) {
               0L.microseconds
             } else {
-              storyPostContent.attachment.transformProperties.videoTrimEndTimeUs.microseconds
+              storyPostContent.attachment.transformProperties?.videoTrimEndTimeUs?.microseconds ?: 0L.microseconds
             }
 
             StoryPostState.VideoPost(

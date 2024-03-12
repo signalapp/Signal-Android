@@ -179,7 +179,18 @@
     <string name="BlockUnblockDialog_unblock_s">เลิกบล็อก %1$s หรือไม่</string>
     <string name="BlockUnblockDialog_block">บล็อก</string>
     <string name="BlockUnblockDialog_block_and_leave">บล็อกและออก</string>
-    <string name="BlockUnblockDialog_report_spam_and_block">รายงานว่าเป็นสแปมและบล็อก</string>
+    <!-- Dialog button label to report as spam and block the person -->
+    <string name="BlockUnblockDialog_report_spam_and_block">รายงานและบล็อก</string>
+    <!-- Dialog title for reporting spam -->
+    <string name="BlockUnblockDialog_report_spam_title">รายงานว่าเป็นสแปมหรือไม่</string>
+    <!-- Dialog button to report as spam only -->
+    <string name="BlockUnblockDialog_report_spam">รายงานว่าเป็นสแปม</string>
+    <!-- Dialog message when reporting spam of an individual (1:1 conversation) -->
+    <string name="BlockUnblockDialog_report_spam_description">Signal จะได้รับแจ้งว่าบุคคลนี้อาจส่งข้อความสแปม โดย Signal จะไม่สามารถเห็นเนื้อหาใดๆ ของแชท</string>
+    <!-- Dialog message when reporting spam of a group and we can determine the group member that invited you, placeholder is a name -->
+    <string name="BlockUnblockDialog_report_spam_group_named_adder">Signal จะได้รับแจ้งว่า %1$s ซึ่งเป็นคนเชิญคุณเข้ากลุ่มนี้อาจส่งข้อความสแปม โดย Signal จะไม่สามารถเห็นเนื้อหาใดๆ ของแชท</string>
+    <!-- Dialog message when reporting spam of a group and we cannot determine the group member that invited you -->
+    <string name="BlockUnblockDialog_report_spam_group_unknown_adder">Signal จะได้รับแจ้งว่าคนที่เชิญคุณเข้ากลุ่มนี้อาจส่งข้อความสแปม โดย Signal จะไม่สามารถเห็นเนื้อหาใดๆ ของแชท</string>
 
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">วันนี้</string>
@@ -412,6 +423,8 @@
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported">Signal ไม่รองรับการส่งข้อความ SMS อีกต่อไป</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Signal ไม่รองรับการส่งข้อความ SMS อีกต่อไป ชวน %1$s มาใช้ Signal เพื่อการติดต่อสื่อสารที่ไม่ขาดตอน</string>
+    <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
+    <string name="ConversationActivity__this_person_is_no_longer_using_signal">ผู้ติดต่อคนนี้ไม่ได้ใช้ Signal แล้ว ชวนเพื่อนมาใช้ Signal เพื่อการติดต่อสื่อสารที่ไม่ขาดตอน</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">เชิญมาใช้ Signal</string>
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
@@ -471,11 +484,11 @@
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">คุณสามารถปัดด้านซ้ายเพื่อตอบข้อความอย่างรวดเร็ว</string>
     <string name="ConversationFragment_view_once_media_is_deleted_after_sending">ไฟล์สื่อแบบที่ดูได้ครั้งเดียวจะถูกลบหลังการส่ง</string>
     <string name="ConversationFragment_you_already_viewed_this_message">คุณเปิดดูข้อความนี้แล้ว</string>
-    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">คุณสามารถเพิ่มบันทึกถึงตัวเองได้ในแชทนี้\nและหากบัญชีของคุณมีอุปกรณ์ที่เชื่อมโยงอยู่ บันทึกใหม่ก็จะถูกซิงค์ด้วยเช่นกัน</string>
+    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">คุณสามารถเพิ่มบันทึกถึงตัวเองได้ในแชทนี้ และหากบัญชีของคุณมีอุปกรณ์ที่เชื่อมโยงอยู่ บันทึกใหม่ก็จะถูกซิงค์ด้วยเช่นกัน</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">สมาชิกกลุ่ม %1$d คนมีชื่อเหมือนกัน</string>
     <string name="ConversationFragment__tap_to_review">แตะเพื่อทบทวน</string>
-    <string name="ConversationFragment__review_requests_carefully">พิจารณาคำขออย่างระวัง</string>
-    <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal พบผู้ติดต่ออีกรายการที่มีชื่อเหมือนกัน</string>
+    <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
+    <string name="ConversationFragment__review_banner_body">ผู้ใช้คนนี้ใช้ชื่อเหมือนกันกับผู้ติดต่ออีกคน</string>
     <string name="ConversationFragment_contact_us">ติดต่อเรา</string>
     <string name="ConversationFragment_verify">ตรวจยืนยัน</string>
     <string name="ConversationFragment_not_now">ไม่ใช่ตอนนี้</string>
@@ -501,6 +514,55 @@
     <string name="ConversationFragment__content_description_launch_signal_button">เปิด Signal</string>
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
     <string name="ConversationFragment__no_longer_verified">ไม่ได้อยู่ในสถานะยืนยันแล้ว</string>
+    <!-- Button shown in conversation header when in a message request state and no groups in common to show new message safety tips -->
+    <string name="ConversationFragment_safety_tips">คำแนะนำเพื่อความปลอดภัย</string>
+    <!-- Menu option to report spam in a conversation -->
+    <string name="ConversationFragment_report_spam">รายงานว่าเป็นสแปม</string>
+    <!-- Menu option to block in a conversation -->
+    <string name="ConversationFragment_block">บล็อก</string>
+    <!-- Menu otpion to accept a message request in a conversation -->
+    <string name="ConversationFragment_accept">ตอบรับ</string>
+    <!-- Menu option to delete an entire chat in a conversation -->
+    <string name="ConversationFragment_delete_chat">ลบแชท</string>
+    <!-- Menu option to unblock in a conversation -->
+    <string name="ConversationFragment_unblock">เลิกบล็อก</string>
+    <!-- Dialog title shown after reporting spam and tapping the conversation item -->
+    <string name="ConversationFragment_reported_spam">รายงานว่าเป็นสแปมแล้ว</string>
+    <!-- Dialog message shown after reporting spam and tapping the conversation item -->
+    <string name="ConversationFragment_reported_spam_message">Signal ได้รับแจ้งว่าบุคคลนี้อาจส่งข้อความสแปมแล้ว โดย Signal จะไม่สามารถเห็นเนื้อหาใดๆ ของแชท</string>
+    <!-- Toast shown after reporting spam and tapping the conversation item -->
+    <string name="ConversationFragment_reported_as_spam">รายงานว่าเป็นสแปมแล้ว</string>
+    <!-- Toast shown after reporting and blocking a conversation -->
+    <string name="ConversationFragment_reported_as_spam_and_blocked">รายงานว่าเป็นสแปมและบล็อกแล้ว</string>
+    <!-- Dialog message shown after accepting a message request and tapping on options from the conversation event -->
+    <string name="ConversationFragment_you_accepted_a_message_request_from_s">คุณตอบรับคำขอส่งข้อความจาก %1$s แล้ว หากนี่เป็นข้อผิดพลาด คุณสามารถดูตัวเลือกด้านล่างเพื่อดำเนินการ</string>
+
+    <!-- Title of Safety Tips bottom sheet dialog -->
+    <string name="SafetyTips_title">คำแนะนำเพื่อความปลอดภัย</string>
+    <!-- Dialog subtitle when showign tips for a 1:1 conversation -->
+    <string name="SafetyTips_subtitle_individual">โปรดใช้ความระมัดระวังในการตอบรับคำขอส่งข้อความจากคนที่คุณไม่รู้จัก ลองตรวจสอบตามข้อสังเกตนี้:</string>
+    <!-- Dialog subtitle when showing tips for a group conversation -->
+    <string name="SafetyTips_subtitle_group">โปรดพิจารณาคำขอนี้อย่างถี่ถ้วน กลุ่มนี้ไม่มีสมาชิกที่เป็นผู้ติดต่อของคุณหรือผู้ใช้ที่คุณแชทด้วย ใช้ความระมัดระวังและลองตรวจสอบตามข้อสังเกตนี้:</string>
+    <!-- Button text to move to the previous tip-->
+    <string name="SafetyTips_previous_tip">คำแนะนำก่อนหน้า</string>
+    <!-- Button text to move to the next tip -->
+    <string name="SafetyTips_next_tip">คำแนะนำถัดไป</string>
+    <!-- Title of tip 1 -->
+    <string name="SafetyTips_tip1_title">การหลอกลวงทางการเงินหรือคริปโต</string>
+    <!-- Message of tip 1 -->
+    <string name="SafetyTips_tip1_message">หากมีคนที่ไม่รู้จักส่งข้อความหาคุณเกี่ยวกับคริปโตเคอร์เรนซี (เช่น บิตคอยน์) หรือโอกาสทางการเงิน โปรดระมัดระวังเป็นพิเศษ เพราะเป็นไปได้สูงว่านั่นคือสแปม</string>
+    <!-- Title of tip 2 -->
+    <string name="SafetyTips_tip2_title">ข้อความคลุมเครือหรือไม่เจาะจง</string>
+    <!-- Message of tip 2 -->
+    <string name="SafetyTips_tip2_message">ผู้ส่งสแปมมักเริ่มต้นส่งข้อความด้วยคำทักทายทั่วไป เช่น “สวัสดี” เพื่อเรียกความสนใจของคุณ หากคุณตอบข้อความ คนพวกนั้นอาจชวนคุณพูดคุยต่อไปเรื่อยๆ</string>
+    <!-- Title of tip 3 -->
+    <string name="SafetyTips_tip3_title">ข้อความที่แนบลิงก์</string>
+    <!-- Message of tip 3 -->
+    <string name="SafetyTips_tip3_message">ระวังข้อความจากคนแปลกหน้าที่มีลิงก์ไปยังเว็บไซต์ อย่ากดลิงก์จากผู้ใช้ที่คุณไม่ไว้วางใจโดยเด็ดขาด</string>
+    <!-- Title of tip 4 -->
+    <string name="SafetyTips_tip4_title">ธุรกิจและหน่วยงานปลอม</string>
+    <!-- Message of tip 4 -->
+    <string name="SafetyTips_tip4_message">ระวังให้มากเมื่อได้รับการติดต่อจากหน่วยงานรัฐหรือธุรกิจห้างร้าน ข้อความที่เกี่ยวกับสำนักงานภาษี บริษัทขนส่ง หรือหน่วยงานใกล้เคียงกันนี้อาจเป็นสแปม</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">ล้างตัวกรอง</string>
@@ -513,7 +575,9 @@
         <item quantity="other">การดำเนินการนี้จะลบแชทที่เลือกไว้ทั้งหมด %1$d รายการอย่างถาวร</item>
     </plurals>
     <string name="ConversationListFragment_deleting">กำลังลบ</string>
-    <string name="ConversationListFragment_deleting_selected_conversations">กำลังลบแชทที่เลือก…</string>
+    <plurals name="ConversationListFragment_deleting_selected_conversations">
+        <item quantity="other">กำลังลบแชทที่เลือก…</item>
+    </plurals>
     <plurals name="ConversationListFragment_conversations_archived">
         <item quantity="other">จัดเก็บแชท %1$d รายการในที่เก็บถาวร</item>
     </plurals>
@@ -546,6 +610,8 @@
     <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">เปิดหรือโปรไฟล์การแจ้งเตือนตรงนี้</string>
     <!-- Message shown in top toast to indicate the named profile is on -->
     <string name="ConversationListFragment__s_on">เปิด %1$s</string>
+    <!-- -->
+    <string name="ConversationListFragment_username_recovered_toast">รีเซ็ตคิวอาร์โค้ดและลิงก์ของคุณเรียบร้อยแล้ว โดยชื่อผู้ใช้ของคุณคือ %1$s</string>
 
     <!-- ConversationListItem -->
     <string name="ConversationListItem_key_exchange_message">ข้อความแลกเปลี่ยนกุญแจ</string>
@@ -590,9 +656,9 @@
     <!-- Toolbar title for this screen -->
     <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">ใครบ้างที่สามารถค้นหาฉันด้วยหมายเลขโทรศัพท์ได้</string>
     <!-- Description for radio item stating anyone can see your phone number -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">ใครก็ตามที่มีหมายเลขโทรศัพท์ของคุณอยู่ในรายชื่อผู้ติดต่อ จะเห็นคุณเป็นผู้ติดต่อบน Signal เช่นกัน ส่วนคนอื่นๆ จะสามารถค้นหาคุณได้โดยใช้หมายเลขโทรศัพท์</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">ผู้ใช้ที่มีหมายเลขโทรศัพท์ของคุณจะเห็นว่าคุณใช้งาน Signal และจะสามารถเริ่มแชทกับคุณได้</string>
     <!-- Description for radio item stating no one will be able to see your phone number -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">ไม่มีผู้ใช้ Signal คนใดที่สามารถค้นหาคุณได้โดยใช้หมายเลขโทรศัพท์</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">จะไม่มีใครเห็นว่าคุณใช้งาน Signal เว้นแต่ว่าคุณจะส่งข้อความหาหรือเคยแชทกับผู้ใช้คนนั้น</string>
 
     <!-- ChooseBackupFragment -->
     <string name="ChooseBackupFragment__restore_from_backup">กู้คืนจากข้อมูลสำรองหรือไม่?</string>
@@ -962,6 +1028,10 @@
     <string name="GroupMentionSettingDialog_dont_notify_me">ไม่ต้องแจ้งให้ฉันรู้</string>
 
     <!-- ManageProfileFragment -->
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
+    <string name="ManageProfileFragment__your_username">ชื่อผู้ใช้ คิวอาร์โค้ดและลิงก์จะไม่ปรากฏบนโปรไฟล์ของคุณ เราขอแนะนำให้แชร์ชื่อผู้ใช้ของคุณกับคนที่ไว้วางใจเท่านั้น</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
+    <string name="ManageProfileFragment__username_footer_no_username">ผู้ติดต่อจะสามารถส่งข้อความหาคุณผ่านชื่อผู้ใช้ที่คุณกำหนด วิธีนี้ทำให้คุณไม่จำเป็นต้องบอกหมายเลขโทรศัพท์กับใคร </string>
     <string name="ManageProfileFragment_profile_name">ชื่อโปรไฟล์</string>
     <string name="ManageProfileFragment_username">ชื่อผู้ใช้</string>
     <string name="ManageProfileFragment_about">เกี่ยวกับ</string>
@@ -1239,6 +1309,10 @@
     <string name="MessageRecord_missed_voice_call">การโทรด้วยเสียงที่ไม่ได้รับ</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">วิดีโอคอลที่ไม่ได้รับ</string>
+    <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
+    <string name="MessageRecord_missed_voice_call_notification_profile">สายโทรเสียงที่ไม่ได้รับระหว่างใช้โปรไฟล์การแจ้งเตือน</string>
+    <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
+    <string name="MessageRecord_missed_video_call_notification_profile">วิดีโอคอลที่ไม่ได้รับระหว่างใช้โปรไฟล์การแจ้งเตือน</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
     <string name="MessageRecord_you_declined_a_voice_call">คุณปฏิเสธการโทรด้วยเสียง</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
@@ -1265,8 +1339,10 @@
 
     <!-- Profile change updates -->
     <string name="MessageRecord_changed_their_profile_name_to">%1$s เปลี่ยนชื่อโปรไฟล์เป็น %2$s</string>
-    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s ได้เปลี่ยนชื่อโปรไฟล์จาก %2$s เป็น %3$s</string>
+    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s เปลี่ยนชื่อโปรไฟล์จาก %2$s เป็น %3$s</string>
     <string name="MessageRecord_changed_their_profile">%1$s ได้เปลี่ยนโปรไฟล์ใหม่</string>
+    <!-- Conversation update event message shown when you\'ve started a conversation by phone number or username and then learn their profile name. placeholder is username or phone number -->
+    <string name="MessageRecord_started_this_chat">คุณเริ่มต้นแชทนี้กับ %1$s</string>
 
     <!-- GV2 specific -->
     <string name="MessageRecord_you_created_the_group">คุณได้สร้างกลุ่มแล้ว</string>
@@ -1422,7 +1498,7 @@
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">คุณทำเครื่องหมายว่า หมายเลขความปลอดภัยของคุณกับ %1$s ยังไม่ถูกตรวจยืนยัน</string>
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">คุณทำเครื่องหมายจากอีกอุปกรณ์ว่า หมายเลขความปลอดภัยของคุณกับ %1$s ยังไม่ถูกตรวจยืนยัน</string>
     <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">ไม่สามารถส่งข้อความจาก %1$s ได้</string>
-    <string name="MessageRecord_s_changed_their_phone_number">%1$s เปลี่ยนเบอร์โทรศัพท์</string>
+    <string name="MessageRecord_s_changed_their_phone_number">%1$s เปลี่ยนหมายเลขโทรศัพท์</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">ชอบฟีเจอร์ใหม่นี้ใช่ไหม ช่วยสนับสนุน Signal ด้วยการบริจาคแบบครั้งเดียว</string>
     <!-- Update item message shown when we merge two threads together. First placeholder is a name, second placeholder is a phone number. -->
@@ -1471,6 +1547,10 @@
     <string name="MessageRecord__you_can_no_longer_send_sms_messages_in_signal">คุณไม่สามารถส่งข้อความ SMS ด้วย Signal ได้อีกต่อไป ชวน %1$s มาใช้ Signal เพื่อการติดต่อสื่อสารที่ไม่ขาดตอน</string>
     <!-- Body for quote when message being quoted is an in-app payment message -->
     <string name="MessageRecord__payment_s">การชำระเงิน: %1$s</string>
+    <!-- Update message shown in chat after reporting it as spam -->
+    <string name="MessageRecord_reported_as_spam">รายงานว่าเป็นสแปมแล้ว</string>
+    <!-- Update message shown in chat after accept a message request -->
+    <string name="MessageRecord_you_accepted_the_message_request">คุณตอบรับคำขอส่งข้อความแล้ว</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">ตอบรับ</string>
@@ -1513,6 +1593,8 @@
     <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
         <item quantity="other">%1$d กลุ่มเพิ่มเติม</item>
     </plurals>
+    <!-- Button label to report spam for a conversation when in a message request state -->
+    <string name="MessageRequestBottomView_report">รายงาน…</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">วลีรหัสผ่านไม่ถูกต้อง!</string>
@@ -1716,8 +1798,10 @@
     <string name="WebRtcCallView__disconnected">เลิกเชื่อมต่อแล้ว</string>
     <!-- Utilized in the lobby before joining a call link -->
     <string name="WebRtcCallView__signal_call_link">ลิงก์การโทร Signal</string>
-    <!-- Warning displayed when entering a call via a link -->
-    <string name="WebRtcCallView__anyone_who_joins">ผู้ใช้ที่เข้าร่วมการโทรนี้ผ่านลิงก์จะเห็นชื่อ รูปภาพ และหมายเลขโทรศัพท์ของคุณ</string>
+    <!-- Warning displayed when entering a call via a link and you have Phone Number Privacy disabled-->
+    <string name="WebRtcCallView__anyone_who_joins_pnp_disabled">ผู้ใช้ที่เข้าร่วมการโทรนี้ผ่านลิงก์จะเห็นชื่อ รูปภาพ และหมายเลขโทรศัพท์ของคุณ</string>
+    <!-- Warning displayed when entering a call via a link and you have Phone Number Privacy enabled-->
+    <string name="WebRtcCallView__anyone_who_joins_pnp_enabled">ผู้ใช้ที่เข้าร่วมการโทรนี้ผ่านลิงก์จะเห็นชื่อและรูปภาพของคุณ</string>
     <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
     <string name="WebRtcCallView__waiting_to_be_let_in">กำลังรออนุมัติให้เข้าร่วม…</string>
 
@@ -1812,6 +1896,10 @@
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">เครือข่าย Signal</string>
+    <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
+    <string name="AboutSheet__verified">ตรวจยืนยันแล้ว</string>
+    <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
+    <string name="AboutSheet__no_direct_message">ไม่มีข้อความส่วนตัวกับ %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s อยู่ในรายชื่อผู้ติดต่อของระบบคุณ</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -1819,7 +1907,9 @@
     <!-- Notice when a user is not a connection to review requests carefully -->
     <string name="AboutSheet__review_requests_carefully">พิจารณาคำขออย่างระวัง</string>
     <!-- Text used when user has groups in common. Placeholder is the count -->
-    <string name="AboutSheet__d_groups_in_common">มี %1$d กลุ่มร่วมกัน</string>
+    <plurals name="AboutSheet__d_groups_in">
+        <item quantity="other">มี %1$d กลุ่มร่วมกัน</item>
+    </plurals>
     <!-- Text displayed in title for external recipients -->
     <string name="AboutSheet__about">เกี่ยวกับ</string>
     <!-- Text displayed in title for you -->
@@ -2121,6 +2211,8 @@
     <string name="UnverifiedSendDialog_send">ส่ง</string>
 
     <!-- UsernameEditFragment -->
+    <!-- Placeholder text for custom discriminator -->
+    <string name="UsernameEditFragment__00">00</string>
     <!-- Toolbar title when entering from registration -->
     <string name="UsernameEditFragment__add_a_username">เพิ่มชื่อผู้ใช้</string>
     <!-- Instructional text at the top of the username edit screen -->
@@ -2129,13 +2221,15 @@
     <string name="UsernameEditFragment_delete">ลบ</string>
     <string name="UsernameEditFragment_successfully_removed_username">ลบชื่อผู้ใช้สำเร็จแล้ว</string>
     <string name="UsernameEditFragment_encountered_a_network_error">พบความผิดพลาดของเครือข่าย</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">คุณลองตั้งชื่อหลายครั้งเกินไป โปรดลองใหม่ในภายหลัง</string>
     <string name="UsernameEditFragment_this_username_is_taken">มีผู้ใช้ชื่อนี้แล้ว</string>
     <string name="UsernameEditFragment_usernames_can_only_include">ชื่อผู้ใช้จะมีได้เฉพาะ a-Z, 0-9 และ _</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ชื่อผู้ใช้ไม่สามารถเริ่มต้นด้วยตัวเลข</string>
     <string name="UsernameEditFragment_username_is_invalid">ชื่อผู้ใช้ไม่ถูกต้อง</string>
-    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ชื่อผู้ใช้จะต้องมี %1$dถึง %2$d ตัวอักษร</string>
+    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ชื่อผู้ใช้ต้องมีอักขระ %1$d ถึง %2$d ตัว</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">ชื่อผู้ใช้จะช่วยให้ผู้ใช้รายอื่นส่งข้อความหาคุณได้โดยไม่จำเป็นต้องมีหมายเลขโทรศัพท์ของคุณ ชื่อผู้ใช้จะถูกผูกเข้ากับกลุ่มตัวเลขเพื่อช่วยรักษาความเป็นส่วนตัวของข้อมูลคุณ</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">ชื่อผู้ใช้จะต้องมีชุดตัวเลขร่วมด้วยเสมอ</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">ตัวเลขนี้คืออะไร</string>
     <string name="UsernameEditFragment__these_digits_help_keep">ตัวเลขนี้จะช่วยรักษาความเป็นส่วนตัวให้ชื่อผู้ใช้ของคุณ ป้องกันไม่ให้คุณได้รับข้อความที่ไม่พึงประสงค์ เราขอแนะนำให้แชร์ชื่อผู้ใช้ของคุณเฉพาะกับคนและกลุ่มที่คุณอยากติดต่อด้วยเท่านั้น โดยหากเปลี่ยนชื่อผู้ใช้ คุณก็จะได้รับชุดตัวเลขใหม่</string>
@@ -2143,6 +2237,22 @@
     <string name="UsernameEditFragment__skip">ข้าม</string>
     <!-- Content description for done button -->
     <string name="UsernameEditFragment__done">เสร็จสิ้น</string>
+    <!-- Displayed when the chosen discriminator is not available for the given nickname -->
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">ไม่สามารถใช้ชื่อผู้ใช้นี้ได้ ลองกรอกตัวเลขอื่น</string>
+    <!-- Displayed when the chosen discriminator is too short -->
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">ชื่อผู้ใช้ไม่ถูกต้อง ต้องกรอกตัวเลขอย่างน้อย %1$d หลัก</string>
+    <!-- Displayed when the chosen discriminator is too long -->
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">ชื่อผู้ใช้ไม่ถูกต้อง ต้องกรอกตัวเลขไม่เกิน %1$d หลัก</string>
+    <!-- Displayed when the chosen discriminator is 00 -->
+    <string name="UsernameEditFragment__this_number_cant_be_00">ไม่สามารถใช้ตัวเลข 00 ได้ โปรดกรอกตัวเลข 1–9</string>
+    <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">ตัวเลขที่เกิน 2 หลักไม่สามารถขึ้นต้นด้วยเลข 0 ได้</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
+    <string name="UsernameEditFragment_recovery_dialog_confirmation">การกู้คืนชื่อผู้ใช้จะทำให้คิวอาร์โค้ดและลิงก์ที่มีอยู่เดิมของคุณถูกรีเซ็ต ต้องการดำเนินการต่อหรือไม่</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
+    <string name="UsernameEditFragment_change_confirmation_message">การเปลี่ยนชื่อผู้ใช้จะทำให้คิวอาร์โค้ดและลิงก์ที่มีอยู่เดิมของคุณถูกรีเซ็ต ต้องการดำเนินการต่อหรือไม่</string>
+    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
+    <string name="UsernameEditFragment_continue">ดำเนินการต่อ</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="other">มีผู้ติดต่อ %1$d คนใช้งาน Signal!</item>
@@ -2326,6 +2436,26 @@
     <!-- Notification subtext for group stories -->
     <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s • สตอรี่</string>
 
+    <!-- NewWaysToConnectDialogFragment -->
+    <!-- Fragment title, displayed at the top of the content -->
+    <string name="NewWaysToConnectDialogFragment__new_ways_to_connect">วิธีใหม่ในการติดต่อสื่อสาร</string>
+    <!-- Row item title for phone number privacy explainer -->
+    <string name="NewWaysToConnectDialogFragment__phone_number_privacy">การรักษาความเป็นส่วนตัวของหมายเลขโทรศัพท์</string>
+    <!-- Row item description for phone number privacy explainer -->
+    <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">ระบบจะไม่แสดงหมายเลขโทรศัพท์ของคุณในแชทอีกต่อไป ผู้ติดต่อจะยังคงเห็นหมายเลขโทรศัพท์ของคุณ หากบันทึกเบอร์คุณไว้ในรายชื่อติดต่อ</string>
+    <!-- Row item title for usernames explainer -->
+    <string name="NewWaysToConnectDialogFragment__usernames">ชื่อผู้ใช้</string>
+    <!-- Row item description for usernames explainer -->
+    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">ผู้ติดต่อจะสามารถส่งข้อความหาคุณผ่านชื่อผู้ใช้ที่คุณกำหนด วิธีนี้ทำให้คุณไม่จำเป็นต้องบอกหมายเลขโทรศัพท์กับใคร โดยชื่อผู้ใช้จะไม่ปรากฏบนโปรไฟล์ของคุณ</string>
+    <!-- Row item title for qr code and links explainer -->
+    <string name="NewWaysToConnectDialogFragment__qr_codes_and_links">คิวอาร์โค้ดและลิงก์</string>
+    <!-- Row item description for qr code and links explainer -->
+    <string name="NewWaysToConnectDialogFragment__usernames_have_a_unique_qr_code">ชื่อผู้ใช้จะมีคิวอาร์โค้ดและลิงก์เฉพาะที่คุณสามารถแชร์เพื่อให้เพื่อนเริ่มแชทด้วยได้ทันที</string>
+    <!-- Button label for not right now -->
+    <string name="NewWaysToConnectDialogFragment__not_now">ไว้ทีหลัง</string>
+    <!-- Button label for continue -->
+    <string name="NewWaysToConnectDialogFragment__set_up_your_username">กำหนดชื่อผู้ใช้</string>
+
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">เล่นวิดีโอ</string>
     <string name="ThumbnailView_Has_a_caption_description">มีคำบรรยายภาพ</string>
@@ -2338,6 +2468,8 @@
     <string name="TransferControlView__processing">กำลังดำเนินการ…</string>
     <!-- Status update label used while the device is transmitting data over the network. Will take the form of "1.0 MB/2.0 MB" -->
     <string name="TransferControlView__download_progress">%1$1.1f MB/%2$2.1f MB</string>
+    <!-- Attachment file size label for not-yet-downloaded images and video. Will take the form of "1.0 MB" -->
+    <string name="TransferControlView__filesize">%1$1.1f MB</string>
 
 
     <!-- UnauthorizedReminder -->
@@ -2428,7 +2560,7 @@
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">เพื่อที่จะแสดงผู้ติดต่อของคุณ Signal ต้องได้รับอนุญาตให้เข้าถึงผู้ติดต่อ แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ผู้ติดต่อ\"</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">เกิดข้อผิดพลาดระหว่างดึงผู้ติดต่อ ตรวจสอบการเชื่อมต่อเครือข่ายของคุณ</string>
     <string name="ContactSelectionListFragment_username_not_found">ไม่พบชื่อผู้ใช้</string>
-    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$sไม่ใช่ผู้ใช้ Signal โปรดตรวจสอบชื่อผู้ใช้และลองอีกครั้ง"</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s ไม่ใช่ผู้ใช้ Signal โปรดตรวจสอบชื่อผู้ใช้และลองอีกครั้ง"</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">คุณไม่จำเป็นต้องเพิ่มตัวเองเข้ากลุ่ม</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">จำนวนสมาชิกในกลุ่มถึงขีดจำกัดแล้ว</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">กลุ่ม Signal มีสมาชิกได้สูงสุด %1$d คน</string>
@@ -2437,6 +2569,10 @@
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="other">%1$d สมาชิก</item>
     </plurals>
+    <!-- Text on row item to find user by phone number -->
+    <string name="ContactSelectionListFragment__find_by_phone_number">ค้นหาด้วยหมายเลขโทรศัพท์</string>
+    <!-- Text on row item to find user by username -->
+    <string name="ContactSelectionListFragment__find_by_username">ค้นหาด้วยชื่อผู้ใช้</string>
 
     <!-- contact_selection_list_fragment -->
     <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal ต้องการเข้าถึงผู้ติดต่อของคุณ เพื่อจะแสดงข้อมูลเหล่านั้นได้</string>
@@ -2506,6 +2642,8 @@
     <string name="ConversationUpdateItem_activate_payments">ใช้การชำระเงิน</string>
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">คุณลบผู้ใช้คนนี้แล้ว การส่งข้อความหาผู้ใช้อีกครั้งจะเป็นการเพิ่มคนคนนั้นกลับเข้ามาในรายชื่อผู้ติดต่อของคุณ</string>
+    <!-- Update item button text shown for the accepted message request update message -->
+    <string name="ConversationUpdateItem_options">ตัวเลือก</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">เล่น … หยุดชั่วคราว</string>
@@ -3641,13 +3779,27 @@
     <!-- Subtext below option to launch into phone number privacy settings screen -->
     <string name="preferences_app_protection__choose_who_can_see">เลือกว่าจะให้ใครเห็นหมายเลขโทรศัพท์ของคุณและใช้หมายเลขโทรศัพท์นั้นติดต่อคุณบน Signal ได้</string>
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
-    <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">คนที่สามารถเห็นหมายเลขโทรศัพท์ของฉัน</string>
-    <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">จะไม่มีใครเห็นหมายเลขโทรศัพท์ของคุณบน Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">คนที่สามารถเห็นหมายเลขโทรศัพท์ของฉัน</string>
+    <!-- Subtext below radio buttons when who can see my number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">ผู้ใช้และกลุ่มที่คุณส่งข้อความหาจะเห็นหมายเลขโทรศัพท์ของคุณ</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">จะไม่มีใครเห็นหมายเลขโทรศัพท์ของคุณ เว้นแต่ว่าคนคนนั้นจะบันทึกเบอร์คุณไว้ในรายชื่อผู้ติดต่อบนโทรศัพท์</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">จะไม่มีใครเห็นหมายเลขโทรศัพท์ของคุณ</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
-    <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">คนที่สามารถใช้หมายเลขโทรศัพท์ค้นหาฉันได้</string>
-    <!-- Subtext below radio buttons when who can see my number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">ผู้ใช้และกลุ่มที่คุณส่งข้อความหาจะเห็นหมายเลขโทรศัพท์ของคุณ และคนที่มีหมายเลขโทรศัพท์ของคุณอยู่ในรายชื่อผู้ติดต่อบนโทรศัพท์ก็จะสามารถดูหมายเลขของคุณบน Signal ได้ด้วยเช่นกัน</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">คนที่สามารถใช้หมายเลขโทรศัพท์ค้นหาฉันได้</string>
+    <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">ผู้ใช้ที่มีหมายเลขโทรศัพท์ของคุณจะเห็นว่าคุณใช้งาน Signal และจะสามารถเริ่มแชทกับคุณได้</string>
+    <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">จะไม่มีใครเห็นว่าคุณใช้งาน Signal เว้นแต่ว่าคุณจะส่งข้อความหาหรือเคยแชทกับผู้ใช้คนนั้น</string>
+    <!-- Snackbar text when pressing invalid radio item -->
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"หากต้องการเปลี่ยนการตั้งค่านี้ ให้ไปที่หัวข้อ “คนที่สามารถเห็นหมายเลขโทรศัพท์ของฉัน” แล้วเลือก “ไม่อนุญาตให้ใครเห็น”"</string>
+    <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">ต้องการดำเนินการต่อหรือไม่</string>
+    <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">การตั้งค่า \"คนที่สามารถใช้หมายเลขโทรศัพท์ค้นหาฉันได้\" เป็น \"ไม่อนุญาตให้ใครค้นหา\" จะทำให้ผู้ใช้คนอื่นค้นหาคุณได้ยากขึ้นบน Signal</string>
+    <!-- Dialog button text for canceling change action -->
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">ยกเลิก</string>
     <string name="PhoneNumberPrivacy_everyone">ทุกคน</string>
     <string name="PhoneNumberPrivacy_nobody">คนที่คุณไม่รู้จัก</string>
     <string name="preferences_app_protection__screen_lock">ล็อกหน้าจอ</string>
@@ -3676,6 +3828,8 @@
     <string name="prompt_passphrase_activity__signal_is_locked">Signal ได้ถูกล็อก</string>
     <string name="prompt_passphrase_activity__tap_to_unlock">แตะเพื่อปลดล็อก</string>
     <string name="Recipient_unknown">ไม่ทราบ</string>
+    <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
+    <string name="Recipient_deleted_account">บัญชีที่ถูกลบ</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
     <string name="preferences_account_reregister">ลงทะเบียนบัญชีอีกครั้ง</string>
@@ -3878,7 +4032,9 @@
     <string name="BlockedUsersActivity__s_has_been_unblocked">เลิกบล็อก \"%1$s\" แล้ว</string>
 
     <!-- ReviewCardDialogFragment -->
-    <string name="ReviewCardDialogFragment__review_members">พิจารณาสมาชิกกลุ่ม</string>
+    <!-- Title of a screen where the user will be prompted to review group members with the same name -->
+    <string name="ReviewCardDialogFragment__review_members">พิจารณาสมาชิก</string>
+    <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
     <string name="ReviewCardDialogFragment__review_request">พิจารณาคำขอ</string>
     <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">สมาชิกในกลุ่ม %1$d คน มีชื่อเหมือนกัน พิจารณาสมาชิกด้านล่างแล้วเลือกตัดสินใจ</string>
     <string name="ReviewCardDialogFragment__if_youre_not_sure">หากคุณไม่มั่นใจว่าคำขอมาจากใคร คุณสามารถพิจารณาได้จากรายชื่อผู้ติดต่อด้านล่างแล้วเลือกตัดสินใจ</string>
@@ -4137,11 +4293,16 @@
     <string name="GroupDescriptionDialog__group_description">คำอธิบายกลุ่ม</string>
 
     <!-- QualitySelectorBottomSheetDialog -->
+    <!-- Label for our standard quality media conversion. -->
     <string name="QualitySelectorBottomSheetDialog__standard">มาตรฐาน</string>
+    <!-- Description for our standard quality media conversion. -->
     <string name="QualitySelectorBottomSheetDialog__faster_less_data">เร็วกว่า ใช้ข้อมูลน้อย</string>
+    <!-- Label for our high quality media conversion. This has better quality than standard. -->
     <string name="QualitySelectorBottomSheetDialog__high">สูง</string>
+    <!-- Label for our high quality media conversion. This has better quality than standard. -->
     <string name="QualitySelectorBottomSheetDialog__slower_more_data">ช้ากว่า ใช้ข้อมูลมาก</string>
-    <string name="QualitySelectorBottomSheetDialog__photo_quality">คุณภาพรูปภาพ</string>
+    <!-- Title heading for our media conversion quality selector. -->
+    <string name="QualitySelectorBottomSheetDialog__media_quality">คุณภาพของสื่อ</string>
 
     <!-- AppSettingsFragment -->
     <string name="AppSettingsFragment__invite_your_friends">เชิญเพื่อนของคุณ</string>
@@ -4256,27 +4417,6 @@
     <!-- ChatsSettingsFragment -->
     <string name="ChatsSettingsFragment__keyboard">แป้นพิมพ์</string>
     <string name="ChatsSettingsFragment__enter_key_sends">กด Enter เพื่อส่ง</string>
-
-    <!--SmsSettingsFragment -->
-    <string name="SmsSettingsFragment__use_as_default_sms_app">ใช้เป็นแอป SMS หลัก</string>
-    <!-- Preference title to export sms -->
-    <string name="SmsSettingsFragment__export_sms_messages">ส่งออกข้อความ SMS</string>
-    <!-- Preference title to re-export sms -->
-    <string name="SmsSettingsFragment__export_sms_messages_again">ส่งออกข้อความ SMS อีกครั้ง</string>
-    <!-- Preference title to delete sms -->
-    <string name="SmsSettingsFragment__remove_sms_messages">ลบข้อความ SMS</string>
-    <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">กำลังลบข้อความ SMS ออกจาก Signal…</string>
-    <!-- Snackbar text to indicate can delete later -->
-    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">คุณสามารถลบข้อความ SMS ออกจาก Signal ได้ทุกเมื่อในเมนูการตั้งค่า</string>
-    <!-- Description for export sms preference -->
-    <string name="SmsSettingsFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">คุณสามารถส่งออกข้อความ SMS ไปยังฐานข้อมูล SMS ของโทรศัพท์คุณได้</string>
-    <!-- Description for re-export sms preference -->
-    <string name="SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages">การส่งออกอีกครั้งอาจทำให้มีข้อความซ้ำ</string>
-    <!-- Description for remove sms preference -->
-    <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">ลบข้อความ SMS ออกจาก Signal เพื่อเพิ่มพื้นที่จัดเก็บข้อมูล</string>
-    <!-- Information message shown at the top of sms settings to indicate it is being removed soon. -->
-    <string name="SmsSettingsFragment__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging">เราจะยกเลิกการรองรับข้อความ SMS ในอีกไม่ช้า เพื่อมุ่งเน้นการให้บริการการส่งข้อความที่เข้ารหัส</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">ข้อความ</string>
@@ -4631,6 +4771,26 @@
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">มีรายการที่ใหญ่เกินไปอย่างน้อยหนึ่งรายการ</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">มีรายการที่ไม่ถูกต้องอย่างน้อยหนึ่งรายการ</string>
     <string name="MediaReviewFragment__too_many_items_selected">เลือกหลายรายการมากเกินไป</string>
+    <!-- Small notification presented to the user when they set their video to view-once mode -->
+    <string name="MediaReviewFragment__video_set_to_view_once">วิดีโอตั้งค่าเป็นไฟล์สื่อแบบที่ดูได้ครั้งเดียว</string>
+    <!-- Small notification presented to the user when they set their photo to view-once mode -->
+    <string name="MediaReviewFragment__photo_set_to_view_once">รูปภาพตั้งค่าเป็นไฟล์สื่อแบบที่ดูได้ครั้งเดียว</string>
+    <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
+    <string name="MediaReviewFragment__video_set_to_high_quality">วิดีโอตั้งค่าที่ความละเอียดสูง</string>
+    <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
+    <string name="MediaReviewFragment__video_set_to_standard_quality">วิดีโอตั้งค่าที่ความละเอียดมาตรฐาน</string>
+    <!-- Small notification presented to the user when they set their still image to be sent in high visual quality. -->
+    <string name="MediaReviewFragment__photo_set_to_high_quality">รูปภาพตั้งค่าที่ความละเอียดสูง</string>
+    <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
+    <string name="MediaReviewFragment__photo_set_to_standard_quality">รูปภาพตั้งค่าที่ความละเอียดมาตรฐาน</string>
+    <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
+    <plurals name="MediaReviewFragment__items_set_to_high_quality">
+        <item quantity="other">%1$d ไฟล์ตั้งค่าที่ความละเอียดสูง</item>
+    </plurals>
+    <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
+    <plurals name="MediaReviewFragment__items_set_to_standard_quality">
+        <item quantity="other">%1$d ไฟล์ตั้งค่าที่ความละเอียดมาตรฐาน</item>
+    </plurals>
 
     <string name="ImageEditorHud__cancel">ยกเลิก</string>
     <string name="ImageEditorHud__draw">วาด</string>
@@ -4654,6 +4814,20 @@
     <string name="MediaReviewImagePageFragment__discard">ยกเลิก</string>
     <string name="MediaReviewImagePageFragment__discard_changes">ละทิ้งการเปลี่ยนแปลง</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">คุณจะสูญเสียการเปลี่ยนแปลงทั้งหมดที่ทำไว้กับรูปภาพนี้</string>
+
+    <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
+    <string name="MediaCaptureFragment_username_dialog_title">พบ %1$s</string>
+    <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
+    <string name="MediaCaptureFragment_username_dialog_body">เริ่มต้นแชทกับ \"%1$s\"</string>
+    <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
+    <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">ไปที่แชท</string>
+
+    <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+    <string name="MediaCaptureFragment_device_link_dialog_title">เชื่อมโยงอุปกรณ์หรือไม่</string>
+    <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+    <string name="MediaCaptureFragment_device_link_dialog_body">ดูเหมือนว่าคุณพยายามจะเชื่อมโยงอุปกรณ์ Signal แตะดำเนินการต่อแล้วสแกนโค้ดอีกครั้งเพื่อเชื่อมโยงอุปกรณ์</string>
+    <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
+    <string name="MediaCaptureFragment_device_link_dialog_continue">ดำเนินการต่อ</string>
 
 
     <string name="BadgesOverviewFragment__my_badges">โล่ของฉัน</string>
@@ -4753,7 +4927,7 @@
     <!-- Displayed as a subtitle on a row in the Manage Donations screen when payment for a donation is pending -->
     <string name="MySupportPreference__payment_pending">กำลังรออนุมัติการชำระเงิน</string>
     <!-- Displayed as a dialog message when clicking on a donation row that is pending. Placeholder is a formatted fiat amount -->
-    <string name="MySupportPreference__your_bank_transfer_of_s">กำลังรออนุมัติการโอนเงินผ่านระบบธนาคารจำนวน %1$s การโอนเงินผ่านระบบธนาคารมักใช้เวลาดำเนินการประมาณ 1 วันทำการ  </string>
+    <string name="MySupportPreference__your_bank_transfer_of_s">กำลังรออนุมัติการโอนเงินผ่านระบบธนาคารจำนวน %1$s การโอนเงินผ่านระบบธนาคารอาจใช้เวลาดำเนินการประมาณ 1 ถึง 14 วันทำการ  </string>
     <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
     <string name="MySupportPreference__learn_more">เรียนรู้เพิ่มเติม</string>
 
@@ -4951,6 +5125,12 @@
     <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">เพิ่มคนและกลุ่มที่คุณต้องการการแจ้งเตือนและการโทรเมื่อโปรไฟล์นี้มีการใช้งาน</string>
     <!-- Button text that launches the contact picker to select from -->
     <string name="AddAllowedMembers__add_people_or_groups">เพิ่มคนหรือกลุ่ม</string>
+    <!-- Title for exceptions section of add people to notification profile screen in create flow -->
+    <string name="AddAllowedMembers__exceptions">ข้อยกเว้น</string>
+    <!-- List preference to toggle that allows calls through the notification profile during create flow -->
+    <string name="AddAllowedMembers__allow_all_calls">อนุญาตการโทรทั้งหมด</string>
+    <!-- List preference to toggle that allows mentions through the notification profile during create flow -->
+    <string name="AddAllowedMembers__notify_for_all_mentions">แจ้งเตือนการกล่าวถึงทั้งหมด</string>
 
     <!-- Call to action button on contact picker for adding to profile -->
     <string name="SelectRecipientsFragment__add">เพิ่ม</string>
@@ -5259,13 +5439,13 @@
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">เครือข่าย Signal</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
-    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">เครือข่าย Signal คือคนที่คุณได้เลือกที่จะไว้ใจ ด้วยการ:</string>
+    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">เครือข่าย Signal คือคนที่คุณเลือกที่จะไว้ใจ ด้วยการ:</string>
     <!-- Signal connections sheet bullet point 1 -->
     <string name="SignalConnectionsBottomSheet__starting_a_conversation">เริ่มต้นการแชท</string>
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">รับคำขอส่งข้อความ</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">มีรายชื่ออยู่ในระบบผู้ติดต่อของคุณ</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">บันทึกไว้ในรายชื่อผู้ติดต่อของระบบคุณ</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"เครือข่ายของคุณจะเห็นชื่อและรูปภาพของคุณ รวมถึงโพสต์ใน \"สตอรี่ของฉัน\" เว้นแต่ว่าคุณจะซ่อนสตอรี่นั้นจากพวกเขา"</string>
     <!-- Clickable option to add a viewer to a custom story -->
@@ -5548,7 +5728,7 @@
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">ตรวจสอบผู้ติดต่อทั้งหมดแล้ว แตะส่งเพื่อดำเนินการต่อ</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
     <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
-        <item quantity="other">คุณมีเครือข่าย %1$d คน ที่อาจติดตั้ง Signal ใหม่หรือเปลี่ยนอุปกรณ์ ก่อนที่จะแชร์สตอรี่กับเครือข่ายคนดังกล่าว ลองตรวจสอบหมายเลขความปลอดภัยหรือลบเครือข่ายคนนั้นออกจากสตอรี่ของคุณ</item>
+        <item quantity="other">เครือข่าย %1$d คนอาจติดตั้ง Signal ใหม่หรือเปลี่ยนอุปกรณ์ คุณสามารถลองตรวจสอบหมายเลขความปลอดภัยของเครือข่ายก่อนหรือยืนยันการส่ง</item>
     </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">ตรวจยืนยันหมายเลขความปลอดภัย</string>
@@ -5636,47 +5816,6 @@
     <!-- Generic title for overflow menus -->
     <string name="OverflowMenu__overflow_menu">เมนูเพิ่มเติม</string>
 
-    <!-- SMS Export Service -->
-    <!-- Displayed in the notification while export is running -->
-    <string name="SignalSmsExportService__exporting_messages">กำลังส่งออกข้อความ…</string>
-    <!-- Displayed in the notification title when export completes -->
-    <string name="SignalSmsExportService__signal_sms_export_complete">ส่งออกข้อความ SMS จาก Signal เรียบร้อยแล้ว</string>
-    <!-- Displayed in the notification message when export completes -->
-    <string name="SignalSmsExportService__tap_to_return_to_signal">แตะเพื่อกลับไปที่ Signal</string>
-
-    <!-- ExportYourSmsMessagesFragment -->
-    <!-- Title of the screen -->
-    <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">ส่งออกข้อความ SMS ของคุณ</string>
-    <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">คุณสามารถส่งออกข้อความ SMS ไปยังฐานข้อมูล SMS ของโทรศัพท์คุณได้ โดยคุณยังสามารถเลือกที่จะเก็บหรือลบข้อความออกจาก Signal ก็ได้ ซึ่งจะทำให้แอป SMS อื่นๆ บนโทรศัพท์สามารถนำเข้าข้อความได้ อย่างไรก็ดี นี่ไม่ใช่การสร้างไฟล์ที่แชร์ได้จากประวัติการส่งข้อความ SMS ของคุณ</string>
-    <!-- Button label to begin export -->
-    <string name="ExportYourSmsMessagesFragment__continue">ดำเนินการต่อ</string>
-
-    <!-- ExportingSmsMessagesFragment -->
-    <!-- Title of the screen -->
-    <string name="ExportingSmsMessagesFragment__exporting_sms_messages">กำลังส่งออกข้อความ SMS</string>
-    <!-- Message of the screen when exporting sms messages -->
-    <string name="ExportingSmsMessagesFragment__this_may_take_awhile">อาจใช้เวลาสักครู่</string>
-    <!-- Progress indicator for export -->
-    <plurals name="ExportingSmsMessagesFragment__exporting_d_of_d">
-        <item quantity="other">กำลังส่งออก %1$d จาก %2$d…</item>
-    </plurals>
-    <!-- Alert dialog title shown when we think a user may not have enough local storage available to export sms messages -->
-    <string name="ExportingSmsMessagesFragment__you_may_not_have_enough_disk_space">คุณอาจมีพื้นที่จัดเก็บไม่เพียงพอ</string>
-    <!-- Alert dialog message shown when we think a user may not have enough local storage available to export sms messages, placeholder is the file size, e.g., 128kB -->
-    <string name="ExportingSmsMessagesFragment__you_need_approximately_s_to_export_your_messages_ensure_you_have_enough_space_before_continuing">คุณต้องมีพื้นที่ประมาณ %1$s เพื่อส่งออกข้อความ ตรวจสอบให้แน่ใจว่าคุณมีพื้นที่จัดเก็บเพียงพอก่อนดำเนินการต่อ</string>
-    <!-- Alert dialog button to continue with exporting sms after seeing the lack of storage warning -->
-    <string name="ExportingSmsMessagesFragment__continue_anyway">ยืนยันที่จะดำเนินการต่อ</string>
-    <!-- Dialog text shown when Signal isn\'t granted the sms permission needed to export messages, different than being selected as the sms app -->
-    <string name="ExportingSmsMessagesFragment__signal_needs_the_sms_permission_to_be_able_to_export_your_sms_messages">Signal ต้องได้รับอนุญาตให้เข้าถึง SMS จึงจะส่งออกข้อความ SMS ของคุณได้</string>
-
-    <!-- ChooseANewDefaultSmsAppFragment -->
-    <!-- Title of the screen -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_a_new">เลือกแอปใหม่ที่จะใช้เป็นแอป SMS เริ่มต้น</string>
-    <!-- Button label to launch picker -->
-    <string name="ChooseANewDefaultSmsAppFragment__continue">ดำเนินการต่อ</string>
-    <!-- Button label for when done with changing default SMS app -->
-    <string name="ChooseANewDefaultSmsAppFragment__done">เสร็จสิ้น</string>
     <!-- First step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_1">1</string>
     <!-- Second step number/bullet for choose new default sms app instructions -->
@@ -5685,47 +5824,6 @@
     <string name="ChooseANewDefaultSmsAppFragment__bullet_3">3</string>
     <!-- Fourth step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_4">4</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">แตะ \"ดำเนินการต่อ\" เพื่อเปิดหน้าจอ \"แอปเริ่มต้น\" ในการตั้งค่า</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">เลือก \"แอป SMS\" จากรายชื่อ</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">เลือกแอปอื่นในการใช้ส่งข้อความ SMS</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">กลับมาที่ Signal</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">เปิดแอปการตั้งค่าของโทรศัพท์</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">ไปที่ \"แอป\" &gt; \"แอปเริ่มต้น\" &gt; \"แอป SMS\"</string>
-
-    <!-- RemoveSmsMessagesDialogFragment -->
-    <!-- Action button to keep messages -->
-    <string name="RemoveSmsMessagesDialogFragment__keep_messages">เก็บข้อความ</string>
-    <!-- Action button to remove messages -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_messages">ลบข้อความ</string>
-    <!-- Title of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">ลบข้อความ SMS ออกจาก Signal หรือไม่</string>
-    <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">ทีนี้คุณก็จะลบข้อความ SMS ออกจาก Signal เพื่อเพิ่มพื้นที่จัดเก็บข้อมูลได้แล้ว โดยข้อความจะยังคงอยู่ในแอป SMS อื่นๆ บนโทรศัพท์ แม้จะถูกลบไปแล้วก็ตาม</string>
-
-    <!-- ReExportSmsMessagesDialogFragment -->
-    <!-- Action button to re-export messages -->
-    <string name="ReExportSmsMessagesDialogFragment__continue">ดำเนินการต่อ</string>
-    <!-- Action button to cancel re-export process -->
-    <string name="ReExportSmsMessagesDialogFragment__cancel">ยกเลิก</string>
-    <!-- Title of dialog -->
-    <string name="ReExportSmsMessagesDialogFragment__export_sms_again">ส่งออก SMS อีกครั้งใช่หรือไม่</string>
-    <!-- Message of dialog -->
-    <string name="ReExportSmsMessagesDialogFragment__you_already_exported_your_sms_messages">คุณเคยส่งออกข้อความ SMS แล้ว\nคำเตือน: หากดำเนินการต่อ อาจทำให้มีข้อความซ้ำ</string>
-
-    <!-- SetSignalAsDefaultSmsAppFragment -->
-    <!-- Title of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">ตั้ง Signal เป็นแอป SMS เริ่มต้น</string>
-    <!-- Message of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">หากต้องการส่งออกข้อความ SMS คุณต้องตั้ง Signal เป็นแอป SMS เริ่มต้น</string>
-    <!-- Button label to start export -->
-    <string name="SetSignalAsDefaultSmsAppFragment__next">ถัดไป</string>
-
     <!-- BackupSchedulePermission Megaphone -->
     <!-- The title on an alert window that explains to the user that we are unable to backup their messages -->
     <string name="BackupSchedulePermissionMegaphone__cant_back_up_chats">ไม่สามารถสำรองข้อมูลแชทได้</string>
@@ -5744,44 +5842,6 @@
     <!-- Re-enable backups permission bottom sheet call to action button to open settings -->
     <string name="BackupSchedulePermissionMegaphone__go_to_settings">ไปที่การตั้งค่า</string>
 
-    <!-- SmsExportMegaphoneActivity -->
-    <!-- Phase 2 title of full screen megaphone indicating sms will no longer be supported in the near future -->
-    <string name="SmsExportMegaphoneActivity__signal_will_no_longer_support_sms">Signal จะไม่รองรับข้อความ SMS อีกต่อไป</string>
-    <!-- Phase 3 title of full screen megaphone indicating sms is longer supported  -->
-    <string name="SmsExportMegaphoneActivity__signal_no_longer_supports_sms">Signal ไม่รองรับข้อความ SMS อีกต่อไป</string>
-    <!-- The text on a button in a popup that, when clicked, will dismiss the popup and schedule the prompt to occur at a later time. -->
-    <string name="SmsExportMegaphoneActivity__remind_me_later">เตือนฉันทีหลัง</string>
-    <!-- The text on a button in a popup that, when clicked, will navigate the user to a web article on SMS removal -->
-
-    <!-- Title for screen shown after sms export has completed -->
-    <string name="ExportSmsCompleteFragment__export_complete">ส่งออกเรียบร้อยแล้ว</string>
-    <!-- Button to continue to next screen -->
-    <string name="ExportSmsCompleteFragment__next">ถัดไป</string>
-    <!-- Message showing summary of sms export counts -->
-    <plurals name="ExportSmsCompleteFragment__d_of_d_messages_exported">
-        <item quantity="other">ส่งออก %1$d จาก %2$d ข้อความเรียบร้อยแล้ว</item>
-    </plurals>
-
-    <!-- Title of screen shown when some sms messages did not export -->
-    <string name="ExportSmsPartiallyComplete__export_partially_complete">ส่งออกแล้วบางส่วน</string>
-    <!-- Debug step 1 on screen shown when some sms messages did not export -->
-    <string name="ExportSmsPartiallyComplete__ensure_you_have_an_additional_s_free_on_your_phone_to_export_your_messages">คุณต้องมีพื้นที่ในโทรศัพท์เหลืออีก %1$s จึงจะส่งออกข้อความได้</string>
-    <!-- Debug step 2 on screen shown when some sms messages dit not export -->
-    <string name="ExportSmsPartiallyComplete__retry_export_which_will_only_retry_messages_that_have_not_yet_been_exported">ลองส่งออกอีกครั้ง ระบบจะดำเนินการเฉพาะข้อความที่ส่งออกไม่สำเร็จเท่านั้น</string>
-    <!-- Partial sentence for Debug step 3 on screen shown when some sms messages did not export, is combined with \'contact us\' -->
-    <string name="ExportSmsPartiallyComplete__if_the_problem_persists">หากยังพบปัญหาในการส่งออก </string>
-    <!-- Partial sentence for deubg step 3 on screen shown when some sms messages did not export, combined with \'If the problem persists\', link text to open contact support view -->
-    <string name="ExportSmsPartiallyComplete__contact_us">ติดต่อเรา</string>
-    <!-- Button text to retry sms export -->
-    <string name="ExportSmsPartiallyComplete__retry">ลองใหม่</string>
-    <!-- Button text to continue sms export flow and not retry failed message exports -->
-    <string name="ExportSmsPartiallyComplete__continue_anyway">ยืนยันที่จะดำเนินการต่อ</string>
-    <!-- Title of screen shown when all sms messages failed to export -->
-    <string name="ExportSmsFullError__error_exporting_sms_messages">เกิดข้อผิดพลาดในการส่งออกข้อความ SMS</string>
-    <!-- Helper text shown when all sms messages failed to export -->
-    <string name="ExportSmsFullError__please_try_again_if_the_problem_persists">โปรดลองอีกครั้ง หากยังพบปัญหาในการส่งออก </string>
-
-
     <!-- DonateToSignalFragment -->
     <!-- Title below avatar -->
     <string name="DonateToSignalFragment__privacy_over_profit">เพราะความเป็นส่วนตัวสำคัญกว่าผลกำไรใดๆ</string>
@@ -5792,9 +5852,9 @@
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
     <string name="DonateToSignalFragment__you_have_a_donation_pending">คุณยังมีการบริจาคที่รออนุมัติอยู่</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">การโอนเงินผ่านระบบธนาคารมักใช้เวลาดำเนินการประมาณ 1 วันทำการ โปรดรอให้การชำระเงินนี้สำเร็จก่อน แล้วจึงค่อยอัปเดตการบริจาครายเดือนของคุณ</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">การโอนเงินผ่านระบบธนาคารอาจใช้เวลาดำเนินการประมาณ 1 ถึง 14 วันทำการ โปรดรอให้การชำระเงินนี้สำเร็จก่อน แล้วจึงค่อยอัปเดตการบริจาครายเดือนของคุณ</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">การโอนเงินผ่านระบบธนาคารมักใช้เวลาดำเนินการประมาณ 1 วันทำการ โปรดรอให้การชำระเงินนี้สำเร็จก่อน แล้วจึงค่อยบริจาคอีกครั้ง</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">การโอนเงินผ่านระบบธนาคารอาจใช้เวลาดำเนินการประมาณ 1 ถึง 14 วันทำการ โปรดรอให้การชำระเงินนี้สำเร็จก่อน แล้วจึงค่อยบริจาคอีกครั้ง</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
     <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">การบริจาคของคุณยังอยู่ระหว่างดำเนินการ ขั้นตอนนี้อาจใช้เวลาสักครู่ โดยขึ้นอยู่กับสัญญาณอินเทอร์เน็ตของคุณ โปรดรอให้การชำระเงินนี้สำเร็จก่อน แล้วจึงค่อยอัปเดตการบริจาครายเดือนของคุณ</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
@@ -5922,6 +5982,12 @@
     <string name="IdealTransferDetailsFragment__email">อีเมล</string>
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">เลือกธนาคาร</string>
+    <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">ยืนยันการบริจาคผ่าน %1$s ของคุณ</string>
+    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
+    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">แตะดำเนินการต่อเพื่อตั้งการบริจาครายเดือนของคุณ โดยคุณจะถูกเรียกเก็บเงิน €0,01 จากทางธนาคาร ซึ่งยอดดังกล่าวจะถูกโอนกลับคืนเข้าบัญชีโดยอัตโนมัติ และการบริจาคจำนวน €5/เดือนจะถูกหักจากบัญชีของคุณ</string>
+    <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
+    <string name="IdealTransferDetailsFragment__continue">ดำเนินการต่อ</string>
 
     <!-- IdealTransferDetailsBankSelectionDialogFragment -->
     <!-- Title of the screen, displayed in the toolbar -->
@@ -5939,7 +6005,7 @@
     <!-- Top text block of donation pending sheet displayed after one-time donation via a bank transfer. Placeholder is the badge name. -->
     <string name="DonationPendingBottomSheet__your_one_time_donation_is_pending">กำลังรออนุมัติการบริจาคแบบครั้งเดียวของคุณ คุณจะแสดงโล่ %1$s บนโปรไฟล์ได้เมื่อเราได้รับการบริจาคเรียบร้อยแล้ว</string>
     <!-- Bottom text block of donation pending sheet displayed after donating via a bank transfer. Placeholder is for learn more. -->
-    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">การโอนเงินผ่านระบบธนาคารมักใช้เวลาดำเนินการประมาณ 1 วันทำการ %1$s</string>
+    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">การโอนเงินผ่านระบบธนาคารอาจใช้เวลาดำเนินการประมาณ 1 ถึง 14 วันทำการ %1$s</string>
     <!-- Learn more text for donation pending sheet displayed after donating via a bank transfer. -->
     <string name="DonationPendingBottomSheet__learn_more">เรียนรู้เพิ่มเติม</string>
     <!-- Confirmation button for donation pending sheet displayed after donating via a bank transfer. -->
@@ -6024,28 +6090,24 @@
     <!-- Displayed in the "clear filter" item in the chat feed if the user opened the filter from the overflow menu -->
     <string name="ChatFilter__tip_pull_down">เคล็ดลับ: ลากลงไปที่รายการแชทเพื่อกรอง</string>
 
-    <!-- Title for screen describing that sms support is going to be removed soon -->
-    <string name="SmsRemoval_title_going_away">เราจะไม่รองรับข้อความ SMS แล้ว</string>
-    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
-    <string name="SmsRemoval_info_bullet_1">เราจะหยุดรองรับการส่งข้อความ SMS ในแอป Signal ในอีกไม่ช้า</string>
-    <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_2">ข้อความ SMS แตกต่างจากข้อความ Signal <b>นี่จะไม่ส่งผลกระทบต่อการส่งข้อความเข้ารหัสของ Signal ที่จะยังใช้งานได้ตามปกติ</b></string>
-    <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_3">คุณสามารถส่งออกข้อความ SMS และเลือกแอป SMS แอปใหม่ได้</string>
-    <!-- Bullet point message shown on describing screen as first bullet variant why sms is being removed when user is locked out of sms -->
-    <string name="SmsRemoval_info_bullet_1_phase_3">Signal ยกเลิกการรองรับการส่งข้อความ SMS แล้ว</string>
-    <!-- Button label on sms removal info/megaphone to start the export SMS flow -->
-    <string name="SmsRemoval_export_sms">ส่งออก SMS</string>
-
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__set_up_your_signal_username">ตั้งค่าชื่อผู้ใช้ Signal ของคุณ</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">ชื่อผู้ใช้จะช่วยให้ผู้ใช้รายอื่นส่งข้อความหาคุณได้โดยไม่จำเป็นต้องมีหมายเลขโทรศัพท์ของคุณ</string>
+    <string name="SetUpYourUsername__introducing_phone_number_privacy">ขอแนะนำการรักษาความเป็นส่วนตัวของหมายเลขโทรศัพท์ ตัวเลือกการกำหนดชื่อผู้ใช้และลิงก์เพิ่มเติม</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__not_now">ไว้ทีหลัง</string>
+    <string name="SetUpYourUsername__dismiss">ปิด</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__continue">ดำเนินการต่อ</string>
+    <string name="SetUpYourUsername__learn_more">เรียนรู้เพิ่มเติม</string>
+
+    <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
+    <string name="PnpLaunchMegaphone_title">วิธีใหม่ในการติดต่อสื่อสาร</string>
+    <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
+    <string name="PnpLaunchMegaphone_body">ขอแนะนำการรักษาความเป็นส่วนตัวของหมายเลขโทรศัพท์ ตัวเลือกการกำหนดชื่อผู้ใช้และลิงก์เพิ่มเติม</string>
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
+    <string name="PnpLaunchMegaphone_dismiss">ปิด</string>
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
+    <string name="PnpLaunchMegaphone_learn_more">เรียนรู้เพิ่มเติม</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -6060,18 +6122,6 @@
     <string name="TextFormatting_spoiler">โหมดสปอยเลอร์</string>
     <!-- Popup menu label for clearing applied formatting -->
     <string name="TextFormatting_clear_formatting">ล้างการปรับแต่ง</string>
-
-    <!-- UsernameEducationFragment -->
-    <!-- Continue button which takes the user to the add a username screen -->
-    <string name="UsernameEducationFragment__continue">ดำเนินการต่อ</string>
-    <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">ตั้งค่าชื่อผู้ใช้ Signal ของคุณ</string>
-    <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__usernames_are_paired_with_a_set_of_digits">ชื่อผู้ใช้จะถูกผูกเข้ากับชุดตัวเลขและจะไม่แสดงบนโปรไฟล์ของคุณ</string>
-    <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">ชื่อผู้ใช้แต่ละชื่อจะมีคิวอาร์โค้ดและลิงก์เฉพาะที่คุณสามารถแชร์เพื่อให้เพื่อนเริ่มแชทกับคุณได้</string>
-    <!-- Displayed as body text in the username education screen. The string references the names of settings, so they should match our translations for those settings. -->
-    <string name="UsernameEducationFragment__turn_off_phone_number_discovery">ปิดใช้งานการค้นหาด้วยหมายโทรศัพท์ โดยไปที่การตั้งค่า &gt; ความเป็นส่วนตัว &gt; หมายเลขโทรศัพท์ &gt; ใครบ้างที่สามารถค้นหาหมายเลขโทรศัพท์ฉันได้ ซึ่งวิธีนี้จะตั้งให้ชื่อผู้ใช้ของคุณเป็นวิธีหลักที่ผู้ใช้คนอื่นจะติดต่อคุณได้</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
@@ -6098,6 +6148,8 @@
     <string name="CallLogAdapter__outgoing">โทรออก</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">ไม่ได้รับ</string>
+    <!-- Displayed for missed calls declined by notification profile -->
+    <string name="CallLogAdapter__missed_notification_profile">สายที่ไม่ได้รับระหว่างใช้โปรไฟล์การแจ้งเตือน</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">เข้าร่วม</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -6202,6 +6254,8 @@
     <string name="CallPreference__group_call">โทรกลุ่ม</string>
     <!-- Missed group call in call info -->
     <string name="CallPreference__missed_group_call">สายโทรกลุ่มที่ไม่ได้รับ</string>
+    <!-- Missed group call while notification profile on in call info -->
+    <string name="CallPreference__missed_group_call_notification_profile">สายโทรกลุ่มที่ไม่ได้รับระหว่างใช้โปรไฟล์การแจ้งเตือน</string>
     <!-- Incoming group call in call info -->
     <string name="CallPreference__incoming_group_call">สายโทรกลุ่มขาเข้า</string>
     <!-- Outgoing group call in call info -->
@@ -6288,6 +6342,8 @@
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
     <string name="CallLinkDetailsFragment__call_details">รายละเอียดการโทร</string>
+    <!-- Displayed in a text row, allowing the user to click and edit a call name -->
+    <string name="CallLinkDetailsFragment__edit_call_name">แก้ไขชื่อการโทร</string>
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
     <string name="CallLinkDetailsFragment__add_call_name">เพิ่มชื่อการโทร</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
@@ -6303,6 +6359,8 @@
     <!-- Displayed as body in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">ทุกคนจะไม่สามารถใช้ลิงก์นี้ได้อีก</string>
 
+    <!-- Button label for the link button in the username link settings -->
+    <string name="UsernameLinkSettings_link_button_label">ลิงก์</string>
     <!-- Button label for the share button in the username link settings -->
     <string name="UsernameLinkSettings_share_button_label">แบ่งปัน</string>
     <!-- Button label for the color selector button in the username link settings -->
@@ -6347,6 +6405,16 @@
     <string name="UsernameLinkSettings_reset_link_result_network_unavailable">คุณไม่ได้เชื่อมต่ออินเทอร์เน็ต ไม่สามารถรีเซ็ตลิงก์ของคุณได้ โปรดลองอีกครั้งในภายหลัง</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">เกิดข้อผิดพลาดด้านเครือข่ายขณะพยายามรีเซ็ตลิงก์ของคุณโปรดลองอีกครั้งในภายหลัง</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">เกิดข้อผิดพลาดที่ไม่คาดคิดขึ้นขณะพยายามรีเซ็ตลิงก์ของคุณ โปรดลองอีกครั้งในภายหลัง</string>
+    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
+    <string name="UsernameLinkSettings_reset_link_result_success">รีเซ็ตคิวอาร์โค้ดและลิงก์ของคุณแล้ว และสร้างคิวอาร์โค้ดและลิงก์ใหม่เรียบร้อยแล้ว</string>
+    <!-- Shown on the generated username qr code image to explain how to use it. -->
+    <string name="UsernameLinkSettings_scan_this_qr_code">ใช้มือถือสแกนคิวอาร์โค้ดนี้เพื่อพูดคุยกับฉันบน Signal</string>
+    <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_qr_code_not_found">ไม่พบคิวอาร์โค้ด</string>
+    <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">ลองสแกนรูปภาพอื่นที่มีคิวอาร์โค้ดของ Signal</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
     <string name="UsernameLinkShareBottomSheet_title">ทุกคนที่มีลิงก์นี้จะสามารถมองเห็นชื่อผู้ใช้ของคุณและเริ่มแชทกับคุณได้ เราขอแนะนำให้แชร์ลิงก์นี้กับคนที่คุณไว้วางใจเท่านั้น</string>
@@ -6381,6 +6449,8 @@
     <string name="GrantFullScreenIntentPermission_megaphone_body">ไม่พลาดการโทรจากผู้ติดต่อและกลุ่มของคุณอีกต่อไป</string>
     <!-- Button on the megaphone megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls that starts the fix process -->
     <string name="GrantFullScreenIntentPermission_megaphone_turn_on">เปิดใช้งาน</string>
+    <!-- Button on the megaphone shown at the bottom of the chatlist when a user has disabled the system setting for showing full screen notifications used showing incoming calls that dismisses the megaphone -->
+    <string name="GrantFullScreenIntentPermission_megaphone_not_now">ไว้ทีหลัง</string>
     <!-- Title of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
     <string name="GrantFullScreenIntentPermission_bottomsheet_title">เปิดการแจ้งเตือนแบบเต็มหน้าจอ</string>
     <!-- Subtitle of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
@@ -6398,6 +6468,46 @@
     <string name="MonthlyDonationCanceled__renew_button">ต่ออายุการเป็นสมาชิก</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, second button to dismiss the dialog entirely -->
     <string name="MonthlyDonationCanceled__not_now_button">ไว้ทีหลัง</string>
+
+    <!-- FindByActivity -->
+    <!-- Title of activity when finding by username -->
+    <string name="FindByActivity__find_by_username">ค้นหาด้วยชื่อผู้ใช้</string>
+    <!-- Title of activity when finding by phone number -->
+    <string name="FindByActivity__find_by_phone_number">ค้นหาด้วยหมายเลขโทรศัพท์</string>
+    <!-- Title of screen to select a country code -->
+    <string name="FindByActivity__select_country_code">เลือกรหัสประเทศ</string>
+    <!-- Entry placeholder for find by username -->
+    <string name="FindByActivity__username">ชื่อผู้ใช้</string>
+    <!-- Entry placeholder for find by phone number -->
+    <string name="FindByActivity__phone_number">หมายเลขโทรศัพท์</string>
+    <!-- Help text under user entry for find by username -->
+    <string name="FindByActivity__enter_username_description">ป้อนชื่อผู้ใช้แล้วตามด้วยจุดและชุดตัวเลข</string>
+    <!-- Content description for next action button -->
+    <string name="FindByActivity__next">ดำเนินการต่อ</string>
+    <!-- Placeholder text for search input for selecting country code -->
+    <string name="FindByActivity__search">ค้นหา</string>
+    <!-- Dialog title for invalid username -->
+    <string name="FindByActivity__invalid_username">ชื่อผู้ใช้ไม่ถูกต้อง</string>
+    <!-- Dialog title for invalid phone number -->
+    <string name="FindByActivity__invalid_phone_number">หมายเลขโทรศัพท์ไม่ถูกต้อง</string>
+    <!-- Dialog title when phone number is not a registered signal user -->
+    <string name="FindByActivity__invite_to_signal">เชิญมาใช้ Signal</string>
+    <!-- Dialog title when username is not found -->
+    <string name="FindByActivity__username_not_found">ไม่พบชื่อผู้ใช้</string>
+    <!-- Dialog body for invalid username. Placeholder is the entered username. -->
+    <string name="FindByActivity__s_is_not_a_valid_username">%1$s เป็นชื่อผู้ใช้ที่ไม่ถูกต้อง ตรวจสอบว่าคุณใส่ชื่อผู้ใช้ครบถ้วน ตามด้วยชุดตัวเลขที่ถูกต้อง</string>
+    <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
+    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s เป็นหมายเลขโทรศัพท์ที่ไม่ถูกต้อง ลองใหม่อีกครั้งด้วยหมายเลขโทรศัพท์ที่ถูกต้อง</string>
+    <!-- Dialog body for not found username -->
+    <string name="FindByActivity__s_is_not_a_signal_user">%1$s ไม่ใช่ผู้ใช้ Signal โปรดตรวจสอบชื่อผู้ใช้และลองอีกครั้ง</string>
+    <!-- Dialog body for not found phone number -->
+    <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s ไม่ได้เป็นผู้ใช้ Signal คุณต้องการเชิญเจ้าของหมายเลขนี้มาใช้งานหรือไม่</string>
+    <!-- Dialog action to invite the phone number to Signal -->
+    <string name="FindByActivity__invite">เชิญ</string>
+    <!-- Button label for a button that will launch a camera to scan a username QR code -->
+    <string name="FindByActivity__qr_scan_button">สแกนรหัส QR</string>
+    <!-- Content of a dialog indicating that we could not perform the requested action because we encountered a network error. -->
+    <string name="FindByActivity__network_error_dialog">พบความผิดพลาดของเครือข่าย ลองอีกครั้งในภายหลัง</string>
 
     <!-- EOF -->
 </resources>

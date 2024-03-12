@@ -16,7 +16,7 @@ class BackupKey(val value: ByteArray) {
     require(value.size == 32) { "Backup key must be 32 bytes!" }
   }
 
-  fun deriveSecrets(aci: ACI): KeyMaterial {
+  fun deriveSecrets(aci: ACI): KeyMaterial<BackupId> {
     val backupId = BackupId(
       HKDF.deriveSecrets(this.value, aci.toByteArray(), "20231003_Signal_Backups_GenerateBackupId".toByteArray(), 16)
     )
@@ -24,15 +24,32 @@ class BackupKey(val value: ByteArray) {
     val extendedKey = HKDF.deriveSecrets(this.value, backupId.value, "20231003_Signal_Backups_EncryptMessageBackup".toByteArray(), 80)
 
     return KeyMaterial(
-      backupId = backupId,
+      id = backupId,
       macKey = extendedKey.copyOfRange(0, 32),
       cipherKey = extendedKey.copyOfRange(32, 64),
       iv = extendedKey.copyOfRange(64, 80)
     )
   }
 
-  class KeyMaterial(
-    val backupId: BackupId,
+  fun deriveMediaId(dataHash: ByteArray): MediaId {
+    return MediaId(HKDF.deriveSecrets(value, dataHash, "Media ID".toByteArray(), 15))
+  }
+
+  fun deriveMediaSecrets(dataHash: ByteArray): KeyMaterial<MediaId> {
+    val mediaId = deriveMediaId(dataHash)
+
+    val extendedKey = HKDF.deriveSecrets(this.value, mediaId.value, "20231003_Signal_Backups_EncryptMedia".toByteArray(), 80)
+
+    return KeyMaterial(
+      id = mediaId,
+      macKey = extendedKey.copyOfRange(0, 32),
+      cipherKey = extendedKey.copyOfRange(32, 64),
+      iv = extendedKey.copyOfRange(64, 80)
+    )
+  }
+
+  class KeyMaterial<Id> (
+    val id: Id,
     val macKey: ByteArray,
     val cipherKey: ByteArray,
     val iv: ByteArray

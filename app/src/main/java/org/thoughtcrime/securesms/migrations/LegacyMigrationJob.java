@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.preference.PreferenceManager;
 
+import com.bumptech.glide.Glide;
+
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -21,7 +23,6 @@ import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.PreKeysSyncJob;
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.FileUtils;
@@ -200,7 +201,7 @@ public class LegacyMigrationJob extends MigrationJob {
 
     if (lastSeenVersion < IMAGE_CACHE_CLEANUP) {
       FileUtils.deleteDirectoryContents(context.getExternalCacheDir());
-      GlideApp.get(context).clearDiskCache();
+      Glide.get(context).clearDiskCache();
     }
 
     // This migration became unnecessary after switching away from WorkManager
@@ -246,15 +247,15 @@ public class LegacyMigrationJob extends MigrationJob {
 
     Log.i(TAG, pendingAttachments.size() + " pending parts.");
     for (DatabaseAttachment attachment : pendingAttachments) {
-      final MmsReader     reader = MessageTable.mmsReaderFor(mmsDb.getMessageCursor(attachment.getMmsId()));
+      final MmsReader     reader = MessageTable.mmsReaderFor(mmsDb.getMessageCursor(attachment.mmsId));
       final MessageRecord record = reader.getNext();
 
-      if (attachment.hasData()) {
-        Log.i(TAG, "corrected a pending media part " + attachment.getAttachmentId() + "that already had data.");
-        attachmentDb.setTransferState(attachment.getMmsId(), attachment.getAttachmentId(), AttachmentTable.TRANSFER_PROGRESS_DONE);
+      if (attachment.hasData) {
+        Log.i(TAG, "corrected a pending media part " + attachment.attachmentId + "that already had data.");
+        attachmentDb.setTransferState(attachment.mmsId, attachment.attachmentId, AttachmentTable.TRANSFER_PROGRESS_DONE);
       } else if (record != null && !record.isOutgoing() && record.isPush()) {
-        Log.i(TAG, "queuing new attachment download job for incoming push part " + attachment.getAttachmentId() + ".");
-        ApplicationDependencies.getJobManager().add(new AttachmentDownloadJob(attachment.getMmsId(), attachment.getAttachmentId(), false));
+        Log.i(TAG, "queuing new attachment download job for incoming push part " + attachment.attachmentId + ".");
+        ApplicationDependencies.getJobManager().add(new AttachmentDownloadJob(attachment.mmsId, attachment.attachmentId, false));
       }
       reader.close();
     }

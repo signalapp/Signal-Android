@@ -285,21 +285,21 @@ public final class MmsSendJob extends SendJob {
       try {
         if (attachment.getUri() == null) throw new IOException("Assertion failed, attachment for outgoing MMS has no data!");
 
-        String  fileName = attachment.getFileName();
+        String  fileName = attachment.fileName;
         PduPart part     = new PduPart();
 
         if (fileName == null) {
           fileName      = String.valueOf(Math.abs(new SecureRandom().nextLong()));
-          String fileExtension = MimeTypeMap.getSingleton().getExtensionFromMimeType(attachment.getContentType());
+          String fileExtension = MimeTypeMap.getSingleton().getExtensionFromMimeType(attachment.contentType);
 
           if (fileExtension != null) fileName = fileName + "." + fileExtension;
         }
 
-        if (attachment.getContentType().startsWith("text")) {
+        if (attachment.contentType.startsWith("text")) {
           part.setCharset(CharacterSets.UTF_8);
         }
 
-        part.setContentType(attachment.getContentType().getBytes());
+        part.setContentType(attachment.contentType.getBytes());
         part.setContentLocation(fileName.getBytes());
         part.setName(fileName.getBytes());
 

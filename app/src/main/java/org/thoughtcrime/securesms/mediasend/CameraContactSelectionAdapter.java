@@ -60,7 +60,7 @@ class CameraContactSelectionAdapter extends RecyclerView.Adapter<CameraContactSe
     }
 
     void bind(@NonNull Recipient recipient, boolean isLast) {
-      name.setText(recipient, true, isLast ? null : ",");
+      name.setText(recipient, isLast ? null : ",");
     }
   }
 }

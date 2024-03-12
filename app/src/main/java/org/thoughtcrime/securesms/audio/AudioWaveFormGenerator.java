@@ -12,7 +12,7 @@ import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.media.DecryptableUriMediaInput;
-import org.thoughtcrime.securesms.media.MediaInput;
+import org.thoughtcrime.securesms.video.interfaces.MediaInput;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;

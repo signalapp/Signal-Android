@@ -290,7 +290,8 @@ class SmsDatabaseTest_collapseJoinRequestEventsIfPossible {
       from = sender,
       timestamp = wallClock,
       groupId = groupId,
-      groupContext = groupContext
+      groupContext = groupContext,
+      serverGuid = null
     )
   }
 

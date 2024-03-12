@@ -15,8 +15,6 @@ public interface MediaSendPageFragment {
 
   void setUri(@NonNull Uri uri);
 
-  @Nullable View getPlaybackControls();
-
   @Nullable Object saveState();
 
   void restoreState(@NonNull Object state);

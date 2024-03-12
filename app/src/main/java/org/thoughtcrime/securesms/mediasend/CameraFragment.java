@@ -22,9 +22,9 @@ public interface CameraFragment {
   float PORTRAIT_ASPECT_RATIO = 9 / 16f;
 
   @SuppressLint({ "RestrictedApi", "UnsafeOptInUsageError" })
-  static Fragment newInstance() {
+  static Fragment newInstance(boolean qrScanEnabled) {
     if (CameraXUtil.isSupported()) {
-      return CameraXFragment.newInstance();
+      return CameraXFragment.newInstance(qrScanEnabled);
     } else {
       return Camera1Fragment.newInstance();
     }
@@ -63,6 +63,7 @@ public interface CameraFragment {
     void onVideoCaptureError();
     void onGalleryClicked();
     void onCameraCountButtonClicked();
+    void onQrCodeFound(@NonNull String data);
     @NonNull Flowable<Optional<Media>> getMostRecentMediaItem();
     @NonNull MediaConstraints getMediaConstraints();
     int getMaxVideoDuration();

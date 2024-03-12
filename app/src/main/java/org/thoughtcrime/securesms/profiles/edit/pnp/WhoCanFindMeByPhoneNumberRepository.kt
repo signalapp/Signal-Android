@@ -14,9 +14,10 @@ import org.thoughtcrime.securesms.storage.StorageSyncHelper
 class WhoCanFindMeByPhoneNumberRepository {
 
   fun getCurrentState(): WhoCanFindMeByPhoneNumberState {
-    return when (SignalStore.phoneNumberPrivacy().phoneNumberListingMode) {
-      PhoneNumberPrivacyValues.PhoneNumberListingMode.LISTED -> WhoCanFindMeByPhoneNumberState.EVERYONE
-      PhoneNumberPrivacyValues.PhoneNumberListingMode.UNLISTED -> WhoCanFindMeByPhoneNumberState.NOBODY
+    return when (SignalStore.phoneNumberPrivacy().phoneNumberDiscoverabilityMode) {
+      PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode.DISCOVERABLE -> WhoCanFindMeByPhoneNumberState.EVERYONE
+      PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE -> WhoCanFindMeByPhoneNumberState.NOBODY
+      PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode.UNDECIDED -> WhoCanFindMeByPhoneNumberState.EVERYONE
     }
   }
 
@@ -24,11 +25,11 @@ class WhoCanFindMeByPhoneNumberRepository {
     return Completable.fromAction {
       when (whoCanFindMeByPhoneNumberState) {
         WhoCanFindMeByPhoneNumberState.EVERYONE -> {
-          SignalStore.phoneNumberPrivacy().phoneNumberListingMode = PhoneNumberPrivacyValues.PhoneNumberListingMode.LISTED
+          SignalStore.phoneNumberPrivacy().phoneNumberDiscoverabilityMode = PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode.DISCOVERABLE
         }
         WhoCanFindMeByPhoneNumberState.NOBODY -> {
           SignalStore.phoneNumberPrivacy().phoneNumberSharingMode = PhoneNumberPrivacyValues.PhoneNumberSharingMode.NOBODY
-          SignalStore.phoneNumberPrivacy().phoneNumberListingMode = PhoneNumberPrivacyValues.PhoneNumberListingMode.UNLISTED
+          SignalStore.phoneNumberPrivacy().phoneNumberDiscoverabilityMode = PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE
         }
       }
 

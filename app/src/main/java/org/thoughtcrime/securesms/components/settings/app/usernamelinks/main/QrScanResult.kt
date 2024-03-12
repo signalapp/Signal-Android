@@ -13,4 +13,6 @@ sealed class QrScanResult {
   object InvalidData : QrScanResult()
 
   object NetworkError : QrScanResult()
+
+  object QrNotFound : QrScanResult()
 }

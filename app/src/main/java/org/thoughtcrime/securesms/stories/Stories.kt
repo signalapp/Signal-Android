@@ -246,7 +246,7 @@ object Stories {
       return if (MediaUtil.isVideo(media.mimeType)) {
         val mediaDuration = if (media.duration == 0L && media.transformProperties.map(TransformProperties::shouldSkipTransform).orElse(true)) {
           getVideoDuration(media.uri)
-        } else if (media.transformProperties.map { it.isVideoTrim }.orElse(false)) {
+        } else if (media.transformProperties.map { it.videoTrim }.orElse(false)) {
           TimeUnit.MICROSECONDS.toMillis(media.transformProperties.get().videoTrimEndTimeUs - media.transformProperties.get().videoTrimStartTimeUs)
         } else {
           media.duration

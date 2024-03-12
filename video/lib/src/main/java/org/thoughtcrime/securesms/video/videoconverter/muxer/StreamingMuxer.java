@@ -4,9 +4,13 @@ import android.media.MediaCodec;
 import android.media.MediaFormat;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
+import org.mp4parser.boxes.iso14496.part1.objectdescriptors.DecoderSpecificInfo;
 import org.mp4parser.streaming.StreamingTrack;
-import org.thoughtcrime.securesms.video.videoconverter.Muxer;
+import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.video.interfaces.Muxer;
+import org.thoughtcrime.securesms.video.videoconverter.utils.MediaCodecCompat;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -16,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class StreamingMuxer implements Muxer {
-
+  private static final String TAG = Log.tag(StreamingMuxer.class);
   private final OutputStream          outputStream;
   private final List<MediaCodecTrack> tracks = new ArrayList<>();
   private       Mp4Writer             mp4Writer;
@@ -55,7 +59,7 @@ public final class StreamingMuxer implements Muxer {
         tracks.add(new MediaCodecAvcTrack(format));
         break;
       case "audio/mp4a-latm":
-        tracks.add(new MediaCodecAacTrack(format));
+        tracks.add(MediaCodecAacTrack.create(format));
         break;
       case "video/hevc":
         tracks.add(new MediaCodecHevcTrack(format));
@@ -73,6 +77,11 @@ public final class StreamingMuxer implements Muxer {
 
   @Override
   public void release() {
+  }
+
+  @Override
+  public boolean supportsAudioRemux() {
+    return true;
   }
 
   interface MediaCodecTrack {
@@ -123,10 +132,43 @@ public final class StreamingMuxer implements Muxer {
 
   static class MediaCodecAacTrack extends AacTrack implements MediaCodecTrack {
 
-    MediaCodecAacTrack(@NonNull MediaFormat format) {
-      super(format.getInteger(MediaFormat.KEY_BIT_RATE), format.getInteger(MediaFormat.KEY_BIT_RATE),
-            format.getInteger(MediaFormat.KEY_SAMPLE_RATE), format.getInteger(MediaFormat.KEY_CHANNEL_COUNT),
-            format.getInteger(MediaFormat.KEY_AAC_PROFILE));
+    private MediaCodecAacTrack(long avgBitrate, long maxBitrate, int sampleRate, int channelCount, int aacProfile, @Nullable DecoderSpecificInfo decoderSpecificInfo) {
+      super(avgBitrate, maxBitrate, sampleRate, channelCount, aacProfile, decoderSpecificInfo);
+    }
+
+    public static MediaCodecAacTrack create(@NonNull MediaFormat format) {
+      final int bitrate = format.getInteger(MediaFormat.KEY_BIT_RATE);
+      final int maxBitrate;
+      if (format.containsKey(MediaCodecCompat.MEDIA_FORMAT_KEY_MAX_BIT_RATE)) {
+        maxBitrate = format.getInteger(MediaCodecCompat.MEDIA_FORMAT_KEY_MAX_BIT_RATE);
+      } else {
+        maxBitrate = bitrate;
+      }
+
+      final DecoderSpecificInfo filledDecoderSpecificInfo;
+      if (format.containsKey(MediaCodecCompat.MEDIA_FORMAT_KEY_MAX_BIT_RATE)) {
+        final ByteBuffer csd = format.getByteBuffer(MediaCodecCompat.MEDIA_FORMAT_KEY_CODEC_SPECIFIC_DATA_0);
+
+        DecoderSpecificInfo decoderSpecificInfo = new DecoderSpecificInfo();
+        boolean parseSuccess = false;
+        try {
+          decoderSpecificInfo.parseDetail(csd);
+          parseSuccess = true;
+        } catch (IOException e) {
+          Log.w(TAG, "Could not parse AAC codec-specific data!", e);
+        }
+        if (parseSuccess) {
+          filledDecoderSpecificInfo = decoderSpecificInfo;
+        } else {
+          filledDecoderSpecificInfo = null;
+        }
+      } else {
+        filledDecoderSpecificInfo = null;
+      }
+
+      return new MediaCodecAacTrack(bitrate, maxBitrate,
+                                    format.getInteger(MediaFormat.KEY_SAMPLE_RATE), format.getInteger(MediaFormat.KEY_CHANNEL_COUNT),
+                                    format.getInteger(MediaFormat.KEY_AAC_PROFILE), filledDecoderSpecificInfo);
     }
 
     @Override

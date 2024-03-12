@@ -85,7 +85,7 @@ data class SentStorySyncManifest(
     }
 
     fun fromRecipientsSet(recipients: List<SyncMessage.Sent.StoryMessageRecipient>): SentStorySyncManifest {
-      val entries = recipients.toSet().map { recipient ->
+      val entries = recipients.toSet().filter { it.destinationServiceId != null }.map { recipient ->
         Entry(
           recipientId = RecipientId.from(ServiceId.parseOrThrow(recipient.destinationServiceId!!)),
           allowedToReply = recipient.isAllowedToReply!!,

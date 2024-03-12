@@ -125,8 +125,8 @@ class ConversationItemDecorations(hasWallpaper: Boolean = false, private val sch
     val state: UnreadState = unreadState
 
     if (state is UnreadState.InitialUnreadState) {
-      val firstUnread = items[(state.unreadCount - 1).coerceIn(items.indices)]
-      val timestamp = (firstUnread as? ConversationMessageElement)?.timestamp()
+      val firstUnread: ConversationMessageElement? = findFirstUnreadStartingAt(items, (state.unreadCount - 1).coerceIn(items.indices))
+      val timestamp = firstUnread?.timestamp()
       if (timestamp != null) {
         unreadState = UnreadState.CompleteUnreadState(unreadCount = state.unreadCount, firstUnreadTimestamp = timestamp)
       }
@@ -147,6 +147,17 @@ class ConversationItemDecorations(hasWallpaper: Boolean = false, private val sch
         }
       }
     }
+  }
+
+  private fun findFirstUnreadStartingAt(items: List<ConversationElement?>, startingIndex: Int): ConversationMessageElement? {
+    val endingIndex = (startingIndex + 20).coerceAtMost(items.lastIndex)
+    for (index in startingIndex..endingIndex) {
+      val item = items[index] as? ConversationMessageElement
+      if ((item?.conversationMessage?.messageRecord as? MmsMessageRecord)?.isRead == false) {
+        return item
+      }
+    }
+    return items[startingIndex] as? ConversationMessageElement
   }
 
   private fun isFirstUnread(bindingAdapterPosition: Int): Boolean {

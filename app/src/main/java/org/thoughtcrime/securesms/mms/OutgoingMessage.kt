@@ -9,8 +9,9 @@ import org.thoughtcrime.securesms.database.model.Mention
 import org.thoughtcrime.securesms.database.model.ParentStoryId
 import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
-import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context
+import org.thoughtcrime.securesms.database.model.databaseprotos.GV2UpdateDescription
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
+import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExtras
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.sms.GroupV2UpdateMessageUtil
@@ -50,7 +51,10 @@ data class OutgoingMessage(
   val isIdentityVerified: Boolean = false,
   val isIdentityDefault: Boolean = false,
   val scheduledDate: Long = -1,
-  val messageToEdit: Long = 0
+  val messageToEdit: Long = 0,
+  val isReportSpam: Boolean = false,
+  val isMessageRequestAccept: Boolean = false,
+  val messageExtras: MessageExtras? = null
 ) {
 
   val isV2Group: Boolean = messageGroupContext != null && GroupV2UpdateMessageUtil.isGroupV2(messageGroupContext)
@@ -226,17 +230,18 @@ data class OutgoingMessage(
      * Helper for creating a group update message when a state change occurs and needs to be sent to others.
      */
     @JvmStatic
-    fun groupUpdateMessage(threadRecipient: Recipient, group: DecryptedGroupV2Context, sentTimeMillis: Long): OutgoingMessage {
-      val groupContext = MessageGroupContext(group)
+    fun groupUpdateMessage(threadRecipient: Recipient, update: GV2UpdateDescription, sentTimeMillis: Long): OutgoingMessage {
+      val messageExtras = MessageExtras(gv2UpdateDescription = update)
+      val groupContext = MessageGroupContext(update.gv2ChangeDescription!!)
 
       return OutgoingMessage(
         threadRecipient = threadRecipient,
-        body = groupContext.encodedGroupContext,
         sentTimeMillis = sentTimeMillis,
         messageGroupContext = groupContext,
         isGroup = true,
         isGroupUpdate = true,
-        isSecure = true
+        isSecure = true,
+        messageExtras = messageExtras
       )
     }
 
@@ -258,7 +263,6 @@ data class OutgoingMessage(
     ): OutgoingMessage {
       return OutgoingMessage(
         threadRecipient = threadRecipient,
-        body = groupContext.encodedGroupContext,
         isGroup = true,
         isGroupUpdate = true,
         messageGroupContext = groupContext,
@@ -396,6 +400,30 @@ data class OutgoingMessage(
         threadRecipient = threadRecipient,
         sentTimeMillis = sentTimeMillis,
         isEndSession = true,
+        isUrgent = false,
+        isSecure = true
+      )
+    }
+
+    @JvmStatic
+    fun reportSpamMessage(threadRecipient: Recipient, sentTimeMillis: Long, expiresIn: Long): OutgoingMessage {
+      return OutgoingMessage(
+        threadRecipient = threadRecipient,
+        sentTimeMillis = sentTimeMillis,
+        expiresIn = expiresIn,
+        isReportSpam = true,
+        isUrgent = false,
+        isSecure = true
+      )
+    }
+
+    @JvmStatic
+    fun messageRequestAcceptMessage(threadRecipient: Recipient, sentTimeMillis: Long, expiresIn: Long): OutgoingMessage {
+      return OutgoingMessage(
+        threadRecipient = threadRecipient,
+        sentTimeMillis = sentTimeMillis,
+        expiresIn = expiresIn,
+        isMessageRequestAccept = true,
         isUrgent = false,
         isSecure = true
       )

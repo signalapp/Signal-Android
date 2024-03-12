@@ -58,13 +58,14 @@ class PartDataSource implements DataSource {
 
     final boolean hasIncrementalDigest = attachment.getIncrementalDigest() != null;
     final boolean inProgress           = attachment.isInProgress();
-    final String  attachmentKey        = attachment.getKey();
-    final boolean hasData              = attachment.hasData();
+    final String  attachmentKey        = attachment.remoteKey;
+    final boolean hasData              = attachment.hasData;
+
     if (inProgress && !hasData && hasIncrementalDigest && attachmentKey != null && FeatureFlags.instantVideoPlayback()) {
       final byte[] decode       = Base64.decode(attachmentKey);
-      final File   transferFile = attachmentDatabase.getOrCreateTransferFile(attachment.getAttachmentId());
+      final File   transferFile = attachmentDatabase.getOrCreateTransferFile(attachment.attachmentId);
       try {
-        this.inputStream = AttachmentCipherInputStream.createForAttachment(transferFile, attachment.getSize(), decode, attachment.getDigest(), attachment.getIncrementalDigest(), attachment.getIncrementalMacChunkSize());
+        this.inputStream = AttachmentCipherInputStream.createForAttachment(transferFile, attachment.size, decode, attachment.remoteDigest, attachment.getIncrementalDigest(), attachment.incrementalMacChunkSize);
 
         long skipped = 0;
         while (skipped < dataSpec.position) {
@@ -81,8 +82,8 @@ class PartDataSource implements DataSource {
 
       Log.d(TAG, "Successfully loaded completed attachment file.");
     } else {
-      throw new IOException("Ineligible " + attachment.getAttachmentId().toString()
-                            + "\nTransfer state: " + attachment.getTransferState()
+      throw new IOException("Ineligible " + attachment.attachmentId.toString()
+                            + "\nTransfer state: " + attachment.transferState
                             + "\nIncremental Digest Present: " + hasIncrementalDigest
                             + "\nAttachment Key Non-Empty: " + (attachmentKey != null && !attachmentKey.isEmpty()));
     }
@@ -91,9 +92,9 @@ class PartDataSource implements DataSource {
       listener.onTransferStart(this, dataSpec, false);
     }
 
-    if (attachment.getSize() - dataSpec.position <= 0) throw new EOFException("No more data");
+    if (attachment.size - dataSpec.position <= 0) throw new EOFException("No more data");
 
-    return attachment.getSize() - dataSpec.position;
+    return attachment.size - dataSpec.position;
   }
 
   @Override

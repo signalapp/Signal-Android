@@ -12,6 +12,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -38,35 +39,56 @@ object Scaffolds {
     titleContent: @Composable (Float, String) -> Unit = { _, title ->
       Text(text = title, style = MaterialTheme.typography.titleLarge)
     },
+    snackbarHost: @Composable () -> Unit = {},
     content: @Composable (PaddingValues) -> Unit
   ) {
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
 
     Scaffold(
+      snackbarHost = snackbarHost,
       topBar = {
-        TopAppBar(
-          title = {
-            titleContent(scrollBehavior.state.contentOffset, title)
-          },
-          navigationIcon = {
-            IconButton(
-              onClick = onNavigationClick,
-              Modifier.padding(end = 16.dp)
-            ) {
-              Icon(
-                painter = navigationIconPainter,
-                contentDescription = navigationContentDescription
-              )
-            }
-          },
-          scrollBehavior = scrollBehavior,
-          colors = TopAppBarDefaults.topAppBarColors(
-            scrolledContainerColor = SignalTheme.colors.colorSurface2
-          )
+        DefaultTopAppBar(
+          title,
+          titleContent,
+          scrollBehavior,
+          onNavigationClick,
+          navigationIconPainter,
+          navigationContentDescription
         )
       },
       modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
       content = content
+    )
+  }
+
+  @Composable
+  private fun DefaultTopAppBar(
+    title: String,
+    titleContent: @Composable (Float, String) -> Unit,
+    scrollBehavior: TopAppBarScrollBehavior,
+    onNavigationClick: () -> Unit,
+    navigationIconPainter: Painter,
+    navigationContentDescription: String?
+  ) {
+    TopAppBar(
+      title = {
+        titleContent(scrollBehavior.state.contentOffset, title)
+      },
+      navigationIcon = {
+        IconButton(
+          onClick = onNavigationClick,
+          Modifier.padding(end = 16.dp)
+        ) {
+          Icon(
+            painter = navigationIconPainter,
+            contentDescription = navigationContentDescription
+          )
+        }
+      },
+      scrollBehavior = scrollBehavior,
+      colors = TopAppBarDefaults.topAppBarColors(
+        scrolledContainerColor = SignalTheme.colors.colorSurface2
+      )
     )
   }
 }

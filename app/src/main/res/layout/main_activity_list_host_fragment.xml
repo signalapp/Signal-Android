@@ -38,7 +38,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/ic_contact_picture" />
+                tools:src="@tools:sample/avatars" />
 
             <org.thoughtcrime.securesms.badges.BadgeImageView
                 android:id="@+id/toolbar_badge"

@@ -29,7 +29,7 @@
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_gravity="center"
-            tools:src="@drawable/ic_contact_picture"/>
+            tools:src="@tools:sample/avatars"/>
 
     </LinearLayout>
 

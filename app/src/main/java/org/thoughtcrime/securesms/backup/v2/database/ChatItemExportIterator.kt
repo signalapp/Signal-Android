@@ -9,6 +9,7 @@ import android.database.Cursor
 import com.annimon.stream.Stream
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.Base64
+import org.signal.core.util.Base64.decode
 import org.signal.core.util.Base64.decodeOrThrow
 import org.signal.core.util.logging.Log
 import org.signal.core.util.requireBlob
@@ -40,11 +41,16 @@ import org.thoughtcrime.securesms.database.SignalDatabase.Companion.calls
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchSet
 import org.thoughtcrime.securesms.database.documents.NetworkFailureSet
 import org.thoughtcrime.securesms.database.model.GroupCallUpdateDetailsUtil
+import org.thoughtcrime.securesms.database.model.GroupsV2UpdateMessageConverter
+import org.thoughtcrime.securesms.database.model.Mention
 import org.thoughtcrime.securesms.database.model.ReactionRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
+import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context
+import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExtras
 import org.thoughtcrime.securesms.database.model.databaseprotos.ProfileChangeDetails
 import org.thoughtcrime.securesms.database.model.databaseprotos.SessionSwitchoverEvent
 import org.thoughtcrime.securesms.database.model.databaseprotos.ThreadMergeEvent
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.util.JsonUtils
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
@@ -99,6 +105,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
     }
 
     val reactionsById: Map<Long, List<ReactionRecord>> = SignalDatabase.reactions.getReactionsForMessages(records.keys)
+    val mentionsById: Map<Long, List<Mention>> = SignalDatabase.mentions.getMentionsForMessages(records.keys)
     val groupReceiptsById: Map<Long, List<GroupReceiptTable.GroupReceiptInfo>> = SignalDatabase.groupReceipts.getGroupReceiptInfoForMessages(records.keys)
 
     for ((id, record) in records) {
@@ -154,6 +161,26 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
             }
           )
         }
+        MessageTypes.isGroupV2(record.type) && MessageTypes.isGroupUpdate(record.type) -> {
+          val groupChange = record.messageExtras?.gv2UpdateDescription?.groupChangeUpdate
+          if (groupChange != null) {
+            builder.updateMessage = ChatUpdateMessage(
+              groupChange = groupChange
+            )
+          } else if (record.body != null) {
+            try {
+              val decoded: ByteArray = decode(record.body)
+              val context = DecryptedGroupV2Context.ADAPTER.decode(decoded)
+              builder.updateMessage = ChatUpdateMessage(
+                groupChange = GroupsV2UpdateMessageConverter.translateDecryptedChange(selfIds = SignalStore.account().getServiceIds(), context)
+              )
+            } catch (e: IOException) {
+              continue
+            }
+          } else {
+            continue
+          }
+        }
         MessageTypes.isCallLog(record.type) -> {
           val call = calls.getCallByMessageId(record.id)
           if (call != null) {
@@ -207,7 +234,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
           Log.w(TAG, "Record missing a body, skipping")
           continue
         }
-        else -> builder.standardMessage = record.toTextMessage(reactionsById[id])
+        else -> builder.standardMessage = record.toTextMessage(reactionsById[id], mentions = mentionsById[id])
       }
 
       buffer += builder.build()
@@ -261,12 +288,12 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
     }
   }
 
-  private fun BackupMessageRecord.toTextMessage(reactionRecords: List<ReactionRecord>?): StandardMessage {
+  private fun BackupMessageRecord.toTextMessage(reactionRecords: List<ReactionRecord>?, mentions: List<Mention>?): StandardMessage {
     return StandardMessage(
       quote = this.toQuote(),
       text = Text(
         body = this.body!!,
-        bodyRanges = this.bodyRanges?.toBackupBodyRanges() ?: emptyList()
+        bodyRanges = (this.bodyRanges?.toBackupBodyRanges() ?: emptyList()) + (mentions?.toBackupBodyRanges() ?: emptyList())
       ),
       // TODO Link previews!
       linkPreview = emptyList(),
@@ -294,6 +321,16 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
     }
   }
 
+  private fun List<Mention>.toBackupBodyRanges(): List<BackupBodyRange> {
+    return this.map {
+      BackupBodyRange(
+        start = it.start,
+        length = it.length,
+        mentionAci = SignalDatabase.recipients.getRecord(it.recipientId).aci?.toByteString()
+      )
+    }
+  }
+
   private fun ByteArray.toBackupBodyRanges(): List<BackupBodyRange> {
     val decoded: BodyRangeList = try {
       BodyRangeList.ADAPTER.decode(this)
@@ -306,7 +343,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
       BackupBodyRange(
         start = it.start,
         length = it.length,
-        mentionAci = it.mentionUuid?.let { UuidUtil.parseOrThrow(it) }?.toByteArray()?.toByteString(),
+        mentionAci = it.mentionUuid?.let { uuid -> UuidUtil.parseOrThrow(uuid) }?.toByteArray()?.toByteString(),
         style = it.style?.toBackupBodyRangeStyle()
       )
     }
@@ -412,6 +449,17 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
     }
   }
 
+  private fun ByteArray?.parseMessageExtras(): MessageExtras? {
+    if (this == null) {
+      return null
+    }
+    return try {
+      MessageExtras.ADAPTER.decode(this)
+    } catch (e: java.lang.Exception) {
+      null
+    }
+  }
+
   private fun Cursor.toBackupMessageRecord(): BackupMessageRecord {
     return BackupMessageRecord(
       id = this.requireLong(MessageTable.ID),
@@ -443,7 +491,8 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
       receiptTimestamp = this.requireLong(MessageTable.RECEIPT_TIMESTAMP),
       networkFailureRecipientIds = this.requireString(MessageTable.NETWORK_FAILURES).parseNetworkFailures(),
       identityMismatchRecipientIds = this.requireString(MessageTable.MISMATCHED_IDENTITIES).parseIdentityMismatches(),
-      baseType = this.requireLong(COLUMN_BASE_TYPE)
+      baseType = this.requireLong(COLUMN_BASE_TYPE),
+      messageExtras = this.requireBlob(MessageTable.MESSAGE_EXTRAS).parseMessageExtras()
     )
   }
 
@@ -477,6 +526,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
     val read: Boolean,
     val networkFailureRecipientIds: Set<Long>,
     val identityMismatchRecipientIds: Set<Long>,
-    val baseType: Long
+    val baseType: Long,
+    val messageExtras: MessageExtras?
   )
 }

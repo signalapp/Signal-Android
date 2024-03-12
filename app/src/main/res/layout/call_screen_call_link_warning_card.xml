@@ -17,9 +17,9 @@
     tools:layout_marginHorizontal="24dp">
 
     <TextView
+        android:id="@+id/call_screen_call_link_warning_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/WebRtcCallView__anyone_who_joins"
         android:textAppearance="@style/Signal.Text.BodySmall" />
 
 </com.google.android.material.card.MaterialCardView>

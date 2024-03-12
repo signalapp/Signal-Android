@@ -77,6 +77,15 @@ class JobController {
   }
 
   @WorkerThread
+  void submitNewJobChains(@NonNull List<List<List<Job>>> chains) {
+    synchronized (this) {
+      for (List<List<Job>> chain : chains) {
+        submitNewJobChain(chain);
+      }
+    }
+  }
+
+  @WorkerThread
   void submitNewJobChain(@NonNull List<List<Job>> chain) {
     synchronized (this) {
       chain = Stream.of(chain).filterNot(List::isEmpty).toList();

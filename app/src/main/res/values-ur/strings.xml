@@ -179,7 +179,18 @@
     <string name="BlockUnblockDialog_unblock_s">%1$s کو اَن بلاک کرنا ہے؟</string>
     <string name="BlockUnblockDialog_block">بلاک کریں</string>
     <string name="BlockUnblockDialog_block_and_leave">بلاک کریں اور چھوڑ دیں</string>
-    <string name="BlockUnblockDialog_report_spam_and_block">اسپام رپورٹ کریں اور بلاک کریں</string>
+    <!-- Dialog button label to report as spam and block the person -->
+    <string name="BlockUnblockDialog_report_spam_and_block">رپورٹ کریں اور بلاک کریں</string>
+    <!-- Dialog title for reporting spam -->
+    <string name="BlockUnblockDialog_report_spam_title">اسپام کو رپورٹ کریں؟</string>
+    <!-- Dialog button to report as spam only -->
+    <string name="BlockUnblockDialog_report_spam">اسپام کو رپورٹ کریں</string>
+    <!-- Dialog message when reporting spam of an individual (1:1 conversation) -->
+    <string name="BlockUnblockDialog_report_spam_description">Signal کو مطلع کیا جائے گا کہ یہ فرد اسپام بھیج رہا ہو سکتا ہے۔ Signal کسی چیٹس کا مواد نہیں دیکھ سکتا۔</string>
+    <!-- Dialog message when reporting spam of a group and we can determine the group member that invited you, placeholder is a name -->
+    <string name="BlockUnblockDialog_report_spam_group_named_adder">Signal کو مطلع کیا جائے گا کہ %1$s، جس نے آپ کو اس گروپ میں مدعو کیا، وہ ہو سکتا ہے اسپام بھیج رہا ہو۔ Signal کسی چیٹس کا مواد نہیں دیکھ سکتا۔</string>
+    <!-- Dialog message when reporting spam of a group and we cannot determine the group member that invited you -->
+    <string name="BlockUnblockDialog_report_spam_group_unknown_adder">Signal کو مطلع کیا جائے گا کہ جس فرد نے آپ کو اس گروپ میں مدعو کیا ہو سکتا ہے اسپام بھیج رہا ہو۔ Signal کسی چیٹس کا مواد نہیں دیکھ سکتا۔</string>
 
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">آج</string>
@@ -415,6 +426,8 @@
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported">SMS میسیجنگ Signal میں مزید سپورٹ نہیں کیا جاتا۔</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">SMS میسیجنگ Signal میں مزید سپورٹ نہیں کیا جاتا۔ گفتگو کو یہاں رکھنے کے لیے %1$s کو Signal پر مدعو کریں۔</string>
+    <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
+    <string name="ConversationActivity__this_person_is_no_longer_using_signal">یہ شخص Signal مزید استعمال نہیں کر رہا ہے۔ گفتگو کو یہاں جاری رکھنے کے لیے انہیں Signal پر مدعو کریں۔</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">Signal میں مدعو کریں</string>
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
@@ -480,11 +493,11 @@
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">آپ کسی پیغام کا جلدی سے جواب دینے کیلئے بائیں سوائپ کر سکتے ہیں</string>
     <string name="ConversationFragment_view_once_media_is_deleted_after_sending">ایک مرتبہ دیکھا جانے والا میڈیا بھیجنے کے بعد حذف کر دیا جاتا ہے</string>
     <string name="ConversationFragment_you_already_viewed_this_message">آپ یہ میسج پہلے ہی دیکھ چکے ہیں</string>
-    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">آپ اس چیٹ میں خود کے لیے نوٹس شامل کر سکتے ہیں۔\nاگر آپ کے اکاؤنٹ میں کوئی لنک کردہ ڈیوائسز ہیں، تو نئے نوٹس ہم وقت ساز ہو جائیں گے۔</string>
+    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">آپ اس چیٹ میں خود کے لیے نوٹس شامل کر سکتے ہیں۔ اگر آپ کے اکاؤنٹ میں کوئی لنک کردہ ڈیوائسز موجود ہیں، تو نئے نوٹس ہم وقت ساز ہو جائیں گے۔</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d گروپ ممبروں کا ایک ہی نام ہے۔</string>
     <string name="ConversationFragment__tap_to_review">جائزہ لینے کے لئے ٹیپ کریں</string>
-    <string name="ConversationFragment__review_requests_carefully">درخواستوں کا بغور جائزہ لیں</string>
-    <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal کو اسی نام سے دوسرا رابطہ ملا۔</string>
+    <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
+    <string name="ConversationFragment__review_banner_body">اس فرد اور ایک اور رابطے کا نام ایک جیسا ہے</string>
     <string name="ConversationFragment_contact_us">ہم سے رابطہ کریں</string>
     <string name="ConversationFragment_verify">تصدیق کریں</string>
     <string name="ConversationFragment_not_now">ابھی نہیں</string>
@@ -510,6 +523,55 @@
     <string name="ConversationFragment__content_description_launch_signal_button">Signal کھولیں</string>
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
     <string name="ConversationFragment__no_longer_verified">مزید تصدیق شدہ نہیں ہے</string>
+    <!-- Button shown in conversation header when in a message request state and no groups in common to show new message safety tips -->
+    <string name="ConversationFragment_safety_tips">حفاظتی تجاویز</string>
+    <!-- Menu option to report spam in a conversation -->
+    <string name="ConversationFragment_report_spam">اسپام کو رپورٹ کریں</string>
+    <!-- Menu option to block in a conversation -->
+    <string name="ConversationFragment_block">بلاک کریں</string>
+    <!-- Menu otpion to accept a message request in a conversation -->
+    <string name="ConversationFragment_accept">قبول کریں</string>
+    <!-- Menu option to delete an entire chat in a conversation -->
+    <string name="ConversationFragment_delete_chat">چیٹ حذف کریں</string>
+    <!-- Menu option to unblock in a conversation -->
+    <string name="ConversationFragment_unblock">اَن بلاک کریں</string>
+    <!-- Dialog title shown after reporting spam and tapping the conversation item -->
+    <string name="ConversationFragment_reported_spam">اسپام کی رپورٹ کی گئی</string>
+    <!-- Dialog message shown after reporting spam and tapping the conversation item -->
+    <string name="ConversationFragment_reported_spam_message">Signal کو مطلع کر دیا گیا ہے کہ یہ فرد ممکنہ طور پر اسپام بھیج رہا ہے۔ Signal کسی چیٹس کا مواد نہیں دیکھ سکتا۔</string>
+    <!-- Toast shown after reporting spam and tapping the conversation item -->
+    <string name="ConversationFragment_reported_as_spam">اسپام کے طور پر رپورٹ کیا گیا</string>
+    <!-- Toast shown after reporting and blocking a conversation -->
+    <string name="ConversationFragment_reported_as_spam_and_blocked">اسپام کے طور پر رپورٹ اور بلاک کیا گیا</string>
+    <!-- Dialog message shown after accepting a message request and tapping on options from the conversation event -->
+    <string name="ConversationFragment_you_accepted_a_message_request_from_s">آپ نے %1$s کی طرف سے میسج کی درخواست قبول کی۔ اگر یہ ایک غلطی تھی، تو آپ درج ذیل سے کوئی ایکشن منتخب کر سکتے ہیں۔</string>
+
+    <!-- Title of Safety Tips bottom sheet dialog -->
+    <string name="SafetyTips_title">حفاظتی تجاویز</string>
+    <!-- Dialog subtitle when showign tips for a 1:1 conversation -->
+    <string name="SafetyTips_subtitle_individual">ایسے افراد جن کو آپ جانتے نہیں ہیں کی طرف سے میسج کی درخواستوں کو قبول کرتے ہوئے احتیاط برتیں۔ درج ذیل کے حوالے سے احتیاط کریں:</string>
+    <!-- Dialog subtitle when showing tips for a group conversation -->
+    <string name="SafetyTips_subtitle_group">اس درخواست کا بغور جائزہ لیں۔ آپ کے روابط یا جن لوگوں کے ساتھ آپ چیٹ کرتے ہیں ان میں سے کوئی بھی اس گروپ میں نہیں ہے۔ دھیان رکھنے کی کچھ چیزیں یہ ہیں:</string>
+    <!-- Button text to move to the previous tip-->
+    <string name="SafetyTips_previous_tip">سابقہ تجویز</string>
+    <!-- Button text to move to the next tip -->
+    <string name="SafetyTips_next_tip">اگلی تجویز</string>
+    <!-- Title of tip 1 -->
+    <string name="SafetyTips_tip1_title">کرپٹو یا پیسے کے سکیمز</string>
+    <!-- Message of tip 1 -->
+    <string name="SafetyTips_tip1_message">اگر کوئی ایسا فرد جسے آپ جانتے نہیں ہیں آپ کو کرپٹو کرنسی (جیسا کہ Bitcoin) یا کسی مالی فائدے کے متعلق میسج کرتا ہے، تو احتیاط کریں—یہ ممکنہ طور پر اسپام ہو سکتا ہے۔</string>
+    <!-- Title of tip 2 -->
+    <string name="SafetyTips_tip2_title">مبہم اور غیر متعلقہ میسجز</string>
+    <!-- Message of tip 2 -->
+    <string name="SafetyTips_tip2_message">اسپام کرنے والے افراد آپ کو مائل کرنے کے لیے اکثر \"ہائے\" جیسے عام میسجز سے آغاز کرتے ہیں۔ اگر آپ جواب دیں تو وہ آپ کو مزید مشغول کر سکتے ہیں۔</string>
+    <!-- Title of tip 3 -->
+    <string name="SafetyTips_tip3_title">لنکس والے میسجز</string>
+    <!-- Message of tip 3 -->
+    <string name="SafetyTips_tip3_message">ایسے افراد جن کو آپ جانتے نہیں ہیں کی طرف سے ویب سائٹس کے لنکس والے میسجز کے حوالے سے احتیاط برتیں۔ ایسے افراد جن پر آپ کو اعتماد نہیں کی طرف سے لنکس کبھی ملاحظہ نہ کریں۔</string>
+    <!-- Title of tip 4 -->
+    <string name="SafetyTips_tip4_title">جعلی کاروبار اور ادارے</string>
+    <!-- Message of tip 4 -->
+    <string name="SafetyTips_tip4_message">آپ سے رابطہ کرنے والے کاروباری یا حکومتی اداروں کے حوالے سے احتیاط برتیں۔ ٹیکس اداروں، کوریئرز اور مزید کی طرف سے میسجز اسپام ہو سکتے ہیں۔</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">فلٹر کو صاف کریں</string>
@@ -524,7 +586,10 @@
         <item quantity="other">اس سے منتخب کردہ تمام %1$d چیٹس مستقل طور پر حذف ہو جائیں گی۔</item>
     </plurals>
     <string name="ConversationListFragment_deleting">حذف ہو رہا ہے</string>
-    <string name="ConversationListFragment_deleting_selected_conversations">منتخب کردہ چیٹس حذف ہو رہی ہیں…</string>
+    <plurals name="ConversationListFragment_deleting_selected_conversations">
+        <item quantity="one">منتخب کردہ چیٹ حذف کر رہے ہیں…</item>
+        <item quantity="other">منتخب کردہ چیٹس حذف کر رہے ہیں…</item>
+    </plurals>
     <plurals name="ConversationListFragment_conversations_archived">
         <item quantity="one">آرکائیو کردہ چیٹ</item>
         <item quantity="other">آرکائیو کردہ %1$d چیٹس</item>
@@ -562,6 +627,8 @@
     <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here"> یہاں اپنے اطلاعات کی پروفائل کو آن یا آف کریں.</string>
     <!-- Message shown in top toast to indicate the named profile is on -->
     <string name="ConversationListFragment__s_on">%1$sشروع</string>
+    <!-- -->
+    <string name="ConversationListFragment_username_recovered_toast">آپ کا QR کوڈ اور لنک ری سیٹ کر دیا گیا ہے اور آپ کا یوزر نیم %1$s ہے</string>
 
     <!-- ConversationListItem -->
     <string name="ConversationListItem_key_exchange_message">Key تبادلہ کا پیغام</string>
@@ -606,9 +673,9 @@
     <!-- Toolbar title for this screen -->
     <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">کون مجھے نمبر کے ذریعے تلاش کر سکتا ہے؟</string>
     <!-- Description for radio item stating anyone can see your phone number -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">ایسا کوئی بھی فرد جس کے روابط میں آپ کا فون نمبر موجود ہے وہ آپ کو Signal پر ایک رابطے کے طور پر دیکھے گا۔ دیگر افراد آپ کو آپ کے نمبر کے ذریعے ڈھونڈنے سکیں گے۔</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">کوئی بھی ایسا شخص جس کے پاس آپ کا فون نمبر ہے وہ دیکھے گا کہ آپ Signal پر ہیں اور آپ کے ساتھ چیٹ شروع کر سکے گا۔</string>
     <!-- Description for radio item stating no one will be able to see your phone number -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">Signal پر کوئی بھی فرد آپ کو آپ کے نمبر کے ذریعے تلاش کرنے سے قاصر ہو گا۔</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">کوئی بھی اس وقت تک دیکھ نہیں پائے گا کہ آپ Signal پر ہیں جب تک آپ انہیں میسج نہیں کرتے یا ان کے ساتھ آپ کی کوئی پہلے سے موجود چیٹ ہو۔</string>
 
     <!-- ChooseBackupFragment -->
     <string name="ChooseBackupFragment__restore_from_backup">بیک اپ سے بحال کریں؟</string>
@@ -996,8 +1063,12 @@
     <string name="GroupMentionSettingDialog_dont_notify_me">مجھے مطلع نہ کریں</string>
 
     <!-- ManageProfileFragment -->
-    <string name="ManageProfileFragment_profile_name">پروفائل کا نام</string>
-    <string name="ManageProfileFragment_username">صارف کا نام</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
+    <string name="ManageProfileFragment__your_username">آپ کا یوزر نیم، QR کوڈ اور لنک آپ کی پروفائل پر نظر نہیں آتے۔ اپنا یوزر نیم صرف ان لوگوں کے ساتھ شیئر کریں جن پر آپ کو اعتماد ہو۔</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
+    <string name="ManageProfileFragment__username_footer_no_username">لوگ اب آپ کے اختیاری یوزر نیم کا استعمال کرتے ہوئے آپ کو میسج کر سکتے ہیں تاکہ آپ کو اپنا فون نمبر دینے کی ضرورت نہ پڑے۔ </string>
+    <string name="ManageProfileFragment_profile_name">پروفائل نیم</string>
+    <string name="ManageProfileFragment_username">یوزر نیم</string>
     <string name="ManageProfileFragment_about">متعلق</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">اوتار سیٹ کرنے میں ناکام</string>
     <string name="ManageProfileFragment_badges">بیجز</string>
@@ -1009,9 +1080,9 @@
     <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
     <string name="ManageProfileFragment__link_tooltip_body">دوسروں کے ساتھ اپنا منفرد QR کوڈ یا لنک شیئر کر کے انہیں اپنے ساتھ چیٹ شروع کرنے کی اجازت دیں۔</string>
     <!-- Snackbar message after creating username -->
-    <string name="ManageProfileFragment__username_created">صارفی نام تخلیق کیا گیا</string>
+    <string name="ManageProfileFragment__username_created">یوزر نیم بنا دیا گیا</string>
     <!-- Snackbar message after copying username -->
-    <string name="ManageProfileFragment__username_copied">صارفی نام کاپی کیا گیا</string>
+    <string name="ManageProfileFragment__username_copied">یوزر نیم کاپی کیا گیا</string>
     <!-- Snackbar message after network failure while trying to delete username -->
     <string name="ManageProfileFragment__couldnt_delete_username">یوزر نیم حذف نہیں کر سکے۔ بعد میں دوبارہ کوشش کریں۔</string>
     <!-- Snackbar message after successful deletion of username -->
@@ -1283,6 +1354,10 @@
     <string name="MessageRecord_missed_voice_call">مسڈ وائس کال</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">مسڈ ویڈیو کال</string>
+    <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
+    <string name="MessageRecord_missed_voice_call_notification_profile">اطلاعات کی پروفائل آن ہونے کے دوران مسڈ وائس کال</string>
+    <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
+    <string name="MessageRecord_missed_video_call_notification_profile">اطلاعات کی پروفائل آن ہونے کے دوران مسڈ ویڈیو کال</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
     <string name="MessageRecord_you_declined_a_voice_call">آپ نے وائس کال مسترد کر دی</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
@@ -1310,9 +1385,11 @@
     </plurals>
 
     <!-- Profile change updates -->
-    <string name="MessageRecord_changed_their_profile_name_to">%1$s نے اپنے پروفائل کا نام تبدیل%2$s کر دیا۔</string>
-    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s نے اپنے پروفائل کا نام %2$sسےتبدیل کر کے%3$sکر دیا۔</string>
+    <string name="MessageRecord_changed_their_profile_name_to">%1$s نے اپنا پروفائل نیم تبدیل%2$s کر دیا۔</string>
+    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s نے اپنا پروفائل نیم %2$sسےتبدیل کر کے%3$sکر دیا۔</string>
     <string name="MessageRecord_changed_their_profile">%1$s نے پروفائل تبدیل کیا۔</string>
+    <!-- Conversation update event message shown when you\'ve started a conversation by phone number or username and then learn their profile name. placeholder is username or phone number -->
+    <string name="MessageRecord_started_this_chat">آپ نے %1$s کے ساتھ یہ چیٹ شروع کی ہے۔</string>
 
     <!-- GV2 specific -->
     <string name="MessageRecord_you_created_the_group">آپ نے گروپ بنایا ہے۔</string>
@@ -1525,6 +1602,10 @@
     <string name="MessageRecord__you_can_no_longer_send_sms_messages_in_signal">آپ Signal میں مزید SMS میسجز نہیں بھیج سکتے۔ گفتگو کو یہاں رکھنے کے لیے %1$s کو Signal پر مدعو کریں۔</string>
     <!-- Body for quote when message being quoted is an in-app payment message -->
     <string name="MessageRecord__payment_s">پیمنٹ: %1$s</string>
+    <!-- Update message shown in chat after reporting it as spam -->
+    <string name="MessageRecord_reported_as_spam">اسپام کے طور پر رپورٹ کیا گیا</string>
+    <!-- Update message shown in chat after accept a message request -->
+    <string name="MessageRecord_you_accepted_the_message_request">آپ نے میسج کی درخواست قبول کی</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">قبول کریں</string>
@@ -1571,6 +1652,8 @@
         <item quantity="one">%1$dاضافی گروپ</item>
         <item quantity="other">%1$dاضافی گروپس</item>
     </plurals>
+    <!-- Button label to report spam for a conversation when in a message request state -->
+    <string name="MessageRequestBottomView_report">رپورٹ کریں…</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">پاسفریز میچ نہیں ہوا!</string>
@@ -1782,8 +1865,10 @@
     <string name="WebRtcCallView__disconnected">منقطع ہوا</string>
     <!-- Utilized in the lobby before joining a call link -->
     <string name="WebRtcCallView__signal_call_link">Signal کا کال لنک</string>
-    <!-- Warning displayed when entering a call via a link -->
-    <string name="WebRtcCallView__anyone_who_joins">جو کوئی بھی لنک کے ذریعے اس کال میں شامل ہوتا ہے وہ آپ کا نام، تصویر، اور فون نمبر دیکھ سکے گا۔</string>
+    <!-- Warning displayed when entering a call via a link and you have Phone Number Privacy disabled-->
+    <string name="WebRtcCallView__anyone_who_joins_pnp_disabled">جو کوئی بھی لنک کے ذریعے اس کال میں شامل ہوتا ہے وہ آپ کا نام، تصویر، اور فون نمبر دیکھ سکے گا۔</string>
+    <!-- Warning displayed when entering a call via a link and you have Phone Number Privacy enabled-->
+    <string name="WebRtcCallView__anyone_who_joins_pnp_enabled">جو بھی اس لنک کے ذریعے کال میں شامل ہو گا آپ کا نام اور تصویر دیکھ سکے گا۔</string>
     <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
     <string name="WebRtcCallView__waiting_to_be_let_in">شامل ہونے کے منتظر…</string>
 
@@ -1884,7 +1969,11 @@
 
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
-    <string name="AboutSheet__signal_connection">Signal کنکشن</string>
+    <string name="AboutSheet__signal_connection">Signal کنیکشن</string>
+    <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
+    <string name="AboutSheet__verified">تصدیق شدہ</string>
+    <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
+    <string name="AboutSheet__no_direct_message">%1$s کے ساتھ کوئی براہ راست میسجز نہیں</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s آپ کے سسٹم کے روابط میں موجود ہے</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -1892,7 +1981,10 @@
     <!-- Notice when a user is not a connection to review requests carefully -->
     <string name="AboutSheet__review_requests_carefully">درخواستوں کا بغور جائزہ لیں</string>
     <!-- Text used when user has groups in common. Placeholder is the count -->
-    <string name="AboutSheet__d_groups_in_common">%1$d مشترکہ گروپس</string>
+    <plurals name="AboutSheet__d_groups_in">
+        <item quantity="one">%1$dمشترکہ گروپ</item>
+        <item quantity="other">%1$dمشترکہ گروپس</item>
+    </plurals>
     <!-- Text displayed in title for external recipients -->
     <string name="AboutSheet__about">متعلق</string>
     <!-- Text displayed in title for you -->
@@ -2199,21 +2291,25 @@
     <string name="UnverifiedSendDialog_send">بھیجیں</string>
 
     <!-- UsernameEditFragment -->
+    <!-- Placeholder text for custom discriminator -->
+    <string name="UsernameEditFragment__00">00</string>
     <!-- Toolbar title when entering from registration -->
-    <string name="UsernameEditFragment__add_a_username">صارفی نام شامل کریں</string>
+    <string name="UsernameEditFragment__add_a_username">یوزر نیم شامل کریں</string>
     <!-- Instructional text at the top of the username edit screen -->
-    <string name="UsernameEditFragment__choose_your_username">اپنا صارفی نام منتخب کریں</string>
-    <string name="UsernameEditFragment_username">صارف کا نام</string>
+    <string name="UsernameEditFragment__choose_your_username">اپنا یوزر نیم منتخب کریں</string>
+    <string name="UsernameEditFragment_username">یوزر نیم</string>
     <string name="UsernameEditFragment_delete">حذف کریں</string>
-    <string name="UsernameEditFragment_successfully_removed_username">کامیابی کے ساتھ صارف نام ہٹا دیا گیا۔</string>
+    <string name="UsernameEditFragment_successfully_removed_username">کامیابی کے ساتھ یوزر نیم ہٹا دیا گیا۔</string>
     <string name="UsernameEditFragment_encountered_a_network_error">نیٹ ورک کی خرابی کا سامنا کرنا پڑا۔</string>
-    <string name="UsernameEditFragment_this_username_is_taken">یہ صارف نام لیا گیا ہے۔</string>
-    <string name="UsernameEditFragment_usernames_can_only_include">صارف ناموں میں صرف – Z-A ، 0–9 ، اور انڈر سکور شامل ہوسکتے ہیں۔</string>
-    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">صارف نام کسی نمبر کے ساتھ شروع نہیں ہوسکتے ہیں۔</string>
-    <string name="UsernameEditFragment_username_is_invalid">صارف کا نام غلط ہے.</string>
-    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">صارف نام %1$dاور%2$d حرف کے درمیان ہونا چاہئے۔</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">بہیت زیادہ کوششیں کی گئی ہیں، براہ کرم بعد میں دوبارہ کوشش کریں۔</string>
+    <string name="UsernameEditFragment_this_username_is_taken">یہ یوزر نیم لے لیا گیا ہے۔</string>
+    <string name="UsernameEditFragment_usernames_can_only_include">یوزر نیمز میں صرف – Z-A ، 0–9 ، اور انڈر سکور شامل ہوسکتے ہیں۔</string>
+    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">یوزر نیمز کسی نمبر کے ساتھ شروع نہیں ہوسکتے ہیں۔</string>
+    <string name="UsernameEditFragment_username_is_invalid">یوزر نیم غلط ہے.</string>
+    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">یوزر نیمز %1$dاور%2$d حرف کے درمیان ہونا چاہئے۔</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">صارفی نام آپ کے فون نمبر کے بغیر دوسروں کو آپ کو میسج کرنے کی اجازت دیتے ہیں۔ انہیں آپ کا پتہ نجی رکھنے کے لیے اعداد کے مجموعے کے ساتھ جوڑا گیا ہے۔</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">یوزر نیمز کو ہمیشہ نمبرز کے سیٹ کے ساتھ جوڑا جاتا ہے۔</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">یہ نمبر کیا ہے؟</string>
     <string name="UsernameEditFragment__these_digits_help_keep">یہ اعداد آپ کا یوزر نیم نجی رکھنے میں مدد کرتے ہیں تاکہ آپ غیر مطلوبہ میسجز سے بچ سکیں۔ اپنا یوزر نیم صرف ان لوگوں اور گروپس کے ساتھ شیئر کریں جن کے ساتھ آپ چیٹ کرنا چاہتے ہیں۔ اگر آپ یوزر نیمز تبدیل کرتے ہیں تو آپ کو اعداد کا نیا مجموعہ ملے گا۔</string>
@@ -2221,6 +2317,22 @@
     <string name="UsernameEditFragment__skip">چھوڑ دو</string>
     <!-- Content description for done button -->
     <string name="UsernameEditFragment__done">ہو گیا</string>
+    <!-- Displayed when the chosen discriminator is not available for the given nickname -->
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">یہ یوزر نیم دستیاب نہیں ہے، کوئی اور نمبر آزمائیں۔</string>
+    <!-- Displayed when the chosen discriminator is too short -->
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">غلط یوزر نیم، کم از کم %1$d ہندسے درج کریں۔</string>
+    <!-- Displayed when the chosen discriminator is too long -->
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">غلط یوزر نیم، زیادہ سے زیادہ %1$d ہندسے درج کریں۔</string>
+    <!-- Displayed when the chosen discriminator is 00 -->
+    <string name="UsernameEditFragment__this_number_cant_be_00">یہ نمبر 00 نہیں ہو سکتا۔ 1–9 کے درمیان کا کوئی ہندسہ درج کریں</string>
+    <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">2 سے زیادہ ہندسوں والے نمبرز 0 سے شروع نہیں ہو سکتے</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
+    <string name="UsernameEditFragment_recovery_dialog_confirmation">اپنا یوزر نیم بازیافت کرنے سے آپ کا موجودہ QR کوڈ اور لنک ری سیٹ ہو جائے گا۔ کیا واقعی ایسا چاہتے ہیں؟</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
+    <string name="UsernameEditFragment_change_confirmation_message">اپنا یوزر نیم تبدیل کرنے کی صورت میں آپ کا موجودہ QR کوڈ اور لنک ری سیٹ ہو جائے گا۔ کیا واقعی آپ کرنا چاہتے ہیں؟</string>
+    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
+    <string name="UsernameEditFragment_continue">جاری رکھیں</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d رابطے Signal پر ہیں!</item>
@@ -2229,7 +2341,7 @@
 
     <!-- UsernameShareBottomSheet -->
     <!-- Explanation of what the sheet enables the user to do -->
-    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">صارفی نام کا لنک کاپی یا شیئر کریں</string>
+    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">یوزر نیم کا لنک کاپی یا شیئر کریں</string>
 
     <!-- VerifyIdentityActivity -->
     <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">آپ کا رابطہ غیر متوازن QR کوڈ وضع کے ساتھ Signal کا ایک نیا ورژن چل رہا ہے۔ براہ کرم موازنہ کرنے کے لئے اپ ڈیٹ کریں.</string>
@@ -2407,6 +2519,26 @@
     <!-- Notification subtext for group stories -->
     <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s • سٹوری</string>
 
+    <!-- NewWaysToConnectDialogFragment -->
+    <!-- Fragment title, displayed at the top of the content -->
+    <string name="NewWaysToConnectDialogFragment__new_ways_to_connect">رابطہ کرنے کے نئے طریقے</string>
+    <!-- Row item title for phone number privacy explainer -->
+    <string name="NewWaysToConnectDialogFragment__phone_number_privacy">فون نمبر پرائیویسی</string>
+    <!-- Row item description for phone number privacy explainer -->
+    <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">آپ کا فون نمبر چیٹس کے ساتھ اب مزید شیئر نہیں کیا جا رہا۔ اگر آپ کا نمبر کسی دوست کے روابط میں محفوظ ہوا، تو وہ اسے دیکھ پائیں گے۔</string>
+    <!-- Row item title for usernames explainer -->
+    <string name="NewWaysToConnectDialogFragment__usernames">یوزر نیمز</string>
+    <!-- Row item description for usernames explainer -->
+    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">لوگ اب آپ کے اختیاری یوزر نیم کا استعمال کرتے ہوئے آپ کو میسج کر سکتے ہیں تاکہ آپ کو اپنا فون نمبر دینے کی ضرورت نہ پڑے۔ یوزر نیمز آپ کی پروفائل پر نظر نہیں آتے۔</string>
+    <!-- Row item title for qr code and links explainer -->
+    <string name="NewWaysToConnectDialogFragment__qr_codes_and_links">QR کوڈز اور لنکس</string>
+    <!-- Row item description for qr code and links explainer -->
+    <string name="NewWaysToConnectDialogFragment__usernames_have_a_unique_qr_code">یوزر نیمز کا ایک منفرد QR کوڈ اور لنک ہوتا ہے جسے آپ اپنے دوستوں کے ساتھ شیئر کر سکتے ہیں تاکہ وہ آپ کے ساتھ فوراً چیٹ شروع کر سکیں۔</string>
+    <!-- Button label for not right now -->
+    <string name="NewWaysToConnectDialogFragment__not_now">ابھی نہیں</string>
+    <!-- Button label for continue -->
+    <string name="NewWaysToConnectDialogFragment__set_up_your_username">یوزر نیم سیٹ اپ کریں</string>
+
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">ویڈیو چلائیں</string>
     <string name="ThumbnailView_Has_a_caption_description">ایک عنوان ہے</string>
@@ -2420,6 +2552,8 @@
     <string name="TransferControlView__processing">پروسیسنگ…</string>
     <!-- Status update label used while the device is transmitting data over the network. Will take the form of "1.0 MB/2.0 MB" -->
     <string name="TransferControlView__download_progress">%1$1.1f MB/%2$2.1f MB</string>
+    <!-- Attachment file size label for not-yet-downloaded images and video. Will take the form of "1.0 MB" -->
+    <string name="TransferControlView__filesize">%1$1.1f MB</string>
 
 
     <!-- UnauthorizedReminder -->
@@ -2509,8 +2643,8 @@
     <!-- ContactSelectionListFragment-->
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">رابطے ظاہر کرنے کیلئے Signal کو رابطوں کی اجازت کی ضرورت ہے،لیکن یہ مستقل طور پر انکاری ہے۔ برائے مہربانی ایپ کی ترتیبات میں جائیں، \"اجازت نامہ\"منتخب کریں، اور \"رابطے\" فعال کریں۔</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">رابطے دوبارہ حاصل کرنے میں خرابی،اپنا نیٹ ورک کنکشن چیک کریں</string>
-    <string name="ContactSelectionListFragment_username_not_found">صارف نام نہیں ملا</string>
-    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" Signal صارف نہیں ہے۔ براہ کرم صارف کا نام چیک کریں اور دوبارہ کوشش کریں۔"</string>
+    <string name="ContactSelectionListFragment_username_not_found">یوزر نیم نہیں ملا</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" Signal یوزر نہیں ہے۔ براہ کرم یوزر نیم چیک کریں اور دوبارہ کوشش کریں۔"</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">آپ کو اپنے آپ کو گروپ میں شامل کرنے کی ضرورت نہیں ہے</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">گروپ کا زیادہ سے زیادہ سائز پہنچ گیا</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal گروپس میں زیادہ سے زیادہ %1$dممبر ہوسکتے ہیں۔</string>
@@ -2520,6 +2654,10 @@
         <item quantity="one">%1$dممبر</item>
         <item quantity="other">%1$dممبروں</item>
     </plurals>
+    <!-- Text on row item to find user by phone number -->
+    <string name="ContactSelectionListFragment__find_by_phone_number">فون نمبر سے تلاش کریں</string>
+    <!-- Text on row item to find user by username -->
+    <string name="ContactSelectionListFragment__find_by_username">یوزر نیم سے تلاش کریں</string>
 
     <!-- contact_selection_list_fragment -->
     <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal کو ظاہر کرنے کے لئے آپ کے رابطوں تک رسائی کی ضرورت ہے۔</string>
@@ -2591,6 +2729,8 @@
     <string name="ConversationUpdateItem_activate_payments">ادائیگی چالو کریں</string>
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">آپ نے اس فرد کو ہٹا دیا ہے، انہیں دوبارہ میسج کرنے سے وہ دوبارہ آپ کی فہرست میں شامل ہو جائیں گے۔</string>
+    <!-- Update item button text shown for the accepted message request update message -->
+    <string name="ConversationUpdateItem_options">آپشنز</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">چلائیں ۔۔۔ روکیں</string>
@@ -3003,7 +3143,7 @@
     <string name="preferences__mmsc_url">ایم ایم ایس سی یو آر ایل</string>
     <string name="preferences__mms_proxy_host">ایم ایم ایس پراکسی میزبان</string>
     <string name="preferences__mms_proxy_port">ایم ایم ایس پروکسی پورٹ</string>
-    <string name="preferences__mmsc_username">ایم ایم ایس سی صارف کا نام</string>
+    <string name="preferences__mmsc_username">ایم ایم ایس سی یوزر نیم</string>
     <string name="preferences__mmsc_password">ایم ایم ایس سی پاسورڈ</string>
     <string name="preferences__sms_delivery_reports">ایس ایم ایس کی ترسیل کی رپورٹ</string>
     <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">اپنے بھیجنے والے ہر ایس ایم ایس پیغام کے لئے ڈیلیوری رپورٹ کی درخواست کریں</string>
@@ -3745,13 +3885,27 @@
     <!-- Subtext below option to launch into phone number privacy settings screen -->
     <string name="preferences_app_protection__choose_who_can_see">منتخب کریں کہ کون آپ کا فون نمبر دیکھ سکتا ہے اور کون اس کے ذریعے Signal پر آپ سے رابطہ کر سکتا ہے۔</string>
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
-    <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">میرا نمبر کون دیکھ سکتا ہے</string>
-    <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Signal پر کوئی بھی آپ کا فون نمبر نہیں دیکھ سکے گا</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">میرا نمبر کون دیکھ سکتا ہے</string>
+    <!-- Subtext below radio buttons when who can see my number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">آپ کا فون نمبر ان لوگوں اور گروپس کو نظر آئے گا جنہیں آپ میسج کرتے ہیں۔</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">آپ کا فون نمبر کسی کو نظر نہیں آئے گا جب تک وہ ان کے فون کے رابطوں میں پہلے سے محفوظ نہ ہو۔</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">آپ کا فون نمبر کسی کو نظر نہیں آئے گا۔</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
-    <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">کون مجھے میرے نمبر کے ذریعے تلاش کر سکتا ہے</string>
-    <!-- Subtext below radio buttons when who can see my number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">آپ کا فون نمبر ان لوگوں اور گروپس کو نظر آئے گا جنہیں آپ میسج کرتے ہیں۔ جن لوگوں کے فون رابطوں میں آپ کا نمبر محفوظ ہے وہ بھی اسے Signal پر دیکھیں گے۔</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">کون مجھے میرے نمبر کے ذریعے تلاش کر سکتا ہے</string>
+    <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">کوئی بھی ایسا شخص جس کے پاس آپ کا فون نمبر ہے وہ دیکھے گا کہ آپ Signal پر ہیں اور آپ کے ساتھ چیٹ شروع کر سکے گا۔</string>
+    <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">کوئی بھی اس وقت تک دیکھ نہیں پائے گا کہ آپ Signal پر ہیں جب تک آپ انہیں میسج نہیں کرتے یا ان کے ساتھ آپ کی کوئی پہلے سے موجود چیٹ ہو۔</string>
+    <!-- Snackbar text when pressing invalid radio item -->
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"اس سیٹنگ کو تبدیل کرنے کے لیے، کون میرا نمبر دیکھ سکتا ہے کو کوئی بھی نہیں پر سیٹ کر دیں۔"</string>
+    <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">کیا واقعی ایسا چاہتے ہیں؟</string>
+    <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">\"مجھے نمبر سے کون تلاش کر سکتا ہے\" کو \"کوئی نہیں\" پر سیٹ کرنے سے لوگوں کے لیے آپ کو Signal پر تلاش کرنا زیادہ مشکل ہو جائے گا۔</string>
+    <!-- Dialog button text for canceling change action -->
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">منسوخ کریں</string>
     <string name="PhoneNumberPrivacy_everyone">ہر ایک</string>
     <string name="PhoneNumberPrivacy_nobody">کوئی نہیں</string>
     <string name="preferences_app_protection__screen_lock">سکرین لاک</string>
@@ -3780,6 +3934,8 @@
     <string name="prompt_passphrase_activity__signal_is_locked">Signal لاک ہے</string>
     <string name="prompt_passphrase_activity__tap_to_unlock">لاک کھولنے کے لیے ٹیپ کریں</string>
     <string name="Recipient_unknown">نامعلوم</string>
+    <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
+    <string name="Recipient_deleted_account">حذف شدہ اکاؤنٹ</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
     <string name="preferences_account_reregister">اکاؤنٹ کو دوبارہ رجسٹر کریں</string>
@@ -3982,7 +4138,9 @@
     <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" کو اَن بلاک کر دیا گیا ہے۔</string>
 
     <!-- ReviewCardDialogFragment -->
+    <!-- Title of a screen where the user will be prompted to review group members with the same name -->
     <string name="ReviewCardDialogFragment__review_members">ممبران کا جائزہ لیں</string>
+    <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
     <string name="ReviewCardDialogFragment__review_request">نظرثانی کی درخواست</string>
     <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$dگروپ ممبران کا ایک ہی نام ہے ، ذیل ممبران کا جائزہ لیں اور کارروائی کرنے کا انتخاب کریں۔</string>
     <string name="ReviewCardDialogFragment__if_youre_not_sure">اگر آپ کو یقین نہیں ہے کہ درخواست کس کی ہے تو ، نیچے دیئے گئے رابطوں کا جائزہ لیں اور کارروائی کریں۔</string>
@@ -4008,7 +4166,7 @@
     <string name="ReviewCard__block">بلاک کریں</string>
     <string name="ReviewCard__delete">حذف کریں</string>
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
-    <string name="ReviewCard__s_recently_changed">%1$s نے حال ہی میں اپنی پروفائل کا نام %2$s سے %3$s میں تبدیل کیا ہے</string>
+    <string name="ReviewCard__s_recently_changed">%1$s نے حال ہی میں اپنا پروفائل نیم %2$s سے %3$s میں تبدیل کیا ہے</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
     <string name="ReviewCard__s_is_in_your_system_contacts">%1$s آپ کے سسٹم کے روابط میں موجود ہے</string>
 
@@ -4245,11 +4403,16 @@
     <string name="GroupDescriptionDialog__group_description">گروپ کی تفصیل</string>
 
     <!-- QualitySelectorBottomSheetDialog -->
+    <!-- Label for our standard quality media conversion. -->
     <string name="QualitySelectorBottomSheetDialog__standard">معیار</string>
+    <!-- Description for our standard quality media conversion. -->
     <string name="QualitySelectorBottomSheetDialog__faster_less_data">تیز ، کم ڈیٹا</string>
+    <!-- Label for our high quality media conversion. This has better quality than standard. -->
     <string name="QualitySelectorBottomSheetDialog__high">اونچا</string>
+    <!-- Label for our high quality media conversion. This has better quality than standard. -->
     <string name="QualitySelectorBottomSheetDialog__slower_more_data">آہستہ ، زیادہ ڈیٹا</string>
-    <string name="QualitySelectorBottomSheetDialog__photo_quality">تصویر کا معیار</string>
+    <!-- Title heading for our media conversion quality selector. -->
+    <string name="QualitySelectorBottomSheetDialog__media_quality">میڈیا کوالٹی</string>
 
     <!-- AppSettingsFragment -->
     <string name="AppSettingsFragment__invite_your_friends">اپنے دوستوں کو بلاؤ</string>
@@ -4364,27 +4527,6 @@
     <!-- ChatsSettingsFragment -->
     <string name="ChatsSettingsFragment__keyboard">کی بورڈ</string>
     <string name="ChatsSettingsFragment__enter_key_sends">بھیجے گئے key داخل کریں</string>
-
-    <!--SmsSettingsFragment -->
-    <string name="SmsSettingsFragment__use_as_default_sms_app">پہلے سے طے شدہ ایس ایم ایس ایپ استعمال کریں</string>
-    <!-- Preference title to export sms -->
-    <string name="SmsSettingsFragment__export_sms_messages">SMS میسجز برآمد کریں</string>
-    <!-- Preference title to re-export sms -->
-    <string name="SmsSettingsFragment__export_sms_messages_again">SMS پیغامات کو دوبارہ برآمد کریں</string>
-    <!-- Preference title to delete sms -->
-    <string name="SmsSettingsFragment__remove_sms_messages">SMS میسجز ہٹائیں</string>
-    <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Signal سے SMS میسجز ہٹائے جا رہے ہیں…</string>
-    <!-- Snackbar text to indicate can delete later -->
-    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">آپ کسی بھی وقت سیٹنگز میں Signal سے SMS میسجز ہٹا سکتے ہیں۔</string>
-    <!-- Description for export sms preference -->
-    <string name="SmsSettingsFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">آپ اپنے SMS میسجز اپنے فون کے SMS ڈیٹا بیس میں لے جا سکتے ہیں۔</string>
-    <!-- Description for re-export sms preference -->
-    <string name="SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages">دوبارہ برآمد کرنے کے نتیجے میں پیغامات دوہرے ہو سکتے ہیں۔</string>
-    <!-- Description for remove sms preference -->
-    <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">سٹوریج سپیس صاف کرنے کے لیے Signal سے SMS میسجز ہٹائیں۔</string>
-    <!-- Information message shown at the top of sms settings to indicate it is being removed soon. -->
-    <string name="SmsSettingsFragment__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging">اینکرپٹڈ میسیجنگ پر توجہ مرکوز کرنے کے لیے SMS سپورٹ جلد ہی ہٹا دی جائے گی۔</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">پیغامات</string>
@@ -4746,6 +4888,28 @@
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">ایک یا زائد آئٹمز بہت بڑی تھیں</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">ایک یا زائد آئٹمز غلط تھیں</string>
     <string name="MediaReviewFragment__too_many_items_selected">بہت زیادہ آئٹمز منتخب کیے گئے ہیں</string>
+    <!-- Small notification presented to the user when they set their video to view-once mode -->
+    <string name="MediaReviewFragment__video_set_to_view_once">ویڈیو صرف ایک بار ویو پر سیٹ کر دی گئی</string>
+    <!-- Small notification presented to the user when they set their photo to view-once mode -->
+    <string name="MediaReviewFragment__photo_set_to_view_once">تصویر ایک مرتبہ ویو پر سیٹ کر دی گئی</string>
+    <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
+    <string name="MediaReviewFragment__video_set_to_high_quality">ویڈیو ہائی کوالٹی پر سیٹ کر دی گئی</string>
+    <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
+    <string name="MediaReviewFragment__video_set_to_standard_quality">ویڈیو معیاری کوالٹی پر سیٹ کر دی گئی</string>
+    <!-- Small notification presented to the user when they set their still image to be sent in high visual quality. -->
+    <string name="MediaReviewFragment__photo_set_to_high_quality">تصویر ہائی کوالٹی پر سیٹ کر دی گئی</string>
+    <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
+    <string name="MediaReviewFragment__photo_set_to_standard_quality">تصویر معیاری کوالٹی پر سیٹ کر دی گئی</string>
+    <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
+    <plurals name="MediaReviewFragment__items_set_to_high_quality">
+        <item quantity="one">%1$d آئٹم ہائی کوالٹی پر سیٹ کر دی گئی</item>
+        <item quantity="other">%1$d آئٹمز ہائی کوالٹی پر سیٹ کر دی گئیں</item>
+    </plurals>
+    <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
+    <plurals name="MediaReviewFragment__items_set_to_standard_quality">
+        <item quantity="one">%1$d آئٹم معیاری کوالٹی پر سیٹ کردی گئی</item>
+        <item quantity="other">%1$d آئٹمز معیاری کوالٹی پر سیٹ کر دی گئیں</item>
+    </plurals>
 
     <string name="ImageEditorHud__cancel">منسوخ کریں</string>
     <string name="ImageEditorHud__draw">ڈرا کریں</string>
@@ -4769,6 +4933,20 @@
     <string name="MediaReviewImagePageFragment__discard">مسترد کیجئے</string>
     <string name="MediaReviewImagePageFragment__discard_changes">تبدیلیاں رد کریں؟</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">آپ اس تصویر میں کی گئی کسی بھی تبدیلی سے محروم ہو جائیں گے۔</string>
+
+    <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
+    <string name="MediaCaptureFragment_username_dialog_title">%1$s ملا ہے</string>
+    <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
+    <string name="MediaCaptureFragment_username_dialog_body">\"%1$s\" کے ساتھ چیٹ شروع کریں</string>
+    <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
+    <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">چیٹ پر جائیں</string>
+
+    <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+    <string name="MediaCaptureFragment_device_link_dialog_title">ڈیوائس مربوط کریں؟</string>
+    <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+    <string name="MediaCaptureFragment_device_link_dialog_body">ایسا لگتا ہے کہ آپ Signal ڈیوائس مربوط کرنے کی کوشش کر رہے ہیں۔ جاری رکھیں پر ٹیپ کریں اور اسے مربوط کرنے کے لیے کوڈ دوبارہ اسکین کریں۔</string>
+    <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
+    <string name="MediaCaptureFragment_device_link_dialog_continue">جاری رکھیں</string>
 
 
     <string name="BadgesOverviewFragment__my_badges">میرے بیجز</string>
@@ -4868,7 +5046,7 @@
     <!-- Displayed as a subtitle on a row in the Manage Donations screen when payment for a donation is pending -->
     <string name="MySupportPreference__payment_pending">پیمنٹ زیر التواء ہے</string>
     <!-- Displayed as a dialog message when clicking on a donation row that is pending. Placeholder is a formatted fiat amount -->
-    <string name="MySupportPreference__your_bank_transfer_of_s">آپ کا %1$s کا بینک ٹرانسفر زیر التواء ہے۔ بینک ٹرانسفرز کو مکمل ہونے میں عموماً 1 کاروباری دن لگتا ہے۔  </string>
+    <string name="MySupportPreference__your_bank_transfer_of_s">آپ کی %1$s کی بینک ٹرانسفر زیر التواء ہے۔ بینک ٹرانسفرز کو مکمل ہونے میں 1 سے 14 کاروباری ایام لگ سکتے ہیں۔  </string>
     <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
     <string name="MySupportPreference__learn_more">مزید جانیں</string>
 
@@ -5034,7 +5212,7 @@
     <!-- Title of create notification profile screen -->
     <string name="EditNotificationProfileFragment__name_your_profile">اپنی پروفائل کو نام دیں</string>
     <!-- Hint text for create/edit notification profile name -->
-    <string name="EditNotificationProfileFragment__profile_name">پروفائل کا نام</string>
+    <string name="EditNotificationProfileFragment__profile_name">پروفائل نیم</string>
     <!-- Name has a max length, this shows how many characters are used out of the max -->
     <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
     <!-- Call to action button to continue to the next step -->
@@ -5066,6 +5244,12 @@
     <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">اس پروفائل کے آن ہونے پر ان افراد اور گروپس کو شامل کریں جن سے آپ اطلاعات اور کالز وصول کرنا چاہتے ہیں</string>
     <!-- Button text that launches the contact picker to select from -->
     <string name="AddAllowedMembers__add_people_or_groups">افراد یا گروپس شامل کریں</string>
+    <!-- Title for exceptions section of add people to notification profile screen in create flow -->
+    <string name="AddAllowedMembers__exceptions">استثنات</string>
+    <!-- List preference to toggle that allows calls through the notification profile during create flow -->
+    <string name="AddAllowedMembers__allow_all_calls">تمام کالز کو اجازت دیں</string>
+    <!-- List preference to toggle that allows mentions through the notification profile during create flow -->
+    <string name="AddAllowedMembers__notify_for_all_mentions">تمام مینشنز کے لیے اطلاع دیں</string>
 
     <!-- Call to action button on contact picker for adding to profile -->
     <string name="SelectRecipientsFragment__add">شامل کریں</string>
@@ -5349,7 +5533,7 @@
     <string name="MyStorySettingsFragment__who_can_view_this_story">کون یہ سٹوری دیکھ سکتا ہے</string>
     <!-- Clickable option for selecting people to hide your story from -->
     <!-- Privacy setting title for sending stories to all your signal connections -->
-    <string name="MyStorySettingsFragment__all_signal_connections">تمام Signal کنکشنز</string>
+    <string name="MyStorySettingsFragment__all_signal_connections">تمام Signal کنیکشنز</string>
     <!-- Privacy setting description for sending stories to all your signal connections -->
     <!-- Privacy setting title for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__all_except">تمام ماسوائے…</string>
@@ -5378,9 +5562,9 @@
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">جو لوگ آپ کی سٹوری دیکھ سکتے ہیں انہیں اس پر ری ایکٹ کرنے اور جواب دینے کی اجازت دیں</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
-    <string name="SignalConnectionsBottomSheet___signal_connections">Signal کنکشنز</string>
+    <string name="SignalConnectionsBottomSheet___signal_connections">Signal کنیکشنز</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
-    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal کنکشنز وہ لوگ ہیں جن پر اعتماد کرنے کا آپ نے انتخاب کیا ہے، یا تو بذریعہ:</string>
+    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal کنیکشنز وہ لوگ ہیں جن پر اعتماد کرنے کا آپ نے انتخاب کیا ہے، یا تو بذریعہ:</string>
     <!-- Signal connections sheet bullet point 1 -->
     <string name="SignalConnectionsBottomSheet__starting_a_conversation">چیٹ شروع ہو رہی ہے</string>
     <!-- Signal connections sheet bullet point 2 -->
@@ -5680,8 +5864,8 @@
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">تمام کنکشنز کا جائزہ لیا گیا ہے، جاری رکھنے کے لیے بھیجیں پر ٹیپ کریں۔</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
     <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
-        <item quantity="one">آپ کے %1$d کنیکشن نے ہو سکتا ہے Signal کو دوبارہ انسٹال یا ڈیوائسز کو تبدیل کیا ہو۔ اپنی سٹوری ان کے ساتھ شیئر کرنے سے پہلے ان کے حفاظتی نمبرز کا جائزہ لیں یا ان کو اپنی سٹوری سے ہٹانے پر غور کریں۔</item>
-        <item quantity="other">آپ کے %1$d کنیکشنز نے ہو سکتا ہے Signal کو دوبارہ انسٹال یا ڈیوائسز کو تبدیل کیا ہو۔ اپنی سٹوری ان کے ساتھ شیئر کرنے سے پہلے ان کے حفاظتی نمبرز کا جائزہ لیں یا ان کو اپنی سٹوری سے ہٹانے پر غور کریں۔</item>
+        <item quantity="one">ہو سکتا ہے کہ %1$d کنکشن نے Signal دوبارہ انسٹال کی ہو یا ڈیوائسز تبدیل کی ہوں۔ آپ ان کے حفاظتی نمبر کا جائزہ لے سکتے ہیں یا ارسال کرنے کو جاری رکھ سکتے ہیں۔</item>
+        <item quantity="other">ہو سکتا ہے کہ %1$d کنکشنز نے Signal دوبارہ انسٹال کی ہو یا ڈیوائسز تبدیل کی ہوں۔ آپ ان کے حفاظتی نمبرز کا جائزہ لے سکتے ہیں یا ارسال کرنے کو جاری رکھ سکتے ہیں۔</item>
     </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">حفاظتی نمبر کی تصدیق کریں</string>
@@ -5714,7 +5898,7 @@
     <!-- Subtitle of initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">ان کا انتخاب کریں جو میری سٹوری پر پوسٹس دیکھ سکتے ہیں۔ آپ سیٹنگز میں ہمیشہ تبدیلیاں کر سکتے ہیں۔</string>
     <!-- All connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">تمام Signal کنکشنز</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">تمام Signal کنیکشنز</string>
     <!-- All connections except option for initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__all_except">تمام ماسوائے…</string>
     <!-- Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
@@ -5770,48 +5954,6 @@
     <!-- Generic title for overflow menus -->
     <string name="OverflowMenu__overflow_menu">اوور فلو مینو</string>
 
-    <!-- SMS Export Service -->
-    <!-- Displayed in the notification while export is running -->
-    <string name="SignalSmsExportService__exporting_messages">میسجز برآمد ہو رہے ہیں…</string>
-    <!-- Displayed in the notification title when export completes -->
-    <string name="SignalSmsExportService__signal_sms_export_complete">Signal SMS منتقلی مکمل ہو گئی ہے</string>
-    <!-- Displayed in the notification message when export completes -->
-    <string name="SignalSmsExportService__tap_to_return_to_signal">Signal پر واپس جانے کے لیے ٹیپ کریں</string>
-
-    <!-- ExportYourSmsMessagesFragment -->
-    <!-- Title of the screen -->
-    <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">اپنے SMS میسجز برآمد کریں</string>
-    <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">آپ اپنے فون کے SMS ڈیٹا بیس پر اپنے SMS میسجز برآمد کر سکتے ہیں اور آپ کے پاس انہیں Signal پر رکھنے یا ہٹانے کا آپشن ہو گا۔ یہ چیز آپ کے فون پر دیگر SMS ایپس کو انہیں درآمد کرنے کی اجازت دیتی ہے۔ یہ چیز آپ کی SMS ہسٹری کی قابل شیئر فائل تخلیق نہیں کرتی۔</string>
-    <!-- Button label to begin export -->
-    <string name="ExportYourSmsMessagesFragment__continue">جاری رکھیں</string>
-
-    <!-- ExportingSmsMessagesFragment -->
-    <!-- Title of the screen -->
-    <string name="ExportingSmsMessagesFragment__exporting_sms_messages">SMS میسجز برآمد ہو رہے ہیں</string>
-    <!-- Message of the screen when exporting sms messages -->
-    <string name="ExportingSmsMessagesFragment__this_may_take_awhile">اس میں کچھ دیر لگ سکتی ہے</string>
-    <!-- Progress indicator for export -->
-    <plurals name="ExportingSmsMessagesFragment__exporting_d_of_d">
-        <item quantity="one">%2$d کے %1$d منتقل ہو رہے ہیں…</item>
-        <item quantity="other">%2$d کے %1$d منتقل ہو رہے ہیں…</item>
-    </plurals>
-    <!-- Alert dialog title shown when we think a user may not have enough local storage available to export sms messages -->
-    <string name="ExportingSmsMessagesFragment__you_may_not_have_enough_disk_space">آپ کی ڈسک اسپیس ناکافی ہو سکتی ہے</string>
-    <!-- Alert dialog message shown when we think a user may not have enough local storage available to export sms messages, placeholder is the file size, e.g., 128kB -->
-    <string name="ExportingSmsMessagesFragment__you_need_approximately_s_to_export_your_messages_ensure_you_have_enough_space_before_continuing">آپ کو اپنے میسجز برآمد کرنے کے لیے تقریباً %1$s درکار ہوں گے، جاری رکھنے سے پہلے یقینی بنائیں کہ آپ کے پاس مناسب اسپیس موجود ہے۔</string>
-    <!-- Alert dialog button to continue with exporting sms after seeing the lack of storage warning -->
-    <string name="ExportingSmsMessagesFragment__continue_anyway">بہر صورت جاری رکھیں</string>
-    <!-- Dialog text shown when Signal isn\'t granted the sms permission needed to export messages, different than being selected as the sms app -->
-    <string name="ExportingSmsMessagesFragment__signal_needs_the_sms_permission_to_be_able_to_export_your_sms_messages">Signal کو آپ کے SMS میسجز برآمد کرنے کے لیے SMS اجازت کی ضرورت ہوتی ہے۔</string>
-
-    <!-- ChooseANewDefaultSmsAppFragment -->
-    <!-- Title of the screen -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_a_new">نئی ڈیفالٹ SMS ایپ منتخب کریں</string>
-    <!-- Button label to launch picker -->
-    <string name="ChooseANewDefaultSmsAppFragment__continue">جاری رکھیں</string>
-    <!-- Button label for when done with changing default SMS app -->
-    <string name="ChooseANewDefaultSmsAppFragment__done">ہو گیا</string>
     <!-- First step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_1">1</string>
     <!-- Second step number/bullet for choose new default sms app instructions -->
@@ -5820,47 +5962,6 @@
     <string name="ChooseANewDefaultSmsAppFragment__bullet_3">3</string>
     <!-- Fourth step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_4">4</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">سیٹنگز میں \"ڈیفالٹ ایپس\" اسکرین کھولنے کے لیے \"جاری رکھیں\" پر ٹیپ کریں</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">فہرست میں سے \"SMS ایپ\" منتخب کریں</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">SMS میسجنگ کے استعمال کے لیے کوئی دوسری ایپ منتخب کریں</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Signal پر واپس آئیں</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">اپنے فون کی سیٹنگز ایپ کھولیں</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">\"ایپس\" &gt; \"ڈیفالٹ ایپس\" &gt; \"SMS ایپ\" پر نیویگیٹ کریں</string>
-
-    <!-- RemoveSmsMessagesDialogFragment -->
-    <!-- Action button to keep messages -->
-    <string name="RemoveSmsMessagesDialogFragment__keep_messages">میسجز رکھیں</string>
-    <!-- Action button to remove messages -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_messages">میسجز ہٹائیں</string>
-    <!-- Title of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Signal سے SMS میسجز ہٹائیں؟</string>
-    <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">اب آپ اسٹوریج اسپیس صاف کرنے کے لیے Signal سے SMS میسجز ہٹا سکتے ہیں۔ یہ آپ کے فون پر دیگر SMS ایپس پر پھر بھی دستیاب ہو ں گے خواہ آپ انہیں ہٹا دیں۔</string>
-
-    <!-- ReExportSmsMessagesDialogFragment -->
-    <!-- Action button to re-export messages -->
-    <string name="ReExportSmsMessagesDialogFragment__continue">جاری رکھیں</string>
-    <!-- Action button to cancel re-export process -->
-    <string name="ReExportSmsMessagesDialogFragment__cancel">منسوخ کریں</string>
-    <!-- Title of dialog -->
-    <string name="ReExportSmsMessagesDialogFragment__export_sms_again">SMS دوبارہ برآمد کریں؟</string>
-    <!-- Message of dialog -->
-    <string name="ReExportSmsMessagesDialogFragment__you_already_exported_your_sms_messages">آپ اپنے SMS پیغامات پہلے ہی برآمد کر چکے ہیں۔\nانتباہ: اگر آپ جاری رکھتے ہیں، تو اس کا نتیجہ دوہرے پیغامات کی صورت میں نکلتا ہے۔</string>
-
-    <!-- SetSignalAsDefaultSmsAppFragment -->
-    <!-- Title of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Signal کو ڈیفالٹ SMS ایپ کے طور پر سیٹ کریں</string>
-    <!-- Message of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">اپنے SMS میسجر برآمد کرنے کے لیے، آپ کو Signal کو ڈیفالٹ SMS ایپ کے طور پر سیٹ کرنے کی ضرورت ہوتی ہے۔</string>
-    <!-- Button label to start export -->
-    <string name="SetSignalAsDefaultSmsAppFragment__next">اگلا</string>
-
     <!-- BackupSchedulePermission Megaphone -->
     <!-- The title on an alert window that explains to the user that we are unable to backup their messages -->
     <string name="BackupSchedulePermissionMegaphone__cant_back_up_chats">چیٹس کا بیک اپ نہیں کیا جا سکتا</string>
@@ -5879,45 +5980,6 @@
     <!-- Re-enable backups permission bottom sheet call to action button to open settings -->
     <string name="BackupSchedulePermissionMegaphone__go_to_settings">سیٹنگز پر جائیں</string>
 
-    <!-- SmsExportMegaphoneActivity -->
-    <!-- Phase 2 title of full screen megaphone indicating sms will no longer be supported in the near future -->
-    <string name="SmsExportMegaphoneActivity__signal_will_no_longer_support_sms">Signal SMS کو مزید سپورٹ نہیں کرے گا</string>
-    <!-- Phase 3 title of full screen megaphone indicating sms is longer supported  -->
-    <string name="SmsExportMegaphoneActivity__signal_no_longer_supports_sms">Signal SMS کی مزید سپورٹ نہیں کرتا</string>
-    <!-- The text on a button in a popup that, when clicked, will dismiss the popup and schedule the prompt to occur at a later time. -->
-    <string name="SmsExportMegaphoneActivity__remind_me_later">مجھے بعد میں یاد کروانا</string>
-    <!-- The text on a button in a popup that, when clicked, will navigate the user to a web article on SMS removal -->
-
-    <!-- Title for screen shown after sms export has completed -->
-    <string name="ExportSmsCompleteFragment__export_complete">منتقلی مکمل ہو گئی</string>
-    <!-- Button to continue to next screen -->
-    <string name="ExportSmsCompleteFragment__next">اگلا</string>
-    <!-- Message showing summary of sms export counts -->
-    <plurals name="ExportSmsCompleteFragment__d_of_d_messages_exported">
-        <item quantity="one">%2$d کے %1$d میسجز منتقل ہوئے ہیں</item>
-        <item quantity="other">%2$d کے %1$d میسجز منتقلی ہوئے ہیں</item>
-    </plurals>
-
-    <!-- Title of screen shown when some sms messages did not export -->
-    <string name="ExportSmsPartiallyComplete__export_partially_complete">برآمد جزوی طور پر مکمل ہو گئی</string>
-    <!-- Debug step 1 on screen shown when some sms messages did not export -->
-    <string name="ExportSmsPartiallyComplete__ensure_you_have_an_additional_s_free_on_your_phone_to_export_your_messages">اپنے میسجز برآمد کرنے کے لیے یقینی بنائیں کہ آپ کے فون میں اضافی %1$s جگہ خالی ہے</string>
-    <!-- Debug step 2 on screen shown when some sms messages dit not export -->
-    <string name="ExportSmsPartiallyComplete__retry_export_which_will_only_retry_messages_that_have_not_yet_been_exported">برآمد کرنے کی دوبارہ کوشش کریں، جو صرف ان میسجز کے لیے دوبارہ کوشش کرے گی جو ابھی تک برآمد نہیں ہوئے</string>
-    <!-- Partial sentence for Debug step 3 on screen shown when some sms messages did not export, is combined with \'contact us\' -->
-    <string name="ExportSmsPartiallyComplete__if_the_problem_persists">اگر مسئلہ برقرار رہتا ہے، </string>
-    <!-- Partial sentence for deubg step 3 on screen shown when some sms messages did not export, combined with \'If the problem persists\', link text to open contact support view -->
-    <string name="ExportSmsPartiallyComplete__contact_us">ہم سے رابطہ کریں</string>
-    <!-- Button text to retry sms export -->
-    <string name="ExportSmsPartiallyComplete__retry">دوبارہ کوشش کریں</string>
-    <!-- Button text to continue sms export flow and not retry failed message exports -->
-    <string name="ExportSmsPartiallyComplete__continue_anyway">بہر صورت جاری رکھیں</string>
-    <!-- Title of screen shown when all sms messages failed to export -->
-    <string name="ExportSmsFullError__error_exporting_sms_messages">SMS میسجز برآمد کرنے میں نقص پیش آیا ہے</string>
-    <!-- Helper text shown when all sms messages failed to export -->
-    <string name="ExportSmsFullError__please_try_again_if_the_problem_persists">دوبارہ کوشش کریں۔ اگر مسئلہ برقرار رہتا ہے، </string>
-
-
     <!-- DonateToSignalFragment -->
     <!-- Title below avatar -->
     <string name="DonateToSignalFragment__privacy_over_profit">پیسہ نہیں پرائیویسی</string>
@@ -5928,9 +5990,9 @@
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
     <string name="DonateToSignalFragment__you_have_a_donation_pending">آپ کا ایک عطیہ زیر التوا ہے</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">بینک ٹرانسفرز کو زیر عمل لانے میں عموماً 1 کاروباری دن لگتا ہے۔ براہ کرم اپنی سبسکرپشن اپ ڈیٹ کرنے سے پہلے اس پیمنٹ کے مکمل ہونے کا انتظار کریں۔</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">بینک ٹرانسفرز کو زیر عمل لانے میں 1 سے 14 کاروباری ایام لگ سکتے ہیں۔ براہ کرم اپنی سبسکرپشن اپ ڈیٹ کرنے سے پہلے اس پیمنٹ کے مکمل ہونے کا انتظار کریں۔</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">بینک ٹرانسفرز کو زیر عمل لانے میں عموماً 1 کاروباری دن لگتا ہے۔ براہ کرم ایک اور عطیہ دینے سے پہلے اس پیمنٹ کے مکمل ہونے کا انتظار کریں۔</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">بینک ٹرانسفرز کو زیر عمل لانے میں 1 سے 14 کاروباری ایام لگ سکتے ہیں۔ براہ کرم ایک اور عطیہ دینے سے پہلے اس پیمنٹ کے مکمل ہونے کا انتظار کریں۔</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
     <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">آپ کا عطیہ اب بھی زیر عمل ہے۔ اس پر چند منٹ لگ سکتے ہیں جس کا انحصار آپ کے کنکشن پر ہے۔ براہ کرم اپنی سبسکرپشن اپ ڈیٹ کرنے سے پہلے اس پیمنٹ کے مکمل ہونے کا انتظار کریں۔</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
@@ -6059,6 +6121,12 @@
     <string name="IdealTransferDetailsFragment__email">ای میل</string>
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">اپنا بینک منتخب کریں</string>
+    <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">%1$s کے ساتھ اپنے عطیہ کی تصدیق کریں</string>
+    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
+    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">اپنے مکرر عطیے کو سیٹ اپ کرنے کے لیے اپنے بینک سے €0,01 چارج کی تصدیق کرنے کے لیے جاری رکھیں پر ٹیپ کریں۔ یہ خودکار طور پر ریفنڈ ہو جائے گا اور ایسا کرنا آپ کے €5/ماہانہ عطیے کو آپ کے اکاؤنٹ سے ڈیبٹ کرنے کی اجازت دیتا ہے۔</string>
+    <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
+    <string name="IdealTransferDetailsFragment__continue">جاری رکھیں</string>
 
     <!-- IdealTransferDetailsBankSelectionDialogFragment -->
     <!-- Title of the screen, displayed in the toolbar -->
@@ -6076,7 +6144,7 @@
     <!-- Top text block of donation pending sheet displayed after one-time donation via a bank transfer. Placeholder is the badge name. -->
     <string name="DonationPendingBottomSheet__your_one_time_donation_is_pending">آپ کا ایک وقتی عطیہ زیر التواء ہے۔ جب آپ کا عطیہ موصول ہو جائے گا تو آپ اپنے پروفائل پر %1$s بیج ڈسپلے کر سکیں گے۔</string>
     <!-- Bottom text block of donation pending sheet displayed after donating via a bank transfer. Placeholder is for learn more. -->
-    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">بینک ٹرانسفرز پر کارروائی کرنے میں عموماً 1 کاروباری دن لگتا ہے۔ %1$s</string>
+    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">بینک ٹرانسفرز کو زیر عمل لانے میں 1 سے 14 کاروباری ایام لگ سکتے ہیں۔ %1$s</string>
     <!-- Learn more text for donation pending sheet displayed after donating via a bank transfer. -->
     <string name="DonationPendingBottomSheet__learn_more">مزید جانیں</string>
     <!-- Confirmation button for donation pending sheet displayed after donating via a bank transfer. -->
@@ -6162,28 +6230,24 @@
     <!-- Displayed in the "clear filter" item in the chat feed if the user opened the filter from the overflow menu -->
     <string name="ChatFilter__tip_pull_down">تجویز: فلٹر کرنے کے لیے چیٹ لسٹ نیچے کی جانب کھینچیں</string>
 
-    <!-- Title for screen describing that sms support is going to be removed soon -->
-    <string name="SmsRemoval_title_going_away">SMS سپورٹ ختم ہو رہی ہے</string>
-    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
-    <string name="SmsRemoval_info_bullet_1">Signal ایپ میں SMS پیغام رسانی کی اب مزید سپورٹ نہیں کی جائے گی۔</string>
-    <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_2">SMS پیغامات Signal پیغامات سے مختلف ہو سکتے ہیں۔ <b>اس سے انکرپٹ کردہ Signal پیغام رسانی متاثر نہیں ہوتی اور وہ کام کرنا جاری رکھے گی۔</b></string>
-    <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_3">آپ اپنے SMS پیغامات کو ایکسپورٹ اور ایک نئی SMS ایپ کا انتخاب کر سکتے ہیں۔</string>
-    <!-- Bullet point message shown on describing screen as first bullet variant why sms is being removed when user is locked out of sms -->
-    <string name="SmsRemoval_info_bullet_1_phase_3">SMS پیغامات بھیجنے کے لیے Signal کی طرف سے سپورٹ کو ہٹا دیا گیا ہے۔</string>
-    <!-- Button label on sms removal info/megaphone to start the export SMS flow -->
-    <string name="SmsRemoval_export_sms">SMS ایکسپورٹ کریں</string>
-
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__set_up_your_signal_username">اپنا Signal یوزر نیم سیٹ کریں</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">یوزر نیمز کی بدولت دیگر افراد آپ کا فون نمبر جانے بغیر آپ کو میسج کر سکتے ہیں</string>
+    <string name="SetUpYourUsername__introducing_phone_number_privacy">فون نمبر پرائیویسی، اختیاری یوزر نیمز اور لنکس متعارف کروا رہے ہیں۔</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__not_now">ابھی نہیں</string>
+    <string name="SetUpYourUsername__dismiss">منسوخ کریں</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__continue">جاری رکھیں</string>
+    <string name="SetUpYourUsername__learn_more">مزید جانیں</string>
+
+    <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
+    <string name="PnpLaunchMegaphone_title">رابطہ کرنے کے نئے طریقے</string>
+    <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
+    <string name="PnpLaunchMegaphone_body">فون نمبر پرائیویسی، اختیاری یوزر نیمز اور لنکس متعارف کروا رہے ہیں۔</string>
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
+    <string name="PnpLaunchMegaphone_dismiss">منسوخ کریں</string>
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
+    <string name="PnpLaunchMegaphone_learn_more">مزید جانیں</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -6198,18 +6262,6 @@
     <string name="TextFormatting_spoiler">سپائلر</string>
     <!-- Popup menu label for clearing applied formatting -->
     <string name="TextFormatting_clear_formatting">فارمیٹنگ کلئير کریں</string>
-
-    <!-- UsernameEducationFragment -->
-    <!-- Continue button which takes the user to the add a username screen -->
-    <string name="UsernameEducationFragment__continue">جاری رکھیں</string>
-    <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">اپنا Signal یوزر نیم سیٹ کریں</string>
-    <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__usernames_are_paired_with_a_set_of_digits">یوزر نیمز کو ہندسوں کے ایک سیٹ کے ساتھ ملایا جاتا ہے اور یہ آپ کی پروفائل پر شیئر نہیں کیے جاتے</string>
-    <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">ہر یوزر نیم کا ایک منفرد QR کوڈ اور لنک ہوتا ہے جسے آپ اپنے دوستوں کے ساتھ شیئر کر سکتے ہیں تاکہ وہ آپ کے ساتھ چیٹ شروع کر سکیں</string>
-    <!-- Displayed as body text in the username education screen. The string references the names of settings, so they should match our translations for those settings. -->
-    <string name="UsernameEducationFragment__turn_off_phone_number_discovery">سیٹنگز &gt; پرائیویسی &gt; فون نمبر &gt; کون میرا نمبر تلاش کر سکتا ہے کے تحت فون نمبر کی تلاش کو آف کریں، تاکہ آپ کے یوزر نیم کو دوسروں کے آپ سے رابطہ کرنے کا بنیادی طریقہ بنایا جا سکے</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
@@ -6236,6 +6288,8 @@
     <string name="CallLogAdapter__outgoing">جانے والی</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">مسڈ</string>
+    <!-- Displayed for missed calls declined by notification profile -->
+    <string name="CallLogAdapter__missed_notification_profile">اطلاعات کی پروفائل آن ہونے کے دوران مس ہوئیں</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">شامل ہوں</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -6343,6 +6397,8 @@
     <string name="CallPreference__group_call">گروپ کال</string>
     <!-- Missed group call in call info -->
     <string name="CallPreference__missed_group_call">مس کردہ گروپ کال</string>
+    <!-- Missed group call while notification profile on in call info -->
+    <string name="CallPreference__missed_group_call_notification_profile">اطلاعات کی پروفائل آن ہونے کے دوران مسڈ گروپ کال</string>
     <!-- Incoming group call in call info -->
     <string name="CallPreference__incoming_group_call">آنے والی گروپ کال</string>
     <!-- Outgoing group call in call info -->
@@ -6429,6 +6485,8 @@
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
     <string name="CallLinkDetailsFragment__call_details">کال کی تفصیلات</string>
+    <!-- Displayed in a text row, allowing the user to click and edit a call name -->
+    <string name="CallLinkDetailsFragment__edit_call_name">کال نیم میں ترمیم کریں</string>
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
     <string name="CallLinkDetailsFragment__add_call_name">کال نیم شامل کریں</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
@@ -6444,6 +6502,8 @@
     <!-- Displayed as body in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">یہ لنک اب مزید ان لوگوں کے لیے کام نہیں کرے گا جن کے پاس یہ موجود ہے۔</string>
 
+    <!-- Button label for the link button in the username link settings -->
+    <string name="UsernameLinkSettings_link_button_label">لنک</string>
     <!-- Button label for the share button in the username link settings -->
     <string name="UsernameLinkSettings_share_button_label">اشتراک کریں</string>
     <!-- Button label for the color selector button in the username link settings -->
@@ -6451,7 +6511,7 @@
     <!-- Description text for QR code and links in the username link settings -->
     <string name="UsernameLinkSettings_qr_description">اپنا QR کوڈ صرف ان لوگوں کے ساتھ شیئر کریں جن پر آپ اعتماد کرتے ہیں۔ شیئر کیے جانے پر دوسرے افراد آپ کا یوزر نیم دیکھ سکیں گے اور آپ کے ساتھ چیٹ شروع کر سکیں گے۔</string>
     <!-- Content of a toast that will show after the username is copied to the clipboard -->
-    <string name="UsernameLinkSettings_username_copied_toast">صارفی نام کاپی کیا گیا</string>
+    <string name="UsernameLinkSettings_username_copied_toast">یوزر نیم کاپی کیا گیا</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">لنک کاپی کر لیا</string>
     <!-- Content of a text field that is shown when the user has not yet set a username link -->
@@ -6488,6 +6548,16 @@
     <string name="UsernameLinkSettings_reset_link_result_network_unavailable">آپ کو نیٹ ورک کی رسائی حاصل نہیں ہے۔ آپ کا لنک ری سیٹ نہیں کیا گیا۔ بعد میں دوبارہ کوشش کریں۔</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">آپ کا لنک ری سیٹ کرتے ہوئے ایک نیٹ ورک نقص پیش آ گیا۔ بعد میں دوبارہ کوشش کریں۔</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">آپ کا لنک ری سیٹ کرتے ہوئے ایک غیر متوقع نقص پیش آیا۔ بعد میں دوبارہ کوشش کریں۔</string>
+    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
+    <string name="UsernameLinkSettings_reset_link_result_success">آپ کا QR کوڈ اور لنک ری سیٹ کر دیا گیا ہے اور ایک نیا QR کوڈ اور لنک بنایا گیا ہے۔</string>
+    <!-- Shown on the generated username qr code image to explain how to use it. -->
+    <string name="UsernameLinkSettings_scan_this_qr_code">میرے ساتھ Signal پر چیٹ کرنے کے لیے اس QR کوڈ کو اپنے فون سے اسکین کریں۔</string>
+    <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_qr_code_not_found">QR نہیں ملا</string>
+    <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Signal QR کوڈ پر مشتمل دوسرا نقش اسکین کرنے کی کوشش کریں۔</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
     <string name="UsernameLinkShareBottomSheet_title">اس لنک کے ساتھ کوئی بھی شخص آپ کا یوزر نیم دیکھ سکتا ہے اور آپ کے ساتھ چیٹ کا آغاز کر سکتا ہے۔ اسے محض ان لوگوں کے ساتھ شیئر کریں جو آپ کے نزدیک قابلِ اعتماد ہیں۔</string>
@@ -6524,6 +6594,8 @@
     <string name="GrantFullScreenIntentPermission_megaphone_body">اپنے رابطوں اور گروپس کی کال سے کبھی بھی محروم نہ ہوں۔</string>
     <!-- Button on the megaphone megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls that starts the fix process -->
     <string name="GrantFullScreenIntentPermission_megaphone_turn_on">آن کریں</string>
+    <!-- Button on the megaphone shown at the bottom of the chatlist when a user has disabled the system setting for showing full screen notifications used showing incoming calls that dismisses the megaphone -->
+    <string name="GrantFullScreenIntentPermission_megaphone_not_now">ابھی نہیں</string>
     <!-- Title of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
     <string name="GrantFullScreenIntentPermission_bottomsheet_title">پوری اسکرین کی اطلاعات کو آن کریں</string>
     <!-- Subtitle of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
@@ -6541,6 +6613,46 @@
     <string name="MonthlyDonationCanceled__renew_button">سبسکرپشن کی تجدید کریں</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, second button to dismiss the dialog entirely -->
     <string name="MonthlyDonationCanceled__not_now_button">ابھی نہیں</string>
+
+    <!-- FindByActivity -->
+    <!-- Title of activity when finding by username -->
+    <string name="FindByActivity__find_by_username">یوزر نیم سے تلاش کریں</string>
+    <!-- Title of activity when finding by phone number -->
+    <string name="FindByActivity__find_by_phone_number">فون نمبر سے تلاش کریں</string>
+    <!-- Title of screen to select a country code -->
+    <string name="FindByActivity__select_country_code">ملک کے کوڈ کا انتخاب کریں</string>
+    <!-- Entry placeholder for find by username -->
+    <string name="FindByActivity__username">یوزر نیم</string>
+    <!-- Entry placeholder for find by phone number -->
+    <string name="FindByActivity__phone_number">فون نمبر</string>
+    <!-- Help text under user entry for find by username -->
+    <string name="FindByActivity__enter_username_description">کوئی یوزر نیم درج کریں جس کے بعد نقطہ اور اس کے نمبرز کا سیٹ ہو۔</string>
+    <!-- Content description for next action button -->
+    <string name="FindByActivity__next">اگلا</string>
+    <!-- Placeholder text for search input for selecting country code -->
+    <string name="FindByActivity__search">تلا ‎ش کر یں</string>
+    <!-- Dialog title for invalid username -->
+    <string name="FindByActivity__invalid_username">یوزر نیم غلط ہے</string>
+    <!-- Dialog title for invalid phone number -->
+    <string name="FindByActivity__invalid_phone_number">غلط فون نمبر</string>
+    <!-- Dialog title when phone number is not a registered signal user -->
+    <string name="FindByActivity__invite_to_signal">Signal میں مدعو کریں</string>
+    <!-- Dialog title when username is not found -->
+    <string name="FindByActivity__username_not_found">یوزر نیم نہیں ملا</string>
+    <!-- Dialog body for invalid username. Placeholder is the entered username. -->
+    <string name="FindByActivity__s_is_not_a_valid_username">%1$s درست یوزر نیم نہیں ہے۔ یقینی بنائیں کہ آپ نے پورا یوزر نیم اور اس کے بعد اس کے ہندسوں کا سیٹ درج کیا ہے۔</string>
+    <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
+    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s درست فون نمبر نہیں ہے۔ درست فون نمبر کے ساتھ دوبارہ کوشش کریں</string>
+    <!-- Dialog body for not found username -->
+    <string name="FindByActivity__s_is_not_a_signal_user">\"%1$s\" Signal یوزر نہیں ہے۔ براہ کرم یوزر نیم چیک کریں اور دوبارہ کوشش کریں۔</string>
+    <!-- Dialog body for not found phone number -->
+    <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s Signal یوزر نہیں ہے۔ کیا آپ اس نمبر کو مدعو کرنا چاہیں گے؟</string>
+    <!-- Dialog action to invite the phone number to Signal -->
+    <string name="FindByActivity__invite">مدعو کریں</string>
+    <!-- Button label for a button that will launch a camera to scan a username QR code -->
+    <string name="FindByActivity__qr_scan_button">QR کوڈ سکین کریں</string>
+    <!-- Content of a dialog indicating that we could not perform the requested action because we encountered a network error. -->
+    <string name="FindByActivity__network_error_dialog">نیٹ ورک کی خرابی کا سامنا کرنا پڑا۔ بعد میں دوبارہ کوشش کریں۔</string>
 
     <!-- EOF -->
 </resources>

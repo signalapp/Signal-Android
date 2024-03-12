@@ -49,6 +49,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.navGraphViewModels
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.Scaffolds
 import org.signal.core.ui.Texts
@@ -156,13 +157,30 @@ class IdealTransferDetailsFragment : ComposeFragment(), DonationCheckoutDelegate
   }
 
   private fun onDonateClick() {
-    stripePaymentViewModel.provideIDEALData(viewModel.state.value.asIDEALData())
-    findNavController().safeNavigate(
-      IdealTransferDetailsFragmentDirections.actionBankTransferDetailsFragmentToStripePaymentInProgressFragment(
-        DonationProcessorAction.PROCESS_NEW_DONATION,
-        args.request
+    val state = viewModel.state.value
+
+    val continueTransfer = {
+      stripePaymentViewModel.provideIDEALData(state.asIDEALData())
+      findNavController().safeNavigate(
+        IdealTransferDetailsFragmentDirections.actionBankTransferDetailsFragmentToStripePaymentInProgressFragment(
+          DonationProcessorAction.PROCESS_NEW_DONATION,
+          args.request
+        )
       )
-    )
+    }
+
+    if (args.request.donateToSignalType == DonateToSignalType.MONTHLY) {
+      MaterialAlertDialogBuilder(requireContext())
+        .setTitle(getString(R.string.IdealTransferDetailsFragment__confirm_your_donation_with_s, getString(state.idealBank!!.getUIValues().name)))
+        .setMessage(R.string.IdealTransferDetailsFragment__monthly_ideal_warning)
+        .setPositiveButton(R.string.IdealTransferDetailsFragment__continue) { _, _ ->
+          continueTransfer()
+        }
+        .setNegativeButton(android.R.string.cancel, null)
+        .show()
+    } else {
+      continueTransfer()
+    }
   }
 
   override fun onUserLaunchedAnExternalApplication() {

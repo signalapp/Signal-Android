@@ -17,6 +17,7 @@ import androidx.annotation.StringRes;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 
 import org.thoughtcrime.securesms.R;
@@ -24,7 +25,8 @@ import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.thoughtcrime.securesms.database.model.StickerPackRecord;
 import org.thoughtcrime.securesms.glide.cache.ApngOptions;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
-import org.thoughtcrime.securesms.mms.GlideRequests;
+import org.thoughtcrime.securesms.util.DrawableUtil;
+import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.adapter.SectionedRecyclerViewAdapter;
 import org.thoughtcrime.securesms.util.adapter.StableIdGenerator;
 
@@ -38,7 +40,7 @@ final class StickerManagementAdapter extends SectionedRecyclerViewAdapter<String
   private static final String TAG_MESSAGE_STICKERS = "MessageStickers";
   private static final String TAG_BLESSED_STICKERS = "BlessedStickers";
 
-  private final GlideRequests  glideRequests;
+  private final RequestManager requestManager;
   private final EventListener  eventListener;
   private final boolean        allowApngAnimation;
 
@@ -58,8 +60,8 @@ final class StickerManagementAdapter extends SectionedRecyclerViewAdapter<String
     add(messageStickers);
   }};
 
-  StickerManagementAdapter(@NonNull GlideRequests glideRequests, @NonNull EventListener eventListener, boolean allowApngAnimation) {
-    this.glideRequests      = glideRequests;
+  StickerManagementAdapter(@NonNull RequestManager requestManager, @NonNull EventListener eventListener, boolean allowApngAnimation) {
+    this.requestManager     = requestManager;
     this.eventListener      = eventListener;
     this.allowApngAnimation = allowApngAnimation;
   }
@@ -86,7 +88,7 @@ final class StickerManagementAdapter extends SectionedRecyclerViewAdapter<String
 
   @Override
   public void bindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, @NonNull StickerSection section, int localPosition) {
-    section.bindViewHolder(viewHolder, localPosition, glideRequests, eventListener, allowApngAnimation);
+    section.bindViewHolder(viewHolder, localPosition, requestManager, eventListener, allowApngAnimation);
   }
 
   @Override
@@ -201,7 +203,7 @@ final class StickerManagementAdapter extends SectionedRecyclerViewAdapter<String
 
     void bindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder,
                         int localPosition,
-                        @NonNull GlideRequests glideRequests,
+                        @NonNull RequestManager requestManager,
                         @NonNull EventListener eventListener,
                         boolean allowApngAnimation)
     {
@@ -210,7 +212,7 @@ final class StickerManagementAdapter extends SectionedRecyclerViewAdapter<String
       } else if (records.isEmpty()) {
         ((EmptyViewHolder) viewHolder).bind(emptyResId);
       } else {
-        ((StickerViewHolder) viewHolder).bind(glideRequests, eventListener, records.get(localPosition - 1), localPosition == records.size(), allowApngAnimation);
+        ((StickerViewHolder) viewHolder).bind(requestManager, eventListener, records.get(localPosition - 1), localPosition == records.size(), allowApngAnimation);
       }
     }
 
@@ -256,7 +258,7 @@ final class StickerManagementAdapter extends SectionedRecyclerViewAdapter<String
       this.blessedBadge      = buildBlessedBadge(itemView.getContext());
     }
 
-    void bind(@NonNull GlideRequests glideRequests,
+    void bind(@NonNull RequestManager requestManager,
               @NonNull EventListener eventListener,
               @NonNull StickerPackRecord stickerPack,
               boolean lastInList,
@@ -271,7 +273,7 @@ final class StickerManagementAdapter extends SectionedRecyclerViewAdapter<String
       author.setText(stickerPack.getAuthor().orElse(itemView.getResources().getString(R.string.StickerManagementAdapter_unknown)));
       divider.setVisibility(lastInList ? View.GONE : View.VISIBLE);
 
-      glideRequests.load(new DecryptableUri(stickerPack.getCover().getUri()))
+      requestManager.load(new DecryptableUri(stickerPack.getCover().getUri()))
                    .transition(DrawableTransitionOptions.withCrossFade())
                    .fitCenter()
                    .set(ApngOptions.ANIMATE, allowApngAnimation)
@@ -285,7 +287,7 @@ final class StickerManagementAdapter extends SectionedRecyclerViewAdapter<String
         shareButtonImage.setVisibility(View.VISIBLE);
         shareButton.setOnClickListener(v -> eventListener.onStickerPackShareClicked(stickerPack.getPackId(), stickerPack.getPackKey()));
       } else {
-        actionButtonImage.setImageResource(R.drawable.ic_arrow_down);
+        actionButtonImage.setImageResource(R.drawable.symbol_arrow_down_24);
         actionButton.setOnClickListener(v -> eventListener.onStickerPackInstallClicked(stickerPack.getPackId(), stickerPack.getPackKey()));
 
         shareButton.setVisibility(View.GONE);
@@ -304,10 +306,10 @@ final class StickerManagementAdapter extends SectionedRecyclerViewAdapter<String
 
     private static @NonNull CharSequence buildBlessedBadge(@NonNull Context context) {
       SpannableString badgeSpan = new SpannableString("  ");
-      Drawable        badge     = ContextCompat.getDrawable(context, R.drawable.ic_check_circle_white_18dp);
+      Drawable        badge     = ContextCompat.getDrawable(context, R.drawable.symbol_check_circle_fill_24);
 
-      badge.setBounds(0, 0, badge.getIntrinsicWidth(), badge.getIntrinsicHeight());
-      badge.setColorFilter(ContextCompat.getColor(context, R.color.core_ultramarine), PorterDuff.Mode.MULTIPLY);
+      badge.setBounds(0, 0, ViewUtil.dpToPx(18), ViewUtil.dpToPx(18));
+      DrawableUtil.tint(badge, ContextCompat.getColor(context, R.color.core_ultramarine));
       badgeSpan.setSpan(new ImageSpan(badge), 1, badgeSpan.length(), 0);
 
       return badgeSpan;

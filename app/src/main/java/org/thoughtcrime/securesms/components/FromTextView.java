@@ -1,28 +1,23 @@
 package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.text.SpannableStringBuilder;
 import android.util.AttributeSet;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
-import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.SimpleEmojiTextView;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.ContextUtil;
+import org.thoughtcrime.securesms.util.DrawableUtil;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
-import java.util.Objects;
-
 public class FromTextView extends SimpleEmojiTextView {
-
-  private static final String TAG = Log.tag(FromTextView.class);
 
   public FromTextView(Context context) {
     super(context);
@@ -33,22 +28,18 @@ public class FromTextView extends SimpleEmojiTextView {
   }
 
   public void setText(Recipient recipient) {
-    setText(recipient, true);
+    setText(recipient, null);
   }
 
-  public void setText(Recipient recipient, boolean read) {
-    setText(recipient, read, null);
+  public void setText(Recipient recipient, @Nullable CharSequence suffix) {
+    setText(recipient, recipient.getDisplayName(getContext()), suffix);
   }
 
-  public void setText(Recipient recipient, boolean read, @Nullable String suffix) {
-    setText(recipient, recipient.getDisplayNameOrUsername(getContext()), read, suffix);
+  public void setText(Recipient recipient, @Nullable CharSequence fromString, @Nullable CharSequence suffix) {
+    setText(recipient, fromString, suffix, true);
   }
 
-  public void setText(Recipient recipient, @Nullable CharSequence fromString, boolean read, @Nullable String suffix) {
-    setText(recipient, fromString, read, suffix, true);
-  }
-
-  public void setText(Recipient recipient, @Nullable CharSequence fromString, boolean read, @Nullable String suffix, boolean asThread) {
+  public void setText(Recipient recipient, @Nullable CharSequence fromString, @Nullable CharSequence suffix, boolean asThread) {
     SpannableStringBuilder builder  = new SpannableStringBuilder();
 
     if (asThread && recipient.isSelf()) {
@@ -71,17 +62,23 @@ public class FromTextView extends SimpleEmojiTextView {
 
     setText(builder);
 
-    if      (recipient.isBlocked()) setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_block_grey600_18dp, 0, 0, 0);
+    if      (recipient.isBlocked()) setCompoundDrawablesRelativeWithIntrinsicBounds(getBlocked(), null, null, null);
     else if (recipient.isMuted())   setCompoundDrawablesRelativeWithIntrinsicBounds(getMuted(), null, null, null);
     else                            setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, 0);
   }
 
+  private Drawable getBlocked() {
+    return getDrawable(R.drawable.symbol_block_16);
+  }
+
   private Drawable getMuted() {
-    Drawable mutedDrawable = Objects.requireNonNull(ContextCompat.getDrawable(getContext(), R.drawable.ic_bell_disabled_16));
+    return getDrawable(R.drawable.ic_bell_disabled_16);
+  }
 
+  private Drawable getDrawable(@DrawableRes int drawable) {
+    Drawable mutedDrawable = ContextUtil.requireDrawable(getContext(), drawable);
     mutedDrawable.setBounds(0, 0, ViewUtil.dpToPx(18), ViewUtil.dpToPx(18));
-    mutedDrawable.setColorFilter(new PorterDuffColorFilter(ContextCompat.getColor(getContext(), R.color.signal_icon_tint_secondary), PorterDuff.Mode.SRC_IN));
-
+    DrawableUtil.tint(mutedDrawable, ContextCompat.getColor(getContext(), R.color.signal_icon_tint_secondary));
     return mutedDrawable;
   }
 }

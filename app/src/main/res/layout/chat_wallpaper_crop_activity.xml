@@ -131,7 +131,7 @@
             android:text="@string/DateUtils_just_now"
             android:textAppearance="@style/Signal.Text.Caption"
             android:textColor="@color/transparent_white_80"
-            app:drawableEndCompat="@drawable/ic_delivery_status_read"
+            app:drawableEndCompat="@drawable/symbol_messagestatus_read_24"
             app:drawableTint="@color/transparent_white_80" />
 
     </LinearLayout>

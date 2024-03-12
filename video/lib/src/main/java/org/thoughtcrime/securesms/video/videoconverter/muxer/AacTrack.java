@@ -4,6 +4,7 @@ import android.util.SparseIntArray;
 
 import org.mp4parser.boxes.iso14496.part1.objectdescriptors.AudioSpecificConfig;
 import org.mp4parser.boxes.iso14496.part1.objectdescriptors.DecoderConfigDescriptor;
+import org.mp4parser.boxes.iso14496.part1.objectdescriptors.DecoderSpecificInfo;
 import org.mp4parser.boxes.iso14496.part1.objectdescriptors.ESDescriptor;
 import org.mp4parser.boxes.iso14496.part1.objectdescriptors.SLConfigDescriptor;
 import org.mp4parser.boxes.iso14496.part12.SampleDescriptionBox;
@@ -15,6 +16,8 @@ import org.mp4parser.streaming.input.StreamingSampleImpl;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
+
+import androidx.annotation.Nullable;
 
 abstract class AacTrack extends AbstractStreamingTrack {
 
@@ -39,7 +42,7 @@ abstract class AacTrack extends AbstractStreamingTrack {
 
   private int sampleRate;
 
-  AacTrack(long avgBitrate, long maxBitrate, int sampleRate, int channelCount, int aacProfile) {
+  AacTrack(long avgBitrate, long maxBitrate, int sampleRate, int channelCount, int aacProfile, @Nullable DecoderSpecificInfo decoderSpecificInfo) {
     this.sampleRate = sampleRate;
 
     final DefaultSampleFlagsTrackExtension defaultSampleFlagsTrackExtension = new DefaultSampleFlagsTrackExtension();
@@ -82,6 +85,10 @@ abstract class AacTrack extends AbstractStreamingTrack {
     audioSpecificConfig.setSamplingFrequencyIndex(SAMPLING_FREQUENCY_INDEX_MAP.get(sampleRate));
     audioSpecificConfig.setChannelConfiguration(channelCount);
     decoderConfigDescriptor.setAudioSpecificInfo(audioSpecificConfig);
+
+    if (decoderSpecificInfo != null) {
+      decoderConfigDescriptor.setDecoderSpecificInfo(decoderSpecificInfo);
+    }
 
     descriptor.setDecoderConfigDescriptor(decoderConfigDescriptor);
 

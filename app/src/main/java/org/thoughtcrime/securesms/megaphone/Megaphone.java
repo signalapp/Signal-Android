@@ -9,8 +9,9 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RawRes;
 import androidx.annotation.StringRes;
 
+import com.bumptech.glide.RequestBuilder;
+
 import org.thoughtcrime.securesms.megaphone.Megaphones.Event;
-import org.thoughtcrime.securesms.mms.GlideRequest;
 
 /**
  * For guidance on creating megaphones, see {@link Megaphones}.
@@ -27,7 +28,7 @@ public class Megaphone {
   private final MegaphoneText          bodyText;
   private final int                    imageRes;
   private final int                    lottieRes;
-  private final GlideRequest<Drawable> imageRequest;
+  private final RequestBuilder<Drawable> requestBuilder;
   private final MegaphoneText          buttonText;
   private final EventListener          buttonListener;
   private final EventListener          snoozeListener;
@@ -43,7 +44,7 @@ public class Megaphone {
     this.bodyText                = builder.bodyText;
     this.imageRes                = builder.imageRes;
     this.lottieRes               = builder.lottieRes;
-    this.imageRequest            = builder.imageRequest;
+    this.requestBuilder          = builder.requestBuilder;
     this.buttonText              = builder.buttonText;
     this.buttonListener          = builder.buttonListener;
     this.snoozeListener          = builder.snoozeListener;
@@ -80,8 +81,8 @@ public class Megaphone {
     return imageRes;
   }
 
-  public @Nullable GlideRequest<Drawable> getImageRequest() {
-    return imageRequest;
+  public @Nullable RequestBuilder<Drawable> getImageRequestBuilder() {
+    return requestBuilder;
   }
 
   public @Nullable MegaphoneText getButtonText() {
@@ -126,7 +127,7 @@ public class Megaphone {
     private MegaphoneText          bodyText;
     private int                    imageRes;
     private int                    lottieRes;
-    private GlideRequest<Drawable> imageRequest;
+    private RequestBuilder<Drawable> requestBuilder;
     private MegaphoneText          buttonText;
     private EventListener          buttonListener;
     private EventListener          snoozeListener;
@@ -181,8 +182,8 @@ public class Megaphone {
       return this;
     }
 
-    public @NonNull Builder setImageRequest(@Nullable GlideRequest<Drawable> imageRequest) {
-      this.imageRequest = imageRequest;
+    public @NonNull Builder setImageRequestBuilder(@Nullable RequestBuilder<Drawable> requestBuilder) {
+      this.requestBuilder = requestBuilder;
       return this;
     }
 

@@ -292,7 +292,7 @@ public class VideoPlayer extends FrameLayout {
     if (this.exoPlayer != null) {
       return TimeUnit.MILLISECONDS.toMicros(this.exoPlayer.getCurrentPosition()) + clippedStartUs;
     }
-    return 0L;
+    return -1L;
   }
 
   public void setPlaybackPosition(long positionMs) {

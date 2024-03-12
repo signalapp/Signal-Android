@@ -187,6 +187,48 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       )
 
       clickPref(
+        title = DSLSettingsText.from("Log dump PreKey ServiceId-KeyIds"),
+        onClick = {
+          logPreKeyIds()
+        }
+      )
+
+      clickPref(
+        title = DSLSettingsText.from("Retry all jobs now"),
+        summary = DSLSettingsText.from("Clear backoff intervals, app will restart"),
+        onClick = {
+          SimpleTask.run({
+            JobDatabase.getInstance(ApplicationDependencies.getApplication()).debugResetBackoffInterval()
+          }) {
+            AppUtil.restart(requireContext())
+          }
+        }
+      )
+
+      clickPref(
+        title = DSLSettingsText.from("Delete all prekeys"),
+        summary = DSLSettingsText.from("Deletes all signed/last-resort/one-time prekeys for both ACI and PNI accounts. WILL cause problems."),
+        onClick = {
+          MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Delete all prekeys?")
+            .setMessage("Are you sure? This will delete all prekeys for both ACI and PNI accounts. This WILL cause problems.")
+            .setPositiveButton(android.R.string.ok) { _, _ ->
+              SignalDatabase.signedPreKeys.debugDeleteAll()
+              SignalDatabase.oneTimePreKeys.debugDeleteAll()
+              SignalDatabase.kyberPreKeys.debugDeleteAll()
+
+              Toast.makeText(requireContext(), "All prekeys deleted!", Toast.LENGTH_SHORT).show()
+            }
+            .setNegativeButton(android.R.string.cancel, null)
+            .show()
+        }
+      )
+
+      dividerPref()
+
+      sectionHeaderPref(DSLSettingsText.from("Logging"))
+
+      clickPref(
         title = DSLSettingsText.from("Clear all logs"),
         onClick = {
           SimpleTask.run({
@@ -227,21 +269,10 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       )
 
       clickPref(
-        title = DSLSettingsText.from("Log dump PreKey ServiceId-KeyIds"),
+        title = DSLSettingsText.from("Clear local metrics"),
+        summary = DSLSettingsText.from("Click to clear all local metrics state."),
         onClick = {
-          logPreKeyIds()
-        }
-      )
-
-      clickPref(
-        title = DSLSettingsText.from("Retry all jobs now"),
-        summary = DSLSettingsText.from("Clear backoff intervals, app will restart"),
-        onClick = {
-          SimpleTask.run({
-            JobDatabase.getInstance(ApplicationDependencies.getApplication()).debugResetBackoffInterval()
-          }) {
-            AppUtil.restart(requireContext())
-          }
+          clearAllLocalMetricsState()
         }
       )
 
@@ -436,18 +467,6 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
       dividerPref()
 
-      sectionHeaderPref(DSLSettingsText.from("Local Metrics"))
-
-      clickPref(
-        title = DSLSettingsText.from("Clear local metrics"),
-        summary = DSLSettingsText.from("Click to clear all local metrics state."),
-        onClick = {
-          clearAllLocalMetricsState()
-        }
-      )
-
-      dividerPref()
-
       sectionHeaderPref(DSLSettingsText.from("Group call server"))
 
       radioPref(
@@ -615,6 +634,13 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         }
       )
 
+      clickPref(
+        title = DSLSettingsText.from("Add donate_friend remote megaphone"),
+        onClick = {
+          viewModel.addRemoteDonateFriendMegaphone()
+        }
+      )
+
       dividerPref()
 
       sectionHeaderPref(DSLSettingsText.from("CDS"))
@@ -710,13 +736,6 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       )
 
       clickPref(
-        title = DSLSettingsText.from("Clear Username education ui hint"),
-        onClick = {
-          SignalStore.uiHints().clearHasSeenUsernameEducation()
-        }
-      )
-
-      clickPref(
         title = DSLSettingsText.from("Corrupt username"),
         summary = DSLSettingsText.from("Changes our local username without telling the server so it falls out of sync. Refresh profile afterwards to trigger corruption."),
         onClick = {
@@ -724,7 +743,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
             .setTitle("Corrupt your username?")
             .setMessage("Are you sure? You might not be able to get your original username back.")
             .setPositiveButton(android.R.string.ok) { _, _ ->
-              val random = "${(1..5).map { ('a'..'z').random() }.joinToString(separator = "") }.${Random.nextInt(1, 100)}"
+              val random = "${(1..5).map { ('a'..'z').random() }.joinToString(separator = "") }.${Random.nextInt(10, 100)}"
 
               SignalStore.account().username = random
               SignalDatabase.recipients.setUsername(Recipient.self().id, random)

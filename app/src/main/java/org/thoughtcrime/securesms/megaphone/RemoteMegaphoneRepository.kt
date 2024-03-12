@@ -9,6 +9,7 @@ import org.json.JSONArray
 import org.json.JSONException
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.badges.gifts.flow.GiftFlowActivity
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppDonations
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalActivity
@@ -56,10 +57,16 @@ object RemoteMegaphoneRepository {
     snooze.run(context, controller, remote)
   }
 
+  private val donateForFriend: Action = Action { context, controller, remote ->
+    controller.onMegaphoneNavigationRequested(Intent(context, GiftFlowActivity::class.java))
+    snooze.run(context, controller, remote)
+  }
+
   private val actions = mapOf(
     ActionId.SNOOZE.id to snooze,
     ActionId.FINISH.id to finish,
-    ActionId.DONATE.id to donate
+    ActionId.DONATE.id to donate,
+    ActionId.DONATE_FOR_FRIEND.id to donateForFriend
   )
 
   @WorkerThread

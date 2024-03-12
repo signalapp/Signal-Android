@@ -106,7 +106,7 @@ public final class PushDistributionListSendJob extends PushSendJob {
 
       if (!message.getStoryType().isTextStory()) {
         DatabaseAttachment storyAttachment = (DatabaseAttachment) message.getAttachments().get(0);
-        SignalDatabase.attachments().updateAttachmentCaption(storyAttachment.getAttachmentId(), message.getBody());
+        SignalDatabase.attachments().updateAttachmentCaption(storyAttachment.attachmentId, message.getBody());
       }
 
       Set<String> attachmentUploadIds = enqueueCompressingAndUploadAttachmentsChains(jobManager, message);

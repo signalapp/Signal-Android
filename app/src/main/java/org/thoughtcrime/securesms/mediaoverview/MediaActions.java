@@ -101,7 +101,7 @@ final class MediaActions {
             attachments.add(new SaveAttachmentTask.Attachment(mediaRecord.getAttachment().getUri(),
                                                               mediaRecord.getContentType(),
                                                               mediaRecord.getDate(),
-                                                              mediaRecord.getAttachment().getFileName()));
+                                                              mediaRecord.getAttachment().fileName));
           }
         }
 

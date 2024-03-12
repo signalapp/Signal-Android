@@ -8,8 +8,8 @@ import androidx.annotation.Nullable;
 
 import com.bumptech.glide.request.target.DrawableImageViewTarget;
 
+import org.signal.core.util.concurrent.SettableFuture;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 
 public class GlideDrawableListeningTarget extends DrawableImageViewTarget {
 

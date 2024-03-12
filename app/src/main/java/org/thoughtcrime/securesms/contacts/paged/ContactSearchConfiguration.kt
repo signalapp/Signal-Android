@@ -69,6 +69,8 @@ class ContactSearchConfiguration private constructor(
     /**
      * 1:1 Recipients with whom the user has started a conversation.
      *
+     * Note that sort order is only respected when returning a query result for signal-only contacts. In all other cases, natural ordering is used.
+     *
      * Key: [ContactSearchKey.RecipientSearchKey]
      * Data: [ContactSearchData.KnownRecipient]
      * Model: [ContactSearchAdapter.RecipientModel]
@@ -78,7 +80,8 @@ class ContactSearchConfiguration private constructor(
       val transportType: TransportType,
       override val includeHeader: Boolean,
       override val expandConfig: ExpandConfig? = null,
-      val includeLetterHeaders: Boolean = false
+      val includeLetterHeaders: Boolean = false,
+      val pushSearchResultsSortOrder: ContactSearchSortOrder = ContactSearchSortOrder.NATURAL
     ) : Section(SectionKey.INDIVIDUALS)
 
     /**

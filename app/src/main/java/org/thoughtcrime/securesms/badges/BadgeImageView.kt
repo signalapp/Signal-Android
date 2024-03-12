@@ -4,6 +4,8 @@ import android.content.Context
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.res.use
+import com.bumptech.glide.Glide
+import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.resource.bitmap.DownsampleStrategy
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.glide.BadgeSpriteTransformation
@@ -11,11 +13,10 @@ import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.subscription.BadgeImageSize
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
 import org.thoughtcrime.securesms.glide.GiftBadgeModel
-import org.thoughtcrime.securesms.mms.GlideApp
-import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.ScreenDensity
 import org.thoughtcrime.securesms.util.ThemeUtil
+import org.thoughtcrime.securesms.util.visible
 
 class BadgeImageView @JvmOverloads constructor(
   context: Context,
@@ -43,35 +44,35 @@ class BadgeImageView @JvmOverloads constructor(
   }
 
   fun setBadgeFromRecipient(recipient: Recipient?) {
-    getGlideRequests()?.let {
+    getGlideRequestManager()?.let {
       setBadgeFromRecipient(recipient, it)
     } ?: clearDrawable()
   }
 
-  fun setBadgeFromRecipient(recipient: Recipient?, glideRequests: GlideRequests) {
+  fun setBadgeFromRecipient(recipient: Recipient?, requestManager: RequestManager) {
     if (recipient == null || recipient.badges.isEmpty()) {
-      setBadge(null, glideRequests)
+      setBadge(null, requestManager)
     } else if (recipient.isSelf) {
       val badge = recipient.featuredBadge
       if (badge == null || !badge.visible || badge.isExpired()) {
-        setBadge(null, glideRequests)
+        setBadge(null, requestManager)
       } else {
-        setBadge(badge, glideRequests)
+        setBadge(badge, requestManager)
       }
     } else {
-      setBadge(recipient.featuredBadge, glideRequests)
+      setBadge(recipient.featuredBadge, requestManager)
     }
   }
 
   fun setBadge(badge: Badge?) {
-    getGlideRequests()?.let {
+    getGlideRequestManager()?.let {
       setBadge(badge, it)
     } ?: clearDrawable()
   }
 
-  fun setBadge(badge: Badge?, glideRequests: GlideRequests) {
+  fun setBadge(badge: Badge?, requestManager: RequestManager) {
     if (badge != null) {
-      glideRequests
+      requestManager
         .load(badge)
         .downsample(DownsampleStrategy.NONE)
         .transform(BadgeSpriteTransformation(BadgeSpriteTransformation.Size.fromInteger(badgeSize), badge.imageDensity, ThemeUtil.isDarkTheme(context)))
@@ -79,24 +80,28 @@ class BadgeImageView @JvmOverloads constructor(
 
       isClickable = true
     } else {
-      glideRequests
+      requestManager
         .clear(this)
       clearDrawable()
     }
   }
 
-  fun setGiftBadge(badge: GiftBadge?, glideRequests: GlideRequests) {
+  fun setGiftBadge(badge: GiftBadge?, requestManager: RequestManager) {
     if (badge != null) {
-      glideRequests
+      requestManager
         .load(GiftBadgeModel(badge))
         .downsample(DownsampleStrategy.NONE)
         .transform(BadgeSpriteTransformation(BadgeSpriteTransformation.Size.fromInteger(badgeSize), ScreenDensity.getBestDensityBucketForDevice(), ThemeUtil.isDarkTheme(context)))
         .into(this)
     } else {
-      glideRequests
+      requestManager
         .clear(this)
       clearDrawable()
     }
+  }
+
+  fun isShowingBadge(): Boolean {
+    return drawable != null
   }
 
   private fun clearDrawable() {
@@ -106,9 +111,9 @@ class BadgeImageView @JvmOverloads constructor(
     }
   }
 
-  private fun getGlideRequests(): GlideRequests? {
+  private fun getGlideRequestManager(): RequestManager? {
     return try {
-      GlideApp.with(this)
+      Glide.with(this)
     } catch (e: IllegalArgumentException) {
       // View not attached to an activity or activity destroyed
       null

@@ -1,22 +1,19 @@
 package org.thoughtcrime.securesms.profiles.manage;
 
 import android.animation.LayoutTransition;
-import android.content.Intent;
+import android.app.Activity;
 import android.content.res.ColorStateList;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -25,25 +22,24 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputLayout;
 
-import org.signal.core.util.DimensionUnit;
+import org.signal.core.util.EditTextUtil;
+import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.thoughtcrime.securesms.LoggingFragment;
-import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
 import org.thoughtcrime.securesms.databinding.UsernameEditFragmentBinding;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.FragmentResultContract;
-import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.UsernameUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton;
 
-import java.util.Objects;
-
 public class UsernameEditFragment extends LoggingFragment {
 
-  private static final float DISABLED_ALPHA = 0.5f;
+  private static final float DISABLED_ALPHA           = 0.5f;
+  public static final String IGNORE_TEXT_CHANGE_EVENT = "ignore.text.change.event";
+
+  public static final int REQUEST_CODE = 4242;
 
   private UsernameEditViewModel       viewModel;
   private UsernameEditFragmentBinding binding;
@@ -80,44 +76,52 @@ public class UsernameEditFragment extends LoggingFragment {
       args = new UsernameEditFragmentArgs.Builder().build();
     }
 
-    if (args.getIsInRegistration()) {
-      binding.toolbar.setNavigationIcon(null);
-      binding.toolbar.setTitle(R.string.UsernameEditFragment__add_a_username);
-      binding.usernameSkipButton.setVisibility(View.VISIBLE);
-      binding.usernameDoneButton.setVisibility(View.VISIBLE);
-    } else {
-      binding.toolbar.setNavigationOnClickListener(v -> Navigation.findNavController(view).popBackStack());
-      binding.usernameSubmitButton.setVisibility(View.VISIBLE);
-    }
+    binding.toolbar.setNavigationOnClickListener(v -> {
+      if (args.getMode() == UsernameEditMode.RECOVERY) {
+        getActivity().finish();
+      } else {
+        Navigation.findNavController(view).popBackStack();
+      }
+    });
+    binding.usernameSubmitButton.setVisibility(View.VISIBLE);
 
     binding.usernameTextWrapper.setErrorIconDrawable(null);
 
     lifecycleDisposable = new LifecycleDisposable();
     lifecycleDisposable.bindTo(getViewLifecycleOwner());
 
-    viewModel = new ViewModelProvider(this, new UsernameEditViewModel.Factory(args.getIsInRegistration())).get(UsernameEditViewModel.class);
+    viewModel = new ViewModelProvider(this, new UsernameEditViewModel.Factory(args.getMode())).get(UsernameEditViewModel.class);
 
     lifecycleDisposable.add(viewModel.getUiState().subscribe(this::onUiStateChanged));
     lifecycleDisposable.add(viewModel.getEvents().subscribe(this::onEvent));
+    lifecycleDisposable.add(viewModel.getUsernameInputState().subscribe(this::presentUsernameInputState));
 
-    binding.usernameSubmitButton.setOnClickListener(v -> viewModel.onUsernameSubmitted());
+    binding.usernameSubmitButton.setOnClickListener(v -> promptOrSubmitUsername());
     binding.usernameDeleteButton.setOnClickListener(v -> viewModel.onUsernameDeleted());
-    binding.usernameDoneButton.setOnClickListener(v -> viewModel.onUsernameSubmitted());
+    binding.usernameDoneButton.setOnClickListener(v -> viewModel.onUsernameSubmitted(false));
     binding.usernameSkipButton.setOnClickListener(v -> viewModel.onUsernameSkipped());
 
-    String        username      = SignalStore.account().getUsername();
-    UsernameState usernameState = username != null ? new UsernameState.Set(username) : UsernameState.NoUsername.INSTANCE;
-
-    binding.usernameText.setText(usernameState.getNickname());
     binding.usernameText.addTextChangedListener(new SimpleTextWatcher() {
       @Override
       public void onTextChanged(@NonNull String text) {
-        viewModel.onNicknameUpdated(text);
+        if (binding.usernameText.getTag() != IGNORE_TEXT_CHANGE_EVENT) {
+          viewModel.onNicknameUpdated(text);
+        }
       }
     });
-    binding.usernameText.setOnEditorActionListener((v, actionId, event) -> {
+
+    binding.discriminatorText.addTextChangedListener(new SimpleTextWatcher() {
+      @Override
+      public void onTextChanged(@NonNull String text) {
+        if (binding.discriminatorText.getTag() != IGNORE_TEXT_CHANGE_EVENT) {
+          viewModel.onDiscriminatorUpdated(text);
+        }
+      }
+    });
+
+    binding.discriminatorText.setOnEditorActionListener((v, actionId, event) -> {
       if (actionId == EditorInfo.IME_ACTION_DONE) {
-        viewModel.onUsernameSubmitted();
+        promptOrSubmitUsername();
         return true;
       }
       return false;
@@ -127,22 +131,7 @@ public class UsernameEditFragment extends LoggingFragment {
     binding.usernameDescription.setLearnMoreVisible(true);
     binding.usernameDescription.setOnLinkClickListener(this::onLearnMore);
 
-    initializeSuffix();
     ViewUtil.focusAndShowKeyboard(binding.usernameText);
-  }
-
-  private void initializeSuffix() {
-    TextView suffixTextView = binding.usernameTextWrapper.getSuffixTextView();
-    Drawable pipe           = Objects.requireNonNull(ContextCompat.getDrawable(requireContext(), R.drawable.pipe_divider));
-
-    pipe.setBounds(0, 0, (int) DimensionUnit.DP.toPixels(1f), (int) DimensionUnit.DP.toPixels(20f));
-    suffixTextView.setCompoundDrawablesRelative(pipe, null, null, null);
-
-    ViewUtil.setLeftMargin(suffixTextView, (int) DimensionUnit.DP.toPixels(16f));
-
-    binding.usernameTextWrapper.getSuffixTextView().setCompoundDrawablePadding((int) DimensionUnit.DP.toPixels(16f));
-
-    suffixTextView.setOnClickListener(this::onLearnMore);
   }
 
   @Override
@@ -151,106 +140,72 @@ public class UsernameEditFragment extends LoggingFragment {
     binding = null;
   }
 
+  private void promptOrSubmitUsername() {
+    if (viewModel.isSameUsernameRecovery()) {
+      new MaterialAlertDialogBuilder(requireContext())
+          .setMessage(R.string.UsernameEditFragment_recovery_dialog_confirmation)
+          .setPositiveButton(android.R.string.ok, ((dialog, which) -> {
+            viewModel.onUsernameSubmitted(true);
+            dialog.dismiss();
+          }))
+          .setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.dismiss())
+          .show();
+    } else {
+      viewModel.onUsernameSubmitted(false);
+    }
+  }
+
+
   private void onLearnMore(@Nullable View unused) {
     new MaterialAlertDialogBuilder(requireContext())
-        .setTitle(new StringBuilder("#\n").append(getString(R.string.UsernameEditFragment__what_is_this_number)))
+        .setTitle(getString(R.string.UsernameEditFragment__what_is_this_number))
         .setMessage(R.string.UsernameEditFragment__these_digits_help_keep)
         .setPositiveButton(android.R.string.ok, (dialog, which) -> {})
         .show();
   }
 
   private void onUiStateChanged(@NonNull UsernameEditViewModel.State state) {
-    TextInputLayout usernameInputWrapper = binding.usernameTextWrapper;
-
-    presentSuffix(state.username);
+    presentProgressState(state.usernameState);
     presentButtonState(state.buttonState);
-    presentSummary(state.username);
+    presentSummary(state.usernameState);
 
     binding.root.setLayoutTransition(ANIMATED_LAYOUT);
 
-    switch (state.usernameStatus) {
-      case NONE:
-        usernameInputWrapper.setError(null);
-        break;
-      case TOO_SHORT:
-      case TOO_LONG:
-        usernameInputWrapper.setError(getResources().getString(R.string.UsernameEditFragment_usernames_must_be_between_a_and_b_characters, UsernameUtil.MIN_LENGTH, UsernameUtil.MAX_LENGTH));
-        usernameInputWrapper.setErrorTextColor(ColorStateList.valueOf(getResources().getColor(R.color.signal_colorError)));
+    CharSequence error = switch (state.usernameStatus) {
+      case NONE -> null;
+      case TOO_SHORT, TOO_LONG -> getString(R.string.UsernameEditFragment_usernames_must_be_between_a_and_b_characters, UsernameUtil.MIN_NICKNAME_LENGTH, UsernameUtil.MAX_NICKNAME_LENGTH);
+      case INVALID_CHARACTERS -> getString(R.string.UsernameEditFragment_usernames_can_only_include);
+      case CANNOT_START_WITH_NUMBER -> getString(R.string.UsernameEditFragment_usernames_cannot_begin_with_a_number);
+      case INVALID_GENERIC -> getString(R.string.UsernameEditFragment_username_is_invalid);
+      case TAKEN -> getString(R.string.UsernameEditFragment_this_username_is_taken);
+      case DISCRIMINATOR_HAS_INVALID_CHARACTERS, DISCRIMINATOR_NOT_AVAILABLE -> getString(R.string.UsernameEditFragment__this_username_is_not_available_try_another_number);
+      case DISCRIMINATOR_TOO_LONG -> getString(R.string.UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits, UsernameUtil.MAX_DISCRIMINATOR_LENGTH);
+      case DISCRIMINATOR_TOO_SHORT -> getString(R.string.UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits, UsernameUtil.MIN_DISCRIMINATOR_LENGTH);
+      case DISCRIMINATOR_CANNOT_BE_00 -> getString(R.string.UsernameEditFragment__this_number_cant_be_00);
+      case DISCRIMINATOR_CANNOT_START_WITH_0 -> getString(R.string.UsernameEditFragment__this_number_cant_start_with_0);
+    };
 
-        break;
-      case INVALID_CHARACTERS:
-        usernameInputWrapper.setError(getResources().getString(R.string.UsernameEditFragment_usernames_can_only_include));
-        usernameInputWrapper.setErrorTextColor(ColorStateList.valueOf(getResources().getColor(R.color.signal_colorError)));
+    int colorRes = error != null ? R.color.signal_colorError : R.color.signal_colorPrimary;
+    int color = ContextCompat.getColor(requireContext(), colorRes);
 
-        break;
-      case CANNOT_START_WITH_NUMBER:
-        usernameInputWrapper.setError(getResources().getString(R.string.UsernameEditFragment_usernames_cannot_begin_with_a_number));
-        usernameInputWrapper.setErrorTextColor(ColorStateList.valueOf(getResources().getColor(R.color.signal_colorError)));
-
-        break;
-      case INVALID_GENERIC:
-        usernameInputWrapper.setError(getResources().getString(R.string.UsernameEditFragment_username_is_invalid));
-        usernameInputWrapper.setErrorTextColor(ColorStateList.valueOf(getResources().getColor(R.color.signal_colorError)));
-
-        break;
-      case TAKEN:
-        usernameInputWrapper.setError(getResources().getString(R.string.UsernameEditFragment_this_username_is_taken));
-        usernameInputWrapper.setErrorTextColor(ColorStateList.valueOf(getResources().getColor(R.color.signal_colorError)));
-
-        break;
-    }
-
-    CharSequence error = usernameInputWrapper.getError();
+    binding.usernameTextFocusedStroke.setBackgroundColor(color);
+    binding.usernameTextWrapper.setHintTextColor(ColorStateList.valueOf(color));
+    EditTextUtil.setCursorColor(binding.usernameText, color);
+    EditTextUtil.setCursorColor(binding.discriminatorText, color);
     binding.usernameError.setVisibility(error != null ? View.VISIBLE : View.GONE);
-    binding.usernameError.setText(usernameInputWrapper.getError());
-
+    binding.usernameError.setText(error);
     binding.root.setLayoutTransition(STATIC_LAYOUT);
+
+    if (state.usernameState.getDiscriminator() == null && SignalStore.account().getUsername() == null) {
+      binding.discriminatorText.setVisibility(View.GONE);
+      binding.divider.setVisibility(View.GONE);
+    } else {
+      binding.discriminatorText.setVisibility(View.VISIBLE);
+      binding.divider.setVisibility(View.VISIBLE);
+    }
   }
 
   private void presentButtonState(@NonNull UsernameEditViewModel.ButtonState buttonState) {
-    if (args.getIsInRegistration()) {
-      presentRegistrationButtonState(buttonState);
-    } else {
-      presentProfileUpdateButtonState(buttonState);
-    }
-  }
-
-  private void presentSummary(@NonNull UsernameState usernameState) {
-    if (usernameState.getUsername() != null) {
-      binding.summary.setText(usernameState.getUsername());
-      binding.summary.setAlpha(1f);
-    } else if (usernameState instanceof UsernameState.Loading) {
-      binding.summary.setAlpha(0.5f);
-    } else {
-      binding.summary.setText(R.string.UsernameEditFragment__choose_your_username);
-      binding.summary.setAlpha(1f);
-    }
-  }
-
-  private void presentRegistrationButtonState(@NonNull UsernameEditViewModel.ButtonState buttonState) {
-    binding.usernameText.setEnabled(true);
-    binding.usernameProgressCard.setVisibility(View.GONE);
-
-    switch (buttonState) {
-      case SUBMIT:
-        binding.usernameDoneButton.setEnabled(true);
-        binding.usernameDoneButton.setAlpha(1f);
-        break;
-      case SUBMIT_DISABLED:
-        binding.usernameDoneButton.setEnabled(false);
-        binding.usernameDoneButton.setAlpha(DISABLED_ALPHA);
-        break;
-      case SUBMIT_LOADING:
-        binding.usernameDoneButton.setEnabled(false);
-        binding.usernameDoneButton.setAlpha(DISABLED_ALPHA);
-        binding.usernameProgressCard.setVisibility(View.VISIBLE);
-        break;
-      default:
-        throw new IllegalStateException("Delete functionality is not available during registration.");
-    }
-  }
-
-  private void presentProfileUpdateButtonState(@NonNull UsernameEditViewModel.ButtonState buttonState) {
     CircularProgressMaterialButton submitButton         = binding.usernameSubmitButton;
     CircularProgressMaterialButton deleteButton         = binding.usernameDeleteButton;
     EditText                       usernameInput        = binding.usernameText;
@@ -302,9 +257,35 @@ public class UsernameEditFragment extends LoggingFragment {
     }
   }
 
-  private void presentSuffix(@NonNull UsernameState usernameState) {
-    binding.usernameTextWrapper.setSuffixText(usernameState.getDiscriminator());
+  private void presentSummary(@NonNull UsernameState usernameState) {
+    if (usernameState.getUsername() != null) {
+      binding.summary.setText(usernameState.getUsername().getUsername());
+      binding.summary.setAlpha(1f);
+    } else if (!(usernameState instanceof UsernameState.Loading)) {
+      binding.summary.setText(R.string.UsernameEditFragment__choose_your_username);
+      binding.summary.setAlpha(1f);
+    }
+  }
 
+  private void presentUsernameInputState(@NonNull UsernameEditStateMachine.State state) {
+    binding.usernameText.setTag(IGNORE_TEXT_CHANGE_EVENT);
+    String nickname = state.getNickname();
+    if (!binding.usernameText.getText().toString().equals(nickname)) {
+      binding.usernameText.setText(state.getNickname());
+      binding.usernameText.setSelection(binding.usernameText.length());
+    }
+    binding.usernameText.setTag(null);
+
+    binding.discriminatorText.setTag(IGNORE_TEXT_CHANGE_EVENT);
+    String discriminator = state.getDiscriminator();
+    if (!binding.discriminatorText.getText().toString().equals(discriminator)) {
+      binding.discriminatorText.setText(state.getDiscriminator());
+      binding.discriminatorText.setSelection(binding.discriminatorText.length());
+    }
+    binding.discriminatorText.setTag(null);
+  }
+
+  private void presentProgressState(@NonNull UsernameState usernameState) {
     boolean isInProgress = usernameState.isInProgress();
 
     if (isInProgress) {
@@ -318,6 +299,9 @@ public class UsernameEditFragment extends LoggingFragment {
     switch (event) {
       case SUBMIT_SUCCESS:
         ResultContract.setUsernameCreated(getParentFragmentManager());
+        if (getActivity() != null) {
+          getActivity().setResult(Activity.RESULT_OK);
+        }
         closeScreen();
         break;
       case SUBMIT_FAIL_TAKEN:
@@ -333,36 +317,26 @@ public class UsernameEditFragment extends LoggingFragment {
       case NETWORK_FAILURE:
         Toast.makeText(requireContext(), R.string.UsernameEditFragment_encountered_a_network_error, Toast.LENGTH_SHORT).show();
         break;
+      case RATE_LIMIT_EXCEEDED:
+        Toast.makeText(requireContext(), R.string.UsernameEditFragment_rate_limit_exceeded_error, Toast.LENGTH_SHORT).show();
+        break;
       case SKIPPED:
         closeScreen();
         break;
+      case NEEDS_CONFIRM_RESET:
+        new MaterialAlertDialogBuilder(requireContext())
+            .setMessage(R.string.UsernameEditFragment_change_confirmation_message)
+            .setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.dismiss())
+            .setPositiveButton(R.string.UsernameEditFragment_continue, (dialog, which) -> viewModel.onUsernameSubmitted(true))
+            .show();
     }
   }
 
   private void closeScreen() {
-    if (args.getIsInRegistration()) {
-      finishAndStartNextIntent();
+    if (args.getMode() == UsernameEditMode.RECOVERY) {
+      getActivity().finish();
     } else {
       NavHostFragment.findNavController(this).popBackStack();
-    }
-  }
-
-  private void finishAndStartNextIntent() {
-    FragmentActivity activity       = requireActivity();
-    boolean          didLaunch      = false;
-    Intent           activityIntent = activity.getIntent();
-
-    if (activityIntent != null) {
-      Intent nextIntent = activityIntent.getParcelableExtra(PassphraseRequiredActivity.NEXT_INTENT_EXTRA);
-      if (nextIntent != null) {
-        activity.startActivity(nextIntent);
-        activity.finish();
-        didLaunch = true;
-      }
-    }
-
-    if (!didLaunch) {
-      activity.finish();
     }
   }
 

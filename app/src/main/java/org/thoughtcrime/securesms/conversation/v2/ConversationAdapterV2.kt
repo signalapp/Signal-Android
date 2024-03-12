@@ -13,6 +13,7 @@ import androidx.core.view.children
 import androidx.lifecycle.LifecycleOwner
 import androidx.media3.common.MediaItem
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.RequestManager
 import org.signal.core.util.logging.Log
 import org.signal.core.util.toOptional
 import org.thoughtcrime.securesms.BindableConversationItem
@@ -35,6 +36,7 @@ import org.thoughtcrime.securesms.conversation.v2.data.IncomingTextOnly
 import org.thoughtcrime.securesms.conversation.v2.data.OutgoingMedia
 import org.thoughtcrime.securesms.conversation.v2.data.OutgoingTextOnly
 import org.thoughtcrime.securesms.conversation.v2.data.ThreadHeader
+import org.thoughtcrime.securesms.conversation.v2.items.ChatColorsDrawable
 import org.thoughtcrime.securesms.conversation.v2.items.V2ConversationContext
 import org.thoughtcrime.securesms.conversation.v2.items.V2ConversationItemMediaViewHolder
 import org.thoughtcrime.securesms.conversation.v2.items.V2ConversationItemTextOnlyViewHolder
@@ -48,8 +50,6 @@ import org.thoughtcrime.securesms.databinding.V2ConversationItemTextOnlyOutgoing
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicyEnforcer
 import org.thoughtcrime.securesms.groups.v2.GroupDescriptionUtil
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.messagerequests.MessageRequestState
-import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.CachedInflater
@@ -62,11 +62,12 @@ import java.util.Optional
 
 class ConversationAdapterV2(
   private val lifecycleOwner: LifecycleOwner,
-  override val glideRequests: GlideRequests,
+  override val requestManager: RequestManager,
   override val clickListener: ItemClickListener,
   private var hasWallpaper: Boolean,
   private val colorizer: Colorizer,
-  private val startExpirationTimeout: (MessageRecord) -> Unit
+  private val startExpirationTimeout: (MessageRecord) -> Unit,
+  private val chatColorsDataProvider: () -> ChatColorsDrawable.ChatColorsData
 ) : PagingMappingAdapter<ConversationElementKey>(), ConversationAdapterBridge, V2ConversationContext {
 
   companion object {
@@ -182,6 +183,10 @@ class ConversationAdapterV2(
   override fun hasWallpaper(): Boolean = hasWallpaper && displayMode.displayWallpaper()
 
   override fun getColorizer(): Colorizer = colorizer
+
+  override fun getChatColorsData(): ChatColorsDrawable.ChatColorsData {
+    return chatColorsDataProvider()
+  }
 
   override fun getNextMessage(adapterPosition: Int): MessageRecord? {
     return getConversationMessage(adapterPosition - 1)?.messageRecord
@@ -330,7 +335,7 @@ class ConversationAdapterV2(
         model.conversationMessage,
         previousMessage,
         nextMessage,
-        glideRequests,
+        requestManager,
         Locale.getDefault(),
         _selected,
         model.conversationMessage.threadRecipient,
@@ -358,7 +363,7 @@ class ConversationAdapterV2(
         model.conversationMessage,
         previousMessage,
         nextMessage,
-        glideRequests,
+        requestManager,
         Locale.getDefault(),
         _selected,
         model.conversationMessage.threadRecipient,
@@ -386,7 +391,7 @@ class ConversationAdapterV2(
         model.conversationMessage,
         previousMessage,
         nextMessage,
-        glideRequests,
+        requestManager,
         Locale.getDefault(),
         _selected,
         model.conversationMessage.threadRecipient,
@@ -414,7 +419,7 @@ class ConversationAdapterV2(
         model.conversationMessage,
         previousMessage,
         nextMessage,
-        glideRequests,
+        requestManager,
         Locale.getDefault(),
         _selected,
         model.conversationMessage.threadRecipient,
@@ -442,7 +447,7 @@ class ConversationAdapterV2(
         model.conversationMessage,
         previousMessage,
         nextMessage,
-        glideRequests,
+        requestManager,
         Locale.getDefault(),
         _selected,
         model.conversationMessage.threadRecipient,
@@ -563,7 +568,7 @@ class ConversationAdapterV2(
       val (recipient, groupInfo, sharedGroups, messageRequestState) = model.recipientInfo
       val isSelf = recipient.id == Recipient.self().id
 
-      conversationBanner.setAvatar(glideRequests, recipient)
+      conversationBanner.setAvatar(requestManager, recipient)
       conversationBanner.showBackgroundBubble(recipient.hasWallpaper())
       val title: String = conversationBanner.setTitle(recipient)
       conversationBanner.setAbout(recipient)
@@ -578,7 +583,7 @@ class ConversationAdapterV2(
           conversationBanner.hideSubtitle()
         }
       } else if (isSelf) {
-        conversationBanner.setSubtitle(context.getString(R.string.ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation), R.drawable.symbol_person_light_24)
+        conversationBanner.setSubtitle(context.getString(R.string.ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation), R.drawable.symbol_note_light_24)
       } else {
         val subtitle: String? = recipient.takeIf { it.shouldShowE164() }?.e164?.map { e164: String? -> PhoneNumberFormatter.prettyPrint(e164!!) }?.orElse(null)
         if (subtitle == null || subtitle == title) {
@@ -588,13 +593,25 @@ class ConversationAdapterV2(
         }
       }
 
-      if (sharedGroups.isEmpty() || isSelf) {
+      conversationBanner.hideButton()
+
+      if (messageRequestState?.isAccepted == false && sharedGroups.isEmpty() && !isSelf && !recipient.isGroup) {
+        conversationBanner.setDescription(context.getString(R.string.ConversationUpdateItem_no_groups_in_common_review_requests_carefully), R.drawable.symbol_error_circle_24)
+        conversationBanner.setButton(context.getString(R.string.ConversationFragment_safety_tips)) {
+          clickListener.onShowSafetyTips(false)
+        }
+      } else if (messageRequestState?.isAccepted == false && recipient.isGroup && !groupInfo.hasExistingContacts) {
+        conversationBanner.setDescription(context.getString(R.string.ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully), R.drawable.symbol_error_circle_24)
+        conversationBanner.setButton(context.getString(R.string.ConversationFragment_safety_tips)) {
+          clickListener.onShowSafetyTips(true)
+        }
+      } else if (sharedGroups.isEmpty() || isSelf) {
         if (TextUtils.isEmpty(groupInfo.description)) {
           conversationBanner.setLinkifyDescription(false)
           conversationBanner.hideDescription()
         } else {
           conversationBanner.setLinkifyDescription(true)
-          val linkifyWebLinks = messageRequestState == MessageRequestState.NONE
+          val linkifyWebLinks = messageRequestState?.isAccepted == true
           conversationBanner.showDescription()
 
           GroupDescriptionUtil.setText(
@@ -622,10 +639,6 @@ class ConversationAdapterV2(
           }
         }
         conversationBanner.setDescription(HtmlCompat.fromHtml(description, 0), R.drawable.symbol_group_light_20)
-      }
-
-      if (recipient.isReleaseNotes) {
-        conversationBanner.hideDecorations()
       }
     }
   }

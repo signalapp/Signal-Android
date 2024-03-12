@@ -214,7 +214,7 @@ class UploadDependencyGraphTest {
       val uploadData = AttachmentUploadJobData.ADAPTER.decode(steps[1][0].serialize()!!)
       val copyData = JsonJobData.deserialize(steps[2][0].serialize())
 
-      val uploadAttachmentId = AttachmentId(uploadData.attachmentRowId, uploadData.attachmentUniqueId)
+      val uploadAttachmentId = AttachmentId(uploadData.attachmentId)
       val copySourceAttachmentId = JsonUtils.fromJson(copyData.getString("source_id"), AttachmentId::class.java)
 
       assertEquals(uploadAttachmentId, copySourceAttachmentId)
@@ -228,35 +228,35 @@ class UploadDependencyGraphTest {
 
   private fun getAttachmentForPreUpload(id: Long, attachment: Attachment): DatabaseAttachment {
     return DatabaseAttachment(
-      AttachmentId(id, id),
-      AttachmentTable.PREUPLOAD_MESSAGE_ID,
-      false,
-      false,
-      attachment.contentType,
-      AttachmentTable.TRANSFER_PROGRESS_PENDING,
-      attachment.size,
-      attachment.fileName,
-      attachment.cdnNumber,
-      attachment.location,
-      attachment.key,
-      attachment.relay,
-      attachment.digest,
-      attachment.incrementalDigest,
-      attachment.incrementalMacChunkSize,
-      attachment.fastPreflightId,
-      attachment.isVoiceNote,
-      attachment.isBorderless,
-      attachment.isVideoGif,
-      attachment.width,
-      attachment.height,
-      attachment.isQuote,
-      attachment.caption,
-      attachment.sticker,
-      attachment.blurHash,
-      attachment.audioHash,
-      attachment.transformProperties,
-      0,
-      attachment.uploadTimestamp
+      attachmentId = AttachmentId(id),
+      mmsId = AttachmentTable.PREUPLOAD_MESSAGE_ID,
+      hasData = false,
+      hasThumbnail = false,
+      contentType = attachment.contentType,
+      transferProgress = AttachmentTable.TRANSFER_PROGRESS_PENDING,
+      size = attachment.size,
+      fileName = attachment.fileName,
+      cdnNumber = attachment.cdnNumber,
+      location = attachment.remoteLocation,
+      key = attachment.remoteKey,
+      digest = attachment.remoteDigest,
+      incrementalDigest = attachment.incrementalDigest,
+      incrementalMacChunkSize = attachment.incrementalMacChunkSize,
+      fastPreflightId = attachment.fastPreflightId,
+      voiceNote = attachment.voiceNote,
+      borderless = attachment.borderless,
+      videoGif = attachment.videoGif,
+      width = attachment.width,
+      height = attachment.height,
+      quote = attachment.quote,
+      caption = attachment.caption,
+      stickerLocator = attachment.stickerLocator,
+      blurHash = attachment.blurHash,
+      audioHash = attachment.audioHash,
+      transformProperties = attachment.transformProperties,
+      displayOrder = 0,
+      uploadTimestamp = attachment.uploadTimestamp,
+      dataHash = null
     )
   }
 

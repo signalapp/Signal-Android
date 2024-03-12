@@ -12,7 +12,7 @@
         android:id="@+id/country_search"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:drawableStart="@drawable/ic_menu_search_holo_light"
+        android:drawableStart="@drawable/symbol_search_24"
         android:hint="@string/country_selection_fragment__search"
         app:drawableTint="@color/signal_icon_tint_primary" />
 

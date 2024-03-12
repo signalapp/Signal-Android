@@ -14,12 +14,12 @@ data class TransferControlViewState(
   val isFocusable: Boolean = true,
   val isClickable: Boolean = true,
   val slides: List<Slide> = emptyList(),
-  val downloadClickedListener: View.OnClickListener? = null,
-  val cancelDownloadClickedListener: View.OnClickListener? = null,
+  val startTransferClickListener: View.OnClickListener? = null,
+  val cancelTransferClickedListener: View.OnClickListener? = null,
   val instantPlaybackClickListener: View.OnClickListener? = null,
   val showSecondaryText: Boolean = true,
   val networkProgress: Map<Attachment, TransferControlView.Progress> = HashMap(),
   val compressionProgress: Map<Attachment, TransferControlView.Progress> = HashMap(),
   val playableWhileDownloading: Boolean = false,
-  val isOutgoing: Boolean = false
+  val isUpload: Boolean = false
 )

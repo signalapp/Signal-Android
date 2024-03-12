@@ -10,6 +10,7 @@ import org.signal.core.util.requireLong
 import org.signal.core.util.select
 import org.signal.core.util.toInt
 import org.signal.core.util.update
+import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.push.DistributionId
@@ -259,12 +260,7 @@ class StorySendTable(context: Context, databaseHelper: SignalDatabase) : Databas
    * 1. For each unique message id in local not present in remote, we can assume that the message can be marked deleted.
    */
   fun applySentStoryManifest(remoteManifest: SentStorySyncManifest, sentTimestamp: Long) {
-    if (remoteManifest.entries.isEmpty()) {
-      return
-    }
-
-    writableDatabase.beginTransaction()
-    try {
+    writableDatabase.withinTransaction {
       val localManifest: SentStorySyncManifest = getLocalManifest(sentTimestamp)
 
       val query = """
@@ -291,7 +287,7 @@ class StorySendTable(context: Context, databaseHelper: SignalDatabase) : Databas
       val remoteRows: Set<SentStorySyncManifest.Row> = remoteManifest.flattenToRows(distributionIdToMessageId)
 
       if (localRows == remoteRows) {
-        return
+        return@withinTransaction
       }
 
       val remoteOnly: List<SentStorySyncManifest.Row> = remoteRows.filterNot { localRows.contains(it) }
@@ -332,10 +328,6 @@ class StorySendTable(context: Context, databaseHelper: SignalDatabase) : Databas
         SignalDatabase.messages.markAsRemoteDelete(it)
         SignalDatabase.messages.deleteRemotelyDeletedStory(it)
       }
-
-      writableDatabase.setTransactionSuccessful()
-    } finally {
-      writableDatabase.endTransaction()
     }
   }
 

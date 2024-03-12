@@ -203,6 +203,10 @@ public final class SignalAccountRecord implements SignalRecord {
         diff.add("Username");
       }
 
+      if (hasCompletedUsernameOnboarding() != that.hasCompletedUsernameOnboarding())  {
+        diff.add("HasCompletedUsernameOnboarding");
+      }
+
       return diff.toString();
     } else {
       return "Different class. " + getClass().getSimpleName() + " | " + other.getClass().getSimpleName();
@@ -327,6 +331,10 @@ public final class SignalAccountRecord implements SignalRecord {
 
   public boolean hasSeenGroupStoryEducationSheet() {
     return proto.hasSeenGroupStoryEducationSheet;
+  }
+
+  public boolean hasCompletedUsernameOnboarding() {
+    return proto.hasCompletedUsernameOnboarding;
   }
 
   public @Nullable String getUsername() {
@@ -695,6 +703,11 @@ public final class SignalAccountRecord implements SignalRecord {
 
     public Builder setHasSeenGroupStoryEducationSheet(boolean hasSeenGroupStoryEducationSheet) {
       builder.hasSeenGroupStoryEducationSheet(hasSeenGroupStoryEducationSheet);
+      return this;
+    }
+
+    public Builder setHasCompletedUsernameOnboarding(boolean hasCompletedUsernameOnboarding) {
+      builder.hasCompletedUsernameOnboarding(hasCompletedUsernameOnboarding);
       return this;
     }
 

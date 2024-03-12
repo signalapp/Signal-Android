@@ -15,11 +15,11 @@ sealed class CameraXModePolicy {
 
   abstract val isVideoSupported: Boolean
 
-  abstract fun initialize(cameraController: CameraController)
+  abstract fun initialize(cameraController: SignalCameraController)
 
-  open fun setToImage(cameraController: CameraController) = Unit
+  open fun setToImage(cameraController: SignalCameraController) = Unit
 
-  open fun setToVideo(cameraController: CameraController) = Unit
+  open fun setToVideo(cameraController: SignalCameraController) = Unit
 
   /**
    * The device supports having Image and Video enabled at the same time
@@ -28,7 +28,7 @@ sealed class CameraXModePolicy {
 
     override val isVideoSupported: Boolean = true
 
-    override fun initialize(cameraController: CameraController) {
+    override fun initialize(cameraController: SignalCameraController) {
       cameraController.setEnabledUseCases(CameraController.IMAGE_CAPTURE or CameraController.VIDEO_CAPTURE)
     }
   }
@@ -40,15 +40,15 @@ sealed class CameraXModePolicy {
 
     override val isVideoSupported: Boolean = true
 
-    override fun initialize(cameraController: CameraController) {
+    override fun initialize(cameraController: SignalCameraController) {
       setToImage(cameraController)
     }
 
-    override fun setToImage(cameraController: CameraController) {
+    override fun setToImage(cameraController: SignalCameraController) {
       cameraController.setEnabledUseCases(CameraController.IMAGE_CAPTURE)
     }
 
-    override fun setToVideo(cameraController: CameraController) {
+    override fun setToVideo(cameraController: SignalCameraController) {
       cameraController.setEnabledUseCases(CameraController.VIDEO_CAPTURE)
     }
   }
@@ -60,7 +60,7 @@ sealed class CameraXModePolicy {
 
     override val isVideoSupported: Boolean = false
 
-    override fun initialize(cameraController: CameraController) {
+    override fun initialize(cameraController: SignalCameraController) {
       cameraController.setEnabledUseCases(CameraController.IMAGE_CAPTURE)
     }
   }

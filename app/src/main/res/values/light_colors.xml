@@ -203,4 +203,6 @@
     <color name="message_request_bar_denyForeground_wallpaper">@color/signal_colorError</color>
     <color name="message_request_bar_acceptForeground_wallpaper">@color/signal_colorNeutralInverse</color>
 
+    <color name="safety_tip_background">@color/core_white</color>
+    <color name="safety_tip_image_background">#99F2F5F9</color>
 </resources>

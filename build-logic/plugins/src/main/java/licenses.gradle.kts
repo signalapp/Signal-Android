@@ -86,6 +86,10 @@ task("saveLicenses") {
         output.append("\n")
       }
 
+    output.append("Kyber Patent License\n")
+    output.append("https://csrc.nist.gov/csrc/media/Projects/post-quantum-cryptography/documents/selected-algos-2022/nist-pqc-license-summary-and-excerpts.pdf\n")
+    output.append("\n")
+
     // Save the file to disk
     rootProject
       .file("app/src/main/res/raw/third_party_licenses")

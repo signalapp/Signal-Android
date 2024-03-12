@@ -179,7 +179,18 @@
     <string name="BlockUnblockDialog_unblock_s">Odblokirati %1$s?</string>
     <string name="BlockUnblockDialog_block">Blokiraj</string>
     <string name="BlockUnblockDialog_block_and_leave">Blokiraj i napusti</string>
-    <string name="BlockUnblockDialog_report_spam_and_block">Prijavi neželjenu poruku i blokiraj</string>
+    <!-- Dialog button label to report as spam and block the person -->
+    <string name="BlockUnblockDialog_report_spam_and_block">Prijavi i blokiraj</string>
+    <!-- Dialog title for reporting spam -->
+    <string name="BlockUnblockDialog_report_spam_title">Prijaviti neželjeni sadržaj?</string>
+    <!-- Dialog button to report as spam only -->
+    <string name="BlockUnblockDialog_report_spam">Prijavi neželjeni sadržaj</string>
+    <!-- Dialog message when reporting spam of an individual (1:1 conversation) -->
+    <string name="BlockUnblockDialog_report_spam_description">Signal će biti obaviješten da ova osoba možda šalje neželjene poruke. Signal ne može vidjeti sadržaj nijednog razgovora.</string>
+    <!-- Dialog message when reporting spam of a group and we can determine the group member that invited you, placeholder is a name -->
+    <string name="BlockUnblockDialog_report_spam_group_named_adder">Signal će biti obaviješten da korisnik %1$s, koji vas je pozvao u ovu grupu, možda šalje neželjene poruke. Signal ne može vidjeti sadržaj nijednog razgovora.</string>
+    <!-- Dialog message when reporting spam of a group and we cannot determine the group member that invited you -->
+    <string name="BlockUnblockDialog_report_spam_group_unknown_adder">Signal će biti obaviješten da korisnik koji vas je pozvao u ovu grupu možda šalje neželjene poruke. Signal ne može vidjeti sadržaj nijednog razgovora.</string>
 
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">Danas</string>
@@ -421,6 +432,8 @@
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported">Signal više ne podržava slanje SMS poruka.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Signal više ne podržava slanje SMS poruka. Pozovite korisnika %1$s u Signal da bi vaš razgovor ostao ovdje.</string>
+    <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
+    <string name="ConversationActivity__this_person_is_no_longer_using_signal">Ova osoba više ne koristi Signal. Pozovite ju da se vrati u Signal kako bi vaš razgovor ostao ovdje.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">Pozovi u Signal</string>
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
@@ -501,8 +514,8 @@
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">U ovom razgovoru možete dodati osobne bilješke. Ako vaš račun ima povezane uređaje, nove će se bilješke sinkronizirati.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d člana/ova grupe imaju isto ime.</string>
     <string name="ConversationFragment__tap_to_review">Pritisnite za pregled</string>
-    <string name="ConversationFragment__review_requests_carefully">Pažljivo pregledajte zahtjeve</string>
-    <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal je pronašao drugi kontakt s istim imenom.</string>
+    <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
+    <string name="ConversationFragment__review_banner_body">Ova osoba ima isto ime kao drugi kontakt</string>
     <string name="ConversationFragment_contact_us">Kontaktirajte nas</string>
     <string name="ConversationFragment_verify">Potvrdi</string>
     <string name="ConversationFragment_not_now">Ne sada</string>
@@ -528,6 +541,55 @@
     <string name="ConversationFragment__content_description_launch_signal_button">Otvori Signal</string>
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
     <string name="ConversationFragment__no_longer_verified">Više nije provjereno</string>
+    <!-- Button shown in conversation header when in a message request state and no groups in common to show new message safety tips -->
+    <string name="ConversationFragment_safety_tips">Savjeti za sigurnost</string>
+    <!-- Menu option to report spam in a conversation -->
+    <string name="ConversationFragment_report_spam">Prijavi neželjeni sadržaj</string>
+    <!-- Menu option to block in a conversation -->
+    <string name="ConversationFragment_block">Blokiraj</string>
+    <!-- Menu otpion to accept a message request in a conversation -->
+    <string name="ConversationFragment_accept">Prihvati</string>
+    <!-- Menu option to delete an entire chat in a conversation -->
+    <string name="ConversationFragment_delete_chat">Izbriši razgovor</string>
+    <!-- Menu option to unblock in a conversation -->
+    <string name="ConversationFragment_unblock">Odblokiraj</string>
+    <!-- Dialog title shown after reporting spam and tapping the conversation item -->
+    <string name="ConversationFragment_reported_spam">Prijavljeno kao neželjeni sadržaj</string>
+    <!-- Dialog message shown after reporting spam and tapping the conversation item -->
+    <string name="ConversationFragment_reported_spam_message">Obavijestili ste Signal da ova osoba možda šalje neželjene poruke. Signal ne može vidjeti sadržaj nijednog razgovora.</string>
+    <!-- Toast shown after reporting spam and tapping the conversation item -->
+    <string name="ConversationFragment_reported_as_spam">Prijavljeno kao neželjeni sadržaj</string>
+    <!-- Toast shown after reporting and blocking a conversation -->
+    <string name="ConversationFragment_reported_as_spam_and_blocked">Prijavljeno kao neželjeni sadržaj i blokirano</string>
+    <!-- Dialog message shown after accepting a message request and tapping on options from the conversation event -->
+    <string name="ConversationFragment_you_accepted_a_message_request_from_s">Prihvatili ste zahtjev za poruku korisnika %1$s. Ako ste to učinili greškom, u nastavku možete odabrati koju radnju poduzeti.</string>
+
+    <!-- Title of Safety Tips bottom sheet dialog -->
+    <string name="SafetyTips_title">Savjeti za sigurnost</string>
+    <!-- Dialog subtitle when showign tips for a 1:1 conversation -->
+    <string name="SafetyTips_subtitle_individual">Budite oprezni pri prihvaćanju zahtjeva za poruke od osoba koje ne poznajete. Pripazite na:</string>
+    <!-- Dialog subtitle when showing tips for a group conversation -->
+    <string name="SafetyTips_subtitle_group">Pažljivo pregledajte ovaj zahtjev. Niti jedan od vaših kontakata ili osoba s kojima razgovarate ne nalazi se u ovoj grupi. Slijedi nekoliko stvari na koje trebate pripaziti:</string>
+    <!-- Button text to move to the previous tip-->
+    <string name="SafetyTips_previous_tip">Prethodni savjet</string>
+    <!-- Button text to move to the next tip -->
+    <string name="SafetyTips_next_tip">Sljedeći savjet</string>
+    <!-- Title of tip 1 -->
+    <string name="SafetyTips_tip1_title">Prijevare s kriptovalutama ili novčane prijevare</string>
+    <!-- Message of tip 1 -->
+    <string name="SafetyTips_tip1_message">Ako vam osoba koju ne poznajete pošalje poruku o kriptovaluti (kao što je Bitcoin) ili nekoj financijskoj prilici, budite oprezni – vjerojatno je riječ o prijevari.</string>
+    <!-- Title of tip 2 -->
+    <string name="SafetyTips_tip2_title">Nejasne ili nevažne poruke</string>
+    <!-- Message of tip 2 -->
+    <string name="SafetyTips_tip2_message">Pošiljatelji neželjene pošte često započinju razgovor jednostavnom porukom poput \"Bok\" kako bi privukli vašu pažnju. Ako im odgovorite, mogli bi nastaviti sa slanjem poruka.</string>
+    <!-- Title of tip 3 -->
+    <string name="SafetyTips_tip3_title">Poruke koje sadrže poveznice</string>
+    <!-- Message of tip 3 -->
+    <string name="SafetyTips_tip3_message">Budite oprezni s porukama koje vam pošalju osobe koje ne poznajete, a koje sadrže poveznice na web-lokacije. Nikada ne posjećujte poveznice koje vam pošalju osobe kojima ne vjerujete.</string>
+    <!-- Title of tip 4 -->
+    <string name="SafetyTips_tip4_title">Lažne tvrtke i ustanove</string>
+    <!-- Message of tip 4 -->
+    <string name="SafetyTips_tip4_message">Budite oprezni kada vas kontaktiraju tvrtke ili državne agencije. Poruke koje se odnose na porezne agencije, kurire i sl. mogle bi biti neželjeni sadržaj.</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Ukloni filtar</string>
@@ -546,7 +608,12 @@
         <item quantity="other">Ovo će trajno izbrisati %1$d odabranih razgovora.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Brisanje</string>
-    <string name="ConversationListFragment_deleting_selected_conversations">Brisanje odabranih razgovora…</string>
+    <plurals name="ConversationListFragment_deleting_selected_conversations">
+        <item quantity="one">Brisanje odabranog razgovora…</item>
+        <item quantity="few">Brisanje odabranih razgovora…</item>
+        <item quantity="many">Brisanje odabranih razgovora…</item>
+        <item quantity="other">Brisanje odabranih razgovora…</item>
+    </plurals>
     <plurals name="ConversationListFragment_conversations_archived">
         <item quantity="one">Razgovor je arhiviran</item>
         <item quantity="few">%1$d razgovora su arhivirana</item>
@@ -594,6 +661,8 @@
     <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">Ovdje uključite/isključite profil za obavijesti.</string>
     <!-- Message shown in top toast to indicate the named profile is on -->
     <string name="ConversationListFragment__s_on">Aktivno: %1$s</string>
+    <!-- -->
+    <string name="ConversationListFragment_username_recovered_toast">Vaš QR kôd i poveznica su poništeni, a vaše korisničko ime je %1$s</string>
 
     <!-- ConversationListItem -->
     <string name="ConversationListItem_key_exchange_message">Poruka za razmjenu ključeva</string>
@@ -638,9 +707,9 @@
     <!-- Toolbar title for this screen -->
     <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Tko me može pronaći po broju telefona?</string>
     <!-- Description for radio item stating anyone can see your phone number -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">Svatko tko je spremio vaš broj telefona u imenik vidjet će vas kao kontakt na Signalu. Drugi će vas moći pronaći tražeći vas po broju telefona.</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">Svi korisnici koji imaju vaš broj telefona vidjet će da ste na Signalu i moći će započeti razgovor s vama.</string>
     <!-- Description for radio item stating no one will be able to see your phone number -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">Nitko na Signalu vas neće moći pronaći po broju telefona.</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Nitko neće moći vidjeti da ste na Signalu, osim ako nekome ne pošaljete poruku ili ako već imate postojeći razgovor s nekime.</string>
 
     <!-- ChooseBackupFragment -->
     <string name="ChooseBackupFragment__restore_from_backup">Vrati iz sigurnosne kopije?</string>
@@ -1064,6 +1133,10 @@
     <string name="GroupMentionSettingDialog_dont_notify_me">Ne obavještavaj me</string>
 
     <!-- ManageProfileFragment -->
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
+    <string name="ManageProfileFragment__your_username">Vaše korisničko ime, QR kôd i poveznica ne prikazuju se na vašem profilu. Dijelite svoje korisničko ime samo s osobama kojima vjerujete.</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
+    <string name="ManageProfileFragment__username_footer_no_username">Drugi vam sada mogu slati poruke putem vašeg korisničkog imena, koje nije obavezno, tako da više ne morate dijeliti svoj broj telefona. </string>
     <string name="ManageProfileFragment_profile_name">Ime profila</string>
     <string name="ManageProfileFragment_username">Korisničko ime</string>
     <string name="ManageProfileFragment_about">Opis</string>
@@ -1371,6 +1444,10 @@
     <string name="MessageRecord_missed_voice_call">Propušteni glasovni poziv</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">Propušteni videopoziv</string>
+    <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
+    <string name="MessageRecord_missed_voice_call_notification_profile">Propustili ste glasovni poziv dok je profil obavijesti bio uključen</string>
+    <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
+    <string name="MessageRecord_missed_video_call_notification_profile">Propustili ste videopoziv dok je profil obavijesti bio uključen</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
     <string name="MessageRecord_you_declined_a_voice_call">Odbili ste glasovni poziv</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
@@ -1402,9 +1479,11 @@
     </plurals>
 
     <!-- Profile change updates -->
-    <string name="MessageRecord_changed_their_profile_name_to">%1$s je promijenio/la svoje ime na profilu u %2$s.</string>
-    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s je promijenio/la svoje ime na profilu iz %2$s u %3$s.</string>
+    <string name="MessageRecord_changed_their_profile_name_to">%1$s je promijenio/la svoje ime profila u %2$s.</string>
+    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s je promijenio/la svoje ime profila iz %2$s u %3$s.</string>
     <string name="MessageRecord_changed_their_profile">%1$s je promijenio/la svoj profil.</string>
+    <!-- Conversation update event message shown when you\'ve started a conversation by phone number or username and then learn their profile name. placeholder is username or phone number -->
+    <string name="MessageRecord_started_this_chat">Započeli ste razgovor s korisnikom %1$s.</string>
 
     <!-- GV2 specific -->
     <string name="MessageRecord_you_created_the_group">Stvorili ste grupu.</string>
@@ -1633,6 +1712,10 @@
     <string name="MessageRecord__you_can_no_longer_send_sms_messages_in_signal">Više nije moguće slati SMS poruke preko Signala. Pozovite korisnika %1$s u Signal da bi vaš razgovor ostao ovdje.</string>
     <!-- Body for quote when message being quoted is an in-app payment message -->
     <string name="MessageRecord__payment_s">Plaćanje: %1$s</string>
+    <!-- Update message shown in chat after reporting it as spam -->
+    <string name="MessageRecord_reported_as_spam">Prijavljeno kao neželjeni sadržaj</string>
+    <!-- Update message shown in chat after accept a message request -->
+    <string name="MessageRecord_you_accepted_the_message_request">Prihvatili ste zahtjev za poruku</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Prihvati</string>
@@ -1687,6 +1770,8 @@
         <item quantity="many">%1$d dodatnih grupa</item>
         <item quantity="other">%1$d dodatnih grupa</item>
     </plurals>
+    <!-- Button label to report spam for a conversation when in a message request state -->
+    <string name="MessageRequestBottomView_report">Prijavi…</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Lozinke se ne podudaraju!</string>
@@ -1695,7 +1780,7 @@
 
     <!-- DeviceProvisioningActivity -->
     <string name="DeviceProvisioningActivity_link_this_device">Poveži ovaj uređaj?</string>
-    <string name="DeviceProvisioningActivity_continue">NASTAVI</string>
+    <string name="DeviceProvisioningActivity_continue">Nastavi</string>
 
     <string name="DeviceProvisioningActivity_content_intro">Moći će</string>
     <string name="DeviceProvisioningActivity_content_bullets">
@@ -1914,8 +1999,10 @@
     <string name="WebRtcCallView__disconnected">Odspojeno</string>
     <!-- Utilized in the lobby before joining a call link -->
     <string name="WebRtcCallView__signal_call_link">Pozivnica na Signal poziv</string>
-    <!-- Warning displayed when entering a call via a link -->
-    <string name="WebRtcCallView__anyone_who_joins">Svatko tko se pridruži ovom pozivu putem poveznice vidjet će vaše ime, fotografiju i broj telefona.</string>
+    <!-- Warning displayed when entering a call via a link and you have Phone Number Privacy disabled-->
+    <string name="WebRtcCallView__anyone_who_joins_pnp_disabled">Svatko tko se pridruži ovom pozivu putem poveznice vidjet će vaše ime, fotografiju i broj telefona.</string>
+    <!-- Warning displayed when entering a call via a link and you have Phone Number Privacy enabled-->
+    <string name="WebRtcCallView__anyone_who_joins_pnp_enabled">Svatko tko se pridruži ovom pozivu putem poveznice vidjet će vaše ime i fotografiju.</string>
     <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
     <string name="WebRtcCallView__waiting_to_be_let_in">Čekanje potvrde za pridruživanje…</string>
 
@@ -2031,6 +2118,10 @@
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">Signal kontakt</string>
+    <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
+    <string name="AboutSheet__verified">Provjereno</string>
+    <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
+    <string name="AboutSheet__no_direct_message">Nema direktnih poruka s korisnikom %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s je u kontaktima vašeg sustava</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -2038,7 +2129,12 @@
     <!-- Notice when a user is not a connection to review requests carefully -->
     <string name="AboutSheet__review_requests_carefully">Pažljivo pregledajte zahtjeve</string>
     <!-- Text used when user has groups in common. Placeholder is the count -->
-    <string name="AboutSheet__d_groups_in_common">%1$d zajedničkih grupa</string>
+    <plurals name="AboutSheet__d_groups_in">
+        <item quantity="one">%1$d zajednička grupa</item>
+        <item quantity="few">%1$d zajedničke grupe</item>
+        <item quantity="many">%1$d zajedničkih grupa</item>
+        <item quantity="other">%1$d zajedničkih grupa</item>
+    </plurals>
     <!-- Text displayed in title for external recipients -->
     <string name="AboutSheet__about">Opis</string>
     <!-- Text displayed in title for you -->
@@ -2162,7 +2258,7 @@
     <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_title">Imate poteškoća s registriranjem?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Provjerite ima li vaš telefon signala za primanje SMS-a ili poziva\n • Potvrdite da možete primati pozive na ovaj broj\n • Provjerite jeste li ispravno unijeli broj telefona.</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Provjerite ima li vaš telefon signala za primanje SMS poruka ili poziva\n • Potvrdite da možete primati pozive na ovaj broj telefona\n • Provjerite jeste li ispravno unijeli broj telefona.</string>
     <!--    A call to action for a user having trouble entering the verification to seek further help. -->
     <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">Za više informacija, slijedite ove korake za rješavanje problema ili kontaktirajte podršku</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
@@ -2355,6 +2451,8 @@
     <string name="UnverifiedSendDialog_send">Pošalji</string>
 
     <!-- UsernameEditFragment -->
+    <!-- Placeholder text for custom discriminator -->
+    <string name="UsernameEditFragment__00">00</string>
     <!-- Toolbar title when entering from registration -->
     <string name="UsernameEditFragment__add_a_username">Dodajte korisničko ime</string>
     <!-- Instructional text at the top of the username edit screen -->
@@ -2363,13 +2461,15 @@
     <string name="UsernameEditFragment_delete">Izbriši</string>
     <string name="UsernameEditFragment_successfully_removed_username">Korisničko ime uspješno je uklonjeno.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Došlo je do mrežne pogreške.</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">Previše neuspjelih pokušaja. Pokušajte ponovno kasnije.</string>
     <string name="UsernameEditFragment_this_username_is_taken">Korisničko ime je zauzeto.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">Korisnička imena smiju sadržavati samo a-Z, 0-9 i podvlake.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Korisnička imena ne mogu započinjati s brojem.</string>
-    <string name="UsernameEditFragment_username_is_invalid">Korisničko ime je nevažeće.</string>
+    <string name="UsernameEditFragment_username_is_invalid">Korisničko ime nije važeće.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Korisnička imena moraju imati između %1$d i %2$d znakova.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Korisnička imena omogućuju drugima da vam šalju poruke bez potrebe za vašim brojem telefona. Ona su uparena sa skupom znamenki kako bi vaša adresa ostala tajna.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">Korisnička imena uvijek su povezana sa skupom znamenki.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">Čemu služi ovaj broj?</string>
     <string name="UsernameEditFragment__these_digits_help_keep">Ove znamenke čuvaju privatnost vašeg korisničkog imena kako bi se izbjeglo primanje neželjenih poruka. Podijelite svoje korisničko ime samo s osobama i grupama s kojima želite razgovarati. Ako promijenite korisničko ime, dobit ćete novi skup znamenki.</string>
@@ -2377,6 +2477,22 @@
     <string name="UsernameEditFragment__skip">Preskoči</string>
     <!-- Content description for done button -->
     <string name="UsernameEditFragment__done">Gotovo</string>
+    <!-- Displayed when the chosen discriminator is not available for the given nickname -->
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">Korisničko ime nije dostupno, pokušajte odabrati drugi broj.</string>
+    <!-- Displayed when the chosen discriminator is too short -->
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Korisničko ime nije valjano, unesite najmanje %1$d znamenke.</string>
+    <!-- Displayed when the chosen discriminator is too long -->
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Korisničko ime nije valjano, unesite najmanje %1$d znamenki.</string>
+    <!-- Displayed when the chosen discriminator is 00 -->
+    <string name="UsernameEditFragment__this_number_cant_be_00">Broj ne može biti 00. Unesite znamenku od 1 do 9</string>
+    <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">Brojevi s više od 2 znamenke ne mogu počinjati s 0</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
+    <string name="UsernameEditFragment_recovery_dialog_confirmation">Oporavak vašeg korisničkog imena poništit će vaš trenutni QR kôd i poveznicu. Sigurno želite nastaviti?</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
+    <string name="UsernameEditFragment_change_confirmation_message">Promjenom korisničkog imena poništit ćete svoj trenutni QR kôd i poveznicu. Sigurno želite nastaviti?</string>
+    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
+    <string name="UsernameEditFragment_continue">Nastavi</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d kontakt je na Signalu!</item>
@@ -2569,6 +2685,26 @@
     <!-- Notification subtext for group stories -->
     <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s • Priča</string>
 
+    <!-- NewWaysToConnectDialogFragment -->
+    <!-- Fragment title, displayed at the top of the content -->
+    <string name="NewWaysToConnectDialogFragment__new_ways_to_connect">Novi načini povezivanja</string>
+    <!-- Row item title for phone number privacy explainer -->
+    <string name="NewWaysToConnectDialogFragment__phone_number_privacy">Privatnost broja telefona</string>
+    <!-- Row item description for phone number privacy explainer -->
+    <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">Vaš se broj telefona više ne dijeli s korisnicima prilikom razgovora. Broj će biti vidljiv vašim prijateljima ako je već spremljen u njihovim kontaktima.</string>
+    <!-- Row item title for usernames explainer -->
+    <string name="NewWaysToConnectDialogFragment__usernames">Korisnička imena</string>
+    <!-- Row item description for usernames explainer -->
+    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">Drugi vam sada mogu slati poruke putem vašeg korisničkog imena, koje nije obavezno, tako da više ne morate dijeliti svoj broj telefona. Vaše korisničko ime ne prikazuje se na profilu.</string>
+    <!-- Row item title for qr code and links explainer -->
+    <string name="NewWaysToConnectDialogFragment__qr_codes_and_links">QR kodovi i poveznice</string>
+    <!-- Row item description for qr code and links explainer -->
+    <string name="NewWaysToConnectDialogFragment__usernames_have_a_unique_qr_code">Svako korisničko ime ima jedinstveni QR kôd i poveznicu koje možete podijeliti sa svojim prijateljima kako biste brzo započeli razgovor.</string>
+    <!-- Button label for not right now -->
+    <string name="NewWaysToConnectDialogFragment__not_now">Ne sada</string>
+    <!-- Button label for continue -->
+    <string name="NewWaysToConnectDialogFragment__set_up_your_username">Postavite korisničko ime</string>
+
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">Reproduciraj video</string>
     <string name="ThumbnailView_Has_a_caption_description">Ima opis</string>
@@ -2584,6 +2720,8 @@
     <string name="TransferControlView__processing">Obrada u tijeku…</string>
     <!-- Status update label used while the device is transmitting data over the network. Will take the form of "1.0 MB/2.0 MB" -->
     <string name="TransferControlView__download_progress">%1$1.1f MB/%2$2.1f MB</string>
+    <!-- Attachment file size label for not-yet-downloaded images and video. Will take the form of "1.0 MB" -->
+    <string name="TransferControlView__filesize">%1$1.1f MB</string>
 
 
     <!-- UnauthorizedReminder -->
@@ -2686,6 +2824,10 @@
         <item quantity="many">%1$d članova</item>
         <item quantity="other">%1$d članova</item>
     </plurals>
+    <!-- Text on row item to find user by phone number -->
+    <string name="ContactSelectionListFragment__find_by_phone_number">Traži po broju telefona</string>
+    <!-- Text on row item to find user by username -->
+    <string name="ContactSelectionListFragment__find_by_username">Traži po korisničkom imenu</string>
 
     <!-- contact_selection_list_fragment -->
     <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal zahtjeva pristup vašim kontaktima kako bi ih mogao prikazati.</string>
@@ -2761,6 +2903,8 @@
     <string name="ConversationUpdateItem_activate_payments">Omogući plaćanja</string>
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">Uklonili ste ovu osobu, ponovnim slanjem poruke vratit ćete je na svoj popis.</string>
+    <!-- Update item button text shown for the accepted message request update message -->
+    <string name="ConversationUpdateItem_options">Mogućnosti</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Reproduciraj … Pauziraj</string>
@@ -3953,13 +4097,27 @@
     <!-- Subtext below option to launch into phone number privacy settings screen -->
     <string name="preferences_app_protection__choose_who_can_see">Odaberite tko može vidjeti vaš broj telefona i tko vas može kontaktirati putem njega na Signalu.</string>
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
-    <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Tko može vidjeti moj broj</string>
-    <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nitko neće vidjeti vaš broj telefona na Signalu</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">Tko može vidjeti moj broj</string>
+    <!-- Subtext below radio buttons when who can see my number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">Vaš broj telefona bit će vidljiv svim osobama i grupama kojima pošaljete poruku.</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Vaš broj telefona neće biti vidljiv nikome, osim korisnicima u čijim se kontaktima već nalazi.</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Vaš broj telefona neće biti vidljiv nikome.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
-    <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Tko me može pronaći po broju telefona</string>
-    <!-- Subtext below radio buttons when who can see my number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">Vaš broj telefona bit će vidljiv osobama i grupama kojima pošaljete poruku. Osobe koje imaju vaš broj u kontaktima telefona također će ga vidjeti na Signalu.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Tko me može pronaći po broju telefona</string>
+    <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">Svi korisnici koji imaju vaš broj telefona vidjet će da ste na Signalu i moći će započeti razgovor s vama.</string>
+    <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">Nitko neće moći vidjeti da ste na Signalu, osim ako nekome ne pošaljete poruku ili ako već imate postojeći razgovor s nekime.</string>
+    <!-- Snackbar text when pressing invalid radio item -->
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"Za promjenu ove postavke, postavite opciju \"Tko može vidjeti moj broj\" na \"Nitko\"."</string>
+    <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Sigurno želite nastaviti?</string>
+    <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Ako za postavku \"Tko me može pronaći po broju telefona\" odaberete opciju \"Nitko\", drugi će vas korisnici teže pronaći na Signalu.</string>
+    <!-- Dialog button text for canceling change action -->
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">Poništi</string>
     <string name="PhoneNumberPrivacy_everyone">Svi</string>
     <string name="PhoneNumberPrivacy_nobody">Nitko</string>
     <string name="preferences_app_protection__screen_lock">Zaključavanje zaslona</string>
@@ -3988,6 +4146,8 @@
     <string name="prompt_passphrase_activity__signal_is_locked">Signal je zaključan</string>
     <string name="prompt_passphrase_activity__tap_to_unlock">PRITISNITE ZA OTKLJUČAVANJE</string>
     <string name="Recipient_unknown">Nepoznato</string>
+    <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
+    <string name="Recipient_deleted_account">Izbrisan račun</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
     <string name="preferences_account_reregister">Ponovno registrirajte račun</string>
@@ -4190,7 +4350,9 @@
     <string name="BlockedUsersActivity__s_has_been_unblocked">Korisnik \"%1$s\" je odblokiran.</string>
 
     <!-- ReviewCardDialogFragment -->
+    <!-- Title of a screen where the user will be prompted to review group members with the same name -->
     <string name="ReviewCardDialogFragment__review_members">Pregled članova</string>
+    <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
     <string name="ReviewCardDialogFragment__review_request">Pregled zahtjeva</string>
     <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d člana/ova grupe imaju isto ime, pregledajte članove u nastavku i odaberite poduzeti radnju.</string>
     <string name="ReviewCardDialogFragment__if_youre_not_sure">Ako niste sigurni od koga je zahtjev, pregledajte kontakte u nastavku i poduzmite radnje.</string>
@@ -4461,11 +4623,16 @@
     <string name="GroupDescriptionDialog__group_description">Opis grupe</string>
 
     <!-- QualitySelectorBottomSheetDialog -->
+    <!-- Label for our standard quality media conversion. -->
     <string name="QualitySelectorBottomSheetDialog__standard">Standardno</string>
+    <!-- Description for our standard quality media conversion. -->
     <string name="QualitySelectorBottomSheetDialog__faster_less_data">Brže, manje podataka</string>
+    <!-- Label for our high quality media conversion. This has better quality than standard. -->
     <string name="QualitySelectorBottomSheetDialog__high">Visoko</string>
+    <!-- Label for our high quality media conversion. This has better quality than standard. -->
     <string name="QualitySelectorBottomSheetDialog__slower_more_data">Sporije, više podataka</string>
-    <string name="QualitySelectorBottomSheetDialog__photo_quality">Kvaliteta slike</string>
+    <!-- Title heading for our media conversion quality selector. -->
+    <string name="QualitySelectorBottomSheetDialog__media_quality">Kvaliteta medija</string>
 
     <!-- AppSettingsFragment -->
     <string name="AppSettingsFragment__invite_your_friends">Pozovite svoje prijatelje</string>
@@ -4474,7 +4641,7 @@
     <!-- AccountSettingsFragment -->
     <string name="AccountSettingsFragment__account">Račun</string>
     <string name="AccountSettingsFragment__youll_be_asked_less_frequently">S vremenom ćete biti sve rjeđe upitani</string>
-    <string name="AccountSettingsFragment__require_your_signal_pin">Zahtjeva vaš Signal PIN za ponovnu registriraciju vašeg broja telefona na Signal</string>
+    <string name="AccountSettingsFragment__require_your_signal_pin">Zahtjeva vaš Signal PIN za ponovnu registraciju vašeg broja telefona na Signal</string>
     <string name="AccountSettingsFragment__change_phone_number">Promijeniti broj telefona</string>
     <!-- Account setting that allows user to request and export their signal account data -->
     <string name="AccountSettingsFragment__request_account_data">Podaci o vašem računu</string>
@@ -4521,7 +4688,7 @@
     <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Vaše izvješće generira se samo u trenutku izvoza i Signal ga ne pohranjuje na vašem uređaju.</string>
 
     <!-- ChangeNumberFragment -->
-    <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Upotrijebite ovo za promjenu svog trenutnog telefonskog broja u novi telefonski broj. Ovu promjenu nije moguće poništiti.\n\nPrije nastavka provjerite može li vaš novi broj primati SMS-ove ili pozive.</string>
+    <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Upotrijebite ovo za promjenu svog trenutnog broja telefona u novi broj telefona. Ovu promjenu nije moguće poništiti.\n\nPrije nastavka provjerite može li vaš novi broj primati SMS poruke ili pozive.</string>
     <string name="ChangeNumberFragment__continue">Nastavi</string>
     <!-- Message shown on dialog after your number has been changed successfully. -->
     <string name="ChangeNumber__your_phone_number_has_changed_to_s">Vaš novi broj telefona je %1$s</string>
@@ -4534,7 +4701,7 @@
     <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Stari broj telefona</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Vaš novi broj</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Novi broj telefona</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Broj telefona koji ste unijeli ne podudara se s vašim računima.</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Broj telefona koji ste unijeli ne podudara se s brojem povezanim s vašim računom.</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Morate navesti pozivni broj države svog starog broja</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Morate navesti svoj stari broj telefona</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Morate navesti pozivni broj države svog novog broja</string>
@@ -4547,7 +4714,7 @@
 
     <!-- ChangeNumberConfirmFragment -->
     <string name="ChangeNumberConfirmFragment__change_number">Promijeni broj</string>
-    <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Promijenit ćete svoj broj mobitela iz %1$s u %2$s.\n\nPrije nego što nastavite, provjerite je li navedeni broj točan.</string>
+    <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Promijenit ćete svoj broj telefona iz %1$s u %2$s.\n\nPrije nego što nastavite, provjerite je li navedeni broj točan.</string>
     <string name="ChangeNumberConfirmFragment__edit_number">Uredi broj</string>
 
     <!-- ChangeNumberRegistrationLockFragment -->
@@ -4580,27 +4747,6 @@
     <!-- ChatsSettingsFragment -->
     <string name="ChatsSettingsFragment__keyboard">Tipkovnica</string>
     <string name="ChatsSettingsFragment__enter_key_sends">Tipka Enter šalje poruku</string>
-
-    <!--SmsSettingsFragment -->
-    <string name="SmsSettingsFragment__use_as_default_sms_app">Koristi kao zadanu SMS aplikaciju</string>
-    <!-- Preference title to export sms -->
-    <string name="SmsSettingsFragment__export_sms_messages">Izvoz SMS poruka</string>
-    <!-- Preference title to re-export sms -->
-    <string name="SmsSettingsFragment__export_sms_messages_again">Ponovi izvoz SMS poruka</string>
-    <!-- Preference title to delete sms -->
-    <string name="SmsSettingsFragment__remove_sms_messages">Ukloni SMS poruke</string>
-    <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Uklanjanje SMS poruka iz Signala…</string>
-    <!-- Snackbar text to indicate can delete later -->
-    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">U bilo kojem trenutku u postavkama možete ukloniti SMS poruke iz Signala.</string>
-    <!-- Description for export sms preference -->
-    <string name="SmsSettingsFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">Svoje SMS poruke možete izvesti u SMS bazu podataka svog telefona</string>
-    <!-- Description for re-export sms preference -->
-    <string name="SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages">Ponovni izvoz može rezultirati dvostrukim porukama.</string>
-    <!-- Description for remove sms preference -->
-    <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">Uklonite SMS poruke iz Signala kako biste oslobodili prostor za pohranu.</string>
-    <!-- Information message shown at the top of sms settings to indicate it is being removed soon. -->
-    <string name="SmsSettingsFragment__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging">Podrška za SMS poruke uskoro će biti uklonjena kako bismo se usredotočili na šifriranu razmjenu poruka.</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Poruke</string>
@@ -4814,7 +4960,7 @@
     <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
     <string name="ConversationSettingsFragment__conversation_muted_until_s">Razgovor je utišan do %1$s</string>
     <string name="ConversationSettingsFragment__conversation_muted_forever">Razgovor je utišan zauvijek</string>
-    <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefonski broj je kopiran u međuspremnik.</string>
+    <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Broj telefona je kopiran u međuspremnik.</string>
     <string name="ConversationSettingsFragment__phone_number">Broj telefona</string>
     <string name="ConversationSettingsFragment__get_badges">Osvojite značke za svoj profil podržavajući Signal. Dodirnite značku za više informacija.</string>
 
@@ -4976,6 +5122,32 @@
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">Jedna ili više stavki bile su prevelike</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">Jedna ili više stavki bile su nevažeće</string>
     <string name="MediaReviewFragment__too_many_items_selected">Odabrano je previše stavki</string>
+    <!-- Small notification presented to the user when they set their video to view-once mode -->
+    <string name="MediaReviewFragment__video_set_to_view_once">Ovaj videozapis može se prikazati samo jednom</string>
+    <!-- Small notification presented to the user when they set their photo to view-once mode -->
+    <string name="MediaReviewFragment__photo_set_to_view_once">Ova fotografija može se prikazati samo jednom</string>
+    <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
+    <string name="MediaReviewFragment__video_set_to_high_quality">Videozapis postavljen na visoku kvalitetu</string>
+    <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
+    <string name="MediaReviewFragment__video_set_to_standard_quality">Videozapis postavljen na standardnu kvalitetu</string>
+    <!-- Small notification presented to the user when they set their still image to be sent in high visual quality. -->
+    <string name="MediaReviewFragment__photo_set_to_high_quality">Fotografija postavljena na visoku kvalitetu</string>
+    <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
+    <string name="MediaReviewFragment__photo_set_to_standard_quality">Fotografija postavljena na standardnu kvalitetu</string>
+    <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
+    <plurals name="MediaReviewFragment__items_set_to_high_quality">
+        <item quantity="one">%1$d stavka postavljena na visoku kvalitetu</item>
+        <item quantity="few">%1$d stavke postavljene na visoku kvalitetu</item>
+        <item quantity="many">%1$d stavki postavljeno na visoku kvalitetu</item>
+        <item quantity="other">%1$d stavki postavljeno na visoku kvalitetu</item>
+    </plurals>
+    <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
+    <plurals name="MediaReviewFragment__items_set_to_standard_quality">
+        <item quantity="one">%1$d stavka postavljena na standardnu kvalitetu</item>
+        <item quantity="few">%1$d stavke postavljene na standardnu kvalitetu</item>
+        <item quantity="many">%1$d stavki postavljeno na standardnu kvalitetu</item>
+        <item quantity="other">%1$d stavki postavljeno na standardnu kvalitetu</item>
+    </plurals>
 
     <string name="ImageEditorHud__cancel">Poništi</string>
     <string name="ImageEditorHud__draw">Crtaj</string>
@@ -4999,6 +5171,20 @@
     <string name="MediaReviewImagePageFragment__discard">Poništi</string>
     <string name="MediaReviewImagePageFragment__discard_changes">Odbaciti promjene?</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Izgubit ćete sve promjene koje ste napravili na ovoj fotografiji.</string>
+
+    <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
+    <string name="MediaCaptureFragment_username_dialog_title">Pronađeno: %1$s</string>
+    <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
+    <string name="MediaCaptureFragment_username_dialog_body">Započnite razgovor s korisnikom \"%1$s\"</string>
+    <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
+    <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">Idi na razgovor</string>
+
+    <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+    <string name="MediaCaptureFragment_device_link_dialog_title">Povezati uređaj?</string>
+    <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+    <string name="MediaCaptureFragment_device_link_dialog_body">Čini se da pokušavate povezati uređaj sa Signalom. Dodirnite \"Nastavi\" i ponovo skenirajte kôd da biste ga povezali.</string>
+    <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
+    <string name="MediaCaptureFragment_device_link_dialog_continue">Nastavi</string>
 
 
     <string name="BadgesOverviewFragment__my_badges">Moje značke</string>
@@ -5098,7 +5284,7 @@
     <!-- Displayed as a subtitle on a row in the Manage Donations screen when payment for a donation is pending -->
     <string name="MySupportPreference__payment_pending">Potvrda plaćanja u tijeku</string>
     <!-- Displayed as a dialog message when clicking on a donation row that is pending. Placeholder is a formatted fiat amount -->
-    <string name="MySupportPreference__your_bank_transfer_of_s">Čekamo potvrdu vaše uplate putem bankovnog transfera od %1$s. Obrada transakcije putem bankovnog transfera u prosjeku traje 1 radni dan.  </string>
+    <string name="MySupportPreference__your_bank_transfer_of_s">Čekamo potvrdu vaše uplate putem bankovnog transfera od %1$s. Obrada transakcije putem bankovnog transfera može potrajati od 1 do 14 radnih dana.  </string>
     <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
     <string name="MySupportPreference__learn_more">Saznajte više</string>
 
@@ -5296,6 +5482,12 @@
     <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">Dodajte osobe i grupe od kojih želite primati obavijesti i pozive kada je ovaj profil uključen</string>
     <!-- Button text that launches the contact picker to select from -->
     <string name="AddAllowedMembers__add_people_or_groups">Dodaj ljude ili grupe</string>
+    <!-- Title for exceptions section of add people to notification profile screen in create flow -->
+    <string name="AddAllowedMembers__exceptions">Iznimke</string>
+    <!-- List preference to toggle that allows calls through the notification profile during create flow -->
+    <string name="AddAllowedMembers__allow_all_calls">Dopusti sve pozive</string>
+    <!-- List preference to toggle that allows mentions through the notification profile during create flow -->
+    <string name="AddAllowedMembers__notify_for_all_mentions">Pošalji obavijesti za sva spominjanja</string>
 
     <!-- Call to action button on contact picker for adding to profile -->
     <string name="SelectRecipientsFragment__add">Dodaj</string>
@@ -5628,7 +5820,7 @@
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Prihvatili njihov zahtjev za razgovorom</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Spremili ih u kontakte</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Spremili ih u kontakte vašeg sustava</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Vaši kontakti mogu vidjeti vaše ime i fotografiju te vaše priče, osim ako ih od njih ne sakrijete."</string>
     <!-- Clickable option to add a viewer to a custom story -->
@@ -5944,10 +6136,10 @@
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Svi kontakti su pregledani, dodirnite Pošalji za nastavak.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
     <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
-        <item quantity="one">%1$d osoba među vašim kontaktima je ponovno instalirala Signal ili promijenila uređaj. Prije nego što s njom podijelite vaše priče, pregledajte njezine sigurnosne brojeve ili razmislite o tome da je uklonite iz gledatelja vaših priča.</item>
-        <item quantity="few">%1$d osobe među vašim kontaktima su ponovno instalirale Signal ili promijenile uređaj. Prije nego što s njima podijelite vaše priče, pregledajte njihove sigurnosne brojeve ili razmislite o tome da ih uklonite iz gledatelja vaših priča.</item>
-        <item quantity="many">%1$d osoba među vašim kontaktima je ponovno instaliralo Signal ili promijenilo uređaj. Prije nego što s njima podijelite vaše priče, pregledajte njihove sigurnosne brojeve ili razmislite o tome da ih uklonite iz gledatelja vaših priča.</item>
-        <item quantity="other">%1$d osoba među vašim kontaktima je ponovno instaliralo Signal ili promijenilo uređaj. Prije nego što s njima podijelite vaše priče, pregledajte njihove sigurnosne brojeve ili razmislite o tome da ih uklonite iz gledatelja vaših priča.</item>
+        <item quantity="one">Imate %1$d kontakt koji je možda ponovno instalirao Signal ili promijenio uređaje. Možete pregledati njegov sigurnosni broj ili nastaviti sa slanjem.</item>
+        <item quantity="few">Imate %1$d kontakta koja su možda ponovno instalirala Signal ili promijenila uređaje. Možete pregledati njihove sigurnosne brojeve ili nastaviti sa slanjem.</item>
+        <item quantity="many">Imate %1$d kontakata koji su možda ponovno instalirali Signal ili promijenili uređaje. Možete pregledati njihove sigurnosne brojeve ili nastaviti sa slanjem.</item>
+        <item quantity="other">Imate %1$d kontakata koji su možda ponovno instalirali Signal ili promijenili uređaje. Možete pregledati njihove sigurnosne brojeve ili nastaviti sa slanjem.</item>
     </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Potvrdi sigurnosni broj</string>
@@ -6038,50 +6230,6 @@
     <!-- Generic title for overflow menus -->
     <string name="OverflowMenu__overflow_menu">Padajući izbornik</string>
 
-    <!-- SMS Export Service -->
-    <!-- Displayed in the notification while export is running -->
-    <string name="SignalSmsExportService__exporting_messages">Izvoz poruka…</string>
-    <!-- Displayed in the notification title when export completes -->
-    <string name="SignalSmsExportService__signal_sms_export_complete">Izvoz SMS-ova iz Signala je dovršen</string>
-    <!-- Displayed in the notification message when export completes -->
-    <string name="SignalSmsExportService__tap_to_return_to_signal">Dodirnite za povratak na Signal</string>
-
-    <!-- ExportYourSmsMessagesFragment -->
-    <!-- Title of the screen -->
-    <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">Izvoz vaših SMS poruka</string>
-    <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">Možete izvesti svoje SMS poruke u bazu podataka svog telefona i birati želite li ih zadržati ili ukloniti iz Signala. To omogućuje drugim SMS aplikacijama na vašem telefonu da ih uvezu. Time se ne stvara datoteka vaše povijesti SMS poruka koja se može dijeliti.</string>
-    <!-- Button label to begin export -->
-    <string name="ExportYourSmsMessagesFragment__continue">Nastavi</string>
-
-    <!-- ExportingSmsMessagesFragment -->
-    <!-- Title of the screen -->
-    <string name="ExportingSmsMessagesFragment__exporting_sms_messages">Izvoz SMS poruka</string>
-    <!-- Message of the screen when exporting sms messages -->
-    <string name="ExportingSmsMessagesFragment__this_may_take_awhile">Ovo bi moglo potrajati</string>
-    <!-- Progress indicator for export -->
-    <plurals name="ExportingSmsMessagesFragment__exporting_d_of_d">
-        <item quantity="one">Izvoz poruka: %1$d od %2$d…</item>
-        <item quantity="few">Izvoz poruka: %1$d od %2$d…</item>
-        <item quantity="many">Izvoz poruka: %1$d od %2$d…</item>
-        <item quantity="other">Izvoz poruka: %1$d od %2$d…</item>
-    </plurals>
-    <!-- Alert dialog title shown when we think a user may not have enough local storage available to export sms messages -->
-    <string name="ExportingSmsMessagesFragment__you_may_not_have_enough_disk_space">Možda nemate dovoljno prostora na disku</string>
-    <!-- Alert dialog message shown when we think a user may not have enough local storage available to export sms messages, placeholder is the file size, e.g., 128kB -->
-    <string name="ExportingSmsMessagesFragment__you_need_approximately_s_to_export_your_messages_ensure_you_have_enough_space_before_continuing">Potrebno vam je približno %1$s za izvoz poruka. Provjerite imate li dovoljno prostora prije nastavka.</string>
-    <!-- Alert dialog button to continue with exporting sms after seeing the lack of storage warning -->
-    <string name="ExportingSmsMessagesFragment__continue_anyway">Svejedno nastavi</string>
-    <!-- Dialog text shown when Signal isn\'t granted the sms permission needed to export messages, different than being selected as the sms app -->
-    <string name="ExportingSmsMessagesFragment__signal_needs_the_sms_permission_to_be_able_to_export_your_sms_messages">Signal zahtijeva pristup SMS porukama za uvoz vaših SMS poruka.</string>
-
-    <!-- ChooseANewDefaultSmsAppFragment -->
-    <!-- Title of the screen -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_a_new">Odaberite novu zadanu SMS aplikaciju</string>
-    <!-- Button label to launch picker -->
-    <string name="ChooseANewDefaultSmsAppFragment__continue">Nastavi</string>
-    <!-- Button label for when done with changing default SMS app -->
-    <string name="ChooseANewDefaultSmsAppFragment__done">Gotovo</string>
     <!-- First step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_1">1</string>
     <!-- Second step number/bullet for choose new default sms app instructions -->
@@ -6090,47 +6238,6 @@
     <string name="ChooseANewDefaultSmsAppFragment__bullet_3">3</string>
     <!-- Fourth step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_4">4</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">Dodirnite \"Nastavi\" za otvaranje zaslona \"Zadane aplikacije\" u postavkama</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">S popisa odaberite \"SMS aplikacija\"</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">Odaberite drugu aplikaciju za slanje SMS poruka</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Vratite se na Signal</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">Otvorite postavke na telefonu</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">Idite na \"Aplikacije\" &gt; \"Zadane aplikacije\" &gt; \"SMS aplikacija\"</string>
-
-    <!-- RemoveSmsMessagesDialogFragment -->
-    <!-- Action button to keep messages -->
-    <string name="RemoveSmsMessagesDialogFragment__keep_messages">Zadrži poruke</string>
-    <!-- Action button to remove messages -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_messages">Ukloni poruke</string>
-    <!-- Title of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Ukloniti SMS poruke sa Signala?</string>
-    <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Sada možete ukloniti SMS poruke iz Signala kako biste oslobodili prostor za pohranu. One će i dalje biti dostupne drugim SMS aplikacijama na vašem telefonu, čak i ako ih uklonite.</string>
-
-    <!-- ReExportSmsMessagesDialogFragment -->
-    <!-- Action button to re-export messages -->
-    <string name="ReExportSmsMessagesDialogFragment__continue">Nastavi</string>
-    <!-- Action button to cancel re-export process -->
-    <string name="ReExportSmsMessagesDialogFragment__cancel">Poništi</string>
-    <!-- Title of dialog -->
-    <string name="ReExportSmsMessagesDialogFragment__export_sms_again">Ponoviti izvoz SMS poruka?</string>
-    <!-- Message of dialog -->
-    <string name="ReExportSmsMessagesDialogFragment__you_already_exported_your_sms_messages">Već ste izvezli svoje SMS poruke.\nUPOZORENJE: Ako nastavite, mogli biste dvaput spremiti iste poruke.</string>
-
-    <!-- SetSignalAsDefaultSmsAppFragment -->
-    <!-- Title of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Postavite Signal kao zadanu SMS aplikaciju</string>
-    <!-- Message of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">Da biste izvezli svoje SMS poruke, trebate postaviti Signal kao zadanu SMS aplikaciju.</string>
-    <!-- Button label to start export -->
-    <string name="SetSignalAsDefaultSmsAppFragment__next">Sljedeće</string>
-
     <!-- BackupSchedulePermission Megaphone -->
     <!-- The title on an alert window that explains to the user that we are unable to backup their messages -->
     <string name="BackupSchedulePermissionMegaphone__cant_back_up_chats">Nije moguće sigurnosno kopirati razgovore</string>
@@ -6149,47 +6256,6 @@
     <!-- Re-enable backups permission bottom sheet call to action button to open settings -->
     <string name="BackupSchedulePermissionMegaphone__go_to_settings">Otvori postavke</string>
 
-    <!-- SmsExportMegaphoneActivity -->
-    <!-- Phase 2 title of full screen megaphone indicating sms will no longer be supported in the near future -->
-    <string name="SmsExportMegaphoneActivity__signal_will_no_longer_support_sms">Signal više neće podržavati SMS poruke</string>
-    <!-- Phase 3 title of full screen megaphone indicating sms is longer supported  -->
-    <string name="SmsExportMegaphoneActivity__signal_no_longer_supports_sms">Signal više ne podržava SMS poruke</string>
-    <!-- The text on a button in a popup that, when clicked, will dismiss the popup and schedule the prompt to occur at a later time. -->
-    <string name="SmsExportMegaphoneActivity__remind_me_later">Podsjeti me kasnije</string>
-    <!-- The text on a button in a popup that, when clicked, will navigate the user to a web article on SMS removal -->
-
-    <!-- Title for screen shown after sms export has completed -->
-    <string name="ExportSmsCompleteFragment__export_complete">Izvoz dovršen</string>
-    <!-- Button to continue to next screen -->
-    <string name="ExportSmsCompleteFragment__next">Sljedeće</string>
-    <!-- Message showing summary of sms export counts -->
-    <plurals name="ExportSmsCompleteFragment__d_of_d_messages_exported">
-        <item quantity="one">Izvezene poruke: %1$d od %2$d</item>
-        <item quantity="few">Izvezene poruke: %1$d od %2$d</item>
-        <item quantity="many">Izvezene poruke: %1$d od %2$d</item>
-        <item quantity="other">Izvezene poruke: %1$d od %2$d</item>
-    </plurals>
-
-    <!-- Title of screen shown when some sms messages did not export -->
-    <string name="ExportSmsPartiallyComplete__export_partially_complete">Izvoz djelomično dovršen</string>
-    <!-- Debug step 1 on screen shown when some sms messages did not export -->
-    <string name="ExportSmsPartiallyComplete__ensure_you_have_an_additional_s_free_on_your_phone_to_export_your_messages">Provjerite imate li dodatnih %1$s slobodnog prostora na svom telefonu za izvoz poruka</string>
-    <!-- Debug step 2 on screen shown when some sms messages dit not export -->
-    <string name="ExportSmsPartiallyComplete__retry_export_which_will_only_retry_messages_that_have_not_yet_been_exported">Pokušajte ponovno – ponovite izvoz poruka koje još nisu izvezene</string>
-    <!-- Partial sentence for Debug step 3 on screen shown when some sms messages did not export, is combined with \'contact us\' -->
-    <string name="ExportSmsPartiallyComplete__if_the_problem_persists">Ako se problem nastavi, </string>
-    <!-- Partial sentence for deubg step 3 on screen shown when some sms messages did not export, combined with \'If the problem persists\', link text to open contact support view -->
-    <string name="ExportSmsPartiallyComplete__contact_us">Kontaktirajte nas</string>
-    <!-- Button text to retry sms export -->
-    <string name="ExportSmsPartiallyComplete__retry">Pokušajte ponovno</string>
-    <!-- Button text to continue sms export flow and not retry failed message exports -->
-    <string name="ExportSmsPartiallyComplete__continue_anyway">Svejedno nastavi</string>
-    <!-- Title of screen shown when all sms messages failed to export -->
-    <string name="ExportSmsFullError__error_exporting_sms_messages">Pogreška pri izvozu SMS poruka</string>
-    <!-- Helper text shown when all sms messages failed to export -->
-    <string name="ExportSmsFullError__please_try_again_if_the_problem_persists">Molimo, pokušajte ponovno. Ako se problem nastavi, </string>
-
-
     <!-- DonateToSignalFragment -->
     <!-- Title below avatar -->
     <string name="DonateToSignalFragment__privacy_over_profit">Privatnost prije profita</string>
@@ -6200,9 +6266,9 @@
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
     <string name="DonateToSignalFragment__you_have_a_donation_pending">Vaša donacija je na čekanju</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Obrada transakcije putem bankovnog transfera u prosjeku traje 1 radni dan. Prije ažuriranja pretplate pričekajte završetak transakcije.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Obrada transakcije putem bankovnog transfera može potrajati od 1 do 14 radnih dana. Prije ažuriranja pretplate pričekajte završetak transakcije.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Obrada transakcije putem bankovnog transfera u prosjeku traje 1 radni dan. Pričekajte završetak transakcije prije nego što izvršite novu donaciju.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Obrada transakcije putem bankovnog transfera može potrajati od 1 do 14 radnih dana. Pričekajte završetak transakcije prije nego što izvršite novu donaciju.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
     <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Vaša se donacija još uvijek obrađuje. Ovisno o brzini vaše mreže, to može potrajati nekoliko minuta. Prije ažuriranja pretplate pričekajte završetak transakcije.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
@@ -6333,6 +6399,12 @@
     <string name="IdealTransferDetailsFragment__email">E-pošta</string>
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">Odaberite banku</string>
+    <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">Potvrdite svoju donaciju u banci %1$s</string>
+    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
+    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">Da biste postavili svoju automatsku mjesečnu donaciju, dodirnite \"Nastavi\" i potvrdite naplatu u iznosu od 0,01 € u svojoj banci. Taj će vam iznos automatski biti vraćen, a omogućuje da se naplata vaše mjesečne donacije u iznosu od 5 € izvrši s vašeg računa.</string>
+    <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
+    <string name="IdealTransferDetailsFragment__continue">Nastavi</string>
 
     <!-- IdealTransferDetailsBankSelectionDialogFragment -->
     <!-- Title of the screen, displayed in the toolbar -->
@@ -6350,7 +6422,7 @@
     <!-- Top text block of donation pending sheet displayed after one-time donation via a bank transfer. Placeholder is the badge name. -->
     <string name="DonationPendingBottomSheet__your_one_time_donation_is_pending">Vaša jednokratna donacija je na čekanju. Moći ćete prikazati značku %1$s na vašem profilu kada zaprimimo vašu donaciju.</string>
     <!-- Bottom text block of donation pending sheet displayed after donating via a bank transfer. Placeholder is for learn more. -->
-    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Obrada uplate putem bankovnog transfera u prosjeku traje 1 radni dan. %1$s</string>
+    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Obrada transakcije putem bankovnog transfera može potrajati od 1 do 14 radnih dana. %1$s</string>
     <!-- Learn more text for donation pending sheet displayed after donating via a bank transfer. -->
     <string name="DonationPendingBottomSheet__learn_more">Saznajte više</string>
     <!-- Confirmation button for donation pending sheet displayed after donating via a bank transfer. -->
@@ -6438,28 +6510,24 @@
     <!-- Displayed in the "clear filter" item in the chat feed if the user opened the filter from the overflow menu -->
     <string name="ChatFilter__tip_pull_down">Savjet: povucite prema dolje na popisu razgovora za filtriranje</string>
 
-    <!-- Title for screen describing that sms support is going to be removed soon -->
-    <string name="SmsRemoval_title_going_away">Ukida se podrška za SMS poruke</string>
-    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
-    <string name="SmsRemoval_info_bullet_1">Slanje SMS poruka unutar aplikacije Signal uskoro neće više biti moguće.</string>
-    <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_2">SMS poruke nisu isto što i Signal poruke. <b>Ovo ne utječe na slanje šifriranih poruka unutar Signala koje će nastaviti normalno funkcionirati.</b></string>
-    <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_3">Svoje SMS poruke možete izvesti i odabrati drugu aplikaciju za slanje SMS poruka.</string>
-    <!-- Bullet point message shown on describing screen as first bullet variant why sms is being removed when user is locked out of sms -->
-    <string name="SmsRemoval_info_bullet_1_phase_3">Signal je uklonio podršku za slanje SMS poruka.</string>
-    <!-- Button label on sms removal info/megaphone to start the export SMS flow -->
-    <string name="SmsRemoval_export_sms">Izvoz SMS poruka</string>
-
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__set_up_your_signal_username">Postavite svoje korisničko ime za Signal</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">Korisnička imena omogućuju drugima da vam šalju poruke bez potrebe za vašim brojem telefona</string>
+    <string name="SetUpYourUsername__introducing_phone_number_privacy">Predstavljamo privatnost broja telefona, izborna korisnička imena i poveznice.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__not_now">Ne sada</string>
+    <string name="SetUpYourUsername__dismiss">Odbaci</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__continue">Nastavi</string>
+    <string name="SetUpYourUsername__learn_more">Saznajte više</string>
+
+    <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
+    <string name="PnpLaunchMegaphone_title">Novi načini povezivanja</string>
+    <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
+    <string name="PnpLaunchMegaphone_body">Predstavljamo privatnost telefonskog broja, izborna korisnička imena i poveznice.</string>
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
+    <string name="PnpLaunchMegaphone_dismiss">Odbaci</string>
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
+    <string name="PnpLaunchMegaphone_learn_more">Saznajte više</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -6474,18 +6542,6 @@
     <string name="TextFormatting_spoiler">Spojler</string>
     <!-- Popup menu label for clearing applied formatting -->
     <string name="TextFormatting_clear_formatting">Poništi oblikovanje teksta</string>
-
-    <!-- UsernameEducationFragment -->
-    <!-- Continue button which takes the user to the add a username screen -->
-    <string name="UsernameEducationFragment__continue">Nastavi</string>
-    <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">Postavite svoje korisničko ime za Signal</string>
-    <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__usernames_are_paired_with_a_set_of_digits">Korisnička imena su povezana sa skupom znamenki i ne prikazuju se na vašem profilu</string>
-    <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">Svako korisničko ime ima jedinstveni QR kôd i poveznicu koje možete podijeliti sa svojim prijateljima kako biste započeli zajednički razgovor</string>
-    <!-- Displayed as body text in the username education screen. The string references the names of settings, so they should match our translations for those settings. -->
-    <string name="UsernameEducationFragment__turn_off_phone_number_discovery">Da biste koristili svoje korisničko ime kao primarni način na koji vas drugi mogu kontaktirati, isključite otkrivanje telefonskog broja u Postavkama &gt; Privatnost &gt; Broj telefona &gt; Tko može pronaći moj broj</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
@@ -6512,6 +6568,8 @@
     <string name="CallLogAdapter__outgoing">Odlazni</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">Propušteni</string>
+    <!-- Displayed for missed calls declined by notification profile -->
+    <string name="CallLogAdapter__missed_notification_profile">Propušteno dok je profil obavijesti bio uključen</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">Pridruži se</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -6625,6 +6683,8 @@
     <string name="CallPreference__group_call">Grupni poziv</string>
     <!-- Missed group call in call info -->
     <string name="CallPreference__missed_group_call">Propušten grupni poziv</string>
+    <!-- Missed group call while notification profile on in call info -->
+    <string name="CallPreference__missed_group_call_notification_profile">Propustili ste grupni poziv dok je profil obavijesti bio uključen</string>
     <!-- Incoming group call in call info -->
     <string name="CallPreference__incoming_group_call">Dolazni grupni poziv</string>
     <!-- Outgoing group call in call info -->
@@ -6711,6 +6771,8 @@
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
     <string name="CallLinkDetailsFragment__call_details">Pojedinosti poziva</string>
+    <!-- Displayed in a text row, allowing the user to click and edit a call name -->
+    <string name="CallLinkDetailsFragment__edit_call_name">Uredi naziv poziva</string>
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
     <string name="CallLinkDetailsFragment__add_call_name">Dodaj naziv poziva</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
@@ -6726,6 +6788,8 @@
     <!-- Displayed as body in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">Ova poveznica više neće biti važeća za korisnike kojima je poslana.</string>
 
+    <!-- Button label for the link button in the username link settings -->
+    <string name="UsernameLinkSettings_link_button_label">Poveznica</string>
     <!-- Button label for the share button in the username link settings -->
     <string name="UsernameLinkSettings_share_button_label">Podijeli</string>
     <!-- Button label for the color selector button in the username link settings -->
@@ -6770,6 +6834,16 @@
     <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Nema pristupa mreži. Vaša poveznica nije poništena. Pokušajte ponovno kasnije.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">Došlo je do mrežne pogreške prilikom poništavanja poveznice. Pokušajte ponovno kasnije.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">Došlo je do neočekivane pogreške prilikom poništavanja vaše poveznice. Pokušajte ponovno kasnije.</string>
+    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
+    <string name="UsernameLinkSettings_reset_link_result_success">Vaši prethodni QR kôd i poveznica su poništeni te su stvoreni novi QR kôd i poveznica.</string>
+    <!-- Shown on the generated username qr code image to explain how to use it. -->
+    <string name="UsernameLinkSettings_scan_this_qr_code">Skeniraj ovaj QR kôd svojim uređajem i započni razgovor sa mnom na Signalu.</string>
+    <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_qr_code_not_found">QR kôd nije pronađen</string>
+    <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Pokušajte skenirati drugu sliku koja sadrži QR kôd za Signal.</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
     <string name="UsernameLinkShareBottomSheet_title">Svaka osoba koja ima pristup poveznici može vidjeti vaše korisničko ime i započeti razgovor s vama. Podijelite ovu poveznicu samo s osobama kojima vjerujete.</string>
@@ -6810,6 +6884,8 @@
     <string name="GrantFullScreenIntentPermission_megaphone_body">Ne propustite pozive vaših kontakata i grupa.</string>
     <!-- Button on the megaphone megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls that starts the fix process -->
     <string name="GrantFullScreenIntentPermission_megaphone_turn_on">Uključi</string>
+    <!-- Button on the megaphone shown at the bottom of the chatlist when a user has disabled the system setting for showing full screen notifications used showing incoming calls that dismisses the megaphone -->
+    <string name="GrantFullScreenIntentPermission_megaphone_not_now">Ne sada</string>
     <!-- Title of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
     <string name="GrantFullScreenIntentPermission_bottomsheet_title">Uključite obavijesti preko cijelog zaslona</string>
     <!-- Subtitle of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
@@ -6827,6 +6903,46 @@
     <string name="MonthlyDonationCanceled__renew_button">Obnovi pretplatu</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, second button to dismiss the dialog entirely -->
     <string name="MonthlyDonationCanceled__not_now_button">Ne sada</string>
+
+    <!-- FindByActivity -->
+    <!-- Title of activity when finding by username -->
+    <string name="FindByActivity__find_by_username">Traži po korisničkom imenu</string>
+    <!-- Title of activity when finding by phone number -->
+    <string name="FindByActivity__find_by_phone_number">Traži po broju telefona</string>
+    <!-- Title of screen to select a country code -->
+    <string name="FindByActivity__select_country_code">Odaberi kôd države</string>
+    <!-- Entry placeholder for find by username -->
+    <string name="FindByActivity__username">Korisničko ime</string>
+    <!-- Entry placeholder for find by phone number -->
+    <string name="FindByActivity__phone_number">Broj telefona</string>
+    <!-- Help text under user entry for find by username -->
+    <string name="FindByActivity__enter_username_description">Unesite korisničko ime nakon kojeg slijedi točka i pripadajući skup znamenki.</string>
+    <!-- Content description for next action button -->
+    <string name="FindByActivity__next">Sljedeće</string>
+    <!-- Placeholder text for search input for selecting country code -->
+    <string name="FindByActivity__search">Pretraži</string>
+    <!-- Dialog title for invalid username -->
+    <string name="FindByActivity__invalid_username">Nevažeće korisničko ime</string>
+    <!-- Dialog title for invalid phone number -->
+    <string name="FindByActivity__invalid_phone_number">Nevažeći broj telefona</string>
+    <!-- Dialog title when phone number is not a registered signal user -->
+    <string name="FindByActivity__invite_to_signal">Pozovi u Signal</string>
+    <!-- Dialog title when username is not found -->
+    <string name="FindByActivity__username_not_found">Korisničko ime nije pronađeno</string>
+    <!-- Dialog body for invalid username. Placeholder is the entered username. -->
+    <string name="FindByActivity__s_is_not_a_valid_username">%1$s nije važeće korisničko ime. Provjerite jeste li unijeli puno korisničko ime i pripadajući skup znamenki.</string>
+    <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
+    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s nije važeći broj telefona. Pokušajte ponovo s važećim brojem telefona</string>
+    <!-- Dialog body for not found username -->
+    <string name="FindByActivity__s_is_not_a_signal_user">\"%1$s\" nije korisnik Signala. Provjerite korisničko ime i pokušajte ponovno.</string>
+    <!-- Dialog body for not found phone number -->
+    <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s nije korisnik Signala. Želite li pozvati sljedeći broj da se pridruži Signalu?</string>
+    <!-- Dialog action to invite the phone number to Signal -->
+    <string name="FindByActivity__invite">Pozovi</string>
+    <!-- Button label for a button that will launch a camera to scan a username QR code -->
+    <string name="FindByActivity__qr_scan_button">Skeniraj QR kôd</string>
+    <!-- Content of a dialog indicating that we could not perform the requested action because we encountered a network error. -->
+    <string name="FindByActivity__network_error_dialog">Došlo je do mrežne pogreške. Pokušajte ponovno kasnije.</string>
 
     <!-- EOF -->
 </resources>

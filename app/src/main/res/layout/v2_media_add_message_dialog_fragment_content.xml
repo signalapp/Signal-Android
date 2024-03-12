@@ -9,7 +9,7 @@
         android:id="@+id/background_holder"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/core_grey_95"
+        android:background="@color/signal_colorSurface1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="@id/input_barrier" />
 
@@ -23,7 +23,7 @@
     <View
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/rounded_rectangle_secondary_dark"
+        android:background="@drawable/rounded_rectangle_surface_variant_20"
         app:layout_constraintBottom_toBottomOf="@id/add_a_message_input"
         app:layout_constraintEnd_toEndOf="@id/add_a_message_limit"
         app:layout_constraintStart_toStartOf="@id/emoji_toggle"
@@ -32,7 +32,7 @@
     <org.thoughtcrime.securesms.components.emoji.EmojiToggle
         android:id="@+id/emoji_toggle"
         android:layout_width="wrap_content"
-        android:layout_height="36dp"
+        android:layout_height="@dimen/conversation_compose_height"
         android:layout_gravity="bottom"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="8dp"
@@ -41,14 +41,14 @@
         android:paddingStart="8dp"
         android:paddingEnd="6dp"
         app:layout_constraintBottom_toTopOf="@id/emoji_drawer_stub"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:tint="@color/signal_colorOnSurface" />
 
     <org.thoughtcrime.securesms.components.ComposeText
         android:id="@+id/add_a_message_input"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        app:layout_goneMarginEnd="6dp"
         android:layout_marginBottom="8dp"
         android:background="@null"
         android:hint="@string/MediaReviewFragment__add_a_message"
@@ -56,13 +56,15 @@
         android:inputType="textAutoCorrect|textCapSentences|textMultiLine"
         android:maxLength="65536"
         android:maxLines="3"
-        android:minHeight="36dp"
+        android:minHeight="@dimen/conversation_compose_height"
         android:paddingEnd="10dp"
         android:textAppearance="@style/Signal.Text.Body"
+        android:textColor="@color/signal_colorOnSurface"
         app:layout_constraintBottom_toTopOf="@id/emoji_drawer_stub"
         app:layout_constraintEnd_toStartOf="@id/add_a_message_limit"
         app:layout_constraintStart_toEndOf="@id/emoji_toggle"
         app:layout_constraintTop_toTopOf="@id/input_barrier"
+        app:layout_goneMarginEnd="6dp"
         app:layout_goneMarginStart="12dp" />
 
     <TextView
@@ -72,7 +74,7 @@
         android:layout_marginEnd="6dp"
         android:paddingEnd="12dp"
         android:textAppearance="@style/Signal.Text.BodySmall"
-        android:textColor="@color/signal_colorOnSurfaceVariant"
+        android:textColor="@color/signal_colorOnSurface"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/add_a_message_input"
         app:layout_constraintEnd_toStartOf="@id/confirm_button"
@@ -88,6 +90,7 @@
         android:padding="6dp"
         app:layout_constraintBottom_toTopOf="@id/emoji_drawer_stub"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/input_barrier"
         app:srcCompat="@drawable/v2_media_add_a_message_check" />
 
     <ViewStub

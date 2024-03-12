@@ -168,14 +168,31 @@ private val darkColorScheme = darkColorScheme(
   outline = Color(0xFF5C5E65)
 )
 
+private val lightSnackbarColors = SnackbarColors(
+  color = darkColorScheme.surface,
+  contentColor = darkColorScheme.onSurface,
+  actionColor = darkColorScheme.primary,
+  actionContentColor = darkColorScheme.primary,
+  dismissActionContentColor = darkColorScheme.onSurface
+)
+
+private val darkSnackbarColors = SnackbarColors(
+  color = darkColorScheme.surfaceVariant,
+  contentColor = darkColorScheme.onSurfaceVariant,
+  actionColor = darkColorScheme.primary,
+  actionContentColor = darkColorScheme.primary,
+  dismissActionContentColor = darkColorScheme.onSurfaceVariant
+)
+
 @Composable
 fun SignalTheme(
   isDarkMode: Boolean = LocalContext.current.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES,
   content: @Composable () -> Unit
 ) {
   val extendedColors = if (isDarkMode) darkExtendedColors else lightExtendedColors
+  val snackbarColors = if (isDarkMode) darkSnackbarColors else lightSnackbarColors
 
-  CompositionLocalProvider(LocalExtendedColors provides extendedColors) {
+  CompositionLocalProvider(LocalExtendedColors provides extendedColors, LocalSnackbarColors provides snackbarColors) {
     MaterialTheme(
       colorScheme = if (isDarkMode) darkColorScheme else lightColorScheme,
       typography = typography,

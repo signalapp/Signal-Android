@@ -75,12 +75,13 @@
             style="@style/Signal.Text.Caption"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_keyboard_arrow_left_grey600_24dp"
             android:ellipsize="none"
             android:gravity="center_vertical"
             android:text="@string/conversation_input_panel__slide_to_cancel"
             android:textColor="@color/core_grey_60"
             android:visibility="gone"
+            app:drawableStartCompat="@drawable/symbol_chevron_left_16"
+            app:drawableTint="@color/core_grey_60"
             tools:visibility="visible" />
 
     </FrameLayout>

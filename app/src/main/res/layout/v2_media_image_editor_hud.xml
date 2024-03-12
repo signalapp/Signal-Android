@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:viewBindingIgnore="true"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:parentTag="android.widget.FrameLayout">
+    tools:parentTag="android.widget.FrameLayout"
+    tools:viewBindingIgnore="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -39,7 +39,7 @@
             android:paddingBottom="7dp"
             android:text="@string/ImageEditorHud__clear_all"
             android:textAppearance="@style/Signal.Text.Body"
-            android:textColor="@color/core_white"
+            android:textColor="@color/signal_dark_colorOnSecondaryContainer"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -60,11 +60,13 @@
 
         <ImageView
             android:id="@+id/image_editor_hud_cancel_button"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginStart="10dp"
             android:layout_marginBottom="10dp"
             android:alpha="0"
+            android:background="@drawable/circle_tintable"
+            android:backgroundTint="@color/signal_dark_colorSurfaceVariant"
             android:contentDescription="@string/ImageEditorHud__cancel"
             android:padding="6dp"
             android:translationY="56dp"
@@ -72,20 +74,19 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_goneMarginEnd="10dp"
-            app:srcCompat="@drawable/ic_cancel_36"
-            app:tint="@color/core_white"
+            app:srcCompat="@drawable/symbol_x_24"
+            app:tint="@color/signal_dark_colorOnSurface"
             tools:alpha="1"
             tools:translationY="0dp"
             tools:visibility="visible" />
 
         <ImageView
             android:id="@+id/image_editor_hud_draw_button"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginBottom="10dp"
             android:alpha="0"
             android:contentDescription="@string/ImageEditorHud__draw"
-            android:padding="6dp"
             android:translationY="56dp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -100,12 +101,11 @@
 
         <ImageView
             android:id="@+id/image_editor_hud_text_button"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginBottom="10dp"
             android:alpha="0"
             android:contentDescription="@string/ImageEditorHud__write_text"
-            android:padding="6dp"
             android:translationY="56dp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -120,12 +120,11 @@
 
         <ImageView
             android:id="@+id/image_editor_hud_sticker_button"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginBottom="10dp"
             android:alpha="0"
             android:contentDescription="@string/ImageEditorHud__add_a_sticker"
-            android:padding="6dp"
             android:translationY="56dp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -140,12 +139,11 @@
 
         <ImageView
             android:id="@+id/image_editor_hud_blur_button"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginBottom="10dp"
             android:alpha="0"
             android:contentDescription="@string/ImageEditorHud__blur"
-            android:padding="6dp"
             android:translationY="56dp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -160,11 +158,13 @@
 
         <ImageView
             android:id="@+id/image_editor_hud_done_button"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:alpha="0"
+            android:background="@drawable/circle_tintable"
+            android:backgroundTint="@color/signal_dark_colorSurfaceVariant"
             android:contentDescription="@string/ImageEditorHud__done_editing"
             android:padding="6dp"
             android:translationY="56dp"
@@ -172,8 +172,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_goneMarginStart="10dp"
-            app:srcCompat="@drawable/ic_confirm_36"
-            app:tint="@color/core_white"
+            app:srcCompat="@drawable/symbol_check_24"
+            app:tint="@color/signal_dark_colorOnSurface"
             tools:alpha="1"
             tools:translationY="0dp"
             tools:visibility="visible" />
@@ -198,7 +198,7 @@
             android:id="@+id/image_editor_hud_draw_color_bar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="20dp"
             android:splitTrack="false"
             android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@id/image_editor_hud_top_of_button_bar_spacing"
@@ -228,6 +228,7 @@
             app:layout_constraintBottom_toBottomOf="@id/image_editor_hud_draw_color_bar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/image_editor_hud_draw_color_bar"
+            app:tint="@color/signal_dark_colorOnSurface"
             tools:alpha="1"
             tools:visibility="visible" />
 
@@ -245,8 +246,8 @@
             app:layout_constraintBottom_toBottomOf="@id/image_editor_hud_draw_color_bar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/image_editor_hud_draw_color_bar"
-            app:srcCompat="@drawable/ic_text_tool_24"
-            app:tint="@color/core_white"
+            app:srcCompat="@drawable/symbol_text_square_24"
+            app:tint="@color/signal_dark_colorOnSurface"
             tools:alpha="1"
             tools:visibility="visible" />
 
@@ -322,8 +323,8 @@
             app:layout_constraintStart_toEndOf="@id/image_editor_hud_flip_button"
             app:layout_goneMarginEnd="10dp"
             app:layout_goneMarginStart="10dp"
-            app:srcCompat="@drawable/ic_crop_unlock_24"
-            app:tint="@color/core_white"
+            app:srcCompat="@drawable/symbol_crop_unlock_24"
+            app:tint="@color/signal_dark_colorOnSurface"
             tools:alpha="1"
             tools:translationY="0dp"
             tools:visibility="visible" />
@@ -394,8 +395,8 @@
                 android:textColor="@color/core_white" />
 
             <com.google.android.material.materialswitch.MaterialSwitch
-                style="@style/Widget.Signal.CompoundButton.MaterialSwitch"
                 android:id="@+id/image_editor_hud_blur_toggle"
+                style="@style/Widget.Signal.CompoundButton.MaterialSwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="false"

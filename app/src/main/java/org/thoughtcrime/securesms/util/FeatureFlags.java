@@ -60,8 +60,9 @@ public final class FeatureFlags {
   private static final String INTERNAL_USER                     = "android.internalUser";
   private static final String VERIFY_V2                         = "android.verifyV2";
   private static final String CLIENT_EXPIRATION                 = "android.clientExpiration";
-  private static final String CUSTOM_VIDEO_MUXER                = "android.customVideoMuxer";
+  private static final String CUSTOM_VIDEO_MUXER                = "android.customVideoMuxer.1";
   private static final String CDS_REFRESH_INTERVAL              = "cds.syncInterval.seconds";
+  private static final String CDS_FOREGROUND_SYNC_INTERVAL      = "cds.foregroundSyncInterval.seconds";
   private static final String AUTOMATIC_SESSION_RESET           = "android.automaticSessionReset.2";
   private static final String AUTOMATIC_SESSION_INTERVAL        = "android.automaticSessionResetInterval";
   private static final String DEFAULT_MAX_BACKOFF               = "android.defaultMaxBackoff";
@@ -82,10 +83,7 @@ public final class FeatureFlags {
   private static final String HARDWARE_AEC_BLOCKLIST_MODELS     = "android.calling.hardwareAecBlockList";
   private static final String SOFTWARE_AEC_BLOCKLIST_MODELS     = "android.calling.softwareAecBlockList";
   private static final String USE_HARDWARE_AEC_IF_OLD           = "android.calling.useHardwareAecIfOlderThanApi29";
-  private static final String USE_AEC3                          = "android.calling.useAec3";
   private static final String PAYMENTS_COUNTRY_BLOCKLIST        = "global.payments.disabledRegions";
-  public  static final String PHONE_NUMBER_PRIVACY              = "android.pnp";
-  public  static final String BLOCK_SSE                         = "android.blockSessionSwitchoverEvents";
   private static final String STORIES_AUTO_DOWNLOAD_MAXIMUM     = "android.stories.autoDownloadMaximum";
   private static final String TELECOM_MANUFACTURER_ALLOWLIST    = "android.calling.telecomAllowList";
   private static final String TELECOM_MODEL_BLOCKLIST           = "android.calling.telecomModelBlockList";
@@ -109,8 +107,7 @@ public final class FeatureFlags {
   public  static final String PROMPT_FOR_NOTIFICATION_LOGS      = "android.logs.promptNotifications";
   private static final String PROMPT_FOR_NOTIFICATION_CONFIG    = "android.logs.promptNotificationsConfig";
   public  static final String PROMPT_BATTERY_SAVER              = "android.promptBatterySaver";
-  public  static final String USERNAMES                         = "android.usernames";
-  public  static final String INSTANT_VIDEO_PLAYBACK            = "android.instantVideoPlayback";
+  public  static final String INSTANT_VIDEO_PLAYBACK            = "android.instantVideoPlayback.1";
   public  static final String CRASH_PROMPT_CONFIG               = "android.crashPromptConfig";
   private static final String SEPA_DEBIT_DONATIONS              = "android.sepa.debit.donations.5";
   private static final String IDEAL_DONATIONS                   = "android.ideal.donations.5";
@@ -118,7 +115,16 @@ public final class FeatureFlags {
   public  static final String SEPA_ENABLED_REGIONS              = "global.donations.sepaEnabledRegions";
   private static final String CALLING_REACTIONS                 = "android.calling.reactions";
   private static final String NOTIFICATION_THUMBNAIL_BLOCKLIST  = "android.notificationThumbnailProductBlocklist";
-  private static final String CALLING_RAISE_HAND                 = "android.calling.raiseHand";
+  private static final String CALLING_RAISE_HAND                = "android.calling.raiseHand";
+  private static final String USE_ACTIVE_CALL_MANAGER           = "android.calling.useActiveCallManager.4";
+  private static final String GIF_SEARCH                        = "global.gifSearch";
+  private static final String AUDIO_REMUXING                    = "android.media.audioRemux.1";
+  private static final String VIDEO_RECORD_1X_ZOOM              = "android.media.videoCaptureDefaultZoom";
+  private static final String RETRY_RECEIPT_MAX_COUNT           = "android.retryReceipt.maxCount";
+  private static final String RETRY_RECEIPT_MAX_COUNT_RESET_AGE = "android.retryReceipt.maxCountResetAge";
+  private static final String PREKEY_FORCE_REFRESH_INTERVAL     = "android.prekeyForceRefreshInterval";
+  private static final String CDSI_LIBSIGNAL_NET                = "android.cds.libsignal";
+  private static final String RX_MESSAGE_SEND                   = "android.rxMessageSend";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -133,6 +139,7 @@ public final class FeatureFlags {
       CLIENT_EXPIRATION,
       CUSTOM_VIDEO_MUXER,
       CDS_REFRESH_INTERVAL,
+      CDS_FOREGROUND_SYNC_INTERVAL,
       GROUP_NAME_MAX_LENGTH,
       AUTOMATIC_SESSION_RESET,
       AUTOMATIC_SESSION_INTERVAL,
@@ -154,7 +161,6 @@ public final class FeatureFlags {
       HARDWARE_AEC_BLOCKLIST_MODELS,
       SOFTWARE_AEC_BLOCKLIST_MODELS,
       USE_HARDWARE_AEC_IF_OLD,
-      USE_AEC3,
       PAYMENTS_COUNTRY_BLOCKLIST,
       STORIES_AUTO_DOWNLOAD_MAXIMUM,
       TELECOM_MANUFACTURER_ALLOWLIST,
@@ -179,23 +185,28 @@ public final class FeatureFlags {
       PROMPT_FOR_NOTIFICATION_LOGS,
       PROMPT_FOR_NOTIFICATION_CONFIG,
       PROMPT_BATTERY_SAVER,
-      USERNAMES,
       INSTANT_VIDEO_PLAYBACK,
       CRASH_PROMPT_CONFIG,
-      BLOCK_SSE,
       SEPA_DEBIT_DONATIONS,
       IDEAL_DONATIONS,
       IDEAL_ENABLED_REGIONS,
       SEPA_ENABLED_REGIONS,
       CALLING_REACTIONS,
       NOTIFICATION_THUMBNAIL_BLOCKLIST,
-      CALLING_RAISE_HAND
+      CALLING_RAISE_HAND,
+      USE_ACTIVE_CALL_MANAGER,
+      GIF_SEARCH,
+      AUDIO_REMUXING,
+      VIDEO_RECORD_1X_ZOOM,
+      RETRY_RECEIPT_MAX_COUNT,
+      RETRY_RECEIPT_MAX_COUNT_RESET_AGE,
+      PREKEY_FORCE_REFRESH_INTERVAL,
+      CDSI_LIBSIGNAL_NET,
+      RX_MESSAGE_SEND
   );
 
   @VisibleForTesting
-  static final Set<String> NOT_REMOTE_CAPABLE = SetUtil.newHashSet(
-      PHONE_NUMBER_PRIVACY
-  );
+  static final Set<String> NOT_REMOTE_CAPABLE = SetUtil.newHashSet();
 
   /**
    * Values in this map will take precedence over any value. This should only be used for local
@@ -221,6 +232,7 @@ public final class FeatureFlags {
       CLIENT_EXPIRATION,
       CUSTOM_VIDEO_MUXER,
       CDS_REFRESH_INTERVAL,
+      CDS_FOREGROUND_SYNC_INTERVAL,
       GROUP_NAME_MAX_LENGTH,
       AUTOMATIC_SESSION_RESET,
       AUTOMATIC_SESSION_INTERVAL,
@@ -241,7 +253,6 @@ public final class FeatureFlags {
       HARDWARE_AEC_BLOCKLIST_MODELS,
       SOFTWARE_AEC_BLOCKLIST_MODELS,
       USE_HARDWARE_AEC_IF_OLD,
-      USE_AEC3,
       PAYMENTS_COUNTRY_BLOCKLIST,
       TELECOM_MANUFACTURER_ALLOWLIST,
       TELECOM_MODEL_BLOCKLIST,
@@ -257,12 +268,16 @@ public final class FeatureFlags {
       PROMPT_FOR_NOTIFICATION_LOGS,
       PROMPT_FOR_NOTIFICATION_CONFIG,
       PROMPT_BATTERY_SAVER,
-      USERNAMES,
       CRASH_PROMPT_CONFIG,
-      BLOCK_SSE,
       CALLING_REACTIONS,
       NOTIFICATION_THUMBNAIL_BLOCKLIST,
-      CALLING_RAISE_HAND
+      CALLING_RAISE_HAND,
+      VIDEO_RECORD_1X_ZOOM,
+      RETRY_RECEIPT_MAX_COUNT,
+      RETRY_RECEIPT_MAX_COUNT_RESET_AGE,
+      PREKEY_FORCE_REFRESH_INTERVAL,
+      CDSI_LIBSIGNAL_NET,
+      RX_MESSAGE_SEND
   );
 
   /**
@@ -341,11 +356,6 @@ public final class FeatureFlags {
     Log.i(TAG, "[Disk]   After : " + result.getDisk().toString());
   }
 
-  /** Creating usernames, sending messages by username. */
-  public static synchronized boolean usernames() {
-    return getBoolean(USERNAMES, false) || phoneNumberPrivacy();
-  }
-
   /**
    * Maximum number of members allowed in a group.
    */
@@ -374,21 +384,6 @@ public final class FeatureFlags {
     return getString(CLIENT_EXPIRATION, null);
   }
 
-  /**
-   * Whether phone number privacy is enabled.
-   * IMPORTANT: This is under active development. Enabling this *will* break your contacts in terrible, irreversible ways.
-   */
-  public static boolean phoneNumberPrivacy() {
-    return getBoolean(PHONE_NUMBER_PRIVACY, false) || Environment.IS_PNP;
-  }
-
-  /**
-   * Whether session switchover events should be blocked on the client.
-   */
-  public static boolean blockSessionSwitchoverEvents() {
-    return getBoolean(BLOCK_SSE, false) && !phoneNumberPrivacy();
-  }
-
   /** Whether to use the custom streaming muxer or built in android muxer. */
   public static boolean useStreamingVideoMuxer() {
     return getBoolean(CUSTOM_VIDEO_MUXER, false);
@@ -397,6 +392,11 @@ public final class FeatureFlags {
   /** The time in between routine CDS refreshes, in seconds. */
   public static int cdsRefreshIntervalSeconds() {
     return getInteger(CDS_REFRESH_INTERVAL, (int) TimeUnit.HOURS.toSeconds(48));
+  }
+
+  /** The minimum time in between foreground CDS refreshes initiated via message requests, in milliseconds. */
+  public static Long cdsForegroundSyncInterval() {
+    return TimeUnit.SECONDS.toMillis(getInteger(CDS_FOREGROUND_SYNC_INTERVAL, (int) TimeUnit.HOURS.toSeconds(4)));
   }
 
   public static @NonNull SelectionLimits shareSelectionLimit() {
@@ -458,6 +458,20 @@ public final class FeatureFlags {
     return getLong(RETRY_RESPOND_MAX_AGE, TimeUnit.DAYS.toMillis(14));
   }
 
+  /**
+   * The max number of retry receipts sends we allow (within @link{#retryReceiptMaxCountResetAge()}) before we consider the volume too large and stop responding.
+   */
+  public static long retryReceiptMaxCount() {
+    return getLong(RETRY_RECEIPT_MAX_COUNT, 10);
+  }
+
+  /**
+   * If the last retry receipt send was older than this, then we reset the retry receipt sent count. (For use with @link{#retryReceiptMaxCount()})
+   */
+  public static long retryReceiptMaxCountResetAge() {
+    return getLong(RETRY_RECEIPT_MAX_COUNT_RESET_AGE, TimeUnit.HOURS.toMillis(3));
+  }
+
   /** How long a sender key can live before it needs to be rotated. */
   public static long senderKeyMaxAge() {
     return Math.min(getLong(SENDER_KEY_MAX_AGE, TimeUnit.DAYS.toMillis(14)), TimeUnit.DAYS.toMillis(90));
@@ -515,11 +529,6 @@ public final class FeatureFlags {
   /** Whether or not hardware AEC should be used for calling on devices older than API 29. */
   public static boolean useHardwareAecIfOlderThanApi29() {
     return getBoolean(USE_HARDWARE_AEC_IF_OLD, false);
-  }
-
-  /** Whether or not {@link org.signal.ringrtc.CallManager.AudioProcessingMethod#ForceSoftwareAec3} can be used */
-  public static boolean useAec3() {
-    return getBoolean(USE_AEC3, true);
   }
 
   /**
@@ -614,15 +623,6 @@ public final class FeatureFlags {
     return getLong(MAX_ATTACHMENT_SIZE_BYTES, ByteUnit.MEGABYTES.toBytes(100));
   }
 
-  /** True if you should use CDS in compat mode (i.e. request ACI's even if you don't know the access key), otherwise false. */
-  public static boolean cdsCompatMode() {
-    if (phoneNumberPrivacy()) {
-      return false;
-    } else {
-      return !getBoolean(CDS_DISABLE_COMPAT_MODE, false);
-    }
-  }
-
   /**
    * Allow the video players to read from the temporary download files for attachments.
    * @return whether this functionality is enabled.
@@ -685,6 +685,41 @@ public final class FeatureFlags {
   /** List of device products that are blocked from showing notification thumbnails. */
   public static String notificationThumbnailProductBlocklist() {
     return getString(NOTIFICATION_THUMBNAIL_BLOCKLIST, "");
+  }
+
+  /** Whether or not to use active call manager instead of WebRtcCallService. */
+  public static boolean useActiveCallManager() {
+    return getBoolean(USE_ACTIVE_CALL_MANAGER, false);
+  }
+
+  /** Whether the in-app GIF search is available for use. */
+  public static boolean gifSearchAvailable() {
+    return getBoolean(GIF_SEARCH, true);
+  }
+
+  /** Allow media converters to remux audio instead of transcoding it. */
+  public static boolean allowAudioRemuxing() {
+    return getBoolean(AUDIO_REMUXING, false);
+  }
+
+  /** Get the default video zoom, expressed as 10x the actual Float value due to the service limiting us to whole numbers. */
+  public static boolean startVideoRecordAt1x() {
+    return getBoolean(VIDEO_RECORD_1X_ZOOM, false);
+  }
+
+  /** How often we allow a forced prekey refresh. */
+  public static long preKeyForceRefreshInterval() {
+    return getLong(PREKEY_FORCE_REFRESH_INTERVAL, TimeUnit.HOURS.toMillis(1));
+  }
+
+  /** Make CDSI lookups via libsignal-net instead of native websocket. */
+  public static boolean useLibsignalNetForCdsiLookup() {
+    return getBoolean(CDSI_LIBSIGNAL_NET, false);
+  }
+
+  /** Use Rx threading model to do sends. */
+  public static boolean useRxMessageSending() {
+    return getBoolean(RX_MESSAGE_SEND, false);
   }
 
   /** Only for rendering debug info. */

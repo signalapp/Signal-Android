@@ -48,7 +48,7 @@ public final class PagingMediaLoader extends AsyncLoader<Pair<Cursor, Integer>> 
     Cursor cursor = SignalDatabase.media().getGalleryMediaForThread(threadId, sorting);
 
     while (cursor.moveToNext()) {
-      AttachmentId attachmentId  = new AttachmentId(cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentTable.ROW_ID)), cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentTable.UNIQUE_ID)));
+      AttachmentId attachmentId  = new AttachmentId(cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentTable.ID)));
       Uri          attachmentUri = PartAuthority.getAttachmentDataUri(attachmentId);
 
       if (attachmentUri.equals(uri)) {

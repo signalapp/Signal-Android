@@ -8,7 +8,7 @@ import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobs.NewRegistrationUsernameSyncJob;
+import org.thoughtcrime.securesms.jobs.ReclaimUsernameAndLinkJob;
 import org.thoughtcrime.securesms.jobs.StorageAccountRestoreJob;
 import org.thoughtcrime.securesms.jobs.StorageSyncJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -56,7 +56,7 @@ public final class RegistrationLockFragment extends BaseRegistrationLockFragment
       ApplicationDependencies
           .getJobManager()
           .startChain(new StorageSyncJob())
-          .then(new NewRegistrationUsernameSyncJob())
+          .then(new ReclaimUsernameAndLinkJob())
           .enqueueAndBlockUntilCompletion(TimeUnit.SECONDS.toMillis(10));
       stopwatch.split("ContactRestore");
 

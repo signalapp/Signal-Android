@@ -2,10 +2,10 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape android:shape="oval">
-            <solid android:color="@color/transparent_black_40" />
-            <size android:width="36dp" android:height="36dp" />
-            <padding android:left="6dp" android:top="6dp" android:right="6dp" android:bottom="6dp" />
+            <size android:width="@dimen/image_editor_hud_tool_filled_circle_padding" android:height="@dimen/image_editor_hud_tool_filled_circle_padding" />
+            <solid android:color="@color/signal_dark_colorSurfaceVariant" />
+            <padding android:bottom="@dimen/image_editor_hud_tool_filled_circle_padding" android:left="@dimen/image_editor_hud_tool_filled_circle_padding" android:right="@dimen/image_editor_hud_tool_filled_circle_padding" android:top="@dimen/image_editor_hud_tool_filled_circle_padding" />
         </shape>
     </item>
-    <item android:drawable="@drawable/ic_undo_24" />
+    <item android:drawable="@drawable/symbol_undo_24" />
 </layer-list>

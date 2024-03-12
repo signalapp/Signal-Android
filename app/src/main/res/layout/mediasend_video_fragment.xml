@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <org.thoughtcrime.securesms.scribbles.VideoEditorHud
+    <org.thoughtcrime.securesms.scribbles.VideoEditorPlayButtonLayout
         android:id="@+id/video_editor_hud"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

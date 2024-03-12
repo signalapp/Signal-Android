@@ -20,7 +20,7 @@ enum class LayoutPositions(
   SMALL_GROUP(
     participantBottomViewId = ConstraintSet.PARENT_ID,
     participantBottomMargin = 0,
-    reactionBottomViewId = R.id.call_screen_above_controls_guideline,
+    reactionBottomViewId = R.id.call_screen_pending_recipients,
     reactionBottomMargin = 8
   ),
 
@@ -28,7 +28,7 @@ enum class LayoutPositions(
   LARGE_GROUP(
     participantBottomViewId = R.id.call_screen_participants_recycler,
     participantBottomMargin = 16,
-    reactionBottomViewId = R.id.call_screen_participants_recycler,
+    reactionBottomViewId = R.id.call_screen_pending_recipients,
     reactionBottomMargin = 20
   );
 

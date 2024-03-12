@@ -182,7 +182,7 @@ public final class GroupedThreadMediaLoader extends AsyncTaskLoader<GroupedThrea
 
     @Override
     public int groupForRecord(@NonNull MediaTable.MediaRecord mediaRecord) {
-      long size = mediaRecord.getAttachment().getSize();
+      long size = mediaRecord.getAttachment().size;
 
       if (size < MB)      return SMALL;
       if (size < 20 * MB) return MEDIUM;

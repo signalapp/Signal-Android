@@ -17,7 +17,6 @@ import androidx.core.content.ContextCompat
 import com.google.android.material.button.MaterialButton
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.messagerequests.MessageRequestState
-import org.thoughtcrime.securesms.messagerequests.MessageRequestViewModel
 import org.thoughtcrime.securesms.messagerequests.MessageRequestsBottomView
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.SpanUtil
@@ -80,13 +79,14 @@ class DisabledInputView @JvmOverloads constructor(
       existingView = messageRequestView,
       create = { MessageRequestsBottomView(context) },
       bind = {
-        setMessageData(MessageRequestViewModel.MessageData(recipient, messageRequestState))
+        setMessageRequestData(recipient, messageRequestState)
         setWallpaperEnabled(recipient.hasWallpaper())
 
         setAcceptOnClickListener { listener?.onAcceptMessageRequestClicked() }
-        setDeleteOnClickListener { listener?.onDeleteGroupClicked() }
+        setDeleteOnClickListener { listener?.onDeleteClicked() }
         setBlockOnClickListener { listener?.onBlockClicked() }
         setUnblockOnClickListener { listener?.onUnblockClicked() }
+        setReportOnClickListener { listener?.onReportSpamClicked() }
       }
     )
   }
@@ -127,15 +127,17 @@ class DisabledInputView @JvmOverloads constructor(
     )
   }
 
-  fun showAsInviteToSignal(context: Context, recipient: Recipient) {
+  fun showAsInviteToSignal(context: Context, recipient: Recipient, threadContainsSms: Boolean) {
     inviteToSignal = show(
       existingView = inviteToSignal,
       create = { inflater.inflate(R.layout.conversation_activity_sms_export_stub, this, false) },
       bind = {
         findViewById<TextView>(R.id.export_sms_message).text = if (recipient.isMmsGroup) {
           context.getString(R.string.ConversationActivity__sms_messaging_is_no_longer_supported)
-        } else {
+        } else if (threadContainsSms) {
           context.getString(R.string.ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here, recipient.getDisplayName(context))
+        } else {
+          context.getString(R.string.ConversationActivity__this_person_is_no_longer_using_signal)
         }
 
         findViewById<MaterialButton>(R.id.export_sms_button).apply {
@@ -226,10 +228,11 @@ class DisabledInputView @JvmOverloads constructor(
     fun onCancelGroupRequestClicked()
     fun onShowAdminsBottomSheetDialog()
     fun onAcceptMessageRequestClicked()
-    fun onDeleteGroupClicked()
+    fun onDeleteClicked()
     fun onBlockClicked()
     fun onUnblockClicked()
     fun onInviteToSignal(recipient: Recipient)
     fun onUnmuteReleaseNotesChannel()
+    fun onReportSpamClicked()
   }
 }

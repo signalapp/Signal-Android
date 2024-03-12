@@ -93,7 +93,7 @@ sealed class NotificationItem(val threadRecipient: Recipient, protected val reco
       context.getString(R.string.SingleRecipientNotificationBuilder_new_message)
     } else {
       SpannableStringBuilder().apply {
-        append(Util.getBoldedString(authorRecipient.getShortDisplayNameIncludingUsername(context)))
+        append(Util.getBoldedString(authorRecipient.getShortDisplayName(context)))
         if (threadRecipient != authorRecipient) {
           append(Util.getBoldedString("@${threadRecipient.getDisplayName(context)}"))
         }
@@ -225,15 +225,15 @@ class MessageNotification(threadRecipient: Recipient, record: MessageRecord) : N
     } else if (record.isRemoteDelete) {
       SpanUtil.italic(context.getString(R.string.MessageNotifier_this_message_was_deleted))
     } else if (record.isMms && !record.isMmsNotification && (record as MmsMessageRecord).slideDeck.slides.isNotEmpty()) {
-      ThreadBodyUtil.getFormattedBodyFor(context, record).body
+      ThreadBodyUtil.getFormattedBodyForNotification(context, record, getBodyWithMentionsAndStyles(context, record))
     } else if (record.isGroupCall) {
       MessageRecord.getGroupCallUpdateDescription(context, record.body, false).spannable
     } else if (record.hasGiftBadge()) {
-      ThreadBodyUtil.getFormattedBodyFor(context, record).body
+      ThreadBodyUtil.getFormattedBodyForNotification(context, record, null)
     } else if (record.isStoryReaction()) {
-      ThreadBodyUtil.getFormattedBodyFor(context, record).body
+      ThreadBodyUtil.getFormattedBodyForNotification(context, record, null)
     } else if (record.isPaymentNotification) {
-      ThreadBodyUtil.getFormattedBodyFor(context, record).body
+      ThreadBodyUtil.getFormattedBodyForNotification(context, record, null)
     } else {
       getBodyWithMentionsAndStyles(context, record)
     }

@@ -16,6 +16,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import org.signal.core.util.EditTextUtil
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout
 import org.thoughtcrime.securesms.components.KeyboardEntryDialogFragment
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboard
@@ -94,6 +95,12 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
       binding.content.emojiToggle.visible = false
     } else {
       binding.content.emojiToggle.setOnClickListener { onEmojiToggleClicked() }
+      if (requireArguments().getBoolean(ARG_INITIAL_EMOJI_TOGGLE) && view is KeyboardAwareLinearLayout) {
+        view.addOnKeyboardShownListener {
+          onEmojiToggleClicked()
+          view.removeOnKeyboardShownListener(this)
+        }
+      }
     }
 
     binding.hud.setOnClickListener { dismissAllowingStateLoss() }
@@ -276,11 +283,13 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
     const val TAG = "ADD_MESSAGE_DIALOG_FRAGMENT"
 
     private const val ARG_INITIAL_TEXT = "arg.initial.text"
+    private const val ARG_INITIAL_EMOJI_TOGGLE = "arg.initial.emojiToggle"
 
-    fun show(fragmentManager: FragmentManager, initialText: CharSequence?) {
+    fun show(fragmentManager: FragmentManager, initialText: CharSequence?, startWithEmojiKeyboard: Boolean) {
       AddMessageDialogFragment().apply {
         arguments = Bundle().apply {
           putCharSequence(ARG_INITIAL_TEXT, initialText)
+          putBoolean(ARG_INITIAL_EMOJI_TOGGLE, startWithEmojiKeyboard)
         }
       }.show(fragmentManager, TAG)
     }

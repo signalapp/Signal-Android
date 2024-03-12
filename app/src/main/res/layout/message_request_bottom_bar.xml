@@ -1,118 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:viewBindingIgnore="true"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout"
+    tools:viewBindingIgnore="true">
 
     <org.thoughtcrime.securesms.util.views.LearnMoreTextView
         android:id="@+id/message_request_question"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="11dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="20dp"
         android:gravity="center"
         android:paddingTop="16dp"
         android:textAppearance="@style/Signal.Text.BodySmall"
-        app:layout_constraintBottom_toTopOf="@id/message_request_button_barrier"
+        app:layout_constraintBottom_toTopOf="@id/message_request_button_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:text="Do you want to let J. Jonah Jameson message you? They won't know you've seen their message until you accept." />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/message_request_block"
-        style="@style/Signal.Widget.Button.Medium.Tonal"
+    <LinearLayout
+        android:id="@+id/message_request_button_layout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="16dp"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
-        android:text="@string/MessageRequestBottomView_block"
+        android:orientation="horizontal"
+        android:paddingHorizontal="10dp"
+        android:paddingBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/message_request_delete"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/message_request_delete"
-        style="@style/Signal.Widget.Button.Medium.Tonal"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
-        android:text="@string/MessageRequestBottomView_delete"
-        app:layout_constraintBottom_toBottomOf="@id/message_request_block"
-        app:layout_constraintEnd_toStartOf="@+id/message_request_accept"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/message_request_block"
-        app:layout_constraintTop_toTopOf="@id/message_request_block" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/message_request_accept"
-        style="@style/Signal.Widget.Button.Medium.Tonal"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
-        android:text="@string/MessageRequestBottomView_accept"
-        app:layout_constraintBottom_toBottomOf="@id/message_request_block"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/message_request_delete"
-        app:layout_constraintTop_toTopOf="@id/message_request_block" />
+        app:layout_constraintStart_toStartOf="parent">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/message_request_big_delete"
-        style="@style/Signal.Widget.Button.Medium.Tonal"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="16dp"
-        android:text="@string/MessageRequestBottomView_delete"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/message_request_big_unblock"
-        app:layout_constraintStart_toStartOf="parent" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/message_request_block"
+            style="@style/Signal.Widget.Button.Medium.Tonal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp"
+            android:layout_weight="1"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:text="@string/MessageRequestBottomView_block"
+            app:autoSizeMinTextSize="13sp"
+            app:autoSizeTextType="uniform" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/message_request_big_unblock"
-        style="@style/Signal.Widget.Button.Medium.Tonal"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:text="@string/MessageRequestBottomView_unblock"
-        app:layout_constraintBottom_toBottomOf="@id/message_request_big_delete"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/message_request_big_delete"
-        app:layout_constraintTop_toTopOf="@id/message_request_big_delete" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/message_request_delete"
+            style="@style/Signal.Widget.Button.Medium.Tonal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp"
+            android:layout_weight="1"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:text="@string/MessageRequestBottomView_delete"
+            app:autoSizeMinTextSize="13sp"
+            app:autoSizeTextType="uniform" />
 
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/message_request_button_barrier"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:barrierDirection="top"
-        app:constraint_referenced_ids="message_request_block,message_request_big_delete" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/message_request_report"
+            style="@style/Signal.Widget.Button.Medium.Tonal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp"
+            android:layout_weight="1"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:text="@string/MessageRequestBottomView_report"
+            app:autoSizeMinTextSize="13sp"
+            app:autoSizeTextType="uniform" />
 
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/message_request_normal_buttons"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:visibility="gone"
-        app:constraint_referenced_ids="message_request_accept,message_request_delete,message_request_block"
-        tools:visibility="gone" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/message_request_accept"
+            style="@style/Signal.Widget.Button.Medium.Tonal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp"
+            android:layout_weight="1"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:text="@string/MessageRequestBottomView_accept"
+            app:autoSizeMinTextSize="13sp"
+            app:autoSizeTextType="uniform" />
 
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/message_request_blocked_buttons"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:visibility="gone"
-        app:constraint_referenced_ids="message_request_big_delete,message_request_big_unblock"
-        tools:visibility="visible" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/message_request_unblock"
+            style="@style/Signal.Widget.Button.Medium.Tonal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp"
+            android:layout_weight="1"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:text="@string/MessageRequestBottomView_unblock"
+            app:autoSizeMinTextSize="13sp"
+            app:autoSizeTextType="uniform" />
+
+    </LinearLayout>
 
     <ProgressBar
         android:id="@+id/message_request_busy_indicator"

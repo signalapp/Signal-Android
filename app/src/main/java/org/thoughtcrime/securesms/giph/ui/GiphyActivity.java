@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
@@ -59,6 +60,9 @@ public class GiphyActivity extends PassphraseRequiredActivity implements Keyboar
   @SuppressLint("MissingInflatedId")
   @Override
   public void onCreate(Bundle bundle, boolean ready) {
+    if (!FeatureFlags.gifSearchAvailable()) {
+      finish();
+    }
     setContentView(R.layout.giphy_activity);
 
     final boolean forMms = getIntent().getBooleanExtra(EXTRA_IS_MMS, false);

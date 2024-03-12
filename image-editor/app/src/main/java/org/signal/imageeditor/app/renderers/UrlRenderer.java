@@ -11,11 +11,11 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 
-import org.signal.imageeditor.app.GlideApp;
 import org.signal.imageeditor.core.Bounds;
 import org.signal.imageeditor.core.RendererContext;
 
@@ -60,7 +60,7 @@ public final class UrlRenderer extends StandardHitTestRenderer {
     if (bitmap == null) {
       if (rendererContext.isBlockingLoad()) {
         try {
-          setBitmap(rendererContext, GlideApp.with(rendererContext.context)
+          setBitmap(rendererContext, Glide.with(rendererContext.context)
                                              .asBitmap()
                                              .load(url)
                                              .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -72,7 +72,7 @@ public final class UrlRenderer extends StandardHitTestRenderer {
           throw new RuntimeException(e);
         }
       } else {
-        GlideApp.with(rendererContext.context)
+        Glide.with(rendererContext.context)
         .asBitmap()
         .load(url)
         .diskCacheStrategy(DiskCacheStrategy.NONE)

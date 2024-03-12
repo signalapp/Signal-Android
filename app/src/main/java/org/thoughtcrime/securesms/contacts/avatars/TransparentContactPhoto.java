@@ -32,7 +32,7 @@ public class TransparentContactPhoto implements FallbackContactPhoto {
 
   @Override
   public Drawable asCallCard(@NonNull Context context) {
-    return ContextCompat.getDrawable(context, R.drawable.ic_contact_picture_large);
+    return ContextCompat.getDrawable(context, R.drawable.symbol_person_display_40);
   }
 
 }

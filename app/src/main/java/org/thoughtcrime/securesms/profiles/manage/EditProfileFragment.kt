@@ -37,12 +37,10 @@ import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.profiles.manage.EditProfileViewModel.AvatarState
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository.UsernameDeleteResult
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.NameUtil.getAbbreviation
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog
-import org.thoughtcrime.securesms.util.visible
 import java.util.Arrays
 import java.util.Optional
 
@@ -81,22 +79,18 @@ class EditProfileFragment : LoggingFragment() {
     binding.manageProfileNameContainer.setOnClickListener { v: View -> findNavController(v).safeNavigate(EditProfileFragmentDirections.actionManageProfileName()) }
 
     binding.manageProfileUsernameContainer.setOnClickListener { v: View ->
-      if (SignalStore.uiHints().hasSeenUsernameEducation()) {
-        if (SignalStore.account().username != null) {
-          MaterialAlertDialogBuilder(requireContext(), R.style.ThemeOverlay_Signal_MaterialAlertDialog_List)
-            .setItems(R.array.username_edit_entries) { _: DialogInterface?, w: Int ->
-              when (w) {
-                0 -> findNavController(v).safeNavigate(EditProfileFragmentDirections.actionManageUsername())
-                1 -> displayConfirmUsernameDeletionDialog()
-                else -> throw IllegalStateException()
-              }
+      if (SignalStore.account().username != null) {
+        MaterialAlertDialogBuilder(requireContext(), R.style.ThemeOverlay_Signal_MaterialAlertDialog_List)
+          .setItems(R.array.username_edit_entries) { _: DialogInterface?, w: Int ->
+            when (w) {
+              0 -> findNavController(v).safeNavigate(EditProfileFragmentDirections.actionManageUsername())
+              1 -> displayConfirmUsernameDeletionDialog()
+              else -> throw IllegalStateException()
             }
-            .show()
-        } else {
-          findNavController(v).safeNavigate(EditProfileFragmentDirections.actionManageUsername())
-        }
+          }
+          .show()
       } else {
-        findNavController(v).safeNavigate(EditProfileFragmentDirections.actionManageProfileFragmentToUsernameEducationFragment())
+        findNavController(v).safeNavigate(EditProfileFragmentDirections.actionManageUsername())
       }
     }
 
@@ -132,28 +126,6 @@ class EditProfileFragment : LoggingFragment() {
         AvatarPreviewActivity.createTransitionBundle(requireActivity(), binding.manageProfileAvatar)
       )
     }
-
-    if (FeatureFlags.usernames() && SignalStore.account().username != null && SignalStore.account().usernameSyncState != AccountValues.UsernameSyncState.USERNAME_AND_LINK_CORRUPTED) {
-      binding.usernameLinkContainer.setOnClickListener {
-        findNavController().safeNavigate(EditProfileFragmentDirections.actionManageProfileFragmentToUsernameLinkFragment())
-      }
-
-      if (SignalStore.account().usernameSyncState == AccountValues.UsernameSyncState.LINK_CORRUPTED) {
-        binding.linkErrorIndicator.visibility = View.VISIBLE
-      } else {
-        binding.linkErrorIndicator.visibility = View.GONE
-      }
-
-      if (SignalStore.tooltips().showProfileSettingsQrCodeTooltop()) {
-        binding.usernameLinkTooltip.visibility = View.VISIBLE
-        binding.linkTooltipCloseButton.setOnClickListener {
-          binding.usernameLinkTooltip.visibility = View.GONE
-          SignalStore.tooltips().markProfileSettingsQrCodeTooltipSeen()
-        }
-      }
-    } else {
-      binding.usernameLinkContainer.visibility = View.GONE
-    }
   }
 
   private fun initializeViewModel() {
@@ -170,12 +142,7 @@ class EditProfileFragment : LoggingFragment() {
     viewModel.about.observe(viewLifecycleOwner) { presentAbout(it) }
     viewModel.aboutEmoji.observe(viewLifecycleOwner) { presentAboutEmoji(it) }
     viewModel.badge.observe(viewLifecycleOwner) { presentBadge(it) }
-
-    if (viewModel.shouldShowUsername()) {
-      viewModel.username.observe(viewLifecycleOwner) { presentUsername(it) }
-    } else {
-      binding.manageProfileUsernameContainer.visibility = View.GONE
-    }
+    viewModel.username.observe(viewLifecycleOwner) { presentUsername(it) }
   }
 
   private fun presentAvatarImage(avatarData: Optional<ByteArray>) {
@@ -252,6 +219,31 @@ class EditProfileFragment : LoggingFragment() {
     } else {
       binding.usernameErrorIndicator.visibility = View.GONE
     }
+
+    if (SignalStore.account().username != null && SignalStore.account().usernameSyncState != AccountValues.UsernameSyncState.USERNAME_AND_LINK_CORRUPTED) {
+      binding.usernameLinkContainer.setOnClickListener {
+        findNavController().safeNavigate(EditProfileFragmentDirections.actionManageProfileFragmentToUsernameLinkFragment())
+      }
+
+      if (SignalStore.account().usernameSyncState == AccountValues.UsernameSyncState.LINK_CORRUPTED) {
+        binding.linkErrorIndicator.visibility = View.VISIBLE
+      } else {
+        binding.linkErrorIndicator.visibility = View.GONE
+      }
+
+      if (SignalStore.tooltips().showProfileSettingsQrCodeTooltop()) {
+        binding.usernameLinkTooltip.visibility = View.VISIBLE
+        binding.linkTooltipCloseButton.setOnClickListener {
+          binding.usernameLinkTooltip.visibility = View.GONE
+          SignalStore.tooltips().markProfileSettingsQrCodeTooltipSeen()
+        }
+      }
+
+      binding.usernameInfoText.setText(R.string.ManageProfileFragment__your_username)
+    } else {
+      binding.usernameLinkContainer.visibility = View.GONE
+      binding.usernameInfoText.setText(R.string.ManageProfileFragment__username_footer_no_username)
+    }
   }
 
   private fun presentAbout(about: String?) {
@@ -320,6 +312,7 @@ class EditProfileFragment : LoggingFragment() {
         Snackbar.make(requireView(), R.string.ManageProfileFragment__username_deleted, Snackbar.LENGTH_SHORT).show()
         binding.usernameLinkContainer.visibility = View.GONE
       }
+
       UsernameDeleteResult.NETWORK_ERROR -> Snackbar.make(requireView(), R.string.ManageProfileFragment__couldnt_delete_username, Snackbar.LENGTH_SHORT).show()
     }
   }

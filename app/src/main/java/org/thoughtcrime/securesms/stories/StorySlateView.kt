@@ -8,12 +8,12 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.blurhash.BlurHash
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
-import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.visible
 
@@ -67,11 +67,11 @@ class StorySlateView @JvmOverloads constructor(
 
   fun setBackground(blur: BlurHash?) {
     if (blur != null) {
-      GlideApp.with(background)
+      Glide.with(background)
         .load(blur)
         .into(background)
     } else {
-      GlideApp.with(background).clear(background)
+      Glide.with(background).clear(background)
     }
   }
 

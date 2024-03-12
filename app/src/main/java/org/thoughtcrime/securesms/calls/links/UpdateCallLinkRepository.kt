@@ -48,18 +48,25 @@ class UpdateCallLinkRepository(
       .subscribeOn(Schedulers.io())
   }
 
-  fun revokeCallLink(credentials: CallLinkCredentials): Single<UpdateCallLinkResult> {
+  fun deleteCallLink(credentials: CallLinkCredentials): Single<UpdateCallLinkResult> {
     return callLinkManager
-      .updateCallLinkRevoked(credentials, true)
+      .deleteCallLink(credentials)
       .doOnSuccess(updateState(credentials))
       .subscribeOn(Schedulers.io())
   }
 
   private fun updateState(credentials: CallLinkCredentials): (UpdateCallLinkResult) -> Unit {
     return { result ->
-      if (result is UpdateCallLinkResult.Success) {
-        SignalDatabase.callLinks.updateCallLinkState(credentials.roomId, result.state)
-        ApplicationDependencies.getJobManager().add(CallLinkUpdateSendJob(credentials.roomId))
+      when (result) {
+        is UpdateCallLinkResult.Update -> {
+          SignalDatabase.callLinks.updateCallLinkState(credentials.roomId, result.state)
+          ApplicationDependencies.getJobManager().add(CallLinkUpdateSendJob(credentials.roomId))
+        }
+        is UpdateCallLinkResult.Delete -> {
+          SignalDatabase.callLinks.markRevoked(credentials.roomId)
+          ApplicationDependencies.getJobManager().add(CallLinkUpdateSendJob(credentials.roomId))
+        }
+        else -> {}
       }
     }
   }

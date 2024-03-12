@@ -175,7 +175,7 @@ data class MultiselectForwardFragmentArgs @JvmOverloads constructor(
 
           if (mediaMessage.slideDeck.stickerSlide != null) {
             builder.withDataUri(mediaMessage.slideDeck.stickerSlide?.asAttachment()?.uri)
-            builder.withStickerLocator(mediaMessage.slideDeck.stickerSlide?.asAttachment()?.sticker)
+            builder.withStickerLocator(mediaMessage.slideDeck.stickerSlide?.asAttachment()?.stickerLocator)
             builder.withDataType(mediaMessage.slideDeck.stickerSlide?.asAttachment()?.contentType)
           }
 
@@ -203,11 +203,11 @@ data class MultiselectForwardFragmentArgs @JvmOverloads constructor(
         height,
         size,
         0,
-        isBorderless,
-        isVideoGif,
+        borderless,
+        videoGif,
         Optional.empty(),
         Optional.ofNullable(caption),
-        Optional.of(transformProperties)
+        Optional.ofNullable(transformProperties)
       )
     }
   }

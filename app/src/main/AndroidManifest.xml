@@ -28,11 +28,6 @@
     <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
 
-    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
-    <uses-permission android:name="android.permission.RECEIVE_MMS"/>
-    <uses-permission android:name="android.permission.READ_SMS"/>
-    <uses-permission android:name="android.permission.SEND_SMS"/>
-    <uses-permission android:name="android.permission.WRITE_SMS"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
 
@@ -159,12 +154,6 @@
             android:name="android.support.PARENT_ACTIVITY"
             android:value=".MainActivity" />
     </activity>
-
-    <activity android:name=".PromptMmsActivity"
-              android:label="Configure MMS Settings"
-              android:windowSoftInputMode="stateUnchanged"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-              android:exported="false"/>
 
     <activity android:name=".DeviceProvisioningActivity"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
@@ -693,7 +682,12 @@
 
     <activity android:name=".NewConversationActivity"
               android:theme="@style/Theme.Signal.DayNight.NoActionBar"
-              android:windowSoftInputMode="stateAlwaysVisible"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
+              android:exported="false"/>
+
+    <activity android:name=".recipients.ui.findby.FindByActivity"
+              android:theme="@style/Theme.Signal.DayNight.NoActionBar"
+              android:windowSoftInputMode="adjustResize"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
               android:exported="false"/>
 
@@ -767,6 +761,13 @@
         android:theme="@style/Signal.DayNight.NoActionBar"
         android:windowSoftInputMode="stateAlwaysHidden"
         android:exported="false"/>
+
+    <activity
+        android:name=".backup.v2.ui.MessageBackupsFlowActivity"
+        android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
+        android:exported="false"
+        android:theme="@style/Signal.DayNight.NoActionBar"
+        android:windowSoftInputMode="adjustResize" />
 
     <activity
         android:name=".stories.settings.StorySettingsActivity"
@@ -975,11 +976,6 @@
               android:windowSoftInputMode="stateVisible|adjustResize"
               android:exported="false"/>
 
-    <activity android:name=".profiles.username.AddAUsernameActivity"
-              android:theme="@style/Signal.DayNight.NoActionBar"
-              android:windowSoftInputMode="stateVisible|adjustResize"
-              android:exported="false"/>
-
     <activity android:name=".profiles.manage.EditProfileActivity"
               android:theme="@style/TextSecure.LightTheme"
               android:windowSoftInputMode="stateVisible|adjustResize"
@@ -1072,13 +1068,6 @@
               android:launchMode="singleTask"
               android:exported="false"/>
 
-    <activity android:name=".megaphone.SmsExportMegaphoneActivity"
-              android:theme="@style/Theme.Signal.DayNight.NoActionBar"
-              android:screenOrientation="portrait"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize|uiMode"
-              android:launchMode="singleTask"
-              android:exported="false"/>
-
     <activity android:name=".ratelimit.RecaptchaProofActivity"
               android:theme="@style/Theme.Signal.DayNight.NoActionBar"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize|uiMode"
@@ -1095,15 +1084,18 @@
               android:theme="@style/Theme.Signal.WallpaperCropper"
               android:exported="false"/>
 
-    <activity android:name=".reactions.edit.EditReactionsActivity"
-              android:theme="@style/Theme.Signal.DayNight.NoActionBar"
+    <activity android:name=".components.settings.app.usernamelinks.main.UsernameQrImageSelectionActivity"
+        android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
+        android:theme="@style/TextSecure.DarkNoActionBar"
+        android:exported="false"/>
+
+    <activity android:name=".components.settings.app.usernamelinks.main.UsernameQrScannerActivity"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
+              android:theme="@style/Theme.Signal.DayNight.NoActionBar"
               android:exported="false"/>
 
-    <activity android:name=".exporter.flow.SmsExportActivity"
+    <activity android:name=".reactions.edit.EditReactionsActivity"
               android:theme="@style/Theme.Signal.DayNight.NoActionBar"
-              android:launchMode="singleTask"
-              android:screenOrientation="portrait"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
               android:exported="false"/>
 
@@ -1111,12 +1103,6 @@
               android:theme="@style/Theme.Signal.DayNight.NoActionBar"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
               android:exported="false"/>
-
-    <service
-        android:enabled="true"
-        android:name=".exporter.SignalSmsExportService"
-        android:foregroundServiceType="dataSync"
-        android:exported="false"/>
 
     <service
         android:enabled="true"
@@ -1393,6 +1379,16 @@
         android:exported="false">
         <intent-filter>
             <action android:name="android.intent.action.BOOT_COMPLETED" />
+        </intent-filter>
+    </receiver>
+
+    <service android:name="org.thoughtcrime.securesms.service.webrtc.ActiveCallManager$ActiveCallForegroundService" android:exported="false" />
+    <receiver android:name="org.thoughtcrime.securesms.service.webrtc.ActiveCallManager$ActiveCallServiceReceiver" android:exported="false">
+        <intent-filter>
+            <action android:name="org.thoughtcrime.securesms.service.webrtc.ActiveCallAction.DENY"/>
+        </intent-filter>
+        <intent-filter>
+            <action android:name="org.thoughtcrime.securesms.service.webrtc.ActiveCallAction.HANGUP"/>
         </intent-filter>
     </receiver>
 

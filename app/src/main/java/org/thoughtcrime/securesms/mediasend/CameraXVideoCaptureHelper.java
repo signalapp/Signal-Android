@@ -17,7 +17,6 @@ import androidx.camera.core.ZoomState;
 import androidx.camera.video.FileDescriptorOutputOptions;
 import androidx.camera.video.Recording;
 import androidx.camera.video.VideoRecordEvent;
-import androidx.camera.view.CameraController;
 import androidx.camera.view.PreviewView;
 import androidx.camera.view.video.AudioConfig;
 import androidx.core.util.Consumer;
@@ -27,10 +26,12 @@ import com.bumptech.glide.util.Executors;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.mediasend.camerax.SignalCameraController;
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXModePolicy;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.util.ContextUtil;
 import org.thoughtcrime.securesms.util.Debouncer;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.MemoryFileDescriptor;
 import org.thoughtcrime.securesms.video.VideoUtil;
 
@@ -42,18 +43,18 @@ import java.util.concurrent.TimeUnit;
 @RequiresApi(26)
 class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener {
 
-  private static final String TAG               = CameraXVideoCaptureHelper.class.getName();
+  private static final String TAG               = Log.tag(CameraXVideoCaptureHelper.class);
   private static final String VIDEO_DEBUG_LABEL = "video-capture";
   private static final long   VIDEO_SIZE        = 10 * 1024 * 1024;
 
-  private final @NonNull Fragment             fragment;
-  private final @NonNull PreviewView          previewView;
-  private final @NonNull CameraController     cameraController;
-  private final @NonNull Callback             callback;
-  private final @NonNull MemoryFileDescriptor memoryFileDescriptor;
-  private final @NonNull ValueAnimator        updateProgressAnimator;
-  private final @NonNull Debouncer            debouncer;
-  private final @NonNull CameraXModePolicy    cameraXModePolicy;
+  private final @NonNull Fragment               fragment;
+  private final @NonNull PreviewView            previewView;
+  private final @NonNull SignalCameraController cameraController;
+  private final @NonNull Callback               callback;
+  private final @NonNull MemoryFileDescriptor   memoryFileDescriptor;
+  private final @NonNull ValueAnimator          updateProgressAnimator;
+  private final @NonNull Debouncer              debouncer;
+  private final @NonNull CameraXModePolicy      cameraXModePolicy;
 
   private ValueAnimator cameraMetricsAnimator;
 
@@ -74,7 +75,7 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
         } else {
           try {
             debouncer.clear();
-            cameraController.setZoomRatio(Objects.requireNonNull(cameraController.getZoomState().getValue()).getMinZoomRatio());
+            cameraController.setZoomRatio(getDefaultVideoZoomRatio());
             memoryFileDescriptor.seek(0);
             callback.onVideoSaved(memoryFileDescriptor.getFileDescriptor());
           } catch (IOException e) {
@@ -87,7 +88,7 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
 
   CameraXVideoCaptureHelper(@NonNull Fragment fragment,
                             @NonNull CameraButtonView captureButton,
-                            @NonNull CameraController cameraController,
+                            @NonNull SignalCameraController cameraController,
                             @NonNull PreviewView previewView,
                             @NonNull MemoryFileDescriptor memoryFileDescriptor,
                             @NonNull CameraXModePolicy cameraXModePolicy,
@@ -142,14 +143,14 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
   @SuppressLint("RestrictedApi")
   private void beginCameraRecording() {
     cameraXModePolicy.setToVideo(cameraController);
-    this.cameraController.setZoomRatio(Objects.requireNonNull(this.cameraController.getZoomState().getValue()).getMinZoomRatio());
+    this.cameraController.setZoomRatio(getDefaultVideoZoomRatio());
     callback.onVideoRecordStarted();
     shrinkCaptureArea();
 
     FileDescriptorOutputOptions outputOptions = new FileDescriptorOutputOptions.Builder(memoryFileDescriptor.getParcelFileDescriptor()).build();
     AudioConfig                 audioConfig   = AudioConfig.create(true);
 
-    activeRecording = cameraController.startRecording(outputOptions, audioConfig, Executors.mainThreadExecutor(), videoSavedListener);
+    activeRecording = cameraController.startRecording(outputOptions, audioConfig, videoSavedListener);
 
     updateProgressAnimator.start();
     debouncer.publish(this::onVideoCaptureComplete);
@@ -232,8 +233,8 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
   @Override
   public void onZoomIncremented(float increment) {
     ZoomState zoomState = Objects.requireNonNull(cameraController.getZoomState().getValue());
-    float range = zoomState.getMaxZoomRatio() - zoomState.getMinZoomRatio();
-    cameraController.setZoomRatio((range * increment) + zoomState.getMinZoomRatio());
+    float range = zoomState.getMaxZoomRatio() - getDefaultVideoZoomRatio();
+    cameraController.setZoomRatio((range * increment) + getDefaultVideoZoomRatio());
   }
 
   @Override
@@ -252,6 +253,14 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
         VIDEO_DEBUG_LABEL,
         VIDEO_SIZE
     );
+  }
+
+  public float getDefaultVideoZoomRatio() {
+    if (FeatureFlags.startVideoRecordAt1x()) {
+      return 1f;
+    } else {
+      return Objects.requireNonNull(cameraController.getZoomState().getValue()).getMinZoomRatio();
+    }
   }
 
   interface Callback {

@@ -40,7 +40,7 @@ public class ImageSlide extends Slide {
 
   public ImageSlide(@NonNull Attachment attachment) {
     super(attachment);
-    this.borderless = attachment.isBorderless();
+    this.borderless = attachment.borderless;
   }
 
   public ImageSlide(Context context, Uri uri, long size, int width, int height, @Nullable BlurHash blurHash) {

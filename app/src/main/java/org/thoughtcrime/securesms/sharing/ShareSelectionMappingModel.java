@@ -22,7 +22,7 @@ public class ShareSelectionMappingModel implements MappingModel<ShareSelectionMa
     String name = shareContact.getRecipientId()
                               .map(Recipient::resolved)
                               .map(recipient -> recipient.isSelf() ? context.getString(R.string.note_to_self)
-                                                                         : recipient.getShortDisplayNameIncludingUsername(context))
+                                                                   : recipient.getShortDisplayName(context))
                               .orElseGet(shareContact::getNumber);
 
     return isFirst ? name : context.getString(R.string.ShareActivity__comma_s, name);

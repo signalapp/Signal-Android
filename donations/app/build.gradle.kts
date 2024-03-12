@@ -1,6 +1,5 @@
 plugins {
   id("signal-sample-app")
-  id("kotlin-kapt")
 }
 
 android {

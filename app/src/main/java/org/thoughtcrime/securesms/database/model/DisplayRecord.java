@@ -239,4 +239,12 @@ public abstract class DisplayRecord {
   public boolean isPaymentsActivated() {
     return MessageTypes.isPaymentsActivated(type);
   }
+
+  public boolean isReportedSpam() {
+    return MessageTypes.isReportedSpam(type);
+  }
+
+  public boolean isMessageRequestAccepted() {
+    return MessageTypes.isMessageRequestAccepted(type);
+  }
 }

@@ -1,66 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:viewBindingIgnore="true"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
     android:orientation="vertical"
     tools:background="@color/core_grey_60"
-    tools:parentTag="android.widget.LinearLayout">
+    tools:parentTag="android.widget.FrameLayout"
+    tools:viewBindingIgnore="true">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipChildren="false">
+    <FrameLayout
+        android:id="@+id/play_overlay"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_gravity="center"
+        android:alpha="0"
+        android:background="@drawable/circle_transparent_black_60"
+        android:longClickable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:alpha="1">
 
-        <org.thoughtcrime.securesms.video.videoconverter.VideoThumbnailsRangeSelectorView
-            android:id="@+id/video_timeline"
-            android:layout_width="match_parent"
-            android:layout_height="72dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="60dp"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp"
-            app:cursorColor="#fff"
-            app:cursorWidth="2dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:thumbColor="@color/core_white"
-            app:thumbColorEdited="#ff0"
-            app:thumbHintBackgroundColor="@color/transparent_black_60"
-            app:thumbHintTextColor="@color/core_white"
-            app:thumbHintTextSize="14sp"
-            app:thumbTouchRadius="24dp"
-            app:thumbWidth="16dp" />
-
-        <FrameLayout
-            android:id="@+id/play_overlay"
-            android:layout_width="72dp"
-            android:layout_height="72dp"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="34dp"
+            android:layout_height="34dp"
             android:layout_gravity="center"
-            android:alpha="0"
-            android:background="@drawable/circle_transparent_black_60"
-            android:longClickable="false"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:alpha="1">
+            android:contentDescription="@string/ThumbnailView_Play_video_description"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/exo_icon_play" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="34dp"
-                android:layout_height="34dp"
-                android:layout_gravity="center"
-                android:contentDescription="@string/ThumbnailView_Play_video_description"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/exo_icon_play" />
-
-        </FrameLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
 
 </merge>

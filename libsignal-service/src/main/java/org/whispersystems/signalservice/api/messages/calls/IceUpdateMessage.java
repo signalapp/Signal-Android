@@ -5,12 +5,10 @@ public class IceUpdateMessage {
 
   private final long   id;
   private final byte[] opaque;
-  private final String sdp;
 
-  public IceUpdateMessage(long id, byte[] opaque, String sdp) {
+  public IceUpdateMessage(long id, byte[] opaque) {
     this.id     = id;
     this.opaque = opaque;
-    this.sdp    = sdp;
   }
 
   public long getId() {
@@ -19,9 +17,5 @@ public class IceUpdateMessage {
 
   public byte[] getOpaque() {
     return opaque;
-  }
-
-  public String getSdp() {
-    return sdp;
   }
 }

@@ -3,9 +3,10 @@ package org.thoughtcrime.securesms.migrations;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.bumptech.glide.Glide;
+
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.jobmanager.Job;
-import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.util.FileUtils;
 
 import java.io.File;
@@ -39,7 +40,7 @@ public class CachedAttachmentsMigrationJob extends MigrationJob {
     }
 
     FileUtils.deleteDirectoryContents(context.getExternalCacheDir());
-    GlideApp.get(context).clearDiskCache();
+    Glide.get(context).clearDiskCache();
   }
 
   @Override

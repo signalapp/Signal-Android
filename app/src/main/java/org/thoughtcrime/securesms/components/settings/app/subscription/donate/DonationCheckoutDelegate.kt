@@ -327,7 +327,7 @@ class DonationCheckoutDelegate(
             errorDialog = null
             if (!tryAgain) {
               tryAgain = false
-              fragment!!.findNavController().popBackStack()
+              fragment?.findNavController()?.popBackStack()
             }
           }
         }

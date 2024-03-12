@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackPhoto20dp;
 import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
+import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
 import org.thoughtcrime.securesms.databinding.ReviewBannerViewBinding;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -69,9 +70,9 @@ public class ReviewBannerView extends FrameLayout {
     binding.bannerAvatarStroke.setVisibility(GONE);
   }
 
-  public void setBannerRecipient(@NonNull Recipient recipient) {
-    binding.bannerTopLeftAvatar.setAvatar(recipient);
-    binding.bannerBottomRightAvatar.setAvatar(recipient);
+  public void setBannerRecipients(@NonNull Recipient target, @NonNull Recipient dupe) {
+    binding.bannerTopLeftAvatar.setAvatar(target);
+    binding.bannerBottomRightAvatar.setAvatar(dupe);
 
     binding.bannerIcon.setVisibility(GONE);
     binding.bannerTopLeftAvatar.setVisibility(VISIBLE);
@@ -99,7 +100,7 @@ public class ReviewBannerView extends FrameLayout {
 
     @Override
     public @NonNull FallbackContactPhoto getPhotoForLocalNumber() {
-      throw new UnsupportedOperationException("This provider does not support local number");
+      return new ResourceContactPhoto(R.drawable.symbol_note_light_24, R.drawable.symbol_note_light_24);
     }
 
     @NonNull

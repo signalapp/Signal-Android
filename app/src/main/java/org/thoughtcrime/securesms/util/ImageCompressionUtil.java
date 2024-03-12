@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
+import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
@@ -16,7 +17,6 @@ import com.bumptech.glide.request.target.Target;
 
 import org.signal.core.util.ByteSize;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.mms.GlideApp;
 
 import java.io.ByteArrayOutputStream;
 import java.util.List;
@@ -82,7 +82,7 @@ public final class ImageCompressionUtil {
     Bitmap scaledBitmap;
 
     try {
-      scaledBitmap = GlideApp.with(context.getApplicationContext())
+      scaledBitmap = Glide.with(context.getApplicationContext())
                              .asBitmap()
                              .addListener(bitmapRequestListener)
                              .load(glideModel)

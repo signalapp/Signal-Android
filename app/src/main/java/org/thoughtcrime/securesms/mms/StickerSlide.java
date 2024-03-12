@@ -23,12 +23,12 @@ public class StickerSlide extends Slide {
 
   public StickerSlide(@NonNull Attachment attachment) {
     super(attachment);
-    this.stickerLocator = Objects.requireNonNull(attachment.getSticker());
+    this.stickerLocator = Objects.requireNonNull(attachment.stickerLocator);
   }
 
   public StickerSlide(Context context, Uri uri, long size, @NonNull StickerLocator stickerLocator, @NonNull String contentType) {
     super(constructAttachmentFromUri(context, uri, contentType, size, WIDTH, HEIGHT, true, null, null, stickerLocator, null, null, false, false, false, false));
-    this.stickerLocator = Objects.requireNonNull(attachment.getSticker());
+    this.stickerLocator = Objects.requireNonNull(attachment.stickerLocator);
   }
 
   @Override
@@ -52,6 +52,6 @@ public class StickerSlide extends Slide {
   }
 
   public @Nullable String getEmoji() {
-    return stickerLocator.getEmoji();
+    return stickerLocator.emoji;
   }
 }

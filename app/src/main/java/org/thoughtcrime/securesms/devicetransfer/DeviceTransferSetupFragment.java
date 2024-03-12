@@ -282,7 +282,7 @@ public abstract class DeviceTransferSetupFragment extends LoggingFragment {
     Permissions.with(this)
                .request(WifiDirect.requiredPermission())
                .ifNecessary()
-               .withRationaleDialog(getString(getErrorTextForStep(SetupStep.PERMISSIONS_DENIED)), false, R.drawable.ic_location_on_white_24dp)
+               .withRationaleDialog(getString(getErrorTextForStep(SetupStep.PERMISSIONS_DENIED)), false, R.drawable.symbol_location_white_24)
                .withPermanentDenialDialog(getString(getErrorTextForStep(SetupStep.PERMISSIONS_DENIED)))
                .onAllGranted(() -> viewModel.onPermissionsGranted())
                .onAnyDenied(() -> viewModel.onLocationPermissionDenied())

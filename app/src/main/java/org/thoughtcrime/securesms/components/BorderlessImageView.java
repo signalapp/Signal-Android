@@ -9,11 +9,9 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.bumptech.glide.load.resource.bitmap.CenterCrop;
-import com.bumptech.glide.load.resource.bitmap.CenterInside;
+import com.bumptech.glide.RequestManager;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideClickListener;
 import org.thoughtcrime.securesms.mms.SlidesClickedListener;
@@ -55,15 +53,15 @@ public class BorderlessImageView extends FrameLayout {
     image.setOnLongClickListener(l);
   }
 
-  public void setSlide(@NonNull GlideRequests glideRequests, @NonNull Slide slide) {
+  public void setSlide(@NonNull RequestManager requestManager, @NonNull Slide slide) {
     boolean showControls = slide.asAttachment().getUri() == null;
 
     if (slide.hasSticker()) {
       image.setScaleType(ImageView.ScaleType.FIT_CENTER);
-      image.setImageResource(glideRequests, slide, showControls, false);
+      image.setImageResource(requestManager, slide, showControls, false);
     } else {
       image.setScaleType(ImageView.ScaleType.CENTER_CROP);
-      image.setImageResource(glideRequests, slide, showControls, false, slide.asAttachment().getWidth(), slide.asAttachment().getHeight());
+      image.setImageResource(requestManager, slide, showControls, false, slide.asAttachment().width, slide.asAttachment().height);
     }
 
     missingShade.setVisibility(showControls ? View.VISIBLE : View.GONE);
@@ -74,6 +72,6 @@ public class BorderlessImageView extends FrameLayout {
   }
 
   public void setDownloadClickListener(@NonNull SlidesClickedListener listener) {
-    image.setDownloadClickListener(listener);
+    image.setStartTransferClickListener(listener);
   }
 }

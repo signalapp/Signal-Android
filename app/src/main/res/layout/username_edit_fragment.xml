@@ -35,34 +35,47 @@
         app:srcCompat="@drawable/symbol_at_24"
         app:tint="@color/signal_colorOnSurface" />
 
+    <View
+        android:id="@+id/username_box_fill"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginRight="@dimen/dsl_settings_gutter"
+        android:background="@drawable/username_edit_box_fill"
+        app:layout_constraintBottom_toBottomOf="@id/username_text_wrapper"
+        app:layout_constraintLeft_toLeftOf="@id/username_text_wrapper"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/username_text_wrapper" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/username_text_wrapper"
         style="@style/Widget.Signal.TextInputLayout"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dsl_settings_gutter"
+        android:layout_marginLeft="@dimen/dsl_settings_gutter"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="@dimen/dsl_settings_gutter"
+        android:layout_marginRight="16dp"
+        android:theme="@style/Signal.ThemeOverlay.TextInputLayout"
         app:boxStrokeColor="@color/signal_colorPrimary"
-        app:boxStrokeWidthFocused="2dp"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
         app:errorTextAppearance="@style/Signal.Text.Zero"
         app:expandedHintEnabled="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/suffix_progress"
         app:layout_constraintTop_toBottomOf="@id/summary"
-        app:suffixTextColor="@color/signal_colorOnSurface"
-        tools:errorEnabled="true"
-        tools:suffixText="| .1234">
+        app:suffixTextColor="@color/signal_colorOnSurface">
 
         <EditText
             android:id="@+id/username_text"
-            style="@style/Signal.Text.Body"
+            style="@style/Signal.Text.BodyLarge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/UsernameEditFragment_username"
-            android:imeOptions="actionDone"
+            android:imeOptions="actionNext"
             android:importantForAutofill="no"
             android:inputType="text"
+            android:layoutDirection="ltr"
             android:maxLines="1"
             android:minHeight="56dp">
 
@@ -70,30 +83,68 @@
         </EditText>
 
     </com.google.android.material.textfield.TextInputLayout>
-    
+
+    <EditText
+        android:id="@+id/discriminator_text"
+        style="@style/Signal.Text.BodyLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:hint="@string/UsernameEditFragment__00"
+        android:imeOptions="actionDone"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        android:maxLength="9"
+        android:maxLines="1"
+        android:minHeight="48dp"
+        android:paddingHorizontal="16dp"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toBottomOf="@id/username_text_wrapper"
+        app:layout_constraintRight_toRightOf="@id/username_box_fill"
+        tools:text="21" />
+
     <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/suffix_progress"
         android:layout_width="16dp"
         android:layout_height="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:layout_marginBottom="10dp"
-        app:layout_constraintEnd_toEndOf="@id/username_text_wrapper"
-        app:layout_constraintBottom_toBottomOf="@id/username_text_wrapper"
+        app:indicatorColor="@color/signal_colorOnSurfaceVariant"
         app:indicatorSize="16dp"
-        app:trackThickness="1dp"
+        app:layout_constraintBottom_toBottomOf="@id/username_text_wrapper"
+        app:layout_constraintRight_toLeftOf="@id/discriminator_text"
         app:trackColor="@color/transparent"
-        app:indicatorColor="@color/signal_colorOnSurfaceVariant"/>
+        app:trackThickness="1.75dp" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="1dp"
+        android:layout_height="20dp"
+        android:background="@color/signal_colorOutline"
+        app:layout_constraintBottom_toBottomOf="@id/discriminator_text"
+        app:layout_constraintLeft_toLeftOf="@id/discriminator_text"
+        app:layout_constraintTop_toTopOf="@id/discriminator_text" />
+
+    <View
+        android:id="@+id/username_text_focused_stroke"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="@color/signal_colorPrimary"
+        app:layout_constraintBottom_toBottomOf="@id/username_text_wrapper"
+        app:layout_constraintLeft_toLeftOf="@id/username_text_wrapper"
+        app:layout_constraintRight_toRightOf="@id/discriminator_text" />
 
     <TextView
         android:id="@+id/username_error"
+        style="@style/Signal.Text.BodyMedium"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:textAppearance="@style/Signal.Text.BodyMedium"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="4dp"
         android:textColor="@color/signal_colorError"
         android:visibility="gone"
-        app:layout_constraintStart_toStartOf="@id/username_description"
-        app:layout_constraintEnd_toEndOf="@id/username_description"
+        app:layout_constraintLeft_toLeftOf="@id/username_description"
+        app:layout_constraintRight_toRightOf="@id/username_description"
         app:layout_constraintTop_toBottomOf="@id/username_text_wrapper"
         tools:text="Error something bad happened. Very super long error message that wraps"
         tools:visibility="visible" />
@@ -109,13 +160,13 @@
         android:text="@string/UsernameEditFragment__choose_your_username"
         android:textAppearance="@style/Signal.Text.BodyLarge"
         android:textColor="@color/signal_colorOnSurfaceVariant"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/icon" />
 
     <org.thoughtcrime.securesms.util.views.LearnMoreTextView
         android:id="@+id/username_description"
-        style="@style/Signal.Text.Caption"
+        style="@style/Signal.Text.BodyMedium"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dsl_settings_gutter"
@@ -123,7 +174,6 @@
         android:layout_marginEnd="@dimen/dsl_settings_gutter"
         android:layout_marginBottom="24dp"
         android:text="@string/UsernameEditFragment__usernames_let_others_message"
-        android:textAppearance="@style/Signal.Text.BodyMedium"
         android:textColor="@color/signal_colorOnSurfaceVariant"
         app:layout_constraintBottom_toTopOf="@id/username_button_barrier"
         app:layout_constraintEnd_toEndOf="parent"

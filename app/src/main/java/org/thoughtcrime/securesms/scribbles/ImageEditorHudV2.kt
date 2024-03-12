@@ -146,9 +146,9 @@ class ImageEditorHudV2 @JvmOverloads constructor(
     cropAspectLockButton.setOnClickListener {
       listener?.onCropAspectLock()
       if (listener?.isCropAspectLocked == true) {
-        cropAspectLockButton.setImageResource(R.drawable.ic_crop_lock_24)
+        cropAspectLockButton.setImageResource(R.drawable.symbol_crop_lock_24)
       } else {
-        cropAspectLockButton.setImageResource(R.drawable.ic_crop_unlock_24)
+        cropAspectLockButton.setImageResource(R.drawable.symbol_crop_unlock_24)
       }
     }
 
@@ -355,7 +355,7 @@ class ImageEditorHudV2 @JvmOverloads constructor(
 
   private fun presentModeDraw() {
     drawButton.isSelected = true
-    brushToggle.setImageResource(R.drawable.ic_draw_white_24)
+    brushToggle.setImageResource(R.drawable.symbol_brush_pen_24)
     widthSeekBar.progress = SignalStore.imageEditorValues().getMarkerPercentage()
     listener?.onColorChange(getActiveColor())
     updateColorIndicator()
@@ -368,7 +368,7 @@ class ImageEditorHudV2 @JvmOverloads constructor(
 
   private fun presentModeHighlight() {
     drawButton.isSelected = true
-    brushToggle.setImageResource(R.drawable.ic_marker_24)
+    brushToggle.setImageResource(R.drawable.symbol_brush_highlighter_24)
     widthSeekBar.progress = SignalStore.imageEditorValues().getHighlighterPercentage()
     listener?.onColorChange(getActiveColor())
     updateColorIndicator()

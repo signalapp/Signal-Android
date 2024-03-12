@@ -11,8 +11,6 @@ import org.signal.core.util.CursorUtil
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testing.SignalActivityRule
-import org.thoughtcrime.securesms.util.FeatureFlags
-import org.thoughtcrime.securesms.util.FeatureFlagsAccessor
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import java.util.UUID
@@ -59,7 +57,7 @@ class RecipientTableTest {
     SignalDatabase.recipients.setProfileName(hiddenRecipient, ProfileName.fromParts("Hidden", "Person"))
     SignalDatabase.recipients.markHidden(hiddenRecipient)
 
-    val results = SignalDatabase.recipients.querySignalContacts("Hidden", false)!!
+    val results = SignalDatabase.recipients.querySignalContacts(RecipientTable.ContactSearchQuery("Hidden", false))!!
 
     assertEquals(0, results.count)
   }
@@ -130,7 +128,7 @@ class RecipientTableTest {
     SignalDatabase.recipients.setProfileName(blockedRecipient, ProfileName.fromParts("Blocked", "Person"))
     SignalDatabase.recipients.setBlocked(blockedRecipient, true)
 
-    val results = SignalDatabase.recipients.querySignalContacts("Blocked", false)!!
+    val results = SignalDatabase.recipients.querySignalContacts(RecipientTable.ContactSearchQuery("Blocked", false))!!
 
     assertEquals(0, results.count)
   }
@@ -167,8 +165,6 @@ class RecipientTableTest {
 
   @Test
   fun givenARecipientWithPniAndAci_whenIMarkItUnregistered_thenIExpectItToBeSplit() {
-    FeatureFlagsAccessor.forceValue(FeatureFlags.PHONE_NUMBER_PRIVACY, true)
-
     val mainId = SignalDatabase.recipients.getAndPossiblyMerge(ACI_A, PNI_A, E164_A)
 
     SignalDatabase.recipients.markUnregistered(mainId)
@@ -185,12 +181,10 @@ class RecipientTableTest {
 
   @Test
   fun givenARecipientWithPniAndAci_whenISplitItForStorageSync_thenIExpectItToBeSplit() {
-    FeatureFlagsAccessor.forceValue(FeatureFlags.PHONE_NUMBER_PRIVACY, true)
-
     val mainId = SignalDatabase.recipients.getAndPossiblyMerge(ACI_A, PNI_A, E164_A)
     val mainRecord = SignalDatabase.recipients.getRecord(mainId)
 
-    SignalDatabase.recipients.splitForStorageSync(mainRecord.storageId!!)
+    SignalDatabase.recipients.splitForStorageSyncIfNecessary(mainRecord.aci!!)
 
     val byAci: RecipientId = SignalDatabase.recipients.getByAci(ACI_A).get()
 

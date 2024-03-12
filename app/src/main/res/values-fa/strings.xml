@@ -19,7 +19,7 @@
   <!-- Removed by excludeNonTranslatables <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string> -->
 
     <string name="yes">بله</string>
-    <string name="no">خیر</string>
+    <string name="no">نه</string>
     <string name="delete">پاک کردن</string>
     <string name="please_wait">لطفاً صبر کنید…</string>
     <string name="save">ذخیره</string>
@@ -46,7 +46,7 @@
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">این گزینه باعث باز شدن دائمی قفل سیگنال و اعلان‌ها‌ی پیام خواهد شد.</string>
     <string name="ApplicationPreferencesActivity_disable">غیرفعال کردن</string>
     <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">غیرفعال کردن تماس‌ها و پیام‌های سیگنال؟</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">غیرفعال کردن پیام‌ها و تماس‌های سیگنال از طریق لغو عضو‌‌یت از سرور. در آینده برای استفاده از سیگنال باید دوباره از طریق شماره‌تلفن خود ثبت‌نام کنید.</string>
+    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">غیرفعال کردن پیام‌ها و تماس‌های سیگنال از طریق لغو عضو‌‌یت از سرور. در آینده برای استفاده از سیگنال باید دوباره از طریق شماره تلفن خود ثبت‌نام کنید.</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">خطا در اتصال به سرور!</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">پین‌ها برای قفل ثبت‌نام لازم هستند. برای غیرفعال کردن پین‌ها، لطفاً ابتدا قفل ثبت‌نام را غیرفعال کنید.</string>
     <string name="ApplicationPreferencesActivity_pin_created">پین ایجاد شد.</string>
@@ -179,7 +179,18 @@
     <string name="BlockUnblockDialog_unblock_s">%1$s رفع مسدودیت شود؟</string>
     <string name="BlockUnblockDialog_block">مسدود کردن</string>
     <string name="BlockUnblockDialog_block_and_leave">مسدود کردن و ترک</string>
-    <string name="BlockUnblockDialog_report_spam_and_block">گزارش هرزنامه و مسدود کردن</string>
+    <!-- Dialog button label to report as spam and block the person -->
+    <string name="BlockUnblockDialog_report_spam_and_block">گزارش و مسدود شود</string>
+    <!-- Dialog title for reporting spam -->
+    <string name="BlockUnblockDialog_report_spam_title">به‌عنوان هرزنامه گزارش شود؟</string>
+    <!-- Dialog button to report as spam only -->
+    <string name="BlockUnblockDialog_report_spam">به‌عنوان هرزنامه گزارش شود</string>
+    <!-- Dialog message when reporting spam of an individual (1:1 conversation) -->
+    <string name="BlockUnblockDialog_report_spam_description">سیگنال مطلع خواهد شد که این فرد ممکن است در حال ارسال هرزنامه باشد. سیگنال نمی‌تواند محتوای هیچ گفتگویی را ببیند.</string>
+    <!-- Dialog message when reporting spam of a group and we can determine the group member that invited you, placeholder is a name -->
+    <string name="BlockUnblockDialog_report_spam_group_named_adder">سیگنال مطلع خواهد شد که %1$s که شما را به این گروه دعوت کرده ممکن است در حال ارسال هرزنامه باشد. سیگنال نمی‌تواند محتوای هیچ گفتگویی را ببیند.</string>
+    <!-- Dialog message when reporting spam of a group and we cannot determine the group member that invited you -->
+    <string name="BlockUnblockDialog_report_spam_group_unknown_adder">سیگنال مطلع خواهد شد که فردی که شما را به این گروه دعوت کرده ممکن است در حال ارسال هرزنامه باشد. سیگنال نمی‌تواند محتوای هیچ گفتگویی را ببیند.</string>
 
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">امروز</string>
@@ -415,6 +426,8 @@
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported">پیامک دیگر در سیگنال پشتیبانی نمی‌شود.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">پیامک دیگر در سیگنال پشتیبانی نمی‌شود. برای ادامه مکالمه در اینجا، %1$s را به سیگنال دعوت کنید.</string>
+    <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
+    <string name="ConversationActivity__this_person_is_no_longer_using_signal">این شخص دیگر از سیگنال استفاده نمی‌کند. برای ادامۀ مکالمه در اینجا، او را به سیگنال دعوت کنید.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">دعوت به سیگنال</string>
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
@@ -480,11 +493,11 @@
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">برای پاسخ‌دهی سریع روی هر پیام به سمت چپ بکشید</string>
     <string name="ConversationFragment_view_once_media_is_deleted_after_sending">رسانه یک‌بار قابل مشاهده پس از ارسال پاک می‌شود</string>
     <string name="ConversationFragment_you_already_viewed_this_message">قبلاً این پیام را مشاهده کرده‌اید</string>
-    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">می‌توانید برای خودتان در این گفتگو یادداشت اضافه کنید. اگر حساب شما هرگونه دستگاه پیوندداده‌شده داشته باشد، یادداشت‌های جدید همگام‌سازی خواهند شد.</string>
+    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">شما می‌توانید برای خودتان در این گفتگو یادداشت اضافه کنید. اگر حساب کاربری شما هرگونه دستگاه پیوند داده شدهٔ جدیدی داشته باشد، یادداشت‌های جدید همگام‌سازی خواهند شد.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d عضو گروه نام یکسانی دارند.</string>
     <string name="ConversationFragment__tap_to_review">برای بازنگری ضربه بزنید</string>
-    <string name="ConversationFragment__review_requests_carefully">درخواست‌ها را با دقت بازنگری کنید</string>
-    <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">سیگنال مخاطب دیگری را با نام یکسان پیدا کرد.</string>
+    <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
+    <string name="ConversationFragment__review_banner_body">این شخص با مخاطب دیگری هم‌نام است</string>
     <string name="ConversationFragment_contact_us">تماس با ما</string>
     <string name="ConversationFragment_verify">وارسی</string>
     <string name="ConversationFragment_not_now">حالا نه</string>
@@ -510,6 +523,55 @@
     <string name="ConversationFragment__content_description_launch_signal_button">باز کردن سیگنال</string>
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
     <string name="ConversationFragment__no_longer_verified">دیگر تأییدشده نیست</string>
+    <!-- Button shown in conversation header when in a message request state and no groups in common to show new message safety tips -->
+    <string name="ConversationFragment_safety_tips">نکات ایمنی</string>
+    <!-- Menu option to report spam in a conversation -->
+    <string name="ConversationFragment_report_spam">به‌عنوان هرزنامه گزارش شود</string>
+    <!-- Menu option to block in a conversation -->
+    <string name="ConversationFragment_block">مسدود کردن</string>
+    <!-- Menu otpion to accept a message request in a conversation -->
+    <string name="ConversationFragment_accept">پذیرفتن</string>
+    <!-- Menu option to delete an entire chat in a conversation -->
+    <string name="ConversationFragment_delete_chat">پاک کردن گفتگو</string>
+    <!-- Menu option to unblock in a conversation -->
+    <string name="ConversationFragment_unblock">رفع مسدودیت</string>
+    <!-- Dialog title shown after reporting spam and tapping the conversation item -->
+    <string name="ConversationFragment_reported_spam">به‌عنوان هرزنامه گزارش شد</string>
+    <!-- Dialog message shown after reporting spam and tapping the conversation item -->
+    <string name="ConversationFragment_reported_spam_message">سیگنال مطلع شده است که این فرد ممکن است در حال ارسال هرزنامه باشد. سیگنال نمی‌تواند محتوای هیچ گفتگویی را ببیند.</string>
+    <!-- Toast shown after reporting spam and tapping the conversation item -->
+    <string name="ConversationFragment_reported_as_spam">به‌عنوان هرزنامه گزارش شد</string>
+    <!-- Toast shown after reporting and blocking a conversation -->
+    <string name="ConversationFragment_reported_as_spam_and_blocked">به‌عنوان هرزنامه گزارش و مسدود شد</string>
+    <!-- Dialog message shown after accepting a message request and tapping on options from the conversation event -->
+    <string name="ConversationFragment_you_accepted_a_message_request_from_s">درخواست پیامی از %1$s را پذیرفتید. اگر این به‌اشتباه رخ داده است، می‌توانید اقدامی را در زیر انتخاب کنید.</string>
+
+    <!-- Title of Safety Tips bottom sheet dialog -->
+    <string name="SafetyTips_title">نکات ایمنی</string>
+    <!-- Dialog subtitle when showign tips for a 1:1 conversation -->
+    <string name="SafetyTips_subtitle_individual">هنگام پذیرفتن درخواست پیام از افراد ناشناس احتیاط کنید. در موارد زیر احتیاط کنید:</string>
+    <!-- Dialog subtitle when showing tips for a group conversation -->
+    <string name="SafetyTips_subtitle_group">این درخواست را بادقت مرور کنید. هیچ‌یک از مخاطبان شما یا کسانی که با آن‌ها گفتگو می‌کنید در این گروه نیستند. چند چیز که باید در مورد آن‌ها احتیاط کنید:</string>
+    <!-- Button text to move to the previous tip-->
+    <string name="SafetyTips_previous_tip">نکتۀ قبلی</string>
+    <!-- Button text to move to the next tip -->
+    <string name="SafetyTips_next_tip">نکتۀ بعدی</string>
+    <!-- Title of tip 1 -->
+    <string name="SafetyTips_tip1_title">کلاه‌برداری‌های پولی یا رمزارز</string>
+    <!-- Message of tip 1 -->
+    <string name="SafetyTips_tip1_message">اگر فرد ناشناسی دربارۀ رمزارز (مثل بیت‌کوین) یا فرصتی مالی به شما پیام داد، مراقب باشید—احتمالاً هرزنامه است.</string>
+    <!-- Title of tip 2 -->
+    <string name="SafetyTips_tip2_title">پیام‌های مبهم یا نامرتبط</string>
+    <!-- Message of tip 2 -->
+    <string name="SafetyTips_tip2_message">ارسال‌کنندگان هرزنامه معمولاً با پیام ساده‌ای مثل «سلام» شروع می‌کنند تا شما را درگیر کنند. اگر پاسخ دهید ممکن است گفتگو را بیشتر پیش ببرند تا شما را درگیر کنند.</string>
+    <!-- Title of tip 3 -->
+    <string name="SafetyTips_tip3_title">پیام‌های دارای پیوند</string>
+    <!-- Message of tip 3 -->
+    <string name="SafetyTips_tip3_message">در مورد پیام‌هایی که از افراد ناشناس دریافت می‌کنید و داخل آن‌ها پیوند به وب‌سایتی وجود دارد احتیاط کنید. هیچ‌وقت پیوندی که از افراد غیرقابل‌اعتماد دریافت کرده‌اید را باز نکنید.</string>
+    <!-- Title of tip 4 -->
+    <string name="SafetyTips_tip4_title">کسب‌وکارها و سازمان‌های جعلی</string>
+    <!-- Message of tip 4 -->
+    <string name="SafetyTips_tip4_message">در مورد کسب‌وکارها و سازمان‌های دولتی که با شما تماس می‌گیرند احتیاط کنید. پیام‌های مربوط به نهادهای مالیاتی، شرکت مخابراتی و نظایر آن ممکن است هرزنامه باشند.</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">برداشتن فیلتر</string>
@@ -524,7 +586,10 @@
         <item quantity="other">این کار موجب پاک شدن دائمی همۀ %1$d گفتگوی انتخاب‌شده می‌شود.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">در حال حذف</string>
-    <string name="ConversationListFragment_deleting_selected_conversations">در حال پاک کردن گفتگوهای انتخاب‌شده…</string>
+    <plurals name="ConversationListFragment_deleting_selected_conversations">
+        <item quantity="one">درحال حذف گفتگوی انتخاب‌شده…</item>
+        <item quantity="other">درحال حذف گفتگوهای انتخاب‌شده…</item>
+    </plurals>
     <plurals name="ConversationListFragment_conversations_archived">
         <item quantity="one">گفتگو بایگانی شد</item>
         <item quantity="other">%1$d گفتگو بایگانی شد</item>
@@ -562,6 +627,8 @@
     <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">پروفایل اعلان‌های خود را اینجا روشن یا خاموش کنید.</string>
     <!-- Message shown in top toast to indicate the named profile is on -->
     <string name="ConversationListFragment__s_on">%1$s روشن</string>
+    <!-- -->
+    <string name="ConversationListFragment_username_recovered_toast">پیوند و کد QR شما بازنشانی شده و نام کاربری شما %1$s است</string>
 
     <!-- ConversationListItem -->
     <string name="ConversationListItem_key_exchange_message">پیام تبادل کلید</string>
@@ -606,9 +673,9 @@
     <!-- Toolbar title for this screen -->
     <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">چه کسی می‌تواند من را با شماره‌تلفن پیدا کند؟</string>
     <!-- Description for radio item stating anyone can see your phone number -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">هرکسی که شماره‌تلفن شما را در مخاطبین خود داشته باشد، شما را به عنوان یک مخاطب در سیگنال خواهد دید. دیگران می‌توانند با جستجوی شماره‌تلفن شما در جستجو، شما را پیدا کنند.</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">هر کسی که شماره تلفن شما را داشته باشد خواهد دید که شما در سیگنال هستید و می‌تواند با شما شروع به گفتگو کند.</string>
     <!-- Description for radio item stating no one will be able to see your phone number -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">هیچکس در سیگنال نمی‌تواند شما را با جستجوی شماره‌تلفن‌تان بیابد.</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">هیچ‌کسی قادر به مشاهدۀ آنلاین بودن شما در سیگنال نیست، مگر اینکه به کسی پیام دهید یا گفتگویی فعلی با او داشته باشید.</string>
 
     <!-- ChooseBackupFragment -->
     <string name="ChooseBackupFragment__restore_from_backup">بازگردانی از پشتیبان؟</string>
@@ -996,7 +1063,11 @@
     <string name="GroupMentionSettingDialog_dont_notify_me">من را آگاه نکن</string>
 
     <!-- ManageProfileFragment -->
-    <string name="ManageProfileFragment_profile_name">نام پروفایل</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
+    <string name="ManageProfileFragment__your_username">نام کاربری، کد QR و پیوند شما در نمایۀ شما قابل مشاهده نیست. نام کاربری خود را فقط با افراد مورد اعتمادتان به اشتراک بگذارید.</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
+    <string name="ManageProfileFragment__username_footer_no_username">اکنون افراد می‌توانند با استفاده از نام کاربری اختیاری‌تان به شما پیام بدهند، پس دیگر لازم نیست شماره تلفن خود را به کسی بدهید. </string>
+    <string name="ManageProfileFragment_profile_name">نام نمایه</string>
     <string name="ManageProfileFragment_username">نام کاربری</string>
     <string name="ManageProfileFragment_about">درباره</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">تنظیم آواتار ناموفق بود</string>
@@ -1283,6 +1354,10 @@
     <string name="MessageRecord_missed_voice_call">تماس صوتی ازدست‌رفته</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">تماس تصویری ازدست‌رفته</string>
+    <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
+    <string name="MessageRecord_missed_voice_call_notification_profile">تماس صوتی ازدست‌رفته در حالی که نمایۀ اعلان فعال است</string>
+    <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
+    <string name="MessageRecord_missed_video_call_notification_profile">تماس تصویری ازدست‌رفته در حالی که نمایۀ اعلان فعال است</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
     <string name="MessageRecord_you_declined_a_voice_call">یک تماس صوتی را رد کردید</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
@@ -1310,9 +1385,11 @@
     </plurals>
 
     <!-- Profile change updates -->
-    <string name="MessageRecord_changed_their_profile_name_to">%1$s نام پروفایل خود را به %2$s تغییر داد.</string>
-    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s نام پروفایل خود را از %2$s به %3$s تغییر داد.</string>
+    <string name="MessageRecord_changed_their_profile_name_to">%1$s نام نمایه خود را به %2$s تغییر داد.</string>
+    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s نام نمایه خود را از %2$s به %3$s تغییر داد.</string>
     <string name="MessageRecord_changed_their_profile">%1$s پروفایل خود را تغییر داد.</string>
+    <!-- Conversation update event message shown when you\'ve started a conversation by phone number or username and then learn their profile name. placeholder is username or phone number -->
+    <string name="MessageRecord_started_this_chat">این گفتگو را با %1$s شروع کردید.</string>
 
     <!-- GV2 specific -->
     <string name="MessageRecord_you_created_the_group">شما گروه را ایجاد کردید.</string>
@@ -1474,7 +1551,7 @@
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">شما شمارهٔ ایمنی خود را با %1$s وارسی نشده علامت زدید</string>
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">شما شمارهٔ ایمنی خود را با %1$s از طریق دستگاه یک دستگاه دیگر وارسی نشده علامت زدید</string>
     <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">یک پیام از %1$s نتوانست تحویل داده شود</string>
-    <string name="MessageRecord_s_changed_their_phone_number">%1$s شماره‌تلفن خود را تغییر داد.</string>
+    <string name="MessageRecord_s_changed_their_phone_number">%1$s شماره تلفن خود را تغییر داد.</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">این قابلیت جدید را می‌پسندید؟ با کمک مالی یک‌باره از سیگنال پشتیبانی کنید.</string>
     <!-- Update item message shown when we merge two threads together. First placeholder is a name, second placeholder is a phone number. -->
@@ -1525,6 +1602,10 @@
     <string name="MessageRecord__you_can_no_longer_send_sms_messages_in_signal">دیگر نمی‌توانید در سیگنال پیامک ارسال کنید. برای ادامه مکالمه در اینجا، %1$s را به سیگنال دعوت کنید.</string>
     <!-- Body for quote when message being quoted is an in-app payment message -->
     <string name="MessageRecord__payment_s">پرداخت: %1$s</string>
+    <!-- Update message shown in chat after reporting it as spam -->
+    <string name="MessageRecord_reported_as_spam">به‌عنوان هرزنامه گزارش شد</string>
+    <!-- Update message shown in chat after accept a message request -->
+    <string name="MessageRecord_you_accepted_the_message_request">درخواست پیام را پذیرفتید</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">پذیرفتن</string>
@@ -1571,6 +1652,8 @@
         <item quantity="one">%1$d گروه دیگر</item>
         <item quantity="other">%1$d گروه دیگر</item>
     </plurals>
+    <!-- Button label to report spam for a conversation when in a message request state -->
+    <string name="MessageRequestBottomView_report">گزارش شود…</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">گذرواژه‌ها یکی نیستند!</string>
@@ -1782,8 +1865,10 @@
     <string name="WebRtcCallView__disconnected">ارتباط قطع شد</string>
     <!-- Utilized in the lobby before joining a call link -->
     <string name="WebRtcCallView__signal_call_link">پیوند تماس سیگنال</string>
-    <!-- Warning displayed when entering a call via a link -->
-    <string name="WebRtcCallView__anyone_who_joins">هر کسی که از طریق پیوند به این تماس بپیوندد، قادر به دیدن نام، عکس و شماره تلفن شما خواهد بود.</string>
+    <!-- Warning displayed when entering a call via a link and you have Phone Number Privacy disabled-->
+    <string name="WebRtcCallView__anyone_who_joins_pnp_disabled">هر کسی که از طریق پیوند به این تماس بپیوندد، قادر به دیدن نام، عکس و شماره تلفن شما خواهد بود.</string>
+    <!-- Warning displayed when entering a call via a link and you have Phone Number Privacy enabled-->
+    <string name="WebRtcCallView__anyone_who_joins_pnp_enabled">هر کسی که از طریق لینک به این تماس بپیوندد، قادر به دیدن نام و عکس شما خواهد بود.</string>
     <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
     <string name="WebRtcCallView__waiting_to_be_let_in">در انتظار اجازه ورود…</string>
 
@@ -1885,6 +1970,10 @@
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">آشنا در سیگنال</string>
+    <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
+    <string name="AboutSheet__verified">تأیید شده</string>
+    <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
+    <string name="AboutSheet__no_direct_message">پیام مستقیمی با %1$s وجود ندارد</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s در مخاطبان سیستم شما است</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -1892,7 +1981,10 @@
     <!-- Notice when a user is not a connection to review requests carefully -->
     <string name="AboutSheet__review_requests_carefully">درخواست‌ها را با دقت بازنگری کنید</string>
     <!-- Text used when user has groups in common. Placeholder is the count -->
-    <string name="AboutSheet__d_groups_in_common">%1$d گروه مشترک</string>
+    <plurals name="AboutSheet__d_groups_in">
+        <item quantity="one">%1$d گروه مشترک</item>
+        <item quantity="other">%1$d گروه مشترک</item>
+    </plurals>
     <!-- Text displayed in title for external recipients -->
     <string name="AboutSheet__about">درباره</string>
     <!-- Text displayed in title for you -->
@@ -1973,7 +2065,7 @@
     <string name="RegistrationActivity_unable_to_request_verification_code">امکان درخواست کد تأیید وجود ندارد. لطفاً اتصال شبکه خود را بررسی و دوباره امتحان کنید.</string>
     <string name="RegistrationActivity_non_standard_number_format">قالب شمارهٔ غیر-استاندارد</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">به نظر می‌رسد شماره‌ای که وارد کردید (%1$s) در قالبی غیر-استاندارد باشد.\n\nآیا منظورتان %2$s بود؟</string>
-    <string name="RegistrationActivity_signal_android_phone_number_format">سیگنال اندروید - قالب شماره‌تلفن</string>
+    <string name="RegistrationActivity_signal_android_phone_number_format">سیگنال اندروید - قالب شماره تلفن</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
     <string name="RegistrationActivity_call_requested">درخواست تماس داده شد</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
@@ -1995,10 +2087,10 @@
     <!-- Title of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_phone_number">شماره تلفن</string>
     <!-- Subtitle of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">برای شروع، شماره‌تلفن خود را وارد کنید.</string>
+    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">برای شروع، شماره تلفن خود را وارد کنید.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">کد‌ی را که به %1$s ارسال کردیم وارد کنید</string>
 
-    <string name="RegistrationActivity_phone_number_description">شماره‌تلفن</string>
+    <string name="RegistrationActivity_phone_number_description">شماره تلفن</string>
     <string name="RegistrationActivity_country_code_description">کد کشور</string>
     <string name="RegistrationActivity_call">تماس</string>
     <string name="RegistrationActivity_verification_code">کد تآیید</string>
@@ -2006,7 +2098,7 @@
     <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_title">مشکلی در ثبت‌نام دارید؟</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• مطمئن شوید که تلفنتان برای دریافت پیامک یا تماس آنتن دارد\n • تأیید کنید که می‌توانید با این شماره تماس تلفنی دریافت کنید\n • بررسی کنید که شماره تلفن خود را به‌درستی وارد کرده‌اید.</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• مطمئن شوید که تلفنتان برای دریافت پیامک یا تماس آنتن دارد\n • تأیید کنید که می‌توانید با این شماره تلفن تماس دریافت کنید\n • بررسی کنید که شماره تلفن خود را به‌درستی وارد کرده‌اید.</string>
     <!--    A call to action for a user having trouble entering the verification to seek further help. -->
     <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">برای اطلاعات بیشتر، لطفاً این مراحل عیب‌یابی را دنبال کنید یا با پشتیبانی تماس بگیرید</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
@@ -2199,6 +2291,8 @@
     <string name="UnverifiedSendDialog_send">ارسال</string>
 
     <!-- UsernameEditFragment -->
+    <!-- Placeholder text for custom discriminator -->
+    <string name="UsernameEditFragment__00">00</string>
     <!-- Toolbar title when entering from registration -->
     <string name="UsernameEditFragment__add_a_username">یک نام کاربری اضافه کنید</string>
     <!-- Instructional text at the top of the username edit screen -->
@@ -2207,13 +2301,15 @@
     <string name="UsernameEditFragment_delete">پاک کردن</string>
     <string name="UsernameEditFragment_successfully_removed_username">نام کاربری با موفقیت حذف شد.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">خطای شبکه رخ داد.</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">تعداد تلاش‌های ناموفق بیش از حد مجاز بود؛ لطفاً بعداً دوباره امتحان کنید.</string>
     <string name="UsernameEditFragment_this_username_is_taken">این نام کاربری گرفته شده است.</string>
-    <string name="UsernameEditFragment_usernames_can_only_include">نام‌های کاربری فقط می‌توانند شامل a-Z ،0-9 و _ باشند.</string>
+    <string name="UsernameEditFragment_usernames_can_only_include">نام‌های کاربری فقط می‌توانند حاوی حروف A تا Z، اعداد ۰ تا ۹ و _ باشند.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">نام‌های کاربری نمی‌توانند با عدد آغاز شوند.</string>
     <string name="UsernameEditFragment_username_is_invalid">نام کاربری نامعتبر است.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">نام‌های کاربری باید بین %1$d و %2$d نویسه باشند.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">نام کاربری به دیگران اجازه می‌دهد بدون نیاز به شماره تلفن‌تان به شما پیام بدهند. نام کاربری با مجموعه‌ای از ارقام ادغام می‌شود تا کمک کند نشانی شما خصوصی بماند.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">نام کاربری همیشه با مجموعه‌ای از اعداد همراه است.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">این عدد چیست؟</string>
     <string name="UsernameEditFragment__these_digits_help_keep">این ارقام به خصوصی ماندن نام کاربری شما کمک می‌کند تا بتوانید از پیام‌های ناخواسته جلوگیری کنید. نام کاربری خود را فقط با افراد و گروه‌هایی که می‌خواهید با آنها گفتگو کنید به اشتراک بگذارید. اگر نام کاربری را تغییر دهید، مجموعه ارقام جدیدی دریافت خواهید کرد.</string>
@@ -2221,6 +2317,22 @@
     <string name="UsernameEditFragment__skip">رد کردن</string>
     <!-- Content description for done button -->
     <string name="UsernameEditFragment__done">تمام</string>
+    <!-- Displayed when the chosen discriminator is not available for the given nickname -->
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">این نام کاربری دردسترس نیست، شمارۀ دیگری را امتحان کنید.</string>
+    <!-- Displayed when the chosen discriminator is too short -->
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">نام کاربری نامعتبر است، حداقل %1$d رقم وارد کنید.</string>
+    <!-- Displayed when the chosen discriminator is too long -->
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">نام کاربری نامعتبر است، حداکثر %1$d رقم وارد کنید.</string>
+    <!-- Displayed when the chosen discriminator is 00 -->
+    <string name="UsernameEditFragment__this_number_cant_be_00">این عدد نمی‌تواند ۰۰ باشد. رقمی بین ۱ تا ۹ انتخاب کنید</string>
+    <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">اعداد دارای بیش از ۲ رقم نمی‌توانند با ۰ شروع شوند</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
+    <string name="UsernameEditFragment_recovery_dialog_confirmation">بازیابی نام کاربری‌تان موجب بازنشانی پیوند و کد QR فعلی شما می‌شود. مطمئن هستید؟</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
+    <string name="UsernameEditFragment_change_confirmation_message">تغییر نام کاربری‌تان موجب بازنشانی کد و پیوند QR فعلی شما می‌شود. مطمئن هستید؟</string>
+    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
+    <string name="UsernameEditFragment_continue">ادامه</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d مخاطب در سیگنال هست!</item>
@@ -2407,6 +2519,26 @@
     <!-- Notification subtext for group stories -->
     <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s • استوری</string>
 
+    <!-- NewWaysToConnectDialogFragment -->
+    <!-- Fragment title, displayed at the top of the content -->
+    <string name="NewWaysToConnectDialogFragment__new_ways_to_connect">روش‌های جدید برقراری ارتباط</string>
+    <!-- Row item title for phone number privacy explainer -->
+    <string name="NewWaysToConnectDialogFragment__phone_number_privacy">حریم شخصی شماره تلفن</string>
+    <!-- Row item description for phone number privacy explainer -->
+    <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">شماره تلفن شما دیگر با گفتگوها به اشتراک گذاشته نخواهد شد. اگر شمارۀ شما در مخاطبان دوستتان ذخیره شده باشد، همچنان قادر به مشاهدۀ آن خواهد بود.</string>
+    <!-- Row item title for usernames explainer -->
+    <string name="NewWaysToConnectDialogFragment__usernames">نام‌های کاربری</string>
+    <!-- Row item description for usernames explainer -->
+    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">اکنون افراد می‌توانند با استفاده از نام کاربری اختیاری‌تان به شما پیام بدهند، پس دیگر لازم نیست شماره تلفن خود را به کسی بدهید. نام کاربری در نمایه‌تان قابل مشاهده نیست.</string>
+    <!-- Row item title for qr code and links explainer -->
+    <string name="NewWaysToConnectDialogFragment__qr_codes_and_links">پیوندها و کدهای QR</string>
+    <!-- Row item description for qr code and links explainer -->
+    <string name="NewWaysToConnectDialogFragment__usernames_have_a_unique_qr_code">هر نام کاربری یک کد QR و پیوندی منحصربه‌فرد دارد که می‌توانید با دوستانتان به اشتراک بگذارید تا از آن برای شروع سریع گفتگو با شما استفاده کنند.</string>
+    <!-- Button label for not right now -->
+    <string name="NewWaysToConnectDialogFragment__not_now">حالا نه</string>
+    <!-- Button label for continue -->
+    <string name="NewWaysToConnectDialogFragment__set_up_your_username">راه‌اندازی نام کاربری</string>
+
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">پخش ویدئو</string>
     <string name="ThumbnailView_Has_a_caption_description">دارای یک زیرنویس</string>
@@ -2420,6 +2552,8 @@
     <string name="TransferControlView__processing">در حال پردازش…</string>
     <!-- Status update label used while the device is transmitting data over the network. Will take the form of "1.0 MB/2.0 MB" -->
     <string name="TransferControlView__download_progress">%1$1.1f MB/%2$2.1f MB</string>
+    <!-- Attachment file size label for not-yet-downloaded images and video. Will take the form of "1.0 MB" -->
+    <string name="TransferControlView__filesize">%1$1.1f MB</string>
 
 
     <!-- UnauthorizedReminder -->
@@ -2510,7 +2644,7 @@
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">سیگنال برای نشان دادن مخاطبین شما نیاز به دسترسی مخاطبین دارد، اما این دسترسی داده نشده است. لطفاً به بخش مدیریت برنامه‌ها در تنظیمات تلفن همراه خود رفته، در بخش «مجوزها» گزینهٔ «مخاطبین» را فعال کنید.</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">خطا در بازیابی مخاطبین، اتصال اینترنت خود را بررسی کنید</string>
     <string name="ContactSelectionListFragment_username_not_found">نام کاربری یافت نشد</string>
-    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" یک کاربر سیگنال نیست. لطفاً نام کاربری را بررسی کرده و دوباره تلاش کنید."</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" کاربر سیگنال نیست. لطفاً نام کاربری را بررسی کرده و دوباره تلاش کنید."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">نیازی نیست که خود را به گروه اضافه کنید</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">به حداکثر اندازهٔ گروه رسیدید</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">گروه‌های سیگنال می‌توانند حداکثر %1$d عضو داشته باشند.</string>
@@ -2520,6 +2654,10 @@
         <item quantity="one">%1$d عضو</item>
         <item quantity="other">%1$d عضو</item>
     </plurals>
+    <!-- Text on row item to find user by phone number -->
+    <string name="ContactSelectionListFragment__find_by_phone_number">جستجو با شماره تلفن</string>
+    <!-- Text on row item to find user by username -->
+    <string name="ContactSelectionListFragment__find_by_username">جستجو با نام کاربری</string>
 
     <!-- contact_selection_list_fragment -->
     <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">سیگنال به دسترسی مخاطبین برای نمایش آن‌ها نیاز دارد.</string>
@@ -2591,6 +2729,8 @@
     <string name="ConversationUpdateItem_activate_payments">فعال کردن پرداخت‌ها</string>
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">این شخص را حذف کرده‌اید، ارسال مجدد پیام به او موجب افزودن دوباره او به لیست شما می‌شود.</string>
+    <!-- Update item button text shown for the accepted message request update message -->
+    <string name="ConversationUpdateItem_options">گزینه‌ها</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">پخش … توقف</string>
@@ -3122,7 +3262,7 @@
     <string name="preferences_communication__censorship_circumvention">عبور از فیلترینگ</string>
     <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">اگر فعال شود، سیگنال اقدام به دور زدن فیلترینگ خواهد کرد. تنها در صورتی این قابلیت را فعال کنید که سیگنال در محل شما مسدود شده است.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">عبور از فیلترینگ بر اساس شماره‌تلفن شما فعال شد.</string>
+    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">عبور از فیلترینگ بر اساس شماره تلفن شما فعال شد.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
     <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">شما عبور از فیلترینگ را به صورت دستی غیرفعال کردید.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
@@ -3607,7 +3747,7 @@
 
     <!-- AccountLockedFragment -->
     <string name="AccountLockedFragment__account_locked">حساب کاربری قفل شد</string>
-    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">حساب کاربری شما به منظور حفاظت از حریم خصوصی و امنیت شما قفل شده است. پس از %1$d روز عدم فعالیت در حساب کاربری‌تان، می‌توانید دوباره با این شماره‌تلفن و بدون نیاز به پین ثبت‌نام کنید. تمام محتوا پاک خواهد شد.</string>
+    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">حساب کاربری شما به منظور حفاظت از حریم خصوصی و امنیت شما قفل شده است. پس از %1$d روز عدم فعالیت در حساب کاربری‌تان، می‌توانید دوباره با این شماره تلفن و بدون نیاز به پین ثبت‌نام کنید. تمام محتوا پاک خواهد شد.</string>
     <string name="AccountLockedFragment__next">بعدی</string>
     <string name="AccountLockedFragment__learn_more">اطلاعات بیشتر</string>
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
@@ -3745,13 +3885,27 @@
     <!-- Subtext below option to launch into phone number privacy settings screen -->
     <string name="preferences_app_protection__choose_who_can_see">انتخاب کنید که چه‌کسی بتواند شماره تلفن شما را ببیند و از طریق شماره تلفن‌تان در سیگنال با شما تماس بگیرد.</string>
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
-    <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">چه‌کسی می‌تواند شماره من را ببیند</string>
-    <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">هیچ‌کسی شماره‌تلفن شما را در سیگنال نخواهد دید</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">چه‌کسی می‌تواند شماره من را ببیند</string>
+    <!-- Subtext below radio buttons when who can see my number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">شماره تلفن شما برای افراد و گروه‌هایی که به آن‌ها پیام می‌دهید قابل مشاهده خواهد بود.</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">شماره تلفن شما برای هیچ‌کس قابل مشاهده نیست، به‌جز کسانی که شما را در مخاطبان تلفن خود ذخیره کرده‌اند.</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">شماره تلفن شما برای هیچ‌کس قابل مشاهده نیست.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
-    <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">چه‌کسی می‌تواند من را با شماره تلفنم پیدا کند</string>
-    <!-- Subtext below radio buttons when who can see my number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">شماره‌تلفن شما برای افراد و گروه‌هایی که به آن‌ها پیام می‌دهید قابل مشاهده خواهد بود. افرادی که شماره شما را در مخاطبان تلفن خود دارند، آن را در سیگنال نیز خواهند دید.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">چه‌کسی می‌تواند من را با شماره تلفنم پیدا کند</string>
+    <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">هر کسی که شماره تلفن شما را داشته باشد خواهد دید که شما در سیگنال هستید و می‌تواند با شما شروع به گفتگو کند.</string>
+    <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">هیچ‌کسی قادر به مشاهدۀ آنلاین بودن شما در سیگنال نیست، مگر اینکه به کسی پیام دهید یا گفتگویی فعلی با او داشته باشید.</string>
+    <!-- Snackbar text when pressing invalid radio item -->
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"برای تغییر این تنظیمات، «چه‌کسی می‌تواند شمارۀ من را ببیند» را روی «هیچ‌کس» تنظیم کنید."</string>
+    <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">مطمئن هستید؟</string>
+    <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">تنظیم «چه‌کسی می‌تواند من را با شماره تلفنم پیدا کند» روی «هیچ‌کس»، پیدا کردن شما در سیگنال را برای دیگران دشوارتر می‌کند.</string>
+    <!-- Dialog button text for canceling change action -->
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">لغو</string>
     <string name="PhoneNumberPrivacy_everyone">همه</string>
     <string name="PhoneNumberPrivacy_nobody">هیچ‌کس</string>
     <string name="preferences_app_protection__screen_lock">قفل صفحه</string>
@@ -3780,6 +3934,8 @@
     <string name="prompt_passphrase_activity__signal_is_locked">سیگنال قفل است</string>
     <string name="prompt_passphrase_activity__tap_to_unlock">برای باز کردن قفل ضربه بزنید</string>
     <string name="Recipient_unknown">ناشناخته</string>
+    <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
+    <string name="Recipient_deleted_account">حساب پاک‌شده</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
     <string name="preferences_account_reregister">ثبت دوبارۀ حساب</string>
@@ -3982,8 +4138,10 @@
     <string name="BlockedUsersActivity__s_has_been_unblocked">«%1$s» رفع مسدودیت شده است.</string>
 
     <!-- ReviewCardDialogFragment -->
+    <!-- Title of a screen where the user will be prompted to review group members with the same name -->
     <string name="ReviewCardDialogFragment__review_members">بازبینی اعضا</string>
-    <string name="ReviewCardDialogFragment__review_request">بازبینی درخواست</string>
+    <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
+    <string name="ReviewCardDialogFragment__review_request">درخواست بازبینی</string>
     <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d عضو گروه نام یکسان دارند، اعضا را در پایین مرور کنید و اقدام لازم را انجام دهید.</string>
     <string name="ReviewCardDialogFragment__if_youre_not_sure">اگر مطمئن نیستید که فرستندهٔ درخواست چه کسی است، مخاطبین را در پایین مرور کنید و اقدام لازم را انجام دهید.</string>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">هیچ گروه مشترک دیگری وجود ندارد.</string>
@@ -4008,7 +4166,7 @@
     <string name="ReviewCard__block">مسدود کردن</string>
     <string name="ReviewCard__delete">پاک کردن</string>
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
-    <string name="ReviewCard__s_recently_changed">%1$s اخیراً نام پروفایل خود را از %2$s به %3$s تغییر داده است</string>
+    <string name="ReviewCard__s_recently_changed">%1$s اخیراً نام نمایه خود را از %2$s به %3$s تغییر داده است</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
     <string name="ReviewCard__s_is_in_your_system_contacts">%1$s در مخاطبان سیستم شما است</string>
 
@@ -4032,14 +4190,14 @@
 
     <!-- DeleteAccountFragment -->
     <string name="DeleteAccountFragment__deleting_your_account_will">پاک کردن حساب‌تان:</string>
-    <string name="DeleteAccountFragment__enter_your_phone_number">شماره‌تلفن خود را وارد کنید</string>
+    <string name="DeleteAccountFragment__enter_your_phone_number">شماره تلفن خود را وارد کنید</string>
     <string name="DeleteAccountFragment__delete_account">پاک کردن حساب</string>
     <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">اطلاعات حساب و عکس نمایه‌تان را پاک خواهد کرد</string>
     <string name="DeleteAccountFragment__delete_all_your_messages">همه پیام‌هایتان را پاک خواهد کرد</string>
     <string name="DeleteAccountFragment__delete_s_in_your_payments_account">%1$s را در حساب پرداخت‌های خود پاک کنید</string>
     <string name="DeleteAccountFragment__no_country_code">هیچ کد کشوری وارد نشده است</string>
     <string name="DeleteAccountFragment__no_number">هیچ شماره‌ای وارد نشده است</string>
-    <string name="DeleteAccountFragment__the_phone_number">شماره‌تلفنی که وارد کردید با حساب کاربری شما همخوانی ندارد.</string>
+    <string name="DeleteAccountFragment__the_phone_number">شماره تلفنی که وارد کردید با حساب کاربری شما همخوانی ندارد.</string>
     <string name="DeleteAccountFragment__are_you_sure">آیا از پاک کردن حساب کاربری خود اطمینان دارید؟</string>
     <string name="DeleteAccountFragment__this_will_delete_your_signal_account">این گزینه، حساب کاربری سیگنال شما را پاک کرده و برنامه را بازنشانی می‌کند. برنامه پس از تکمیل فرایند بسته خواهد شد.</string>
     <string name="DeleteAccountFragment__failed_to_delete_local_data">پاک کردن داده‌های محلی موفق نبود. شما می‌توانید آن را به صورت دستی در بخش تنظیمات برنامهٔ سیستم پاک کنید.</string>
@@ -4245,11 +4403,16 @@
     <string name="GroupDescriptionDialog__group_description">توضیحات گروه</string>
 
     <!-- QualitySelectorBottomSheetDialog -->
+    <!-- Label for our standard quality media conversion. -->
     <string name="QualitySelectorBottomSheetDialog__standard">استاندارد</string>
+    <!-- Description for our standard quality media conversion. -->
     <string name="QualitySelectorBottomSheetDialog__faster_less_data">سریع‌تر، دادهٔ کمتر</string>
+    <!-- Label for our high quality media conversion. This has better quality than standard. -->
     <string name="QualitySelectorBottomSheetDialog__high">عالی</string>
+    <!-- Label for our high quality media conversion. This has better quality than standard. -->
     <string name="QualitySelectorBottomSheetDialog__slower_more_data">آهسته‌تر، دادهٔ بیشتر</string>
-    <string name="QualitySelectorBottomSheetDialog__photo_quality">کیفیت عکس</string>
+    <!-- Title heading for our media conversion quality selector. -->
+    <string name="QualitySelectorBottomSheetDialog__media_quality">کیفیت رسانه</string>
 
     <!-- AppSettingsFragment -->
     <string name="AppSettingsFragment__invite_your_friends">دوستان خود را دعوت کنید</string>
@@ -4258,8 +4421,8 @@
     <!-- AccountSettingsFragment -->
     <string name="AccountSettingsFragment__account">حساب کاربری</string>
     <string name="AccountSettingsFragment__youll_be_asked_less_frequently">به مرور زمان از شما کمتر پرسیده خواهد شد</string>
-    <string name="AccountSettingsFragment__require_your_signal_pin">درخواست پین سیگنال شما برای ثبت‌نام دوباره با شماره‌تلفن شما در سیگنال</string>
-    <string name="AccountSettingsFragment__change_phone_number">تغییر شماره‌تلفن</string>
+    <string name="AccountSettingsFragment__require_your_signal_pin">درخواست پین سیگنال شما برای ثبت‌نام دوباره با شماره تلفن شما در سیگنال</string>
+    <string name="AccountSettingsFragment__change_phone_number">تغییر شماره تلفن</string>
     <!-- Account setting that allows user to request and export their signal account data -->
     <string name="AccountSettingsFragment__request_account_data">اطلاعات حساب شما</string>
 
@@ -4305,24 +4468,24 @@
     <string name="ExportAccountDataFragment__report_not_stored_disclaimer">گزارش شما فقط هنگام خروجی گرفتن تولید می‌شود و سیگنال آن را در دستگاهتان ذخیره نمی‌کند.</string>
 
     <!-- ChangeNumberFragment -->
-    <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">از این گزینه برای تغییر شماره‌تلفن فعلی خود به یک شماره‌تلفن جدید استفاده کنید. شما نمی‌توانید این تغییر را بازگردانی کنید.\n\n قبل از ادامه، مطمئن شوید که شمارهٔ جدید شما می‌تواند پیامک یا تماس دریافت کند.</string>
+    <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">از این گزینه برای تغییر شماره تلفن فعلی خود به یک شماره‌تلفن جدید استفاده کنید. شما نمی‌توانید این تغییر را بازگردانی کنید.\n\n قبل از ادامه، مطمئن شوید که شمارهٔ جدید شما می‌تواند پیامک یا تماس دریافت کند.</string>
     <string name="ChangeNumberFragment__continue">ادامه</string>
     <!-- Message shown on dialog after your number has been changed successfully. -->
-    <string name="ChangeNumber__your_phone_number_has_changed_to_s">شماره‌تلفن شما به %1$s تغییر یافت</string>
+    <string name="ChangeNumber__your_phone_number_has_changed_to_s">شماره تلفن شما به %1$s تغییر یافت</string>
     <!-- Confirmation button to dismiss number changed dialog -->
     <string name="ChangeNumber__okay">خوب</string>
 
     <!-- ChangeNumberEnterPhoneNumberFragment -->
     <string name="ChangeNumberEnterPhoneNumberFragment__change_number">تغییر شماره</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">شمارهٔ قدیمی شما</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">شماره‌تلفن قدیمی</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">شماره تلفن قدیمی</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">شمارهٔ جدید شما</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">شماره‌تلفن جدید</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">شماره‌تلفنی که وارد کردید با حساب کاربری شما همخوانی ندارد.</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">شماره تلفن جدید</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">شماره تلفنی که وارد کردید با حساب کاربری شما همخوانی ندارد.</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">شما باید کد کشور شمارهٔ قدیمی خود را مشخص کنید</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">شما باید شماره‌تلفن جدید خود را مشخص کنید</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">شما باید شماره تلفن جدید خود را مشخص کنید</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">شما باید کد کشور شمارهٔ جدید خود را مشخص کنید</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">شما باید شماره‌تلفن جدید خود را مشخص کنید</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">شما باید شماره تلفن جدید خود را مشخص کنید</string>
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">تغییر شماره</string>
@@ -4331,7 +4494,7 @@
 
     <!-- ChangeNumberConfirmFragment -->
     <string name="ChangeNumberConfirmFragment__change_number">تغییر شماره</string>
-    <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">شما در آستانهٔ تغییر دادن شماره‌تلفن خود از %1$s به %2$s هستید.\n\nپیش از ادامه دادن، لطفاً تصدیق کنید که شمارهٔ پایین صحیح است.</string>
+    <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">شما در آستانهٔ تغییر دادن شماره تلفن خود از %1$s به %2$s هستید.\n\nپیش از ادامه دادن، لطفاً تصدیق کنید که شمارهٔ پایین صحیح است.</string>
     <string name="ChangeNumberConfirmFragment__edit_number">ویرایش شماره</string>
 
     <!-- ChangeNumberRegistrationLockFragment -->
@@ -4364,27 +4527,6 @@
     <!-- ChatsSettingsFragment -->
     <string name="ChatsSettingsFragment__keyboard">صفحه‌کلید</string>
     <string name="ChatsSettingsFragment__enter_key_sends">ارسال با کلید Enter</string>
-
-    <!--SmsSettingsFragment -->
-    <string name="SmsSettingsFragment__use_as_default_sms_app">استفاده به صورت برنامهٔ پیامک پیش‌فرض</string>
-    <!-- Preference title to export sms -->
-    <string name="SmsSettingsFragment__export_sms_messages">صدور پیامک‌ها</string>
-    <!-- Preference title to re-export sms -->
-    <string name="SmsSettingsFragment__export_sms_messages_again">صدور دوباره پیامک‌ها</string>
-    <!-- Preference title to delete sms -->
-    <string name="SmsSettingsFragment__remove_sms_messages">حذف پیامک‌ها</string>
-    <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">در حال حذف پیامک‌ها از سیگنال…</string>
-    <!-- Snackbar text to indicate can delete later -->
-    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">می‌توانید در هر زمانی پیامک‌ها را در تنظیمات از سیگنال حذف کنید.</string>
-    <!-- Description for export sms preference -->
-    <string name="SmsSettingsFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">می‌توانید پیامک‌های خود را به پایگاه داده پیامک تلفن خود صادر کنید</string>
-    <!-- Description for re-export sms preference -->
-    <string name="SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages">صدور دوباره می‌تواند منجر به پیام‌های تکراری شود.</string>
-    <!-- Description for remove sms preference -->
-    <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">پیامک‌ها را از سیگنال حذف کنید تا فضای ذخیره‌سازی خالی شود.</string>
-    <!-- Information message shown at the top of sms settings to indicate it is being removed soon. -->
-    <string name="SmsSettingsFragment__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging">پشتیبانی پیامک به‌زودی متوقف خواهد شد تا روی پیام‌های رمزگذاری‌شده تمرکز شود.</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">پیام‌ها</string>
@@ -4594,8 +4736,8 @@
     <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
     <string name="ConversationSettingsFragment__conversation_muted_until_s">گفتگو تا %1$s بی‌صدا شد</string>
     <string name="ConversationSettingsFragment__conversation_muted_forever">گفتگو به‌طور دائم بی‌صدا شد</string>
-    <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">شماره‌تلفن در کلیپ‌بورد کپی شد.</string>
-    <string name="ConversationSettingsFragment__phone_number">شماره‌تلفن</string>
+    <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">شماره تلفن در کلیپ‌بورد کپی شد.</string>
+    <string name="ConversationSettingsFragment__phone_number">شماره تلفن</string>
     <string name="ConversationSettingsFragment__get_badges">با حمایت از سیگنال نشان‌هایی برای نمایه‌تان دریافت کنید. برای اطلاعات بیشتر روی نشان ضربه بزنید.</string>
 
     <!-- PermissionsSettingsFragment -->
@@ -4746,6 +4888,28 @@
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">یک یا چند مورد بسیار بزرگ بودند</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">یک یا چند مورد نامعتبر بودند</string>
     <string name="MediaReviewFragment__too_many_items_selected">موارد بسیار زیادی انتخاب شده است</string>
+    <!-- Small notification presented to the user when they set their video to view-once mode -->
+    <string name="MediaReviewFragment__video_set_to_view_once">ویدیو روی یک بار مصرف تنظیم شد</string>
+    <!-- Small notification presented to the user when they set their photo to view-once mode -->
+    <string name="MediaReviewFragment__photo_set_to_view_once">عکس روی یک بار مصرف تنظیم شد</string>
+    <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
+    <string name="MediaReviewFragment__video_set_to_high_quality">ویدیو روی کیفیت بالا تنظیم شد</string>
+    <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
+    <string name="MediaReviewFragment__video_set_to_standard_quality">ویدیو روی کیفیت استاندارد تنظیم شد</string>
+    <!-- Small notification presented to the user when they set their still image to be sent in high visual quality. -->
+    <string name="MediaReviewFragment__photo_set_to_high_quality">عکس روی کیفیت بالا تنظیم شد</string>
+    <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
+    <string name="MediaReviewFragment__photo_set_to_standard_quality">عکس روی کیفیت استاندارد تنظیم شد</string>
+    <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
+    <plurals name="MediaReviewFragment__items_set_to_high_quality">
+        <item quantity="one">‏%1$d مورد روی کیفیت بالا تنظیم شد</item>
+        <item quantity="other">‏%1$d مورد روی کیفیت بالا تنظیم شدند</item>
+    </plurals>
+    <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
+    <plurals name="MediaReviewFragment__items_set_to_standard_quality">
+        <item quantity="one">‏%1$d مورد روی کیفیت استاندارد تنظیم شد</item>
+        <item quantity="other">‏%1$d مورد روی کیفیت استاندارد تنظیم شدند</item>
+    </plurals>
 
     <string name="ImageEditorHud__cancel">لغو</string>
     <string name="ImageEditorHud__draw">کشیدن</string>
@@ -4769,6 +4933,20 @@
     <string name="MediaReviewImagePageFragment__discard">دور انداختن</string>
     <string name="MediaReviewImagePageFragment__discard_changes">نادیده گرفتن تغییرات</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">شما هر تغییری که روی این عکس انجام داده‌اید را از دست خواهید داد.</string>
+
+    <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
+    <string name="MediaCaptureFragment_username_dialog_title">‏%1$s پیدا شد</string>
+    <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
+    <string name="MediaCaptureFragment_username_dialog_body">شروع یک گفتگو با «%1$s»</string>
+    <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
+    <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">به گفتگو بروید</string>
+
+    <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+    <string name="MediaCaptureFragment_device_link_dialog_title">دستگاه متصل شود؟</string>
+    <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+    <string name="MediaCaptureFragment_device_link_dialog_body">به نظر می‌رسد می‌خواهید یک دستگاه سیگنال را متصل کنید. برای اتصال، روی ادامه ضربه بزنید و دوباره کد را اسکن کنید.</string>
+    <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
+    <string name="MediaCaptureFragment_device_link_dialog_continue">ادامه</string>
 
 
     <string name="BadgesOverviewFragment__my_badges">نشان‌های من</string>
@@ -4868,7 +5046,7 @@
     <!-- Displayed as a subtitle on a row in the Manage Donations screen when payment for a donation is pending -->
     <string name="MySupportPreference__payment_pending">پرداخت در انتظار تأیید</string>
     <!-- Displayed as a dialog message when clicking on a donation row that is pending. Placeholder is a formatted fiat amount -->
-    <string name="MySupportPreference__your_bank_transfer_of_s">انتقال بانکی شما به مبلغ %1$s در انتظار تأیید است. تکمیل پردازش انتقال‌های بانکی معمولاً ۱ روز کاری طول می‌کشد.  </string>
+    <string name="MySupportPreference__your_bank_transfer_of_s">انتقال بانکی شما به مبلغ %1$s در انتظار تأیید است. تکمیل انتقال‌های بانکی ممکن است ۱ تا ۱۴ روز کاری طول بکشد.  </string>
     <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
     <string name="MySupportPreference__learn_more">اطلاعات بیشتر</string>
 
@@ -5034,7 +5212,7 @@
     <!-- Title of create notification profile screen -->
     <string name="EditNotificationProfileFragment__name_your_profile">پروفایل خود را نام‌گذاری کنید</string>
     <!-- Hint text for create/edit notification profile name -->
-    <string name="EditNotificationProfileFragment__profile_name">نام پروفایل</string>
+    <string name="EditNotificationProfileFragment__profile_name">نام نمایه</string>
     <!-- Name has a max length, this shows how many characters are used out of the max -->
     <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
     <!-- Call to action button to continue to the next step -->
@@ -5066,6 +5244,12 @@
     <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">افراد و گروه‌هایی را که اعلان‌ها و تماس‌های آنان را هنگامی که این پروفایل روشن است، اضافه کنید</string>
     <!-- Button text that launches the contact picker to select from -->
     <string name="AddAllowedMembers__add_people_or_groups">افزودن افراد یا گروه‌ها</string>
+    <!-- Title for exceptions section of add people to notification profile screen in create flow -->
+    <string name="AddAllowedMembers__exceptions">موارد استثناء</string>
+    <!-- List preference to toggle that allows calls through the notification profile during create flow -->
+    <string name="AddAllowedMembers__allow_all_calls">اجازه به همۀ تماس‌ها</string>
+    <!-- List preference to toggle that allows mentions through the notification profile during create flow -->
+    <string name="AddAllowedMembers__notify_for_all_mentions">اعلان برای همۀ اشاره‌ها</string>
 
     <!-- Call to action button on contact picker for adding to profile -->
     <string name="SelectRecipientsFragment__add">افزودن</string>
@@ -5386,7 +5570,7 @@
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">پذیرش درخواست تبادل پیام</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">بودن آن‌ها در مخاطبین سیستم شما</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">بودن آن‌ها در مخاطبان سیستم شما</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"آشنایان شما می‌توانند نام و عکس شما را ببینند، و می‌توانند پست‌های \"استوری من\" را ببینند، مگر اینکه آن را از آن‌ها مخفی کنید."</string>
     <!-- Clickable option to add a viewer to a custom story -->
@@ -5680,8 +5864,8 @@
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">تمام آشنایان بررسی شده‌اند، برای ادامه روی ارسال ضربه بزنید.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
     <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
-        <item quantity="one">شما %1$d آشنا دارید که ممکن است سیگنال را دوباره نصب کرده یا دستگاه خود را تغییر داده باشد. قبل از به اشتراک گذاشتن استوری خود با او، شماره ایمنی‌اش را بررسی کنید یا او را از استوری‌تان حذف کنید.</item>
-        <item quantity="other">شما %1$d آشنا دارید که ممکن است سیگنال را دوباره نصب کرده یا دستگاه خود را تغییر داده باشند. قبل از هم‌رسانی استوری خود با آن‌ها، شماره ایمنی‌شان را بررسی کنید یا آن‌ها را از استوری‌تان حذف کنید.</item>
+        <item quantity="one">‏%1$d آشنا ممکن است سیگنال را بازنصب یا دستگاهش را عوض کرده باشد. می‌توانید شمارۀ ایمنی او را بررسی کنید یا به ارسال ادامه دهید.</item>
+        <item quantity="other">‏%1$d آشنا ممکن است سیگنال را بازنصب یا دستگاهشان را عوض کرده باشند. می‌توانید شماره ایمنی آن‌ها را بررسی کنید یا به ارسال ادامه دهید.</item>
     </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">وارسی شمارهٔ ایمنی</string>
@@ -5770,48 +5954,6 @@
     <!-- Generic title for overflow menus -->
     <string name="OverflowMenu__overflow_menu">منوی سرریز</string>
 
-    <!-- SMS Export Service -->
-    <!-- Displayed in the notification while export is running -->
-    <string name="SignalSmsExportService__exporting_messages">در حال صدور پیامک‌ها…</string>
-    <!-- Displayed in the notification title when export completes -->
-    <string name="SignalSmsExportService__signal_sms_export_complete">صدور پیامک سیگنال انجام شد</string>
-    <!-- Displayed in the notification message when export completes -->
-    <string name="SignalSmsExportService__tap_to_return_to_signal">برای بازگشت به سیگنال ضربه بزنید</string>
-
-    <!-- ExportYourSmsMessagesFragment -->
-    <!-- Title of the screen -->
-    <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">صدور پیامک‌ها</string>
-    <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">می‌توانید پیامک‌هایتان را به پایگاه داده پیامک تلفن صادر کنید و این گزینه را خواهید داشت که آن‌ها را در سیگنال نگه دارید یا حذف کنید. این کار به سایر برنامه‌های پیامک موجود در تلفن شما اجازه می‌دهد تا به آنها دسترسی پیدا کرده و آن‌ها را وارد کنند. این کار یک فایل قابل هم‌رسانی از پیامک‌های شما ایجاد نمی‌کند.</string>
-    <!-- Button label to begin export -->
-    <string name="ExportYourSmsMessagesFragment__continue">ادامه</string>
-
-    <!-- ExportingSmsMessagesFragment -->
-    <!-- Title of the screen -->
-    <string name="ExportingSmsMessagesFragment__exporting_sms_messages">درحال صدور پیامک‌ها</string>
-    <!-- Message of the screen when exporting sms messages -->
-    <string name="ExportingSmsMessagesFragment__this_may_take_awhile">این کار ممکن است مدتی طول بکشد</string>
-    <!-- Progress indicator for export -->
-    <plurals name="ExportingSmsMessagesFragment__exporting_d_of_d">
-        <item quantity="one">در حال صدور %1$d از %2$d…</item>
-        <item quantity="other">در حال صدور %1$d از %2$d…</item>
-    </plurals>
-    <!-- Alert dialog title shown when we think a user may not have enough local storage available to export sms messages -->
-    <string name="ExportingSmsMessagesFragment__you_may_not_have_enough_disk_space">ممکن است فضای دیسک کافی نداشته باشید</string>
-    <!-- Alert dialog message shown when we think a user may not have enough local storage available to export sms messages, placeholder is the file size, e.g., 128kB -->
-    <string name="ExportingSmsMessagesFragment__you_need_approximately_s_to_export_your_messages_ensure_you_have_enough_space_before_continuing">شما تقریباً به %1$s نیاز دارید تا پیام‌های خود را صادر کنید، قبل از ادامه مطمئن شوید که فضای کافی دارید.</string>
-    <!-- Alert dialog button to continue with exporting sms after seeing the lack of storage warning -->
-    <string name="ExportingSmsMessagesFragment__continue_anyway">به هر حال ادامه بده</string>
-    <!-- Dialog text shown when Signal isn\'t granted the sms permission needed to export messages, different than being selected as the sms app -->
-    <string name="ExportingSmsMessagesFragment__signal_needs_the_sms_permission_to_be_able_to_export_your_sms_messages">سیگنال برای اینکه بتواند پیامک‌های شما را صادر کند، به مجوز پیامک نیاز دارد.</string>
-
-    <!-- ChooseANewDefaultSmsAppFragment -->
-    <!-- Title of the screen -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_a_new">انتخاب یک برنامه پیش‌فرض جدید برای پیامک</string>
-    <!-- Button label to launch picker -->
-    <string name="ChooseANewDefaultSmsAppFragment__continue">ادامه</string>
-    <!-- Button label for when done with changing default SMS app -->
-    <string name="ChooseANewDefaultSmsAppFragment__done">تمام</string>
     <!-- First step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_1">۱</string>
     <!-- Second step number/bullet for choose new default sms app instructions -->
@@ -5820,47 +5962,6 @@
     <string name="ChooseANewDefaultSmsAppFragment__bullet_3">۳</string>
     <!-- Fourth step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_4">۴</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">برای باز کردن صفحه «برنامه‌های پیش‌فرض» در تنظیمات، روی «ادامه» ضربه بزنید</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">«برنامه پیامک» را از لیست انتخاب کنید</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">برنامه دیگری را برای استفاده از پیامک انتخاب کنید</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">بازگشت به سیگنال</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">برنامه تنظیمات گوشی خود را باز کنید</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">به «برنامه‌ها» &gt; «برنامه‌های پیش‌فرض» &gt; «برنامه پیامک» بروید</string>
-
-    <!-- RemoveSmsMessagesDialogFragment -->
-    <!-- Action button to keep messages -->
-    <string name="RemoveSmsMessagesDialogFragment__keep_messages">نگه داشتن پیام‌ها</string>
-    <!-- Action button to remove messages -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_messages">حذف پیام‌ها</string>
-    <!-- Title of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">پیامک‌ها از سیگنال حذف شود؟</string>
-    <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">اکنون می‌توانید پیامک‌ها را از سیگنال حذف کنید تا فضای ذخیره‌سازی خالی شود. حتی اگر آن‌ها را حذف کنید، همچنان برای سایر برنامه‌های پیامک تلفن‌تان در دسترس خواهند بود.</string>
-
-    <!-- ReExportSmsMessagesDialogFragment -->
-    <!-- Action button to re-export messages -->
-    <string name="ReExportSmsMessagesDialogFragment__continue">ادامه</string>
-    <!-- Action button to cancel re-export process -->
-    <string name="ReExportSmsMessagesDialogFragment__cancel">لغو</string>
-    <!-- Title of dialog -->
-    <string name="ReExportSmsMessagesDialogFragment__export_sms_again">پیامک دوباره صادر شود؟</string>
-    <!-- Message of dialog -->
-    <string name="ReExportSmsMessagesDialogFragment__you_already_exported_your_sms_messages">قبلاً پیامک‌های خود را صادر کرده‌اید.\nهشدار: در صورت ادامه، ممکن است با پیام‌های تکراری مواجه شوید.</string>
-
-    <!-- SetSignalAsDefaultSmsAppFragment -->
-    <!-- Title of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">سیگنال را به عنوان برنامه پیش‌فرض پیامک تنظیم کنید</string>
-    <!-- Message of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">برای صادر کردن پیامک‌های خود، باید سیگنال را به‌عنوان برنامه پیش‌فرض پیامک تنظیم کنید.</string>
-    <!-- Button label to start export -->
-    <string name="SetSignalAsDefaultSmsAppFragment__next">بعدی</string>
-
     <!-- BackupSchedulePermission Megaphone -->
     <!-- The title on an alert window that explains to the user that we are unable to backup their messages -->
     <string name="BackupSchedulePermissionMegaphone__cant_back_up_chats">نمی‌توان از گفتگوها نسخه پشتیبان تهیه کرد</string>
@@ -5879,45 +5980,6 @@
     <!-- Re-enable backups permission bottom sheet call to action button to open settings -->
     <string name="BackupSchedulePermissionMegaphone__go_to_settings">رفتن به تنظیمات</string>
 
-    <!-- SmsExportMegaphoneActivity -->
-    <!-- Phase 2 title of full screen megaphone indicating sms will no longer be supported in the near future -->
-    <string name="SmsExportMegaphoneActivity__signal_will_no_longer_support_sms">سیگنال دیگر از پیامک پشتیبانی نمی‌کند</string>
-    <!-- Phase 3 title of full screen megaphone indicating sms is longer supported  -->
-    <string name="SmsExportMegaphoneActivity__signal_no_longer_supports_sms">سیگنال دیگر از پیامک پشتیبانی نمی‌کند</string>
-    <!-- The text on a button in a popup that, when clicked, will dismiss the popup and schedule the prompt to occur at a later time. -->
-    <string name="SmsExportMegaphoneActivity__remind_me_later">بعداً به من یادآوری کن</string>
-    <!-- The text on a button in a popup that, when clicked, will navigate the user to a web article on SMS removal -->
-
-    <!-- Title for screen shown after sms export has completed -->
-    <string name="ExportSmsCompleteFragment__export_complete">صدور انجام شد</string>
-    <!-- Button to continue to next screen -->
-    <string name="ExportSmsCompleteFragment__next">بعدی</string>
-    <!-- Message showing summary of sms export counts -->
-    <plurals name="ExportSmsCompleteFragment__d_of_d_messages_exported">
-        <item quantity="one">%1$d از %2$d پیام صادر شد</item>
-        <item quantity="other">%1$d از %2$d پیام صادر شد</item>
-    </plurals>
-
-    <!-- Title of screen shown when some sms messages did not export -->
-    <string name="ExportSmsPartiallyComplete__export_partially_complete">بخشی از صدور کامل شد</string>
-    <!-- Debug step 1 on screen shown when some sms messages did not export -->
-    <string name="ExportSmsPartiallyComplete__ensure_you_have_an_additional_s_free_on_your_phone_to_export_your_messages">مطمئن شوید که %1$s فضای خالی اضافی در تلفن دارید تا پیام‌های خود را صادر کنید</string>
-    <!-- Debug step 2 on screen shown when some sms messages dit not export -->
-    <string name="ExportSmsPartiallyComplete__retry_export_which_will_only_retry_messages_that_have_not_yet_been_exported">دوباره صادر کنید، که فقط پیام‌هایی را امتحان می‌کند که هنوز صادر نشده‌اند</string>
-    <!-- Partial sentence for Debug step 3 on screen shown when some sms messages did not export, is combined with \'contact us\' -->
-    <string name="ExportSmsPartiallyComplete__if_the_problem_persists">اگر مشکل ادامه داشت، </string>
-    <!-- Partial sentence for deubg step 3 on screen shown when some sms messages did not export, combined with \'If the problem persists\', link text to open contact support view -->
-    <string name="ExportSmsPartiallyComplete__contact_us">تماس با ما</string>
-    <!-- Button text to retry sms export -->
-    <string name="ExportSmsPartiallyComplete__retry">تلاش مجدد</string>
-    <!-- Button text to continue sms export flow and not retry failed message exports -->
-    <string name="ExportSmsPartiallyComplete__continue_anyway">به هر حال ادامه بده</string>
-    <!-- Title of screen shown when all sms messages failed to export -->
-    <string name="ExportSmsFullError__error_exporting_sms_messages">خطا در صادر کردن پیامک‌ها</string>
-    <!-- Helper text shown when all sms messages failed to export -->
-    <string name="ExportSmsFullError__please_try_again_if_the_problem_persists">لطفاً دوباره امتحان کنید. اگر مشکل ادامه داشت، </string>
-
-
     <!-- DonateToSignalFragment -->
     <!-- Title below avatar -->
     <string name="DonateToSignalFragment__privacy_over_profit">حریم خصوصی بر سود ارجحیت دارد</string>
@@ -5928,9 +5990,9 @@
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
     <string name="DonateToSignalFragment__you_have_a_donation_pending">یک کمک مالی در انتظار تأیید دارید</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">پردازش انتقال‌های بانکی معمولاً ۱ روز کاری طول می‌کشد. لطفاً قبل از به‌روزرسانی اشتراک خود، صبر کنید تا این پرداخت تکمیل شود.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">پردازش انتقال‌های بانکی ممکن است ۱ تا ۱۴ روز کاری طول بکشد. لطفاً قبل از به‌روزرسانی اشتراک خود، صبر کنید تا این پرداخت تکمیل شود.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">پردازش انتقال‌های بانکی معمولاً ۱ روز کاری طول می‌کشد. لطفاً قبل از اهدای کمک مالی دیگر، صبر کنید تا این پرداخت تکمیل شود.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">پردازش انتقال‌های بانکی ممکن است ۱ تا ۱۴ روز کاری طول بکشد. لطفاً قبل از اهدای کمک مالی دیگر، صبر کنید تا این پرداخت تکمیل شود.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
     <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">اهدای مالی شما هنوز در حال پردازش است. بسته به اتصال اینترنت شما، این پردازش ممکن است چند دقیقه طول بکشد. لطفاً قبل از به‌روزرسانی اشتراک خود، صبر کنید تا این پرداخت تکمیل شود.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
@@ -6059,6 +6121,12 @@
     <string name="IdealTransferDetailsFragment__email">ایمیل</string>
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">انتخاب بانک‌تان</string>
+    <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">کمک مالی خود را با %1$s تأیید کنید</string>
+    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
+    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">برای راه‌اندازی کمک مالی مکرر خود، روی «ادامه» ضربه بزنید تا هزینه ۰,۰۱ یورو را با بانک خود تأیید کنید. این مبلغ به‌طور خودکار به شما برگردانده می‌شود و اجازه می‌دهد که کمک مالی شما به مبلغ ۵ یورو در ماه از حساب‌تان برداشت شود.</string>
+    <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
+    <string name="IdealTransferDetailsFragment__continue">ادامه</string>
 
     <!-- IdealTransferDetailsBankSelectionDialogFragment -->
     <!-- Title of the screen, displayed in the toolbar -->
@@ -6076,7 +6144,7 @@
     <!-- Top text block of donation pending sheet displayed after one-time donation via a bank transfer. Placeholder is the badge name. -->
     <string name="DonationPendingBottomSheet__your_one_time_donation_is_pending">کمک مالی یکباره شما در انتظار تأیید است. وقتی کمک مالی دریافت شود، می‌توانید نشان %1$s را در نمایه‌تان نمایش دهید.</string>
     <!-- Bottom text block of donation pending sheet displayed after donating via a bank transfer. Placeholder is for learn more. -->
-    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">پردازش انتقال‌های بانکی معمولاً ۱ روز کاری طول می‌کشد. %1$s</string>
+    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">پردازش انتقال‌های بانکی ممکن است ۱ تا ۱۴ روز کاری طول بکشد. %1$s</string>
     <!-- Learn more text for donation pending sheet displayed after donating via a bank transfer. -->
     <string name="DonationPendingBottomSheet__learn_more">اطلاعات بیشتر</string>
     <!-- Confirmation button for donation pending sheet displayed after donating via a bank transfer. -->
@@ -6162,28 +6230,24 @@
     <!-- Displayed in the "clear filter" item in the chat feed if the user opened the filter from the overflow menu -->
     <string name="ChatFilter__tip_pull_down">نکته: لیست گفتگو را پایین بکشید تا فیلتر شود</string>
 
-    <!-- Title for screen describing that sms support is going to be removed soon -->
-    <string name="SmsRemoval_title_going_away">پشتیبانی پیامکی به‌زودی برداشته می‌شود</string>
-    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
-    <string name="SmsRemoval_info_bullet_1">به‌زودی دیگر از ارسال پیامک در برنامه سیگنال پشتیبانی نمی‌شود.</string>
-    <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_2">پیامک‌ها با پیام‌های سیگنال تفاوت دارند. <b>این تغییر بر پیام‌های رمزگذاری‌شده سیگنال تأثیری نخواهد داشت و آن‌ها همچنان کار خواهند کرد.</b></string>
-    <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_3">می‌توانید پیامک‌هایتان را صادر کنید و برنامه پیامک جدیدی را انتخاب کنید.</string>
-    <!-- Bullet point message shown on describing screen as first bullet variant why sms is being removed when user is locked out of sms -->
-    <string name="SmsRemoval_info_bullet_1_phase_3">سیگنال پشتیبانی برای ارسال پیامک را متوقف کرده است.</string>
-    <!-- Button label on sms removal info/megaphone to start the export SMS flow -->
-    <string name="SmsRemoval_export_sms">صادر کردن پیامک</string>
-
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__set_up_your_signal_username">تنظیم نام کاربری سیگنال</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">نام کاربری به دیگران امکان می‌دهد که بدون نیاز به شماره تلفنتان به شما پیام بدهند</string>
+    <string name="SetUpYourUsername__introducing_phone_number_privacy">معرفی حریم شخصی شماره تلفن، نام کاربری انتخابی و پیوندها.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__not_now">حالا نه</string>
+    <string name="SetUpYourUsername__dismiss">رد کردن</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__continue">ادامه</string>
+    <string name="SetUpYourUsername__learn_more">اطلاعات بیشتر</string>
+
+    <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
+    <string name="PnpLaunchMegaphone_title">روش‌های جدید برقراری ارتباط</string>
+    <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
+    <string name="PnpLaunchMegaphone_body">معرفی حریم شخصی شماره تلفن، نام کاربری انتخابی و پیوندها.</string>
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
+    <string name="PnpLaunchMegaphone_dismiss">رد کردن</string>
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
+    <string name="PnpLaunchMegaphone_learn_more">اطلاعات بیشتر</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -6198,18 +6262,6 @@
     <string name="TextFormatting_spoiler">پنهان‌نوشته</string>
     <!-- Popup menu label for clearing applied formatting -->
     <string name="TextFormatting_clear_formatting">پاک کردن قالب‌بندی</string>
-
-    <!-- UsernameEducationFragment -->
-    <!-- Continue button which takes the user to the add a username screen -->
-    <string name="UsernameEducationFragment__continue">ادامه</string>
-    <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">تنظیم نام کاربری سیگنال</string>
-    <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__usernames_are_paired_with_a_set_of_digits">نام‌های کاربری با مجموعه‌ای از ارقام جفت می‌شوند و در نمایه‌تان به اشتراک گذاشته نمی‌شوند</string>
-    <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">هر نام کاربری یک کد QR و پیوند منحصربه‌فرد دارد که می‌توانید با دوستانتان به اشتراک بگذارید تا از آن برای شروع گفتگو با شما استفاده کنند</string>
-    <!-- Displayed as body text in the username education screen. The string references the names of settings, so they should match our translations for those settings. -->
-    <string name="UsernameEducationFragment__turn_off_phone_number_discovery">برای استفاده از نام کاربری‌تان به‌عنوان راه اصلی تماس افراد با شما، در «تنظیمات» &gt; «حریم خصوصی» &gt; «شماره تلفن» &gt; «چه‌کسی می‌تواند من را با شماره تلفنم پیدا کند»، کشف شماره تلفن را خاموش کنید</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
@@ -6236,6 +6288,8 @@
     <string name="CallLogAdapter__outgoing">خروجی</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">ازدست‌رفته</string>
+    <!-- Displayed for missed calls declined by notification profile -->
+    <string name="CallLogAdapter__missed_notification_profile">ازدست‌رفته درحالی که نمایۀ اعلان فعال است</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">پیوستن</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -6343,6 +6397,8 @@
     <string name="CallPreference__group_call">تماس گروهی</string>
     <!-- Missed group call in call info -->
     <string name="CallPreference__missed_group_call">تماس گروهی ازدست‌رفته</string>
+    <!-- Missed group call while notification profile on in call info -->
+    <string name="CallPreference__missed_group_call_notification_profile">تماس گروهی ازدست‌رفته درحالی که نمایۀ اعلان فعال است</string>
     <!-- Incoming group call in call info -->
     <string name="CallPreference__incoming_group_call">تماس گروهی ورودی</string>
     <!-- Outgoing group call in call info -->
@@ -6429,6 +6485,8 @@
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
     <string name="CallLinkDetailsFragment__call_details">جزئیات تماس</string>
+    <!-- Displayed in a text row, allowing the user to click and edit a call name -->
+    <string name="CallLinkDetailsFragment__edit_call_name">ویرایش نام تماس</string>
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
     <string name="CallLinkDetailsFragment__add_call_name">افزودن نام تماس</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
@@ -6444,6 +6502,8 @@
     <!-- Displayed as body in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">این پیوند دیگر برای کسانی که آن را دارند کار نمی‌کند.</string>
 
+    <!-- Button label for the link button in the username link settings -->
+    <string name="UsernameLinkSettings_link_button_label">پیوند</string>
     <!-- Button label for the share button in the username link settings -->
     <string name="UsernameLinkSettings_share_button_label">اشتراک‌گذاری</string>
     <!-- Button label for the color selector button in the username link settings -->
@@ -6488,6 +6548,16 @@
     <string name="UsernameLinkSettings_reset_link_result_network_unavailable">به شبکه دسترسی ندارید. پیوند شما بازنشانی نشد. بعداً دوباره امتحان کنید.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">هنگام بازنشانی پیوند شما یک خطای شبکه رخ داد. بعداً دوباره امتحان کنید.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">هنگام بازنشانی پیوند شما، خطای غیرمنتظره‌ای رخ داد. بعداً دوباره امتحان کنید.</string>
+    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
+    <string name="UsernameLinkSettings_reset_link_result_success">پیوند و کد QR شما بازنشانی شده و پیوند و کد QR جدیدتان ایجاد شده است.</string>
+    <!-- Shown on the generated username qr code image to explain how to use it. -->
+    <string name="UsernameLinkSettings_scan_this_qr_code">برای گفتگو با من در سیگنال، این کد QR را با تلفن خود اسکن کنید.</string>
+    <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_qr_code_not_found">کد QR پیدا نشد</string>
+    <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">تصویر دیگری حاوی یک کد QR سیگنال را اسکن کنید.</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
     <string name="UsernameLinkShareBottomSheet_title">هر کسی که این لینک را داشته باشند می‌تواند نام کاربری شما را مشاهده کند و گفتگویی را با شما آغاز کند. آن را فقط با کسانی به اشتراک بگذارید که به آن‌ها اعتماد دارید.</string>
@@ -6524,6 +6594,8 @@
     <string name="GrantFullScreenIntentPermission_megaphone_body">هیچ‌وقت تماسی را از مخاطبان و گروه‌هایتان از دست ندهید.</string>
     <!-- Button on the megaphone megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls that starts the fix process -->
     <string name="GrantFullScreenIntentPermission_megaphone_turn_on">روشن کن</string>
+    <!-- Button on the megaphone shown at the bottom of the chatlist when a user has disabled the system setting for showing full screen notifications used showing incoming calls that dismisses the megaphone -->
+    <string name="GrantFullScreenIntentPermission_megaphone_not_now">حالا نه</string>
     <!-- Title of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
     <string name="GrantFullScreenIntentPermission_bottomsheet_title">روشن کردن اعلان‌های تمام‌صفحه</string>
     <!-- Subtitle of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
@@ -6541,6 +6613,46 @@
     <string name="MonthlyDonationCanceled__renew_button">تمدید اشتراک</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, second button to dismiss the dialog entirely -->
     <string name="MonthlyDonationCanceled__not_now_button">حالا نه</string>
+
+    <!-- FindByActivity -->
+    <!-- Title of activity when finding by username -->
+    <string name="FindByActivity__find_by_username">جستجو با نام کاربری</string>
+    <!-- Title of activity when finding by phone number -->
+    <string name="FindByActivity__find_by_phone_number">جستجو با شماره تلفن</string>
+    <!-- Title of screen to select a country code -->
+    <string name="FindByActivity__select_country_code">پیش‌شماره کشور را انتخاب کنید</string>
+    <!-- Entry placeholder for find by username -->
+    <string name="FindByActivity__username">نام کاربری</string>
+    <!-- Entry placeholder for find by phone number -->
+    <string name="FindByActivity__phone_number">شماره تلفن</string>
+    <!-- Help text under user entry for find by username -->
+    <string name="FindByActivity__enter_username_description">یک نام کاربری و سپس یک نقطه و مجموعۀ اعداد آن را وارد کنید.</string>
+    <!-- Content description for next action button -->
+    <string name="FindByActivity__next">بعدی</string>
+    <!-- Placeholder text for search input for selecting country code -->
+    <string name="FindByActivity__search">جستجو</string>
+    <!-- Dialog title for invalid username -->
+    <string name="FindByActivity__invalid_username">نام کاربری نامعتبر</string>
+    <!-- Dialog title for invalid phone number -->
+    <string name="FindByActivity__invalid_phone_number">شماره تلفن معتبر نیست</string>
+    <!-- Dialog title when phone number is not a registered signal user -->
+    <string name="FindByActivity__invite_to_signal">دعوت به سیگنال</string>
+    <!-- Dialog title when username is not found -->
+    <string name="FindByActivity__username_not_found">نام کاربری یافت نشد</string>
+    <!-- Dialog body for invalid username. Placeholder is the entered username. -->
+    <string name="FindByActivity__s_is_not_a_valid_username">‏%1$s نام کاربری معتبری نیست. مطمئن شوید که نام کاربری را کامل و همراه با مجموعه ارقام بعد از آن وارد کرده‌اید.</string>
+    <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
+    <string name="FindByActivity__s_is_not_a_valid_phone_number">‏%1$s شماره تلفن معتبری نیست. با یک شماره تلفن معتبر دوباره امتحان کنید</string>
+    <!-- Dialog body for not found username -->
+    <string name="FindByActivity__s_is_not_a_signal_user">\"%1$s\" یک کاربر سیگنال نیست. لطفاً نام کاربری را بررسی کرده و دوباره تلاش کنید.</string>
+    <!-- Dialog body for not found phone number -->
+    <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s کاربر سیگنال نیست. آیا می خواهید این شماره را دعوت کنید؟</string>
+    <!-- Dialog action to invite the phone number to Signal -->
+    <string name="FindByActivity__invite">دعوت</string>
+    <!-- Button label for a button that will launch a camera to scan a username QR code -->
+    <string name="FindByActivity__qr_scan_button">کد QR را اسکن کنید</string>
+    <!-- Content of a dialog indicating that we could not perform the requested action because we encountered a network error. -->
+    <string name="FindByActivity__network_error_dialog">خطای شبکه رخ داد. بعداً دوباره امتحان کنید.</string>
 
     <!-- EOF -->
 </resources>

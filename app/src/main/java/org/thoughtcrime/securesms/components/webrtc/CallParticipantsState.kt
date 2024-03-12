@@ -53,7 +53,12 @@ data class CallParticipantsState(
 
   val raisedHands: List<GroupCallRaiseHandEvent>
     get() {
-      val results = allRemoteParticipants.filter { it.isHandRaised }.map { GroupCallRaiseHandEvent(it.recipient, it.handRaisedTimestamp) }.toMutableList()
+      val results = allRemoteParticipants.asSequence()
+        .filter { it.isHandRaised }
+        .distinctBy { it.recipient }
+        .map { GroupCallRaiseHandEvent(it.recipient, it.handRaisedTimestamp) }
+        .sortedBy { it.timestamp }
+        .toMutableList()
       if (localParticipant.isHandRaised) {
         results.add(GroupCallRaiseHandEvent(localParticipant.recipient, localParticipant.handRaisedTimestamp))
       }

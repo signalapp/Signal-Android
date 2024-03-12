@@ -8,7 +8,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.ProfileUploadJob
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob
-import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues.PhoneNumberListingMode
+import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues.PhoneNumberSharingMode
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -19,7 +19,7 @@ class PhoneNumberPrivacySettingsViewModel : ViewModel() {
   private val _state = mutableStateOf(
     PhoneNumberPrivacySettingsState(
       phoneNumberSharing = SignalStore.phoneNumberPrivacy().isPhoneNumberSharingEnabled,
-      discoverableByPhoneNumber = SignalStore.phoneNumberPrivacy().isDiscoverableByPhoneNumber
+      discoverableByPhoneNumber = SignalStore.phoneNumberPrivacy().phoneNumberDiscoverabilityMode != PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE
     )
   )
 
@@ -51,7 +51,7 @@ class PhoneNumberPrivacySettingsViewModel : ViewModel() {
   }
 
   private fun setDiscoverableByPhoneNumber(discoverable: Boolean) {
-    SignalStore.phoneNumberPrivacy().phoneNumberListingMode = if (discoverable) PhoneNumberListingMode.LISTED else PhoneNumberListingMode.UNLISTED
+    SignalStore.phoneNumberPrivacy().phoneNumberDiscoverabilityMode = if (discoverable) PhoneNumberDiscoverabilityMode.DISCOVERABLE else PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE
     StorageSyncHelper.scheduleSyncForDataChange()
     ApplicationDependencies.getJobManager().startChain(RefreshAttributesJob()).then(RefreshOwnProfileJob()).enqueue()
     refresh()
@@ -60,7 +60,7 @@ class PhoneNumberPrivacySettingsViewModel : ViewModel() {
   fun refresh() {
     _state.value = PhoneNumberPrivacySettingsState(
       phoneNumberSharing = SignalStore.phoneNumberPrivacy().isPhoneNumberSharingEnabled,
-      discoverableByPhoneNumber = SignalStore.phoneNumberPrivacy().isDiscoverableByPhoneNumber
+      discoverableByPhoneNumber = SignalStore.phoneNumberPrivacy().phoneNumberDiscoverabilityMode != PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE
     )
   }
 }

@@ -4,23 +4,23 @@
         <layer-list>
             <item>
                 <shape android:shape="oval">
-                    <size android:width="36dp" android:height="36dp" />
-                    <solid android:color="@color/core_white" />
-                    <padding android:bottom="6dp" android:left="6dp" android:right="6dp" android:top="6dp" />
+                    <size android:width="@dimen/image_editor_hud_tool_filled_circle_diameter" android:height="@dimen/image_editor_hud_tool_filled_circle_diameter" />
+                    <solid android:color="@color/signal_dark_colorOnPrimaryContainer" />
+                    <padding android:bottom="@dimen/image_editor_hud_tool_filled_circle_padding" android:left="@dimen/image_editor_hud_tool_filled_circle_padding" android:right="@dimen/image_editor_hud_tool_filled_circle_padding" android:top="@dimen/image_editor_hud_tool_filled_circle_padding" />
                 </shape>
             </item>
-            <item android:drawable="@drawable/ic_sticker_outline_24" />
+            <item android:drawable="@drawable/symbol_sticker_smiley_24" />
         </layer-list>
     </item>
     <item>
         <layer-list>
             <item>
                 <shape android:shape="oval">
-                    <size android:width="36dp" android:height="36dp" />
-                    <padding android:bottom="6dp" android:left="6dp" android:right="6dp" android:top="6dp" />
+                    <size android:width="@dimen/image_editor_hud_tool_filled_circle_diameter" android:height="@dimen/image_editor_hud_tool_filled_circle_diameter" />
+                    <padding android:bottom="@dimen/image_editor_hud_tool_invisible_circle_padding" android:left="@dimen/image_editor_hud_tool_invisible_circle_padding" android:right="@dimen/image_editor_hud_tool_invisible_circle_padding" android:top="@dimen/image_editor_hud_tool_invisible_circle_padding" />
                 </shape>
             </item>
-            <item android:drawable="@drawable/ic_sticker_outline_white_24" />
+            <item android:drawable="@drawable/symbol_sticker_smiley_24_dark_onsurface" />
         </layer-list>
     </item>
 </selector>

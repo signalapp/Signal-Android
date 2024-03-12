@@ -21,7 +21,7 @@ class ShareInterstitialMappingModel extends RecipientMappingModel<ShareInterstit
   @Override
   public @NonNull String getName(@NonNull Context context) {
     String name = recipient.isSelf() ? context.getString(R.string.note_to_self)
-                                     : recipient.getShortDisplayNameIncludingUsername(context);
+                                     : recipient.getShortDisplayName(context);
 
     return isFirst ? name : context.getString(R.string.ShareActivity__comma_s, name);
   }

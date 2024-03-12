@@ -127,8 +127,8 @@ fun MediaTable.MediaRecord.toMedia(): Media? {
     attachment.height,
     attachment.size,
     0,
-    attachment.isBorderless,
-    attachment.isVideoGif,
+    attachment.borderless,
+    attachment.videoGif,
     Optional.empty(),
     Optional.ofNullable(attachment.caption),
     Optional.empty()

@@ -7,7 +7,6 @@ option java_package = "org.thoughtcrime.securesms.backup.v2.proto";
 message BackupInfo {
   uint64 version = 1;
   uint64 backupTimeMs = 2;
-  bytes  iv = 3;
 }
 
 message Frame {
@@ -53,7 +52,7 @@ message AccountData {
     bool linkPreviews = 5;
     bool notDiscoverableByPhoneNumber = 6;
     bool preferContactAvatars = 7;
-    uint32 universalExpireTimer = 8;
+    uint32 universalExpireTimer = 8; // 0 means no universal expire timer.
     repeated string preferredReactionEmoji = 9;
     bool displayBadgesOnProfile = 10;
     bool keepMutedChatsArchived = 11;
@@ -122,6 +121,7 @@ message Group {
   bool whitelisted = 2;
   bool hideStory = 3;
   StorySendMode storySendMode = 4;
+  string name = 5;
 }
 
 message Self {}
@@ -133,7 +133,7 @@ message Chat {
   uint64 recipientId = 2;
   bool archived = 3;
   uint32 pinnedOrder = 4; // 0 = unpinned, otherwise chat is considered pinned and will be displayed in ascending order
-  uint64 expirationTimerMs = 5;
+  uint64 expirationTimerMs = 5; // 0 = no expire timer.
   uint64 muteUntilMs = 6;
   bool markedUnread = 7;
   bool dontNotifyForMentionsIfMuted = 8;
@@ -174,17 +174,12 @@ message Call {
     AD_HOC_CALL = 4;
   }
 
-  enum Event {
+  enum State {
     UNKNOWN_EVENT = 0;
-    OUTGOING = 1; // 1:1 calls only
-    ACCEPTED = 2; // 1:1 and group calls. Group calls: You accepted a ring.
-    NOT_ACCEPTED = 3; // 1:1 calls only,
-    MISSED = 4; // 1:1 and group. Group calls: The remote ring has expired or was cancelled by the ringer.
-    DELETE = 5; // 1:1 and Group/Ad-Hoc Calls.
-    GENERIC_GROUP_CALL = 6; // Group/Ad-Hoc Calls only. Initial state
-    JOINED = 7; // Group Calls: User has joined the group call.
-    DECLINED = 8; // Group Calls: If you declined a ring.
-    OUTGOING_RING = 9; // Group Calls: If you are ringing a group.
+    COMPLETED = 1; // A call that was successfully completed or was accepted and in-progress at the time of the backup.
+    DECLINED_BY_USER = 2; // An incoming call that was manually declined by the user.
+    DECLINED_BY_NOTIFICATION_PROFILE = 3; // An incoming call that was automatically declined by an active notification profile.
+    MISSED = 4; // An incoming call that either expired, was cancelled by the sender, or was auto-rejected due to already being in a different call.
   }
 
   uint64 callId = 1;
@@ -193,7 +188,7 @@ message Call {
   bool outgoing = 4;
   uint64 timestamp = 5;
   optional uint64 ringerRecipientId = 6;
-  Event event = 7;
+  State state = 7;
 }
 
 message ChatItem {
@@ -207,6 +202,9 @@ message ChatItem {
     repeated SendStatus sendStatus = 1;
   }
 
+  message DirectionlessMessageDetails {
+  }
+
   uint64 chatId = 1;   // conversation id
   uint64 authorId = 2; // recipient id
   uint64 dateSent = 3;
@@ -217,17 +215,17 @@ message ChatItem {
   bool sms = 8;
 
   oneof directionalDetails {
-    IncomingMessageDetails incoming = 10;
-    OutgoingMessageDetails outgoing = 12;
+    IncomingMessageDetails incoming = 9;
+    OutgoingMessageDetails outgoing = 10;
+    DirectionlessMessageDetails directionless = 11;
   }
 
   oneof item {
     StandardMessage standardMessage = 13;
     ContactMessage contactMessage = 14;
-    VoiceMessage voiceMessage = 15;
-    StickerMessage stickerMessage = 16;
-    RemoteDeletedMessage remoteDeletedMessage = 17;
-    ChatUpdateMessage updateMessage = 18;
+    StickerMessage stickerMessage = 15;
+    RemoteDeletedMessage remoteDeletedMessage = 16;
+    ChatUpdateMessage updateMessage = 17;
   }
 }
 
@@ -259,7 +257,7 @@ message Text {
 message StandardMessage {
   optional Quote quote = 1;
   optional Text text = 2;
-  repeated FilePointer attachments = 3;
+  repeated MessageAttachment attachments = 3;
   repeated LinkPreview linkPreview = 4;
   optional FilePointer longText = 5;
   repeated Reaction reactions = 6;
@@ -327,27 +325,17 @@ message ContactAttachment {
     optional string country = 9;
   }
 
-  message Avatar {
-    FilePointer avatar = 1;
-  }
-
   optional Name name = 1;
   repeated Phone number = 3;
   repeated Email email = 4;
   repeated PostalAddress address = 5;
-  optional Avatar avatar = 6;
+  optional string avatarUrlPath = 6;
   optional string organization = 7;
 }
 
 message DocumentMessage {
   Text text = 1;
   FilePointer document = 2;
-  repeated Reaction reactions = 3;
-}
-
-message VoiceMessage {
-  optional Quote quote = 1;
-  FilePointer audio = 2;
   repeated Reaction reactions = 3;
 }
 
@@ -364,6 +352,11 @@ message Sticker {
   bytes packKey = 2;
   uint32 stickerId = 3;
   optional string emoji = 4;
+  // Stickers are uploaded to be sent as attachments; we also
+  // back them up as normal attachments when they are in messages.
+  // DO NOT treat this as the definitive source of a sticker in
+  // an installed StickerPack that shares the same packId.
+  FilePointer data = 5;
 }
 
 message LinkPreview {
@@ -374,23 +367,42 @@ message LinkPreview {
   optional uint64 date = 5;
 }
 
+// A FilePointer on a message that has additional
+// metadata that applies only to message attachments.
+message MessageAttachment {
+  // Similar to SignalService.AttachmentPointer.Flags,
+  // but explicitly mutually exclusive. Note the different raw values
+  // (non-zero starting values are not supported in proto3.)
+  enum Flag {
+    NONE = 0;
+    VOICE_MESSAGE = 1;
+    BORDERLESS = 2;
+    GIF = 3;
+  }
+
+  FilePointer pointer = 1;
+  Flag flag = 2;
+}
+
 message FilePointer {
+  // References attachments in the backup (media) storage tier.
   message BackupLocator {
     string mediaName = 1;
     uint32 cdnNumber = 2;
   }
 
+  // References attachments in the transit storage tier.
+  // May be downloaded or not when the backup is generated;
+  // primarily for free-tier users who cannot copy the
+  // attachments to the backup (media) storage tier.
   message AttachmentLocator {
     string cdnKey = 1;
     uint32 cdnNumber = 2;
     uint64 uploadTimestamp = 3;
   }
 
-  message LegacyAttachmentLocator {
-    fixed64 cdnId = 1;
-  }
-
-  // An attachment that was backed up without being downloaded.
+  // An attachment that was copied from the transit storage tier
+  // to the backup (media) storage tier up without being downloaded.
   // Its MediaName should be generated as “{sender_aci}_{cdn_attachment_key}”,
   // but should eventually transition to a BackupLocator with mediaName
   // being the content hash once it is downloaded.
@@ -400,31 +412,24 @@ message FilePointer {
     uint32 cdnNumber = 3;
   }
 
-  enum Flags {
-    VOICE_MESSAGE = 0;
-    BORDERLESS = 1;
-    GIF = 2;
-  }
-
   oneof locator {
     BackupLocator backupLocator = 1;
     AttachmentLocator attachmentLocator= 2;
-    LegacyAttachmentLocator legacyAttachmentLocator = 3;
-    UndownloadedBackupLocator undownloadedBackupLocator = 4;
+    UndownloadedBackupLocator undownloadedBackupLocator = 3;
   }
 
   optional bytes key = 5;
   optional string contentType = 6;
+  // Size of fullsize decrypted media blob in bytes.
+  // Can be ignored if unset/unavailable.
   optional uint32 size = 7;
-  optional bytes digest = 8;
-  optional bytes incrementalMac = 9;
-  optional bytes incrementalMacChunkSize = 10;
-  optional string fileName = 11;
-  optional uint32 flags = 12;
-  optional uint32 width = 13;
-  optional uint32 height = 14;
-  optional string caption = 15;
-  optional string blurHash = 16;
+  optional bytes incrementalMac = 8;
+  optional bytes incrementalMacChunkSize = 9;
+  optional string fileName = 10;
+  optional uint32 width = 11;
+  optional uint32 height = 12;
+  optional string caption = 13;
+  optional string blurHash = 14;
 }
 
 message Quote {
@@ -437,7 +442,7 @@ message Quote {
   message QuotedAttachment {
     optional string contentType = 1;
     optional string fileName = 2;
-    optional FilePointer thumbnail = 3;
+    optional MessageAttachment thumbnail = 3;
   }
 
   optional uint64 targetSentTimestamp = 1; // null if the target message could not be found at time of quote insert
@@ -478,7 +483,7 @@ message Reaction {
 message ChatUpdateMessage {
   oneof update {
     SimpleChatUpdate simpleUpdate = 1;
-    GroupDescriptionChatUpdate groupDescription = 2;
+    GroupChangeChatUpdate groupChange = 2;
     ExpirationTimerChatUpdate expirationTimerChange = 3;
     ProfileChangeChatUpdate profileChange = 4;
     ThreadMergeChatUpdate threadMerge = 5;
@@ -505,11 +510,12 @@ message IndividualCallChatUpdate {
     MISSED_AUDIO_CALL = 5;
     MISSED_VIDEO_CALL = 6;
   }
+
   Type type = 1;
 }
 
 message GroupCallChatUpdate {
-  bytes startedCallAci = 1;
+  optional bytes startedCallAci = 1;
   uint64 startedCallTimestamp = 2;
   repeated bytes inCallAcis = 3;
 }
@@ -533,12 +539,10 @@ message SimpleChatUpdate {
   Type type = 1;
 }
 
-message GroupDescriptionChatUpdate {
-  string newDescription = 1;
-}
-
+// For 1:1 chat updates only.
+// For group thread updates use GroupExpirationTimerUpdate.
 message ExpirationTimerChatUpdate {
-  uint32 expiresInMs = 1;
+  uint32 expiresInMs = 1; // 0 means the expiration timer was disabled
 }
 
 message ProfileChangeChatUpdate {
@@ -554,15 +558,262 @@ message SessionSwitchoverChatUpdate {
   uint64 e164 = 1;
 }
 
+message GroupChangeChatUpdate {
+  message Update {
+    // Note: group expiration timer changes are represented as ExpirationTimerChatUpdate.
+    oneof update {
+      GenericGroupUpdate genericGroupUpdate = 1;
+      GroupCreationUpdate groupCreationUpdate = 2;
+      GroupNameUpdate groupNameUpdate = 3;
+      GroupAvatarUpdate groupAvatarUpdate = 4;
+      GroupDescriptionUpdate groupDescriptionUpdate = 5;
+      GroupMembershipAccessLevelChangeUpdate groupMembershipAccessLevelChangeUpdate = 6;
+      GroupAttributesAccessLevelChangeUpdate groupAttributesAccessLevelChangeUpdate = 7;
+      GroupAnnouncementOnlyChangeUpdate groupAnnouncementOnlyChangeUpdate = 8;
+      GroupAdminStatusUpdate groupAdminStatusUpdate = 9;
+      GroupMemberLeftUpdate groupMemberLeftUpdate = 10;
+      GroupMemberRemovedUpdate groupMemberRemovedUpdate = 11;
+      SelfInvitedToGroupUpdate selfInvitedToGroupUpdate = 12;
+      SelfInvitedOtherUserToGroupUpdate selfInvitedOtherUserToGroupUpdate = 13;
+      GroupUnknownInviteeUpdate groupUnknownInviteeUpdate = 14;
+      GroupInvitationAcceptedUpdate groupInvitationAcceptedUpdate = 15;
+      GroupInvitationDeclinedUpdate groupInvitationDeclinedUpdate = 16;
+      GroupMemberJoinedUpdate groupMemberJoinedUpdate = 17;
+      GroupMemberAddedUpdate groupMemberAddedUpdate = 18;
+      GroupSelfInvitationRevokedUpdate groupSelfInvitationRevokedUpdate = 19;
+      GroupInvitationRevokedUpdate groupInvitationRevokedUpdate = 20;
+      GroupJoinRequestUpdate groupJoinRequestUpdate = 21;
+      GroupJoinRequestApprovalUpdate groupJoinRequestApprovalUpdate = 22;
+      GroupJoinRequestCanceledUpdate groupJoinRequestCanceledUpdate = 23;
+      GroupInviteLinkResetUpdate groupInviteLinkResetUpdate = 24;
+      GroupInviteLinkEnabledUpdate groupInviteLinkEnabledUpdate = 25;
+      GroupInviteLinkAdminApprovalUpdate groupInviteLinkAdminApprovalUpdate = 26;
+      GroupInviteLinkDisabledUpdate groupInviteLinkDisabledUpdate = 27;
+      GroupMemberJoinedByLinkUpdate groupMemberJoinedByLinkUpdate = 28;
+      GroupV2MigrationUpdate groupV2MigrationUpdate = 29;
+      GroupV2MigrationSelfInvitedUpdate groupV2MigrationSelfInvitedUpdate = 30;
+      GroupV2MigrationInvitedMembersUpdate groupV2MigrationInvitedMembersUpdate = 31;
+      GroupV2MigrationDroppedMembersUpdate groupV2MigrationDroppedMembersUpdate = 32;
+      GroupSequenceOfRequestsAndCancelsUpdate groupSequenceOfRequestsAndCancelsUpdate = 33;
+      GroupExpirationTimerUpdate groupExpirationTimerUpdate = 34;
+    }
+  }
+
+  // Must be one or more; all updates batched together came from
+  // a single batched group state update.
+  repeated Update updates = 1;
+}
+
+message GenericGroupUpdate {
+  optional bytes updaterAci = 1;
+}
+
+message GroupCreationUpdate {
+  optional bytes updaterAci = 1;
+}
+
+message GroupNameUpdate {
+  optional bytes updaterAci = 1;
+  // Null value means the group name was removed.
+  optional string newGroupName = 2;
+}
+
+message GroupAvatarUpdate {
+  optional bytes updaterAci = 1;
+  bool wasRemoved = 2;
+}
+
+message GroupDescriptionUpdate {
+  optional bytes updaterAci = 1;
+  // Null value means the group description was removed.
+  optional string newDescription = 2;
+}
+
+enum GroupV2AccessLevel {
+  UNKNOWN = 0;
+  ANY = 1;
+  MEMBER = 2;
+  ADMINISTRATOR = 3;
+  UNSATISFIABLE = 4;
+}
+
+message GroupMembershipAccessLevelChangeUpdate {
+  optional bytes updaterAci = 1;
+  GroupV2AccessLevel accessLevel = 2;
+}
+
+message GroupAttributesAccessLevelChangeUpdate {
+  optional bytes updaterAci = 1;
+  GroupV2AccessLevel accessLevel = 2;
+}
+
+message GroupAnnouncementOnlyChangeUpdate {
+  optional bytes updaterAci = 1;
+  bool isAnnouncementOnly = 2;
+}
+
+message GroupAdminStatusUpdate {
+  optional bytes updaterAci = 1;
+  // The aci who had admin status granted or revoked.
+  bytes memberAci = 2;
+  bool wasAdminStatusGranted = 3;
+}
+
+message GroupMemberLeftUpdate {
+  bytes aci = 1;
+}
+
+message GroupMemberRemovedUpdate {
+  optional bytes removerAci = 1;
+  bytes removedAci = 2;
+}
+
+message SelfInvitedToGroupUpdate {
+  optional bytes inviterAci = 1;
+}
+
+message SelfInvitedOtherUserToGroupUpdate {
+  // If no invitee id available, use GroupUnknownInviteeUpdate
+  bytes inviteeServiceId = 1;
+}
+
+message GroupUnknownInviteeUpdate {
+  // Can be the self user.
+  optional bytes inviterAci = 1;
+  uint32 inviteeCount = 2;
+}
+
+message GroupInvitationAcceptedUpdate {
+  optional bytes inviterAci = 1;
+  bytes newMemberAci = 2;
+}
+
+message GroupInvitationDeclinedUpdate {
+  optional bytes inviterAci = 1;
+  // Note: if invited by pni, just set inviteeAci to nil.
+  optional bytes inviteeAci = 2;
+}
+
+message GroupMemberJoinedUpdate {
+  bytes newMemberAci = 1;
+}
+
+message GroupMemberAddedUpdate {
+  optional bytes updaterAci = 1;
+  bytes newMemberAci = 2;
+  bool hadOpenInvitation = 3;
+  // If hadOpenInvitation is true, optionally include aci of the inviter.
+  optional bytes inviterAci = 4;
+}
+
+// An invitation to self was revoked.
+message GroupSelfInvitationRevokedUpdate {
+  optional bytes revokerAci = 1;
+}
+
+// These invitees should never be the local user.
+// Use GroupSelfInvitationRevokedUpdate in those cases.
+// The inviter or updater can be the local user.
+message GroupInvitationRevokedUpdate {
+  message Invitee {
+    optional bytes inviterAci = 1;
+    // Prefer to use aci over pni. No need to set
+    // pni if aci is set. Both can be missing.
+    optional bytes inviteeAci = 2;
+    optional bytes inviteePni = 3;
+  }
+
+  // The member that revoked the invite(s), not the inviter!
+  // Assumed to be an admin (at the time, may no longer be an
+  // admin or even a member).
+  optional bytes updaterAci = 1;
+  repeated Invitee invitees = 2;
+}
+
+message GroupJoinRequestUpdate {
+  bytes requestorAci = 1;
+}
+
+message GroupJoinRequestApprovalUpdate {
+  bytes requestorAci = 1;
+  // The aci that approved or rejected the request.
+  optional bytes updaterAci = 2;
+  bool wasApproved = 3;
+}
+
+message GroupJoinRequestCanceledUpdate {
+  bytes requestorAci = 1;
+}
+
+// A single requestor has requested to join and cancelled
+// their request repeatedly with no other updates in between.
+// The last action encompassed by this update is always a
+// cancellation; if there was another open request immediately
+// after, it will be a separate GroupJoinRequestUpdate, either
+// in the same frame or in a subsequent frame.
+message GroupSequenceOfRequestsAndCancelsUpdate {
+  bytes requestorAci = 1;
+  uint32 count = 2;
+}
+
+message GroupInviteLinkResetUpdate {
+  optional bytes updaterAci = 1;
+}
+
+message GroupInviteLinkEnabledUpdate {
+  optional bytes updaterAci = 1;
+  bool linkRequiresAdminApproval = 2;
+}
+
+message GroupInviteLinkAdminApprovalUpdate {
+  optional bytes updaterAci = 1;
+  bool linkRequiresAdminApproval = 2;
+}
+
+message GroupInviteLinkDisabledUpdate {
+  optional bytes updaterAci = 1;
+}
+
+message GroupMemberJoinedByLinkUpdate {
+  bytes newMemberAci = 1;
+}
+
+// A gv1->gv2 migration occurred.
+message GroupV2MigrationUpdate  {}
+
+// Another user migrated gv1->gv2 but was unable to add
+// the local user and invited them instead.
+message GroupV2MigrationSelfInvitedUpdate {}
+
+// The local user migrated gv1->gv2 but was unable to
+// add some members and invited them instead.
+// (Happens if we don't have the invitee's profile key)
+message GroupV2MigrationInvitedMembersUpdate {
+  uint32 invitedMembersCount = 1;
+}
+
+// The local user migrated gv1->gv2 but was unable to
+// add or invite some members and dropped them instead.
+// (Happens for e164 members where we don't have an aci).
+message GroupV2MigrationDroppedMembersUpdate {
+  uint32 droppedMembersCount = 1;
+}
+
+// For 1:1 timer updates, use ExpirationTimerChatUpdate.
+message GroupExpirationTimerUpdate {
+  uint32 expiresInMs = 1; // 0 means the expiration timer was disabled
+  optional bytes updaterAci = 2;
+}
+
 message StickerPack {
-  bytes id = 1;
-  bytes key = 2;
+  bytes packId = 1;
+  bytes packKey = 2;
   string title = 3;
   string author = 4;
   repeated StickerPackSticker stickers = 5; // First one should be cover sticker.
 }
 
 message StickerPackSticker {
-  FilePointer data = 1;
-  string emoji = 2;
+  string emoji = 1;
+  uint32 id = 2;
 }

@@ -179,7 +179,18 @@
     <string name="BlockUnblockDialog_unblock_s">%1$s бөгөттөн чыгарасызбы?</string>
     <string name="BlockUnblockDialog_block">Бөгөттөө</string>
     <string name="BlockUnblockDialog_block_and_leave">Бөгөттөп туруп, чыгып кетүү</string>
-    <string name="BlockUnblockDialog_report_spam_and_block">Спам деп белгилеп, бөгөттөө</string>
+    <!-- Dialog button label to report as spam and block the person -->
+    <string name="BlockUnblockDialog_report_spam_and_block">Кабарлап, бөгөттөө</string>
+    <!-- Dialog title for reporting spam -->
+    <string name="BlockUnblockDialog_report_spam_title">Спам деп кабарлайсызбы?</string>
+    <!-- Dialog button to report as spam only -->
+    <string name="BlockUnblockDialog_report_spam">Спам деп кабарлоо</string>
+    <!-- Dialog message when reporting spam of an individual (1:1 conversation) -->
+    <string name="BlockUnblockDialog_report_spam_description">Signal ушул адам спам жөнөтүп жатышы мүмкүн деген кабар алат. Signal маектердеги билдирүүлөрдү көрбөйт.</string>
+    <!-- Dialog message when reporting spam of a group and we can determine the group member that invited you, placeholder is a name -->
+    <string name="BlockUnblockDialog_report_spam_group_named_adder">Signal сиз ушул топко чакырган %1$s спам жөнөтүп жатат деген кабар алат. Signal маектердеги билдирүүлөрдү көрбөйт.</string>
+    <!-- Dialog message when reporting spam of a group and we cannot determine the group member that invited you -->
+    <string name="BlockUnblockDialog_report_spam_group_unknown_adder">Signal сиз ушул топко чакырган адам спам жөнөтүп жатышы мүмкүн деген кабар алат. Signal маектердеги билдирүүлөрдү көрбөйт.</string>
 
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">Бүгүн</string>
@@ -412,6 +423,8 @@
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported">Signal кызматында мындан ары SMS менен жазыша албайсыз.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Signal кызматында мындан ары SMS менен жазыша албайсыз. %1$s менен бул жерден сүйлөшө берүү үчүн аны Signal\'га чакырыңыз.</string>
+    <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
+    <string name="ConversationActivity__this_person_is_no_longer_using_signal">This person is no longer using Signal. Invite them to Signal to keep the conversation here.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">Signal\'га чакыруу</string>
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
@@ -474,8 +487,8 @@
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Бул маекте өзүңүзгө бир нерселерди белгилеп жазып алсаңыз болот. Аккаунтуңузга байланган түзмөктөр бар болсо, жазып алган нерселериңиз алардын баарында көрүнөт.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">Топтун %1$d катышуучусунун ысымдары бирдей.</string>
     <string name="ConversationFragment__tap_to_review">Басып карап көрүңүз</string>
-    <string name="ConversationFragment__review_requests_carefully">Сурамдарды этияттап караңыз</string>
-    <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal ысымы окшош дагы бир байланышты тапты.</string>
+    <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
+    <string name="ConversationFragment__review_banner_body">Бул адамдын аты бир байланышыңыздыкындай экен</string>
     <string name="ConversationFragment_contact_us">Биз менен байланышыңыз</string>
     <string name="ConversationFragment_verify">Ооба</string>
     <string name="ConversationFragment_not_now">Азыр эмес</string>
@@ -501,6 +514,55 @@
     <string name="ConversationFragment__content_description_launch_signal_button">Signal\'ды ачуу</string>
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
     <string name="ConversationFragment__no_longer_verified">Мындан ары ырасталбайт</string>
+    <!-- Button shown in conversation header when in a message request state and no groups in common to show new message safety tips -->
+    <string name="ConversationFragment_safety_tips">Коопсуздук кеңештери</string>
+    <!-- Menu option to report spam in a conversation -->
+    <string name="ConversationFragment_report_spam">Спам деп кабарлоо</string>
+    <!-- Menu option to block in a conversation -->
+    <string name="ConversationFragment_block">Бөгөттөө</string>
+    <!-- Menu otpion to accept a message request in a conversation -->
+    <string name="ConversationFragment_accept">Кабыл алуу</string>
+    <!-- Menu option to delete an entire chat in a conversation -->
+    <string name="ConversationFragment_delete_chat">Маекти өчүрүү</string>
+    <!-- Menu option to unblock in a conversation -->
+    <string name="ConversationFragment_unblock">Бөгөттөн чыгаруу</string>
+    <!-- Dialog title shown after reporting spam and tapping the conversation item -->
+    <string name="ConversationFragment_reported_spam">Спам деп кабарланды</string>
+    <!-- Dialog message shown after reporting spam and tapping the conversation item -->
+    <string name="ConversationFragment_reported_spam_message">Signal ушул адам спам жөнөтүп жатышы мүмкүн деген кабар алды. Signal маектердеги билдирүүлөрдү көрбөйт.</string>
+    <!-- Toast shown after reporting spam and tapping the conversation item -->
+    <string name="ConversationFragment_reported_as_spam">Спам деп кабарланды</string>
+    <!-- Toast shown after reporting and blocking a conversation -->
+    <string name="ConversationFragment_reported_as_spam_and_blocked">Спам деп кабарланып, бөгөттөлдү</string>
+    <!-- Dialog message shown after accepting a message request and tapping on options from the conversation event -->
+    <string name="ConversationFragment_you_accepted_a_message_request_from_s">%1$s жазышуу өтүнүчүн жөнөттү. Жаңылыштык десеңиз, төмөнкүдөй кылыңыз.</string>
+
+    <!-- Title of Safety Tips bottom sheet dialog -->
+    <string name="SafetyTips_title">Коопсуздук кеңештери</string>
+    <!-- Dialog subtitle when showign tips for a 1:1 conversation -->
+    <string name="SafetyTips_subtitle_individual">Бейтааныш адамдардан билдирүү алганда этият болуңуз. Эмнелер кооптуу:</string>
+    <!-- Dialog subtitle when showing tips for a group conversation -->
+    <string name="SafetyTips_subtitle_group">Бул сурамдан этият болгула. Маектешип жаткан бир дагы байланыш же адам бул топто жок. Бул нерселерди карап коюңуз:</string>
+    <!-- Button text to move to the previous tip-->
+    <string name="SafetyTips_previous_tip">Мурунку кеңеш</string>
+    <!-- Button text to move to the next tip -->
+    <string name="SafetyTips_next_tip">Кийинки кеңеш</string>
+    <!-- Title of tip 1 -->
+    <string name="SafetyTips_tip1_title">Крипто валютага же акчага байланыштуу алдамчылык</string>
+    <!-- Message of tip 1 -->
+    <string name="SafetyTips_tip1_message">Белгисиз бирөө криптовалюта (биткойн сыяктуу) же акча табуу мүмкүнчүлүгү тууралуу билдирүү жиберсе, этият болуңуз.</string>
+    <!-- Title of tip 2 -->
+    <string name="SafetyTips_tip2_title">Түшүнүксүз же тиешеси жок билдирүүлөр</string>
+    <!-- Message of tip 2 -->
+    <string name="SafetyTips_tip2_message">Спамдар көңүлүңүздү буруу үчүн жөнөкөй \"Салам\" деген сөздөн башталат. Алардын кылтагына илинип калбаш үчүн жооп бербеңиз.</string>
+    <!-- Title of tip 3 -->
+    <string name="SafetyTips_tip3_title">Шилтемелери бар билдирмелер</string>
+    <!-- Message of tip 3 -->
+    <string name="SafetyTips_tip3_message">Бейтааныш адамдар жөнөткөн билдирүүлөрдөгү вебсайттардын шилтемелерин ачпаңыз. Ишеничтүү эмес адамдар жөнөткөн шилтемелерге кирбеңиз.</string>
+    <!-- Title of tip 4 -->
+    <string name="SafetyTips_tip4_title">Жалган компаниялар жана уюмдар</string>
+    <!-- Message of tip 4 -->
+    <string name="SafetyTips_tip4_message">Сиз менен байланышып жаткан компаниялар же өкмөттүк уюмдардан этият болуңуз. Салык агенттиктери, курьерлер жана башка уюмдар камтылган билдирүүлөр спам болушу мүмкүн.</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Иргемени өчүрүү</string>
@@ -513,7 +575,9 @@
         <item quantity="other">Бардык тандалган %1$d маек биротоло өчөт.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Өчүрүлүүдө</string>
-    <string name="ConversationListFragment_deleting_selected_conversations">Тандалган маектер өчүүдө…</string>
+    <plurals name="ConversationListFragment_deleting_selected_conversations">
+        <item quantity="other">Тандалган маектер өчүрүлүүдө…</item>
+    </plurals>
     <plurals name="ConversationListFragment_conversations_archived">
         <item quantity="other">%1$d маек архивделди</item>
     </plurals>
@@ -546,6 +610,8 @@
     <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">Билдирмелер профилин бул жерден күйгүзүп/өчүрөсүз.</string>
     <!-- Message shown in top toast to indicate the named profile is on -->
     <string name="ConversationListFragment__s_on">%1$s күйүк</string>
+    <!-- -->
+    <string name="ConversationListFragment_username_recovered_toast">QR кодуңуз жана шилтемеңиз баштапкы абалга келтирилип, колдонуучу атыңыз %1$s болуп калды</string>
 
     <!-- ConversationListItem -->
     <string name="ConversationListItem_key_exchange_message">Ачкыч алмашуу билдирүүсү</string>
@@ -590,9 +656,9 @@
     <!-- Toolbar title for this screen -->
     <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Мени телефон номерим аркылуу кимдер таба алышат?</string>
     <!-- Description for radio item stating anyone can see your phone number -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">Байланыштар тизмесинде номериңиз сакталган адамдардын баарына сиз Signal байланышы катары көрүнөсүз. Калгандар номериңизди издеп табышат.</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">Телефон номериңизди билген адам сизди Signal\'да көрүп, сүйлөшө алат.</string>
     <!-- Description for radio item stating no one will be able to see your phone number -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">Сизди эч ким Signal\'да телефон номериңиз аркылуу таба албайт.</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Билдирүү жазмайынча же маектешип баштамайынча, сиздин Signal\'да отурганыңызды эч ким билбейт.</string>
 
     <!-- ChooseBackupFragment -->
     <string name="ChooseBackupFragment__restore_from_backup">Резервдик көчүрмөлөрдөн калыбына келтирилсинби?</string>
@@ -962,6 +1028,10 @@
     <string name="GroupMentionSettingDialog_dont_notify_me">Жок, кереги жок</string>
 
     <!-- ManageProfileFragment -->
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
+    <string name="ManageProfileFragment__your_username">Профилиңизде колдонуучу атыңыз, QR кодуңуз жана шилтемеңиз көрүнбөйт. Колдонуучу атыңызды ишенген адамдарыңыз менен гана бөлүшө аласыз.</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
+    <string name="ManageProfileFragment__username_footer_no_username">Башкалар менен сүйлөшүүдө өзүңүз каалагандай колдонуучу атты колдонуп, телефон номериңизди жашырып койсоңуз болот. </string>
     <string name="ManageProfileFragment_profile_name">Профилдин аталышы</string>
     <string name="ManageProfileFragment_username">Колдонуучунун аты</string>
     <string name="ManageProfileFragment_about">Учкай маалымат</string>
@@ -1239,6 +1309,10 @@
     <string name="MessageRecord_missed_voice_call">Кабыл алынбаган аудио чалуу</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">Кабыл алынбаган аудио чалуу</string>
+    <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
+    <string name="MessageRecord_missed_voice_call_notification_profile">Билдирмелер профили иштеп турганда кабыл алынбай калган аудио чалуу</string>
+    <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
+    <string name="MessageRecord_missed_video_call_notification_profile">Билдирмелер профили иштеп турганда кабыл алынбай калган видео чалуу</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
     <string name="MessageRecord_you_declined_a_voice_call">Аудио чалуудан баш тарттыңыз</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
@@ -1267,6 +1341,8 @@
     <string name="MessageRecord_changed_their_profile_name_to">%1$s профиль атын %2$s деп өзгөрттү.</string>
     <string name="MessageRecord_changed_their_profile_name_from_to">%1$s профиль атын өзгөрттү. Мурунку аты: %2$s. Жаңы аты: %3$s.</string>
     <string name="MessageRecord_changed_their_profile">%1$s профилин өзгөрттү.</string>
+    <!-- Conversation update event message shown when you\'ve started a conversation by phone number or username and then learn their profile name. placeholder is username or phone number -->
+    <string name="MessageRecord_started_this_chat">You started this chat with %1$s.</string>
 
     <!-- GV2 specific -->
     <string name="MessageRecord_you_created_the_group">Топ түздүңүз.</string>
@@ -1471,6 +1547,10 @@
     <string name="MessageRecord__you_can_no_longer_send_sms_messages_in_signal">Мындан ары Signal\'дан SMS билдирүүлөрүн жөнөтө албайсыз. %1$s менен бул жерден сүйлөшө берүү үчүн аны Signal\'га чакырыңыз.</string>
     <!-- Body for quote when message being quoted is an in-app payment message -->
     <string name="MessageRecord__payment_s">Төлөм: %1$s</string>
+    <!-- Update message shown in chat after reporting it as spam -->
+    <string name="MessageRecord_reported_as_spam">Спам деп кабарланды</string>
+    <!-- Update message shown in chat after accept a message request -->
+    <string name="MessageRecord_you_accepted_the_message_request">Жазышуу өтүнүчүн алдыңыз</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Кабыл алуу</string>
@@ -1513,6 +1593,8 @@
     <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
         <item quantity="other">дагы %1$d топ</item>
     </plurals>
+    <!-- Button label to report spam for a conversation when in a message request state -->
+    <string name="MessageRequestBottomView_report">Кабарлоо…</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Сыр сөз айкаштары дал келген жок!</string>
@@ -1521,7 +1603,7 @@
 
     <!-- DeviceProvisioningActivity -->
     <string name="DeviceProvisioningActivity_link_this_device">Бул түзмөктү байланыштырасызбы?</string>
-    <string name="DeviceProvisioningActivity_continue">УЛАНТУУ</string>
+    <string name="DeviceProvisioningActivity_continue">Улантуу</string>
 
     <string name="DeviceProvisioningActivity_content_intro">Төмөнкүдөй мүмкүнчүлүктөргө ээ болот:</string>
     <string name="DeviceProvisioningActivity_content_bullets">
@@ -1716,8 +1798,10 @@
     <string name="WebRtcCallView__disconnected">Өчүк</string>
     <!-- Utilized in the lobby before joining a call link -->
     <string name="WebRtcCallView__signal_call_link">Signal чалуусунун шилтемеси</string>
-    <!-- Warning displayed when entering a call via a link -->
-    <string name="WebRtcCallView__anyone_who_joins">Ушул шилтеме аркылуу чалууга кошулган адамга аты-жөнүңүз, сүрөтүңүз жана телефон номериңиз көрүнөт.</string>
+    <!-- Warning displayed when entering a call via a link and you have Phone Number Privacy disabled-->
+    <string name="WebRtcCallView__anyone_who_joins_pnp_disabled">Ушул шилтеме аркылуу чалууга кошулган адамга аты-жөнүңүз, сүрөтүңүз жана телефон номериңиз көрүнөт.</string>
+    <!-- Warning displayed when entering a call via a link and you have Phone Number Privacy enabled-->
+    <string name="WebRtcCallView__anyone_who_joins_pnp_enabled">Шилтеме аркылуу бул чалууга кошулган адам атыңызды жана сүрөтүңүздү көрөт.</string>
     <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
     <string name="WebRtcCallView__waiting_to_be_let_in">Күтө туралы…</string>
 
@@ -1812,6 +1896,10 @@
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">Signal байланышы</string>
+    <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
+    <string name="AboutSheet__verified">Ырасталды</string>
+    <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
+    <string name="AboutSheet__no_direct_message">%1$s менен түз жазыша элексиз</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s системаңыздагы байланыштардын бири</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -1819,7 +1907,9 @@
     <!-- Notice when a user is not a connection to review requests carefully -->
     <string name="AboutSheet__review_requests_carefully">Сурамдарды этияттап караңыз</string>
     <!-- Text used when user has groups in common. Placeholder is the count -->
-    <string name="AboutSheet__d_groups_in_common">%1$d жалпы топ</string>
+    <plurals name="AboutSheet__d_groups_in">
+        <item quantity="other">%1$d орток топ</item>
+    </plurals>
     <!-- Text displayed in title for external recipients -->
     <string name="AboutSheet__about">Учкай маалымат</string>
     <!-- Text displayed in title for you -->
@@ -2121,6 +2211,8 @@
     <string name="UnverifiedSendDialog_send">Жөнөтүү</string>
 
     <!-- UsernameEditFragment -->
+    <!-- Placeholder text for custom discriminator -->
+    <string name="UsernameEditFragment__00">00</string>
     <!-- Toolbar title when entering from registration -->
     <string name="UsernameEditFragment__add_a_username">Колдонуучу аты атын кошуу</string>
     <!-- Instructional text at the top of the username edit screen -->
@@ -2129,13 +2221,15 @@
     <string name="UsernameEditFragment_delete">Өчүрүү</string>
     <string name="UsernameEditFragment_successfully_removed_username">Колдонуучу аты өчүрүлдү.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Тармакта ката кетти.</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">Өтө көп жолу аракет кылдыңыз, бир аздан соң кайталап көрүңүз.</string>
     <string name="UsernameEditFragment_this_username_is_taken">Мындай ат бар.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">Колдонуучунун аты a-Z, 0-9 деген тамгалар менен сандардан жана ылдыйкы сызыктан турат.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Колдонуучунун аты сандан башталбайт.</string>
     <string name="UsernameEditFragment_username_is_invalid">Колдонуучунун аты туура эмес.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Колдонуучунун аты %1$d баштап %2$d чейин белгиден турушу керек.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Адамдар сиз менен телефон номериңиз эмес, колдонуучу атыңыз аркылуу жазыша алышат. Дарегиңизди купуя сактоо үчүн колдонуучу атыңызга бир нече сан кошулат.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">Колдонуучунун аттары ар дайым сандар менен коштолот.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">Бул эмне деген сан?</string>
     <string name="UsernameEditFragment__these_digits_help_keep">Бул сандар колдонуучу атыңызды купуя кылып, сизди кереги жок билдирүүлөрдөн сактайт. Колдонуучу атыңызды сүйлөшкүңүз келген адамдарга жана топторго бериңиз. Колдонуучу атыңызды өзгөртсөңүз, бул сандар да өзгөрөт.</string>
@@ -2143,6 +2237,22 @@
     <string name="UsernameEditFragment__skip">Өткөрүп жиберүү</string>
     <!-- Content description for done button -->
     <string name="UsernameEditFragment__done">Бүттү</string>
+    <!-- Displayed when the chosen discriminator is not available for the given nickname -->
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">Бул колдонуучу аты жеткиликсиз, башкасын колдонуп көрүңүз.</string>
+    <!-- Displayed when the chosen discriminator is too short -->
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Колдонуучунун аты жарабайт, кеминде %1$d сан киргизиңиз.</string>
+    <!-- Displayed when the chosen discriminator is too long -->
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Колдонуучунун аты жарабайт, сандар %1$d ашпашы керек.</string>
+    <!-- Displayed when the chosen discriminator is 00 -->
+    <string name="UsernameEditFragment__this_number_cant_be_00">Бул номер 00 болбошу керек. 1-9 чейин сан киргизиңиз</string>
+    <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">2 сандан ашык номер 0 менен башталбайт</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
+    <string name="UsernameEditFragment_recovery_dialog_confirmation">Колдонуучу атыңызды калыбына келтирсеңиз, учурдагы QR кодуңуз жана шилтемеңиз кайра коюлат. Чын элеби?</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
+    <string name="UsernameEditFragment_change_confirmation_message">Колдонуучу атыңызды өзгөртсөңүз, учурдагы QR кодуңуз менен шилтемеңиз да өзгөрүлөт. Чын элеби?</string>
+    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
+    <string name="UsernameEditFragment_continue">Улантуу</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="other">Signal\'да %1$dбайланышыңыз бар!</item>
@@ -2326,6 +2436,26 @@
     <!-- Notification subtext for group stories -->
     <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s • Окуя</string>
 
+    <!-- NewWaysToConnectDialogFragment -->
+    <!-- Fragment title, displayed at the top of the content -->
+    <string name="NewWaysToConnectDialogFragment__new_ways_to_connect">Байланышуунун жаңы жолдору</string>
+    <!-- Row item title for phone number privacy explainer -->
+    <string name="NewWaysToConnectDialogFragment__phone_number_privacy">Телефон номериңиз купуя сакталат</string>
+    <!-- Row item description for phone number privacy explainer -->
+    <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">Эми маектерде телефон номериңиз көрүнбөйт. Досуңуз номериңизди байланыштар тизмесине сактап гана көрө алат.</string>
+    <!-- Row item title for usernames explainer -->
+    <string name="NewWaysToConnectDialogFragment__usernames">Колдонуучу аттар</string>
+    <!-- Row item description for usernames explainer -->
+    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">Башкалар менен сүйлөшүүдө өзүңүз каалагандай колдонуучу атты колдонуп, телефон номериңизди жашырып койсоңуз болот. Профилиңизде колдонуучу атыңыз көрүнбөйт.</string>
+    <!-- Row item title for qr code and links explainer -->
+    <string name="NewWaysToConnectDialogFragment__qr_codes_and_links">QR коддор жана шилтемелер</string>
+    <!-- Row item description for qr code and links explainer -->
+    <string name="NewWaysToConnectDialogFragment__usernames_have_a_unique_qr_code">Колдонуучу аттардын өзгөчө QR коду жана шилтемеси болуп, аларды досторуңуз менен бөлүшүп гана маектеше аласыз.</string>
+    <!-- Button label for not right now -->
+    <string name="NewWaysToConnectDialogFragment__not_now">Азыр эмес</string>
+    <!-- Button label for continue -->
+    <string name="NewWaysToConnectDialogFragment__set_up_your_username">Колдонуучу атын коюңуз</string>
+
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">Видеону ойнотуу</string>
     <string name="ThumbnailView_Has_a_caption_description">Колтамгасы бар</string>
@@ -2338,6 +2468,8 @@
     <string name="TransferControlView__processing">Аткарылууда…</string>
     <!-- Status update label used while the device is transmitting data over the network. Will take the form of "1.0 MB/2.0 MB" -->
     <string name="TransferControlView__download_progress">%1$1.1f MB/%2$2.1f MB</string>
+    <!-- Attachment file size label for not-yet-downloaded images and video. Will take the form of "1.0 MB" -->
+    <string name="TransferControlView__filesize">%1$1.1f MB</string>
 
 
     <!-- UnauthorizedReminder -->
@@ -2437,6 +2569,10 @@
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="other">%1$d мүчө</item>
     </plurals>
+    <!-- Text on row item to find user by phone number -->
+    <string name="ContactSelectionListFragment__find_by_phone_number">Телефон номери боюнча издөө</string>
+    <!-- Text on row item to find user by username -->
+    <string name="ContactSelectionListFragment__find_by_username">Колдонуучу аты боюнча издөө</string>
 
     <!-- contact_selection_list_fragment -->
     <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Байланыштарды көрсөтүү үчүн Signal\'га алар жеткиликтүү болушу керек.</string>
@@ -2506,6 +2642,8 @@
     <string name="ConversationUpdateItem_activate_payments">Төлөмдөрдү активдештирүү</string>
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">Бул адамды өчүрдүңүз, ага билдирүү жөнөтсөңүз, тизмеңизге кайра кошулат.</string>
+    <!-- Update item button text shown for the accepted message request update message -->
+    <string name="ConversationUpdateItem_options">Параметрлер</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Ойнотуу … Тындыруу</string>
@@ -3641,13 +3779,27 @@
     <!-- Subtext below option to launch into phone number privacy settings screen -->
     <string name="preferences_app_protection__choose_who_can_see">Телефон номериңиз кимдерге көрүнүп, Signal\'да сиз менен кимдер байланыша алышат.</string>
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
-    <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Менин номерим кимге көрүнөт</string>
-    <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Номериңиз Signal\'да эч кимге көрүнбөйт</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">Менин номерим кимге көрүнөт</string>
+    <!-- Subtext below radio buttons when who can see my number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">Телефон номериңиз ким менен жазышсаңыз ошолорго көрүнөт.</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Телефон номериңизди байланыштар тизмесине сактабаса, ал эч кимге көрүнбөйт.</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Телефон номериңиз эч кимге көрүнбөйт.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
-    <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Номерим аркылуу мени ким таба алат</string>
-    <!-- Subtext below radio buttons when who can see my number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">Телефон номериңиз ким менен жазышсаңыз ошолорго көрүнөт. Байланыштар тизмесинде камтылган телефон номери Signal кызматында да көрүнөт.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Номерим аркылуу мени ким таба алат</string>
+    <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">Телефон номериңизди билген адам сизди Signal\'да көрүп, сүйлөшө алат.</string>
+    <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">Билдирүү жазмайынча же маектешип баштамайынча, сиздин Signal\'да отурганыңызды эч ким билбейт.</string>
+    <!-- Snackbar text when pressing invalid radio item -->
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"Бул параметрди өзгөртүү үчүн Менин телефон номерим кимге көрүнөт дегенди Эч кимге деп коюңуз."</string>
+    <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Чын элеби?</string>
+    <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Setting \"Who can find me by number\" to \"Nobody\" will make it harder for people to find you on Signal.</string>
+    <!-- Dialog button text for canceling change action -->
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">Жок</string>
     <string name="PhoneNumberPrivacy_everyone">Баары</string>
     <string name="PhoneNumberPrivacy_nobody">Эч ким</string>
     <string name="preferences_app_protection__screen_lock">Экран кулпусу</string>
@@ -3676,6 +3828,8 @@
     <string name="prompt_passphrase_activity__signal_is_locked">Signal кулпуланган</string>
     <string name="prompt_passphrase_activity__tap_to_unlock">КУЛПУНУ АЧУУ ҮЧҮН БАСЫҢЫЗ</string>
     <string name="Recipient_unknown">Белгисиз</string>
+    <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
+    <string name="Recipient_deleted_account">Өчүрүлгөн аккаунт</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
     <string name="preferences_account_reregister">Аккаунтту кайра каттоо</string>
@@ -3878,7 +4032,9 @@
     <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" бөгөттөн чыгарылды.</string>
 
     <!-- ReviewCardDialogFragment -->
+    <!-- Title of a screen where the user will be prompted to review group members with the same name -->
     <string name="ReviewCardDialogFragment__review_members">Мүчөлөрдү карап чыгуу</string>
+    <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
     <string name="ReviewCardDialogFragment__review_request">Өтүнүчтү карап чыгуу</string>
     <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d топ мүчөсүнүн аты бирдей, төмөндөгү мүчөлөрдү карап чыгып, чара көрүүнү тандаңыз.</string>
     <string name="ReviewCardDialogFragment__if_youre_not_sure">Эгер бул өтүнүч кимден экенин билбесеңиз, төмөнкү мүчөлөрдү карап чыгып, чара көрүңүз.</string>
@@ -4137,11 +4293,16 @@
     <string name="GroupDescriptionDialog__group_description">Топ тууралуу учкай маалымат</string>
 
     <!-- QualitySelectorBottomSheetDialog -->
+    <!-- Label for our standard quality media conversion. -->
     <string name="QualitySelectorBottomSheetDialog__standard">Стандарт</string>
+    <!-- Description for our standard quality media conversion. -->
     <string name="QualitySelectorBottomSheetDialog__faster_less_data">Тезирээк, азыраак берилмелер</string>
+    <!-- Label for our high quality media conversion. This has better quality than standard. -->
     <string name="QualitySelectorBottomSheetDialog__high">Шашылыш</string>
+    <!-- Label for our high quality media conversion. This has better quality than standard. -->
     <string name="QualitySelectorBottomSheetDialog__slower_more_data">Жайыраак, көбүрөөк берилмелер</string>
-    <string name="QualitySelectorBottomSheetDialog__photo_quality">Сүрөттүн сапаты</string>
+    <!-- Title heading for our media conversion quality selector. -->
+    <string name="QualitySelectorBottomSheetDialog__media_quality">Медиа сапаты</string>
 
     <!-- AppSettingsFragment -->
     <string name="AppSettingsFragment__invite_your_friends">Досторуңузду чакырыңыз</string>
@@ -4256,27 +4417,6 @@
     <!-- ChatsSettingsFragment -->
     <string name="ChatsSettingsFragment__keyboard">Баскычтоп</string>
     <string name="ChatsSettingsFragment__enter_key_sends">Enter баскычы жөнөтөт</string>
-
-    <!--SmsSettingsFragment -->
-    <string name="SmsSettingsFragment__use_as_default_sms_app">Демейки SMS колдонмосу катары колдонуңуз</string>
-    <!-- Preference title to export sms -->
-    <string name="SmsSettingsFragment__export_sms_messages">SMS билдирүүлөрүн өткөрүп берүү</string>
-    <!-- Preference title to re-export sms -->
-    <string name="SmsSettingsFragment__export_sms_messages_again">SMS билдирүүлөрүн кайра экспорттоо</string>
-    <!-- Preference title to delete sms -->
-    <string name="SmsSettingsFragment__remove_sms_messages">SMS билдирүүлөрүн алып салуу</string>
-    <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Signal\'дан SMS билдирүүлөр өчүрүлүүдө…</string>
-    <!-- Snackbar text to indicate can delete later -->
-    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">Signal\'дагы SMS билдирүүлөрдү Тууралоо бөлүмүнөн каалаган учурда алып саласыз.</string>
-    <!-- Description for export sms preference -->
-    <string name="SmsSettingsFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">SMS билдирүүлөрүңүздү телефонуңуздун SMS\'тер сакталган бөлүмүнө өткөрүп алсаңыз болот.</string>
-    <!-- Description for re-export sms preference -->
-    <string name="SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages">Кайра экспорттосоңуз, билдирүүлөр кайталанып калышы мүмкүн.</string>
-    <!-- Description for remove sms preference -->
-    <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">Сактагычта орун бошотуу үчүн Signal\'дагы SMS билдирүүлөрдү алып салыңыз.</string>
-    <!-- Information message shown at the top of sms settings to indicate it is being removed soon. -->
-    <string name="SmsSettingsFragment__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging">Шифрленген билдирүүлөргө басым жасоо үчүн SMS билдирүүлөр жакында иштебей калат.</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Билдирүүлөр</string>
@@ -4631,6 +4771,26 @@
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">Бир же бир нече нерсе өтө чоң болуп чыкты</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">Бир же бир нече нерсе жараксыз</string>
     <string name="MediaReviewFragment__too_many_items_selected">Өтө көп нерсе тандалды</string>
+    <!-- Small notification presented to the user when they set their video to view-once mode -->
+    <string name="MediaReviewFragment__video_set_to_view_once">Video set to view once</string>
+    <!-- Small notification presented to the user when they set their photo to view-once mode -->
+    <string name="MediaReviewFragment__photo_set_to_view_once">Photo set to view once</string>
+    <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
+    <string name="MediaReviewFragment__video_set_to_high_quality">Video set to high quality</string>
+    <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
+    <string name="MediaReviewFragment__video_set_to_standard_quality">Video set to standard quality</string>
+    <!-- Small notification presented to the user when they set their still image to be sent in high visual quality. -->
+    <string name="MediaReviewFragment__photo_set_to_high_quality">Photo set to high quality</string>
+    <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
+    <string name="MediaReviewFragment__photo_set_to_standard_quality">Photo set to standard quality</string>
+    <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
+    <plurals name="MediaReviewFragment__items_set_to_high_quality">
+        <item quantity="other">%1$d items set to high quality</item>
+    </plurals>
+    <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
+    <plurals name="MediaReviewFragment__items_set_to_standard_quality">
+        <item quantity="other">%1$d items set to standard quality</item>
+    </plurals>
 
     <string name="ImageEditorHud__cancel">Жокко чыгаруу</string>
     <string name="ImageEditorHud__draw">Тартуу</string>
@@ -4654,6 +4814,20 @@
     <string name="MediaReviewImagePageFragment__discard">Жокко чыгаруу</string>
     <string name="MediaReviewImagePageFragment__discard_changes">Өзгөртүүлөр жокко чыгарылсынбы?</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Бул сүрөткө киргизген өзгөртүүлөрүңүздү жоготосуз.</string>
+
+    <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
+    <string name="MediaCaptureFragment_username_dialog_title">Found %1$s</string>
+    <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
+    <string name="MediaCaptureFragment_username_dialog_body">Start a chat with \"%1$s\"</string>
+    <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
+    <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">Маектешүүгө өтүү</string>
+
+    <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+    <string name="MediaCaptureFragment_device_link_dialog_title">Link device?</string>
+    <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+    <string name="MediaCaptureFragment_device_link_dialog_body">It looks like you\'re trying to link a Signal device. Tap continue and scan the code again to link it.</string>
+    <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
+    <string name="MediaCaptureFragment_device_link_dialog_continue">Улантуу</string>
 
 
     <string name="BadgesOverviewFragment__my_badges">Төшбелгилерим</string>
@@ -4753,7 +4927,7 @@
     <!-- Displayed as a subtitle on a row in the Manage Donations screen when payment for a donation is pending -->
     <string name="MySupportPreference__payment_pending">Төлөм күтүлүүдө</string>
     <!-- Displayed as a dialog message when clicking on a donation row that is pending. Placeholder is a formatted fiat amount -->
-    <string name="MySupportPreference__your_bank_transfer_of_s">Банк эсебиңизге төлөгөн %1$s күтүлүүдө. Банк эсебиңизге каражаттар 1 иш күнүндө түшөт.  </string>
+    <string name="MySupportPreference__your_bank_transfer_of_s">Your bank transfer of %1$s is pending. Bank transfers can take 1 to 14 business days to complete.  </string>
     <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
     <string name="MySupportPreference__learn_more">Кененирээк маалымат</string>
 
@@ -4951,6 +5125,12 @@
     <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">Бул профиль иштетилгенде билдирмелерди жана чалууларды алууну каалаган адамдарды жана топторду кошуңуз</string>
     <!-- Button text that launches the contact picker to select from -->
     <string name="AddAllowedMembers__add_people_or_groups">Адамдарды же топторду кошуу</string>
+    <!-- Title for exceptions section of add people to notification profile screen in create flow -->
+    <string name="AddAllowedMembers__exceptions">Өзгөчө учурлар</string>
+    <!-- List preference to toggle that allows calls through the notification profile during create flow -->
+    <string name="AddAllowedMembers__allow_all_calls">Бардык чалууларга уруксат берүү</string>
+    <!-- List preference to toggle that allows mentions through the notification profile during create flow -->
+    <string name="AddAllowedMembers__notify_for_all_mentions">Бардык эскертмелер жөнүндө кабарлоо</string>
 
     <!-- Call to action button on contact picker for adding to profile -->
     <string name="SelectRecipientsFragment__add">Кошуу</string>
@@ -5548,7 +5728,7 @@
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Бардык байланыштар текшерилди, улантуу үчүн жөнөтүү дегенди басыңыз.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
     <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
-        <item quantity="other">Signal\'ын кайра орноткон же түзмөктөрүн алмаштырган %1$d байланышыңыз бар. Жөнөтүүдөн мурун коопсуздук номерлерин текшерип койсоңуз болот.</item>
+        <item quantity="other">%1$d байланыштары Signal\'ды кайра орнотушу же түзмөктөрдү өзгөртүшү мүмкүн. Алардын коопсуздук номерлерин карап көрүңүз же жөнөтүп улантыңыз.</item>
     </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Коопсуздук кодун ырастоо</string>
@@ -5636,47 +5816,6 @@
     <!-- Generic title for overflow menus -->
     <string name="OverflowMenu__overflow_menu">Ачылуучу меню</string>
 
-    <!-- SMS Export Service -->
-    <!-- Displayed in the notification while export is running -->
-    <string name="SignalSmsExportService__exporting_messages">Билдирүүлөр өткөрүлүп берилүүдө…</string>
-    <!-- Displayed in the notification title when export completes -->
-    <string name="SignalSmsExportService__signal_sms_export_complete">Signal SMS билдирүүлөр өткөрүлдү</string>
-    <!-- Displayed in the notification message when export completes -->
-    <string name="SignalSmsExportService__tap_to_return_to_signal">Signal\'га кайтуу үчүн басыңыз</string>
-
-    <!-- ExportYourSmsMessagesFragment -->
-    <!-- Title of the screen -->
-    <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">SMS билдирүүлөрүңүздү өткөрүп бериңиз</string>
-    <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">SMS билдирүүлөрүн телефонуңуздагы SMS маалыматтар базасына өткөрүп, аларды Signal\'да сактап же өчүрө аласыз. Ушуну менен, телефонуңуздагы башка SMS колдонмолору аларды импорттой алат. SMS билдирүүлөрүңүздүн таржымалынан башкалар менен бөлүшүүгө мүмкүн болгон файл түзө албайсыз.</string>
-    <!-- Button label to begin export -->
-    <string name="ExportYourSmsMessagesFragment__continue">Улантуу</string>
-
-    <!-- ExportingSmsMessagesFragment -->
-    <!-- Title of the screen -->
-    <string name="ExportingSmsMessagesFragment__exporting_sms_messages">SMS билдирүүлөрдү өткөрүп берүү</string>
-    <!-- Message of the screen when exporting sms messages -->
-    <string name="ExportingSmsMessagesFragment__this_may_take_awhile">Бир аз убакыт кетиши мүмкүн</string>
-    <!-- Progress indicator for export -->
-    <plurals name="ExportingSmsMessagesFragment__exporting_d_of_d">
-        <item quantity="other">%2$d ичинен %1$d өткөрүлүүдө …</item>
-    </plurals>
-    <!-- Alert dialog title shown when we think a user may not have enough local storage available to export sms messages -->
-    <string name="ExportingSmsMessagesFragment__you_may_not_have_enough_disk_space">Дискиңизде орун жетишсиз окшойт</string>
-    <!-- Alert dialog message shown when we think a user may not have enough local storage available to export sms messages, placeholder is the file size, e.g., 128kB -->
-    <string name="ExportingSmsMessagesFragment__you_need_approximately_s_to_export_your_messages_ensure_you_have_enough_space_before_continuing">Билдирүүлөрүңүздү өткөрүү үчүн болжол менен %1$s керек. Улантуудан мурун, дискте орун жетишүү экенин текшериңиз.</string>
-    <!-- Alert dialog button to continue with exporting sms after seeing the lack of storage warning -->
-    <string name="ExportingSmsMessagesFragment__continue_anyway">Баары бир уланта берем</string>
-    <!-- Dialog text shown when Signal isn\'t granted the sms permission needed to export messages, different than being selected as the sms app -->
-    <string name="ExportingSmsMessagesFragment__signal_needs_the_sms_permission_to_be_able_to_export_your_sms_messages">SMS билдирүүлөрүн экспорттоо үчүн Signal кызматы SMS уруксат алышы керек.</string>
-
-    <!-- ChooseANewDefaultSmsAppFragment -->
-    <!-- Title of the screen -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_a_new">Жаңы демейки SMS колдонмосун тандоо</string>
-    <!-- Button label to launch picker -->
-    <string name="ChooseANewDefaultSmsAppFragment__continue">Улантуу</string>
-    <!-- Button label for when done with changing default SMS app -->
-    <string name="ChooseANewDefaultSmsAppFragment__done">Бүттү</string>
     <!-- First step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_1">1</string>
     <!-- Second step number/bullet for choose new default sms app instructions -->
@@ -5685,47 +5824,6 @@
     <string name="ChooseANewDefaultSmsAppFragment__bullet_3">3</string>
     <!-- Fourth step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_4">4</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">Тууралоо бөлүмүндөгү \"Демейки колдонмолорду\" ачуу үчүн \"Улантуу\" дегенди басыңыз</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">Тизмеден \"SMS колдонмосу\" дегенди тандаңыз</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">SMS билдирүүлөрү менен жазышуу үчүн башка колдонмону тандаңыз</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Signal\'га кайтуу</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">Телефонуңуздан Тууралоо колдонмосун ачыңыз</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">\"Колдонмолор\" &gt; \"Демейки колдонмолор\" &gt; \"SMS колдонмосу\" дегенге өтүңүз</string>
-
-    <!-- RemoveSmsMessagesDialogFragment -->
-    <!-- Action button to keep messages -->
-    <string name="RemoveSmsMessagesDialogFragment__keep_messages">Билдирүүлөрдү сактоо</string>
-    <!-- Action button to remove messages -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_messages">Билдирүүлөрдү өчүрүү</string>
-    <!-- Title of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">SMS билдирүүлөрүн Signal колдонмосунан өчүрөсүзбү?</string>
-    <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Сактагычты тазалоо үчүн SMS билдирүүлөрүн Signal\'дан өчүрүңүз. Аларды өчүрсөңүз да, телефонуңуздагы башка SMS колдонмолорунан көрө бересиз.</string>
-
-    <!-- ReExportSmsMessagesDialogFragment -->
-    <!-- Action button to re-export messages -->
-    <string name="ReExportSmsMessagesDialogFragment__continue">Улантуу</string>
-    <!-- Action button to cancel re-export process -->
-    <string name="ReExportSmsMessagesDialogFragment__cancel">Жокко чыгаруу</string>
-    <!-- Title of dialog -->
-    <string name="ReExportSmsMessagesDialogFragment__export_sms_again">SMSтерди кайра экспорттойсузбу?</string>
-    <!-- Message of dialog -->
-    <string name="ReExportSmsMessagesDialogFragment__you_already_exported_your_sms_messages">SMS билдирүүлөрүн буга чейин экспорттогонсуз.ЭСКЕРТҮҮ: Эгер улантсаңыз, билдирүүлөрүңүз кайталанып калышы мүмкүн.</string>
-
-    <!-- SetSignalAsDefaultSmsAppFragment -->
-    <!-- Title of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Signal\'ды демейки SMS колдонмосу катары коюу</string>
-    <!-- Message of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">SMS билдирүүлөрүңүздү өткөрүп берүү үчүн Signal\'ды демейки SMS колдонмосу катары орнотушуңуз керек.</string>
-    <!-- Button label to start export -->
-    <string name="SetSignalAsDefaultSmsAppFragment__next">Кийинки</string>
-
     <!-- BackupSchedulePermission Megaphone -->
     <!-- The title on an alert window that explains to the user that we are unable to backup their messages -->
     <string name="BackupSchedulePermissionMegaphone__cant_back_up_chats">Маектердин көчүрмөсү сакталбай жатат</string>
@@ -5744,44 +5842,6 @@
     <!-- Re-enable backups permission bottom sheet call to action button to open settings -->
     <string name="BackupSchedulePermissionMegaphone__go_to_settings">Тууралоо бөлүмүнө өтүү</string>
 
-    <!-- SmsExportMegaphoneActivity -->
-    <!-- Phase 2 title of full screen megaphone indicating sms will no longer be supported in the near future -->
-    <string name="SmsExportMegaphoneActivity__signal_will_no_longer_support_sms">Signal кызматында SMS менен жазышуу мүмкүн болбой калат</string>
-    <!-- Phase 3 title of full screen megaphone indicating sms is longer supported  -->
-    <string name="SmsExportMegaphoneActivity__signal_no_longer_supports_sms">Signal кызматында SMS менен жазыша албайсыз</string>
-    <!-- The text on a button in a popup that, when clicked, will dismiss the popup and schedule the prompt to occur at a later time. -->
-    <string name="SmsExportMegaphoneActivity__remind_me_later">Кийинчерээк эстетип кой</string>
-    <!-- The text on a button in a popup that, when clicked, will navigate the user to a web article on SMS removal -->
-
-    <!-- Title for screen shown after sms export has completed -->
-    <string name="ExportSmsCompleteFragment__export_complete">Өткөрүлдү</string>
-    <!-- Button to continue to next screen -->
-    <string name="ExportSmsCompleteFragment__next">Кийинки</string>
-    <!-- Message showing summary of sms export counts -->
-    <plurals name="ExportSmsCompleteFragment__d_of_d_messages_exported">
-        <item quantity="other">%2$d ичинен %1$d билдирүү өткөрүлдү</item>
-    </plurals>
-
-    <!-- Title of screen shown when some sms messages did not export -->
-    <string name="ExportSmsPartiallyComplete__export_partially_complete">Айрым билдирүүлөр өткөн жок</string>
-    <!-- Debug step 1 on screen shown when some sms messages did not export -->
-    <string name="ExportSmsPartiallyComplete__ensure_you_have_an_additional_s_free_on_your_phone_to_export_your_messages">Билдирүүлөрүңүздү өткөрүү үчүн телефонуңузда дагы %1$s бош орун болушу керек</string>
-    <!-- Debug step 2 on screen shown when some sms messages dit not export -->
-    <string name="ExportSmsPartiallyComplete__retry_export_which_will_only_retry_messages_that_have_not_yet_been_exported">Кайра кайталап көрүңүз. Өтпөй калган билдирүүлөр кайра өткөрүлөт</string>
-    <!-- Partial sentence for Debug step 3 on screen shown when some sms messages did not export, is combined with \'contact us\' -->
-    <string name="ExportSmsPartiallyComplete__if_the_problem_persists">Көйгөй кайталана берсе, </string>
-    <!-- Partial sentence for deubg step 3 on screen shown when some sms messages did not export, combined with \'If the problem persists\', link text to open contact support view -->
-    <string name="ExportSmsPartiallyComplete__contact_us">Биз менен байланышыңыз</string>
-    <!-- Button text to retry sms export -->
-    <string name="ExportSmsPartiallyComplete__retry">Кайра аракет кылуу</string>
-    <!-- Button text to continue sms export flow and not retry failed message exports -->
-    <string name="ExportSmsPartiallyComplete__continue_anyway">Баары бир уланта берем</string>
-    <!-- Title of screen shown when all sms messages failed to export -->
-    <string name="ExportSmsFullError__error_exporting_sms_messages">SMS билдирүүлөрдү өткөрүп берүүдө ката кетти</string>
-    <!-- Helper text shown when all sms messages failed to export -->
-    <string name="ExportSmsFullError__please_try_again_if_the_problem_persists">Кайталап көрүңүз. Көйгөй кайталана берсе, </string>
-
-
     <!-- DonateToSignalFragment -->
     <!-- Title below avatar -->
     <string name="DonateToSignalFragment__privacy_over_profit">Кирешеге караганда коопсуздукту жогору коебуз</string>
@@ -5792,9 +5852,9 @@
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
     <string name="DonateToSignalFragment__you_have_a_donation_pending">Салымыңыз күтүлүүдө</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Банк аркылуу төлөнгөн транзакцияларга 1 күн кетет. Жазылууну жаңыртуудан мурун акы толук алынып бүткүчө күтө туруңуз.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Bank transfers can take 1 to 14 business days to process. Please wait until this payment completes before updating your subscription.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Банк аркылуу төлөнгөн транзакцияларга 1 күн кетет. Дагы бир салым кошуудан мурун, акы толук алынып бүткүчө күтө туруңуз.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Bank transfers can take 1 to 14 business days to process. Please wait until this payment completes before making another donation.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
     <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Салымыңыз дагы деле иштелүүдө. Байланышыңыздын сапатына жараша бир нече мүнөткө созулушу мүмкүн. Жазылууну жаңыртуудан мурун акы толук алынып бүткүчө күтө туруңуз.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
@@ -5922,6 +5982,12 @@
     <string name="IdealTransferDetailsFragment__email">электрондук почта</string>
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">Банкыңызды тандаңыз</string>
+    <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">Салымыңызды %1$s менен ырастаңыз</string>
+    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
+    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">Салымыңыз ай сайын алынып турушу үчүн банк эсебиңизден €0,01 төлөңүз. Автоматтык түрдө кайтарылып, эсебиңизден айында €5 алынып турат.</string>
+    <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
+    <string name="IdealTransferDetailsFragment__continue">Улантуу</string>
 
     <!-- IdealTransferDetailsBankSelectionDialogFragment -->
     <!-- Title of the screen, displayed in the toolbar -->
@@ -5939,7 +6005,7 @@
     <!-- Top text block of donation pending sheet displayed after one-time donation via a bank transfer. Placeholder is the badge name. -->
     <string name="DonationPendingBottomSheet__your_one_time_donation_is_pending">Бир жолку салымыңыз күтүлүүдө. Салымыңыз алынганда, профилиңизде %1$s төшбелгиси көрүнүп калат.</string>
     <!-- Bottom text block of donation pending sheet displayed after donating via a bank transfer. Placeholder is for learn more. -->
-    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Банк аркылуу төлөнгөн транзакцияларга 1 күн кетет. %1$s</string>
+    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Bank transfers can take 1 to 14 business days to process. %1$s</string>
     <!-- Learn more text for donation pending sheet displayed after donating via a bank transfer. -->
     <string name="DonationPendingBottomSheet__learn_more">Кененирээк маалымат</string>
     <!-- Confirmation button for donation pending sheet displayed after donating via a bank transfer. -->
@@ -6024,28 +6090,24 @@
     <!-- Displayed in the "clear filter" item in the chat feed if the user opened the filter from the overflow menu -->
     <string name="ChatFilter__tip_pull_down">Кеңеш: Иргөө үчүн маектер тизмесин ылдый тартыңыз</string>
 
-    <!-- Title for screen describing that sms support is going to be removed soon -->
-    <string name="SmsRemoval_title_going_away">SMS түрүндө жазыша албай каласыз</string>
-    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
-    <string name="SmsRemoval_info_bullet_1">Signal колдонмосунда мындан ары SMS түрүндө жазыша албай каласыз.</string>
-    <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_2">SMS билдирүүлөр Signal билдирүүлөрүнөн айырмаланат. <b>Signal\'дагы билдирүүлөр мурункудай эле шифрлене берет.</b></string>
-    <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_3">SMS билдирүүлөрүңүздү чыгарып алып, жаңы SMS колдонмосун тандасаңыз болот.</string>
-    <!-- Bullet point message shown on describing screen as first bullet variant why sms is being removed when user is locked out of sms -->
-    <string name="SmsRemoval_info_bullet_1_phase_3">Мындан ары Signal кызматында SMS билдирүүлөрүн жөнөтө албайсыз.</string>
-    <!-- Button label on sms removal info/megaphone to start the export SMS flow -->
-    <string name="SmsRemoval_export_sms">SMS билдирүүлөрүн өткөрүү</string>
-
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__set_up_your_signal_username">Signal\'да колдонуучу атыңызды коюңуз</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">Башкалар телефон номериңизсиз эле, колдонуучу атыңыз аркылуу жазыша алышат</string>
+    <string name="SetUpYourUsername__introducing_phone_number_privacy">Телефон номериңиз корголуп, каалагандай колдонуучу аттар менен шилтемелерди колдоносуз.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__not_now">Азыр эмес</string>
+    <string name="SetUpYourUsername__dismiss">Жок</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__continue">Улантуу</string>
+    <string name="SetUpYourUsername__learn_more">Кененирээк маалымат</string>
+
+    <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
+    <string name="PnpLaunchMegaphone_title">Байланышуунун жаңы жолдору</string>
+    <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
+    <string name="PnpLaunchMegaphone_body">Телефон номериңиз корголуп, каалагандай колдонуучу аттар менен шилтемелерди колдоносуз.</string>
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
+    <string name="PnpLaunchMegaphone_dismiss">Жок</string>
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
+    <string name="PnpLaunchMegaphone_learn_more">Кененирээк маалымат</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -6060,18 +6122,6 @@
     <string name="TextFormatting_spoiler">Бүдөмүктөтүү</string>
     <!-- Popup menu label for clearing applied formatting -->
     <string name="TextFormatting_clear_formatting">Форматты тазалоо</string>
-
-    <!-- UsernameEducationFragment -->
-    <!-- Continue button which takes the user to the add a username screen -->
-    <string name="UsernameEducationFragment__continue">Улантуу</string>
-    <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">Signal\'да колдонуучу атыңызды коюңуз</string>
-    <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__usernames_are_paired_with_a_set_of_digits">Колдонуучу аттарыңыз сандар топтому менен байланышып, профилиңизде көрүнбөйт</string>
-    <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">Ар бир колдонуучу атта уникалдуу QR код жана сиз менен маектешкиси келген достор менен бөлүшө турган шилтеме бар</string>
-    <!-- Displayed as body text in the username education screen. The string references the names of settings, so they should match our translations for those settings. -->
-    <string name="UsernameEducationFragment__turn_off_phone_number_discovery">Телефон номерин табуу мүмкүнчүлүгүн Параметрлер &gt; Телефон номери &gt; Менин телефонумду кимдер таба алат деген бөлүмдө өчүрүп, башкалар сизди колдонуучу атыңыз аркылуу таба алгыдай кылсаңыз болот</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
@@ -6098,6 +6148,8 @@
     <string name="CallLogAdapter__outgoing">Чыккан чалуулар</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">Жооп берилбеген</string>
+    <!-- Displayed for missed calls declined by notification profile -->
+    <string name="CallLogAdapter__missed_notification_profile">Билдирмелер профили иштеп турганда кабыл алынбай калды</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">Кошулуу</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -6202,6 +6254,8 @@
     <string name="CallPreference__group_call">Топтук чалуу</string>
     <!-- Missed group call in call info -->
     <string name="CallPreference__missed_group_call">Жооп берилбеген топтук чалуу</string>
+    <!-- Missed group call while notification profile on in call info -->
+    <string name="CallPreference__missed_group_call_notification_profile">Билдирмелер профили иштеп турганда кабыл алынбай калган топтук чалуу</string>
     <!-- Incoming group call in call info -->
     <string name="CallPreference__incoming_group_call">Келүүчү топтук чалуу</string>
     <!-- Outgoing group call in call info -->
@@ -6288,6 +6342,8 @@
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
     <string name="CallLinkDetailsFragment__call_details">Чалуунун чоо-жайы</string>
+    <!-- Displayed in a text row, allowing the user to click and edit a call name -->
+    <string name="CallLinkDetailsFragment__edit_call_name">Чалуунун аталышын өзгөртүү</string>
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
     <string name="CallLinkDetailsFragment__add_call_name">Чалуунун аталышын кошуу</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
@@ -6303,6 +6359,8 @@
     <!-- Displayed as body in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">Бул шилтемени эч ким колдоно албай калат.</string>
 
+    <!-- Button label for the link button in the username link settings -->
+    <string name="UsernameLinkSettings_link_button_label">Шилтеме</string>
     <!-- Button label for the share button in the username link settings -->
     <string name="UsernameLinkSettings_share_button_label">Бөлүшүү</string>
     <!-- Button label for the color selector button in the username link settings -->
@@ -6347,6 +6405,16 @@
     <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Интернет жок. Шилтемеңиз кайра коюлган жок. Бир аздан соң кайталаңыз.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">Шилтемеңизди кайра коюп жатканда тармакта ката кетти. Бир аздан соң кайталаңыз.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">Шилтемеңиз баштапкы абалга келтирилип жатканда күтүүсүз ката кетти. Бир аздан соң кайталаңыз.</string>
+    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
+    <string name="UsernameLinkSettings_reset_link_result_success">QR кодуңуз менен шилтеме кайра коюлуп, жаңы QR код жана шилтеме түзүлдү.</string>
+    <!-- Shown on the generated username qr code image to explain how to use it. -->
+    <string name="UsernameLinkSettings_scan_this_qr_code">Signal\'дан мени менен сүйлөшкүңүз келсе, телефонуңуздагы QR кодду скандаңыз.</string>
+    <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_qr_code_not_found">QR code not found</string>
+    <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Try scanning another image containing a Signal QR code.</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
     <string name="UsernameLinkShareBottomSheet_title">Ушул шилтеме аркылуу колдонуучу атыңыз көрүнүп, сиз менен маектеше алышат. Ишенген адамдарыңыз менен гана бөлүшүңүз.</string>
@@ -6381,6 +6449,8 @@
     <string name="GrantFullScreenIntentPermission_megaphone_body">Байланыштарыңыздын жана топторуңуздун бир дагы чалуусун өткөрүп жибербейсиз.</string>
     <!-- Button on the megaphone megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls that starts the fix process -->
     <string name="GrantFullScreenIntentPermission_megaphone_turn_on">Күйгүзүү</string>
+    <!-- Button on the megaphone shown at the bottom of the chatlist when a user has disabled the system setting for showing full screen notifications used showing incoming calls that dismisses the megaphone -->
+    <string name="GrantFullScreenIntentPermission_megaphone_not_now">Азыр эмес</string>
     <!-- Title of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
     <string name="GrantFullScreenIntentPermission_bottomsheet_title">Толук экран билдирмелерин күйгүзүү</string>
     <!-- Subtitle of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
@@ -6398,6 +6468,46 @@
     <string name="MonthlyDonationCanceled__renew_button">Жазылууну жаңыртуу</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, second button to dismiss the dialog entirely -->
     <string name="MonthlyDonationCanceled__not_now_button">Азыр эмес</string>
+
+    <!-- FindByActivity -->
+    <!-- Title of activity when finding by username -->
+    <string name="FindByActivity__find_by_username">Колдонуучу аты боюнча издөө</string>
+    <!-- Title of activity when finding by phone number -->
+    <string name="FindByActivity__find_by_phone_number">Телефон номери боюнча издөө</string>
+    <!-- Title of screen to select a country code -->
+    <string name="FindByActivity__select_country_code">Өлкөнүн кодун көрсөтүңүз</string>
+    <!-- Entry placeholder for find by username -->
+    <string name="FindByActivity__username">Колдонуучунун аты</string>
+    <!-- Entry placeholder for find by phone number -->
+    <string name="FindByActivity__phone_number">Телефон номериңиз</string>
+    <!-- Help text under user entry for find by username -->
+    <string name="FindByActivity__enter_username_description">Аягында сандар жазылып, чекит коюлган колдонуучу атын киргизиңиз.</string>
+    <!-- Content description for next action button -->
+    <string name="FindByActivity__next">Кийинки</string>
+    <!-- Placeholder text for search input for selecting country code -->
+    <string name="FindByActivity__search">Издөө</string>
+    <!-- Dialog title for invalid username -->
+    <string name="FindByActivity__invalid_username">Колдонуучунун аты жараксыз</string>
+    <!-- Dialog title for invalid phone number -->
+    <string name="FindByActivity__invalid_phone_number">Телефон номери жараксыз</string>
+    <!-- Dialog title when phone number is not a registered signal user -->
+    <string name="FindByActivity__invite_to_signal">Signal\'га чакыруу</string>
+    <!-- Dialog title when username is not found -->
+    <string name="FindByActivity__username_not_found">Колдонуучунун аты табылган жок</string>
+    <!-- Dialog body for invalid username. Placeholder is the entered username. -->
+    <string name="FindByActivity__s_is_not_a_valid_username">%1$s жараксыз колдонуучунун аты. Колдонуучунун аты эки сан менен аякташы керек.</string>
+    <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
+    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s телефон номери жараксыз. Телефон номерин туура киргизип, кайталап көрүңүз</string>
+    <!-- Dialog body for not found username -->
+    <string name="FindByActivity__s_is_not_a_signal_user">\"%1$s\" Signal колдонуучусу эмес. Колдонуучу атын текшерип, кайталап көрүңүз.</string>
+    <!-- Dialog body for not found phone number -->
+    <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s Signal колдонуучусу эмес. Ушул номерди чакырасызбы?</string>
+    <!-- Dialog action to invite the phone number to Signal -->
+    <string name="FindByActivity__invite">Чакыруу</string>
+    <!-- Button label for a button that will launch a camera to scan a username QR code -->
+    <string name="FindByActivity__qr_scan_button">QR кодун скандоо</string>
+    <!-- Content of a dialog indicating that we could not perform the requested action because we encountered a network error. -->
+    <string name="FindByActivity__network_error_dialog">Байланыш катасы кетти. Бир аздан соң кайталап көрүңүз.</string>
 
     <!-- EOF -->
 </resources>

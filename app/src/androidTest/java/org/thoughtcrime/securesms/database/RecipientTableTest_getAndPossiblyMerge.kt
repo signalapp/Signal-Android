@@ -18,6 +18,7 @@ import org.signal.core.util.Base64
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.exists
 import org.signal.core.util.orNull
+import org.signal.core.util.readToSingleBoolean
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullString
 import org.signal.core.util.select
@@ -40,8 +41,6 @@ import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.FeatureFlags
-import org.thoughtcrime.securesms.util.FeatureFlagsAccessor
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.ServiceId.PNI
@@ -57,7 +56,6 @@ class RecipientTableTest_getAndPossiblyMerge {
     SignalStore.account().setE164(E164_SELF)
     SignalStore.account().setAci(ACI_SELF)
     SignalStore.account().setPni(PNI_SELF)
-    FeatureFlagsAccessor.forceValue(FeatureFlags.PHONE_NUMBER_PRIVACY, true)
   }
 
   @Test
@@ -108,6 +106,18 @@ class RecipientTableTest_getAndPossiblyMerge {
 
       val record = SignalDatabase.recipients.getRecord(id)
       assertEquals(RecipientTable.RegisteredState.REGISTERED, record.registered)
+    }
+
+    test("e164+pni+aci insert, pni verified") {
+      val id = process(E164_A, PNI_A, ACI_A, pniVerified = true)
+      expect(E164_A, PNI_A, ACI_A)
+      expectPniVerified()
+
+      val record = SignalDatabase.recipients.getRecord(id)
+      assertEquals(RecipientTable.RegisteredState.REGISTERED, record.registered)
+
+      process(E164_A, PNI_A, ACI_A, pniVerified = false)
+      expectPniVerified()
     }
   }
 
@@ -164,6 +174,7 @@ class RecipientTableTest_getAndPossiblyMerge {
       expect(E164_A, PNI_A, ACI_A)
 
       expectNoSessionSwitchoverEvent()
+      expectPniVerified()
     }
 
     test("no match, all fields") {
@@ -225,6 +236,8 @@ class RecipientTableTest_getAndPossiblyMerge {
       given(E164_A, PNI_A, null, pniSession = true)
       process(E164_A, PNI_A, ACI_A, pniVerified = true)
       expect(E164_A, PNI_A, ACI_A)
+
+      expectPniVerified()
     }
 
     test("e164 and aci matches, all provided, new pni") {
@@ -694,6 +707,8 @@ class RecipientTableTest_getAndPossiblyMerge {
 
       expectDeleted()
       expect(E164_A, PNI_A, ACI_A)
+
+      expectPniVerified()
     }
 
     test("merge, e164+pni & aci, pni session, pni verified") {
@@ -706,6 +721,7 @@ class RecipientTableTest_getAndPossiblyMerge {
       expect(E164_A, PNI_A, ACI_A)
 
       expectThreadMergeEvent(E164_A)
+      expectPniVerified()
     }
 
     test("merge, e164+pni & e164+pni+aci, change number") {
@@ -760,6 +776,18 @@ class RecipientTableTest_getAndPossiblyMerge {
       expectThreadMergeEvent(E164_A)
     }
 
+    test("merge, e164+pni & e164+aci, pni+aci provided, change number") {
+      given(E164_A, PNI_A, null)
+      given(E164_B, null, ACI_A)
+
+      process(null, PNI_A, ACI_A)
+
+      expect(E164_A, PNI_A, ACI_A)
+
+      expectThreadMergeEvent(E164_A)
+      expectChangeNumberEvent()
+    }
+
     test("merge, e164 + pni reassigned, aci abandoned") {
       given(E164_A, PNI_A, ACI_A)
       given(E164_B, PNI_B, ACI_B)
@@ -770,6 +798,17 @@ class RecipientTableTest_getAndPossiblyMerge {
       expect(E164_A, PNI_A, ACI_B)
 
       expectChangeNumberEvent()
+    }
+
+    test("merge, e164 follows pni+aci") {
+      given(E164_A, PNI_A, null)
+      given(null, null, ACI_A)
+
+      process(null, PNI_A, ACI_A, pniVerified = true)
+
+      expect(E164_A, PNI_A, ACI_A)
+      expectThreadMergeEvent(E164_A)
+      expectPniVerified()
     }
 
     test("local user, local e164 and aci provided, changeSelf=false, leave e164 alone") {
@@ -874,8 +913,8 @@ class RecipientTableTest_getAndPossiblyMerge {
 
     // Thread validation
     assertEquals(threadIdAci, retrievedThreadId)
-    Assert.assertNull(SignalDatabase.threads.getThreadIdFor(recipientIdE164))
-    Assert.assertNull(SignalDatabase.threads.getThreadRecord(threadIdE164))
+    assertNull(SignalDatabase.threads.getThreadIdFor(recipientIdE164))
+    assertNull(SignalDatabase.threads.getThreadRecord(threadIdE164))
 
     // SMS validation
     val sms1: MessageRecord = SignalDatabase.messages.getMessageRecord(smsId1)!!
@@ -919,10 +958,10 @@ class RecipientTableTest_getAndPossiblyMerge {
 
     // Identity validation
     assertEquals(identityKeyAci, SignalDatabase.identities.getIdentityStoreRecord(ACI_A.toString())!!.identityKey)
-    Assert.assertNull(SignalDatabase.identities.getIdentityStoreRecord(E164_A))
+    assertNull(SignalDatabase.identities.getIdentityStoreRecord(E164_A))
 
     // Session validation
-    Assert.assertNotNull(SignalDatabase.sessions.load(ACI_SELF, SignalProtocolAddress(ACI_A.toString(), 1)))
+    assertNotNull(SignalDatabase.sessions.load(ACI_SELF, SignalProtocolAddress(ACI_A.toString(), 1)))
 
     // Reaction validation
     val reactionsSms: List<ReactionRecord> = SignalDatabase.reactions.getReactions(MessageId(smsId1))
@@ -1037,6 +1076,10 @@ class RecipientTableTest_getAndPossiblyMerge {
       if (!test.sessionSwitchoverExpected) {
         test.expectNoSessionSwitchoverEvent()
       }
+
+      if (!test.pniVerifiedExpected) {
+        test.expectPniNotVerified()
+      }
     } catch (e: Throwable) {
       if (e.javaClass != exception) {
         val error = java.lang.AssertionError("[$name] ${e.message}")
@@ -1056,6 +1099,7 @@ class RecipientTableTest_getAndPossiblyMerge {
     var changeNumberExpected = false
     var threadMergeExpected = false
     var sessionSwitchoverExpected = false
+    var pniVerifiedExpected = false
 
     init {
       // Need to delete these first to prevent foreign key crash
@@ -1205,6 +1249,24 @@ class RecipientTableTest_getAndPossiblyMerge {
 
     fun expectNoThreadMergeEvent() {
       assertNull("Unexpected thread merge event!", getLatestThreadMergeEvent(outputRecipientId))
+    }
+
+    fun expectPniVerified() {
+      assertTrue("Expected PNI to be verified!", isPniVerified(outputRecipientId))
+      pniVerifiedExpected = true
+    }
+
+    fun expectPniNotVerified() {
+      assertFalse("Expected PNI to be not be verified!", isPniVerified(outputRecipientId))
+    }
+
+    private fun isPniVerified(recipientId: RecipientId): Boolean {
+      return SignalDatabase.rawDatabase
+        .select(RecipientTable.PNI_SIGNATURE_VERIFIED)
+        .from(RecipientTable.TABLE_NAME)
+        .where("${RecipientTable.ID} = ?", recipientId)
+        .run()
+        .readToSingleBoolean(false)
     }
 
     private fun insert(e164: String?, pni: PNI?, aci: ACI?): RecipientId {

@@ -39,6 +39,9 @@ public final class MiscellaneousValues extends SignalStoreValues {
   private static final String LAST_CONSISTENCY_CHECK_TIME    = "misc.last_consistency_check_time";
   private static final String SERVER_TIME_OFFSET             = "misc.server_time_offset";
   private static final String LAST_SERVER_TIME_OFFSET_UPDATE = "misc.last_server_time_offset_update";
+  private static final String NEEDS_USERNAME_RESTORE         = "misc.needs_username_restore";
+  private static final String LAST_FORCED_PREKEY_REFRESH     = "misc.last_forced_prekey_refresh";
+  private static final String LAST_CDS_FOREGROUND_SYNC       = "misc.last_cds_foreground_sync";
 
   MiscellaneousValues(@NonNull KeyValueStore store) {
     super(store);
@@ -47,6 +50,7 @@ public final class MiscellaneousValues extends SignalStoreValues {
   @Override
   void onFirstEverAppLaunch() {
     putLong(MESSAGE_REQUEST_ENABLE_TIME, 0);
+    putBoolean(NEEDS_USERNAME_RESTORE, true);
   }
 
   @Override
@@ -330,5 +334,44 @@ public final class MiscellaneousValues extends SignalStoreValues {
    */
   public long getLastKnownServerTimeOffsetUpdateTime() {
     return getLong(LAST_SERVER_TIME_OFFSET_UPDATE, 0);
+  }
+
+  /**
+   * Whether or not we should attempt to restore the user's username and link.
+   */
+  public boolean needsUsernameRestore() {
+    return getBoolean(NEEDS_USERNAME_RESTORE, false);
+  }
+
+  public void setNeedsUsernameRestore(boolean value) {
+    putBoolean(NEEDS_USERNAME_RESTORE, value);
+  }
+
+  /**
+   * Set the last time we successfully completed a forced prekey refresh.
+   */
+  public void setLastForcedPreKeyRefresh(long time) {
+    putLong(LAST_FORCED_PREKEY_REFRESH, time);
+  }
+
+  /**
+   * Get the last time we successfully completed a forced prekey refresh.
+   */
+  public long getLastForcedPreKeyRefresh() {
+    return getLong(LAST_FORCED_PREKEY_REFRESH, 0);
+  }
+
+  /**
+   * How long it's been since the last foreground CDS sync, which we do in response to new threads being created.
+   */
+  public long getLastCdsForegroundSyncTime() {
+    return getLong(LAST_CDS_FOREGROUND_SYNC, 0);
+  }
+
+  /**
+   * Set the last time we did a foreground CDS sync.
+   */
+  public void setLastCdsForegroundSyncTime(long time) {
+    putLong(LAST_CDS_FOREGROUND_SYNC, time);
   }
 }

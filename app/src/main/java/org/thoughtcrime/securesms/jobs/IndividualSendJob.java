@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
+import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender.IndividualSendEvents;
@@ -140,6 +141,8 @@ public class IndividualSendJob extends PushSendJob {
   public void onPushSend()
       throws IOException, MmsException, NoSuchMessageException, UndeliverableMessageException, RetryLaterException
   {
+    SignalLocalMetrics.IndividualMessageSend.onJobStarted(messageId);
+
     ExpiringMessageManager expirationManager = ApplicationDependencies.getExpiringMessageManager();
     MessageTable    database              = SignalDatabase.messages();
     OutgoingMessage message               = database.getOutgoingMessage(messageId);
@@ -216,10 +219,19 @@ public class IndividualSendJob extends PushSendJob {
     } catch (ProofRequiredException e) {
       handleProofRequiredException(context, e, SignalDatabase.threads().getRecipientForThreadId(threadId), threadId, messageId, true);
     }
+
+    SignalLocalMetrics.IndividualMessageSend.onJobFinished(messageId);
+  }
+
+  @Override
+  public void onRetry() {
+    SignalLocalMetrics.IndividualMessageSend.cancel(messageId);
+    super.onRetry();
   }
 
   @Override
   public void onFailure() {
+    SignalLocalMetrics.IndividualMessageSend.cancel(messageId);
     SignalDatabase.messages().markAsSentFailed(messageId);
     notifyMediaMessageDeliveryFailed(context, messageId);
   }
@@ -312,7 +324,8 @@ public class IndividualSendJob extends PushSendJob {
         SignalDatabase.messageLog().insertIfPossible(messageRecipient.getId(), message.getSentTimeMillis(), result, ContentHint.RESENDABLE, new MessageId(messageId), false);
         return syncAccess.isPresent();
       } else {
-        SendMessageResult result = messageSender.sendDataMessage(address, UnidentifiedAccessUtil.getAccessFor(context, messageRecipient), ContentHint.RESENDABLE, mediaMessage, IndividualSendEvents.EMPTY, message.isUrgent(), messageRecipient.needsPniSignature());
+        SignalLocalMetrics.IndividualMessageSend.onDeliveryStarted(messageId);
+        SendMessageResult result = messageSender.sendDataMessage(address, UnidentifiedAccessUtil.getAccessFor(context, messageRecipient), ContentHint.RESENDABLE, mediaMessage, new MetricEventListener(messageId), message.isUrgent(), messageRecipient.needsPniSignature());
 
         SignalDatabase.messageLog().insertIfPossible(messageRecipient.getId(), message.getSentTimeMillis(), result, ContentHint.RESENDABLE, new MessageId(messageId), message.isUrgent());
 
@@ -369,6 +382,28 @@ public class IndividualSendJob extends PushSendJob {
   public static long getMessageId(@Nullable byte[] serializedData) {
     JsonJobData data = JsonJobData.deserialize(serializedData);
     return data.getLong(KEY_MESSAGE_ID);
+  }
+  private static class MetricEventListener implements SignalServiceMessageSender.IndividualSendEvents {
+    private final long messageId;
+
+    private MetricEventListener(long messageId) {
+      this.messageId = messageId;
+    }
+
+    @Override
+    public void onMessageEncrypted() {
+      SignalLocalMetrics.IndividualMessageSend.onMessageEncrypted(messageId);
+    }
+
+    @Override
+    public void onMessageSent() {
+      SignalLocalMetrics.IndividualMessageSend.onMessageSent(messageId);
+    }
+
+    @Override
+    public void onSyncMessageSent() {
+      SignalLocalMetrics.IndividualMessageSend.onSyncMessageSent(messageId);
+    }
   }
 
   public static final class Factory implements Job.Factory<IndividualSendJob> {

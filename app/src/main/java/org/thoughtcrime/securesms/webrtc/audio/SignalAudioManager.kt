@@ -44,9 +44,7 @@ sealed class SignalAudioManager(protected val context: Context, protected val ev
   protected val incomingRinger = IncomingRinger(context)
   protected val outgoingRinger = OutgoingRinger(context)
 
-  private val stateChangeUpSoundId = context.assets.openFd("sounds/state-change_confirm-up.ogg").use {
-    soundPool.load(it, 1)
-  }
+  private val stateChangeUpSoundId = soundPool.load(context, R.raw.notification_simple_01, 1)
 
   companion object {
     @JvmStatic

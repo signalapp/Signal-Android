@@ -165,7 +165,9 @@ public final class VideoMediaPreviewFragment extends MediaPreviewFragment {
 
   @Override
   public void setBottomButtonControls(@NonNull MediaPreviewPlayerControlView playerControlView) {
-    videoView.setControlView(playerControlView);
+    if (videoView != null) {
+      videoView.setControlView(playerControlView);
+    }
     updateSkipButtonState();
   }
 

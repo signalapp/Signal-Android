@@ -20,7 +20,7 @@
         app:layout_constraintEnd_toStartOf="@+id/safety_number_change_recipient_name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/ic_contact_picture" />
+        tools:src="@tools:sample/avatars" />
 
     <org.thoughtcrime.securesms.components.FromTextView
         android:id="@+id/safety_number_change_recipient_name"

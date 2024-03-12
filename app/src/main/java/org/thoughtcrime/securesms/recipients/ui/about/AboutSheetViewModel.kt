@@ -30,6 +30,9 @@ class AboutSheetViewModel(
   private val _groupsInCommonCount: MutableIntState = mutableIntStateOf(0)
   val groupsInCommonCount: IntState = _groupsInCommonCount
 
+  private val _verified: MutableState<Boolean> = mutableStateOf(false)
+  val verified: State<Boolean> = _verified
+
   private val recipientDisposable: Disposable = Recipient
     .observable(recipientId)
     .observeOn(AndroidSchedulers.mainThread())
@@ -42,6 +45,13 @@ class AboutSheetViewModel(
     .observeOn(AndroidSchedulers.mainThread())
     .subscribeBy {
       _groupsInCommonCount.intValue = it
+    }
+
+  private val verifiedDisposable: Disposable = repository
+    .getVerified(recipientId)
+    .observeOn(AndroidSchedulers.mainThread())
+    .subscribeBy {
+      _verified.value = it
     }
 
   override fun onCleared() {

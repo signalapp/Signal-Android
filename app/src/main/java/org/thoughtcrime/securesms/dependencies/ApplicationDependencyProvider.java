@@ -136,7 +136,8 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
                                             provideGroupsV2Operations(signalServiceConfiguration).getProfileOperations(),
                                             SignalExecutors.newCachedBoundedExecutor("signal-messages", ThreadUtil.PRIORITY_IMPORTANT_BACKGROUND_THREAD, 1, 16, 30),
                                             ByteUnit.KILOBYTES.toBytes(256),
-                                            FeatureFlags.okHttpAutomaticRetry());
+                                            FeatureFlags.okHttpAutomaticRetry(),
+                                            FeatureFlags.useRxMessageSending());
   }
 
   @Override

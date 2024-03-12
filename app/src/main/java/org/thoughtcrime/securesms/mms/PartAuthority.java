@@ -54,7 +54,7 @@ public class PartAuthority {
 
   static {
     uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-    uriMatcher.addURI(AUTHORITY, "part/*/#", PART_ROW);
+    uriMatcher.addURI(AUTHORITY, "part/#", PART_ROW);
     uriMatcher.addURI(AUTHORITY, "sticker/#", STICKER_ROW);
     uriMatcher.addURI(AUTHORITY, "wallpaper/*", WALLPAPER_ROW);
     uriMatcher.addURI(AUTHORITY, "emoji/*", EMOJI_ROW);
@@ -97,7 +97,7 @@ public class PartAuthority {
     case PART_ROW:
       Attachment attachment = SignalDatabase.attachments().getAttachment(new PartUriParser(uri).getPartId());
 
-      if (attachment != null) return attachment.getFileName();
+      if (attachment != null) return attachment.fileName;
       else                    return null;
     case PERSISTENT_ROW:
       return DeprecatedPersistentBlobProvider.getFileName(context, uri);
@@ -115,7 +115,7 @@ public class PartAuthority {
       case PART_ROW:
         Attachment attachment = SignalDatabase.attachments().getAttachment(new PartUriParser(uri).getPartId());
 
-        if (attachment != null) return attachment.getSize();
+        if (attachment != null) return attachment.size;
         else                    return null;
       case PERSISTENT_ROW:
         return DeprecatedPersistentBlobProvider.getFileSize(context, uri);
@@ -133,7 +133,7 @@ public class PartAuthority {
       case PART_ROW:
         Attachment attachment = SignalDatabase.attachments().getAttachment(new PartUriParser(uri).getPartId());
 
-        if (attachment != null) return attachment.getContentType();
+        if (attachment != null) return attachment.contentType;
         else                    return null;
       case PERSISTENT_ROW:
         return DeprecatedPersistentBlobProvider.getMimeType(context, uri);
@@ -151,7 +151,7 @@ public class PartAuthority {
       case PART_ROW:
         Attachment attachment = SignalDatabase.attachments().getAttachment(new PartUriParser(uri).getPartId());
 
-        if (attachment != null) return attachment.isVideoGif();
+        if (attachment != null) return attachment.videoGif;
         else                    return false;
       default:
         return false;
@@ -174,8 +174,7 @@ public class PartAuthority {
   }
 
   public static Uri getAttachmentDataUri(AttachmentId attachmentId) {
-    Uri uri = Uri.withAppendedPath(PART_CONTENT_URI, String.valueOf(attachmentId.getUniqueId()));
-    return ContentUris.withAppendedId(uri, attachmentId.getRowId());
+    return ContentUris.withAppendedId(PART_CONTENT_URI, attachmentId.id);
   }
 
   public static Uri getAttachmentThumbnailUri(AttachmentId attachmentId) {

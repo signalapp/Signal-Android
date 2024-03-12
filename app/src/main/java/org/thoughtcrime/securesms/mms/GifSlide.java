@@ -14,7 +14,7 @@ public class GifSlide extends ImageSlide {
 
   public GifSlide(Attachment attachment) {
     super(attachment);
-    this.borderless = attachment.isBorderless();
+    this.borderless = attachment.borderless;
   }
 
   public GifSlide(Context context, Uri uri, long size, int width, int height) {

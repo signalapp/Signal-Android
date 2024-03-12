@@ -10,15 +10,19 @@
     android:paddingEnd="@dimen/dsl_settings_gutter"
     android:background="@drawable/rounded_inset_ripple_background">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/invite_image"
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:background="@color/signal_colorSurfaceVariant"
         android:importantForAccessibility="no"
-        android:src="@drawable/ic_new_group_circle"
+        app:srcCompat="@drawable/symbol_group_24"
+        app:contentPadding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Signal.Circle"
+        app:tint="@color/signal_colorOnSecondaryContainer" />
 
     <TextView
         android:id="@+id/invite_text"

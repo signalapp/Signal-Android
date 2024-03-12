@@ -46,7 +46,7 @@
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Ez véglegesen fel fogja oldani a Signalt és az üzenet értesítéseket.</string>
     <string name="ApplicationPreferencesActivity_disable">Letiltás</string>
     <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Letiltod a Signal üzeneteket és hívásokat?</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Signal üzenetek és hívások letiltása a kiszolgálóról történő leregisztrálással. Ha a jövőben újra szeretnéd használni ezeket a szolgáltatásokat, akkor újra kell regisztrálnod telefonszámoddal.</string>
+    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Signal üzenetek és hívások letiltása a kiszolgálóról való leregisztrálással. Ha a jövőben újra szeretnéd használni ezeket a szolgáltatásokat, újra kell regisztrálnod a telefonszámoddal.</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Hiba történt a kiszolgálóhoz történő kapcsolódás során!</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">A regisztrációs zárhoz PIN kódra van szükség. A PIN kód letiltásához előbb ki kell kapcsolni a regisztrációs zárat.</string>
     <string name="ApplicationPreferencesActivity_pin_created">PIN kód létrehozva.</string>
@@ -179,7 +179,18 @@
     <string name="BlockUnblockDialog_unblock_s">Feloldod %1$s tiltását?</string>
     <string name="BlockUnblockDialog_block">Letiltás</string>
     <string name="BlockUnblockDialog_block_and_leave">Tiltás és kilépés</string>
-    <string name="BlockUnblockDialog_report_spam_and_block">Kéretlen üzenet bejelentése és tiltás</string>
+    <!-- Dialog button label to report as spam and block the person -->
+    <string name="BlockUnblockDialog_report_spam_and_block">Jelentés és tiltás</string>
+    <!-- Dialog title for reporting spam -->
+    <string name="BlockUnblockDialog_report_spam_title">Kéretlen üzenet jelentése?</string>
+    <!-- Dialog button to report as spam only -->
+    <string name="BlockUnblockDialog_report_spam">Kéretlen üzenet jelentése</string>
+    <!-- Dialog message when reporting spam of an individual (1:1 conversation) -->
+    <string name="BlockUnblockDialog_report_spam_description">A Signal értesítést kap arról, hogy ez a személy esetleg kéretlen üzeneteket küldözget. A Signal nem látja a csevegések tartalmát.</string>
+    <!-- Dialog message when reporting spam of a group and we can determine the group member that invited you, placeholder is a name -->
+    <string name="BlockUnblockDialog_report_spam_group_named_adder">A Signal értesítést kap arról, hogy %1$s, aki meghívott téged ebbe a csoportba, esetleg kéretlen üzeneteket küldözget. A Signal nem látja a csevegések tartalmát.</string>
+    <!-- Dialog message when reporting spam of a group and we cannot determine the group member that invited you -->
+    <string name="BlockUnblockDialog_report_spam_group_unknown_adder">A Signal értesítést kap arról, hogy az a személy, aki meghívott téged ebbe a csoportba, esetleg kéretlen üzeneteket küldözget. A Signal nem látja a csevegések tartalmát.</string>
 
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">Ma</string>
@@ -415,6 +426,8 @@
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported">A Signal már nem támogatja az SMS-ek küldését.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">A Signal már nem támogatja az SMS-ek küldését. Hívd meg %1$s ismerősöd a Signal-szolgáltatásba, és beszélgessetek itt.</string>
+    <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
+    <string name="ConversationActivity__this_person_is_no_longer_using_signal">This person is no longer using Signal. Invite them to Signal to keep the conversation here.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">Meghívás a Signalra</string>
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
@@ -480,11 +493,11 @@
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Az üzenetet balra húzva gyorsan válaszolhatsz rá</string>
     <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Az egyszer megtekinthető médiafájl elküldés után törlődik</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Ezt az üzenetet már megtekintetted</string>
-    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Ebben a csevegésben írhatsz magadnak jegyzeteket.\nHa a fiókodat más, kapcsolt eszközökkel is használod, az új jegyzetek azokkal is szinkronizálásra kerülnek.</string>
+    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Ebben a csevegésben magadnak hagyhatsz jegyzeteket. Ha a fiókodat más társított eszközökkel is használod, a jegyzetek azokra is átszinkronizálásra kerülnek.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">A csoport %1$d tagjának megegyezik a neve.</string>
     <string name="ConversationFragment__tap_to_review">Koppints az áttekintéshez</string>
-    <string name="ConversationFragment__review_requests_carefully">Gondosan nézd át a kéréseket</string>
-    <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">A Signal talált egy másik, azonos nevű kontaktot.</string>
+    <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
+    <string name="ConversationFragment__review_banner_body">Ennek a személynek ugyanaz a neve, mint ami másik névjegyhez is tartozik</string>
     <string name="ConversationFragment_contact_us">Kapcsolat</string>
     <string name="ConversationFragment_verify">Hitelesítés</string>
     <string name="ConversationFragment_not_now">Később</string>
@@ -510,6 +523,55 @@
     <string name="ConversationFragment__content_description_launch_signal_button">Signal megnyitása</string>
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
     <string name="ConversationFragment__no_longer_verified">Már nem ellenőrzött</string>
+    <!-- Button shown in conversation header when in a message request state and no groups in common to show new message safety tips -->
+    <string name="ConversationFragment_safety_tips">Biztonsági tippek</string>
+    <!-- Menu option to report spam in a conversation -->
+    <string name="ConversationFragment_report_spam">Kéretlen üzenet jelentése</string>
+    <!-- Menu option to block in a conversation -->
+    <string name="ConversationFragment_block">Letiltás</string>
+    <!-- Menu otpion to accept a message request in a conversation -->
+    <string name="ConversationFragment_accept">Elfogadás</string>
+    <!-- Menu option to delete an entire chat in a conversation -->
+    <string name="ConversationFragment_delete_chat">Csevegés törlése</string>
+    <!-- Menu option to unblock in a conversation -->
+    <string name="ConversationFragment_unblock">Tiltás feloldása</string>
+    <!-- Dialog title shown after reporting spam and tapping the conversation item -->
+    <string name="ConversationFragment_reported_spam">Jelentve kéretlen üzenetként</string>
+    <!-- Dialog message shown after reporting spam and tapping the conversation item -->
+    <string name="ConversationFragment_reported_spam_message">A Signal értesítést kap arról, hogy ez a személy esetleg kéretlen üzeneteket küldözget. A Signal nem látja a csevegések tartalmát.</string>
+    <!-- Toast shown after reporting spam and tapping the conversation item -->
+    <string name="ConversationFragment_reported_as_spam">Megjelölve kéretlen üzenetként</string>
+    <!-- Toast shown after reporting and blocking a conversation -->
+    <string name="ConversationFragment_reported_as_spam_and_blocked">Megjelölve kéretlen üzenetként és letiltva</string>
+    <!-- Dialog message shown after accepting a message request and tapping on options from the conversation event -->
+    <string name="ConversationFragment_you_accepted_a_message_request_from_s">Elfogadtad %1$s üzenetkérését. Ha ez hiba volt, alább választhatsz egy műveletet.</string>
+
+    <!-- Title of Safety Tips bottom sheet dialog -->
+    <string name="SafetyTips_title">Biztonsági tippek</string>
+    <!-- Dialog subtitle when showign tips for a 1:1 conversation -->
+    <string name="SafetyTips_subtitle_individual">Legyél óvatos, amikor ismeretlen emberek üzenetkéréseit fogadod el. Vigyázz:</string>
+    <!-- Dialog subtitle when showing tips for a group conversation -->
+    <string name="SafetyTips_subtitle_group">Gondosan nézd át ezt a felkérést. Egyetlen ismerősöd vagy csevegőpartnered sincs ebben a csoportban. Íme néhány dolog, amire érdemes odafigyelni:</string>
+    <!-- Button text to move to the previous tip-->
+    <string name="SafetyTips_previous_tip">Előző tipp</string>
+    <!-- Button text to move to the next tip -->
+    <string name="SafetyTips_next_tip">Következő tipp</string>
+    <!-- Title of tip 1 -->
+    <string name="SafetyTips_tip1_title">Kripto- vagy pénzzel kapcsolatos átverések</string>
+    <!-- Message of tip 1 -->
+    <string name="SafetyTips_tip1_message">Ha valaki, akit nem ismersz, kriptopénzről (például Bitcoinról) vagy pénzügyi lehetőséggel kapcsolatban küld üzenetet, legyél óvatos – valószínűleg kéretlen levélszemetet kaptál.</string>
+    <!-- Title of tip 2 -->
+    <string name="SafetyTips_tip2_title">Homályos vagy irreleváns üzenetek</string>
+    <!-- Message of tip 2 -->
+    <string name="SafetyTips_tip2_message">A kéretlen üzenetek küldői gyakran egy olyan egyszerű üzenettel indítanak, mint például „Szia”, hogy magukhoz vonzzanak téged. Ha válaszolsz, lehet, hogy továbbmennek.</string>
+    <!-- Title of tip 3 -->
+    <string name="SafetyTips_tip3_title">Üzenetek hivatkozásokkal</string>
+    <!-- Message of tip 3 -->
+    <string name="SafetyTips_tip3_message">Legyél óvatos az ismeretlen személyektől érkező, weboldalakra mutató hivatkozásokat tartalmazó üzenetekkel. Soha ne látogass el olyan emberek hivatkozásaira, akikben nem bízol meg.</string>
+    <!-- Title of tip 4 -->
+    <string name="SafetyTips_tip4_title">Hamis vállalkozások és intézmények</string>
+    <!-- Message of tip 4 -->
+    <string name="SafetyTips_tip4_message">Legyél óvatos, ha vállalkozások vagy kormányzati szervek lépnek kapcsolatba veled. Az adóhivatalokat, futárszolgálatokat stb. érintő üzenetek kéretlen üzenetek lehetnek.</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Szűrő törlése</string>
@@ -524,7 +586,10 @@
         <item quantity="other">Ezzel véglegesen törlöd az összes kiválasztott %1$d csevegést.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Törlés</string>
-    <string name="ConversationListFragment_deleting_selected_conversations">Kiválasztott csevegések törlése…</string>
+    <plurals name="ConversationListFragment_deleting_selected_conversations">
+        <item quantity="one">A kiválasztott csevegés törlése…</item>
+        <item quantity="other">A kiválasztott csevegések törlése…</item>
+    </plurals>
     <plurals name="ConversationListFragment_conversations_archived">
         <item quantity="one">Csevegés archiválva</item>
         <item quantity="other">%1$d csevegés archiválva</item>
@@ -562,6 +627,8 @@
     <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">Itt engedélyezheted vagy tilthatod le értesítési profilodat.</string>
     <!-- Message shown in top toast to indicate the named profile is on -->
     <string name="ConversationListFragment__s_on">%1$s bekapcsolva</string>
+    <!-- -->
+    <string name="ConversationListFragment_username_recovered_toast">A QR-kódod és a hivatkozásod visszaállításra került, a felhasználóneved pedig %1$s</string>
 
     <!-- ConversationListItem -->
     <string name="ConversationListItem_key_exchange_message">Kulcs-csere üzenet</string>
@@ -606,9 +673,9 @@
     <!-- Toolbar title for this screen -->
     <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Ki találhat meg a telefonszámom alapján?</string>
     <!-- Description for radio item stating anyone can see your phone number -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">Az összes olyan személy számára megjelensz a Signalon, akinek a névjegyei között szerepelsz. A többiek a telefonszámod használatával kereshetnek meg.</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">Bárki, aki tudja a telefonszámodat, látni fogja, hogy használod a Signalt, és csevegést kezdeményezhet veled.</string>
     <!-- Description for radio item stating no one will be able to see your phone number -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">A Signalon senki nem fog megtalálni a telefonszámod alapján.</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Senki sem láthatja, hogy használod a Signalt, hacsak nem küldesz valakinek üzenetet, vagy nem folytatsz csevegést valakivel.</string>
 
     <!-- ChooseBackupFragment -->
     <string name="ChooseBackupFragment__restore_from_backup">Visszaállítás biztonsági mentésből?</string>
@@ -996,6 +1063,10 @@
     <string name="GroupMentionSettingDialog_dont_notify_me">Sose értesítsen</string>
 
     <!-- ManageProfileFragment -->
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
+    <string name="ManageProfileFragment__your_username">A felhasználóneved, a QR-kódod és a hivatkozásod nem látható a profilodban. Csak olyanokkal oszd meg a felhasználónevedet, akikben megbízol.</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
+    <string name="ManageProfileFragment__username_footer_no_username">Az emberek mostantól üzenetet küldhetnek neked az opcionális felhasználóneveden keresztül, így nem kell megadnod a telefonszámodat. </string>
     <string name="ManageProfileFragment_profile_name">Profilnév</string>
     <string name="ManageProfileFragment_username">Felhasználónév</string>
     <string name="ManageProfileFragment_about">Névjegy</string>
@@ -1019,7 +1090,7 @@
     <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
     <string name="ManageProfileFragment__delete_username_dialog_title">Felhasználónév törlése?</string>
     <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_body">"Ezzel eltávolítod a felhasználónevedet, és érvénytelenné teszed a QR-kódot és a hivatkozást. A(z) „ %1$s” név elérhető lesz más felhasználók számára. Biztos vagy benne?"</string>
+    <string name="ManageProfileFragment__delete_username_dialog_body">"Ezzel eltávolítod a felhasználónevedet, és érvénytelenné teszed a QR-kódot és a hivatkozást. A(z) %1$s név elérhető lesz más felhasználók számára. Biztos vagy benne?"</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
@@ -1283,6 +1354,10 @@
     <string name="MessageRecord_missed_voice_call">Nem fogadott hanghívás</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">Nem fogadott videóhívás</string>
+    <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
+    <string name="MessageRecord_missed_voice_call_notification_profile">Nem fogadott hanghívás, miközben az értesítési profil be van kapcsolva</string>
+    <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
+    <string name="MessageRecord_missed_video_call_notification_profile">Nem fogadott videohívás, miközben az értesítési profil be van kapcsolva</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
     <string name="MessageRecord_you_declined_a_voice_call">Elutasítottál egy hanghívást</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
@@ -1310,9 +1385,11 @@
     </plurals>
 
     <!-- Profile change updates -->
-    <string name="MessageRecord_changed_their_profile_name_to">%1$s megváltoztatta profilnevét erre: %2$s</string>
-    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s megváltoztatta profilnevét. Korábbi név: %2$s, új név: %3$s</string>
+    <string name="MessageRecord_changed_their_profile_name_to">%1$s megváltoztatta a profilnevét %2$s névre.</string>
+    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s megváltoztatta a profilnevét %2$s névről %3$s névre.</string>
     <string name="MessageRecord_changed_their_profile">%1$s megváltoztatta profilját.</string>
+    <!-- Conversation update event message shown when you\'ve started a conversation by phone number or username and then learn their profile name. placeholder is username or phone number -->
+    <string name="MessageRecord_started_this_chat">You started this chat with %1$s.</string>
 
     <!-- GV2 specific -->
     <string name="MessageRecord_you_created_the_group">Létrehoztad a csoportot.</string>
@@ -1525,6 +1602,10 @@
     <string name="MessageRecord__you_can_no_longer_send_sms_messages_in_signal">A továbbiakban nem küldhetsz SMS-eket a Signal-alkalmazásban. Hívd meg %1$s ismerősöd a Signal-szolgáltatásba, és beszélgessetek itt.</string>
     <!-- Body for quote when message being quoted is an in-app payment message -->
     <string name="MessageRecord__payment_s">Fizetés: %1$s</string>
+    <!-- Update message shown in chat after reporting it as spam -->
+    <string name="MessageRecord_reported_as_spam">Megjelölve kéretlen üzenetként</string>
+    <!-- Update message shown in chat after accept a message request -->
+    <string name="MessageRecord_you_accepted_the_message_request">Elfogadtad az üzenetkérést</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Elfogadás</string>
@@ -1571,6 +1652,8 @@
         <item quantity="one">%1$d további csoport</item>
         <item quantity="other">%1$d további csoport</item>
     </plurals>
+    <!-- Button label to report spam for a conversation when in a message request state -->
+    <string name="MessageRequestBottomView_report">Jelentés…</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">A jelmondatok nem egyeznek!</string>
@@ -1579,7 +1662,7 @@
 
     <!-- DeviceProvisioningActivity -->
     <string name="DeviceProvisioningActivity_link_this_device">Társítod ezt a készüléket?</string>
-    <string name="DeviceProvisioningActivity_continue">FOLYTATÁS</string>
+    <string name="DeviceProvisioningActivity_continue">Tovább</string>
 
     <string name="DeviceProvisioningActivity_content_intro">Képes lesz</string>
     <string name="DeviceProvisioningActivity_content_bullets">
@@ -1782,8 +1865,10 @@
     <string name="WebRtcCallView__disconnected">Lecsatlakozva</string>
     <!-- Utilized in the lobby before joining a call link -->
     <string name="WebRtcCallView__signal_call_link">Signal-híváshivatkozás</string>
-    <!-- Warning displayed when entering a call via a link -->
-    <string name="WebRtcCallView__anyone_who_joins">Bárki, aki a hivatkozáson keresztül csatlakozik a híváshoz, látni fogja a nevedet, a fényképedet és a telefonszámodat.</string>
+    <!-- Warning displayed when entering a call via a link and you have Phone Number Privacy disabled-->
+    <string name="WebRtcCallView__anyone_who_joins_pnp_disabled">Bárki, aki a hivatkozáson keresztül csatlakozik a híváshoz, látni fogja a nevedet, a fényképedet és a telefonszámodat.</string>
+    <!-- Warning displayed when entering a call via a link and you have Phone Number Privacy enabled-->
+    <string name="WebRtcCallView__anyone_who_joins_pnp_enabled">Bárki, aki csatlakozik ehhez a híváshoz a linken keresztül, látni fogja a nevedet és a fényképedet.</string>
     <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
     <string name="WebRtcCallView__waiting_to_be_let_in">Beengedésre vár…</string>
 
@@ -1884,7 +1969,11 @@
 
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
-    <string name="AboutSheet__signal_connection">Signal Névjegyek</string>
+    <string name="AboutSheet__signal_connection">Signal Névjegy</string>
+    <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
+    <string name="AboutSheet__verified">Megerősítve</string>
+    <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
+    <string name="AboutSheet__no_direct_message">Nincs közvetlen üzenet %1$s felhasználóval</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s szerepel a rendszernévjegyeid között</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -1892,7 +1981,10 @@
     <!-- Notice when a user is not a connection to review requests carefully -->
     <string name="AboutSheet__review_requests_carefully">Gondosan nézd át a kéréseket</string>
     <!-- Text used when user has groups in common. Placeholder is the count -->
-    <string name="AboutSheet__d_groups_in_common">%1$d db közös csoport</string>
+    <plurals name="AboutSheet__d_groups_in">
+        <item quantity="one">%1$d db közös csoport</item>
+        <item quantity="other">%1$d db közös csoport</item>
+    </plurals>
     <!-- Text displayed in title for external recipients -->
     <string name="AboutSheet__about">Névjegy</string>
     <!-- Text displayed in title for you -->
@@ -2199,21 +2291,25 @@
     <string name="UnverifiedSendDialog_send">Küldés</string>
 
     <!-- UsernameEditFragment -->
+    <!-- Placeholder text for custom discriminator -->
+    <string name="UsernameEditFragment__00">00</string>
     <!-- Toolbar title when entering from registration -->
     <string name="UsernameEditFragment__add_a_username">Felhasználónév hozzáadása</string>
     <!-- Instructional text at the top of the username edit screen -->
-    <string name="UsernameEditFragment__choose_your_username">Válaszd ki a felhasználónevet</string>
+    <string name="UsernameEditFragment__choose_your_username">Válaszd ki a felhasználóneved</string>
     <string name="UsernameEditFragment_username">Felhasználónév</string>
     <string name="UsernameEditFragment_delete">Törlés</string>
     <string name="UsernameEditFragment_successfully_removed_username">A felhasználónév eltávolítása sikeres volt.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Hálózati hiba történt.</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">Túl sok kísérlet történt, kérjük, próbáld meg újra később.</string>
     <string name="UsernameEditFragment_this_username_is_taken">A felhasználónév foglalt.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">A felhasználónevek csak a-Z, 0-9 és alsóvonás karaktereket tartalmazhatnak.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">A felhasználónevek nem kezdődhetnek számmal.</string>
     <string name="UsernameEditFragment_username_is_invalid">A felhasználónév érvénytelen.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">A felhasználóneveknek %1$d és %2$d db karakter közé kell esniük.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">A felhasználónevek segítségével mások üzenetet küldhetnek neked anélkül, hogy szükségük lenne a telefonszámodra. Számjegyekkel vannak párosítva, hogy segítsenek megőrizni a címed privát jellegét.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">A felhasználónevek mindig egy számsorral párosulnak.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">Mi ez a szám?</string>
     <string name="UsernameEditFragment__these_digits_help_keep">Ezek a számok segítenek megőrizni a felhasználóneved privát jellegét, hogy elkerüld a nem kívánt üzeneteket. Csak azokkal az emberekkel és csoportokkal oszd meg a felhasználóneved, akikkel csevegni szeretnél. Ha módosítod a felhasználóneved, új számsort kapsz.</string>
@@ -2221,6 +2317,22 @@
     <string name="UsernameEditFragment__skip">Kihagyás</string>
     <!-- Content description for done button -->
     <string name="UsernameEditFragment__done">Befejezés</string>
+    <!-- Displayed when the chosen discriminator is not available for the given nickname -->
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">Ez a felhasználónév nem érhető el, próbálkozz egy másik számmal.</string>
+    <!-- Displayed when the chosen discriminator is too short -->
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Érvénytelen felhasználónév, adj meg legalább %1$d számjegyet.</string>
+    <!-- Displayed when the chosen discriminator is too long -->
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Érvénytelen felhasználónév, legfeljebb %1$d számjegyet adj meg.</string>
+    <!-- Displayed when the chosen discriminator is 00 -->
+    <string name="UsernameEditFragment__this_number_cant_be_00">Ez a szám nem lehet 00. Írj be egy számjegyet 1 és 9 között</string>
+    <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">A 2-nél több számjegyből álló számok nem kezdődhetnek 0-val</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
+    <string name="UsernameEditFragment_recovery_dialog_confirmation">A felhasználónév helyreállítása visszaállítja a meglévő QR-kódot és hivatkozást. Biztos vagy benne?</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
+    <string name="UsernameEditFragment_change_confirmation_message">A felhasználónév módosítása visszaállítja a meglévő QR-kódot és hivatkozást. Biztos vagy benne?</string>
+    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
+    <string name="UsernameEditFragment_continue">Tovább</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d ismerős már elérhető Signalon!</item>
@@ -2407,6 +2519,26 @@
     <!-- Notification subtext for group stories -->
     <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s · Történet</string>
 
+    <!-- NewWaysToConnectDialogFragment -->
+    <!-- Fragment title, displayed at the top of the content -->
+    <string name="NewWaysToConnectDialogFragment__new_ways_to_connect">Új csatlakozási módok</string>
+    <!-- Row item title for phone number privacy explainer -->
+    <string name="NewWaysToConnectDialogFragment__phone_number_privacy">Telefonszám-védelem</string>
+    <!-- Row item description for phone number privacy explainer -->
+    <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">A telefonszámod többé nem kerül megosztásra a csevegőpartnereiddel. Ha a telefonszámodat elmentette egy ismerősöd a névjegyei közé, ő továbbra is látni fogja.</string>
+    <!-- Row item title for usernames explainer -->
+    <string name="NewWaysToConnectDialogFragment__usernames">Felhasználónevek</string>
+    <!-- Row item description for usernames explainer -->
+    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">Az emberek mostantól üzenetet küldhetnek neked az opcionális felhasználóneveden keresztül, így nem kell megadnod a telefonszámodat. A felhasználónevek nem láthatók a profilodban.</string>
+    <!-- Row item title for qr code and links explainer -->
+    <string name="NewWaysToConnectDialogFragment__qr_codes_and_links">QR-kódok és linkek</string>
+    <!-- Row item description for qr code and links explainer -->
+    <string name="NewWaysToConnectDialogFragment__usernames_have_a_unique_qr_code">A felhasználónevek egyedi QR-kóddal és linkkel rendelkeznek, amelyet megoszthatsz a barátaiddal, hogy gyorsan cseveghess velük.</string>
+    <!-- Button label for not right now -->
+    <string name="NewWaysToConnectDialogFragment__not_now">Később</string>
+    <!-- Button label for continue -->
+    <string name="NewWaysToConnectDialogFragment__set_up_your_username">Felhasználónév beállítása</string>
+
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">Videó lejátszása</string>
     <string name="ThumbnailView_Has_a_caption_description">Felirattal rendelkezik</string>
@@ -2420,6 +2552,8 @@
     <string name="TransferControlView__processing">Feldolgozás…</string>
     <!-- Status update label used while the device is transmitting data over the network. Will take the form of "1.0 MB/2.0 MB" -->
     <string name="TransferControlView__download_progress">%1$1.1f MB/%2$2.1f MB</string>
+    <!-- Attachment file size label for not-yet-downloaded images and video. Will take the form of "1.0 MB" -->
+    <string name="TransferControlView__filesize">%1$1.1f MB</string>
 
 
     <!-- UnauthorizedReminder -->
@@ -2510,7 +2644,7 @@
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">A Signalnak szüksége van a Névjegyek engedélyre annak érdekében, hogy megjelenítse a névjegyeid, de ez jelenleg nincs megadva. Kérlek menj az alkalmazásbeállításokhoz, válaszd az \"Engedélyek\"-et és engedélyezd a \"Névjegyek\"-et.</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Hiba történt a névjegyek betöltése során, ellenőrizd a hálózati kapcsolatod</string>
     <string name="ContactSelectionListFragment_username_not_found">A felhasználónév nem található</string>
-    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" nem Signal felhasználó. Kérlek ellenőrizd a felhasználónevet, majd próbáld újra."</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s nem Signal-felhasználó. Kérjük, ellenőrizd a felhasználónevet, majd próbáld újra."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Nem szükséges saját magadat a csoporthoz adnod</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">A csoport elérte maximális taglétszámát</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">A Signal csoportok legfeljebb %1$d tagból állhatnak.</string>
@@ -2520,6 +2654,10 @@
         <item quantity="one">%1$d tag</item>
         <item quantity="other">%1$d tag</item>
     </plurals>
+    <!-- Text on row item to find user by phone number -->
+    <string name="ContactSelectionListFragment__find_by_phone_number">Keresés telefonszám alapján</string>
+    <!-- Text on row item to find user by username -->
+    <string name="ContactSelectionListFragment__find_by_username">Keresés felhasználónév alapján</string>
 
     <!-- contact_selection_list_fragment -->
     <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">A Signalnak szüksége van a névjegyeidhez való hozzáférésre annak érdekében, hogy megjelenítse őket.</string>
@@ -2591,6 +2729,8 @@
     <string name="ConversationUpdateItem_activate_payments">Fizetések aktiválása</string>
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">Eltávolítottad ezt a személyt. Ha újból üzenetet küldesz neki, újra felveszed a listádra.</string>
+    <!-- Update item button text shown for the accepted message request update message -->
+    <string name="ConversationUpdateItem_options">Opciók</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Lejátszás … Szünet</string>
@@ -3745,13 +3885,27 @@
     <!-- Subtext below option to launch into phone number privacy settings screen -->
     <string name="preferences_app_protection__choose_who_can_see">Válaszd ki, hogy ki láthatja a telefonszámod, és ki léphet kapcsolatba veled a Signalon keresztül.</string>
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
-    <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Ki láthatja a telefonszámomat?</string>
-    <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">A Signalon senki nem láthatja a telefonszámod</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">Ki láthatja a telefonszámomat?</string>
+    <!-- Subtext below radio buttons when who can see my number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">A telefonszámod az összes olyan személy vagy csoport számára látható lesz, akinek üzenetet küldesz.</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">A telefonszámod nem lesz látható senki számára, kivéve, ha az illető elmentette azt a telefonja névjegyzékébe.</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">A telefonszámod nem lesz látható senki számára.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
-    <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Ki találhat meg a telefonszámom szerint?</string>
-    <!-- Subtext below radio buttons when who can see my number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">Telefonszámod látható lesz az ismerősök és csoportok számára, akikkel üzenetet váltasz. Azoknál, akinél szerepelsz készülékük kontaktlistájában, megjelensz Signal kontakjaik között is.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Ki találhat meg a telefonszámom szerint?</string>
+    <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">Bárki, aki tudja a telefonszámodat, látni fogja, hogy használod a Signalt, és csevegést kezdeményezhet veled.</string>
+    <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">Senki sem láthatja, hogy használod a Signalt, hacsak nem küldesz valakinek üzenetet, vagy nem folytatsz csevegést valakivel.</string>
+    <!-- Snackbar text when pressing invalid radio item -->
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"A beállítás módosításához állítsd a „Ki láthatja a telefonszámomat” „Senki” lehetőségre."</string>
+    <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Biztos vagy benne?</string>
+    <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Setting \"Who can find me by number\" to \"Nobody\" will make it harder for people to find you on Signal.</string>
+    <!-- Dialog button text for canceling change action -->
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">Mégse</string>
     <string name="PhoneNumberPrivacy_everyone">Mindenki</string>
     <string name="PhoneNumberPrivacy_nobody">Senki</string>
     <string name="preferences_app_protection__screen_lock">Képernyőzár</string>
@@ -3780,6 +3934,8 @@
     <string name="prompt_passphrase_activity__signal_is_locked">Signal zárolva</string>
     <string name="prompt_passphrase_activity__tap_to_unlock">KOPPINTS A FELOLDÁSHOZ</string>
     <string name="Recipient_unknown">Ismeretlen</string>
+    <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
+    <string name="Recipient_deleted_account">Fiók törlése</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
     <string name="preferences_account_reregister">Fiók újraregisztrálása</string>
@@ -3982,8 +4138,10 @@
     <string name="BlockedUsersActivity__s_has_been_unblocked">„%1$s” letiltása feloldva.</string>
 
     <!-- ReviewCardDialogFragment -->
+    <!-- Title of a screen where the user will be prompted to review group members with the same name -->
     <string name="ReviewCardDialogFragment__review_members">Tagok áttekintése</string>
-    <string name="ReviewCardDialogFragment__review_request">Kérések áttekintése</string>
+    <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
+    <string name="ReviewCardDialogFragment__review_request">Kérés áttekintése</string>
     <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d csoporttagnak ugyanaz a neve. Tekintsd át a listájukat, és dönts a továbbiakról!</string>
     <string name="ReviewCardDialogFragment__if_youre_not_sure">Ha nem vagy benne biztos, hogy kitől is érkezett a kérés, akkor tekintsd át az alábbi kontaktokat döntés előtt!</string>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">Nincs egyéb közös csoportotok.</string>
@@ -4008,7 +4166,7 @@
     <string name="ReviewCard__block">Letiltás</string>
     <string name="ReviewCard__delete">Törlés</string>
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
-    <string name="ReviewCard__s_recently_changed">%1$s a közelmúltban megváltoztatta a profilnevét. Régi név: %2$s, új név: %3$s</string>
+    <string name="ReviewCard__s_recently_changed">%1$s a közelmúltban megváltoztatta a profilnevét %2$s névről %3$s névre</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
     <string name="ReviewCard__s_is_in_your_system_contacts">%1$s szerepel a rendszernévjegyeid között</string>
 
@@ -4245,11 +4403,16 @@
     <string name="GroupDescriptionDialog__group_description">Csoportleírás</string>
 
     <!-- QualitySelectorBottomSheetDialog -->
+    <!-- Label for our standard quality media conversion. -->
     <string name="QualitySelectorBottomSheetDialog__standard">Normál</string>
+    <!-- Description for our standard quality media conversion. -->
     <string name="QualitySelectorBottomSheetDialog__faster_less_data">Gyorsabb, kevesebb adat</string>
+    <!-- Label for our high quality media conversion. This has better quality than standard. -->
     <string name="QualitySelectorBottomSheetDialog__high">Magas</string>
+    <!-- Label for our high quality media conversion. This has better quality than standard. -->
     <string name="QualitySelectorBottomSheetDialog__slower_more_data">Lassabb, több adat</string>
-    <string name="QualitySelectorBottomSheetDialog__photo_quality">Fotóminőség</string>
+    <!-- Title heading for our media conversion quality selector. -->
+    <string name="QualitySelectorBottomSheetDialog__media_quality">Médiafájl minősége</string>
 
     <!-- AppSettingsFragment -->
     <string name="AppSettingsFragment__invite_your_friends">Hívd meg barátaidat!</string>
@@ -4308,7 +4471,7 @@
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Itt a Signal által regisztrált, aktuálisan használt telefonszámodat változtathatod meg egy másikra. Ez a művelet nem vonható vissza.\n\nKezdés előtt győződj meg róla, hogy az új számon tudsz SMS-t, vagy hívást fogadni!</string>
     <string name="ChangeNumberFragment__continue">Folytatás</string>
     <!-- Message shown on dialog after your number has been changed successfully. -->
-    <string name="ChangeNumber__your_phone_number_has_changed_to_s">Telefonszámod megváltozott erre: %1$s</string>
+    <string name="ChangeNumber__your_phone_number_has_changed_to_s">Telefonszámod megváltozott a(z) %1$s telefonszámra</string>
     <!-- Confirmation button to dismiss number changed dialog -->
     <string name="ChangeNumber__okay">OK</string>
 
@@ -4331,7 +4494,7 @@
 
     <!-- ChangeNumberConfirmFragment -->
     <string name="ChangeNumberConfirmFragment__change_number">Szám megváltoztatása</string>
-    <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Telefonszámod megváltoztatására készülsz erről: %1$s erre: %2$s.\n\nMielőtt nekikezdenénk, kérjük ellenőrizd, hogy a megfelelő számot adtad-e meg!</string>
+    <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Telefonszámod megváltoztatására készülsz. Régi telefonszám: %1$s, új telefonszám: %2$s.\n\nMielőtt nekikezdenénk, kérjük ellenőrizd, hogy a megfelelő számot adtad-e meg!</string>
     <string name="ChangeNumberConfirmFragment__edit_number">Szám szerkesztése</string>
 
     <!-- ChangeNumberRegistrationLockFragment -->
@@ -4364,27 +4527,6 @@
     <!-- ChatsSettingsFragment -->
     <string name="ChatsSettingsFragment__keyboard">Billentyűzet</string>
     <string name="ChatsSettingsFragment__enter_key_sends">Küldés az Enter lenyomásával</string>
-
-    <!--SmsSettingsFragment -->
-    <string name="SmsSettingsFragment__use_as_default_sms_app">Alapértelmezett SMS alkalmazás</string>
-    <!-- Preference title to export sms -->
-    <string name="SmsSettingsFragment__export_sms_messages">SMS-ek exportálása</string>
-    <!-- Preference title to re-export sms -->
-    <string name="SmsSettingsFragment__export_sms_messages_again">SMS-ek újbóli exportálása</string>
-    <!-- Preference title to delete sms -->
-    <string name="SmsSettingsFragment__remove_sms_messages">SMS-ek eltávolítása</string>
-    <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">SMS-ek eltávolítása a Signalból…</string>
-    <!-- Snackbar text to indicate can delete later -->
-    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">Bármikor eltávolíthatod az SMS-eket a Signalból a Beállításokban.</string>
-    <!-- Description for export sms preference -->
-    <string name="SmsSettingsFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">SMS-eidet a telefonod SMS-adatbázisába exportálhatod</string>
-    <!-- Description for re-export sms preference -->
-    <string name="SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages">Az újbóli exportálás duplikált üzeneteket eredményezhet.</string>
-    <!-- Description for remove sms preference -->
-    <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">Tárhely felszabadításához eltávolíthatod az SMS-eket a Signalból.</string>
-    <!-- Information message shown at the top of sms settings to indicate it is being removed soon. -->
-    <string name="SmsSettingsFragment__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging">Az SMS-támogatás hamarosan megszűnik, hogy a titkosított üzenetküldésre összpontosíthassunk.</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Üzenetek</string>
@@ -4594,7 +4736,7 @@
     <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
     <string name="ConversationSettingsFragment__conversation_muted_until_s">A csevegés némítva eddig: %1$s</string>
     <string name="ConversationSettingsFragment__conversation_muted_forever">A csevegés örökre elnémítva</string>
-    <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefonszám másolva a vágólapra.</string>
+    <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefonszám átmásolva a vágólapra.</string>
     <string name="ConversationSettingsFragment__phone_number">Telefonszám</string>
     <string name="ConversationSettingsFragment__get_badges">Szerezz jelvényeket a profilképedre a Signal támogatásával. Koppints az egyik jelvényre a további tudnivalókért!</string>
 
@@ -4746,6 +4888,28 @@
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">Egy vagy több elem túl nagy méretű</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">Egy vagy több elem érvénytelen formátumú</string>
     <string name="MediaReviewFragment__too_many_items_selected">Túl sok kijelölt elem</string>
+    <!-- Small notification presented to the user when they set their video to view-once mode -->
+    <string name="MediaReviewFragment__video_set_to_view_once">Video set to view once</string>
+    <!-- Small notification presented to the user when they set their photo to view-once mode -->
+    <string name="MediaReviewFragment__photo_set_to_view_once">Photo set to view once</string>
+    <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
+    <string name="MediaReviewFragment__video_set_to_high_quality">Video set to high quality</string>
+    <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
+    <string name="MediaReviewFragment__video_set_to_standard_quality">Video set to standard quality</string>
+    <!-- Small notification presented to the user when they set their still image to be sent in high visual quality. -->
+    <string name="MediaReviewFragment__photo_set_to_high_quality">Photo set to high quality</string>
+    <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
+    <string name="MediaReviewFragment__photo_set_to_standard_quality">Photo set to standard quality</string>
+    <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
+    <plurals name="MediaReviewFragment__items_set_to_high_quality">
+        <item quantity="one">%1$d item set to high quality</item>
+        <item quantity="other">%1$d items set to high quality</item>
+    </plurals>
+    <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
+    <plurals name="MediaReviewFragment__items_set_to_standard_quality">
+        <item quantity="one">%1$d item set to standard quality</item>
+        <item quantity="other">%1$d items set to standard quality</item>
+    </plurals>
 
     <string name="ImageEditorHud__cancel">Mégsem</string>
     <string name="ImageEditorHud__draw">Rajz</string>
@@ -4769,6 +4933,20 @@
     <string name="MediaReviewImagePageFragment__discard">Elvetés</string>
     <string name="MediaReviewImagePageFragment__discard_changes">Elveted a változásokat?</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Elvesztesz minden változtatást, amit ezen a fotón csináltál.</string>
+
+    <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
+    <string name="MediaCaptureFragment_username_dialog_title">Found %1$s</string>
+    <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
+    <string name="MediaCaptureFragment_username_dialog_body">Start a chat with \"%1$s\"</string>
+    <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
+    <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">Ugrás a csevegéshez</string>
+
+    <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+    <string name="MediaCaptureFragment_device_link_dialog_title">Link device?</string>
+    <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+    <string name="MediaCaptureFragment_device_link_dialog_body">It looks like you\'re trying to link a Signal device. Tap continue and scan the code again to link it.</string>
+    <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
+    <string name="MediaCaptureFragment_device_link_dialog_continue">Tovább</string>
 
 
     <string name="BadgesOverviewFragment__my_badges">Jelvényeim</string>
@@ -4868,7 +5046,7 @@
     <!-- Displayed as a subtitle on a row in the Manage Donations screen when payment for a donation is pending -->
     <string name="MySupportPreference__payment_pending">Fizetés függőben</string>
     <!-- Displayed as a dialog message when clicking on a donation row that is pending. Placeholder is a formatted fiat amount -->
-    <string name="MySupportPreference__your_bank_transfer_of_s">%1$s összegű banki átutalásod függőben van. A banki átutalások általában 1 munkanapot vesznek igénybe.  </string>
+    <string name="MySupportPreference__your_bank_transfer_of_s">Your bank transfer of %1$s is pending. Bank transfers can take 1 to 14 business days to complete.  </string>
     <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
     <string name="MySupportPreference__learn_more">Tudj meg többet</string>
 
@@ -5066,6 +5244,12 @@
     <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">Add hozzá azokat azokat a személyeket és csoportokat, akiktől szeretnél értesítéseket és hívásokat fogadni olyankor, amikor a profil aktív!</string>
     <!-- Button text that launches the contact picker to select from -->
     <string name="AddAllowedMembers__add_people_or_groups">Személyek vagy csoportok hozzáadása</string>
+    <!-- Title for exceptions section of add people to notification profile screen in create flow -->
+    <string name="AddAllowedMembers__exceptions">Kivételek</string>
+    <!-- List preference to toggle that allows calls through the notification profile during create flow -->
+    <string name="AddAllowedMembers__allow_all_calls">Összes hívás engedélyezése</string>
+    <!-- List preference to toggle that allows mentions through the notification profile during create flow -->
+    <string name="AddAllowedMembers__notify_for_all_mentions">Értesítsen az összes említés esetén</string>
 
     <!-- Call to action button on contact picker for adding to profile -->
     <string name="SelectRecipientsFragment__add">Hozzáadás</string>
@@ -5349,7 +5533,7 @@
     <string name="MyStorySettingsFragment__who_can_view_this_story">Ki tekintheti meg ezt a Történetet?</string>
     <!-- Clickable option for selecting people to hide your story from -->
     <!-- Privacy setting title for sending stories to all your signal connections -->
-    <string name="MyStorySettingsFragment__all_signal_connections">Minden Signal-névjegy</string>
+    <string name="MyStorySettingsFragment__all_signal_connections">Minden Signal Névjegy</string>
     <!-- Privacy setting description for sending stories to all your signal connections -->
     <!-- Privacy setting title for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__all_except">Mindenki, kivéve…</string>
@@ -5378,15 +5562,15 @@
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Reakciók és válaszok engedélyezése azok számára, akik megtekinthetik a Történetet</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
-    <string name="SignalConnectionsBottomSheet___signal_connections">Signal-névjegyek</string>
+    <string name="SignalConnectionsBottomSheet___signal_connections">Signal Névjegyek</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
-    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">A Signal-névjegyek olyan személyek, akikkel kapcsolatban úgy döntöttél, hogy megbízol a következők valamelyike által:</string>
+    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">A Signal Névjegyek olyan személyek, akikkel kapcsolatban úgy döntöttél, hogy megbízol a következők valamelyike által:</string>
     <!-- Signal connections sheet bullet point 1 -->
     <string name="SignalConnectionsBottomSheet__starting_a_conversation">Csevegés indítása</string>
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Elfogadtál tőlük egy felkérést</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Szerepelnek a telefonkönyvedben</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Szerepelnek a rendszernévjegyeid között</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"A névjegyeid megtekinthetik a neved, a profilképedet, valamint a „Történeteim” szekcióba posztoltakat, kivéve ha kifejezetten elrejtetted azokat előlük."</string>
     <!-- Clickable option to add a viewer to a custom story -->
@@ -5680,8 +5864,8 @@
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Minden névjegy ellenőrzése megtörtént, a folytatáshoz koppints a Küldés gombra.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
     <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
-        <item quantity="one">Van %1$d olyan névjegyed, aki újratelepítette a Signalt, vagy eszközt cserélt. Mielőtt megosztanád velük a Történeted, vess egy pillantást a biztonsági számukra, vagy akár ki is zárhatod őket a Történet megtekintéséből.</item>
-        <item quantity="other">%1$d olyan névjegyed van, aki újratelepítette a Signalt vagy eszközt cserélt. Mielőtt megosztanád velük a Történeted, vess egy pillantást a biztonsági számukra, vagy akár ki is zárhatod őket a Történet megtekintéséből.</item>
+        <item quantity="one">Lehet, hogy %1$d névjegyed újratelepítette a Signalt, vagy eszközt cserélt. Megnézheted a biztonsági számát, vagy folytathatod a küldést.</item>
+        <item quantity="other">Lehet, hogy %1$d névjegyed újratelepítette a Signalt, vagy eszközt cserélt. Megnézheted a biztonsági számát, vagy folytathatod a küldést.</item>
     </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Bizt. szám ellenőrzése</string>
@@ -5714,7 +5898,7 @@
     <!-- Subtitle of initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Válaszd ki, ki láthatja a Történeteidet. Ezeket a beállításokat bármikor módosíthatod.</string>
     <!-- All connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Minden Signal-névjegy</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Minden Signal Névjegy</string>
     <!-- All connections except option for initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__all_except">Mindenki, kivéve…</string>
     <!-- Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
@@ -5770,48 +5954,6 @@
     <!-- Generic title for overflow menus -->
     <string name="OverflowMenu__overflow_menu">További opciók menü</string>
 
-    <!-- SMS Export Service -->
-    <!-- Displayed in the notification while export is running -->
-    <string name="SignalSmsExportService__exporting_messages">Üzenetek exportálása…</string>
-    <!-- Displayed in the notification title when export completes -->
-    <string name="SignalSmsExportService__signal_sms_export_complete">A Signal SMS-exportálása befejeződött</string>
-    <!-- Displayed in the notification message when export completes -->
-    <string name="SignalSmsExportService__tap_to_return_to_signal">A Signalba való visszatéréshez koppints</string>
-
-    <!-- ExportYourSmsMessagesFragment -->
-    <!-- Title of the screen -->
-    <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">SMS-ek exportálása</string>
-    <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">SMS-eidet exportálhatod a telefonod SMS-adatbázisába, és lehetőséged van megőrizni vagy eltávolítani őket a Signalból. Ez lehetővé teszi a telefonon lévő többi SMS-alkalmazás számára, hogy hozzáférjen és importálja őket. Ez nem hoz létre megosztható fájlt az SMS-előzményekből.</string>
-    <!-- Button label to begin export -->
-    <string name="ExportYourSmsMessagesFragment__continue">Folytatás</string>
-
-    <!-- ExportingSmsMessagesFragment -->
-    <!-- Title of the screen -->
-    <string name="ExportingSmsMessagesFragment__exporting_sms_messages">SMS-ek exportálása</string>
-    <!-- Message of the screen when exporting sms messages -->
-    <string name="ExportingSmsMessagesFragment__this_may_take_awhile">Ez eltarthat egy ideig</string>
-    <!-- Progress indicator for export -->
-    <plurals name="ExportingSmsMessagesFragment__exporting_d_of_d">
-        <item quantity="one">%1$d/%2$d exportálása…</item>
-        <item quantity="other">%1$d/%2$d exportálása…</item>
-    </plurals>
-    <!-- Alert dialog title shown when we think a user may not have enough local storage available to export sms messages -->
-    <string name="ExportingSmsMessagesFragment__you_may_not_have_enough_disk_space">Lehet, hogy nincs elég lemezterület</string>
-    <!-- Alert dialog message shown when we think a user may not have enough local storage available to export sms messages, placeholder is the file size, e.g., 128kB -->
-    <string name="ExportingSmsMessagesFragment__you_need_approximately_s_to_export_your_messages_ensure_you_have_enough_space_before_continuing">Az üzenetek exportálásához körülbelül %1$s tárhelyre van szükséged. Folytatás előtt ellenőrizd, hogy elegendő tárhely áll-e rendelkezésre.</string>
-    <!-- Alert dialog button to continue with exporting sms after seeing the lack of storage warning -->
-    <string name="ExportingSmsMessagesFragment__continue_anyway">Mindenképp folytatom</string>
-    <!-- Dialog text shown when Signal isn\'t granted the sms permission needed to export messages, different than being selected as the sms app -->
-    <string name="ExportingSmsMessagesFragment__signal_needs_the_sms_permission_to_be_able_to_export_your_sms_messages">Az SMS-ek exportálásához a Signalnak szüksége van az SMS-ekhez való hozzáférés engedélyezésére.</string>
-
-    <!-- ChooseANewDefaultSmsAppFragment -->
-    <!-- Title of the screen -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_a_new">Válassz egy új alapértelmezett SMS-alkalmazást</string>
-    <!-- Button label to launch picker -->
-    <string name="ChooseANewDefaultSmsAppFragment__continue">Folytatás</string>
-    <!-- Button label for when done with changing default SMS app -->
-    <string name="ChooseANewDefaultSmsAppFragment__done">Befejezés</string>
     <!-- First step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_1">1</string>
     <!-- Second step number/bullet for choose new default sms app instructions -->
@@ -5820,47 +5962,6 @@
     <string name="ChooseANewDefaultSmsAppFragment__bullet_3">3</string>
     <!-- Fourth step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_4">4</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">Az „Alapértelmezett alkalmazások” képernyő megnyitásához koppints a „Folytatás” gombra a Beállításokban</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">Válaszd ki a listából az „SMS-alkalmazást”</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">Válassz egy másik alkalmazást az SMS-ezéshez</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Vissza a Signalra</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">Nyisd meg a telefonod Beállítások alkalmazását</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">Keresd meg az „Alkalmazások” &gt; „Alapértelmezett alkalmazások” &gt; „SMS-alkalmazás” lehetőséget</string>
-
-    <!-- RemoveSmsMessagesDialogFragment -->
-    <!-- Action button to keep messages -->
-    <string name="RemoveSmsMessagesDialogFragment__keep_messages">Üzenetek megőrzése</string>
-    <!-- Action button to remove messages -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_messages">Üzenetek eltávolítása</string>
-    <!-- Title of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">SMS-ek eltávolítása a Signalból?</string>
-    <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Tárhely felszabadításához mostantól eltávolíthatod az SMS-eket a Signalból. Akkor is elérhetők maradnak a telefonodon lévő többi SMS-alkalmazás számára, ha eltávolítod őket.</string>
-
-    <!-- ReExportSmsMessagesDialogFragment -->
-    <!-- Action button to re-export messages -->
-    <string name="ReExportSmsMessagesDialogFragment__continue">Folytatás</string>
-    <!-- Action button to cancel re-export process -->
-    <string name="ReExportSmsMessagesDialogFragment__cancel">Mégse</string>
-    <!-- Title of dialog -->
-    <string name="ReExportSmsMessagesDialogFragment__export_sms_again">SMS újbóli exportálása?</string>
-    <!-- Message of dialog -->
-    <string name="ReExportSmsMessagesDialogFragment__you_already_exported_your_sms_messages">Már exportáltad az SMS-eket.\nFIGYELMEZTETÉS: Ha folytatod, lehetséges, hogy duplikálva lesznek az üzenetek.</string>
-
-    <!-- SetSignalAsDefaultSmsAppFragment -->
-    <!-- Title of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Állítsd be a Signalt alapértelmezett SMS-alkalmazásként</string>
-    <!-- Message of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">Az SMS-ek exportálásához be kell állítanod a Signal-alkalmazást alapértelmezett SMS-alkalmazásként.</string>
-    <!-- Button label to start export -->
-    <string name="SetSignalAsDefaultSmsAppFragment__next">Tovább</string>
-
     <!-- BackupSchedulePermission Megaphone -->
     <!-- The title on an alert window that explains to the user that we are unable to backup their messages -->
     <string name="BackupSchedulePermissionMegaphone__cant_back_up_chats">A csevegésekről nem lehet biztonsági mentést készíteni</string>
@@ -5879,45 +5980,6 @@
     <!-- Re-enable backups permission bottom sheet call to action button to open settings -->
     <string name="BackupSchedulePermissionMegaphone__go_to_settings">Ugrás a Beállításokhoz</string>
 
-    <!-- SmsExportMegaphoneActivity -->
-    <!-- Phase 2 title of full screen megaphone indicating sms will no longer be supported in the near future -->
-    <string name="SmsExportMegaphoneActivity__signal_will_no_longer_support_sms">A Signal többé nem támogatja az SMS-eket</string>
-    <!-- Phase 3 title of full screen megaphone indicating sms is longer supported  -->
-    <string name="SmsExportMegaphoneActivity__signal_no_longer_supports_sms">A Signal többé nem támogatja az SMS-eket</string>
-    <!-- The text on a button in a popup that, when clicked, will dismiss the popup and schedule the prompt to occur at a later time. -->
-    <string name="SmsExportMegaphoneActivity__remind_me_later">Emlékeztess később</string>
-    <!-- The text on a button in a popup that, when clicked, will navigate the user to a web article on SMS removal -->
-
-    <!-- Title for screen shown after sms export has completed -->
-    <string name="ExportSmsCompleteFragment__export_complete">Exportálás kész</string>
-    <!-- Button to continue to next screen -->
-    <string name="ExportSmsCompleteFragment__next">Tovább</string>
-    <!-- Message showing summary of sms export counts -->
-    <plurals name="ExportSmsCompleteFragment__d_of_d_messages_exported">
-        <item quantity="one">%1$d/%2$d üzenet exportálva</item>
-        <item quantity="other">%1$d/%2$d üzenet exportálva</item>
-    </plurals>
-
-    <!-- Title of screen shown when some sms messages did not export -->
-    <string name="ExportSmsPartiallyComplete__export_partially_complete">Exportálás részben kész</string>
-    <!-- Debug step 1 on screen shown when some sms messages did not export -->
-    <string name="ExportSmsPartiallyComplete__ensure_you_have_an_additional_s_free_on_your_phone_to_export_your_messages">Az üzenetek exportálásához ellenőrizd, hogy van-e további %1$s üres tárhely a telefonodon</string>
-    <!-- Debug step 2 on screen shown when some sms messages dit not export -->
-    <string name="ExportSmsPartiallyComplete__retry_export_which_will_only_retry_messages_that_have_not_yet_been_exported">Próbáld újra az exportálást, amely csak a még nem exportált üzenetekkel próbálkozik újra</string>
-    <!-- Partial sentence for Debug step 3 on screen shown when some sms messages did not export, is combined with \'contact us\' -->
-    <string name="ExportSmsPartiallyComplete__if_the_problem_persists">Ha a probléma továbbra is fennáll, </string>
-    <!-- Partial sentence for deubg step 3 on screen shown when some sms messages did not export, combined with \'If the problem persists\', link text to open contact support view -->
-    <string name="ExportSmsPartiallyComplete__contact_us">Kapcsolat</string>
-    <!-- Button text to retry sms export -->
-    <string name="ExportSmsPartiallyComplete__retry">Újra</string>
-    <!-- Button text to continue sms export flow and not retry failed message exports -->
-    <string name="ExportSmsPartiallyComplete__continue_anyway">Mindenképp folytatom</string>
-    <!-- Title of screen shown when all sms messages failed to export -->
-    <string name="ExportSmsFullError__error_exporting_sms_messages">Hiba az SMS-ek exportálásakor</string>
-    <!-- Helper text shown when all sms messages failed to export -->
-    <string name="ExportSmsFullError__please_try_again_if_the_problem_persists">Próbáld újra! Ha a probléma továbbra is fennáll, </string>
-
-
     <!-- DonateToSignalFragment -->
     <!-- Title below avatar -->
     <string name="DonateToSignalFragment__privacy_over_profit">Az adatok védelme fontosabb a profitnál.</string>
@@ -5928,9 +5990,9 @@
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
     <string name="DonateToSignalFragment__you_have_a_donation_pending">Van egy függőben lévő adományod</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">A banki átutalások feldolgozása általában 1 munkanapot vesz igénybe. Mielőtt frissíted az előfizetésed, kérjük, várd meg, amíg a fizetés teljesül.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Bank transfers can take 1 to 14 business days to process. Please wait until this payment completes before updating your subscription.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">A banki átutalások feldolgozása általában 1 munkanapot vesz igénybe. Mielőtt újra adományoznál, kérjük, várd meg, amíg a fizetés teljesül.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Bank transfers can take 1 to 14 business days to process. Please wait until this payment completes before making another donation.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
     <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Az adományod feldolgozása még folyamatban van. Ez a kapcsolattól függően néhány percig is eltarthat. Mielőtt frissíted az előfizetésedet, kérjük, várd meg, amíg a fizetés teljesül.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
@@ -6059,6 +6121,12 @@
     <string name="IdealTransferDetailsFragment__email">Email</string>
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">Válaszd ki a bankot</string>
+    <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">Erősítsd meg az adományod a(z) %1$s banknál</string>
+    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
+    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">Az ismétlődő adományozás beállításához koppints a Tovább gombra és erősítsd meg a 0,01 € összegű terhelést a bankodnál. Ez automatikusan visszatérítésre kerül, és lehetővé teszi, hogy a havi 5 € adományodat levonják a számládról.</string>
+    <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
+    <string name="IdealTransferDetailsFragment__continue">Tovább</string>
 
     <!-- IdealTransferDetailsBankSelectionDialogFragment -->
     <!-- Title of the screen, displayed in the toolbar -->
@@ -6076,7 +6144,7 @@
     <!-- Top text block of donation pending sheet displayed after one-time donation via a bank transfer. Placeholder is the badge name. -->
     <string name="DonationPendingBottomSheet__your_one_time_donation_is_pending">Egyszeri adományod függőben van. Amikor az adományod megérkezik, megjelenítheted a(z) %1$s jelvényt a profilodban.</string>
     <!-- Bottom text block of donation pending sheet displayed after donating via a bank transfer. Placeholder is for learn more. -->
-    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">A banki átutalások feldolgozása általában 1 munkanapot vesz igénybe. %1$s</string>
+    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Bank transfers can take 1 to 14 business days to process. %1$s</string>
     <!-- Learn more text for donation pending sheet displayed after donating via a bank transfer. -->
     <string name="DonationPendingBottomSheet__learn_more">Tudj meg többet</string>
     <!-- Confirmation button for donation pending sheet displayed after donating via a bank transfer. -->
@@ -6162,28 +6230,24 @@
     <!-- Displayed in the "clear filter" item in the chat feed if the user opened the filter from the overflow menu -->
     <string name="ChatFilter__tip_pull_down">Tipp: a szűréshez húzd le a csevegőlistát</string>
 
-    <!-- Title for screen describing that sms support is going to be removed soon -->
-    <string name="SmsRemoval_title_going_away">Az SMS-támogatás megszűnik</string>
-    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
-    <string name="SmsRemoval_info_bullet_1">Hamarosan megszűnik az SMS-ek támogatása a Signal-alkalmazásban.</string>
-    <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_2">Az SMS-ek eltérnek a Signal-üzenetektől. <b>Ez nincs hatással a titkosított Signal-üzenetküldési szolgáltatásra, amely továbbra is működik.</b></string>
-    <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_3">Exportálhatod az SMS-eidet, és választhatsz egy új SMS-alkalmazást.</string>
-    <!-- Bullet point message shown on describing screen as first bullet variant why sms is being removed when user is locked out of sms -->
-    <string name="SmsRemoval_info_bullet_1_phase_3">A Signal megszüntette az SMS-ek küldésének támogatását.</string>
-    <!-- Button label on sms removal info/megaphone to start the export SMS flow -->
-    <string name="SmsRemoval_export_sms">SMS-exportálás</string>
-
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__set_up_your_signal_username">Állítsd be a Signal-felhasználóneved</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">A felhasználónevek segítségével mások üzenetet küldhetnek neked anélkül, hogy szükségük lenne a telefonszámodra</string>
+    <string name="SetUpYourUsername__introducing_phone_number_privacy">Bemutatjuk a telefonszám-védelmet, az opcionális felhasználóneveket és a hivatkozásokat.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__not_now">Később</string>
+    <string name="SetUpYourUsername__dismiss">Elvetés</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__continue">Tovább</string>
+    <string name="SetUpYourUsername__learn_more">Tudj meg többet</string>
+
+    <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
+    <string name="PnpLaunchMegaphone_title">Új csatlakozási módok</string>
+    <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
+    <string name="PnpLaunchMegaphone_body">Bemutatjuk a telefonszám-védelmet, az opcionális felhasználóneveket és a linkeket.</string>
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
+    <string name="PnpLaunchMegaphone_dismiss">Elvetés</string>
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
+    <string name="PnpLaunchMegaphone_learn_more">Tudj meg többet</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -6198,18 +6262,6 @@
     <string name="TextFormatting_spoiler">Kitakarás</string>
     <!-- Popup menu label for clearing applied formatting -->
     <string name="TextFormatting_clear_formatting">Formázás törlése</string>
-
-    <!-- UsernameEducationFragment -->
-    <!-- Continue button which takes the user to the add a username screen -->
-    <string name="UsernameEducationFragment__continue">Tovább</string>
-    <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">Állítsd be a Signal-felhasználóneved</string>
-    <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__usernames_are_paired_with_a_set_of_digits">A felhasználónevek számjegyekkel vannak párosítva, és nem kerülnek megosztásra a profilodon</string>
-    <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">Minden felhasználónévhez tartozik egy egyedi QR-kód, amelyet megoszthatsz az ismerőseiddel, hogy csevegést kezdeményezhessenek veled</string>
-    <!-- Displayed as body text in the username education screen. The string references the names of settings, so they should match our translations for those settings. -->
-    <string name="UsernameEducationFragment__turn_off_phone_number_discovery">Kapcsold ki a telefonszám alapján történő elérés lehetőségét a Beállítások &gt; Adatvédelem &gt; Telefonszám &gt; Ki láthatja a telefonszámomat? menüpontban, hogy a felhasználóneved legyen az elsődleges módja annak, hogy mások kapcsolatba léphessenek veled.</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
@@ -6236,6 +6288,8 @@
     <string name="CallLogAdapter__outgoing">Kimenő</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">Nem fogadott</string>
+    <!-- Displayed for missed calls declined by notification profile -->
+    <string name="CallLogAdapter__missed_notification_profile">Nem fogadott, miközben az értesítési profil be van kapcsolva</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">Csatlakozás</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -6343,6 +6397,8 @@
     <string name="CallPreference__group_call">Csoporthívás</string>
     <!-- Missed group call in call info -->
     <string name="CallPreference__missed_group_call">Nem fogadott csoporthívás</string>
+    <!-- Missed group call while notification profile on in call info -->
+    <string name="CallPreference__missed_group_call_notification_profile">Nem fogadott csoporthívás, miközben az értesítési profil be van kapcsolva</string>
     <!-- Incoming group call in call info -->
     <string name="CallPreference__incoming_group_call">Bejövő csoportos hívás</string>
     <!-- Outgoing group call in call info -->
@@ -6429,6 +6485,8 @@
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
     <string name="CallLinkDetailsFragment__call_details">Hívás adatai</string>
+    <!-- Displayed in a text row, allowing the user to click and edit a call name -->
+    <string name="CallLinkDetailsFragment__edit_call_name">Hívás nevének szerkesztése</string>
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
     <string name="CallLinkDetailsFragment__add_call_name">Hívásnév megadása</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
@@ -6444,6 +6502,8 @@
     <!-- Displayed as body in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">Ez a hivatkozás többé nem fog működni azok számára, akiknek már megvan.</string>
 
+    <!-- Button label for the link button in the username link settings -->
+    <string name="UsernameLinkSettings_link_button_label">Link</string>
     <!-- Button label for the share button in the username link settings -->
     <string name="UsernameLinkSettings_share_button_label">Megosztás</string>
     <!-- Button label for the color selector button in the username link settings -->
@@ -6488,6 +6548,16 @@
     <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Nincs hálózati hozzáférésed. A hivatkozás nem került visszaállításra. Próbáld újra később!</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">Hálózati hiba lépett fel a hivatkozás visszaállítása közben. Próbáld újra később!</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">Váratlan hiba lépett fel a hivatkozás visszaállítása közben. Próbáld újra később!</string>
+    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
+    <string name="UsernameLinkSettings_reset_link_result_success">A QR-kódod és a hivatkozásod visszaállításra került, és egy új QR-kódot és linket hoztunk létre.</string>
+    <!-- Shown on the generated username qr code image to explain how to use it. -->
+    <string name="UsernameLinkSettings_scan_this_qr_code">Olvasd be ezt a QR-kódot a telefonoddal és csevegj velem a Signalban.</string>
+    <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_qr_code_not_found">QR code not found</string>
+    <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Try scanning another image containing a Signal QR code.</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
     <string name="UsernameLinkShareBottomSheet_title">A hivatkozás birtokában bárki megtekintheti a felhasználóneved, és csevegést kezdeményezhet veled. Csak olyanokkal oszd meg, akikben megbízol.</string>
@@ -6524,6 +6594,8 @@
     <string name="GrantFullScreenIntentPermission_megaphone_body">Soha ne maradj le a névjegyeid és csoportjaid hívásairól.</string>
     <!-- Button on the megaphone megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls that starts the fix process -->
     <string name="GrantFullScreenIntentPermission_megaphone_turn_on">Bekapcsolás</string>
+    <!-- Button on the megaphone shown at the bottom of the chatlist when a user has disabled the system setting for showing full screen notifications used showing incoming calls that dismisses the megaphone -->
+    <string name="GrantFullScreenIntentPermission_megaphone_not_now">Később</string>
     <!-- Title of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
     <string name="GrantFullScreenIntentPermission_bottomsheet_title">Kapcsold be a teljes képernyős értesítéseket</string>
     <!-- Subtitle of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
@@ -6541,6 +6613,46 @@
     <string name="MonthlyDonationCanceled__renew_button">Előfizetés megújítása</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, second button to dismiss the dialog entirely -->
     <string name="MonthlyDonationCanceled__not_now_button">Később</string>
+
+    <!-- FindByActivity -->
+    <!-- Title of activity when finding by username -->
+    <string name="FindByActivity__find_by_username">Keresés felhasználónév alapján</string>
+    <!-- Title of activity when finding by phone number -->
+    <string name="FindByActivity__find_by_phone_number">Keresés telefonszám alapján</string>
+    <!-- Title of screen to select a country code -->
+    <string name="FindByActivity__select_country_code">Válassz országhívószámot</string>
+    <!-- Entry placeholder for find by username -->
+    <string name="FindByActivity__username">Felhasználónév</string>
+    <!-- Entry placeholder for find by phone number -->
+    <string name="FindByActivity__phone_number">Telefonszám</string>
+    <!-- Help text under user entry for find by username -->
+    <string name="FindByActivity__enter_username_description">Adj meg egy felhasználónevet, amelyet egy pont és a hozzá tartozó számsor követ.</string>
+    <!-- Content description for next action button -->
+    <string name="FindByActivity__next">Tovább</string>
+    <!-- Placeholder text for search input for selecting country code -->
+    <string name="FindByActivity__search">Keresés</string>
+    <!-- Dialog title for invalid username -->
+    <string name="FindByActivity__invalid_username">Érvénytelen felhasználónév</string>
+    <!-- Dialog title for invalid phone number -->
+    <string name="FindByActivity__invalid_phone_number">Hibás telefonszám</string>
+    <!-- Dialog title when phone number is not a registered signal user -->
+    <string name="FindByActivity__invite_to_signal">Meghívás a Signalra</string>
+    <!-- Dialog title when username is not found -->
+    <string name="FindByActivity__username_not_found">A felhasználónév nem található</string>
+    <!-- Dialog body for invalid username. Placeholder is the entered username. -->
+    <string name="FindByActivity__s_is_not_a_valid_username">A(z) %1$s érvénytelen felhasználónév. Győződj meg róla, hogy a teljes felhasználónevet és a hozzá tartozó számjegyeket is megadtad.</string>
+    <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
+    <string name="FindByActivity__s_is_not_a_valid_phone_number">A(z) %1$s érvénytelen telefonszám. Próbáld újra egy érvényes telefonszámmal</string>
+    <!-- Dialog body for not found username -->
+    <string name="FindByActivity__s_is_not_a_signal_user">%1$s nem Signal-felhasználó. Kérjük, ellenőrizd a felhasználónevet, majd próbáld újra.</string>
+    <!-- Dialog body for not found phone number -->
+    <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s nem Signal-felhasználó. Szeretnéd meghívni ezt a számot?</string>
+    <!-- Dialog action to invite the phone number to Signal -->
+    <string name="FindByActivity__invite">Meghívás</string>
+    <!-- Button label for a button that will launch a camera to scan a username QR code -->
+    <string name="FindByActivity__qr_scan_button">QR kód beolvasása</string>
+    <!-- Content of a dialog indicating that we could not perform the requested action because we encountered a network error. -->
+    <string name="FindByActivity__network_error_dialog">Hálózati hiba történt. Próbáld újra később.</string>
 
     <!-- EOF -->
 </resources>

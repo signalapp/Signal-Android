@@ -1,8 +1,8 @@
 package org.thoughtcrime.securesms.contacts
 
 import android.view.View
+import com.bumptech.glide.Glide
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
@@ -30,13 +30,13 @@ object SelectedContacts {
     private val chip: ContactChip = itemView.findViewById(R.id.contact_chip)
 
     override fun bind(model: Model) {
-      chip.text = model.recipient.getShortDisplayNameIncludingUsername(context)
+      chip.text = model.recipient.getShortDisplayName(context)
       chip.setContact(model.selectedContact)
       chip.isCloseIconVisible = true
       chip.setOnCloseIconClickListener {
         onCloseIconClicked(model)
       }
-      chip.setAvatar(GlideApp.with(itemView), model.recipient, null)
+      chip.setAvatar(Glide.with(itemView), model.recipient, null)
     }
   }
 }

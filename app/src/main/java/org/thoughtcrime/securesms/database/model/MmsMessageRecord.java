@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge;
+import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExtras;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
@@ -70,6 +71,7 @@ public class MmsMessageRecord extends MessageRecord {
   private final CallTable.Call call;
   private final long           scheduledDate;
   private final MessageId      latestRevisionId;
+  private final boolean        isRead;
 
   public MmsMessageRecord(long id,
                           Recipient fromRecipient,
@@ -109,26 +111,29 @@ public class MmsMessageRecord extends MessageRecord {
                           long scheduledDate,
                           @Nullable MessageId latestRevisionId,
                           @Nullable MessageId originalMessageId,
-                          int revisionNumber)
+                          int revisionNumber,
+                          boolean isRead,
+                          @Nullable MessageExtras messageExtras)
   {
     super(id, body, fromRecipient, fromDeviceId, toRecipient,
           dateSent, dateReceived, dateServer, threadId, Status.STATUS_NONE, hasDeliveryReceipt,
           mailbox, mismatches, failures, subscriptionId, expiresIn, expireStarted, hasReadReceipt,
-          unidentified, reactions, remoteDelete, notifiedTimestamp, viewed, receiptTimestamp, originalMessageId, revisionNumber);
+          unidentified, reactions, remoteDelete, notifiedTimestamp, viewed, receiptTimestamp, originalMessageId, revisionNumber, messageExtras);
 
-    this.slideDeck         = slideDeck;
-    this.quote             = quote;
-    this.viewOnce          = viewOnce;
-    this.storyType         = storyType;
-    this.parentStoryId     = parentStoryId;
-    this.giftBadge         = giftBadge;
-    this.mentionsSelf      = mentionsSelf;
-    this.messageRanges     = messageRanges;
-    this.payment           = payment;
-    this.call              = call;
-    this.scheduledDate     = scheduledDate;
-    this.latestRevisionId  = latestRevisionId;
-    
+    this.slideDeck        = slideDeck;
+    this.quote            = quote;
+    this.viewOnce         = viewOnce;
+    this.storyType        = storyType;
+    this.parentStoryId    = parentStoryId;
+    this.giftBadge        = giftBadge;
+    this.mentionsSelf     = mentionsSelf;
+    this.messageRanges    = messageRanges;
+    this.payment          = payment;
+    this.call             = call;
+    this.scheduledDate    = scheduledDate;
+    this.latestRevisionId = latestRevisionId;
+    this.isRead           = isRead;
+
     this.contacts.addAll(contacts);
     this.linkPreviews.addAll(linkPreviews);
   }
@@ -197,6 +202,10 @@ public class MmsMessageRecord extends MessageRecord {
     return false;
   }
 
+  public boolean isRead() {
+    return isRead;
+  }
+
   @Override
   @WorkerThread
   public SpannableString getDisplayBody(@NonNull Context context) {
@@ -218,8 +227,8 @@ public class MmsMessageRecord extends MessageRecord {
   @Override
   public @Nullable UpdateDescription getUpdateDisplayBody(@NonNull Context context, @Nullable Consumer<RecipientId> recipientClickHandler) {
     if (isCallLog() && call != null && !(call.getType() == CallTable.Type.GROUP_CALL)) {
-      boolean accepted = call.getEvent() == CallTable.Event.ACCEPTED;
-      String callDateString = getCallDateString(context);
+      boolean accepted       = call.getEvent() == CallTable.Event.ACCEPTED;
+      String  callDateString = getCallDateString(context);
 
       if (call.getDirection() == CallTable.Direction.OUTGOING) {
         if (call.getType() == CallTable.Type.AUDIO_CALL) {
@@ -231,15 +240,27 @@ public class MmsMessageRecord extends MessageRecord {
         }
       } else {
         boolean isVideoCall = call.getType() == CallTable.Type.VIDEO_CALL;
-        boolean isMissed    = call.getEvent() == CallTable.Event.MISSED;
+        boolean isMissed    = call.getEvent().isMissedCall();
 
         if (accepted) {
           int updateString = isVideoCall ? R.string.MessageRecord_incoming_video_call : R.string.MessageRecord_incoming_voice_call;
           int icon         = isVideoCall ? R.drawable.ic_update_video_call_incoming_16 : R.drawable.ic_update_audio_call_incoming_16;
           return staticUpdateDescription(context.getString(R.string.MessageRecord_call_message_with_date, context.getString(updateString), callDateString), icon);
         } else if (isMissed) {
-          return isVideoCall ? staticUpdateDescription(context.getString(R.string.MessageRecord_call_message_with_date, context.getString(R.string.MessageRecord_missed_video_call), callDateString), R.drawable.ic_update_video_call_missed_16, ContextCompat.getColor(context, R.color.core_red_shade), ContextCompat.getColor(context, R.color.core_red))
-                             : staticUpdateDescription(context.getString(R.string.MessageRecord_call_message_with_date, context.getString(R.string.MessageRecord_missed_voice_call), callDateString), R.drawable.ic_update_audio_call_missed_16, ContextCompat.getColor(context, R.color.core_red_shade), ContextCompat.getColor(context, R.color.core_red));
+          int icon = isVideoCall ? R.drawable.ic_update_video_call_missed_16 : R.drawable.ic_update_audio_call_missed_16;
+          int message;
+          if (call.getEvent() == CallTable.Event.MISSED_NOTIFICATION_PROFILE) {
+            message = isVideoCall ? R.string.MessageRecord_missed_video_call_notification_profile : R.string.MessageRecord_missed_voice_call_notification_profile;
+          } else {
+            message = isVideoCall ? R.string.MessageRecord_missed_video_call : R.string.MessageRecord_missed_voice_call;
+          }
+
+          return staticUpdateDescription(context.getString(R.string.MessageRecord_call_message_with_date,
+                                                           context.getString(message),
+                                                           callDateString),
+                                         icon,
+                                         ContextCompat.getColor(context, R.color.core_red_shade),
+                                         ContextCompat.getColor(context, R.color.core_red));
         } else {
           return isVideoCall ? staticUpdateDescription(context.getString(R.string.MessageRecord_call_message_with_date, context.getString(R.string.MessageRecord_you_declined_a_video_call), callDateString), R.drawable.ic_update_video_call_incoming_16)
                              : staticUpdateDescription(context.getString(R.string.MessageRecord_call_message_with_date, context.getString(R.string.MessageRecord_you_declined_a_voice_call), callDateString), R.drawable.ic_update_audio_call_incoming_16);
@@ -280,7 +301,7 @@ public class MmsMessageRecord extends MessageRecord {
                                 getType(), getIdentityKeyMismatches(), getNetworkFailures(), getSubscriptionId(), getExpiresIn(), getExpireStarted(), isViewOnce(),
                                 hasReadReceipt(), getQuote(), getSharedContacts(), getLinkPreviews(), isUnidentified(), reactions, isRemoteDelete(), mentionsSelf,
                                 getNotifiedTimestamp(), isViewed(), getReceiptTimestamp(), getMessageRanges(), getStoryType(), getParentStoryId(), getGiftBadge(), getPayment(), getCall(), getScheduledDate(), getLatestRevisionId(),
-                                getOriginalMessageId(), getRevisionNumber());
+                                getOriginalMessageId(), getRevisionNumber(), isRead(), getMessageExtras());
   }
 
   public @NonNull MmsMessageRecord withoutQuote() {
@@ -288,13 +309,13 @@ public class MmsMessageRecord extends MessageRecord {
                                 getType(), getIdentityKeyMismatches(), getNetworkFailures(), getSubscriptionId(), getExpiresIn(), getExpireStarted(), isViewOnce(),
                                 hasReadReceipt(), null, getSharedContacts(), getLinkPreviews(), isUnidentified(), getReactions(), isRemoteDelete(), mentionsSelf,
                                 getNotifiedTimestamp(), isViewed(), getReceiptTimestamp(), getMessageRanges(), getStoryType(), getParentStoryId(), getGiftBadge(), getPayment(), getCall(), getScheduledDate(), getLatestRevisionId(),
-                                getOriginalMessageId(), getRevisionNumber());
+                                getOriginalMessageId(), getRevisionNumber(), isRead(), getMessageExtras());
   }
 
   public @NonNull MmsMessageRecord withAttachments(@NonNull List<DatabaseAttachment> attachments) {
     Map<AttachmentId, DatabaseAttachment> attachmentIdMap = new HashMap<>();
     for (DatabaseAttachment attachment : attachments) {
-      attachmentIdMap.put(attachment.getAttachmentId(), attachment);
+      attachmentIdMap.put(attachment.attachmentId, attachment);
     }
 
     List<Contact>     contacts               = updateContacts(getSharedContacts(), attachmentIdMap);
@@ -310,7 +331,7 @@ public class MmsMessageRecord extends MessageRecord {
                                 getType(), getIdentityKeyMismatches(), getNetworkFailures(), getSubscriptionId(), getExpiresIn(), getExpireStarted(), isViewOnce(),
                                 hasReadReceipt(), quote, contacts, linkPreviews, isUnidentified(), getReactions(), isRemoteDelete(), mentionsSelf,
                                 getNotifiedTimestamp(), isViewed(), getReceiptTimestamp(), getMessageRanges(), getStoryType(), getParentStoryId(), getGiftBadge(), getPayment(), getCall(), getScheduledDate(), getLatestRevisionId(),
-                                getOriginalMessageId(), getRevisionNumber());
+                                getOriginalMessageId(), getRevisionNumber(), isRead(), getMessageExtras());
   }
 
   public @NonNull MmsMessageRecord withPayment(@NonNull Payment payment) {
@@ -318,7 +339,7 @@ public class MmsMessageRecord extends MessageRecord {
                                 getType(), getIdentityKeyMismatches(), getNetworkFailures(), getSubscriptionId(), getExpiresIn(), getExpireStarted(), isViewOnce(),
                                 hasReadReceipt(), getQuote(), getSharedContacts(), getLinkPreviews(), isUnidentified(), getReactions(), isRemoteDelete(), mentionsSelf,
                                 getNotifiedTimestamp(), isViewed(), getReceiptTimestamp(), getMessageRanges(), getStoryType(), getParentStoryId(), getGiftBadge(), payment, getCall(), getScheduledDate(), getLatestRevisionId(),
-                                getOriginalMessageId(), getRevisionNumber());
+                                getOriginalMessageId(), getRevisionNumber(), isRead(), getMessageExtras());
   }
 
 
@@ -327,7 +348,7 @@ public class MmsMessageRecord extends MessageRecord {
                                 getType(), getIdentityKeyMismatches(), getNetworkFailures(), getSubscriptionId(), getExpiresIn(), getExpireStarted(), isViewOnce(),
                                 hasReadReceipt(), getQuote(), getSharedContacts(), getLinkPreviews(), isUnidentified(), getReactions(), isRemoteDelete(), mentionsSelf,
                                 getNotifiedTimestamp(), isViewed(), getReceiptTimestamp(), getMessageRanges(), getStoryType(), getParentStoryId(), getGiftBadge(), getPayment(), call, getScheduledDate(), getLatestRevisionId(),
-                                getOriginalMessageId(), getRevisionNumber());
+                                getOriginalMessageId(), getRevisionNumber(), isRead(), getMessageExtras());
   }
 
   private static @NonNull List<Contact> updateContacts(@NonNull List<Contact> contacts, @NonNull Map<AttachmentId, DatabaseAttachment> attachmentIdMap) {
@@ -369,7 +390,7 @@ public class MmsMessageRecord extends MessageRecord {
       return null;
     }
 
-    List<DatabaseAttachment> quoteAttachments = attachments.stream().filter(Attachment::isQuote).collect(Collectors.toList());
+    List<DatabaseAttachment> quoteAttachments = attachments.stream().filter(a -> a.quote).collect(Collectors.toList());
 
     return quote.withAttachment(new SlideDeck(quoteAttachments));
   }

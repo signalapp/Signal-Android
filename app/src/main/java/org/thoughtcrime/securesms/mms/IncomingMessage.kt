@@ -8,7 +8,9 @@ import org.thoughtcrime.securesms.database.model.ParentStoryId
 import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context
+import org.thoughtcrime.securesms.database.model.databaseprotos.GV2UpdateDescription
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
+import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExtras
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -36,7 +38,8 @@ class IncomingMessage(
   sharedContacts: List<Contact> = emptyList(),
   linkPreviews: List<LinkPreview> = emptyList(),
   mentions: List<Mention> = emptyList(),
-  val giftBadge: GiftBadge? = null
+  val giftBadge: GiftBadge? = null,
+  val messageExtras: MessageExtras? = null
 ) {
 
   val attachments: List<Attachment> = ArrayList(attachments)
@@ -94,7 +97,7 @@ class IncomingMessage(
     }
 
     @JvmStatic
-    fun groupUpdate(from: RecipientId, timestamp: Long, groupId: GroupId, groupContext: DecryptedGroupV2Context): IncomingMessage {
+    fun groupUpdate(from: RecipientId, timestamp: Long, groupId: GroupId, groupContext: DecryptedGroupV2Context, serverGuid: String?): IncomingMessage {
       val messageGroupContext = MessageGroupContext(groupContext)
 
       return IncomingMessage(
@@ -104,8 +107,8 @@ class IncomingMessage(
         serverTimeMillis = timestamp,
         groupId = groupId,
         groupContext = messageGroupContext,
-        body = messageGroupContext.encodedGroupContext,
-        type = MessageType.GROUP_UPDATE
+        type = MessageType.GROUP_UPDATE,
+        messageExtras = MessageExtras(gv2UpdateDescription = GV2UpdateDescription(gv2ChangeDescription = groupContext, groupChangeUpdate = null))
       )
     }
   }

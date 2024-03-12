@@ -71,9 +71,9 @@ class CallLinkDetailsViewModel(
     return mutationRepository.setCallName(credentials, name)
   }
 
-  fun revoke(): Single<UpdateCallLinkResult> {
+  fun delete(): Single<UpdateCallLinkResult> {
     val credentials = _state.value.callLink?.credentials ?: error("User cannot change the name of this call.")
-    return mutationRepository.revokeCallLink(credentials)
+    return mutationRepository.deleteCallLink(credentials)
   }
 
   class Factory(private val callLinkRoomId: CallLinkRoomId) : ViewModelProvider.Factory {

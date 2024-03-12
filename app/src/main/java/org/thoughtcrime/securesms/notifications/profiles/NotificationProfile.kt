@@ -9,7 +9,7 @@ data class NotificationProfile(
   val emoji: String,
   val color: AvatarColor = AvatarColor.A210,
   val createdAt: Long,
-  val allowAllCalls: Boolean = false,
+  val allowAllCalls: Boolean = true,
   val allowAllMentions: Boolean = false,
   val schedule: NotificationProfileSchedule,
   val allowedMembers: Set<RecipientId> = emptySet()

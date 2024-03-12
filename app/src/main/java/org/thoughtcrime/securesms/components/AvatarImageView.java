@@ -15,6 +15,9 @@ import androidx.annotation.Px;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.fragment.app.FragmentActivity;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestBuilder;
+import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.MultiTransformation;
 import com.bumptech.glide.load.Transformation;
@@ -31,15 +34,13 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsActivity;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
+import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
 import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob;
-import org.thoughtcrime.securesms.mms.GlideApp;
-import org.thoughtcrime.securesms.mms.GlideRequest;
-import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.util.AvatarUtil;
@@ -129,10 +130,10 @@ public final class AvatarImageView extends AppCompatImageView {
    */
   public void setRecipient(@NonNull Recipient recipient, boolean quickContactEnabled) {
     if (recipient.isSelf()) {
-      setAvatar(GlideApp.with(this), null, quickContactEnabled);
+      setAvatar(Glide.with(this), null, quickContactEnabled);
       AvatarUtil.loadIconIntoImageView(recipient, this);
     } else {
-      setAvatar(GlideApp.with(this), recipient, quickContactEnabled);
+      setAvatar(Glide.with(this), recipient, quickContactEnabled);
     }
   }
 
@@ -144,21 +145,21 @@ public final class AvatarImageView extends AppCompatImageView {
    * Shows self as the note to self icon.
    */
   public void setAvatar(@Nullable Recipient recipient) {
-    setAvatar(GlideApp.with(this), recipient, false);
+    setAvatar(Glide.with(this), recipient, false);
   }
 
   /**
    * Shows self as the profile avatar.
    */
   public void setAvatarUsingProfile(@Nullable Recipient recipient) {
-    setAvatar(GlideApp.with(this), recipient, false, true);
+    setAvatar(Glide.with(this), recipient, false, true);
   }
 
-  public void setAvatar(@NonNull GlideRequests requestManager, @Nullable Recipient recipient, boolean quickContactEnabled) {
+  public void setAvatar(@NonNull RequestManager requestManager, @Nullable Recipient recipient, boolean quickContactEnabled) {
     setAvatar(requestManager, recipient, quickContactEnabled, false);
   }
 
-  public void setAvatar(@NonNull GlideRequests requestManager, @Nullable Recipient recipient, boolean quickContactEnabled, boolean useSelfProfileAvatar) {
+  public void setAvatar(@NonNull RequestManager requestManager, @Nullable Recipient recipient, boolean quickContactEnabled, boolean useSelfProfileAvatar) {
     setAvatar(requestManager, recipient, new AvatarOptions.Builder(this)
                                                           .withUseSelfProfileAvatar(useSelfProfileAvatar)
                                                           .withQuickContactEnabled(quickContactEnabled)
@@ -166,10 +167,10 @@ public final class AvatarImageView extends AppCompatImageView {
   }
 
   private void setAvatar(@Nullable Recipient recipient, @NonNull AvatarOptions avatarOptions) {
-    setAvatar(GlideApp.with(this), recipient, avatarOptions);
+    setAvatar(Glide.with(this), recipient, avatarOptions);
   }
 
-  private void setAvatar(@NonNull GlideRequests requestManager, @Nullable Recipient recipient, @NonNull AvatarOptions avatarOptions) {
+  private void setAvatar(@NonNull RequestManager requestManager, @Nullable Recipient recipient, @NonNull AvatarOptions avatarOptions) {
     if (recipient != null) {
       RecipientContactPhoto photo = (recipient.isSelf() && avatarOptions.useSelfProfileAvatar) ? new RecipientContactPhoto(recipient,
                                                                                                                            new ProfileContactPhoto(Recipient.self()))
@@ -183,8 +184,18 @@ public final class AvatarImageView extends AppCompatImageView {
         this.chatColors       = chatColors;
         recipientContactPhoto = photo;
 
-        Drawable fallbackContactPhotoDrawable = size == SIZE_SMALL ? photo.recipient.getSmallFallbackContactPhotoDrawable(getContext(), inverted, fallbackPhotoProvider, ViewUtil.getWidth(this))
-                                                                   : photo.recipient.getFallbackContactPhotoDrawable(getContext(), inverted, fallbackPhotoProvider, ViewUtil.getWidth(this));
+        Recipient.FallbackPhotoProvider activeFallbackPhotoProvider = this.fallbackPhotoProvider;
+        if (recipient.isSelf() && avatarOptions.useSelfProfileAvatar) {
+          activeFallbackPhotoProvider = new Recipient.FallbackPhotoProvider() {
+            @Override
+            public @NonNull FallbackContactPhoto getPhotoForLocalNumber() {
+              return super.getPhotoForRecipientWithName(recipient.getDisplayName(getContext()), ViewUtil.getWidth(AvatarImageView.this));
+            }
+          };
+        }
+
+        Drawable fallbackContactPhotoDrawable = size == SIZE_SMALL ? photo.recipient.getSmallFallbackContactPhotoDrawable(getContext(), inverted, activeFallbackPhotoProvider, ViewUtil.getWidth(this))
+                                                                   : photo.recipient.getFallbackContactPhotoDrawable(getContext(), inverted, activeFallbackPhotoProvider, ViewUtil.getWidth(this));
 
         if (fixedSizeTarget != null) {
           requestManager.clear(fixedSizeTarget);
@@ -199,7 +210,7 @@ public final class AvatarImageView extends AppCompatImageView {
           transforms.add(new CircleCrop());
           blurred = shouldBlur;
 
-          GlideRequest<Drawable> request = requestManager.load(photo.contactPhoto)
+          RequestBuilder<Drawable> request = requestManager.load(photo.contactPhoto)
                                                          .dontAnimate()
                                                          .fallback(fallbackContactPhotoDrawable)
                                                          .error(fallbackContactPhotoDrawable)
@@ -244,8 +255,7 @@ public final class AvatarImageView extends AppCompatImageView {
                                 ConversationSettingsActivity.createTransitionBundle(context, this));
         } else {
           if (context instanceof FragmentActivity) {
-            RecipientBottomSheetDialogFragment.create(recipient.getId(), null)
-                                              .show(((FragmentActivity) context).getSupportFragmentManager(), "BOTTOM");
+            RecipientBottomSheetDialogFragment.show(((FragmentActivity) context).getSupportFragmentManager(), recipient.getId(), null);
           } else {
             context.startActivity(ConversationSettingsActivity.forRecipient(context, recipient.getId()),
                                   ConversationSettingsActivity.createTransitionBundle(context, this));
@@ -265,7 +275,7 @@ public final class AvatarImageView extends AppCompatImageView {
                             .getPhotoForGroup()
                             .asDrawable(getContext(), color);
 
-    GlideApp.with(this)
+    Glide.with(this)
             .load(avatarBytes)
             .dontAnimate()
             .fallback(fallback)

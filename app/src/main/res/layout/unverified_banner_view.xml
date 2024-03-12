@@ -38,7 +38,7 @@
             android:focusable="true"
             android:nextFocusLeft="@+id/container"
             android:nextFocusRight="@+id/container"
-            android:src="@drawable/ic_close_white_24dp"
+            android:src="@drawable/ic_x_24"
             app:tint="@color/signal_icon_tint_primary"
             android:contentDescription="@string/InviteActivity_cancel"/>
 

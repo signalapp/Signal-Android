@@ -1,4 +1,4 @@
-# Signal Android 
+# Signal Android
 
 Signal is a simple, powerful, and secure messenger.
 
@@ -54,7 +54,7 @@ The form and manner of this distribution makes it eligible for export under the 
 
 ## License
 
-Copyright 2013-2023 Signal
+Copyright 2013-2024 Signal Messenger, LLC
 
 Licensed under the GNU AGPLv3: https://www.gnu.org/licenses/agpl-3.0.html
 

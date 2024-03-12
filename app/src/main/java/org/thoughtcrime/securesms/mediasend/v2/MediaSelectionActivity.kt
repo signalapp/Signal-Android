@@ -42,6 +42,7 @@ import org.thoughtcrime.securesms.mediasend.v2.text.send.TextStoryPostSendReposi
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
 import org.thoughtcrime.securesms.stories.Stories
+import org.thoughtcrime.securesms.util.Debouncer
 import org.thoughtcrime.securesms.util.FullscreenHelper
 import org.thoughtcrime.securesms.util.WindowUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
@@ -78,6 +79,8 @@ class MediaSelectionActivity :
 
   private val draftText: CharSequence?
     get() = intent.getCharSequenceExtra(MESSAGE)
+
+  private val debouncer = Debouncer(200)
 
   override fun attachBaseContext(newBase: Context) {
     delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_YES
@@ -122,7 +125,7 @@ class MediaSelectionActivity :
     }
 
     cameraSwitch.setOnClickListener {
-      viewModel.sendCommand(HudCommand.GoToCapture)
+      debouncer.publish { viewModel.sendCommand(HudCommand.GoToCapture) }
     }
 
     if (savedInstanceState == null) {

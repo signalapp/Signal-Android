@@ -22,8 +22,8 @@ data class RequestReviewState(
   }
 
   /** Recipient is in message request state and has similar name as someone else */
-  data class IndividualReviewState(val recipient: Recipient)
+  data class IndividualReviewState(val target: Recipient, val firstDuplicate: Recipient)
 
   /** Group has multiple members with similar names */
-  data class GroupReviewState(val groupId: GroupId.V2, val recipient: Recipient, val count: Int)
+  data class GroupReviewState(val groupId: GroupId.V2, val target: Recipient, val firstDuplicate: Recipient, val count: Int)
 }

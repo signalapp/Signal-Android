@@ -228,4 +228,12 @@
     <dimen name="registrationactivity_text_view_padding">32dp</dimen>
 
     <dimen name="safety_number_qr_peek">24dp</dimen>
+
+    <dimen name="video_timeline_height_expanded">44dp</dimen>
+    <dimen name="video_timeline_height_collapsed">1dp</dimen>
+    <dimen name="image_editor_hud_tool_filled_circle_diameter">40dp</dimen>
+    <dimen name="image_editor_hud_tool_filled_circle_padding">6dp</dimen>
+    <dimen name="image_editor_hud_tool_invisible_circle_diameter">40dp</dimen>
+    <dimen name="image_editor_hud_tool_invisible_circle_padding">6dp</dimen>
+
 </resources>

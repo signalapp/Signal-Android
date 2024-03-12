@@ -26,6 +26,9 @@ class SmsDatabaseTest {
   fun setup() {
     val sqlCipher = TestDatabaseUtil.inMemoryDatabase {
       execSQL(MessageTable.CREATE_TABLE)
+      MessageTable.CREATE_INDEXS.forEach {
+        execSQL(it)
+      }
     }
 
     db = sqlCipher.writableDatabase

@@ -11,20 +11,20 @@ import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestManager;
+
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.FullScreenDialogFragment;
 import org.thoughtcrime.securesms.conversation.colors.Colorizer;
 import org.thoughtcrime.securesms.conversation.colors.RecyclerViewColorizer;
 import org.thoughtcrime.securesms.conversation.ui.edit.EditMessageHistoryDialog;
-import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackController;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ProjectionPlayerHolder;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ProjectionRecycler;
 import org.thoughtcrime.securesms.messagedetails.MessageDetailsAdapter.MessageDetailsViewState;
 import org.thoughtcrime.securesms.messagedetails.MessageDetailsViewModel.Factory;
-import org.thoughtcrime.securesms.mms.GlideApp;
-import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet;
 import org.thoughtcrime.securesms.util.Material3OnScrollHelper;
@@ -39,7 +39,7 @@ public final class MessageDetailsFragment extends FullScreenDialogFragment imple
   private static final String MESSAGE_ID_EXTRA = "message_id";
   private static final String RECIPIENT_EXTRA  = "recipient_id";
 
-  private GlideRequests           glideRequests;
+  private RequestManager          requestManager;
   private MessageDetailsViewModel viewModel;
   private MessageDetailsAdapter   adapter;
   private Colorizer               colorizer;
@@ -69,7 +69,7 @@ public final class MessageDetailsFragment extends FullScreenDialogFragment imple
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    glideRequests = GlideApp.with(this);
+    requestManager = Glide.with(this);
 
     initializeList(view);
     initializeViewModel();
@@ -92,7 +92,7 @@ public final class MessageDetailsFragment extends FullScreenDialogFragment imple
     View         toolbarShadow = view.findViewById(R.id.toolbar_shadow);
 
     colorizer             = new Colorizer();
-    adapter               = new MessageDetailsAdapter(getViewLifecycleOwner(), glideRequests, colorizer, this);
+    adapter               = new MessageDetailsAdapter(getViewLifecycleOwner(), requestManager, colorizer, this);
     recyclerViewColorizer = new RecyclerViewColorizer(list);
 
     list.setAdapter(adapter);

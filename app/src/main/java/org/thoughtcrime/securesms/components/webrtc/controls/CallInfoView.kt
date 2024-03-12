@@ -52,7 +52,6 @@ import org.signal.core.ui.Rows
 import org.signal.core.ui.theme.SignalTheme
 import org.signal.ringrtc.CallLinkState
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.calls.links.SignalCallRow
 import org.thoughtcrime.securesms.components.AvatarImageView
 import org.thoughtcrime.securesms.components.webrtc.WebRtcCallViewModel
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
@@ -165,8 +164,16 @@ private fun CallInfo(
     modifier = modifier
   ) {
     item {
+      val text = if (controlAndInfoState.callLink == null) {
+        stringResource(id = R.string.CallLinkInfoSheet__call_info)
+      } else if (controlAndInfoState.callLink.state.name.isNotEmpty()) {
+        controlAndInfoState.callLink.state.name
+      } else {
+        stringResource(id = R.string.Recipient_signal_call)
+      }
+
       Text(
-        text = stringResource(id = R.string.CallLinkInfoSheet__call_info),
+        text = text,
         style = MaterialTheme.typography.titleLarge,
         modifier = Modifier.padding(bottom = 24.dp)
       )
@@ -174,8 +181,6 @@ private fun CallInfo(
 
     if (controlAndInfoState.callLink != null) {
       item {
-        SignalCallRow(callLink = controlAndInfoState.callLink, onJoinClicked = null)
-
         Rows.TextRow(
           text = stringResource(id = R.string.CallLinkDetailsFragment__share_link),
           icon = ImageVector.vectorResource(id = R.drawable.symbol_link_24),
@@ -224,8 +229,7 @@ private fun CallInfo(
       }
     }
 
-    var includeAdminControlsDivider = true
-    if (controlAndInfoState.callLink == null || participantsState.isOngoing()) {
+    if (!participantsState.inCallLobby || participantsState.isOngoing()) {
       item {
         Box(
           modifier = Modifier
@@ -240,13 +244,11 @@ private fun CallInfo(
           )
         }
       }
-    } else {
-      includeAdminControlsDivider = false
     }
 
     if (!participantsState.inCallLobby || participantsState.isOngoing()) {
       items(
-        items = participantsState.participantsForList,
+        items = participantsState.participantsForList.distinctBy { it.callParticipantId },
         key = { it.callParticipantId },
         contentType = { null }
       ) {
@@ -285,12 +287,16 @@ private fun CallInfo(
 
     if (controlAndInfoState.callLink?.credentials?.adminPassBytes != null) {
       item {
-        if (includeAdminControlsDivider) {
+        if (!participantsState.inCallLobby) {
           Dividers.Default()
         }
 
         Rows.TextRow(
-          text = stringResource(id = R.string.CallLinkDetailsFragment__add_call_name),
+          text = if (controlAndInfoState.callLink.state.name.isNotEmpty()) {
+            stringResource(id = R.string.CallLinkDetailsFragment__edit_call_name)
+          } else {
+            stringResource(id = R.string.CallLinkDetailsFragment__add_call_name)
+          },
           onClick = onEditNameClicked
         )
         Rows.ToggleRow(

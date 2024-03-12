@@ -35,6 +35,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * Allows the scheduling of durable jobs that will be run as early as possible.
@@ -205,6 +206,24 @@ public class JobManager implements ConstraintObserver.Notifier {
 
     runOnExecutor(() -> {
       jobController.submitJobs(jobs);
+    });
+  }
+
+  public void addAllChains(@NonNull List<JobManager.Chain> chains) {
+    if (chains.isEmpty()) {
+      return;
+    }
+
+    for (Chain chain : chains) {
+      for (List<Job> jobList : chain.getJobListChain()) {
+        for (Job job : jobList) {
+          jobTracker.onStateChange(job, JobTracker.JobState.PENDING);
+        }
+      }
+    }
+
+    runOnExecutor(() -> {
+      jobController.submitNewJobChains(chains.stream().map(Chain::getJobListChain).collect(Collectors.toList()));
     });
   }
 

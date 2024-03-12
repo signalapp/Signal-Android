@@ -255,7 +255,7 @@ class BackupTest {
       SignalStore.donationsValues().setSubscriber(Subscriber(SubscriberId.generate(), "USD"))
       SignalStore.donationsValues().setDisplayBadgesOnProfile(false)
 
-      SignalStore.phoneNumberPrivacy().phoneNumberListingMode = PhoneNumberPrivacyValues.PhoneNumberListingMode.UNLISTED
+      SignalStore.phoneNumberPrivacy().phoneNumberDiscoverabilityMode = PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE
       SignalStore.phoneNumberPrivacy().phoneNumberSharingMode = PhoneNumberPrivacyValues.PhoneNumberSharingMode.NOBODY
 
       SignalStore.settings().isLinkPreviewsEnabled = false

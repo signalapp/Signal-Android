@@ -51,8 +51,8 @@ class TransferProgressView @JvmOverloads constructor(
 
   private val progressRect = RectF()
   private val stopIconRect = RectF()
-  private val downloadDrawable = ContextCompat.getDrawable(context, R.drawable.ic_arrow_down_24)
-  private val uploadDrawable = ContextCompat.getDrawable(context, R.drawable.ic_arrow_up_16)
+  private val downloadDrawable = ContextCompat.getDrawable(context, R.drawable.symbol_arrow_down_24)
+  private val uploadDrawable = ContextCompat.getDrawable(context, R.drawable.symbol_arrow_up_24)
 
   private var progressPercent = 0f
   private var currentState = State.UNINITIALIZED
@@ -97,20 +97,13 @@ class TransferProgressView @JvmOverloads constructor(
     }
   }
 
-  fun setDownloading(progress: Float) {
+  fun setProgress(progress: Float) {
     currentState = State.IN_PROGRESS_CANCELABLE
     if (cancelClickListener == null) {
       Log.i(TAG, "Illegal click listener attached.")
     } else {
       setOnClickListener(cancelClickListener)
     }
-    progressPercent = progress
-    invalidate()
-  }
-
-  fun setUploading(progress: Float) {
-    currentState = State.IN_PROGRESS_NON_CANCELABLE
-    setOnClickListener { Log.d(TAG, "Not allowed to click an upload.") }
     progressPercent = progress
     invalidate()
   }

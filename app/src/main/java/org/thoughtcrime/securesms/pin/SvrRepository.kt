@@ -12,7 +12,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobmanager.JobTracker
-import org.thoughtcrime.securesms.jobs.NewRegistrationUsernameSyncJob
+import org.thoughtcrime.securesms.jobs.ReclaimUsernameAndLinkJob
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
 import org.thoughtcrime.securesms.jobs.ResetSvrGuessCountJob
 import org.thoughtcrime.securesms.jobs.StorageAccountRestoreJob
@@ -39,11 +39,10 @@ object SvrRepository {
 
   val TAG = Log.tag(SvrRepository::class.java)
 
-  private val svr2Deprecated: SecureValueRecovery = ApplicationDependencies.getSignalServiceAccountManager().getSecureValueRecoveryV2(BuildConfig.SVR2_MRENCLAVE_DEPRECATED)
   private val svr2: SecureValueRecovery = ApplicationDependencies.getSignalServiceAccountManager().getSecureValueRecoveryV2(BuildConfig.SVR2_MRENCLAVE)
 
   /** An ordered list of SVR implementations to read from. They should be in priority order, with the most important one listed first. */
-  private val readImplementations: List<SecureValueRecovery> = listOf(svr2, svr2Deprecated)
+  private val readImplementations: List<SecureValueRecovery> = listOf(svr2)
 
   /** An ordered list of SVR implementations to write to. They should be in priority order, with the most important one listed first. */
   private val writeImplementations: List<SecureValueRecovery> = listOf(svr2)
@@ -74,8 +73,7 @@ object SvrRepository {
       Log.i(TAG, "restoreMasterKeyPreRegistration()", true)
 
       val operations: List<Pair<SecureValueRecovery, () -> RestoreResponse>> = listOf(
-        svr2 to { restoreMasterKeyPreRegistration(svr2, credentials.svr2, userPin) },
-        svr2Deprecated to { restoreMasterKeyPreRegistration(svr2Deprecated, credentials.svr2, userPin) }
+        svr2 to { restoreMasterKeyPreRegistration(svr2, credentials.svr2, userPin) }
       )
 
       for ((implementation, operation) in operations) {
@@ -152,7 +150,7 @@ object SvrRepository {
             ApplicationDependencies
               .getJobManager()
               .startChain(StorageSyncJob())
-              .then(NewRegistrationUsernameSyncJob())
+              .then(ReclaimUsernameAndLinkJob())
               .enqueueAndBlockUntilCompletion(TimeUnit.SECONDS.toMillis(10))
             stopwatch.split("contact-restore")
 

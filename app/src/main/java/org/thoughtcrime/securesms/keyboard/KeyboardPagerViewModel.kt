@@ -7,6 +7,7 @@ import org.signal.core.util.ThreadUtil
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.stickers.StickerSearchRepository
 import org.thoughtcrime.securesms.util.DefaultValueLiveData
+import org.thoughtcrime.securesms.util.FeatureFlags
 
 class KeyboardPagerViewModel : ViewModel() {
 
@@ -18,6 +19,11 @@ class KeyboardPagerViewModel : ViewModel() {
     if (SignalStore.settings().isPreferSystemEmoji) {
       startingPages.remove(KeyboardPage.EMOJI)
     }
+
+    if (!FeatureFlags.gifSearchAvailable()) {
+      startingPages.remove(KeyboardPage.GIF)
+    }
+
     pages = DefaultValueLiveData(startingPages)
     page = DefaultValueLiveData(startingPages.first())
 

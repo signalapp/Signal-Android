@@ -179,7 +179,18 @@
     <string name="BlockUnblockDialog_unblock_s">%1$s എന്നതിനെ ബ്ലോക്ക് ചെയ്തത് മാറ്റണോ?</string>
     <string name="BlockUnblockDialog_block">ബ്ലോക്ക് ചെയ്യുക</string>
     <string name="BlockUnblockDialog_block_and_leave">ബ്ലോക്ക് ചെയ്ത ശേഷം പുറത്തുകടക്കുക</string>
-    <string name="BlockUnblockDialog_report_spam_and_block">സ്പാമെന്ന് അടയാളപ്പെടുത്തി ബ്ലോക്ക് ചെയ്യുക</string>
+    <!-- Dialog button label to report as spam and block the person -->
+    <string name="BlockUnblockDialog_report_spam_and_block">റിപ്പോർട്ട് ചെയ്ത് ബ്ലോക്ക് ചെയ്യുക</string>
+    <!-- Dialog title for reporting spam -->
+    <string name="BlockUnblockDialog_report_spam_title">സ്പാം റിപ്പോർട്ട് ചെയ്യണോ?</string>
+    <!-- Dialog button to report as spam only -->
+    <string name="BlockUnblockDialog_report_spam">സ്പാം റിപ്പോർട്ട് ചെയ്യുക</string>
+    <!-- Dialog message when reporting spam of an individual (1:1 conversation) -->
+    <string name="BlockUnblockDialog_report_spam_description">ഈ വ്യക്തി സ്‌പാം ആകാം അയയ്ക്കുന്നതെന്ന് Signal-ന് അറിയിപ്പ് ലഭിക്കും. Signal-ന് ഒരു ചാറ്റിന്റെയും ഉള്ളടക്കം കാണാൻ കഴിയില്ല.</string>
+    <!-- Dialog message when reporting spam of a group and we can determine the group member that invited you, placeholder is a name -->
+    <string name="BlockUnblockDialog_report_spam_group_named_adder">നിങ്ങളെ ഈ ഗ്രൂപ്പിലേക്ക് ക്ഷണിച്ച %1$s, സ്‌പാം ആകാം അയയ്ക്കുന്നതെന്ന് Signal-ന് അറിയിപ്പ് ലഭിക്കും. Signal-ന് ഒരു ചാറ്റിന്റെയും ഉള്ളടക്കം കാണാൻ കഴിയില്ല.</string>
+    <!-- Dialog message when reporting spam of a group and we cannot determine the group member that invited you -->
+    <string name="BlockUnblockDialog_report_spam_group_unknown_adder">നിങ്ങളെ ഈ ഗ്രൂപ്പിലേക്ക് ക്ഷണിച്ച വ്യക്തി, സ്‌പാം ആകാം അയയ്ക്കുന്നതെന്ന് Signal-ന് അറിയിപ്പ് ലഭിക്കും. Signal-ന് ഒരു ചാറ്റിന്റെയും ഉള്ളടക്കം കാണാൻ കഴിയില്ല.</string>
 
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">ഇന്ന്</string>
@@ -415,6 +426,8 @@
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported">SMS സന്ദേശമയയ്‌ക്കൽ ഇനിമുതൽ Signal-ൽ പിന്തുണയ്‌ക്കുന്നില്ല.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">SMS സന്ദേശമയയ്‌ക്കൽ ഇനിമുതൽ Signal-ൽ പിന്തുണയ്‌ക്കുന്നില്ല. സംഭാഷണം ഇവിടെ നിലനിർത്താൻ %1$s എന്നയാളെ Signal-ലേക്ക് ക്ഷണിക്കുക.</string>
+    <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
+    <string name="ConversationActivity__this_person_is_no_longer_using_signal">ഈ വ്യക്തി ഇപ്പോൾ Signal ഉപയോഗിക്കുന്നില്ല. സംഭാഷണം ഇവിടെ നിലനിർത്താൻ അവരെ Signal-ലേക്ക് ക്ഷണിക്കുക.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">Signal-ലേക്ക് ക്ഷണിക്കുക</string>
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
@@ -483,8 +496,8 @@
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">ഈ സംഭാഷണത്തിൽ നിങ്ങൾക്കായി കുറിപ്പുകൾ ചേർക്കാൻ കഴിയും. നിങ്ങളുടെ അക്കൗണ്ടിൽ ലിങ്ക് ചെയ്ത ഉപകരണങ്ങളുണ്ടെങ്കിൽ, പുതിയ കുറിപ്പുകൾ സമന്വയിപ്പിക്കും.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d ഗ്രൂപ്പ് അംഗങ്ങൾക്ക് ഒരേ പേരാണ്.</string>
     <string name="ConversationFragment__tap_to_review">അവലോകനം ചെയ്യാൻ ടാപ്പുചെയ്യുക</string>
-    <string name="ConversationFragment__review_requests_carefully">അഭ്യർത്ഥനകൾ ശ്രദ്ധാപൂർവ്വം അവലോകനം ചെയ്യുക</string>
-    <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal ഇതേ പേരിൽ മറ്റൊരു കോൺ‌ടാക്റ്റ് കണ്ടെത്തി.</string>
+    <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
+    <string name="ConversationFragment__review_banner_body">ഈ വ്യക്തിക്കും മറ്റൊരു കോൺടാക്റ്റിനും ഒരേ പേരാണ്</string>
     <string name="ConversationFragment_contact_us">ഞങ്ങളെ സമീപിക്കുക</string>
     <string name="ConversationFragment_verify">ഉറപ്പാക്കു</string>
     <string name="ConversationFragment_not_now">ഇപ്പോൾ വേണ്ട</string>
@@ -510,6 +523,55 @@
     <string name="ConversationFragment__content_description_launch_signal_button">Signal തുറക്കുക</string>
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
     <string name="ConversationFragment__no_longer_verified">ഇപ്പോൾ പരിശോധിച്ചുറപ്പിച്ചതല്ല</string>
+    <!-- Button shown in conversation header when in a message request state and no groups in common to show new message safety tips -->
+    <string name="ConversationFragment_safety_tips">സുരക്ഷാ നുറുങ്ങുകൾ</string>
+    <!-- Menu option to report spam in a conversation -->
+    <string name="ConversationFragment_report_spam">സ്പാം റിപ്പോർട്ട് ചെയ്യുക</string>
+    <!-- Menu option to block in a conversation -->
+    <string name="ConversationFragment_block">ബ്ലോക്ക് ചെയ്യുക</string>
+    <!-- Menu otpion to accept a message request in a conversation -->
+    <string name="ConversationFragment_accept">സ്വീകരിക്കുക</string>
+    <!-- Menu option to delete an entire chat in a conversation -->
+    <string name="ConversationFragment_delete_chat">ചാറ്റ് ഇല്ലാതാക്കുക</string>
+    <!-- Menu option to unblock in a conversation -->
+    <string name="ConversationFragment_unblock">അൺബ്ലോക്ക് ചെയ്യുക</string>
+    <!-- Dialog title shown after reporting spam and tapping the conversation item -->
+    <string name="ConversationFragment_reported_spam">സ്പാം റിപ്പോർട്ട് ചെയ്തു</string>
+    <!-- Dialog message shown after reporting spam and tapping the conversation item -->
+    <string name="ConversationFragment_reported_spam_message">ഈ വ്യക്തി സ്‌പാം ആകാം അയയ്ക്കുന്നതെന്ന് Signal-ന് അറിയിപ്പ് ലഭിച്ചു. Signal-ന് ഒരു ചാറ്റിന്റെയും ഉള്ളടക്കം കാണാൻ കഴിയില്ല.</string>
+    <!-- Toast shown after reporting spam and tapping the conversation item -->
+    <string name="ConversationFragment_reported_as_spam">സ്പാം റിപ്പോർട്ട് ചെയ്തു</string>
+    <!-- Toast shown after reporting and blocking a conversation -->
+    <string name="ConversationFragment_reported_as_spam_and_blocked">സ്പാം ആയി റിപ്പോർട്ട് ചെയ്ത ശേഷം ബ്ലോക്ക് ചെയ്തു</string>
+    <!-- Dialog message shown after accepting a message request and tapping on options from the conversation event -->
+    <string name="ConversationFragment_you_accepted_a_message_request_from_s">നിങ്ങൾ %1$s എന്നയാളിൽ നിന്നുള്ള സന്ദേശ അഭ്യർത്ഥന സ്വീകരിച്ചു. ഇത് അബദ്ധത്തിൽ സംഭവിച്ചതാണെങ്കിൽ, ചുവടെ നൽകിയിരിക്കുന്ന ഏതെങ്കിലും നടപടി നിങ്ങൾക്ക് തിരഞ്ഞെടുക്കാം.</string>
+
+    <!-- Title of Safety Tips bottom sheet dialog -->
+    <string name="SafetyTips_title">സുരക്ഷാ നുറുങ്ങുകൾ</string>
+    <!-- Dialog subtitle when showign tips for a 1:1 conversation -->
+    <string name="SafetyTips_subtitle_individual">നിങ്ങൾക്ക് പരിചയമില്ലാത്ത ആളുകളിൽ നിന്നുള്ള സന്ദേശ അഭ്യർത്ഥനകൾ സ്വീകരിക്കുമ്പോൾ ശ്രദ്ധിക്കുക. ഇവ ശ്രദ്ധിക്കുക:</string>
+    <!-- Dialog subtitle when showing tips for a group conversation -->
+    <string name="SafetyTips_subtitle_group">ഈ അഭ്യർത്ഥന ശ്രദ്ധാപൂർവ്വം അവലോകനം ചെയ്യുക. നിങ്ങളുടെ കോൺടാക്റ്റുകളിലുള്ളവരോ നിങ്ങൾ ചാറ്റ് ചെയ്യുന്നവരോ ഈ ഗ്രൂപ്പിൽ ഇല്ല. ശ്രദ്ധിക്കേണ്ട ചില കാര്യങ്ങൾ ഇവയാണ്:</string>
+    <!-- Button text to move to the previous tip-->
+    <string name="SafetyTips_previous_tip">മുമ്പത്തെ നുറുങ്ങ്</string>
+    <!-- Button text to move to the next tip -->
+    <string name="SafetyTips_next_tip">അടുത്ത നുറുങ്ങ്</string>
+    <!-- Title of tip 1 -->
+    <string name="SafetyTips_tip1_title">ക്രിപ്റ്റോ അല്ലെങ്കിൽ പണം തട്ടിപ്പുകൾ</string>
+    <!-- Message of tip 1 -->
+    <string name="SafetyTips_tip1_message">നിങ്ങൾക്ക് അറിഞ്ഞുകൂടാത്ത ആരെങ്കിലും നിങ്ങൾക്ക് ക്രിപ്‌റ്റോകറൻസിയെ കുറിച്ചോ (ബിറ്റ്‌കോയിൻ പോലുള്ളവ) സാമ്പത്തികവുമായി ബന്ധപ്പെട്ട അവസരത്തെക്കുറിച്ചോ സന്ദേശങ്ങൾ അയച്ചാൽ ശ്രദ്ധയോടെ കൈകാര്യം ചെയ്യുക—അത് സ്പാം ആകാൻ സാധ്യതയുണ്ട്.</string>
+    <!-- Title of tip 2 -->
+    <string name="SafetyTips_tip2_title">അവ്യക്തമോ അപ്രസക്തമോ ആയ സന്ദേശങ്ങൾ</string>
+    <!-- Message of tip 2 -->
+    <string name="SafetyTips_tip2_message">നിങ്ങളുടെ ശ്രദ്ധ ആകർഷിക്കാൻ \"ഹായ്\" പോലുള്ള ലളിതമായ സന്ദേശം അയച്ചാണ് സ്‌പാമർമാർ പലപ്പോഴും ചാറ്റ് ആരംഭിക്കുന്നത്. നിങ്ങൾ പ്രതികരിച്ചാൽ അവർ നിങ്ങൾക്ക് കൂടുതൽ സന്ദേശങ്ങളയച്ച് ഇടപഴകാൻ പ്രേരിപ്പിക്കും.</string>
+    <!-- Title of tip 3 -->
+    <string name="SafetyTips_tip3_title">ലിങ്കുകളുള്ള സന്ദേശങ്ങൾ</string>
+    <!-- Message of tip 3 -->
+    <string name="SafetyTips_tip3_message">നിങ്ങൾക്ക് പരിചയമില്ലാത്ത ആളുകളിൽ നിന്ന്, വെബ്‌സൈറ്റുകളിലേക്കുള്ള ലിങ്കുകളുള്ള സന്ദേശങ്ങൾ ലഭിച്ചാൽ അത് ശ്രദ്ധയോടെ കൈകാര്യം ചെയ്യുക. നിങ്ങൾക്ക് വിശ്വാസമില്ലാത്ത ആളുകൾ അയയ്ക്കുന്ന ലിങ്കുകൾ ഒരിക്കലും സന്ദർശിക്കരുത്.</string>
+    <!-- Title of tip 4 -->
+    <string name="SafetyTips_tip4_title">വ്യാജ ബിസിനസുകളും സ്ഥാപനങ്ങളും</string>
+    <!-- Message of tip 4 -->
+    <string name="SafetyTips_tip4_message">നിങ്ങളെ ബന്ധപ്പെടുന്ന ബിസിനസ്സുകളെയോ സർക്കാർ ഏജൻസികളെയോ ശ്രദ്ധയോടെ കൈകാര്യം ചെയ്യുക. ടാക്സ് ഏജൻസികൾ, കൊറിയറുകൾ എന്നിവയും മറ്റും ഉൾപ്പെടുന്ന സന്ദേശങ്ങൾ സ്പാം ആകാം.</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">ഫിൽട്ടർ മായ്‌ക്കുക</string>
@@ -524,7 +586,10 @@
         <item quantity="other">ഇത് തിരഞ്ഞെടുത്ത %1$d ചാറ്റുകളും ശാശ്വതമായി ഇല്ലാതാക്കും.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">ഇല്ലാതാക്കുന്നു</string>
-    <string name="ConversationListFragment_deleting_selected_conversations">തിരഞ്ഞെടുത്ത ചാറ്റുകൾ ഇല്ലാതാക്കുന്നു…</string>
+    <plurals name="ConversationListFragment_deleting_selected_conversations">
+        <item quantity="one">തിരഞ്ഞെടുത്ത ചാറ്റ് ഇല്ലാതാക്കുന്നു…</item>
+        <item quantity="other">തിരഞ്ഞെടുത്ത ചാറ്റുകൾ ഇല്ലാതാക്കുന്നു…</item>
+    </plurals>
     <plurals name="ConversationListFragment_conversations_archived">
         <item quantity="one">ചാറ്റ് ആർക്കൈവ് ചെയ്‌തു</item>
         <item quantity="other">%1$d ചാറ്റുകൾ ആർക്കൈവ് ചെയ്‌തു</item>
@@ -562,6 +627,8 @@
     <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">നിങ്ങൾക്കുള്ള അറിയിപ്പുകൾ ഇവിടെ ഓണാക്കുക അല്ലെങ്കിൽ ഓഫ് ചെയ്യുക.</string>
     <!-- Message shown in top toast to indicate the named profile is on -->
     <string name="ConversationListFragment__s_on">%1$sസജീവം</string>
+    <!-- -->
+    <string name="ConversationListFragment_username_recovered_toast">നിങ്ങളുടെ QR കോഡും ലിങ്കും പുനഃക്രമീകരിച്ചു, നിങ്ങളുടെ ഉപയോക്തൃനാമം %1$s ആണ്</string>
 
     <!-- ConversationListItem -->
     <string name="ConversationListItem_key_exchange_message">കീ കൈമാറ്റ സന്ദേശം</string>
@@ -606,9 +673,9 @@
     <!-- Toolbar title for this screen -->
     <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">നമ്പർ ഉപയോഗിച്ച് എന്നെ കണ്ടെത്താൻ കഴിയുന്നത് ആർക്കൊക്കെ?</string>
     <!-- Description for radio item stating anyone can see your phone number -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">കോൺടാക്റ്റുകളിൽ നിങ്ങളുടെ ഫോൺ നമ്പർ ഉള്ള ആർക്കും നിങ്ങളെ Signal-ൽ കോൺടാക്റ്റായി കാണാൻ കഴിയും. തിരയലിൽ നിങ്ങളുടെ നമ്പർ ഉപയോഗിച്ച് തിരഞ്ഞും മറ്റുള്ളവർക്ക് നിങ്ങളെ കണ്ടെത്താനാകും.</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">നിങ്ങളുടെ ഫോൺ നമ്പറുള്ള ആർക്കും നിങ്ങൾ Signal-ൽ ഉണ്ടെന്ന് കാണാനും നിങ്ങളുമായി ചാറ്റുകൾ ആരംഭിക്കാനും കഴിയും.</string>
     <!-- Description for radio item stating no one will be able to see your phone number -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">Signal-ൽ ആർക്കും ഫോൺ നമ്പർ ഉപയോഗിച്ച് നിങ്ങളെ കണ്ടെത്താൻ കഴിയില്ല.</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">നിങ്ങൾ സന്ദേശമയയ്‌ക്കുകയോ മുമ്പ് ചാറ്റ് ചെയ്തിട്ടുണ്ടെങ്കിലോ മാത്രമേ നിങ്ങൾ Signal-ൽ ഉണ്ടെന്ന് കാണാനാകൂ.</string>
 
     <!-- ChooseBackupFragment -->
     <string name="ChooseBackupFragment__restore_from_backup">ബാക്കപ്പിൽ വീണ്ടെടുക്കണോ?</string>
@@ -996,7 +1063,11 @@
     <string name="GroupMentionSettingDialog_dont_notify_me">എന്നെ അറിയിക്കരുത്</string>
 
     <!-- ManageProfileFragment -->
-    <string name="ManageProfileFragment_profile_name">പ്രൊഫൈലിന്റെ പേര്</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
+    <string name="ManageProfileFragment__your_username">നിങ്ങളുടെ ഉപയോക്തൃനാമവും QR കോഡും ലിങ്കും നിങ്ങളുടെ പ്രൊഫൈലിൽ ദൃശ്യമല്ല. നിങ്ങൾക്ക് വിശ്വാസമുള്ള ആളുകളുമായി മാത്രം നിങ്ങളുടെ ഉപയോക്തൃനാമം പങ്കിടുക.</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
+    <string name="ManageProfileFragment__username_footer_no_username">നിങ്ങളുടെ ഓപ്‌ഷണൽ ഉപയോക്തൃനാമം ഉപയോഗിച്ച് ആളുകൾക്ക് ഇപ്പോൾ നിങ്ങൾക്ക് സന്ദേശമയയ്‌ക്കാൻ കഴിയും, അതിനാൽ നിങ്ങളുടെ ഫോൺ നമ്പർ നൽകേണ്ടതില്ല. </string>
+    <string name="ManageProfileFragment_profile_name">പ്രൊഫൈൽ നാമം</string>
     <string name="ManageProfileFragment_username">ഉപയോക്തൃനാമം</string>
     <string name="ManageProfileFragment_about">എന്നെ പറ്റി</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">അവതാർ സജ്ജമാക്കാന്‍ കഴിഞ്ഞില്ല</string>
@@ -1283,6 +1354,10 @@
     <string name="MessageRecord_missed_voice_call">മിസ്‌ഡ് വോയ്‌സ് കോൾ</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">മിസ്‌ഡ് വീഡിയോ കോൾ</string>
+    <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
+    <string name="MessageRecord_missed_voice_call_notification_profile">അറിയിപ്പ് പ്രൊഫൈൽ ഓണായിരിക്കുമ്പോൾ വോയ്സ് കോൾ മിസ്സ് ആയി</string>
+    <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
+    <string name="MessageRecord_missed_video_call_notification_profile">അറിയിപ്പ് പ്രൊഫൈൽ ഓണായിരിക്കുമ്പോൾ വീഡിയോ കോൾ മിസ്സ് ആയി</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
     <string name="MessageRecord_you_declined_a_voice_call">നിങ്ങൾ ഒരു വോയ്‌സ് കോൾ നിരസിച്ചു</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
@@ -1311,8 +1386,10 @@
 
     <!-- Profile change updates -->
     <string name="MessageRecord_changed_their_profile_name_to">%1$s അവരുടെ പ്രൊഫൈൽ നാമം %2$s എന്ന് മാറ്റി.</string>
-    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s അവരുടെ പ്രൊഫൈലിന്റെ പേര് %2$sയിൽ നിന്ന് %3$sലേക്ക് മാറ്റി.</string>
+    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s അവരുടെ പ്രൊഫൈൽ നാമം %2$sയിൽ നിന്ന് %3$sലേക്ക് മാറ്റി.</string>
     <string name="MessageRecord_changed_their_profile">%1$s അവരുടെ പ്രൊഫൈൽ മാറ്റി </string>
+    <!-- Conversation update event message shown when you\'ve started a conversation by phone number or username and then learn their profile name. placeholder is username or phone number -->
+    <string name="MessageRecord_started_this_chat">%1$s എന്നയാളുമായുള്ള ഈ ചാറ്റ് നിങ്ങൾ ആരംഭിച്ചു.</string>
 
     <!-- GV2 specific -->
     <string name="MessageRecord_you_created_the_group">നിങ്ങൾ ഗ്രൂപ്പ് സൃഷ്ടിച്ചു.</string>
@@ -1525,6 +1602,10 @@
     <string name="MessageRecord__you_can_no_longer_send_sms_messages_in_signal">നിങ്ങൾക്ക് ഇനി മുതൽ Signal-ൽ നിന്ന് SMS സന്ദേശങ്ങൾ അയയ്ക്കാൻ കഴിയുന്നതല്ല. സംഭാഷണം ഇവിടെ നിലനിർത്താൻ %1$s എന്നയാളെ Signal-ലേക്ക് ക്ഷണിക്കുക.</string>
     <!-- Body for quote when message being quoted is an in-app payment message -->
     <string name="MessageRecord__payment_s">പേയ്മെന്റ്: %1$s</string>
+    <!-- Update message shown in chat after reporting it as spam -->
+    <string name="MessageRecord_reported_as_spam">സ്പാം റിപ്പോർട്ട് ചെയ്തു</string>
+    <!-- Update message shown in chat after accept a message request -->
+    <string name="MessageRecord_you_accepted_the_message_request">സന്ദേശ അഭ്യർത്ഥന നിങ്ങൾ സ്വീകരിച്ചു</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">സ്വീകരിക്കുക</string>
@@ -1571,6 +1652,8 @@
         <item quantity="one">%1$d അധിക ഗ്രൂപ്പ്</item>
         <item quantity="other">%1$d അധിക ഗ്രൂപ്പുകൾ</item>
     </plurals>
+    <!-- Button label to report spam for a conversation when in a message request state -->
+    <string name="MessageRequestBottomView_report">റിപ്പോർട്ട് ചെയ്യുക…</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">രഹസ്യവാചകങ്ങൾ പൊരുത്തപ്പെടുന്നില്ല!</string>
@@ -1782,8 +1865,10 @@
     <string name="WebRtcCallView__disconnected">വിച്ഛേദിച്ചു</string>
     <!-- Utilized in the lobby before joining a call link -->
     <string name="WebRtcCallView__signal_call_link">Signal കോൾ ലിങ്ക്</string>
-    <!-- Warning displayed when entering a call via a link -->
-    <string name="WebRtcCallView__anyone_who_joins">ലിങ്കിലൂടെ ഈ കോളിൽ ചേരുന്ന ആർക്കും നിങ്ങളുടെ പേര്, ഫോട്ടോ, ഫോൺ നമ്പർ എന്നിവ കാണാനാകും.</string>
+    <!-- Warning displayed when entering a call via a link and you have Phone Number Privacy disabled-->
+    <string name="WebRtcCallView__anyone_who_joins_pnp_disabled">ലിങ്കിലൂടെ ഈ കോളിൽ ചേരുന്ന ആർക്കും നിങ്ങളുടെ പേര്, ഫോട്ടോ, ഫോൺ നമ്പർ എന്നിവ കാണാനാകും.</string>
+    <!-- Warning displayed when entering a call via a link and you have Phone Number Privacy enabled-->
+    <string name="WebRtcCallView__anyone_who_joins_pnp_enabled">ലിങ്ക് വഴി ഈ കോളിൽ ചേരുന്ന ആർക്കും നിങ്ങളുടെ പേരും ഫോട്ടോയും കാണാനാകും.</string>
     <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
     <string name="WebRtcCallView__waiting_to_be_let_in">പ്രവേശനം അനുവദിക്കാൻ കാത്തിരിക്കുന്നു…</string>
 
@@ -1885,6 +1970,10 @@
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">Signal കണക്ഷൻ</string>
+    <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
+    <string name="AboutSheet__verified">പരിശോധിച്ചു</string>
+    <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
+    <string name="AboutSheet__no_direct_message">%1$s എന്നയാൾക്ക് നേരിട്ട് സന്ദേശങ്ങളൊന്നും അയച്ചിട്ടില്ല</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s നിങ്ങളുടെ സിസ്റ്റം കോൺടാക്റ്റുകളിൽ ഉണ്ട്</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -1892,7 +1981,10 @@
     <!-- Notice when a user is not a connection to review requests carefully -->
     <string name="AboutSheet__review_requests_carefully">അഭ്യർത്ഥനകൾ ശ്രദ്ധാപൂർവ്വം അവലോകനം ചെയ്യുക</string>
     <!-- Text used when user has groups in common. Placeholder is the count -->
-    <string name="AboutSheet__d_groups_in_common">പൊതുവായി %1$d ഗ്രൂപ്പുകൾ ഉണ്ട്</string>
+    <plurals name="AboutSheet__d_groups_in">
+        <item quantity="one">സാമാന്യമായി %1$d ഗ്രൂപ്പ് ഉണ്ട്</item>
+        <item quantity="other">സാമാന്യമായി %1$d ഗ്രൂപ്പുകൾ ഉണ്ട്</item>
+    </plurals>
     <!-- Text displayed in title for external recipients -->
     <string name="AboutSheet__about">വിവരങ്ങൾ</string>
     <!-- Text displayed in title for you -->
@@ -2199,6 +2291,8 @@
     <string name="UnverifiedSendDialog_send">അയയ്‌ക്കുക</string>
 
     <!-- UsernameEditFragment -->
+    <!-- Placeholder text for custom discriminator -->
+    <string name="UsernameEditFragment__00">00</string>
     <!-- Toolbar title when entering from registration -->
     <string name="UsernameEditFragment__add_a_username">ഒരു ഉപയോക്തൃനാമം ചേർക്കുക</string>
     <!-- Instructional text at the top of the username edit screen -->
@@ -2207,13 +2301,15 @@
     <string name="UsernameEditFragment_delete">ഇല്ലാതാക്കൂ</string>
     <string name="UsernameEditFragment_successfully_removed_username">ഉപയോക്തൃനാമം നീക്കം ചെയ്തു.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">ഒരു നെറ്റ്‌വർക്ക് പിശക് നേരിട്ടു.</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">വളരെയധികം ശ്രമങ്ങൾ നടത്തി, പിന്നീട് വീണ്ടും ശ്രമിക്കുക.</string>
     <string name="UsernameEditFragment_this_username_is_taken">ഈ ഉപയോക്തൃനാമം എടുത്തിട്ടുണ്ട്.</string>
-    <string name="UsernameEditFragment_usernames_can_only_include">യൂസേർനേമ്കളിൽ a–Z, 0–9, അടിവര എന്നിവ മാത്രമേ ഉൾപ്പെടുത്താനാകൂ.</string>
+    <string name="UsernameEditFragment_usernames_can_only_include">ഉപയോക്തൃനാമങ്ങളിൽ a–Z, 0–9, അണ്ടർ സ്കോറുകൾ എന്നിവ മാത്രമേ ഉൾപ്പെടുത്താനാകൂ.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ഉപയോക്തൃനാമം ഒരു നമ്പറിൽ ആരംഭിക്കാൻ കഴിയില്ല.</string>
     <string name="UsernameEditFragment_username_is_invalid">ഉപയോക്തൃനാമം അസാധുവാണ്.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ഉപയോക്തൃനാമങ്ങൾ %1$d മുതൽ %2$d വരെ പ്രതീകങ്ങൾ ആയിരിക്കണം.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">നിങ്ങളുടെ ഫോൺ നമ്പറില്ലാതെ നിങ്ങൾക്ക് സന്ദേശം അയയ്ക്കാൻ ഉപയോക്തൃനാമങ്ങൾ മറ്റുള്ളവരെ അനുവദിക്കുന്നു. നിങ്ങളുടെ മേൽവിലാസം സ്വകാര്യമായി സൂക്ഷിക്കുന്നതിന്, അത് ഒരു കൂട്ടം അക്കങ്ങളുമായി ജോടിയാക്കിയിരിക്കുന്നു.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">ഉപയോക്തൃനാമങ്ങൾക്കൊപ്പം ഒരു കൂട്ടം സംഖ്യകളും ഉണ്ടാകും.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">ഈ നമ്പർ എന്താണ്?</string>
     <string name="UsernameEditFragment__these_digits_help_keep">അനാവശ്യ സന്ദേശങ്ങൾ ഒഴിവാക്കാൻ നിങ്ങളെ സഹായിക്കുന്നതിന്, ഈ അക്കങ്ങൾ നിങ്ങളുടെ ഉപയോക്തൃനാമം സ്വകാര്യമായി സൂക്ഷിക്കുന്നു. നിങ്ങൾ ചാറ്റ് ചെയ്യാൻ ആഗ്രഹിക്കുന്ന ആളുകളുമായും ഗ്രൂപ്പുകളുമായും മാത്രം നിങ്ങളുടെ ഉപയോക്തൃനാമം പങ്കിടുക. നിങ്ങൾ ഉപയോക്തൃനാമം മാറ്റുകയാണെങ്കിൽ, നിങ്ങൾക്ക് പുതിയ ഒരു കൂട്ടം അക്കങ്ങൾ ലഭിക്കുന്നതാണ്.</string>
@@ -2221,6 +2317,22 @@
     <string name="UsernameEditFragment__skip">ഒഴിവാക്കുക</string>
     <!-- Content description for done button -->
     <string name="UsernameEditFragment__done">ചെയ്‌തു</string>
+    <!-- Displayed when the chosen discriminator is not available for the given nickname -->
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">ഈ ഉപയോക്തൃനാമം ലഭ്യമല്ല, മറ്റൊരു നമ്പർ നൽകി നോക്കുക.</string>
+    <!-- Displayed when the chosen discriminator is too short -->
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">ഉപയോക്തൃനാമം അസാധുവാണ്, കുറഞ്ഞത് %1$d അക്കങ്ങൾ നൽകുക.</string>
+    <!-- Displayed when the chosen discriminator is too long -->
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">ഉപയോക്തൃനാമം അസാധുവാണ്, പരമാവധി %1$d അക്കങ്ങൾ നൽകുക.</string>
+    <!-- Displayed when the chosen discriminator is 00 -->
+    <string name="UsernameEditFragment__this_number_cant_be_00">ഈ സംഖ്യ 00 ആകാൻ പാടില്ല. 1-നും 9-നും ഇടയിലുള്ള ഒരു അക്കം നൽകുക</string>
+    <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">2 അക്കങ്ങളിൽ കൂടുതലുള്ള സംഖ്യകൾ 0-ൽ ആരംഭിക്കാനാകില്ല</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
+    <string name="UsernameEditFragment_recovery_dialog_confirmation">നിങ്ങളുടെ ഉപയോക്തൃനാമം വീണ്ടെടുക്കുന്നതിലൂടെ നിങ്ങളുടെ നിലവിലുള്ള QR കോഡും ലിങ്കും പുനഃക്രമീകരിക്കും. ഉറപ്പാണോ?</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
+    <string name="UsernameEditFragment_change_confirmation_message">നിങ്ങളുടെ ഉപയോക്തൃനാമം മാറ്റുന്നത് നിങ്ങളുടെ നിലവിലുള്ള QR കോഡും ലിങ്കും പുനഃക്രമീകരിക്കും. ഉറപ്പാണോ?</string>
+    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
+    <string name="UsernameEditFragment_continue">തുടരുക</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">Signal-ൽ‌ %1$d കോൺ‌ടാക്റ്റ് ഉണ്ട്!</item>
@@ -2407,6 +2519,26 @@
     <!-- Notification subtext for group stories -->
     <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s • സ്റ്റോറി</string>
 
+    <!-- NewWaysToConnectDialogFragment -->
+    <!-- Fragment title, displayed at the top of the content -->
+    <string name="NewWaysToConnectDialogFragment__new_ways_to_connect">കണക്റ്റ് ചെയ്യാനുള്ള പുതിയ മാർഗങ്ങൾ</string>
+    <!-- Row item title for phone number privacy explainer -->
+    <string name="NewWaysToConnectDialogFragment__phone_number_privacy">ഫോൺ നമ്പർ സ്വകാര്യത</string>
+    <!-- Row item description for phone number privacy explainer -->
+    <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">നിങ്ങളുടെ ഫോൺ നമ്പർ ഇനി ചാറ്റുകളിൽ പങ്കിടില്ല. നിങ്ങളുടെ നമ്പർ സുഹൃത്തിൻ്റെ കോൺടാക്‌റ്റുകളിൽ സേവ് ചെയ്‌തിട്ടുണ്ടെങ്കിൽ, അവർ അത് തുടർന്നും കാണും.</string>
+    <!-- Row item title for usernames explainer -->
+    <string name="NewWaysToConnectDialogFragment__usernames">ഉപയോക്തൃനാമങ്ങൾ</string>
+    <!-- Row item description for usernames explainer -->
+    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">നിങ്ങളുടെ ഓപ്‌ഷണൽ ഉപയോക്തൃനാമം ഉപയോഗിച്ച് ആളുകൾക്ക് ഇപ്പോൾ നിങ്ങൾക്ക് സന്ദേശമയയ്‌ക്കാൻ കഴിയും, അതിനാൽ നിങ്ങളുടെ ഫോൺ നമ്പർ നൽകേണ്ടതില്ല. നിങ്ങളുടെ പ്രൊഫൈലിൽ ഉപയോക്തൃനാമങ്ങൾ ദൃശ്യമല്ല.</string>
+    <!-- Row item title for qr code and links explainer -->
+    <string name="NewWaysToConnectDialogFragment__qr_codes_and_links">QR കോഡുകളും ലിങ്കുകളും</string>
+    <!-- Row item description for qr code and links explainer -->
+    <string name="NewWaysToConnectDialogFragment__usernames_have_a_unique_qr_code">ഉപയോക്തൃനാമങ്ങൾക്ക് തനതായൊരു QR കോഡും ലിങ്കും ഉണ്ടാകും, നിങ്ങളുമായി എളുപ്പത്തിൽ ചാറ്റ് ചെയ്ത് തുടങ്ങാൻ ഇത് സുഹൃത്തുക്കളുമായി പങ്കിടാനാകും.</string>
+    <!-- Button label for not right now -->
+    <string name="NewWaysToConnectDialogFragment__not_now">ഇപ്പോൾ വേണ്ട</string>
+    <!-- Button label for continue -->
+    <string name="NewWaysToConnectDialogFragment__set_up_your_username">ഉപയോക്തൃനാമം സജ്ജീകരിക്കുക</string>
+
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">വീഡിയോ പ്ലേ ചെയ്യുക</string>
     <string name="ThumbnailView_Has_a_caption_description">ഒരു അടിക്കുറിപ്പ് ഉണ്ട്</string>
@@ -2420,6 +2552,8 @@
     <string name="TransferControlView__processing">പ്രോസസ് ചെയ്യുന്നു…</string>
     <!-- Status update label used while the device is transmitting data over the network. Will take the form of "1.0 MB/2.0 MB" -->
     <string name="TransferControlView__download_progress">%1$1.1f MB/%2$2.1f MB</string>
+    <!-- Attachment file size label for not-yet-downloaded images and video. Will take the form of "1.0 MB" -->
+    <string name="TransferControlView__filesize">%1$1.1f MB</string>
 
 
     <!-- UnauthorizedReminder -->
@@ -2520,6 +2654,10 @@
         <item quantity="one">%1$d അംഗം</item>
         <item quantity="other">%1$d അംഗങ്ങൾ</item>
     </plurals>
+    <!-- Text on row item to find user by phone number -->
+    <string name="ContactSelectionListFragment__find_by_phone_number">ഫോൺ നമ്പർ ഉപയോഗിച്ച് കണ്ടെത്തുക</string>
+    <!-- Text on row item to find user by username -->
+    <string name="ContactSelectionListFragment__find_by_username">ഉപയോക്തൃനാമം ഉപയോഗിച്ച് കണ്ടെത്തുക</string>
 
     <!-- contact_selection_list_fragment -->
     <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal-ന് നിങ്ങളുടെ കോൺടാക്റ്റുകൾ പ്രദർശിപ്പിക്കുന്നതിന് അവയിലേക്ക് ആക്സസ് ആവശ്യമാണ്.</string>
@@ -2591,6 +2729,8 @@
     <string name="ConversationUpdateItem_activate_payments">പേയ്മെന്റുകൾ സജീവമാക്കുക</string>
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">നിങ്ങൾ ഈ വ്യക്തിയെ നീക്കം ചെയ്തു, അവർക്ക് വീണ്ടും സന്ദേശം അയയ്ക്കുന്നതിലൂടെ വീണ്ടും അവരെ ലിസ്റ്റിലേക്ക് ചേർക്കും.</string>
+    <!-- Update item button text shown for the accepted message request update message -->
+    <string name="ConversationUpdateItem_options">ഓപ്ഷനുകൾ</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">പ്ലേ … പോസ്</string>
@@ -3745,13 +3885,27 @@
     <!-- Subtext below option to launch into phone number privacy settings screen -->
     <string name="preferences_app_protection__choose_who_can_see">നിങ്ങളുടെ ഫോൺ നമ്പർ ആർക്കൊക്കെ കാണാനാകുമെന്നും ആർക്കൊക്കെ നിങ്ങളെ Signal-ൽ ബന്ധപ്പെടാനാകുമെന്നും തിരഞ്ഞെടുക്കൂ.</string>
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
-    <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">എന്റെ നമ്പർ ആർക്കൊക്കെ കാണാനാകും</string>
-    <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Signal-ൽ നിങ്ങളുടെ ഫോൺ നമ്പർ ആർക്കും കാണാനാകില്ല</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">എന്റെ നമ്പർ ആർക്കൊക്കെ കാണാനാകും</string>
+    <!-- Subtext below radio buttons when who can see my number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">നിങ്ങൾ സന്ദേശമയയ്‌ക്കുന്ന എല്ലാ ആളുകൾക്കും ഗ്രൂപ്പുകൾക്കും നിങ്ങളുടെ ഫോൺ നമ്പർ ദൃശ്യമാകും.</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">ആരുടെയെങ്കിലും ഫോൺ കോൺടാക്റ്റുകളിൽ നിങ്ങളുടെ ഫോൺ നമ്പർ സേവ് ചെയ്തിട്ടില്ലെങ്കിൽ അവർക്ക് അത് ദൃശ്യമാകില്ല.</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">നിങ്ങളുടെ ഫോൺ നമ്പർ ആർക്കും ദൃശ്യമാകില്ല.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
-    <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">നമ്പർ ഉപയോഗിച്ച് എന്നെ ആർക്കൊക്കെ കണ്ടെത്താനാകും</string>
-    <!-- Subtext below radio buttons when who can see my number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">നിങ്ങൾ സന്ദേശമയയ്‌ക്കുന്ന ആളുകൾക്കും ഗ്രൂപ്പുകൾക്കും നിങ്ങളുടെ ഫോൺ നമ്പർ ദൃശ്യമാകും. ഫോൺ കോൺടാക്റ്റുകളിൽ നിങ്ങളുടെ നമ്പർ ഉള്ള ആളുകൾക്ക് ഈ നമ്പർ Signal-ലും കാണാനാകും.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">നമ്പർ ഉപയോഗിച്ച് എന്നെ ആർക്കൊക്കെ കണ്ടെത്താനാകും</string>
+    <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">നിങ്ങളുടെ ഫോൺ നമ്പറുള്ള ആർക്കും നിങ്ങൾ Signal-ൽ ഉണ്ടെന്ന് കാണാനും നിങ്ങളുമായി ചാറ്റുകൾ ആരംഭിക്കാനും കഴിയും.</string>
+    <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">നിങ്ങൾ സന്ദേശമയയ്‌ക്കുകയോ മുമ്പ് ചാറ്റ് ചെയ്തിട്ടുണ്ടെങ്കിലോ മാത്രമേ നിങ്ങൾ Signal-ൽ ഉണ്ടെന്ന് കാണാനാകൂ.</string>
+    <!-- Snackbar text when pressing invalid radio item -->
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"ഈ ക്രമീകരണം മാറ്റാൻ, \'ആർക്കൊക്കെ എന്റെ നമ്പർ കാണാൻ കഴിയും\' എന്നത് \'ആരും കാണണ്ട\' എന്ന് സജ്ജീകരിക്കുക."</string>
+    <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">ഉറപ്പാണോ?</string>
+    <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">\"നമ്പർ പ്രകാരം ആർക്കൊക്കെ എന്നെ കണ്ടെത്താനാകും\" എന്നത് \"ആർക്കുമില്ല\" എന്ന് ക്രമീകരിക്കുന്നത് ആളുകൾക്ക് നിങ്ങളെ Signal-ൽ കണ്ടെത്തുന്നത് ബുദ്ധിമുട്ടാക്കും.</string>
+    <!-- Dialog button text for canceling change action -->
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">റദ്ദാക്കുക</string>
     <string name="PhoneNumberPrivacy_everyone">എല്ലാവരും</string>
     <string name="PhoneNumberPrivacy_nobody">ആരുംതന്നെയില്ല</string>
     <string name="preferences_app_protection__screen_lock">സ്‌ക്രീൻ ലോക്ക്</string>
@@ -3780,6 +3934,8 @@
     <string name="prompt_passphrase_activity__signal_is_locked">Signal പൂട്ടിയിരിക്കുന്നൂ</string>
     <string name="prompt_passphrase_activity__tap_to_unlock">തുറക്കാൻ തൊടുക</string>
     <string name="Recipient_unknown">അജ്ഞാതം</string>
+    <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
+    <string name="Recipient_deleted_account">ഇല്ലാതാക്കിയ അക്കൗണ്ട്</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
     <string name="preferences_account_reregister">അക്കൗണ്ട് വീണ്ടും രജിസ്റ്റർ ചെയ്യുക</string>
@@ -3982,8 +4138,10 @@
     <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" എന്നയാളെ അൺബ്ലോക്ക് ചെയ്തു.</string>
 
     <!-- ReviewCardDialogFragment -->
+    <!-- Title of a screen where the user will be prompted to review group members with the same name -->
     <string name="ReviewCardDialogFragment__review_members">അംഗങ്ങളെ അവലോകനം ചെയ്യുക</string>
-    <string name="ReviewCardDialogFragment__review_request">അഭ്യർത്ഥന അവലോകനം ചെയ്യുക</string>
+    <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
+    <string name="ReviewCardDialogFragment__review_request">അവലോകന അഭ്യർത്ഥന</string>
     <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d ഗ്രൂപ്പ് അംഗങ്ങൾക്ക് സമാന പേരുണ്ട്, ചുവടെയുള്ള അംഗങ്ങളെ അവലോകനം ചെയ്ത് നടപടിയെടുക്കാൻ തിരഞ്ഞെടുക്കുക.</string>
     <string name="ReviewCardDialogFragment__if_youre_not_sure">അഭ്യർത്ഥന ആരാണ് നിങ്ങൾക്ക് അയച്ചതെന്ന് ഉറപ്പില്ലെങ്കിൽ, ചുവടെയുള്ള കോൺടാക്റ്റുകൾ അവലോകനം ചെയ്ത് നടപടിയെടുക്കുക.</string>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">സാമാന്യമായി മറ്റ് ഗ്രൂപ്പുകളൊന്നുമില്ല.</string>
@@ -4008,7 +4166,7 @@
     <string name="ReviewCard__block">ബ്ലോക്ക് ചെയ്യുക</string>
     <string name="ReviewCard__delete">ഇല്ലാതാക്കൂ</string>
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
-    <string name="ReviewCard__s_recently_changed">%1$s, അടുത്തിടെ തന്റെ പ്രൊഫൈൽ പേര് %2$s എന്നതിൽ നിന്ന് %3$s എന്നാക്കി</string>
+    <string name="ReviewCard__s_recently_changed">%1$s, അടുത്തിടെ തന്റെ പ്രൊഫൈൽ നാമം %2$s എന്നതിൽ നിന്ന് %3$s എന്നാക്കി</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
     <string name="ReviewCard__s_is_in_your_system_contacts">%1$s നിങ്ങളുടെ സിസ്റ്റം കോൺടാക്റ്റുകളിൽ ഉണ്ട്</string>
 
@@ -4245,11 +4403,16 @@
     <string name="GroupDescriptionDialog__group_description">ഗ്രൂപ്പ് വിവരണം</string>
 
     <!-- QualitySelectorBottomSheetDialog -->
+    <!-- Label for our standard quality media conversion. -->
     <string name="QualitySelectorBottomSheetDialog__standard">സ്റ്റാൻഡേർഡ്</string>
+    <!-- Description for our standard quality media conversion. -->
     <string name="QualitySelectorBottomSheetDialog__faster_less_data">വേഗത്തിൽ, കുറഞ്ഞ ഡാറ്റ</string>
+    <!-- Label for our high quality media conversion. This has better quality than standard. -->
     <string name="QualitySelectorBottomSheetDialog__high">ഉയർന്നത്</string>
+    <!-- Label for our high quality media conversion. This has better quality than standard. -->
     <string name="QualitySelectorBottomSheetDialog__slower_more_data">സാവധാനം, കൂടുതൽ ഡാറ്റ</string>
-    <string name="QualitySelectorBottomSheetDialog__photo_quality">ഫോട്ടോ നിലവാരം</string>
+    <!-- Title heading for our media conversion quality selector. -->
+    <string name="QualitySelectorBottomSheetDialog__media_quality">മീഡിയ നിലവാരം</string>
 
     <!-- AppSettingsFragment -->
     <string name="AppSettingsFragment__invite_your_friends">സുഹൃത്തുക്കളെ ക്ഷണിക്കുക</string>
@@ -4364,27 +4527,6 @@
     <!-- ChatsSettingsFragment -->
     <string name="ChatsSettingsFragment__keyboard">കീബോർഡ്</string>
     <string name="ChatsSettingsFragment__enter_key_sends">എന്റർ കീ അയയ്ക്കും</string>
-
-    <!--SmsSettingsFragment -->
-    <string name="SmsSettingsFragment__use_as_default_sms_app">സ്ഥിരസ്ഥിതി SMS അപ്ലിക്കേഷനായി ഉപയോഗിക്കുക</string>
-    <!-- Preference title to export sms -->
-    <string name="SmsSettingsFragment__export_sms_messages">SMS സന്ദേശങ്ങൾ എക്‌സ്‌പോർട്ട് ചെയ്യുക</string>
-    <!-- Preference title to re-export sms -->
-    <string name="SmsSettingsFragment__export_sms_messages_again">SMS സന്ദേശങ്ങൾ വീണ്ടും എക്‌സ്പോർട്ട് ചെയ്യുക</string>
-    <!-- Preference title to delete sms -->
-    <string name="SmsSettingsFragment__remove_sms_messages">SMS സന്ദേശങ്ങൾ നീക്കം ചെയ്യുക</string>
-    <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Signal-ൽ നിന്ന് SMS സന്ദേശങ്ങൾ നീക്കം ചെയ്യുന്നു…</string>
-    <!-- Snackbar text to indicate can delete later -->
-    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">നിങ്ങൾക്ക് എപ്പോൾ വേണമെങ്കിലും ക്രമീകരണങ്ങളിൽ നിന്ന Signal-ലെ SMS സന്ദേശങ്ങൾ നീക്കം ചെയ്യാൻ കഴിയും.</string>
-    <!-- Description for export sms preference -->
-    <string name="SmsSettingsFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">നിങ്ങളുടെ ഫോണിന്റെ SMS ഡാറ്റാബേസിലേക്ക് നിങ്ങളുടെ SMS സന്ദേശങ്ങൾ എക്സ്പോർട്ട് ചെയ്യാൻ നിങ്ങൾക്ക് കഴിയും</string>
-    <!-- Description for re-export sms preference -->
-    <string name="SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages">വീണ്ടും എക്‌സ്‌പോർട്ട് ചെയ്യുന്നത് ഡ്യൂപ്ലിക്കേറ്റ് സന്ദേശങ്ങൾക്ക് കാരണമാകും.</string>
-    <!-- Description for remove sms preference -->
-    <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">സംഭരണ സ്ഥലം കൂട്ടാൻ Signal-ൽ നിന്ന് SMS സന്ദേശങ്ങൾ നീക്കം ചെയ്യുക.</string>
-    <!-- Information message shown at the top of sms settings to indicate it is being removed soon. -->
-    <string name="SmsSettingsFragment__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging">എൻക്രിപ്റ്റ് ചെയ്‌ത സന്ദേശമയയ്‌ക്കലിൽ ശ്രദ്ധ കേന്ദ്രീകരിക്കാൻ SMS പിന്തുണ ഉടൻ നീക്കം ചെയ്യും.</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">സന്ദേശങ്ങൾ</string>
@@ -4746,6 +4888,28 @@
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">ഒന്നോ അതിലധികമോ ഇനങ്ങൾ വളരെ വലുതായിരുന്നു</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">ഒന്നോ അതിലധികമോ ഇനങ്ങൾ അസാധുവാണ്</string>
     <string name="MediaReviewFragment__too_many_items_selected">വളരെയധികം ഇനങ്ങൾ തിരഞ്ഞെടുത്തു</string>
+    <!-- Small notification presented to the user when they set their video to view-once mode -->
+    <string name="MediaReviewFragment__video_set_to_view_once">വീഡിയോ ഒരിക്കൽ കാണാൻ സജ്ജമാക്കി</string>
+    <!-- Small notification presented to the user when they set their photo to view-once mode -->
+    <string name="MediaReviewFragment__photo_set_to_view_once">ഫോട്ടോ ഒരിക്കൽ കാണാൻ സജ്ജമാക്കി</string>
+    <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
+    <string name="MediaReviewFragment__video_set_to_high_quality">വീഡിയോ ഉയർന്ന നിലവാരത്തിലേക്ക് സജ്ജമാക്കി</string>
+    <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
+    <string name="MediaReviewFragment__video_set_to_standard_quality">വീഡിയോ സാധാരണ നിലവാരത്തിലേക്ക് സജ്ജമാക്കി</string>
+    <!-- Small notification presented to the user when they set their still image to be sent in high visual quality. -->
+    <string name="MediaReviewFragment__photo_set_to_high_quality">ഫോട്ടോ ഉയർന്ന നിലവാരത്തിലേക്ക് സജ്ജമാക്കി</string>
+    <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
+    <string name="MediaReviewFragment__photo_set_to_standard_quality">ഫോട്ടോ സാധാരണ നിലവാരത്തിലേക്ക് സജ്ജമാക്കി</string>
+    <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
+    <plurals name="MediaReviewFragment__items_set_to_high_quality">
+        <item quantity="one">%1$d ഇനം ഉയർന്ന നിലവാരത്തിലേക്ക് സജ്ജമാക്കി</item>
+        <item quantity="other">%1$d ഇനങ്ങൾ ഉയർന്ന നിലവാരത്തിലേക്ക് സജ്ജമാക്കി</item>
+    </plurals>
+    <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
+    <plurals name="MediaReviewFragment__items_set_to_standard_quality">
+        <item quantity="one">%1$d ഇനം സാധാരണ നിലവാരത്തിലേക്ക് സജ്ജമാക്കി</item>
+        <item quantity="other">%1$d ഇനങ്ങൾ സാധാരണ നിലവാരത്തിലേക്ക് സജ്ജമാക്കി</item>
+    </plurals>
 
     <string name="ImageEditorHud__cancel">റദ്ദാക്കൂ</string>
     <string name="ImageEditorHud__draw">വരയ്ക്കുക</string>
@@ -4769,6 +4933,20 @@
     <string name="MediaReviewImagePageFragment__discard">കളയുക</string>
     <string name="MediaReviewImagePageFragment__discard_changes">മാറ്റങ്ങൾ ഉപേക്ഷിക്കുക?</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">ഈ ഫോട്ടോയിൽ നിങ്ങൾ വരുത്തിയ മാറ്റങ്ങളെല്ലാം നഷ്‌ടമാകും.</string>
+
+    <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
+    <string name="MediaCaptureFragment_username_dialog_title">%1$s എന്നയാളെ കണ്ടെത്തി</string>
+    <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
+    <string name="MediaCaptureFragment_username_dialog_body">\"%1$s\" എന്നയാളുമായി ഒരു ചാറ്റ് ആരംഭിക്കുക</string>
+    <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
+    <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">ചാറ്റിലേക്ക് പോകുക</string>
+
+    <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+    <string name="MediaCaptureFragment_device_link_dialog_title">ഉപകരണം ലിങ്ക് ചെയ്യണോ?</string>
+    <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+    <string name="MediaCaptureFragment_device_link_dialog_body">നിങ്ങൾ ഒരു Signal ഉപകരണം ലിങ്ക് ചെയ്യാൻ ശ്രമിക്കുന്നതായി തോന്നുന്നു. കോഡ് ലിങ്ക് ചെയ്യാൻ തുടരുക ടാപ്പ് ചെയ്‌ത് വീണ്ടും സ്‌കാൻ ചെയ്യുക.</string>
+    <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
+    <string name="MediaCaptureFragment_device_link_dialog_continue">തുടരുക</string>
 
 
     <string name="BadgesOverviewFragment__my_badges">എന്റെ ബാഡ്‌ജുകൾ</string>
@@ -4868,7 +5046,7 @@
     <!-- Displayed as a subtitle on a row in the Manage Donations screen when payment for a donation is pending -->
     <string name="MySupportPreference__payment_pending">പേയ്മെന്റ് തീർപ്പാക്കപ്പെട്ടിട്ടില്ല</string>
     <!-- Displayed as a dialog message when clicking on a donation row that is pending. Placeholder is a formatted fiat amount -->
-    <string name="MySupportPreference__your_bank_transfer_of_s">നിങ്ങളുടെ %1$s തുകയുടെ ബാങ്ക് ട്രാൻസ്ഫർ തീർപ്പാക്കിയിട്ടില്ല. ബാങ്ക് ട്രാൻസ്ഫറുകൾ പൂർത്തിയാക്കാൻ സാധാരണയായി 1 പ്രവൃത്തി ദിവസം എടുക്കും.  </string>
+    <string name="MySupportPreference__your_bank_transfer_of_s">നിങ്ങളുടെ %1$s തുകയുടെ ബാങ്ക് ട്രാൻസ്ഫർ തീർപ്പാക്കിയിട്ടില്ല. ബാങ്ക് ട്രാൻസ്ഫറുകൾ പൂർത്തിയാകാൻ 1 മുതൽ 14 വരെ പ്രവൃത്തി ദിവസം എടുക്കും.  </string>
     <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
     <string name="MySupportPreference__learn_more">കൂടുതലറിയുക</string>
 
@@ -5034,7 +5212,7 @@
     <!-- Title of create notification profile screen -->
     <string name="EditNotificationProfileFragment__name_your_profile">പ്രൊഫൈലിന് പേര് നൽകുക</string>
     <!-- Hint text for create/edit notification profile name -->
-    <string name="EditNotificationProfileFragment__profile_name">പ്രൊഫൈലിന്റെ പേര്</string>
+    <string name="EditNotificationProfileFragment__profile_name">പ്രൊഫൈൽ നാമം</string>
     <!-- Name has a max length, this shows how many characters are used out of the max -->
     <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
     <!-- Call to action button to continue to the next step -->
@@ -5066,6 +5244,12 @@
     <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">ഈ പ്രൊഫൈൽ ഓണായിരിക്കുമ്പോൾ നിങ്ങൾക്ക് അറിയിപ്പുകളും കോളുകളും ആവശ്യമുള്ള ആളുകളെയും ഗ്രൂപ്പുകളെയും ചേർക്കുക</string>
     <!-- Button text that launches the contact picker to select from -->
     <string name="AddAllowedMembers__add_people_or_groups">ആളുകളെയോ ഗ്രൂപ്പുകളെയോ ചേർക്കുക</string>
+    <!-- Title for exceptions section of add people to notification profile screen in create flow -->
+    <string name="AddAllowedMembers__exceptions">ഉള്‍പ്പെടാത്തവ</string>
+    <!-- List preference to toggle that allows calls through the notification profile during create flow -->
+    <string name="AddAllowedMembers__allow_all_calls">എല്ലാ കോളുകളും അനുവദിക്കുക</string>
+    <!-- List preference to toggle that allows mentions through the notification profile during create flow -->
+    <string name="AddAllowedMembers__notify_for_all_mentions">എല്ലാ സൂചനകളും അറിയിക്കുക</string>
 
     <!-- Call to action button on contact picker for adding to profile -->
     <string name="SelectRecipientsFragment__add">ചേർക്കുക</string>
@@ -5680,8 +5864,8 @@
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">എല്ലാ കണക്ഷനുകളും അവലോകനം ചെയ്‌തു, തുടരുന്നതിന് അയയ്ക്കുക എന്നതിൽ ടാപ്പ് ചെയ്യുക.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
     <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
-        <item quantity="one">Signal വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്യുകയോ ഉപകരണങ്ങൾ മാറ്റുകയോ ചെയ്‌തിട്ടുണ്ടാകാവുന്ന %1$d കണക്ഷൻ നിങ്ങൾക്ക് ഉണ്ട്. നിങ്ങൾക്ക് അവരുടെ സുരക്ഷാ നമ്പറുകൾ ഓപ്ഷണലായി അവലോകനം ചെയ്യാം.</item>
-        <item quantity="other">Signal വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്യുകയോ ഉപകരണങ്ങൾ മാറുകയോ ചെയ്‌തിട്ടുണ്ടാകാവുന്ന %1$d കണക്ഷനുകൾ നിങ്ങൾക്കുണ്ട്. നിങ്ങളുടെ സ്റ്റോറി അവരുമായി പങ്കിടുന്നതിന് മുമ്പ് അവരുടെ സുരക്ഷാ നമ്പറുകൾ അവലോകനം ചെയ്യുകയോ അവരെ നിങ്ങളുടെ സ്റ്റോറിയിൽ നിന്ന് നീക്കം ചെയ്യുന്നതിനെ കുറിച്ച് ചിന്തിക്കുകയോ ചെയ്യുക.</item>
+        <item quantity="one">%1$d കണക്ഷൻ വീണ്ടും Signal ഇൻസ്‌റ്റാൾ ചെയ്‌തിരിക്കാം അല്ലെങ്കിൽ ഉപകരണങ്ങൾ മാറ്റിയിരിക്കാം. നിങ്ങൾക്ക് അവരുടെ സുരക്ഷാ നമ്പർ അവലോകനം ചെയ്യാം അല്ലെങ്കിൽ അയയ്ക്കുന്നത് തുടരാം.</item>
+        <item quantity="other">%1$d കണക്ഷനുകൾ വീണ്ടും Signal ഇൻസ്‌റ്റാൾ ചെയ്‌തിരിക്കാം അല്ലെങ്കിൽ ഉപകരണങ്ങൾ മാറ്റിയിരിക്കാം. നിങ്ങൾക്ക് അവരുടെ സുരക്ഷാ നമ്പറുകൾ അവലോകനം ചെയ്യാം അല്ലെങ്കിൽ അയയ്ക്കുന്നത് തുടരാം.</item>
     </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">സുരക്ഷാ നമ്പർ ഉറപ്പാക്കു</string>
@@ -5770,48 +5954,6 @@
     <!-- Generic title for overflow menus -->
     <string name="OverflowMenu__overflow_menu">ഓവർഫ്ലോ മെനു</string>
 
-    <!-- SMS Export Service -->
-    <!-- Displayed in the notification while export is running -->
-    <string name="SignalSmsExportService__exporting_messages">സന്ദേശങ്ങൾ എക്‌സ്‌പോർട്ട് ചെയ്യുന്നു…</string>
-    <!-- Displayed in the notification title when export completes -->
-    <string name="SignalSmsExportService__signal_sms_export_complete">Signal SMS എക്‌സ്‌പോർട്ട് പൂർത്തിയായി</string>
-    <!-- Displayed in the notification message when export completes -->
-    <string name="SignalSmsExportService__tap_to_return_to_signal">Signal-ലിലേക്ക് മടങ്ങാൻ ടാപ്പ് ചെയ്യുക</string>
-
-    <!-- ExportYourSmsMessagesFragment -->
-    <!-- Title of the screen -->
-    <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">നിങ്ങളുടെ SMS സന്ദേശങ്ങൾ എക്‌സ്‌പോർട്ട് ചെയ്യുക</string>
-    <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">ഫോണിന്റെ SMS ഡാറ്റാബേസിലേക്ക് നിങ്ങളുടെ SMS സന്ദേശങ്ങൾ എക്സ്പോർട്ട് ചെയ്യാനും നിങ്ങൾക്ക് കഴിയും, മാത്രമല്ല അവ Signal-ൽ സൂക്ഷിക്കാനോ നീക്കം ചെയ്യാനോ നിങ്ങൾക്ക് അവസരം ഉണ്ടായിരിക്കുന്നതാണ്. അവ ഇമ്പോർട്ട് ചെയ്യാൻ ഇത് നിങ്ങളുടെ ഫോണിലെ മറ്റ് SMS ആപ്പുകളെ അനുവദിക്കുന്നു. നിങ്ങളുടെ SMS ചരിത്രത്തിന്റെ പങ്കിടാനാകുന്ന ഒരു ഫയൽ ഇത് സൃഷ്‌ടിക്കുന്നില്ല.</string>
-    <!-- Button label to begin export -->
-    <string name="ExportYourSmsMessagesFragment__continue">തുടരുക</string>
-
-    <!-- ExportingSmsMessagesFragment -->
-    <!-- Title of the screen -->
-    <string name="ExportingSmsMessagesFragment__exporting_sms_messages">SMS സന്ദേശങ്ങൾ എക്‌സ്‌പോർട്ട് ചെയ്യുന്നു</string>
-    <!-- Message of the screen when exporting sms messages -->
-    <string name="ExportingSmsMessagesFragment__this_may_take_awhile">ഇതിന് അൽപ്പം സമയം എടുത്തേക്കാം</string>
-    <!-- Progress indicator for export -->
-    <plurals name="ExportingSmsMessagesFragment__exporting_d_of_d">
-        <item quantity="one">%1$d / %2$d എക്‌സ്‌പോർട്ട് ചെയ്യുന്നു…</item>
-        <item quantity="other">%1$d / %2$d എക്‌സ്‌പോർട്ട് ചെയ്യുന്നു…</item>
-    </plurals>
-    <!-- Alert dialog title shown when we think a user may not have enough local storage available to export sms messages -->
-    <string name="ExportingSmsMessagesFragment__you_may_not_have_enough_disk_space">നിങ്ങൾക്ക് ഡിസ്‌ക്കിൽ ആവശ്യത്തിന് സ്ഥലം ഇല്ലായിരിക്കാം</string>
-    <!-- Alert dialog message shown when we think a user may not have enough local storage available to export sms messages, placeholder is the file size, e.g., 128kB -->
-    <string name="ExportingSmsMessagesFragment__you_need_approximately_s_to_export_your_messages_ensure_you_have_enough_space_before_continuing">നിങ്ങളുടെ സന്ദേശങ്ങൾ എക്‌സ്‌പോർട്ട് ചെയ്യാൻ നിങ്ങൾക്ക് ഏകദേശം %1$s ആവശ്യമാണ്, തുടരുന്നതിന് മുമ്പ് നിങ്ങൾക്ക് ആവശ്യത്തിന് ഇടമുണ്ടെന്ന് ഉറപ്പാക്കുക.</string>
-    <!-- Alert dialog button to continue with exporting sms after seeing the lack of storage warning -->
-    <string name="ExportingSmsMessagesFragment__continue_anyway">എന്തായാലും തുടരുക</string>
-    <!-- Dialog text shown when Signal isn\'t granted the sms permission needed to export messages, different than being selected as the sms app -->
-    <string name="ExportingSmsMessagesFragment__signal_needs_the_sms_permission_to_be_able_to_export_your_sms_messages">നിങ്ങളുടെ SMS സന്ദേശങ്ങൾ എക്‌സ്‌പോർട്ട് ചെയ്യാൻ Signal-ന് SMS അനുമതി ആവശ്യമാണ്.</string>
-
-    <!-- ChooseANewDefaultSmsAppFragment -->
-    <!-- Title of the screen -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_a_new">ഒരു പുതിയ ഡിഫോൾട്ട് SMS ആപ്പ് തിരഞ്ഞെടുക്കുക</string>
-    <!-- Button label to launch picker -->
-    <string name="ChooseANewDefaultSmsAppFragment__continue">തുടരുക</string>
-    <!-- Button label for when done with changing default SMS app -->
-    <string name="ChooseANewDefaultSmsAppFragment__done">ചെയ്‌തു</string>
     <!-- First step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_1">1</string>
     <!-- Second step number/bullet for choose new default sms app instructions -->
@@ -5820,47 +5962,6 @@
     <string name="ChooseANewDefaultSmsAppFragment__bullet_3">3</string>
     <!-- Fourth step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_4">4</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">ക്രമീകരണങ്ങളിൽ \"ഡിഫോൾട്ട് ആപ്പുകൾ\" എന്ന സ്‌ക്രീൻ തുറക്കാൻ \"തുടരുക\" എന്നതിൽ ടാപ്പ് ചെയ്യുക</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">ലിസ്റ്റിൽ നിന്ന് \"SMS ആപ്പ്\" തിരഞ്ഞെടുക്കുക</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">SMS സന്ദേശം അയയ്‌ക്കുന്നതിന് ഉപയോഗിക്കാൻ മറ്റൊരു ആപ്പ് തിരഞ്ഞെടുക്കുക</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Signal-ലേക്ക് മടങ്ങുക</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">നിങ്ങളുടെ ഫോണിന്റെ ക്രമീകരണങ്ങൾ ആപ്പ് തിരഞ്ഞെടുക്കുക</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">\"ആപ്പുകൾ\" &gt; \"ഡിഫോൾട്ട് ആപ്പുകൾ\" &gt; \"SMS ആപ്പ്\" എന്നതിലേക്ക് നാവിഗേറ്റ് ചെയ്യുക</string>
-
-    <!-- RemoveSmsMessagesDialogFragment -->
-    <!-- Action button to keep messages -->
-    <string name="RemoveSmsMessagesDialogFragment__keep_messages">സന്ദേശങ്ങൾ സൂക്ഷിക്കുക</string>
-    <!-- Action button to remove messages -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_messages">സന്ദേശങ്ങൾ നീക്കം ചെയ്യുക</string>
-    <!-- Title of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Signal-ൽ നിന്ന് SMS സന്ദേശങ്ങൾ നീക്കം ചെയ്യണോ?</string>
-    <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">സംഭരണ സ്ഥലം കൂട്ടാൻ നിങ്ങൾക്ക് ഇപ്പോൾ Signal-ൽ നിന്ന് SMS സന്ദേശങ്ങൾ നീക്കം ചെയ്യാൻ കഴിയും. നിങ്ങൾ നീക്കം ചെയ്‌താലും നിങ്ങളുടെ ഫോണിലെ മറ്റ് SMS ആപ്പുകൾക്ക് അവ തുടർന്നും ലഭ്യമാകും.</string>
-
-    <!-- ReExportSmsMessagesDialogFragment -->
-    <!-- Action button to re-export messages -->
-    <string name="ReExportSmsMessagesDialogFragment__continue">തുടരുക</string>
-    <!-- Action button to cancel re-export process -->
-    <string name="ReExportSmsMessagesDialogFragment__cancel">റദ്ദാക്കുക</string>
-    <!-- Title of dialog -->
-    <string name="ReExportSmsMessagesDialogFragment__export_sms_again">SMS വീണ്ടും എക്‌സ്പോർട്ട് ചെയ്യണോ?</string>
-    <!-- Message of dialog -->
-    <string name="ReExportSmsMessagesDialogFragment__you_already_exported_your_sms_messages">നിങ്ങൾ ഇതിനകം തന്നെ നിങ്ങളുടെ SMS സന്ദേശങ്ങൾ എക്‌സ്‌പോർട്ട് ചെയ്‌തു.\nമുന്നറിയിപ്പ്: നിങ്ങൾ തുടരുകയാണെങ്കിൽ, നിങ്ങൾക്ക് ഡ്യൂപ്ലിക്കേറ്റ് സന്ദേശങ്ങൾ ലഭിച്ചേക്കാം.</string>
-
-    <!-- SetSignalAsDefaultSmsAppFragment -->
-    <!-- Title of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Signal ഡിഫോൾട്ട് SMS ആപ്പായി സജ്ജീകരിക്കുക</string>
-    <!-- Message of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">നിങ്ങളുടെ SMS സന്ദേശങ്ങൾ എക്‌സ്‌പോർട്ട് ചെയ്യാൻ, നിങ്ങൾ Signal-നെ ഡിഫോൾട്ട് SMS ആപ്പായി സജ്ജീകരിക്കേണ്ടതുണ്ട്.</string>
-    <!-- Button label to start export -->
-    <string name="SetSignalAsDefaultSmsAppFragment__next">അടുത്തത്</string>
-
     <!-- BackupSchedulePermission Megaphone -->
     <!-- The title on an alert window that explains to the user that we are unable to backup their messages -->
     <string name="BackupSchedulePermissionMegaphone__cant_back_up_chats">ചാറ്റുകൾ ബാക്കപ്പ് ചെയ്യാൻ കഴിയില്ല</string>
@@ -5879,45 +5980,6 @@
     <!-- Re-enable backups permission bottom sheet call to action button to open settings -->
     <string name="BackupSchedulePermissionMegaphone__go_to_settings">ക്രമീകരണത്തിലേക്ക് പോകുക</string>
 
-    <!-- SmsExportMegaphoneActivity -->
-    <!-- Phase 2 title of full screen megaphone indicating sms will no longer be supported in the near future -->
-    <string name="SmsExportMegaphoneActivity__signal_will_no_longer_support_sms">Signal ഇനിമുതൽ SMS-നെ പിന്തുണയ്‌ക്കില്ല</string>
-    <!-- Phase 3 title of full screen megaphone indicating sms is longer supported  -->
-    <string name="SmsExportMegaphoneActivity__signal_no_longer_supports_sms">Signal ഇപ്പോൾ SMS-നെ പിന്തുണയ്‌ക്കുന്നില്ല</string>
-    <!-- The text on a button in a popup that, when clicked, will dismiss the popup and schedule the prompt to occur at a later time. -->
-    <string name="SmsExportMegaphoneActivity__remind_me_later">പിന്നീട് എന്നെ ഓർമ്മിപ്പിക്കുക</string>
-    <!-- The text on a button in a popup that, when clicked, will navigate the user to a web article on SMS removal -->
-
-    <!-- Title for screen shown after sms export has completed -->
-    <string name="ExportSmsCompleteFragment__export_complete">എക്‌സ്‌പോർട്ട് പൂർത്തിയായി</string>
-    <!-- Button to continue to next screen -->
-    <string name="ExportSmsCompleteFragment__next">അടുത്തത്</string>
-    <!-- Message showing summary of sms export counts -->
-    <plurals name="ExportSmsCompleteFragment__d_of_d_messages_exported">
-        <item quantity="one">%1$d / %2$d സന്ദേശം എക്‌സ്‌പോർട്ട് ചെയ്‌തു</item>
-        <item quantity="other">%1$d / %2$d സന്ദേശങ്ങൾ എക്‌സ്‌പോർട്ട് ചെയ്‌തു</item>
-    </plurals>
-
-    <!-- Title of screen shown when some sms messages did not export -->
-    <string name="ExportSmsPartiallyComplete__export_partially_complete">എക്സ്പോർട്ട് ഭാഗീകമായി പൂർത്തിയായി</string>
-    <!-- Debug step 1 on screen shown when some sms messages did not export -->
-    <string name="ExportSmsPartiallyComplete__ensure_you_have_an_additional_s_free_on_your_phone_to_export_your_messages">നിങ്ങളുടെ സന്ദേശങ്ങൾ എക്‌സ്‌പോർട്ട് ചെയ്യാൻ നിങ്ങളുടെ ഫോണിൽ അധികമായി %1$s ഉണ്ടെന്ന് ഉറപ്പാക്കുക</string>
-    <!-- Debug step 2 on screen shown when some sms messages dit not export -->
-    <string name="ExportSmsPartiallyComplete__retry_export_which_will_only_retry_messages_that_have_not_yet_been_exported">എക്‌സ്‌പോർട്ട് ചെയ്യാൻ വീണ്ടും ശ്രമിക്കുക, ഇതുവരെയും എക്‌സ്‌പോർട്ട് ചെയ്യാത്ത സന്ദേശങ്ങൾ മാത്രമേ വീണ്ടും എക്‌സ്‌പോർട്ട് ചെയ്യാൻ ശ്രമിക്കൂ</string>
-    <!-- Partial sentence for Debug step 3 on screen shown when some sms messages did not export, is combined with \'contact us\' -->
-    <string name="ExportSmsPartiallyComplete__if_the_problem_persists">പ്രശ്‌നം തുടരുകയാണെങ്കിൽ, </string>
-    <!-- Partial sentence for deubg step 3 on screen shown when some sms messages did not export, combined with \'If the problem persists\', link text to open contact support view -->
-    <string name="ExportSmsPartiallyComplete__contact_us">ഞങ്ങളെ സമീപിക്കുക</string>
-    <!-- Button text to retry sms export -->
-    <string name="ExportSmsPartiallyComplete__retry">വീണ്ടും ശ്രമിക്കുക</string>
-    <!-- Button text to continue sms export flow and not retry failed message exports -->
-    <string name="ExportSmsPartiallyComplete__continue_anyway">എന്തായാലും തുടരുക</string>
-    <!-- Title of screen shown when all sms messages failed to export -->
-    <string name="ExportSmsFullError__error_exporting_sms_messages">SMS സന്ദേശങ്ങൾ എക്‌സ്‌പോർട്ട് ചെയ്യുന്നതിൽ പിശക്</string>
-    <!-- Helper text shown when all sms messages failed to export -->
-    <string name="ExportSmsFullError__please_try_again_if_the_problem_persists">വീണ്ടും ശ്രമിക്കുക. പ്രശ്‌നം തുടരുകയാണെങ്കിൽ, </string>
-
-
     <!-- DonateToSignalFragment -->
     <!-- Title below avatar -->
     <string name="DonateToSignalFragment__privacy_over_profit">ലാഭത്തേക്കാൾ മുഖ്യം സ്വകാര്യത</string>
@@ -5928,9 +5990,9 @@
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
     <string name="DonateToSignalFragment__you_have_a_donation_pending">നിങ്ങൾക്ക് തീർപ്പാക്കാത്ത ഒരു സംഭാവനയുണ്ട്</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">ബാങ്ക് ട്രാൻസ്ഫറുകൾ പ്രോസസ്സ് ചെയ്യുന്നതിന് സാധാരണയായി 1 പ്രവൃത്തി ദിവസമെടുക്കും. നിങ്ങളുടെ സബ്‌സ്‌ക്രിപ്‌ഷൻ അപ്‌ഡേറ്റ് ചെയ്യുന്നതിന് മുമ്പ്, ഈ പേയ്‌മെന്റ് പൂർത്തിയാകുന്നത് വരെ കാത്തിരിക്കുക.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">ബാങ്ക് ട്രാൻസ്ഫറുകൾ പ്രോസസ്സ് ചെയ്യാൻ 1 മുതൽ 14 വരെ പ്രവൃത്തി ദിവസം എടുക്കും. നിങ്ങളുടെ സബ്‌സ്‌ക്രിപ്‌ഷൻ അപ്‌ഡേറ്റ് ചെയ്യുന്നതിന് മുമ്പ്, ഈ പേയ്‌മെന്റ് പൂർത്തിയാകുന്നത് വരെ കാത്തിരിക്കുക.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">ബാങ്ക് ട്രാൻസ്ഫറുകൾ പ്രോസസ്സ് ചെയ്യുന്നതിന് സാധാരണയായി 1 പ്രവൃത്തി ദിവസമെടുക്കും. മറ്റൊരു സംഭാവന നൽകുന്നതിന് മുമ്പ്, ഈ പേയ്‌മെന്റ് പൂർത്തിയാകുന്നതുവരെ കാത്തിരിക്കുക.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">ബാങ്ക് ട്രാൻസ്ഫറുകൾ പ്രോസസ്സ് ചെയ്യാൻ 1 മുതൽ 14 വരെ പ്രവൃത്തി ദിവസം എടുക്കും. മറ്റൊരു സംഭാവന നൽകുന്നതിന് മുമ്പ്, ഈ പേയ്‌മെന്റ് പൂർത്തിയാകുന്നതുവരെ കാത്തിരിക്കുക.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
     <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">നിങ്ങളുടെ സംഭാവന ഇപ്പോഴും പ്രോസസ് ചെയ്യുകയാണ്. നിങ്ങളുടെ കണക്ഷൻ അനുസരിച്ച്, ഇതിന് കുറച്ച് മിനിറ്റ് എടുത്തേക്കാം. നിങ്ങളുടെ സബ്‌സ്‌ക്രിപ്‌ഷൻ അപ്‌ഡേറ്റ് ചെയ്യുന്നതിന് മുമ്പ്, ഈ പേയ്‌മെന്റ് പൂർത്തിയാകുന്നത് വരെ കാത്തിരിക്കുക.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
@@ -6059,6 +6121,12 @@
     <string name="IdealTransferDetailsFragment__email">ഇമെയിൽ</string>
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">നിങ്ങളുടെ ബാങ്ക് തിരഞ്ഞെടുക്കുക</string>
+    <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">%1$s എന്നതുമായുള്ള നിങ്ങളുടെ സംഭാവന സ്ഥിരീകരിക്കുക</string>
+    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
+    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">ആവർത്തിച്ചുള്ള സംഭാവന സജ്ജീകരിക്കാൻ, €0,01 നിരക്ക് നിങ്ങളുടെ ബാങ്കുമായി സ്ഥിരീകരിക്കാൻ \'തുടരുക\' ടാപ്പ് ചെയ്യുക. ഇത് ഓട്ടോമാറ്റിയ്ക്കായി റീഫണ്ട് ചെയ്യുകയും നിങ്ങളുടെ അക്കൗണ്ടിൽ നിന്ന് €5/മാസം സംഭാവന ഡെബിറ്റ് ചെയ്യാൻ അനുവദിക്കുകയും ചെയ്യും.</string>
+    <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
+    <string name="IdealTransferDetailsFragment__continue">തുടരുക</string>
 
     <!-- IdealTransferDetailsBankSelectionDialogFragment -->
     <!-- Title of the screen, displayed in the toolbar -->
@@ -6076,7 +6144,7 @@
     <!-- Top text block of donation pending sheet displayed after one-time donation via a bank transfer. Placeholder is the badge name. -->
     <string name="DonationPendingBottomSheet__your_one_time_donation_is_pending">നിങ്ങളുടെ ഒറ്റത്തവണ സംഭാവന തീർപ്പാക്കപ്പെട്ടിട്ടില്ല. നിങ്ങളുടെ സംഭാവന ലഭിക്കുമ്പോൾ നിങ്ങളുടെ പ്രൊഫൈലിൽ %1$s ബാഡ്ജ് പ്രദർശിപ്പിക്കാൻ നിങ്ങൾക്ക് കഴിയും.</string>
     <!-- Bottom text block of donation pending sheet displayed after donating via a bank transfer. Placeholder is for learn more. -->
-    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">ബാങ്ക് ട്രാൻസ്ഫറുകൾ പ്രോസസ്സ് ചെയ്യുന്നതിന് സാധാരണയായി 1 പ്രവൃത്തി ദിവസമെടുക്കും. %1$s</string>
+    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">ബാങ്ക് ട്രാൻസ്ഫറുകൾ പ്രോസസ്സ് ചെയ്യാൻ 1 മുതൽ 14 വരെ പ്രവൃത്തി ദിവസം എടുക്കും. %1$s</string>
     <!-- Learn more text for donation pending sheet displayed after donating via a bank transfer. -->
     <string name="DonationPendingBottomSheet__learn_more">കൂടുതലറിയുക</string>
     <!-- Confirmation button for donation pending sheet displayed after donating via a bank transfer. -->
@@ -6162,28 +6230,24 @@
     <!-- Displayed in the "clear filter" item in the chat feed if the user opened the filter from the overflow menu -->
     <string name="ChatFilter__tip_pull_down">ടിപ്പ്: ഫിൽട്ടർ ചെയ്യുന്നതിന് ചാറ്റ് ലിസ്റ്റ് താഴേക്ക് വലിക്കുക</string>
 
-    <!-- Title for screen describing that sms support is going to be removed soon -->
-    <string name="SmsRemoval_title_going_away">SMS പിന്തുണ അവസാനിക്കുകയാണ്</string>
-    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
-    <string name="SmsRemoval_info_bullet_1">Signal ആപ്പിലെ SMS സന്ദേശമയയ്ക്കലിനുള്ള പിന്തുണ ഉടനടി അവസാനിക്കും.</string>
-    <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_2">SMS സന്ദേശങ്ങളും Signal സന്ദേശങ്ങളും വ്യത്യസ്തമാണ്. <b>ഇത് എൻക്രിപ്റ്റ് ചെയ്ത Signal സന്ദേശമയയ്ക്കലിനെ ബാധിക്കില്ല, അവ തുടർന്നും പ്രവർത്തിക്കും.</b></string>
-    <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_3">നിങ്ങളുടെ SMS സന്ദേശങ്ങൾ എക്സ്പോർട്ട് ചെയ്യുകയും പുതിയൊരു SMS ആപ്പ് ഉപയോഗിക്കുകയും ചെയ്യാം.</string>
-    <!-- Bullet point message shown on describing screen as first bullet variant why sms is being removed when user is locked out of sms -->
-    <string name="SmsRemoval_info_bullet_1_phase_3">SMS സന്ദേശങ്ങൾ അയയ്ക്കുന്നതിനുള്ള പിന്തുണ Signal നീക്കം ചെയ്‌തു.</string>
-    <!-- Button label on sms removal info/megaphone to start the export SMS flow -->
-    <string name="SmsRemoval_export_sms">SMS എക്‌സ്പോർട്ട് ചെയ്യുക</string>
-
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__set_up_your_signal_username">നിങ്ങളുടെ Signal ഉപയോക്തൃനാമം സജ്ജീകരിക്കുക</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">നിങ്ങളുടെ ഫോൺ നമ്പർ ഇല്ലാതെ തന്നെ മറ്റുള്ളവർക്ക് നിങ്ങൾക്ക് സന്ദേശം അയയ്ക്കാൻ ഉപയോക്തൃനാമങ്ങൾ സഹായിക്കുന്നു</string>
+    <string name="SetUpYourUsername__introducing_phone_number_privacy">ഫോൺ നമ്പർ സ്വകാര്യത, ഓപ്ഷണൽ ഉപയോക്തൃനാമങ്ങൾ, ലിങ്കുകൾ എന്നിവ അവതരിപ്പിക്കുന്നു.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__not_now">ഇപ്പോൾ വേണ്ട</string>
+    <string name="SetUpYourUsername__dismiss">ഒഴിവാക്കുക</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__continue">തുടരുക</string>
+    <string name="SetUpYourUsername__learn_more">കൂടുതലറിയുക</string>
+
+    <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
+    <string name="PnpLaunchMegaphone_title">കണക്റ്റ് ചെയ്യാനുള്ള പുതിയ മാർഗങ്ങൾ</string>
+    <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
+    <string name="PnpLaunchMegaphone_body">ഫോൺ നമ്പർ സ്വകാര്യത, ഓപ്ഷണൽ ഉപയോക്തൃനാമങ്ങൾ, ലിങ്കുകൾ എന്നിവ അവതരിപ്പിക്കുന്നു.</string>
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
+    <string name="PnpLaunchMegaphone_dismiss">ഒഴിവാക്കുക</string>
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
+    <string name="PnpLaunchMegaphone_learn_more">കൂടുതലറിയുക</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -6198,18 +6262,6 @@
     <string name="TextFormatting_spoiler">സ്പോയിലർ</string>
     <!-- Popup menu label for clearing applied formatting -->
     <string name="TextFormatting_clear_formatting">ഫോർമാറ്റിംഗ് ക്ലിയർ ചെയ്യുക</string>
-
-    <!-- UsernameEducationFragment -->
-    <!-- Continue button which takes the user to the add a username screen -->
-    <string name="UsernameEducationFragment__continue">തുടരുക</string>
-    <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">നിങ്ങളുടെ Signal ഉപയോക്തൃനാമം സജ്ജീകരിക്കുക</string>
-    <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__usernames_are_paired_with_a_set_of_digits">ഉപയോക്തൃനാമങ്ങൾ ചില അക്കങ്ങളുമായി ജോടിയാക്കുന്നു, അവ നിങ്ങളുടെ പ്രൊഫൈലിൽ പങ്കിടില്ല</string>
-    <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">ഓരോ ഉപയോക്തൃനാമത്തിനും തനതായൊരു QR കോഡ് ഉണ്ടാകും, നിങ്ങളുമായി ചാറ്റ് ചെയ്ത് തുടങ്ങാൻ ഇത് സുഹൃത്തുക്കളുമായി പങ്കിടാനാകും</string>
-    <!-- Displayed as body text in the username education screen. The string references the names of settings, so they should match our translations for those settings. -->
-    <string name="UsernameEducationFragment__turn_off_phone_number_discovery">മറ്റുള്ളവർക്ക് നിങ്ങളെ കോൺടാക്റ്റ് ചെയ്യാനുള്ള പ്രാഥമിക മാർഗം ഉപയോക്തൃനാമമാക്കാൻ ക്രമീകരണം &gt; ഫോൺ നമ്പർ &gt; ആർക്കൊക്കെ എന്‍റെ നമ്പർ കണ്ടെത്താനാകും എന്നതിലേക്ക് പോയി ഫോൺ നമ്പർ ഡിസ്‌ക്കവറി ഓഫാക്കുക</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
@@ -6236,6 +6288,8 @@
     <string name="CallLogAdapter__outgoing">ഔട്ട്ഗോയിംഗ്</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">മിസ്‌ഡ്</string>
+    <!-- Displayed for missed calls declined by notification profile -->
+    <string name="CallLogAdapter__missed_notification_profile">അറിയിപ്പ് പ്രൊഫൈൽ ഓണായിരിക്കുമ്പോൾ മിസ്സ് ആയി</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">ചേരുക</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -6343,6 +6397,8 @@
     <string name="CallPreference__group_call">ഗ്രൂപ്പ് കോൾ</string>
     <!-- Missed group call in call info -->
     <string name="CallPreference__missed_group_call">മിസ്‌ഡ് ഗ്രൂപ്പ് കോൾ</string>
+    <!-- Missed group call while notification profile on in call info -->
+    <string name="CallPreference__missed_group_call_notification_profile">അറിയിപ്പ് പ്രൊഫൈൽ ഓണായിരിക്കുമ്പോൾ ഗ്രൂപ്പ് കോൾ മിസ്സ് ആയി</string>
     <!-- Incoming group call in call info -->
     <string name="CallPreference__incoming_group_call">ഇൻകമിംഗ് ഗ്രൂപ്പ് കോൾ</string>
     <!-- Outgoing group call in call info -->
@@ -6429,6 +6485,8 @@
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
     <string name="CallLinkDetailsFragment__call_details">കോൾ വിശദാംശങ്ങൾ</string>
+    <!-- Displayed in a text row, allowing the user to click and edit a call name -->
+    <string name="CallLinkDetailsFragment__edit_call_name">കോളിന്റെ പേര് എഡിറ്റ് ചെയ്യുക</string>
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
     <string name="CallLinkDetailsFragment__add_call_name">കോളിന്‍റെ പേര് ചേർക്കുക</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
@@ -6444,6 +6502,8 @@
     <!-- Displayed as body in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">ഇതുള്ള ആർക്കും ഇനിയിത് പ്രവർത്തിക്കില്ല.</string>
 
+    <!-- Button label for the link button in the username link settings -->
+    <string name="UsernameLinkSettings_link_button_label">ലിങ്ക്</string>
     <!-- Button label for the share button in the username link settings -->
     <string name="UsernameLinkSettings_share_button_label">പങ്കിടുക</string>
     <!-- Button label for the color selector button in the username link settings -->
@@ -6488,6 +6548,16 @@
     <string name="UsernameLinkSettings_reset_link_result_network_unavailable">നിങ്ങൾക്ക് നെറ്റ്‌വർക്ക് ആക്‌സസ് ഇല്ല. നിങ്ങളുടെ ലിങ്ക് റീസെറ്റ് ചെയ്‌തില്ല. പിന്നീട് വീണ്ടും ശ്രമിക്കുക.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">നിങ്ങളുടെ ലിങ്ക് പുനഃക്രമീകരിക്കാൻ ശ്രമിക്കുമ്പോൾ നെറ്റ്‌വർക്ക് പിശകുണ്ടായി. പിന്നീട് വീണ്ടും ശ്രമിക്കുക.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">നിങ്ങളുടെ ലിങ്ക് പുനഃക്രമീകരിക്കാൻ ശ്രമിക്കുന്നതിനിടയിൽ ഒരു അപ്രതീക്ഷിത പിശക് സംഭവിച്ചു. പിന്നീട് വീണ്ടും ശ്രമിക്കുക.</string>
+    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
+    <string name="UsernameLinkSettings_reset_link_result_success">നിങ്ങളുടെ QR കോഡും ലിങ്കും പുനഃക്രമീകരിച്ചു, പുതിയൊരു QR കോഡും ലിങ്കും സൃഷ്‌ടിച്ചു.</string>
+    <!-- Shown on the generated username qr code image to explain how to use it. -->
+    <string name="UsernameLinkSettings_scan_this_qr_code">Signal-ൽ ഞാനുമായി ചാറ്റ് ചെയ്യാൻ ഈ QR കോഡ് സ്കാൻ ചെയ്യുക.</string>
+    <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_qr_code_not_found">QR കോഡ് കണ്ടെത്തിയില്ല</string>
+    <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">ഒരു Signal QR കോഡ് അടങ്ങിയ മറ്റൊരു ചിത്രം സ്കാൻ ചെയ്യാൻ ശ്രമിക്കുക.</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
     <string name="UsernameLinkShareBottomSheet_title">ഈ ലിങ്കുള്ള ആർക്കും നിങ്ങളുടെ ഉപയോക്തൃനാമം കാണാനും നിങ്ങളുമായി ചാറ്റ് ചെയ്യാനും കഴിയും. നിങ്ങൾ വിശ്വസിക്കുന്ന ആളുകളുമായി മാത്രം ഇത് പങ്കിടുക.</string>
@@ -6524,6 +6594,8 @@
     <string name="GrantFullScreenIntentPermission_megaphone_body">നിങ്ങളുടെ കോൺടാക്റ്റുകളിൽ നിന്നും ഗ്രൂപ്പുകളിൽ നിന്നുമുള്ള ഒരു കോൾ പോലും കാണാതെ പോകരുത്.</string>
     <!-- Button on the megaphone megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls that starts the fix process -->
     <string name="GrantFullScreenIntentPermission_megaphone_turn_on">ഓൺ ചെയ്യുക</string>
+    <!-- Button on the megaphone shown at the bottom of the chatlist when a user has disabled the system setting for showing full screen notifications used showing incoming calls that dismisses the megaphone -->
+    <string name="GrantFullScreenIntentPermission_megaphone_not_now">ഇപ്പോൾ വേണ്ട</string>
     <!-- Title of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
     <string name="GrantFullScreenIntentPermission_bottomsheet_title">പൂർണ്ണ സ്ക്രീൻ അറിയിപ്പുകൾ ഓണാക്കുക</string>
     <!-- Subtitle of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
@@ -6541,6 +6613,46 @@
     <string name="MonthlyDonationCanceled__renew_button">സബ്‍സ്ക്രിപ്ഷൻ പുതുക്കുക</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, second button to dismiss the dialog entirely -->
     <string name="MonthlyDonationCanceled__not_now_button">ഇപ്പോൾ വേണ്ട</string>
+
+    <!-- FindByActivity -->
+    <!-- Title of activity when finding by username -->
+    <string name="FindByActivity__find_by_username">ഉപയോക്തൃനാമം ഉപയോഗിച്ച് കണ്ടെത്തുക</string>
+    <!-- Title of activity when finding by phone number -->
+    <string name="FindByActivity__find_by_phone_number">ഫോൺ നമ്പർ ഉപയോഗിച്ച് കണ്ടെത്തുക</string>
+    <!-- Title of screen to select a country code -->
+    <string name="FindByActivity__select_country_code">രാജ്യ കോഡ് തിരെഞ്ഞെടുക്കുക</string>
+    <!-- Entry placeholder for find by username -->
+    <string name="FindByActivity__username">ഉപയോക്തൃനാമം</string>
+    <!-- Entry placeholder for find by phone number -->
+    <string name="FindByActivity__phone_number">ഫോൺ നമ്പർ</string>
+    <!-- Help text under user entry for find by username -->
+    <string name="FindByActivity__enter_username_description">ഡോട്ടും തുടർന്ന് വരുന്ന സംഖ്യകളും ഉൾപ്പെടെയുള്ള ഉപയോക്തൃനാമം നൽകുക.</string>
+    <!-- Content description for next action button -->
+    <string name="FindByActivity__next">അടുത്തത്</string>
+    <!-- Placeholder text for search input for selecting country code -->
+    <string name="FindByActivity__search">തിരയൽ</string>
+    <!-- Dialog title for invalid username -->
+    <string name="FindByActivity__invalid_username">ഉപയോക്തൃനാമം അസാധുവാണ്</string>
+    <!-- Dialog title for invalid phone number -->
+    <string name="FindByActivity__invalid_phone_number">അസാധുവായ ഫോൺ നമ്പർ</string>
+    <!-- Dialog title when phone number is not a registered signal user -->
+    <string name="FindByActivity__invite_to_signal">Signal-ലേക്ക് ക്ഷണിക്കുക</string>
+    <!-- Dialog title when username is not found -->
+    <string name="FindByActivity__username_not_found">ഉപയോക്തൃനാമം കണ്ടെത്തിയില്ല</string>
+    <!-- Dialog body for invalid username. Placeholder is the entered username. -->
+    <string name="FindByActivity__s_is_not_a_valid_username">%1$s സാധുതയില്ലാത്ത ഉപയോക്തൃനാമം ആണ്. അക്കങ്ങളടക്കം ഉപയോക്തൃനാമം പൂർണ്ണമായും നൽകിയിട്ടുണ്ടെന്ന് ഉറപ്പാക്കുക.</string>
+    <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
+    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s സാധുവായ ഫോൺ നമ്പർ അല്ല. സാധുവായ ഒരു ഫോൺ നമ്പർ ഉപയോഗിച്ച് വീണ്ടും ശ്രമിക്കുക</string>
+    <!-- Dialog body for not found username -->
+    <string name="FindByActivity__s_is_not_a_signal_user">\"%1$s\" ഒരു Signal ഉപയോക്താവല്ല. ഉപയോക്തൃനാമം പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക.</string>
+    <!-- Dialog body for not found phone number -->
+    <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s ഒരു Signal ഉപയോക്താവല്ല. ഈ നമ്പറിനെ ക്ഷണിക്കാൻ നിങ്ങൾക്ക് താൽപ്പര്യമുണ്ടോ?</string>
+    <!-- Dialog action to invite the phone number to Signal -->
+    <string name="FindByActivity__invite">ക്ഷണിക്കുക</string>
+    <!-- Button label for a button that will launch a camera to scan a username QR code -->
+    <string name="FindByActivity__qr_scan_button">QR കോഡ് സ്‌കാൻ ചെയ്യുക</string>
+    <!-- Content of a dialog indicating that we could not perform the requested action because we encountered a network error. -->
+    <string name="FindByActivity__network_error_dialog">ഒരു നെറ്റ്‌വർക്ക് പിശക് നേരിട്ടു. പിന്നീട് വീണ്ടും ശ്രമിക്കുക.</string>
 
     <!-- EOF -->
 </resources>

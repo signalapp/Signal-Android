@@ -101,7 +101,9 @@ public final class WebRtcControls {
                               isCallLink);
   }
 
-  /** This is only true at the very start of a call and will then never be true again */
+  /**
+   * This is only true at the very start of a call and will then never be true again
+   */
   public boolean hideControlsSheetInitially() {
     return displayIncomingCallButtons() || callState == CallState.NONE;
   }
@@ -157,7 +159,7 @@ public final class WebRtcControls {
   }
 
   public boolean displayOverflow() {
-    return FeatureFlags.groupCallReactions() && isAtLeastOutgoing() && hasAtLeastOneRemote && isGroupCall();
+    return (FeatureFlags.groupCallReactions() || FeatureFlags.groupCallRaiseHand()) && isAtLeastOutgoing() && hasAtLeastOneRemote && isGroupCall();
   }
 
   public boolean displayMuteAudio() {

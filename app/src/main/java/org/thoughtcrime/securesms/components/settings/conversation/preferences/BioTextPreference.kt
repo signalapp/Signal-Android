@@ -6,9 +6,10 @@ import android.text.SpannableStringBuilder
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
-import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
+import org.thoughtcrime.securesms.fonts.SignalSymbols
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.ContextUtil
 import org.thoughtcrime.securesms.util.ServiceUtil
@@ -32,19 +33,19 @@ object BioTextPreference {
     abstract fun getSubhead1Text(context: Context): String?
     abstract fun getSubhead2Text(): String?
 
-    open val onHeadlineClickListener: () -> Unit = {}
+    open val onHeadlineClickListener: (() -> Unit)? = null
   }
 
   class RecipientModel(
     private val recipient: Recipient,
-    override val onHeadlineClickListener: () -> Unit
+    override val onHeadlineClickListener: (() -> Unit)?
   ) : BioTextPreferenceModel<RecipientModel>() {
 
     override fun getHeadlineText(context: Context): CharSequence {
       val name = if (recipient.isSelf) {
         context.getString(R.string.note_to_self)
       } else {
-        recipient.getDisplayNameOrUsername(context)
+        recipient.getDisplayName(context)
       }
 
       if (!recipient.showVerified() && !recipient.isIndividual) {
@@ -53,11 +54,34 @@ object BioTextPreference {
 
       return SpannableStringBuilder(name).apply {
         if (recipient.showVerified()) {
-          SpanUtil.appendCenteredImageSpan(this, ContextUtil.requireDrawable(context, R.drawable.ic_official_28), 28, 28)
+          SpanUtil.appendSpacer(this, 8)
+          SpanUtil.appendCenteredImageSpanWithoutSpace(this, ContextUtil.requireDrawable(context, R.drawable.ic_official_28), 28, 28)
+        } else if (recipient.isSystemContact) {
+          val systemContactGlyph = SignalSymbols.getSpannedString(
+            context,
+            SignalSymbols.Weight.BOLD,
+            SignalSymbols.Glyph.PERSON_CIRCLE
+          ).let {
+            SpanUtil.ofSize(it, 20)
+          }
+
+          append(" ")
+          append(systemContactGlyph)
         }
 
-        if (recipient.isIndividual) {
-          SpanUtil.appendCenteredImageSpan(this, ContextUtil.requireDrawable(context, R.drawable.symbol_chevron_right_24_color_on_secondary_container), 24, 24)
+        if (recipient.isIndividual && !recipient.isSelf) {
+          val chevronGlyph = SignalSymbols.getSpannedString(
+            context,
+            SignalSymbols.Weight.BOLD,
+            SignalSymbols.Glyph.CHEVRON_RIGHT
+          ).let {
+            SpanUtil.ofSize(it, 24)
+          }.let {
+            SpanUtil.color(ContextCompat.getColor(context, R.color.signal_colorOutline), it)
+          }
+
+          append(" ")
+          append(chevronGlyph)
         }
       }
     }
@@ -70,11 +94,7 @@ object BioTextPreference {
       }
     }
 
-    override fun getSubhead2Text(): String? = if (recipient.shouldShowE164()) {
-      recipient.e164.map(PhoneNumberFormatter::prettyPrint).orElse(null)
-    } else {
-      null
-    }
+    override fun getSubhead2Text(): String? = null
 
     override fun areContentsTheSame(newItem: RecipientModel): Boolean {
       return super.areContentsTheSame(newItem) && newItem.recipient.hasSameContent(recipient)
@@ -114,7 +134,11 @@ object BioTextPreference {
 
     override fun bind(model: T) {
       headline.text = model.getHeadlineText(context)
-      headline.setOnClickListener { model.onHeadlineClickListener() }
+
+      val clickListener = model.onHeadlineClickListener
+      if (clickListener != null) {
+        headline.setOnClickListener { clickListener() }
+      }
 
       model.getSubhead1Text(context).let {
         subhead1.text = it

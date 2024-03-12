@@ -15,7 +15,7 @@ import org.thoughtcrime.securesms.mediasend.MediaRepository
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.StorageUtil
-import org.thoughtcrime.securesms.video.VideoUtil
+import org.thoughtcrime.securesms.video.videoconverter.utils.VideoConstants
 import java.io.FileDescriptor
 import java.io.FileInputStream
 import java.io.IOException
@@ -66,7 +66,7 @@ class MediaCaptureRepository(context: Context) {
         dataSupplier = { FileInputStream(fileDescriptor) },
         getLength = { it.channel.size() },
         createBlobBuilder = BlobProvider::forData,
-        mimeType = VideoUtil.RECORDED_VIDEO_CONTENT_TYPE,
+        mimeType = VideoConstants.RECORDED_VIDEO_CONTENT_TYPE,
         width = 0,
         height = 0
       )

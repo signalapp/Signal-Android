@@ -28,7 +28,9 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.util.DimensionUnit
+import org.signal.core.util.Result
 import org.signal.core.util.concurrent.LifecycleDisposable
+import org.signal.core.util.concurrent.addTo
 import org.signal.core.util.getParcelableArrayListExtraCompat
 import org.thoughtcrime.securesms.AvatarPreviewActivity
 import org.thoughtcrime.securesms.BlockUnblockDialog
@@ -74,6 +76,7 @@ import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupInviteSentD
 import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupsLearnMoreBottomSheetDialogFragment
 import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory
+import org.thoughtcrime.securesms.messagerequests.MessageRequestRepository
 import org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientExporter
@@ -112,17 +115,17 @@ class ConversationSettingsFragment : DSLSettingsFragment(
   private val alertTint by lazy { ContextCompat.getColor(requireContext(), R.color.signal_alert_primary) }
   private val alertDisabledTint by lazy { ContextCompat.getColor(requireContext(), R.color.signal_alert_primary_50) }
   private val blockIcon by lazy {
-    ContextUtil.requireDrawable(requireContext(), R.drawable.ic_block_tinted_24).apply {
+    ContextUtil.requireDrawable(requireContext(), R.drawable.symbol_block_24).apply {
       colorFilter = PorterDuffColorFilter(alertTint, PorterDuff.Mode.SRC_IN)
     }
   }
 
   private val unblockIcon by lazy {
-    ContextUtil.requireDrawable(requireContext(), R.drawable.ic_block_tinted_24)
+    ContextUtil.requireDrawable(requireContext(), R.drawable.symbol_block_24)
   }
 
   private val leaveIcon by lazy {
-    ContextUtil.requireDrawable(requireContext(), R.drawable.ic_leave_tinted_24).apply {
+    ContextUtil.requireDrawable(requireContext(), R.drawable.symbol_leave_24).apply {
       colorFilter = PorterDuffColorFilter(alertTint, PorterDuff.Mode.SRC_IN)
     }
   }
@@ -135,7 +138,8 @@ class ConversationSettingsFragment : DSLSettingsFragment(
         recipientId = args.recipientId,
         groupId = ParcelableGroupId.get(groupId),
         callMessageIds = args.callMessageIds ?: longArrayOf(),
-        repository = ConversationSettingsRepository(requireContext())
+        repository = ConversationSettingsRepository(requireContext()),
+        messageRequestRepository = MessageRequestRepository(requireContext())
       )
     }
   )
@@ -323,9 +327,14 @@ class ConversationSettingsFragment : DSLSettingsFragment(
 
       state.withRecipientSettingsState {
         customPref(
-          BioTextPreference.RecipientModel(recipient = state.recipient, onHeadlineClickListener = {
-            AboutSheet.create(state.recipient).show(parentFragmentManager, null)
-          })
+          BioTextPreference.RecipientModel(
+            recipient = state.recipient,
+            onHeadlineClickListener = if (state.recipient.isSelf || !state.recipient.isIndividual) {
+              null
+            } else {
+              { AboutSheet.create(state.recipient).show(parentFragmentManager, null) }
+            }
+          )
         )
       }
 
@@ -686,7 +695,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
               recipient = member.member,
               isAdmin = member.isAdmin,
               onClick = {
-                RecipientBottomSheetDialogFragment.create(member.member.id, groupState.groupId).show(parentFragmentManager, "BOTTOM")
+                RecipientBottomSheetDialogFragment.show(parentFragmentManager, member.member.id, groupState.groupId)
               }
             )
           )
@@ -791,6 +800,49 @@ class ConversationSettingsFragment : DSLSettingsFragment(
                 viewModel.block()
               }
             }
+          }
+        )
+
+        val reportSpamTint = if (state.isDeprecatedOrUnregistered) R.color.signal_alert_primary_50 else R.color.signal_alert_primary
+        clickPref(
+          title = DSLSettingsText.from(R.string.ConversationFragment_report_spam, ContextCompat.getColor(requireContext(), reportSpamTint)),
+          icon = DSLSettingsIcon.from(R.drawable.symbol_spam_24, reportSpamTint),
+          isEnabled = !state.isDeprecatedOrUnregistered,
+          onClick = {
+            BlockUnblockDialog.showReportSpamFor(
+              requireContext(),
+              viewLifecycleOwner.lifecycle,
+              state.recipient,
+              {
+                viewModel
+                  .onReportSpam()
+                  .subscribeBy {
+                    Toast.makeText(requireContext(), R.string.ConversationFragment_reported_as_spam, Toast.LENGTH_SHORT).show()
+                    onToolbarNavigationClicked()
+                  }
+                  .addTo(lifecycleDisposable)
+              },
+              if (state.recipient.isBlocked) {
+                null
+              } else {
+                Runnable {
+                  viewModel
+                    .onBlockAndReportSpam()
+                    .subscribeBy { result ->
+                      when (result) {
+                        is Result.Success -> {
+                          Toast.makeText(requireContext(), R.string.ConversationFragment_reported_as_spam_and_blocked, Toast.LENGTH_SHORT).show()
+                          onToolbarNavigationClicked()
+                        }
+                        is Result.Failure -> {
+                          Toast.makeText(requireContext(), GroupErrors.getUserDisplayMessage(result.failure), Toast.LENGTH_SHORT).show()
+                        }
+                      }
+                    }
+                    .addTo(lifecycleDisposable)
+                }
+              }
+            )
           }
         )
       }

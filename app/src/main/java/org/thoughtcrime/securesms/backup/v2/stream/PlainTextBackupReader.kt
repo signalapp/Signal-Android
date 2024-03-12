@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.backup.v2.stream
 
 import org.signal.core.util.readNBytesOrThrow
 import org.signal.core.util.readVarInt32
+import org.thoughtcrime.securesms.backup.v2.proto.BackupInfo
 import org.thoughtcrime.securesms.backup.v2.proto.Frame
 import java.io.EOFException
 import java.io.InputStream
@@ -14,12 +15,18 @@ import java.io.InputStream
 /**
  * Reads a plaintext backup import stream one frame at a time.
  */
-class PlainTextBackupReader(val inputStream: InputStream) : Iterator<Frame> {
+class PlainTextBackupReader(val inputStream: InputStream) : BackupImportReader {
 
+  val backupInfo: BackupInfo?
   var next: Frame? = null
 
   init {
+    backupInfo = readHeader()
     next = read()
+  }
+
+  override fun getHeader(): BackupInfo? {
+    return backupInfo
   }
 
   override fun hasNext(): Boolean {
@@ -31,6 +38,21 @@ class PlainTextBackupReader(val inputStream: InputStream) : Iterator<Frame> {
       next = read()
       return out
     } ?: throw NoSuchElementException()
+  }
+
+  override fun close() {
+    inputStream.close()
+  }
+
+  private fun readHeader(): BackupInfo? {
+    try {
+      val length = inputStream.readVarInt32().takeIf { it >= 0 } ?: return null
+      val headerBytes: ByteArray = inputStream.readNBytesOrThrow(length)
+
+      return BackupInfo.ADAPTER.decode(headerBytes)
+    } catch (e: EOFException) {
+      return null
+    }
   }
 
   private fun read(): Frame? {

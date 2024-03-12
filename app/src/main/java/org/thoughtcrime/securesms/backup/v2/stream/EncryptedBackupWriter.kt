@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.backup.v2.stream
 
 import org.signal.core.util.stream.MacOutputStream
 import org.signal.core.util.writeVarInt32
+import org.thoughtcrime.securesms.backup.v2.proto.BackupInfo
 import org.thoughtcrime.securesms.backup.v2.proto.Frame
 import org.whispersystems.signalservice.api.backup.BackupKey
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
@@ -54,6 +55,13 @@ class EncryptedBackupWriter(
         cipher
       )
     )
+  }
+
+  override fun write(header: BackupInfo) {
+    val headerBytes = header.encode()
+
+    mainStream.writeVarInt32(headerBytes.size)
+    mainStream.write(headerBytes)
   }
 
   @Throws(IOException::class)

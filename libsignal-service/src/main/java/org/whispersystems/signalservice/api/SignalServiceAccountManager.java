@@ -8,6 +8,7 @@ package org.whispersystems.signalservice.api;
 
 import com.squareup.wire.FieldEncoding;
 
+import org.signal.libsignal.net.Network;
 import org.signal.libsignal.protocol.IdentityKeyPair;
 import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.protocol.ecc.ECPublicKey;
@@ -30,6 +31,7 @@ import org.whispersystems.signalservice.api.groupsv2.ClientZkOperations;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Api;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations;
 import org.whispersystems.signalservice.api.kbs.MasterKey;
+import org.whispersystems.signalservice.api.keys.KeysApi;
 import org.whispersystems.signalservice.api.messages.calls.TurnServerInfo;
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceInfo;
 import org.whispersystems.signalservice.api.payments.CurrencyConversions;
@@ -128,7 +130,6 @@ public class SignalServiceAccountManager {
   private final String                     userAgent;
   private final GroupsV2Operations         groupsV2Operations;
   private final SignalServiceConfiguration configuration;
-
 
   /**
    * Construct a SignalServiceAccountManager.
@@ -351,16 +352,6 @@ public class SignalServiceAccountManager {
   }
 
   /**
-   * Set the client's signed prekey.
-   *
-   * @param signedPreKey The client's new signed prekey.
-   * @throws IOException
-   */
-  public void setSignedPreKey(ServiceIdType serviceIdType, SignedPreKeyRecord signedPreKey) throws IOException {
-    this.pushServiceSocket.setCurrentSignedPreKey(serviceIdType, signedPreKey);
-  }
-
-  /**
    * @return True if the identifier corresponds to a registered user, otherwise false.
    */
   public boolean isIdentifierRegistered(ServiceId identifier) throws IOException {
@@ -371,16 +362,16 @@ public class SignalServiceAccountManager {
   public CdsiV2Service.Response getRegisteredUsersWithCdsi(Set<String> previousE164s,
                                                            Set<String> newE164s,
                                                            Map<ServiceId, ProfileKey> serviceIds,
-                                                           boolean requireAcis,
                                                            Optional<byte[]> token,
                                                            String mrEnclave,
                                                            Long timeoutMs,
+                                                           @Nullable Network.Environment libsignalNetEnv,
                                                            Consumer<byte[]> tokenSaver)
       throws IOException
   {
     CdsiAuthResponse                                auth    = pushServiceSocket.getCdsiAuth();
-    CdsiV2Service                                   service = new CdsiV2Service(configuration, mrEnclave);
-    CdsiV2Service.Request                           request = new CdsiV2Service.Request(previousE164s, newE164s, serviceIds, requireAcis, token);
+    CdsiV2Service                                   service = new CdsiV2Service(configuration, mrEnclave, libsignalNetEnv);
+    CdsiV2Service.Request                           request = new CdsiV2Service.Request(previousE164s, newE164s, serviceIds, token);
     Single<ServiceResponse<CdsiV2Service.Response>> single  = service.getRegisteredUsers(auth.getUsername(), auth.getPassword(), request, tokenSaver);
 
     ServiceResponse<CdsiV2Service.Response> serviceResponse;
@@ -783,8 +774,32 @@ public class SignalServiceAccountManager {
     return this.pushServiceSocket.reserveUsername(usernameHashes);
   }
 
-  public void confirmUsername(String username, ReserveUsernameResponse reserveUsernameResponse) throws IOException {
-    this.pushServiceSocket.confirmUsername(username, reserveUsernameResponse);
+  public UsernameLinkComponents confirmUsernameAndCreateNewLink(Username username) throws IOException {
+    try {
+      UsernameLink link    = username.generateLink();
+      UUID        serverId = this.pushServiceSocket.confirmUsernameAndCreateNewLink(username, link);
+
+      return new UsernameLinkComponents(link.getEntropy(), serverId);
+    } catch (BaseUsernameException e) {
+      throw new AssertionError(e);
+    }
+  }
+
+  public UsernameLinkComponents reclaimUsernameAndLink(Username username, UsernameLinkComponents linkComponents) throws IOException {
+    try {
+      UsernameLink link     = username.generateLink(linkComponents.getEntropy());
+      UUID         serverId = this.pushServiceSocket.confirmUsernameAndCreateNewLink(username, link);
+
+      return new UsernameLinkComponents(link.getEntropy(), serverId);
+    } catch (BaseUsernameException e) {
+      throw new AssertionError(e);
+    }
+  }
+
+  public UsernameLinkComponents updateUsernameLink(UsernameLink newUsernameLink) throws IOException {
+      UUID serverId = this.pushServiceSocket.createUsernameLink(Base64.encodeUrlSafeWithoutPadding(newUsernameLink.getEncryptedUsername()), true);
+
+      return new UsernameLinkComponents(newUsernameLink.getEntropy(), serverId);
   }
 
   public void deleteUsername() throws IOException {
@@ -794,7 +809,7 @@ public class SignalServiceAccountManager {
   public UsernameLinkComponents createUsernameLink(Username username) throws IOException {
     try {
       UsernameLink link     = username.generateLink();
-      UUID         serverId = this.pushServiceSocket.createUsernameLink(Base64.encodeUrlSafeWithPadding(link.getEncryptedUsername()));
+      UUID         serverId = this.pushServiceSocket.createUsernameLink(Base64.encodeUrlSafeWithPadding(link.getEncryptedUsername()), false);
 
       return new UsernameLinkComponents(link.getEntropy(), serverId);
     } catch (BaseUsernameException e) {
@@ -849,6 +864,10 @@ public class SignalServiceAccountManager {
 
   public ArchiveApi getArchiveApi() {
     return ArchiveApi.create(pushServiceSocket, configuration.getBackupServerPublicParams(), credentials.getAci());
+  }
+
+  public KeysApi getKeysApi() {
+    return KeysApi.create(pushServiceSocket);
   }
 
   public AuthCredentials getPaymentsAuthorization() throws IOException {

@@ -54,9 +54,10 @@
     {{> partials/suffix}}
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sql-formatter/4.0.2/sql-formatter.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.20.0/ace.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.20.0/mode-sql.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.20.0/theme-github.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.5/ace.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.5/mode-sql.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.5/theme-github.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.5/theme-github_dark.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="text/javascript">
       let editor;
 
@@ -67,7 +68,7 @@
 
         editor = ace.edit(document.querySelector('.query-input'), {
           mode: 'ace/mode/sql',
-          theme: 'ace/theme/github',
+          theme: isDarkTheme() ? 'ace/theme/github_dark' : 'ace/theme/github',
           selectionStyle: 'text',
           showPrintMargin: false
         });
@@ -185,6 +186,10 @@
       function getQueryHistory() {
         const historyRaw = localStorage.getItem('query-history') || "[]";
         return JSON.parse(historyRaw);
+      }
+
+      function isDarkTheme() {
+        return document.body.getAttribute('data-theme') === 'dark'
       }
 
       main();

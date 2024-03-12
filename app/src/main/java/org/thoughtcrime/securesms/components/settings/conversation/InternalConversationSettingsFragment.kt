@@ -28,7 +28,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.subscription.Subscriber
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
@@ -127,6 +126,16 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
         textPref(
           title = DSLSettingsText.from("Sealed Sender Mode"),
           summary = DSLSettingsText.from(recipient.unidentifiedAccessMode.toString())
+        )
+
+        textPref(
+          title = DSLSettingsText.from("Phone Number Sharing"),
+          summary = DSLSettingsText.from(recipient.phoneNumberSharing.name)
+        )
+
+        textPref(
+          title = DSLSettingsText.from("Phone Number Discoverability"),
+          summary = DSLSettingsText.from(SignalDatabase.recipients.getPhoneNumberDiscoverability(recipient.id)?.name ?: "null")
         )
       }
 
@@ -250,11 +259,7 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
 
               SignalDatabase.recipients.debugClearE164AndPni(recipient.id)
 
-              val splitRecipientId: RecipientId = if (FeatureFlags.phoneNumberPrivacy()) {
-                SignalDatabase.recipients.getAndPossiblyMergePnpVerified(null, recipient.pni.orElse(null), recipient.requireE164())
-              } else {
-                SignalDatabase.recipients.getAndPossiblyMerge(recipient.pni.orElse(null), recipient.requireE164())
-              }
+              val splitRecipientId: RecipientId = SignalDatabase.recipients.getAndPossiblyMergePnpVerified(null, recipient.pni.orElse(null), recipient.requireE164())
               val splitRecipient: Recipient = Recipient.resolved(splitRecipientId)
               val splitThreadId: Long = SignalDatabase.threads.getOrCreateThreadIdFor(splitRecipient)
 
@@ -277,7 +282,6 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
       clickPref(
         title = DSLSettingsText.from("Split without creating threads"),
         summary = DSLSettingsText.from("Splits this contact into two recipients so you can test merging them together. This will become the PNI-based recipient. Another recipient will be made with this ACI and profile key. Doing a CDS refresh should allow you to see a Session Switchover Event, as long as you had a session with this PNI."),
-        isEnabled = FeatureFlags.phoneNumberPrivacy(),
         onClick = {
           MaterialAlertDialogBuilder(requireContext())
             .setTitle("Are you sure?")
@@ -321,15 +325,8 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
 
     return if (capabilities != null) {
       TextUtils.concat(
-        colorize("GV1Migration", capabilities.groupsV1MigrationCapability),
-        ", ",
-        colorize("AnnouncementGroup", capabilities.announcementGroupCapability),
-        ", ",
-        colorize("SenderKey", capabilities.senderKeyCapability),
-        ", ",
-        colorize("ChangeNumber", capabilities.changeNumberCapability),
-        ", ",
-        colorize("Stories", capabilities.storiesCapability)
+        colorize("PNP/PNI", capabilities.pnpCapability),
+        colorize("PaymentActivation", capabilities.paymentActivation)
       )
     } else {
       "Recipient not found!"

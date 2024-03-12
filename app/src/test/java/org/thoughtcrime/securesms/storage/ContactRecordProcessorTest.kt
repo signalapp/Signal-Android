@@ -283,8 +283,6 @@ class ContactRecordProcessorTest {
     // GIVEN
     val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
 
-    featureFlags.`when`<Boolean> { FeatureFlags.phoneNumberPrivacy() }.thenReturn(true)
-
     val local = buildRecord(
       STORAGE_ID_A,
       record = ContactRecord(
@@ -316,8 +314,6 @@ class ContactRecordProcessorTest {
   fun `merge, pnisMatchButE164sDont pnpEnabled, keepLocal`() {
     // GIVEN
     val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
-
-    featureFlags.`when`<Boolean> { FeatureFlags.phoneNumberPrivacy() }.thenReturn(true)
 
     val local = buildRecord(
       STORAGE_ID_A,
@@ -351,8 +347,6 @@ class ContactRecordProcessorTest {
     // GIVEN
     val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
 
-    featureFlags.`when`<Boolean> { FeatureFlags.phoneNumberPrivacy() }.thenReturn(true)
-
     val local = buildRecord(
       STORAGE_ID_A,
       record = ContactRecord(
@@ -378,40 +372,6 @@ class ContactRecordProcessorTest {
     assertEquals(remote.aci, result.aci)
     assertEquals(remote.number.get(), result.number.get())
     assertEquals(remote.pni.get(), result.pni.get())
-  }
-
-  @Test
-  fun `merge, pnpDisabled, pniNotDropped`() {
-    // GIVEN
-    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
-
-    featureFlags.`when`<Boolean> { FeatureFlags.phoneNumberPrivacy() }.thenReturn(false)
-
-    val local = buildRecord(
-      STORAGE_ID_A,
-      record = ContactRecord(
-        aci = ACI_A.toString(),
-        e164 = E164_A,
-        pni = PNI_A.toStringWithoutPrefix()
-      )
-    )
-
-    val remote = buildRecord(
-      STORAGE_ID_B,
-      record = ContactRecord(
-        aci = ACI_A.toString(),
-        e164 = E164_B,
-        pni = PNI_B.toStringWithoutPrefix()
-      )
-    )
-
-    // WHEN
-    val result = subject.merge(remote, local, TestKeyGenerator(STORAGE_ID_C))
-
-    // THEN
-    assertEquals(remote.aci, result.aci)
-    assertEquals(remote.number.get(), result.number.get())
-    assertEquals(true, result.pni.isPresent)
   }
 
   private fun buildRecord(id: StorageId = STORAGE_ID_A, record: ContactRecord): SignalContactRecord {

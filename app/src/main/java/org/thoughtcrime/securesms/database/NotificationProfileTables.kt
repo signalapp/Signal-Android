@@ -111,6 +111,7 @@ class NotificationProfileDatabase(context: Context, databaseHelper: SignalDataba
         put(NotificationProfileTable.EMOJI, emoji)
         put(NotificationProfileTable.COLOR, color.serialize())
         put(NotificationProfileTable.CREATED_AT, createdAt)
+        put(NotificationProfileTable.ALLOW_ALL_CALLS, 1)
       }
 
       val profileId = db.insert(NotificationProfileTable.TABLE_NAME, null, profileValues)
@@ -134,7 +135,8 @@ class NotificationProfileDatabase(context: Context, databaseHelper: SignalDataba
           name = name,
           emoji = emoji,
           createdAt = createdAt,
-          schedule = getProfileSchedule(profileId)
+          schedule = getProfileSchedule(profileId),
+          allowAllCalls = true
         )
       )
     } finally {

@@ -165,7 +165,7 @@ public final class Wallet {
       for (OwnedTxOut txOut : accountSnapshot.getAccountActivity().getAllTokenTxOuts(TokenId.MOB)) {
         final Amount txOutAmount = txOut.getAmount();
         MobileCoinLedger.OwnedTXO.Builder txoBuilder = new MobileCoinLedger.OwnedTXO.Builder()
-                                                                                    .amount(Uint64Util.bigIntegerToUInt64(txOutAmount.getValue()))
+                                                                                    .amount(ByteString.of(txOutAmount.getValue().toByteArray()))
                                                                                     .receivedInBlock(getBlock(txOut.getReceivedBlockIndex(), txOut.getReceivedBlockTimestamp()))
                                                                                     .keyImage(ByteString.of(txOut.getKeyImage().getData()))
                                                                                     .publicKey(ByteString.of(txOut.getPublicKey().getKeyBytes()));
@@ -198,8 +198,8 @@ public final class Wallet {
 
       builder.spentTxos(spentTxos)
              .unspentTxos(unspentTxos)
-             .balance(Uint64Util.bigIntegerToUInt64(totalUnspent))
-             .transferableBalance(Uint64Util.bigIntegerToUInt64(accountSnapshot.getTransferableAmount(minimumTxFee).getValue()))
+             .balance(ByteString.of(totalUnspent.toByteArray()))
+             .transferableBalance(ByteString.of(accountSnapshot.getTransferableAmount(minimumTxFee).getValue().toByteArray()))
              .asOfTimeStamp(asOfTimestamp)
              .highestBlock(new MobileCoinLedger.Block.Builder()
                                                      .blockNumber(highestBlockIndex.longValue())

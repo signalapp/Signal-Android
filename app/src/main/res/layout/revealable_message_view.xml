@@ -21,7 +21,7 @@
             android:layout_height="40dp"
             android:scaleType="center"
             tools:background="@color/transparent_white_20"
-            tools:src="@drawable/ic_viewed_once_24"/>
+            tools:src="@drawable/symbol_view_once_dash_24"/>
 
         <com.pnikosis.materialishprogress.ProgressWheel
             android:id="@+id/revealable_progress"

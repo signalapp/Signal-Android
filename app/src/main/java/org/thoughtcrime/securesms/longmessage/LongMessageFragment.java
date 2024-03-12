@@ -3,8 +3,6 @@ package org.thoughtcrime.securesms.longmessage;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.text.SpannableString;
-import android.text.style.URLSpan;
-import android.text.util.Linkify;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +11,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
-import androidx.core.text.util.LinkifyCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
-
-import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.ConversationItemFooter;
@@ -25,9 +20,10 @@ import org.thoughtcrime.securesms.components.FullScreenDialogFragment;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.thoughtcrime.securesms.conversation.ConversationItemDisplayMode;
 import org.thoughtcrime.securesms.conversation.colors.ColorizerView;
+import org.thoughtcrime.securesms.conversation.v2.items.V2ConversationItemUtils;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.LinkUtil;
+import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.LongClickMovementMethod;
 import org.thoughtcrime.securesms.util.Projection;
 import org.thoughtcrime.securesms.util.ThemeUtil;
@@ -126,11 +122,14 @@ public class LongMessageFragment extends FullScreenDialogFragment {
       EmojiTextView          text   = bubble.findViewById(R.id.longmessage_text);
       ConversationItemFooter footer = bubble.findViewById(R.id.longmessage_footer);
 
-      CharSequence    trimmedBody = getTrimmedBody(message.get().getFullBody(requireContext()));
-      SpannableString styledBody  = linkifyMessageBody(new SpannableString(trimmedBody));
+      SpannableString body = new SpannableString(getTrimmedBody(message.get().getFullBody(requireContext())));
+      V2ConversationItemUtils.linkifyUrlLinks(body,
+                                              true,
+                                              url -> CommunicationActions.handlePotentialGroupLinkUrl(requireActivity(), url) ||
+                                                     CommunicationActions.handlePotentialProxyLinkUrl(requireActivity(), url));
 
       bubble.setVisibility(View.VISIBLE);
-      text.setText(styledBody);
+      text.setText(body);
       text.setMovementMethod(LongClickMovementMethod.getInstance(getContext()));
       text.setTextSize(TypedValue.COMPLEX_UNIT_SP, SignalStore.settings().getMessageFontSize());
       if (!message.get().getMessageRecord().isOutgoing()) {
@@ -145,18 +144,6 @@ public class LongMessageFragment extends FullScreenDialogFragment {
   private CharSequence getTrimmedBody(@NonNull CharSequence text) {
     return text.length() <= MAX_DISPLAY_LENGTH ? text
                                                : text.subSequence(0, MAX_DISPLAY_LENGTH);
-  }
-
-  private SpannableString linkifyMessageBody(SpannableString messageBody) {
-    int     linkPattern = Linkify.WEB_URLS | Linkify.EMAIL_ADDRESSES | Linkify.PHONE_NUMBERS;
-    boolean hasLinks    = LinkifyCompat.addLinks(messageBody, linkPattern);
-
-    if (hasLinks) {
-      Stream.of(messageBody.getSpans(0, messageBody.length(), URLSpan.class))
-            .filterNot(url -> LinkUtil.isLegalUrl(url.getURL()))
-            .forEach(messageBody::removeSpan);
-    }
-    return messageBody;
   }
 
   private final class BubbleLayoutListener implements View.OnLayoutChangeListener {

@@ -4,6 +4,7 @@ import android.content.Context
 import android.database.Cursor
 import androidx.core.content.contentValuesOf
 import org.signal.core.util.delete
+import org.signal.core.util.deleteAll
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToSet
 import org.signal.core.util.requireInt
@@ -137,9 +138,7 @@ class SenderKeySharedTable internal constructor(context: Context?, databaseHelpe
    * Clears all database content.
    */
   fun deleteAll() {
-    writableDatabase
-      .delete(TABLE_NAME)
-      .run()
+    writableDatabase.deleteAll(TABLE_NAME)
   }
 
   /**

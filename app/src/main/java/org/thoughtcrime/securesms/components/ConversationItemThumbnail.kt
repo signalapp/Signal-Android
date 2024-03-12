@@ -16,10 +16,10 @@ import androidx.annotation.ColorInt
 import androidx.annotation.Px
 import androidx.annotation.UiThread
 import androidx.core.os.bundleOf
+import com.bumptech.glide.RequestManager
 import org.signal.core.util.dp
 import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.mms.Slide
 import org.thoughtcrime.securesms.mms.SlideClickListener
 import org.thoughtcrime.securesms.mms.SlidesClickedListener
@@ -192,7 +192,7 @@ class ConversationItemThumbnail @JvmOverloads constructor(
 
   @UiThread
   fun setImageResource(
-    glideRequests: GlideRequests,
+    requestManager: RequestManager,
     slides: List<Slide>,
     showControls: Boolean,
     isPreview: Boolean
@@ -223,7 +223,7 @@ class ConversationItemThumbnail @JvmOverloads constructor(
 
       val attachment = slides[0].asAttachment()
 
-      thumbnail.get().setImageResource(glideRequests, slides[0], showControls, isPreview, attachment.width, attachment.height)
+      thumbnail.get().setImageResource(requestManager, slides[0], showControls, isPreview, attachment.width, attachment.height)
       touchDelegate = thumbnail.get().touchDelegate
     } else {
       state = state.copy(
@@ -232,7 +232,7 @@ class ConversationItemThumbnail @JvmOverloads constructor(
       )
 
       state.applyState(thumbnail, album)
-      album.get().setSlides(glideRequests, slides, showControls)
+      album.get().setSlides(requestManager, slides, showControls)
       touchDelegate = album.get().touchDelegate
     }
   }
@@ -251,10 +251,10 @@ class ConversationItemThumbnail @JvmOverloads constructor(
     state.applyState(thumbnail, album)
   }
 
-  fun setDownloadClickListener(listener: SlidesClickedListener?) {
+  fun setStartTransferClickListener(listener: SlidesClickedListener?) {
     state = state.copy(
-      thumbnailViewState = state.thumbnailViewState.copy(downloadClickListener = listener),
-      albumViewState = state.albumViewState.copy(downloadClickListener = listener)
+      thumbnailViewState = state.thumbnailViewState.copy(startTransferClickListener = listener),
+      albumViewState = state.albumViewState.copy(startTransferClickListener = listener)
     )
 
     state.applyState(thumbnail, album)
@@ -269,10 +269,10 @@ class ConversationItemThumbnail @JvmOverloads constructor(
     state.applyState(thumbnail, album)
   }
 
-  fun setCancelDownloadClickListener(listener: SlidesClickedListener?) {
+  fun setCancelTransferClickListener(listener: SlidesClickedListener?) {
     state = state.copy(
-      thumbnailViewState = state.thumbnailViewState.copy(cancelDownloadClickListener = listener),
-      albumViewState = state.albumViewState.copy(cancelDownloadClickListener = listener)
+      thumbnailViewState = state.thumbnailViewState.copy(cancelTransferClickListener = listener),
+      albumViewState = state.albumViewState.copy(cancelTransferClickListener = listener)
     )
 
     state.applyState(thumbnail, album)

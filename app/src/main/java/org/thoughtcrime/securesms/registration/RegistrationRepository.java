@@ -181,7 +181,7 @@ public final class RegistrationRepository {
 
   public static PreKeyCollection generateSignedAndLastResortPreKeys(IdentityKeyPair identity, PreKeyMetadataStore metadataStore) {
     SignedPreKeyRecord      signedPreKey          = PreKeyUtil.generateSignedPreKey(metadataStore.getNextSignedPreKeyId(), identity.getPrivateKey());
-    KyberPreKeyRecord       lastResortKyberPreKey = PreKeyUtil.generateLastRestortKyberPreKey(metadataStore.getNextKyberPreKeyId(), identity.getPrivateKey());
+    KyberPreKeyRecord       lastResortKyberPreKey = PreKeyUtil.generateLastResortKyberPreKey(metadataStore.getNextKyberPreKeyId(), identity.getPrivateKey());
 
     return new PreKeyCollection(
         identity.getPublicKey(),

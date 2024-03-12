@@ -49,7 +49,9 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkCredentials
 import org.thoughtcrime.securesms.service.webrtc.links.SignalCallLinkState
 import org.thoughtcrime.securesms.service.webrtc.links.UpdateCallLinkResult
+import org.thoughtcrime.securesms.sharing.v2.ShareActivity
 import org.thoughtcrime.securesms.util.CommunicationActions
+import org.thoughtcrime.securesms.util.Util
 import java.time.Instant
 
 /**
@@ -119,15 +121,29 @@ class CallLinkDetailsFragment : ComposeFragment(), CallLinkDetailsCallback {
     }
   }
 
+  override fun onCopyClicked() {
+    Util.copyToClipboard(requireContext(), CallLinks.url(viewModel.rootKeySnapshot))
+    Toast.makeText(requireContext(), R.string.CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard, Toast.LENGTH_LONG).show()
+  }
+
+  override fun onShareLinkViaSignalClicked() {
+    startActivity(
+      ShareActivity.sendSimpleText(
+        requireContext(),
+        getString(R.string.CreateCallLink__use_this_link_to_join_a_signal_call, CallLinks.url(viewModel.rootKeySnapshot))
+      )
+    )
+  }
+
   override fun onDeleteClicked() {
     viewModel.setDisplayRevocationDialog(true)
   }
 
   override fun onDeleteConfirmed() {
     viewModel.setDisplayRevocationDialog(false)
-    lifecycleDisposable += viewModel.revoke().observeOn(AndroidSchedulers.mainThread()).subscribeBy(onSuccess = {
+    lifecycleDisposable += viewModel.delete().observeOn(AndroidSchedulers.mainThread()).subscribeBy(onSuccess = {
       when (it) {
-        is UpdateCallLinkResult.Success -> ActivityCompat.finishAfterTransition(requireActivity())
+        is UpdateCallLinkResult.Update -> ActivityCompat.finishAfterTransition(requireActivity())
         else -> {
           Log.w(TAG, "Failed to revoke. $it")
           toastFailure()
@@ -142,7 +158,7 @@ class CallLinkDetailsFragment : ComposeFragment(), CallLinkDetailsCallback {
 
   override fun onApproveAllMembersChanged(checked: Boolean) {
     lifecycleDisposable += viewModel.setApproveAllMembers(checked).observeOn(AndroidSchedulers.mainThread()).subscribeBy(onSuccess = {
-      if (it !is UpdateCallLinkResult.Success) {
+      if (it !is UpdateCallLinkResult.Update) {
         Log.w(TAG, "Failed to change restrictions. $it")
         toastFailure()
       }
@@ -151,7 +167,7 @@ class CallLinkDetailsFragment : ComposeFragment(), CallLinkDetailsCallback {
 
   private fun setName(name: String) {
     lifecycleDisposable += viewModel.setName(name).observeOn(AndroidSchedulers.mainThread()).subscribeBy(onSuccess = {
-      if (it !is UpdateCallLinkResult.Success) {
+      if (it !is UpdateCallLinkResult.Update) {
         Log.w(TAG, "Failed to set name. $it")
         toastFailure()
       }
@@ -175,6 +191,8 @@ private interface CallLinkDetailsCallback {
   fun onJoinClicked()
   fun onEditNameClicked()
   fun onShareClicked()
+  fun onCopyClicked()
+  fun onShareLinkViaSignalClicked()
   fun onDeleteClicked()
   fun onDeleteConfirmed()
   fun onDeleteCanceled()
@@ -216,6 +234,8 @@ private fun CallLinkDetailsPreview() {
         override fun onJoinClicked() = Unit
         override fun onEditNameClicked() = Unit
         override fun onShareClicked() = Unit
+        override fun onCopyClicked() = Unit
+        override fun onShareLinkViaSignalClicked() = Unit
         override fun onDeleteClicked() = Unit
         override fun onApproveAllMembersChanged(checked: Boolean) = Unit
       }
@@ -264,6 +284,18 @@ private fun CallLinkDetails(
 
         Dividers.Default()
       }
+
+      Rows.TextRow(
+        text = stringResource(id = R.string.CreateCallLinkBottomSheetDialogFragment__share_link_via_signal),
+        icon = ImageVector.vectorResource(id = R.drawable.symbol_forward_24),
+        onClick = callback::onShareLinkViaSignalClicked
+      )
+
+      Rows.TextRow(
+        text = stringResource(id = R.string.CreateCallLinkBottomSheetDialogFragment__copy_link),
+        icon = ImageVector.vectorResource(id = R.drawable.symbol_copy_android_24),
+        onClick = callback::onCopyClicked
+      )
 
       Rows.TextRow(
         text = stringResource(id = R.string.CallLinkDetailsFragment__share_link),

@@ -9,6 +9,7 @@ import org.signal.core.util.CursorUtil
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.delete
+import org.signal.core.util.deleteAll
 import org.signal.core.util.exists
 import org.signal.core.util.getTableRowCount
 import org.signal.core.util.insertInto
@@ -268,9 +269,7 @@ class LogDatabase private constructor(
     }
 
     fun clearAll() {
-      writableDatabase
-        .delete(TABLE_NAME)
-        .run()
+      writableDatabase.deleteAll(TABLE_NAME)
     }
 
     private fun getSize(query: String?, args: Array<String>?): Long {
@@ -403,9 +402,7 @@ class LogDatabase private constructor(
     }
 
     fun clear() {
-      writableDatabase
-        .delete(TABLE_NAME)
-        .run()
+      writableDatabase.deleteAll(TABLE_NAME)
     }
 
     private fun CrashConfig.CrashPattern.asLikeQuery(): Pair<String, Array<String>> {
@@ -494,9 +491,7 @@ class LogDatabase private constructor(
     }
 
     fun clear() {
-      writableDatabase
-        .delete(TABLE_NAME)
-        .run()
+      writableDatabase.deleteAll(TABLE_NAME)
     }
 
     data class AnrRecord(

@@ -179,7 +179,18 @@
     <string name="BlockUnblockDialog_unblock_s">Vols desbloquejar %1$s?</string>
     <string name="BlockUnblockDialog_block">Bloquejar</string>
     <string name="BlockUnblockDialog_block_and_leave">Bloqueja i abandona</string>
-    <string name="BlockUnblockDialog_report_spam_and_block">Informa\'n com a spam i bloqueja-ho</string>
+    <!-- Dialog button label to report as spam and block the person -->
+    <string name="BlockUnblockDialog_report_spam_and_block">Denunciar i bloquejar</string>
+    <!-- Dialog title for reporting spam -->
+    <string name="BlockUnblockDialog_report_spam_title">Denunciar com a spam?</string>
+    <!-- Dialog button to report as spam only -->
+    <string name="BlockUnblockDialog_report_spam">Denunciar com a spam</string>
+    <!-- Dialog message when reporting spam of an individual (1:1 conversation) -->
+    <string name="BlockUnblockDialog_report_spam_description">Signal rebrà una notificació que la persona pot estar enviant spam. Signal no pot veure el contingut de cap xat.</string>
+    <!-- Dialog message when reporting spam of a group and we can determine the group member that invited you, placeholder is a name -->
+    <string name="BlockUnblockDialog_report_spam_group_named_adder">Signal rebrà una notificació que %1$s, la persona que t\'ha convidat a aquest grup, pot estar enviant spam. Signal no pot veure el contingut de cap xat.</string>
+    <!-- Dialog message when reporting spam of a group and we cannot determine the group member that invited you -->
+    <string name="BlockUnblockDialog_report_spam_group_unknown_adder">Signal rebrà una notificació que la persona que t\'ha convidat a aquest grup pot estar enviant spam. Signal no pot veure el contingut de cap xat.</string>
 
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">Avui</string>
@@ -415,6 +426,8 @@
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported">Els missatges SMS ja no són compatibles amb Signal.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Els missatges SMS ja no són compatibles amb Signal. Convida %1$s a Signal per mantenir la conversa aquí.</string>
+    <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
+    <string name="ConversationActivity__this_person_is_no_longer_using_signal">Aquesta persona ja no utilitza Signal. Convida-la a Signal per continuar parlant per aquí.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">Convida al Signal</string>
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
@@ -480,11 +493,11 @@
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Podeu lliscar cap a l’esquerra en qualsevol missatge per respondre ràpidament.</string>
     <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Els arxius multimèdia d\'una sola visualització s\'eliminen un cop han estat enviats</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Ja has vist aquest missatge</string>
-    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Pots afegir notes per a tu mateix en aquest xat. Si hi ha algun dispositiu enllaçat, s\'hi sincronitzaran les notes noves.</string>
+    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">En aquest xat, pots afegir notes per a tu mateix. Si hi ha algun dispositiu enllaçat, s\'hi sincronitzaran les notes noves.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d membres del grup tenen el mateix nom.</string>
     <string name="ConversationFragment__tap_to_review">Feu un toc per revisar-ho</string>
-    <string name="ConversationFragment__review_requests_carefully">Reviseu les sol·licituds amb atenció.</string>
-    <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">El Signal ha trobat un altre contacte amb el mateix nom.</string>
+    <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
+    <string name="ConversationFragment__review_banner_body">Aquesta persona té el mateix nom que un altre contacte</string>
     <string name="ConversationFragment_contact_us">Contacteu-nos</string>
     <string name="ConversationFragment_verify">Verificació</string>
     <string name="ConversationFragment_not_now">Ara no</string>
@@ -510,6 +523,55 @@
     <string name="ConversationFragment__content_description_launch_signal_button">Obrir Signal</string>
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
     <string name="ConversationFragment__no_longer_verified">Ja no està verificat</string>
+    <!-- Button shown in conversation header when in a message request state and no groups in common to show new message safety tips -->
+    <string name="ConversationFragment_safety_tips">Consells de seguretat</string>
+    <!-- Menu option to report spam in a conversation -->
+    <string name="ConversationFragment_report_spam">Denunciar com a spam</string>
+    <!-- Menu option to block in a conversation -->
+    <string name="ConversationFragment_block">Bloquejar</string>
+    <!-- Menu otpion to accept a message request in a conversation -->
+    <string name="ConversationFragment_accept">Ho accepto</string>
+    <!-- Menu option to delete an entire chat in a conversation -->
+    <string name="ConversationFragment_delete_chat">Eliminar el xat</string>
+    <!-- Menu option to unblock in a conversation -->
+    <string name="ConversationFragment_unblock">Desbloquejar</string>
+    <!-- Dialog title shown after reporting spam and tapping the conversation item -->
+    <string name="ConversationFragment_reported_spam">Se n\'ha informat com a spam</string>
+    <!-- Dialog message shown after reporting spam and tapping the conversation item -->
+    <string name="ConversationFragment_reported_spam_message">Signal ha rebut una notificació que la persona pot estar enviant spam. Signal no pot veure el contingut de cap xat.</string>
+    <!-- Toast shown after reporting spam and tapping the conversation item -->
+    <string name="ConversationFragment_reported_as_spam">Reportat com a spam</string>
+    <!-- Toast shown after reporting and blocking a conversation -->
+    <string name="ConversationFragment_reported_as_spam_and_blocked">Reportat com a spam i bloquejat</string>
+    <!-- Dialog message shown after accepting a message request and tapping on options from the conversation event -->
+    <string name="ConversationFragment_you_accepted_a_message_request_from_s">Has acceptat la sol·licitud de missatge de %1$s. Si es tracta d\'un error, pots escollir una de les accions que hi ha a continuació.</string>
+
+    <!-- Title of Safety Tips bottom sheet dialog -->
+    <string name="SafetyTips_title">Consells de seguretat</string>
+    <!-- Dialog subtitle when showign tips for a 1:1 conversation -->
+    <string name="SafetyTips_subtitle_individual">Ves amb compte quan acceptis sol·licituds de missatges de persones que no coneixes. Vigila amb:</string>
+    <!-- Dialog subtitle when showing tips for a group conversation -->
+    <string name="SafetyTips_subtitle_group">Revisa aquesta sol·licitud amb atenció. Cap dels teus contactes o persones amb qui xateges no és en aquest grup. Aquestes són algunes coses a tenir en compte:</string>
+    <!-- Button text to move to the previous tip-->
+    <string name="SafetyTips_previous_tip">Consell anterior</string>
+    <!-- Button text to move to the next tip -->
+    <string name="SafetyTips_next_tip">Següent consell</string>
+    <!-- Title of tip 1 -->
+    <string name="SafetyTips_tip1_title">Estafes de criptomoneda o diners</string>
+    <!-- Message of tip 1 -->
+    <string name="SafetyTips_tip1_message">Si algú que no coneixes t\'envia missatges sobre criptomonedes (com Bitcoin) o sobre una oportunitat financera, ves amb compte: és probable que sigui spam.</string>
+    <!-- Title of tip 2 -->
+    <string name="SafetyTips_tip2_title">Missatges imprecisos o irrellevants</string>
+    <!-- Message of tip 2 -->
+    <string name="SafetyTips_tip2_message">Els spammers sovint comencen amb un missatge senzill, com \"Hola\", per captar la teva atenció. Si respons, et poden implicar més.</string>
+    <!-- Title of tip 3 -->
+    <string name="SafetyTips_tip3_title">Missatges amb enllaços</string>
+    <!-- Message of tip 3 -->
+    <string name="SafetyTips_tip3_message">Ves amb compte amb els missatges de persones que no coneixes que tinguin enllaços a llocs web. Mai visitis els enllaços de persones en qui no confiïs.</string>
+    <!-- Title of tip 4 -->
+    <string name="SafetyTips_tip4_title">Empreses i institucions falses</string>
+    <!-- Message of tip 4 -->
+    <string name="SafetyTips_tip4_message">Ves amb compte amb les empreses o les agències governamentals que es posin en contacte amb tu. Els missatges que involucren agències fiscals i serveis de missatgeria, entre d\'altres, poden ser spam.</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Restablir filtres</string>
@@ -524,7 +586,10 @@
         <item quantity="other">S\'eliminarà de manera permanent els %1$d xats seleccionats.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Se suprimeix</string>
-    <string name="ConversationListFragment_deleting_selected_conversations">Eliminant els xats seleccionats…</string>
+    <plurals name="ConversationListFragment_deleting_selected_conversations">
+        <item quantity="one">Eliminant el xat seleccionat…</item>
+        <item quantity="other">Eliminant els xats seleccionats…</item>
+    </plurals>
     <plurals name="ConversationListFragment_conversations_archived">
         <item quantity="one">Xat arxivat</item>
         <item quantity="other">%1$d xats arxivats</item>
@@ -562,6 +627,8 @@
     <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">Activeu o desactiveu el perfil de notificacions aquí.</string>
     <!-- Message shown in top toast to indicate the named profile is on -->
     <string name="ConversationListFragment__s_on">%1$s actiu</string>
+    <!-- -->
+    <string name="ConversationListFragment_username_recovered_toast">El teu codi QR i l\'enllaç s\'han restablert i el teu àlies és %1$s</string>
 
     <!-- ConversationListItem -->
     <string name="ConversationListItem_key_exchange_message">Missatge d\'intercanvi de clau</string>
@@ -606,9 +673,9 @@
     <!-- Toolbar title for this screen -->
     <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Qui pot trobar-me a través del meu número?</string>
     <!-- Description for radio item stating anyone can see your phone number -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">Qualsevol persona que tingui el teu número de telèfon guardat als seus contactes podrà veure\'t com a contacte a Signal. Les altres persones podran trobar-te realitzant una cerca amb el teu número.</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">Qualsevol persona que tingui el teu número de telèfon veurà que ets a Signal i podrà iniciar un xat amb tu.</string>
     <!-- Description for radio item stating no one will be able to see your phone number -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">Ningú a Signal podrà trobar-te a través del teu número de telèfon.</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Ningú podrà veure que ets a Signal tret que els enviïs un missatge o tinguis un xat obert amb ells.</string>
 
     <!-- ChooseBackupFragment -->
     <string name="ChooseBackupFragment__restore_from_backup">Voleu fer una restauració des d\'una còpia de seguretat?</string>
@@ -996,8 +1063,12 @@
     <string name="GroupMentionSettingDialog_dont_notify_me">No m\'ho notifiquis mai</string>
 
     <!-- ManageProfileFragment -->
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
+    <string name="ManageProfileFragment__your_username">El teu àlies, codi QR i enllaç no són visibles al teu perfil. Comparteix el teu àlies només amb persones de confiança.</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
+    <string name="ManageProfileFragment__username_footer_no_username">Ara, la gent et pot enviar missatges fent servir el teu àlies opcional, i no caldrà que donis el teu número de telèfon. </string>
     <string name="ManageProfileFragment_profile_name">Nom del perfil</string>
-    <string name="ManageProfileFragment_username">Nom d\'usuari</string>
+    <string name="ManageProfileFragment_username">Àlies</string>
     <string name="ManageProfileFragment_about">Quant a</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">Ha fallat establir l\'avatar.</string>
     <string name="ManageProfileFragment_badges">Insígnies</string>
@@ -1009,23 +1080,23 @@
     <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
     <string name="ManageProfileFragment__link_tooltip_body">Deixa que altres persones comencin un xat amb tu compartint el teu codi QR o enllaç únic.</string>
     <!-- Snackbar message after creating username -->
-    <string name="ManageProfileFragment__username_created">S\'ha creat el nom d\'usuari</string>
+    <string name="ManageProfileFragment__username_created">S\'ha creat l\'àlies</string>
     <!-- Snackbar message after copying username -->
-    <string name="ManageProfileFragment__username_copied">S\'ha copiat el nom d\'usuari</string>
+    <string name="ManageProfileFragment__username_copied">S\'ha copiat l\'àlies</string>
     <!-- Snackbar message after network failure while trying to delete username -->
     <string name="ManageProfileFragment__couldnt_delete_username">No s\'ha pogut eliminar l\'àlies. Torna-ho a provar més tard.</string>
     <!-- Snackbar message after successful deletion of username -->
     <string name="ManageProfileFragment__username_deleted">Àlies eliminat</string>
     <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_title">Eliminar nom d\'usuari?</string>
+    <string name="ManageProfileFragment__delete_username_dialog_title">Eliminar àlies?</string>
     <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_body">"Això eliminarà el teu nom d\'usuari i desactivarà el teu codi QR i enllaç. %1$s estarà disponible perquè altres puguin utilitzar-lo. Segur que vols fer això?"</string>
+    <string name="ManageProfileFragment__delete_username_dialog_body">"Això eliminarà el teu àlies i desactivarà el teu codi QR i enllaç. %1$s estarà disponible perquè altres puguin utilitzar-lo. Segur que vols fer això?"</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
     <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">S\'ha produït un error amb el teu àlies, ja no està assignat al teu compte. Pots provar de configurar-lo de nou o triar-ne un de diferent.</string>
     <!-- Displayed above the conversation list when a user needs to address an issue with their username link -->
-    <string name="UsernameOutOfSyncReminder__link_corrupt">S\'ha produït un error amb el codi QR i enllaç del teu nom d\'usuari, ja no és vàlid. Crea un nou enllaç per compartir. Crea un nou enllaç per compartir.</string>
+    <string name="UsernameOutOfSyncReminder__link_corrupt">S\'ha produït un error amb el codi QR i enllaç del teu àlies, ja no és vàlid. Crea un nou enllaç per compartir. Crea un nou enllaç per compartir.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
     <string name="UsernameOutOfSyncReminder__fix_now">Reparar-ho ara</string>
 
@@ -1195,8 +1266,8 @@
     <string name="MediaOverviewActivity_Selected_description">Seleccionat</string>
     <string name="MediaOverviewActivity_select_all">Selecciona-ho tot</string>
     <plurals name="MediaOverviewActivity_save_plural">
-        <item quantity="one">Desat</item>
-        <item quantity="other">Desats</item>
+        <item quantity="one">Desar canvi</item>
+        <item quantity="other">Desar canvis</item>
     </plurals>
     <plurals name="MediaOverviewActivity_delete_plural">
         <item quantity="one">Suprimit</item>
@@ -1283,6 +1354,10 @@
     <string name="MessageRecord_missed_voice_call">Trucada perduda</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">Videotrucada perduda</string>
+    <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
+    <string name="MessageRecord_missed_voice_call_notification_profile">Trucada de veu perduda mentre els ajustos de notificació estaven activats</string>
+    <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
+    <string name="MessageRecord_missed_video_call_notification_profile">Videotrucada perduda mentre els ajustos de notificació estaven activats</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
     <string name="MessageRecord_you_declined_a_voice_call">Has rebutjat una trucada</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
@@ -1313,6 +1388,8 @@
     <string name="MessageRecord_changed_their_profile_name_to">%1$s ha canviat el nom del perfil a %2$s.</string>
     <string name="MessageRecord_changed_their_profile_name_from_to">%1$s ha canviat el nom del perfil de %2$s a %3$s.</string>
     <string name="MessageRecord_changed_their_profile">%1$s ha canviat el perfil.</string>
+    <!-- Conversation update event message shown when you\'ve started a conversation by phone number or username and then learn their profile name. placeholder is username or phone number -->
+    <string name="MessageRecord_started_this_chat">Has iniciat un xat amb %1$s.</string>
 
     <!-- GV2 specific -->
     <string name="MessageRecord_you_created_the_group">Heu creat el grup.</string>
@@ -1525,6 +1602,10 @@
     <string name="MessageRecord__you_can_no_longer_send_sms_messages_in_signal">Ja no pots enviar missatges SMS a través de Signal. Convida %1$s a Signal per mantenir la conversa aquí.</string>
     <!-- Body for quote when message being quoted is an in-app payment message -->
     <string name="MessageRecord__payment_s">Pagament: %1$s</string>
+    <!-- Update message shown in chat after reporting it as spam -->
+    <string name="MessageRecord_reported_as_spam">Se n\'ha informat com a spam</string>
+    <!-- Update message shown in chat after accept a message request -->
+    <string name="MessageRecord_you_accepted_the_message_request">Has acceptat la sol·licitud de missatge</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Ho accepto</string>
@@ -1571,6 +1652,8 @@
         <item quantity="one">%1$d grup addicional</item>
         <item quantity="other">%1$d grups addicionals</item>
     </plurals>
+    <!-- Button label to report spam for a conversation when in a message request state -->
+    <string name="MessageRequestBottomView_report">Denunciar…</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Les contrasenyes no coincideixen!</string>
@@ -1579,7 +1662,7 @@
 
     <!-- DeviceProvisioningActivity -->
     <string name="DeviceProvisioningActivity_link_this_device">Voleu enllaçar aquest dispositiu?</string>
-    <string name="DeviceProvisioningActivity_continue">CONTINUA</string>
+    <string name="DeviceProvisioningActivity_continue">Continuar</string>
 
     <string name="DeviceProvisioningActivity_content_intro">Podrà</string>
     <string name="DeviceProvisioningActivity_content_bullets">
@@ -1782,8 +1865,10 @@
     <string name="WebRtcCallView__disconnected">Desconnectat</string>
     <!-- Utilized in the lobby before joining a call link -->
     <string name="WebRtcCallView__signal_call_link">Enllaç de trucada de Signal</string>
-    <!-- Warning displayed when entering a call via a link -->
-    <string name="WebRtcCallView__anyone_who_joins">Qualsevol persona que s\'uneixi a aquesta trucada mitjançant l\'enllaç veurà el teu nom, foto i número de telèfon.</string>
+    <!-- Warning displayed when entering a call via a link and you have Phone Number Privacy disabled-->
+    <string name="WebRtcCallView__anyone_who_joins_pnp_disabled">Qualsevol persona que s\'uneixi a aquesta trucada mitjançant l\'enllaç veurà el teu nom, foto i número de telèfon.</string>
+    <!-- Warning displayed when entering a call via a link and you have Phone Number Privacy enabled-->
+    <string name="WebRtcCallView__anyone_who_joins_pnp_enabled">Qualsevol persona que s\'uneixi a aquesta trucada mitjançant l\'enllaç veurà el teu nom i la teva foto.</string>
     <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
     <string name="WebRtcCallView__waiting_to_be_let_in">Esperant per a entrar…</string>
 
@@ -1885,6 +1970,10 @@
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">Connexió de Signal</string>
+    <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
+    <string name="AboutSheet__verified">Verificat</string>
+    <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
+    <string name="AboutSheet__no_direct_message">No hi ha missatges directes amb %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s és als contactes del teu sistema</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -1892,7 +1981,10 @@
     <!-- Notice when a user is not a connection to review requests carefully -->
     <string name="AboutSheet__review_requests_carefully">Reviseu les sol·licituds amb atenció.</string>
     <!-- Text used when user has groups in common. Placeholder is the count -->
-    <string name="AboutSheet__d_groups_in_common">%1$d grups en comú</string>
+    <plurals name="AboutSheet__d_groups_in">
+        <item quantity="one">%1$d grup en comú</item>
+        <item quantity="other">%1$d grups en comú</item>
+    </plurals>
     <!-- Text displayed in title for external recipients -->
     <string name="AboutSheet__about">Detalls</string>
     <!-- Text displayed in title for you -->
@@ -2102,7 +2194,7 @@
     <string name="SubmitDebugLogActivity_edit">Edita</string>
     <string name="SubmitDebugLogActivity_done">Fet</string>
     <!-- Menu option to save a debug log file to disk. -->
-    <string name="SubmitDebugLogActivity_save">Desats</string>
+    <string name="SubmitDebugLogActivity_save">Desar</string>
     <!-- Error that is show in a toast when we fail to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_failed_to_save">No s\'ha pogut desar</string>
     <!-- Toast that is show to notify that we have saved the debug log file to disk. -->
@@ -2199,28 +2291,48 @@
     <string name="UnverifiedSendDialog_send">Envia</string>
 
     <!-- UsernameEditFragment -->
+    <!-- Placeholder text for custom discriminator -->
+    <string name="UsernameEditFragment__00">00</string>
     <!-- Toolbar title when entering from registration -->
-    <string name="UsernameEditFragment__add_a_username">Afegeix un nom d\'usuari</string>
+    <string name="UsernameEditFragment__add_a_username">Afegeix un àlies</string>
     <!-- Instructional text at the top of the username edit screen -->
-    <string name="UsernameEditFragment__choose_your_username">Tria un nom d\'usuari</string>
-    <string name="UsernameEditFragment_username">Nom d\'usuari</string>
+    <string name="UsernameEditFragment__choose_your_username">Tria un àlies</string>
+    <string name="UsernameEditFragment_username">Àlies</string>
     <string name="UsernameEditFragment_delete">Suprimeix</string>
-    <string name="UsernameEditFragment_successfully_removed_username">El nom d\'usuari s\'ha suprimit correctament.</string>
+    <string name="UsernameEditFragment_successfully_removed_username">L\'àlies s\'ha eliminat correctament.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Hi ha hagut un error de xarxa.</string>
-    <string name="UsernameEditFragment_this_username_is_taken">Aquest nom d\'usuari ja està agafat.</string>
-    <string name="UsernameEditFragment_usernames_can_only_include">Els noms d\'usuari solo poden incloure a-z, 0-9 i _.</string>
-    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Els noms d\'usuari no poden començar amb un número.</string>
-    <string name="UsernameEditFragment_username_is_invalid">El nom d\'usuari no és vàlid.</string>
-    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Els noms d\'usuari han de tenir entre %1$d i %2$d caràcters.</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">S\'han fet massa intents. Si us plau, torna-ho a provar més tard.</string>
+    <string name="UsernameEditFragment_this_username_is_taken">Aquest àlies ja està agafat.</string>
+    <string name="UsernameEditFragment_usernames_can_only_include">Els àlies només poden incloure a-z, 0-9 i _.</string>
+    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Els àlies no poden començar amb un número.</string>
+    <string name="UsernameEditFragment_username_is_invalid">L\'àlies no és vàlid.</string>
+    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Els àlies han de tenir entre %1$d i %2$d caràcters.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Els noms d\'usuari permeten a altres persones enviar-te un missatge sense necessitat del teu número de telèfon. Funcionen conjuntament amb una sèrie de dígits per ajudar-te a mantenir privada la teva adreça.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">Els àlies sempre es combinen amb un conjunt de números.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">Què és aquest número?</string>
-    <string name="UsernameEditFragment__these_digits_help_keep">Aquests dígits ajudaran a mantenir el teu nom d\'usuari en privat per tal d\'evitar rebre missatges no desitjats. Comparteix el teu nom d\'usuari només amb aquelles persones i grups amb les que desitges parlar. Si canvies el teu nom d\'usuari, rebràs una nova sèrie de dígits.</string>
+    <string name="UsernameEditFragment__these_digits_help_keep">Aquests dígits ajudaran a mantenir el teu àlies en privat per tal d\'evitar rebre missatges no desitjats. Comparteix el teu àlies només amb aquelles persones i grups amb les que desitges parlar. Si canvies el teu àlies, rebràs una nova sèrie de dígits.</string>
     <!-- Button to allow user to skip -->
     <string name="UsernameEditFragment__skip">Omet</string>
     <!-- Content description for done button -->
     <string name="UsernameEditFragment__done">Fet</string>
+    <!-- Displayed when the chosen discriminator is not available for the given nickname -->
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">Aquest àlies no està disponible, prova un altre número.</string>
+    <!-- Displayed when the chosen discriminator is too short -->
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Àlies no vàlid, introdueix %1$d dígits com a mínim.</string>
+    <!-- Displayed when the chosen discriminator is too long -->
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Àlies no vàlid, introdueix %1$d dígits com a màxim.</string>
+    <!-- Displayed when the chosen discriminator is 00 -->
+    <string name="UsernameEditFragment__this_number_cant_be_00">El número no pot ser 00. Introdueix un dígit entre 1 i 9</string>
+    <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">Els números amb més de 2 dígits no poden començar per 0</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
+    <string name="UsernameEditFragment_recovery_dialog_confirmation">Recuperar el teu àlies restablirà el teu codi QR i enllaç actuals. Segur que vols fer això?</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
+    <string name="UsernameEditFragment_change_confirmation_message">Canviar el teu àlies restablirà el teu codi QR i enllaç actuals. Segur que vols fer això?</string>
+    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
+    <string name="UsernameEditFragment_continue">Continuar</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d contacte és al Signal!</item>
@@ -2229,7 +2341,7 @@
 
     <!-- UsernameShareBottomSheet -->
     <!-- Explanation of what the sheet enables the user to do -->
-    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Copiar o compartir un enllaç de nom d\'usuari</string>
+    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Copiar o compartir un enllaç d\'àlies</string>
 
     <!-- VerifyIdentityActivity -->
     <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">El vostre contacte està fent servir una versió nova del Signal amb un format del codi QR no compatible. Actualitzeu-la per comparar-lo.</string>
@@ -2407,6 +2519,26 @@
     <!-- Notification subtext for group stories -->
     <string name="SingleRecipientNotificationBuilder__s_dot_story">Història • %1$s</string>
 
+    <!-- NewWaysToConnectDialogFragment -->
+    <!-- Fragment title, displayed at the top of the content -->
+    <string name="NewWaysToConnectDialogFragment__new_ways_to_connect">Noves maneres de connectar-te</string>
+    <!-- Row item title for phone number privacy explainer -->
+    <string name="NewWaysToConnectDialogFragment__phone_number_privacy">Privacitat del número de telèfon</string>
+    <!-- Row item description for phone number privacy explainer -->
+    <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">El teu número de telèfon ja no es comparteix als xats. Fins i tot si un amic té el teu número guardat als seus contactes, no li apareixerà.</string>
+    <!-- Row item title for usernames explainer -->
+    <string name="NewWaysToConnectDialogFragment__usernames">Àlies</string>
+    <!-- Row item description for usernames explainer -->
+    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">Ara, la gent et pot enviar missatges fent servir el teu àlies opcional, i no caldrà que donis el teu número de telèfon. Els àlies no són visibles al teu perfil.</string>
+    <!-- Row item title for qr code and links explainer -->
+    <string name="NewWaysToConnectDialogFragment__qr_codes_and_links">Codis QR i enllaços</string>
+    <!-- Row item description for qr code and links explainer -->
+    <string name="NewWaysToConnectDialogFragment__usernames_have_a_unique_qr_code">Els àlies tenen un codi QR únic que pots compartir amb els teus amics perquè iniciïn un xat amb tu</string>
+    <!-- Button label for not right now -->
+    <string name="NewWaysToConnectDialogFragment__not_now">Ara no</string>
+    <!-- Button label for continue -->
+    <string name="NewWaysToConnectDialogFragment__set_up_your_username">Configurar l\'àlies</string>
+
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">Reprodueix el vídeo</string>
     <string name="ThumbnailView_Has_a_caption_description">Té un títol</string>
@@ -2420,6 +2552,8 @@
     <string name="TransferControlView__processing">Processant…</string>
     <!-- Status update label used while the device is transmitting data over the network. Will take the form of "1.0 MB/2.0 MB" -->
     <string name="TransferControlView__download_progress">%1$1.1f MB/%2$2.1f MB</string>
+    <!-- Attachment file size label for not-yet-downloaded images and video. Will take the form of "1.0 MB" -->
+    <string name="TransferControlView__filesize">%1$1.1f MB</string>
 
 
     <!-- UnauthorizedReminder -->
@@ -2509,8 +2643,8 @@
     <!-- ContactSelectionListFragment-->
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">El Signal necessita el permís de l\'aplicació dels contactes per tal de mostrar-ne els vostres, però s\'ha denegat permanentment. Si us plau, continueu cap al menú de configuració de l\'aplicació, seleccioneu Permisos i activeu-hi els contactes.</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Error en recuperar els contactes. Comproveu la connexió de xarxa.</string>
-    <string name="ContactSelectionListFragment_username_not_found">No s\'ha trobat el nom d\'usuari.</string>
-    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s no és un usuari del Signal. Si us plau, comproveu-ne el nom i torneu-ho a provar."</string>
+    <string name="ContactSelectionListFragment_username_not_found">No s\'ha trobat l\'àlies.</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s no és un usuari del Signal. Si us plau, comproveu-ne l\'àlies i torneu-ho a provar."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">No cal que us afegiu al grup.</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">S\'ha assolit la mida màxima del grup.</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Els grups del Signal poden tenir un màxim de %1$d membres.</string>
@@ -2520,6 +2654,10 @@
         <item quantity="one">%1$d membre</item>
         <item quantity="other">%1$d membres</item>
     </plurals>
+    <!-- Text on row item to find user by phone number -->
+    <string name="ContactSelectionListFragment__find_by_phone_number">Cerca per número de telèfon</string>
+    <!-- Text on row item to find user by username -->
+    <string name="ContactSelectionListFragment__find_by_username">Cerca per àlies</string>
 
     <!-- contact_selection_list_fragment -->
     <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">El Signal necessita accés als contactes per tal de mostrar-los.</string>
@@ -2591,6 +2729,8 @@
     <string name="ConversationUpdateItem_activate_payments">Activa els pagaments</string>
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">Has eliminat a aquesta persona, si tornes a enviar-li un missatge se l\'afegirà de nou a la teva llista.</string>
+    <!-- Update item button text shown for the accepted message request update message -->
+    <string name="ConversationUpdateItem_options">Opcions</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Reprodueix… Pausa</string>
@@ -3003,7 +3143,7 @@
     <string name="preferences__mmsc_url">URL d\'MMSC</string>
     <string name="preferences__mms_proxy_host">Amfitrió intermedi d\'MMS</string>
     <string name="preferences__mms_proxy_port">Port Proxy d\'MMS</string>
-    <string name="preferences__mmsc_username">Nom d\'usuari d\'MMSC</string>
+    <string name="preferences__mmsc_username">Àlies d\'MMSC</string>
     <string name="preferences__mmsc_password">Contrasenya de MMSC</string>
     <string name="preferences__sms_delivery_reports">Informes de lliurament d\'SMS</string>
     <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Demana un informe de lliurament per cada missatge SMS que envieu.</string>
@@ -3056,7 +3196,7 @@
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Activeu-ho si el dispositiu fa servir SMS / MMS per WiFi (feu-ho només si la «Trucada per WiFi» està activada al dispositiu)</string>
     <string name="preferences__incognito_keyboard">Teclat d\'incògnit</string>
     <string name="preferences__read_receipts">Confirmació de lectura</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Si les confirmacions de recepció estan desactivbades, no podreu veure les dels altres.</string>
+    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Si desactives les confirmacions de lectura, no podràs veure les dels altres.</string>
     <string name="preferences__typing_indicators">Indicadors de tecleig</string>
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Si els indicadors de tecleig estan desactivats, no podreu veure els indicadors de tecleig dels altres.</string>
     <string name="preferences__request_keyboard_to_disable">Sol·licita un teclat per desactivar l\'aprenentatge personalitzat.</string>
@@ -3434,7 +3574,7 @@
     <!-- Button to edit a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="conversation_selection__menu_edit">Editar</string>
     <!-- Button to save a message attachment (image, file etc.); Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
-    <string name="conversation_selection__menu_save">Desats</string>
+    <string name="conversation_selection__menu_save">Desar</string>
     <!-- Button to retry sending a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_resend_message">Torna a enviar</string>
     <!-- Button to select a message and enter selection mode; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
@@ -3745,13 +3885,27 @@
     <!-- Subtext below option to launch into phone number privacy settings screen -->
     <string name="preferences_app_protection__choose_who_can_see">Tria qui pot veure el teu número de telèfon i qui pot contactar-te a Signal a través d\'ell.</string>
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
-    <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Qui pot veure el meu número</string>
-    <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Ningú no veurà el teu número de telèfon a Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">Qui pot veure el meu número</string>
+    <!-- Subtext below radio buttons when who can see my number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">El teu número de telèfon serà visible per a totes les persones i grups a qui enviïs un missatge.</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">El teu número de telèfon no serà visible per a ningú tret que el tingui guardat als contactes del seu telèfon.</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">El teu número de telèfon ja no és visible per a ningú.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
-    <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Qui pot trobar-me a través del meu número</string>
-    <!-- Subtext below radio buttons when who can see my number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">El teu número de telèfon serà visible per a totes les persones i grups als quals enviïs un missatge. Les persones que tinguin el teu número als contactes del telèfon també et veuran a Signal.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Qui pot trobar-me a través del meu número</string>
+    <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">Qualsevol persona que tingui el teu número de telèfon veurà que ets a Signal i podrà iniciar un xat amb tu.</string>
+    <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">Ningú podrà veure que ets a Signal tret que els enviïs un missatge o tinguis un xat obert amb ells.</string>
+    <!-- Snackbar text when pressing invalid radio item -->
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"Per canviar això, configura Qui pot veure el meu número seleccionant Ningú."</string>
+    <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Segur que vols fer això?</string>
+    <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Al configurar \"Qui pot trobar-me a través del meu número\" a \"Ningú,\" serà més difícil que la gent pugui trobar-te a Signal.</string>
+    <!-- Dialog button text for canceling change action -->
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">Cancel·lar</string>
     <string name="PhoneNumberPrivacy_everyone">Tothom</string>
     <string name="PhoneNumberPrivacy_nobody">Ningú</string>
     <string name="preferences_app_protection__screen_lock">Bloqueig de pantalla</string>
@@ -3780,6 +3934,8 @@
     <string name="prompt_passphrase_activity__signal_is_locked">El Signal està blocat</string>
     <string name="prompt_passphrase_activity__tap_to_unlock">TOQUEU PER DESBLOCAR-LO</string>
     <string name="Recipient_unknown">Desconegut</string>
+    <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
+    <string name="Recipient_deleted_account">Eliminar el compte</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
     <string name="preferences_account_reregister">Torna a registrar el compte</string>
@@ -3982,7 +4138,9 @@
     <string name="BlockedUsersActivity__s_has_been_unblocked">S\'ha desbloquejat a %1$s.</string>
 
     <!-- ReviewCardDialogFragment -->
-    <string name="ReviewCardDialogFragment__review_members">Reviseu els mebres</string>
+    <!-- Title of a screen where the user will be prompted to review group members with the same name -->
+    <string name="ReviewCardDialogFragment__review_members">Reviseu els membres</string>
+    <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
     <string name="ReviewCardDialogFragment__review_request">Reviseu la sol·licitud</string>
     <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d membres del grup tenen el mateix nom. Reviseu els membres que es mostren a continuació.</string>
     <string name="ReviewCardDialogFragment__if_youre_not_sure">Si no esteu segur de qui prové la sol·licitud, reviseu els contactes que hi ha a continuació.</string>
@@ -4245,11 +4403,16 @@
     <string name="GroupDescriptionDialog__group_description">Descripció del grup</string>
 
     <!-- QualitySelectorBottomSheetDialog -->
+    <!-- Label for our standard quality media conversion. -->
     <string name="QualitySelectorBottomSheetDialog__standard">Estàndard</string>
+    <!-- Description for our standard quality media conversion. -->
     <string name="QualitySelectorBottomSheetDialog__faster_less_data">Més ràpid, menys dades</string>
+    <!-- Label for our high quality media conversion. This has better quality than standard. -->
     <string name="QualitySelectorBottomSheetDialog__high">Alta</string>
+    <!-- Label for our high quality media conversion. This has better quality than standard. -->
     <string name="QualitySelectorBottomSheetDialog__slower_more_data">Més lent, més dades</string>
-    <string name="QualitySelectorBottomSheetDialog__photo_quality">Qualitat de la fotografia</string>
+    <!-- Title heading for our media conversion quality selector. -->
+    <string name="QualitySelectorBottomSheetDialog__media_quality">Qualitat dels mitjans</string>
 
     <!-- AppSettingsFragment -->
     <string name="AppSettingsFragment__invite_your_friends">Convideu-hi amistats</string>
@@ -4364,27 +4527,6 @@
     <!-- ChatsSettingsFragment -->
     <string name="ChatsSettingsFragment__keyboard">Teclat</string>
     <string name="ChatsSettingsFragment__enter_key_sends">S\'envia amb la tecla de Retorn</string>
-
-    <!--SmsSettingsFragment -->
-    <string name="SmsSettingsFragment__use_as_default_sms_app">Usa-la com a aplicació d\'SMS predeterminada</string>
-    <!-- Preference title to export sms -->
-    <string name="SmsSettingsFragment__export_sms_messages">Exportar missatges SMS</string>
-    <!-- Preference title to re-export sms -->
-    <string name="SmsSettingsFragment__export_sms_messages_again">Tornar a exportar missatges SMS</string>
-    <!-- Preference title to delete sms -->
-    <string name="SmsSettingsFragment__remove_sms_messages">Esborrar missatges SMS</string>
-    <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Eliminant els missatges SMS de Signal…</string>
-    <!-- Snackbar text to indicate can delete later -->
-    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">Pots esborrar els missatges SMS de Signal en qualsevol moment des d\'Ajustos.</string>
-    <!-- Description for export sms preference -->
-    <string name="SmsSettingsFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">Pots exportar els teus missatges SMS a la base de dades d\'SMS del teu telèfon</string>
-    <!-- Description for re-export sms preference -->
-    <string name="SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages">Si tornes a exportar, es poden produir missatges duplicats.</string>
-    <!-- Description for remove sms preference -->
-    <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">Esborrar els missatges SMS de Signal per a alliberar espai d\'emmagatzematge.</string>
-    <!-- Information message shown at the top of sms settings to indicate it is being removed soon. -->
-    <string name="SmsSettingsFragment__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging">Els SMS aviat no seran compatibles, ja que ha arribat l\'hora de centrar-nos en la missatgeria encriptada.</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Missatges</string>
@@ -4746,6 +4888,28 @@
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">Un o més elements eren massa grossos.</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">Un o més elements no eren vàlids.</string>
     <string name="MediaReviewFragment__too_many_items_selected">Massa elements seleccionats</string>
+    <!-- Small notification presented to the user when they set their video to view-once mode -->
+    <string name="MediaReviewFragment__video_set_to_view_once">Vídeo configurat amb una sola visualització</string>
+    <!-- Small notification presented to the user when they set their photo to view-once mode -->
+    <string name="MediaReviewFragment__photo_set_to_view_once">Foto configurada amb una sola visualització</string>
+    <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
+    <string name="MediaReviewFragment__video_set_to_high_quality">Vídeo configurat en alta qualitat</string>
+    <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
+    <string name="MediaReviewFragment__video_set_to_standard_quality">Vídeo configurat en qualitat estàndard</string>
+    <!-- Small notification presented to the user when they set their still image to be sent in high visual quality. -->
+    <string name="MediaReviewFragment__photo_set_to_high_quality">Foto configurada en alta qualitat</string>
+    <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
+    <string name="MediaReviewFragment__photo_set_to_standard_quality">Foto configurada en qualitat estàndard</string>
+    <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
+    <plurals name="MediaReviewFragment__items_set_to_high_quality">
+        <item quantity="one">%1$d element configurat en alta qualitat</item>
+        <item quantity="other">%1$d elements configurats en alta qualitat</item>
+    </plurals>
+    <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
+    <plurals name="MediaReviewFragment__items_set_to_standard_quality">
+        <item quantity="one">%1$d element configurat en qualitat estàndard</item>
+        <item quantity="other">%1$d elements configurats en qualitat estàndard</item>
+    </plurals>
 
     <string name="ImageEditorHud__cancel">Cancel·la</string>
     <string name="ImageEditorHud__draw">Dibuix</string>
@@ -4769,6 +4933,20 @@
     <string name="MediaReviewImagePageFragment__discard">Descarta</string>
     <string name="MediaReviewImagePageFragment__discard_changes">Voleu descartar-ne els canvis?</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Perdreu qualsevol canvi que hàgiu fet en aquesta fotografia.</string>
+
+    <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
+    <string name="MediaCaptureFragment_username_dialog_title">%1$s trobat</string>
+    <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
+    <string name="MediaCaptureFragment_username_dialog_body">Iniciar un xat amb \"%1$s\"</string>
+    <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
+    <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">Ves al xat</string>
+
+    <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+    <string name="MediaCaptureFragment_device_link_dialog_title">Enllaçar un dispositiu?</string>
+    <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+    <string name="MediaCaptureFragment_device_link_dialog_body">Sembla que estàs intentant enllaçar un dispositiu Signal. Toca Continuar i torna a escanejar el codi per enllaçar-lo.</string>
+    <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
+    <string name="MediaCaptureFragment_device_link_dialog_continue">Continuar</string>
 
 
     <string name="BadgesOverviewFragment__my_badges">Les meves insígnies</string>
@@ -4868,7 +5046,7 @@
     <!-- Displayed as a subtitle on a row in the Manage Donations screen when payment for a donation is pending -->
     <string name="MySupportPreference__payment_pending">Pagament pendent</string>
     <!-- Displayed as a dialog message when clicking on a donation row that is pending. Placeholder is a formatted fiat amount -->
-    <string name="MySupportPreference__your_bank_transfer_of_s">La teva transferència bancària de %1$s està pendent. Les transferències bancàries solen trigar 1 dia laborable a completar-se.  </string>
+    <string name="MySupportPreference__your_bank_transfer_of_s">La teva transferència bancària de %1$s està pendent. Les transferències bancàries poden trigar entre 1 i 14 dies laborables a completar-se.  </string>
     <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
     <string name="MySupportPreference__learn_more">Més informació</string>
 
@@ -5042,7 +5220,7 @@
     <!-- Call to action button once the profile is named to create the profile and continue to the customization steps -->
     <string name="EditNotificationProfileFragment__create">Crea</string>
     <!-- Call to action button once the profile name is edited -->
-    <string name="EditNotificationProfileFragment__save">Desats</string>
+    <string name="EditNotificationProfileFragment__save">Desar</string>
     <!-- Title of edit notification profile screen -->
     <string name="EditNotificationProfileFragment__edit_this_profile">Edita aquest perfil</string>
     <!-- Error message shown when attempting to create or edit a profile name to an existing profile name -->
@@ -5066,6 +5244,12 @@
     <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">Afegiu persones i grups dels quals rebre notificacions i trucades quan aquest perfil estigui activat.</string>
     <!-- Button text that launches the contact picker to select from -->
     <string name="AddAllowedMembers__add_people_or_groups">Afegeix persones o grups</string>
+    <!-- Title for exceptions section of add people to notification profile screen in create flow -->
+    <string name="AddAllowedMembers__exceptions">Excepcions</string>
+    <!-- List preference to toggle that allows calls through the notification profile during create flow -->
+    <string name="AddAllowedMembers__allow_all_calls">Permet totes les trucades</string>
+    <!-- List preference to toggle that allows mentions through the notification profile during create flow -->
+    <string name="AddAllowedMembers__notify_for_all_mentions">Notifica totes les mencions</string>
 
     <!-- Call to action button on contact picker for adding to profile -->
     <string name="SelectRecipientsFragment__add">Afegeix</string>
@@ -5139,7 +5323,7 @@
     <!-- Title of select time dialog shown when setting end time for schedule -->
     <string name="EditNotificationProfileSchedule__set_end_time">Estableix l\'hora d\'acabar</string>
     <!-- If in edit mode, call to action button text show to save schedule to profile -->
-    <string name="EditNotificationProfileSchedule__save">Desats</string>
+    <string name="EditNotificationProfileSchedule__save">Desar</string>
     <!-- If in create mode, call to action button text to show to skip enabling a schedule -->
     <string name="EditNotificationProfileSchedule__skip">Omet</string>
     <!-- If in create mode, call to action button text to show to use the enabled schedule and move to the next screen -->
@@ -5349,7 +5533,7 @@
     <string name="MyStorySettingsFragment__who_can_view_this_story">Qui pot veure aquesta història</string>
     <!-- Clickable option for selecting people to hide your story from -->
     <!-- Privacy setting title for sending stories to all your signal connections -->
-    <string name="MyStorySettingsFragment__all_signal_connections">Tots els contactes de Signal</string>
+    <string name="MyStorySettingsFragment__all_signal_connections">Totes les connexions de Signal</string>
     <!-- Privacy setting description for sending stories to all your signal connections -->
     <!-- Privacy setting title for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__all_except">Tothom excepte…</string>
@@ -5378,9 +5562,9 @@
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Permet que les persones que poden veure la història hi reaccionin i hi responguin.</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
-    <string name="SignalConnectionsBottomSheet___signal_connections">Contactes de Signal</string>
+    <string name="SignalConnectionsBottomSheet___signal_connections">Connexions de Signal</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
-    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Els contactes de Signal són aquelles persones en les quals has indicat que confies, ja sigui:</string>
+    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Les Connexions de Signal són aquelles persones en les quals has indicat que confies, ja sigui:</string>
     <!-- Signal connections sheet bullet point 1 -->
     <string name="SignalConnectionsBottomSheet__starting_a_conversation">Començar xat</string>
     <!-- Signal connections sheet bullet point 2 -->
@@ -5680,8 +5864,8 @@
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">S\'han revisat tots els contactes, toca enviar per a continuar.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
     <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
-        <item quantity="one">Tens %1$d contacte que pot ser que hagi reinstal·lat Signal o canviat de dispositiu. Pots revisar el seu número de seguretat abans d\'enviar.</item>
-        <item quantity="other">Tens %1$d contactes que pot ser que hagin reinstal·lat Signal o canviat de dispositiu. Pots revisar els seus números de seguretat abans d\'enviar.</item>
+        <item quantity="one">Pot ser que %1$d contacte hagi reinstal·lat Signal o canviat de dispositiu. Pots revisar el seu número de seguretat o continuar i enviar.</item>
+        <item quantity="other">Pot ser que %1$d contactes hagin reinstal·lat Signal o canviat de dispositiu. Pots revisar els seus números de seguretat o continuar i enviar.</item>
     </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Verifica el número de seguretat</string>
@@ -5770,48 +5954,6 @@
     <!-- Generic title for overflow menus -->
     <string name="OverflowMenu__overflow_menu">Menú desplegable</string>
 
-    <!-- SMS Export Service -->
-    <!-- Displayed in the notification while export is running -->
-    <string name="SignalSmsExportService__exporting_messages">Exportant missatges</string>
-    <!-- Displayed in the notification title when export completes -->
-    <string name="SignalSmsExportService__signal_sms_export_complete">Exportació d\'SMS a Signal completada</string>
-    <!-- Displayed in the notification message when export completes -->
-    <string name="SignalSmsExportService__tap_to_return_to_signal">Toca per tornar a Signal</string>
-
-    <!-- ExportYourSmsMessagesFragment -->
-    <!-- Title of the screen -->
-    <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">Exportar els teus missatges SMS</string>
-    <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">Pots exportar els teus missatges SMS a la base de dades d\'SMS del teu telèfon i tindràs l\'opció de conservar-los o esborrar-los de Signal. Això permetrà que altres apps d\'SMS del teu telèfon puguin importar-los. Aquesta acció no crearà un arxiu compartible del teu historial d\'SMS.</string>
-    <!-- Button label to begin export -->
-    <string name="ExportYourSmsMessagesFragment__continue">Continuar</string>
-
-    <!-- ExportingSmsMessagesFragment -->
-    <!-- Title of the screen -->
-    <string name="ExportingSmsMessagesFragment__exporting_sms_messages">Exportant missatges SMS</string>
-    <!-- Message of the screen when exporting sms messages -->
-    <string name="ExportingSmsMessagesFragment__this_may_take_awhile">Això pot trigar una estona</string>
-    <!-- Progress indicator for export -->
-    <plurals name="ExportingSmsMessagesFragment__exporting_d_of_d">
-        <item quantity="one">Exportant %1$d de %2$d…</item>
-        <item quantity="other">Exportant %1$d de %2$d…</item>
-    </plurals>
-    <!-- Alert dialog title shown when we think a user may not have enough local storage available to export sms messages -->
-    <string name="ExportingSmsMessagesFragment__you_may_not_have_enough_disk_space">És possible que no tinguis prou espai al disc</string>
-    <!-- Alert dialog message shown when we think a user may not have enough local storage available to export sms messages, placeholder is the file size, e.g., 128kB -->
-    <string name="ExportingSmsMessagesFragment__you_need_approximately_s_to_export_your_messages_ensure_you_have_enough_space_before_continuing">Necessites aproximadament %1$s per exportar els teus missatges, assegura\'t de tenir prou espai abans de continuar.</string>
-    <!-- Alert dialog button to continue with exporting sms after seeing the lack of storage warning -->
-    <string name="ExportingSmsMessagesFragment__continue_anyway">Continuar de totes maneres</string>
-    <!-- Dialog text shown when Signal isn\'t granted the sms permission needed to export messages, different than being selected as the sms app -->
-    <string name="ExportingSmsMessagesFragment__signal_needs_the_sms_permission_to_be_able_to_export_your_sms_messages">Signal necessita el permís d\'SMS per importar els teus missatges d\'SMS.</string>
-
-    <!-- ChooseANewDefaultSmsAppFragment -->
-    <!-- Title of the screen -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_a_new">Triar una nova app de SMS per defecte</string>
-    <!-- Button label to launch picker -->
-    <string name="ChooseANewDefaultSmsAppFragment__continue">Continuar</string>
-    <!-- Button label for when done with changing default SMS app -->
-    <string name="ChooseANewDefaultSmsAppFragment__done">Fet</string>
     <!-- First step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_1">1</string>
     <!-- Second step number/bullet for choose new default sms app instructions -->
@@ -5820,47 +5962,6 @@
     <string name="ChooseANewDefaultSmsAppFragment__bullet_3">3</string>
     <!-- Fourth step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_4">4</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">Toca \"Continua\" per obrir la pantalla \"Apps predeterminades\" a Ajustos</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">Selecciona \"App SMS\" de la llista</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">Tria una altra aplicació per utilitzar-la per als missatges SMS</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Torna a Signal</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">Obre els Ajustos del teu telèfon</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">Ves a \"Apps\" &gt; \"Apps predeterminades\" &gt; \"App SMS\"</string>
-
-    <!-- RemoveSmsMessagesDialogFragment -->
-    <!-- Action button to keep messages -->
-    <string name="RemoveSmsMessagesDialogFragment__keep_messages">Mantenir els missatges</string>
-    <!-- Action button to remove messages -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_messages">Suprimir els missatges</string>
-    <!-- Title of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Suprimir els missatges SMS de Signal?</string>
-    <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Pots esborrar els missatges SMS de Signal per a alliberar espai d\'emmagatzematge. Continuaran estant disponibles per a altres aplicacions d\'SMS del teu telèfon encara que els esborris.</string>
-
-    <!-- ReExportSmsMessagesDialogFragment -->
-    <!-- Action button to re-export messages -->
-    <string name="ReExportSmsMessagesDialogFragment__continue">Continuar</string>
-    <!-- Action button to cancel re-export process -->
-    <string name="ReExportSmsMessagesDialogFragment__cancel">Cancel·la</string>
-    <!-- Title of dialog -->
-    <string name="ReExportSmsMessagesDialogFragment__export_sms_again">¿Tornar a exportar SMS?</string>
-    <!-- Message of dialog -->
-    <string name="ReExportSmsMessagesDialogFragment__you_already_exported_your_sms_messages">Ja has exportat els teus missatges SMS.\nATENCIÓ: Si continueu, és possible que acabis amb missatges duplicats.</string>
-
-    <!-- SetSignalAsDefaultSmsAppFragment -->
-    <!-- Title of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Estableix Signal com la teva app de SMS per defecte</string>
-    <!-- Message of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">Per exportar els teus missatges SMS, has de configurar Signal com la teva app de SMS predeterminada.</string>
-    <!-- Button label to start export -->
-    <string name="SetSignalAsDefaultSmsAppFragment__next">Següent</string>
-
     <!-- BackupSchedulePermission Megaphone -->
     <!-- The title on an alert window that explains to the user that we are unable to backup their messages -->
     <string name="BackupSchedulePermissionMegaphone__cant_back_up_chats">No es pot fer una còpia de seguretat dels xats</string>
@@ -5879,45 +5980,6 @@
     <!-- Re-enable backups permission bottom sheet call to action button to open settings -->
     <string name="BackupSchedulePermissionMegaphone__go_to_settings">Anar a ajustos</string>
 
-    <!-- SmsExportMegaphoneActivity -->
-    <!-- Phase 2 title of full screen megaphone indicating sms will no longer be supported in the near future -->
-    <string name="SmsExportMegaphoneActivity__signal_will_no_longer_support_sms">Signal ja no admetrà SMS</string>
-    <!-- Phase 3 title of full screen megaphone indicating sms is longer supported  -->
-    <string name="SmsExportMegaphoneActivity__signal_no_longer_supports_sms">Signal ja no admet SMS</string>
-    <!-- The text on a button in a popup that, when clicked, will dismiss the popup and schedule the prompt to occur at a later time. -->
-    <string name="SmsExportMegaphoneActivity__remind_me_later">Recorda-m\'ho més tard.</string>
-    <!-- The text on a button in a popup that, when clicked, will navigate the user to a web article on SMS removal -->
-
-    <!-- Title for screen shown after sms export has completed -->
-    <string name="ExportSmsCompleteFragment__export_complete">Exportació completada</string>
-    <!-- Button to continue to next screen -->
-    <string name="ExportSmsCompleteFragment__next">Següent</string>
-    <!-- Message showing summary of sms export counts -->
-    <plurals name="ExportSmsCompleteFragment__d_of_d_messages_exported">
-        <item quantity="one">S\'ha exportat %1$d de %2$d missatges</item>
-        <item quantity="other">S\'han exportat %1$d de %2$d missatges</item>
-    </plurals>
-
-    <!-- Title of screen shown when some sms messages did not export -->
-    <string name="ExportSmsPartiallyComplete__export_partially_complete">Exportació parcialment completada</string>
-    <!-- Debug step 1 on screen shown when some sms messages did not export -->
-    <string name="ExportSmsPartiallyComplete__ensure_you_have_an_additional_s_free_on_your_phone_to_export_your_messages">Assegura\'t de tenir un %1$s addicional gratuït al telèfon per exportar els teus missatges</string>
-    <!-- Debug step 2 on screen shown when some sms messages dit not export -->
-    <string name="ExportSmsPartiallyComplete__retry_export_which_will_only_retry_messages_that_have_not_yet_been_exported">Torna a provar l\'exportació, que només tornarà a intentar-se amb els missatges que encara no s\'hagin exportat</string>
-    <!-- Partial sentence for Debug step 3 on screen shown when some sms messages did not export, is combined with \'contact us\' -->
-    <string name="ExportSmsPartiallyComplete__if_the_problem_persists">Si el problema persisteix, </string>
-    <!-- Partial sentence for deubg step 3 on screen shown when some sms messages did not export, combined with \'If the problem persists\', link text to open contact support view -->
-    <string name="ExportSmsPartiallyComplete__contact_us">Contacteu-nos</string>
-    <!-- Button text to retry sms export -->
-    <string name="ExportSmsPartiallyComplete__retry">Troneu a provar-ho</string>
-    <!-- Button text to continue sms export flow and not retry failed message exports -->
-    <string name="ExportSmsPartiallyComplete__continue_anyway">Continuar de totes maneres</string>
-    <!-- Title of screen shown when all sms messages failed to export -->
-    <string name="ExportSmsFullError__error_exporting_sms_messages">S\'ha produït un error en exportar els missatges SMS</string>
-    <!-- Helper text shown when all sms messages failed to export -->
-    <string name="ExportSmsFullError__please_try_again_if_the_problem_persists">Si us plau, torna-ho a provar. Si el problema persisteix, </string>
-
-
     <!-- DonateToSignalFragment -->
     <!-- Title below avatar -->
     <string name="DonateToSignalFragment__privacy_over_profit">Privacitat per sobre dels beneficis</string>
@@ -5928,9 +5990,9 @@
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
     <string name="DonateToSignalFragment__you_have_a_donation_pending">Tens una donació pendent</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Les transferències bancàries solen trigar 1 dia laborable a processar-se. Espera fins que es completi el pagament abans d\'actualitzar la teva subscripció.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Les transferències bancàries poden trigar entre 1 i 14 dies laborables a completar-se. Espera fins que es completi el pagament abans d\'actualitzar la teva subscripció.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Les transferències bancàries solen trigar 1 dia laborable a processar-se. Espera fins que es completi aquest pagament abans de fer una altra donació.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Les transferències bancàries poden trigar entre 1 i 14 dies laborables a completar-se. Espera fins que es completi aquest pagament abans de fer una altra donació.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
     <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">La teva donació encara s\'està processant. Això pot trigar uns quants minuts segons la teva connexió. Espera fins que es completi el pagament abans d\'actualitzar la teva subscripció.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
@@ -6059,6 +6121,12 @@
     <string name="IdealTransferDetailsFragment__email">Adreça electrònica</string>
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">Tria el teu banc</string>
+    <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">Confirma la teva donació amb %1$s</string>
+    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
+    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">Per configurar la teva donació recurrent, toca continuar per confirmar un càrrec de 0,01 € amb el teu banc. Això es reemborsarà automàticament i permetrà que la teva donació de 5 €/mes es carregui al teu compte.</string>
+    <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
+    <string name="IdealTransferDetailsFragment__continue">Continuar</string>
 
     <!-- IdealTransferDetailsBankSelectionDialogFragment -->
     <!-- Title of the screen, displayed in the toolbar -->
@@ -6076,7 +6144,7 @@
     <!-- Top text block of donation pending sheet displayed after one-time donation via a bank transfer. Placeholder is the badge name. -->
     <string name="DonationPendingBottomSheet__your_one_time_donation_is_pending">La teva donació única està pendent. Podràs mostrar la insígnia %1$s al teu perfil quan rebem la teva donació.</string>
     <!-- Bottom text block of donation pending sheet displayed after donating via a bank transfer. Placeholder is for learn more. -->
-    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Les transferències bancàries solen trigar 1 dia laborable a processar-se. %1$s</string>
+    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Les transferències bancàries poden trigar entre 1 i 14 dies laborables a completar-se. %1$s</string>
     <!-- Learn more text for donation pending sheet displayed after donating via a bank transfer. -->
     <string name="DonationPendingBottomSheet__learn_more">Més informació</string>
     <!-- Confirmation button for donation pending sheet displayed after donating via a bank transfer. -->
@@ -6162,28 +6230,24 @@
     <!-- Displayed in the "clear filter" item in the chat feed if the user opened the filter from the overflow menu -->
     <string name="ChatFilter__tip_pull_down">Truc: desplaça\'t cap avall a la llista de xats per filtrar</string>
 
-    <!-- Title for screen describing that sms support is going to be removed soon -->
-    <string name="SmsRemoval_title_going_away">Ja no podràs enviar SMS</string>
-    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
-    <string name="SmsRemoval_info_bullet_1">La missatgeria SMS aviat deixarà de ser compatible amb l\'app de Signal.</string>
-    <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_2">Els missatges SMS són diferents dels missatges de Signal. <b>Això no afectarà els missatges xifrats de Signal, els quals continuaran funcionant.</b></string>
-    <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_3">Pots exportar els teus missatges SMS i triar una nova app d\'SMS.</string>
-    <!-- Bullet point message shown on describing screen as first bullet variant why sms is being removed when user is locked out of sms -->
-    <string name="SmsRemoval_info_bullet_1_phase_3">Signal ha suprimit la compatibilitat amb l\'enviament de missatges SMS.</string>
-    <!-- Button label on sms removal info/megaphone to start the export SMS flow -->
-    <string name="SmsRemoval_export_sms">Exportar SMS</string>
-
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__set_up_your_signal_username">Configura el teu àlies de Signal</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">Els àlies permeten a altres persones enviar-te un missatge sense necessitat del teu número de telèfon.</string>
+    <string name="SetUpYourUsername__introducing_phone_number_privacy">Presentem la privacitat del número de telèfon, els àlies opcionals i els enllaços.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__not_now">Ara no</string>
+    <string name="SetUpYourUsername__dismiss">Descarta</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__continue">Continuar</string>
+    <string name="SetUpYourUsername__learn_more">Més informació</string>
+
+    <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
+    <string name="PnpLaunchMegaphone_title">Noves maneres de connectar-te</string>
+    <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
+    <string name="PnpLaunchMegaphone_body">Presentem la privacitat del número de telèfon, els noms d\'usuari opcionals i els enllaços.</string>
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
+    <string name="PnpLaunchMegaphone_dismiss">Descarta</string>
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
+    <string name="PnpLaunchMegaphone_learn_more">Més informació</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -6198,18 +6262,6 @@
     <string name="TextFormatting_spoiler">Spoiler</string>
     <!-- Popup menu label for clearing applied formatting -->
     <string name="TextFormatting_clear_formatting">Eliminar format</string>
-
-    <!-- UsernameEducationFragment -->
-    <!-- Continue button which takes the user to the add a username screen -->
-    <string name="UsernameEducationFragment__continue">Continuar</string>
-    <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">Configura el teu àlies de Signal</string>
-    <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__usernames_are_paired_with_a_set_of_digits">Els noms d\'usuari s\'emparellen amb un conjunt de dígits i no es comparteixen al teu perfil</string>
-    <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">Cada nom d\'usuari té un codi QR únic que pots compartir amb els teus amics perquè iniciïn un xat amb tu</string>
-    <!-- Displayed as body text in the username education screen. The string references the names of settings, so they should match our translations for those settings. -->
-    <string name="UsernameEducationFragment__turn_off_phone_number_discovery">Desactiva el descobriment de números de telèfon a Ajustos &gt; Privacitat &gt; Número de telèfon &gt; Qui pot trobar el meu número, per utilitzar el teu nom d\'usuari com a manera principal de contactar amb tu</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
@@ -6236,6 +6288,8 @@
     <string name="CallLogAdapter__outgoing">Sortint</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">Perduda</string>
+    <!-- Displayed for missed calls declined by notification profile -->
+    <string name="CallLogAdapter__missed_notification_profile">Perduda mentre els ajustos de notificació estaven activats</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">Unir-me</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -6343,6 +6397,8 @@
     <string name="CallPreference__group_call">Trucada de grup</string>
     <!-- Missed group call in call info -->
     <string name="CallPreference__missed_group_call">Trucada grupal perduda</string>
+    <!-- Missed group call while notification profile on in call info -->
+    <string name="CallPreference__missed_group_call_notification_profile">Trucada de grup perduda mentre els ajustos de notificació estaven activats</string>
     <!-- Incoming group call in call info -->
     <string name="CallPreference__incoming_group_call">Trucada grupal entrant</string>
     <!-- Outgoing group call in call info -->
@@ -6429,6 +6485,8 @@
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
     <string name="CallLinkDetailsFragment__call_details">Detalls de la trucada</string>
+    <!-- Displayed in a text row, allowing the user to click and edit a call name -->
+    <string name="CallLinkDetailsFragment__edit_call_name">Editar nom de trucada</string>
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
     <string name="CallLinkDetailsFragment__add_call_name">Afegir nom de trucada</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
@@ -6444,14 +6502,16 @@
     <!-- Displayed as body in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">Aquest enllaç ja no funcionarà per a ningú.</string>
 
+    <!-- Button label for the link button in the username link settings -->
+    <string name="UsernameLinkSettings_link_button_label">enllaç</string>
     <!-- Button label for the share button in the username link settings -->
     <string name="UsernameLinkSettings_share_button_label">Comparteix</string>
     <!-- Button label for the color selector button in the username link settings -->
     <string name="UsernameLinkSettings_color_button_label">Color</string>
     <!-- Description text for QR code and links in the username link settings -->
-    <string name="UsernameLinkSettings_qr_description">Comparteix el teu codi QR i enllaç només amb persones de confiança. Quan ho comparteixis, els altres podran veure el teu nom d\'usuari i iniciar un xat amb tu.</string>
+    <string name="UsernameLinkSettings_qr_description">Comparteix el teu codi QR i enllaç només amb persones de confiança. Quan ho comparteixis, els altres podran veure el teu àlies i iniciar un xat amb tu.</string>
     <!-- Content of a toast that will show after the username is copied to the clipboard -->
-    <string name="UsernameLinkSettings_username_copied_toast">S\'ha copiat el nom d\'usuari</string>
+    <string name="UsernameLinkSettings_username_copied_toast">S\'ha copiat l\'àlies</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">Enllaç copiat</string>
     <!-- Content of a text field that is shown when the user has not yet set a username link -->
@@ -6488,6 +6548,16 @@
     <string name="UsernameLinkSettings_reset_link_result_network_unavailable">No tens accés a la xarxa. El teu enllaç no s\'ha restablert. Torna-ho a provar més tard.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">S\'ha produït un error de xarxa en intentar restablir l\'enllaç. Torna-ho a provar més tard.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">S\'ha produït un error inesperat en intentar restablir l\'enllaç. Torna-ho a provar més tard.</string>
+    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
+    <string name="UsernameLinkSettings_reset_link_result_success">El teu codi QR i l\'enllaç s\'han restablert, i s\'ha creat un nou codi QR i enllaç.</string>
+    <!-- Shown on the generated username qr code image to explain how to use it. -->
+    <string name="UsernameLinkSettings_scan_this_qr_code">Escaneja aquest codi QR amb el teu telèfon per xatejar amb mi a Signal.</string>
+    <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_qr_code_not_found">No s\'ha trobat el codi QR</string>
+    <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Prova d\'escanejar una altra imatge que contingui un codi QR de Signal.</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
     <string name="UsernameLinkShareBottomSheet_title">Qualsevol persona amb aquest enllaç pot veure el teu àlies i començar un xat amb tu. Comparteix-lo només amb persones de confiança.</string>
@@ -6524,6 +6594,8 @@
     <string name="GrantFullScreenIntentPermission_megaphone_body">No et perdis mai cap trucada dels teus contactes i grups.</string>
     <!-- Button on the megaphone megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls that starts the fix process -->
     <string name="GrantFullScreenIntentPermission_megaphone_turn_on">Activar</string>
+    <!-- Button on the megaphone shown at the bottom of the chatlist when a user has disabled the system setting for showing full screen notifications used showing incoming calls that dismisses the megaphone -->
+    <string name="GrantFullScreenIntentPermission_megaphone_not_now">Ara no</string>
     <!-- Title of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
     <string name="GrantFullScreenIntentPermission_bottomsheet_title">Activar les notificacions de pantalla completa</string>
     <!-- Subtitle of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
@@ -6541,6 +6613,46 @@
     <string name="MonthlyDonationCanceled__renew_button">Renova la subscripció</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, second button to dismiss the dialog entirely -->
     <string name="MonthlyDonationCanceled__not_now_button">Ara no</string>
+
+    <!-- FindByActivity -->
+    <!-- Title of activity when finding by username -->
+    <string name="FindByActivity__find_by_username">Cerca per àlies</string>
+    <!-- Title of activity when finding by phone number -->
+    <string name="FindByActivity__find_by_phone_number">Cerca per número de telèfon</string>
+    <!-- Title of screen to select a country code -->
+    <string name="FindByActivity__select_country_code">Trieu un codi internacional</string>
+    <!-- Entry placeholder for find by username -->
+    <string name="FindByActivity__username">Àlies</string>
+    <!-- Entry placeholder for find by phone number -->
+    <string name="FindByActivity__phone_number">Número de telèfon</string>
+    <!-- Help text under user entry for find by username -->
+    <string name="FindByActivity__enter_username_description">Introdueix un àlies seguit d\'un punt i el seu conjunt de números.</string>
+    <!-- Content description for next action button -->
+    <string name="FindByActivity__next">Següent</string>
+    <!-- Placeholder text for search input for selecting country code -->
+    <string name="FindByActivity__search">Cerca</string>
+    <!-- Dialog title for invalid username -->
+    <string name="FindByActivity__invalid_username">Àlies no vàlid</string>
+    <!-- Dialog title for invalid phone number -->
+    <string name="FindByActivity__invalid_phone_number">Número de telèfon no vàlid</string>
+    <!-- Dialog title when phone number is not a registered signal user -->
+    <string name="FindByActivity__invite_to_signal">Convida al Signal</string>
+    <!-- Dialog title when username is not found -->
+    <string name="FindByActivity__username_not_found">No s\'ha trobat l\'àlies.</string>
+    <!-- Dialog body for invalid username. Placeholder is the entered username. -->
+    <string name="FindByActivity__s_is_not_a_valid_username">%1$s no és un àlies vàlid. Assegurat que has escrit l\'àlies complet seguit pel seu conjunt de dígits.</string>
+    <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
+    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s no és un número de telèfon vàlid. Torna-ho a provar amb un número de telèfon vàlid</string>
+    <!-- Dialog body for not found username -->
+    <string name="FindByActivity__s_is_not_a_signal_user">%1$s no és un usuari del Signal. Si us plau, comproveu-ne l\'àlies i torneu-ho a provar.</string>
+    <!-- Dialog body for not found phone number -->
+    <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s no fa servir Signal. Vols convidar aquest número?</string>
+    <!-- Dialog action to invite the phone number to Signal -->
+    <string name="FindByActivity__invite">Convida</string>
+    <!-- Button label for a button that will launch a camera to scan a username QR code -->
+    <string name="FindByActivity__qr_scan_button">Escaneja el codi QR</string>
+    <!-- Content of a dialog indicating that we could not perform the requested action because we encountered a network error. -->
+    <string name="FindByActivity__network_error_dialog">S\'ha trobat un error de xarxa. Torneu-ho a provar més tard.</string>
 
     <!-- EOF -->
 </resources>

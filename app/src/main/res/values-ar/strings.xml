@@ -179,7 +179,18 @@
     <string name="BlockUnblockDialog_unblock_s">رفع الحظر عن %1$s؟</string>
     <string name="BlockUnblockDialog_block">حظر</string>
     <string name="BlockUnblockDialog_block_and_leave">حظر ثم المغادرة</string>
-    <string name="BlockUnblockDialog_report_spam_and_block">إبلاغ عن بريد مزعج ثم حظره</string>
+    <!-- Dialog button label to report as spam and block the person -->
+    <string name="BlockUnblockDialog_report_spam_and_block">الإبلاغ والحظر</string>
+    <!-- Dialog title for reporting spam -->
+    <string name="BlockUnblockDialog_report_spam_title">الإبلاغ عن رسائل غير مرغوب فيها؟</string>
+    <!-- Dialog button to report as spam only -->
+    <string name="BlockUnblockDialog_report_spam">الإبلاغ عن رسائل غير مرغوب فيها</string>
+    <!-- Dialog message when reporting spam of an individual (1:1 conversation) -->
+    <string name="BlockUnblockDialog_report_spam_description">سَيتم إشعار سيجنال أن هذا الشخص قد يكون أرسل رسائل غير مرغوب فيها. لا يُمكن لسيجنال رؤية محتوى أي دردشات.</string>
+    <!-- Dialog message when reporting spam of a group and we can determine the group member that invited you, placeholder is a name -->
+    <string name="BlockUnblockDialog_report_spam_group_named_adder">سيتم إشعار سيجنال بأن %1$s، الذي دعاك للانضمام إلى هذه المجموعة، قد يكون أرسل رسائل غير مرغوب فيها. لا يمكن لسيجنال رؤية محتوى أي دردشات.</string>
+    <!-- Dialog message when reporting spam of a group and we cannot determine the group member that invited you -->
+    <string name="BlockUnblockDialog_report_spam_group_unknown_adder">سَيتم إشعار سيجنال بأن الشخص الذي دعاك للانضمام إلى هذه المجموعة، قد يكون أرسل رسائل غير مرغوب فيها. لا يُمكن لِسيجنال رؤية مُحتوى أي دردشات.</string>
 
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">اليوم</string>
@@ -427,6 +438,8 @@
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported">لم تعُد رسائل SMS مُدعّمة من طرف سيجنال.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">لم تعُد رسائل SMS مُدعّمة من طرف سيجنال. قم بدعوة %1$s إلى سيجنال لإبقاء المحادثة هنا.</string>
+    <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
+    <string name="ConversationActivity__this_person_is_no_longer_using_signal">This person is no longer using Signal. Invite them to Signal to keep the conversation here.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">ادعُ إلى سيجنال</string>
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
@@ -516,11 +529,11 @@
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">يمكنك السحب إلى اليسار فوق أي رسالة للرد بسرعة</string>
     <string name="ConversationFragment_view_once_media_is_deleted_after_sending">تُحذف وسائط العرض لِمرة واحدة بعد الإرسال</string>
     <string name="ConversationFragment_you_already_viewed_this_message">لقد سبق لك رؤية هذه الرسالة</string>
-    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">يُمكِنُك إضافة مُلاحظات لنفسك في هذه الدردشة. إذا كان حسابك يحتوي على أي أجهزة مُرتبطة، ستتم مُزامنة المُلاحظات الجديدة.</string>
+    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">يُمكِنُك إضافة مُلاحظات لنفسك في هذه الدردشة. إذا كان حسابك يحتوي على أي أجهزة مُرتبطة، ستتم مُزامنة المُلاحظات.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d عضوا بالمجموعة لهم نفس اﻻسم.</string>
     <string name="ConversationFragment__tap_to_review">يُرجى اللمس للمراجعة</string>
-    <string name="ConversationFragment__review_requests_carefully">مراجعة الطلبات بعناية</string>
-    <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">وجد سيجنال جهة اتصال أخرى بنفس الاسم.</string>
+    <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
+    <string name="ConversationFragment__review_banner_body">هذا الشخص له نفس الاسم الذي لدى جهة اتصال أخرى</string>
     <string name="ConversationFragment_contact_us">تواصل معنا</string>
     <string name="ConversationFragment_verify">تحقق</string>
     <string name="ConversationFragment_not_now">ليس الآن</string>
@@ -546,6 +559,55 @@
     <string name="ConversationFragment__content_description_launch_signal_button">يُرجى فتح سيجنال</string>
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
     <string name="ConversationFragment__no_longer_verified">لم يعد هناك علامة تحقق</string>
+    <!-- Button shown in conversation header when in a message request state and no groups in common to show new message safety tips -->
+    <string name="ConversationFragment_safety_tips">نصائح السلامة</string>
+    <!-- Menu option to report spam in a conversation -->
+    <string name="ConversationFragment_report_spam">الإبلاغ عن رسائل غير مرغوب فيها</string>
+    <!-- Menu option to block in a conversation -->
+    <string name="ConversationFragment_block">حظر</string>
+    <!-- Menu otpion to accept a message request in a conversation -->
+    <string name="ConversationFragment_accept">موافقة</string>
+    <!-- Menu option to delete an entire chat in a conversation -->
+    <string name="ConversationFragment_delete_chat">حذف الدردشة</string>
+    <!-- Menu option to unblock in a conversation -->
+    <string name="ConversationFragment_unblock">رفع الحظر</string>
+    <!-- Dialog title shown after reporting spam and tapping the conversation item -->
+    <string name="ConversationFragment_reported_spam">تم الإبلاغ عن رسائل غير مرغوب فيها</string>
+    <!-- Dialog message shown after reporting spam and tapping the conversation item -->
+    <string name="ConversationFragment_reported_spam_message">تم إشعار سيجنال بأن هذا الشخص قد يكون أرسل رسائل غير مرغوب فيها. لا يُمكن لسيجنال رؤية محتوى أي دردشات.</string>
+    <!-- Toast shown after reporting spam and tapping the conversation item -->
+    <string name="ConversationFragment_reported_as_spam">تم الإبلاغ عنها كرسالة غير مرغوب فيها</string>
+    <!-- Toast shown after reporting and blocking a conversation -->
+    <string name="ConversationFragment_reported_as_spam_and_blocked">تم الإبلاغ عنها كرسالة غير مرغوب فيها وتم حظرها</string>
+    <!-- Dialog message shown after accepting a message request and tapping on options from the conversation event -->
+    <string name="ConversationFragment_you_accepted_a_message_request_from_s">لقد قبلت طلب مراسلة من %1$s. إذا حدث هذا عن طريق الخطأ، يمكنك اختيار إجراء أسفله.</string>
+
+    <!-- Title of Safety Tips bottom sheet dialog -->
+    <string name="SafetyTips_title">نصائح السلامة</string>
+    <!-- Dialog subtitle when showign tips for a 1:1 conversation -->
+    <string name="SafetyTips_subtitle_individual">احذر عند قبول طلب مراسلة من أشخاص لا تعرفهم. احذر من:</string>
+    <!-- Dialog subtitle when showing tips for a group conversation -->
+    <string name="SafetyTips_subtitle_group">مراجعة هذا الطلب بعناية. لا توجد أية جهات اتصال أو أشخاص تُدردش معهم في هذه المجموعة. إليك بعض الأمور التي عليك الانتباه إليها:</string>
+    <!-- Button text to move to the previous tip-->
+    <string name="SafetyTips_previous_tip">النصيحة السابقة</string>
+    <!-- Button text to move to the next tip -->
+    <string name="SafetyTips_next_tip">النصيحة القادمة</string>
+    <!-- Title of tip 1 -->
+    <string name="SafetyTips_tip1_title">عمليات الاحتيال المالية أو من خلال العملات المشفرة</string>
+    <!-- Message of tip 1 -->
+    <string name="SafetyTips_tip1_message">إذا راسلك شخص لا تعرفُه بخصوص العملات المشفرة (مثل بيتكوين) أو فرصة مالية، احذر—إنها حتمًا رسالة غير مرغوب فيها.</string>
+    <!-- Title of tip 2 -->
+    <string name="SafetyTips_tip2_title">الرسائل الغامضة أو غير ذات الصلة</string>
+    <!-- Message of tip 2 -->
+    <string name="SafetyTips_tip2_message">يبدأ مُرسلو الرسائل غير المرغوب فيها برسالة بسيطة مثل \"مرحبًا\" لجذبك. إذا قُمت بالرد، فسيُواصلون التفاعل معك.</string>
+    <!-- Title of tip 3 -->
+    <string name="SafetyTips_tip3_title">الرسائل التي تتضمّن روابط</string>
+    <!-- Message of tip 3 -->
+    <string name="SafetyTips_tip3_message">احذر من الرسائل الواردة من الأشخاص الذين لا تعرفهم والتي تتضمّن روابط تقودك إلى مواقع. لا تزر أبدًا روابط من الأشخاص الذين لا تثق بهم.</string>
+    <!-- Title of tip 4 -->
+    <string name="SafetyTips_tip4_title">الشركات والمُؤسسات الوهمية</string>
+    <!-- Message of tip 4 -->
+    <string name="SafetyTips_tip4_message">احذر من الشركات أو الوكالات الحكومية التي تتواصل معك. قد تكون الرسائل التي تتعلق بوكالات الضرائب وشركات التوصيل والمزيد رسائل غير مرغوب فيها.</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">مَحوُ تصفية الدردشة</string>
@@ -568,7 +630,14 @@
         <item quantity="other">سيؤدي هذا إلى حذف %1$d دردشة مختارة بشكل نهائي.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">يجري الحذف</string>
-    <string name="ConversationListFragment_deleting_selected_conversations">جارٍ حذف الدردشات المختارة…</string>
+    <plurals name="ConversationListFragment_deleting_selected_conversations">
+        <item quantity="zero">جارٍ حذف الدردشات المُحدّدة…</item>
+        <item quantity="one">جارٍ حذف دردشة مُحدّدة…</item>
+        <item quantity="two">جارٍ حذف الدردشتين المُحدّدتين…</item>
+        <item quantity="few">جارٍ حذف الدردشات المُحدّدة…</item>
+        <item quantity="many">جارٍ حذف الدردشات المُحدّدة…</item>
+        <item quantity="other">جارٍ حذف الدردشات المُحدّدة…</item>
+    </plurals>
     <plurals name="ConversationListFragment_conversations_archived">
         <item quantity="zero">%1$d دردشات مؤرشفة</item>
         <item quantity="one">دردشة واحدة مؤرشفة</item>
@@ -626,6 +695,8 @@
     <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">يٌرجى تشغيل الملف الشخصي للإشعارات أو إيقاف تشغيله من هنا.</string>
     <!-- Message shown in top toast to indicate the named profile is on -->
     <string name="ConversationListFragment__s_on">%1$s مشغّل</string>
+    <!-- -->
+    <string name="ConversationListFragment_username_recovered_toast">تمت إعادة تعيين رمز ورابط الاستجابة السريعة واسم المُستخدم الخاص بك هو %1$s</string>
 
     <!-- ConversationListItem -->
     <string name="ConversationListItem_key_exchange_message">رسالة تبادل المفاتيح</string>
@@ -670,9 +741,9 @@
     <!-- Toolbar title for this screen -->
     <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">مَن يُمكنه العثور عليَّ باستخدام رقمي الخاص؟</string>
     <!-- Description for radio item stating anyone can see your phone number -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">كُل شخص يملك رقم هاتفك في جهات اتصاله سيعثُر عليك كجهة اتصال في سيجنال. سَيتمكن الآخرون من العثور عليك باستخدام رقم هاتفك في البحث.</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">أي شخص لديه رقم هاتفك سَيرى أنك متواجد على سيجنال وسَيتمكن من بدء دردشات معك.</string>
     <!-- Description for radio item stating no one will be able to see your phone number -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">لن يتمكّن أي شخص على سيجنال من العثور عليك باستخدام رقم هاتفك.</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">لن يتمكّن أي أحد من رؤيتك على سيجنال إلاّ إذا راسلته أو كانت لديك دردشة موجودة معه.</string>
 
     <!-- ChooseBackupFragment -->
     <string name="ChooseBackupFragment__restore_from_backup">الاستعادة مِن نسخة احتياطية؟</string>
@@ -1132,8 +1203,12 @@
     <string name="GroupMentionSettingDialog_dont_notify_me">لا تنبّهني</string>
 
     <!-- ManageProfileFragment -->
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
+    <string name="ManageProfileFragment__your_username">اسم المُستخدم الخاص بك ليس مرئيًا على حسابك الشخصي، وكذلك رمز ورابط الاستجابة السريعة الخاصين بك. شارك اسم المُستخدم الخاص بك فقط مع الناس الذين تثق بهم.</string>
+    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
+    <string name="ManageProfileFragment__username_footer_no_username">يُمكن للناس مراسلتك الآن باستخدام اسم المُستخدم الاختياري الخاص بك حتى لا تضطر إلى إعطاء رقم هاتفك. </string>
     <string name="ManageProfileFragment_profile_name">اسم الحساب</string>
-    <string name="ManageProfileFragment_username">اسم المستخدم</string>
+    <string name="ManageProfileFragment_username">اسم المُستخدم</string>
     <string name="ManageProfileFragment_about">حول</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">فشل ضبط صورة حسابك</string>
     <string name="ManageProfileFragment_badges">الشارات</string>
@@ -1145,23 +1220,23 @@
     <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
     <string name="ManageProfileFragment__link_tooltip_body">اسمح للآخرين ببدء محادثة معك عبر مشاركة رمز أو رابط الاستجابة السريع الفريد الخاص بك.</string>
     <!-- Snackbar message after creating username -->
-    <string name="ManageProfileFragment__username_created">تم إنشاء اسم المستخدم</string>
+    <string name="ManageProfileFragment__username_created">تم إنشاء اسم المُستخدم</string>
     <!-- Snackbar message after copying username -->
-    <string name="ManageProfileFragment__username_copied">تم نسخ اسم المستخدم</string>
+    <string name="ManageProfileFragment__username_copied">تم نسخ اسم المُستخدم</string>
     <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">تعذّر حذف اسم المستخدم. يُرجى المحاولة مرة أخرى لاحقًا.</string>
+    <string name="ManageProfileFragment__couldnt_delete_username">تعذّر حذف اسم المُستخدم. يُرجى المحاولة مرة أخرى لاحقًا.</string>
     <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">تم حذف اسم المستخدم</string>
+    <string name="ManageProfileFragment__username_deleted">تم حذف اسم المُستخدم</string>
     <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_title">حذف اسم المستخدم؟</string>
+    <string name="ManageProfileFragment__delete_username_dialog_title">حذف اسم المُستخدم؟</string>
     <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_body">"سيُؤدي هذا إلى إزالة اسم المستخدم الخاص بك وتعطيل رمز الاستجابة السريع والرابط الخاصين بك. \"%1$s\" سيُصبح متاحًا للآخرين ليستفيدوا منه. هل أنت متأكد؟"</string>
+    <string name="ManageProfileFragment__delete_username_dialog_body">"سيُؤدي هذا إلى إزالة اسم المُستخدم الخاص بك وتعطيل رمز الاستجابة السريع والرابط الخاصين بك. \"%1$s\" سيُصبح متاحًا للآخرين ليستفيدوا منه. هل أنت متأكد؟"</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
-    <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">حدثت مشكلة مع اسم المستخدم الخاص بك ولم يعد مخصصًا لحسابك. يمكنك محاولة تعيينه من جديد أو اختيار اسم مستخدم جديد.</string>
+    <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">حدثت مشكلة مع اسم المُستخدم الخاص بك ولم يعد مخصصًا لحسابك. يمكنك محاولة تعيينه من جديد أو اختيار اسم مُستخدم جديد.</string>
     <!-- Displayed above the conversation list when a user needs to address an issue with their username link -->
-    <string name="UsernameOutOfSyncReminder__link_corrupt">حدث خطأ ما مع رمز الاستجابة السريع ورابط اسم المستخدم الخاصين بك، حيث لم يعد صالحًا. أنشئ رابطًا جديدًا للمشاركة مع الآخرين.</string>
+    <string name="UsernameOutOfSyncReminder__link_corrupt">حدث خطأ ما مع رمز الاستجابة السريع ورابط اسم المُستخدم الخاصين بك، حيث لم يعد صالحًا. أنشئ رابطًا جديدًا للمشاركة مع الآخرين.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
     <string name="UsernameOutOfSyncReminder__fix_now">إصلاح الآن</string>
 
@@ -1459,6 +1534,10 @@
     <string name="MessageRecord_missed_voice_call">مكالمة صوتية فائتة</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">مكالمة فيديو فائتة</string>
+    <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
+    <string name="MessageRecord_missed_voice_call_notification_profile">مكالمة صوتية فائتة أثناء تشغيل الحساب الشخصي للإشعارات</string>
+    <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
+    <string name="MessageRecord_missed_video_call_notification_profile">اتصال فيديو فائت أثناء تشغيل الحساب الشخصي للإشعار</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
     <string name="MessageRecord_you_declined_a_voice_call">لقد رفضت مكالمة صوتية</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
@@ -1494,9 +1573,11 @@
     </plurals>
 
     <!-- Profile change updates -->
-    <string name="MessageRecord_changed_their_profile_name_to">غيّر %1$s اسمه إلى %2$s.</string>
-    <string name="MessageRecord_changed_their_profile_name_from_to">غيّر %1$s اسمه من %2$s إلى %3$s.</string>
+    <string name="MessageRecord_changed_their_profile_name_to">غيّر %1$s اسم حسابه الشخصي إلى %2$s.</string>
+    <string name="MessageRecord_changed_their_profile_name_from_to">غيّر %1$s اسم حسابه الشخصي من %2$s إلى %3$s.</string>
     <string name="MessageRecord_changed_their_profile">غيّر %1$s صفحة حسابه الشخصي.</string>
+    <!-- Conversation update event message shown when you\'ve started a conversation by phone number or username and then learn their profile name. placeholder is username or phone number -->
+    <string name="MessageRecord_started_this_chat">You started this chat with %1$s.</string>
 
     <!-- GV2 specific -->
     <string name="MessageRecord_you_created_the_group">لقد أنشأتَ مجموعة.</string>
@@ -1741,6 +1822,10 @@
     <string name="MessageRecord__you_can_no_longer_send_sms_messages_in_signal">لن تتمكن من إرسال رسائل SMS من سيجنال بعد الآن. قم بدعوة %1$s إلى سيجنال لإبقاء المحادثة هنا.</string>
     <!-- Body for quote when message being quoted is an in-app payment message -->
     <string name="MessageRecord__payment_s">عمليات الدفع: %1$s</string>
+    <!-- Update message shown in chat after reporting it as spam -->
+    <string name="MessageRecord_reported_as_spam">تم الإبلاغ عنها كرِسالة غير مرغوب فيها</string>
+    <!-- Update message shown in chat after accept a message request -->
+    <string name="MessageRecord_you_accepted_the_message_request">لقد قبِلت طلب المراسلة</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">موافقة</string>
@@ -1803,6 +1888,8 @@
         <item quantity="many">%1$d مجموعة إضافية</item>
         <item quantity="other">%1$d مجموعة إضافية</item>
     </plurals>
+    <!-- Button label to report spam for a conversation when in a message request state -->
+    <string name="MessageRequestBottomView_report">الإبلاغ…</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">العبارات السرية غير متطابقة!</string>
@@ -1811,7 +1898,7 @@
 
     <!-- DeviceProvisioningActivity -->
     <string name="DeviceProvisioningActivity_link_this_device">ربط هذا الجهاز؟</string>
-    <string name="DeviceProvisioningActivity_continue">الاستمرار</string>
+    <string name="DeviceProvisioningActivity_continue">مواصلة</string>
 
     <string name="DeviceProvisioningActivity_content_intro">سوف يتمكن من</string>
     <string name="DeviceProvisioningActivity_content_bullets">
@@ -2046,8 +2133,10 @@
     <string name="WebRtcCallView__disconnected">غير متّصل</string>
     <!-- Utilized in the lobby before joining a call link -->
     <string name="WebRtcCallView__signal_call_link">رابط مكالمة سيجنال</string>
-    <!-- Warning displayed when entering a call via a link -->
-    <string name="WebRtcCallView__anyone_who_joins">سيرى أي شخص انضم إلى هذه المكالمة عبر الرابط اسمك وصورتك ورقم هاتفك.</string>
+    <!-- Warning displayed when entering a call via a link and you have Phone Number Privacy disabled-->
+    <string name="WebRtcCallView__anyone_who_joins_pnp_disabled">سيرى أي شخص انضم إلى هذه المكالمة عبر الرابط اسمك وصورتك ورقم هاتفك.</string>
+    <!-- Warning displayed when entering a call via a link and you have Phone Number Privacy enabled-->
+    <string name="WebRtcCallView__anyone_who_joins_pnp_enabled">سَيرى أي شخص انضم إلى هذه المكالمة عبر الرابط اسمك وصورتك.</string>
     <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
     <string name="WebRtcCallView__waiting_to_be_let_in">في انتظار السماح بالانضمام…</string>
 
@@ -2176,15 +2265,26 @@
 
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
-    <string name="AboutSheet__signal_connection">جهات اتصال Signal</string>
+    <string name="AboutSheet__signal_connection">جهة اتصال سيجنال</string>
+    <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
+    <string name="AboutSheet__verified">متحقق منه</string>
+    <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
+    <string name="AboutSheet__no_direct_message">لا توجد رسائل مباشرة مع %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
-    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s موجود في جهات اتصالك</string>
+    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s موجود في جهات اتصال حسابك</string>
     <!-- Notice in a row when user has no groups in common -->
     <string name="AboutSheet__you_have_no_groups_in_common">لا توجد مجموعات مُشتركة بينكم</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
     <string name="AboutSheet__review_requests_carefully">مراجعة الطلبات بعناية</string>
     <!-- Text used when user has groups in common. Placeholder is the count -->
-    <string name="AboutSheet__d_groups_in_common">%1$d مجموعات مشتركة</string>
+    <plurals name="AboutSheet__d_groups_in">
+        <item quantity="zero">%1$d مجموعة مشتركة</item>
+        <item quantity="one">%1$dمجموعة مشتركة</item>
+        <item quantity="two">%1$d مجموعات مشتركة</item>
+        <item quantity="few">%1$d مجموعات مشتركة</item>
+        <item quantity="many">%1$d مجموعة مشتركة</item>
+        <item quantity="other">%1$d مجموعة مشتركة</item>
+    </plurals>
     <!-- Text displayed in title for external recipients -->
     <string name="AboutSheet__about">حوْل</string>
     <!-- Text displayed in title for you -->
@@ -2511,28 +2611,48 @@
     <string name="UnverifiedSendDialog_send">أرسل</string>
 
     <!-- UsernameEditFragment -->
+    <!-- Placeholder text for custom discriminator -->
+    <string name="UsernameEditFragment__00">00</string>
     <!-- Toolbar title when entering from registration -->
     <string name="UsernameEditFragment__add_a_username">إضافة اسم مُستخدم</string>
     <!-- Instructional text at the top of the username edit screen -->
-    <string name="UsernameEditFragment__choose_your_username">يُرجى اختيار اسم المستخدم</string>
-    <string name="UsernameEditFragment_username">اسم المستخدم</string>
+    <string name="UsernameEditFragment__choose_your_username">يُرجى اختيار اسم المُستخدم</string>
+    <string name="UsernameEditFragment_username">اسم المُستخدم</string>
     <string name="UsernameEditFragment_delete">حذف</string>
-    <string name="UsernameEditFragment_successfully_removed_username">تم حذف اسم المستخدم بنجاح.</string>
+    <string name="UsernameEditFragment_successfully_removed_username">تم حذف اسم المُستخدم بنجاح.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">حدث خطأ فى الشبكة</string>
-    <string name="UsernameEditFragment_this_username_is_taken">اسم المستخدم هذا غير متوفّر.</string>
-    <string name="UsernameEditFragment_usernames_can_only_include">الأسماء يجب أن تحتوي فقط على الحروف الأبجدية، 0-9، أو \"_\".</string>
-    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">اسم المستخدم لا يمكن أن يبدأ برقم.</string>
-    <string name="UsernameEditFragment_username_is_invalid">اسم المستخدم غير صالح</string>
-    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">اسم المستخدم لا بد أن يكون بين %1$d و%2$d رمز.</string>
+    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">قمتَ بمحاولات كثيرة. يُرجى المحاولة لاحقاً</string>
+    <string name="UsernameEditFragment_this_username_is_taken">اسم المُستخدم هذا غير متوفّر.</string>
+    <string name="UsernameEditFragment_usernames_can_only_include">أسماء المُستخدمين يجب أن تحتوي فقط على الحروف الأبجدية، 0-9، أو \"_\".</string>
+    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">اسم المُستخدم لا يمكن أن يبدأ برقم.</string>
+    <string name="UsernameEditFragment_username_is_invalid">اسم المُستخدم غير صالح</string>
+    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">اسم المُستخدم لا بد أن يكون بين %1$d و%2$d رمز.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">تسمح أسماء المُستخدمين للآخرين بمراسلتك دون الحاجة إلى رقم هاتفك. يتم إقرانها بمجموعة من الأرقام للمساعدة في الحفاظ على خصوصية عنوانك.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">يتم دائمًا إقران أسماء المستخدمين بمجموعة من الأرقام.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">ماذا يعني هذا الرقم؟</string>
-    <string name="UsernameEditFragment__these_digits_help_keep">تُساعد هذه الأرقام في الحفاظ على خصوصية اسم المستخدم الخاص بك حتى تتجنب الرسائل غير مرغوب فيها. شارك اسم المستخدم الخاص بك مع الأشخاص والمجموعات الذين ترغب في الدردشة معهم. إذا قمت بتغيير أسماء المستخدمين، سَتحصل على مجموعة جديدة من الأرقام.</string>
+    <string name="UsernameEditFragment__these_digits_help_keep">تُساعد هذه الأرقام في الحفاظ على خصوصية اسم المُستخدم الخاص بك حتى تتجنب الرسائل غير مرغوب فيها. شارك اسم المُستخدم الخاص بك مع الأشخاص والمجموعات الذين ترغب في الدردشة معهم. إذا قمت بتغيير أسماء المُستخدمين، سَتحصل على مجموعة جديدة من الأرقام.</string>
     <!-- Button to allow user to skip -->
     <string name="UsernameEditFragment__skip">تخطّي</string>
     <!-- Content description for done button -->
     <string name="UsernameEditFragment__done">تمّ</string>
+    <!-- Displayed when the chosen discriminator is not available for the given nickname -->
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">اسم المُستخدم هذا ليس موجودًا، جرّب رقمًا آخر.</string>
+    <!-- Displayed when the chosen discriminator is too short -->
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">اسم مُستخدم غير صحيح، أدخل رمزيْن %1$d على الأقل.</string>
+    <!-- Displayed when the chosen discriminator is too long -->
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">اسم مُستخدم غير صحيح، أدخل %1$d رمزًا كحد أقصى.</string>
+    <!-- Displayed when the chosen discriminator is 00 -->
+    <string name="UsernameEditFragment__this_number_cant_be_00">لا يُمكن لهذا الرقم أن يكون 00. أدخل رقمًا بين 1 –9</string>
+    <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">الأرقام التي تحتوي على أكثر من رقمين لا يُمكن أن تبدأ بـ 0</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
+    <string name="UsernameEditFragment_recovery_dialog_confirmation">سيُؤدي استرداد اسم المُستخدم الخاص بك إلى إعادة تعيين رمز ورابط الاستجابة السريعة الخاصين بك. هل أنت مُتأكد؟</string>
+    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
+    <string name="UsernameEditFragment_change_confirmation_message">سيُؤدي تغيير اسم المُستخدم الخاص بك إلى إعادة تعيين رمز الاستجابة السريع والرابط الحاليين الخاصين بك. هل أنت متأكد؟</string>
+    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
+    <string name="UsernameEditFragment_continue">مواصلة</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="zero">%1$d جهة اتصال تستخدم سيجنال!‏</item>
@@ -2545,7 +2665,7 @@
 
     <!-- UsernameShareBottomSheet -->
     <!-- Explanation of what the sheet enables the user to do -->
-    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">نسخ أو مشاركة رابط اسم المستخدم</string>
+    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">نسخ أو مشاركة رابط اسم المُستخدم</string>
 
     <!-- VerifyIdentityActivity -->
     <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">جهة الاتصال هذه تستخدم نسخة أحدث من تطبيق سيجنال وصيغة رمز الاستجابة السريع أو QR فيها لا تتوافق مع نسختك. يرجى تحديث النسخة للمقارنة.</string>
@@ -2731,6 +2851,26 @@
     <!-- Notification subtext for group stories -->
     <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s • قصة</string>
 
+    <!-- NewWaysToConnectDialogFragment -->
+    <!-- Fragment title, displayed at the top of the content -->
+    <string name="NewWaysToConnectDialogFragment__new_ways_to_connect">طرق جديدة للاتصال</string>
+    <!-- Row item title for phone number privacy explainer -->
+    <string name="NewWaysToConnectDialogFragment__phone_number_privacy">خصوصية رقم الهاتف</string>
+    <!-- Row item description for phone number privacy explainer -->
+    <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">لا تتم مُشاركة رقم هاتفك بعد الآن مع الدردشات. إذا تم حفظ رقم هاتفك في جهات اتصال صديق، فسَيظل مرئيًا بالنسبة له.</string>
+    <!-- Row item title for usernames explainer -->
+    <string name="NewWaysToConnectDialogFragment__usernames">أسماء المُستخدمين</string>
+    <!-- Row item description for usernames explainer -->
+    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">يُمكن للناس مراسلتك الآن باستخدام اسم المُستخدم الاختياري الخاص بك حتى لا تضطر إلى إعطاء رقم هاتفك. أسماء المُستخدمين ليست مرئية على حسابك الشخصي.</string>
+    <!-- Row item title for qr code and links explainer -->
+    <string name="NewWaysToConnectDialogFragment__qr_codes_and_links">رموز أو رابط الاستجابة السريعة</string>
+    <!-- Row item description for qr code and links explainer -->
+    <string name="NewWaysToConnectDialogFragment__usernames_have_a_unique_qr_code">أسماء المُستخدمين لها رمز ورابط استجابة سريعة فريدين يُمكنك مُشاركتُهما مع أصدقائك لكي يبدؤوا الدردشة معك في الآن.</string>
+    <!-- Button label for not right now -->
+    <string name="NewWaysToConnectDialogFragment__not_now">ليس الآن</string>
+    <!-- Button label for continue -->
+    <string name="NewWaysToConnectDialogFragment__set_up_your_username">إعداد اسم المستخدم</string>
+
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">شغّل الفيديو</string>
     <string name="ThumbnailView_Has_a_caption_description">فيه تعليق</string>
@@ -2748,6 +2888,8 @@
     <string name="TransferControlView__processing">جارٍ المعالجة…</string>
     <!-- Status update label used while the device is transmitting data over the network. Will take the form of "1.0 MB/2.0 MB" -->
     <string name="TransferControlView__download_progress">%1$1.1f MB/%2$2.1f MB</string>
+    <!-- Attachment file size label for not-yet-downloaded images and video. Will take the form of "1.0 MB" -->
+    <string name="TransferControlView__filesize">%1$1.1f MB</string>
 
 
     <!-- UnauthorizedReminder -->
@@ -2837,8 +2979,8 @@
     <!-- ContactSelectionListFragment-->
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">يحتاج سيجنال إلى أذن الوصول إلى جهات الاتصال من أجل عرضها لك، ولكن تم إيقاف الإذن على نحو دائم. الرجاء زيارة إعدادات التطبيق، اختيار \"الأذونات\"، ثم تفعيل \"جهات الاتصال\".</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">خطأ في جلب جهات الاتصال، يُرجى التحقق مِن اتصالك بالشبكة</string>
-    <string name="ContactSelectionListFragment_username_not_found">لم يتم العثور على اسم المستخدم</string>
-    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" ليس مستخدم لسيجنال. يرجى التحقق من اسم المستخدم والمحاولة ثانية."</string>
+    <string name="ContactSelectionListFragment_username_not_found">لم يتم العثور على اسم المُستخدم</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" ليس مُستخدم لِسيجنال. يرجى التحقّق من اسم المُستخدم والمحاولة ثانية."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">ليست بحاجة إلى إضافة نفسك للمجموعة</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">وصلت المجموعة إلى الحد الأقصى.</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">أقصى حد للأعضاء في مجموعات سيجنال هو %1$d عضوا.</string>
@@ -2852,6 +2994,10 @@
         <item quantity="many">%1$d عضو</item>
         <item quantity="other">%1$d عضو</item>
     </plurals>
+    <!-- Text on row item to find user by phone number -->
+    <string name="ContactSelectionListFragment__find_by_phone_number">العثور عبر رقم الهاتف</string>
+    <!-- Text on row item to find user by username -->
+    <string name="ContactSelectionListFragment__find_by_username">العثور عبر اسم المُستخدم</string>
 
     <!-- contact_selection_list_fragment -->
     <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">سيجنال بحاجة إلى الوصول إلى جهات الاتصال لديك وذلك بغرض عرضها.</string>
@@ -2931,6 +3077,8 @@
     <string name="ConversationUpdateItem_activate_payments">تفعيل الدفوعات</string>
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">لقد حذفت هذا الشخص، وبمراسلتك لهم سَتتم إضافتهم إلى قائمتك.</string>
+    <!-- Update item button text shown for the accepted message request update message -->
+    <string name="ConversationUpdateItem_options">الخيارات:</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">شغّل … توقف</string>
@@ -3375,7 +3523,7 @@
     <string name="preferences__mmsc_url">رابط MMSC</string>
     <string name="preferences__mms_proxy_host">مستضيف خدمة MMS</string>
     <string name="preferences__mms_proxy_port">منفذ الوسيط MMS</string>
-    <string name="preferences__mmsc_username">اسم المستخدم MMSC</string>
+    <string name="preferences__mmsc_username">اسم المُستخدم MMSC</string>
     <string name="preferences__mmsc_password">كلمة السر MMSC</string>
     <string name="preferences__sms_delivery_reports">تقارير تسليم رسائل SMS</string>
     <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">طلب تقرير تسليم لكل رسالة SMS ترسلها</string>
@@ -4161,13 +4309,27 @@
     <!-- Subtext below option to launch into phone number privacy settings screen -->
     <string name="preferences_app_protection__choose_who_can_see">اختر من يُمكنه رؤية رقم هاتفك ومن يمكنه الاتصال بك على سيجنال باستخدامه.</string>
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
-    <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">من يُمكنه رؤية رقمي</string>
-    <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">لن يرى أي أحد رقم هاتفك في سيجنال</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">من يُمكنه رؤية رقمي</string>
+    <!-- Subtext below radio buttons when who can see my number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">سَيكون رقم هاتفك مرئيًا للأشخاص والمجموعات التي تراسلها.</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">لن يكون رقم هاتفك مرئيًا لأي أحد إلا إذا كان مسجلاً على هاتفه في جهات اتصاله.</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">رقم هاتفك لن يكون مرئيًا لأي أحد.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
-    <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">مَن يُمكنه العثور عليَّ باستخدام رقمي</string>
-    <!-- Subtext below radio buttons when who can see my number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">سَيكون رقم هاتفك مرئيًا للأشخاص والمجموعات التي تراسلها. كما أن الأشخاص الذين لديهم رقمك في جهات اتصال هواتفهم سيرونه أيضًا على سيجنال.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">مَن يُمكنه العثور عليَّ باستخدام رقمي</string>
+    <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">أي شخص لديه رقم هاتفك سَيرى أنك متواجد على سيجنال وسَيتمكن من بدء دردشات معك.</string>
+    <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">لن يتمكّن أي أحد من رؤيتك على سيجنال إلاّ إذا راسلته أو كانت لديك دردشة موجودة معه.</string>
+    <!-- Snackbar text when pressing invalid radio item -->
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"لتغيير هذا الإعداد، اختر لا أحد عن تحديد من يُمكنه رؤية رقمي."</string>
+    <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">هل أنت متأكد؟</string>
+    <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Setting \"Who can find me by number\" to \"Nobody\" will make it harder for people to find you on Signal.</string>
+    <!-- Dialog button text for canceling change action -->
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">إلغاء</string>
     <string name="PhoneNumberPrivacy_everyone">الكل</string>
     <string name="PhoneNumberPrivacy_nobody">لا أحد</string>
     <string name="preferences_app_protection__screen_lock">قفل الشاشة</string>
@@ -4196,6 +4358,8 @@
     <string name="prompt_passphrase_activity__signal_is_locked">سيجنال مُقفَل</string>
     <string name="prompt_passphrase_activity__tap_to_unlock">أنقُر لفك القُفل</string>
     <string name="Recipient_unknown">مجهول</string>
+    <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
+    <string name="Recipient_deleted_account">حساب محذوف</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
     <string name="preferences_account_reregister">إعادة-تسجيل الحساب</string>
@@ -4398,8 +4562,10 @@
     <string name="BlockedUsersActivity__s_has_been_unblocked">تم إلغاء حظر \"%1$s\".</string>
 
     <!-- ReviewCardDialogFragment -->
+    <!-- Title of a screen where the user will be prompted to review group members with the same name -->
     <string name="ReviewCardDialogFragment__review_members">مراجعة الأعضاء</string>
-    <string name="ReviewCardDialogFragment__review_request">طلب المراجعة</string>
+    <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
+    <string name="ReviewCardDialogFragment__review_request">مُراجعة الطلب</string>
     <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d من أعضاء المجموعة يحملون نفس الاسم، يُرجى مراجعة اﻷعضاء أسفله ثم القيام باﻹجراء المناسب.</string>
     <string name="ReviewCardDialogFragment__if_youre_not_sure">إذا التبس عليك مصدر الطلب، يُرجى مراجعة جهات الاتصال أدناه والقيام بالإجراء المناسب.</string>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">لا وجود لمجموعات أخرى مشتركة.</string>
@@ -4434,7 +4600,7 @@
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
     <string name="ReviewCard__s_recently_changed">غيّر مؤخرًا %1$s اسم حسابه الشخصي من %2$s إلى %3$s</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
-    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s موجود في جهات اتصالك</string>
+    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s موجود في جهات اتصال نظامك</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">انضم %1$s</string>
@@ -4677,11 +4843,16 @@
     <string name="GroupDescriptionDialog__group_description">وصف المجموعة</string>
 
     <!-- QualitySelectorBottomSheetDialog -->
+    <!-- Label for our standard quality media conversion. -->
     <string name="QualitySelectorBottomSheetDialog__standard">قياسي</string>
+    <!-- Description for our standard quality media conversion. -->
     <string name="QualitySelectorBottomSheetDialog__faster_less_data">أسرع، بيانات أقل</string>
+    <!-- Label for our high quality media conversion. This has better quality than standard. -->
     <string name="QualitySelectorBottomSheetDialog__high">بالغ الأهميّة</string>
+    <!-- Label for our high quality media conversion. This has better quality than standard. -->
     <string name="QualitySelectorBottomSheetDialog__slower_more_data">أبطأ، بيانات أكثر</string>
-    <string name="QualitySelectorBottomSheetDialog__photo_quality">جودة الصورة</string>
+    <!-- Title heading for our media conversion quality selector. -->
+    <string name="QualitySelectorBottomSheetDialog__media_quality">جودة الوسائط</string>
 
     <!-- AppSettingsFragment -->
     <string name="AppSettingsFragment__invite_your_friends">دعوة أصدقائك</string>
@@ -4796,27 +4967,6 @@
     <!-- ChatsSettingsFragment -->
     <string name="ChatsSettingsFragment__keyboard">لوحة المفاتيح</string>
     <string name="ChatsSettingsFragment__enter_key_sends">مفتاح الدخول يقوم بالإرسال</string>
-
-    <!--SmsSettingsFragment -->
-    <string name="SmsSettingsFragment__use_as_default_sms_app">اجعله التطبيق الافتراضي للرسائل القصيرة</string>
-    <!-- Preference title to export sms -->
-    <string name="SmsSettingsFragment__export_sms_messages">تصدير الرسائل القصيرة</string>
-    <!-- Preference title to re-export sms -->
-    <string name="SmsSettingsFragment__export_sms_messages_again">تصدير رسائل SMS مرة أخرى</string>
-    <!-- Preference title to delete sms -->
-    <string name="SmsSettingsFragment__remove_sms_messages">إزالة الرسائل القصيرة</string>
-    <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">إزالة رسائل SMS من تطبيق سيجنال…</string>
-    <!-- Snackbar text to indicate can delete later -->
-    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">يُمكنك إزالة رسائل SMS من سيجنالفي الإعدادات في أي وقت.</string>
-    <!-- Description for export sms preference -->
-    <string name="SmsSettingsFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">يُمكنك تصدير رسائل SMS الخاصة بك إلى قاعدة بيانات SMS بهاتفك</string>
-    <!-- Description for re-export sms preference -->
-    <string name="SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages">يُمكن أن يؤدي التصدير مرة أخرى إلى تِكرار الرسائل.</string>
-    <!-- Description for remove sms preference -->
-    <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">قم بإزالة رسائل SMS من سيجنال لإخلاء مساحة التخزين.</string>
-    <!-- Information message shown at the top of sms settings to indicate it is being removed soon. -->
-    <string name="SmsSettingsFragment__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging">سيتم إزالة دعم SMS قريبًا للتركيز على الرسائل المشفرة.</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">الرسائل</string>
@@ -5206,6 +5356,36 @@
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">عنصر واحد أو أكثر كان كبيرًا جدًا</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">عنصر واحد أو أكثر غير صالح</string>
     <string name="MediaReviewFragment__too_many_items_selected">تم تحديد عدد كبير جدًا من العناصر</string>
+    <!-- Small notification presented to the user when they set their video to view-once mode -->
+    <string name="MediaReviewFragment__video_set_to_view_once">Video set to view once</string>
+    <!-- Small notification presented to the user when they set their photo to view-once mode -->
+    <string name="MediaReviewFragment__photo_set_to_view_once">Photo set to view once</string>
+    <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
+    <string name="MediaReviewFragment__video_set_to_high_quality">Video set to high quality</string>
+    <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
+    <string name="MediaReviewFragment__video_set_to_standard_quality">Video set to standard quality</string>
+    <!-- Small notification presented to the user when they set their still image to be sent in high visual quality. -->
+    <string name="MediaReviewFragment__photo_set_to_high_quality">Photo set to high quality</string>
+    <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
+    <string name="MediaReviewFragment__photo_set_to_standard_quality">Photo set to standard quality</string>
+    <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
+    <plurals name="MediaReviewFragment__items_set_to_high_quality">
+        <item quantity="zero">%1$d items set to high quality</item>
+        <item quantity="one">%1$d item set to high quality</item>
+        <item quantity="two">%1$d items set to high quality</item>
+        <item quantity="few">%1$d items set to high quality</item>
+        <item quantity="many">%1$d items set to high quality</item>
+        <item quantity="other">%1$d items set to high quality</item>
+    </plurals>
+    <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
+    <plurals name="MediaReviewFragment__items_set_to_standard_quality">
+        <item quantity="zero">%1$d items set to standard quality</item>
+        <item quantity="one">%1$d item set to standard quality</item>
+        <item quantity="two">%1$d items set to standard quality</item>
+        <item quantity="few">%1$d items set to standard quality</item>
+        <item quantity="many">%1$d items set to standard quality</item>
+        <item quantity="other">%1$d items set to standard quality</item>
+    </plurals>
 
     <string name="ImageEditorHud__cancel">إلغاء</string>
     <string name="ImageEditorHud__draw">رسم</string>
@@ -5229,6 +5409,20 @@
     <string name="MediaReviewImagePageFragment__discard">تجاهل</string>
     <string name="MediaReviewImagePageFragment__discard_changes">تجاهل التغييرات ؟</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">سوف تضيع كل تغييرات قمت بها على هذه الصورة.</string>
+
+    <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
+    <string name="MediaCaptureFragment_username_dialog_title">Found %1$s</string>
+    <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
+    <string name="MediaCaptureFragment_username_dialog_body">Start a chat with \"%1$s\"</string>
+    <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
+    <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">توجّه للدردشة</string>
+
+    <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+    <string name="MediaCaptureFragment_device_link_dialog_title">Link device?</string>
+    <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+    <string name="MediaCaptureFragment_device_link_dialog_body">It looks like you\'re trying to link a Signal device. Tap continue and scan the code again to link it.</string>
+    <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
+    <string name="MediaCaptureFragment_device_link_dialog_continue">مواصلة</string>
 
 
     <string name="BadgesOverviewFragment__my_badges">شاراتي</string>
@@ -5328,7 +5522,7 @@
     <!-- Displayed as a subtitle on a row in the Manage Donations screen when payment for a donation is pending -->
     <string name="MySupportPreference__payment_pending">عملية الدفع مُعلقة</string>
     <!-- Displayed as a dialog message when clicking on a donation row that is pending. Placeholder is a formatted fiat amount -->
-    <string name="MySupportPreference__your_bank_transfer_of_s">تحويلك المصرفي بمبلغ %1$s مُعلق. عادة ما تستغرق التحويلات المصرفية يوم عمل واحد.  </string>
+    <string name="MySupportPreference__your_bank_transfer_of_s">Your bank transfer of %1$s is pending. Bank transfers can take 1 to 14 business days to complete.  </string>
     <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
     <string name="MySupportPreference__learn_more">معرفة المزيد</string>
 
@@ -5494,7 +5688,7 @@
     <!-- Title of create notification profile screen -->
     <string name="EditNotificationProfileFragment__name_your_profile">تسمية هيئة إشعارك</string>
     <!-- Hint text for create/edit notification profile name -->
-    <string name="EditNotificationProfileFragment__profile_name">اسم الحساب</string>
+    <string name="EditNotificationProfileFragment__profile_name">اسم الحساب الشخصي</string>
     <!-- Name has a max length, this shows how many characters are used out of the max -->
     <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
     <!-- Call to action button to continue to the next step -->
@@ -5526,6 +5720,12 @@
     <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">يُرجى إضافة الأفراد والمجموعات المراد تلقي اﻹشعارات والمكالمات من عندها عندما تكون هيئة إشعارك مُشغَّلة</string>
     <!-- Button text that launches the contact picker to select from -->
     <string name="AddAllowedMembers__add_people_or_groups">إضافة اﻷفراد أو المجموعات</string>
+    <!-- Title for exceptions section of add people to notification profile screen in create flow -->
+    <string name="AddAllowedMembers__exceptions">الاستثناءات</string>
+    <!-- List preference to toggle that allows calls through the notification profile during create flow -->
+    <string name="AddAllowedMembers__allow_all_calls">السماح لِجميع المكالمات</string>
+    <!-- List preference to toggle that allows mentions through the notification profile during create flow -->
+    <string name="AddAllowedMembers__notify_for_all_mentions">الإشعار عن كل الإشارات للأفراد</string>
 
     <!-- Call to action button on contact picker for adding to profile -->
     <string name="SelectRecipientsFragment__add">إضافة</string>
@@ -5825,7 +6025,7 @@
     <string name="MyStorySettingsFragment__who_can_view_this_story">من يُمكنه مُشاهدة هذه القصة</string>
     <!-- Clickable option for selecting people to hide your story from -->
     <!-- Privacy setting title for sending stories to all your signal connections -->
-    <string name="MyStorySettingsFragment__all_signal_connections">جميع جهات الاتصال في سيجنال</string>
+    <string name="MyStorySettingsFragment__all_signal_connections">جميع جهات اتصال سيجنال</string>
     <!-- Privacy setting description for sending stories to all your signal connections -->
     <!-- Privacy setting title for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__all_except">الكل إلا…</string>
@@ -5862,9 +6062,9 @@
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">تمكين الأفراد الذين يُمكنهم مشاهدة قصتك من التفاعل والرد عليها</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
-    <string name="SignalConnectionsBottomSheet___signal_connections">جهات الاتصال في سيجنال</string>
+    <string name="SignalConnectionsBottomSheet___signal_connections">جهة اتصال سيجنال</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
-    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">جهات الاتصال في سيجنال هم أشخاص اخترت أن تثق بهم سواءً عبر:</string>
+    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">جهات اتصال سيجنال هم أشخاص اخترت أن تثق بهم سواءً عبر:</string>
     <!-- Signal connections sheet bullet point 1 -->
     <string name="SignalConnectionsBottomSheet__starting_a_conversation">بدء دردشة</string>
     <!-- Signal connections sheet bullet point 2 -->
@@ -6208,12 +6408,12 @@
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">تمت مراجعة كل جهات الاتصال، انقر إرسال للمواصلة.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
     <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
-        <item quantity="zero">%1$d من جهات اتصالك قد يكون أعاد تثبيت سيجنال أو غيّر جهازه. قبل مشاركة قِصتك معه، يُرجى مراجعة أرقام الأمان الخاصة به أو فكّر في حذفه من قصتك.</item>
-        <item quantity="one">%1$d من جهات اتصالك قد يكون أعاد تثبيت سيجنال أو غيّر جهازه. قبل مشاركة قِصتك معه، يُرجى مراجعة أرقام الأمان الخاصة به أو فكّر في حذفه من قصتك.</item>
-        <item quantity="two">%1$d من جهات اتصالك قد يكونوا أعادو تثبيت سيجنال أو غيّروا أجهزتهم. قبل مشاركة قِصتك معهم، يُرجى مراجعة أرقام الأمان الخاصة بهم أو فكّر في حذفهم من قصتك.</item>
-        <item quantity="few">%1$d من جهات اتصالك قد يكونوا أعادو تثبيت سيجنال أو غيّروا أجهزتهم. قبل مشاركة قِصتك معهم، يُرجى مراجعة أرقام الأمان الخاصة بهم أو فكّر في حذفهم من قصتك.</item>
-        <item quantity="many">%1$d من جهات اتصالك قد يكونوا أعادو تثبيت سيجنال أو غيّروا أجهزتهم. قبل مشاركة قِصتك معهم، يُرجى مراجعة أرقام الأمان الخاصة بهم أو فكّر في حذفهم من قصتك.</item>
-        <item quantity="other">%1$d من جهات اتصالك قد يكونوا أعادو تثبيت سيجنال أو غيّروا أجهزتهم. قبل مشاركة قِصتك معهم، يُرجى مراجعة أرقام الأمان الخاصة بهم أو فكّر في حذفهم من قصتك.</item>
+        <item quantity="zero">%1$d جهة اتصال قد يكونوا أعادوا تثبيت سيجنال أو غيّروا أجهزتهم. يُمكنك مراجعة أرقام الأمان الخاصة بهم أو المواصلة للإرسال.</item>
+        <item quantity="one">%1$d جهة اتصال قد يكون أعاد تثبيت سيجنال أو غيّر جهازه. يمكنك مراجعة رقم الأمان الخاص بهم أو المواصلة للإرسال.</item>
+        <item quantity="two">%1$d جهتا اتصال قد يكونا أعادا تثبيت سيجنال أو غيّرا جهازيهما. يُمكنك مراجعة أرقام الأمان الخاصة بهما أو المواصلة للإرسال.</item>
+        <item quantity="few">%1$d جهات اتصال قد يكونوا أعادوا تثبيت سيجنال أو غيّروا أجهزتهم. يُمكنك مراجعة أرقام الأمان الخاصة بهم أو المواصلة للإرسال.</item>
+        <item quantity="many">%1$d جهة اتصال قد يكونوا أعادوا تثبيت سيجنال أو غيّروا أجهزتهم. يمكنك مراجعة أرقام الأمان الخاصة بهم أو المواصلة للإرسال.</item>
+        <item quantity="other">%1$d جهة اتصال قد يكونوا أعادوا تثبيت سيجنال أو غيّروا أجهزتهم. يمكنك مراجعة أرقام الأمان الخاصة بهم أو المواصلة للإرسال.</item>
     </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">تحقق من رقم اﻷمان</string>
@@ -6250,7 +6450,7 @@
     <!-- Subtitle of initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">اختيار من يُمكنه رؤية منشورات في قصتي. يُمكنك إحداث تغييرات في أي وقت في الإعدادات.</string>
     <!-- All connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">كل معارف ‫سيجنال</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">كل جهات اتصال سيجنال</string>
     <!-- All connections except option for initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__all_except">الكل إلا…</string>
     <!-- Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
@@ -6306,52 +6506,6 @@
     <!-- Generic title for overflow menus -->
     <string name="OverflowMenu__overflow_menu">القائمة الكاملة</string>
 
-    <!-- SMS Export Service -->
-    <!-- Displayed in the notification while export is running -->
-    <string name="SignalSmsExportService__exporting_messages">يتم تصدير الرسائل…</string>
-    <!-- Displayed in the notification title when export completes -->
-    <string name="SignalSmsExportService__signal_sms_export_complete">اكتمل تصدير سيجنال SMS</string>
-    <!-- Displayed in the notification message when export completes -->
-    <string name="SignalSmsExportService__tap_to_return_to_signal">انقر للرجوع إلى سيجنال</string>
-
-    <!-- ExportYourSmsMessagesFragment -->
-    <!-- Title of the screen -->
-    <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">قم بتصدير رسائلك القصيرة</string>
-    <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">يُمكنك تصدير رسائل SMS الخاصة بك إلى قاعدة بيانات SMS لهاتفك وسيكون لديك الخيار في إبقاءها أو إزالتها من سيجنال. يتيح لك هذا السماح لتطبيقات SMS الأخرى على هاتفك باستيرادها. لا يُؤدي هذا إلى إنشاء ملف قابل للمشاركة من سِجل رسائل SMS الخاصة بك.</string>
-    <!-- Button label to begin export -->
-    <string name="ExportYourSmsMessagesFragment__continue">واصل</string>
-
-    <!-- ExportingSmsMessagesFragment -->
-    <!-- Title of the screen -->
-    <string name="ExportingSmsMessagesFragment__exporting_sms_messages">يتم تصدير الرسائل القصيرة</string>
-    <!-- Message of the screen when exporting sms messages -->
-    <string name="ExportingSmsMessagesFragment__this_may_take_awhile">قد يستغرق هذا بعض الوقت</string>
-    <!-- Progress indicator for export -->
-    <plurals name="ExportingSmsMessagesFragment__exporting_d_of_d">
-        <item quantity="zero">جارٍ تصدير %1$d من أصل %2$d…</item>
-        <item quantity="one">جارٍ تصدير %1$d من أصل %2$d…</item>
-        <item quantity="two">جارٍ تصدير %1$d من أصل %2$d…</item>
-        <item quantity="few">جارٍ تصدير %1$d من أصل %2$d…</item>
-        <item quantity="many">جارٍ تصدير %1$d من أصل %2$d…</item>
-        <item quantity="other">جارٍ تصدير %1$d من أصل %2$d…</item>
-    </plurals>
-    <!-- Alert dialog title shown when we think a user may not have enough local storage available to export sms messages -->
-    <string name="ExportingSmsMessagesFragment__you_may_not_have_enough_disk_space">قد لا يكون لديك مساحة قرص كافية</string>
-    <!-- Alert dialog message shown when we think a user may not have enough local storage available to export sms messages, placeholder is the file size, e.g., 128kB -->
-    <string name="ExportingSmsMessagesFragment__you_need_approximately_s_to_export_your_messages_ensure_you_have_enough_space_before_continuing">تحتاج إلى %1$s تقريبًا لتصدير رسائلك، يُرجى التأكد من توفرك على مساحة كافية قبل الاستمرار.</string>
-    <!-- Alert dialog button to continue with exporting sms after seeing the lack of storage warning -->
-    <string name="ExportingSmsMessagesFragment__continue_anyway">متابعة على أي حال</string>
-    <!-- Dialog text shown when Signal isn\'t granted the sms permission needed to export messages, different than being selected as the sms app -->
-    <string name="ExportingSmsMessagesFragment__signal_needs_the_sms_permission_to_be_able_to_export_your_sms_messages">يَحتاج سيجنال إلى إذن رسائل SMS من أجل استيراد رسائل SMS الخاصة بك.</string>
-
-    <!-- ChooseANewDefaultSmsAppFragment -->
-    <!-- Title of the screen -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_a_new">اختر تطبيق رسائل قصيرة افتراضي جديد</string>
-    <!-- Button label to launch picker -->
-    <string name="ChooseANewDefaultSmsAppFragment__continue">واصل</string>
-    <!-- Button label for when done with changing default SMS app -->
-    <string name="ChooseANewDefaultSmsAppFragment__done">تمّ</string>
     <!-- First step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_1">1</string>
     <!-- Second step number/bullet for choose new default sms app instructions -->
@@ -6360,47 +6514,6 @@
     <string name="ChooseANewDefaultSmsAppFragment__bullet_3">3</string>
     <!-- Fourth step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_4">4</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">انقر \"متابعة\" لفتح شاشة \"التطبيقات الافتراضية\" في الإعدادات</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">حدّد \"تطبيق رسائل SMS\" من القائمة</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">اِختر تطبيقًا آخر لاستخدامه في رسائل SMS</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">الرجوع إلى سيجنال</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">اِفتح تطبيق \"الإعدادات\" على هاتفك</string>
-    <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">اِنتقل إلى \"التطبيقات\" &gt; \"التطبيقات الافتراضية\" &gt; \"تطبيق رسائل SMS\"</string>
-
-    <!-- RemoveSmsMessagesDialogFragment -->
-    <!-- Action button to keep messages -->
-    <string name="RemoveSmsMessagesDialogFragment__keep_messages">احتفظ بالرسائل</string>
-    <!-- Action button to remove messages -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_messages">إزالة الرسائل</string>
-    <!-- Title of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">إزالة الرسائل القصيرة من سيجنال؟</string>
-    <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">يُمكنك الآن إزالة رسائل SMS من سيجنال لإخلاء مساحة التخزين. لكنها سَتظل مُتاحة لتطبيقات رسائل SMS الأخرى على هاتفك حتى إذا قمت بإزالتها.</string>
-
-    <!-- ReExportSmsMessagesDialogFragment -->
-    <!-- Action button to re-export messages -->
-    <string name="ReExportSmsMessagesDialogFragment__continue">واصل</string>
-    <!-- Action button to cancel re-export process -->
-    <string name="ReExportSmsMessagesDialogFragment__cancel">إلغاء</string>
-    <!-- Title of dialog -->
-    <string name="ReExportSmsMessagesDialogFragment__export_sms_again">التصدير مرة أخرى؟</string>
-    <!-- Message of dialog -->
-    <string name="ReExportSmsMessagesDialogFragment__you_already_exported_your_sms_messages">لقد قُمت بتصدير رسائل SMS الخاصة بك مسبقًا.\nتحذير: إذا قمت بالمتابعة فقد تجد رسائل مُكررة.</string>
-
-    <!-- SetSignalAsDefaultSmsAppFragment -->
-    <!-- Title of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">عيّن سيجنال التطبيق الافتراضي لِرسائل SMS</string>
-    <!-- Message of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">لتصدير رسائل SMS الخاصة بك، تحتاج إلى تعيين سيجنال كتطبيق رسائل SMS الافتراضي.</string>
-    <!-- Button label to start export -->
-    <string name="SetSignalAsDefaultSmsAppFragment__next">التالي</string>
-
     <!-- BackupSchedulePermission Megaphone -->
     <!-- The title on an alert window that explains to the user that we are unable to backup their messages -->
     <string name="BackupSchedulePermissionMegaphone__cant_back_up_chats">تعذّر النسخ الاحتياطي للدردشات</string>
@@ -6419,49 +6532,6 @@
     <!-- Re-enable backups permission bottom sheet call to action button to open settings -->
     <string name="BackupSchedulePermissionMegaphone__go_to_settings">الانتقال إلى الإعدادات</string>
 
-    <!-- SmsExportMegaphoneActivity -->
-    <!-- Phase 2 title of full screen megaphone indicating sms will no longer be supported in the near future -->
-    <string name="SmsExportMegaphoneActivity__signal_will_no_longer_support_sms">لن يدعم سيجنال رسائل SMS بعد الآن</string>
-    <!-- Phase 3 title of full screen megaphone indicating sms is longer supported  -->
-    <string name="SmsExportMegaphoneActivity__signal_no_longer_supports_sms">لم يعد يدعم سيجنال رسائل SMS</string>
-    <!-- The text on a button in a popup that, when clicked, will dismiss the popup and schedule the prompt to occur at a later time. -->
-    <string name="SmsExportMegaphoneActivity__remind_me_later">ذكرني لاحقاً</string>
-    <!-- The text on a button in a popup that, when clicked, will navigate the user to a web article on SMS removal -->
-
-    <!-- Title for screen shown after sms export has completed -->
-    <string name="ExportSmsCompleteFragment__export_complete">اِكتمل التصدير</string>
-    <!-- Button to continue to next screen -->
-    <string name="ExportSmsCompleteFragment__next">التالي</string>
-    <!-- Message showing summary of sms export counts -->
-    <plurals name="ExportSmsCompleteFragment__d_of_d_messages_exported">
-        <item quantity="zero">تم تصدير %1$d رسالة من أصل %2$d</item>
-        <item quantity="one">تم تصدير %1$d رسالة من أصل %2$d</item>
-        <item quantity="two">تم تصدير %1$d رسالة من أصل %2$d</item>
-        <item quantity="few">تم تصدير %1$d رسائل من أصل %2$d</item>
-        <item quantity="many">تم تصدير %1$d رسالة من أصل %2$d</item>
-        <item quantity="other">تم تصدير %1$d رسالة من أصل %2$d</item>
-    </plurals>
-
-    <!-- Title of screen shown when some sms messages did not export -->
-    <string name="ExportSmsPartiallyComplete__export_partially_complete">اكتملت عملية التصدير جزئيًا</string>
-    <!-- Debug step 1 on screen shown when some sms messages did not export -->
-    <string name="ExportSmsPartiallyComplete__ensure_you_have_an_additional_s_free_on_your_phone_to_export_your_messages">يُرجى التأكد من توفرك على %1$s فارغة إضافية على هاتفك لتصدير رسائلك</string>
-    <!-- Debug step 2 on screen shown when some sms messages dit not export -->
-    <string name="ExportSmsPartiallyComplete__retry_export_which_will_only_retry_messages_that_have_not_yet_been_exported">إعادة محولة التصدير تخُص الرسائل التي لم يتم تصديرها بعد</string>
-    <!-- Partial sentence for Debug step 3 on screen shown when some sms messages did not export, is combined with \'contact us\' -->
-    <string name="ExportSmsPartiallyComplete__if_the_problem_persists">إذا بقيت المشكلة قائمة، </string>
-    <!-- Partial sentence for deubg step 3 on screen shown when some sms messages did not export, combined with \'If the problem persists\', link text to open contact support view -->
-    <string name="ExportSmsPartiallyComplete__contact_us">تواصل معنا</string>
-    <!-- Button text to retry sms export -->
-    <string name="ExportSmsPartiallyComplete__retry">إعادة المُحاولة</string>
-    <!-- Button text to continue sms export flow and not retry failed message exports -->
-    <string name="ExportSmsPartiallyComplete__continue_anyway">متابعة على أي حال</string>
-    <!-- Title of screen shown when all sms messages failed to export -->
-    <string name="ExportSmsFullError__error_exporting_sms_messages">تعذّر تصدير رسائل SMS</string>
-    <!-- Helper text shown when all sms messages failed to export -->
-    <string name="ExportSmsFullError__please_try_again_if_the_problem_persists">يُرجى إعادة المُحاولة. إذا بقيت المشكلة قائمة، </string>
-
-
     <!-- DonateToSignalFragment -->
     <!-- Title below avatar -->
     <string name="DonateToSignalFragment__privacy_over_profit">الخصوصية على حساب الربح</string>
@@ -6472,9 +6542,9 @@
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
     <string name="DonateToSignalFragment__you_have_a_donation_pending">لديك تبرّع مُعلق</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">عادة ما تستغرق التحويلات المصرفية يوم عمل واحد للمعالجة. يُرجى الانتظار حتى اكتمال عملية الدفع هذه قبل تحديث اشتراكك.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Bank transfers can take 1 to 14 business days to process. Please wait until this payment completes before updating your subscription.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">عادة ما تستغرق التحويلات المصرفية يوم عمل واحد للمعالجة. يُرجى الانتظار حتى اكتمال عملية الدفع هذه قبل التبرّع مرة أخرى.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Bank transfers can take 1 to 14 business days to process. Please wait until this payment completes before making another donation.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
     <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">لا يزال تبرعك قيد المعالجة. قد يستغرق الأمر بضع دقائق حسب اتصال شبكتك. يُرجى الانتظار حتى اكتمال عملية الدفع هذه قبل تحديث اشتراكك.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
@@ -6607,6 +6677,12 @@
     <string name="IdealTransferDetailsFragment__email">البريد الإلكتروني</string>
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">اختر مصرفك</string>
+    <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">تأكيد التبرّع عبر %1$s</string>
+    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
+    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">لإعداد تبرّعك المُتكرر، انقر على مواصلة لتأكيد خصم €0,01 مع بنكك. سَيتم استرداد هذه القيمة تلقائيًا وسيسمح هذا بخصم تبرّعك بقيمة €5/الشهر من حسابك.</string>
+    <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
+    <string name="IdealTransferDetailsFragment__continue">مواصلة</string>
 
     <!-- IdealTransferDetailsBankSelectionDialogFragment -->
     <!-- Title of the screen, displayed in the toolbar -->
@@ -6624,7 +6700,7 @@
     <!-- Top text block of donation pending sheet displayed after one-time donation via a bank transfer. Placeholder is the badge name. -->
     <string name="DonationPendingBottomSheet__your_one_time_donation_is_pending">تبرّعك لمرة واحدة معلّق. ستتمكّن من عرض شارتك %1$s على حسابك الشخصي فور التوصل بتبرّعك.</string>
     <!-- Bottom text block of donation pending sheet displayed after donating via a bank transfer. Placeholder is for learn more. -->
-    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">عادة ما تستغرق التحويلات المصرفية يوم عمل واحد للمعالجة. %1$s</string>
+    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Bank transfers can take 1 to 14 business days to process. %1$s</string>
     <!-- Learn more text for donation pending sheet displayed after donating via a bank transfer. -->
     <string name="DonationPendingBottomSheet__learn_more">معرفة المزيد</string>
     <!-- Confirmation button for donation pending sheet displayed after donating via a bank transfer. -->
@@ -6714,28 +6790,24 @@
     <!-- Displayed in the "clear filter" item in the chat feed if the user opened the filter from the overflow menu -->
     <string name="ChatFilter__tip_pull_down">نصيحة: اِسحب الدردشة للأسفل للفلترة</string>
 
-    <!-- Title for screen describing that sms support is going to be removed soon -->
-    <string name="SmsRemoval_title_going_away">سَيختفي دعم SMS</string>
-    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
-    <string name="SmsRemoval_info_bullet_1">سَيتوقف دعم رسائل SMS في تطبيق Signal قريبًا.</string>
-    <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_2">تختلف رسائل SMS عن رسائل سيجنال. <b>لا يُؤثر هذا على رسائل سيجنال المُشفرة التي ستستمر في العمل.</b></string>
-    <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_3">يُمكنك تصدير رسائل SMS الخاصة بك واختيار تطبيق SMS جديد.</string>
-    <!-- Bullet point message shown on describing screen as first bullet variant why sms is being removed when user is locked out of sms -->
-    <string name="SmsRemoval_info_bullet_1_phase_3">أزال تطبيق سيجنال دعم إرسال رسائل SMS.</string>
-    <!-- Button label on sms removal info/megaphone to start the export SMS flow -->
-    <string name="SmsRemoval_export_sms">تصدير SMS</string>
-
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__set_up_your_signal_username">إعداد اِسمُ المُستخدِم الخاص بك على سيجنال</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">تسمح أسماء المُستخدمين للآخرين بمراسلتك دون الحاجة إلى رقم هاتفك</string>
+    <string name="SetUpYourUsername__introducing_phone_number_privacy">نُقدم لكم خصوصية رقم الهاتف وأسماء المستخدمين الاختيارية والروابط.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__not_now">ليس الآن</string>
+    <string name="SetUpYourUsername__dismiss">تجاهُل</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__continue">مواصلة</string>
+    <string name="SetUpYourUsername__learn_more">معرفة المزيد</string>
+
+    <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
+    <string name="PnpLaunchMegaphone_title">طرق جديدة للاتصال</string>
+    <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
+    <string name="PnpLaunchMegaphone_body">نُقدم لكم خصوصية رقم الهاتف وأسماء المستخدمين الاختيارية والروابط.</string>
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
+    <string name="PnpLaunchMegaphone_dismiss">تجاهُل</string>
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
+    <string name="PnpLaunchMegaphone_learn_more">معرفة المزيد</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -6750,18 +6822,6 @@
     <string name="TextFormatting_spoiler">تنسيق نص سبويلر</string>
     <!-- Popup menu label for clearing applied formatting -->
     <string name="TextFormatting_clear_formatting">محو التنسيق</string>
-
-    <!-- UsernameEducationFragment -->
-    <!-- Continue button which takes the user to the add a username screen -->
-    <string name="UsernameEducationFragment__continue">مواصلة</string>
-    <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">إعداد اِسمُ المُستخدِم الخاص بك على سيجنال</string>
-    <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__usernames_are_paired_with_a_set_of_digits">يتم إقران أسماء المُستخدمين بمجموعة من الأرقام ولا تتم مُشاركتها في حسابك الشخصي</string>
-    <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">لِكل اسم مستخدم رمز مربع ورابط فريدين يُمكنك مُشاركتُهما مع أصدقائك لكي يبدؤوا الدردشة معك</string>
-    <!-- Displayed as body text in the username education screen. The string references the names of settings, so they should match our translations for those settings. -->
-    <string name="UsernameEducationFragment__turn_off_phone_number_discovery">عطّل اكتشاف رقم الهاتف ضمن الإعدادات &gt; الخصوصية &gt; رقم الهاتف &gt; من يُمكنه العثور على رقمي، لاستخدام اسم المُستخدم الخاص بك كالطريقة الأساسية التي يُمكن للآخرين استخدامُها للاتصال بك</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
@@ -6788,6 +6848,8 @@
     <string name="CallLogAdapter__outgoing">صادرة</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">فائتة</string>
+    <!-- Displayed for missed calls declined by notification profile -->
+    <string name="CallLogAdapter__missed_notification_profile">فائتة عند تشغيل الحساب الشخصي للإشعارات</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">انضم</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -6907,6 +6969,8 @@
     <string name="CallPreference__group_call">المكالمة الجماعية</string>
     <!-- Missed group call in call info -->
     <string name="CallPreference__missed_group_call">مكالمة جماعية فائتة</string>
+    <!-- Missed group call while notification profile on in call info -->
+    <string name="CallPreference__missed_group_call_notification_profile">اتصال جماعي فائت أثناء تشغيل الحساب الشخصي للإشعار</string>
     <!-- Incoming group call in call info -->
     <string name="CallPreference__incoming_group_call">مكالمة جماعية واردة</string>
     <!-- Outgoing group call in call info -->
@@ -6993,6 +7057,8 @@
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
     <string name="CallLinkDetailsFragment__call_details">تفاصيل المكالمة</string>
+    <!-- Displayed in a text row, allowing the user to click and edit a call name -->
+    <string name="CallLinkDetailsFragment__edit_call_name">تعديل اسم المكالمة</string>
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
     <string name="CallLinkDetailsFragment__add_call_name">إضافة اسم المكالمة</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
@@ -7008,14 +7074,16 @@
     <!-- Displayed as body in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">لن يشتغل هذا الرابط لأي أحد يتحصّل عليه.</string>
 
+    <!-- Button label for the link button in the username link settings -->
+    <string name="UsernameLinkSettings_link_button_label">الرابط</string>
     <!-- Button label for the share button in the username link settings -->
     <string name="UsernameLinkSettings_share_button_label">شارك</string>
     <!-- Button label for the color selector button in the username link settings -->
     <string name="UsernameLinkSettings_color_button_label">اللون</string>
     <!-- Description text for QR code and links in the username link settings -->
-    <string name="UsernameLinkSettings_qr_description">لا تُشارك الرمز المربع الخاص بك والرابط إلاّ مع الأشخاص الذين تثق بهم. عند المشاركة، سيتمكن الآخرون من رؤية اسم المستخدم الخاص بك وبدء محادثة معك.</string>
+    <string name="UsernameLinkSettings_qr_description">لا تُشارك الرمز المربع الخاص بك والرابط إلاّ مع الأشخاص الذين تثق بهم. عند المشاركة، سيتمكن الآخرون من رؤية اسم المُستخدم الخاص بك وبدء محادثة معك.</string>
     <!-- Content of a toast that will show after the username is copied to the clipboard -->
-    <string name="UsernameLinkSettings_username_copied_toast">تم نسخ اسم المستخدم</string>
+    <string name="UsernameLinkSettings_username_copied_toast">تم نسخ اسم المُستخدم</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">نُسخَ الرابط</string>
     <!-- Content of a text field that is shown when the user has not yet set a username link -->
@@ -7043,7 +7111,7 @@
     <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
     <string name="UsernameLinkSettings_qr_result_invalid">رمز الاستجابة السريع غير صالح.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
-    <string name="UsernameLinkSettings_qr_result_not_found">تعذّر العثور على مستخدم باسم المستخدم %1$s.</string>
+    <string name="UsernameLinkSettings_qr_result_not_found">تعذّر العثور على مُستخدم باسم المُستخدم %1$s.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
     <string name="UsernameLinkSettings_qr_result_not_found_no_username">تعذّر العثور على هذا المستخدم.</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
@@ -7052,9 +7120,19 @@
     <string name="UsernameLinkSettings_reset_link_result_network_unavailable">ليس لديك وصول إلى الشبكة. لم يتم إعادة تعيين رابطك. يُرجى المحاولة مرة أخرى لاحقًا.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">لقد حدث خطأ في الشبكة أثناء محاولة إعادة تعيين رابطك. يُرجى المحاولة مرة أخرى لاحقًا.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">لقد حدث خطأ ما أثناء محاولة إعادة تعيين رابطك. يُرجى المحاولة مرة أخرى لاحقًا.</string>
+    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
+    <string name="UsernameLinkSettings_reset_link_result_success">تمت إعادة تعيين رمز ورابط الاستجابة السريعة وتم إنشاء رمز ورابط الاستجابة السريعة جديدين.</string>
+    <!-- Shown on the generated username qr code image to explain how to use it. -->
+    <string name="UsernameLinkSettings_scan_this_qr_code">امسح رمز الاستجابة السريعة هذا باستخدام هاتفك للدردشة معي على سيجنال.</string>
+    <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_qr_code_not_found">QR code not found</string>
+    <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
+    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Try scanning another image containing a Signal QR code.</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
-    <string name="UsernameLinkShareBottomSheet_title">يُمكن لأي شخص يتوفر على هذا الرابط رؤية اسم المستخدم الخاص بك وبدء محادثة جديدة معك. شاركه مع من تثق فقط.</string>
+    <string name="UsernameLinkShareBottomSheet_title">يُمكن لأي شخص يتوفر على هذا الرابط رؤية اسم المُستخدم الخاص بك وبدء محادثة جديدة معك. شاركه مع من تثق فقط.</string>
     <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
     <string name="UsernameLinkShareBottomSheet_copy_link">نسخ الرابط</string>
     <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
@@ -7096,6 +7174,8 @@
     <string name="GrantFullScreenIntentPermission_megaphone_body">لا تفوّت مكالمة أبدًا من جهات اتصالك أو مجموعاتك.</string>
     <!-- Button on the megaphone megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls that starts the fix process -->
     <string name="GrantFullScreenIntentPermission_megaphone_turn_on">شغّل</string>
+    <!-- Button on the megaphone shown at the bottom of the chatlist when a user has disabled the system setting for showing full screen notifications used showing incoming calls that dismisses the megaphone -->
+    <string name="GrantFullScreenIntentPermission_megaphone_not_now">ليس الآن</string>
     <!-- Title of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
     <string name="GrantFullScreenIntentPermission_bottomsheet_title">تفعيل إشعارات ملء الشاشة</string>
     <!-- Subtitle of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
@@ -7113,6 +7193,46 @@
     <string name="MonthlyDonationCanceled__renew_button">إعادة الاشتراك</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, second button to dismiss the dialog entirely -->
     <string name="MonthlyDonationCanceled__not_now_button">ليس الآن</string>
+
+    <!-- FindByActivity -->
+    <!-- Title of activity when finding by username -->
+    <string name="FindByActivity__find_by_username">العثور عبر اسم المُستخدم</string>
+    <!-- Title of activity when finding by phone number -->
+    <string name="FindByActivity__find_by_phone_number">العثور عبر رقم الهاتف</string>
+    <!-- Title of screen to select a country code -->
+    <string name="FindByActivity__select_country_code">اختر رمز الدولة</string>
+    <!-- Entry placeholder for find by username -->
+    <string name="FindByActivity__username">اسم المُستخدم</string>
+    <!-- Entry placeholder for find by phone number -->
+    <string name="FindByActivity__phone_number">رقم الهاتف</string>
+    <!-- Help text under user entry for find by username -->
+    <string name="FindByActivity__enter_username_description">أدخل اسم مستخدم متبوعًا بنقطة ومجموعة من الأرقام الخاصة به.</string>
+    <!-- Content description for next action button -->
+    <string name="FindByActivity__next">التالي</string>
+    <!-- Placeholder text for search input for selecting country code -->
+    <string name="FindByActivity__search">بحث</string>
+    <!-- Dialog title for invalid username -->
+    <string name="FindByActivity__invalid_username">اسم مُستخدم غير صالح</string>
+    <!-- Dialog title for invalid phone number -->
+    <string name="FindByActivity__invalid_phone_number">رقم الهاتف خاطئ</string>
+    <!-- Dialog title when phone number is not a registered signal user -->
+    <string name="FindByActivity__invite_to_signal">ادعُ إلى سيجنال</string>
+    <!-- Dialog title when username is not found -->
+    <string name="FindByActivity__username_not_found">لم يتم العثور على اسم المُستخدم</string>
+    <!-- Dialog body for invalid username. Placeholder is the entered username. -->
+    <string name="FindByActivity__s_is_not_a_valid_username">%1$s ليس اسم مُستخدم صالح. تأكد من أنك أدخلت اسم المُستخدم كاملاً متبوعًا بمجموعة الأرقام الخاصة به.</string>
+    <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
+    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s ليس رقم هاتف صحيح. أعد المحاولة مرة أخرى باستخدام رقم هاتف صحيح</string>
+    <!-- Dialog body for not found username -->
+    <string name="FindByActivity__s_is_not_a_signal_user">\"%1$s\" ليس مُستخدم لسيجنال. يرجى التحقق من اسم المُستخدم والمحاولة ثانية.</string>
+    <!-- Dialog body for not found phone number -->
+    <string name="FindByActivity__s_is_not_a_signal_user_would">لم يعُد %1$s من مستخدمي سيجنال. هل تريد دعوة هذا الرقم؟</string>
+    <!-- Dialog action to invite the phone number to Signal -->
+    <string name="FindByActivity__invite">أرسل دعوة</string>
+    <!-- Button label for a button that will launch a camera to scan a username QR code -->
+    <string name="FindByActivity__qr_scan_button">تصوير الرمز المربع</string>
+    <!-- Content of a dialog indicating that we could not perform the requested action because we encountered a network error. -->
+    <string name="FindByActivity__network_error_dialog">حدث خطأ في الشبكة. يُرجى المحاولة مرة أخرى لاحقا.</string>
 
     <!-- EOF -->
 </resources>

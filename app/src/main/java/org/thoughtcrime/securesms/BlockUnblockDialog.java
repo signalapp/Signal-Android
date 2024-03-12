@@ -11,16 +11,36 @@ import androidx.lifecycle.Lifecycle;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
-import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.recipients.Recipient;
 import org.signal.core.util.concurrent.SimpleTask;
+import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
+import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.database.model.GroupRecord;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
+import org.whispersystems.signalservice.api.push.ServiceId;
+
+import java.util.List;
+import java.util.Optional;
+
+import okio.ByteString;
 
 /**
  * This should be used whenever we want to prompt the user to block/unblock a recipient.
  */
 public final class BlockUnblockDialog {
 
-  private BlockUnblockDialog() { }
+  private BlockUnblockDialog() {}
+
+  public static void showReportSpamFor(@NonNull Context context,
+                                       @NonNull Lifecycle lifecycle,
+                                       @NonNull Recipient recipient,
+                                       @NonNull Runnable onReportSpam,
+                                       @Nullable Runnable onBlockAndReportSpam)
+  {
+    SimpleTask.run(lifecycle,
+                   () -> buildReportSpamFor(context, recipient, onReportSpam, onBlockAndReportSpam),
+                   AlertDialog.Builder::show);
+  }
 
   public static void showBlockFor(@NonNull Context context,
                                   @NonNull Lifecycle lifecycle,
@@ -133,6 +153,39 @@ public final class BlockUnblockDialog {
                                                   : R.string.BlockUnblockDialog_you_will_be_able_to_message_each_other);
       builder.setPositiveButton(R.string.RecipientPreferenceActivity_unblock, ((dialog, which) -> onUnblock.run()));
       builder.setNegativeButton(android.R.string.cancel, null);
+    }
+
+    return builder;
+  }
+
+  @WorkerThread
+  private static AlertDialog.Builder buildReportSpamFor(@NonNull Context context,
+                                                        @NonNull Recipient recipient,
+                                                        @NonNull Runnable onReportSpam,
+                                                        @Nullable Runnable onBlockAndReportSpam)
+  {
+    recipient = recipient.resolve();
+
+    AlertDialog.Builder builder = new MaterialAlertDialogBuilder(context)
+        .setTitle(R.string.BlockUnblockDialog_report_spam_title)
+        .setPositiveButton(R.string.BlockUnblockDialog_report_spam, (d, w) -> onReportSpam.run());
+
+    if (onBlockAndReportSpam != null) {
+      builder.setNeutralButton(android.R.string.cancel, null)
+             .setNegativeButton(R.string.BlockUnblockDialog_report_spam_and_block, (d, w) -> onBlockAndReportSpam.run());
+    } else {
+      builder.setNegativeButton(android.R.string.cancel, null);
+    }
+
+    if (recipient.isGroup()) {
+      Recipient adder = SignalDatabase.groups().getGroupInviter(recipient.requireGroupId());
+      if (adder != null) {
+        builder.setMessage(context.getString(R.string.BlockUnblockDialog_report_spam_group_named_adder, adder.getDisplayName(context)));
+      } else {
+        builder.setMessage(R.string.BlockUnblockDialog_report_spam_group_unknown_adder);
+      }
+    } else {
+      builder.setMessage(R.string.BlockUnblockDialog_report_spam_description);
     }
 
     return builder;

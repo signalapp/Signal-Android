@@ -5,9 +5,9 @@
 
 package org.thoughtcrime.securesms.backup.v2.database
 
-import org.signal.core.util.delete
+import org.signal.core.util.deleteAll
 import org.thoughtcrime.securesms.database.AttachmentTable
 
 fun AttachmentTable.clearAllDataForBackupRestore() {
-  writableDatabase.delete(AttachmentTable.TABLE_NAME).run()
+  writableDatabase.deleteAll(AttachmentTable.TABLE_NAME)
 }

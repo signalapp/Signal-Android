@@ -14,7 +14,6 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.databinding.WhoCanFindMeByPhoneNumberFragmentBinding
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 
 /**
@@ -38,8 +37,6 @@ class WhoCanFindMeByPhoneNumberFragment : DSLSettingsFragment(
   private val binding by ViewBinderDelegate(WhoCanFindMeByPhoneNumberFragmentBinding::bind)
 
   override fun bindAdapter(adapter: MappingAdapter) {
-    require(FeatureFlags.phoneNumberPrivacy())
-
     lifecycleDisposable += viewModel.state.subscribe {
       adapter.submitList(getConfiguration(it).toMappingModelList())
     }
@@ -70,8 +67,8 @@ class WhoCanFindMeByPhoneNumberFragment : DSLSettingsFragment(
       textPref(
         title = DSLSettingsText.from(
           when (state) {
-            WhoCanFindMeByPhoneNumberState.EVERYONE -> R.string.WhoCanSeeMyPhoneNumberFragment__anyone_who_has
-            WhoCanFindMeByPhoneNumberState.NOBODY -> R.string.WhoCanSeeMyPhoneNumberFragment__nobody_on_signal
+            WhoCanFindMeByPhoneNumberState.EVERYONE -> R.string.WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your
+            WhoCanFindMeByPhoneNumberState.NOBODY -> R.string.WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able
           },
           DSLSettingsText.TextAppearanceModifier(R.style.Signal_Text_BodyMedium),
           DSLSettingsText.ColorModifier(ContextCompat.getColor(requireContext(), R.color.signal_colorOnSurfaceVariant))

@@ -14,7 +14,7 @@ public class PartUriParser {
   }
 
   public AttachmentId getPartId() {
-    return new AttachmentId(getId(), getUniqueId());
+    return new AttachmentId(getId());
   }
 
   private long getId() {

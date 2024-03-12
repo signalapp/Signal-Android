@@ -6,23 +6,31 @@
     android:layout_height="wrap_content"
     android:background="@drawable/conversation_item_background"
     android:focusable="true"
-    android:minHeight="@dimen/contact_selection_item_height"
-    android:paddingStart="@dimen/dsl_settings_gutter"
-    android:paddingEnd="@dimen/dsl_settings_gutter"
     tools:viewBindingIgnore="true">
+
+    <include
+        android:id="@+id/contact_header"
+        layout="@layout/dsl_section_header"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/contact_photo_image"
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:layout_marginVertical="12dp"
+        android:layout_marginStart="@dimen/core_ui__gutter"
         android:background="@color/signal_colorSurfaceVariant"
         android:importantForAccessibility="no"
         app:contentPadding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/contact_header"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Signal.Circle"
-        app:srcCompat="@drawable/ic_search_24"
+        app:srcCompat="@drawable/symbol_search_24"
         app:tint="@color/signal_colorOnSecondaryContainer"
         tools:ignore="UnusedAttribute" />
 
@@ -30,13 +38,14 @@
         android:id="@+id/check_box"
         android:layout_width="24dp"
         android:layout_height="24dp"
+        android:layout_marginEnd="@dimen/core_ui__gutter"
         android:background="?contactCheckboxBackground"
         android:button="@null"
         android:clickable="false"
         android:focusable="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/contact_header" />
 
     <org.thoughtcrime.securesms.components.FromTextView
         android:id="@+id/name"
@@ -53,8 +62,9 @@
         app:layout_constraintBottom_toTopOf="@id/number"
         app:layout_constraintEnd_toStartOf="@id/check_box"
         app:layout_constraintStart_toEndOf="@id/contact_photo_image"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/contact_header"
         app:layout_constraintVertical_chainStyle="packed"
+        app:layout_goneMarginEnd="@dimen/core_ui__gutter"
         tools:drawableStart="@drawable/ic_bell_24"
         tools:drawableTint="@color/signal_icon_tint_secondary"
         tools:text="@sample/contacts.json/data/name" />
@@ -77,6 +87,7 @@
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toEndOf="@id/contact_photo_image"
         app:layout_constraintTop_toBottomOf="@id/name"
+        app:layout_goneMarginEnd="@dimen/core_ui__gutter"
         tools:text="@sample/contacts.json/data/number" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
