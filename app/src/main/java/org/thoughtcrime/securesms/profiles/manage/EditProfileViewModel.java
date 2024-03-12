@@ -24,8 +24,8 @@ import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
 import org.thoughtcrime.securesms.util.DefaultValueLiveData;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.whispersystems.signalservice.api.util.StreamDetails;
 
@@ -105,6 +105,14 @@ class EditProfileViewModel extends ViewModel {
 
   public Single<UsernameRepository.UsernameDeleteResult> deleteUsername() {
     return UsernameRepository.deleteUsernameAndLink().observeOn(AndroidSchedulers.mainThread());
+  }
+
+  public boolean isRegisteredAndUpToDate() {
+    return !TextSecurePreferences.isUnauthorizedReceived(ApplicationDependencies.getApplication()) && SignalStore.account().isRegistered() && !SignalStore.misc().isClientDeprecated();
+  }
+
+  public boolean isDeprecated() {
+    return SignalStore.misc().isClientDeprecated();
   }
 
   public void onAvatarSelected(@NonNull Context context, @Nullable Media media) {

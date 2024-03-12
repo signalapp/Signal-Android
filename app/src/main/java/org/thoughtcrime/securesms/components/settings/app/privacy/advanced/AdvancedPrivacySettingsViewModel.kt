@@ -38,25 +38,6 @@ class AdvancedPrivacySettingsViewModel(
     )
   }
 
-  fun disablePushMessages() {
-    store.update { getState().copy(showProgressSpinner = true) }
-
-    repository.disablePushMessages {
-      when (it) {
-        AdvancedPrivacySettingsRepository.DisablePushMessagesResult.SUCCESS -> {
-          SignalStore.account().setRegistered(false)
-          SignalStore.registrationValues().clearRegistrationComplete()
-          SignalStore.registrationValues().clearHasUploadedProfile()
-        }
-        AdvancedPrivacySettingsRepository.DisablePushMessagesResult.NETWORK_ERROR -> {
-          singleEvents.postValue(Event.DISABLE_PUSH_FAILED)
-        }
-      }
-
-      store.update { getState().copy(showProgressSpinner = false) }
-    }
-  }
-
   fun setAlwaysRelayCalls(enabled: Boolean) {
     sharedPreferences.edit().putBoolean(TextSecurePreferences.ALWAYS_RELAY_CALLS_PREF, enabled).apply()
     refresh()
