@@ -234,15 +234,24 @@ final class GroupsV2UpdateMessageProducer {
     }
   }
   private void describeGroupExpirationTimerUpdate(@NonNull GroupExpirationTimerUpdate update, @NonNull List<UpdateDescription> updates) {
-    String time = ExpirationUtil.getExpirationDisplayValue(context, update.expiresInMs / 1000);
+    final int duration = update.expiresInMs / 1000;
+    String time = ExpirationUtil.getExpirationDisplayValue(context, duration);
     if (update.updaterAci == null) {
       updates.add(updateDescription(context.getString(R.string.MessageRecord_disappearing_message_time_set_to_s, time), R.drawable.ic_update_timer_16));
     } else {
       boolean editorIsYou = selfIds.matches(update.updaterAci);
-      if (editorIsYou) {
-        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_set_disappearing_message_time_to_s, time), R.drawable.ic_update_timer_16));
+      if (duration <= 0) {
+        if (editorIsYou) {
+          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_disabled_disappearing_messages), R.drawable.ic_update_timer_16));
+        } else {
+          updates.add(updateDescription(R.string.MessageRecord_s_disabled_disappearing_messages, update.updaterAci, R.drawable.ic_update_timer_16));
+        }
       } else {
-        updates.add(updateDescription(R.string.MessageRecord_s_set_disappearing_message_time_to_s, update.updaterAci, time, R.drawable.ic_update_timer_16));
+        if (editorIsYou) {
+          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_set_disappearing_message_time_to_s, time), R.drawable.ic_update_timer_16));
+        } else {
+          updates.add(updateDescription(R.string.MessageRecord_s_set_disappearing_message_time_to_s, update.updaterAci, time, R.drawable.ic_update_timer_16));
+        }
       }
     }
   }
@@ -1140,11 +1149,20 @@ final class GroupsV2UpdateMessageProducer {
     boolean editorIsYou = selfIds.matches(change.editorServiceIdBytes);
 
     if (change.newTimer != null) {
-      String time = ExpirationUtil.getExpirationDisplayValue(context, change.newTimer.duration);
-      if (editorIsYou) {
-        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_set_disappearing_message_time_to_s, time), R.drawable.ic_update_timer_16));
+      final int duration = change.newTimer.duration;
+      if (duration <= 0) {
+        if (editorIsYou) {
+          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_disabled_disappearing_messages), R.drawable.ic_update_timer_16));
+        } else {
+          updates.add(updateDescription(R.string.MessageRecord_s_disabled_disappearing_messages, change.editorServiceIdBytes, R.drawable.ic_update_timer_16));
+        }
       } else {
-        updates.add(updateDescription(R.string.MessageRecord_s_set_disappearing_message_time_to_s, change.editorServiceIdBytes, time, R.drawable.ic_update_timer_16));
+        String time = ExpirationUtil.getExpirationDisplayValue(context, duration);
+        if (editorIsYou) {
+          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_set_disappearing_message_time_to_s, time), R.drawable.ic_update_timer_16));
+        } else {
+          updates.add(updateDescription(R.string.MessageRecord_s_set_disappearing_message_time_to_s, change.editorServiceIdBytes, time, R.drawable.ic_update_timer_16));
+        }
       }
     }
   }
