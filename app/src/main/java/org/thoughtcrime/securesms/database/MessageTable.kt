@@ -23,7 +23,6 @@ import android.text.SpannableString
 import android.text.TextUtils
 import androidx.annotation.VisibleForTesting
 import androidx.core.content.contentValuesOf
-import com.google.android.mms.pdu_alt.PduHeaders
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -305,7 +304,6 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       READ,
       MMS_CONTENT_LOCATION,
       MMS_EXPIRY,
-      MMS_MESSAGE_TYPE,
       MMS_MESSAGE_SIZE,
       MMS_STATUS,
       MMS_TRANSACTION_ID,
@@ -2506,7 +2504,6 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       FROM_RECIPIENT_ID to retrieved.from.serialize(),
       TO_RECIPIENT_ID to Recipient.self().id.serialize(),
       TYPE to type,
-      MMS_MESSAGE_TYPE to PduHeaders.MESSAGE_TYPE_RETRIEVE_CONF,
       THREAD_ID to threadId,
       MMS_STATUS to MmsStatus.DOWNLOAD_INITIALIZED,
       DATE_RECEIVED to retrieved.receivedTimeMillis,
@@ -2675,17 +2672,6 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     threads.update(threadId, true)
 
     notifyConversationListeners(threadId)
-    TrimThreadJob.enqueueAsync(threadId)
-  }
-
-  fun markIncomingNotificationReceived(threadId: Long) {
-    notifyConversationListeners(threadId)
-
-    if (Util.isDefaultSmsProvider(context)) {
-      threads.incrementUnread(threadId, 1, 0)
-    }
-
-    threads.update(threadId, true)
     TrimThreadJob.enqueueAsync(threadId)
   }
 
@@ -2874,7 +2860,6 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
     val contentValues = ContentValues()
     contentValues.put(DATE_SENT, message.sentTimeMillis)
-    contentValues.put(MMS_MESSAGE_TYPE, PduHeaders.MESSAGE_TYPE_SEND_REQ)
     contentValues.put(TYPE, type)
     contentValues.put(THREAD_ID, threadId)
     contentValues.put(READ, 1)
@@ -4919,13 +4904,6 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     val insertedAttachments: Map<Attachment, AttachmentId>? = null
   )
 
-  data class MmsNotificationInfo(
-    val from: RecipientId,
-    val contentLocation: String,
-    val transactionId: String,
-    val subscriptionId: Int
-  )
-
   data class MessageReceiptUpdate(
     val threadId: Long,
     val messageId: MessageId,
@@ -5043,8 +5021,6 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     }
 
     override fun getCurrent(): MessageRecord {
-      val mmsType = cursor.requireLong(MMS_MESSAGE_TYPE)
-
       return getMediaMmsMessageRecord(cursor)
     }
 

@@ -467,7 +467,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
           is CallLogDeletionResult.FailedToRevoke -> {
             errorDialog = MaterialAlertDialogBuilder(requireContext())
               .setMessage(resources.getQuantityString(R.plurals.CallLogFragment__cant_delete_call_link, it.failedRevocations))
-              .setPositiveButton(R.string.ok, null)
+              .setPositiveButton(android.R.string.ok, null)
               .show()
           }
           CallLogDeletionResult.Success -> {

@@ -22,7 +22,6 @@ import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
 import org.thoughtcrime.securesms.jobs.IndividualSendJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob;
 import org.thoughtcrime.securesms.jobs.SendDeliveryReceiptJob;
-import org.thoughtcrime.securesms.jobs.SmsSendJob;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.JsonUtils;
@@ -271,40 +270,6 @@ public class RecipientIdJobMigrationTest {
     assertEquals(1, data.getLong("message_id"));
 
     new IndividualSendJob.Factory().create(mock(Job.Parameters.class), converted.getData());
-  }
-
-  @Test
-  public void migrate_smsSendJob_nonNull() throws Exception {
-    JobData testData = new JobData("SmsSendJob", "+16101234567", -1, -1, new JsonJobData.Builder().putLong("message_id", 1).putInt("run_attempt", 0).serialize());
-    mockRecipientResolve("+16101234567", 1);
-
-    RecipientIdJobMigration subject   = new RecipientIdJobMigration(mock(Application.class));
-    JobData                 converted = subject.migrate(testData);
-    JsonJobData             data      = JsonJobData.deserialize(converted.getData());
-
-    assertEquals("SmsSendJob", converted.getFactoryKey());
-    assertEquals(RecipientId.from(1).toQueueKey(), converted.getQueueKey());
-    assertEquals(1, data.getLong("message_id"));
-    assertEquals(0, data.getInt("run_attempt"));
-
-    new SmsSendJob.Factory().create(mock(Job.Parameters.class), converted.getData());
-  }
-
-  @Test
-  public void migrate_smsSendJob_null() throws Exception {
-    JobData testData = new JobData("SmsSendJob", null, -1, -1, new JsonJobData.Builder().putLong("message_id", 1).putInt("run_attempt", 0).serialize());
-    mockRecipientResolve("+16101234567", 1);
-
-    RecipientIdJobMigration subject   = new RecipientIdJobMigration(mock(Application.class));
-    JobData                 converted = subject.migrate(testData);
-    JsonJobData             data      = JsonJobData.deserialize(converted.getData());
-
-    assertEquals("SmsSendJob", converted.getFactoryKey());
-    assertNull(converted.getQueueKey());
-    assertEquals(1, data.getLong("message_id"));
-    assertEquals(0, data.getInt("run_attempt"));
-
-    new SmsSendJob.Factory().create(mock(Job.Parameters.class), converted.getData());
   }
 
   private void mockRecipientResolve(String address, long recipientId) {

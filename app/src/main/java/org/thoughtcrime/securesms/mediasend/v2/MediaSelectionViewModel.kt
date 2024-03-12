@@ -108,7 +108,7 @@ class MediaSelectionViewModel(
     store.update {
       it.copy(
         isMeteredConnection = metered,
-        isPreUploadEnabled = shouldPreUpload(metered, it.sendType.usesSmsTransport, it.recipient)
+        isPreUploadEnabled = shouldPreUpload(metered, it.recipient)
       )
     }
   }
@@ -121,7 +121,7 @@ class MediaSelectionViewModel(
       store.update(Recipient.live(recipientSearchKey.recipientId).liveData) { r, s ->
         s.copy(
           recipient = r,
-          isPreUploadEnabled = shouldPreUpload(s.isMeteredConnection, s.sendType.usesSmsTransport, r)
+          isPreUploadEnabled = shouldPreUpload(s.isMeteredConnection, r)
         )
       }
     }
@@ -320,11 +320,7 @@ class MediaSelectionViewModel(
   }
 
   fun getMediaConstraints(): MediaConstraints {
-    return if (store.state.sendType.usesSmsTransport) {
-      MediaConstraints.getMmsMediaConstraints(store.state.sendType.simSubscriptionId ?: -1)
-    } else {
-      MediaConstraints.getPushMediaConstraints()
-    }
+    return MediaConstraints.getPushMediaConstraints()
   }
 
   fun setSentMediaQuality(sentMediaQuality: SentMediaQuality) {
@@ -396,7 +392,6 @@ class MediaSelectionViewModel(
         stateMap = store.state.editorStateMap,
         quality = store.state.quality,
         message = store.state.message,
-        isSms = store.state.sendType.usesSmsTransport,
         isViewOnce = isViewOnceEnabled(),
         singleContact = destination.getRecipientSearchKey(),
         contacts = selectedContacts.ifEmpty { destination.getRecipientSearchKeyList() },
@@ -409,8 +404,7 @@ class MediaSelectionViewModel(
   }
 
   private fun isViewOnceEnabled(): Boolean {
-    return !store.state.sendType.usesSmsTransport &&
-      store.state.selectedMedia.size == 1 &&
+    return store.state.selectedMedia.size == 1 &&
       store.state.viewOnceToggleState == MediaSelectionState.ViewOnceToggleState.ONCE
   }
 
@@ -432,8 +426,8 @@ class MediaSelectionViewModel(
     repository.uploadRepository.cancelUpload(media)
   }
 
-  private fun shouldPreUpload(metered: Boolean, isSms: Boolean, recipient: Recipient?): Boolean {
-    return !metered && !isSms && !repository.isLocalSelfSend(recipient, isSms)
+  private fun shouldPreUpload(metered: Boolean, recipient: Recipient?): Boolean {
+    return !metered && !repository.isLocalSelfSend(recipient)
   }
 
   fun onSaveState(outState: Bundle) {

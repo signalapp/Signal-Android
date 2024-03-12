@@ -162,8 +162,7 @@ public final class AttachmentCompressionJob extends BaseJob {
       return;
     }
 
-    MediaConstraints mediaConstraints = mms ? MediaConstraints.getMmsMediaConstraints(mmsSubscriptionId)
-                                            : MediaConstraints.getPushMediaConstraints(SentMediaQuality.fromCode(transformProperties.sentMediaQuality));
+    MediaConstraints mediaConstraints = MediaConstraints.getPushMediaConstraints(SentMediaQuality.fromCode(transformProperties.sentMediaQuality));
 
     compress(database, mediaConstraints, databaseAttachment);
   }

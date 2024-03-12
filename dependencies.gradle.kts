@@ -144,7 +144,6 @@ dependencyResolutionManagement {
       library("materialish-progress", "com.pnikosis:materialish-progress:1.7")
       library("subsampling-scale-image-view", "com.davemorrissey.labs:subsampling-scale-image-view-androidx:3.10.0")
       library("android-tooltips", "com.tomergoldst.android:tooltips:1.0.6")
-      library("android-smsmms", "com.klinkerapps:android-smsmms:4.0.1")
       library("stream", "com.annimon:stream:1.1.8")
       library("lottie", "com.airbnb.android:lottie:5.2.0")
       library("dnsjava", "dnsjava:dnsjava:2.1.9")

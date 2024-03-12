@@ -100,7 +100,6 @@ public final class StickerManagementActivity extends PassphraseRequiredActivity 
     MultiselectForwardFragment.showBottomSheet(
         getSupportFragmentManager(),
         new MultiselectForwardFragmentArgs(
-            true,
             Collections.singletonList(new MultiShareArgs.Builder()
                                           .withDraftText(StickerUrl.createShareLink(packId, packKey))
                                           .build()),

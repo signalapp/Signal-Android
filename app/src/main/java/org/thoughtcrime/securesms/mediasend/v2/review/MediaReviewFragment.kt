@@ -205,7 +205,6 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
 
       if (sharedViewModel.isContactSelectionRequired) {
         val args = MultiselectForwardFragmentArgs(
-          false,
           title = R.string.MediaReviewFragment__send_to,
           storySendRequirements = sharedViewModel.getStorySendRequirements(),
           isSearchEnabled = !sharedViewModel.isStory(),

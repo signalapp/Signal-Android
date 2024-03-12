@@ -28,7 +28,7 @@ object ConversationDialogs {
   fun displayCannotStartGroupCallDueToPermissionsDialog(context: Context) {
     MaterialAlertDialogBuilder(context).setTitle(R.string.ConversationActivity_cant_start_group_call)
       .setMessage(R.string.ConversationActivity_only_admins_of_this_group_can_start_a_call)
-      .setPositiveButton(R.string.ok) { d: DialogInterface, w: Int -> d.dismiss() }
+      .setPositiveButton(android.R.string.ok) { d: DialogInterface, w: Int -> d.dismiss() }
       .show()
   }
 

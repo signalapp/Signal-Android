@@ -16,9 +16,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ContactFilterView
 import org.thoughtcrime.securesms.contacts.ContactSelectionDisplayMode
 import org.thoughtcrime.securesms.groups.SelectionLimits
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton
 import java.util.Optional
@@ -100,17 +98,12 @@ class SelectRecipientsFragment : LoggingFragment(), ContactSelectionListFragment
   }
 
   private fun getDefaultDisplayMode(): Int {
-    var mode = ContactSelectionDisplayMode.FLAG_PUSH or
+    return ContactSelectionDisplayMode.FLAG_PUSH or
       ContactSelectionDisplayMode.FLAG_ACTIVE_GROUPS or
       ContactSelectionDisplayMode.FLAG_HIDE_NEW or
       ContactSelectionDisplayMode.FLAG_HIDE_RECENT_HEADER or
-      ContactSelectionDisplayMode.FLAG_GROUPS_AFTER_CONTACTS
-
-    if (Util.isDefaultSmsProvider(requireContext()) && SignalStore.misc().smsExportPhase.allowSmsFeatures()) {
-      mode = mode or ContactSelectionDisplayMode.FLAG_SMS
-    }
-
-    return mode or ContactSelectionDisplayMode.FLAG_HIDE_GROUPS_V1
+      ContactSelectionDisplayMode.FLAG_GROUPS_AFTER_CONTACTS or
+      ContactSelectionDisplayMode.FLAG_HIDE_GROUPS_V1
   }
 
   override fun onBeforeContactSelected(isFromUnknownSearchKey: Boolean, recipientId: Optional<RecipientId>, number: String?, callback: Consumer<Boolean>) {

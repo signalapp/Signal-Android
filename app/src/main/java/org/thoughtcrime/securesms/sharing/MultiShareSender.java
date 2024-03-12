@@ -85,7 +85,6 @@ public final class MultiShareSender {
   public static MultiShareSendResultCollection sendSync(@NonNull MultiShareArgs multiShareArgs) {
     List<MultiShareSendResult> results                           = new ArrayList<>(multiShareArgs.getContactSearchKeys().size());
     Context                    context                           = ApplicationDependencies.getApplication();
-    boolean                    isMmsEnabled                      = Util.isMmsCapable(context);
     String                     message                           = multiShareArgs.getDraftText();
     SlideDeck                  slideDeck;
     List<OutgoingMessage>      storiesBatch                      = new LinkedList<>();
@@ -111,8 +110,7 @@ public final class MultiShareSender {
       MessageSendType sendType       = MessageSendType.SignalMessageSendType.INSTANCE;
       long            expiresIn      = TimeUnit.SECONDS.toMillis(recipient.getExpiresInSeconds());
       List<Contact>   contacts       = multiShareArgs.getSharedContacts();
-      boolean needsSplit = !sendType.usesSmsTransport() &&
-                           message != null &&
+      boolean needsSplit = message != null &&
                            message.length() > sendType.calculateCharacters(message).maxPrimaryMessageSize;
       boolean hasMmsMedia = !multiShareArgs.getMedia().isEmpty() ||
                             (multiShareArgs.getDataUri() != null && multiShareArgs.getDataUri() != Uri.EMPTY) ||
@@ -128,9 +126,9 @@ public final class MultiShareSender {
       MultiShareTimestampProvider sentTimestamp      = recipient.isDistributionList() ? distributionListSentTimestamps : MultiShareTimestampProvider.create();
       boolean                     canSendAsTextStory = recipientSearchKey.isStory() && multiShareArgs.isValidForTextStoryGeneration();
 
-      if ((recipient.isMmsGroup() || recipient.getEmail().isPresent()) && !isMmsEnabled) {
+      if ((recipient.isMmsGroup() || recipient.getEmail().isPresent())) {
         results.add(new MultiShareSendResult(recipientSearchKey, MultiShareSendResult.Type.MMS_NOT_ENABLED));
-      } else if (hasMmsMedia && sendType.usesSmsTransport() || hasPushMedia && !sendType.usesSmsTransport() || canSendAsTextStory) {
+      } else if (hasPushMedia || canSendAsTextStory) {
         sendMediaMessageOrCollectStoryToBatch(context,
                                               multiShareArgs,
                                               recipient,

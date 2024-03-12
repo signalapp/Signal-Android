@@ -129,7 +129,6 @@ public final class ShakeToReport implements ShakeDetector.Listener {
           MultiselectForwardFragment.showFullScreen(
               activity.getSupportFragmentManager(),
               new MultiselectForwardFragmentArgs(
-                  true,
                   Collections.singletonList(new MultiShareArgs.Builder()
                                                 .withDraftText(url)
                                                 .build()),

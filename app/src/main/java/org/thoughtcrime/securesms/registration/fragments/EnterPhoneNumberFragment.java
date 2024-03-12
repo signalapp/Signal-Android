@@ -368,7 +368,7 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
   }
 
   public void showErrorDialog(Context context, String msg, DialogInterface.OnClickListener positiveButtonListener) {
-    new MaterialAlertDialogBuilder(context).setMessage(msg).setPositiveButton(R.string.ok, positiveButtonListener).show();
+    new MaterialAlertDialogBuilder(context).setMessage(msg).setPositiveButton(android.R.string.ok, positiveButtonListener).show();
   }
 
   @Override

@@ -235,10 +235,6 @@ public final class MiscellaneousValues extends SignalStoreValues {
     putBoolean(PNI_INITIALIZED_DEVICES, value);
   }
 
-  public @NonNull SmsExportPhase getSmsExportPhase() {
-    return SmsExportPhase.getCurrentPhase();
-  }
-
   public void setHasLinkedDevices(boolean value) {
     putBoolean(HAS_LINKED_DEVICES, value);
   }

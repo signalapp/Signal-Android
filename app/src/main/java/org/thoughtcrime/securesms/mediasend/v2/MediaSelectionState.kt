@@ -4,7 +4,6 @@ import android.net.Uri
 import org.thoughtcrime.securesms.conversation.MessageSendType
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mediasend.Media
-import org.thoughtcrime.securesms.mediasend.MediaSendConstants
 import org.thoughtcrime.securesms.mediasend.v2.videos.VideoTrimData
 import org.thoughtcrime.securesms.mms.MediaConstraints
 import org.thoughtcrime.securesms.mms.SentMediaQuality
@@ -37,11 +36,7 @@ data class MediaSelectionState(
 
   val transcodingPreset: TranscodingPreset = MediaConstraints.getPushMediaConstraints(SentMediaQuality.fromCode(quality.code)).videoTranscodingSettings
 
-  val maxSelection = if (sendType.usesSmsTransport) {
-    MediaSendConstants.MAX_SMS
-  } else {
-    FeatureFlags.maxAttachmentCount()
-  }
+  val maxSelection = FeatureFlags.maxAttachmentCount()
 
   val canSend = !isSent && selectedMedia.isNotEmpty()
 

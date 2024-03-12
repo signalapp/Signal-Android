@@ -38,7 +38,6 @@ class GiftFlowRecipientSelectionFragment : Fragment(R.layout.gift_flow_recipient
           R.id.multiselect_container,
           MultiselectForwardFragment.create(
             MultiselectForwardFragmentArgs(
-              canSendToNonPush = false,
               multiShareArgs = emptyList(),
               forceDisableAddMessage = true,
               selectSingleRecipient = true

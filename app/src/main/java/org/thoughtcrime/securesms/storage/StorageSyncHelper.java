@@ -153,7 +153,7 @@ public final class StorageSyncHelper {
                                                                  .setPinnedConversations(StorageSyncModels.localToRemotePinnedConversations(pinned))
                                                                  .setPreferContactAvatars(SignalStore.settings().isPreferSystemContactPhotos())
                                                                  .setPayments(SignalStore.paymentsValues().mobileCoinPaymentsEnabled(), Optional.ofNullable(SignalStore.paymentsValues().getPaymentsEntropy()).map(Entropy::getBytes).orElse(null))
-                                                                 .setPrimarySendsSms(Util.isDefaultSmsProvider(context))
+                                                                 .setPrimarySendsSms(false)
                                                                  .setUniversalExpireTimer(SignalStore.settings().getUniversalExpireTimer())
                                                                  .setDefaultReactions(SignalStore.emojiValues().getReactions())
                                                                  .setSubscriber(StorageSyncModels.localToRemoteSubscriber(SignalStore.donationsValues().getSubscriber()))

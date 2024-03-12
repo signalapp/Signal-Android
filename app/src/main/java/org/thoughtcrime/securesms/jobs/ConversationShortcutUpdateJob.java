@@ -69,7 +69,7 @@ public class ConversationShortcutUpdateJob extends BaseJob {
     int         maxShortcuts = ConversationUtil.getMaxShortcuts(context);
     List<Recipient> ranked         = new ArrayList<>(maxShortcuts);
 
-    try (ThreadTable.Reader reader = threadTable.readerFor(threadTable.getRecentConversationList(maxShortcuts, false, false, false, true, !Util.isDefaultSmsProvider(context), false))) {
+    try (ThreadTable.Reader reader = threadTable.readerFor(threadTable.getRecentConversationList(maxShortcuts, false, false, false, true, true, false))) {
       ThreadRecord record;
       while ((record = reader.getNext()) != null) {
         ranked.add(record.getRecipient().resolve());

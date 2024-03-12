@@ -537,10 +537,6 @@ dependencies {
   implementation(libs.android.tooltips) {
     exclude(group = "com.android.support", module = "appcompat-v7")
   }
-  implementation(libs.android.smsmms) {
-    exclude(group = "com.squareup.okhttp", module = "okhttp")
-    exclude(group = "com.squareup.okhttp", module = "okhttp-urlconnection")
-  }
   implementation(libs.stream)
   implementation(libs.lottie)
   implementation(libs.signal.android.database.sqlcipher)

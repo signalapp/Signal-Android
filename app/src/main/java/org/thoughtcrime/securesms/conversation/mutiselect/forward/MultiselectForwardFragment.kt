@@ -59,7 +59,6 @@ import org.thoughtcrime.securesms.stories.settings.privacy.ChooseInitialMyStoryM
 import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.FullscreenHelper
-import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.fragments.findListener
 import org.thoughtcrime.securesms.util.fragments.requireListener
@@ -470,7 +469,7 @@ class MultiselectForwardFragment :
         addSection(
           ContactSearchConfiguration.Section.Individuals(
             includeHeader = true,
-            transportType = if (includeSms()) ContactSearchConfiguration.TransportType.ALL else ContactSearchConfiguration.TransportType.PUSH,
+            transportType = ContactSearchConfiguration.TransportType.PUSH,
             includeSelf = true
           )
         )
@@ -485,16 +484,11 @@ class MultiselectForwardFragment :
 
         addSection(
           ContactSearchConfiguration.Section.Groups(
-            includeHeader = true,
-            includeMms = includeSms()
+            includeHeader = true
           )
         )
       }
     }
-  }
-
-  private fun includeSms(): Boolean {
-    return Util.isDefaultSmsProvider(requireContext()) && args.canSendToNonPush
   }
 
   private fun isSelectedMediaValidForStories(): Boolean {

@@ -52,14 +52,12 @@ import org.thoughtcrime.securesms.jobs.AttachmentCompressionJob;
 import org.thoughtcrime.securesms.jobs.AttachmentCopyJob;
 import org.thoughtcrime.securesms.jobs.AttachmentMarkUploadedJob;
 import org.thoughtcrime.securesms.jobs.AttachmentUploadJob;
-import org.thoughtcrime.securesms.jobs.MmsSendJob;
 import org.thoughtcrime.securesms.jobs.ProfileKeySendJob;
 import org.thoughtcrime.securesms.jobs.PushDistributionListSendJob;
 import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
 import org.thoughtcrime.securesms.jobs.IndividualSendJob;
 import org.thoughtcrime.securesms.jobs.ReactionSendJob;
 import org.thoughtcrime.securesms.jobs.RemoteDeleteSendJob;
-import org.thoughtcrime.securesms.jobs.SmsSendJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.mediasend.Media;
@@ -536,10 +534,8 @@ public class MessageSender {
       sendDistributionList(context, recipient, messageId, Collections.emptySet(), uploadJobIds);
     } else if (sendType == SendType.SIGNAL && isPushMediaSend(context, recipient)) {
       sendMediaPush(context, recipient, messageId, uploadJobIds);
-    } else if (sendType == SendType.MMS) {
-      sendMms(context, messageId);
     } else {
-      sendSms(recipient, messageId);
+      Log.w(TAG, "Unknown send type!");
     }
   }
 
@@ -574,16 +570,6 @@ public class MessageSender {
     } else {
       PushDistributionListSendJob.enqueue(context, jobManager, messageId, recipient.getId(), filterRecipientIds);
     }
-  }
-
-  private static void sendMms(Context context, long messageId) {
-    JobManager jobManager = ApplicationDependencies.getJobManager();
-    MmsSendJob.enqueue(context, jobManager, messageId);
-  }
-
-  private static void sendSms(Recipient recipient, long messageId) {
-    JobManager jobManager = ApplicationDependencies.getJobManager();
-    jobManager.add(new SmsSendJob(messageId, recipient));
   }
 
   private static boolean isPushMediaSend(Context context, Recipient recipient) {
