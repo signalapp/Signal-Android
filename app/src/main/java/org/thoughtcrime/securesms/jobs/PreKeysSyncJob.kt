@@ -124,13 +124,18 @@ class PreKeysSyncJob private constructor(
     }
 
     val forceRotation = if (forceRotationRequested) {
+      warn(TAG, "Forced rotation was requested.")
+      warn(TAG, ServiceIdType.ACI, "Active Signed EC: ${SignalStore.account().aciPreKeys.activeSignedPreKeyId}, Last Resort Kyber: ${SignalStore.account().aciPreKeys.lastResortKyberPreKeyId}")
+      warn(TAG, ServiceIdType.PNI, "Active Signed EC: ${SignalStore.account().pniPreKeys.activeSignedPreKeyId}, Last Resort Kyber: ${SignalStore.account().pniPreKeys.lastResortKyberPreKeyId}")
+
       if (!checkPreKeyConsistency(ServiceIdType.ACI, ApplicationDependencies.getProtocolStore().aci(), SignalStore.account().aciPreKeys)) {
         warn(TAG, ServiceIdType.ACI, "Prekey consistency check failed! Must rotate keys!")
         true
       } else if (!checkPreKeyConsistency(ServiceIdType.PNI, ApplicationDependencies.getProtocolStore().pni(), SignalStore.account().pniPreKeys)) {
-        warn(TAG, ServiceIdType.PNI, "Prekey consistency check failed! Must rotate keys!")
+        warn(TAG, ServiceIdType.PNI, "Prekey consistency check failed! Must rotate keys! (ACI consistency check must have passed)")
         true
       } else {
+        warn(TAG, "Forced rotation was requested, but the consistency checks passed!")
         val timeSinceLastForcedRotation = System.currentTimeMillis() - SignalStore.misc().lastForcedPreKeyRefresh
         // We check < 0 in case someone changed their clock and had a bad value set
         timeSinceLastForcedRotation > FeatureFlags.preKeyForceRefreshInterval() || timeSinceLastForcedRotation < 0
