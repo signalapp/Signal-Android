@@ -164,8 +164,8 @@
     <string name="BlockUnblockDialog_block_and_leave_s">¿Bloquear y abandonar «%1$s»?</string>
     <string name="BlockUnblockDialog_block_s">¿Bloquear a %1$s?</string>
     <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">No podrás enviar ni recibir más mensajes en este grupo y sus participantes no podrán añadirte de nuevo.</string>
-    <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">L@s participantes del grupo no podrán añadirte de nuevo.</string>
-    <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">L@s participantes del grupo podrán añadirte de nuevo.</string>
+    <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Los participantes del grupo no podrán añadirte de nuevo.</string>
+    <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Los participantes del grupo podrán añadirte de nuevo.</string>
     <!-- Text that is shown when unblocking a Signal contact -->
     <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Podréis chatear y llamaros mutuamente. Tu nombre y foto se compartirá con esta persona.</string>
     <!-- Text that is shown when unblocking an SMS contact -->
@@ -363,7 +363,7 @@
         <item quantity="other">Solo se pueden hacer %1$d cambios en este mensaje de texto.</item>
     </plurals>
 
-    <string name="ConversationActivity_invalid_recipient">¡Destinatari@ inválid@!</string>
+    <string name="ConversationActivity_invalid_recipient">¡Destinatario inválido!</string>
     <string name="ConversationActivity_added_to_home_screen">Añadido a la pantalla de inicio</string>
     <string name="ConversationActivity_calls_not_supported">Llamadas no disponibles</string>
     <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Este dispositivo no es compatible con la función de realizar llamadas.</string>
@@ -840,7 +840,7 @@
     <string name="AddToGroupActivity_add_to_a_group">Añadir a un grupo</string>
 
     <!-- ChooseNewAdminActivity -->
-    <string name="ChooseNewAdminActivity_choose_new_admin">Selecciona nuev@ admin</string>
+    <string name="ChooseNewAdminActivity_choose_new_admin">Selecciona nuevo admin</string>
     <string name="ChooseNewAdminActivity_done">Hecho</string>
     <string name="ChooseNewAdminActivity_you_left">Has abandonado «%1$s».</string>
 
@@ -937,8 +937,8 @@
     <string name="LeaveGroupDialog_leave_group">¿Abandonar grupo?</string>
     <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">No podrás enviar o recibir más mensajes en este grupo.</string>
     <string name="LeaveGroupDialog_leave">Abandonar</string>
-    <string name="LeaveGroupDialog_choose_new_admin">Selecciona nuev@ admin</string>
-    <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Antes de abandonar, selecciona un@ nuev@ admin para este grupo.</string>
+    <string name="LeaveGroupDialog_choose_new_admin">Selecciona nuevo admin</string>
+    <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Antes de abandonar, selecciona uno nuevo admin para este grupo.</string>
     <string name="LeaveGroupDialog_choose_admin">Seleccionar admin</string>
 
     <!-- LinkPreviewView -->
@@ -978,8 +978,8 @@
     <string name="PendingMembersActivity_people_you_invited">Personas invitadas por ti</string>
     <string name="PendingMembersActivity_you_have_no_pending_invites">No tienes invitaciones pendientes.</string>
     <string name="PendingMembersActivity_invites_by_other_group_members">Más personas invitadas</string>
-    <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">No hay invitaciones pendientes de otr@s participantes.</string>
-    <string name="PendingMembersActivity_missing_detail_explanation">No se muestra el alias y foto de las personas invitadas por otr@s. Su alias y foto de perfil se mostrarán a partir del momento en que decidan participar en el grupo. También verán los mensajes del grupo a partir de ese momento.</string>
+    <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">No hay invitaciones pendientes de otros participantes.</string>
+    <string name="PendingMembersActivity_missing_detail_explanation">No se muestra el alias y foto de las personas invitadas por otros. Su alias y foto de perfil se mostrarán a partir del momento en que decidan participar en el grupo. También verán los mensajes del grupo a partir de ese momento.</string>
 
     <string name="PendingMembersActivity_revoke_invite">Retirar invitación</string>
     <string name="PendingMembersActivity_revoke_invites">Retirar invitaciones</string>
@@ -997,7 +997,7 @@
     <string name="RequestingMembersFragment_no_member_requests_to_show">No hay solicitudes que ver.</string>
     <string name="RequestingMembersFragment_explanation">Las personas en esta lista han solicitado unirse al grupo vía enlace.</string>
     <string name="RequestingMembersFragment_added_s">"Se ha añadido a %1$s"</string>
-    <string name="RequestingMembersFragment_denied_s">"%1$s denegad@"</string>
+    <string name="RequestingMembersFragment_denied_s">"%1$s denegado"</string>
 
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">Hecho</string>
@@ -1125,19 +1125,19 @@
     <string name="CustomNotificationsDialogFragment__call_settings">Ajustes de llamada</string>
     <string name="CustomNotificationsDialogFragment__ringtone">Tono de llamada</string>
     <string name="CustomNotificationsDialogFragment__default">Por defecto</string>
-    <string name="CustomNotificationsDialogFragment__unknown">Desconocid@</string>
+    <string name="CustomNotificationsDialogFragment__unknown">Desconocido</string>
 
     <!-- ShareableGroupLinkDialogFragment -->
     <string name="ShareableGroupLinkDialogFragment__group_link">Enlace al grupo</string>
     <string name="ShareableGroupLinkDialogFragment__share">Compartir</string>
     <string name="ShareableGroupLinkDialogFragment__reset_link">Restablecer enlace</string>
     <string name="ShareableGroupLinkDialogFragment__approve_new_members">Aprobar solicitudes</string>
-    <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Con la opción activa se genera una solicitud de acceso al grupo que debe ser aprobada por un@ admin.</string>
+    <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Con la opción activa se genera una solicitud de acceso al grupo que debe ser aprobada por un admin.</string>
     <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">¿Deseas restablecer el enlace para unirse al grupo? Si lo restableces, nadie podrá unirse al chat usando el enlace actual.</string>
 
     <!-- GroupLinkShareQrDialogFragment -->
     <string name="GroupLinkShareQrDialogFragment__qr_code">Código QR</string>
-    <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Las personas que escaneen este código podrán unirse al grupo. L@s admins deberán aprobar nuev@s participantes si se ha activado esa opción.</string>
+    <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Las personas que escaneen este código podrán unirse al grupo. Los admins deberán aprobar nuevos participantes si se ha activado esa opción.</string>
     <string name="GroupLinkShareQrDialogFragment__share_code">Compartir código</string>
 
     <!-- GV2 Invite Revoke confirmation dialog -->
@@ -1166,7 +1166,7 @@
     <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">Fallo al unirse a través del enlace. Inténtalo más tarde.</string>
 
     <string name="GroupJoinBottomSheetDialogFragment_direct_join">¿Deseas unirte a este grupo y compartir tu nombre y foto con sus participantes?</string>
-    <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Un@ admin de este grupo debe aprobar tu solicitud de acceso para unirte al grupo. Al solicitar unirte, tu nombre y foto se compartirán con sus participantes.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Un admin de este grupo debe aprobar tu solicitud de acceso para unirte al grupo. Al solicitar unirte, tu nombre y foto se compartirán con sus participantes.</string>
     <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
         <item quantity="one">Grupo · %1$d participante</item>
         <item quantity="other">Grupo · %1$d participantes</item>
@@ -1187,7 +1187,7 @@
 
     <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">Fallo al activar el enlace para unirse al grupo. Inténtalo más tarde</string>
     <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">Fallo en la conexión de red.</string>
-    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">No dispones de permisos para activar el enlace al grupo. Solicítalo a un@ admin.</string>
+    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">No dispones de permisos para activar el enlace al grupo. Solicítalo a un admin.</string>
     <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">Todavía no participas en este grupo.</string>
 
     <!-- GV2 Request confirmation dialog -->
@@ -1333,7 +1333,7 @@
     <string name="MediaRepository__camera">Cámara</string>
 
     <!-- MessageRecord -->
-    <string name="MessageRecord_unknown">Desconocid@</string>
+    <string name="MessageRecord_unknown">Desconocido</string>
     <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Has recibido un mensaje cifrado con una versión de Signal antigua que ya no está disponible. Por favor, solicita a esta persona a actualizar a la versión más reciente y a reenviar el mensaje.</string>
     <string name="MessageRecord_left_group">Has abandonado el grupo.</string>
     <string name="MessageRecord_you_updated_group">Has actualizado el grupo.</string>
@@ -1449,7 +1449,7 @@
     <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Alguien ha rechazado la invitación a participar en el grupo.</string>
     <string name="MessageRecord_you_declined_the_invitation_to_the_group">Has rechazado la invitación a participar en el grupo.</string>
     <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s retiró tu invitación del grupo.</string>
-    <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Un@ admin retiró tu invitavión del grupo.</string>
+    <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Un admin retiró tu invitavión del grupo.</string>
     <plurals name="MessageRecord_d_invitations_were_revoked">
         <item quantity="one">Se ha retirado la invitación para el grupo.</item>
         <item quantity="other">Se han retirado %1$d invitaciones para el grupo.</item>
@@ -1537,7 +1537,7 @@
     <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">Se ha aprobado la solicitud de %1$s para unirse al grupo.</string>
 
     <!-- GV2 group link deny -->
-    <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Un@ admin ha denegado tu solicitud para unirte al grupo.</string>
+    <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Un admin ha denegado tu solicitud para unirte al grupo.</string>
     <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s ha denegado la solicitud de %2$s para unirse al grupo.</string>
     <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">Se ha denegado la solicitud de %1$s para unirse al grupo.</string>
     <string name="MessageRecord_you_canceled_your_request_to_join_the_group">Has retirado tu solicitud para unirte al grupo.</string>
@@ -1617,7 +1617,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">¿Quieres compartir tu nombre y foto con %1$s y permitir que te mande un mensaje? En el pasado, eliminaste a esta persona.</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">¿Deseas que %1$s te envíe mensajes y compartir tu nombre y foto? Esta persona no sabrá que has visto sus mensajes hasta que aceptes.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">¿Deseas que %1$s te envíe mensajes y compartir tu nombre y foto? Esta persona no sabrá que has visto sus mensajes hasta lx desbloquees.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">¿Deseas que %1$s te envíe mensajes y compartir tu nombre y foto? Esta persona no sabrá que has visto sus mensajes hasta que lo desbloquees.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">¿Deseas permitir a %1$s chatear contigo? No recibirás ningún mensaje si no desbloqueas el chat.</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">¿Deseas recibir noticias y novedades de %1$s? No recibirás ninguna hasta que desbloquees a esta persona.</string>
@@ -2011,7 +2011,7 @@
     <!-- CallParticipantView -->
     <string name="CallParticipantView__s_is_blocked">%1$s está bloqueadx</string>
     <string name="CallParticipantView__more_info">Más detalles</string>
-    <string name="CallParticipantView__you_wont_receive_their_audio_or_video">No recibirás su audio ni vídeo y ni ell@s el tuyo.</string>
+    <string name="CallParticipantView__you_wont_receive_their_audio_or_video">No recibirás su audio ni vídeo y ni ellos el tuyo.</string>
     <string name="CallParticipantView__cant_receive_audio_video_from_s">No se puede recibir audio ni vídeo de %1$s</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">No se puede recibir audio ni vídeo de %1$s</string>
     <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Esto se puede deber a que no han verificado el cambio de tus cifras de seguridad, hay un problema con su dispositivo, o te han bloqueado.</string>
@@ -2048,7 +2048,7 @@
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Recibirás un código de verificación en este número.</string>
     <string name="RegistrationActivity_edit_number">Editar número</string>
     <string name="RegistrationActivity_missing_google_play_services">Servicios de Google Play no instalados</string>
-    <string name="RegistrationActivity_this_device_is_missing_google_play_services">Este dispositivo no dispone de los Servicios de Google Play. Aún así puedes usar Signal pero esta configuración puede resultar en un bajo rendimiento o fiabilidad.\n\nSi no eres un@ usuari@ avanzad@, no estás ejecutando una ROM personalizada de Android, o crees que estás viendo esto indebidamente, contacta con support@signal.org para solucionar el problema.</string>
+    <string name="RegistrationActivity_this_device_is_missing_google_play_services">Este dispositivo no dispone de los Servicios de Google Play. Aún así puedes usar Signal pero esta configuración puede resultar en un bajo rendimiento o fiabilidad.\n\nSi no eres un usuario avanzado, no estás ejecutando una ROM personalizada de Android, o crees que estás viendo esto indebidamente, contacta con support@signal.org para solucionar el problema.</string>
     <string name="RegistrationActivity_i_understand">Entiendo</string>
     <string name="RegistrationActivity_play_services_error">Fallo en «Play Services»</string>
     <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services se está actualizando o está temporalmente suspendido. Por favor, inténtalo de nuevo.</string>
@@ -2083,7 +2083,7 @@
     <string name="RegistrationActivity_cancel">Cancelar</string>
     <string name="RegistrationActivity_next">Siguiente</string>
     <string name="RegistrationActivity_continue">Adelante</string>
-    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Lleva la privacidad contigo.\nSé tú mism@ en todos tus mensajes.</string>
+    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Lleva la privacidad contigo.\nSé tú mismo en todos tus mensajes.</string>
     <!-- Title of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_phone_number">Número de teléfono</string>
     <!-- Subtitle of registration screen when asking for the users phone number -->
@@ -2205,7 +2205,7 @@
     <string name="SubmitDebugLogActivity_success">¡Completado!</string>
     <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copia esta URL y añádela a tu correo para el soporte o informe de incidencia:\n\n<b>%1$s</b></string>
     <string name="SubmitDebugLogActivity_share">Compartir</string>
-    <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Este registro se publicará online y nuestr@s colaborador@s tendrán acceso. Puedes examinarlo y editarlo antes de enviarlo.</string>
+    <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Este registro se publicará online y nuestros colaboradores tendrán acceso. Puedes examinarlo y editarlo antes de enviarlo.</string>
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -2476,7 +2476,7 @@
     <string name="NotificationChannel_app_updates">Actualizaciones de la aplicación</string>
     <string name="NotificationChannel_other">Otros</string>
     <string name="NotificationChannel_group_chats">Chats</string>
-    <string name="NotificationChannel_missing_display_name">Desconocid@</string>
+    <string name="NotificationChannel_missing_display_name">Desconocido</string>
     <string name="NotificationChannel_voice_notes">Notas de voz</string>
     <string name="NotificationChannel_contact_joined_signal">Alguien comienza a usar Signal</string>
     <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">No hay actividad disponible para abrir el canal de notificaciones en «Ajustes».</string>
@@ -2525,7 +2525,7 @@
     <!-- Row item title for phone number privacy explainer -->
     <string name="NewWaysToConnectDialogFragment__phone_number_privacy">Privacidad del número de teléfono</string>
     <!-- Row item description for phone number privacy explainer -->
-    <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">Tu número de teléfono ya no se comparte con los chats. Incluso aunque tu amigx tenga tu número guardado en sus contactos, no le aparecerá.</string>
+    <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">Tu número de teléfono ya no se comparte con los chats. Incluso aunque tu amigo tenga tu número guardado en sus contactos, no le aparecerá.</string>
     <!-- Row item title for usernames explainer -->
     <string name="NewWaysToConnectDialogFragment__usernames">Alias</string>
     <!-- Row item description for usernames explainer -->
@@ -2645,7 +2645,7 @@
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Fallo al comprobar contactos, comprueba la conexión a la red.</string>
     <string name="ContactSelectionListFragment_username_not_found">Alias no encontrado</string>
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s no usa Signal. Asegúrate de introducir el alias correcto."</string>
-    <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">No necesitas añadirte a ti mism@ al grupo</string>
+    <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">No necesitas añadirte a ti mismo al grupo</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">Se alcanzó el número máximo de participantes en el grupo.</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Los grupos de Signal aceptan un máximo de %1$d participantes.</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">Se alcanzó el límite máximo recomendado</string>
@@ -2718,7 +2718,7 @@
     <!-- Update item button text to show to block a recipient from requesting to join via group link -->
     <string name="ConversationUpdateItem_block_request">Vetar solicitud</string>
     <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Sin grupos en común. Revisar solicitud.</string>
-    <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Sin participantes conocid@s. Revisar solicitud.</string>
+    <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Sin participantes conocidos. Revisar solicitud.</string>
     <string name="ConversationUpdateItem_view">Ver</string>
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">El tiempo de desaparición de mensajes será de %1$s cuando inicies un chat con alguien.</string>
     <!-- Update item button text to show to boost a feature -->
@@ -3138,7 +3138,7 @@
     <string name="preferences__privacy">Privacidad</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Historias</string>
-    <string name="preferences__mms_user_agent">Agente de usuari@ de MMS</string>
+    <string name="preferences__mms_user_agent">Agente de usuario de MMS</string>
     <string name="preferences__advanced_mms_access_point_names">Configuración manual de MMS</string>
     <string name="preferences__mmsc_url">URL de MMSC</string>
     <string name="preferences__mms_proxy_host">Proxy MMS</string>
@@ -3198,7 +3198,7 @@
     <string name="preferences__read_receipts">Notificaciones de lectura</string>
     <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Si las notificaciones de lectura están desactivadas, no podrás comprobar cuándo se han leído tus mensajes.</string>
     <string name="preferences__typing_indicators">Indicadores de tecleo</string>
-    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Si desactivas los indicadores de tecleo, no podrás ver cuándo otr@s participantes están tecleando.</string>
+    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Si desactivas los indicadores de tecleo, no podrás ver cuándo otros participantes están tecleando.</string>
     <string name="preferences__request_keyboard_to_disable">Solicitar al teclado deshabilitar el aprendizaje personalizado.</string>
     <string name="preferences__this_setting_is_not_a_guarantee">Activar esta opción no garantiza que tu teclado no analice tus mensajes.</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
@@ -3222,7 +3222,7 @@
         <item quantity="other">Esto recortará permanentemente todos los chats y mantendrá los %1$s mensajes más recientes.</item>
     </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Esto eliminará permanentemente todos los mensajes y adjuntos de este dispositivo.</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">¿Estás segurx de que deseas eliminar todo tu historial de mensajes?</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">¿Estás seguro de que deseas eliminar todo tu historial de mensajes?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">El historial completo de mensajes se eliminará permanentemente. Esta acción no se puede deshacer.</string>
     <string name="preferences_storage__delete_all_now">Borrar todos ahora</string>
     <string name="preferences_storage__forever">Siempre</string>
@@ -3506,7 +3506,7 @@
     <string name="ConfirmPayment__payment_complete">Pago completado</string>
     <string name="ConfirmPayment__payment_failed">Fallo en el pago</string>
     <string name="ConfirmPayment__payment_will_continue_processing">Se continuará con el proceso del pago</string>
-    <string name="ConfirmPaymentFragment__invalid_recipient">Destinatari@ inválid@</string>
+    <string name="ConfirmPaymentFragment__invalid_recipient">Destinatario inválido</string>
     <!-- Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment -->
     <string name="ConfirmPaymentFragment__failed_to_show_payment_lock">No se ha podido mostrar el bloqueo de pago</string>
     <!-- Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment -->
@@ -3933,7 +3933,7 @@
     <string name="preferences_chats__backups">Copias de seguridad</string>
     <string name="prompt_passphrase_activity__signal_is_locked">Signal está bloqueada</string>
     <string name="prompt_passphrase_activity__tap_to_unlock">TOCA PARA DESBLOQUEAR</string>
-    <string name="Recipient_unknown">Desconocid@</string>
+    <string name="Recipient_unknown">Desconocido</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
     <string name="Recipient_deleted_account">Eliminar cuenta</string>
 
@@ -4111,7 +4111,7 @@
     <string name="GroupsLearnMore_what_are_legacy_groups">¿Qué son los grupos antiguos?</string>
     <string name="GroupsLearnMore_paragraph_1">Los grupos antiguos no son compatibles con las funciones de los grupos nuevos como admins o actualizaciones más descriptivas.</string>
     <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">¿Cómo actualizo un grupo antiguo?</string>
-    <string name="GroupsLearnMore_paragraph_2">Los grupos antiguos todavía no pueden convertirse en grupos nuevos, pero puedes crear un grupo nuevo con la misma gente, si tod@s usan la versión más reciente de Signal.</string>
+    <string name="GroupsLearnMore_paragraph_2">Los grupos antiguos todavía no pueden convertirse en grupos nuevos, pero puedes crear un grupo nuevo con la misma gente, si todos usan la versión más reciente de Signal.</string>
     <string name="GroupsLearnMore_paragraph_3">Signal ofrecerá la manera de actualizar un grupo antiguo en el futuro.</string>
 
     <!-- GroupLinkBottomSheetDialogFragment -->
@@ -4198,7 +4198,7 @@
     <string name="DeleteAccountFragment__no_country_code">Código de país sin especificar</string>
     <string name="DeleteAccountFragment__no_number">Número no especificado</string>
     <string name="DeleteAccountFragment__the_phone_number">El número introducido no coincide con el de tu cuenta.</string>
-    <string name="DeleteAccountFragment__are_you_sure">¿Estás segurx de querer eliminar tu cuenta?</string>
+    <string name="DeleteAccountFragment__are_you_sure">¿Estás seguro de querer eliminar tu cuenta?</string>
     <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Esta acción elimina tu cuenta de Signal y reinicia la aplicación. Signal se cerrará después de completarse el proceso.</string>
     <string name="DeleteAccountFragment__failed_to_delete_local_data">Fallo al eliminar los datos locales. Puedes hacerlo manualmente desde los ajustes del sistema para la aplicación.</string>
     <string name="DeleteAccountFragment__launch_app_settings">Ir a los ajustes de aplicaciones</string>
@@ -4416,7 +4416,7 @@
 
     <!-- AppSettingsFragment -->
     <string name="AppSettingsFragment__invite_your_friends">¡Invita a tus amistades!</string>
-    <string name="AppSettingsFragment__copied_subscriber_id_to_clipboard">Id de usiari@ copiada al portapapeles</string>
+    <string name="AppSettingsFragment__copied_subscriber_id_to_clipboard">Id de usuario copiada al portapapeles</string>
 
     <!-- AccountSettingsFragment -->
     <string name="AccountSettingsFragment__account">Cuenta</string>
