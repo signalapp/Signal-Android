@@ -3195,6 +3195,7 @@ class ConversationFragment :
           searchNav.visible = true
           searchNav.setData(0, 0)
           inputPanel.setHideForSearch(true)
+          binding.conversationDisabledInput.visible = false
 
           (0 until menu.size()).forEach {
             if (menu.getItem(it) != searchMenuItem) {
@@ -3211,6 +3212,7 @@ class ConversationFragment :
           searchViewModel.onSearchClosed()
           searchNav.visible = false
           inputPanel.setHideForSearch(false)
+          binding.conversationDisabledInput.visible = true
           viewModel.setSearchQuery(null)
           invalidateOptionsMenu()
           return true
