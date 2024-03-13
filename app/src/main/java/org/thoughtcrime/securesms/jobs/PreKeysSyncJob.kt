@@ -295,10 +295,15 @@ class PreKeysSyncJob private constructor(
 
   class Factory : Job.Factory<PreKeysSyncJob> {
     override fun create(parameters: Parameters, serializedData: ByteArray?): PreKeysSyncJob {
-      return serializedData?.let {
-        val data = PreKeysSyncJobData.ADAPTER.decode(serializedData)
-        PreKeysSyncJob(parameters, data.forceRefreshRequested)
-      } ?: PreKeysSyncJob(parameters, forceRotationRequested = false)
+      return try {
+        serializedData?.let {
+          val data = PreKeysSyncJobData.ADAPTER.decode(serializedData)
+          PreKeysSyncJob(parameters, data.forceRefreshRequested)
+        } ?: PreKeysSyncJob(parameters, forceRotationRequested = false)
+      } catch (e: IOException) {
+        Log.w(TAG, "Error deserializing PreKeysSyncJob", e)
+        PreKeysSyncJob(parameters, forceRotationRequested = false)
+      }
     }
   }
 }
