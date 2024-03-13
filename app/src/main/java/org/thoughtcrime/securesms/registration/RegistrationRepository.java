@@ -135,6 +135,8 @@ public final class RegistrationRepository {
     SignalStore.account().setAci(aci);
     SignalStore.account().setPni(pni);
 
+    ApplicationDependencies.resetProtocolStores();
+
     ApplicationDependencies.getProtocolStore().aci().sessions().archiveAllSessions();
     ApplicationDependencies.getProtocolStore().pni().sessions().archiveAllSessions();
     SenderKeyUtil.clearAllState();
