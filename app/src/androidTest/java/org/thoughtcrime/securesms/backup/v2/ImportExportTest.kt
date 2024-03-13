@@ -5,11 +5,18 @@
 
 package org.thoughtcrime.securesms.backup.v2
 
+import android.Manifest
+import android.app.UiAutomation
+import android.os.Environment
+import androidx.test.platform.app.InstrumentationRegistry
 import io.mockk.InternalPlatformDsl.toArray
 import okio.ByteString.Companion.toByteString
 import org.junit.Assert
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
+import org.junit.rules.TestName
+import org.signal.core.util.Base64
 import org.signal.libsignal.messagebackup.MessageBackup
 import org.signal.libsignal.messagebackup.MessageBackupKey
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
@@ -43,13 +50,15 @@ import org.thoughtcrime.securesms.backup.v2.proto.ThreadMergeChatUpdate
 import org.thoughtcrime.securesms.backup.v2.stream.EncryptedBackupReader
 import org.thoughtcrime.securesms.backup.v2.stream.EncryptedBackupWriter
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.whispersystems.signalservice.api.kbs.MasterKey
 import org.whispersystems.signalservice.api.push.DistributionId
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
 import org.whispersystems.signalservice.api.util.toByteArray
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
-import java.util.ArrayList
+import java.io.File
+import java.io.FileOutputStream
 import java.util.UUID
 import java.util.concurrent.TimeUnit
 import kotlin.random.Random
@@ -65,6 +74,7 @@ class ImportExportTest {
     val SELF_PNI = ServiceId.PNI.from(UUID.fromString("77771111-b014-41fb-bf73-05cb2ec52910"))
     const val SELF_E164 = "+10000000000"
     val SELF_PROFILE_KEY = ProfileKey(Random.nextBytes(32))
+    val MASTER_KEY = Base64.decode("sHuBMP4ToZk4tcNU+S8eBUeCt8Am5EZnvuqTBJIR4Do")
 
     val defaultBackupInfo = BackupInfo(version = 1L, backupTimeMs = 123456L)
     val selfRecipient = Recipient(id = 1, self = Self())
@@ -124,8 +134,13 @@ class ImportExportTest {
     private val standardFrames = arrayOf(defaultBackupInfo, standardAccountData, selfRecipient, releaseNotes)
   }
 
+  @JvmField
+  @Rule
+  var testName = TestName()
+
   @Before
   fun setup() {
+    SignalStore.svr().setMasterKey(MasterKey(MASTER_KEY), "1234")
     SignalStore.account().setE164(SELF_E164)
     SignalStore.account().setAci(SELF_ACI)
     SignalStore.account().setPni(SELF_PNI)
@@ -300,7 +315,7 @@ class ImportExportTest {
         hideStory = true
       )
     )
-    import(
+    val importData = exportFrames(
       *standardFrames,
       alexa,
       Recipient(
@@ -315,11 +330,13 @@ class ImportExportTest {
         )
       )
     )
+    import(importData)
     val exported = export()
     val expected = exportFrames(
       *standardFrames,
       alexa
     )
+    outputFile(importData, expected)
     compare(expected, exported)
   }
 
@@ -709,7 +726,7 @@ class ImportExportTest {
         )
       )
     )
-    import(
+    val importData = exportFrames(
       *standardFrames,
       alice,
       chat,
@@ -733,6 +750,7 @@ class ImportExportTest {
       ),
       expirationNotStarted
     )
+    import(importData)
     val exported = export()
     val expected = exportFrames(
       *standardFrames,
@@ -740,6 +758,7 @@ class ImportExportTest {
       chat,
       expirationNotStarted
     )
+    outputFile(importData, expected)
     compare(expected, exported)
   }
 
@@ -1110,6 +1129,10 @@ class ImportExportTest {
    */
   private fun import(vararg objects: Any) {
     val importData = exportFrames(*objects)
+    import(importData)
+  }
+
+  private fun import(importData: ByteArray) {
     BackupRepository.import(length = importData.size.toLong(), inputStreamFactory = { ByteArrayInputStream(importData) }, selfData = BackupRepository.SelfData(SELF_ACI, SELF_PNI, SELF_E164, SELF_PROFILE_KEY))
   }
 
@@ -1159,6 +1182,7 @@ class ImportExportTest {
       }
     }
     val importData = outputStream.toByteArray()
+    outputFile(importData)
     BackupRepository.import(length = importData.size.toLong(), inputStreamFactory = { ByteArrayInputStream(importData) }, selfData = BackupRepository.SelfData(SELF_ACI, SELF_PNI, SELF_E164, SELF_PROFILE_KEY))
 
     val export = export()
@@ -1259,5 +1283,30 @@ class ImportExportTest {
     }
 
     return frames
+  }
+
+  private fun outputFile(importBytes: ByteArray, resultBytes: ByteArray? = null) {
+    grantPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
+    val dir = File(Environment.getExternalStorageDirectory(), "backup-tests")
+    if (dir.mkdirs() || dir.exists()) {
+      FileOutputStream(File(dir, testName.methodName + ".import")).use {
+        it.write(importBytes)
+        it.flush()
+      }
+
+      if (resultBytes != null) {
+        FileOutputStream(File(dir, testName.methodName + ".result")).use {
+          it.write(resultBytes)
+          it.flush()
+        }
+      }
+    }
+  }
+
+  private fun grantPermissions(vararg permissions: String?) {
+    val auto: UiAutomation = InstrumentationRegistry.getInstrumentation().uiAutomation
+    for (perm in permissions) {
+      auto.grantRuntimePermissionAsUser(InstrumentationRegistry.getInstrumentation().targetContext.packageName, perm, android.os.Process.myUserHandle())
+    }
   }
 }
