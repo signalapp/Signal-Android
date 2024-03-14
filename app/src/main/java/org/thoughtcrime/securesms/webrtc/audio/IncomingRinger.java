@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.webrtc.audio;
 
 
+import android.app.NotificationManager;
 import android.content.Context;
 import android.media.AudioAttributes;
 import android.media.AudioManager;
@@ -35,7 +36,6 @@ public class IncomingRinger {
   }
 
   public void start(@Nullable Uri uri, boolean vibrate) {
-    AudioManager audioManager = ServiceUtil.getAudioManager(context);
 
     if (player != null) {
       player.release();
@@ -45,7 +45,7 @@ public class IncomingRinger {
       player = createPlayer(uri);
     }
 
-    int ringerMode = audioManager.getRingerMode();
+    int ringerMode = getAudioManagerRingMode();
 
     if (shouldVibrate(context, player, ringerMode, vibrate)) {
       Log.i(TAG, "Starting vibration");
@@ -81,6 +81,27 @@ public class IncomingRinger {
 
     Log.i(TAG, "Cancelling vibrator");
     vibrator.cancel();
+  }
+
+  /**
+   * Overrides the ringer mode if we are on the right API level and have the right policy access.
+   * Checks the ringer volume to make sure we're not going to blast someone with their ringtone inadvertently.
+   * Safe to do because at this point, we've already checked the policy for the given incoming call peer.
+   */
+  private int getAudioManagerRingMode() {
+    AudioManager        audioManager        = ServiceUtil.getAudioManager(context);
+    NotificationManager notificationManager = ServiceUtil.getNotificationManager(context);
+    int                 ringerMode          = audioManager.getRingerMode();
+
+    if (Build.VERSION.SDK_INT >= 28 && !notificationManager.isNotificationPolicyAccessGranted()) {
+      int ringVolume = audioManager.getStreamVolume(AudioManager.STREAM_RING);
+
+      if (ringVolume > 0 && ringerMode == AudioManager.RINGER_MODE_SILENT) {
+        return AudioManager.RINGER_MODE_NORMAL;
+      }
+    }
+
+    return ringerMode;
   }
 
   private boolean shouldVibrate(Context context, MediaPlayer player, int ringerMode, boolean vibrate) {
