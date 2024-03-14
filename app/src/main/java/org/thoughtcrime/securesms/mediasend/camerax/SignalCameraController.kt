@@ -9,8 +9,10 @@ import android.Manifest
 import android.content.Context
 import android.util.Size
 import android.view.MotionEvent
+import android.view.ScaleGestureDetector
 import android.view.Surface
 import android.view.View
+import android.view.ViewConfiguration
 import androidx.annotation.MainThread
 import androidx.annotation.RequiresApi
 import androidx.annotation.RequiresPermission
@@ -53,6 +55,8 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.visible
 import java.util.concurrent.Executor
+import kotlin.math.max
+import kotlin.math.min
 
 /**
  * This is a class to manage the camera resource, and relies on the AndroidX CameraX library.
@@ -81,6 +85,7 @@ class SignalCameraController(
   private val imageMode = CameraXUtil.getOptimalCaptureMode()
 
   private val cameraProviderFuture: ListenableFuture<ProcessCameraProvider> = ProcessCameraProvider.getInstance(context)
+  private val scaleGestureDetector = ScaleGestureDetector(context, PinchToZoomGestureListener())
   private val viewPort: ViewPort? = previewView.getViewPort(Surface.ROTATION_0)
   private val initializationCompleteListeners: MutableSet<InitializationListener> = mutableSetOf()
   private val customUseCases: MutableList<UseCase> = mutableListOf()
@@ -137,7 +142,7 @@ class SignalCameraController(
         buildUseCaseGroup()
       )
 
-      initializeTapToFocus(camera)
+      initializeTapToFocusAndPinchToZoom(camera)
       this.cameraProperty = camera
     } catch (e: Exception) {
       Log.e(TAG, "Use case binding failed", e)
@@ -394,18 +399,18 @@ class SignalCameraController(
   }.build()
 
   @MainThread
-  private fun initializeTapToFocus(camera: Camera) {
+  private fun initializeTapToFocusAndPinchToZoom(camera: Camera) {
     ThreadUtil.assertMainThread()
     previewView.setOnTouchListener { v: View?, event: MotionEvent ->
-      if (event.action == MotionEvent.ACTION_DOWN) {
-        return@setOnTouchListener true
-      }
-      if (event.action == MotionEvent.ACTION_UP) {
+      val isSingleTouch = event.pointerCount == 1
+      val isUpEvent = event.action == MotionEvent.ACTION_UP
+      val notALongPress = (event.eventTime - event.downTime < ViewConfiguration.getLongPressTimeout())
+      if (isSingleTouch && isUpEvent && notALongPress) {
         focusAndMeterOnPoint(camera, event.x, event.y)
         v?.performClick()
         return@setOnTouchListener true
       }
-      false
+      return@setOnTouchListener scaleGestureDetector.onTouchEvent(event)
     }
   }
 
@@ -448,6 +453,21 @@ class SignalCameraController(
     )
   }
 
+  @MainThread
+  private fun onPinchToZoom(pinchToZoomScale: Float) {
+    val zoomState = getZoomState().getValue() ?: return
+    var clampedRatio: Float = zoomState.zoomRatio * if (pinchToZoomScale > 1f) {
+      1.0f + (pinchToZoomScale - 1.0f) * 2
+    } else {
+      1.0f - (1.0f - pinchToZoomScale) * 2
+    }
+    clampedRatio = min(
+      max(clampedRatio.toDouble(), zoomState.minZoomRatio.toDouble()),
+      zoomState.maxZoomRatio.toDouble()
+    ).toFloat()
+    setZoomRatio(clampedRatio)
+  }
+
   private fun isRecording(): Boolean {
     return recording != null
   }
@@ -470,6 +490,17 @@ class SignalCameraController(
 
   private fun Size.swap(): Size {
     return Size(this.height, this.width)
+  }
+
+  inner class PinchToZoomGestureListener : ScaleGestureDetector.OnScaleGestureListener {
+    override fun onScale(detector: ScaleGestureDetector): Boolean {
+      onPinchToZoom(detector.scaleFactor)
+      return true
+    }
+
+    override fun onScaleBegin(detector: ScaleGestureDetector): Boolean = true
+
+    override fun onScaleEnd(detector: ScaleGestureDetector) = Unit
   }
 
   interface InitializationListener {
