@@ -6,7 +6,7 @@ dependencyResolutionManagement {
     create("libs") {
       version("androidx-appcompat", "1.6.1")
       version("androidx-activity", "1.8.2")
-      version("androidx-camera", "1.3.1")
+      version("androidx-camera", "1.3.2")
       version("androidx-fragment", "1.6.2")
       version("androidx-lifecycle", "2.7.0")
       version("androidx-media3", "1.2.1")
@@ -82,6 +82,7 @@ dependencyResolutionManagement {
       library("androidx-lifecycle-reactivestreams-ktx", "androidx.lifecycle", "lifecycle-reactivestreams-ktx").versionRef("androidx-lifecycle")
       library("androidx-camera-core", "androidx.camera", "camera-core").versionRef("androidx-camera")
       library("androidx-camera-camera2", "androidx.camera", "camera-camera2").versionRef("androidx-camera")
+      library("androidx-camera-extensions", "androidx.camera", "camera-extensions").versionRef("androidx-camera")
       library("androidx-camera-lifecycle", "androidx.camera", "camera-lifecycle").versionRef("androidx-camera")
       library("androidx-camera-view", "androidx.camera", "camera-view").versionRef("androidx-camera")
       library("androidx-concurrent-futures", "androidx.concurrent:concurrent-futures:1.0.0")
