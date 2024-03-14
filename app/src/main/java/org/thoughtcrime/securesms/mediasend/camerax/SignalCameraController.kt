@@ -25,7 +25,6 @@ import androidx.camera.core.ImageCapture
 import androidx.camera.core.Preview
 import androidx.camera.core.UseCase
 import androidx.camera.core.UseCaseGroup
-import androidx.camera.core.ViewPort
 import androidx.camera.core.ZoomState
 import androidx.camera.core.resolutionselector.AspectRatioStrategy
 import androidx.camera.core.resolutionselector.ResolutionSelector
@@ -57,6 +56,8 @@ import org.thoughtcrime.securesms.util.visible
 import java.util.concurrent.Executor
 import kotlin.math.max
 import kotlin.math.min
+import androidx.camera.extensions.ExtensionMode
+import androidx.camera.extensions.ExtensionsManager
 
 /**
  * This is a class to manage the camera resource, and relies on the AndroidX CameraX library.
@@ -86,11 +87,11 @@ class SignalCameraController(
 
   private val cameraProviderFuture: ListenableFuture<ProcessCameraProvider> = ProcessCameraProvider.getInstance(context)
   private val scaleGestureDetector = ScaleGestureDetector(context, PinchToZoomGestureListener())
-  private val viewPort: ViewPort? = previewView.getViewPort(Surface.ROTATION_0)
   private val initializationCompleteListeners: MutableSet<InitializationListener> = mutableSetOf()
   private val customUseCases: MutableList<UseCase> = mutableListOf()
 
   private var tapToFocusEvents = 0
+  private var listenerAdded = false
 
   private var imageRotation = 0
   private var recording: Recording? = null
@@ -104,21 +105,28 @@ class SignalCameraController(
   private var videoCaptureUseCase: VideoCapture<Recorder> = createVideoCaptureRecorder()
 
   private lateinit var cameraProvider: ProcessCameraProvider
+  private lateinit var extensionsManager: ExtensionsManager
   private lateinit var cameraProperty: Camera
 
   @RequiresPermission(Manifest.permission.CAMERA)
   fun bindToLifecycle(onCameraBoundListener: Runnable) {
     ThreadUtil.assertMainThread()
-    if (this::cameraProvider.isInitialized) {
+    if (this::cameraProvider.isInitialized && this::extensionsManager.isInitialized) {
       bindToLifecycleInternal()
       onCameraBoundListener.run()
-    } else {
+    } else if (!listenerAdded) {
       cameraProviderFuture.addListener({
         cameraProvider = cameraProviderFuture.get()
-        initializationCompleteListeners.forEach { it.onInitialized(cameraProvider) }
-        bindToLifecycleInternal()
-        onCameraBoundListener.run()
+        val extensionsManagerFuture =
+          ExtensionsManager.getInstanceAsync(context, cameraProvider)
+        extensionsManagerFuture.addListener({
+          extensionsManager = extensionsManagerFuture.get()
+          initializationCompleteListeners.forEach { it.onInitialized(cameraProvider) }
+          bindToLifecycleInternal()
+          onCameraBoundListener.run()
+        }, ContextCompat.getMainExecutor(context))
       }, ContextCompat.getMainExecutor(context))
+      listenerAdded = true
     }
   }
 
@@ -132,13 +140,25 @@ class SignalCameraController(
   private fun bindToLifecycleInternal() {
     ThreadUtil.assertMainThread()
     try {
-      if (!this::cameraProvider.isInitialized) {
+      if (!this::cameraProvider.isInitialized || !this::extensionsManager.isInitialized) {
         Log.d(TAG, "Camera provider not yet initialized.")
         return
       }
+
+      val extCameraSelector =  if (extensionsManager.isExtensionAvailable(cameraSelector, ExtensionMode.AUTO)) {
+        Log.d(TAG, "Using CameraX ExtensionMode.AUTO")
+        extensionsManager.getExtensionEnabledCameraSelector(
+          cameraSelector,
+          ExtensionMode.AUTO
+        )
+      } else {
+        Log.d(TAG, "Using standard camera selector")
+        cameraSelector
+      }
+
       val camera = cameraProvider.bindToLifecycle(
         lifecycleOwner,
-        cameraSelector,
+        extCameraSelector,
         buildUseCaseGroup()
       )
 
@@ -391,11 +411,7 @@ class SignalCameraController(
       addUseCase(useCase)
     }
 
-    if (viewPort != null) {
-      setViewPort(viewPort)
-    } else {
-      Log.d(TAG, "ViewPort was null, not adding to UseCase builder.")
-    }
+    previewView.getViewPort(Surface.ROTATION_0)?.let { setViewPort(it) } ?: Log.d(TAG, "ViewPort was null, not adding to UseCase builder.")
   }.build()
 
   @MainThread
