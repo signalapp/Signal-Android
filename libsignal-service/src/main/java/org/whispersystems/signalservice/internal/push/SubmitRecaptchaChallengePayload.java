@@ -16,7 +16,7 @@ class SubmitRecaptchaChallengePayload {
   public SubmitRecaptchaChallengePayload() {}
 
   public SubmitRecaptchaChallengePayload(String challenge, String recaptchaToken) {
-    this.type    = "recaptcha";
+    this.type    = "captcha";
     this.token   = challenge;
     this.captcha = recaptchaToken;
   }

@@ -594,8 +594,13 @@ public abstract class PushSendJob extends SendJob {
       SignalDatabase.messages().markAsRateLimited(messageId);
     }
 
-    if (proofRequired.getOptions().contains(ProofRequiredException.Option.RECAPTCHA)) {
-      Log.i(TAG, "[Proof Required] ReCAPTCHA required.");
+    final Optional<ProofRequiredException.Option> captchaRequired =
+        proofRequired.getOptions().stream()
+                     .filter(option -> option.equals(ProofRequiredException.Option.RECAPTCHA) || option.equals(ProofRequiredException.Option.CAPTCHA))
+                     .findFirst();
+
+    if (captchaRequired.isPresent()) {
+      Log.i(TAG, "[Proof Required] " + captchaRequired.get() + " required.");
       SignalStore.rateLimit().markNeedsRecaptcha(proofRequired.getToken());
 
       if (recipient != null) {
