@@ -543,8 +543,10 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
       return
     }
     val uri = mediaItem.uri
-    videoTimeLine.unregisterPlayerOnRangeChangeListener()
-    videoTimeLine.setInput(uri)
+    val updatedInputInTimeline = videoTimeLine.setInput(uri)
+    if (updatedInputInTimeline) {
+      videoTimeLine.unregisterDragListener()
+    }
     val size: Long = tryGetUriSize(requireContext(), uri, Long.MAX_VALUE)
     val maxSend = sharedViewModel.getMediaConstraints().getVideoMaxSize(requireContext())
     if (size > maxSend) {
