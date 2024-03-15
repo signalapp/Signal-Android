@@ -1278,9 +1278,20 @@ class AttachmentTable(
     }
   }
 
-  private fun areTransformationsCompatible(newProperties: TransformProperties, potentialMatchProperties: TransformProperties, newHashStart: String, potentialMatchHashEnd: String?): Boolean {
+  private fun areTransformationsCompatible(
+    newProperties: TransformProperties,
+    potentialMatchProperties: TransformProperties,
+    newHashStart: String,
+    potentialMatchHashEnd: String?,
+    newIsQuote: Boolean
+  ): Boolean {
     // If we're starting now where another attachment finished, then it means we're forwarding an attachment.
     if (newHashStart == potentialMatchHashEnd) {
+      // Quotes don't get transcoded or anything and are just a reference to the original attachment, so as long as the hashes match we're fine
+      if (newIsQuote) {
+        return true
+      }
+
       // If the new attachment is an edited video, we can't re-use the file
       if (newProperties.videoEdited) {
         return false
@@ -1402,15 +1413,16 @@ class AttachmentTable(
             newProperties = transformProperties,
             potentialMatchProperties = existingMatch.transformProperties,
             newHashStart = fileWriteResult.hash,
-            potentialMatchHashEnd = existingMatch.hashEnd
+            potentialMatchHashEnd = existingMatch.hashEnd,
+            newIsQuote = quote
           )
         }
 
       if (hashMatch != null) {
         if (fileWriteResult.hash == hashMatch.hashStart) {
-          Log.i(TAG, "[insertAttachmentWithData] Found that the new attachment has the same DATA_HASH_START as ${hashMatch.id}. Using all of it's fields. (MessageId: $messageId, ${attachment.uri})")
+          Log.i(TAG, "[insertAttachmentWithData] Found that the new attachment hash matches the DATA_HASH_START of ${hashMatch.id}. Using all of it's fields. (MessageId: $messageId, ${attachment.uri})")
         } else if (fileWriteResult.hash == hashMatch.hashEnd) {
-          Log.i(TAG, "[insertAttachmentWithData] Found that the new attachment has the same DATA_HASH_END as ${hashMatch.id}. Using all of it's fields. (MessageId: $messageId, ${attachment.uri})")
+          Log.i(TAG, "[insertAttachmentWithData] Found that the new attachment hash matches the DATA_HASH_END of ${hashMatch.id}. Using all of it's fields. (MessageId: $messageId, ${attachment.uri})")
         } else {
           throw IllegalStateException("Should not be possible based on query.")
         }
@@ -1453,12 +1465,12 @@ class AttachmentTable(
       contentValues.put(MESSAGE_ID, messageId)
       contentValues.put(CONTENT_TYPE, uploadTemplate?.contentType ?: attachment.contentType)
       contentValues.put(TRANSFER_STATE, attachment.transferState) // Even if we have a template, we let AttachmentUploadJob have the final say so it can re-check and make sure the template is still valid
-      contentValues.put(CDN_NUMBER, uploadTemplate?.cdnNumber ?: attachment.cdnNumber)
-      contentValues.put(REMOTE_LOCATION, uploadTemplate?.remoteLocation ?: attachment.remoteLocation)
-      contentValues.put(REMOTE_DIGEST, uploadTemplate?.remoteDigest ?: attachment.remoteDigest)
-      contentValues.put(REMOTE_INCREMENTAL_DIGEST, uploadTemplate?.incrementalDigest ?: attachment.incrementalDigest)
-      contentValues.put(REMOTE_INCREMENTAL_DIGEST_CHUNK_SIZE, uploadTemplate?.incrementalMacChunkSize ?: attachment.incrementalMacChunkSize)
-      contentValues.put(REMOTE_KEY, uploadTemplate?.remoteKey ?: attachment.remoteKey)
+      contentValues.put(CDN_NUMBER, uploadTemplate?.cdnNumber ?: 0)
+      contentValues.put(REMOTE_LOCATION, uploadTemplate?.remoteLocation)
+      contentValues.put(REMOTE_DIGEST, uploadTemplate?.remoteDigest)
+      contentValues.put(REMOTE_INCREMENTAL_DIGEST, uploadTemplate?.incrementalDigest)
+      contentValues.put(REMOTE_INCREMENTAL_DIGEST_CHUNK_SIZE, uploadTemplate?.incrementalMacChunkSize ?: 0)
+      contentValues.put(REMOTE_KEY, uploadTemplate?.remoteKey)
       contentValues.put(FILE_NAME, StorageUtil.getCleanFileName(attachment.fileName))
       contentValues.put(FAST_PREFLIGHT_ID, attachment.fastPreflightId)
       contentValues.put(VOICE_NOTE, if (attachment.voiceNote) 1 else 0)
@@ -1468,7 +1480,7 @@ class AttachmentTable(
       contentValues.put(HEIGHT, uploadTemplate?.height ?: attachment.height)
       contentValues.put(QUOTE, quote)
       contentValues.put(CAPTION, attachment.caption)
-      contentValues.put(UPLOAD_TIMESTAMP, uploadTemplate?.uploadTimestamp ?: attachment.uploadTimestamp)
+      contentValues.put(UPLOAD_TIMESTAMP, uploadTemplate?.uploadTimestamp ?: 0)
       contentValues.put(TRANSFORM_PROPERTIES, transformProperties.serialize())
 
       if (attachment.transformProperties?.videoEdited == true) {

@@ -434,6 +434,43 @@ class AttachmentTableTest_deduping {
     }
   }
 
+  @Test
+  fun quotes() {
+    // Basic quote deduping
+    test {
+      val id1 = insertWithData(DATA_A)
+      val id2 = insertQuote(id1)
+
+      assertDataFilesAreTheSame(id1, id2)
+      assertDataHashStartMatches(id1, id2)
+    }
+
+    // Making sure remote fields carry
+    test {
+      val id1 = insertWithData(DATA_A)
+      val id2 = insertQuote(id1)
+      upload(id1)
+
+      assertDataFilesAreTheSame(id1, id2)
+      assertDataHashStartMatches(id1, id2)
+      assertDataHashEndMatches(id1, id2)
+      assertRemoteFieldsMatch(id1, id2)
+    }
+
+    // Making sure things work for quotes of videos, which have trickier transform properties
+    test {
+      val id1 = insertWithData(DATA_A, transformProperties = TransformProperties.forVideoTrim(1, 2))
+      compress(id1, DATA_A_COMPRESSED)
+      upload(id1)
+
+      val id2 = insertQuote(id1)
+
+      assertDataFilesAreTheSame(id1, id2)
+      assertDataHashEndMatches(id1, id2)
+      assertRemoteFieldsMatch(id1, id2)
+    }
+  }
+
   /**
    * Suite of tests around the migration where we hash all of the attachments and potentially dedupe them.
    */
@@ -678,6 +715,7 @@ class AttachmentTableTest_deduping {
       val lhsInfo = SignalDatabase.attachments.getDataFileInfo(lhs)!!
       val rhsInfo = SignalDatabase.attachments.getDataFileInfo(rhs)!!
 
+      assertNotNull(lhsInfo.hashStart)
       assertEquals("DATA_HASH_START's did not match!", lhsInfo.hashStart, rhsInfo.hashStart)
     }
 
@@ -685,6 +723,7 @@ class AttachmentTableTest_deduping {
       val lhsInfo = SignalDatabase.attachments.getDataFileInfo(lhs)!!
       val rhsInfo = SignalDatabase.attachments.getDataFileInfo(rhs)!!
 
+      assertNotNull(lhsInfo.hashEnd)
       assertEquals("DATA_HASH_END's did not match!", lhsInfo.hashEnd, rhsInfo.hashEnd)
     }
 
