@@ -1,16 +1,17 @@
 package org.thoughtcrime.securesms.devicetransfer.newdevice;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.databinding.FragmentTransferRestoreBinding;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 
@@ -19,22 +20,42 @@ import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
  */
 public final class TransferOrRestoreFragment extends LoggingFragment {
 
+  private final LifecycleDisposable lifecycleDisposable = new LifecycleDisposable();
+
+  private FragmentTransferRestoreBinding binding;
+
   public TransferOrRestoreFragment() {
     super(R.layout.fragment_transfer_restore);
   }
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    view.findViewById(R.id.transfer_or_restore_fragment_transfer)
-        .setOnClickListener(v -> SafeNavigation.safeNavigate(Navigation.findNavController(v), R.id.action_new_device_transfer_instructions));
+    binding = FragmentTransferRestoreBinding.bind(view);
 
-    View restoreBackup = view.findViewById(R.id.transfer_or_restore_fragment_restore);
-    restoreBackup.setOnClickListener(v -> SafeNavigation.safeNavigate(Navigation.findNavController(v), R.id.action_choose_backup));
+    TransferOrRestoreViewModel viewModel = new ViewModelProvider(this).get(TransferOrRestoreViewModel.class);
+
+    binding.transferOrRestoreFragmentTransfer.setOnClickListener(v -> viewModel.onTransferFromAndroidDeviceSelected());
+    binding.transferOrRestoreFragmentRestore.setOnClickListener(v -> viewModel.onRestoreFromLocalBackupSelected());
+    binding.transferOrRestoreFragmentNext.setOnClickListener(v -> launchSelection(viewModel.getStateSnapshot()));
 
     String description = getString(R.string.TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device);
     String toBold      = getString(R.string.TransferOrRestoreFragment__you_need_access_to_your_old_device);
 
-    TextView transferDescriptionView = view.findViewById(R.id.transfer_or_restore_fragment_transfer_description);
-    transferDescriptionView.setText(SpanUtil.boldSubstring(description, toBold));
+    binding.transferOrRestoreFragmentTransferDescription.setText(SpanUtil.boldSubstring(description, toBold));
+
+    lifecycleDisposable.bindTo(getViewLifecycleOwner());
+    lifecycleDisposable.add(viewModel.getState().subscribe(this::updateSelection));
+  }
+
+  private void updateSelection(TransferOrRestoreViewModel.RestorationType restorationType) {
+    binding.transferOrRestoreFragmentTransferCard.setSelected(restorationType == TransferOrRestoreViewModel.RestorationType.DEVICE_TRANSFER);
+    binding.transferOrRestoreFragmentRestoreCard.setSelected(restorationType == TransferOrRestoreViewModel.RestorationType.LOCAL_BACKUP);
+  }
+
+  private void launchSelection(TransferOrRestoreViewModel.RestorationType restorationType) {
+    switch (restorationType) {
+      case DEVICE_TRANSFER -> SafeNavigation.safeNavigate(Navigation.findNavController(requireView()), R.id.action_new_device_transfer_instructions);
+      case LOCAL_BACKUP -> SafeNavigation.safeNavigate(Navigation.findNavController(requireView()), R.id.action_choose_backup);
+    }
   }
 }

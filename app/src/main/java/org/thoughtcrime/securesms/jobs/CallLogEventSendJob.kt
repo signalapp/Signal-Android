@@ -6,7 +6,6 @@
 package org.thoughtcrime.securesms.jobs
 
 import androidx.annotation.WorkerThread
-import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.thoughtcrime.securesms.database.CallTable
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
