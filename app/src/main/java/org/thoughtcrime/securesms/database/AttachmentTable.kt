@@ -94,6 +94,7 @@ import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 import java.util.LinkedList
 import java.util.Optional
+import java.util.UUID
 import kotlin.time.Duration.Companion.days
 
 class AttachmentTable(
@@ -253,6 +254,80 @@ class AttachmentTable(
     } catch (e: FileNotFoundException) {
       throw IOException("No stream for: $attachmentId", e)
     } ?: throw IOException("No stream for: $attachmentId")
+  }
+
+  /**
+   * Returns a [File] for an attachment that has no [DATA_HASH_END] and is in the [TRANSFER_PROGRESS_DONE] state, if present.
+   */
+  fun getUnhashedDataFile(): Pair<File, AttachmentId>? {
+    return readableDatabase
+      .select(ID, DATA_FILE)
+      .from(TABLE_NAME)
+      .where("$DATA_FILE NOT NULL AND $DATA_HASH_END IS NULL AND $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE")
+      .orderBy("$ID DESC")
+      .limit(1)
+      .run()
+      .readToSingleObject {
+        File(it.requireNonNullString(DATA_FILE)) to AttachmentId(it.requireLong(ID))
+      }
+  }
+
+  /**
+   * Sets the [DATA_HASH_END] for a given file. This is used to backfill the hash for attachments that were created before we started hashing them.
+   * As a result, this will _not_ update the hashes on files that are not fully uploaded.
+   */
+  fun setHashForDataFile(file: File, hash: ByteArray) {
+    writableDatabase.withinTransaction { db ->
+      val hashEnd = Base64.encodeWithPadding(hash)
+
+      val (existingFile: String?, existingSize: Long?, existingRandom: ByteArray?) = db.select(DATA_FILE, DATA_SIZE, DATA_RANDOM)
+        .from(TABLE_NAME)
+        .where("$DATA_HASH_END = ? AND $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE AND $DATA_FILE NOT NULL AND $DATA_FILE != ?", hashEnd, file.absolutePath)
+        .limit(1)
+        .run()
+        .readToSingleObject {
+          Triple(
+            it.requireString(DATA_FILE),
+            it.requireLong(DATA_SIZE),
+            it.requireBlob(DATA_RANDOM)
+          )
+        } ?: Triple(null, null, null)
+
+      if (existingFile != null) {
+        Log.i(TAG, "[setHashForDataFile] Found that a different file has the same HASH_END. Using that one instead. Pre-existing file: $existingFile", true)
+
+        val updateCount = writableDatabase
+          .update(TABLE_NAME)
+          .values(
+            DATA_FILE to existingFile,
+            DATA_HASH_END to hashEnd,
+            DATA_SIZE to existingSize,
+            DATA_RANDOM to existingRandom
+          )
+          .where("$DATA_FILE = ? AND $DATA_HASH_END IS NULL AND $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE", file.absolutePath)
+          .run()
+
+        Log.i(TAG, "[setHashForDataFile] Deduped $updateCount attachments.", true)
+
+        val oldFileInUse = db.exists(TABLE_NAME).where("$DATA_FILE = ?", file.absolutePath).run()
+        if (oldFileInUse) {
+          Log.i(TAG, "[setHashForDataFile] Old file is still in use by some in-progress attachment.", true)
+        } else {
+          Log.i(TAG, "[setHashForDataFile] Deleting unused file: $file")
+          if (!file.delete()) {
+            Log.w(TAG, "Failed to delete duped file!")
+          }
+        }
+      } else {
+        val updateCount = writableDatabase
+          .update(TABLE_NAME)
+          .values(DATA_HASH_END to Base64.encodeWithPadding(hash))
+          .where("$DATA_FILE = ? AND $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE", file.absolutePath)
+          .run()
+
+        Log.i(TAG, "[setHashForDataFile] Updated the HASH_END for $updateCount rows using file ${file.absolutePath}")
+      }
+    }
   }
 
   fun getAttachment(attachmentId: AttachmentId): DatabaseAttachment? {
@@ -480,6 +555,34 @@ class AttachmentTable(
     }
 
     return onDiskButNotInDatabase.size
+  }
+
+  /**
+   * Removes all references to the provided [DATA_FILE] from all attachments.
+   * Only do this if the file is known to not exist or has some other critical problem!
+   */
+  fun clearUsagesOfDataFile(file: File) {
+    val updateCount = writableDatabase
+      .update(TABLE_NAME)
+      .values(DATA_FILE to null)
+      .where("$DATA_FILE = ?", file.absolutePath)
+      .run()
+
+    Log.i(TAG, "[clearUsagesOfFile] Cleared $updateCount usages of $file", true)
+  }
+
+  /**
+   * Indicates that, for whatever reason, a hash could not be calculated for the file in question.
+   * We put in a "bad hash" that will never match anything else so that we don't attempt to backfill it in the future.
+   */
+  fun markDataFileAsUnhashable(file: File) {
+    val updateCount = writableDatabase
+      .update(TABLE_NAME)
+      .values(DATA_HASH_END to "UNHASHABLE-${UUID.randomUUID()}")
+      .where("$DATA_FILE = ? AND $DATA_HASH_END IS NULL AND $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE", file.absolutePath)
+      .run()
+
+    Log.i(TAG, "[markDataFileAsUnhashable] Marked $updateCount attachments as unhashable with file: ${file.absolutePath}", true)
   }
 
   fun deleteAllAttachments() {
@@ -1608,6 +1711,11 @@ class AttachmentTable(
       fun forSentMediaQuality(currentProperties: Optional<TransformProperties>, sentMediaQuality: SentMediaQuality): TransformProperties {
         val existing = currentProperties.orElse(empty())
         return existing.copy(sentMediaQuality = sentMediaQuality.code)
+      }
+
+      @JvmStatic
+      fun forSentMediaQuality(sentMediaQuality: Int): TransformProperties {
+        return TransformProperties(sentMediaQuality = sentMediaQuality)
       }
 
       @JvmStatic

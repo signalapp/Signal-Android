@@ -11,6 +11,8 @@ import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.signal.core.util.Base64
+import org.signal.core.util.update
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.database.AttachmentTable.TransformProperties
@@ -37,6 +39,7 @@ class AttachmentTableTest_deduping {
   companion object {
     val DATA_A = byteArrayOf(1, 2, 3)
     val DATA_A_COMPRESSED = byteArrayOf(4, 5, 6)
+    val DATA_A_HASH = byteArrayOf(1, 1, 1)
 
     val DATA_B = byteArrayOf(7, 8, 9)
   }
@@ -339,6 +342,25 @@ class AttachmentTableTest_deduping {
       assertSkipTransform(id2, false)
       assertDoesNotHaveRemoteFields(id2)
     }
+
+    // Make sure that files marked as unhashable are all updated together
+    test {
+      val id1 = insertWithData(DATA_A)
+      val id2 = insertWithData(DATA_A)
+      upload(id1)
+      upload(id2)
+      clearHashes(id1)
+      clearHashes(id2)
+
+      val file = dataFile(id1)
+      SignalDatabase.attachments.markDataFileAsUnhashable(file)
+
+      assertDataFilesAreTheSame(id1, id2)
+      assertDataHashEndMatches(id1, id2)
+
+      val dataFileInfo = SignalDatabase.attachments.getDataFileInfo(id1)!!
+      assertTrue(dataFileInfo.hashEnd!!.startsWith("UNHASHABLE-"))
+    }
   }
 
   /**
@@ -412,6 +434,131 @@ class AttachmentTableTest_deduping {
     }
   }
 
+  /**
+   * Suite of tests around the migration where we hash all of the attachments and potentially dedupe them.
+   */
+  @Test
+  fun migration() {
+    // Verifying that getUnhashedDataFile only returns if there's actually missing hashes
+    test {
+      val id = insertWithData(DATA_A)
+      upload(id)
+      assertNull(SignalDatabase.attachments.getUnhashedDataFile())
+    }
+
+    // Verifying that getUnhashedDataFile finds the missing hash
+    test {
+      val id = insertWithData(DATA_A)
+      upload(id)
+      clearHashes(id)
+      assertNotNull(SignalDatabase.attachments.getUnhashedDataFile())
+    }
+
+    // Verifying that getUnhashedDataFile doesn't return if the file isn't done downloading
+    test {
+      val id = insertWithData(DATA_A)
+      upload(id)
+      setTransferState(id, AttachmentTable.TRANSFER_PROGRESS_PENDING)
+      clearHashes(id)
+      assertNull(SignalDatabase.attachments.getUnhashedDataFile())
+    }
+
+    // If two attachments share the same file, when we backfill the hash, make sure both get their hashes set
+    test {
+      val id1 = insertWithData(DATA_A)
+      val id2 = insertWithData(DATA_A)
+      upload(id1)
+      upload(id2)
+
+      clearHashes(id1)
+      clearHashes(id2)
+
+      val file = dataFile(id1)
+      SignalDatabase.attachments.setHashForDataFile(file, DATA_A_HASH)
+
+      assertDataHashEnd(id1, DATA_A_HASH)
+      assertDataHashEndMatches(id1, id2)
+    }
+
+    // Creates a situation where two different attachments have the same data but wrote to different files, and verifies the migration dedupes it
+    test {
+      val id1 = insertWithData(DATA_A)
+      upload(id1)
+      clearHashes(id1)
+
+      val id2 = insertWithData(DATA_A)
+      upload(id2)
+      clearHashes(id2)
+
+      assertDataFilesAreDifferent(id1, id2)
+
+      val file1 = dataFile(id1)
+      SignalDatabase.attachments.setHashForDataFile(file1, DATA_A_HASH)
+
+      assertDataHashEnd(id1, DATA_A_HASH)
+      assertDataFilesAreDifferent(id1, id2)
+
+      val file2 = dataFile(id2)
+      SignalDatabase.attachments.setHashForDataFile(file2, DATA_A_HASH)
+
+      assertDataFilesAreTheSame(id1, id2)
+      assertDataHashEndMatches(id1, id2)
+      assertFalse(file2.exists())
+    }
+
+    // We've got three files now with the same data, with two of them sharing a file. We want to make sure *both* entries that share the same file get deduped.
+    test {
+      val id1 = insertWithData(DATA_A)
+      upload(id1)
+      clearHashes(id1)
+
+      val id2 = insertWithData(DATA_A)
+      val id3 = insertWithData(DATA_A)
+      upload(id2)
+      upload(id3)
+      clearHashes(id2)
+      clearHashes(id3)
+
+      assertDataFilesAreDifferent(id1, id2)
+      assertDataFilesAreTheSame(id2, id3)
+
+      val file1 = dataFile(id1)
+      SignalDatabase.attachments.setHashForDataFile(file1, DATA_A_HASH)
+      assertDataHashEnd(id1, DATA_A_HASH)
+
+      val file2 = dataFile(id2)
+      SignalDatabase.attachments.setHashForDataFile(file2, DATA_A_HASH)
+
+      assertDataFilesAreTheSame(id1, id2)
+      assertDataHashEndMatches(id1, id2)
+      assertDataHashEndMatches(id2, id3)
+      assertFalse(file2.exists())
+    }
+
+    // We don't want to mess with files that are still downloading, so this makes sure that even if data matches, we don't dedupe and don't delete the file
+    test {
+      val id1 = insertWithData(DATA_A)
+      upload(id1)
+      clearHashes(id1)
+
+      val id2 = insertWithData(DATA_A)
+      // *not* uploaded
+      clearHashes(id2)
+
+      assertDataFilesAreDifferent(id1, id2)
+
+      val file1 = dataFile(id1)
+      SignalDatabase.attachments.setHashForDataFile(file1, DATA_A_HASH)
+      assertDataHashEnd(id1, DATA_A_HASH)
+
+      val file2 = dataFile(id2)
+      SignalDatabase.attachments.setHashForDataFile(file2, DATA_A_HASH)
+
+      assertDataFilesAreDifferent(id1, id2)
+      assertTrue(file2.exists())
+    }
+  }
+
   private class TestContext {
     fun insertWithData(data: ByteArray, transformProperties: TransformProperties = TransformProperties.empty()): AttachmentId {
       val uri = BlobProvider.getInstance().forData(data).createForSingleSessionInMemory()
@@ -472,6 +619,22 @@ class AttachmentTableTest_deduping {
       return SignalDatabase.attachments.getDataFileInfo(attachmentId)!!.file
     }
 
+    fun setTransferState(attachmentId: AttachmentId, transferState: Int) {
+      // messageId doesn't actually matter -- that's for notifying listeners
+      SignalDatabase.attachments.setTransferState(messageId = -1, attachmentId = attachmentId, transferState = transferState)
+    }
+
+    fun clearHashes(id: AttachmentId) {
+      SignalDatabase.attachments.writableDatabase
+        .update(AttachmentTable.TABLE_NAME)
+        .values(
+          AttachmentTable.DATA_HASH_START to null,
+          AttachmentTable.DATA_HASH_END to null
+        )
+        .where("${AttachmentTable.ID} = ?", id)
+        .run()
+    }
+
     fun assertDeleted(attachmentId: AttachmentId) {
       assertNull("$attachmentId exists, but it shouldn't!", SignalDatabase.attachments.getAttachment(attachmentId))
     }
@@ -523,6 +686,11 @@ class AttachmentTableTest_deduping {
       val rhsInfo = SignalDatabase.attachments.getDataFileInfo(rhs)!!
 
       assertEquals("DATA_HASH_END's did not match!", lhsInfo.hashEnd, rhsInfo.hashEnd)
+    }
+
+    fun assertDataHashEnd(id: AttachmentId, byteArray: ByteArray) {
+      val dataFileInfo = SignalDatabase.attachments.getDataFileInfo(id)!!
+      assertArrayEquals(byteArray, Base64.decode(dataFileInfo.hashEnd!!))
     }
 
     fun assertRemoteFieldsMatch(lhs: AttachmentId, rhs: AttachmentId) {
