@@ -1221,6 +1221,18 @@ public class Recipient {
     return Objects.requireNonNull(callLinkRoomId);
   }
 
+  public @NonNull byte[] requireCallConversationId() {
+    if (isPushGroup()) {
+      return requireGroupId().getDecodedId();
+    } else if (isCallLink()) {
+      return requireCallLinkRoomId().encodeForProto().toByteArray();
+    } else if (isIndividual()) {
+      return requireServiceId().toByteArray();
+    } else {
+      throw new IllegalStateException("Recipient does not support conversation id");
+    }
+  }
+
   public PhoneNumberSharingState getPhoneNumberSharing() {
     return phoneNumberSharing;
   }

@@ -947,12 +947,12 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
   /**
    * Gets the most recent timestamp from the [TIMESTAMP] column
    */
-  fun getLatestTimestamp(): Long {
+  fun getLatestCall(): Call? {
     val statement = """
-      SELECT $TIMESTAMP FROM $TABLE_NAME ORDER BY $TIMESTAMP DESC LIMIT 1
+      SELECT * FROM $TABLE_NAME ORDER BY $TIMESTAMP DESC LIMIT 1
     """.trimIndent()
 
-    return readableDatabase.query(statement).readToSingleLong(-1)
+    return readableDatabase.query(statement).readToSingleObject { Call.deserialize(it) }
   }
 
   fun deleteNonAdHocCallEventsOnOrBefore(timestamp: Long) {

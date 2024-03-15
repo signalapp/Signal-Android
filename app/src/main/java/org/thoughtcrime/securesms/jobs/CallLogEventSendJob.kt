@@ -5,10 +5,15 @@
 
 package org.thoughtcrime.securesms.jobs
 
+import androidx.annotation.WorkerThread
+import okio.ByteString
+import okio.ByteString.Companion.toByteString
+import org.thoughtcrime.securesms.database.CallTable
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.protos.CallLogEventSendJobData
+import org.thoughtcrime.securesms.recipients.Recipient
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException
@@ -27,8 +32,9 @@ class CallLogEventSendJob private constructor(
   companion object {
     const val KEY = "CallLogEventSendJob"
 
+    @WorkerThread
     fun forClearHistory(
-      timestamp: Long
+      call: CallTable.Call
     ) = CallLogEventSendJob(
       Parameters.Builder()
         .setQueue("CallLogEventSendJob")
@@ -37,13 +43,16 @@ class CallLogEventSendJob private constructor(
         .addConstraint(NetworkConstraint.KEY)
         .build(),
       SyncMessage.CallLogEvent(
-        timestamp = timestamp,
+        timestamp = call.timestamp,
+        callId = call.callId,
+        conversationId = Recipient.resolved(call.peer).requireCallConversationId().toByteString(),
         type = SyncMessage.CallLogEvent.Type.CLEAR
       )
     )
 
+    @WorkerThread
     fun forMarkedAsRead(
-      timestamp: Long
+      call: CallTable.Call
     ) = CallLogEventSendJob(
       Parameters.Builder()
         .setQueue("CallLogEventSendJob")
@@ -52,7 +61,9 @@ class CallLogEventSendJob private constructor(
         .addConstraint(NetworkConstraint.KEY)
         .build(),
       SyncMessage.CallLogEvent(
-        timestamp = timestamp,
+        timestamp = call.timestamp,
+        callId = call.callId,
+        conversationId = Recipient.resolved(call.peer).requireCallConversationId().toByteString(),
         type = SyncMessage.CallLogEvent.Type.MARKED_AS_READ
       )
     )

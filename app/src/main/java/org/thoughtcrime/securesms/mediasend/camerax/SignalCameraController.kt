@@ -29,6 +29,8 @@ import androidx.camera.core.ZoomState
 import androidx.camera.core.resolutionselector.AspectRatioStrategy
 import androidx.camera.core.resolutionselector.ResolutionSelector
 import androidx.camera.core.resolutionselector.ResolutionStrategy
+import androidx.camera.extensions.ExtensionMode
+import androidx.camera.extensions.ExtensionsManager
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.video.FallbackStrategy
 import androidx.camera.video.FileDescriptorOutputOptions
@@ -56,8 +58,6 @@ import org.thoughtcrime.securesms.util.visible
 import java.util.concurrent.Executor
 import kotlin.math.max
 import kotlin.math.min
-import androidx.camera.extensions.ExtensionMode
-import androidx.camera.extensions.ExtensionsManager
 
 /**
  * This is a class to manage the camera resource, and relies on the AndroidX CameraX library.
@@ -145,7 +145,7 @@ class SignalCameraController(
         return
       }
 
-      val extCameraSelector =  if (extensionsManager.isExtensionAvailable(cameraSelector, ExtensionMode.AUTO)) {
+      val extCameraSelector = if (extensionsManager.isExtensionAvailable(cameraSelector, ExtensionMode.AUTO)) {
         Log.d(TAG, "Using CameraX ExtensionMode.AUTO")
         extensionsManager.getExtensionEnabledCameraSelector(
           cameraSelector,
