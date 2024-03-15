@@ -154,6 +154,229 @@ class ImportExportTest {
   }
 
   @Test
+  fun largeNumberOfRecipientsAndChats() {
+    val recipients = ArrayList<Recipient>(5000)
+    val chats = ArrayList<Chat>(5000)
+    var id = 3L
+    for (i in 0..5000) {
+      val recipientId = id++
+      recipients.add(
+        Recipient(
+          id = recipientId,
+          contact = Contact(
+            aci = TestRecipientUtils.nextAci().toByteString(),
+            pni = TestRecipientUtils.nextPni().toByteString(),
+            username = "rec$i.01",
+            e164 = 14125550000 + i,
+            blocked = false,
+            hidden = false,
+            registered = Contact.Registered.REGISTERED,
+            unregisteredTimestamp = 0L,
+            profileKey = TestRecipientUtils.generateProfileKey().toByteString(),
+            profileSharing = true,
+            profileGivenName = "Test",
+            profileFamilyName = "Recipient$i",
+            hideStory = false
+          )
+        )
+      )
+      chats.add(
+        Chat(
+          id = recipientId - 2L,
+          recipientId = recipientId
+        )
+      )
+      if (i % 10 == 0) {
+        val groupId = id++
+        recipients.add(
+          Recipient(
+            id = groupId,
+            group = Group(
+              masterKey = TestRecipientUtils.generateGroupMasterKey().toByteString(),
+              whitelisted = true,
+              hideStory = false,
+              storySendMode = Group.StorySendMode.ENABLED,
+              name = "Cool Group $i"
+            )
+          )
+        )
+        chats.add(
+          Chat(
+            id = groupId - 2L,
+            recipientId = groupId
+          )
+        )
+      }
+    }
+    importExport(
+      *standardFrames,
+      *recipients.toArray()
+    )
+  }
+
+  @Test
+  fun largeNumberOfMessagesAndChats() {
+    val NUM_INDIVIDUAL_RECIPIENTS = 1000
+    val numIndividualMessages = 500
+    val numGroupMessagesPerPerson = 200
+
+    val recipients = ArrayList<Recipient>(1010)
+    val chats = ArrayList<Chat>(1010)
+    var id = 3L
+    for (i in 0 until NUM_INDIVIDUAL_RECIPIENTS) {
+      val recipientId = id++
+      recipients.add(
+        Recipient(
+          id = recipientId,
+          contact = Contact(
+            aci = TestRecipientUtils.nextAci().toByteString(),
+            pni = TestRecipientUtils.nextPni().toByteString(),
+            username = "rec$i.01",
+            e164 = 14125550000 + i,
+            blocked = false,
+            hidden = false,
+            registered = Contact.Registered.REGISTERED,
+            unregisteredTimestamp = 0L,
+            profileKey = TestRecipientUtils.generateProfileKey().toByteString(),
+            profileSharing = true,
+            profileGivenName = "Test",
+            profileFamilyName = "Recipient$i",
+            hideStory = false
+          )
+        )
+      )
+      chats.add(
+        Chat(
+          id = recipientId - 2L,
+          recipientId = recipientId
+        )
+      )
+      if (i % 100 == 0) {
+        val groupId = id++
+        recipients.add(
+          Recipient(
+            id = groupId,
+            group = Group(
+              masterKey = TestRecipientUtils.generateGroupMasterKey().toByteString(),
+              whitelisted = true,
+              hideStory = false,
+              storySendMode = Group.StorySendMode.ENABLED,
+              name = "Cool Group $i"
+            )
+          )
+        )
+        chats.add(
+          Chat(
+            id = groupId - 2L,
+            recipientId = groupId
+          )
+        )
+      }
+    }
+    val chatItems = ArrayList<ChatItem>()
+    var sentTime = 1L
+    val groupMembers = ArrayList<Recipient>()
+    var group: Recipient? = null
+    for (recipient in recipients) {
+      // Make another group and populate it with messages from these members
+      if (recipient.group != null) {
+        if (group == null) {
+          group = recipient
+          groupMembers.clear()
+        } else {
+          for (member in groupMembers) {
+            for (i in 0 until numGroupMessagesPerPerson) {
+              chatItems.add(
+                ChatItem(
+                  chatId = group.id - 2L,
+                  authorId = member.id,
+                  dateSent = sentTime++,
+                  sms = false,
+                  incoming = ChatItem.IncomingMessageDetails(
+                    dateReceived = sentTime + 1,
+                    dateServerSent = sentTime,
+                    read = true,
+                    sealedSender = true
+                  ),
+                  standardMessage = StandardMessage(
+                    text = Text(
+                      body = "Medium length message from ${member.contact?.profileGivenName} ${member.contact?.profileFamilyName} sent at $sentTime"
+                    )
+                  )
+                )
+              )
+            }
+          }
+          for (i in 0 until numGroupMessagesPerPerson) {
+            ChatItem(
+              chatId = group.id - 2L,
+              authorId = selfRecipient.id,
+              dateSent = sentTime++,
+              sms = false,
+              outgoing = ChatItem.OutgoingMessageDetails(
+                sendStatus = groupMembers.map { groupMember ->
+                  SendStatus(recipientId = groupMember.id, deliveryStatus = SendStatus.Status.READ, sealedSender = true)
+                }
+              ),
+              standardMessage = StandardMessage(
+                text = Text(
+                  body = "Outgoing message without much text in it just because"
+                )
+              )
+            )
+          }
+        }
+      } else {
+        groupMembers.add(recipient)
+        for (i in 0 until numIndividualMessages) {
+          if (i % 2 == 0) {
+            ChatItem(
+              chatId = 1,
+              authorId = selfRecipient.id,
+              dateSent = sentTime++,
+              sms = false,
+              outgoing = ChatItem.OutgoingMessageDetails(
+                sendStatus = listOf(
+                  SendStatus(recipient.id, deliveryStatus = SendStatus.Status.READ, sealedSender = true)
+                )
+              ),
+              standardMessage = StandardMessage(
+                text = Text(
+                  body = "Outgoing message without much text in it just because"
+                )
+              )
+            )
+          } else {
+            ChatItem(
+              chatId = 1,
+              authorId = selfRecipient.id,
+              dateSent = sentTime++,
+              sms = false,
+              incoming = ChatItem.IncomingMessageDetails(
+                dateReceived = sentTime + 1,
+                dateServerSent = sentTime,
+                read = true,
+                sealedSender = true
+              ),
+              standardMessage = StandardMessage(
+                text = Text(
+                  body = "Outgoing message without much text in it just because"
+                )
+              )
+            )
+          }
+        }
+      }
+    }
+    val import = exportFrames(
+      *standardFrames,
+      *recipients.toArray(),
+      *chatItems.toArray()
+    )
+    outputFile(import)
+  }
+
+  @Test
   fun individualRecipients() {
     importExport(
       *standardFrames,
