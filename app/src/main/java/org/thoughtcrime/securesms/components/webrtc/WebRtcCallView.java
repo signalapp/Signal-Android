@@ -521,8 +521,6 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
       }
     }
 
-    pictureInPictureGestureHelper.setDisplayBelowVerticalBoundary(false);
-
     switch (state) {
       case GONE:
         largeLocalRender.attachBroadcastVideoSink(null);
@@ -543,7 +541,6 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
 
         largeLocalRender.attachBroadcastVideoSink(null);
         largeLocalRenderFrame.setVisibility(View.GONE);
-        pictureInPictureGestureHelper.setDisplayBelowVerticalBoundary(true);
         break;
       case LARGE:
         largeLocalRender.attachBroadcastVideoSink(localCallParticipant.getVideoSink());
