@@ -167,7 +167,7 @@ public class ApplicationMigrations {
       return;
     } else {
       Log.d(TAG, "About to update. Clearing deprecation flag.");
-      SignalStore.misc().clearClientDeprecated();
+      SignalStore.misc().setClientDeprecated(false);
     }
 
     final int lastSeenVersion = TextSecurePreferences.getAppMigrationVersion(context);

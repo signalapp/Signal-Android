@@ -291,7 +291,7 @@ class ChangeNumberRepository(
         true
       )
 
-      SignalStore.misc().setPniInitializedDevices(true)
+      SignalStore.misc().hasPniInitializedDevices = true
       ApplicationDependencies.getGroupsV2Authorization().clear()
     }
 

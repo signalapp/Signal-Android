@@ -148,7 +148,7 @@ public class EditSelfProfileRepository implements EditProfileRepository {
       RegistrationUtil.maybeMarkRegistrationComplete();
 
       if (avatar != null) {
-        SignalStore.misc().markHasEverHadAnAvatar();
+        SignalStore.misc().setHasEverHadAnAvatar(true);
       }
 
       return UploadResult.SUCCESS;

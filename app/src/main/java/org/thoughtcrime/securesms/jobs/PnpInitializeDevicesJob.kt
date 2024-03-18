@@ -48,7 +48,7 @@ class PnpInitializeDevicesJob private constructor(parameters: Parameters) : Base
 
     @JvmStatic
     fun enqueueIfNecessary() {
-      if (SignalStore.misc().hasPniInitializedDevices() || !SignalStore.account().isRegistered || SignalStore.account().aci == null) {
+      if (SignalStore.misc().hasPniInitializedDevices || !SignalStore.account().isRegistered || SignalStore.account().aci == null) {
         return
       }
 
@@ -77,19 +77,19 @@ class PnpInitializeDevicesJob private constructor(parameters: Parameters) : Base
 
     if (!TextSecurePreferences.isMultiDevice(context)) {
       Log.i(TAG, "Not multi device, aborting...")
-      SignalStore.misc().setPniInitializedDevices(true)
+      SignalStore.misc().hasPniInitializedDevices = true
       return
     }
 
     if (SignalStore.account().isLinkedDevice) {
       Log.i(TAG, "Not primary device, aborting...")
-      SignalStore.misc().setPniInitializedDevices(true)
+      SignalStore.misc().hasPniInitializedDevices = true
       return
     }
 
     ChangeNumberRepository.CHANGE_NUMBER_LOCK.lock()
     try {
-      if (SignalStore.misc().hasPniInitializedDevices()) {
+      if (SignalStore.misc().hasPniInitializedDevices) {
         Log.w(TAG, "We found out that things have been initialized after we got the lock! No need to do anything else.")
         return
       }
@@ -110,7 +110,7 @@ class PnpInitializeDevicesJob private constructor(parameters: Parameters) : Base
         throw t
       }
 
-      SignalStore.misc().setPniInitializedDevices(true)
+      SignalStore.misc().hasPniInitializedDevices = true
     } finally {
       ChangeNumberRepository.CHANGE_NUMBER_LOCK.unlock()
     }

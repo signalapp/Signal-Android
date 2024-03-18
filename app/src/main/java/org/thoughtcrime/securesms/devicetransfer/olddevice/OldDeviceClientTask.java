@@ -67,7 +67,7 @@ final class OldDeviceClientTask implements ClientTask {
 
   @Override
   public void success() {
-    SignalStore.misc().markOldDeviceTransferLocked();
+    SignalStore.misc().setOldDeviceTransferLocked(true);
     EventBus.getDefault().post(new Status(0, 0, 0,true));
   }
 

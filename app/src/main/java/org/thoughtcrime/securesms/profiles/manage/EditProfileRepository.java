@@ -59,7 +59,7 @@ final class EditProfileRepository {
       try {
         ProfileUtil.uploadProfileWithAvatar(new StreamDetails(new ByteArrayInputStream(data), contentType, data.length));
         AvatarHelper.setAvatar(context, Recipient.self().getId(), new ByteArrayInputStream(data));
-        SignalStore.misc().markHasEverHadAnAvatar();
+        SignalStore.misc().setHasEverHadAnAvatar(true);
         ApplicationDependencies.getJobManager().add(new MultiDeviceProfileContentUpdateJob());
 
         callback.accept(Result.SUCCESS);

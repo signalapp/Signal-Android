@@ -273,7 +273,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
   public void checkBuildExpiration() {
     if (Util.getTimeUntilBuildExpiry() <= 0 && !SignalStore.misc().isClientDeprecated()) {
       Log.w(TAG, "Build expired!");
-      SignalStore.misc().markClientDeprecated();
+      SignalStore.misc().setClientDeprecated(true);
     }
   }
 

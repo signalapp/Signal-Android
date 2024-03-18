@@ -135,7 +135,7 @@ public class OnboardingMegaphoneView extends FrameLayout {
         data.add(TYPE_INVITE);
       }
 
-      if (SignalStore.onboarding().shouldShowAddPhoto() && !SignalStore.misc().hasEverHadAnAvatar()) {
+      if (SignalStore.onboarding().shouldShowAddPhoto() && !SignalStore.misc().getHasEverHadAnAvatar()) {
         data.add(TYPE_ADD_PHOTO);
       }
 

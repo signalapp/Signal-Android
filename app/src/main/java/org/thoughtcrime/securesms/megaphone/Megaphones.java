@@ -405,13 +405,13 @@ public final class Megaphones {
   }
 
   private static boolean shouldShowAddAProfilePhotoMegaphone(@NonNull Context context) {
-    if (SignalStore.misc().hasEverHadAnAvatar()) {
+    if (SignalStore.misc().getHasEverHadAnAvatar()) {
       return false;
     }
 
     boolean hasAnAvatar = AvatarHelper.hasAvatar(context, Recipient.self().getId());
     if (hasAnAvatar) {
-      SignalStore.misc().markHasEverHadAnAvatar();
+      SignalStore.misc().setHasEverHadAnAvatar(true);
       return false;
     }
 
