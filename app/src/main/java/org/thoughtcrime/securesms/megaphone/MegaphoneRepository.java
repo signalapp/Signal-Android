@@ -52,6 +52,7 @@ public class MegaphoneRepository {
   public void onFirstEverAppLaunch() {
     executor.execute(() -> {
       database.markFinished(Event.ADD_A_PROFILE_PHOTO);
+      database.markFinished(Event.PNP_LAUNCH);
       resetDatabaseCache();
     });
   }
