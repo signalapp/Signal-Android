@@ -11,6 +11,7 @@ import org.signal.libsignal.protocol.InvalidKeyException
 import org.signal.libsignal.protocol.SignalProtocolAddress
 import org.signal.libsignal.protocol.util.Pair
 import org.signal.ringrtc.CallException
+import org.signal.ringrtc.CallId
 import org.signal.ringrtc.CallLinkRootKey
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
@@ -1231,22 +1232,44 @@ object SyncMessageProcessor {
   }
 
   private fun handleSynchronizeCallLogEvent(callLogEvent: CallLogEvent, envelopeTimestamp: Long) {
-    if (callLogEvent.timestamp == null) {
-      log(envelopeTimestamp, "Synchronize call log event has null timestamp")
-      return
+    val timestamp = callLogEvent.timestamp
+    val callId = callLogEvent.callId?.let { CallId(it) }
+    val peer: RecipientId? = callLogEvent.conversationId?.let { byteString ->
+      ACI.parseOrNull(byteString)?.let { RecipientId.from(it) }
+        ?: GroupId.pushOrNull(byteString.toByteArray())?.let { SignalDatabase.recipients.getByGroupId(it).orNull() }
+        ?: CallLinkRoomId.fromBytes(byteString.toByteArray()).let { SignalDatabase.recipients.getByCallLinkRoomId(it).orNull() }
     }
 
-    when (callLogEvent.type) {
+    if (callId != null && peer != null) {
+      val call = SignalDatabase.calls.getCallById(callId.longValue(), peer)
+
+      if (call != null) {
+        log(envelopeTimestamp, "Synchronizing call log event with exact call data.")
+        synchronizeCallLogEventViaTimestamp(envelopeTimestamp, callLogEvent.type, call.timestamp)
+        return
+      }
+    }
+
+    if (timestamp != null) {
+      warn(envelopeTimestamp, "Synchronize call log event using timestamp instead of exact values")
+      synchronizeCallLogEventViaTimestamp(envelopeTimestamp, callLogEvent.type, timestamp)
+    } else {
+      log(envelopeTimestamp, "Failed to synchronize call log event, not enough information.")
+    }
+  }
+
+  private fun synchronizeCallLogEventViaTimestamp(envelopeTimestamp: Long, eventType: CallLogEvent.Type?, timestamp: Long) {
+    when (eventType) {
       CallLogEvent.Type.CLEAR -> {
-        SignalDatabase.calls.deleteNonAdHocCallEventsOnOrBefore(callLogEvent.timestamp!!)
-        SignalDatabase.callLinks.deleteNonAdminCallLinksOnOrBefore(callLogEvent.timestamp!!)
+        SignalDatabase.calls.deleteNonAdHocCallEventsOnOrBefore(timestamp)
+        SignalDatabase.callLinks.deleteNonAdminCallLinksOnOrBefore(timestamp)
       }
 
       CallLogEvent.Type.MARKED_AS_READ -> {
-        SignalDatabase.calls.markAllCallEventsRead(callLogEvent.timestamp!!)
+        SignalDatabase.calls.markAllCallEventsRead(timestamp)
       }
 
-      else -> log(envelopeTimestamp, "Synchronize call log event has an invalid type ${callLogEvent.type}, ignoring.")
+      else -> log(envelopeTimestamp, "Synchronize call log event has an invalid type $eventType, ignoring.")
     }
   }
 

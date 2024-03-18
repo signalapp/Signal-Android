@@ -118,6 +118,14 @@ public abstract class GroupId implements DatabaseId {
     }
   }
 
+  public static GroupId.Push pushOrNull(byte[] bytes) {
+    try {
+      return GroupId.push(bytes);
+    } catch (BadGroupIdException e) {
+      return null;
+    }
+  }
+
   public static @NonNull GroupId parseOrThrow(@NonNull String encodedGroupId) {
     try {
       return parse(encodedGroupId);
