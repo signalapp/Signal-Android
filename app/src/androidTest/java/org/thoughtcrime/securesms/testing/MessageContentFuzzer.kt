@@ -12,6 +12,7 @@ import org.whispersystems.signalservice.internal.push.AttachmentPointer
 import org.whispersystems.signalservice.internal.push.BodyRange
 import org.whispersystems.signalservice.internal.push.Content
 import org.whispersystems.signalservice.internal.push.DataMessage
+import org.whispersystems.signalservice.internal.push.EditMessage
 import org.whispersystems.signalservice.internal.push.Envelope
 import org.whispersystems.signalservice.internal.push.GroupContextV2
 import org.whispersystems.signalservice.internal.push.SyncMessage
@@ -33,22 +34,22 @@ object MessageContentFuzzer {
   /**
    * Create an [Envelope].
    */
-  fun envelope(timestamp: Long): Envelope {
+  fun envelope(timestamp: Long, serverGuid: UUID = UUID.randomUUID()): Envelope {
     return Envelope.Builder()
       .timestamp(timestamp)
       .serverTimestamp(timestamp + 5)
-      .serverGuid(UUID.randomUUID().toString())
+      .serverGuid(serverGuid.toString())
       .build()
   }
 
   /**
    * Create metadata to match an [Envelope].
    */
-  fun envelopeMetadata(source: RecipientId, destination: RecipientId, groupId: GroupId.V2? = null): EnvelopeMetadata {
+  fun envelopeMetadata(source: RecipientId, destination: RecipientId, sourceDeviceId: Int = 1, groupId: GroupId.V2? = null): EnvelopeMetadata {
     return EnvelopeMetadata(
       sourceServiceId = Recipient.resolved(source).requireServiceId(),
       sourceE164 = null,
-      sourceDeviceId = 1,
+      sourceDeviceId = sourceDeviceId,
       sealedSender = true,
       groupId = groupId?.decodedId,
       destinationServiceId = Recipient.resolved(destination).requireServiceId()
@@ -60,10 +61,11 @@ object MessageContentFuzzer {
    * - An expire timer value
    * - Bold style body ranges
    */
-  fun fuzzTextMessage(groupContextV2: GroupContextV2? = null): Content {
+  fun fuzzTextMessage(sentTimestamp: Long? = null, groupContextV2: GroupContextV2? = null): Content {
     return Content.Builder()
       .dataMessage(
         DataMessage.Builder().buildWith {
+          timestamp = sentTimestamp
           body = string()
           if (random.nextBoolean()) {
             expireTimer = random.nextInt(0..28.days.inWholeSeconds.toInt())
@@ -82,6 +84,20 @@ object MessageContentFuzzer {
           if (groupContextV2 != null) {
             groupV2 = groupContextV2
           }
+        }
+      )
+      .build()
+  }
+
+  /**
+   * Create an edit message.
+   */
+  fun editTextMessage(targetTimestamp: Long, editedDataMessage: DataMessage): Content {
+    return Content.Builder()
+      .editMessage(
+        EditMessage.Builder().buildWith {
+          targetSentTimestamp = targetTimestamp
+          dataMessage = editedDataMessage
         }
       )
       .build()
@@ -111,6 +127,24 @@ object MessageContentFuzzer {
                 }
               }
             )
+          }
+        }
+      ).build()
+  }
+
+  /**
+   * Create a sync reads message for the given [RecipientId] and message timestamp pairings.
+   */
+  fun syncReadsMessage(timestamps: List<Pair<RecipientId, Long>>): Content {
+    return Content
+      .Builder()
+      .syncMessage(
+        SyncMessage.Builder().buildWith {
+          read = timestamps.map { (senderId, timestamp) ->
+            SyncMessage.Read.Builder().buildWith {
+              this.senderAci = Recipient.resolved(senderId).requireAci().toString()
+              this.timestamp = timestamp
+            }
           }
         }
       ).build()
@@ -184,22 +218,21 @@ object MessageContentFuzzer {
   }
 
   /**
-   * Create a random media message that can never contain a text body. It may be:
-   * - A sticker
+   * Create a random media message that contains a sticker.
    */
-  fun fuzzMediaMessageNoText(previousMessages: List<TestMessage> = emptyList()): Content {
+  fun fuzzStickerMediaMessage(sentTimestamp: Long? = null, groupContextV2: GroupContextV2? = null): Content {
     return Content.Builder()
       .dataMessage(
         DataMessage.Builder().buildWith {
-          if (random.nextFloat() < 0.9) {
-            sticker = DataMessage.Sticker.Builder().buildWith {
-              packId = byteString(length = 24)
-              packKey = byteString(length = 128)
-              stickerId = random.nextInt()
-              data_ = attachmentPointer()
-              emoji = emojis.random(random)
-            }
+          timestamp = sentTimestamp
+          sticker = DataMessage.Sticker.Builder().buildWith {
+            packId = byteString(length = 24)
+            packKey = byteString(length = 128)
+            stickerId = random.nextInt()
+            data_ = attachmentPointer()
+            emoji = emojis.random(random)
           }
+          groupV2 = groupContextV2
         }
       ).build()
   }
