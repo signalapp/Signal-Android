@@ -143,6 +143,20 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
     return inflater.inflate(R.layout.camerax_fragment, container, false);
   }
 
+
+  @Override
+  public void onConfigurationChanged(@NonNull Configuration newConfig) {
+    super.onConfigurationChanged(newConfig);
+    if (cameraController != null) {
+      if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+        orientationListener.enable();
+      } else {
+        orientationListener.disable();
+        cameraController.setImageRotation(0);
+      }
+    }
+  }
+
   @SuppressLint("MissingPermission")
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
