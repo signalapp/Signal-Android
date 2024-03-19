@@ -186,6 +186,10 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     const val PHONE_NUMBER_SHARING = "phone_number_sharing"
     const val PHONE_NUMBER_DISCOVERABLE = "phone_number_discoverable"
     const val PNI_SIGNATURE_VERIFIED = "pni_signature_verified"
+    const val NICKNAME_GIVEN_NAME = "nickname_given_name"
+    const val NICKNAME_FAMILY_NAME = "nickname_family_name"
+    const val NICKNAME_JOINED_NAME = "nickname_joined_name"
+    const val NOTE = "note"
 
     const val SEARCH_PROFILE_NAME = "search_signal_profile"
     const val SORT_NAME = "sort_name"
@@ -254,7 +258,11 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         $REPORTING_TOKEN BLOB DEFAULT NULL,
         $PHONE_NUMBER_SHARING INTEGER DEFAULT ${PhoneNumberSharingState.UNKNOWN.id},
         $PHONE_NUMBER_DISCOVERABLE INTEGER DEFAULT ${PhoneNumberDiscoverableState.UNKNOWN.id},
-        $PNI_SIGNATURE_VERIFIED INTEGER DEFAULT 0
+        $PNI_SIGNATURE_VERIFIED INTEGER DEFAULT 0,
+        $NICKNAME_GIVEN_NAME TEXT DEFAULT NULL,
+        $NICKNAME_FAMILY_NAME TEXT DEFAULT NULL,
+        $NICKNAME_JOINED_NAME TEXT DEFAULT NULL,
+        $NOTE TEXT DEFAULT NULL
       )
       """
 
@@ -314,7 +322,10 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       BADGES,
       NEEDS_PNI_SIGNATURE,
       REPORTING_TOKEN,
-      PHONE_NUMBER_SHARING
+      PHONE_NUMBER_SHARING,
+      NICKNAME_GIVEN_NAME,
+      NICKNAME_FAMILY_NAME,
+      NOTE
     )
 
     private val ID_PROJECTION = arrayOf(ID)
@@ -335,6 +346,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       """
       LOWER(
         COALESCE(
+          NULLIF($NICKNAME_JOINED_NAME, ''),
+          NULLIF($NICKNAME_GIVEN_NAME, ''),
           NULLIF($SYSTEM_JOINED_NAME, ''),
           NULLIF($SYSTEM_GIVEN_NAME, ''),
           NULLIF($PROFILE_JOINED_NAME, ''),
@@ -374,6 +387,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       """
       REPLACE(
         COALESCE(
+          NULLIF($NICKNAME_JOINED_NAME, ''),
+          NULLIF($NICKNAME_GIVEN_NAME, ''),
           NULLIF($SYSTEM_JOINED_NAME, ''), 
           NULLIF($SYSTEM_GIVEN_NAME, ''), 
           NULLIF($PROFILE_JOINED_NAME, ''), 

@@ -139,6 +139,8 @@ public class Recipient {
   private final CallLinkRoomId               callLinkRoomId;
   private final Optional<GroupRecord>        groupRecord;
   private final PhoneNumberSharingState      phoneNumberSharing;
+  private final ProfileName                  nickname;
+  private final String                       note;
 
   /**
    * Returns a {@link LiveRecipient}, which contains a {@link Recipient} that may or may not be
@@ -429,6 +431,8 @@ public class Recipient {
     this.callLinkRoomId               = null;
     this.groupRecord                  = Optional.empty();
     this.phoneNumberSharing           = PhoneNumberSharingState.UNKNOWN;
+    this.nickname                     = ProfileName.EMPTY;
+    this.note                         = null;
   }
 
   public Recipient(@NonNull RecipientId id, @NonNull RecipientDetails details, boolean resolved) {
@@ -485,6 +489,8 @@ public class Recipient {
     this.callLinkRoomId               = details.callLinkRoomId;
     this.groupRecord                  = details.groupRecord;
     this.phoneNumberSharing           = details.phoneNumberSharing;
+    this.nickname                     = details.nickname;
+    this.note                         = details.note;
   }
 
   public @NonNull RecipientId getId() {
@@ -549,6 +555,7 @@ public class Recipient {
    */
   public boolean hasAUserSetDisplayName(@NonNull Context context) {
     return !TextUtils.isEmpty(getGroupName(context))             ||
+           !TextUtils.isEmpty(getNickname().toString())          ||
            !TextUtils.isEmpty(systemContactName)                 ||
            !TextUtils.isEmpty(getProfileName().toString());
   }
@@ -578,6 +585,10 @@ public class Recipient {
     String name = getGroupName(context);
 
     if (Util.isEmpty(name)) {
+      name = getNickname().toString();
+    }
+
+    if (Util.isEmpty(name)) {
       name = systemContactName;
     }
 
@@ -599,6 +610,11 @@ public class Recipient {
   public @NonNull String getMentionDisplayName(@NonNull Context context) {
     String name = isSelf ? getProfileName().toString() : getGroupName(context);
     name = StringUtil.isolateBidi(name);
+
+    if (Util.isEmpty(name)) {
+      name = isSelf ? getGroupName(context) : getNickname().toString();
+      name = StringUtil.isolateBidi(name);
+    }
 
     if (Util.isEmpty(name)) {
       name = isSelf ? getGroupName(context) : systemContactName;
@@ -627,6 +643,7 @@ public class Recipient {
 
   public @NonNull String getShortDisplayName(@NonNull Context context) {
     String name = Util.getFirstNonEmpty(getGroupName(context),
+                                        getNickname().getGivenName(),
                                         getSystemProfileName().getGivenName(),
                                         getProfileName().getGivenName(),
                                         getUsername().orElse(null),
@@ -825,6 +842,10 @@ public class Recipient {
     return requireSmsAddress();
   }
 
+  public @NonNull ProfileName getNickname() {
+    return nickname;
+  }
+
   public @NonNull ProfileName getProfileName() {
     return signalProfileName;
   }
@@ -960,6 +981,7 @@ public class Recipient {
     else if (isGroupInternal())                     return fallbackPhotoProvider.getPhotoForGroup();
     else if (isGroup())                             return fallbackPhotoProvider.getPhotoForGroup();
     else if (!TextUtils.isEmpty(groupName))         return fallbackPhotoProvider.getPhotoForRecipientWithName(groupName, targetSize);
+    else if (!nickname.isEmpty())                   return fallbackPhotoProvider.getPhotoForRecipientWithName(nickname.toString(), targetSize);
     else if (!TextUtils.isEmpty(systemContactName)) return fallbackPhotoProvider.getPhotoForRecipientWithName(systemContactName, targetSize);
     else if (!signalProfileName.isEmpty())          return fallbackPhotoProvider.getPhotoForRecipientWithName(signalProfileName.toString(), targetSize);
     else                                            return fallbackPhotoProvider.getPhotoForRecipientWithoutName();
@@ -1394,7 +1416,9 @@ public class Recipient {
            Objects.equals(badges, other.badges) &&
            isActiveGroup == other.isActiveGroup &&
            Objects.equals(callLinkRoomId, other.callLinkRoomId) &&
-           phoneNumberSharing == other.phoneNumberSharing;
+           phoneNumberSharing == other.phoneNumberSharing &&
+           Objects.equals(nickname, other.nickname) &&
+           Objects.equals(note, other.note);
   }
 
   private static boolean allContentsAreTheSame(@NonNull List<Recipient> a, @NonNull List<Recipient> b) {

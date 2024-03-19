@@ -81,7 +81,9 @@ class RecipientDetails private constructor(
   @JvmField val needsPniSignature: Boolean,
   @JvmField val callLinkRoomId: CallLinkRoomId?,
   @JvmField val groupRecord: Optional<GroupRecord>,
-  @JvmField val phoneNumberSharing: PhoneNumberSharingState
+  @JvmField val phoneNumberSharing: PhoneNumberSharingState,
+  @JvmField val nickname: ProfileName,
+  @JvmField val note: String?
 ) {
 
   @VisibleForTesting
@@ -146,7 +148,9 @@ class RecipientDetails private constructor(
     needsPniSignature = record.needsPniSignature,
     callLinkRoomId = record.callLinkRoomId,
     groupRecord = groupRecord,
-    phoneNumberSharing = record.phoneNumberSharing
+    phoneNumberSharing = record.phoneNumberSharing,
+    nickname = record.nickname,
+    note = record.note
   )
 
   companion object {
@@ -275,7 +279,9 @@ class RecipientDetails private constructor(
         isActiveGroup = false,
         callLinkRoomId = null,
         groupRecord = Optional.empty(),
-        phoneNumberSharing = PhoneNumberSharingState.UNKNOWN
+        phoneNumberSharing = PhoneNumberSharingState.UNKNOWN,
+        nickname = ProfileName.EMPTY,
+        note = ""
       )
     }
   }

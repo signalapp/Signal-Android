@@ -142,7 +142,9 @@ object RecipientDatabaseTestUtils {
         needsPniSignature = false,
         hiddenState = Recipient.HiddenState.NOT_HIDDEN,
         callLinkRoomId = null,
-        phoneNumberSharing = RecipientTable.PhoneNumberSharingState.UNKNOWN
+        phoneNumberSharing = RecipientTable.PhoneNumberSharingState.UNKNOWN,
+        nickname = ProfileName.EMPTY,
+        note = null
       ),
       participantIds = participants,
       isReleaseChannel = isReleaseChannel,

@@ -165,7 +165,9 @@ object RecipientTableCursorUtil {
       needsPniSignature = cursor.requireBoolean(RecipientTable.NEEDS_PNI_SIGNATURE),
       hiddenState = Recipient.HiddenState.deserialize(cursor.requireInt(RecipientTable.HIDDEN)),
       callLinkRoomId = cursor.requireString(RecipientTable.CALL_LINK_ROOM_ID)?.let { CallLinkRoomId.DatabaseSerializer.deserialize(it) },
-      phoneNumberSharing = cursor.requireInt(RecipientTable.PHONE_NUMBER_SHARING).let { RecipientTable.PhoneNumberSharingState.fromId(it) }
+      phoneNumberSharing = cursor.requireInt(RecipientTable.PHONE_NUMBER_SHARING).let { RecipientTable.PhoneNumberSharingState.fromId(it) },
+      nickname = ProfileName.fromParts(cursor.requireString(RecipientTable.NICKNAME_GIVEN_NAME), cursor.requireString(RecipientTable.NICKNAME_FAMILY_NAME)),
+      note = cursor.requireString(RecipientTable.NOTE)
     )
   }
 
