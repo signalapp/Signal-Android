@@ -97,10 +97,7 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
     } else {
       binding.content.emojiToggle.setOnClickListener { onEmojiToggleClicked() }
       if (requireArguments().getBoolean(ARG_INITIAL_EMOJI_TOGGLE) && view is KeyboardAwareLinearLayout) {
-        view.addOnKeyboardShownListener {
-          onEmojiToggleClicked()
-          view.removeOnKeyboardShownListener(this)
-        }
+        view.addOnKeyboardShownListener(EmojiLaunchListener(view))
       }
     }
 
@@ -289,6 +286,13 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
 
   private fun onKeyEvent(keyEvent: KeyEvent?) {
     binding.content.addAMessageInput.dispatchKeyEvent(keyEvent)
+  }
+
+  private inner class EmojiLaunchListener(private val layout: KeyboardAwareLinearLayout) : KeyboardAwareLinearLayout.OnKeyboardShownListener {
+    override fun onKeyboardShown() {
+      layout.removeOnKeyboardShownListener(this)
+      onEmojiToggleClicked()
+    }
   }
 
   companion object {
