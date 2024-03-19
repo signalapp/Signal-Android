@@ -2925,7 +2925,6 @@
         <item>Lain-lain</item>
         <item>Pembayaran (MobileCoin)</item>
         <item>Derma &amp; Lencana</item>
-        <item>Eksport SMS</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Penyerahan Log Nyahpepijat Signal Android</string>

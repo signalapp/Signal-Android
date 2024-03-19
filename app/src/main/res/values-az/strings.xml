@@ -3019,7 +3019,6 @@
         <item>Digər</item>
         <item>Ödənişlər (MobileCoin)</item>
         <item>İanələr və Nişanlar</item>
-        <item>SMS ixracı</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android sazlama jurnalının göndərilməsi</string>

@@ -3019,7 +3019,6 @@
         <item>ਹੋਰ</item>
         <item>ਭੁਗਤਾਨ (MobileCoin)</item>
         <item>ਦਾਨ ਅਤੇ ਬੈਜ</item>
-        <item>SMS ਐਕਸਪੋਰਟ</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android ਡੀਬੱਗ ਲੌਗ ਸਪੁਰਦਗੀ</string>

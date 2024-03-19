@@ -3207,7 +3207,6 @@
         <item>אחר</item>
         <item>תשלומים (MobileCoin)</item>
         <item>תרומות ותגים</item>
-        <item>ייצוא SMS</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">הגשת יומן ניפוי באגים של Signal Android</string>

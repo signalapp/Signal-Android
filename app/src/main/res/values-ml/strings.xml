@@ -3019,7 +3019,6 @@
         <item>മറ്റുള്ളവ</item>
         <item>പേയ്‌മെന്റുകൾ (MobileCoin)</item>
         <item>സംഭാവനകളും ബാഡ്‌ജുകളും</item>
-        <item>SMS എക്‌സ്‌പോർട്ട്</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android ഡീബഗ് ലോഗ് സമർപ്പിക്കൽ</string>

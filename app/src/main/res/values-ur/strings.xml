@@ -3019,7 +3019,6 @@
         <item>دوسرے</item>
         <item>ادائیگیاں (MobileCoin)</item>
         <item>عطیات اور بیجز</item>
-        <item>SMS برآمد</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android میں ڈی بَگ لاگ جمع کروانا</string>

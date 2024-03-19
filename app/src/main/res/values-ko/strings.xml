@@ -424,7 +424,7 @@
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Signal에서 더 이상 SMS 메시지를 지원하지 않습니다. %1$s 님을 Signal로 초대하여 대화를 이어가세요.</string>
     <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
-    <string name="ConversationActivity__this_person_is_no_longer_using_signal">This person is no longer using Signal. Invite them to Signal to keep the conversation here.</string>
+    <string name="ConversationActivity__this_person_is_no_longer_using_signal">이 사용자는 더 이상 Signal을 사용하지 않습니다. Signal로 초대하여 대화를 이어가세요.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">Signal로 초대</string>
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
@@ -1342,7 +1342,7 @@
     <string name="MessageRecord_changed_their_profile_name_from_to">%1$s 님이 프로필 이름을 %2$s에서 %3$s(으)로 변경했습니다.</string>
     <string name="MessageRecord_changed_their_profile">%1$s가 프로파일을 변경하였습니다.</string>
     <!-- Conversation update event message shown when you\'ve started a conversation by phone number or username and then learn their profile name. placeholder is username or phone number -->
-    <string name="MessageRecord_started_this_chat">You started this chat with %1$s.</string>
+    <string name="MessageRecord_started_this_chat">%1$s 님과 이 대화를 시작했습니다.</string>
 
     <!-- GV2 specific -->
     <string name="MessageRecord_you_created_the_group">그룹을 생성했습니다.</string>
@@ -2925,7 +2925,6 @@
         <item>기타</item>
         <item>결제(MobileCoin)</item>
         <item>기부 및 배지</item>
-        <item>SMS 내보내기</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android 디버그 로그 제출</string>
@@ -3797,7 +3796,7 @@
     <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
     <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">계속할까요?</string>
     <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Setting \"Who can find me by number\" to \"Nobody\" will make it harder for people to find you on Signal.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">\'번호로 나를 찾을 수 있는 사람\'을 \'없음\'으로 설정하면 Signal에서 다른 사람이 나를 찾기가 어려워집니다.</string>
     <!-- Dialog button text for canceling change action -->
     <string name="PhoneNumberPrivacySettingsFragment__cancel">취소</string>
     <string name="PhoneNumberPrivacy_everyone">모두</string>
@@ -4772,24 +4771,24 @@
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">하나 이상의 항목이 유효하지 않습니다.</string>
     <string name="MediaReviewFragment__too_many_items_selected">항목을 너무 많이 선택했습니다.</string>
     <!-- Small notification presented to the user when they set their video to view-once mode -->
-    <string name="MediaReviewFragment__video_set_to_view_once">Video set to view once</string>
+    <string name="MediaReviewFragment__video_set_to_view_once">동영상을 한 번 보기로 설정했습니다.</string>
     <!-- Small notification presented to the user when they set their photo to view-once mode -->
-    <string name="MediaReviewFragment__photo_set_to_view_once">Photo set to view once</string>
+    <string name="MediaReviewFragment__photo_set_to_view_once">사진을 한 번 보기로 설정했습니다.</string>
     <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
-    <string name="MediaReviewFragment__video_set_to_high_quality">Video set to high quality</string>
+    <string name="MediaReviewFragment__video_set_to_high_quality">동영상을 고품질로 설정했습니다.</string>
     <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
-    <string name="MediaReviewFragment__video_set_to_standard_quality">Video set to standard quality</string>
+    <string name="MediaReviewFragment__video_set_to_standard_quality">동영상을 표준 품질로 설정했습니다.</string>
     <!-- Small notification presented to the user when they set their still image to be sent in high visual quality. -->
-    <string name="MediaReviewFragment__photo_set_to_high_quality">Photo set to high quality</string>
+    <string name="MediaReviewFragment__photo_set_to_high_quality">사진을 고품질로 설정했습니다.</string>
     <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
-    <string name="MediaReviewFragment__photo_set_to_standard_quality">Photo set to standard quality</string>
+    <string name="MediaReviewFragment__photo_set_to_standard_quality">사진을 표준 품질로 설정했습니다.</string>
     <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
     <plurals name="MediaReviewFragment__items_set_to_high_quality">
-        <item quantity="other">%1$d items set to high quality</item>
+        <item quantity="other">항목 %1$d개를 고품질로 설정했습니다.</item>
     </plurals>
     <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
     <plurals name="MediaReviewFragment__items_set_to_standard_quality">
-        <item quantity="other">%1$d items set to standard quality</item>
+        <item quantity="other">항목 %1$d개를 표준 품질로 설정했습니다.</item>
     </plurals>
 
     <string name="ImageEditorHud__cancel">취소</string>
@@ -4816,16 +4815,16 @@
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">이 사진에 적용한 모든 변경 내용이 손실됩니다.</string>
 
     <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_title">Found %1$s</string>
+    <string name="MediaCaptureFragment_username_dialog_title">%1$s 님을 찾았습니다.</string>
     <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_body">Start a chat with \"%1$s\"</string>
+    <string name="MediaCaptureFragment_username_dialog_body">\'%1$s 님\'과 대화를 시작하세요.</string>
     <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
     <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">대화로 이동</string>
 
     <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_title">Link device?</string>
+    <string name="MediaCaptureFragment_device_link_dialog_title">기기를 연결하시겠어요?</string>
     <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_body">It looks like you\'re trying to link a Signal device. Tap continue and scan the code again to link it.</string>
+    <string name="MediaCaptureFragment_device_link_dialog_body">Signal 기기를 연결하려는 것 같네요. 연결하려면 계속을 탭하여 코드를 다시 스캔하세요.</string>
     <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
     <string name="MediaCaptureFragment_device_link_dialog_continue">계속</string>
 
@@ -4927,7 +4926,7 @@
     <!-- Displayed as a subtitle on a row in the Manage Donations screen when payment for a donation is pending -->
     <string name="MySupportPreference__payment_pending">송금 대기 중</string>
     <!-- Displayed as a dialog message when clicking on a donation row that is pending. Placeholder is a formatted fiat amount -->
-    <string name="MySupportPreference__your_bank_transfer_of_s">Your bank transfer of %1$s is pending. Bank transfers can take 1 to 14 business days to complete.  </string>
+    <string name="MySupportPreference__your_bank_transfer_of_s">%1$s의 은행 송금이 대기 중입니다. 은행 송금을 완료하는 데 영업일 기준 1~14일이 걸릴 수 있습니다.  </string>
     <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
     <string name="MySupportPreference__learn_more">자세히 알아보기</string>
 
@@ -5852,9 +5851,9 @@
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
     <string name="DonateToSignalFragment__you_have_a_donation_pending">보류 중인 기부가 있습니다.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Bank transfers can take 1 to 14 business days to process. Please wait until this payment completes before updating your subscription.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">은행 송금을 처리하는 데 영업일 기준 1~14일이 걸릴 수 있습니다. 이 결제가 완료될 때까지 기다렸다가 구독을 업데이트해 주세요.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Bank transfers can take 1 to 14 business days to process. Please wait until this payment completes before making another donation.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">은행 송금을 처리하는 데 영업일 기준 1~14일이 걸릴 수 있습니다. 이 결제가 완료될 때까지 기다렸다가 더 기부해 주세요.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
     <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">기부를 아직 처리하는 중입니다. 연결에 따라 몇 분이 소요될 수 있습니다. 이 결제가 완료될 때까지 기다렸다가 구독을 업데이트해 주세요.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
@@ -6005,7 +6004,7 @@
     <!-- Top text block of donation pending sheet displayed after one-time donation via a bank transfer. Placeholder is the badge name. -->
     <string name="DonationPendingBottomSheet__your_one_time_donation_is_pending">1회성 기부가 대기 중입니다. 기부가 완료되면 프로필에 %1$s 배지를 표시할 수 있습니다.</string>
     <!-- Bottom text block of donation pending sheet displayed after donating via a bank transfer. Placeholder is for learn more. -->
-    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Bank transfers can take 1 to 14 business days to process. %1$s</string>
+    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">은행 송금을 처리하는 데 영업일 기준 1~14일이 걸릴 수 있습니다. %1$s</string>
     <!-- Learn more text for donation pending sheet displayed after donating via a bank transfer. -->
     <string name="DonationPendingBottomSheet__learn_more">자세히 알아보기</string>
     <!-- Confirmation button for donation pending sheet displayed after donating via a bank transfer. -->
@@ -6412,9 +6411,9 @@
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Signal에서 나와 대화하려면 휴대전화로 이 QR 코드를 스캔하세요.</string>
     <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_qr_code_not_found">QR code not found</string>
+    <string name="UsernameLinkSettings_qr_code_not_found">QR 코드를 찾을 수 없습니다</string>
     <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Try scanning another image containing a Signal QR code.</string>
+    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Signal QR 코드를 포함하는 다른 이미지를 스캔해 보세요.</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
     <string name="UsernameLinkShareBottomSheet_title">이 링크를 가진 사람은 누구나 내 사용자 이름을 보고 나와 대화를 시작할 수 있습니다. 믿을 수 있는 사람들과만 공유하세요.</string>

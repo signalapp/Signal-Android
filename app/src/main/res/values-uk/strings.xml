@@ -156,7 +156,7 @@
     <!-- Preference title with placeholder for amount. -->
     <string name="OneTimeDonationPreference__one_time_s">%1$s одноразово</string>
     <!-- Preference subtitle when donation is pending -->
-    <string name="OneTimeDonationPreference__donation_pending">Донат очікує на розгляд</string>
+    <string name="OneTimeDonationPreference__donation_pending">Ваш донат ще не надійшов</string>
     <!-- Preference subtitle when donation is processing -->
     <string name="OneTimeDonationPreference__donation_processing">Донат в обробці</string>
 
@@ -393,7 +393,7 @@
     <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Лише адміністратори цієї групи можуть почати дзвінок.</string>
     <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Немає програми на вашому пристрої, що може відкрити це посилання.</string>
     <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Ваш запит на приєднання надіслано до адміністраторів групи. Ви отримаєте повідомлення, коли вони відреагують.</string>
-    <string name="ConversationActivity_cancel_request">Відмінити запит</string>
+    <string name="ConversationActivity_cancel_request">Відкликати запит</string>
 
     <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Щоб надсилати аудіоповідомлення, надайте Signal доступ до мікрофона.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal потребує дозволу «Мікрофон», щоб відправляти аудіоповідомлення, але наразі доступу немає. Будь ласка, перейдіть до налаштувань застосунку, оберіть «Дозволи» та увімкніть «Мікрофон».</string>
@@ -433,7 +433,7 @@
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Signal більше не підтримує SMS-повідомлення. Запросіть користувача %1$s в Signal, щоб продовжити розмову тут.</string>
     <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
-    <string name="ConversationActivity__this_person_is_no_longer_using_signal">This person is no longer using Signal. Invite them to Signal to keep the conversation here.</string>
+    <string name="ConversationActivity__this_person_is_no_longer_using_signal">Ця людина більше не використовує Signal. Запросіть її в Signal, щоб спілкуватися тут і надалі.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">Запросити до Signal</string>
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
@@ -516,7 +516,7 @@
     <string name="ConversationFragment__tap_to_review">Натисніть для перегляду</string>
     <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
     <string name="ConversationFragment__review_banner_body">Ця людина має таке ж ім\'я, як і ваш інший контакт</string>
-    <string name="ConversationFragment_contact_us">Напишіть нам</string>
+    <string name="ConversationFragment_contact_us">Зв\'язатися з нами</string>
     <string name="ConversationFragment_verify">Підтвердження</string>
     <string name="ConversationFragment_not_now">Не зараз</string>
     <string name="ConversationFragment_your_safety_number_with_s_changed">Ваш код безпеки із %1$s змінився</string>
@@ -620,7 +620,7 @@
         <item quantity="many">Заархівовано %1$d чатів</item>
         <item quantity="other">Заархівовано %1$d чату</item>
     </plurals>
-    <string name="ConversationListFragment_undo">Відмінити</string>
+    <string name="ConversationListFragment_undo">Скасувати</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
         <item quantity="one">До вхідних перенесено %1$d чат</item>
         <item quantity="few">До вхідних перенесено %1$d чати</item>
@@ -701,11 +701,11 @@
     <!-- Displayed at the top of the screen and explains how profiles can be viewed. -->
     <string name="ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message">Профілі можуть бачити ваші співрозмовники, контакти і групи.</string>
     <!-- Title of clickable row to select phone number privacy settings -->
-    <string name="ProfileCreateFragment__who_can_find_me">Хто може знайти мене за номером телефону?</string>
+    <string name="ProfileCreateFragment__who_can_find_me">Хто може знайти мене за номером?</string>
 
     <!-- WhoCanSeeMyPhoneNumberFragment -->
     <!-- Toolbar title for this screen -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Хто може знайти мене за номером телефону?</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Хто може знайти мене за номером?</string>
     <!-- Description for radio item stating anyone can see your phone number -->
     <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">Будь-яка людина, що має ваш номер телефону, бачитиме вас у Signal і зможе розпочати з вами розмову.</string>
     <!-- Description for radio item stating no one will be able to see your phone number -->
@@ -1011,9 +1011,9 @@
     <!-- LinkPreviewRepository -->
     <plurals name="LinkPreviewRepository_d_members">
         <item quantity="one">%1$d учасник</item>
-        <item quantity="few">%1$d учасник</item>
-        <item quantity="many">%1$d учасники</item>
-        <item quantity="other">%1$d учасники</item>
+        <item quantity="few">%1$d учасники</item>
+        <item quantity="many">%1$d учасників</item>
+        <item quantity="other">%1$d учасника</item>
     </plurals>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
@@ -1245,9 +1245,9 @@
     <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Адміністратор цієї групи повинен прийняти ваш запит, перш ніж ви зможете приєднатися до неї. Коли ви відправите запит, ваші ім\'я та фото стануть доступні учасникам цієї групи. </string>
     <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
         <item quantity="one">Група · %1$d учасник</item>
-        <item quantity="few">Група · %1$d учасників</item>
+        <item quantity="few">Група · %1$d учасники</item>
         <item quantity="many">Група · %1$d учасників</item>
-        <item quantity="other">Група · %1$d учасників</item>
+        <item quantity="other">Група · %1$d учасника</item>
     </plurals>
 
     <!-- GroupJoinUpdateRequiredBottomSheetDialogFragment -->
@@ -1483,7 +1483,7 @@
     <string name="MessageRecord_changed_their_profile_name_from_to">%1$s змінює своє ім\'я профілю з %2$s на %3$s.</string>
     <string name="MessageRecord_changed_their_profile">%1$s змінив (-а) свій профіль.</string>
     <!-- Conversation update event message shown when you\'ve started a conversation by phone number or username and then learn their profile name. placeholder is username or phone number -->
-    <string name="MessageRecord_started_this_chat">You started this chat with %1$s.</string>
+    <string name="MessageRecord_started_this_chat">Ви почали цей чат з %1$s.</string>
 
     <!-- GV2 specific -->
     <string name="MessageRecord_you_created_the_group">Ви створили групу.</string>
@@ -1746,16 +1746,16 @@
     <string name="MessageRequestProfileView_member_of_many_groups">Є учасником «%1$s», «%2$s» і «%3$s»</string>
     <plurals name="MessageRequestProfileView_members">
         <item quantity="one">%1$d учасник</item>
-        <item quantity="few">%1$d учасник</item>
-        <item quantity="many">%1$d учасники</item>
-        <item quantity="other">%1$d учасники</item>
+        <item quantity="few">%1$d учасники</item>
+        <item quantity="many">%1$d учасників</item>
+        <item quantity="other">%1$d учасника</item>
     </plurals>
     <!-- Describes the number of members in a group. The string MessageRequestProfileView_invited is nested in the parentheses. -->
     <plurals name="MessageRequestProfileView_members_and_invited">
         <item quantity="one">%1$d учасник (%2$s)</item>
-        <item quantity="few">%1$d учасників (%2$s)</item>
+        <item quantity="few">%1$d учасники (%2$s)</item>
         <item quantity="many">%1$d учасників (%2$s)</item>
-        <item quantity="other">%1$d учасників (%2$s)</item>
+        <item quantity="other">%1$d учасника (%2$s)</item>
     </plurals>
     <!-- Describes the number of people invited to a group. Nested inside of the string MessageRequestProfileView_members_and_invited -->
     <plurals name="MessageRequestProfileView_invited">
@@ -1771,7 +1771,7 @@
         <item quantity="other">%1$d додаткові групи</item>
     </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
-    <string name="MessageRequestBottomView_report">Повідомити…</string>
+    <string name="MessageRequestBottomView_report">Це спам</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Фрази-паролі не збігаються!</string>
@@ -2000,7 +2000,7 @@
     <!-- Utilized in the lobby before joining a call link -->
     <string name="WebRtcCallView__signal_call_link">Посилання на виклик у Signal</string>
     <!-- Warning displayed when entering a call via a link and you have Phone Number Privacy disabled-->
-    <string name="WebRtcCallView__anyone_who_joins_pnp_disabled">Усі, хто приєднається до виклику за цим посиланням, зможуть бачити ваше ім\'я, фото і номер телефону.</string>
+    <string name="WebRtcCallView__anyone_who_joins_pnp_disabled">Усі, хто приєднається до цього виклику за посиланням, зможуть бачити ваше ім\'я, фото і номер телефону.</string>
     <!-- Warning displayed when entering a call via a link and you have Phone Number Privacy enabled-->
     <string name="WebRtcCallView__anyone_who_joins_pnp_enabled">Усі, хто приєднається до цього виклику за посиланням, зможуть бачити ваше ім\'я і фото.</string>
     <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
@@ -2320,7 +2320,7 @@
 
     <!-- Slide -->
     <string name="Slide_image">Зображення</string>
-    <string name="Slide_sticker">Наліпка</string>
+    <string name="Slide_sticker">Стікер</string>
     <string name="Slide_audio">Аудіо</string>
     <string name="Slide_video">Відео</string>
 
@@ -2330,14 +2330,14 @@
     <string name="SmsMessageRecord_duplicate_message">Дублікат повідомлення.</string>
 
     <!-- StickerManagementActivity -->
-    <string name="StickerManagementActivity_stickers">Наліпки</string>
+    <string name="StickerManagementActivity_stickers">Стікери</string>
 
     <!-- StickerManagementAdapter -->
-    <string name="StickerManagementAdapter_installed_stickers">Встановлені наліпки</string>
-    <string name="StickerManagementAdapter_stickers_you_received">Отримані Вами Стікери</string>
+    <string name="StickerManagementAdapter_installed_stickers">Встановлені стікери</string>
+    <string name="StickerManagementAdapter_stickers_you_received">Отримані cтікери</string>
     <string name="StickerManagementAdapter_signal_artist_series">Стікери від Художників Signal</string>
-    <string name="StickerManagementAdapter_no_stickers_installed">Встановлені наліпки відсутні</string>
-    <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Наліпки від вхідних дзвінків з\'являться тут</string>
+    <string name="StickerManagementAdapter_no_stickers_installed">Немає встановлених стікерів</string>
+    <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Стікери від вхідних дзвінків з\'являться тут</string>
     <string name="StickerManagementAdapter_untitled">Без назви</string>
     <string name="StickerManagementAdapter_unknown">Невідомо</string>
 
@@ -2347,7 +2347,7 @@
     <string name="StickerPackPreviewActivity_install">Встановити</string>
     <!-- Label for a button that, if pressed, will uninstall the sticker pack that is currently being previewed. -->
     <string name="StickerPackPreviewActivity_remove">Видалити</string>
-    <string name="StickerPackPreviewActivity_stickers">Наліпки</string>
+    <string name="StickerPackPreviewActivity_stickers">Стікери</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Не вдалося завантажити набір стікерів</string>
 
     <!-- SubmitDebugLogActivity -->
@@ -2383,7 +2383,7 @@
     <string name="ThreadRecord_secure_session_reset">Скидання безпечного сеансу.</string>
     <string name="ThreadRecord_draft">Чернетка:</string>
     <string name="ThreadRecord_media_message">Медіаповідомлення</string>
-    <string name="ThreadRecord_sticker">Наліпка</string>
+    <string name="ThreadRecord_sticker">Стікер</string>
     <string name="ThreadRecord_view_once_photo">Фото вже переглянуто</string>
     <string name="ThreadRecord_view_once_video">Відео вже переглянуто</string>
     <string name="ThreadRecord_view_once_media">Медіа вже переглянуто</string>
@@ -2820,9 +2820,9 @@
     <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Групи Signal працюють найкраще з %1$d учасників або менше. Додавання більшої кількості учасників призведе до затримок при відправці і отриманні повідомлень.</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="one">%1$d учасник</item>
-        <item quantity="few">%1$d учасник</item>
-        <item quantity="many">%1$d учасники</item>
-        <item quantity="other">%1$d учасники</item>
+        <item quantity="few">%1$d учасники</item>
+        <item quantity="many">%1$d учасників</item>
+        <item quantity="other">%1$d учасника</item>
     </plurals>
     <!-- Text on row item to find user by phone number -->
     <string name="ContactSelectionListFragment__find_by_phone_number">Пошук за номером телефону</string>
@@ -2836,9 +2836,9 @@
     <!-- contact_selection_list_item -->
     <plurals name="contact_selection_list_item__number_of_members">
         <item quantity="one">%1$d учасник</item>
-        <item quantity="few">%1$d учасник</item>
-        <item quantity="many">%1$d учасники</item>
-        <item quantity="other">%1$d учасники</item>
+        <item quantity="few">%1$d учасники</item>
+        <item quantity="many">%1$d учасників</item>
+        <item quantity="other">%1$d учасника</item>
     </plurals>
     <!-- Displays number of viewers for a story -->
     <plurals name="contact_selection_list_item__number_of_viewers">
@@ -2916,7 +2916,7 @@
     <string name="QuoteView_photo">Фото</string>
     <string name="QuoteView_gif">GIF</string>
     <string name="QuoteView_view_once_media">Одноразове медіа</string>
-    <string name="QuoteView_sticker">Наліпка</string>
+    <string name="QuoteView_sticker">Стікер</string>
     <string name="QuoteView_you">Ви</string>
     <string name="QuoteView_original_missing">Оригінальне повідомлення не знайдено</string>
     <!-- Author formatting for group stories -->
@@ -3133,8 +3133,8 @@
     <string name="verify_display_fragment__successful_match">Збіг вдалий</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">Не вдалось підтвердити код безпеки</string>
     <string name="verify_display_fragment__loading">Завантаження…</string>
-    <string name="verify_display_fragment__mark_as_verified">Позначити перевіреним</string>
-    <string name="verify_display_fragment__clear_verification">Очистити верифікацію</string>
+    <string name="verify_display_fragment__mark_as_verified">Позначити як перевірений</string>
+    <string name="verify_display_fragment__clear_verification">Позначити як неперевірений</string>
 
     <!-- verity_scan_fragment -->
     <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Відскануйте QR-код на пристрої вашого контакту.</string>
@@ -3170,7 +3170,7 @@
     <string name="AndroidManifest__create_passphrase">Створити фразу-пароль</string>
     <string name="AndroidManifest__select_contacts">Обрати контакти</string>
     <string name="AndroidManifest__change_passphrase">Змінити фразу-пароль</string>
-    <string name="AndroidManifest__verify_safety_number">Перевірити номер безпеки</string>
+    <string name="AndroidManifest__verify_safety_number">Перевірити код безпеки</string>
     <string name="AndroidManifest__media_preview">Попередній перегляд медіа</string>
     <string name="AndroidManifest__message_details">Деталі повідомлення</string>
     <string name="AndroidManifest__linked_devices">Зв\'язані пристрої</string>
@@ -3180,7 +3180,7 @@
     <!-- HelpFragment -->
     <string name="HelpFragment__have_you_read_our_faq_yet">Розведіть чи зведіть два пальці для зміни масштабу, потягніть для зміни положення.</string>
     <string name="HelpFragment__next">Далі</string>
-    <string name="HelpFragment__contact_us">Напишіть нам</string>
+    <string name="HelpFragment__contact_us">Зв\'язатися з нами</string>
     <string name="HelpFragment__tell_us_whats_going_on">Опишіть, що сталось</string>
     <string name="HelpFragment__include_debug_log">Долучити журнал відладки.</string>
     <string name="HelpFragment__whats_this">Що це?</string>
@@ -3207,7 +3207,6 @@
         <item>Інший</item>
         <item>Платежі (MobileCoin)</item>
         <item>Донати і значки</item>
-        <item>Експорт SMS</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Подання журналу налагодження Signal Android</string>
@@ -3325,7 +3324,7 @@
     <string name="preferences__advanced">Розширені</string>
     <string name="preferences__donate_to_signal">Підтримати Signal</string>
     <!-- Preference label for making one-time donations to Signal -->
-    <string name="preferences__privacy">Приватність</string>
+    <string name="preferences__privacy">Конфіденційність</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Сторіз</string>
     <string name="preferences__mms_user_agent">Агент користувача MMS</string>
@@ -4105,7 +4104,7 @@
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
     <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Ніхто не зможе бачити ваш номер телефону.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
-    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Хто може знайти мене за номером телефону</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Хто може знайти мене за номером</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
     <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">Будь-яка людина, що має ваш номер телефону, бачитиме вас у Signal і зможе розпочати з вами розмову.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
@@ -4113,9 +4112,9 @@
     <!-- Snackbar text when pressing invalid radio item -->
     <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"Щоб змінити це налаштування, виберіть «Ніхто» для параметра «Хто може бачити мій номер»."</string>
     <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Відновити ім\'я?</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Ви впевнені?</string>
     <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Setting \"Who can find me by number\" to \"Nobody\" will make it harder for people to find you on Signal.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Якщо обрати варіант «Ніхто» для параметра «Хто може знайти мене за номером», людям буде складніше знайти вас у Signal.</string>
     <!-- Dialog button text for canceling change action -->
     <string name="PhoneNumberPrivacySettingsFragment__cancel">Скасувати</string>
     <string name="PhoneNumberPrivacy_everyone">Всі</string>
@@ -4299,7 +4298,7 @@
     <string name="RecipientBottomSheet_unable_to_open_contacts">Неможливо знайти застосунок для відкриття контактів.</string>
     <string name="RecipientBottomSheet_add_to_a_group">Додати до групи</string>
     <string name="RecipientBottomSheet_add_to_another_group">Додати до іншої групи</string>
-    <string name="RecipientBottomSheet_view_safety_number">Перевірити номер безпеки</string>
+    <string name="RecipientBottomSheet_view_safety_number">Перевірити код безпеки</string>
     <string name="RecipientBottomSheet_make_admin">Призначити адміністратором</string>
     <string name="RecipientBottomSheet_remove_as_admin">Вилучити як адміністратора</string>
     <string name="RecipientBottomSheet_remove_from_group">Вилучити з групи</string>
@@ -4440,9 +4439,9 @@
     <string name="CreateGroupActivity__skip">Пропустити</string>
     <plurals name="CreateGroupActivity__d_members">
         <item quantity="one">%1$d учасник</item>
-        <item quantity="few">%1$d учасник</item>
-        <item quantity="many">%1$d учасники</item>
-        <item quantity="other">%1$d учасники</item>
+        <item quantity="few">%1$d учасники</item>
+        <item quantity="many">%1$d учасників</item>
+        <item quantity="other">%1$d учасника</item>
     </plurals>
 
     <!-- ShareActivity -->
@@ -4767,7 +4766,7 @@
     <string name="NotificationProfilesFragment__create_profile">Створити профіль</string>
 
     <!-- PrivacySettingsFragment -->
-    <string name="PrivacySettingsFragment__blocked">Заблоковано</string>
+    <string name="PrivacySettingsFragment__blocked">Заблоковані</string>
     <string name="PrivacySettingsFragment__d_contacts">%1$d контактів</string>
     <string name="PrivacySettingsFragment__messaging">Листування</string>
     <string name="PrivacySettingsFragment__disappearing_messages">Зникаючі повідомлення</string>
@@ -4815,7 +4814,7 @@
 
     <!-- HelpSettingsFragment -->
     <string name="HelpSettingsFragment__support_center">Центр підтримки</string>
-    <string name="HelpSettingsFragment__contact_us">Напишіть нам</string>
+    <string name="HelpSettingsFragment__contact_us">Зв\'язатися з нами</string>
     <string name="HelpSettingsFragment__version">Версія</string>
     <string name="HelpSettingsFragment__debug_log">Журнал відладки</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
@@ -4901,7 +4900,7 @@
     <string name="KeyboardPagerFragment_open_emoji_search">Відкрийте пошук емоджі</string>
     <string name="KeyboardPagerFragment_open_sticker_search">Відкрийте пошук наліпок</string>
     <string name="KeyboardPagerFragment_open_gif_search">Відкрийте програму пошуку GIF</string>
-    <string name="KeyboardPagerFragment_stickers">Наліпки</string>
+    <string name="KeyboardPagerFragment_stickers">Стікери</string>
     <string name="KeyboardPagerFragment_backspace">Backspace</string>
     <string name="KeyboardPagerFragment_gifs">GIF-файли</string>
     <string name="KeyboardPagerFragment_search_emoji">Пошук емоджі</string>
@@ -4910,7 +4909,7 @@
     <string name="KeyboardPagerFragment_search_giphy">Пошук GIF-файлів</string>
 
     <!-- StickerSearchDialogFragment -->
-    <string name="StickerSearchDialogFragment_search_stickers">Показати наліпки</string>
+    <string name="StickerSearchDialogFragment_search_stickers">Показати стікери</string>
     <string name="StickerSearchDialogFragment_no_results_found">Нічого не знайдено</string>
     <string name="EmojiSearchFragment__no_results_found">Нічого не знайдено</string>
     <string name="NotificationsSettingsFragment__unknown_ringtone">Невідомий дзвінок</string>
@@ -4944,7 +4943,7 @@
     <string name="ConversationSettingsFragment__sounds_and_notifications">Звуки &amp; сповіщення</string>
   <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
     <string name="ConversationSettingsFragment__contact_details">Деталі контакту</string>
-    <string name="ConversationSettingsFragment__view_safety_number">Перевірити номер безпеки</string>
+    <string name="ConversationSettingsFragment__view_safety_number">Перевірити код безпеки</string>
     <string name="ConversationSettingsFragment__block">Заблокувати</string>
     <string name="ConversationSettingsFragment__block_group">Заблокувати групу</string>
     <string name="ConversationSettingsFragment__unblock">Розблокувати</string>
@@ -5123,40 +5122,40 @@
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">Один або кілька елементів були недійсними</string>
     <string name="MediaReviewFragment__too_many_items_selected">Обрано забагато елементів</string>
     <!-- Small notification presented to the user when they set their video to view-once mode -->
-    <string name="MediaReviewFragment__video_set_to_view_once">Video set to view once</string>
+    <string name="MediaReviewFragment__video_set_to_view_once">Відео буде показано один раз</string>
     <!-- Small notification presented to the user when they set their photo to view-once mode -->
-    <string name="MediaReviewFragment__photo_set_to_view_once">Photo set to view once</string>
+    <string name="MediaReviewFragment__photo_set_to_view_once">Фото буде показано один раз</string>
     <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
-    <string name="MediaReviewFragment__video_set_to_high_quality">Video set to high quality</string>
+    <string name="MediaReviewFragment__video_set_to_high_quality">Встановлено високу якість відео</string>
     <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
-    <string name="MediaReviewFragment__video_set_to_standard_quality">Video set to standard quality</string>
+    <string name="MediaReviewFragment__video_set_to_standard_quality">Встановлено стандартну якість відео</string>
     <!-- Small notification presented to the user when they set their still image to be sent in high visual quality. -->
-    <string name="MediaReviewFragment__photo_set_to_high_quality">Photo set to high quality</string>
+    <string name="MediaReviewFragment__photo_set_to_high_quality">Встановлено високу якість фото</string>
     <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
-    <string name="MediaReviewFragment__photo_set_to_standard_quality">Photo set to standard quality</string>
+    <string name="MediaReviewFragment__photo_set_to_standard_quality">Встановлено стандартну якість фото</string>
     <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
     <plurals name="MediaReviewFragment__items_set_to_high_quality">
-        <item quantity="one">%1$d item set to high quality</item>
-        <item quantity="few">%1$d items set to high quality</item>
-        <item quantity="many">%1$d items set to high quality</item>
-        <item quantity="other">%1$d items set to high quality</item>
+        <item quantity="one">Встановлено високу якість для %1$d медіафайлу</item>
+        <item quantity="few">Встановлено високу якість для %1$d медіафайлів</item>
+        <item quantity="many">Встановлено високу якість для %1$d медіафайлів</item>
+        <item quantity="other">Встановлено високу якість для %1$d медіафайлу</item>
     </plurals>
     <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
     <plurals name="MediaReviewFragment__items_set_to_standard_quality">
-        <item quantity="one">%1$d item set to standard quality</item>
-        <item quantity="few">%1$d items set to standard quality</item>
-        <item quantity="many">%1$d items set to standard quality</item>
-        <item quantity="other">%1$d items set to standard quality</item>
+        <item quantity="one">Встановлено стандартну якість для %1$d медіафайлу</item>
+        <item quantity="few">Встановлено стандартну якість для %1$d медіафайлів</item>
+        <item quantity="many">Встановлено стандартну якість для %1$d медіафайлів</item>
+        <item quantity="other">Встановлено стандартну якість для %1$d медіафайлу</item>
     </plurals>
 
     <string name="ImageEditorHud__cancel">Скасувати</string>
     <string name="ImageEditorHud__draw">Малювати</string>
     <string name="ImageEditorHud__write_text">Додати текст</string>
-    <string name="ImageEditorHud__add_a_sticker">Додати наліпку</string>
+    <string name="ImageEditorHud__add_a_sticker">Додати стікер</string>
     <string name="ImageEditorHud__blur">Розмити</string>
     <string name="ImageEditorHud__done_editing">Завершити редагування</string>
     <string name="ImageEditorHud__clear_all">Очистити все</string>
-    <string name="ImageEditorHud__undo">Відмінити</string>
+    <string name="ImageEditorHud__undo">Скасувати</string>
     <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Перемкнутись між маркером та маркером для виділення тексту</string>
     <string name="ImageEditorHud__toggle_between_text_styles">Перемкнутись між стилями тексту</string>
 
@@ -5173,16 +5172,16 @@
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Ви втратите усі зміни, що зробили з цим фото.</string>
 
     <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_title">Found %1$s</string>
+    <string name="MediaCaptureFragment_username_dialog_title">Знайдено %1$s</string>
     <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_body">Start a chat with \"%1$s\"</string>
+    <string name="MediaCaptureFragment_username_dialog_body">Почніть чат з %1$s</string>
     <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
     <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">До чату</string>
 
     <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_title">Link device?</string>
+    <string name="MediaCaptureFragment_device_link_dialog_title">Зв\'язати пристрій?</string>
     <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_body">It looks like you\'re trying to link a Signal device. Tap continue and scan the code again to link it.</string>
+    <string name="MediaCaptureFragment_device_link_dialog_body">Здається, ви намагаєтеся зв\'язати пристрій із Signal. Щоб зв\'язати пристрій, натисніть «Продовжити» і зіскануйте код знову.</string>
     <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
     <string name="MediaCaptureFragment_device_link_dialog_continue">Продовжити</string>
 
@@ -5284,7 +5283,7 @@
     <!-- Displayed as a subtitle on a row in the Manage Donations screen when payment for a donation is pending -->
     <string name="MySupportPreference__payment_pending">Очікується оплата</string>
     <!-- Displayed as a dialog message when clicking on a donation row that is pending. Placeholder is a formatted fiat amount -->
-    <string name="MySupportPreference__your_bank_transfer_of_s">Your bank transfer of %1$s is pending. Bank transfers can take 1 to 14 business days to complete.  </string>
+    <string name="MySupportPreference__your_bank_transfer_of_s">Триває опрацювання вашого банківського переказу на суму %1$s. На це може знадобитися від 1 до 14 робочих днів.  </string>
     <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
     <string name="MySupportPreference__learn_more">Подробиці</string>
 
@@ -5506,7 +5505,7 @@
     <!-- Snakbar message shown when removing a recipient from a profile -->
     <string name="NotificationProfileDetails__s_removed">«%1$s» вилучено.</string>
     <!-- Snackbar button text that will undo the recipient remove -->
-    <string name="NotificationProfileDetails__undo">Відмінити</string>
+    <string name="NotificationProfileDetails__undo">Скасувати</string>
     <!-- Dialog message shown to confirm deleting a profile -->
     <string name="NotificationProfileDetails__permanently_delete_profile">Видалити профіль назавжди?</string>
     <!-- Dialog button to delete profile -->
@@ -6264,11 +6263,11 @@
     <!-- Description below title -->
     <string name="DonateToSignalFragment__private_messaging">Конфіденційний обмін повідомленнями можливий — завдяки вашим коштам. Без реклами, відстежування й поступок. Підтримайте Signal донатом.</string>
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
-    <string name="DonateToSignalFragment__you_have_a_donation_pending">Ви маєте донат, що очікує на розгляд</string>
+    <string name="DonateToSignalFragment__you_have_a_donation_pending">Ваш попередній донат ще не надійшов</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Bank transfers can take 1 to 14 business days to process. Please wait until this payment completes before updating your subscription.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Опрацювання банківських переказів може займати від 1 до 14 робочих днів. Просимо вас дочекатися проведення платежу, перш ніж оновлювати передплату.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Bank transfers can take 1 to 14 business days to process. Please wait until this payment completes before making another donation.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Опрацювання банківських переказів може займати від 1 до 14 робочих днів. Просимо вас дочекатися проведення платежу, перш ніж робити новий донат.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
     <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Ваш донат ще обробляється. Обробка може зайняти кілька хвилин в залежності від вашого з\'єднання. Будь ласка, зачекайте на проведення платежу, перш ніж оновлювати передплату.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
@@ -6416,13 +6415,13 @@
     <string name="FindAccountInfoSheet__look_for_your_iban_at">Знайдіть IBAN у верхній частині виписки за рахунком. IBAN містить до 34 символів. Введене ім\'я має збігатися з повним ім\'ям, що вказано у вашому банківському рахунку. Щоб отримати додаткову інформацію, зв\'яжіться зі своїм банком.</string>
 
     <!-- Title of donation pending sheet displayed after making a bank transfer -->
-    <string name="DonationPendingBottomSheet__donation_pending">Донат очікує на розгляд</string>
+    <string name="DonationPendingBottomSheet__donation_pending">Ваш донат ще не надійшов</string>
     <!-- Top text block of donation pending sheet displayed after subscribing via a bank transfer. Placeholder is the badge name. -->
     <string name="DonationPendingBottomSheet__your_monthly_donation_is_pending">Ваш щомісячний донат очікує на розгляд. Ви зможете відобразити значок «%1$s» у профілі, коли донат буде отримано.</string>
     <!-- Top text block of donation pending sheet displayed after one-time donation via a bank transfer. Placeholder is the badge name. -->
     <string name="DonationPendingBottomSheet__your_one_time_donation_is_pending">Ваш разовий донат очікує на розгляд. Ви зможете відобразити значок «%1$s» у профілі, коли донат буде отримано.</string>
     <!-- Bottom text block of donation pending sheet displayed after donating via a bank transfer. Placeholder is for learn more. -->
-    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Bank transfers can take 1 to 14 business days to process. %1$s</string>
+    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Опрацювання банківських переказів може займати від 1 до 14 робочих днів. %1$s</string>
     <!-- Learn more text for donation pending sheet displayed after donating via a bank transfer. -->
     <string name="DonationPendingBottomSheet__learn_more">Подробиці</string>
     <!-- Confirmation button for donation pending sheet displayed after donating via a bank transfer. -->
@@ -6841,9 +6840,9 @@
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Проскануйте цей QR-код телефоном, щоб написати мені в Signal.</string>
     <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_qr_code_not_found">QR code not found</string>
+    <string name="UsernameLinkSettings_qr_code_not_found">QR-код не знайдено</string>
     <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Try scanning another image containing a Signal QR code.</string>
+    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Якщо можете, зіскануйте QR-код Signal з іншого зображення.</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
     <string name="UsernameLinkShareBottomSheet_title">Із цим посиланням будь-хто може переглянути ваше ім\'я користувача та розпочати з вами чат. Діліться ним тільки з людьми, яким довіряєте.</string>

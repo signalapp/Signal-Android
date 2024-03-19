@@ -3019,7 +3019,6 @@
         <item>অন্যান্য</item>
         <item>পেমেন্ট (MobileCoin)</item>
         <item>ডোনেশন এবং ব্যাজ</item>
-        <item>এসএমএস স্থানান্তর</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android বাগ সংক্রান্ত সংশোধন লগ জমা</string>

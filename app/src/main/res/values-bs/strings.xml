@@ -3207,7 +3207,6 @@
         <item>Ostalo</item>
         <item>Plaćanja (MobileCoin)</item>
         <item>Donacije i značke</item>
-        <item>Izvoz SMS poruka</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android evidencija o otklanjanju grešaka</string>

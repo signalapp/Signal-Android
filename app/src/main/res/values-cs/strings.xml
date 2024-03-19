@@ -3207,7 +3207,6 @@
         <item>Ostatní</item>
         <item>Platby (MobileCoin)</item>
         <item>Příspěvky a odznaky</item>
-        <item>Export SMS zpráv</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Odeslání protokolu ladění aplikace Signal pro Android</string>

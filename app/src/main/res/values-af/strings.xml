@@ -3019,7 +3019,6 @@
         <item>Ander</item>
         <item>Betalings (MobileCoin)</item>
         <item>Skenkings &amp; Wapens</item>
-        <item>SMS-uitvoer</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Indiening van Signal Android-ontfoutlog</string>

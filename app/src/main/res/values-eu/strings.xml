@@ -3019,7 +3019,6 @@
         <item>Besteak</item>
         <item>Ordainketak (MobileCoin)</item>
         <item>Dohaintzak eta bereizgarriak</item>
-        <item>SMSen esportazioa</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android arazketa-erregistroaren bidalketa</string>

@@ -2925,7 +2925,6 @@
         <item>อื่น</item>
         <item>การชำระเงิน (MobileCoin)</item>
         <item>การบริจาคและโล่</item>
-        <item>ส่งออก SMS</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">การส่งรายงานบันทึกดีบักสำหรับ Signal Android</string>

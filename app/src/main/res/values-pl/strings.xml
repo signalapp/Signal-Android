@@ -433,7 +433,7 @@
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Wiadomości SMS nie są już obsługiwane w Signal. Zaproś %1$s do Signal i kontynuujcie rozmowę tutaj.</string>
     <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
-    <string name="ConversationActivity__this_person_is_no_longer_using_signal">This person is no longer using Signal. Invite them to Signal to keep the conversation here.</string>
+    <string name="ConversationActivity__this_person_is_no_longer_using_signal">Ta osoba nie używa już Signal. Zaproś ją do Signal i kontynuujcie rozmowę tutaj.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">Zaproś do Signal</string>
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
@@ -1483,7 +1483,7 @@
     <string name="MessageRecord_changed_their_profile_name_from_to">%1$s zmienił(a) nazwę profilu z %2$s na %3$s.</string>
     <string name="MessageRecord_changed_their_profile">%1$s zmienił(a) swój profil.</string>
     <!-- Conversation update event message shown when you\'ve started a conversation by phone number or username and then learn their profile name. placeholder is username or phone number -->
-    <string name="MessageRecord_started_this_chat">You started this chat with %1$s.</string>
+    <string name="MessageRecord_started_this_chat">Rozpoczęto czat z %1$s.</string>
 
     <!-- GV2 specific -->
     <string name="MessageRecord_you_created_the_group">Utworzyłeś(aś) grupę.</string>
@@ -3207,7 +3207,6 @@
         <item>Inny</item>
         <item>Płatności (MobileCoin)</item>
         <item>Darowizny i odznaki</item>
-        <item>Eksport SMS-ów</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Przesłanie raportu debugowania Signal Android</string>
@@ -4115,7 +4114,7 @@
     <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
     <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Chcesz kontynuować?</string>
     <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Setting \"Who can find me by number\" to \"Nobody\" will make it harder for people to find you on Signal.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Wybór opcji „Nikt” w ustawieniu „Kto może mnie znaleźć według numeru” utrudni innym znalezienie Cię w Signal.</string>
     <!-- Dialog button text for canceling change action -->
     <string name="PhoneNumberPrivacySettingsFragment__cancel">Anuluj</string>
     <string name="PhoneNumberPrivacy_everyone">Wszyscy</string>
@@ -5123,30 +5122,30 @@
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">Co najmniej jeden element był nieprawidłowy</string>
     <string name="MediaReviewFragment__too_many_items_selected">Zbyt wiele wybranych elementów</string>
     <!-- Small notification presented to the user when they set their video to view-once mode -->
-    <string name="MediaReviewFragment__video_set_to_view_once">Video set to view once</string>
+    <string name="MediaReviewFragment__video_set_to_view_once">Wideo do jednorazowego wyświetlenia</string>
     <!-- Small notification presented to the user when they set their photo to view-once mode -->
-    <string name="MediaReviewFragment__photo_set_to_view_once">Photo set to view once</string>
+    <string name="MediaReviewFragment__photo_set_to_view_once">Zdjęcie do jednorazowego wyświetlenia</string>
     <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
-    <string name="MediaReviewFragment__video_set_to_high_quality">Video set to high quality</string>
+    <string name="MediaReviewFragment__video_set_to_high_quality">Wideo w wysokiej jakości</string>
     <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
-    <string name="MediaReviewFragment__video_set_to_standard_quality">Video set to standard quality</string>
+    <string name="MediaReviewFragment__video_set_to_standard_quality">Wideo w standardowej jakości</string>
     <!-- Small notification presented to the user when they set their still image to be sent in high visual quality. -->
-    <string name="MediaReviewFragment__photo_set_to_high_quality">Photo set to high quality</string>
+    <string name="MediaReviewFragment__photo_set_to_high_quality">Zdjęcie w wysokiej jakości</string>
     <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
-    <string name="MediaReviewFragment__photo_set_to_standard_quality">Photo set to standard quality</string>
+    <string name="MediaReviewFragment__photo_set_to_standard_quality">Zdjęcie w standardowej jakości</string>
     <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
     <plurals name="MediaReviewFragment__items_set_to_high_quality">
-        <item quantity="one">%1$d item set to high quality</item>
-        <item quantity="few">%1$d items set to high quality</item>
-        <item quantity="many">%1$d items set to high quality</item>
-        <item quantity="other">%1$d items set to high quality</item>
+        <item quantity="one">%1$d element w wysokiej jakości</item>
+        <item quantity="few">%1$d elementy w wysokiej jakości</item>
+        <item quantity="many">%1$d elementów w wysokiej jakości</item>
+        <item quantity="other">%1$d elementów w wysokiej jakości</item>
     </plurals>
     <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
     <plurals name="MediaReviewFragment__items_set_to_standard_quality">
-        <item quantity="one">%1$d item set to standard quality</item>
-        <item quantity="few">%1$d items set to standard quality</item>
-        <item quantity="many">%1$d items set to standard quality</item>
-        <item quantity="other">%1$d items set to standard quality</item>
+        <item quantity="one">%1$d element w standardowej jakości</item>
+        <item quantity="few">%1$d elementy w standardowej jakości</item>
+        <item quantity="many">%1$d elementów w standardowej jakości</item>
+        <item quantity="other">%1$d elementów w standardowej jakości</item>
     </plurals>
 
     <string name="ImageEditorHud__cancel">Anuluj</string>
@@ -5173,16 +5172,16 @@
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Utracisz wszystkie zmiany dokonane w tym zdjęciu.</string>
 
     <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_title">Found %1$s</string>
+    <string name="MediaCaptureFragment_username_dialog_title">Znaleziono %1$s</string>
     <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_body">Start a chat with \"%1$s\"</string>
+    <string name="MediaCaptureFragment_username_dialog_body">Rozpocznij czat z „%1$s”</string>
     <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
     <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">Przejdź do czatu</string>
 
     <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_title">Link device?</string>
+    <string name="MediaCaptureFragment_device_link_dialog_title">Dodać urządzenie?</string>
     <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_body">It looks like you\'re trying to link a Signal device. Tap continue and scan the code again to link it.</string>
+    <string name="MediaCaptureFragment_device_link_dialog_body">Wygląda na to, że próbujesz dodać urządzenie Signal. Aby to zrobić, stuknij opcję „Dalej” i ponownie zeskanuj kod.</string>
     <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
     <string name="MediaCaptureFragment_device_link_dialog_continue">Kontynuuj</string>
 
@@ -5284,7 +5283,7 @@
     <!-- Displayed as a subtitle on a row in the Manage Donations screen when payment for a donation is pending -->
     <string name="MySupportPreference__payment_pending">Płatność oczekuje na realizację</string>
     <!-- Displayed as a dialog message when clicking on a donation row that is pending. Placeholder is a formatted fiat amount -->
-    <string name="MySupportPreference__your_bank_transfer_of_s">Your bank transfer of %1$s is pending. Bank transfers can take 1 to 14 business days to complete.  </string>
+    <string name="MySupportPreference__your_bank_transfer_of_s">Twój przelew bankowy w wysokości %1$s oczekuje na realizację. Realizacja przelewu bankowego może potrwać od 1 do 14 dni roboczych.  </string>
     <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
     <string name="MySupportPreference__learn_more">Dowiedz się więcej</string>
 
@@ -6266,9 +6265,9 @@
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
     <string name="DonateToSignalFragment__you_have_a_donation_pending">Twoja darowizna oczekuje na realizację</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Bank transfers can take 1 to 14 business days to process. Please wait until this payment completes before updating your subscription.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Przetworzenie przelewu bankowego może potrwać od 1 do 14 dni roboczych. Poczekaj, aż płatność zostanie zakończona, zanim zmienisz swoją subskrypcję.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Bank transfers can take 1 to 14 business days to process. Please wait until this payment completes before making another donation.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Przetworzenie przelewu bankowego może potrwać od 1 do 14 dni roboczych. Poczekaj, aż płatność zostanie zakończona, zanim przekażesz kolejną darowiznę.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
     <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Twoja darowizna wciąż jest przetwarzana. W zależności od Twojego połączenia z siecią może to potrwać kilka minut. Poczekaj, aż płatność zostanie zakończona, zanim zmienisz swoją subskrypcję.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
@@ -6422,7 +6421,7 @@
     <!-- Top text block of donation pending sheet displayed after one-time donation via a bank transfer. Placeholder is the badge name. -->
     <string name="DonationPendingBottomSheet__your_one_time_donation_is_pending">Twoja jednorazowa darowizna oczekuje na realizację. Odznaka %1$s będzie widoczna na Twoim profilu, gdy otrzymamy Twoją darowiznę.</string>
     <!-- Bottom text block of donation pending sheet displayed after donating via a bank transfer. Placeholder is for learn more. -->
-    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Bank transfers can take 1 to 14 business days to process. %1$s</string>
+    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Przetworzenie przelewu bankowego może potrwać od 1 do 14 dni roboczych. %1$s</string>
     <!-- Learn more text for donation pending sheet displayed after donating via a bank transfer. -->
     <string name="DonationPendingBottomSheet__learn_more">Dowiedz się więcej</string>
     <!-- Confirmation button for donation pending sheet displayed after donating via a bank transfer. -->
@@ -6841,9 +6840,9 @@
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Aby rozmawiać ze mną w Signal, zeskanuj kod QR za pomocą swojego telefonu.</string>
     <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_qr_code_not_found">QR code not found</string>
+    <string name="UsernameLinkSettings_qr_code_not_found">Nie znaleziono kodu QR</string>
     <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Try scanning another image containing a Signal QR code.</string>
+    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Spróbuj zeskanować inny obraz zawierający kod QR z Signal.</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
     <string name="UsernameLinkShareBottomSheet_title">Każdy posiadacz tego linku może zobaczyć Twoją nazwę użytkownika i rozpocząć czat z Tobą. Udostępniaj go tylko zaufanym osobom.</string>

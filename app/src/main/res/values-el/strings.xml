@@ -3019,7 +3019,6 @@
         <item>Άλλο</item>
         <item>Πληρωμές (MobileCoin)</item>
         <item>Δωρεές και Σήματα</item>
-        <item>Εξαγωγή SMS</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Αποστολή αρχείου συμβάντων αποσφαλμάτωσης Signal Android</string>

@@ -3019,7 +3019,6 @@
         <item>Otros</item>
         <item>Pagos (MobileCoin)</item>
         <item>Donaciones; Insignias</item>
-        <item>Exportación de SMS</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Envío de registro de depuración de Android Signal</string>
@@ -3935,7 +3934,7 @@
     <string name="prompt_passphrase_activity__tap_to_unlock">TOCA PARA DESBLOQUEAR</string>
     <string name="Recipient_unknown">Desconocid@</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
-    <string name="Recipient_deleted_account">Eliminar cuenta</string>
+    <string name="Recipient_deleted_account">Cuenta eliminada</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
     <string name="preferences_account_reregister">Registrar tu cuenta de nuevo</string>

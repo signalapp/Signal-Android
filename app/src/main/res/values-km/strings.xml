@@ -2925,7 +2925,6 @@
         <item>ផ្សេងៗ</item>
         <item>ការទូទាត់ (MobileCoin)</item>
         <item>ការបរិច្ចាគ និងស្លាក</item>
-        <item>ការនាំចេញសារជាអក្សរ</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">ការដាក់បញ្ជូនកំណត់ហេតុបញ្ហា Signal Android</string>

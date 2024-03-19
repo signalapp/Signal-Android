@@ -3019,7 +3019,6 @@
         <item>અન્ય</item>
         <item>ચુકવણી (MobileCoin)</item>
         <item>યોગદાન અને બૅજ</item>
-        <item>SMS એક્સપોર્ટ</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android ડીબગ લૉગ સબમિશન</string>

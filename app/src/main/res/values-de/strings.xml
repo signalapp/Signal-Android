@@ -389,7 +389,7 @@
     <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Deine Beitrittsanfrage wurde an den Gruppen-Admin gesendet. Du wirst benachrichtigt, sobald er über sie entschieden hat.</string>
     <string name="ConversationActivity_cancel_request">Anfrage abbrechen</string>
 
-    <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Zum Versenden von Sprachnachrichten erlaube Signal Zugriff auf dein Mikrofon.</string>
+    <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Erlaube Signal Zugriff auf dein Mikrofon, um Sprachnachrichten zu versenden.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal benötigt die Berechtigung »Mikrofon« für das Senden von Sprachnachrichten, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Mikrofon«.</string>
     <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal benötigt die Berechtigungen »Mikrofon« und »Kamera«, um %1$s anzurufen, diese wurden jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Mikrofon« und »Kamera«.</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Zum Aufnehmen von Fotos und Videos erlaube Signal Zugriff auf deine Kamera.</string>
@@ -427,7 +427,7 @@
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Die SMS-Nachrichtübermittlung wird in Signal nicht länger unterstützt. Lade %1$s zu Signal ein, damit die Unterhaltung hier weitergeht.</string>
     <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
-    <string name="ConversationActivity__this_person_is_no_longer_using_signal">This person is no longer using Signal. Invite them to Signal to keep the conversation here.</string>
+    <string name="ConversationActivity__this_person_is_no_longer_using_signal">Diese Person verwendet Signal nicht mehr. Lade sie zu Signal ein, damit die Unterhaltung hier weitergeht.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">Zu Signal einladen</string>
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
@@ -1389,7 +1389,7 @@
     <string name="MessageRecord_changed_their_profile_name_from_to">%1$s hat den Profilnamen von %2$s zu %3$s geändert.</string>
     <string name="MessageRecord_changed_their_profile">%1$s hat das Profil geändert.</string>
     <!-- Conversation update event message shown when you\'ve started a conversation by phone number or username and then learn their profile name. placeholder is username or phone number -->
-    <string name="MessageRecord_started_this_chat">You started this chat with %1$s.</string>
+    <string name="MessageRecord_started_this_chat">Du hast einen Chat mit %1$s begonnen.</string>
 
     <!-- GV2 specific -->
     <string name="MessageRecord_you_created_the_group">Du hast die Gruppe erstellt.</string>
@@ -1782,7 +1782,7 @@
     <!-- RedPhone -->
     <string name="RedPhone_answering">Anruf wird angenommen …</string>
     <string name="RedPhone_ending_call">Anruf wird beendet …</string>
-    <string name="RedPhone_ringing">klingelt…</string>
+    <string name="RedPhone_ringing">Klingelt …</string>
     <string name="RedPhone_busy">Besetzt</string>
     <string name="RedPhone_recipient_unavailable">Empfänger nicht erreichbar</string>
     <string name="RedPhone_network_failed">Netzwerkfehler!</string>
@@ -1969,7 +1969,7 @@
 
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
-    <string name="AboutSheet__signal_connection">Signal-Verbindung</string>
+    <string name="AboutSheet__signal_connection">Signal-Kontakt</string>
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
     <string name="AboutSheet__verified">Verifiziert</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
@@ -2685,7 +2685,7 @@
     <string name="conversation_activity__emoji_toggle_description">Emoji-Tastatur aktivieren</string>
     <string name="conversation_activity__attachment_thumbnail">Anhangsvorschaubild</string>
     <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Direktaufnahme</string>
-    <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Audioanhang aufnehmen und senden</string>
+    <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Sprachnachricht aufnehmen und senden</string>
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Audioaufnahme arretieren</string>
     <string name="conversation_activity__message_could_not_be_sent">Nachricht konnte nicht versendet werden. Überprüfe deine Internetverbindung und versuche es erneut.</string>
 
@@ -3019,7 +3019,6 @@
         <item>Sonstige</item>
         <item>Zahlungen (MobileCoin)</item>
         <item>Spenden und Abzeichen</item>
-        <item>SMS-Export</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Diagnoseprotokoll-Übermittlung für Signal Android</string>
@@ -3901,9 +3900,9 @@
     <!-- Snackbar text when pressing invalid radio item -->
     <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"Um diese Einstellung zu ändern, setze »Wer kann meine Nummer sehen« auf »Niemand«."</string>
     <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Bist du dir sicher?</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Bist du sicher?</string>
     <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Setting \"Who can find me by number\" to \"Nobody\" will make it harder for people to find you on Signal.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Wenn du »Wer kann mich anhand der Telefonnummer finden?« auf »Niemand« setzt, wird es für andere schwieriger, dich auf Signal zu finden.</string>
     <!-- Dialog button text for canceling change action -->
     <string name="PhoneNumberPrivacySettingsFragment__cancel">Abbrechen</string>
     <string name="PhoneNumberPrivacy_everyone">Jeder</string>
@@ -4889,26 +4888,26 @@
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">Mindestens ein Element war ungültig</string>
     <string name="MediaReviewFragment__too_many_items_selected">Zu viele Elemente ausgewählt</string>
     <!-- Small notification presented to the user when they set their video to view-once mode -->
-    <string name="MediaReviewFragment__video_set_to_view_once">Video set to view once</string>
+    <string name="MediaReviewFragment__video_set_to_view_once">Video auf einmalige Ansicht eingestellt</string>
     <!-- Small notification presented to the user when they set their photo to view-once mode -->
-    <string name="MediaReviewFragment__photo_set_to_view_once">Photo set to view once</string>
+    <string name="MediaReviewFragment__photo_set_to_view_once">Foto auf einmalige Ansicht eingestellt</string>
     <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
-    <string name="MediaReviewFragment__video_set_to_high_quality">Video set to high quality</string>
+    <string name="MediaReviewFragment__video_set_to_high_quality">Video auf hohe Qualität eingestellt</string>
     <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
-    <string name="MediaReviewFragment__video_set_to_standard_quality">Video set to standard quality</string>
+    <string name="MediaReviewFragment__video_set_to_standard_quality">Video auf Standardqualität eingestellt</string>
     <!-- Small notification presented to the user when they set their still image to be sent in high visual quality. -->
-    <string name="MediaReviewFragment__photo_set_to_high_quality">Photo set to high quality</string>
+    <string name="MediaReviewFragment__photo_set_to_high_quality">Foto auf hohe Qualität eingestellt</string>
     <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
-    <string name="MediaReviewFragment__photo_set_to_standard_quality">Photo set to standard quality</string>
+    <string name="MediaReviewFragment__photo_set_to_standard_quality">Foto auf Standardqualität eingestellt</string>
     <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
     <plurals name="MediaReviewFragment__items_set_to_high_quality">
-        <item quantity="one">%1$d item set to high quality</item>
-        <item quantity="other">%1$d items set to high quality</item>
+        <item quantity="one">%1$d Medienelement auf hohe Qualität eingestellt</item>
+        <item quantity="other">%1$d Medienelemente auf hohe Qualität eingestellt</item>
     </plurals>
     <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
     <plurals name="MediaReviewFragment__items_set_to_standard_quality">
-        <item quantity="one">%1$d item set to standard quality</item>
-        <item quantity="other">%1$d items set to standard quality</item>
+        <item quantity="one">%1$d Medienelement auf Standardqualität eingestellt</item>
+        <item quantity="other">%1$d Medienelemente auf Standardqualität eingestellt</item>
     </plurals>
 
     <string name="ImageEditorHud__cancel">Abbrechen</string>
@@ -4935,16 +4934,16 @@
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Du wirst alle an diesem Foto vorgenommenen Änderungen verlieren.</string>
 
     <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_title">Found %1$s</string>
+    <string name="MediaCaptureFragment_username_dialog_title">%1$s gefunden</string>
     <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_body">Start a chat with \"%1$s\"</string>
+    <string name="MediaCaptureFragment_username_dialog_body">Beginne einen Chat mit »%1$s«</string>
     <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
-    <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">Zu Chat</string>
+    <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">Zum Chat</string>
 
     <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_title">Link device?</string>
+    <string name="MediaCaptureFragment_device_link_dialog_title">Gerät koppeln?</string>
     <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_body">It looks like you\'re trying to link a Signal device. Tap continue and scan the code again to link it.</string>
+    <string name="MediaCaptureFragment_device_link_dialog_body">Es sieht so aus, als würdest du versuchen, ein Gerät mit Signal koppeln. Tippe auf Fortfahren und scanne den Code erneut, um es zu koppeln.</string>
     <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
     <string name="MediaCaptureFragment_device_link_dialog_continue">Fortfahren</string>
 
@@ -5046,7 +5045,7 @@
     <!-- Displayed as a subtitle on a row in the Manage Donations screen when payment for a donation is pending -->
     <string name="MySupportPreference__payment_pending">Zahlung ausstehend</string>
     <!-- Displayed as a dialog message when clicking on a donation row that is pending. Placeholder is a formatted fiat amount -->
-    <string name="MySupportPreference__your_bank_transfer_of_s">Your bank transfer of %1$s is pending. Bank transfers can take 1 to 14 business days to complete.  </string>
+    <string name="MySupportPreference__your_bank_transfer_of_s">Deine Überweisung in Höhe von %1$s wird bearbeitet. Die Bearbeitung von Banküberweisungen kann 1 bis 14 Werktage dauern.  </string>
     <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
     <string name="MySupportPreference__learn_more">Mehr erfahren</string>
 
@@ -5533,7 +5532,7 @@
     <string name="MyStorySettingsFragment__who_can_view_this_story">Wer diese Story sehen kann</string>
     <!-- Clickable option for selecting people to hide your story from -->
     <!-- Privacy setting title for sending stories to all your signal connections -->
-    <string name="MyStorySettingsFragment__all_signal_connections">Alle Signal-Verbindungen</string>
+    <string name="MyStorySettingsFragment__all_signal_connections">Alle Signal-Kontakte</string>
     <!-- Privacy setting description for sending stories to all your signal connections -->
     <!-- Privacy setting title for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__all_except">Alle außer…</string>
@@ -5562,9 +5561,9 @@
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Erlaube Personen, die deine Story sehen können, auf sie zu antworten und zu reagieren</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
-    <string name="SignalConnectionsBottomSheet___signal_connections">Signal-Verbindungen</string>
+    <string name="SignalConnectionsBottomSheet___signal_connections">Signal-Kontakte</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
-    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal-Verbindungen sind Menschen, denen du vertraust, entweder durch:</string>
+    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal-Kontakte sind Menschen, denen du vertraust, entweder durch:</string>
     <!-- Signal connections sheet bullet point 1 -->
     <string name="SignalConnectionsBottomSheet__starting_a_conversation">Starten eines Chats</string>
     <!-- Signal connections sheet bullet point 2 -->
@@ -5898,7 +5897,7 @@
     <!-- Subtitle of initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Wähle aus, wer Posts zu deiner Story sehen kann. In »Einstellungen« kannst du jederzeit Änderungen vornehmen.</string>
     <!-- All connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Alle Signal-Verbindungen</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Alle Signal-Kontakte</string>
     <!-- All connections except option for initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__all_except">Alle außer…</string>
     <!-- Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
@@ -5990,9 +5989,9 @@
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
     <string name="DonateToSignalFragment__you_have_a_donation_pending">Eine Spende ist noch ausstehend</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Bank transfers can take 1 to 14 business days to process. Please wait until this payment completes before updating your subscription.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Die Bearbeitung von Banküberweisungen kann 1 bis 14 Werktage dauern. Bitte warte, bis diese Zahlung abgeschlossen ist, bevor du deine regelmäßige Spende aktualisierst.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Bank transfers can take 1 to 14 business days to process. Please wait until this payment completes before making another donation.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Die Bearbeitung von Banküberweisungen kann 1 bis 14 Werktage dauern. Bitte warte, bis diese Zahlung abgeschlossen ist, bevor du eine weitere Spende vornimmst.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
     <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Deine Spende wird immer noch bearbeitet. Das kann abhängig von deiner Verbindung ein paar Minuten dauern. Bitte warte, bis diese Zahlung abgeschlossen ist, bevor du deine regelmäßige Spende aktualisierst.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
@@ -6144,7 +6143,7 @@
     <!-- Top text block of donation pending sheet displayed after one-time donation via a bank transfer. Placeholder is the badge name. -->
     <string name="DonationPendingBottomSheet__your_one_time_donation_is_pending">Deine einmalige Spende steht noch aus. Sobald deine Spende eingegangen ist, kannst du das %1$s-Abzeichen in deinem Profil anzeigen.</string>
     <!-- Bottom text block of donation pending sheet displayed after donating via a bank transfer. Placeholder is for learn more. -->
-    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Bank transfers can take 1 to 14 business days to process. %1$s</string>
+    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Die Bearbeitung von Banküberweisungen kann 1 bis 14 Werktage dauern. %1$s</string>
     <!-- Learn more text for donation pending sheet displayed after donating via a bank transfer. -->
     <string name="DonationPendingBottomSheet__learn_more">Mehr erfahren</string>
     <!-- Confirmation button for donation pending sheet displayed after donating via a bank transfer. -->
@@ -6555,9 +6554,9 @@
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Scanne diesen QR-Code mit deinem Smartphone, um mit mir auf Signal zu chatten.</string>
     <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_qr_code_not_found">QR code not found</string>
+    <string name="UsernameLinkSettings_qr_code_not_found">QR-Code nicht gefunden</string>
     <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Try scanning another image containing a Signal QR code.</string>
+    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Versuche, ein anderes Bild zu scannen, das einen QR-Code von Signal enthält.</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
     <string name="UsernameLinkShareBottomSheet_title">Mit diesem Link können andere deinen Nutzernamen sehen und einen Chat mit dir beginnen. Teile den Link nur mit Leuten, denen du vertraust.</string>
@@ -6650,9 +6649,9 @@
     <!-- Dialog action to invite the phone number to Signal -->
     <string name="FindByActivity__invite">Einladen</string>
     <!-- Button label for a button that will launch a camera to scan a username QR code -->
-    <string name="FindByActivity__qr_scan_button">QR-Code einscannen</string>
+    <string name="FindByActivity__qr_scan_button">QR-Code scannen</string>
     <!-- Content of a dialog indicating that we could not perform the requested action because we encountered a network error. -->
-    <string name="FindByActivity__network_error_dialog">Ein Netzfehler ist aufgetreten. Bitte versuche es später erneut.</string>
+    <string name="FindByActivity__network_error_dialog">Ein Netzwerkfehler ist aufgetreten. Bitte versuche es später erneut.</string>
 
     <!-- EOF -->
 </resources>

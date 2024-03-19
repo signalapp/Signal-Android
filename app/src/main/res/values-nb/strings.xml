@@ -3019,7 +3019,6 @@
         <item>Annet</item>
         <item>Betalinger (MobileCoin)</item>
         <item>Pengebeløp og merker</item>
-        <item>Eksporter SMS</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Innsending av feilsøkingslogg for Signal på Android</string>

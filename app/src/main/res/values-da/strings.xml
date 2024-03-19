@@ -3019,7 +3019,6 @@
         <item>Andet</item>
         <item>Betalinger (MobileCoin)</item>
         <item>Donationer og badges</item>
-        <item>Sms-eksport</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Indsendelse af fejlretningslog fra Signal Android</string>
@@ -4891,7 +4890,7 @@
     <!-- Small notification presented to the user when they set their video to view-once mode -->
     <string name="MediaReviewFragment__video_set_to_view_once">Video indstillet til vis én gang</string>
     <!-- Small notification presented to the user when they set their photo to view-once mode -->
-    <string name="MediaReviewFragment__photo_set_to_view_once">Photo set to view once</string>
+    <string name="MediaReviewFragment__photo_set_to_view_once">Billede indstillet til visning én gang</string>
     <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
     <string name="MediaReviewFragment__video_set_to_high_quality">Video indstillet til høj kvalitet</string>
     <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
@@ -4902,13 +4901,13 @@
     <string name="MediaReviewFragment__photo_set_to_standard_quality">Billede indstillet til standardkvalitet</string>
     <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
     <plurals name="MediaReviewFragment__items_set_to_high_quality">
-        <item quantity="one">%1$d item set to high quality</item>
-        <item quantity="other">%1$d items set to high quality</item>
+        <item quantity="one">%1$d emne indstillet til høj kvalitet</item>
+        <item quantity="other">%1$d emner indstillet til høj kvalitet</item>
     </plurals>
     <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
     <plurals name="MediaReviewFragment__items_set_to_standard_quality">
-        <item quantity="one">%1$d item set to standard quality</item>
-        <item quantity="other">%1$d items set to standard quality</item>
+        <item quantity="one">%1$d emne indstillet til standardkvalitet</item>
+        <item quantity="other">%1$d emner indstillet til standardkvalitet</item>
     </plurals>
 
     <string name="ImageEditorHud__cancel">Annullér</string>

@@ -3019,7 +3019,6 @@
         <item>Друг</item>
         <item>Плащания (MobileCoin)</item>
         <item>Дарения и значки</item>
-        <item>Експорт на SMS</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android Подаден сигнал за грешка</string>

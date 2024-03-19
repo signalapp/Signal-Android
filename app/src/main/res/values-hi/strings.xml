@@ -3019,7 +3019,6 @@
         <item>अन्य</item>
         <item>भुगतान (मोबाइल कॉयन)</item>
         <item>दान और बैज</item>
-        <item>SMS निर्यात</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">सिग्नल एंड्रॉयड डीबग लॉग सबमिशन</string>

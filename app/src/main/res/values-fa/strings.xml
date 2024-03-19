@@ -3019,7 +3019,6 @@
         <item>سایر</item>
         <item>پرداخت‌ها (MobileCoin)</item>
         <item>کمک‌های مالی و نشان‌ها</item>
-        <item>صادر کردن پیامک</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">گزارش ارسالی رفع عیب سیگنال اندروید</string>

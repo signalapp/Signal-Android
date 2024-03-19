@@ -3113,7 +3113,6 @@
         <item>Altul</item>
         <item>Plăți (MobileCoin)</item>
         <item>Donații și Insigne</item>
-        <item>Export SMS-uri</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Trimiterea jurnalului de depanare Signal Android</string>

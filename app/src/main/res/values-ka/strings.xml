@@ -3019,7 +3019,6 @@
         <item>სხვა</item>
         <item>ტრანზაქციები (MobileCoin)</item>
         <item>დონაციები &amp; ემბლემები</item>
-        <item>SMS ექსპორტირება</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android-ის გამართვის ჟურნალის ატვირთვა</string>

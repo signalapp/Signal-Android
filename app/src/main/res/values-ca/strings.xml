@@ -3019,7 +3019,6 @@
         <item>Altres</item>
         <item>Pagaments (MobileCoin)</item>
         <item>Donacions; Insígnies</item>
-        <item>Exportació d\'SMS</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Enviar registre de depuració de Signal per a Android</string>

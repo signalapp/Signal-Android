@@ -3019,7 +3019,6 @@
         <item>Muu</item>
         <item>Maksut (MobileCoin)</item>
         <item>Lahjoitukset ja merkit</item>
-        <item>Tekstiviestien vienti</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Androidin virheenkorjauslokin lähetys</string>

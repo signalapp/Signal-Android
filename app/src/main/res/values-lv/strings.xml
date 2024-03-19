@@ -3113,7 +3113,6 @@
         <item>Cits</item>
         <item>Maksājumi (MobileCoin)</item>
         <item>Ziedojumi un nozīmītes</item>
-        <item>SMS eksportēšana</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android atkļūdošanas žurnāla nosūtīšana</string>

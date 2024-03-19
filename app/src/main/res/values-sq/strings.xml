@@ -3019,7 +3019,6 @@
         <item>Tjetër</item>
         <item>Pagesa (MobileCoin)</item>
         <item>Dhurime &amp; Distinktive</item>
-        <item>Eksporto SMS-të</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Paraqitja e regjistrit të korrigjimit në Android Signal</string>

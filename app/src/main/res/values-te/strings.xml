@@ -3019,7 +3019,6 @@
         <item>ఇతర</item>
         <item>చెల్లింపులు (MobileCoin)</item>
         <item>విరాళాలు &amp; బ్యాడ్జీలు</item>
-        <item>SMS ఎగుమతి</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android డీబగ్ లాగ్ సమర్పణ</string>

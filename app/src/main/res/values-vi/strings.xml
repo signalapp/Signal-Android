@@ -2925,7 +2925,6 @@
         <item>Khác</item>
         <item>Lựa chọn Thanh toán (MobileCoin)</item>
         <item>Khoản ủng hộ &amp; Huy hiệu</item>
-        <item>Xuất SMS</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Gửi Nhật Ký Gỡ Lỗi Signal Android</string>
@@ -4554,7 +4553,7 @@
     <string name="AddAProfilePhotoMegaphone__add_photo">Thêm ảnh</string>
 
     <!-- BecomeASustainerMegaphone -->
-    <string name="BecomeASustainerMegaphone__become_a_sustainer">Trở thành người quyên góp</string>
+    <string name="BecomeASustainerMegaphone__become_a_sustainer">Trở thành Nhà Ủng hộ</string>
     <!-- Displayed in the Become a Sustainer megaphone -->
     <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal được hỗ trợ bởi những thành viên giống bạn. Hãy ủng hộ và nhận một huy hiệu.</string>
     <string name="BecomeASustainerMegaphone__not_now">Để sau</string>
@@ -4889,7 +4888,7 @@
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Khi bạn có nhiều hơn một huy hiệu. bạn có thể chọn huy hiệu mặc định mà mọi người sẽ nhìn thấy trên hồ sơ của bạn.</string>
 
     <string name="BecomeASustainerFragment__get_badges">Hãy thu thập nhiều huy hiệu đính trên hồ sơ của bạn bằng cách hỗ trợ cho Signal.</string>
-    <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal là một ứng dụng phi lợi nhuận, không có quảng cao cũng như nhà đầu tư nào. Nó chỉ được duy trì và phát triển bỡi hàng triệu người dùng như bạn mà thôi.</string>
+    <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal là một ứng dụng phi lợi nhuận, không có quảng cáo cũng như nhà đầu tư nào. Nó chỉ được duy trì và phát triển bởi hàng triệu người dùng như bạn mà thôi.</string>
 
     <!-- Button label for creating a donation -->
     <string name="ManageDonationsFragment__donate_to_signal">Ủng hộ Signal</string>
@@ -4958,7 +4957,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Bạn có thể tái kích hoạt huy hiệu Nhà Ủng hộ của mình trong 30 ngày chỉ với một lần ủng hộ.</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Bạn có thể tiếp tục sử dụng Signal nhưng để hỗ trợ cho nền tảng công nghệ được xây dựng cho bạn, hãy cân nhắc việc trở thành một nhà ủng hộ bằng việc ủng hộ hàng tháng.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Trở thành người quyên góp</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Trở thành Nhà Ủng hộ</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Thêm khoản Ủng hộ</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Để sau</string>
     <!-- Copy displayed when badge expires after user inactivity -->

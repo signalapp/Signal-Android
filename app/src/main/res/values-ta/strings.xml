@@ -427,7 +427,7 @@
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">சிக்னலில் இனி எஸ்.எம்.எஸ் செய்தியிடல் ஆதரிக்கப்படாது. உரையாடலை இங்கே தொடர %1$s ஐ சிக்னலுக்கு அழைக்கவும்.</string>
     <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
-    <string name="ConversationActivity__this_person_is_no_longer_using_signal">This person is no longer using Signal. Invite them to Signal to keep the conversation here.</string>
+    <string name="ConversationActivity__this_person_is_no_longer_using_signal">இந்த நபர் சிக்னலைப் பயன்படுத்துவதில்லை. உரையாடலை இங்கே மேற்கொள்ள அவர்களை சிக்னலுக்கு அழைக்கவும்.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">Signalக்கு அழை</string>
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
@@ -1389,7 +1389,7 @@
     <string name="MessageRecord_changed_their_profile_name_from_to">%1$s அவர்களின் ப்ரொஃபைல் பெயரை %2$s இருந்து %3$s பெயருக்கு மாற்றப்பட்டுள்ளது .</string>
     <string name="MessageRecord_changed_their_profile">%1$s சுயவிவரத்தை மாற்றினர்.</string>
     <!-- Conversation update event message shown when you\'ve started a conversation by phone number or username and then learn their profile name. placeholder is username or phone number -->
-    <string name="MessageRecord_started_this_chat">You started this chat with %1$s.</string>
+    <string name="MessageRecord_started_this_chat">நீங்கள் இந்த சாட்டை %1$s உடன் தொடங்கினீர்கள்.</string>
 
     <!-- GV2 specific -->
     <string name="MessageRecord_you_created_the_group">நீங்கள் குழுவை உருவாக்கியது.</string>
@@ -3019,7 +3019,6 @@
         <item>மற்றவை</item>
         <item>கட்டணங்கள் (MobileCoin)</item>
         <item>நன்கொடைகள் மற்றும் பேட்ஜ்கள்</item>
-        <item>SMS ஏற்றுமதி</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android பிழைத்திருத்த பதிவு சமர்ப்பிப்பு</string>
@@ -3903,7 +3902,7 @@
     <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
     <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">நீங்கள் உறுதியாக உள்ளீர்களா?</string>
     <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Setting \"Who can find me by number\" to \"Nobody\" will make it harder for people to find you on Signal.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">\"ஃபோன் எண் மூலம் என்னை யார் கண்டுப்பிடிக்க முடியும்\" என்பதை \"யாரும் இல்லை\" என அமைப்பது உங்களை சிக்னலில் கண்டறிவதை மற்றவர்களுக்கு கடினமாக்கும்.</string>
     <!-- Dialog button text for canceling change action -->
     <string name="PhoneNumberPrivacySettingsFragment__cancel">ரத்துசெய்</string>
     <string name="PhoneNumberPrivacy_everyone">எல்லோரும்</string>
@@ -4889,26 +4888,26 @@
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">ஒன்று அல்லது அதற்கு மேற்பட்ட பொருட்கள் செல்லாதவை</string>
     <string name="MediaReviewFragment__too_many_items_selected">பல பொருட்கள் தேர்ந்தெடுக்கப்பட்டுள்ளன</string>
     <!-- Small notification presented to the user when they set their video to view-once mode -->
-    <string name="MediaReviewFragment__video_set_to_view_once">Video set to view once</string>
+    <string name="MediaReviewFragment__video_set_to_view_once">ஒரு முறை பார்க்கும் வகையில் வீடியோ அமைக்கப்பட்டுள்ளது</string>
     <!-- Small notification presented to the user when they set their photo to view-once mode -->
-    <string name="MediaReviewFragment__photo_set_to_view_once">Photo set to view once</string>
+    <string name="MediaReviewFragment__photo_set_to_view_once">புகைப்படம் ஒருமுறை பார்க்கும் வகையில் அமைக்கப்பட்டுள்ளது</string>
     <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
-    <string name="MediaReviewFragment__video_set_to_high_quality">Video set to high quality</string>
+    <string name="MediaReviewFragment__video_set_to_high_quality">வீடியோ உயர் தரத்தில் அமைக்கப்பட்டுள்ளது</string>
     <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
-    <string name="MediaReviewFragment__video_set_to_standard_quality">Video set to standard quality</string>
+    <string name="MediaReviewFragment__video_set_to_standard_quality">வீடியோ இயல்பான தரத்திற்கு அமைக்கப்பட்டுள்ளது</string>
     <!-- Small notification presented to the user when they set their still image to be sent in high visual quality. -->
-    <string name="MediaReviewFragment__photo_set_to_high_quality">Photo set to high quality</string>
+    <string name="MediaReviewFragment__photo_set_to_high_quality">புகைப்படம் உயர் தரத்தில் அமைக்கப்பட்டுள்ளது</string>
     <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
-    <string name="MediaReviewFragment__photo_set_to_standard_quality">Photo set to standard quality</string>
+    <string name="MediaReviewFragment__photo_set_to_standard_quality">புகைப்படம் நிலையான தரத்திற்கு அமைக்கப்பட்டுள்ளது</string>
     <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
     <plurals name="MediaReviewFragment__items_set_to_high_quality">
-        <item quantity="one">%1$d item set to high quality</item>
-        <item quantity="other">%1$d items set to high quality</item>
+        <item quantity="one">%1$d ஐட்டம் உயர் தரத்திற்கு அமைக்கப்பட்டது</item>
+        <item quantity="other">%1$d ஐட்டங்கள் உயர் தரத்திற்கு அமைக்கப்பட்டது</item>
     </plurals>
     <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
     <plurals name="MediaReviewFragment__items_set_to_standard_quality">
-        <item quantity="one">%1$d item set to standard quality</item>
-        <item quantity="other">%1$d items set to standard quality</item>
+        <item quantity="one">%1$d ஐட்டம் நிலையான தரத்திற்கு அமைக்கப்பட்டது</item>
+        <item quantity="other">%1$d ஐட்டங்கள் நிலையான தரத்திற்கு அமைக்கப்பட்டது</item>
     </plurals>
 
     <string name="ImageEditorHud__cancel">ரத்து</string>
@@ -4935,16 +4934,16 @@
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">இந்தப் புகைப்படத்தில் நீங்கள் செய்த மாற்றங்களை இழப்பீர்கள்.</string>
 
     <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_title">Found %1$s</string>
+    <string name="MediaCaptureFragment_username_dialog_title">%1$s கிடைத்தது</string>
     <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_body">Start a chat with \"%1$s\"</string>
+    <string name="MediaCaptureFragment_username_dialog_body">\"%1$s\" உடன் சாட்டைத் தொடங்கவும்</string>
     <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
     <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">சாட்டிற்குச் செல்</string>
 
     <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_title">Link device?</string>
+    <string name="MediaCaptureFragment_device_link_dialog_title">சாதனத்தை இணைக்க வேண்டுமா?</string>
     <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_body">It looks like you\'re trying to link a Signal device. Tap continue and scan the code again to link it.</string>
+    <string name="MediaCaptureFragment_device_link_dialog_body">நீங்கள் சிக்னல் சாதனத்தை இணைக்க முயற்சிப்பது போல் தெரிகிறது. தொடர்க என்பதை அழுத்தி, குறியீட்டை இணைக்க மீண்டும் ஸ்கேன் செய்யவும்.</string>
     <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
     <string name="MediaCaptureFragment_device_link_dialog_continue">தொடர்க</string>
 
@@ -5046,7 +5045,7 @@
     <!-- Displayed as a subtitle on a row in the Manage Donations screen when payment for a donation is pending -->
     <string name="MySupportPreference__payment_pending">கட்டணம் நிலுவையில் உள்ளது</string>
     <!-- Displayed as a dialog message when clicking on a donation row that is pending. Placeholder is a formatted fiat amount -->
-    <string name="MySupportPreference__your_bank_transfer_of_s">Your bank transfer of %1$s is pending. Bank transfers can take 1 to 14 business days to complete.  </string>
+    <string name="MySupportPreference__your_bank_transfer_of_s">உங்கள் %1$s வங்கிப் பரிமாற்றம் நிலுவையில் உள்ளது. வங்கி பரிமாற்றங்கள் முடிவதற்கு 1 முதல் 14 வணிக நாட்கள் ஆகலாம்.  </string>
     <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
     <string name="MySupportPreference__learn_more">மேலும் அறிக</string>
 
@@ -5990,9 +5989,9 @@
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
     <string name="DonateToSignalFragment__you_have_a_donation_pending">உங்களிடம் ஒரு நன்கொடை நிலுவையில் உள்ளது</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Bank transfers can take 1 to 14 business days to process. Please wait until this payment completes before updating your subscription.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">வங்கிப் பரிமாற்றங்களைச் செயல்படுத்த 1 முதல் 14 வணிக நாட்கள் ஆகலாம். உங்கள் சந்தாவைப் புதுப்பிக்கும் முன், இந்தக் கட்டணம் முடியும் வரை காத்திருக்கவும்.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Bank transfers can take 1 to 14 business days to process. Please wait until this payment completes before making another donation.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">வங்கிப் பரிமாற்றங்களைச் செயல்படுத்த 1 முதல் 14 வணிக நாட்கள் ஆகலாம். மற்றொரு நன்கொடை அளிப்பதற்கு முன், இந்தக் கட்டணம் முடியும் வரை காத்திருக்கவும்.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
     <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">உங்கள் நன்கொடை இன்னும் செயல்படுத்தப்படுகிறது. உங்கள் இணைப்பைப் பொறுத்து இதற்குச் சில நிமிடங்கள் ஆகலாம். உங்கள் சந்தாவைப் புதுப்பிக்கும் முன், இந்தக் கட்டணம் முடியும் வரை காத்திருக்கவும்.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
@@ -6144,7 +6143,7 @@
     <!-- Top text block of donation pending sheet displayed after one-time donation via a bank transfer. Placeholder is the badge name. -->
     <string name="DonationPendingBottomSheet__your_one_time_donation_is_pending">உங்கள் ஒருமுறைக்கான நன்கொடை நிலுவையில் உள்ளது. உங்கள் நன்கொடை பெறப்பட்டதும், உங்கள் புரொஃபைலில் %1$s பேட்ஜைக் காட்ட முடியும்.</string>
     <!-- Bottom text block of donation pending sheet displayed after donating via a bank transfer. Placeholder is for learn more. -->
-    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Bank transfers can take 1 to 14 business days to process. %1$s</string>
+    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">வங்கிப் பரிமாற்றங்களைச் செயல்படுத்த 1 முதல் 14 வணிக நாட்கள் ஆகலாம். %1$s</string>
     <!-- Learn more text for donation pending sheet displayed after donating via a bank transfer. -->
     <string name="DonationPendingBottomSheet__learn_more">மேலும் அறிக</string>
     <!-- Confirmation button for donation pending sheet displayed after donating via a bank transfer. -->
@@ -6555,9 +6554,9 @@
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">என்னுடன் சிக்னலில் சாட் செய்ய இந்த QR குறியீட்டை உங்கள் ஃபோன் மூலம் ஸ்கேன் செய்யவும்.</string>
     <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_qr_code_not_found">QR code not found</string>
+    <string name="UsernameLinkSettings_qr_code_not_found">QR குறியீடு கிடைக்கவில்லை</string>
     <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Try scanning another image containing a Signal QR code.</string>
+    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">சிக்னல் QR குறியீடு உள்ள மற்றொரு படத்தை ஸ்கேன் செய்ய முயற்சிக்கவும்.</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
     <string name="UsernameLinkShareBottomSheet_title">இந்த இணைப்பைக் கொண்டுள்ள எவரும் உங்கள் பயனர் பெயரைப் பார்த்து உங்களுடன் சாட் செய்யத் தொடங்கலாம். நீங்கள் நம்பும் நபர்களுடன் மட்டும் பகிரவும்.</string>

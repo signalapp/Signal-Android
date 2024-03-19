@@ -117,7 +117,7 @@
     <string name="BlockedUsersActivity__blocked_users_will">Geblokkeerde personen kunnen je niet bellen en geen berichten sturen.</string>
     <string name="BlockedUsersActivity__no_blocked_users">Je hebt geen personen geblokkeerd</string>
     <string name="BlockedUsersActivity__block_user">Persoon blokkeren?</string>
-    <string name="BlockedUserActivity__s_will_not_be_able_to">“%1$s” kan je niet bellen of je berichten sturen.</string>
+    <string name="BlockedUserActivity__s_will_not_be_able_to">‘%1$s’ kan je niet bellen of je berichten sturen.</string>
     <string name="BlockedUsersActivity__block">Blokkeren</string>
 
     <!-- CreditCardFragment -->
@@ -329,11 +329,11 @@
     <!-- Dialog error message shown when user can\'t download a video message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_video_s_will_need_to_send_it_again">Kan video niet downloaden. %1$s zal het opnieuw moeten verzenden.</string>
     <!-- Dialog error message shown when user can\'t download a their own message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
-    <string name="ConversationItem_cant_download_message_you_will_need_to_send_it_again">Kan bericht niet downloaden. Je zal het opnieuw moeten verzenden.</string>
+    <string name="ConversationItem_cant_download_message_you_will_need_to_send_it_again">Kan bericht niet downloaden. Je zult het bericht opnieuw moeten verzenden.</string>
     <!-- Dialog error message shown when user can\'t download a their own image message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
-    <string name="ConversationItem_cant_download_image_you_will_need_to_send_it_again">Kan afbeelding niet downloaden. Je zal het opnieuw moeten verzenden.</string>
+    <string name="ConversationItem_cant_download_image_you_will_need_to_send_it_again">Kan afbeelding niet downloaden. Je zult de afbeelding opnieuw moeten verzenden.</string>
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
-    <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Kan video niet downloaden. Je zal het opnieuw moeten verzenden.</string>
+    <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Kan video niet downloaden. Je zult de video opnieuw moeten verzenden.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp represents a message that has been edited within the last minute. -->
     <string name="ConversationItem_edited_now_timestamp_footer">Bewerkt Nu</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. This is displayed when the edit has occurred between 1-59 minutes ago. -->
@@ -831,8 +831,8 @@
 
     <!-- AddToGroupActivity -->
     <string name="AddToGroupActivity_add_member">Persoon aan de groep toevoegen?</string>
-    <string name="AddToGroupActivity_add_s_to_s">%1$s aan de groep “%2$s” toevoegen?</string>
-    <string name="AddToGroupActivity_s_added_to_s">%1$s aan de groep “%2$s” toegevoegd.</string>
+    <string name="AddToGroupActivity_add_s_to_s">%1$s aan de groep ‘%2$s’ toevoegen?</string>
+    <string name="AddToGroupActivity_s_added_to_s">%1$s aan de groep ‘%2$s’ toegevoegd.</string>
     <string name="AddToGroupActivity_add_to_group">Aan groep toevoegen</string>
     <string name="AddToGroupActivity_add_to_groups">Aan groepen toevoegen</string>
     <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Deze persoon kan niet worden toegevoegd aan een verouderde groep.</string>
@@ -842,7 +842,7 @@
     <!-- ChooseNewAdminActivity -->
     <string name="ChooseNewAdminActivity_choose_new_admin">Kies een nieuwe beheerder</string>
     <string name="ChooseNewAdminActivity_done">Klaar</string>
-    <string name="ChooseNewAdminActivity_you_left">Je hebt de groep “%1$s” verlaten.</string>
+    <string name="ChooseNewAdminActivity_you_left">Je hebt de groep ‘%1$s’ verlaten.</string>
 
     <!-- GroupMembersDialog -->
     <string name="GroupMembersDialog_you">Jij</string>
@@ -867,7 +867,7 @@
         <item quantity="one">Uitnodiging verstuurd</item>
         <item quantity="other">%1$d uitnodigingen verstuurd</item>
     </plurals>
-    <string name="GroupManagement_invite_single_user">“%1$s” kan niet direct door jou worden toegevoegd aan de groep.\n\nIn plaats daarvan heeft deze persoon een uitnodiging gekregen om lid te worden van de groep, en zal geen groepsberichten kunnen zien totdat die de uitnodiging heeft geaccepteerd.</string>
+    <string name="GroupManagement_invite_single_user">‘%1$s’ kan niet direct door jou worden toegevoegd aan de groep.\n\nIn plaats daarvan heeft deze persoon een uitnodiging gekregen om lid te worden van de groep, en zal geen groepsberichten kunnen zien totdat die de uitnodiging heeft geaccepteerd.</string>
     <string name="GroupManagement_invite_multiple_users">Deze personen kunnen niet direct door jou aan de groep worden toegevoegd.\n\n In plaats daarvan hebben ze een uitnodiging gekregen om lid te worden van de groep, en ze zullen geen groepsberichten kunnen zien totdat ze de uitnodiging hebben geaccepteerd.</string>
 
     <!-- GroupsV1MigrationLearnMoreBottomSheetDialogFragment -->
@@ -996,8 +996,8 @@
     <string name="RequestingMembersFragment_pending_member_requests">Lidmaatschapsverzoeken in afwachting</string>
     <string name="RequestingMembersFragment_no_member_requests_to_show">Er zijn geen lidmaatschapsverzoeken om weer te geven.</string>
     <string name="RequestingMembersFragment_explanation">Personen in deze lijst proberen via de groepslink lid te worden van deze groep.</string>
-    <string name="RequestingMembersFragment_added_s">"“ %1$s” toegevoegd"</string>
-    <string name="RequestingMembersFragment_denied_s">"“ %1$s” afgewezen"</string>
+    <string name="RequestingMembersFragment_added_s">"‘%1$s’ toegevoegd"</string>
+    <string name="RequestingMembersFragment_denied_s">"‘%1$s’ afgewezen"</string>
 
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">Klaar</string>
@@ -1090,7 +1090,7 @@
     <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
     <string name="ManageProfileFragment__delete_username_dialog_title">Gebruikersnaam verwijderen?</string>
     <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_body">"Hiermee wordt je gebruikersnaam verwijderd en worden je QR-code en link uitgeschakeld. “%1$s” kan hierna door anderen worden geclaimd. Weet je het zeker?"</string>
+    <string name="ManageProfileFragment__delete_username_dialog_body">"Hiermee wordt je gebruikersnaam verwijderd en worden je QR-code en link uitgeschakeld. ‘%1$s’ kan hierna door anderen worden geclaimd. Weet je het zeker?"</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
@@ -1191,10 +1191,10 @@
     <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">Je bent momenteel geen lid van deze groep.</string>
 
     <!-- GV2 Request confirmation dialog -->
-    <string name="RequestConfirmationDialog_add_s_to_the_group">“%1$s” toevoegen aan de groep?</string>
-    <string name="RequestConfirmationDialog_deny_request_from_s">Verzoek van “%1$s” afwijzen?</string>
+    <string name="RequestConfirmationDialog_add_s_to_the_group">‘%1$s’ toevoegen aan de groep?</string>
+    <string name="RequestConfirmationDialog_deny_request_from_s">Verzoek van ‘%1$s’ afwijzen?</string>
     <!-- Confirm dialog message shown when deny a group link join request and group link is enabled. -->
-    <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">Wil je het lidmaatschapsverzoek van “%1$s” afwijzen? Als je dit doet dan kan deze persoon niet opnieuw via de groepslink verzoeken om lid te worden van de groep.</string>
+    <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">Wil je het lidmaatschapsverzoek van ‘%1$s’ afwijzen? Als je dit doet dan kan deze persoon niet opnieuw via de groepslink verzoeken om lid te worden van de groep.</string>
     <string name="RequestConfirmationDialog_add">Toevoegen</string>
     <string name="RequestConfirmationDialog_deny">Afwijzen</string>
 
@@ -1385,8 +1385,8 @@
     </plurals>
 
     <!-- Profile change updates -->
-    <string name="MessageRecord_changed_their_profile_name_to">%1$s heeft diens profielnaam naar “%2$s” gewijzigd.</string>
-    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s heeft diens profielnaam van “%2$s” naar “%3$s” gewijzigd.</string>
+    <string name="MessageRecord_changed_their_profile_name_to">%1$s heeft diens profielnaam naar ‘%2$s’ gewijzigd.</string>
+    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s heeft diens profielnaam van ‘%2$s’ naar ‘%3$s’ gewijzigd.</string>
     <string name="MessageRecord_changed_their_profile">%1$s heeft diens profiel aangepast.</string>
     <!-- Conversation update event message shown when you\'ve started a conversation by phone number or username and then learn their profile name. placeholder is username or phone number -->
     <string name="MessageRecord_started_this_chat">Je bent deze chat met %1$s begonnen.</string>
@@ -1462,9 +1462,9 @@
     <string name="MessageRecord_s_added_invited_member_s">%1$s heeft voorheen uitgenodigde %2$s toegevoegd.</string>
 
     <!-- GV2 title change -->
-    <string name="MessageRecord_you_changed_the_group_name_to_s">Je hebt de naam van de groep gewijzigd naar “%1$s”.</string>
-    <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s heeft de naam van de groep naar “%2$s” gewijzigd.</string>
-    <string name="MessageRecord_the_group_name_has_changed_to_s">De naam van de groep is naar “%1$s” gewijzigd.</string>
+    <string name="MessageRecord_you_changed_the_group_name_to_s">Je hebt de naam van de groep gewijzigd naar ‘%1$s’.</string>
+    <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s heeft de naam van de groep naar ‘%2$s’ gewijzigd.</string>
+    <string name="MessageRecord_the_group_name_has_changed_to_s">De naam van de groep is naar ‘%1$s’ gewijzigd.</string>
 
     <!-- GV2 description change -->
     <string name="MessageRecord_you_changed_the_group_description">Je hebt de groepsomschrijving aangepast.</string>
@@ -2045,7 +2045,7 @@
     <string name="RegistrationActivity_additional_verification_required">Aanvullende verificatie vereist</string>
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
     <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">Er wordt een verificatiecode naar dit nummer gestuurd. Providertarieven kunnen van toepassing zijn.</string>
-    <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Je zal gebeld worden om dit telefoonnummer te verifiëren.</string>
+    <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Je zult gebeld worden om dit telefoonnummer te verifiëren.</string>
     <string name="RegistrationActivity_edit_number">Telefoonnummer bewerken</string>
     <string name="RegistrationActivity_missing_google_play_services">Google Play Services is niet aanwezig</string>
     <string name="RegistrationActivity_this_device_is_missing_google_play_services">Dit apparaat bevat geen Google Play Services. Je kunt Signal nog steeds gebruiken, maar deze configuratie kan de betrouwbaarheid en prestaties verslechteren.\n\nAls je geen gevorderde gebruiker bent, geen aangepaste ROM gebruikt of denkt dat dit bericht onterecht wordt weergegeven, neem dan contact op met support@signal.org voor hulp met probleemoplossen.</string>
@@ -2441,7 +2441,7 @@
     <string name="MessageNotifier_signal_message">Signal-bericht</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Contactpersoon</string>
-    <string name="MessageNotifier_reacted_s_to_s">Reageerde met %1$s op “%2$s”.</string>
+    <string name="MessageNotifier_reacted_s_to_s">Reageerde met %1$s op ‘%2$s’.</string>
     <string name="MessageNotifier_reacted_s_to_your_video">Reageerde met %1$s op je video.</string>
     <string name="MessageNotifier_reacted_s_to_your_image">Reageerde met %1$s op je afbeelding.</string>
     <string name="MessageNotifier_reacted_s_to_your_gif">Reageerde met %1$s op je GIF.</string>
@@ -2644,7 +2644,7 @@
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal heeft toegang tot je lijst met contacten nodig om je contacten weer te kunnen geven, maar toestemming om contacten in te zien is pertinent geweigerd. Ga naar de instellingen voor deze app, tik op ‘Machtigingen’ en schakel ‘Contacten’ in.</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Fout bij het ophalen van contactpersonen, ga na dat je netwerkverbinding werkt</string>
     <string name="ContactSelectionListFragment_username_not_found">Gebruikersnaam niet gevonden</string>
-    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"“%1$s” is geen Signal-gebruiker. Controleer de gebruikersnaam en probeer het opnieuw."</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"‘%1$s’ is geen Signal-gebruiker. Controleer de gebruikersnaam en probeer het opnieuw."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Het is niet nodig om jezelf toe te voegen aan de groep</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">De maximale groepsgrootte is bereikt</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal groepen kunnen uit maximaal %1$d leden bestaan.</string>
@@ -2887,7 +2887,7 @@
         <item quantity="one">%1$s is toegevoegd aan de groep.</item>
         <item quantity="other">%1$s zijn toegevoegd aan de groep.</item>
     </plurals>
-    <string name="GroupUtil_group_name_is_now">De groepsnaam is vanaf nu “%1$s”.</string>
+    <string name="GroupUtil_group_name_is_now">De groepsnaam is vanaf nu ‘%1$s’.</string>
 
     <!-- prompt_passphrase_activity -->
     <string name="prompt_passphrase_activity__unlock">Ontgrendelen</string>
@@ -3019,7 +3019,6 @@
         <item>Anders</item>
         <item>Betalingen (MobileCoin)</item>
         <item>Donaties &amp; badges</item>
-        <item>Sms export</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android-foutopsporingslog ingediend</string>
@@ -3440,7 +3439,7 @@
     <string name="PaymentsDetailsFragment__from">Van</string>
     <string name="PaymentsDetailsFragment__information">Transactiegegevens, waaronder het bedrag en het tijdstip van de transactie, zijn onderdeel van het kasboek van MobileCoin.</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">Samenvoegingskosten</string>
-    <string name="PaymentsDetailsFragment__coin_cleanup_information">Er worden “samenvoegingskosten” in rekening gebracht wanneer de munten die je bezit niet kunnen worden samengevoegd tot de nieuwe gewenste betaling. Door deze samenvoeging kun je toch betalingen blijven verzenden.</string>
+    <string name="PaymentsDetailsFragment__coin_cleanup_information">Er worden ‘samenvoegingskosten’ in rekening gebracht wanneer de munten die je bezit niet kunnen worden samengevoegd tot de nieuwe gewenste betaling. Door deze samenvoeging kun je toch betalingen blijven verzenden.</string>
     <string name="PaymentsDetailsFragment__no_details_available">Er is geen verdere informatie beschikbaar over deze transactie</string>
   <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details</string> -->
   <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__cleanup_fee" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details_fees</string> -->
@@ -3459,7 +3458,7 @@
     <string name="PaymentsTransferFragment__check_the_wallet_address">Ga na dat het portemonnee-adres waarnaar je probeert over te schrijven juist is en probeer het opnieuw.</string>
     <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">Je kunt niet vanuit Signal overschrijven naar je eigen Signal portemonnee-adres. Vul het portemonnee-adres van je account bij de beurs in.</string>
     <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">Signal heeft toegang tot de camera nodig om een QR-code te kunnen scannen.</string>
-    <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal heeft toegang tot je camera nodig om QR-codes te scannen, maar deze toestemming is pertinent geweigerd. Ga naar het menu voor instellingen voor apps, tik op \'App-machtigingen\' en schakel \'Camera\' in.</string>
+    <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal heeft toegang tot je camera nodig om QR-codes te scannen, maar deze toestemming is pertinent geweigerd. Ga naar het menu voor instellingen voor apps, tik op ‘App-machtigingen’ en schakel ‘Camera’ in.</string>
     <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">Signal heeft toegang tot de camera nodig om een QR-code te kunnen scannen.</string>
     <string name="PaymentsTransferFragment__settings">Instellingen</string>
 
@@ -3969,7 +3968,7 @@
     <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
     <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Tik in de linkerbovenhoek op je profielfoto om de instellingen te openen</string>
     <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_account">"Tik op “Account”"</string>
+    <string name="NewDeviceTransferInstructions__tap_on_account">"Tik op ‘Account’"</string>
     <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
     <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"Tik op beide apparaten op ‘Account overzetten’ en dan op ‘Doorgaan’"</string>
 
@@ -4093,11 +4092,11 @@
     <string name="RecipientBottomSheet_remove_from_group">Uit de groep verwijderen</string>
 
     <string name="RecipientBottomSheet_remove_s_as_group_admin">De beheerdersbevoegdheden van %1$s intrekken?</string>
-    <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"“%1$s” zal de groepsinformatie en groepslidmaatschap kunnen bewerken."</string>
+    <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"‘%1$s’ zal de groepsinformatie en groepslidmaatschap kunnen bewerken."</string>
 
     <string name="RecipientBottomSheet_remove_s_from_the_group">%1$s uit deze groep verwijderen?</string>
     <!-- Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin -->
-    <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Wil je “%1$s” uit de groep verwijderen? Als je dit doet dan kan deze persoon niet via de groepslink opnieuw lid worden van de groep.</string>
+    <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Wil je ‘%1$s’ uit de groep verwijderen? Als je dit doet dan kan deze persoon niet via de groepslink opnieuw lid worden van de groep.</string>
     <string name="RecipientBottomSheet_remove">Verwijderen</string>
     <string name="RecipientBottomSheet_copied_to_clipboard">Gekopieerd naar klembord</string>
 
@@ -4200,7 +4199,7 @@
     <string name="DeleteAccountFragment__the_phone_number">Het telefoonnummer dat je hebt ingevuld komt niet overeen met het telefoonnummer van je Signal-account.</string>
     <string name="DeleteAccountFragment__are_you_sure">Weet je zeker dat je je account wilt verwijderen?</string>
     <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Hiermee verwijder je je Signal-account en reset je de app. De app wordt gesloten nadat dit proces is voltooid.</string>
-    <string name="DeleteAccountFragment__failed_to_delete_local_data">Het wissen van lokale gegevens is mislukt. Je kunt de lokale gegevens zelf wissen via het \'apps\'-menu in de instellingenapp van je besturingssysteem.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">Het wissen van lokale gegevens is mislukt. Je kunt de lokale gegevens zelf wissen via het ‘apps’-menu in de instellingenapp van je besturingssysteem.</string>
     <string name="DeleteAccountFragment__launch_app_settings">App-instellingen openen</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
     <string name="DeleteAccountFragment__leaving_groups">Groepen aan het verlaten…</string>
@@ -5266,7 +5265,7 @@
     <!-- Button use to permanently delete a notification profile -->
     <string name="NotificationProfileDetails__delete_profile">Meldingsprofiel verwijderen</string>
     <!-- Snakbar message shown when removing a recipient from a profile -->
-    <string name="NotificationProfileDetails__s_removed">“%1$s” verwijderd.</string>
+    <string name="NotificationProfileDetails__s_removed">‘%1$s’ verwijderd.</string>
     <!-- Snackbar button text that will undo the recipient remove -->
     <string name="NotificationProfileDetails__undo">Ongedaan maken</string>
     <!-- Dialog message shown to confirm deleting a profile -->
@@ -5545,9 +5544,9 @@
         <item quantity="other">Voor %1$d personen verborgen</item>
     </plurals>
     <!-- Privacy setting title for only sharing your story with specified connections -->
-    <string name="MyStorySettingsFragment__only_share_with">Deel alleen met…</string>
+    <string name="MyStorySettingsFragment__only_share_with">Alleen delen met…</string>
     <!-- Privacy setting description for only sharing your story with specified connections -->
-    <string name="MyStorySettingsFragment__only_share_with_selected_people">Deel alleen met specifieke personen</string>
+    <string name="MyStorySettingsFragment__only_share_with_selected_people">Alleen delen met specifieke personen</string>
     <!-- Summary of clickable option displaying how many people you have included to send to in your story -->
     <plurals name="MyStorySettingsFragment__d_people">
         <item quantity="one">%1$d persoon</item>
@@ -5613,19 +5612,19 @@
     <!-- Title for screen allowing user to exclude "My Story" entries from specific people -->
     <string name="ChangeMyStoryMembershipFragment__all_except">Iedereen behalve…</string>
     <!-- Title for screen allowing user to only share "My Story" entries with specific people -->
-    <string name="ChangeMyStoryMembershipFragment__only_share_with">Deel alleen met…</string>
+    <string name="ChangeMyStoryMembershipFragment__only_share_with">Alleen delen met…</string>
     <!-- Done button label for hide story from screen -->
     <string name="HideStoryFromFragment__done">Klaar</string>
     <!-- Dialog title for removing a group story -->
     <string name="StoryDialogs__remove_group_story">Verhaal verwijderen?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" wordt verwijderd.</string>
+    <string name="StoryDialogs__s_will_be_removed">‘%1$s’ wordt verwijderd.</string>
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">Verwijderen</string>
     <!-- Dialog title for deleting a custom story -->
     <string name="StoryDialogs__delete_custom_story">Aangepast verhaal verwijderen?</string>
     <!-- Dialog message for deleting a custom story -->
-    <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" en updates die op dit verhaal zijn gedeeld, worden verwijderd.</string>
+    <string name="StoryDialogs__s_and_updates_shared">‘%1$s’ en updates die op dit verhaal zijn gedeeld, worden verwijderd.</string>
     <!-- Dialog positive action for deleting a custom story -->
     <string name="StoryDialogs__delete">Verwijderen</string>
     <!-- Dialog title for first time sending something to a beta story -->
@@ -5817,7 +5816,7 @@
     <!-- Dialog title for deleting a custom story -->
     <string name="ContactSearchMediator__delete_story">Verhaal verwijderen?</string>
     <!-- Dialog message for deleting a custom story -->
-    <string name="ContactSearchMediator__delete_the_custom">Aangepast verhaal \"%1$s\" verwijderen?</string>
+    <string name="ContactSearchMediator__delete_the_custom">Aangepast verhaal ‘%1$s’ verwijderen?</string>
     <!-- Dialog action item for deleting a custom story -->
     <string name="ContactSearchMediator__delete">Verwijderen</string>
     <!-- Donation for a friend expiry days remaining -->
@@ -5902,7 +5901,7 @@
     <!-- All connections except option for initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__all_except">Iedereen behalve…</string>
     <!-- Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Deel alleen met…</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Alleen delen met…</string>
 
     <!-- Story info header sent heading -->
     <string name="StoryInfoHeader__sent">Verzonden</string>
@@ -5947,7 +5946,7 @@
     <!-- Section header for who can view a group story -->
     <string name="GroupStorySettingsFragment__who_can_view_this_story">Wie kan dit verhaal bekijken</string>
     <!-- Explanation of who can view a group story -->
-    <string name="GroupStorySettingsFragment__members_of_the_group_s">"Leden van de groep “%1$s” kunnen dit verhaal bekijken en erop antwoorden. Je kunt het lidmaatschap voor deze chat updaten in de groep."</string>
+    <string name="GroupStorySettingsFragment__members_of_the_group_s">"Leden van de groep ‘%1$s’ kunnen dit verhaal bekijken en erop antwoorden. Je kunt het lidmaatschap voor deze chat updaten in de groep."</string>
     <!-- Preference label for removing this group story -->
     <string name="GroupStorySettingsFragment__remove_group_story">Groepsverhaal verwijderen</string>
 
@@ -6644,7 +6643,7 @@
     <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
     <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s is geen geldig telefoonnummer. Probeer het opnieuw met een geldig telefoonnummer</string>
     <!-- Dialog body for not found username -->
-    <string name="FindByActivity__s_is_not_a_signal_user">“%1$s” is geen Signal-gebruiker. Controleer de gebruikersnaam en probeer het opnieuw.</string>
+    <string name="FindByActivity__s_is_not_a_signal_user">‘%1$s’ is geen Signal-gebruiker. Controleer de gebruikersnaam en probeer het opnieuw.</string>
     <!-- Dialog body for not found phone number -->
     <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s is geen Signal-gebruiker. Wil je dit nummer uitnodigen?</string>
     <!-- Dialog action to invite the phone number to Signal -->

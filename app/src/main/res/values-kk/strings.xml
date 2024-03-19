@@ -427,7 +427,7 @@
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Енді Signal-да SMS-пен алмасу мүмкін емес. Әңгімелеріңізді осы жерде жалғастыру үшін %1$s деген кісіні Signal-ға шақырыңыз.</string>
     <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
-    <string name="ConversationActivity__this_person_is_no_longer_using_signal">This person is no longer using Signal. Invite them to Signal to keep the conversation here.</string>
+    <string name="ConversationActivity__this_person_is_no_longer_using_signal">Бұл адам бұдан былай Signal қолданбайды. Әңгімелеріңізді осы жерде жалғастыру үшін оны Signal-ға шақырыңыз.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">Signal қолданбасына шақыру</string>
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
@@ -1389,7 +1389,7 @@
     <string name="MessageRecord_changed_their_profile_name_from_to">%1$s профилінің атауын өзгертті, бұрын %2$s болса, қазір %3$s болды.</string>
     <string name="MessageRecord_changed_their_profile">%1$s профилін өзгертті.</string>
     <!-- Conversation update event message shown when you\'ve started a conversation by phone number or username and then learn their profile name. placeholder is username or phone number -->
-    <string name="MessageRecord_started_this_chat">You started this chat with %1$s.</string>
+    <string name="MessageRecord_started_this_chat">%1$s деген кісімен осы чатты бастадыңыз.</string>
 
     <!-- GV2 specific -->
     <string name="MessageRecord_you_created_the_group">Сіз топ құрдыңыз.</string>
@@ -3019,7 +3019,6 @@
         <item>Басқа</item>
         <item>Төлемдер (MobileCoin)</item>
         <item>Демеушіліктер және Таңбалар</item>
-        <item>SMS экспорты</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android ақауларды түзету журналын жіберу</string>
@@ -3903,7 +3902,7 @@
     <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
     <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Сенімдісіз бе?</string>
     <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Setting \"Who can find me by number\" to \"Nobody\" will make it harder for people to find you on Signal.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">\"Менің нөмірімді кім таба алады\" параметрін \"Ешкім\" деп орнатсаңыз, адамдардың сізді Signal қолданбасында табуы қиындай түседі.</string>
     <!-- Dialog button text for canceling change action -->
     <string name="PhoneNumberPrivacySettingsFragment__cancel">Бас тарту</string>
     <string name="PhoneNumberPrivacy_everyone">Барлығы</string>
@@ -4889,26 +4888,26 @@
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">Бір немесе бірнеше элемент дұрыс болмады</string>
     <string name="MediaReviewFragment__too_many_items_selected">Тым көп элемент таңдалды</string>
     <!-- Small notification presented to the user when they set their video to view-once mode -->
-    <string name="MediaReviewFragment__video_set_to_view_once">Video set to view once</string>
+    <string name="MediaReviewFragment__video_set_to_view_once">Видео бір рет көру режиміне орнатылды</string>
     <!-- Small notification presented to the user when they set their photo to view-once mode -->
-    <string name="MediaReviewFragment__photo_set_to_view_once">Photo set to view once</string>
+    <string name="MediaReviewFragment__photo_set_to_view_once">Фотосурет тек бір рет көру режиміне орнатылды</string>
     <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
-    <string name="MediaReviewFragment__video_set_to_high_quality">Video set to high quality</string>
+    <string name="MediaReviewFragment__video_set_to_high_quality">Видео жоғары сапаға орнатылды</string>
     <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
-    <string name="MediaReviewFragment__video_set_to_standard_quality">Video set to standard quality</string>
+    <string name="MediaReviewFragment__video_set_to_standard_quality">Видео стандартты сапаға орнатылды</string>
     <!-- Small notification presented to the user when they set their still image to be sent in high visual quality. -->
-    <string name="MediaReviewFragment__photo_set_to_high_quality">Photo set to high quality</string>
+    <string name="MediaReviewFragment__photo_set_to_high_quality">Фотосурет жоғары сапаға орнатылды</string>
     <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
-    <string name="MediaReviewFragment__photo_set_to_standard_quality">Photo set to standard quality</string>
+    <string name="MediaReviewFragment__photo_set_to_standard_quality">Фотосурет стандартты сапаға орнатылды</string>
     <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
     <plurals name="MediaReviewFragment__items_set_to_high_quality">
-        <item quantity="one">%1$d item set to high quality</item>
-        <item quantity="other">%1$d items set to high quality</item>
+        <item quantity="one">%1$d элемент жоғары сапа параметріне орнатылды</item>
+        <item quantity="other">%1$d элемент жоғары сапа параметріне орнатылды</item>
     </plurals>
     <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
     <plurals name="MediaReviewFragment__items_set_to_standard_quality">
-        <item quantity="one">%1$d item set to standard quality</item>
-        <item quantity="other">%1$d items set to standard quality</item>
+        <item quantity="one">%1$d элемент стандартты сапа параметріне орнатылды</item>
+        <item quantity="other">%1$d элемент стандартты сапа параметріне орнатылды</item>
     </plurals>
 
     <string name="ImageEditorHud__cancel">Болдырмау</string>
@@ -4935,16 +4934,16 @@
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Осы фотосуретке жасаған барлық өзгеріс жоғалып кетеді.</string>
 
     <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_title">Found %1$s</string>
+    <string name="MediaCaptureFragment_username_dialog_title">%1$s табылды</string>
     <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_body">Start a chat with \"%1$s\"</string>
+    <string name="MediaCaptureFragment_username_dialog_body">\"%1$s\" деген кісімен чатты бастау</string>
     <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
     <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">Чатқа өту</string>
 
     <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_title">Link device?</string>
+    <string name="MediaCaptureFragment_device_link_dialog_title">Құрылғыны байланыстыру керек пе?</string>
     <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_body">It looks like you\'re trying to link a Signal device. Tap continue and scan the code again to link it.</string>
+    <string name="MediaCaptureFragment_device_link_dialog_body">Signal құрылғысын байланыстырайын деп жатқан сияқтысыз. \"Жалғастыру\" түймесін басып, кодты қайта сканерлеңіз де, байланыстырыңыз.</string>
     <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
     <string name="MediaCaptureFragment_device_link_dialog_continue">Жалғастыру</string>
 
@@ -5046,7 +5045,7 @@
     <!-- Displayed as a subtitle on a row in the Manage Donations screen when payment for a donation is pending -->
     <string name="MySupportPreference__payment_pending">Төлем күтілуде</string>
     <!-- Displayed as a dialog message when clicking on a donation row that is pending. Placeholder is a formatted fiat amount -->
-    <string name="MySupportPreference__your_bank_transfer_of_s">Your bank transfer of %1$s is pending. Bank transfers can take 1 to 14 business days to complete.  </string>
+    <string name="MySupportPreference__your_bank_transfer_of_s">%1$s құрайтын банк аударымы күтілуде. Банк аударымдары әдетте 1-14 жұмыс күнінде түседі.  </string>
     <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
     <string name="MySupportPreference__learn_more">Толық ақпарат</string>
 
@@ -5990,9 +5989,9 @@
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
     <string name="DonateToSignalFragment__you_have_a_donation_pending">Сіздің демеуқаржыңыз өңделуде</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Bank transfers can take 1 to 14 business days to process. Please wait until this payment completes before updating your subscription.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Банк аударымдары әдетте 1-14 жұмыс күнінде өңделеді. Осы төлем жасалғанын күтіңіз, содан кейін жазылымыңызды жаңартыңыз.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Bank transfers can take 1 to 14 business days to process. Please wait until this payment completes before making another donation.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Банк аударымдары әдетте 1-14 жұмыс күнінде өңделеді. Тағы да демеушілік жасамас бұрын, осы төлемнің өткенін күтіңіз.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
     <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Демеуіңіз әлі өңделіп жатыр. Желі жұмысына байланысты бұған бірнеше минут кетуі мүмкін. Осы төлем жасалғанын күтіңіз, содан кейін жазылымыңызды жаңартыңыз.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
@@ -6144,7 +6143,7 @@
     <!-- Top text block of donation pending sheet displayed after one-time donation via a bank transfer. Placeholder is the badge name. -->
     <string name="DonationPendingBottomSheet__your_one_time_donation_is_pending">Сіздің бір рет жасалатын демеуқаржыңыз өңделуде. Демеуқаржыңыз түскенде, профиліңізде %1$s таңбасын қоя аласыз.</string>
     <!-- Bottom text block of donation pending sheet displayed after donating via a bank transfer. Placeholder is for learn more. -->
-    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Bank transfers can take 1 to 14 business days to process. %1$s</string>
+    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Банк аударымдары әдетте 1-14 жұмыс күнінде өңделеді. %1$s</string>
     <!-- Learn more text for donation pending sheet displayed after donating via a bank transfer. -->
     <string name="DonationPendingBottomSheet__learn_more">Толық ақпарат</string>
     <!-- Confirmation button for donation pending sheet displayed after donating via a bank transfer. -->
@@ -6555,9 +6554,9 @@
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Телефоныңызбен мына QR кодын сканерлеп, Signal-да менімен чат арқылы сөйлесіңіз.</string>
     <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_qr_code_not_found">QR code not found</string>
+    <string name="UsernameLinkSettings_qr_code_not_found">QR коды табылмады</string>
     <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Try scanning another image containing a Signal QR code.</string>
+    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Signal-дың QR коды бар басқа суретті сканерлеп көріңіз.</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
     <string name="UsernameLinkShareBottomSheet_title">Осы сілтеме арқылы кез келген адам сіздің пайдаланушы атыңызды көре алады және сізбен чат арқылы сөйлесе алады. Оны тек сенімді адамдармен бөлісіңіз.</string>

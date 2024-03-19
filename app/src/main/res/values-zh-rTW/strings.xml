@@ -2925,7 +2925,6 @@
         <item>其他</item>
         <item>付款 (MobileCoin)</item>
         <item>捐款及徽章</item>
-        <item>SMS 短訊匯出</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android 除錯日誌提交</string>

@@ -3019,7 +3019,6 @@
         <item>Iba pa</item>
         <item>Payments (MobileCoin)</item>
         <item>Donations &amp; Badges</item>
-        <item>SMS Export</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android Debug Log Submission</string>

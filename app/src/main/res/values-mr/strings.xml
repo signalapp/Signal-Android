@@ -3019,7 +3019,6 @@
         <item>इतर</item>
         <item>पेमेंट्स (मोबाईलकॉईन)</item>
         <item>देणगी व बॅजेस</item>
-        <item>SMS एक्सपोर्ट करा</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android डीबग लॉग सबमिशन</string>

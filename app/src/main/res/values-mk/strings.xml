@@ -3019,7 +3019,6 @@
         <item>Друго</item>
         <item>Плаќања (MobileCoin)</item>
         <item>Донации и беџови</item>
-        <item>Извезување на SMS</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Поднесување запис за отстранување грешки на Signal за Android</string>
