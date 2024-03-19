@@ -101,11 +101,15 @@ class VideoEditorFragment : Fragment(), PositionDragListener, MediaSendPageFragm
       })
       player.hideControls()
       player.loopForever()
-    } else if (MediaConstraints.isVideoTranscodeAvailable()) {
+    } else {
+      if (MediaConstraints.isVideoTranscodeAvailable()) {
+        bindVideoTimeline(state)
+      } else {
+        hud.visibility = View.VISIBLE
+      }
       hud.setPlayClickListener {
         player.play()
       }
-      bindVideoTimeline(state)
       player.setOnClickListener {
         player.pause()
         hud.showPlayButton()
