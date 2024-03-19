@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.keyvalue
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.UsernameQrCodeColorScheme
 import org.thoughtcrime.securesms.database.model.databaseprotos.PendingChangeNumberMetadata
 import org.thoughtcrime.securesms.jobmanager.impl.ChangeNumberConstraintObserver
+import org.thoughtcrime.securesms.keyvalue.protos.LeastActiveLinkedDevice
 
 internal class MiscellaneousValues internal constructor(store: KeyValueStore) : SignalStoreValues(store) {
   companion object {
@@ -32,6 +33,8 @@ internal class MiscellaneousValues internal constructor(store: KeyValueStore) : 
     private const val NEEDS_USERNAME_RESTORE = "misc.needs_username_restore"
     private const val LAST_FORCED_PREKEY_REFRESH = "misc.last_forced_prekey_refresh"
     private const val LAST_CDS_FOREGROUND_SYNC = "misc.last_cds_foreground_sync"
+    private const val LINKED_DEVICE_LAST_ACTIVE_CHECK_TIME = "misc.linked_device.last_active_check_time"
+    private const val LEAST_ACTIVE_LINKED_DEVICE = "misc.linked_device.least_active"
   }
 
   public override fun onFirstEverAppLaunch() {
@@ -223,4 +226,14 @@ internal class MiscellaneousValues internal constructor(store: KeyValueStore) : 
    * How long it's been since the last foreground CDS sync, which we do in response to new threads being created.
    */
   var lastCdsForegroundSyncTime by longValue(LAST_CDS_FOREGROUND_SYNC, 0)
+
+  /**
+   * The last time we checked for linked device activity.
+   */
+  var linkedDeviceLastActiveCheckTime by longValue(LINKED_DEVICE_LAST_ACTIVE_CHECK_TIME, 0)
+
+  /**
+   * Details about the least-active linked device.
+   */
+  var leastActiveLinkedDevice: LeastActiveLinkedDevice? by protoValue(LEAST_ACTIVE_LINKED_DEVICE, LeastActiveLinkedDevice.ADAPTER)
 }

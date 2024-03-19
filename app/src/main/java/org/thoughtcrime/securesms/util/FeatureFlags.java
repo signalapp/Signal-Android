@@ -125,6 +125,7 @@ public final class FeatureFlags {
   private static final String PREKEY_FORCE_REFRESH_INTERVAL     = "android.prekeyForceRefreshInterval";
   private static final String CDSI_LIBSIGNAL_NET                = "android.cds.libsignal.2";
   private static final String RX_MESSAGE_SEND                   = "android.rxMessageSend";
+  private static final String LINKED_DEVICE_LIFESPAN_SECONDS    = "android.linkedDeviceLifespanSeconds";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -202,7 +203,8 @@ public final class FeatureFlags {
       RETRY_RECEIPT_MAX_COUNT_RESET_AGE,
       PREKEY_FORCE_REFRESH_INTERVAL,
       CDSI_LIBSIGNAL_NET,
-      RX_MESSAGE_SEND
+      RX_MESSAGE_SEND,
+      LINKED_DEVICE_LIFESPAN_SECONDS
   );
 
   @VisibleForTesting
@@ -277,7 +279,8 @@ public final class FeatureFlags {
       RETRY_RECEIPT_MAX_COUNT_RESET_AGE,
       PREKEY_FORCE_REFRESH_INTERVAL,
       CDSI_LIBSIGNAL_NET,
-      RX_MESSAGE_SEND
+      RX_MESSAGE_SEND,
+      LINKED_DEVICE_LIFESPAN_SECONDS
   );
 
   /**
@@ -720,6 +723,12 @@ public final class FeatureFlags {
   /** Use Rx threading model to do sends. */
   public static boolean useRxMessageSending() {
     return getBoolean(RX_MESSAGE_SEND, false);
+  }
+
+  /** The lifespan of a linked device (i.e. the time it can be inactive for before it expires), in milliseconds. */
+  public static long linkedDeviceLifespan() {
+    long seconds = getLong(LINKED_DEVICE_LIFESPAN_SECONDS, TimeUnit.DAYS.toSeconds(30));
+    return TimeUnit.SECONDS.toMillis(seconds);
   }
 
   /** Only for rendering debug info. */

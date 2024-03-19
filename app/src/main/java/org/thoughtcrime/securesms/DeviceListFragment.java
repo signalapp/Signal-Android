@@ -27,6 +27,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.loaders.DeviceListLoader;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.devicelist.Device;
+import org.thoughtcrime.securesms.jobs.LinkedDeviceInactiveCheckJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
@@ -166,6 +167,7 @@ public class DeviceListFragment extends ListFragment
         super.onPostExecute(result);
         if (result) {
           getLoaderManager().restartLoader(0, null, DeviceListFragment.this);
+          LinkedDeviceInactiveCheckJob.enqueue();
         } else {
           Toast.makeText(getActivity(), R.string.DeviceListActivity_network_failed, Toast.LENGTH_LONG).show();
         }
