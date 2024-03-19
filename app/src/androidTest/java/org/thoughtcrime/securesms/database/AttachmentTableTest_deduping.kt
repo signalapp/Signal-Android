@@ -329,7 +329,7 @@ class AttachmentTableTest_deduping {
     }
 
     // This represents what would happen if you sent an image using high quality, then forwarded it using standard quality.
-    // Lowering the quality would change the output, so we shouldn't dedupe.
+    // Since you're forwarding, it doesn't matter if the new thing has a lower quality, we should still match and skip transform.
     test {
       val id1 = insertWithData(DATA_A, TransformProperties(sentMediaQuality = SentMediaQuality.HIGH.code))
       compress(id1, DATA_A_COMPRESSED)
@@ -337,10 +337,11 @@ class AttachmentTableTest_deduping {
 
       val id2 = insertWithData(DATA_A_COMPRESSED, TransformProperties(sentMediaQuality = SentMediaQuality.STANDARD.code))
 
-      assertDataFilesAreDifferent(id1, id2)
+      assertDataFilesAreTheSame(id1, id2)
+      assertDataHashEndMatches(id1, id2)
       assertSkipTransform(id1, true)
-      assertSkipTransform(id2, false)
-      assertDoesNotHaveRemoteFields(id2)
+      assertSkipTransform(id1, true)
+      assertRemoteFieldsMatch(id1, id2)
     }
 
     // Make sure that files marked as unhashable are all updated together

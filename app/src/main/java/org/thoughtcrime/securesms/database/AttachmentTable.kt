@@ -1297,10 +1297,7 @@ class AttachmentTable(
         return false
       }
 
-      // If the potential match was sent using standard quality, we can re-use the file -- the new thing being high-quality can't make it any nicer
-      if (potentialMatchProperties.sentMediaQuality == SentMediaQuality.STANDARD.code) {
-        return true
-      }
+      return true
     }
 
     if (newProperties.sentMediaQuality != potentialMatchProperties.sentMediaQuality) {
