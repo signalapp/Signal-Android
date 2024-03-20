@@ -97,7 +97,7 @@ class ControlsAndInfoController(
   private val handler: Handler?
     get() = webRtcCallView.handler
 
-  private var previousCallControlHeight = 0
+  private var previousCallControlHeightData = HeightData()
   private var controlPeakHeight = 0
   private var controlState: WebRtcControls = WebRtcControls.NONE
 
@@ -152,8 +152,9 @@ class ControlsAndInfoController(
     }
 
     callControls.viewTreeObserver.addOnGlobalLayoutListener {
-      if (callControls.height > 0 && callControls.height != previousCallControlHeight) {
-        previousCallControlHeight = callControls.height
+      if (callControls.height > 0 && previousCallControlHeightData.hasChanged(callControls.height, coordinator.height)) {
+        previousCallControlHeightData = HeightData(callControls.height, coordinator.height)
+
         controlPeakHeight = callControls.height + callControls.y.toInt()
         behavior.peekHeight = controlPeakHeight
         frame.minimumHeight = coordinator.height / 2
@@ -454,6 +455,15 @@ class ControlsAndInfoController(
       displayRingToggle() != previousState.displayRingToggle() ||
       displayOverflow() != previousState.displayOverflow() ||
       displayEndCall() != previousState.displayEndCall()
+  }
+
+  private data class HeightData(
+    val controlHeight: Int = 0,
+    val coordinatorHeight: Int = 0
+  ) {
+    fun hasChanged(controlHeight: Int, coordinatorHeight: Int): Boolean {
+      return controlHeight != this.controlHeight || coordinatorHeight != this.coordinatorHeight
+    }
   }
 
   interface BottomSheetVisibilityListener {
