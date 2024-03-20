@@ -130,6 +130,17 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <Button
+            android:id="@+id/message_details_header_internal_details_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Internal Details"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            style="@style/Signal.Widget.Button.Medium.OutlinedButton"
+            tools:ignore="HardcodedText" />
+
         <include
             layout="@layout/dsl_divider_item"
             android:layout_width="match_parent"
