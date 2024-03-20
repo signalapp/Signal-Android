@@ -9,7 +9,6 @@ import android.Manifest
 import android.app.UiAutomation
 import android.os.Environment
 import androidx.test.platform.app.InstrumentationRegistry
-import io.mockk.InternalPlatformDsl.toArray
 import okio.ByteString.Companion.toByteString
 import org.junit.Assert
 import org.junit.Before
@@ -220,6 +219,8 @@ class ImportExportTest {
     val numIndividualMessages = 500
     val numGroupMessagesPerPerson = 200
 
+    val random = Random(1516)
+
     val recipients = ArrayList<Recipient>(1010)
     val chats = ArrayList<Chat>(1010)
     var id = 3L
@@ -231,14 +232,14 @@ class ImportExportTest {
           contact = Contact(
             aci = TestRecipientUtils.nextAci().toByteString(),
             pni = TestRecipientUtils.nextPni().toByteString(),
-            username = "rec$i.01",
+            username = if (random.trueWithProbability(0.2f)) "rec$i.01" else null,
             e164 = 14125550000 + i,
-            blocked = false,
-            hidden = false,
+            blocked = random.trueWithProbability(0.1f),
+            hidden = random.trueWithProbability(0.1f),
             registered = Contact.Registered.REGISTERED,
             unregisteredTimestamp = 0L,
             profileKey = TestRecipientUtils.generateProfileKey().toByteString(),
-            profileSharing = true,
+            profileSharing = random.trueWithProbability(0.9f),
             profileGivenName = "Test",
             profileFamilyName = "Recipient$i",
             hideStory = false
@@ -258,9 +259,9 @@ class ImportExportTest {
             id = groupId,
             group = Group(
               masterKey = TestRecipientUtils.generateGroupMasterKey().toByteString(),
-              whitelisted = true,
-              hideStory = false,
-              storySendMode = Group.StorySendMode.ENABLED,
+              whitelisted = random.trueWithProbability(0.9f),
+              hideStory = random.trueWithProbability(0.1f),
+              storySendMode = if (random.trueWithProbability(0.9f)) Group.StorySendMode.ENABLED else Group.StorySendMode.DISABLED,
               name = "Cool Group $i"
             )
           )
@@ -315,7 +316,7 @@ class ImportExportTest {
               sms = false,
               outgoing = ChatItem.OutgoingMessageDetails(
                 sendStatus = groupMembers.map { groupMember ->
-                  SendStatus(recipientId = groupMember.id, deliveryStatus = SendStatus.Status.READ, sealedSender = true)
+                  SendStatus(recipientId = groupMember.id, deliveryStatus = if (random.trueWithProbability(0.8f)) SendStatus.Status.READ else SendStatus.Status.DELIVERED, sealedSender = true)
                 }
               ),
               standardMessage = StandardMessage(
@@ -337,7 +338,7 @@ class ImportExportTest {
               sms = false,
               outgoing = ChatItem.OutgoingMessageDetails(
                 sendStatus = listOf(
-                  SendStatus(recipient.id, deliveryStatus = SendStatus.Status.READ, sealedSender = true)
+                  SendStatus(recipient.id, deliveryStatus = if (random.trueWithProbability(0.8f)) SendStatus.Status.READ else SendStatus.Status.DELIVERED, sealedSender = true)
                 )
               ),
               standardMessage = StandardMessage(
@@ -1470,6 +1471,10 @@ class ImportExportTest {
         Assert.fail("Items do not match: \n $a1 \n $a2")
       }
     }
+  }
+
+  private fun Random.trueWithProbability(prob: Float): Boolean {
+    return nextFloat() < prob
   }
 
   private fun <T, R : Comparable<R>> prettyAssertEquals(import: List<T>, export: List<T>, selector: (T) -> R?) {
