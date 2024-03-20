@@ -61,6 +61,7 @@ public class CallParticipantView extends ConstraintLayout {
   private boolean     infoMode;
   private boolean     raiseHandAllowed;
   private Runnable    missingMediaKeysUpdater;
+  private boolean     shouldRenderInPip;
 
   private SelfPipMode selfPipMode = SelfPipMode.NOT_SELF_PIP;
 
@@ -198,6 +199,8 @@ public class CallParticipantView extends ConstraintLayout {
       pipBadge.setBadgeFromRecipient(participant.getRecipient());
       contactPhoto = participant.getRecipient().getContactPhoto();
     }
+
+    setRenderInPip(shouldRenderInPip);
   }
 
   private boolean isMissingMediaKeys(@NonNull CallParticipant participant) {
@@ -223,10 +226,15 @@ public class CallParticipantView extends ConstraintLayout {
   }
 
   void setRenderInPip(boolean shouldRenderInPip) {
+    this.shouldRenderInPip = shouldRenderInPip;
+
     if (infoMode) {
       infoMessage.setVisibility(shouldRenderInPip ? View.GONE : View.VISIBLE);
       infoMoreInfo.setVisibility(shouldRenderInPip ? View.GONE : View.VISIBLE);
+      infoOverlay.setOnClickListener(shouldRenderInPip ? v -> infoMoreInfo.performClick() : null);
       return;
+    } else {
+      infoOverlay.setOnClickListener(null);
     }
 
     avatar.setVisibility(shouldRenderInPip ? View.GONE : View.VISIBLE);
