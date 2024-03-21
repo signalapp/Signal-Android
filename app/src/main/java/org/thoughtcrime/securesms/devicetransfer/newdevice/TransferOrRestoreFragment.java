@@ -12,6 +12,7 @@ import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.databinding.FragmentTransferRestoreBinding;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 
@@ -36,7 +37,13 @@ public final class TransferOrRestoreFragment extends LoggingFragment {
 
     binding.transferOrRestoreFragmentTransfer.setOnClickListener(v -> viewModel.onTransferFromAndroidDeviceSelected());
     binding.transferOrRestoreFragmentRestore.setOnClickListener(v -> viewModel.onRestoreFromLocalBackupSelected());
+    binding.transferOrRestoreFragmentRestoreRemote.setOnClickListener(v -> viewModel.onRestoreFromRemoteBackupSelected());
     binding.transferOrRestoreFragmentNext.setOnClickListener(v -> launchSelection(viewModel.getStateSnapshot()));
+    binding.transferOrRestoreFragmentMoreOptions.setOnClickListener(v -> SafeNavigation.safeNavigate(Navigation.findNavController(requireView()), R.id.action_transferOrRestore_to_moreOptions));
+
+    int visibility = FeatureFlags.messageBackups() ? View.VISIBLE : View.GONE;
+    binding.transferOrRestoreFragmentRestoreRemoteCard.setVisibility(visibility);
+    binding.transferOrRestoreFragmentMoreOptions.setVisibility(visibility);
 
     String description = getString(R.string.TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device);
     String toBold      = getString(R.string.TransferOrRestoreFragment__you_need_access_to_your_old_device);
@@ -47,15 +54,18 @@ public final class TransferOrRestoreFragment extends LoggingFragment {
     lifecycleDisposable.add(viewModel.getState().subscribe(this::updateSelection));
   }
 
-  private void updateSelection(TransferOrRestoreViewModel.RestorationType restorationType) {
-    binding.transferOrRestoreFragmentTransferCard.setSelected(restorationType == TransferOrRestoreViewModel.RestorationType.DEVICE_TRANSFER);
-    binding.transferOrRestoreFragmentRestoreCard.setSelected(restorationType == TransferOrRestoreViewModel.RestorationType.LOCAL_BACKUP);
+  private void updateSelection(BackupRestorationType restorationType) {
+    binding.transferOrRestoreFragmentTransferCard.setSelected(restorationType == BackupRestorationType.DEVICE_TRANSFER);
+    binding.transferOrRestoreFragmentRestoreCard.setSelected(restorationType == BackupRestorationType.LOCAL_BACKUP);
+    binding.transferOrRestoreFragmentRestoreRemoteCard.setSelected(restorationType == BackupRestorationType.REMOTE_BACKUP);
   }
 
-  private void launchSelection(TransferOrRestoreViewModel.RestorationType restorationType) {
+  private void launchSelection(BackupRestorationType restorationType) {
     switch (restorationType) {
       case DEVICE_TRANSFER -> SafeNavigation.safeNavigate(Navigation.findNavController(requireView()), R.id.action_new_device_transfer_instructions);
       case LOCAL_BACKUP -> SafeNavigation.safeNavigate(Navigation.findNavController(requireView()), R.id.action_choose_backup);
+      case REMOTE_BACKUP -> {}
+      default -> throw new IllegalArgumentException();
     }
   }
 }

@@ -368,7 +368,34 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
 
+        <action
+            android:id="@+id/action_transferOrRestore_to_moreOptions"
+            app:destination="@+id/transferOrRestoreMoreOptionsDialog" />
+
     </fragment>
+
+    <fragment
+        android:id="@+id/restoreFromBackupFragment"
+        android:name="org.thoughtcrime.securesms.backup.v2.ui.restore.RestoreFromBackupFragment">
+
+        <action
+            android:id="@+id/action_restoreFromBacakupFragment_to_moreOptions"
+            app:destination="@+id/transferOrRestoreMoreOptionsDialog" />
+
+        <argument
+            android:name="cancelable"
+            app:argType="boolean" />
+
+    </fragment>
+
+    <dialog
+        android:id="@+id/transferOrRestoreMoreOptionsDialog"
+        android:name="org.thoughtcrime.securesms.devicetransfer.moreoptions.MoreTransferOrRestoreOptionsSheet">
+
+        <argument
+            android:name="mode"
+            app:argType="org.thoughtcrime.securesms.devicetransfer.moreoptions.MoreTransferOrRestoreOptionsMode" />
+    </dialog>
 
     <fragment
         android:id="@+id/newDeviceTransferInstructions"

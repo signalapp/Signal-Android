@@ -3972,6 +3972,8 @@
     <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">You need access to your old device.</string>
     <string name="TransferOrRestoreFragment__restore_from_backup">Restore from backup</string>
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Restore your messages from a local backup. If you don’t restore now, you won\'t be able to restore later.</string>
+    <!-- Button label for more options -->
+    <string name="TransferOrRestoreFragment__more_options">More options</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
     <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Open Signal on your old Android phone</string>

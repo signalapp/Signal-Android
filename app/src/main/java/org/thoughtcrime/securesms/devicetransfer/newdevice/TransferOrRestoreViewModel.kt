@@ -15,21 +15,20 @@ import io.reactivex.rxjava3.processors.BehaviorProcessor
  */
 class TransferOrRestoreViewModel : ViewModel() {
 
-  private val internalState = BehaviorProcessor.createDefault(RestorationType.DEVICE_TRANSFER)
+  private val internalState = BehaviorProcessor.createDefault(BackupRestorationType.DEVICE_TRANSFER)
 
-  val state: Flowable<RestorationType> = internalState.distinctUntilChanged().observeOn(AndroidSchedulers.mainThread())
-  val stateSnapshot: RestorationType get() = internalState.value!!
+  val state: Flowable<BackupRestorationType> = internalState.distinctUntilChanged().observeOn(AndroidSchedulers.mainThread())
+  val stateSnapshot: BackupRestorationType get() = internalState.value!!
 
   fun onTransferFromAndroidDeviceSelected() {
-    internalState.onNext(RestorationType.DEVICE_TRANSFER)
+    internalState.onNext(BackupRestorationType.DEVICE_TRANSFER)
   }
 
   fun onRestoreFromLocalBackupSelected() {
-    internalState.onNext(RestorationType.LOCAL_BACKUP)
+    internalState.onNext(BackupRestorationType.LOCAL_BACKUP)
   }
 
-  enum class RestorationType {
-    DEVICE_TRANSFER,
-    LOCAL_BACKUP
+  fun onRestoreFromRemoteBackupSelected() {
+    internalState.onNext(BackupRestorationType.REMOTE_BACKUP)
   }
 }

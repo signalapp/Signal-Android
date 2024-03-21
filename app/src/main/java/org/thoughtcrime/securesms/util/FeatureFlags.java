@@ -126,6 +126,7 @@ public final class FeatureFlags {
   private static final String CDSI_LIBSIGNAL_NET                = "android.cds.libsignal.2";
   private static final String RX_MESSAGE_SEND                   = "android.rxMessageSend";
   private static final String LINKED_DEVICE_LIFESPAN_SECONDS    = "android.linkedDeviceLifespanSeconds";
+  private static final String MESSAGE_BACKUPS                   = "android.messageBackups";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -208,7 +209,7 @@ public final class FeatureFlags {
   );
 
   @VisibleForTesting
-  static final Set<String> NOT_REMOTE_CAPABLE = SetUtil.newHashSet();
+  static final Set<String> NOT_REMOTE_CAPABLE = SetUtil.newHashSet(MESSAGE_BACKUPS);
 
   /**
    * Values in this map will take precedence over any value. This should only be used for local
@@ -729,6 +730,14 @@ public final class FeatureFlags {
   public static long linkedDeviceLifespan() {
     long seconds = getLong(LINKED_DEVICE_LIFESPAN_SECONDS, TimeUnit.DAYS.toSeconds(30));
     return TimeUnit.SECONDS.toMillis(seconds);
+  }
+
+  /**
+   * Enable Message Backups UI
+   * Note: This feature is in active development and is not intended to currently function.
+   */
+  public static boolean messageBackups() {
+    return getBoolean(MESSAGE_BACKUPS, false);
   }
 
   /** Only for rendering debug info. */
