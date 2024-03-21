@@ -120,10 +120,6 @@ class ConversationSettingsFragment : DSLSettingsFragment(
     }
   }
 
-  private val unblockIcon by lazy {
-    ContextUtil.requireDrawable(requireContext(), R.drawable.symbol_block_24)
-  }
-
   private val leaveIcon by lazy {
     ContextUtil.requireDrawable(requireContext(), R.drawable.symbol_leave_24).apply {
       colorFilter = PorterDuffColorFilter(alertTint, PorterDuff.Mode.SRC_IN)
@@ -784,11 +780,10 @@ class ConversationSettingsFragment : DSLSettingsFragment(
         }
 
         val titleTint = if (isBlocked) null else if (state.isDeprecatedOrUnregistered) alertDisabledTint else alertTint
-        val blockUnblockIcon = if (isBlocked) unblockIcon else blockIcon
 
         clickPref(
           title = if (titleTint != null) DSLSettingsText.from(title, titleTint) else DSLSettingsText.from(title),
-          icon = DSLSettingsIcon.from(blockUnblockIcon),
+          icon = if (isBlocked) DSLSettingsIcon.from(R.drawable.symbol_block_24) else DSLSettingsIcon.from(blockIcon),
           isEnabled = !state.isDeprecatedOrUnregistered,
           onClick = {
             if (state.recipient.isBlocked) {
