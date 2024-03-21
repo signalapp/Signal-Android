@@ -1355,6 +1355,7 @@ class AttachmentTable(
         put(QUOTE, quote)
         put(CAPTION, attachment.caption)
         put(UPLOAD_TIMESTAMP, attachment.uploadTimestamp)
+        put(BLUR_HASH, attachment.blurHash?.hash)
 
         attachment.stickerLocator?.let { sticker ->
           put(STICKER_PACK_ID, sticker.packId)
