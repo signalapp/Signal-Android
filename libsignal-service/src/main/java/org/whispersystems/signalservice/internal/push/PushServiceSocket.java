@@ -124,6 +124,7 @@ import org.whispersystems.signalservice.internal.configuration.SignalProxy;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
 import org.whispersystems.signalservice.internal.configuration.SignalUrl;
 import org.whispersystems.signalservice.internal.crypto.AttachmentDigest;
+import org.whispersystems.signalservice.internal.push.exceptions.CaptchaRejectedException;
 import org.whispersystems.signalservice.internal.push.exceptions.DonationProcessorError;
 import org.whispersystems.signalservice.internal.push.exceptions.DonationReceiptCredentialError;
 import org.whispersystems.signalservice.internal.push.exceptions.ForbiddenException;
@@ -1247,7 +1248,12 @@ public class PushServiceSocket {
 
   public void submitRateLimitPushChallenge(String challenge) throws IOException {
     String payload = JsonUtil.toJson(new SubmitPushChallengePayload(challenge));
-    makeServiceRequest(SUBMIT_RATE_LIMIT_CHALLENGE, "PUT", payload);
+    makeServiceRequest(SUBMIT_RATE_LIMIT_CHALLENGE, "PUT", payload, NO_HEADERS, (responseCode, body) -> {
+      if (responseCode == 428) {
+        throw new CaptchaRejectedException();
+      }
+    }, Optional.empty());
+
   }
 
   public void submitRateLimitRecaptchaChallenge(String challenge, String recaptchaToken) throws IOException {
