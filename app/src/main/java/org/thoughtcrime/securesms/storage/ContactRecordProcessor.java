@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.storage;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.signal.core.util.StringUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
@@ -152,6 +153,23 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
       profileFamilyName = local.getProfileFamilyName().orElse("");
     }
 
+    String nicknameGivenName;
+    String nicknameFamilyName;
+    if (remote.getNicknameGivenName().isPresent()) {
+      nicknameGivenName = remote.getNicknameGivenName().orElse("");
+      nicknameFamilyName = remote.getNicknameFamilyName().orElse("");
+    } else {
+      nicknameGivenName = local.getNicknameGivenName().orElse("");
+      nicknameFamilyName = local.getNicknameFamilyName().orElse("");
+    }
+
+    if (StringUtil.isVisuallyEmpty(nicknameGivenName) && !StringUtil.isVisuallyEmpty(nicknameFamilyName)) {
+      Log.w(TAG, "Processed invalid nickname. Missing given name.");
+
+      nicknameGivenName  = "";
+      nicknameFamilyName = "";
+    }
+
     IdentityState identityState;
     byte[]        identityKey;
 
@@ -217,8 +235,9 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
     String               systemFamilyName      = SignalStore.account().isPrimaryDevice() ? local.getSystemFamilyName().orElse("") : remote.getSystemFamilyName().orElse("");
     String               systemNickname        = remote.getSystemNickname().orElse("");
     boolean              pniSignatureVerified  = remote.isPniSignatureVerified() || local.isPniSignatureVerified();
-    boolean              matchesRemote         = doParamsMatch(remote, unknownFields, aci, pni, e164, profileGivenName, profileFamilyName, systemGivenName, systemFamilyName, systemNickname, profileKey, username, identityState, identityKey, blocked, profileSharing, archived, forcedUnread, muteUntil, hideStory, unregisteredTimestamp, hidden, pniSignatureVerified);
-    boolean              matchesLocal          = doParamsMatch(local, unknownFields, aci, pni, e164, profileGivenName, profileFamilyName, systemGivenName, systemFamilyName, systemNickname, profileKey, username, identityState, identityKey, blocked, profileSharing, archived, forcedUnread, muteUntil, hideStory, unregisteredTimestamp, hidden, pniSignatureVerified);
+    String               note                  = remote.getNote().or(local::getNote).orElse("");
+    boolean              matchesRemote         = doParamsMatch(remote, unknownFields, aci, pni, e164, profileGivenName, profileFamilyName, systemGivenName, systemFamilyName, systemNickname, profileKey, username, identityState, identityKey, blocked, profileSharing, archived, forcedUnread, muteUntil, hideStory, unregisteredTimestamp, hidden, pniSignatureVerified, nicknameGivenName, nicknameFamilyName, note);
+    boolean              matchesLocal          = doParamsMatch(local, unknownFields, aci, pni, e164, profileGivenName, profileFamilyName, systemGivenName, systemFamilyName, systemNickname, profileKey, username, identityState, identityKey, blocked, profileSharing, archived, forcedUnread, muteUntil, hideStory, unregisteredTimestamp, hidden, pniSignatureVerified, nicknameGivenName, nicknameFamilyName, note);
 
     if (matchesRemote) {
       return remote;
@@ -246,6 +265,9 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
                                     .setUnregisteredTimestamp(unregisteredTimestamp)
                                     .setHidden(hidden)
                                     .setPniSignatureVerified(pniSignatureVerified)
+                                    .setNicknameGivenName(nicknameGivenName)
+                                    .setNicknameFamilyName(nicknameFamilyName)
+                                    .setNote(note)
                                     .build();
     }
   }
@@ -298,7 +320,10 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
                                        boolean hideStory,
                                        long unregisteredTimestamp,
                                        boolean hidden,
-                                       boolean pniSignatureVerified)
+                                       boolean pniSignatureVerified,
+                                       @NonNull String nicknameGivenName,
+                                       @NonNull String nicknameFamilyName,
+                                       @NonNull String note)
   {
     return Arrays.equals(contact.serializeUnknownFields(), unknownFields) &&
            Objects.equals(contact.getAci().orElse(null), aci) &&
@@ -321,6 +346,9 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
            contact.shouldHideStory() == hideStory &&
            contact.getUnregisteredTimestamp() == unregisteredTimestamp &&
            contact.isHidden() == hidden &&
-           contact.isPniSignatureVerified() == pniSignatureVerified;
+           contact.isPniSignatureVerified() == pniSignatureVerified &&
+           Objects.equals(contact.getNicknameGivenName().orElse(""), nicknameGivenName) &&
+           Objects.equals(contact.getNicknameFamilyName().orElse(""), nicknameFamilyName) &&
+           Objects.equals(contact.getNote().orElse(""), note);
   }
 }

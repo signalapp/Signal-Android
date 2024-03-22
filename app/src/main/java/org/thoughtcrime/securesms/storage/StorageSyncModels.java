@@ -155,6 +155,9 @@ public final class StorageSyncModels {
                                   .setHidden(recipient.getHiddenState() != Recipient.HiddenState.NOT_HIDDEN)
                                   .setUsername(recipient.getUsername())
                                   .setPniSignatureVerified(recipient.getSyncExtras().getPniSignatureVerified())
+                                  .setNicknameGivenName(recipient.getNickname().getGivenName())
+                                  .setNicknameFamilyName(recipient.getNickname().getFamilyName())
+                                  .setNote(recipient.getNote())
                                   .build();
   }
 

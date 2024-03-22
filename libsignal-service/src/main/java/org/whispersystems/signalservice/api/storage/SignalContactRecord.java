@@ -39,22 +39,28 @@ public final class SignalContactRecord implements SignalRecord {
   private final Optional<byte[]> profileKey;
   private final Optional<String> username;
   private final Optional<byte[]> identityKey;
+  private final Optional<String> nicknameGivenName;
+  private final Optional<String> nicknameFamilyName;
+  private final Optional<String> note;
 
   public SignalContactRecord(StorageId id, ContactRecord proto) {
-    this.id                = id;
-    this.proto             = proto;
-    this.hasUnknownFields  = ProtoUtil.hasUnknownFields(proto);
-    this.aci               = OptionalUtil.absentIfEmpty(proto.aci).map(ACI::parseOrNull).map(it -> it.isUnknown() ? null : it);
-    this.pni               = OptionalUtil.absentIfEmpty(proto.pni).map(PNI::parseOrNull).map(it -> it.isUnknown() ? null : it);
-    this.e164              = OptionalUtil.absentIfEmpty(proto.e164);
-    this.profileGivenName  = OptionalUtil.absentIfEmpty(proto.givenName);
-    this.profileFamilyName = OptionalUtil.absentIfEmpty(proto.familyName);
-    this.systemGivenName   = OptionalUtil.absentIfEmpty(proto.systemGivenName);
-    this.systemFamilyName  = OptionalUtil.absentIfEmpty(proto.systemFamilyName);
-    this.systemNickname    = OptionalUtil.absentIfEmpty(proto.systemNickname);
-    this.profileKey        = OptionalUtil.absentIfEmpty(proto.profileKey);
-    this.username          = OptionalUtil.absentIfEmpty(proto.username);
-    this.identityKey       = OptionalUtil.absentIfEmpty(proto.identityKey);
+    this.id                 = id;
+    this.proto              = proto;
+    this.hasUnknownFields   = ProtoUtil.hasUnknownFields(proto);
+    this.aci                = OptionalUtil.absentIfEmpty(proto.aci).map(ACI::parseOrNull).map(it -> it.isUnknown() ? null : it);
+    this.pni                = OptionalUtil.absentIfEmpty(proto.pni).map(PNI::parseOrNull).map(it -> it.isUnknown() ? null : it);
+    this.e164               = OptionalUtil.absentIfEmpty(proto.e164);
+    this.profileGivenName   = OptionalUtil.absentIfEmpty(proto.givenName);
+    this.profileFamilyName  = OptionalUtil.absentIfEmpty(proto.familyName);
+    this.systemGivenName    = OptionalUtil.absentIfEmpty(proto.systemGivenName);
+    this.systemFamilyName   = OptionalUtil.absentIfEmpty(proto.systemFamilyName);
+    this.systemNickname     = OptionalUtil.absentIfEmpty(proto.systemNickname);
+    this.profileKey         = OptionalUtil.absentIfEmpty(proto.profileKey);
+    this.username           = OptionalUtil.absentIfEmpty(proto.username);
+    this.identityKey        = OptionalUtil.absentIfEmpty(proto.identityKey);
+    this.nicknameGivenName  = Optional.ofNullable(proto.nickname).flatMap(n -> OptionalUtil.absentIfEmpty(n.given));
+    this.nicknameFamilyName = Optional.ofNullable(proto.nickname).flatMap(n -> OptionalUtil.absentIfEmpty(n.family));
+    this.note               = OptionalUtil.absentIfEmpty(proto.note);
   }
 
   @Override
@@ -165,6 +171,18 @@ public final class SignalContactRecord implements SignalRecord {
         diff.add("UnknownFields");
       }
 
+      if (!Objects.equals(this.nicknameGivenName, that.nicknameGivenName)) {
+        diff.add("NicknameGivenName");
+      }
+
+      if (!Objects.equals(this.nicknameFamilyName, that.nicknameFamilyName)) {
+        diff.add("NicknameFamilyName");
+      }
+
+      if (!Objects.equals(this.note, that.note)) {
+        diff.add("Note");
+      }
+
       return diff.toString();
     } else {
       return "Different class. " + getClass().getSimpleName() + " | " + other.getClass().getSimpleName();
@@ -219,6 +237,18 @@ public final class SignalContactRecord implements SignalRecord {
 
   public Optional<String> getSystemNickname() {
     return systemNickname;
+  }
+
+  public Optional<String> getNicknameGivenName() {
+    return nicknameGivenName;
+  }
+
+  public Optional<String> getNicknameFamilyName() {
+    return nicknameFamilyName;
+  }
+
+  public Optional<String> getNote() {
+    return note;
   }
 
   public Optional<byte[]> getProfileKey() {
@@ -411,6 +441,25 @@ public final class SignalContactRecord implements SignalRecord {
 
     public Builder setPniSignatureVerified(boolean verified) {
       builder.pniSignatureVerified(verified);
+      return this;
+    }
+
+    public Builder setNicknameGivenName(String nicknameGivenName) {
+      ContactRecord.Name.Builder name = builder.nickname == null ? new ContactRecord.Name.Builder() : builder.nickname.newBuilder();
+      name.given(nicknameGivenName);
+      builder.nickname(name.build());
+      return this;
+    }
+
+    public Builder setNicknameFamilyName(String nicknameFamilyName) {
+      ContactRecord.Name.Builder name = builder.nickname == null ? new ContactRecord.Name.Builder() : builder.nickname.newBuilder();
+      name.family(nicknameFamilyName);
+      builder.nickname(name.build());
+      return this;
+    }
+
+    public Builder setNote(String note) {
+      builder.note(note == null ? "" : note);
       return this;
     }
 
