@@ -2,8 +2,11 @@ package org.signal.core.ui
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -40,6 +43,7 @@ object Scaffolds {
       Text(text = title, style = MaterialTheme.typography.titleLarge)
     },
     snackbarHost: @Composable () -> Unit = {},
+    actions: @Composable RowScope.() -> Unit = {},
     content: @Composable (PaddingValues) -> Unit
   ) {
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
@@ -53,7 +57,8 @@ object Scaffolds {
           scrollBehavior,
           onNavigationClick,
           navigationIconPainter,
-          navigationContentDescription
+          navigationContentDescription,
+          actions
         )
       },
       modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
@@ -68,7 +73,8 @@ object Scaffolds {
     scrollBehavior: TopAppBarScrollBehavior,
     onNavigationClick: () -> Unit,
     navigationIconPainter: Painter,
-    navigationContentDescription: String?
+    navigationContentDescription: String?,
+    actions: @Composable RowScope.() -> Unit
   ) {
     TopAppBar(
       title = {
@@ -88,7 +94,8 @@ object Scaffolds {
       scrollBehavior = scrollBehavior,
       colors = TopAppBarDefaults.topAppBarColors(
         scrolledContainerColor = SignalTheme.colors.colorSurface2
-      )
+      ),
+      actions = actions
     )
   }
 }
@@ -100,7 +107,12 @@ private fun SettingsScaffoldPreview() {
     Scaffolds.Settings(
       "Settings Scaffold",
       onNavigationClick = {},
-      navigationIconPainter = ColorPainter(Color.Black)
+      navigationIconPainter = ColorPainter(Color.Black),
+      actions = {
+        IconButton(onClick = {}) {
+          Icon(Icons.Default.Settings, contentDescription = null)
+        }
+      }
     ) { paddingValues ->
       Box(
         contentAlignment = Alignment.Center,

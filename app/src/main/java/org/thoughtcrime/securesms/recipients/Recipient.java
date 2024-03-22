@@ -505,6 +505,10 @@ public class Recipient {
     return contactUri;
   }
 
+  public @Nullable String getNote() {
+    return note;
+  }
+
   public @Nullable String getGroupName(@NonNull Context context) {
     if (groupId != null && Util.isEmpty(this.groupName)) {
       RecipientId     selfId = ApplicationDependencies.getRecipientCache().getSelfId();

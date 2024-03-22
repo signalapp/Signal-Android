@@ -14,6 +14,7 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.core.view.doOnPreDraw
@@ -77,6 +78,7 @@ import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupsLearnMoreB
 import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory
 import org.thoughtcrime.securesms.messagerequests.MessageRequestRepository
+import org.thoughtcrime.securesms.nicknames.NicknameActivity
 import org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientExporter
@@ -92,6 +94,7 @@ import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.ContextUtil
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.ExpirationUtil
+import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.Material3OnScrollHelper
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
@@ -149,6 +152,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
   private lateinit var toolbarTitle: TextView
   private lateinit var toolbarBackground: View
   private lateinit var addToGroupStoryDelegate: AddToGroupStoryDelegate
+  private lateinit var nicknameLauncher: ActivityResultLauncher<NicknameActivity.Args>
 
   private val navController get() = Navigation.findNavController(requireView())
   private val lifecycleDisposable = LifecycleDisposable()
@@ -216,6 +220,10 @@ class ConversationSettingsFragment : DSLSettingsFragment(
   }
 
   override fun bindAdapter(adapter: MappingAdapter) {
+    nicknameLauncher = registerForActivityResult(NicknameActivity.Contract()) {
+      // Intentionally left blank
+    }
+
     val args = ConversationSettingsFragmentArgs.fromBundle(requireArguments())
 
     BioTextPreference.register(adapter)
@@ -491,6 +499,21 @@ class ConversationSettingsFragment : DSLSettingsFragment(
               .setForResultMode(false)
 
             navController.safeNavigate(action)
+          }
+        )
+      }
+
+      if (FeatureFlags.nicknames() && state.recipient.isIndividual) {
+        clickPref(
+          title = DSLSettingsText.from(R.string.NicknameActivity__nickname),
+          icon = DSLSettingsIcon.from(R.drawable.symbol_edit_24),
+          onClick = {
+            nicknameLauncher.launch(
+              NicknameActivity.Args(
+                state.recipient.id,
+                false
+              )
+            )
           }
         )
       }

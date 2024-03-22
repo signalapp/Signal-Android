@@ -127,6 +127,7 @@ public final class FeatureFlags {
   private static final String RX_MESSAGE_SEND                   = "android.rxMessageSend";
   private static final String LINKED_DEVICE_LIFESPAN_SECONDS    = "android.linkedDeviceLifespanSeconds";
   private static final String MESSAGE_BACKUPS                   = "android.messageBackups";
+  private static final String NICKNAMES                         = "android.nicknames";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -205,7 +206,8 @@ public final class FeatureFlags {
       PREKEY_FORCE_REFRESH_INTERVAL,
       CDSI_LIBSIGNAL_NET,
       RX_MESSAGE_SEND,
-      LINKED_DEVICE_LIFESPAN_SECONDS
+      LINKED_DEVICE_LIFESPAN_SECONDS,
+      NICKNAMES
   );
 
   @VisibleForTesting
@@ -738,6 +740,11 @@ public final class FeatureFlags {
    */
   public static boolean messageBackups() {
     return getBoolean(MESSAGE_BACKUPS, false);
+  }
+
+  /** Whether or not the nicknames feature is available */
+  public static boolean nicknames() {
+    return getBoolean(NICKNAMES, false);
   }
 
   /** Only for rendering debug info. */

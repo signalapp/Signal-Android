@@ -120,6 +120,23 @@
             <include layout="@layout/dsl_divider_item" />
 
             <TextView
+                android:id="@+id/rbs_nickname_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?selectableItemBackground"
+                android:drawablePadding="16dp"
+                android:gravity="center_vertical"
+                android:minHeight="56dp"
+                android:paddingStart="@dimen/dsl_settings_gutter"
+                android:paddingEnd="@dimen/dsl_settings_gutter"
+                android:text="@string/NicknameActivity__nickname"
+                android:textAppearance="@style/Signal.Text.BodyLarge"
+                android:visibility="gone"
+                app:drawableStartCompat="@drawable/symbol_edit_24"
+                app:drawableTint="@color/icon_tint_color_primary_enabled_selector"
+                tools:visibility="visible" />
+
+            <TextView
                 android:id="@+id/rbs_block_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -17,6 +17,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
@@ -39,6 +40,7 @@ import org.thoughtcrime.securesms.contacts.avatars.FallbackPhoto80dp;
 import org.thoughtcrime.securesms.fonts.SignalSymbols;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.nicknames.NicknameActivity;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientExporter;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -46,6 +48,7 @@ import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.recipients.ui.about.AboutSheet;
 import org.thoughtcrime.securesms.util.BottomSheetUtil;
 import org.thoughtcrime.securesms.util.ContextUtil;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
@@ -74,6 +77,7 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
   private AvatarView               avatar;
   private TextView                 fullName;
   private TextView                 about;
+  private TextView                 nickname;
   private TextView                 blockButton;
   private TextView                 unblockButton;
   private TextView                 addContactButton;
@@ -91,6 +95,8 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
   private Callback                 callback;
 
   private ButtonStripPreference.ViewHolder buttonStripViewHolder;
+
+  private ActivityResultLauncher<NicknameActivity.Args> nicknameLauncher;
 
   public static void show(FragmentManager fragmentManager, @NonNull RecipientId recipientId, @Nullable GroupId groupId) {
     Recipient recipient = Recipient.resolved(recipientId);
@@ -127,6 +133,7 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
     avatar                 = view.findViewById(R.id.rbs_recipient_avatar);
     fullName               = view.findViewById(R.id.rbs_full_name);
     about                  = view.findViewById(R.id.rbs_about);
+    nickname               = view.findViewById(R.id.rbs_nickname_button);
     blockButton            = view.findViewById(R.id.rbs_block_button);
     unblockButton          = view.findViewById(R.id.rbs_unblock_button);
     addContactButton       = view.findViewById(R.id.rbs_add_contact_button);
@@ -149,6 +156,8 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
   @Override
   public void onViewCreated(@NonNull View fragmentView, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(fragmentView, savedInstanceState);
+
+    nicknameLauncher = registerForActivityResult(new NicknameActivity.Contract(), (b) -> {});
 
     Bundle      arguments   = requireArguments();
     RecipientId recipientId = RecipientId.from(Objects.requireNonNull(arguments.getString(ARGS_RECIPIENT_ID)));
@@ -214,6 +223,16 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
           dismiss();
           AboutSheet.create(recipient).show(getParentFragmentManager(), null);
         });
+
+        if (FeatureFlags.nicknames() && groupId != null) {
+          nickname.setVisibility(View.VISIBLE);
+          nickname.setOnClickListener(v -> {
+            nicknameLauncher.launch(new NicknameActivity.Args(
+                recipientId,
+                false
+            ));
+          });
+        }
       }
 
       String aboutText = recipient.getCombinedAboutAndEmoji();

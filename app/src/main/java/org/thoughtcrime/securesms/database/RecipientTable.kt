@@ -1739,6 +1739,20 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
   }
 
+  fun setNicknameAndNote(id: RecipientId, nickname: ProfileName, note: String) {
+    val contentValues = contentValuesOf(
+      NICKNAME_GIVEN_NAME to nickname.givenName.nullIfBlank(),
+      NICKNAME_FAMILY_NAME to nickname.familyName.nullIfBlank(),
+      NICKNAME_JOINED_NAME to nickname.toString().nullIfBlank(),
+      NOTE to note.nullIfBlank()
+    )
+    if (update(id, contentValues)) {
+      rotateStorageId(id)
+      ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
+      StorageSyncHelper.scheduleSyncForDataChange()
+    }
+  }
+
   fun setProfileName(id: RecipientId, profileName: ProfileName) {
     val contentValues = ContentValues(1).apply {
       put(PROFILE_GIVEN_NAME, profileName.givenName.nullIfBlank())

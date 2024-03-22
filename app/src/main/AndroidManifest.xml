@@ -970,6 +970,11 @@
               android:windowSoftInputMode="stateVisible|adjustResize"
               android:exported="false"/>
 
+    <activity android:name=".nicknames.NicknameActivity"
+              android:theme="@style/TextSecure.LightTheme"
+              android:windowSoftInputMode="stateVisible|adjustResize"
+              android:exported="false"/>
+
     <activity
         android:name=".payments.preferences.PaymentsActivity"
         android:theme="@style/TextSecure.LightRegistrationTheme"
