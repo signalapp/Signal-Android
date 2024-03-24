@@ -77,7 +77,6 @@ class ChatItemImportInserter(
       MessageTable.EXPIRE_STARTED,
       MessageTable.UNIDENTIFIED,
       MessageTable.REMOTE_DELETED,
-      MessageTable.REMOTE_DELETED,
       MessageTable.NETWORK_FAILURES,
       MessageTable.QUOTE_ID,
       MessageTable.QUOTE_AUTHOR,
