@@ -344,7 +344,7 @@ class MediaSelectionViewModel(
     store.update {
       val uri = it.focusedMedia?.uri ?: return@update it
       val data = it.getOrCreateVideoTrimData(uri)
-      val clampedStartTime = max(startTimeUs.toDouble(), 0.0).toLong()
+      val clampedStartTime = max(startTimeUs, 0)
 
       val unedited = !data.isDurationEdited
       val durationEdited = clampedStartTime > 0 || endTimeUs < totalDurationUs
@@ -356,8 +356,15 @@ class MediaSelectionViewModel(
         it.transcodingPreset.calculateMaxVideoUploadDurationInSeconds(getMediaConstraints().getVideoMaxSize(context)).seconds.inWholeMicroseconds
       }
       val preserveStartTime = unedited || !endMoved
-      val updatedData = clampToMaxClipDuration(VideoTrimData(durationEdited, totalDurationUs, clampedStartTime, endTimeUs), maxVideoDurationUs, preserveStartTime)
+      val videoTrimData = VideoTrimData(durationEdited, totalDurationUs, clampedStartTime, endTimeUs)
+      val updatedData = clampToMaxClipDuration(videoTrimData, maxVideoDurationUs, preserveStartTime)
+
+      if (updatedData != videoTrimData) {
+        Log.d(TAG, "Video trim clamped from ${videoTrimData.startTimeUs}, ${videoTrimData.endTimeUs} to ${updatedData.startTimeUs}, ${updatedData.endTimeUs}")
+      }
+
       if (unedited && durationEdited) {
+        Log.d(TAG, "Canceling upload because the duration has been edited for the first time..")
         cancelUpload(MediaBuilder.buildMedia(uri))
       }
       it.copy(
