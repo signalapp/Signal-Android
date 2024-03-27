@@ -45,8 +45,6 @@
     <string name="ApplicationPreferencesActivity_disable_passphrase">Deaktiver adgangssætning?</string>
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Dette låser permanent op for Signal og besked-notifikationer.</string>
     <string name="ApplicationPreferencesActivity_disable">Deaktiver</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Deaktiver Signal-beskeder og opkald?</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Deaktiver Signal-beskeder og opkald ved at afregistrere fra serveren. Det er nødvendigt at registrere dit telefonnummer igen for at bruge det fremadrettet.</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Fejl ved oprettelse af forbindelse til serveren!</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Pinkoder er påkrævet for registreringslås. For at deaktivere pinkoder skal registreringslås først deaktiveres.</string>
     <string name="ApplicationPreferencesActivity_pin_created">Pinkode oprettet.</string>
@@ -1989,6 +1987,8 @@
     <string name="AboutSheet__about">Om</string>
     <!-- Text displayed in title for you -->
     <string name="AboutSheet__you">Dig</string>
+    <!-- Displays the name of a contact. The first placeholder is the name the user has assigned to that contact, the second name is the name the contact assigned to themselves -->
+    <string name="AboutSheet__user_set_display_name_and_profile_name">%1$s (%2$s)</string>
 
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call">
@@ -2925,6 +2925,18 @@
     <string name="EditProfileFragment__group_name">Gruppenavn</string>
     <string name="EditProfileFragment__group_description">Gruppebeskrivelse</string>
   <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
+    <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_title">Update Signal</string>
+    <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_body">This version of Signal has expired. Update now to continue using Signal.</string>
+    <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
+    <string name="EditProfileFragment_deprecated_dialog_update_button">Update</string>
+    <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_title">Device not registered</string>
+    <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_body">This device is no longer registered. Re-register to make changes to your account.</string>
+    <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
+    <string name="EditProfileFragment_unregistered_dialog_reregister_button">Re-register</string>
 
     <!-- EditProfileNameFragment -->
     <string name="EditProfileNameFragment_your_name">Dit navn</string>
@@ -3663,8 +3675,6 @@
     <string name="verify_display_fragment_context_menu__compare_with_clipboard">Sammenlign med udklipsholder</string>
 
     <!-- reminder_header -->
-    <string name="reminder_header_push_title">Aktiver Signal-beskeder og opkald</string>
-    <string name="reminder_header_push_text">Opgrader din kommunikationsoplevelse.</string>
     <string name="reminder_header_service_outage_text">Signal har tekniske problemer. Vi arbejder hårdt på at genoprette servicen så hurtigt som muligt!</string>
     <string name="reminder_header_progress">%1$d %%</string>
     <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user\'s contacts -->
@@ -3961,6 +3971,8 @@
     <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Du skal have adgang til din gamle enhed.</string>
     <string name="TransferOrRestoreFragment__restore_from_backup">Gendan fra sikkerhedskopi</string>
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Gendan dine beskeder fra en lokal sikkerhedskopi. Hvis du ikke gendanner nu, kan du ikke gøre det senere.</string>
+    <!-- Button label for more options -->
+    <string name="TransferOrRestoreFragment__more_options">More options</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
     <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Åbn Signal på din gamle Android-telefon</string>
@@ -6652,6 +6664,46 @@
     <string name="FindByActivity__qr_scan_button">Scan QR-kode</string>
     <!-- Content of a dialog indicating that we could not perform the requested action because we encountered a network error. -->
     <string name="FindByActivity__network_error_dialog">Netværksfejl registreret. Prøv igen senere.</string>
+
+    <!-- Title for an alert letting someone know that one of their linked devices is inactive. -->
+    <string name="LinkedDeviceInactiveMegaphone_title">Inactive linked device</string>
+    <!-- Body for an alert letting someone know that one of their linked devices is inactive. The string placeholder is the name of the device, and the number placeholder is the number of days before device is unlinked. -->
+    <plurals name="LinkedDeviceInactiveMegaphone_body">
+        <item quantity="one">To keep \"%1$s\" linked, open Signal on that device within %2$d day.</item>
+        <item quantity="other">To keep \"%1$s\" linked, open Signal on that device within %2$d days.</item>
+    </plurals>
+    <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the user will opt out of all future alerts. -->
+    <string name="LinkedDeviceInactiveMegaphone_dont_remind_button_label">Don\'t remind me</string>
+    <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the alert will be dismissed. -->
+    <string name="LinkedDeviceInactiveMegaphone_got_it_button_label">Got it</string>
+
+    <!-- NicknameFragment -->
+    <!-- Title displayed at the top of the screen -->
+    <string name="NicknameActivity__nickname">Nickname</string>
+    <!-- Subtitle displayed under title -->
+    <string name="NicknameActivity__nicknames_amp_notes">Nicknames &amp; notes are stored using Signal\'s end-to-end encrypted storage service. They are only visible to you.</string>
+    <!-- Field label for given name -->
+    <string name="NicknameActivity__first_name">First name</string>
+    <!-- Content description for first name clear button -->
+    <string name="NicknameActivity__clear_first_name">Clear first name</string>
+    <!-- Field label for family name -->
+    <string name="NicknameActivity__last_name">Last name</string>
+    <!-- Content description for last name clear button -->
+    <string name="NicknameActivity__clear_last_name">Clear last name</string>
+    <!-- Field label for note -->
+    <string name="NicknameActivity__note">Note</string>
+    <!-- Button label to save -->
+    <string name="NicknameActivity__save">Save</string>
+    <!-- Dialog title for note and name deletion -->
+    <string name="NicknameActivity__delete_nickname">Delete nickname?</string>
+    <!-- Dialog message for note and name deletion -->
+    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">This will permanently delete this nickname and note.</string>
+
+    <!-- ViewNoteBottomSheetDialogFragment -->
+    <!-- Sheet title -->
+    <string name="ViewNoteSheet__note">Note</string>
+    <!-- Content description for opening the note editor -->
+    <string name="ViewNoteSheet__edit_note">Edit note</string>
 
     <!-- EOF -->
 </resources>

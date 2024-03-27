@@ -45,8 +45,6 @@
     <string name="ApplicationPreferencesActivity_disable_passphrase">Wachtwoord uitschakelen?</string>
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Hierdoor zullen de Signal-app en berichtmeldingen niet langer vergrendeld worden</string>
     <string name="ApplicationPreferencesActivity_disable">Uitschakelen</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signal-berichten en -oproepen uitschakelen?</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Dit zal je telefoonnummer uitschrijven bij de servers, je kunt dan niet langer Signal-berichten en -oproepen ontvangen of verzenden. Je zult je telefoonnummer opnieuw moeten registreren als je die functies weer wil gebruiken.</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Fout bij verbinden met de server.</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Je pincode wordt gebruikt voor registratievergrendeling. Om je pincode uit te schakelen moet je eerst de registratievergrendeling uitzetten.</string>
     <string name="ApplicationPreferencesActivity_pin_created">Pincode aangemaakt.</string>
@@ -96,7 +94,7 @@
     <!-- Alert dialog description to send the recipient a request to activate payments -->
     <string name="AttachmentManager__request_to_activate_payments">Wil je deze persoon een verzoek sturen om Betalingen te activeren?</string>
     <!-- Alert dialog button to send request -->
-    <string name="AttachmentManager__send_request">Stuur verzoek</string>
+    <string name="AttachmentManager__send_request">Verzoek sturen</string>
     <!-- Alert dialog button to cancel dialog -->
     <string name="AttachmentManager__cancel">Annuleren</string>
 
@@ -1038,7 +1036,7 @@
     </plurals>
 
     <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Je hebt geen recht om dit te doen</string>
-    <string name="ManageGroupActivity_not_capable">Eén of meer van de door jou toegevoegde personen ondersteunen de vernieuwde groepen nog niet. Zij moeten Signal bijwerken.</string>
+    <string name="ManageGroupActivity_not_capable">Iemand die je hebt toegevoegd ondersteunt vernieuwde groepen niet en moet Signal bijwerken.</string>
     <string name="ManageGroupActivity_not_announcement_capable">Ten minste een persoon die je hebt toegevoegd moet eerst Signal bijwerken voordat ze aan mededelingsgroepen kunnen worden toegevoegd.</string>
     <string name="ManageGroupActivity_failed_to_update_the_group">Bijwerken van de groep is mislukt</string>
     <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Je bent geen lid van deze groep</string>
@@ -1989,6 +1987,8 @@
     <string name="AboutSheet__about">Over</string>
     <!-- Text displayed in title for you -->
     <string name="AboutSheet__you">Jij</string>
+    <!-- Displays the name of a contact. The first placeholder is the name the user has assigned to that contact, the second name is the name the contact assigned to themselves -->
+    <string name="AboutSheet__user_set_display_name_and_profile_name">%1$s (%2$s)</string>
 
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call">
@@ -2584,7 +2584,7 @@
     <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Iemand neemt nu deel aan deze oproep met een veiligheidsnummer dat is veranderd.</string>
 
     <!-- WebRtcCallScreen -->
-    <string name="WebRtcCallScreen_swipe_up_to_change_views">Veeg omhoog om veranderingen te zien</string>
+    <string name="WebRtcCallScreen_swipe_up_to_change_views">Veeg omhoog om weergave te wijzigen</string>
 
     <!-- WebRtcCallScreen V2 -->
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -2925,6 +2925,18 @@
     <string name="EditProfileFragment__group_name">Groepsnaam</string>
     <string name="EditProfileFragment__group_description">Groepsomschrijving</string>
   <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
+    <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_title">Update Signal</string>
+    <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_body">This version of Signal has expired. Update now to continue using Signal.</string>
+    <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
+    <string name="EditProfileFragment_deprecated_dialog_update_button">Update</string>
+    <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_title">Device not registered</string>
+    <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_body">This device is no longer registered. Re-register to make changes to your account.</string>
+    <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
+    <string name="EditProfileFragment_unregistered_dialog_reregister_button">Re-register</string>
 
     <!-- EditProfileNameFragment -->
     <string name="EditProfileNameFragment_your_name">Je naam</string>
@@ -3663,8 +3675,6 @@
     <string name="verify_display_fragment_context_menu__compare_with_clipboard">Vergelijken met klembord</string>
 
     <!-- reminder_header -->
-    <string name="reminder_header_push_title">Signal-berichten en -oproepen inschakelen</string>
-    <string name="reminder_header_push_text">Verbeter je communicatie-ervaring.</string>
     <string name="reminder_header_service_outage_text">Signal heeft technische problemen. We werken er hard aan om zo snel als mogelijk de bereikbaarheid te herstellen.</string>
     <string name="reminder_header_progress">%1$d%%</string>
     <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user\'s contacts -->
@@ -3961,6 +3971,8 @@
     <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Je kunt dit alleen doen als je je oude apparaat nog kunt gebruiken.</string>
     <string name="TransferOrRestoreFragment__restore_from_backup">Gegevens vanuit een back-up terugzetten</string>
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Herstel je berichten en media vanuit een lokale back-up. Herstellen vanuit een back-up kan alleen tijdens deze stap en kun je op een later moment niet alsnog doen.</string>
+    <!-- Button label for more options -->
+    <string name="TransferOrRestoreFragment__more_options">More options</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
     <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Open Signal op je oude apparaat</string>
@@ -4415,7 +4427,7 @@
 
     <!-- AppSettingsFragment -->
     <string name="AppSettingsFragment__invite_your_friends">Vrienden uitnodigen</string>
-    <string name="AppSettingsFragment__copied_subscriber_id_to_clipboard">AbonnementsID naar klembord gekopieerd</string>
+    <string name="AppSettingsFragment__copied_subscriber_id_to_clipboard">Donateur-ID naar klembord gekopieerd</string>
 
     <!-- AccountSettingsFragment -->
     <string name="AccountSettingsFragment__account">Account</string>
@@ -5426,9 +5438,9 @@
     <!-- Label when a story is pending sending -->
     <string name="StoriesLandingItem__sending">Bezig met verzenden…</string>
     <!-- Label when multiple stories are pending sending -->
-    <string name="StoriesLandingItem__sending_d">%1$d aan het uploaden…</string>
+    <string name="StoriesLandingItem__sending_d">%1$d aan het verzenden…</string>
     <!-- Label when a story fails to send due to networking -->
-    <string name="StoriesLandingItem__send_failed">Uploaden is mislukt</string>
+    <string name="StoriesLandingItem__send_failed">Verzenden is mislukt</string>
     <!-- Label when a story fails to send due to identity mismatch -->
     <string name="StoriesLandingItem__partially_sent">Gedeeltelijk verstuurd</string>
     <!-- Status label when a story fails to send indicating user action to retry -->
@@ -5483,7 +5495,7 @@
     <!-- Displayed when viewing a post that has failed to send to some users -->
     <string name="StoryViewerPageFragment__partially_sent">Gedeeltelijk verstuurd. Tik voor meer informatie</string>
     <!-- Displayed when viewing a post that has failed to send -->
-    <string name="StoryViewerPageFragment__send_failed">Uploaden is mislukt Tik om opnieuw te proberen</string>
+    <string name="StoryViewerPageFragment__send_failed">Verzenden is mislukt. Tik om opnieuw te proberen</string>
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
     <string name="StoryViewerPageFragment__reply_to_group">Naar de groep reageren</string>
     <!-- Displayed when a story has no views -->
@@ -5636,7 +5648,7 @@
     <!-- Error message shown when a failure occurs during story send -->
     <string name="StoryDialogs__story_could_not_be_sent">Je verhaal kan niet worden geüpload. Ga na dat je apparaat met het internet is verbonden en probeer het opnieuw.</string>
     <!-- Error message dialog button to resend a previously failed story send -->
-    <string name="StoryDialogs__send">Uploaden</string>
+    <string name="StoryDialogs__send">Versturen</string>
     <!-- Action button for turning off stories when stories are present on the device -->
     <string name="StoryDialogs__turn_off_and_delete">Uitschakelen en verwijderen</string>
     <!-- Privacy Settings toggle title for stories -->
@@ -5695,7 +5707,7 @@
     <!-- Toasted when the user externally shares to a text story successfully -->
     <string name="TextStoryPostCreationFragment__sent_story">Verhaal is geüpload</string>
     <!-- Toasted when the user external share to a text story fails -->
-    <string name="TextStoryPostCreationFragment__failed_to_send_story">Verhaal uploaden is mislukt</string>
+    <string name="TextStoryPostCreationFragment__failed_to_send_story">Verhaal verzenden is mislukt</string>
     <!-- Displayed in a dialog to let the user select a given users story -->
     <string name="StoryDialogs__view_story">Verhaal weergeven</string>
     <!-- Displayed in a dialog to let the user select a given users profile photo -->
@@ -6652,6 +6664,46 @@
     <string name="FindByActivity__qr_scan_button">QR-code scannen</string>
     <!-- Content of a dialog indicating that we could not perform the requested action because we encountered a network error. -->
     <string name="FindByActivity__network_error_dialog">Er is een netwerkfout opgetreden. Probeer het later opnieuw.</string>
+
+    <!-- Title for an alert letting someone know that one of their linked devices is inactive. -->
+    <string name="LinkedDeviceInactiveMegaphone_title">Inactive linked device</string>
+    <!-- Body for an alert letting someone know that one of their linked devices is inactive. The string placeholder is the name of the device, and the number placeholder is the number of days before device is unlinked. -->
+    <plurals name="LinkedDeviceInactiveMegaphone_body">
+        <item quantity="one">To keep \"%1$s\" linked, open Signal on that device within %2$d day.</item>
+        <item quantity="other">To keep \"%1$s\" linked, open Signal on that device within %2$d days.</item>
+    </plurals>
+    <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the user will opt out of all future alerts. -->
+    <string name="LinkedDeviceInactiveMegaphone_dont_remind_button_label">Don\'t remind me</string>
+    <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the alert will be dismissed. -->
+    <string name="LinkedDeviceInactiveMegaphone_got_it_button_label">Got it</string>
+
+    <!-- NicknameFragment -->
+    <!-- Title displayed at the top of the screen -->
+    <string name="NicknameActivity__nickname">Nickname</string>
+    <!-- Subtitle displayed under title -->
+    <string name="NicknameActivity__nicknames_amp_notes">Nicknames &amp; notes are stored using Signal\'s end-to-end encrypted storage service. They are only visible to you.</string>
+    <!-- Field label for given name -->
+    <string name="NicknameActivity__first_name">First name</string>
+    <!-- Content description for first name clear button -->
+    <string name="NicknameActivity__clear_first_name">Clear first name</string>
+    <!-- Field label for family name -->
+    <string name="NicknameActivity__last_name">Last name</string>
+    <!-- Content description for last name clear button -->
+    <string name="NicknameActivity__clear_last_name">Clear last name</string>
+    <!-- Field label for note -->
+    <string name="NicknameActivity__note">Note</string>
+    <!-- Button label to save -->
+    <string name="NicknameActivity__save">Save</string>
+    <!-- Dialog title for note and name deletion -->
+    <string name="NicknameActivity__delete_nickname">Delete nickname?</string>
+    <!-- Dialog message for note and name deletion -->
+    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">This will permanently delete this nickname and note.</string>
+
+    <!-- ViewNoteBottomSheetDialogFragment -->
+    <!-- Sheet title -->
+    <string name="ViewNoteSheet__note">Note</string>
+    <!-- Content description for opening the note editor -->
+    <string name="ViewNoteSheet__edit_note">Edit note</string>
 
     <!-- EOF -->
 </resources>

@@ -45,8 +45,6 @@
     <string name="ApplicationPreferencesActivity_disable_passphrase">要停用密碼嗎？</string>
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">這將永久解鎖 Signal 及訊息通知。</string>
     <string name="ApplicationPreferencesActivity_disable">停用</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">要停用 Signal 訊息及通話嗎？</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">停用 Signal 訊息及通話將從伺服器取消註冊。日後若要再次使用，您將需要重新註冊您的電話號碼。</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">連線到伺服器時發生錯誤！</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">註冊鎖定須要 PIN 碼。若要停用 PIN 碼，請先停用註冊鎖定。</string>
     <string name="ApplicationPreferencesActivity_pin_created">PIN 碼已建立。</string>
@@ -1914,6 +1912,8 @@
     <string name="AboutSheet__about">關於</string>
     <!-- Text displayed in title for you -->
     <string name="AboutSheet__you">您</string>
+    <!-- Displays the name of a contact. The first placeholder is the name the user has assigned to that contact, the second name is the name the contact assigned to themselves -->
+    <string name="AboutSheet__user_set_display_name_and_profile_name">%1$s (%2$s)</string>
 
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call">
@@ -2831,6 +2831,18 @@
     <string name="EditProfileFragment__group_name">群組名稱</string>
     <string name="EditProfileFragment__group_description">群組描述</string>
   <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
+    <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_title">Update Signal</string>
+    <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_body">This version of Signal has expired. Update now to continue using Signal.</string>
+    <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
+    <string name="EditProfileFragment_deprecated_dialog_update_button">Update</string>
+    <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_title">Device not registered</string>
+    <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_body">This device is no longer registered. Re-register to make changes to your account.</string>
+    <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
+    <string name="EditProfileFragment_unregistered_dialog_reregister_button">Re-register</string>
 
     <!-- EditProfileNameFragment -->
     <string name="EditProfileNameFragment_your_name">您的名稱</string>
@@ -3564,8 +3576,6 @@
     <string name="verify_display_fragment_context_menu__compare_with_clipboard">與剪貼簿比對</string>
 
     <!-- reminder_header -->
-    <string name="reminder_header_push_title">啟用 Signal 訊息與通話</string>
-    <string name="reminder_header_push_text">讓您的通訊體驗更上一層樓。</string>
     <string name="reminder_header_service_outage_text">Signal 出現技術問題。我們正努力搶修，儘快回復服務。</string>
     <string name="reminder_header_progress">%1$d%%</string>
     <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user\'s contacts -->
@@ -3855,6 +3865,8 @@
     <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">您需要用到您的舊裝置。</string>
     <string name="TransferOrRestoreFragment__restore_from_backup">從備份還原</string>
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">從本機備份還原您的訊息。若您現在不進行還原，之後將不能還原。</string>
+    <!-- Button label for more options -->
+    <string name="TransferOrRestoreFragment__more_options">More options</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
     <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">在您舊的 Android 電話上開啟 Signal</string>
@@ -6507,6 +6519,45 @@
     <string name="FindByActivity__qr_scan_button">掃描二維碼</string>
     <!-- Content of a dialog indicating that we could not perform the requested action because we encountered a network error. -->
     <string name="FindByActivity__network_error_dialog">遇到網絡問題。請稍後再試。</string>
+
+    <!-- Title for an alert letting someone know that one of their linked devices is inactive. -->
+    <string name="LinkedDeviceInactiveMegaphone_title">Inactive linked device</string>
+    <!-- Body for an alert letting someone know that one of their linked devices is inactive. The string placeholder is the name of the device, and the number placeholder is the number of days before device is unlinked. -->
+    <plurals name="LinkedDeviceInactiveMegaphone_body">
+        <item quantity="other">To keep \"%1$s\" linked, open Signal on that device within %2$d days.</item>
+    </plurals>
+    <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the user will opt out of all future alerts. -->
+    <string name="LinkedDeviceInactiveMegaphone_dont_remind_button_label">Don\'t remind me</string>
+    <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the alert will be dismissed. -->
+    <string name="LinkedDeviceInactiveMegaphone_got_it_button_label">Got it</string>
+
+    <!-- NicknameFragment -->
+    <!-- Title displayed at the top of the screen -->
+    <string name="NicknameActivity__nickname">Nickname</string>
+    <!-- Subtitle displayed under title -->
+    <string name="NicknameActivity__nicknames_amp_notes">Nicknames &amp; notes are stored using Signal\'s end-to-end encrypted storage service. They are only visible to you.</string>
+    <!-- Field label for given name -->
+    <string name="NicknameActivity__first_name">First name</string>
+    <!-- Content description for first name clear button -->
+    <string name="NicknameActivity__clear_first_name">Clear first name</string>
+    <!-- Field label for family name -->
+    <string name="NicknameActivity__last_name">Last name</string>
+    <!-- Content description for last name clear button -->
+    <string name="NicknameActivity__clear_last_name">Clear last name</string>
+    <!-- Field label for note -->
+    <string name="NicknameActivity__note">Note</string>
+    <!-- Button label to save -->
+    <string name="NicknameActivity__save">Save</string>
+    <!-- Dialog title for note and name deletion -->
+    <string name="NicknameActivity__delete_nickname">Delete nickname?</string>
+    <!-- Dialog message for note and name deletion -->
+    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">This will permanently delete this nickname and note.</string>
+
+    <!-- ViewNoteBottomSheetDialogFragment -->
+    <!-- Sheet title -->
+    <string name="ViewNoteSheet__note">Note</string>
+    <!-- Content description for opening the note editor -->
+    <string name="ViewNoteSheet__edit_note">Edit note</string>
 
     <!-- EOF -->
 </resources>
