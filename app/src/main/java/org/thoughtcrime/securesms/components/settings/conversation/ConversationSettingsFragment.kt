@@ -476,9 +476,9 @@ class ConversationSettingsFragment : DSLSettingsFragment(
 
       val summary = DSLSettingsText.from(formatDisappearingMessagesLifespan(state.disappearingMessagesLifespan))
       val icon = if (state.disappearingMessagesLifespan <= 0 || state.recipient.isBlocked) {
-        R.drawable.ic_update_timer_disabled_16
+        R.drawable.symbol_timer_slash_24
       } else {
-        R.drawable.ic_update_timer_16
+        R.drawable.symbol_timer_24
       }
 
       var enabled = !state.recipient.isBlocked
@@ -521,7 +521,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
       if (!state.recipient.isReleaseNotes) {
         clickPref(
           title = DSLSettingsText.from(R.string.preferences__chat_color_and_wallpaper),
-          icon = DSLSettingsIcon.from(R.drawable.ic_color_24),
+          icon = DSLSettingsIcon.from(R.drawable.symbol_color_24),
           onClick = {
             startActivity(ChatWallpaperActivity.createIntent(requireContext(), state.recipient.id))
           }
@@ -531,7 +531,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
       if (!state.recipient.isSelf) {
         clickPref(
           title = DSLSettingsText.from(R.string.ConversationSettingsFragment__sounds_and_notifications),
-          icon = DSLSettingsIcon.from(R.drawable.ic_speaker_24),
+          icon = DSLSettingsIcon.from(R.drawable.symbol_speaker_24),
           isEnabled = !state.isDeprecatedOrUnregistered,
           onClick = {
             val action = ConversationSettingsFragmentDirections.actionConversationSettingsFragmentToSoundsAndNotificationsSettingsFragment(state.recipient.id)
@@ -576,7 +576,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
         if (!state.recipient.isReleaseNotes && !state.recipient.isSelf) {
           clickPref(
             title = DSLSettingsText.from(R.string.ConversationSettingsFragment__view_safety_number),
-            icon = DSLSettingsIcon.from(R.drawable.ic_safety_number_24),
+            icon = DSLSettingsIcon.from(R.drawable.symbol_safety_number_24),
             isEnabled = !state.isDeprecatedOrUnregistered,
             onClick = {
               VerifyIdentityActivity.startOrShowExchangeMessagesDialog(requireActivity(), recipientState.identityRecord)
