@@ -377,10 +377,14 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
     selfieFlash = requireView().findViewById(R.id.camera_selfie_flash);
 
     captureButton.setOnClickListener(v -> {
-      captureButton.setEnabled(false);
-      flipButton.setEnabled(false);
-      flashButton.setEnabled(false);
-      onCaptureClicked();
+      if (cameraController.isInitialized()) {
+        captureButton.setEnabled(false);
+        flipButton.setEnabled(false);
+        flashButton.setEnabled(false);
+        onCaptureClicked();
+      } else {
+        Log.i(TAG, "Camera capture button clicked but the camera controller is not yet initialized.");
+      }
     });
 
     previewView.setScaleType(PREVIEW_SCALE_TYPE);

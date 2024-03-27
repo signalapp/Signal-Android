@@ -27,6 +27,8 @@ import java.util.concurrent.Executor
 
 interface CameraXController {
 
+  fun isInitialized(): Boolean
+
   fun initializeAndBind(context: Context, lifecycleOwner: LifecycleOwner)
 
   @RequiresPermission(Manifest.permission.CAMERA)

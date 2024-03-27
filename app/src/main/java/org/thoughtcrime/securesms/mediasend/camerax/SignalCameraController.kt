@@ -110,6 +110,10 @@ class SignalCameraController(
   private lateinit var extensionsManager: ExtensionsManager
   private lateinit var cameraProperty: Camera
 
+  override fun isInitialized(): Boolean {
+    return this::cameraProvider.isInitialized && this::extensionsManager.isInitialized
+  }
+
   override fun initializeAndBind(context: Context, lifecycleOwner: LifecycleOwner) {
     bindToLifecycle(lifecycleOwner) { Log.d(TAG, "Camera initialization and binding complete.") }
   }
@@ -117,7 +121,7 @@ class SignalCameraController(
   @RequiresPermission(Manifest.permission.CAMERA)
   override fun bindToLifecycle(lifecycleOwner: LifecycleOwner, onCameraBoundListener: Runnable) {
     ThreadUtil.assertMainThread()
-    if (this::cameraProvider.isInitialized && this::extensionsManager.isInitialized) {
+    if (isInitialized()) {
       bindToLifecycleInternal()
       onCameraBoundListener.run()
     } else if (!listenerAdded) {

@@ -31,6 +31,10 @@ import java.util.concurrent.Executor
 class PlatformCameraController(context: Context) : CameraXController {
   val delegate = LifecycleCameraController(context)
 
+  override fun isInitialized(): Boolean {
+    return delegate.initializationFuture.isDone
+  }
+
   override fun initializeAndBind(context: Context, lifecycleOwner: LifecycleOwner) {
     delegate.bindToLifecycle(lifecycleOwner)
     delegate.setCameraSelector(CameraXUtil.toCameraSelector(TextSecurePreferences.getDirectCaptureCameraId(context)))
