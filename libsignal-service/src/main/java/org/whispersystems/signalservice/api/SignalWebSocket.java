@@ -47,6 +47,7 @@ public final class SignalWebSocket {
   private       CompositeDisposable                       unidentifiedWebSocketStateDisposable;
 
   private boolean canConnect;
+  private boolean keepAliveUnidentified;
 
   public SignalWebSocket(WebSocketFactory webSocketFactory) {
     this.webSocketFactory                     = webSocketFactory;
@@ -75,14 +76,24 @@ public final class SignalWebSocket {
   /**
    * Indicate that WebSocketConnections can now be made and attempt to connect both of them.
    */
-  public synchronized void connect() {
+  public synchronized void connect(boolean includeUnidentified) {
     canConnect = true;
+    keepAliveUnidentified = includeUnidentified;
     try {
       getWebSocket();
-      getUnidentifiedWebSocket();
+      if (includeUnidentified) {
+        getUnidentifiedWebSocket();
+      }
     } catch (WebSocketUnavailableException e) {
       throw new AssertionError(e);
     }
+  }
+
+  public synchronized void setKeepAliveUnidentified(boolean keepAlive) {
+    if (unidentifiedWebSocket != null) {
+      unidentifiedWebSocket.setKeepAlive(keepAlive);
+    }
+    keepAliveUnidentified = keepAlive;
   }
 
   /**
@@ -183,7 +194,11 @@ public final class SignalWebSocket {
     if (canConnect) {
       try {
         getWebSocket().sendKeepAlive();
-        getUnidentifiedWebSocket().sendKeepAlive();
+        // Avoid creating the unidentified socket only for sending keep-alives,
+        // unless it's already open.
+        if (keepAliveUnidentified && unidentifiedWebSocket != null && !unidentifiedWebSocket.isDead()) {
+          getUnidentifiedWebSocket().sendKeepAlive();
+        }
       } catch (WebSocketUnavailableException e) {
         throw new AssertionError(e);
       }

@@ -76,6 +76,8 @@ public class WebSocketConnection extends WebSocketListener {
 
   private WebSocket client;
 
+  private boolean keepAlive;
+
   public WebSocketConnection(String name,
                              SignalServiceConfiguration serviceConfiguration,
                              Optional<CredentialsProvider> credentialsProvider,
@@ -101,6 +103,7 @@ public class WebSocketConnection extends WebSocketListener {
     this.dns                 = serviceConfiguration.getDns();
     this.signalProxy         = serviceConfiguration.getSignalProxy();
     this.healthMonitor       = healthMonitor;
+    this.keepAlive           = true;
     this.webSocketState      = BehaviorSubject.createDefault(WebSocketConnectionState.DISCONNECTED);
     this.allowStories        = allowStories;
     this.serviceUrls         = serviceConfiguration.getSignalServiceUrls();
@@ -110,6 +113,10 @@ public class WebSocketConnection extends WebSocketListener {
 
   public String getName() {
     return name;
+  }
+
+  public void setKeepAlive(boolean keepAlive) {
+    this.keepAlive = keepAlive;
   }
 
   private Pair<SignalServiceUrl, String> getConnectionInfo() {
@@ -266,7 +273,7 @@ public class WebSocketConnection extends WebSocketListener {
   }
 
   public synchronized void sendKeepAlive() throws IOException {
-    if (client != null) {
+    if (client != null && keepAlive) {
       log( "Sending keep alive...");
       long id = System.currentTimeMillis();
       byte[] message = new WebSocketMessage.Builder()
@@ -311,7 +318,7 @@ public class WebSocketConnection extends WebSocketListener {
             healthMonitor.onMessageError(message.response.status, credentialsProvider.isPresent());
           }
         } else if (keepAlives.remove(message.response.id)) {
-          healthMonitor.onKeepAliveResponse(message.response.id, credentialsProvider.isPresent());
+          healthMonitor.onKeepAliveResponse(message.response.id, credentialsProvider.isPresent(), keepAlive);
         }
       }
 
@@ -333,7 +340,9 @@ public class WebSocketConnection extends WebSocketListener {
 
   @Override
   public synchronized void onFailure(WebSocket webSocket, Throwable t, Response response) {
-    warn("onFailure()", t);
+    if (keepAlive || response != null) {
+      warn("onFailure()", t);
+    }
 
     if (response != null && (response.code() == 401 || response.code() == 403)) {
       webSocketState.onNext(WebSocketConnectionState.AUTHENTICATION_FAILED);

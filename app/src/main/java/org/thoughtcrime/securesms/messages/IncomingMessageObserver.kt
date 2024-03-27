@@ -172,6 +172,13 @@ class IncomingMessageObserver(private val context: Application) {
     }
   }
 
+  private fun shouldKeepAliveUnidentified(): Boolean {
+    val timeIdle = lock.withLock {
+      if (appVisible) 0 else System.currentTimeMillis() - lastInteractionTime
+    }
+    return timeIdle <= websocketReadTimeout
+  }
+
   private fun isConnectionNecessary(): Boolean {
     val timeIdle: Long
     val keepAliveEntries: Set<Pair<String, Long>>
@@ -380,7 +387,7 @@ class IncomingMessageObserver(private val context: Application) {
           decryptionDrained = false
         }
 
-        signalWebSocket.connect()
+        signalWebSocket.connect(shouldKeepAliveUnidentified())
         try {
           while (isConnectionNecessary()) {
             try {
@@ -431,11 +438,12 @@ class IncomingMessageObserver(private val context: Application) {
               }
             } catch (e: WebSocketUnavailableException) {
               Log.i(TAG, "Pipe unexpectedly unavailable, connecting")
-              signalWebSocket.connect()
+              signalWebSocket.connect(shouldKeepAliveUnidentified())
             } catch (e: TimeoutException) {
               Log.w(TAG, "Application level read timeout...")
               attempts = 0
             }
+            signalWebSocket.setKeepAliveUnidentified(shouldKeepAliveUnidentified())
           }
 
           if (!appVisible) {
