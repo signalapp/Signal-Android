@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.mediasend.v2
 import android.animation.ValueAnimator
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.graphics.Color
 import android.os.Bundle
 import android.view.KeyEvent
@@ -43,6 +44,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.Debouncer
+import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.FullscreenHelper
 import org.thoughtcrime.securesms.util.WindowUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
@@ -89,6 +91,10 @@ class MediaSelectionActivity :
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
     setContentView(R.layout.media_selection_activity)
+
+    if (FeatureFlags.customCameraXController()) {
+      requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+    }
 
     FullscreenHelper.showSystemUI(window)
     WindowUtil.setNavigationBarColor(this, 0x01000000)

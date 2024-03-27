@@ -21,6 +21,7 @@ import androidx.camera.core.CameraSelector
 import androidx.camera.core.DisplayOrientedMeteringPointFactory
 import androidx.camera.core.FocusMeteringAction
 import androidx.camera.core.FocusMeteringResult
+import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.Preview
 import androidx.camera.core.UseCase
@@ -52,6 +53,7 @@ import com.google.common.util.concurrent.Futures
 import com.google.common.util.concurrent.ListenableFuture
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.mediasend.camerax.SignalCameraController.InitializationListener
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.visible
@@ -69,7 +71,7 @@ class SignalCameraController(
   private val lifecycleOwner: LifecycleOwner,
   private val previewView: PreviewView,
   private val focusIndicator: View
-) {
+) : CameraXController {
   companion object {
     val TAG = Log.tag(SignalCameraController::class.java)
 
@@ -108,8 +110,12 @@ class SignalCameraController(
   private lateinit var extensionsManager: ExtensionsManager
   private lateinit var cameraProperty: Camera
 
+  override fun initializeAndBind(context: Context, lifecycleOwner: LifecycleOwner) {
+    bindToLifecycle(lifecycleOwner) { Log.d(TAG, "Camera initialization and binding complete.") }
+  }
+
   @RequiresPermission(Manifest.permission.CAMERA)
-  fun bindToLifecycle(onCameraBoundListener: Runnable) {
+  override fun bindToLifecycle(lifecycleOwner: LifecycleOwner, onCameraBoundListener: Runnable) {
     ThreadUtil.assertMainThread()
     if (this::cameraProvider.isInitialized && this::extensionsManager.isInitialized) {
       bindToLifecycleInternal()
@@ -131,13 +137,13 @@ class SignalCameraController(
   }
 
   @MainThread
-  fun unbind() {
+  override fun unbind() {
     ThreadUtil.assertMainThread()
     cameraProvider.unbindAll()
   }
 
   @MainThread
-  private fun bindToLifecycleInternal() {
+  fun bindToLifecycleInternal() {
     ThreadUtil.assertMainThread()
     try {
       if (!this::cameraProvider.isInitialized || !this::extensionsManager.isInitialized) {
@@ -170,10 +176,16 @@ class SignalCameraController(
   }
 
   @MainThread
-  fun addUseCase(useCase: UseCase) {
+  override fun setImageAnalysisAnalyzer(executor: Executor, analyzer: ImageAnalysis.Analyzer) {
     ThreadUtil.assertMainThread()
+    val imageAnalysis = ImageAnalysis.Builder()
+      .setResolutionSelector(ResolutionSelector.Builder().setResolutionStrategy(ResolutionStrategy.HIGHEST_AVAILABLE_STRATEGY).build())
+      .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
+      .build()
 
-    customUseCases += useCase
+    imageAnalysis.setAnalyzer(executor, analyzer)
+
+    customUseCases += imageAnalysis
 
     if (isRecording()) {
       stopRecording()
@@ -183,7 +195,7 @@ class SignalCameraController(
   }
 
   @MainThread
-  fun takePicture(executor: Executor, callback: ImageCapture.OnImageCapturedCallback) {
+  override fun takePicture(executor: Executor, callback: ImageCapture.OnImageCapturedCallback) {
     ThreadUtil.assertMainThread()
     assertImageEnabled()
     imageCaptureUseCase.takePicture(executor, callback)
@@ -191,7 +203,7 @@ class SignalCameraController(
 
   @RequiresApi(26)
   @MainThread
-  fun startRecording(outputOptions: FileDescriptorOutputOptions, audioConfig: AudioConfig, videoSavedListener: Consumer<VideoRecordEvent>): Recording {
+  override fun startRecording(outputOptions: FileDescriptorOutputOptions, audioConfig: AudioConfig, executor: Executor, videoSavedListener: Consumer<VideoRecordEvent>): Recording {
     ThreadUtil.assertMainThread()
     assertVideoEnabled()
 
@@ -216,7 +228,7 @@ class SignalCameraController(
   }
 
   @MainThread
-  fun setEnabledUseCases(useCaseFlags: Int) {
+  override fun setEnabledUseCases(useCaseFlags: Int) {
     ThreadUtil.assertMainThread()
     if (enabledUseCases == useCaseFlags) {
       return
@@ -231,13 +243,13 @@ class SignalCameraController(
   }
 
   @MainThread
-  fun getImageCaptureFlashMode(): Int {
+  override fun getImageCaptureFlashMode(): Int {
     ThreadUtil.assertMainThread()
     return imageCaptureUseCase.flashMode
   }
 
   @MainThread
-  fun setPreviewTargetSize(size: Size) {
+  override fun setPreviewTargetSize(size: Size) {
     ThreadUtil.assertMainThread()
     if (size == previewTargetSize || previewTargetSize?.equals(size) == true) {
       return
@@ -253,7 +265,7 @@ class SignalCameraController(
   }
 
   @MainThread
-  fun setImageCaptureTargetSize(size: Size) {
+  override fun setImageCaptureTargetSize(size: Size) {
     ThreadUtil.assertMainThread()
     if (size == imageCaptureTargetSize || imageCaptureTargetSize?.equals(size) == true) {
       return
@@ -267,7 +279,7 @@ class SignalCameraController(
   }
 
   @MainThread
-  fun setImageRotation(rotation: Int) {
+  override fun setImageRotation(rotation: Int) {
     ThreadUtil.assertMainThread()
     val newRotation = UseCase.snapToSurfaceRotation(rotation.coerceIn(0, 359))
 
@@ -286,25 +298,25 @@ class SignalCameraController(
   }
 
   @MainThread
-  fun setImageCaptureFlashMode(flashMode: Int) {
+  override fun setImageCaptureFlashMode(flashMode: Int) {
     ThreadUtil.assertMainThread()
     imageCaptureUseCase.flashMode = flashMode
   }
 
   @MainThread
-  fun setZoomRatio(ratio: Float): ListenableFuture<Void> {
+  override fun setZoomRatio(ratio: Float): ListenableFuture<Void> {
     ThreadUtil.assertMainThread()
     return cameraProperty.cameraControl.setZoomRatio(ratio)
   }
 
   @MainThread
-  fun getZoomState(): LiveData<ZoomState> {
+  override fun getZoomState(): LiveData<ZoomState> {
     ThreadUtil.assertMainThread()
     return cameraProperty.cameraInfo.zoomState
   }
 
   @MainThread
-  fun setCameraSelector(selector: CameraSelector) {
+  override fun setCameraSelector(selector: CameraSelector) {
     ThreadUtil.assertMainThread()
     if (selector == cameraSelector) {
       return
@@ -320,21 +332,20 @@ class SignalCameraController(
   }
 
   @MainThread
-  fun getCameraSelector(): CameraSelector {
+  override fun getCameraSelector(): CameraSelector {
     ThreadUtil.assertMainThread()
     return cameraSelector
   }
 
   @MainThread
-  fun hasCamera(selectedCamera: CameraSelector): Boolean {
+  override fun hasCamera(selectedCamera: CameraSelector): Boolean {
     ThreadUtil.assertMainThread()
     return cameraProvider.hasCamera(selectedCamera)
   }
 
-  @MainThread
-  fun addInitializationCompletedListener(listener: InitializationListener) {
+  override fun addInitializationCompletedListener(executor: Executor, onComplete: () -> Unit) {
     ThreadUtil.assertMainThread()
-    initializationCompleteListeners.add(listener)
+    initializationCompleteListeners.add(InitializationListener { onComplete() })
   }
 
   @MainThread
@@ -519,7 +530,7 @@ class SignalCameraController(
     override fun onScaleEnd(detector: ScaleGestureDetector) = Unit
   }
 
-  interface InitializationListener {
+  fun interface InitializationListener {
     fun onInitialized(cameraProvider: ProcessCameraProvider)
   }
 }
