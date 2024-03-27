@@ -51,6 +51,7 @@ import org.signal.core.ui.DropdownMenus
 import org.signal.core.ui.Previews
 import org.signal.core.ui.Scaffolds
 import org.signal.core.ui.TextFields
+import org.signal.core.ui.theme.SignalTheme
 import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
@@ -88,11 +89,13 @@ class NicknameActivity : PassphraseRequiredActivity(), NicknameContentCallback {
         }
       }
 
-      NicknameContent(
-        callback = remember { this },
-        state = state,
-        focusNoteFirst = args.focusNoteFirst
-      )
+      SignalTheme {
+        NicknameContent(
+          callback = remember { this },
+          state = state,
+          focusNoteFirst = args.focusNoteFirst
+        )
+      }
     }
   }
 
