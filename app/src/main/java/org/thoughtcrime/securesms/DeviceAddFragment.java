@@ -72,8 +72,9 @@ public class DeviceAddFragment extends LoggingFragment {
     return container;
   }
 
-  @Override
-  public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+  @Override public void onStart() {
+    super.onStart();
+
     MenuItem switchCamera = ((DeviceActivity) requireActivity()).getCameraSwitchItem();
 
     if (switchCamera != null) {
@@ -82,6 +83,17 @@ public class DeviceAddFragment extends LoggingFragment {
         scannerView.toggleCamera();
         return true;
       });
+    }
+  }
+
+  @Override public void onStop() {
+    super.onStop();
+
+    MenuItem switchCamera = ((DeviceActivity) requireActivity()).getCameraSwitchItem();
+
+    if (switchCamera != null) {
+      switchCamera.setVisible(false);
+      switchCamera.setOnMenuItemClickListener(null);
     }
   }
 
