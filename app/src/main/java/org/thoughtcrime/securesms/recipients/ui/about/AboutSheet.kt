@@ -96,6 +96,8 @@ class AboutSheet : ComposeBottomSheetDialogFragment() {
           hasAvatar = recipient.get().profileAvatarFileDetails.hasFile(),
           displayName = recipient.get().getDisplayName(requireContext()),
           shortName = recipient.get().getShortDisplayName(requireContext()),
+          profileName = recipient.get().profileName.toString(),
+          hasUserSetDisplayName = recipient.get().hasAUserSetDisplayName(requireContext()),
           about = recipient.get().about,
           verified = verified,
           recipientForAvatar = recipient.get(),
@@ -135,6 +137,8 @@ private data class AboutModel(
   val isSelf: Boolean,
   val displayName: String,
   val shortName: String,
+  val profileName: String,
+  val hasUserSetDisplayName: Boolean,
   val about: String?,
   val verified: Boolean,
   val hasAvatar: Boolean,
@@ -189,7 +193,11 @@ private fun Content(
 
     AboutRow(
       startIcon = painterResource(R.drawable.symbol_person_24),
-      text = model.displayName,
+      text = if (!model.hasUserSetDisplayName) {
+        model.displayName
+      } else {
+        stringResource(id = R.string.AboutSheet__user_set_display_name_and_profile_name, model.displayName, model.profileName)
+      },
       modifier = Modifier.fillMaxWidth()
     )
 
@@ -370,6 +378,8 @@ private fun ContentPreviewDefault() {
           hasAvatar = true,
           displayName = "Peter Parker",
           shortName = "Peter",
+          profileName = "Peter Parker",
+          hasUserSetDisplayName = false,
           about = "Photographer for the Daily Bugle.",
           verified = true,
           recipientForAvatar = Recipient.UNKNOWN,
@@ -378,6 +388,37 @@ private fun ContentPreviewDefault() {
           systemContact = true,
           groupsInCommon = 0,
           note = "GET ME SPIDERMAN BEFORE I BLOW A DANG GASKET"
+        ),
+        onClickSignalConnections = {},
+        onAvatarClicked = {},
+        onNoteClicked = {}
+      )
+    }
+  }
+}
+
+@Preview(name = "Light Theme", group = "content", uiMode = Configuration.UI_MODE_NIGHT_NO)
+@Preview(name = "Dark Theme", group = "content", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun ContentPreviewWithUserSetDisplayName() {
+  SignalTheme {
+    Surface {
+      Content(
+        model = AboutModel(
+          isSelf = false,
+          hasAvatar = true,
+          displayName = "Amazing Spider-man",
+          shortName = "Spiderman",
+          profileName = "Peter Parker",
+          hasUserSetDisplayName = true,
+          about = "Photographer for the Daily Bugle.",
+          verified = true,
+          recipientForAvatar = Recipient.UNKNOWN,
+          formattedE164 = "(123) 456-7890",
+          profileSharing = true,
+          systemContact = true,
+          groupsInCommon = 0,
+          note = "Weird Things Happen To Me All The Time."
         ),
         onClickSignalConnections = {},
         onAvatarClicked = {},
@@ -399,6 +440,8 @@ private fun ContentPreviewInContactsNotProfileSharing() {
           hasAvatar = true,
           displayName = "Peter Parker",
           shortName = "Peter",
+          profileName = "Peter Parker",
+          hasUserSetDisplayName = false,
           about = "Photographer for the Daily Bugle.",
           verified = false,
           recipientForAvatar = Recipient.UNKNOWN,
@@ -428,6 +471,8 @@ private fun ContentPreviewGroupsInCommonNoE164() {
           hasAvatar = true,
           displayName = "Peter Parker",
           shortName = "Peter",
+          profileName = "Peter Parker",
+          hasUserSetDisplayName = false,
           about = "Photographer for the Daily Bugle.",
           verified = false,
           recipientForAvatar = Recipient.UNKNOWN,
@@ -457,6 +502,8 @@ private fun ContentPreviewNotAConnection() {
           hasAvatar = true,
           displayName = "Peter Parker",
           shortName = "Peter",
+          profileName = "Peter Parker",
+          hasUserSetDisplayName = false,
           about = "Photographer for the Daily Bugle.",
           verified = false,
           recipientForAvatar = Recipient.UNKNOWN,
