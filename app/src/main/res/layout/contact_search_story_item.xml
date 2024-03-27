@@ -94,7 +94,6 @@
         android:textAppearance="@style/TextAppearance.Signal.Body2"
         android:textColor="@color/signal_text_secondary"
         android:textDirection="ltr"
-        app:emoji_forceCustom="true"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/name"

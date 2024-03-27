@@ -94,6 +94,7 @@ dependencyResolutionManagement {
       library("androidx-profileinstaller", "androidx.profileinstaller:profileinstaller:1.2.2")
       library("androidx-asynclayoutinflater", "androidx.asynclayoutinflater:asynclayoutinflater:1.1.0-alpha01")
       library("androidx-asynclayoutinflater-appcompat", "androidx.asynclayoutinflater:asynclayoutinflater-appcompat:1.1.0-alpha01")
+      library("androidx-emoji2", "androidx.emoji2:emoji2:1.4.0")
 
       // Material
       library("material-material", "com.google.android.material:material:1.8.0")

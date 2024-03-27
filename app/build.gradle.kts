@@ -511,6 +511,7 @@ dependencies {
   implementation(libs.androidx.profileinstaller)
   implementation(libs.androidx.asynclayoutinflater)
   implementation(libs.androidx.asynclayoutinflater.appcompat)
+  implementation(libs.androidx.emoji2)
   implementation(libs.firebase.messaging) {
     exclude(group = "com.google.firebase", module = "firebase-core")
     exclude(group = "com.google.firebase", module = "firebase-analytics")
