@@ -207,11 +207,11 @@ private fun TypographyPreview() {
   SignalTheme(isDarkMode = false) {
     Column {
       Text(
-        text = "Headline Small",
+        text = "Headline Large",
         style = MaterialTheme.typography.headlineLarge
       )
       Text(
-        text = "Headline Small",
+        text = "Headline Medium",
         style = MaterialTheme.typography.headlineMedium
       )
       Text(
