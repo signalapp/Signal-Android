@@ -176,7 +176,7 @@ public final class Megaphones {
       throw new IllegalStateException("No linked device to show");
     }
 
-    long expiringAt   = device.lastActiveTimestamp + TimeUnit.DAYS.toMillis(30);
+    long expiringAt   = device.lastActiveTimestamp + FeatureFlags.linkedDeviceLifespan();
     long expiringIn   = Math.max(expiringAt - System.currentTimeMillis(), 0);
     int  expiringDays = (int) TimeUnit.MILLISECONDS.toDays(expiringIn);
 
