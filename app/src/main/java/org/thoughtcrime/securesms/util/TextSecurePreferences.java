@@ -127,7 +127,7 @@ public class TextSecurePreferences {
   public  static final String BACKUP_ENABLED              = "pref_backup_enabled";
   private static final String BACKUP_PASSPHRASE           = "pref_backup_passphrase";
   private static final String ENCRYPTED_BACKUP_PASSPHRASE = "pref_encrypted_backup_passphrase";
-  private static final String BACKUP_TIME                 = "pref_backup_next_time";
+  private static final String BACKUP_TIME                 = "pref_backup_next_time"; // milliseconds since 1970
 
   public static final String TRANSFER = "pref_transfer";
 
