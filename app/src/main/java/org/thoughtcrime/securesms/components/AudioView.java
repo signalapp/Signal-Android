@@ -202,6 +202,7 @@ public final class AudioView extends FrameLayout {
     } else if (showControls && audio.getTransferState() == AttachmentTable.TRANSFER_PROGRESS_STARTED) {
       controlToggle.displayQuick(progressAndPlay);
       seekBar.setEnabled(false);
+      showPlayButton();
       if (circleProgress != null) {
         circleProgress.setVisibility(View.VISIBLE);
         circleProgress.spin();
