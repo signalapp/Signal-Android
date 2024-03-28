@@ -154,7 +154,7 @@ public final class GroupLinkInviteFriendsBottomSheetDialogFragment extends Botto
   private void setBusy(boolean isBusy) {
     if (isBusy) {
       if (busyDialog == null) {
-        busyDialog = SimpleProgressDialog.showDelayed(requireContext());
+        busyDialog = SimpleProgressDialog.showDelayed(requireContext(), getViewLifecycleOwner());
       }
     } else {
       if (busyDialog != null) {

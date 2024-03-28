@@ -190,12 +190,11 @@ public final class PlacePickerActivity extends AppCompatActivity {
     String      address      = currentAddress != null && currentAddress.getAddressLine(0) != null ? currentAddress.getAddressLine(0) : "";
     AddressData addressData  = new AddressData(currentLocation.latitude, currentLocation.longitude, address);
 
-    SimpleProgressDialog.DismissibleDialog dismissibleDialog = SimpleProgressDialog.showDelayed(this);
-    MapView mapView = findViewById(R.id.map_view);
+    SimpleProgressDialog.DismissibleDialog dismissibleDialog = SimpleProgressDialog.showDelayed(this, this);
+    MapView                                mapView           = findViewById(R.id.map_view);
     SignalMapView.snapshot(currentLocation, mapView).addListener(new ListenableFuture.Listener<>() {
       @Override
       public void onSuccess(Bitmap result) {
-        dismissibleDialog.dismiss();
         byte[] blob = BitmapUtil.toByteArray(result);
         Uri uri = BlobProvider.getInstance()
                               .forData(blob)

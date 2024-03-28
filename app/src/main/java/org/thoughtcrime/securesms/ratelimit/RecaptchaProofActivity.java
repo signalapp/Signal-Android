@@ -89,7 +89,7 @@ public class RecaptchaProofActivity extends PassphraseRequiredActivity {
   }
 
   private void handleToken(@NonNull String token) {
-    SimpleProgressDialog.DismissibleDialog dialog = SimpleProgressDialog.showDelayed(this, 1000, 500);
+    SimpleProgressDialog.DismissibleDialog dialog = SimpleProgressDialog.showDelayed(this, this, 1000, 500);
     SimpleTask.run(() -> {
       String challenge = SignalStore.rateLimit().getChallenge();
       if (Util.isEmpty(challenge)) {
