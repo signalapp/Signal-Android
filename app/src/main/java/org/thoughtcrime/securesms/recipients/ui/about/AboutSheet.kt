@@ -428,7 +428,6 @@ private fun ContentPreviewWithUserSetDisplayName() {
   }
 }
 
-
 @Preview(name = "Light Theme", group = "content", uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Preview(name = "Dark Theme", group = "content", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable

@@ -506,11 +506,11 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
 
     if (state == WebRtcLocalRenderState.EXPANDED) {
       pictureInPictureExpansionHelper.beginExpandTransition();
-      smallLocalRender.setSelfPipMode(CallParticipantView.SelfPipMode.EXPANDED_SELF_PIP);
+      smallLocalRender.setSelfPipMode(CallParticipantView.SelfPipMode.EXPANDED_SELF_PIP, localCallParticipant.isMoreThanOneCameraAvailable());
       return;
     } else if ((state.isAnySmall() || state == WebRtcLocalRenderState.GONE) && pictureInPictureExpansionHelper.isExpandedOrExpanding()) {
       pictureInPictureExpansionHelper.beginShrinkTransition();
-      smallLocalRender.setSelfPipMode(pictureInPictureExpansionHelper.isMiniSize() ? CallParticipantView.SelfPipMode.MINI_SELF_PIP : CallParticipantView.SelfPipMode.NORMAL_SELF_PIP);
+      smallLocalRender.setSelfPipMode(pictureInPictureExpansionHelper.isMiniSize() ? CallParticipantView.SelfPipMode.MINI_SELF_PIP : CallParticipantView.SelfPipMode.NORMAL_SELF_PIP, localCallParticipant.isMoreThanOneCameraAvailable());
 
       if (state != WebRtcLocalRenderState.GONE) {
         return;
@@ -526,14 +526,14 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
         break;
       case SMALL_RECTANGLE:
         smallLocalRenderFrame.setVisibility(View.VISIBLE);
-        animatePipToLargeRectangle(displaySmallSelfPipInLandscape);
+        animatePipToLargeRectangle(displaySmallSelfPipInLandscape, localCallParticipant.isMoreThanOneCameraAvailable());
 
         largeLocalRender.attachBroadcastVideoSink(null);
         largeLocalRenderFrame.setVisibility(View.GONE);
         break;
       case SMALLER_RECTANGLE:
         smallLocalRenderFrame.setVisibility(View.VISIBLE);
-        animatePipToSmallRectangle();
+        animatePipToSmallRectangle(localCallParticipant.isMoreThanOneCameraAvailable());
 
         largeLocalRender.attachBroadcastVideoSink(null);
         largeLocalRenderFrame.setVisibility(View.GONE);
@@ -785,7 +785,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     }
   }
 
-  private void animatePipToLargeRectangle(boolean isLandscape) {
+  private void animatePipToLargeRectangle(boolean isLandscape, boolean moreThanOneCameraAvailable) {
     final Point dimens;
     if (isLandscape) {
       dimens = new Point(ViewUtil.dpToPx(PictureInPictureExpansionHelper.NORMAL_PIP_HEIGHT_DP),
@@ -802,10 +802,10 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
       }
     });
 
-    smallLocalRender.setSelfPipMode(CallParticipantView.SelfPipMode.NORMAL_SELF_PIP);
+    smallLocalRender.setSelfPipMode(CallParticipantView.SelfPipMode.NORMAL_SELF_PIP, moreThanOneCameraAvailable);
   }
 
-  private void animatePipToSmallRectangle() {
+  private void animatePipToSmallRectangle(boolean moreThanOneCameraAvailable) {
     pictureInPictureExpansionHelper.startDefaultSizeTransition(new Point(ViewUtil.dpToPx(PictureInPictureExpansionHelper.MINI_PIP_WIDTH_DP),
                                                                          ViewUtil.dpToPx(PictureInPictureExpansionHelper.MINI_PIP_HEIGHT_DP)),
                                                                new PictureInPictureExpansionHelper.Callback() {
@@ -815,7 +815,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
                                                                  }
                                                                });
 
-    smallLocalRender.setSelfPipMode(CallParticipantView.SelfPipMode.MINI_SELF_PIP);
+    smallLocalRender.setSelfPipMode(CallParticipantView.SelfPipMode.MINI_SELF_PIP, moreThanOneCameraAvailable);
   }
 
   private void toggleControls() {

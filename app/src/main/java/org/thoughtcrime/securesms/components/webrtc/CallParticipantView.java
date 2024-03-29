@@ -251,7 +251,7 @@ public class CallParticipantView extends ConstraintLayout {
    * Adjust UI elements for the various self PIP positions. If called after a {@link TransitionManager#beginDelayedTransition(ViewGroup, Transition)},
    * the changes to the UI elements will animate.
    */
-  void setSelfPipMode(@NonNull SelfPipMode selfPipMode) {
+  void setSelfPipMode(@NonNull SelfPipMode selfPipMode, boolean isMoreThanOneCameraAvailable) {
     Preconditions.checkArgument(selfPipMode != SelfPipMode.NOT_SELF_PIP);
 
     if (this.selfPipMode == selfPipMode) {
@@ -282,26 +282,30 @@ public class CallParticipantView extends ConstraintLayout {
             ViewUtil.dpToPx(6)
         );
 
-        constraints.setVisibility(R.id.call_participant_switch_camera, View.VISIBLE);
-        constraints.setMargin(
-            R.id.call_participant_switch_camera,
-            ConstraintSet.END,
-            ViewUtil.dpToPx(6)
-        );
-        constraints.setMargin(
-            R.id.call_participant_switch_camera,
-            ConstraintSet.BOTTOM,
-            ViewUtil.dpToPx(6)
-        );
-        constraints.constrainWidth(R.id.call_participant_switch_camera, ViewUtil.dpToPx(28));
-        constraints.constrainHeight(R.id.call_participant_switch_camera, ViewUtil.dpToPx(28));
+        if (isMoreThanOneCameraAvailable) {
+          constraints.setVisibility(R.id.call_participant_switch_camera, View.VISIBLE);
+          constraints.setMargin(
+              R.id.call_participant_switch_camera,
+              ConstraintSet.END,
+              ViewUtil.dpToPx(6)
+          );
+          constraints.setMargin(
+              R.id.call_participant_switch_camera,
+              ConstraintSet.BOTTOM,
+              ViewUtil.dpToPx(6)
+          );
+          constraints.constrainWidth(R.id.call_participant_switch_camera, ViewUtil.dpToPx(28));
+          constraints.constrainHeight(R.id.call_participant_switch_camera, ViewUtil.dpToPx(28));
 
-        ViewGroup.LayoutParams params = switchCameraIcon.getLayoutParams();
-        params.width = params.height = ViewUtil.dpToPx(16);
-        switchCameraIcon.setLayoutParams(params);
+          ViewGroup.LayoutParams params = switchCameraIcon.getLayoutParams();
+          params.width = params.height = ViewUtil.dpToPx(16);
+          switchCameraIcon.setLayoutParams(params);
 
-        switchCameraIconFrame.setClickable(false);
-        switchCameraIconFrame.setEnabled(false);
+          switchCameraIconFrame.setClickable(false);
+          switchCameraIconFrame.setEnabled(false);
+        } else {
+          constraints.setVisibility(R.id.call_participant_switch_camera, View.GONE);
+        }
       }
       case EXPANDED_SELF_PIP -> {
         constraints.connect(
@@ -321,26 +325,30 @@ public class CallParticipantView extends ConstraintLayout {
             ViewUtil.dpToPx(8)
         );
 
-        constraints.setVisibility(R.id.call_participant_switch_camera, View.VISIBLE);
-        constraints.setMargin(
-            R.id.call_participant_switch_camera,
-            ConstraintSet.END,
-            ViewUtil.dpToPx(8)
-        );
-        constraints.setMargin(
-            R.id.call_participant_switch_camera,
-            ConstraintSet.BOTTOM,
-            ViewUtil.dpToPx(8)
-        );
-        constraints.constrainWidth(R.id.call_participant_switch_camera, ViewUtil.dpToPx(48));
-        constraints.constrainHeight(R.id.call_participant_switch_camera, ViewUtil.dpToPx(48));
+        if (isMoreThanOneCameraAvailable) {
+          constraints.setVisibility(R.id.call_participant_switch_camera, View.VISIBLE);
+          constraints.setMargin(
+              R.id.call_participant_switch_camera,
+              ConstraintSet.END,
+              ViewUtil.dpToPx(8)
+          );
+          constraints.setMargin(
+              R.id.call_participant_switch_camera,
+              ConstraintSet.BOTTOM,
+              ViewUtil.dpToPx(8)
+          );
+          constraints.constrainWidth(R.id.call_participant_switch_camera, ViewUtil.dpToPx(48));
+          constraints.constrainHeight(R.id.call_participant_switch_camera, ViewUtil.dpToPx(48));
 
-        ViewGroup.LayoutParams params = switchCameraIcon.getLayoutParams();
-        params.width = params.height = ViewUtil.dpToPx(24);
-        switchCameraIcon.setLayoutParams(params);
+          ViewGroup.LayoutParams params = switchCameraIcon.getLayoutParams();
+          params.width = params.height = ViewUtil.dpToPx(24);
+          switchCameraIcon.setLayoutParams(params);
 
-        switchCameraIconFrame.setClickable(true);
-        switchCameraIconFrame.setEnabled(true);
+          switchCameraIconFrame.setClickable(true);
+          switchCameraIconFrame.setEnabled(true);
+        } else {
+          constraints.setVisibility(R.id.call_participant_switch_camera, View.GONE);
+        }
       }
       case MINI_SELF_PIP -> {
         constraints.connect(
