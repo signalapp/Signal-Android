@@ -198,24 +198,6 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
         }
       });
     }
-
-    view.addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
-      // Let's assume portrait for now, so 9:16
-      float aspectRatio = CameraFragment.getAspectRatioForOrientation(Configuration.ORIENTATION_PORTRAIT);
-      float width       = right - left;
-      float height      = Math.min((1f / aspectRatio) * width, bottom - top);
-
-      ViewGroup.LayoutParams params = cameraParent.getLayoutParams();
-
-      // If there's a mismatch...
-      if (params.height != (int) height) {
-        params.width  = (int) width;
-        params.height = (int) height;
-
-        cameraParent.setLayoutParams(params);
-        cameraController.setPreviewTargetSize(new Size((int) width, (int) height));
-      }
-    });
   }
 
   @Override
@@ -234,10 +216,7 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
   public void onResume() {
     super.onResume();
 
-    if (FeatureFlags.customCameraXController()) {
-      cameraController.bindToLifecycle(getViewLifecycleOwner(), () -> Log.d(TAG, "Camera init complete from onResume"));
-    }
-    
+    cameraController.bindToLifecycle(getViewLifecycleOwner(), () -> Log.d(TAG, "Camera init complete from onResume"));
     requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
   }
 
