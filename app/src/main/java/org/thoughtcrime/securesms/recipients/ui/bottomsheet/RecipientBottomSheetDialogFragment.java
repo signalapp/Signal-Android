@@ -4,9 +4,6 @@ import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
@@ -27,7 +24,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
-import org.signal.core.util.DimensionUnit;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.avatar.view.AvatarView;
@@ -39,7 +35,6 @@ import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackPhoto80dp;
 import org.thoughtcrime.securesms.fonts.SignalSymbols;
 import org.thoughtcrime.securesms.groups.GroupId;
-import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.nicknames.NicknameActivity;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientExporter;
@@ -224,7 +219,7 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
           AboutSheet.create(recipient).show(getParentFragmentManager(), null);
         });
 
-        if (FeatureFlags.nicknames() && groupId != null) {
+        if (FeatureFlags.nicknames()) {
           nickname.setVisibility(View.VISIBLE);
           nickname.setOnClickListener(v -> {
             nicknameLauncher.launch(new NicknameActivity.Args(
