@@ -2832,17 +2832,17 @@
     <string name="EditProfileFragment__group_description">ការពិពណ៌នាពីក្រុម</string>
   <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
-    <string name="EditProfileFragment_deprecated_dialog_title">Update Signal</string>
+    <string name="EditProfileFragment_deprecated_dialog_title">ដំឡើង Signal</string>
     <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
-    <string name="EditProfileFragment_deprecated_dialog_body">This version of Signal has expired. Update now to continue using Signal.</string>
+    <string name="EditProfileFragment_deprecated_dialog_body">កំណែ Signal នេះបានផុតកំណត់ហើយ។ ដំឡើងកំណែឥឡូវនេះដើម្បីបន្តប្រើប្រាស់ Signal។</string>
     <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
-    <string name="EditProfileFragment_deprecated_dialog_update_button">Update</string>
+    <string name="EditProfileFragment_deprecated_dialog_update_button">បច្ចុប្បន្នភាព</string>
     <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
-    <string name="EditProfileFragment_unregistered_dialog_title">Device not registered</string>
+    <string name="EditProfileFragment_unregistered_dialog_title">ឧបករណ៍មិនបានចុះឈ្មោះទេ</string>
     <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
     <string name="EditProfileFragment_unregistered_dialog_body">This device is no longer registered. Re-register to make changes to your account.</string>
     <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
-    <string name="EditProfileFragment_unregistered_dialog_reregister_button">Re-register</string>
+    <string name="EditProfileFragment_unregistered_dialog_reregister_button">ចុះឈ្មោះម្តងទៀត</string>
 
     <!-- EditProfileNameFragment -->
     <string name="EditProfileNameFragment_your_name">ឈ្មោះរបស់អ្នក</string>
@@ -3866,7 +3866,7 @@
     <string name="TransferOrRestoreFragment__restore_from_backup">ស្តារចេញពីការបម្រុងទុក</string>
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">ស្តារឡើងវិញសាររបស់អ្នកចេញពីការបម្រុងទុកខាងក្នុង។ បើអ្នកមិនស្តារឡើងវិញឥឡូវទេ អ្នកនឹងមិនអាចស្តារឡើងវិញបានទេនៅពេលក្រោយ។</string>
     <!-- Button label for more options -->
-    <string name="TransferOrRestoreFragment__more_options">More options</string>
+    <string name="TransferOrRestoreFragment__more_options">ជម្រើសច្រើនទៀត</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
     <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">បើក Signal នៅលើទូរស័ព្ទ Android ចាស់របស់អ្នក</string>
@@ -4618,7 +4618,7 @@
     <string name="ConversationSettingsFragment__disappearing_messages">សារបាត់ទៅវិញ</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">សម្លេង &amp; សារជូនដំណឹង</string>
   <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
-    <string name="ConversationSettingsFragment__contact_details">​ព័ត៌មានលម្អិតនៃលេខទំនាក់ទំនង</string>
+    <string name="ConversationSettingsFragment__contact_details">Phone contact info</string>
     <string name="ConversationSettingsFragment__view_safety_number">មើលលេខសុវត្ថិភាព</string>
     <string name="ConversationSettingsFragment__block">ទប់ស្កាត់</string>
     <string name="ConversationSettingsFragment__block_group">ទប់ស្កាត់ក្រុម</string>
@@ -6529,7 +6529,7 @@
     <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the user will opt out of all future alerts. -->
     <string name="LinkedDeviceInactiveMegaphone_dont_remind_button_label">Don\'t remind me</string>
     <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the alert will be dismissed. -->
-    <string name="LinkedDeviceInactiveMegaphone_got_it_button_label">Got it</string>
+    <string name="LinkedDeviceInactiveMegaphone_got_it_button_label">យល់ហើយ</string>
 
     <!-- NicknameFragment -->
     <!-- Title displayed at the top of the screen -->
@@ -6537,17 +6537,17 @@
     <!-- Subtitle displayed under title -->
     <string name="NicknameActivity__nicknames_amp_notes">Nicknames &amp; notes are stored using Signal\'s end-to-end encrypted storage service. They are only visible to you.</string>
     <!-- Field label for given name -->
-    <string name="NicknameActivity__first_name">First name</string>
+    <string name="NicknameActivity__first_name">ឈ្មោះ</string>
     <!-- Content description for first name clear button -->
     <string name="NicknameActivity__clear_first_name">Clear first name</string>
     <!-- Field label for family name -->
-    <string name="NicknameActivity__last_name">Last name</string>
+    <string name="NicknameActivity__last_name">ត្រកូល</string>
     <!-- Content description for last name clear button -->
     <string name="NicknameActivity__clear_last_name">Clear last name</string>
     <!-- Field label for note -->
-    <string name="NicknameActivity__note">Note</string>
+    <string name="NicknameActivity__note">កំណត់ត្រា</string>
     <!-- Button label to save -->
-    <string name="NicknameActivity__save">Save</string>
+    <string name="NicknameActivity__save">រក្សាទុក</string>
     <!-- Dialog title for note and name deletion -->
     <string name="NicknameActivity__delete_nickname">Delete nickname?</string>
     <!-- Dialog message for note and name deletion -->
@@ -6555,7 +6555,7 @@
 
     <!-- ViewNoteBottomSheetDialogFragment -->
     <!-- Sheet title -->
-    <string name="ViewNoteSheet__note">Note</string>
+    <string name="ViewNoteSheet__note">កំណត់ត្រា</string>
     <!-- Content description for opening the note editor -->
     <string name="ViewNoteSheet__edit_note">Edit note</string>
 

@@ -2926,17 +2926,17 @@
     <string name="EditProfileFragment__group_description">Group description</string>
   <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
-    <string name="EditProfileFragment_deprecated_dialog_title">Update Signal</string>
+    <string name="EditProfileFragment_deprecated_dialog_title">I-update ang Signal</string>
     <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
-    <string name="EditProfileFragment_deprecated_dialog_body">This version of Signal has expired. Update now to continue using Signal.</string>
+    <string name="EditProfileFragment_deprecated_dialog_body">Expired na itong version ng Signal. Mag-update na para patuloy na magamit ang Signal.</string>
     <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
-    <string name="EditProfileFragment_deprecated_dialog_update_button">Update</string>
+    <string name="EditProfileFragment_deprecated_dialog_update_button">I-update</string>
     <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
-    <string name="EditProfileFragment_unregistered_dialog_title">Device not registered</string>
+    <string name="EditProfileFragment_unregistered_dialog_title">Hindi registered ang device</string>
     <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
     <string name="EditProfileFragment_unregistered_dialog_body">This device is no longer registered. Re-register to make changes to your account.</string>
     <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
-    <string name="EditProfileFragment_unregistered_dialog_reregister_button">Re-register</string>
+    <string name="EditProfileFragment_unregistered_dialog_reregister_button">Mag-register ulit</string>
 
     <!-- EditProfileNameFragment -->
     <string name="EditProfileNameFragment_your_name">Ang iyong pangalan</string>
@@ -3972,7 +3972,7 @@
     <string name="TransferOrRestoreFragment__restore_from_backup">Mag-restore mula sa backup</string>
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">I-restore ang messages mo mula sa isang local backup. Kung hindi ka magre-restore ngayon, hindi ka na pwedeng mag-restore mamaya.</string>
     <!-- Button label for more options -->
-    <string name="TransferOrRestoreFragment__more_options">More options</string>
+    <string name="TransferOrRestoreFragment__more_options">Karagdagang options</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
     <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Buksan ang Signal sa old Android phone mo.</string>
@@ -4730,7 +4730,7 @@
     <string name="ConversationSettingsFragment__disappearing_messages">Mga naglalahong mensahe</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">Sounds at notifications</string>
   <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
-    <string name="ConversationSettingsFragment__contact_details">Contact details</string>
+    <string name="ConversationSettingsFragment__contact_details">Phone contact info</string>
     <string name="ConversationSettingsFragment__view_safety_number">Tingnan ang numerong pangkaligtasan</string>
     <string name="ConversationSettingsFragment__block">I-block</string>
     <string name="ConversationSettingsFragment__block_group">I-block ang group</string>
@@ -6675,7 +6675,7 @@
     <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the user will opt out of all future alerts. -->
     <string name="LinkedDeviceInactiveMegaphone_dont_remind_button_label">Don\'t remind me</string>
     <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the alert will be dismissed. -->
-    <string name="LinkedDeviceInactiveMegaphone_got_it_button_label">Got it</string>
+    <string name="LinkedDeviceInactiveMegaphone_got_it_button_label">OK</string>
 
     <!-- NicknameFragment -->
     <!-- Title displayed at the top of the screen -->
@@ -6693,7 +6693,7 @@
     <!-- Field label for note -->
     <string name="NicknameActivity__note">Note</string>
     <!-- Button label to save -->
-    <string name="NicknameActivity__save">Save</string>
+    <string name="NicknameActivity__save">I-save</string>
     <!-- Dialog title for note and name deletion -->
     <string name="NicknameActivity__delete_nickname">Delete nickname?</string>
     <!-- Dialog message for note and name deletion -->
