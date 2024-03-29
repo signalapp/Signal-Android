@@ -503,7 +503,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
         )
       }
 
-      if (FeatureFlags.nicknames() && state.recipient.isIndividual) {
+      if (FeatureFlags.nicknames() && state.recipient.isIndividual && !state.recipient.isSelf) {
         clickPref(
           title = DSLSettingsText.from(R.string.NicknameActivity__nickname),
           icon = DSLSettingsIcon.from(R.drawable.symbol_edit_24),

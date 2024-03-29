@@ -193,7 +193,7 @@ private fun Content(
 
     AboutRow(
       startIcon = painterResource(R.drawable.symbol_person_24),
-      text = if (model.hasUserSetDisplayName && model.displayName.isNotBlank() && model.profileName.isNotBlank()) {
+      text = if (!model.isSelf && model.hasUserSetDisplayName && model.displayName.isNotBlank() && model.profileName.isNotBlank()) {
         stringResource(id = R.string.AboutSheet__user_set_display_name_and_profile_name, model.displayName, model.profileName)
       } else {
         model.displayName
@@ -406,6 +406,38 @@ private fun ContentPreviewWithUserSetDisplayName() {
       Content(
         model = AboutModel(
           isSelf = false,
+          hasAvatar = true,
+          displayName = "Amazing Spider-man",
+          shortName = "Spiderman",
+          profileName = "Peter Parker",
+          hasUserSetDisplayName = true,
+          about = "Photographer for the Daily Bugle.",
+          verified = true,
+          recipientForAvatar = Recipient.UNKNOWN,
+          formattedE164 = "(123) 456-7890",
+          profileSharing = true,
+          systemContact = true,
+          groupsInCommon = 0,
+          note = "Weird Things Happen To Me All The Time."
+        ),
+        onClickSignalConnections = {},
+        onAvatarClicked = {},
+        onNoteClicked = {}
+      )
+    }
+  }
+}
+
+
+@Preview(name = "Light Theme", group = "content", uiMode = Configuration.UI_MODE_NIGHT_NO)
+@Preview(name = "Dark Theme", group = "content", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun ContentPreviewForSelf() {
+  SignalTheme {
+    Surface {
+      Content(
+        model = AboutModel(
+          isSelf = true,
           hasAvatar = true,
           displayName = "Amazing Spider-man",
           shortName = "Spiderman",
