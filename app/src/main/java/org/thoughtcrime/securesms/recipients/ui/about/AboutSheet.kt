@@ -193,10 +193,10 @@ private fun Content(
 
     AboutRow(
       startIcon = painterResource(R.drawable.symbol_person_24),
-      text = if (!model.hasUserSetDisplayName) {
-        model.displayName
-      } else {
+      text = if (model.hasUserSetDisplayName && model.displayName.isNotBlank() && model.profileName.isNotBlank()) {
         stringResource(id = R.string.AboutSheet__user_set_display_name_and_profile_name, model.displayName, model.profileName)
+      } else {
+        model.displayName
       },
       modifier = Modifier.fillMaxWidth()
     )
