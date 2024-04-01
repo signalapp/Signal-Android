@@ -133,6 +133,7 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
         binding.content.addAMessageInput.text = null
         dismiss()
       }
+      binding.content.viewOnceToggle.visible = state.selectedMedia.size == 1 && !state.isStory
     }
 
     initializeMentions()
