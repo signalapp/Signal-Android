@@ -26,6 +26,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -47,7 +48,6 @@ import androidx.compose.ui.unit.dp
 import androidx.core.os.bundleOf
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.Dialogs
-import org.signal.core.ui.DropdownMenus
 import org.signal.core.ui.Previews
 import org.signal.core.ui.Scaffolds
 import org.signal.core.ui.TextFields
@@ -216,33 +216,7 @@ private fun NicknameContent(
   Scaffolds.Settings(
     title = stringResource(id = R.string.NicknameActivity__nickname),
     onNavigationClick = callback::onNavigationClick,
-    navigationIconPainter = painterResource(id = R.drawable.symbol_arrow_left_24),
-    actions = {
-      if (state.isEditing) {
-        val menuController = remember {
-          DropdownMenus.MenuController()
-        }
-
-        IconButton(onClick = { menuController.toggle() }) {
-          Icon(
-            painter = painterResource(id = R.drawable.symbol_more_vertical_24),
-            contentDescription = null
-          )
-        }
-        DropdownMenus.Menu(
-          controller = menuController
-        ) {
-          DropdownMenus.Item(
-            text = {
-              Text(text = stringResource(id = R.string.delete))
-            },
-            onClick = {
-              displayDeletionDialog = true
-            }
-          )
-        }
-      }
-    }
+    navigationIconPainter = painterResource(id = R.drawable.symbol_arrow_left_24)
   ) { paddingValues ->
 
     val firstNameFocusRequester = remember { FocusRequester() }
@@ -298,7 +272,7 @@ private fun NicknameContent(
             value = state.lastName,
             hint = stringResource(id = R.string.NicknameActivity__last_name),
             clearContentDescription = stringResource(id = R.string.NicknameActivity__clear_last_name),
-            enabled = state.firstName.isNotBlank(),
+            enabled = state.firstName.isNotBlank() || state.isEditing,
             singleLine = true,
             onValueChange = callback::onLastNameChanged,
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
@@ -330,14 +304,29 @@ private fun NicknameContent(
       }
 
       Box(
-        contentAlignment = Alignment.CenterEnd,
         modifier = Modifier
           .fillMaxWidth()
           .padding(bottom = 20.dp)
       ) {
+        if (state.isEditing) {
+          TextButton(
+            onClick = {
+              displayDeletionDialog = true
+            },
+            modifier = Modifier
+              .align(Alignment.BottomStart)
+          ) {
+            Text(
+              text = stringResource(id = R.string.delete),
+              color = MaterialTheme.colorScheme.primary
+            )
+          }
+        }
         Buttons.LargeTonal(
           onClick = callback::onSaveClick,
-          enabled = state.canSave
+          enabled = state.canSave,
+          modifier = Modifier
+            .align(Alignment.BottomEnd)
         ) {
           Text(
             text = stringResource(id = R.string.NicknameActivity__save)
