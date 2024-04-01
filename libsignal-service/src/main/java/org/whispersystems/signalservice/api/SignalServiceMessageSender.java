@@ -158,6 +158,7 @@ import javax.annotation.Nullable;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Scheduler;
 import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.exceptions.CompositeException;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import kotlin.Unit;
 import okio.ByteString;
@@ -2164,7 +2165,9 @@ public class SignalServiceMessageSender {
                           .lastOrError()
                           .blockingGet();
     } catch (RuntimeException e) {
-      Throwable cause = e.getCause();
+      Throwable cause = e instanceof CompositeException ? ((CompositeException) e).getExceptions().get(0)
+                                                        : e.getCause();
+
       if (cause instanceof IOException) {
         throw (IOException) cause;
       } else if (cause instanceof InterruptedException) {
