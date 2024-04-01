@@ -16,6 +16,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.signal.core.util.BreakIteratorCompat
+import org.signal.core.util.isNotNullOrBlank
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -52,7 +53,7 @@ class NicknameViewModel(
           noteCharactersRemaining = NOTE_MAX_LENGTH - noteLength,
           formState = NicknameState.FormState.READY,
           hasBecomeReady = true,
-          isEditing = !recipient.nickname.isEmpty
+          isEditing = !recipient.nickname.isEmpty || recipient.note?.isNotNullOrBlank() == true
         )
       } else {
         state.value.copy(recipient = recipient)
