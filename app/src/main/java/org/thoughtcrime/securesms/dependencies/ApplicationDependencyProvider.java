@@ -11,6 +11,7 @@ import androidx.annotation.VisibleForTesting;
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.DeadlockDetector;
 import org.signal.core.util.concurrent.SignalExecutors;
+import org.signal.libsignal.net.Network;
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations;
 import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations;
 import org.thoughtcrime.securesms.BuildConfig;
@@ -226,6 +227,11 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
   @Override
   public @NonNull ScheduledMessageManager provideScheduledMessageManager() {
     return new ScheduledMessageManager(context);
+  }
+
+  @Override
+  public @NonNull Network provideLibsignalNetwork() {
+    return new Network(BuildConfig.LIBSIGNAL_NET_ENV);
   }
 
   @Override

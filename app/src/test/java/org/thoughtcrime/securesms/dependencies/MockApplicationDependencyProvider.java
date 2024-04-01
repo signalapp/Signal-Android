@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.dependencies;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.concurrent.DeadlockDetector;
+import org.signal.libsignal.net.Network;
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations;
 import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations;
 import org.thoughtcrime.securesms.components.TypingStatusRepository;
@@ -230,6 +231,11 @@ public class MockApplicationDependencyProvider implements ApplicationDependencie
 
   @Override
   public @NonNull ScheduledMessageManager provideScheduledMessageManager() {
+    return null;
+  }
+
+  @Override
+  public @NonNull Network provideLibsignalNetwork() {
     return null;
   }
 }

@@ -33,6 +33,8 @@ import java.util.concurrent.Future;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
+import javax.annotation.Nullable;
+
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Single;
 import okio.ByteString;
@@ -51,10 +53,9 @@ public final class CdsiV2Service {
 
   private final CdsiRequestHandler cdsiRequestHandler;
 
-  public CdsiV2Service(SignalServiceConfiguration configuration, String mrEnclave, Network.Environment libsignalEnv) {
+  public CdsiV2Service(SignalServiceConfiguration configuration, String mrEnclave, @Nullable Network network) {
 
-    if (libsignalEnv != null) {
-      Network network = new Network(libsignalEnv);
+    if (network != null) {
       this.cdsiRequestHandler = (username, password, request, tokenSaver) -> {
         try {
           Log.i(TAG, "Starting CDSI lookup via libsignal-net");

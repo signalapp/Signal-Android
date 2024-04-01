@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
 
 import org.signal.core.util.concurrent.DeadlockDetector;
+import org.signal.libsignal.net.Network;
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations;
 import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations;
 import org.thoughtcrime.securesms.components.TypingStatusRepository;
@@ -85,6 +86,7 @@ public class ApplicationDependencies {
   private static final Object FRAME_RATE_TRACKER_LOCK = new Object();
   private static final Object JOB_MANAGER_LOCK        = new Object();
   private static final Object SIGNAL_HTTP_CLIENT_LOCK = new Object();
+  private static final Object LIBSIGNAL_NETWORK_LOCK  = new Object();
 
   private static Application           application;
   private static Provider              provider;
@@ -129,6 +131,7 @@ public class ApplicationDependencies {
   private static volatile DeadlockDetector             deadlockDetector;
   private static volatile ClientZkReceiptOperations    clientZkReceiptOperations;
   private static volatile ScheduledMessageManager      scheduledMessagesManager;
+  private static volatile Network                      libsignalNetwork;
 
   @MainThread
   public static void init(@NonNull Application application, @NonNull Provider provider) {
@@ -685,6 +688,17 @@ public class ApplicationDependencies {
     return deadlockDetector;
   }
 
+  public static @NonNull Network getLibsignalNetwork() {
+    if (libsignalNetwork == null) {
+      synchronized (LIBSIGNAL_NETWORK_LOCK) {
+        if (libsignalNetwork == null) {
+          libsignalNetwork = provider.provideLibsignalNetwork();
+        }
+      }
+    }
+    return libsignalNetwork;
+  }
+
   public interface Provider {
     @NonNull GroupsV2Operations provideGroupsV2Operations(@NonNull SignalServiceConfiguration signalServiceConfiguration);
     @NonNull SignalServiceAccountManager provideSignalServiceAccountManager(@NonNull SignalServiceConfiguration signalServiceConfiguration, @NonNull GroupsV2Operations groupsV2Operations);
@@ -723,5 +737,6 @@ public class ApplicationDependencies {
     @NonNull DeadlockDetector provideDeadlockDetector();
     @NonNull ClientZkReceiptOperations provideClientZkReceiptOperations(@NonNull SignalServiceConfiguration signalServiceConfiguration);
     @NonNull ScheduledMessageManager provideScheduledMessageManager();
+    @NonNull Network provideLibsignalNetwork();
   }
 }
