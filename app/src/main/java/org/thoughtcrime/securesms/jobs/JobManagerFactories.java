@@ -137,7 +137,6 @@ public final class JobManagerFactories {
       put(IndividualSendJob.KEY,                     new IndividualSendJob.Factory());
       put(LeaveGroupV2Job.KEY,                       new LeaveGroupV2Job.Factory());
       put(LeaveGroupV2WorkerJob.KEY,                 new LeaveGroupV2WorkerJob.Factory());
-      put(LegacyAttachmentUploadJob.KEY,             new LegacyAttachmentUploadJob.Factory());
       put(LinkedDeviceInactiveCheckJob.KEY,          new LinkedDeviceInactiveCheckJob.Factory());
       put(LocalBackupJob.KEY,                        new LocalBackupJob.Factory());
       put(LocalBackupJobApi29.KEY,                   new LocalBackupJobApi29.Factory());
@@ -316,6 +315,7 @@ public final class JobManagerFactories {
       put("SmsSendJob",                              new FailingJob.Factory());
       put("SmsSentJob",                              new FailingJob.Factory());
       put("MmsSendJobV2",                            new FailingJob.Factory());
+      put("AttachmentUploadJobV2",                   new FailingJob.Factory());
     }};
   }
 
