@@ -41,6 +41,8 @@ import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.recipients.RecipientForeverObserver
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.InterceptableLongClickCopyLinkSpan
 import org.thoughtcrime.securesms.util.LongClickMovementMethod
@@ -66,7 +68,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
   private val binding: V2ConversationItemTextOnlyBindingBridge,
   private val conversationContext: V2ConversationContext,
   footerDelegate: V2FooterPositionDelegate = V2FooterPositionDelegate(binding)
-) : V2ConversationItemViewHolder<Model>(binding.root, conversationContext), Multiselectable, InteractiveConversationElement {
+) : V2ConversationItemViewHolder<Model>(binding.root, conversationContext), Multiselectable, InteractiveConversationElement, RecipientForeverObserver {
 
   companion object {
     private val STYLE_FACTORY = SearchUtil.StyleFactory { arrayOf<CharacterStyle>(BackgroundColorSpan(Color.YELLOW), ForegroundColorSpan(Color.BLACK)) }
@@ -189,7 +191,15 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     }
 
     check(model is ConversationMessageElement)
+
+    if (this::conversationMessage.isInitialized) {
+      conversationMessage.messageRecord.fromRecipient.live().removeForeverObserver(this)
+    }
+
     conversationMessage = model.conversationMessage
+    if (conversationMessage.threadRecipient.isGroup) {
+      conversationMessage.messageRecord.fromRecipient.live().observeForever(this)
+    }
 
     shape = shapeDelegate.setMessageShape(
       currentMessage = conversationMessage.messageRecord,
@@ -764,5 +774,9 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
       binding.root.performLongClick()
       return true
     }
+  }
+
+  override fun onRecipientChanged(recipient: Recipient) {
+    presentSender()
   }
 }
