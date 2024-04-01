@@ -287,7 +287,10 @@ class PreKeysSyncJob private constructor(
     }
   }
 
-  override fun onFailure() = Unit
+  override fun onFailure() {
+    Log.w(TAG, "Failed to sync prekeys. Enqueuing an account consistency check.")
+    ApplicationDependencies.getJobManager().add(AccountConsistencyWorkerJob())
+  }
 
   private fun log(serviceIdType: ServiceIdType, message: String) {
     Log.i(TAG, "[$serviceIdType] $message")
