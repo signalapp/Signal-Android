@@ -286,7 +286,8 @@ public final class FeatureFlags {
       CDSI_LIBSIGNAL_NET,
       RX_MESSAGE_SEND,
       LINKED_DEVICE_LIFESPAN_SECONDS,
-      CAMERAX_CUSTOM_CONTROLLER
+      CAMERAX_CUSTOM_CONTROLLER,
+      NICKNAMES
   );
 
   /**
@@ -747,7 +748,7 @@ public final class FeatureFlags {
 
   /** Whether or not the nicknames feature is available */
   public static boolean nicknames() {
-    return getBoolean(NICKNAMES, false);
+    return getBoolean(NICKNAMES, true);
   }
 
   /** Whether or not to use the custom CameraX controller class */
