@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import com.annimon.stream.Stream;
 
 import org.greenrobot.eventbus.EventBus;
+import org.signal.core.util.ListUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.util.Pair;
@@ -994,7 +995,20 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
         TurnServerInfo turnServerInfo = ApplicationDependencies.getSignalServiceAccountManager().getTurnServerInfo();
 
         List<PeerConnection.IceServer> iceServers = new LinkedList<>();
-        for (String url : turnServerInfo.getUrls()) {
+        for (String url : ListUtil.emptyIfNull(turnServerInfo.getUrlsWithIps())) {
+          if (url.startsWith("turn")) {
+            iceServers.add(PeerConnection.IceServer.builder(url)
+                                                   .setUsername(turnServerInfo.getUsername())
+                                                   .setPassword(turnServerInfo.getPassword())
+                                                   .setHostname(turnServerInfo.getHostname())
+                                                   .createIceServer());
+          } else {
+            iceServers.add(PeerConnection.IceServer.builder(url)
+                                                   .setHostname(turnServerInfo.getHostname())
+                                                   .createIceServer());
+          }
+        }
+        for (String url : ListUtil.emptyIfNull(turnServerInfo.getUrls())) {
           if (url.startsWith("turn")) {
             iceServers.add(PeerConnection.IceServer.builder(url)
                                                    .setUsername(turnServerInfo.getUsername())

@@ -216,7 +216,6 @@ public class PushServiceSocket {
   private static final String TAG = PushServiceSocket.class.getSimpleName();
 
   private static final String REGISTER_GCM_PATH          = "/v1/accounts/gcm/";
-  private static final String TURN_SERVER_INFO           = "/v1/accounts/turn";
   private static final String SET_ACCOUNT_ATTRIBUTES     = "/v1/accounts/attributes/";
   private static final String PIN_PATH                   = "/v1/accounts/pin/";
   private static final String REGISTRATION_LOCK_PATH     = "/v1/accounts/registration_lock";
@@ -238,6 +237,7 @@ public class PushServiceSocket {
   private static final String PREKEY_DEVICE_PATH        = "/v2/keys/%s/%s";
   private static final String PREKEY_CHECK_PATH        = "/v2/keys/check";
 
+  private static final String TURN_SERVER_INFO           = "/v1/calling/relays";
 
   private static final String PROVISIONING_CODE_PATH    = "/v1/devices/provisioning/code";
   private static final String PROVISIONING_MESSAGE_PATH = "/v1/provisioning/%s";
