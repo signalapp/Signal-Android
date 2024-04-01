@@ -240,8 +240,8 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
   ) {
     writableDatabase.withinTransaction { db ->
       db.update(TABLE_NAME)
-        .values("$REVOKED" to true)
-        .where("$ROOM_ID", roomId)
+        .values(REVOKED to true)
+        .where("$ROOM_ID = ?", roomId.serialize())
         .run()
 
       SignalDatabase.calls.updateAdHocCallEventDeletionTimestamps()
@@ -257,7 +257,7 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
   ) {
     writableDatabase.withinTransaction { db ->
       db.delete(TABLE_NAME)
-        .where("$ROOM_ID", roomId)
+        .where("$ROOM_ID = ?", roomId.serialize())
         .run()
     }
   }
