@@ -346,11 +346,12 @@ public class PictureInPictureGestureHelper extends GestureDetector.SimpleOnGestu
     }
   }
 
+  @SuppressLint("RtlHardcoded")
   private enum Corner {
-    TOP_LEFT(Gravity.TOP | Gravity.START, true, true),
-    TOP_RIGHT(Gravity.TOP | Gravity.END, false, true),
-    BOTTOM_LEFT(Gravity.BOTTOM | Gravity.START, true, false),
-    BOTTOM_RIGHT(Gravity.BOTTOM | Gravity.END, false, false);
+    TOP_LEFT(Gravity.TOP | Gravity.LEFT, true, true),
+    TOP_RIGHT(Gravity.TOP | Gravity.RIGHT, false, true),
+    BOTTOM_LEFT(Gravity.BOTTOM | Gravity.LEFT, true, false),
+    BOTTOM_RIGHT(Gravity.BOTTOM | Gravity.RIGHT, false, false);
 
     final int     gravity;
     final boolean leftSide;
