@@ -83,7 +83,6 @@ class VideoEditorFragment : Fragment(), PositionDragListener, MediaSendPageFragm
     isVideoGif = requireArguments().getBoolean(KEY_IS_VIDEO_GIF)
     maxSend = requireArguments().getLong(KEY_MAX_SEND)
 
-    val state = sharedViewModel.state.value!!
     val slide = VideoSlide(requireContext(), uri, 0, isVideoGif)
     player.setWindow(requireActivity().window)
     player.setVideoSource(slide, isVideoGif, TAG)
@@ -104,7 +103,9 @@ class VideoEditorFragment : Fragment(), PositionDragListener, MediaSendPageFragm
       player.loopForever()
     } else {
       if (MediaConstraints.isVideoTranscodeAvailable()) {
-        bindVideoTimeline(state)
+        sharedViewModel.state.value?.let { state ->
+          bindVideoTimeline(state)
+        }
       } else {
         hud.visibility = View.VISIBLE
       }
