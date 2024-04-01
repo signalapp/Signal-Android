@@ -119,14 +119,12 @@ data class RecipientRecord(
 
   data class Capabilities(
     val rawBits: Long,
-    val pnpCapability: Recipient.Capability,
     val paymentActivation: Recipient.Capability
   ) {
     companion object {
       @JvmField
       val UNKNOWN = Capabilities(
         0,
-        Recipient.Capability.UNKNOWN,
         Recipient.Capability.UNKNOWN
       )
     }

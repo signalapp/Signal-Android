@@ -193,26 +193,18 @@ public class SignalServiceProfile {
     private boolean storage;
 
     @JsonProperty
-    private boolean pnp;
-
-    @JsonProperty
     private boolean paymentActivation;
 
     @JsonCreator
     public Capabilities() {}
 
-    public Capabilities(boolean storage, boolean pnp, boolean paymentActivation) {
+    public Capabilities(boolean storage, boolean paymentActivation) {
       this.storage           = storage;
-      this.pnp               = pnp;
       this.paymentActivation = paymentActivation;
     }
 
     public boolean isStorage() {
       return storage;
-    }
-
-    public boolean isPnp() {
-      return pnp;
     }
 
     public boolean isPaymentActivation() {

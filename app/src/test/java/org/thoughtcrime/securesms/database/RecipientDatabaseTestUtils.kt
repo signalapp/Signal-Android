@@ -125,7 +125,6 @@ object RecipientDatabaseTestUtils {
         unidentifiedAccessMode = unidentifiedAccessMode,
         capabilities = RecipientRecord.Capabilities(
           rawBits = capabilities,
-          pnpCapability = Recipient.Capability.deserialize(Bitmask.read(capabilities, RecipientTable.Capabilities.PNP, RecipientTable.Capabilities.BIT_LENGTH).toInt()),
           paymentActivation = Recipient.Capability.deserialize(Bitmask.read(capabilities, RecipientTable.Capabilities.PAYMENT_ACTIVATION, RecipientTable.Capabilities.BIT_LENGTH).toInt())
         ),
         storageId = storageId,

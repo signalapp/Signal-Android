@@ -169,10 +169,6 @@ public class AccountRecordProcessor extends DefaultStorageRecordProcessor<Signal
                                                                    .setUsername(username)
                                                                    .setUsernameLink(usernameLink);
 
-      if (!self.getPnpCapability().isSupported()) {
-        builder.setE164(e164);
-      }
-
       return builder.build();
     }
   }

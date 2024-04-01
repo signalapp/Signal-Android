@@ -408,7 +408,6 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     @JvmStatic
     fun maskCapabilitiesToLong(capabilities: SignalServiceProfile.Capabilities): Long {
       var value: Long = 0
-      value = Bitmask.update(value, Capabilities.PNP, Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isPnp).serialize().toLong())
       value = Bitmask.update(value, Capabilities.PAYMENT_ACTIVATION, Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isPaymentActivation).serialize().toLong())
       return value
     }
@@ -4569,7 +4568,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 //    const val CHANGE_NUMBER = 4
 //    const val STORIES = 5
 //    const val GIFT_BADGES = 6
-    const val PNP = 7
+//    const val PNP = 7
     const val PAYMENT_ACTIVATION = 8
   }
 

@@ -325,7 +325,6 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
 
     return if (capabilities != null) {
       TextUtils.concat(
-        colorize("PNP/PNI", capabilities.pnpCapability),
         colorize("PaymentActivation", capabilities.paymentActivation)
       )
     } else {

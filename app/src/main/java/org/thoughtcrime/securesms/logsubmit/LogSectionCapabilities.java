@@ -34,12 +34,11 @@ public final class LogSectionCapabilities implements LogSection {
     RecipientRecord.Capabilities   globalCapabilities = SignalDatabase.recipients().getCapabilities(self.getId());
 
     StringBuilder builder = new StringBuilder().append("-- Local").append("\n")
-                                               .append("PNP/PNI: ").append(localCapabilities.getPni()).append("\n")
                                                .append("\n")
                                                .append("-- Global").append("\n");
 
     if (globalCapabilities != null) {
-      builder.append("PNP/PNI: ").append(globalCapabilities.getPnpCapability()).append("\n");
+      builder.append("\n");
     } else {
       builder.append("Self not found!");
     }
