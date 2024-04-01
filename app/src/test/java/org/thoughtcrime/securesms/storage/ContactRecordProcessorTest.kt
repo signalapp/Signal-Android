@@ -374,6 +374,38 @@ class ContactRecordProcessorTest {
     assertEquals(remote.pni.get(), result.pni.get())
   }
 
+  @Test
+  fun `merge, nickname change, useRemote`() {
+    // GIVEN
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
+
+    val local = buildRecord(
+      STORAGE_ID_A,
+      record = ContactRecord(
+        aci = ACI_A.toString(),
+        e164 = E164_A
+      )
+    )
+
+    val remote = buildRecord(
+      STORAGE_ID_B,
+      record = ContactRecord(
+        aci = ACI_A.toString(),
+        e164 = E164_A,
+        nickname = ContactRecord.Name(given = "Ghost", family = "Spider"),
+        note = "Spidey Friend"
+      )
+    )
+
+    // WHEN
+    val result = subject.merge(remote, local, TestKeyGenerator(STORAGE_ID_C))
+
+    // THEN
+    assertEquals("Ghost", result.nicknameGivenName.get())
+    assertEquals("Spider", result.nicknameFamilyName.get())
+    assertEquals("Spidey Friend", result.note.get())
+  }
+
   private fun buildRecord(id: StorageId = STORAGE_ID_A, record: ContactRecord): SignalContactRecord {
     return SignalContactRecord(id, record)
   }

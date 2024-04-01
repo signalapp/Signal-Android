@@ -4022,6 +4022,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       val profileName = ProfileName.fromParts(contact.profileGivenName.orElse(null), contact.profileFamilyName.orElse(null))
       val systemName = ProfileName.fromParts(contact.systemGivenName.orElse(null), contact.systemFamilyName.orElse(null))
       val username = contact.username.orElse(null)
+      val nickname = ProfileName.fromParts(contact.nicknameGivenName.orNull(), contact.nicknameFamilyName.orNull())
 
       put(ACI_COLUMN, contact.aci.orElse(null)?.toString())
       put(PNI_COLUMN, contact.pni.orElse(null)?.toString())
@@ -4041,6 +4042,10 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       put(STORAGE_SERVICE_ID, Base64.encodeWithPadding(contact.id.raw))
       put(HIDDEN, contact.isHidden)
       put(PNI_SIGNATURE_VERIFIED, contact.isPniSignatureVerified.toInt())
+      put(NICKNAME_GIVEN_NAME, nickname.givenName.nullIfBlank())
+      put(NICKNAME_FAMILY_NAME, nickname.familyName.nullIfBlank())
+      put(NICKNAME_JOINED_NAME, nickname.toString().nullIfBlank())
+      put(NOTE, contact.note.orNull().nullIfBlank())
 
       if (contact.hasUnknownFields()) {
         put(STORAGE_SERVICE_PROTO, Base64.encodeWithPadding(Objects.requireNonNull(contact.serializeUnknownFields())))
