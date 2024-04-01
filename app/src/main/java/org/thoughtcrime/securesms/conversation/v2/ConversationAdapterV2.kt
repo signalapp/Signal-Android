@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.text.HtmlCompat
 import androidx.core.view.children
+import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.LifecycleOwner
 import androidx.media3.common.MediaItem
 import androidx.recyclerview.widget.RecyclerView
@@ -52,6 +53,7 @@ import org.thoughtcrime.securesms.groups.v2.GroupDescriptionUtil
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.recipients.ui.about.AboutSheet
 import org.thoughtcrime.securesms.util.CachedInflater
 import org.thoughtcrime.securesms.util.Projection
 import org.thoughtcrime.securesms.util.ProjectionList
@@ -67,7 +69,8 @@ class ConversationAdapterV2(
   private var hasWallpaper: Boolean,
   private val colorizer: Colorizer,
   private val startExpirationTimeout: (MessageRecord) -> Unit,
-  private val chatColorsDataProvider: () -> ChatColorsDrawable.ChatColorsData
+  private val chatColorsDataProvider: () -> ChatColorsDrawable.ChatColorsData,
+  private val displayDialogFragment: (DialogFragment) -> Unit
 ) : PagingMappingAdapter<ConversationElementKey>(), ConversationAdapterBridge, V2ConversationContext {
 
   companion object {
@@ -570,7 +573,9 @@ class ConversationAdapterV2(
 
       conversationBanner.setAvatar(requestManager, recipient)
       conversationBanner.showBackgroundBubble(recipient.hasWallpaper())
-      val title: String = conversationBanner.setTitle(recipient)
+      val title: String = conversationBanner.setTitle(recipient) {
+        displayDialogFragment(AboutSheet.create(recipient))
+      }
       conversationBanner.setAbout(recipient)
 
       if (recipient.isGroup) {

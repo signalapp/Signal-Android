@@ -1536,7 +1536,8 @@ class ConversationFragment :
       hasWallpaper = args.wallpaper != null,
       colorizer = colorizer,
       startExpirationTimeout = viewModel::startExpirationTimeout,
-      chatColorsDataProvider = viewModel::chatColorsSnapshot
+      chatColorsDataProvider = viewModel::chatColorsSnapshot,
+      displayDialogFragment = { it.show(childFragmentManager, null) }
     )
 
     typingIndicatorAdapter = ConversationTypingIndicatorAdapter(Glide.with(this))

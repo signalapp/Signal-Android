@@ -196,18 +196,18 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
         SpanUtil.appendSpacer(nameBuilder, 8);
         SpanUtil.appendCenteredImageSpanWithoutSpace(nameBuilder, ContextUtil.requireDrawable(requireContext(), R.drawable.ic_official_28), 28, 28);
       } else if (recipient.isSystemContact()) {
-        CharSequence systemContactGlyph = SignalSymbols.INSTANCE.getSpannedString(requireContext(),
-                                                                                  SignalSymbols.Weight.BOLD,
-                                                                                  SignalSymbols.Glyph.PERSON_CIRCLE);
+        CharSequence systemContactGlyph = SignalSymbols.getSpannedString(requireContext(),
+                                                                         SignalSymbols.Weight.BOLD,
+                                                                         SignalSymbols.Glyph.PERSON_CIRCLE);
 
         nameBuilder.append(" ");
         nameBuilder.append(SpanUtil.ofSize(systemContactGlyph, 20));
       }
 
       if (!recipient.isSelf() && recipient.isIndividual()) {
-        CharSequence chevronGlyph = SignalSymbols.INSTANCE.getSpannedString(requireContext(),
-                                                                            SignalSymbols.Weight.BOLD,
-                                                                            SignalSymbols.Glyph.CHEVRON_RIGHT);
+        CharSequence chevronGlyph = SignalSymbols.getSpannedString(requireContext(),
+                                                                   SignalSymbols.Weight.BOLD,
+                                                                   SignalSymbols.Glyph.CHEVRON_RIGHT);
 
         nameBuilder.append(" ");
         nameBuilder.append(SpanUtil.color(ContextCompat.getColor(requireContext(), R.color.signal_colorOutline),
