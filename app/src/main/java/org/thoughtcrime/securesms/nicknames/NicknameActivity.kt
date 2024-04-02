@@ -272,7 +272,7 @@ private fun NicknameContent(
             value = state.lastName,
             hint = stringResource(id = R.string.NicknameActivity__last_name),
             clearContentDescription = stringResource(id = R.string.NicknameActivity__clear_last_name),
-            enabled = state.firstName.isNotBlank() || state.isEditing,
+            enabled = true,
             singleLine = true,
             onValueChange = callback::onLastNameChanged,
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
