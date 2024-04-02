@@ -3294,6 +3294,13 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     val args = searchSelection.args
     val orderBy = "${if (contactSearchQuery.contactSearchSortOrder == ContactSearchSortOrder.RECENCY) "${ThreadTable.TABLE_NAME}.${ThreadTable.DATE} DESC, " else ""}$SORT_NAME, $SYSTEM_JOINED_NAME, $SEARCH_PROFILE_NAME, $E164"
 
+    //language=roomsql
+    val join = if (contactSearchQuery.contactSearchSortOrder == ContactSearchSortOrder.RECENCY) {
+      "LEFT OUTER JOIN ${ThreadTable.TABLE_NAME} ON ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} = $TABLE_NAME.$ID"
+    } else {
+      ""
+    }
+
     return if (contactSearchQuery.contactSearchSortOrder == ContactSearchSortOrder.RECENCY) {
       val ambiguous = listOf(ID)
       val projection = SEARCH_PROJECTION.map {
@@ -3305,7 +3312,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         """
           SELECT ${projection.joinToString(",")}
           FROM $TABLE_NAME
-          JOIN ${ThreadTable.TABLE_NAME} ON ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} = $TABLE_NAME.$ID
+          $join
           WHERE $selection
           ORDER BY $orderBy
         """.trimIndent(),
