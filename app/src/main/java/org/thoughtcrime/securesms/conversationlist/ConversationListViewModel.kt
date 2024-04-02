@@ -110,6 +110,7 @@ class ConversationListViewModel(
 
     hasNoConversations = store
       .stateFlowable
+      .subscribeOn(Schedulers.io())
       .map { it.filterRequest to it.conversations }
       .distinctUntilChanged()
       .map { (filterRequest, conversations) ->
