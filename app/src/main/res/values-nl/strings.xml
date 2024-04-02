@@ -6683,7 +6683,7 @@
     <!-- Subtitle displayed under title -->
     <string name="NicknameActivity__nicknames_amp_notes">Nicknames &amp; notes are stored using Signal\'s end-to-end encrypted storage service. They are only visible to you.</string>
     <!-- Field label for given name -->
-    <string name="NicknameActivity__first_name">Voornaam (verplicht)</string>
+    <string name="NicknameActivity__first_name">Voornaam</string>
     <!-- Content description for first name clear button -->
     <string name="NicknameActivity__clear_first_name">Clear first name</string>
     <!-- Field label for family name -->
@@ -6691,7 +6691,7 @@
     <!-- Content description for last name clear button -->
     <string name="NicknameActivity__clear_last_name">Clear last name</string>
     <!-- Field label for note -->
-    <string name="NicknameActivity__note">Opmerking</string>
+    <string name="NicknameActivity__note">Notitie</string>
     <!-- Button label to save -->
     <string name="NicknameActivity__save">Opslaan</string>
     <!-- Dialog title for note and name deletion -->
@@ -6701,7 +6701,7 @@
 
     <!-- ViewNoteBottomSheetDialogFragment -->
     <!-- Sheet title -->
-    <string name="ViewNoteSheet__note">Opmerking</string>
+    <string name="ViewNoteSheet__note">Notitie</string>
     <!-- Content description for opening the note editor -->
     <string name="ViewNoteSheet__edit_note">Edit note</string>
 

@@ -2934,7 +2934,7 @@
     <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
     <string name="EditProfileFragment_unregistered_dialog_title">டிவைஸ் பதிவு செய்யப்படவில்லை</string>
     <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
-    <string name="EditProfileFragment_unregistered_dialog_body">This device is no longer registered. Re-register to make changes to your account.</string>
+    <string name="EditProfileFragment_unregistered_dialog_body">இந்தச் சாதனம் இனி பதிவுசெய்யப்பட்டிருக்காது. உங்கள் கணக்கில் மாற்றங்களைச் செய்ய மீண்டும் பதிவு செய்யவும்.</string>
     <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
     <string name="EditProfileFragment_unregistered_dialog_reregister_button">மறு பதிவு</string>
 
@@ -6666,44 +6666,44 @@
     <string name="FindByActivity__network_error_dialog">பிணைய பிழை ஏற்பட்டது. பின்னர் மீண்டும் முயற்சிக்கவும்.</string>
 
     <!-- Title for an alert letting someone know that one of their linked devices is inactive. -->
-    <string name="LinkedDeviceInactiveMegaphone_title">Inactive linked device</string>
+    <string name="LinkedDeviceInactiveMegaphone_title">செயலற்ற இணைக்கப்பட்ட சாதனம்</string>
     <!-- Body for an alert letting someone know that one of their linked devices is inactive. The string placeholder is the name of the device, and the number placeholder is the number of days before device is unlinked. -->
     <plurals name="LinkedDeviceInactiveMegaphone_body">
-        <item quantity="one">To keep \"%1$s\" linked, open Signal on that device within %2$d day.</item>
-        <item quantity="other">To keep \"%1$s\" linked, open Signal on that device within %2$d days.</item>
+        <item quantity="one">\"%1$s\"ஐத் தொடர்ந்து இணைப்பில் வைத்திருக்க, அந்தச் சாதனத்தில் %2$d நாளுக்குள் சிக்னலைத் திறக்கவும்.</item>
+        <item quantity="other">\"%1$s\"ஐத் தொடர்ந்து இணைப்பில் வைத்திருக்க, அந்தச் சாதனத்தில் %2$d நாட்களுக்குள் சிக்னலைத் திறக்கவும்.</item>
     </plurals>
     <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the user will opt out of all future alerts. -->
-    <string name="LinkedDeviceInactiveMegaphone_dont_remind_button_label">Don\'t remind me</string>
+    <string name="LinkedDeviceInactiveMegaphone_dont_remind_button_label">எனக்கு ஞாபகப்படுத்த வேண்டாம்</string>
     <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the alert will be dismissed. -->
     <string name="LinkedDeviceInactiveMegaphone_got_it_button_label">அறிந்துகொண்டேன்</string>
 
     <!-- NicknameFragment -->
     <!-- Title displayed at the top of the screen -->
-    <string name="NicknameActivity__nickname">Nickname</string>
+    <string name="NicknameActivity__nickname">புனைப்பெயர்</string>
     <!-- Subtitle displayed under title -->
-    <string name="NicknameActivity__nicknames_amp_notes">Nicknames &amp; notes are stored using Signal\'s end-to-end encrypted storage service. They are only visible to you.</string>
+    <string name="NicknameActivity__nicknames_amp_notes">சிக்னலின் எண்ட்-டு-எண்ட் என்க்ரிப்ட் செய்யப்பட்ட சேமிப்பகச் சேவையைப் பயன்படுத்தி புனைப்பெயர்களும் குறிப்புகளும் சேமிக்கப்படுகின்றன. அவை உங்களுக்கு மட்டுமே தெரியும்.</string>
     <!-- Field label for given name -->
     <string name="NicknameActivity__first_name">முதல் பெயர்</string>
     <!-- Content description for first name clear button -->
-    <string name="NicknameActivity__clear_first_name">Clear first name</string>
+    <string name="NicknameActivity__clear_first_name">முதல் பெயரை நீக்கு</string>
     <!-- Field label for family name -->
     <string name="NicknameActivity__last_name">கடந்த பெயர்</string>
     <!-- Content description for last name clear button -->
-    <string name="NicknameActivity__clear_last_name">Clear last name</string>
+    <string name="NicknameActivity__clear_last_name">கடைசிப் பெயரை நீக்கு</string>
     <!-- Field label for note -->
     <string name="NicknameActivity__note">குறிப்பு</string>
     <!-- Button label to save -->
     <string name="NicknameActivity__save">சேமி</string>
     <!-- Dialog title for note and name deletion -->
-    <string name="NicknameActivity__delete_nickname">Delete nickname?</string>
+    <string name="NicknameActivity__delete_nickname">புனைப்பெயரை நீக்க வேண்டுமா?</string>
     <!-- Dialog message for note and name deletion -->
-    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">This will permanently delete this nickname and note.</string>
+    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">இவ்வாறு செய்வது இந்தப் புனைப்பெயரையும் குறிப்பையும் நிரந்தரமாக நீக்கிவிடும்.</string>
 
     <!-- ViewNoteBottomSheetDialogFragment -->
     <!-- Sheet title -->
     <string name="ViewNoteSheet__note">குறிப்பு</string>
     <!-- Content description for opening the note editor -->
-    <string name="ViewNoteSheet__edit_note">Edit note</string>
+    <string name="ViewNoteSheet__edit_note">குறிப்பைத் திருத்து</string>
 
     <!-- EOF -->
 </resources>

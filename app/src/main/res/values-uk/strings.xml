@@ -5815,7 +5815,7 @@
         <item quantity="other">%1$d осіб</item>
     </plurals>
     <!-- My story privacy fine print about what the privacy settings are for -->
-    <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Виберіть, хто зможе переглядати ваші історії. Зміни не вплинуть на вже створені історії.</string>
+    <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Виберіть, хто зможе переглядати вашу історію. Зміни не вплинуть на вже створені історії.</string>
     <!-- Section header for options related to replies and reactions -->
     <string name="MyStorySettingsFragment__replies_amp_reactions">Відповіді і реакції</string>
     <!-- Switchable option for allowing replies and reactions on your stories -->
@@ -6225,7 +6225,7 @@
     <!-- Story view receipts toggle title -->
     <string name="StoriesPrivacySettingsFragment__view_receipts">Відмітки про перегляд</string>
     <!-- Story view receipts toggle message -->
-    <string name="StoriesPrivacySettingsFragment__see_and_share">Увімкніть, щоб бачити перегляди ваших історій від інших, і дозволити іншим бачити ваші перегляди їхніх історій. Якщо цю функцію вимкнено, ви не будете знати, чи хтось переглянув вашу історію.</string>
+    <string name="StoriesPrivacySettingsFragment__see_and_share">Увімкніть, щоб бачити перегляди ваших історій від інших і дозволити іншим бачити ваші перегляди їхніх історій. Якщо цю функцію вимкнено, ви не будете знати, чи хтось переглянув вашу історію.</string>
 
     <!-- NewStoryItem -->
     <string name="NewStoryItem__new_story">Нова історія</string>

@@ -2934,7 +2934,7 @@
     <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
     <string name="EditProfileFragment_unregistered_dialog_title">ડિવાઇસ રજીસ્ટર થયેલું નથી</string>
     <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
-    <string name="EditProfileFragment_unregistered_dialog_body">This device is no longer registered. Re-register to make changes to your account.</string>
+    <string name="EditProfileFragment_unregistered_dialog_body">આ ડિવાઇસ હવે રજીસ્ટર થયેલું નથી. તમારા અકાઉન્ટમાં ફેરફાર કરવા માટે ફરીથી રજીસ્ટરી કરો.</string>
     <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
     <string name="EditProfileFragment_unregistered_dialog_reregister_button">ફરીથી રજીસ્ટર</string>
 
@@ -6666,44 +6666,44 @@
     <string name="FindByActivity__network_error_dialog">નેટવર્ક ભૂલ મળી. પછી ફરી પ્રયાસ કરો.</string>
 
     <!-- Title for an alert letting someone know that one of their linked devices is inactive. -->
-    <string name="LinkedDeviceInactiveMegaphone_title">Inactive linked device</string>
+    <string name="LinkedDeviceInactiveMegaphone_title">નિષ્ક્રિય લિંક કરેલા ડિવાઇસ</string>
     <!-- Body for an alert letting someone know that one of their linked devices is inactive. The string placeholder is the name of the device, and the number placeholder is the number of days before device is unlinked. -->
     <plurals name="LinkedDeviceInactiveMegaphone_body">
-        <item quantity="one">To keep \"%1$s\" linked, open Signal on that device within %2$d day.</item>
-        <item quantity="other">To keep \"%1$s\" linked, open Signal on that device within %2$d days.</item>
+        <item quantity="one">\"%1$s\" ને લિંક કરેલું રાખવા માટે, તે ડિવાઇસ પર %2$d દિવસની અંદર Signal ખોલો.</item>
+        <item quantity="other">\"%1$s\" ને લિંક કરેલું રાખવા માટે, તે ડિવાઇસ પર %2$d દિવસની અંદર Signal ખોલો.</item>
     </plurals>
     <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the user will opt out of all future alerts. -->
-    <string name="LinkedDeviceInactiveMegaphone_dont_remind_button_label">Don\'t remind me</string>
+    <string name="LinkedDeviceInactiveMegaphone_dont_remind_button_label">મને યાદ અપાવશો નહીં</string>
     <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the alert will be dismissed. -->
     <string name="LinkedDeviceInactiveMegaphone_got_it_button_label">સમજાઈ ગયું</string>
 
     <!-- NicknameFragment -->
     <!-- Title displayed at the top of the screen -->
-    <string name="NicknameActivity__nickname">Nickname</string>
+    <string name="NicknameActivity__nickname">ઉપનામ</string>
     <!-- Subtitle displayed under title -->
-    <string name="NicknameActivity__nicknames_amp_notes">Nicknames &amp; notes are stored using Signal\'s end-to-end encrypted storage service. They are only visible to you.</string>
+    <string name="NicknameActivity__nicknames_amp_notes">ઉપનામો અને નોંધોને Signalની એન્ડ-ટુ-એન્ડ એન્ક્રિપ્ટેડ સ્ટોરેજ સેવાનો ઉપયોગ કરીને સ્ટોર કરવામાં આવે છે. તે ફક્ત તમને જ દેખાય છે.</string>
     <!-- Field label for given name -->
     <string name="NicknameActivity__first_name">પહેલું નામ</string>
     <!-- Content description for first name clear button -->
-    <string name="NicknameActivity__clear_first_name">Clear first name</string>
+    <string name="NicknameActivity__clear_first_name">નામ દૂર કરો</string>
     <!-- Field label for family name -->
     <string name="NicknameActivity__last_name">અટક</string>
     <!-- Content description for last name clear button -->
-    <string name="NicknameActivity__clear_last_name">Clear last name</string>
+    <string name="NicknameActivity__clear_last_name">અટક દૂર કરો</string>
     <!-- Field label for note -->
     <string name="NicknameActivity__note">નોટ</string>
     <!-- Button label to save -->
     <string name="NicknameActivity__save">સેવ કરો</string>
     <!-- Dialog title for note and name deletion -->
-    <string name="NicknameActivity__delete_nickname">Delete nickname?</string>
+    <string name="NicknameActivity__delete_nickname">ઉપનામ ડિલીટ કરવું છે?</string>
     <!-- Dialog message for note and name deletion -->
-    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">This will permanently delete this nickname and note.</string>
+    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">આ આ ઉપનામ અને નોંધને કાયમ માટે ડિલીટ કરશે.</string>
 
     <!-- ViewNoteBottomSheetDialogFragment -->
     <!-- Sheet title -->
     <string name="ViewNoteSheet__note">નોટ</string>
     <!-- Content description for opening the note editor -->
-    <string name="ViewNoteSheet__edit_note">Edit note</string>
+    <string name="ViewNoteSheet__edit_note">નોંધમાં ફેરફાર કરો</string>
 
     <!-- EOF -->
 </resources>

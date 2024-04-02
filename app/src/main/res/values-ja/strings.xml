@@ -2526,7 +2526,7 @@
     <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
     <string name="WebRtcAudioOutputToggle__wired_headset_usb">有線ヘッドセット (USB)</string>
 
-    <string name="WebRtcCallControls_answer_call_description">通話を開始</string>
+    <string name="WebRtcCallControls_answer_call_description">通話を開始する</string>
     <string name="WebRtcCallControls_reject_call_description">通話を拒否</string>
 
     <!-- change_passphrase_activity -->
@@ -4231,7 +4231,7 @@
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
     <string name="PaymentsRecoveryStartFragment__time_to_save">24単語のリカバリーフレーズ（残高を復元するためのキー）を保存しましょう。</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">あなたのリカバリーフレーズは%1$d語で、あなた固有のものです。口座の復元に使用してください。</string>
-    <string name="PaymentsRecoveryStartFragment__start">開始</string>
+    <string name="PaymentsRecoveryStartFragment__start">開始する</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">マニュアル入力</string>
     <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">クリップボードから貼り付け</string>
     <!-- Alert dialog title which asks before going back if user wants to save recovery phrase -->
@@ -4597,7 +4597,7 @@
     <string name="ConversationSettingsFragment__only_admins_of_this_group_can_add_to_its_story">ストーリーに追加できるのはグループ管理者のみです</string>
     <!-- Error toasted when no activity can handle the add contact intent -->
     <string name="ConversationSettingsFragment__contacts_app_not_found">連絡先アプリが見つかりません。</string>
-    <string name="ConversationSettingsFragment__start_video_call">ビデオ通話を開始</string>
+    <string name="ConversationSettingsFragment__start_video_call">ビデオ通話を開始する</string>
     <string name="ConversationSettingsFragment__start_audio_call">音声通話を開始する</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__story">ストーリー</string>
@@ -5193,7 +5193,7 @@
     <!-- Text shown next to toggle switch to enable/disable schedule -->
     <string name="EditNotificationProfileSchedule__schedule">スケジュール</string>
     <!-- Label for showing the start time for the schedule -->
-    <string name="EditNotificationProfileSchedule__start">開始</string>
+    <string name="EditNotificationProfileSchedule__start">開始する</string>
     <!-- Label for showing the end time for the schedule -->
     <string name="EditNotificationProfileSchedule__end">終了</string>
     <!-- First letter of Sunday -->
@@ -6170,7 +6170,7 @@
     <!-- Status text on call links -->
     <string name="CallLogAdapter__call_link">通話リンク</string>
     <!-- Accessibility description for the video call button -->
-    <string name="CallLogAdapter__start_a_video_call">ビデオ通話を開始</string>
+    <string name="CallLogAdapter__start_a_video_call">ビデオ通話を開始する</string>
     <!-- Accessibility description for the voice call button -->
     <string name="CallLogAdapter__start_a_voice_call">音声通話を開始する</string>
 

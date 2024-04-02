@@ -3310,7 +3310,7 @@
     <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
     <string name="EditProfileFragment_unregistered_dialog_title">الجهاز غير مُسجل</string>
     <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
-    <string name="EditProfileFragment_unregistered_dialog_body">This device is no longer registered. Re-register to make changes to your account.</string>
+    <string name="EditProfileFragment_unregistered_dialog_body">هذا الجهاز لم يعد مسجلاً. سجّل من جديد لتُحدث تغييرات على حسابك.</string>
     <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
     <string name="EditProfileFragment_unregistered_dialog_reregister_button">إعادة-التسجيل</string>
 
@@ -7246,48 +7246,48 @@
     <string name="FindByActivity__network_error_dialog">حدث خطأ في الشبكة. يُرجى المحاولة مرة أخرى لاحقا.</string>
 
     <!-- Title for an alert letting someone know that one of their linked devices is inactive. -->
-    <string name="LinkedDeviceInactiveMegaphone_title">Inactive linked device</string>
+    <string name="LinkedDeviceInactiveMegaphone_title">جهاز غير مرتبط غير نشط</string>
     <!-- Body for an alert letting someone know that one of their linked devices is inactive. The string placeholder is the name of the device, and the number placeholder is the number of days before device is unlinked. -->
     <plurals name="LinkedDeviceInactiveMegaphone_body">
-        <item quantity="zero">To keep \"%1$s\" linked, open Signal on that device within %2$d days.</item>
-        <item quantity="one">To keep \"%1$s\" linked, open Signal on that device within %2$d day.</item>
-        <item quantity="two">To keep \"%1$s\" linked, open Signal on that device within %2$d days.</item>
-        <item quantity="few">To keep \"%1$s\" linked, open Signal on that device within %2$d days.</item>
-        <item quantity="many">To keep \"%1$s\" linked, open Signal on that device within %2$d days.</item>
-        <item quantity="other">To keep \"%1$s\" linked, open Signal on that device within %2$d days.</item>
+        <item quantity="zero">لتُبقي \"%1$s\" مرتبطًا، افتح سيجنال على ذلك الجهاز في غضون %2$d أيام.</item>
+        <item quantity="one">لتُبقي \"%1$s\" مرتبطا، افتح سيجنال على ذلك الجهاز في غضون %2$d يوم.</item>
+        <item quantity="two">لتُبقي \"%1$s\" مرتبطا، افتح سيجنال على ذلك الجهاز في غضون %2$d يومين.</item>
+        <item quantity="few">لتُبقي \"%1$s\" مرتبطا، افتح سيجنال على ذلك الجهاز في غضون %2$d أيام.</item>
+        <item quantity="many">لتُبقي \"%1$s\" مرتبطا، افتح سيجنال على ذلك الجهاز في غضون %2$d يومًا.</item>
+        <item quantity="other">لتُبقي \"%1$s\" مرتبطا، افتح سيجنال على ذلك الجهاز في غضون %2$d يوم.</item>
     </plurals>
     <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the user will opt out of all future alerts. -->
-    <string name="LinkedDeviceInactiveMegaphone_dont_remind_button_label">Don\'t remind me</string>
+    <string name="LinkedDeviceInactiveMegaphone_dont_remind_button_label">لا تُذكّرني</string>
     <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the alert will be dismissed. -->
     <string name="LinkedDeviceInactiveMegaphone_got_it_button_label">عُلم</string>
 
     <!-- NicknameFragment -->
     <!-- Title displayed at the top of the screen -->
-    <string name="NicknameActivity__nickname">Nickname</string>
+    <string name="NicknameActivity__nickname">اسم مستعار</string>
     <!-- Subtitle displayed under title -->
-    <string name="NicknameActivity__nicknames_amp_notes">Nicknames &amp; notes are stored using Signal\'s end-to-end encrypted storage service. They are only visible to you.</string>
+    <string name="NicknameActivity__nicknames_amp_notes">يتم تخزين الأسماء المُستعارة والملاحظات باستخدام خدمة التخزين المشفرة من طرف لطرف. تكون الأسماء المستعارة والملاحظات مرئية لك فقط.</string>
     <!-- Field label for given name -->
     <string name="NicknameActivity__first_name">الاسم الشخصي</string>
     <!-- Content description for first name clear button -->
-    <string name="NicknameActivity__clear_first_name">Clear first name</string>
+    <string name="NicknameActivity__clear_first_name">مسح الاسم الشخصي</string>
     <!-- Field label for family name -->
     <string name="NicknameActivity__last_name">اسم العائلة</string>
     <!-- Content description for last name clear button -->
-    <string name="NicknameActivity__clear_last_name">Clear last name</string>
+    <string name="NicknameActivity__clear_last_name">مسح الاسم الشخصي</string>
     <!-- Field label for note -->
     <string name="NicknameActivity__note">مُلاحظة</string>
     <!-- Button label to save -->
     <string name="NicknameActivity__save">حفظ</string>
     <!-- Dialog title for note and name deletion -->
-    <string name="NicknameActivity__delete_nickname">Delete nickname?</string>
+    <string name="NicknameActivity__delete_nickname">هل تريد حذف الاسم المستعار؟</string>
     <!-- Dialog message for note and name deletion -->
-    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">This will permanently delete this nickname and note.</string>
+    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">هذا الإجراء سَيحذف الاسم المستعار والملاحظة بشكل دائم.</string>
 
     <!-- ViewNoteBottomSheetDialogFragment -->
     <!-- Sheet title -->
     <string name="ViewNoteSheet__note">مُلاحظة</string>
     <!-- Content description for opening the note editor -->
-    <string name="ViewNoteSheet__edit_note">Edit note</string>
+    <string name="ViewNoteSheet__edit_note">تعديل الملاحظة</string>
 
     <!-- EOF -->
 </resources>

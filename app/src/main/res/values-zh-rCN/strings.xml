@@ -2840,7 +2840,7 @@
     <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
     <string name="EditProfileFragment_unregistered_dialog_title">设备未注册</string>
     <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
-    <string name="EditProfileFragment_unregistered_dialog_body">This device is no longer registered. Re-register to make changes to your account.</string>
+    <string name="EditProfileFragment_unregistered_dialog_body">此设备已注销。请重新注册以更改您的账户。</string>
     <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
     <string name="EditProfileFragment_unregistered_dialog_reregister_button">重新注册</string>
 
@@ -6521,43 +6521,43 @@
     <string name="FindByActivity__network_error_dialog">网络错误，请稍候重试。</string>
 
     <!-- Title for an alert letting someone know that one of their linked devices is inactive. -->
-    <string name="LinkedDeviceInactiveMegaphone_title">Inactive linked device</string>
+    <string name="LinkedDeviceInactiveMegaphone_title">已链接设备不活跃</string>
     <!-- Body for an alert letting someone know that one of their linked devices is inactive. The string placeholder is the name of the device, and the number placeholder is the number of days before device is unlinked. -->
     <plurals name="LinkedDeviceInactiveMegaphone_body">
-        <item quantity="other">To keep \"%1$s\" linked, open Signal on that device within %2$d days.</item>
+        <item quantity="other">如要继续链接“%1$s”，请在 %2$d 天内打开该设备上的 Signal。</item>
     </plurals>
     <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the user will opt out of all future alerts. -->
-    <string name="LinkedDeviceInactiveMegaphone_dont_remind_button_label">Don\'t remind me</string>
+    <string name="LinkedDeviceInactiveMegaphone_dont_remind_button_label">不提醒我</string>
     <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the alert will be dismissed. -->
     <string name="LinkedDeviceInactiveMegaphone_got_it_button_label">知道了</string>
 
     <!-- NicknameFragment -->
     <!-- Title displayed at the top of the screen -->
-    <string name="NicknameActivity__nickname">Nickname</string>
+    <string name="NicknameActivity__nickname">昵称</string>
     <!-- Subtitle displayed under title -->
-    <string name="NicknameActivity__nicknames_amp_notes">Nicknames &amp; notes are stored using Signal\'s end-to-end encrypted storage service. They are only visible to you.</string>
+    <string name="NicknameActivity__nicknames_amp_notes">昵称和备注通过 Signal 的端对端加密存储服务进行存储。这些内容仅对您可见。</string>
     <!-- Field label for given name -->
     <string name="NicknameActivity__first_name">名</string>
     <!-- Content description for first name clear button -->
-    <string name="NicknameActivity__clear_first_name">Clear first name</string>
+    <string name="NicknameActivity__clear_first_name">清除姓氏</string>
     <!-- Field label for family name -->
     <string name="NicknameActivity__last_name">姓氏</string>
     <!-- Content description for last name clear button -->
-    <string name="NicknameActivity__clear_last_name">Clear last name</string>
+    <string name="NicknameActivity__clear_last_name">清除名字</string>
     <!-- Field label for note -->
     <string name="NicknameActivity__note">备注</string>
     <!-- Button label to save -->
     <string name="NicknameActivity__save">保存</string>
     <!-- Dialog title for note and name deletion -->
-    <string name="NicknameActivity__delete_nickname">Delete nickname?</string>
+    <string name="NicknameActivity__delete_nickname">要删除昵称吗？</string>
     <!-- Dialog message for note and name deletion -->
-    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">This will permanently delete this nickname and note.</string>
+    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">这将永久删除该昵称和备注。</string>
 
     <!-- ViewNoteBottomSheetDialogFragment -->
     <!-- Sheet title -->
     <string name="ViewNoteSheet__note">备注</string>
     <!-- Content description for opening the note editor -->
-    <string name="ViewNoteSheet__edit_note">Edit note</string>
+    <string name="ViewNoteSheet__edit_note">编辑备注</string>
 
     <!-- EOF -->
 </resources>

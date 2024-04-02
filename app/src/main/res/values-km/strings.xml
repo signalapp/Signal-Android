@@ -2840,7 +2840,7 @@
     <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
     <string name="EditProfileFragment_unregistered_dialog_title">ឧបករណ៍មិនបានចុះឈ្មោះទេ</string>
     <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
-    <string name="EditProfileFragment_unregistered_dialog_body">This device is no longer registered. Re-register to make changes to your account.</string>
+    <string name="EditProfileFragment_unregistered_dialog_body">ឧបករណ៍នេះមិនត្រូវបានចុះឈ្មោះទៀតទេ។ ចុះឈ្មោះឡើងវិញដើម្បីធ្វើការកែប្រែទៅលើគណនីរបស់អ្នក។</string>
     <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
     <string name="EditProfileFragment_unregistered_dialog_reregister_button">ចុះឈ្មោះម្តងទៀត</string>
 
@@ -6521,43 +6521,43 @@
     <string name="FindByActivity__network_error_dialog">បានជួបប្រទះបញ្ហាបណ្តាញ។ សាកល្បងម្តងទៀតពេលក្រោយ។</string>
 
     <!-- Title for an alert letting someone know that one of their linked devices is inactive. -->
-    <string name="LinkedDeviceInactiveMegaphone_title">Inactive linked device</string>
+    <string name="LinkedDeviceInactiveMegaphone_title">ឧបករណ៍ដែលបានភ្ជាប់ តែអសកម្ម</string>
     <!-- Body for an alert letting someone know that one of their linked devices is inactive. The string placeholder is the name of the device, and the number placeholder is the number of days before device is unlinked. -->
     <plurals name="LinkedDeviceInactiveMegaphone_body">
-        <item quantity="other">To keep \"%1$s\" linked, open Signal on that device within %2$d days.</item>
+        <item quantity="other">ដើម្បីបន្តភ្ជាប់ \"%1$s\" សូមបើក Signal នៅលើឧបករណ៍នោះក្នុងរយៈពេល %2$d ថ្ងៃ។</item>
     </plurals>
     <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the user will opt out of all future alerts. -->
-    <string name="LinkedDeviceInactiveMegaphone_dont_remind_button_label">Don\'t remind me</string>
+    <string name="LinkedDeviceInactiveMegaphone_dont_remind_button_label">កុំរំលឹកខ្ញុំ</string>
     <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the alert will be dismissed. -->
     <string name="LinkedDeviceInactiveMegaphone_got_it_button_label">យល់ហើយ</string>
 
     <!-- NicknameFragment -->
     <!-- Title displayed at the top of the screen -->
-    <string name="NicknameActivity__nickname">Nickname</string>
+    <string name="NicknameActivity__nickname">ឈ្មោះហៅក្រៅ</string>
     <!-- Subtitle displayed under title -->
-    <string name="NicknameActivity__nicknames_amp_notes">Nicknames &amp; notes are stored using Signal\'s end-to-end encrypted storage service. They are only visible to you.</string>
+    <string name="NicknameActivity__nicknames_amp_notes">ឈ្មោះហៅក្រៅ និងកំណត់ចំណាំផ្សេងៗត្រូវបានរក្សាទុកដោយប្រើប្រាស់សេវាកម្មរក្សាទុកតាមការអ៊ីនគ្រីបទាំងសងខាងរបស់ Signal។ មានតែអ្នកទេដែលអាចមើលឃើញពួកវា។</string>
     <!-- Field label for given name -->
     <string name="NicknameActivity__first_name">ឈ្មោះ</string>
     <!-- Content description for first name clear button -->
-    <string name="NicknameActivity__clear_first_name">Clear first name</string>
+    <string name="NicknameActivity__clear_first_name">លុបនាមខ្លួន</string>
     <!-- Field label for family name -->
     <string name="NicknameActivity__last_name">ត្រកូល</string>
     <!-- Content description for last name clear button -->
-    <string name="NicknameActivity__clear_last_name">Clear last name</string>
+    <string name="NicknameActivity__clear_last_name">លុបនាមត្រកូល</string>
     <!-- Field label for note -->
-    <string name="NicknameActivity__note">កំណត់ត្រា</string>
+    <string name="NicknameActivity__note">កំណត់ចំណាំ</string>
     <!-- Button label to save -->
     <string name="NicknameActivity__save">រក្សាទុក</string>
     <!-- Dialog title for note and name deletion -->
-    <string name="NicknameActivity__delete_nickname">Delete nickname?</string>
+    <string name="NicknameActivity__delete_nickname">លុបឈ្មោះហៅក្រៅមែនទេ?</string>
     <!-- Dialog message for note and name deletion -->
-    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">This will permanently delete this nickname and note.</string>
+    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">ការធ្វើបែបនេះនឹងលុបឈ្មោះហៅក្រៅ និងកំណត់ចំណាំនេះជាអចិន្ត្រៃយ៍។</string>
 
     <!-- ViewNoteBottomSheetDialogFragment -->
     <!-- Sheet title -->
-    <string name="ViewNoteSheet__note">កំណត់ត្រា</string>
+    <string name="ViewNoteSheet__note">កំណត់ចំណាំ</string>
     <!-- Content description for opening the note editor -->
-    <string name="ViewNoteSheet__edit_note">Edit note</string>
+    <string name="ViewNoteSheet__edit_note">កែកំណត់ចំណាំ</string>
 
     <!-- EOF -->
 </resources>
