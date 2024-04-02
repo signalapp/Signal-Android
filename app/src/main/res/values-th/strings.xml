@@ -6545,7 +6545,7 @@
     <!-- Content description for last name clear button -->
     <string name="NicknameActivity__clear_last_name">ล้างนามสกุล</string>
     <!-- Field label for note -->
-    <string name="NicknameActivity__note">บันทึก</string>
+    <string name="NicknameActivity__note">โน้ต</string>
     <!-- Button label to save -->
     <string name="NicknameActivity__save">บันทึก</string>
     <!-- Dialog title for note and name deletion -->
@@ -6555,7 +6555,7 @@
 
     <!-- ViewNoteBottomSheetDialogFragment -->
     <!-- Sheet title -->
-    <string name="ViewNoteSheet__note">บันทึก</string>
+    <string name="ViewNoteSheet__note">โน้ต</string>
     <!-- Content description for opening the note editor -->
     <string name="ViewNoteSheet__edit_note">แก้ไขโน้ต</string>
 

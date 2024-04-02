@@ -3122,7 +3122,7 @@
     <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
     <string name="EditProfileFragment_unregistered_dialog_title">Zařízení není registrováno</string>
     <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
-    <string name="EditProfileFragment_unregistered_dialog_body">This device is no longer registered. Re-register to make changes to your account.</string>
+    <string name="EditProfileFragment_unregistered_dialog_body">Toto zařízení již není registrované. Chcete-li provést změny ve svém účtu, znovu ho zaregistrujte.</string>
     <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
     <string name="EditProfileFragment_unregistered_dialog_reregister_button">Znovu se zaregistrovat</string>
 
@@ -6956,46 +6956,46 @@
     <string name="FindByActivity__network_error_dialog">Došlo k síťové chybě. Zkuste to znovu později.</string>
 
     <!-- Title for an alert letting someone know that one of their linked devices is inactive. -->
-    <string name="LinkedDeviceInactiveMegaphone_title">Inactive linked device</string>
+    <string name="LinkedDeviceInactiveMegaphone_title">Neaktivní propojené zařízení</string>
     <!-- Body for an alert letting someone know that one of their linked devices is inactive. The string placeholder is the name of the device, and the number placeholder is the number of days before device is unlinked. -->
     <plurals name="LinkedDeviceInactiveMegaphone_body">
-        <item quantity="one">To keep \"%1$s\" linked, open Signal on that device within %2$d day.</item>
-        <item quantity="few">To keep \"%1$s\" linked, open Signal on that device within %2$d days.</item>
-        <item quantity="many">To keep \"%1$s\" linked, open Signal on that device within %2$d days.</item>
-        <item quantity="other">To keep \"%1$s\" linked, open Signal on that device within %2$d days.</item>
+        <item quantity="one">Pokud chcete, aby zařízení „%1$s“ zůstalo propojené, otevřete na tomto zařízení aplikaci Signal do %2$d dne.</item>
+        <item quantity="few">Pokud chcete, aby zařízení „%1$s“ zůstalo propojené, otevřete na tomto zařízení aplikaci Signal do %2$d dnů.</item>
+        <item quantity="many">Pokud chcete, aby zařízení „%1$s“ zůstalo propojené, otevřete na tomto zařízení aplikaci Signal do %2$d dnů.</item>
+        <item quantity="other">Pokud chcete, aby zařízení „%1$s“ zůstalo propojené, otevřete na tomto zařízení aplikaci Signal do %2$d dnů.</item>
     </plurals>
     <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the user will opt out of all future alerts. -->
-    <string name="LinkedDeviceInactiveMegaphone_dont_remind_button_label">Don\'t remind me</string>
+    <string name="LinkedDeviceInactiveMegaphone_dont_remind_button_label">Neupozorňovat</string>
     <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the alert will be dismissed. -->
     <string name="LinkedDeviceInactiveMegaphone_got_it_button_label">Rozumím</string>
 
     <!-- NicknameFragment -->
     <!-- Title displayed at the top of the screen -->
-    <string name="NicknameActivity__nickname">Nickname</string>
+    <string name="NicknameActivity__nickname">Přezdívka</string>
     <!-- Subtitle displayed under title -->
-    <string name="NicknameActivity__nicknames_amp_notes">Nicknames &amp; notes are stored using Signal\'s end-to-end encrypted storage service. They are only visible to you.</string>
+    <string name="NicknameActivity__nicknames_amp_notes">Přezdívky a poznámky jsou uloženy pomocí služby koncového šifrování úložiště společnosti Signal. Vidíte je jen vy.</string>
     <!-- Field label for given name -->
     <string name="NicknameActivity__first_name">Křestní jméno</string>
     <!-- Content description for first name clear button -->
-    <string name="NicknameActivity__clear_first_name">Clear first name</string>
+    <string name="NicknameActivity__clear_first_name">Smazat křestní jméno</string>
     <!-- Field label for family name -->
     <string name="NicknameActivity__last_name">Příjmení</string>
     <!-- Content description for last name clear button -->
-    <string name="NicknameActivity__clear_last_name">Clear last name</string>
+    <string name="NicknameActivity__clear_last_name">Smazat příjmení</string>
     <!-- Field label for note -->
     <string name="NicknameActivity__note">Poznámka</string>
     <!-- Button label to save -->
     <string name="NicknameActivity__save">Uložit</string>
     <!-- Dialog title for note and name deletion -->
-    <string name="NicknameActivity__delete_nickname">Delete nickname?</string>
+    <string name="NicknameActivity__delete_nickname">Odstranit přezdívku?</string>
     <!-- Dialog message for note and name deletion -->
-    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">This will permanently delete this nickname and note.</string>
+    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">Tím se tato přezdívka a poznámka trvale odstraní.</string>
 
     <!-- ViewNoteBottomSheetDialogFragment -->
     <!-- Sheet title -->
     <string name="ViewNoteSheet__note">Poznámka</string>
     <!-- Content description for opening the note editor -->
-    <string name="ViewNoteSheet__edit_note">Edit note</string>
+    <string name="ViewNoteSheet__edit_note">Upravit poznámku</string>
 
     <!-- EOF -->
 </resources>

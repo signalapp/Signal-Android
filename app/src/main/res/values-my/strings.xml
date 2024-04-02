@@ -2840,7 +2840,7 @@
     <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
     <string name="EditProfileFragment_unregistered_dialog_title">စက်ကို မှတ်ပုံမတင်ထားပါ</string>
     <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
-    <string name="EditProfileFragment_unregistered_dialog_body">This device is no longer registered. Re-register to make changes to your account.</string>
+    <string name="EditProfileFragment_unregistered_dialog_body">ဤစက်ကို မှတ်ပုံတင်ထားခြင်း မရှိတော့ပါ။ သင့်အကောင့်ကို ပြောင်းလဲမှုများပြုလုပ်ရန် ပြန်လည်မှတ်ပုံတင်ပါ။</string>
     <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
     <string name="EditProfileFragment_unregistered_dialog_reregister_button">ပြန်လည်၍မှတ်ပုံတင်ခြင်းပြုလုပ်မည်</string>
 
@@ -6521,43 +6521,43 @@
     <string name="FindByActivity__network_error_dialog">ကွန်ယက် အမှားတစ်ခုနှင့် ကြုံတွေ့ခဲ့သည်။ နောက်မှ ပြန်လည် ကြိုးစားပါ။</string>
 
     <!-- Title for an alert letting someone know that one of their linked devices is inactive. -->
-    <string name="LinkedDeviceInactiveMegaphone_title">Inactive linked device</string>
+    <string name="LinkedDeviceInactiveMegaphone_title">အသုံးပြုခြင်းမရှိသော ချိတ်ထားသည့် စက်များ</string>
     <!-- Body for an alert letting someone know that one of their linked devices is inactive. The string placeholder is the name of the device, and the number placeholder is the number of days before device is unlinked. -->
     <plurals name="LinkedDeviceInactiveMegaphone_body">
-        <item quantity="other">To keep \"%1$s\" linked, open Signal on that device within %2$d days.</item>
+        <item quantity="other">\"%1$s\" နှင့် ဆက်လက် လင့်ခ်ချိတ်ထားရန်၊  %2$d ရက်အတွင်း ထိုစက်တွင် Signal ကို ဖွင့်ပါ။</item>
     </plurals>
     <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the user will opt out of all future alerts. -->
-    <string name="LinkedDeviceInactiveMegaphone_dont_remind_button_label">Don\'t remind me</string>
+    <string name="LinkedDeviceInactiveMegaphone_dont_remind_button_label">သတိမပေးပါနှင့်</string>
     <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the alert will be dismissed. -->
     <string name="LinkedDeviceInactiveMegaphone_got_it_button_label">ရပြီ</string>
 
     <!-- NicknameFragment -->
     <!-- Title displayed at the top of the screen -->
-    <string name="NicknameActivity__nickname">Nickname</string>
+    <string name="NicknameActivity__nickname">အမည်ပြောင်</string>
     <!-- Subtitle displayed under title -->
-    <string name="NicknameActivity__nicknames_amp_notes">Nicknames &amp; notes are stored using Signal\'s end-to-end encrypted storage service. They are only visible to you.</string>
+    <string name="NicknameActivity__nicknames_amp_notes">အမည်ပြောင်များနှင့် မှတ်ချက်များကို Signal ၏ End-to-end ကုဒ်ပြောင်းဝှက် သိုလှောင်ရေးဝန်ဆောင်မှုကို အသုံးပြု၍ သိမ်းဆည်းထားပါသည်။ ၎င်းတို့ကို သင်သာမြင်နိုင်သည်။</string>
     <!-- Field label for given name -->
     <string name="NicknameActivity__first_name">အမည်အစ</string>
     <!-- Content description for first name clear button -->
-    <string name="NicknameActivity__clear_first_name">Clear first name</string>
+    <string name="NicknameActivity__clear_first_name">အမည်၏ ပထမစကားလုံးကို ဖယ်ရှားရန်</string>
     <!-- Field label for family name -->
-    <string name="NicknameActivity__last_name">Last name</string>
+    <string name="NicknameActivity__last_name">အမည် နောက်ဆုံးစကားလုံး</string>
     <!-- Content description for last name clear button -->
-    <string name="NicknameActivity__clear_last_name">Clear last name</string>
+    <string name="NicknameActivity__clear_last_name">အမည်၏ နောက်ဆုံးစကားလုံးကို ဖယ်ရှားရန်</string>
     <!-- Field label for note -->
     <string name="NicknameActivity__note">မှတ်ချက်</string>
     <!-- Button label to save -->
     <string name="NicknameActivity__save">သိမ်းရန်</string>
     <!-- Dialog title for note and name deletion -->
-    <string name="NicknameActivity__delete_nickname">Delete nickname?</string>
+    <string name="NicknameActivity__delete_nickname">အမည်ပြောင်ကို ဖျက်မည်လား။</string>
     <!-- Dialog message for note and name deletion -->
-    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">This will permanently delete this nickname and note.</string>
+    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">၎င်းသည် ဤအမည်ပြောင်နှင့် မှတ်ချက်ကို အပြီးအပိုင် ဖျက်လိုက်ပါမည်။</string>
 
     <!-- ViewNoteBottomSheetDialogFragment -->
     <!-- Sheet title -->
     <string name="ViewNoteSheet__note">မှတ်ချက်</string>
     <!-- Content description for opening the note editor -->
-    <string name="ViewNoteSheet__edit_note">Edit note</string>
+    <string name="ViewNoteSheet__edit_note">မှတ်ချက်ပြင်ဆင်တည်းဖြတ်မှု</string>
 
     <!-- EOF -->
 </resources>

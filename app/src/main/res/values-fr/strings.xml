@@ -99,7 +99,7 @@
     <string name="AttachmentManager__cancel">Annuler</string>
 
     <!-- AttachmentUploadJob -->
-    <string name="AttachmentUploadJob_uploading_media">Téléversement du média…</string>
+    <string name="AttachmentUploadJob_uploading_media">Importation du média…</string>
     <string name="AttachmentUploadJob_compressing_video_start">Compression de la vidéo…</string>
 
     <!-- BackgroundMessageRetriever -->
@@ -644,7 +644,7 @@
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
     <string name="RelinkDevicesReminderFragment__relink_your_devices">Liez de nouveau vos appareils</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">Les appareils que vous avez ajoutés ont été dissociés lorsque votre appareil a été supprimé. Rendez-vous dans les paramètres pour relier vos appareils.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">Les appareils que vous avez ajoutés ont été dissociés lorsque vous avez désinscrit votre appareil. Accédez aux paramètres pour les associer de nouveau.</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
     <string name="RelinkDevicesReminderFragment__open_settings">Ouvrir les paramètres</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
@@ -1659,7 +1659,7 @@
     <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Saisissez la nouvelle phrase de passe.</string>
 
     <!-- DeviceProvisioningActivity -->
-    <string name="DeviceProvisioningActivity_link_this_device">Relier cet appareil ?</string>
+    <string name="DeviceProvisioningActivity_link_this_device">Associer cet appareil ?</string>
     <string name="DeviceProvisioningActivity_continue">Poursuivre</string>
 
     <string name="DeviceProvisioningActivity_content_intro">Il pourra</string>
@@ -1674,8 +1674,8 @@
     <string name="DeviceProvisioningActivity_content_progress_key_error">Le code QR est invalide</string>
     <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Désolé, trop d’appareils sont déjà reliés. Essayez d’en supprimer</string>
     <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Désolé, ce n’est pas un code QR valide de liaison d’appareil.</string>
-    <string name="DeviceProvisioningActivity_link_a_signal_device">Relier un appareil Signal ?</string>
-    <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Il semble que vous tentiez de relier un appareil Signal en utilisant un lecteur tiers. Pour votre protection, veuillez lire le code de nouveau à partir Signal.</string>
+    <string name="DeviceProvisioningActivity_link_a_signal_device">Associer un appareil Signal ?</string>
+    <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Il semble que vous tentiez d’associer un appareil Signal via un lecteur tiers. Pour votre sécurité, veuillez rescanner le code à partir de Signal.</string>
 
     <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal a besoin de l’autorisation Appareil photo afin de lire un code QR, mais elle a été refusée définitivement. Veuillez accéder aux paramètres de l’appli, sélectionner Autorisations et activer Appareil photo.</string>
     <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Impossible de lire un code QR sans l’autorisation Appareil photo</string>
@@ -2053,8 +2053,8 @@
     <string name="RegistrationActivity_play_services_error">Erreur des Services Google Play</string>
     <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Les services Google Play sont en cours de mise à jour ou temporairement non disponibles. Veuillez réessayer.</string>
     <string name="RegistrationActivity_terms_and_privacy">Conditions générales et politique de confidentialité</string>
-    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal a besoin des autorisations Contacts et Médias pour vous aider à vous connecter avec vos amis et à envoyer des messages. Vos contacts sont téléversés en utilisant la découverte confidentielle des contacts de Signal, ce qui signifie qu’ils sont chiffrés de bout en bout et ne sont jamais visibles par le service Signal.</string>
-    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal a besoin de l’autorisation Contacts pour vous aider à vous connecter avec vos amis. Vos contacts sont téléversés en utilisant la découverte confidentielle des contacts de Signal, ce qui signifie qu’ils sont chiffrés de bout en bout et ne sont jamais visibles par le service Signal.</string>
+    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Pour vous permettre de contacter vos amis et d’envoyer des messages, Signal a besoin des autorisations Contacts et Médias. Vos contacts sont importés grâce au service de découverte confidentielle de Signal : autrement dit, ils sont chiffrés de bout en bout et nous n’y avons jamais accès.</string>
+    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Pour vous permettre de contacter vos amis, Signal a besoin de l’autorisation Contacts. Vos contacts sont importés grâce au service de découverte confidentielle de Signal•: autrement dit, ils sont chiffrés de bout en bout et nous n’y avons jamais accès.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Vous avez fait trop d’essais pour inscrire ce numéro. Veuillez réessayer plus tard.</string>
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">Vous avez atteint le nombre maximal de tentatives d’inscription de ce numéro. Veuillez réessayer dans %1$s.</string>
@@ -2205,7 +2205,7 @@
     <string name="SubmitDebugLogActivity_success">C’est réussi !</string>
     <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copiez cette URL et ajoutez-la à votre relevé d’erreur ou à votre courriel de demande d’assistance :\n\n<b>%1$s</b></string>
     <string name="SubmitDebugLogActivity_share">Partager</string>
-    <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Ce journal sera publié publiquement sur Internet pour être consulté par les contributeurs. Vous pouvez l’examiner avant de le téléverser.</string>
+    <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Ce journal sera publiquement disponible sur le web, où les contributeurs pourront le consulter. Vous pouvez l’examiner avant de l’importer.</string>
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -2795,14 +2795,14 @@
     <string name="country_selection_fragment__no_matching_countries">Aucun pays ne correspond</string>
 
     <!-- device_add_fragment -->
-    <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Lisez le code QR affiché sur l’appareil pour le relier</string>
+    <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Scannez le code QR affiché sur l’appareil pour l’associer</string>
 
     <!-- device_link_fragment -->
-    <string name="device_link_fragment__link_device">Relier l’appareil</string>
+    <string name="device_link_fragment__link_device">Associer l’appareil</string>
 
     <!-- device_list_fragment -->
     <string name="device_list_fragment__no_devices_linked">Aucun appareil n’est relié</string>
-    <string name="device_list_fragment__link_new_device">Relier un nouvel appareil</string>
+    <string name="device_list_fragment__link_new_device">Associer un nouvel appareil</string>
 
     <!-- expiration -->
     <string name="expiration_off">Désactivés</string>
@@ -2997,7 +2997,7 @@
     <string name="AndroidManifest__verify_safety_number">Confirmer le numéro de sécurité</string>
     <string name="AndroidManifest__media_preview">Aperçu du média</string>
     <string name="AndroidManifest__message_details">Détails du message</string>
-    <string name="AndroidManifest__linked_devices">Appareils reliés</string>
+    <string name="AndroidManifest__linked_devices">Appareils associés</string>
     <string name="AndroidManifest__invite_friends">Inviter des amis</string>
     <string name="AndroidManifest_archived_conversations">Conversations archivées</string>
 
@@ -3020,7 +3020,7 @@
     <string name="HelpFragment__support_info">Info d’assistance</string>
     <string name="HelpFragment__signal_android_support_request">Demande d’assistance – Signal pour Android</string>
     <string name="HelpFragment__debug_log">Journal de débogage :</string>
-    <string name="HelpFragment__could_not_upload_logs">Impossible de téléverser les journaux</string>
+    <string name="HelpFragment__could_not_upload_logs">Impossible d’importer les journaux.</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Veuillez nous donner autant de détails que possible, afin de nous aider à comprendre la situation.</string>
     <string-array name="HelpFragment__categories_5">
         <item>Veuillez sélectionner une option</item>
@@ -3166,7 +3166,7 @@
     <string name="preferences__conversation_length_limit">Taille maximale de la conversation</string>
     <string name="preferences__keep_messages">Conserver les messages</string>
     <string name="preferences__clear_message_history">Effacer l’historique des messages</string>
-    <string name="preferences__linked_devices">Appareils reliés</string>
+    <string name="preferences__linked_devices">Appareils associés</string>
     <string name="preferences__light_theme">Clair</string>
     <string name="preferences__dark_theme">Sombre</string>
     <string name="preferences__appearance">Apparence</string>

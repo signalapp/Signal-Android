@@ -3116,15 +3116,15 @@
     <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
     <string name="EditProfileFragment_deprecated_dialog_title">Оновити Signal</string>
     <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
-    <string name="EditProfileFragment_deprecated_dialog_body">Ця версія Signal застаріла. Оновіть версію, щоб і надалі користуватися застосунком.</string>
+    <string name="EditProfileFragment_deprecated_dialog_body">Ця версія Signal застаріла. Оновіть застосунок, щоб і надалі ним користуватися.</string>
     <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
     <string name="EditProfileFragment_deprecated_dialog_update_button">Оновити</string>
     <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
     <string name="EditProfileFragment_unregistered_dialog_title">Пристрій не зареєстровано</string>
     <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
-    <string name="EditProfileFragment_unregistered_dialog_body">This device is no longer registered. Re-register to make changes to your account.</string>
+    <string name="EditProfileFragment_unregistered_dialog_body">Реєстрація на цьому пристрої вже не дійсна. Зареєструйтеся заново, щоб вносити зміни у свій акаунт.</string>
     <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
-    <string name="EditProfileFragment_unregistered_dialog_reregister_button">Перереєструватись</string>
+    <string name="EditProfileFragment_unregistered_dialog_reregister_button">Перереєструватися</string>
 
     <!-- EditProfileNameFragment -->
     <string name="EditProfileNameFragment_your_name">Ваше ім\'я</string>
@@ -4184,7 +4184,7 @@
     <string name="TransferOrRestoreFragment__restore_from_backup">Відновити резервну копію</string>
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Відновити ваші повідомлення із локальної резервної копії. Якщо ви не бажаєте зробити це зараз, ви не зможете відновити їх пізніше.</string>
     <!-- Button label for more options -->
-    <string name="TransferOrRestoreFragment__more_options">Більше опцій</string>
+    <string name="TransferOrRestoreFragment__more_options">Інші дії</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
     <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Відкрийте Signal на своєму старому Android-телефоні</string>
@@ -6956,46 +6956,46 @@
     <string name="FindByActivity__network_error_dialog">Виникла помилка мережі. Спробуйте пізніше.</string>
 
     <!-- Title for an alert letting someone know that one of their linked devices is inactive. -->
-    <string name="LinkedDeviceInactiveMegaphone_title">Inactive linked device</string>
+    <string name="LinkedDeviceInactiveMegaphone_title">Неактивний зв\'язаний пристрій</string>
     <!-- Body for an alert letting someone know that one of their linked devices is inactive. The string placeholder is the name of the device, and the number placeholder is the number of days before device is unlinked. -->
     <plurals name="LinkedDeviceInactiveMegaphone_body">
-        <item quantity="one">To keep \"%1$s\" linked, open Signal on that device within %2$d day.</item>
-        <item quantity="few">To keep \"%1$s\" linked, open Signal on that device within %2$d days.</item>
-        <item quantity="many">To keep \"%1$s\" linked, open Signal on that device within %2$d days.</item>
-        <item quantity="other">To keep \"%1$s\" linked, open Signal on that device within %2$d days.</item>
+        <item quantity="one">Ви маєте %2$d день, щоб відкрити Signal на пристрої «%1$s», якщо хочете, щоб він і надалі залишався зв\'язаним.</item>
+        <item quantity="few">Ви маєте %2$d дні, щоб відкрити Signal на пристрої «%1$s», якщо хочете, щоб він і надалі залишався зв\'язаним.</item>
+        <item quantity="many">Ви маєте %2$d днів, щоб відкрити Signal на пристрої «%1$s», якщо хочете, щоб він і надалі залишався зв\'язаним.</item>
+        <item quantity="other">Ви маєте %2$d дня, щоб відкрити Signal на пристрої «%1$s», якщо хочете, щоб він і надалі залишався зв\'язаним.</item>
     </plurals>
     <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the user will opt out of all future alerts. -->
-    <string name="LinkedDeviceInactiveMegaphone_dont_remind_button_label">Don\'t remind me</string>
+    <string name="LinkedDeviceInactiveMegaphone_dont_remind_button_label">Не нагадувати</string>
     <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the alert will be dismissed. -->
     <string name="LinkedDeviceInactiveMegaphone_got_it_button_label">Зрозуміло</string>
 
     <!-- NicknameFragment -->
     <!-- Title displayed at the top of the screen -->
-    <string name="NicknameActivity__nickname">Nickname</string>
+    <string name="NicknameActivity__nickname">Умовне ім\'я</string>
     <!-- Subtitle displayed under title -->
-    <string name="NicknameActivity__nicknames_amp_notes">Nicknames &amp; notes are stored using Signal\'s end-to-end encrypted storage service. They are only visible to you.</string>
+    <string name="NicknameActivity__nicknames_amp_notes">Для збереження приміток і умовних імен використовується служба зберігання даних Signal з наскрізним шифруванням. Їх можете бачити лише ви.</string>
     <!-- Field label for given name -->
     <string name="NicknameActivity__first_name">Ім\'я</string>
     <!-- Content description for first name clear button -->
-    <string name="NicknameActivity__clear_first_name">Clear first name</string>
+    <string name="NicknameActivity__clear_first_name">Видалити ім\'я</string>
     <!-- Field label for family name -->
     <string name="NicknameActivity__last_name">Прізвище</string>
     <!-- Content description for last name clear button -->
-    <string name="NicknameActivity__clear_last_name">Clear last name</string>
+    <string name="NicknameActivity__clear_last_name">Видалити прізвище</string>
     <!-- Field label for note -->
     <string name="NicknameActivity__note">Примітка</string>
     <!-- Button label to save -->
     <string name="NicknameActivity__save">Зберегти</string>
     <!-- Dialog title for note and name deletion -->
-    <string name="NicknameActivity__delete_nickname">Delete nickname?</string>
+    <string name="NicknameActivity__delete_nickname">Видалити умовне ім\'я?</string>
     <!-- Dialog message for note and name deletion -->
-    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">This will permanently delete this nickname and note.</string>
+    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">Ця дія назавжди видалить умовне ім\'я і примітку.</string>
 
     <!-- ViewNoteBottomSheetDialogFragment -->
     <!-- Sheet title -->
     <string name="ViewNoteSheet__note">Примітка</string>
     <!-- Content description for opening the note editor -->
-    <string name="ViewNoteSheet__edit_note">Edit note</string>
+    <string name="ViewNoteSheet__edit_note">Змінити примітку</string>
 
     <!-- EOF -->
 </resources>

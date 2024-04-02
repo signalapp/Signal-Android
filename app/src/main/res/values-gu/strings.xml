@@ -6691,7 +6691,7 @@
     <!-- Content description for last name clear button -->
     <string name="NicknameActivity__clear_last_name">અટક દૂર કરો</string>
     <!-- Field label for note -->
-    <string name="NicknameActivity__note">નોટ</string>
+    <string name="NicknameActivity__note">નોંધ</string>
     <!-- Button label to save -->
     <string name="NicknameActivity__save">સેવ કરો</string>
     <!-- Dialog title for note and name deletion -->
@@ -6701,7 +6701,7 @@
 
     <!-- ViewNoteBottomSheetDialogFragment -->
     <!-- Sheet title -->
-    <string name="ViewNoteSheet__note">નોટ</string>
+    <string name="ViewNoteSheet__note">નોંધ</string>
     <!-- Content description for opening the note editor -->
     <string name="ViewNoteSheet__edit_note">નોંધમાં ફેરફાર કરો</string>
 

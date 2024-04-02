@@ -3122,7 +3122,7 @@
     <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
     <string name="EditProfileFragment_unregistered_dialog_title">Устройство не зарегистрировано</string>
     <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
-    <string name="EditProfileFragment_unregistered_dialog_body">This device is no longer registered. Re-register to make changes to your account.</string>
+    <string name="EditProfileFragment_unregistered_dialog_body">Это устройство больше не зарегистрировано. Зарегистрируйтесь повторно, чтобы внести изменения в вашу учётную запись.</string>
     <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
     <string name="EditProfileFragment_unregistered_dialog_reregister_button">Повторно зарегистрироваться</string>
 
@@ -6956,46 +6956,46 @@
     <string name="FindByActivity__network_error_dialog">Произошла ошибка сети. Попробуйте ещё раз позже.</string>
 
     <!-- Title for an alert letting someone know that one of their linked devices is inactive. -->
-    <string name="LinkedDeviceInactiveMegaphone_title">Inactive linked device</string>
+    <string name="LinkedDeviceInactiveMegaphone_title">Неактивное связанное устройство</string>
     <!-- Body for an alert letting someone know that one of their linked devices is inactive. The string placeholder is the name of the device, and the number placeholder is the number of days before device is unlinked. -->
     <plurals name="LinkedDeviceInactiveMegaphone_body">
-        <item quantity="one">To keep \"%1$s\" linked, open Signal on that device within %2$d day.</item>
-        <item quantity="few">To keep \"%1$s\" linked, open Signal on that device within %2$d days.</item>
-        <item quantity="many">To keep \"%1$s\" linked, open Signal on that device within %2$d days.</item>
-        <item quantity="other">To keep \"%1$s\" linked, open Signal on that device within %2$d days.</item>
+        <item quantity="one">Чтобы сохранить связь с «%1$s», откройте Signal на этом устройстве в течение %2$d дня.</item>
+        <item quantity="few">Чтобы сохранить связь с «%1$s», откройте Signal на этом устройстве в течение %2$d дней.</item>
+        <item quantity="many">Чтобы сохранить связь с «%1$s», откройте Signal на этом устройстве в течение %2$d дней.</item>
+        <item quantity="other">Чтобы сохранить связь с «%1$s», откройте Signal на этом устройстве в течение %2$d дня.</item>
     </plurals>
     <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the user will opt out of all future alerts. -->
-    <string name="LinkedDeviceInactiveMegaphone_dont_remind_button_label">Don\'t remind me</string>
+    <string name="LinkedDeviceInactiveMegaphone_dont_remind_button_label">Не напоминать</string>
     <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the alert will be dismissed. -->
     <string name="LinkedDeviceInactiveMegaphone_got_it_button_label">Понятно</string>
 
     <!-- NicknameFragment -->
     <!-- Title displayed at the top of the screen -->
-    <string name="NicknameActivity__nickname">Nickname</string>
+    <string name="NicknameActivity__nickname">Никнейм</string>
     <!-- Subtitle displayed under title -->
-    <string name="NicknameActivity__nicknames_amp_notes">Nicknames &amp; notes are stored using Signal\'s end-to-end encrypted storage service. They are only visible to you.</string>
+    <string name="NicknameActivity__nicknames_amp_notes">Никнеймы и заметки сохраняются с помощью службы хранения Signal со сквозным шифрованием. Они видны только вам.</string>
     <!-- Field label for given name -->
     <string name="NicknameActivity__first_name">Имя</string>
     <!-- Content description for first name clear button -->
-    <string name="NicknameActivity__clear_first_name">Clear first name</string>
+    <string name="NicknameActivity__clear_first_name">Удалить имя</string>
     <!-- Field label for family name -->
     <string name="NicknameActivity__last_name">Фамилия</string>
     <!-- Content description for last name clear button -->
-    <string name="NicknameActivity__clear_last_name">Clear last name</string>
+    <string name="NicknameActivity__clear_last_name">Удалить фамилию</string>
     <!-- Field label for note -->
     <string name="NicknameActivity__note">Заметка</string>
     <!-- Button label to save -->
     <string name="NicknameActivity__save">Сохранить</string>
     <!-- Dialog title for note and name deletion -->
-    <string name="NicknameActivity__delete_nickname">Delete nickname?</string>
+    <string name="NicknameActivity__delete_nickname">Удалить никнейм?</string>
     <!-- Dialog message for note and name deletion -->
-    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">This will permanently delete this nickname and note.</string>
+    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">Этот никнейм и заметка будут навсегда удалены.</string>
 
     <!-- ViewNoteBottomSheetDialogFragment -->
     <!-- Sheet title -->
     <string name="ViewNoteSheet__note">Заметка</string>
     <!-- Content description for opening the note editor -->
-    <string name="ViewNoteSheet__edit_note">Edit note</string>
+    <string name="ViewNoteSheet__edit_note">Изменить заметку</string>
 
     <!-- EOF -->
 </resources>
