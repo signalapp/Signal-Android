@@ -172,7 +172,7 @@ public final class SlideFactory {
       case IMAGE:    return new ImageSlide(context, uri, mimeType, dataSize, width, height, false, null, blurHash, transformProperties);
       case GIF:      return new GifSlide(context, uri, dataSize, width, height);
       case AUDIO:    return new AudioSlide(context, uri, dataSize, false);
-      case VIDEO:    return new VideoSlide(context, uri, dataSize, gif, null, AttachmentTable.TransformProperties.forSentMediaQuality(transformProperties.sentMediaQuality));
+      case VIDEO:    return new VideoSlide(context, uri, dataSize, gif, null, AttachmentTable.TransformProperties.forSentMediaQuality(transformProperties != null ? transformProperties.sentMediaQuality : SentMediaQuality.STANDARD.getCode()));
       case VCARD:
       case DOCUMENT: return new DocumentSlide(context, uri, mimeType, dataSize, fileName);
       default:       throw  new AssertionError("unrecognized enum");
