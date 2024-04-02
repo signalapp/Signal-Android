@@ -290,10 +290,8 @@ private fun NicknameContent(
             clearable = false,
             enabled = true,
             onValueChange = callback::onNoteChanged,
-            keyboardActions = KeyboardActions(onDone = {
-              callback.onSaveClick()
-            }),
-            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
+            keyboardActions = KeyboardActions.Default,
+            keyboardOptions = KeyboardOptions.Default,
             charactersRemaining = state.noteCharactersRemaining,
             modifier = Modifier
               .focusRequester(noteFocusRequester)
