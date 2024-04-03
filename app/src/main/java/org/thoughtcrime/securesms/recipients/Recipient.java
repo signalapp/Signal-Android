@@ -648,8 +648,11 @@ public class Recipient {
   public @NonNull String getShortDisplayName(@NonNull Context context) {
     String name = Util.getFirstNonEmpty(getGroupName(context),
                                         getNickname().getGivenName(),
+                                        getNickname().toString(),
                                         getSystemProfileName().getGivenName(),
+                                        getSystemProfileName().toString(),
                                         getProfileName().getGivenName(),
+                                        getProfileName().toString(),
                                         getUsername().orElse(null),
                                         getDisplayName(context));
 
