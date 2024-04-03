@@ -168,7 +168,7 @@ public final class AvatarUtil {
                                                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                                                 .override(size);
 
-    if (recipient.shouldBlurAvatar()) {
+    if (recipient.getShouldBlurAvatar()) {
       BlurTransformation blur = new BlurTransformation(context, 0.25f, BlurTransformation.MAX_RADIUS);
       if (transformation != null) {
         return request.transform(blur, transformation);

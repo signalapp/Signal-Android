@@ -88,7 +88,7 @@ class EditMessageHistoryDialog : FixedRoundedCornerBottomSheetDialogFragment() {
       Glide.with(this),
       Locale.getDefault(),
       ConversationAdapterListener(),
-      conversationRecipient.hasWallpaper(),
+      conversationRecipient.hasWallpaper,
       colorizer
     ).apply {
       setCondensedMode(ConversationItemDisplayMode.EditHistory)

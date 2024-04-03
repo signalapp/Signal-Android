@@ -100,7 +100,7 @@ class AboutSheet : ComposeBottomSheetDialogFragment() {
           verified = verified,
           hasAvatar = recipient.get().profileAvatarFileDetails.hasFile(),
           recipientForAvatar = recipient.get(),
-          formattedE164 = if (recipient.get().hasE164() && recipient.get().shouldShowE164()) {
+          formattedE164 = if (recipient.get().hasE164 && recipient.get().shouldShowE164) {
             PhoneNumberFormatter.get(requireContext()).prettyPrintFormat(recipient.get().requireE164())
           } else {
             null

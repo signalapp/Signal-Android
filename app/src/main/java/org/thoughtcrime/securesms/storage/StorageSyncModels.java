@@ -248,7 +248,7 @@ public final class StorageSyncModels {
                                                 .setRecipients(record.getMembersToSync()
                                                                      .stream()
                                                                      .map(Recipient::resolved)
-                                                                     .filter(Recipient::hasServiceId)
+                                                                     .filter(Recipient::getHasServiceId)
                                                                      .map(Recipient::requireServiceId)
                                                                      .map(SignalServiceAddress::new)
                                                                      .collect(Collectors.toList()))

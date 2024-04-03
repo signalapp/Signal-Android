@@ -88,9 +88,9 @@ class ChatWallpaperRepository {
     if (recipientId != null) {
       EXECUTOR.execute(() -> {
         Recipient recipient = Recipient.resolved(recipientId);
-        if (recipient.hasOwnWallpaper()) {
+        if (recipient.getHasOwnWallpaper()) {
           SignalDatabase.recipients().setDimWallpaperInDarkTheme(recipientId, dimInDarkTheme);
-        } else if (recipient.hasWallpaper()) {
+        } else if (recipient.getHasWallpaper()) {
           SignalDatabase.recipients()
                        .setWallpaper(recipientId,
                                      ChatWallpaperFactory.updateWithDimming(recipient.getWallpaper(),

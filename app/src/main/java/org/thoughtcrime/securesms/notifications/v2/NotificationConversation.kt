@@ -122,7 +122,7 @@ data class NotificationConversation(
         StoryViewerArgs(
           recipientId = recipient.id,
           storyId = thread.groupStoryId,
-          isInHiddenStoryMode = recipient.shouldHideStory(),
+          isInHiddenStoryMode = recipient.shouldHideStory,
           isFromNotification = true,
           groupReplyStartPosition = mostRecentNotification.getStartingPosition(context)
         )

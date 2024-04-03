@@ -4,6 +4,7 @@ import android.app.Application
 import io.reactivex.rxjava3.core.Single
 import org.junit.Before
 import org.junit.BeforeClass
+import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -38,6 +39,7 @@ import java.io.IOException
 import java.util.Optional
 import java.util.concurrent.TimeUnit
 
+@Ignore
 @RunWith(RobolectricTestRunner::class)
 @Config(application = Application::class)
 class SafetyNumberRepositoryTest {

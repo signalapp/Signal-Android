@@ -151,7 +151,7 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
         return;
       }
 
-      if (!recipient.hasE164() && !recipient.hasAci()) {
+      if (!recipient.getHasE164() && !recipient.getHasAci()) {
         Log.w(TAG, recipientId + " has no valid identifier!");
         return;
       }

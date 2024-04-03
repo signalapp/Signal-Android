@@ -254,7 +254,7 @@ public final class GroupSendUtil {
         validMembership = false;
       }
 
-      if (recipient.hasServiceId() &&
+      if (recipient.getHasServiceId() &&
           access.isPresent() &&
           access.get().getTargetUnidentifiedAccess().isPresent() &&
           validMembership)
@@ -404,7 +404,7 @@ public final class GroupSendUtil {
       Log.w(TAG, "There are " + unregisteredTargets.size() + " unregistered targets. Including failure results.");
 
       List<SendMessageResult> unregisteredResults = unregisteredTargets.stream()
-                                                                       .filter(Recipient::hasServiceId)
+                                                                       .filter(Recipient::getHasServiceId)
                                                                        .map(t -> SendMessageResult.unregisteredFailure(new SignalServiceAddress(t.requireServiceId(), t.getE164().orElse(null))))
                                                                        .collect(Collectors.toList());
 
@@ -522,10 +522,10 @@ public final class GroupSendUtil {
         if (editMessage != null) {
           result = messageSender.sendEditMessage(targets.get(0), access.get(0), contentHint, message, SignalServiceMessageSender.IndividualSendEvents.EMPTY, urgent, editMessage.getTargetSentTimestamp());
         } else {
-          result = messageSender.sendDataMessage(targets.get(0), access.get(0), contentHint, message, SignalServiceMessageSender.IndividualSendEvents.EMPTY, urgent, targetRecipient.needsPniSignature());
+          result = messageSender.sendDataMessage(targets.get(0), access.get(0), contentHint, message, SignalServiceMessageSender.IndividualSendEvents.EMPTY, urgent, targetRecipient.getNeedsPniSignature());
         }
 
-        if (targetRecipient.needsPniSignature()) {
+        if (targetRecipient.getNeedsPniSignature()) {
           SignalDatabase.pendingPniSignatureMessages().insertIfNecessary(targetRecipients.get(0).getId(), getSentTimestamp(), result);
         }
 

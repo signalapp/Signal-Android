@@ -154,7 +154,7 @@ final class GroupManagerV1 {
 
     for (RecipientId member : members) {
       Recipient recipient = Recipient.resolved(member);
-      if (recipient.hasE164()) {
+      if (recipient.getHasE164()) {
         e164Members.add(recipient.requireE164());
       }
     }

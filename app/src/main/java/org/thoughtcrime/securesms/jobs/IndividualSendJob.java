@@ -88,7 +88,7 @@ public class IndividualSendJob extends PushSendJob {
   }
 
   public static Job create(long messageId, @NonNull Recipient recipient, boolean hasMedia, boolean isScheduledSend) {
-    if (!recipient.hasServiceId()) {
+    if (!recipient.getHasServiceId()) {
       throw new AssertionError("No ServiceId!");
     }
 
@@ -325,11 +325,11 @@ public class IndividualSendJob extends PushSendJob {
         return syncAccess.isPresent();
       } else {
         SignalLocalMetrics.IndividualMessageSend.onDeliveryStarted(messageId);
-        SendMessageResult result = messageSender.sendDataMessage(address, UnidentifiedAccessUtil.getAccessFor(context, messageRecipient), ContentHint.RESENDABLE, mediaMessage, new MetricEventListener(messageId), message.isUrgent(), messageRecipient.needsPniSignature());
+        SendMessageResult result = messageSender.sendDataMessage(address, UnidentifiedAccessUtil.getAccessFor(context, messageRecipient), ContentHint.RESENDABLE, mediaMessage, new MetricEventListener(messageId), message.isUrgent(), messageRecipient.getNeedsPniSignature());
 
         SignalDatabase.messageLog().insertIfPossible(messageRecipient.getId(), message.getSentTimeMillis(), result, ContentHint.RESENDABLE, new MessageId(messageId), message.isUrgent());
 
-        if (messageRecipient.needsPniSignature()) {
+        if (messageRecipient.getNeedsPniSignature()) {
           SignalDatabase.pendingPniSignatureMessages().insertIfNecessary(messageRecipient.getId(), message.getSentTimeMillis(), result);
         }
 

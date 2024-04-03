@@ -176,7 +176,7 @@ public final class AvatarImageView extends AppCompatImageView {
                                                                                                                            new ProfileContactPhoto(Recipient.self()))
                                                                                                : new RecipientContactPhoto(recipient);
 
-      boolean    shouldBlur = recipient.shouldBlurAvatar();
+      boolean    shouldBlur = recipient.getShouldBlurAvatar();
       ChatColors chatColors = recipient.getChatColors();
 
       if (!photo.equals(recipientContactPhoto) || shouldBlur != blurred || !Objects.equals(chatColors, this.chatColors)) {

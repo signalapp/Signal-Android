@@ -137,7 +137,7 @@ public class ConversationTitleView extends ConstraintLayout {
       endDrawable = DrawableUtil.tint(endDrawable, ContextCompat.getColor(getContext(), R.color.signal_inverse_transparent_80));
     }
 
-    if (recipient != null && recipient.showVerified()) {
+    if (recipient != null && recipient.getShowVerified()) {
       endDrawable = ContextUtil.requireDrawable(getContext(), R.drawable.ic_official_24);
     }
 

@@ -397,7 +397,7 @@ public abstract class PushSendJob extends SendJob {
 
     if (quoteAuthorRecipient.isMaybeRegistered()) {
       return Optional.of(new SignalServiceDataMessage.Quote(quoteId, RecipientUtil.getOrFetchServiceId(context, quoteAuthorRecipient), quoteBody, quoteAttachments, quoteMentions, quoteType.getDataMessageType(), bodyRanges));
-    } else if (quoteAuthorRecipient.hasServiceId()) {
+    } else if (quoteAuthorRecipient.getHasServiceId()) {
       return Optional.of(new SignalServiceDataMessage.Quote(quoteId, quoteAuthorRecipient.requireAci(), quoteBody, quoteAttachments, quoteMentions, quoteType.getDataMessageType(), bodyRanges));
     } else {
       return Optional.empty();

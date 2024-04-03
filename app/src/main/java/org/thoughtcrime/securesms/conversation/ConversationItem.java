@@ -647,10 +647,10 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     }
 
     if (conversationRecipient.getId().equals(modified.getId())) {
-      setBubbleState(messageRecord, modified, modified.hasWallpaper(), colorizer);
+      setBubbleState(messageRecord, modified, modified.getHasWallpaper(), colorizer);
 
       if (quoteView != null) {
-        quoteView.setWallpaperEnabled(modified.hasWallpaper());
+        quoteView.setWallpaperEnabled(modified.getHasWallpaper());
       }
 
       if (audioViewStub.resolved()) {

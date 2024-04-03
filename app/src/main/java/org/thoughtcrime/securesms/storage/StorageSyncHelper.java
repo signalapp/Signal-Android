@@ -18,7 +18,6 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob;
 import org.thoughtcrime.securesms.jobs.StorageSyncJob;
 import org.thoughtcrime.securesms.keyvalue.AccountValues;
-import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues;
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.payments.Entropy;
@@ -122,8 +121,8 @@ public final class StorageSyncHelper {
     final OptionalBool storyViewReceiptsState = SignalStore.storyValues().getViewedReceiptsEnabled() ? OptionalBool.ENABLED
                                                                                                      : OptionalBool.DISABLED;
 
-    if (self.getStorageServiceId() == null || (record != null && record.getStorageId() == null)) {
-      Log.w(TAG, "[buildAccountRecord] No storageId for self or record! Generating. (Self: " + (self.getStorageServiceId() != null) + ", Record: " + (record != null && record.getStorageId() != null) + ")");
+    if (self.getStorageId() == null || (record != null && record.getStorageId() == null)) {
+      Log.w(TAG, "[buildAccountRecord] No storageId for self or record! Generating. (Self: " + (self.getStorageId() != null) + ", Record: " + (record != null && record.getStorageId() != null) + ")");
       SignalDatabase.recipients().updateStorageId(self.getId(), generateKey());
       self = Recipient.self().fresh();
       record = recipientTable.getRecordForSync(self.getId());
@@ -131,11 +130,11 @@ public final class StorageSyncHelper {
 
     if (record == null) {
       Log.w(TAG, "[buildAccountRecord] Could not find a RecipientRecord for ourselves! ID: " + self.getId());
-    } else if (!Arrays.equals(record.getStorageId(), self.getStorageServiceId())) {
+    } else if (!Arrays.equals(record.getStorageId(), self.getStorageId())) {
       Log.w(TAG, "[buildAccountRecord] StorageId on RecipientRecord did not match self! ID: " + self.getId());
     }
 
-    byte[] storageId = record != null && record.getStorageId() != null ? record.getStorageId() : self.getStorageServiceId();
+    byte[] storageId = record != null && record.getStorageId() != null ? record.getStorageId() : self.getStorageId();
 
     SignalAccountRecord.Builder account = new SignalAccountRecord.Builder(storageId, record != null ? record.getSyncExtras().getStorageProto() : null)
                                                                  .setProfileKey(self.getProfileKey())

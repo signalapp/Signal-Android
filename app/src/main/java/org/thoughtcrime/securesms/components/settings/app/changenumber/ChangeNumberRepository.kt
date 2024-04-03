@@ -215,15 +215,15 @@ class ChangeNumberRepository(
 
   @WorkerThread
   fun changeLocalNumber(e164: String, pni: PNI): Single<Unit> {
-    val oldStorageId: ByteArray? = Recipient.self().storageServiceId
+    val oldStorageId: ByteArray? = Recipient.self().storageId
     SignalDatabase.recipients.updateSelfE164(e164, pni)
-    val newStorageId: ByteArray? = Recipient.self().storageServiceId
+    val newStorageId: ByteArray? = Recipient.self().storageId
 
     if (e164 != SignalStore.account().requireE164() && MessageDigest.isEqual(oldStorageId, newStorageId)) {
       Log.w(TAG, "Self storage id was not rotated, attempting to rotate again")
       SignalDatabase.recipients.rotateStorageId(Recipient.self().id)
       StorageSyncHelper.scheduleSyncForDataChange()
-      val secondAttemptStorageId: ByteArray? = Recipient.self().storageServiceId
+      val secondAttemptStorageId: ByteArray? = Recipient.self().storageId
       if (MessageDigest.isEqual(oldStorageId, secondAttemptStorageId)) {
         Log.w(TAG, "Second attempt also failed to rotate storage id")
       }

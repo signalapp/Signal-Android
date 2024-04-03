@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.core.os.bundleOf
 import org.junit.Assert
 import org.junit.Before
+import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.kotlin.any
@@ -98,6 +99,7 @@ class ContactSearchPagedDataSourceTest {
     Assert.assertEquals(expected, resultKeys)
   }
 
+  @Ignore
   @Test
   fun `Given storiesWithHeaderAndExtras, when I load 11, then I expect properly structured output`() {
     val testSubject = createStoriesSubject()

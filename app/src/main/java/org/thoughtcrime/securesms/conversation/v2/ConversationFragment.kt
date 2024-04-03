@@ -1106,7 +1106,7 @@ class ConversationFragment :
         ConversationTypingIndicatorAdapter.State(
           typists = it.typists,
           isGroupThread = recipient.isGroup,
-          hasWallpaper = recipient.hasWallpaper(),
+          hasWallpaper = recipient.hasWallpaper,
           isReplacedByIncomingMessage = it.isReplacedByIncomingMessage
         )
       )
@@ -1124,7 +1124,7 @@ class ConversationFragment :
 
     binding.conversationTitleView.conversationTitleView.setOnStoryRingClickListener {
       val recipient: Recipient = viewModel.recipientSnapshot ?: return@setOnStoryRingClickListener
-      val args = StoryViewerArgs.Builder(recipient.id, recipient.shouldHideStory())
+      val args = StoryViewerArgs.Builder(recipient.id, recipient.shouldHideStory)
         .isFromQuote(true)
         .build()
 
@@ -1889,7 +1889,7 @@ class ConversationFragment :
   private fun handleRecentSafetyNumberChange(changedRecords: List<IdentityRecord>) {
     val recipient = viewModel.recipientSnapshot ?: return
     SafetyNumberBottomSheet
-      .forIdentityRecordsAndDestination(changedRecords, RecipientSearchKey(recipient.getId(), false))
+      .forIdentityRecordsAndDestination(changedRecords, RecipientSearchKey(recipient.id, false))
       .show(childFragmentManager)
   }
 
@@ -2607,7 +2607,7 @@ class ConversationFragment :
         startActivity(
           StoryViewerActivity.createIntent(
             requireContext(),
-            StoryViewerArgs.Builder(quote.author, Recipient.resolved(quote.author).shouldHideStory())
+            StoryViewerArgs.Builder(quote.author, Recipient.resolved(quote.author).shouldHideStory)
               .withStoryId(parentStoryId.asMessageId().id)
               .isFromQuote(true)
               .build()

@@ -13,13 +13,13 @@ class RecipientAccessList(private val recipients: List<Recipient>) : List<Recipi
 
   private val byServiceId: Map<ServiceId, Recipient> by lazy {
     recipients
-      .filter { it.hasServiceId() }
+      .filter { it.hasServiceId }
       .associateBy { it.requireServiceId() }
   }
 
   private val byE164: Map<String, Recipient> by lazy {
     recipients
-      .filter { it.hasE164() }
+      .filter { it.hasE164 }
       .associateBy { it.requireE164() }
   }
 

@@ -45,7 +45,7 @@ class SafetyNumberRepository(
     stopwatch.split("recipient-ids")
 
     val recentIds = recentlyFetched.filter { (_, timestamp) -> (now - timestamp) < RECENT_TIME_WINDOW }.keys
-    val recipients = Recipient.resolvedList(recipientIds - recentIds).filter { it.hasServiceId() }
+    val recipients = Recipient.resolvedList(recipientIds - recentIds).filter { it.hasServiceId }
     stopwatch.split("recipient-resolve")
 
     if (recipients.isNotEmpty()) {

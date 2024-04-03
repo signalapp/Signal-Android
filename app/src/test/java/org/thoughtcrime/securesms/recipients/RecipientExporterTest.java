@@ -75,7 +75,7 @@ public final class RecipientExporterTest {
     when(recipient.requireE164()).thenReturn(phone);
     when(recipient.getE164()).thenAnswer(i -> Optional.of(phone));
     when(recipient.getEmail()).thenAnswer(i -> Optional.empty());
-    when(recipient.shouldShowE164()).thenAnswer(i -> shouldShowPhoneNumber);
+    when(recipient.getShouldShowE164()).thenAnswer(i -> shouldShowPhoneNumber);
 
     return recipient;
   }

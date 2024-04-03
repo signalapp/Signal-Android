@@ -100,7 +100,7 @@ class Colorizer {
       groupSenderColors[recipient.id] = color
       return color.getColor(context)
     } else {
-      getIncomingBodyTextColor(context, recipient.hasWallpaper())
+      getIncomingBodyTextColor(context, recipient.hasWallpaper)
     }
   }
 }

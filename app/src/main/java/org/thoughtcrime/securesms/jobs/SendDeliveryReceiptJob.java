@@ -112,7 +112,7 @@ public class SendDeliveryReceiptJob extends BaseJob {
       return;
     }
 
-    if (!recipient.hasServiceId() && !recipient.hasE164()) {
+    if (!recipient.getHasServiceId() && !recipient.getHasE164()) {
       Log.w(TAG, "No serviceId or e164!");
       return;
     }
@@ -125,7 +125,7 @@ public class SendDeliveryReceiptJob extends BaseJob {
     SendMessageResult result = messageSender.sendReceipt(remoteAddress,
                                                          UnidentifiedAccessUtil.getAccessFor(context, recipient),
                                                          receiptMessage,
-                                                         recipient.needsPniSignature());
+                                                         recipient.getNeedsPniSignature());
 
     if (messageId != null) {
       SignalDatabase.messageLog().insertIfPossible(recipientId, timestamp, result, ContentHint.IMPLICIT, messageId, false);

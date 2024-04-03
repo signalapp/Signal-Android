@@ -116,14 +116,14 @@ class SenderKeySharedTable internal constructor(context: Context?, databaseHelpe
    */
   fun deleteAllFor(recipientId: RecipientId) {
     val recipient = Recipient.resolved(recipientId)
-    if (recipient.hasServiceId()) {
-      if (recipient.hasAci()) {
+    if (recipient.hasServiceId) {
+      if (recipient.hasAci) {
         writableDatabase
           .delete(TABLE_NAME)
           .where("$ADDRESS = ?", recipient.requireAci().toString())
           .run()
       }
-      if (recipient.hasPni()) {
+      if (recipient.hasPni) {
         writableDatabase
           .delete(TABLE_NAME)
           .where("$ADDRESS = ?", recipient.requirePni().toString())

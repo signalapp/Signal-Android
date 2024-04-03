@@ -139,7 +139,7 @@ class MyStoriesFragment : DSLSettingsFragment(
           storyViewerArgs = StoryViewerArgs(
             recipientId = recipient.id,
             storyId = it.distributionStory.messageRecord.id,
-            isInHiddenStoryMode = recipient.shouldHideStory(),
+            isInHiddenStoryMode = recipient.shouldHideStory,
             storyThumbTextModel = text,
             storyThumbUri = image,
             storyThumbBlur = blur,

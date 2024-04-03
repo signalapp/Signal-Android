@@ -136,7 +136,7 @@ public class NewConversationActivity extends ContactSelectionActivity
 
           if (result instanceof RecipientRepository.LookupResult.Success) {
             Recipient resolved = Recipient.resolved(((RecipientRepository.LookupResult.Success) result).getRecipientId());
-            if (resolved.isRegistered() && resolved.hasServiceId()) {
+            if (resolved.isRegistered() && resolved.getHasServiceId()) {
               launch(resolved);
             }
           } else if (result instanceof RecipientRepository.LookupResult.NotFound || result instanceof RecipientRepository.LookupResult.InvalidEntry) {

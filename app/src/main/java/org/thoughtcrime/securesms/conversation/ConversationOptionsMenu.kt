@@ -138,7 +138,7 @@ internal object ConversationOptionsMenu {
 
       if (recipient.isMuted) menuInflater.inflate(R.menu.conversation_muted, menu) else menuInflater.inflate(R.menu.conversation_unmuted, menu)
 
-      if (!recipient.isGroup && recipient.contactUri == null && !recipient.isReleaseNotes && !recipient.isSelf && recipient.hasE164() && recipient.shouldShowE164()) {
+      if (!recipient.isGroup && recipient.contactUri == null && !recipient.isReleaseNotes && !recipient.isSelf && recipient.hasE164 && recipient.shouldShowE164) {
         menuInflater.inflate(R.menu.conversation_add_to_contacts, menu)
       }
 

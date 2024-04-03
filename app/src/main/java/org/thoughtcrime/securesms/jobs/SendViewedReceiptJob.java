@@ -210,7 +210,7 @@ public class SendViewedReceiptJob extends BaseJob {
     SendMessageResult result = messageSender.sendReceipt(remoteAddress,
                                                          UnidentifiedAccessUtil.getAccessFor(context, Recipient.resolved(recipientId)),
                                                          receiptMessage,
-                                                         recipient.needsPniSignature());
+                                                         recipient.getNeedsPniSignature());
 
     if (Util.hasItems(foundMessageIds)) {
       SignalDatabase.messageLog().insertIfPossible(recipientId, timestamp, result, ContentHint.IMPLICIT, foundMessageIds, false);

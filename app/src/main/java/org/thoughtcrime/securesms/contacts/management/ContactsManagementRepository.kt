@@ -33,7 +33,7 @@ class ContactsManagementRepository(context: Context) {
         error("Cannot hide groups, self, or distribution lists.")
       }
 
-      val rotateProfileKey = !recipient.hasGroupsInCommon()
+      val rotateProfileKey = !recipient.hasGroupsInCommon
       SignalDatabase.recipients.markHidden(recipient.id, rotateProfileKey, false)
       if (rotateProfileKey) {
         ApplicationDependencies.getJobManager().add(RotateProfileKeyJob())

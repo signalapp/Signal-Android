@@ -151,7 +151,7 @@ data class CallParticipantsState(
   fun getIncomingRingingGroupDescription(context: Context): String? {
     if (callState == WebRtcViewModel.State.CALL_INCOMING &&
       groupCallState == WebRtcViewModel.GroupCallState.RINGING &&
-      ringerRecipient.hasServiceId()
+      ringerRecipient.hasServiceId
     ) {
       val ringerName = ringerRecipient.getShortDisplayName(context)
       val membersWithoutYouOrRinger: List<GroupMemberEntry.FullMember> = groupMembers.filterNot { it.member.isSelf || ringerRecipient.requireServiceId() == it.member.serviceId.orElse(null) }

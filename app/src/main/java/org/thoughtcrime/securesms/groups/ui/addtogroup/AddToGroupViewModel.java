@@ -50,7 +50,7 @@ public final class AddToGroupViewModel extends ViewModel {
         String    recipientName  = recipient.getDisplayName(context);
         String    groupName      = groupRecipient.getDisplayName(context);
 
-        if (groupRecipient.getGroupId().get().isV1() && !recipient.hasE164()) {
+        if (groupRecipient.getGroupId().get().isV1() && !recipient.getHasE164()) {
           events.postValue(new Event.LegacyGroupDenialEvent());
         } else {
           events.postValue(new Event.AddToSingleGroupConfirmationEvent(context.getResources().getString(R.string.AddToGroupActivity_add_member),

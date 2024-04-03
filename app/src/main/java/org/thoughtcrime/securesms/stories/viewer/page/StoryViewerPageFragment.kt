@@ -1291,25 +1291,21 @@ class StoryViewerPageFragment :
   }
 
   private class FallbackPhotoProvider : Recipient.FallbackPhotoProvider() {
-    override fun getPhotoForGroup(): FallbackContactPhoto {
-      return FallbackPhoto20dp(R.drawable.symbol_group_20)
-    }
+    override val photoForGroup: FallbackContactPhoto
+      get() = FallbackPhoto20dp(R.drawable.symbol_group_20)
 
-    override fun getPhotoForResolvingRecipient(): FallbackContactPhoto {
-      throw UnsupportedOperationException("This provider does not support resolving recipients")
-    }
+    override val photoForResolvingRecipient: FallbackContactPhoto
+      get() = throw UnsupportedOperationException("This provider does not support resolving recipients")
 
-    override fun getPhotoForLocalNumber(): FallbackContactPhoto {
-      throw UnsupportedOperationException("This provider does not support local number")
-    }
+    override val photoForLocalNumber: FallbackContactPhoto
+      get() = throw UnsupportedOperationException("This provider does not support local number")
 
     override fun getPhotoForRecipientWithName(name: String, targetSize: Int): FallbackContactPhoto {
       return FixedSizeGeneratedContactPhoto(name, R.drawable.symbol_person_20)
     }
 
-    override fun getPhotoForRecipientWithoutName(): FallbackContactPhoto {
-      return FallbackPhoto20dp(R.drawable.symbol_person_20)
-    }
+    override val photoForRecipientWithoutName: FallbackContactPhoto
+      get() = FallbackPhoto20dp(R.drawable.symbol_person_20)
   }
 
   private class FixedSizeGeneratedContactPhoto(name: String, fallbackResId: Int) : GeneratedContactPhoto(name, fallbackResId) {

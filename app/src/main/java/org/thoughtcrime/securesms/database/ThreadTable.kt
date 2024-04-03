@@ -56,7 +56,7 @@ import org.thoughtcrime.securesms.mms.SlideDeck
 import org.thoughtcrime.securesms.mms.StickerSlide
 import org.thoughtcrime.securesms.notifications.v2.ConversationId
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientDetails
+import org.thoughtcrime.securesms.recipients.RecipientCreator
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
@@ -1930,15 +1930,14 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
       val recipient: Recipient = if (recipientSettings.groupId != null) {
         GroupTable.Reader(cursor).getCurrent()?.let { group ->
-          val details = RecipientDetails.forGroup(
+          RecipientCreator.forGroup(
             groupRecord = group,
-            recipientRecord = recipientSettings
+            recipientRecord = recipientSettings,
+            resolved = false
           )
-          Recipient(recipientId, details, false)
         } ?: Recipient.live(recipientId).get()
       } else {
-        val details = RecipientDetails.forIndividual(context, recipientSettings)
-        Recipient(recipientId, details, true)
+        RecipientCreator.forIndividual(context, recipientSettings)
       }
 
       val hasReadReceipt = TextSecurePreferences.isReadReceiptsEnabled(context) && cursor.requireBoolean(HAS_READ_RECEIPT)

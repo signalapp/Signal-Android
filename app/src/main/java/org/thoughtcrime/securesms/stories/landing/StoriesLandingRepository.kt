@@ -46,12 +46,12 @@ class StoriesLandingRepository(context: Context) {
 
         stories.forEach {
           val recipient = Recipient.resolved(it.recipientId)
-          if (recipient.isDistributionList || (it.isOutgoing && !recipient.isInactiveGroup())) {
+          if (recipient.isDistributionList || (it.isOutgoing && !recipient.isInactiveGroup)) {
             val list = mapping[myStories] ?: emptyList()
             mapping[myStories] = list + it
           }
 
-          if (!recipient.isDistributionList && !recipient.isBlocked && !recipient.isInactiveGroup()) {
+          if (!recipient.isDistributionList && !recipient.isBlocked && !recipient.isInactiveGroup) {
             val list = mapping[recipient] ?: emptyList()
             mapping[recipient] = list + it
           }
@@ -110,7 +110,7 @@ class StoriesLandingRepository(context: Context) {
           storyViewState = StoryViewState.NONE,
           hasReplies = messageRecords.any { SignalDatabase.messages.getNumberOfStoryReplies(it.id) > 0 },
           hasRepliesFromSelf = messageRecords.any { SignalDatabase.messages.hasSelfReplyInStory(it.id) },
-          isHidden = sender.shouldHideStory(),
+          isHidden = sender.shouldHideStory,
           primaryStory = ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(context, messageRecords[primaryIndex], sender),
           secondaryStory = if (sender.isMyStory) {
             messageRecords.drop(1).firstOrNull()?.let {

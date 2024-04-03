@@ -154,7 +154,7 @@ public class SignalBaseIdentityKeyStore {
   }
 
   public @NonNull Optional<IdentityRecord> getIdentityRecord(@NonNull Recipient recipient) {
-    if (recipient.hasServiceId()) {
+    if (recipient.getHasServiceId()) {
       IdentityStoreRecord record = cache.get(recipient.requireServiceId().toString());
       return Optional.ofNullable(record).map(r -> r.toIdentityRecord(recipient.getId()));
     } else {
@@ -169,7 +169,7 @@ public class SignalBaseIdentityKeyStore {
 
   public @NonNull IdentityRecordList getIdentityRecords(@NonNull List<Recipient> recipients) {
     List<String> addressNames = recipients.stream()
-                                          .filter(Recipient::hasServiceId)
+                                          .filter(Recipient::getHasServiceId)
                                           .map(Recipient::requireServiceId)
                                           .map(ServiceId::toString)
                                           .collect(Collectors.toList());
@@ -181,7 +181,7 @@ public class SignalBaseIdentityKeyStore {
     List<IdentityRecord> records = new ArrayList<>(recipients.size());
 
     for (Recipient recipient : recipients) {
-      if (recipient.hasServiceId()) {
+      if (recipient.getHasServiceId()) {
         IdentityStoreRecord record = cache.get(recipient.requireServiceId().toString());
 
         if (record != null) {
@@ -202,7 +202,7 @@ public class SignalBaseIdentityKeyStore {
   public void setApproval(@NonNull RecipientId recipientId, boolean nonBlockingApproval) {
     Recipient recipient = Recipient.resolved(recipientId);
 
-    if (recipient.hasServiceId()) {
+    if (recipient.getHasServiceId()) {
       cache.setApproval(recipient.requireServiceId().toString(), recipientId, nonBlockingApproval);
     } else {
       Log.w(TAG, "[setApproval] No serviceId for " + recipient.getId(), new Throwable());
@@ -212,7 +212,7 @@ public class SignalBaseIdentityKeyStore {
   public void setVerified(@NonNull RecipientId recipientId, IdentityKey identityKey, VerifiedStatus verifiedStatus) {
     Recipient recipient = Recipient.resolved(recipientId);
 
-    if (recipient.hasServiceId()) {
+    if (recipient.getHasServiceId()) {
       cache.setVerified(recipient.requireServiceId().toString(), recipientId, identityKey, verifiedStatus);
     } else {
       Log.w(TAG, "[setVerified] No serviceId for " + recipient.getId(), new Throwable());

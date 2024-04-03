@@ -16,7 +16,7 @@ class CallLinkIncomingRequestRepository {
 
   fun getGroupsInCommon(recipientId: RecipientId): Observable<GroupsInCommon> {
     return Recipient.observable(recipientId).flatMapSingle { recipient ->
-      if (recipient.hasGroupsInCommon()) {
+      if (recipient.hasGroupsInCommon) {
         Single.fromCallable {
           val groupsInCommon = SignalDatabase.groups.getGroupsContainingMember(recipient.id, true)
           val total = groupsInCommon.size

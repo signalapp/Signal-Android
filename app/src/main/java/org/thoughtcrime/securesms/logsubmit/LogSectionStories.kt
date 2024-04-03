@@ -18,7 +18,7 @@ class LogSectionStories : LogSection {
     val output = StringBuilder()
     output.append("--- My Story\n\n")
 
-    if (Recipient.isSelfSet()) {
+    if (Recipient.isSelfSet) {
       val myStoryRecord = SignalDatabase.distributionLists.getList(DistributionListId.MY_STORY)
       val myStoryRecipientId = SignalDatabase.distributionLists.getRecipientId(DistributionListId.MY_STORY)
 

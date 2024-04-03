@@ -227,7 +227,7 @@ object ContactDiscoveryRefreshV2 {
 
   private fun hasCommunicatedWith(recipient: Recipient): Boolean {
     val localAci = SignalStore.account().requireAci()
-    return SignalDatabase.threads.hasActiveThread(recipient.id) || (recipient.hasServiceId() && SignalDatabase.sessions.hasSessionFor(localAci, recipient.requireServiceId().toString()))
+    return SignalDatabase.threads.hasActiveThread(recipient.id) || (recipient.hasServiceId && SignalDatabase.sessions.hasSessionFor(localAci, recipient.requireServiceId().toString()))
   }
 
   /**
@@ -241,7 +241,7 @@ object ContactDiscoveryRefreshV2 {
     val selfId = Recipient.self().id
     return this - Recipient.resolvedList(this)
       .filter {
-        (it.hasServiceId() && hasCommunicatedWith(it)) || it.id == selfId
+        (it.hasServiceId && hasCommunicatedWith(it)) || it.id == selfId
       }
       .map { it.id }
       .toSet()

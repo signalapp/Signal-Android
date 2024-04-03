@@ -192,7 +192,7 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
                                        : recipient.getDisplayName(requireContext());
       fullName.setVisibility(TextUtils.isEmpty(name) ? View.GONE : View.VISIBLE);
       SpannableStringBuilder nameBuilder = new SpannableStringBuilder(name);
-      if (recipient.showVerified()) {
+      if (recipient.getShowVerified()) {
         SpanUtil.appendSpacer(nameBuilder, 8);
         SpanUtil.appendCenteredImageSpanWithoutSpace(nameBuilder, ContextUtil.requireDrawable(requireContext(), R.drawable.ic_official_28), 28, 28);
       } else if (recipient.isSystemContact()) {
@@ -303,7 +303,7 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
         buttonStrip.setVisibility(View.GONE);
       }
 
-      if (recipient.isSystemContact() || recipient.isGroup() || recipient.isSelf() || recipient.isBlocked() || recipient.isReleaseNotes() || !recipient.hasE164() || !recipient.shouldShowE164()) {
+      if (recipient.isSystemContact() || recipient.isGroup() || recipient.isSelf() || recipient.isBlocked() || recipient.isReleaseNotes() || !recipient.getHasE164() || !recipient.getShouldShowE164()) {
         addContactButton.setVisibility(View.GONE);
       } else {
         addContactButton.setVisibility(View.VISIBLE);

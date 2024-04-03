@@ -80,7 +80,7 @@ class DisabledInputView @JvmOverloads constructor(
       create = { MessageRequestsBottomView(context) },
       bind = {
         setMessageRequestData(recipient, messageRequestState)
-        setWallpaperEnabled(recipient.hasWallpaper())
+        setWallpaperEnabled(recipient.hasWallpaper)
 
         setAcceptOnClickListener { listener?.onAcceptMessageRequestClicked() }
         setDeleteOnClickListener { listener?.onDeleteClicked() }

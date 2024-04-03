@@ -41,7 +41,7 @@ fun Recipient.getContactDrawable(context: Context): Drawable? {
   return if (contactPhoto != null) {
     try {
       val transforms: MutableList<Transformation<Bitmap>> = mutableListOf()
-      if (shouldBlurAvatar()) {
+      if (shouldBlurAvatar) {
         transforms += BlurTransformation(ApplicationDependencies.getApplication(), 0.25f, BlurTransformation.MAX_RADIUS)
       }
       transforms += CircleCrop()
