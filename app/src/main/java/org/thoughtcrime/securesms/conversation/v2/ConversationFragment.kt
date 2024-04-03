@@ -258,6 +258,7 @@ import org.thoughtcrime.securesms.mms.VideoSlide
 import org.thoughtcrime.securesms.notifications.v2.ConversationId
 import org.thoughtcrime.securesms.payments.preferences.PaymentsActivity
 import org.thoughtcrime.securesms.permissions.Permissions
+import org.thoughtcrime.securesms.profiles.manage.EditProfileActivity
 import org.thoughtcrime.securesms.profiles.spoofing.ReviewCardDialogFragment
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.ratelimit.RecaptchaProofBottomSheetFragment
@@ -2837,6 +2838,8 @@ class ConversationFragment :
     override fun onCallToAction(action: String) {
       if ("gift_badge" == action) {
         startActivity(Intent(requireContext(), GiftFlowActivity::class.java))
+      } else if ("username_edit" == action) {
+        startActivity(EditProfileActivity.getIntentForUsernameEdit(requireContext()))
       }
     }
 
