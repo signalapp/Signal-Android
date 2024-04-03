@@ -19,11 +19,11 @@ data class NicknameState(
 ) {
 
   private val isFormBlank: Boolean = firstName.isBlank() && lastName.isBlank() && note.isBlank()
-  private val hasFirstNameOrNote: Boolean = firstName.isNotBlank() || note.isNotBlank()
+  private val hasNameOrNote: Boolean = firstName.isNotBlank() || lastName.isNotBlank() || note.isNotBlank()
   private val isFormReady: Boolean = formState == FormState.READY
   private val isBlankFormDuringEdit: Boolean = isFormBlank && isEditing
 
-  val canSave: Boolean = isFormReady && (hasFirstNameOrNote || isBlankFormDuringEdit)
+  val canSave: Boolean = isFormReady && (hasNameOrNote || isBlankFormDuringEdit)
   enum class FormState {
     LOADING,
     READY,
