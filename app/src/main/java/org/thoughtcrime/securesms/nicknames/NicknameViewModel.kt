@@ -78,15 +78,16 @@ class NicknameViewModel(
 
   @MainThread
   fun onNoteChanged(value: String) {
-    iteratorCompat.setText(value)
-    val trimmed = iteratorCompat.take(NOTE_MAX_LENGTH)
-    val count = iteratorCompat.run {
-      setText(trimmed)
-      countBreaks()
+    if (internalState.value.noteCharactersRemaining == 0 && value.graphemeCount > NOTE_MAX_LENGTH) {
+      return
     }
 
+    iteratorCompat.setText(value)
+    val trimmed = iteratorCompat.take(NOTE_MAX_LENGTH)
+    val count = trimmed.graphemeCount
+
     internalState.value = state.value.copy(
-      note = iteratorCompat.take(NOTE_MAX_LENGTH).toString(),
+      note = trimmed.toString(),
       noteCharactersRemaining = NOTE_MAX_LENGTH - count
     )
   }
@@ -125,4 +126,10 @@ class NicknameViewModel(
       internalState.value = state.value.copy(formState = NicknameState.FormState.SAVED)
     }
   }
+
+  private val CharSequence.graphemeCount: Int
+    get() {
+      iteratorCompat.setText(this)
+      return iteratorCompat.countBreaks()
+    }
 }
