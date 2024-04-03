@@ -153,15 +153,8 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
       profileFamilyName = local.getProfileFamilyName().orElse("");
     }
 
-    String nicknameGivenName;
-    String nicknameFamilyName;
-    if (remote.getNicknameGivenName().isPresent()) {
-      nicknameGivenName = remote.getNicknameGivenName().orElse("");
-      nicknameFamilyName = remote.getNicknameFamilyName().orElse("");
-    } else {
-      nicknameGivenName = local.getNicknameGivenName().orElse("");
-      nicknameFamilyName = local.getNicknameFamilyName().orElse("");
-    }
+    String nicknameGivenName  = remote.getNicknameGivenName().orElse("");
+    String nicknameFamilyName = remote.getNicknameFamilyName().orElse("");
 
     if (StringUtil.isVisuallyEmpty(nicknameGivenName) && !StringUtil.isVisuallyEmpty(nicknameFamilyName)) {
       Log.w(TAG, "Processed invalid nickname. Missing given name.");
