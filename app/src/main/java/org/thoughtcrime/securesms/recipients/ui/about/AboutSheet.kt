@@ -93,22 +93,21 @@ class AboutSheet : ComposeBottomSheetDialogFragment() {
       Content(
         model = AboutModel(
           isSelf = recipient.get().isSelf,
-          hasAvatar = recipient.get().profileAvatarFileDetails.hasFile(),
           displayName = recipient.get().getDisplayName(requireContext()),
           shortName = recipient.get().getShortDisplayName(requireContext()),
           profileName = recipient.get().profileName.toString(),
-          hasUserSetDisplayName = recipient.get().hasAUserSetDisplayName(requireContext()),
           about = recipient.get().about,
           verified = verified,
+          hasAvatar = recipient.get().profileAvatarFileDetails.hasFile(),
           recipientForAvatar = recipient.get(),
           formattedE164 = if (recipient.get().hasE164() && recipient.get().shouldShowE164()) {
             PhoneNumberFormatter.get(requireContext()).prettyPrintFormat(recipient.get().requireE164())
           } else {
             null
           },
-          groupsInCommon = groupsInCommonCount,
           profileSharing = recipient.get().isProfileSharing,
           systemContact = recipient.get().isSystemContact,
+          groupsInCommon = groupsInCommonCount,
           note = recipient.get().note ?: ""
         ),
         onClickSignalConnections = this::openSignalConnectionsSheet,
@@ -138,7 +137,6 @@ private data class AboutModel(
   val displayName: String,
   val shortName: String,
   val profileName: String,
-  val hasUserSetDisplayName: Boolean,
   val about: String?,
   val verified: Boolean,
   val hasAvatar: Boolean,
@@ -193,7 +191,7 @@ private fun Content(
 
     AboutRow(
       startIcon = painterResource(R.drawable.symbol_person_24),
-      text = if (!model.isSelf && model.hasUserSetDisplayName && model.displayName.isNotBlank() && model.profileName.isNotBlank()) {
+      text = if (!model.isSelf && model.displayName.isNotBlank() && model.profileName.isNotBlank() && model.displayName != model.profileName) {
         stringResource(id = R.string.AboutSheet__user_set_display_name_and_profile_name, model.displayName, model.profileName)
       } else {
         model.displayName
@@ -375,13 +373,12 @@ private fun ContentPreviewDefault() {
       Content(
         model = AboutModel(
           isSelf = false,
-          hasAvatar = true,
           displayName = "Peter Parker",
           shortName = "Peter",
           profileName = "Peter Parker",
-          hasUserSetDisplayName = false,
           about = "Photographer for the Daily Bugle.",
           verified = true,
+          hasAvatar = true,
           recipientForAvatar = Recipient.UNKNOWN,
           formattedE164 = "(123) 456-7890",
           profileSharing = true,
@@ -406,13 +403,12 @@ private fun ContentPreviewWithUserSetDisplayName() {
       Content(
         model = AboutModel(
           isSelf = false,
-          hasAvatar = true,
           displayName = "Amazing Spider-man",
           shortName = "Spiderman",
           profileName = "Peter Parker",
-          hasUserSetDisplayName = true,
           about = "Photographer for the Daily Bugle.",
           verified = true,
+          hasAvatar = true,
           recipientForAvatar = Recipient.UNKNOWN,
           formattedE164 = "(123) 456-7890",
           profileSharing = true,
@@ -437,13 +433,12 @@ private fun ContentPreviewForSelf() {
       Content(
         model = AboutModel(
           isSelf = true,
-          hasAvatar = true,
           displayName = "Amazing Spider-man",
           shortName = "Spiderman",
           profileName = "Peter Parker",
-          hasUserSetDisplayName = true,
           about = "Photographer for the Daily Bugle.",
           verified = true,
+          hasAvatar = true,
           recipientForAvatar = Recipient.UNKNOWN,
           formattedE164 = "(123) 456-7890",
           profileSharing = true,
@@ -468,13 +463,12 @@ private fun ContentPreviewInContactsNotProfileSharing() {
       Content(
         model = AboutModel(
           isSelf = false,
-          hasAvatar = true,
           displayName = "Peter Parker",
           shortName = "Peter",
           profileName = "Peter Parker",
-          hasUserSetDisplayName = false,
           about = "Photographer for the Daily Bugle.",
           verified = false,
+          hasAvatar = true,
           recipientForAvatar = Recipient.UNKNOWN,
           formattedE164 = null,
           profileSharing = false,
@@ -499,13 +493,12 @@ private fun ContentPreviewGroupsInCommonNoE164() {
       Content(
         model = AboutModel(
           isSelf = false,
-          hasAvatar = true,
           displayName = "Peter Parker",
           shortName = "Peter",
           profileName = "Peter Parker",
-          hasUserSetDisplayName = false,
           about = "Photographer for the Daily Bugle.",
           verified = false,
+          hasAvatar = true,
           recipientForAvatar = Recipient.UNKNOWN,
           formattedE164 = null,
           profileSharing = true,
@@ -530,13 +523,12 @@ private fun ContentPreviewNotAConnection() {
       Content(
         model = AboutModel(
           isSelf = false,
-          hasAvatar = true,
           displayName = "Peter Parker",
           shortName = "Peter",
           profileName = "Peter Parker",
-          hasUserSetDisplayName = false,
           about = "Photographer for the Daily Bugle.",
           verified = false,
+          hasAvatar = true,
           recipientForAvatar = Recipient.UNKNOWN,
           formattedE164 = null,
           profileSharing = false,
