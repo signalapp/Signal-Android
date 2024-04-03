@@ -153,16 +153,6 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
       profileFamilyName = local.getProfileFamilyName().orElse("");
     }
 
-    String nicknameGivenName  = remote.getNicknameGivenName().orElse("");
-    String nicknameFamilyName = remote.getNicknameFamilyName().orElse("");
-
-    if (StringUtil.isVisuallyEmpty(nicknameGivenName) && !StringUtil.isVisuallyEmpty(nicknameFamilyName)) {
-      Log.w(TAG, "Processed invalid nickname. Missing given name.");
-
-      nicknameGivenName  = "";
-      nicknameFamilyName = "";
-    }
-
     IdentityState identityState;
     byte[]        identityKey;
 
@@ -227,6 +217,8 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
     String               systemGivenName       = SignalStore.account().isPrimaryDevice() ? local.getSystemGivenName().orElse("") : remote.getSystemGivenName().orElse("");
     String               systemFamilyName      = SignalStore.account().isPrimaryDevice() ? local.getSystemFamilyName().orElse("") : remote.getSystemFamilyName().orElse("");
     String               systemNickname        = remote.getSystemNickname().orElse("");
+    String               nicknameGivenName     = remote.getNicknameGivenName().orElse("");
+    String               nicknameFamilyName    = remote.getNicknameFamilyName().orElse("");
     boolean              pniSignatureVerified  = remote.isPniSignatureVerified() || local.isPniSignatureVerified();
     String               note                  = remote.getNote().or(local::getNote).orElse("");
     boolean              matchesRemote         = doParamsMatch(remote, unknownFields, aci, pni, e164, profileGivenName, profileFamilyName, systemGivenName, systemFamilyName, systemNickname, profileKey, username, identityState, identityKey, blocked, profileSharing, archived, forcedUnread, muteUntil, hideStory, unregisteredTimestamp, hidden, pniSignatureVerified, nicknameGivenName, nicknameFamilyName, note);
