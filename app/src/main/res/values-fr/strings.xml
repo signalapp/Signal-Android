@@ -2065,7 +2065,7 @@
     <string name="RegistrationActivity_unable_to_request_verification_code">Demande de code de vérification impossible. Vérifiez votre connexion réseau puis réessayez.</string>
     <string name="RegistrationActivity_non_standard_number_format">Format de numéro non standard</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Le numéro que vous avez saisi (%1$s) semble avoir un format atypique.\n\nSerait-ce plutôt %2$s ?</string>
-    <string name="RegistrationActivity_signal_android_phone_number_format">Signal pour Android – format de numéro de téléphone</string>
+    <string name="RegistrationActivity_signal_android_phone_number_format">Signal pour Android – Format de numéro de téléphone</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
     <string name="RegistrationActivity_call_requested">Appel demandé</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
@@ -2926,17 +2926,17 @@
     <string name="EditProfileFragment__group_description">Description du groupe</string>
   <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
-    <string name="EditProfileFragment_deprecated_dialog_title">Mettre Signal à jour</string>
+    <string name="EditProfileFragment_deprecated_dialog_title">Passez à la dernière version de Signal</string>
     <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
-    <string name="EditProfileFragment_deprecated_dialog_body">Cette version de Signal a expiré. Mettez Signal à jour pour continuer à utiliser l’appli.</string>
+    <string name="EditProfileFragment_deprecated_dialog_body">Cette version de Signal est arrivée à expiration. Pour continuer d’utiliser l’application, une mise à jour est nécessaire.</string>
     <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
-    <string name="EditProfileFragment_deprecated_dialog_update_button">Mise à jour</string>
+    <string name="EditProfileFragment_deprecated_dialog_update_button">Mettre à jour</string>
     <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
     <string name="EditProfileFragment_unregistered_dialog_title">Appareil non enregistré</string>
     <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
-    <string name="EditProfileFragment_unregistered_dialog_body">This device is no longer registered. Re-register to make changes to your account.</string>
+    <string name="EditProfileFragment_unregistered_dialog_body">Cet appareil n’est plus enregistré. Pour apporter des modifications à votre compte, vous devez le réenregistrer.</string>
     <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
-    <string name="EditProfileFragment_unregistered_dialog_reregister_button">S’inscrire de nouveau</string>
+    <string name="EditProfileFragment_unregistered_dialog_reregister_button">Réenregistrer l’appareil</string>
 
     <!-- EditProfileNameFragment -->
     <string name="EditProfileNameFragment_your_name">Votre nom</string>
@@ -3033,7 +3033,7 @@
         <item>Dons et macarons</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
-    <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Soumission du journal de débogage de Signal Android</string>
+    <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Journal de débogage de Signal pour Android</string>
     <!-- Category to organize the support email sent -->
     <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Voir les notifications</string>
     <!-- Category to organize the support email sent -->
@@ -5075,7 +5075,7 @@
     <!-- Message of dialog telling user they need to re-register signal as it is no longer registered -->
     <string name="ReregisterSignalDialog__message">Cet appareil n’est plus enregistré. Inscrivez-vous à nouveau pour continuer à utiliser Signal sur cet appareil.</string>
     <!-- Button text of re-registration dialog to re-register the device.  -->
-    <string name="ReregisterSignalDialog__reregister_action">S’inscrire de nouveau</string>
+    <string name="ReregisterSignalDialog__reregister_action">Réenregistrer l’appareil</string>
     <!-- Button text of re-registration dialog to cancel the dialog.  -->
     <string name="ReregisterSignalDialog__cancel_action">Annuler</string>
 
@@ -6666,44 +6666,44 @@
     <string name="FindByActivity__network_error_dialog">Une erreur réseau s’est produite. Veuillez réessayer plus tard.</string>
 
     <!-- Title for an alert letting someone know that one of their linked devices is inactive. -->
-    <string name="LinkedDeviceInactiveMegaphone_title">Inactive linked device</string>
+    <string name="LinkedDeviceInactiveMegaphone_title">Appareil associé inactif</string>
     <!-- Body for an alert letting someone know that one of their linked devices is inactive. The string placeholder is the name of the device, and the number placeholder is the number of days before device is unlinked. -->
     <plurals name="LinkedDeviceInactiveMegaphone_body">
-        <item quantity="one">To keep \"%1$s\" linked, open Signal on that device within %2$d day.</item>
-        <item quantity="other">To keep \"%1$s\" linked, open Signal on that device within %2$d days.</item>
+        <item quantity="one">Il vous reste %2$d jour pour ouvrir Signal sur l’appareil \"%1$s\" avant qu’il ne soit dissocié.</item>
+        <item quantity="other">Il vous reste %2$d jours pour ouvrir Signal sur l’appareil \"%1$s\" avant qu’il ne soit dissocié.</item>
     </plurals>
     <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the user will opt out of all future alerts. -->
-    <string name="LinkedDeviceInactiveMegaphone_dont_remind_button_label">Don\'t remind me</string>
+    <string name="LinkedDeviceInactiveMegaphone_dont_remind_button_label">Ne plus afficher de rappels</string>
     <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the alert will be dismissed. -->
-    <string name="LinkedDeviceInactiveMegaphone_got_it_button_label">Compris</string>
+    <string name="LinkedDeviceInactiveMegaphone_got_it_button_label">J’ai compris</string>
 
     <!-- NicknameFragment -->
     <!-- Title displayed at the top of the screen -->
-    <string name="NicknameActivity__nickname">Nickname</string>
+    <string name="NicknameActivity__nickname">Pseudo</string>
     <!-- Subtitle displayed under title -->
-    <string name="NicknameActivity__nicknames_amp_notes">Nicknames &amp; notes are stored using Signal\'s end-to-end encrypted storage service. They are only visible to you.</string>
+    <string name="NicknameActivity__nicknames_amp_notes">Les pseudos et les notes sont conservés dans le service de stockage Signal chiffré de bout en bout. Vous seul y avez accès.</string>
     <!-- Field label for given name -->
     <string name="NicknameActivity__first_name">Prénom</string>
     <!-- Content description for first name clear button -->
-    <string name="NicknameActivity__clear_first_name">Clear first name</string>
+    <string name="NicknameActivity__clear_first_name">Effacer le prénom</string>
     <!-- Field label for family name -->
-    <string name="NicknameActivity__last_name">Nom de famille</string>
+    <string name="NicknameActivity__last_name">Nom</string>
     <!-- Content description for last name clear button -->
-    <string name="NicknameActivity__clear_last_name">Clear last name</string>
+    <string name="NicknameActivity__clear_last_name">Effacer le nom</string>
     <!-- Field label for note -->
     <string name="NicknameActivity__note">Note</string>
     <!-- Button label to save -->
     <string name="NicknameActivity__save">Enregistrer</string>
     <!-- Dialog title for note and name deletion -->
-    <string name="NicknameActivity__delete_nickname">Delete nickname?</string>
+    <string name="NicknameActivity__delete_nickname">Supprimer le pseudo ?</string>
     <!-- Dialog message for note and name deletion -->
-    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">This will permanently delete this nickname and note.</string>
+    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">Cette action supprimera définitivement ce pseudo et cette note.</string>
 
     <!-- ViewNoteBottomSheetDialogFragment -->
     <!-- Sheet title -->
     <string name="ViewNoteSheet__note">Note</string>
     <!-- Content description for opening the note editor -->
-    <string name="ViewNoteSheet__edit_note">Edit note</string>
+    <string name="ViewNoteSheet__edit_note">Modifier la note</string>
 
     <!-- EOF -->
 </resources>

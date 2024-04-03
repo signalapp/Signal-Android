@@ -5686,7 +5686,7 @@
     <!-- Title of dialog confirming decision to hide a story -->
     <string name="StoriesLandingFragment__hide_story">Приховати історію?</string>
     <!-- Message of dialog confirming decision to hide a story -->
-    <string name="StoriesLandingFragment__new_story_updates">Нові історії користувача %1$s більше не з\'являтимуться вгорі переліку історій.</string>
+    <string name="StoriesLandingFragment__new_story_updates">Оновлення історії користувача %1$s більше не з\'являтимуться вгорі переліку історій.</string>
     <!-- Positive action of dialog confirming decision to hide a story -->
     <string name="StoriesLandingFragment__hide">Сховати</string>
     <!-- Displayed in Snackbar after story is hidden -->
@@ -5815,7 +5815,7 @@
         <item quantity="other">%1$d осіб</item>
     </plurals>
     <!-- My story privacy fine print about what the privacy settings are for -->
-    <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Виберіть, хто зможе переглядати вашу історію. Зміни не вплинуть на вже створені історії.</string>
+    <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Виберіть, хто зможе переглядати вашу історію. Зміни не вплинуть на вже надіслані історії.</string>
     <!-- Section header for options related to replies and reactions -->
     <string name="MyStorySettingsFragment__replies_amp_reactions">Відповіді і реакції</string>
     <!-- Switchable option for allowing replies and reactions on your stories -->
@@ -5841,7 +5841,7 @@
     <!-- Dialog title when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__remove_s">Вилучити %1$s?</string>
     <!-- Dialog message when attempting to remove someone from a custom story -->
-    <string name="PrivateStorySettingsFragment__this_person_will_no_longer">Ця людина більше не зможе бачити ваші історії.</string>
+    <string name="PrivateStorySettingsFragment__this_person_will_no_longer">Ця людина більше не зможе бачити вашу історію.</string>
     <!-- Positive action label when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__remove">Вилучити</string>
     <!-- Dialog title when deleting a custom story -->
@@ -5857,7 +5857,7 @@
     <!-- Displayed in text post creator when prompting user to enter text -->
     <string name="TextStoryPostTextEntryFragment__add_text">Додати текст</string>
     <!-- Content description for \'done\' button when adding text to a story post -->
-    <string name="TextStoryPostTextEntryFragment__done_adding_text">Додати до історії</string>
+    <string name="TextStoryPostTextEntryFragment__done_adding_text">Це весь текст</string>
     <!-- Text label for media selection toggle -->
     <string name="MediaSelectionActivity__text">Опис</string>
     <!-- Camera label for media selection toggle -->
