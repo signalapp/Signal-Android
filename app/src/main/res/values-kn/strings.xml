@@ -1973,7 +1973,7 @@
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
     <string name="AboutSheet__no_direct_message">%1$s ನೊಂದಿಗೆ ಯಾವುದೇ ನೇರ ಮೆಸೇಜ್‌ಗಳಿಲ್ಲ</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
-    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s ಅವರು ನಿಮ್ಮ ಸಿಸ್ಟಂ ಸಂಪರ್ಕಗಳಲ್ಲಿದ್ದಾರೆ</string>
+    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s is in your phone contacts</string>
     <!-- Notice in a row when user has no groups in common -->
     <string name="AboutSheet__you_have_no_groups_in_common">ನೀವು ಯಾವುದೇ ಸಾಮಾನ್ಯ ಗುಂಪುಗಳನ್ನು ಹೊಂದಿಲ್ಲ</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
@@ -4179,7 +4179,7 @@
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
     <string name="ReviewCard__s_recently_changed">%1$s ಅವರು ಇತ್ತೀಚೆಗೆ ತಮ್ಮ ಪ್ರೊಫೈಲ್ ಹೆಸರನ್ನು %2$s ನಿಂದ %3$sಗೆ ಬದಲಾಯಿಸಿದ್ದಾರೆ</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
-    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s ಅವರು ನಿಮ್ಮ ಸಿಸ್ಟಂ ಸಂಪರ್ಕಗಳಲ್ಲಿದ್ದಾರೆ</string>
+    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s is in your phone contacts</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s ಸೇರಿಕೊಂಡಿದ್ದಾರೆ</string>
@@ -5581,7 +5581,7 @@
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">ಒಂದು ಮೆಸೇಜ್ ವಿನಂತಿ ಸ್ವೀಕರಿಸಲಾಗುತ್ತಿದೆ</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">ನಿಮ್ಮ ಸಿಸ್ಟಮ್ ಸಂಪರ್ಕಗಳಲ್ಲಿ ಅವರನ್ನು ಹೊಂದಲಾಗುತ್ತಿದೆ</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Having them in your phone contacts</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"ನಿಮ್ಮ ಸಂಪರ್ಕಗಳು ನಿಮ್ಮ ಹೆಸರು ಮತ್ತು ಫೊಟೋವನ್ನು ನೋಡಬಹುದು ಮತ್ತು ನೀವು ಮರೆಮಾಡದ ಹೊರತಾಗಿ \"ನನ್ನ ಸ್ಟೋರಿ\" ಯ ಪೋಸ್ಟ್ ಗಳನ್ನು ನೋಡಬಹುದು"</string>
     <!-- Clickable option to add a viewer to a custom story -->

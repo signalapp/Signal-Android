@@ -1973,7 +1973,7 @@
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
     <string name="AboutSheet__no_direct_message">Nessuna chat privata con %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
-    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s è tra i contatti del tuo telefono</string>
+    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s is in your phone contacts</string>
     <!-- Notice in a row when user has no groups in common -->
     <string name="AboutSheet__you_have_no_groups_in_common">Non avete gruppi in comune</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
@@ -4179,7 +4179,7 @@
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
     <string name="ReviewCard__s_recently_changed">%1$s ha cambiato da poco il suo nome profilo da %2$s a %3$s</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
-    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s è tra i contatti del tuo telefono</string>
+    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s is in your phone contacts</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s si è unito</string>
@@ -5581,7 +5581,7 @@
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Accettando una richiesta di messaggio</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Avendole nei contatti del tuo telefono</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Having them in your phone contacts</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Le tue connessioni possono vedere il tuo nome e la tua foto, così come i post su \"La mia Storia\", a meno che tu non decida di nasconderli a qualcuno."</string>
     <!-- Clickable option to add a viewer to a custom story -->

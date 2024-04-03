@@ -1973,7 +1973,7 @@
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
     <string name="AboutSheet__no_direct_message">%1$s کے ساتھ کوئی براہ راست میسجز نہیں</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
-    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s آپ کے سسٹم کے روابط میں موجود ہے</string>
+    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s is in your phone contacts</string>
     <!-- Notice in a row when user has no groups in common -->
     <string name="AboutSheet__you_have_no_groups_in_common">آپ کے کوئی مشترکہ گروپس نہیں</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
@@ -4179,7 +4179,7 @@
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
     <string name="ReviewCard__s_recently_changed">%1$s نے حال ہی میں اپنا پروفائل نیم %2$s سے %3$s میں تبدیل کیا ہے</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
-    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s آپ کے سسٹم کے روابط میں موجود ہے</string>
+    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s is in your phone contacts</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$sشامل ہوئے</string>
@@ -5581,7 +5581,7 @@
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">پیغام کی درخواست قبول کرنے سے</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">اپنے سسٹم کے روابط میں انہیں رکھنے سے</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Having them in your phone contacts</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"آپ کے کنکشنز آپ کا نام اور تصویر دیکھ سکتے ہیں، اور \"میری سٹوری\" پر پوسٹس کو دیکھ سکتے ہیں تاوقتیکہ آپ ان سے مخفی کریں۔"</string>
     <!-- Clickable option to add a viewer to a custom story -->
