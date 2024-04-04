@@ -164,7 +164,8 @@ public class CallParticipantView extends ConstraintLayout {
     } else {
       infoOverlay.setVisibility(View.GONE);
 
-      boolean hasContentToRender = (participant.isVideoEnabled() || participant.isScreenSharing()) && participant.isForwardingVideo();
+      //TODO: [calling] SFU instability causes the forwarding video flag to alternate quickly, should restore after calling server update
+      boolean hasContentToRender = (participant.isVideoEnabled() || participant.isScreenSharing()); // && participant.isForwardingVideo();
 
       rendererFrame.setVisibility(hasContentToRender ? View.VISIBLE : View.INVISIBLE);
       renderer.setVisibility(hasContentToRender ? View.VISIBLE : View.INVISIBLE);
