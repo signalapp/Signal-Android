@@ -105,7 +105,7 @@ public final class WebRtcControls {
    * This is only true at the very start of a call and will then never be true again
    */
   public boolean hideControlsSheetInitially() {
-    return displayIncomingCallButtons() || callState == CallState.NONE;
+    return displayIncomingCallButtons() || callState == CallState.NONE || isHandledElsewhere();
   }
 
   public boolean displayErrorControls() {
@@ -263,6 +263,10 @@ public final class WebRtcControls {
     return callState == CallState.INCOMING;
   }
 
+  private boolean isHandledElsewhere() {
+    return callState == CallState.HANDLED_ELSEWHERE;
+  }
+
   private boolean isAtLeastOutgoing() {
     return callState.isAtLeast(CallState.OUTGOING);
   }
@@ -284,6 +288,7 @@ public final class WebRtcControls {
   public enum CallState {
     NONE,
     ERROR,
+    HANDLED_ELSEWHERE,
     PRE_JOIN,
     RECONNECTING,
     INCOMING,

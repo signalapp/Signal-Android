@@ -16,7 +16,7 @@ class WebRtcCallParticipantsPage {
   private final boolean               isRenderInPip;
   private final boolean               isPortrait;
   private final boolean               isLandscapeEnabled;
-  private final boolean               isIncomingRing;
+  private final boolean               hideAvatar;
   private final int                   navBarBottomInset;
 
   static WebRtcCallParticipantsPage forMultipleParticipants(@NonNull List<CallParticipant> callParticipants,
@@ -24,10 +24,10 @@ class WebRtcCallParticipantsPage {
                                                             boolean isRenderInPip,
                                                             boolean isPortrait,
                                                             boolean isLandscapeEnabled,
-                                                            boolean isIncomingRing,
+                                                            boolean hideAvatar,
                                                             int navBarBottomInset)
   {
-    return new WebRtcCallParticipantsPage(callParticipants, focusedParticipant, false, isRenderInPip, isPortrait, isLandscapeEnabled, isIncomingRing, navBarBottomInset);
+    return new WebRtcCallParticipantsPage(callParticipants, focusedParticipant, false, isRenderInPip, isPortrait, isLandscapeEnabled, hideAvatar, navBarBottomInset);
   }
 
   static WebRtcCallParticipantsPage forSingleParticipant(@NonNull CallParticipant singleParticipant,
@@ -44,7 +44,7 @@ class WebRtcCallParticipantsPage {
                                      boolean isRenderInPip,
                                      boolean isPortrait,
                                      boolean isLandscapeEnabled,
-                                     boolean isIncomingRing,
+                                     boolean hideAvatar,
                                      int navBarBottomInset)
   {
     this.callParticipants   = callParticipants;
@@ -53,7 +53,7 @@ class WebRtcCallParticipantsPage {
     this.isRenderInPip      = isRenderInPip;
     this.isPortrait         = isPortrait;
     this.isLandscapeEnabled = isLandscapeEnabled;
-    this.isIncomingRing     = isIncomingRing;
+    this.hideAvatar         = hideAvatar;
     this.navBarBottomInset  = navBarBottomInset;
   }
 
@@ -77,8 +77,8 @@ class WebRtcCallParticipantsPage {
     return isPortrait;
   }
 
-  public boolean isIncomingRing() {
-    return isIncomingRing;
+  public boolean shouldHideAvatar() {
+    return hideAvatar;
   }
 
   public int getNavBarBottomInset() {
@@ -98,7 +98,7 @@ class WebRtcCallParticipantsPage {
            isRenderInPip == that.isRenderInPip &&
            isPortrait == that.isPortrait &&
            isLandscapeEnabled == that.isLandscapeEnabled &&
-           isIncomingRing == that.isIncomingRing &&
+           hideAvatar == that.hideAvatar &&
            callParticipants.equals(that.callParticipants) &&
            focusedParticipant.equals(that.focusedParticipant) &&
            navBarBottomInset == that.navBarBottomInset;
@@ -106,6 +106,6 @@ class WebRtcCallParticipantsPage {
 
   @Override
   public int hashCode() {
-    return Objects.hash(callParticipants, focusedParticipant, isSpeaker, isRenderInPip, isPortrait, isLandscapeEnabled, isIncomingRing, navBarBottomInset);
+    return Objects.hash(callParticipants, focusedParticipant, isSpeaker, isRenderInPip, isPortrait, isLandscapeEnabled, hideAvatar, navBarBottomInset);
   }
 }

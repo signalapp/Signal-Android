@@ -51,6 +51,9 @@ class WebRtcViewModel(state: WebRtcServiceState) {
 
     val inOngoingCall: Boolean
       get() = this == CALL_INCOMING || this == CALL_OUTGOING || this == CALL_CONNECTED || this == CALL_RINGING || this == CALL_RECONNECTING
+
+    val isIncomingOrHandledElsewhere
+      get() = this == CALL_INCOMING || this == CALL_ACCEPTED_ELSEWHERE || this == CALL_DECLINED_ELSEWHERE || this == CALL_ONGOING_ELSEWHERE
   }
 
   enum class GroupCallState {

@@ -49,7 +49,7 @@ data class CallParticipantsState(
   val allRemoteParticipants: List<CallParticipant> = remoteParticipants.allParticipants
   val isFolded: Boolean = foldableState.isFolded
   val isLargeVideoGroup: Boolean = allRemoteParticipants.size > SMALL_GROUP_MAX && !isInPipMode && !isFolded
-  val isIncomingRing: Boolean = callState == WebRtcViewModel.State.CALL_INCOMING
+  val hideAvatar: Boolean = callState.isIncomingOrHandledElsewhere
 
   val raisedHands: List<GroupCallRaiseHandEvent>
     get() {

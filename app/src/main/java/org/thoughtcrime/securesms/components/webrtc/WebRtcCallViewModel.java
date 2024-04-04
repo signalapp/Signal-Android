@@ -416,6 +416,8 @@ public class WebRtcCallViewModel extends ViewModel {
       case CALL_ACCEPTED_ELSEWHERE:
       case CALL_DECLINED_ELSEWHERE:
       case CALL_ONGOING_ELSEWHERE:
+        callState = WebRtcControls.CallState.HANDLED_ELSEWHERE;
+        break;
       case CALL_NEEDS_PERMISSION:
       case CALL_BUSY:
       case CALL_DISCONNECTED:
