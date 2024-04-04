@@ -64,6 +64,11 @@ public final class CallParticipantId implements Parcelable {
     dest.writeParcelable(recipientId, flags);
   }
 
+  @Override
+  public @NonNull String toString() {
+    return "CallParticipantId(demuxId=" + demuxId + ", recipientId=" + recipientId + ')';
+  }
+
   public static final Parcelable.Creator<CallParticipantId> CREATOR = new Parcelable.Creator<CallParticipantId>() {
     @Override
     public CallParticipantId createFromParcel(Parcel in) {

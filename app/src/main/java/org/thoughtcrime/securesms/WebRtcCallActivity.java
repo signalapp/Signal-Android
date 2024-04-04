@@ -162,6 +162,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
   private ControlsAndInfoController        controlsAndInfo;
   private boolean                          enterPipOnResume;
   private long                             lastProcessedIntentTimestamp;
+  private WebRtcViewModel                  previousEvent = null;
 
   private Disposable ephemeralStateDisposable = Disposable.empty();
 
@@ -885,7 +886,8 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
 
   @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
   public void onEventMainThread(@NonNull WebRtcViewModel event) {
-    Log.i(TAG, "Got message from service: " + event);
+    Log.i(TAG, "Got message from service: " + event.describeDifference(previousEvent));
+    previousEvent = event;
 
     viewModel.setRecipient(event.getRecipient());
     callScreen.setRecipient(event.getRecipient());
