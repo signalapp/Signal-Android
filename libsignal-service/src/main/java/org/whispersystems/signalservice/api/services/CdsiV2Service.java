@@ -12,6 +12,9 @@ import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId.PNI;
+import org.whispersystems.signalservice.api.push.exceptions.CdsiInvalidArgumentException;
+import org.whispersystems.signalservice.api.push.exceptions.CdsiInvalidTokenException;
+import org.whispersystems.signalservice.api.push.exceptions.CdsiResourceExhaustedException;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.ServiceResponse;
@@ -19,6 +22,7 @@ import org.whispersystems.signalservice.internal.configuration.SignalServiceConf
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.lang.IllegalArgumentException;
 import java.nio.ByteBuffer;
 import java.time.Duration;
 import java.util.Collection;
@@ -58,9 +62,12 @@ public final class CdsiV2Service {
         try {
           Log.i(TAG, "Starting CDSI lookup via libsignal-net");
           Future<CdsiLookupResponse> cdsiRequest = network.cdsiLookup(username, password, buildLibsignalRequest(request), tokenSaver);
-          return Single.fromFuture(cdsiRequest).map(CdsiV2Service::parseLibsignalResponse).toObservable();
+          return Single.fromFuture(cdsiRequest)
+              .onErrorResumeNext((Throwable err) -> Single.error(mapLibsignalError(err)))
+              .map(CdsiV2Service::parseLibsignalResponse)
+              .toObservable();
         } catch (Exception exception) {
-          return Observable.error(exception);
+          return Observable.error(mapLibsignalError(exception));
         }
       };
     } else {
@@ -174,6 +181,18 @@ public final class CdsiV2Service {
     HashMap<String, ResponseItem> responses = new HashMap<>(response.entries().size());
     response.entries().forEach((key, value) -> responses.put(key, new ResponseItem(new PNI(value.pni), Optional.ofNullable(value.aci).map(ACI::new))));
     return new Response(responses, response.debugPermitsUsed);
+  }
+
+  private static Throwable mapLibsignalError(Throwable lookupError) {
+    if (lookupError instanceof org.signal.libsignal.net.CdsiInvalidTokenException) {
+      return new CdsiInvalidTokenException();
+    } else if (lookupError instanceof org.signal.libsignal.net.RetryLaterException) {
+      org.signal.libsignal.net.RetryLaterException e = (org.signal.libsignal.net.RetryLaterException) lookupError;
+      return new CdsiResourceExhaustedException((int) e.duration.getSeconds());
+    } else if (lookupError instanceof IllegalArgumentException) {
+      return new CdsiInvalidArgumentException();
+    }
+    return lookupError;
   }
 
   private static List<Long> parseAndSortE164Strings(Collection<String> e164s) {
