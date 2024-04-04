@@ -22,6 +22,7 @@ public class ConversationSearchBottomBar extends ConstraintLayout {
   private View     searchUp;
   private TextView searchPositionText;
   private View     progressWheel;
+  private View     jumpToDateButton;
 
   private EventListener eventListener;
 
@@ -42,6 +43,7 @@ public class ConversationSearchBottomBar extends ConstraintLayout {
     this.searchDown         = findViewById(R.id.conversation_search_down);
     this.searchPositionText = findViewById(R.id.conversation_search_position);
     this.progressWheel      = findViewById(R.id.conversation_search_progress_wheel);
+    this.jumpToDateButton   = findViewById(R.id.conversation_jump_to_date_button);
   }
 
   public void setData(int position, int count) {
@@ -65,6 +67,12 @@ public class ConversationSearchBottomBar extends ConstraintLayout {
       searchPositionText.setText(R.string.ConversationActivity_no_results);
     }
 
+    jumpToDateButton.setOnClickListener(v -> {
+      if (eventListener != null) {
+        eventListener.onDatePickerSelected();
+      }
+    });
+
     setViewEnabled(searchUp, position < (count - 1));
     setViewEnabled(searchDown, position > 0);
   }
@@ -85,5 +93,6 @@ public class ConversationSearchBottomBar extends ConstraintLayout {
   public interface EventListener {
     void onSearchMoveUpPressed();
     void onSearchMoveDownPressed();
+    void onDatePickerSelected();
   }
 }

@@ -11,6 +11,19 @@
     tools:visibility="visible"
     tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/conversation_jump_to_date_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/symbol_calendar_search_24"
+        android:tint="@color/signal_colorOnSurface"
+        android:background="?selectableItemBackgroundBorderless"
+        android:layout_marginStart="16dp"
+        android:padding="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
     <TextView
         android:id="@+id/conversation_search_position"
         style="@style/Signal.Text.Body"

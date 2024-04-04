@@ -86,7 +86,6 @@ import org.thoughtcrime.securesms.profiles.spoofing.ReviewUtil
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.search.MessageResult
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.sms.MessageSender.PreUploadResult
 import org.thoughtcrime.securesms.util.BitmapUtil
@@ -265,9 +264,9 @@ class ConversationRepository(
     }.subscribeOn(Schedulers.io())
   }
 
-  fun getMessageResultPosition(threadId: Long, messageResult: MessageResult): Single<Int> {
+  fun getMessageResultPosition(threadId: Long, receivedTimestamp: Long): Single<Int> {
     return Single.fromCallable {
-      SignalDatabase.messages.getMessagePositionInConversation(threadId, messageResult.receivedTimestampMs)
+      SignalDatabase.messages.getMessagePositionInConversation(threadId, receivedTimestamp)
     }.subscribeOn(Schedulers.io())
   }
 
@@ -578,6 +577,12 @@ class ConversationRepository(
     SignalExecutors.BOUNDED_IO.execute {
       SignalDatabase.threads.setLastSeen(threadId)
     }
+  }
+
+  fun getEarliestMessageDate(threadId: Long): Single<Long> {
+    return Single
+      .fromCallable { SignalDatabase.messages.getEarliestMessageDate(threadId) }
+      .subscribeOn(Schedulers.io())
   }
 
   /**
