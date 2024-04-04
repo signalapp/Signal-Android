@@ -49,8 +49,6 @@ public final class CdsiV2Service {
   private static final UUID EMPTY_UUID         = new UUID(0, 0);
   private static final int  RESPONSE_ITEM_SIZE = 8 + 16 + 16; // 1 uint64 + 2 UUIDs
 
-  private static final Duration LIBSIGNAL_CDSI_TIMEOUT = Duration.ofSeconds(10);
-
   private final CdsiRequestHandler cdsiRequestHandler;
 
   public CdsiV2Service(SignalServiceConfiguration configuration, String mrEnclave, @Nullable Network network) {
@@ -59,7 +57,7 @@ public final class CdsiV2Service {
       this.cdsiRequestHandler = (username, password, request, tokenSaver) -> {
         try {
           Log.i(TAG, "Starting CDSI lookup via libsignal-net");
-          Future<CdsiLookupResponse> cdsiRequest = network.cdsiLookup(username, password, buildLibsignalRequest(request), LIBSIGNAL_CDSI_TIMEOUT, tokenSaver);
+          Future<CdsiLookupResponse> cdsiRequest = network.cdsiLookup(username, password, buildLibsignalRequest(request), tokenSaver);
           return Single.fromFuture(cdsiRequest).map(CdsiV2Service::parseLibsignalResponse).toObservable();
         } catch (Exception exception) {
           return Observable.error(exception);
