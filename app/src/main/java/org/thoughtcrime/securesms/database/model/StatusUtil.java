@@ -20,6 +20,7 @@ final class StatusUtil {
   static boolean isFailed(long type, long deliveryStatus) {
     return MessageTypes.isFailedMessageType(type) ||
            MessageTypes.isPendingSecureSmsFallbackType(type) ||
+           MessageTypes.isPendingInsecureSmsFallbackType(type) ||
            deliveryStatus >= MessageTable.Status.STATUS_FAILED;
   }
 

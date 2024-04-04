@@ -30,7 +30,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
-import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
@@ -205,9 +204,9 @@ public class IndividualSendJob extends PushSendJob {
 
       log(TAG, String.valueOf(message.getSentTimeMillis()), "Sent message: " + messageId);
 
-    } catch (InsecureFallbackApprovalException ifae) {
-      warn(TAG, "Failure", ifae);
-      database.markAsPendingInsecureSmsFallback(messageId);
+    } catch (UnregisteredUserException uue) {
+      warn(TAG, "Failure", uue);
+      database.markAsSentFailed(messageId);
       notifyMediaMessageDeliveryFailed(context, messageId);
       ApplicationDependencies.getJobManager().add(new DirectoryRefreshJob(false));
     } catch (UntrustedIdentityException uie) {
@@ -237,7 +236,7 @@ public class IndividualSendJob extends PushSendJob {
   }
 
   private boolean deliver(OutgoingMessage message, MessageRecord originalEditedMessage)
-      throws IOException, InsecureFallbackApprovalException, UntrustedIdentityException, UndeliverableMessageException
+      throws IOException, UnregisteredUserException, UntrustedIdentityException, UndeliverableMessageException
   {
     if (message.getThreadRecipient() == null) {
       throw new UndeliverableMessageException("No destination address.");
@@ -335,9 +334,6 @@ public class IndividualSendJob extends PushSendJob {
 
         return result.getSuccess().isUnidentified();
       }
-    } catch (UnregisteredUserException e) {
-      warn(TAG, String.valueOf(message.getSentTimeMillis()), e);
-      throw new InsecureFallbackApprovalException(e);
     } catch (FileNotFoundException e) {
       warn(TAG, String.valueOf(message.getSentTimeMillis()), e);
       throw new UndeliverableMessageException(e);

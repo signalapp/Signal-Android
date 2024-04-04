@@ -75,6 +75,7 @@ public abstract class DisplayRecord {
     return
         MessageTypes.isFailedMessageType(type) ||
         MessageTypes.isPendingSecureSmsFallbackType(type) ||
+        MessageTypes.isPendingInsecureSmsFallbackType(type) ||
         deliveryStatus >= MessageTable.Status.STATUS_FAILED;
   }
 
@@ -222,10 +223,6 @@ public abstract class DisplayRecord {
 
   public boolean hasReadReceipt() {
     return hasReadReceipt;
-  }
-
-  public boolean isPendingInsecureSmsFallback() {
-    return MessageTypes.isPendingInsecureSmsFallbackType(type);
   }
 
   public boolean isPaymentNotification() {

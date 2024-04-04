@@ -508,9 +508,6 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     } else if (thread.isFailed()) {
       deliveryStatusIndicator.setNone();
       alertView.setFailed();
-    } else if (thread.isPendingInsecureSmsFallback()) {
-      deliveryStatusIndicator.setNone();
-      alertView.setPendingApproval();
     } else {
       alertView.setNone();
 
