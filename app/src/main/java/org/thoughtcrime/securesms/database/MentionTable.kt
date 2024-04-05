@@ -36,9 +36,12 @@ class MentionTable(context: Context, databaseHelper: SignalDatabase) : DatabaseT
       )
     """
 
+    private const val MESSAGE_ID_INDEX = "mention_message_id_index"
+    private const val RECIPIENT_ID_INDEX = "mention_recipient_id_thread_id_index "
+
     val CREATE_INDEXES = arrayOf(
-      "CREATE INDEX IF NOT EXISTS mention_message_id_index ON $TABLE_NAME ($MESSAGE_ID);",
-      "CREATE INDEX IF NOT EXISTS mention_recipient_id_thread_id_index ON $TABLE_NAME ($RECIPIENT_ID, $THREAD_ID);"
+      "CREATE INDEX IF NOT EXISTS $MESSAGE_ID_INDEX ON $TABLE_NAME ($MESSAGE_ID);",
+      "CREATE INDEX IF NOT EXISTS $RECIPIENT_ID_INDEX ON $TABLE_NAME ($RECIPIENT_ID, $THREAD_ID);"
     )
   }
 
@@ -61,7 +64,7 @@ class MentionTable(context: Context, databaseHelper: SignalDatabase) : DatabaseT
   fun getMentionsForMessage(messageId: Long): List<Mention> {
     return readableDatabase
       .select()
-      .from(TABLE_NAME)
+      .from("$TABLE_NAME INDEXED BY $MESSAGE_ID_INDEX")
       .where("$MESSAGE_ID = $messageId")
       .run()
       .readToList { cursor ->
@@ -78,7 +81,7 @@ class MentionTable(context: Context, databaseHelper: SignalDatabase) : DatabaseT
 
     return readableDatabase
       .select()
-      .from(TABLE_NAME)
+      .from("$TABLE_NAME INDEXED BY $MESSAGE_ID_INDEX")
       .where("$MESSAGE_ID IN ($ids)")
       .run()
       .use { cursor -> readMentions(cursor) }
@@ -98,7 +101,7 @@ class MentionTable(context: Context, databaseHelper: SignalDatabase) : DatabaseT
 
     return readableDatabase
       .select()
-      .from(TABLE_NAME)
+      .from("$TABLE_NAME INDEXED BY $MESSAGE_ID_INDEX")
       .where(
         """
         $MESSAGE_ID IN (
@@ -115,18 +118,18 @@ class MentionTable(context: Context, databaseHelper: SignalDatabase) : DatabaseT
 
   fun deleteMentionsForMessage(messageId: Long) {
     writableDatabase
-      .delete(TABLE_NAME)
+      .delete("$TABLE_NAME INDEXED BY $MESSAGE_ID_INDEX")
       .where("$MESSAGE_ID = $messageId")
       .run()
   }
 
   fun deleteAbandonedMentions() {
     writableDatabase
-      .delete(TABLE_NAME)
+      .delete("$TABLE_NAME INDEXED BY $MESSAGE_ID_INDEX")
       .where(
         """
         $MESSAGE_ID NOT IN (
-          SELECT $MessageTable.ID
+          SELECT ${MessageTable.ID}
           FROM ${MessageTable.TABLE_NAME}
         )
         OR $THREAD_ID NOT IN (
@@ -158,7 +161,7 @@ class MentionTable(context: Context, databaseHelper: SignalDatabase) : DatabaseT
 
   override fun remapRecipient(fromId: RecipientId, toId: RecipientId) {
     writableDatabase
-      .update(TABLE_NAME)
+      .update("$TABLE_NAME INDEXED BY $RECIPIENT_ID_INDEX")
       .values(RECIPIENT_ID to toId.serialize())
       .where("$RECIPIENT_ID = ?", fromId)
       .run()
@@ -166,7 +169,7 @@ class MentionTable(context: Context, databaseHelper: SignalDatabase) : DatabaseT
 
   override fun remapThread(fromId: Long, toId: Long) {
     writableDatabase
-      .update(TABLE_NAME)
+      .update("$TABLE_NAME INDEXED BY $RECIPIENT_ID_INDEX")
       .values(THREAD_ID to toId)
       .where("$THREAD_ID = $fromId")
       .run()
