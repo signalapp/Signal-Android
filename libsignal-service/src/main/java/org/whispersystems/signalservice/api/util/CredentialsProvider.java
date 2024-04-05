@@ -8,6 +8,7 @@ package org.whispersystems.signalservice.api.util;
 
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId.PNI;
+import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 public interface CredentialsProvider {
   ACI getAci();
@@ -15,4 +16,14 @@ public interface CredentialsProvider {
   String getE164();
   int getDeviceId();
   String getPassword();
+
+  default String getUsername() {
+    StringBuilder sb = new StringBuilder();
+    sb.append(getAci().toString());
+    if (getDeviceId() != SignalServiceAddress.DEFAULT_DEVICE_ID) {
+      sb.append(".");
+      sb.append(getDeviceId());
+    }
+    return sb.toString();
+  }
 }
