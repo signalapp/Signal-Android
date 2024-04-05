@@ -191,10 +191,10 @@ class ScrollToPositionDelegate private constructor(
       if (abs(layoutManager.findFirstVisibleItemPosition() - position) < SCROLL_ANIMATION_THRESHOLD) {
         val child: View? = layoutManager.findViewByPosition(position)
         if (child == null || !layoutManager.isViewPartiallyVisible(child, true, false)) {
-          layoutManager.scrollToPositionWithOffset(position, recyclerView.height / 4)
+          layoutManager.scrollToPositionWithOffset(position, recyclerView.height / 3)
         }
       } else {
-        layoutManager.scrollToPositionWithOffset(position, recyclerView.height / 4)
+        layoutManager.scrollToPositionWithOffset(position, recyclerView.height / 3)
       }
     }
   }
