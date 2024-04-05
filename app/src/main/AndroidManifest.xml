@@ -1352,7 +1352,11 @@
         </intent-filter>
     </receiver>
 
-    <service android:name="org.thoughtcrime.securesms.service.webrtc.ActiveCallManager$ActiveCallForegroundService" android:exported="false" />
+    <service
+        android:name="org.thoughtcrime.securesms.service.webrtc.ActiveCallManager$ActiveCallForegroundService"
+        android:exported="false"
+        android:foregroundServiceType="camera|microphone" />
+
     <receiver android:name="org.thoughtcrime.securesms.service.webrtc.ActiveCallManager$ActiveCallServiceReceiver" android:exported="false">
         <intent-filter>
             <action android:name="org.thoughtcrime.securesms.service.webrtc.ActiveCallAction.DENY"/>

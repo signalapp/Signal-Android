@@ -10,11 +10,13 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.content.pm.ServiceInfo
 import android.net.ConnectivityManager
 import android.os.Build
 import android.telephony.PhoneStateListener
 import android.telephony.TelephonyManager
 import androidx.annotation.MainThread
+import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.os.bundleOf
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -194,6 +196,10 @@ class ActiveCallManager(
     override val notificationId: Int
       get() = CallNotificationBuilder.WEBRTC_NOTIFICATION
 
+    @get:RequiresApi(30)
+    override val serviceType: Int
+      get() = ServiceInfo.FOREGROUND_SERVICE_TYPE_CAMERA or ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE
+
     private var hangUpRtcOnDeviceCallAnswered: PhoneStateListener? = null
     private var notification: Notification? = null
     private var notificationDisposable: Disposable = Disposable.disposed()
@@ -222,6 +228,11 @@ class ActiveCallManager(
     }
 
     override fun getForegroundNotification(intent: Intent): Notification {
+      if (SafeForegroundService.isStopping(intent)) {
+        Log.v(TAG, "Service is stopping, using generic stopping notification")
+        return CallNotificationBuilder.getStoppingNotification(this)
+      }
+
       if (notification != null) {
         return notification!!
       } else if (!intent.hasExtra(EXTRA_RECIPIENT_ID)) {
