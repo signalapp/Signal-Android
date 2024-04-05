@@ -95,6 +95,7 @@ public class SubmitDebugLogRepository {
     if (FeatureFlags.internalUser()) {
       add(new LogSectionSenderKey());
     }
+    add(new LogSectionDatabaseSchema());
     add(new LogSectionRemappedRecords());
     add(new LogSectionAnr());
     add(new LogSectionLogcat());
