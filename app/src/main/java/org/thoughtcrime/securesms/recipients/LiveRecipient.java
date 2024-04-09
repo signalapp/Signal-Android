@@ -215,7 +215,7 @@ public final class LiveRecipient {
     if (groupRecord.isPresent()) {
       return RecipientCreator.forGroup(groupRecord.get(), record);
     } else {
-      return RecipientCreator.forUnknown();
+      return RecipientCreator.forUnknownGroup(record.getId(), record.getGroupId());
     }
   }
 

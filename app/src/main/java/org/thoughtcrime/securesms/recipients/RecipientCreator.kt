@@ -6,6 +6,7 @@ import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.database.RecipientTable.RegisteredState
 import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.database.model.RecipientRecord
+import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
@@ -103,6 +104,15 @@ object RecipientCreator {
   @JvmStatic
   fun forUnknown(): Recipient {
     return Recipient.UNKNOWN
+  }
+
+  @JvmStatic
+  fun forUnknownGroup(id: RecipientId, groupId: GroupId?): Recipient {
+    return Recipient(
+      id = id,
+      isResolving = true,
+      groupIdValue = groupId
+    )
   }
 
   @VisibleForTesting
