@@ -954,7 +954,6 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     val values = getValuesForStorageGroupV2(insert, true)
 
     writableDatabase.insertOrThrow(TABLE_NAME, null, values)
-    val recipient = Recipient.externalGroupExact(groupId)
 
     Log.i(TAG, "Creating restore placeholder for $groupId")
     val createdId = groups.create(
@@ -969,6 +968,9 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
 
     groups.setShowAsStoryState(groupId, insert.storySendMode.toShowAsStoryState())
+
+    val recipient = Recipient.externalGroupExact(groupId)
+
     updateExtras(recipient.id) {
       it.hideStory(insert.shouldHideStory())
     }
