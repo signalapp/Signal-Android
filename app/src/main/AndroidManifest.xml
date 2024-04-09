@@ -1288,6 +1288,12 @@
         </intent-filter>
     </receiver>
 
+    <receiver android:name=".service.AnalyzeDatabaseAlarmListener" android:exported="false">
+        <intent-filter>
+            <action android:name="android.intent.action.BOOT_COMPLETED" />
+        </intent-filter>
+    </receiver>
+
     <receiver android:name="org.thoughtcrime.securesms.jobs.ForegroundServiceUtil$Receiver" android:exported="false" />
 
     <receiver android:name=".service.PersistentConnectionBootListener" android:exported="false">

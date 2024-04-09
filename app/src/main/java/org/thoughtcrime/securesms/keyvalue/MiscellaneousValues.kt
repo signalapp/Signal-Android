@@ -35,6 +35,7 @@ internal class MiscellaneousValues internal constructor(store: KeyValueStore) : 
     private const val LAST_CDS_FOREGROUND_SYNC = "misc.last_cds_foreground_sync"
     private const val LINKED_DEVICE_LAST_ACTIVE_CHECK_TIME = "misc.linked_device.last_active_check_time"
     private const val LEAST_ACTIVE_LINKED_DEVICE = "misc.linked_device.least_active"
+    private const val NEXT_DATABASE_ANALYSIS_TIME = "misc.next_database_analysis_time"
   }
 
   public override fun onFirstEverAppLaunch() {
@@ -236,4 +237,9 @@ internal class MiscellaneousValues internal constructor(store: KeyValueStore) : 
    * Details about the least-active linked device.
    */
   var leastActiveLinkedDevice: LeastActiveLinkedDevice? by protoValue(LEAST_ACTIVE_LINKED_DEVICE, LeastActiveLinkedDevice.ADAPTER)
+
+  /**
+   * When the next scheduled database analysis is.
+   */
+  var nextDatabaseAnalysisTime: Long by longValue(NEXT_DATABASE_ANALYSIS_TIME, 0)
 }

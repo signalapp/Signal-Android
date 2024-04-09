@@ -83,6 +83,7 @@ import org.thoughtcrime.securesms.ratelimit.RateLimitUtil;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.registration.RegistrationUtil;
 import org.thoughtcrime.securesms.ringrtc.RingRtcLogger;
+import org.thoughtcrime.securesms.service.AnalyzeDatabaseAlarmListener;
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.service.LocalBackupListener;
@@ -419,6 +420,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
     LocalBackupListener.schedule(this);
     RotateSenderCertificateListener.schedule(this);
     RoutineMessageFetchReceiver.startOrUpdateAlarm(this);
+    AnalyzeDatabaseAlarmListener.schedule(this);
 
     if (BuildConfig.MANAGES_APP_UPDATES) {
       ApkUpdateRefreshListener.schedule(this);
