@@ -1973,7 +1973,7 @@
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
     <string name="AboutSheet__no_direct_message">Walang direktang message kay %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
-    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s is in your phone contacts</string>
+    <string name="AboutSheet__s_is_in_your_system_contacts">Si %1$s ay nasa phone contacts mo</string>
     <!-- Notice in a row when user has no groups in common -->
     <string name="AboutSheet__you_have_no_groups_in_common">Wala kayong common groups</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
@@ -4179,7 +4179,7 @@
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
     <string name="ReviewCard__s_recently_changed">Pinalitan ni %1$s ang kanyang profile name ng %3$s mula sa %2$s kamakailan</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
-    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s is in your phone contacts</string>
+    <string name="ReviewCard__s_is_in_your_system_contacts">Si %1$s ay nasa phone contacts mo</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s joined</string>
@@ -4730,7 +4730,7 @@
     <string name="ConversationSettingsFragment__disappearing_messages">Mga naglalahong mensahe</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">Sounds at notifications</string>
   <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
-    <string name="ConversationSettingsFragment__contact_details">Phone contact info</string>
+    <string name="ConversationSettingsFragment__contact_details">Info ng phone contact</string>
     <string name="ConversationSettingsFragment__view_safety_number">Tingnan ang numerong pangkaligtasan</string>
     <string name="ConversationSettingsFragment__block">I-block</string>
     <string name="ConversationSettingsFragment__block_group">I-block ang group</string>
@@ -5581,7 +5581,7 @@
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Accepting a message request</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Having them in your phone contacts</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Nasa phone contacts mo sila</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Makikita ng iyong connections ang pangalan at photo mo, pati na rin ang iyong posts sa My Story maliban na lang kung i-hide mo ito sa kanila."</string>
     <!-- Clickable option to add a viewer to a custom story -->
@@ -6681,7 +6681,7 @@
     <!-- Title displayed at the top of the screen -->
     <string name="NicknameActivity__nickname">Nickname</string>
     <!-- Subtitle displayed under title -->
-    <string name="NicknameActivity__nicknames_amp_notes">Ang nicknames at notes ay naka-store gamit ang end-to-end encrypted storage service ng Signal. Ikaw lang ang makakakita ng mga ito.</string>
+    <string name="NicknameActivity__nicknames_amp_notes">Nicknames &amp; notes are stored with Signal and end-to-end encrypted. They are only visible to you.</string>
     <!-- Field label for given name -->
     <string name="NicknameActivity__first_name">First name</string>
     <!-- Content description for first name clear button -->
@@ -6695,9 +6695,9 @@
     <!-- Button label to save -->
     <string name="NicknameActivity__save">I-save</string>
     <!-- Dialog title for note and name deletion -->
-    <string name="NicknameActivity__delete_nickname">Burahin ang nickname?</string>
+    <string name="NicknameActivity__delete_nickname">Delete?</string>
     <!-- Dialog message for note and name deletion -->
-    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">Permanenteng mabubura ang nickname at note nito.</string>
+    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">This will permanently delete any nickname and note you’ve set.</string>
 
     <!-- ViewNoteBottomSheetDialogFragment -->
     <!-- Sheet title -->

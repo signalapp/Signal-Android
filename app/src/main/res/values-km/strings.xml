@@ -1899,7 +1899,7 @@
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
     <string name="AboutSheet__no_direct_message">មិនមានសារផ្ទាល់ជាមួយ %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
-    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s is in your phone contacts</string>
+    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s គឺមាននៅក្នុងបញ្ជីទំនាក់ទំនងក្នុងទូរសព្ទរបស់អ្នក</string>
     <!-- Notice in a row when user has no groups in common -->
     <string name="AboutSheet__you_have_no_groups_in_common">អ្នកមិនមានក្រុមរួមទេ</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
@@ -4071,7 +4071,7 @@
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
     <string name="ReviewCard__s_recently_changed">%1$s ទើបតែប្តូរឈ្មោះប្រូហ្វាល់របស់គាត់ពី %2$s ទៅជា %3$s</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
-    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s is in your phone contacts</string>
+    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s គឺមាននៅក្នុងបញ្ជីទំនាក់ទំនងក្នុងទូរសព្ទរបស់អ្នក</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s បានចូលរួម</string>
@@ -4618,7 +4618,7 @@
     <string name="ConversationSettingsFragment__disappearing_messages">សារបាត់ទៅវិញ</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">សម្លេង &amp; សារជូនដំណឹង</string>
   <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
-    <string name="ConversationSettingsFragment__contact_details">Phone contact info</string>
+    <string name="ConversationSettingsFragment__contact_details">ព័ត៌មានទំនាក់ទំនងក្នុងទូរសព្ទ</string>
     <string name="ConversationSettingsFragment__view_safety_number">មើលលេខសុវត្ថិភាព</string>
     <string name="ConversationSettingsFragment__block">ទប់ស្កាត់</string>
     <string name="ConversationSettingsFragment__block_group">ទប់ស្កាត់ក្រុម</string>
@@ -5456,7 +5456,7 @@
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">ទទួលយកសំណើសារ</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Having them in your phone contacts</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">មានពួកគេនៅក្នុងបញ្ជីទំនាក់ទំនងក្នុងទូរសព្ទរបស់អ្នក</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"អ្នកភ្ជាប់ទំនាក់ទំនងជាមួយអ្នកអាចមើលឃើញឈ្មោះ និងរូបថតរបស់អ្នក ហើយអាចមើលឃើញសារបង្ហោះទៅកាន់រឿងរ៉ាវរបស់ខ្ញុំ លើកលែងតែអ្នកលាក់វាមិនឲ្យពួកគេឃើញ។"</string>
     <!-- Clickable option to add a viewer to a custom story -->
@@ -6535,7 +6535,7 @@
     <!-- Title displayed at the top of the screen -->
     <string name="NicknameActivity__nickname">ឈ្មោះហៅក្រៅ</string>
     <!-- Subtitle displayed under title -->
-    <string name="NicknameActivity__nicknames_amp_notes">ឈ្មោះហៅក្រៅ និងកំណត់ចំណាំផ្សេងៗត្រូវបានរក្សាទុកដោយប្រើប្រាស់សេវាកម្មរក្សាទុកតាមការអ៊ីនគ្រីបទាំងសងខាងរបស់ Signal។ មានតែអ្នកទេដែលអាចមើលឃើញពួកវា។</string>
+    <string name="NicknameActivity__nicknames_amp_notes">Nicknames &amp; notes are stored with Signal and end-to-end encrypted. They are only visible to you.</string>
     <!-- Field label for given name -->
     <string name="NicknameActivity__first_name">ឈ្មោះ</string>
     <!-- Content description for first name clear button -->
@@ -6549,9 +6549,9 @@
     <!-- Button label to save -->
     <string name="NicknameActivity__save">រក្សាទុក</string>
     <!-- Dialog title for note and name deletion -->
-    <string name="NicknameActivity__delete_nickname">លុបឈ្មោះហៅក្រៅមែនទេ?</string>
+    <string name="NicknameActivity__delete_nickname">Delete?</string>
     <!-- Dialog message for note and name deletion -->
-    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">ការធ្វើបែបនេះនឹងលុបឈ្មោះហៅក្រៅ និងកំណត់ចំណាំនេះជាអចិន្ត្រៃយ៍។</string>
+    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">This will permanently delete any nickname and note you’ve set.</string>
 
     <!-- ViewNoteBottomSheetDialogFragment -->
     <!-- Sheet title -->

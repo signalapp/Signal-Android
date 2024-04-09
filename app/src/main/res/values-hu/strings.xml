@@ -1973,7 +1973,7 @@
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
     <string name="AboutSheet__no_direct_message">Nincs közvetlen üzenet %1$s felhasználóval</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
-    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s is in your phone contacts</string>
+    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s szerepel a telefonod névjegyei között</string>
     <!-- Notice in a row when user has no groups in common -->
     <string name="AboutSheet__you_have_no_groups_in_common">Nincsenek közös csoportjaitok</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
@@ -4179,7 +4179,7 @@
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
     <string name="ReviewCard__s_recently_changed">%1$s a közelmúltban megváltoztatta a profilnevét %2$s névről %3$s névre</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
-    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s is in your phone contacts</string>
+    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s szerepel a telefonod névjegyei között</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s csatlakozott</string>
@@ -4730,7 +4730,7 @@
     <string name="ConversationSettingsFragment__disappearing_messages">Eltűnő üzenetek</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">Hangok &amp; értesítések</string>
   <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
-    <string name="ConversationSettingsFragment__contact_details">Phone contact info</string>
+    <string name="ConversationSettingsFragment__contact_details">Telefonos névjegy adatai</string>
     <string name="ConversationSettingsFragment__view_safety_number">Biztonsági szám megjelenítése</string>
     <string name="ConversationSettingsFragment__block">Letiltás</string>
     <string name="ConversationSettingsFragment__block_group">Csoport letiltása</string>
@@ -5581,7 +5581,7 @@
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Elfogadtál tőlük egy felkérést</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Having them in your phone contacts</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Szerepelnek a telefonod névjegyei között</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"A névjegyeid megtekinthetik a neved, a profilképedet, valamint a „Történeteim” szekcióba posztoltakat, kivéve ha kifejezetten elrejtetted azokat előlük."</string>
     <!-- Clickable option to add a viewer to a custom story -->
@@ -6681,7 +6681,7 @@
     <!-- Title displayed at the top of the screen -->
     <string name="NicknameActivity__nickname">Becenév</string>
     <!-- Subtitle displayed under title -->
-    <string name="NicknameActivity__nicknames_amp_notes">A beceneveket és jegyzeteket a Signal végponttól végpontig titkosított tárolási szolgáltatásával tároljuk. Ezek csak számodra láthatók.</string>
+    <string name="NicknameActivity__nicknames_amp_notes">Nicknames &amp; notes are stored with Signal and end-to-end encrypted. They are only visible to you.</string>
     <!-- Field label for given name -->
     <string name="NicknameActivity__first_name">Keresztnév</string>
     <!-- Content description for first name clear button -->
@@ -6695,9 +6695,9 @@
     <!-- Button label to save -->
     <string name="NicknameActivity__save">Mentés</string>
     <!-- Dialog title for note and name deletion -->
-    <string name="NicknameActivity__delete_nickname">Becenév törlése?</string>
+    <string name="NicknameActivity__delete_nickname">Delete?</string>
     <!-- Dialog message for note and name deletion -->
-    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">Ezzel véglegesen törli ezt a becenevet és jegyzetet.</string>
+    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">This will permanently delete any nickname and note you’ve set.</string>
 
     <!-- ViewNoteBottomSheetDialogFragment -->
     <!-- Sheet title -->

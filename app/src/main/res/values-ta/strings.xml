@@ -1973,7 +1973,7 @@
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
     <string name="AboutSheet__no_direct_message">உங்களுக்கும் %1$sக்கும் இடையில் எந்த நேரடி மெசேஜ்களும் இல்லை</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
-    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s is in your phone contacts</string>
+    <string name="AboutSheet__s_is_in_your_system_contacts">உங்கள் தொலைபேசி தொடர்புகளில் %1$s உள்ளார்</string>
     <!-- Notice in a row when user has no groups in common -->
     <string name="AboutSheet__you_have_no_groups_in_common">உங்களுக்குப் பொதுவான குழுக்கள் எதுவும் இல்லை</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
@@ -4179,7 +4179,7 @@
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
     <string name="ReviewCard__s_recently_changed">%1$s சமீபத்தில் தனது ப்ரொஃபைல் பெயரை %2$s -இல் இருந்து %3$s ஆக மாற்றினார்</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
-    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s is in your phone contacts</string>
+    <string name="ReviewCard__s_is_in_your_system_contacts">உங்கள் தொலைபேசி தொடர்புகளில் %1$s உள்ளார்</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s சேர்ந்தார்</string>
@@ -4730,7 +4730,7 @@
     <string name="ConversationSettingsFragment__disappearing_messages">காணாமல் போகும் செய்திகள்</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">ஒலிகள் &amp; அறிவிப்புகள்</string>
   <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
-    <string name="ConversationSettingsFragment__contact_details">Phone contact info</string>
+    <string name="ConversationSettingsFragment__contact_details">தொலைபேசி தொடர்புத் தகவல்</string>
     <string name="ConversationSettingsFragment__view_safety_number">பாதுகாப்பு எண்ணைக் காண்பி</string>
     <string name="ConversationSettingsFragment__block">தடைசெய்</string>
     <string name="ConversationSettingsFragment__block_group">குழுவைத் தடைசெய்</string>
@@ -5581,7 +5581,7 @@
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">செய்தி கோரிக்கையை ஏற்கிறது</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Having them in your phone contacts</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">உங்கள் தொலைபேசி தொடர்புகளில் அவர்களைக் கொண்டிருத்தல்</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"உங்கள் இணைப்புகளால் உங்கள் பெயரையும் புகைப்படத்தையும் பார்க்க முடியும், மேலும் \"எனது ஸ்டோரி\"-க்கான போஸ்டுகளை நீங்கள் அவர்களிடம் இருந்து மறைக்காதவரை அவர்களால் பார்க்க முடியும்."</string>
     <!-- Clickable option to add a viewer to a custom story -->
@@ -6681,7 +6681,7 @@
     <!-- Title displayed at the top of the screen -->
     <string name="NicknameActivity__nickname">புனைப்பெயர்</string>
     <!-- Subtitle displayed under title -->
-    <string name="NicknameActivity__nicknames_amp_notes">சிக்னலின் எண்ட்-டு-எண்ட் என்க்ரிப்ட் செய்யப்பட்ட சேமிப்பகச் சேவையைப் பயன்படுத்தி புனைப்பெயர்களும் குறிப்புகளும் சேமிக்கப்படுகின்றன. அவை உங்களுக்கு மட்டுமே தெரியும்.</string>
+    <string name="NicknameActivity__nicknames_amp_notes">Nicknames &amp; notes are stored with Signal and end-to-end encrypted. They are only visible to you.</string>
     <!-- Field label for given name -->
     <string name="NicknameActivity__first_name">முதல் பெயர்</string>
     <!-- Content description for first name clear button -->
@@ -6695,9 +6695,9 @@
     <!-- Button label to save -->
     <string name="NicknameActivity__save">சேமி</string>
     <!-- Dialog title for note and name deletion -->
-    <string name="NicknameActivity__delete_nickname">புனைப்பெயரை நீக்க வேண்டுமா?</string>
+    <string name="NicknameActivity__delete_nickname">Delete?</string>
     <!-- Dialog message for note and name deletion -->
-    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">இவ்வாறு செய்வது இந்தப் புனைப்பெயரையும் குறிப்பையும் நிரந்தரமாக நீக்கிவிடும்.</string>
+    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">This will permanently delete any nickname and note you’ve set.</string>
 
     <!-- ViewNoteBottomSheetDialogFragment -->
     <!-- Sheet title -->

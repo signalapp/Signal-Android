@@ -1973,7 +1973,7 @@
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
     <string name="AboutSheet__no_direct_message">Aucun message privé avec %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
-    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s is in your phone contacts</string>
+    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s se trouve dans les contacts de votre téléphone</string>
     <!-- Notice in a row when user has no groups in common -->
     <string name="AboutSheet__you_have_no_groups_in_common">Aucun groupe en commun</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
@@ -2446,7 +2446,7 @@
     <string name="MessageNotifier_reacted_s_to_your_image">A réagi par %1$s à votre image.</string>
     <string name="MessageNotifier_reacted_s_to_your_gif">A réagi par %1$s à votre GIF.</string>
     <string name="MessageNotifier_reacted_s_to_your_file">A réagi par %1$s à votre fichier.</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">a réagi par %1$s à votre message audio.</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">a réagi par %1$s à votre message vocal.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">A réagi par %1$s à votre média éphémère.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
     <string name="MessageNotifier_reacted_s_to_your_payment">A réagi par %1$s à votre paiement.</string>
@@ -4179,7 +4179,7 @@
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
     <string name="ReviewCard__s_recently_changed">%1$s a récemment changé son nom de profil de %2$s à %3$s</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
-    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s is in your phone contacts</string>
+    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s se trouve dans les contacts de votre téléphone</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s s’est joint</string>
@@ -4568,7 +4568,7 @@
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">Minuterie par défaut pour les nouvelles conversations</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Définissez une minuterie par défaut pour les messages éphémères pour toutes les nouvelles conversations que vous démarrez.</string>
     <!-- Summary for stories preference to launch into story privacy settings -->
-    <string name="PrivacySettingsFragment__payment_lock_require_lock">Exiger le verrouillage de l\'écran ou l\'empreinte digitale pour effectuer un paiement</string>
+    <string name="PrivacySettingsFragment__payment_lock_require_lock">Exiger le verrouillage d’écran Android ou l’empreinte digitale pour effectuer des paiements</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
     <string name="PrivacySettingsFragment__cant_enable_title">Impossible d\'activer le blocage du paiement</string>
     <!-- Alert dialog description to setup screen lock or fingerprint in phone settings -->
@@ -4730,7 +4730,7 @@
     <string name="ConversationSettingsFragment__disappearing_messages">Messages éphémères</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">Sons et notifications</string>
   <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
-    <string name="ConversationSettingsFragment__contact_details">Phone contact info</string>
+    <string name="ConversationSettingsFragment__contact_details">Informations du contact issues du téléphone</string>
     <string name="ConversationSettingsFragment__view_safety_number">Afficher le numéro de sécurité</string>
     <string name="ConversationSettingsFragment__block">Bloquer</string>
     <string name="ConversationSettingsFragment__block_group">Bloquer le groupe</string>
@@ -5372,7 +5372,7 @@
     <string name="NotificationSettingsFragment__turn_on">Activer</string>
 
     <!-- Description shown for the Signal Release Notes channel -->
-    <string name="ReleaseNotes__signal_release_notes_and_news">Notes de mise à jour et actualités de Signal</string>
+    <string name="ReleaseNotes__signal_release_notes_and_news">Notes de version et actualités de Signal</string>
 
     <!-- Donation receipts activity title -->
     <string name="DonationReceiptListFragment__all_activity">Toutes les activités</string>
@@ -5575,13 +5575,13 @@
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">Contacts Signal</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
-    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Les contacts Signal correspondent aux contacts auxquels vous avez choisi de faire confiance, soit par :</string>
+    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Les contacts Signal sont des personnes en qui vous avez confiance pour au moins une des raisons suivantes :</string>
     <!-- Signal connections sheet bullet point 1 -->
     <string name="SignalConnectionsBottomSheet__starting_a_conversation">Commencer une conversation</string>
     <!-- Signal connections sheet bullet point 2 -->
-    <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Acceptant une demande d’échange de messages</string>
+    <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Vous avez accepté leur invitation par message</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Having them in your phone contacts</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Il s’agit de contacts enregistrés sur votre téléphone</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Vos connexions peuvent voir vos nom et photo ainsi que vos publications dans « Mes stories » à moins que vous ne cachiez ces publications pour elles."</string>
     <!-- Clickable option to add a viewer to a custom story -->
@@ -6681,7 +6681,7 @@
     <!-- Title displayed at the top of the screen -->
     <string name="NicknameActivity__nickname">Pseudo</string>
     <!-- Subtitle displayed under title -->
-    <string name="NicknameActivity__nicknames_amp_notes">Les pseudos et les notes sont conservés dans le service de stockage Signal chiffré de bout en bout. Vous seul y avez accès.</string>
+    <string name="NicknameActivity__nicknames_amp_notes">Nicknames &amp; notes are stored with Signal and end-to-end encrypted. They are only visible to you.</string>
     <!-- Field label for given name -->
     <string name="NicknameActivity__first_name">Prénom</string>
     <!-- Content description for first name clear button -->
@@ -6691,19 +6691,19 @@
     <!-- Content description for last name clear button -->
     <string name="NicknameActivity__clear_last_name">Effacer le nom</string>
     <!-- Field label for note -->
-    <string name="NicknameActivity__note">Note</string>
+    <string name="NicknameActivity__note">Notes</string>
     <!-- Button label to save -->
     <string name="NicknameActivity__save">Enregistrer</string>
     <!-- Dialog title for note and name deletion -->
-    <string name="NicknameActivity__delete_nickname">Supprimer le pseudo ?</string>
+    <string name="NicknameActivity__delete_nickname">Delete?</string>
     <!-- Dialog message for note and name deletion -->
-    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">Cette action supprimera définitivement ce pseudo et cette note.</string>
+    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">This will permanently delete any nickname and note you’ve set.</string>
 
     <!-- ViewNoteBottomSheetDialogFragment -->
     <!-- Sheet title -->
-    <string name="ViewNoteSheet__note">Note</string>
+    <string name="ViewNoteSheet__note">Notes</string>
     <!-- Content description for opening the note editor -->
-    <string name="ViewNoteSheet__edit_note">Modifier la note</string>
+    <string name="ViewNoteSheet__edit_note">Modifier les notes</string>
 
     <!-- EOF -->
 </resources>

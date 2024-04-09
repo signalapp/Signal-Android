@@ -2121,7 +2121,7 @@
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
     <string name="AboutSheet__no_direct_message">Ty i %1$s nie macie rozpoczętej rozmowy</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
-    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s is in your phone contacts</string>
+    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s jest w kontaktach Twojego telefonu</string>
     <!-- Notice in a row when user has no groups in common -->
     <string name="AboutSheet__you_have_no_groups_in_common">Nie macie żadnych wspólnych grup</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
@@ -4395,7 +4395,7 @@
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
     <string name="ReviewCard__s_recently_changed">%1$s ostatnio zmienił(a) nazwę profilu z %2$s na %3$s</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
-    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s is in your phone contacts</string>
+    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s jest w kontaktach Twojego telefonu</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s dołączył(a)</string>
@@ -4708,9 +4708,9 @@
 
     <!-- ChangeNumberEnterPhoneNumberFragment -->
     <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Zmień numer</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Twór stary numer</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Twój stary numer</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Stary numer telefonu</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Twór nowy numer</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Twój nowy numer</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Nowy numer telefonu</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Podany numer telefonu nie należy do Twojego konta.</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Musisz podać kod telefoniczny kraju dla Twojego, starego numeru</string>
@@ -4954,7 +4954,7 @@
     <string name="ConversationSettingsFragment__disappearing_messages">Znikające wiadomości</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">Dźwięki i powiadomienia</string>
   <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
-    <string name="ConversationSettingsFragment__contact_details">Phone contact info</string>
+    <string name="ConversationSettingsFragment__contact_details">Dane kontaktowe z telefonu</string>
     <string name="ConversationSettingsFragment__view_safety_number">Zobacz numer bezpieczeństwa</string>
     <string name="ConversationSettingsFragment__block">Zablokuj</string>
     <string name="ConversationSettingsFragment__block_group">Zablokuj grupę</string>
@@ -5831,7 +5831,7 @@
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Zaakceptowanie prośby o kontakt</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Having them in your phone contacts</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Posiadanie ich w kontaktach telefonu</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Twoje kontakty widzą Twoje imię i zdjęcie, a także widzą posty w „Moja relacja”, chyba że je przed nimi ukryjesz."</string>
     <!-- Clickable option to add a viewer to a custom story -->
@@ -6973,7 +6973,7 @@
     <!-- Title displayed at the top of the screen -->
     <string name="NicknameActivity__nickname">Pseudonim</string>
     <!-- Subtitle displayed under title -->
-    <string name="NicknameActivity__nicknames_amp_notes">Pseudonimy i notatki są przechowywane za pomocą usługi szyfrowania typu end-to-end dostępnej w Signal. Są one widoczne tylko dla Ciebie.</string>
+    <string name="NicknameActivity__nicknames_amp_notes">Nicknames &amp; notes are stored with Signal and end-to-end encrypted. They are only visible to you.</string>
     <!-- Field label for given name -->
     <string name="NicknameActivity__first_name">Imię</string>
     <!-- Content description for first name clear button -->
@@ -6987,9 +6987,9 @@
     <!-- Button label to save -->
     <string name="NicknameActivity__save">Zapisz</string>
     <!-- Dialog title for note and name deletion -->
-    <string name="NicknameActivity__delete_nickname">Usunąć pseudonim?</string>
+    <string name="NicknameActivity__delete_nickname">Delete?</string>
     <!-- Dialog message for note and name deletion -->
-    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">Spowoduje to trwałe usunięcie tego pseudonimu i notatki.</string>
+    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">This will permanently delete any nickname and note you’ve set.</string>
 
     <!-- ViewNoteBottomSheetDialogFragment -->
     <!-- Sheet title -->
