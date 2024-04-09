@@ -187,56 +187,64 @@ class Recipient(
   val isHidden: Boolean = hiddenState != HiddenState.NOT_HIDDEN
 
   /** Whether the recipient represents an individual person (as opposed to a group or list). */
-  val isIndividual: Boolean by lazy { !isGroup && !isCallLink && !isDistributionList && !isReleaseNotes }
+  val isIndividual: Boolean
+    get() = !isGroup && !isCallLink && !isDistributionList && !isReleaseNotes
 
   /** Whether the recipient represents a group. It could be a Signal group or MMS group. */
-  val isGroup: Boolean by lazy { resolved.groupIdValue != null }
+  val isGroup: Boolean
+    get() = resolved.groupIdValue != null
 
   /** Whether the recipient represents an MMS group. */
-  val isMmsGroup: Boolean by lazy {
-    val groupId = resolved.groupIdValue
-    groupId != null && groupId.isMms()
-  }
+  val isMmsGroup: Boolean
+    get() {
+      val groupId = resolved.groupIdValue
+      return groupId != null && groupId.isMms()
+    }
 
   /** Whether the recipient represents a Signal group. */
-  val isPushGroup: Boolean by lazy {
-    val groupId = resolved.groupIdValue
-    groupId != null && groupId.isPush()
-  }
+  val isPushGroup: Boolean
+    get() {
+      val groupId = resolved.groupIdValue
+      return groupId != null && groupId.isPush()
+    }
 
   /** Whether the recipient represents a V1 Signal group. These types of groups were deprecated in 2020. */
-  val isPushV1Group: Boolean by lazy {
-    val groupId = resolved.groupIdValue
-    groupId != null && groupId.isV1()
-  }
+  val isPushV1Group: Boolean
+    get() {
+      val groupId = resolved.groupIdValue
+      return groupId != null && groupId.isV1()
+    }
 
   /** Whether the recipient represents a V2 Signal group. */
-  val isPushV2Group: Boolean by lazy {
-    val groupId = resolved.groupIdValue
-    groupId != null && groupId.isV2()
-  }
+  val isPushV2Group: Boolean
+    get() {
+      val groupId = resolved.groupIdValue
+      return groupId != null && groupId.isV2()
+    }
 
   /** Whether the recipient represents a distribution list (a specific list of people to send a story to). */
-  val isDistributionList: Boolean by lazy { resolved.distributionListIdValue != null }
+  val isDistributionList: Boolean
+    get() = resolved.distributionListIdValue != null
 
   /** Whether the recipient represents the "My Story" distribution list. */
-  val isMyStory: Boolean by lazy { resolved.distributionListIdValue == DistributionListId.from(DistributionListId.MY_STORY_ID) }
+  val isMyStory: Boolean
+    get() = resolved.distributionListIdValue == DistributionListId.from(DistributionListId.MY_STORY_ID)
 
   /** A group is considered "unknown" if we don't have any data to render it. */
-  val isUnknownGroup: Boolean by lazy {
-    if ((groupAvatarId.isPresent && groupAvatarId.get() != -1L) || groupName.isNotNullOrBlank()) {
+  val isUnknownGroup: Boolean
+    get() = if ((groupAvatarId.isPresent && groupAvatarId.get() != -1L) || groupName.isNotNullOrBlank()) {
       false
     } else {
       participantIdsValue.isEmpty() || participantIdsValue.size == 1 && participantIdsValue.contains(self().id)
     }
-  }
 
   /** Whether the group is inactive. Groups become inactive when you leave them. */
-  val isInactiveGroup: Boolean by lazy { isGroup && !isActiveGroup }
+  val isInactiveGroup: Boolean
+    get() = isGroup && !isActiveGroup
 
   /** A photo to render for this recipient. */
-  val contactPhoto: ContactPhoto? by lazy {
-    if (isSelf) {
+  val contactPhoto: ContactPhoto?
+    get() = if (isSelf) {
       null
     } else if (groupIdValue != null && groupAvatarId.isPresent) {
       GroupRecordContactPhoto(groupIdValue, groupAvatarId.get())
@@ -249,10 +257,10 @@ class Recipient(
     } else {
       null
     }
-  }
 
   /** A photo you can use as a fallback if [contactPhoto] fails to load. */
-  val fallbackContactPhoto: FallbackContactPhoto by lazy { getFallbackContactPhoto(DEFAULT_FALLBACK_PHOTO_PROVIDER) }
+  val fallbackContactPhoto: FallbackContactPhoto
+    get() = getFallbackContactPhoto(DEFAULT_FALLBACK_PHOTO_PROVIDER)
 
   /** The URI of the ringtone that should be used when receiving a message from this recipient, if set. */
   val messageRingtone: Uri? by lazy {
@@ -281,30 +289,33 @@ class Recipient(
     get() = ArrayList(participantIdsValue)
 
   /** The [ACI]'s of the members if this recipient is a group, otherwise empty. */
-  val participantAcis: List<ServiceId> by lazy {
-    check(groupRecord.isPresent)
-    groupRecord.get().requireV2GroupProperties().getMemberServiceIds().toImmutableList()
-  }
+  val participantAcis: List<ServiceId>
+    get() {
+      check(groupRecord.isPresent)
+      return groupRecord.get().requireV2GroupProperties().getMemberServiceIds().toImmutableList()
+    }
 
   /** The [RegisteredState] of this recipient. Signal groups/lists are always registered. */
-  val registered: RegisteredState by lazy {
-    if (isPushGroup || isDistributionList) {
+  val registered: RegisteredState
+    get() = if (isPushGroup || isDistributionList) {
       RegisteredState.REGISTERED
     } else if (isMmsGroup) {
       RegisteredState.NOT_REGISTERED
     } else {
       registeredValue
     }
-  }
 
   /** Shorthand to check if a user has been explicitly marked registered. */
-  val isRegistered: Boolean by lazy { registered == RegisteredState.REGISTERED }
+  val isRegistered: Boolean
+    get() = registered == RegisteredState.REGISTERED
 
   /** Shorthand to check if a user has _not_ been explicitly marked unregistered. */
-  val isMaybeRegistered: Boolean by lazy { registered != RegisteredState.NOT_REGISTERED }
+  val isMaybeRegistered: Boolean
+    get() = registered != RegisteredState.NOT_REGISTERED
 
   /** Shorthand to check if a user has been explicitly marked unregistered. */
-  val isUnregistered: Boolean by lazy { registered == RegisteredState.NOT_REGISTERED }
+  val isUnregistered: Boolean
+    get() = registered == RegisteredState.NOT_REGISTERED
 
   /** Whether or not to show a special verified badge, indicating this is a special conversation (like release notes or note to self). */
   val showVerified: Boolean = isReleaseNotes || isSelf
@@ -376,13 +387,8 @@ class Recipient(
     get() = wallpaper?.autoChatColors ?: ChatColorsPalette.Bubbles.default.withId(Auto)
 
   /** A fully resolved copy of this recipient, if needed. */
-  private val resolved: Recipient by lazy {
-    if (isResolving) {
-      live().resolve()
-    } else {
-      this
-    }
-  }
+  private val resolved: Recipient
+    get() = if (isResolving) live().resolve() else this
 
   /** Convenience method to get a non-null [serviceId] hen you know it is there. */
   fun requireServiceId(): ServiceId {
