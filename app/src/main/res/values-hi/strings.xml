@@ -307,7 +307,6 @@
     <string name="ConversationItem_error_network_not_delivered">भेजना असफल रहा</string>
     <string name="ConversationItem_group_action_left">%1$s ने समूह को छोड़ दिया है</string>
     <string name="ConversationItem_send_paused">भेजें रोका गया</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">भेजने में असफल रहा, असुरक्षित फ़ॉलबैक के लिए टैप करें</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">अनएन्क्रिप्टेड SMS पर फॉलबैक?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">अनएन्क्रिप्टेड MMS पर फॉलबैक?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">यह मेसेज एन्क्रिप्ट <b>नहीं</b> किया जाएगा क्योंकि प्राप्तकर्ता अब Signal उपयोगकर्ता नहीं है। \n\n असुरक्षित मेसेज भेजें?</string>

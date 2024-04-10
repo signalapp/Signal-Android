@@ -307,7 +307,6 @@
     <string name="ConversationItem_error_network_not_delivered">Att skicka meddelandet misslyckades</string>
     <string name="ConversationItem_group_action_left">%1$s har lämnat gruppen.</string>
     <string name="ConversationItem_send_paused">Sändning pausad</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Sändningen misslyckades, tryck för oskyddad fallback</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Använd okrypterat SMS istället?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Använd okrypterat MMS istället?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Detta meddelande kommer <b>inte</b> att krypteras eftersom mottagaren inte längre är en Signal-användare. \n\nSkicka osäkert meddelande?</string>

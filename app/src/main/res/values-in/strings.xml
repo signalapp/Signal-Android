@@ -306,7 +306,6 @@
     <string name="ConversationItem_error_network_not_delivered">Pengiriman gagal</string>
     <string name="ConversationItem_group_action_left">%1$s telah meninggalkan grup.</string>
     <string name="ConversationItem_send_paused">Pengiriman ditunda</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Gagal mengirim, ketuk untuk mengirim kembali tanpa enkripsi</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Alihkan ke pengiriman SMS tanpa enkripsi?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Alihkan ke pengiriman MMS tanpa enkripsi?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Pesan ini <b>tidak</b> akan dienkripsi karena penerima tidak lagi menjadi pengguna Signal.\n\nTetap kirim pesan tidak aman?</string>

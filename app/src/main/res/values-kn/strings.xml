@@ -307,7 +307,6 @@
     <string name="ConversationItem_error_network_not_delivered">ಕಳಿಸಲು ವಿಫಲವಾಯಿತು</string>
     <string name="ConversationItem_group_action_left">%1$s ಗುಂಪನ್ನು ಬಿಟ್ಟಿದ್ದಾರೆ</string>
     <string name="ConversationItem_send_paused">ವಿರಾಮಗೊಳಿಸಿ ಕಳುಹಿಸಿ</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">ಕಳುಹಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ, ಅಸುರಕ್ಷಿತವಾಗಿ ತಗ್ಗಿಸುವುದಕ್ಕೆ ಟ್ಯಾಪ್ ಮಾಡಿ</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">ಅನ್‌ಎನ್‌ಕ್ರಿಪ್ಟೆಡ್ ಎಸ್‌‌ಎಂಎಸ್‌ ತಗ್ಗಿಸುವುದೇ?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">ಅನ್‌ಎನ್‌ಕ್ರಿಪ್ಟೆಡ್ ಎಂಎಂಎಸ್‌ ತಗ್ಗಿಸುವುದೇ?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">ಸ್ವೀಕರಿಸುವವರು ಇನ್ನು ಮುಂದೆ Signal <b>ಬಳಕೆದಾರರಲ್ಲದ</b> ಕಾರಣ ಈ ಸಂದೇಶವನ್ನು ಎನ್‌ಕ್ರಿಪ್ಟ್ ಮಾಡಲಾಗುವುದಿಲ್ಲ.\n\nಅಸುರಕ್ಷಿತ ಸಂದೇಶವನ್ನು ಕಳುಹಿಸುವುದೇ?</string>

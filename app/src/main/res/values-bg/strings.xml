@@ -307,7 +307,6 @@
     <string name="ConversationItem_error_network_not_delivered">Изпращането неуспешно</string>
     <string name="ConversationItem_group_action_left">%1$s напусна групата.</string>
     <string name="ConversationItem_send_paused">Изпращането задържано</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Неуспешно изпращане, натиснете за изпращане по несигурен начин</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Разреши преминавене към нешифровани SMS-и?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Разреши преминавене към нешифровани MMS-и?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Това съобщение <b>НЯМА</b> да бъде криптирано, защото получателят вече не е потребител на Signal.\n\nИзпращане на незащитено съобщение?</string>

@@ -307,7 +307,6 @@
     <string name="ConversationItem_error_network_not_delivered">Kon nie stuur nie</string>
     <string name="ConversationItem_group_action_left">%1$s het die groep verlaat.</string>
     <string name="ConversationItem_send_paused">Stuur onderbreek</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Stuur misluk. Tik vir onbeveiligde terugval</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Terugval na ongeënkripteerde SMS?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Terugval na ongeënkripteerde MMS?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Hierdie boodskap sal <b>nie</b> geënkripteer word nie omdat die ontvanger nie meer \'n Signal-verbruiker is nie.\n\nStuur \'n onbeveiligde boodskap?</string>

@@ -307,7 +307,6 @@
     <string name="ConversationItem_error_network_not_delivered">Échec d’envoi</string>
     <string name="ConversationItem_group_action_left">%1$s a quitté le groupe.</string>
     <string name="ConversationItem_send_paused">L’envoi a été mis en pause</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Échec d’envoi, touchez pour utiliser la solution de rechange non sécurisée</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Se replier sur un texto non chiffré ?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Se replier sur un message multimédia non chiffré ?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ce message ne sera <b>pas</b> chiffré, car le destinataire n’est plus un utilisateur de Signal.\n\nEnvoyer un message non sécurisé ?</string>
@@ -2926,7 +2925,7 @@
     <string name="EditProfileFragment__group_description">Description du groupe</string>
   <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
-    <string name="EditProfileFragment_deprecated_dialog_title">Passez à la dernière version de Signal</string>
+    <string name="EditProfileFragment_deprecated_dialog_title">Installez la dernière version de Signal</string>
     <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
     <string name="EditProfileFragment_deprecated_dialog_body">Cette version de Signal est arrivée à expiration. Pour continuer d’utiliser l’application, une mise à jour est nécessaire.</string>
     <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->

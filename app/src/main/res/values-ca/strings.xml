@@ -307,7 +307,6 @@
     <string name="ConversationItem_error_network_not_delivered">L\'enviament ha fallat</string>
     <string name="ConversationItem_group_action_left">%1$s ha abandonat el grup.</string>
     <string name="ConversationItem_send_paused">Enviament interromput</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Ha fallat l\'enviament. Toqueu per al mode no segur.</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Voleu canviar a SMS sense encriptar?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Voleu canviar a MMS sense encriptar?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Aquest missatge <b>no</b> s\'encriptarà perquè el destinatari ja no és usuari del Signal.\n\nVoleu enviar un missatge no segur?</string>

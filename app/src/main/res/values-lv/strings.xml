@@ -308,7 +308,6 @@
     <string name="ConversationItem_error_network_not_delivered">Sūtīšana neizdevās</string>
     <string name="ConversationItem_group_action_left">%1$s ir pametis grupu.</string>
     <string name="ConversationItem_send_paused">Sūtīšana pauzēta</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Sūtīšana neizdevās, pieskarieties, lai veiktu nedrošu sūtījumu, izmantojot rezerves kanālu</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Pāriet uz nedrošu saziņu, lietojot nešifrētu SMS?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Pāriet uz nedrošu saziņu, lietojot nešifrētu MMS?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Šī ziņa <b>netiks</b> šifrēta, jo saņēmējs vairs nav Signal lietotājs.\n\nSūtīt nedrošu ziņu?</string>

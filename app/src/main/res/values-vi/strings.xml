@@ -306,7 +306,6 @@
     <string name="ConversationItem_error_network_not_delivered">Không gửi được</string>
     <string name="ConversationItem_group_action_left">%1$s đã rời nhóm.</string>
     <string name="ConversationItem_send_paused">Tạm dừng nhắn tin</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Không gửi được, nhấn để thử giao thức không bảo mật</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Trở lại SMS không mã hóa?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Trở lại MMS không mã hóa?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Tin nhắn này sẽ <b>không</b> được mã hoá do người nhận không còn sử dụng Signal.\n\nGửi tin nhắn không mã hóa?</string>

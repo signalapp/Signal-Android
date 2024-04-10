@@ -307,7 +307,6 @@
     <string name="ConversationItem_error_network_not_delivered">పంపడం విఫలమైంది</string>
     <string name="ConversationItem_group_action_left">%1$s సమూహం వదిలి వెళ్లారు</string>
     <string name="ConversationItem_send_paused">పంపండి పాజ్ చేయబడింది</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">పంపడం విఫలమైంది, అసురక్షిత తిరిగి పొందడం కోసం నొక్కండి</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">ఎన్క్రిప్టు కాని ఎస్సెమ్మెస్ తిరిగి అయ్యిందా?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">ఎన్క్రిప్టు కాని ఎమ్మెమ్మెస్ తిరిగి అయ్యిందా?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">ఈ సందేశం <b> </b> భద్రపరచు విధంగా చేయలేము ఎందుకంటే గ్రహీత ఇకపై Signal వినియోగదారుడు కాదు.\n\nభద్రతలేని సందేశాన్ని పంపవచా?</string>

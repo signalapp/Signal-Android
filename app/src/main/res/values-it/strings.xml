@@ -307,7 +307,6 @@
     <string name="ConversationItem_error_network_not_delivered">Invio non riuscito</string>
     <string name="ConversationItem_group_action_left">%1$s ha lasciato il gruppo.</string>
     <string name="ConversationItem_send_paused">Invio in pausa</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Invio fallito, tocca per invio non sicuro</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Tornare agli SMS non cifrati?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Tornare agli MMS non cifrati?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Questo messaggio <b>non</b> sarà criptato perché il destinatario non è più un utente Signal.\n\nInviare un messaggio non sicuro?</string>

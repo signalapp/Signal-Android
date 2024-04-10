@@ -307,7 +307,6 @@
     <string name="ConversationItem_error_network_not_delivered">Fallo al enviar</string>
     <string name="ConversationItem_group_action_left">%1$s ha abandonado el grupo.</string>
     <string name="ConversationItem_send_paused">Envío pausado</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Fallo al enviar. Toca para enviar sin cifrar</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">¿Enviar como SMS no cifrado?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">¿Enviar como MMS no cifrado?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Este mensaje <b>no</b> se cifrará porque esta persona ya no usa Signal.\n\n¿Enviar mensaje sin cifrar?</string>

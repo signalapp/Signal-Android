@@ -309,7 +309,6 @@
     <string name="ConversationItem_error_network_not_delivered">השליחה נכשלה</string>
     <string name="ConversationItem_group_action_left">%1$s עזב את הקבוצה.</string>
     <string name="ConversationItem_send_paused">שליחה מושהית</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">שליחה נכשלה, הקש לנסיגה בלתי מאובטחת</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">לסגת אל מסרון בלתי מוצפן?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">לסגת אל MMS בלתי מוצפן?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">הודעה זו <b>לא</b> תוצפן כי הנמען אינו משתמש Signal יותר.\n\nלשלוח הודעה בלתי מאובטחת?</string>

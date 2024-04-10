@@ -307,7 +307,6 @@
     <string name="ConversationItem_error_network_not_delivered">Слање није успело</string>
     <string name="ConversationItem_group_action_left">%1$s је напустио/ла групу.</string>
     <string name="ConversationItem_send_paused">Слање је паузирано</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Слање није успело, додирните да се вратите на небезбедно слање</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Желите ли да се вратите на нешифровани SMS?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Желите ли да се вратите на нешифровани MMS?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ова порука <b>неће</b> бити шифрована јер прималац више није пријављен на Signal.\n\nЖелите ли да пошаљете небезбедну поруку?</string>

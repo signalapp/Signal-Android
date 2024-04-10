@@ -307,7 +307,6 @@
     <string name="ConversationItem_error_network_not_delivered">Afsendelse mislykkedes</string>
     <string name="ConversationItem_group_action_left">%1$s har forladt gruppen.</string>
     <string name="ConversationItem_send_paused">Afsendelse sat på pause</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Fejl ved afsendelse. Tryk for at sende usikret SMS</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Benyt ukrypteret SMS?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Benyt ukrypteret MMS?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Denne besked vil <b>ikke</b> blive krypteret, da modtageren ikke længere bruger Signal.\n\nSend usikret besked?</string>

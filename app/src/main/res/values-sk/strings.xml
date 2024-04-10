@@ -309,7 +309,6 @@
     <string name="ConversationItem_error_network_not_delivered">Odoslanie zlyhalo</string>
     <string name="ConversationItem_group_action_left">%1$s opustil/a skupinu.</string>
     <string name="ConversationItem_send_paused">Odoslanie pozastavené</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Odosielanie zlyhalo, ťuknutím pošlete nezabezpečenú správu</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Prepnúť na nezabezpečené SMS?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Prepnúť na nezabezpečené MMS?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Táto správa <b>nebude</b> šifrovaná, pretože adresát už nepoužíva Signal.\n\nOdoslať nezabezpečenú SMS správu?</string>

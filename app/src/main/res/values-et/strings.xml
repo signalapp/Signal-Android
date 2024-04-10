@@ -307,7 +307,6 @@
     <string name="ConversationItem_error_network_not_delivered">Saatmine ei õnnestunud</string>
     <string name="ConversationItem_group_action_left">%1$s lahkus grupist.</string>
     <string name="ConversationItem_send_paused">Saatmine peatatud</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Saatmine ebaõnnestus, koputa, et saata turvamata sõnum</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Taganed krüptimata SMSile?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Taganed krüptimata MMSile?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Seda sõnumit <b>ei</b> krüptita, kuna saaja ei ole enam Signali kasutaja.\n\nKas saata krüptimata sõnum?</string>

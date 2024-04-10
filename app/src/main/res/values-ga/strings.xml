@@ -310,7 +310,6 @@
     <string name="ConversationItem_error_network_not_delivered">Theip ar an seoladh</string>
     <string name="ConversationItem_group_action_left">D\'fhág %1$s an bhaicle.</string>
     <string name="ConversationItem_send_paused">Seoladh curtha ar sos</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Theip ar an seoladh, cnag air i gcomhair rogha nach bhfuil slán</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">An bhfuil tú sásta le SMS gan chriptiú?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">An bhfuil tú sásta le MMS gan chriptiú?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message"><b>Ní</b> bheidh an teachtaireacht seo criptithe mar níl an faighteoir sa lucht Signal a thuilleadh.\n\nSeol teachtaireacht neamhcriptithe?</string>

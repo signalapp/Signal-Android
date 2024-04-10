@@ -307,7 +307,6 @@
     <string name="ConversationItem_error_network_not_delivered">Bidaltzeak huts egin du</string>
     <string name="ConversationItem_group_action_left">%1$s taldea utzi du</string>
     <string name="ConversationItem_send_paused">Bidalketa eten egin da</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Ezin izan da bidali; sakatu segurtasunik gabeko alternatibarako</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Alternatiba gisa, enkriptatu gabeko SMS mezuak erabili?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Enkriptatu gabeko MMSaz baliatu?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Mezu hau <b>ez</b> da enkriptatuko: hartzailea ez da jada Signal aplikazioaren erabiltzailea.\n\nSegurtasunik gabeko mezua bidali?</string>

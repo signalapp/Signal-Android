@@ -307,7 +307,6 @@
     <string name="ConversationItem_error_network_not_delivered">بھیجنے میں ناکام</string>
     <string name="ConversationItem_group_action_left">%1$sنے گروپ چھوڑ دیا ہے</string>
     <string name="ConversationItem_send_paused">بھیجنا رک گیا ہے</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">بھیجنے میں ناکامی، غیر محفوظ متبادل کے لیے کلک کریں</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">غیر خفیہ کردہ ایس ایم ایس کو متبادل دینا ہے؟</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">غیر خفیہ کردہ ایم ایم ایس کو متبادل دینا ہے؟</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">یہ پیغام مرموز <b>نہیں</b>کیونکہ وصول کنندہ Signal کا صارف نہیں رہا۔ n/n/ غیر محفوظ پیغام بھیجنا ہے؟</string>

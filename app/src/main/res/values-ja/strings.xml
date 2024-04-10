@@ -306,7 +306,6 @@
     <string name="ConversationItem_error_network_not_delivered">送信に失敗しました。</string>
     <string name="ConversationItem_group_action_left">%1$s がグループを抜けました。</string>
     <string name="ConversationItem_send_paused">送信保留中</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">送信失敗、タップして保護されていない通信に切り替える</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">暗号化されないSMSに切り替えますか？</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">暗号化されないMMSに切り替えますか？</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">相手がSignalを使用していないので、このメッセージは暗号化<b>されません</b>。 \n\n安全でない方法でメッセージを送信しますか？</string>

@@ -307,7 +307,6 @@
     <string name="ConversationItem_error_network_not_delivered">გაგზავნა ვერ მოხერხდა</string>
     <string name="ConversationItem_group_action_left">%1$s დატოვა ჯგუფი.</string>
     <string name="ConversationItem_send_paused">გაგზავნა შეჩერებულია</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">გაგზავნა ვერ მოხერხდა, დააჭირე არასაიმედო რეზერვისთვის</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">დავაბრუნოთ დაუშიფრავ SMS-ზე?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">დავაბრუნოთ დაუშიფრავ MMS-ზე?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">ეს მესიჯი <b>არ</b> იქნება დაშიფრული, რადგან მიმღები აღარ არის Signalს მომხმარებელი. \n\nგავაგზავნოთ დაუშიფრავი შეტყობინება?</string>

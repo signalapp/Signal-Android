@@ -306,7 +306,6 @@
     <string name="ConversationItem_error_network_not_delivered">ئەۋەتەلمىدى</string>
     <string name="ConversationItem_group_action_left">%1$s گۇرۇپپىدىن ئايرىلدى.</string>
     <string name="ConversationItem_send_paused">يوللاش ۋاقىتلىق توختىتىلدى</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">ئەۋەتەلمىدى ، چېكىلسە شىفىرلىماي ئەۋەتىدۇ</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">شىفىرلانمىغان قىسقا ئۇچۇرغا چېكىنەمسىز؟</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">شىفىرلانمىغان MMS غا چېكىنەمسىز؟</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">تاپشۇرۇۋالغۇچى Signal ئىشلەتكۈچىسى ئەمەس بولغاچقا، بۇ ئۇچۇر <b>مەخپىيلەشتۈرۈلمەيدۇ</b>.\n\nقوغدالمىغان ئۇچۇر يوللامسىز؟</string>

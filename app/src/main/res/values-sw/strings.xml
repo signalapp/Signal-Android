@@ -307,7 +307,6 @@
     <string name="ConversationItem_error_network_not_delivered">Kutuma kumeshindwa</string>
     <string name="ConversationItem_group_action_left">%1$s ameondoka kwenye kundi</string>
     <string name="ConversationItem_send_paused">Kutuma kumesitishwa</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Imefeli kutuma, gusa kwa isiyo salama ili kurejea nyuma</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Rudi nyuma kwa ujumbe usio na msimbo fiche?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Rudi nyuma kwa ujumbe usio na msimbo fiche?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Huu ujumbe hau <b>ta</b> kuwa na msimbo fiche kwa sababu mpokeaji hatumii tena Signal.\n\n Tuma ujumbe usio salama?</string>

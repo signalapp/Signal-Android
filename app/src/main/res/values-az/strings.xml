@@ -307,7 +307,6 @@
     <string name="ConversationItem_error_network_not_delivered">Göndərilmədi</string>
     <string name="ConversationItem_group_action_left">%1$s qrupu tərk etdi.</string>
     <string name="ConversationItem_send_paused">Göndərişə fasilə verildi</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Göndərilmədi, şifrəsiz göndərmək üçün toxunun</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Şifrələnməmiş SMS-ə geri qayıdılsın?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Şifrələnməmiş MMS-ə geri qayıdılsın?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Bu mesaj <b>şifrələnməyəcək</b>, çünki alıcı artıq Signal istifadəçisi deyil.\n\nGüvənli olmayan mesaj göndərilsin?</string>

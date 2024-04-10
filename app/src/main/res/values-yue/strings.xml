@@ -306,7 +306,6 @@
     <string name="ConversationItem_error_network_not_delivered">傳送失敗</string>
     <string name="ConversationItem_group_action_left">%1$s 已退谷。</string>
     <string name="ConversationItem_send_paused">傳送已暫停</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">傳送失敗，撳一下轉用唔安全嘅屈就方式</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">係咪要屈就轉用未經加密嘅短訊？</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">係咪要屈就轉用未經加密嘅多媒體短訊？</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">呢個訊息<b>唔會</b>經過加密，因為收件人已經唔係 Signal 使用者喇。\n\n係咪要傳送未經加密嘅訊息？</string>

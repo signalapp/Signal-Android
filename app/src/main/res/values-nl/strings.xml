@@ -307,7 +307,6 @@
     <string name="ConversationItem_error_network_not_delivered">Verzenden is mislukt</string>
     <string name="ConversationItem_group_action_left">%1$s heeft de groep verlaten.</string>
     <string name="ConversationItem_send_paused">Verzenden is gepauzeerd</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Verzenden is mislukt, tik om onbeveiligd te verzenden</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Terugvallen naar onversleutelde sms?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Terugvallen naar onversleutelde mms?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Dit bericht zal <b>niet</b> versleuteld worden omdat de ontvanger niet langer Signal gebruikt.\n\nBericht onbeveiligd verzenden?</string>

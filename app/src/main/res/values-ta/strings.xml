@@ -307,7 +307,6 @@
     <string name="ConversationItem_error_network_not_delivered">அனுப்புவது தோல்வியுற்றது</string>
     <string name="ConversationItem_group_action_left">%1$s இந்தக் குழுவை விட்டு விலகினார்.</string>
     <string name="ConversationItem_send_paused">அனுப்பு இடைநிறுத்தப்பட்டது</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">அனுப்புதல் தோல்வியுற்றது, பாதுகாப்பற்ற மாற்று செய்ய தட்டவும்</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">மாற்றாக மறையாக்கப்படாத SMS-ஆக அனுப்பலாமா?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">மாற்றாக மறையாக்கப்படாத MMS-ஆக அனுப்பலாமா?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">பெறுநர் இனி Signal பயனராக இல்லாததால் இந்த செய்தி மறையாக்கம் <b>செய்யப்படாது</b>. \n\nபாதுகாப்பற்ற செய்தியாக அனுப்பவா?</string>

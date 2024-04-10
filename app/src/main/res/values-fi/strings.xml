@@ -307,7 +307,6 @@
     <string name="ConversationItem_error_network_not_delivered">Lähetys epäonnistui</string>
     <string name="ConversationItem_group_action_left">%1$s on poistunut ryhmästä.</string>
     <string name="ConversationItem_send_paused">Lähetys keskeytetty</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Lähetys epäonnistui, lähetä suojaamattomana napauttamalla</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Käytetäänkö salaamattomia tekstiviestejä?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Käytetäänkö salaamattomia MMS-viestejä?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Tätä viestiä <b>ei</b> voida salata, koska vastaanottaja ei enää käytä Signalia.\n\nLähetetäänkö salaamattomana?</string>

@@ -309,7 +309,6 @@
     <string name="ConversationItem_error_network_not_delivered">Odeslání selhalo</string>
     <string name="ConversationItem_group_action_left">%1$s opustil skupinu.</string>
     <string name="ConversationItem_send_paused">Odesílání pozastaveno</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Odeslání se nezdařilo, klepněte pro odeslání nešifrovaným způsobem</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Použít záložní způsob přes nešifrovanou SMS?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Použít záložní způsob přes nešifrovanou MMS?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Tato zpráva <b>není</b> šifrována, protože příjemce již nepoužívá Signal.\n\nOdeslat nešifrovanou zprávu?</string>

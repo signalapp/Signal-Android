@@ -307,7 +307,6 @@
     <string name="ConversationItem_error_network_not_delivered">ارسال ناموفق بود</string>
     <string name="ConversationItem_group_action_left">%1$s گروه را ترک کرد.</string>
     <string name="ConversationItem_send_paused">ارسال متوقف شد</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">ارسال ناموفق بود، برای بازگشت به ارتباط ناامن ضربه بزنید</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">بازگشت به حالت پیامک رمزگذاری نشده؟</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">بازگشت به حالت پیام چندرسانه‌ای رمزگذاری نشده؟</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">این پیام رمزگذاری شده <b>نخواهد</b> بود چون گیرنده دیگر یک کاربر سیگنال نیست.\n\n پیام به صورت ناامن ارسال شود؟</string>

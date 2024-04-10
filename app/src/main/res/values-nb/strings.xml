@@ -307,7 +307,6 @@
     <string name="ConversationItem_error_network_not_delivered">Sending feilet</string>
     <string name="ConversationItem_group_action_left">%1$s har forlatt gruppen.</string>
     <string name="ConversationItem_send_paused">Satt på pause</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Sending mislyktes, trykk for usikret reserveløsning</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Vil du bruke ukryptert SMS som reserveløsning?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Vil du bruke ukryptert MMS som reserveløsning?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Denne meldingen blir <b>ikke</b> kryptert, fordi mottakeren ikke lenger er en Signal bruker.\n\nVil du sende den ukryptert?</string>

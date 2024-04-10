@@ -307,7 +307,6 @@
     <string name="ConversationItem_error_network_not_delivered">Gönderme başarısız</string>
     <string name="ConversationItem_group_action_left">%1$s gruptan ayrıldı.</string>
     <string name="ConversationItem_send_paused">Gönderim duraklatıldı</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Gönderme başarısız oldu, şifresiz göndermek için dokunun</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Şifrelenmemiş SMS\'e geri dönülsün mü?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Şifrelenmemiş MMS\'e geri dönülsün mü?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Alıcı artık Signal kullanıcısı olmadığı için bu ileti <b>ŞİFRELENMEYECEKTİR</b>.\n\nŞifresiz olarak gönder?</string>

@@ -306,7 +306,6 @@
     <string name="ConversationItem_error_network_not_delivered">发送失败</string>
     <string name="ConversationItem_group_action_left">%1$s 已经离开该群组。</string>
     <string name="ConversationItem_send_paused">发送已暂停</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">发送失败，点击使用不安全的方式发送</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">使用未加密的短信？</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">使用未加密的彩信？</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">由于对方已不再使用 Signal，该消息<b>不是</b>加密的。\n\n是否发送不安全消息？</string>

@@ -307,7 +307,6 @@
     <string name="ConversationItem_error_network_not_delivered">Falha no envio</string>
     <string name="ConversationItem_group_action_left">%1$s abandonou o grupo.</string>
     <string name="ConversationItem_send_paused">Envio em pausa</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Falha ao enviar, toque para enviar pelo modo inseguro</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Recorrer a SMS não encriptado?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Recorrer a MMS não encriptado?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Esta mensagem <b>não</b> será encriptada porque o destinatário já não é um utilizador do Signal.\n\nEnviar mensagem de um modo não seguro?</string>

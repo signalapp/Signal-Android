@@ -306,7 +306,6 @@
     <string name="ConversationItem_error_network_not_delivered">傳送失敗</string>
     <string name="ConversationItem_group_action_left">%1$s 已經離開群組。</string>
     <string name="ConversationItem_send_paused">傳送已暫停</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">傳送失敗，輕觸改用不安全的遞補方式</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">改用未加密的簡訊作為遞補方式？</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">改用未加密的多媒體訊息作為遞補方式？</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">由於對方已經不再是 Signal 的使用者，當前訊息<b>不會</b>被加密。\n\n傳送不加密的訊息？</string>

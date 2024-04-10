@@ -307,7 +307,6 @@
     <string name="ConversationItem_error_network_not_delivered">Dërgimi dështoi</string>
     <string name="ConversationItem_group_action_left">%1$s u largua nga grupi.</string>
     <string name="ConversationItem_send_paused">Dërgimi në pritje</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Dërgimi dështoi, kliko për rikthim të pasigurt</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Dëshironi të riktheheni te mesazhet e pakriptuara?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Dëshironi të riktheheni te MMS-të e pakriptuara?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Kjo mesazh <b>nuk</b> do të kriptohet, sepse marrësi nuk është më përdorues i Signal-it.\n\nTë dërgohet mesazh i pasiguruar?</string>

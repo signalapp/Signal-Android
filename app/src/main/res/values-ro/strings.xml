@@ -308,7 +308,6 @@
     <string name="ConversationItem_error_network_not_delivered">Trimitere eșuată</string>
     <string name="ConversationItem_group_action_left">%1$s a părăsit grupul.</string>
     <string name="ConversationItem_send_paused">Trimiterea a fost întreruptă</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Trimitere eșuată, atinge pentru varianta nesecurizată</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Revii la SMS ne-criptat ca soluție de rezervă?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Revii la MMS ne-criptat ca soluție de rezervă?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Acest mesaj <b>nu</b> va fi criptat pentru că destinatarul nu mai este un utilizator Signal.\n\nTrimiți mesaj nesecurizat?</string>

@@ -306,7 +306,6 @@
     <string name="ConversationItem_error_network_not_delivered">การส่งล้มเหลว</string>
     <string name="ConversationItem_group_action_left">%1$s ได้ออกจากกลุ่ม</string>
     <string name="ConversationItem_send_paused">การส่งถูกหยุดชั่วคราว</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">การส่งล้มเหลว แตะเพื่อกลับไปใช้วิธีที่ไม่ปลอดภัยแทน</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">กลับไปใช้ SMS ที่ไม่ได้เข้ารหัสลับหรือไม่?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">กลับไปใช้ MMS ที่ไม่ได้เข้ารหัสลับหรือไม่?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">ข้อความนี้จะ <b>ไม่</b> ถูกเข้ารหัสเพราะผู้รับไม่ได้ใช้ Signal แล้ว\n\nต้องการส่งข้อความที่ไม่ปลอดภัยหรือไม่?</string>

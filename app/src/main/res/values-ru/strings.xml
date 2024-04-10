@@ -309,7 +309,6 @@
     <string name="ConversationItem_error_network_not_delivered">Отправка не удалась</string>
     <string name="ConversationItem_group_action_left">%1$s покинул(-а) группу.</string>
     <string name="ConversationItem_send_paused">Отправка приостановлена</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Не отправлено. Отправить незащищённым?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Отправить как незашифрованное SMS?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Отправить как незашифрованное MMS?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Данное сообщение <b>не будет</b> зашифровано, поскольку получатель больше не использует Signal.\n\nОтправить незащищённое сообщение?</string>

@@ -306,7 +306,6 @@
     <string name="ConversationItem_error_network_not_delivered">Penghantaran gagal</string>
     <string name="ConversationItem_group_action_left">%1$s telah meninggalkan kumpulan.</string>
     <string name="ConversationItem_send_paused">Penghantaran dijeda</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Gagal menghantar, ketik untuk sandaran tidak selamat</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Sandaran ke SMS yang tidak disulitkan?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Sandaran ke MMS yang tidak disulitkan?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Mesej ini <b>tidak </b>akan disulitkan sebab penerima bukan lagi pengguna Signal.n\nHantar mesej yang tidak dilindungi?</string>

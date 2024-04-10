@@ -307,7 +307,6 @@
     <string name="ConversationItem_error_network_not_delivered">Küldés sikertelen</string>
     <string name="ConversationItem_group_action_left">%1$s kilépett a csoportból.</string>
     <string name="ConversationItem_send_paused">Küldés felfüggesztve</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Sikertelen küldés, koppints a titkosítatlan üzenetküldéshez</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Szeretnél visszaállni titkosítatlan SMS-re?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Szeretnél visszaállni titkosítatlan MMS-re?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ez az üzenet <b>nem</b> lesz titkosítva, mert a címzett már nem Signal felhasználó.\n\nElküldöd titkosítatlan üzenetként?</string>

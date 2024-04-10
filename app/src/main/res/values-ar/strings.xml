@@ -311,7 +311,6 @@
     <string name="ConversationItem_error_network_not_delivered">فشل الإرسال</string>
     <string name="ConversationItem_group_action_left">لقد غادر المستخدم %1$s المجموعة.</string>
     <string name="ConversationItem_send_paused">إن الإرسال متوقف مؤقتا</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">فشل الإرسال، المس للاستعاضة بإرسال غير آمن</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">الاستعاضة برسالة SMS غير مُعمَّاة؟</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">الاستعاضة برسالة وسائط متعددة غير مُعمَّاة؟</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">هذه الرسالة ستكون <b>غير</b> مٌعمَّاة لأن المستلم لم يعد مستخدما ‏لسيجنالl‏ .\n\nهل لديك الرغبة في إرسالها غير آمنة ؟</string>

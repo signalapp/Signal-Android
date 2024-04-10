@@ -309,7 +309,6 @@
     <string name="ConversationItem_error_network_not_delivered">Išsiuntimas nepavyko</string>
     <string name="ConversationItem_group_action_left">%1$s išėjo iš grupės.</string>
     <string name="ConversationItem_send_paused">Siuntimas pristabdytas</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Siuntimas nepavyko, bakstelėkite, norėdami sugrįžti nesaugaus surogato</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Sugrįžti prie nešifruotų SMS naudojimo?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Sugrįžti prie nešifruotų MMS naudojimo?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ši žinutė <b>nebus</b> užšifruota, nes gavėjas daugiau nebėra Signal naudotojas.\n\nSiųsti neapsaugotą žinutę?</string>

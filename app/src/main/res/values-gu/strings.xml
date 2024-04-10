@@ -307,7 +307,6 @@
     <string name="ConversationItem_error_network_not_delivered">મોકલવામાં નિષ્ફળ</string>
     <string name="ConversationItem_group_action_left">%1$s એ ગ્રુપ છોડયુ.</string>
     <string name="ConversationItem_send_paused">મેસેજ મોકવાનુ અટકાવવામાં આવ્યુ છે</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">મોકલવામાં નિષ્ફળ, અસુરક્ષિત ફૉલબેક માટે ટેપ કરો</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">અનઇક્રિપ્ટ થયેલ SMS ફૉલબેક?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">અનઇક્રિપ્ટ થયેલ MMS ફૉલબેક?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">આ મેસેજ એન્ક્રિપ્ટ કરવામાં આવશે <b>નહીં</b> કારણ કે પ્રાપ્તકર્તા હવે Signal વપરાશકર્તા નથી.\n\nઅસુરક્ષિત મેસેજ મોકલવો છે?</string>

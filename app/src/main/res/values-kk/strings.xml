@@ -307,7 +307,6 @@
     <string name="ConversationItem_error_network_not_delivered">Жіберілмеді</string>
     <string name="ConversationItem_group_action_left">%1$s топтан шығып кетті.</string>
     <string name="ConversationItem_send_paused">Жіберу кідіртілді</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Жіберілмеді, қорғалмаған резервтік көшірме жасау үшін түртіңіз</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Шифрланбаған SMS-хатқа резервтік көшірме жасау керек пе?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Шифрланбаған MMS-хатқа резервтік көшірме жасау керек пе?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Бұл хат <b>шифрланбайды</b>, себебі алушы Signal пайдаланушысы емес.\n\nҚорғалмаған хат жіберу керек пе?</string>

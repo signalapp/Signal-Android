@@ -307,7 +307,6 @@
     <string name="ConversationItem_error_network_not_delivered">Испраќањето е неуспешно</string>
     <string name="ConversationItem_group_action_left">%1$s ја напушти групата.</string>
     <string name="ConversationItem_send_paused">Испраќањето е паузирано</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Испраќањето не успеа, допрете за незаштитен одговор</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Да се вратам на нешифрирани SMS пораки?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Да се вратам на нешифрирани MMS пораки?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Оваа порака <b>нема</b> да биде шифрирана бидејќи примачот повеќе не е корисник на Signal.\n\nДа се испрати незаштитена порака?</string>

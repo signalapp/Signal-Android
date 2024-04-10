@@ -306,7 +306,6 @@
     <string name="ConversationItem_error_network_not_delivered">ပို့ဆောင်မှု မအောင်မြင်ပါ</string>
     <string name="ConversationItem_group_action_left">%1$s အဖွဲ့မှထွက်သွားသည်။</string>
     <string name="ConversationItem_send_paused">áá±áá­á¯á·áá¾á¯áá­á¯ áááºááá·áºáá²á·áááº</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">ပို့ရန် မအောင်မြင်ပါ၊ လုံခြုံမှုမရှိသော အရန်အတွက် အသာထိပါ။</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">မလုံခြုံသောဖုန်းစာတိုပို့စနစ်ကိုပြန်သုံးမလား?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">မလုံခြုံသော ရုပ်သံပုံပါ စာပို့စနစ်ကို ပြန်သုံးမလား?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">သင်ပေးပို့သော သူသည် Signal <b></b>မသုံးတော့သဖြင့် ဤနည်းလမ်းဖြင့် စာတိုကို ပေးပို့၍မရနိုင်ပါ။ \n\n ရိုးရိုးစာတိုစနစ်ဖြင့်ပေးပို့မလား?</string>

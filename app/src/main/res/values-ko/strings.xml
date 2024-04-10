@@ -306,7 +306,6 @@
     <string name="ConversationItem_error_network_not_delivered">보내기 실패</string>
     <string name="ConversationItem_group_action_left">%1$s 님이 그룹에서 탈퇴했습니다.</string>
     <string name="ConversationItem_send_paused">전송 일시 중지됨</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">전송 실패, 탭하여 비보안 연결 시도</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">비보안 SMS로 바꾸시겠습니까?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">비보안 MMS로 바꾸시겠습니까?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">수신자가 이제 Signal 사용자가 아니므로 메시지가 암호화되지 <b>않습니다</b>.\n\n비보안 메시지를 보내시겠습니까?</string>

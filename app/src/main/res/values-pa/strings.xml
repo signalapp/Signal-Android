@@ -307,7 +307,6 @@
     <string name="ConversationItem_error_network_not_delivered">ਭੇਜਣ ਵਿੱਚ ਅਸਫ਼ਲ</string>
     <string name="ConversationItem_group_action_left">%1$s ਨੇ ਗਰੁੱਪ ਛੱਡਿਆ।</string>
     <string name="ConversationItem_send_paused">ਭੇਜਣ ਨੂੰ ਰੋਕਿਆ</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">ਭੇਜਣਾ ਅਸਫਲ, ਅਸੁਰੱਖਿਅਤ ਵਾਪਸੀ ਲਈ ਟੈਪ ਕਰੋ</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">ਇਨਕ੍ਰਿਪਟ ਨਹੀਂ ਕੀਤੇ SMS ਵੱਲ ਵਾਪਸੀ?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">ਇਨਕ੍ਰਿਪਟ ਨਹੀਂ ਕੀਤੇ MMS ਵੱਲ ਵਾਪਸੀ?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">ਇਹ ਸੁਨੇਹਾ ਇਨਕ੍ਰਿਪਟ <b>ਨਹੀਂ </b> ਕੀਤਾ ਜਾਵੇਗਾ, ਕਿਉਂਕਿ ਪ੍ਰਾਪਤਕਰਤਾ ਹੁਣ Signal ਵਰਤੋਂਕਾਰ ਨਹੀਂ ਰਿਹਾ।\n\n ਅਸੁਰੱਖਿਅਤ ਸੁਨੇਹਾ ਭੇਜਣਾ ਹੈ?</string>

@@ -306,7 +306,6 @@
     <string name="ConversationItem_error_network_not_delivered">Жөнөтүлбөй калды</string>
     <string name="ConversationItem_group_action_left">%1$s топтон чыгып кетти.</string>
     <string name="ConversationItem_send_paused">Жөнөтүү бир азга тындырылды</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Жөнөтүлгөн жок. Корголбогон бойдон жөнөтөсүзбү?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Шифрленбеген SMS катары жөнөтөсүзбү?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Шифрленбеген MMS катары жөнөтөсүзбү?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Алуучу Signal\'ды колдонбой калгандыктан, бул билдирүү <b>шифрленбейт</b>.\n\nБилдирүүнү корголбогон бойдон жөнөтө бересизби?</string>

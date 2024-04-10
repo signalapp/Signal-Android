@@ -307,7 +307,6 @@
     <string name="ConversationItem_error_network_not_delivered">Versand gescheitert</string>
     <string name="ConversationItem_group_action_left">%1$s hat die Gruppe verlassen.</string>
     <string name="ConversationItem_send_paused">Senden pausiert</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Versand gescheitert. Antippen um auf unverschlüsselten Versand auszuweichen.</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Auf unverschlüsselte SMS ausweichen?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Auf unverschlüsselte MMS ausweichen?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Diese Nachricht wird <b>nicht</b> verschlüsselt, da der Empfänger Signal nicht mehr verwendet.\n\nUnverschlüsselte Nachricht senden?</string>

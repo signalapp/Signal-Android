@@ -309,7 +309,6 @@
     <string name="ConversationItem_error_network_not_delivered">Wysyłanie nie powiodło się</string>
     <string name="ConversationItem_group_action_left">%1$s opuścił(a) grupę.</string>
     <string name="ConversationItem_send_paused">Wysyłanie wstrzymane</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Wysyłanie nie powiodło się, dotknij w celu użycia niezabezpieczonej alternatywy</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Powrócić do nieszyfrowanych wiadomości SMS?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Powrócić do nieszyfrowanych wiadomości MMS?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ta wiadomość <b>nie</b> będzie zaszyfrowana, ponieważ odbiorca nie jest już użytkownikiem Signal.\n\nWysłać wiadomość nieszyfrowaną?</string>

@@ -307,7 +307,6 @@
     <string name="ConversationItem_error_network_not_delivered">পাঠাতে ব্যর্থ</string>
     <string name="ConversationItem_group_action_left">%1$s গ্রুপ ত্যাগ করেছে।</string>
     <string name="ConversationItem_send_paused">সাময়িকভাবে পাঠানো বদ্ধ</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">পাঠাতে ব্যর্থ, অসুরক্ষিত পন্থা অবলম্বনের জন্য চাপুন</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">অনাবৃত SMS অবলম্বন করবেন?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">অনাবৃত MMS অবলম্বন করবেন?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">এই বার্তাটি গোপনীয় হবে <b>না</b> কারণ গ্রাহক আর Signal এর ব্যবহারকারী নয়। অসুরক্ষিত বার্তা পাঠাবেন?</string>

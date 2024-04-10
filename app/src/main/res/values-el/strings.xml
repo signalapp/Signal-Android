@@ -307,7 +307,6 @@
     <string name="ConversationItem_error_network_not_delivered">Αποτυχία αποστολής</string>
     <string name="ConversationItem_group_action_left">Ο/Η %1$s αποχώρησε απ\' την ομάδα.</string>
     <string name="ConversationItem_send_paused">Η αποστολή βρίσκεται σε αναμονή</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Η αποστολή απέτυχε, πάτα για εναλλακτική, μη ασφαλή αποστολή</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Να σταλεί ΜΗ κρυπτογραφημένο μήνυμα SMS;</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Να σταλεί ΜΗ κρυπτογραφημένο μήνυμα MMS;</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Αυτό το μήνυμα <b>δεν</b> θα κρυπτογραφηθεί, επειδή ο παραλήπτης δεν είναι πλέον χρήστης του Signal.\n\nΝα σταλεί το μήνυμα μη κρυπτογραφημένο;</string>

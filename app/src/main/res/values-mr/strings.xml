@@ -307,7 +307,6 @@
     <string name="ConversationItem_error_network_not_delivered">पाठविणे अयशस्वी</string>
     <string name="ConversationItem_group_action_left">%1$s याने गट सोडले आहे.</string>
     <string name="ConversationItem_send_paused">विराम दिलेले पाठवा</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">पाठविणे अयशस्वी, असुरक्षित फॉलबॅक करिता टॅप करा</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">अनएन्क्रिप्टेड SMS वर फॉलबॅक करायचे?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">अनएन्क्रिप्टेड MMS वर फॉलबॅक करायचे?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">हा संदेश एन्क्रिप्ट केला जाणार <b>नाही</b> कारण प्राप्तकर्ता आता Signal वापरकर्ता राहिलेला नाही.\n\nअसुरक्षित संदेश पाठवायचा?</string>

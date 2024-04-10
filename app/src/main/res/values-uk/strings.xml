@@ -309,7 +309,6 @@
     <string name="ConversationItem_error_network_not_delivered">Не вдалося відправити</string>
     <string name="ConversationItem_group_action_left">%1$s покидає групу.</string>
     <string name="ConversationItem_send_paused">Відправлення призупинене</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Не відправлено, натисніть для незахищеного відправлення</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Скористатися незашифрованим SMS як запасним варіантом?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Скористатися незашифрованим MMS як запасним варіантом?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Це повідомлення <b>не</b> буде зашифровано, оскільки одержувач більше не користується Signal.\n\nНадіслати незахищене повідомлення?</string>
@@ -1162,7 +1161,7 @@
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
-    <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">Із вашим іменем користувача сталася помилка. Ім\'я більше не присвоєно вашому акаунту. Ви можете спробувати встановити це ім\'я повторно або вибрати нове.</string>
+    <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">З вашим іменем користувача сталася помилка. Ім\'я більше не пов\'язане з вашим акаунтом. Ви можете спробувати встановити це ім\'я повторно або створити нове.</string>
     <!-- Displayed above the conversation list when a user needs to address an issue with their username link -->
     <string name="UsernameOutOfSyncReminder__link_corrupt">Із вашим QR-кодом і посиланням імені користувача сталася помилка. Вони більше не дійсні. Створіть нове посилання, щоби поділитися ним з іншими.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
@@ -1829,23 +1828,23 @@
     <string name="PinRestoreEntryFragment_incorrect_pin">Неправильний PIN-код</string>
     <string name="PinRestoreEntryFragment_skip_pin_entry">Пропустити введення PIN-коду?</string>
     <string name="PinRestoreEntryFragment_need_help">Потрібна допомога?</string>
-    <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Ваш PIN-код – це %1$d + цифровий код, який Ви створили та який може бути цифровим або буквено-цифровим. Якщо Ви не пам’ятаєте свій PIN-код, Ви можете створити новий. Ви можете зареєструватись і використовувати свій обліковий запис, але Ви втратите деякі збережені налаштування, як-от інформацію профілю.</string>
-    <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Якщо ви не можете згадати свій PIN-код, ви можете створити новий. Ви зможете зареєструватися та використовувати свій обліковий запис, але втратите деякі збережені настройки, наприклад інформацію вашого профілю.</string>
+    <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">PIN-код – це створений вами пароль, мінімальна довжина якого — %1$d символи. Він може складатися з цифр або з цифр і букв.\n\nЯкщо ви забули свій PIN-код, то можете створити новий. Ви можете зареєструватись і використовувати свій акаунт, але ви втратите частину збережених налаштувань, як-от інформацію профілю.</string>
+    <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Якщо ви забули свій PIN-код, то можете створити новий. Ви можете зареєструватись і використовувати свій акаунт, але ви втратите частину збережених налаштувань, як-от інформацію профілю.</string>
     <string name="PinRestoreEntryFragment_create_new_pin">Створити Новий PIN-код</string>
     <string name="PinRestoreEntryFragment_contact_support">Звернутися в службу підтримки</string>
     <string name="PinRestoreEntryFragment_cancel">Закрити</string>
     <string name="PinRestoreEntryFragment_skip">Пропустити</string>
     <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
-        <item quantity="one">У вас залишилась %1$d спроба. Якщо ви вичерпаєте спроби, ви зможете створити новий PIN-код. Ви зможете зареєструватися та використовувати свій обліковий запис, але втратите деякі збережені настройки, наприклад інформацію вашого профілю.</item>
-        <item quantity="few">У вас залишилась %1$d спроба. Якщо ви вичерпаєте спроби, ви зможете створити новий PIN-код. Ви зможете зареєструватися та використовувати свій обліковий запис, але втратите деякі збережені настройки, наприклад інформацію вашого профілю.</item>
-        <item quantity="many">У вас залишилось %1$d спроб. Якщо ви вичерпаєте спроби, ви зможете створити новий PIN-код. Ви зможете зареєструватися та використовувати свій обліковий запис, але втратите деякі збережені настройки, наприклад інформацію вашого профілю.</item>
-        <item quantity="other">У вас залишилось %1$d спроб. Якщо ви вичерпаєте спроби, ви зможете створити новий PIN-код. Ви зможете зареєструватися та використовувати свій обліковий запис, але втратите деякі збережені настройки, наприклад інформацію вашого профілю.</item>
+        <item quantity="one">У вас лишилася %1$d спроба. Якщо ви вичерпаєте спроби, то зможете створити новий PIN-код. Ви зможете зареєструватись і використовувати свій акаунт, але втратите частину збережених налаштувань, як-от інформацію профілю.</item>
+        <item quantity="few">У вас лишилося %1$d спроби. Якщо ви вичерпаєте спроби, то зможете створити новий PIN-код. Ви зможете зареєструватись і використовувати свій акаунт, але втратите частину збережених налаштувань, як-от інформацію профілю.</item>
+        <item quantity="many">У вас лишилося %1$d спроб. Якщо ви вичерпаєте спроби, то зможете створити новий PIN-код. Ви зможете зареєструватись і використовувати свій акаунт, але втратите частину збережених налаштувань, як-от інформацію профілю.</item>
+        <item quantity="other">У вас лишилося %1$d спроби. Якщо ви вичерпаєте спроби, то зможете створити новий PIN-код. Ви зможете зареєструватись і використовувати свій акаунт, але втратите частину збережених налаштувань, як-от інформацію профілю.</item>
     </plurals>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Реєстрація в Signal - Потрібна допомога з PIN-кодом для Android</string>
 
     <!-- PinRestoreLockedFragment -->
     <string name="PinRestoreLockedFragment_create_your_pin">Створити PIN-код</string>
-    <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">У вас закінчилися спроби введення PIN-коду, але ви все одно можете отримати доступ до свого облікового запису Signal, створивши новий PIN-код. Для вашої конфіденційності та безпеки ваш обліковий запис буде відновлено без будь-якої збереженої інформації профілю або налаштувань.</string>
+    <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Ви використали всі спроби введення PIN-коду, але все одно можете отримати доступ до свого акаунту Signal, якщо створите новий PIN-код. З міркувань конфіденційності та безпеки ваш акаунт буде відновлено без збереженої інформації профілю й налаштувань.</string>
     <string name="PinRestoreLockedFragment_create_new_pin">Створити новий PIN-код</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
@@ -1858,7 +1857,7 @@
     <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
     <string name="ReRegisterWithPinFragment_skip_local">Якщо ви не пам\'ятаєте свій PIN-код, ви можете створити новий.</string>
     <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">Спроби вгадати PIN-код закінчилися, але ви можете зайти у свій акаунт Signal, створивши новий PIN-код.</string>
+    <string name="ReRegisterWithPinFragment_out_of_guesses_local">Ви використали всі спроби введення PIN-коду, але все одно можете отримати доступ до свого акаунту Signal, якщо створите новий PIN-код.</string>
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Попередження</string>
@@ -2269,7 +2268,7 @@
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Включити блокування реєстрації?</string>
     <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Відключити Блокування Реєстрації?</string>
-    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Якщо ви забудете свій PIN-код Signal, при повторній реєстрації в Signal, ви втратите доступ до свого облікового запису на 7 днів.</string>
+    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Якщо ви забудете свій PIN-код після повторної реєстрації в Signal, то втратите доступ до свого акаунту на 7 днів.</string>
     <string name="RegistrationLockV2Dialog_turn_on">Увімкнути</string>
     <string name="RegistrationLockV2Dialog_turn_off">Відключити</string>
 
@@ -3922,7 +3921,7 @@
     <string name="CreateKbsPinFragment__create_a_new_pin">Створити новий PIN-код</string>
     <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Ви можете змінити свій PIN-код, поки цей пристрій зареєстровано.</string>
     <string name="CreateKbsPinFragment__create_your_pin">Створити PIN-код</string>
-    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PIN-код допоможе відновити акаунт і зберігати вашу інформацію зашифрованою в Signal. </string>
+    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PIN-код використовується для відновлення акаунту й забезпечення шифрування інформації в Signal. </string>
     <string name="CreateKbsPinFragment__choose_a_stronger_pin">Виберіть більш надійний PIN-код</string>
 
     <!-- ConfirmKbsPinFragment -->
@@ -3957,15 +3956,15 @@
     <string name="KbsReminderDialog__incorrect_pin_try_again">Неправильний PIN-код. Будь ласка спробуйте ще раз.</string>
 
     <!-- AccountLockedFragment -->
-    <string name="AccountLockedFragment__account_locked">Обліковий запис заблоковано</string>
-    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Ваш акаунт заблоковано для захисту вашої конфіденційності та безпеки. Через %1$d дн. бездіяльності в акаунті ви зможете перереєструвати цей номер телефону без PIN-коду. Весь вміст буде видалено.</string>
+    <string name="AccountLockedFragment__account_locked">Акаунт заблоковано</string>
+    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Ваш акаунт заблоковано з міркувань конфіденційності та безпеки. Через %1$d днів бездіяльності в акаунті ви зможете заново зареєструвати цей номер телефону без введення PIN-коду. Весь вміст буде видалено.</string>
     <string name="AccountLockedFragment__next">Далі</string>
     <string name="AccountLockedFragment__learn_more">Дізнатися більше</string>
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">Введіть свій PIN-код</string>
-    <string name="RegistrationLockFragment__enter_the_pin_you_created">Введіть PIN-код, який ви створили для свого облікового запису. Це не те ж саме. що код перевірки з SMS.</string>
+    <string name="RegistrationLockFragment__enter_the_pin_you_created">Введіть PIN-код, який ви створили для свого акаунту. Це не код перевірки з SMS.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Введіть PIN-код, який ви створили для свого акаунту.</string>
     <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
@@ -3978,10 +3977,10 @@
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Реєстрація в Signal - Потрібна допомога з PIN-кодом для Android (v2 PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-        <item quantity="one">Для вашої конфіденційності та безпеки відновлення PIN-коду не передбачається. Якщо ви не зможете згадати свій PIN-код, ви зможете наново зареєструватися через SMS, якщо впродовж %1$d дня не буде активності. При цьому ваш обліковий запис буде видалено, а весь вміст видалено.</item>
-        <item quantity="few">Для вашої конфіденційності та безпеки відновлення PIN-коду не передбачається. Якщо ви не зможете згадати свій PIN-код, ви зможете наново зареєструватися через SMS, якщо впродовж %1$d днів не буде активності. При цьому ваш обліковий запис буде видалено, а весь вміст видалено.</item>
-        <item quantity="many">Для вашої конфіденційності та безпеки відновлення PIN-коду не передбачається. Якщо ви не зможете згадати свій PIN-код, ви зможете наново зареєструватися через SMS, якщо впродовж %1$d днів не буде активності. При цьому ваш обліковий запис буде видалено, а весь вміст видалено.</item>
-        <item quantity="other">Для вашої конфіденційності та безпеки відновлення PIN-коду не передбачається. Якщо ви не зможете згадати свій PIN-код, ви зможете наново зареєструватися через SMS, якщо впродовж %1$d днів не буде активності. При цьому ваш обліковий запис буде видалено, а весь вміст видалено.</item>
+        <item quantity="one">З міркувань конфіденційності та безпеки відновлення PIN-коду не передбачено. Якщо ви забули свій PIN-код, то через %1$d день без активності в акаунті зможете зареєструватися заново через SMS. При цьому всю інформацію з вашого акаунту й весь вміст буде видалено.</item>
+        <item quantity="few">З міркувань конфіденційності та безпеки відновлення PIN-коду не передбачено. Якщо ви забули свій PIN-код, то через %1$d дні без активності в акаунті зможете зареєструватися заново через SMS. При цьому всю інформацію з вашого акаунту й весь вміст буде видалено.</item>
+        <item quantity="many">З міркувань конфіденційності та безпеки відновлення PIN-коду не передбачено. Якщо ви забули свій PIN-код, то через %1$d днів без активності в акаунті зможете зареєструватися заново через SMS. При цьому всю інформацію з вашого акаунту й весь вміст буде видалено.</item>
+        <item quantity="other">З міркувань конфіденційності та безпеки відновлення PIN-коду не передбачено. Якщо ви забули свій PIN-код, то через %1$d дня без активності в акаунті зможете зареєструватися заново через SMS. При цьому всю інформацію з вашого акаунту й весь вміст буде видалено.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
