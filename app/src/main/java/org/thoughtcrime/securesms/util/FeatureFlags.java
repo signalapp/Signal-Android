@@ -127,7 +127,6 @@ public final class FeatureFlags {
   private static final String RX_MESSAGE_SEND                   = "android.rxMessageSend";
   private static final String LINKED_DEVICE_LIFESPAN_SECONDS    = "android.linkedDeviceLifespanSeconds";
   private static final String MESSAGE_BACKUPS                   = "android.messageBackups";
-  private static final String NICKNAMES                         = "android.nicknames";
   private static final String CAMERAX_CUSTOM_CONTROLLER         = "android.cameraXCustomController";
 
   /**
@@ -208,7 +207,6 @@ public final class FeatureFlags {
       CDSI_LIBSIGNAL_NET,
       RX_MESSAGE_SEND,
       LINKED_DEVICE_LIFESPAN_SECONDS,
-      NICKNAMES,
       CAMERAX_CUSTOM_CONTROLLER
   );
 
@@ -286,8 +284,7 @@ public final class FeatureFlags {
       CDSI_LIBSIGNAL_NET,
       RX_MESSAGE_SEND,
       LINKED_DEVICE_LIFESPAN_SECONDS,
-      CAMERAX_CUSTOM_CONTROLLER,
-      NICKNAMES
+      CAMERAX_CUSTOM_CONTROLLER
   );
 
   /**
@@ -744,11 +741,6 @@ public final class FeatureFlags {
    */
   public static boolean messageBackups() {
     return getBoolean(MESSAGE_BACKUPS, false);
-  }
-
-  /** Whether or not the nicknames feature is available */
-  public static boolean nicknames() {
-    return getBoolean(NICKNAMES, true);
   }
 
   /** Whether or not to use the custom CameraX controller class */

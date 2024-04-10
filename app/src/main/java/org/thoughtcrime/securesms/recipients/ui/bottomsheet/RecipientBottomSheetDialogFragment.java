@@ -219,15 +219,13 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
           AboutSheet.create(recipient).show(getParentFragmentManager(), null);
         });
 
-        if (FeatureFlags.nicknames()) {
-          nickname.setVisibility(View.VISIBLE);
-          nickname.setOnClickListener(v -> {
-            nicknameLauncher.launch(new NicknameActivity.Args(
-                recipientId,
-                false
-            ));
-          });
-        }
+        nickname.setVisibility(View.VISIBLE);
+        nickname.setOnClickListener(v -> {
+          nicknameLauncher.launch(new NicknameActivity.Args(
+              recipientId,
+              false
+          ));
+        });
       }
 
       String aboutText = recipient.getCombinedAboutAndEmoji();
