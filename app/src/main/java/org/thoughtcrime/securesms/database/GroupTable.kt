@@ -1005,7 +1005,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
     val inserts = SqlUtil.buildBulkInsert(
       MembershipTable.TABLE_NAME,
       arrayOf(MembershipTable.GROUP_ID, MembershipTable.RECIPIENT_ID),
-      members.toContentValues(groupId)
+      members.toSet().toContentValues(groupId)
     )
 
     inserts.forEach {
