@@ -65,6 +65,7 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public final class GroupSendUtil {
 
@@ -212,7 +213,15 @@ public final class GroupSendUtil {
         allTargets,
         isRecipientUpdate,
         true,
-        new StorySendOperation(messageId, groupId, sentTimestamp, message, Collections.emptySet()),
+        new StorySendOperation(messageId,
+                               groupId,
+                               sentTimestamp,
+                               message,
+                               allTargets.stream()
+                                         .map(target -> new SignalServiceStoryMessageRecipient(new SignalServiceAddress(target.requireServiceId()),
+                                                                                               Collections.emptyList(),
+                                                                                               true))
+                                         .collect(Collectors.toSet())),
         null);
   }
 
