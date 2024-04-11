@@ -117,6 +117,7 @@ task resolveStaticIps {
             rootProject.extra["content_proxy_ips"] = \"\"\"${staticIpResolver.resolveToBuildConfig("contentproxy.signal.org")}\"\"\"
             rootProject.extra["svr2_ips"] = \"\"\"${staticIpResolver.resolveToBuildConfig("svr2.signal.org")}\"\"\"
             rootProject.extra["cdsi_ips"] = \"\"\"${staticIpResolver.resolveToBuildConfig("cdsi.signal.org")}\"\"\"
+            rootProject.extra["key_backup_ips"] = "\"\"${staticIpResolver.resolveToBuildConfig("api.backup.signal.org")}\"\"\"
         """.stripIndent().trim() + "\n"
     }
 }

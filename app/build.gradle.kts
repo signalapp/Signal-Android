@@ -195,6 +195,7 @@ android {
     buildConfigField("String[]", "SIGNAL_CONTENT_PROXY_IPS", rootProject.extra["content_proxy_ips"] as String)
     buildConfigField("String[]", "SIGNAL_CDSI_IPS", rootProject.extra["cdsi_ips"] as String)
     buildConfigField("String[]", "SIGNAL_SVR2_IPS", rootProject.extra["svr2_ips"] as String)
+    buildConfigField("String[]", "SIGNAL_KEY_BACKUP_IPS", rootProject.extra["key_backup_ips"] as String)
     buildConfigField("String", "SIGNAL_AGENT", "\"OWA\"")
     buildConfigField("String", "CDSI_MRENCLAVE", "\"0f6fd79cdfdaa5b2e6337f534d3baf999318b0c462a7ac1f41297a3e4b424a57\"")
     buildConfigField("String", "SVR2_MRENCLAVE", "\"a6622ad4656e1abcd0bc0ff17c229477747d2ded0495c4ebee7ed35c1789fa97\"")
