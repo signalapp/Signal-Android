@@ -43,6 +43,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.os.bundleOf
@@ -259,7 +260,7 @@ private fun NicknameContent(
             enabled = true,
             singleLine = true,
             onValueChange = callback::onFirstNameChanged,
-            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
+            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next, capitalization = KeyboardCapitalization.Words),
             modifier = Modifier
               .focusRequester(firstNameFocusRequester)
               .fillMaxWidth()
@@ -275,7 +276,7 @@ private fun NicknameContent(
             enabled = true,
             singleLine = true,
             onValueChange = callback::onLastNameChanged,
-            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
+            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next, capitalization = KeyboardCapitalization.Words),
             modifier = Modifier
               .fillMaxWidth()
               .padding(bottom = 20.dp)
@@ -291,7 +292,7 @@ private fun NicknameContent(
             enabled = true,
             onValueChange = callback::onNoteChanged,
             keyboardActions = KeyboardActions.Default,
-            keyboardOptions = KeyboardOptions.Default,
+            keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Sentences),
             charactersRemaining = state.noteCharactersRemaining,
             modifier = Modifier
               .focusRequester(noteFocusRequester)
