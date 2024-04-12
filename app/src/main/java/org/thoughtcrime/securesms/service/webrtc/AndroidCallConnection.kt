@@ -38,7 +38,7 @@ class AndroidCallConnection(
 
   override fun onShowIncomingCallUi() {
     Log.i(TAG, "onShowIncomingCallUi()")
-    WebRtcCallService.update(context, CallNotificationBuilder.TYPE_INCOMING_CONNECTING, recipientId, isVideoCall)
+    ActiveCallManager.update(context, CallNotificationBuilder.TYPE_INCOMING_CONNECTING, recipientId, isVideoCall)
     setRinging()
   }
 
@@ -74,17 +74,17 @@ class AndroidCallConnection(
   }
 
   override fun onSilence() {
-    WebRtcCallService.sendAudioManagerCommand(context, AudioManagerCommand.SilenceIncomingRinger())
+    ActiveCallManager.sendAudioManagerCommand(context, AudioManagerCommand.SilenceIncomingRinger())
   }
 
   override fun onReject() {
     Log.i(TAG, "onReject()")
-    WebRtcCallService.denyCall(context)
+    ActiveCallManager.denyCall()
   }
 
   override fun onDisconnect() {
     Log.i(TAG, "onDisconnect()")
-    WebRtcCallService.hangup(context)
+    ActiveCallManager.hangup()
   }
 
   companion object {

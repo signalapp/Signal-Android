@@ -40,6 +40,7 @@ import org.signal.core.util.tracing.Tracer;
 import org.signal.glide.SignalGlideCodecs;
 import org.signal.libsignal.protocol.logging.SignalProtocolLoggerProvider;
 import org.signal.ringrtc.CallManager;
+import org.thoughtcrime.securesms.apkupdate.ApkUpdateRefreshListener;
 import org.thoughtcrime.securesms.avatar.AvatarPickerStorage;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider;
@@ -89,7 +90,7 @@ import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.service.LocalBackupListener;
 import org.thoughtcrime.securesms.service.RotateSenderCertificateListener;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
-import org.thoughtcrime.securesms.apkupdate.ApkUpdateRefreshListener;
+import org.thoughtcrime.securesms.service.webrtc.ActiveCallManager;
 import org.thoughtcrime.securesms.service.webrtc.AndroidTelecomUtil;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.AppForegroundObserver;
@@ -218,6 +219,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
                             .addPostRender(AccountConsistencyWorkerJob::enqueueIfNecessary)
                             .addPostRender(GroupRingCleanupJob::enqueue)
                             .addPostRender(LinkedDeviceInactiveCheckJob::enqueueIfNecessary)
+                            .addPostRender(() -> ActiveCallManager.clearNotifications(this))
                             .execute();
 
     Log.d(TAG, "onCreate() took " + (System.currentTimeMillis() - startTime) + " ms");

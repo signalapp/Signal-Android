@@ -12,9 +12,8 @@ import org.thoughtcrime.securesms.util.ParcelUtil
  * Commands that can be issued to [SignalAudioManager] to perform various tasks.
  *
  * Additional context: The audio management is tied closely with the Android audio and thus benefits from being
- * tied to the [org.thoughtcrime.securesms.service.webrtc.WebRtcCallService] lifecycle. Because of this, all
- * calls have to go through an intent to the service and this allows one entry point for that but multiple
- * operations.
+ * tied to the [org.thoughtcrime.securesms.service.webrtc.ActiveCallManager] lifecycle. Because of this, all
+ * calls have to go through it and this allows one entry point for that but multiple operations.
  */
 sealed class AudioManagerCommand : Parcelable {
 
