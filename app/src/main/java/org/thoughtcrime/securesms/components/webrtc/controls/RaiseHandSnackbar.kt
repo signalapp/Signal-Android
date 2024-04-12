@@ -5,7 +5,6 @@
 
 package org.thoughtcrime.securesms.components.webrtc.controls
 
-import android.content.Context
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.expandIn
@@ -44,7 +43,6 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.core.BackpressureStrategy
 import kotlinx.coroutines.delay
 import org.signal.core.ui.theme.SignalTheme
@@ -160,7 +158,7 @@ private fun RaiseHand(
                 val context = LocalContext.current
                 TextButton(
                   onClick = {
-                    showLowerHandDialog(context)
+                    ApplicationDependencies.getSignalCallManager().raiseHand(false)
                   },
                   modifier = Modifier.wrapContentWidth(Alignment.End)
                 ) {
@@ -180,16 +178,6 @@ private fun RaiseHand(
       }
     }
   }
-}
-
-private fun showLowerHandDialog(context: Context) {
-  MaterialAlertDialogBuilder(context)
-    .setTitle(R.string.CallOverflowPopupWindow__lower_your_hand)
-    .setPositiveButton(
-      R.string.CallOverflowPopupWindow__lower_hand
-    ) { _, _ -> ApplicationDependencies.getSignalCallManager().raiseHand(false) }
-    .setNegativeButton(R.string.CallOverflowPopupWindow__cancel, null)
-    .show()
 }
 
 @Composable
