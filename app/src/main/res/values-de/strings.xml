@@ -80,7 +80,7 @@
     <string name="AttachmentKeyboard_file">Datei</string>
     <string name="AttachmentKeyboard_contact">Kontakt</string>
     <string name="AttachmentKeyboard_location">Standort</string>
-    <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal benötigt die Berechtigung, deine Fotos und Videos anzuzeigen.</string>
+    <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal benötigt die Berechtigung, um deine Fotos und Videos anzuzeigen.</string>
     <string name="AttachmentKeyboard_give_access">Zugriff gewähren</string>
     <string name="AttachmentKeyboard_payment">Zahlung</string>
 
@@ -2223,9 +2223,9 @@
     <string name="ThreadRecord_draft">Entwurf:</string>
     <string name="ThreadRecord_media_message">Nachricht mit Medieninhalten</string>
     <string name="ThreadRecord_sticker">Sticker</string>
-    <string name="ThreadRecord_view_once_photo">Einmalig anzeigbares Foto</string>
-    <string name="ThreadRecord_view_once_video">Einmalig anzeigbares Video</string>
-    <string name="ThreadRecord_view_once_media">Einmalig anzeigbare Medieninhalte</string>
+    <string name="ThreadRecord_view_once_photo">Foto zur Einmalansicht</string>
+    <string name="ThreadRecord_view_once_video">Video zur Einmalansicht</string>
+    <string name="ThreadRecord_view_once_media">Medien zur Einmalansicht</string>
     <string name="ThreadRecord_this_message_was_deleted">Diese Nachricht wurde gelöscht.</string>
     <string name="ThreadRecord_you_deleted_this_message">Du hast diese Nachricht gelöscht.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
@@ -2434,8 +2434,8 @@
     <string name="MessageNotifier_mark_all_as_read">Alle gelesen</string>
     <string name="MessageNotifier_mark_read">Gelesen</string>
     <string name="MessageNotifier_turn_off_these_notifications">Diese Benachrichtigungen ausschalten</string>
-    <string name="MessageNotifier_view_once_photo">Einmalig anzeigbares Foto</string>
-    <string name="MessageNotifier_view_once_video">Einmalig anzeigbares Video</string>
+    <string name="MessageNotifier_view_once_photo">Foto zur Einmalansicht</string>
+    <string name="MessageNotifier_view_once_video">Video zur Einmalansicht</string>
     <string name="MessageNotifier_reply">Antworten</string>
     <string name="MessageNotifier_signal_message">Signal-Nachricht</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
@@ -2446,7 +2446,7 @@
     <string name="MessageNotifier_reacted_s_to_your_gif">Hat mit %1$s auf dein GIF reagiert.</string>
     <string name="MessageNotifier_reacted_s_to_your_file">Hat mit %1$s auf deine Datei reagiert.</string>
     <string name="MessageNotifier_reacted_s_to_your_audio">Hat mit %1$s auf deine Sprachnachricht reagiert.</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Hat mit %1$s auf deine einmalig anzeigbaren Medieninhalte reagiert.</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Hat mit %1$s auf deine Medien zur Einmalansicht reagiert.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
     <string name="MessageNotifier_reacted_s_to_your_payment">Hat mit %1$s auf deine Zahlung reagiert.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Hat mit %1$s auf deinen Sticker reagiert.</string>
@@ -2740,7 +2740,7 @@
     <string name="QuoteView_video">Video</string>
     <string name="QuoteView_photo">Foto</string>
     <string name="QuoteView_gif">GIF</string>
-    <string name="QuoteView_view_once_media">Einmalig anzeigbare Medieninhalte</string>
+    <string name="QuoteView_view_once_media">Medien zur Einmalansicht</string>
     <string name="QuoteView_sticker">Sticker</string>
     <string name="QuoteView_you">Du</string>
     <string name="QuoteView_original_missing">Originalnachricht nicht gefunden</string>
@@ -3891,7 +3891,7 @@
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">Telefonnummer</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
-    <string name="preferences_app_protection__choose_who_can_see">Lege fest, wer deine Telefonnummer sehen kann und wer dich auf Signal mit ihr kontaktieren kann.</string>
+    <string name="preferences_app_protection__choose_who_can_see">Festlegen wer deine Telefonnummer sehen kann und wer dich auf Signal mit ihr kontaktieren kann.</string>
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">Wer kann meine Telefonnummer sehen</string>
     <!-- Subtext below radio buttons when who can see my number is set to everybody -->

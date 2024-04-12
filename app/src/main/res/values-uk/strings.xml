@@ -3957,7 +3957,7 @@
 
     <!-- AccountLockedFragment -->
     <string name="AccountLockedFragment__account_locked">Акаунт заблоковано</string>
-    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Ваш акаунт заблоковано з міркувань конфіденційності та безпеки. Через %1$d днів бездіяльності в акаунті ви зможете заново зареєструвати цей номер телефону без введення PIN-коду. Весь вміст буде видалено.</string>
+    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Ваш акаунт заблоковано з міркувань конфіденційності та безпеки. Через %1$d днів без активності в акаунті ви зможете заново зареєструвати цей номер телефону без введення PIN-коду. Весь вміст буде видалено.</string>
     <string name="AccountLockedFragment__next">Далі</string>
     <string name="AccountLockedFragment__learn_more">Дізнатися більше</string>
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
@@ -3991,10 +3991,10 @@
     </plurals>
 
     <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
-        <item quantity="one">Якщо ви вичерпаєте спроби, ваш обліковий запис буде заблоковано на %1$d день. Якщо впродовж %1$d день в ньому не буде активності, ви зможете зареєструватися знову без введення PIN-коду. При цьому обліковий запис буде видалено, а весь вміст видалено.</item>
-        <item quantity="few">Якщо ви вичерпаєте спроби, ваш обліковий запис буде заблоковано на %1$d день. Якщо впродовж %1$d дня в ньому не буде активності, ви зможете зареєструватися знову без введення PIN-коду. При цьому обліковий запис буде видалено, а весь вміст видалено.</item>
-        <item quantity="many">Якщо ви вичерпаєте спроби, ваш обліковий запис буде заблоковано на %1$d днів. Якщо впродовж %1$d днів в ньому не буде активності, ви зможете зареєструватися знову без введення PIN-коду. При цьому обліковий запис буде видалено, а весь вміст видалено.</item>
-        <item quantity="other">Якщо ви вичерпаєте спроби, ваш обліковий запис буде заблоковано на %1$d днів. Якщо впродовж %1$d днів в ньому не буде активності, ви зможете зареєструватися знову без введення PIN-коду. При цьому обліковий запис буде видалено, а весь вміст видалено.</item>
+        <item quantity="one">Якщо ви вичерпаєте спроби, ваш акаунт буде заблоковано на %1$d день. Через %1$d день без активності в акаунті ви зможете зареєструватися заново без введення PIN-коду. При цьому всю інформацію з вашого акаунту й весь вміст буде видалено.</item>
+        <item quantity="few">Якщо ви вичерпаєте спроби, ваш акаунт буде заблоковано на %1$d дні. Через %1$d дні без активності в акаунті ви зможете зареєструватися заново без введення PIN-коду. При цьому всю інформацію з вашого акаунту й весь вміст буде видалено.</item>
+        <item quantity="many">Якщо ви вичерпаєте спроби, ваш акаунт буде заблоковано на %1$d днів. Через %1$d днів без активності в акаунті ви зможете зареєструватися заново без введення PIN-коду. При цьому всю інформацію з вашого акаунту й весь вміст буде видалено.</item>
+        <item quantity="other">Якщо ви вичерпаєте спроби, ваш акаунт буде заблоковано на %1$d дня. Через %1$d дня без активності в акаунті ви зможете зареєструватися заново без введення PIN-коду. При цьому всю інформацію з вашого акаунту й весь вміст буде видалено.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
@@ -4047,11 +4047,11 @@
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Я записав цю фразу-пароль. Без неї я не зможу відновити резервну копію.</string>
     <string name="registration_activity__restore_backup">Відновити резервну копію</string>
     <string name="registration_activity__transfer_or_restore_account">Перенесення або відновлення акаунту</string>
-    <string name="registration_activity__transfer_account">Перенести обліковий запис</string>
+    <string name="registration_activity__transfer_account">Перенести акаунт</string>
     <string name="registration_activity__skip">Пропустити</string>
     <string name="preferences_chats__chat_backups">Резервні копії чату</string>
-    <string name="preferences_chats__transfer_account">Перенести обліковий запис</string>
-    <string name="preferences_chats__transfer_account_to_a_new_android_device">Перенесіть обліковий запис на новий пристрій Android</string>
+    <string name="preferences_chats__transfer_account">Перенести акаунт</string>
+    <string name="preferences_chats__transfer_account_to_a_new_android_device">Перенесіть акаунт на новий пристрій Android</string>
     <string name="RegistrationActivity_enter_backup_passphrase">Введіть фразу-пароль</string>
     <string name="RegistrationActivity_restore">Відновити</string>
     <string name="RegistrationActivity_backup_failure_downgrade">Імпорт резервних копій з нових версій Signal неможливий</string>
@@ -4176,9 +4176,9 @@
 
     <!-- TransferOrRestoreFragment -->
     <string name="TransferOrRestoreFragment__transfer_or_restore_account">Перенесення або відновлення акаунту</string>
-    <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Якщо Ви вже зареєстрували обліковий запис Signal, ви можете перенести або відновити свій обліковий запис і повідомлення</string>
+    <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Якщо ви вже зареєстрували акаунт Signal, то можете перенести або відновити свій акаунт і повідомлення</string>
     <string name="TransferOrRestoreFragment__transfer_from_android_device">Перенести з пристрою Android</string>
-    <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">Перенести обліковий запис і повідомлення з вашого старого Android-пристрою. У вас повинен бути доступ до свого старого пристрою.</string>
+    <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">Перенести акаунт і повідомлення зі старого пристрою Android. Необхідний доступ до старого пристрою.</string>
     <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">У вас повинен бути доступ до свого старого пристрою.</string>
     <string name="TransferOrRestoreFragment__restore_from_backup">Відновити резервну копію</string>
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Відновити ваші повідомлення із локальної резервної копії. Якщо ви не бажаєте зробити це зараз, ви не зможете відновити їх пізніше.</string>
@@ -4191,9 +4191,9 @@
     <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
     <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Натисніть фото свого профілю в лівому верхньому кутку, щоб відкрити Настройки</string>
     <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_account">"Натисніть \"Обліковий запис\""</string>
+    <string name="NewDeviceTransferInstructions__tap_on_account">"Натисніть «Акаунт»"</string>
     <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
-    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"Натисніть \"Перенести обліковий запис\", а потім \"Продовжити\" на обох пристроях"</string>
+    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"Натисніть «Перенести акаунт», а потім «Продовжити» на обох пристроях"</string>
 
     <!-- NewDeviceTransferSetupFragment -->
     <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Готуємося до підключення до вашого старого Android-пристрою…</string>
@@ -4202,7 +4202,7 @@
     <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal потрібен дозвіл на доступ до місця вашого розташування, щоб виявити ваш старий Android-пристрій і підключитися до нього.</string>
     <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Служби геолокації повинні бути включені, щоб Signal зміг виявити ваш старий Android-пристрій і з\'єднатися з ним.</string>
     <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Wi-Fi повинен бути включений, щоб Signal зміг виявити ваш старий Android-пристрій і з\'єднатися з ним. При цьому підключатися до будь-якої мережі Wi-Fi не обов\'язково.</string>
-    <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Вибачте, але схоже, що цей пристрій не підтримує Wi-Fi Direct. Signal використовує Wi-Fi Direct, щоб виявити ваш старий Android-пристрій і з\'єднатися з ним. Однак ви можете відновити свій обліковий запис з резервної копії.</string>
+    <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Вибачте, але схоже, що цей пристрій не підтримує Wi-Fi Direct. Signal використовує Wi-Fi Direct, щоб виявити ваш старий пристрій Android і з\'єднатися з ним. Однак ви можете відновити свій акаунт з резервної копії.</string>
     <string name="NewDeviceTransferSetup__restore_a_backup">Відновити резервну копію</string>
     <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">При спробі підключення до вашого старого Android-пристрою сталась несподівана помилка.</string>
 
@@ -4211,7 +4211,7 @@
     <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal потрібен дозвіл на доступ до місця вашого розташування, щоб з\'єднатись з вашим старим Android пристроєм і підключитися до нього.</string>
     <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Служби геолокації повинні бути включені, щоб Signal зміг з\'єднатися з вашим новим Android пристроєм.</string>
     <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Wi-Fi повинен бути включений, щоб Signal зміг виявити ваш новий Android-пристрій і з\'єднатися з ним. При цьому підключатися до будь-якої мережі Wi-Fi не обов\'язково.</string>
-    <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Вибачте, але схоже, що цей пристрій не підтримує Wi-Fi Direct. Signal використовує Wi-Fi Direct, щоб виявити ваш новий Android-пристрій і з\'єднатися з ним. Ви все одно можете створити резервну копію, щоб відновити свій обліковий запис на своєму новому Android-пристрої.</string>
+    <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Вибачте, але схоже, що цей пристрій не підтримує Wi-Fi Direct. Signal використовує Wi-Fi Direct, щоб виявити ваш новий пристрій Android і з\'єднатися з ним. Ви все одно можете створити резервну копію, щоб відновити свій акаунт на новому пристрої Android.</string>
     <string name="OldDeviceTransferSetup__create_a_backup">Створити резервну копію</string>
     <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">При спробі підключення до вашого нового Android-пристрою сталась несподівана помилка.</string>
 
@@ -4268,7 +4268,7 @@
     <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
     <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Завантажте Signal на своєму новому Android-пристрої</string>
     <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
-    <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">"Натисніть на «Перенести або відновити обліковий запис»"</string>
+    <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">"Натисніть «Перенести або відновити акаунт»"</string>
     <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
     <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">"Виберіть «Перенести з Android-пристрою», коли буде запропоновано, а потім «Продовжити». Тримайте обидва пристрої поруч один з одним."</string>
     <string name="OldDeviceTransferInstructions__continue">Продовжити</string>
@@ -4285,7 +4285,7 @@
     <string name="NewDeviceTransferComplete__continue_registration">Продовжити реєстрацію</string>
 
     <!-- DeviceToDeviceTransferService -->
-    <string name="DeviceToDeviceTransferService_content_title">Перенести обліковий запис</string>
+    <string name="DeviceToDeviceTransferService_content_title">Перенести акаунт</string>
     <string name="DeviceToDeviceTransferService_status_ready">Підготовка до підключення до вашого іншого Android-пристрою…</string>
     <string name="DeviceToDeviceTransferService_status_starting_up">Підготовка до підключення до вашого іншого Android-пристрою…</string>
     <string name="DeviceToDeviceTransferService_status_discovery">Пошук іншого Android-пристрою…</string>
@@ -4295,7 +4295,7 @@
 
     <!-- OldDeviceTransferLockedDialog -->
     <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Завершіть реєстрацію на своєму новому пристрої</string>
-    <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Ваш обліковий запис Signal був перенесений на новий пристрій, але тепер вам потрібно завершити реєстрацію на ньому. На цьому пристрої Signal буде неактивний.</string>
+    <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Ваш акаунт Signal перенесено на новий пристрій, і тепер вам потрібно завершити реєстрацію на ньому. На цьому пристрої Signal буде неактивний.</string>
     <string name="OldDeviceTransferLockedDialog__done">Готово</string>
     <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Скасувати та активувати цей пристрій</string>
 
@@ -4424,14 +4424,14 @@
     <string name="DeleteAccountFragment__no_country_code">Код країни не вказано</string>
     <string name="DeleteAccountFragment__no_number">Номер не вказано</string>
     <string name="DeleteAccountFragment__the_phone_number">Наданий номер телефону не належить до вашого акаунту.</string>
-    <string name="DeleteAccountFragment__are_you_sure">Ви дійсно хочете видалити обліковий запис?</string>
+    <string name="DeleteAccountFragment__are_you_sure">Ви точно хочете видалити свій акаунт?</string>
     <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Ця дія видалить ваш акаунт Signal і відновить початковий стан застосунку. Після завершення застосунок закриється.</string>
     <string name="DeleteAccountFragment__failed_to_delete_local_data">Не вдалося видалити локальні дані. Ви можете видалити їх вручну в системних налаштуваннях програми.</string>
     <string name="DeleteAccountFragment__launch_app_settings">Відкрийте Налаштування програми</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
     <string name="DeleteAccountFragment__leaving_groups">Залишаємо групи…</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
-    <string name="DeleteAccountFragment__deleting_account">Видаляємо обліковий запис…</string>
+    <string name="DeleteAccountFragment__deleting_account">Видаляємо акаунт…</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
     <string name="DeleteAccountFragment__canceling_your_subscription">Скасування передплати…</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
@@ -4439,7 +4439,7 @@
     <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
     <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Видаляємо дані користувача та скидаємо застосунок</string>
     <!-- Title of error dialog shown when a network error occurs during account deletion -->
-    <string name="DeleteAccountFragment__account_not_deleted">Обліковий запис не видалено</string>
+    <string name="DeleteAccountFragment__account_not_deleted">Акаунт не видалено</string>
     <!-- Message of error dialog shown when a network error occurs during account deletion -->
     <string name="DeleteAccountFragment__there_was_a_problem">Сталася помилка під час завершення процесу видалення. Перевірте з\'єднання з мережею та спробуйте ще.</string>
 
@@ -4649,7 +4649,7 @@
     <string name="AppSettingsFragment__copied_subscriber_id_to_clipboard">ID підписника скопійовано до буфера обміну</string>
 
     <!-- AccountSettingsFragment -->
-    <string name="AccountSettingsFragment__account">Обліковий запис</string>
+    <string name="AccountSettingsFragment__account">Акаунт</string>
     <string name="AccountSettingsFragment__youll_be_asked_less_frequently">З часом питання буде з\'являтися все рідше</string>
     <string name="AccountSettingsFragment__require_your_signal_pin">Щоб повторно зареєструвати свій номер телефону в Signal, необхідний PIN-код Signal</string>
     <string name="AccountSettingsFragment__change_phone_number">Змінити номер телефону</string>
@@ -5200,13 +5200,13 @@
     <string name="BadgesOverviewFragment__my_badges">Мої значки</string>
     <string name="BadgesOverviewFragment__featured_badge">Обраний значок</string>
     <string name="BadgesOverviewFragment__display_badges_on_profile">Показувати значки в профілі</string>
-    <string name="BadgesOverviewFragment__failed_to_update_profile">Не вдалось оновити обліковий запис</string>
+    <string name="BadgesOverviewFragment__failed_to_update_profile">Не вдалось оновити профіль</string>
 
 
 
     <string name="SelectFeaturedBadgeFragment__select_a_badge">Вибрати значок</string>
     <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Ви маєте обрати значок</string>
-    <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Не вдалось оновити обліковий запис</string>
+    <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Не вдалось оновити профіль</string>
 
     <!-- Displayed on primary button in the bottom sheet as a call-to-action to launch into the donation flow -->
     <string name="ViewBadgeBottomSheetDialogFragment__donate_now">Задонатити</string>
