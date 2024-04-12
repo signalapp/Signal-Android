@@ -218,7 +218,7 @@ private fun Content(
       )
     }
 
-    if (model.verified) {
+    if (!model.isSelf && model.verified) {
       AboutRow(
         startIcon = painterResource(id = R.drawable.check),
         text = stringResource(id = R.string.AboutSheet__verified),
@@ -227,24 +227,26 @@ private fun Content(
       )
     }
 
-    if (model.profileSharing || model.systemContact) {
-      AboutRow(
-        startIcon = painterResource(id = R.drawable.symbol_connections_24),
-        text = stringResource(id = R.string.AboutSheet__signal_connection),
-        endIcon = painterResource(id = R.drawable.symbol_chevron_right_compact_bold_16),
-        modifier = Modifier.align(alignment = Alignment.Start),
-        onClick = onClickSignalConnections
-      )
-    } else {
-      AboutRow(
-        startIcon = painterResource(id = R.drawable.chat_x),
-        text = stringResource(id = R.string.AboutSheet__no_direct_message, model.shortName),
-        modifier = Modifier.align(alignment = Alignment.Start),
-        onClick = onClickSignalConnections
-      )
+    if (!model.isSelf) {
+      if (model.profileSharing || model.systemContact) {
+        AboutRow(
+          startIcon = painterResource(id = R.drawable.symbol_connections_24),
+          text = stringResource(id = R.string.AboutSheet__signal_connection),
+          endIcon = painterResource(id = R.drawable.symbol_chevron_right_compact_bold_16),
+          modifier = Modifier.align(alignment = Alignment.Start),
+          onClick = onClickSignalConnections
+        )
+      } else {
+        AboutRow(
+          startIcon = painterResource(id = R.drawable.chat_x),
+          text = stringResource(id = R.string.AboutSheet__no_direct_message, model.shortName),
+          modifier = Modifier.align(alignment = Alignment.Start),
+          onClick = onClickSignalConnections
+        )
+      }
     }
 
-    if (model.systemContact) {
+    if (!model.isSelf && model.systemContact) {
       AboutRow(
         startIcon = painterResource(id = R.drawable.symbol_person_circle_24),
         text = stringResource(id = R.string.AboutSheet__s_is_in_your_system_contacts, model.shortName),
@@ -260,23 +262,25 @@ private fun Content(
       )
     }
 
-    val groupsInCommonText = if (model.groupsInCommon > 0) {
-      pluralStringResource(id = R.plurals.AboutSheet__d_groups_in, model.groupsInCommon, model.groupsInCommon)
-    } else {
-      stringResource(id = R.string.AboutSheet__you_have_no_groups_in_common)
-    }
+    if (!model.isSelf) {
+      val groupsInCommonText = if (model.groupsInCommon > 0) {
+        pluralStringResource(id = R.plurals.AboutSheet__d_groups_in, model.groupsInCommon, model.groupsInCommon)
+      } else {
+        stringResource(id = R.string.AboutSheet__you_have_no_groups_in_common)
+      }
 
-    val groupsInCommonIcon = if (!model.profileSharing && model.groupsInCommon == 0) {
-      painterResource(R.drawable.symbol_error_circle_24)
-    } else {
-      painterResource(R.drawable.symbol_group_24)
-    }
+      val groupsInCommonIcon = if (!model.profileSharing && model.groupsInCommon == 0) {
+        painterResource(R.drawable.symbol_error_circle_24)
+      } else {
+        painterResource(R.drawable.symbol_group_24)
+      }
 
-    AboutRow(
-      startIcon = groupsInCommonIcon,
-      text = groupsInCommonText,
-      modifier = Modifier.fillMaxWidth()
-    )
+      AboutRow(
+        startIcon = groupsInCommonIcon,
+        text = groupsInCommonText,
+        modifier = Modifier.fillMaxWidth()
+      )
+    }
 
     if (model.note.isNotBlank()) {
       AboutRow(
