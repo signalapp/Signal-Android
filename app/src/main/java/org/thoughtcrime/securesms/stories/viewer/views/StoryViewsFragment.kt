@@ -75,7 +75,7 @@ class StoryViewsFragment :
 
   private fun getConfiguration(state: StoryViewsState): DSLConfiguration {
     return configure {
-      state.views.forEach { storyViewItemData ->
+      state.views.sortedBy { it.recipient.getDisplayName(requireContext()) }.forEach { storyViewItemData ->
         customPref(
           StoryViewItem.Model(
             storyViewItemData = storyViewItemData,
