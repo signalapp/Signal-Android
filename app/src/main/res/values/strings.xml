@@ -4897,7 +4897,7 @@
     <string name="MediaReviewFragment__add_a_message">Add a message</string>
     <string name="MediaReviewFragment__add_a_reply">Add a reply</string>
     <string name="MediaReviewFragment__send_to">Send to</string>
-    <string name="MediaReviewFragment__view_once_message">View once message</string>
+    <string name="MediaReviewFragment__view_once_message">View once media</string>
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">One or more items were too large</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">One or more items were invalid</string>
     <string name="MediaReviewFragment__too_many_items_selected">Too many items selected</string>
