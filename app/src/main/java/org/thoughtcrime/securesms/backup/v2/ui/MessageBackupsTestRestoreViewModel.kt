@@ -15,8 +15,12 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.signal.core.util.orNull
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.jobmanager.JobTracker
+import org.thoughtcrime.securesms.jobs.BackupRestoreJob
 import org.thoughtcrime.securesms.recipients.Recipient
 import java.io.InputStream
 
@@ -40,6 +44,19 @@ class MessageBackupsTestRestoreViewModel : ViewModel() {
       }
   }
 
+  fun restore() {
+    _state.value = _state.value.copy(importState = ImportState.IN_PROGRESS)
+    disposables += Single.fromCallable {
+      val jobState = ApplicationDependencies.getJobManager().runSynchronously(BackupRestoreJob(), 120_000)
+      jobState.orNull() == JobTracker.JobState.SUCCESS
+    }
+      .subscribeOn(Schedulers.io())
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribeBy {
+        _state.value = _state.value.copy(importState = ImportState.RESTORED)
+      }
+  }
+
   fun onPlaintextToggled() {
     _state.value = _state.value.copy(plaintext = !_state.value.plaintext)
   }
@@ -54,6 +71,6 @@ class MessageBackupsTestRestoreViewModel : ViewModel() {
   )
 
   enum class ImportState(val inProgress: Boolean = false) {
-    NONE, IN_PROGRESS(true)
+    NONE, IN_PROGRESS(true), RESTORED
   }
 }

@@ -14,6 +14,7 @@ import org.junit.runner.RunWith
 import org.signal.core.util.Base64
 import org.signal.core.util.update
 import org.thoughtcrime.securesms.attachments.AttachmentId
+import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.database.AttachmentTable.TransformProperties
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -742,7 +743,7 @@ class AttachmentTableTest_deduping {
       assertArrayEquals(lhsAttachment.remoteDigest, rhsAttachment.remoteDigest)
       assertArrayEquals(lhsAttachment.incrementalDigest, rhsAttachment.incrementalDigest)
       assertEquals(lhsAttachment.incrementalMacChunkSize, rhsAttachment.incrementalMacChunkSize)
-      assertEquals(lhsAttachment.cdnNumber, rhsAttachment.cdnNumber)
+      assertEquals(lhsAttachment.cdn.cdnNumber, rhsAttachment.cdn.cdnNumber)
     }
 
     fun assertDoesNotHaveRemoteFields(attachmentId: AttachmentId) {
@@ -751,7 +752,7 @@ class AttachmentTableTest_deduping {
       assertNull(databaseAttachment.remoteLocation)
       assertNull(databaseAttachment.remoteDigest)
       assertNull(databaseAttachment.remoteKey)
-      assertEquals(0, databaseAttachment.cdnNumber)
+      assertEquals(0, databaseAttachment.cdn.cdnNumber)
     }
 
     fun assertSkipTransform(attachmentId: AttachmentId, state: Boolean) {
@@ -776,7 +777,7 @@ class AttachmentTableTest_deduping {
         AttachmentTable.TRANSFER_PROGRESS_DONE,
         databaseAttachment.size, // size
         null,
-        3, // cdnNumber
+        Cdn.CDN_3, // cdnNumber
         location,
         key,
         digest,

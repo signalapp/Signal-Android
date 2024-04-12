@@ -236,7 +236,7 @@ class UploadDependencyGraphTest {
       transferProgress = AttachmentTable.TRANSFER_PROGRESS_PENDING,
       size = attachment.size,
       fileName = attachment.fileName,
-      cdnNumber = attachment.cdnNumber,
+      cdn = attachment.cdn,
       location = attachment.remoteLocation,
       key = attachment.remoteKey,
       digest = attachment.remoteDigest,
@@ -256,7 +256,10 @@ class UploadDependencyGraphTest {
       transformProperties = attachment.transformProperties,
       displayOrder = 0,
       uploadTimestamp = attachment.uploadTimestamp,
-      dataHash = null
+      dataHash = null,
+      archiveMediaId = null,
+      archiveMediaName = null,
+      archiveCdn = 0
     )
   }
 

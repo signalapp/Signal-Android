@@ -288,7 +288,7 @@ public abstract class PushSendJob extends SendJob {
         }
       }
 
-      return new SignalServiceAttachmentPointer(attachment.cdnNumber,
+      return new SignalServiceAttachmentPointer(attachment.cdn.getCdnNumber(),
                                                 remoteId,
                                                 attachment.contentType,
                                                 key,

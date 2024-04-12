@@ -6,6 +6,8 @@ import org.signal.libsignal.protocol.InvalidMessageException;
 import org.signal.libsignal.protocol.incrementalmac.ChunkSizeChoice;
 import org.signal.libsignal.protocol.incrementalmac.InvalidMacException;
 import org.signal.libsignal.protocol.kdf.HKDFv3;
+import org.whispersystems.signalservice.api.backup.BackupKey;
+import org.whispersystems.signalservice.api.backup.MediaId;
 import org.whispersystems.signalservice.internal.crypto.PaddingInputStream;
 import org.whispersystems.signalservice.internal.push.http.AttachmentCipherOutputStreamFactory;
 import org.whispersystems.signalservice.internal.util.Util;
@@ -77,6 +79,62 @@ public final class AttachmentCipherTest {
       cipherFile = writeToFile(encryptResult.ciphertext);
 
       AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.length, badKey, encryptResult.digest, null, 0);
+    } catch (InvalidMessageException e) {
+      hitCorrectException = true;
+    } finally {
+      if (cipherFile != null) {
+        cipherFile.delete();
+      }
+    }
+
+    assertTrue(hitCorrectException);
+  }
+
+  @Test
+  public void archive_encryptDecrypt() throws IOException, InvalidMessageException {
+    byte[]                         key             = Util.getSecretBytes(64);
+    BackupKey.KeyMaterial<MediaId> keyMaterial     = BackupKey.KeyMaterial.forMedia(Util.getSecretBytes(15), key, Util.getSecretBytes(16));
+    byte[]                         plaintextInput  = "Peter Parker".getBytes();
+    EncryptResult                  encryptResult   = encryptData(plaintextInput, key, false);
+    File                           cipherFile      = writeToFile(encryptResult.ciphertext);
+    InputStream                    inputStream     = AttachmentCipherInputStream.createForArchivedMedia(keyMaterial, cipherFile, plaintextInput.length);
+    byte[]                         plaintextOutput = readInputStreamFully(inputStream);
+
+    assertArrayEquals(plaintextInput, plaintextOutput);
+
+    cipherFile.delete();
+  }
+
+  @Test
+  public void archive_encryptDecryptEmpty() throws IOException, InvalidMessageException {
+    byte[]                         key             = Util.getSecretBytes(64);
+    BackupKey.KeyMaterial<MediaId> keyMaterial     = BackupKey.KeyMaterial.forMedia(Util.getSecretBytes(15), key, Util.getSecretBytes(16));
+    byte[]                         plaintextInput  = "".getBytes();
+    EncryptResult                  encryptResult   = encryptData(plaintextInput, key, false);
+    File                           cipherFile      = writeToFile(encryptResult.ciphertext);
+    InputStream                    inputStream     = AttachmentCipherInputStream.createForArchivedMedia(keyMaterial, cipherFile, plaintextInput.length);
+    byte[]                         plaintextOutput = readInputStreamFully(inputStream);
+
+    assertArrayEquals(plaintextInput, plaintextOutput);
+
+    cipherFile.delete();
+  }
+
+  @Test
+  public void archive_decryptFailOnBadKey() throws IOException {
+    File    cipherFile          = null;
+    boolean hitCorrectException = false;
+
+    try {
+      byte[]                         key            = Util.getSecretBytes(64);
+      byte[]                         badKey         = Util.getSecretBytes(64);
+      BackupKey.KeyMaterial<MediaId> keyMaterial    = BackupKey.KeyMaterial.forMedia(Util.getSecretBytes(15), badKey, Util.getSecretBytes(16));
+      byte[]                         plaintextInput = "Gwen Stacy".getBytes();
+      EncryptResult                  encryptResult  = encryptData(plaintextInput, key, false);
+
+      cipherFile = writeToFile(encryptResult.ciphertext);
+
+      AttachmentCipherInputStream.createForArchivedMedia(keyMaterial, cipherFile, plaintextInput.length);
     } catch (InvalidMessageException e) {
       hitCorrectException = true;
     } finally {
@@ -185,6 +243,44 @@ public final class AttachmentCipherTest {
   }
 
   @Test
+  public void archive_encryptDecryptPaddedContent() throws IOException, InvalidMessageException {
+    int[] lengths = { 531, 600, 724, 1019, 1024 };
+
+    for (int length : lengths) {
+      byte[] plaintextInput = new byte[length];
+
+      for (int i = 0; i < length; i++) {
+        plaintextInput[i] = (byte) 0x97;
+      }
+
+      byte[]                key                     = Util.getSecretBytes(64);
+      byte[]                iv                      = Util.getSecretBytes(16);
+      ByteArrayInputStream  inputStream             = new ByteArrayInputStream(plaintextInput);
+      InputStream           paddedInputStream       = new PaddingInputStream(inputStream, length);
+      ByteArrayOutputStream destinationOutputStream = new ByteArrayOutputStream();
+
+      DigestingOutputStream encryptingOutputStream = new AttachmentCipherOutputStreamFactory(key, iv).createFor(destinationOutputStream);
+
+      Util.copy(paddedInputStream, encryptingOutputStream);
+
+      encryptingOutputStream.flush();
+      encryptingOutputStream.close();
+
+      byte[] encryptedData = destinationOutputStream.toByteArray();
+
+      File cipherFile = writeToFile(encryptedData);
+
+      BackupKey.KeyMaterial<MediaId> keyMaterial     = BackupKey.KeyMaterial.forMedia(Util.getSecretBytes(15), key, Util.getSecretBytes(16));
+      InputStream                    decryptedStream = AttachmentCipherInputStream.createForArchivedMedia(keyMaterial, cipherFile, length);
+      byte[]                         plaintextOutput = readInputStreamFully(decryptedStream);
+
+      assertArrayEquals(plaintextInput, plaintextOutput);
+
+      cipherFile.delete();
+    }
+  }
+
+  @Test
   public void attachment_decryptFailOnNullDigest() throws IOException {
     File    cipherFile          = null;
     boolean hitCorrectException = false;
@@ -225,6 +321,35 @@ public final class AttachmentCipherTest {
       cipherFile = writeToFile(badMacCiphertext);
 
       AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.length, key, encryptResult.digest, null, encryptResult.chunkSizeChoice);
+      fail();
+    } catch (InvalidMessageException e) {
+      hitCorrectException = true;
+    } finally {
+      if (cipherFile != null) {
+        cipherFile.delete();
+      }
+    }
+
+    assertTrue(hitCorrectException);
+  }
+
+  @Test
+  public void archive_decryptFailOnBadMac() throws IOException {
+    File    cipherFile          = null;
+    boolean hitCorrectException = false;
+
+    try {
+      byte[]        key              = Util.getSecretBytes(64);
+      byte[]        plaintextInput   = "Uncle Ben".getBytes();
+      EncryptResult encryptResult    = encryptData(plaintextInput, key, true);
+      byte[]        badMacCiphertext = Arrays.copyOf(encryptResult.ciphertext, encryptResult.ciphertext.length);
+
+      badMacCiphertext[badMacCiphertext.length - 1] += 1;
+
+      cipherFile = writeToFile(badMacCiphertext);
+
+      BackupKey.KeyMaterial<MediaId> keyMaterial     = BackupKey.KeyMaterial.forMedia(Util.getSecretBytes(15), key, Util.getSecretBytes(16));
+      AttachmentCipherInputStream.createForArchivedMedia(keyMaterial, cipherFile, plaintextInput.length);
       fail();
     } catch (InvalidMessageException e) {
       hitCorrectException = true;

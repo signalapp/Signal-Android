@@ -56,6 +56,7 @@ import org.whispersystems.signalservice.api.groupsv2.findRequestingByAci
 import org.whispersystems.signalservice.api.groupsv2.toAciList
 import org.whispersystems.signalservice.api.groupsv2.toAciListWithUnknowns
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer
+import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId
 import org.whispersystems.signalservice.api.push.DistributionId
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
@@ -746,7 +747,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
     values.put(MMS, groupId.isMms)
 
     if (avatar != null) {
-      values.put(AVATAR_ID, avatar.remoteId.v2.get())
+      values.put(AVATAR_ID, (avatar.remoteId as SignalServiceAttachmentRemoteId.V2).cdnId)
       values.put(AVATAR_KEY, avatar.key)
       values.put(AVATAR_CONTENT_TYPE, avatar.contentType)
       values.put(AVATAR_DIGEST, avatar.digest.orElse(null))
@@ -822,7 +823,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
       }
 
       if (avatar != null) {
-        put(AVATAR_ID, avatar.remoteId.v2.get())
+        put(AVATAR_ID, (avatar.remoteId as SignalServiceAttachmentRemoteId.V2).cdnId)
         put(AVATAR_CONTENT_TYPE, avatar.contentType)
         put(AVATAR_KEY, avatar.key)
         put(AVATAR_DIGEST, avatar.digest.orElse(null))

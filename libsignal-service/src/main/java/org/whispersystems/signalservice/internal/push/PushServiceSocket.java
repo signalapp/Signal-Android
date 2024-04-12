@@ -58,6 +58,7 @@ import org.whispersystems.signalservice.api.archive.ArchiveSetPublicKeyRequest;
 import org.whispersystems.signalservice.api.archive.BatchArchiveMediaRequest;
 import org.whispersystems.signalservice.api.archive.BatchArchiveMediaResponse;
 import org.whispersystems.signalservice.api.archive.DeleteArchivedMediaRequest;
+import org.whispersystems.signalservice.api.archive.GetArchiveCdnCredentialsResponse;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.groupsv2.CredentialResponse;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2AuthorizationString;
@@ -319,6 +320,7 @@ public class PushServiceSocket {
   private static final String ARCHIVE_MEDIA_LIST          = "/v1/archives/media?limit=%d";
   private static final String ARCHIVE_MEDIA_BATCH         = "/v1/archives/media/batch";
   private static final String ARCHIVE_MEDIA_DELETE        = "/v1/archives/media/delete";
+  private static final String ARCHIVE_MEDIA_DOWNLOAD_PATH = "backups/%s/%s/%s";
 
   private static final String CALL_LINK_CREATION_AUTH = "/v1/call-link/create-auth";
   private static final String SERVER_DELIVERED_TIMESTAMP_HEADER = "X-Signal-Timestamp";
@@ -585,6 +587,16 @@ public class PushServiceSocket {
     return JsonUtil.fromJson(response, ArchiveMessageBackupUploadFormResponse.class);
   }
 
+  /**
+   * Copy and re-encrypt media from the attachments cdn into the backup cdn.
+   */
+  public GetArchiveCdnCredentialsResponse getArchiveCdnReadCredentials(@Nonnull ArchiveCredentialPresentation credentialPresentation) throws IOException {
+    Map<String, String> headers = credentialPresentation.toHeaders();
+
+    String response = makeServiceRequestWithoutAuthentication(ARCHIVE_READ_CREDENTIALS, "GET", null, headers, NO_HANDLER);
+
+    return JsonUtil.fromJson(response, GetArchiveCdnCredentialsResponse.class);
+  }
 
   public VerifyAccountResponse changeNumber(@Nonnull ChangePhoneNumberRequest changePhoneNumberRequest)
       throws IOException
@@ -919,16 +931,27 @@ public class PushServiceSocket {
     }, Optional.empty());
   }
 
-  public void retrieveAttachment(int cdnNumber, SignalServiceAttachmentRemoteId cdnPath, File destination, long maxSizeBytes, ProgressListener listener)
+  public void retrieveBackup(int cdnNumber, Map<String, String> headers, String cdnPath, File destination, long maxSizeBytes, ProgressListener listener)
+      throws MissingConfigurationException, IOException
+  {
+    downloadFromCdn(destination, cdnNumber, headers, cdnPath, maxSizeBytes, listener);
+  }
+
+  public void retrieveAttachment(int cdnNumber, Map<String, String> headers, SignalServiceAttachmentRemoteId cdnPath, File destination, long maxSizeBytes, ProgressListener listener)
       throws IOException, MissingConfigurationException
   {
     final String path;
-    if (cdnPath.getV2().isPresent()) {
-      path = String.format(Locale.US, ATTACHMENT_ID_DOWNLOAD_PATH, cdnPath.getV2().get());
+    if (cdnPath instanceof SignalServiceAttachmentRemoteId.V2) {
+      path = String.format(Locale.US, ATTACHMENT_ID_DOWNLOAD_PATH, ((SignalServiceAttachmentRemoteId.V2) cdnPath).getCdnId());
+    } else if (cdnPath instanceof SignalServiceAttachmentRemoteId.V4) {
+      path = String.format(Locale.US, ATTACHMENT_KEY_DOWNLOAD_PATH, ((SignalServiceAttachmentRemoteId.V4) cdnPath).getCdnKey());
+    } else if (cdnPath instanceof SignalServiceAttachmentRemoteId.Backup) {
+      SignalServiceAttachmentRemoteId.Backup backupCdnId = (SignalServiceAttachmentRemoteId.Backup) cdnPath;
+      path = String.format(Locale.US, ARCHIVE_MEDIA_DOWNLOAD_PATH, backupCdnId.getBackupDir(), backupCdnId.getMediaDir(), backupCdnId.getMediaId());
     } else {
-      path = String.format(Locale.US, ATTACHMENT_KEY_DOWNLOAD_PATH, cdnPath.getV3().get());
+      throw new IllegalArgumentException("Invalid cdnPath type: " + cdnPath.getClass().getSimpleName());
     }
-    downloadFromCdn(destination, cdnNumber, path, maxSizeBytes, listener);
+    downloadFromCdn(destination, cdnNumber, headers, path, maxSizeBytes, listener);
   }
 
   public byte[] retrieveSticker(byte[] packId, int stickerId)
@@ -937,7 +960,7 @@ public class PushServiceSocket {
     ByteArrayOutputStream output    = new ByteArrayOutputStream();
 
     try {
-      downloadFromCdn(output, 0, 0, String.format(Locale.US, STICKER_PATH, hexPackId, stickerId), 1024 * 1024, null);
+      downloadFromCdn(output, 0, 0, Collections.emptyMap(), String.format(Locale.US, STICKER_PATH, hexPackId, stickerId), 1024 * 1024, null);
     } catch (MissingConfigurationException e) {
       throw new AssertionError(e);
     }
@@ -951,7 +974,7 @@ public class PushServiceSocket {
     ByteArrayOutputStream output    = new ByteArrayOutputStream();
 
     try {
-      downloadFromCdn(output, 0, 0, String.format(STICKER_MANIFEST_PATH, hexPackId), 1024 * 1024, null);
+      downloadFromCdn(output, 0, 0, Collections.emptyMap(), String.format(STICKER_MANIFEST_PATH, hexPackId), 1024 * 1024, null);
     } catch (MissingConfigurationException e) {
       throw new AssertionError(e);
     }
@@ -1029,7 +1052,7 @@ public class PushServiceSocket {
       throws IOException
   {
     try {
-      downloadFromCdn(destination, 0, path, maxSizeBytes, null);
+      downloadFromCdn(destination, 0, Collections.emptyMap(), path, maxSizeBytes, null);
     } catch (MissingConfigurationException e) {
       throw new AssertionError(e);
     }
@@ -1577,15 +1600,15 @@ public class PushServiceSocket {
     }
   }
 
-  private void downloadFromCdn(File destination, int cdnNumber, String path, long maxSizeBytes, ProgressListener listener)
+  private void downloadFromCdn(File destination, int cdnNumber, Map<String, String> headers, String path, long maxSizeBytes, ProgressListener listener)
       throws IOException, MissingConfigurationException
   {
     try (FileOutputStream outputStream = new FileOutputStream(destination, true)) {
-      downloadFromCdn(outputStream, destination.length(), cdnNumber, path, maxSizeBytes, listener);
+      downloadFromCdn(outputStream, destination.length(), cdnNumber, headers, path, maxSizeBytes, listener);
     }
   }
 
-  private void downloadFromCdn(OutputStream outputStream, long offset, int cdnNumber, String path, long maxSizeBytes, ProgressListener listener)
+  private void downloadFromCdn(OutputStream outputStream, long offset, int cdnNumber, Map<String, String> headers, String path, long maxSizeBytes, ProgressListener listener)
       throws PushNetworkException, NonSuccessfulResponseCodeException, MissingConfigurationException {
     ConnectionHolder[] cdnNumberClients = cdnClientsMap.get(cdnNumber);
     if (cdnNumberClients == null) {
@@ -1602,6 +1625,10 @@ public class PushServiceSocket {
 
     if (connectionHolder.getHostHeader().isPresent()) {
       request.addHeader("Host", connectionHolder.getHostHeader().get());
+    }
+
+    for (Map.Entry<String, String> header : headers.entrySet()) {
+      request.addHeader(header.getKey(), header.getValue());
     }
 
     if (offset > 0) {

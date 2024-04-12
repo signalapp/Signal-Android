@@ -56,12 +56,12 @@ public final class AttachmentPointerUtil {
       builder.incrementalMacChunkSize(attachment.getIncrementalMacChunkSize());
     }
 
-    if (attachment.getRemoteId().getV2().isPresent()) {
-      builder.cdnId(attachment.getRemoteId().getV2().get());
+    if (attachment.getRemoteId() instanceof SignalServiceAttachmentRemoteId.V2) {
+      builder.cdnId(((SignalServiceAttachmentRemoteId.V2) attachment.getRemoteId()).getCdnId());
     }
 
-    if (attachment.getRemoteId().getV3().isPresent()) {
-      builder.cdnKey(attachment.getRemoteId().getV3().get());
+    if (attachment.getRemoteId() instanceof SignalServiceAttachmentRemoteId.V4) {
+      builder.cdnKey(((SignalServiceAttachmentRemoteId.V4) attachment.getRemoteId()).getCdnKey());
     }
 
     if (attachment.getFileName().isPresent()) {

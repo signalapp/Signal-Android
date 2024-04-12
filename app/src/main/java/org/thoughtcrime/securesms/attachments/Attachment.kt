@@ -29,7 +29,7 @@ abstract class Attachment(
   @JvmField
   val fileName: String?,
   @JvmField
-  val cdnNumber: Int,
+  val cdn: Cdn,
   @JvmField
   val remoteLocation: String?,
   @JvmField
@@ -76,7 +76,7 @@ abstract class Attachment(
     transferState = parcel.readInt(),
     size = parcel.readLong(),
     fileName = parcel.readString(),
-    cdnNumber = parcel.readInt(),
+    cdn = Cdn.deserialize(parcel.readInt()),
     remoteLocation = parcel.readString(),
     remoteKey = parcel.readString(),
     remoteDigest = ParcelUtil.readByteArray(parcel),
@@ -103,7 +103,7 @@ abstract class Attachment(
     dest.writeInt(transferState)
     dest.writeLong(size)
     dest.writeString(fileName)
-    dest.writeInt(cdnNumber)
+    dest.writeInt(cdn.serialize())
     dest.writeString(remoteLocation)
     dest.writeString(remoteKey)
     ParcelUtil.writeByteArray(dest, remoteDigest)

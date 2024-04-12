@@ -29,6 +29,11 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHostState
@@ -37,6 +42,8 @@ import androidx.compose.material3.Switch
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -46,10 +53,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.Dividers
 import org.signal.core.ui.Snackbars
@@ -57,10 +66,13 @@ import org.signal.core.ui.theme.SignalTheme
 import org.signal.core.util.bytes
 import org.signal.core.util.getLength
 import org.signal.core.util.roundedString
+import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.components.settings.app.internal.backup.InternalBackupPlaygroundViewModel.BackupState
 import org.thoughtcrime.securesms.components.settings.app.internal.backup.InternalBackupPlaygroundViewModel.BackupUploadState
 import org.thoughtcrime.securesms.components.settings.app.internal.backup.InternalBackupPlaygroundViewModel.ScreenState
 import org.thoughtcrime.securesms.compose.ComposeFragment
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 
 class InternalBackupPlaygroundFragment : ComposeFragment() {
 
@@ -114,6 +126,8 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
     }
 
     Tabs(
+      onBack = { findNavController().popBackStack() },
+      onDeleteAllArchivedMedia = { viewModel.deleteAllArchivedMedia() },
       mainContent = {
         Screen(
           state = state,
@@ -149,25 +163,32 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
             }
 
             validateFileLauncher.launch(intent)
-          }
+          },
+          onTriggerBackupJobClicked = { viewModel.triggerBackupJob() },
+          onRestoreFromRemoteClicked = { viewModel.restoreFromRemote() }
         )
       },
       mediaContent = { snackbarHostState ->
         MediaList(
+          enabled = SignalStore.backup().canReadWriteToArchiveCdn,
           state = mediaState,
           snackbarHostState = snackbarHostState,
-          backupAttachmentMedia = { viewModel.backupAttachmentMedia(it) },
-          deleteBackupAttachmentMedia = { viewModel.deleteBackupAttachmentMedia(it) },
-          batchBackupAttachmentMedia = { viewModel.backupAttachmentMedia(it) },
-          batchDeleteBackupAttachmentMedia = { viewModel.deleteBackupAttachmentMedia(it) }
+          archiveAttachmentMedia = { viewModel.archiveAttachmentMedia(it) },
+          deleteArchivedMedia = { viewModel.deleteArchivedMedia(it) },
+          batchArchiveAttachmentMedia = { viewModel.archiveAttachmentMedia(it) },
+          batchDeleteBackupAttachmentMedia = { viewModel.deleteArchivedMedia(it) },
+          restoreArchivedMedia = { viewModel.restoreArchivedMedia(it) }
         )
       }
     )
   }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Tabs(
+  onBack: () -> Unit,
+  onDeleteAllArchivedMedia: () -> Unit,
   mainContent: @Composable () -> Unit,
   mediaContent: @Composable (snackbarHostState: SnackbarHostState) -> Unit
 ) {
@@ -179,13 +200,36 @@ fun Tabs(
   Scaffold(
     snackbarHost = { Snackbars.Host(snackbarHostState) },
     topBar = {
-      TabRow(selectedTabIndex = tabIndex) {
-        tabs.forEachIndexed { index, tab ->
-          Tab(
-            text = { Text(tab) },
-            selected = index == tabIndex,
-            onClick = { tabIndex = index }
-          )
+      Column {
+        TopAppBar(
+          title = {
+            Text("Backup Playground")
+          },
+          navigationIcon = {
+            IconButton(onClick = onBack) {
+              Icon(
+                painter = painterResource(R.drawable.symbol_arrow_left_24),
+                tint = MaterialTheme.colorScheme.onSurface,
+                contentDescription = null
+              )
+            }
+          },
+          actions = {
+            if (tabIndex == 1 && SignalStore.backup().canReadWriteToArchiveCdn) {
+              TextButton(onClick = onDeleteAllArchivedMedia) {
+                Text(text = "Delete All")
+              }
+            }
+          }
+        )
+        TabRow(selectedTabIndex = tabIndex) {
+          tabs.forEachIndexed { index, tab ->
+            Tab(
+              text = { Text(tab) },
+              selected = index == tabIndex,
+              onClick = { tabIndex = index }
+            )
+          }
         }
       }
     }
@@ -209,7 +253,9 @@ fun Screen(
   onSaveToDiskClicked: () -> Unit = {},
   onValidateFileClicked: () -> Unit = {},
   onUploadToRemoteClicked: () -> Unit = {},
-  onCheckRemoteBackupStateClicked: () -> Unit = {}
+  onCheckRemoteBackupStateClicked: () -> Unit = {},
+  onTriggerBackupJobClicked: () -> Unit = {},
+  onRestoreFromRemoteClicked: () -> Unit = {}
 ) {
   Surface {
     Column(
@@ -237,6 +283,13 @@ fun Screen(
         enabled = !state.backupState.inProgress
       ) {
         Text("Export")
+      }
+
+      Buttons.LargePrimary(
+        onClick = onTriggerBackupJobClicked,
+        enabled = !state.backupState.inProgress
+      ) {
+        Text("Trigger Backup Job")
       }
 
       Dividers.Default()
@@ -278,6 +331,10 @@ fun Screen(
           Buttons.MediumTonal(onClick = onSaveToDiskClicked) {
             Text("Save to file")
           }
+        }
+
+        BackupState.BACKUP_JOB_DONE -> {
+          StateLabel("Backup complete and uploaded")
         }
 
         BackupState.IMPORT_IN_PROGRESS -> {
@@ -324,6 +381,10 @@ fun Screen(
 
       Spacer(modifier = Modifier.height(8.dp))
 
+      Buttons.LargePrimary(onClick = onRestoreFromRemoteClicked) {
+        Text("Restore from remote")
+      }
+
       when (state.uploadState) {
         BackupUploadState.NONE -> {
           StateLabel("")
@@ -357,13 +418,24 @@ private fun StateLabel(text: String) {
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun MediaList(
+  enabled: Boolean,
   state: InternalBackupPlaygroundViewModel.MediaState,
   snackbarHostState: SnackbarHostState,
-  backupAttachmentMedia: (InternalBackupPlaygroundViewModel.BackupAttachment) -> Unit,
-  deleteBackupAttachmentMedia: (InternalBackupPlaygroundViewModel.BackupAttachment) -> Unit,
-  batchBackupAttachmentMedia: (Set<String>) -> Unit,
-  batchDeleteBackupAttachmentMedia: (Set<String>) -> Unit
+  archiveAttachmentMedia: (InternalBackupPlaygroundViewModel.BackupAttachment) -> Unit,
+  deleteArchivedMedia: (InternalBackupPlaygroundViewModel.BackupAttachment) -> Unit,
+  batchArchiveAttachmentMedia: (Set<AttachmentId>) -> Unit,
+  batchDeleteBackupAttachmentMedia: (Set<AttachmentId>) -> Unit,
+  restoreArchivedMedia: (InternalBackupPlaygroundViewModel.BackupAttachment) -> Unit
 ) {
+  if (!enabled) {
+    Text(
+      text = "You do not have read/write to archive cdn enabled via SignalStore.backup()",
+      modifier = Modifier
+        .padding(16.dp)
+    )
+    return
+  }
+
   LaunchedEffect(state.error?.id) {
     state.error?.let {
       snackbarHostState.showSnackbar(it.errorText)
@@ -384,51 +456,88 @@ fun MediaList(
             .combinedClickable(
               onClick = {
                 if (selectionState.selecting) {
-                  selectionState = selectionState.copy(selected = if (selectionState.selected.contains(attachment.mediaId)) selectionState.selected - attachment.mediaId else selectionState.selected + attachment.mediaId)
+                  selectionState = selectionState.copy(selected = if (selectionState.selected.contains(attachment.id)) selectionState.selected - attachment.id else selectionState.selected + attachment.id)
                 }
               },
               onLongClick = {
-                selectionState = if (selectionState.selecting) MediaMultiSelectState() else MediaMultiSelectState(selecting = true, selected = setOf(attachment.mediaId))
+                selectionState = if (selectionState.selecting) MediaMultiSelectState() else MediaMultiSelectState(selecting = true, selected = setOf(attachment.id))
               }
             )
             .padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
           if (selectionState.selecting) {
             Checkbox(
-              checked = selectionState.selected.contains(attachment.mediaId),
+              checked = selectionState.selected.contains(attachment.id),
               onCheckedChange = { selected ->
-                selectionState = selectionState.copy(selected = if (selected) selectionState.selected + attachment.mediaId else selectionState.selected - attachment.mediaId)
+                selectionState = selectionState.copy(selected = if (selected) selectionState.selected + attachment.id else selectionState.selected - attachment.id)
               }
             )
           }
 
           Column(modifier = Modifier.weight(1f, true)) {
-            Text(text = "Attachment ${attachment.title}")
+            Text(text = attachment.title)
             Text(text = "State: ${attachment.state}")
           }
 
-          if (attachment.state == InternalBackupPlaygroundViewModel.BackupAttachment.State.INIT ||
-            attachment.state == InternalBackupPlaygroundViewModel.BackupAttachment.State.IN_PROGRESS
-          ) {
+          if (attachment.state == InternalBackupPlaygroundViewModel.BackupAttachment.State.IN_PROGRESS) {
             CircularProgressIndicator()
           } else {
             Button(
               enabled = !selectionState.selecting,
               onClick = {
                 when (attachment.state) {
-                  InternalBackupPlaygroundViewModel.BackupAttachment.State.LOCAL_ONLY -> backupAttachmentMedia(attachment)
-                  InternalBackupPlaygroundViewModel.BackupAttachment.State.UPLOADED -> deleteBackupAttachmentMedia(attachment)
+                  InternalBackupPlaygroundViewModel.BackupAttachment.State.ATTACHMENT_CDN,
+                  InternalBackupPlaygroundViewModel.BackupAttachment.State.LOCAL_ONLY -> archiveAttachmentMedia(attachment)
+
+                  InternalBackupPlaygroundViewModel.BackupAttachment.State.UPLOADED_UNDOWNLOADED,
+                  InternalBackupPlaygroundViewModel.BackupAttachment.State.UPLOADED_FINAL -> selectionState = selectionState.copy(expandedOption = attachment.dbAttachment.attachmentId)
+
                   else -> throw AssertionError("Unsupported state: ${attachment.state}")
                 }
               }
             ) {
               Text(
                 text = when (attachment.state) {
+                  InternalBackupPlaygroundViewModel.BackupAttachment.State.ATTACHMENT_CDN,
                   InternalBackupPlaygroundViewModel.BackupAttachment.State.LOCAL_ONLY -> "Backup"
-                  InternalBackupPlaygroundViewModel.BackupAttachment.State.UPLOADED -> "Remote Delete"
+
+                  InternalBackupPlaygroundViewModel.BackupAttachment.State.UPLOADED_UNDOWNLOADED,
+                  InternalBackupPlaygroundViewModel.BackupAttachment.State.UPLOADED_FINAL -> "Options..."
+
                   else -> throw AssertionError("Unsupported state: ${attachment.state}")
                 }
               )
+
+              DropdownMenu(
+                expanded = attachment.dbAttachment.attachmentId == selectionState.expandedOption,
+                onDismissRequest = { selectionState = selectionState.copy(expandedOption = null) }
+              ) {
+                DropdownMenuItem(
+                  text = { Text("Remote Delete") },
+                  onClick = {
+                    selectionState = selectionState.copy(expandedOption = null)
+                    deleteArchivedMedia(attachment)
+                  }
+                )
+
+                DropdownMenuItem(
+                  text = { Text("Pseudo Restore") },
+                  onClick = {
+                    selectionState = selectionState.copy(expandedOption = null)
+                    restoreArchivedMedia(attachment)
+                  }
+                )
+
+                if (attachment.dbAttachment.dataHash != null && attachment.state == InternalBackupPlaygroundViewModel.BackupAttachment.State.UPLOADED_UNDOWNLOADED) {
+                  DropdownMenuItem(
+                    text = { Text("Re-copy with hash") },
+                    onClick = {
+                      selectionState = selectionState.copy(expandedOption = null)
+                      archiveAttachmentMedia(attachment)
+                    }
+                  )
+                }
+              }
             }
           }
         }
@@ -451,7 +560,7 @@ fun MediaList(
           Text("Cancel")
         }
         Button(onClick = {
-          batchBackupAttachmentMedia(selectionState.selected)
+          batchArchiveAttachmentMedia(selectionState.selected)
           selectionState = MediaMultiSelectState()
         }) {
           Text("Backup")
@@ -469,7 +578,8 @@ fun MediaList(
 
 private data class MediaMultiSelectState(
   val selecting: Boolean = false,
-  val selected: Set<String> = emptySet()
+  val selected: Set<AttachmentId> = emptySet(),
+  val expandedOption: AttachmentId? = null
 )
 
 @Preview(name = "Light Theme", group = "screen", uiMode = Configuration.UI_MODE_NIGHT_NO)

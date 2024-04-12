@@ -26,6 +26,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -80,6 +81,15 @@ class MessageBackupsTestRestoreActivity : BaseActivity() {
             .fillMaxSize()
             .padding(16.dp)
         ) {
+          Buttons.LargePrimary(
+            onClick = this@MessageBackupsTestRestoreActivity::restoreFromServer,
+            enabled = !state.importState.inProgress
+          ) {
+            Text("Restore")
+          }
+
+          Spacer(modifier = Modifier.height(8.dp))
+
           Row(
             verticalAlignment = Alignment.CenterVertically
           ) {
@@ -120,7 +130,18 @@ class MessageBackupsTestRestoreActivity : BaseActivity() {
           }
         }
       }
+      if (state.importState == MessageBackupsTestRestoreViewModel.ImportState.RESTORED) {
+        SideEffect {
+          RegistrationUtil.maybeMarkRegistrationComplete()
+          ApplicationDependencies.getJobManager().add(ProfileUploadJob())
+          startActivity(MainActivity.clearTop(this))
+        }
+      }
     }
+  }
+
+  private fun restoreFromServer() {
+    viewModel.restore()
   }
 
   private fun continueRegistration() {

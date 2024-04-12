@@ -1163,6 +1163,10 @@
         android:exported="false"/>
 
     <service
+        android:name=".service.BackupProgressService"
+        android:exported="false"/>
+
+    <service
         android:name=".gcm.FcmFetchBackgroundService"
         android:exported="false"/>
 

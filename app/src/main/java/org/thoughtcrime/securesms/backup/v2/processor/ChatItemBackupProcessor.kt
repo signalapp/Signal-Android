@@ -19,7 +19,7 @@ object ChatItemBackupProcessor {
   val TAG = Log.tag(ChatItemBackupProcessor::class.java)
 
   fun export(exportState: ExportState, emitter: BackupFrameEmitter) {
-    SignalDatabase.messages.getMessagesForBackup(exportState.backupTime).use { chatItems ->
+    SignalDatabase.messages.getMessagesForBackup(exportState.backupTime, exportState.allowMediaBackup).use { chatItems ->
       for (chatItem in chatItems) {
         if (exportState.threadIds.contains(chatItem.chatId)) {
           emitter.emit(Frame(chatItem = chatItem))

@@ -150,8 +150,8 @@ class AttachmentProgressService : SafeForegroundService() {
 
     /** Has to have separate setter to avoid infinite loops when [progress] and [indeterminate] interact. */
     fun setIndeterminate(value: Boolean) {
-      indeterminate = value
       progress = 0f
+      indeterminate = value
       onControllersChanged(context)
     }
 

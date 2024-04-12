@@ -1008,17 +1008,47 @@ class ImportExportTest {
                 attachmentLocator = FilePointer.AttachmentLocator(
                   cdnKey = "coolCdnKey",
                   cdnNumber = 2,
-                  uploadTimestamp = System.currentTimeMillis()
+                  uploadTimestamp = System.currentTimeMillis(),
+                  key = (1..32).map { it.toByte() }.toByteArray().toByteString(),
+                  size = 12345,
+                  digest = (1..32).map { it.toByte() }.toByteArray().toByteString()
                 ),
-                key = (1..32).map { it.toByte() }.toByteArray().toByteString(),
                 contentType = "image/png",
-                size = 12345,
                 fileName = "very_cool_picture.png",
                 width = 100,
                 height = 200,
                 caption = "Love this cool picture!",
                 incrementalMacChunkSize = 0
-              )
+              ),
+              wasDownloaded = true
+            ),
+            MessageAttachment(
+              pointer = FilePointer(
+                invalidAttachmentLocator = FilePointer.InvalidAttachmentLocator(),
+                contentType = "image/png",
+                width = 100,
+                height = 200,
+                caption = "Love this cool picture! Too bad u cant download it",
+                incrementalMacChunkSize = 0
+              ),
+              wasDownloaded = false
+            ),
+            MessageAttachment(
+              pointer = FilePointer(
+                backupLocator = FilePointer.BackupLocator(
+                  "digestherebutimlazy",
+                  cdnNumber = 3,
+                  key = (1..32).map { it.toByte() }.toByteArray().toByteString(),
+                  digest = (1..64).map { it.toByte() }.toByteArray().toByteString(),
+                  size = 12345
+                ),
+                contentType = "image/png",
+                width = 100,
+                height = 200,
+                caption = "Love this cool picture! Too bad u cant download it",
+                incrementalMacChunkSize = 0
+              ),
+              wasDownloaded = true
             )
           )
         )

@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.releasechannel
 
+import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.MessageType
@@ -20,8 +21,6 @@ import java.util.UUID
  */
 object ReleaseChannel {
 
-  const val CDN_NUMBER = -1
-
   fun insertReleaseChannelMessage(
     recipientId: RecipientId,
     body: String,
@@ -36,8 +35,8 @@ object ReleaseChannel {
   ): MessageTable.InsertResult? {
     val attachments: Optional<List<SignalServiceAttachment>> = if (media != null) {
       val attachment = SignalServiceAttachmentPointer(
-        CDN_NUMBER,
-        SignalServiceAttachmentRemoteId.from(""),
+        Cdn.S3.cdnNumber,
+        SignalServiceAttachmentRemoteId.S3,
         mediaType,
         null,
         Optional.empty(),

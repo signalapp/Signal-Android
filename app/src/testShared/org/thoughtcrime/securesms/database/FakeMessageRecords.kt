@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.database
 
 import org.thoughtcrime.securesms.attachments.AttachmentId
+import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.audio.AudioHash
 import org.thoughtcrime.securesms.blurhash.BlurHash
@@ -35,7 +36,7 @@ object FakeMessageRecords {
     transferProgress: Int = AttachmentTable.TRANSFER_PROGRESS_DONE,
     size: Long = 0L,
     fileName: String = "",
-    cdnNumber: Int = 1,
+    cdnNumber: Int = 3,
     location: String = "",
     key: String = "",
     relay: String = "",
@@ -56,7 +57,10 @@ object FakeMessageRecords {
     transformProperties: AttachmentTable.TransformProperties? = null,
     displayOrder: Int = 0,
     uploadTimestamp: Long = 200,
-    dataHash: String? = null
+    dataHash: String? = null,
+    archiveCdn: Int = 0,
+    archiveMediaName: String? = null,
+    archiveMediaId: String? = null
   ): DatabaseAttachment {
     return DatabaseAttachment(
       attachmentId,
@@ -67,7 +71,7 @@ object FakeMessageRecords {
       transferProgress,
       size,
       fileName,
-      cdnNumber,
+      Cdn.fromCdnNumber(cdnNumber),
       location,
       key,
       digest,
@@ -87,7 +91,10 @@ object FakeMessageRecords {
       transformProperties,
       displayOrder,
       uploadTimestamp,
-      dataHash
+      dataHash,
+      archiveCdn,
+      archiveMediaId,
+      archiveMediaName
     )
   }
 

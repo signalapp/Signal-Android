@@ -16,10 +16,14 @@ class BackupKey(val value: ByteArray) {
     require(value.size == 32) { "Backup key must be 32 bytes!" }
   }
 
-  fun deriveSecrets(aci: ACI): KeyMaterial<BackupId> {
-    val backupId = BackupId(
+  fun deriveBackupId(aci: ACI): BackupId {
+    return BackupId(
       HKDF.deriveSecrets(this.value, aci.toByteArray(), "20231003_Signal_Backups_GenerateBackupId".toByteArray(), 16)
     )
+  }
+
+  fun deriveSecrets(aci: ACI): KeyMaterial<BackupId> {
+    val backupId = deriveBackupId(aci)
 
     val extendedKey = HKDF.deriveSecrets(this.value, backupId.value, "20231003_Signal_Backups_EncryptMessageBackup".toByteArray(), 80)
 
@@ -31,13 +35,15 @@ class BackupKey(val value: ByteArray) {
     )
   }
 
-  fun deriveMediaId(dataHash: ByteArray): MediaId {
-    return MediaId(HKDF.deriveSecrets(value, dataHash, "Media ID".toByteArray(), 15))
+  fun deriveMediaId(mediaName: MediaName): MediaId {
+    return MediaId(HKDF.deriveSecrets(value, mediaName.toByteArray(), "Media ID".toByteArray(), 15))
   }
 
-  fun deriveMediaSecrets(dataHash: ByteArray): KeyMaterial<MediaId> {
-    val mediaId = deriveMediaId(dataHash)
+  fun deriveMediaSecrets(mediaName: MediaName): KeyMaterial<MediaId> {
+    return deriveMediaSecrets(deriveMediaId(mediaName))
+  }
 
+  fun deriveMediaSecrets(mediaId: MediaId): KeyMaterial<MediaId> {
     val extendedKey = HKDF.deriveSecrets(this.value, mediaId.value, "20231003_Signal_Backups_EncryptMedia".toByteArray(), 80)
 
     return KeyMaterial(
@@ -53,5 +59,17 @@ class BackupKey(val value: ByteArray) {
     val macKey: ByteArray,
     val cipherKey: ByteArray,
     val iv: ByteArray
-  )
+  ) {
+    companion object {
+      @JvmStatic
+      fun forMedia(id: ByteArray, keyMac: ByteArray, iv: ByteArray): KeyMaterial<MediaId> {
+        return KeyMaterial(
+          MediaId(id),
+          keyMac.copyOfRange(32, 64),
+          keyMac.copyOfRange(0, 32),
+          iv
+        )
+      }
+    }
+  }
 }

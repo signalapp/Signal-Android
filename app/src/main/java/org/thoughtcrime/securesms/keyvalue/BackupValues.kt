@@ -2,20 +2,43 @@ package org.thoughtcrime.securesms.keyvalue
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.backup.RestoreState
 import org.whispersystems.signalservice.api.archive.ArchiveServiceCredential
+import org.whispersystems.signalservice.api.archive.GetArchiveCdnCredentialsResponse
 import org.whispersystems.signalservice.internal.util.JsonUtil
 import java.io.IOException
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
+import kotlin.time.Duration.Companion.hours
 
 internal class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
   companion object {
     val TAG = Log.tag(BackupValues::class.java)
-    val KEY_CREDENTIALS = "backup.credentials"
+    private const val KEY_CREDENTIALS = "backup.credentials"
+    private const val KEY_CDN_CAN_READ_WRITE = "backup.cdn.canReadWrite"
+    private const val KEY_CDN_READ_CREDENTIALS = "backup.cdn.readCredentials"
+    private const val KEY_CDN_READ_CREDENTIALS_TIMESTAMP = "backup.cdn.readCredentials.timestamp"
+    private const val KEY_RESTORE_STATE = "backup.restoreState"
+
+    private const val KEY_CDN_BACKUP_DIRECTORY = "backup.cdn.directory"
+    private const val KEY_CDN_BACKUP_MEDIA_DIRECTORY = "backup.cdn.mediaDirectory"
+
+    private const val KEY_OPTIMIZE_STORAGE = "backup.optimizeStorage"
+
+    private val cachedCdnCredentialsExpiresIn: Duration = 12.hours
   }
+
+  private var cachedCdnCredentialsTimestamp: Long by longValue(KEY_CDN_READ_CREDENTIALS_TIMESTAMP, 0L)
+  private var cachedCdnCredentials: String? by stringValue(KEY_CDN_READ_CREDENTIALS, null)
+  var cachedBackupDirectory: String? by stringValue(KEY_CDN_BACKUP_DIRECTORY, null)
+  var cachedBackupMediaDirectory: String? by stringValue(KEY_CDN_BACKUP_MEDIA_DIRECTORY, null)
 
   override fun onFirstEverAppLaunch() = Unit
   override fun getKeysToIncludeInBackup(): List<String> = emptyList()
+
+  var canReadWriteToArchiveCdn: Boolean by booleanValue(KEY_CDN_CAN_READ_WRITE, false)
+  var restoreState: RestoreState by enumValue(KEY_RESTORE_STATE, RestoreState.NONE, RestoreState.serializer)
+  var optimizeStorage: Boolean by booleanValue(KEY_OPTIMIZE_STORAGE, false)
 
   /**
    * Retrieves the stored credentials, mapped by the day they're valid. The day is represented as
@@ -34,6 +57,28 @@ internal class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
         putString(KEY_CREDENTIALS, null)
         ArchiveServiceCredentials()
       }
+    }
+
+  var cdnReadCredentials: GetArchiveCdnCredentialsResponse?
+    get() {
+      val cacheAge = System.currentTimeMillis() - cachedCdnCredentialsTimestamp
+      val cached = cachedCdnCredentials
+
+      return if (cached != null && (cacheAge > 0 && cacheAge < cachedCdnCredentialsExpiresIn.inWholeMilliseconds)) {
+        try {
+          JsonUtil.fromJson(cached, GetArchiveCdnCredentialsResponse::class.java)
+        } catch (e: IOException) {
+          Log.w(TAG, "Invalid JSON! Clearing.", e)
+          cachedCdnCredentials = null
+          null
+        }
+      } else {
+        null
+      }
+    }
+    set(value) {
+      cachedCdnCredentials = value?.let { JsonUtil.toJson(it) }
+      cachedCdnCredentialsTimestamp = System.currentTimeMillis()
     }
 
   /**

@@ -17,7 +17,8 @@ object AttachmentCreator : Parcelable.Creator<Attachment> {
     DATABASE(DatabaseAttachment::class.java, "database"),
     POINTER(PointerAttachment::class.java, "pointer"),
     TOMBSTONE(TombstoneAttachment::class.java, "tombstone"),
-    URI(UriAttachment::class.java, "uri")
+    URI(UriAttachment::class.java, "uri"),
+    ARCHIVED(ArchivedAttachment::class.java, "archived")
   }
 
   @JvmStatic
@@ -34,6 +35,7 @@ object AttachmentCreator : Parcelable.Creator<Attachment> {
       Subclass.POINTER -> PointerAttachment(source)
       Subclass.TOMBSTONE -> TombstoneAttachment(source)
       Subclass.URI -> UriAttachment(source)
+      Subclass.ARCHIVED -> ArchivedAttachment(source)
     }
   }
 

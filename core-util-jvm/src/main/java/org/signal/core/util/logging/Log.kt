@@ -5,6 +5,8 @@
 
 package org.signal.core.util.logging
 
+import kotlin.reflect.KClass
+
 object Log {
   private val NOOP_LOGGER: Logger = NoopLogger()
   private var internalCheck: InternalCheck? = null
@@ -101,6 +103,11 @@ object Log {
 
   @JvmStatic
   fun e(tag: String, message: String?, t: Throwable?, keepLonger: Boolean) = logger.e(tag, message, t, keepLonger)
+
+  @JvmStatic
+  fun tag(clazz: KClass<*>): String {
+    return tag(clazz.java)
+  }
 
   @JvmStatic
   fun tag(clazz: Class<*>): String {

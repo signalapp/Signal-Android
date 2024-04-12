@@ -13,11 +13,14 @@ import org.signal.core.util.Base64
 @JvmInline
 value class MediaId(val value: ByteArray) {
 
+  constructor(mediaId: String) : this(Base64.decode(mediaId))
+
   init {
     require(value.size == 15) { "MediaId must be 15 bytes!" }
   }
 
-  override fun toString(): String {
+  /** Encode media-id for use in a URL/request */
+  fun encode(): String {
     return Base64.encodeUrlSafeWithPadding(value)
   }
 }

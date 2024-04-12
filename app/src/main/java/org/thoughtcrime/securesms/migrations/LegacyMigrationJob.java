@@ -255,7 +255,7 @@ public class LegacyMigrationJob extends MigrationJob {
         attachmentDb.setTransferState(attachment.mmsId, attachment.attachmentId, AttachmentTable.TRANSFER_PROGRESS_DONE);
       } else if (record != null && !record.isOutgoing() && record.isPush()) {
         Log.i(TAG, "queuing new attachment download job for incoming push part " + attachment.attachmentId + ".");
-        ApplicationDependencies.getJobManager().add(new AttachmentDownloadJob(attachment.mmsId, attachment.attachmentId, false));
+        ApplicationDependencies.getJobManager().add(new AttachmentDownloadJob(attachment.mmsId, attachment.attachmentId, false, false));
       }
       reader.close();
     }

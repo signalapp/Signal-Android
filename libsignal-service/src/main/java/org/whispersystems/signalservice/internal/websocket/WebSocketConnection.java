@@ -300,7 +300,7 @@ public class WebSocketConnection extends WebSocketListener {
         OutgoingRequest listener = outgoingRequests.remove(message.response.id);
         if (listener != null) {
           listener.onSuccess(new WebsocketResponse(message.response.status,
-                                                   new String(message.response.body.toByteArray()),
+                                                   message.response.body == null ? "" : new String(message.response.body.toByteArray()),
                                                    message.response.headers,
                                                    !credentialsProvider.isPresent()));
           if (message.response.status >= 400) {

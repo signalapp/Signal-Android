@@ -10,7 +10,9 @@ import org.signal.libsignal.protocol.InvalidMacException;
 import org.signal.libsignal.protocol.InvalidMessageException;
 import org.signal.libsignal.protocol.incrementalmac.ChunkSizeChoice;
 import org.signal.libsignal.protocol.incrementalmac.IncrementalMacInputStream;
-import org.signal.libsignal.protocol.kdf.HKDFv3;
+import org.signal.libsignal.protocol.kdf.HKDF;
+import org.whispersystems.signalservice.api.backup.BackupKey;
+import org.whispersystems.signalservice.api.backup.MediaId;
 import org.whispersystems.signalservice.internal.util.ContentLengthInputStream;
 import org.whispersystems.signalservice.internal.util.Util;
 
@@ -26,6 +28,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
@@ -47,9 +51,10 @@ public class AttachmentCipherInputStream extends FilterInputStream {
   private static final int CIPHER_KEY_SIZE = 32;
   private static final int MAC_KEY_SIZE    = 32;
 
-  private Cipher  cipher;
+  private final Cipher cipher;
+  private final long   totalDataSize;
+
   private boolean done;
-  private long    totalDataSize;
   private long    totalRead;
   private byte[]  overflowBuffer;
 
@@ -102,11 +107,43 @@ public class AttachmentCipherInputStream extends FilterInputStream {
     }
   }
 
+  /**
+   * Decrypt archived media to it's original attachment encrypted blob.
+   */
+  public static InputStream createForArchivedMedia(BackupKey.KeyMaterial<MediaId> archivedMediaKeyMaterial, File file, long originalCipherTextLength)
+      throws InvalidMessageException, IOException
+  {
+    try {
+      Mac mac = Mac.getInstance("HmacSHA256");
+      mac.init(new SecretKeySpec(archivedMediaKeyMaterial.getMacKey(), "HmacSHA256"));
+
+      if (file.length() <= BLOCK_SIZE + mac.getMacLength()) {
+        throw new InvalidMessageException("Message shorter than crypto overhead!");
+      }
+
+      try (FileInputStream macVerificationStream = new FileInputStream(file)) {
+        verifyMac(macVerificationStream, file.length(), mac, null);
+      }
+
+      InputStream inputStream = new AttachmentCipherInputStream(new FileInputStream(file), archivedMediaKeyMaterial.getCipherKey(), file.length() - BLOCK_SIZE - mac.getMacLength());
+
+      if (originalCipherTextLength != 0) {
+        inputStream = new ContentLengthInputStream(inputStream, originalCipherTextLength);
+      }
+
+      return inputStream;
+    } catch (NoSuchAlgorithmException | InvalidKeyException e) {
+      throw new AssertionError(e);
+    } catch (InvalidMacException e) {
+      throw new InvalidMessageException(e);
+    }
+  }
+
   public static InputStream createForStickerData(byte[] data, byte[] packKey)
       throws InvalidMessageException, IOException
   {
     try {
-      byte[]   combinedKeyMaterial = new HKDFv3().deriveSecrets(packKey, "Sticker Pack".getBytes(), 64);
+      byte[]   combinedKeyMaterial = HKDF.deriveSecrets(packKey, "Sticker Pack".getBytes(), 64);
       byte[][] parts               = Util.split(combinedKeyMaterial, CIPHER_KEY_SIZE, MAC_KEY_SIZE);
       Mac      mac                 = Mac.getInstance("HmacSHA256");
       mac.init(new SecretKeySpec(parts[1], "HmacSHA256"));
@@ -159,12 +196,12 @@ public class AttachmentCipherInputStream extends FilterInputStream {
   }
 
   @Override
-  public int read(byte[] buffer) throws IOException {
+  public int read(@Nonnull byte[] buffer) throws IOException {
     return read(buffer, 0, buffer.length);
   }
 
   @Override
-  public int read(byte[] buffer, int offset, int length) throws IOException {
+  public int read(@Nonnull byte[] buffer, int offset, int length) throws IOException {
     if (totalRead != totalDataSize) {
       return readIncremental(buffer, offset, length);
     } else if (!done) {
@@ -256,7 +293,7 @@ public class AttachmentCipherInputStream extends FilterInputStream {
     }
   }
 
-  private static void verifyMac(InputStream inputStream, long length, Mac mac, byte[] theirDigest)
+  private static void verifyMac(@Nonnull InputStream inputStream, long length, @Nonnull Mac mac, @Nullable byte[] theirDigest)
       throws InvalidMacException
   {
     try {

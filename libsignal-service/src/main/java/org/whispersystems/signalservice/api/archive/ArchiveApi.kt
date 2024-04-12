@@ -55,6 +55,15 @@ class ArchiveApi(
     }
   }
 
+  fun getCdnReadCredentials(backupKey: BackupKey, serviceCredential: ArchiveServiceCredential): NetworkResult<GetArchiveCdnCredentialsResponse> {
+    return NetworkResult.fromFetch {
+      val zkCredential = getZkCredential(backupKey, serviceCredential)
+      val presentationData = CredentialPresentationData.from(backupKey, zkCredential, backupServerPublicParams)
+
+      pushServiceSocket.getArchiveCdnReadCredentials(presentationData.toArchiveCredentialPresentation())
+    }
+  }
+
   /**
    * Ensures that you reserve a backupId on the service. This must be done before any other
    * backup-related calls. You only need to do it once, but repeated calls are safe.

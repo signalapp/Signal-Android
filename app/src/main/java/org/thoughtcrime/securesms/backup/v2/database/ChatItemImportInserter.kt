@@ -13,8 +13,11 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.signal.core.util.requireLong
 import org.signal.core.util.toInt
+import org.thoughtcrime.securesms.attachments.ArchivedAttachment
 import org.thoughtcrime.securesms.attachments.Attachment
+import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.PointerAttachment
+import org.thoughtcrime.securesms.attachments.TombstoneAttachment
 import org.thoughtcrime.securesms.backup.v2.BackupState
 import org.thoughtcrime.securesms.backup.v2.proto.BodyRange
 import org.thoughtcrime.securesms.backup.v2.proto.ChatItem
@@ -26,6 +29,7 @@ import org.thoughtcrime.securesms.backup.v2.proto.Reaction
 import org.thoughtcrime.securesms.backup.v2.proto.SendStatus
 import org.thoughtcrime.securesms.backup.v2.proto.SimpleChatUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.StandardMessage
+import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.CallTable
 import org.thoughtcrime.securesms.database.GroupReceiptTable
 import org.thoughtcrime.securesms.database.MessageTable
@@ -48,11 +52,12 @@ import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.JsonUtils
+import org.whispersystems.signalservice.api.backup.MediaName
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId
-import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.util.UuidUtil
+import org.whispersystems.signalservice.internal.push.DataMessage
 import java.util.Optional
 
 /**
@@ -570,12 +575,12 @@ class ChatItemImportInserter(
         pointer.attachmentLocator.cdnNumber,
         SignalServiceAttachmentRemoteId.from(pointer.attachmentLocator.cdnKey),
         contentType,
-        pointer.key?.toByteArray(),
-        Optional.ofNullable(pointer.size),
+        pointer.attachmentLocator.key.toByteArray(),
+        Optional.ofNullable(pointer.attachmentLocator.size),
         Optional.empty(),
         pointer.width ?: 0,
         pointer.height ?: 0,
-        Optional.empty(),
+        Optional.ofNullable(pointer.attachmentLocator.digest.toByteArray()),
         Optional.ofNullable(pointer.incrementalMac?.toByteArray()),
         pointer.incrementalMacChunkSize ?: 0,
         Optional.ofNullable(fileName),
@@ -586,14 +591,51 @@ class ChatItemImportInserter(
         Optional.ofNullable(pointer.blurHash),
         pointer.attachmentLocator.uploadTimestamp
       )
-      return PointerAttachment.forPointer(Optional.of(signalAttachmentPointer)).orNull()
+      return PointerAttachment.forPointer(
+        pointer = Optional.of(signalAttachmentPointer),
+        transferState = if (wasDownloaded) AttachmentTable.TRANSFER_NEEDS_RESTORE else AttachmentTable.TRANSFER_PROGRESS_PENDING
+      ).orNull()
+    } else if (pointer.invalidAttachmentLocator != null) {
+      return TombstoneAttachment(
+        contentType = contentType,
+        incrementalMac = pointer.incrementalMac?.toByteArray(),
+        incrementalMacChunkSize = pointer.incrementalMacChunkSize,
+        width = pointer.width,
+        height = pointer.height,
+        caption = pointer.caption,
+        blurHash = pointer.blurHash,
+        voiceNote = flag == MessageAttachment.Flag.VOICE_MESSAGE,
+        borderless = flag == MessageAttachment.Flag.BORDERLESS,
+        gif = flag == MessageAttachment.Flag.GIF,
+        quote = false
+      )
+    } else if (pointer.backupLocator != null) {
+      return ArchivedAttachment(
+        contentType = contentType,
+        size = pointer.backupLocator.size.toLong(),
+        cdn = Cdn.fromCdnNumber(pointer.backupLocator.cdnNumber),
+        cdnKey = pointer.backupLocator.key.toByteArray(),
+        archiveMediaName = pointer.backupLocator.mediaName,
+        archiveMediaId = backupState.backupKey.deriveMediaId(MediaName(pointer.backupLocator.mediaName)).encode(),
+        digest = pointer.backupLocator.digest.toByteArray(),
+        incrementalMac = pointer.incrementalMac?.toByteArray(),
+        incrementalMacChunkSize = pointer.incrementalMacChunkSize,
+        width = pointer.width,
+        height = pointer.height,
+        caption = pointer.caption,
+        blurHash = pointer.blurHash,
+        voiceNote = flag == MessageAttachment.Flag.VOICE_MESSAGE,
+        borderless = flag == MessageAttachment.Flag.BORDERLESS,
+        gif = flag == MessageAttachment.Flag.GIF,
+        quote = false
+      )
     }
     return null
   }
 
   private fun Quote.QuotedAttachment.toLocalAttachment(): Attachment? {
     return thumbnail?.toLocalAttachment(this.contentType, this.fileName)
-      ?: if (this.contentType == null) null else PointerAttachment.forPointer(SignalServiceDataMessage.Quote.QuotedAttachment(contentType = this.contentType!!, fileName = this.fileName, thumbnail = null)).orNull()
+      ?: if (this.contentType == null) null else PointerAttachment.forPointer(quotedAttachment = DataMessage.Quote.QuotedAttachment(contentType = this.contentType, fileName = this.fileName, thumbnail = null)).orNull()
   }
 
   private class MessageInsert(val contentValues: ContentValues, val followUp: ((Long) -> Unit)?)

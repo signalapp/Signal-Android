@@ -6707,5 +6707,11 @@
     <!-- Content description for opening the note editor -->
     <string name="ViewNoteSheet__edit_note">Edit note</string>
 
+    <!-- BackupProgressService -->
+    <!-- Notification title shown while backup restore job is running -->
+    <string name="BackupProgressService_title">Restoring backup…</string>
+    <!-- Notification title shown while downloading backup restore data -->
+    <string name="BackupProgressService_title_downloading">Downloading backup data…</string>
+
     <!-- EOF -->
 </resources>

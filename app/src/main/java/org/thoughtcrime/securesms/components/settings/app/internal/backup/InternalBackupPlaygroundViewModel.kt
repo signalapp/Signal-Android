@@ -10,29 +10,37 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
-import org.signal.core.util.Base64
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
+import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.backup.v2.BackupMetadata
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
+import org.thoughtcrime.securesms.database.MessageType
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.jobs.ArchiveAttachmentJob
+import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob
+import org.thoughtcrime.securesms.jobs.AttachmentUploadJob
+import org.thoughtcrime.securesms.jobs.BackupMessagesJob
+import org.thoughtcrime.securesms.jobs.BackupRestoreJob
+import org.thoughtcrime.securesms.jobs.BackupRestoreMediaJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.whispersystems.signalservice.api.NetworkResult
-import org.whispersystems.signalservice.api.backup.BackupKey
+import org.whispersystems.signalservice.api.backup.MediaName
 import java.io.ByteArrayInputStream
 import java.io.InputStream
 import java.util.UUID
-import kotlin.random.Random
+import kotlin.time.Duration.Companion.seconds
 
 class InternalBackupPlaygroundViewModel : ViewModel() {
-
-  private val backupKey = SignalStore.svr().getOrCreateMasterKey().deriveBackupKey()
 
   var backupData: ByteArray? = null
 
@@ -57,6 +65,17 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
       }
   }
 
+  fun triggerBackupJob() {
+    _state.value = _state.value.copy(backupState = BackupState.EXPORT_IN_PROGRESS)
+
+    disposables += Single.fromCallable { ApplicationDependencies.getJobManager().runSynchronously(BackupMessagesJob(), 120_000) }
+      .subscribeOn(Schedulers.io())
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribeBy {
+        _state.value = _state.value.copy(backupState = BackupState.BACKUP_JOB_DONE)
+      }
+  }
+
   fun import() {
     backupData?.let {
       _state.value = _state.value.copy(backupState = BackupState.IMPORT_IN_PROGRESS)
@@ -68,7 +87,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
       disposables += Single.fromCallable { BackupRepository.import(it.size.toLong(), { ByteArrayInputStream(it) }, selfData, plaintext = plaintext) }
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe { nothing ->
+        .subscribeBy {
           backupData = null
           _state.value = _state.value.copy(backupState = BackupState.NONE)
         }
@@ -85,7 +104,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
     disposables += Single.fromCallable { BackupRepository.import(length, inputStreamFactory, selfData, plaintext = plaintext) }
       .subscribeOn(Schedulers.io())
       .observeOn(AndroidSchedulers.mainThread())
-      .subscribe { nothing ->
+      .subscribeBy {
         backupData = null
         _state.value = _state.value.copy(backupState = BackupState.NONE)
       }
@@ -98,7 +117,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
     disposables += Single.fromCallable { BackupRepository.validate(length, inputStreamFactory, selfData) }
       .subscribeOn(Schedulers.io())
       .observeOn(AndroidSchedulers.mainThread())
-      .subscribe { nothing ->
+      .subscribeBy {
         backupData = null
         _state.value = _state.value.copy(backupState = BackupState.NONE)
       }
@@ -142,47 +161,77 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
       }
   }
 
+  fun restoreFromRemote() {
+    _state.value = _state.value.copy(backupState = BackupState.IMPORT_IN_PROGRESS)
+
+    disposables += Single.fromCallable {
+      ApplicationDependencies
+        .getJobManager()
+        .startChain(BackupRestoreJob())
+        .then(BackupRestoreMediaJob())
+        .enqueueAndBlockUntilCompletion(120.seconds.inWholeMilliseconds)
+    }
+      .subscribeOn(Schedulers.io())
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribeBy {
+        _state.value = _state.value.copy(backupState = BackupState.NONE)
+      }
+  }
+
   fun loadMedia() {
     disposables += Single
       .fromCallable { SignalDatabase.attachments.debugGetLatestAttachments() }
       .subscribeOn(Schedulers.io())
       .observeOn(Schedulers.single())
       .subscribeBy {
-        _mediaState.set { update(attachments = it.map { a -> BackupAttachment.from(backupKey, a) }) }
+        _mediaState.set { update(attachments = it.map { a -> BackupAttachment(dbAttachment = a) }) }
       }
+  }
 
+  fun archiveAttachmentMedia(attachments: Set<AttachmentId>) {
     disposables += Single
-      .fromCallable { BackupRepository.debugGetArchivedMediaState() }
+      .fromCallable {
+        val toArchive = mediaState.value
+          .attachments
+          .filter { attachments.contains(it.dbAttachment.attachmentId) }
+          .map { it.dbAttachment }
+
+        BackupRepository.archiveMedia(toArchive)
+      }
       .subscribeOn(Schedulers.io())
       .observeOn(Schedulers.single())
+      .doOnSubscribe { _mediaState.set { update(inProgress = inProgressMediaIds + attachments) } }
+      .doOnTerminate { _mediaState.set { update(inProgress = inProgressMediaIds - attachments) } }
       .subscribeBy { result ->
         when (result) {
-          is NetworkResult.Success -> _mediaState.set { update(archiveStateLoaded = true, backedUpMediaIds = result.result.map { it.mediaId }.toSet()) }
+          is NetworkResult.Success -> {
+            loadMedia()
+            result
+              .result
+              .sourceNotFoundResponses
+              .forEach {
+                reUploadAndArchiveMedia(result.result.mediaIdToAttachmentId(it.mediaId))
+              }
+          }
           else -> _mediaState.set { copy(error = MediaStateError(errorText = "$result")) }
         }
       }
   }
 
-  fun backupAttachmentMedia(mediaIds: Set<String>) {
-    disposables += Single.fromCallable { mediaIds.mapNotNull { mediaState.value.idToAttachment[it]?.dbAttachment }.toList() }
-      .map { BackupRepository.archiveMedia(it) }
+  fun archiveAttachmentMedia(attachment: BackupAttachment) {
+    disposables += Single.fromCallable { BackupRepository.archiveMedia(attachment.dbAttachment) }
       .subscribeOn(Schedulers.io())
       .observeOn(Schedulers.single())
-      .doOnSubscribe { _mediaState.set { update(inProgressMediaIds = inProgressMediaIds + mediaIds) } }
-      .doOnTerminate { _mediaState.set { update(inProgressMediaIds = inProgressMediaIds - mediaIds) } }
+      .doOnSubscribe { _mediaState.set { update(inProgress = inProgressMediaIds + attachment.dbAttachment.attachmentId) } }
+      .doOnTerminate { _mediaState.set { update(inProgress = inProgressMediaIds - attachment.dbAttachment.attachmentId) } }
       .subscribeBy { result ->
         when (result) {
-          is NetworkResult.Success -> {
-            val response = result.result
-            val successes = response.responses.filter { it.status == 200 }
-            val failures = response.responses - successes.toSet()
-
-            _mediaState.set {
-              var updated = update(backedUpMediaIds = backedUpMediaIds + successes.map { it.mediaId })
-              if (failures.isNotEmpty()) {
-                updated = updated.copy(error = MediaStateError(errorText = failures.toString()))
-              }
-              updated
+          is NetworkResult.Success -> loadMedia()
+          is NetworkResult.StatusCodeError -> {
+            if (result.code == 410) {
+              reUploadAndArchiveMedia(attachment.id)
+            } else {
+              _mediaState.set { copy(error = MediaStateError(errorText = "$result")) }
             }
           }
 
@@ -191,47 +240,105 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
       }
   }
 
-  fun backupAttachmentMedia(attachment: BackupAttachment) {
-    disposables += Single.fromCallable { BackupRepository.archiveMedia(attachment.dbAttachment) }
+  private fun reUploadAndArchiveMedia(attachmentId: AttachmentId) {
+    disposables += Single
+      .fromCallable {
+        ApplicationDependencies
+          .getJobManager()
+          .startChain(AttachmentUploadJob(attachmentId))
+          .then(ArchiveAttachmentJob(attachmentId))
+          .enqueueAndBlockUntilCompletion(15.seconds.inWholeMilliseconds)
+      }
       .subscribeOn(Schedulers.io())
       .observeOn(Schedulers.single())
-      .doOnSubscribe { _mediaState.set { update(inProgressMediaIds = inProgressMediaIds + attachment.mediaId) } }
-      .doOnTerminate { _mediaState.set { update(inProgressMediaIds = inProgressMediaIds - attachment.mediaId) } }
+      .doOnSubscribe { _mediaState.set { update(inProgress = inProgressMediaIds + attachmentId) } }
+      .doOnTerminate { _mediaState.set { update(inProgress = inProgressMediaIds - attachmentId) } }
       .subscribeBy {
-        when (it) {
-          is NetworkResult.Success -> {
-            _mediaState.set { update(backedUpMediaIds = backedUpMediaIds + attachment.mediaId) }
-          }
-
-          else -> _mediaState.set { copy(error = MediaStateError(errorText = "$it")) }
+        if (it.isPresent && it.get().isComplete) {
+          loadMedia()
+        } else {
+          _mediaState.set { copy(error = MediaStateError(errorText = "Reupload slow or failed, try again")) }
         }
       }
   }
 
-  fun deleteBackupAttachmentMedia(mediaIds: Set<String>) {
-    deleteBackupAttachmentMedia(mediaIds.mapNotNull { mediaState.value.idToAttachment[it] }.toList())
+  fun deleteArchivedMedia(attachmentIds: Set<AttachmentId>) {
+    deleteArchivedMedia(mediaState.value.attachments.filter { attachmentIds.contains(it.dbAttachment.attachmentId) })
   }
 
-  fun deleteBackupAttachmentMedia(attachment: BackupAttachment) {
-    deleteBackupAttachmentMedia(listOf(attachment))
+  fun deleteArchivedMedia(attachment: BackupAttachment) {
+    deleteArchivedMedia(listOf(attachment))
   }
 
-  private fun deleteBackupAttachmentMedia(attachments: List<BackupAttachment>) {
-    val ids = attachments.map { it.mediaId }.toSet()
+  private fun deleteArchivedMedia(attachments: List<BackupAttachment>) {
+    val ids = attachments.map { it.dbAttachment.attachmentId }.toSet()
     disposables += Single.fromCallable { BackupRepository.deleteArchivedMedia(attachments.map { it.dbAttachment }) }
       .subscribeOn(Schedulers.io())
       .observeOn(Schedulers.single())
-      .doOnSubscribe { _mediaState.set { update(inProgressMediaIds = inProgressMediaIds + ids) } }
-      .doOnTerminate { _mediaState.set { update(inProgressMediaIds = inProgressMediaIds - ids) } }
+      .doOnSubscribe { _mediaState.set { update(inProgress = inProgressMediaIds + ids) } }
+      .doOnTerminate { _mediaState.set { update(inProgress = inProgressMediaIds - ids) } }
       .subscribeBy {
         when (it) {
-          is NetworkResult.Success -> {
-            _mediaState.set { update(backedUpMediaIds = backedUpMediaIds - ids) }
-          }
-
+          is NetworkResult.Success -> loadMedia()
           else -> _mediaState.set { copy(error = MediaStateError(errorText = "$it")) }
         }
       }
+  }
+
+  fun deleteAllArchivedMedia() {
+    disposables += Single
+      .fromCallable { BackupRepository.debugDeleteAllArchivedMedia() }
+      .subscribeOn(Schedulers.io())
+      .observeOn(Schedulers.single())
+      .subscribeBy { result ->
+        when (result) {
+          is NetworkResult.Success -> loadMedia()
+          else -> _mediaState.set { copy(error = MediaStateError(errorText = "$result")) }
+        }
+      }
+  }
+
+  fun restoreArchivedMedia(attachment: BackupAttachment) {
+    disposables += Completable
+      .fromCallable {
+        val recipientId = SignalStore.releaseChannelValues().releaseChannelRecipientId!!
+        val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(Recipient.resolved(recipientId))
+
+        val message = IncomingMessage(
+          type = MessageType.NORMAL,
+          from = recipientId,
+          sentTimeMillis = System.currentTimeMillis(),
+          serverTimeMillis = System.currentTimeMillis(),
+          receivedTimeMillis = System.currentTimeMillis(),
+          body = "Restored from Archive!?",
+          serverGuid = UUID.randomUUID().toString()
+        )
+
+        val insertMessage = SignalDatabase.messages.insertMessageInbox(message, threadId).get()
+
+        SignalDatabase.attachments.debugCopyAttachmentForArchiveRestore(
+          insertMessage.messageId,
+          attachment.dbAttachment
+        )
+
+        val archivedAttachment = SignalDatabase.attachments.getAttachmentsForMessage(insertMessage.messageId).first()
+
+        ApplicationDependencies.getJobManager().add(
+          AttachmentDownloadJob(
+            messageId = insertMessage.messageId,
+            attachmentId = archivedAttachment.attachmentId,
+            manual = false,
+            forceArchiveDownload = true
+          )
+        )
+      }
+      .subscribeOn(Schedulers.io())
+      .observeOn(Schedulers.single())
+      .subscribeBy(
+        onError = {
+          _mediaState.set { copy(error = MediaStateError(errorText = "$it")) }
+        }
+      )
   }
 
   override fun onCleared() {
@@ -246,7 +353,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
   )
 
   enum class BackupState(val inProgress: Boolean = false) {
-    NONE, EXPORT_IN_PROGRESS(true), EXPORT_DONE, IMPORT_IN_PROGRESS(true)
+    NONE, EXPORT_IN_PROGRESS(true), EXPORT_DONE, BACKUP_JOB_DONE, IMPORT_IN_PROGRESS(true)
   }
 
   enum class BackupUploadState(val inProgress: Boolean = false) {
@@ -261,66 +368,58 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
   }
 
   data class MediaState(
-    val backupStateLoaded: Boolean = false,
     val attachments: List<BackupAttachment> = emptyList(),
-    val backedUpMediaIds: Set<String> = emptySet(),
-    val inProgressMediaIds: Set<String> = emptySet(),
+    val inProgressMediaIds: Set<AttachmentId> = emptySet(),
     val error: MediaStateError? = null
   ) {
-    val idToAttachment: Map<String, BackupAttachment> = attachments.associateBy { it.mediaId }
-
     fun update(
-      archiveStateLoaded: Boolean = this.backupStateLoaded,
       attachments: List<BackupAttachment> = this.attachments,
-      backedUpMediaIds: Set<String> = this.backedUpMediaIds,
-      inProgressMediaIds: Set<String> = this.inProgressMediaIds
+      inProgress: Set<AttachmentId> = this.inProgressMediaIds
     ): MediaState {
-      val updatedAttachments = if (archiveStateLoaded) {
-        attachments.map {
-          val state = if (inProgressMediaIds.contains(it.mediaId)) {
-            BackupAttachment.State.IN_PROGRESS
-          } else if (backedUpMediaIds.contains(it.mediaId)) {
-            BackupAttachment.State.UPLOADED
-          } else {
-            BackupAttachment.State.LOCAL_ONLY
-          }
+      val backupKey = SignalStore.svr().getOrCreateMasterKey().deriveBackupKey()
 
-          it.copy(state = state)
+      val updatedAttachments = attachments.map {
+        val state = if (inProgress.contains(it.dbAttachment.attachmentId)) {
+          BackupAttachment.State.IN_PROGRESS
+        } else if (it.dbAttachment.archiveMediaName != null) {
+          if (it.dbAttachment.remoteDigest != null) {
+            val mediaId = backupKey.deriveMediaId(MediaName(it.dbAttachment.archiveMediaName)).encode()
+            if (it.dbAttachment.archiveMediaId == mediaId) {
+              BackupAttachment.State.UPLOADED_FINAL
+            } else {
+              BackupAttachment.State.UPLOADED_UNDOWNLOADED
+            }
+          } else {
+            BackupAttachment.State.UPLOADED_UNDOWNLOADED
+          }
+        } else if (it.dbAttachment.dataHash == null) {
+          BackupAttachment.State.ATTACHMENT_CDN
+        } else {
+          BackupAttachment.State.LOCAL_ONLY
         }
-      } else {
-        attachments
+
+        it.copy(state = state)
       }
 
       return copy(
-        backupStateLoaded = archiveStateLoaded,
-        attachments = updatedAttachments,
-        backedUpMediaIds = backedUpMediaIds
+        attachments = updatedAttachments
       )
     }
   }
 
   data class BackupAttachment(
     val dbAttachment: DatabaseAttachment,
-    val state: State = State.INIT,
-    val mediaId: String = Base64.encodeUrlSafeWithPadding(Random.nextBytes(15))
+    val state: State = State.LOCAL_ONLY
   ) {
-    val id: Any = dbAttachment.attachmentId
+    val id: AttachmentId = dbAttachment.attachmentId
     val title: String = dbAttachment.attachmentId.toString()
 
     enum class State {
-      INIT,
+      ATTACHMENT_CDN,
       LOCAL_ONLY,
-      UPLOADED,
+      UPLOADED_UNDOWNLOADED,
+      UPLOADED_FINAL,
       IN_PROGRESS
-    }
-
-    companion object {
-      fun from(backupKey: BackupKey, dbAttachment: DatabaseAttachment): BackupAttachment {
-        return BackupAttachment(
-          dbAttachment = dbAttachment,
-          mediaId = backupKey.deriveMediaId(Base64.decode(dbAttachment.dataHash!!)).toString()
-        )
-      }
     }
   }
 

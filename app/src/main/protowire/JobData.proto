@@ -47,3 +47,7 @@ message AttachmentUploadJobData {
 message PreKeysSyncJobData {
   bool forceRefreshRequested = 1;
 }
+
+message ArchiveAttachmentJobData {
+  uint64 attachmentId = 1;
+}

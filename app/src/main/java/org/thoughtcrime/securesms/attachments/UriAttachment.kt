@@ -69,7 +69,7 @@ class UriAttachment : Attachment {
     transferState = transferState,
     size = size,
     fileName = fileName,
-    cdnNumber = 0,
+    cdn = Cdn.CDN_0,
     remoteLocation = null,
     remoteKey = null,
     remoteDigest = null,

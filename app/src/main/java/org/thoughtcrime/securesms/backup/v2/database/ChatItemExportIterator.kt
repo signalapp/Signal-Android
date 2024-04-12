@@ -17,7 +17,9 @@ import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireString
+import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
+import org.thoughtcrime.securesms.backup.v2.BackupRepository.getMediaName
 import org.thoughtcrime.securesms.backup.v2.proto.CallChatUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.ChatItem
 import org.thoughtcrime.securesms.backup.v2.proto.ChatUpdateMessage
@@ -36,6 +38,7 @@ import org.thoughtcrime.securesms.backup.v2.proto.SimpleChatUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.StandardMessage
 import org.thoughtcrime.securesms.backup.v2.proto.Text
 import org.thoughtcrime.securesms.backup.v2.proto.ThreadMergeChatUpdate
+import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.GroupReceiptTable
 import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.MessageTypes
@@ -73,7 +76,7 @@ import org.thoughtcrime.securesms.backup.v2.proto.BodyRange as BackupBodyRange
  *
  * All of this complexity is hidden from the user -- they just get a normal iterator interface.
  */
-class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: Int) : Iterator<ChatItem>, Closeable {
+class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: Int, private val archiveMedia: Boolean) : Iterator<ChatItem>, Closeable {
 
   companion object {
     private val TAG = Log.tag(ChatItemExportIterator::class.java)
@@ -139,6 +142,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
           builder.expiresInMs = null
         }
         MessageTypes.isProfileChange(record.type) -> {
+          if (record.body == null) continue
           builder.updateMessage = ChatUpdateMessage(
             profileChange = try {
               val decoded: ByteArray = Base64.decode(record.body!!)
@@ -354,24 +358,46 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
   }
 
   private fun DatabaseAttachment.toBackupAttachment(): MessageAttachment {
+    val builder = FilePointer.Builder()
+    builder.contentType = contentType
+    builder.incrementalMac = incrementalDigest?.toByteString()
+    builder.incrementalMacChunkSize = incrementalMacChunkSize
+    builder.fileName = fileName
+    builder.width = width
+    builder.height = height
+    builder.caption = caption
+    builder.blurHash = blurHash?.hash
+
+    if (remoteKey.isNullOrBlank() || remoteDigest == null || size == 0L) {
+      builder.invalidAttachmentLocator = FilePointer.InvalidAttachmentLocator()
+    } else {
+      if (archiveMedia) {
+        builder.backupLocator = FilePointer.BackupLocator(
+          mediaName = archiveMediaName ?: this.getMediaName().toString(),
+          cdnNumber = if (archiveMediaName != null) archiveCdn else Cdn.CDN_3.cdnNumber, // TODO (clark): Update when new proto with optional cdn is landed
+          key = decode(remoteKey).toByteString(),
+          size = this.size.toInt(),
+          digest = remoteDigest.toByteString()
+        )
+      } else {
+        if (remoteLocation.isNullOrBlank()) {
+          builder.invalidAttachmentLocator = FilePointer.InvalidAttachmentLocator()
+        } else {
+          builder.attachmentLocator = FilePointer.AttachmentLocator(
+            cdnKey = this.remoteLocation,
+            cdnNumber = this.cdn.cdnNumber,
+            uploadTimestamp = this.uploadTimestamp,
+            key = decode(remoteKey).toByteString(),
+            size = this.size.toInt(),
+            digest = remoteDigest.toByteString()
+          )
+        }
+      }
+    }
     return MessageAttachment(
-      pointer = FilePointer(
-        attachmentLocator = FilePointer.AttachmentLocator(
-          cdnKey = this.remoteLocation ?: "",
-          cdnNumber = this.cdnNumber,
-          uploadTimestamp = this.uploadTimestamp
-        ),
-        key = if (remoteKey != null) decode(remoteKey).toByteString() else null,
-        contentType = this.contentType,
-        size = this.size.toInt(),
-        incrementalMac = this.incrementalDigest?.toByteString(),
-        incrementalMacChunkSize = this.incrementalMacChunkSize,
-        fileName = this.fileName,
-        width = this.width,
-        height = this.height,
-        caption = this.caption,
-        blurHash = this.blurHash?.hash
-      )
+      pointer = builder.build(),
+      wasDownloaded = this.transferState == AttachmentTable.TRANSFER_PROGRESS_DONE || this.transferState == AttachmentTable.TRANSFER_NEEDS_RESTORE,
+      flag = if (voiceNote) MessageAttachment.Flag.VOICE_MESSAGE else if (videoGif) MessageAttachment.Flag.GIF else if (borderless) MessageAttachment.Flag.BORDERLESS else MessageAttachment.Flag.NONE
     )
   }
 
