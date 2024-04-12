@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".registration.v2.ui.entercode.EnterCodeV2Fragment">
+
+    <ScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".registration.fragments.EnterSmsCodeFragment">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/wrong_number"
+                style="@style/Signal.Widget.Button.Large.Secondary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="@dimen/registrationactivity_text_view_padding"
+                android:hyphenationFrequency="normal"
+                android:maxWidth="150dp"
+                android:text="@string/RegistrationActivity_wrong_number"
+                android:textColor="@color/signal_colorPrimary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/verification_subheader" />
+
+            <TextView
+                android:id="@+id/verify_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="40dp"
+                android:gravity="start"
+                android:text="@string/RegistrationActivity_verification_code"
+                android:textAppearance="@style/Signal.Text.HeadlineMedium"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/verification_subheader"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/verify_header"
+                app:layout_constraintTop_toBottomOf="@+id/verify_header"
+                tools:text="@string/RegistrationActivity_enter_the_code_we_sent_to_s" />
+
+            <org.thoughtcrime.securesms.components.registration.ActionCountDownButton
+                android:id="@+id/call_me_count_down"
+                style="@style/Signal.Widget.Button.Large.Secondary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/code"
+                android:layout_marginEnd="22dp"
+                android:layout_marginBottom="8dp"
+                android:hyphenationFrequency="normal"
+                android:maxWidth="150dp"
+                android:maxLines="2"
+                android:textColor="@color/signal_text_secondary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/code"
+                app:layout_constraintVertical_bias="1.0"
+                tools:text="@string/RegistrationActivity_call" />
+
+            <org.thoughtcrime.securesms.components.registration.ActionCountDownButton
+                android:id="@+id/resend_sms_count_down"
+                style="@style/Signal.Widget.Button.Large.Secondary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/code"
+                android:layout_marginStart="22dp"
+                android:layout_marginBottom="8dp"
+                android:hyphenationFrequency="normal"
+                android:maxWidth="150dp"
+                android:maxLines="2"
+                android:textColor="@color/signal_text_secondary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/call_me_count_down"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/code"
+                app:layout_constraintVertical_bias="1.0"
+                tools:text="@string/RegistrationActivity_resend_code" />
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/having_trouble_button"
+                style="@style/Signal.Widget.Button.Large.Secondary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/RegistrationActivity_support_bottom_sheet_title"
+                android:textColor="@color/signal_colorPrimary"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/code" />
+
+            <org.thoughtcrime.securesms.components.registration.VerificationCodeView
+                android:id="@+id/code"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/wrong_number" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <org.thoughtcrime.securesms.components.registration.VerificationPinKeyboard
+        android:id="@+id/keyboard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:visibility="visible" />
+
+</LinearLayout>

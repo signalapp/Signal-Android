@@ -10,7 +10,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ScrollView;
 
@@ -138,18 +137,12 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
     }
     controller.setNumberAndCountryCode(viewModelNumber);
 
-    showKeyboard(number.getEditText());
+    ViewUtil.focusAndShowKeyboard(number.getEditText());
 
     if (viewModel.hasUserSkippedReRegisterFlow() && viewModel.shouldAutoShowSmsConfirmDialog()) {
       viewModel.setAutoShowSmsConfirmDialog(false);
       ThreadUtil.runOnMainDelayed(() -> handleRegister(requireContext()), 250);
     }
-  }
-
-  private void showKeyboard(View viewToFocus) {
-    viewToFocus.requestFocus();
-    InputMethodManager imm = (InputMethodManager) requireContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-    imm.showSoftInput(viewToFocus, InputMethodManager.SHOW_IMPLICIT);
   }
 
   @Override

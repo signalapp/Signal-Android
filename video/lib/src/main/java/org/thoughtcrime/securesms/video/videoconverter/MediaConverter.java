@@ -45,7 +45,7 @@ import java.lang.annotation.RetentionPolicy;
 @SuppressWarnings("WeakerAccess")
 public final class MediaConverter {
     private static final String TAG = "media-converter";
-    private static final boolean VERBOSE = false; // lots of logging
+    private static final boolean VERBOSE = true; // lots of logging
 
     // Describes when the annotation will be discarded
     @Retention(RetentionPolicy.SOURCE)

@@ -28,8 +28,10 @@ import org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.registration.RegistrationNavigationActivity;
+import org.thoughtcrime.securesms.registration.v2.ui.RegistrationV2Activity;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.AppStartup;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.Locale;
@@ -208,7 +210,11 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
   }
 
   private Intent getPushRegistrationIntent() {
-    return RegistrationNavigationActivity.newIntentForNewRegistration(this, getIntent());
+    if (FeatureFlags.registrationV2()) {
+      return RegistrationV2Activity.newIntentForNewRegistration(this, getIntent());
+    } else {
+      return RegistrationNavigationActivity.newIntentForNewRegistration(this, getIntent());
+    }
   }
 
   private Intent getEnterSignalPinIntent() {

@@ -59,7 +59,7 @@ class VerificationCodeView @JvmOverloads constructor(context: Context, attrs: At
     }
   }
 
-  interface OnCodeEnteredListener {
+  fun interface OnCodeEnteredListener {
     fun onCodeComplete(code: String)
   }
 

@@ -110,7 +110,7 @@ public final class PushChallengeRequest {
     }
   }
 
-  static class PushChallengeEvent {
+  public static class PushChallengeEvent {
     private final String challenge;
 
     PushChallengeEvent(String challenge) {
