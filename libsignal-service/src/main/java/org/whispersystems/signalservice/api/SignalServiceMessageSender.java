@@ -868,6 +868,9 @@ public class SignalServiceMessageSender {
     } catch (WebSocketUnavailableException e) {
       Log.w(TAG, "[getResumableUploadSpec] Pipe unavailable, falling back... (" + e.getClass().getSimpleName() + ": " + e.getMessage() + ")");
     } catch (IOException e) {
+      if (e instanceof RateLimitException) {
+        throw e;
+      }
       Log.w(TAG, "Failed to retrieve attachment upload attributes using pipe. Falling back...");
     }
     
