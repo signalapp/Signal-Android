@@ -13,13 +13,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionState
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionViewModel
 import org.thoughtcrime.securesms.mediasend.v2.videos.VideoTrimData
 import org.thoughtcrime.securesms.mms.MediaConstraints
 import org.thoughtcrime.securesms.mms.VideoSlide
 import org.thoughtcrime.securesms.scribbles.VideoEditorPlayButtonLayout
 import org.thoughtcrime.securesms.util.Throttler
+import org.thoughtcrime.securesms.util.visible
 import org.thoughtcrime.securesms.video.VideoPlayer
 import org.thoughtcrime.securesms.video.VideoPlayer.PlayerCallback
 import org.thoughtcrime.securesms.video.videoconverter.VideoThumbnailsRangeSelectorView
@@ -32,7 +32,6 @@ class VideoEditorFragment : Fragment(), PositionDragListener, MediaSendPageFragm
   private val videoScanThrottle = Throttler(150)
   private val handler = Handler(Looper.getMainLooper())
 
-  private var canEdit = false
   private var isVideoGif = false
   private var isInEdit = false
   private var isFocused = false
@@ -87,6 +86,8 @@ class VideoEditorFragment : Fragment(), PositionDragListener, MediaSendPageFragm
     player.setWindow(requireActivity().window)
     player.setVideoSource(slide, isVideoGif, TAG)
 
+    hud.visible = !slide.isVideoGif
+
     if (slide.isVideoGif) {
       player.setPlayerCallback(object : PlayerCallback {
         override fun onPlaying() {
@@ -101,14 +102,8 @@ class VideoEditorFragment : Fragment(), PositionDragListener, MediaSendPageFragm
       })
       player.hideControls()
       player.loopForever()
+      player.play()
     } else {
-      if (MediaConstraints.isVideoTranscodeAvailable()) {
-        sharedViewModel.state.value?.let { state ->
-          bindVideoTimeline(state)
-        }
-      } else {
-        hud.visibility = View.VISIBLE
-      }
       hud.setPlayClickListener {
         player.play()
       }
@@ -139,17 +134,22 @@ class VideoEditorFragment : Fragment(), PositionDragListener, MediaSendPageFragm
     sharedViewModel.state.observe(viewLifecycleOwner) { incomingState ->
       val focusedUri = incomingState.focusedMedia?.uri
       val currentlyFocused = focusedUri != null && focusedUri == uri
-      if (MediaConstraints.isVideoTranscodeAvailable() && canEdit) {
+      if (MediaConstraints.isVideoTranscodeAvailable()) {
         if (currentlyFocused) {
-          if (!isFocused) {
-            bindVideoTimeline(incomingState)
+          if (isVideoGif) {
+            player.play()
           } else {
-            val videoTrimData = if (focusedUri != null) {
-              incomingState.getOrCreateVideoTrimData(focusedUri)
+            if (!isFocused) {
+              bindVideoTimeline(incomingState.getOrCreateVideoTrimData(uri))
             } else {
-              VideoTrimData()
+              val videoTrimData = if (focusedUri != null) {
+                incomingState.getOrCreateVideoTrimData(focusedUri)
+              } else {
+                VideoTrimData()
+              }
+              hud.visible = incomingState.isTouchEnabled && !isVideoGif
+              onEditVideoDuration(videoTrimData, incomingState.isTouchEnabled)
             }
-            onEditVideoDuration(videoTrimData, incomingState.isTouchEnabled)
           }
         } else {
           stopPositionUpdates()
@@ -161,22 +161,15 @@ class VideoEditorFragment : Fragment(), PositionDragListener, MediaSendPageFragm
   }
 
   @RequiresApi(23)
-  private fun bindVideoTimeline(state: MediaSelectionState) {
-    val uri = state.focusedMedia?.uri ?: return
-    if (uri != this.uri) {
-      return
-    }
-
+  private fun bindVideoTimeline(data: VideoTrimData) {
     val autoplay = isVideoGif
     val slide = VideoSlide(requireContext(), uri, 0, autoplay)
 
-    val data = state.getOrCreateVideoTrimData(uri)
     if (data.isDurationEdited) {
       player.clip(data.startTimeUs, data.endTimeUs, autoplay)
     }
 
-    if (slide.hasVideo()) {
-      canEdit = true
+    if (slide.hasVideo() && !autoplay) {
       try {
         videoTimeLine.registerPlayerDragListener(this)
 
@@ -258,14 +251,16 @@ class VideoEditorFragment : Fragment(), PositionDragListener, MediaSendPageFragm
 
   @RequiresApi(23)
   private fun onEditVideoDuration(data: VideoTrimData, editingComplete: Boolean) {
-    hud.hidePlayButton()
-
     if (editingComplete) {
       isInEdit = false
       videoScanThrottle.clear()
     } else if (!isInEdit) {
       isInEdit = true
       wasPlayingBeforeEdit = player.isPlaying
+    }
+
+    if (wasPlayingBeforeEdit) {
+      hud.hidePlayButton()
     }
 
     videoScanThrottle.publish {
