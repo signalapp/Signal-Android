@@ -41,6 +41,7 @@ import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchSet
 import org.thoughtcrime.securesms.database.documents.NetworkFailure
 import org.thoughtcrime.securesms.database.documents.NetworkFailureSet
+import org.thoughtcrime.securesms.database.model.GroupCallUpdateDetailsUtil
 import org.thoughtcrime.securesms.database.model.Mention
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.database.model.databaseprotos.GV2UpdateDescription
@@ -459,6 +460,10 @@ class ChatItemImportInserter(
               IndividualCallChatUpdate.Type.UNANSWERED_OUTGOING_VIDEO_CALL -> MessageTypes.OUTGOING_VIDEO_CALL_TYPE
               IndividualCallChatUpdate.Type.UNKNOWN -> typeFlags
             }
+          }
+          updateMessage.callingMessage.groupCall != null -> {
+            typeFlags = MessageTypes.GROUP_CALL_TYPE
+            this.put(MessageTable.BODY, GroupCallUpdateDetailsUtil.createBodyFromBackup(updateMessage.callingMessage.groupCall))
           }
         }
         // Calls don't use the incoming/outgoing flags, so we overwrite the flags here

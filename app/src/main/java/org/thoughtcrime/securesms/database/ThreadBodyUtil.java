@@ -136,24 +136,21 @@ public final class ThreadBodyUtil {
       boolean accepted = call.getEvent() == CallTable.Event.ACCEPTED;
       if (call.getDirection() == CallTable.Direction.OUTGOING) {
         if (call.getType() == CallTable.Type.AUDIO_CALL) {
-          return context.getString(accepted ? R.string.MessageRecord_outgoing_voice_call : R.string.MessageRecord_unanswered_voice_call);
+          return context.getString(R.string.MessageRecord_outgoing_voice_call);
         } else {
-          return context.getString(accepted ? R.string.MessageRecord_outgoing_video_call : R.string.MessageRecord_unanswered_video_call);
+          return context.getString(R.string.MessageRecord_outgoing_video_call);
         }
       } else {
         boolean isVideoCall = call.getType() == CallTable.Type.VIDEO_CALL;
-        boolean isMissed    = call.getEvent().isMissedCall();
 
-        if (accepted) {
+        if (accepted || !call.isDisplayedAsMissedCallInUi()) {
           return context.getString(isVideoCall ? R.string.MessageRecord_incoming_video_call : R.string.MessageRecord_incoming_voice_call);
-        } else if (isMissed) {
+        } else {
           if (call.getEvent() == CallTable.Event.MISSED_NOTIFICATION_PROFILE) {
             return isVideoCall ? context.getString(R.string.MessageRecord_missed_video_call_notification_profile) : context.getString(R.string.MessageRecord_missed_voice_call_notification_profile);
           } else {
             return isVideoCall ? context.getString(R.string.MessageRecord_missed_video_call) : context.getString(R.string.MessageRecord_missed_voice_call);
           }
-        } else {
-          return isVideoCall ? context.getString(R.string.MessageRecord_you_declined_a_video_call) : context.getString(R.string.MessageRecord_you_declined_a_voice_call);
         }
       }
     } else {

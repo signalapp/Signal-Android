@@ -305,7 +305,7 @@ class CallLogAdapter(
 
       val color = ContextCompat.getColor(
         context,
-        if (call.record.event.isMissedCall()) {
+        if (call.record.isDisplayedAsMissedCallInUi) {
           R.color.signal_colorError
         } else {
           R.color.signal_colorOnSurfaceVariant
@@ -371,11 +371,11 @@ class CallLogAdapter(
     private fun getCallStateDrawableRes(call: CallTable.Call): Int {
       return when (call.messageType) {
         MessageTypes.MISSED_VIDEO_CALL_TYPE, MessageTypes.MISSED_AUDIO_CALL_TYPE -> R.drawable.symbol_missed_incoming_compact_16
-        MessageTypes.INCOMING_AUDIO_CALL_TYPE, MessageTypes.INCOMING_VIDEO_CALL_TYPE -> R.drawable.symbol_arrow_downleft_compact_16
+        MessageTypes.INCOMING_AUDIO_CALL_TYPE, MessageTypes.INCOMING_VIDEO_CALL_TYPE -> if (call.isDisplayedAsMissedCallInUi) R.drawable.symbol_missed_incoming_compact_16 else R.drawable.symbol_arrow_downleft_compact_16
         MessageTypes.OUTGOING_AUDIO_CALL_TYPE, MessageTypes.OUTGOING_VIDEO_CALL_TYPE -> R.drawable.symbol_arrow_upright_compact_16
         MessageTypes.GROUP_CALL_TYPE -> when {
           call.type == CallTable.Type.AD_HOC_CALL -> R.drawable.symbol_link_compact_16
-          call.event.isMissedCall() -> R.drawable.symbol_missed_incoming_compact_16
+          call.isDisplayedAsMissedCallInUi -> R.drawable.symbol_missed_incoming_compact_16
           call.event == CallTable.Event.GENERIC_GROUP_CALL || call.event == CallTable.Event.JOINED -> R.drawable.symbol_group_compact_16
           call.direction == CallTable.Direction.INCOMING -> R.drawable.symbol_arrow_downleft_compact_16
           call.direction == CallTable.Direction.OUTGOING -> R.drawable.symbol_arrow_upright_compact_16
@@ -389,23 +389,19 @@ class CallLogAdapter(
     @StringRes
     private fun getCallStateStringRes(call: CallTable.Call): Int {
       return when (call.messageType) {
-        MessageTypes.MISSED_VIDEO_CALL_TYPE,
-        MessageTypes.MISSED_AUDIO_CALL_TYPE -> if (call.event == CallTable.Event.MISSED) R.string.CallLogAdapter__missed else R.string.CallLogAdapter__missed_notification_profile
-        MessageTypes.INCOMING_AUDIO_CALL_TYPE -> R.string.CallLogAdapter__incoming
-        MessageTypes.INCOMING_VIDEO_CALL_TYPE -> R.string.CallLogAdapter__incoming
+        MessageTypes.MISSED_VIDEO_CALL_TYPE, MessageTypes.MISSED_AUDIO_CALL_TYPE -> if (call.event == CallTable.Event.MISSED) R.string.CallLogAdapter__missed else R.string.CallLogAdapter__missed_notification_profile
         MessageTypes.OUTGOING_AUDIO_CALL_TYPE -> R.string.CallLogAdapter__outgoing
         MessageTypes.OUTGOING_VIDEO_CALL_TYPE -> R.string.CallLogAdapter__outgoing
         MessageTypes.GROUP_CALL_TYPE -> when {
           call.type == CallTable.Type.AD_HOC_CALL -> R.string.CallLogAdapter__call_link
-          call.event == CallTable.Event.MISSED -> R.string.CallLogAdapter__missed
           call.event == CallTable.Event.MISSED_NOTIFICATION_PROFILE -> R.string.CallLogAdapter__missed_notification_profile
+          call.isDisplayedAsMissedCallInUi -> R.string.CallLogAdapter__missed
           call.event == CallTable.Event.GENERIC_GROUP_CALL || call.event == CallTable.Event.JOINED -> R.string.CallPreference__group_call
           call.direction == CallTable.Direction.INCOMING -> R.string.CallLogAdapter__incoming
           call.direction == CallTable.Direction.OUTGOING -> R.string.CallLogAdapter__outgoing
           else -> throw AssertionError()
         }
-
-        else -> error("Unexpected type ${call.messageType}")
+        else -> if (call.isDisplayedAsMissedCallInUi) R.string.CallLogAdapter__missed else R.string.CallLogAdapter__incoming
       }
     }
   }

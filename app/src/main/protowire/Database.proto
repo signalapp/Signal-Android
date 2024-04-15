@@ -116,11 +116,14 @@ message CryptoValue {
 }
 
 message GroupCallUpdateDetails {
-             string eraId                = 1;
-             string startedCallUuid      = 2;
-             int64  startedCallTimestamp = 3;
-    repeated string inCallUuids          = 4;
-             bool   isCallFull           = 5;
+             string eraId                  = 1;
+             string startedCallUuid        = 2;
+             int64  startedCallTimestamp   = 3;
+    repeated string inCallUuids            = 4;
+             bool   isCallFull             = 5;
+             bool   localUserJoined        = 6;
+             int64  endedCallTimestamp     = 7;
+             bool   isRingingOnLocalDevice = 8;
 }
 
 message ExpiringProfileKeyCredentialColumnData {

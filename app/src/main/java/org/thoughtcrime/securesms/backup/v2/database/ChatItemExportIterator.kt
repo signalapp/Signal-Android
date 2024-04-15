@@ -200,6 +200,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
           }
         }
         MessageTypes.isCallLog(record.type) -> {
+          builder.sms = false
           val call = calls.getCallByMessageId(record.id)
           if (call != null) {
             builder.updateMessage = ChatUpdateMessage(callingMessage = CallChatUpdate(callId = call.callId))
@@ -232,12 +233,23 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
                     .withoutNulls()
                     .map { obj: UUID? -> ACI.from(obj!!).toByteString() }
                     .toList()
+
+                  val localUserJoined: GroupCallChatUpdate.LocalUserJoined = if (groupCallUpdateDetails.localUserJoined) {
+                    GroupCallChatUpdate.LocalUserJoined.JOINED
+                  } else if (groupCallUpdateDetails.endedCallTimestamp == 0L) {
+                    GroupCallChatUpdate.LocalUserJoined.UNKNOWN
+                  } else {
+                    GroupCallChatUpdate.LocalUserJoined.DID_NOT_JOIN
+                  }
+
                   builder.updateMessage = ChatUpdateMessage(
                     callingMessage = CallChatUpdate(
                       groupCall = GroupCallChatUpdate(
                         startedCallAci = ACI.from(UuidUtil.parseOrThrow(groupCallUpdateDetails.startedCallUuid)).toByteString(),
                         startedCallTimestamp = groupCallUpdateDetails.startedCallTimestamp,
-                        inCallAcis = joinedMembers
+                        inCallAcis = joinedMembers,
+                        localUserJoined = localUserJoined,
+                        endedCallTimestamp = groupCallUpdateDetails.endedCallTimestamp
                       )
                     )
                   )

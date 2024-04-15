@@ -9,6 +9,7 @@ import android.Manifest
 import android.app.UiAutomation
 import android.os.Environment
 import androidx.test.platform.app.InstrumentationRegistry
+import io.mockk.InternalPlatformDsl.toArray
 import okio.ByteString.Companion.toByteString
 import org.junit.Assert
 import org.junit.Before
@@ -23,6 +24,7 @@ import org.thoughtcrime.securesms.backup.v2.proto.AccountData
 import org.thoughtcrime.securesms.backup.v2.proto.BackupInfo
 import org.thoughtcrime.securesms.backup.v2.proto.BodyRange
 import org.thoughtcrime.securesms.backup.v2.proto.Call
+import org.thoughtcrime.securesms.backup.v2.proto.CallChatUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.Chat
 import org.thoughtcrime.securesms.backup.v2.proto.ChatItem
 import org.thoughtcrime.securesms.backup.v2.proto.ChatUpdateMessage
@@ -32,6 +34,8 @@ import org.thoughtcrime.securesms.backup.v2.proto.ExpirationTimerChatUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.FilePointer
 import org.thoughtcrime.securesms.backup.v2.proto.Frame
 import org.thoughtcrime.securesms.backup.v2.proto.Group
+import org.thoughtcrime.securesms.backup.v2.proto.GroupCallChatUpdate
+import org.thoughtcrime.securesms.backup.v2.proto.IndividualCallChatUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.MessageAttachment
 import org.thoughtcrime.securesms.backup.v2.proto.ProfileChangeChatUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.Quote
@@ -668,12 +672,62 @@ class ImportExportTest {
       )
     }
 
+    var sentTime = 0L
+    val individualCallChatItems = individualCalls.map { call ->
+      ChatItem(
+        chatId = 1,
+        authorId = selfRecipient.id,
+        dateSent = sentTime++,
+        sms = false,
+        incoming = ChatItem.IncomingMessageDetails(
+          dateReceived = sentTime + 1,
+          dateServerSent = sentTime,
+          read = true,
+          sealedSender = true
+        ),
+        updateMessage = ChatUpdateMessage(
+          callingMessage = CallChatUpdate(
+            callMessage = IndividualCallChatUpdate(
+              type = IndividualCallChatUpdate.Type.INCOMING_AUDIO_CALL
+            )
+          )
+        )
+      )
+    }.toTypedArray()
+
+    val startedAci = TestRecipientUtils.nextAci().toByteString()
+    val groupCallChatItems = groupCalls.map { call ->
+      ChatItem(
+        chatId = 1,
+        authorId = selfRecipient.id,
+        dateSent = sentTime++,
+        sms = false,
+        incoming = ChatItem.IncomingMessageDetails(
+          dateReceived = sentTime + 1,
+          dateServerSent = sentTime,
+          read = true,
+          sealedSender = true
+        ),
+        updateMessage = ChatUpdateMessage(
+          callingMessage = CallChatUpdate(
+            groupCall = GroupCallChatUpdate(
+              startedCallAci = startedAci,
+              startedCallTimestamp = 0,
+              endedCallTimestamp = 0,
+              localUserJoined = GroupCallChatUpdate.LocalUserJoined.JOINED,
+              inCallAcis = emptyList()
+            )
+          )
+        )
+      )
+    }.toTypedArray()
+
     importExport(
       *standardFrames,
       Recipient(
         id = 3,
         contact = Contact(
-          aci = TestRecipientUtils.nextAci().toByteString(),
+          aci = startedAci,
           pni = TestRecipientUtils.nextPni().toByteString(),
           username = "cool.01",
           e164 = 141255501234,
@@ -698,8 +752,21 @@ class ImportExportTest {
           name = "Cool test group"
         )
       ),
+      Chat(
+        id = 1,
+        recipientId = 3,
+        archived = true,
+        pinnedOrder = 1,
+        expirationTimerMs = 1.days.inWholeMilliseconds,
+        muteUntilMs = System.currentTimeMillis(),
+        markedUnread = true,
+        dontNotifyForMentionsIfMuted = true,
+        wallpaper = null
+      ),
       *individualCalls.toArray(),
-      *groupCalls.toArray()
+      *groupCalls.toArray(),
+      *individualCallChatItems,
+      *groupCallChatItems
     )
   }
 

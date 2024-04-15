@@ -232,21 +232,20 @@ public class MmsMessageRecord extends MessageRecord {
 
       if (call.getDirection() == CallTable.Direction.OUTGOING) {
         if (call.getType() == CallTable.Type.AUDIO_CALL) {
-          int updateString = accepted ? R.string.MessageRecord_outgoing_voice_call : R.string.MessageRecord_unanswered_voice_call;
+          int updateString = R.string.MessageRecord_outgoing_voice_call;
           return staticUpdateDescription(context.getString(R.string.MessageRecord_call_message_with_date, context.getString(updateString), callDateString), R.drawable.ic_update_audio_call_outgoing_16);
         } else {
-          int updateString = accepted ? R.string.MessageRecord_outgoing_video_call : R.string.MessageRecord_unanswered_video_call;
+          int updateString = R.string.MessageRecord_outgoing_video_call;
           return staticUpdateDescription(context.getString(R.string.MessageRecord_call_message_with_date, context.getString(updateString), callDateString), R.drawable.ic_update_video_call_outgoing_16);
         }
       } else {
         boolean isVideoCall = call.getType() == CallTable.Type.VIDEO_CALL;
-        boolean isMissed    = call.getEvent().isMissedCall();
 
-        if (accepted) {
+        if (accepted || !call.isDisplayedAsMissedCallInUi()) {
           int updateString = isVideoCall ? R.string.MessageRecord_incoming_video_call : R.string.MessageRecord_incoming_voice_call;
           int icon         = isVideoCall ? R.drawable.ic_update_video_call_incoming_16 : R.drawable.ic_update_audio_call_incoming_16;
           return staticUpdateDescription(context.getString(R.string.MessageRecord_call_message_with_date, context.getString(updateString), callDateString), icon);
-        } else if (isMissed) {
+        } else {
           int icon = isVideoCall ? R.drawable.ic_update_video_call_missed_16 : R.drawable.ic_update_audio_call_missed_16;
           int message;
           if (call.getEvent() == CallTable.Event.MISSED_NOTIFICATION_PROFILE) {
@@ -261,9 +260,6 @@ public class MmsMessageRecord extends MessageRecord {
                                          icon,
                                          ContextCompat.getColor(context, R.color.core_red_shade),
                                          ContextCompat.getColor(context, R.color.core_red));
-        } else {
-          return isVideoCall ? staticUpdateDescription(context.getString(R.string.MessageRecord_call_message_with_date, context.getString(R.string.MessageRecord_you_declined_a_video_call), callDateString), R.drawable.ic_update_video_call_incoming_16)
-                             : staticUpdateDescription(context.getString(R.string.MessageRecord_call_message_with_date, context.getString(R.string.MessageRecord_you_declined_a_voice_call), callDateString), R.drawable.ic_update_audio_call_incoming_16);
         }
       }
     }

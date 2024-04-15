@@ -516,9 +516,17 @@ message IndividualCallChatUpdate {
 }
 
 message GroupCallChatUpdate {
+  enum LocalUserJoined {
+    UNKNOWN = 0;
+    JOINED = 1;
+    DID_NOT_JOIN = 2;
+  }
+
   optional bytes startedCallAci = 1;
   uint64 startedCallTimestamp = 2;
   repeated bytes inCallAcis = 3;
+  uint64 endedCallTimestamp = 4; // 0 indicates we do not know
+  LocalUserJoined localUserJoined = 5;
 }
 
 message SimpleChatUpdate {
