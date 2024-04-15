@@ -6534,7 +6534,7 @@
     <!-- Title displayed at the top of the screen -->
     <string name="NicknameActivity__nickname">အမည်ပြောင်</string>
     <!-- Subtitle displayed under title -->
-    <string name="NicknameActivity__nicknames_amp_notes">Nicknames &amp; notes are stored with Signal and end-to-end encrypted. They are only visible to you.</string>
+    <string name="NicknameActivity__nicknames_amp_notes">အမည်ပြောင်များနှင့် မှတ်ချက်များကို Signal တွင် သိမ်းဆည်းထားပြီး End-to-end ကုဒ်ပြောင်းဝှက်ထားပါသည်။ ၎င်းတို့ကို သင်သာမြင်နိုင်သည်။</string>
     <!-- Field label for given name -->
     <string name="NicknameActivity__first_name">အမည်အစ</string>
     <!-- Content description for first name clear button -->
@@ -6548,9 +6548,9 @@
     <!-- Button label to save -->
     <string name="NicknameActivity__save">သိမ်းရန်</string>
     <!-- Dialog title for note and name deletion -->
-    <string name="NicknameActivity__delete_nickname">Delete?</string>
+    <string name="NicknameActivity__delete_nickname">ဖျက်လိုပါသလား။</string>
     <!-- Dialog message for note and name deletion -->
-    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">This will permanently delete any nickname and note you’ve set.</string>
+    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">၎င်းသည် သင်သတ်မှတ်ထားသည့် အမည်ပြောင်နှင့် မှတ်ချက်ကို အပြီးတိုင် ဖျက်လိုက်ပါမည်။</string>
 
     <!-- ViewNoteBottomSheetDialogFragment -->
     <!-- Sheet title -->

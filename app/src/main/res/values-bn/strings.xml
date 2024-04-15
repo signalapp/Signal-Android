@@ -6680,7 +6680,7 @@
     <!-- Title displayed at the top of the screen -->
     <string name="NicknameActivity__nickname">ডাকনাম</string>
     <!-- Subtitle displayed under title -->
-    <string name="NicknameActivity__nicknames_amp_notes">Nicknames &amp; notes are stored with Signal and end-to-end encrypted. They are only visible to you.</string>
+    <string name="NicknameActivity__nicknames_amp_notes">ডাকনাম এবং নোট Signal-এ সংরক্ষণ করা হয় এবং সেগুলো এন্ড-টু-এন্ড এনক্রিপ্ট করা। এগুলো শুধুমাত্র আপনার কাছে দৃশ্যমান।</string>
     <!-- Field label for given name -->
     <string name="NicknameActivity__first_name">নামের প্রথম অংশ</string>
     <!-- Content description for first name clear button -->
@@ -6694,9 +6694,9 @@
     <!-- Button label to save -->
     <string name="NicknameActivity__save">সেভ করুন</string>
     <!-- Dialog title for note and name deletion -->
-    <string name="NicknameActivity__delete_nickname">Delete?</string>
+    <string name="NicknameActivity__delete_nickname">মুছে ফেলবেন?</string>
     <!-- Dialog message for note and name deletion -->
-    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">This will permanently delete any nickname and note you’ve set.</string>
+    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">এটি আপনার নির্ধারিত যেকোনো ডাকনাম এবং নোট চিরতরে মুছে ফেলবে।</string>
 
     <!-- ViewNoteBottomSheetDialogFragment -->
     <!-- Sheet title -->

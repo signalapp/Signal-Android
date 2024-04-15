@@ -6680,7 +6680,7 @@
     <!-- Title displayed at the top of the screen -->
     <string name="NicknameActivity__nickname">მეტსახელი</string>
     <!-- Subtitle displayed under title -->
-    <string name="NicknameActivity__nicknames_amp_notes">Nicknames &amp; notes are stored with Signal and end-to-end encrypted. They are only visible to you.</string>
+    <string name="NicknameActivity__nicknames_amp_notes">მეტსახელები &amp; ჩანიშვნები Signal-ში ინახება და ბოლომდეა დაშიფრული. ისინი მხოლოდ შენთვისაა ხილული.</string>
     <!-- Field label for given name -->
     <string name="NicknameActivity__first_name">სახელი</string>
     <!-- Content description for first name clear button -->
@@ -6694,9 +6694,9 @@
     <!-- Button label to save -->
     <string name="NicknameActivity__save">შენახვა</string>
     <!-- Dialog title for note and name deletion -->
-    <string name="NicknameActivity__delete_nickname">Delete?</string>
+    <string name="NicknameActivity__delete_nickname">გსურს წაშალო?</string>
     <!-- Dialog message for note and name deletion -->
-    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">This will permanently delete any nickname and note you’ve set.</string>
+    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">ეს სამუდამოდ წაშლის ნებისმიერ მეტსახელსა და ჩანიშვნას, რომელიც შენ დააყენე.</string>
 
     <!-- ViewNoteBottomSheetDialogFragment -->
     <!-- Sheet title -->

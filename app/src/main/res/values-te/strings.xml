@@ -6680,7 +6680,7 @@
     <!-- Title displayed at the top of the screen -->
     <string name="NicknameActivity__nickname">మారుపేరు</string>
     <!-- Subtitle displayed under title -->
-    <string name="NicknameActivity__nicknames_amp_notes">Nicknames &amp; notes are stored with Signal and end-to-end encrypted. They are only visible to you.</string>
+    <string name="NicknameActivity__nicknames_amp_notes">మారుపేర్లు &amp; గమనికలు Signal లో నిల్వ చేయబడినవి మరియు ఎండ్-టు-ఎండ్ గుప్తీకరించబడివి. అవి మీకు మాత్రమే కనిపిస్తాయి.</string>
     <!-- Field label for given name -->
     <string name="NicknameActivity__first_name">మొదటి పేరు</string>
     <!-- Content description for first name clear button -->
@@ -6694,9 +6694,9 @@
     <!-- Button label to save -->
     <string name="NicknameActivity__save">సేవ్ చేయండి</string>
     <!-- Dialog title for note and name deletion -->
-    <string name="NicknameActivity__delete_nickname">Delete?</string>
+    <string name="NicknameActivity__delete_nickname">తొలగించేదా?</string>
     <!-- Dialog message for note and name deletion -->
-    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">This will permanently delete any nickname and note you’ve set.</string>
+    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">ఇది మీరు సెట్ చేసిన మారుపేరు మరియు గమనికను శాశ్వతంగా తొలగిస్తుంది.</string>
 
     <!-- ViewNoteBottomSheetDialogFragment -->
     <!-- Sheet title -->

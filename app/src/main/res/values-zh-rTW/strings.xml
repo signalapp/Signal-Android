@@ -6534,7 +6534,7 @@
     <!-- Title displayed at the top of the screen -->
     <string name="NicknameActivity__nickname">暱稱</string>
     <!-- Subtitle displayed under title -->
-    <string name="NicknameActivity__nicknames_amp_notes">Nicknames &amp; notes are stored with Signal and end-to-end encrypted. They are only visible to you.</string>
+    <string name="NicknameActivity__nicknames_amp_notes">暱稱和備註均以 Signal 的端對端加密儲存。只有你可以看見它們。</string>
     <!-- Field label for given name -->
     <string name="NicknameActivity__first_name">名</string>
     <!-- Content description for first name clear button -->
@@ -6548,9 +6548,9 @@
     <!-- Button label to save -->
     <string name="NicknameActivity__save">儲存</string>
     <!-- Dialog title for note and name deletion -->
-    <string name="NicknameActivity__delete_nickname">Delete?</string>
+    <string name="NicknameActivity__delete_nickname">要刪除嗎？</string>
     <!-- Dialog message for note and name deletion -->
-    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">This will permanently delete any nickname and note you’ve set.</string>
+    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">這將會永久刪除你設定的任何暱稱和備註。</string>
 
     <!-- ViewNoteBottomSheetDialogFragment -->
     <!-- Sheet title -->

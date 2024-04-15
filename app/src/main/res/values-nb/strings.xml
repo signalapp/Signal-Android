@@ -6680,7 +6680,7 @@
     <!-- Title displayed at the top of the screen -->
     <string name="NicknameActivity__nickname">Kallenavn</string>
     <!-- Subtitle displayed under title -->
-    <string name="NicknameActivity__nicknames_amp_notes">Nicknames &amp; notes are stored with Signal and end-to-end encrypted. They are only visible to you.</string>
+    <string name="NicknameActivity__nicknames_amp_notes">Kallenavn og notater lagres i Signal med ende-til-ende-kryptering. Du er den eneste som kan se dem.</string>
     <!-- Field label for given name -->
     <string name="NicknameActivity__first_name">Fornavn</string>
     <!-- Content description for first name clear button -->
@@ -6694,9 +6694,9 @@
     <!-- Button label to save -->
     <string name="NicknameActivity__save">Lagre</string>
     <!-- Dialog title for note and name deletion -->
-    <string name="NicknameActivity__delete_nickname">Delete?</string>
+    <string name="NicknameActivity__delete_nickname">Slette?</string>
     <!-- Dialog message for note and name deletion -->
-    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">This will permanently delete any nickname and note you’ve set.</string>
+    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">Dette medfører at kallenavnet og notatet slettes for godt.</string>
 
     <!-- ViewNoteBottomSheetDialogFragment -->
     <!-- Sheet title -->

@@ -383,7 +383,7 @@
     <string name="ConversationActivity_cant_start_group_call">Starten eines Gruppenanrufs nicht möglich</string>
     <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Nur Admins können in dieser Gruppe Anrufe starten.</string>
     <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Auf deinem Gerät ist derzeit keine App installiert, die mit diesem Link umgehen kann.</string>
-    <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Deine Beitrittsanfrage wurde an den Gruppen-Admin gesendet. Du wirst benachrichtigt, sobald er über sie entschieden hat.</string>
+    <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Deine Beitrittsanfrage wurde an den Gruppen-Admin gesendet. Du wirst über die Entscheidung benachrichtigt.</string>
     <string name="ConversationActivity_cancel_request">Anfrage abbrechen</string>
 
     <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Erlaube Signal Zugriff auf dein Mikrofon, um Sprachnachrichten zu versenden.</string>
@@ -411,7 +411,7 @@
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Du wirst diese Gruppe verlassen und sie wird von all deinen Geräten gelöscht werden.</string>
     <string name="ConversationActivity_delete">Löschen</string>
     <string name="ConversationActivity_delete_and_leave">Löschen und verlassen</string>
-    <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Um %1$s anzurufen, benötigt Signal Zugriff auf dein Mikrofon.</string>
+    <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Um %1$s anzurufen, benötigt Signal Zugriff auf dein Mikrofon</string>
 
 
     <string name="ConversationActivity_join">Beitreten</string>
@@ -454,8 +454,8 @@
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">Im Gerätespeicher speichern?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-        <item quantity="one">Wenn du diesen Medieninhalt im Gerätespeicher speicherst, können installierte Apps darauf zugreifen.\n\nTrotzdem fortfahren?</item>
-        <item quantity="other">Wenn du alle %1$d Medieninhalte im Gerätespeicher speicherst, können installierte Apps darauf zugreifen.\n\nTrotzdem fortfahren?</item>
+        <item quantity="one">Wenn du diesen Medieninhalt im Gerätespeicher speicherst, können andere installierte Apps darauf zugreifen.\n\nTrotzdem fortfahren?</item>
+        <item quantity="other">Wenn du alle %1$d Medieninhalte im Gerätespeicher speicherst, können andere installierte Apps darauf zugreifen.\n\nTrotzdem fortfahren?</item>
     </plurals>
     <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
         <item quantity="one">Fehler beim Speichern des Anhangs im Gerätespeicher!</item>
@@ -471,7 +471,7 @@
         <item quantity="other">%1$d Anhänge werden im Gerätespeicher gespeichert …</item>
     </plurals>
     <string name="ConversationFragment_pending">Ausstehend …</string>
-    <string name="ConversationFragment_push">Internet (Signal-Protokoll)</string>
+    <string name="ConversationFragment_push">Internet (Signal)</string>
     <string name="ConversationFragment_mms">MMS</string>
     <string name="ConversationFragment_sms">SMS</string>
     <string name="ConversationFragment_deleting">Löschen</string>
@@ -657,12 +657,12 @@
     <string name="CreateProfileActivity_error_setting_profile_photo">Fehler beim Einrichten des Profilbildes</string>
     <string name="CreateProfileActivity_problem_setting_profile">Problem beim Einrichten des Profils</string>
     <string name="CreateProfileActivity_set_up_your_profile">Richte dein Profil ein</string>
-    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Dein Profil und Änderungen daran sind für Personen, an die du Nachrichten verschickst, Kontakte und Gruppen sichtbar.</string>
+    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Dein Profil und Änderungen daran sind für Personen, an die du Nachrichten verschickst, deine Kontakte und Gruppen sichtbar.</string>
     <string name="CreateProfileActivity_set_avatar_description">Avatar festlegen</string>
 
     <!-- ProfileCreateFragment -->
     <!-- Displayed at the top of the screen and explains how profiles can be viewed. -->
-    <string name="ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message">Profile sind für Personen, an die du Nachrichten schickst, Kontakte und Gruppen sichtbar.</string>
+    <string name="ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message">Profile sind für Personen, an die du Nachrichten schickst, deine Kontakte und Gruppen sichtbar.</string>
     <!-- Title of clickable row to select phone number privacy settings -->
     <string name="ProfileCreateFragment__who_can_find_me">Wer kann mich anhand der Telefonnummer finden?</string>
 
@@ -677,7 +677,7 @@
     <!-- ChooseBackupFragment -->
     <string name="ChooseBackupFragment__restore_from_backup">Aus Sicherung wiederherstellen?</string>
     <string name="ChooseBackupFragment__restore_your_messages_and_media">Stelle deine Nachrichten und Medieninhalte aus einer lokalen Datensicherung wieder her. Falls du sie jetzt nicht wiederherstellst, wirst du dies später nicht mehr nachholen können.</string>
-    <string name="ChooseBackupFragment__icon_content_description">Symbol: Aus Datensicherung wiederherstellen</string>
+    <string name="ChooseBackupFragment__icon_content_description">\"Aus Datensicherung wiederherstellen\"-Symbol</string>
     <string name="ChooseBackupFragment__choose_backup">Datensicherung wählen</string>
     <string name="ChooseBackupFragment__learn_more">Mehr erfahren</string>
     <string name="ChooseBackupFragment__no_file_browser_available">Kein Dateimanager verfügbar</string>
@@ -710,7 +710,7 @@
     <string name="BackupsPreferenceFragment__learn_more">Mehr erfahren</string>
     <string name="BackupsPreferenceFragment__in_progress">In Bearbeitung …</string>
     <!-- Status text shown in backup preferences when verifying a backup -->
-    <string name="BackupsPreferenceFragment__verifying_backup">Backup wird überprüft…</string>
+    <string name="BackupsPreferenceFragment__verifying_backup">Datensicherung wird überprüft…</string>
     <string name="BackupsPreferenceFragment__d_so_far">%1$d bisher …</string>
     <!-- Show percentage of completion of backup -->
     <string name="BackupsPreferenceFragment__s_so_far">%1$s%% bisher …</string>
@@ -3842,7 +3842,7 @@
     <string name="preferences_chats__transfer_account_to_a_new_android_device">Konto auf ein neues Android-Gerät übertragen</string>
     <string name="RegistrationActivity_enter_backup_passphrase">Sicherungspassphrase eingeben</string>
     <string name="RegistrationActivity_restore">Wiederherstellen</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">Back-up-Import neuerer Signal-Versionen nicht möglich</string>
+    <string name="RegistrationActivity_backup_failure_downgrade">Import von Datensicherungen neuerer Signal-Versionen nicht möglich</string>
     <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
     <string name="RegistrationActivity_backup_failure_foreign_key">Datensicherung enthält fehlerhafte Daten</string>
     <string name="RegistrationActivity_incorrect_backup_passphrase">Falsche Sicherungspassphrase</string>
@@ -3868,15 +3868,15 @@
     <string name="BackupDialog_passphrase_was_not_correct">Sicherungspassphrase war falsch</string>
     <string name="LocalBackupJob_creating_signal_backup">Signal-Sicherung wird erstellt …</string>
     <!-- Title for progress notification shown in a system notification while verifying a recent backup. -->
-    <string name="LocalBackupJob_verifying_signal_backup">Signal-Backup wird überprüft…</string>
-    <string name="LocalBackupJobApi29_backup_failed">Sicherung gescheitert</string>
+    <string name="LocalBackupJob_verifying_signal_backup">Signal-Datensicherung wird überprüft…</string>
+    <string name="LocalBackupJobApi29_backup_failed">Datensicherung gescheitert</string>
     <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Dein Verzeichnis für die Datensicherung wurde gelöscht oder verschoben.</string>
     <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Deine Sicherungsdatei ist zu groß, um auf diesem Laufwerk gespeichert zu werden.</string>
     <string name="LocalBackupJobApi29_there_is_not_enough_space">Es ist nicht genug Speicherplatz verfügbar, um deine Datensicherung zu speichern.</string>
     <!-- Error message shown if a newly created backup could not be verified as accurate -->
-    <string name="LocalBackupJobApi29_your_backup_could_not_be_verified">Dein letztes Backup konnte nicht erstellt und überprüft werden. Bitte erstelle ein neues Backup.</string>
+    <string name="LocalBackupJobApi29_your_backup_could_not_be_verified">Deine letzte Datensicherung konnte nicht erstellt und überprüft werden. Bitte erstelle eine neue Datensicherung.</string>
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
-    <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Dein Backup enthält eine sehr große Datei, die nicht gesichert werden kann. Bitte lösche sie und erstelle ein neues Backup.</string>
+    <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Deine Datensicherung enthält eine sehr große Datei, die nicht gesichert werden kann. Bitte lösche sie und erstelle eine neue Datensicherung.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Antippen zum Verwalten von Datensicherungen.</string>
     <string name="RegistrationActivity_wrong_number">Falsche Telefonnummer?</string>
     <!--    Countdown to when the user can request a new code via phone call during registration.-->

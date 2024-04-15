@@ -251,7 +251,7 @@
     <string name="CommunicationActions_cancel">Annuleren</string>
     <string name="CommunicationActions_call">Bellen</string>
     <string name="CommunicationActions_insecure_call">Onbeveiligde oproep</string>
-    <string name="CommunicationActions_carrier_charges_may_apply">Je mobielentelefonie-aanbieder brengt misschien extra kosten in rekening. Het nummer dat je wil bellen is niet geregistreerd bij Signal. Deze oproep zal via het telefonienetwerk lopen, niet over internet.</string>
+    <string name="CommunicationActions_carrier_charges_may_apply">Je mobiele provider brengt misschien extra kosten in rekening. Het nummer dat je wil bellen is niet geregistreerd bij Signal. Deze oproep zal via het telefoonnetwerk lopen, niet over internet.</string>
     <string name="CommunicationActions_cant_join_call">Kan niet deelnemen aan oproep</string>
     <string name="CommunicationActions_this_call_link_is_no_longer_valid">De oproeplink is niet langer geldig.</string>
     <!-- Title on dialog when call link url cannot be parsed -->
@@ -1048,7 +1048,7 @@
     <string name="ManageGroupActivity_legacy_group_upgrade">Dit is een verouderde groep; om nieuwe functionaliteiten te kunnen gebruiken zoals @vermeldingen en beheerders,</string>
     <string name="ManageGroupActivity_legacy_group_too_large">Deze verouderde groep kan niet worden omgezet naar een nieuwe-stijl groep omdat het te veel leden bevat. Het maximum ledenaantal voor een groep is %1$d.</string>
     <string name="ManageGroupActivity_upgrade_this_group">moet je deze groep omzetten.</string>
-    <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Dit is een onbeveiligde mms-groep. Om beveiligde berichten uit te wisselen en om functionaliteiten te kunnen gebruiken zoals groepsnamen en groepsbeheer, moet je je contactpersonen uitnodigen om Signal Messenger te gebruiken.</string>
+    <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Dit is een onbeveiligde mms-groep. Nodig je contacten uit voor Signal Messenger om beveiligde berichten uit te wisselen.</string>
     <string name="ManageGroupActivity_invite_now">Nu uitnodigen</string>
     <string name="ManageGroupActivity_more"> meer</string>
     <string name="ManageGroupActivity_add_group_description">Voeg een groepsomschrijving toe…</string>
@@ -3162,7 +3162,7 @@
     <string name="preferences__payments">Betalingen</string>
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">Betalingsvergrendeling</string>
-    <string name="preferences__conversation_length_limit">Limiet voor chatlengte</string>
+    <string name="preferences__conversation_length_limit">Aantal berichten per chat</string>
     <string name="preferences__keep_messages">Bewaartermijn voor berichten</string>
     <string name="preferences__clear_message_history">Alle gespreksgeschiedenis wissen</string>
     <string name="preferences__linked_devices">Gekoppelde apparaten</string>
@@ -6238,7 +6238,7 @@
     <!-- Displayed underneath the filter circle at the top of the chat list when the user pulls at a very low velocity -->
     <string name="ChatFilter__pull_to_filter">Trek om te filteren</string>
     <!-- Displayed in the "clear filter" item in the chat feed if the user opened the filter from the overflow menu -->
-    <string name="ChatFilter__tip_pull_down">Tip: Sleep je vinger langs chatlijst om te filteren</string>
+    <string name="ChatFilter__tip_pull_down">Tip: Sleep de chatlijst naar beneden om te filteren</string>
 
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
@@ -6680,7 +6680,7 @@
     <!-- Title displayed at the top of the screen -->
     <string name="NicknameActivity__nickname">Bijnaam</string>
     <!-- Subtitle displayed under title -->
-    <string name="NicknameActivity__nicknames_amp_notes">Nicknames &amp; notes are stored with Signal and end-to-end encrypted. They are only visible to you.</string>
+    <string name="NicknameActivity__nicknames_amp_notes">Bijnamen en notities worden opgeslagen door Signal en zijn end-to-end versleuteld. Ze zijn alleen voor jou zichtbaar.</string>
     <!-- Field label for given name -->
     <string name="NicknameActivity__first_name">Voornaam</string>
     <!-- Content description for first name clear button -->
@@ -6694,9 +6694,9 @@
     <!-- Button label to save -->
     <string name="NicknameActivity__save">Opslaan</string>
     <!-- Dialog title for note and name deletion -->
-    <string name="NicknameActivity__delete_nickname">Delete?</string>
+    <string name="NicknameActivity__delete_nickname">Verwijderen?</string>
     <!-- Dialog message for note and name deletion -->
-    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">This will permanently delete any nickname and note you’ve set.</string>
+    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">Hiermee worden deze bijnaam en notitie permanent verwijderd.</string>
 
     <!-- ViewNoteBottomSheetDialogFragment -->
     <!-- Sheet title -->
