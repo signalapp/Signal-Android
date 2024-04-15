@@ -572,7 +572,7 @@ open class MessageContentProcessor(private val context: Context) {
 
     val sentTimestamp = decryptionErrorMessage.timestamp
     warn(envelope.timestamp!!, "[RetryReceipt] Received a retry receipt from ${formatSender(senderRecipient.id, metadata.sourceServiceId, metadata.sourceDeviceId)} for message with timestamp $sentTimestamp.")
-    if (!senderRecipient.hasServiceId()) {
+    if (!senderRecipient.hasServiceId) {
       warn(envelope.timestamp!!, "[RetryReceipt] Requester ${senderRecipient.id} somehow has no UUID! timestamp: $sentTimestamp")
       return
     }

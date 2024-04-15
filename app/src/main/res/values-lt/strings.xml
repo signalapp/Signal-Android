@@ -45,8 +45,6 @@
     <string name="ApplicationPreferencesActivity_disable_passphrase">Išjungti slaptafrazę?</string>
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Tai visiems laikams atrakins Signal ir žinučių pranešimus.</string>
     <string name="ApplicationPreferencesActivity_disable">Išjungti</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Išjungti Signal žinutes ir skambučius?</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Išjunkite Signal žinutes ir skambučius išsiregistruodami iš serverio. Norėdami vėl jais naudotis, jūs turėsite iš naujo užregistruoti savo telefono numerį.</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Klaida prisijungiant prie serverio!</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN kodai yra reikalingi registracijos užraktui. Norėdami išjungti PIN kodus, iš pradžių, išjunkite registracijos užraktą.</string>
     <string name="ApplicationPreferencesActivity_pin_created">PIN kodas sukurtas.</string>
@@ -311,7 +309,6 @@
     <string name="ConversationItem_error_network_not_delivered">Išsiuntimas nepavyko</string>
     <string name="ConversationItem_group_action_left">%1$s išėjo iš grupės.</string>
     <string name="ConversationItem_send_paused">Siuntimas pristabdytas</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Siuntimas nepavyko, bakstelėkite, norėdami sugrįžti nesaugaus surogato</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Sugrįžti prie nešifruotų SMS naudojimo?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Sugrįžti prie nešifruotų MMS naudojimo?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ši žinutė <b>nebus</b> užšifruota, nes gavėjas daugiau nebėra Signal naudotojas.\n\nSiųsti neapsaugotą žinutę?</string>
@@ -2123,7 +2120,7 @@
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
     <string name="AboutSheet__no_direct_message">Neturite tiesioginių žinučių su %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
-    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s yra jūsų sistemos kontaktuose</string>
+    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s yra jūsų telefono kontaktuose</string>
     <!-- Notice in a row when user has no groups in common -->
     <string name="AboutSheet__you_have_no_groups_in_common">Neturi bendrų grupių</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
@@ -2139,6 +2136,8 @@
     <string name="AboutSheet__about">Apie</string>
     <!-- Text displayed in title for you -->
     <string name="AboutSheet__you">Jūs</string>
+    <!-- Displays the name of a contact. The first placeholder is the name the user has assigned to that contact, the second name is the name the contact assigned to themselves -->
+    <string name="AboutSheet__user_set_display_name_and_profile_name">%1$s (%2$s)</string>
 
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call">
@@ -3113,6 +3112,18 @@
     <string name="EditProfileFragment__group_name">Grupės pavadinimas</string>
     <string name="EditProfileFragment__group_description">Grupės aprašas</string>
   <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
+    <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_title">Atnaujinti Signal</string>
+    <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_body">Ši „Signal“ versija nebegalioja. Atnaujink programėlę dabar ir naudokis toliau.</string>
+    <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
+    <string name="EditProfileFragment_deprecated_dialog_update_button">Atnaujinti</string>
+    <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_title">Įrenginys neregistruotas</string>
+    <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_body">Šis įrenginys nebėra registruotas. Registruokite iš naujo, kad atliktumėte paskyros pakeitimus.</string>
+    <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
+    <string name="EditProfileFragment_unregistered_dialog_reregister_button">Iš naujo registruoti</string>
 
     <!-- EditProfileNameFragment -->
     <string name="EditProfileNameFragment_your_name">Jūsų vardas</string>
@@ -3207,7 +3218,6 @@
         <item>Kitas</item>
         <item>Mokėjimai („MobileCoin“)</item>
         <item>Parama ir ženkleliai</item>
-        <item>SMS eksportavimas</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">„Signal“ „Android“ derinimo žurnalo pateikimas</string>
@@ -3862,8 +3872,6 @@
     <string name="verify_display_fragment_context_menu__compare_with_clipboard">Palyginti su iškarpine</string>
 
     <!-- reminder_header -->
-    <string name="reminder_header_push_title">Įjungti Signal skambučius ir žinutes</string>
-    <string name="reminder_header_push_text">Atnaujinkite savo bendravimo patyrimą.</string>
     <string name="reminder_header_service_outage_text">Signal patiria techninius nesklandumus. Mes sunkiai dirbame, kad kaip įmanoma greičiau atkurtume paslaugą.</string>
     <string name="reminder_header_progress">%1$d%%</string>
     <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user\'s contacts -->
@@ -4174,6 +4182,8 @@
     <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Jums reikia prieigos prie savo senojo įrenginio.</string>
     <string name="TransferOrRestoreFragment__restore_from_backup">Atkurti iš atsarginės kopijos</string>
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Atkurkite savo žinutes iš vietinės atsarginės kopijos. Jeigu neatkursite dabar, vėliau to padaryti nebegalėsite.</string>
+    <!-- Button label for more options -->
+    <string name="TransferOrRestoreFragment__more_options">Daugiau parinkčių</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
     <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Savo senajame „Android“ telefone atverkite Signal</string>
@@ -4384,7 +4394,7 @@
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
     <string name="ReviewCard__s_recently_changed">%1$s neseniai pasikeitė profilio vardą iš %2$s į %3$s</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
-    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s yra jūsų sistemos kontaktuose</string>
+    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s yra jūsų telefono kontaktuose</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">Prisijungė %1$s</string>
@@ -4943,7 +4953,7 @@
     <string name="ConversationSettingsFragment__disappearing_messages">Išnykstančios žinutės</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">Garsai ir pranešimai</string>
   <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
-    <string name="ConversationSettingsFragment__contact_details">Išsamiau apie adresatą</string>
+    <string name="ConversationSettingsFragment__contact_details">Kontakto informacija telefone</string>
     <string name="ConversationSettingsFragment__view_safety_number">Rodyti saugumo numerį</string>
     <string name="ConversationSettingsFragment__block">Užblokuoti</string>
     <string name="ConversationSettingsFragment__block_group">Užblokuoti grupę</string>
@@ -5820,7 +5830,7 @@
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Priimdami iš jų žinutės užklausą</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Turėdami juos savo sistemos kontaktų sąraše</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Turėdami juos savo telefono kontaktų sąraše</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Tavo kontaktai gali matyti tavo vardą ir nuotrauką bei žiūrėti tavo istorijos įrašus, nebent ją paslėpsi."</string>
     <!-- Clickable option to add a viewer to a custom story -->
@@ -6943,6 +6953,48 @@
     <string name="FindByActivity__qr_scan_button">Skenuoti QR kodą</string>
     <!-- Content of a dialog indicating that we could not perform the requested action because we encountered a network error. -->
     <string name="FindByActivity__network_error_dialog">Susidurta su tinklo klaida. Vėliau bandykite dar kartą.</string>
+
+    <!-- Title for an alert letting someone know that one of their linked devices is inactive. -->
+    <string name="LinkedDeviceInactiveMegaphone_title">Neaktyvus susietas įrenginys</string>
+    <!-- Body for an alert letting someone know that one of their linked devices is inactive. The string placeholder is the name of the device, and the number placeholder is the number of days before device is unlinked. -->
+    <plurals name="LinkedDeviceInactiveMegaphone_body">
+        <item quantity="one">Kad „%1$s“ liktų susietas, atidarykite „Signal“ tame įrenginyje per %2$d d.</item>
+        <item quantity="few">Kad „%1$s“ liktų susietas, atidarykite „Signal“ tame įrenginyje per %2$d d.</item>
+        <item quantity="many">Kad „%1$s“ liktų susietas, atidarykite „Signal“ tame įrenginyje per %2$d d.</item>
+        <item quantity="other">Kad „%1$s“ liktų susietas, atidarykite „Signal“ tame įrenginyje per %2$d d.</item>
+    </plurals>
+    <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the user will opt out of all future alerts. -->
+    <string name="LinkedDeviceInactiveMegaphone_dont_remind_button_label">Nepriminti</string>
+    <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the alert will be dismissed. -->
+    <string name="LinkedDeviceInactiveMegaphone_got_it_button_label">Supratau</string>
+
+    <!-- NicknameFragment -->
+    <!-- Title displayed at the top of the screen -->
+    <string name="NicknameActivity__nickname">Slapyvardis</string>
+    <!-- Subtitle displayed under title -->
+    <string name="NicknameActivity__nicknames_amp_notes">Nicknames &amp; notes are stored with Signal and end-to-end encrypted. They are only visible to you.</string>
+    <!-- Field label for given name -->
+    <string name="NicknameActivity__first_name">Vardas</string>
+    <!-- Content description for first name clear button -->
+    <string name="NicknameActivity__clear_first_name">Išvalyti vardą</string>
+    <!-- Field label for family name -->
+    <string name="NicknameActivity__last_name">Pavardė</string>
+    <!-- Content description for last name clear button -->
+    <string name="NicknameActivity__clear_last_name">Išvalyti pavardę</string>
+    <!-- Field label for note -->
+    <string name="NicknameActivity__note">Pastaba</string>
+    <!-- Button label to save -->
+    <string name="NicknameActivity__save">Įrašyti</string>
+    <!-- Dialog title for note and name deletion -->
+    <string name="NicknameActivity__delete_nickname">Delete?</string>
+    <!-- Dialog message for note and name deletion -->
+    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">This will permanently delete any nickname and note you’ve set.</string>
+
+    <!-- ViewNoteBottomSheetDialogFragment -->
+    <!-- Sheet title -->
+    <string name="ViewNoteSheet__note">Pastaba</string>
+    <!-- Content description for opening the note editor -->
+    <string name="ViewNoteSheet__edit_note">Redaguoti pastabą</string>
 
     <!-- EOF -->
 </resources>

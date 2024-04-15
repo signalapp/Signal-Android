@@ -45,8 +45,6 @@
     <string name="ApplicationPreferencesActivity_disable_passphrase">Inaktivera lösenord?</string>
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Detta låser upp Signal och meddelandeaviseringar permanent.</string>
     <string name="ApplicationPreferencesActivity_disable">Inaktivera</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Inaktivera Signal-meddelanden och -samtal?</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Inaktivera Signal-meddelanden och -samtal genom att avregistrera dig från servern. Du behöver återregistrera ditt telefonnummer för att kunna använda dem igen senare.</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Fel vid anslutning till server!</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN-koder krävs för registreringslås. För att inaktivera PIN-koder, inaktivera först registreringslåset.</string>
     <string name="ApplicationPreferencesActivity_pin_created">PIN-kod skapad.</string>
@@ -309,7 +307,6 @@
     <string name="ConversationItem_error_network_not_delivered">Att skicka meddelandet misslyckades</string>
     <string name="ConversationItem_group_action_left">%1$s har lämnat gruppen.</string>
     <string name="ConversationItem_send_paused">Sändning pausad</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Sändningen misslyckades, tryck för oskyddad fallback</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Använd okrypterat SMS istället?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Använd okrypterat MMS istället?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Detta meddelande kommer <b>inte</b> att krypteras eftersom mottagaren inte längre är en Signal-användare. \n\nSkicka osäkert meddelande?</string>
@@ -1975,7 +1972,7 @@
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
     <string name="AboutSheet__no_direct_message">Inga direktmeddelanden med %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
-    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s finns i dina systemkontakter</string>
+    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s finns i dina telefonkontakter</string>
     <!-- Notice in a row when user has no groups in common -->
     <string name="AboutSheet__you_have_no_groups_in_common">Ni har inga gemensamma grupper</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
@@ -1989,6 +1986,8 @@
     <string name="AboutSheet__about">Om</string>
     <!-- Text displayed in title for you -->
     <string name="AboutSheet__you">Du</string>
+    <!-- Displays the name of a contact. The first placeholder is the name the user has assigned to that contact, the second name is the name the contact assigned to themselves -->
+    <string name="AboutSheet__user_set_display_name_and_profile_name">%1$s (%2$s)</string>
 
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call">
@@ -2925,6 +2924,18 @@
     <string name="EditProfileFragment__group_name">Gruppnamn</string>
     <string name="EditProfileFragment__group_description">Gruppbeskrivning</string>
   <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
+    <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_title">Uppdatera Signal</string>
+    <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_body">Denna version av Signal har upphört att gälla. Uppdatera nu för att fortsätta använda Signal.</string>
+    <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
+    <string name="EditProfileFragment_deprecated_dialog_update_button">Uppdatera</string>
+    <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_title">Enheten är inte registrerad</string>
+    <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_body">Den här enheten är inte längre registrerad. Registrera på nytt för att göra ändringar i ditt konto.</string>
+    <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
+    <string name="EditProfileFragment_unregistered_dialog_reregister_button">Registrera igen</string>
 
     <!-- EditProfileNameFragment -->
     <string name="EditProfileNameFragment_your_name">Ditt namn</string>
@@ -3019,7 +3030,6 @@
         <item>Övrigt</item>
         <item>Betalningar (MobileCoin)</item>
         <item>Donationer och märken</item>
-        <item>Sms-export</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android inskickad felsökningslogg</string>
@@ -3664,8 +3674,6 @@
     <string name="verify_display_fragment_context_menu__compare_with_clipboard">Jämför med urklipp</string>
 
     <!-- reminder_header -->
-    <string name="reminder_header_push_title">Aktivera Signal-meddelanden och -samtal</string>
-    <string name="reminder_header_push_text">Uppgradera din kommunikationsupplevelse.</string>
     <string name="reminder_header_service_outage_text">Signal upplever tekniska problem. Vi arbetar för fullt för att återställa tjänsten så snabbt som möjligt.</string>
     <string name="reminder_header_progress">%1$d %%</string>
     <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user\'s contacts -->
@@ -3962,6 +3970,8 @@
     <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Du behöver åtkomst till din gamla enhet.</string>
     <string name="TransferOrRestoreFragment__restore_from_backup">Återställ från säkerhetskopia</string>
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Återställ dina meddelanden från en lokal säkerhetskopia. Om du inte återställer nu kan du inte återställa senare.</string>
+    <!-- Button label for more options -->
+    <string name="TransferOrRestoreFragment__more_options">Fler alternativ</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
     <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Öppna Signal på din gamla Android-telefon</string>
@@ -4168,7 +4178,7 @@
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
     <string name="ReviewCard__s_recently_changed">%1$s ändrade nyligen sitt profilnamn från %2$s till %3$s</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
-    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s finns i dina systemkontakter</string>
+    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s finns i dina telefonkontakter</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s gick med</string>
@@ -4719,7 +4729,7 @@
     <string name="ConversationSettingsFragment__disappearing_messages">Försvinnande meddelanden</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">Ljud &amp; aviseringar</string>
   <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
-    <string name="ConversationSettingsFragment__contact_details">Kontaktdetaljer</string>
+    <string name="ConversationSettingsFragment__contact_details">Kontaktuppgifter i telefonen</string>
     <string name="ConversationSettingsFragment__view_safety_number">Visa säkerhetsnummer</string>
     <string name="ConversationSettingsFragment__block">Blockera</string>
     <string name="ConversationSettingsFragment__block_group">Blockera grupp</string>
@@ -4891,7 +4901,7 @@
     <!-- Small notification presented to the user when they set their video to view-once mode -->
     <string name="MediaReviewFragment__video_set_to_view_once">Video inställd för att visas en gång</string>
     <!-- Small notification presented to the user when they set their photo to view-once mode -->
-    <string name="MediaReviewFragment__photo_set_to_view_once">Photo set to view once</string>
+    <string name="MediaReviewFragment__photo_set_to_view_once">Foto inställt för att visas en gång</string>
     <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
     <string name="MediaReviewFragment__video_set_to_high_quality">Video inställd på hög kvalitet</string>
     <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
@@ -4902,13 +4912,13 @@
     <string name="MediaReviewFragment__photo_set_to_standard_quality">Foto inställt på standardkvalitet</string>
     <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
     <plurals name="MediaReviewFragment__items_set_to_high_quality">
-        <item quantity="one">%1$d item set to high quality</item>
-        <item quantity="other">%1$d items set to high quality</item>
+        <item quantity="one">%1$d objekt inställda på hög kvalitet</item>
+        <item quantity="other">%1$d objekt inställda på hög kvalitet</item>
     </plurals>
     <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
     <plurals name="MediaReviewFragment__items_set_to_standard_quality">
-        <item quantity="one">%1$d item set to standard quality</item>
-        <item quantity="other">%1$d items set to standard quality</item>
+        <item quantity="one">%1$d objekt inställda på standardkvalitet</item>
+        <item quantity="other">%1$d objekt inställda på standardkvalitet</item>
     </plurals>
 
     <string name="ImageEditorHud__cancel">Avbryt</string>
@@ -5570,7 +5580,7 @@
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Acceptera en meddelandeförfrågan</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Ha dem i dina systemkontakter</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Att ha dem i dina telefonkontakter</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Dina förbindelser kan se ditt namn och foto, och kan se inlägg på \"Min Story\" om du inte döljer den från dem."</string>
     <!-- Clickable option to add a viewer to a custom story -->
@@ -6653,6 +6663,46 @@
     <string name="FindByActivity__qr_scan_button">Skanna QR-kod</string>
     <!-- Content of a dialog indicating that we could not perform the requested action because we encountered a network error. -->
     <string name="FindByActivity__network_error_dialog">Påträffade ett nätverksfel. Försök igen senare.</string>
+
+    <!-- Title for an alert letting someone know that one of their linked devices is inactive. -->
+    <string name="LinkedDeviceInactiveMegaphone_title">Inaktiv länkad enhet</string>
+    <!-- Body for an alert letting someone know that one of their linked devices is inactive. The string placeholder is the name of the device, and the number placeholder is the number of days before device is unlinked. -->
+    <plurals name="LinkedDeviceInactiveMegaphone_body">
+        <item quantity="one">För att hålla \"%1$s\" länkad, öppna Signal på den enheten inom %2$d dag.</item>
+        <item quantity="other">För att hålla \"%1$s\" länkad, öppna Signal på den enheten inom %2$d dagar.</item>
+    </plurals>
+    <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the user will opt out of all future alerts. -->
+    <string name="LinkedDeviceInactiveMegaphone_dont_remind_button_label">Påminn mig inte</string>
+    <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the alert will be dismissed. -->
+    <string name="LinkedDeviceInactiveMegaphone_got_it_button_label">Uppfattat</string>
+
+    <!-- NicknameFragment -->
+    <!-- Title displayed at the top of the screen -->
+    <string name="NicknameActivity__nickname">Smeknamn</string>
+    <!-- Subtitle displayed under title -->
+    <string name="NicknameActivity__nicknames_amp_notes">Nicknames &amp; notes are stored with Signal and end-to-end encrypted. They are only visible to you.</string>
+    <!-- Field label for given name -->
+    <string name="NicknameActivity__first_name">Förnamn</string>
+    <!-- Content description for first name clear button -->
+    <string name="NicknameActivity__clear_first_name">Rensa förnamn</string>
+    <!-- Field label for family name -->
+    <string name="NicknameActivity__last_name">Efternamn</string>
+    <!-- Content description for last name clear button -->
+    <string name="NicknameActivity__clear_last_name">Rensa efternamn</string>
+    <!-- Field label for note -->
+    <string name="NicknameActivity__note">Anteckning</string>
+    <!-- Button label to save -->
+    <string name="NicknameActivity__save">Spara</string>
+    <!-- Dialog title for note and name deletion -->
+    <string name="NicknameActivity__delete_nickname">Delete?</string>
+    <!-- Dialog message for note and name deletion -->
+    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">This will permanently delete any nickname and note you’ve set.</string>
+
+    <!-- ViewNoteBottomSheetDialogFragment -->
+    <!-- Sheet title -->
+    <string name="ViewNoteSheet__note">Anteckning</string>
+    <!-- Content description for opening the note editor -->
+    <string name="ViewNoteSheet__edit_note">Redigera anteckning</string>
 
     <!-- EOF -->
 </resources>

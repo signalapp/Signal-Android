@@ -130,7 +130,7 @@ object UsernameRepository {
   @WorkerThread
   @JvmStatic
   fun reclaimUsernameIfNecessary(): UsernameReclaimResult {
-    if (!SignalStore.misc().needsUsernameRestore()) {
+    if (!SignalStore.misc().needsUsernameRestore) {
       Log.d(TAG, "[reclaimUsernameIfNecessary] No need to restore username. Skipping.")
       return UsernameReclaimResult.SUCCESS
     }
@@ -140,7 +140,7 @@ object UsernameRepository {
 
     if (username == null || link == null) {
       Log.d(TAG, "[reclaimUsernameIfNecessary] No username or link to restore. Skipping.")
-      SignalStore.misc().setNeedsUsernameRestore(false)
+      SignalStore.misc().needsUsernameRestore = false
       return UsernameReclaimResult.SUCCESS
     }
 
@@ -149,13 +149,13 @@ object UsernameRepository {
     when (result) {
       UsernameReclaimResult.SUCCESS -> {
         Log.i(TAG, "[reclaimUsernameIfNecessary] Successfully reclaimed username and link.")
-        SignalStore.misc().setNeedsUsernameRestore(false)
+        SignalStore.misc().needsUsernameRestore = false
       }
 
       UsernameReclaimResult.PERMANENT_ERROR -> {
         Log.w(TAG, "[reclaimUsernameIfNecessary] Permanently failed to reclaim username and link. User will see an error.")
         SignalStore.account().usernameSyncState = AccountValues.UsernameSyncState.USERNAME_AND_LINK_CORRUPTED
-        SignalStore.misc().setNeedsUsernameRestore(false)
+        SignalStore.misc().needsUsernameRestore = false
       }
 
       UsernameReclaimResult.NETWORK_ERROR -> {

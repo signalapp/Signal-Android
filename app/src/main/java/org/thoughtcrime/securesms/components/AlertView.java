@@ -35,12 +35,6 @@ public class AlertView extends AppCompatImageView {
     setVisibility(View.GONE);
   }
 
-  public void setPendingApproval() {
-    setVisibility(View.VISIBLE);
-    setColorFilter(ContextCompat.getColor(getContext(), R.color.signal_colorOnSurfaceVariant));
-    setContentDescription(getContext().getString(R.string.conversation_item_sent__pending_approval_description));
-  }
-
   public void setFailed() {
     setVisibility(View.VISIBLE);
     setColorFilter(ContextCompat.getColor(getContext(), R.color.signal_colorError));

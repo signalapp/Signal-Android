@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.video.VideoPlayer.PlayerCallback
 import org.thoughtcrime.securesms.video.videoconverter.VideoThumbnailsRangeSelectorView
 import org.thoughtcrime.securesms.video.videoconverter.VideoThumbnailsRangeSelectorView.PositionDragListener
 import java.io.IOException
+import kotlin.time.Duration.Companion.microseconds
 
 class VideoEditorFragment : Fragment(), PositionDragListener, MediaSendPageFragment {
   private val sharedViewModel: MediaSelectionViewModel by viewModels(ownerProducer = { requireActivity() })
@@ -82,7 +83,6 @@ class VideoEditorFragment : Fragment(), PositionDragListener, MediaSendPageFragm
     isVideoGif = requireArguments().getBoolean(KEY_IS_VIDEO_GIF)
     maxSend = requireArguments().getLong(KEY_MAX_SEND)
 
-    val state = sharedViewModel.state.value!!
     val slide = VideoSlide(requireContext(), uri, 0, isVideoGif)
     player.setWindow(requireActivity().window)
     player.setVideoSource(slide, isVideoGif, TAG)
@@ -101,11 +101,17 @@ class VideoEditorFragment : Fragment(), PositionDragListener, MediaSendPageFragm
       })
       player.hideControls()
       player.loopForever()
-    } else if (MediaConstraints.isVideoTranscodeAvailable()) {
+    } else {
+      if (MediaConstraints.isVideoTranscodeAvailable()) {
+        sharedViewModel.state.value?.let { state ->
+          bindVideoTimeline(state)
+        }
+      } else {
+        hud.visibility = View.VISIBLE
+      }
       hud.setPlayClickListener {
         player.play()
       }
-      bindVideoTimeline(state)
       player.setOnClickListener {
         player.pause()
         hud.showPlayButton()
@@ -172,7 +178,7 @@ class VideoEditorFragment : Fragment(), PositionDragListener, MediaSendPageFragm
     if (slide.hasVideo()) {
       canEdit = true
       try {
-        videoTimeLine.registerPlayerOnRangeChangeListener(this)
+        videoTimeLine.registerPlayerDragListener(this)
 
         hud.visibility = View.VISIBLE
         startPositionUpdates()
@@ -289,7 +295,8 @@ class VideoEditorFragment : Fragment(), PositionDragListener, MediaSendPageFragm
 
     videoScanThrottle.publish {
       player.pause()
-      player.playbackPosition = position
+      val milliseconds = position.microseconds.inWholeMilliseconds
+      player.playbackPosition = milliseconds
     }
   }
 

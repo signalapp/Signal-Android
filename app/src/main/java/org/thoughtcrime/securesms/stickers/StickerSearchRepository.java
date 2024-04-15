@@ -64,11 +64,6 @@ public final class StickerSearchRepository {
     return out;
   }
 
-  public @NonNull Single<Boolean> getStickerFeatureAvailability() {
-    return Single.fromCallable(this::getStickerFeatureAvailabilitySync)
-                 .observeOn(Schedulers.io());
-  }
-
   public void getStickerFeatureAvailability(@NonNull Callback<Boolean> callback) {
     SignalExecutors.BOUNDED.execute(() -> {
       callback.onResult(getStickerFeatureAvailabilitySync());

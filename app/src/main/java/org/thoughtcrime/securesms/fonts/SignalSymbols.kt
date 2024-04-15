@@ -27,6 +27,7 @@ object SignalSymbols {
 
   private val cache = mutableMapOf<Weight, Typeface>()
 
+  @JvmStatic
   fun getSpannedString(
     context: Context,
     weight: Weight,

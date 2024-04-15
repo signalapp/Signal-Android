@@ -45,8 +45,6 @@
     <string name="ApplicationPreferencesActivity_disable_passphrase">Deaktiveer wagwoord?</string>
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Hierdie sal Signal- en boodskapkennisgewings permanent ontsluit</string>
     <string name="ApplicationPreferencesActivity_disable">Deaktiveer</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Deaktiveer Signal-boodskappe en oproepe?</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Deaktiveer Signal-boodskappe en -oproepe deur by die bediener te deregistreer. Jy moet jou telefoonnommer weer registreer om dit in die toekoms weer te gebruik.</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Kon nie aan die bediener konnekteer nie!</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN’s word vereis vir registrasieslot. Om PIN’s te deaktiveer, deaktiveer eers die registrasieslot.</string>
     <string name="ApplicationPreferencesActivity_pin_created">PIN geskep.</string>
@@ -309,7 +307,6 @@
     <string name="ConversationItem_error_network_not_delivered">Kon nie stuur nie</string>
     <string name="ConversationItem_group_action_left">%1$s het die groep verlaat.</string>
     <string name="ConversationItem_send_paused">Stuur onderbreek</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Stuur misluk. Tik vir onbeveiligde terugval</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Terugval na ongeënkripteerde SMS?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Terugval na ongeënkripteerde MMS?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Hierdie boodskap sal <b>nie</b> geënkripteer word nie omdat die ontvanger nie meer \'n Signal-verbruiker is nie.\n\nStuur \'n onbeveiligde boodskap?</string>
@@ -1975,7 +1972,7 @@
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
     <string name="AboutSheet__no_direct_message">Geen direkte boodskappe nie met %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
-    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s is in jou stelselkontakte</string>
+    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s is in jou telefoonkontakte</string>
     <!-- Notice in a row when user has no groups in common -->
     <string name="AboutSheet__you_have_no_groups_in_common">Julle het geen groepe gemeen nie</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
@@ -1989,6 +1986,8 @@
     <string name="AboutSheet__about">Meer oor</string>
     <!-- Text displayed in title for you -->
     <string name="AboutSheet__you">Jy</string>
+    <!-- Displays the name of a contact. The first placeholder is the name the user has assigned to that contact, the second name is the name the contact assigned to themselves -->
+    <string name="AboutSheet__user_set_display_name_and_profile_name">%1$s (%2$s)</string>
 
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call">
@@ -2925,6 +2924,18 @@
     <string name="EditProfileFragment__group_name">Groepnaam</string>
     <string name="EditProfileFragment__group_description">Groepbeskrywing</string>
   <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
+    <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_title">Werk Signal by</string>
+    <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_body">Hierdie weergawe van Signal het verval. Doen nou opdatering om voort te gaan om Signal te gebruik.</string>
+    <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
+    <string name="EditProfileFragment_deprecated_dialog_update_button">Werk by</string>
+    <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_title">Toestel nie geregistreer nie</string>
+    <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_body">Hierdie toestel is nie meer geregistreer nie. Herregistreer om veranderinge aan jou rekening aan te bring.</string>
+    <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
+    <string name="EditProfileFragment_unregistered_dialog_reregister_button">Herregistreer</string>
 
     <!-- EditProfileNameFragment -->
     <string name="EditProfileNameFragment_your_name">Jou naam</string>
@@ -3019,7 +3030,6 @@
         <item>Ander</item>
         <item>Betalings (MobileCoin)</item>
         <item>Skenkings &amp; Wapens</item>
-        <item>SMS-uitvoer</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Indiening van Signal Android-ontfoutlog</string>
@@ -3664,8 +3674,6 @@
     <string name="verify_display_fragment_context_menu__compare_with_clipboard">Vergelyk met knipbord</string>
 
     <!-- reminder_header -->
-    <string name="reminder_header_push_title">Aktiveer Signal-boodskappe en -oproepe?</string>
-    <string name="reminder_header_push_text">Opgradeer jou kommunikasie-ervaring</string>
     <string name="reminder_header_service_outage_text">Signal ervaar tans tegniese probleme. Ons werk hard daaraan om diens so spoedig moontlik te herstel.</string>
     <string name="reminder_header_progress">%1$d%%</string>
     <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user\'s contacts -->
@@ -3962,6 +3970,8 @@
     <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Jy benodig toegang tot jou ou toestel.</string>
     <string name="TransferOrRestoreFragment__restore_from_backup">Herwin van rugsteun af</string>
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Herwin jou boodskappe van ’n plaaslike rugsteun af. As jy dit nie nou herwin nie, sal jy dit nie later kan doen nie.</string>
+    <!-- Button label for more options -->
+    <string name="TransferOrRestoreFragment__more_options">Meer opsies</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
     <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Maak Signal op jou ou Android-foon oop</string>
@@ -4168,7 +4178,7 @@
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
     <string name="ReviewCard__s_recently_changed">%1$s het onlangs hul profielnaam van %2$s na %3$sverander</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
-    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s is in jou stelselkontakte</string>
+    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s is in jou telefoonkontakte</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s het aangesluit</string>
@@ -4719,7 +4729,7 @@
     <string name="ConversationSettingsFragment__disappearing_messages">Verdwynboodskappe</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">Klanke &amp; kennisgewings</string>
   <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
-    <string name="ConversationSettingsFragment__contact_details">Kontakbesonderhede</string>
+    <string name="ConversationSettingsFragment__contact_details">Telefoonkontakinligting</string>
     <string name="ConversationSettingsFragment__view_safety_number">Bekyk veiligheidsnommer</string>
     <string name="ConversationSettingsFragment__block">Versper</string>
     <string name="ConversationSettingsFragment__block_group">Versper groep</string>
@@ -5570,7 +5580,7 @@
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">\'n Boodskapversoek te aanvaar</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Hulle in jou stelselkontakte te hê</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Hulle in jou telefoonkontakte te hê</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Jou verbindings kan jou naam en foto sien, en kan plasings in \"My Storie\" sien, tensy jy dit vir hulle versteek."</string>
     <!-- Clickable option to add a viewer to a custom story -->
@@ -6653,6 +6663,46 @@
     <string name="FindByActivity__qr_scan_button">Skandeer QR-kode</string>
     <!-- Content of a dialog indicating that we could not perform the requested action because we encountered a network error. -->
     <string name="FindByActivity__network_error_dialog">Netwerkfout teëgekom. Probeer later weer.</string>
+
+    <!-- Title for an alert letting someone know that one of their linked devices is inactive. -->
+    <string name="LinkedDeviceInactiveMegaphone_title">Onaktiewe gekoppelde toestel</string>
+    <!-- Body for an alert letting someone know that one of their linked devices is inactive. The string placeholder is the name of the device, and the number placeholder is the number of days before device is unlinked. -->
+    <plurals name="LinkedDeviceInactiveMegaphone_body">
+        <item quantity="one">Om \"%1$s\" gekoppel te hou, maak Signal binne %2$d dag op daardie toestel oop.</item>
+        <item quantity="other">Om \"%1$s\" gekoppel te hou, maak Signal binne %2$d dae op daardie toestel oop.</item>
+    </plurals>
+    <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the user will opt out of all future alerts. -->
+    <string name="LinkedDeviceInactiveMegaphone_dont_remind_button_label">Moet my nie herinner nie</string>
+    <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the alert will be dismissed. -->
+    <string name="LinkedDeviceInactiveMegaphone_got_it_button_label">Ek verstaan</string>
+
+    <!-- NicknameFragment -->
+    <!-- Title displayed at the top of the screen -->
+    <string name="NicknameActivity__nickname">Noemnaam</string>
+    <!-- Subtitle displayed under title -->
+    <string name="NicknameActivity__nicknames_amp_notes">Noemname en notas word deur Signal gestoor en is end-tot-end-geënkripteer. Dis slegs vir jou sigbaar.</string>
+    <!-- Field label for given name -->
+    <string name="NicknameActivity__first_name">Voornaam</string>
+    <!-- Content description for first name clear button -->
+    <string name="NicknameActivity__clear_first_name">Skrap voornaam</string>
+    <!-- Field label for family name -->
+    <string name="NicknameActivity__last_name">Van</string>
+    <!-- Content description for last name clear button -->
+    <string name="NicknameActivity__clear_last_name">Skrap van</string>
+    <!-- Field label for note -->
+    <string name="NicknameActivity__note">Nota</string>
+    <!-- Button label to save -->
+    <string name="NicknameActivity__save">Stoor</string>
+    <!-- Dialog title for note and name deletion -->
+    <string name="NicknameActivity__delete_nickname">Skrap?</string>
+    <!-- Dialog message for note and name deletion -->
+    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">Dit sal enige noemnaam en nota wat jy gestel het permanent skrap.</string>
+
+    <!-- ViewNoteBottomSheetDialogFragment -->
+    <!-- Sheet title -->
+    <string name="ViewNoteSheet__note">Nota</string>
+    <!-- Content description for opening the note editor -->
+    <string name="ViewNoteSheet__edit_note">Wysig nota</string>
 
     <!-- EOF -->
 </resources>

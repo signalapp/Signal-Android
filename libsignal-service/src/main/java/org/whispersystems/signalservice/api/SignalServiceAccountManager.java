@@ -365,12 +365,12 @@ public class SignalServiceAccountManager {
                                                            Optional<byte[]> token,
                                                            String mrEnclave,
                                                            Long timeoutMs,
-                                                           @Nullable Network.Environment libsignalNetEnv,
+                                                           @Nullable Network libsignalNetwork,
                                                            Consumer<byte[]> tokenSaver)
       throws IOException
   {
     CdsiAuthResponse                                auth    = pushServiceSocket.getCdsiAuth();
-    CdsiV2Service                                   service = new CdsiV2Service(configuration, mrEnclave, libsignalNetEnv);
+    CdsiV2Service                                   service = new CdsiV2Service(configuration, mrEnclave, libsignalNetwork);
     CdsiV2Service.Request                           request = new CdsiV2Service.Request(previousE164s, newE164s, serviceIds, token);
     Single<ServiceResponse<CdsiV2Service.Response>> single  = service.getRegisteredUsers(auth.getUsername(), auth.getPassword(), request, tokenSaver);
 

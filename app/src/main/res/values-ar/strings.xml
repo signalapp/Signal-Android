@@ -45,8 +45,6 @@
     <string name="ApplicationPreferencesActivity_disable_passphrase">تعطيل العبارة السرية؟</string>
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">تفعيل سيجنال وإشعارات الرسائل بشكل دائم.</string>
     <string name="ApplicationPreferencesActivity_disable">تعطيل</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">تعطيل رسائل ومكالمات سيجنال؟</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">سيتم تعطيل رسائل ومكالمات سيجنال عند إلغاء التسجيل من الخادوم. سيجب عليكم إعادة تسجيل رقم الهاتف لمعاودة استخدام هذه الخدمات في المستقبل.</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">حدث خطأ خلال الاتصال بالخادم !</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">إن الرقم التعريفي الشخصي (PIN) مطلوب لحماية التسجيل. لتعطيله، يُرجى أولا تعطيل قفل التسجيل.</string>
     <string name="ApplicationPreferencesActivity_pin_created">لقد تم إنشاء الرقم التعريفي الشخصي.</string>
@@ -313,7 +311,6 @@
     <string name="ConversationItem_error_network_not_delivered">فشل الإرسال</string>
     <string name="ConversationItem_group_action_left">لقد غادر المستخدم %1$s المجموعة.</string>
     <string name="ConversationItem_send_paused">إن الإرسال متوقف مؤقتا</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">فشل الإرسال، المس للاستعاضة بإرسال غير آمن</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">الاستعاضة برسالة SMS غير مُعمَّاة؟</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">الاستعاضة برسالة وسائط متعددة غير مُعمَّاة؟</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">هذه الرسالة ستكون <b>غير</b> مٌعمَّاة لأن المستلم لم يعد مستخدما ‏لسيجنالl‏ .\n\nهل لديك الرغبة في إرسالها غير آمنة ؟</string>
@@ -439,7 +436,7 @@
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">لم تعُد رسائل SMS مُدعّمة من طرف سيجنال. قم بدعوة %1$s إلى سيجنال لإبقاء المحادثة هنا.</string>
     <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
-    <string name="ConversationActivity__this_person_is_no_longer_using_signal">This person is no longer using Signal. Invite them to Signal to keep the conversation here.</string>
+    <string name="ConversationActivity__this_person_is_no_longer_using_signal">‫لم يعُد هذا الشخصي يستخدم سيجنال. ادعُه إلى سيجنال لإبقاء المحادثة هنا.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">ادعُ إلى سيجنال</string>
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
@@ -1577,7 +1574,7 @@
     <string name="MessageRecord_changed_their_profile_name_from_to">غيّر %1$s اسم حسابه الشخصي من %2$s إلى %3$s.</string>
     <string name="MessageRecord_changed_their_profile">غيّر %1$s صفحة حسابه الشخصي.</string>
     <!-- Conversation update event message shown when you\'ve started a conversation by phone number or username and then learn their profile name. placeholder is username or phone number -->
-    <string name="MessageRecord_started_this_chat">You started this chat with %1$s.</string>
+    <string name="MessageRecord_started_this_chat">لقد بدأت دردشة مع %1$s.</string>
 
     <!-- GV2 specific -->
     <string name="MessageRecord_you_created_the_group">لقد أنشأتَ مجموعة.</string>
@@ -2271,7 +2268,7 @@
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
     <string name="AboutSheet__no_direct_message">لا توجد رسائل مباشرة مع %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
-    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s موجود في جهات اتصال حسابك</string>
+    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s موجود في جهات اتصال هاتفك</string>
     <!-- Notice in a row when user has no groups in common -->
     <string name="AboutSheet__you_have_no_groups_in_common">لا توجد مجموعات مُشتركة بينكم</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
@@ -2289,6 +2286,8 @@
     <string name="AboutSheet__about">حوْل</string>
     <!-- Text displayed in title for you -->
     <string name="AboutSheet__you">أنت</string>
+    <!-- Displays the name of a contact. The first placeholder is the name the user has assigned to that contact, the second name is the name the contact assigned to themselves -->
+    <string name="AboutSheet__user_set_display_name_and_profile_name">%1$s (%2$s)</string>
 
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call">
@@ -3301,6 +3300,18 @@
     <string name="EditProfileFragment__group_name">اسم المجموعة</string>
     <string name="EditProfileFragment__group_description">وصف المجموعة</string>
   <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
+    <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_title">تحديث سيجنال</string>
+    <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_body">لقد انتهت صلاحية هذا الإصدار من سيجنال. حدِّث الآن للاستمرار في استخدام تطبيق سيجنال.</string>
+    <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
+    <string name="EditProfileFragment_deprecated_dialog_update_button">تحديث التطبيق</string>
+    <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_title">الجهاز غير مُسجل</string>
+    <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_body">هذا الجهاز لم يعد مسجلاً. سجّل من جديد لتُحدث تغييرات على حسابك.</string>
+    <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
+    <string name="EditProfileFragment_unregistered_dialog_reregister_button">إعادة-التسجيل</string>
 
     <!-- EditProfileNameFragment -->
     <string name="EditProfileNameFragment_your_name">اسمك</string>
@@ -3395,7 +3406,6 @@
         <item>أخرى</item>
         <item>عمليات الدفع (MobileCoin)</item>
         <item>تبرّعات وشارات</item>
-        <item>تصدير SMS</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">إرسال سِجل تصحيح أخطاء سيجنال للأندرويد</string>
@@ -4060,8 +4070,6 @@
     <string name="verify_display_fragment_context_menu__compare_with_clipboard">قارن مع الحافظة</string>
 
     <!-- reminder_header -->
-    <string name="reminder_header_push_title">تفعيل رسائل ومكالمات سيجنال</string>
-    <string name="reminder_header_push_text">ترقية التطبيق من أجل تواصل أفضل.</string>
     <string name="reminder_header_service_outage_text">يواجه سيجنال بعض المشاكل التقنيّة حاليّاً. نعمل بجد لإعادة الخدمة بأسرع وقت ممكن.</string>
     <string name="reminder_header_progress">%1$d%%</string>
     <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user\'s contacts -->
@@ -4327,7 +4335,7 @@
     <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
     <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">هل أنت متأكد؟</string>
     <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Setting \"Who can find me by number\" to \"Nobody\" will make it harder for people to find you on Signal.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">يمكن أن يُصعّب اختيار \"لا أحد\" في إعداد \"من يمكنه العثور عليَّ باستخدام رقمي\" على الناس العثور عليك على سيجنال.</string>
     <!-- Dialog button text for canceling change action -->
     <string name="PhoneNumberPrivacySettingsFragment__cancel">إلغاء</string>
     <string name="PhoneNumberPrivacy_everyone">الكل</string>
@@ -4386,6 +4394,8 @@
     <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">يلزمك الوصول إلى جهازك القديم.</string>
     <string name="TransferOrRestoreFragment__restore_from_backup">الاستعادة مِن نسخة احتياطية</string>
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">استعادة رسائلك من نسخة احتياطية محلية. إذا تجاهلت الاستعادة الآن، فسيتعذر عليك الاستعادة لاحقا.</string>
+    <!-- Button label for more options -->
+    <string name="TransferOrRestoreFragment__more_options">خيارات أكثر</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
     <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">يُرجى فتح سيجنال في هاتف أندرويد القديم</string>
@@ -4600,7 +4610,7 @@
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
     <string name="ReviewCard__s_recently_changed">غيّر مؤخرًا %1$s اسم حسابه الشخصي من %2$s إلى %3$s</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
-    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s موجود في جهات اتصال نظامك</string>
+    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s موجود في جهات اتصال هاتفك</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">انضم %1$s</string>
@@ -5167,7 +5177,7 @@
     <string name="ConversationSettingsFragment__disappearing_messages">الرسائل المختفية</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">الأصوات والإشعارات</string>
   <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
-    <string name="ConversationSettingsFragment__contact_details">تفاصيل جهة الاتصال</string>
+    <string name="ConversationSettingsFragment__contact_details">معلومات عن جهة اتصال الهاتف</string>
     <string name="ConversationSettingsFragment__view_safety_number">عرض رقم الأمان</string>
     <string name="ConversationSettingsFragment__block">حظر</string>
     <string name="ConversationSettingsFragment__block_group">حظر المجموعة</string>
@@ -5357,34 +5367,34 @@
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">عنصر واحد أو أكثر غير صالح</string>
     <string name="MediaReviewFragment__too_many_items_selected">تم تحديد عدد كبير جدًا من العناصر</string>
     <!-- Small notification presented to the user when they set their video to view-once mode -->
-    <string name="MediaReviewFragment__video_set_to_view_once">Video set to view once</string>
+    <string name="MediaReviewFragment__video_set_to_view_once">تم تحديد عرض الفيديو لمرة واحدة</string>
     <!-- Small notification presented to the user when they set their photo to view-once mode -->
-    <string name="MediaReviewFragment__photo_set_to_view_once">Photo set to view once</string>
+    <string name="MediaReviewFragment__photo_set_to_view_once">تم تحديد عرض الصورة لمرة واحدة</string>
     <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
-    <string name="MediaReviewFragment__video_set_to_high_quality">Video set to high quality</string>
+    <string name="MediaReviewFragment__video_set_to_high_quality">تم تحديد جودة الفيديو للجودة العالية</string>
     <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
-    <string name="MediaReviewFragment__video_set_to_standard_quality">Video set to standard quality</string>
+    <string name="MediaReviewFragment__video_set_to_standard_quality">تم تحديد جودة الفيديو للجودة القياسية</string>
     <!-- Small notification presented to the user when they set their still image to be sent in high visual quality. -->
-    <string name="MediaReviewFragment__photo_set_to_high_quality">Photo set to high quality</string>
+    <string name="MediaReviewFragment__photo_set_to_high_quality">تم تحديد جودة الصورة للجودة العالية</string>
     <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
-    <string name="MediaReviewFragment__photo_set_to_standard_quality">Photo set to standard quality</string>
+    <string name="MediaReviewFragment__photo_set_to_standard_quality">تم تحديد جودة الصورة للجودة القياسية</string>
     <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
     <plurals name="MediaReviewFragment__items_set_to_high_quality">
-        <item quantity="zero">%1$d items set to high quality</item>
-        <item quantity="one">%1$d item set to high quality</item>
-        <item quantity="two">%1$d items set to high quality</item>
-        <item quantity="few">%1$d items set to high quality</item>
-        <item quantity="many">%1$d items set to high quality</item>
-        <item quantity="other">%1$d items set to high quality</item>
+        <item quantity="zero">تم تحديد جودة %1$d عناصر للجودة العالية</item>
+        <item quantity="one">تم تحديد جودة %1$d عنصر للجودة العالية</item>
+        <item quantity="two">تم تحديد جودة %1$d عنصرين للجودة العالية</item>
+        <item quantity="few">تم تحديد جودة %1$d عناصر للجودة العالية</item>
+        <item quantity="many">تم تحديد جودة %1$d عنصرًا للجودة العالية</item>
+        <item quantity="other">تم تحديد جودة %1$d عنصر للجودة العالية</item>
     </plurals>
     <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
     <plurals name="MediaReviewFragment__items_set_to_standard_quality">
-        <item quantity="zero">%1$d items set to standard quality</item>
-        <item quantity="one">%1$d item set to standard quality</item>
-        <item quantity="two">%1$d items set to standard quality</item>
-        <item quantity="few">%1$d items set to standard quality</item>
-        <item quantity="many">%1$d items set to standard quality</item>
-        <item quantity="other">%1$d items set to standard quality</item>
+        <item quantity="zero">تم تحديد جودة %1$d عناصر للجودة القياسية</item>
+        <item quantity="one">تم تحديد جودة %1$d عنصر للجودة القياسية</item>
+        <item quantity="two">تم تحديد جودة %1$d عنصرين للجودة القياسية</item>
+        <item quantity="few">تم تحديد جودة %1$d عناصر للجودة القياسية</item>
+        <item quantity="many">تم تحديد جودة %1$d عنصرًا للجودة القياسية</item>
+        <item quantity="other">تم تحديد جودة %1$d عنصر للجودة القياسية</item>
     </plurals>
 
     <string name="ImageEditorHud__cancel">إلغاء</string>
@@ -5411,16 +5421,16 @@
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">سوف تضيع كل تغييرات قمت بها على هذه الصورة.</string>
 
     <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_title">Found %1$s</string>
+    <string name="MediaCaptureFragment_username_dialog_title">تم العثور على %1$s</string>
     <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_body">Start a chat with \"%1$s\"</string>
+    <string name="MediaCaptureFragment_username_dialog_body">ابدأ دردشة مع \"%1$s\"</string>
     <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
     <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">توجّه للدردشة</string>
 
     <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_title">Link device?</string>
+    <string name="MediaCaptureFragment_device_link_dialog_title">ربط الجهاز؟</string>
     <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_body">It looks like you\'re trying to link a Signal device. Tap continue and scan the code again to link it.</string>
+    <string name="MediaCaptureFragment_device_link_dialog_body">يبدو أنك تحاول ربط جهاز سيجنال. انقر على متابعة وامسح الرمز مرة أخرى لِربطه.</string>
     <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
     <string name="MediaCaptureFragment_device_link_dialog_continue">مواصلة</string>
 
@@ -5522,7 +5532,7 @@
     <!-- Displayed as a subtitle on a row in the Manage Donations screen when payment for a donation is pending -->
     <string name="MySupportPreference__payment_pending">عملية الدفع مُعلقة</string>
     <!-- Displayed as a dialog message when clicking on a donation row that is pending. Placeholder is a formatted fiat amount -->
-    <string name="MySupportPreference__your_bank_transfer_of_s">Your bank transfer of %1$s is pending. Bank transfers can take 1 to 14 business days to complete.  </string>
+    <string name="MySupportPreference__your_bank_transfer_of_s">تحويلك المصرفي بمبلغ %1$s مُعلق. عادة ما يستغرق إنجاز التحويلات المصرفية ما بين يوم واحد و14 يوم عمل.  </string>
     <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
     <string name="MySupportPreference__learn_more">معرفة المزيد</string>
 
@@ -6542,9 +6552,9 @@
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
     <string name="DonateToSignalFragment__you_have_a_donation_pending">لديك تبرّع مُعلق</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Bank transfers can take 1 to 14 business days to process. Please wait until this payment completes before updating your subscription.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">عادة ما تستغرق معالجة التحويلات المصرفية ما بين يوم واحد و14 يوم عمل. يُرجى الانتظار حتى اكتمال عملية الدفع هذه قبل تحديث اشتراكك.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Bank transfers can take 1 to 14 business days to process. Please wait until this payment completes before making another donation.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">عادة ما تستغرق معالجة التحويلات المصرفية ما بين يوم واحد و14 يوم عمل. يُرجى الانتظار حتى اكتمال عملية الدفع هذه قبل التبرّع مرة أخرى.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
     <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">لا يزال تبرعك قيد المعالجة. قد يستغرق الأمر بضع دقائق حسب اتصال شبكتك. يُرجى الانتظار حتى اكتمال عملية الدفع هذه قبل تحديث اشتراكك.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
@@ -6700,7 +6710,7 @@
     <!-- Top text block of donation pending sheet displayed after one-time donation via a bank transfer. Placeholder is the badge name. -->
     <string name="DonationPendingBottomSheet__your_one_time_donation_is_pending">تبرّعك لمرة واحدة معلّق. ستتمكّن من عرض شارتك %1$s على حسابك الشخصي فور التوصل بتبرّعك.</string>
     <!-- Bottom text block of donation pending sheet displayed after donating via a bank transfer. Placeholder is for learn more. -->
-    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Bank transfers can take 1 to 14 business days to process. %1$s</string>
+    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">عادة ما تستغرق معالجة التحويلات المصرفية ما بين يوم واحد و14 يوم عمل. %1$s</string>
     <!-- Learn more text for donation pending sheet displayed after donating via a bank transfer. -->
     <string name="DonationPendingBottomSheet__learn_more">معرفة المزيد</string>
     <!-- Confirmation button for donation pending sheet displayed after donating via a bank transfer. -->
@@ -7127,9 +7137,9 @@
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">امسح رمز الاستجابة السريعة هذا باستخدام هاتفك للدردشة معي على سيجنال.</string>
     <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_qr_code_not_found">QR code not found</string>
+    <string name="UsernameLinkSettings_qr_code_not_found">تعذّر العثور على رمز الاستجابة السريعة</string>
     <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Try scanning another image containing a Signal QR code.</string>
+    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">حاول مسح صورة أخرى تحتوى على رمز استجابة سريعة لسيجنال.</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
     <string name="UsernameLinkShareBottomSheet_title">يُمكن لأي شخص يتوفر على هذا الرابط رؤية اسم المُستخدم الخاص بك وبدء محادثة جديدة معك. شاركه مع من تثق فقط.</string>
@@ -7233,6 +7243,50 @@
     <string name="FindByActivity__qr_scan_button">تصوير الرمز المربع</string>
     <!-- Content of a dialog indicating that we could not perform the requested action because we encountered a network error. -->
     <string name="FindByActivity__network_error_dialog">حدث خطأ في الشبكة. يُرجى المحاولة مرة أخرى لاحقا.</string>
+
+    <!-- Title for an alert letting someone know that one of their linked devices is inactive. -->
+    <string name="LinkedDeviceInactiveMegaphone_title">جهاز غير مرتبط غير نشط</string>
+    <!-- Body for an alert letting someone know that one of their linked devices is inactive. The string placeholder is the name of the device, and the number placeholder is the number of days before device is unlinked. -->
+    <plurals name="LinkedDeviceInactiveMegaphone_body">
+        <item quantity="zero">لتُبقي \"%1$s\" مرتبطًا، افتح سيجنال على ذلك الجهاز في غضون %2$d أيام.</item>
+        <item quantity="one">لتُبقي \"%1$s\" مرتبطا، افتح سيجنال على ذلك الجهاز في غضون %2$d يوم.</item>
+        <item quantity="two">لتُبقي \"%1$s\" مرتبطا، افتح سيجنال على ذلك الجهاز في غضون %2$d يومين.</item>
+        <item quantity="few">لتُبقي \"%1$s\" مرتبطا، افتح سيجنال على ذلك الجهاز في غضون %2$d أيام.</item>
+        <item quantity="many">لتُبقي \"%1$s\" مرتبطا، افتح سيجنال على ذلك الجهاز في غضون %2$d يومًا.</item>
+        <item quantity="other">لتُبقي \"%1$s\" مرتبطا، افتح سيجنال على ذلك الجهاز في غضون %2$d يوم.</item>
+    </plurals>
+    <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the user will opt out of all future alerts. -->
+    <string name="LinkedDeviceInactiveMegaphone_dont_remind_button_label">لا تُذكّرني</string>
+    <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the alert will be dismissed. -->
+    <string name="LinkedDeviceInactiveMegaphone_got_it_button_label">عُلم</string>
+
+    <!-- NicknameFragment -->
+    <!-- Title displayed at the top of the screen -->
+    <string name="NicknameActivity__nickname">اسم مستعار</string>
+    <!-- Subtitle displayed under title -->
+    <string name="NicknameActivity__nicknames_amp_notes">Nicknames &amp; notes are stored with Signal and end-to-end encrypted. They are only visible to you.</string>
+    <!-- Field label for given name -->
+    <string name="NicknameActivity__first_name">الاسم الشخصي</string>
+    <!-- Content description for first name clear button -->
+    <string name="NicknameActivity__clear_first_name">مسح الاسم الشخصي</string>
+    <!-- Field label for family name -->
+    <string name="NicknameActivity__last_name">اسم العائلة</string>
+    <!-- Content description for last name clear button -->
+    <string name="NicknameActivity__clear_last_name">مسح الاسم الشخصي</string>
+    <!-- Field label for note -->
+    <string name="NicknameActivity__note">مُلاحظة</string>
+    <!-- Button label to save -->
+    <string name="NicknameActivity__save">حفظ</string>
+    <!-- Dialog title for note and name deletion -->
+    <string name="NicknameActivity__delete_nickname">Delete?</string>
+    <!-- Dialog message for note and name deletion -->
+    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">This will permanently delete any nickname and note you’ve set.</string>
+
+    <!-- ViewNoteBottomSheetDialogFragment -->
+    <!-- Sheet title -->
+    <string name="ViewNoteSheet__note">مُلاحظة</string>
+    <!-- Content description for opening the note editor -->
+    <string name="ViewNoteSheet__edit_note">تعديل الملاحظة</string>
 
     <!-- EOF -->
 </resources>

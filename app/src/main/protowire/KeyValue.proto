@@ -1,0 +1,17 @@
+/**
+ * Copyright (C) 2014-2016 Open Whisper Systems
+ *
+ * Licensed according to the LICENSE file in this repository.
+ */
+
+syntax = "proto3";
+
+package signal;
+
+option java_package = "org.thoughtcrime.securesms.keyvalue.protos";
+
+
+message LeastActiveLinkedDevice {
+    string name = 1;
+    uint64 lastActiveTimestamp = 2;
+}

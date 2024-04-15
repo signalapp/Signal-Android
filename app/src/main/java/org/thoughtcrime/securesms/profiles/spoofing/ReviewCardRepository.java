@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 
@@ -130,7 +131,10 @@ class ReviewCardRepository {
         return;
       }
 
-      List<ReviewRecipient> recipients = Stream.of(recipientIds)
+      HashSet<RecipientId> ids = new HashSet<>(recipientIds);
+      ids.add(recipientId);
+
+      List<ReviewRecipient> recipients = Stream.of(ids)
           .map(Recipient::resolved)
           .map(ReviewRecipient::new)
           .sorted(new ReviewRecipient.Comparator(context, recipientId))

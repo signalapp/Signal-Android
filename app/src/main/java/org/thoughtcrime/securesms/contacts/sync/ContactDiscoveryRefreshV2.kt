@@ -98,7 +98,7 @@ object ContactDiscoveryRefreshV2 {
         Optional.empty(),
         BuildConfig.CDSI_MRENCLAVE,
         10_000,
-        if (FeatureFlags.useLibsignalNetForCdsiLookup()) BuildConfig.LIBSIGNAL_NET_ENV else null
+        if (FeatureFlags.useLibsignalNetForCdsiLookup()) ApplicationDependencies.getLibsignalNetwork() else null
       ) {
         Log.i(TAG, "Ignoring token for one-off lookup.")
       }
@@ -163,7 +163,7 @@ object ContactDiscoveryRefreshV2 {
         Optional.ofNullable(token),
         BuildConfig.CDSI_MRENCLAVE,
         timeoutMs,
-        if (FeatureFlags.useLibsignalNetForCdsiLookup()) BuildConfig.LIBSIGNAL_NET_ENV else null
+        if (FeatureFlags.useLibsignalNetForCdsiLookup()) ApplicationDependencies.getLibsignalNetwork() else null
       ) { tokenToSave ->
         stopwatch.split("network-pre-token")
         if (!isPartialRefresh) {
@@ -227,7 +227,7 @@ object ContactDiscoveryRefreshV2 {
 
   private fun hasCommunicatedWith(recipient: Recipient): Boolean {
     val localAci = SignalStore.account().requireAci()
-    return SignalDatabase.threads.hasActiveThread(recipient.id) || (recipient.hasServiceId() && SignalDatabase.sessions.hasSessionFor(localAci, recipient.requireServiceId().toString()))
+    return SignalDatabase.threads.hasActiveThread(recipient.id) || (recipient.hasServiceId && SignalDatabase.sessions.hasSessionFor(localAci, recipient.requireServiceId().toString()))
   }
 
   /**
@@ -241,7 +241,7 @@ object ContactDiscoveryRefreshV2 {
     val selfId = Recipient.self().id
     return this - Recipient.resolvedList(this)
       .filter {
-        (it.hasServiceId() && hasCommunicatedWith(it)) || it.id == selfId
+        (it.hasServiceId && hasCommunicatedWith(it)) || it.id == selfId
       }
       .map { it.id }
       .toSet()

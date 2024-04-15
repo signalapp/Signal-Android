@@ -99,7 +99,7 @@ class ChangeNumberVerifyFragment : LoggingFragment(R.layout.fragment_change_phon
   }
 
   private fun showErrorDialog(context: Context, @StringRes message: Int, onPositiveButtonClickListener: OnClickListener?) {
-    MaterialAlertDialogBuilder(context).setMessage(message).setPositiveButton(R.string.ok, onPositiveButtonClickListener).show()
+    MaterialAlertDialogBuilder(context).setMessage(message).setPositiveButton(android.R.string.ok, onPositiveButtonClickListener).show()
   }
 
   private sealed interface RequestCodeResult {

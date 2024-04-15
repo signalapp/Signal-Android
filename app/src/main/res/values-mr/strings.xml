@@ -45,8 +45,6 @@
     <string name="ApplicationPreferencesActivity_disable_passphrase">पासफ्रेझ अक्षम करायचे?</string>
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">हे Signal आणि संदेश सूचना कायमचे अनलॉक करेल.</string>
     <string name="ApplicationPreferencesActivity_disable">अक्षम करा</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signal संदेश आणि कॉल अक्षम करायचे?</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">सर्व्हर वरून नोंदणी काढून Signal संदेश आणि कॉल अक्षम करा. भविष्यात पुन्हा वापरण्यासाठी आपल्याला आपला फोन नंबरची पुन्हा नोंदणी करावी लागेल.</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">सर्व्हर सोबत कनेक्ट करण्यात त्रुटी!</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">नोंदणी लॉकसाठी पिन आवश्यक आहेत. पिन अक्षम करण्यासाठी, कृपया प्रथम नोंदणी लॉक अक्षम करा.</string>
     <string name="ApplicationPreferencesActivity_pin_created">PIN तयार केला.</string>
@@ -309,7 +307,6 @@
     <string name="ConversationItem_error_network_not_delivered">पाठविणे अयशस्वी</string>
     <string name="ConversationItem_group_action_left">%1$s याने गट सोडले आहे.</string>
     <string name="ConversationItem_send_paused">विराम दिलेले पाठवा</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">पाठविणे अयशस्वी, असुरक्षित फॉलबॅक करिता टॅप करा</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">अनएन्क्रिप्टेड SMS वर फॉलबॅक करायचे?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">अनएन्क्रिप्टेड MMS वर फॉलबॅक करायचे?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">हा संदेश एन्क्रिप्ट केला जाणार <b>नाही</b> कारण प्राप्तकर्ता आता Signal वापरकर्ता राहिलेला नाही.\n\nअसुरक्षित संदेश पाठवायचा?</string>
@@ -1975,7 +1972,7 @@
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
     <string name="AboutSheet__no_direct_message">आपणाला %1$sकडून कोणतेही थेट संदेश नाहीत</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
-    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s आपल्या सिस्टिम संपर्कामध्ये आहेत</string>
+    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s आपल्या फोन संपर्कामध्ये आहेत</string>
     <!-- Notice in a row when user has no groups in common -->
     <string name="AboutSheet__you_have_no_groups_in_common">आपल्याकडे कोणताही सामायिक गट नाही</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
@@ -1989,6 +1986,8 @@
     <string name="AboutSheet__about">आपल्याबद्दल</string>
     <!-- Text displayed in title for you -->
     <string name="AboutSheet__you">आपण</string>
+    <!-- Displays the name of a contact. The first placeholder is the name the user has assigned to that contact, the second name is the name the contact assigned to themselves -->
+    <string name="AboutSheet__user_set_display_name_and_profile_name">%1$s (%2$s)</string>
 
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call">
@@ -2925,6 +2924,18 @@
     <string name="EditProfileFragment__group_name">गट नाव</string>
     <string name="EditProfileFragment__group_description">गट विवरण</string>
   <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
+    <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_title">Signal अद्यतनित करा</string>
+    <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_body">Signal ची ही आवृत्ती कालबाह्य झाली आहे. Signal वापरणे पुढे सुरु ठेवण्यासाठी आता अपडेट करा.</string>
+    <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
+    <string name="EditProfileFragment_deprecated_dialog_update_button">अद्यतन</string>
+    <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_title">डिव्हाइस नोंदणीकृत नाही</string>
+    <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_body">हे डिव्हाइस यापुढे नोंदणीकृत राहणार नाही. आपल्या अकाऊंट मध्ये बदल करण्यासाठी पुन्हा-नोंदणी करा.</string>
+    <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
+    <string name="EditProfileFragment_unregistered_dialog_reregister_button">पुनर्नोंदणी</string>
 
     <!-- EditProfileNameFragment -->
     <string name="EditProfileNameFragment_your_name">आपले नाव</string>
@@ -3019,7 +3030,6 @@
         <item>इतर</item>
         <item>पेमेंट्स (मोबाईलकॉईन)</item>
         <item>देणगी व बॅजेस</item>
-        <item>SMS एक्सपोर्ट करा</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android डीबग लॉग सबमिशन</string>
@@ -3664,8 +3674,6 @@
     <string name="verify_display_fragment_context_menu__compare_with_clipboard">क्लिपबोर्ड सोबत तुलना करा</string>
 
     <!-- reminder_header -->
-    <string name="reminder_header_push_title">Signal संदेश आणि कॉल सक्षम करा</string>
-    <string name="reminder_header_push_text">आपला परस्परसंवाद अनुभव वर्धित करा.</string>
     <string name="reminder_header_service_outage_text">Signal तांत्रिक समस्या अनुभवत आहे. आम्ही लवकरात लवकर सेवा पुनर्स्थित करण्यासाठी कठोर परिश्रम करत आहोत.</string>
     <string name="reminder_header_progress">%1$d%%</string>
     <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user\'s contacts -->
@@ -3962,6 +3970,8 @@
     <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">आपल्याला आपल्या जुन्या डिव्हाइसचा अॅक्सेस आवश्यक आहे.</string>
     <string name="TransferOrRestoreFragment__restore_from_backup">बॅकअपवरून पुनर्स्थापित करा</string>
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">स्थानिक बॅकअपवरून आपले संदेश पुनर्स्थापित करा. आपण आता पुनर्स्थापित न केल्यास, आपण नंतर पुनर्स्थापना करू शकणार नाही.</string>
+    <!-- Button label for more options -->
+    <string name="TransferOrRestoreFragment__more_options">अधिक पर्याय</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
     <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">आपल्या Android फोनवर Signal उघडा</string>
@@ -4168,7 +4178,7 @@
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
     <string name="ReviewCard__s_recently_changed">%1$s नी अलिकडेच त्यांचे प्रोफाइन नाव %2$s वरून %3$s ला बदलले</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
-    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s आपल्या सिस्टिम संपर्कामध्ये आहेत</string>
+    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s आपल्या फोन संपर्कामध्ये आहेत</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s सामील झाले</string>
@@ -4719,7 +4729,7 @@
     <string name="ConversationSettingsFragment__disappearing_messages">हरवणारे संदेश</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">ध्वनी आणि सूचना</string>
   <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
-    <string name="ConversationSettingsFragment__contact_details">संपर्क तपशील</string>
+    <string name="ConversationSettingsFragment__contact_details">फोन संपर्क माहिती</string>
     <string name="ConversationSettingsFragment__view_safety_number">सुरक्षितता नंबर बघा</string>
     <string name="ConversationSettingsFragment__block">अवरोधित करा</string>
     <string name="ConversationSettingsFragment__block_group">गट अवरोधित करा</string>
@@ -5570,7 +5580,7 @@
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">संदेश विनंती स्वीकारत आहे</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">ते आपल्या सिस्टम संपर्कांमध्ये असणे</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">आपल्या फोन संपर्कामध्ये ते असणे</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"आपले कनेक्शन्स आपले नाव आणि फोटो पाहू शकतात, आणि जोपर्यंत आपण ते त्यांच्यापासून लपवत नाही तोपर्यंत \"माझी स्टोरी\" वरील पोस्ट पाहू शकतात."</string>
     <!-- Clickable option to add a viewer to a custom story -->
@@ -6653,6 +6663,46 @@
     <string name="FindByActivity__qr_scan_button">QR कोड स्कॅन करा</string>
     <!-- Content of a dialog indicating that we could not perform the requested action because we encountered a network error. -->
     <string name="FindByActivity__network_error_dialog">नेटवर्क त्रुटी आली. पुन्हा प्रयत्न करा</string>
+
+    <!-- Title for an alert letting someone know that one of their linked devices is inactive. -->
+    <string name="LinkedDeviceInactiveMegaphone_title">सक्रिय नसलेली लिंंक केलेली डिव्हाइसेस</string>
+    <!-- Body for an alert letting someone know that one of their linked devices is inactive. The string placeholder is the name of the device, and the number placeholder is the number of days before device is unlinked. -->
+    <plurals name="LinkedDeviceInactiveMegaphone_body">
+        <item quantity="one">\"%1$s\" ला लिंक केलेले ठेवण्यासाठी, %2$d दिवसामध्ये त्या डिव्हाइसवर Signal उघडा.</item>
+        <item quantity="other">\"%1$s\" ला लिंक केलेले ठेवण्यासाठी, %2$d दिवसांमध्ये त्या डिव्हाइसवर Signal उघडा.</item>
+    </plurals>
+    <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the user will opt out of all future alerts. -->
+    <string name="LinkedDeviceInactiveMegaphone_dont_remind_button_label">मला आठवण करून देऊ नका</string>
+    <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the alert will be dismissed. -->
+    <string name="LinkedDeviceInactiveMegaphone_got_it_button_label">कळले</string>
+
+    <!-- NicknameFragment -->
+    <!-- Title displayed at the top of the screen -->
+    <string name="NicknameActivity__nickname">टोपणनाव</string>
+    <!-- Subtitle displayed under title -->
+    <string name="NicknameActivity__nicknames_amp_notes">Nicknames &amp; notes are stored with Signal and end-to-end encrypted. They are only visible to you.</string>
+    <!-- Field label for given name -->
+    <string name="NicknameActivity__first_name">नाव</string>
+    <!-- Content description for first name clear button -->
+    <string name="NicknameActivity__clear_first_name">नाव साफ करा</string>
+    <!-- Field label for family name -->
+    <string name="NicknameActivity__last_name">आडनाव</string>
+    <!-- Content description for last name clear button -->
+    <string name="NicknameActivity__clear_last_name">आडनाव साफ करा</string>
+    <!-- Field label for note -->
+    <string name="NicknameActivity__note">टीप</string>
+    <!-- Button label to save -->
+    <string name="NicknameActivity__save">जतन करा</string>
+    <!-- Dialog title for note and name deletion -->
+    <string name="NicknameActivity__delete_nickname">Delete?</string>
+    <!-- Dialog message for note and name deletion -->
+    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">This will permanently delete any nickname and note you’ve set.</string>
+
+    <!-- ViewNoteBottomSheetDialogFragment -->
+    <!-- Sheet title -->
+    <string name="ViewNoteSheet__note">टीप</string>
+    <!-- Content description for opening the note editor -->
+    <string name="ViewNoteSheet__edit_note">टीप संपादित करा</string>
 
     <!-- EOF -->
 </resources>

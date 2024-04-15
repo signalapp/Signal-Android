@@ -19,14 +19,13 @@ import androidx.camera.video.Recording;
 import androidx.camera.video.VideoRecordEvent;
 import androidx.camera.view.PreviewView;
 import androidx.camera.view.video.AudioConfig;
+import androidx.core.content.ContextCompat;
 import androidx.core.util.Consumer;
 import androidx.fragment.app.Fragment;
 
-import com.bumptech.glide.util.Executors;
-
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.mediasend.camerax.SignalCameraController;
+import org.thoughtcrime.securesms.mediasend.camerax.CameraXController;
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXModePolicy;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.util.ContextUtil;
@@ -49,7 +48,7 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
 
   private final @NonNull Fragment               fragment;
   private final @NonNull PreviewView            previewView;
-  private final @NonNull SignalCameraController cameraController;
+  private final @NonNull CameraXController cameraController;
   private final @NonNull Callback               callback;
   private final @NonNull MemoryFileDescriptor   memoryFileDescriptor;
   private final @NonNull ValueAnimator          updateProgressAnimator;
@@ -88,7 +87,7 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
 
   CameraXVideoCaptureHelper(@NonNull Fragment fragment,
                             @NonNull CameraButtonView captureButton,
-                            @NonNull SignalCameraController cameraController,
+                            @NonNull CameraXController cameraController,
                             @NonNull PreviewView previewView,
                             @NonNull MemoryFileDescriptor memoryFileDescriptor,
                             @NonNull CameraXModePolicy cameraXModePolicy,
@@ -150,7 +149,7 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
     FileDescriptorOutputOptions outputOptions = new FileDescriptorOutputOptions.Builder(memoryFileDescriptor.getParcelFileDescriptor()).build();
     AudioConfig                 audioConfig   = AudioConfig.create(true);
 
-    activeRecording = cameraController.startRecording(outputOptions, audioConfig, videoSavedListener);
+    activeRecording = cameraController.startRecording(outputOptions, audioConfig, ContextCompat.getMainExecutor(fragment.requireContext()), videoSavedListener);
 
     updateProgressAnimator.start();
     debouncer.publish(this::onVideoCaptureComplete);

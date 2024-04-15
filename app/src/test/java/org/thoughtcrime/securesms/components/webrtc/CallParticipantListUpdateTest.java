@@ -9,7 +9,7 @@ import org.junit.Test;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.CallParticipantId;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientDetails;
+import org.thoughtcrime.securesms.recipients.RecipientCreator;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 
 import java.util.ArrayList;
@@ -176,7 +176,7 @@ public class CallParticipantListUpdateTest {
   }
 
   private static CallParticipant createParticipant(long recipientId, long deMuxId, @NonNull CallParticipant.DeviceOrdinal deviceOrdinal) {
-    Recipient recipient = new Recipient(RecipientId.from(recipientId), mock(RecipientDetails.class), true);
+    Recipient recipient = RecipientCreator.forId(RecipientId.from(recipientId), true);
 
     return CallParticipant.createRemote(new CallParticipantId(deMuxId, recipient.getId()), recipient, null, new BroadcastVideoSink(), false, false, false, CallParticipant.HAND_LOWERED, -1, false, 0, false, deviceOrdinal);
   }

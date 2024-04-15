@@ -20,6 +20,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.TransitionInflater
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -32,6 +33,7 @@ import org.signal.core.util.DimensionUnit
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.concurrent.addTo
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.calls.links.details.CallLinkDetailsActivity
 import org.thoughtcrime.securesms.calls.new.NewCallActivity
@@ -45,6 +47,7 @@ import org.thoughtcrime.securesms.components.settings.app.notifications.manual.N
 import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsActivity
 import org.thoughtcrime.securesms.conversation.ConversationUpdateTick
 import org.thoughtcrime.securesms.conversation.SignalBottomActionBarController
+import org.thoughtcrime.securesms.conversation.v2.ConversationDialogs
 import org.thoughtcrime.securesms.conversationlist.ConversationFilterBehavior
 import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationFilterSource
 import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationListFilterPullView.OnCloseClicked
@@ -123,6 +126,12 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     val callLogAdapter = CallLogAdapter(this)
     disposables.bindTo(viewLifecycleOwner)
     callLogAdapter.setPagingController(viewModel.controller)
+    callLogAdapter.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
+      override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
+        (requireActivity() as? MainActivity)?.onFirstRender()
+        callLogAdapter.unregisterAdapterDataObserver(this)
+      }
+    })
 
     val scrollToPositionDelegate = ScrollToPositionDelegate(
       recyclerView = binding.recycler,
@@ -376,8 +385,12 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     CommunicationActions.startVoiceCall(this, recipient)
   }
 
-  override fun onStartVideoCallClicked(recipient: Recipient) {
-    CommunicationActions.startVideoCall(this, recipient)
+  override fun onStartVideoCallClicked(recipient: Recipient, canUserBeginCall: Boolean) {
+    if (canUserBeginCall) {
+      CommunicationActions.startVideoCall(this, recipient)
+    } else {
+      ConversationDialogs.displayCannotStartGroupCallDueToPermissionsDialog(requireContext())
+    }
   }
 
   override fun startSelection(call: CallLogRow) {
@@ -467,7 +480,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
           is CallLogDeletionResult.FailedToRevoke -> {
             errorDialog = MaterialAlertDialogBuilder(requireContext())
               .setMessage(resources.getQuantityString(R.plurals.CallLogFragment__cant_delete_call_link, it.failedRevocations))
-              .setPositiveButton(R.string.ok, null)
+              .setPositiveButton(android.R.string.ok, null)
               .show()
           }
           CallLogDeletionResult.Success -> {

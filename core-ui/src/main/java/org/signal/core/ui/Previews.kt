@@ -5,8 +5,11 @@
 
 package org.signal.core.ui
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import org.signal.core.ui.theme.SignalTheme
 
 object Previews {
@@ -17,6 +20,19 @@ object Previews {
     SignalTheme {
       Surface {
         content()
+      }
+    }
+  }
+
+  @Composable
+  fun BottomSheetPreview(
+    content: @Composable () -> Unit
+  ) {
+    SignalTheme {
+      Surface {
+        Box(modifier = Modifier.background(color = SignalTheme.colors.colorSurface1)) {
+          content()
+        }
       }
     }
   }

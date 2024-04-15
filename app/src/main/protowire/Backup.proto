@@ -48,21 +48,20 @@ message AccountData {
     bool readReceipts = 1;
     bool sealedSenderIndicators = 2;
     bool typingIndicators = 3;
-    bool noteToSelfMarkedUnread = 4;
-    bool linkPreviews = 5;
-    bool notDiscoverableByPhoneNumber = 6;
-    bool preferContactAvatars = 7;
-    uint32 universalExpireTimer = 8; // 0 means no universal expire timer.
-    repeated string preferredReactionEmoji = 9;
-    bool displayBadgesOnProfile = 10;
-    bool keepMutedChatsArchived = 11;
-    bool hasSetMyStoriesPrivacy = 12;
-    bool hasViewedOnboardingStory = 13;
-    bool storiesDisabled = 14;
-    optional bool storyViewReceiptsEnabled = 15;
-    bool hasSeenGroupStoryEducationSheet = 16;
-    bool hasCompletedUsernameOnboarding = 17;
-    PhoneNumberSharingMode phoneNumberSharingMode = 18;
+    bool linkPreviews = 4;
+    bool notDiscoverableByPhoneNumber = 5;
+    bool preferContactAvatars = 6;
+    uint32 universalExpireTimer = 7; // 0 means no universal expire timer.
+    repeated string preferredReactionEmoji = 8;
+    bool displayBadgesOnProfile = 9;
+    bool keepMutedChatsArchived = 10;
+    bool hasSetMyStoriesPrivacy = 11;
+    bool hasViewedOnboardingStory = 12;
+    bool storiesDisabled = 13;
+    optional bool storyViewReceiptsEnabled = 14;
+    bool hasSeenGroupStoryEducationSheet = 15;
+    bool hasCompletedUsernameOnboarding = 16;
+    PhoneNumberSharingMode phoneNumberSharingMode = 17;
   }
 
   bytes profileKey = 1;
@@ -196,6 +195,7 @@ message ChatItem {
     uint64 dateReceived = 1;
     uint64 dateServerSent = 2;
     bool read = 3;
+    bool sealedSender = 4;
   }
 
   message OutgoingMessageDetails {
@@ -208,24 +208,23 @@ message ChatItem {
   uint64 chatId = 1;   // conversation id
   uint64 authorId = 2; // recipient id
   uint64 dateSent = 3;
-  bool sealedSender = 4;
-  optional uint64 expireStartDate = 5; // timestamp of when expiration timer started ticking down
-  optional uint64 expiresInMs = 6; // how long timer of message is (ms)
-  repeated ChatItem revisions = 7; // ordered from oldest to newest
-  bool sms = 8;
+  optional uint64 expireStartDate = 4; // timestamp of when expiration timer started ticking down
+  optional uint64 expiresInMs = 5; // how long timer of message is (ms)
+  repeated ChatItem revisions = 6; // ordered from oldest to newest
+  bool sms = 7;
 
   oneof directionalDetails {
-    IncomingMessageDetails incoming = 9;
-    OutgoingMessageDetails outgoing = 10;
-    DirectionlessMessageDetails directionless = 11;
+    IncomingMessageDetails incoming = 8;
+    OutgoingMessageDetails outgoing = 9;
+    DirectionlessMessageDetails directionless = 10;
   }
 
   oneof item {
-    StandardMessage standardMessage = 13;
-    ContactMessage contactMessage = 14;
-    StickerMessage stickerMessage = 15;
-    RemoteDeletedMessage remoteDeletedMessage = 16;
-    ChatUpdateMessage updateMessage = 17;
+    StandardMessage standardMessage = 11;
+    ContactMessage contactMessage = 12;
+    StickerMessage stickerMessage = 13;
+    RemoteDeletedMessage remoteDeletedMessage = 14;
+    ChatUpdateMessage updateMessage = 15;
   }
 }
 
@@ -424,7 +423,7 @@ message FilePointer {
   // Can be ignored if unset/unavailable.
   optional uint32 size = 7;
   optional bytes incrementalMac = 8;
-  optional bytes incrementalMacChunkSize = 9;
+  optional uint32 incrementalMacChunkSize = 9;
   optional string fileName = 10;
   optional uint32 width = 11;
   optional uint32 height = 12;
@@ -507,8 +506,10 @@ message IndividualCallChatUpdate {
     INCOMING_VIDEO_CALL = 2;
     OUTGOING_AUDIO_CALL = 3;
     OUTGOING_VIDEO_CALL = 4;
-    MISSED_AUDIO_CALL = 5;
-    MISSED_VIDEO_CALL = 6;
+    MISSED_INCOMING_AUDIO_CALL = 5;
+    MISSED_INCOMING_VIDEO_CALL = 6;
+    UNANSWERED_OUTGOING_AUDIO_CALL = 7;
+    UNANSWERED_OUTGOING_VIDEO_CALL = 8;
   }
 
   Type type = 1;

@@ -23,7 +23,7 @@ public final class RemoteDeprecationDetectorInterceptor implements Interceptor {
 
     if (response.code() == 499 && !SignalStore.misc().isClientDeprecated()) {
       Log.w(TAG, "Received 499. Client version is deprecated.");
-      SignalStore.misc().markClientDeprecated();
+      SignalStore.misc().setClientDeprecated(true);
     }
 
     return response;

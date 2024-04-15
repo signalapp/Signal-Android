@@ -113,7 +113,7 @@ object Stories {
   @WorkerThread
   fun enqueueNextStoriesForDownload(recipientId: RecipientId, force: Boolean = false, limit: Int) {
     val recipient = Recipient.resolved(recipientId)
-    if (!force && !recipient.isSelf && (recipient.shouldHideStory() || !recipient.hasViewedStory())) {
+    if (!force && !recipient.isSelf && (recipient.shouldHideStory || !recipient.hasViewedStory)) {
       return
     }
 

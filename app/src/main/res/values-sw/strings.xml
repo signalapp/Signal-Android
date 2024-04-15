@@ -45,8 +45,6 @@
     <string name="ApplicationPreferencesActivity_disable_passphrase">Lemaza ufafanuzi</string>
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Hii itafungua kabisa Signal na arifu za ujumbe</string>
     <string name="ApplicationPreferencesActivity_disable">Lemaza</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Lemaza jumbe za Signal na simu?</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Lemaza jumbe na simu za Signal kwa kutosajili kutoka kwenye seva. Utatakiwa kusajili tena nambari yako ya simu ili uzitumie tena baadae.</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Hitilafu kuunganisha kwa mtambo.</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Nambari za Siri zinahitajika kwenye kufuli ya usajili. Ili kulemaza Nambari za Siri, tafadhali kwanza lemaza kufuli ya usajili.</string>
     <string name="ApplicationPreferencesActivity_pin_created">Nenosiri limeundwa.</string>
@@ -309,7 +307,6 @@
     <string name="ConversationItem_error_network_not_delivered">Kutuma kumeshindwa</string>
     <string name="ConversationItem_group_action_left">%1$s ameondoka kwenye kundi</string>
     <string name="ConversationItem_send_paused">Kutuma kumesitishwa</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Imefeli kutuma, gusa kwa isiyo salama ili kurejea nyuma</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Rudi nyuma kwa ujumbe usio na msimbo fiche?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Rudi nyuma kwa ujumbe usio na msimbo fiche?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Huu ujumbe hau <b>ta</b> kuwa na msimbo fiche kwa sababu mpokeaji hatumii tena Signal.\n\n Tuma ujumbe usio salama?</string>
@@ -427,7 +424,7 @@
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Huwezi tena kutuma jumbe za SMS kwenye Signal. Mkaribishe %1$s Signal ili kuendeleza mazungumzo hapa.</string>
     <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
-    <string name="ConversationActivity__this_person_is_no_longer_using_signal">This person is no longer using Signal. Invite them to Signal to keep the conversation here.</string>
+    <string name="ConversationActivity__this_person_is_no_longer_using_signal">Mtu huyu hatumii tena Signal. Waalike kwenye Signal ili kuendeleza mazungumzo hapa.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">Mwalike kwenye Signal</string>
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
@@ -1389,7 +1386,7 @@
     <string name="MessageRecord_changed_their_profile_name_from_to">%1$s amebadilisha jina la wasifu wake kutoka%2$s kuwa %3$s.</string>
     <string name="MessageRecord_changed_their_profile">%1$s amebadilisha wasifu wake.</string>
     <!-- Conversation update event message shown when you\'ve started a conversation by phone number or username and then learn their profile name. placeholder is username or phone number -->
-    <string name="MessageRecord_started_this_chat">You started this chat with %1$s.</string>
+    <string name="MessageRecord_started_this_chat">Umeanza gumzo na %1$s.</string>
 
     <!-- GV2 specific -->
     <string name="MessageRecord_you_created_the_group">Uliunda kundi</string>
@@ -1975,7 +1972,7 @@
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
     <string name="AboutSheet__no_direct_message">Huna jumbe za moja kwa moja na %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
-    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s yupo kwenye wawasiliani wako wa simu</string>
+    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s yuko kwenye wawasiliani wako</string>
     <!-- Notice in a row when user has no groups in common -->
     <string name="AboutSheet__you_have_no_groups_in_common">Hamna vikundi mnavyoshiriki pamoja</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
@@ -1989,6 +1986,8 @@
     <string name="AboutSheet__about">Kuhusu</string>
     <!-- Text displayed in title for you -->
     <string name="AboutSheet__you">Wewe</string>
+    <!-- Displays the name of a contact. The first placeholder is the name the user has assigned to that contact, the second name is the name the contact assigned to themselves -->
+    <string name="AboutSheet__user_set_display_name_and_profile_name">%1$s (%2$s)</string>
 
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call">
@@ -2925,6 +2924,18 @@
     <string name="EditProfileFragment__group_name">Jina la kikundi</string>
     <string name="EditProfileFragment__group_description">Maelezo ya kikundi</string>
   <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
+    <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_title">Sasisha Signal</string>
+    <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_body">Toleo hili la Signal limekwisha muda wake. Sasisha sasa ili kuendelea kutumia Signal.</string>
+    <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
+    <string name="EditProfileFragment_deprecated_dialog_update_button">Sasisha</string>
+    <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_title">Kifaa hakijasajiliwa</string>
+    <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_body">Kifaa hiki hakijasajiliwa tena. Sajili upya ili kufanya mabadiliko kwenye akaunti yako.</string>
+    <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
+    <string name="EditProfileFragment_unregistered_dialog_reregister_button">Sajili tena</string>
 
     <!-- EditProfileNameFragment -->
     <string name="EditProfileNameFragment_your_name">jina lako</string>
@@ -3019,7 +3030,6 @@
         <item>ingine</item>
         <item>Malipo (MobileCoin)</item>
         <item>Michango &amp; Beji</item>
-        <item>Kuhamisha SMS</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Kutuma Ombi la Kumbukumbu za Utatuzi za Signal Android</string>
@@ -3664,8 +3674,6 @@
     <string name="verify_display_fragment_context_menu__compare_with_clipboard">Linganisha na clipbodi</string>
 
     <!-- reminder_header -->
-    <string name="reminder_header_push_title">Wezesha jumbe na simu za Signal</string>
-    <string name="reminder_header_push_text">Boresha uzoefu wako wa mawasiliano</string>
     <string name="reminder_header_service_outage_text">Signal inakabiliwa na matatizo ya kiufundi. Tunajitahidi kurejesha huduma haraka iwezekanavyo.</string>
     <string name="reminder_header_progress">%1$d%%</string>
     <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user\'s contacts -->
@@ -3903,7 +3911,7 @@
     <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
     <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Una uhakika?</string>
     <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Setting \"Who can find me by number\" to \"Nobody\" will make it harder for people to find you on Signal.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Mipangilio ya \"Nani anayeweza kunipata kupitia nambari\" kwenda \"Hakuna\" itafanya iwe ngumu kwa watu kukupata kwenye Signal.</string>
     <!-- Dialog button text for canceling change action -->
     <string name="PhoneNumberPrivacySettingsFragment__cancel">Ghairi</string>
     <string name="PhoneNumberPrivacy_everyone">Kila mtu</string>
@@ -3962,6 +3970,8 @@
     <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Unahitaji kufikia kifaa chako cha awali.</string>
     <string name="TransferOrRestoreFragment__restore_from_backup">Rejesha kutoka nakala hifadhi</string>
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Rejesha jumbe zako kutoka kwenye nakala hifadhi ya ndani ya kifaa chako. Usiporejesha sasa, hutaweza kurejesha baadaye.</string>
+    <!-- Button label for more options -->
+    <string name="TransferOrRestoreFragment__more_options">Chaguzi zaidi</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
     <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Fungua Signal kwenye simu yako ya awali ya Android</string>
@@ -4168,7 +4178,7 @@
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
     <string name="ReviewCard__s_recently_changed">Hivi karibuni %1$s amebadili jina la wasifu wake kutoka %2$s kwenda %3$s</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
-    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s yupo kwenye wawasiliani wako wa simu</string>
+    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s yuko kwenye wawasiliani wako</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s amejiunga</string>
@@ -4719,7 +4729,7 @@
     <string name="ConversationSettingsFragment__disappearing_messages">Jumbe zinazotoweka</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">Sauti na arifa</string>
   <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
-    <string name="ConversationSettingsFragment__contact_details">Maelezo ya mwasiliani</string>
+    <string name="ConversationSettingsFragment__contact_details">Taarifa za wawasiliani</string>
     <string name="ConversationSettingsFragment__view_safety_number">Tazama nambari ya usalama</string>
     <string name="ConversationSettingsFragment__block">Zuia</string>
     <string name="ConversationSettingsFragment__block_group">Zuia kikundi</string>
@@ -4889,26 +4899,26 @@
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">Kitu kimoja au zaidi vilikuwa batili</string>
     <string name="MediaReviewFragment__too_many_items_selected">Vitu vingi zaidi vimechaguliwa</string>
     <!-- Small notification presented to the user when they set their video to view-once mode -->
-    <string name="MediaReviewFragment__video_set_to_view_once">Video set to view once</string>
+    <string name="MediaReviewFragment__video_set_to_view_once">Video imewekwa kutazama mara moja</string>
     <!-- Small notification presented to the user when they set their photo to view-once mode -->
-    <string name="MediaReviewFragment__photo_set_to_view_once">Photo set to view once</string>
+    <string name="MediaReviewFragment__photo_set_to_view_once">Picha imewekwa kutazama mara moja</string>
     <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
-    <string name="MediaReviewFragment__video_set_to_high_quality">Video set to high quality</string>
+    <string name="MediaReviewFragment__video_set_to_high_quality">Video imewekwa kwenye ubora wa hali ya juu</string>
     <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
-    <string name="MediaReviewFragment__video_set_to_standard_quality">Video set to standard quality</string>
+    <string name="MediaReviewFragment__video_set_to_standard_quality">Video imewekwa kwenye kiwango cha kawaida</string>
     <!-- Small notification presented to the user when they set their still image to be sent in high visual quality. -->
-    <string name="MediaReviewFragment__photo_set_to_high_quality">Photo set to high quality</string>
+    <string name="MediaReviewFragment__photo_set_to_high_quality">Picha imewekwa kwenye ubora wa hali ya juu</string>
     <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
-    <string name="MediaReviewFragment__photo_set_to_standard_quality">Photo set to standard quality</string>
+    <string name="MediaReviewFragment__photo_set_to_standard_quality">Picha imewekwa kwenye kiwango cha kawaida</string>
     <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
     <plurals name="MediaReviewFragment__items_set_to_high_quality">
-        <item quantity="one">%1$d item set to high quality</item>
-        <item quantity="other">%1$d items set to high quality</item>
+        <item quantity="one">%1$d imewekwa kwenye ubora wa hali ya juu</item>
+        <item quantity="other">%1$d zimewekwa kwenye ubora wa hali ya juu</item>
     </plurals>
     <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
     <plurals name="MediaReviewFragment__items_set_to_standard_quality">
-        <item quantity="one">%1$d item set to standard quality</item>
-        <item quantity="other">%1$d items set to standard quality</item>
+        <item quantity="one">%1$d imewekwa kwenye ubora wa hali ya juu</item>
+        <item quantity="other">%1$d zimewekwa kwenye ubora wa hali ya juu</item>
     </plurals>
 
     <string name="ImageEditorHud__cancel">Ghairi</string>
@@ -4935,16 +4945,16 @@
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Utapoteza mabadiliko yoyote uliyofanya kwenye picha hii.</string>
 
     <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_title">Found %1$s</string>
+    <string name="MediaCaptureFragment_username_dialog_title">Imepatikana %1$s</string>
     <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_body">Start a chat with \"%1$s\"</string>
+    <string name="MediaCaptureFragment_username_dialog_body">Anza gumzo na \"%1$s\"</string>
     <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
     <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">Enda kwenye gumzo</string>
 
     <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_title">Link device?</string>
+    <string name="MediaCaptureFragment_device_link_dialog_title">Unganisha kifaa?</string>
     <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_body">It looks like you\'re trying to link a Signal device. Tap continue and scan the code again to link it.</string>
+    <string name="MediaCaptureFragment_device_link_dialog_body">Inaonekana kama vile unajaribu kuunganisha kifaa cha Signal. Gusa kuendelea na kuskani code tena ili kuiunganisha tena.</string>
     <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
     <string name="MediaCaptureFragment_device_link_dialog_continue">Endelea</string>
 
@@ -5046,7 +5056,7 @@
     <!-- Displayed as a subtitle on a row in the Manage Donations screen when payment for a donation is pending -->
     <string name="MySupportPreference__payment_pending">Malipo yanasubiri</string>
     <!-- Displayed as a dialog message when clicking on a donation row that is pending. Placeholder is a formatted fiat amount -->
-    <string name="MySupportPreference__your_bank_transfer_of_s">Your bank transfer of %1$s is pending. Bank transfers can take 1 to 14 business days to complete.  </string>
+    <string name="MySupportPreference__your_bank_transfer_of_s">Uhamisho wako wa benki wa %1$s unasubiri. Uhamisho wa benki unaweza kuchukua siku za biashara 1 hadi siku 14 kukamilika.  </string>
     <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
     <string name="MySupportPreference__learn_more">Jifunze zaidi</string>
 
@@ -5570,7 +5580,7 @@
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Kukubali ombi la ujumbe</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Kuwa nao kwenye mfumo wako wa wawasiliani wa simu</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Kuwa nazo kwenye wawasiliani wako</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Connections wako wanaweza kuona jina lako na picha yako, na wanaweza pia kuona post za Stori Yangu labda kama utawaficha."</string>
     <!-- Clickable option to add a viewer to a custom story -->
@@ -5990,9 +6000,9 @@
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
     <string name="DonateToSignalFragment__you_have_a_donation_pending">Una mchango haujatolewa bado</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Bank transfers can take 1 to 14 business days to process. Please wait until this payment completes before updating your subscription.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Uhamisho wa benki unaweza kuchukua siku za biashara 1 hadi 14 kuchakatwa. Tafadhali subiri hadi malipo haya yatakapokamilika kabla hujasasisha usajili wako.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Bank transfers can take 1 to 14 business days to process. Please wait until this payment completes before making another donation.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Uhamisho wa benki unaweza kuchukua siku za biashara 1 hadi 14 kuchakatwa. Tafadhali subiri hadi malipo haya yatakapokamilika kabla hujatoa mchango mwingine.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
     <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Mchango wako bado unachakatwa. Hii inaweza kuchukua dakika kadhaa kutegemeana na mtandao wako. Tafadhali subiri hadi malipo haya yatakapokamilika kabla hujasasisha usajili wako.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
@@ -6144,7 +6154,7 @@
     <!-- Top text block of donation pending sheet displayed after one-time donation via a bank transfer. Placeholder is the badge name. -->
     <string name="DonationPendingBottomSheet__your_one_time_donation_is_pending">Mchango wako wa mara moja unasubiri. Utaweza kuonyesha beji ya %1$s kwenye wasifu wako mchango wako utakapopokelewa.</string>
     <!-- Bottom text block of donation pending sheet displayed after donating via a bank transfer. Placeholder is for learn more. -->
-    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Bank transfers can take 1 to 14 business days to process. %1$s</string>
+    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Uhamisho wa benki unaweza kuchukua siku za biashara 1 hadi 14 kuchakatwa. %1$s</string>
     <!-- Learn more text for donation pending sheet displayed after donating via a bank transfer. -->
     <string name="DonationPendingBottomSheet__learn_more">Jifunze zaidi</string>
     <!-- Confirmation button for donation pending sheet displayed after donating via a bank transfer. -->
@@ -6555,9 +6565,9 @@
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Skani code hii ya QR kupitia simu yako ili upige gumzo nami kwenye Signal.</string>
     <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_qr_code_not_found">QR code not found</string>
+    <string name="UsernameLinkSettings_qr_code_not_found">Code ya QR haijapatikana</string>
     <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Try scanning another image containing a Signal QR code.</string>
+    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Jaribu kuskani picha nyingine yenye code ya QR ya Signal.</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
     <string name="UsernameLinkShareBottomSheet_title">Yeyote aliye na kiungo hiki anaweza kuona jina lako la mtumiaji na kuanza mazungumzo nawe. Ishiriki tu na watu unaowaamini.</string>
@@ -6650,9 +6660,49 @@
     <!-- Dialog action to invite the phone number to Signal -->
     <string name="FindByActivity__invite">Alika</string>
     <!-- Button label for a button that will launch a camera to scan a username QR code -->
-    <string name="FindByActivity__qr_scan_button">Skani msimbo wa QR</string>
+    <string name="FindByActivity__qr_scan_button">Skani code ya QR</string>
     <!-- Content of a dialog indicating that we could not perform the requested action because we encountered a network error. -->
     <string name="FindByActivity__network_error_dialog">Imekumbana na hitilafu ya mtandao. Jaribu tena baadae.</string>
+
+    <!-- Title for an alert letting someone know that one of their linked devices is inactive. -->
+    <string name="LinkedDeviceInactiveMegaphone_title">Kifaa kilichounganishwa kisichotumika</string>
+    <!-- Body for an alert letting someone know that one of their linked devices is inactive. The string placeholder is the name of the device, and the number placeholder is the number of days before device is unlinked. -->
+    <plurals name="LinkedDeviceInactiveMegaphone_body">
+        <item quantity="one">Ili kuendelea kuunganisha \"%1$s\", fungua Signal kwenye kifaa hiko ndani ya siku %2$d.</item>
+        <item quantity="other">Ili kuendelea kuunganisha \"%1$s\", fungua Signal kwenye kifaa hiko ndani ya siku %2$d.</item>
+    </plurals>
+    <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the user will opt out of all future alerts. -->
+    <string name="LinkedDeviceInactiveMegaphone_dont_remind_button_label">Usinikumbushe</string>
+    <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the alert will be dismissed. -->
+    <string name="LinkedDeviceInactiveMegaphone_got_it_button_label">Nimeelewa</string>
+
+    <!-- NicknameFragment -->
+    <!-- Title displayed at the top of the screen -->
+    <string name="NicknameActivity__nickname">Jina la utani</string>
+    <!-- Subtitle displayed under title -->
+    <string name="NicknameActivity__nicknames_amp_notes">Nicknames &amp; notes are stored with Signal and end-to-end encrypted. They are only visible to you.</string>
+    <!-- Field label for given name -->
+    <string name="NicknameActivity__first_name">Jina la kwanza</string>
+    <!-- Content description for first name clear button -->
+    <string name="NicknameActivity__clear_first_name">Futa jina la kwanza</string>
+    <!-- Field label for family name -->
+    <string name="NicknameActivity__last_name">Jina La Mwisho</string>
+    <!-- Content description for last name clear button -->
+    <string name="NicknameActivity__clear_last_name">Futa jina la mwisho</string>
+    <!-- Field label for note -->
+    <string name="NicknameActivity__note">Kidokezo</string>
+    <!-- Button label to save -->
+    <string name="NicknameActivity__save">Hifadhi</string>
+    <!-- Dialog title for note and name deletion -->
+    <string name="NicknameActivity__delete_nickname">Delete?</string>
+    <!-- Dialog message for note and name deletion -->
+    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">This will permanently delete any nickname and note you’ve set.</string>
+
+    <!-- ViewNoteBottomSheetDialogFragment -->
+    <!-- Sheet title -->
+    <string name="ViewNoteSheet__note">Kidokezo</string>
+    <!-- Content description for opening the note editor -->
+    <string name="ViewNoteSheet__edit_note">Hariri kidokezo</string>
 
     <!-- EOF -->
 </resources>

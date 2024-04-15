@@ -48,12 +48,12 @@ object BioTextPreference {
         recipient.getDisplayName(context)
       }
 
-      if (!recipient.showVerified() && !recipient.isIndividual) {
+      if (!recipient.showVerified && !recipient.isIndividual) {
         return name
       }
 
       return SpannableStringBuilder(name).apply {
-        if (recipient.showVerified()) {
+        if (recipient.showVerified) {
           SpanUtil.appendSpacer(this, 8)
           SpanUtil.appendCenteredImageSpanWithoutSpace(this, ContextUtil.requireDrawable(context, R.drawable.ic_official_28), 28, 28)
         } else if (recipient.isSystemContact) {

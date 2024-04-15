@@ -9,8 +9,10 @@ import android.app.Notification
 import android.app.Service
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.os.IBinder
+import androidx.annotation.RequiresApi
 import androidx.core.app.ServiceCompat
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.jobs.ForegroundServiceUtil
@@ -122,6 +124,10 @@ abstract class SafeForegroundService : Service() {
       }
     }
 
+    fun isStopping(intent: Intent): Boolean {
+      return intent.action == ACTION_STOP
+    }
+
     private fun currentState(clazz: Class<out SafeForegroundService>): State {
       return states.getOrPut(clazz) { State.STOPPED }
     }
@@ -137,7 +143,11 @@ abstract class SafeForegroundService : Service() {
 
     Log.d(tag, "[onStartCommand] action: ${intent.action}")
 
-    startForeground(notificationId, getForegroundNotification(intent))
+    if (Build.VERSION.SDK_INT >= 30 && serviceType != 0) {
+      startForeground(notificationId, getForegroundNotification(intent), serviceType)
+    } else {
+      startForeground(notificationId, getForegroundNotification(intent))
+    }
 
     when (val action = intent.action) {
       ACTION_START -> {
@@ -186,6 +196,10 @@ abstract class SafeForegroundService : Service() {
 
   /** Notification ID to use when posting the foreground notification */
   abstract val notificationId: Int
+
+  /** Special service type to use when calling start service if needed */
+  @RequiresApi(30)
+  open val serviceType: Int = 0
 
   /** Notification to post as our foreground notification. */
   abstract fun getForegroundNotification(intent: Intent): Notification

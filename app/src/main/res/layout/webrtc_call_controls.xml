@@ -56,27 +56,11 @@
                 android:scaleType="fitXY"
                 android:visibility="gone"
                 app:layout_constraintBottom_toTopOf="@id/call_screen_start_call_controls"
-                app:layout_constraintEnd_toStartOf="@id/call_screen_camera_direction_toggle"
+                app:layout_constraintEnd_toStartOf="@id/call_screen_video_toggle"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
                 app:srcCompat="@drawable/webrtc_call_screen_speaker_toggle"
                 tools:visibility="visible" />
-
-            <ImageView
-                android:id="@+id/call_screen_camera_direction_toggle"
-                android:layout_width="@dimen/webrtc_button_size"
-                android:layout_height="@dimen/webrtc_button_size"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="30dp"
-                android:clickable="false"
-                android:contentDescription="@string/WebRtcCallView__toggle_camera_direction"
-                android:scaleType="fitXY"
-                app:layout_constraintBottom_toTopOf="@id/call_screen_start_call_controls"
-                app:layout_constraintEnd_toStartOf="@id/call_screen_video_toggle"
-                app:layout_constraintHorizontal_chainStyle="packed"
-                app:layout_constraintStart_toEndOf="@id/call_screen_speaker_toggle"
-                app:srcCompat="@drawable/webrtc_call_screen_camera_toggle" />
 
             <org.thoughtcrime.securesms.components.AccessibleToggleButton
                 android:id="@+id/call_screen_video_toggle"
@@ -90,7 +74,7 @@
                 app:layout_constraintBottom_toTopOf="@id/call_screen_start_call_controls"
                 app:layout_constraintEnd_toStartOf="@id/call_screen_audio_mic_toggle"
                 app:layout_constraintHorizontal_chainStyle="packed"
-                app:layout_constraintStart_toEndOf="@id/call_screen_camera_direction_toggle"
+                app:layout_constraintStart_toEndOf="@id/call_screen_speaker_toggle"
                 tools:checked="true" />
 
             <org.thoughtcrime.securesms.components.AccessibleToggleButton

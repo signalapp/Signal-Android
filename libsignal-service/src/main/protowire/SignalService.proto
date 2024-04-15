@@ -641,8 +641,15 @@ message SyncMessage {
       MARKED_AS_READ = 1;
     }
 
-    optional Type   type      = 1;
-    optional uint64 timestamp = 2;
+    optional Type   type          = 1;
+    optional uint64 timestamp     = 2;
+    /* Data identifying a conversation. The service ID for 1:1, the group ID for
+     * group, or the room ID for an ad-hoc call. See also
+     * `CallEvent/conversationId`. */
+    optional bytes conversationId = 3;
+    /* An identifier for a call. Generated directly for 1:1, or derived from
+     * the era ID for group and ad-hoc calls. See also `CallEvent/callId`. */
+    optional uint64 callId        = 4;
   }
 
   optional Sent                   sent                   = 1;
@@ -741,7 +748,7 @@ message ContactDetails {
   optional string   color         = 4;
   optional Verified verified      = 5;
   optional bytes    profileKey    = 6;
-  optional bool     blocked       = 7;
+  reserved          /*blocked*/     7;
   optional uint32   expireTimer   = 8;
   optional uint32   inboxPosition = 10;
   optional bool     archived      = 11;

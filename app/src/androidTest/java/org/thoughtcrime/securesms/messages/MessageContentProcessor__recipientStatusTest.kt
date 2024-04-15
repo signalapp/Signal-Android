@@ -52,7 +52,7 @@ class MessageContentProcessor__recipientStatusTest {
     processor.process(
       envelope = MessageContentFuzzer.envelope(envelopeTimestamp),
       content = MessageContentFuzzer.syncSentTextMessage(initialTextMessage, deliveredTo = listOf(harness.others[0])),
-      metadata = MessageContentFuzzer.envelopeMetadata(harness.self.id, harness.self.id, groupId),
+      metadata = MessageContentFuzzer.envelopeMetadata(harness.self.id, harness.self.id, groupId = groupId),
       serverDeliveredTimestamp = MessageContentFuzzer.fuzzServerDeliveredTimestamp(envelopeTimestamp)
     )
 
@@ -64,7 +64,7 @@ class MessageContentProcessor__recipientStatusTest {
     processor.process(
       envelope = MessageContentFuzzer.envelope(envelopeTimestamp),
       content = MessageContentFuzzer.syncSentTextMessage(initialTextMessage, deliveredTo = listOf(harness.others[0], harness.others[1]), recipientUpdate = true),
-      metadata = MessageContentFuzzer.envelopeMetadata(harness.self.id, harness.self.id, groupId),
+      metadata = MessageContentFuzzer.envelopeMetadata(harness.self.id, harness.self.id, groupId = groupId),
       serverDeliveredTimestamp = MessageContentFuzzer.fuzzServerDeliveredTimestamp(envelopeTimestamp)
     )
 

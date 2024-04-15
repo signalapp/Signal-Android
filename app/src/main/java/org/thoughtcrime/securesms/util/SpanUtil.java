@@ -105,10 +105,6 @@ public final class SpanUtil {
     return spannable;
   }
 
-  public static @NonNull CharSequence bullet(@NonNull CharSequence sequence) {
-    return bullet(sequence, BulletSpan.STANDARD_GAP_WIDTH);
-  }
-
   public static @NonNull CharSequence bullet(@NonNull CharSequence sequence, int gapWidth) {
     SpannableString spannable = new SpannableString(sequence);
     spannable.setSpan(new BulletSpan(gapWidth), 0, sequence.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);

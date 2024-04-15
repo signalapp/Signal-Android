@@ -51,9 +51,9 @@ open class StoryViewerRepository {
         }
       }.keys.filter {
         if (hiddenStories) {
-          it.shouldHideStory()
+          it.shouldHideStory
         } else {
-          !it.shouldHideStory()
+          !it.shouldHideStory
         }
       }.map { it.id }
 

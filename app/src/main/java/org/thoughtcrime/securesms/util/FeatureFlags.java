@@ -116,15 +116,17 @@ public final class FeatureFlags {
   private static final String CALLING_REACTIONS                 = "android.calling.reactions";
   private static final String NOTIFICATION_THUMBNAIL_BLOCKLIST  = "android.notificationThumbnailProductBlocklist";
   private static final String CALLING_RAISE_HAND                = "android.calling.raiseHand";
-  private static final String USE_ACTIVE_CALL_MANAGER           = "android.calling.useActiveCallManager.4";
   private static final String GIF_SEARCH                        = "global.gifSearch";
   private static final String AUDIO_REMUXING                    = "android.media.audioRemux.1";
   private static final String VIDEO_RECORD_1X_ZOOM              = "android.media.videoCaptureDefaultZoom";
   private static final String RETRY_RECEIPT_MAX_COUNT           = "android.retryReceipt.maxCount";
   private static final String RETRY_RECEIPT_MAX_COUNT_RESET_AGE = "android.retryReceipt.maxCountResetAge";
   private static final String PREKEY_FORCE_REFRESH_INTERVAL     = "android.prekeyForceRefreshInterval";
-  private static final String CDSI_LIBSIGNAL_NET                = "android.cds.libsignal";
+  private static final String CDSI_LIBSIGNAL_NET                = "android.cds.libsignal.3";
   private static final String RX_MESSAGE_SEND                   = "android.rxMessageSend";
+  private static final String LINKED_DEVICE_LIFESPAN_SECONDS    = "android.linkedDeviceLifespanSeconds";
+  private static final String MESSAGE_BACKUPS                   = "android.messageBackups";
+  private static final String CAMERAX_CUSTOM_CONTROLLER         = "android.cameraXCustomController";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -194,7 +196,6 @@ public final class FeatureFlags {
       CALLING_REACTIONS,
       NOTIFICATION_THUMBNAIL_BLOCKLIST,
       CALLING_RAISE_HAND,
-      USE_ACTIVE_CALL_MANAGER,
       GIF_SEARCH,
       AUDIO_REMUXING,
       VIDEO_RECORD_1X_ZOOM,
@@ -202,11 +203,13 @@ public final class FeatureFlags {
       RETRY_RECEIPT_MAX_COUNT_RESET_AGE,
       PREKEY_FORCE_REFRESH_INTERVAL,
       CDSI_LIBSIGNAL_NET,
-      RX_MESSAGE_SEND
+      RX_MESSAGE_SEND,
+      LINKED_DEVICE_LIFESPAN_SECONDS,
+      CAMERAX_CUSTOM_CONTROLLER
   );
 
   @VisibleForTesting
-  static final Set<String> NOT_REMOTE_CAPABLE = SetUtil.newHashSet();
+  static final Set<String> NOT_REMOTE_CAPABLE = SetUtil.newHashSet(MESSAGE_BACKUPS);
 
   /**
    * Values in this map will take precedence over any value. This should only be used for local
@@ -277,7 +280,9 @@ public final class FeatureFlags {
       RETRY_RECEIPT_MAX_COUNT_RESET_AGE,
       PREKEY_FORCE_REFRESH_INTERVAL,
       CDSI_LIBSIGNAL_NET,
-      RX_MESSAGE_SEND
+      RX_MESSAGE_SEND,
+      LINKED_DEVICE_LIFESPAN_SECONDS,
+      CAMERAX_CUSTOM_CONTROLLER
   );
 
   /**
@@ -371,7 +376,7 @@ public final class FeatureFlags {
 
   /** Internal testing extensions. */
   public static boolean internalUser() {
-    return getBoolean(INTERNAL_USER, false) || Environment.IS_PNP || Environment.IS_STAGING;
+    return getBoolean(INTERNAL_USER, false) || Environment.IS_NIGHTLY || Environment.IS_STAGING;
   }
 
   /** Whether or not to use the UUID in verification codes. */
@@ -687,11 +692,6 @@ public final class FeatureFlags {
     return getString(NOTIFICATION_THUMBNAIL_BLOCKLIST, "");
   }
 
-  /** Whether or not to use active call manager instead of WebRtcCallService. */
-  public static boolean useActiveCallManager() {
-    return getBoolean(USE_ACTIVE_CALL_MANAGER, false);
-  }
-
   /** Whether the in-app GIF search is available for use. */
   public static boolean gifSearchAvailable() {
     return getBoolean(GIF_SEARCH, true);
@@ -720,6 +720,25 @@ public final class FeatureFlags {
   /** Use Rx threading model to do sends. */
   public static boolean useRxMessageSending() {
     return getBoolean(RX_MESSAGE_SEND, false);
+  }
+
+  /** The lifespan of a linked device (i.e. the time it can be inactive for before it expires), in milliseconds. */
+  public static long linkedDeviceLifespan() {
+    long seconds = getLong(LINKED_DEVICE_LIFESPAN_SECONDS, TimeUnit.DAYS.toSeconds(30));
+    return TimeUnit.SECONDS.toMillis(seconds);
+  }
+
+  /**
+   * Enable Message Backups UI
+   * Note: This feature is in active development and is not intended to currently function.
+   */
+  public static boolean messageBackups() {
+    return getBoolean(MESSAGE_BACKUPS, false);
+  }
+
+  /** Whether or not to use the custom CameraX controller class */
+  public static boolean customCameraXController() {
+    return getBoolean(CAMERAX_CUSTOM_CONTROLLER, false);
   }
 
   /** Only for rendering debug info. */

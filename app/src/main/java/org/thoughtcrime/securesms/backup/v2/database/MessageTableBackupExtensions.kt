@@ -11,11 +11,12 @@ import org.signal.core.util.select
 import org.thoughtcrime.securesms.backup.v2.BackupState
 import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.MessageTypes
+import java.util.concurrent.TimeUnit
 
 private val TAG = Log.tag(MessageTable::class.java)
 private const val BASE_TYPE = "base_type"
 
-fun MessageTable.getMessagesForBackup(): ChatItemExportIterator {
+fun MessageTable.getMessagesForBackup(backupTime: Long): ChatItemExportIterator {
   val cursor = readableDatabase
     .select(
       MessageTable.ID,
@@ -53,13 +54,11 @@ fun MessageTable.getMessagesForBackup(): ChatItemExportIterator {
     .from(MessageTable.TABLE_NAME)
     .where(
       """
-      $BASE_TYPE IN (
-        ${MessageTypes.BASE_INBOX_TYPE},
-        ${MessageTypes.BASE_OUTBOX_TYPE},
-        ${MessageTypes.BASE_SENT_TYPE},
-        ${MessageTypes.BASE_SENDING_TYPE},
-        ${MessageTypes.BASE_SENT_FAILED_TYPE}
-      ) OR ${MessageTable.IS_CALL_TYPE_CLAUSE}
+      (
+        ${MessageTable.EXPIRE_STARTED} = 0 
+        OR 
+        (${MessageTable.EXPIRES_IN} > 0 AND (${MessageTable.EXPIRE_STARTED} + ${MessageTable.EXPIRES_IN}) > $backupTime + ${TimeUnit.DAYS.toMillis(1)})
+      )
       """
     )
     .orderBy("${MessageTable.DATE_RECEIVED} ASC")

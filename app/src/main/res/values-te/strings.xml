@@ -45,8 +45,6 @@
     <string name="ApplicationPreferencesActivity_disable_passphrase">సంకేతపదమును ఆపివేయాలా?</string>
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">ఇది శాశ్వతంగా Signal మరియు సందేశ ప్రకటనలను అన్లాక్ చేస్తుంది</string>
     <string name="ApplicationPreferencesActivity_disable">అచేతనించు</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signal సందేశాలు మరియు కాల్స్ ఆపివేయాలా?</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">సర్వర్ నుండి నమోదుని తీసివేయడానికి ద్వారా Signal సందేశాలు మరియు కాల్స్ ఆపివేయి. మీరు భవిష్యత్తులో మళ్ళీ వాటిని ఉపయోగించడానికి మీ ఫోన్ నంబర్ తిరిగి నమోదు అవసరం.</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">సర్వర్ కి కలిపినపుడు లోపం!</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">రిజిస్ట్రేషన్ లాక్ కోసం పిన్లు అవసరం. పిన్‌లను నిలిపివేయడానికి, దయచేసి మొదట రిజిస్ట్రేషన్ లాక్‌ని నిలిపివేయండి.</string>
     <string name="ApplicationPreferencesActivity_pin_created">పిన్ సృష్టించబడింది.</string>
@@ -309,7 +307,6 @@
     <string name="ConversationItem_error_network_not_delivered">పంపడం విఫలమైంది</string>
     <string name="ConversationItem_group_action_left">%1$s సమూహం వదిలి వెళ్లారు</string>
     <string name="ConversationItem_send_paused">పంపండి పాజ్ చేయబడింది</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">పంపడం విఫలమైంది, అసురక్షిత తిరిగి పొందడం కోసం నొక్కండి</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">ఎన్క్రిప్టు కాని ఎస్సెమ్మెస్ తిరిగి అయ్యిందా?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">ఎన్క్రిప్టు కాని ఎమ్మెమ్మెస్ తిరిగి అయ్యిందా?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">ఈ సందేశం <b> </b> భద్రపరచు విధంగా చేయలేము ఎందుకంటే గ్రహీత ఇకపై Signal వినియోగదారుడు కాదు.\n\nభద్రతలేని సందేశాన్ని పంపవచా?</string>
@@ -1975,7 +1972,7 @@
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
     <string name="AboutSheet__no_direct_message">%1$sతో ప్రత్యక్ష సందేశాలు లేవు</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
-    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s మీ సిస్టమ్ కాంటాక్ట్‌లలో ఉన్నారు</string>
+    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s మీ ఫోన్ కాంటాక్ట్‌లలో ఉంది</string>
     <!-- Notice in a row when user has no groups in common -->
     <string name="AboutSheet__you_have_no_groups_in_common">మీకు ఉమ్మడిగా ఎలాంటి గ్రూపులు లేవు</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
@@ -1989,6 +1986,8 @@
     <string name="AboutSheet__about">గురించి</string>
     <!-- Text displayed in title for you -->
     <string name="AboutSheet__you">మీరు</string>
+    <!-- Displays the name of a contact. The first placeholder is the name the user has assigned to that contact, the second name is the name the contact assigned to themselves -->
+    <string name="AboutSheet__user_set_display_name_and_profile_name">%1$s (%2$s)</string>
 
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call">
@@ -2925,6 +2924,18 @@
     <string name="EditProfileFragment__group_name">సమూహం పేరు</string>
     <string name="EditProfileFragment__group_description">గ్రూపు వివరణ</string>
   <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
+    <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_title">Signal ను నవీకరించండి</string>
+    <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_body">Signal యొక్క ఈ వెర్షన్ గడువు తీరింది. Signal ఉపయోగించడం కొనసాగించడానికి ఇప్పుడు అప్‌డేట్ చేయండి.</string>
+    <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
+    <string name="EditProfileFragment_deprecated_dialog_update_button">నవీకరణ</string>
+    <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_title">పరికరం నమోదు చేయబడలేదు</string>
+    <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_body">ఈ పరికరం ఇకపై నమోదు చేయబడిలేదు. మీ ఖాతాకు మార్పులు చేయడానికి మళ్ళీ నమోదు చేయండి.</string>
+    <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
+    <string name="EditProfileFragment_unregistered_dialog_reregister_button">మల్లి నమోదుచేయుత </string>
 
     <!-- EditProfileNameFragment -->
     <string name="EditProfileNameFragment_your_name">మీ పేరు</string>
@@ -3019,7 +3030,6 @@
         <item>ఇతర</item>
         <item>చెల్లింపులు (MobileCoin)</item>
         <item>విరాళాలు &amp; బ్యాడ్జీలు</item>
-        <item>SMS ఎగుమతి</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android డీబగ్ లాగ్ సమర్పణ</string>
@@ -3664,8 +3674,6 @@
     <string name="verify_display_fragment_context_menu__compare_with_clipboard">తాత్కాలికంగా భద్రపరుచు ప్రదేశముతో పోల్చడం</string>
 
     <!-- reminder_header -->
-    <string name="reminder_header_push_title">Signal సందేశాలు మరియు కాల్స్ ని ప్రారంభించు</string>
-    <string name="reminder_header_push_text">మీ యుక్క కమ్యూనికేషన్ అనుభవం అభివృద్ధి చెయండి</string>
     <string name="reminder_header_service_outage_text">Signal సాంకేతిక సమస్యలను ఎదుర్కొంటోంది. వీలైనంత త్వరగా సేవని పునరుద్ధరించడానికి మేము కృషి చేస్తున్నాము.</string>
     <string name="reminder_header_progress">%1$d%%</string>
     <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user\'s contacts -->
@@ -3962,6 +3970,8 @@
     <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">మీకు మీ పాత పరికరానికి యాక్సెస్ అవసరం.</string>
     <string name="TransferOrRestoreFragment__restore_from_backup">బ్యాకప్ నుంచి పునరుద్ధరించండి</string>
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">స్థానిక బ్యాకప్ నుంచి మీ సందేశాలను పునరుద్ధరించండి. మీరు ఇప్పుడు పునరుద్ధరించలేకపోతే, మీరు తరువాత పునరుద్ధరించలేరు.</string>
+    <!-- Button label for more options -->
+    <string name="TransferOrRestoreFragment__more_options">మరిన్ని ఎంపికలు</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
     <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">మీ పాత Android పరికరంపై Signal ను తెరవండి</string>
@@ -4168,7 +4178,7 @@
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
     <string name="ReviewCard__s_recently_changed">%1$s ఇటీవల వారి ప్రొఫైల్ పేరును %2$s నుండి %3$s‌కు మార్చారు</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
-    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s మీ సిస్టమ్ కాంటాక్ట్‌లలో ఉన్నారు</string>
+    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s మీ ఫోన్ కాంటాక్ట్‌లలో ఉంది</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s చేరారు</string>
@@ -4719,7 +4729,7 @@
     <string name="ConversationSettingsFragment__disappearing_messages">అదృశ్యమవుతున్న సందేశాలు</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">సౌండ్‌లు &amp; నోటిఫికేషన్‌లు</string>
   <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
-    <string name="ConversationSettingsFragment__contact_details">సంప్రదింపు వివరాలు</string>
+    <string name="ConversationSettingsFragment__contact_details">ఫోన్ కాంటాక్ట్ సమాచారం</string>
     <string name="ConversationSettingsFragment__view_safety_number">భద్రతా సంఖ్యను వీక్షించండి</string>
     <string name="ConversationSettingsFragment__block">బ్లాక్ చేయండి</string>
     <string name="ConversationSettingsFragment__block_group">గ్రూప్‌ను బ్లాక్ చేయండి</string>
@@ -5570,7 +5580,7 @@
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">సందేశం అభ్యర్ధన ఆమోదించడం</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">మీ సిస్టమ్ కాంటాక్ట్‌ల్లో వారు ఉండటం</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">వాటిని మీ ఫోన్ కాంటాక్ట్‌లలో కలిగి ఉండటం</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"మీ కనెక్షన్స్ మీ పేరు మరియు ఫోటోను చూడవచ్చు, మరియు వారి నుంచి మీరు దాచిపెడితే తప్ప నా స్టోరీకు పోస్ట్‌లను చూడవచ్చు."</string>
     <!-- Clickable option to add a viewer to a custom story -->
@@ -5990,7 +6000,7 @@
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
     <string name="DonateToSignalFragment__you_have_a_donation_pending">మీకు ఒక విరాళం పెండింగులో ఉంది</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">బ్యాంక్ బదిలీలు ప్రక్రియ కావడానికి 1 నుండి 14 వ్యాపార రోజులు పట్టవచ్చు. మీ సబ్స్క్రిప్షన్‌ను అప్‌డేట్ చేయడానికి ముందు ఈ చెల్లింపు పూర్తయ్యే వరకు దయచేసి వేచి ఉండండి.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">బ్యాంక్ బదిలీలు ప్రక్రియ కావడానికి 1 నుండి 14 వ్యాపార రోజులు పట్టవచ్చు. మీ సబ్‌స్క్రిప్షన్‌ను అప్‌డేట్ చేయడానికి ముందు ఈ చెల్లింపు పూర్తయ్యే వరకు దయచేసి వేచి ఉండండి.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
     <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">బ్యాంక్ బదిలీలు ప్రక్రియ కావడానికి 1 నుండి 14 వ్యాపార రోజులు పట్టవచ్చు. మరొక విరాళం ఇచ్చే ముందు ఈ చెల్లింపు పూర్తయ్యే వరకు దయచేసి వేచి ఉండండి.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
@@ -6653,6 +6663,46 @@
     <string name="FindByActivity__qr_scan_button">QR కోడ్‌ను స్కాన్ చేయండి</string>
     <!-- Content of a dialog indicating that we could not perform the requested action because we encountered a network error. -->
     <string name="FindByActivity__network_error_dialog">నెట్‌వర్క్ లోపాన్ని ఎదుర్కొంది. తరువాత మళ్ళీ ప్రయత్నించండి.</string>
+
+    <!-- Title for an alert letting someone know that one of their linked devices is inactive. -->
+    <string name="LinkedDeviceInactiveMegaphone_title">లింక్ చేసిన పరికరం క్రియారహితమైనది</string>
+    <!-- Body for an alert letting someone know that one of their linked devices is inactive. The string placeholder is the name of the device, and the number placeholder is the number of days before device is unlinked. -->
+    <plurals name="LinkedDeviceInactiveMegaphone_body">
+        <item quantity="one">\"%1$s\" లింక్ అయ్యి ఉండేలా చేయడానికి, ఆ పరికరంపై Signal ను %2$d రోజులోపు తెరవండి.</item>
+        <item quantity="other">\"%1$s\" లింక్ అయ్యి ఉండేలా చేయడానికి, ఆ పరికరంపై Signal ను %2$d రోజులలోపు తెరవండి.</item>
+    </plurals>
+    <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the user will opt out of all future alerts. -->
+    <string name="LinkedDeviceInactiveMegaphone_dont_remind_button_label">నాకు గుర్తు చేయకండి</string>
+    <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the alert will be dismissed. -->
+    <string name="LinkedDeviceInactiveMegaphone_got_it_button_label">అర్థమైంది</string>
+
+    <!-- NicknameFragment -->
+    <!-- Title displayed at the top of the screen -->
+    <string name="NicknameActivity__nickname">మారుపేరు</string>
+    <!-- Subtitle displayed under title -->
+    <string name="NicknameActivity__nicknames_amp_notes">Nicknames &amp; notes are stored with Signal and end-to-end encrypted. They are only visible to you.</string>
+    <!-- Field label for given name -->
+    <string name="NicknameActivity__first_name">మొదటి పేరు</string>
+    <!-- Content description for first name clear button -->
+    <string name="NicknameActivity__clear_first_name">మొదటి పేరు తొలగించండి</string>
+    <!-- Field label for family name -->
+    <string name="NicknameActivity__last_name">చివరి పేరు</string>
+    <!-- Content description for last name clear button -->
+    <string name="NicknameActivity__clear_last_name">చివరి పేరు తొలగించండి</string>
+    <!-- Field label for note -->
+    <string name="NicknameActivity__note">గమనిక</string>
+    <!-- Button label to save -->
+    <string name="NicknameActivity__save">సేవ్ చేయండి</string>
+    <!-- Dialog title for note and name deletion -->
+    <string name="NicknameActivity__delete_nickname">Delete?</string>
+    <!-- Dialog message for note and name deletion -->
+    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">This will permanently delete any nickname and note you’ve set.</string>
+
+    <!-- ViewNoteBottomSheetDialogFragment -->
+    <!-- Sheet title -->
+    <string name="ViewNoteSheet__note">గమనిక</string>
+    <!-- Content description for opening the note editor -->
+    <string name="ViewNoteSheet__edit_note">గమనిక సవరించండి</string>
 
     <!-- EOF -->
 </resources>

@@ -8,6 +8,8 @@ package org.signal.core.util
 import org.signal.core.util.logging.Log
 import kotlin.time.Duration.Companion.nanoseconds
 import kotlin.time.DurationUnit
+import kotlin.time.ExperimentalTime
+import kotlin.time.measureTimedValue
 
 /**
  * Simple utility to easily track the time a multi-step operation takes via splits.
@@ -76,4 +78,14 @@ class Stopwatch @JvmOverloads constructor(private val title: String, private val
       return "$label: $timeMs"
     }
   }
+}
+
+/**
+ * Logs how long it takes to perform the operation.
+ */
+@OptIn(ExperimentalTime::class)
+inline fun <T> logTime(tag: String, label: String, decimalPlaces: Int = 0, block: () -> T): T {
+  val result = measureTimedValue(block)
+  Log.d(tag, "$label: ${result.duration.toDouble(DurationUnit.MILLISECONDS).roundedString(decimalPlaces)}")
+  return result.value
 }

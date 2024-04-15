@@ -30,7 +30,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
-import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
@@ -88,7 +87,7 @@ public class IndividualSendJob extends PushSendJob {
   }
 
   public static Job create(long messageId, @NonNull Recipient recipient, boolean hasMedia, boolean isScheduledSend) {
-    if (!recipient.hasServiceId()) {
+    if (!recipient.getHasServiceId()) {
       throw new AssertionError("No ServiceId!");
     }
 
@@ -205,9 +204,9 @@ public class IndividualSendJob extends PushSendJob {
 
       log(TAG, String.valueOf(message.getSentTimeMillis()), "Sent message: " + messageId);
 
-    } catch (InsecureFallbackApprovalException ifae) {
-      warn(TAG, "Failure", ifae);
-      database.markAsPendingInsecureSmsFallback(messageId);
+    } catch (UnregisteredUserException uue) {
+      warn(TAG, "Failure", uue);
+      database.markAsSentFailed(messageId);
       notifyMediaMessageDeliveryFailed(context, messageId);
       ApplicationDependencies.getJobManager().add(new DirectoryRefreshJob(false));
     } catch (UntrustedIdentityException uie) {
@@ -237,7 +236,7 @@ public class IndividualSendJob extends PushSendJob {
   }
 
   private boolean deliver(OutgoingMessage message, MessageRecord originalEditedMessage)
-      throws IOException, InsecureFallbackApprovalException, UntrustedIdentityException, UndeliverableMessageException
+      throws IOException, UnregisteredUserException, UntrustedIdentityException, UndeliverableMessageException
   {
     if (message.getThreadRecipient() == null) {
       throw new UndeliverableMessageException("No destination address.");
@@ -325,19 +324,16 @@ public class IndividualSendJob extends PushSendJob {
         return syncAccess.isPresent();
       } else {
         SignalLocalMetrics.IndividualMessageSend.onDeliveryStarted(messageId);
-        SendMessageResult result = messageSender.sendDataMessage(address, UnidentifiedAccessUtil.getAccessFor(context, messageRecipient), ContentHint.RESENDABLE, mediaMessage, new MetricEventListener(messageId), message.isUrgent(), messageRecipient.needsPniSignature());
+        SendMessageResult result = messageSender.sendDataMessage(address, UnidentifiedAccessUtil.getAccessFor(context, messageRecipient), ContentHint.RESENDABLE, mediaMessage, new MetricEventListener(messageId), message.isUrgent(), messageRecipient.getNeedsPniSignature());
 
         SignalDatabase.messageLog().insertIfPossible(messageRecipient.getId(), message.getSentTimeMillis(), result, ContentHint.RESENDABLE, new MessageId(messageId), message.isUrgent());
 
-        if (messageRecipient.needsPniSignature()) {
+        if (messageRecipient.getNeedsPniSignature()) {
           SignalDatabase.pendingPniSignatureMessages().insertIfNecessary(messageRecipient.getId(), message.getSentTimeMillis(), result);
         }
 
         return result.getSuccess().isUnidentified();
       }
-    } catch (UnregisteredUserException e) {
-      warn(TAG, String.valueOf(message.getSentTimeMillis()), e);
-      throw new InsecureFallbackApprovalException(e);
     } catch (FileNotFoundException e) {
       warn(TAG, String.valueOf(message.getSentTimeMillis()), e);
       throw new UndeliverableMessageException(e);

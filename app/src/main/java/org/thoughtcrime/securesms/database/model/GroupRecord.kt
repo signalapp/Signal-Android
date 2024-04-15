@@ -187,7 +187,7 @@ class GroupRecord(
      * True if the user meets all the requirements to be auto-migrated, otherwise false.
      */
     private fun Recipient.isAutoMigratable(): Boolean {
-      return hasServiceId() && registered === RecipientTable.RegisteredState.REGISTERED && profileKey != null
+      return hasServiceId && registered === RecipientTable.RegisteredState.REGISTERED && profileKey != null
     }
   }
 }

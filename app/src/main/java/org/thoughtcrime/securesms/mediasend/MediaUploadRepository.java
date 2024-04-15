@@ -108,6 +108,7 @@ public class MediaUploadRepository {
   }
 
   public void cancelUpload(@NonNull Collection<Media> mediaItems) {
+    Log.d(TAG, "Canceling uploads.");
     executor.execute(() -> {
       for (Media media : mediaItems) {
         cancelUploadInternal(media);
@@ -116,6 +117,7 @@ public class MediaUploadRepository {
   }
 
   public void cancelAllUploads() {
+    Log.d(TAG, "Canceling all uploads.");
     executor.execute(() -> {
       for (Media media : new HashSet<>(uploadResults.keySet())) {
         cancelUploadInternal(media);
@@ -159,6 +161,7 @@ public class MediaUploadRepository {
     PreUploadResult result     = uploadResults.get(media);
 
     if (result != null) {
+      Log.d(TAG, "Canceling upload jobs for " + result.getJobIds().size() + " media items.");
       Stream.of(result.getJobIds()).forEach(jobManager::cancel);
       uploadResults.remove(media);
       SignalDatabase.attachments().deleteAttachment(result.getAttachmentId());

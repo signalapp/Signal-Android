@@ -121,8 +121,6 @@ public class NewConversationActivity extends ContactSelectionActivity
 
   @Override
   public void onBeforeContactSelected(boolean isFromUnknownSearchKey, @NonNull Optional<RecipientId> recipientId, String number, @NonNull Consumer<Boolean> callback) {
-    boolean smsSupported = SignalStore.misc().getSmsExportPhase().allowSmsFeatures();
-
     if (recipientId.isPresent()) {
       launch(Recipient.resolved(recipientId.get()));
     } else {
@@ -138,7 +136,7 @@ public class NewConversationActivity extends ContactSelectionActivity
 
           if (result instanceof RecipientRepository.LookupResult.Success) {
             Recipient resolved = Recipient.resolved(((RecipientRepository.LookupResult.Success) result).getRecipientId());
-            if (smsSupported || resolved.isRegistered() && resolved.hasServiceId()) {
+            if (resolved.isRegistered() && resolved.getHasServiceId()) {
               launch(resolved);
             }
           } else if (result instanceof RecipientRepository.LookupResult.NotFound || result instanceof RecipientRepository.LookupResult.InvalidEntry) {
@@ -153,8 +151,6 @@ public class NewConversationActivity extends ContactSelectionActivity
                 .show();
           }
         });
-      } else if (smsSupported) {
-        launch(Recipient.external(this, number));
       }
     }
 
@@ -304,7 +300,7 @@ public class NewConversationActivity extends ContactSelectionActivity
       return null;
     }
 
-    if (recipient.isRegistered() || (SignalStore.misc().getSmsExportPhase().allowSmsFeatures())) {
+    if (recipient.isRegistered()) {
       return new ActionItem(
           R.drawable.ic_phone_right_24,
           getString(R.string.NewConversationActivity__audio_call),

@@ -68,7 +68,7 @@ public class ApplyUnknownFieldsToSelfMigrationJob extends MigrationJob {
     }
 
     try {
-      StorageId           storageId           = StorageId.forAccount(self.getStorageServiceId());
+      StorageId           storageId           = StorageId.forAccount(self.getStorageId());
       AccountRecord       accountRecord       = AccountRecord.ADAPTER.decode(settings.getSyncExtras().getStorageProto());
       SignalAccountRecord signalAccountRecord = new SignalAccountRecord(storageId, accountRecord);
 

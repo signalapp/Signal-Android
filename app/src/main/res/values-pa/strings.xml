@@ -45,8 +45,6 @@
     <string name="ApplicationPreferencesActivity_disable_passphrase">ਵਾਕ ਨੂੰ ਅਸਮਰੱਥ ਕਰਨਾ ਹੈ?</string>
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">ਇਹ ਹਮੇਸ਼ਾ ਲਈ Signal ਅਤੇ ਸੁਨੇਹਾ ਨੋਟੀਫਿਕੇਸ਼ਨ ਨੂੰ ਅਣ-ਲਾਕ ਕਰ ਦੇਵੇਗਾ।</string>
     <string name="ApplicationPreferencesActivity_disable">ਅਸਮਰੱਥ ਕਰੋ</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">ਕੀ Signal ਦੇ ਸੁਨੇਹਿਆਂ ਅਤੇ ਕਾਲਾਂ ਨੂੰ ਅਸਮਰੱਥ ਕਰਨਾ ਹੈ?</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Signal ਦੇ ਸੁਨੇਹਿਆਂ ਅਤੇ ਕਾਲਾਂ ਨੂੰ ਬੰਦ ਕਰਨ ਲਈ ਸਰਵਰ ਤੋਂ ਅਣ-ਰਜਿਸਟਰ ਕਰੋ। ਭਵਿੱਖ ਵਿੱਚ ਦੁਬਾਰਾ ਵਰਤਣ ਲਈ ਤੁਹਾਨੂੰ ਆਪਣੇ ਫ਼ੋਨ ਨੰਬਰ ਨਾਲ ਦੁਬਾਰਾ ਰਜਿਸਟਰ ਕਰਨਾ ਪਵੇਗਾ।</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">ਸਰਵਰ ਨਾਲ ਜੁੜਨ ਵਿਚ ਗਲਤੀ!</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">ਰਜਿਸਟਰੇਸ਼ਨ ਲਾਕ ਲਈ PIN ਜ਼ਰੂਰੀ ਹਨ। PIN ਅਸਮਰੱਥ ਕਰਨ ਲਈ ਪਹਿਲਾਂ ਰਜਿਸਟਰੇਸ਼ਨ ਲਾਕ ਨੂੰ ਅਸਮਰੱਥ ਕਰੋ।</string>
     <string name="ApplicationPreferencesActivity_pin_created">ਪਿੰਨ ਬਣਾਇਆ।</string>
@@ -309,7 +307,6 @@
     <string name="ConversationItem_error_network_not_delivered">ਭੇਜਣ ਵਿੱਚ ਅਸਫ਼ਲ</string>
     <string name="ConversationItem_group_action_left">%1$s ਨੇ ਗਰੁੱਪ ਛੱਡਿਆ।</string>
     <string name="ConversationItem_send_paused">ਭੇਜਣ ਨੂੰ ਰੋਕਿਆ</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">ਭੇਜਣਾ ਅਸਫਲ, ਅਸੁਰੱਖਿਅਤ ਵਾਪਸੀ ਲਈ ਟੈਪ ਕਰੋ</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">ਇਨਕ੍ਰਿਪਟ ਨਹੀਂ ਕੀਤੇ SMS ਵੱਲ ਵਾਪਸੀ?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">ਇਨਕ੍ਰਿਪਟ ਨਹੀਂ ਕੀਤੇ MMS ਵੱਲ ਵਾਪਸੀ?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">ਇਹ ਸੁਨੇਹਾ ਇਨਕ੍ਰਿਪਟ <b>ਨਹੀਂ </b> ਕੀਤਾ ਜਾਵੇਗਾ, ਕਿਉਂਕਿ ਪ੍ਰਾਪਤਕਰਤਾ ਹੁਣ Signal ਵਰਤੋਂਕਾਰ ਨਹੀਂ ਰਿਹਾ।\n\n ਅਸੁਰੱਖਿਅਤ ਸੁਨੇਹਾ ਭੇਜਣਾ ਹੈ?</string>
@@ -1975,7 +1972,7 @@
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
     <string name="AboutSheet__no_direct_message">%1$s ਨਾਲ ਕਦੇ ਵੀ ਸਿੱਧਾ ਚੈਟ ਨਹੀਂ ਹੋਈ ਹੈ</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
-    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s ਤੁਹਾਡੇ ਸਿਸਟਮ ਦੇ ਸੰਪਰਕਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਹਨ</string>
+    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s ਤੁਹਾਡੇ ਫ਼ੋਨ ਦੇ ਸੰਪਰਕਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਹੈ</string>
     <!-- Notice in a row when user has no groups in common -->
     <string name="AboutSheet__you_have_no_groups_in_common">ਤੁਹਾਡੇ ਕੋਈ ਸਾਂਝੇ ਸਮੂਹ ਨਹੀਂ ਹਨ</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
@@ -1989,6 +1986,8 @@
     <string name="AboutSheet__about">ਜਾਣ-ਪਛਾਣ</string>
     <!-- Text displayed in title for you -->
     <string name="AboutSheet__you">ਤੁਸੀਂ</string>
+    <!-- Displays the name of a contact. The first placeholder is the name the user has assigned to that contact, the second name is the name the contact assigned to themselves -->
+    <string name="AboutSheet__user_set_display_name_and_profile_name">%1$s (%2$s)</string>
 
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call">
@@ -2925,6 +2924,18 @@
     <string name="EditProfileFragment__group_name">ਗਰੁੱਪ ਦਾ ਨਾਂ</string>
     <string name="EditProfileFragment__group_description">ਗਰੁੱਪ ਬਾਰੇ ਜਾਣਕਾਰੀ</string>
   <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
+    <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_title">Signal ਨੂੰ ਅੱਪਡੇਟ ਕਰੋ</string>
+    <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_body">Signal ਦੇ ਇਸ ਵਰਜ਼ਨ ਦੀ ਮਿਆਦ ਪੁੱਗ ਗਈ ਹੈ। Signal ਦੀ ਵਰਤੋਂ ਜਾਰੀ ਰੱਖਣ ਲਈ ਇਸਨੂੰ ਹੁਣੇ ਅੱਪਡੇਟ ਕਰੋ।</string>
+    <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
+    <string name="EditProfileFragment_deprecated_dialog_update_button">ਅੱਪਡੇਟ ਕਰੋ</string>
+    <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_title">ਡਿਵਾਈਸ ਰਜਿਸਟਰ ਨਹੀਂ ਹੈ</string>
+    <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_body">ਇਹ ਡਿਵਾਈਸ ਹੁਣ ਰਜਿਸਟਰ ਨਹੀਂ ਹੈ। ਆਪਣੇ ਖਾਤੇ ਵਿੱਚ ਤਬਦੀਲੀਆਂ ਕਰਨ ਲਈ ਮੁੜ-ਰਜਿਸਟਰ ਕਰੋ।</string>
+    <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
+    <string name="EditProfileFragment_unregistered_dialog_reregister_button">ਮੁੜ-ਰਜਿਸਟਰ ਕਰੋ</string>
 
     <!-- EditProfileNameFragment -->
     <string name="EditProfileNameFragment_your_name">ਤੁਹਾਡਾ ਨਾਮ</string>
@@ -3019,7 +3030,6 @@
         <item>ਹੋਰ</item>
         <item>ਭੁਗਤਾਨ (MobileCoin)</item>
         <item>ਦਾਨ ਅਤੇ ਬੈਜ</item>
-        <item>SMS ਐਕਸਪੋਰਟ</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android ਡੀਬੱਗ ਲੌਗ ਸਪੁਰਦਗੀ</string>
@@ -3664,8 +3674,6 @@
     <string name="verify_display_fragment_context_menu__compare_with_clipboard">ਕਲਿਪਬੋਰਡ ਨਾਲ ਤੁਲਨਾ ਕਰੋ</string>
 
     <!-- reminder_header -->
-    <string name="reminder_header_push_title">Signal ਸੁਨੇਹਿਆਂ ਅਤੇ ਕਾਲਾਂ ਨੂੰ ਸਮਰੱਥ ਬਣਾਓ</string>
-    <string name="reminder_header_push_text">ਆਪਣੇ ਸੰਚਾਰ ਅਨੁਭਵ ਨੂੰ ਅੱਪਗ੍ਰੇਡ ਕਰੋ</string>
     <string name="reminder_header_service_outage_text">Signal ਤਕਨੀਕੀ ਮੁਸ਼ਕਲਾਂ ਦਾ ਸਾਹਮਣਾ ਕਰ ਰਿਹਾ ਹੈ ਅਸੀਂ ਜਿੰਨੀ ਛੇਤੀ ਸੰਭਵ ਹੋ ਸਕੇ ਸੇਵਾ ਨੂੰ ਬਹਾਲ ਕਰਨ ਲਈ ਸਖ਼ਤ ਮਿਹਨਤ ਕਰ ਰਹੇ ਹਾਂ</string>
     <string name="reminder_header_progress">%1$d%%</string>
     <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user\'s contacts -->
@@ -3962,6 +3970,8 @@
     <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">ਤੁਹਾਨੂੰ ਆਪਣੀ ਪੁਰਾਣੀ ਡਿਵਾਈਸ ਤੱਕ ਪਹੁੰਚ ਦੀ ਲੋੜ ਹੈ।</string>
     <string name="TransferOrRestoreFragment__restore_from_backup">ਬੈਕਅੱਪ ਤੋਂ ਬਹਾਲ ਕਰੋ</string>
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">ਸਥਾਨਕ ਬੈਕਅੱਪ ਤੋਂ ਆਪਣੇ ਸੁਨੇਹਿਆਂ ਨੂੰ ਬਹਾਲ ਕਰੋ | ਜੇਕਰ ਤੁਸੀਂ ਹੁਣੇ ਬਹਾਲ ਨਹੀਂ ਕਰਦੇ ਹੋ, ਤਾਂ ਤੁਸੀਂ ਬਾਅਦ ਵਿੱਚ ਬਹਾਲ ਨਹੀਂ ਕਰ ਸਕੋਗੇ।</string>
+    <!-- Button label for more options -->
+    <string name="TransferOrRestoreFragment__more_options">ਹੋਰ ਵਿਕਲਪ</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
     <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">ਆਪਣੇ ਪੁਰਾਣੇ Android ਫ਼ੋਨ ਉੱਤੇ Signal ਖੋਲ੍ਹੋ</string>
@@ -4168,7 +4178,7 @@
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
     <string name="ReviewCard__s_recently_changed">%1$s ਨੇ ਹਾਲ ਹੀ ਵਿੱਚ ਆਪਣਾ ਪ੍ਰੋਫ਼ਾਈਲ ਨਾਂ %2$s ਤੋਂ ਬਦਲ ਕੇ %3$s ਰੱਖ ਲਿਆ ਹੈ।</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
-    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s ਤੁਹਾਡੇ ਸਿਸਟਮ ਦੇ ਸੰਪਰਕਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਹਨ</string>
+    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s ਤੁਹਾਡੇ ਫ਼ੋਨ ਦੇ ਸੰਪਰਕਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਹੈ</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s ਸ਼ਾਮਲ ਹੋਏ</string>
@@ -4719,7 +4729,7 @@
     <string name="ConversationSettingsFragment__disappearing_messages">ਅਲੋਪ ਹੋਣ ਵਾਲੇ ਸੁਨੇਹੇ</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">ਧੁਨੀਆਂ &amp; ਸੂਚਨਾਵਾਂ</string>
   <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
-    <string name="ConversationSettingsFragment__contact_details">ਸੰਪਰਕ ਵੇਰਵੇ</string>
+    <string name="ConversationSettingsFragment__contact_details">ਫ਼ੋਨ ਸੰਪਰਕ ਜਾਣਕਾਰੀ</string>
     <string name="ConversationSettingsFragment__view_safety_number">ਸੁਰੱਖਿਆ ਨੰਬਰ ਵੇਖੋ</string>
     <string name="ConversationSettingsFragment__block">ਪਾਬੰਦੀ ਲਗਾਓ</string>
     <string name="ConversationSettingsFragment__block_group">ਗਰੁੱਪ ਉੱਤੇ ਪਾਬੰਦੀ ਲਗਾਓ</string>
@@ -5570,7 +5580,7 @@
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">ਸੁਨੇਹੇ ਦੀ ਬੇਨਤੀ ਮਨਜ਼ੂਰ ਕਰਕੇ</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">ਉਹਨਾਂ ਨੂੰ ਆਪਣੇ ਸਿਸਟਮ ਦੇ ਸੰਪਰਕਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰਕੇ</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">ਉਹਨਾਂ ਨੂੰ ਆਪਣੇ ਫ਼ੋਨ ਦੇ ਸੰਪਰਕਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰਕੇ</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"ਤੁਹਾਡੇ ਕਨੈਕਸ਼ਨ ਤੁਹਾਡਾ ਨਾਮ ਅਤੇ ਫ਼ੋਟੋ ਦੇਖ ਸਕਦੇ ਹਨ, ਅਤੇ \"ਮੇਰੀ ਸਟੋਰੀ\" ਵਿਚਲੀਆਂ ਪੋਸਟਾਂ ਦੇਖ ਸਕਦੇ ਹਨ, ਬਸ਼ਰਤੇ ਤੁਸੀਂ ਉਹਨਾਂ ਕੋਲੋਂ ਇਸ ਨੂੰ ਲੁਕਾਇਆ ਨਾ ਹੋਵੇ।"</string>
     <!-- Clickable option to add a viewer to a custom story -->
@@ -6653,6 +6663,46 @@
     <string name="FindByActivity__qr_scan_button">QR ਕੋਡ ਸਕੈਨ ਕਰੋ</string>
     <!-- Content of a dialog indicating that we could not perform the requested action because we encountered a network error. -->
     <string name="FindByActivity__network_error_dialog">ਨੈੱਟਵਰਕ ਤਰੁੱਟੀ ਹੋਈ। ਬਾਅਦ ਵਿੱਚ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
+
+    <!-- Title for an alert letting someone know that one of their linked devices is inactive. -->
+    <string name="LinkedDeviceInactiveMegaphone_title">ਲਿੰਕ ਕੀਤਾ ਡਿਵਾਈਸ ਅਕਿਰਿਆਸ਼ੀਲ ਹੈ</string>
+    <!-- Body for an alert letting someone know that one of their linked devices is inactive. The string placeholder is the name of the device, and the number placeholder is the number of days before device is unlinked. -->
+    <plurals name="LinkedDeviceInactiveMegaphone_body">
+        <item quantity="one">\"%1$s\" ਨੂੰ ਲਿੰਕ ਕਰਕੇ ਰੱਖਣ ਲਈ, %2$d ਦਿਨ ਦੇ ਅੰਦਰ ਉਸ ਡਿਵਾਈਸ ਉੱਤੇ Signal ਖੋਲ੍ਹੋ।</item>
+        <item quantity="other">\"%1$s\" ਨੂੰ ਲਿੰਕ ਕਰਕੇ ਰੱਖਣ ਲਈ, %2$d ਦਿਨਾਂ ਦੇ ਅੰਦਰ ਉਸ ਡਿਵਾਈਸ ਉੱਤੇ Signal ਖੋਲ੍ਹੋ।</item>
+    </plurals>
+    <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the user will opt out of all future alerts. -->
+    <string name="LinkedDeviceInactiveMegaphone_dont_remind_button_label">ਮੈਨੂੰ ਯਾਦ ਨਾ ਕਰਾਓ</string>
+    <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the alert will be dismissed. -->
+    <string name="LinkedDeviceInactiveMegaphone_got_it_button_label">ਸਮਝ ਗਏ</string>
+
+    <!-- NicknameFragment -->
+    <!-- Title displayed at the top of the screen -->
+    <string name="NicknameActivity__nickname">ਨਿੱਕਾ ਨਾਂ</string>
+    <!-- Subtitle displayed under title -->
+    <string name="NicknameActivity__nicknames_amp_notes">Nicknames &amp; notes are stored with Signal and end-to-end encrypted. They are only visible to you.</string>
+    <!-- Field label for given name -->
+    <string name="NicknameActivity__first_name">ਨਾਂ ਦਾ ਪਹਿਲਾਂ ਹਿੱਸਾ</string>
+    <!-- Content description for first name clear button -->
+    <string name="NicknameActivity__clear_first_name">ਪਹਿਲਾ ਨਾਂ ਮਿਟਾਓ</string>
+    <!-- Field label for family name -->
+    <string name="NicknameActivity__last_name">ਆਖਰੀ ਨਾਮ</string>
+    <!-- Content description for last name clear button -->
+    <string name="NicknameActivity__clear_last_name">ਆਖਰੀ ਨਾਂ ਮਿਟਾਓ</string>
+    <!-- Field label for note -->
+    <string name="NicknameActivity__note">ਨੋਟ</string>
+    <!-- Button label to save -->
+    <string name="NicknameActivity__save">ਸੇਵ ਕਰੋ</string>
+    <!-- Dialog title for note and name deletion -->
+    <string name="NicknameActivity__delete_nickname">Delete?</string>
+    <!-- Dialog message for note and name deletion -->
+    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">This will permanently delete any nickname and note you’ve set.</string>
+
+    <!-- ViewNoteBottomSheetDialogFragment -->
+    <!-- Sheet title -->
+    <string name="ViewNoteSheet__note">ਨੋਟ</string>
+    <!-- Content description for opening the note editor -->
+    <string name="ViewNoteSheet__edit_note">ਨੋਟ ਸੋਧੋ</string>
 
     <!-- EOF -->
 </resources>

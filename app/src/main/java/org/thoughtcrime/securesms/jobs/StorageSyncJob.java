@@ -180,7 +180,7 @@ public class StorageSyncJob extends BaseJob {
       return;
     }
 
-    if (!Recipient.self().hasE164() || !Recipient.self().hasServiceId()) {
+    if (!Recipient.self().getHasE164() || !Recipient.self().getHasServiceId()) {
       Log.w(TAG, "Missing E164 or ACI!");
       return;
     }
@@ -239,7 +239,7 @@ public class StorageSyncJob extends BaseJob {
     boolean   needsMultiDeviceSync = false;
     boolean   needsForcePush       = false;
 
-    if (self.getStorageServiceId() == null) {
+    if (self.getStorageId() == null) {
       Log.w(TAG, "No storageId for self. Generating.");
       SignalDatabase.recipients().updateStorageId(self.getId(), StorageSyncHelper.generateKey());
       self = freshSelf();
@@ -411,15 +411,12 @@ public class StorageSyncJob extends BaseJob {
     new GroupV1RecordProcessor(context).process(records.gv1, StorageSyncHelper.KEY_GENERATOR);
     new GroupV2RecordProcessor(context).process(records.gv2, StorageSyncHelper.KEY_GENERATOR);
     new AccountRecordProcessor(context, freshSelf()).process(records.account, StorageSyncHelper.KEY_GENERATOR);
-
-    if (getKnownTypes().contains(ManifestRecord.Identifier.Type.STORY_DISTRIBUTION_LIST.getValue())) {
-      new StoryDistributionListRecordProcessor().process(records.storyDistributionLists, StorageSyncHelper.KEY_GENERATOR);
-    }
+    new StoryDistributionListRecordProcessor().process(records.storyDistributionLists, StorageSyncHelper.KEY_GENERATOR);
   }
 
   private static @NonNull List<StorageId> getAllLocalStorageIds(@NonNull Recipient self) {
     return Util.concatenatedList(SignalDatabase.recipients().getContactStorageSyncIds(),
-                                 Collections.singletonList(StorageId.forAccount(self.getStorageServiceId())),
+                                 Collections.singletonList(StorageId.forAccount(self.getStorageId())),
                                  SignalDatabase.unknownStorageIds().getAllUnknownIds());
   }
 
@@ -455,7 +452,7 @@ public class StorageSyncJob extends BaseJob {
           }
           break;
         case ACCOUNT:
-          if (!Arrays.equals(self.getStorageServiceId(), id.getRaw())) {
+          if (!Arrays.equals(self.getStorageId(), id.getRaw())) {
             throw new AssertionError("Local storage ID doesn't match self!");
           }
           records.add(StorageSyncHelper.buildAccountRecord(context, self));

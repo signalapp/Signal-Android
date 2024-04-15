@@ -45,8 +45,6 @@
     <string name="ApplicationPreferencesActivity_disable_passphrase">Jelmondat letiltása?</string>
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Ez véglegesen fel fogja oldani a Signalt és az üzenet értesítéseket.</string>
     <string name="ApplicationPreferencesActivity_disable">Letiltás</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Letiltod a Signal üzeneteket és hívásokat?</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Signal üzenetek és hívások letiltása a kiszolgálóról való leregisztrálással. Ha a jövőben újra szeretnéd használni ezeket a szolgáltatásokat, újra kell regisztrálnod a telefonszámoddal.</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Hiba történt a kiszolgálóhoz történő kapcsolódás során!</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">A regisztrációs zárhoz PIN kódra van szükség. A PIN kód letiltásához előbb ki kell kapcsolni a regisztrációs zárat.</string>
     <string name="ApplicationPreferencesActivity_pin_created">PIN kód létrehozva.</string>
@@ -309,7 +307,6 @@
     <string name="ConversationItem_error_network_not_delivered">Küldés sikertelen</string>
     <string name="ConversationItem_group_action_left">%1$s kilépett a csoportból.</string>
     <string name="ConversationItem_send_paused">Küldés felfüggesztve</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Sikertelen küldés, koppints a titkosítatlan üzenetküldéshez</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Szeretnél visszaállni titkosítatlan SMS-re?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Szeretnél visszaállni titkosítatlan MMS-re?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ez az üzenet <b>nem</b> lesz titkosítva, mert a címzett már nem Signal felhasználó.\n\nElküldöd titkosítatlan üzenetként?</string>
@@ -427,7 +424,7 @@
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">A Signal már nem támogatja az SMS-ek küldését. Hívd meg %1$s ismerősöd a Signal-szolgáltatásba, és beszélgessetek itt.</string>
     <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
-    <string name="ConversationActivity__this_person_is_no_longer_using_signal">This person is no longer using Signal. Invite them to Signal to keep the conversation here.</string>
+    <string name="ConversationActivity__this_person_is_no_longer_using_signal">Ez a személy már nem használja a Signalt. Hívd meg őket a Signalba, és beszélgessetek itt.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">Meghívás a Signalra</string>
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
@@ -1389,7 +1386,7 @@
     <string name="MessageRecord_changed_their_profile_name_from_to">%1$s megváltoztatta a profilnevét %2$s névről %3$s névre.</string>
     <string name="MessageRecord_changed_their_profile">%1$s megváltoztatta profilját.</string>
     <!-- Conversation update event message shown when you\'ve started a conversation by phone number or username and then learn their profile name. placeholder is username or phone number -->
-    <string name="MessageRecord_started_this_chat">You started this chat with %1$s.</string>
+    <string name="MessageRecord_started_this_chat">Elkezdtél csevegni %1$s felhasználóval.</string>
 
     <!-- GV2 specific -->
     <string name="MessageRecord_you_created_the_group">Létrehoztad a csoportot.</string>
@@ -1975,7 +1972,7 @@
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
     <string name="AboutSheet__no_direct_message">Nincs közvetlen üzenet %1$s felhasználóval</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
-    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s szerepel a rendszernévjegyeid között</string>
+    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s szerepel a telefonod névjegyei között</string>
     <!-- Notice in a row when user has no groups in common -->
     <string name="AboutSheet__you_have_no_groups_in_common">Nincsenek közös csoportjaitok</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
@@ -1989,6 +1986,8 @@
     <string name="AboutSheet__about">Névjegy</string>
     <!-- Text displayed in title for you -->
     <string name="AboutSheet__you">Te</string>
+    <!-- Displays the name of a contact. The first placeholder is the name the user has assigned to that contact, the second name is the name the contact assigned to themselves -->
+    <string name="AboutSheet__user_set_display_name_and_profile_name">%1$s (%2$s)</string>
 
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call">
@@ -2925,6 +2924,18 @@
     <string name="EditProfileFragment__group_name">Csoport neve</string>
     <string name="EditProfileFragment__group_description">Csoportleírás</string>
   <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
+    <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_title">Signal frissítése</string>
+    <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_body">A Signal jelenlegi verziója lejárt. A Signal használatának folytatásához frissítsd most.</string>
+    <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
+    <string name="EditProfileFragment_deprecated_dialog_update_button">Frissítés</string>
+    <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_title">Az eszköz nincs regisztrálva</string>
+    <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_body">Ez az eszköz már nincs regisztrálva. Regisztráld újra, ha módosítani szeretnéd a fiókod.</string>
+    <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
+    <string name="EditProfileFragment_unregistered_dialog_reregister_button">Újraregisztrálás</string>
 
     <!-- EditProfileNameFragment -->
     <string name="EditProfileNameFragment_your_name">Neved</string>
@@ -3019,7 +3030,6 @@
         <item>Egyéb</item>
         <item>Fizetések (MobileCoin)</item>
         <item>Adományok és jelvények</item>
-        <item>SMS-exportálás</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">A Signal Android hibajavítási naplójának benyújtása</string>
@@ -3664,8 +3674,6 @@
     <string name="verify_display_fragment_context_menu__compare_with_clipboard">Összehasonlítás vágólappal</string>
 
     <!-- reminder_header -->
-    <string name="reminder_header_push_title">Signal üzenetek és hívások engedélyezése</string>
-    <string name="reminder_header_push_text">Tedd jobbá kommunikációs élményedet!</string>
     <string name="reminder_header_service_outage_text">A Signal technikai nehézségekkel küzd. Keményen dolgozunk azért, hogy a lehető leghamarabb visszaállítsuk a szolgáltatást.</string>
     <string name="reminder_header_progress">%1$d%%</string>
     <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user\'s contacts -->
@@ -3903,7 +3911,7 @@
     <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
     <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Biztos vagy benne?</string>
     <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Setting \"Who can find me by number\" to \"Nobody\" will make it harder for people to find you on Signal.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">A „Ki találhat meg a számom alapján” beállítása „Senki” opcióra nehezebbé teszi az emberek számára, hogy megtaláljanak téged a Signalon.</string>
     <!-- Dialog button text for canceling change action -->
     <string name="PhoneNumberPrivacySettingsFragment__cancel">Mégse</string>
     <string name="PhoneNumberPrivacy_everyone">Mindenki</string>
@@ -3962,6 +3970,8 @@
     <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Hozzá kell férned a régi eszközödhöz.</string>
     <string name="TransferOrRestoreFragment__restore_from_backup">Visszaállítás biztonsági mentésből</string>
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Üzeneteid helyreállítása egy helyi mentésből. Ha nem állítod őket helyre most, akkor később már nem lesz rá lehetőséged.</string>
+    <!-- Button label for more options -->
+    <string name="TransferOrRestoreFragment__more_options">További lehetőségek</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
     <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Nyisd meg a Signalt régi Android készülékeden!</string>
@@ -4168,7 +4178,7 @@
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
     <string name="ReviewCard__s_recently_changed">%1$s a közelmúltban megváltoztatta a profilnevét %2$s névről %3$s névre</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
-    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s szerepel a rendszernévjegyeid között</string>
+    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s szerepel a telefonod névjegyei között</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s csatlakozott</string>
@@ -4719,7 +4729,7 @@
     <string name="ConversationSettingsFragment__disappearing_messages">Eltűnő üzenetek</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">Hangok &amp; értesítések</string>
   <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
-    <string name="ConversationSettingsFragment__contact_details">Kontakt adatok</string>
+    <string name="ConversationSettingsFragment__contact_details">Telefonos névjegy adatai</string>
     <string name="ConversationSettingsFragment__view_safety_number">Biztonsági szám megjelenítése</string>
     <string name="ConversationSettingsFragment__block">Letiltás</string>
     <string name="ConversationSettingsFragment__block_group">Csoport letiltása</string>
@@ -4889,26 +4899,26 @@
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">Egy vagy több elem érvénytelen formátumú</string>
     <string name="MediaReviewFragment__too_many_items_selected">Túl sok kijelölt elem</string>
     <!-- Small notification presented to the user when they set their video to view-once mode -->
-    <string name="MediaReviewFragment__video_set_to_view_once">Video set to view once</string>
+    <string name="MediaReviewFragment__video_set_to_view_once">A videó egyszeri megtekintésre van állítva</string>
     <!-- Small notification presented to the user when they set their photo to view-once mode -->
-    <string name="MediaReviewFragment__photo_set_to_view_once">Photo set to view once</string>
+    <string name="MediaReviewFragment__photo_set_to_view_once">A fotó egyszeri megtekintésre van állítva</string>
     <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
-    <string name="MediaReviewFragment__video_set_to_high_quality">Video set to high quality</string>
+    <string name="MediaReviewFragment__video_set_to_high_quality">A videó magas minőségre van állítva</string>
     <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
-    <string name="MediaReviewFragment__video_set_to_standard_quality">Video set to standard quality</string>
+    <string name="MediaReviewFragment__video_set_to_standard_quality">A videó normál minőségre van állítva</string>
     <!-- Small notification presented to the user when they set their still image to be sent in high visual quality. -->
-    <string name="MediaReviewFragment__photo_set_to_high_quality">Photo set to high quality</string>
+    <string name="MediaReviewFragment__photo_set_to_high_quality">A fotó magas minőségre van állítva</string>
     <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
-    <string name="MediaReviewFragment__photo_set_to_standard_quality">Photo set to standard quality</string>
+    <string name="MediaReviewFragment__photo_set_to_standard_quality">A fotó normál minőségre van állítva</string>
     <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
     <plurals name="MediaReviewFragment__items_set_to_high_quality">
-        <item quantity="one">%1$d item set to high quality</item>
-        <item quantity="other">%1$d items set to high quality</item>
+        <item quantity="one">%1$d elem magas minőségre van állítva</item>
+        <item quantity="other">%1$d elem magas minőségre van állítva</item>
     </plurals>
     <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
     <plurals name="MediaReviewFragment__items_set_to_standard_quality">
-        <item quantity="one">%1$d item set to standard quality</item>
-        <item quantity="other">%1$d items set to standard quality</item>
+        <item quantity="one">%1$d elem normál minőségre van állítva</item>
+        <item quantity="other">%1$d elem normál minőségre van állítva</item>
     </plurals>
 
     <string name="ImageEditorHud__cancel">Mégsem</string>
@@ -4935,16 +4945,16 @@
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Elvesztesz minden változtatást, amit ezen a fotón csináltál.</string>
 
     <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_title">Found %1$s</string>
+    <string name="MediaCaptureFragment_username_dialog_title">Megtaláltuk: %1$s</string>
     <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_body">Start a chat with \"%1$s\"</string>
+    <string name="MediaCaptureFragment_username_dialog_body">Kezdj el csevegni %1$s felhasználóval</string>
     <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
     <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">Ugrás a csevegéshez</string>
 
     <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_title">Link device?</string>
+    <string name="MediaCaptureFragment_device_link_dialog_title">Eszköz társítása?</string>
     <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_body">It looks like you\'re trying to link a Signal device. Tap continue and scan the code again to link it.</string>
+    <string name="MediaCaptureFragment_device_link_dialog_body">Úgy tűnik, hogy egy Signal-eszközt próbálsz társítani. Koppints a Folytatás gombra, és a társításhoz szkenneld be újra a kódot.</string>
     <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
     <string name="MediaCaptureFragment_device_link_dialog_continue">Tovább</string>
 
@@ -5046,7 +5056,7 @@
     <!-- Displayed as a subtitle on a row in the Manage Donations screen when payment for a donation is pending -->
     <string name="MySupportPreference__payment_pending">Fizetés függőben</string>
     <!-- Displayed as a dialog message when clicking on a donation row that is pending. Placeholder is a formatted fiat amount -->
-    <string name="MySupportPreference__your_bank_transfer_of_s">Your bank transfer of %1$s is pending. Bank transfers can take 1 to 14 business days to complete.  </string>
+    <string name="MySupportPreference__your_bank_transfer_of_s">%1$s összegű banki átutalásod függőben van. A banki átutalások teljesítése 1–14 munkanapot vehet igénybe.  </string>
     <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
     <string name="MySupportPreference__learn_more">Tudj meg többet</string>
 
@@ -5570,7 +5580,7 @@
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Elfogadtál tőlük egy felkérést</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Szerepelnek a rendszernévjegyeid között</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Szerepelnek a telefonod névjegyei között</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"A névjegyeid megtekinthetik a neved, a profilképedet, valamint a „Történeteim” szekcióba posztoltakat, kivéve ha kifejezetten elrejtetted azokat előlük."</string>
     <!-- Clickable option to add a viewer to a custom story -->
@@ -5990,9 +6000,9 @@
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
     <string name="DonateToSignalFragment__you_have_a_donation_pending">Van egy függőben lévő adományod</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Bank transfers can take 1 to 14 business days to process. Please wait until this payment completes before updating your subscription.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">A banki átutalások feldolgozása 1–14 munkanapot vehet igénybe. Mielőtt frissíted az előfizetésedet, kérjük, várd meg, amíg a fizetés teljesül.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Bank transfers can take 1 to 14 business days to process. Please wait until this payment completes before making another donation.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">A banki átutalások feldolgozása 1–14 munkanapot vehet igénybe. Mielőtt újra adományoznál, kérjük, várd meg, amíg a fizetés teljesül.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
     <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Az adományod feldolgozása még folyamatban van. Ez a kapcsolattól függően néhány percig is eltarthat. Mielőtt frissíted az előfizetésedet, kérjük, várd meg, amíg a fizetés teljesül.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
@@ -6144,7 +6154,7 @@
     <!-- Top text block of donation pending sheet displayed after one-time donation via a bank transfer. Placeholder is the badge name. -->
     <string name="DonationPendingBottomSheet__your_one_time_donation_is_pending">Egyszeri adományod függőben van. Amikor az adományod megérkezik, megjelenítheted a(z) %1$s jelvényt a profilodban.</string>
     <!-- Bottom text block of donation pending sheet displayed after donating via a bank transfer. Placeholder is for learn more. -->
-    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Bank transfers can take 1 to 14 business days to process. %1$s</string>
+    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">A banki átutalások feldolgozása 1–14 munkanapot vehet igénybe. %1$s</string>
     <!-- Learn more text for donation pending sheet displayed after donating via a bank transfer. -->
     <string name="DonationPendingBottomSheet__learn_more">Tudj meg többet</string>
     <!-- Confirmation button for donation pending sheet displayed after donating via a bank transfer. -->
@@ -6555,9 +6565,9 @@
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Olvasd be ezt a QR-kódot a telefonoddal és csevegj velem a Signalban.</string>
     <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_qr_code_not_found">QR code not found</string>
+    <string name="UsernameLinkSettings_qr_code_not_found">QR-kód nem található</string>
     <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Try scanning another image containing a Signal QR code.</string>
+    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Próbálj meg beolvasni egy másik képet, amely egy Signal QR-kódot tartalmaz.</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
     <string name="UsernameLinkShareBottomSheet_title">A hivatkozás birtokában bárki megtekintheti a felhasználóneved, és csevegést kezdeményezhet veled. Csak olyanokkal oszd meg, akikben megbízol.</string>
@@ -6653,6 +6663,46 @@
     <string name="FindByActivity__qr_scan_button">QR kód beolvasása</string>
     <!-- Content of a dialog indicating that we could not perform the requested action because we encountered a network error. -->
     <string name="FindByActivity__network_error_dialog">Hálózati hiba történt. Próbáld újra később.</string>
+
+    <!-- Title for an alert letting someone know that one of their linked devices is inactive. -->
+    <string name="LinkedDeviceInactiveMegaphone_title">Inaktív kapcsolt eszköz</string>
+    <!-- Body for an alert letting someone know that one of their linked devices is inactive. The string placeholder is the name of the device, and the number placeholder is the number of days before device is unlinked. -->
+    <plurals name="LinkedDeviceInactiveMegaphone_body">
+        <item quantity="one">A(z) „%1$s” összekapcsolásának megtartásához nyissa meg a Signalt az adott eszközön %2$d napon belül.</item>
+        <item quantity="other">A(z) „%1$s” összekapcsolásának megtartásához nyissa meg a Signalt az adott eszközön %2$d napon belül.</item>
+    </plurals>
+    <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the user will opt out of all future alerts. -->
+    <string name="LinkedDeviceInactiveMegaphone_dont_remind_button_label">Ne emlékeztessen</string>
+    <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the alert will be dismissed. -->
+    <string name="LinkedDeviceInactiveMegaphone_got_it_button_label">Rendben</string>
+
+    <!-- NicknameFragment -->
+    <!-- Title displayed at the top of the screen -->
+    <string name="NicknameActivity__nickname">Becenév</string>
+    <!-- Subtitle displayed under title -->
+    <string name="NicknameActivity__nicknames_amp_notes">Nicknames &amp; notes are stored with Signal and end-to-end encrypted. They are only visible to you.</string>
+    <!-- Field label for given name -->
+    <string name="NicknameActivity__first_name">Keresztnév</string>
+    <!-- Content description for first name clear button -->
+    <string name="NicknameActivity__clear_first_name">Keresztnév törlése</string>
+    <!-- Field label for family name -->
+    <string name="NicknameActivity__last_name">Vezetéknév</string>
+    <!-- Content description for last name clear button -->
+    <string name="NicknameActivity__clear_last_name">Vezetéknév törlése</string>
+    <!-- Field label for note -->
+    <string name="NicknameActivity__note">Megjegyzés</string>
+    <!-- Button label to save -->
+    <string name="NicknameActivity__save">Mentés</string>
+    <!-- Dialog title for note and name deletion -->
+    <string name="NicknameActivity__delete_nickname">Delete?</string>
+    <!-- Dialog message for note and name deletion -->
+    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">This will permanently delete any nickname and note you’ve set.</string>
+
+    <!-- ViewNoteBottomSheetDialogFragment -->
+    <!-- Sheet title -->
+    <string name="ViewNoteSheet__note">Megjegyzés</string>
+    <!-- Content description for opening the note editor -->
+    <string name="ViewNoteSheet__edit_note">Megjegyzés szerkesztése</string>
 
     <!-- EOF -->
 </resources>

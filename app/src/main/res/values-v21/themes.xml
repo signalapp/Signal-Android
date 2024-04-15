@@ -32,13 +32,13 @@
     </style>
 
     <style name="TextSecure.LightRegistrationTheme" parent="TextSecure.LightNoActionBar">
-        <item name="android:statusBarColor">@color/core_grey_60</item>
-        <item name="android:navigationBarColor">@color/core_black</item>
+        <item name="android:statusBarColor">@color/signal_colorBackground</item>
+        <item name="android:navigationBarColor">@color/signal_colorBackground</item>
     </style>
 
     <style name="TextSecure.DarkRegistrationTheme" parent="TextSecure.DarkNoActionBar">
         <item name="android:statusBarColor">@color/signal_colorBackground</item>
-        <item name="android:navigationBarColor">@color/core_black</item>
+        <item name="android:navigationBarColor">@color/signal_colorBackground</item>
     </style>
 
     <style name="TextSecure.MediaPreview" parent="@style/TextSecure.BaseMediaPreview">

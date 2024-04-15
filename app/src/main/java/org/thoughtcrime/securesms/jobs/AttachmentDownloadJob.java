@@ -168,7 +168,7 @@ public final class AttachmentDownloadJob extends BaseJob {
     if (attachment.cdnNumber != ReleaseChannel.CDN_NUMBER) {
       retrieveAttachment(messageId, attachmentId, attachment);
     } else {
-      retrieveUrlAttachment(messageId, attachmentId, attachment);
+      retrieveAttachmentForReleaseChannel(messageId, attachmentId, attachment);
     }
   }
 
@@ -216,7 +216,7 @@ public final class AttachmentDownloadJob extends BaseJob {
                                                                   return isCanceled();
                                                                 }
                                                               });
-      database.insertAttachmentsForPlaceholder(messageId, attachmentId, stream);
+      database.finalizeAttachmentAfterDownload(messageId, attachmentId, stream);
     } catch (RangeException e) {
       Log.w(TAG, "Range exception, file size " + attachmentFile.length(), e);
       if (attachmentFile.delete()) {
@@ -278,9 +278,9 @@ public final class AttachmentDownloadJob extends BaseJob {
     }
   }
 
-  private void retrieveUrlAttachment(long messageId,
-                                     final AttachmentId attachmentId,
-                                     final Attachment attachment)
+  private void retrieveAttachmentForReleaseChannel(long messageId,
+                                                   final AttachmentId attachmentId,
+                                                   final Attachment attachment)
       throws IOException
   {
     try (Response response = S3.getObject(Objects.requireNonNull(attachment.fileName))) {
@@ -289,7 +289,7 @@ public final class AttachmentDownloadJob extends BaseJob {
         if (body.contentLength() > FeatureFlags.maxAttachmentReceiveSizeBytes()) {
           throw new MmsException("Attachment too large, failing download");
         }
-        SignalDatabase.attachments().insertAttachmentsForPlaceholder(messageId, attachmentId, Okio.buffer(body.source()).inputStream());
+        SignalDatabase.attachments().finalizeAttachmentAfterDownload(messageId, attachmentId, Okio.buffer(body.source()).inputStream());
       }
     } catch (MmsException e) {
       Log.w(TAG, "Experienced exception while trying to download an attachment.", e);

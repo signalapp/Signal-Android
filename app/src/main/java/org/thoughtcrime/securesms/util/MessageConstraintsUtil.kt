@@ -89,6 +89,6 @@ object MessageConstraintsUtil {
   }
 
   private fun isSelf(recipientId: RecipientId): Boolean {
-    return Recipient.isSelfSet() && Recipient.self().id == recipientId
+    return Recipient.isSelfSet && Recipient.self().id == recipientId
   }
 }

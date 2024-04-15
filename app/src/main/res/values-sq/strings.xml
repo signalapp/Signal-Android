@@ -45,8 +45,6 @@
     <string name="ApplicationPreferencesActivity_disable_passphrase">Të çaktivizohet frazëkalimi?</string>
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Kjo do të zhbllokojë përgjithmonë njoftimet e Signal dhe mesazheve.</string>
     <string name="ApplicationPreferencesActivity_disable">Çaktivizoje</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Dëshironi të çaktivizoni mesazhet dhe thirrjet e Signal-it?</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Çaktivizoni mesazhet dhe thirrjet e Signal-it duke u çregjistruar nga serveri. Do t\'ju duhet të riregjistroni numrin tuaj të telefonit për t\'i përdorur sërisht në të ardhmen.</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Ka ndodhur një gabim në lidhjen me serverin!</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN-et kërkohen për mbylljen e regjistrimit. Për të çaktivizuar PIN-et, së pari çaktivizoni mbylljen e regjistrimit.</string>
     <string name="ApplicationPreferencesActivity_pin_created">PIN-i u krijua.</string>
@@ -309,7 +307,6 @@
     <string name="ConversationItem_error_network_not_delivered">Dërgimi dështoi</string>
     <string name="ConversationItem_group_action_left">%1$s u largua nga grupi.</string>
     <string name="ConversationItem_send_paused">Dërgimi në pritje</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Dërgimi dështoi, kliko për rikthim të pasigurt</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Dëshironi të riktheheni te mesazhet e pakriptuara?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Dëshironi të riktheheni te MMS-të e pakriptuara?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Kjo mesazh <b>nuk</b> do të kriptohet, sepse marrësi nuk është më përdorues i Signal-it.\n\nTë dërgohet mesazh i pasiguruar?</string>
@@ -1975,7 +1972,7 @@
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
     <string name="AboutSheet__no_direct_message">Nuk ka mesazhe të drejtpërdrejta me %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
-    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s është në kontaktet e sistemit</string>
+    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s është në kontaktet e telefonit</string>
     <!-- Notice in a row when user has no groups in common -->
     <string name="AboutSheet__you_have_no_groups_in_common">Nuk keni grupe të përbashkëta</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
@@ -1989,6 +1986,8 @@
     <string name="AboutSheet__about">Rreth</string>
     <!-- Text displayed in title for you -->
     <string name="AboutSheet__you">Ju</string>
+    <!-- Displays the name of a contact. The first placeholder is the name the user has assigned to that contact, the second name is the name the contact assigned to themselves -->
+    <string name="AboutSheet__user_set_display_name_and_profile_name">%1$s (%2$s)</string>
 
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call">
@@ -2925,6 +2924,18 @@
     <string name="EditProfileFragment__group_name">Emër grupi</string>
     <string name="EditProfileFragment__group_description">Përshkrim grupi</string>
   <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
+    <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_title">Përditësoni Signal-in</string>
+    <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_body">Ky version i Signal ka skaduar. Përditëso tani për të vazhduar përdorimin e Signal.</string>
+    <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
+    <string name="EditProfileFragment_deprecated_dialog_update_button">Përditësoje</string>
+    <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_title">Pajisja nuk është regjistruar</string>
+    <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_body">Pajisja nuk është më e regjistruar. Regjistroje sërish për të bërë ndryshime në llogarinë tënde.</string>
+    <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
+    <string name="EditProfileFragment_unregistered_dialog_reregister_button">Riregjistroje</string>
 
     <!-- EditProfileNameFragment -->
     <string name="EditProfileNameFragment_your_name">Emri juaj</string>
@@ -3019,7 +3030,6 @@
         <item>Tjetër</item>
         <item>Pagesa (MobileCoin)</item>
         <item>Dhurime &amp; Distinktive</item>
-        <item>Eksporto SMS-të</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Paraqitja e regjistrit të korrigjimit në Android Signal</string>
@@ -3664,8 +3674,6 @@
     <string name="verify_display_fragment_context_menu__compare_with_clipboard">Krahasoje me lëndën në të papastër</string>
 
     <!-- reminder_header -->
-    <string name="reminder_header_push_title">Aktivizo mesazhe dhe thirrje Signal</string>
-    <string name="reminder_header_push_text">Përmirësoni komunikimin tuaj.</string>
     <string name="reminder_header_service_outage_text">Signal-i po kalon vështirësi teknike. Po punojmë fort të rikthejmë shërbimin sa më shpejt që të mundet.</string>
     <string name="reminder_header_progress">%1$d%%</string>
     <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user\'s contacts -->
@@ -3962,6 +3970,8 @@
     <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Ju duhet hyrje te pajisja juaj e vjetër.</string>
     <string name="TransferOrRestoreFragment__restore_from_backup">Riktheni prej kopjeruajtje</string>
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Riktheni mesazhet tuaja që prej një kopjeruajtjeje vendore. Nëse s\\’i riktheni tani, s\\’do të jeni në gjendje t\\’i riktheni më vonë.</string>
+    <!-- Button label for more options -->
+    <string name="TransferOrRestoreFragment__more_options">Opsione të tjera</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
     <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Hapni Signal-in në telefonin tuaj të vjetër Android</string>
@@ -4168,7 +4178,7 @@
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
     <string name="ReviewCard__s_recently_changed">%1$s ka ndryshuar së fundmi emrin e profilit nga %2$s në %3$s</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
-    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s është në kontaktet e sistemit</string>
+    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s është në kontaktet e telefonit</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">Erdhi %1$s</string>
@@ -4719,7 +4729,7 @@
     <string name="ConversationSettingsFragment__disappearing_messages">Zhdukje mesazhesh</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">Tinguj &amp; njoftime</string>
   <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
-    <string name="ConversationSettingsFragment__contact_details">Hollësi kontakti</string>
+    <string name="ConversationSettingsFragment__contact_details">Të dhënat e kontaktit në telefon</string>
     <string name="ConversationSettingsFragment__view_safety_number">Shihni numër sigurie</string>
     <string name="ConversationSettingsFragment__block">Blloko</string>
     <string name="ConversationSettingsFragment__block_group">Blloko grupin</string>
@@ -5570,7 +5580,7 @@
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Pranimit të një ërkesë për mesazh</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Pasjen e tyre te kontaktet tuaja të sistemit</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">I ke në kontaktet e telefonit</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Kontaktet e tua mund të shohin emrin dhe foton tënde dhe mund të shohin postime te “Postimi im i përkohshëm”, veç nëse e fshihni nga të tjerët."</string>
     <!-- Clickable option to add a viewer to a custom story -->
@@ -6653,6 +6663,46 @@
     <string name="FindByActivity__qr_scan_button">Skanoni kodin QR</string>
     <!-- Content of a dialog indicating that we could not perform the requested action because we encountered a network error. -->
     <string name="FindByActivity__network_error_dialog">U has një gabim rrjeti. Riprovoni më vonë.</string>
+
+    <!-- Title for an alert letting someone know that one of their linked devices is inactive. -->
+    <string name="LinkedDeviceInactiveMegaphone_title">Pajisje e lidhur joaktive</string>
+    <!-- Body for an alert letting someone know that one of their linked devices is inactive. The string placeholder is the name of the device, and the number placeholder is the number of days before device is unlinked. -->
+    <plurals name="LinkedDeviceInactiveMegaphone_body">
+        <item quantity="one">Për të mbajtur \"%1$s\" të lidhur, hap Signal në atë pajisje brenda %2$d dite.</item>
+        <item quantity="other">Për të mbajtur \"%1$s\" të lidhur, hap Signal në atë pajisje brenda %2$d ditësh.</item>
+    </plurals>
+    <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the user will opt out of all future alerts. -->
+    <string name="LinkedDeviceInactiveMegaphone_dont_remind_button_label">Mos më kujto</string>
+    <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the alert will be dismissed. -->
+    <string name="LinkedDeviceInactiveMegaphone_got_it_button_label">E kuptova</string>
+
+    <!-- NicknameFragment -->
+    <!-- Title displayed at the top of the screen -->
+    <string name="NicknameActivity__nickname">Pseudonimi</string>
+    <!-- Subtitle displayed under title -->
+    <string name="NicknameActivity__nicknames_amp_notes">Nicknames &amp; notes are stored with Signal and end-to-end encrypted. They are only visible to you.</string>
+    <!-- Field label for given name -->
+    <string name="NicknameActivity__first_name">Emër</string>
+    <!-- Content description for first name clear button -->
+    <string name="NicknameActivity__clear_first_name">Pastro emrin</string>
+    <!-- Field label for family name -->
+    <string name="NicknameActivity__last_name">Mbiemër</string>
+    <!-- Content description for last name clear button -->
+    <string name="NicknameActivity__clear_last_name">Pastro mbiemrin</string>
+    <!-- Field label for note -->
+    <string name="NicknameActivity__note">Shënim</string>
+    <!-- Button label to save -->
+    <string name="NicknameActivity__save">Ruaj</string>
+    <!-- Dialog title for note and name deletion -->
+    <string name="NicknameActivity__delete_nickname">Delete?</string>
+    <!-- Dialog message for note and name deletion -->
+    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">This will permanently delete any nickname and note you’ve set.</string>
+
+    <!-- ViewNoteBottomSheetDialogFragment -->
+    <!-- Sheet title -->
+    <string name="ViewNoteSheet__note">Shënim</string>
+    <!-- Content description for opening the note editor -->
+    <string name="ViewNoteSheet__edit_note">Përpuno shënimin</string>
 
     <!-- EOF -->
 </resources>

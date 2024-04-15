@@ -55,6 +55,8 @@ public class LogSectionSystemInfo implements LogSection {
     builder.append("Manufacturer      : ").append(Build.MANUFACTURER).append("\n");
     builder.append("Model             : ").append(Build.MODEL).append("\n");
     builder.append("Product           : ").append(Build.PRODUCT).append("\n");
+    builder.append("SoC Manufacturer  : ").append(Build.VERSION.SDK_INT >= 31 ? Build.SOC_MANUFACTURER : "N/A").append("\n");
+    builder.append("SoC Model         : ").append(Build.VERSION.SDK_INT >= 31 ? Build.SOC_MODEL : "N/A").append("\n");
     builder.append("Screen            : ").append(getScreenResolution(context)).append(", ")
                                       .append(ScreenDensity.get(context)).append(", ")
                                       .append(getScreenRefreshRate(context)).append("\n");
@@ -91,6 +93,7 @@ public class LogSectionSystemInfo implements LogSection {
     builder.append("User-Agent        : ").append(StandardUserAgentInterceptor.USER_AGENT).append("\n");
     builder.append("SlowNotifications : ").append(SlowNotificationHeuristics.isHavingDelayedNotifications()).append("\n");
     builder.append("PotentiallyBattery: ").append(SlowNotificationHeuristics.isPotentiallyCausedByBatteryOptimizations()).append("\n");
+    builder.append("APNG Animation    : ").append(DeviceProperties.shouldAllowApngStickerAnimation(context)).append("\n");
     if (BuildConfig.MANAGES_APP_UPDATES) {
       builder.append("ApkManifestUrl    : ").append(BuildConfig.APK_UPDATE_MANIFEST_URL).append("\n");
     }

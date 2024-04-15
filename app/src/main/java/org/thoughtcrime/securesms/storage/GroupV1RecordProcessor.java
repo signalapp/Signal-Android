@@ -92,7 +92,8 @@ public final class GroupV1RecordProcessor extends DefaultStorageRecordProcessor<
     } else {
       return new SignalGroupV1Record.Builder(keyGenerator.generate(), remote.getGroupId(), unknownFields)
                                     .setBlocked(blocked)
-                                    .setProfileSharingEnabled(blocked)
+                                    .setProfileSharingEnabled(profileSharing)
+                                    .setArchived(archived)
                                     .setForcedUnread(forcedUnread)
                                     .setMuteUntil(muteUntil)
                                     .build();

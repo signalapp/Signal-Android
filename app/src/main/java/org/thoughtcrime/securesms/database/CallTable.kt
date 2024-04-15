@@ -12,6 +12,7 @@ import org.signal.core.util.delete
 import org.signal.core.util.deleteAll
 import org.signal.core.util.flatten
 import org.signal.core.util.insertInto
+import org.signal.core.util.isAbsent
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
 import org.signal.core.util.readToMap
@@ -406,6 +407,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
         Log.w(TAG, "[acceptOutgoingGroupCall] This shouldn't have been an outgoing ring because the call already existed!")
         Event.ACCEPTED
       }
+
       else -> {
         Log.d(TAG, "[acceptOutgoingGroupCall] Call in state ${call.event} cannot be transitioned by ACCEPTED")
         return
@@ -945,12 +947,12 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
   /**
    * Gets the most recent timestamp from the [TIMESTAMP] column
    */
-  fun getLatestTimestamp(): Long {
+  fun getLatestCall(): Call? {
     val statement = """
-      SELECT $TIMESTAMP FROM $TABLE_NAME ORDER BY $TIMESTAMP DESC LIMIT 1
+      SELECT * FROM $TABLE_NAME ORDER BY $TIMESTAMP DESC LIMIT 1
     """.trimIndent()
 
-    return readableDatabase.query(statement).readToSingleLong(-1)
+    return readableDatabase.query(statement).readToSingleObject { Call.deserialize(it) }
   }
 
   fun deleteNonAdHocCallEventsOnOrBefore(timestamp: Long) {
@@ -1255,6 +1257,16 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
       val actualChildren = inPeriod.takeWhile { children.contains(it) }
       val peer = Recipient.resolved(call.peer)
 
+      val canUserBeginCall = if (peer.isGroup) {
+        val record = SignalDatabase.groups.getGroup(peer.id)
+
+        !record.isAbsent() &&
+          record.get().isActive &&
+          (!record.get().isAnnouncementGroup || record.get().memberLevel(Recipient.self()) == GroupTable.MemberLevel.ADMINISTRATOR)
+      } else {
+        true
+      }
+
       CallLogRow.Call(
         record = call,
         date = call.timestamp,
@@ -1262,7 +1274,8 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
         groupCallState = CallLogRow.GroupCallState.fromDetails(groupCallDetails),
         children = actualChildren.toSet(),
         searchQuery = searchTerm,
-        callLinkPeekInfo = ApplicationDependencies.getSignalCallManager().peekInfoSnapshot[peer.id]
+        callLinkPeekInfo = ApplicationDependencies.getSignalCallManager().peekInfoSnapshot[peer.id],
+        canUserBeginCall = canUserBeginCall
       )
     }
   }

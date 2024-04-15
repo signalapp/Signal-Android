@@ -56,7 +56,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity {
                                                          boolean verified) {
     Recipient recipient = Recipient.live(recipientId).resolve();
 
-    if (!recipient.hasServiceId()) {
+    if (!recipient.getHasServiceId()) {
       showExchangeMessagesDialog(context);
       return;
     }

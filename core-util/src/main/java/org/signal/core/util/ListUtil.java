@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -30,5 +31,9 @@ public final class ListUtil {
     }
 
     return concat;
+  }
+
+  public static <T> List<T> emptyIfNull(List<T> list) {
+    return list == null ? Collections.emptyList() : list;
   }
 }

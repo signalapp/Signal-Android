@@ -53,7 +53,7 @@ class NewCallActivity : ContactSelectionActivity(), ContactSelectionListFragment
           when (result) {
             is RecipientRepository.LookupResult.Success -> {
               val resolved = Recipient.resolved(result.recipientId)
-              if (resolved.isRegistered && resolved.hasServiceId()) {
+              if (resolved.isRegistered && resolved.hasServiceId) {
                 launch(resolved)
               }
             }

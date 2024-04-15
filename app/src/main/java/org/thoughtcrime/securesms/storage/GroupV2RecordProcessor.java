@@ -85,7 +85,7 @@ public final class GroupV2RecordProcessor extends DefaultStorageRecordProcessor<
     } else {
       return new SignalGroupV2Record.Builder(keyGenerator.generate(), remote.getMasterKeyBytes(), unknownFields)
                                     .setBlocked(blocked)
-                                    .setProfileSharingEnabled(blocked)
+                                    .setProfileSharingEnabled(profileSharing)
                                     .setArchived(archived)
                                     .setForcedUnread(forcedUnread)
                                     .setMuteUntil(muteUntil)

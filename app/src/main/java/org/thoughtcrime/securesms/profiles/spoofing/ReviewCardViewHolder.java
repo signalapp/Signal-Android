@@ -124,7 +124,7 @@ class ReviewCardViewHolder extends RecyclerView.ViewHolder {
       reviewTextRows.add(ReviewTextRow.SYSTEM_CONTACTS);
     }
 
-    if (reviewCard.getReviewRecipient().hasE164() && reviewCard.getReviewRecipient().shouldShowE164()) {
+    if (reviewCard.getReviewRecipient().getHasE164() && reviewCard.getReviewRecipient().getShouldShowE164()) {
       reviewTextRows.add(ReviewTextRow.PHONE_NUMBER);
     }
 

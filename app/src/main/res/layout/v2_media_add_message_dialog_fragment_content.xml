@@ -25,9 +25,11 @@
         android:layout_height="0dp"
         android:background="@drawable/rounded_rectangle_surface_variant_20"
         app:layout_constraintBottom_toBottomOf="@id/add_a_message_input"
-        app:layout_constraintEnd_toEndOf="@id/add_a_message_limit"
+        app:layout_constraintEnd_toEndOf="@id/view_once_toggle"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="@id/emoji_toggle"
-        app:layout_constraintTop_toTopOf="@id/add_a_message_input" />
+        app:layout_constraintTop_toTopOf="@id/add_a_message_input"
+        app:layout_constraintVertical_bias="0.0" />
 
     <org.thoughtcrime.securesms.components.emoji.EmojiToggle
         android:id="@+id/emoji_toggle"
@@ -61,23 +63,50 @@
         android:textAppearance="@style/Signal.Text.Body"
         android:textColor="@color/signal_colorOnSurface"
         app:layout_constraintBottom_toTopOf="@id/emoji_drawer_stub"
-        app:layout_constraintEnd_toStartOf="@id/add_a_message_limit"
+        app:layout_constraintEnd_toStartOf="@id/view_once_toggle"
         app:layout_constraintStart_toEndOf="@id/emoji_toggle"
         app:layout_constraintTop_toTopOf="@id/input_barrier"
         app:layout_goneMarginEnd="6dp"
         app:layout_goneMarginStart="12dp" />
 
+    <ViewSwitcher
+        android:id="@+id/view_once_toggle"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:animateFirstView="false"
+        android:inAnimation="@anim/fade_in"
+        android:outAnimation="@anim/fade_out"
+        app:layout_constraintBottom_toBottomOf="@id/add_a_message_input"
+        app:layout_constraintEnd_toStartOf="@id/confirm_button">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/symbol_view_once_infinite_24"
+            app:tint="@color/signal_colorOnSurface" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/symbol_view_once_24"
+            app:tint="@color/signal_colorOnSurface" />
+
+    </ViewSwitcher>
+
     <TextView
         android:id="@+id/add_a_message_limit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="6dp"
-        android:paddingEnd="12dp"
+        android:translationX="-6dp"
         android:textAppearance="@style/Signal.Text.BodySmall"
         android:textColor="@color/signal_colorOnSurface"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/add_a_message_input"
-        app:layout_constraintEnd_toStartOf="@id/confirm_button"
+        app:layout_constraintStart_toStartOf="@id/view_once_toggle"
         tools:text="50"
         tools:visibility="visible" />
 

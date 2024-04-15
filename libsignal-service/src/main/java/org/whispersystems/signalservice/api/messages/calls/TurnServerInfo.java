@@ -14,7 +14,13 @@ public class TurnServerInfo {
   private String password;
 
   @JsonProperty
+  private String hostname;
+
+  @JsonProperty
   private List<String> urls;
+
+  @JsonProperty
+  private List<String> urlsWithIps;
 
   public String getUsername() {
     return username;
@@ -24,7 +30,16 @@ public class TurnServerInfo {
     return password;
   }
 
+  // Hostname for the ips in urlsWithIps
+  public String getHostname() {
+    return hostname;
+  }
+
   public List<String> getUrls() {
     return urls;
+  }
+
+  public List<String> getUrlsWithIps() {
+    return urlsWithIps;
   }
 }

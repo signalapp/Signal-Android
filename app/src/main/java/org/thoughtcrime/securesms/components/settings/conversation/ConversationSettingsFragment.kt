@@ -14,6 +14,7 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.core.view.doOnPreDraw
@@ -77,6 +78,7 @@ import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupsLearnMoreB
 import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory
 import org.thoughtcrime.securesms.messagerequests.MessageRequestRepository
+import org.thoughtcrime.securesms.nicknames.NicknameActivity
 import org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientExporter
@@ -120,10 +122,6 @@ class ConversationSettingsFragment : DSLSettingsFragment(
     }
   }
 
-  private val unblockIcon by lazy {
-    ContextUtil.requireDrawable(requireContext(), R.drawable.symbol_block_24)
-  }
-
   private val leaveIcon by lazy {
     ContextUtil.requireDrawable(requireContext(), R.drawable.symbol_leave_24).apply {
       colorFilter = PorterDuffColorFilter(alertTint, PorterDuff.Mode.SRC_IN)
@@ -153,6 +151,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
   private lateinit var toolbarTitle: TextView
   private lateinit var toolbarBackground: View
   private lateinit var addToGroupStoryDelegate: AddToGroupStoryDelegate
+  private lateinit var nicknameLauncher: ActivityResultLauncher<NicknameActivity.Args>
 
   private val navController get() = Navigation.findNavController(requireView())
   private val lifecycleDisposable = LifecycleDisposable()
@@ -220,6 +219,10 @@ class ConversationSettingsFragment : DSLSettingsFragment(
   }
 
   override fun bindAdapter(adapter: MappingAdapter) {
+    nicknameLauncher = registerForActivityResult(NicknameActivity.Contract()) {
+      // Intentionally left blank
+    }
+
     val args = ConversationSettingsFragmentArgs.fromBundle(requireArguments())
 
     BioTextPreference.register(adapter)
@@ -306,7 +309,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
                 requireContext(),
                 StoryViewerArgs(
                   recipientId = state.recipient.id,
-                  isInHiddenStoryMode = state.recipient.shouldHideStory(),
+                  isInHiddenStoryMode = state.recipient.shouldHideStory,
                   isFromQuote = true
                 )
               )
@@ -472,9 +475,9 @@ class ConversationSettingsFragment : DSLSettingsFragment(
 
       val summary = DSLSettingsText.from(formatDisappearingMessagesLifespan(state.disappearingMessagesLifespan))
       val icon = if (state.disappearingMessagesLifespan <= 0 || state.recipient.isBlocked) {
-        R.drawable.ic_update_timer_disabled_16
+        R.drawable.symbol_timer_slash_24
       } else {
-        R.drawable.ic_update_timer_16
+        R.drawable.symbol_timer_24
       }
 
       var enabled = !state.recipient.isBlocked
@@ -499,10 +502,25 @@ class ConversationSettingsFragment : DSLSettingsFragment(
         )
       }
 
+      if (state.recipient.isIndividual && !state.recipient.isSelf) {
+        clickPref(
+          title = DSLSettingsText.from(R.string.NicknameActivity__nickname),
+          icon = DSLSettingsIcon.from(R.drawable.symbol_edit_24),
+          onClick = {
+            nicknameLauncher.launch(
+              NicknameActivity.Args(
+                state.recipient.id,
+                false
+              )
+            )
+          }
+        )
+      }
+
       if (!state.recipient.isReleaseNotes) {
         clickPref(
           title = DSLSettingsText.from(R.string.preferences__chat_color_and_wallpaper),
-          icon = DSLSettingsIcon.from(R.drawable.ic_color_24),
+          icon = DSLSettingsIcon.from(R.drawable.symbol_color_24),
           onClick = {
             startActivity(ChatWallpaperActivity.createIntent(requireContext(), state.recipient.id))
           }
@@ -512,7 +530,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
       if (!state.recipient.isSelf) {
         clickPref(
           title = DSLSettingsText.from(R.string.ConversationSettingsFragment__sounds_and_notifications),
-          icon = DSLSettingsIcon.from(R.drawable.ic_speaker_24),
+          icon = DSLSettingsIcon.from(R.drawable.symbol_speaker_24),
           isEnabled = !state.isDeprecatedOrUnregistered,
           onClick = {
             val action = ConversationSettingsFragmentDirections.actionConversationSettingsFragmentToSoundsAndNotificationsSettingsFragment(state.recipient.id)
@@ -557,7 +575,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
         if (!state.recipient.isReleaseNotes && !state.recipient.isSelf) {
           clickPref(
             title = DSLSettingsText.from(R.string.ConversationSettingsFragment__view_safety_number),
-            icon = DSLSettingsIcon.from(R.drawable.ic_safety_number_24),
+            icon = DSLSettingsIcon.from(R.drawable.symbol_safety_number_24),
             isEnabled = !state.isDeprecatedOrUnregistered,
             onClick = {
               VerifyIdentityActivity.startOrShowExchangeMessagesDialog(requireActivity(), recipientState.identityRecord)
@@ -784,11 +802,10 @@ class ConversationSettingsFragment : DSLSettingsFragment(
         }
 
         val titleTint = if (isBlocked) null else if (state.isDeprecatedOrUnregistered) alertDisabledTint else alertTint
-        val blockUnblockIcon = if (isBlocked) unblockIcon else blockIcon
 
         clickPref(
           title = if (titleTint != null) DSLSettingsText.from(title, titleTint) else DSLSettingsText.from(title),
-          icon = DSLSettingsIcon.from(blockUnblockIcon),
+          icon = if (isBlocked) DSLSettingsIcon.from(R.drawable.symbol_block_24) else DSLSettingsIcon.from(blockIcon),
           isEnabled = !state.isDeprecatedOrUnregistered,
           onClick = {
             if (state.recipient.isBlocked) {

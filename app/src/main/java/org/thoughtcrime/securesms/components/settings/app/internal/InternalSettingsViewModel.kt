@@ -75,7 +75,7 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
   }
 
   fun resetPnpInitializedState() {
-    SignalStore.misc().setPniInitializedDevices(false)
+    SignalStore.misc().hasPniInitializedDevices = false
     refresh()
   }
 
@@ -159,7 +159,7 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     delayResends = SignalStore.internalValues().delayResends(),
     disableStorageService = SignalStore.internalValues().storageServiceDisabled(),
     canClearOnboardingState = SignalStore.storyValues().hasDownloadedOnboardingStory && Stories.isFeatureEnabled(),
-    pnpInitialized = SignalStore.misc().hasPniInitializedDevices(),
+    pnpInitialized = SignalStore.misc().hasPniInitializedDevices,
     useConversationItemV2ForMedia = SignalStore.internalValues().useConversationItemV2Media(),
     hasPendingOneTimeDonation = SignalStore.donationsValues().getPendingOneTimeDonation() != null
   )

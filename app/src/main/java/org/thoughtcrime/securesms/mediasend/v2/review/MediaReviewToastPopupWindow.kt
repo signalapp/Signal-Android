@@ -7,13 +7,11 @@ package org.thoughtcrime.securesms.mediasend.v2.review
 
 import android.view.Gravity
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.PopupWindow
 import android.widget.TextView
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.util.ViewUtil
 import kotlin.time.Duration.Companion.seconds
 
 /**
@@ -21,7 +19,7 @@ import kotlin.time.Duration.Companion.seconds
  */
 class MediaReviewToastPopupWindow private constructor(parent: ViewGroup, iconResource: Int, descriptionText: String) : PopupWindow(
   LayoutInflater.from(parent.context).inflate(R.layout.v2_media_review_quality_popup_window, parent, false),
-  ViewGroup.LayoutParams.MATCH_PARENT,
+  ViewGroup.LayoutParams.WRAP_CONTENT,
   ViewGroup.LayoutParams.WRAP_CONTENT
 ) {
 
@@ -29,7 +27,6 @@ class MediaReviewToastPopupWindow private constructor(parent: ViewGroup, iconRes
   private val description: TextView = contentView.findViewById(R.id.media_review_toast_popup_description)
 
   init {
-    elevation = ViewUtil.dpToPx(8).toFloat()
     animationStyle = R.style.StickerPopupAnimation
     icon.setImageResource(iconResource)
     description.text = descriptionText
@@ -37,16 +34,7 @@ class MediaReviewToastPopupWindow private constructor(parent: ViewGroup, iconRes
 
   private fun show(parent: ViewGroup) {
     showAtLocation(parent, Gravity.CENTER, 0, 0)
-    measureChild()
-    update()
     contentView.postDelayed({ dismiss() }, DURATION)
-  }
-
-  private fun measureChild() {
-    contentView.measure(
-      View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
-      View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
-    )
   }
 
   companion object {

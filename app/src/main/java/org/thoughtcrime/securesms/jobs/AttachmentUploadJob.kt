@@ -42,6 +42,7 @@ import java.io.IOException
 import java.util.Objects
 import java.util.Optional
 import java.util.concurrent.TimeUnit
+import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
 
 /**
@@ -60,7 +61,7 @@ class AttachmentUploadJob private constructor(
 
     private val TAG = Log.tag(AttachmentUploadJob::class.java)
 
-    private val UPLOAD_REUSE_THRESHOLD = TimeUnit.DAYS.toMillis(3)
+    val UPLOAD_REUSE_THRESHOLD = 3.days.inWholeMilliseconds
 
     /**
      * Foreground notification shows while uploading attachments above this.
@@ -162,7 +163,7 @@ class AttachmentUploadJob private constructor(
         buildAttachmentStream(databaseAttachment, notification, uploadSpec!!).use { localAttachment ->
           val remoteAttachment = messageSender.uploadAttachment(localAttachment)
           val attachment = PointerAttachment.forPointer(Optional.of(remoteAttachment), null, databaseAttachment.fastPreflightId).get()
-          SignalDatabase.attachments.updateAttachmentAfterUpload(databaseAttachment.attachmentId, attachment, remoteAttachment.uploadTimestamp)
+          SignalDatabase.attachments.finalizeAttachmentAfterUpload(databaseAttachment.attachmentId, attachment, remoteAttachment.uploadTimestamp)
         }
       }
     } catch (e: NonSuccessfulResumableUploadResponseCodeException) {

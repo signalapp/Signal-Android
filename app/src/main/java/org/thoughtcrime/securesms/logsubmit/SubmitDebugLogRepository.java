@@ -86,7 +86,6 @@ public class SubmitDebugLogRepository {
     add(new LogSectionNotificationProfiles());
     add(new LogSectionExoPlayerPool());
     add(new LogSectionKeyPreferences());
-    add(new LogSectionSMS());
     add(new LogSectionStories());
     add(new LogSectionBadges());
     add(new LogSectionPermissions());
@@ -96,6 +95,7 @@ public class SubmitDebugLogRepository {
     if (FeatureFlags.internalUser()) {
       add(new LogSectionSenderKey());
     }
+    add(new LogSectionDatabaseSchema());
     add(new LogSectionRemappedRecords());
     add(new LogSectionAnr());
     add(new LogSectionLogcat());

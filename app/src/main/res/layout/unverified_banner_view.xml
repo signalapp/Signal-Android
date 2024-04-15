@@ -17,7 +17,7 @@
                android:layout_height="wrap_content"
                android:layout_marginStart="16dp"
                android:layout_gravity="center_vertical"
-               android:src="@drawable/ic_alert"
+               android:src="@drawable/ic_warning_40"
                app:tint="@color/signal_icon_tint_primary"/>
 
     <TextView android:id="@+id/unverified_text"

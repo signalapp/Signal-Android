@@ -67,7 +67,8 @@ class InternalConversationTestFragment : Fragment(R.layout.conversation_test_fra
       hasWallpaper = springboardViewModel.hasWallpaper.value,
       colorizer = Colorizer(),
       startExpirationTimeout = {},
-      chatColorsDataProvider = { ChatColorsDrawable.ChatColorsData(null, null) }
+      chatColorsDataProvider = { ChatColorsDrawable.ChatColorsData(null, null) },
+      displayDialogFragment = {}
     )
 
     if (springboardViewModel.hasWallpaper.value) {

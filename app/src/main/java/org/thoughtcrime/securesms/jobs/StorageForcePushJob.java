@@ -81,7 +81,7 @@ public class StorageForcePushJob extends BaseJob {
       return;
     }
 
-    if (Recipient.self().getStorageServiceId() == null) {
+    if (Recipient.self().getStorageId() == null) {
       Log.w(TAG, "No storage ID set for self! Skipping.");
       return;
     }

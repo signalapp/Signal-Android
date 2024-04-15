@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.databinding.ConversationHeaderViewBinding;
+import org.thoughtcrime.securesms.fonts.SignalSymbols;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.ContextUtil;
 import org.thoughtcrime.securesms.util.LongClickMovementMethod;
@@ -64,7 +65,7 @@ public class ConversationHeaderView extends ConstraintLayout {
   public void setAvatar(@NonNull RequestManager requestManager, @Nullable Recipient recipient) {
     binding.messageRequestAvatar.setAvatar(requestManager, recipient, false);
 
-    if (recipient != null && recipient.shouldBlurAvatar() && recipient.getContactPhoto() != null) {
+    if (recipient != null && recipient.getShouldBlurAvatar() && recipient.getContactPhoto() != null) {
       binding.messageRequestAvatarTapToView.setVisibility(VISIBLE);
       binding.messageRequestAvatarTapToView.setOnClickListener(v -> {
         SignalExecutors.BOUNDED.execute(() -> SignalDatabase.recipients().manuallyShowAvatar(recipient.getId()));
@@ -75,11 +76,22 @@ public class ConversationHeaderView extends ConstraintLayout {
     }
   }
 
-  public String setTitle(@NonNull Recipient recipient) {
+  public String setTitle(@NonNull Recipient recipient, @NonNull Runnable onTitleClicked) {
     SpannableStringBuilder title = new SpannableStringBuilder(recipient.isSelf() ? getContext().getString(R.string.note_to_self) : recipient.getDisplayName(getContext()));
-    if (recipient.showVerified()) {
+    if (recipient.getShowVerified()) {
       SpanUtil.appendCenteredImageSpan(title, ContextUtil.requireDrawable(getContext(), R.drawable.ic_official_28), 28, 28);
     }
+
+    if (recipient.isIndividual() && !recipient.isSelf()) {
+      CharSequence chevronRight = SignalSymbols.getSpannedString(getContext(), SignalSymbols.Weight.BOLD, SignalSymbols.Glyph.CHEVRON_RIGHT);
+      title.append(" ");
+      title.append(SpanUtil.ofSize(chevronRight, 24));
+
+      binding.messageRequestTitle.setOnClickListener(v -> onTitleClicked.run());
+    } else {
+      binding.messageRequestTitle.setOnClickListener(null);
+    }
+
     binding.messageRequestTitle.setText(title);
     return title.toString();
   }

@@ -163,7 +163,7 @@ public class ChatWallpaperViewModel extends ViewModel {
 
   private boolean hasClearableWallpaper() {
     return (isGlobal() && SignalStore.wallpaper().hasWallpaperSet()) ||
-           (recipientId != null && Recipient.live(recipientId).get().hasOwnWallpaper());
+           (recipientId != null && Recipient.live(recipientId).get().getHasOwnWallpaper());
   }
 
   public void resetAllChatColors() {

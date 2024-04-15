@@ -127,7 +127,7 @@ public class RetrieveProfileAvatarJob extends BaseJob {
         AvatarHelper.setAvatar(context, recipient.getId(), avatarStream);
 
         if (recipient.isSelf()) {
-          SignalStore.misc().markHasEverHadAnAvatar();
+          SignalStore.misc().setHasEverHadAnAvatar(true);
         }
       } catch (AssertionError e) {
         throw new IOException("Failed to copy stream. Likely a Conscrypt issue.", e);

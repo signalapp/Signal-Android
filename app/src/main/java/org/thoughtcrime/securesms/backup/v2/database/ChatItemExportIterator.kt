@@ -17,12 +17,15 @@ import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireString
+import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.backup.v2.proto.CallChatUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.ChatItem
 import org.thoughtcrime.securesms.backup.v2.proto.ChatUpdateMessage
 import org.thoughtcrime.securesms.backup.v2.proto.ExpirationTimerChatUpdate
+import org.thoughtcrime.securesms.backup.v2.proto.FilePointer
 import org.thoughtcrime.securesms.backup.v2.proto.GroupCallChatUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.IndividualCallChatUpdate
+import org.thoughtcrime.securesms.backup.v2.proto.MessageAttachment
 import org.thoughtcrime.securesms.backup.v2.proto.ProfileChangeChatUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.Quote
 import org.thoughtcrime.securesms.backup.v2.proto.Reaction
@@ -106,6 +109,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
 
     val reactionsById: Map<Long, List<ReactionRecord>> = SignalDatabase.reactions.getReactionsForMessages(records.keys)
     val mentionsById: Map<Long, List<Mention>> = SignalDatabase.mentions.getMentionsForMessages(records.keys)
+    val attachmentsById: Map<Long, List<DatabaseAttachment>> = SignalDatabase.attachments.getAttachmentsForMessages(records.keys)
     val groupReceiptsById: Map<Long, List<GroupReceiptTable.GroupReceiptInfo>> = SignalDatabase.groupReceipts.getGroupReceiptInfoForMessages(records.keys)
 
     for ((id, record) in records) {
@@ -117,14 +121,23 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
         MessageTypes.isIdentityUpdate(record.type) -> builder.updateMessage = ChatUpdateMessage(simpleUpdate = SimpleChatUpdate(type = SimpleChatUpdate.Type.IDENTITY_UPDATE))
         MessageTypes.isIdentityVerified(record.type) -> builder.updateMessage = ChatUpdateMessage(simpleUpdate = SimpleChatUpdate(type = SimpleChatUpdate.Type.IDENTITY_VERIFIED))
         MessageTypes.isIdentityDefault(record.type) -> builder.updateMessage = ChatUpdateMessage(simpleUpdate = SimpleChatUpdate(type = SimpleChatUpdate.Type.IDENTITY_DEFAULT))
-        MessageTypes.isChangeNumber(record.type) -> builder.updateMessage = ChatUpdateMessage(simpleUpdate = SimpleChatUpdate(type = SimpleChatUpdate.Type.CHANGE_NUMBER))
-        MessageTypes.isBoostRequest(record.type) -> builder.updateMessage = ChatUpdateMessage(simpleUpdate = SimpleChatUpdate(type = SimpleChatUpdate.Type.BOOST_REQUEST))
+        MessageTypes.isChangeNumber(record.type) -> {
+          builder.updateMessage = ChatUpdateMessage(simpleUpdate = SimpleChatUpdate(type = SimpleChatUpdate.Type.CHANGE_NUMBER))
+          builder.sms = false
+        }
+        MessageTypes.isBoostRequest(record.type) -> {
+          builder.updateMessage = ChatUpdateMessage(simpleUpdate = SimpleChatUpdate(type = SimpleChatUpdate.Type.BOOST_REQUEST))
+          builder.sms = false
+        }
         MessageTypes.isEndSessionType(record.type) -> builder.updateMessage = ChatUpdateMessage(simpleUpdate = SimpleChatUpdate(type = SimpleChatUpdate.Type.END_SESSION))
         MessageTypes.isChatSessionRefresh(record.type) -> builder.updateMessage = ChatUpdateMessage(simpleUpdate = SimpleChatUpdate(type = SimpleChatUpdate.Type.CHAT_SESSION_REFRESH))
         MessageTypes.isBadDecryptType(record.type) -> builder.updateMessage = ChatUpdateMessage(simpleUpdate = SimpleChatUpdate(type = SimpleChatUpdate.Type.BAD_DECRYPT))
         MessageTypes.isPaymentsActivated(record.type) -> builder.updateMessage = ChatUpdateMessage(simpleUpdate = SimpleChatUpdate(type = SimpleChatUpdate.Type.PAYMENTS_ACTIVATED))
         MessageTypes.isPaymentsRequestToActivate(record.type) -> builder.updateMessage = ChatUpdateMessage(simpleUpdate = SimpleChatUpdate(type = SimpleChatUpdate.Type.PAYMENT_ACTIVATION_REQUEST))
-        MessageTypes.isExpirationTimerUpdate(record.type) -> builder.updateMessage = ChatUpdateMessage(expirationTimerChange = ExpirationTimerChatUpdate((record.expiresIn / 1000).toInt()))
+        MessageTypes.isExpirationTimerUpdate(record.type) -> {
+          builder.updateMessage = ChatUpdateMessage(expirationTimerChange = ExpirationTimerChatUpdate(record.expiresIn.toInt()))
+          builder.expiresInMs = null
+        }
         MessageTypes.isProfileChange(record.type) -> {
           builder.updateMessage = ChatUpdateMessage(
             profileChange = try {
@@ -140,6 +153,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
               ProfileChangeChatUpdate()
             }
           )
+          builder.sms = false
         }
         MessageTypes.isSessionSwitchoverType(record.type) -> {
           builder.updateMessage = ChatUpdateMessage(
@@ -188,10 +202,10 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
           } else {
             when {
               MessageTypes.isMissedAudioCall(record.type) -> {
-                builder.updateMessage = ChatUpdateMessage(callingMessage = CallChatUpdate(callMessage = IndividualCallChatUpdate(type = IndividualCallChatUpdate.Type.MISSED_AUDIO_CALL)))
+                builder.updateMessage = ChatUpdateMessage(callingMessage = CallChatUpdate(callMessage = IndividualCallChatUpdate(type = IndividualCallChatUpdate.Type.MISSED_INCOMING_AUDIO_CALL)))
               }
               MessageTypes.isMissedVideoCall(record.type) -> {
-                builder.updateMessage = ChatUpdateMessage(callingMessage = CallChatUpdate(callMessage = IndividualCallChatUpdate(type = IndividualCallChatUpdate.Type.MISSED_VIDEO_CALL)))
+                builder.updateMessage = ChatUpdateMessage(callingMessage = CallChatUpdate(callMessage = IndividualCallChatUpdate(type = IndividualCallChatUpdate.Type.MISSED_INCOMING_VIDEO_CALL)))
               }
               MessageTypes.isIncomingAudioCall(record.type) -> {
                 builder.updateMessage = ChatUpdateMessage(callingMessage = CallChatUpdate(callMessage = IndividualCallChatUpdate(type = IndividualCallChatUpdate.Type.INCOMING_AUDIO_CALL)))
@@ -230,11 +244,11 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
             }
           }
         }
-        record.body == null -> {
-          Log.w(TAG, "Record missing a body, skipping")
+        record.body == null && !attachmentsById.containsKey(record.id) -> {
+          Log.w(TAG, "Record missing a body and doesnt have attachments, skipping")
           continue
         }
-        else -> builder.standardMessage = record.toTextMessage(reactionsById[id], mentions = mentionsById[id])
+        else -> builder.standardMessage = record.toStandardMessage(reactionsById[id], mentions = mentionsById[id], attachments = attachmentsById[record.id])
       }
 
       buffer += builder.build()
@@ -268,7 +282,6 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
       chatId = record.threadId
       authorId = record.fromRecipientId
       dateSent = record.dateSent
-      sealedSender = record.sealedSender
       expireStartDate = if (record.expireStarted > 0) record.expireStarted else null
       expiresInMs = if (record.expiresIn > 0) record.expiresIn else null
       revisions = emptyList()
@@ -282,19 +295,28 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
         incoming = ChatItem.IncomingMessageDetails(
           dateServerSent = record.dateServer,
           dateReceived = record.dateReceived,
-          read = record.read
+          read = record.read,
+          sealedSender = record.sealedSender
         )
       }
     }
   }
 
-  private fun BackupMessageRecord.toTextMessage(reactionRecords: List<ReactionRecord>?, mentions: List<Mention>?): StandardMessage {
-    return StandardMessage(
-      quote = this.toQuote(),
-      text = Text(
-        body = this.body!!,
+  private fun BackupMessageRecord.toStandardMessage(reactionRecords: List<ReactionRecord>?, mentions: List<Mention>?, attachments: List<DatabaseAttachment>?): StandardMessage {
+    val text = if (body == null) {
+      null
+    } else {
+      Text(
+        body = this.body,
         bodyRanges = (this.bodyRanges?.toBackupBodyRanges() ?: emptyList()) + (mentions?.toBackupBodyRanges() ?: emptyList())
-      ),
+      )
+    }
+    val quotedAttachments = attachments?.filter { it.quote } ?: emptyList()
+    val messageAttachments = attachments?.filter { !it.quote } ?: emptyList()
+    return StandardMessage(
+      quote = this.toQuote(quotedAttachments),
+      text = text,
+      attachments = messageAttachments.toBackupAttachments(),
       // TODO Link previews!
       linkPreview = emptyList(),
       longText = null,
@@ -302,14 +324,14 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
     )
   }
 
-  private fun BackupMessageRecord.toQuote(): Quote? {
+  private fun BackupMessageRecord.toQuote(attachments: List<DatabaseAttachment>? = null): Quote? {
     return if (this.quoteTargetSentTimestamp != MessageTable.QUOTE_NOT_PRESENT_ID && this.quoteAuthor > 0) {
-      // TODO Attachments!
       val type = QuoteModel.Type.fromCode(this.quoteType)
       Quote(
         targetSentTimestamp = this.quoteTargetSentTimestamp.takeIf { !this.quoteMissing && it != MessageTable.QUOTE_TARGET_MISSING_ID },
         authorId = this.quoteAuthor,
         text = this.quoteBody,
+        attachments = attachments?.toBackupQuoteAttachments() ?: emptyList(),
         bodyRanges = this.quoteBodyRanges?.toBackupBodyRanges() ?: emptyList(),
         type = when (type) {
           QuoteModel.Type.NORMAL -> Quote.Type.NORMAL
@@ -318,6 +340,44 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
       )
     } else {
       null
+    }
+  }
+
+  private fun List<DatabaseAttachment>.toBackupQuoteAttachments(): List<Quote.QuotedAttachment> {
+    return this.map { attachment ->
+      Quote.QuotedAttachment(
+        contentType = attachment.contentType,
+        fileName = attachment.fileName,
+        thumbnail = attachment.toBackupAttachment()
+      )
+    }
+  }
+
+  private fun DatabaseAttachment.toBackupAttachment(): MessageAttachment {
+    return MessageAttachment(
+      pointer = FilePointer(
+        attachmentLocator = FilePointer.AttachmentLocator(
+          cdnKey = this.remoteLocation ?: "",
+          cdnNumber = this.cdnNumber,
+          uploadTimestamp = this.uploadTimestamp
+        ),
+        key = if (remoteKey != null) decode(remoteKey).toByteString() else null,
+        contentType = this.contentType,
+        size = this.size.toInt(),
+        incrementalMac = this.incrementalDigest?.toByteString(),
+        incrementalMacChunkSize = this.incrementalMacChunkSize,
+        fileName = this.fileName,
+        width = this.width,
+        height = this.height,
+        caption = this.caption,
+        blurHash = this.blurHash?.hash
+      )
+    )
+  }
+
+  private fun List<DatabaseAttachment>.toBackupAttachments(): List<MessageAttachment> {
+    return this.map { attachment ->
+      attachment.toBackupAttachment()
     }
   }
 

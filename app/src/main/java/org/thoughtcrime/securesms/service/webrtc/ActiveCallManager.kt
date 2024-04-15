@@ -6,15 +6,18 @@
 package org.thoughtcrime.securesms.service.webrtc
 
 import android.app.Notification
+import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.content.pm.ServiceInfo
 import android.net.ConnectivityManager
 import android.os.Build
 import android.telephony.PhoneStateListener
 import android.telephony.TelephonyManager
 import androidx.annotation.MainThread
+import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.os.bundleOf
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -22,6 +25,7 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.signal.core.util.PendingIntentFlags
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
@@ -36,12 +40,13 @@ import org.thoughtcrime.securesms.webrtc.audio.AudioManagerCommand
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager.Companion.create
 import org.thoughtcrime.securesms.webrtc.locks.LockManager
+import java.util.concurrent.locks.ReentrantLock
+import kotlin.concurrent.withLock
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.minutes
 
 /**
- * Entry point for [SignalCallManager] and friends to interact with the Android system as
- * previously done via [WebRtcCallService].
+ * Entry point for [SignalCallManager] and friends to interact with the Android system.
  *
  * This tries to limit the use of a foreground service until a call has been fully established
  * and the user has likely foregrounded us by accepting a call.
@@ -52,6 +57,79 @@ class ActiveCallManager(
 
   companion object {
     private val TAG = Log.tag(ActiveCallManager::class.java)
+
+    private var activeCallManager: ActiveCallManager? = null
+    private val activeCallManagerLock = ReentrantLock()
+
+    @JvmStatic
+    fun clearNotifications(context: Context) {
+      NotificationManagerCompat.from(context).apply {
+        cancel(CallNotificationBuilder.WEBRTC_NOTIFICATION)
+        cancel(CallNotificationBuilder.WEBRTC_NOTIFICATION_RINGING)
+      }
+    }
+
+    @JvmStatic
+    fun update(context: Context, type: Int, recipientId: RecipientId, isVideoCall: Boolean) {
+      activeCallManagerLock.withLock {
+        if (activeCallManager == null) {
+          activeCallManager = ActiveCallManager(context)
+        }
+        activeCallManager!!.update(type, recipientId, isVideoCall)
+      }
+    }
+
+    @JvmStatic
+    fun denyCall() {
+      ApplicationDependencies.getSignalCallManager().denyCall()
+    }
+
+    @JvmStatic
+    fun hangup() {
+      ApplicationDependencies.getSignalCallManager().localHangup()
+    }
+
+    @JvmStatic
+    fun stop() {
+      activeCallManagerLock.withLock {
+        activeCallManager?.shutdown()
+        activeCallManager = null
+      }
+    }
+
+    @JvmStatic
+    fun denyCallIntent(context: Context): PendingIntent {
+      val intent = Intent(context, ActiveCallServiceReceiver::class.java)
+      intent.setAction(ActiveCallServiceReceiver.ACTION_DENY)
+      return PendingIntent.getBroadcast(context, 0, intent, PendingIntentFlags.mutable())
+    }
+
+    @JvmStatic
+    fun hangupIntent(context: Context): PendingIntent {
+      val intent = Intent(context, ActiveCallServiceReceiver::class.java)
+      intent.setAction(ActiveCallServiceReceiver.ACTION_HANGUP)
+      return PendingIntent.getBroadcast(context, 0, intent, PendingIntentFlags.mutable())
+    }
+
+    @JvmStatic
+    fun sendAudioManagerCommand(context: Context, command: AudioManagerCommand) {
+      activeCallManagerLock.withLock {
+        if (activeCallManager == null) {
+          activeCallManager = ActiveCallManager(context)
+        }
+        activeCallManager!!.sendAudioCommand(command)
+      }
+    }
+
+    @JvmStatic
+    fun changePowerButtonReceiver(context: Context, register: Boolean) {
+      activeCallManagerLock.withLock {
+        if (activeCallManager == null) {
+          activeCallManager = ActiveCallManager(context)
+        }
+        activeCallManager!!.changePowerButton(register)
+      }
+    }
   }
 
   private val callManager = ApplicationDependencies.getSignalCallManager()
@@ -70,8 +148,8 @@ class ActiveCallManager(
     webSocketKeepAliveTask.start()
   }
 
-  fun stop() {
-    Log.v(TAG, "stop")
+  fun shutdown() {
+    Log.v(TAG, "shutdown")
 
     uncaughtExceptionHandlerManager?.unregister()
     uncaughtExceptionHandlerManager = null
@@ -194,6 +272,10 @@ class ActiveCallManager(
     override val notificationId: Int
       get() = CallNotificationBuilder.WEBRTC_NOTIFICATION
 
+    @get:RequiresApi(30)
+    override val serviceType: Int
+      get() = ServiceInfo.FOREGROUND_SERVICE_TYPE_CAMERA or ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE
+
     private var hangUpRtcOnDeviceCallAnswered: PhoneStateListener? = null
     private var notification: Notification? = null
     private var notificationDisposable: Disposable = Disposable.disposed()
@@ -222,6 +304,11 @@ class ActiveCallManager(
     }
 
     override fun getForegroundNotification(intent: Intent): Notification {
+      if (SafeForegroundService.isStopping(intent)) {
+        Log.v(TAG, "Service is stopping, using generic stopping notification")
+        return CallNotificationBuilder.getStoppingNotification(this)
+      }
+
       if (notification != null) {
         return notification!!
       } else if (!intent.hasExtra(EXTRA_RECIPIENT_ID)) {

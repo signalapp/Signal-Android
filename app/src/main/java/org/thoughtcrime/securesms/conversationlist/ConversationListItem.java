@@ -238,7 +238,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     joinMembersDisposable.dispose();
 
     SpannableStringBuilder suffix = null;
-    if (appendSystemContactIcon && recipient.get().isSystemContact() && !recipient.get().showVerified()) {
+    if (appendSystemContactIcon && recipient.get().isSystemContact() && !recipient.get().getShowVerified()) {
       suffix = new SpannableStringBuilder();
       Drawable drawable = ContextUtil.requireDrawable(getContext(), R.drawable.symbol_person_circle_24);
       drawable.setTint(ContextCompat.getColor(getContext(), R.color.signal_colorOnSurface));
@@ -508,9 +508,6 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     } else if (thread.isFailed()) {
       deliveryStatusIndicator.setNone();
       alertView.setFailed();
-    } else if (thread.isPendingInsecureSmsFallback()) {
-      deliveryStatusIndicator.setNone();
-      alertView.setPendingApproval();
     } else {
       alertView.setNone();
 

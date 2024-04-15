@@ -38,7 +38,6 @@ public class DeviceContactsInputStreamTest {
         Optional.of("ultramarine"),
         Optional.of(new VerifiedMessage(new SignalServiceAddress(aciFirst.get(), e164First), generateIdentityKey(), VerifiedMessage.VerifiedState.DEFAULT, System.currentTimeMillis())),
         Optional.of(generateProfileKey()),
-        false,
         Optional.of(0),
         Optional.of(0),
         false
@@ -52,7 +51,6 @@ public class DeviceContactsInputStreamTest {
         Optional.of("ultramarine"),
         Optional.of(new VerifiedMessage(new SignalServiceAddress(aciSecond.get(), e164Second), generateIdentityKey(), VerifiedMessage.VerifiedState.DEFAULT, System.currentTimeMillis())),
         Optional.of(generateProfileKey()),
-        false,
         Optional.of(0),
         Optional.of(0),
         false

@@ -191,36 +191,36 @@ public final class LiveRecipient {
   }
 
   private @NonNull Recipient fetchAndCacheRecipientFromDisk(@NonNull RecipientId id) {
-    RecipientRecord  record  = recipientTable.getRecord(id);
-    RecipientDetails details;
+    RecipientRecord record = recipientTable.getRecord(id);
+
+    Recipient recipient;
     if (record.getGroupId() != null) {
-      details = getGroupRecipientDetails(record);
+      recipient = getGroupRecipientDetails(record);
     } else if (record.getDistributionListId() != null) {
-      details = getDistributionListRecipientDetails(record);
+      recipient = getDistributionListRecipientDetails(record);
     } else if (record.getCallLinkRoomId() != null) {
-      details = getCallLinkRecipientDetails(record);
-    }else {
-      details = RecipientDetails.forIndividual(context, record);
+      recipient = getCallLinkRecipientDetails(record);
+    } else {
+      recipient = RecipientCreator.forIndividual(context, record);
     }
 
-    Recipient recipient = new Recipient(record.getId(), details, true);
     RecipientIdCache.INSTANCE.put(recipient);
     return recipient;
   }
 
   @WorkerThread
-  private @NonNull RecipientDetails getGroupRecipientDetails(@NonNull RecipientRecord record) {
+  private @NonNull Recipient getGroupRecipientDetails(@NonNull RecipientRecord record) {
     Optional<GroupRecord> groupRecord = groupDatabase.getGroup(record.getId());
 
     if (groupRecord.isPresent()) {
-      return RecipientDetails.forGroup(groupRecord.get(), record);
+      return RecipientCreator.forGroup(groupRecord.get(), record);
     } else {
-      return RecipientDetails.forUnknown();
+      return RecipientCreator.forUnknownGroup(record.getId(), record.getGroupId());
     }
   }
 
   @WorkerThread
-  private @NonNull RecipientDetails getDistributionListRecipientDetails(@NonNull RecipientRecord record) {
+  private @NonNull Recipient getDistributionListRecipientDetails(@NonNull RecipientRecord record) {
     DistributionListRecord groupRecord = distributionListTables.getList(Objects.requireNonNull(record.getDistributionListId()));
 
     // TODO [stories] We'll have to see what the perf is like for very large distribution lists. We may not be able to support fetching all the members.
@@ -228,23 +228,23 @@ public final class LiveRecipient {
       String            title    = groupRecord.isUnknown() ? null : groupRecord.getName();
       List<RecipientId> members  = Stream.of(groupRecord.getMembers()).filterNot(RecipientId::isUnknown).toList();
 
-      return RecipientDetails.forDistributionList(title, members, record);
+      return RecipientCreator.forDistributionList(title, members, record);
     }
 
-    return RecipientDetails.forDistributionList(null, null, record);
+    return RecipientCreator.forDistributionList(null, null, record);
   }
 
   @WorkerThread
-  private @NonNull RecipientDetails getCallLinkRecipientDetails(@NonNull RecipientRecord record) {
+  private @NonNull Recipient getCallLinkRecipientDetails(@NonNull RecipientRecord record) {
     CallLinkTable.CallLink callLink = SignalDatabase.callLinks().getCallLinkByRoomId(Objects.requireNonNull(record.getCallLinkRoomId()));
 
     if (callLink != null) {
       String name = callLink.getState().getName();
 
-      return RecipientDetails.forCallLink(name, record, callLink.getAvatarColor());
+      return RecipientCreator.forCallLink(name, record, callLink.getAvatarColor());
     }
 
-    return RecipientDetails.forCallLink(null, record, AvatarColor.UNKNOWN);
+    return RecipientCreator.forCallLink(null, record, AvatarColor.UNKNOWN);
   }
 
   synchronized void set(@NonNull Recipient recipient) {

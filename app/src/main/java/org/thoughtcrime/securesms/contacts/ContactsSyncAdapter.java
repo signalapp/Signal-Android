@@ -79,10 +79,6 @@ public class ContactsSyncAdapter extends AbstractThreadedSyncAdapter {
 
       try {
         ContactDiscovery.refresh(context, recipients, true);
-        
-        if (Util.isDefaultSmsProvider(context)) {
-          ContactDiscovery.syncRecipientInfoWithSystemContacts(context);
-        }
       } catch (IOException e) {
         Log.w(TAG, "Failed to refresh! Scheduling for later.", e);
         ApplicationDependencies.getJobManager().add(new DirectoryRefreshJob(true));

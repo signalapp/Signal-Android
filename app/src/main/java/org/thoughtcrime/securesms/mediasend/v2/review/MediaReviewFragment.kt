@@ -205,7 +205,6 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
 
       if (sharedViewModel.isContactSelectionRequired) {
         val args = MultiselectForwardFragmentArgs(
-          false,
           title = R.string.MediaReviewFragment__send_to,
           storySendRequirements = sharedViewModel.getStorySendRequirements(),
           isSearchEnabled = !sharedViewModel.isStory(),
@@ -544,8 +543,10 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
       return
     }
     val uri = mediaItem.uri
-    videoTimeLine.unregisterPlayerOnRangeChangeListener()
-    videoTimeLine.setInput(uri)
+    val updatedInputInTimeline = videoTimeLine.setInput(uri)
+    if (updatedInputInTimeline) {
+      videoTimeLine.unregisterDragListener()
+    }
     val size: Long = tryGetUriSize(requireContext(), uri, Long.MAX_VALUE)
     val maxSend = sharedViewModel.getMediaConstraints().getVideoMaxSize(requireContext())
     if (size > maxSend) {
@@ -665,7 +666,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
   }
 
   private fun computeEmojiButtonAnimators(state: MediaSelectionState): List<Animator> {
-    return if (state.isTouchEnabled && !state.isStory && !SignalStore.settings().isPreferSystemEmoji) {
+    return if (state.isTouchEnabled && !SignalStore.settings().isPreferSystemEmoji && state.viewOnceToggleState != MediaSelectionState.ViewOnceToggleState.ONCE) {
       listOf(MediaReviewAnimatorController.getFadeInAnimator(emojiButton))
     } else {
       listOf(MediaReviewAnimatorController.getFadeOutAnimator(emojiButton))

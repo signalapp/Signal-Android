@@ -148,9 +148,15 @@
       function onQuerySubmitted() {
         const query = editor.getValue();
 
-        document.getElementById('query').value = query
+        document.getElementById('query').value = query;
 
         let history = getQueryHistory();
+
+        if (history.length > 0 && history[0] === query) {
+          console.log('Query already at the top of the history, not saving.');
+          return;
+        }
+
         history.unshift(query);
         history = history.slice(0, 25);
 

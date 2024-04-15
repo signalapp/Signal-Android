@@ -41,6 +41,7 @@ sealed class CallLogRow {
     val children: Set<Long>,
     val searchQuery: String?,
     val callLinkPeekInfo: CallLinkPeekInfo?,
+    val canUserBeginCall: Boolean,
     override val id: Id = Id.Call(children)
   ) : CallLogRow()
 

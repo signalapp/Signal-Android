@@ -17,7 +17,7 @@ class ConversationListTabRepository {
         .messages
         .getUnreadStoryThreadRecipientIds()
         .map { Recipient.resolved(it) }
-        .filterNot { it.shouldHideStory() }
+        .filterNot { it.shouldHideStory }
         .size
         .toLong()
     }

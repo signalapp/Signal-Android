@@ -142,7 +142,8 @@ public class SignalServiceMessageReceiver {
   }
 
   /**
-   * Retrieves a SignalServiceAttachment.
+   * Retrieves a SignalServiceAttachment. The encrypted data is written to @{code destination}, and then an {@link InputStream} is returned that decrypts the
+   * contents of the destination file, giving you access to the plaintext content.
    *
    * @param pointer The {@link SignalServiceAttachmentPointer}
    *                received in a {@link SignalServiceDataMessage}.

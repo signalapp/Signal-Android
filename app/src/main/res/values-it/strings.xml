@@ -45,8 +45,6 @@
     <string name="ApplicationPreferencesActivity_disable_passphrase">Disabilitare la password?</string>
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Saranno sbloccati definitivamente Signal e le relative notifiche</string>
     <string name="ApplicationPreferencesActivity_disable">Disabilita</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Disattivare i messaggi e le chiamate di Signal?</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Disabilita i messaggi e le chiamate di Signal annullando la tua registrazione sul server. Dovrai registrare di nuovo il tuo numero di telefono per usare messaggi e chiamate di Signal in futuro.</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Errore durante la connessione al server!</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">I PIN sono richiesti per il blocco registrazione. Per disabilitare i PIN, disabilita prima il blocco registrazione.</string>
     <string name="ApplicationPreferencesActivity_pin_created">PIN creato.</string>
@@ -309,7 +307,6 @@
     <string name="ConversationItem_error_network_not_delivered">Invio non riuscito</string>
     <string name="ConversationItem_group_action_left">%1$s ha lasciato il gruppo.</string>
     <string name="ConversationItem_send_paused">Invio in pausa</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Invio fallito, tocca per invio non sicuro</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Tornare agli SMS non cifrati?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Tornare agli MMS non cifrati?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Questo messaggio <b>non</b> sarà criptato perché il destinatario non è più un utente Signal.\n\nInviare un messaggio non sicuro?</string>
@@ -1989,6 +1986,8 @@
     <string name="AboutSheet__about">Info</string>
     <!-- Text displayed in title for you -->
     <string name="AboutSheet__you">Tu</string>
+    <!-- Displays the name of a contact. The first placeholder is the name the user has assigned to that contact, the second name is the name the contact assigned to themselves -->
+    <string name="AboutSheet__user_set_display_name_and_profile_name">%1$s (%2$s)</string>
 
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call">
@@ -2925,6 +2924,18 @@
     <string name="EditProfileFragment__group_name">Nome del gruppo</string>
     <string name="EditProfileFragment__group_description">Descrizione gruppo</string>
   <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
+    <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_title">Aggiorna Signal</string>
+    <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_body">Questa versione di Signal è scaduta. Aggiorna subito l\'app per continuare a usare Signal.</string>
+    <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
+    <string name="EditProfileFragment_deprecated_dialog_update_button">Aggiorna</string>
+    <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_title">Dispositivo non registrato</string>
+    <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_body">Questo dispositivo non è più registrato. Registralo di nuovo per poter modificare il tuo account.</string>
+    <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
+    <string name="EditProfileFragment_unregistered_dialog_reregister_button">Registra di nuovo</string>
 
     <!-- EditProfileNameFragment -->
     <string name="EditProfileNameFragment_your_name">Il tuo nome</string>
@@ -3019,7 +3030,6 @@
         <item>Altro</item>
         <item>Pagamenti (MobileCoin)</item>
         <item>Donazioni e Badge Signal</item>
-        <item>Esportazione SMS</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Invio log di debug per Signal Android</string>
@@ -3664,8 +3674,6 @@
     <string name="verify_display_fragment_context_menu__compare_with_clipboard">Confronta con gli appunti</string>
 
     <!-- reminder_header -->
-    <string name="reminder_header_push_title">Attiva i messaggi e le chiamate con Signal</string>
-    <string name="reminder_header_push_text">Migliora la tua esperienza nel comunicare.</string>
     <string name="reminder_header_service_outage_text">Signal sta riscontrando problemi tecnici. Stiamo lavorando per ripristinare il servizio nel minor tempo possibile.</string>
     <string name="reminder_header_progress">%1$d%%</string>
     <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user\'s contacts -->
@@ -3962,6 +3970,8 @@
     <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Hai bisogno dell\'accesso al tuo vecchio dispositivo.</string>
     <string name="TransferOrRestoreFragment__restore_from_backup">Ripristina da backup</string>
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Ripristina i tuoi messaggi da un backup locale. Se non lo ripristini ora, non sarai in grado di ripristinarlo in seguito</string>
+    <!-- Button label for more options -->
+    <string name="TransferOrRestoreFragment__more_options">Più opzioni</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
     <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Apri Signal sul tuo vecchio telefono Android</string>
@@ -4719,7 +4729,7 @@
     <string name="ConversationSettingsFragment__disappearing_messages">Messaggi a scomparsa</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">Suoni e notifiche</string>
   <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
-    <string name="ConversationSettingsFragment__contact_details">Dettagli contatto</string>
+    <string name="ConversationSettingsFragment__contact_details">Info del contatto sul telefono</string>
     <string name="ConversationSettingsFragment__view_safety_number">Mostra codice di sicurezza</string>
     <string name="ConversationSettingsFragment__block">Blocca</string>
     <string name="ConversationSettingsFragment__block_group">Blocca gruppo</string>
@@ -5570,7 +5580,7 @@
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Accettando una richiesta di messaggio</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Avendole nei contatti del tuo telefono</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Avere il contatto della persona nella rubrica del proprio telefono</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Le tue connessioni possono vedere il tuo nome e la tua foto, così come i post su \"La mia Storia\", a meno che tu non decida di nasconderli a qualcuno."</string>
     <!-- Clickable option to add a viewer to a custom story -->
@@ -6653,6 +6663,46 @@
     <string name="FindByActivity__qr_scan_button">Scansiona codice QR</string>
     <!-- Content of a dialog indicating that we could not perform the requested action because we encountered a network error. -->
     <string name="FindByActivity__network_error_dialog">Si è verificato un errore di rete. Riprova più tardi.</string>
+
+    <!-- Title for an alert letting someone know that one of their linked devices is inactive. -->
+    <string name="LinkedDeviceInactiveMegaphone_title">Dispositivo collegato inattivo</string>
+    <!-- Body for an alert letting someone know that one of their linked devices is inactive. The string placeholder is the name of the device, and the number placeholder is the number of days before device is unlinked. -->
+    <plurals name="LinkedDeviceInactiveMegaphone_body">
+        <item quantity="one">Per continuare a tenere \"%1$s\" collegato, devi aprire Signal su quel dispositivo entro %2$d giorno.</item>
+        <item quantity="other">Per continuare a tenere \"%1$s\" collegato, devi aprire Signal su quel dispositivo entro %2$d giorni.</item>
+    </plurals>
+    <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the user will opt out of all future alerts. -->
+    <string name="LinkedDeviceInactiveMegaphone_dont_remind_button_label">Non ricordarmelo</string>
+    <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the alert will be dismissed. -->
+    <string name="LinkedDeviceInactiveMegaphone_got_it_button_label">Capito</string>
+
+    <!-- NicknameFragment -->
+    <!-- Title displayed at the top of the screen -->
+    <string name="NicknameActivity__nickname">Soprannome</string>
+    <!-- Subtitle displayed under title -->
+    <string name="NicknameActivity__nicknames_amp_notes">Nicknames &amp; notes are stored with Signal and end-to-end encrypted. They are only visible to you.</string>
+    <!-- Field label for given name -->
+    <string name="NicknameActivity__first_name">Nome</string>
+    <!-- Content description for first name clear button -->
+    <string name="NicknameActivity__clear_first_name">Rimuovi nome</string>
+    <!-- Field label for family name -->
+    <string name="NicknameActivity__last_name">Cognome</string>
+    <!-- Content description for last name clear button -->
+    <string name="NicknameActivity__clear_last_name">Rimuovi cognome</string>
+    <!-- Field label for note -->
+    <string name="NicknameActivity__note">Appunti</string>
+    <!-- Button label to save -->
+    <string name="NicknameActivity__save">Salva</string>
+    <!-- Dialog title for note and name deletion -->
+    <string name="NicknameActivity__delete_nickname">Delete?</string>
+    <!-- Dialog message for note and name deletion -->
+    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">This will permanently delete any nickname and note you’ve set.</string>
+
+    <!-- ViewNoteBottomSheetDialogFragment -->
+    <!-- Sheet title -->
+    <string name="ViewNoteSheet__note">Appunti</string>
+    <!-- Content description for opening the note editor -->
+    <string name="ViewNoteSheet__edit_note">Modifica appunti</string>
 
     <!-- EOF -->
 </resources>

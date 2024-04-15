@@ -45,8 +45,6 @@
     <string name="ApplicationPreferencesActivity_disable_passphrase">Parolayı devre dışı bırak?</string>
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Bu işlem Signal ve ileti bildirimlerinin kilidini kalıcı olarak açacaktır.</string>
     <string name="ApplicationPreferencesActivity_disable">Devre dışı bırak</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signal iletilerini ve aramalarını devre dışı bırak?</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Sunucudaki kaydını silerek Signal mesajlarını ve aramalarını devre dışı bırak. Bu özellikleri gelecekte yeniden kullanabilmen için telefon numaranı tekrar kaydetmen gerekir.</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Sunucuya bağlanırken hata!</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Kayıt kilidi için PIN gereklidir. PIN\'i devre dışı bırakmak için, lütfen ilk önce kayıt kilidini devre dışı bırakın.</string>
     <string name="ApplicationPreferencesActivity_pin_created">PIN oluşturuldu.</string>
@@ -309,7 +307,6 @@
     <string name="ConversationItem_error_network_not_delivered">Gönderme başarısız</string>
     <string name="ConversationItem_group_action_left">%1$s gruptan ayrıldı.</string>
     <string name="ConversationItem_send_paused">Gönderim duraklatıldı</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Gönderme başarısız oldu, şifresiz göndermek için dokunun</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Şifrelenmemiş SMS\'e geri dönülsün mü?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Şifrelenmemiş MMS\'e geri dönülsün mü?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Alıcı artık Signal kullanıcısı olmadığı için bu ileti <b>ŞİFRELENMEYECEKTİR</b>.\n\nŞifresiz olarak gönder?</string>
@@ -1975,7 +1972,7 @@
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
     <string name="AboutSheet__no_direct_message">%1$s kişisinden doğrudan mesaj yok</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
-    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s sistem kişilerin arasında</string>
+    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s telefon rehberinde</string>
     <!-- Notice in a row when user has no groups in common -->
     <string name="AboutSheet__you_have_no_groups_in_common">Ortak grubunuz yok</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
@@ -1989,6 +1986,8 @@
     <string name="AboutSheet__about">Hakkında</string>
     <!-- Text displayed in title for you -->
     <string name="AboutSheet__you">Siz</string>
+    <!-- Displays the name of a contact. The first placeholder is the name the user has assigned to that contact, the second name is the name the contact assigned to themselves -->
+    <string name="AboutSheet__user_set_display_name_and_profile_name">%1$s (%2$s)</string>
 
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call">
@@ -2925,6 +2924,18 @@
     <string name="EditProfileFragment__group_name">Grup adı</string>
     <string name="EditProfileFragment__group_description">Grup tanımı</string>
   <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
+    <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_title">Signal\'i Güncelle</string>
+    <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_body">Signal\'in bu sürümü kullanım dışı kaldı. Signal\'i kullanmaya devam etmek için şimdi güncelle.</string>
+    <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
+    <string name="EditProfileFragment_deprecated_dialog_update_button">Güncelle</string>
+    <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_title">Cihaz kayıtlı değil</string>
+    <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_body">Bu cihaz artık kayıtlı değil. Hesabında değişiklik yapmak için yeniden kaydol.</string>
+    <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
+    <string name="EditProfileFragment_unregistered_dialog_reregister_button">Tekrar kaydet</string>
 
     <!-- EditProfileNameFragment -->
     <string name="EditProfileNameFragment_your_name">Adınız</string>
@@ -3019,7 +3030,6 @@
         <item>Diğer</item>
         <item>Ödemeler (MobileCoin)</item>
         <item>Bağışlar &amp; Rozetler</item>
-        <item>SMS ile Dışa Aktarma</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android Hata Ayıklama Günlüğü Gönderimi</string>
@@ -3664,8 +3674,6 @@
     <string name="verify_display_fragment_context_menu__compare_with_clipboard">Pano ile karşılaştır</string>
 
     <!-- reminder_header -->
-    <string name="reminder_header_push_title">Signal iletilerini ve aramalarını etkinleştir</string>
-    <string name="reminder_header_push_text">İletişim deneyiminizi yükseltin.</string>
     <string name="reminder_header_service_outage_text">Signal teknik sorunlar yaşıyor. Hizmeti olabildiğince çabuk düzeltmek için sıkı çalışıyoruz.</string>
     <string name="reminder_header_progress">%%%1$d</string>
     <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user\'s contacts -->
@@ -3962,6 +3970,8 @@
     <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Eski cihazınıza erişiminiz olmalıdır.</string>
     <string name="TransferOrRestoreFragment__restore_from_backup">Yedekten geri yükle</string>
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">İletilerinizi yerel bir yedekten geri yükleyin. Eğer şimdi yüklemezseniz, daha sonra yükleyemezsiniz.</string>
+    <!-- Button label for more options -->
+    <string name="TransferOrRestoreFragment__more_options">Daha fazla seçenek</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
     <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Eski Android cihazınızda Signal\'i açın</string>
@@ -4168,7 +4178,7 @@
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
     <string name="ReviewCard__s_recently_changed">%1$s yakın zamanda profil adını %2$s iken %3$s olarak değiştirdi</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
-    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s sistem kişilerin arasında</string>
+    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s telefon rehberinde</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s katıldı</string>
@@ -4719,7 +4729,7 @@
     <string name="ConversationSettingsFragment__disappearing_messages">Kaybolan iletiler</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">Sesler ve bildirimler</string>
   <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
-    <string name="ConversationSettingsFragment__contact_details">Kişi ayrıntıları</string>
+    <string name="ConversationSettingsFragment__contact_details">Telefon rehberi bilgileri</string>
     <string name="ConversationSettingsFragment__view_safety_number">Güvenlik numarasını görüntüle</string>
     <string name="ConversationSettingsFragment__block">Engelle</string>
     <string name="ConversationSettingsFragment__block_group">Grubu engelle</string>
@@ -5570,7 +5580,7 @@
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Bir mesaj isteğini kabul etmek</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Bunları sistem kişilerin arasında bulundurmak</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Bunları telefon rehberinde bulundurmak</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Bağlantıların, adını ve fotoğrafını görebilir ve onlardan gizlemediğin sürece \"Hikayem\" kısmındaki gönderileri görüntüleyebilir."</string>
     <!-- Clickable option to add a viewer to a custom story -->
@@ -6653,6 +6663,46 @@
     <string name="FindByActivity__qr_scan_button">Karekodu Tara</string>
     <!-- Content of a dialog indicating that we could not perform the requested action because we encountered a network error. -->
     <string name="FindByActivity__network_error_dialog">Bir ağ hatasıyla karşılaşıldı. Daha sonra tekrar deneyin.</string>
+
+    <!-- Title for an alert letting someone know that one of their linked devices is inactive. -->
+    <string name="LinkedDeviceInactiveMegaphone_title">Etkin olmayan bağlı cihaz</string>
+    <!-- Body for an alert letting someone know that one of their linked devices is inactive. The string placeholder is the name of the device, and the number placeholder is the number of days before device is unlinked. -->
+    <plurals name="LinkedDeviceInactiveMegaphone_body">
+        <item quantity="one">\"%1$s\" adresini bağlı tutmak için bu cihazda %2$d gün içinde Signal\'i aç.</item>
+        <item quantity="other">\"%1$s\" adresini bağlı tutmak için bu cihazda %2$d gün içinde Signal\'i aç.</item>
+    </plurals>
+    <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the user will opt out of all future alerts. -->
+    <string name="LinkedDeviceInactiveMegaphone_dont_remind_button_label">Bana hatırlatma</string>
+    <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the alert will be dismissed. -->
+    <string name="LinkedDeviceInactiveMegaphone_got_it_button_label">Anladım</string>
+
+    <!-- NicknameFragment -->
+    <!-- Title displayed at the top of the screen -->
+    <string name="NicknameActivity__nickname">Takma ad</string>
+    <!-- Subtitle displayed under title -->
+    <string name="NicknameActivity__nicknames_amp_notes">Nicknames &amp; notes are stored with Signal and end-to-end encrypted. They are only visible to you.</string>
+    <!-- Field label for given name -->
+    <string name="NicknameActivity__first_name">Ad</string>
+    <!-- Content description for first name clear button -->
+    <string name="NicknameActivity__clear_first_name">Adı sil</string>
+    <!-- Field label for family name -->
+    <string name="NicknameActivity__last_name">Soyad</string>
+    <!-- Content description for last name clear button -->
+    <string name="NicknameActivity__clear_last_name">Soyadını sil</string>
+    <!-- Field label for note -->
+    <string name="NicknameActivity__note">Not</string>
+    <!-- Button label to save -->
+    <string name="NicknameActivity__save">Kaydet</string>
+    <!-- Dialog title for note and name deletion -->
+    <string name="NicknameActivity__delete_nickname">Delete?</string>
+    <!-- Dialog message for note and name deletion -->
+    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">This will permanently delete any nickname and note you’ve set.</string>
+
+    <!-- ViewNoteBottomSheetDialogFragment -->
+    <!-- Sheet title -->
+    <string name="ViewNoteSheet__note">Not</string>
+    <!-- Content description for opening the note editor -->
+    <string name="ViewNoteSheet__edit_note">Notu düzenle</string>
 
     <!-- EOF -->
 </resources>

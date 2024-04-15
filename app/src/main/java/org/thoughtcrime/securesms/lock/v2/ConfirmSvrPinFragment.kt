@@ -107,7 +107,7 @@ internal class ConfirmSvrPinFragment : BaseSvrPinFragment<ConfirmSvrPinViewModel
     MaterialAlertDialogBuilder(requireContext()).setTitle(R.string.ConfirmKbsPinFragment__pin_creation_failed)
       .setMessage(R.string.ConfirmKbsPinFragment__your_pin_was_not_saved)
       .setCancelable(false)
-      .setPositiveButton(R.string.ok) { d: DialogInterface, w: Int ->
+      .setPositiveButton(android.R.string.ok) { d: DialogInterface, w: Int ->
         d.dismiss()
         markMegaphoneSeenIfNecessary()
         requireActivity().setResult(Activity.RESULT_CANCELED)

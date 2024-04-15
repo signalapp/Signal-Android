@@ -196,6 +196,11 @@ public class SendViewedReceiptJob extends BaseJob {
       return;
     }
 
+    if (recipient.isReleaseNotes()) {
+      Log.w(TAG, "Refusing to send receipts to release channel");
+      return;
+    }
+
     SignalServiceMessageSender  messageSender  = ApplicationDependencies.getSignalServiceMessageSender();
     SignalServiceAddress        remoteAddress  = RecipientUtil.toSignalServiceAddress(context, recipient);
     SignalServiceReceiptMessage receiptMessage = new SignalServiceReceiptMessage(SignalServiceReceiptMessage.Type.VIEWED,
@@ -205,7 +210,7 @@ public class SendViewedReceiptJob extends BaseJob {
     SendMessageResult result = messageSender.sendReceipt(remoteAddress,
                                                          UnidentifiedAccessUtil.getAccessFor(context, Recipient.resolved(recipientId)),
                                                          receiptMessage,
-                                                         recipient.needsPniSignature());
+                                                         recipient.getNeedsPniSignature());
 
     if (Util.hasItems(foundMessageIds)) {
       SignalDatabase.messageLog().insertIfPossible(recipientId, timestamp, result, ContentHint.IMPLICIT, foundMessageIds, false);

@@ -22,8 +22,6 @@
     <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
     <uses-permission android:name="org.thoughtcrime.securesms.ACCESS_SECRETS"/>
     <uses-permission android:name="android.permission.READ_PROFILE"/>
-    <uses-permission android:name="android.permission.BROADCAST_WAP_PUSH"
-                     tools:ignore="ProtectedPermissions"/>
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
     <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
@@ -45,16 +43,10 @@
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.READ_CALL_STATE"/>
 
-    <!-- For sending/receiving events -->
-    <uses-permission android:name="android.permission.WRITE_CALENDAR"/>
-    <uses-permission android:name="android.permission.READ_CALENDAR"/>
-
-
     <!-- Normal -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
@@ -71,17 +63,14 @@
     <uses-permission android:name="android.permission.INSTALL_SHORTCUT"/>
     <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
 
-    <!-- For fixing MMS -->
+    <!-- For device transfer -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
-
-    <!-- Set image as wallpaper -->
-    <uses-permission android:name="android.permission.SET_WALLPAPER"/>
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
 
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BROADCAST_STICKY" />
 
-    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
     <uses-permission android:name="android.permission.RAISED_THREAD_PRIORITY" />
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"/>
@@ -173,10 +162,6 @@
                   android:host="linkdevice"/>
         </intent-filter>
     </activity>
-
-    <activity android:name=".preferences.MmsPreferencesActivity"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-              android:exported="false" />
 
     <activity android:name=".sharing.interstitial.ShareInterstitialActivity"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
@@ -719,6 +704,7 @@
               android:theme="@style/TextSecure.DarkNoActionBar"
               android:windowSoftInputMode="stateAlwaysHidden|adjustNothing"
               android:launchMode="singleTop"
+              android:screenOrientation="portrait"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize|uiMode"
               android:exported="false"/>
 
@@ -940,12 +926,12 @@
     </activity>
 
     <activity android:name="org.thoughtcrime.securesms.webrtc.VoiceCallShare"
-              android:exported="true"
-              android:excludeFromRecents="true"
-              android:permission="android.permission.CALL_PHONE"
-              android:theme="@style/NoAnimation.Theme.BlackScreen"
-              android:launchMode="singleTask"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize">
+        android:exported="true"
+        android:excludeFromRecents="true"
+        android:permission="android.permission.CALL_PHONE"
+        android:theme="@style/NoAnimation.Theme.BlackScreen"
+        android:launchMode="singleTask"
+        android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize">
 
         <intent-filter>
             <action android:name="android.intent.action.VIEW" />
@@ -976,7 +962,16 @@
               android:windowSoftInputMode="stateVisible|adjustResize"
               android:exported="false"/>
 
+    <activity android:name=".backup.v2.ui.MessageBackupsTestRestoreActivity"
+              android:theme="@style/TextSecure.LightRegistrationTheme"
+              android:exported="false"/>
+
     <activity android:name=".profiles.manage.EditProfileActivity"
+              android:theme="@style/TextSecure.LightTheme"
+              android:windowSoftInputMode="stateVisible|adjustResize"
+              android:exported="false"/>
+
+    <activity android:name=".nicknames.NicknameActivity"
               android:theme="@style/TextSecure.LightTheme"
               android:windowSoftInputMode="stateVisible|adjustResize"
               android:exported="false"/>
@@ -1106,12 +1101,6 @@
 
     <service
         android:enabled="true"
-        android:name=".service.webrtc.WebRtcCallService"
-        android:foregroundServiceType="camera|microphone"
-        android:exported="false"/>
-
-    <service
-        android:enabled="true"
         android:exported="false"
         android:name=".service.KeyCachingService" />
 
@@ -1150,19 +1139,6 @@
         </intent-filter>
     </receiver>
 
-    <service android:name=".service.QuickResponseService"
-             android:permission="android.permission.SEND_RESPOND_VIA_MESSAGE"
-             android:exported="true" >
-        <intent-filter>
-            <action android:name="android.intent.action.RESPOND_VIA_MESSAGE" />
-            <category android:name="android.intent.category.DEFAULT" />
-            <data android:scheme="sms" />
-            <data android:scheme="smsto" />
-            <data android:scheme="mms" />
-            <data android:scheme="mmsto" />
-        </intent-filter>
-    </service>
-
     <service android:name=".service.AccountAuthenticatorService" android:exported="true">
         <intent-filter>
             <action android:name="android.accounts.AccountAuthenticator" />
@@ -1199,13 +1175,6 @@
             <action android:name="com.google.firebase.MESSAGING_EVENT" />
         </intent-filter>
     </service>
-
-    <receiver android:name=".service.SmsDeliveryListener"
-              android:exported="true">
-        <intent-filter>
-            <action android:name="org.thoughtcrime.securesms.services.MESSAGE_SENT"/>
-        </intent-filter>
-    </receiver>
 
     <receiver android:name=".notifications.MarkReadReceiver"
               android:enabled="true"
@@ -1266,11 +1235,6 @@
               android:exported="false"
               android:grantUriPermissions="true" />
 
-    <provider android:name=".providers.MmsBodyProvider"
-              android:grantUriPermissions="true"
-              android:exported="false"
-              android:authorities="${applicationId}.mms" />
-
     <provider android:name="androidx.core.content.FileProvider"
               android:authorities="${applicationId}.fileprovider"
               android:exported="false"
@@ -1313,6 +1277,12 @@
     </receiver>
 
     <receiver android:name=".service.LocalBackupListener" android:exported="false">
+        <intent-filter>
+            <action android:name="android.intent.action.BOOT_COMPLETED" />
+        </intent-filter>
+    </receiver>
+
+    <receiver android:name=".service.AnalyzeDatabaseAlarmListener" android:exported="false">
         <intent-filter>
             <action android:name="android.intent.action.BOOT_COMPLETED" />
         </intent-filter>
@@ -1382,7 +1352,11 @@
         </intent-filter>
     </receiver>
 
-    <service android:name="org.thoughtcrime.securesms.service.webrtc.ActiveCallManager$ActiveCallForegroundService" android:exported="false" />
+    <service
+        android:name="org.thoughtcrime.securesms.service.webrtc.ActiveCallManager$ActiveCallForegroundService"
+        android:exported="false"
+        android:foregroundServiceType="camera|microphone" />
+
     <receiver android:name="org.thoughtcrime.securesms.service.webrtc.ActiveCallManager$ActiveCallServiceReceiver" android:exported="false">
         <intent-filter>
             <action android:name="org.thoughtcrime.securesms.service.webrtc.ActiveCallAction.DENY"/>

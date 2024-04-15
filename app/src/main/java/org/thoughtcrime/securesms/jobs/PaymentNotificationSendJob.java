@@ -101,9 +101,9 @@ public final class PaymentNotificationSendJob extends BaseJob {
                                                                    .withPayment(new SignalServiceDataMessage.Payment(new SignalServiceDataMessage.PaymentNotification(payment.getReceipt(), payment.getNote()), null))
                                                                    .build();
 
-    SendMessageResult sendMessageResult = messageSender.sendDataMessage(address, unidentifiedAccess, ContentHint.DEFAULT, dataMessage, IndividualSendEvents.EMPTY, false, recipient.needsPniSignature());
+    SendMessageResult sendMessageResult = messageSender.sendDataMessage(address, unidentifiedAccess, ContentHint.DEFAULT, dataMessage, IndividualSendEvents.EMPTY, false, recipient.getNeedsPniSignature());
 
-    if (recipient.needsPniSignature()) {
+    if (recipient.getNeedsPniSignature()) {
       SignalDatabase.pendingPniSignatureMessages().insertIfNecessary(recipientId, dataMessage.getTimestamp(), sendMessageResult);
     }
 

@@ -177,6 +177,11 @@ public final class MessageDetailsFragment extends FullScreenDialogFragment imple
     }
   }
 
+  @Override
+  public void onInternalDetailsClicked(MessageRecord record) {
+    InternalMessageDetailsFragment.create(record).show(getParentFragmentManager(), InternalMessageDetailsFragment.class.getSimpleName());
+  }
+
   public interface Callback {
     void onMessageDetailsFragmentDismissed();
   }

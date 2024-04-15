@@ -43,8 +43,9 @@ class CallLogRepository(
 
   fun markAllCallEventsRead() {
     SignalExecutors.BOUNDED_IO.execute {
+      val latestCall = SignalDatabase.calls.getLatestCall() ?: return@execute
       SignalDatabase.calls.markAllCallEventsRead()
-      ApplicationDependencies.getJobManager().add(CallLogEventSendJob.forMarkedAsRead(System.currentTimeMillis()))
+      ApplicationDependencies.getJobManager().add(CallLogEventSendJob.forMarkedAsRead(latestCall))
     }
   }
 
@@ -95,10 +96,10 @@ class CallLogRepository(
   fun deleteAllCallLogsOnOrBeforeNow(): Single<Int> {
     return Single.fromCallable {
       SignalDatabase.rawDatabase.withinTransaction {
-        val latestTimestamp = SignalDatabase.calls.getLatestTimestamp()
-        SignalDatabase.calls.deleteNonAdHocCallEventsOnOrBefore(latestTimestamp)
-        SignalDatabase.callLinks.deleteNonAdminCallLinksOnOrBefore(latestTimestamp)
-        ApplicationDependencies.getJobManager().add(CallLogEventSendJob.forClearHistory(latestTimestamp))
+        val latestCall = SignalDatabase.calls.getLatestCall() ?: return@withinTransaction
+        SignalDatabase.calls.deleteNonAdHocCallEventsOnOrBefore(latestCall.timestamp)
+        SignalDatabase.callLinks.deleteNonAdminCallLinksOnOrBefore(latestCall.timestamp)
+        ApplicationDependencies.getJobManager().add(CallLogEventSendJob.forClearHistory(latestCall))
       }
 
       SignalDatabase.callLinks.getAllAdminCallLinksExcept(emptySet())

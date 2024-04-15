@@ -35,6 +35,39 @@ fun SupportSQLiteDatabase.getTableRowCount(table: String): Int {
   }
 }
 
+fun SupportSQLiteDatabase.getAllTables(): List<String> {
+  return SqlUtil.getAllTables(this)
+}
+
+/**
+ * Returns a list of objects that represent the table definitions in the database. Basically the table name and then the SQL that was used to create it.
+ */
+fun SupportSQLiteDatabase.getAllTableDefinitions(): List<CreateStatement> {
+  return this.query("SELECT name, sql FROM sqlite_schema WHERE type = 'table' AND sql NOT NULL AND name != 'sqlite_sequence'")
+    .readToList { cursor ->
+      CreateStatement(
+        name = cursor.requireNonNullString("name"),
+        statement = cursor.requireNonNullString("sql").replace("      ", "")
+      )
+    }
+    .filterNot { it.name.startsWith("sqlite_stat") }
+    .sortedBy { it.name }
+}
+
+/**
+ * Returns a list of objects that represent the index definitions in the database. Basically the index name and then the SQL that was used to create it.
+ */
+fun SupportSQLiteDatabase.getAllIndexDefinitions(): List<CreateStatement> {
+  return this.query("SELECT name, sql FROM sqlite_schema WHERE type = 'index' AND sql NOT NULL")
+    .readToList { cursor ->
+      CreateStatement(
+        name = cursor.requireNonNullString("name"),
+        statement = cursor.requireNonNullString("sql")
+      )
+    }
+    .sortedBy { it.name }
+}
+
 fun SupportSQLiteDatabase.getForeignKeys(): List<ForeignKeyConstraint> {
   return SqlUtil.getAllTables(this)
     .map { table ->
@@ -425,4 +458,9 @@ data class Index(
   val name: String,
   val table: String,
   val columns: List<String>
+)
+
+data class CreateStatement(
+  val name: String,
+  val statement: String
 )

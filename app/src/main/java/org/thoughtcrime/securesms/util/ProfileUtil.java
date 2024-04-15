@@ -392,7 +392,7 @@ public final class ProfileUtil {
 
   private static @NonNull SignalServiceAddress toSignalServiceAddress(@NonNull Context context, @NonNull Recipient recipient) throws IOException {
     if (recipient.getRegistered() == RecipientTable.RegisteredState.NOT_REGISTERED) {
-      if (recipient.hasServiceId()) {
+      if (recipient.getHasServiceId()) {
         return new SignalServiceAddress(recipient.requireServiceId(), recipient.getE164().orElse(null));
       } else {
         throw new IOException(recipient.getId() + " not registered!");

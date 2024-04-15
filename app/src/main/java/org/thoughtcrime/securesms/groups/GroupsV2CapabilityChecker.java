@@ -29,6 +29,6 @@ public final class GroupsV2CapabilityChecker {
   static boolean allHaveServiceId(@NonNull Collection<RecipientId> recipientIds) {
     return Recipient.resolvedList(recipientIds)
                     .stream()
-                    .allMatch(Recipient::hasServiceId);
+                    .allMatch(Recipient::getHasServiceId);
   }
 }

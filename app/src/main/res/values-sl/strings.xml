@@ -45,8 +45,6 @@
     <string name="ApplicationPreferencesActivity_disable_passphrase">Izključim geslo?</string>
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">S tem boste odklenili aplikacijo Signal in obvestila o sporočilih.</string>
     <string name="ApplicationPreferencesActivity_disable">Onemogoči</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Res želite izklopiti sporočila in klice Signal?</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">S tem boste izklopili sporočila in klice Signal ter se odjavili s strežnika. Za ponovno uporabo se boste morali zopet prijaviti s svojo telefonsko številko.</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Napaka pri povezavi s strežnikom!</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN je potreben za zaklep registracije. Če ga želite odstraniti, morate najprej izklopiti zaklep registracije.</string>
     <string name="ApplicationPreferencesActivity_pin_created">PIN je bil ustvarjen.</string>
@@ -311,7 +309,6 @@
     <string name="ConversationItem_error_network_not_delivered">Pošiljanje ni uspelo</string>
     <string name="ConversationItem_group_action_left">%1$s je zapustil_a skupino.</string>
     <string name="ConversationItem_send_paused">Pošiljanje ustavljeno</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Pošiljanje ni uspelo, tapnite za nezavarovan SMS</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Preklopim na nešifriran SMS?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Preklopim na nešifriran MMS?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">To sporočilo <b>ne bo</b> šifrirano, ker prejemnik_ca ni več uporabnik_ca aplikacije Signal.\n\nŽelite poslati nešifrirano?</string>
@@ -2123,7 +2120,7 @@
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
     <string name="AboutSheet__no_direct_message">Z osebo %1$s ni neposrednih sporočil</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
-    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s je med vašimi sistemskimi stiki</string>
+    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s je med vašimi telefonskimi stiki</string>
     <!-- Notice in a row when user has no groups in common -->
     <string name="AboutSheet__you_have_no_groups_in_common">Nimata skupne skupine</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
@@ -2139,6 +2136,8 @@
     <string name="AboutSheet__about">Več</string>
     <!-- Text displayed in title for you -->
     <string name="AboutSheet__you">Vi</string>
+    <!-- Displays the name of a contact. The first placeholder is the name the user has assigned to that contact, the second name is the name the contact assigned to themselves -->
+    <string name="AboutSheet__user_set_display_name_and_profile_name">%1$s (%2$s)</string>
 
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call">
@@ -3113,6 +3112,18 @@
     <string name="EditProfileFragment__group_name">Ime skupine</string>
     <string name="EditProfileFragment__group_description">Opis skupine</string>
   <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
+    <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_title">Posodobite aplikacijo Signal</string>
+    <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_body">Ta različica aplikacije Signal je potekla. Posodobite zdaj, če želite še naprej uporabljati Signal.</string>
+    <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
+    <string name="EditProfileFragment_deprecated_dialog_update_button">Posodobitev</string>
+    <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_title">Naprava ni registrirana</string>
+    <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_body">Ta naprava ni več registrirana. Ponovno se registrirajte, če želite spreminjati svoj račun.</string>
+    <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
+    <string name="EditProfileFragment_unregistered_dialog_reregister_button">Ponovna prijava</string>
 
     <!-- EditProfileNameFragment -->
     <string name="EditProfileNameFragment_your_name">Vaše ime</string>
@@ -3207,7 +3218,6 @@
         <item>Drugo</item>
         <item>Plačila (MobileCoin)</item>
         <item>Donacije in značke</item>
-        <item>Izvoz SMS-ov</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signalova sistemska zabeležba v sistemu Android</string>
@@ -3862,8 +3872,6 @@
     <string name="verify_display_fragment_context_menu__compare_with_clipboard">Primerjaj preko odložišča</string>
 
     <!-- reminder_header -->
-    <string name="reminder_header_push_title">Vklopite sporočila in klice Signal</string>
-    <string name="reminder_header_push_text">Izboljšajte kvaliteto svoje komunikacije!</string>
     <string name="reminder_header_service_outage_text">Prihaja do tehničnih težav v omrežju Signal. Ekipa vzdrževalcev se trudi, da bodo čimprej odpravljene.</string>
     <string name="reminder_header_progress">%1$d%%</string>
     <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user\'s contacts -->
@@ -4174,6 +4182,8 @@
     <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Potrebujete dostop do vaše stare naprave.</string>
     <string name="TransferOrRestoreFragment__restore_from_backup">Obnovi iz varnostne kopije</string>
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Obnovite svoja sporočila iz lokalne varnostne kopije. Če tega ne storite zdaj, kasneje ne bo več mogoče.</string>
+    <!-- Button label for more options -->
+    <string name="TransferOrRestoreFragment__more_options">Več možnosti</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
     <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Odprite Signal na vaši stari androidni napravi</string>
@@ -4384,7 +4394,7 @@
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
     <string name="ReviewCard__s_recently_changed">%1$s je pred kratkim spremenil_a svoje ime profila iz %2$s v %3$s</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
-    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s je med vašimi sistemskimi stiki</string>
+    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s je med vašimi telefonskimi stiki</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">Pridružil_a se je %1$s</string>
@@ -4943,7 +4953,7 @@
     <string name="ConversationSettingsFragment__disappearing_messages">Izginjajoča sporočila</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">Zvoki &amp; obvestila</string>
   <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
-    <string name="ConversationSettingsFragment__contact_details">Podrobnosti o stiku</string>
+    <string name="ConversationSettingsFragment__contact_details">Informacije o telefonskem stiku</string>
     <string name="ConversationSettingsFragment__view_safety_number">Pregled varnostnega števila</string>
     <string name="ConversationSettingsFragment__block">Blokiraj</string>
     <string name="ConversationSettingsFragment__block_group">Blokiraj skupino</string>
@@ -5820,7 +5830,7 @@
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">sprejeli njihovo prošnjo za pogovor</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">jih imeli med svojimi sistemskimi stiki</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Imate jih med telefonskimi stiki</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Vaše povezave lahko vidijo vaše ime in fotografijo ter objave pod \"Moja zgodba\", razen če jih skrijete pred njimi."</string>
     <!-- Clickable option to add a viewer to a custom story -->
@@ -6943,6 +6953,48 @@
     <string name="FindByActivity__qr_scan_button">Skeniraj kodo QR</string>
     <!-- Content of a dialog indicating that we could not perform the requested action because we encountered a network error. -->
     <string name="FindByActivity__network_error_dialog">Prišlo je do napake na omrežju. Poskusite spet kasneje.</string>
+
+    <!-- Title for an alert letting someone know that one of their linked devices is inactive. -->
+    <string name="LinkedDeviceInactiveMegaphone_title">Neaktivna povezana naprava</string>
+    <!-- Body for an alert letting someone know that one of their linked devices is inactive. The string placeholder is the name of the device, and the number placeholder is the number of days before device is unlinked. -->
+    <plurals name="LinkedDeviceInactiveMegaphone_body">
+        <item quantity="one">Če želite ohraniti povezavo z napravo \"%1$s\", odprite Signal v tej napravi v %2$d dnevu.</item>
+        <item quantity="two">Če želite ohraniti povezavo z napravo \"%1$s\", odprite Signal v tej napravi v %2$d dneh.</item>
+        <item quantity="few">Če želite ohraniti povezavo z napravo \"%1$s\", odprite Signal v tej napravi v %2$d dneh.</item>
+        <item quantity="other">Če želite ohraniti povezavo z napravo \"%1$s\", odprite Signal v tej napravi v %2$d dneh.</item>
+    </plurals>
+    <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the user will opt out of all future alerts. -->
+    <string name="LinkedDeviceInactiveMegaphone_dont_remind_button_label">Ne opominjaj me</string>
+    <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the alert will be dismissed. -->
+    <string name="LinkedDeviceInactiveMegaphone_got_it_button_label">Razumem</string>
+
+    <!-- NicknameFragment -->
+    <!-- Title displayed at the top of the screen -->
+    <string name="NicknameActivity__nickname">Vzdevek</string>
+    <!-- Subtitle displayed under title -->
+    <string name="NicknameActivity__nicknames_amp_notes">Nicknames &amp; notes are stored with Signal and end-to-end encrypted. They are only visible to you.</string>
+    <!-- Field label for given name -->
+    <string name="NicknameActivity__first_name">Ime</string>
+    <!-- Content description for first name clear button -->
+    <string name="NicknameActivity__clear_first_name">Izbriši ime</string>
+    <!-- Field label for family name -->
+    <string name="NicknameActivity__last_name">Priimek</string>
+    <!-- Content description for last name clear button -->
+    <string name="NicknameActivity__clear_last_name">Izbriši priimek</string>
+    <!-- Field label for note -->
+    <string name="NicknameActivity__note">Zaznamek</string>
+    <!-- Button label to save -->
+    <string name="NicknameActivity__save">Shrani</string>
+    <!-- Dialog title for note and name deletion -->
+    <string name="NicknameActivity__delete_nickname">Delete?</string>
+    <!-- Dialog message for note and name deletion -->
+    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">This will permanently delete any nickname and note you’ve set.</string>
+
+    <!-- ViewNoteBottomSheetDialogFragment -->
+    <!-- Sheet title -->
+    <string name="ViewNoteSheet__note">Zaznamek</string>
+    <!-- Content description for opening the note editor -->
+    <string name="ViewNoteSheet__edit_note">Uredi zaznamek</string>
 
     <!-- EOF -->
 </resources>

@@ -93,7 +93,7 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
     stopwatch.split("resolve-ensure")
 
     val requests: List<Observable<Pair<Recipient, ServiceResponse<ProfileAndCredential>>>> = recipients
-      .filter { it.hasServiceId() }
+      .filter { it.hasServiceId }
       .map { ProfileUtil.retrieveProfile(context, it, getRequestType(it)).toObservable() }
     stopwatch.split("requests")
 

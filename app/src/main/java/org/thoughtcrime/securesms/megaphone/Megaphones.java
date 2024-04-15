@@ -14,7 +14,6 @@ import androidx.core.app.NotificationManagerCompat;
 import com.annimon.stream.Stream;
 import com.bumptech.glide.Glide;
 
-import org.checkerframework.checker.units.qual.A;
 import org.signal.core.util.MapUtil;
 import org.signal.core.util.SetUtil;
 import org.signal.core.util.TranslationDetection;
@@ -26,9 +25,9 @@ import org.thoughtcrime.securesms.database.model.MegaphoneRecord;
 import org.thoughtcrime.securesms.database.model.RemoteMegaphoneRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
-import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues;
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.keyvalue.protos.LeastActiveLinkedDevice;
 import org.thoughtcrime.securesms.lock.SignalPinReminderDialog;
 import org.thoughtcrime.securesms.lock.SignalPinReminders;
 import org.thoughtcrime.securesms.lock.v2.CreateSvrPinActivity;
@@ -116,6 +115,7 @@ public final class Megaphones {
       put(Event.ONBOARDING, shouldShowOnboardingMegaphone(context) ? ALWAYS : NEVER);
       put(Event.TURN_OFF_CENSORSHIP_CIRCUMVENTION, shouldShowTurnOffCircumventionMegaphone() ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(7)) : NEVER);
       put(Event.REMOTE_MEGAPHONE, shouldShowRemoteMegaphone(records) ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(1)) : NEVER);
+      put(Event.LINKED_DEVICE_INACTIVE, shouldShowLinkedDeviceInactiveMegaphone() ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(3)): NEVER);
       put(Event.PIN_REMINDER, new SignalPinReminderSchedule());
       put(Event.SET_UP_YOUR_USERNAME, shouldShowSetUpYourUsernameMegaphone(records) ? ALWAYS : NEVER);
 
@@ -123,6 +123,18 @@ public final class Megaphones {
       put(Event.ADD_A_PROFILE_PHOTO, shouldShowAddAProfilePhotoMegaphone(context) ? ALWAYS : NEVER);
       put(Event.PNP_LAUNCH, shouldShowPnpLaunchMegaphone() ? ALWAYS : NEVER);
     }};
+  }
+
+  private static boolean shouldShowLinkedDeviceInactiveMegaphone() {
+    LeastActiveLinkedDevice device = SignalStore.misc().getLeastActiveLinkedDevice();
+    if (device == null) {
+      return false;
+    }
+
+    long expiringAt = device.lastActiveTimestamp + FeatureFlags.linkedDeviceLifespan();
+    long expiringIn = Math.max(expiringAt - System.currentTimeMillis(), 0);
+
+    return expiringIn < TimeUnit.DAYS.toMillis(7) && expiringIn > 0;
   }
 
   private static @NonNull Megaphone forRecord(@NonNull Context context, @NonNull MegaphoneRecord record) {
@@ -141,6 +153,8 @@ public final class Megaphones {
         return buildAddAProfilePhotoMegaphone(context);
       case TURN_OFF_CENSORSHIP_CIRCUMVENTION:
         return buildTurnOffCircumventionMegaphone(context);
+      case LINKED_DEVICE_INACTIVE:
+        return buildLinkedDeviceInactiveMegaphone(context);
       case REMOTE_MEGAPHONE:
         return buildRemoteMegaphone(context);
       case BACKUP_SCHEDULE_PERMISSION:
@@ -154,6 +168,29 @@ public final class Megaphones {
       default:
         throw new IllegalArgumentException("Event not handled!");
     }
+  }
+
+  private static Megaphone buildLinkedDeviceInactiveMegaphone(Context context) {
+    LeastActiveLinkedDevice device = SignalStore.misc().getLeastActiveLinkedDevice();
+    if (device == null) {
+      throw new IllegalStateException("No linked device to show");
+    }
+
+    long expiringAt   = device.lastActiveTimestamp + FeatureFlags.linkedDeviceLifespan();
+    long expiringIn   = Math.max(expiringAt - System.currentTimeMillis(), 0);
+    int  expiringDays = (int) TimeUnit.MILLISECONDS.toDays(expiringIn);
+
+    return new Megaphone.Builder(Event.LINKED_DEVICE_INACTIVE, Megaphone.Style.BASIC)
+        .setTitle(R.string.LinkedDeviceInactiveMegaphone_title)
+        .setBody(context.getResources().getQuantityString(R.plurals.LinkedDeviceInactiveMegaphone_body, expiringDays, device.name, expiringDays))
+        .setImage(R.drawable.ic_inactive_linked_device)
+        .setActionButton(R.string.LinkedDeviceInactiveMegaphone_got_it_button_label, (megaphone, listener) -> {
+          listener.onMegaphoneSnooze(Event.LINKED_DEVICE_INACTIVE);
+        })
+        .setSecondaryButton(R.string.LinkedDeviceInactiveMegaphone_dont_remind_button_label, (megaphone, listener) -> {
+          listener.onMegaphoneCompleted(Event.LINKED_DEVICE_INACTIVE);
+        })
+        .build();
   }
 
   private static @NonNull Megaphone buildPinsForAllMegaphone(@NonNull MegaphoneRecord record) {
@@ -405,13 +442,13 @@ public final class Megaphones {
   }
 
   private static boolean shouldShowAddAProfilePhotoMegaphone(@NonNull Context context) {
-    if (SignalStore.misc().hasEverHadAnAvatar()) {
+    if (SignalStore.misc().getHasEverHadAnAvatar()) {
       return false;
     }
 
     boolean hasAnAvatar = AvatarHelper.hasAvatar(context, Recipient.self().getId());
     if (hasAnAvatar) {
-      SignalStore.misc().markHasEverHadAnAvatar();
+      SignalStore.misc().setHasEverHadAnAvatar(true);
       return false;
     }
 
@@ -481,6 +518,7 @@ public final class Megaphones {
     DONATE_Q2_2022("donate_q2_2022"),
     TURN_OFF_CENSORSHIP_CIRCUMVENTION("turn_off_censorship_circumvention"),
     REMOTE_MEGAPHONE("remote_megaphone"),
+    LINKED_DEVICE_INACTIVE("linked_device_inactive"),
     BACKUP_SCHEDULE_PERMISSION("backup_schedule_permission"),
     SET_UP_YOUR_USERNAME("set_up_your_username"),
     PNP_LAUNCH("pnp_launch"),

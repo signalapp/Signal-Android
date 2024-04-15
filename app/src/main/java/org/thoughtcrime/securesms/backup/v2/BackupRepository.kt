@@ -70,13 +70,13 @@ object BackupRepository {
       )
     }
 
-    val exportState = ExportState()
+    val exportState = ExportState(System.currentTimeMillis())
 
     writer.use {
       writer.write(
         BackupInfo(
           version = VERSION,
-          backupTimeMs = System.currentTimeMillis()
+          backupTimeMs = exportState.backupTime
         )
       )
       // Note: Without a transaction, we may export inconsistent state. But because we have a transaction,
@@ -118,7 +118,7 @@ object BackupRepository {
     val masterKey = SignalStore.svr().getOrCreateMasterKey()
     val key = MessageBackupKey(masterKey.serialize(), Aci.parseFromBinary(selfData.aci.toByteArray()))
 
-    return MessageBackup.validate(key, inputStreamFactory, length)
+    return MessageBackup.validate(key, MessageBackup.Purpose.REMOTE_BACKUP, inputStreamFactory, length)
   }
 
   fun import(length: Long, inputStreamFactory: () -> InputStream, selfData: SelfData, plaintext: Boolean = false) {
@@ -396,7 +396,7 @@ object BackupRepository {
   }
 }
 
-class ExportState {
+class ExportState(val backupTime: Long) {
   val recipientIds = HashSet<Long>()
   val threadIds = HashSet<Long>()
 }

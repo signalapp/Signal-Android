@@ -79,7 +79,7 @@ public class AvatarSelectionActivity extends AppCompatActivity implements Camera
 
   @Override
   public void onCameraError() {
-    Toast.makeText(this, R.string.error, Toast.LENGTH_SHORT).show();
+    Toast.makeText(this, R.string.default_error_msg, Toast.LENGTH_SHORT).show();
     finish();
   }
 

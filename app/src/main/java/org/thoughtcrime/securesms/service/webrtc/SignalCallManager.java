@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.service.webrtc;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.ResultReceiver;
 
@@ -13,6 +14,7 @@ import androidx.annotation.Nullable;
 import com.annimon.stream.Stream;
 
 import org.greenrobot.eventbus.EventBus;
+import org.signal.core.util.ListUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.util.Pair;
@@ -125,14 +127,14 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
 
   @Nullable private final CallManager callManager;
 
-  private final Context                     context;
-  private final ExecutorService             serviceExecutor;
-  private final Executor                    networkExecutor;
-  private final LockManager                 lockManager;
+  private final Context         context;
+  private final ExecutorService serviceExecutor;
+  private final Executor        networkExecutor;
+  private final LockManager     lockManager;
 
   private WebRtcServiceState            serviceState;
   private RxStore<WebRtcEphemeralState> ephemeralStateStore;
-  private boolean                       needsToSetSelfUuid  = true;
+  private boolean                       needsToSetSelfUuid = true;
 
   private RxStore<Map<RecipientId, CallLinkPeekInfo>> linkPeekInfoStore;
 
@@ -182,8 +184,8 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
   }
 
   private void process(@NonNull ProcessAction action) {
-    Throwable t = new Throwable();
-    String caller = t.getStackTrace().length > 1 ? t.getStackTrace()[1].getMethodName() : "unknown";
+    Throwable t      = new Throwable();
+    String    caller = t.getStackTrace().length > 1 ? t.getStackTrace()[1].getMethodName() : "unknown";
 
     if (callManager == null) {
       Log.w(TAG, "Unable to process action, call manager is not initialized");
@@ -993,7 +995,20 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
         TurnServerInfo turnServerInfo = ApplicationDependencies.getSignalServiceAccountManager().getTurnServerInfo();
 
         List<PeerConnection.IceServer> iceServers = new LinkedList<>();
-        for (String url : turnServerInfo.getUrls()) {
+        for (String url : ListUtil.emptyIfNull(turnServerInfo.getUrlsWithIps())) {
+          if (url.startsWith("turn")) {
+            iceServers.add(PeerConnection.IceServer.builder(url)
+                                                   .setUsername(turnServerInfo.getUsername())
+                                                   .setPassword(turnServerInfo.getPassword())
+                                                   .setHostname(turnServerInfo.getHostname())
+                                                   .createIceServer());
+          } else {
+            iceServers.add(PeerConnection.IceServer.builder(url)
+                                                   .setHostname(turnServerInfo.getHostname())
+                                                   .createIceServer());
+          }
+        }
+        for (String url : ListUtil.emptyIfNull(turnServerInfo.getUrls())) {
           if (url.startsWith("turn")) {
             iceServers.add(PeerConnection.IceServer.builder(url)
                                                    .setUsername(turnServerInfo.getUsername())
@@ -1151,6 +1166,10 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
     return new SignalCallLinkManager(Objects.requireNonNull(callManager));
   }
 
+  public void relaunchPipOnForeground() {
+    ApplicationDependencies.getAppForegroundObserver().addListener(new RelaunchListener(ApplicationDependencies.getAppForegroundObserver().isForegrounded()));
+  }
+
   private void processSendMessageFailureWithChangeDetection(@NonNull RemotePeer remotePeer,
                                                             @NonNull ProcessAction failureProcessAction)
   {
@@ -1167,6 +1186,44 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
         return failureProcessAction.process(s, p);
       }
     });
+  }
+
+  private class RelaunchListener implements AppForegroundObserver.Listener {
+    private boolean canRelaunch;
+
+    public RelaunchListener(boolean isForegrounded) {
+      canRelaunch = !isForegrounded;
+    }
+
+    @Override
+    public void onForeground() {
+      if (canRelaunch) {
+        if (isSystemPipEnabledAndAvailable()) {
+          process((s, p) -> {
+            WebRtcViewModel.State callState = s.getCallInfoState().getCallState();
+
+            if (callState.getInOngoingCall()) {
+              Intent intent = new Intent(context, WebRtcCallActivity.class);
+              intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+              intent.putExtra(WebRtcCallActivity.EXTRA_LAUNCH_IN_PIP, true);
+              context.startActivity(intent);
+            }
+
+            return s;
+          });
+        }
+        ApplicationDependencies.getAppForegroundObserver().removeListener(this);
+      }
+    }
+
+    @Override
+    public void onBackground() {
+      canRelaunch = true;
+    }
+
+    private boolean isSystemPipEnabledAndAvailable() {
+      return Build.VERSION.SDK_INT >= 26 && context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_PICTURE_IN_PICTURE);
+    }
   }
 
   interface ProcessAction {

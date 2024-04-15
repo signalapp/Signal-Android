@@ -136,15 +136,15 @@ public class TextSecureSessionStore implements SignalServiceSessionStore {
     try (SignalSessionLock.Lock unused = ReentrantSessionLock.INSTANCE.acquire()) {
       Recipient recipient = Recipient.resolved(recipientId);
 
-      if (recipient.hasAci()) {
+      if (recipient.getHasAci()) {
         archiveSession(new SignalProtocolAddress(recipient.requireAci().toString(), deviceId));
       }
 
-      if (recipient.hasPni()) {
+      if (recipient.getHasPni()) {
         archiveSession(new SignalProtocolAddress(recipient.requirePni().toString(), deviceId));
       }
 
-      if (recipient.hasE164()) {
+      if (recipient.getHasE164()) {
         archiveSession(new SignalProtocolAddress(recipient.requireE164(), deviceId));
       }
     }

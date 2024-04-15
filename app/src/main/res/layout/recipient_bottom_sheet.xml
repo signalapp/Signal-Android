@@ -120,7 +120,7 @@
             <include layout="@layout/dsl_divider_item" />
 
             <TextView
-                android:id="@+id/rbs_block_button"
+                android:id="@+id/rbs_nickname_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?selectableItemBackground"
@@ -129,44 +129,10 @@
                 android:minHeight="56dp"
                 android:paddingStart="@dimen/dsl_settings_gutter"
                 android:paddingEnd="@dimen/dsl_settings_gutter"
-                android:text="@string/RecipientBottomSheet_block"
+                android:text="@string/NicknameActivity__nickname"
                 android:textAppearance="@style/Signal.Text.BodyLarge"
                 android:visibility="gone"
-                app:drawableStartCompat="@drawable/ic_block_tinted_24"
-                app:drawableTint="@color/icon_tint_color_primary_enabled_selector"
-                tools:visibility="visible" />
-
-            <TextView
-                android:id="@+id/rbs_unblock_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="?selectableItemBackground"
-                android:drawablePadding="16dp"
-                android:gravity="center_vertical"
-                android:minHeight="56dp"
-                android:paddingStart="@dimen/dsl_settings_gutter"
-                android:paddingEnd="@dimen/dsl_settings_gutter"
-                android:text="@string/RecipientBottomSheet_unblock"
-                android:textAppearance="@style/Signal.Text.BodyLarge"
-                android:visibility="gone"
-                app:drawableStartCompat="@drawable/ic_block_tinted_24"
-                app:drawableTint="@color/icon_tint_color_primary_enabled_selector"
-                tools:visibility="visible" />
-
-            <TextView
-                android:id="@+id/rbs_remove_from_group_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="?selectableItemBackground"
-                android:drawablePadding="16dp"
-                android:gravity="center_vertical"
-                android:minHeight="56dp"
-                android:paddingStart="@dimen/dsl_settings_gutter"
-                android:paddingEnd="@dimen/dsl_settings_gutter"
-                android:text="@string/RecipientBottomSheet_remove_from_group"
-                android:textAppearance="@style/Signal.Text.BodyLarge"
-                android:visibility="gone"
-                app:drawableStartCompat="@drawable/ic_leave_tinted_24"
+                app:drawableStartCompat="@drawable/symbol_edit_24"
                 app:drawableTint="@color/icon_tint_color_primary_enabled_selector"
                 tools:visibility="visible" />
 
@@ -183,7 +149,7 @@
                 android:text="@string/RecipientBottomSheet_make_admin"
                 android:textAppearance="@style/Signal.Text.BodyLarge"
                 android:visibility="gone"
-                app:drawableStartCompat="@drawable/ic_group_24"
+                app:drawableStartCompat="@drawable/symbol_key_24"
                 app:drawableTint="@color/icon_tint_color_primary_enabled_selector"
                 tools:visibility="visible" />
 
@@ -200,7 +166,7 @@
                 android:text="@string/RecipientBottomSheet_remove_as_admin"
                 android:textAppearance="@style/Signal.Text.BodyLarge"
                 android:visibility="gone"
-                app:drawableStartCompat="@drawable/ic_group_24"
+                app:drawableStartCompat="@drawable/symbol_key_slash_24"
                 app:drawableTint="@color/icon_tint_color_primary_enabled_selector"
                 tools:visibility="visible" />
 
@@ -216,13 +182,13 @@
                 android:paddingEnd="@dimen/dsl_settings_gutter"
                 android:textAppearance="@style/Signal.Text.BodyLarge"
                 android:visibility="gone"
-                app:drawableStartCompat="@drawable/ic_group_24"
+                app:drawableStartCompat="@drawable/symbol_plus_circle_24"
                 app:drawableTint="@color/icon_tint_color_primary_enabled_selector"
                 tools:text="@string/RecipientBottomSheet_add_to_a_group"
                 tools:visibility="visible" />
 
             <TextView
-                android:id="@+id/rbs_add_contact_button"
+                android:id="@+id/rbs_view_safety_number_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?selectableItemBackground"
@@ -231,10 +197,10 @@
                 android:minHeight="56dp"
                 android:paddingStart="@dimen/dsl_settings_gutter"
                 android:paddingEnd="@dimen/dsl_settings_gutter"
-                android:text="@string/RecipientBottomSheet_add_to_contacts"
+                android:text="@string/RecipientBottomSheet_view_safety_number"
                 android:textAppearance="@style/Signal.Text.BodyLarge"
                 android:visibility="gone"
-                app:drawableStartCompat="@drawable/ic_plus_24"
+                app:drawableStartCompat="@drawable/symbol_safety_number_24"
                 app:drawableTint="@color/icon_tint_color_primary_enabled_selector"
                 tools:visibility="visible" />
 
@@ -251,12 +217,12 @@
                 android:text="@string/ConversationSettingsFragment__contact_details"
                 android:textAppearance="@style/Signal.Text.BodyLarge"
                 android:visibility="gone"
-                app:drawableStartCompat="@drawable/ic_profile_circle_24"
+                app:drawableStartCompat="@drawable/symbol_person_circle_24"
                 app:drawableTint="@color/icon_tint_color_primary_enabled_selector"
                 tools:visibility="visible" />
 
             <TextView
-                android:id="@+id/rbs_view_safety_number_button"
+                android:id="@+id/rbs_add_contact_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?selectableItemBackground"
@@ -265,10 +231,61 @@
                 android:minHeight="56dp"
                 android:paddingStart="@dimen/dsl_settings_gutter"
                 android:paddingEnd="@dimen/dsl_settings_gutter"
-                android:text="@string/RecipientBottomSheet_view_safety_number"
+                android:text="@string/RecipientBottomSheet_add_to_contacts"
                 android:textAppearance="@style/Signal.Text.BodyLarge"
                 android:visibility="gone"
-                app:drawableStartCompat="@drawable/ic_safety_number_24"
+                app:drawableStartCompat="@drawable/symbol_plus_24"
+                app:drawableTint="@color/icon_tint_color_primary_enabled_selector"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/rbs_block_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?selectableItemBackground"
+                android:drawablePadding="16dp"
+                android:gravity="center_vertical"
+                android:minHeight="56dp"
+                android:paddingStart="@dimen/dsl_settings_gutter"
+                android:paddingEnd="@dimen/dsl_settings_gutter"
+                android:text="@string/RecipientBottomSheet_block"
+                android:textAppearance="@style/Signal.Text.BodyLarge"
+                android:visibility="gone"
+                app:drawableStartCompat="@drawable/symbol_block_24"
+                app:drawableTint="@color/icon_tint_color_primary_enabled_selector"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/rbs_unblock_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?selectableItemBackground"
+                android:drawablePadding="16dp"
+                android:gravity="center_vertical"
+                android:minHeight="56dp"
+                android:paddingStart="@dimen/dsl_settings_gutter"
+                android:paddingEnd="@dimen/dsl_settings_gutter"
+                android:text="@string/RecipientBottomSheet_unblock"
+                android:textAppearance="@style/Signal.Text.BodyLarge"
+                android:visibility="gone"
+                app:drawableStartCompat="@drawable/symbol_block_24"
+                app:drawableTint="@color/icon_tint_color_primary_enabled_selector"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/rbs_remove_from_group_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?selectableItemBackground"
+                android:drawablePadding="16dp"
+                android:gravity="center_vertical"
+                android:minHeight="56dp"
+                android:paddingStart="@dimen/dsl_settings_gutter"
+                android:paddingEnd="@dimen/dsl_settings_gutter"
+                android:text="@string/RecipientBottomSheet_remove_from_group"
+                android:textAppearance="@style/Signal.Text.BodyLarge"
+                android:visibility="gone"
+                app:drawableStartCompat="@drawable/symbol_minus_circle_24"
                 app:drawableTint="@color/icon_tint_color_primary_enabled_selector"
                 tools:visibility="visible" />
 

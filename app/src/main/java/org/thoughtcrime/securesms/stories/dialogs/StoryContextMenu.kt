@@ -168,7 +168,7 @@ object StoryContextMenu {
       isFromSelf = selectedStory.sender.isSelf,
       isToGroup = selectedStory.group != null,
       isFromReleaseChannel = selectedStory.sender.isReleaseNotes,
-      canHide = !selectedStory.sender.shouldHideStory(),
+      canHide = !selectedStory.sender.shouldHideStory,
       callbacks = object : Callbacks {
         override fun onHide() = onHide(selectedStory)
         override fun onUnhide() = throw NotImplementedError()

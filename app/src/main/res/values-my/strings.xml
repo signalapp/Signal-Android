@@ -45,8 +45,6 @@
     <string name="ApplicationPreferencesActivity_disable_passphrase">စကားဝှက်ပိတ်မလား?</string>
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">ယင်းသည် Signal နှင့် စာတိုအသိပေးချက်များကို အမြဲဖွင့်ထားပါလိမ့်မည်။</string>
     <string name="ApplicationPreferencesActivity_disable">ပိတ်ထားပါ</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signal စာတို နှင့် ဖုန်းခေါ်ဆိုမှုများကို ပိတ်မလား။</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Signal စာတိုနှင့် ဖုန်းခေါ်ဆိုမှုများကို ဆာဗာမှ စာရင်းပယ်ဖျက်ခြင်းဖြင့် ပိတ်လိုက်ပါပြီ။ နောက်နောင်တွင် ထပ်မံသုံးစွဲလိုပါက သင့်ဖုန်းနံပါတ်ဖြင့် ပြန်လည်စာရင်းသွင်းရန် လိုအပ်ပါလိမ့်မည်။</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">ဆာဗာနှင့် ဆက်သွယ်၍မရပါ။</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">မှတ်ပုံတင်မှု ပိတ်ထားရန်အတွက် ပင်နံပါတ်များလိုအပ်ပါသည်။ ပင်နံပါတ်များ ပိတ်ရန် ကျေးဇူးပြု၍ မှတ်ပုံတင်မှုပိတ်ထားခြင်းကို ဦးစွာပြန်ဖွင့်ပါ။</string>
     <string name="ApplicationPreferencesActivity_pin_created">ပင်နံပါတ် ဖန်တီးပြီးပါပြီ။</string>
@@ -308,7 +306,6 @@
     <string name="ConversationItem_error_network_not_delivered">ပို့ဆောင်မှု မအောင်မြင်ပါ</string>
     <string name="ConversationItem_group_action_left">%1$s အဖွဲ့မှထွက်သွားသည်။</string>
     <string name="ConversationItem_send_paused">áá±áá­á¯á·áá¾á¯áá­á¯ áááºááá·áºáá²á·áááº</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">ပို့ရန် မအောင်မြင်ပါ၊ လုံခြုံမှုမရှိသော အရန်အတွက် အသာထိပါ။</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">မလုံခြုံသောဖုန်းစာတိုပို့စနစ်ကိုပြန်သုံးမလား?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">မလုံခြုံသော ရုပ်သံပုံပါ စာပို့စနစ်ကို ပြန်သုံးမလား?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">သင်ပေးပို့သော သူသည် Signal <b></b>မသုံးတော့သဖြင့် ဤနည်းလမ်းဖြင့် စာတိုကို ပေးပို့၍မရနိုင်ပါ။ \n\n ရိုးရိုးစာတိုစနစ်ဖြင့်ပေးပို့မလား?</string>
@@ -1901,7 +1898,7 @@
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
     <string name="AboutSheet__no_direct_message">%1$s နှင့် တိုက်ရိုက်မက်ဆေ့ချ် မရှိပါ</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
-    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s သည် သင့်စနစ်ထဲရှိ အဆက်အသွယ်များတွင် ရှိပြီးဖြစ်သည်</string>
+    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s သည် သင့်ဖုန်းအဆက်အသွယ်များထဲတွင် ရှိနေသည်</string>
     <!-- Notice in a row when user has no groups in common -->
     <string name="AboutSheet__you_have_no_groups_in_common">သင်တို့နှစ်ဦးစလုံး ပါဝင်သောအဖွဲ့ မရှိပါ</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
@@ -1914,6 +1911,8 @@
     <string name="AboutSheet__about">အသုံးပြုသူအကြောင်း</string>
     <!-- Text displayed in title for you -->
     <string name="AboutSheet__you">သင်</string>
+    <!-- Displays the name of a contact. The first placeholder is the name the user has assigned to that contact, the second name is the name the contact assigned to themselves -->
+    <string name="AboutSheet__user_set_display_name_and_profile_name">%1$s (%2$s)</string>
 
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call">
@@ -2831,6 +2830,18 @@
     <string name="EditProfileFragment__group_name">အဖွဲ့နာမည်</string>
     <string name="EditProfileFragment__group_description">အဖွဲ့ ဖော်ပြချက်</string>
   <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
+    <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_title">Signal ကို အပ်ဒိတ်လုပ်ပါ။</string>
+    <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_body">ဤ Signal ဗားရှင်းသည် သက်တမ်းကုန်သွားပါပြီ။ Signal ကို ဆက်လက်သုံးစွဲရန် ယခု အပ်ဒိတ်လုပ်ပေးပါ။</string>
+    <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
+    <string name="EditProfileFragment_deprecated_dialog_update_button">အပ်ဒိတ်မယ်</string>
+    <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_title">စက်ကို မှတ်ပုံမတင်ထားပါ</string>
+    <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_body">ဤစက်ကို မှတ်ပုံတင်ထားခြင်း မရှိတော့ပါ။ သင့်အကောင့်ကို ပြောင်းလဲမှုများပြုလုပ်ရန် ပြန်လည်မှတ်ပုံတင်ပါ။</string>
+    <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
+    <string name="EditProfileFragment_unregistered_dialog_reregister_button">ပြန်လည်၍မှတ်ပုံတင်ခြင်းပြုလုပ်မည်</string>
 
     <!-- EditProfileNameFragment -->
     <string name="EditProfileNameFragment_your_name">သင့်အမည်</string>
@@ -2925,7 +2936,6 @@
         <item>အခြား</item>
         <item>ငွေပေးချေမှုများ (MobileCoin)</item>
         <item>လှူဒါန်းမှုများနှင့် ဘဲ့ဂျ်များ</item>
-        <item>SMS ထုတ်သိမ်းခြင်း</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android ပြစ်ချက်မှတ်တမ်း ပေးပို့ခြင်း</string>
@@ -3565,8 +3575,6 @@
     <string name="verify_display_fragment_context_menu__compare_with_clipboard">ကလစ်ဘုတ် နဲ့ ယှဥ်လိုက်ပါ</string>
 
     <!-- reminder_header -->
-    <string name="reminder_header_push_title">စာပို့ခြင်းနှင့် ဖုန်းခေါ်ဆိုမှုများကို Signal ဖြင့် လုပ်ဆောင်ပါ။</string>
-    <string name="reminder_header_push_text">သင့်ဆက်သွယ်မှုအတွေ့အကြုံကို အဆင့်မြှင့်လိုက်ပါ။</string>
     <string name="reminder_header_service_outage_text">Signal သည် နည်းပညာပိုင်းဆိုင်ရာ အခက်အခဲများ ကြုံတွေ့နေပါသည်။ ဝန်ဆောင်မှုများကို အမြန်ဆုံးပြန်လည်စတင်နိုင်ရန် ကျွနု်ပ်တို့ ကြိုးစားနေပါသည်။</string>
     <string name="reminder_header_progress">%1$d%%</string>
     <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user\'s contacts -->
@@ -3856,6 +3864,8 @@
     <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">သင့် စက်အဟောင်းအား အသုံးပြုခွင့် လိုအပ်ပါသည်။</string>
     <string name="TransferOrRestoreFragment__restore_from_backup">နောက်ခံအရန်မှ ပြန်လည်ရယူမယ်</string>
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">လိုကယ် နောက်ခံအရန်မှ သင့်မက်ဆေ့ချ်များ ပြန်လည်ရယူပါ။ ယခု ပြန်လည်မရယူလျှင် နောက်မှပြန်လည်မရယူနိုင်ပါ။</string>
+    <!-- Button label for more options -->
+    <string name="TransferOrRestoreFragment__more_options">နောက်ထပ် ရွေးစရာများ</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
     <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">သင့် Android ဖုန်းအဟောင်းပေါ်တွင် Signal ဖွင့်ပါ</string>
@@ -4060,7 +4070,7 @@
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
     <string name="ReviewCard__s_recently_changed">မကြာသေးမီက %1$s သည် သူ၏ ပရိုဖိုင်အမည်ကို %2$s မှ %3$s သို့ ပြောင်းခဲ့ပါသည်</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
-    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s သည် သင့်စနစ်ထဲရှိ အဆက်အသွယ်များတွင် ရှိပြီးဖြစ်သည်</string>
+    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s သည် သင့်ဖုန်းအဆက်အသွယ်များထဲတွင် ရှိနေသည်</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">အဖွဲ့ထဲ %1$s ၀င်ရောက်လာသည်။</string>
@@ -4607,7 +4617,7 @@
     <string name="ConversationSettingsFragment__disappearing_messages">ပျောက်ကွယ်မည့် မက်ဆေ့ချ်များ</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">အသံနှင့် အသိပေးချက်</string>
   <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
-    <string name="ConversationSettingsFragment__contact_details">အဆက်အသွယ် အသေးစိတ်</string>
+    <string name="ConversationSettingsFragment__contact_details">ဖုန်းအဆက်အသွယ် အချက်အလက်</string>
     <string name="ConversationSettingsFragment__view_safety_number">လုံခြုံရေးနံပါတ်ကိုကြည့်မယ်</string>
     <string name="ConversationSettingsFragment__block">ဘလော့ခ်ရန်</string>
     <string name="ConversationSettingsFragment__block_group">အဖွဲ့ကို ဘလော့ခ်ရန်</string>
@@ -5445,7 +5455,7 @@
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">မက်ဆေ့ချ် တောင်းဆိုချက်ကို လက်ခံခြင်း</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">သင့်စနစ်ထဲရှိ အဆက်အသွယ်များတွင် ၎င်းတို့ ရှိပြီးခြင်း</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">သင့်ဖုန်းအဆက်အသွယ်များထဲတွင် ၎င်းတို့ကိုထားရှိခြင်း</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"သင့်အဆက်အသွယ်များက သင့်အမည်နှင့် ဓာတ်ပုံကို မြင်နိုင်ပြီး ၎င်းတို့အတွက် မဝှက်ထားပါက \"ကျွန်ုပ်၏ စတိုရီ\" တွင် ပို့စ်များကို မြင်နိုင်ပါသည်။"</string>
     <!-- Clickable option to add a viewer to a custom story -->
@@ -6508,6 +6518,45 @@
     <string name="FindByActivity__qr_scan_button">QR ကုဒ်ကို စကင်ဖတ်မယ်</string>
     <!-- Content of a dialog indicating that we could not perform the requested action because we encountered a network error. -->
     <string name="FindByActivity__network_error_dialog">ကွန်ယက် အမှားတစ်ခုနှင့် ကြုံတွေ့ခဲ့သည်။ နောက်မှ ပြန်လည် ကြိုးစားပါ။</string>
+
+    <!-- Title for an alert letting someone know that one of their linked devices is inactive. -->
+    <string name="LinkedDeviceInactiveMegaphone_title">အသုံးပြုခြင်းမရှိသော ချိတ်ထားသည့် စက်များ</string>
+    <!-- Body for an alert letting someone know that one of their linked devices is inactive. The string placeholder is the name of the device, and the number placeholder is the number of days before device is unlinked. -->
+    <plurals name="LinkedDeviceInactiveMegaphone_body">
+        <item quantity="other">\"%1$s\" နှင့် ဆက်လက် လင့်ခ်ချိတ်ထားရန်၊  %2$d ရက်အတွင်း ထိုစက်တွင် Signal ကို ဖွင့်ပါ။</item>
+    </plurals>
+    <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the user will opt out of all future alerts. -->
+    <string name="LinkedDeviceInactiveMegaphone_dont_remind_button_label">သတိမပေးပါနှင့်</string>
+    <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the alert will be dismissed. -->
+    <string name="LinkedDeviceInactiveMegaphone_got_it_button_label">ရပြီ</string>
+
+    <!-- NicknameFragment -->
+    <!-- Title displayed at the top of the screen -->
+    <string name="NicknameActivity__nickname">အမည်ပြောင်</string>
+    <!-- Subtitle displayed under title -->
+    <string name="NicknameActivity__nicknames_amp_notes">Nicknames &amp; notes are stored with Signal and end-to-end encrypted. They are only visible to you.</string>
+    <!-- Field label for given name -->
+    <string name="NicknameActivity__first_name">အမည်အစ</string>
+    <!-- Content description for first name clear button -->
+    <string name="NicknameActivity__clear_first_name">အမည်၏ ပထမစကားလုံးကို ဖယ်ရှားရန်</string>
+    <!-- Field label for family name -->
+    <string name="NicknameActivity__last_name">အမည် နောက်ဆုံးစကားလုံး</string>
+    <!-- Content description for last name clear button -->
+    <string name="NicknameActivity__clear_last_name">အမည်၏ နောက်ဆုံးစကားလုံးကို ဖယ်ရှားရန်</string>
+    <!-- Field label for note -->
+    <string name="NicknameActivity__note">မှတ်ချက်</string>
+    <!-- Button label to save -->
+    <string name="NicknameActivity__save">သိမ်းရန်</string>
+    <!-- Dialog title for note and name deletion -->
+    <string name="NicknameActivity__delete_nickname">Delete?</string>
+    <!-- Dialog message for note and name deletion -->
+    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">This will permanently delete any nickname and note you’ve set.</string>
+
+    <!-- ViewNoteBottomSheetDialogFragment -->
+    <!-- Sheet title -->
+    <string name="ViewNoteSheet__note">မှတ်ချက်</string>
+    <!-- Content description for opening the note editor -->
+    <string name="ViewNoteSheet__edit_note">မှတ်ချက်ပြင်ဆင်တည်းဖြတ်မှု</string>
 
     <!-- EOF -->
 </resources>

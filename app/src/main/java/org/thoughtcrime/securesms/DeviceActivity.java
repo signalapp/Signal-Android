@@ -29,6 +29,7 @@ import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.signal.qr.kitkat.ScanListener;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.jobs.LinkedDeviceInactiveCheckJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.signal.core.util.Base64;
@@ -230,6 +231,8 @@ public class DeviceActivity extends PassphraseRequiredActivity
       @Override
       protected void onPostExecute(Integer result) {
         super.onPostExecute(result);
+
+        LinkedDeviceInactiveCheckJob.enqueue();
 
         Context context = DeviceActivity.this;
 

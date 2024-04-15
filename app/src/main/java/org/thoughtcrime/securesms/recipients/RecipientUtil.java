@@ -73,7 +73,7 @@ public class RecipientUtil {
       Log.i(TAG, "Successfully performed a UUID fetch for " + recipient.getId() + ". Registered: " + state);
     }
 
-    if (recipient.hasServiceId()) {
+    if (recipient.getHasServiceId()) {
       return new SignalServiceAddress(recipient.requireServiceId(), Optional.ofNullable(recipient.resolve().getE164().orElse(null)));
     } else {
       throw new NotFoundException(recipient.getId() + " is not registered!");
@@ -105,7 +105,7 @@ public class RecipientUtil {
   {
     List<Recipient> recipientsWithoutUuids = Stream.of(recipients)
                                                    .map(Recipient::resolve)
-                                                   .filterNot(Recipient::hasServiceId)
+                                                   .filterNot(Recipient::getHasServiceId)
                                                    .toList();
 
     if (recipientsWithoutUuids.size() > 0) {

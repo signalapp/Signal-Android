@@ -315,8 +315,6 @@ public class ConversationItemFooter extends ConstraintLayout {
       }
 
       dateView.setText(errorMsg);
-    } else if (messageRecord.isPendingInsecureSmsFallback()) {
-      dateView.setText(R.string.ConversationItem_click_to_approve_unencrypted);
     } else if (messageRecord.isRateLimited()) {
       dateView.setText(R.string.ConversationItem_send_paused);
     } else if (MessageRecordUtil.isScheduled(messageRecord)) {
@@ -410,7 +408,7 @@ public class ConversationItemFooter extends ConstraintLayout {
     previousMessageId = newMessageId;
 
 
-    if (messageRecord.isFailed() || messageRecord.isPendingInsecureSmsFallback() || MessageRecordUtil.isScheduled(messageRecord)) {
+    if (messageRecord.isFailed() || MessageRecordUtil.isScheduled(messageRecord)) {
       deliveryStatusView.setNone();
       return;
     }

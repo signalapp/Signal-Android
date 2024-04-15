@@ -41,7 +41,7 @@ class GroupManagementRepository @JvmOverloads constructor(private val context: C
       val groupId: GroupId.Push = potentialGroupId?.requirePush() ?: potentialGroupRecipient!!.requireGroupId().requirePush()
 
       val recipients = selected.map(Recipient::resolved)
-        .filterNot { it.hasServiceId() && it.isRegistered }
+        .filterNot { it.hasServiceId && it.isRegistered }
         .toList()
 
       try {

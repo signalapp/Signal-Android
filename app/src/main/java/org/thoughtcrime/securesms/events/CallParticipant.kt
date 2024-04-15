@@ -79,6 +79,10 @@ data class CallParticipant(
     return copy(handRaisedTimestamp = timestamp)
   }
 
+  override fun toString(): String {
+    return "CallParticipant(callParticipantId=$callParticipantId, isForwardingVideo=$isForwardingVideo, isVideoEnabled=$isVideoEnabled, isMicrophoneEnabled=$isMicrophoneEnabled, handRaisedTimestamp=$handRaisedTimestamp, isMediaKeysReceived=$isMediaKeysReceived, isScreenSharing=$isScreenSharing)"
+  }
+
   enum class DeviceOrdinal {
     PRIMARY, SECONDARY
   }

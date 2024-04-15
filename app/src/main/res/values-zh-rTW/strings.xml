@@ -45,8 +45,6 @@
     <string name="ApplicationPreferencesActivity_disable_passphrase">停用密碼嗎？</string>
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">這將會永久性地解鎖 Signal 與訊息通知。</string>
     <string name="ApplicationPreferencesActivity_disable">停用</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">停用 Signal 訊息與通話？</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">這將會從伺服器上取消你的註冊並停用 Signal 訊息和通話。日後如果想再次使用，則需要重新註冊你的電話號碼。</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">與伺服器的連線發生錯誤！</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN 碼是註冊鎖定所必需的。如要停用 PIN 碼，請先關閉註冊鎖定功能。</string>
     <string name="ApplicationPreferencesActivity_pin_created">PIN 碼已建立。</string>
@@ -308,7 +306,6 @@
     <string name="ConversationItem_error_network_not_delivered">傳送失敗</string>
     <string name="ConversationItem_group_action_left">%1$s 已經離開群組。</string>
     <string name="ConversationItem_send_paused">傳送已暫停</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">傳送失敗，輕觸改用不安全的遞補方式</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">改用未加密的簡訊作為遞補方式？</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">改用未加密的多媒體訊息作為遞補方式？</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">由於對方已經不再是 Signal 的使用者，當前訊息<b>不會</b>被加密。\n\n傳送不加密的訊息？</string>
@@ -1901,7 +1898,7 @@
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
     <string name="AboutSheet__no_direct_message">沒有與 %1$s 的直接訊息</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
-    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s 在你的系統聯絡人中</string>
+    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s 在你的手機通訊錄中</string>
     <!-- Notice in a row when user has no groups in common -->
     <string name="AboutSheet__you_have_no_groups_in_common">你沒有共同的群組</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
@@ -1914,6 +1911,8 @@
     <string name="AboutSheet__about">關於</string>
     <!-- Text displayed in title for you -->
     <string name="AboutSheet__you">你</string>
+    <!-- Displays the name of a contact. The first placeholder is the name the user has assigned to that contact, the second name is the name the contact assigned to themselves -->
+    <string name="AboutSheet__user_set_display_name_and_profile_name">%1$s  (%2$s)</string>
 
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call">
@@ -2831,6 +2830,18 @@
     <string name="EditProfileFragment__group_name">群組名稱</string>
     <string name="EditProfileFragment__group_description">群組描述</string>
   <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
+    <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_title">更新 Signal</string>
+    <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
+    <string name="EditProfileFragment_deprecated_dialog_body">此版本的 Signal 已過期。請立即更新以繼續使用 Signal。</string>
+    <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
+    <string name="EditProfileFragment_deprecated_dialog_update_button">更新</string>
+    <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_title">裝置未註冊</string>
+    <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
+    <string name="EditProfileFragment_unregistered_dialog_body">此裝置已不再註冊。重新註冊以更改你的帳戶。</string>
+    <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
+    <string name="EditProfileFragment_unregistered_dialog_reregister_button">重新註冊</string>
 
     <!-- EditProfileNameFragment -->
     <string name="EditProfileNameFragment_your_name">你的名字</string>
@@ -2925,7 +2936,6 @@
         <item>其他</item>
         <item>付款 (MobileCoin)</item>
         <item>捐款及徽章</item>
-        <item>SMS 短訊匯出</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android 除錯日誌提交</string>
@@ -3565,8 +3575,6 @@
     <string name="verify_display_fragment_context_menu__compare_with_clipboard">與剪貼簿中的內容進行比較</string>
 
     <!-- reminder_header -->
-    <string name="reminder_header_push_title">啟用 Signal 訊息與通話</string>
-    <string name="reminder_header_push_text">升級您的通訊體驗。</string>
     <string name="reminder_header_service_outage_text">Signal 正遇到技術性的問題。我們正在處理，將盡速的修正並恢復服務。</string>
     <string name="reminder_header_progress">%1$d%%</string>
     <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user\'s contacts -->
@@ -3856,6 +3864,8 @@
     <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">你需要連結舊裝置。</string>
     <string name="TransferOrRestoreFragment__restore_from_backup">從備份還原</string>
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">從本地備份還原你的訊息。 如果你現在不還原，則以後將無法還原。</string>
+    <!-- Button label for more options -->
+    <string name="TransferOrRestoreFragment__more_options">更多選項</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
     <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">在舊的Android手機上開啟Signal</string>
@@ -4060,7 +4070,7 @@
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
     <string name="ReviewCard__s_recently_changed">%1$s 最近將個人資料名稱從 %2$s 更改為 %3$s</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
-    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s 在你的系統聯絡人中</string>
+    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s 在你的手機通訊錄中</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s 已加入</string>
@@ -4607,7 +4617,7 @@
     <string name="ConversationSettingsFragment__disappearing_messages">自動銷毀訊息</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">聲音 &amp; 通知</string>
   <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
-    <string name="ConversationSettingsFragment__contact_details">聯絡人細節</string>
+    <string name="ConversationSettingsFragment__contact_details">電話聯絡人資訊</string>
     <string name="ConversationSettingsFragment__view_safety_number">檢視安全碼</string>
     <string name="ConversationSettingsFragment__block">封鎖</string>
     <string name="ConversationSettingsFragment__block_group">封鎖群組</string>
@@ -5445,7 +5455,7 @@
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">接受一則訊息要求</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">系統聯絡人中存在對方</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">你的手機通訊錄中有對方的聯絡資料</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"你的相識可以看見你的名稱和照片。除非你對他們隱藏，否則亦可看見「我的限時動態」中的貼文。"</string>
     <!-- Clickable option to add a viewer to a custom story -->
@@ -6508,6 +6518,45 @@
     <string name="FindByActivity__qr_scan_button">掃描 QR code</string>
     <!-- Content of a dialog indicating that we could not perform the requested action because we encountered a network error. -->
     <string name="FindByActivity__network_error_dialog">網路錯誤。請稍後再試。</string>
+
+    <!-- Title for an alert letting someone know that one of their linked devices is inactive. -->
+    <string name="LinkedDeviceInactiveMegaphone_title">不活躍的已連結裝置</string>
+    <!-- Body for an alert letting someone know that one of their linked devices is inactive. The string placeholder is the name of the device, and the number placeholder is the number of days before device is unlinked. -->
+    <plurals name="LinkedDeviceInactiveMegaphone_body">
+        <item quantity="other">若要保留「 %1$s 」的連結，請於 %2$d 天內在該裝置開啟 Signal。</item>
+    </plurals>
+    <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the user will opt out of all future alerts. -->
+    <string name="LinkedDeviceInactiveMegaphone_dont_remind_button_label">不用提醒我</string>
+    <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the alert will be dismissed. -->
+    <string name="LinkedDeviceInactiveMegaphone_got_it_button_label">收到</string>
+
+    <!-- NicknameFragment -->
+    <!-- Title displayed at the top of the screen -->
+    <string name="NicknameActivity__nickname">暱稱</string>
+    <!-- Subtitle displayed under title -->
+    <string name="NicknameActivity__nicknames_amp_notes">Nicknames &amp; notes are stored with Signal and end-to-end encrypted. They are only visible to you.</string>
+    <!-- Field label for given name -->
+    <string name="NicknameActivity__first_name">名</string>
+    <!-- Content description for first name clear button -->
+    <string name="NicknameActivity__clear_first_name">清除名字</string>
+    <!-- Field label for family name -->
+    <string name="NicknameActivity__last_name">姓</string>
+    <!-- Content description for last name clear button -->
+    <string name="NicknameActivity__clear_last_name">清除姓氏</string>
+    <!-- Field label for note -->
+    <string name="NicknameActivity__note">備註</string>
+    <!-- Button label to save -->
+    <string name="NicknameActivity__save">儲存</string>
+    <!-- Dialog title for note and name deletion -->
+    <string name="NicknameActivity__delete_nickname">Delete?</string>
+    <!-- Dialog message for note and name deletion -->
+    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">This will permanently delete any nickname and note you’ve set.</string>
+
+    <!-- ViewNoteBottomSheetDialogFragment -->
+    <!-- Sheet title -->
+    <string name="ViewNoteSheet__note">備註</string>
+    <!-- Content description for opening the note editor -->
+    <string name="ViewNoteSheet__edit_note">編輯備註</string>
 
     <!-- EOF -->
 </resources>

@@ -55,7 +55,7 @@ public final class VideoThumbnailsRangeSelectorView extends VideoThumbnailsView 
             private long                  downMax;
             private Thumb                 dragThumb;
             private Thumb                 lastDragThumb;
-            private PositionDragListener  playerOnRangeChangeListener;
+            private PositionDragListener  playerDragListener;
             private RangeDragListener     editorOnRangeChangeListener;
   @Px       private int                   thumbSizePixels;
   @Px       private int                   thumbTouchRadius;
@@ -133,16 +133,16 @@ public final class VideoThumbnailsRangeSelectorView extends VideoThumbnailsView 
     invalidate();
   }
 
-  public void registerPlayerOnRangeChangeListener(PositionDragListener playerOnRangeChangeListener) {
-    this.playerOnRangeChangeListener = playerOnRangeChangeListener;
+  public void registerPlayerDragListener(PositionDragListener playerDragListener) {
+    this.playerDragListener = playerDragListener;
   }
 
   public void registerEditorOnRangeChangeListener(RangeDragListener editorOnRangeChangeListener) {
     this.editorOnRangeChangeListener = editorOnRangeChangeListener;
   }
 
-  public void unregisterPlayerOnRangeChangeListener() {
-    this.playerOnRangeChangeListener = null;
+  public void unregisterDragListener() {
+    this.playerDragListener = null;
   }
 
   public void setActualPosition(long position) {
@@ -347,20 +347,15 @@ public final class VideoThumbnailsRangeSelectorView extends VideoThumbnailsView 
     }
 
     if (actionMasked == MotionEvent.ACTION_MOVE) {
-      boolean changed = false;
       long    delta   = pixelToDuration(event.getX() - xDown);
-      switch (dragThumb) {
-        case POSITION:
-          setDragPosition(downCursor + delta);
-          changed = true;
-          break;
-        case MIN:
-          changed = setMinValue(downMin + delta);
-          break;
-        case MAX:
-          changed = setMaxValue(downMax + delta);
-          break;
-      }
+      boolean changed = switch (dragThumb) {
+        case POSITION -> {
+          setDragPosition(pixelToDuration(event.getX()));
+          yield true;
+        }
+        case MIN -> setMinValue(downMin + delta);
+        case MAX -> setMaxValue(downMax + delta);
+      };
       if (changed) {
         if (dragThumb == Thumb.POSITION) {
           onPositionDrag(dragPosition);
@@ -393,7 +388,7 @@ public final class VideoThumbnailsRangeSelectorView extends VideoThumbnailsView 
     return true;
   }
 
-  private @Nullable Thumb closestThumb(@Px float x) {
+  private Thumb closestThumb(@Px float x) {
     float midPoint       = (right + left) / 2f;
     Thumb possibleThumb  = x < midPoint ? Thumb.MIN : Thumb.MAX;
     int   possibleThumbX = x < midPoint ? left : right;
@@ -402,7 +397,7 @@ public final class VideoThumbnailsRangeSelectorView extends VideoThumbnailsView 
       return possibleThumb;
     }
 
-    return null;
+    return Thumb.POSITION;
   }
 
   private long pixelToDuration(float pixel) {
@@ -431,14 +426,14 @@ public final class VideoThumbnailsRangeSelectorView extends VideoThumbnailsView 
   }
 
   private void onPositionDrag(long position) {
-    if (playerOnRangeChangeListener != null) {
-      playerOnRangeChangeListener.onPositionDrag(position);
+    if (playerDragListener != null) {
+      playerDragListener.onPositionDrag(position);
     }
   }
 
   private void onEndPositionDrag(long position) {
-    if (playerOnRangeChangeListener != null) {
-      playerOnRangeChangeListener.onEndPositionDrag(position);
+    if (playerDragListener != null) {
+      playerDragListener.onEndPositionDrag(position);
     }
   }
 

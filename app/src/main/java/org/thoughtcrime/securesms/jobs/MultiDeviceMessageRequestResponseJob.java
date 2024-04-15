@@ -106,7 +106,7 @@ public class MultiDeviceMessageRequestResponseJob extends BaseJob {
     SignalServiceMessageSender messageSender = ApplicationDependencies.getSignalServiceMessageSender();
     Recipient                  recipient     = Recipient.resolved(threadRecipient);
 
-    if (!recipient.isGroup() && !recipient.hasServiceId()) {
+    if (!recipient.isGroup() && !recipient.getHasServiceId()) {
       Log.i(TAG, "Queued for non-group recipient without ServiceId");
       return;
     }

@@ -8,23 +8,24 @@ import androidx.annotation.NonNull;
 import androidx.camera.core.CameraSelector;
 import androidx.camera.core.ImageCapture;
 
+import org.thoughtcrime.securesms.mediasend.camerax.CameraXController;
 import org.thoughtcrime.securesms.mediasend.camerax.SignalCameraController;
 
 final class CameraXSelfieFlashHelper {
 
-  private static final float MAX_SCREEN_BRIGHTNESS    = 1f;
-  private static final float MAX_SELFIE_FLASH_ALPHA   = 0.9f;
+  private static final float MAX_SCREEN_BRIGHTNESS  = 1f;
+  private static final float MAX_SELFIE_FLASH_ALPHA = 0.9f;
 
-  private final Window                 window;
-  private final SignalCameraController camera;
-  private final View                   selfieFlash;
+  private final Window            window;
+  private final CameraXController camera;
+  private final View              selfieFlash;
 
   private float   brightnessBeforeFlash;
   private boolean inFlash;
   private int     flashMode = -1;
 
   CameraXSelfieFlashHelper(@NonNull Window window,
-                           @NonNull SignalCameraController camera,
+                           @NonNull CameraXController camera,
                            @NonNull View selfieFlash)
   {
     this.window      = window;

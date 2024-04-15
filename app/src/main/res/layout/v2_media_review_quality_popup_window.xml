@@ -1,58 +1,45 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright 2024 Signal Messenger, LLC
   ~ SPDX-License-Identifier: AGPL-3.0-only
   -->
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:viewBindingIgnore="true"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:minHeight="86dp"
-    tools:background="@color/signal_colorPrimary">
+    android:background="@drawable/rounded_rectangle_surface_2_18"
+    android:elevation="8dp"
+    android:minHeight="44dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/media_review_toast_popup_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="12dp"
-        android:background="@drawable/rounded_rectangle_surface_2_18"
-        android:elevation="8dp"
-        android:minHeight="44dp">
+        android:layout_marginStart="21dp"
+        android:paddingBottom="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/media_review_toast_popup_description"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/symbol_quality_high_24"
+        app:tint="@color/signal_colorOnSurface" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/media_review_toast_popup_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="21dp"
-            android:paddingBottom="1dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/media_review_toast_popup_description"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/signal_colorOnSurface"
-            app:srcCompat="@drawable/symbol_quality_high_24" />
+    <TextView
+        android:id="@+id/media_review_toast_popup_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="21dp"
+        android:gravity="center_vertical"
+        android:paddingBottom="2dp"
+        android:textAppearance="@style/TextAppearance.Signal.Body2"
+        android:textColor="@color/signal_colorOnSurface"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/media_review_toast_popup_icon"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@tools:sample/first_names" />
 
-        <TextView
-            android:id="@+id/media_review_toast_popup_description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="21dp"
-            android:gravity="center_vertical"
-            android:paddingBottom="2dp"
-            android:textAppearance="@style/TextAppearance.Signal.Body2"
-            android:textColor="@color/signal_colorOnSurface"
-            app:layout_constrainedWidth="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/media_review_toast_popup_icon"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="@tools:sample/first_names" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

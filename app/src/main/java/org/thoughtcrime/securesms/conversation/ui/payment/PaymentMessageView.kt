@@ -43,17 +43,17 @@ class PaymentMessageView @JvmOverloads constructor(
         setTextColor(colorizer.getOutgoingFooterTextColor(context))
       } else {
         text = context.getString(R.string.PaymentMessageView_s_sent_you, recipient.getShortDisplayName(context))
-        setTextColor(colorizer.getIncomingFooterTextColor(context, recipient.hasWallpaper()))
+        setTextColor(colorizer.getIncomingFooterTextColor(context, recipient.hasWallpaper))
       }
     }
 
     binding.paymentNote.apply {
       text = payment.note
       visible = payment.note.isNotEmpty()
-      setTextColor(if (outgoing) colorizer.getOutgoingBodyTextColor(context) else colorizer.getIncomingBodyTextColor(context, recipient.hasWallpaper()))
+      setTextColor(if (outgoing) colorizer.getOutgoingBodyTextColor(context) else colorizer.getIncomingBodyTextColor(context, recipient.hasWallpaper))
     }
 
-    val quoteViewColorTheme = QuoteViewColorTheme.resolveTheme(outgoing, false, recipient.hasWallpaper())
+    val quoteViewColorTheme = QuoteViewColorTheme.resolveTheme(outgoing, false, recipient.hasWallpaper)
 
     if (payment.state.isInProgress) {
       binding.paymentAmount.visible = false

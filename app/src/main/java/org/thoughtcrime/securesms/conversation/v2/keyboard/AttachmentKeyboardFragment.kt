@@ -77,7 +77,7 @@ class AttachmentKeyboardFragment : LoggingFragment(R.layout.attachment_keyboard_
       .recipient
       .observeOn(AndroidSchedulers.mainThread())
       .subscribeBy {
-        attachmentKeyboardView.setWallpaperEnabled(it.hasWallpaper())
+        attachmentKeyboardView.setWallpaperEnabled(it.hasWallpaper)
         updatePaymentsAvailable(it)
       }
       .addTo(lifecycleDisposable)

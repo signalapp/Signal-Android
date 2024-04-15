@@ -10,6 +10,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -17,6 +18,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -27,9 +29,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
@@ -44,6 +48,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.AvatarImage
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
+import org.thoughtcrime.securesms.nicknames.ViewNoteSheet
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -88,23 +93,26 @@ class AboutSheet : ComposeBottomSheetDialogFragment() {
       Content(
         model = AboutModel(
           isSelf = recipient.get().isSelf,
-          hasAvatar = recipient.get().profileAvatarFileDetails.hasFile(),
           displayName = recipient.get().getDisplayName(requireContext()),
           shortName = recipient.get().getShortDisplayName(requireContext()),
+          profileName = recipient.get().profileName.toString(),
           about = recipient.get().about,
           verified = verified,
+          hasAvatar = recipient.get().profileAvatarFileDetails.hasFile(),
           recipientForAvatar = recipient.get(),
-          formattedE164 = if (recipient.get().hasE164() && recipient.get().shouldShowE164()) {
+          formattedE164 = if (recipient.get().hasE164 && recipient.get().shouldShowE164) {
             PhoneNumberFormatter.get(requireContext()).prettyPrintFormat(recipient.get().requireE164())
           } else {
             null
           },
-          groupsInCommon = groupsInCommonCount,
           profileSharing = recipient.get().isProfileSharing,
-          systemContact = recipient.get().isSystemContact
+          systemContact = recipient.get().isSystemContact,
+          groupsInCommon = groupsInCommonCount,
+          note = recipient.get().note ?: ""
         ),
         onClickSignalConnections = this::openSignalConnectionsSheet,
-        onAvatarClicked = this::openProfilePhotoViewer
+        onAvatarClicked = this::openProfilePhotoViewer,
+        onNoteClicked = this::openNoteSheet
       )
     }
   }
@@ -117,12 +125,18 @@ class AboutSheet : ComposeBottomSheetDialogFragment() {
   private fun openProfilePhotoViewer() {
     startActivity(AvatarPreviewActivity.intentFromRecipientId(requireContext(), recipientId))
   }
+
+  private fun openNoteSheet() {
+    dismiss()
+    ViewNoteSheet.create(recipientId).show(parentFragmentManager, null)
+  }
 }
 
 private data class AboutModel(
   val isSelf: Boolean,
   val displayName: String,
   val shortName: String,
+  val profileName: String,
   val about: String?,
   val verified: Boolean,
   val hasAvatar: Boolean,
@@ -130,14 +144,16 @@ private data class AboutModel(
   val formattedE164: String?,
   val profileSharing: Boolean,
   val systemContact: Boolean,
-  val groupsInCommon: Int
+  val groupsInCommon: Int,
+  val note: String
 )
 
 @Composable
 private fun Content(
   model: AboutModel,
   onClickSignalConnections: () -> Unit,
-  onAvatarClicked: () -> Unit
+  onAvatarClicked: () -> Unit,
+  onNoteClicked: () -> Unit
 ) {
   Box(
     contentAlignment = Alignment.Center,
@@ -175,17 +191,24 @@ private fun Content(
 
     AboutRow(
       startIcon = painterResource(R.drawable.symbol_person_24),
-      text = model.displayName,
+      text = if (!model.isSelf && model.displayName.isNotBlank() && model.profileName.isNotBlank() && model.displayName != model.profileName) {
+        stringResource(id = R.string.AboutSheet__user_set_display_name_and_profile_name, model.displayName, model.profileName)
+      } else {
+        model.displayName
+      },
       modifier = Modifier.fillMaxWidth()
     )
 
     if (model.about.isNotNullOrBlank()) {
+      val textColor = LocalContentColor.current
+
       AboutRow(
         startIcon = painterResource(R.drawable.symbol_edit_24),
         text = {
           Row {
             AndroidView(factory = ::EmojiTextView) {
               it.text = model.about
+              it.setTextColor(textColor.toArgb())
 
               TextViewCompat.setTextAppearance(it, R.style.Signal_Text_BodyLarge)
             }
@@ -255,6 +278,16 @@ private fun Content(
       modifier = Modifier.fillMaxWidth()
     )
 
+    if (model.note.isNotBlank()) {
+      AboutRow(
+        startIcon = painterResource(id = R.drawable.symbol_note_light_24),
+        text = model.note,
+        modifier = Modifier.fillMaxWidth(),
+        endIcon = painterResource(id = R.drawable.symbol_chevron_right_compact_bold_16),
+        onClick = onNoteClicked
+      )
+    }
+
     Spacer(modifier = Modifier.size(26.dp))
   }
 }
@@ -272,7 +305,10 @@ private fun AboutRow(
     text = {
       Text(
         text = text,
-        style = MaterialTheme.typography.bodyLarge
+        style = MaterialTheme.typography.bodyLarge,
+        maxLines = 1,
+        overflow = TextOverflow.Ellipsis,
+        modifier = Modifier.weight(1f, false)
       )
     },
     modifier = modifier,
@@ -284,7 +320,7 @@ private fun AboutRow(
 @Composable
 private fun AboutRow(
   startIcon: Painter,
-  text: @Composable () -> Unit,
+  text: @Composable RowScope.() -> Unit,
   modifier: Modifier = Modifier,
   endIcon: Painter? = null,
   onClick: (() -> Unit)? = null
@@ -337,19 +373,82 @@ private fun ContentPreviewDefault() {
       Content(
         model = AboutModel(
           isSelf = false,
-          hasAvatar = true,
           displayName = "Peter Parker",
           shortName = "Peter",
+          profileName = "Peter Parker",
           about = "Photographer for the Daily Bugle.",
           verified = true,
+          hasAvatar = true,
           recipientForAvatar = Recipient.UNKNOWN,
           formattedE164 = "(123) 456-7890",
           profileSharing = true,
           systemContact = true,
-          groupsInCommon = 0
+          groupsInCommon = 0,
+          note = "GET ME SPIDERMAN BEFORE I BLOW A DANG GASKET"
         ),
         onClickSignalConnections = {},
-        onAvatarClicked = {}
+        onAvatarClicked = {},
+        onNoteClicked = {}
+      )
+    }
+  }
+}
+
+@Preview(name = "Light Theme", group = "content", uiMode = Configuration.UI_MODE_NIGHT_NO)
+@Preview(name = "Dark Theme", group = "content", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun ContentPreviewWithUserSetDisplayName() {
+  SignalTheme {
+    Surface {
+      Content(
+        model = AboutModel(
+          isSelf = false,
+          displayName = "Amazing Spider-man",
+          shortName = "Spiderman",
+          profileName = "Peter Parker",
+          about = "Photographer for the Daily Bugle.",
+          verified = true,
+          hasAvatar = true,
+          recipientForAvatar = Recipient.UNKNOWN,
+          formattedE164 = "(123) 456-7890",
+          profileSharing = true,
+          systemContact = true,
+          groupsInCommon = 0,
+          note = "Weird Things Happen To Me All The Time."
+        ),
+        onClickSignalConnections = {},
+        onAvatarClicked = {},
+        onNoteClicked = {}
+      )
+    }
+  }
+}
+
+@Preview(name = "Light Theme", group = "content", uiMode = Configuration.UI_MODE_NIGHT_NO)
+@Preview(name = "Dark Theme", group = "content", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun ContentPreviewForSelf() {
+  SignalTheme {
+    Surface {
+      Content(
+        model = AboutModel(
+          isSelf = true,
+          displayName = "Amazing Spider-man",
+          shortName = "Spiderman",
+          profileName = "Peter Parker",
+          about = "Photographer for the Daily Bugle.",
+          verified = true,
+          hasAvatar = true,
+          recipientForAvatar = Recipient.UNKNOWN,
+          formattedE164 = "(123) 456-7890",
+          profileSharing = true,
+          systemContact = true,
+          groupsInCommon = 0,
+          note = "Weird Things Happen To Me All The Time."
+        ),
+        onClickSignalConnections = {},
+        onAvatarClicked = {},
+        onNoteClicked = {}
       )
     }
   }
@@ -364,19 +463,22 @@ private fun ContentPreviewInContactsNotProfileSharing() {
       Content(
         model = AboutModel(
           isSelf = false,
-          hasAvatar = true,
           displayName = "Peter Parker",
           shortName = "Peter",
+          profileName = "Peter Parker",
           about = "Photographer for the Daily Bugle.",
           verified = false,
+          hasAvatar = true,
           recipientForAvatar = Recipient.UNKNOWN,
           formattedE164 = null,
           profileSharing = false,
           systemContact = true,
-          groupsInCommon = 3
+          groupsInCommon = 3,
+          note = "GET ME SPIDER MAN"
         ),
         onClickSignalConnections = {},
-        onAvatarClicked = {}
+        onAvatarClicked = {},
+        onNoteClicked = {}
       )
     }
   }
@@ -391,19 +493,22 @@ private fun ContentPreviewGroupsInCommonNoE164() {
       Content(
         model = AboutModel(
           isSelf = false,
-          hasAvatar = true,
           displayName = "Peter Parker",
           shortName = "Peter",
+          profileName = "Peter Parker",
           about = "Photographer for the Daily Bugle.",
           verified = false,
+          hasAvatar = true,
           recipientForAvatar = Recipient.UNKNOWN,
           formattedE164 = null,
           profileSharing = true,
           systemContact = false,
-          groupsInCommon = 3
+          groupsInCommon = 3,
+          note = "GET ME SPIDERMAN"
         ),
         onClickSignalConnections = {},
-        onAvatarClicked = {}
+        onAvatarClicked = {},
+        onNoteClicked = {}
       )
     }
   }
@@ -418,19 +523,22 @@ private fun ContentPreviewNotAConnection() {
       Content(
         model = AboutModel(
           isSelf = false,
-          hasAvatar = true,
           displayName = "Peter Parker",
           shortName = "Peter",
+          profileName = "Peter Parker",
           about = "Photographer for the Daily Bugle.",
           verified = false,
+          hasAvatar = true,
           recipientForAvatar = Recipient.UNKNOWN,
           formattedE164 = null,
           profileSharing = false,
           systemContact = false,
-          groupsInCommon = 3
+          groupsInCommon = 3,
+          note = "GET ME SPIDERMAN"
         ),
         onClickSignalConnections = {},
-        onAvatarClicked = {}
+        onAvatarClicked = {},
+        onNoteClicked = {}
       )
     }
   }

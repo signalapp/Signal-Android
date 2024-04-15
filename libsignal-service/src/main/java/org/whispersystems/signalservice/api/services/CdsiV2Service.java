@@ -12,6 +12,9 @@ import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId.PNI;
+import org.whispersystems.signalservice.api.push.exceptions.CdsiInvalidArgumentException;
+import org.whispersystems.signalservice.api.push.exceptions.CdsiInvalidTokenException;
+import org.whispersystems.signalservice.api.push.exceptions.CdsiResourceExhaustedException;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.ServiceResponse;
@@ -19,6 +22,7 @@ import org.whispersystems.signalservice.internal.configuration.SignalServiceConf
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.lang.IllegalArgumentException;
 import java.nio.ByteBuffer;
 import java.time.Duration;
 import java.util.Collection;
@@ -32,6 +36,8 @@ import java.util.UUID;
 import java.util.concurrent.Future;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
+
+import javax.annotation.Nullable;
 
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Single;
@@ -47,21 +53,21 @@ public final class CdsiV2Service {
   private static final UUID EMPTY_UUID         = new UUID(0, 0);
   private static final int  RESPONSE_ITEM_SIZE = 8 + 16 + 16; // 1 uint64 + 2 UUIDs
 
-  private static final Duration LIBSIGNAL_CDSI_TIMEOUT = Duration.ofSeconds(10);
-
   private final CdsiRequestHandler cdsiRequestHandler;
 
-  public CdsiV2Service(SignalServiceConfiguration configuration, String mrEnclave, Network.Environment libsignalEnv) {
+  public CdsiV2Service(SignalServiceConfiguration configuration, String mrEnclave, @Nullable Network network) {
 
-    if (libsignalEnv != null) {
-      Network network = new Network(libsignalEnv);
+    if (network != null) {
       this.cdsiRequestHandler = (username, password, request, tokenSaver) -> {
         try {
           Log.i(TAG, "Starting CDSI lookup via libsignal-net");
-          Future<CdsiLookupResponse> cdsiRequest = network.cdsiLookup(username, password, buildLibsignalRequest(request), LIBSIGNAL_CDSI_TIMEOUT, tokenSaver);
-          return Single.fromFuture(cdsiRequest).map(CdsiV2Service::parseLibsignalResponse).toObservable();
+          Future<CdsiLookupResponse> cdsiRequest = network.cdsiLookup(username, password, buildLibsignalRequest(request), tokenSaver);
+          return Single.fromFuture(cdsiRequest)
+              .onErrorResumeNext((Throwable err) -> Single.error(mapLibsignalError(err)))
+              .map(CdsiV2Service::parseLibsignalResponse)
+              .toObservable();
         } catch (Exception exception) {
-          return Observable.error(exception);
+          return Observable.error(mapLibsignalError(exception));
         }
       };
     } else {
@@ -175,6 +181,18 @@ public final class CdsiV2Service {
     HashMap<String, ResponseItem> responses = new HashMap<>(response.entries().size());
     response.entries().forEach((key, value) -> responses.put(key, new ResponseItem(new PNI(value.pni), Optional.ofNullable(value.aci).map(ACI::new))));
     return new Response(responses, response.debugPermitsUsed);
+  }
+
+  private static Throwable mapLibsignalError(Throwable lookupError) {
+    if (lookupError instanceof org.signal.libsignal.net.CdsiInvalidTokenException) {
+      return new CdsiInvalidTokenException();
+    } else if (lookupError instanceof org.signal.libsignal.net.RetryLaterException) {
+      org.signal.libsignal.net.RetryLaterException e = (org.signal.libsignal.net.RetryLaterException) lookupError;
+      return new CdsiResourceExhaustedException((int) e.duration.getSeconds());
+    } else if (lookupError instanceof IllegalArgumentException) {
+      return new CdsiInvalidArgumentException();
+    }
+    return lookupError;
   }
 
   private static List<Long> parseAndSortE164Strings(Collection<String> e164s) {

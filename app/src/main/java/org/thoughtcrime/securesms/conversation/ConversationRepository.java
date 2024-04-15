@@ -77,14 +77,14 @@ public class ConversationRepository {
         if (group.isPresent()) {
           List<Recipient> recipients = Recipient.resolvedList(group.get().getMembers());
           for (Recipient recipient : recipients) {
-            if ((recipient.isProfileSharing() || recipient.hasGroupsInCommon()) && !recipient.isSelf()) {
+            if ((recipient.isProfileSharing() || recipient.getHasGroupsInCommon()) && !recipient.isSelf()) {
               recipientIsKnownOrHasGroupsInCommon = true;
               break;
             }
           }
         }
         isGroup = true;
-      } else if (conversationRecipient.hasGroupsInCommon()) {
+      } else if (conversationRecipient.getHasGroupsInCommon()) {
         recipientIsKnownOrHasGroupsInCommon = true;
       }
       messageRequestData = new ConversationData.MessageRequestData(isMessageRequestAccepted, isConversationHidden, recipientIsKnownOrHasGroupsInCommon, isGroup);

@@ -16,6 +16,7 @@ import androidx.core.app.SharedElementCallback
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView.AdapterDataObserver
 import androidx.transition.TransitionInflater
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -26,6 +27,7 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import org.signal.core.util.concurrent.LifecycleDisposable
+import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.Material3SearchToolbar
 import org.thoughtcrime.securesms.components.reminder.ExpiredBuildReminder
@@ -262,6 +264,13 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
           recyclerView?.scrollToPosition(0)
         }
       })
+
+    this.adapter.registerAdapterDataObserver(object : AdapterDataObserver() {
+      override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
+        (requireActivity() as? MainActivity)?.onFirstRender()
+        this@StoriesLandingFragment.adapter.unregisterAdapterDataObserver(this)
+      }
+    })
   }
 
   private fun getConfiguration(state: StoriesLandingState): DSLConfiguration {

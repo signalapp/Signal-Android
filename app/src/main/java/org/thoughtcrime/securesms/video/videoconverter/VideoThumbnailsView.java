@@ -59,9 +59,12 @@ abstract public class VideoThumbnailsView extends View {
     super(context, attrs, defStyleAttr);
   }
 
-  public void setInput(@NonNull Uri uri) throws IOException {
+  /**
+   * @return Whether or not the current URI was changed.
+   */
+  public boolean setInput(@NonNull Uri uri) throws IOException {
     if (uri.equals(this.currentUri)) {
-      return;
+      return false;
     }
 
     this.currentUri = uri;
@@ -72,6 +75,7 @@ abstract public class VideoThumbnailsView extends View {
       thumbnailsTask = null;
     }
     invalidate();
+    return true;
   }
 
   @Override

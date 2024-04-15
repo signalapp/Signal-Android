@@ -157,7 +157,7 @@ sealed class ConversationSettingsViewModel(
       }
 
       store.update(liveRecipient.liveData) { recipient, state ->
-        val isAudioAvailable = (recipient.isRegistered || SignalStore.misc().smsExportPhase.allowSmsFeatures()) &&
+        val isAudioAvailable = recipient.isRegistered &&
           !recipient.isGroup &&
           !recipient.isBlocked &&
           !recipient.isSelf &&
@@ -180,7 +180,7 @@ sealed class ConversationSettingsViewModel(
             contactLinkState = when {
               recipient.isSelf || recipient.isReleaseNotes || recipient.isBlocked -> ContactLinkState.NONE
               recipient.isSystemContact -> ContactLinkState.OPEN
-              recipient.hasE164() && recipient.shouldShowE164() -> ContactLinkState.ADD
+              recipient.hasE164 && recipient.shouldShowE164 -> ContactLinkState.ADD
               else -> ContactLinkState.NONE
             }
           )

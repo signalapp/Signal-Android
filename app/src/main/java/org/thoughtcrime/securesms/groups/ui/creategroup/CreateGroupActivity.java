@@ -59,9 +59,7 @@ public class CreateGroupActivity extends ContactSelectionActivity implements Con
     intent.putExtra(ContactSelectionListFragment.REFRESHABLE, false);
     intent.putExtra(ContactSelectionActivity.EXTRA_LAYOUT_RES_ID, R.layout.create_group_activity);
 
-    boolean smsEnabled = SignalStore.misc().getSmsExportPhase().allowSmsFeatures();
-    int displayMode = smsEnabled ? ContactSelectionDisplayMode.FLAG_SMS | ContactSelectionDisplayMode.FLAG_PUSH
-                                 : ContactSelectionDisplayMode.FLAG_PUSH;
+    int displayMode = ContactSelectionDisplayMode.FLAG_PUSH;
 
     intent.putExtra(ContactSelectionListFragment.DISPLAY_MODE, displayMode);
     intent.putExtra(ContactSelectionListFragment.SELECTION_LIMITS, FeatureFlags.groupLimits().excludingSelf());
@@ -204,7 +202,7 @@ public class CreateGroupActivity extends ContactSelectionActivity implements Con
       stopwatch.split("resolve");
 
       Set<Recipient> registeredChecks = resolved.stream()
-                                                .filter(r -> !r.isRegistered() || !r.hasServiceId())
+                                                .filter(r -> !r.isRegistered() || !r.getHasServiceId())
                                                 .collect(Collectors.toSet());
 
       Log.i(TAG, "Need to do " + registeredChecks.size() + " registration checks.");
@@ -224,7 +222,7 @@ public class CreateGroupActivity extends ContactSelectionActivity implements Con
       dismissibleDialog.dismiss();
       stopwatch.stop(TAG);
 
-      List<Recipient> notRegistered = recipients.stream().filter(r -> !r.isRegistered() || !r.hasServiceId()).collect(Collectors.toList());
+      List<Recipient> notRegistered = recipients.stream().filter(r -> !r.isRegistered() || !r.getHasServiceId()).collect(Collectors.toList());
 
       if (notRegistered.isEmpty()) {
         startActivityForResult(AddGroupDetailsActivity.newIntent(this, recipients.stream().map(Recipient::getId).collect(Collectors.toList())), REQUEST_CODE_ADD_DETAILS);

@@ -28,6 +28,10 @@ internal fun SignalStoreValues.blobValue(key: String, default: ByteArray): Signa
   return BlobValue(key, default, this.store)
 }
 
+internal fun SignalStoreValues.nullableBlobValue(key: String, default: ByteArray?): SignalStoreValueDelegate<ByteArray?> {
+  return NullableBlobValue(key, default, this.store)
+}
+
 internal fun <T : Any?> SignalStoreValues.enumValue(key: String, default: T, serializer: LongSerializer<T>): SignalStoreValueDelegate<T> {
   return KeyValueEnumValue(key, default, serializer, this.store)
 }
@@ -110,6 +114,16 @@ private class BlobValue(private val key: String, private val default: ByteArray,
   }
 
   override fun setValue(values: KeyValueStore, value: ByteArray) {
+    values.beginWrite().putBlob(key, value).apply()
+  }
+}
+
+private class NullableBlobValue(private val key: String, private val default: ByteArray?, store: KeyValueStore) : SignalStoreValueDelegate<ByteArray?>(store) {
+  override fun getValue(values: KeyValueStore): ByteArray? {
+    return values.getBlob(key, default)
+  }
+
+  override fun setValue(values: KeyValueStore, value: ByteArray?) {
     values.beginWrite().putBlob(key, value).apply()
   }
 }

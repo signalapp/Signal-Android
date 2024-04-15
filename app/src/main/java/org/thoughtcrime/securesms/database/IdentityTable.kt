@@ -98,7 +98,7 @@ class IdentityTable internal constructor(context: Context?, databaseHelper: Sign
           val byServiceId = recipients.getByServiceId(ServiceId.parseOrThrow(addressName))
           if (byServiceId.isPresent) {
             val recipient = Recipient.resolved(byServiceId.get())
-            if (recipient.hasE164() && !UuidUtil.isUuid(recipient.requireE164())) {
+            if (recipient.hasE164 && !UuidUtil.isUuid(recipient.requireE164())) {
               Log.i(TAG, "Could not find identity for UUID. Attempting E164.")
               return getIdentityStoreRecord(recipient.requireE164())
             } else {

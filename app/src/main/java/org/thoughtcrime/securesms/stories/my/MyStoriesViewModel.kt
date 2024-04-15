@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
+import io.reactivex.rxjava3.schedulers.Schedulers
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.util.livedata.Store
 
@@ -17,7 +18,7 @@ class MyStoriesViewModel(private val repository: MyStoriesRepository) : ViewMode
   val state: LiveData<MyStoriesState> = store.stateLiveData
 
   init {
-    disposables += repository.getMyStories().subscribe { distributionSets ->
+    disposables += repository.getMyStories().observeOn(Schedulers.io()).subscribe { distributionSets ->
       store.update { it.copy(distributionSets = distributionSets) }
     }
   }

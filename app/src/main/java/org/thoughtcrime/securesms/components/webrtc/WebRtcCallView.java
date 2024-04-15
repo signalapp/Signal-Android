@@ -96,7 +96,6 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
   private RecipientId                   recipientId;
   private ImageView                     answer;
   private TextView                      answerWithoutVideoLabel;
-  private ImageView                     cameraDirectionToggle;
   private AccessibleToggleButton        ringToggle;
   private PictureInPictureGestureHelper pictureInPictureGestureHelper;
   private ImageView                     overflow;
@@ -178,7 +177,6 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     incomingRingStatus            = findViewById(R.id.call_screen_incoming_ring_status);
     answer                        = findViewById(R.id.call_screen_answer_call);
     answerWithoutVideoLabel       = findViewById(R.id.call_screen_answer_without_video_label);
-    cameraDirectionToggle         = findViewById(R.id.call_screen_camera_direction_toggle);
     ringToggle                    = findViewById(R.id.call_screen_audio_ring_toggle);
     overflow                      = findViewById(R.id.call_screen_overflow_button);
     hangup                        = findViewById(R.id.call_screen_end_call);
@@ -273,7 +271,6 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
       runIfNonNull(controlsListener, listener -> listener.onRingGroupChanged(isOn, ringToggle.isActivated()));
     });
 
-    cameraDirectionToggle.setOnClickListener(v -> runIfNonNull(controlsListener, ControlsListener::onCameraDirectionChanged));
     smallLocalRender.findViewById(R.id.call_participant_switch_camera).setOnClickListener(v -> runIfNonNull(controlsListener, ControlsListener::onCameraDirectionChanged));
 
     overflow.setOnClickListener(v -> {
@@ -355,7 +352,6 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     rotatableControls.add(audioToggle);
     rotatableControls.add(micToggle);
     rotatableControls.add(videoToggle);
-    rotatableControls.add(cameraDirectionToggle);
     rotatableControls.add(decline);
     rotatableControls.add(smallLocalAudioIndicator);
     rotatableControls.add(ringToggle);
@@ -433,7 +429,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     List<WebRtcCallParticipantsPage> pages              = new ArrayList<>(2);
 
     if (!state.getGridParticipants().isEmpty()) {
-      pages.add(WebRtcCallParticipantsPage.forMultipleParticipants(state.getGridParticipants(), state.getFocusedParticipant(), state.isInPipMode(), isPortrait, isLandscapeEnabled, state.isIncomingRing(), navBarBottomInset));
+      pages.add(WebRtcCallParticipantsPage.forMultipleParticipants(state.getGridParticipants(), state.getFocusedParticipant(), state.isInPipMode(), isPortrait, isLandscapeEnabled, state.getHideAvatar(), navBarBottomInset));
     }
 
     if (state.getFocusedParticipant() != CallParticipant.EMPTY && state.getAllRemoteParticipants().size() > 1) {
@@ -510,18 +506,16 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
 
     if (state == WebRtcLocalRenderState.EXPANDED) {
       pictureInPictureExpansionHelper.beginExpandTransition();
-      smallLocalRender.setSelfPipMode(CallParticipantView.SelfPipMode.EXPANDED_SELF_PIP);
+      smallLocalRender.setSelfPipMode(CallParticipantView.SelfPipMode.EXPANDED_SELF_PIP, localCallParticipant.isMoreThanOneCameraAvailable());
       return;
     } else if ((state.isAnySmall() || state == WebRtcLocalRenderState.GONE) && pictureInPictureExpansionHelper.isExpandedOrExpanding()) {
       pictureInPictureExpansionHelper.beginShrinkTransition();
-      smallLocalRender.setSelfPipMode(pictureInPictureExpansionHelper.isMiniSize() ? CallParticipantView.SelfPipMode.MINI_SELF_PIP : CallParticipantView.SelfPipMode.NORMAL_SELF_PIP);
+      smallLocalRender.setSelfPipMode(pictureInPictureExpansionHelper.isMiniSize() ? CallParticipantView.SelfPipMode.MINI_SELF_PIP : CallParticipantView.SelfPipMode.NORMAL_SELF_PIP, localCallParticipant.isMoreThanOneCameraAvailable());
 
       if (state != WebRtcLocalRenderState.GONE) {
         return;
       }
     }
-
-    pictureInPictureGestureHelper.setDisplayBelowVerticalBoundary(false);
 
     switch (state) {
       case GONE:
@@ -532,18 +526,17 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
         break;
       case SMALL_RECTANGLE:
         smallLocalRenderFrame.setVisibility(View.VISIBLE);
-        animatePipToLargeRectangle(displaySmallSelfPipInLandscape);
+        animatePipToLargeRectangle(displaySmallSelfPipInLandscape, localCallParticipant.isMoreThanOneCameraAvailable());
 
         largeLocalRender.attachBroadcastVideoSink(null);
         largeLocalRenderFrame.setVisibility(View.GONE);
         break;
       case SMALLER_RECTANGLE:
         smallLocalRenderFrame.setVisibility(View.VISIBLE);
-        animatePipToSmallRectangle();
+        animatePipToSmallRectangle(localCallParticipant.isMoreThanOneCameraAvailable());
 
         largeLocalRender.attachBroadcastVideoSink(null);
         largeLocalRenderFrame.setVisibility(View.GONE);
-        pictureInPictureGestureHelper.setDisplayBelowVerticalBoundary(true);
         break;
       case LARGE:
         largeLocalRender.attachBroadcastVideoSink(localCallParticipant.getVideoSink());
@@ -792,7 +785,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     }
   }
 
-  private void animatePipToLargeRectangle(boolean isLandscape) {
+  private void animatePipToLargeRectangle(boolean isLandscape, boolean moreThanOneCameraAvailable) {
     final Point dimens;
     if (isLandscape) {
       dimens = new Point(ViewUtil.dpToPx(PictureInPictureExpansionHelper.NORMAL_PIP_HEIGHT_DP),
@@ -809,10 +802,10 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
       }
     });
 
-    smallLocalRender.setSelfPipMode(CallParticipantView.SelfPipMode.NORMAL_SELF_PIP);
+    smallLocalRender.setSelfPipMode(CallParticipantView.SelfPipMode.NORMAL_SELF_PIP, moreThanOneCameraAvailable);
   }
 
-  private void animatePipToSmallRectangle() {
+  private void animatePipToSmallRectangle(boolean moreThanOneCameraAvailable) {
     pictureInPictureExpansionHelper.startDefaultSizeTransition(new Point(ViewUtil.dpToPx(PictureInPictureExpansionHelper.MINI_PIP_WIDTH_DP),
                                                                          ViewUtil.dpToPx(PictureInPictureExpansionHelper.MINI_PIP_HEIGHT_DP)),
                                                                new PictureInPictureExpansionHelper.Callback() {
@@ -822,7 +815,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
                                                                  }
                                                                });
 
-    smallLocalRender.setSelfPipMode(CallParticipantView.SelfPipMode.MINI_SELF_PIP);
+    smallLocalRender.setSelfPipMode(CallParticipantView.SelfPipMode.MINI_SELF_PIP, moreThanOneCameraAvailable);
   }
 
   private void toggleControls() {
@@ -924,7 +917,6 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
   }
 
   private void updateButtonStateForLargeButtons() {
-    cameraDirectionToggle.setImageResource(R.drawable.webrtc_call_screen_camera_toggle);
     hangup.setImageResource(R.drawable.webrtc_call_screen_hangup);
     overflow.setImageResource(R.drawable.webrtc_call_screen_overflow_menu);
     micToggle.setBackgroundResource(R.drawable.webrtc_call_screen_mic_toggle);
@@ -935,7 +927,6 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
   }
 
   private void updateButtonStateForSmallButtons() {
-    cameraDirectionToggle.setImageResource(R.drawable.webrtc_call_screen_camera_toggle_small);
     hangup.setImageResource(R.drawable.webrtc_call_screen_hangup_small);
     overflow.setImageResource(R.drawable.webrtc_call_screen_overflow_menu_small);
     micToggle.setBackgroundResource(R.drawable.webrtc_call_screen_mic_toggle_small);

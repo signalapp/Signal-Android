@@ -157,6 +157,7 @@ public class AccountRecordProcessor extends DefaultStorageRecordProcessor<Signal
                                                                    .setPrimarySendsSms(primarySendsSms)
                                                                    .setDefaultReactions(defaultReactions)
                                                                    .setSubscriber(subscriber)
+                                                                   .setStoryViewReceiptsState(storyViewReceiptsState)
                                                                    .setDisplayBadgesOnProfile(displayBadgesOnProfile)
                                                                    .setSubscriptionManuallyCancelled(subscriptionManuallyCancelled)
                                                                    .setKeepMutedChatsArchived(keepMutedChatsArchived)
@@ -167,10 +168,6 @@ public class AccountRecordProcessor extends DefaultStorageRecordProcessor<Signal
                                                                    .setHasCompletedUsernameOnboarding(hasSeenUsernameOnboarding)
                                                                    .setUsername(username)
                                                                    .setUsernameLink(usernameLink);
-
-      if (!self.getPnpCapability().isSupported()) {
-        builder.setE164(e164);
-      }
 
       return builder.build();
     }
