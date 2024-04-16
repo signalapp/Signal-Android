@@ -311,7 +311,7 @@ public class PushServiceSocket {
   private static final String BACKUP_AUTH_CHECK = "/v2/backup/auth/check";
 
   private static final String ARCHIVE_CREDENTIALS         = "/v1/archives/auth?redemptionStartSeconds=%d&redemptionEndSeconds=%d";
-  private static final String ARCHIVE_READ_CREDENTIALS    = "/v1/archives/auth/read";
+  private static final String ARCHIVE_READ_CREDENTIALS    = "/v1/archives/auth/read?cdn=%d";
   private static final String ARCHIVE_BACKUP_ID           = "/v1/archives/backupid";
   private static final String ARCHIVE_PUBLIC_KEY          = "/v1/archives/keys";
   private static final String ARCHIVE_INFO                = "/v1/archives";
@@ -590,10 +590,10 @@ public class PushServiceSocket {
   /**
    * Copy and re-encrypt media from the attachments cdn into the backup cdn.
    */
-  public GetArchiveCdnCredentialsResponse getArchiveCdnReadCredentials(@Nonnull ArchiveCredentialPresentation credentialPresentation) throws IOException {
+  public GetArchiveCdnCredentialsResponse getArchiveCdnReadCredentials(int cdnNumber, @Nonnull ArchiveCredentialPresentation credentialPresentation) throws IOException {
     Map<String, String> headers = credentialPresentation.toHeaders();
 
-    String response = makeServiceRequestWithoutAuthentication(ARCHIVE_READ_CREDENTIALS, "GET", null, headers, NO_HANDLER);
+    String response = makeServiceRequestWithoutAuthentication(String.format(Locale.US, ARCHIVE_READ_CREDENTIALS, cdnNumber), "GET", null, headers, NO_HANDLER);
 
     return JsonUtil.fromJson(response, GetArchiveCdnCredentialsResponse.class);
   }

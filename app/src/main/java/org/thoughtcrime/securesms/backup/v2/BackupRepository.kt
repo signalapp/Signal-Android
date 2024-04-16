@@ -15,6 +15,7 @@ import org.signal.libsignal.messagebackup.MessageBackupKey
 import org.signal.libsignal.protocol.ServiceId.Aci
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.attachments.AttachmentId
+import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.backup.v2.database.ChatItemImportInserter
 import org.thoughtcrime.securesms.backup.v2.database.clearAllDataForBackupRestore
@@ -299,7 +300,7 @@ object BackupRepository {
       .then { credential ->
         api.getBackupInfo(backupKey, credential)
       }
-      .then { info -> getCdnReadCredentials().map { it.headers to info } }
+      .then { info -> getCdnReadCredentials(info.cdn ?: Cdn.CDN_3.cdnNumber).map { it.headers to info } }
       .map { pair ->
         val (cdnCredentials, info) = pair
         val messageReceiver = ApplicationDependencies.getSignalServiceMessageReceiver()
@@ -456,7 +457,7 @@ object BackupRepository {
   /**
    * Retrieve credentials for reading from the backup cdn.
    */
-  fun getCdnReadCredentials(): NetworkResult<GetArchiveCdnCredentialsResponse> {
+  fun getCdnReadCredentials(cdnNumber: Int): NetworkResult<GetArchiveCdnCredentialsResponse> {
     val cached = SignalStore.backup().cdnReadCredentials
     if (cached != null) {
       return NetworkResult.Success(cached)
@@ -468,6 +469,7 @@ object BackupRepository {
     return getAuthCredential()
       .then { credential ->
         api.getCdnReadCredentials(
+          cdnNumber = cdnNumber,
           backupKey = backupKey,
           serviceCredential = credential
         )
@@ -490,7 +492,12 @@ object BackupRepository {
     val cachedBackupMediaDirectory = SignalStore.backup().cachedBackupMediaDirectory
 
     if (cachedBackupDirectory != null && cachedBackupMediaDirectory != null) {
-      return NetworkResult.Success(BackupDirectories(cachedBackupDirectory, cachedBackupMediaDirectory))
+      return NetworkResult.Success(
+        BackupDirectories(
+          backupDir = cachedBackupDirectory,
+          mediaDir = cachedBackupMediaDirectory
+        )
+      )
     }
 
     val api = ApplicationDependencies.getSignalServiceAccountManager().archiveApi

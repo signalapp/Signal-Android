@@ -55,12 +55,12 @@ class ArchiveApi(
     }
   }
 
-  fun getCdnReadCredentials(backupKey: BackupKey, serviceCredential: ArchiveServiceCredential): NetworkResult<GetArchiveCdnCredentialsResponse> {
+  fun getCdnReadCredentials(cdnNumber: Int, backupKey: BackupKey, serviceCredential: ArchiveServiceCredential): NetworkResult<GetArchiveCdnCredentialsResponse> {
     return NetworkResult.fromFetch {
       val zkCredential = getZkCredential(backupKey, serviceCredential)
       val presentationData = CredentialPresentationData.from(backupKey, zkCredential, backupServerPublicParams)
 
-      pushServiceSocket.getArchiveCdnReadCredentials(presentationData.toArchiveCredentialPresentation())
+      pushServiceSocket.getArchiveCdnReadCredentials(cdnNumber, presentationData.toArchiveCredentialPresentation())
     }
   }
 
@@ -225,7 +225,7 @@ class ArchiveApi(
     return backupRequestContext.receiveResponse(
       backupAuthResponse,
       backupServerPublicParams,
-      20
+      201
     )
   }
 

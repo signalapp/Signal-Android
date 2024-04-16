@@ -229,7 +229,7 @@ class AttachmentDownloadJob private constructor(
 
       val stream = if (useArchiveCdn) {
         archiveFile = SignalDatabase.attachments.getOrCreateArchiveTransferFile(attachmentId)
-        val cdnCredentials = BackupRepository.getCdnReadCredentials().successOrThrow().headers
+        val cdnCredentials = BackupRepository.getCdnReadCredentials(attachment.archiveCdn).successOrThrow().headers
 
         messageReceiver
           .retrieveArchivedAttachment(
