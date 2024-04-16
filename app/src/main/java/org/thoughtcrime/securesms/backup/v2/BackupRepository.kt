@@ -224,6 +224,22 @@ object BackupRepository {
     Log.d(TAG, "import() ${eventTimer.stop().summary}")
   }
 
+  fun listRemoteMediaObjects(limit: Int, cursor: String? = null): NetworkResult<ArchiveGetMediaItemsResponse> {
+    val api = ApplicationDependencies.getSignalServiceAccountManager().archiveApi
+    val backupKey = SignalStore.svr().getOrCreateMasterKey().deriveBackupKey()
+
+    return api
+      .triggerBackupIdReservation(backupKey)
+      .then { getAuthCredential() }
+      .then { credential ->
+        api.setPublicKey(backupKey, credential)
+          .map { credential }
+      }
+      .then { credential ->
+        api.getArchiveMediaItemsPage(backupKey, credential, limit, cursor)
+      }
+  }
+
   /**
    * Returns an object with details about the remote backup state.
    */
@@ -420,6 +436,34 @@ object BackupRepository {
       .also { Log.i(TAG, "deleteArchivedMediaResult: $it") }
   }
 
+  fun deleteAbandonedMediaObjects(mediaObjects: Collection<ArchivedMediaObject>): NetworkResult<Unit> {
+    val api = ApplicationDependencies.getSignalServiceAccountManager().archiveApi
+    val backupKey = SignalStore.svr().getOrCreateMasterKey().deriveBackupKey()
+
+    val mediaToDelete = mediaObjects
+      .map {
+        DeleteArchivedMediaRequest.ArchivedMediaObject(
+          cdn = it.cdn,
+          mediaId = it.mediaId
+        )
+      }
+
+    if (mediaToDelete.isEmpty()) {
+      Log.i(TAG, "No media to delete, quick success")
+      return NetworkResult.Success(Unit)
+    }
+
+    return getAuthCredential()
+      .then { credential ->
+        api.deleteArchivedMedia(
+          backupKey = backupKey,
+          serviceCredential = credential,
+          mediaToDelete = mediaToDelete
+        )
+      }
+      .also { Log.i(TAG, "deleteAbandonedMediaObjectsResult: $it") }
+  }
+
   fun debugDeleteAllArchivedMedia(): NetworkResult<Unit> {
     val api = ApplicationDependencies.getSignalServiceAccountManager().archiveApi
     val backupKey = SignalStore.svr().getOrCreateMasterKey().deriveBackupKey()
@@ -565,6 +609,8 @@ object BackupRepository {
     )
   }
 }
+
+data class ArchivedMediaObject(val mediaId: String, val cdn: Int)
 
 data class BackupDirectories(val backupDir: String, val mediaDir: String)
 

@@ -250,7 +250,8 @@ class AttachmentTable(
       "CREATE INDEX IF NOT EXISTS attachment_sticker_pack_id_index ON $TABLE_NAME ($STICKER_PACK_ID);",
       "CREATE INDEX IF NOT EXISTS attachment_data_hash_start_index ON $TABLE_NAME ($DATA_HASH_START);",
       "CREATE INDEX IF NOT EXISTS attachment_data_hash_end_index ON $TABLE_NAME ($DATA_HASH_END);",
-      "CREATE INDEX IF NOT EXISTS attachment_data_index ON $TABLE_NAME ($DATA_FILE);"
+      "CREATE INDEX IF NOT EXISTS attachment_data_index ON $TABLE_NAME ($DATA_FILE);",
+      "CREATE INDEX IF NOT EXISTS attachment_archive_media_id_index ON $TABLE_NAME ($ARCHIVE_MEDIA_ID);"
     )
 
     val ATTACHMENT_POINTER_REUSE_THRESHOLD = 7.days.inWholeMilliseconds
@@ -1297,6 +1298,16 @@ class AttachmentTable(
         ARCHIVE_MEDIA_NAME to archiveMediaName
       )
       .where("$ID = ?", attachmentId.id)
+      .run()
+  }
+
+  fun updateArchiveCdnByMediaId(archiveMediaId: String, archiveCdn: Int): Int {
+    return writableDatabase
+      .update(TABLE_NAME)
+      .values(
+        ARCHIVE_CDN to archiveCdn
+      )
+      .where("$ARCHIVE_MEDIA_ID = ?", archiveMediaId)
       .run()
   }
 

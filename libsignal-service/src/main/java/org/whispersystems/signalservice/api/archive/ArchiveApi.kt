@@ -113,6 +113,17 @@ class ArchiveApi(
   }
 
   /**
+   * Lists the media objects in the backup
+   */
+  fun listMediaObjects(backupKey: BackupKey, serviceCredential: ArchiveServiceCredential, limit: Int, cursor: String? = null): NetworkResult<ArchiveGetMediaItemsResponse> {
+    return NetworkResult.fromFetch {
+      val zkCredential = getZkCredential(backupKey, serviceCredential)
+      val presentationData = CredentialPresentationData.from(backupKey, zkCredential, backupServerPublicParams)
+      pushServiceSocket.getArchiveMediaItemsPage(presentationData.toArchiveCredentialPresentation(), limit, cursor)
+    }
+  }
+
+  /**
    * Retrieves a resumable upload URL you can use to upload your main message backup file to cloud storage.
    */
   fun getBackupResumableUploadUrl(archiveFormResponse: ArchiveMessageBackupUploadFormResponse): NetworkResult<String> {
@@ -136,15 +147,11 @@ class ArchiveApi(
    */
   fun debugGetUploadedMediaItemMetadata(backupKey: BackupKey, serviceCredential: ArchiveServiceCredential): NetworkResult<List<StoredMediaObject>> {
     return NetworkResult.fromFetch {
-      val zkCredential = getZkCredential(backupKey, serviceCredential)
-      val presentationData = CredentialPresentationData.from(backupKey, zkCredential, backupServerPublicParams)
-      val credentialPresentation = presentationData.toArchiveCredentialPresentation()
-
       val mediaObjects: MutableList<StoredMediaObject> = ArrayList()
 
       var cursor: String? = null
       do {
-        val response: ArchiveGetMediaItemsResponse = pushServiceSocket.getArchiveMediaItemsPage(credentialPresentation, 512, cursor)
+        val response: ArchiveGetMediaItemsResponse = getArchiveMediaItemsPage(backupKey, serviceCredential, 512, cursor).successOrThrow()
         mediaObjects += response.storedMediaObjects
         cursor = response.cursor
       } while (cursor != null)
@@ -158,7 +165,7 @@ class ArchiveApi(
    * @param limit The maximum number of items to return.
    * @param cursor A token that can be read from your previous response, telling the server where to start the next page.
    */
-  fun getArchiveMediaItemsPage(backupKey: BackupKey, serviceCredential: ArchiveServiceCredential, limit: Int, cursor: String): NetworkResult<ArchiveGetMediaItemsResponse> {
+  fun getArchiveMediaItemsPage(backupKey: BackupKey, serviceCredential: ArchiveServiceCredential, limit: Int, cursor: String?): NetworkResult<ArchiveGetMediaItemsResponse> {
     return NetworkResult.fromFetch {
       val zkCredential = getZkCredential(backupKey, serviceCredential)
       val presentationData = CredentialPresentationData.from(backupKey, zkCredential, backupServerPublicParams)

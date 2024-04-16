@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.jobs.AttachmentUploadJob
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
 import org.thoughtcrime.securesms.jobs.BackupRestoreJob
 import org.thoughtcrime.securesms.jobs.BackupRestoreMediaJob
+import org.thoughtcrime.securesms.jobs.SyncArchivedMediaJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -168,6 +169,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
       ApplicationDependencies
         .getJobManager()
         .startChain(BackupRestoreJob())
+        .then(SyncArchivedMediaJob())
         .then(BackupRestoreMediaJob())
         .enqueueAndBlockUntilCompletion(120.seconds.inWholeMilliseconds)
     }
