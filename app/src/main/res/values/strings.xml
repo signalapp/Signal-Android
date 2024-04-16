@@ -415,6 +415,7 @@
 
 
     <string name="ConversationActivity_join">Join</string>
+    <!-- Button text for an active group call but the call is currently full and unjoinable -->
     <string name="ConversationActivity_full">Full</string>
 
     <string name="ConversationActivity_error_sending_media">Error sending media</string>
@@ -613,6 +614,7 @@
     <string name="ConversationListFragment_unarchive">Unarchive</string>
     <string name="ConversationListFragment_delete">Delete</string>
     <string name="ConversationListFragment_select_all">Select all</string>
+    <!-- Screen title shown when selecting multiple items from a list like conversation threads or call logs. -->
     <plurals name="ConversationListFragment_s_selected">
         <item quantity="one">%d selected</item>
         <item quantity="other">%d selected</item>
@@ -864,6 +866,7 @@
         <item quantity="one">Invitation sent</item>
         <item quantity="other">%d invitations sent</item>
     </plurals>
+    <!-- Dialog message shown when you are attempting to add a single contact to a group and you don't have enough information about them to do it automatically, so must do it via an invite instead. Placeholder is name/username/phone number. -->
     <string name="GroupManagement_invite_single_user">“%1$s” can’t be automatically added to this group by you.\n\nThey’ve been invited to join, and won’t see any group messages until they accept.</string>
     <string name="GroupManagement_invite_multiple_users">These users can’t be automatically added to this group by you.\n\nThey’ve been invited to join the group, and won’t see any group messages until they accept.</string>
 
@@ -1044,7 +1047,9 @@
 
     <string name="ManageGroupActivity_edit_name_and_picture">Edit name and picture</string>
     <string name="ManageGroupActivity_legacy_group">Legacy Group</string>
+    <!-- This is placed inside a "Learn More" text view, which automatically appends LearnMoreTextView_learn_more in code -->
     <string name="ManageGroupActivity_legacy_group_learn_more">This is a Legacy Group. Features like group admins are only available for New Groups.</string>
+    <!-- This is placed inside a "Learn More" text view, which automatically appends LearnMoreTextView_learn_more in code to the end of the string -->
     <string name="ManageGroupActivity_legacy_group_upgrade">This is a Legacy Group. To access new features like @mentions and admins,</string>
     <string name="ManageGroupActivity_legacy_group_too_large">This Legacy Group can’t be upgraded to a New Group because it is too large. The maximum group size is %1$d.</string>
     <string name="ManageGroupActivity_upgrade_this_group">upgrade this group.</string>
@@ -1271,6 +1276,7 @@
         <item quantity="other">Delete</item>
     </plurals>
 
+    <!-- Screen title shown when selecting multiple items in the media overview screen. The first placeholder is the number of items, the second number is the cumulative file size in bytes. -->
     <plurals name="MediaOverviewActivity_d_selected_s">
         <item quantity="one">%1$d selected (%2$s)</item>
         <item quantity="other">%1$d selected (%2$s)</item>
@@ -2083,6 +2089,7 @@
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">Unable to request a verification code. Please check network connection and try again.</string>
     <string name="RegistrationActivity_non_standard_number_format">Non-standard number format</string>
+    <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">The number you entered (%1$s) appears to be a non-standard format.\n\nDid you mean %2$s?</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Phone Number Format</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
@@ -2795,6 +2802,7 @@
     <string name="safety_number_change_dialog__leave_call">Leave call</string>
     <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">The following people may have reinstalled or changed devices. Verify your safety number with them to ensure privacy.</string>
     <string name="safety_number_change_dialog__view">View</string>
+    <!-- Subtitle shown for a single contact and that their safety number was previously verified and is now no longer verified. -->
     <string name="safety_number_change_dialog__previous_verified">Previous verified</string>
 
     <!-- EnableCallNotificationSettingsDialog__call_notifications_checklist -->
@@ -3108,6 +3116,7 @@
 
     <string name="arrays__default">Default</string>
     <string name="arrays__high">High</string>
+    <!-- Setting title that represent an abstract priority to assign to notifications as the max/highest priority a notification can be within the system. -->
     <string name="arrays__max">Max</string>
 
     <!-- plurals.xml -->
@@ -3468,6 +3477,7 @@
     <string name="PaymentsDetailsFragment__sent_to_s">Sent to %1$s</string>
     <string name="PaymentsDetailsFragment__you_on_s_at_s">You on %1$s at %2$s</string>
     <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s on %2$s at %3$s</string>
+    <!-- Prefix to a name to indicate who a payment was sent to -->
     <string name="PaymentsDetailsFragment__to">To</string>
     <string name="PaymentsDetailsFragment__from">From</string>
     <string name="PaymentsDetailsFragment__information">Transaction details including the payment amount and time of transaction are part of the MobileCoin Ledger.</string>
@@ -3530,6 +3540,7 @@
     <string name="ConfirmPayment__confirm_payment">Confirm payment</string>
     <string name="ConfirmPayment__network_fee">Network fee</string>
     <string name="ConfirmPayment__estimated_s">Estimated %1$s</string>
+    <!-- Prefix to a name to indicate who a payment will be sent to -->
     <string name="ConfirmPayment__to">To</string>
     <string name="ConfirmPayment__total_amount">Total amount</string>
     <string name="ConfirmPayment__balance_s">Balance: %1$s</string>
@@ -4134,6 +4145,7 @@
     <string name="RecipientBottomSheet_copied_to_clipboard">Copied to clipboard</string>
 
     <string name="GroupRecipientListItem_admin">Admin</string>
+    <!-- Button text to approve a user that has requested to join a group -->
     <string name="GroupRecipientListItem_approve_description">Approve</string>
     <string name="GroupRecipientListItem_deny_description">Deny</string>
 
@@ -4161,6 +4173,7 @@
 
     <!-- VoiceNoteMediaDescriptionCompatFactory -->
     <string name="VoiceNoteMediaItemFactory__voice_message">Voice message &#183; %1$s</string>
+    <!-- This is a title in a banner describing the conversation sender to receiver placeholders of the currently playing voice memo. -->
     <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s to %2$s</string>
 
     <!-- StorageUtil -->
@@ -4207,6 +4220,7 @@
     <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s and %2$s joined</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s and %3$s joined</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s and %3$d others joined</string>
+    <!-- Toast/popup text shown when someone leaves a group call -->
     <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s left</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s and %2$s left</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s and %3$s left</string>
@@ -4584,6 +4598,7 @@
     <string name="PrivacySettingsFragment__messaging">Messaging</string>
     <string name="PrivacySettingsFragment__disappearing_messages">Disappearing messages</string>
     <string name="PrivacySettingsFragment__app_security">App security</string>
+    <!-- This refers to the multi-tasking overview (recent apps) from the Android operating system.-->
     <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Block screenshots in the recents list and inside the app</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Signal messages and calls, always relay calls, and sealed sender</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">Default timer for new chats</string>
@@ -4640,11 +4655,14 @@
     <string name="DataAndStorageSettingsFragment__media_quality">Media quality</string>
     <string name="DataAndStorageSettingsFragment__sent_media_quality">Sent media quality</string>
     <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Sending high quality media will use more data.</string>
+    <!-- Setting option that can be selected to default media to be sent as high quality by default -->
     <string name="DataAndStorageSettingsFragment__high">High</string>
+    <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
     <string name="DataAndStorageSettingsFragment__standard">Standard</string>
     <string name="DataAndStorageSettingsFragment__calls">Calls</string>
 
     <!-- ChatColorSelectionFragment -->
+    <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
     <string name="ChatColorSelectionFragment__auto">Auto</string>
     <string name="ChatColorSelectionFragment__use_custom_colors">Use custom colors</string>
     <string name="ChatColorSelectionFragment__chat_color">Chat color</string>
@@ -4856,6 +4874,7 @@
     <string name="AvatarPickerFragment__take_a_picture">Take a picture</string>
     <string name="AvatarPickerFragment__choose_a_photo">Choose a photo</string>
     <string name="AvatarPickerFragment__photo">Photo</string>
+    <!-- Button label during avatar selection/creation that when tapped lets you generate an avatar from typed in text. -->
     <string name="AvatarPickerFragment__text">Text</string>
     <string name="AvatarPickerFragment__save">Save</string>
     <string name="AvatarPickerFragment__clear_avatar">Clear avatar</string>
@@ -5509,7 +5528,7 @@
     <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
     <!-- Displayed when viewing a post you sent -->
     <string name="StoryViewerPageFragment__you">You</string>
-    <!-- Displayed when viewing a post displayed to a group -->
+    <!-- Displayed when viewing a story sent to a group, placeholders are person who sent the story and the group name -->
     <string name="StoryViewerPageFragment__s_to_s">%1$s to %2$s</string>
     <!-- Displayed when viewing a post from another user with no replies -->
     <string name="StoryViewerPageFragment__reply">Reply</string>
