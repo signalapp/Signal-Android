@@ -25,8 +25,10 @@ class ArchivedAttachment : Attachment {
   constructor(
     contentType: String?,
     size: Long,
-    cdn: Cdn,
-    cdnKey: ByteArray,
+    cdn: Int,
+    key: ByteArray,
+    cdnKey: String?,
+    archiveCdn: Int?,
     archiveMediaName: String,
     archiveMediaId: String,
     digest: ByteArray,
@@ -46,9 +48,9 @@ class ArchivedAttachment : Attachment {
     transferState = AttachmentTable.TRANSFER_NEEDS_RESTORE,
     size = size,
     fileName = null,
-    cdn = cdn,
-    remoteLocation = null,
-    remoteKey = Base64.encodeWithoutPadding(cdnKey),
+    cdn = Cdn.fromCdnNumber(cdn),
+    remoteLocation = cdnKey,
+    remoteKey = Base64.encodeWithoutPadding(key),
     remoteDigest = digest,
     incrementalDigest = incrementalMac,
     fastPreflightId = null,
@@ -65,7 +67,7 @@ class ArchivedAttachment : Attachment {
     audioHash = null,
     transformProperties = null
   ) {
-    this.archiveCdn = cdn.cdnNumber
+    this.archiveCdn = archiveCdn ?: Cdn.CDN_3.cdnNumber
     this.archiveMediaName = archiveMediaName
     this.archiveMediaId = archiveMediaId
   }

@@ -618,8 +618,10 @@ class ChatItemImportInserter(
       return ArchivedAttachment(
         contentType = contentType,
         size = pointer.backupLocator.size.toLong(),
-        cdn = Cdn.fromCdnNumber(pointer.backupLocator.cdnNumber),
-        cdnKey = pointer.backupLocator.key.toByteArray(),
+        cdn = pointer.backupLocator.transitCdnNumber ?: Cdn.CDN_0.cdnNumber,
+        key = pointer.backupLocator.key.toByteArray(),
+        cdnKey = pointer.backupLocator.transitCdnKey,
+        archiveCdn = pointer.backupLocator.cdnNumber,
         archiveMediaName = pointer.backupLocator.mediaName,
         archiveMediaId = backupState.backupKey.deriveMediaId(MediaName(pointer.backupLocator.mediaName)).encode(),
         digest = pointer.backupLocator.digest.toByteArray(),

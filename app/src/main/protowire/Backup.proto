@@ -388,10 +388,16 @@ message FilePointer {
   // References attachments in the backup (media) storage tier.
   message BackupLocator {
     string mediaName = 1;
-    uint32 cdnNumber = 2;
+    // If present, the cdn number of the succesful upload.
+    // If empty/0, may still have been uploaded, and clients
+    // can discover the cdn number via the list endpoint.
+    optional uint32 cdnNumber = 2;
     bytes key = 3;
     bytes digest = 4;
     uint32 size = 5;
+    // Fallback in case backup tier upload failed.
+    optional string transitCdnKey = 6;
+    optional uint32 transitCdnNumber = 7;
   }
 
   // References attachments in the transit storage tier.
