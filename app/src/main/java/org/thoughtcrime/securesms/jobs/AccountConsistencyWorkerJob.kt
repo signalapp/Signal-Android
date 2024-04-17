@@ -56,18 +56,33 @@ class AccountConsistencyWorkerJob private constructor(parameters: Parameters) : 
       return
     }
 
-    val profile: SignalServiceProfile = ProfileUtil.retrieveProfileSync(context, Recipient.self(), SignalServiceProfile.RequestType.PROFILE, false).profile
-    val encodedPublicKey = Base64.encodeWithPadding(SignalStore.account().aciIdentityKey.publicKey.serialize())
+    val aciProfile: SignalServiceProfile = ProfileUtil.retrieveProfileSync(context, Recipient.self(), SignalServiceProfile.RequestType.PROFILE, false).profile
+    val encodedAciPublicKey = Base64.encodeWithPadding(SignalStore.account().aciIdentityKey.publicKey.serialize())
 
-    if (profile.identityKey != encodedPublicKey) {
-      Log.w(TAG, "Identity key on profile differed from the one we have locally! Marking ourselves unregistered.")
+    if (aciProfile.identityKey != encodedAciPublicKey) {
+      Log.w(TAG, "ACI identity key on profile differed from the one we have locally! Marking ourselves unregistered.")
 
       SignalStore.account().setRegistered(false)
       SignalStore.registrationValues().clearRegistrationComplete()
       SignalStore.registrationValues().clearHasUploadedProfile()
-    } else {
-      Log.i(TAG, "Everything matched.")
+
+      SignalStore.misc().lastConsistencyCheckTime = System.currentTimeMillis()
+      return
     }
+
+    val pniProfile: SignalServiceProfile = ProfileUtil.retrieveProfileSync(SignalStore.account().pni!!, SignalServiceProfile.RequestType.PROFILE).profile
+    val encodedPniPublicKey = Base64.encodeWithPadding(SignalStore.account().pniIdentityKey.publicKey.serialize())
+
+    if (pniProfile.identityKey != encodedPniPublicKey) {
+      Log.w(TAG, "PNI identity key on profile differed from the one we have locally!")
+
+      SignalStore.account().setRegistered(false)
+      SignalStore.registrationValues().clearRegistrationComplete()
+      SignalStore.registrationValues().clearHasUploadedProfile()
+      return
+    }
+
+    Log.i(TAG, "Everything matched.")
 
     SignalStore.misc().lastConsistencyCheckTime = System.currentTimeMillis()
   }

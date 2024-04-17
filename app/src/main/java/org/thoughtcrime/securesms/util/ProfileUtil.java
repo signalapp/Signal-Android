@@ -43,6 +43,7 @@ import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
 import org.whispersystems.signalservice.api.profiles.AvatarUploadParams;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.services.ProfileService;
 import org.whispersystems.signalservice.api.util.StreamDetails;
@@ -106,6 +107,22 @@ public final class ProfileUtil {
   {
     Pair<Recipient, ServiceResponse<ProfileAndCredential>> response = retrieveProfile(context, recipient, requestType, allowUnidentifiedAccess).blockingGet();
     return new ProfileService.ProfileResponseProcessor(response.second()).getResultOrThrow();
+  }
+
+  @WorkerThread
+  public static @NonNull ProfileAndCredential retrieveProfileSync(@NonNull ServiceId.PNI pni,
+                                                                  @NonNull SignalServiceProfile.RequestType requestType)
+      throws IOException
+  {
+    ProfileService               profileService     = ApplicationDependencies.getProfileService();
+
+    ServiceResponse<ProfileAndCredential> response = Single
+        .fromCallable(() -> new SignalServiceAddress(pni))
+        .flatMap(address -> profileService.getProfile(address, Optional.empty(), Optional.empty(), requestType, Locale.getDefault()))
+        .onErrorReturn(t -> ServiceResponse.forUnknownError(t))
+        .blockingGet();
+
+    return new ProfileService.ProfileResponseProcessor(response).getResultOrThrow();
   }
 
   public static Single<Pair<Recipient, ServiceResponse<ProfileAndCredential>>> retrieveProfile(@NonNull Context context,
