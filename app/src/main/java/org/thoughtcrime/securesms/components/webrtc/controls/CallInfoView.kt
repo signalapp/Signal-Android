@@ -34,12 +34,11 @@ import androidx.compose.runtime.rxjava3.subscribeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
@@ -183,7 +182,7 @@ private fun CallInfo(
       item {
         Rows.TextRow(
           text = stringResource(id = R.string.CallLinkDetailsFragment__share_link),
-          icon = ImageVector.vectorResource(id = R.drawable.symbol_link_24),
+          icon = painterResource(id = R.drawable.symbol_link_24),
           iconModifier = Modifier
             .background(
               color = MaterialTheme.colorScheme.surfaceVariant,
@@ -446,7 +445,7 @@ private fun CallParticipantRow(
 
     if (showIcons && showHandRaised) {
       Icon(
-        imageVector = ImageVector.vectorResource(id = R.drawable.symbol_raise_hand_24),
+        painter = painterResource(id = R.drawable.symbol_raise_hand_24),
         contentDescription = null,
         modifier = Modifier.align(Alignment.CenterVertically)
       )
@@ -454,7 +453,7 @@ private fun CallParticipantRow(
 
     if (showIcons && !isVideoEnabled) {
       Icon(
-        imageVector = ImageVector.vectorResource(id = R.drawable.symbol_video_slash_24),
+        painter = painterResource(id = R.drawable.symbol_video_slash_24),
         contentDescription = null,
         modifier = Modifier.align(Alignment.CenterVertically)
       )
@@ -466,7 +465,7 @@ private fun CallParticipantRow(
       }
 
       Icon(
-        imageVector = ImageVector.vectorResource(id = R.drawable.symbol_mic_slash_24),
+        painter = painterResource(id = R.drawable.symbol_mic_slash_24),
         contentDescription = null,
         modifier = Modifier.align(Alignment.CenterVertically)
       )
@@ -478,7 +477,7 @@ private fun CallParticipantRow(
       }
 
       Icon(
-        imageVector = ImageVector.vectorResource(id = R.drawable.symbol_minus_circle_24),
+        painter = painterResource(id = R.drawable.symbol_minus_circle_24),
         contentDescription = null,
         modifier = Modifier
           .clickable(onClick = onBlockClicked)

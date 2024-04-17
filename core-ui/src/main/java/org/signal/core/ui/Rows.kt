@@ -4,6 +4,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -22,8 +23,9 @@ import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -110,41 +112,53 @@ object Rows {
     text: String,
     modifier: Modifier = Modifier,
     iconModifier: Modifier = Modifier,
-    icon: ImageVector? = null,
+    icon: Painter? = null,
     foregroundTint: Color = MaterialTheme.colorScheme.onSurface,
     onClick: (() -> Unit)? = null
   ) {
-    if (icon != null) {
-      Row(
-        modifier = modifier
-          .fillMaxWidth()
-          .clickable(enabled = onClick != null, onClick = onClick ?: {})
-          .padding(defaultPadding())
-      ) {
-        Icon(
-          imageVector = icon,
-          contentDescription = null,
-          tint = foregroundTint,
-          modifier = iconModifier
-        )
-
-        Spacer(modifier = Modifier.width(24.dp))
-
+    TextRow(
+      text = {
         Text(
           text = text,
-          modifier = Modifier.weight(1f).align(CenterVertically),
-          color = foregroundTint
+          color = foregroundTint,
+          modifier = Modifier.align(CenterVertically)
         )
+      },
+      icon = if (icon != null) {
+        {
+          Icon(
+            painter = icon,
+            contentDescription = null,
+            tint = foregroundTint,
+            modifier = iconModifier
+          )
+        }
+      } else {
+        null
+      },
+      modifier = modifier,
+      onClick = onClick
+    )
+  }
+
+  @Composable
+  fun TextRow(
+    text: @Composable RowScope.() -> Unit,
+    modifier: Modifier = Modifier,
+    icon: (@Composable RowScope.() -> Unit)? = null,
+    onClick: (() -> Unit)? = null
+  ) {
+    Row(
+      modifier = modifier
+        .fillMaxWidth()
+        .clickable(enabled = onClick != null, onClick = onClick ?: {})
+        .padding(defaultPadding())
+    ) {
+      if (icon != null) {
+        icon()
+        Spacer(modifier = Modifier.width(24.dp))
       }
-    } else {
-      Text(
-        text = text,
-        color = foregroundTint,
-        modifier = modifier
-          .fillMaxWidth()
-          .clickable(enabled = onClick != null, onClick = onClick ?: {})
-          .padding(defaultPadding())
-      )
+      text()
     }
   }
 
@@ -190,11 +204,13 @@ private fun ToggleRowPreview() {
   }
 }
 
-@Preview
+@SignalPreview
 @Composable
 private fun TextRowPreview() {
-  SignalTheme(isDarkMode = false) {
-    Rows.TextRow(text = "TextRow")
-    Rows.TextRow(text = "TextRow")
+  Previews.Preview {
+    Rows.TextRow(
+      text = "TextRow",
+      icon = painterResource(id = android.R.drawable.ic_menu_camera)
+    )
   }
 }

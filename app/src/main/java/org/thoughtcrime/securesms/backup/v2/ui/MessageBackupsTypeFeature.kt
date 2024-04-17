@@ -18,6 +18,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import org.signal.core.ui.Previews
+import org.signal.core.ui.SignalPreview
+import org.thoughtcrime.securesms.R
 
 /**
  * Represents a "Feature" included for a specify tier of message backups
@@ -50,6 +53,19 @@ fun MessageBackupsTypeFeatureRow(
     Text(
       text = messageBackupsTypeFeature.label,
       style = MaterialTheme.typography.bodyLarge
+    )
+  }
+}
+
+@SignalPreview
+@Composable
+private fun MessageBackupsTypeFeatureRowPreview() {
+  Previews.Preview {
+    MessageBackupsTypeFeatureRow(
+      messageBackupsTypeFeature = MessageBackupsTypeFeature(
+        iconResourceId = R.drawable.symbol_edit_24,
+        label = "Content Label"
+      )
     )
   }
 }

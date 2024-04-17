@@ -23,11 +23,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
@@ -165,7 +164,7 @@ private fun CallLinkIncomingRequestSheetContent(
     item {
       Rows.TextRow(
         text = stringResource(id = R.string.CallLinkIncomingRequestSheet__approve_entry),
-        icon = ImageVector.vectorResource(R.drawable.symbol_check_circle_24),
+        icon = painterResource(R.drawable.symbol_check_circle_24),
         onClick = onApproveEntry
       )
     }
@@ -173,7 +172,7 @@ private fun CallLinkIncomingRequestSheetContent(
     item {
       Rows.TextRow(
         text = stringResource(id = R.string.CallLinkIncomingRequestSheet__deny_entry),
-        icon = ImageVector.vectorResource(R.drawable.symbol_x_circle_24),
+        icon = painterResource(R.drawable.symbol_x_circle_24),
         onClick = onDenyEntry
       )
     }
@@ -219,7 +218,7 @@ private fun Title(
         style = MaterialTheme.typography.headlineMedium
       )
       Icon(
-        imageVector = ImageVector.vectorResource(id = R.drawable.symbol_person_circle_24),
+        painter = painterResource(id = R.drawable.symbol_person_circle_24),
         contentDescription = null,
         modifier = Modifier
           .padding(start = 6.dp)

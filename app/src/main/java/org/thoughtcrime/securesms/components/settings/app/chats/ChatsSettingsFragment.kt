@@ -1,12 +1,15 @@
 package org.thoughtcrime.securesms.components.settings.app.chats
 
+import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.backup.v2.ui.MessageBackupsFlowActivity
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
+import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
@@ -81,9 +84,23 @@ class ChatsSettingsFragment : DSLSettingsFragment(R.string.preferences_chats__ch
 
       sectionHeaderPref(R.string.preferences_chats__backups)
 
+      if (FeatureFlags.messageBackups() || state.remoteBackupsEnabled) {
+        clickPref(
+          title = DSLSettingsText.from("Signal Backups"), // TODO [message-backups] -- Finalized copy
+          summary = DSLSettingsText.from(if (state.remoteBackupsEnabled) R.string.arrays__enabled else R.string.arrays__disabled),
+          onClick = {
+            if (state.remoteBackupsEnabled) {
+              Navigation.findNavController(requireView()).safeNavigate(R.id.action_chatsSettingsFragment_to_remoteBackupsSettingsFragment)
+            } else {
+              startActivity(Intent(requireContext(), MessageBackupsFlowActivity::class.java))
+            }
+          }
+        )
+      }
+
       clickPref(
         title = DSLSettingsText.from(R.string.preferences_chats__chat_backups),
-        summary = DSLSettingsText.from(if (state.chatBackupsEnabled) R.string.arrays__enabled else R.string.arrays__disabled),
+        summary = DSLSettingsText.from(if (state.localBackupsEnabled) R.string.arrays__enabled else R.string.arrays__disabled),
         onClick = {
           Navigation.findNavController(requireView()).safeNavigate(R.id.action_chatsSettingsFragment_to_backupsPreferenceFragment)
         }

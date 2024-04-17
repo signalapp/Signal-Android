@@ -21,6 +21,7 @@ import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -269,6 +270,7 @@ private fun formatCostPerMonth(pricePerMonth: FiatMoney): String {
   }
 }
 
+@Stable
 data class MessageBackupsType(
   val pricePerMonth: FiatMoney,
   val title: String,

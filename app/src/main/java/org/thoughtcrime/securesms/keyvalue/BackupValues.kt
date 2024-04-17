@@ -25,6 +25,11 @@ internal class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
 
     private const val KEY_OPTIMIZE_STORAGE = "backup.optimizeStorage"
 
+    /**
+     * Specifies whether remote backups are enabled on this device.
+     */
+    private const val KEY_BACKUPS_ENABLED = "backup.enabled"
+
     private val cachedCdnCredentialsExpiresIn: Duration = 12.hours
   }
 
@@ -39,6 +44,8 @@ internal class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
   var canReadWriteToArchiveCdn: Boolean by booleanValue(KEY_CDN_CAN_READ_WRITE, false)
   var restoreState: RestoreState by enumValue(KEY_RESTORE_STATE, RestoreState.NONE, RestoreState.serializer)
   var optimizeStorage: Boolean by booleanValue(KEY_OPTIMIZE_STORAGE, false)
+
+  var areBackupsEnabled: Boolean by booleanValue(KEY_BACKUPS_ENABLED, false)
 
   /**
    * Retrieves the stored credentials, mapped by the day they're valid. The day is represented as
