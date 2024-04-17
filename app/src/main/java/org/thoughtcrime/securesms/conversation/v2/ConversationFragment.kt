@@ -648,6 +648,10 @@ class ConversationFragment :
 
     conversationGroupViewModel.updateGroupStateIfNeeded()
 
+    if (inputPanel.voiceNoteDraft != null) {
+      updateToggleButtonState()
+    }
+
     if (SignalStore.rateLimit().needsRecaptcha()) {
       RecaptchaProofBottomSheetFragment.show(childFragmentManager)
     }
