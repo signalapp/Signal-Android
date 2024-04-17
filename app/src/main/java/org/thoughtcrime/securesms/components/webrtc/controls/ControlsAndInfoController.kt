@@ -209,7 +209,7 @@ class ControlsAndInfoController(
       }
   }
 
-  private fun onControlTopChanged() {
+  fun onControlTopChanged() {
     val guidelineTop = max(frame.top, coordinator.height - behavior.peekHeight)
     aboveControlsGuideline.setGuidelineBegin(guidelineTop)
     webRtcCallView.onControlTopChanged()
@@ -321,6 +321,7 @@ class ControlsAndInfoController(
       val margin = if (controlState.displaySmallCallButtons()) 4.dp else 8.dp
 
       setControlConstraints(R.id.call_screen_speaker_toggle, controlState.displayAudioToggle(), margin)
+      setControlConstraints(R.id.call_screen_camera_direction_toggle, controlState.displayCameraToggle(), margin)
       setControlConstraints(R.id.call_screen_video_toggle, controlState.displayVideoToggle(), margin)
       setControlConstraints(R.id.call_screen_audio_mic_toggle, controlState.displayMuteAudio(), margin)
       setControlConstraints(R.id.call_screen_audio_ring_toggle, controlState.displayRingToggle(), margin)

@@ -96,6 +96,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
   private RecipientId                   recipientId;
   private ImageView                     answer;
   private TextView                      answerWithoutVideoLabel;
+  private ImageView                     cameraDirectionToggle;
   private AccessibleToggleButton        ringToggle;
   private PictureInPictureGestureHelper pictureInPictureGestureHelper;
   private ImageView                     overflow;
@@ -177,6 +178,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     incomingRingStatus            = findViewById(R.id.call_screen_incoming_ring_status);
     answer                        = findViewById(R.id.call_screen_answer_call);
     answerWithoutVideoLabel       = findViewById(R.id.call_screen_answer_without_video_label);
+    cameraDirectionToggle         = findViewById(R.id.call_screen_camera_direction_toggle);
     ringToggle                    = findViewById(R.id.call_screen_audio_ring_toggle);
     overflow                      = findViewById(R.id.call_screen_overflow_button);
     hangup                        = findViewById(R.id.call_screen_end_call);
@@ -271,6 +273,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
       runIfNonNull(controlsListener, listener -> listener.onRingGroupChanged(isOn, ringToggle.isActivated()));
     });
 
+    cameraDirectionToggle.setOnClickListener(v -> runIfNonNull(controlsListener, ControlsListener::onCameraDirectionChanged));
     smallLocalRender.findViewById(R.id.call_participant_switch_camera).setOnClickListener(v -> runIfNonNull(controlsListener, ControlsListener::onCameraDirectionChanged));
 
     overflow.setOnClickListener(v -> {
@@ -352,6 +355,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     rotatableControls.add(audioToggle);
     rotatableControls.add(micToggle);
     rotatableControls.add(videoToggle);
+    rotatableControls.add(cameraDirectionToggle);
     rotatableControls.add(decline);
     rotatableControls.add(smallLocalAudioIndicator);
     rotatableControls.add(ringToggle);
@@ -917,6 +921,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
   }
 
   private void updateButtonStateForLargeButtons() {
+    cameraDirectionToggle.setImageResource(R.drawable.webrtc_call_screen_camera_toggle);
     hangup.setImageResource(R.drawable.webrtc_call_screen_hangup);
     overflow.setImageResource(R.drawable.webrtc_call_screen_overflow_menu);
     micToggle.setBackgroundResource(R.drawable.webrtc_call_screen_mic_toggle);
@@ -927,6 +932,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
   }
 
   private void updateButtonStateForSmallButtons() {
+    cameraDirectionToggle.setImageResource(R.drawable.webrtc_call_screen_camera_toggle_small);
     hangup.setImageResource(R.drawable.webrtc_call_screen_hangup_small);
     overflow.setImageResource(R.drawable.webrtc_call_screen_overflow_menu_small);
     micToggle.setBackgroundResource(R.drawable.webrtc_call_screen_mic_toggle_small);
