@@ -1141,15 +1141,23 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
   fun getOrCreateValidThreadId(recipient: Recipient, candidateId: Long, distributionType: Int): Long {
     return if (candidateId != -1L) {
-      val remapped = RemappedRecords.getInstance().getThread(candidateId)
-      if (remapped.isPresent) {
-        Log.i(TAG, "Using remapped threadId: " + candidateId + " -> " + remapped.get())
-        remapped.get()
+      if (areThreadIdAndRecipientAssociated(candidateId, recipient)) {
+        candidateId
       } else {
-        if (areThreadIdAndRecipientAssociated(candidateId, recipient)) {
-          candidateId
+        val remapped = RemappedRecords.getInstance().getThread(candidateId)
+        if (remapped.isPresent) {
+          if (areThreadIdAndRecipientAssociated(remapped.get(), recipient)) {
+            Log.i(TAG, "Using remapped threadId: $candidateId -> ${remapped.get()}")
+            remapped.get()
+          } else {
+            Log.i(TAG, "There's a remap for $candidateId -> ${remapped.get()}, but it's not associated with $recipient. Deleting old remap and throwing.")
+            writableDatabase.withinTransaction {
+              RemappedRecords.getInstance().deleteThread(candidateId)
+            }
+            throw IllegalArgumentException("Candidate threadId ($candidateId) is not associated with recipient ($recipient)")
+          }
         } else {
-          throw IllegalArgumentException()
+          throw IllegalArgumentException("Candidate threadId ($candidateId) is not associated with recipient ($recipient)")
         }
       }
     } else {
