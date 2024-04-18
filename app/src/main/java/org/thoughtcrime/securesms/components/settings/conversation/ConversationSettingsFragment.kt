@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.components.settings.conversation
 
+import android.Manifest
 import android.app.ActivityOptions
 import android.content.ActivityNotFoundException
 import android.content.Context
@@ -79,6 +80,7 @@ import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory
 import org.thoughtcrime.securesms.messagerequests.MessageRequestRepository
 import org.thoughtcrime.securesms.nicknames.NicknameActivity
+import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientExporter
@@ -195,6 +197,10 @@ class ConversationSettingsFragment : DSLSettingsFragment(
       REQUEST_CODE_ADD_CONTACT -> viewModel.refreshRecipient()
       REQUEST_CODE_VIEW_CONTACT -> viewModel.refreshRecipient()
     }
+  }
+
+  override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults)
   }
 
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -415,7 +421,14 @@ class ConversationSettingsFragment : DSLSettingsFragment(
                 .setPositiveButton(android.R.string.ok) { d, _ -> d.dismiss() }
                 .show()
             } else {
-              addToGroupStoryDelegate.addToStory(state.recipient.id)
+              Permissions.with(this@ConversationSettingsFragment)
+                .request(Manifest.permission.CAMERA)
+                .ifNecessary()
+                .withRationaleDialog(getString(R.string.ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera), R.drawable.symbol_camera_24)
+                .withPermanentDenialDialog(getString(R.string.ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video))
+                .onAllGranted { addToGroupStoryDelegate.addToStory(state.recipient.id) }
+                .onAnyDenied { Toast.makeText(requireContext(), R.string.ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video, Toast.LENGTH_LONG).show() }
+                .execute()
             }
           },
           onVideoClick = {
