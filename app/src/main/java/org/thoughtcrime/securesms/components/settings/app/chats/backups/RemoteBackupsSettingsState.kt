@@ -5,8 +5,8 @@
 
 package org.thoughtcrime.securesms.components.settings.app.chats.backups
 
-import org.thoughtcrime.securesms.backup.v2.ui.MessageBackupsFrequency
-import org.thoughtcrime.securesms.backup.v2.ui.MessageBackupsType
+import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsFrequency
+import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
 
 data class RemoteBackupsSettingsState(
   val messageBackupsType: MessageBackupsType? = null,

@@ -8,7 +8,7 @@ package org.thoughtcrime.securesms.components.settings.app.chats.backups
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import org.thoughtcrime.securesms.backup.v2.ui.MessageBackupsFrequency
+import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsFrequency
 
 /**
  * ViewModel for state management of RemoteBackupsSettingsFragment

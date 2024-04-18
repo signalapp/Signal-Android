@@ -46,9 +46,9 @@ import org.signal.core.ui.Snackbars
 import org.signal.core.ui.Texts
 import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.backup.v2.ui.MessageBackupsFlowActivity
-import org.thoughtcrime.securesms.backup.v2.ui.MessageBackupsFrequency
-import org.thoughtcrime.securesms.backup.v2.ui.MessageBackupsType
+import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsFlowActivity
+import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsFrequency
+import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.util.DateUtils

@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.backup.v2.ui
+package org.thoughtcrime.securesms.backup.v2.ui.subscription
 
 import android.content.Context
 import android.content.Intent
