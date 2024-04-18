@@ -415,6 +415,7 @@
 
 
     <string name="ConversationActivity_join">Sluit aan</string>
+    <!-- Button text for an active group call but the call is currently full and unjoinable -->
     <string name="ConversationActivity_full">Vol</string>
 
     <string name="ConversationActivity_error_sending_media">Kon nie media stuur nie</string>
@@ -613,6 +614,7 @@
     <string name="ConversationListFragment_unarchive">Ontargiveer</string>
     <string name="ConversationListFragment_delete">Skrap</string>
     <string name="ConversationListFragment_select_all">Kies alles</string>
+    <!-- Screen title shown when selecting multiple items from a list like conversation threads or call logs. -->
     <plurals name="ConversationListFragment_s_selected">
         <item quantity="one">%1$d geselekteer</item>
         <item quantity="other">%1$d geselekteer</item>
@@ -864,6 +866,7 @@
         <item quantity="one">Uitnodiging gestuur</item>
         <item quantity="other">%1$d uitnodigings gestuur</item>
     </plurals>
+    <!-- Dialog message shown when you are attempting to add a single contact to a group and you don\'t have enough information about them to do it automatically, so must do it via an invite instead. Placeholder is name/username/phone number. -->
     <string name="GroupManagement_invite_single_user">\"%1$s\" kan nie outomaties deur jou by hierdie groep gevoeg word nie.\n\nHulle is genooi om aan te sluit, maar sal geen groepboodskappe sien voordat hulle aanvaar nie.</string>
     <string name="GroupManagement_invite_multiple_users">Hierdie gebruikers kan nie outomaties deur jou by hierdie groep gevoeg word nie.\n\nHulle is genooi om by die groep aan te sluit, maar sal geen groepboodskappe sien voordat hulle aanvaar nie.</string>
 
@@ -1044,7 +1047,9 @@
 
     <string name="ManageGroupActivity_edit_name_and_picture">Bewerk naam en foto</string>
     <string name="ManageGroupActivity_legacy_group">Legaatgroep</string>
+    <!-- This is placed inside a "Learn More" text view, which automatically appends LearnMoreTextView_learn_more in code -->
     <string name="ManageGroupActivity_legacy_group_learn_more">Hierdie groep is ’n Legaatgroep. Funksies soos groepadmins is slegs vir Nuwe Groepe beskikbaar.</string>
+    <!-- This is placed inside a "Learn More" text view, which automatically appends LearnMoreTextView_learn_more in code to the end of the string -->
     <string name="ManageGroupActivity_legacy_group_upgrade">Hierdie groep is ’n Legaatgroep. Vir toegang tot nuwe funksies soos @vermeldings en admins,</string>
     <string name="ManageGroupActivity_legacy_group_too_large">Hierdie Legaatgroep kan nie na ’n Nuwe Groep opgradeer word nie omdat dit te groot is. Die maksimum groepgrootte is %1$d</string>
     <string name="ManageGroupActivity_upgrade_this_group">gradeer hierdie groep op.</string>
@@ -1271,6 +1276,7 @@
         <item quantity="other">Skrap</item>
     </plurals>
 
+    <!-- Screen title shown when selecting multiple items in the media overview screen. The first placeholder is the number of items, the second number is the cumulative file size in bytes. -->
     <plurals name="MediaOverviewActivity_d_selected_s">
         <item quantity="one">%1$d het (%2$s) geselekteer</item>
         <item quantity="other">%1$d het (%2$s) geselekteer</item>
@@ -1335,17 +1341,13 @@
     <string name="MessageRecord_left_group">Jy het die groep verlaat.</string>
     <string name="MessageRecord_you_updated_group">Jy het die groep bygewerk.</string>
     <string name="MessageRecord_the_group_was_updated">Die groep is bygewerk.</string>
-    <!-- Update message shown when placing an outgoing 1:1 voice/audio call and it\'s answered by the other party -->
+    <!-- Update message shown when placing an outgoing 1:1 voice/audio call -->
     <string name="MessageRecord_outgoing_voice_call">Uitgaande stemoproep</string>
-    <!-- Update message shown when placing an outgoing 1:1 video call and it\'s answered by the other party -->
+    <!-- Update message shown when placing an outgoing 1:1 video call -->
     <string name="MessageRecord_outgoing_video_call">Uitgaande video-oproep</string>
-    <!-- Update message shown when placing an outgoing 1:1 voice/audio call and it\'s not answered by the other party -->
-    <string name="MessageRecord_unanswered_voice_call">Onbeantwoorde stemoproep</string>
-    <!-- Update message shown when placing an outgoing 1:1 video call and it\'s not answered by the other party -->
-    <string name="MessageRecord_unanswered_video_call">Onbeantwoorde video-oproep</string>
-    <!-- Update message shown when receiving an incoming 1:1 voice/audio call and it\'s answered -->
+    <!-- Update message shown when receiving an incoming 1:1 voice/audio call and it\'s answered or ringing -->
     <string name="MessageRecord_incoming_voice_call">Inkomende stemoproep</string>
-    <!-- Update message shown when receiving an incoming 1:1 video call and answered -->
+    <!-- Update message shown when receiving an incoming 1:1 video call and answered or ringing -->
     <string name="MessageRecord_incoming_video_call">Inkomende video-oproep</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and not answered -->
     <string name="MessageRecord_missed_voice_call">Gemiste stemoproep</string>
@@ -1355,10 +1357,6 @@
     <string name="MessageRecord_missed_voice_call_notification_profile">Gemiste stemoproep terwyl kennisgewingprofiel aan was</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
     <string name="MessageRecord_missed_video_call_notification_profile">Gemiste video-oproep terwyl kennisgewingprofiel aan is</string>
-    <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
-    <string name="MessageRecord_you_declined_a_voice_call">Jy het ’n stemoproep geweier</string>
-    <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
-    <string name="MessageRecord_you_declined_a_video_call">Jy het ’n video-oproep geweier</string>
     <!-- Call update formatter string to place the update message next to a time stamp. e.g., \'Incoming voice call · 11:11am\' -->
     <string name="MessageRecord_call_message_with_date">%1$s · %2$s</string>
     <string name="MessageRecord_s_updated_group">%1$s het die groep bygewerk.</string>
@@ -1567,30 +1565,55 @@
     <string name="MessageRecord_can_accept_payments">%1$s kan nou Betalings aanvaar</string>
 
     <!-- Group Calling update messages -->
-    <string name="MessageRecord_s_started_a_group_call_s">%1$s het ’n groepoproep begin · %2$s</string>
-    <string name="MessageRecord_you_started_a_group_call_s">Jy het om %1$s ’n groepoproep begin</string>
-    <string name="MessageRecord_s_is_in_the_group_call_s">%1$s is in die groepoproep · %2$s</string>
-    <string name="MessageRecord_you_are_in_the_group_call_s1">Jy is in die groepoproep · %1$s</string>
-    <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s en %2$s is in die groepoproep · %3$s</string>
-    <string name="MessageRecord_group_call_s">Groepoproep · %1$s</string>
-
-    <string name="MessageRecord_s_started_a_group_call">%1$s het ’n groepoproep begin</string>
-    <string name="MessageRecord_you_started_a_group_call">Jy het ’n groepoproep begin</string>
-    <string name="MessageRecord_s_is_in_the_group_call">%1$s is in die groepoproep</string>
-    <string name="MessageRecord_you_are_in_the_group_call">Jy is in die groepoproep</string>
-    <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s en %2$s is in die groepoproep</string>
-    <string name="MessageRecord_group_call">Groepoproep</string>
+    <!-- Chat log text for an ongoing group call that has one participant with a placeholder for the short display name of the user that joined and a placeholder for formatted time -->
+    <string name="MessageRecord_s_is_in_the_call_s">%1$s is in the call · %2$s</string>
+    <!-- Chat log text for an ongoing group call only the local user has joined with a placeholder for formatted time -->
+    <string name="MessageRecord_you_are_in_the_call_s1">You are in the call · %1$s</string>
+    <!-- Chat log text for an ongoing group call with two participants with two placeholders for the short display name of the users that joined and a placeholder for formatted time -->
+    <string name="MessageRecord_s_and_s_are_in_the_call_s1">%1$s and %2$s are in the call · %3$s</string>
+    <!-- Chat log text for an ongoing group call that has one participant -->
+    <string name="MessageRecord_s_is_in_the_call">%1$s is in the call</string>
+    <!-- Chat log text for an ongoing group call only the local user has joined -->
+    <string name="MessageRecord_you_are_in_the_call">You are in the call</string>
+    <!-- Chat log text for an ongoing group call with two participants with two placeholders, each for the short display name of the users that joined -->
+    <string name="MessageRecord_s_and_s_are_in_the_call">%1$s and %2$s are in the call</string>
+    <!-- Chat log text for a group call that ended within the last 5 minutes -->
+    <string name="MessageRecord__the_video_call_has_ended">The video call has ended</string>
+    <!-- Chat log text for a group call that ended within the last 5 minutes with a placeholder for formatted time -->
+    <string name="MessageRecord__the_video_call_has_ended_s">The video call has ended · %1$s</string>
+    <!-- Chat log text for a group call that ended more than 5 minutes ago and was missed -->
+    <string name="MessageRecord__missed_video_call">Missed video call</string>
+    <!-- Chat log text for a group call that ended more than 5 minutes ago and was missed with a placeholder for formatted time -->
+    <string name="MessageRecord__missed_video_call_s">Missed video call · %1$s</string>
+    <!-- Chat log text for a group call that ended that the local user did not start -->
+    <string name="MessageRecord__incoming_video_call">Incoming video call</string>
+    <!-- Chat log text for a group call that ended that the local user did not start with a placeholder for formatted time -->
+    <string name="MessageRecord__incoming_video_call_s">Incoming video call · %1$s</string>
+    <!-- Chat log text for a group call that ended that the local user started -->
+    <string name="MessageRecord__outgoing_video_call">Outgoing video call</string>
+    <!-- Chat log text for a group call that ended that the local user started with a placeholder for formatted time -->
+    <string name="MessageRecord__outgoing_video_call_s">Outgoing video call · %1$s</string>
+    <!-- Chat log text for an ongoing group call that the local user started -->
+    <string name="MessageRecord__you_started_a_video_call">You started a video call</string>
+    <!-- Chat log text for an ongoing group call that the local user started with a placeholder for formatted time -->
+    <string name="MessageRecord__you_started_a_video_call_s">You started a video call · %1$s</string>
+    <!-- Chat log text for an ongoing group call that the local user has not joined with a placeholder for user\'s short display name -->
+    <string name="MessageRecord__s_started_a_video_call">%1$s started a video call</string>
+    <!-- Chat log text for an ongoing group call that the local user has not joined with a placeholder for user\'s short display name and a placeholder for formatted time -->
+    <string name="MessageRecord__s_started_a_video_call_s">%1$s started a video call · %2$s</string>
 
     <string name="MessageRecord_you">Jy</string>
 
-    <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
-        <item quantity="one">%1$s, %2$s en %3$d ander is in die groepoproep · %4$s</item>
-        <item quantity="other">%1$s, %2$s en %3$d ander is in die groepoproep · %4$s</item>
+    <!-- Chat log text for an ongoing group call with more than two participants with placeholders for the first two joined users, a placeholder for the number of users in the call, and a placeholder for formatted time -->
+    <plurals name="MessageRecord_s_s_and_d_others_are_in_the_call_s">
+        <item quantity="one">%1$s, %2$s, and %3$d other are in the group call · %4$s</item>
+        <item quantity="other">%1$s, %2$s, and %3$d others are in the group call · %4$s</item>
     </plurals>
 
-    <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call">
-        <item quantity="one">%1$s, %2$s en %3$d ander is in die groepoproep</item>
-        <item quantity="other">%1$s, %2$s en %3$d ander is in die groepoproep</item>
+    <!-- Chat log text for an ongoing group call with more than two participants with placeholders for the first two joined users and a placeholder for the number of users in the call -->
+    <plurals name="MessageRecord_s_s_and_d_others_are_in_the_call">
+        <item quantity="one">%1$s, %2$s, and %3$d other are in the group call</item>
+        <item quantity="other">%1$s, %2$s, and %3$d others are in the group call</item>
     </plurals>
 
     <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
@@ -2063,6 +2086,7 @@
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">Kan nie \'n verifiëringskode aanvra nie. Gaan asseblief netwerkverbinding na en probeer weer.</string>
     <string name="RegistrationActivity_non_standard_number_format">Niestandaard-nommerformaat</string>
+    <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Die nommer wat jy ingesleutel het (%1$s), lyk of dit in \'n niestandaard-formaat is. \n\nHet jy %2$s bedoel?</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Telefoonnommerformaat</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
@@ -2709,6 +2733,8 @@
     <string name="ConversationUpdateItem_loading">Laai tans</string>
     <string name="ConversationUpdateItem_learn_more">Vind meer uit</string>
     <string name="ConversationUpdateItem_join_call">Sluit aan by oproep</string>
+    <!-- Action button label for starting a new call in the current conversation -->
+    <string name="ConversationUpdateItem_call_back">Call back</string>
     <string name="ConversationUpdateItem_return_to_call">Keer terug na oproep</string>
     <string name="ConversationUpdateItem_call_is_full">Oproep is vol</string>
     <string name="ConversationUpdateItem_invite_friends">Nooi vriende uit</string>
@@ -2773,6 +2799,7 @@
     <string name="safety_number_change_dialog__leave_call">Verlaat oproep</string>
     <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Die volgende mense het dalk van toestelle verander of ’n herinstallasie gedoen. Verifieer jou veiligheidsnomemr met hulle om privaatheid te verseker.</string>
     <string name="safety_number_change_dialog__view">Bekyk</string>
+    <!-- Subtitle shown for a single contact and that their safety number was previously verified and is now no longer verified. -->
     <string name="safety_number_change_dialog__previous_verified">Vorige geverifieer</string>
 
     <!-- EnableCallNotificationSettingsDialog__call_notifications_checklist -->
@@ -3086,6 +3113,7 @@
 
     <string name="arrays__default">Verstek</string>
     <string name="arrays__high">Hoog</string>
+    <!-- Setting title that represent an abstract priority to assign to notifications as the max/highest priority a notification can be within the system. -->
     <string name="arrays__max">Maksimum</string>
 
     <!-- plurals.xml -->
@@ -3446,6 +3474,7 @@
     <string name="PaymentsDetailsFragment__sent_to_s">Gestuur aan %1$s</string>
     <string name="PaymentsDetailsFragment__you_on_s_at_s">Jou op %1$s om %2$s</string>
     <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s op %2$s om %3$s</string>
+    <!-- Prefix to a name to indicate who a payment was sent to -->
     <string name="PaymentsDetailsFragment__to">Aan</string>
     <string name="PaymentsDetailsFragment__from">Van</string>
     <string name="PaymentsDetailsFragment__information">Transaksiebesonderhede, wat die betalingsbedrag en transaksietyd insluit, is deel van die MobileCoin-grootboek.</string>
@@ -3508,6 +3537,7 @@
     <string name="ConfirmPayment__confirm_payment">Bevestig betaling</string>
     <string name="ConfirmPayment__network_fee">Netwerkgelde</string>
     <string name="ConfirmPayment__estimated_s">Geraamde %1$s</string>
+    <!-- Prefix to a name to indicate who a payment will be sent to -->
     <string name="ConfirmPayment__to">Aan</string>
     <string name="ConfirmPayment__total_amount">Totale bedrag</string>
     <string name="ConfirmPayment__balance_s">Saldo: %1$s</string>
@@ -4112,6 +4142,7 @@
     <string name="RecipientBottomSheet_copied_to_clipboard">Na knipbord gekopieer</string>
 
     <string name="GroupRecipientListItem_admin">Admin</string>
+    <!-- Button text to approve a user that has requested to join a group -->
     <string name="GroupRecipientListItem_approve_description">Keur goed</string>
     <string name="GroupRecipientListItem_deny_description">Weier</string>
 
@@ -4139,6 +4170,7 @@
 
     <!-- VoiceNoteMediaDescriptionCompatFactory -->
     <string name="VoiceNoteMediaItemFactory__voice_message">Stemboodskap · %1$s</string>
+    <!-- This is a title in a banner describing the conversation sender to receiver placeholders of the currently playing voice memo. -->
     <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s na %2$s</string>
 
     <!-- StorageUtil -->
@@ -4185,6 +4217,7 @@
     <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s en %2$s het aangesluit</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s en %3$s het aangesluit</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s en nog %3$d het aangesluit</string>
+    <!-- Toast/popup text shown when someone leaves a group call -->
     <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s het verlaat</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s en %2$s het verlaat</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s en %3$s het verlaat</string>
@@ -4562,6 +4595,7 @@
     <string name="PrivacySettingsFragment__messaging">Boodskappe</string>
     <string name="PrivacySettingsFragment__disappearing_messages">Verdwynboodskappe</string>
     <string name="PrivacySettingsFragment__app_security">Toepassingveiligheid</string>
+    <!-- This refers to the multi-tasking overview (recent apps) from the Android operating system.-->
     <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Versper skermgrepe in die onlangs-lys en binne-in die toepassing</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-boodskappe en oproepe, herlei oproepe altyd, en verseëlde afsender</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">Verstek-tydhouer vir nuwe kletse</string>
@@ -4618,11 +4652,14 @@
     <string name="DataAndStorageSettingsFragment__media_quality">Mediakwaliteit</string>
     <string name="DataAndStorageSettingsFragment__sent_media_quality">Gestuurde mediakwaliteit</string>
     <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Stuur van hoëkwaliteitmedia sal meer data gebruik.</string>
+    <!-- Setting option that can be selected to default media to be sent as high quality by default -->
     <string name="DataAndStorageSettingsFragment__high">Hoog</string>
+    <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
     <string name="DataAndStorageSettingsFragment__standard">Standaard</string>
     <string name="DataAndStorageSettingsFragment__calls">Oproepe</string>
 
     <!-- ChatColorSelectionFragment -->
+    <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
     <string name="ChatColorSelectionFragment__auto">Outo</string>
     <string name="ChatColorSelectionFragment__use_custom_colors">Gebruik pasgemaakte kleure</string>
     <string name="ChatColorSelectionFragment__chat_color">Kletskleur</string>
@@ -4834,6 +4871,7 @@
     <string name="AvatarPickerFragment__take_a_picture">Neem ’n foto</string>
     <string name="AvatarPickerFragment__choose_a_photo">Kies ’n foto</string>
     <string name="AvatarPickerFragment__photo">Foto</string>
+    <!-- Button label during avatar selection/creation that when tapped lets you generate an avatar from typed in text. -->
     <string name="AvatarPickerFragment__text">Teks</string>
     <string name="AvatarPickerFragment__save">Stoor</string>
     <string name="AvatarPickerFragment__clear_avatar">Vee avatar uit</string>
@@ -4894,7 +4932,7 @@
     <string name="MediaReviewFragment__add_a_message">Voeg ’n boodskap toe</string>
     <string name="MediaReviewFragment__add_a_reply">Voeg ’n antwoord toe</string>
     <string name="MediaReviewFragment__send_to">Stuur na</string>
-    <string name="MediaReviewFragment__view_once_message">Eenkeerkyk-boodskap</string>
+    <string name="MediaReviewFragment__view_once_message">View once media</string>
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">Een of meer items was te groot</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">Een of meer items was ongeldig</string>
     <string name="MediaReviewFragment__too_many_items_selected">Te veel items gekies</string>
@@ -5487,7 +5525,7 @@
     <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
     <!-- Displayed when viewing a post you sent -->
     <string name="StoryViewerPageFragment__you">Jy</string>
-    <!-- Displayed when viewing a post displayed to a group -->
+    <!-- Displayed when viewing a story sent to a group, placeholders are person who sent the story and the group name -->
     <string name="StoryViewerPageFragment__s_to_s">%1$s tot %2$s</string>
     <!-- Displayed when viewing a post from another user with no replies -->
     <string name="StoryViewerPageFragment__reply">Antwoord</string>
@@ -6703,6 +6741,12 @@
     <string name="ViewNoteSheet__note">Nota</string>
     <!-- Content description for opening the note editor -->
     <string name="ViewNoteSheet__edit_note">Wysig nota</string>
+
+    <!-- BackupProgressService -->
+    <!-- Notification title shown while backup restore job is running -->
+    <string name="BackupProgressService_title">Restoring backup…</string>
+    <!-- Notification title shown while downloading backup restore data -->
+    <string name="BackupProgressService_title_downloading">Downloading backup data…</string>
 
     <!-- EOF -->
 </resources>

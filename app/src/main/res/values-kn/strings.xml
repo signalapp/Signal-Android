@@ -415,6 +415,7 @@
 
 
     <string name="ConversationActivity_join">ಸೇರು</string>
+    <!-- Button text for an active group call but the call is currently full and unjoinable -->
     <string name="ConversationActivity_full">ಸಂಪೂರ್ಣ</string>
 
     <string name="ConversationActivity_error_sending_media">ಮೀಡಿಯಾ ಕಳುಹಿಸುವಲ್ಲಿ ದೋಷ</string>
@@ -613,6 +614,7 @@
     <string name="ConversationListFragment_unarchive">ಅನ್ಆ‌ರ್ಕೈವ್</string>
     <string name="ConversationListFragment_delete">ಅಳಿಸಿ</string>
     <string name="ConversationListFragment_select_all">ಎಲ್ಲ ಆಯ್ಕೆಮಾಡಿ</string>
+    <!-- Screen title shown when selecting multiple items from a list like conversation threads or call logs. -->
     <plurals name="ConversationListFragment_s_selected">
         <item quantity="one">%1$d ಆಯ್ಕೆ ಮಾಡಲಾಗಿದೆ</item>
         <item quantity="other">%1$d ಆಯ್ಕೆ ಮಾಡಲಾಗಿದೆ</item>
@@ -864,6 +866,7 @@
         <item quantity="one">ಆಹ್ವಾನವನ್ನು ಕಳುಹಿಸಲಾಗಿದೆ</item>
         <item quantity="other">%1$d ಆಹ್ವಾನಗಳನ್ನು ಕಳುಹಿಸಲಾಗಿದೆ</item>
     </plurals>
+    <!-- Dialog message shown when you are attempting to add a single contact to a group and you don\'t have enough information about them to do it automatically, so must do it via an invite instead. Placeholder is name/username/phone number. -->
     <string name="GroupManagement_invite_single_user">\"%1$s\" ನೀವು ಈ ಗುಂಪಿಗೆ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಸೇರಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ. ಅವರನ್ನು ಸೇರಲು ಆಹ್ವಾನಿಸಲಾಗಿದೆ, ಮತ್ತು ಅವರು ಸ್ವೀಕರಿಸುವವರೆಗೂ ಯಾವುದೇ ಗುಂಪು ಸಂದೇಶಗಳನ್ನು ನೋಡುವುದಿಲ್ಲ.</string>
     <string name="GroupManagement_invite_multiple_users">ಈ ಬಳಕೆದಾರರನ್ನು ನೀವು ಈ ಗುಂಪಿಗೆ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಸೇರಿಸಲಾಗುವುದಿಲ್ಲ. ಅವರನ್ನು ಗುಂಪಿಗೆ ಸೇರಲು ಆಹ್ವಾನಿಸಲಾಗಿದೆ, ಮತ್ತು ಅವರು ಸ್ವೀಕರಿಸುವವರೆಗೆ ಯಾವುದೇ ಗುಂಪು ಸಂದೇಶಗಳನ್ನು ನೋಡುವುದಿಲ್ಲ.</string>
 
@@ -1044,7 +1047,9 @@
 
     <string name="ManageGroupActivity_edit_name_and_picture">ಹೆಸರು ಮತ್ತು ಚಿತ್ರವನ್ನು ಎಡಿಟ್ ಮಾಡಿ</string>
     <string name="ManageGroupActivity_legacy_group">ಹಳೆಯ ಗುಂಪು</string>
+    <!-- This is placed inside a "Learn More" text view, which automatically appends LearnMoreTextView_learn_more in code -->
     <string name="ManageGroupActivity_legacy_group_learn_more">ಇದು ಲೆಗಸಿ ಗ್ರೂಪ್. ಗ್ರೂಪ್‌ ಅಡ್ಮಿನ್‌ಗಳಂತಹ ವೈಶಿಷ್ಟ್ಯಗಳು ಹೊಸ ಗ್ರೂಪ್‌ಗಳಲ್ಲಿ ಮಾತ್ರ ಲಭ್ಯವಿರುತ್ತವೆ.</string>
+    <!-- This is placed inside a "Learn More" text view, which automatically appends LearnMoreTextView_learn_more in code to the end of the string -->
     <string name="ManageGroupActivity_legacy_group_upgrade">ಇದು ಲೆಗಸಿ ಗ್ರೂಪ್. @mentions ಮತ್ತು ಅಡ್ಮಿನ್‌ಗಳಂತಹ ಹೊಸ ವೈಶಿಷ್ಟ್ಯಗಳನ್ನು ಪ್ರವೇಶಿಸಲು,</string>
     <string name="ManageGroupActivity_legacy_group_too_large">ಈ ಹಳೆಯ ಗ್ರೂಪ್‌ ಅನ್ನು ಹೊಸ ಗ್ರೂಪ್‌ಗೆ ಅಪ್‌ಗ್ರೇಡ್ ಮಾಡಲಾಗದು. ಏಕೆಂದರೆ ಇದು ತುಂಬಾ ದೊಡ್ಡದಾಗಿದೆ. ಗರಿಷ್ಠ ಗ್ರೂಪ್ ಗಾತ್ರವು %1$d.</string>
     <string name="ManageGroupActivity_upgrade_this_group">ಈ ಗುಂಪನ್ನು ಅಪ್‌ಗ್ರೇಡ್ ಮಾಡಿ</string>
@@ -1271,6 +1276,7 @@
         <item quantity="other">ಅಳಿಸಿ</item>
     </plurals>
 
+    <!-- Screen title shown when selecting multiple items in the media overview screen. The first placeholder is the number of items, the second number is the cumulative file size in bytes. -->
     <plurals name="MediaOverviewActivity_d_selected_s">
         <item quantity="one">%1$d ಅವರು (%2$s) ಆಯ್ಕೆ ಮಾಡಿದ್ದಾರೆ</item>
         <item quantity="other">%1$d ಅವರು (%2$s) ಆಯ್ಕೆ ಮಾಡಿದ್ದಾರೆ</item>
@@ -1335,17 +1341,13 @@
     <string name="MessageRecord_left_group">ನೀವು ಗುಂಪನ್ನು ಬಿಟ್ಟಿದ್ದೀರಿ.</string>
     <string name="MessageRecord_you_updated_group">ನೀವು ಗುಂಪನ್ನು ನವೀಕರಿಸಿದ್ದೀರಿ.</string>
     <string name="MessageRecord_the_group_was_updated">ಗ್ರೂಪ್ ಅನ್ನು ಅಪ್‌ಡೇಟ್ ಮಾಡಲಾಗಿದೆ.</string>
-    <!-- Update message shown when placing an outgoing 1:1 voice/audio call and it\'s answered by the other party -->
+    <!-- Update message shown when placing an outgoing 1:1 voice/audio call -->
     <string name="MessageRecord_outgoing_voice_call">ಹೊರಹೋಗುವ ವಾಯ್ಸ್ ಕಾಲ್</string>
-    <!-- Update message shown when placing an outgoing 1:1 video call and it\'s answered by the other party -->
+    <!-- Update message shown when placing an outgoing 1:1 video call -->
     <string name="MessageRecord_outgoing_video_call">ಹೊರಹೋಗುವ ವೀಡಿಯೊ ಕಾಲ್</string>
-    <!-- Update message shown when placing an outgoing 1:1 voice/audio call and it\'s not answered by the other party -->
-    <string name="MessageRecord_unanswered_voice_call">ಉತ್ತರಿಸದ ವಾಯ್ಸ್ ಕಾಲ್</string>
-    <!-- Update message shown when placing an outgoing 1:1 video call and it\'s not answered by the other party -->
-    <string name="MessageRecord_unanswered_video_call">ಉತ್ತರಿಸದ ವೀಡಿಯೊ ಕಾಲ್</string>
-    <!-- Update message shown when receiving an incoming 1:1 voice/audio call and it\'s answered -->
+    <!-- Update message shown when receiving an incoming 1:1 voice/audio call and it\'s answered or ringing -->
     <string name="MessageRecord_incoming_voice_call">ಒಳಬರುವ ವಾಯ್ಸ್ ಕಾಲ್</string>
-    <!-- Update message shown when receiving an incoming 1:1 video call and answered -->
+    <!-- Update message shown when receiving an incoming 1:1 video call and answered or ringing -->
     <string name="MessageRecord_incoming_video_call">ಒಳಬರುವ ವೀಡಿಯೊ ಕಾಲ್</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and not answered -->
     <string name="MessageRecord_missed_voice_call">ಮಿಸ್ಡ್ ವಾಯ್ಸ್ ಕಾಲ್</string>
@@ -1355,10 +1357,6 @@
     <string name="MessageRecord_missed_voice_call_notification_profile">ಅಧಿಸೂಚನೆ ಪ್ರೊಫೈಲ್ ಆನ್ ಆಗಿರುವಾಗ ತಪ್ಪಿಹೋದ ಧ್ವನಿ ಕರೆ</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
     <string name="MessageRecord_missed_video_call_notification_profile">ಅಧಿಸೂಚನೆ ಪ್ರೊಫೈಲ್ ಆನ್ ಆಗಿರುವಾಗ ತಪ್ಪಿಹೋದ ವೀಡಿಯೊ ಕರೆ</string>
-    <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
-    <string name="MessageRecord_you_declined_a_voice_call">ನೀವು ವಾಯ್ಸ್ ಕಾಲ್ ಅನ್ನು ನಿರಾಕರಿಸಿದ್ದೀರಿ</string>
-    <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
-    <string name="MessageRecord_you_declined_a_video_call">ನೀವು ಒಂದು ವೀಡಿಯೊ ಕಾಲ್ ಅನ್ನು ನಿರಾಕರಿಸಿದ್ದೀರಿ</string>
     <!-- Call update formatter string to place the update message next to a time stamp. e.g., \'Incoming voice call · 11:11am\' -->
     <string name="MessageRecord_call_message_with_date">%1$s · %2$s</string>
     <string name="MessageRecord_s_updated_group">%1$s ಗುಂಪನ್ನು ನವೀಕರಿಸಲಾಗಿದೆ.</string>
@@ -1567,30 +1565,55 @@
     <string name="MessageRecord_can_accept_payments">%1$s ಅವರು ಈಗ ಪಾವತಿಗಳನ್ನು ಸ್ವೀಕರಿಸಬಹುದು</string>
 
     <!-- Group Calling update messages -->
-    <string name="MessageRecord_s_started_a_group_call_s">%1$s ಅವರು ಗ್ರೂಪ್ ಕಾಲ್ ಆರಂಭಿಸಿದ್ದಾರೆ · %2$s</string>
-    <string name="MessageRecord_you_started_a_group_call_s">ನೀವು ಗ್ರೂಪ್ ಕರೆಯನ್ನು ಪ್ರಾರಂಭಿಸಿದ್ದೀರಿ · %1$s</string>
-    <string name="MessageRecord_s_is_in_the_group_call_s">%1$s ಗ್ರೂಪ್‌ ಕಾಲ್‌ನಲ್ಲಿದ್ದಾರೆ · %2$s</string>
-    <string name="MessageRecord_you_are_in_the_group_call_s1">ನೀವು ಗ್ರೂಪ್‌ ಕಾಲ್‌ನಲ್ಲಿದ್ದೀರಿ · %1$s</string>
-    <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s ಮತ್ತು %2$s ಗ್ರೂಪ್‌ ಕಾಲ್‌ನಲ್ಲಿದ್ದಾರೆ · %3$s</string>
-    <string name="MessageRecord_group_call_s">ಗ್ರೂಪ್ ಕಾಲ್ · %1$s</string>
-
-    <string name="MessageRecord_s_started_a_group_call">%1$s ಅವರು ಗ್ರೂಪ್ ಕಾಲ್ ಆರಂಭಿಸಿದ್ದಾರೆ</string>
-    <string name="MessageRecord_you_started_a_group_call">ನೀವು ಗುಂಪು ಕರೆಯೊಂದನ್ನು ಪ್ರಾರಂಭಿಸಿದ್ದೀರಿ</string>
-    <string name="MessageRecord_s_is_in_the_group_call">%1$s ಅವರು ಗ್ರೂಪ್ ಕಾಲ್‌ನಲ್ಲಿದ್ದಾರೆ</string>
-    <string name="MessageRecord_you_are_in_the_group_call">ನೀವು ಗ್ರೂಪ್‌ ಕಾಲ್‌ನಲ್ಲಿದ್ದೀರಿ</string>
-    <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s ಮತ್ತು %2$s ಗ್ರೂಪ್‌ ಕಾಲ್‌ನಲ್ಲಿದ್ದಾರೆ</string>
-    <string name="MessageRecord_group_call">ಗ್ರೂಪ್ ಕಾಲ್</string>
+    <!-- Chat log text for an ongoing group call that has one participant with a placeholder for the short display name of the user that joined and a placeholder for formatted time -->
+    <string name="MessageRecord_s_is_in_the_call_s">%1$s is in the call · %2$s</string>
+    <!-- Chat log text for an ongoing group call only the local user has joined with a placeholder for formatted time -->
+    <string name="MessageRecord_you_are_in_the_call_s1">You are in the call · %1$s</string>
+    <!-- Chat log text for an ongoing group call with two participants with two placeholders for the short display name of the users that joined and a placeholder for formatted time -->
+    <string name="MessageRecord_s_and_s_are_in_the_call_s1">%1$s and %2$s are in the call · %3$s</string>
+    <!-- Chat log text for an ongoing group call that has one participant -->
+    <string name="MessageRecord_s_is_in_the_call">%1$s is in the call</string>
+    <!-- Chat log text for an ongoing group call only the local user has joined -->
+    <string name="MessageRecord_you_are_in_the_call">You are in the call</string>
+    <!-- Chat log text for an ongoing group call with two participants with two placeholders, each for the short display name of the users that joined -->
+    <string name="MessageRecord_s_and_s_are_in_the_call">%1$s and %2$s are in the call</string>
+    <!-- Chat log text for a group call that ended within the last 5 minutes -->
+    <string name="MessageRecord__the_video_call_has_ended">The video call has ended</string>
+    <!-- Chat log text for a group call that ended within the last 5 minutes with a placeholder for formatted time -->
+    <string name="MessageRecord__the_video_call_has_ended_s">The video call has ended · %1$s</string>
+    <!-- Chat log text for a group call that ended more than 5 minutes ago and was missed -->
+    <string name="MessageRecord__missed_video_call">Missed video call</string>
+    <!-- Chat log text for a group call that ended more than 5 minutes ago and was missed with a placeholder for formatted time -->
+    <string name="MessageRecord__missed_video_call_s">Missed video call · %1$s</string>
+    <!-- Chat log text for a group call that ended that the local user did not start -->
+    <string name="MessageRecord__incoming_video_call">Incoming video call</string>
+    <!-- Chat log text for a group call that ended that the local user did not start with a placeholder for formatted time -->
+    <string name="MessageRecord__incoming_video_call_s">Incoming video call · %1$s</string>
+    <!-- Chat log text for a group call that ended that the local user started -->
+    <string name="MessageRecord__outgoing_video_call">Outgoing video call</string>
+    <!-- Chat log text for a group call that ended that the local user started with a placeholder for formatted time -->
+    <string name="MessageRecord__outgoing_video_call_s">Outgoing video call · %1$s</string>
+    <!-- Chat log text for an ongoing group call that the local user started -->
+    <string name="MessageRecord__you_started_a_video_call">You started a video call</string>
+    <!-- Chat log text for an ongoing group call that the local user started with a placeholder for formatted time -->
+    <string name="MessageRecord__you_started_a_video_call_s">You started a video call · %1$s</string>
+    <!-- Chat log text for an ongoing group call that the local user has not joined with a placeholder for user\'s short display name -->
+    <string name="MessageRecord__s_started_a_video_call">%1$s started a video call</string>
+    <!-- Chat log text for an ongoing group call that the local user has not joined with a placeholder for user\'s short display name and a placeholder for formatted time -->
+    <string name="MessageRecord__s_started_a_video_call_s">%1$s started a video call · %2$s</string>
 
     <string name="MessageRecord_you">ನೀವು</string>
 
-    <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
-        <item quantity="one">%1$s, %2$s ಮತ್ತು %3$d ಇತರರು ಗ್ರೂಪ್ ಕಾಲ್‌ನಲ್ಲಿದ್ದಾರೆ · %4$s</item>
-        <item quantity="other">%1$s, %2$s ಮತ್ತು %3$d ಇತರರು ಗ್ರೂಪ್‌ ಕಾಲ್‌ನಲ್ಲಿದ್ದಾರೆ · %4$s</item>
+    <!-- Chat log text for an ongoing group call with more than two participants with placeholders for the first two joined users, a placeholder for the number of users in the call, and a placeholder for formatted time -->
+    <plurals name="MessageRecord_s_s_and_d_others_are_in_the_call_s">
+        <item quantity="one">%1$s, %2$s, and %3$d other are in the group call · %4$s</item>
+        <item quantity="other">%1$s, %2$s, and %3$d others are in the group call · %4$s</item>
     </plurals>
 
-    <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call">
-        <item quantity="one">%1$s, %2$s ಮತ್ತು %3$d ಇತರರು ಗ್ರೂಪ್‌ ಕಾಲ್‌ನಲ್ಲಿದ್ದಾರೆ</item>
-        <item quantity="other">%1$s, %2$s ಮತ್ತು %3$d ಇತರರು ಗ್ರೂಪ್‌ ಕಾಲ್‌ನಲ್ಲಿದ್ದಾರೆ</item>
+    <!-- Chat log text for an ongoing group call with more than two participants with placeholders for the first two joined users and a placeholder for the number of users in the call -->
+    <plurals name="MessageRecord_s_s_and_d_others_are_in_the_call">
+        <item quantity="one">%1$s, %2$s, and %3$d other are in the group call</item>
+        <item quantity="other">%1$s, %2$s, and %3$d others are in the group call</item>
     </plurals>
 
     <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
@@ -2063,6 +2086,7 @@
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">ದೃಢೀಕರಣ ಕೋಡ್ ಅನ್ನು ವಿನಂತಿಸಲು ಸಾಧ್ಯವಾಗುತ್ತಿಲ್ಲ. ದಯವಿಟ್ಟು ನಿಮ್ಮ ನೆಟ್‌ವರ್ಕ್ ಸಂಪರ್ಕವನ್ನು ಪರಿಶೀಲಿಸಿ ಹಾಗೂ ಮತ್ತೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ.</string>
     <string name="RegistrationActivity_non_standard_number_format">ಪ್ರಮಾಣೀಕೃತವಲ್ಲದ ಸಂಖ್ಯಾ ಸ್ವರೂಪ</string>
+    <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">ನೀವು ನಮೂದಿಸಿದ ಸಂಖ್ಯೆ (%1$s) ಪ್ರಮಾಣೀಕೃತವಲ್ಲದ ಸ್ವರೂಪದಲ್ಲಿ ಕಾಣಿಸುತ್ತಿದೆ.\n\nನೀವು ಅಂದುಕೊಂಡಿದ್ದು ಇದೇನಾ %2$s?</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal ಆಂಡ್ರಾಯ್ಡ್ - ಫೋನ್ ಸಂಖ್ಯೆ ಸ್ವರೂಪ</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
@@ -2709,6 +2733,8 @@
     <string name="ConversationUpdateItem_loading">ಲೋಡ್ ಆಗುತ್ತಿದೆ</string>
     <string name="ConversationUpdateItem_learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
     <string name="ConversationUpdateItem_join_call">ಕರೆಗೆ ಸೇರಿ</string>
+    <!-- Action button label for starting a new call in the current conversation -->
+    <string name="ConversationUpdateItem_call_back">Call back</string>
     <string name="ConversationUpdateItem_return_to_call">ಕರೆಗೆ ಹಿಂತಿರುಗಿ</string>
     <string name="ConversationUpdateItem_call_is_full">ಕರೆ ಭರ್ತಿಯಾಗಿದೆ</string>
     <string name="ConversationUpdateItem_invite_friends">ಸ್ನೇಹಿತರನ್ನು ಆಹ್ವಾನಿಸಿ</string>
@@ -2773,6 +2799,7 @@
     <string name="safety_number_change_dialog__leave_call">ಕರೆ ಬಿಡಿ</string>
     <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">ಈ ಕೆಳಗಿನ ಜನರು ಸಾಧನಗಳನ್ನು ಪುನಃ ಇನ್‌‌ಸ್ಟಾಲ್ ಮಾಡಿರಬಹುದು ಅಥವಾ ಬದಲಾಯಿಸಿರಬಹುದು. ಗೌಪ್ಯತೆಯನ್ನು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಲು ಅವರೊಂದಿಗೆ ನಿಮ್ಮ ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆಯನ್ನು ದೃಢೀಕರಿಸಿ.</string>
     <string name="safety_number_change_dialog__view">ತೋರಿಸು</string>
+    <!-- Subtitle shown for a single contact and that their safety number was previously verified and is now no longer verified. -->
     <string name="safety_number_change_dialog__previous_verified">ಮೊದಲೇ ಪರಿಶೀಲಿಸಲಾಗಿದೆ</string>
 
     <!-- EnableCallNotificationSettingsDialog__call_notifications_checklist -->
@@ -3086,6 +3113,7 @@
 
     <string name="arrays__default">ಡೀಫಾಲ್ಟ್</string>
     <string name="arrays__high">ಹೆಚ್ಚು</string>
+    <!-- Setting title that represent an abstract priority to assign to notifications as the max/highest priority a notification can be within the system. -->
     <string name="arrays__max">ಗರಿಷ್ಠ</string>
 
     <!-- plurals.xml -->
@@ -3446,6 +3474,7 @@
     <string name="PaymentsDetailsFragment__sent_to_s">%1$s ಗೆ ಕಳುಹಿಸಲಾಗಿದೆ</string>
     <string name="PaymentsDetailsFragment__you_on_s_at_s">ನೀವು %2$s ರಲ್ಲಿ %1$s ಆಗಿದ್ದೀರಿ</string>
     <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s ರಂದು %3$s ರಲ್ಲಿ %2$s</string>
+    <!-- Prefix to a name to indicate who a payment was sent to -->
     <string name="PaymentsDetailsFragment__to">ಗೆ</string>
     <string name="PaymentsDetailsFragment__from">ಇಂದ</string>
     <string name="PaymentsDetailsFragment__information">ಪಾವತಿ ಮೊತ್ತ ಮತ್ತು ವಹಿವಾಟಿನ ಸಮಯ ಸೇರಿದಂತೆ ವಹಿವಾಟು ವಿವರಗಳು ಮೊಬೈಲ್‌ಕಾಯಿನ್‌ ಲೆಡ್ಜರ್‌ನ ಭಾಗವಾಗಿದೆ.</string>
@@ -3508,6 +3537,7 @@
     <string name="ConfirmPayment__confirm_payment">ಪೇಮೆಂಟ್ ದೃಢೀಕರಿಸಿ</string>
     <string name="ConfirmPayment__network_fee">ನೆಟ್‌ವರ್ಕ್‌ ಶುಲ್ಕ</string>
     <string name="ConfirmPayment__estimated_s">ಅಂದಾಜು ಮಾಡಿದ %1$s</string>
+    <!-- Prefix to a name to indicate who a payment will be sent to -->
     <string name="ConfirmPayment__to">ಗೆ</string>
     <string name="ConfirmPayment__total_amount">ಒಟ್ಟು ಮೊತ್ತ</string>
     <string name="ConfirmPayment__balance_s">ಬ್ಯಾಲೆನ್ಸ್: %1$s</string>
@@ -4112,6 +4142,7 @@
     <string name="RecipientBottomSheet_copied_to_clipboard">ಕ್ಲಿಪ್‌‌ಬೋರ್ಡಿಗೆ ನಕಲು ಮಾಡಲಾಗಿದೆ</string>
 
     <string name="GroupRecipientListItem_admin">ಅಡ್ಮಿನ್‌‌</string>
+    <!-- Button text to approve a user that has requested to join a group -->
     <string name="GroupRecipientListItem_approve_description">ಅನುಮತಿಸಿ</string>
     <string name="GroupRecipientListItem_deny_description">ನಿರಾಕರಿಸಿ</string>
 
@@ -4139,6 +4170,7 @@
 
     <!-- VoiceNoteMediaDescriptionCompatFactory -->
     <string name="VoiceNoteMediaItemFactory__voice_message">ಧ್ವನಿ ಸಂದೇಶ . %1$s</string>
+    <!-- This is a title in a banner describing the conversation sender to receiver placeholders of the currently playing voice memo. -->
     <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s ಗೆ %2$s</string>
 
     <!-- StorageUtil -->
@@ -4185,6 +4217,7 @@
     <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s ಹಾಗು %2$s ಸೇರಿಕೊಂಡಿದ್ದಾರೆ</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s ಹಾಗು %3$s ಸೇರಿಕೊಂಡಿದ್ದಾರೆ</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s ಹಾಗು %3$d ಇನ್ನಿತರು ಸೇರಿಕೊಂಡಿದ್ದಾರೆ</string>
+    <!-- Toast/popup text shown when someone leaves a group call -->
     <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s ಉಳಿದಿದ್ದಾರೆ</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s ಹಾಗು %2$s ಉಳಿದಿದ್ದಾರೆ</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s ಹಾಗು %3$s ಉಳಿದಿದ್ದಾರೆ</string>
@@ -4562,6 +4595,7 @@
     <string name="PrivacySettingsFragment__messaging">ಸಂದೇಶ ಕಳುಹಿಸುವಿಕೆ</string>
     <string name="PrivacySettingsFragment__disappearing_messages">ಕಣ್ಮರೆಯಾಗುವ ಸಂದೇಶಗಳು</string>
     <string name="PrivacySettingsFragment__app_security">ಆಪ್ ಸುರಕ್ಷತೆ</string>
+    <!-- This refers to the multi-tasking overview (recent apps) from the Android operating system.-->
     <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">ಇತ್ತೀಚಿನ ಪಟ್ಟಿಯಲ್ಲಿ ಮತ್ತು ಆ್ಯಪ್‌ನ ಒಳಗೆ ಸ್ಕ್ರೀನ್‌ಶಾಟ್‌ಗಳನ್ನು ನಿರ್ಬಂಧಿಸಿ</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Signal ಮೆಸೇಜ್‌ಗಳು ಮತ್ತು ಕಾಲ್‌ಗಳು, ಎಂದಿಗೂ ಕಾಲ್‌ಗಳನ್ನು ರಿಲೇ ಮಾಡಿ ಮತ್ತು ಸೀಲ್ ಮಾಡಿದ ಕಳುಹಿಸುವವರು</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">ಹೊಸ ಚಾಟ್‌ಗಳಿಗೆ ಡೀಫಾಲ್ಟ್ ಟೈಮರ್</string>
@@ -4618,11 +4652,14 @@
     <string name="DataAndStorageSettingsFragment__media_quality">ಮಾಧ್ಯಮ ಗುಣಮಟ್ಟ</string>
     <string name="DataAndStorageSettingsFragment__sent_media_quality">ಮಾಧ್ಯಮ ಗುಣಮಟ್ಟವನ್ನು ಕಳುಹಿಸಲಾಗಿದೆ</string>
     <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">ಉನ್ನತ ಗುಣಮಟ್ಟದ ಮಾಧ್ಯಮವನ್ನು ಕಳುಹಿಸುವಿಕೆಯು ಹೆಚ್ಚು ಡೇಟಾವನ್ನು ಬಳಸಲಿದೆ.</string>
+    <!-- Setting option that can be selected to default media to be sent as high quality by default -->
     <string name="DataAndStorageSettingsFragment__high">ಹೆಚ್ಚು</string>
+    <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
     <string name="DataAndStorageSettingsFragment__standard">ಪ್ರಮಾಣಿತ</string>
     <string name="DataAndStorageSettingsFragment__calls">ಕರೆಗಳು</string>
 
     <!-- ChatColorSelectionFragment -->
+    <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
     <string name="ChatColorSelectionFragment__auto">ಸ್ವಯಂಚಾಲಿತ</string>
     <string name="ChatColorSelectionFragment__use_custom_colors">ಕಸ್ಟಮ್ ಬಣ್ಣಗಳನ್ನು ಬಳಸಿ</string>
     <string name="ChatColorSelectionFragment__chat_color">ಚಾಟ್ ಬಣ್ಣ</string>
@@ -4834,6 +4871,7 @@
     <string name="AvatarPickerFragment__take_a_picture">ಚಿತ್ರವನ್ನು ತೆಗೆಯಿರಿ</string>
     <string name="AvatarPickerFragment__choose_a_photo">ಚಿತ್ರವನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
     <string name="AvatarPickerFragment__photo">ಫೋಟೋ</string>
+    <!-- Button label during avatar selection/creation that when tapped lets you generate an avatar from typed in text. -->
     <string name="AvatarPickerFragment__text">ಪಠ್ಯ</string>
     <string name="AvatarPickerFragment__save">ಉಳಿಸಿ</string>
     <string name="AvatarPickerFragment__clear_avatar">ಅವತಾರವನ್ನು ತೆಗೆಯಿರಿ</string>
@@ -4894,7 +4932,7 @@
     <string name="MediaReviewFragment__add_a_message">ಮೆಸೇಜ್ ಸೇರಿಸಿ</string>
     <string name="MediaReviewFragment__add_a_reply">ಉತ್ತರ ಸೇರಿಸಿ</string>
     <string name="MediaReviewFragment__send_to">ಇವರಿಗೆ ಕಳುಹಿಸಿ</string>
-    <string name="MediaReviewFragment__view_once_message">ಏಕ ವೀಕ್ಷಣೆ ಮೆಸೇಜ್</string>
+    <string name="MediaReviewFragment__view_once_message">View once media</string>
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">ಒಂದು ಅಥವಾ ಹೆಚ್ಚು ಐಟಂಗಳು ತೀರಾ ದೊಡ್ಡದಾಗಿವೆ</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">ಒಂದು ಅಥವಾ ಹೆಚ್ಚು ಐಟಂಗಳು ಅಮಾನ್ಯವಾಗಿವೆ</string>
     <string name="MediaReviewFragment__too_many_items_selected">ತುಂಬಾ ಐಟಂಗಳನ್ನು ಆಯ್ಕೆ ಮಾಡಲಾಗಿದೆ</string>
@@ -5487,7 +5525,7 @@
     <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
     <!-- Displayed when viewing a post you sent -->
     <string name="StoryViewerPageFragment__you">ನೀವು</string>
-    <!-- Displayed when viewing a post displayed to a group -->
+    <!-- Displayed when viewing a story sent to a group, placeholders are person who sent the story and the group name -->
     <string name="StoryViewerPageFragment__s_to_s">%1$s ಗೆ %2$s</string>
     <!-- Displayed when viewing a post from another user with no replies -->
     <string name="StoryViewerPageFragment__reply">ಉತ್ತರಿಸಿ</string>
@@ -6703,6 +6741,12 @@
     <string name="ViewNoteSheet__note">ಟಿಪ್ಪಣಿ</string>
     <!-- Content description for opening the note editor -->
     <string name="ViewNoteSheet__edit_note">ಟಿಪ್ಪಣಿ ಎಡಿಟ್ ಮಾಡಿ</string>
+
+    <!-- BackupProgressService -->
+    <!-- Notification title shown while backup restore job is running -->
+    <string name="BackupProgressService_title">Restoring backup…</string>
+    <!-- Notification title shown while downloading backup restore data -->
+    <string name="BackupProgressService_title_downloading">Downloading backup data…</string>
 
     <!-- EOF -->
 </resources>

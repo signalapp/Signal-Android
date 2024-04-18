@@ -427,6 +427,7 @@
 
 
     <string name="ConversationActivity_join">انضم</string>
+    <!-- Button text for an active group call but the call is currently full and unjoinable -->
     <string name="ConversationActivity_full">ممتليء</string>
 
     <string name="ConversationActivity_error_sending_media">خطأُ في إرسال الوسائط</string>
@@ -677,6 +678,7 @@
     <string name="ConversationListFragment_unarchive">إلغاء الأرشفة</string>
     <string name="ConversationListFragment_delete">حذف</string>
     <string name="ConversationListFragment_select_all">تحديد الكل</string>
+    <!-- Screen title shown when selecting multiple items from a list like conversation threads or call logs. -->
     <plurals name="ConversationListFragment_s_selected">
         <item quantity="zero">تم تحديد %1$d</item>
         <item quantity="one">تم تحديد %1$d</item>
@@ -940,6 +942,7 @@
         <item quantity="many">تم إرسال %1$d دعوة</item>
         <item quantity="other">تم إرسال %1$d دعوة</item>
     </plurals>
+    <!-- Dialog message shown when you are attempting to add a single contact to a group and you don\'t have enough information about them to do it automatically, so must do it via an invite instead. Placeholder is name/username/phone number. -->
     <string name="GroupManagement_invite_single_user">لا يمكنك إضافة \"%1$s\" تلقائياً إلى هذه المجموعة. \n\n لقد تمت دعوة ذلك الشخص للانضمام، ولن يرى أيّة رسالة من رسائل المجموعة حتى يقبلها.</string>
     <string name="GroupManagement_invite_multiple_users">لا يمكنك إضافة هؤلاء المستخدمين تلقائياً إلى هذه المجموعة . \n\n لقد تمت دعوتهم للانضمام، ولن يروا أيّة رسالة من رسائل المجموعة حتى يقبلون.</string>
 
@@ -1184,7 +1187,9 @@
 
     <string name="ManageGroupActivity_edit_name_and_picture">عدّل الاسم والصورة</string>
     <string name="ManageGroupActivity_legacy_group">مجموعة من الطراز القديم</string>
+    <!-- This is placed inside a "Learn More" text view, which automatically appends LearnMoreTextView_learn_more in code -->
     <string name="ManageGroupActivity_legacy_group_learn_more">هذه مجموعة من الطراز القديم. إن الميزات مثل خاصية المشرفين على المجموعة، متاحة فقط في المجموعات الجديدة.</string>
+    <!-- This is placed inside a "Learn More" text view, which automatically appends LearnMoreTextView_learn_more in code to the end of the string -->
     <string name="ManageGroupActivity_legacy_group_upgrade">هذه مجموعة من الطراز القديم. للوصول إلى ميزات مثل ‎@mentions‏ والمشرفين،</string>
     <string name="ManageGroupActivity_legacy_group_too_large">لا يمكن ترقية هذه المجموعة القديمة الطراز إلى مجموعة جديدة لأنها كبيرة جدا. الحد الأقصى للمجموعة هو %1$d.</string>
     <string name="ManageGroupActivity_upgrade_this_group">يُرجى ترقية هذه المجموعة.</string>
@@ -1447,6 +1452,7 @@
         <item quantity="other">حذف</item>
     </plurals>
 
+    <!-- Screen title shown when selecting multiple items in the media overview screen. The first placeholder is the number of items, the second number is the cumulative file size in bytes. -->
     <plurals name="MediaOverviewActivity_d_selected_s">
         <item quantity="zero">تم تحديد %1$d (%2$s)</item>
         <item quantity="one">تم تحديد %1$d (%2$s)</item>
@@ -1515,17 +1521,13 @@
     <string name="MessageRecord_left_group">لقد تركت المجموعة.</string>
     <string name="MessageRecord_you_updated_group">قمت بتحديث المجموعة.</string>
     <string name="MessageRecord_the_group_was_updated">تم تحديث المجموعة بنجاح.</string>
-    <!-- Update message shown when placing an outgoing 1:1 voice/audio call and it\'s answered by the other party -->
+    <!-- Update message shown when placing an outgoing 1:1 voice/audio call -->
     <string name="MessageRecord_outgoing_voice_call">مكالمة صوتية صادرة</string>
-    <!-- Update message shown when placing an outgoing 1:1 video call and it\'s answered by the other party -->
+    <!-- Update message shown when placing an outgoing 1:1 video call -->
     <string name="MessageRecord_outgoing_video_call">مكالمة فيديو صادرة</string>
-    <!-- Update message shown when placing an outgoing 1:1 voice/audio call and it\'s not answered by the other party -->
-    <string name="MessageRecord_unanswered_voice_call">مكالمة صوتية لم يتم الرد عليها</string>
-    <!-- Update message shown when placing an outgoing 1:1 video call and it\'s not answered by the other party -->
-    <string name="MessageRecord_unanswered_video_call">مكالمة فيديو لم يتم الرد عليها</string>
-    <!-- Update message shown when receiving an incoming 1:1 voice/audio call and it\'s answered -->
+    <!-- Update message shown when receiving an incoming 1:1 voice/audio call and it\'s answered or ringing -->
     <string name="MessageRecord_incoming_voice_call">مكالمة صوتية واردة</string>
-    <!-- Update message shown when receiving an incoming 1:1 video call and answered -->
+    <!-- Update message shown when receiving an incoming 1:1 video call and answered or ringing -->
     <string name="MessageRecord_incoming_video_call">مكالمة فيديو واردة</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and not answered -->
     <string name="MessageRecord_missed_voice_call">مكالمة صوتية فائتة</string>
@@ -1535,10 +1537,6 @@
     <string name="MessageRecord_missed_voice_call_notification_profile">مكالمة صوتية فائتة أثناء تشغيل الحساب الشخصي للإشعارات</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
     <string name="MessageRecord_missed_video_call_notification_profile">اتصال فيديو فائت أثناء تشغيل الحساب الشخصي للإشعار</string>
-    <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
-    <string name="MessageRecord_you_declined_a_voice_call">لقد رفضت مكالمة صوتية</string>
-    <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
-    <string name="MessageRecord_you_declined_a_video_call">لقد رفضت مكالمة فيديو</string>
     <!-- Call update formatter string to place the update message next to a time stamp. e.g., \'Incoming voice call · 11:11am\' -->
     <string name="MessageRecord_call_message_with_date">%1$s . %2$s</string>
     <string name="MessageRecord_s_updated_group">%1$s قام بتحديث المجموعة.</string>
@@ -1779,38 +1777,63 @@
     <string name="MessageRecord_can_accept_payments">يُمكن لـ %1$s قبول عمليات الدفع الآن</string>
 
     <!-- Group Calling update messages -->
-    <string name="MessageRecord_s_started_a_group_call_s">قام العضو %1$s ببدء مكالمة جماعية · %2$s</string>
-    <string name="MessageRecord_you_started_a_group_call_s">لقد بدأتَ مكالمة جماعية · %1$s</string>
-    <string name="MessageRecord_s_is_in_the_group_call_s">العضو %1$s موجود في المكالمة الجماعية · %2$s</string>
-    <string name="MessageRecord_you_are_in_the_group_call_s1">إنك في مكالمة جماعية · %1$s</string>
-    <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">العضوان %1$s و %2$s موجودان في مكالمة جماعية · %3$s</string>
-    <string name="MessageRecord_group_call_s">مكالمة جماعية · %1$s</string>
-
-    <string name="MessageRecord_s_started_a_group_call">قام العضو %1$s ببدء مكالمة جماعية</string>
-    <string name="MessageRecord_you_started_a_group_call">لقد قمت ببدء مكالمة جماعية</string>
-    <string name="MessageRecord_s_is_in_the_group_call">العضو %1$s موجود في مكالمة جماعية</string>
-    <string name="MessageRecord_you_are_in_the_group_call">إنك في مكالمة جماعية</string>
-    <string name="MessageRecord_s_and_s_are_in_the_group_call">العضوان %1$s و %2$s موجودان في مكالمة جماعية</string>
-    <string name="MessageRecord_group_call">المكالمة الجماعية</string>
+    <!-- Chat log text for an ongoing group call that has one participant with a placeholder for the short display name of the user that joined and a placeholder for formatted time -->
+    <string name="MessageRecord_s_is_in_the_call_s">%1$s is in the call · %2$s</string>
+    <!-- Chat log text for an ongoing group call only the local user has joined with a placeholder for formatted time -->
+    <string name="MessageRecord_you_are_in_the_call_s1">You are in the call · %1$s</string>
+    <!-- Chat log text for an ongoing group call with two participants with two placeholders for the short display name of the users that joined and a placeholder for formatted time -->
+    <string name="MessageRecord_s_and_s_are_in_the_call_s1">%1$s and %2$s are in the call · %3$s</string>
+    <!-- Chat log text for an ongoing group call that has one participant -->
+    <string name="MessageRecord_s_is_in_the_call">%1$s is in the call</string>
+    <!-- Chat log text for an ongoing group call only the local user has joined -->
+    <string name="MessageRecord_you_are_in_the_call">You are in the call</string>
+    <!-- Chat log text for an ongoing group call with two participants with two placeholders, each for the short display name of the users that joined -->
+    <string name="MessageRecord_s_and_s_are_in_the_call">%1$s and %2$s are in the call</string>
+    <!-- Chat log text for a group call that ended within the last 5 minutes -->
+    <string name="MessageRecord__the_video_call_has_ended">The video call has ended</string>
+    <!-- Chat log text for a group call that ended within the last 5 minutes with a placeholder for formatted time -->
+    <string name="MessageRecord__the_video_call_has_ended_s">The video call has ended · %1$s</string>
+    <!-- Chat log text for a group call that ended more than 5 minutes ago and was missed -->
+    <string name="MessageRecord__missed_video_call">Missed video call</string>
+    <!-- Chat log text for a group call that ended more than 5 minutes ago and was missed with a placeholder for formatted time -->
+    <string name="MessageRecord__missed_video_call_s">Missed video call · %1$s</string>
+    <!-- Chat log text for a group call that ended that the local user did not start -->
+    <string name="MessageRecord__incoming_video_call">Incoming video call</string>
+    <!-- Chat log text for a group call that ended that the local user did not start with a placeholder for formatted time -->
+    <string name="MessageRecord__incoming_video_call_s">Incoming video call · %1$s</string>
+    <!-- Chat log text for a group call that ended that the local user started -->
+    <string name="MessageRecord__outgoing_video_call">Outgoing video call</string>
+    <!-- Chat log text for a group call that ended that the local user started with a placeholder for formatted time -->
+    <string name="MessageRecord__outgoing_video_call_s">Outgoing video call · %1$s</string>
+    <!-- Chat log text for an ongoing group call that the local user started -->
+    <string name="MessageRecord__you_started_a_video_call">You started a video call</string>
+    <!-- Chat log text for an ongoing group call that the local user started with a placeholder for formatted time -->
+    <string name="MessageRecord__you_started_a_video_call_s">You started a video call · %1$s</string>
+    <!-- Chat log text for an ongoing group call that the local user has not joined with a placeholder for user\'s short display name -->
+    <string name="MessageRecord__s_started_a_video_call">%1$s started a video call</string>
+    <!-- Chat log text for an ongoing group call that the local user has not joined with a placeholder for user\'s short display name and a placeholder for formatted time -->
+    <string name="MessageRecord__s_started_a_video_call_s">%1$s started a video call · %2$s</string>
 
     <string name="MessageRecord_you">أنت</string>
 
-    <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
-        <item quantity="zero">الأعضاء %1$s و %2$s و%3$d آخر موجودون في المكالمة الجماعية · %4$s</item>
-        <item quantity="one">الأعضاء %1$s و %2$s و%3$d آخر موجودون في المكالمة الجماعية · %4$s</item>
-        <item quantity="two">الأعضاء %1$s و %2$s و%3$d آخرون موجودون في المكالمة الجماعية · %4$s</item>
-        <item quantity="few">الأعضاء %1$s و %2$s و%3$d آخرون موجودون في المكالمة الجماعية · %4$s</item>
-        <item quantity="many">الأعضاء %1$s و %2$s و%3$d آخرون موجودون في المكالمة الجماعية · %4$s</item>
-        <item quantity="other">الأعضاء %1$s و %2$s و%3$d آخرون موجودون في المكالمة الجماعية · %4$s</item>
+    <!-- Chat log text for an ongoing group call with more than two participants with placeholders for the first two joined users, a placeholder for the number of users in the call, and a placeholder for formatted time -->
+    <plurals name="MessageRecord_s_s_and_d_others_are_in_the_call_s">
+        <item quantity="zero">%1$s, %2$s, and %3$d others are in the group call · %4$s</item>
+        <item quantity="one">%1$s, %2$s, and %3$d other are in the group call · %4$s</item>
+        <item quantity="two">%1$s, %2$s, and %3$d others are in the group call · %4$s</item>
+        <item quantity="few">%1$s, %2$s, and %3$d others are in the group call · %4$s</item>
+        <item quantity="many">%1$s, %2$s, and %3$d others are in the group call · %4$s</item>
+        <item quantity="other">%1$s, %2$s, and %3$d others are in the group call · %4$s</item>
     </plurals>
 
-    <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call">
-        <item quantity="zero">الأعضاء %1$s و %2$s و%3$d آخر موجودون في المكالمة الجماعية</item>
-        <item quantity="one">الأعضاء %1$s و %2$s و%3$d آخر موجود في المكالمة الجماعية</item>
-        <item quantity="two">الأعضاء %1$s و %2$s و%3$d آخرون موجودون في المكالمة الجماعية</item>
-        <item quantity="few">الأعضاء %1$s و %2$s و%3$d آخرون موجودون في المكالمة الجماعية</item>
-        <item quantity="many">الأعضاء %1$s و %2$s و%3$d آخرون موجودون في المكالمة الجماعية</item>
-        <item quantity="other">الأعضاء %1$s و %2$s و%3$d آخرون موجودون في المكالمة الجماعية</item>
+    <!-- Chat log text for an ongoing group call with more than two participants with placeholders for the first two joined users and a placeholder for the number of users in the call -->
+    <plurals name="MessageRecord_s_s_and_d_others_are_in_the_call">
+        <item quantity="zero">%1$s, %2$s, and %3$d others are in the group call</item>
+        <item quantity="one">%1$s, %2$s, and %3$d other are in the group call</item>
+        <item quantity="two">%1$s, %2$s, and %3$d others are in the group call</item>
+        <item quantity="few">%1$s, %2$s, and %3$d others are in the group call</item>
+        <item quantity="many">%1$s, %2$s, and %3$d others are in the group call</item>
+        <item quantity="other">%1$s, %2$s, and %3$d others are in the group call</item>
     </plurals>
 
     <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
@@ -2379,6 +2402,7 @@
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">تعذّر طلب رمز تحقق. يُرجى التحقّق من اتصالك بالانترنت ثم حاول مرة أُخرى.</string>
     <string name="RegistrationActivity_non_standard_number_format">نسق العدد غير المعياري</string>
+    <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">‫يظهر أن العدد الذي قمت بإدخاله (%1$s) ليس بالنسق المعياري.\n\nأ قصدك هو %2$s ؟</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">سيجنال Android - نسق رقم الهاتف</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
@@ -3057,6 +3081,8 @@
     <string name="ConversationUpdateItem_loading">قيد التحميل</string>
     <string name="ConversationUpdateItem_learn_more">لمعرفة المزيد</string>
     <string name="ConversationUpdateItem_join_call">الانضمام للمكالمة</string>
+    <!-- Action button label for starting a new call in the current conversation -->
+    <string name="ConversationUpdateItem_call_back">Call back</string>
     <string name="ConversationUpdateItem_return_to_call">العودة للمكالمة</string>
     <string name="ConversationUpdateItem_call_is_full">المكالمة ممتلئة</string>
     <string name="ConversationUpdateItem_invite_friends">دعوة الأصدقاء</string>
@@ -3121,6 +3147,7 @@
     <string name="safety_number_change_dialog__leave_call">مغادرة المكالمة</string>
     <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">ربما قام هؤلاء الأشخاص بإعادة تثبيت التطبيق أو قاموا بتغيير أجهزتهم. يُرجى تأكيد رقم الأمان معهم لضمان الخصوصية.</string>
     <string name="safety_number_change_dialog__view">إظهار</string>
+    <!-- Subtitle shown for a single contact and that their safety number was previously verified and is now no longer verified. -->
     <string name="safety_number_change_dialog__previous_verified">سبق التحقق منه</string>
 
     <!-- EnableCallNotificationSettingsDialog__call_notifications_checklist -->
@@ -3462,6 +3489,7 @@
 
     <string name="arrays__default">افتراضي</string>
     <string name="arrays__high">بالغ الأهميّة</string>
+    <!-- Setting title that represent an abstract priority to assign to notifications as the max/highest priority a notification can be within the system. -->
     <string name="arrays__max">قصوى</string>
 
     <!-- plurals.xml -->
@@ -3834,6 +3862,7 @@
     <string name="PaymentsDetailsFragment__sent_to_s">مُرسَلة إلى %1$s</string>
     <string name="PaymentsDetailsFragment__you_on_s_at_s">أنت، بتاريخ %1$s على الساعة %2$s</string>
     <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s، بتاريخ %2$s على الساعة %3$s</string>
+    <!-- Prefix to a name to indicate who a payment was sent to -->
     <string name="PaymentsDetailsFragment__to">إلى</string>
     <string name="PaymentsDetailsFragment__from">مِن</string>
     <string name="PaymentsDetailsFragment__information">ستجد تفاصيل المعاملات بما في ذلك مبالغ الدفوعات وتاريخ المعاملة متضمنة في دفتر حسابات MobileCoin.</string>
@@ -3896,6 +3925,7 @@
     <string name="ConfirmPayment__confirm_payment">تأكيد الدفع</string>
     <string name="ConfirmPayment__network_fee">رسوم الشبكة</string>
     <string name="ConfirmPayment__estimated_s">مُقدَّرة بـ %1$s</string>
+    <!-- Prefix to a name to indicate who a payment will be sent to -->
     <string name="ConfirmPayment__to">إلى</string>
     <string name="ConfirmPayment__total_amount">المبلغ الإجمالي</string>
     <string name="ConfirmPayment__balance_s">الرصيد : %1$s</string>
@@ -4536,6 +4566,7 @@
     <string name="RecipientBottomSheet_copied_to_clipboard">تمّ النسخ إلى الحافظة</string>
 
     <string name="GroupRecipientListItem_admin">مشرف</string>
+    <!-- Button text to approve a user that has requested to join a group -->
     <string name="GroupRecipientListItem_approve_description">الموافقة</string>
     <string name="GroupRecipientListItem_deny_description">رفض</string>
 
@@ -4563,6 +4594,7 @@
 
     <!-- VoiceNoteMediaDescriptionCompatFactory -->
     <string name="VoiceNoteMediaItemFactory__voice_message">رسالة صوتية · %1$s</string>
+    <!-- This is a title in a banner describing the conversation sender to receiver placeholders of the currently playing voice memo. -->
     <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s إلى %2$s</string>
 
     <!-- StorageUtil -->
@@ -4617,6 +4649,7 @@
     <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">انضم %1$s و %2$s</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">انضم %1$s، %2$s و%3$s</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">انضم %1$s، %2$s و%3$d آخرون</string>
+    <!-- Toast/popup text shown when someone leaves a group call -->
     <string name="CallParticipantsListUpdatePopupWindow__s_left">غادر العضو %1$s</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">غادر %1$s و %2$s</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">غادر %1$s، %2$s و%3$s</string>
@@ -5002,6 +5035,7 @@
     <string name="PrivacySettingsFragment__messaging">التراسُل</string>
     <string name="PrivacySettingsFragment__disappearing_messages">الرسائل المختفية</string>
     <string name="PrivacySettingsFragment__app_security">أمان التطبيق</string>
+    <!-- This refers to the multi-tasking overview (recent apps) from the Android operating system.-->
     <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">منع لقطات الشاشة داخل التطبيق وفي قائمة الأحدَث</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">محادثات ومكالمات سيجنال، مناوبة الاتصالات دوما، والمُرسِل المختوم</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">المُهلة الافتراضية للدردشات الجديدة</string>
@@ -5058,11 +5092,14 @@
     <string name="DataAndStorageSettingsFragment__media_quality">جودة الوسائط</string>
     <string name="DataAndStorageSettingsFragment__sent_media_quality">جودة الوسائط المرسلة</string>
     <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">إن إرسال وسائط بجودة عالية سوف يستخدم كما أكبر من البيانات.</string>
+    <!-- Setting option that can be selected to default media to be sent as high quality by default -->
     <string name="DataAndStorageSettingsFragment__high">بالغ الأهميّة</string>
+    <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
     <string name="DataAndStorageSettingsFragment__standard">قياسي</string>
     <string name="DataAndStorageSettingsFragment__calls">المكالمات</string>
 
     <!-- ChatColorSelectionFragment -->
+    <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
     <string name="ChatColorSelectionFragment__auto">تلقائي</string>
     <string name="ChatColorSelectionFragment__use_custom_colors">استخدام ألوان مخصصة</string>
     <string name="ChatColorSelectionFragment__chat_color">لون الدردشة</string>
@@ -5286,6 +5323,7 @@
     <string name="AvatarPickerFragment__take_a_picture">التقط صورة</string>
     <string name="AvatarPickerFragment__choose_a_photo">اختيار صورة</string>
     <string name="AvatarPickerFragment__photo">صورة</string>
+    <!-- Button label during avatar selection/creation that when tapped lets you generate an avatar from typed in text. -->
     <string name="AvatarPickerFragment__text">نص</string>
     <string name="AvatarPickerFragment__save">حفظ</string>
     <string name="AvatarPickerFragment__clear_avatar">محو صورة الحساب</string>
@@ -5362,7 +5400,7 @@
     <string name="MediaReviewFragment__add_a_message">إضافة نص</string>
     <string name="MediaReviewFragment__add_a_reply">إضافة رد</string>
     <string name="MediaReviewFragment__send_to">إرسال إلى</string>
-    <string name="MediaReviewFragment__view_once_message">وسيط للعرض مرة واحدة</string>
+    <string name="MediaReviewFragment__view_once_message">View once media</string>
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">عنصر واحد أو أكثر كان كبيرًا جدًا</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">عنصر واحد أو أكثر غير صالح</string>
     <string name="MediaReviewFragment__too_many_items_selected">تم تحديد عدد كبير جدًا من العناصر</string>
@@ -5975,7 +6013,7 @@
     <string name="StoryViewerFragment__s_s">‏%1$s‏%2$s‏</string>
     <!-- Displayed when viewing a post you sent -->
     <string name="StoryViewerPageFragment__you">أنت</string>
-    <!-- Displayed when viewing a post displayed to a group -->
+    <!-- Displayed when viewing a story sent to a group, placeholders are person who sent the story and the group name -->
     <string name="StoryViewerPageFragment__s_to_s">%1$s إلى %2$s</string>
     <!-- Displayed when viewing a post from another user with no replies -->
     <string name="StoryViewerPageFragment__reply">الرَّدّ</string>
@@ -7287,6 +7325,12 @@
     <string name="ViewNoteSheet__note">مُلاحظة</string>
     <!-- Content description for opening the note editor -->
     <string name="ViewNoteSheet__edit_note">تعديل الملاحظة</string>
+
+    <!-- BackupProgressService -->
+    <!-- Notification title shown while backup restore job is running -->
+    <string name="BackupProgressService_title">Restoring backup…</string>
+    <!-- Notification title shown while downloading backup restore data -->
+    <string name="BackupProgressService_title_downloading">Downloading backup data…</string>
 
     <!-- EOF -->
 </resources>

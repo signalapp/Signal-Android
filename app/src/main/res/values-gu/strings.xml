@@ -415,6 +415,7 @@
 
 
     <string name="ConversationActivity_join">જોડાઓ</string>
+    <!-- Button text for an active group call but the call is currently full and unjoinable -->
     <string name="ConversationActivity_full">ભરેલ</string>
 
     <string name="ConversationActivity_error_sending_media">મીડિયા મોકલવામાં ભૂલ</string>
@@ -613,6 +614,7 @@
     <string name="ConversationListFragment_unarchive">અનઆર્કાઇવ કરો</string>
     <string name="ConversationListFragment_delete">ડિલીટ કરો</string>
     <string name="ConversationListFragment_select_all">બધા પસંદ કરો</string>
+    <!-- Screen title shown when selecting multiple items from a list like conversation threads or call logs. -->
     <plurals name="ConversationListFragment_s_selected">
         <item quantity="one">%1$d પસંદ કર્યો</item>
         <item quantity="other">%1$d પસંદ કર્યા</item>
@@ -864,6 +866,7 @@
         <item quantity="one">આમંત્રણ મોકલ્યું</item>
         <item quantity="other">%1$d આમંત્રણો મોકલ્યા</item>
     </plurals>
+    <!-- Dialog message shown when you are attempting to add a single contact to a group and you don\'t have enough information about them to do it automatically, so must do it via an invite instead. Placeholder is name/username/phone number. -->
     <string name="GroupManagement_invite_single_user">\"%1$s\" ને તમારા દ્વારા આ ગ્રુપમાં આપમેળે ઉમેરી શકાશે નહીં.\n\nતેમને જોડાવા માટે આમંત્રિત કરવામાં આવ્યા છે, અને જ્યાં સુધી તેઓ સ્વીકારશે નહીં ત્યાં સુધી કોઈ ગ્રુપ મેસેજ જોઇ શકાશે નહીં.</string>
     <string name="GroupManagement_invite_multiple_users">આ વપરાશકર્તાઓ તમારા દ્વારા આ ગ્રુપમાં આપમેળે ઉમેરી શકાતા નથી. \n\n તેમને ગ્રુપમાં જોડાવા માટે આમંત્રિત કરવામાં આવ્યા છે, અને જ્યાં સુધી તેઓ સ્વીકારે નહીં ત્યાં સુધી તેઓ કોઈ ગ્રુપ મેસેજ જોશે નહીં.</string>
 
@@ -1044,7 +1047,9 @@
 
     <string name="ManageGroupActivity_edit_name_and_picture">નામ અને ચિત્ર સંપાદિત કરવું</string>
     <string name="ManageGroupActivity_legacy_group">લેગેસી ગ્રુપ</string>
+    <!-- This is placed inside a "Learn More" text view, which automatically appends LearnMoreTextView_learn_more in code -->
     <string name="ManageGroupActivity_legacy_group_learn_more">આ એક લિગેસી ગ્રુપ છે. ગ્રુપ એડમીન જેવી સુવિધાઓ ફક્ત નવા ગ્રુપ માટે ઉપલબ્ધ છે.</string>
+    <!-- This is placed inside a "Learn More" text view, which automatically appends LearnMoreTextView_learn_more in code to the end of the string -->
     <string name="ManageGroupActivity_legacy_group_upgrade">આ એક જૂનું ગ્રુપ છે. @મેન્શન અને એડમિન જેવી નવી સુવિધાઓ ઍક્સેસ કરવા માટે,</string>
     <string name="ManageGroupActivity_legacy_group_too_large">આ લેગસી ગ્રુપને નવા ગ્રુપમાં અપગ્રેડ કરી શકાતું નથી કારણ કે તે ખૂબ મોટું છે. ગ્રુપનું મહત્તમ કદ %1$d છે.</string>
     <string name="ManageGroupActivity_upgrade_this_group">આ ગ્રુપને અપગ્રેડ કરો.</string>
@@ -1271,6 +1276,7 @@
         <item quantity="other">ડિલીટ કરો</item>
     </plurals>
 
+    <!-- Screen title shown when selecting multiple items in the media overview screen. The first placeholder is the number of items, the second number is the cumulative file size in bytes. -->
     <plurals name="MediaOverviewActivity_d_selected_s">
         <item quantity="one">%1$d એ (%2$s) પસંદ કર્યા</item>
         <item quantity="other">%1$d એ (%2$s) પસંદ કર્યું</item>
@@ -1335,17 +1341,13 @@
     <string name="MessageRecord_left_group">તમે ગ્રુપ છોડી દીધું છે.</string>
     <string name="MessageRecord_you_updated_group">તમે ગ્રુપ ને અપડેટ કર્યું.</string>
     <string name="MessageRecord_the_group_was_updated">ગ્રુપ અપડેટ કરવામાં આવ્યું હતું.</string>
-    <!-- Update message shown when placing an outgoing 1:1 voice/audio call and it\'s answered by the other party -->
+    <!-- Update message shown when placing an outgoing 1:1 voice/audio call -->
     <string name="MessageRecord_outgoing_voice_call">આઉટગોઇંગ વૉઇસ કૉલ</string>
-    <!-- Update message shown when placing an outgoing 1:1 video call and it\'s answered by the other party -->
+    <!-- Update message shown when placing an outgoing 1:1 video call -->
     <string name="MessageRecord_outgoing_video_call">આઉટગોઈંગ વિડિયો કૉલ</string>
-    <!-- Update message shown when placing an outgoing 1:1 voice/audio call and it\'s not answered by the other party -->
-    <string name="MessageRecord_unanswered_voice_call">અનુત્તરિત વૉઇસ કૉલ</string>
-    <!-- Update message shown when placing an outgoing 1:1 video call and it\'s not answered by the other party -->
-    <string name="MessageRecord_unanswered_video_call">અનુત્તરિત વિડિયો કૉલ</string>
-    <!-- Update message shown when receiving an incoming 1:1 voice/audio call and it\'s answered -->
+    <!-- Update message shown when receiving an incoming 1:1 voice/audio call and it\'s answered or ringing -->
     <string name="MessageRecord_incoming_voice_call">ઇનકમિંગ વૉઇસ કૉલ</string>
-    <!-- Update message shown when receiving an incoming 1:1 video call and answered -->
+    <!-- Update message shown when receiving an incoming 1:1 video call and answered or ringing -->
     <string name="MessageRecord_incoming_video_call">ઈનકમિંગ વિડિયો કૉલ</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and not answered -->
     <string name="MessageRecord_missed_voice_call">મિસ્ડ વૉઇસ કૉલ</string>
@@ -1355,10 +1357,6 @@
     <string name="MessageRecord_missed_voice_call_notification_profile">નોટિફિકેશન પ્રોફાઇલ ચાલુ હતી ત્યારે વૉઇસ કૉલ મિસ થયો</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
     <string name="MessageRecord_missed_video_call_notification_profile">નોટિફિકેશન પ્રોફાઇલ ચાલુ હતી ત્યારે વીડિયો કૉલ મિસ થયો</string>
-    <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
-    <string name="MessageRecord_you_declined_a_voice_call">તમે વૉઇસ કૉલ નકાર્યો</string>
-    <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
-    <string name="MessageRecord_you_declined_a_video_call">તમે વિડિયો કૉલ નકાર્યો</string>
     <!-- Call update formatter string to place the update message next to a time stamp. e.g., \'Incoming voice call · 11:11am\' -->
     <string name="MessageRecord_call_message_with_date">%1$s . %2$s</string>
     <string name="MessageRecord_s_updated_group">%1$s ગ્રુપ અપડેટ કર્યુ.</string>
@@ -1567,30 +1565,55 @@
     <string name="MessageRecord_can_accept_payments">%1$s હવે પેમેન્ટ સ્વીકારી શકે છે</string>
 
     <!-- Group Calling update messages -->
-    <string name="MessageRecord_s_started_a_group_call_s">%1$s એ ગ્રુપ કૉલ શરૂ કર્યો · %2$s</string>
-    <string name="MessageRecord_you_started_a_group_call_s">તમે ગ્રૂપ કૉલ શરૂ કર્યો · %1$s</string>
-    <string name="MessageRecord_s_is_in_the_group_call_s">%1$s એ ગ્રુપ કૉલમાં છે· %2$s</string>
-    <string name="MessageRecord_you_are_in_the_group_call_s1">તમે ગ્રુપ કૉલમાં છો· %1$s</string>
-    <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$sઅને %2$sએ ગ્રુપ કૉલમાં છે · %3$s</string>
-    <string name="MessageRecord_group_call_s">ગ્રુપ કૉલ · %1$s</string>
-
-    <string name="MessageRecord_s_started_a_group_call">%1$s એ ગ્રુપ કૉલ શરૂ કર્યો</string>
-    <string name="MessageRecord_you_started_a_group_call">તમે ગ્રુપ કૉલ શરૂ કર્યો</string>
-    <string name="MessageRecord_s_is_in_the_group_call">%1$s એ ગ્રુપ કૉલમાં છે·</string>
-    <string name="MessageRecord_you_are_in_the_group_call">તમે ગ્રુપ કૉલમાં છો</string>
-    <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$sઅને %2$sએ ગ્રુપ કૉલમાં છે ·</string>
-    <string name="MessageRecord_group_call">ગ્રુપ કૉલ</string>
+    <!-- Chat log text for an ongoing group call that has one participant with a placeholder for the short display name of the user that joined and a placeholder for formatted time -->
+    <string name="MessageRecord_s_is_in_the_call_s">%1$s is in the call · %2$s</string>
+    <!-- Chat log text for an ongoing group call only the local user has joined with a placeholder for formatted time -->
+    <string name="MessageRecord_you_are_in_the_call_s1">You are in the call · %1$s</string>
+    <!-- Chat log text for an ongoing group call with two participants with two placeholders for the short display name of the users that joined and a placeholder for formatted time -->
+    <string name="MessageRecord_s_and_s_are_in_the_call_s1">%1$s and %2$s are in the call · %3$s</string>
+    <!-- Chat log text for an ongoing group call that has one participant -->
+    <string name="MessageRecord_s_is_in_the_call">%1$s is in the call</string>
+    <!-- Chat log text for an ongoing group call only the local user has joined -->
+    <string name="MessageRecord_you_are_in_the_call">You are in the call</string>
+    <!-- Chat log text for an ongoing group call with two participants with two placeholders, each for the short display name of the users that joined -->
+    <string name="MessageRecord_s_and_s_are_in_the_call">%1$s and %2$s are in the call</string>
+    <!-- Chat log text for a group call that ended within the last 5 minutes -->
+    <string name="MessageRecord__the_video_call_has_ended">The video call has ended</string>
+    <!-- Chat log text for a group call that ended within the last 5 minutes with a placeholder for formatted time -->
+    <string name="MessageRecord__the_video_call_has_ended_s">The video call has ended · %1$s</string>
+    <!-- Chat log text for a group call that ended more than 5 minutes ago and was missed -->
+    <string name="MessageRecord__missed_video_call">Missed video call</string>
+    <!-- Chat log text for a group call that ended more than 5 minutes ago and was missed with a placeholder for formatted time -->
+    <string name="MessageRecord__missed_video_call_s">Missed video call · %1$s</string>
+    <!-- Chat log text for a group call that ended that the local user did not start -->
+    <string name="MessageRecord__incoming_video_call">Incoming video call</string>
+    <!-- Chat log text for a group call that ended that the local user did not start with a placeholder for formatted time -->
+    <string name="MessageRecord__incoming_video_call_s">Incoming video call · %1$s</string>
+    <!-- Chat log text for a group call that ended that the local user started -->
+    <string name="MessageRecord__outgoing_video_call">Outgoing video call</string>
+    <!-- Chat log text for a group call that ended that the local user started with a placeholder for formatted time -->
+    <string name="MessageRecord__outgoing_video_call_s">Outgoing video call · %1$s</string>
+    <!-- Chat log text for an ongoing group call that the local user started -->
+    <string name="MessageRecord__you_started_a_video_call">You started a video call</string>
+    <!-- Chat log text for an ongoing group call that the local user started with a placeholder for formatted time -->
+    <string name="MessageRecord__you_started_a_video_call_s">You started a video call · %1$s</string>
+    <!-- Chat log text for an ongoing group call that the local user has not joined with a placeholder for user\'s short display name -->
+    <string name="MessageRecord__s_started_a_video_call">%1$s started a video call</string>
+    <!-- Chat log text for an ongoing group call that the local user has not joined with a placeholder for user\'s short display name and a placeholder for formatted time -->
+    <string name="MessageRecord__s_started_a_video_call_s">%1$s started a video call · %2$s</string>
 
     <string name="MessageRecord_you">તમે</string>
 
-    <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
-        <item quantity="one">%1$s, %2$s, અને %3$d અન્યો આ કૉલમાં છે%4$s</item>
-        <item quantity="other">%1$s, %2$s, અને %3$d અન્યો આ ગ્રુપ કૉલમાં છે%4$s</item>
+    <!-- Chat log text for an ongoing group call with more than two participants with placeholders for the first two joined users, a placeholder for the number of users in the call, and a placeholder for formatted time -->
+    <plurals name="MessageRecord_s_s_and_d_others_are_in_the_call_s">
+        <item quantity="one">%1$s, %2$s, and %3$d other are in the group call · %4$s</item>
+        <item quantity="other">%1$s, %2$s, and %3$d others are in the group call · %4$s</item>
     </plurals>
 
-    <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call">
-        <item quantity="one">%1$s, %2$s, અને %3$d અન્યો આ કૉલમાં છે</item>
-        <item quantity="other">%1$s, %2$s, અને %3$d અન્યો આ ગ્રુપ કૉલમાં છે</item>
+    <!-- Chat log text for an ongoing group call with more than two participants with placeholders for the first two joined users and a placeholder for the number of users in the call -->
+    <plurals name="MessageRecord_s_s_and_d_others_are_in_the_call">
+        <item quantity="one">%1$s, %2$s, and %3$d other are in the group call</item>
+        <item quantity="other">%1$s, %2$s, and %3$d others are in the group call</item>
     </plurals>
 
     <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
@@ -2063,6 +2086,7 @@
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">ચકાસણી કોડની વિનંતી કરવામાં અસમર્થ. કૃપા કરીને તમારું નેટવર્ક કનેક્શન તપાસો અને ફરી પ્રયાસ કરો.</string>
     <string name="RegistrationActivity_non_standard_number_format">બિન-પ્રમાણભૂત નંબર ફોર્મેટ</string>
+    <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">તમે દાખલ કરેલ નંબર (%1$s) બિન-પ્રમાણભૂત ફોર્મેટ હોય તેમ લાગે છે.\n\n શું તમારો અર્થ %2$s હતો?</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - ફોન નંબર ફોર્મેટ</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
@@ -2709,6 +2733,8 @@
     <string name="ConversationUpdateItem_loading">લોડ કરી રહ્યું છે</string>
     <string name="ConversationUpdateItem_learn_more">વધુ શીખો</string>
     <string name="ConversationUpdateItem_join_call">કૉલમાં જોડાઓ</string>
+    <!-- Action button label for starting a new call in the current conversation -->
+    <string name="ConversationUpdateItem_call_back">Call back</string>
     <string name="ConversationUpdateItem_return_to_call">કૉલ પર પાછા જાઓ</string>
     <string name="ConversationUpdateItem_call_is_full">કૉલ પૂર્ણ છે</string>
     <string name="ConversationUpdateItem_invite_friends">મિત્રોને આમંત્રિત કરો</string>
@@ -2773,6 +2799,7 @@
     <string name="safety_number_change_dialog__leave_call">કોલ છોડો</string>
     <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">નીચેના લોકોએ ઉપકરણોને ફરીથી ઇન્સ્ટોલ અથવા બદલ્યા હશે. ગોપનીયતાની ખાતરી કરવા માટે તેમની સાથે તમારો સલામતી નંબર ચકાસો.</string>
     <string name="safety_number_change_dialog__view">વ્યૂ</string>
+    <!-- Subtitle shown for a single contact and that their safety number was previously verified and is now no longer verified. -->
     <string name="safety_number_change_dialog__previous_verified">અગાઉ ચકાસાયેલ</string>
 
     <!-- EnableCallNotificationSettingsDialog__call_notifications_checklist -->
@@ -3086,6 +3113,7 @@
 
     <string name="arrays__default">ડિફોલ્ટ</string>
     <string name="arrays__high">ઉચ્ચ</string>
+    <!-- Setting title that represent an abstract priority to assign to notifications as the max/highest priority a notification can be within the system. -->
     <string name="arrays__max">મહત્તમ</string>
 
     <!-- plurals.xml -->
@@ -3446,6 +3474,7 @@
     <string name="PaymentsDetailsFragment__sent_to_s">%1$s ને મોકલાયેલ</string>
     <string name="PaymentsDetailsFragment__you_on_s_at_s">તમે %1$s પર %2$s </string>
     <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s પર %2$s એ %3$s</string>
+    <!-- Prefix to a name to indicate who a payment was sent to -->
     <string name="PaymentsDetailsFragment__to">તરફ:</string>
     <string name="PaymentsDetailsFragment__from">માંથી:</string>
     <string name="PaymentsDetailsFragment__information">પેમેન્ટની રકમ અને ટ્રાન્ઝેક્શનના સમય સહિતની ટ્રાન્ઝેક્શન સંબંધી વિગતો MobileCoin લેજરનો ભાગ છે.</string>
@@ -3508,6 +3537,7 @@
     <string name="ConfirmPayment__confirm_payment">પેમેન્ટની પુષ્ટિ કરો</string>
     <string name="ConfirmPayment__network_fee">નેટવર્ક ફી</string>
     <string name="ConfirmPayment__estimated_s">અંદાજિત %1$s</string>
+    <!-- Prefix to a name to indicate who a payment will be sent to -->
     <string name="ConfirmPayment__to">તરફ:</string>
     <string name="ConfirmPayment__total_amount">કુલ રકમ</string>
     <string name="ConfirmPayment__balance_s">બેલેન્સ: %1$s</string>
@@ -4112,6 +4142,7 @@
     <string name="RecipientBottomSheet_copied_to_clipboard">ક્લિપબોર્ડ પર કૉપી કરેલું</string>
 
     <string name="GroupRecipientListItem_admin">એડમિન</string>
+    <!-- Button text to approve a user that has requested to join a group -->
     <string name="GroupRecipientListItem_approve_description">મંજૂર</string>
     <string name="GroupRecipientListItem_deny_description">નામંજૂર કરો</string>
 
@@ -4139,6 +4170,7 @@
 
     <!-- VoiceNoteMediaDescriptionCompatFactory -->
     <string name="VoiceNoteMediaItemFactory__voice_message">વૉઈસ મેસેજ . %1$s</string>
+    <!-- This is a title in a banner describing the conversation sender to receiver placeholders of the currently playing voice memo. -->
     <string name="VoiceNoteMediaItemFactory__s_to_s">%1$sમાંથી %2$s</string>
 
     <!-- StorageUtil -->
@@ -4185,6 +4217,7 @@
     <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s અને %2$s જોડાયા</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s અને %3$s જોડાયા</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s અને %3$d અન્ય જોડાયા</string>
+    <!-- Toast/popup text shown when someone leaves a group call -->
     <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s છોડ્યું</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s અને %2$s છોડ્યું</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s અને %3$s છોડ્યું</string>
@@ -4562,6 +4595,7 @@
     <string name="PrivacySettingsFragment__messaging">મેસેજ કરી રહ્યા છીએ</string>
     <string name="PrivacySettingsFragment__disappearing_messages">અદૃશ્ય થઈ રહેલા મેસેજ</string>
     <string name="PrivacySettingsFragment__app_security">એપ્લિકેશનની સુરક્ષા</string>
+    <!-- This refers to the multi-tasking overview (recent apps) from the Android operating system.-->
     <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">તાજેતરની સૂચિમાં અને ઍપમાંના સ્ક્રીનશોટને બ્લૉક કરો</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Signal મેસેજ અને કૉલ્સ, હંમેશા રિલે કૉલ્સ, અને સીલ કરેલ મોકલનાર</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">નવી ચેટ માટે ડિફોલ્ટ ટાઈમર</string>
@@ -4618,11 +4652,14 @@
     <string name="DataAndStorageSettingsFragment__media_quality">મીડિયા ગુણવત્તા</string>
     <string name="DataAndStorageSettingsFragment__sent_media_quality">મોકલેલ મીડિયાની ગુણવત્તા</string>
     <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">ઉચ્ચ ગુણવત્તાના મીડિયા મોકલવાથી વધુ ડેટા વાપરશે.</string>
+    <!-- Setting option that can be selected to default media to be sent as high quality by default -->
     <string name="DataAndStorageSettingsFragment__high">ઉચ્ચ</string>
+    <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
     <string name="DataAndStorageSettingsFragment__standard">સ્ટાન્ડર્ડ</string>
     <string name="DataAndStorageSettingsFragment__calls">કૉલ્સ</string>
 
     <!-- ChatColorSelectionFragment -->
+    <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
     <string name="ChatColorSelectionFragment__auto">આપમેળે</string>
     <string name="ChatColorSelectionFragment__use_custom_colors">કસ્ટમ કલર્સનો ઉપયોગ કરો</string>
     <string name="ChatColorSelectionFragment__chat_color">ચેટ કલર</string>
@@ -4834,6 +4871,7 @@
     <string name="AvatarPickerFragment__take_a_picture">ફોટો પાડો</string>
     <string name="AvatarPickerFragment__choose_a_photo">ફોટો પસંદ કરો</string>
     <string name="AvatarPickerFragment__photo">ફોટો</string>
+    <!-- Button label during avatar selection/creation that when tapped lets you generate an avatar from typed in text. -->
     <string name="AvatarPickerFragment__text">ટેક્સ્ટ</string>
     <string name="AvatarPickerFragment__save">સેવ કરો</string>
     <string name="AvatarPickerFragment__clear_avatar">અવતાર દૂર કરો</string>
@@ -4894,7 +4932,7 @@
     <string name="MediaReviewFragment__add_a_message">મેસેજ ઉમેરો</string>
     <string name="MediaReviewFragment__add_a_reply">જવાબ ઉમેરો</string>
     <string name="MediaReviewFragment__send_to">આમને મોકલો</string>
-    <string name="MediaReviewFragment__view_once_message">એક વખત જોવાનો મેસેજ</string>
+    <string name="MediaReviewFragment__view_once_message">View once media</string>
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">એક અથવા વધુ વસ્તુઓ બહુ મોટી હતી</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">એક અથવા વધુ વસ્તુઓ અમાન્ય હતી</string>
     <string name="MediaReviewFragment__too_many_items_selected">બહુ બધી વસ્તુઓ પસંદ કરી</string>
@@ -5487,7 +5525,7 @@
     <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
     <!-- Displayed when viewing a post you sent -->
     <string name="StoryViewerPageFragment__you">તમે</string>
-    <!-- Displayed when viewing a post displayed to a group -->
+    <!-- Displayed when viewing a story sent to a group, placeholders are person who sent the story and the group name -->
     <string name="StoryViewerPageFragment__s_to_s">%1$sતરફ%2$s</string>
     <!-- Displayed when viewing a post from another user with no replies -->
     <string name="StoryViewerPageFragment__reply">જવાબ</string>
@@ -6703,6 +6741,12 @@
     <string name="ViewNoteSheet__note">નોંધ</string>
     <!-- Content description for opening the note editor -->
     <string name="ViewNoteSheet__edit_note">નોંધમાં ફેરફાર કરો</string>
+
+    <!-- BackupProgressService -->
+    <!-- Notification title shown while backup restore job is running -->
+    <string name="BackupProgressService_title">Restoring backup…</string>
+    <!-- Notification title shown while downloading backup restore data -->
+    <string name="BackupProgressService_title_downloading">Downloading backup data…</string>
 
     <!-- EOF -->
 </resources>

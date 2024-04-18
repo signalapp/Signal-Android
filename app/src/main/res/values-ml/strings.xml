@@ -415,6 +415,7 @@
 
 
     <string name="ConversationActivity_join">ചേരുക</string>
+    <!-- Button text for an active group call but the call is currently full and unjoinable -->
     <string name="ConversationActivity_full">പൂർണ്ണമായി</string>
 
     <string name="ConversationActivity_error_sending_media">മീഡിയ അയയ്‌ക്കുന്നതിൽ പിശക്</string>
@@ -613,6 +614,7 @@
     <string name="ConversationListFragment_unarchive">അൺആർക്കൈവ്</string>
     <string name="ConversationListFragment_delete">ഇല്ലാതാക്കൂ</string>
     <string name="ConversationListFragment_select_all">എല്ലാം തിരഞ്ഞെടുക്കുക</string>
+    <!-- Screen title shown when selecting multiple items from a list like conversation threads or call logs. -->
     <plurals name="ConversationListFragment_s_selected">
         <item quantity="one">%1$d തിരഞ്ഞെടുത്തു</item>
         <item quantity="other">%1$d തിരഞ്ഞെടുത്തു</item>
@@ -864,6 +866,7 @@
         <item quantity="one">ക്ഷണം അയച്ചു</item>
         <item quantity="other">%1$d ക്ഷണങ്ങൾ അയച്ചു</item>
     </plurals>
+    <!-- Dialog message shown when you are attempting to add a single contact to a group and you don\'t have enough information about them to do it automatically, so must do it via an invite instead. Placeholder is name/username/phone number. -->
     <string name="GroupManagement_invite_single_user">\"%1$s\"നെ സ്വമേധയാ ഈ ഗ്രൂപ്പിലേക്ക് ചേർക്കാൻ നിങ്ങൾക്ക് കഴിയില്ല.\n\nഅവരെ അംഗത്വമെടുക്കാൻ ക്ഷണിച്ചിട്ടുണ്ട്, അവർ അത് സ്വീകരിക്കുന്നത് വരെ ഗ്രൂപ്പ് സന്ദേശങ്ങളൊന്നും കാണാൻ സാധിക്കുകയില്ല.</string>
     <string name="GroupManagement_invite_multiple_users">ഈ ഉപയോക്താക്കളെ നിങ്ങൾക്ക് ഈ ഗ്രൂപ്പിലേക്ക് സ്വയമേവ ചേർക്കാൻ കഴിയില്ല.\n\nഅവരെ അംഗത്വമെടുക്കാൻ ക്ഷണിച്ചിട്ടുണ്ട്, അവർ അത് സ്വീകരിക്കുന്നത് വരെ ഗ്രൂപ്പ് സന്ദേശങ്ങളൊന്നും കാണാൻ സാധിക്കുകയില്ല.</string>
 
@@ -1044,7 +1047,9 @@
 
     <string name="ManageGroupActivity_edit_name_and_picture">പേരും ചിത്രവും എഡിറ്റുചെയ്യുക</string>
     <string name="ManageGroupActivity_legacy_group">ലെഗസി ഗ്രൂപ്പ്</string>
+    <!-- This is placed inside a "Learn More" text view, which automatically appends LearnMoreTextView_learn_more in code -->
     <string name="ManageGroupActivity_legacy_group_learn_more">ഇതൊരു ലെഗസി ഗ്രൂപ്പാണ്. ഗ്രൂപ്പ് അഡ്മിൻ പോലുള്ള സവിശേഷതകൾ പുതിയ ഗ്രൂപ്പുകൾക്ക് മാത്രമേ ലഭ്യമാകൂ.</string>
+    <!-- This is placed inside a "Learn More" text view, which automatically appends LearnMoreTextView_learn_more in code to the end of the string -->
     <string name="ManageGroupActivity_legacy_group_upgrade">ഇതൊരു ലെഗസി ഗ്രൂപ്പാണ്. @സൂചനകള്‍ അഡ്‌മിനുകള്‍ പോലുള്ള പുതിയ സവിശേഷതകൾ ആക്‌സസ് ചെയ്യുന്നതിന്,</string>
     <string name="ManageGroupActivity_legacy_group_too_large">ഈ ലെഗസി ഗ്രൂപ്പിനെ ഒരു പുതിയ ഗ്രൂപ്പിലേക്ക് അപ്‌ഗ്രേഡുചെയ്യാൻ കഴിയില്ല കാരണം ഇത് വളരെ വലുതാണ്. പരമാവധി ഗ്രൂപ്പ് വലുപ്പം %1$d ആണ്.</string>
     <string name="ManageGroupActivity_upgrade_this_group">ഈ ഗ്രൂപ്പ് അപ്‌ഗ്രേഡുചെയ്യുക</string>
@@ -1271,6 +1276,7 @@
         <item quantity="other">ഇല്ലാതാക്കൂ</item>
     </plurals>
 
+    <!-- Screen title shown when selecting multiple items in the media overview screen. The first placeholder is the number of items, the second number is the cumulative file size in bytes. -->
     <plurals name="MediaOverviewActivity_d_selected_s">
         <item quantity="one">%1$d തിരഞ്ഞെടുത്തു (%2$s)</item>
         <item quantity="other">%1$d തിരഞ്ഞെടുത്തു (%2$s)</item>
@@ -1335,17 +1341,13 @@
     <string name="MessageRecord_left_group">നിങ്ങൾ ഗ്രൂപ്പ് വിട്ടു.</string>
     <string name="MessageRecord_you_updated_group">നിങ്ങൾ ഗ്രൂപ്പ് അപ്‌ഡേറ്റുചെയ്‌തു.</string>
     <string name="MessageRecord_the_group_was_updated">ഗ്രൂപ്പ് അപ്‌ഡേറ്റുചെയ്‌തു.</string>
-    <!-- Update message shown when placing an outgoing 1:1 voice/audio call and it\'s answered by the other party -->
+    <!-- Update message shown when placing an outgoing 1:1 voice/audio call -->
     <string name="MessageRecord_outgoing_voice_call">ഔട്ട്ഗോയിംഗ് വോയ്‌സ് കോൾ</string>
-    <!-- Update message shown when placing an outgoing 1:1 video call and it\'s answered by the other party -->
+    <!-- Update message shown when placing an outgoing 1:1 video call -->
     <string name="MessageRecord_outgoing_video_call">ഔട്ട്ഗോയിംഗ് വീഡിയോ കോൾ</string>
-    <!-- Update message shown when placing an outgoing 1:1 voice/audio call and it\'s not answered by the other party -->
-    <string name="MessageRecord_unanswered_voice_call">ഉത്തരം ലഭിക്കാത്ത വോയ്‌സ് കോൾ</string>
-    <!-- Update message shown when placing an outgoing 1:1 video call and it\'s not answered by the other party -->
-    <string name="MessageRecord_unanswered_video_call">ഉത്തരം ലഭിക്കാത്ത വീഡിയോ കോൾ</string>
-    <!-- Update message shown when receiving an incoming 1:1 voice/audio call and it\'s answered -->
+    <!-- Update message shown when receiving an incoming 1:1 voice/audio call and it\'s answered or ringing -->
     <string name="MessageRecord_incoming_voice_call">ഇൻകമിംഗ് വോയ്‌സ് കോൾ</string>
-    <!-- Update message shown when receiving an incoming 1:1 video call and answered -->
+    <!-- Update message shown when receiving an incoming 1:1 video call and answered or ringing -->
     <string name="MessageRecord_incoming_video_call">ഇൻകമിംഗ് വീഡിയോ കോൾ</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and not answered -->
     <string name="MessageRecord_missed_voice_call">മിസ്‌ഡ് വോയ്‌സ് കോൾ</string>
@@ -1355,10 +1357,6 @@
     <string name="MessageRecord_missed_voice_call_notification_profile">അറിയിപ്പ് പ്രൊഫൈൽ ഓണായിരിക്കുമ്പോൾ വോയ്സ് കോൾ മിസ്സ് ആയി</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
     <string name="MessageRecord_missed_video_call_notification_profile">അറിയിപ്പ് പ്രൊഫൈൽ ഓണായിരിക്കുമ്പോൾ വീഡിയോ കോൾ മിസ്സ് ആയി</string>
-    <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
-    <string name="MessageRecord_you_declined_a_voice_call">നിങ്ങൾ ഒരു വോയ്‌സ് കോൾ നിരസിച്ചു</string>
-    <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
-    <string name="MessageRecord_you_declined_a_video_call">നിങ്ങൾ ഒരു വീഡിയോ കോൾ നിരസിച്ചു</string>
     <!-- Call update formatter string to place the update message next to a time stamp. e.g., \'Incoming voice call · 11:11am\' -->
     <string name="MessageRecord_call_message_with_date">%1$s · %2$s</string>
     <string name="MessageRecord_s_updated_group">%1$s ഗ്രൂപ്പ് അപ്‌ഡേറ്റുചെയ്‌തു.</string>
@@ -1567,30 +1565,55 @@
     <string name="MessageRecord_can_accept_payments">%1$s എന്നയാൾക്ക് ഇപ്പോൾ പേയ്മെന്റുകൾ സ്വീകരിക്കാൻ കഴിയും</string>
 
     <!-- Group Calling update messages -->
-    <string name="MessageRecord_s_started_a_group_call_s">%1$s ഒരു ഗ്രൂപ്പ് കോൾ ആരംഭിച്ചു . %2$s</string>
-    <string name="MessageRecord_you_started_a_group_call_s">നിങ്ങളൊരു ഗ്രൂപ്പ് കോൾ തുടങ്ങി · %1$s</string>
-    <string name="MessageRecord_s_is_in_the_group_call_s">%1$s ഗ്രൂപ്പ് കോളിലാണ് · %2$s</string>
-    <string name="MessageRecord_you_are_in_the_group_call_s1">നിങ്ങൾ ഗ്രൂപ്പ് കോളിലാണ് · %1$s</string>
-    <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s, %2$s എന്നിവർ %3$s എന്ന ഗ്രൂപ്പ് കോളിലാണ്</string>
-    <string name="MessageRecord_group_call_s">ഗ്രൂപ്പ് കോൾ · %1$s</string>
-
-    <string name="MessageRecord_s_started_a_group_call">%1$s ഒരു ഗ്രൂപ്പ് കോൾ ആരംഭിച്ചു</string>
-    <string name="MessageRecord_you_started_a_group_call">നിങ്ങൾ ഒരു ഗ്രൂപ്പ് കോൾ ആരംഭിച്ചു</string>
-    <string name="MessageRecord_s_is_in_the_group_call">%1$s ഗ്രൂപ്പ് കോളിലാണ്</string>
-    <string name="MessageRecord_you_are_in_the_group_call">നിങ്ങൾ ഗ്രൂപ്പ് കോളിലാണ്</string>
-    <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s - ഉം %2$s- ഉം ഗ്രൂപ്പ് കോളിലാണ്</string>
-    <string name="MessageRecord_group_call">ഗ്രൂപ്പ് കോൾ</string>
+    <!-- Chat log text for an ongoing group call that has one participant with a placeholder for the short display name of the user that joined and a placeholder for formatted time -->
+    <string name="MessageRecord_s_is_in_the_call_s">%1$s is in the call · %2$s</string>
+    <!-- Chat log text for an ongoing group call only the local user has joined with a placeholder for formatted time -->
+    <string name="MessageRecord_you_are_in_the_call_s1">You are in the call · %1$s</string>
+    <!-- Chat log text for an ongoing group call with two participants with two placeholders for the short display name of the users that joined and a placeholder for formatted time -->
+    <string name="MessageRecord_s_and_s_are_in_the_call_s1">%1$s and %2$s are in the call · %3$s</string>
+    <!-- Chat log text for an ongoing group call that has one participant -->
+    <string name="MessageRecord_s_is_in_the_call">%1$s is in the call</string>
+    <!-- Chat log text for an ongoing group call only the local user has joined -->
+    <string name="MessageRecord_you_are_in_the_call">You are in the call</string>
+    <!-- Chat log text for an ongoing group call with two participants with two placeholders, each for the short display name of the users that joined -->
+    <string name="MessageRecord_s_and_s_are_in_the_call">%1$s and %2$s are in the call</string>
+    <!-- Chat log text for a group call that ended within the last 5 minutes -->
+    <string name="MessageRecord__the_video_call_has_ended">The video call has ended</string>
+    <!-- Chat log text for a group call that ended within the last 5 minutes with a placeholder for formatted time -->
+    <string name="MessageRecord__the_video_call_has_ended_s">The video call has ended · %1$s</string>
+    <!-- Chat log text for a group call that ended more than 5 minutes ago and was missed -->
+    <string name="MessageRecord__missed_video_call">Missed video call</string>
+    <!-- Chat log text for a group call that ended more than 5 minutes ago and was missed with a placeholder for formatted time -->
+    <string name="MessageRecord__missed_video_call_s">Missed video call · %1$s</string>
+    <!-- Chat log text for a group call that ended that the local user did not start -->
+    <string name="MessageRecord__incoming_video_call">Incoming video call</string>
+    <!-- Chat log text for a group call that ended that the local user did not start with a placeholder for formatted time -->
+    <string name="MessageRecord__incoming_video_call_s">Incoming video call · %1$s</string>
+    <!-- Chat log text for a group call that ended that the local user started -->
+    <string name="MessageRecord__outgoing_video_call">Outgoing video call</string>
+    <!-- Chat log text for a group call that ended that the local user started with a placeholder for formatted time -->
+    <string name="MessageRecord__outgoing_video_call_s">Outgoing video call · %1$s</string>
+    <!-- Chat log text for an ongoing group call that the local user started -->
+    <string name="MessageRecord__you_started_a_video_call">You started a video call</string>
+    <!-- Chat log text for an ongoing group call that the local user started with a placeholder for formatted time -->
+    <string name="MessageRecord__you_started_a_video_call_s">You started a video call · %1$s</string>
+    <!-- Chat log text for an ongoing group call that the local user has not joined with a placeholder for user\'s short display name -->
+    <string name="MessageRecord__s_started_a_video_call">%1$s started a video call</string>
+    <!-- Chat log text for an ongoing group call that the local user has not joined with a placeholder for user\'s short display name and a placeholder for formatted time -->
+    <string name="MessageRecord__s_started_a_video_call_s">%1$s started a video call · %2$s</string>
 
     <string name="MessageRecord_you">നിങ്ങൾ</string>
 
-    <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
-        <item quantity="one">%1$s, %2$s, പിന്നെ %3$d ആളും ഗ്രൂപ്പ് കോളിലാണ് · %4$s</item>
-        <item quantity="other">%1$s, %2$s, പിന്നെ %3$d ആളുകളും ഈ കോളിലുണ്ട് · %4$s</item>
+    <!-- Chat log text for an ongoing group call with more than two participants with placeholders for the first two joined users, a placeholder for the number of users in the call, and a placeholder for formatted time -->
+    <plurals name="MessageRecord_s_s_and_d_others_are_in_the_call_s">
+        <item quantity="one">%1$s, %2$s, and %3$d other are in the group call · %4$s</item>
+        <item quantity="other">%1$s, %2$s, and %3$d others are in the group call · %4$s</item>
     </plurals>
 
-    <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call">
-        <item quantity="one">%1$s - ഉം, %2$s - ഉം പിന്നെ %3$d ആളും ഈ കോളിലുണ്ട്</item>
-        <item quantity="other">%1$s, %2$s, പിന്നെ %3$d ആളുകളും ഈ കോളിലുണ്ട്</item>
+    <!-- Chat log text for an ongoing group call with more than two participants with placeholders for the first two joined users and a placeholder for the number of users in the call -->
+    <plurals name="MessageRecord_s_s_and_d_others_are_in_the_call">
+        <item quantity="one">%1$s, %2$s, and %3$d other are in the group call</item>
+        <item quantity="other">%1$s, %2$s, and %3$d others are in the group call</item>
     </plurals>
 
     <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
@@ -2063,6 +2086,7 @@
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">പരിശോധിച്ചുറപ്പിക്കൽ കോഡ് അഭ്യർത്ഥിക്കാനായില്ല. നിങ്ങളുടെ നെറ്റ്‌വർക്ക് കണക്ഷൻ പരിശോധിച്ചശേഷം വീണ്ടും ശ്രമിക്കുക.</string>
     <string name="RegistrationActivity_non_standard_number_format">അംഗീകൃതമല്ലാത്ത നമ്പര്‍ രൂപം</string>
+    <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">നിങ്ങൾ നൽകിയ നമ്പർ (%1$s) അംഗീകൃതമല്ലാത്ത നമ്പര്‍ രൂപത്തില്‍ ആണെന്ന് തോന്നുന്നു.\n\nനിങ്ങൾ ഉദ്ദേശിച്ചത് %2$s എന്നാണോ?</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal ആൻഡ്രോയിഡ് - ഫോണ്‍ നമ്പര്‍ രുപം</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
@@ -2709,6 +2733,8 @@
     <string name="ConversationUpdateItem_loading">ലഭ്യമാക്കുന്നു</string>
     <string name="ConversationUpdateItem_learn_more">കൂടുതൽ അറിയുക</string>
     <string name="ConversationUpdateItem_join_call">കോളിൽ ചേരുക</string>
+    <!-- Action button label for starting a new call in the current conversation -->
+    <string name="ConversationUpdateItem_call_back">Call back</string>
     <string name="ConversationUpdateItem_return_to_call">കോളിലേക്ക് മടങ്ങുക</string>
     <string name="ConversationUpdateItem_call_is_full">കോൾ നിറഞ്ഞു</string>
     <string name="ConversationUpdateItem_invite_friends">സുഹൃത്തുക്കളെ ക്ഷണിക്കുക</string>
@@ -2773,6 +2799,7 @@
     <string name="safety_number_change_dialog__leave_call">കോൾ ഉപേക്ഷിക്കുക</string>
     <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">ഇനിപ്പറയുന്ന ആളുകൾ അവരുടെ ഉപകരണങ്ങൾ വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്യുകയോ മാറ്റുകയോ ചെയ്‌തിരിക്കാം. സ്വകാര്യത ഉറപ്പാക്കാൻ അവരുമായി നിങ്ങളുടെ സുരക്ഷാ നമ്പർ പരിശോധിക്കുക.</string>
     <string name="safety_number_change_dialog__view">കാണുക</string>
+    <!-- Subtitle shown for a single contact and that their safety number was previously verified and is now no longer verified. -->
     <string name="safety_number_change_dialog__previous_verified">മുമ്പ് പരിശോധിച്ചത്</string>
 
     <!-- EnableCallNotificationSettingsDialog__call_notifications_checklist -->
@@ -3086,6 +3113,7 @@
 
     <string name="arrays__default">സ്ഥിരസ്ഥിതി</string>
     <string name="arrays__high">ഉയർന്നത്</string>
+    <!-- Setting title that represent an abstract priority to assign to notifications as the max/highest priority a notification can be within the system. -->
     <string name="arrays__max">പരമാവധി</string>
 
     <!-- plurals.xml -->
@@ -3446,6 +3474,7 @@
     <string name="PaymentsDetailsFragment__sent_to_s">%1$s-ലേക്ക് അയച്ചു</string>
     <string name="PaymentsDetailsFragment__you_on_s_at_s">നിങ്ങൾ %1$s-ന് %2$s-യിൽ</string>
     <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s%2$s-ന് %3$s-യിൽ</string>
+    <!-- Prefix to a name to indicate who a payment was sent to -->
     <string name="PaymentsDetailsFragment__to">സ്വീകർത്താവ്:</string>
     <string name="PaymentsDetailsFragment__from">പ്രേഷിതാവ്:</string>
     <string name="PaymentsDetailsFragment__information">പേയ്മെന്റ് തുകയും ഇടപാടിന്റെ സമയവും ഉൾപ്പെടെയുള്ള ട്രാൻസാക്ഷൻ വിശദാംശങ്ങൾ MobileCoin ലെഡ്‌ജറിന്റെ ഭാഗമാണ്.</string>
@@ -3508,6 +3537,7 @@
     <string name="ConfirmPayment__confirm_payment">പേയ്മെന്റ് സ്ഥിരീകരിക്കുക</string>
     <string name="ConfirmPayment__network_fee">നെറ്റ്‌വർക്ക് ഫീസ്</string>
     <string name="ConfirmPayment__estimated_s">കണക്കാക്കിയ %1$s</string>
+    <!-- Prefix to a name to indicate who a payment will be sent to -->
     <string name="ConfirmPayment__to">സ്വീകർത്താവ്:</string>
     <string name="ConfirmPayment__total_amount">ആകെ തുക</string>
     <string name="ConfirmPayment__balance_s">ബാലൻസ്: %1$s</string>
@@ -4112,6 +4142,7 @@
     <string name="RecipientBottomSheet_copied_to_clipboard">ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തി</string>
 
     <string name="GroupRecipientListItem_admin">അഡ്‌മിൻ‌</string>
+    <!-- Button text to approve a user that has requested to join a group -->
     <string name="GroupRecipientListItem_approve_description">അംഗീകരിക്കുക</string>
     <string name="GroupRecipientListItem_deny_description">നിരസിക്കുക</string>
 
@@ -4139,6 +4170,7 @@
 
     <!-- VoiceNoteMediaDescriptionCompatFactory -->
     <string name="VoiceNoteMediaItemFactory__voice_message">വോയിസ് മെസേജ് - %1$s</string>
+    <!-- This is a title in a banner describing the conversation sender to receiver placeholders of the currently playing voice memo. -->
     <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s %2$s-നോട്</string>
 
     <!-- StorageUtil -->
@@ -4185,6 +4217,7 @@
     <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s-ഉം %2$s-ഉം ചേർന്നു</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s-ഉം, %2$s-ഉം %3$s-ഉം ചേർന്നിട്ടുണ്ട്</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s-ഉം, %2$s-ഉം %3$d-ഉം മറ്റുള്ളവരും ചേർന്നിട്ടുണ്ട്</string>
+    <!-- Toast/popup text shown when someone leaves a group call -->
     <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s ഇറങ്ങി പോയിട്ടുണ്ട്</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s-ഉം %2$s-ഉം ഇറങ്ങി പോയിട്ടുണ്ട്</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s-ഉം, %2$s-ഉം %3$s-ഉം ഇറങ്ങി പോയിട്ടുണ്ട്</string>
@@ -4562,6 +4595,7 @@
     <string name="PrivacySettingsFragment__messaging">സന്ദേശ വിനിമയം</string>
     <string name="PrivacySettingsFragment__disappearing_messages">അപ്രത്യക്ഷമാകുന്ന സന്ദേശങ്ങൾ</string>
     <string name="PrivacySettingsFragment__app_security">ആപ്പ് സുരക്ഷ</string>
+    <!-- This refers to the multi-tasking overview (recent apps) from the Android operating system.-->
     <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">റീസന്റ് ലിസ്റ്റിലും ആപ്പിനുള്ളിലും സ്‌ക്രീൻഷോട്ടുകൾ ബ്ലോക്ക് ചെയ്യുക</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Signal സന്ദേശങ്ങള്‍ കോളുകളും, എല്ലായ്പ്പോഴും കോളുകള് റിലേ ചെയ്യുക ഒപ്പം സീൽ ചെയ്ത അയച്ചയാൾ</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">പുതിയ ചാറ്റുകൾക്കായുള്ള ഡിഫോൾട്ട് ടൈമർ</string>
@@ -4618,11 +4652,14 @@
     <string name="DataAndStorageSettingsFragment__media_quality">മീഡിയ നിലവാരം</string>
     <string name="DataAndStorageSettingsFragment__sent_media_quality">അയയ്ക്കുന്ന മീഡിയയുടെ നിലവാരം</string>
     <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">ഉയർന്ന നിലവാരമുള്ള മീഡിയ അയയ്ക്കുന്നത് കൂടുതൽ ഡാറ്റ ഉപയോഗിക്കും.</string>
+    <!-- Setting option that can be selected to default media to be sent as high quality by default -->
     <string name="DataAndStorageSettingsFragment__high">ഉയർന്നത്</string>
+    <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
     <string name="DataAndStorageSettingsFragment__standard">സ്റ്റാൻഡേർഡ്</string>
     <string name="DataAndStorageSettingsFragment__calls">കോളുകൾ</string>
 
     <!-- ChatColorSelectionFragment -->
+    <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
     <string name="ChatColorSelectionFragment__auto">ഓട്ടോ</string>
     <string name="ChatColorSelectionFragment__use_custom_colors">ഇഷ്‌ടാനുസൃത നിറങ്ങൾ ഉപയോഗിക്കുക</string>
     <string name="ChatColorSelectionFragment__chat_color">ചാറ്റ് നിറം</string>
@@ -4834,6 +4871,7 @@
     <string name="AvatarPickerFragment__take_a_picture">ഒരു ഫോട്ടോ എടുക്ക്</string>
     <string name="AvatarPickerFragment__choose_a_photo">ഒരു ചിത്രം തിരഞ്ഞെടുക്കുക</string>
     <string name="AvatarPickerFragment__photo">ഫോട്ടോ</string>
+    <!-- Button label during avatar selection/creation that when tapped lets you generate an avatar from typed in text. -->
     <string name="AvatarPickerFragment__text">വാചകം</string>
     <string name="AvatarPickerFragment__save">സംരക്ഷിക്കൂ</string>
     <string name="AvatarPickerFragment__clear_avatar">അവതാർ മായ്‌ക്കുക</string>
@@ -4894,7 +4932,7 @@
     <string name="MediaReviewFragment__add_a_message">ഒരു സന്ദേശം ചേര്‍ക്കുക</string>
     <string name="MediaReviewFragment__add_a_reply">ഒരു മറുപടി ചേർക്കുക</string>
     <string name="MediaReviewFragment__send_to">ഇനിപ്പറയുന്നയാൾക്ക് അയയ്ക്കുക</string>
-    <string name="MediaReviewFragment__view_once_message">ഒരിയ്ക്കല്‍ മാത്രം കാണാവുന്ന സന്ദേശം</string>
+    <string name="MediaReviewFragment__view_once_message">View once media</string>
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">ഒന്നോ അതിലധികമോ ഇനങ്ങൾ വളരെ വലുതായിരുന്നു</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">ഒന്നോ അതിലധികമോ ഇനങ്ങൾ അസാധുവാണ്</string>
     <string name="MediaReviewFragment__too_many_items_selected">വളരെയധികം ഇനങ്ങൾ തിരഞ്ഞെടുത്തു</string>
@@ -5487,7 +5525,7 @@
     <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
     <!-- Displayed when viewing a post you sent -->
     <string name="StoryViewerPageFragment__you">നിങ്ങൾ</string>
-    <!-- Displayed when viewing a post displayed to a group -->
+    <!-- Displayed when viewing a story sent to a group, placeholders are person who sent the story and the group name -->
     <string name="StoryViewerPageFragment__s_to_s">%1$s %2$s-നോട്</string>
     <!-- Displayed when viewing a post from another user with no replies -->
     <string name="StoryViewerPageFragment__reply">മറുപടി</string>
@@ -6703,6 +6741,12 @@
     <string name="ViewNoteSheet__note">കുറിപ്പ്</string>
     <!-- Content description for opening the note editor -->
     <string name="ViewNoteSheet__edit_note">കുറിപ്പ് എഡിറ്റ് ചെയ്യുക</string>
+
+    <!-- BackupProgressService -->
+    <!-- Notification title shown while backup restore job is running -->
+    <string name="BackupProgressService_title">Restoring backup…</string>
+    <!-- Notification title shown while downloading backup restore data -->
+    <string name="BackupProgressService_title_downloading">Downloading backup data…</string>
 
     <!-- EOF -->
 </resources>

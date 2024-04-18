@@ -418,6 +418,7 @@
 
 
     <string name="ConversationActivity_join">Alătură-te</string>
+    <!-- Button text for an active group call but the call is currently full and unjoinable -->
     <string name="ConversationActivity_full">Plin</string>
 
     <string name="ConversationActivity_error_sending_media">Eroare la trimiterea conținutului media</string>
@@ -629,6 +630,7 @@
     <string name="ConversationListFragment_unarchive">Dezarhivează</string>
     <string name="ConversationListFragment_delete">Șterge</string>
     <string name="ConversationListFragment_select_all">Selectează tot</string>
+    <!-- Screen title shown when selecting multiple items from a list like conversation threads or call logs. -->
     <plurals name="ConversationListFragment_s_selected">
         <item quantity="one">%1$d selectată</item>
         <item quantity="few">%1$d selectate</item>
@@ -883,6 +885,7 @@
         <item quantity="few">%1$d invitații trimise</item>
         <item quantity="other">%1$d de invitații trimise</item>
     </plurals>
+    <!-- Dialog message shown when you are attempting to add a single contact to a group and you don\'t have enough information about them to do it automatically, so must do it via an invite instead. Placeholder is name/username/phone number. -->
     <string name="GroupManagement_invite_single_user">\"%1$s\" nu poate fi adăugat automat la acest grup de către tine.\n\nAu fost invitați să se alăture și nu vor vedea niciun mesaj de grup până când nu acceptă.</string>
     <string name="GroupManagement_invite_multiple_users">Acești utilizatori nu pot fi adăugați automat la acest grup de către tine.\n\nAu fost invitați să se alăture și nu vor vedea niciun mesaj de grup până când nu acceptă.</string>
 
@@ -1079,7 +1082,9 @@
 
     <string name="ManageGroupActivity_edit_name_and_picture">Editare nume și poză</string>
     <string name="ManageGroupActivity_legacy_group">Grup Vechi</string>
+    <!-- This is placed inside a "Learn More" text view, which automatically appends LearnMoreTextView_learn_more in code -->
     <string name="ManageGroupActivity_legacy_group_learn_more">Acesta este un grup vechi. Funcții precum administratorii de grup sunt disponibile doar grupurilor noi.</string>
+    <!-- This is placed inside a "Learn More" text view, which automatically appends LearnMoreTextView_learn_more in code to the end of the string -->
     <string name="ManageGroupActivity_legacy_group_upgrade">Acesta este un grup vechi. Pentru a accesa funcții precum @mențiuni și administratorii de grup,</string>
     <string name="ManageGroupActivity_legacy_group_too_large">Acest grup vechi nu poate fi actualizat la unul nou, pentru că este prea mare. Dimensiunea maximă a unui grup este de %1$d.</string>
     <string name="ManageGroupActivity_upgrade_this_group">actualizează acest grup.</string>
@@ -1315,6 +1320,7 @@
         <item quantity="other">Șterge</item>
     </plurals>
 
+    <!-- Screen title shown when selecting multiple items in the media overview screen. The first placeholder is the number of items, the second number is the cumulative file size in bytes. -->
     <plurals name="MediaOverviewActivity_d_selected_s">
         <item quantity="one">%1$d selectat (%2$s)</item>
         <item quantity="few">%1$d selectate (%2$s)</item>
@@ -1380,17 +1386,13 @@
     <string name="MessageRecord_left_group">Ai părăsit grupul.</string>
     <string name="MessageRecord_you_updated_group">Ai actualizat grupul.</string>
     <string name="MessageRecord_the_group_was_updated">Grupul a fost actualizat.</string>
-    <!-- Update message shown when placing an outgoing 1:1 voice/audio call and it\'s answered by the other party -->
+    <!-- Update message shown when placing an outgoing 1:1 voice/audio call -->
     <string name="MessageRecord_outgoing_voice_call">Apel de ieșire vocal</string>
-    <!-- Update message shown when placing an outgoing 1:1 video call and it\'s answered by the other party -->
+    <!-- Update message shown when placing an outgoing 1:1 video call -->
     <string name="MessageRecord_outgoing_video_call">Apel de ieșire video</string>
-    <!-- Update message shown when placing an outgoing 1:1 voice/audio call and it\'s not answered by the other party -->
-    <string name="MessageRecord_unanswered_voice_call">Apel vocal nepreluat</string>
-    <!-- Update message shown when placing an outgoing 1:1 video call and it\'s not answered by the other party -->
-    <string name="MessageRecord_unanswered_video_call">Apel video nepreluat</string>
-    <!-- Update message shown when receiving an incoming 1:1 voice/audio call and it\'s answered -->
+    <!-- Update message shown when receiving an incoming 1:1 voice/audio call and it\'s answered or ringing -->
     <string name="MessageRecord_incoming_voice_call">Apel de intrare vocal</string>
-    <!-- Update message shown when receiving an incoming 1:1 video call and answered -->
+    <!-- Update message shown when receiving an incoming 1:1 video call and answered or ringing -->
     <string name="MessageRecord_incoming_video_call">Apel de intrare video</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and not answered -->
     <string name="MessageRecord_missed_voice_call">Apel vocal nepreluat</string>
@@ -1400,10 +1402,6 @@
     <string name="MessageRecord_missed_voice_call_notification_profile">Apel vocal pierdut în timp ce profilul de notificare este activat</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
     <string name="MessageRecord_missed_video_call_notification_profile">Apel video pierdut în timp ce profilul de notificare este activat</string>
-    <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
-    <string name="MessageRecord_you_declined_a_voice_call">Ai respins un apel vocal</string>
-    <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
-    <string name="MessageRecord_you_declined_a_video_call">Ai respins un apel video</string>
     <!-- Call update formatter string to place the update message next to a time stamp. e.g., \'Incoming voice call · 11:11am\' -->
     <string name="MessageRecord_call_message_with_date">%1$s · %2$s</string>
     <string name="MessageRecord_s_updated_group">%1$s a actualizat grupul.</string>
@@ -1620,32 +1618,57 @@
     <string name="MessageRecord_can_accept_payments">%1$s poate să accepte acum Plăți</string>
 
     <!-- Group Calling update messages -->
-    <string name="MessageRecord_s_started_a_group_call_s">%1$s a început un apel de grup · %2$s</string>
-    <string name="MessageRecord_you_started_a_group_call_s">Ai început un apel de grup · %1$s</string>
-    <string name="MessageRecord_s_is_in_the_group_call_s">%1$s este în apelul de grup · %2$s</string>
-    <string name="MessageRecord_you_are_in_the_group_call_s1">Ești în apelul de grup · %1$s</string>
-    <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s și %2$s sunt în apelul de grup · %3$s</string>
-    <string name="MessageRecord_group_call_s">Apel de grup · %1$s</string>
-
-    <string name="MessageRecord_s_started_a_group_call">%1$s a început un apel de grup</string>
-    <string name="MessageRecord_you_started_a_group_call">Ai început un apel de grup</string>
-    <string name="MessageRecord_s_is_in_the_group_call">%1$s este în apelul de grup</string>
-    <string name="MessageRecord_you_are_in_the_group_call">Ești în apelul de grup</string>
-    <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s și %2$s sunt în apelul de grup</string>
-    <string name="MessageRecord_group_call">Apel de grup</string>
+    <!-- Chat log text for an ongoing group call that has one participant with a placeholder for the short display name of the user that joined and a placeholder for formatted time -->
+    <string name="MessageRecord_s_is_in_the_call_s">%1$s is in the call · %2$s</string>
+    <!-- Chat log text for an ongoing group call only the local user has joined with a placeholder for formatted time -->
+    <string name="MessageRecord_you_are_in_the_call_s1">You are in the call · %1$s</string>
+    <!-- Chat log text for an ongoing group call with two participants with two placeholders for the short display name of the users that joined and a placeholder for formatted time -->
+    <string name="MessageRecord_s_and_s_are_in_the_call_s1">%1$s and %2$s are in the call · %3$s</string>
+    <!-- Chat log text for an ongoing group call that has one participant -->
+    <string name="MessageRecord_s_is_in_the_call">%1$s is in the call</string>
+    <!-- Chat log text for an ongoing group call only the local user has joined -->
+    <string name="MessageRecord_you_are_in_the_call">You are in the call</string>
+    <!-- Chat log text for an ongoing group call with two participants with two placeholders, each for the short display name of the users that joined -->
+    <string name="MessageRecord_s_and_s_are_in_the_call">%1$s and %2$s are in the call</string>
+    <!-- Chat log text for a group call that ended within the last 5 minutes -->
+    <string name="MessageRecord__the_video_call_has_ended">The video call has ended</string>
+    <!-- Chat log text for a group call that ended within the last 5 minutes with a placeholder for formatted time -->
+    <string name="MessageRecord__the_video_call_has_ended_s">The video call has ended · %1$s</string>
+    <!-- Chat log text for a group call that ended more than 5 minutes ago and was missed -->
+    <string name="MessageRecord__missed_video_call">Missed video call</string>
+    <!-- Chat log text for a group call that ended more than 5 minutes ago and was missed with a placeholder for formatted time -->
+    <string name="MessageRecord__missed_video_call_s">Missed video call · %1$s</string>
+    <!-- Chat log text for a group call that ended that the local user did not start -->
+    <string name="MessageRecord__incoming_video_call">Incoming video call</string>
+    <!-- Chat log text for a group call that ended that the local user did not start with a placeholder for formatted time -->
+    <string name="MessageRecord__incoming_video_call_s">Incoming video call · %1$s</string>
+    <!-- Chat log text for a group call that ended that the local user started -->
+    <string name="MessageRecord__outgoing_video_call">Outgoing video call</string>
+    <!-- Chat log text for a group call that ended that the local user started with a placeholder for formatted time -->
+    <string name="MessageRecord__outgoing_video_call_s">Outgoing video call · %1$s</string>
+    <!-- Chat log text for an ongoing group call that the local user started -->
+    <string name="MessageRecord__you_started_a_video_call">You started a video call</string>
+    <!-- Chat log text for an ongoing group call that the local user started with a placeholder for formatted time -->
+    <string name="MessageRecord__you_started_a_video_call_s">You started a video call · %1$s</string>
+    <!-- Chat log text for an ongoing group call that the local user has not joined with a placeholder for user\'s short display name -->
+    <string name="MessageRecord__s_started_a_video_call">%1$s started a video call</string>
+    <!-- Chat log text for an ongoing group call that the local user has not joined with a placeholder for user\'s short display name and a placeholder for formatted time -->
+    <string name="MessageRecord__s_started_a_video_call_s">%1$s started a video call · %2$s</string>
 
     <string name="MessageRecord_you">Tu</string>
 
-    <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
-        <item quantity="one">%1$s, %2$s și %3$d sunt în apelul de grup · %4$s</item>
-        <item quantity="few">%1$s, %2$s și alte %3$d persoane sunt în apelul de grup · %4$s</item>
-        <item quantity="other">%1$s, %2$s și alte %3$d de persoane sunt în apelul de grup · %4$s</item>
+    <!-- Chat log text for an ongoing group call with more than two participants with placeholders for the first two joined users, a placeholder for the number of users in the call, and a placeholder for formatted time -->
+    <plurals name="MessageRecord_s_s_and_d_others_are_in_the_call_s">
+        <item quantity="one">%1$s, %2$s, and %3$d other are in the group call · %4$s</item>
+        <item quantity="few">%1$s, %2$s, and %3$d others are in the group call · %4$s</item>
+        <item quantity="other">%1$s, %2$s, and %3$d others are in the group call · %4$s</item>
     </plurals>
 
-    <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call">
-        <item quantity="one">%1$s, %2$s și %3$d sunt în apelul de grup</item>
-        <item quantity="few">%1$s, %2$s și alte %3$d persoane sunt în apelul de grup</item>
-        <item quantity="other">%1$s, %2$s și alte %3$d de persoane sunt în apelul de grup</item>
+    <!-- Chat log text for an ongoing group call with more than two participants with placeholders for the first two joined users and a placeholder for the number of users in the call -->
+    <plurals name="MessageRecord_s_s_and_d_others_are_in_the_call">
+        <item quantity="one">%1$s, %2$s, and %3$d other are in the group call</item>
+        <item quantity="few">%1$s, %2$s, and %3$d others are in the group call</item>
+        <item quantity="other">%1$s, %2$s, and %3$d others are in the group call</item>
     </plurals>
 
     <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
@@ -2142,6 +2165,7 @@
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">Nu s-a putut cere un cod de verificare. Te rugăm să verifici conexiunea și să încerci din nou.</string>
     <string name="RegistrationActivity_non_standard_number_format">Număr cu format non-standard</string>
+    <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Numărul pe care l-ai introdus (%1$s) pare a fi în format non-standard.\n\nAi vrut să scrii %2$s?</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Formatul Numărului de Telefon</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
@@ -2796,6 +2820,8 @@
     <string name="ConversationUpdateItem_loading">Se încarcă</string>
     <string name="ConversationUpdateItem_learn_more">Află mai multe</string>
     <string name="ConversationUpdateItem_join_call">Alătură-te apelului</string>
+    <!-- Action button label for starting a new call in the current conversation -->
+    <string name="ConversationUpdateItem_call_back">Call back</string>
     <string name="ConversationUpdateItem_return_to_call">Întoarcere la apel</string>
     <string name="ConversationUpdateItem_call_is_full">Numărul maxim de participanți a fost atins</string>
     <string name="ConversationUpdateItem_invite_friends">Invită prieteni</string>
@@ -2860,6 +2886,7 @@
     <string name="safety_number_change_dialog__leave_call">Părăsește apelul</string>
     <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Este posibil ca următoarele persoane să fi reinstalat sau schimbat dispozitivele. Verifică numărul tău de siguranță cu acestea pentru a asigura confidențialitatea.</string>
     <string name="safety_number_change_dialog__view">Vizualizare</string>
+    <!-- Subtitle shown for a single contact and that their safety number was previously verified and is now no longer verified. -->
     <string name="safety_number_change_dialog__previous_verified">Verificat anterior</string>
 
     <!-- EnableCallNotificationSettingsDialog__call_notifications_checklist -->
@@ -3180,6 +3207,7 @@
 
     <string name="arrays__default">Implicit</string>
     <string name="arrays__high">Mare</string>
+    <!-- Setting title that represent an abstract priority to assign to notifications as the max/highest priority a notification can be within the system. -->
     <string name="arrays__max">Maximă</string>
 
     <!-- plurals.xml -->
@@ -3543,6 +3571,7 @@
     <string name="PaymentsDetailsFragment__sent_to_s">Trimis către %1$s</string>
     <string name="PaymentsDetailsFragment__you_on_s_at_s">Tine %1$s la %2$s</string>
     <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s %2$s la %3$s</string>
+    <!-- Prefix to a name to indicate who a payment was sent to -->
     <string name="PaymentsDetailsFragment__to">Către</string>
     <string name="PaymentsDetailsFragment__from">De la</string>
     <string name="PaymentsDetailsFragment__information">Detaliile tranzacției inclusiv valoarea și data acesteia, fac parte din registrul MobileCoin.</string>
@@ -3605,6 +3634,7 @@
     <string name="ConfirmPayment__confirm_payment">Confirmă plata</string>
     <string name="ConfirmPayment__network_fee">Comision de rețea</string>
     <string name="ConfirmPayment__estimated_s">Estimat %1$s</string>
+    <!-- Prefix to a name to indicate who a payment will be sent to -->
     <string name="ConfirmPayment__to">Către</string>
     <string name="ConfirmPayment__total_amount">Suma totală</string>
     <string name="ConfirmPayment__balance_s">Sold: %1$s</string>
@@ -4218,6 +4248,7 @@
     <string name="RecipientBottomSheet_copied_to_clipboard">S-a copiat în clipboard</string>
 
     <string name="GroupRecipientListItem_admin">Administrator</string>
+    <!-- Button text to approve a user that has requested to join a group -->
     <string name="GroupRecipientListItem_approve_description">Aprobă</string>
     <string name="GroupRecipientListItem_deny_description">Refuză</string>
 
@@ -4245,6 +4276,7 @@
 
     <!-- VoiceNoteMediaDescriptionCompatFactory -->
     <string name="VoiceNoteMediaItemFactory__voice_message">Mesaj vocal · %1$s</string>
+    <!-- This is a title in a banner describing the conversation sender to receiver placeholders of the currently playing voice memo. -->
     <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s la %2$s</string>
 
     <!-- StorageUtil -->
@@ -4293,6 +4325,7 @@
     <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s și %2$s s-au alăturat</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s și %3$s s-au alăturat</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s și %3$d alții s-au alăturat</string>
+    <!-- Toast/popup text shown when someone leaves a group call -->
     <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s a ieșit</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s și %2$s au ieșit</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s și %3$s au ieșit</string>
@@ -4672,6 +4705,7 @@
     <string name="PrivacySettingsFragment__messaging">Mesagerie</string>
     <string name="PrivacySettingsFragment__disappearing_messages">Dispariție mesaje</string>
     <string name="PrivacySettingsFragment__app_security">Securitate aplicație</string>
+    <!-- This refers to the multi-tasking overview (recent apps) from the Android operating system.-->
     <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blochează capturile de ecran în lista cu aplicații recente și în interiorul aplicației</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Mesaje și apeluri Signal, redirecționare apeluri și expeditor ascuns</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">Temporizator implicit pentru conversații noi</string>
@@ -4728,11 +4762,14 @@
     <string name="DataAndStorageSettingsFragment__media_quality">Calitate Media</string>
     <string name="DataAndStorageSettingsFragment__sent_media_quality">Calitatea fișierelor media trimise</string>
     <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Trimiterea fișierelor media la calitate înaltă va duce la un consum mai mare de date.</string>
+    <!-- Setting option that can be selected to default media to be sent as high quality by default -->
     <string name="DataAndStorageSettingsFragment__high">Mare</string>
+    <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
     <string name="DataAndStorageSettingsFragment__standard">Standard</string>
     <string name="DataAndStorageSettingsFragment__calls">Apeluri</string>
 
     <!-- ChatColorSelectionFragment -->
+    <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
     <string name="ChatColorSelectionFragment__auto">Auto</string>
     <string name="ChatColorSelectionFragment__use_custom_colors">Utilizează culori personalizate</string>
     <string name="ChatColorSelectionFragment__chat_color">Culoare conversație</string>
@@ -4947,6 +4984,7 @@
     <string name="AvatarPickerFragment__take_a_picture">Fă o poză</string>
     <string name="AvatarPickerFragment__choose_a_photo">Alege o poză</string>
     <string name="AvatarPickerFragment__photo">Poză</string>
+    <!-- Button label during avatar selection/creation that when tapped lets you generate an avatar from typed in text. -->
     <string name="AvatarPickerFragment__text">Text</string>
     <string name="AvatarPickerFragment__save">Salvează</string>
     <string name="AvatarPickerFragment__clear_avatar">Șterge avatarul</string>
@@ -5011,7 +5049,7 @@
     <string name="MediaReviewFragment__add_a_message">Adaugă un mesaj</string>
     <string name="MediaReviewFragment__add_a_reply">Adaugă un răspuns</string>
     <string name="MediaReviewFragment__send_to">Trimite către</string>
-    <string name="MediaReviewFragment__view_once_message">Mesaj vizibil o singură dată</string>
+    <string name="MediaReviewFragment__view_once_message">View once media</string>
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">Unul sau mai multe elemente au fost prea mari</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">Unul sau mai multe elemente au fost invalide</string>
     <string name="MediaReviewFragment__too_many_items_selected">Prea multe elemente selectate</string>
@@ -5609,7 +5647,7 @@
     <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
     <!-- Displayed when viewing a post you sent -->
     <string name="StoryViewerPageFragment__you">Tu</string>
-    <!-- Displayed when viewing a post displayed to a group -->
+    <!-- Displayed when viewing a story sent to a group, placeholders are person who sent the story and the group name -->
     <string name="StoryViewerPageFragment__s_to_s">%1$s la %2$s</string>
     <!-- Displayed when viewing a post from another user with no replies -->
     <string name="StoryViewerPageFragment__reply">Răspunde</string>
@@ -6849,6 +6887,12 @@
     <string name="ViewNoteSheet__note">Notă</string>
     <!-- Content description for opening the note editor -->
     <string name="ViewNoteSheet__edit_note">Editează nota</string>
+
+    <!-- BackupProgressService -->
+    <!-- Notification title shown while backup restore job is running -->
+    <string name="BackupProgressService_title">Restoring backup…</string>
+    <!-- Notification title shown while downloading backup restore data -->
+    <string name="BackupProgressService_title_downloading">Downloading backup data…</string>
 
     <!-- EOF -->
 </resources>

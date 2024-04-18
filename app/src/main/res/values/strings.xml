@@ -866,7 +866,7 @@
         <item quantity="one">Invitation sent</item>
         <item quantity="other">%d invitations sent</item>
     </plurals>
-    <!-- Dialog message shown when you are attempting to add a single contact to a group and you don't have enough information about them to do it automatically, so must do it via an invite instead. Placeholder is name/username/phone number. -->
+    <!-- Dialog message shown when you are attempting to add a single contact to a group and you don\'t have enough information about them to do it automatically, so must do it via an invite instead. Placeholder is name/username/phone number. -->
     <string name="GroupManagement_invite_single_user">“%1$s” can’t be automatically added to this group by you.\n\nThey’ve been invited to join, and won’t see any group messages until they accept.</string>
     <string name="GroupManagement_invite_multiple_users">These users can’t be automatically added to this group by you.\n\nThey’ve been invited to join the group, and won’t see any group messages until they accept.</string>
 
@@ -1597,9 +1597,9 @@
     <string name="MessageRecord__you_started_a_video_call">You started a video call</string>
     <!-- Chat log text for an ongoing group call that the local user started with a placeholder for formatted time -->
     <string name="MessageRecord__you_started_a_video_call_s">You started a video call · %1$s</string>
-    <!-- Chat log text for an ongoing group call that the local user has not joined with a placeholder for user's short display name -->
+    <!-- Chat log text for an ongoing group call that the local user has not joined with a placeholder for user\'s short display name -->
     <string name="MessageRecord__s_started_a_video_call">%1$s started a video call</string>
-    <!-- Chat log text for an ongoing group call that the local user has not joined with a placeholder for user's short display name and a placeholder for formatted time -->
+    <!-- Chat log text for an ongoing group call that the local user has not joined with a placeholder for user\'s short display name and a placeholder for formatted time -->
     <string name="MessageRecord__s_started_a_video_call_s">%1$s started a video call · %2$s</string>
 
     <string name="MessageRecord_you">You</string>
