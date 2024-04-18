@@ -17,30 +17,23 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Icon
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.drawWithCache
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.CompositingStrategy
-import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.StrokeCap
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.Buttons
+import org.signal.core.ui.Icons
 import org.signal.core.ui.Previews
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.backup.v2.ui.BackupsIconColors
 import kotlin.math.max
 import kotlin.math.min
 
@@ -63,19 +56,13 @@ fun BackupStatus(
       .padding(14.dp)
   ) {
     val foreground: Brush = data.iconColors.foreground
-    Icon(
+    Icons.BrushedForeground(
       painter = painterResource(id = data.iconRes),
       contentDescription = null,
+      foregroundBrush = foreground,
       modifier = Modifier
         .background(color = data.iconColors.background, shape = CircleShape)
         .padding(8.dp)
-        .graphicsLayer { compositingStrategy = CompositingStrategy.Offscreen }
-        .drawWithCache {
-          onDrawWithContent {
-            drawContent()
-            drawRect(foreground, blendMode = BlendMode.SrcAtop)
-          }
-        }
     )
 
     Column(
@@ -92,7 +79,9 @@ fun BackupStatus(
         LinearProgressIndicator(
           progress = data.progress,
           strokeCap = StrokeCap.Round,
-          modifier = Modifier.fillMaxWidth().padding(vertical = 6.dp)
+          modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 6.dp)
         )
       }
 
@@ -152,7 +141,7 @@ sealed interface BackupStatusData {
   @get:StringRes
   val titleRes: Int
 
-  val iconColors: IconColors
+  val iconColors: BackupsIconColors
 
   @get:StringRes
   val actionRes: Int get() = NONE
@@ -168,7 +157,7 @@ sealed interface BackupStatusData {
   object CouldNotCompleteBackup : BackupStatusData {
     override val iconRes: Int = R.drawable.symbol_backup_light
     override val titleRes: Int = R.string.default_error_msg
-    override val iconColors: IconColors = IconColors.Warning
+    override val iconColors: BackupsIconColors = BackupsIconColors.Warning
   }
 
   /**
@@ -177,7 +166,7 @@ sealed interface BackupStatusData {
   object NotEnoughFreeSpace : BackupStatusData {
     override val iconRes: Int = R.drawable.symbol_backup_light
     override val titleRes: Int = R.string.default_error_msg
-    override val iconColors: IconColors = IconColors.Warning
+    override val iconColors: BackupsIconColors = BackupsIconColors.Warning
     override val actionRes: Int = R.string.registration_activity__skip
   }
 
@@ -190,7 +179,7 @@ sealed interface BackupStatusData {
     val status: Status = Status.NONE
   ) : BackupStatusData {
     override val iconRes: Int = R.drawable.symbol_backup_light
-    override val iconColors: IconColors = IconColors.Normal
+    override val iconColors: BackupsIconColors = BackupsIconColors.Normal
 
     override val titleRes: Int = when (status) {
       Status.NONE -> R.string.default_error_msg
@@ -212,31 +201,6 @@ sealed interface BackupStatusData {
       min(1f, max(0f, bytesDownloaded.toFloat() / bytesTotal))
     } else {
       0f
-    }
-  }
-
-  sealed interface IconColors {
-    @get:Composable
-    val foreground: Brush
-
-    @get:Composable
-    val background: Color
-
-    object Normal : IconColors {
-      override val foreground: Brush @Composable get() = remember {
-        Brush.linearGradient(
-          colors = listOf(Color(0xFF316ED0), Color(0xFF558BE2)),
-          start = Offset(x = 0f, y = Float.POSITIVE_INFINITY),
-          end = Offset(x = Float.POSITIVE_INFINITY, y = 0f)
-        )
-      }
-
-      override val background: Color @Composable get() = MaterialTheme.colorScheme.primaryContainer
-    }
-
-    object Warning : IconColors {
-      override val foreground: Brush @Composable get() = SolidColor(Color(0xFFC86600))
-      override val background: Color @Composable get() = Color(0xFFF9E4B6)
     }
   }
 
