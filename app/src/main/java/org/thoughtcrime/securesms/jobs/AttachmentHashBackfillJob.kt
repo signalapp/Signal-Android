@@ -12,7 +12,6 @@ import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
-import org.thoughtcrime.securesms.jobmanager.defaultBackoffInterval
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.IOException
@@ -84,7 +83,7 @@ class AttachmentHashBackfillJob private constructor(parameters: Parameters) : Jo
         Log.w(TAG, "Underlying cause was a FileNotFoundException. Clearing all usages.", true)
         SignalDatabase.attachments.clearUsagesOfDataFile(file)
       } else {
-        return Result.retry(defaultBackoffInterval())
+        return Result.retry(defaultBackoff())
       }
     }
 

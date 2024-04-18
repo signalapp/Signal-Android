@@ -269,7 +269,7 @@ class PreKeysSyncJob private constructor(
 
     return when (result) {
       is NetworkResult.Success -> true
-      is NetworkResult.NetworkError -> throw result.throwable ?: PushNetworkException("Network error")
+      is NetworkResult.NetworkError -> throw result.exception ?: PushNetworkException("Network error")
       is NetworkResult.ApplicationError -> throw result.throwable
       is NetworkResult.StatusCodeError -> if (result.code == 409) {
         false

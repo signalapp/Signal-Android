@@ -4,8 +4,6 @@
  */
 package org.thoughtcrime.securesms.jobs
 
-import android.graphics.Bitmap
-import android.os.Build
 import android.text.TextUtils
 import org.greenrobot.eventbus.EventBus
 import org.signal.core.util.inRoundedDays
@@ -15,8 +13,8 @@ import org.signal.protos.resumableuploads.ResumableUpload
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.AttachmentId
+import org.thoughtcrime.securesms.attachments.AttachmentUploadUtil
 import org.thoughtcrime.securesms.attachments.PointerAttachment
-import org.thoughtcrime.securesms.blurhash.BlurHashEncoder
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
@@ -26,20 +24,16 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobmanager.persistence.JobSpec
 import org.thoughtcrime.securesms.jobs.protos.AttachmentUploadJobData
 import org.thoughtcrime.securesms.mms.MmsException
-import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.net.NotPushRegisteredException
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.service.AttachmentProgressService
 import org.thoughtcrime.securesms.util.FeatureFlags
-import org.thoughtcrime.securesms.util.MediaUtil
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentStream
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResumableUploadResponseCodeException
 import org.whispersystems.signalservice.internal.crypto.PaddingInputStream
-import org.whispersystems.signalservice.internal.push.http.ResumableUploadSpec
 import java.io.IOException
-import java.util.Objects
 import java.util.Optional
 import java.util.concurrent.TimeUnit
 import kotlin.time.Duration.Companion.days
@@ -210,23 +204,12 @@ class AttachmentUploadJob private constructor(
     }
 
     return try {
-      val inputStream = PartAuthority.getAttachmentStream(context, attachment.uri!!)
-      val builder = SignalServiceAttachment.newStreamBuilder()
-        .withStream(inputStream)
-        .withContentType(attachment.contentType)
-        .withLength(attachment.size)
-        .withFileName(attachment.fileName)
-        .withVoiceNote(attachment.voiceNote)
-        .withBorderless(attachment.borderless)
-        .withGif(attachment.videoGif)
-        .withFaststart(attachment.transformProperties?.mp4FastStart ?: false)
-        .withWidth(attachment.width)
-        .withHeight(attachment.height)
-        .withUploadTimestamp(System.currentTimeMillis())
-        .withCaption(attachment.caption)
-        .withResumableUploadSpec(ResumableUploadSpec.from(resumableUploadSpec))
-        .withCancelationSignal { this.isCanceled }
-        .withListener(object : SignalServiceAttachment.ProgressListener {
+      AttachmentUploadUtil.buildSignalServiceAttachmentStream(
+        context = context,
+        attachment = attachment,
+        uploadSpec = resumableUploadSpec,
+        cancellationSignal = { isCanceled },
+        progressListener = object : SignalServiceAttachment.ProgressListener {
           override fun onAttachmentProgress(total: Long, progress: Long) {
             EventBus.getDefault().postSticky(PartProgressEvent(attachment, PartProgressEvent.Type.NETWORK, total, progress))
             notification?.progress = (progress.toFloat() / total)
@@ -235,55 +218,10 @@ class AttachmentUploadJob private constructor(
           override fun shouldCancel(): Boolean {
             return isCanceled
           }
-        })
-
-      if (MediaUtil.isImageType(attachment.contentType)) {
-        builder.withBlurHash(getImageBlurHash(attachment)).build()
-      } else if (MediaUtil.isVideoType(attachment.contentType)) {
-        builder.withBlurHash(getVideoBlurHash(attachment)).build()
-      } else {
-        builder.build()
-      }
+        }
+      )
     } catch (e: IOException) {
       throw InvalidAttachmentException(e)
-    }
-  }
-
-  @Throws(IOException::class)
-  private fun getImageBlurHash(attachment: Attachment): String? {
-    if (attachment.blurHash != null) {
-      return attachment.blurHash!!.hash
-    }
-
-    if (attachment.uri == null) {
-      return null
-    }
-
-    return PartAuthority.getAttachmentStream(context, attachment.uri!!).use { inputStream ->
-      BlurHashEncoder.encode(inputStream)
-    }
-  }
-
-  @Throws(IOException::class)
-  private fun getVideoBlurHash(attachment: Attachment): String? {
-    if (attachment.blurHash != null) {
-      return attachment.blurHash!!.hash
-    }
-
-    if (Build.VERSION.SDK_INT < 23) {
-      Log.w(TAG, "Video thumbnails not supported...")
-      return null
-    }
-
-    return MediaUtil.getVideoThumbnail(context, Objects.requireNonNull(attachment.uri), 1000)?.let { bitmap ->
-      val thumb = Bitmap.createScaledBitmap(bitmap, 100, 100, false)
-      bitmap.recycle()
-
-      Log.i(TAG, "Generated video thumbnail...")
-      val hash = BlurHashEncoder.encode(thumb)
-      thumb.recycle()
-
-      hash
     }
   }
 

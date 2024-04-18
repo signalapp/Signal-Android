@@ -347,6 +347,10 @@ object BackupRepository {
       .triggerBackupIdReservation(backupKey)
       .then { getAuthCredential() }
       .then { credential ->
+        api.setPublicKey(backupKey, credential)
+          .map { credential }
+      }
+      .then { credential ->
         val mediaName = attachment.getMediaName()
         val request = attachment.toArchiveMediaRequest(mediaName, backupKey)
         api

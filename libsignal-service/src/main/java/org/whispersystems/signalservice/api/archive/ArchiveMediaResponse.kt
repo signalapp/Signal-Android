@@ -12,4 +12,19 @@ import com.fasterxml.jackson.annotation.JsonProperty
  */
 class ArchiveMediaResponse(
   @JsonProperty val cdn: Int
-)
+) {
+  enum class StatusCodes(val code: Int) {
+    BadArguments(400),
+    InvalidPresentationOrSignature(401),
+    InsufficientPermissions(403),
+    NoMediaSpaceRemaining(413),
+    RateLimited(429),
+    Unknown(-1);
+
+    companion object {
+      fun from(code: Int): StatusCodes {
+        return values().firstOrNull { it.code == code } ?: Unknown
+      }
+    }
+  }
+}

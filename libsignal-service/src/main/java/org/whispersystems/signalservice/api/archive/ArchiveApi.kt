@@ -176,6 +176,13 @@ class ArchiveApi(
 
   /**
    * Copy and re-encrypt media from the attachments cdn into the backup cdn.
+   *
+   * Possible errors:
+   *   400: Bad arguments, or made on an authenticated channel
+   *   401: Invalid presentation or signature
+   *   403: Insufficient permissions
+   *   413: No media space remaining
+   *   429: Rate-limited
    */
   fun archiveAttachmentMedia(
     backupKey: BackupKey,

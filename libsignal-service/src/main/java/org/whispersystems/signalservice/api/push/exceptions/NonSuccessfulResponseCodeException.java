@@ -13,16 +13,25 @@ import java.io.IOException;
  */
 public class NonSuccessfulResponseCodeException extends IOException {
 
-  private final int code;
+  private final int    code;
+  private final String body;
 
   public NonSuccessfulResponseCodeException(int code) {
     super("StatusCode: " + code);
     this.code = code;
+    this.body = null;
   }
 
   public NonSuccessfulResponseCodeException(int code, String s) {
     super("[" + code + "] " + s);
     this.code = code;
+    this.body = null;
+  }
+
+  public NonSuccessfulResponseCodeException(int code, String s, String body) {
+    super("[" + code + "] " + s);
+    this.code = code;
+    this.body = body;
   }
 
   public int getCode() {
@@ -35,5 +44,9 @@ public class NonSuccessfulResponseCodeException extends IOException {
 
   public boolean is5xx() {
     return code >= 500 && code < 600;
+  }
+
+  public String getBody() {
+    return body;
   }
 }

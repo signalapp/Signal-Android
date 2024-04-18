@@ -51,3 +51,8 @@ message PreKeysSyncJobData {
 message ArchiveAttachmentJobData {
   uint64 attachmentId = 1;
 }
+
+message ArchiveAttachmentBackfillJobData {
+  optional uint64 attachmentId = 1;
+  ResumableUpload uploadSpec = 2;
+}

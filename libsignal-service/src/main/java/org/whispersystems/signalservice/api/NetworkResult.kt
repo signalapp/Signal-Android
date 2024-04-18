@@ -6,7 +6,6 @@
 package org.whispersystems.signalservice.api
 
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
-import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 import java.io.IOException
 
 /**
@@ -33,7 +32,7 @@ sealed class NetworkResult<T> {
     fun <T> fromFetch(fetch: () -> T): NetworkResult<T> = try {
       Success(fetch())
     } catch (e: NonSuccessfulResponseCodeException) {
-      StatusCodeError(e.code, e)
+      StatusCodeError(e.code, e.body, e)
     } catch (e: IOException) {
       NetworkError(e)
     } catch (e: Throwable) {
@@ -45,10 +44,10 @@ sealed class NetworkResult<T> {
   data class Success<T>(val result: T) : NetworkResult<T>()
 
   /** Indicates a generic network error occurred before we were able to process a response. */
-  data class NetworkError<T>(val throwable: Throwable? = null) : NetworkResult<T>()
+  data class NetworkError<T>(val exception: IOException) : NetworkResult<T>()
 
   /** Indicates we got a response, but it was a non-2xx response. */
-  data class StatusCodeError<T>(val code: Int, val throwable: Throwable? = null) : NetworkResult<T>()
+  data class StatusCodeError<T>(val code: Int, val body: String?, val exception: IOException) : NetworkResult<T>()
 
   /** Indicates that the application somehow failed in a way unrelated to network activity. Usually a runtime crash. */
   data class ApplicationError<T>(val throwable: Throwable) : NetworkResult<T>()
@@ -59,8 +58,8 @@ sealed class NetworkResult<T> {
   fun successOrThrow(): T {
     when (this) {
       is Success -> return result
-      is NetworkError -> throw throwable ?: PushNetworkException("Network error")
-      is StatusCodeError -> throw throwable ?: NonSuccessfulResponseCodeException(this.code)
+      is NetworkError -> throw exception
+      is StatusCodeError -> throw exception
       is ApplicationError -> throw throwable
     }
   }
@@ -72,8 +71,8 @@ sealed class NetworkResult<T> {
   fun <R> map(transform: (T) -> R): NetworkResult<R> {
     return when (this) {
       is Success -> Success(transform(this.result))
-      is NetworkError -> NetworkError(throwable)
-      is StatusCodeError -> StatusCodeError(code, throwable)
+      is NetworkError -> NetworkError(exception)
+      is StatusCodeError -> StatusCodeError(code, body, exception)
       is ApplicationError -> ApplicationError(throwable)
     }
   }
@@ -85,8 +84,8 @@ sealed class NetworkResult<T> {
   fun <R> then(result: (T) -> NetworkResult<R>): NetworkResult<R> {
     return when (this) {
       is Success -> result(this.result)
-      is NetworkError -> NetworkError(throwable)
-      is StatusCodeError -> StatusCodeError(code, throwable)
+      is NetworkError -> NetworkError(exception)
+      is StatusCodeError -> StatusCodeError(code, body, exception)
       is ApplicationError -> ApplicationError(throwable)
     }
   }
