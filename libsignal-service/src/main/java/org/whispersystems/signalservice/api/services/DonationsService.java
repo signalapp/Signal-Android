@@ -19,7 +19,7 @@ import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
 import org.whispersystems.signalservice.internal.push.BankMandate;
 import org.whispersystems.signalservice.internal.push.DonationProcessor;
-import org.whispersystems.signalservice.internal.push.DonationsConfiguration;
+import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
 
 import java.io.IOException;
@@ -42,8 +42,8 @@ public class DonationsService {
 
   private final PushServiceSocket pushServiceSocket;
 
-  private final AtomicReference<CacheEntry<DonationsConfiguration>> donationsConfigurationCache = new AtomicReference<>(null);
-  private final AtomicReference<CacheEntry<BankMandate>>            sepaBankMandateCache        = new AtomicReference<>(null);
+  private final AtomicReference<CacheEntry<SubscriptionsConfiguration>> donationsConfigurationCache = new AtomicReference<>(null);
+  private final AtomicReference<CacheEntry<BankMandate>>                sepaBankMandateCache        = new AtomicReference<>(null);
 
   private static class CacheEntry<T> {
     private final T      cachedValue;
@@ -111,7 +111,7 @@ public class DonationsService {
     return wrapInServiceResponse(() -> new Pair<>(pushServiceSocket.submitBoostReceiptCredentials(paymentIntentId, receiptCredentialRequest, processor), 200));
   }
 
-  public ServiceResponse<DonationsConfiguration> getDonationsConfiguration(Locale locale) {
+  public ServiceResponse<SubscriptionsConfiguration> getDonationsConfiguration(Locale locale) {
     return getCachedValue(
         locale,
         donationsConfigurationCache,

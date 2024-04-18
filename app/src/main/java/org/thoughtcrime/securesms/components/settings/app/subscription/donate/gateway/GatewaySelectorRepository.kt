@@ -5,7 +5,7 @@ import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.components.settings.app.subscription.getAvailablePaymentMethods
 import org.thoughtcrime.securesms.payments.currency.CurrencyUtil
 import org.whispersystems.signalservice.api.services.DonationsService
-import org.whispersystems.signalservice.internal.push.DonationsConfiguration
+import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
 import java.util.Locale
 
 class GatewaySelectorRepository(
@@ -18,10 +18,10 @@ class GatewaySelectorRepository(
       .map { configuration ->
         val available = configuration.getAvailablePaymentMethods(currencyCode).map {
           when (it) {
-            DonationsConfiguration.PAYPAL -> listOf(GatewayResponse.Gateway.PAYPAL)
-            DonationsConfiguration.CARD -> listOf(GatewayResponse.Gateway.CREDIT_CARD, GatewayResponse.Gateway.GOOGLE_PAY)
-            DonationsConfiguration.SEPA_DEBIT -> listOf(GatewayResponse.Gateway.SEPA_DEBIT)
-            DonationsConfiguration.IDEAL -> listOf(GatewayResponse.Gateway.IDEAL)
+            SubscriptionsConfiguration.PAYPAL -> listOf(GatewayResponse.Gateway.PAYPAL)
+            SubscriptionsConfiguration.CARD -> listOf(GatewayResponse.Gateway.CREDIT_CARD, GatewayResponse.Gateway.GOOGLE_PAY)
+            SubscriptionsConfiguration.SEPA_DEBIT -> listOf(GatewayResponse.Gateway.SEPA_DEBIT)
+            SubscriptionsConfiguration.IDEAL -> listOf(GatewayResponse.Gateway.IDEAL)
             else -> listOf()
           }
         }.flatten().toSet()

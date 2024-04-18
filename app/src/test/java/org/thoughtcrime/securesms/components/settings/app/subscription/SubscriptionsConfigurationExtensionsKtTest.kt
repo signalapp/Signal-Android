@@ -12,20 +12,20 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.whispersystems.signalservice.internal.push.DonationsConfiguration
+import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
 import org.whispersystems.signalservice.internal.util.JsonUtil
 import java.util.Currency
 
 @RunWith(RobolectricTestRunner::class)
 @Config(application = Application::class)
-class DonationsConfigurationExtensionsKtTest {
+class SubscriptionsConfigurationExtensionsKtTest {
 
   private val testData: String = javaClass.classLoader!!.getResourceAsStream("donations_configuration_test_data.json").bufferedReader().readText()
-  private val testSubject = JsonUtil.fromJson(testData, DonationsConfiguration::class.java)
+  private val testSubject = JsonUtil.fromJson(testData, SubscriptionsConfiguration::class.java)
 
   @Test
   fun `Given all methods are available, when I getSubscriptionAmounts, then I expect all currencies`() {
-    val subscriptionPrices = testSubject.getSubscriptionAmounts(DonationsConfiguration.SUBSCRIPTION_LEVELS.first(), AllPaymentMethodsAvailability)
+    val subscriptionPrices = testSubject.getSubscriptionAmounts(SubscriptionsConfiguration.SUBSCRIPTION_LEVELS.first(), AllPaymentMethodsAvailability)
 
     assertEquals(3, subscriptionPrices.size)
     assertTrue(subscriptionPrices.map { it.currency.currencyCode }.containsAll(setOf("JPY", "BIF", "USD")))
@@ -33,7 +33,7 @@ class DonationsConfigurationExtensionsKtTest {
 
   @Test
   fun `Given only PayPal available, when I getSubscriptionAmounts, then I expect BIF and JPY`() {
-    val subscriptionPrices = testSubject.getSubscriptionAmounts(DonationsConfiguration.SUBSCRIPTION_LEVELS.first(), PayPalOnly)
+    val subscriptionPrices = testSubject.getSubscriptionAmounts(SubscriptionsConfiguration.SUBSCRIPTION_LEVELS.first(), PayPalOnly)
 
     assertEquals(2, subscriptionPrices.size)
     assertTrue(subscriptionPrices.map { it.currency.currencyCode }.containsAll(setOf("JPY", "BIF")))
@@ -41,7 +41,7 @@ class DonationsConfigurationExtensionsKtTest {
 
   @Test
   fun `Given only Card available, when I getSubscriptionAmounts, then I expect BIF and USD`() {
-    val subscriptionPrices = testSubject.getSubscriptionAmounts(DonationsConfiguration.SUBSCRIPTION_LEVELS.first(), CardOnly)
+    val subscriptionPrices = testSubject.getSubscriptionAmounts(SubscriptionsConfiguration.SUBSCRIPTION_LEVELS.first(), CardOnly)
 
     assertEquals(2, subscriptionPrices.size)
     assertTrue(subscriptionPrices.map { it.currency.currencyCode }.containsAll(setOf("USD", "BIF")))
@@ -76,7 +76,7 @@ class DonationsConfigurationExtensionsKtTest {
     val subscriptionLevels = testSubject.getSubscriptionLevels()
 
     assertEquals(3, subscriptionLevels.size)
-    assertEquals(DonationsConfiguration.SUBSCRIPTION_LEVELS, subscriptionLevels.keys)
+    assertEquals(SubscriptionsConfiguration.SUBSCRIPTION_LEVELS, subscriptionLevels.keys)
     subscriptionLevels.keys.fold(0) { acc, i ->
       assertTrue(acc < i)
       i
@@ -165,7 +165,7 @@ class DonationsConfigurationExtensionsKtTest {
   fun `Given GIFT_LEVEL, When I getBadge, then I expect the gift badge`() {
     mockkStatic(ApplicationDependencies::class) {
       every { ApplicationDependencies.getApplication() } returns ApplicationProvider.getApplicationContext()
-      val badge = testSubject.getBadge(DonationsConfiguration.GIFT_LEVEL)
+      val badge = testSubject.getBadge(SubscriptionsConfiguration.GIFT_LEVEL)
 
       assertTrue(badge.isGift())
     }
@@ -175,7 +175,7 @@ class DonationsConfigurationExtensionsKtTest {
   fun `Given BOOST_LEVEL, When I getBadge, then I expect the boost badge`() {
     mockkStatic(ApplicationDependencies::class) {
       every { ApplicationDependencies.getApplication() } returns ApplicationProvider.getApplicationContext()
-      val badge = testSubject.getBadge(DonationsConfiguration.BOOST_LEVEL)
+      val badge = testSubject.getBadge(SubscriptionsConfiguration.BOOST_LEVEL)
 
       assertTrue(badge.isBoost())
     }
@@ -185,7 +185,7 @@ class DonationsConfigurationExtensionsKtTest {
   fun `Given a sub level, When I getBadge, then I expect a sub badge`() {
     mockkStatic(ApplicationDependencies::class) {
       every { ApplicationDependencies.getApplication() } returns ApplicationProvider.getApplicationContext()
-      val badge = testSubject.getBadge(DonationsConfiguration.SUBSCRIPTION_LEVELS.first())
+      val badge = testSubject.getBadge(SubscriptionsConfiguration.SUBSCRIPTION_LEVELS.first())
 
       assertTrue(badge.isSubscription())
     }

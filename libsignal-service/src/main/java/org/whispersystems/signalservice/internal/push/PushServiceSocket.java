@@ -1348,11 +1348,11 @@ public class PushServiceSocket {
   /**
    * Get the DonationsConfiguration pointed at by /v1/subscriptions/configuration
    */
-  public DonationsConfiguration getDonationsConfiguration(Locale locale) throws IOException {
+  public SubscriptionsConfiguration getDonationsConfiguration(Locale locale) throws IOException {
     Map<String, String> headers = Collections.singletonMap("Accept-Language", locale.getLanguage() + "-" + locale.getCountry());
     String              result  = makeServiceRequestWithoutAuthentication(DONATIONS_CONFIGURATION, "GET", null, headers, NO_HANDLER);
 
-    return JsonUtil.fromJson(result, DonationsConfiguration.class);
+    return JsonUtil.fromJson(result, SubscriptionsConfiguration.class);
   }
 
   /**

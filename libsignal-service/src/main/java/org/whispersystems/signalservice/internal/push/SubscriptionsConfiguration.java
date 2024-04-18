@@ -14,7 +14,7 @@ import java.util.Set;
 /**
  * Response JSON for a call to /v1/subscriptions/configuration
  */
-public class DonationsConfiguration {
+public class SubscriptionsConfiguration {
 
   public static final String PAYPAL     = "PAYPAL";
   public static final String CARD       = "CARD";
@@ -44,6 +44,9 @@ public class DonationsConfiguration {
     @JsonProperty("subscription")
     private Map<Integer, BigDecimal> subscription;
 
+    @JsonProperty("backupSubscription")
+    private Map<Integer, BigDecimal> backupSubscription;
+
     @JsonProperty("supportedPaymentMethods")
     private Set<String> supportedPaymentMethods;
 
@@ -57,6 +60,10 @@ public class DonationsConfiguration {
 
     public Map<Integer, BigDecimal> getSubscription() {
       return subscription;
+    }
+
+    public Map<Integer, BigDecimal> getBackupSubscription() {
+      return backupSubscription;
     }
 
     public Set<String> getSupportedPaymentMethods() {

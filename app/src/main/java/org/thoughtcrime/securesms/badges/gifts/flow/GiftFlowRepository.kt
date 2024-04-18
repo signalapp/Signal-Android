@@ -8,7 +8,7 @@ import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.subscription.getGiftBadgeAmounts
 import org.thoughtcrime.securesms.components.settings.app.subscription.getGiftBadges
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.whispersystems.signalservice.internal.push.DonationsConfiguration
+import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
 import java.util.Currency
 import java.util.Locale
 
@@ -28,7 +28,7 @@ class GiftFlowRepository {
           .getDonationsConfiguration(Locale.getDefault())
       }
       .flatMap { it.flattenResult() }
-      .map { DonationsConfiguration.GIFT_LEVEL to it.getGiftBadges().first() }
+      .map { SubscriptionsConfiguration.GIFT_LEVEL to it.getGiftBadges().first() }
       .subscribeOn(Schedulers.io())
   }
 
