@@ -32,7 +32,7 @@ import org.thoughtcrime.securesms.jobs.RotateCertificateJob
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.NotificationIds
-import org.thoughtcrime.securesms.pin.SvrRepository.onRegistrationComplete
+import org.thoughtcrime.securesms.pin.SvrRepository
 import org.thoughtcrime.securesms.push.AccountManagerFactory
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -188,7 +188,7 @@ object RegistrationRepository {
       TextSecurePreferences.setUnauthorizedReceived(context, false)
       NotificationManagerCompat.from(context).cancel(NotificationIds.UNREGISTERED_NOTIFICATION_ID)
 
-      onRegistrationComplete(response.masterKey, response.pin, hasPin, reglockEnabled)
+      SvrRepository.onRegistrationComplete(response.masterKey, response.pin, hasPin, reglockEnabled)
 
       ApplicationDependencies.closeConnections()
       ApplicationDependencies.getIncomingMessageObserver()
@@ -335,7 +335,11 @@ object RegistrationRepository {
       val eventBus = EventBus.getDefault()
       eventBus.register(subscriber)
 
-      val sessionCreationResponse = accountManager.createRegistrationSession(fcmToken, mcc, mnc).successOrThrow() // TODO: error handling
+      val sessionCreationResponse = accountManager.createRegistrationSession(fcmToken, mcc, mnc)
+      if (sessionCreationResponse !is NetworkResult.Success) {
+        return@withContext sessionCreationResponse
+      }
+
       val receivedPush = subscriber.latch.await(PUSH_REQUEST_TIMEOUT, TimeUnit.MILLISECONDS)
       eventBus.unregister(subscriber)
 
@@ -343,7 +347,7 @@ object RegistrationRepository {
         val challenge = subscriber.challenge
         if (challenge != null) {
           Log.w(TAG, "Push challenge token received.")
-          return@withContext accountManager.submitPushChallengeToken(sessionCreationResponse.body.id, challenge)
+          return@withContext accountManager.submitPushChallengeToken(sessionCreationResponse.result.body.id, challenge)
         } else {
           Log.w(TAG, "Push received but challenge token was null.")
         }

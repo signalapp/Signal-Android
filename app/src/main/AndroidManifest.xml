@@ -844,6 +844,13 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
               android:exported="false"/>
 
+    <activity android:name=".restore.RestoreActivity"
+              android:launchMode="singleTask"
+              android:theme="@style/Theme.Signal.DayNight.NoActionBar"
+              android:windowSoftInputMode="stateHidden"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
+              android:exported="false"/>
+
     <activity android:name=".revealable.ViewOnceMessageActivity"
               android:launchMode="singleTask"
               android:theme="@style/TextSecure.FullScreenMedia"

@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.databinding.FragmentRegistrationEnterCodeV2Binding
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.lock.v2.CreateSvrPinActivity
 import org.thoughtcrime.securesms.profiles.AvatarHelper
 import org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity
@@ -91,9 +92,12 @@ class EnterCodeV2Fragment : LoggingFragment(R.layout.fragment_registration_enter
 
     Log.i(TAG, "Pin restore flow not required. Profile name: $isProfileNameEmpty | Profile avatar: $isAvatarEmpty | Needs PIN: $needsPin")
 
+    SignalStore.internalValues().setForceEnterRestoreV2Flow(true)
+
     if (!needsProfile && !needsPin) {
       sharedViewModel.completeRegistration()
     }
+    sharedViewModel.setInProgress(false)
 
     val startIntent = MainActivity.clearTop(activity).apply {
       if (needsPin) {
@@ -105,8 +109,8 @@ class EnterCodeV2Fragment : LoggingFragment(R.layout.fragment_registration_enter
       }
     }
 
+    Log.d(TAG, "Launching ${startIntent.component}")
     activity.startActivity(startIntent)
-    sharedViewModel.setInProgress(false)
     activity.finish()
     ActivityNavigator.applyPopAnimationsToPendingTransition(activity)
   }

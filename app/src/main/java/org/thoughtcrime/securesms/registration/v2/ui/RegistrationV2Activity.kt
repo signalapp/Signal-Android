@@ -9,15 +9,15 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.BaseActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.registration.v2.ui.shared.RegistrationV2ViewModel
 
 /**
  * Activity to hold the entire registration process.
  */
-class RegistrationV2Activity : AppCompatActivity() {
+class RegistrationV2Activity : BaseActivity() {
 
   private val TAG = Log.tag(RegistrationV2Activity::class.java)
 

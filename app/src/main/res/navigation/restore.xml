@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright 2024 Signal Messenger, LLC
+  ~ SPDX-License-Identifier: AGPL-3.0-only
+  -->
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/restore"
+    app:startDestination="@id/transfer_or_restore_v2_fragment">
+
+    <fragment
+        android:id="@+id/transfer_or_restore_v2_fragment"
+        android:name="org.thoughtcrime.securesms.restore.transferorrestore.TransferOrRestoreV2Fragment"
+        android:label="transfer_or_restore"
+        tools:layout="@layout/fragment_transfer_restore_v2">
+
+        <action
+            android:id="@+id/action_transfer_or_restore_to_restore"
+            app:destination="@id/choose_local_backup_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/choose_local_backup_fragment"
+        android:name="org.thoughtcrime.securesms.restore.choosebackup.ChooseBackupV2Fragment"
+        android:label="choose_local_backup"
+        tools:layout="@layout/fragment_choose_backup_v2">
+
+        <action
+            android:id="@+id/action_choose_local_backup_fragment_to_restore_local_backup_fragment"
+            app:destination="@id/restore_local_backup_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/restore_local_backup_fragment"
+        android:name="org.thoughtcrime.securesms.restore.restorelocalbackup.RestoreLocalBackupFragment"
+        android:label="restore_local_backup"
+        tools:layout="@layout/fragment_restore_local_backup_v2">
+
+    </fragment>
+</navigation>
