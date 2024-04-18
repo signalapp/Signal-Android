@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Maybe
-import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.addTo
@@ -25,21 +24,23 @@ import org.thoughtcrime.securesms.groups.v2.GroupManagementRepository
 import org.thoughtcrime.securesms.jobs.ForceUpdateGroupV2Job
 import org.thoughtcrime.securesms.jobs.GroupV2UpdateSelfProfileKeyJob
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
-import org.thoughtcrime.securesms.profiles.spoofing.ReviewUtil
 import org.thoughtcrime.securesms.recipients.Recipient
 
 /**
  * Manages group state and actions for conversations.
  */
 class ConversationGroupViewModel(
-  private val threadId: Long,
   private val groupManagementRepository: GroupManagementRepository = GroupManagementRepository(),
   private val recipientRepository: ConversationRecipientRepository
 ) : ViewModel() {
 
   private val disposables = CompositeDisposable()
-  private val _groupRecord: BehaviorSubject<GroupRecord>
-  private val _reviewState: Subject<ConversationGroupReviewState>
+
+  private val _groupRecord: BehaviorSubject<GroupRecord> = recipientRepository
+    .groupRecord
+    .filter { it.isPresent }
+    .map { it.get() }
+    .subscribeWithSubject(BehaviorSubject.create(), disposables)
 
   private val _groupActiveState: Subject<ConversationGroupActiveState> = BehaviorSubject.create()
   private val _memberLevel: BehaviorSubject<ConversationGroupMemberLevel> = BehaviorSubject.create()
@@ -50,28 +51,6 @@ class ConversationGroupViewModel(
     get() = _groupRecord.value
 
   init {
-    _groupRecord = recipientRepository
-      .groupRecord
-      .filter { it.isPresent }
-      .map { it.get() }
-      .subscribeWithSubject(BehaviorSubject.create(), disposables)
-
-    val duplicates = _groupRecord.map { groupRecord ->
-      if (groupRecord.isV2Group) {
-        ReviewUtil.getDuplicatedRecipients(groupRecord.id.requireV2()).map { it.recipient }
-      } else {
-        emptyList()
-      }
-    }
-
-    _reviewState = Observable.combineLatest(_groupRecord, duplicates) { record, dupes ->
-      if (dupes.isEmpty()) {
-        ConversationGroupReviewState.EMPTY
-      } else {
-        ConversationGroupReviewState(record.id.requireV2(), dupes[0], dupes.size)
-      }
-    }.subscribeWithSubject(BehaviorSubject.create(), disposables)
-
     disposables += _groupRecord.subscribe { groupRecord ->
       _groupActiveState.onNext(ConversationGroupActiveState(groupRecord.isActive, groupRecord.isV2Group))
       _memberLevel.onNext(ConversationGroupMemberLevel(groupRecord.memberLevel(Recipient.self()), groupRecord.isAnnouncementGroup))
@@ -154,9 +133,9 @@ class ConversationGroupViewModel(
       .addTo(disposables)
   }
 
-  class Factory(private val threadId: Long, private val recipientRepository: ConversationRecipientRepository) : ViewModelProvider.Factory {
+  class Factory(private val recipientRepository: ConversationRecipientRepository) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return modelClass.cast(ConversationGroupViewModel(threadId, recipientRepository = recipientRepository)) as T
+      return modelClass.cast(ConversationGroupViewModel(recipientRepository = recipientRepository)) as T
     }
   }
 }

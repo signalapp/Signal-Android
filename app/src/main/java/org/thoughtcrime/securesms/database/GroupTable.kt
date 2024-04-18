@@ -813,6 +813,10 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
     Recipient.live(groupRecipientId).refresh()
     notifyConversationListListeners()
 
+    if (groupId.isV2) {
+      SignalDatabase.nameCollisions.handleGroupNameCollisions(groupId.requireV2(), members.toSet())
+    }
+
     return true
   }
 
@@ -881,7 +885,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
 
     val groupMembers = getV2GroupMembers(decryptedGroup, true)
 
-    if (existingGroup.isPresent && existingGroup.get().isV2Group) {
+    val addedMembers: List<RecipientId> = if (existingGroup.isPresent && existingGroup.get().isV2Group) {
       val change = GroupChangeReconstruct.reconstructGroupChange(existingGroup.get().requireV2GroupProperties().decryptedGroup, decryptedGroup)
       val removed: List<ServiceId> = DecryptedGroupUtil.removedMembersServiceIdList(change)
 
@@ -898,6 +902,10 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
           e164 = null
         )
       }
+
+      change.newMembers.toAciList().toRecipientIds()
+    } else {
+      groupMembers
     }
 
     writableDatabase.withinTransaction { database ->
@@ -920,6 +928,10 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
 
     Recipient.live(groupRecipientId).refresh()
     notifyConversationListListeners()
+
+    if (groupId.isV2 && addedMembers.isNotEmpty()) {
+      SignalDatabase.nameCollisions.handleGroupNameCollisions(groupId.requireV2(), addedMembers.toSet())
+    }
   }
 
   fun updateTitle(groupId: GroupId.V1, title: String?) {

@@ -399,6 +399,20 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
           Log.i(TAG, "Name changed, but wasn't relevant to write an event. blocked: ${recipient.isBlocked}, group: ${recipient.isGroup}, self: ${recipient.isSelf}, firstSet: ${localDisplayName.isEmpty()}, displayChange: ${remoteDisplayName != localDisplayName}")
         }
 
+        if (recipient.isIndividual &&
+          !recipient.isSystemContact &&
+          !recipient.nickname.isEmpty &&
+          !recipient.isProfileSharing &&
+          !recipient.isBlocked &&
+          !recipient.isSelf &&
+          !recipient.isHidden
+        ) {
+          val threadId = SignalDatabase.threads.getThreadIdFor(recipient.id)
+          if (threadId != null && !RecipientUtil.isMessageRequestAccepted(threadId, recipient)) {
+            SignalDatabase.nameCollisions.handleIndividualNameCollision(recipient.id)
+          }
+        }
+
         if (writeChangeEvent || localDisplayName.isEmpty()) {
           ApplicationDependencies.getDatabaseObserver().notifyConversationListListeners()
           val threadId = SignalDatabase.threads.getThreadIdFor(recipient.id)

@@ -73,6 +73,7 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
   val callTable: CallTable = CallTable(context, this)
   val kyberPreKeyTable: KyberPreKeyTable = KyberPreKeyTable(context, this)
   val callLinkTable: CallLinkTable = CallLinkTable(context, this)
+  val nameCollisionTables: NameCollisionTables = NameCollisionTables(context, this)
 
   override fun onOpen(db: net.zetetic.database.sqlcipher.SQLiteDatabase) {
     db.setForeignKeyConstraintsEnabled(true)
@@ -109,6 +110,7 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     db.execSQL(CallLinkTable.CREATE_TABLE)
     db.execSQL(CallTable.CREATE_TABLE)
     db.execSQL(KyberPreKeyTable.CREATE_TABLE)
+    NameCollisionTables.createTables(db)
     executeStatements(db, SearchTable.CREATE_TABLE)
     executeStatements(db, RemappedRecordTables.CREATE_TABLE)
     executeStatements(db, MessageSendLogTables.CREATE_TABLE)
@@ -138,6 +140,8 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
 
     executeStatements(db, SearchTable.CREATE_TRIGGERS)
     executeStatements(db, MessageSendLogTables.CREATE_TRIGGERS)
+
+    NameCollisionTables.createIndexes(db)
 
     DistributionListTables.insertInitialDistributionListAtCreationTime(db)
 
@@ -526,5 +530,10 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     @get:JvmName("callLinks")
     val callLinks: CallLinkTable
       get() = instance!!.callLinkTable
+
+    @get:JvmStatic
+    @get:JvmName("nameCollisions")
+    val nameCollisions: NameCollisionTables
+      get() = instance!!.nameCollisionTables
   }
 }

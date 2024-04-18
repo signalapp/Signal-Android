@@ -13,11 +13,11 @@ public class ReviewRecipient {
   private final Recipient            recipient;
   private final ProfileChangeDetails profileChangeDetails;
 
-  ReviewRecipient(@NonNull Recipient recipient) {
+  public ReviewRecipient(@NonNull Recipient recipient) {
     this(recipient, null);
   }
 
-  ReviewRecipient(@NonNull Recipient recipient, @Nullable ProfileChangeDetails profileChangeDetails) {
+  public ReviewRecipient(@NonNull Recipient recipient, @Nullable ProfileChangeDetails profileChangeDetails) {
     this.recipient            = recipient;
     this.profileChangeDetails = profileChangeDetails;
   }

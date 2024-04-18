@@ -87,6 +87,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 import org.thoughtcrime.securesms.storage.StorageRecordUpdate
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
@@ -1715,9 +1716,20 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   }
 
   fun getSimilarRecipientIds(recipient: Recipient): List<RecipientId> {
-    val projection = SqlUtil.buildArgs(ID, "COALESCE(NULLIF($SYSTEM_JOINED_NAME, ''), NULLIF($PROFILE_JOINED_NAME, '')) AS checked_name")
-    val where = "checked_name = ? AND $HIDDEN = ?"
-    val arguments = SqlUtil.buildArgs(recipient.profileName.toString(), 0)
+    if (!recipient.nickname.isEmpty || recipient.isSystemContact) {
+      return emptyList()
+    }
+
+    val threadId = threads.getThreadIdFor(recipient.id)
+    val isMessageRequestAccepted = RecipientUtil.isMessageRequestAccepted(threadId, recipient)
+    if (isMessageRequestAccepted) {
+      return emptyList()
+    }
+
+    val glob = SqlUtil.buildCaseInsensitiveGlobPattern(recipient.profileName.toString())
+    val projection = SqlUtil.buildArgs(ID, "COALESCE(NULLIF($NICKNAME_JOINED_NAME, ''), NULLIF($SYSTEM_JOINED_NAME, ''), NULLIF($PROFILE_JOINED_NAME, '')) AS checked_name")
+    val where = "checked_name GLOB ? AND $HIDDEN = ? AND $BLOCKED = ?"
+    val arguments = SqlUtil.buildArgs(glob, 0, 0)
 
     readableDatabase.query(TABLE_NAME, projection, where, arguments, null, null, null).use { cursor ->
       if (cursor == null || cursor.count == 0) {

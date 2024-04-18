@@ -423,7 +423,7 @@ class ConversationFragment :
 
   private val conversationGroupViewModel: ConversationGroupViewModel by viewModels(
     factoryProducer = {
-      ConversationGroupViewModel.Factory(args.threadId, conversationRecipientRepository)
+      ConversationGroupViewModel.Factory(conversationRecipientRepository)
     }
   )
 
@@ -3703,6 +3703,10 @@ class ConversationFragment :
 
     override fun onReviewGroupMembers(groupId: GroupId.V2) {
       ReviewCardDialogFragment.createForReviewMembers(groupId).show(childFragmentManager, null)
+    }
+
+    override fun onDismissReview() {
+      viewModel.onDismissReview()
     }
   }
 

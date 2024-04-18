@@ -1073,6 +1073,10 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
           notifyConversationListeners(threadId)
           TrimThreadJob.enqueueAsync(threadId)
         }
+
+      groupRecords.filter { it.isV2Group }.forEach {
+        SignalDatabase.nameCollisions.handleGroupNameCollisions(it.id.requireV2(), setOf(recipient.id))
+      }
     }
   }
 

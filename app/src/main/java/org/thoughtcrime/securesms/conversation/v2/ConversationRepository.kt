@@ -82,7 +82,7 @@ import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.mms.Slide
 import org.thoughtcrime.securesms.mms.SlideDeck
-import org.thoughtcrime.securesms.profiles.spoofing.ReviewUtil
+import org.thoughtcrime.securesms.profiles.spoofing.ReviewRecipient
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -363,6 +363,12 @@ class ConversationRepository(
     }.subscribeOn(Schedulers.io())
   }
 
+  fun dismissRequestReviewState(threadRecipientId: RecipientId) {
+    SignalExecutors.BOUNDED_IO.execute {
+      SignalDatabase.nameCollisions.markCollisionsForThreadRecipientDismissed(threadRecipientId)
+    }
+  }
+
   fun getRequestReviewState(recipient: Recipient, group: GroupRecord?, messageRequest: MessageRequestState): Single<RequestReviewState> {
     return Single.fromCallable {
       if (group == null && messageRequest.state != MessageRequestState.State.INDIVIDUAL) {
@@ -370,12 +376,12 @@ class ConversationRepository(
       }
 
       if (group == null) {
-        val recipientsToReview = ReviewUtil.getRecipientsToPromptForReview(recipient.id)
-        if (recipientsToReview.size > 0) {
+        val recipientsToReview = SignalDatabase.nameCollisions.getCollisionsForThreadRecipientId(recipient.id)
+        if (recipientsToReview.isNotEmpty()) {
           return@fromCallable RequestReviewState(
             individualReviewState = IndividualReviewState(
               target = recipient,
-              firstDuplicate = Recipient.resolvedList(recipientsToReview)[0]
+              firstDuplicate = recipientsToReview.first().recipient
             )
           )
         }
@@ -383,14 +389,14 @@ class ConversationRepository(
 
       if (group != null && group.isV2Group) {
         val groupId = group.id.requireV2()
-        val duplicateRecipients: List<Recipient> = ReviewUtil.getDuplicatedRecipients(groupId).map { it.recipient }
+        val duplicateRecipients: List<ReviewRecipient> = SignalDatabase.nameCollisions.getCollisionsForThreadRecipientId(group.recipientId)
 
         if (duplicateRecipients.isNotEmpty()) {
           return@fromCallable RequestReviewState(
             groupReviewState = GroupReviewState(
               groupId,
-              duplicateRecipients[0],
-              duplicateRecipients[1],
+              duplicateRecipients[0].recipient,
+              duplicateRecipients[1].recipient,
               duplicateRecipients.size
             )
           )

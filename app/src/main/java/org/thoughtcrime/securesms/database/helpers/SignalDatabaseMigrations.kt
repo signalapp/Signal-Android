@@ -85,6 +85,7 @@ import org.thoughtcrime.securesms.database.helpers.migration.V224_AddAttachmentA
 import org.thoughtcrime.securesms.database.helpers.migration.V225_AddLocalUserJoinedStateAndGroupCallActiveState
 import org.thoughtcrime.securesms.database.helpers.migration.V226_AddAttachmentMediaIdIndex
 import org.thoughtcrime.securesms.database.helpers.migration.V227_AddAttachmentArchiveTransferState
+import org.thoughtcrime.securesms.database.helpers.migration.V228_AddNameCollisionTables
 
 /**
  * Contains all of the database migrations for [SignalDatabase]. Broken into a separate file for cleanliness.
@@ -172,10 +173,11 @@ object SignalDatabaseMigrations {
     224 to V224_AddAttachmentArchiveColumns,
     225 to V225_AddLocalUserJoinedStateAndGroupCallActiveState,
     226 to V226_AddAttachmentMediaIdIndex,
-    227 to V227_AddAttachmentArchiveTransferState
+    227 to V227_AddAttachmentArchiveTransferState,
+    228 to V228_AddNameCollisionTables
   )
 
-  const val DATABASE_VERSION = 227
+  const val DATABASE_VERSION = 228
 
   @JvmStatic
   fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
