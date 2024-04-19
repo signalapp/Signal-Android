@@ -9,7 +9,6 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.NavHostFragment
@@ -21,9 +20,10 @@ import org.thoughtcrime.securesms.databinding.FragmentRegistrationWelcomeV2Bindi
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate.setDebugLogSubmitMultiTapView
 import org.thoughtcrime.securesms.registration.fragments.WelcomePermissions
+import org.thoughtcrime.securesms.registration.v2.ui.RegistrationV2ViewModel
 import org.thoughtcrime.securesms.registration.v2.ui.grantpermissions.GrantPermissionsV2Fragment
-import org.thoughtcrime.securesms.registration.v2.ui.shared.RegistrationV2ViewModel
 import org.thoughtcrime.securesms.util.BackupUtil
+import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
@@ -33,7 +33,6 @@ import kotlin.jvm.optionals.getOrNull
  * First screen that is displayed on the very first app launch.
  */
 class WelcomeV2Fragment : LoggingFragment(R.layout.fragment_registration_welcome_v2) {
-  private val TAG = Log.tag(WelcomeV2Fragment::class.java)
   private val sharedViewModel by activityViewModels<RegistrationV2ViewModel>()
   private val binding: FragmentRegistrationWelcomeV2Binding by ViewBinderDelegate(FragmentRegistrationWelcomeV2Binding::bind)
 
@@ -44,7 +43,6 @@ class WelcomeV2Fragment : LoggingFragment(R.layout.fragment_registration_welcome
     setDebugLogSubmitMultiTapView(binding.title)
     binding.welcomeContinueButton.setOnClickListener { onContinueClicked() }
     binding.welcomeTermsButton.setOnClickListener { onTermsClicked() }
-    binding.welcomeTransferOrRestore.setOnClickListener { onRestoreFromBackupClicked() }
   }
 
   private fun onContinueClicked() {
@@ -65,12 +63,8 @@ class WelcomeV2Fragment : LoggingFragment(R.layout.fragment_registration_welcome
     NavHostFragment.findNavController(this).safeNavigate(WelcomeV2FragmentDirections.actionSkipRestore())
   }
 
-  private fun onRestoreFromBackupClicked() {
-    Toast.makeText(requireContext(), "Not yet implemented.", Toast.LENGTH_SHORT).show()
-  }
-
   private fun onTermsClicked() {
-    Toast.makeText(requireContext(), "Not yet implemented.", Toast.LENGTH_SHORT).show()
+    CommunicationActions.openBrowserLink(requireContext(), TERMS_AND_CONDITIONS_URL)
   }
 
   private fun maybePrefillE164() {
@@ -86,5 +80,10 @@ class WelcomeV2Fragment : LoggingFragment(R.layout.fragment_registration_welcome
     } else {
       Log.i(TAG, "No phone permission.")
     }
+  }
+
+  companion object {
+    private val TAG = Log.tag(WelcomeV2Fragment::class.java)
+    private const val TERMS_AND_CONDITIONS_URL = "https://signal.org/legal"
   }
 }

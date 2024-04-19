@@ -5,10 +5,12 @@
 
 package org.thoughtcrime.securesms.registration.v2.ui.phonenumber
 
+import android.text.TextWatcher
+
 /**
  * State holder for the phone number entry screen, including phone number and Play Services errors.
  */
-data class EnterPhoneNumberV2State(val countryPrefixIndex: Int, val phoneNumber: String, val error: Error = Error.NONE) {
+data class EnterPhoneNumberV2State(val countryPrefixIndex: Int, val phoneNumber: String, val phoneNumberFormatter: TextWatcher? = null, val error: Error = Error.NONE) {
 
   companion object {
     @JvmStatic

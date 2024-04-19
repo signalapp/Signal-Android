@@ -21,9 +21,9 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.registration.compose.GrantPermissionsScreen
 import org.thoughtcrime.securesms.registration.fragments.WelcomePermissions
-import org.thoughtcrime.securesms.registration.v2.ui.shared.RegistrationCheckpoint
-import org.thoughtcrime.securesms.registration.v2.ui.shared.RegistrationV2State
-import org.thoughtcrime.securesms.registration.v2.ui.shared.RegistrationV2ViewModel
+import org.thoughtcrime.securesms.registration.v2.ui.RegistrationCheckpoint
+import org.thoughtcrime.securesms.registration.v2.ui.RegistrationV2State
+import org.thoughtcrime.securesms.registration.v2.ui.RegistrationV2ViewModel
 import org.thoughtcrime.securesms.util.BackupUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 

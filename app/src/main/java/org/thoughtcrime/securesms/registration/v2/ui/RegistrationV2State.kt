@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.registration.v2.ui.shared
+package org.thoughtcrime.securesms.registration.v2.ui
 
 import com.google.i18n.phonenumbers.Phonenumber
 

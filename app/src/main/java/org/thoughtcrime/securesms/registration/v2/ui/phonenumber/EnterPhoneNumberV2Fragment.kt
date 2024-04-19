@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.registration.v2.ui.phonenumber
 import android.content.Context
 import android.os.Bundle
 import android.text.SpannableStringBuilder
+import android.text.TextWatcher
 import android.view.KeyEvent
 import android.view.Menu
 import android.view.MenuInflater
@@ -38,9 +39,9 @@ import org.thoughtcrime.securesms.databinding.FragmentRegistrationEnterPhoneNumb
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate.setDebugLogSubmitMultiTapView
 import org.thoughtcrime.securesms.registration.util.CountryPrefix
-import org.thoughtcrime.securesms.registration.v2.ui.shared.RegistrationCheckpoint
-import org.thoughtcrime.securesms.registration.v2.ui.shared.RegistrationV2State
-import org.thoughtcrime.securesms.registration.v2.ui.shared.RegistrationV2ViewModel
+import org.thoughtcrime.securesms.registration.v2.ui.RegistrationCheckpoint
+import org.thoughtcrime.securesms.registration.v2.ui.RegistrationV2State
+import org.thoughtcrime.securesms.registration.v2.ui.RegistrationV2ViewModel
 import org.thoughtcrime.securesms.registration.v2.ui.toE164
 import org.thoughtcrime.securesms.util.PlayServicesUtil
 import org.thoughtcrime.securesms.util.SpanUtil
@@ -63,8 +64,11 @@ class EnterPhoneNumberV2Fragment : LoggingFragment(R.layout.fragment_registratio
   private lateinit var phoneNumberInputLayout: TextInputEditText
   private lateinit var spinnerView: MaterialAutoCompleteTextView
 
+  private var currentPhoneNumberFormatter: TextWatcher? = null
+
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
+    setDebugLogSubmitMultiTapView(binding.verifyHeader)
     requireActivity().onBackPressedDispatcher.addCallback(
       viewLifecycleOwner,
       object : OnBackPressedCallback(true) {
@@ -80,24 +84,13 @@ class EnterPhoneNumberV2Fragment : LoggingFragment(R.layout.fragment_registratio
       R.layout.registration_country_code_dropdown_item,
       fragmentViewModel.supportedCountryPrefixes
     )
-    setDebugLogSubmitMultiTapView(binding.verifyHeader)
     binding.registerButton.setOnClickListener { onRegistrationButtonClicked() }
 
-    binding.toolbar.title = null
+    binding.toolbar.title = ""
     val activity = requireActivity() as AppCompatActivity
     activity.setSupportActionBar(binding.toolbar)
 
     requireActivity().addMenuProvider(UseProxyMenuProvider(), viewLifecycleOwner)
-
-    val existingPhoneNumber = sharedViewModel.uiState.value?.phoneNumber
-    if (existingPhoneNumber != null) {
-      fragmentViewModel.restoreState(existingPhoneNumber)
-      fragmentViewModel.phoneNumber()?.let {
-        phoneNumberInputLayout.setText(it.nationalNumber.toString())
-      }
-    } else if (spinnerView.editableText.isBlank()) {
-      spinnerView.setText(fragmentViewModel.countryPrefix().toString())
-    }
 
     sharedViewModel.uiState.observe(viewLifecycleOwner) { sharedState ->
       presentRegisterButton(sharedState)
@@ -108,6 +101,19 @@ class EnterPhoneNumberV2Fragment : LoggingFragment(R.layout.fragment_registratio
     }
 
     fragmentViewModel.uiState.observe(viewLifecycleOwner) { fragmentState ->
+
+      fragmentState.phoneNumberFormatter?.let {
+        if (it != currentPhoneNumberFormatter) {
+          currentPhoneNumberFormatter?.let { oldWatcher ->
+            Log.d(TAG, "Removing current phone number formatter in fragment")
+            phoneNumberInputLayout.removeTextChangedListener(oldWatcher)
+          }
+          phoneNumberInputLayout.addTextChangedListener(it)
+          currentPhoneNumberFormatter = it
+          Log.d(TAG, "Updating phone number formatter in fragment")
+        }
+      }
+
       if (fragmentViewModel.isEnteredNumberValid(fragmentState)) {
         sharedViewModel.setPhoneNumber(fragmentViewModel.parsePhoneNumber(fragmentState))
       } else {
@@ -121,12 +127,26 @@ class EnterPhoneNumberV2Fragment : LoggingFragment(R.layout.fragment_registratio
 
     initializeInputFields()
 
+    val existingPhoneNumber = sharedViewModel.uiState.value?.phoneNumber
+    if (existingPhoneNumber != null) {
+      fragmentViewModel.restoreState(existingPhoneNumber)
+      fragmentViewModel.phoneNumber()?.let {
+        phoneNumberInputLayout.setText(it.nationalNumber.toString())
+      }
+    } else if (spinnerView.editableText.isBlank()) {
+      spinnerView.setText(fragmentViewModel.countryPrefix().toString())
+    }
+
     ViewUtil.focusAndShowKeyboard(phoneNumberInputLayout)
   }
 
   private fun initializeInputFields() {
+    binding.countryCode.editText?.addTextChangedListener { s ->
+      val countryCode: Int = s.toString().toInt()
+      fragmentViewModel.setCountry(countryCode)
+    }
+
     phoneNumberInputLayout.addTextChangedListener {
-      // TODO [regv2]: country code as you type formatter
       fragmentViewModel.setPhoneNumber(it?.toString())
     }
     phoneNumberInputLayout.onFocusChangeListener = View.OnFocusChangeListener { _: View?, hasFocus: Boolean ->
@@ -155,7 +175,6 @@ class EnterPhoneNumberV2Fragment : LoggingFragment(R.layout.fragment_registratio
       }
 
       fragmentViewModel.supportedCountryPrefixes.firstOrNull { it.toString() == s.toString() }?.let {
-        // TODO [regv2]: setCountryFormatter(it.regionCode)
         fragmentViewModel.setCountry(it.digits)
         val numberLength: Int = phoneNumberInputLayout.text?.length ?: 0
         phoneNumberInputLayout.setSelection(numberLength, numberLength)

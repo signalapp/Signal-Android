@@ -12,7 +12,6 @@ import androidx.activity.viewModels
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BaseActivity
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.registration.v2.ui.shared.RegistrationV2ViewModel
 
 /**
  * Activity to hold the entire registration process.

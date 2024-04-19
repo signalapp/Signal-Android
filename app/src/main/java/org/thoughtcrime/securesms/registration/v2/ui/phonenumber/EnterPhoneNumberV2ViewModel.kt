@@ -5,13 +5,18 @@
 
 package org.thoughtcrime.securesms.registration.v2.ui.phonenumber
 
+import android.telephony.PhoneNumberFormattingTextWatcher
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
 import com.google.i18n.phonenumbers.NumberParseException
 import com.google.i18n.phonenumbers.PhoneNumberUtil
 import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.registration.util.CountryPrefix
 
@@ -50,6 +55,18 @@ class EnterPhoneNumberV2ViewModel : ViewModel() {
     val matchingIndex = countryCodeToAdapterIndex(digits)
     store.update {
       it.copy(countryPrefixIndex = matchingIndex)
+    }
+
+    viewModelScope.launch {
+      withContext(Dispatchers.Default) {
+        val regionCode = PhoneNumberUtil.getInstance().getRegionCodeForCountryCode(digits)
+        val textWatcher = PhoneNumberFormattingTextWatcher(regionCode)
+
+        store.update {
+          Log.d(TAG, "Updating phone number formatter in state")
+          it.copy(phoneNumberFormatter = textWatcher)
+        }
+      }
     }
   }
 

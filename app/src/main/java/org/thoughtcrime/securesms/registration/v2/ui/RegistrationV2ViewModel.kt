@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.registration.v2.ui.shared
+package org.thoughtcrime.securesms.registration.v2.ui
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
@@ -26,7 +26,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.registration.RegistrationData
 import org.thoughtcrime.securesms.registration.RegistrationUtil
 import org.thoughtcrime.securesms.registration.v2.data.RegistrationRepository
-import org.thoughtcrime.securesms.registration.v2.ui.toE164
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.dualsim.MccMncProducer

@@ -24,8 +24,8 @@ import org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate.setDebugLogSubmitMultiTapView
 import org.thoughtcrime.securesms.registration.fragments.SignalStrengthPhoneStateListener
-import org.thoughtcrime.securesms.registration.v2.ui.shared.RegistrationCheckpoint
-import org.thoughtcrime.securesms.registration.v2.ui.shared.RegistrationV2ViewModel
+import org.thoughtcrime.securesms.registration.v2.ui.RegistrationCheckpoint
+import org.thoughtcrime.securesms.registration.v2.ui.RegistrationV2ViewModel
 
 /**
  * The final screen of account registration, where the user enters their verification code.
