@@ -930,7 +930,20 @@
 
     <fragment
         android:id="@+id/remoteBackupsSettingsFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.app.chats.backups.RemoteBackupsSettingsFragment" />
+        android:name="org.thoughtcrime.securesms.components.settings.app.chats.backups.RemoteBackupsSettingsFragment">
+
+        <action
+            android:id="@+id/action_remoteBackupsSettingsFragment_to_backupsTypeSettingsFragment"
+            app:destination="@id/backupsTypeSettingsFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/backupsTypeSettingsFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.chats.backups.type.BackupsTypeSettingsFragment" />
 
     <include app:graph="@navigation/username_link_settings" />
     <include app:graph="@navigation/story_privacy_settings" />

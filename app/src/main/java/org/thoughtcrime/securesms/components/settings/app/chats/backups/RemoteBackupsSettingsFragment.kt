@@ -52,6 +52,7 @@ import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.util.DateUtils
+import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.viewModel
 import java.math.BigDecimal
 import java.util.Currency
@@ -130,8 +131,8 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
       viewModel.turnOffAndDeleteBackups()
     }
 
-    override fun onChangeBackupsTypeClick() {
-      // TODO - launch flow at appropriate point
+    override fun onBackupsTypeClick() {
+      findNavController().safeNavigate(R.id.action_remoteBackupsSettingsFragment_to_backupsTypeSettingsFragment)
     }
   }
 }
@@ -142,7 +143,7 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
 private interface ContentCallbacks {
   fun onNavigationClick() = Unit
   fun onEnableBackupsClick() = Unit
-  fun onChangeBackupsTypeClick() = Unit
+  fun onBackupsTypeClick() = Unit
   fun onBackUpUsingCellularClick(canUseCellular: Boolean) = Unit
   fun onViewPaymentHistory() = Unit
   fun onBackupNowClick() = Unit
@@ -184,7 +185,7 @@ private fun RemoteBackupsSettingsContent(
         BackupTypeRow(
           messageBackupsType = messageBackupsType,
           onEnableBackupsClick = contentCallbacks::onEnableBackupsClick,
-          onChangeBackupsTypeClick = contentCallbacks::onChangeBackupsTypeClick
+          onChangeBackupsTypeClick = contentCallbacks::onBackupsTypeClick
         )
       }
 
