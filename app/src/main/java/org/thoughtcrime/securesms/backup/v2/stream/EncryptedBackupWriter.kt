@@ -13,7 +13,6 @@ import org.whispersystems.signalservice.api.backup.BackupKey
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import java.io.IOException
 import java.io.OutputStream
-import java.util.zip.GZIPOutputStream
 import javax.crypto.Cipher
 import javax.crypto.CipherOutputStream
 import javax.crypto.Mac
@@ -33,7 +32,7 @@ class EncryptedBackupWriter(
   private val append: (ByteArray) -> Unit
 ) : BackupExportWriter {
 
-  private val mainStream: GZIPOutputStream
+  private val mainStream: PaddedGzipOutputStream
   private val macStream: MacOutputStream
 
   init {
@@ -48,13 +47,9 @@ class EncryptedBackupWriter(
     }
 
     macStream = MacOutputStream(outputStream, mac)
+    val cipherStream = CipherOutputStream(macStream, cipher)
 
-    mainStream = GZIPOutputStream(
-      CipherOutputStream(
-        macStream,
-        cipher
-      )
-    )
+    mainStream = PaddedGzipOutputStream(cipherStream)
   }
 
   override fun write(header: BackupInfo) {

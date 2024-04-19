@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.backup.v2.stream
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
+import org.signal.core.util.Hex
 import org.thoughtcrime.securesms.backup.v2.proto.AccountData
 import org.thoughtcrime.securesms.backup.v2.proto.BackupInfo
 import org.thoughtcrime.securesms.backup.v2.proto.Frame
@@ -27,13 +28,15 @@ class EncryptedBackupReaderWriterTest {
 
     val frameCount = 10_000
     EncryptedBackupWriter(key, aci, outputStream, append = { outputStream.write(it) }).use { writer ->
-      writer.write(BackupInfo(1, 1000L))
+      writer.write(BackupInfo(version = 1, backupTimeMs = 1000L))
+
       for (i in 0 until frameCount) {
         writer.write(Frame(account = AccountData(username = "username-$i")))
       }
     }
 
     val ciphertext: ByteArray = outputStream.toByteArray()
+    println(ciphertext.size)
 
     val frames: List<Frame> = EncryptedBackupReader(key, aci, ciphertext.size.toLong()) { ciphertext.inputStream() }.use { reader ->
       assertEquals(reader.backupInfo?.version, 1L)
@@ -46,5 +49,29 @@ class EncryptedBackupReaderWriterTest {
     for (i in 0 until frameCount) {
       assertEquals("username-$i", frames[i].account?.username)
     }
+  }
+
+  @Test
+  fun `padding limits number of sizes`() {
+    val key = BackupKey(Util.getSecretBytes(32))
+    val aci = ACI.from(UUID.randomUUID())
+
+    val sizes = (1..10)
+      .map { frameCount ->
+        val outputStream = ByteArrayOutputStream()
+
+        EncryptedBackupWriter(key, aci, outputStream, append = { outputStream.write(it) }).use { writer ->
+          writer.write(BackupInfo(version = 1, backupTimeMs = 1000L))
+
+          for (i in 0 until frameCount) {
+            writer.write(Frame(account = AccountData(username = Hex.toStringCondensed(Util.getSecretBytes(32)))))
+          }
+        }
+
+        outputStream.toByteArray().size
+      }
+      .toSet()
+
+    assertEquals(1, sizes.size)
   }
 }
