@@ -136,6 +136,10 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     repository.addRemoteMegaphone(RemoteMegaphoneRecord.ActionId.DONATE_FOR_FRIEND)
   }
 
+  fun enqueueSubscriptionRedemption() {
+    repository.enqueueSubscriptionRedemption()
+  }
+
   fun refresh() {
     store.update { getState().copy(emojiVersion = it.emojiVersion) }
   }

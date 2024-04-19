@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 
+import org.signal.core.util.Base64;
 import org.signal.core.util.logging.Log;
 import org.signal.donations.PaymentSourceType;
 import org.signal.donations.StripeDeclineCode;
@@ -16,22 +17,21 @@ import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation;
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialRequestContext;
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialResponse;
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationsConfigurationExtensionsKt;
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository;
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError;
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource;
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.PayPalDeclineCode;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.DonationReceiptRecord;
+import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.DonationErrorValue;
 import org.thoughtcrime.securesms.database.model.databaseprotos.TerminalDonationQueue;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.subscription.Subscriber;
-import org.signal.core.util.Base64;
-import org.whispersystems.signalservice.api.services.DonationsService;
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription;
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId;
 import org.whispersystems.signalservice.internal.ServiceResponse;
@@ -45,7 +45,10 @@ import okio.ByteString;
 /**
  * Job responsible for submitting ReceiptCredentialRequest objects to the server until
  * we get a response.
+ *
+ *  * @deprecated Replaced with InAppPaymentRecurringContextJob
  */
+@Deprecated()
 public class SubscriptionReceiptRequestResponseJob extends BaseJob {
 
   private static final String TAG = Log.tag(SubscriptionReceiptRequestResponseJob.class);
@@ -57,8 +60,6 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
   private static final String DATA_IS_FOR_KEEP_ALIVE = "data.is.for.keep.alive";
   private static final String DATA_UI_SESSION_KEY    = "data.ui.session.key";
   private static final String DATA_TERMINAL_DONATION = "data.terminal.donation";
-
-  public static final Object MUTEX = new Object();
 
   private final SubscriberId                           subscriberId;
   private final boolean                                isForKeepAlive;
@@ -85,13 +86,10 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
     );
   }
 
-  public static JobManager.Chain createSubscriptionContinuationJobChain(long uiSessionKey, @NonNull TerminalDonationQueue.TerminalDonation terminalDonation) {
-    return createSubscriptionContinuationJobChain(false, uiSessionKey, terminalDonation);
-  }
-
   public static JobManager.Chain createSubscriptionContinuationJobChain(boolean isForKeepAlive, long uiSessionKey, @NonNull TerminalDonationQueue.TerminalDonation terminalDonation) {
-    Subscriber                            subscriber                         = SignalStore.donationsValues().requireSubscriber();
-    SubscriptionReceiptRequestResponseJob requestReceiptJob                  = createJob(subscriber.getSubscriberId(), isForKeepAlive, uiSessionKey, terminalDonation);
+    // TODO [alex] db on main?
+    InAppPaymentSubscriberRecord          subscriber        = InAppPaymentsRepository.requireSubscriber(InAppPaymentSubscriberRecord.Type.DONATION);
+    SubscriptionReceiptRequestResponseJob requestReceiptJob = createJob(subscriber.getSubscriberId(), isForKeepAlive, uiSessionKey, terminalDonation);
     DonationReceiptRedemptionJob          redeemReceiptJob                   = DonationReceiptRedemptionJob.createJobForSubscription(requestReceiptJob.getErrorSource(), uiSessionKey, terminalDonation.isLongRunningPaymentMethod);
     RefreshOwnProfileJob                  refreshOwnProfileJob               = RefreshOwnProfileJob.forSubscription();
     MultiDeviceProfileContentUpdateJob    multiDeviceProfileContentUpdateJob = new MultiDeviceProfileContentUpdateJob();
@@ -142,7 +140,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
 
   @Override
   protected void onRun() throws Exception {
-    synchronized (MUTEX) {
+    synchronized (InAppPaymentSubscriberRecord.Type.DONATION) {
       doRun();
     }
   }
@@ -329,7 +327,6 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
 
     DonationError.routeBackgroundError(
         context,
-        uiSessionKey,
         DonationError.genericBadgeRedemptionFailure(getErrorSource())
     );
   }
@@ -341,7 +338,6 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
 
     DonationError.routeBackgroundError(
         context,
-        uiSessionKey,
         paymentFailure,
         terminalDonation.isLongRunningPaymentMethod
     );
@@ -358,7 +354,9 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
    * linked devices.
    */
   private void onPaymentFailure(@NonNull ActiveSubscription.Subscription subscription, @Nullable ActiveSubscription.ChargeFailure chargeFailure, boolean isForKeepAlive) {
-    SignalStore.donationsValues().setShouldCancelSubscriptionBeforeNextSubscribeAttempt(true);
+    InAppPaymentSubscriberRecord subscriberRecord = InAppPaymentsRepository.requireSubscriber(InAppPaymentSubscriberRecord.Type.DONATION);
+    InAppPaymentsRepository.setShouldCancelSubscriptionBeforeNextSubscribeAttempt(subscriberRecord, true);
+
     if (isForKeepAlive) {
       Log.d(TAG, "Subscription canceled during keep-alive. Setting UnexpectedSubscriptionCancelation state...", true);
       SignalStore.donationsValues().setUnexpectedSubscriptionCancelationChargeFailure(chargeFailure);

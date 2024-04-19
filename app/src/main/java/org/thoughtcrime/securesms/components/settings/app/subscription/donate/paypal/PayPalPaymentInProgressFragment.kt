@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.donate.Do
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorActionResult
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorStage
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
+import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.databinding.DonationInProgressFragmentBinding
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.whispersystems.signalservice.api.subscriptions.PayPalCreatePaymentIntentResponse
@@ -59,15 +60,14 @@ class PayPalPaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
       viewModel.onBeginNewAction()
       when (args.action) {
         DonationProcessorAction.PROCESS_NEW_DONATION -> {
-          viewModel.processNewDonation(args.request, this::oneTimeConfirmationPipeline, this::monthlyConfirmationPipeline)
+          viewModel.processNewDonation(args.inAppPayment!!, this::oneTimeConfirmationPipeline, this::monthlyConfirmationPipeline)
         }
         DonationProcessorAction.UPDATE_SUBSCRIPTION -> {
-          viewModel.updateSubscription(args.request)
+          viewModel.updateSubscription(args.inAppPayment!!)
         }
         DonationProcessorAction.CANCEL_SUBSCRIPTION -> {
-          viewModel.cancelSubscription()
+          viewModel.cancelSubscription(InAppPaymentSubscriberRecord.Type.DONATION) // TODO [message-backups] Remove hardcode
         }
-        else -> error("Unsupported action: ${args.action}")
       }
     }
 
@@ -89,7 +89,7 @@ class PayPalPaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
           bundleOf(
             REQUEST_KEY to DonationProcessorActionResult(
               action = args.action,
-              request = args.request,
+              inAppPayment = args.inAppPayment,
               status = DonationProcessorActionResult.Status.FAILURE
             )
           )
@@ -103,7 +103,7 @@ class PayPalPaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
           bundleOf(
             REQUEST_KEY to DonationProcessorActionResult(
               action = args.action,
-              request = args.request,
+              inAppPayment = args.inAppPayment,
               status = DonationProcessorActionResult.Status.SUCCESS
             )
           )
@@ -128,7 +128,7 @@ class PayPalPaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
         if (result != null) {
           emitter.onSuccess(result.copy(paymentId = createPaymentIntentResponse.paymentId))
         } else {
-          emitter.onError(DonationError.UserCancelledPaymentError(args.request.donateToSignalType.toErrorSource()))
+          emitter.onError(DonationError.UserCancelledPaymentError(args.inAppPaymentType.toErrorSource()))
         }
       }
 
@@ -156,7 +156,7 @@ class PayPalPaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
         if (result) {
           emitter.onSuccess(PayPalPaymentMethodId(createPaymentIntentResponse.token))
         } else {
-          emitter.onError(DonationError.UserCancelledPaymentError(args.request.donateToSignalType.toErrorSource()))
+          emitter.onError(DonationError.UserCancelledPaymentError(args.inAppPaymentType.toErrorSource()))
         }
       }
 

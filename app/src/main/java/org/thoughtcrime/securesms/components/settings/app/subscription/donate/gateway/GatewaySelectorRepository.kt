@@ -2,7 +2,11 @@ package org.thoughtcrime.securesms.components.settings.app.subscription.donate.g
 
 import io.reactivex.rxjava3.core.Single
 import org.signal.core.util.money.FiatMoney
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.getAvailablePaymentMethods
+import org.thoughtcrime.securesms.database.InAppPaymentTable
+import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.payments.currency.CurrencyUtil
 import org.whispersystems.signalservice.api.services.DonationsService
 import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
@@ -18,10 +22,10 @@ class GatewaySelectorRepository(
       .map { configuration ->
         val available = configuration.getAvailablePaymentMethods(currencyCode).map {
           when (it) {
-            SubscriptionsConfiguration.PAYPAL -> listOf(GatewayResponse.Gateway.PAYPAL)
-            SubscriptionsConfiguration.CARD -> listOf(GatewayResponse.Gateway.CREDIT_CARD, GatewayResponse.Gateway.GOOGLE_PAY)
-            SubscriptionsConfiguration.SEPA_DEBIT -> listOf(GatewayResponse.Gateway.SEPA_DEBIT)
-            SubscriptionsConfiguration.IDEAL -> listOf(GatewayResponse.Gateway.IDEAL)
+            SubscriptionsConfiguration.PAYPAL -> listOf(InAppPaymentData.PaymentMethodType.PAYPAL)
+            SubscriptionsConfiguration.CARD -> listOf(InAppPaymentData.PaymentMethodType.CARD, InAppPaymentData.PaymentMethodType.GOOGLE_PAY)
+            SubscriptionsConfiguration.SEPA_DEBIT -> listOf(InAppPaymentData.PaymentMethodType.SEPA_DEBIT)
+            SubscriptionsConfiguration.IDEAL -> listOf(InAppPaymentData.PaymentMethodType.IDEAL)
             else -> listOf()
           }
         }.flatten().toSet()
@@ -33,8 +37,20 @@ class GatewaySelectorRepository(
       }
   }
 
+  fun setInAppPaymentMethodType(inAppPayment: InAppPaymentTable.InAppPayment, paymentMethodType: InAppPaymentData.PaymentMethodType): Single<InAppPaymentTable.InAppPayment> {
+    return Single.fromCallable {
+      SignalDatabase.inAppPayments.update(
+        inAppPayment.copy(
+          data = inAppPayment.data.copy(
+            paymentMethodType = paymentMethodType
+          )
+        )
+      )
+    }.flatMap { InAppPaymentsRepository.requireInAppPayment(inAppPayment.id) }
+  }
+
   data class GatewayConfiguration(
-    val availableGateways: Set<GatewayResponse.Gateway>,
+    val availableGateways: Set<InAppPaymentData.PaymentMethodType>,
     val sepaEuroMaximum: FiatMoney?
   )
 }

@@ -89,6 +89,7 @@ import org.thoughtcrime.securesms.database.helpers.migration.V228_AddNameCollisi
 import org.thoughtcrime.securesms.database.helpers.migration.V229_MarkMissedCallEventsNotified
 import org.thoughtcrime.securesms.database.helpers.migration.V230_UnreadCountIndices
 import org.thoughtcrime.securesms.database.helpers.migration.V231_ArchiveThumbnailColumns
+import org.thoughtcrime.securesms.database.helpers.migration.V232_CreateInAppPaymentTable
 
 /**
  * Contains all of the database migrations for [SignalDatabase]. Broken into a separate file for cleanliness.
@@ -180,10 +181,11 @@ object SignalDatabaseMigrations {
     228 to V228_AddNameCollisionTables,
     229 to V229_MarkMissedCallEventsNotified,
     230 to V230_UnreadCountIndices,
-    231 to V231_ArchiveThumbnailColumns
+    231 to V231_ArchiveThumbnailColumns,
+    232 to V232_CreateInAppPaymentTable
   )
 
-  const val DATABASE_VERSION = 231
+  const val DATABASE_VERSION = 232
 
   @JvmStatic
   fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {

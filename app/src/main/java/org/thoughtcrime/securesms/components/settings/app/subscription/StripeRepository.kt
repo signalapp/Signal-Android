@@ -13,11 +13,13 @@ import org.signal.donations.PaymentSourceType
 import org.signal.donations.StripeApi
 import org.signal.donations.StripeIntentAccessor
 import org.signal.donations.json.StripeIntentStatus
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toPaymentMethodType
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
+import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError.OneTimeDonationError
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
@@ -43,11 +45,14 @@ import org.whispersystems.signalservice.internal.ServiceResponse
  * 1. Create a PaymentMethod vai the Stripe API, utilizing the token from Google Pay
  * 1. Confirm the PaymentIntent via the Stripe API
  */
-class StripeRepository(activity: Activity) : StripeApi.PaymentIntentFetcher, StripeApi.SetupIntentHelper {
+class StripeRepository(
+  activity: Activity,
+  private val subscriberType: InAppPaymentSubscriberRecord.Type = InAppPaymentSubscriberRecord.Type.DONATION
+) : StripeApi.PaymentIntentFetcher, StripeApi.SetupIntentHelper {
 
   private val googlePayApi = GooglePayApi(activity, StripeApi.Gateway(Environment.Donations.STRIPE_CONFIGURATION), Environment.Donations.GOOGLE_PAY_CONFIGURATION)
   private val stripeApi = StripeApi(Environment.Donations.STRIPE_CONFIGURATION, this, this, ApplicationDependencies.getOkHttpClient())
-  private val monthlyDonationRepository = MonthlyDonationRepository(ApplicationDependencies.getDonationsService())
+  private val recurringInAppPaymentRepository = RecurringInAppPaymentRepository(ApplicationDependencies.getDonationsService())
 
   fun isGooglePayAvailable(): Completable {
     return googlePayApi.queryIsReadyToPay()
@@ -96,7 +101,7 @@ class StripeRepository(activity: Activity) : StripeApi.PaymentIntentFetcher, Str
 
     return stripeApi.createPaymentIntent(price, badgeLevel, paymentSourceType)
       .onErrorResumeNext {
-        OneTimeDonationRepository.handleCreatePaymentIntentError(it, badgeRecipient, paymentSourceType)
+        OneTimeInAppPaymentRepository.handleCreatePaymentIntentError(it, badgeRecipient, paymentSourceType)
       }
       .flatMap { result ->
         val recipient = Recipient.resolved(badgeRecipient)
@@ -104,9 +109,9 @@ class StripeRepository(activity: Activity) : StripeApi.PaymentIntentFetcher, Str
 
         Log.d(TAG, "Created payment intent for $price.", true)
         when (result) {
-          is StripeApi.CreatePaymentIntentResult.AmountIsTooSmall -> Single.error(DonationError.oneTimeDonationAmountTooSmall(errorSource))
-          is StripeApi.CreatePaymentIntentResult.AmountIsTooLarge -> Single.error(DonationError.oneTimeDonationAmountTooLarge(errorSource))
-          is StripeApi.CreatePaymentIntentResult.CurrencyIsNotSupported -> Single.error(DonationError.invalidCurrencyForOneTimeDonation(errorSource))
+          is StripeApi.CreatePaymentIntentResult.AmountIsTooSmall -> Single.error(OneTimeDonationError.AmountTooSmallError(errorSource))
+          is StripeApi.CreatePaymentIntentResult.AmountIsTooLarge -> Single.error(OneTimeDonationError.AmountTooLargeError(errorSource))
+          is StripeApi.CreatePaymentIntentResult.CurrencyIsNotSupported -> Single.error(OneTimeDonationError.InvalidCurrencyError(errorSource))
           is StripeApi.CreatePaymentIntentResult.Success -> Single.just(result.paymentIntent)
         }
       }.subscribeOn(Schedulers.io())
@@ -165,7 +170,7 @@ class StripeRepository(activity: Activity) : StripeApi.PaymentIntentFetcher, Str
    * situation by simply deleting the old subscriber id on the service and replacing it.
    */
   private fun createPaymentMethod(paymentSourceType: PaymentSourceType.Stripe, retryOn409: Boolean = true): Single<StripeClientSecret> {
-    return Single.fromCallable { SignalStore.donationsValues().requireSubscriber() }
+    return Single.fromCallable { InAppPaymentsRepository.requireSubscriber(subscriberType) }
       .flatMap {
         Single.fromCallable {
           ApplicationDependencies
@@ -175,7 +180,7 @@ class StripeRepository(activity: Activity) : StripeApi.PaymentIntentFetcher, Str
       }
       .flatMap { serviceResponse ->
         if (retryOn409 && serviceResponse.status == 409) {
-          monthlyDonationRepository.rotateSubscriberId().andThen(createPaymentMethod(paymentSourceType, retryOn409 = false))
+          recurringInAppPaymentRepository.rotateSubscriberId(subscriberType).andThen(createPaymentMethod(paymentSourceType, retryOn409 = false))
         } else {
           serviceResponse.flattenResult()
         }
@@ -230,24 +235,24 @@ class StripeRepository(activity: Activity) : StripeApi.PaymentIntentFetcher, Str
   ): Completable {
     return Single.fromCallable {
       Log.d(TAG, "Getting the subscriber...")
-      SignalStore.donationsValues().requireSubscriber()
-    }.flatMap {
+      InAppPaymentsRepository.requireSubscriber(subscriberType)
+    }.flatMapCompletable { subscriberRecord ->
       Log.d(TAG, "Setting default payment method via Signal service...")
       Single.fromCallable {
         if (paymentSourceType == PaymentSourceType.Stripe.IDEAL) {
           ApplicationDependencies
             .getDonationsService()
-            .setDefaultIdealPaymentMethod(it.subscriberId, setupIntentId)
+            .setDefaultIdealPaymentMethod(subscriberRecord.subscriberId, setupIntentId)
         } else {
           ApplicationDependencies
             .getDonationsService()
-            .setDefaultStripePaymentMethod(it.subscriberId, paymentMethodId)
+            .setDefaultStripePaymentMethod(subscriberRecord.subscriberId, paymentMethodId)
         }
+      }.flatMap(ServiceResponse<EmptyResponse>::flattenResult).ignoreElement().doOnComplete {
+        Log.d(TAG, "Set default payment method via Signal service!")
+        Log.d(TAG, "Storing the subscription payment source type locally.")
+        SignalDatabase.inAppPaymentSubscribers.setPaymentMethod(subscriberRecord.subscriberId, paymentSourceType.toPaymentMethodType())
       }
-    }.flatMap(ServiceResponse<EmptyResponse>::flattenResult).ignoreElement().doOnComplete {
-      Log.d(TAG, "Set default payment method via Signal service!")
-      Log.d(TAG, "Storing the subscription payment source type locally.")
-      SignalStore.donationsValues().setSubscriptionPaymentSourceType(paymentSourceType)
     }
   }
 

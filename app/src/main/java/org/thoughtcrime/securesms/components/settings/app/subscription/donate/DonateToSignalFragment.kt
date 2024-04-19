@@ -19,6 +19,7 @@ import org.signal.core.util.dp
 import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.badges.models.BadgePreview
 import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
@@ -27,12 +28,10 @@ import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.app.subscription.boost.Boost
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayResponse
-import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.CurrencySelection
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.NetworkFailure
 import org.thoughtcrime.securesms.components.settings.configure
+import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.databinding.DonateToSignalFragmentBinding
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.subscription.Subscription
@@ -68,9 +67,9 @@ class DonateToSignalFragment :
 
     companion object {
       @JvmStatic
-      fun create(donateToSignalType: DonateToSignalType): DialogFragment {
+      fun create(inAppPaymentType: InAppPaymentTable.Type): DialogFragment {
         return Dialog().apply {
-          arguments = DonateToSignalFragmentArgs.Builder(donateToSignalType).build().toBundle()
+          arguments = DonateToSignalFragmentArgs.Builder(inAppPaymentType).build().toBundle()
         }
       }
     }
@@ -108,7 +107,11 @@ class DonateToSignalFragment :
   }
 
   override fun bindAdapter(adapter: MappingAdapter) {
-    donationCheckoutDelegate = DonationCheckoutDelegate(this, this, viewModel.uiSessionKey, DonationErrorSource.ONE_TIME, DonationErrorSource.MONTHLY)
+    donationCheckoutDelegate = DonationCheckoutDelegate(
+      this,
+      this,
+      viewModel.inAppPaymentId
+    )
 
     val recyclerView = this.recyclerView!!
     recyclerView.overScrollMode = RecyclerView.OVER_SCROLL_IF_CONTENT_SCROLLS
@@ -137,7 +140,7 @@ class DonateToSignalFragment :
       when (action) {
         is DonateToSignalAction.DisplayCurrencySelectionDialog -> {
           val navAction = DonateToSignalFragmentDirections.actionDonateToSignalFragmentToSetDonationCurrencyFragment(
-            action.donateToSignalType == DonateToSignalType.ONE_TIME,
+            action.inAppPaymentType,
             action.supportedCurrencies.toTypedArray()
           )
 
@@ -145,8 +148,8 @@ class DonateToSignalFragment :
         }
 
         is DonateToSignalAction.DisplayGatewaySelectorDialog -> {
-          Log.d(TAG, "Presenting gateway selector for ${action.gatewayRequest}")
-          val navAction = DonateToSignalFragmentDirections.actionDonateToSignalFragmentToGatewaySelectorBottomSheetDialog(action.gatewayRequest)
+          Log.d(TAG, "Presenting gateway selector for ${action.inAppPayment}")
+          val navAction = DonateToSignalFragmentDirections.actionDonateToSignalFragmentToGatewaySelectorBottomSheetDialog(action.inAppPayment)
 
           findNavController().safeNavigate(navAction)
         }
@@ -155,7 +158,8 @@ class DonateToSignalFragment :
           findNavController().safeNavigate(
             DonateToSignalFragmentDirections.actionDonateToSignalFragmentToStripePaymentInProgressFragment(
               DonationProcessorAction.CANCEL_SUBSCRIPTION,
-              action.gatewayRequest
+              null,
+              InAppPaymentTable.Type.RECURRING_DONATION
             )
           )
         }
@@ -164,7 +168,8 @@ class DonateToSignalFragment :
           findNavController().safeNavigate(
             DonateToSignalFragmentDirections.actionDonateToSignalFragmentToStripePaymentInProgressFragment(
               DonationProcessorAction.UPDATE_SUBSCRIPTION,
-              action.gatewayRequest
+              action.inAppPayment,
+              action.inAppPayment.type
             )
           )
         }
@@ -234,7 +239,7 @@ class DonateToSignalFragment :
 
       customPref(
         DonationPillToggle.Model(
-          selected = state.donateToSignalType,
+          selected = state.inAppPaymentType,
           onClick = {
             viewModel.toggleDonationType()
           }
@@ -243,15 +248,15 @@ class DonateToSignalFragment :
 
       space(10.dp)
 
-      when (state.donateToSignalType) {
-        DonateToSignalType.ONE_TIME -> displayOneTimeSelection(state.areFieldsEnabled, state.oneTimeDonationState)
-        DonateToSignalType.MONTHLY -> displayMonthlySelection(state.areFieldsEnabled, state.monthlyDonationState)
-        DonateToSignalType.GIFT -> error("This fragment does not support gifts.")
+      when (state.inAppPaymentType) {
+        InAppPaymentTable.Type.ONE_TIME_DONATION -> displayOneTimeSelection(state.areFieldsEnabled, state.oneTimeDonationState)
+        InAppPaymentTable.Type.RECURRING_DONATION -> displayMonthlySelection(state.areFieldsEnabled, state.monthlyDonationState)
+        else -> error("This fragment does not support ${state.inAppPaymentType}.")
       }
 
       space(20.dp)
 
-      if (state.donateToSignalType == DonateToSignalType.MONTHLY && state.monthlyDonationState.isSubscriptionActive) {
+      if (state.inAppPaymentType == InAppPaymentTable.Type.RECURRING_DONATION && state.monthlyDonationState.isSubscriptionActive) {
         primaryButton(
           text = DSLSettingsText.from(R.string.SubscribeFragment__update_subscription),
           isEnabled = state.canUpdate,
@@ -317,7 +322,7 @@ class DonateToSignalFragment :
   }
 
   private fun showDonationPendingDialog(state: DonateToSignalState) {
-    val message = if (state.donateToSignalType == DonateToSignalType.ONE_TIME) {
+    val message = if (state.inAppPaymentType == InAppPaymentTable.Type.ONE_TIME_DONATION) {
       if (state.oneTimeDonationState.isOneTimeDonationLongRunning) {
         R.string.DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime
       } else if (state.oneTimeDonationState.isNonVerifiedIdeal) {
@@ -437,33 +442,34 @@ class DonateToSignalFragment :
     }
   }
 
-  override fun navigateToStripePaymentInProgress(gatewayRequest: GatewayRequest) {
-    findNavController().safeNavigate(DonateToSignalFragmentDirections.actionDonateToSignalFragmentToStripePaymentInProgressFragment(DonationProcessorAction.PROCESS_NEW_DONATION, gatewayRequest))
+  override fun navigateToStripePaymentInProgress(inAppPayment: InAppPaymentTable.InAppPayment) {
+    findNavController().safeNavigate(DonateToSignalFragmentDirections.actionDonateToSignalFragmentToStripePaymentInProgressFragment(DonationProcessorAction.PROCESS_NEW_DONATION, inAppPayment, inAppPayment.type))
   }
 
-  override fun navigateToPayPalPaymentInProgress(gatewayRequest: GatewayRequest) {
+  override fun navigateToPayPalPaymentInProgress(inAppPayment: InAppPaymentTable.InAppPayment) {
     findNavController().safeNavigate(
       DonateToSignalFragmentDirections.actionDonateToSignalFragmentToPaypalPaymentInProgressFragment(
         DonationProcessorAction.PROCESS_NEW_DONATION,
-        gatewayRequest
+        inAppPayment,
+        inAppPayment.type
       )
     )
   }
 
-  override fun navigateToCreditCardForm(gatewayRequest: GatewayRequest) {
-    findNavController().safeNavigate(DonateToSignalFragmentDirections.actionDonateToSignalFragmentToCreditCardFragment(gatewayRequest))
+  override fun navigateToCreditCardForm(inAppPayment: InAppPaymentTable.InAppPayment) {
+    findNavController().safeNavigate(DonateToSignalFragmentDirections.actionDonateToSignalFragmentToCreditCardFragment(inAppPayment))
   }
 
-  override fun navigateToIdealDetailsFragment(gatewayRequest: GatewayRequest) {
-    findNavController().safeNavigate(DonateToSignalFragmentDirections.actionDonateToSignalFragmentToIdealTransferDetailsFragment(gatewayRequest))
+  override fun navigateToIdealDetailsFragment(inAppPayment: InAppPaymentTable.InAppPayment) {
+    findNavController().safeNavigate(DonateToSignalFragmentDirections.actionDonateToSignalFragmentToIdealTransferDetailsFragment(inAppPayment))
   }
 
-  override fun navigateToBankTransferMandate(gatewayResponse: GatewayResponse) {
-    findNavController().safeNavigate(DonateToSignalFragmentDirections.actionDonateToSignalFragmentToBankTransferMandateFragment(gatewayResponse))
+  override fun navigateToBankTransferMandate(inAppPayment: InAppPaymentTable.InAppPayment) {
+    findNavController().safeNavigate(DonateToSignalFragmentDirections.actionDonateToSignalFragmentToBankTransferMandateFragment(inAppPayment))
   }
 
-  override fun onPaymentComplete(gatewayRequest: GatewayRequest) {
-    findNavController().safeNavigate(DonateToSignalFragmentDirections.actionDonateToSignalFragmentToThanksForYourSupportBottomSheetDialog(gatewayRequest.badge))
+  override fun onPaymentComplete(inAppPayment: InAppPaymentTable.InAppPayment) {
+    findNavController().safeNavigate(DonateToSignalFragmentDirections.actionDonateToSignalFragmentToThanksForYourSupportBottomSheetDialog(Badges.fromDatabaseBadge(inAppPayment.data.badge!!)))
   }
 
   override fun onProcessorActionProcessed() {
@@ -481,7 +487,7 @@ class DonateToSignalFragment :
 
   override fun onUserLaunchedAnExternalApplication() = Unit
 
-  override fun navigateToDonationPending(gatewayRequest: GatewayRequest) {
-    findNavController().safeNavigate(DonateToSignalFragmentDirections.actionDonateToSignalFragmentToDonationPendingBottomSheet(gatewayRequest))
+  override fun navigateToDonationPending(inAppPayment: InAppPaymentTable.InAppPayment) {
+    findNavController().safeNavigate(DonateToSignalFragmentDirections.actionDonateToSignalFragmentToDonationPendingBottomSheet(inAppPayment))
   }
 }

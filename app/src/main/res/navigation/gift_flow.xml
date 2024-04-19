@@ -13,8 +13,8 @@
             android:id="@+id/action_giftFlowStartFragment_to_setCurrencyFragment"
             app:destination="@id/setCurrencyFragment">
             <argument
-                android:name="isBoost"
-                app:argType="boolean" />
+                android:name="inAppPaymentType"
+                app:argType="org.thoughtcrime.securesms.database.InAppPaymentTable$Type" />
 
             <argument
                 android:name="supportedCurrencyCodes"
@@ -71,8 +71,8 @@
         tools:layout="@layout/dsl_settings_bottom_sheet">
 
         <argument
-            android:name="request"
-            app:argType="org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest"
+            android:name="in_app_payment"
+            app:argType="org.thoughtcrime.securesms.database.InAppPaymentTable$InAppPayment"
             app:nullable="false" />
 
     </dialog>
@@ -89,9 +89,12 @@
             app:nullable="false" />
 
         <argument
-            android:name="request"
-            app:argType="org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest"
-            app:nullable="false" />
+            android:name="in_app_payment"
+            app:argType="org.thoughtcrime.securesms.database.InAppPaymentTable$InAppPayment"
+            app:nullable="true" />
+        <argument
+            android:name="in_app_payment_type"
+            app:argType="org.thoughtcrime.securesms.database.InAppPaymentTable$Type" />
 
         <argument
             android:name="is_long_running"
@@ -109,8 +112,8 @@
         tools:layout="@layout/credit_card_fragment">
 
         <argument
-            android:name="request"
-            app:argType="org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest"
+            android:name="in_app_payment"
+            app:argType="org.thoughtcrime.securesms.database.InAppPaymentTable$InAppPayment"
             app:nullable="false" />
 
         <action
@@ -138,8 +141,8 @@
             app:nullable="false" />
 
         <argument
-            android:name="stripe3DSData"
-            app:argType="org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.Stripe3DSData"
+            android:name="in_app_payment"
+            app:argType="org.thoughtcrime.securesms.database.InAppPaymentTable$InAppPayment"
             app:nullable="false" />
     </dialog>
 
@@ -161,9 +164,12 @@
             app:nullable="false" />
 
         <argument
-            android:name="request"
-            app:argType="org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest"
-            app:nullable="false" />
+            android:name="in_app_payment"
+            app:argType="org.thoughtcrime.securesms.database.InAppPaymentTable$InAppPayment"
+            app:nullable="true" />
+        <argument
+            android:name="in_app_payment_type"
+            app:argType="org.thoughtcrime.securesms.database.InAppPaymentTable$Type" />
         <action
             android:id="@+id/action_paypalPaymentInProgressFragment_to_paypalConfirmationFragment"
             app:destination="@id/paypalConfirmationFragment" />
@@ -192,8 +198,8 @@
         tools:layout="@layout/dsl_settings_bottom_sheet">
 
         <argument
-            android:name="request"
-            app:argType="org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest"
+            android:name="in_app_payment"
+            app:argType="org.thoughtcrime.securesms.database.InAppPaymentTable$InAppPayment"
             app:nullable="false" />
     </dialog>
 </navigation>

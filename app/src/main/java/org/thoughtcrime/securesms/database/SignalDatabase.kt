@@ -74,6 +74,8 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
   val kyberPreKeyTable: KyberPreKeyTable = KyberPreKeyTable(context, this)
   val callLinkTable: CallLinkTable = CallLinkTable(context, this)
   val nameCollisionTables: NameCollisionTables = NameCollisionTables(context, this)
+  val inAppPaymentTable: InAppPaymentTable = InAppPaymentTable(context, this)
+  val inAppPaymentSubscriberTable: InAppPaymentSubscriberTable = InAppPaymentSubscriberTable(context, this)
 
   override fun onOpen(db: net.zetetic.database.sqlcipher.SQLiteDatabase) {
     db.setForeignKeyConstraintsEnabled(true)
@@ -111,6 +113,8 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     db.execSQL(CallTable.CREATE_TABLE)
     db.execSQL(KyberPreKeyTable.CREATE_TABLE)
     NameCollisionTables.createTables(db)
+    db.execSQL(InAppPaymentTable.CREATE_TABLE)
+    db.execSQL(InAppPaymentSubscriberTable.CREATE_TABLE)
     executeStatements(db, SearchTable.CREATE_TABLE)
     executeStatements(db, RemappedRecordTables.CREATE_TABLE)
     executeStatements(db, MessageSendLogTables.CREATE_TABLE)
@@ -535,5 +539,15 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     @get:JvmName("nameCollisions")
     val nameCollisions: NameCollisionTables
       get() = instance!!.nameCollisionTables
+
+    @get:JvmStatic
+    @get:JvmName("inAppPayments")
+    val inAppPayments: InAppPaymentTable
+      get() = instance!!.inAppPaymentTable
+
+    @get:JvmStatic
+    @get:JvmName("inAppPaymentSubscribers")
+    val inAppPaymentSubscribers: InAppPaymentSubscriberTable
+      get() = instance!!.inAppPaymentSubscriberTable
   }
 }

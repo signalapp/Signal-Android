@@ -501,7 +501,7 @@
 
         <argument
             android:name="start_type"
-            app:argType="org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalType"
+            app:argType="org.thoughtcrime.securesms.database.InAppPaymentTable$Type"
             app:nullable="false" />
 
     </action>
@@ -705,7 +705,7 @@
 
             <argument
                 android:name="start_type"
-                app:argType="org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalType"
+                app:argType="org.thoughtcrime.securesms.database.InAppPaymentTable$Type"
                 app:nullable="false" />
         </action>
     </fragment>

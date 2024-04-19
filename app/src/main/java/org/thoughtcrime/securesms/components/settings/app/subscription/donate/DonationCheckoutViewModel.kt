@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.components.settings.app.subscription.donate
 
 import androidx.lifecycle.ViewModel
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest
+import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.whispersystems.signalservice.api.util.Preconditions
 
 /**
@@ -14,17 +14,17 @@ class DonationCheckoutViewModel : ViewModel() {
     private val TAG = Log.tag(DonationCheckoutViewModel::class.java)
   }
 
-  private var gatewayRequest: GatewayRequest? = null
+  private var inAppPayment: InAppPaymentTable.InAppPayment? = null
 
-  fun provideGatewayRequestForGooglePay(request: GatewayRequest) {
+  fun provideGatewayRequestForGooglePay(inAppPayment: InAppPaymentTable.InAppPayment) {
     Log.d(TAG, "Provided with a gateway request.")
-    Preconditions.checkState(gatewayRequest == null)
-    gatewayRequest = request
+    Preconditions.checkState(this.inAppPayment == null)
+    this.inAppPayment = inAppPayment
   }
 
-  fun consumeGatewayRequestForGooglePay(): GatewayRequest? {
-    val request = gatewayRequest
-    gatewayRequest = null
+  fun consumeGatewayRequestForGooglePay(): InAppPaymentTable.InAppPayment? {
+    val request = inAppPayment
+    inAppPayment = null
     return request
   }
 }

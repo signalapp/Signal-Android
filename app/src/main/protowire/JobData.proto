@@ -62,3 +62,12 @@ message ArchiveAttachmentBackfillJobData {
 message ArchiveThumbnailUploadJobData {
   uint64 attachmentId = 1;
 }
+
+message InAppPaymentRedemptionJobData {
+  oneof id {
+    uint64 inAppPaymentId = 1;
+    uint64 giftMessageId  = 2;
+  }
+
+  bool makePrimary = 3;
+}

@@ -7,31 +7,29 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
 import org.signal.donations.PaymentSourceType
 import org.thoughtcrime.securesms.badges.models.Badge
+import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatMoney
 import org.thoughtcrime.securesms.components.settings.app.subscription.boost.Boost
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
+import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError.BadgeRedemptionError
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
+import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DonationReceiptRecord
-import org.thoughtcrime.securesms.database.model.databaseprotos.TerminalDonationQueue
+import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.thoughtcrime.securesms.jobmanager.JobTracker
-import org.thoughtcrime.securesms.jobs.BoostReceiptRequestResponseJob
-import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.jobs.InAppPaymentOneTimeContextJob
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.services.DonationsService
-import org.whispersystems.signalservice.internal.push.DonationProcessor
 import java.util.Currency
 import java.util.Locale
-import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 
-class OneTimeDonationRepository(private val donationsService: DonationsService) {
+class OneTimeInAppPaymentRepository(private val donationsService: DonationsService) {
 
   companion object {
-    private val TAG = Log.tag(OneTimeDonationRepository::class.java)
+    private val TAG = Log.tag(OneTimeInAppPaymentRepository::class.java)
 
     fun <T : Any> handleCreatePaymentIntentError(throwable: Throwable, badgeRecipient: RecipientId, paymentSourceType: PaymentSourceType): Single<T> {
       return if (throwable is DonationError) {
@@ -50,7 +48,7 @@ class OneTimeDonationRepository(private val donationsService: DonationsService) 
 
         if (recipient.isSelf) {
           Log.d(TAG, "Cannot send a gift to self.", true)
-          throw DonationError.GiftRecipientVerificationError.SelectedRecipientDoesNotSupportGifts
+          throw DonationError.GiftRecipientVerificationError.SelectedRecipientIsInvalid
         }
 
         if (recipient.isGroup || recipient.isDistributionList || recipient.registered != RecipientTable.RegisteredState.REGISTERED) {
@@ -93,20 +91,25 @@ class OneTimeDonationRepository(private val donationsService: DonationsService) 
   }
 
   fun waitForOneTimeRedemption(
-    gatewayRequest: GatewayRequest,
+    inAppPayment: InAppPaymentTable.InAppPayment,
     paymentIntentId: String,
-    donationProcessor: DonationProcessor,
     paymentSourceType: PaymentSourceType
   ): Completable {
     val isLongRunning = paymentSourceType == PaymentSourceType.Stripe.SEPADebit
-    val isBoost = gatewayRequest.recipientId == Recipient.self().id
+    val isBoost = inAppPayment.data.recipientId?.let { RecipientId.from(it) } == Recipient.self().id
     val donationErrorSource: DonationErrorSource = if (isBoost) DonationErrorSource.ONE_TIME else DonationErrorSource.GIFT
 
-    val waitOnRedemption = Completable.create {
+    val timeoutError: DonationError = if (isLongRunning) {
+      BadgeRedemptionError.DonationPending(donationErrorSource, inAppPayment)
+    } else {
+      BadgeRedemptionError.TimeoutWaitingForTokenError(donationErrorSource)
+    }
+
+    return Single.fromCallable {
       val donationReceiptRecord = if (isBoost) {
-        DonationReceiptRecord.createForBoost(gatewayRequest.fiat)
+        DonationReceiptRecord.createForBoost(inAppPayment.data.amount!!.toFiatMoney())
       } else {
-        DonationReceiptRecord.createForGift(gatewayRequest.fiat)
+        DonationReceiptRecord.createForGift(inAppPayment.data.amount!!.toFiatMoney())
       }
 
       val donationTypeLabel = donationReceiptRecord.type.code.replaceFirstChar { c -> if (c.isLowerCase()) c.titlecase(Locale.US) else c.toString() }
@@ -114,66 +117,30 @@ class OneTimeDonationRepository(private val donationsService: DonationsService) 
       Log.d(TAG, "Confirmed payment intent. Recording $donationTypeLabel receipt and submitting badge reimbursement job chain.", true)
       SignalDatabase.donationReceipts.addReceipt(donationReceiptRecord)
 
-      SignalStore.donationsValues().setPendingOneTimeDonation(
-        DonationSerializationHelper.createPendingOneTimeDonationProto(
-          gatewayRequest.badge,
-          paymentSourceType,
-          gatewayRequest.fiat
+      SignalDatabase.inAppPayments.update(
+        inAppPayment = inAppPayment.copy(
+          data = inAppPayment.data.copy(
+            redemption = InAppPaymentData.RedemptionState(
+              stage = InAppPaymentData.RedemptionState.Stage.INIT,
+              paymentIntentId = paymentIntentId
+            )
+          )
         )
       )
 
-      val terminalDonation = TerminalDonationQueue.TerminalDonation(
-        level = gatewayRequest.level,
-        isLongRunningPaymentMethod = isLongRunning
-      )
-
-      val countDownLatch = CountDownLatch(1)
-      var finalJobState: JobTracker.JobState? = null
-      val chain = if (isBoost) {
-        BoostReceiptRequestResponseJob.createJobChainForBoost(paymentIntentId, donationProcessor, gatewayRequest.uiSessionKey, terminalDonation)
-      } else {
-        BoostReceiptRequestResponseJob.createJobChainForGift(paymentIntentId, gatewayRequest.recipientId, gatewayRequest.additionalMessage, gatewayRequest.level, donationProcessor, gatewayRequest.uiSessionKey, terminalDonation)
+      InAppPaymentOneTimeContextJob.createJobChain(inAppPayment).enqueue()
+      inAppPayment.id
+    }.flatMap { inAppPaymentId ->
+      Log.d(TAG, "Awaiting completion of redemption chain for up to 10 seconds.", true)
+      InAppPaymentsRepository.observeUpdates(inAppPaymentId).filter {
+        it.state == InAppPaymentTable.State.END
+      }.take(1).firstOrError().timeout(10, TimeUnit.SECONDS, Single.error(timeoutError))
+    }.map {
+      if (it.data.error != null) {
+        Log.d(TAG, "Failure during redemption chain.", true)
+        throw DonationError.genericBadgeRedemptionFailure(DonationErrorSource.MONTHLY)
       }
-
-      chain.enqueue { _, jobState ->
-        if (jobState.isComplete) {
-          finalJobState = jobState
-          countDownLatch.countDown()
-        }
-      }
-
-      val timeoutError: DonationError = if (isLongRunning) {
-        DonationError.donationPending(donationErrorSource, gatewayRequest)
-      } else {
-        DonationError.timeoutWaitingForToken(donationErrorSource)
-      }
-
-      try {
-        if (countDownLatch.await(10, TimeUnit.SECONDS)) {
-          when (finalJobState) {
-            JobTracker.JobState.SUCCESS -> {
-              Log.d(TAG, "$donationTypeLabel request response job chain succeeded.", true)
-              it.onComplete()
-            }
-            JobTracker.JobState.FAILURE -> {
-              Log.d(TAG, "$donationTypeLabel request response job chain failed permanently.", true)
-              it.onError(DonationError.genericBadgeRedemptionFailure(donationErrorSource))
-            }
-            else -> {
-              Log.d(TAG, "$donationTypeLabel request response job chain ignored due to in-progress jobs.", true)
-              it.onError(timeoutError)
-            }
-          }
-        } else {
-          Log.d(TAG, "$donationTypeLabel job chain timed out waiting for job completion.", true)
-          it.onError(timeoutError)
-        }
-      } catch (e: InterruptedException) {
-        Log.d(TAG, "$donationTypeLabel job chain interrupted", e, true)
-        it.onError(timeoutError)
-      }
-    }
-
-    return waitOnRedemption
+      it
+    }.ignoreElement()
   }
 }

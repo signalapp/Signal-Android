@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.errors.Do
 import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.DonationErrorValue;
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge;
@@ -32,7 +33,10 @@ import java.util.Objects;
 /**
  * Job to redeem a verified donation receipt. It is up to the Job prior in the chain to specify a valid
  * presentation object via setOutputData. This is expected to be the byte[] blob of a ReceiptCredentialPresentation object.
+ *
+ * @deprecated Replaced with InAppPaymentRedemptionJob
  */
+@Deprecated
 public class DonationReceiptRedemptionJob extends BaseJob {
   private static final String TAG         = Log.tag(DonationReceiptRedemptionJob.class);
   private static final long   NO_ID       = -1L;
@@ -100,29 +104,6 @@ public class DonationReceiptRedemptionJob extends BaseJob {
                                   .then(multiDeviceProfileContentUpdateJob);
   }
 
-  public static JobManager.Chain createJobChainForGift(long messageId, boolean primary) {
-    DonationReceiptRedemptionJob redeemReceiptJob = new DonationReceiptRedemptionJob(
-        messageId,
-        primary,
-        DonationErrorSource.GIFT_REDEMPTION,
-        -1L,
-        new Job.Parameters
-            .Builder()
-            .addConstraint(NetworkConstraint.KEY)
-            .setQueue("GiftReceiptRedemption-" + messageId)
-            .setMaxAttempts(MAX_RETRIES)
-            .setLifespan(Parameters.IMMORTAL)
-            .build());
-
-    RefreshOwnProfileJob               refreshOwnProfileJob               = new RefreshOwnProfileJob();
-    MultiDeviceProfileContentUpdateJob multiDeviceProfileContentUpdateJob = new MultiDeviceProfileContentUpdateJob();
-
-    return ApplicationDependencies.getJobManager()
-                                  .startChain(redeemReceiptJob)
-                                  .then(refreshOwnProfileJob)
-                                  .then(multiDeviceProfileContentUpdateJob);
-  }
-
   private DonationReceiptRedemptionJob(long giftMessageId, boolean primary, @NonNull DonationErrorSource errorSource, long uiSessionKey, @NonNull Job.Parameters parameters) {
     super(parameters);
     this.giftMessageId                    = giftMessageId;
@@ -176,7 +157,7 @@ public class DonationReceiptRedemptionJob extends BaseJob {
   @Override
   protected void onRun() throws Exception {
     if (isForSubscription()) {
-      synchronized (SubscriptionReceiptRequestResponseJob.MUTEX) {
+      synchronized (InAppPaymentSubscriberRecord.Type.DONATION) {
         doRun();
       }
     } else {
@@ -222,7 +203,7 @@ public class DonationReceiptRedemptionJob extends BaseJob {
         throw new RetryableException();
       } else {
         Log.w(TAG, "Encountered a non-recoverable exception " + response.getStatus(), response.getApplicationError().get(), true);
-        DonationError.routeBackgroundError(context, uiSessionKey, DonationError.genericBadgeRedemptionFailure(errorSource));
+        DonationError.routeBackgroundError(context, DonationError.genericBadgeRedemptionFailure(errorSource));
 
         if (isForOneTimeDonation()) {
           DonationErrorValue donationErrorValue = new DonationErrorValue.Builder()

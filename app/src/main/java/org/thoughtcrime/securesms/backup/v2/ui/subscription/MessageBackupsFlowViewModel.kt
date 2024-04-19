@@ -10,7 +10,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayResponse
+import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType
 import org.thoughtcrime.securesms.lock.v2.SvrConstants
@@ -51,8 +51,8 @@ class MessageBackupsFlowViewModel : ViewModel() {
     internalState.value = state.value.copy(pinKeyboardType = pinKeyboardType)
   }
 
-  fun onPaymentGatewayUpdated(gateway: GatewayResponse.Gateway) {
-    internalState.value = state.value.copy(selectedPaymentGateway = gateway)
+  fun onPaymentMethodUpdated(paymentMethod: InAppPaymentData.PaymentMethodType) {
+    internalState.value = state.value.copy(selectedPaymentMethod = paymentMethod)
   }
 
   fun onMessageBackupTierUpdated(messageBackupTier: MessageBackupTier) {

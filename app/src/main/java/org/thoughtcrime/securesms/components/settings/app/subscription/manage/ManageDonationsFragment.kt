@@ -21,12 +21,12 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsIcon
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatMoney
-import org.thoughtcrime.securesms.components.settings.app.subscription.MonthlyDonationRepository
+import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.completed.TerminalDonationDelegate
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalType
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.NetworkFailure
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.components.settings.models.IndeterminateLoadingCircle
+import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.model.databaseprotos.DonationErrorValue
 import org.thoughtcrime.securesms.database.model.databaseprotos.PendingOneTimeDonation
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
@@ -70,7 +70,7 @@ class ManageDonationsFragment :
 
   private val viewModel: ManageDonationsViewModel by viewModels(
     factoryProducer = {
-      ManageDonationsViewModel.Factory(MonthlyDonationRepository(ApplicationDependencies.getDonationsService()))
+      ManageDonationsViewModel.Factory(RecurringInAppPaymentRepository(ApplicationDependencies.getDonationsService()))
     }
   )
 
@@ -167,7 +167,7 @@ class ManageDonationsFragment :
       primaryWrappedButton(
         text = DSLSettingsText.from(R.string.ManageDonationsFragment__donate_to_signal),
         onClick = {
-          findNavController().safeNavigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToDonateToSignalFragment(DonateToSignalType.ONE_TIME))
+          findNavController().safeNavigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToDonateToSignalFragment(InAppPaymentTable.Type.ONE_TIME_DONATION))
         }
       )
 
@@ -274,6 +274,7 @@ class ManageDonationsFragment :
             requireActivity().startActivity(AppSettingsActivity.help(requireContext(), HelpFragment.DONATION_INDEX))
           },
           activeSubscription = activeSubscription,
+          subscriberRequiresCancel = state.subscriberRequiresCancel,
           onPendingClick = {
             displayPendingDialog(it)
           }
@@ -295,6 +296,7 @@ class ManageDonationsFragment :
           redemptionState = ManageDonationsState.RedemptionState.IN_PROGRESS,
           onContactSupport = {},
           activeSubscription = null,
+          subscriberRequiresCancel = state.subscriberRequiresCancel,
           onPendingClick = {}
         )
       )
@@ -318,7 +320,7 @@ class ManageDonationsFragment :
       icon = DSLSettingsIcon.from(R.drawable.symbol_person_24),
       isEnabled = state.getMonthlyDonorRedemptionState() != ManageDonationsState.RedemptionState.IN_PROGRESS,
       onClick = {
-        findNavController().safeNavigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToDonateToSignalFragment(DonateToSignalType.MONTHLY))
+        findNavController().safeNavigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToDonateToSignalFragment(InAppPaymentTable.Type.RECURRING_DONATION))
       }
     )
 
@@ -422,6 +424,7 @@ class ManageDonationsFragment :
           }
           .show()
       }
+
       else -> {
         val message = if (isIdeal) {
           R.string.DonationsErrors__your_ideal_couldnt_be_processed
@@ -445,6 +448,6 @@ class ManageDonationsFragment :
   }
 
   override fun onMakeAMonthlyDonation() {
-    findNavController().safeNavigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToDonateToSignalFragment(DonateToSignalType.MONTHLY))
+    findNavController().safeNavigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToDonateToSignalFragment(InAppPaymentTable.Type.RECURRING_DONATION))
   }
 }

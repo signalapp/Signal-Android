@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.keyvalue
 
+import androidx.annotation.VisibleForTesting
 import androidx.annotation.WorkerThread
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.subjects.BehaviorSubject
@@ -7,41 +8,42 @@ import io.reactivex.rxjava3.subjects.Subject
 import org.signal.core.util.logging.Log
 import org.signal.donations.PaymentSourceType
 import org.signal.donations.StripeApi
-import org.signal.libsignal.zkgroup.InvalidInputException
-import org.signal.libsignal.zkgroup.VerificationFailedException
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialRequestContext
-import org.signal.libsignal.zkgroup.receipts.ReceiptSerial
 import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.badges.models.Badge
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toPaymentMethodType
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.Stripe3DSData
+import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BadgeList
 import org.thoughtcrime.securesms.database.model.databaseprotos.DonationErrorValue
 import org.thoughtcrime.securesms.database.model.databaseprotos.PendingOneTimeDonation
 import org.thoughtcrime.securesms.database.model.databaseprotos.TerminalDonationQueue
 import org.thoughtcrime.securesms.database.model.isExpired
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.thoughtcrime.securesms.jobs.SubscriptionReceiptRequestResponseJob
 import org.thoughtcrime.securesms.payments.currency.CurrencyUtil
 import org.thoughtcrime.securesms.subscription.LevelUpdateOperation
-import org.thoughtcrime.securesms.subscription.Subscriber
-import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import org.whispersystems.signalservice.api.subscriptions.IdempotencyKey
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
 import org.whispersystems.signalservice.internal.util.JsonUtil
-import java.security.SecureRandom
 import java.util.Currency
 import java.util.Locale
 import java.util.Optional
 import java.util.concurrent.TimeUnit
 
+/**
+ * Key-Value store for donation related values. Note that most of this file will be deprecated after the release of
+ * InAppPayments (90day rollout window + 30day max job lifespan window)
+ */
 internal class DonationsValues internal constructor(store: KeyValueStore) : SignalStoreValues(store) {
 
   companion object {
     private val TAG = Log.tag(DonationsValues::class.java)
 
-    private const val KEY_SUBSCRIPTION_CURRENCY_CODE = "donation.currency.code"
+    private const val KEY_DONATION_SUBSCRIPTION_CURRENCY_CODE = "donation.currency.code"
+    private const val KEY_BACKUPS_SUBSCRIPTION_CURRENCY_CODE = "donation.backups.currency.code"
     private const val KEY_CURRENCY_CODE_ONE_TIME = "donation.currency.code.boost"
     private const val KEY_SUBSCRIBER_ID_PREFIX = "donation.subscriber.id."
     private const val KEY_LAST_KEEP_ALIVE_LAUNCH = "donation.last.successful.ping"
@@ -159,8 +161,11 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
     SUBSCRIPTION_PAYMENT_SOURCE_TYPE
   )
 
-  private val subscriptionCurrencyPublisher: Subject<Currency> by lazy { BehaviorSubject.createDefault(getSubscriptionCurrency()) }
-  val observableSubscriptionCurrency: Observable<Currency> by lazy { subscriptionCurrencyPublisher }
+  private val recurringDonationCurrencyPublisher: Subject<Currency> by lazy { BehaviorSubject.createDefault(getSubscriptionCurrency(InAppPaymentSubscriberRecord.Type.DONATION)) }
+  val observableRecurringDonationCurrency: Observable<Currency> by lazy { recurringDonationCurrencyPublisher }
+
+  private val recurringBackupCurrencyPublisher: Subject<Currency> by lazy { BehaviorSubject.createDefault(getSubscriptionCurrency(InAppPaymentSubscriberRecord.Type.BACKUP)) }
+  val observableRecurringBackupsCurrency: Observable<Currency> by lazy { recurringBackupCurrencyPublisher }
 
   private val oneTimeCurrencyPublisher: Subject<Currency> by lazy { BehaviorSubject.createDefault(getOneTimeCurrency()) }
   val observableOneTimeCurrency: Observable<Currency> by lazy { oneTimeCurrencyPublisher }
@@ -177,8 +182,13 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
     }
   }
 
-  fun getSubscriptionCurrency(): Currency {
-    val currencyCode = getString(KEY_SUBSCRIPTION_CURRENCY_CODE, null)
+  fun getSubscriptionCurrency(subscriberType: InAppPaymentSubscriberRecord.Type): Currency {
+    val currencyCode = if (subscriberType == InAppPaymentSubscriberRecord.Type.DONATION) {
+      getString(KEY_DONATION_SUBSCRIPTION_CURRENCY_CODE, null)
+    } else {
+      getString(KEY_BACKUPS_SUBSCRIPTION_CURRENCY_CODE, null)
+    }
+
     val currency: Currency? = if (currencyCode == null) {
       val localeCurrency = CurrencyUtil.getCurrencyByLocale(Locale.getDefault())
       if (localeCurrency == null) {
@@ -205,7 +215,7 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
   fun getOneTimeCurrency(): Currency {
     val oneTimeCurrency = getString(KEY_CURRENCY_CODE_ONE_TIME, null)
     return if (oneTimeCurrency == null) {
-      val currency = getSubscriptionCurrency()
+      val currency = getSubscriptionCurrency(InAppPaymentSubscriberRecord.Type.DONATION)
       setOneTimeCurrency(currency)
       currency
     } else {
@@ -218,34 +228,45 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
     oneTimeCurrencyPublisher.onNext(currency)
   }
 
-  fun getSubscriber(currency: Currency): Subscriber? {
+  @VisibleForTesting
+  fun setSubscriber(currencyCode: String, subscriberId: SubscriberId) {
+    val subscriberIdBytes = subscriberId.bytes
+
+    putBlob("$KEY_SUBSCRIBER_ID_PREFIX$currencyCode", subscriberIdBytes)
+  }
+
+  @Deprecated("Replaced with InAppPaymentSubscriberTable")
+  fun getSubscriber(currency: Currency): InAppPaymentSubscriberRecord? {
     val currencyCode = currency.currencyCode
     val subscriberIdBytes = getBlob("$KEY_SUBSCRIBER_ID_PREFIX$currencyCode", null)
 
     return if (subscriberIdBytes == null) {
       null
     } else {
-      Subscriber(SubscriberId.fromBytes(subscriberIdBytes), currencyCode)
+      InAppPaymentSubscriberRecord(
+        SubscriberId.fromBytes(subscriberIdBytes),
+        currencyCode,
+        InAppPaymentSubscriberRecord.Type.DONATION,
+        shouldCancelSubscriptionBeforeNextSubscribeAttempt,
+        getSubscriptionPaymentSourceType().toPaymentMethodType()
+      )
     }
   }
 
-  fun getSubscriber(): Subscriber? {
-    return getSubscriber(getSubscriptionCurrency())
-  }
+  fun setSubscriberCurrency(currencyCode: String, type: InAppPaymentSubscriberRecord.Type) {
+    if (type == InAppPaymentSubscriberRecord.Type.DONATION) {
+      store.beginWrite()
+        .putString(KEY_DONATION_SUBSCRIPTION_CURRENCY_CODE, currencyCode)
+        .apply()
 
-  fun requireSubscriber(): Subscriber {
-    return getSubscriber() ?: throw Exception("Subscriber ID is not set.")
-  }
+      recurringDonationCurrencyPublisher.onNext(Currency.getInstance(currencyCode))
+    } else {
+      store.beginWrite()
+        .putString(KEY_BACKUPS_SUBSCRIPTION_CURRENCY_CODE, currencyCode)
+        .apply()
 
-  fun setSubscriber(subscriber: Subscriber) {
-    Log.i(TAG, "Setting subscriber for currency ${subscriber.currencyCode}", Exception(), true)
-    val currencyCode = subscriber.currencyCode
-    store.beginWrite()
-      .putBlob("$KEY_SUBSCRIBER_ID_PREFIX$currencyCode", subscriber.subscriberId.bytes)
-      .putString(KEY_SUBSCRIPTION_CURRENCY_CODE, currencyCode)
-      .apply()
-
-    subscriptionCurrencyPublisher.onNext(Currency.getInstance(currencyCode))
+      recurringBackupCurrencyPublisher.onNext(Currency.getInstance(currencyCode))
+    }
   }
 
   fun getLevelOperation(level: String): LevelUpdateOperation? {
@@ -332,14 +353,12 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
     return TimeUnit.SECONDS.toMillis(getLastEndOfPeriod()) > System.currentTimeMillis()
   }
 
+  @Deprecated("Use InAppPaymentsRepository.isUserManuallyCancelled instead.")
   fun isUserManuallyCancelled(): Boolean {
     return getBoolean(USER_MANUALLY_CANCELLED, false)
   }
 
-  fun markUserManuallyCancelled() {
-    putBoolean(USER_MANUALLY_CANCELLED, true)
-  }
-
+  @Deprecated("Manual cancellation is stored in InAppPayment records. We no longer need to clear this value.")
   fun clearUserManuallyCancelled() {
     remove(USER_MANUALLY_CANCELLED)
   }
@@ -365,6 +384,7 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
     putBoolean(SUBSCRIPTION_REDEMPTION_FAILED, false)
   }
 
+  @Deprecated("Cancellation status is now stored in InAppPaymentTable")
   fun setUnexpectedSubscriptionCancelationChargeFailure(chargeFailure: ActiveSubscription.ChargeFailure?) {
     if (chargeFailure == null) {
       remove(SUBSCRIPTION_CANCELATION_CHARGE_FAILURE)
@@ -382,8 +402,13 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
     }
   }
 
+  @Deprecated("Cancellation status is now tracked in InAppPaymentTable")
   var unexpectedSubscriptionCancelationReason: String? by stringValue(SUBSCRIPTION_CANCELATION_REASON, null)
+
+  @Deprecated("Cancellation status is now tracked in InAppPaymentTable")
   var unexpectedSubscriptionCancelationTimestamp: Long by longValue(SUBSCRIPTION_CANCELATION_TIMESTAMP, 0L)
+
+  @Deprecated("Cancellation status is now tracked in InAppPaymentTable")
   var unexpectedSubscriptionCancelationWatermark: Long by longValue(SUBSCRIPTION_CANCELATION_WATERMARK, 0L)
 
   @get:JvmName("showCantProcessDialog")
@@ -415,26 +440,30 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
    * 1. Clears expired badge if it is for a subscription
    */
   @WorkerThread
-  fun updateLocalStateForManualCancellation() {
-    synchronized(SubscriptionReceiptRequestResponseJob.MUTEX) {
+  fun updateLocalStateForManualCancellation(subscriberType: InAppPaymentSubscriberRecord.Type) {
+    synchronized(subscriberType) {
       Log.d(TAG, "[updateLocalStateForManualCancellation] Clearing donation values.")
 
-      setLastEndOfPeriod(0L)
-      clearLevelOperations()
-      markUserManuallyCancelled()
-      shouldCancelSubscriptionBeforeNextSubscribeAttempt = false
-      setUnexpectedSubscriptionCancelationChargeFailure(null)
-      unexpectedSubscriptionCancelationReason = null
-      unexpectedSubscriptionCancelationTimestamp = 0L
+      if (subscriberType == InAppPaymentSubscriberRecord.Type.DONATION) {
+        setLastEndOfPeriod(0L)
+        clearLevelOperations()
+        setUnexpectedSubscriptionCancelationChargeFailure(null)
+        unexpectedSubscriptionCancelationReason = null
+        unexpectedSubscriptionCancelationTimestamp = 0L
 
-      clearSubscriptionRequestCredential()
-      clearSubscriptionReceiptCredential()
+        clearSubscriptionRequestCredential()
+        clearSubscriptionReceiptCredential()
 
-      val expiredBadge = getExpiredBadge()
-      if (expiredBadge != null && expiredBadge.isSubscription()) {
-        Log.d(TAG, "[updateLocalStateForManualCancellation] Clearing expired badge.")
-        setExpiredBadge(null)
+        val expiredBadge = getExpiredBadge()
+        if (expiredBadge != null && expiredBadge.isSubscription()) {
+          Log.d(TAG, "[updateLocalStateForManualCancellation] Clearing expired badge.")
+          setExpiredBadge(null)
+        }
       }
+
+      val subscriber = InAppPaymentsRepository.requireSubscriber(subscriberType)
+      InAppPaymentsRepository.setShouldCancelSubscriptionBeforeNextSubscribeAttempt(subscriber, true)
+      SignalDatabase.inAppPayments.markSubscriptionManuallyCanceled(subscriberId = subscriber.subscriberId)
     }
   }
 
@@ -447,13 +476,12 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
    * 1. Expired badge, if it is of a subscription
    */
   @WorkerThread
-  fun updateLocalStateForLocalSubscribe() {
-    synchronized(SubscriptionReceiptRequestResponseJob.MUTEX) {
+  fun updateLocalStateForLocalSubscribe(subscriberType: InAppPaymentSubscriberRecord.Type) {
+    synchronized(subscriberType) {
       Log.d(TAG, "[updateLocalStateForLocalSubscribe] Clearing donation values.")
 
       clearUserManuallyCancelled()
       clearLevelOperations()
-      shouldCancelSubscriptionBeforeNextSubscribeAttempt = false
       setUnexpectedSubscriptionCancelationChargeFailure(null)
       unexpectedSubscriptionCancelationReason = null
       unexpectedSubscriptionCancelationTimestamp = 0L
@@ -465,11 +493,14 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
         Log.d(TAG, "[updateLocalStateForLocalSubscribe] Clearing expired badge.")
         setExpiredBadge(null)
       }
+
+      val subscriber = InAppPaymentsRepository.requireSubscriber(subscriberType)
+      InAppPaymentsRepository.setShouldCancelSubscriptionBeforeNextSubscribeAttempt(subscriber, false)
     }
   }
 
   fun refreshSubscriptionRequestCredential() {
-    putBlob(SUBSCRIPTION_CREDENTIAL_REQUEST, generateRequestCredential().serialize())
+    putBlob(SUBSCRIPTION_CREDENTIAL_REQUEST, InAppPaymentsRepository.generateRequestCredential().serialize())
   }
 
   fun setSubscriptionRequestCredential(requestContext: ReceiptCredentialRequestContext) {
@@ -500,10 +531,12 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
     remove(SUBSCRIPTION_CREDENTIAL_RECEIPT)
   }
 
+  @Deprecated("This information is now stored in InAppPaymentTable")
   fun setSubscriptionPaymentSourceType(paymentSourceType: PaymentSourceType) {
     putString(SUBSCRIPTION_PAYMENT_SOURCE_TYPE, paymentSourceType.code)
   }
 
+  @Deprecated("This information is now stored in InAppPaymentTable")
   fun getSubscriptionPaymentSourceType(): PaymentSourceType {
     return PaymentSourceType.fromCode(getString(SUBSCRIPTION_PAYMENT_SOURCE_TYPE, null))
   }
@@ -536,15 +569,6 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
     }
   }
 
-  fun removeTerminalDonation(level: Long) {
-    synchronized(this) {
-      val donationCompletionList = consumeTerminalDonations()
-      donationCompletionList.filterNot { it.level == level }.forEach {
-        appendToTerminalDonationQueue(it)
-      }
-    }
-  }
-
   fun getPendingOneTimeDonation(): PendingOneTimeDonation? {
     return synchronized(this) {
       _pendingOneTimeDonation.takeUnless { it?.isExpired == true }
@@ -569,31 +593,21 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
     }
   }
 
-  fun consumePending3DSData(uiSessionKey: Long): Stripe3DSData? {
+  fun consumePending3DSData(): Stripe3DSData? {
     synchronized(this) {
       val data = getBlob(PENDING_3DS_DATA, null)?.let {
-        Stripe3DSData.fromProtoBytes(it, uiSessionKey)
+        Stripe3DSData.fromProtoBytes(it)
       }
 
-      setPending3DSData(null)
+      remove(PENDING_3DS_DATA)
       return data
-    }
-  }
-
-  fun setPending3DSData(stripe3DSData: Stripe3DSData?) {
-    synchronized(this) {
-      if (stripe3DSData != null) {
-        putBlob(PENDING_3DS_DATA, stripe3DSData.toProtoBytes())
-      } else {
-        remove(PENDING_3DS_DATA)
-      }
     }
   }
 
   fun consumeVerifiedSubscription3DSData(): Stripe3DSData? {
     synchronized(this) {
       val data = getBlob(VERIFIED_IDEAL_SUBSCRIPTION_3DS_DATA, null)?.let {
-        Stripe3DSData.fromProtoBytes(it, -1)
+        Stripe3DSData.fromProtoBytes(it)
       }
 
       setVerifiedSubscription3DSData(null)
@@ -608,24 +622,6 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
       } else {
         remove(VERIFIED_IDEAL_SUBSCRIPTION_3DS_DATA)
       }
-    }
-  }
-
-  private fun generateRequestCredential(): ReceiptCredentialRequestContext {
-    Log.d(TAG, "Generating request credentials context for token redemption...", true)
-    val secureRandom = SecureRandom()
-    val randomBytes = Util.getSecretBytes(ReceiptSerial.SIZE)
-
-    return try {
-      val receiptSerial = ReceiptSerial(randomBytes)
-      val operations = ApplicationDependencies.getClientZkReceiptOperations()
-      operations.createReceiptCredentialRequestContext(secureRandom, receiptSerial)
-    } catch (e: InvalidInputException) {
-      Log.e(TAG, "Failed to create credential.", e)
-      throw AssertionError(e)
-    } catch (e: VerificationFailedException) {
-      Log.e(TAG, "Failed to create credential.", e)
-      throw AssertionError(e)
     }
   }
 }

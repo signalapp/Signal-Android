@@ -30,9 +30,9 @@ import org.signal.core.ui.Buttons
 import org.signal.core.ui.Texts
 import org.signal.core.ui.theme.SignalTheme
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalType
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.SpanUtil
@@ -47,7 +47,7 @@ class DonationPendingBottomSheet : ComposeBottomSheetDialogFragment() {
   @Composable
   override fun SheetContent() {
     DonationPendingBottomSheetContent(
-      badge = args.request.badge,
+      badge = Badges.fromDatabaseBadge(args.inAppPayment.data.badge!!),
       onDoneClick = this::onDoneClick
     )
   }
@@ -59,7 +59,7 @@ class DonationPendingBottomSheet : ComposeBottomSheetDialogFragment() {
   override fun onDismiss(dialog: DialogInterface) {
     super.onDismiss(dialog)
 
-    if (args.request.donateToSignalType == DonateToSignalType.ONE_TIME) {
+    if (!args.inAppPayment.type.recurring) {
       findNavController().popBackStack()
     } else {
       requireActivity().finish()

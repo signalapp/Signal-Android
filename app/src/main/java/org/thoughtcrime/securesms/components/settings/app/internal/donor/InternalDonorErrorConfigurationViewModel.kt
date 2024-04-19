@@ -14,8 +14,8 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.errors.Un
 import org.thoughtcrime.securesms.components.settings.app.subscription.getBoostBadges
 import org.thoughtcrime.securesms.components.settings.app.subscription.getGiftBadges
 import org.thoughtcrime.securesms.components.settings.app.subscription.getSubscriptionLevels
+import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.thoughtcrime.securesms.jobs.SubscriptionReceiptRequestResponseJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.rx.RxStore
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
@@ -101,7 +101,7 @@ class InternalDonorErrorConfigurationViewModel : ViewModel() {
   fun save(): Completable {
     val snapshot = store.state
     val saveState = Completable.fromAction {
-      synchronized(SubscriptionReceiptRequestResponseJob.MUTEX) {
+      synchronized(InAppPaymentSubscriberRecord.Type.DONATION) {
         when {
           snapshot.selectedBadge?.isGift() == true -> handleGiftExpiration(snapshot)
           snapshot.selectedBadge?.isBoost() == true -> handleBoostExpiration(snapshot)
@@ -116,7 +116,7 @@ class InternalDonorErrorConfigurationViewModel : ViewModel() {
 
   fun clearErrorState(): Completable {
     return Completable.fromAction {
-      synchronized(SubscriptionReceiptRequestResponseJob.MUTEX) {
+      synchronized(InAppPaymentSubscriberRecord.Type.DONATION) {
         SignalStore.donationsValues().setExpiredBadge(null)
         SignalStore.donationsValues().setExpiredGiftBadge(null)
         SignalStore.donationsValues().unexpectedSubscriptionCancelationReason = null

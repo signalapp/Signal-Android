@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription
 
 import org.signal.donations.PaymentSourceType
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalType
+import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.FeatureFlags
@@ -24,21 +24,23 @@ object InAppDonations {
     return isCreditCardAvailable() || isPayPalAvailable() || isGooglePayAvailable() || isSEPADebitAvailable() || isIDEALAvailable()
   }
 
-  fun isPaymentSourceAvailable(paymentSourceType: PaymentSourceType, donateToSignalType: DonateToSignalType): Boolean {
+  fun isPaymentSourceAvailable(paymentSourceType: PaymentSourceType, inAppPaymentType: InAppPaymentTable.Type): Boolean {
     return when (paymentSourceType) {
-      PaymentSourceType.PayPal -> isPayPalAvailableForDonateToSignalType(donateToSignalType)
+      PaymentSourceType.PayPal -> isPayPalAvailableForDonateToSignalType(inAppPaymentType)
       PaymentSourceType.Stripe.CreditCard -> isCreditCardAvailable()
       PaymentSourceType.Stripe.GooglePay -> isGooglePayAvailable()
-      PaymentSourceType.Stripe.SEPADebit -> isSEPADebitAvailableForDonateToSignalType(donateToSignalType)
-      PaymentSourceType.Stripe.IDEAL -> isIDEALAvailbleForDonateToSignalType(donateToSignalType)
+      PaymentSourceType.Stripe.SEPADebit -> isSEPADebitAvailableForDonateToSignalType(inAppPaymentType)
+      PaymentSourceType.Stripe.IDEAL -> isIDEALAvailbleForDonateToSignalType(inAppPaymentType)
       PaymentSourceType.Unknown -> false
     }
   }
 
-  private fun isPayPalAvailableForDonateToSignalType(donateToSignalType: DonateToSignalType): Boolean {
-    return when (donateToSignalType) {
-      DonateToSignalType.ONE_TIME, DonateToSignalType.GIFT -> FeatureFlags.paypalOneTimeDonations()
-      DonateToSignalType.MONTHLY -> FeatureFlags.paypalRecurringDonations()
+  private fun isPayPalAvailableForDonateToSignalType(inAppPaymentType: InAppPaymentTable.Type): Boolean {
+    return when (inAppPaymentType) {
+      InAppPaymentTable.Type.UNKNOWN -> error("Unsupported type UNKNOWN")
+      InAppPaymentTable.Type.ONE_TIME_DONATION, InAppPaymentTable.Type.ONE_TIME_GIFT -> FeatureFlags.paypalOneTimeDonations()
+      InAppPaymentTable.Type.RECURRING_DONATION -> FeatureFlags.paypalRecurringDonations()
+      InAppPaymentTable.Type.RECURRING_BACKUP -> FeatureFlags.messageBackups() && FeatureFlags.paypalRecurringDonations()
     } && !LocaleFeatureFlags.isPayPalDisabled()
   }
 
@@ -81,15 +83,15 @@ object InAppDonations {
    * Whether the user is in a region which supports SEPA Debit transfers, based off local phone number
    * and donation type.
    */
-  fun isSEPADebitAvailableForDonateToSignalType(donateToSignalType: DonateToSignalType): Boolean {
-    return donateToSignalType != DonateToSignalType.GIFT && isSEPADebitAvailable()
+  fun isSEPADebitAvailableForDonateToSignalType(inAppPaymentType: InAppPaymentTable.Type): Boolean {
+    return inAppPaymentType != InAppPaymentTable.Type.ONE_TIME_GIFT && isSEPADebitAvailable()
   }
 
   /**
    * Whether the user is in a region which suports IDEAL transfers, based off local phone number and
    * donation type
    */
-  fun isIDEALAvailbleForDonateToSignalType(donateToSignalType: DonateToSignalType): Boolean {
-    return donateToSignalType != DonateToSignalType.GIFT && isIDEALAvailable()
+  fun isIDEALAvailbleForDonateToSignalType(inAppPaymentType: InAppPaymentTable.Type): Boolean {
+    return inAppPaymentType != InAppPaymentTable.Type.ONE_TIME_GIFT && isIDEALAvailable()
   }
 }

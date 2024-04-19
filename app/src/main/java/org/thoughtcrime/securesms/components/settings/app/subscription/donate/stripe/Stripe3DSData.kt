@@ -9,13 +9,13 @@ import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 import org.signal.donations.PaymentSourceType
 import org.signal.donations.StripeIntentAccessor
-import org.thoughtcrime.securesms.badges.Badges
-import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toBigDecimal
-import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toDecimalValue
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalType
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toPaymentMethodType
+import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.model.databaseprotos.ExternalLaunchTransactionState
-import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.database.model.databaseprotos.FiatValue
+import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
+import org.thoughtcrime.securesms.recipients.Recipient
+import kotlin.time.Duration.Companion.milliseconds
 
 /**
  * Encapsulates the data required to complete a pending external transaction
@@ -23,14 +23,14 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 @Parcelize
 data class Stripe3DSData(
   val stripeIntentAccessor: StripeIntentAccessor,
-  val gatewayRequest: GatewayRequest,
+  val inAppPayment: InAppPaymentTable.InAppPayment,
   private val rawPaymentSourceType: String
 ) : Parcelable {
   @IgnoredOnParcel
   val paymentSourceType: PaymentSourceType = PaymentSourceType.fromCode(rawPaymentSourceType)
 
   @IgnoredOnParcel
-  val isLongRunning: Boolean = paymentSourceType == PaymentSourceType.Stripe.SEPADebit || (gatewayRequest.donateToSignalType == DonateToSignalType.MONTHLY && paymentSourceType.isBankTransfer)
+  val isLongRunning: Boolean = paymentSourceType == PaymentSourceType.Stripe.SEPADebit || (inAppPayment.type.recurring && paymentSourceType.isBankTransfer)
 
   fun toProtoBytes(): ByteArray {
     return ExternalLaunchTransactionState(
@@ -43,25 +43,27 @@ data class Stripe3DSData(
         intentClientSecret = stripeIntentAccessor.intentClientSecret
       ),
       gatewayRequest = ExternalLaunchTransactionState.GatewayRequest(
-        donateToSignalType = when (gatewayRequest.donateToSignalType) {
-          DonateToSignalType.ONE_TIME -> ExternalLaunchTransactionState.GatewayRequest.DonateToSignalType.ONE_TIME
-          DonateToSignalType.MONTHLY -> ExternalLaunchTransactionState.GatewayRequest.DonateToSignalType.MONTHLY
-          DonateToSignalType.GIFT -> ExternalLaunchTransactionState.GatewayRequest.DonateToSignalType.GIFT
+        donateToSignalType = when (inAppPayment.type) {
+          InAppPaymentTable.Type.UNKNOWN -> error("Unsupported type UNKNOWN")
+          InAppPaymentTable.Type.ONE_TIME_DONATION -> ExternalLaunchTransactionState.GatewayRequest.DonateToSignalType.ONE_TIME
+          InAppPaymentTable.Type.RECURRING_DONATION -> ExternalLaunchTransactionState.GatewayRequest.DonateToSignalType.MONTHLY
+          InAppPaymentTable.Type.ONE_TIME_GIFT -> ExternalLaunchTransactionState.GatewayRequest.DonateToSignalType.GIFT
+          InAppPaymentTable.Type.RECURRING_BACKUP -> error("Unimplemented") // TODO [message-backups] do we still need this?
         },
-        badge = Badges.toDatabaseBadge(gatewayRequest.badge),
-        label = gatewayRequest.label,
-        price = gatewayRequest.price.toDecimalValue(),
-        currencyCode = gatewayRequest.currencyCode,
-        level = gatewayRequest.level,
-        recipient_id = gatewayRequest.recipientId.toLong(),
-        additionalMessage = gatewayRequest.additionalMessage ?: ""
+        badge = inAppPayment.data.badge,
+        label = inAppPayment.data.label,
+        price = inAppPayment.data.amount!!.amount,
+        currencyCode = inAppPayment.data.amount.currencyCode,
+        level = inAppPayment.data.level,
+        recipient_id = inAppPayment.data.recipientId?.toLong() ?: Recipient.self().id.toLong(),
+        additionalMessage = inAppPayment.data.additionalMessage ?: ""
       ),
       paymentSourceType = paymentSourceType.code
     ).encode()
   }
 
   companion object {
-    fun fromProtoBytes(byteArray: ByteArray, uiSessionKey: Long): Stripe3DSData {
+    fun fromProtoBytes(byteArray: ByteArray): Stripe3DSData {
       val proto = ExternalLaunchTransactionState.ADAPTER.decode(byteArray)
       return Stripe3DSData(
         stripeIntentAccessor = StripeIntentAccessor(
@@ -72,20 +74,33 @@ data class Stripe3DSData(
           intentId = proto.stripeIntentAccessor.intentId,
           intentClientSecret = proto.stripeIntentAccessor.intentClientSecret
         ),
-        gatewayRequest = GatewayRequest(
-          uiSessionKey = uiSessionKey,
-          donateToSignalType = when (proto.gatewayRequest!!.donateToSignalType) {
-            ExternalLaunchTransactionState.GatewayRequest.DonateToSignalType.MONTHLY -> DonateToSignalType.MONTHLY
-            ExternalLaunchTransactionState.GatewayRequest.DonateToSignalType.ONE_TIME -> DonateToSignalType.ONE_TIME
-            ExternalLaunchTransactionState.GatewayRequest.DonateToSignalType.GIFT -> DonateToSignalType.GIFT
+        inAppPayment = InAppPaymentTable.InAppPayment(
+          id = InAppPaymentTable.InAppPaymentId(-1), // TODO [alex] -- can we start writing this in for new transactions?
+          type = when (proto.gatewayRequest!!.donateToSignalType) {
+            ExternalLaunchTransactionState.GatewayRequest.DonateToSignalType.MONTHLY -> InAppPaymentTable.Type.RECURRING_DONATION
+            ExternalLaunchTransactionState.GatewayRequest.DonateToSignalType.ONE_TIME -> InAppPaymentTable.Type.ONE_TIME_DONATION
+            ExternalLaunchTransactionState.GatewayRequest.DonateToSignalType.GIFT -> InAppPaymentTable.Type.ONE_TIME_GIFT
+            // TODO [message-backups] -- Backups?
           },
-          badge = Badges.fromDatabaseBadge(proto.gatewayRequest.badge!!),
-          label = proto.gatewayRequest.label,
-          price = proto.gatewayRequest.price!!.toBigDecimal(),
-          currencyCode = proto.gatewayRequest.currencyCode,
-          level = proto.gatewayRequest.level,
-          recipientId = RecipientId.from(proto.gatewayRequest.recipient_id),
-          additionalMessage = proto.gatewayRequest.additionalMessage.takeIf { it.isNotBlank() }
+          endOfPeriod = 0.milliseconds,
+          updatedAt = 0.milliseconds,
+          insertedAt = 0.milliseconds,
+          notified = true,
+          state = InAppPaymentTable.State.WAITING_FOR_AUTHORIZATION,
+          subscriberId = null,
+          data = InAppPaymentData(
+            paymentMethodType = PaymentSourceType.fromCode(proto.paymentSourceType).toPaymentMethodType(),
+            badge = proto.gatewayRequest.badge,
+            label = proto.gatewayRequest.label,
+            amount = FiatValue(amount = proto.gatewayRequest.price, currencyCode = proto.gatewayRequest.currencyCode),
+            level = proto.gatewayRequest.level,
+            recipientId = null,
+            additionalMessage = "",
+            waitForAuth = InAppPaymentData.WaitingForAuthorizationState(
+              stripeClientSecret = proto.stripeIntentAccessor.intentClientSecret,
+              stripeIntentId = proto.stripeIntentAccessor.intentId
+            )
+          )
         ),
         rawPaymentSourceType = proto.paymentSourceType
       )

@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.components.settings.app.subscription.donate.c
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 import org.signal.donations.StripeApi
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest
+import org.thoughtcrime.securesms.database.InAppPaymentTable
 
 /**
  * Encapsulates data returned from the credit card form that can be used
@@ -11,6 +11,6 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.donate.ga
  */
 @Parcelize
 data class CreditCardResult(
-  val gatewayRequest: GatewayRequest,
+  val inAppPayment: InAppPaymentTable.InAppPayment,
   val creditCardData: StripeApi.CardData
 ) : Parcelable

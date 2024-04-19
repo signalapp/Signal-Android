@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.donate.Do
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorActionResult
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorStage
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
+import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.databinding.DonationInProgressFragmentBinding
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
@@ -63,13 +64,13 @@ class StripePaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
       viewModel.onBeginNewAction()
       when (args.action) {
         DonationProcessorAction.PROCESS_NEW_DONATION -> {
-          viewModel.processNewDonation(args.request, this::handleSecure3dsAction)
+          viewModel.processNewDonation(args.inAppPayment!!, this::handleSecure3dsAction)
         }
         DonationProcessorAction.UPDATE_SUBSCRIPTION -> {
-          viewModel.updateSubscription(args.request, args.isLongRunning)
+          viewModel.updateSubscription(args.inAppPayment!!)
         }
         DonationProcessorAction.CANCEL_SUBSCRIPTION -> {
-          viewModel.cancelSubscription()
+          viewModel.cancelSubscription(args.inAppPaymentType.requireSubscriberType())
         }
       }
     }
@@ -92,7 +93,7 @@ class StripePaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
           bundleOf(
             REQUEST_KEY to DonationProcessorActionResult(
               action = args.action,
-              request = args.request,
+              inAppPayment = args.inAppPayment,
               status = DonationProcessorActionResult.Status.FAILURE
             )
           )
@@ -106,7 +107,7 @@ class StripePaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
           bundleOf(
             REQUEST_KEY to DonationProcessorActionResult(
               action = args.action,
-              request = args.request,
+              inAppPayment = args.inAppPayment,
               status = DonationProcessorActionResult.Status.SUCCESS
             )
           )
@@ -116,7 +117,7 @@ class StripePaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
     }
   }
 
-  private fun handleSecure3dsAction(secure3dsAction: StripeApi.Secure3DSAction, stripe3DSData: Stripe3DSData): Single<StripeIntentAccessor> {
+  private fun handleSecure3dsAction(secure3dsAction: StripeApi.Secure3DSAction, inAppPayment: InAppPaymentTable.InAppPayment): Single<StripeIntentAccessor> {
     return when (secure3dsAction) {
       is StripeApi.Secure3DSAction.NotNeeded -> {
         Log.d(TAG, "No 3DS action required.")
@@ -132,16 +133,16 @@ class StripePaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
             } else {
               val didLaunchExternal = bundle.getBoolean(Stripe3DSDialogFragment.LAUNCHED_EXTERNAL, false)
               if (didLaunchExternal) {
-                emitter.onError(DonationError.UserLaunchedExternalApplication(args.request.donateToSignalType.toErrorSource()))
+                emitter.onError(DonationError.UserLaunchedExternalApplication(args.inAppPaymentType.toErrorSource()))
               } else {
-                emitter.onError(DonationError.UserCancelledPaymentError(args.request.donateToSignalType.toErrorSource()))
+                emitter.onError(DonationError.UserCancelledPaymentError(args.inAppPaymentType.toErrorSource()))
               }
             }
           }
 
           parentFragmentManager.setFragmentResultListener(Stripe3DSDialogFragment.REQUEST_KEY, this, listener)
 
-          findNavController().safeNavigate(StripePaymentInProgressFragmentDirections.actionStripePaymentInProgressFragmentToStripe3dsDialogFragment(secure3dsAction.uri, secure3dsAction.returnUri, stripe3DSData))
+          findNavController().safeNavigate(StripePaymentInProgressFragmentDirections.actionStripePaymentInProgressFragmentToStripe3dsDialogFragment(secure3dsAction.uri, secure3dsAction.returnUri, inAppPayment))
 
           emitter.setCancellable {
             parentFragmentManager.clearFragmentResultListener(Stripe3DSDialogFragment.REQUEST_KEY)

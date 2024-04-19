@@ -104,10 +104,10 @@ class MessageBackupsFlowActivity : PassphraseRequiredActivity() {
           dialog(route = MessageBackupsScreen.CHECKOUT_SHEET.name) {
             MessageBackupsCheckoutSheet(
               messageBackupTier = state.selectedMessageBackupTier!!,
-              availablePaymentGateways = state.availablePaymentGateways,
+              availablePaymentMethods = state.availablePaymentMethods,
               onDismissRequest = navController::popOrFinish,
-              onPaymentGatewaySelected = {
-                viewModel.onPaymentGatewayUpdated(it)
+              onPaymentMethodSelected = {
+                viewModel.onPaymentMethodUpdated(it)
                 MessageBackupsScreen.CHECKOUT_SHEET.next()
               }
             )

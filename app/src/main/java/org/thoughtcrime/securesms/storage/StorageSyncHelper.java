@@ -9,10 +9,13 @@ import androidx.annotation.VisibleForTesting;
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
+import org.signal.core.util.Base64;
 import org.signal.core.util.SetUtil;
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository;
 import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord;
 import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob;
@@ -22,8 +25,6 @@ import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues.PhoneNumberD
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.payments.Entropy;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.subscription.Subscriber;
-import org.signal.core.util.Base64;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.push.UsernameLinkComponents;
@@ -124,7 +125,7 @@ public final class StorageSyncHelper {
     if (self.getStorageId() == null || (record != null && record.getStorageId() == null)) {
       Log.w(TAG, "[buildAccountRecord] No storageId for self or record! Generating. (Self: " + (self.getStorageId() != null) + ", Record: " + (record != null && record.getStorageId() != null) + ")");
       SignalDatabase.recipients().updateStorageId(self.getId(), generateKey());
-      self = Recipient.self().fresh();
+      self   = Recipient.self().fresh();
       record = recipientTable.getRecordForSync(self.getId());
     }
 
@@ -155,9 +156,9 @@ public final class StorageSyncHelper {
                                                                  .setPrimarySendsSms(false)
                                                                  .setUniversalExpireTimer(SignalStore.settings().getUniversalExpireTimer())
                                                                  .setDefaultReactions(SignalStore.emojiValues().getReactions())
-                                                                 .setSubscriber(StorageSyncModels.localToRemoteSubscriber(SignalStore.donationsValues().getSubscriber()))
+                                                                 .setSubscriber(StorageSyncModels.localToRemoteSubscriber(InAppPaymentsRepository.getSubscriber(InAppPaymentSubscriberRecord.Type.DONATION)))
                                                                  .setDisplayBadgesOnProfile(SignalStore.donationsValues().getDisplayBadgesOnProfile())
-                                                                 .setSubscriptionManuallyCancelled(SignalStore.donationsValues().isUserManuallyCancelled())
+                                                                 .setSubscriptionManuallyCancelled(InAppPaymentsRepository.isUserManuallyCancelled(InAppPaymentSubscriberRecord.Type.DONATION))
                                                                  .setKeepMutedChatsArchived(SignalStore.settings().shouldKeepMutedChatsArchived())
                                                                  .setHasSetMyStoriesPrivacy(SignalStore.storyValues().getUserHasBeenNotifiedAboutStories())
                                                                  .setHasViewedOnboardingStory(SignalStore.storyValues().getUserHasViewedOnboardingStory())
@@ -219,15 +220,13 @@ public final class StorageSyncHelper {
       SignalStore.storyValues().setViewedReceiptsEnabled(update.getNew().getStoryViewReceiptsState() == OptionalBool.ENABLED);
     }
 
-    if (update.getNew().isSubscriptionManuallyCancelled()) {
-      SignalStore.donationsValues().updateLocalStateForManualCancellation();
-    } else {
-      SignalStore.donationsValues().clearUserManuallyCancelled();
+    InAppPaymentSubscriberRecord remoteSubscriber = StorageSyncModels.remoteToLocalSubscriber(update.getNew().getSubscriber(), InAppPaymentSubscriberRecord.Type.DONATION);
+    if (remoteSubscriber != null) {
+      InAppPaymentsRepository.setSubscriber(remoteSubscriber);
     }
 
-    Subscriber subscriber = StorageSyncModels.remoteToLocalSubscriber(update.getNew().getSubscriber());
-    if (subscriber != null) {
-      SignalStore.donationsValues().setSubscriber(subscriber);
+    if (update.getNew().isSubscriptionManuallyCancelled()) {
+      SignalStore.donationsValues().updateLocalStateForManualCancellation(InAppPaymentSubscriberRecord.Type.DONATION);
     }
 
     if (fetchProfile && update.getNew().getAvatarUrlPath().isPresent()) {
@@ -242,10 +241,10 @@ public final class StorageSyncHelper {
 
     if (update.getNew().getUsernameLink() != null) {
       SignalStore.account().setUsernameLink(
-        new UsernameLinkComponents(
-          update.getNew().getUsernameLink().entropy.toByteArray(),
-          UuidUtil.parseOrThrow(update.getNew().getUsernameLink().serverId.toByteArray())
-        )
+          new UsernameLinkComponents(
+              update.getNew().getUsernameLink().entropy.toByteArray(),
+              UuidUtil.parseOrThrow(update.getNew().getUsernameLink().serverId.toByteArray())
+          )
       );
       SignalStore.misc().setUsernameQrCodeColorScheme(StorageSyncModels.remoteToLocalUsernameColor(update.getNew().getUsernameLink().color));
     }

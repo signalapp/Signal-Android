@@ -88,7 +88,7 @@ fun Cursor.readToSingleLong(defaultValue: Long = 0): Long {
   }
 }
 
-fun <T> Cursor.readToSingleObject(serializer: Serializer<T, Cursor>): T? {
+fun <T> Cursor.readToSingleObject(serializer: BaseSerializer<T, Cursor, *>): T? {
   return use {
     if (it.moveToFirst()) {
       serializer.deserialize(it)

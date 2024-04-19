@@ -5,14 +5,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository;
 import org.thoughtcrime.securesms.components.settings.app.subscription.manage.DonationRedemptionJobStatus;
 import org.thoughtcrime.securesms.components.settings.app.subscription.manage.DonationRedemptionJobWatcher;
+import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.TerminalDonationQueue;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
-import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.subscription.Subscriber;
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription;
 import org.whispersystems.signalservice.internal.EmptyResponse;
 import org.whispersystems.signalservice.internal.ServiceResponse;
@@ -20,44 +20,21 @@ import org.whispersystems.signalservice.internal.ServiceResponse;
 import java.io.IOException;
 import java.util.Locale;
 import java.util.Objects;
-import java.util.concurrent.TimeUnit;
 
 import okio.ByteString;
 
 /**
  * Job that, once there is a valid local subscriber id, should be run every 3 days
  * to ensure that a user's subscription does not lapse.
+ *
+ * @deprecated Replaced with InAppPaymentKeepAliveJob
  */
+@Deprecated()
 public class SubscriptionKeepAliveJob extends BaseJob {
 
   public static final String KEY = "SubscriptionKeepAliveJob";
 
   private static final String TAG         = Log.tag(SubscriptionKeepAliveJob.class);
-  private static final long   JOB_TIMEOUT = TimeUnit.DAYS.toMillis(3);
-
-  public static void enqueueAndTrackTimeIfNecessary() {
-    long nextLaunchTime = SignalStore.donationsValues().getLastKeepAliveLaunchTime() + TimeUnit.DAYS.toMillis(3);
-    long now            = System.currentTimeMillis();
-
-    if (nextLaunchTime <= now) {
-      enqueueAndTrackTime(now);
-    }
-  }
-
-  public static void enqueueAndTrackTime(long now) {
-    ApplicationDependencies.getJobManager().add(new SubscriptionKeepAliveJob());
-    SignalStore.donationsValues().setLastKeepAliveLaunchTime(now);
-  }
-
-  private SubscriptionKeepAliveJob() {
-    this(new Parameters.Builder()
-                       .setQueue(KEY)
-                       .addConstraint(NetworkConstraint.KEY)
-                       .setMaxInstancesForQueue(1)
-                       .setMaxAttempts(Parameters.UNLIMITED)
-                       .setLifespan(JOB_TIMEOUT)
-                       .build());
-  }
 
   private SubscriptionKeepAliveJob(@NonNull Parameters parameters) {
     super(parameters);
@@ -80,13 +57,13 @@ public class SubscriptionKeepAliveJob extends BaseJob {
 
   @Override
   protected void onRun() throws Exception {
-    synchronized (SubscriptionReceiptRequestResponseJob.MUTEX) {
+    synchronized (InAppPaymentSubscriberRecord.Type.DONATION) {
       doRun();
     }
   }
 
   private void doRun() throws Exception {
-    Subscriber subscriber = SignalStore.donationsValues().getSubscriber();
+    InAppPaymentSubscriberRecord subscriber = InAppPaymentsRepository.getSubscriber(InAppPaymentSubscriberRecord.Type.DONATION);
     if (subscriber == null) {
       return;
     }

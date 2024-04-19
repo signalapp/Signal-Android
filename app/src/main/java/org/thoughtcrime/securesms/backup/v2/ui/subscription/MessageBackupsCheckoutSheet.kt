@@ -35,8 +35,8 @@ import org.signal.core.ui.Buttons
 import org.signal.core.ui.Previews
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayResponse
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.GooglePayButton
+import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.databinding.PaypalButtonBinding
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 
@@ -44,9 +44,9 @@ import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 @Composable
 fun MessageBackupsCheckoutSheet(
   messageBackupTier: MessageBackupTier,
-  availablePaymentGateways: List<GatewayResponse.Gateway>,
+  availablePaymentMethods: List<InAppPaymentData.PaymentMethodType>,
   onDismissRequest: () -> Unit,
-  onPaymentGatewaySelected: (GatewayResponse.Gateway) -> Unit
+  onPaymentMethodSelected: (InAppPaymentData.PaymentMethodType) -> Unit
 ) {
   ModalBottomSheet(
     onDismissRequest = onDismissRequest,
@@ -55,8 +55,8 @@ fun MessageBackupsCheckoutSheet(
   ) {
     SheetContent(
       messageBackupTier = messageBackupTier,
-      availablePaymentGateways = availablePaymentGateways,
-      onPaymentGatewaySelected = onPaymentGatewaySelected
+      availablePaymentGateways = availablePaymentMethods,
+      onPaymentGatewaySelected = onPaymentMethodSelected
     )
   }
 }
@@ -64,8 +64,8 @@ fun MessageBackupsCheckoutSheet(
 @Composable
 private fun SheetContent(
   messageBackupTier: MessageBackupTier,
-  availablePaymentGateways: List<GatewayResponse.Gateway>,
-  onPaymentGatewaySelected: (GatewayResponse.Gateway) -> Unit
+  availablePaymentGateways: List<InAppPaymentData.PaymentMethodType>,
+  onPaymentGatewaySelected: (InAppPaymentData.PaymentMethodType) -> Unit
 ) {
   val resources = LocalContext.current.resources
   val backupTypeDetails = remember(messageBackupTier) {
@@ -101,25 +101,27 @@ private fun SheetContent(
   ) {
     availablePaymentGateways.forEach {
       when (it) {
-        GatewayResponse.Gateway.GOOGLE_PAY -> GooglePayButton {
-          onPaymentGatewaySelected(GatewayResponse.Gateway.GOOGLE_PAY)
+        InAppPaymentData.PaymentMethodType.GOOGLE_PAY -> GooglePayButton {
+          onPaymentGatewaySelected(InAppPaymentData.PaymentMethodType.GOOGLE_PAY)
         }
 
-        GatewayResponse.Gateway.PAYPAL -> PayPalButton {
-          onPaymentGatewaySelected(GatewayResponse.Gateway.PAYPAL)
+        InAppPaymentData.PaymentMethodType.PAYPAL -> PayPalButton {
+          onPaymentGatewaySelected(InAppPaymentData.PaymentMethodType.PAYPAL)
         }
 
-        GatewayResponse.Gateway.CREDIT_CARD -> CreditOrDebitCardButton {
-          onPaymentGatewaySelected(GatewayResponse.Gateway.CREDIT_CARD)
+        InAppPaymentData.PaymentMethodType.CARD -> CreditOrDebitCardButton {
+          onPaymentGatewaySelected(InAppPaymentData.PaymentMethodType.CARD)
         }
 
-        GatewayResponse.Gateway.SEPA_DEBIT -> SepaButton {
-          onPaymentGatewaySelected(GatewayResponse.Gateway.SEPA_DEBIT)
+        InAppPaymentData.PaymentMethodType.SEPA_DEBIT -> SepaButton {
+          onPaymentGatewaySelected(InAppPaymentData.PaymentMethodType.SEPA_DEBIT)
         }
 
-        GatewayResponse.Gateway.IDEAL -> IdealButton {
-          onPaymentGatewaySelected(GatewayResponse.Gateway.IDEAL)
+        InAppPaymentData.PaymentMethodType.IDEAL -> IdealButton {
+          onPaymentGatewaySelected(InAppPaymentData.PaymentMethodType.IDEAL)
         }
+
+        InAppPaymentData.PaymentMethodType.UNKNOWN -> error("Unsupported payment method type $it")
       }
     }
   }
@@ -221,7 +223,7 @@ private fun CreditOrDebitCardButton(
 @Preview
 @Composable
 private fun MessageBackupsCheckoutSheetPreview() {
-  val availablePaymentGateways = GatewayResponse.Gateway.values().toList()
+  val availablePaymentGateways = InAppPaymentData.PaymentMethodType.values().toList() - InAppPaymentData.PaymentMethodType.UNKNOWN
 
   Previews.Preview {
     Column(

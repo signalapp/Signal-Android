@@ -43,7 +43,10 @@ import okio.ByteString;
 /**
  * Job responsible for submitting ReceiptCredentialRequest objects to the server until
  * we get a response.
+ *
+ * @deprecated Replaced with InAppPaymentOneTimeContextJob
  */
+@Deprecated
 public class BoostReceiptRequestResponseJob extends BaseJob {
 
   private static final String TAG = Log.tag(BoostReceiptRequestResponseJob.class);
@@ -226,7 +229,7 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
       ReceiptCredential receiptCredential = getReceiptCredential(response.getResult().get());
 
       if (!isCredentialValid(receiptCredential)) {
-        DonationError.routeBackgroundError(context, uiSessionKey, DonationError.badgeCredentialVerificationFailure(donationErrorSource));
+        DonationError.routeBackgroundError(context, DonationError.badgeCredentialVerificationFailure(donationErrorSource));
         setPendingOneTimeDonationGenericRedemptionError(-1);
         throw new IOException("Could not validate receipt credential");
       }
@@ -315,12 +318,12 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
         throw new RetryableException();
       case 400:
         Log.w(TAG, "Receipt credential request failed to validate.", applicationException, true);
-        DonationError.routeBackgroundError(context, uiSessionKey, DonationError.genericBadgeRedemptionFailure(donationErrorSource));
+        DonationError.routeBackgroundError(context, DonationError.genericBadgeRedemptionFailure(donationErrorSource));
         setPendingOneTimeDonationGenericRedemptionError(response.getStatus());
         throw new Exception(applicationException);
       case 402:
         Log.w(TAG, "User payment failed.", applicationException, true);
-        DonationError.routeBackgroundError(context, uiSessionKey, DonationError.genericPaymentFailure(donationErrorSource), terminalDonation.isLongRunningPaymentMethod);
+        DonationError.routeBackgroundError(context, DonationError.genericPaymentFailure(donationErrorSource), terminalDonation.isLongRunningPaymentMethod);
 
         if (applicationException instanceof DonationReceiptCredentialError) {
           setPendingOneTimeDonationChargeFailureError(((DonationReceiptCredentialError) applicationException).getChargeFailure());
@@ -331,7 +334,7 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
         throw new Exception(applicationException);
       case 409:
         Log.w(TAG, "Receipt already redeemed with a different request credential.", response.getApplicationError().get(), true);
-        DonationError.routeBackgroundError(context, uiSessionKey, DonationError.genericBadgeRedemptionFailure(donationErrorSource));
+        DonationError.routeBackgroundError(context, DonationError.genericBadgeRedemptionFailure(donationErrorSource));
         setPendingOneTimeDonationGenericRedemptionError(response.getStatus());
         throw new Exception(applicationException);
       default:

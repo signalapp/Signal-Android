@@ -19,7 +19,10 @@ object PayPalButton {
   class ViewHolder(binding: PaypalButtonBinding) : BindingViewHolder<Model, PaypalButtonBinding>(binding) {
     override fun bind(model: Model) {
       binding.paypalButton.isEnabled = model.isEnabled
-      binding.paypalButton.setOnClickListener { model.onClick() }
+      binding.paypalButton.setOnClickListener {
+        binding.paypalButton.isEnabled = false
+        model.onClick()
+      }
     }
   }
 }

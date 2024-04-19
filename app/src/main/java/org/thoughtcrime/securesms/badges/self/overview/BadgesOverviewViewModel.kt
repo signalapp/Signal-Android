@@ -12,7 +12,8 @@ import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.subjects.PublishSubject
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.badges.BadgeRepository
-import org.thoughtcrime.securesms.components.settings.app.subscription.MonthlyDonationRepository
+import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
+import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.InternetConnectionObserver
@@ -23,7 +24,7 @@ private val TAG = Log.tag(BadgesOverviewViewModel::class.java)
 
 class BadgesOverviewViewModel(
   private val badgeRepository: BadgeRepository,
-  private val subscriptionsRepository: MonthlyDonationRepository
+  private val subscriptionsRepository: RecurringInAppPaymentRepository
 ) : ViewModel() {
   private val store = Store(BadgesOverviewState())
   private val eventSubject = PublishSubject.create<BadgesOverviewEvent>()
@@ -50,7 +51,7 @@ class BadgesOverviewViewModel(
       }
 
     disposables += Single.zip(
-      subscriptionsRepository.getActiveSubscription(),
+      subscriptionsRepository.getActiveSubscription(InAppPaymentSubscriberRecord.Type.DONATION),
       subscriptionsRepository.getSubscriptions()
     ) { active, all ->
       if (!active.isActive && active.activeSubscription?.willCancelAtPeriodEnd() == true) {
@@ -89,7 +90,7 @@ class BadgesOverviewViewModel(
 
   class Factory(
     private val badgeRepository: BadgeRepository,
-    private val subscriptionsRepository: MonthlyDonationRepository
+    private val subscriptionsRepository: RecurringInAppPaymentRepository
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return requireNotNull(modelClass.cast(BadgesOverviewViewModel(badgeRepository, subscriptionsRepository)))

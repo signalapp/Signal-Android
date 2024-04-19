@@ -4,23 +4,24 @@ import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.logging.Log
+import org.signal.donations.PaymentSourceType
 import org.thoughtcrime.securesms.badges.Badges
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toPaymentSourceType
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
-import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
+import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError.BadgeRedemptionError
+import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.database.model.databaseprotos.TerminalDonationQueue
+import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
+import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.thoughtcrime.securesms.jobmanager.JobTracker
+import org.thoughtcrime.securesms.jobs.InAppPaymentKeepAliveJob
+import org.thoughtcrime.securesms.jobs.InAppPaymentRecurringContextJob
 import org.thoughtcrime.securesms.jobs.MultiDeviceSubscriptionSyncRequestJob
-import org.thoughtcrime.securesms.jobs.SubscriptionKeepAliveJob
-import org.thoughtcrime.securesms.jobs.SubscriptionReceiptRequestResponseJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.subscription.LevelUpdate
 import org.thoughtcrime.securesms.subscription.LevelUpdateOperation
-import org.thoughtcrime.securesms.subscription.Subscriber
 import org.thoughtcrime.securesms.subscription.Subscription
 import org.whispersystems.signalservice.api.services.DonationsService
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
@@ -29,26 +30,24 @@ import org.whispersystems.signalservice.api.subscriptions.SubscriberId
 import org.whispersystems.signalservice.internal.EmptyResponse
 import org.whispersystems.signalservice.internal.ServiceResponse
 import java.util.Locale
-import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
+import kotlin.time.Duration.Companion.milliseconds
 
 /**
  * Repository which can query for the user's active subscription as well as a list of available subscriptions,
  * in the currency indicated.
  */
-class MonthlyDonationRepository(private val donationsService: DonationsService) {
+class RecurringInAppPaymentRepository(private val donationsService: DonationsService) {
 
-  private val TAG = Log.tag(MonthlyDonationRepository::class.java)
-
-  fun getActiveSubscription(): Single<ActiveSubscription> {
-    val localSubscription = SignalStore.donationsValues().getSubscriber()
+  fun getActiveSubscription(type: InAppPaymentSubscriberRecord.Type): Single<ActiveSubscription> {
+    val localSubscription = InAppPaymentsRepository.getSubscriber(type)
     return if (localSubscription != null) {
       Single.fromCallable { donationsService.getSubscription(localSubscription.subscriberId) }
         .subscribeOn(Schedulers.io())
         .flatMap(ServiceResponse<ActiveSubscription>::flattenResult)
         .doOnSuccess { activeSubscription ->
           if (activeSubscription.isActive && activeSubscription.activeSubscription.endOfCurrentPeriod > SignalStore.donationsValues().getLastEndOfPeriod()) {
-            SubscriptionKeepAliveJob.enqueueAndTrackTime(System.currentTimeMillis())
+            InAppPaymentKeepAliveJob.enqueueAndTrackTime(System.currentTimeMillis().milliseconds)
           }
         }
     } else {
@@ -85,23 +84,23 @@ class MonthlyDonationRepository(private val donationsService: DonationsService) 
    * Since PayPal and Stripe can't interoperate, we need to be able to rotate the subscriber ID
    * in case of failures.
    */
-  fun rotateSubscriberId(): Completable {
+  fun rotateSubscriberId(subscriberType: InAppPaymentSubscriberRecord.Type): Completable {
     Log.d(TAG, "Rotating SubscriberId due to alternate payment processor...", true)
-    val cancelCompletable: Completable = if (SignalStore.donationsValues().getSubscriber() != null) {
-      cancelActiveSubscription().andThen(updateLocalSubscriptionStateAndScheduleDataSync())
+    val cancelCompletable: Completable = if (InAppPaymentsRepository.getSubscriber(subscriberType) != null) {
+      cancelActiveSubscription(subscriberType).andThen(updateLocalSubscriptionStateAndScheduleDataSync(subscriberType))
     } else {
       Completable.complete()
     }
 
-    return cancelCompletable.andThen(ensureSubscriberId(isRotation = true))
+    return cancelCompletable.andThen(ensureSubscriberId(subscriberType, isRotation = true))
   }
 
-  fun ensureSubscriberId(isRotation: Boolean = false): Completable {
+  fun ensureSubscriberId(subscriberType: InAppPaymentSubscriberRecord.Type, isRotation: Boolean = false): Completable {
     Log.d(TAG, "Ensuring SubscriberId exists on Signal service {isRotation?$isRotation}...", true)
     val subscriberId: SubscriberId = if (isRotation) {
       SubscriberId.generate()
     } else {
-      SignalStore.donationsValues().getSubscriber()?.subscriberId ?: SubscriberId.generate()
+      InAppPaymentsRepository.getSubscriber(subscriberType)?.subscriberId ?: SubscriberId.generate()
     }
 
     return Single
@@ -113,20 +112,27 @@ class MonthlyDonationRepository(private val donationsService: DonationsService) 
       .doOnComplete {
         Log.d(TAG, "Successfully set SubscriberId exists on Signal service.", true)
 
-        SignalStore
-          .donationsValues()
-          .setSubscriber(Subscriber(subscriberId, SignalStore.donationsValues().getSubscriptionCurrency().currencyCode))
+        InAppPaymentsRepository.setSubscriber(
+          InAppPaymentSubscriberRecord(
+            subscriberId = subscriberId,
+            currencyCode = SignalStore.donationsValues().getSubscriptionCurrency(subscriberType).currencyCode,
+            type = subscriberType,
+            requiresCancel = false,
+            paymentMethodType = InAppPaymentData.PaymentMethodType.UNKNOWN
+          )
+        )
 
         SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
         StorageSyncHelper.scheduleSyncForDataChange()
       }
   }
 
-  fun cancelActiveSubscription(): Completable {
+  fun cancelActiveSubscription(subscriberType: InAppPaymentSubscriberRecord.Type): Completable {
     Log.d(TAG, "Canceling active subscription...", true)
-    val localSubscriber = SignalStore.donationsValues().requireSubscriber()
     return Single
       .fromCallable {
+        val localSubscriber = InAppPaymentsRepository.requireSubscriber(subscriberType)
+
         donationsService.cancelSubscription(localSubscriber.subscriberId)
       }
       .subscribeOn(Schedulers.io())
@@ -135,12 +141,12 @@ class MonthlyDonationRepository(private val donationsService: DonationsService) 
       .doOnComplete { Log.d(TAG, "Cancelled active subscription.", true) }
   }
 
-  fun cancelActiveSubscriptionIfNecessary(): Completable {
-    return Single.just(SignalStore.donationsValues().shouldCancelSubscriptionBeforeNextSubscribeAttempt).flatMapCompletable {
+  fun cancelActiveSubscriptionIfNecessary(subscriberType: InAppPaymentSubscriberRecord.Type): Completable {
+    return Single.fromCallable { InAppPaymentsRepository.getShouldCancelSubscriptionBeforeNextSubscribeAttempt(subscriberType) }.flatMapCompletable {
       if (it) {
         Log.d(TAG, "Cancelling active subscription...", true)
-        cancelActiveSubscription().doOnComplete {
-          SignalStore.donationsValues().updateLocalStateForManualCancellation()
+        cancelActiveSubscription(subscriberType).doOnComplete {
+          SignalStore.donationsValues().updateLocalStateForManualCancellation(subscriberType)
           MultiDeviceSubscriptionSyncRequestJob.enqueue()
         }
       } else {
@@ -149,13 +155,37 @@ class MonthlyDonationRepository(private val donationsService: DonationsService) 
     }
   }
 
-  fun setSubscriptionLevel(gatewayRequest: GatewayRequest, isLongRunning: Boolean): Completable {
-    val subscriptionLevel = gatewayRequest.level.toString()
-    val uiSessionKey = gatewayRequest.uiSessionKey
+  fun getPaymentSourceTypeOfLatestSubscription(subscriberType: InAppPaymentSubscriberRecord.Type): Single<PaymentSourceType> {
+    return Single.fromCallable {
+      InAppPaymentsRepository.getLatestPaymentMethodType(subscriberType).toPaymentSourceType()
+    }
+  }
+
+  fun setSubscriptionLevel(inAppPayment: InAppPaymentTable.InAppPayment, paymentSourceType: PaymentSourceType): Completable {
+    val subscriptionLevel = inAppPayment.data.level.toString()
+    val isLongRunning = paymentSourceType.isBankTransfer
+    val subscriberType = inAppPayment.type.requireSubscriberType()
+    val errorSource = subscriberType.inAppPaymentType.toErrorSource()
 
     return getOrCreateLevelUpdateOperation(subscriptionLevel)
       .flatMapCompletable { levelUpdateOperation ->
-        val subscriber = SignalStore.donationsValues().requireSubscriber()
+        val subscriber = InAppPaymentsRepository.requireSubscriber(subscriberType)
+        SignalDatabase.inAppPayments.update(
+          inAppPayment = inAppPayment.copy(
+            subscriberId = subscriber.subscriberId,
+            data = inAppPayment.data.copy(
+              redemption = InAppPaymentData.RedemptionState(
+                stage = InAppPaymentData.RedemptionState.Stage.INIT
+              )
+            )
+          )
+        )
+
+        val timeoutError = if (isLongRunning) {
+          BadgeRedemptionError.DonationPending(errorSource, inAppPayment)
+        } else {
+          BadgeRedemptionError.TimeoutWaitingForTokenError(errorSource)
+        }
 
         Log.d(TAG, "Attempting to set user subscription level to $subscriptionLevel", true)
         Single
@@ -165,13 +195,13 @@ class MonthlyDonationRepository(private val donationsService: DonationsService) 
               subscriptionLevel,
               subscriber.currencyCode,
               levelUpdateOperation.idempotencyKey.serialize(),
-              SubscriptionReceiptRequestResponseJob.MUTEX
+              subscriberType
             )
           }
           .flatMapCompletable {
             if (it.status == 200 || it.status == 204) {
               Log.d(TAG, "Successfully set user subscription to level $subscriptionLevel with response code ${it.status}", true)
-              SignalStore.donationsValues().updateLocalStateForLocalSubscribe()
+              SignalStore.donationsValues().updateLocalStateForLocalSubscribe(subscriberType)
               syncAccountRecord().subscribe()
               LevelUpdate.updateProcessingState(false)
               Completable.complete()
@@ -186,54 +216,24 @@ class MonthlyDonationRepository(private val donationsService: DonationsService) 
               LevelUpdate.updateProcessingState(false)
               it.flattenResult().ignoreElement()
             }
-          }.andThen {
-            Log.d(TAG, "Enqueuing request response job chain.", true)
-            val countDownLatch = CountDownLatch(1)
-            var finalJobState: JobTracker.JobState? = null
-
-            val terminalDonation = TerminalDonationQueue.TerminalDonation(
-              level = gatewayRequest.level,
-              isLongRunningPaymentMethod = isLongRunning
-            )
-
-            SubscriptionReceiptRequestResponseJob.createSubscriptionContinuationJobChain(uiSessionKey, terminalDonation).enqueue { _, jobState ->
-              if (jobState.isComplete) {
-                finalJobState = jobState
-                countDownLatch.countDown()
-              }
-            }
-
-            val timeoutError: DonationError = if (isLongRunning) {
-              DonationError.donationPending(DonationErrorSource.MONTHLY, gatewayRequest)
-            } else {
-              DonationError.timeoutWaitingForToken(DonationErrorSource.MONTHLY)
-            }
-
-            try {
-              if (countDownLatch.await(10, TimeUnit.SECONDS)) {
-                when (finalJobState) {
-                  JobTracker.JobState.SUCCESS -> {
-                    Log.d(TAG, "Subscription request response job chain succeeded.", true)
-                    it.onComplete()
-                  }
-                  JobTracker.JobState.FAILURE -> {
-                    Log.d(TAG, "Subscription request response job chain failed permanently.", true)
-                    it.onError(DonationError.genericBadgeRedemptionFailure(DonationErrorSource.MONTHLY))
-                  }
-                  else -> {
-                    Log.d(TAG, "Subscription request response job chain ignored due to in-progress jobs.", true)
-                    it.onError(timeoutError)
-                  }
+          }.andThen(
+            Single.fromCallable {
+              Log.d(TAG, "Enqueuing request response job chain.", true)
+              val freshPayment = SignalDatabase.inAppPayments.getById(inAppPayment.id)!!
+              InAppPaymentRecurringContextJob.createJobChain(freshPayment).enqueue()
+            }.flatMap {
+              Log.d(TAG, "Awaiting completion of redemption chain for up to 10 seconds.", true)
+              InAppPaymentsRepository.observeUpdates(inAppPayment.id).filter {
+                it.state == InAppPaymentTable.State.END
+              }.take(1).map {
+                if (it.data.error != null) {
+                  Log.d(TAG, "Failure during redemption chain.", true)
+                  throw DonationError.genericBadgeRedemptionFailure(errorSource)
                 }
-              } else {
-                Log.d(TAG, "Subscription request response job timed out.", true)
-                it.onError(timeoutError)
-              }
-            } catch (e: InterruptedException) {
-              Log.w(TAG, "Subscription request response interrupted.", e, true)
-              it.onError(timeoutError)
-            }
-          }
+                it
+              }.firstOrError()
+            }.timeout(10, TimeUnit.SECONDS, Single.error(timeoutError)).ignoreElement()
+          )
       }.doOnError {
         LevelUpdate.updateProcessingState(false)
       }.subscribeOn(Schedulers.io())
@@ -244,6 +244,8 @@ class MonthlyDonationRepository(private val donationsService: DonationsService) 
   }
 
   companion object {
+    private val TAG = Log.tag(RecurringInAppPaymentRepository::class.java)
+
     fun getOrCreateLevelUpdateOperation(tag: String, subscriptionLevel: String): LevelUpdateOperation {
       Log.d(tag, "Retrieving level update operation for $subscriptionLevel")
       val levelUpdateOperation = SignalStore.donationsValues().getLevelOperation(subscriptionLevel)
@@ -269,10 +271,10 @@ class MonthlyDonationRepository(private val donationsService: DonationsService) 
    * Update local state information and schedule a storage sync for the change. This method
    * assumes you've already properly called the DELETE method for the stored ID on the server.
    */
-  private fun updateLocalSubscriptionStateAndScheduleDataSync(): Completable {
+  private fun updateLocalSubscriptionStateAndScheduleDataSync(subscriberType: InAppPaymentSubscriberRecord.Type): Completable {
     return Completable.fromAction {
       Log.d(TAG, "Marking subscription cancelled...", true)
-      SignalStore.donationsValues().updateLocalStateForManualCancellation()
+      SignalStore.donationsValues().updateLocalStateForManualCancellation(subscriberType)
       MultiDeviceSubscriptionSyncRequestJob.enqueue()
       SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
       StorageSyncHelper.scheduleSyncForDataChange()

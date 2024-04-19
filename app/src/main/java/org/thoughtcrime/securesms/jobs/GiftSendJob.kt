@@ -20,6 +20,7 @@ import java.util.concurrent.TimeUnit
  * Sends a message to the given recipient containing a redeemable badge token.
  * This job assumes that the client has already determined whether the given recipient can receive a gift badge.
  */
+@Deprecated("Replaced with InAppPaymentGiftSendJob")
 class GiftSendJob private constructor(parameters: Parameters, private val recipientId: RecipientId, private val additionalMessage: String?) : Job(parameters) {
 
   companion object {

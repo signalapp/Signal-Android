@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.badges.gifts.flow
 
 import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.badges.models.Badge
+import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.recipients.Recipient
 import java.util.Currency
 
@@ -9,6 +10,7 @@ import java.util.Currency
  * State maintained by the GiftFlowViewModel
  */
 data class GiftFlowState(
+  val inAppPaymentId: InAppPaymentTable.InAppPaymentId? = null,
   val currency: Currency,
   val giftLevel: Long? = null,
   val giftBadge: Badge? = null,

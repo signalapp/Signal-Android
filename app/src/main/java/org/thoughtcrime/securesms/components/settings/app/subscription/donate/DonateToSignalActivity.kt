@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.FragmentWrapperActivity
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentComponent
 import org.thoughtcrime.securesms.components.settings.app.subscription.StripeRepository
+import org.thoughtcrime.securesms.database.InAppPaymentTable
 
 /**
  * Activity wrapper for donate to signal screen. An activity is needed because Google Pay uses the
@@ -20,7 +21,7 @@ class DonateToSignalActivity : FragmentWrapperActivity(), DonationPaymentCompone
   override val googlePayResultPublisher: Subject<DonationPaymentComponent.GooglePayResult> = PublishSubject.create()
 
   override fun getFragment(): Fragment {
-    return NavHostFragment.create(R.navigation.donate_to_signal, DonateToSignalFragmentArgs.Builder(DonateToSignalType.ONE_TIME).build().toBundle())
+    return NavHostFragment.create(R.navigation.donate_to_signal, DonateToSignalFragmentArgs.Builder(InAppPaymentTable.Type.ONE_TIME_DONATION).build().toBundle())
   }
 
   @Suppress("DEPRECATION")

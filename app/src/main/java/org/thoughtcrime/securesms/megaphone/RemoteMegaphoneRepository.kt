@@ -12,8 +12,8 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.badges.gifts.flow.GiftFlowActivity
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppDonations
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalActivity
-import org.thoughtcrime.securesms.components.settings.app.subscription.manage.DonationRedemptionJobWatcher
 import org.thoughtcrime.securesms.database.RemoteMegaphoneTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.RemoteMegaphoneRecord
@@ -131,7 +131,7 @@ object RemoteMegaphoneRepository {
   private fun shouldShowDonateMegaphone(): Boolean {
     return VersionTracker.getDaysSinceFirstInstalled(context) >= 7 &&
       InAppDonations.hasAtLeastOnePaymentMethodAvailable() &&
-      !DonationRedemptionJobWatcher.hasPendingRedemptionJob() &&
+      !InAppPaymentsRepository.hasPendingDonation() &&
       Recipient.self()
         .badges
         .stream()

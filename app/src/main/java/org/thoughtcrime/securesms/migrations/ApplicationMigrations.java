@@ -146,9 +146,10 @@ public class ApplicationMigrations {
     static final int PNP_LAUNCH                    = 102;
     static final int EMOJI_VERSION_10              = 103;
     static final int ATTACHMENT_HASH_BACKFILL      = 104;
+    static final int SUBSCRIBER_ID                 = 105;
   }
 
-  public static final int CURRENT_VERSION = 104;
+  public static final int CURRENT_VERSION = 105;
 
  /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -665,6 +666,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.ATTACHMENT_HASH_BACKFILL) {
       jobs.put(Version.ATTACHMENT_HASH_BACKFILL, new AttachmentHashBackfillMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.SUBSCRIBER_ID) {
+      jobs.put(Version.SUBSCRIBER_ID, new SubscriberIdMigrationJob());
     }
 
     return jobs;

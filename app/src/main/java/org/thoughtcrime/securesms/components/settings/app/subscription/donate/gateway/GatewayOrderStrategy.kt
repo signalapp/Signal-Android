@@ -8,39 +8,40 @@ package org.thoughtcrime.securesms.components.settings.app.subscription.donate.g
 import com.google.i18n.phonenumbers.PhoneNumberUtil
 import org.signal.core.util.orNull
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppDonations
+import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.recipients.Recipient
 
 sealed interface GatewayOrderStrategy {
 
-  val orderedGateways: Set<GatewayResponse.Gateway>
+  val orderedGateways: Set<InAppPaymentData.PaymentMethodType>
 
   private object Default : GatewayOrderStrategy {
-    override val orderedGateways: Set<GatewayResponse.Gateway> = setOf(
-      GatewayResponse.Gateway.CREDIT_CARD,
-      GatewayResponse.Gateway.PAYPAL,
-      GatewayResponse.Gateway.GOOGLE_PAY,
-      GatewayResponse.Gateway.SEPA_DEBIT,
-      GatewayResponse.Gateway.IDEAL
+    override val orderedGateways: Set<InAppPaymentData.PaymentMethodType> = setOf(
+      InAppPaymentData.PaymentMethodType.CARD,
+      InAppPaymentData.PaymentMethodType.PAYPAL,
+      InAppPaymentData.PaymentMethodType.GOOGLE_PAY,
+      InAppPaymentData.PaymentMethodType.SEPA_DEBIT,
+      InAppPaymentData.PaymentMethodType.IDEAL
     )
   }
 
   private object NorthAmerica : GatewayOrderStrategy {
-    override val orderedGateways: Set<GatewayResponse.Gateway> = setOf(
-      GatewayResponse.Gateway.GOOGLE_PAY,
-      GatewayResponse.Gateway.PAYPAL,
-      GatewayResponse.Gateway.CREDIT_CARD,
-      GatewayResponse.Gateway.SEPA_DEBIT,
-      GatewayResponse.Gateway.IDEAL
+    override val orderedGateways: Set<InAppPaymentData.PaymentMethodType> = setOf(
+      InAppPaymentData.PaymentMethodType.GOOGLE_PAY,
+      InAppPaymentData.PaymentMethodType.PAYPAL,
+      InAppPaymentData.PaymentMethodType.CARD,
+      InAppPaymentData.PaymentMethodType.SEPA_DEBIT,
+      InAppPaymentData.PaymentMethodType.IDEAL
     )
   }
 
   private object Netherlands : GatewayOrderStrategy {
-    override val orderedGateways: Set<GatewayResponse.Gateway> = setOf(
-      GatewayResponse.Gateway.IDEAL,
-      GatewayResponse.Gateway.PAYPAL,
-      GatewayResponse.Gateway.GOOGLE_PAY,
-      GatewayResponse.Gateway.CREDIT_CARD,
-      GatewayResponse.Gateway.SEPA_DEBIT
+    override val orderedGateways: Set<InAppPaymentData.PaymentMethodType> = setOf(
+      InAppPaymentData.PaymentMethodType.IDEAL,
+      InAppPaymentData.PaymentMethodType.PAYPAL,
+      InAppPaymentData.PaymentMethodType.GOOGLE_PAY,
+      InAppPaymentData.PaymentMethodType.CARD,
+      InAppPaymentData.PaymentMethodType.SEPA_DEBIT
     )
   }
 

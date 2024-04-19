@@ -12,8 +12,11 @@ import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
-import org.thoughtcrime.securesms.components.settings.app.subscription.MonthlyDonationRepository
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
+import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
+import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.subscription.LevelUpdate
@@ -23,7 +26,7 @@ import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import java.util.Optional
 
 class ManageDonationsViewModel(
-  private val subscriptionsRepository: MonthlyDonationRepository
+  private val subscriptionsRepository: RecurringInAppPaymentRepository
 ) : ViewModel() {
 
   private val store = Store(ManageDonationsState())
@@ -62,7 +65,15 @@ class ManageDonationsViewModel(
     disposables.clear()
 
     val levelUpdateOperationEdges: Observable<Boolean> = LevelUpdate.isProcessing.distinctUntilChanged()
-    val activeSubscription: Single<ActiveSubscription> = subscriptionsRepository.getActiveSubscription()
+    val activeSubscription: Single<ActiveSubscription> = subscriptionsRepository.getActiveSubscription(InAppPaymentSubscriberRecord.Type.DONATION)
+
+    disposables += Single.fromCallable {
+      InAppPaymentsRepository.getShouldCancelSubscriptionBeforeNextSubscribeAttempt(InAppPaymentSubscriberRecord.Type.DONATION)
+    }.subscribeBy { requiresCancel ->
+      store.update {
+        it.copy(subscriberRequiresCancel = requiresCancel)
+      }
+    }
 
     disposables += Recipient.observable(Recipient.self().id).map { it.badges }.subscribeBy { badges ->
       store.update { state ->
@@ -76,7 +87,7 @@ class ManageDonationsViewModel(
       store.update { it.copy(hasReceipts = hasReceipts) }
     }
 
-    disposables += DonationRedemptionJobWatcher.watchSubscriptionRedemption().subscribeBy { redemptionStatus ->
+    disposables += InAppPaymentsRepository.observeInAppPaymentRedemption(InAppPaymentTable.Type.RECURRING_DONATION).subscribeBy { redemptionStatus ->
       store.update { manageDonationsState ->
         manageDonationsState.copy(
           nonVerifiedMonthlyDonation = if (redemptionStatus is DonationRedemptionJobStatus.PendingExternalVerification) redemptionStatus.nonVerifiedMonthlyDonation else null,
@@ -87,7 +98,7 @@ class ManageDonationsViewModel(
 
     disposables += Observable.combineLatest(
       SignalStore.donationsValues().observablePendingOneTimeDonation,
-      DonationRedemptionJobWatcher.watchOneTimeRedemption()
+      InAppPaymentsRepository.observeInAppPaymentRedemption(InAppPaymentTable.Type.ONE_TIME_DONATION)
     ) { pendingFromStore, pendingFromJob ->
       if (pendingFromStore.isPresent) {
         pendingFromStore
@@ -145,7 +156,7 @@ class ManageDonationsViewModel(
   }
 
   class Factory(
-    private val subscriptionsRepository: MonthlyDonationRepository
+    private val subscriptionsRepository: RecurringInAppPaymentRepository
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return modelClass.cast(ManageDonationsViewModel(subscriptionsRepository))!!
