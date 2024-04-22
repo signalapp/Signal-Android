@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.events
 
 import com.annimon.stream.OptionalLong
 import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink
-import org.thoughtcrime.securesms.events.CallParticipant.Companion.HAND_LOWERED
 import org.thoughtcrime.securesms.events.CallParticipant.Companion.createLocal
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -113,11 +112,11 @@ class WebRtcViewModel(state: WebRtcServiceState) {
   val availableDevices: Set<SignalAudioManager.AudioDevice> = state.localDeviceState.availableDevices
   val bluetoothPermissionDenied: Boolean = state.localDeviceState.bluetoothPermissionDenied
 
-  val localParticipant: CallParticipant = state.callInfoState.localParticipant ?: createLocal(
+  val localParticipant: CallParticipant = createLocal(
     state.localDeviceState.cameraState,
     (if (state.videoState.localSink != null) state.videoState.localSink else BroadcastVideoSink())!!,
     state.localDeviceState.isMicrophoneEnabled,
-    HAND_LOWERED
+    state.localDeviceState.handRaisedTimestamp
   )
 
   val isCellularConnection: Boolean = when (state.localDeviceState.networkConnectionType) {
