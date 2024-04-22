@@ -1295,8 +1295,8 @@
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">Me le rappeler plus tard</string>
-    <string name="Megaphones_verify_your_signal_pin">Confirmer votre NIP Signal</string>
-    <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Nous vous demanderons de temps en temps de confirmer votre NIP afin que vous vous en souveniez.</string>
+    <string name="Megaphones_verify_your_signal_pin">Confirmer votre code PIN Signal</string>
+    <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Nous vous demanderons occasionnellement de confirmer votre code PIN pour vous aider à le mémoriser.</string>
     <string name="Megaphones_verify_pin">Confirmer le PIN</string>
     <string name="Megaphones_get_started">Commençons</string>
     <string name="Megaphones_new_group">Nouveau groupe</string>
@@ -1566,54 +1566,54 @@
 
     <!-- Group Calling update messages -->
     <!-- Chat log text for an ongoing group call that has one participant with a placeholder for the short display name of the user that joined and a placeholder for formatted time -->
-    <string name="MessageRecord_s_is_in_the_call_s">%1$s is in the call · %2$s</string>
+    <string name="MessageRecord_s_is_in_the_call_s">%1$s a rejoint l’appel · %2$s</string>
     <!-- Chat log text for an ongoing group call only the local user has joined with a placeholder for formatted time -->
-    <string name="MessageRecord_you_are_in_the_call_s1">You are in the call · %1$s</string>
+    <string name="MessageRecord_you_are_in_the_call_s1">Vous avez rejoint l’appel · %1$s</string>
     <!-- Chat log text for an ongoing group call with two participants with two placeholders for the short display name of the users that joined and a placeholder for formatted time -->
-    <string name="MessageRecord_s_and_s_are_in_the_call_s1">%1$s and %2$s are in the call · %3$s</string>
+    <string name="MessageRecord_s_and_s_are_in_the_call_s1">%1$s et %2$s ont rejoint l’appel · %3$s</string>
     <!-- Chat log text for an ongoing group call that has one participant -->
-    <string name="MessageRecord_s_is_in_the_call">%1$s is in the call</string>
+    <string name="MessageRecord_s_is_in_the_call">%1$s a rejoint l’appel</string>
     <!-- Chat log text for an ongoing group call only the local user has joined -->
-    <string name="MessageRecord_you_are_in_the_call">You are in the call</string>
+    <string name="MessageRecord_you_are_in_the_call">Vous avez rejoint l’appel</string>
     <!-- Chat log text for an ongoing group call with two participants with two placeholders, each for the short display name of the users that joined -->
-    <string name="MessageRecord_s_and_s_are_in_the_call">%1$s and %2$s are in the call</string>
+    <string name="MessageRecord_s_and_s_are_in_the_call">%1$s et %2$s ont rejoint l’appel</string>
     <!-- Chat log text for a group call that ended within the last 5 minutes -->
-    <string name="MessageRecord__the_video_call_has_ended">The video call has ended</string>
+    <string name="MessageRecord__the_video_call_has_ended">L’appel vidéo est terminé</string>
     <!-- Chat log text for a group call that ended within the last 5 minutes with a placeholder for formatted time -->
-    <string name="MessageRecord__the_video_call_has_ended_s">The video call has ended · %1$s</string>
+    <string name="MessageRecord__the_video_call_has_ended_s">L’appel vidéo est terminé · %1$s</string>
     <!-- Chat log text for a group call that ended more than 5 minutes ago and was missed -->
-    <string name="MessageRecord__missed_video_call">Missed video call</string>
+    <string name="MessageRecord__missed_video_call">Appel vidéo manqué</string>
     <!-- Chat log text for a group call that ended more than 5 minutes ago and was missed with a placeholder for formatted time -->
-    <string name="MessageRecord__missed_video_call_s">Missed video call · %1$s</string>
+    <string name="MessageRecord__missed_video_call_s">Appel vidéo manqué – %1$s</string>
     <!-- Chat log text for a group call that ended that the local user did not start -->
-    <string name="MessageRecord__incoming_video_call">Incoming video call</string>
+    <string name="MessageRecord__incoming_video_call">Appel vidéo entrant</string>
     <!-- Chat log text for a group call that ended that the local user did not start with a placeholder for formatted time -->
-    <string name="MessageRecord__incoming_video_call_s">Incoming video call · %1$s</string>
+    <string name="MessageRecord__incoming_video_call_s">Appel vidéo entrant · %1$s</string>
     <!-- Chat log text for a group call that ended that the local user started -->
-    <string name="MessageRecord__outgoing_video_call">Outgoing video call</string>
+    <string name="MessageRecord__outgoing_video_call">Appel vidéo sortant</string>
     <!-- Chat log text for a group call that ended that the local user started with a placeholder for formatted time -->
-    <string name="MessageRecord__outgoing_video_call_s">Outgoing video call · %1$s</string>
+    <string name="MessageRecord__outgoing_video_call_s">Appel vidéo sortant · %1$s</string>
     <!-- Chat log text for an ongoing group call that the local user started -->
-    <string name="MessageRecord__you_started_a_video_call">You started a video call</string>
+    <string name="MessageRecord__you_started_a_video_call">Vous avez démarré un appel vidéo</string>
     <!-- Chat log text for an ongoing group call that the local user started with a placeholder for formatted time -->
-    <string name="MessageRecord__you_started_a_video_call_s">You started a video call · %1$s</string>
+    <string name="MessageRecord__you_started_a_video_call_s">Vous avez démarré un appel vidéo · %1$s</string>
     <!-- Chat log text for an ongoing group call that the local user has not joined with a placeholder for user\'s short display name -->
-    <string name="MessageRecord__s_started_a_video_call">%1$s started a video call</string>
+    <string name="MessageRecord__s_started_a_video_call">%1$s a démarré un appel vidéo</string>
     <!-- Chat log text for an ongoing group call that the local user has not joined with a placeholder for user\'s short display name and a placeholder for formatted time -->
-    <string name="MessageRecord__s_started_a_video_call_s">%1$s started a video call · %2$s</string>
+    <string name="MessageRecord__s_started_a_video_call_s">%1$s a démarré un appel vidéo · %2$s</string>
 
     <string name="MessageRecord_you">Vous</string>
 
     <!-- Chat log text for an ongoing group call with more than two participants with placeholders for the first two joined users, a placeholder for the number of users in the call, and a placeholder for formatted time -->
     <plurals name="MessageRecord_s_s_and_d_others_are_in_the_call_s">
-        <item quantity="one">%1$s, %2$s, and %3$d other are in the group call · %4$s</item>
-        <item quantity="other">%1$s, %2$s, and %3$d others are in the group call · %4$s</item>
+        <item quantity="one">%1$s, %2$s et %3$d autre personne participent à l’appel de groupe · %4$s</item>
+        <item quantity="other">%1$s, %2$s et %3$d autres personnes participent à l’appel de groupe · %4$s</item>
     </plurals>
 
     <!-- Chat log text for an ongoing group call with more than two participants with placeholders for the first two joined users and a placeholder for the number of users in the call -->
     <plurals name="MessageRecord_s_s_and_d_others_are_in_the_call">
-        <item quantity="one">%1$s, %2$s, and %3$d other are in the group call</item>
-        <item quantity="other">%1$s, %2$s, and %3$d others are in the group call</item>
+        <item quantity="one">%1$s, %2$s et %3$d autre personne participent à l’appel de groupe</item>
+        <item quantity="other">%1$s, %2$s et %3$d autres personnes participent à l’appel de groupe</item>
     </plurals>
 
     <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
@@ -1728,11 +1728,11 @@
     <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">La version des services Google Play installée ne fonctionne pas correctement. Veuillez réinstaller les Services Google Play et réessayer.</string>
 
     <!-- PinRestoreEntryFragment -->
-    <string name="PinRestoreEntryFragment_incorrect_pin">Le NIP est erroné</string>
-    <string name="PinRestoreEntryFragment_skip_pin_entry">Ignorer la saisie du NIP ?</string>
+    <string name="PinRestoreEntryFragment_incorrect_pin">Code PIN incorrect.</string>
+    <string name="PinRestoreEntryFragment_skip_pin_entry">Ne pas saisir de code PIN ?</string>
     <string name="PinRestoreEntryFragment_need_help">Besoin d’aide ?</string>
-    <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Votre NIP est un code à %1$d chiffres ou plus que vous avez créé et qui peut être numérique ou alphanumérique. Si vous avez oublié votre NIP, vous pouvez en créer un nouveau. Vous pouvez vous inscrire et utiliser votre compte, mais vous perdrez certains paramètres enregistrés tels que les informations de votre profil.</string>
-    <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Si vous ne vous souvenez pas de votre NIP, vous pouvez en créer un nouveau. Vous pouvez vous inscrire et utiliser votre compte, mais vous perdrez certains paramètres enregistrés tels que les informations de votre profil.</string>
+    <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Votre code PIN est un code numérique ou alphanumérique que vous avez créé et qui comporte %1$d caractères ou plus.\n\n Si vous l’avez oublié, vous pouvez en créer un nouveau. Vous pourrez vous inscrire et utiliser votre compte, mais vous perdrez certains paramètres enregistrés, tels que les informations de profil.</string>
+    <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Si vous ne vous souvenez pas de votre code PIN, vous pouvez en créer un nouveau. Vous pourrez vous inscrire et utiliser votre compte, mais vous perdrez certains paramètres enregistrés, tels que les informations de profil.</string>
     <string name="PinRestoreEntryFragment_create_new_pin">Créer un nouveau PIN</string>
     <string name="PinRestoreEntryFragment_contact_support">Contacter l’assistance</string>
     <string name="PinRestoreEntryFragment_cancel">Annuler</string>
@@ -1741,11 +1741,11 @@
         <item quantity="one">Il vous reste %1$d essai. Si vous épuisez le nombre limite d’essais, vous pouvez créer un nouveau PIN. Vous pouvez vous inscrire et utiliser votre compte, mais vous perdrez certains paramètres enregistrés tels que les informations de votre profil.</item>
         <item quantity="other">Il vous reste %1$d essais. Si vous épuisez le nombre limite d’essais, vous pouvez créer un nouveau PIN. Vous pouvez vous inscrire et utiliser votre compte, mais vous perdrez certains paramètres enregistrés tels que les informations de votre profil.</item>
     </plurals>
-    <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Inscription à Signal – Besoin d’aide avec le NIP sur Android</string>
+    <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Inscription à Signal – Besoin d’aide : code PIN sous Android</string>
 
     <!-- PinRestoreLockedFragment -->
-    <string name="PinRestoreLockedFragment_create_your_pin">Créer votre NIP</string>
-    <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Vous avez épuisé tous vos essais de NIP, mais vous pouvez encore accéder à votre compte Signal en créant un nouveau NIP. Afin de protéger vos données personnelles et votre sécurité, votre compte sera restauré sans informations de profil enregistrées ni préférences.</string>
+    <string name="PinRestoreLockedFragment_create_your_pin">Créer un code PIN</string>
+    <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Vous avez dépassé le nombre de tentatives autorisées. Pour accéder à votre compte Signal, vous devez créer un nouveau code PIN. Afin de protéger vos données personnelles et votre sécurité, votre compte sera restauré sans informations de profil, ni paramètres enregistrés.</string>
     <string name="PinRestoreLockedFragment_create_new_pin">Créer un nouveau PIN</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
@@ -2132,7 +2132,7 @@
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Activer le blocage d’inscription ?</string>
     <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Désactiver le blocage d’inscription ?</string>
-    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Si vous oubliez votre NIP Signal lors d’une nouvelle inscription à Signal, vous ne pourrez pas accéder à votre compte pendant sept jours.</string>
+    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Si vous ne vous souvenez plus de votre code PIN au moment de vous réinscrire à Signal, vous ne pourrez pas accéder à votre compte pendant sept jours.</string>
     <string name="RegistrationLockV2Dialog_turn_on">Activer</string>
     <string name="RegistrationLockV2Dialog_turn_off">Désactiver</string>
 
@@ -2174,12 +2174,12 @@
     <string name="SignalBottomActionBar_more">Plus</string>
 
     <!-- SignalPinReminders -->
-    <string name="SignalPinReminders_well_remind_you_again_later">Le NIP a été confirmé avec succès. Nous vous le rappellerons plus tard.</string>
-    <string name="SignalPinReminders_well_remind_you_again_tomorrow">Le NIP a été confirmé avec succès. Nous vous le rappellerons demain.</string>
-    <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Le NIP a été confirmé avec succès. Nous vous le rappellerons dans quelques jours.</string>
-    <string name="SignalPinReminders_well_remind_you_again_in_a_week">Le NIP a été confirmé avec succès. Nous vous le rappellerons dans une semaine.</string>
-    <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Le NIP a été confirmé avec succès. Nous vous le rappellerons dans quelques semaines.</string>
-    <string name="SignalPinReminders_well_remind_you_again_in_a_month">Le NIP a été confirmé avec succès. Nous vous le rappellerons dans un mois.</string>
+    <string name="SignalPinReminders_well_remind_you_again_later">Vous avez bien confirmé votre code PIN. Nous vous le redemanderons plus tard.</string>
+    <string name="SignalPinReminders_well_remind_you_again_tomorrow">Vous avez bien confirmé votre code•PIN. Nous vous le redemanderons demain.</string>
+    <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Vous avez bien confirmé votre code•PIN. Nous vous le redemanderons dans quelques jours.</string>
+    <string name="SignalPinReminders_well_remind_you_again_in_a_week">Vous avez bien confirmé votre code•PIN. Nous vous le redemanderons dans une semaine.</string>
+    <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Vous avez bien confirmé votre code•PIN. Nous vous le redemanderons dans quelques semaines.</string>
+    <string name="SignalPinReminders_well_remind_you_again_in_a_month">Vous avez bien confirmé votre code•PIN. Nous vous le redemanderons dans un mois.</string>
 
     <!-- Slide -->
     <string name="Slide_image">Image</string>
@@ -2734,7 +2734,7 @@
     <string name="ConversationUpdateItem_learn_more">En savoir plus</string>
     <string name="ConversationUpdateItem_join_call">Me joindre à l’appel</string>
     <!-- Action button label for starting a new call in the current conversation -->
-    <string name="ConversationUpdateItem_call_back">Call back</string>
+    <string name="ConversationUpdateItem_call_back">Rappeler</string>
     <string name="ConversationUpdateItem_return_to_call">Revenir à l’appel</string>
     <string name="ConversationUpdateItem_call_is_full">L’appel est complet</string>
     <string name="ConversationUpdateItem_invite_friends">Inviter des amis</string>
@@ -3220,9 +3220,9 @@
     <!--Text description of a graphic illustrating the limitations of the app icon change. -->
     <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Graphique illustrant l’endroit où l’icône de l’application de remplacement sera visible.</string>
     <string name="preferences__disable_pin">Désactiver le code PIN</string>
-    <string name="preferences__enable_pin">Activer le NIP</string>
+    <string name="preferences__enable_pin">Activer le code PIN</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">La désactivation du code PIN entraînera la perte de toutes vos données lors de votre réinscription sur Signal, à moins de procéder à une sauvegarde et une restauration manuelles. Vous ne pouvez pas activer le blocage d’inscription si le code PIN est désactivé.</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Les NIP font en sorte que les informations sont enregistrées chiffrées dans Signal afin que vous seul puissiez y accéder. Votre profil, vos paramètres et vos contacts seront restaurés quand vous réinstallerez Signal. Vous n’aurez pas besoin de votre NIP pour ouvrir l’appli.</string>
+    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Avec un code PIN, les informations stockées dans Signal sont chiffrées, et vous seul y avez accès. Votre profil, vos contacts et vos paramètres sont restaurés si vous réinstallez Signal. Vous n’avez pas besoin du code PIN pour ouvrir l’appli.</string>
     <string name="preferences__system_default">Valeur par défaut du système</string>
     <string name="preferences__language">Langue</string>
     <string name="preferences__signal_messages_and_calls">Appels et messages Signal</string>
@@ -3732,9 +3732,9 @@
     <!-- BaseKbsPinFragment -->
     <string name="BaseKbsPinFragment__next">Suivant</string>
     <!-- Button label to prompt them to create a password ("PIN") using numbers and letters rather than only numbers. -->
-    <string name="BaseKbsPinFragment__create_alphanumeric_pin">Créer un NIP alphanumérique</string>
+    <string name="BaseKbsPinFragment__create_alphanumeric_pin">Créer un code PIN alphanumérique</string>
     <!-- Button label to prompt them to return to creating a numbers-only password ("PIN") -->
-    <string name="BaseKbsPinFragment__create_numeric_pin">Créer un NIP numérique</string>
+    <string name="BaseKbsPinFragment__create_numeric_pin">Créer un code PIN numérique</string>
   <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- CreateKbsPinFragment -->
@@ -3746,42 +3746,42 @@
         <item quantity="one">Votre PIN doit comporter au moins %1$d chiffre</item>
         <item quantity="other">Votre PIN doit comporter au moins %1$d chiffres</item>
     </plurals>
-    <string name="CreateKbsPinFragment__create_a_new_pin">Créer un nouveau NIP</string>
+    <string name="CreateKbsPinFragment__create_a_new_pin">Créer un nouveau code PIN</string>
     <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Vous pouvez changer de code PIN tant que cet appareil est enregistré.</string>
-    <string name="CreateKbsPinFragment__create_your_pin">Créer votre NIP</string>
+    <string name="CreateKbsPinFragment__create_your_pin">Créer un code PIN</string>
     <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">Les PIN peuvent vous aider à restaurer votre compte et garder vos données chiffrées avec Signal. </string>
-    <string name="CreateKbsPinFragment__choose_a_stronger_pin">Choisissez une NIP plus robuste</string>
+    <string name="CreateKbsPinFragment__choose_a_stronger_pin">Choisissez un code PIN plus complexe</string>
 
     <!-- ConfirmKbsPinFragment -->
-    <string name="ConfirmKbsPinFragment__pins_dont_match">Les NIP ne correspondent pas. Veuillez réessayez.</string>
+    <string name="ConfirmKbsPinFragment__pins_dont_match">Les codes PIN ne correspondent pas. Veuillez réessayez.</string>
     <!-- Prompt for the user to repeat entering the PIN in order to help them remember it correctly.   -->
     <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Saisissez à nouveau le PIN que vous venez de créer.</string>
-    <string name="ConfirmKbsPinFragment__confirm_your_pin">Confirmez votre NIP</string>
-    <string name="ConfirmKbsPinFragment__pin_creation_failed">Échec de création du NIP</string>
-    <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Votre NIP n’a pas été enregistré. Nous vous inviterons à en créer un plus tard.</string>
-    <string name="ConfirmKbsPinFragment__pin_created">Le NIP a été créé.</string>
+    <string name="ConfirmKbsPinFragment__confirm_your_pin">Confirmez votre code PIN</string>
+    <string name="ConfirmKbsPinFragment__pin_creation_failed">Impossible de créer le code PIN.</string>
+    <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Votre code PIN n’a pas été enregistré. Nous vous inviterons à en créer un plus tard.</string>
+    <string name="ConfirmKbsPinFragment__pin_created">Code PIN créé.</string>
     <string name="ConfirmKbsPinFragment__re_enter_your_pin">Saisissez de nouveau votre PIN.</string>
-    <string name="ConfirmKbsPinFragment__creating_pin">Création du NIP…</string>
+    <string name="ConfirmKbsPinFragment__creating_pin">Création du code PIN…</string>
 
     <!-- KbsSplashFragment -->
-    <string name="KbsSplashFragment__introducing_pins">Nous présentons les NIP</string>
-    <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Les NIP font en sorte que les informations sont enregistrées chiffrées dans Signal afin que vous seul puissiez y accéder. Votre profil, vos paramètres et vos contacts seront restaurés quand vous réinstallerez Signal. Vous n’aurez pas besoin de votre NIP pour ouvrir l’appli.</string>
+    <string name="KbsSplashFragment__introducing_pins">Lancement des codes PIN</string>
+    <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Avec un code PIN, les informations stockées dans Signal sont chiffrées, et vous seul y avez accès. Votre profil, vos contacts et vos paramètres sont restaurés si vous réinstallez Signal. Vous n’avez pas besoin du code PIN pour ouvrir l’appli.</string>
     <string name="KbsSplashFragment__learn_more">En savoir plus</string>
   <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
     <string name="KbsSplashFragment__registration_lock_equals_pin">Blocage d’inscription = PIN</string>
     <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Le blocage d’inscription fait peau neuve : il dépend désormais du code PIN et gagne en efficacité. Mettez-le à jour.</string>
-    <string name="KbsSplashFragment__update_pin">Mettre le NIP à jour</string>
-    <string name="KbsSplashFragment__create_your_pin">Créer votre NIP</string>
+    <string name="KbsSplashFragment__update_pin">Mettre le code PIN à jour</string>
+    <string name="KbsSplashFragment__create_your_pin">Créer un code PIN</string>
     <string name="KbsSplashFragment__learn_more_about_pins">En savoir plus sur les codes PIN</string>
     <string name="KbsSplashFragment__disable_pin">Désactiver le code PIN</string>
 
     <!-- KBS Reminder Dialog -->
-    <string name="KbsReminderDialog__enter_your_signal_pin">Saisissez votre NIP Signal</string>
-    <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Pour vous aider à mémoriser votre NIP, nous vous demanderons de le saisir régulièrement. Nous vous le demanderons de moins en moins souvent.</string>
+    <string name="KbsReminderDialog__enter_your_signal_pin">Saisissez votre code PIN Signal</string>
+    <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Pour vous aider à mémoriser votre code PIN, nous vous demanderons de le saisir régulièrement. Nous vous le demanderons moins souvent au fil du temps.</string>
     <string name="KbsReminderDialog__skip">Ignorer</string>
     <string name="KbsReminderDialog__submit">Envoyer</string>
-    <string name="KbsReminderDialog__forgot_pin">Avez-vous oublié votre NIP ?</string>
-    <string name="KbsReminderDialog__incorrect_pin_try_again">Le NIP est erroné. Veuillez réessayer.</string>
+    <string name="KbsReminderDialog__forgot_pin">Code PIN oublié ?</string>
+    <string name="KbsReminderDialog__incorrect_pin_try_again">Code PIN incorrect. Veuillez réessayer.</string>
 
     <!-- AccountLockedFragment -->
     <string name="AccountLockedFragment__account_locked">Le compte est verrouillé</string>
@@ -3792,17 +3792,17 @@
 
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">Saisissez votre PIN</string>
-    <string name="RegistrationLockFragment__enter_the_pin_you_created">Saisissez le NIP que vous avez créé pour votre compte. Il est différent de votre code de confirmation reçu par texto.</string>
+    <string name="RegistrationLockFragment__enter_the_pin_you_created">Saisissez le code PIN que vous avez créé pour votre compte. Il ne s’agit pas du code de confirmation reçu par SMS.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Saisissez le PIN choisi pour votre compte.</string>
     <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
     <string name="RegistrationLockFragment__switch_keyboard">Changer de clavier</string>
-    <string name="RegistrationLockFragment__incorrect_pin_try_again">Le NIP est erroné. Veuillez réessayer.</string>
-    <string name="RegistrationLockFragment__forgot_pin">Avez-vous oublié votre NIP ?</string>
-    <string name="RegistrationLockFragment__incorrect_pin">Le NIP est erroné</string>
-    <string name="RegistrationLockFragment__forgot_your_pin">Avez-vous oublié votre NIP ?</string>
+    <string name="RegistrationLockFragment__incorrect_pin_try_again">Code PIN incorrect. Veuillez réessayer.</string>
+    <string name="RegistrationLockFragment__forgot_pin">Code PIN oublié ?</string>
+    <string name="RegistrationLockFragment__incorrect_pin">Code PIN incorrect.</string>
+    <string name="RegistrationLockFragment__forgot_your_pin">Code•PIN oublié ?</string>
     <string name="RegistrationLockFragment__not_many_tries_left">Il vous reste peu d’essais</string>
-    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Inscription à Signal – Besoin d’aide avec le NIP sur Android (NIP v2)</string>
+    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Inscription à Signal – Besoin d’aide : code PIN sous Android (PIN v2)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
         <item quantity="one">Pour des raisons de sécurité et de protection de vos données personnelles, votre PIN ne peut pas être récupéré. Si vous avez oublié votre PIN, vous pourrez reconfirmer votre numéro par texto après %1$d jour d’inactivité. Dans ce cas, votre compte sera effacé et toutes ses données supprimées.</item>
@@ -3833,9 +3833,9 @@
     <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s recevra une invitation par message. Vous pourrez l’appeler une fois votre invitation acceptée.</string>
 
     <!-- KBS Megaphone -->
-    <string name="KbsMegaphone__create_a_pin">Créer un NIP</string>
-    <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Les NIP font en sorte que les informations sont enregistrées chiffrées dans Signal.</string>
-    <string name="KbsMegaphone__create_pin">Créer un NIP</string>
+    <string name="KbsMegaphone__create_a_pin">Créer un code PIN</string>
+    <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Avec un code PIN, les informations stockées dans Signal sont chiffrées.</string>
+    <string name="KbsMegaphone__create_pin">Créer un code PIN</string>
 
     <!-- CallNotificationBuilder -->
     <!-- Displayed in a notification when a Signal voice call is ringing -->
@@ -3949,21 +3949,21 @@
     <string name="preferences_app_protection__screen_lock">Verrou d’écran</string>
     <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Verrouiller l’accès à Signal avec le verrou d’écran d’Android ou avec une empreinte</string>
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">Délai d’inactivité avant verrouillage de l’écran</string>
-    <string name="preferences_app_protection__signal_pin">NIP Signal</string>
-    <string name="preferences_app_protection__create_a_pin">Créer un NIP</string>
+    <string name="preferences_app_protection__signal_pin">Code PIN Signal</string>
+    <string name="preferences_app_protection__create_a_pin">Créer un code PIN</string>
     <string name="preferences_app_protection__change_your_pin">Changer de code PIN</string>
     <string name="preferences_app_protection__pin_reminders">Rappels de code PIN</string>
     <string name="preferences_app_protection__turn_off">Désactiver</string>
     <string name="preferences_app_protection__confirm_pin">Confirmer le PIN</string>
-    <string name="preferences_app_protection__confirm_your_signal_pin">Confirmer votre NIP Signal</string>
-    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Assurez-vous de mémoriser votre NIP ou de le conserver à l’abri, car il ne peut pas être récupéré. Si vous oubliez votre NIP, vous risquez de perdre des données lors de la réinscription de votre compte Signal.</string>
-    <string name="preferences_app_protection__incorrect_pin_try_again">Le NIP est erroné. Veuillez réessayer.</string>
+    <string name="preferences_app_protection__confirm_your_signal_pin">Confirmer votre code PIN Signal</string>
+    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Mémorisez bien votre code PIN ou gardez-le en lieu sûr, car il est impossible de le récupérer. En cas d’oubli, vous risquez de perdre des données lorsque vous réinscrirez votre compte Signal.</string>
+    <string name="preferences_app_protection__incorrect_pin_try_again">Code PIN incorrect. Veuillez réessayer.</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">Impossible d’activer le blocage d’inscription.</string>
     <string name="preferences_app_protection__failed_to_disable_registration_lock">Impossible de désactiver le blocage d’inscription.</string>
     <string name="AppProtectionPreferenceFragment_none">Aucun</string>
     <string name="preferences_app_protection__registration_lock">Blocage d’inscription</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Saisissez le PIN du blocage d’inscription</string>
-    <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Votre NIP comporte au moins %1$d chiffres ou caractères</string>
+    <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Votre code PIN comporte au moins %1$d chiffres ou caractères</string>
     <string name="RegistrationActivity_too_many_attempts">Trop d’essais</string>
     <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Trop grand nombre de tentatives de saisie du code PIN. Veuillez réessayer dans un jour.</string>
     <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Vous avez fait trop d’essais. Veuillez réessayer plus tard.</string>
@@ -4338,9 +4338,9 @@
     <string name="payment_info_card_your_recovery_phrase_gives_you">La phrase de récupération est un autre moyen de restaurer votre compte de paiement.</string>
     <!-- Button in save recovery phrase card -->
     <string name="payment_info_card_save_your_phrase">Enregistrer votre phrase</string>
-    <string name="payment_info_card_update_your_pin">Mettez votre NIP à jour</string>
-    <string name="payment_info_card_with_a_high_balance">Si votre solde est élevé, vous pouvez opter pour un NIP alphanumérique afin de renforcer la protection de votre compte.</string>
-    <string name="payment_info_card_update_pin">Mettre le NIP à jour</string>
+    <string name="payment_info_card_update_your_pin">Mettez à jour votre code PIN</string>
+    <string name="payment_info_card_with_a_high_balance">Si votre solde est élevé, vous pouvez opter pour un code PIN alphanumérique afin de renforcer la protection de votre compte.</string>
+    <string name="payment_info_card_update_pin">Mettre à jour le code PIN</string>
 
   <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string> -->
   <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__adding_to_your_wallet" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string> -->
@@ -4365,8 +4365,8 @@
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Enregistrer une phrase de récupération</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Saisissez la phrase de récupération</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
-        <item quantity="one">Après avoir réinstallé Signal, votre solde sera restauré automatiquement si vous confirmez votre PIN Signal. Vous pouvez aussi restaurer votre solde grâce à une phrase de récupération, une phrase de %1$d mot qui vous est propre. Notez-la et conservez-la dans un endroit sûr.</item>
-        <item quantity="other">Après avoir réinstallé Signal, votre solde sera restauré automatiquement si vous confirmez votre PIN Signal. Vous pouvez aussi restaurer votre solde grâce à une phrase de récupération, une phrase de %1$d mots qui vous est propre. Notez-la et conservez-la dans un endroit sûr.</item>
+        <item quantity="one">Votre solde est automatiquement restauré lorsque vous réinstallez Signal et confirmez votre code PIN Signal. Vous pouvez aussi le restaurer grâce à une phrase de récupération unique comportant %1$d mot. Notez-la et conservez-la en lieu sûr.</item>
+        <item quantity="other">Votre solde est automatiquement restauré lorsque vous réinstallez Signal et confirmez votre code PIN Signal. Vous pouvez aussi le restaurer grâce à une phrase de récupération unique comportant %1$d mots. Notez-la et conservez-la en lieu sûr.</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Le solde de votre compte est disponible Il est temps d\'enregistrer votre phrase de récupération, une clé de 24 mots que vous pouvez utiliser pour rétablir votre solde.</string>
@@ -4541,14 +4541,14 @@
     <string name="ChangeNumberConfirmFragment__edit_number">Modifier le numéro</string>
 
     <!-- ChangeNumberRegistrationLockFragment -->
-    <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Signal changer numéro – Besoin d’aide avec le NIP sur Android (NIP v2)</string>
+    <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Changement de numéro Signal – Besoin d’aide : code PIN sous Android (PIN v2)</string>
 
     <!-- ChangeNumberPinDiffersFragment -->
-    <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">Les NIP ne correspondent pas</string>
-    <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">Le NIP associé à votre nouveau numéro est différent de celui associé à votre ancien. Voulez-vous conserver votre ancien NIP ou le mettre à jour ?</string>
-    <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Conserver l’ancien NIP</string>
-    <string name="ChangeNumberPinDiffersFragment__update_pin">Mettre le NIP à jour</string>
-    <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Conserver l’ancien NIP ?</string>
+    <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">Les codes PIN ne correspondent pas.</string>
+    <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">Le code PIN associé à votre nouveau numéro est différent de celui associé à votre ancien numéro. Voulez-vous conserver l’ancien code PIN ou le mettre à jour ?</string>
+    <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Conserver l’ancien code PIN</string>
+    <string name="ChangeNumberPinDiffersFragment__update_pin">Mettre à jour le code PIN</string>
+    <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Conserver l’ancien code PIN ?</string>
 
     <!-- ChangeNumberLockActivity -->
     <!-- Info message shown to user if something crashed the app during the change number attempt and we were unable to confirm the change so we force them into this screen to check before letting them use the app -->
@@ -4932,7 +4932,7 @@
     <string name="MediaReviewFragment__add_a_message">Ajouter un message</string>
     <string name="MediaReviewFragment__add_a_reply">Ajouter une réponse</string>
     <string name="MediaReviewFragment__send_to">Envoyer à</string>
-    <string name="MediaReviewFragment__view_once_message">View once media</string>
+    <string name="MediaReviewFragment__view_once_message">Média à vue unique</string>
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">Un élément ou plus étaient trop grands</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">Un élément ou plus étaient invalides</string>
     <string name="MediaReviewFragment__too_many_items_selected">Trop d’éléments sélectionnés</string>
@@ -6744,9 +6744,9 @@
 
     <!-- BackupProgressService -->
     <!-- Notification title shown while backup restore job is running -->
-    <string name="BackupProgressService_title">Restoring backup…</string>
+    <string name="BackupProgressService_title">Restauration de la sauvegarde…</string>
     <!-- Notification title shown while downloading backup restore data -->
-    <string name="BackupProgressService_title_downloading">Downloading backup data…</string>
+    <string name="BackupProgressService_title_downloading">Téléchargement des données sauvegardées…</string>
 
     <!-- EOF -->
 </resources>

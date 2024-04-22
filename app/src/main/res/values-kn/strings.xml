@@ -23,7 +23,7 @@
     <string name="delete">ಅಳಿಸಿ</string>
     <string name="please_wait">ದಯವಿಟ್ಟು ನಿರೀಕ್ಷಿಸಿ…</string>
     <string name="save">ಉಳಿಸಿ</string>
-    <string name="note_to_self">ಸ್ವಯಂ ಟಿಪ್ಪಣಿ</string>
+    <string name="note_to_self">ಸ್ವಯಂ ಬಳಕೆಗೆ ಟಿಪ್ಪಣಿ</string>
 
     <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
     <string name="app_icon_label_weather">ಹವಾಮಾನ</string>
@@ -42,16 +42,16 @@
 
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">ನೀವು ಇನ್ನೂ ಪಾಸ್‌ಫ್ರೇಸ್ ಹೊಂದಿಸಿಲ್ಲ!</string>
-    <string name="ApplicationPreferencesActivity_disable_passphrase">ಪಾಸ್‌ಫ್ರೇಸ್‌ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
+    <string name="ApplicationPreferencesActivity_disable_passphrase">ಪಾಸ್‌ಫ್ರೇಸ್‌ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸುವುದೇ?</string>
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">ಇದು Signal ಮತ್ತು ಸಂದೇಶ ಅಧಿಸೂಚನೆಗಳನ್ನು ಶಾಶ್ವತವಾಗಿ ಅನ್ಲಾಕ್ ಮಾಡುತ್ತದೆ.</string>
     <string name="ApplicationPreferencesActivity_disable">ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">ಸರ್ವರ್‌ ಗೆ ಸಂಪರ್ಕಿಸುವಾಗ ದೋಷ!</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">ನೋಂದಣಿ ಲಾಕ್ ಆಗಿಸಲು PINಗಳು ಬೇಕು. PINಗಳನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲು, ದಯವಿಟ್ಟು ಮೊದಲು ನೋಂದಣಿ ಲಾಕ್ ಅನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ.</string>
-    <string name="ApplicationPreferencesActivity_pin_created">ಪಿನ್ ರಚಿಸಲಾಗಿದೆ.</string>
-    <string name="ApplicationPreferencesActivity_pin_disabled">ಪಿನ್ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ.</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">ಪೇಮೆಂಟ್ಸ್ ರಿಕವರಿ ಪದಗುಚ್ಛವನ್ನು ರೆಕಾರ್ಡ್‌ ಮಾಡಿ</string>
+    <string name="ApplicationPreferencesActivity_pin_created">PIN ರಚಿಸಲಾಗಿದೆ.</string>
+    <string name="ApplicationPreferencesActivity_pin_disabled">PIN ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ.</string>
+    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">ಪಾವತಿಗಳನ್ನು ಮರೆಪಡೆಯುವ ಪದಗುಚ್ಛವನ್ನು ರೆಕಾರ್ಡ್‌ ಮಾಡಿ</string>
     <string name="ApplicationPreferencesActivity_record_phrase">ಪದಗುಚ್ಛವನ್ನು ರೆಕಾರ್ಡ್‌ ಮಾಡಿ</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">ನಿಮ್ಮ PIN ಅನ್ನು ನೀವು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸುವ‌ ಮೊದಲು, ನಿಮ್ಮ ಪೇಮೆಂಟ್ಸ್ ರಿಕವರಿ ಪದಗುಚ್ಛವನ್ನು ರೆಕಾರ್ಡ್‌ ಮಾಡಿ ನಿಮ್ಮ ಪೇಮೆಂಟ್ಸ್ ಖಾತೆಯ ರಿಕವರಿ ಮಾಡುವುದನ್ನು ನೀವು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಬೇಕು.</string>
+    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">ನಿಮ್ಮ PIN ಅನ್ನು ನೀವು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸುವ‌ ಮೊದಲು, ನಿಮ್ಮ ಪಾವತಿಗಳನ್ನು ಮರೆಪಡೆಯುವ ಪದಗುಚ್ಛವನ್ನು ರೆಕಾರ್ಡ್‌ ಮಾಡಿ ನಿಮ್ಮ ಪೇಮೆಂಟ್ಸ್ ಖಾತೆಯ ರಿಕವರಿ ಮಾಡುವುದನ್ನು ನೀವು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಬೇಕು.</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -126,7 +126,7 @@
     <!-- Displayed as a hint in the card number text field -->
     <string name="CreditCardFragment__card_number">ಕಾರ್ಡ್ ಸಂಖ್ಯೆ</string>
     <!-- Displayed as a hint in the card expiry text field -->
-    <string name="CreditCardFragment__mm_yy">MM/YY</string>
+    <string name="CreditCardFragment__mm_yy">ತಿತಿ/ವವ</string>
     <!-- Displayed as a hint in the card cvv text field -->
     <string name="CreditCardFragment__cvv">CVV</string>
     <!-- Error displayed under the card number text field when there is an invalid card number entered -->
@@ -173,7 +173,7 @@
     <!-- Message shown on block dialog when blocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">ನಿರ್ಬಂಧವು Signal ಅಪ್‌ಡೇಟ್‌ಗಳು ಮತ್ತು ಸುದ್ದಿಯನ್ನು ಪಡೆಯುತ್ತದೆ.</string>
     <!-- Message shown on unblock dialog when unblocking the Signal release notes recipient -->
-    <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">ಪುನರಾರಂಭವು Signal ಅಪ್‌ಡೇಟ್‌ಗಳು ಮತ್ತು ಸುದ್ದಿಯನ್ನು ಪಡೆಯುತ್ತದೆ.</string>
+    <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Signal ಅಪ್‌ಡೇಟ್‌ಗಳು ಮತ್ತು ಸುದ್ದಿ ಪಡೆಯುವುದನ್ನು ಮತ್ತೆ ಆರಂಭಿಸಿ.</string>
     <string name="BlockUnblockDialog_unblock_s">%1$sನಿರ್ಬಂಧ ತೆಗೆಯಬೇಕೇ?</string>
     <string name="BlockUnblockDialog_block">ನಿರ್ಬಂಧಿಸಿ</string>
     <string name="BlockUnblockDialog_block_and_leave">ನಿರ್ಬಂಧಿಸಿ ಹಾಗು ತೊರೆಯಿರಿ</string>
@@ -1582,15 +1582,15 @@
     <!-- Chat log text for a group call that ended within the last 5 minutes with a placeholder for formatted time -->
     <string name="MessageRecord__the_video_call_has_ended_s">The video call has ended · %1$s</string>
     <!-- Chat log text for a group call that ended more than 5 minutes ago and was missed -->
-    <string name="MessageRecord__missed_video_call">Missed video call</string>
+    <string name="MessageRecord__missed_video_call">ಮಿಸ್ಡ್ ವೀಡಿಯೊ ಕಾಲ್</string>
     <!-- Chat log text for a group call that ended more than 5 minutes ago and was missed with a placeholder for formatted time -->
-    <string name="MessageRecord__missed_video_call_s">Missed video call · %1$s</string>
+    <string name="MessageRecord__missed_video_call_s">ಮಿಸ್ಡ್ ವೀಡಿಯೋ ಕಾಲ್ · %1$s</string>
     <!-- Chat log text for a group call that ended that the local user did not start -->
-    <string name="MessageRecord__incoming_video_call">Incoming video call</string>
+    <string name="MessageRecord__incoming_video_call">ಒಳಬರುವ ವೀಡಿಯೊ ಕಾಲ್</string>
     <!-- Chat log text for a group call that ended that the local user did not start with a placeholder for formatted time -->
     <string name="MessageRecord__incoming_video_call_s">Incoming video call · %1$s</string>
     <!-- Chat log text for a group call that ended that the local user started -->
-    <string name="MessageRecord__outgoing_video_call">Outgoing video call</string>
+    <string name="MessageRecord__outgoing_video_call">ಹೊರಹೋಗುವ ವೀಡಿಯೊ ಕಾಲ್</string>
     <!-- Chat log text for a group call that ended that the local user started with a placeholder for formatted time -->
     <string name="MessageRecord__outgoing_video_call_s">Outgoing video call · %1$s</string>
     <!-- Chat log text for an ongoing group call that the local user started -->
@@ -1606,14 +1606,14 @@
 
     <!-- Chat log text for an ongoing group call with more than two participants with placeholders for the first two joined users, a placeholder for the number of users in the call, and a placeholder for formatted time -->
     <plurals name="MessageRecord_s_s_and_d_others_are_in_the_call_s">
-        <item quantity="one">%1$s, %2$s, and %3$d other are in the group call · %4$s</item>
-        <item quantity="other">%1$s, %2$s, and %3$d others are in the group call · %4$s</item>
+        <item quantity="one">%1$s, %2$s ಮತ್ತು %3$d ಇತರರು ಗ್ರೂಪ್ ಕಾಲ್‌ನಲ್ಲಿದ್ದಾರೆ · %4$s</item>
+        <item quantity="other">%1$s, %2$s ಮತ್ತು %3$d ಇತರರು ಗ್ರೂಪ್‌ ಕಾಲ್‌ನಲ್ಲಿದ್ದಾರೆ · %4$s</item>
     </plurals>
 
     <!-- Chat log text for an ongoing group call with more than two participants with placeholders for the first two joined users and a placeholder for the number of users in the call -->
     <plurals name="MessageRecord_s_s_and_d_others_are_in_the_call">
-        <item quantity="one">%1$s, %2$s, and %3$d other are in the group call</item>
-        <item quantity="other">%1$s, %2$s, and %3$d others are in the group call</item>
+        <item quantity="one">%1$s, %2$s ಮತ್ತು %3$d ಇತರರು ಗ್ರೂಪ್‌ ಕಾಲ್‌ನಲ್ಲಿದ್ದಾರೆ</item>
+        <item quantity="other">%1$s, %2$s ಮತ್ತು %3$d ಇತರರು ಗ್ರೂಪ್‌ ಕಾಲ್‌ನಲ್ಲಿದ್ದಾರೆ</item>
     </plurals>
 
     <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
@@ -2734,7 +2734,7 @@
     <string name="ConversationUpdateItem_learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
     <string name="ConversationUpdateItem_join_call">ಕರೆಗೆ ಸೇರಿ</string>
     <!-- Action button label for starting a new call in the current conversation -->
-    <string name="ConversationUpdateItem_call_back">Call back</string>
+    <string name="ConversationUpdateItem_call_back">ಹಿಂತಿರುಗಿ ಕರೆ ಮಾಡಿ</string>
     <string name="ConversationUpdateItem_return_to_call">ಕರೆಗೆ ಹಿಂತಿರುಗಿ</string>
     <string name="ConversationUpdateItem_call_is_full">ಕರೆ ಭರ್ತಿಯಾಗಿದೆ</string>
     <string name="ConversationUpdateItem_invite_friends">ಸ್ನೇಹಿತರನ್ನು ಆಹ್ವಾನಿಸಿ</string>
@@ -4932,7 +4932,7 @@
     <string name="MediaReviewFragment__add_a_message">ಮೆಸೇಜ್ ಸೇರಿಸಿ</string>
     <string name="MediaReviewFragment__add_a_reply">ಉತ್ತರ ಸೇರಿಸಿ</string>
     <string name="MediaReviewFragment__send_to">ಇವರಿಗೆ ಕಳುಹಿಸಿ</string>
-    <string name="MediaReviewFragment__view_once_message">View once media</string>
+    <string name="MediaReviewFragment__view_once_message">View Once Media</string>
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">ಒಂದು ಅಥವಾ ಹೆಚ್ಚು ಐಟಂಗಳು ತೀರಾ ದೊಡ್ಡದಾಗಿವೆ</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">ಒಂದು ಅಥವಾ ಹೆಚ್ಚು ಐಟಂಗಳು ಅಮಾನ್ಯವಾಗಿವೆ</string>
     <string name="MediaReviewFragment__too_many_items_selected">ತುಂಬಾ ಐಟಂಗಳನ್ನು ಆಯ್ಕೆ ಮಾಡಲಾಗಿದೆ</string>

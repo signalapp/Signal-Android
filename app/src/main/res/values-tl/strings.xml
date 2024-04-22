@@ -1606,14 +1606,14 @@
 
     <!-- Chat log text for an ongoing group call with more than two participants with placeholders for the first two joined users, a placeholder for the number of users in the call, and a placeholder for formatted time -->
     <plurals name="MessageRecord_s_s_and_d_others_are_in_the_call_s">
-        <item quantity="one">%1$s, %2$s, and %3$d other are in the group call · %4$s</item>
-        <item quantity="other">%1$s, %2$s, and %3$d others are in the group call · %4$s</item>
+        <item quantity="one">Sila %1$s, %2$s, at %3$d pa ay nasa group call · %4$s</item>
+        <item quantity="other">Sila %1$s, %2$s, at %3$d na iba pa ay nasa group call · %4$s</item>
     </plurals>
 
     <!-- Chat log text for an ongoing group call with more than two participants with placeholders for the first two joined users and a placeholder for the number of users in the call -->
     <plurals name="MessageRecord_s_s_and_d_others_are_in_the_call">
-        <item quantity="one">%1$s, %2$s, and %3$d other are in the group call</item>
-        <item quantity="other">%1$s, %2$s, and %3$d others are in the group call</item>
+        <item quantity="one">Sila %1$s, %2$s, at %3$d pa ay nasa group call</item>
+        <item quantity="other">Sila %1$s, %2$s, at %3$d pa ay nasa group call</item>
     </plurals>
 
     <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
@@ -2734,7 +2734,7 @@
     <string name="ConversationUpdateItem_learn_more">Matuto pa</string>
     <string name="ConversationUpdateItem_join_call">Mag-join sa call</string>
     <!-- Action button label for starting a new call in the current conversation -->
-    <string name="ConversationUpdateItem_call_back">Call back</string>
+    <string name="ConversationUpdateItem_call_back">Tawagan Pabalik</string>
     <string name="ConversationUpdateItem_return_to_call">Return to call</string>
     <string name="ConversationUpdateItem_call_is_full">Puno na ang call</string>
     <string name="ConversationUpdateItem_invite_friends">Imbitahan ang mga kaibigan</string>

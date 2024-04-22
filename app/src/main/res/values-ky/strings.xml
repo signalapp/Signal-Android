@@ -1529,15 +1529,15 @@
     <!-- Chat log text for a group call that ended within the last 5 minutes with a placeholder for formatted time -->
     <string name="MessageRecord__the_video_call_has_ended_s">The video call has ended · %1$s</string>
     <!-- Chat log text for a group call that ended more than 5 minutes ago and was missed -->
-    <string name="MessageRecord__missed_video_call">Missed video call</string>
+    <string name="MessageRecord__missed_video_call">Кабыл алынбаган аудио чалуу</string>
     <!-- Chat log text for a group call that ended more than 5 minutes ago and was missed with a placeholder for formatted time -->
-    <string name="MessageRecord__missed_video_call_s">Missed video call · %1$s</string>
+    <string name="MessageRecord__missed_video_call_s">Жооп берилбеген видео чалуу · %1$s</string>
     <!-- Chat log text for a group call that ended that the local user did not start -->
-    <string name="MessageRecord__incoming_video_call">Incoming video call</string>
+    <string name="MessageRecord__incoming_video_call">Келүүчү аудио чалуу</string>
     <!-- Chat log text for a group call that ended that the local user did not start with a placeholder for formatted time -->
     <string name="MessageRecord__incoming_video_call_s">Incoming video call · %1$s</string>
     <!-- Chat log text for a group call that ended that the local user started -->
-    <string name="MessageRecord__outgoing_video_call">Outgoing video call</string>
+    <string name="MessageRecord__outgoing_video_call">Чыгуучу аудио чалуу</string>
     <!-- Chat log text for a group call that ended that the local user started with a placeholder for formatted time -->
     <string name="MessageRecord__outgoing_video_call_s">Outgoing video call · %1$s</string>
     <!-- Chat log text for an ongoing group call that the local user started -->
@@ -1553,12 +1553,12 @@
 
     <!-- Chat log text for an ongoing group call with more than two participants with placeholders for the first two joined users, a placeholder for the number of users in the call, and a placeholder for formatted time -->
     <plurals name="MessageRecord_s_s_and_d_others_are_in_the_call_s">
-        <item quantity="other">%1$s, %2$s, and %3$d others are in the group call · %4$s</item>
+        <item quantity="other">%1$s, %2$s жана дагы %3$d топтук чалууда · %4$s</item>
     </plurals>
 
     <!-- Chat log text for an ongoing group call with more than two participants with placeholders for the first two joined users and a placeholder for the number of users in the call -->
     <plurals name="MessageRecord_s_s_and_d_others_are_in_the_call">
-        <item quantity="other">%1$s, %2$s, and %3$d others are in the group call</item>
+        <item quantity="other">%1$s, %2$s жана дагы %3$d топтук чалууда</item>
     </plurals>
 
     <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
@@ -2647,7 +2647,7 @@
     <string name="ConversationUpdateItem_learn_more">Кененирээк маалымат</string>
     <string name="ConversationUpdateItem_join_call">Чалууга кошулуу</string>
     <!-- Action button label for starting a new call in the current conversation -->
-    <string name="ConversationUpdateItem_call_back">Call back</string>
+    <string name="ConversationUpdateItem_call_back">Кайра чалуу</string>
     <string name="ConversationUpdateItem_return_to_call">Чалууга кайтуу</string>
     <string name="ConversationUpdateItem_call_is_full">Орун жок</string>
     <string name="ConversationUpdateItem_invite_friends">Досторду чакыруу</string>

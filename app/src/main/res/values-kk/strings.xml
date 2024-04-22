@@ -1566,54 +1566,54 @@
 
     <!-- Group Calling update messages -->
     <!-- Chat log text for an ongoing group call that has one participant with a placeholder for the short display name of the user that joined and a placeholder for formatted time -->
-    <string name="MessageRecord_s_is_in_the_call_s">%1$s is in the call · %2$s</string>
+    <string name="MessageRecord_s_is_in_the_call_s">%1$s байланыста · %2$s</string>
     <!-- Chat log text for an ongoing group call only the local user has joined with a placeholder for formatted time -->
-    <string name="MessageRecord_you_are_in_the_call_s1">You are in the call · %1$s</string>
+    <string name="MessageRecord_you_are_in_the_call_s1">Сіз байланыстасыз · %1$s</string>
     <!-- Chat log text for an ongoing group call with two participants with two placeholders for the short display name of the users that joined and a placeholder for formatted time -->
-    <string name="MessageRecord_s_and_s_are_in_the_call_s1">%1$s and %2$s are in the call · %3$s</string>
+    <string name="MessageRecord_s_and_s_are_in_the_call_s1">%1$s және %2$s  байланыста · %3$s</string>
     <!-- Chat log text for an ongoing group call that has one participant -->
-    <string name="MessageRecord_s_is_in_the_call">%1$s is in the call</string>
+    <string name="MessageRecord_s_is_in_the_call">%1$s байланыста</string>
     <!-- Chat log text for an ongoing group call only the local user has joined -->
-    <string name="MessageRecord_you_are_in_the_call">You are in the call</string>
+    <string name="MessageRecord_you_are_in_the_call">Сіз байланыстасыз</string>
     <!-- Chat log text for an ongoing group call with two participants with two placeholders, each for the short display name of the users that joined -->
-    <string name="MessageRecord_s_and_s_are_in_the_call">%1$s and %2$s are in the call</string>
+    <string name="MessageRecord_s_and_s_are_in_the_call">%1$s және %2$s байланыста</string>
     <!-- Chat log text for a group call that ended within the last 5 minutes -->
-    <string name="MessageRecord__the_video_call_has_ended">The video call has ended</string>
+    <string name="MessageRecord__the_video_call_has_ended">Видеоқоңырау аяқталды</string>
     <!-- Chat log text for a group call that ended within the last 5 minutes with a placeholder for formatted time -->
-    <string name="MessageRecord__the_video_call_has_ended_s">The video call has ended · %1$s</string>
+    <string name="MessageRecord__the_video_call_has_ended_s">Видеоқоңырау аяқталды · %1$s</string>
     <!-- Chat log text for a group call that ended more than 5 minutes ago and was missed -->
-    <string name="MessageRecord__missed_video_call">Missed video call</string>
+    <string name="MessageRecord__missed_video_call">Қабылданбаған видеоқоңырау</string>
     <!-- Chat log text for a group call that ended more than 5 minutes ago and was missed with a placeholder for formatted time -->
-    <string name="MessageRecord__missed_video_call_s">Missed video call · %1$s</string>
+    <string name="MessageRecord__missed_video_call_s">Өткізіп алған видеоқоңырау · %1$s</string>
     <!-- Chat log text for a group call that ended that the local user did not start -->
-    <string name="MessageRecord__incoming_video_call">Incoming video call</string>
+    <string name="MessageRecord__incoming_video_call">Кіріс видеоқоңырау</string>
     <!-- Chat log text for a group call that ended that the local user did not start with a placeholder for formatted time -->
-    <string name="MessageRecord__incoming_video_call_s">Incoming video call · %1$s</string>
+    <string name="MessageRecord__incoming_video_call_s">Сізге видеоқоңырау шалынды · %1$s</string>
     <!-- Chat log text for a group call that ended that the local user started -->
-    <string name="MessageRecord__outgoing_video_call">Outgoing video call</string>
+    <string name="MessageRecord__outgoing_video_call">Шығыс видеоқоңырау</string>
     <!-- Chat log text for a group call that ended that the local user started with a placeholder for formatted time -->
-    <string name="MessageRecord__outgoing_video_call_s">Outgoing video call · %1$s</string>
+    <string name="MessageRecord__outgoing_video_call_s">Сіз видеоқоңырау шалдыңыз · %1$s</string>
     <!-- Chat log text for an ongoing group call that the local user started -->
-    <string name="MessageRecord__you_started_a_video_call">You started a video call</string>
+    <string name="MessageRecord__you_started_a_video_call">Видеоқоңырауды бастадыңыз</string>
     <!-- Chat log text for an ongoing group call that the local user started with a placeholder for formatted time -->
-    <string name="MessageRecord__you_started_a_video_call_s">You started a video call · %1$s</string>
+    <string name="MessageRecord__you_started_a_video_call_s">Видеоқоңырау бастадыңыз · %1$s</string>
     <!-- Chat log text for an ongoing group call that the local user has not joined with a placeholder for user\'s short display name -->
-    <string name="MessageRecord__s_started_a_video_call">%1$s started a video call</string>
+    <string name="MessageRecord__s_started_a_video_call">%1$s видеоқоңырау бастады</string>
     <!-- Chat log text for an ongoing group call that the local user has not joined with a placeholder for user\'s short display name and a placeholder for formatted time -->
-    <string name="MessageRecord__s_started_a_video_call_s">%1$s started a video call · %2$s</string>
+    <string name="MessageRecord__s_started_a_video_call_s">%1$s видеоқоңырау бастады · %2$s</string>
 
     <string name="MessageRecord_you">Сіз</string>
 
     <!-- Chat log text for an ongoing group call with more than two participants with placeholders for the first two joined users, a placeholder for the number of users in the call, and a placeholder for formatted time -->
     <plurals name="MessageRecord_s_s_and_d_others_are_in_the_call_s">
-        <item quantity="one">%1$s, %2$s, and %3$d other are in the group call · %4$s</item>
-        <item quantity="other">%1$s, %2$s, and %3$d others are in the group call · %4$s</item>
+        <item quantity="one">%1$s, %2$s және тағы %3$d адам топтық қоңырауға қатысып отыр · %4$s</item>
+        <item quantity="other">%1$s, %2$s және тағы %3$d адам топтық қоңырауға қатысып отыр · %4$s</item>
     </plurals>
 
     <!-- Chat log text for an ongoing group call with more than two participants with placeholders for the first two joined users and a placeholder for the number of users in the call -->
     <plurals name="MessageRecord_s_s_and_d_others_are_in_the_call">
-        <item quantity="one">%1$s, %2$s, and %3$d other are in the group call</item>
-        <item quantity="other">%1$s, %2$s, and %3$d others are in the group call</item>
+        <item quantity="one">%1$s, %2$s және тағы %3$d адам топтық қоңырауға қатысып отыр</item>
+        <item quantity="other">%1$s, %2$s және тағы %3$d адам топтық қоңырауға қатысып отыр</item>
     </plurals>
 
     <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
@@ -2734,7 +2734,7 @@
     <string name="ConversationUpdateItem_learn_more">Толық ақпарат</string>
     <string name="ConversationUpdateItem_join_call">Қоңырауға қосылу</string>
     <!-- Action button label for starting a new call in the current conversation -->
-    <string name="ConversationUpdateItem_call_back">Call back</string>
+    <string name="ConversationUpdateItem_call_back">Кері қоңырау шалу</string>
     <string name="ConversationUpdateItem_return_to_call">Қоңырауға оралу</string>
     <string name="ConversationUpdateItem_call_is_full">Қоңырауға бұдан артық адам қосыла алмайды</string>
     <string name="ConversationUpdateItem_invite_friends">Достарды шақыру</string>
@@ -4932,7 +4932,7 @@
     <string name="MediaReviewFragment__add_a_message">Хат қосу</string>
     <string name="MediaReviewFragment__add_a_reply">Жауап қосу</string>
     <string name="MediaReviewFragment__send_to">Алушы</string>
-    <string name="MediaReviewFragment__view_once_message">View once media</string>
+    <string name="MediaReviewFragment__view_once_message">Бір рет көрілетін мультимедиа</string>
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">Бір немесе бірнеше элемент өте үлкен болды</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">Бір немесе бірнеше элемент дұрыс болмады</string>
     <string name="MediaReviewFragment__too_many_items_selected">Тым көп элемент таңдалды</string>
@@ -6744,9 +6744,9 @@
 
     <!-- BackupProgressService -->
     <!-- Notification title shown while backup restore job is running -->
-    <string name="BackupProgressService_title">Restoring backup…</string>
+    <string name="BackupProgressService_title">Резервтік дерек қалпына келтірілуде…</string>
     <!-- Notification title shown while downloading backup restore data -->
-    <string name="BackupProgressService_title_downloading">Downloading backup data…</string>
+    <string name="BackupProgressService_title_downloading">Резервтік дерек жүктеп алынуда…</string>
 
     <!-- EOF -->
 </resources>

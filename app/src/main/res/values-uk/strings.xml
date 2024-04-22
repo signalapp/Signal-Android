@@ -46,7 +46,7 @@
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Це назавжди розблокує Signal та сповіщення повідомлень.</string>
     <string name="ApplicationPreferencesActivity_disable">Вимкнути</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Помилка підключення до сервера!</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN-коди, необхідні для блокування реєстрації. Щоб відключити PIN-коди, будь ласка, відключіть блокування реєстрації.</string>
+    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN-коди необхідні для блокування реєстрації. Для вимкнення PIN-кодів спершу необхідно вимкнути блокування реєстрації.</string>
     <string name="ApplicationPreferencesActivity_pin_created">PIN створений.</string>
     <string name="ApplicationPreferencesActivity_pin_disabled">PIN вимкнений.</string>
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Записати кодову фразу для платежів</string>
@@ -740,8 +740,8 @@
     <string name="BackupsPreferenceFragment__backup_time">Час резервного копіювання</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">Перевірити парольну фразу резервної копії</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Випробуйте парольну фразу своєї резервної копії і переконайтеся, що вона збігається</string>
-    <string name="BackupsPreferenceFragment__turn_on">Відключити Блокування Реєстрації?</string>
-    <string name="BackupsPreferenceFragment__turn_off">Відключити</string>
+    <string name="BackupsPreferenceFragment__turn_on">Увімкнути</string>
+    <string name="BackupsPreferenceFragment__turn_off">Вимкнути</string>
     <string name="BackupsPreferenceFragment__to_restore_a_backup">"Щоб відновити з резервної копії, встановіть нову копію Signal. Відкрийте програму та натисніть \"Відновити резервну копію\", потім виберіть файл резервної копії. %1$s"</string>
     <string name="BackupsPreferenceFragment__learn_more">Дізнатися більше</string>
     <string name="BackupsPreferenceFragment__in_progress">В процесі…</string>
@@ -830,8 +830,8 @@
 
     <!-- DeviceListItem -->
     <string name="DeviceListItem_unnamed_device">Неназваний пристрій</string>
-    <string name="DeviceListItem_linked_s">З\'язано %1$s</string>
-    <string name="DeviceListItem_last_active_s">Остання активність %1$s</string>
+    <string name="DeviceListItem_linked_s">Зв\'язано %1$s</string>
+    <string name="DeviceListItem_last_active_s">Остання активність: %1$s</string>
     <string name="DeviceListItem_today">Сьогодні</string>
 
     <!-- DocumentView -->
@@ -1342,10 +1342,10 @@
     <string name="MediaOverviewActivity_Media_delete_progress_title">Видалення</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Видалення повідомлень…</string>
     <string name="MediaOverviewActivity_collecting_attachments">Збираю вкладення…</string>
-    <string name="MediaOverviewActivity_Sort_by">Сортувати як</string>
-    <string name="MediaOverviewActivity_Newest">Новіші</string>
-    <string name="MediaOverviewActivity_Oldest">Старіші</string>
-    <string name="MediaOverviewActivity_Storage_used">Використання сховища</string>
+    <string name="MediaOverviewActivity_Sort_by">Сортування</string>
+    <string name="MediaOverviewActivity_Newest">Найновіші</string>
+    <string name="MediaOverviewActivity_Oldest">Найдавніші</string>
+    <string name="MediaOverviewActivity_Storage_used">Розмір</string>
     <string name="MediaOverviewActivity_All_storage_use">Загальне використання сховища</string>
     <string name="MediaOverviewActivity_Grid_view_description">Сітка</string>
     <string name="MediaOverviewActivity_List_view_description">Список</string>
@@ -1385,7 +1385,7 @@
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">Нагадати пізніше</string>
-    <string name="Megaphones_verify_your_signal_pin">Підтвердіть свій PIN-код Signal</string>
+    <string name="Megaphones_verify_your_signal_pin">Підтвердьте свій PIN-код Signal</string>
     <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Іноді ми будемо просити вас підтвердити PIN-код, щоб ви його не забували.</string>
     <string name="Megaphones_verify_pin">Підтвердити PIN-код</string>
     <string name="Megaphones_get_started">Для початку</string>
@@ -1688,15 +1688,15 @@
     <!-- Chat log text for a group call that ended within the last 5 minutes with a placeholder for formatted time -->
     <string name="MessageRecord__the_video_call_has_ended_s">The video call has ended · %1$s</string>
     <!-- Chat log text for a group call that ended more than 5 minutes ago and was missed -->
-    <string name="MessageRecord__missed_video_call">Missed video call</string>
+    <string name="MessageRecord__missed_video_call">Пропущений відеовиклик</string>
     <!-- Chat log text for a group call that ended more than 5 minutes ago and was missed with a placeholder for formatted time -->
-    <string name="MessageRecord__missed_video_call_s">Missed video call · %1$s</string>
+    <string name="MessageRecord__missed_video_call_s">Пропущений відеодзвінок · %1$s</string>
     <!-- Chat log text for a group call that ended that the local user did not start -->
-    <string name="MessageRecord__incoming_video_call">Incoming video call</string>
+    <string name="MessageRecord__incoming_video_call">Вхідний відеовиклик</string>
     <!-- Chat log text for a group call that ended that the local user did not start with a placeholder for formatted time -->
     <string name="MessageRecord__incoming_video_call_s">Incoming video call · %1$s</string>
     <!-- Chat log text for a group call that ended that the local user started -->
-    <string name="MessageRecord__outgoing_video_call">Outgoing video call</string>
+    <string name="MessageRecord__outgoing_video_call">Вихідний відеовиклик</string>
     <!-- Chat log text for a group call that ended that the local user started with a placeholder for formatted time -->
     <string name="MessageRecord__outgoing_video_call_s">Outgoing video call · %1$s</string>
     <!-- Chat log text for an ongoing group call that the local user started -->
@@ -1712,18 +1712,18 @@
 
     <!-- Chat log text for an ongoing group call with more than two participants with placeholders for the first two joined users, a placeholder for the number of users in the call, and a placeholder for formatted time -->
     <plurals name="MessageRecord_s_s_and_d_others_are_in_the_call_s">
-        <item quantity="one">%1$s, %2$s, and %3$d other are in the group call · %4$s</item>
-        <item quantity="few">%1$s, %2$s, and %3$d others are in the group call · %4$s</item>
-        <item quantity="many">%1$s, %2$s, and %3$d others are in the group call · %4$s</item>
-        <item quantity="other">%1$s, %2$s, and %3$d others are in the group call · %4$s</item>
+        <item quantity="one">%1$s, %2$s, та %3$d інші у цьому груповому дзвінку · %4$s</item>
+        <item quantity="few">%1$s, %2$s, та %3$d інші у цьому груповому дзвінку · %4$s</item>
+        <item quantity="many">%1$s,%2$s, та %3$d а інші у цьому груповому дзвінку · %4$s</item>
+        <item quantity="other">%1$s, %2$s, та%3$d а інші у цьому груповому дзвінку · %4$s</item>
     </plurals>
 
     <!-- Chat log text for an ongoing group call with more than two participants with placeholders for the first two joined users and a placeholder for the number of users in the call -->
     <plurals name="MessageRecord_s_s_and_d_others_are_in_the_call">
-        <item quantity="one">%1$s, %2$s, and %3$d other are in the group call</item>
-        <item quantity="few">%1$s, %2$s, and %3$d others are in the group call</item>
-        <item quantity="many">%1$s, %2$s, and %3$d others are in the group call</item>
-        <item quantity="other">%1$s, %2$s, and %3$d others are in the group call</item>
+        <item quantity="one">%1$s, %2$s, та%3$d інший у цьому груповому дзвінку</item>
+        <item quantity="few">%1$s, %2$s, та%3$d інші у цьому груповому дзвінку</item>
+        <item quantity="many">%1$s, %2$s, та%3$d інші у цьому груповому дзвінку</item>
+        <item quantity="other">%1$s, %2$s, та%3$d інші у цьому груповому дзвінку</item>
     </plurals>
 
     <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
@@ -2291,10 +2291,10 @@
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Включити блокування реєстрації?</string>
-    <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Відключити Блокування Реєстрації?</string>
+    <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Вимкнути блокування реєстрації?</string>
     <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Якщо ви забудете свій PIN-код після повторної реєстрації в Signal, то втратите доступ до свого акаунту на 7 днів.</string>
     <string name="RegistrationLockV2Dialog_turn_on">Увімкнути</string>
-    <string name="RegistrationLockV2Dialog_turn_off">Відключити</string>
+    <string name="RegistrationLockV2Dialog_turn_off">Вимкнути</string>
 
     <!-- RevealableMessageView -->
     <string name="RevealableMessageView_view_photo">Переглянути фото</string>
@@ -2908,7 +2908,7 @@
     <string name="ConversationUpdateItem_learn_more">Дізнатися більше</string>
     <string name="ConversationUpdateItem_join_call">Приєднатися до дзвінка</string>
     <!-- Action button label for starting a new call in the current conversation -->
-    <string name="ConversationUpdateItem_call_back">Call back</string>
+    <string name="ConversationUpdateItem_call_back">Перетелефонувати</string>
     <string name="ConversationUpdateItem_return_to_call">Повернутись до виклику</string>
     <string name="ConversationUpdateItem_call_is_full">Дзвінок повний</string>
     <string name="ConversationUpdateItem_invite_friends">Запросити друзів</string>
@@ -2962,7 +2962,7 @@
     <!-- Button to dismiss the tooltip for opting out of using Android bubbles -->
     <string name="BubbleOptOutTooltip__not_now">Не зараз</string>
     <!-- Button to move to the system settings to control the use of Android bubbles -->
-    <string name="BubbleOptOutTooltip__turn_off">Відключити</string>
+    <string name="BubbleOptOutTooltip__turn_off">Вимкнути</string>
 
     <!-- safety_number_change_dialog -->
     <string name="safety_number_change_dialog__safety_number_changes">Історія змін коду безпеки</string>
@@ -3383,7 +3383,7 @@
     <string name="preferences__conversation_length_limit">Обмеження кількості повідомлень у чаті</string>
     <string name="preferences__keep_messages">Зберігати повідомлення</string>
     <string name="preferences__clear_message_history">Очистити історію повідомлень</string>
-    <string name="preferences__linked_devices">Прив\'язані пристрої</string>
+    <string name="preferences__linked_devices">Зв\'язані пристрої</string>
     <string name="preferences__light_theme">Світла</string>
     <string name="preferences__dark_theme">Темна</string>
     <string name="preferences__appearance">Вигляд</string>
@@ -3516,7 +3516,7 @@
     <string name="preferences_connected_to_proxy">Під\'єднано до проксі</string>
     <string name="preferences_connection_failed">З\'єднання не вдалася!</string>
     <string name="preferences_couldnt_connect_to_the_proxy">Помилка з\'єднання із проксі. Перевірте адресу проксі і спробуйте ще раз.</string>
-    <string name="preferences_you_are_connected_to_the_proxy">Помилка з\'єднання із проксі. Ви можете відключити проксі в будь-який час в настройках.</string>
+    <string name="preferences_you_are_connected_to_the_proxy">Ви з\'єднані з проксі-сервером. Проксі-сервер можна завжди вимкнути в налаштуваннях.</string>
     <string name="preferences_success">Успіх</string>
     <string name="preferences_failed_to_connect">Не вдалось підключитися</string>
     <string name="preferences_enter_proxy_address">Введіть адресу проксі</string>
@@ -4076,7 +4076,7 @@
     <string name="backup_enable_dialog__folder">Папка</string>
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Я записав цю фразу-пароль. Без неї я не зможу відновити резервну копію.</string>
     <string name="registration_activity__restore_backup">Відновити резервну копію</string>
-    <string name="registration_activity__transfer_or_restore_account">Перенесення або відновлення акаунту</string>
+    <string name="registration_activity__transfer_or_restore_account">Перенести або відновити акаунт</string>
     <string name="registration_activity__transfer_account">Перенести акаунт</string>
     <string name="registration_activity__skip">Пропустити</string>
     <string name="preferences_chats__chat_backups">Резервні копії чату</string>
@@ -4096,7 +4096,7 @@
     <string name="RegistrationActivity_backup_timestamp_s">Мітка часу резервної копії: %1$s</string>
     <string name="BackupDialog_enable_local_backups">Увімкнути локальні резервні копії?</string>
     <string name="BackupDialog_enable_backups">Увімкнути резервні копії</string>
-    <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Підтвердіть, що ви розумієте про що йдеться поставивши галочку</string>
+    <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Підтвердьте, що вам усе зрозуміло, поставивши галочку.</string>
     <string name="BackupDialog_delete_backups">Видалити резервні копії?</string>
     <string name="BackupDialog_disable_and_delete_all_local_backups">Вимкнути та видалити усі локальні резервні копії?</string>
     <string name="BackupDialog_delete_backups_statement">Видалити резервні копії</string>
@@ -4165,13 +4165,13 @@
     <string name="preferences_app_protection__create_a_pin">Створіть PIN-код</string>
     <string name="preferences_app_protection__change_your_pin">Змінити PIN-код</string>
     <string name="preferences_app_protection__pin_reminders">Нагадування PIN-коду</string>
-    <string name="preferences_app_protection__turn_off">Відключити</string>
+    <string name="preferences_app_protection__turn_off">Вимкнути</string>
     <string name="preferences_app_protection__confirm_pin">Підтвердити PIN</string>
-    <string name="preferences_app_protection__confirm_your_signal_pin">Підтвердіть свій PIN-код Signal</string>
+    <string name="preferences_app_protection__confirm_your_signal_pin">Підтвердьте свій PIN-код Signal</string>
     <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">PIN-код необхідно запам’ятати або надійно зберегти, оскільки його неможливо відновити. Якщо ви забудете свій PIN-код, то можете втратити дані при повторній реєстрації свого акаунту Signal.</string>
     <string name="preferences_app_protection__incorrect_pin_try_again">Неправильний PIN-код. Будь ласка спробуйте ще раз.</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">Не вдалось включити блокування реєстрації.</string>
-    <string name="preferences_app_protection__failed_to_disable_registration_lock">Не вдалось відключити блокування реєстрації.</string>
+    <string name="preferences_app_protection__failed_to_disable_registration_lock">Не вдалося вимкнути блокування реєстрації.</string>
     <string name="AppProtectionPreferenceFragment_none">Немає</string>
     <string name="preferences_app_protection__registration_lock">Блокування доступу</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Ви повинні ввести Ваш ПІН блокування доступу</string>
@@ -4205,7 +4205,7 @@
     <string name="preferences_account_delete_all_data_failed">Не вдалося видалити дані</string>
 
     <!-- TransferOrRestoreFragment -->
-    <string name="TransferOrRestoreFragment__transfer_or_restore_account">Перенесення або відновлення акаунту</string>
+    <string name="TransferOrRestoreFragment__transfer_or_restore_account">Перенести або відновити акаунт</string>
     <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Якщо ви вже зареєстрували акаунт Signal, то можете перенести або відновити свій акаунт і повідомлення</string>
     <string name="TransferOrRestoreFragment__transfer_from_android_device">Перенести з пристрою Android</string>
     <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">Перенести акаунт і повідомлення зі старого пристрою Android. Необхідний доступ до старого пристрою.</string>
@@ -4267,7 +4267,7 @@
     <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
     <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">На екрані Wi-Fi Direct, видаліть всі групи які запам\'ятались і від\'єднайте будь-які запрошені або з\'єднані пристрої.</string>
     <string name="DeviceTransferSetup__wifi_direct_screen">Екран Wi-Fi Direct</string>
-    <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Спробуйте відключити і включити Wi-Fi на обох пристроях.</string>
+    <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Спробуйте вимкнути і ввімкнути Wi-Fi на обох пристроях.</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Переконайтеся, що обидва пристрої знаходяться в режимі переносу.</string>
     <string name="DeviceTransferSetup__go_to_support_page">Перейти на сторінку підтримки</string>
     <string name="DeviceTransferSetup__try_again">Спробувати знову</string>
@@ -4557,7 +4557,7 @@
     <!-- Button in save recovery phrase card -->
     <string name="payment_info_card_save_your_phrase">Збережіть свою фразу</string>
     <string name="payment_info_card_update_your_pin">Оновити PIN-код</string>
-    <string name="payment_info_card_with_a_high_balance">Якщо ви маєте високий баланс, пропонуємо створити літерно-цифровий PIN-код для більшої безпеки вашого облікового запису.</string>
+    <string name="payment_info_card_with_a_high_balance">Якщо ви маєте високий баланс, пропонуємо створити літерно-цифровий PIN-код для більшої безпеки вашого акаунту.</string>
     <string name="payment_info_card_update_pin">Оновити PIN-код</string>
 
   <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string> -->
@@ -4567,7 +4567,7 @@
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">Вимкнути гаманець</string>
     <string name="DeactivateWalletFragment__your_balance">Ваш баланс</string>
-    <string name="DeactivateWalletFragment__its_recommended_that_you">Перш ніж відключити платежі, ми рекомендуємо перевести кошти в інший гаманець. Інакше кошти залишаться у вашому гаманці, прив\'язаному до Signal, якщо ви знову активуєте платежі.</string>
+    <string name="DeactivateWalletFragment__its_recommended_that_you">Перед вимкненням платежів рекомендуємо вивести кошти в інший гаманець. Якщо ви цього не зробите, то в разі повторної активації платежів кошти залишаться у вашому гаманці, зв\'язаному із Signal.</string>
     <string name="DeactivateWalletFragment__transfer_remaining_balance">Перевести кошти, що залишились на балансі</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring">Вимкнути без переводу коштів</string>
     <string name="DeactivateWalletFragment__deactivate">Вимкнути</string>
@@ -5166,7 +5166,7 @@
     <string name="MediaReviewFragment__add_a_message">Додати повідомлення</string>
     <string name="MediaReviewFragment__add_a_reply">Додати відповідь</string>
     <string name="MediaReviewFragment__send_to">Надіслати</string>
-    <string name="MediaReviewFragment__view_once_message">View once media</string>
+    <string name="MediaReviewFragment__view_once_message">Переглянути одноразові медіафайли</string>
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">Один або більше елементів були завеликими</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">Один або кілька елементів були недійсними</string>
     <string name="MediaReviewFragment__too_many_items_selected">Обрано забагато елементів</string>
@@ -5790,7 +5790,7 @@
     <!-- Dialog title when removing a viewer from a story -->
     <string name="StoryViewsFragment__remove_viewer">Вилучити глядача?</string>
     <!-- Dialog message when removing a viewer from a story -->
-    <string name="StoryViewsFragment__s_will_still_be_able">%1$s все одно зможе переглядати цей пост, але не бачитиме майбутніх постів, якими ви поділитесь у сторі %2$s.</string>
+    <string name="StoryViewsFragment__s_will_still_be_able">Користувач %1$s ще зможе бачити цей вміст, але вже не побачить вмісту історії «%2$s», яким ви поділитесь у майбутньому.</string>
     <!-- Story View context menu action to remove them from a story -->
     <string name="StoryViewItem__remove_viewer">Вилучити глядача</string>
     <!-- Displayed when a story has no replies yet -->
