@@ -41,18 +41,21 @@ class EncryptedBackupReader(
   val stream: InputStream
 
   init {
-    val keyMaterial = key.deriveSecrets(aci)
-
-    val cipher = Cipher.getInstance("AES/CBC/PKCS5Padding").apply {
-      init(Cipher.DECRYPT_MODE, SecretKeySpec(keyMaterial.cipherKey, "AES"), IvParameterSpec(keyMaterial.iv))
-    }
+    val keyMaterial = key.deriveBackupSecrets(aci)
 
     validateMac(keyMaterial.macKey, streamLength, dataStream())
+
+    val inputStream = dataStream()
+    val iv = inputStream.readNBytesOrThrow(16)
+
+    val cipher = Cipher.getInstance("AES/CBC/PKCS5Padding").apply {
+      init(Cipher.DECRYPT_MODE, SecretKeySpec(keyMaterial.cipherKey, "AES"), IvParameterSpec(iv))
+    }
 
     stream = GZIPInputStream(
       CipherInputStream(
         TruncatingInputStream(
-          wrapped = dataStream(),
+          wrapped = inputStream,
           maxBytes = streamLength - MAC_SIZE
         ),
         cipher

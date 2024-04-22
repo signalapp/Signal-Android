@@ -184,7 +184,7 @@ public class SignalServiceMessageReceiver {
    *
    * @return An InputStream that streams the plaintext attachment contents.
    */
-  public InputStream retrieveArchivedAttachment(@Nonnull BackupKey.KeyMaterial<MediaId> archivedMediaKeyMaterial,
+  public InputStream retrieveArchivedAttachment(@Nonnull BackupKey.MediaKeyMaterial archivedMediaKeyMaterial,
                                                 @Nonnull Map<String, String> readCredentialHeaders,
                                                 @Nonnull File archiveDestination,
                                                 @Nonnull SignalServiceAttachmentPointer pointer,

@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.backup.v2.stream
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
+import org.signal.core.util.Base64
 import org.signal.core.util.Hex
 import org.thoughtcrime.securesms.backup.v2.proto.AccountData
 import org.thoughtcrime.securesms.backup.v2.proto.BackupInfo
@@ -56,7 +57,7 @@ class EncryptedBackupReaderWriterTest {
     val key = BackupKey(Util.getSecretBytes(32))
     val aci = ACI.from(UUID.randomUUID())
 
-    val sizes = (1..10)
+    val uniqueSizes = (1..10)
       .map { frameCount ->
         val outputStream = ByteArrayOutputStream()
 
@@ -72,6 +73,29 @@ class EncryptedBackupReaderWriterTest {
       }
       .toSet()
 
-    assertEquals(1, sizes.size)
+    assertEquals(1, uniqueSizes.size)
+  }
+
+  @Test
+  fun `using a different IV every time`() {
+    val key = BackupKey(Util.getSecretBytes(32))
+    val aci = ACI.from(UUID.randomUUID())
+    val count = 10
+
+    val uniqueOutputs = (0 until count)
+      .map {
+        val outputStream = ByteArrayOutputStream()
+
+        EncryptedBackupWriter(key, aci, outputStream, append = { outputStream.write(it) }).use { writer ->
+          writer.write(BackupInfo(version = 1, backupTimeMs = 1000L))
+          writer.write(Frame(account = AccountData(username = "static-data")))
+        }
+
+        outputStream.toByteArray()
+      }
+      .map { Base64.encodeWithPadding(it) }
+      .toSet()
+
+    assertEquals(count, uniqueOutputs.size)
   }
 }

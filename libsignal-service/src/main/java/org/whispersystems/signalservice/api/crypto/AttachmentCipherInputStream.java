@@ -110,7 +110,7 @@ public class AttachmentCipherInputStream extends FilterInputStream {
   /**
    * Decrypt archived media to it's original attachment encrypted blob.
    */
-  public static InputStream createForArchivedMedia(BackupKey.KeyMaterial<MediaId> archivedMediaKeyMaterial, File file, long originalCipherTextLength)
+  public static InputStream createForArchivedMedia(BackupKey.MediaKeyMaterial archivedMediaKeyMaterial, File file, long originalCipherTextLength)
       throws InvalidMessageException, IOException
   {
     try {

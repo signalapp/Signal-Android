@@ -93,7 +93,7 @@ public final class AttachmentCipherTest {
   @Test
   public void archive_encryptDecrypt() throws IOException, InvalidMessageException {
     byte[]                         key             = Util.getSecretBytes(64);
-    BackupKey.KeyMaterial<MediaId> keyMaterial     = BackupKey.KeyMaterial.forMedia(Util.getSecretBytes(15), key, Util.getSecretBytes(16));
+    BackupKey.MediaKeyMaterial     keyMaterial     = BackupKey.MediaKeyMaterial.forMedia(Util.getSecretBytes(15), key, Util.getSecretBytes(16));
     byte[]                         plaintextInput  = "Peter Parker".getBytes();
     EncryptResult                  encryptResult   = encryptData(plaintextInput, key, false);
     File                           cipherFile      = writeToFile(encryptResult.ciphertext);
@@ -108,7 +108,7 @@ public final class AttachmentCipherTest {
   @Test
   public void archive_encryptDecryptEmpty() throws IOException, InvalidMessageException {
     byte[]                         key             = Util.getSecretBytes(64);
-    BackupKey.KeyMaterial<MediaId> keyMaterial     = BackupKey.KeyMaterial.forMedia(Util.getSecretBytes(15), key, Util.getSecretBytes(16));
+    BackupKey.MediaKeyMaterial     keyMaterial     = BackupKey.MediaKeyMaterial.forMedia(Util.getSecretBytes(15), key, Util.getSecretBytes(16));
     byte[]                         plaintextInput  = "".getBytes();
     EncryptResult                  encryptResult   = encryptData(plaintextInput, key, false);
     File                           cipherFile      = writeToFile(encryptResult.ciphertext);
@@ -128,7 +128,7 @@ public final class AttachmentCipherTest {
     try {
       byte[]                         key            = Util.getSecretBytes(64);
       byte[]                         badKey         = Util.getSecretBytes(64);
-      BackupKey.KeyMaterial<MediaId> keyMaterial    = BackupKey.KeyMaterial.forMedia(Util.getSecretBytes(15), badKey, Util.getSecretBytes(16));
+      BackupKey.MediaKeyMaterial     keyMaterial    = BackupKey.MediaKeyMaterial.forMedia(Util.getSecretBytes(15), badKey, Util.getSecretBytes(16));
       byte[]                         plaintextInput = "Gwen Stacy".getBytes();
       EncryptResult                  encryptResult  = encryptData(plaintextInput, key, false);
 
@@ -270,7 +270,7 @@ public final class AttachmentCipherTest {
 
       File cipherFile = writeToFile(encryptedData);
 
-      BackupKey.KeyMaterial<MediaId> keyMaterial     = BackupKey.KeyMaterial.forMedia(Util.getSecretBytes(15), key, Util.getSecretBytes(16));
+      BackupKey.MediaKeyMaterial     keyMaterial     = BackupKey.MediaKeyMaterial.forMedia(Util.getSecretBytes(15), key, Util.getSecretBytes(16));
       InputStream                    decryptedStream = AttachmentCipherInputStream.createForArchivedMedia(keyMaterial, cipherFile, length);
       byte[]                         plaintextOutput = readInputStreamFully(decryptedStream);
 
@@ -348,7 +348,7 @@ public final class AttachmentCipherTest {
 
       cipherFile = writeToFile(badMacCiphertext);
 
-      BackupKey.KeyMaterial<MediaId> keyMaterial     = BackupKey.KeyMaterial.forMedia(Util.getSecretBytes(15), key, Util.getSecretBytes(16));
+      BackupKey.MediaKeyMaterial     keyMaterial     = BackupKey.MediaKeyMaterial.forMedia(Util.getSecretBytes(15), key, Util.getSecretBytes(16));
       AttachmentCipherInputStream.createForArchivedMedia(keyMaterial, cipherFile, plaintextInput.length);
       fail();
     } catch (InvalidMessageException e) {
