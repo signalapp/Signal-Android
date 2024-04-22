@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.WebRtcCallActivity;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.webrtc.ActiveCallManager;
+import org.thoughtcrime.securesms.service.webrtc.WebRtcCallService;
 import org.thoughtcrime.securesms.util.ConversationUtil;
 
 /**
@@ -114,7 +115,7 @@ public class CallNotificationBuilder {
       if (deviceVersionSupportsIncomingCallStyle()) {
         builder.setStyle(NotificationCompat.CallStyle.forIncomingCall(
             person,
-            ActiveCallManager.denyCallIntent(context),
+            WebRtcCallService.denyCallIntent(context),
             getActivityPendingIntent(context, isVideoCall ? LaunchCallScreenIntentState.VIDEO : LaunchCallScreenIntentState.AUDIO)
         ).setIsVideo(isVideoCall));
       }
@@ -122,7 +123,7 @@ public class CallNotificationBuilder {
       return builder.build();
     } else if (type == TYPE_OUTGOING_RINGING) {
       builder.setContentText(context.getString(R.string.NotificationBarManager__establishing_signal_call));
-      builder.addAction(getServiceNotificationAction(context, ActiveCallManager.hangupIntent(context), R.drawable.symbol_phone_down_fill_24, R.string.NotificationBarManager__cancel_call));
+      builder.addAction(getServiceNotificationAction(context, WebRtcCallService.hangupIntent(context), R.drawable.symbol_phone_down_fill_24, R.string.NotificationBarManager__cancel_call));
       return builder.build();
     } else {
       builder.setContentText(getOngoingCallContentText(context, recipient, isVideoCall));
@@ -138,7 +139,7 @@ public class CallNotificationBuilder {
       if (deviceVersionSupportsIncomingCallStyle()) {
         builder.setStyle(NotificationCompat.CallStyle.forOngoingCall(
             person,
-            ActiveCallManager.hangupIntent(context)
+            WebRtcCallService.hangupIntent(context)
         ).setIsVideo(isVideoCall));
       }
 

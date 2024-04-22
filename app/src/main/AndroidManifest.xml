@@ -1115,6 +1115,12 @@
 
     <service
         android:enabled="true"
+        android:name=".service.webrtc.WebRtcCallService"
+        android:foregroundServiceType="camera|microphone"
+        android:exported="false"/>
+
+    <service
+        android:enabled="true"
         android:exported="false"
         android:name=".service.KeyCachingService" />
 

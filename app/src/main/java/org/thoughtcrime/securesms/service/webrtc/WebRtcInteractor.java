@@ -95,11 +95,11 @@ public class WebRtcInteractor {
   }
 
   void setCallInProgressNotification(int type, @NonNull RemotePeer remotePeer, boolean isVideoCall) {
-    ActiveCallManager.update(context, type, remotePeer.getRecipient().getId(), isVideoCall);
+    WebRtcCallService.update(context, type, remotePeer.getRecipient().getId(), isVideoCall);
   }
 
   void setCallInProgressNotification(int type, @NonNull Recipient recipient, boolean isVideoCall) {
-    ActiveCallManager.update(context, type, recipient.getId(), isVideoCall);
+    WebRtcCallService.update(context, type, recipient.getId(), isVideoCall);
   }
 
   void retrieveTurnServers(@NonNull RemotePeer remotePeer) {
@@ -107,7 +107,7 @@ public class WebRtcInteractor {
   }
 
   void stopForegroundService() {
-    ActiveCallManager.stop();
+    WebRtcCallService.stop(context);
   }
 
   void insertMissedCall(@NonNull RemotePeer remotePeer, long timestamp, boolean isVideoOffer) {
@@ -127,51 +127,51 @@ public class WebRtcInteractor {
   }
 
   void registerPowerButtonReceiver() {
-    ActiveCallManager.changePowerButtonReceiver(context, true);
+    WebRtcCallService.changePowerButtonReceiver(context, true);
   }
 
   void unregisterPowerButtonReceiver() {
-    ActiveCallManager.changePowerButtonReceiver(context, false);
+    WebRtcCallService.changePowerButtonReceiver(context, false);
   }
 
   void silenceIncomingRinger() {
-    ActiveCallManager.sendAudioManagerCommand(context, new AudioManagerCommand.SilenceIncomingRinger());
+    WebRtcCallService.sendAudioManagerCommand(context, new AudioManagerCommand.SilenceIncomingRinger());
   }
 
   void initializeAudioForCall() {
-    ActiveCallManager.sendAudioManagerCommand(context, new AudioManagerCommand.Initialize());
+    WebRtcCallService.sendAudioManagerCommand(context, new AudioManagerCommand.Initialize());
   }
 
   void startIncomingRinger(@Nullable Uri ringtoneUri, boolean vibrate) {
-    ActiveCallManager.sendAudioManagerCommand(context, new AudioManagerCommand.StartIncomingRinger(ringtoneUri, vibrate));
+    WebRtcCallService.sendAudioManagerCommand(context, new AudioManagerCommand.StartIncomingRinger(ringtoneUri, vibrate));
   }
 
   void startOutgoingRinger() {
-    ActiveCallManager.sendAudioManagerCommand(context, new AudioManagerCommand.StartOutgoingRinger());
+    WebRtcCallService.sendAudioManagerCommand(context, new AudioManagerCommand.StartOutgoingRinger());
   }
 
   void stopAudio(boolean playDisconnect) {
-    ActiveCallManager.sendAudioManagerCommand(context, new AudioManagerCommand.Stop(playDisconnect));
+    WebRtcCallService.sendAudioManagerCommand(context, new AudioManagerCommand.Stop(playDisconnect));
   }
 
   void startAudioCommunication() {
-    ActiveCallManager.sendAudioManagerCommand(context, new AudioManagerCommand.Start());
+    WebRtcCallService.sendAudioManagerCommand(context, new AudioManagerCommand.Start());
   }
 
   public void setUserAudioDevice(@Nullable RecipientId recipientId, @NonNull SignalAudioManager.ChosenAudioDeviceIdentifier userDevice) {
     if (userDevice.isLegacy()) {
-      ActiveCallManager.sendAudioManagerCommand(context, new AudioManagerCommand.SetUserDevice(recipientId, userDevice.getDesiredAudioDeviceLegacy().ordinal(), false));
+      WebRtcCallService.sendAudioManagerCommand(context, new AudioManagerCommand.SetUserDevice(recipientId, userDevice.getDesiredAudioDeviceLegacy().ordinal(), false));
     } else {
-      ActiveCallManager.sendAudioManagerCommand(context, new AudioManagerCommand.SetUserDevice(recipientId, userDevice.getDesiredAudioDevice31(), true));
+      WebRtcCallService.sendAudioManagerCommand(context, new AudioManagerCommand.SetUserDevice(recipientId, userDevice.getDesiredAudioDevice31(), true));
     }
   }
 
   public void setDefaultAudioDevice(@NonNull RecipientId recipientId, @NonNull SignalAudioManager.AudioDevice userDevice, boolean clearUserEarpieceSelection) {
-    ActiveCallManager.sendAudioManagerCommand(context, new AudioManagerCommand.SetDefaultDevice(recipientId, userDevice, clearUserEarpieceSelection));
+    WebRtcCallService.sendAudioManagerCommand(context, new AudioManagerCommand.SetDefaultDevice(recipientId, userDevice, clearUserEarpieceSelection));
   }
 
   public void playStateChangeUp() {
-    ActiveCallManager.sendAudioManagerCommand(context, new AudioManagerCommand.PlayStateChangeUp());
+    WebRtcCallService.sendAudioManagerCommand(context, new AudioManagerCommand.PlayStateChangeUp());
   }
 
   void peekGroupCallForRingingCheck(@NonNull GroupCallRingCheckInfo groupCallRingCheckInfo) {
