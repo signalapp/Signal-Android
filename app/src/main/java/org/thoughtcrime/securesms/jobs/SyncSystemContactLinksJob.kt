@@ -11,10 +11,12 @@ import org.signal.core.util.Stopwatch
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
+import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import java.lang.Exception
 
 /**
@@ -70,6 +72,11 @@ class SyncSystemContactLinksJob private constructor(parameters: Parameters) : Ba
         removeIfMissing = true
       )
       stopwatch.split("add-links")
+
+      // Adding links changes how certain structured name records are stored, so we need to re-sync to make sure we get the latest structured name
+      ContactDiscovery.syncRecipientInfoWithSystemContacts(context)
+      StorageSyncHelper.scheduleSyncForDataChange()
+      stopwatch.split("sync-contact-info")
 
       stopwatch.stop(TAG)
     } catch (e: RemoteException) {
