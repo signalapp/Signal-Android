@@ -102,7 +102,8 @@ class ChatItemImportInserter(
       MessageTable.SHARED_CONTACTS,
       MessageTable.LINK_PREVIEWS,
       MessageTable.MESSAGE_RANGES,
-      MessageTable.VIEW_ONCE
+      MessageTable.VIEW_ONCE,
+      MessageTable.MESSAGE_EXTRAS
     )
 
     private val REACTION_COLUMNS = arrayOf(
