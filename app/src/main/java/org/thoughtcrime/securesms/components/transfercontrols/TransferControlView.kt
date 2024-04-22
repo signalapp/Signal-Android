@@ -687,7 +687,7 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
       }
 
       Mode.DOWNLOADING_GALLERY, Mode.DOWNLOADING_SINGLE_ITEM, Mode.DOWNLOADING_VIDEO_PLAYABLE, Mode.UPLOADING_GALLERY, Mode.UPLOADING_SINGLE_ITEM -> {
-        if (currentState.networkProgress.sumCompleted() == 0L || isCompressing(currentState)) {
+        if (currentState.isUpload && (currentState.networkProgress.sumCompleted() == 0L || isCompressing(currentState))) {
           binding.secondaryDetailsText.updateLayoutParams {
             width = ViewGroup.LayoutParams.WRAP_CONTENT
           }
