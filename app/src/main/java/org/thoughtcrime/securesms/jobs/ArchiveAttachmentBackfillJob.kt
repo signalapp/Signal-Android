@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.protos.ArchiveAttachmentBackfillJobData
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.archive.ArchiveMediaResponse
+import org.whispersystems.signalservice.api.archive.ArchiveMediaUploadFormStatusCodes
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer
 import java.io.IOException
 import java.util.Optional
@@ -123,7 +124,12 @@ class ArchiveAttachmentBackfillJob private constructor(
     if (transferState == AttachmentTable.ArchiveTransferState.BACKFILL_UPLOAD_IN_PROGRESS) {
       if (uploadSpec == null || System.currentTimeMillis() > uploadSpec!!.timeout) {
         Log.d(TAG, "Need an upload spec. Fetching...")
-        uploadSpec = ApplicationDependencies.getSignalServiceMessageSender().getResumableUploadSpec().toProto()
+
+        val (spec, result) = fetchResumableUploadSpec()
+        if (result != null) {
+          return result
+        }
+        uploadSpec = spec
       } else {
         Log.d(TAG, "Already have an upload spec. Continuing...")
       }
@@ -209,6 +215,42 @@ class ArchiveAttachmentBackfillJob private constructor(
   override fun onFailure() {
     attachmentId?.let { id ->
       Log.w(TAG, "Failed to archive $id!")
+    }
+  }
+
+  private fun fetchResumableUploadSpec(): Pair<ResumableUpload?, Result?> {
+    return when (val spec = BackupRepository.getMediaUploadSpec()) {
+      is NetworkResult.Success -> {
+        Log.d(TAG, "Got an upload spec!")
+        spec.result.toProto() to null
+      }
+
+      is NetworkResult.ApplicationError -> {
+        Log.w(TAG, "Failed to get an upload spec due to an application error. Retrying.", spec.throwable)
+        return null to Result.retry(defaultBackoff())
+      }
+
+      is NetworkResult.NetworkError -> {
+        Log.w(TAG, "Encountered a transient network error. Retrying.")
+        return null to Result.retry(defaultBackoff())
+      }
+
+      is NetworkResult.StatusCodeError -> {
+        Log.w(TAG, "Failed request with status code ${spec.code}")
+
+        when (ArchiveMediaUploadFormStatusCodes.from(spec.code)) {
+          ArchiveMediaUploadFormStatusCodes.BadArguments,
+          ArchiveMediaUploadFormStatusCodes.InvalidPresentationOrSignature,
+          ArchiveMediaUploadFormStatusCodes.InsufficientPermissions,
+          ArchiveMediaUploadFormStatusCodes.RateLimited -> {
+            return null to Result.retry(defaultBackoff())
+          }
+
+          ArchiveMediaUploadFormStatusCodes.Unknown -> {
+            return null to Result.retry(defaultBackoff())
+          }
+        }
+      }
     }
   }
 

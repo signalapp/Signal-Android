@@ -16,7 +16,9 @@ import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.archive.ArchiveGetMediaItemsResponse.StoredMediaObject
 import org.whispersystems.signalservice.api.backup.BackupKey
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
+import org.whispersystems.signalservice.internal.push.AttachmentUploadForm
 import org.whispersystems.signalservice.internal.push.PushServiceSocket
+import org.whispersystems.signalservice.internal.push.http.ResumableUploadSpec
 import java.io.InputStream
 import java.time.Instant
 
@@ -92,7 +94,7 @@ class ArchiveApi(
   /**
    * Fetches an upload form you can use to upload your main message backup file to cloud storage.
    */
-  fun getMessageBackupUploadForm(backupKey: BackupKey, serviceCredential: ArchiveServiceCredential): NetworkResult<ArchiveMessageBackupUploadFormResponse> {
+  fun getMessageBackupUploadForm(backupKey: BackupKey, serviceCredential: ArchiveServiceCredential): NetworkResult<AttachmentUploadForm> {
     return NetworkResult.fromFetch {
       val zkCredential = getZkCredential(backupKey, serviceCredential)
       val presentationData = CredentialPresentationData.from(backupKey, zkCredential, backupServerPublicParams)
@@ -125,20 +127,38 @@ class ArchiveApi(
   }
 
   /**
-   * Retrieves a resumable upload URL you can use to upload your main message backup file to cloud storage.
+   * Retrieves a resumable upload URL you can use to upload your main message backup file or an arbitrary media file to cloud storage.
    */
-  fun getBackupResumableUploadUrl(archiveFormResponse: ArchiveMessageBackupUploadFormResponse): NetworkResult<String> {
+  fun getBackupResumableUploadUrl(uploadForm: AttachmentUploadForm): NetworkResult<String> {
     return NetworkResult.fromFetch {
-      pushServiceSocket.getResumableUploadUrl(archiveFormResponse)
+      pushServiceSocket.getResumableUploadUrl(uploadForm)
     }
   }
 
   /**
    * Uploads your main backup file to cloud storage.
    */
-  fun uploadBackupFile(archiveFormResponse: ArchiveMessageBackupUploadFormResponse, resumableUploadUrl: String, data: InputStream, dataLength: Long): NetworkResult<Unit> {
+  fun uploadBackupFile(uploadForm: AttachmentUploadForm, resumableUploadUrl: String, data: InputStream, dataLength: Long): NetworkResult<Unit> {
     return NetworkResult.fromFetch {
-      pushServiceSocket.uploadBackupFile(archiveFormResponse, resumableUploadUrl, data, dataLength)
+      pushServiceSocket.uploadBackupFile(uploadForm, resumableUploadUrl, data, dataLength)
+    }
+  }
+
+  /**
+   * Retrieves an [AttachmentUploadForm] that can be used to upload pre-existing media to the archive.
+   * After uploading, the media still needs to be copied via [archiveAttachmentMedia].
+   */
+  fun getMediaUploadForm(backupKey: BackupKey, serviceCredential: ArchiveServiceCredential): NetworkResult<AttachmentUploadForm> {
+    return NetworkResult.fromFetch {
+      val zkCredential = getZkCredential(backupKey, serviceCredential)
+      val presentationData = CredentialPresentationData.from(backupKey, zkCredential, backupServerPublicParams)
+      pushServiceSocket.getArchiveMediaUploadForm(presentationData.toArchiveCredentialPresentation())
+    }
+  }
+
+  fun getResumableUploadSpec(uploadForm: AttachmentUploadForm): NetworkResult<ResumableUploadSpec> {
+    return NetworkResult.fromFetch {
+      pushServiceSocket.getResumableUploadSpec(uploadForm)
     }
   }
 

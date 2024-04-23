@@ -49,6 +49,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceAttachment.Pro
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import org.whispersystems.signalservice.internal.crypto.PaddingInputStream
+import org.whispersystems.signalservice.internal.push.http.ResumableUploadSpec
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.InputStream
@@ -336,6 +337,24 @@ object BackupRepository {
       .then { getAuthCredential() }
       .then { credential ->
         api.debugGetUploadedMediaItemMetadata(backupKey, credential)
+      }
+  }
+
+  /**
+   * Retrieves an upload spec that can be used to upload attachment media.
+   */
+  fun getMediaUploadSpec(): NetworkResult<ResumableUploadSpec> {
+    val api = ApplicationDependencies.getSignalServiceAccountManager().archiveApi
+    val backupKey = SignalStore.svr().getOrCreateMasterKey().deriveBackupKey()
+
+    return api
+      .triggerBackupIdReservation(backupKey)
+      .then { getAuthCredential() }
+      .then { credential ->
+        api.getMediaUploadForm(backupKey, credential)
+      }
+      .then { form ->
+        api.getResumableUploadSpec(form)
       }
   }
 
