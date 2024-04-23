@@ -175,6 +175,13 @@ class AttachmentDownloadJob private constructor(
       Cdn.S3 -> retrieveAttachmentForReleaseChannel(messageId, attachmentId, attachment)
       else -> retrieveAttachment(messageId, attachmentId, attachment)
     }
+
+    if ((attachment.cdn == Cdn.CDN_2 || attachment.cdn == Cdn.CDN_3) &&
+      attachment.archiveMediaId == null &&
+      SignalStore.backup().canReadWriteToArchiveCdn
+    ) {
+      ApplicationDependencies.getJobManager().add(ArchiveAttachmentJob(attachmentId))
+    }
   }
 
   override fun onFailure() {
