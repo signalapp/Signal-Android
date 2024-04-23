@@ -20,6 +20,8 @@ internal class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     private const val KEY_CDN_READ_CREDENTIALS_TIMESTAMP = "backup.cdn.readCredentials.timestamp"
     private const val KEY_RESTORE_STATE = "backup.restoreState"
 
+    private const val KEY_NEXT_BACKUP_TIME = "backup.nextBackupTime"
+
     private const val KEY_CDN_BACKUP_DIRECTORY = "backup.cdn.directory"
     private const val KEY_CDN_BACKUP_MEDIA_DIRECTORY = "backup.cdn.mediaDirectory"
 
@@ -44,6 +46,8 @@ internal class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
   var canReadWriteToArchiveCdn: Boolean by booleanValue(KEY_CDN_CAN_READ_WRITE, false)
   var restoreState: RestoreState by enumValue(KEY_RESTORE_STATE, RestoreState.NONE, RestoreState.serializer)
   var optimizeStorage: Boolean by booleanValue(KEY_OPTIMIZE_STORAGE, false)
+
+  var nextBackupTime: Long by longValue(KEY_NEXT_BACKUP_TIME, -1)
 
   var areBackupsEnabled: Boolean by booleanValue(KEY_BACKUPS_ENABLED, false)
 

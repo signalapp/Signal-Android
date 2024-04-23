@@ -88,6 +88,7 @@ import org.thoughtcrime.securesms.service.AnalyzeDatabaseAlarmListener;
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.service.LocalBackupListener;
+import org.thoughtcrime.securesms.service.MessageBackupListener;
 import org.thoughtcrime.securesms.service.RotateSenderCertificateListener;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
 import org.thoughtcrime.securesms.service.webrtc.ActiveCallManager;
@@ -420,6 +421,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
     RotateSignedPreKeyListener.schedule(this);
     DirectoryRefreshListener.schedule(this);
     LocalBackupListener.schedule(this);
+    MessageBackupListener.schedule(this);
     RotateSenderCertificateListener.schedule(this);
     RoutineMessageFetchReceiver.startOrUpdateAlarm(this);
     AnalyzeDatabaseAlarmListener.schedule(this);

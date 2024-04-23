@@ -741,7 +741,7 @@ public final class FeatureFlags {
    * Note: This feature is in active development and is not intended to currently function.
    */
   public static boolean messageBackups() {
-    return getBoolean(MESSAGE_BACKUPS, false);
+    return BuildConfig.MESSAGE_BACKUP_RESTORE_ENABLED || getBoolean(MESSAGE_BACKUPS, false);
   }
 
   /** Whether or not to use the custom CameraX controller class */

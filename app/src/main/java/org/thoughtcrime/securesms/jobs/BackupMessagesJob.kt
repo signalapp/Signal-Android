@@ -30,13 +30,21 @@ class BackupMessagesJob private constructor(parameters: Parameters) : BaseJob(pa
     private val TAG = Log.tag(BackupMessagesJob::class.java)
 
     const val KEY = "BackupMessagesJob"
+
+    const val QUEUE = "BackupMessagesQueue"
+
+    fun enqueue() {
+      val jobManager = ApplicationDependencies.getJobManager()
+      jobManager.add(BackupMessagesJob())
+    }
   }
 
   constructor() : this(
     Parameters.Builder()
       .addConstraint(NetworkConstraint.KEY)
-      .setMaxAttempts(Parameters.UNLIMITED)
-      .setMaxInstancesForFactory(2)
+      .setMaxAttempts(3)
+      .setMaxInstancesForFactory(1)
+      .setQueue(QUEUE)
       .build()
   )
 
