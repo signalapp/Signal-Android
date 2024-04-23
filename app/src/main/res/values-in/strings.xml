@@ -1553,12 +1553,12 @@
 
     <!-- Chat log text for an ongoing group call with more than two participants with placeholders for the first two joined users, a placeholder for the number of users in the call, and a placeholder for formatted time -->
     <plurals name="MessageRecord_s_s_and_d_others_are_in_the_call_s">
-        <item quantity="other">%1$s, %2$s, dan %3$d lainnya berada di panggilan grup. %4$s</item>
+        <item quantity="other">%1$s, %2$s, dan %3$d lainnya ada dalam panggilan grup · %4$s</item>
     </plurals>
 
     <!-- Chat log text for an ongoing group call with more than two participants with placeholders for the first two joined users and a placeholder for the number of users in the call -->
     <plurals name="MessageRecord_s_s_and_d_others_are_in_the_call">
-        <item quantity="other">%1$s, %2$s, dan %3$d lainnya berada di panggilan grup</item>
+        <item quantity="other">%1$s, %2$s, dan %3$d lainnya ada dalam panggilan grup</item>
     </plurals>
 
     <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
@@ -2647,7 +2647,7 @@
     <string name="ConversationUpdateItem_learn_more">Pelajari lebih lanjut</string>
     <string name="ConversationUpdateItem_join_call">Bergabung panggilan</string>
     <!-- Action button label for starting a new call in the current conversation -->
-    <string name="ConversationUpdateItem_call_back">Panggil Ulang</string>
+    <string name="ConversationUpdateItem_call_back">Panggil ulang</string>
     <string name="ConversationUpdateItem_return_to_call">Kembali ke panggilan</string>
     <string name="ConversationUpdateItem_call_is_full">Panggilan penuh</string>
     <string name="ConversationUpdateItem_invite_friends">Undang teman</string>

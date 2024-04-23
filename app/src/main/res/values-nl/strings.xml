@@ -1566,41 +1566,41 @@
 
     <!-- Group Calling update messages -->
     <!-- Chat log text for an ongoing group call that has one participant with a placeholder for the short display name of the user that joined and a placeholder for formatted time -->
-    <string name="MessageRecord_s_is_in_the_call_s">%1$s is in the call · %2$s</string>
+    <string name="MessageRecord_s_is_in_the_call_s">%1$s is aanwezig in de oproep · %2$s</string>
     <!-- Chat log text for an ongoing group call only the local user has joined with a placeholder for formatted time -->
-    <string name="MessageRecord_you_are_in_the_call_s1">You are in the call · %1$s</string>
+    <string name="MessageRecord_you_are_in_the_call_s1">Jij bent aanwezig in de oproep · %1$s</string>
     <!-- Chat log text for an ongoing group call with two participants with two placeholders for the short display name of the users that joined and a placeholder for formatted time -->
-    <string name="MessageRecord_s_and_s_are_in_the_call_s1">%1$s and %2$s are in the call · %3$s</string>
+    <string name="MessageRecord_s_and_s_are_in_the_call_s1">%1$s en %2$s zijn aanwezig in de oproep · %3$s</string>
     <!-- Chat log text for an ongoing group call that has one participant -->
-    <string name="MessageRecord_s_is_in_the_call">%1$s is in the call</string>
+    <string name="MessageRecord_s_is_in_the_call">%1$s is aanwezig in de oproep</string>
     <!-- Chat log text for an ongoing group call only the local user has joined -->
-    <string name="MessageRecord_you_are_in_the_call">You are in the call</string>
+    <string name="MessageRecord_you_are_in_the_call">Jij bent aanwezig in de oproep</string>
     <!-- Chat log text for an ongoing group call with two participants with two placeholders, each for the short display name of the users that joined -->
-    <string name="MessageRecord_s_and_s_are_in_the_call">%1$s and %2$s are in the call</string>
+    <string name="MessageRecord_s_and_s_are_in_the_call">%1$s en %2$s zijn aanwezig in de oproep</string>
     <!-- Chat log text for a group call that ended within the last 5 minutes -->
-    <string name="MessageRecord__the_video_call_has_ended">The video call has ended</string>
+    <string name="MessageRecord__the_video_call_has_ended">De video-oproep is beëindigd</string>
     <!-- Chat log text for a group call that ended within the last 5 minutes with a placeholder for formatted time -->
-    <string name="MessageRecord__the_video_call_has_ended_s">The video call has ended · %1$s</string>
+    <string name="MessageRecord__the_video_call_has_ended_s">De video-oproep is beëindigd · %1$s</string>
     <!-- Chat log text for a group call that ended more than 5 minutes ago and was missed -->
     <string name="MessageRecord__missed_video_call">Gemiste video-oproep</string>
     <!-- Chat log text for a group call that ended more than 5 minutes ago and was missed with a placeholder for formatted time -->
-    <string name="MessageRecord__missed_video_call_s">Video-oproep gemist · %1$s</string>
+    <string name="MessageRecord__missed_video_call_s">Gemiste video-oproep · %1$s</string>
     <!-- Chat log text for a group call that ended that the local user did not start -->
     <string name="MessageRecord__incoming_video_call">Inkomende video-oproep</string>
     <!-- Chat log text for a group call that ended that the local user did not start with a placeholder for formatted time -->
-    <string name="MessageRecord__incoming_video_call_s">Incoming video call · %1$s</string>
+    <string name="MessageRecord__incoming_video_call_s">Inkomende video-oproep · %1$s</string>
     <!-- Chat log text for a group call that ended that the local user started -->
     <string name="MessageRecord__outgoing_video_call">Uitgaande video-oproep</string>
     <!-- Chat log text for a group call that ended that the local user started with a placeholder for formatted time -->
-    <string name="MessageRecord__outgoing_video_call_s">Outgoing video call · %1$s</string>
+    <string name="MessageRecord__outgoing_video_call_s">Uitgaande video-oproep · %1$s</string>
     <!-- Chat log text for an ongoing group call that the local user started -->
-    <string name="MessageRecord__you_started_a_video_call">You started a video call</string>
+    <string name="MessageRecord__you_started_a_video_call">Je bent een video-oproep gestart</string>
     <!-- Chat log text for an ongoing group call that the local user started with a placeholder for formatted time -->
-    <string name="MessageRecord__you_started_a_video_call_s">You started a video call · %1$s</string>
+    <string name="MessageRecord__you_started_a_video_call_s">Je bent een video-oproep gestart · %1$s</string>
     <!-- Chat log text for an ongoing group call that the local user has not joined with a placeholder for user\'s short display name -->
-    <string name="MessageRecord__s_started_a_video_call">%1$s started a video call</string>
+    <string name="MessageRecord__s_started_a_video_call">%1$s is een video-oproep gestart</string>
     <!-- Chat log text for an ongoing group call that the local user has not joined with a placeholder for user\'s short display name and a placeholder for formatted time -->
-    <string name="MessageRecord__s_started_a_video_call_s">%1$s started a video call · %2$s</string>
+    <string name="MessageRecord__s_started_a_video_call_s">%1$s is een video-oproep gestart · %2$s</string>
 
     <string name="MessageRecord_you">Jij</string>
 
@@ -6744,9 +6744,9 @@
 
     <!-- BackupProgressService -->
     <!-- Notification title shown while backup restore job is running -->
-    <string name="BackupProgressService_title">Restoring backup…</string>
+    <string name="BackupProgressService_title">Back-upgegevens aan het terugzetten…</string>
     <!-- Notification title shown while downloading backup restore data -->
-    <string name="BackupProgressService_title_downloading">Downloading backup data…</string>
+    <string name="BackupProgressService_title_downloading">Back-upgegevens aan het downloaden…</string>
 
     <!-- EOF -->
 </resources>

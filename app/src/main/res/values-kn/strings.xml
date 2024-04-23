@@ -1566,41 +1566,41 @@
 
     <!-- Group Calling update messages -->
     <!-- Chat log text for an ongoing group call that has one participant with a placeholder for the short display name of the user that joined and a placeholder for formatted time -->
-    <string name="MessageRecord_s_is_in_the_call_s">%1$s is in the call · %2$s</string>
+    <string name="MessageRecord_s_is_in_the_call_s">%1$s ಅವರು ಕರೆಯಲ್ಲಿದ್ದಾರೆ · %2$s</string>
     <!-- Chat log text for an ongoing group call only the local user has joined with a placeholder for formatted time -->
-    <string name="MessageRecord_you_are_in_the_call_s1">You are in the call · %1$s</string>
+    <string name="MessageRecord_you_are_in_the_call_s1">ನೀವು ಕರೆಯಲ್ಲಿದ್ದೀರಿ · %1$s</string>
     <!-- Chat log text for an ongoing group call with two participants with two placeholders for the short display name of the users that joined and a placeholder for formatted time -->
-    <string name="MessageRecord_s_and_s_are_in_the_call_s1">%1$s and %2$s are in the call · %3$s</string>
+    <string name="MessageRecord_s_and_s_are_in_the_call_s1">%1$s ಮತ್ತು %2$s ಅವರು ಕರೆಯಲ್ಲಿದ್ದಾರೆ · %3$s</string>
     <!-- Chat log text for an ongoing group call that has one participant -->
-    <string name="MessageRecord_s_is_in_the_call">%1$s is in the call</string>
+    <string name="MessageRecord_s_is_in_the_call">%1$s ಅವರು ಕರೆಯಲ್ಲಿದ್ದಾರೆ</string>
     <!-- Chat log text for an ongoing group call only the local user has joined -->
-    <string name="MessageRecord_you_are_in_the_call">You are in the call</string>
+    <string name="MessageRecord_you_are_in_the_call">ನೀವು ಕರೆಯಲ್ಲಿದ್ದೀರಿ</string>
     <!-- Chat log text for an ongoing group call with two participants with two placeholders, each for the short display name of the users that joined -->
-    <string name="MessageRecord_s_and_s_are_in_the_call">%1$s and %2$s are in the call</string>
+    <string name="MessageRecord_s_and_s_are_in_the_call">%1$s ಮತ್ತು %2$s ಕರೆಯಲ್ಲಿದ್ದಾರೆ</string>
     <!-- Chat log text for a group call that ended within the last 5 minutes -->
-    <string name="MessageRecord__the_video_call_has_ended">The video call has ended</string>
+    <string name="MessageRecord__the_video_call_has_ended">ವೀಡಿಯೊ ಕರೆ ಮುಕ್ತಾಯವಾಗಿದೆ</string>
     <!-- Chat log text for a group call that ended within the last 5 minutes with a placeholder for formatted time -->
-    <string name="MessageRecord__the_video_call_has_ended_s">The video call has ended · %1$s</string>
+    <string name="MessageRecord__the_video_call_has_ended_s">ವೀಡಿಯೊ ಕರೆ ಮುಕ್ತಾಯವಾಗಿದೆ · %1$s</string>
     <!-- Chat log text for a group call that ended more than 5 minutes ago and was missed -->
-    <string name="MessageRecord__missed_video_call">ಮಿಸ್ಡ್ ವೀಡಿಯೊ ಕಾಲ್</string>
+    <string name="MessageRecord__missed_video_call">ಮಿಸ್ಡ್ ವೀಡಿಯೊ ಕರೆ</string>
     <!-- Chat log text for a group call that ended more than 5 minutes ago and was missed with a placeholder for formatted time -->
-    <string name="MessageRecord__missed_video_call_s">ಮಿಸ್ಡ್ ವೀಡಿಯೋ ಕಾಲ್ · %1$s</string>
+    <string name="MessageRecord__missed_video_call_s">ಮಿಸ್ಡ್ ವೀಡಿಯೊ ಕರೆ · %1$s</string>
     <!-- Chat log text for a group call that ended that the local user did not start -->
-    <string name="MessageRecord__incoming_video_call">ಒಳಬರುವ ವೀಡಿಯೊ ಕಾಲ್</string>
+    <string name="MessageRecord__incoming_video_call">ಒಳಬರುವ ವೀಡಿಯೊ ಕರೆ</string>
     <!-- Chat log text for a group call that ended that the local user did not start with a placeholder for formatted time -->
-    <string name="MessageRecord__incoming_video_call_s">Incoming video call · %1$s</string>
+    <string name="MessageRecord__incoming_video_call_s">ಒಳಬರುವ ವೀಡಿಯೊ ಕರೆ · %1$s</string>
     <!-- Chat log text for a group call that ended that the local user started -->
-    <string name="MessageRecord__outgoing_video_call">ಹೊರಹೋಗುವ ವೀಡಿಯೊ ಕಾಲ್</string>
+    <string name="MessageRecord__outgoing_video_call">ಹೊರಹೋಗುವ ವೀಡಿಯೊ ಕರೆ</string>
     <!-- Chat log text for a group call that ended that the local user started with a placeholder for formatted time -->
-    <string name="MessageRecord__outgoing_video_call_s">Outgoing video call · %1$s</string>
+    <string name="MessageRecord__outgoing_video_call_s">ಹೊರಹೋಗುವ ವೀಡಿಯೊ ಕರೆ · %1$s</string>
     <!-- Chat log text for an ongoing group call that the local user started -->
-    <string name="MessageRecord__you_started_a_video_call">You started a video call</string>
+    <string name="MessageRecord__you_started_a_video_call">ನೀವು ವೀಡಿಯೊ ಕರೆಯನ್ನು ಪ್ರಾರಂಭಿಸಿದ್ದೀರಿ</string>
     <!-- Chat log text for an ongoing group call that the local user started with a placeholder for formatted time -->
-    <string name="MessageRecord__you_started_a_video_call_s">You started a video call · %1$s</string>
+    <string name="MessageRecord__you_started_a_video_call_s">ನೀವು ವೀಡಿಯೊ ಕರೆಯನ್ನು ಪ್ರಾರಂಭಿಸಿದ್ದೀರಿ · %1$s</string>
     <!-- Chat log text for an ongoing group call that the local user has not joined with a placeholder for user\'s short display name -->
-    <string name="MessageRecord__s_started_a_video_call">%1$s started a video call</string>
+    <string name="MessageRecord__s_started_a_video_call">%1$s ಅವರು ವೀಡಿಯೊ ಕರೆಯನ್ನು ಪ್ರಾರಂಭಿಸಿದ್ದಾರೆ</string>
     <!-- Chat log text for an ongoing group call that the local user has not joined with a placeholder for user\'s short display name and a placeholder for formatted time -->
-    <string name="MessageRecord__s_started_a_video_call_s">%1$s started a video call · %2$s</string>
+    <string name="MessageRecord__s_started_a_video_call_s">%1$s ಅವರು ವೀಡಿಯೊ ಕರೆಯನ್ನು ಪ್ರಾರಂಭಿಸಿದ್ದಾರೆ · %2$s</string>
 
     <string name="MessageRecord_you">ನೀವು</string>
 
@@ -4932,7 +4932,7 @@
     <string name="MediaReviewFragment__add_a_message">ಮೆಸೇಜ್ ಸೇರಿಸಿ</string>
     <string name="MediaReviewFragment__add_a_reply">ಉತ್ತರ ಸೇರಿಸಿ</string>
     <string name="MediaReviewFragment__send_to">ಇವರಿಗೆ ಕಳುಹಿಸಿ</string>
-    <string name="MediaReviewFragment__view_once_message">View Once Media</string>
+    <string name="MediaReviewFragment__view_once_message">ಒಮ್ಮೆ ವೀಕ್ಷಿಸಬಹುದಾದ ಮೀಡಿಯಾ</string>
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">ಒಂದು ಅಥವಾ ಹೆಚ್ಚು ಐಟಂಗಳು ತೀರಾ ದೊಡ್ಡದಾಗಿವೆ</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">ಒಂದು ಅಥವಾ ಹೆಚ್ಚು ಐಟಂಗಳು ಅಮಾನ್ಯವಾಗಿವೆ</string>
     <string name="MediaReviewFragment__too_many_items_selected">ತುಂಬಾ ಐಟಂಗಳನ್ನು ಆಯ್ಕೆ ಮಾಡಲಾಗಿದೆ</string>
@@ -6744,9 +6744,9 @@
 
     <!-- BackupProgressService -->
     <!-- Notification title shown while backup restore job is running -->
-    <string name="BackupProgressService_title">Restoring backup…</string>
+    <string name="BackupProgressService_title">ಬ್ಯಾಕಪ್ ಅನ್ನು ರಿಸ್ಟೋರ್ ಮಾಡಲಾಗುತ್ತಿದೆ…</string>
     <!-- Notification title shown while downloading backup restore data -->
-    <string name="BackupProgressService_title_downloading">Downloading backup data…</string>
+    <string name="BackupProgressService_title_downloading">ಬ್ಯಾಕಪ್ ಡೇಟಾವನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ…</string>
 
     <!-- EOF -->
 </resources>

@@ -1451,7 +1451,7 @@
     <string name="MessageRecord_call_message_with_date">%1$s · %2$s</string>
     <string name="MessageRecord_s_updated_group">%1$s оновив групу.</string>
     <string name="MessageRecord_s_joined_signal">%1$s приєднався до Signal!</string>
-    <string name="MessageRecord_you_disabled_disappearing_messages">Ви заборонили зникаючі повідомлення</string>
+    <string name="MessageRecord_you_disabled_disappearing_messages">Ви вимкнули зникаючі повідомлення</string>
     <string name="MessageRecord_s_disabled_disappearing_messages">%1$s вимкнув зникаючі повідомлення.</string>
     <string name="MessageRecord_you_set_disappearing_message_time_to_s">Ви встановлюєте час зникнення повідомлення на %1$s.</string>
     <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$sвстановлює час зникання повідомлень на %2$s.</string>
@@ -1672,58 +1672,58 @@
 
     <!-- Group Calling update messages -->
     <!-- Chat log text for an ongoing group call that has one participant with a placeholder for the short display name of the user that joined and a placeholder for formatted time -->
-    <string name="MessageRecord_s_is_in_the_call_s">%1$s is in the call · %2$s</string>
+    <string name="MessageRecord_s_is_in_the_call_s">%1$s бере участь у виклику · %2$s</string>
     <!-- Chat log text for an ongoing group call only the local user has joined with a placeholder for formatted time -->
-    <string name="MessageRecord_you_are_in_the_call_s1">You are in the call · %1$s</string>
+    <string name="MessageRecord_you_are_in_the_call_s1">Ви берете участь у виклику · %1$s</string>
     <!-- Chat log text for an ongoing group call with two participants with two placeholders for the short display name of the users that joined and a placeholder for formatted time -->
-    <string name="MessageRecord_s_and_s_are_in_the_call_s1">%1$s and %2$s are in the call · %3$s</string>
+    <string name="MessageRecord_s_and_s_are_in_the_call_s1">%1$s і %2$s беруть участь у виклику · %3$s</string>
     <!-- Chat log text for an ongoing group call that has one participant -->
-    <string name="MessageRecord_s_is_in_the_call">%1$s is in the call</string>
+    <string name="MessageRecord_s_is_in_the_call">%1$s бере участь у виклику</string>
     <!-- Chat log text for an ongoing group call only the local user has joined -->
-    <string name="MessageRecord_you_are_in_the_call">You are in the call</string>
+    <string name="MessageRecord_you_are_in_the_call">Ви берете участь у виклику</string>
     <!-- Chat log text for an ongoing group call with two participants with two placeholders, each for the short display name of the users that joined -->
-    <string name="MessageRecord_s_and_s_are_in_the_call">%1$s and %2$s are in the call</string>
+    <string name="MessageRecord_s_and_s_are_in_the_call">%1$s і %2$s беруть участь у виклику</string>
     <!-- Chat log text for a group call that ended within the last 5 minutes -->
-    <string name="MessageRecord__the_video_call_has_ended">The video call has ended</string>
+    <string name="MessageRecord__the_video_call_has_ended">Відеовиклик завершено</string>
     <!-- Chat log text for a group call that ended within the last 5 minutes with a placeholder for formatted time -->
-    <string name="MessageRecord__the_video_call_has_ended_s">The video call has ended · %1$s</string>
+    <string name="MessageRecord__the_video_call_has_ended_s">Відеовиклик завершено · %1$s</string>
     <!-- Chat log text for a group call that ended more than 5 minutes ago and was missed -->
     <string name="MessageRecord__missed_video_call">Пропущений відеовиклик</string>
     <!-- Chat log text for a group call that ended more than 5 minutes ago and was missed with a placeholder for formatted time -->
-    <string name="MessageRecord__missed_video_call_s">Пропущений відеодзвінок · %1$s</string>
+    <string name="MessageRecord__missed_video_call_s">Пропущений відеовиклик · %1$s</string>
     <!-- Chat log text for a group call that ended that the local user did not start -->
     <string name="MessageRecord__incoming_video_call">Вхідний відеовиклик</string>
     <!-- Chat log text for a group call that ended that the local user did not start with a placeholder for formatted time -->
-    <string name="MessageRecord__incoming_video_call_s">Incoming video call · %1$s</string>
+    <string name="MessageRecord__incoming_video_call_s">Вхідний відеовиклик · %1$s</string>
     <!-- Chat log text for a group call that ended that the local user started -->
     <string name="MessageRecord__outgoing_video_call">Вихідний відеовиклик</string>
     <!-- Chat log text for a group call that ended that the local user started with a placeholder for formatted time -->
-    <string name="MessageRecord__outgoing_video_call_s">Outgoing video call · %1$s</string>
+    <string name="MessageRecord__outgoing_video_call_s">Вихідний відеовиклик · %1$s</string>
     <!-- Chat log text for an ongoing group call that the local user started -->
-    <string name="MessageRecord__you_started_a_video_call">You started a video call</string>
+    <string name="MessageRecord__you_started_a_video_call">Ви почали відеовиклик</string>
     <!-- Chat log text for an ongoing group call that the local user started with a placeholder for formatted time -->
-    <string name="MessageRecord__you_started_a_video_call_s">You started a video call · %1$s</string>
+    <string name="MessageRecord__you_started_a_video_call_s">Ви почали відеовиклик · %1$s</string>
     <!-- Chat log text for an ongoing group call that the local user has not joined with a placeholder for user\'s short display name -->
-    <string name="MessageRecord__s_started_a_video_call">%1$s started a video call</string>
+    <string name="MessageRecord__s_started_a_video_call">Користувач %1$s почав відеовиклик</string>
     <!-- Chat log text for an ongoing group call that the local user has not joined with a placeholder for user\'s short display name and a placeholder for formatted time -->
-    <string name="MessageRecord__s_started_a_video_call_s">%1$s started a video call · %2$s</string>
+    <string name="MessageRecord__s_started_a_video_call_s">Користувач %1$s почав відеовиклик · %2$s</string>
 
     <string name="MessageRecord_you">Ви</string>
 
     <!-- Chat log text for an ongoing group call with more than two participants with placeholders for the first two joined users, a placeholder for the number of users in the call, and a placeholder for formatted time -->
     <plurals name="MessageRecord_s_s_and_d_others_are_in_the_call_s">
-        <item quantity="one">%1$s, %2$s, та %3$d інші у цьому груповому дзвінку · %4$s</item>
-        <item quantity="few">%1$s, %2$s, та %3$d інші у цьому груповому дзвінку · %4$s</item>
-        <item quantity="many">%1$s,%2$s, та %3$d а інші у цьому груповому дзвінку · %4$s</item>
-        <item quantity="other">%1$s, %2$s, та%3$d а інші у цьому груповому дзвінку · %4$s</item>
+        <item quantity="one">%1$s, %2$s і ще %3$d користувач беруть участь у груповому виклику · %4$s</item>
+        <item quantity="few">%1$s, %2$s і ще %3$d користувачі беруть участь у груповому виклику · %4$s</item>
+        <item quantity="many">%1$s,%2$s і ще %3$d користувачів беруть участь у груповому виклику · %4$s</item>
+        <item quantity="other">%1$s, %2$s і ще %3$d користувача беруть участь у груповому виклику · %4$s</item>
     </plurals>
 
     <!-- Chat log text for an ongoing group call with more than two participants with placeholders for the first two joined users and a placeholder for the number of users in the call -->
     <plurals name="MessageRecord_s_s_and_d_others_are_in_the_call">
-        <item quantity="one">%1$s, %2$s, та%3$d інший у цьому груповому дзвінку</item>
-        <item quantity="few">%1$s, %2$s, та%3$d інші у цьому груповому дзвінку</item>
-        <item quantity="many">%1$s, %2$s, та%3$d інші у цьому груповому дзвінку</item>
-        <item quantity="other">%1$s, %2$s, та%3$d інші у цьому груповому дзвінку</item>
+        <item quantity="one">%1$s, %2$s і ще %3$d користувач беруть участь у груповому виклику</item>
+        <item quantity="few">%1$s, %2$s і ще %3$d користувачі беруть участь у груповому виклику</item>
+        <item quantity="many">%1$s, %2$s і ще %3$d користувачів беруть участь у груповому виклику</item>
+        <item quantity="other">%1$s, %2$s і ще %3$d користувача беруть участь у груповому виклику</item>
     </plurals>
 
     <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
@@ -2908,7 +2908,7 @@
     <string name="ConversationUpdateItem_learn_more">Дізнатися більше</string>
     <string name="ConversationUpdateItem_join_call">Приєднатися до дзвінка</string>
     <!-- Action button label for starting a new call in the current conversation -->
-    <string name="ConversationUpdateItem_call_back">Перетелефонувати</string>
+    <string name="ConversationUpdateItem_call_back">Передзвонити</string>
     <string name="ConversationUpdateItem_return_to_call">Повернутись до виклику</string>
     <string name="ConversationUpdateItem_call_is_full">Дзвінок повний</string>
     <string name="ConversationUpdateItem_invite_friends">Запросити друзів</string>
@@ -5166,7 +5166,7 @@
     <string name="MediaReviewFragment__add_a_message">Додати повідомлення</string>
     <string name="MediaReviewFragment__add_a_reply">Додати відповідь</string>
     <string name="MediaReviewFragment__send_to">Надіслати</string>
-    <string name="MediaReviewFragment__view_once_message">Переглянути одноразові медіафайли</string>
+    <string name="MediaReviewFragment__view_once_message">Одноразовий медіафайл</string>
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">Один або більше елементів були завеликими</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">Один або кілька елементів були недійсними</string>
     <string name="MediaReviewFragment__too_many_items_selected">Обрано забагато елементів</string>
@@ -7036,9 +7036,9 @@
 
     <!-- BackupProgressService -->
     <!-- Notification title shown while backup restore job is running -->
-    <string name="BackupProgressService_title">Restoring backup…</string>
+    <string name="BackupProgressService_title">Відновлення резервної копії…</string>
     <!-- Notification title shown while downloading backup restore data -->
-    <string name="BackupProgressService_title_downloading">Downloading backup data…</string>
+    <string name="BackupProgressService_title_downloading">Завантаження резервної копії…</string>
 
     <!-- EOF -->
 </resources>

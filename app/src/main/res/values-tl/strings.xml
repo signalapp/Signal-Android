@@ -43,13 +43,13 @@
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Hindi ka pa nagset ng passphrase!</string>
     <string name="ApplicationPreferencesActivity_disable_passphrase">I-disable ang passphrase?</string>
-    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Permanente nitong ia-unlock ang Signal at mga notipikasyong pangmensahe.</string>
+    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Permanente nitong ia-unlock ang Signal at ang message notifications.</string>
     <string name="ApplicationPreferencesActivity_disable">I-disable</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Nagka-error sa pagkonekta sa server!</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Kinailangan ang mga PIN para sa registration lock. Para mag-disable ng PIN, paki disable muna ang registration lock.</string>
     <string name="ApplicationPreferencesActivity_pin_created">Nalikha na ang PIN.</string>
     <string name="ApplicationPreferencesActivity_pin_disabled">Naka-disable ang PIN.</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">I-record ang payments recovery phase</string>
+    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">I-record ang payments recovery phrase</string>
     <string name="ApplicationPreferencesActivity_record_phrase">I-record ang phrase</string>
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Bago mo ma-disable ang iyong PIN, kinakailangan mong i-record ang payments recovery phrase mo para masiguradong mare-recover mo ang iyong payments account.</string>
 
@@ -72,13 +72,13 @@
     <string name="DraftDatabase_Draft_audio_snippet">(audio)</string>
     <string name="DraftDatabase_Draft_video_snippet">(video)</string>
     <string name="DraftDatabase_Draft_location_snippet">(lokasyon)</string>
-    <string name="DraftDatabase_Draft_quote_snippet">(tugon)</string>
+    <string name="DraftDatabase_Draft_quote_snippet">(reply)</string>
     <string name="DraftDatabase_Draft_voice_note">(Voice message)</string>
 
     <!-- AttachmentKeyboard -->
     <string name="AttachmentKeyboard_gallery">Gallery</string>
     <string name="AttachmentKeyboard_file">File</string>
-    <string name="AttachmentKeyboard_contact">Kontak</string>
+    <string name="AttachmentKeyboard_contact">Kontakin</string>
     <string name="AttachmentKeyboard_location">Lokasyon</string>
     <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Kailangan ng Signal ng pahintulot upang maipakita ang iyong mga larawan at video.</string>
     <string name="AttachmentKeyboard_give_access">Bigyan ng Access</string>
@@ -86,9 +86,9 @@
 
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Walang mahanap na app para makapili ng media.</string>
-    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Kailangan ng Signal ng pahintulot sa Storage upang makapaglakip ng mga larawan, video, o audio, ngunit permanente itong ipinagbabawal. Pumunta sa app settings menu, piliin ang \"Mga Pahintulot\", at i-enable ang \"Storage\".</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Kailangan ng Signal ng pahintulot sa Mga Kontak upang makapaglakip ng impormasyon ng kontak, ngunit permanente itong ipinagbabawal. Pumunta sa app settings menu, piliin ang \"mga Pahintulot\", at i-enable ang \"Mga Kontak\".</string>
-    <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Kailangan ng Signal ng pahintulot sa Lokasyon upang makapaglakip ng lokasyon, ngunit permanente itong ipinagbabawal. Pumunta sa app settings menu, piliin ang \"Mga Pahintulot\", at i-enable ang \"Lokasyon\".</string>
+    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Kailangan ng Signal ng pahintulot sa Storage upang makapag-attach ng photos, videos, o audio, ngunit permanente itong ipinagbabawal. Pumunta sa app settings menu, piliin ang \"Permissions\", at i-enable ang \"Storage\".</string>
+    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Kailangan ng Signal ng pahintulot sa Contacts upang makapag-attach ng contact information, ngunit permanente itong ipinagbabawal. Pumunta sa app settings menu, piliin ang \"Permissions\", at i-enable ang \"Contacts\".</string>
+    <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Kailangan ng Signal ng pahintulot sa Lokasyon upang makapag-attach ng lokasyon, ngunit permanente itong ipinagbabawal. Pumunta sa app settings menu, piliin ang \"Permissions\", at i-enable ang \"Location\".</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
     <string name="AttachmentManager__not_activated_payments">Hindi pa na-activate ni %1$s ang Payments </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
@@ -100,10 +100,10 @@
 
     <!-- AttachmentUploadJob -->
     <string name="AttachmentUploadJob_uploading_media">Nag-a-upload ng media…</string>
-    <string name="AttachmentUploadJob_compressing_video_start">Nagko-compress ng video…</string>
+    <string name="AttachmentUploadJob_compressing_video_start">Kino-compressa ng video…</string>
 
     <!-- BackgroundMessageRetriever -->
-    <string name="BackgroundMessageRetriever_checking_for_messages">Tinitignan ang messages…</string>
+    <string name="BackgroundMessageRetriever_checking_for_messages">Chine-check ang messages…</string>
 
     <!-- Fcm notifications -->
     <!-- Notification we show when there may be messages for you, but we cannot connect to the server to check -->
@@ -115,7 +115,7 @@
     <string name="BlockedUsersActivity__blocked_users_will">Hindi makakatawag o makakapag-send sa \'yo ng messages ang blocked users.</string>
     <string name="BlockedUsersActivity__no_blocked_users">Walang blocked users</string>
     <string name="BlockedUsersActivity__block_user">Gusto mo bang i-block ang user na ito?</string>
-    <string name="BlockedUserActivity__s_will_not_be_able_to">Hindi na makakatawag o makakapag-send ng messages si \"%1$s\" sa\'yo.</string>
+    <string name="BlockedUserActivity__s_will_not_be_able_to">Hindi na makakatawag o makakapag-send ng messages sa \'yo si \"%1$s\".</string>
     <string name="BlockedUsersActivity__block">I-block</string>
 
     <!-- CreditCardFragment -->
@@ -163,9 +163,9 @@
     <string name="BlockUnblockDialog_block_s">I-block ang %1$s?</string>
     <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Hindi ka na makatatanggap ng messages o updates mula sa group, at hindi ka na rin pwedeng i-add ng members ulit sa group na ito.</string>
     <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Hindi ka na maaaring i-add ulit ng members sa groupong ito.</string>
-    <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Ang mga kasapi ng grupong ito ay maaaring isali kang muli sa grupong ito.</string>
+    <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Maaari ka ulit isali sa grupong ito ng members ng grupong ito.</string>
     <!-- Text that is shown when unblocking a Signal contact -->
-    <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Pwede niyo nang i-message at tawagan ang isa\'t isa at ang pangalan at photo mo ay ibabahagi rin sa kanya.</string>
+    <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Pwede niyo nang i-message at tawagan ang isa\'t isa at ibabahagi rin sa kanya ang pangalan at photo mo.</string>
     <!-- Text that is shown when unblocking an SMS contact -->
     <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Pwede niyo nang i-message ang isa\'t isa.</string>
     <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Hindi makakatawag o makakapag-send ng messages sa \'yo ang mga binlock mong tao.</string>
@@ -178,13 +178,13 @@
     <string name="BlockUnblockDialog_block">I-block</string>
     <string name="BlockUnblockDialog_block_and_leave">I-block at Umalis</string>
     <!-- Dialog button label to report as spam and block the person -->
-    <string name="BlockUnblockDialog_report_spam_and_block">Iulat at harangin</string>
+    <string name="BlockUnblockDialog_report_spam_and_block">I-report at i-block</string>
     <!-- Dialog title for reporting spam -->
-    <string name="BlockUnblockDialog_report_spam_title">Gusto mong iulat bilang spam?</string>
+    <string name="BlockUnblockDialog_report_spam_title">I-report bilang spam?</string>
     <!-- Dialog button to report as spam only -->
-    <string name="BlockUnblockDialog_report_spam">Iulat bilang spam</string>
+    <string name="BlockUnblockDialog_report_spam">I-report  bilang spam</string>
     <!-- Dialog message when reporting spam of an individual (1:1 conversation) -->
-    <string name="BlockUnblockDialog_report_spam_description">Aabisuhan ang signal na maaaring nagpapadala ng spam ang taong ito. Hindi nababasa ng Signal ang nilalaman ng anumang mga chat.</string>
+    <string name="BlockUnblockDialog_report_spam_description">Ino-notify ang Signal na maaaring nagpapadala ng spam ang taong ito. Hindi nababasa ng Signal ang nilalaman ng anumang chats.</string>
     <!-- Dialog message when reporting spam of a group and we can determine the group member that invited you, placeholder is a name -->
     <string name="BlockUnblockDialog_report_spam_group_named_adder">Ang Signal ay aabisuhan na si %1$s, na siyang nag-imbita sa iyo sa grupong ito, ay maaaring nagpapadala ng spam. Hindi nababasa ng Signal ang nilalaman ng anumang chat.</string>
     <!-- Dialog message when reporting spam of a group and we cannot determine the group member that invited you -->
@@ -201,10 +201,10 @@
 
     <!-- CameraFragment -->
     <!-- Toasted when user device does not support video recording -->
-    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Hindi suportado sa iyong device ang video recording</string>
+    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Hindi suportado ng iyong device ang video recording</string>
 
     <!-- CameraXFragment -->
-    <string name="CameraXFragment_tap_for_photo_hold_for_video">I-tap para sa larawan, huwag bitiwan para video</string>
+    <string name="CameraXFragment_tap_for_photo_hold_for_video">I-tap para sa photo, i-hold para sa video</string>
     <string name="CameraXFragment_capture_description">Kunan</string>
     <string name="CameraXFragment_change_camera_description">Magpalit ng Camera</string>
     <string name="CameraXFragment_open_gallery_description">Buksan ang gallery</string>
@@ -1566,21 +1566,21 @@
 
     <!-- Group Calling update messages -->
     <!-- Chat log text for an ongoing group call that has one participant with a placeholder for the short display name of the user that joined and a placeholder for formatted time -->
-    <string name="MessageRecord_s_is_in_the_call_s">%1$s is in the call · %2$s</string>
+    <string name="MessageRecord_s_is_in_the_call_s">Si %1$s ay nasa call · %2$s</string>
     <!-- Chat log text for an ongoing group call only the local user has joined with a placeholder for formatted time -->
-    <string name="MessageRecord_you_are_in_the_call_s1">You are in the call · %1$s</string>
+    <string name="MessageRecord_you_are_in_the_call_s1">Ikaw ay nasa call · %1$s</string>
     <!-- Chat log text for an ongoing group call with two participants with two placeholders for the short display name of the users that joined and a placeholder for formatted time -->
-    <string name="MessageRecord_s_and_s_are_in_the_call_s1">%1$s and %2$s are in the call · %3$s</string>
+    <string name="MessageRecord_s_and_s_are_in_the_call_s1">Sila %1$s at %2$s ay nasa call · %3$s</string>
     <!-- Chat log text for an ongoing group call that has one participant -->
-    <string name="MessageRecord_s_is_in_the_call">%1$s is in the call</string>
+    <string name="MessageRecord_s_is_in_the_call">Si %1$s ay nasa call</string>
     <!-- Chat log text for an ongoing group call only the local user has joined -->
-    <string name="MessageRecord_you_are_in_the_call">You are in the call</string>
+    <string name="MessageRecord_you_are_in_the_call">Ikaw ay nasa call</string>
     <!-- Chat log text for an ongoing group call with two participants with two placeholders, each for the short display name of the users that joined -->
-    <string name="MessageRecord_s_and_s_are_in_the_call">%1$s and %2$s are in the call</string>
+    <string name="MessageRecord_s_and_s_are_in_the_call">Sila %1$s at %2$s ay nasa call</string>
     <!-- Chat log text for a group call that ended within the last 5 minutes -->
-    <string name="MessageRecord__the_video_call_has_ended">The video call has ended</string>
+    <string name="MessageRecord__the_video_call_has_ended">Tapos na ang video call</string>
     <!-- Chat log text for a group call that ended within the last 5 minutes with a placeholder for formatted time -->
-    <string name="MessageRecord__the_video_call_has_ended_s">The video call has ended · %1$s</string>
+    <string name="MessageRecord__the_video_call_has_ended_s">Tapos na ang video call · %1$s</string>
     <!-- Chat log text for a group call that ended more than 5 minutes ago and was missed -->
     <string name="MessageRecord__missed_video_call">Missed video call</string>
     <!-- Chat log text for a group call that ended more than 5 minutes ago and was missed with a placeholder for formatted time -->
@@ -1594,13 +1594,13 @@
     <!-- Chat log text for a group call that ended that the local user started with a placeholder for formatted time -->
     <string name="MessageRecord__outgoing_video_call_s">Outgoing video call · %1$s</string>
     <!-- Chat log text for an ongoing group call that the local user started -->
-    <string name="MessageRecord__you_started_a_video_call">You started a video call</string>
+    <string name="MessageRecord__you_started_a_video_call">Nagsimula ka ng video call</string>
     <!-- Chat log text for an ongoing group call that the local user started with a placeholder for formatted time -->
-    <string name="MessageRecord__you_started_a_video_call_s">You started a video call · %1$s</string>
+    <string name="MessageRecord__you_started_a_video_call_s">Nagsimula ka ng video call · %1$s</string>
     <!-- Chat log text for an ongoing group call that the local user has not joined with a placeholder for user\'s short display name -->
-    <string name="MessageRecord__s_started_a_video_call">%1$s started a video call</string>
+    <string name="MessageRecord__s_started_a_video_call">Si %1$s ay nagsimula ng video call</string>
     <!-- Chat log text for an ongoing group call that the local user has not joined with a placeholder for user\'s short display name and a placeholder for formatted time -->
-    <string name="MessageRecord__s_started_a_video_call_s">%1$s started a video call · %2$s</string>
+    <string name="MessageRecord__s_started_a_video_call_s">Si %1$s ay nagsimula ng video call · %2$s</string>
 
     <string name="MessageRecord_you">Ikaw</string>
 
@@ -4932,7 +4932,7 @@
     <string name="MediaReviewFragment__add_a_message">Mag-add ng message</string>
     <string name="MediaReviewFragment__add_a_reply">Mag-add ng reply</string>
     <string name="MediaReviewFragment__send_to">I-send kay</string>
-    <string name="MediaReviewFragment__view_once_message">View once media</string>
+    <string name="MediaReviewFragment__view_once_message">View-once media</string>
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">Ang isa o higit pang files were too large</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">Ang isa o higit pang files were invalid</string>
     <string name="MediaReviewFragment__too_many_items_selected">Too many items selected</string>
@@ -6744,9 +6744,9 @@
 
     <!-- BackupProgressService -->
     <!-- Notification title shown while backup restore job is running -->
-    <string name="BackupProgressService_title">Restoring backup…</string>
+    <string name="BackupProgressService_title">Nire-restore ang backup…</string>
     <!-- Notification title shown while downloading backup restore data -->
-    <string name="BackupProgressService_title_downloading">Downloading backup data…</string>
+    <string name="BackupProgressService_title_downloading">Dina-download ang backup data…</string>
 
     <!-- EOF -->
 </resources>
