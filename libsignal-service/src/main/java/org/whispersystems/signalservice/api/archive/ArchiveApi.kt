@@ -239,7 +239,7 @@ class ArchiveApi(
 
     return backupRequestContext.receiveResponse(
       backupAuthResponse,
-      Instant.ofEpochMilli(serviceCredential.redemptionTime),
+      Instant.ofEpochSecond(serviceCredential.redemptionTime),
       backupServerPublicParams
     )
   }
