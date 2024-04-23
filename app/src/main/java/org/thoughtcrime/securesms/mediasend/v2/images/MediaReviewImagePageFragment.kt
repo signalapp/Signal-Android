@@ -24,10 +24,10 @@ private val MODE_DELAY = TimeUnit.MILLISECONDS.toMillis(300)
  */
 class MediaReviewImagePageFragment : Fragment(R.layout.fragment_container), ImageEditorFragment.Controller {
 
-  private lateinit var imageEditorFragment: ImageEditorFragment
-
   private val sharedViewModel: MediaSelectionViewModel by viewModels(ownerProducer = { requireActivity() })
-  private lateinit var hudCommandDisposable: Disposable
+
+  private var imageEditorFragment: ImageEditorFragment? = null
+  private var hudCommandDisposable: Disposable = Disposable.disposed()
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     imageEditorFragment = ensureImageEditorFragment()
@@ -49,7 +49,7 @@ class MediaReviewImagePageFragment : Fragment(R.layout.fragment_container), Imag
             sharedViewModel.setTouchEnabled(false)
             requireView().postDelayed(
               {
-                imageEditorFragment.setMode(ImageEditorHudV2.Mode.DRAW)
+                imageEditorFragment?.setMode(ImageEditorHudV2.Mode.DRAW)
               },
               MODE_DELAY
             )
@@ -58,12 +58,12 @@ class MediaReviewImagePageFragment : Fragment(R.layout.fragment_container), Imag
             sharedViewModel.setTouchEnabled(false)
             requireView().postDelayed(
               {
-                imageEditorFragment.setMode(ImageEditorHudV2.Mode.CROP)
+                imageEditorFragment?.setMode(ImageEditorHudV2.Mode.CROP)
               },
               MODE_DELAY
             )
           }
-          HudCommand.SaveMedia -> imageEditorFragment.onSave()
+          HudCommand.SaveMedia -> imageEditorFragment?.onSave()
           else -> Unit
         }
       }
@@ -73,7 +73,9 @@ class MediaReviewImagePageFragment : Fragment(R.layout.fragment_container), Imag
   override fun onSaveInstanceState(outState: Bundle) {
     super.onSaveInstanceState(outState)
 
-    sharedViewModel.setEditorState(requireUri(), requireNotNull(imageEditorFragment.saveState()))
+    imageEditorFragment?.let {
+      sharedViewModel.setEditorState(requireUri(), requireNotNull(it.saveState()))
+    }
   }
 
   private fun ensureImageEditorFragment(): ImageEditorFragment {
@@ -105,12 +107,12 @@ class MediaReviewImagePageFragment : Fragment(R.layout.fragment_container), Imag
       if (!needed) {
         requireView().postDelayed(
           {
-            sharedViewModel.setTouchEnabled(!needed)
+            sharedViewModel.setTouchEnabled(true)
           },
           MODE_DELAY
         )
       } else {
-        sharedViewModel.setTouchEnabled(!needed)
+        sharedViewModel.setTouchEnabled(false)
       }
     }
   }
@@ -118,10 +120,12 @@ class MediaReviewImagePageFragment : Fragment(R.layout.fragment_container), Imag
   override fun onRequestFullScreen(fullScreen: Boolean, hideKeyboard: Boolean) = Unit
 
   override fun onDoneEditing() {
-    imageEditorFragment.setMode(ImageEditorHudV2.Mode.NONE)
+    imageEditorFragment?.setMode(ImageEditorHudV2.Mode.NONE)
 
     if (isResumed) {
-      sharedViewModel.setEditorState(requireUri(), requireNotNull(imageEditorFragment.saveState()))
+      imageEditorFragment?.let {
+        sharedViewModel.setEditorState(requireUri(), requireNotNull(it.saveState()))
+      }
     }
   }
 
@@ -141,9 +145,9 @@ class MediaReviewImagePageFragment : Fragment(R.layout.fragment_container), Imag
     val data = sharedViewModel.getEditorState(requireUri()) as? ImageEditorFragment.Data
 
     if (data != null) {
-      imageEditorFragment.restoreState(data)
+      imageEditorFragment?.restoreState(data)
     } else {
-      imageEditorFragment.onClearAll()
+      imageEditorFragment?.onClearAll()
     }
   }
 
