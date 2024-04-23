@@ -54,7 +54,7 @@ class InlineQueryViewModelV2(
   private fun queryEmoji(query: InlineQuery.Emoji): Observable<Results> {
     return emojiSearchRepository
       .submitQuery(query.query)
-      .map { r -> if (r.isEmpty()) None else EmojiResults(toMappingModels(r, query.keywordSearch)) }
+      .map { r -> if (r.isEmpty()) None else EmojiResults(toMappingModels(r)) }
       .toObservable()
   }
 
@@ -77,10 +77,10 @@ class InlineQueryViewModelV2(
     when (model) {
       is InlineQueryEmojiResult.Model -> {
         recentEmojis.onCodePointSelected(model.preferredEmoji)
-        selectionSubject.onNext(InlineQueryReplacement.Emoji(model.preferredEmoji, model.keywordSearch))
+        selectionSubject.onNext(InlineQueryReplacement.Emoji(model.preferredEmoji))
       }
       is MentionViewState -> {
-        selectionSubject.onNext(InlineQueryReplacement.Mention(model.recipient, false))
+        selectionSubject.onNext(InlineQueryReplacement.Mention(model.recipient))
       }
     }
   }
@@ -90,15 +90,14 @@ class InlineQueryViewModelV2(
   }
 
   companion object {
-    fun toMappingModels(emojiWithLabels: List<String>, keywordSearch: Boolean): List<AnyMappingModel> {
+    fun toMappingModels(emojiWithLabels: List<String>): List<AnyMappingModel> {
       val emojiValues = SignalStore.emojiValues()
       return emojiWithLabels
         .distinct()
         .map { emoji ->
           InlineQueryEmojiResult.Model(
             canonicalEmoji = emoji,
-            preferredEmoji = emojiValues.getPreferredVariation(emoji),
-            keywordSearch = keywordSearch
+            preferredEmoji = emojiValues.getPreferredVariation(emoji)
           )
         }
     }

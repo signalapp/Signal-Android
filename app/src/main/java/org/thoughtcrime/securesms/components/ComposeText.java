@@ -370,16 +370,16 @@ public class ComposeText extends EmojiEditText {
   }
 
   private void doAfterCursorChange(@NonNull Editable text) {
-    if (enoughToFilter(text, false)) {
-      performFiltering(text, false);
+    if (enoughToFilter(text)) {
+      performFiltering(text);
     } else {
       clearInlineQuery();
     }
   }
 
-  private void performFiltering(@NonNull Editable text, boolean keywordEmojiSearch) {
+  private void performFiltering(@NonNull Editable text) {
     int        end        = getSelectionEnd();
-    QueryStart queryStart = findQueryStart(text, end, keywordEmojiSearch);
+    QueryStart queryStart = findQueryStart(text, end);
     int        start      = queryStart.index;
     String     query      = text.subSequence(start, end).toString();
 
@@ -387,7 +387,7 @@ public class ComposeText extends EmojiEditText {
       if (queryStart.isMentionQuery) {
         inlineQueryChangedListener.onQueryChanged(new InlineQuery.Mention(query));
       } else {
-        inlineQueryChangedListener.onQueryChanged(new InlineQuery.Emoji(query, keywordEmojiSearch));
+        inlineQueryChangedListener.onQueryChanged(new InlineQuery.Emoji(query));
       }
     }
   }
@@ -398,23 +398,23 @@ public class ComposeText extends EmojiEditText {
     }
   }
 
-  private boolean enoughToFilter(@NonNull Editable text, boolean keywordEmojiSearch) {
+  private boolean enoughToFilter(@NonNull Editable text) {
     int end = getSelectionEnd();
     if (end < 0) {
       return false;
     }
-    return findQueryStart(text, end, keywordEmojiSearch).index != -1;
+    return findQueryStart(text, end).index != -1;
   }
 
   public void replaceTextWithMention(@NonNull String displayName, @NonNull RecipientId recipientId) {
-    replaceText(createReplacementToken(displayName, recipientId), false);
+    replaceText(createReplacementToken(displayName, recipientId));
   }
 
   public void replaceText(@NonNull InlineQueryReplacement replacement) {
-    replaceText(replacement.toCharSequence(getContext()), replacement.isKeywordSearch());
+    replaceText(replacement.toCharSequence(getContext()));
   }
 
-  private void replaceText(@NonNull CharSequence replacement, boolean keywordReplacement) {
+  private void replaceText(@NonNull CharSequence replacement) {
     Editable text = getText();
     if (text == null) {
       return;
@@ -423,7 +423,7 @@ public class ComposeText extends EmojiEditText {
     clearComposingText();
 
     int end   = getSelectionEnd();
-    int start = findQueryStart(text, end, keywordReplacement).index - (keywordReplacement ? 0 : 1);
+    int start = findQueryStart(text, end).index - 1;
 
     text.replace(start, end, "");
     text.insert(start, replacement);
@@ -444,17 +444,7 @@ public class ComposeText extends EmojiEditText {
     return builder;
   }
 
-  private QueryStart findQueryStart(@NonNull CharSequence text, int inputCursorPosition, boolean keywordEmojiSearch) {
-    if (keywordEmojiSearch) {
-      int start = findQueryStart(text, inputCursorPosition, ' ');
-      if (start == -1 && inputCursorPosition != 0) {
-        start = 0;
-      } else if (start == inputCursorPosition) {
-        start = -1;
-      }
-      return new QueryStart(start, false);
-    }
-
+  private QueryStart findQueryStart(@NonNull CharSequence text, int inputCursorPosition) {
     QueryStart queryStart = new QueryStart(findQueryStart(text, inputCursorPosition, MENTION_STARTER), true);
 
     if (queryStart.index < 0) {
