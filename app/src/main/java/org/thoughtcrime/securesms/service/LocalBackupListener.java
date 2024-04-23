@@ -52,7 +52,7 @@ public class LocalBackupListener extends PersistentAlarmManagerListener {
 
     int jitter = (new Random().nextInt(BACKUP_JITTER_WINDOW_SECONDS)) - (BACKUP_JITTER_WINDOW_SECONDS / 2);
 
-    next.plusSeconds(jitter);
+    next = next.plusSeconds(jitter);
 
     if (now.isAfter(next)) {
       next = next.plusDays(1);
