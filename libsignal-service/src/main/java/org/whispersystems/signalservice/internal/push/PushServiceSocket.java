@@ -325,9 +325,9 @@ public class PushServiceSocket {
   private static final String CALL_LINK_CREATION_AUTH = "/v1/call-link/create-auth";
   private static final String SERVER_DELIVERED_TIMESTAMP_HEADER = "X-Signal-Timestamp";
 
-  private static final Map<String, String> NO_HEADERS           = Collections.emptyMap();
-  private static final ResponseCodeHandler NO_HANDLER           = new EmptyResponseCodeHandler();
-  private static final ResponseCodeHandler UNOPINIONATED_HANDER = new UnopinionatedResponseCodeHandler();
+  private static final Map<String, String> NO_HEADERS            = Collections.emptyMap();
+  private static final ResponseCodeHandler NO_HANDLER            = new EmptyResponseCodeHandler();
+  private static final ResponseCodeHandler UNOPINIONATED_HANDLER = new UnopinionatedResponseCodeHandler();
 
   private static final long CDN2_RESUMABLE_LINK_LIFETIME_MILLIS = TimeUnit.DAYS.toMillis(7);
 
@@ -495,14 +495,14 @@ public class PushServiceSocket {
     long secondsRoundedToNearestDay = TimeUnit.DAYS.toSeconds(TimeUnit.MILLISECONDS.toDays(currentTime));
     long endTimeInSeconds           = secondsRoundedToNearestDay + TimeUnit.DAYS.toSeconds(7);
 
-    String response = makeServiceRequest(String.format(Locale.US, ARCHIVE_CREDENTIALS, secondsRoundedToNearestDay, endTimeInSeconds), "GET", null, NO_HEADERS, UNOPINIONATED_HANDER, Optional.empty());
+    String response = makeServiceRequest(String.format(Locale.US, ARCHIVE_CREDENTIALS, secondsRoundedToNearestDay, endTimeInSeconds), "GET", null, NO_HEADERS, UNOPINIONATED_HANDLER, Optional.empty());
 
     return JsonUtil.fromJson(response, ArchiveServiceCredentialsResponse.class);
   }
 
   public void setArchiveBackupId(BackupAuthCredentialRequest request) throws IOException {
     String body = JsonUtil.toJson(new ArchiveSetBackupIdRequest(request));
-    makeServiceRequest(ARCHIVE_BACKUP_ID, "PUT", body, NO_HEADERS, UNOPINIONATED_HANDER, Optional.empty());
+    makeServiceRequest(ARCHIVE_BACKUP_ID, "PUT", body, NO_HEADERS, UNOPINIONATED_HANDLER, Optional.empty());
   }
 
   public void setArchivePublicKey(ECPublicKey publicKey, ArchiveCredentialPresentation credentialPresentation) throws IOException {
@@ -556,7 +556,7 @@ public class PushServiceSocket {
   public ArchiveMediaResponse archiveAttachmentMedia(@Nonnull ArchiveCredentialPresentation credentialPresentation, @Nonnull ArchiveMediaRequest request) throws IOException {
     Map<String, String> headers = credentialPresentation.toHeaders();
 
-    String response = makeServiceRequestWithoutAuthentication(ARCHIVE_MEDIA, "PUT", JsonUtil.toJson(request), headers, UNOPINIONATED_HANDER);
+    String response = makeServiceRequestWithoutAuthentication(ARCHIVE_MEDIA, "PUT", JsonUtil.toJson(request), headers, UNOPINIONATED_HANDLER);
 
     return JsonUtil.fromJson(response, ArchiveMediaResponse.class);
   }
@@ -567,7 +567,7 @@ public class PushServiceSocket {
   public BatchArchiveMediaResponse archiveAttachmentMedia(@Nonnull ArchiveCredentialPresentation credentialPresentation, @Nonnull BatchArchiveMediaRequest request) throws IOException {
     Map<String, String> headers = credentialPresentation.toHeaders();
 
-    String response = makeServiceRequestWithoutAuthentication(ARCHIVE_MEDIA_BATCH, "PUT", JsonUtil.toJson(request), headers, UNOPINIONATED_HANDER);
+    String response = makeServiceRequestWithoutAuthentication(ARCHIVE_MEDIA_BATCH, "PUT", JsonUtil.toJson(request), headers, UNOPINIONATED_HANDLER);
 
     return JsonUtil.fromJson(response, BatchArchiveMediaResponse.class);
   }
