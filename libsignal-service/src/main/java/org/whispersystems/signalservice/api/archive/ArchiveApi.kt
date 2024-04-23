@@ -18,6 +18,7 @@ import org.whispersystems.signalservice.api.backup.BackupKey
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.internal.push.PushServiceSocket
 import java.io.InputStream
+import java.time.Instant
 
 /**
  * Class to interact with various archive-related endpoints.
@@ -238,8 +239,8 @@ class ArchiveApi(
 
     return backupRequestContext.receiveResponse(
       backupAuthResponse,
-      backupServerPublicParams,
-      201
+      Instant.ofEpochMilli(serviceCredential.redemptionTime),
+      backupServerPublicParams
     )
   }
 
