@@ -57,9 +57,9 @@ import static org.thoughtcrime.securesms.database.MentionUtil.MENTION_STARTER;
 
 public class ComposeText extends EmojiEditText {
 
-  private static final char EMOJI_STARTER       = ':';
-
-  private static final Pattern TIME_PATTERN = Pattern.compile("^[0-9]{1,2}:[0-9]{1,2}$");
+  private static final char    EMOJI_STARTER    = ':';
+  private static final int     MAX_QUERY_LENGTH = 64;
+  private static final Pattern TIME_PATTERN     = Pattern.compile("^[0-9]{1,2}:[0-9]{1,2}$");
 
   private CharSequence            hint;
   private MentionRendererDelegate mentionRendererDelegate;
@@ -370,7 +370,7 @@ public class ComposeText extends EmojiEditText {
   }
 
   private void doAfterCursorChange(@NonNull Editable text) {
-    if (enoughToFilter(text)) {
+    if (canFilter(text)) {
       performFiltering(text);
     } else {
       clearInlineQuery();
@@ -398,12 +398,14 @@ public class ComposeText extends EmojiEditText {
     }
   }
 
-  private boolean enoughToFilter(@NonNull Editable text) {
+  private boolean canFilter(@NonNull Editable text) {
     int end = getSelectionEnd();
     if (end < 0) {
       return false;
     }
-    return findQueryStart(text, end).index != -1;
+
+    QueryStart start = findQueryStart(text, end);
+    return start.index != -1 && ((end - start.index) <= MAX_QUERY_LENGTH);
   }
 
   public void replaceTextWithMention(@NonNull String displayName, @NonNull RecipientId recipientId) {
