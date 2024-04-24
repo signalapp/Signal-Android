@@ -32,7 +32,7 @@ class OnReactionSentView @JvmOverloads constructor(
     })
   }
 
-  fun playForEmoji(emoji: CharSequence) {
+  fun playForEmoji(emojis: List<CharSequence>) {
     motionLayout.progress = 0f
 
     listOf(
@@ -47,8 +47,9 @@ class OnReactionSentView @JvmOverloads constructor(
       R.id.emoji_9,
       R.id.emoji_10,
       R.id.emoji_11
-    ).forEach {
-      findViewById<EmojiImageView>(it).setImageEmoji(emoji)
+    ).forEachIndexed { index, it ->
+      val emojiIndex = index % emojis.size
+      findViewById<EmojiImageView>(it).setImageEmoji(emojis[emojiIndex])
     }
 
     motionLayout.requestLayout()

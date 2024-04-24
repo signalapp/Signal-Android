@@ -498,7 +498,7 @@ class StoryViewerPageFragment :
     childFragmentManager.setFragmentResultListener(StoryDirectReplyDialogFragment.REQUEST_EMOJI, viewLifecycleOwner) { _, bundle ->
       val emoji = bundle.getString(StoryDirectReplyDialogFragment.REQUEST_EMOJI)
       if (emoji != null) {
-        reactionAnimationView.playForEmoji(emoji)
+        reactionAnimationView.playForEmoji(listOf(emoji))
         viewModel.setIsDisplayingReactionAnimation(true)
       }
     }

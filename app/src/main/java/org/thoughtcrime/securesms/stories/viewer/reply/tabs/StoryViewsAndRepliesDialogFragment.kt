@@ -159,7 +159,7 @@ class StoryViewsAndRepliesDialogFragment : FixedRoundedCornerBottomSheetDialogFr
   }
 
   override fun onReactionEmojiSelected(emoji: String) {
-    reactionView.playForEmoji(emoji)
+    reactionView.playForEmoji(listOf(emoji))
   }
 
   private inner class PageChangeCallback : ViewPager2.OnPageChangeCallback() {
