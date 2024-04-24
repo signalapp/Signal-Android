@@ -18,6 +18,7 @@ import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.api.push.exceptions.AuthorizationFailedException;
 import org.whispersystems.signalservice.api.push.exceptions.MalformedResponseException;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.ServiceResponseProcessor;
@@ -37,6 +38,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -150,7 +152,20 @@ public final class ProfileService {
                                                                                @Nonnull Locale locale)
   {
     return Single.fromFuture(receiver.retrieveProfile(address, profileKey, unidentifiedAccess, requestType, locale), 10, TimeUnit.SECONDS)
-                 .onErrorResumeNext(t -> Single.fromFuture(receiver.retrieveProfile(address, profileKey, Optional.empty(), requestType, locale), 10, TimeUnit.SECONDS))
+                 .onErrorResumeNext(t -> {
+                   Throwable error;
+                   if (t instanceof ExecutionException && t.getCause() != null) {
+                     error = t.getCause();
+                   } else {
+                     error = t;
+                   }
+
+                   if (error instanceof AuthorizationFailedException) {
+                     return Single.fromFuture(receiver.retrieveProfile(address, profileKey, Optional.empty(), requestType, locale), 10, TimeUnit.SECONDS);
+                   } else {
+                     return Single.error(t);
+                   }
+                 })
                  .map(p -> ServiceResponse.forResult(p, 0, null));
   }
 
@@ -158,7 +173,20 @@ public final class ProfileService {
                                                                                                    @Nonnull Optional<UnidentifiedAccess> unidentifiedAccess,
                                                                                                    @Nonnull ResponseMapper<IdentityCheckResponse> responseMapper) {
     return receiver.performIdentityCheck(request, unidentifiedAccess, responseMapper)
-                   .onErrorResumeNext(t -> receiver.performIdentityCheck(request, Optional.empty(), responseMapper));
+                   .onErrorResumeNext(t -> {
+                     Throwable error;
+                     if (t instanceof ExecutionException && t.getCause() != null) {
+                       error = t.getCause();
+                     } else {
+                       error = t;
+                     }
+
+                     if (error instanceof AuthorizationFailedException) {
+                       return receiver.performIdentityCheck(request, Optional.empty(), responseMapper);
+                     } else {
+                       return Single.error(t);
+                     }
+                   });
   }
 
   /**
