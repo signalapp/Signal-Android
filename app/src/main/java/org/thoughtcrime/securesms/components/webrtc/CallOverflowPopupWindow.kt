@@ -30,7 +30,6 @@ class CallOverflowPopupWindow(private val activity: FragmentActivity, parentView
   LayoutInflater.from(activity).inflate(R.layout.call_overflow_holder, parentViewGroup, false),
   activity.resources.getDimension(R.dimen.calling_reaction_popup_menu_width).toInt(),
   activity.resources.getDimension(R.dimen.calling_reaction_popup_menu_height).toInt()
-
 ) {
   private val raiseHandLabel: TextView = (contentView as LinearLayout).findViewById(R.id.raise_hand_label)
 

@@ -35,6 +35,7 @@ import android.view.WindowManager;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.app.PictureInPictureModeChangedInfo;
 import androidx.core.content.ContextCompat;
 import androidx.core.util.Consumer;
 import androidx.lifecycle.LiveDataReactiveStreams;
@@ -61,6 +62,7 @@ import org.thoughtcrime.securesms.components.webrtc.CallLinkProfileKeySender;
 import org.thoughtcrime.securesms.components.webrtc.CallOverflowPopupWindow;
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantsListUpdatePopupWindow;
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantsState;
+import org.thoughtcrime.securesms.components.webrtc.CallReactionScrubber;
 import org.thoughtcrime.securesms.components.webrtc.CallStateUpdatePopupWindow;
 import org.thoughtcrime.securesms.components.webrtc.CallToastPopupWindow;
 import org.thoughtcrime.securesms.components.webrtc.GroupCallSafetyNumberChangeNotificationUtil;
@@ -223,6 +225,8 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
 
     processIntent(getIntent());
 
+    registerSystemPipChangeListeners();
+
     windowLayoutInfoConsumer = new WindowLayoutInfoConsumer();
 
     windowInfoTrackerCallbackAdapter = new WindowInfoTrackerCallbackAdapter(WindowInfoTracker.getOrCreate(this));
@@ -233,6 +237,13 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     initializePendingParticipantFragmentListener();
 
     WindowUtil.setNavigationBarColor(this, ContextCompat.getColor(this, R.color.signal_dark_colorSurface));
+  }
+
+  private void registerSystemPipChangeListeners() {
+    addOnPictureInPictureModeChangedListener(pictureInPictureModeChangedInfo -> {
+      CallParticipantsListDialog.dismiss(getSupportFragmentManager());
+      CallReactionScrubber.dismissCustomEmojiBottomSheet(getSupportFragmentManager());
+    });
   }
 
   @Override
@@ -356,8 +367,6 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
           Log.w(TAG, "Device lied to us about supporting PiP.", e);
           return false;
         }
-
-        CallParticipantsListDialog.dismiss(getSupportFragmentManager());
 
         return true;
       }
