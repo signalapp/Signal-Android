@@ -15,9 +15,13 @@ public class WebsocketResponse {
   private final boolean             unidentified;
 
   WebsocketResponse(int status, String body, List<String> headers, boolean unidentified) {
+    this(status, body, parseHeaders(headers), unidentified);
+  }
+
+  WebsocketResponse(int status, String body, Map<String, String> headerMap, boolean unidentified) {
     this.status       = status;
     this.body         = body;
-    this.headers      = parseHeaders(headers);
+    this.headers      = headerMap;
     this.unidentified = unidentified;
   }
 
@@ -41,7 +45,7 @@ public class WebsocketResponse {
     Map<String, String> headers = new HashMap<>(rawHeaders.size());
 
     for (String raw : rawHeaders) {
-      if (raw != null && raw.length() > 0) {
+      if (raw != null && !raw.isEmpty()) {
         int colonIndex = raw.indexOf(":");
 
         if (colonIndex > 0 && colonIndex < raw.length() - 1) {

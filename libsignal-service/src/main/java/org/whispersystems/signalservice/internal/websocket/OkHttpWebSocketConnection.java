@@ -2,7 +2,6 @@ package org.whispersystems.signalservice.internal.websocket;
 
 import org.signal.libsignal.protocol.logging.Log;
 import org.signal.libsignal.protocol.util.Pair;
-import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.TrustStore;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.api.util.Tls12SocketFactory;
@@ -25,7 +24,6 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -51,10 +49,10 @@ import okhttp3.WebSocket;
 import okhttp3.WebSocketListener;
 import okio.ByteString;
 
-public class WebSocketConnection extends WebSocketListener {
+public class OkHttpWebSocketConnection extends WebSocketListener implements WebSocketConnection {
 
-  private static final String TAG                         = WebSocketConnection.class.getSimpleName();
-  public  static final int    KEEPALIVE_FREQUENCY_SECONDS = 30;
+  private static final String TAG                         = OkHttpWebSocketConnection.class.getSimpleName();
+  public static final  int    KEEPALIVE_FREQUENCY_SECONDS = 30;
 
   private final LinkedList<WebSocketRequestMessage> incomingRequests = new LinkedList<>();
   private final Map<Long, OutgoingRequest>          outgoingRequests = new HashMap<>();
@@ -76,22 +74,22 @@ public class WebSocketConnection extends WebSocketListener {
 
   private WebSocket client;
 
-  public WebSocketConnection(String name,
-                             SignalServiceConfiguration serviceConfiguration,
-                             Optional<CredentialsProvider> credentialsProvider,
-                             String signalAgent,
-                             HealthMonitor healthMonitor,
-                             boolean allowStories) {
+  public OkHttpWebSocketConnection(String name,
+                                   SignalServiceConfiguration serviceConfiguration,
+                                   Optional<CredentialsProvider> credentialsProvider,
+                                   String signalAgent,
+                                   HealthMonitor healthMonitor,
+                                   boolean allowStories) {
     this(name, serviceConfiguration, credentialsProvider, signalAgent, healthMonitor, "", allowStories);
   }
 
-  public WebSocketConnection(String name,
-                             SignalServiceConfiguration serviceConfiguration,
-                             Optional<CredentialsProvider> credentialsProvider,
-                             String signalAgent,
-                             HealthMonitor healthMonitor,
-                             String extraPathUri,
-                             boolean allowStories)
+  public OkHttpWebSocketConnection(String name,
+                                   SignalServiceConfiguration serviceConfiguration,
+                                   Optional<CredentialsProvider> credentialsProvider,
+                                   String signalAgent,
+                                   HealthMonitor healthMonitor,
+                                   String extraPathUri,
+                                   boolean allowStories)
   {
     this.name                = "[" + name + ":" + System.identityHashCode(this) + "]";
     this.trustStore          = serviceConfiguration.getSignalServiceUrls()[0].getTrustStore();
@@ -108,6 +106,7 @@ public class WebSocketConnection extends WebSocketListener {
     this.random              = new SecureRandom();
   }
 
+  @Override
   public String getName() {
     return name;
   }
@@ -123,6 +122,7 @@ public class WebSocketConnection extends WebSocketListener {
     }
   }
 
+  @Override
   public synchronized Observable<WebSocketConnectionState> connect() {
     log("connect()");
 
@@ -130,7 +130,7 @@ public class WebSocketConnection extends WebSocketListener {
       Pair<SignalServiceUrl, String> connectionInfo = getConnectionInfo();
       SignalServiceUrl               serviceUrl     = connectionInfo.first();
       String                         wsUri          = connectionInfo.second();
-      String filledUri;
+      String                         filledUri;
 
       if (credentialsProvider.isPresent()) {
         filledUri = String.format(wsUri, credentialsProvider.get().getUsername(), credentialsProvider.get().getPassword());
@@ -177,10 +177,12 @@ public class WebSocketConnection extends WebSocketListener {
     return webSocketState;
   }
 
+  @Override
   public synchronized boolean isDead() {
     return client == null;
   }
 
+  @Override
   public synchronized void disconnect() {
     log("disconnect()");
 
@@ -193,6 +195,7 @@ public class WebSocketConnection extends WebSocketListener {
     notifyAll();
   }
 
+  @Override
   public synchronized Optional<WebSocketRequestMessage> readRequestIfAvailable() {
     if (incomingRequests.size() > 0) {
       return Optional.of(incomingRequests.removeFirst());
@@ -201,6 +204,7 @@ public class WebSocketConnection extends WebSocketListener {
     }
   }
 
+  @Override
   public synchronized WebSocketRequestMessage readRequest(long timeoutMillis)
       throws TimeoutException, IOException
   {
@@ -223,6 +227,7 @@ public class WebSocketConnection extends WebSocketListener {
     }
   }
 
+  @Override
   public synchronized Single<WebsocketResponse> sendRequest(WebSocketRequestMessage request) throws IOException {
     if (client == null) {
       throw new IOException("No connection!");
@@ -246,6 +251,7 @@ public class WebSocketConnection extends WebSocketListener {
                  .timeout(10, TimeUnit.SECONDS, Schedulers.io());
   }
 
+  @Override
   public synchronized void sendResponse(WebSocketResponseMessage response) throws IOException {
     if (client == null) {
       throw new IOException("Connection closed!");
@@ -261,9 +267,10 @@ public class WebSocketConnection extends WebSocketListener {
     }
   }
 
+  @Override
   public synchronized void sendKeepAlive() throws IOException {
     if (client != null) {
-      log( "Sending keep alive...");
+      log("Sending keep alive...");
       long id = System.currentTimeMillis();
       byte[] message = new WebSocketMessage.Builder()
                                            .type(WebSocketMessage.Type.REQUEST)

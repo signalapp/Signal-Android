@@ -129,6 +129,7 @@ public final class FeatureFlags {
   private static final String MESSAGE_BACKUPS                   = "android.messageBackups";
   private static final String CAMERAX_CUSTOM_CONTROLLER         = "android.cameraXCustomController";
   private static final String REGISTRATION_V2                   = "android.registration.v2";
+  private static final String LIBSIGNAL_WEB_SOCKET_ENABLED      = "android.libsignalWebSocketEnabled";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -208,7 +209,8 @@ public final class FeatureFlags {
       CDSI_LIBSIGNAL_NET,
       RX_MESSAGE_SEND,
       LINKED_DEVICE_LIFESPAN_SECONDS,
-      CAMERAX_CUSTOM_CONTROLLER
+      CAMERAX_CUSTOM_CONTROLLER,
+      LIBSIGNAL_WEB_SOCKET_ENABLED
   );
 
   @VisibleForTesting
@@ -753,6 +755,9 @@ public final class FeatureFlags {
   public static boolean registrationV2() {
     return getBoolean(REGISTRATION_V2, false);
   }
+
+  /** Whether unauthenticated chat web socket is backed by libsignal-net */
+  public static boolean libSignalWebSocketEnabled() { return getBoolean(LIBSIGNAL_WEB_SOCKET_ENABLED, false); }
 
   /** Only for rendering debug info. */
   public static synchronized @NonNull Map<String, Object> getMemoryValues() {

@@ -573,7 +573,7 @@ public class ApplicationDependencies {
     if (signalWebSocket == null) {
       synchronized (LOCK) {
         if (signalWebSocket == null) {
-          signalWebSocket = provider.provideSignalWebSocket(() -> getSignalServiceNetworkAccess().getConfiguration());
+          signalWebSocket = provider.provideSignalWebSocket(() -> getSignalServiceNetworkAccess().getConfiguration(), ApplicationDependencies::getLibsignalNetwork);
         }
       }
     }
@@ -726,7 +726,7 @@ public class ApplicationDependencies {
     @NonNull SignalCallManager provideSignalCallManager();
     @NonNull PendingRetryReceiptManager providePendingRetryReceiptManager();
     @NonNull PendingRetryReceiptCache providePendingRetryReceiptCache();
-    @NonNull SignalWebSocket provideSignalWebSocket(@NonNull Supplier<SignalServiceConfiguration> signalServiceConfigurationSupplier);
+    @NonNull SignalWebSocket provideSignalWebSocket(@NonNull Supplier<SignalServiceConfiguration> signalServiceConfigurationSupplier, @NonNull Supplier<Network> libSignalNetworkSupplier);
     @NonNull SignalServiceDataStoreImpl provideProtocolStore();
     @NonNull GiphyMp4Cache provideGiphyMp4Cache();
     @NonNull SimpleExoPlayerPool provideExoPlayerPool();

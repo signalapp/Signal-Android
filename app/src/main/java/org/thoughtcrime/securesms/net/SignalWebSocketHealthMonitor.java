@@ -11,7 +11,7 @@ import org.whispersystems.signalservice.api.util.Preconditions;
 import org.whispersystems.signalservice.api.util.SleepTimer;
 import org.whispersystems.signalservice.api.websocket.HealthMonitor;
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState;
-import org.whispersystems.signalservice.internal.websocket.WebSocketConnection;
+import org.whispersystems.signalservice.internal.websocket.OkHttpWebSocketConnection;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -33,7 +33,7 @@ public final class SignalWebSocketHealthMonitor implements HealthMonitor {
   /**
    * This is the amount of time in between sent keep alives. Must be greater than {@link SignalWebSocketHealthMonitor#KEEP_ALIVE_TIMEOUT}
    */
-  private static final long KEEP_ALIVE_SEND_CADENCE = TimeUnit.SECONDS.toMillis(WebSocketConnection.KEEPALIVE_FREQUENCY_SECONDS);
+  private static final long KEEP_ALIVE_SEND_CADENCE = TimeUnit.SECONDS.toMillis(OkHttpWebSocketConnection.KEEPALIVE_FREQUENCY_SECONDS);
 
   /**
    * This is the amount of time we will wait for a response to the keep alive before we consider the websockets dead.

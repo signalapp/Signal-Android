@@ -9,7 +9,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.stories.Stories
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
 import org.whispersystems.signalservice.internal.util.StaticCredentialsProvider
-import org.whispersystems.signalservice.internal.websocket.WebSocketConnection
+import org.whispersystems.signalservice.internal.websocket.OkHttpWebSocketConnection
 import java.util.Optional
 import java.util.concurrent.TimeUnit
 
@@ -64,7 +64,7 @@ class CheckServiceReachabilityJob private constructor(params: Parameters) : Base
 
     SignalStore.misc().lastCensorshipServiceReachabilityCheckTime = System.currentTimeMillis()
 
-    val uncensoredWebsocket = WebSocketConnection(
+    val uncensoredWebsocket = OkHttpWebSocketConnection(
       "uncensored-test",
       ApplicationDependencies.getSignalServiceNetworkAccess().uncensoredConfiguration,
       Optional.of(

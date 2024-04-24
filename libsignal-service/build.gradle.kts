@@ -95,6 +95,7 @@ dependencies {
   testImplementation(testLibs.assertj.core)
   testImplementation(testLibs.conscrypt.openjdk.uber)
   testImplementation(testLibs.mockito.core)
+  testImplementation(testLibs.mockk)
 
   testFixturesImplementation(libs.libsignal.client)
   testFixturesImplementation(testLibs.junit.junit)
