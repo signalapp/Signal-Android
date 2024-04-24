@@ -377,7 +377,7 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
     val statement = """
       SELECT $projection
       FROM $TABLE_NAME
-      WHERE $noCallEvent AND NOT $REVOKED ${searchFilter?.where ?: ""}
+      WHERE $noCallEvent AND NOT $REVOKED ${searchFilter?.where ?: ""} AND $ROOT_KEY IS NOT NULL
       ORDER BY $ID DESC
       $limitOffset
     """.trimIndent()
