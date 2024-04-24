@@ -1419,7 +1419,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     companion object Deserializer : Serializer<Call, Cursor> {
 
       private fun isDisplayedAsMissedCallInUi(call: Call): Boolean {
-        return call.event in Event.DISPLAY_AS_MISSED_CALL || (call.event == Event.GENERIC_GROUP_CALL && !call.didLocalUserJoin && !call.isGroupCallActive)
+        return call.direction == Direction.INCOMING && (call.event in Event.DISPLAY_AS_MISSED_CALL || (call.event == Event.GENERIC_GROUP_CALL && !call.didLocalUserJoin && !call.isGroupCallActive))
       }
 
       fun getMessageType(type: Type, direction: Direction, event: Event): Long {
