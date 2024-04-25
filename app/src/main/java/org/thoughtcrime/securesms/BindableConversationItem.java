@@ -126,5 +126,6 @@ public interface BindableConversationItem extends Unbindable, GiphyMp4Playable, 
     void onShowSafetyTips(boolean forGroup);
     void onReportSpamLearnMoreClicked();
     void onMessageRequestAcceptOptionsClicked();
+    void onItemDoubleClick(MultiselectPart multiselectPart);
   }
 }

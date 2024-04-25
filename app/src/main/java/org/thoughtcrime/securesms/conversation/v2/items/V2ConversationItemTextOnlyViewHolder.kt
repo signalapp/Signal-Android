@@ -18,6 +18,8 @@ import android.text.style.ClickableSpan
 import android.text.style.ForegroundColorSpan
 import android.text.style.URLSpan
 import android.util.TypedValue
+import android.view.GestureDetector
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -110,6 +112,19 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
   private val senderDrawable = ChatColorsDrawable(conversationContext::getChatColorsData)
   private val bodyBubbleLayoutTransition = BodyBubbleLayoutTransition()
 
+  private val gestureDetector = GestureDetector(
+    context,
+    object : GestureDetector.SimpleOnGestureListener() {
+      override fun onDoubleTap(e: MotionEvent): Boolean {
+        if (conversationContext.selectedItems.isEmpty()) {
+          conversationContext.clickListener.onItemDoubleClick(getMultiselectPartForLatestTouch())
+          return true
+        }
+        return false
+      }
+    }
+  )
+
   protected lateinit var shape: V2ConversationItemShape.MessageShape
 
   private val replyDelegate = object : V2ConversationItemLayout.OnMeasureListener {
@@ -139,6 +154,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
         )
     }
 
+    binding.body.setOnTouchListener { _, event -> gestureDetector.onTouchEvent(event) }
     binding.root.setOnClickListener { onBubbleClicked() }
     binding.root.setOnLongClickListener {
       conversationContext.clickListener.onItemLongClick(binding.root, getMultiselectPartForLatestTouch())

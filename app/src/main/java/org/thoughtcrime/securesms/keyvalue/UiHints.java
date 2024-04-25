@@ -9,20 +9,21 @@ public class UiHints extends SignalStoreValues {
 
   private static final int NEVER_DISPLAY_PULL_TO_FILTER_TIP_THRESHOLD = 3;
 
-  private static final String HAS_SEEN_GROUP_SETTINGS_MENU_TOAST     = "uihints.has_seen_group_settings_menu_toast";
-  private static final String HAS_CONFIRMED_DELETE_FOR_EVERYONE_ONCE = "uihints.has_confirmed_delete_for_everyone_once";
-  private static final String HAS_SET_OR_SKIPPED_USERNAME_CREATION   = "uihints.has_set_or_skipped_username_creation";
-  private static final String NEVER_DISPLAY_PULL_TO_FILTER_TIP       = "uihints.never_display_pull_to_filter_tip";
-  private static final String HAS_SEEN_SCHEDULED_MESSAGES_INFO_ONCE  = "uihints.has_seen_scheduled_messages_info_once";
-  private static final String HAS_SEEN_TEXT_FORMATTING_ALERT         = "uihints.text_formatting.has_seen_alert";
-  private static final String HAS_NOT_SEEN_EDIT_MESSAGE_BETA_ALERT   = "uihints.edit_message.has_not_seen_beta_alert";
-  private static final String HAS_SEEN_SAFETY_NUMBER_NUX             = "uihints.has_seen_safety_number_nux";
-  private static final String DECLINED_NOTIFICATION_LOGS_PROMPT      = "uihints.declined_notification_logs";
-  private static final String LAST_NOTIFICATION_LOGS_PROMPT_TIME     = "uihints.last_notification_logs_prompt";
-  private static final String DISMISSED_BATTERY_SAVER_PROMPT         = "uihints.declined_battery_saver_prompt";
-  private static final String LAST_BATTERY_SAVER_PROMPT              = "uihints.last_battery_saver_prompt";
-  private static final String LAST_CRASH_PROMPT                      = "uihints.last_crash_prompt";
-  private static final String HAS_COMPLETED_USERNAME_ONBOARDING      = "uihints.has_completed_username_onboarding";
+  private static final String HAS_SEEN_GROUP_SETTINGS_MENU_TOAST       = "uihints.has_seen_group_settings_menu_toast";
+  private static final String HAS_CONFIRMED_DELETE_FOR_EVERYONE_ONCE   = "uihints.has_confirmed_delete_for_everyone_once";
+  private static final String HAS_SET_OR_SKIPPED_USERNAME_CREATION     = "uihints.has_set_or_skipped_username_creation";
+  private static final String NEVER_DISPLAY_PULL_TO_FILTER_TIP         = "uihints.never_display_pull_to_filter_tip";
+  private static final String HAS_SEEN_SCHEDULED_MESSAGES_INFO_ONCE    = "uihints.has_seen_scheduled_messages_info_once";
+  private static final String HAS_SEEN_TEXT_FORMATTING_ALERT           = "uihints.text_formatting.has_seen_alert";
+  private static final String HAS_NOT_SEEN_EDIT_MESSAGE_BETA_ALERT     = "uihints.edit_message.has_not_seen_beta_alert";
+  private static final String HAS_SEEN_SAFETY_NUMBER_NUX               = "uihints.has_seen_safety_number_nux";
+  private static final String DECLINED_NOTIFICATION_LOGS_PROMPT        = "uihints.declined_notification_logs";
+  private static final String LAST_NOTIFICATION_LOGS_PROMPT_TIME       = "uihints.last_notification_logs_prompt";
+  private static final String DISMISSED_BATTERY_SAVER_PROMPT           = "uihints.declined_battery_saver_prompt";
+  private static final String LAST_BATTERY_SAVER_PROMPT                = "uihints.last_battery_saver_prompt";
+  private static final String LAST_CRASH_PROMPT                        = "uihints.last_crash_prompt";
+  private static final String HAS_COMPLETED_USERNAME_ONBOARDING        = "uihints.has_completed_username_onboarding";
+  private static final String HAS_SEEN_DOUBLE_TAP_EDIT_EDUCATION_SHEET = "uihints.has_seen_double_tap_edit_education_sheet";
 
   UiHints(@NonNull KeyValueStore store) {
     super(store);
@@ -157,5 +158,13 @@ public class UiHints extends SignalStoreValues {
 
   public long getLastCrashPrompt() {
     return getLong(LAST_CRASH_PROMPT, 0);
+  }
+
+  public void setHasSeenDoubleTapEditEducationSheet(boolean seen) {
+    putBoolean(HAS_SEEN_DOUBLE_TAP_EDIT_EDUCATION_SHEET, seen);
+  }
+
+  public boolean getHasSeenDoubleTapEditEducationSheet() {
+    return getBoolean(HAS_SEEN_DOUBLE_TAP_EDIT_EDUCATION_SHEET, false);
   }
 }
