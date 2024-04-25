@@ -118,6 +118,30 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     notifyConversationListListeners()
   }
 
+  fun markAllCallEventsWithPeerBeforeTimestampRead(peer: RecipientId, timestamp: Long): Call? {
+    val latestCallAsOfTimestamp = writableDatabase.withinTransaction { db ->
+      val updated = db.update(TABLE_NAME)
+        .values(READ to ReadState.serialize(ReadState.READ))
+        .where("$PEER = ? AND $TIMESTAMP <= ?", peer.toLong(), timestamp)
+        .run()
+
+      if (updated == 0) {
+        null
+      } else {
+        db.select()
+          .from(TABLE_NAME)
+          .where("$PEER = ? AND $TIMESTAMP <= ?", peer.toLong(), timestamp)
+          .orderBy("$TIMESTAMP DESC")
+          .limit(1)
+          .run()
+          .readToSingleObject(Call.Deserializer)
+      }
+    }
+
+    notifyConversationListListeners()
+    return latestCallAsOfTimestamp
+  }
+
   fun getUnreadMissedCallCount(): Long {
     return readableDatabase
       .count()

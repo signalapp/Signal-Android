@@ -433,6 +433,12 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       ($TYPE = ${MessageTypes.GROUP_CALL_TYPE})
     )"""
 
+    private const val IS_MISSED_CALL_TYPE_CLAUSE = """(
+      ($TYPE = ${MessageTypes.MISSED_AUDIO_CALL_TYPE})
+      OR
+      ($TYPE = ${MessageTypes.MISSED_VIDEO_CALL_TYPE})
+    )"""
+
     private val outgoingTypeClause: String by lazy {
       MessageTypes.OUTGOING_MESSAGE_TYPES
         .map { "($TABLE_NAME.$TYPE & ${MessageTypes.BASE_TYPE_MASK} = $it)" }
@@ -4647,7 +4653,19 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     return readableDatabase
       .select(*MMS_PROJECTION)
       .from(TABLE_NAME)
-      .where("$NOTIFIED = 0 AND $STORY_TYPE = 0 AND $LATEST_REVISION_ID IS NULL AND ($READ = 0 OR $REACTIONS_UNREAD = 1 ${if (stickyQuery.isNotEmpty()) "OR ($stickyQuery)" else ""})")
+      .where(
+        """
+        $NOTIFIED = 0 
+        AND $STORY_TYPE = 0 
+        AND $LATEST_REVISION_ID IS NULL 
+        AND (
+          $READ = 0 
+          OR $REACTIONS_UNREAD = 1 
+          ${if (stickyQuery.isNotEmpty()) "OR ($stickyQuery)" else ""}
+          OR ($IS_MISSED_CALL_TYPE_CLAUSE AND EXISTS (SELECT 1 FROM ${CallTable.TABLE_NAME} WHERE ${CallTable.MESSAGE_ID} = $TABLE_NAME.$ID AND ${CallTable.EVENT} = ${CallTable.Event.serialize(CallTable.Event.MISSED)} AND ${CallTable.READ} = 0)) 
+        )
+        """.trimIndent()
+      )
       .orderBy("$DATE_RECEIVED ASC")
       .run()
   }

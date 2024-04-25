@@ -637,8 +637,9 @@ message SyncMessage {
 
   message CallLogEvent {
     enum Type {
-      CLEAR          = 0;
-      MARKED_AS_READ = 1;
+      CLEAR                          = 0;
+      MARKED_AS_READ                 = 1;
+      MARKED_AS_READ_IN_CONVERSATION = 2;
     }
 
     optional Type   type          = 1;

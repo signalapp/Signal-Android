@@ -66,6 +66,25 @@ class CallLogEventSendJob private constructor(
         type = SyncMessage.CallLogEvent.Type.MARKED_AS_READ
       )
     )
+
+    @JvmStatic
+    @WorkerThread
+    fun forMarkedAsReadInConversation(
+      call: CallTable.Call
+    ) = CallLogEventSendJob(
+      Parameters.Builder()
+        .setQueue("CallLogEventSendJob")
+        .setLifespan(TimeUnit.DAYS.toMillis(1))
+        .setMaxAttempts(Parameters.UNLIMITED)
+        .addConstraint(NetworkConstraint.KEY)
+        .build(),
+      SyncMessage.CallLogEvent(
+        timestamp = call.timestamp,
+        callId = call.callId,
+        conversationId = Recipient.resolved(call.peer).requireCallConversationId().toByteString(),
+        type = SyncMessage.CallLogEvent.Type.MARKED_AS_READ_IN_CONVERSATION
+      )
+    )
   }
 
   override fun serialize(): ByteArray = CallLogEventSendJobData.Builder()

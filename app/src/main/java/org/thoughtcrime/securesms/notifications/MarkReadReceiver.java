@@ -12,16 +12,17 @@ import com.annimon.stream.Stream;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.database.CallTable;
 import org.thoughtcrime.securesms.database.MessageTable.ExpirationInfo;
 import org.thoughtcrime.securesms.database.MessageTable.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.MessageTable.SyncMessageId;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.jobs.CallLogEventSendJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceReadUpdateJob;
 import org.thoughtcrime.securesms.jobs.SendReadReceiptJob;
 import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -62,6 +63,7 @@ public class MarkReadReceiver extends BroadcastReceiver {
         }
 
         process(messageIdsCollection);
+        processCallEvents(threads, System.currentTimeMillis());
 
         ApplicationDependencies.getMessageNotifier().updateNotification(context);
         finisher.finish();
@@ -100,6 +102,20 @@ public class MarkReadReceiver extends BroadcastReceiver {
         SendReadReceiptJob.enqueue(threadId, recipientId, infos);
       });
     });
+  }
+
+  public static void processCallEvents(@NonNull List<ConversationId> threads, long timestamp) {
+    List<RecipientId> peers = SignalDatabase.threads().getRecipientIdsForThreadIds(threads.stream()
+                                                                                          .filter(it -> it.getGroupStoryId() == null)
+                                                                                          .map(ConversationId::getThreadId)
+                                                                                          .collect(java.util.stream.Collectors.toList()));
+
+    for (RecipientId peer : peers) {
+      CallTable.Call lastCallInThread = SignalDatabase.calls().markAllCallEventsWithPeerBeforeTimestampRead(peer, timestamp);
+      if (lastCallInThread != null) {
+        ApplicationDependencies.getJobManager().add(CallLogEventSendJob.forMarkedAsReadInConversation(lastCallInThread));
+      }
+    }
   }
 
   private static void scheduleDeletion(@NonNull List<ExpirationInfo> expirationInfo) {

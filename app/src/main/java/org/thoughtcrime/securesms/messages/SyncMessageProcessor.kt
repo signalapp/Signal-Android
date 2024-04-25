@@ -1246,20 +1246,20 @@ object SyncMessageProcessor {
 
       if (call != null) {
         log(envelopeTimestamp, "Synchronizing call log event with exact call data.")
-        synchronizeCallLogEventViaTimestamp(envelopeTimestamp, callLogEvent.type, call.timestamp)
+        synchronizeCallLogEventViaTimestamp(envelopeTimestamp, callLogEvent.type, call.timestamp, peer)
         return
       }
     }
 
     if (timestamp != null) {
       warn(envelopeTimestamp, "Synchronize call log event using timestamp instead of exact values")
-      synchronizeCallLogEventViaTimestamp(envelopeTimestamp, callLogEvent.type, timestamp)
+      synchronizeCallLogEventViaTimestamp(envelopeTimestamp, callLogEvent.type, timestamp, peer)
     } else {
       log(envelopeTimestamp, "Failed to synchronize call log event, not enough information.")
     }
   }
 
-  private fun synchronizeCallLogEventViaTimestamp(envelopeTimestamp: Long, eventType: CallLogEvent.Type?, timestamp: Long) {
+  private fun synchronizeCallLogEventViaTimestamp(envelopeTimestamp: Long, eventType: CallLogEvent.Type?, timestamp: Long, peer: RecipientId?) {
     when (eventType) {
       CallLogEvent.Type.CLEAR -> {
         SignalDatabase.calls.deleteNonAdHocCallEventsOnOrBefore(timestamp)
@@ -1268,6 +1268,15 @@ object SyncMessageProcessor {
 
       CallLogEvent.Type.MARKED_AS_READ -> {
         SignalDatabase.calls.markAllCallEventsRead(timestamp)
+      }
+
+      CallLogEvent.Type.MARKED_AS_READ_IN_CONVERSATION -> {
+        if (peer == null) {
+          warn(envelopeTimestamp, "Cannot synchronize conversation calls, missing peer.")
+          return
+        }
+
+        SignalDatabase.calls.markAllCallEventsWithPeerBeforeTimestampRead(peer, timestamp)
       }
 
       else -> log(envelopeTimestamp, "Synchronize call log event has an invalid type $eventType, ignoring.")

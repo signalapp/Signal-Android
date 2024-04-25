@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 import org.thoughtcrime.securesms.util.Debouncer;
 import org.thoughtcrime.securesms.util.concurrent.SerialMonoLifoExecutor;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.Executor;
@@ -67,6 +68,7 @@ public class MarkReadHelper {
 
         ApplicationDependencies.getMessageNotifier().updateNotification(context);
         MarkReadReceiver.process(infos);
+        MarkReadReceiver.processCallEvents(Collections.singletonList(conversationId), timestamp);
       });
     });
   }
