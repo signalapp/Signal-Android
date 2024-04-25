@@ -121,6 +121,74 @@ message Group {
   bool hideStory = 3;
   StorySendMode storySendMode = 4;
   string name = 5;
+  GroupSnapshot snapshot = 6;
+
+  // These are simply plaintext copies of the groups proto from Groups.proto.
+  // They should be kept completely in-sync with Groups.proto.
+  // These exist to allow us to have the latest snapshot of a group during restoration without having to hit the network.
+  // We would use Groups.proto if we could, but we want a plaintext version to improve export readability.
+  // For documentation, defer to Groups.proto. The only name change is Group -> GroupSnapshot to avoid the naming conflict.
+  message GroupSnapshot {
+    bytes publicKey = 1;
+    string title = 2;
+    string description = 11;
+    string avatar = 3;
+    uint32 disappearingMessagesTimer = 4;
+    AccessControl accessControl = 5;
+    uint32 version = 6;
+    repeated Member members = 7;
+    repeated MemberPendingProfileKey membersPendingProfileKey = 8;
+    repeated MemberPendingAdminApproval membersPendingAdminApproval = 9;
+    bytes inviteLinkPassword = 10;
+    bool announcements_only = 12;
+    repeated MemberBanned members_banned = 13;
+  }
+
+  message Member {
+    enum Role {
+      UNKNOWN = 0;
+      DEFAULT = 1;
+      ADMINISTRATOR = 2;
+    }
+
+    bytes userId = 1;
+    Role role = 2;
+    bytes profileKey = 3;
+    bytes presentation = 4;
+    uint32 joinedAtVersion = 5;
+  }
+
+  message MemberPendingProfileKey {
+    Member member = 1;
+    bytes addedByUserId = 2;
+    uint64 timestamp = 3;
+  }
+
+  message MemberPendingAdminApproval {
+    bytes userId = 1;
+    bytes profileKey = 2;
+    bytes presentation = 3;
+    uint64 timestamp = 4;
+  }
+
+  message MemberBanned {
+    bytes userId = 1;
+    uint64 timestamp = 2;
+  }
+
+  message AccessControl {
+    enum AccessRequired {
+      UNKNOWN = 0;
+      ANY = 1;
+      MEMBER = 2;
+      ADMINISTRATOR = 3;
+      UNSATISFIABLE = 4;
+    }
+
+    AccessRequired attributes = 1;
+    AccessRequired members = 2;
+    AccessRequired addFromInviteLink = 3;
+  }
 }
 
 message Self {}
