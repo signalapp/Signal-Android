@@ -1367,7 +1367,8 @@ class AttachmentTable(
       .values(
         ARCHIVE_CDN to archiveCdn,
         ARCHIVE_MEDIA_ID to archiveMediaId,
-        ARCHIVE_MEDIA_NAME to archiveMediaName
+        ARCHIVE_MEDIA_NAME to archiveMediaName,
+        ARCHIVE_TRANSFER_STATE to ArchiveTransferState.FINISHED.value
       )
       .where("$ID = ?", attachmentId.id)
       .run()
