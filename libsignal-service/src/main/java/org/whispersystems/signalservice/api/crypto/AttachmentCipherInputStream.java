@@ -12,7 +12,6 @@ import org.signal.libsignal.protocol.incrementalmac.ChunkSizeChoice;
 import org.signal.libsignal.protocol.incrementalmac.IncrementalMacInputStream;
 import org.signal.libsignal.protocol.kdf.HKDF;
 import org.whispersystems.signalservice.api.backup.BackupKey;
-import org.whispersystems.signalservice.api.backup.MediaId;
 import org.whispersystems.signalservice.internal.util.ContentLengthInputStream;
 import org.whispersystems.signalservice.internal.util.Util;
 
@@ -88,7 +87,12 @@ public class AttachmentCipherInputStream extends FilterInputStream {
         wrappedStream = new FileInputStream(file);
       } else {
         wrappedStream = new IncrementalMacInputStream(
-            new FileInputStream(file),
+            new IncrementalMacAdditionalValidationsInputStream(
+                new FileInputStream(file),
+                file.length(),
+                mac,
+                digest
+            ),
             parts[1],
             ChunkSizeChoice.everyNthByte(incrementalMacChunkSize),
             incrementalDigest);
