@@ -16,6 +16,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.core.content.IntentCompat
 import androidx.fragment.app.Fragment
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.location.SignalPlace
@@ -106,12 +107,23 @@ class ConversationActivityResultContracts(private val fragment: Fragment, privat
     if (Permissions.hasAny(fragment.requireContext(), Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)) {
       selectLocationLauncher.launch(chatColors)
     } else {
-      Permissions.with(fragment)
-        .request(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
-        .ifNecessary()
-        .withPermanentDenialDialog(fragment.getString(R.string.AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location))
-        .onSomeGranted { selectLocationLauncher.launch(chatColors) }
-        .execute()
+      val dialog = MaterialAlertDialogBuilder(fragment.requireContext())
+        .setView(R.layout.permission_allow_location_dialog)
+        .setPositiveButton(R.string.Permissions_continue) { _, _ ->
+          Permissions.with(fragment)
+            .request(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
+            .ifNecessary()
+            .withPermanentDenialDialog(fragment.getString(R.string.AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location), null, R.string.AttachmentManager_signal_allow_access_location, R.string.AttachmentManager_signal_to_send_location, fragment.parentFragmentManager)
+            .onAnyDenied { Toast.makeText(fragment.requireContext(), R.string.AttachmentManager_signal_needs_location_access, Toast.LENGTH_LONG).show() }
+            .onSomeGranted { selectLocationLauncher.launch(chatColors) }
+            .execute()
+        }
+        .setNegativeButton(R.string.Permissions_not_now) { d, _ ->
+          Toast.makeText(fragment.requireContext(), R.string.AttachmentManager_signal_needs_location_access, Toast.LENGTH_LONG).show()
+          d.dismiss()
+        }
+        .create()
+      dialog.show()
     }
   }
 

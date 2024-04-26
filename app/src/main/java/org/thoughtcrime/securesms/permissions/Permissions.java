@@ -19,6 +19,7 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.annimon.stream.Stream;
 import com.annimon.stream.function.Consumer;
@@ -26,6 +27,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.util.BottomSheetUtil;
 import org.thoughtcrime.securesms.util.LRUCache;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 
@@ -113,7 +115,11 @@ public class Permissions {
     }
 
     public PermissionsBuilder withPermanentDenialDialog(@NonNull String message, @Nullable Runnable onDialogDismissed) {
-      return onAnyPermanentlyDenied(new SettingsDialogListener(permissionObject.getContext(), message, onDialogDismissed));
+      return withPermanentDenialDialog(message, onDialogDismissed, 0, 0, null);
+    }
+
+    public PermissionsBuilder withPermanentDenialDialog(@NonNull String message, @Nullable Runnable onDialogDismissed, int titleRes, int detailsRes, @Nullable FragmentManager fragmentManager) {
+      return onAnyPermanentlyDenied(new SettingsDialogListener(permissionObject.getContext(), message, onDialogDismissed, titleRes, detailsRes, fragmentManager));
     }
 
     public PermissionsBuilder onAllGranted(Runnable allGrantedListener) {
@@ -368,22 +374,34 @@ public class Permissions {
 
   private static class SettingsDialogListener implements Runnable {
 
-    private final WeakReference<Context> context;
-    private final Runnable onDialogDismissed;
-    private final String                 message;
+    private final WeakReference<Context>          context;
+    private final WeakReference<FragmentManager>  fragmentManager;
+    private final Runnable                        onDialogDismissed;
+    private final String                          message;
+    private final int                             titleRes;
+    private final int                             detailsRes;
+    private final boolean                         useBottomSheet;
 
-    SettingsDialogListener(Context context, String message, @Nullable Runnable onDialogDismissed) {
+    SettingsDialogListener(Context context, String message, @Nullable Runnable onDialogDismissed, int titleRes, int detailsRes, @Nullable FragmentManager fragmentManager) {
       this.message           = message;
       this.context           = new WeakReference<>(context);
       this.onDialogDismissed = onDialogDismissed;
+      this.fragmentManager   = new WeakReference<>(fragmentManager);
+      this.titleRes          = titleRes;
+      this.detailsRes        = detailsRes;
+      this.useBottomSheet    = fragmentManager != null;
     }
 
     @Override
     public void run() {
       Context context = this.context.get();
+      FragmentManager fragmentManager = this.fragmentManager.get();
 
       if (context != null) {
-        new MaterialAlertDialogBuilder(context)
+        if (useBottomSheet && fragmentManager != null) {
+          PermissionDeniedBottomSheet.showPermissionFragment(titleRes, detailsRes).show(fragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG);
+        } else if (!useBottomSheet){
+          new MaterialAlertDialogBuilder(context)
             .setTitle(R.string.Permissions_permission_required)
             .setMessage(message)
             .setCancelable(false)
@@ -395,6 +413,7 @@ public class Permissions {
               }
             })
             .show();
+        }
       }
     }
   }
