@@ -1,35 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="20dp"
+    android:paddingTop="20dp"
+    android:paddingHorizontal="20dp"
     tools:viewBindingIgnore="true">
 
-    <ImageView
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/permission_header_container"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:importantForAccessibility="no"
-        app:tint="@color/signal_colorOnPrimaryContainer"
-        app:srcCompat="@drawable/symbol_location_white_24" />
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp">
+
+    </LinearLayout>
 
     <TextView
-        android:id="@+id/allow_location_title"
+        android:id="@+id/permission_title"
         style="@style/Signal.Text.Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/AttachmentManager_signal_allow_access_location" />
+        tools:text="@string/AttachmentManager_signal_allow_access_location" />
 
     <TextView
-        android:id="@+id/allow_location_body"
+        android:id="@+id/permission_details"
         style="@style/Signal.Text.BodySmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:text="@string/AttachmentManager_signal_allow_signal_access_location" />
+        tools:text="@string/AttachmentManager_signal_allow_signal_access_location" />
 
 </LinearLayout>

@@ -73,6 +73,8 @@ public class Permissions {
 
     private @DrawableRes int[]   rationalDialogHeader;
     private              String  rationaleDialogMessage;
+    private              String  rationaleDialogTitle;
+    private              String  rationaleDialogDetails;
     private              boolean rationaleDialogCancelable;
 
     private boolean ifNecesary;
@@ -104,8 +106,18 @@ public class Permissions {
     }
 
     public PermissionsBuilder withRationaleDialog(@NonNull String message, boolean cancelable, @NonNull @DrawableRes int... headers) {
+      return withRationaleDialog(message, null, null, cancelable, headers);
+    }
+
+    public PermissionsBuilder withRationaleDialog(@NonNull String title, @NonNull String details, @NonNull @DrawableRes int... headers) {
+      return withRationaleDialog(null, title, details, true, headers);
+    }
+
+    public PermissionsBuilder withRationaleDialog(@Nullable String message, @Nullable String title, @Nullable String details, boolean cancelable, @NonNull @DrawableRes int... headers) {
       this.rationalDialogHeader      = headers;
       this.rationaleDialogMessage    = message;
+      this.rationaleDialogTitle      = title;
+      this.rationaleDialogDetails    = details;
       this.rationaleDialogCancelable = cancelable;
       return this;
     }
@@ -164,7 +176,8 @@ public class Permissions {
 
       if (ifNecesary && (permissionObject.hasAll(requestedPermissions) || !condition)) {
         executePreGrantedPermissionsRequest(request);
-      } else if (rationaleDialogMessage != null && rationalDialogHeader != null) {
+      } else if ((rationaleDialogMessage != null || (rationaleDialogTitle != null && rationaleDialogDetails != null))
+                 && rationalDialogHeader != null) {
         executePermissionsRequestWithRationale(request);
       } else {
         executePermissionsRequest(request);
@@ -180,13 +193,17 @@ public class Permissions {
 
     @SuppressWarnings("ConstantConditions")
     private void executePermissionsRequestWithRationale(PermissionsRequest request) {
-      RationaleDialog.createFor(permissionObject.getContext(), rationaleDialogMessage, rationalDialogHeader)
-                     .setPositiveButton(R.string.Permissions_continue, (dialog, which) -> executePermissionsRequest(request))
-                     .setNegativeButton(R.string.Permissions_not_now, (dialog, which) -> executeNoPermissionsRequest(request))
-                     .setCancelable(rationaleDialogCancelable)
-                     .show()
-                     .getWindow()
-                     .setLayout((int)(permissionObject.getWindowWidth() * .75), ViewGroup.LayoutParams.WRAP_CONTENT);
+      MaterialAlertDialogBuilder builder = (rationaleDialogMessage != null)
+                                         ? RationaleDialog.createFor(permissionObject.getContext(), rationaleDialogMessage, rationalDialogHeader)
+                                         : RationaleDialog.createFor(permissionObject.getContext(), rationaleDialogTitle, rationaleDialogDetails, rationalDialogHeader);
+      builder.setPositiveButton(R.string.Permissions_continue, (dialog, which) -> executePermissionsRequest(request))
+             .setNegativeButton(R.string.Permissions_not_now, (dialog, which) -> executeNoPermissionsRequest(request))
+             .setCancelable(rationaleDialogCancelable);
+      if (rationaleDialogMessage != null) {
+        builder.show().getWindow().setLayout((int)(permissionObject.getWindowWidth() * .75), ViewGroup.LayoutParams.WRAP_CONTENT);
+      } else {
+        builder.show();
+      }
     }
 
     private void executePermissionsRequest(PermissionsRequest request) {
