@@ -271,13 +271,6 @@ public class FullBackupImporter extends FullBackupBase {
       return;
     }
 
-    if (FeatureFlags.registrationV2()) {
-      if (SignalStore.account().getKeysToIncludeInBackup().contains(keyValue.key)) {
-        Log.i(TAG, "[regv2] skipping restore of " + keyValue.key);
-        return;
-      }
-    }
-
     if (keyValue.blobValue != null) {
       dataSet.putBlob(keyValue.key, keyValue.blobValue.toByteArray());
     } else if (keyValue.booleanValue != null) {

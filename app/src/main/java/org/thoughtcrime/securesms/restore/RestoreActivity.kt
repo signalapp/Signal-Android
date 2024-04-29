@@ -23,10 +23,18 @@ class RestoreActivity : BaseActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+
+    setResult(RESULT_CANCELED)
+
     setContentView(R.layout.activity_restore)
     intent.getParcelableExtraCompat(PassphraseRequiredActivity.NEXT_INTENT_EXTRA, Intent::class.java)?.let {
       sharedViewModel.setNextIntent(it)
     }
+  }
+
+  fun finishActivitySuccessfully() {
+    setResult(RESULT_OK)
+    finish()
   }
 
   companion object {

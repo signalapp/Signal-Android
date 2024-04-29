@@ -130,6 +130,7 @@ public final class FeatureFlags {
   private static final String CAMERAX_CUSTOM_CONTROLLER         = "android.cameraXCustomController";
   private static final String REGISTRATION_V2                   = "android.registration.v2";
   private static final String LIBSIGNAL_WEB_SOCKET_ENABLED      = "android.libsignalWebSocketEnabled";
+  private static final String RESTORE_POST_REGISTRATION         = "android.registration.restorePostRegistration";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -214,7 +215,7 @@ public final class FeatureFlags {
   );
 
   @VisibleForTesting
-  static final Set<String> NOT_REMOTE_CAPABLE = SetUtil.newHashSet(MESSAGE_BACKUPS, REGISTRATION_V2);
+  static final Set<String> NOT_REMOTE_CAPABLE = SetUtil.newHashSet(MESSAGE_BACKUPS, REGISTRATION_V2, RESTORE_POST_REGISTRATION);
 
   /**
    * Values in this map will take precedence over any value. This should only be used for local
@@ -758,6 +759,11 @@ public final class FeatureFlags {
 
   /** Whether unauthenticated chat web socket is backed by libsignal-net */
   public static boolean libSignalWebSocketEnabled() { return getBoolean(LIBSIGNAL_WEB_SOCKET_ENABLED, false); }
+
+  /** Whether or not to launch the restore activity after registration is complete, rather than before. */
+  public static boolean restoreAfterRegistration() {
+    return getBoolean(RESTORE_POST_REGISTRATION, false);
+  }
 
   /** Only for rendering debug info. */
   public static synchronized @NonNull Map<String, Object> getMemoryValues() {

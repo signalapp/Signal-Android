@@ -24,7 +24,7 @@ class RestoreLocalBackupViewModel(fileBackupUri: Uri) : ViewModel() {
   private val store = MutableStateFlow(RestoreLocalBackupState(fileBackupUri))
   val uiState = store.asLiveData()
 
-  fun startRestore(context: Context) {
+  fun prepareRestore(context: Context) {
     val backupFileUri = store.value.uri
     viewModelScope.launch {
       val backupInfo = RestoreRepository.getLocalBackupFromUri(context, backupFileUri)
@@ -48,7 +48,7 @@ class RestoreLocalBackupViewModel(fileBackupUri: Uri) : ViewModel() {
     }
   }
 
-  fun confirmPassphrase(context: Context, passphrase: String) {
+  fun confirmPassphraseAndBeginRestore(context: Context, passphrase: String) {
     store.update {
       it.copy(
         backupPassphrase = passphrase,

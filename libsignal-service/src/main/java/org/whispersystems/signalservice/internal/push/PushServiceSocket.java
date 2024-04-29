@@ -1137,6 +1137,11 @@ public class PushServiceSocket {
         .onErrorReturn(ServiceResponse::forUnknownError);
   }
 
+  public BackupAuthCheckResponse checkBackupAuthCredentials(@Nullable String number, @Nonnull List<String> passwords) throws IOException {
+    String response = makeServiceRequest(BACKUP_AUTH_CHECK, "POST", JsonUtil.toJson(new BackupAuthCheckRequest(number, passwords)), NO_HEADERS, UNOPINIONATED_HANDLER, Optional.empty());
+    return JsonUtil.fromJson(response, BackupAuthCheckResponse.class);
+  }
+
   private Single<ServiceResponse<BackupAuthCheckResponse>> createBackupAuthCheckSingle(@Nonnull String path,
                                                                                        @Nonnull BackupAuthCheckRequest request,
                                                                                        @Nonnull ResponseMapper<BackupAuthCheckResponse> responseMapper)
@@ -3047,7 +3052,6 @@ public class PushServiceSocket {
       }
     }
   }
-
 
   private static RegistrationSessionMetadataResponse parseSessionMetadataResponse(Response response) throws IOException {
     long serverDeliveredTimestamp = 0;

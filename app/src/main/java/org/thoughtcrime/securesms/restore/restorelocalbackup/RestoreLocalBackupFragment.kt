@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.databinding.FragmentRestoreLocalBackupV2Bindin
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate.setDebugLogSubmitMultiTapView
 import org.thoughtcrime.securesms.registration.fragments.RestoreBackupFragment.PassphraseAsYouTypeFormatter
+import org.thoughtcrime.securesms.restore.RestoreActivity
 import org.thoughtcrime.securesms.restore.RestoreRepository
 import org.thoughtcrime.securesms.restore.RestoreViewModel
 import org.thoughtcrime.securesms.util.DateUtils
@@ -52,12 +53,11 @@ class RestoreLocalBackupFragment : LoggingFragment(R.layout.fragment_restore_loc
     setDebugLogSubmitMultiTapView(binding.verifyHeader)
     Log.i(TAG, "Backup restore.")
 
+    binding.restoreButton.setOnClickListener { presentBackupPassPhrasePromptDialog() }
+
     restoreLocalBackupViewModel.uiState.observe(viewLifecycleOwner) { fragmentState ->
       fragmentState.backupInfo?.let {
         presentBackupFileInfo(backupSize = it.size, backupTimestamp = it.timestamp)
-        if (fragmentState.backupPassphrase.isEmpty()) {
-          presentBackupPassPhrasePromptDialog()
-        }
       }
 
       if (fragmentState.restoreInProgress) {
@@ -71,23 +71,23 @@ class RestoreLocalBackupFragment : LoggingFragment(R.layout.fragment_restore_loc
         if (importResult == null) {
           onBackupCompletedSuccessfully()
         } else {
-          handleBackupImportResult(importResult)
+          handleBackupImportError(importResult)
         }
       }
     }
 
-    restoreLocalBackupViewModel.startRestore(requireContext())
+    restoreLocalBackupViewModel.prepareRestore(requireContext())
   }
 
   private fun onBackupCompletedSuccessfully() {
     Log.d(TAG, "onBackupCompletedSuccessfully()")
     SignalStore.internalValues().setForceEnterRestoreV2Flow(false)
-    val activity = requireActivity()
+    val activity = requireActivity() as RestoreActivity
     navigationViewModel.getNextIntent()?.let {
       Log.d(TAG, "Launching ${it.component}")
       activity.startActivity(it)
     }
-    activity.finish()
+    activity.finishActivitySuccessfully()
   }
 
   override fun onStart() {
@@ -105,12 +105,12 @@ class RestoreLocalBackupFragment : LoggingFragment(R.layout.fragment_restore_loc
     restoreLocalBackupViewModel.onBackupProgressUpdate(event)
   }
 
-  private fun handleBackupImportResult(importResult: RestoreRepository.BackupImportResult) {
+  private fun handleBackupImportError(importResult: RestoreRepository.BackupImportResult) {
     when (importResult) {
       RestoreRepository.BackupImportResult.FAILURE_VERSION_DOWNGRADE -> Toast.makeText(requireContext(), R.string.RegistrationActivity_backup_failure_downgrade, Toast.LENGTH_LONG).show()
       RestoreRepository.BackupImportResult.FAILURE_FOREIGN_KEY -> Toast.makeText(requireContext(), R.string.RegistrationActivity_backup_failure_foreign_key, Toast.LENGTH_LONG).show()
       RestoreRepository.BackupImportResult.FAILURE_UNKNOWN -> Toast.makeText(requireContext(), R.string.RegistrationActivity_incorrect_backup_passphrase, Toast.LENGTH_LONG).show()
-      RestoreRepository.BackupImportResult.SUCCESS -> Log.w(TAG, "Successful backup import should not be handled here.", IllegalStateException())
+      RestoreRepository.BackupImportResult.SUCCESS -> Log.w(TAG, "Successful backup import should not be handled in this function.", IllegalStateException())
     }
   }
 
@@ -143,7 +143,7 @@ class RestoreLocalBackupFragment : LoggingFragment(R.layout.fragment_restore_loc
         ViewUtil.hideKeyboard(requireContext(), prompt)
 
         val passphrase = prompt.getText().toString()
-        restoreLocalBackupViewModel.confirmPassphrase(requireContext(), passphrase)
+        restoreLocalBackupViewModel.confirmPassphraseAndBeginRestore(requireContext(), passphrase)
       }
       .setNegativeButton(android.R.string.cancel, null)
       .show()

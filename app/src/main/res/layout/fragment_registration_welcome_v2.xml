@@ -55,7 +55,6 @@
         app:layout_goneMarginBottom="@dimen/registration_button_bottom_margin"
         app:materialThemeOverlay="@style/ThemeOverlay.Signal.CircularProgressIndicator.Tonal" />
 
-    <!-- TODO [regv2]: delete this -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/welcome_transfer_or_restore"
         style="@style/Signal.Widget.Button.Large.Secondary"

@@ -5,15 +5,18 @@
 
 package org.thoughtcrime.securesms.registration.v2.ui.grantpermissions
 
+import android.app.Activity
+import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
-import android.view.View
+import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.platform.LocalContext
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.navArgs
@@ -22,8 +25,8 @@ import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.registration.compose.GrantPermissionsScreen
 import org.thoughtcrime.securesms.registration.fragments.WelcomePermissions
 import org.thoughtcrime.securesms.registration.v2.ui.RegistrationCheckpoint
-import org.thoughtcrime.securesms.registration.v2.ui.RegistrationV2State
 import org.thoughtcrime.securesms.registration.v2.ui.RegistrationV2ViewModel
+import org.thoughtcrime.securesms.restore.RestoreActivity
 import org.thoughtcrime.securesms.util.BackupUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
@@ -33,29 +36,31 @@ import org.thoughtcrime.securesms.util.navigation.safeNavigate
 @RequiresApi(23)
 class GrantPermissionsV2Fragment : ComposeFragment() {
 
-  private val TAG = Log.tag(GrantPermissionsV2Fragment::class.java)
-
   private val sharedViewModel by activityViewModels<RegistrationV2ViewModel>()
   private val args by navArgs<GrantPermissionsV2FragmentArgs>()
   private val isSearchingForBackup = mutableStateOf(false)
 
   private val requestPermissionLauncher = registerForActivityResult(
     ActivityResultContracts.RequestMultiplePermissions(),
-    ::permissionsGranted
+    ::onPermissionsGranted
   )
 
-  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    super.onViewCreated(view, savedInstanceState)
-    sharedViewModel.uiState.observe(viewLifecycleOwner) {
-      if (it.registrationCheckpoint >= RegistrationCheckpoint.PERMISSIONS_GRANTED) {
-        proceedToNextScreen(it)
+  private val launchRestoreActivity = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+    when (val resultCode = result.resultCode) {
+      Activity.RESULT_OK -> {
+        sharedViewModel.onBackupSuccessfullyRestored()
+        NavHostFragment.findNavController(this).safeNavigate(GrantPermissionsV2FragmentDirections.actionEnterPhoneNumber())
       }
+      Activity.RESULT_CANCELED -> Log.w(TAG, "Backup restoration canceled.")
+      else -> Log.w(TAG, "Backup restoration activity ended with unknown result code: $resultCode")
     }
   }
 
-  private fun proceedToNextScreen(it: RegistrationV2State) {
-    // TODO [nicholas]: conditionally go to backup flow
-    NavHostFragment.findNavController(this).safeNavigate(GrantPermissionsV2FragmentDirections.actionSkipRestore())
+  private lateinit var welcomeAction: WelcomeAction
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    welcomeAction = args.welcomeAction
   }
 
   @Composable
@@ -66,40 +71,41 @@ class GrantPermissionsV2Fragment : ComposeFragment() {
       deviceBuildVersion = Build.VERSION.SDK_INT,
       isSearchingForBackup = isSearchingForBackup,
       isBackupSelectionRequired = BackupUtil.isUserSelectionRequired(LocalContext.current),
-      onNextClicked = this::onNextClicked,
-      onNotNowClicked = this::onNotNowClicked
+      onNextClicked = this::launchPermissionRequests,
+      onNotNowClicked = this::proceedToNextScreen
     )
   }
 
-  private fun onNextClicked() {
-    when (args.welcomeAction) {
-      WelcomeAction.CONTINUE -> continueNext()
-      WelcomeAction.RESTORE_BACKUP -> Log.w(TAG, "Not yet implemented!", NotImplementedError()) // TODO [regv2]
-    }
-  }
-
-  private fun continueNext() {
+  private fun launchPermissionRequests() {
     val isUserSelectionRequired = BackupUtil.isUserSelectionRequired(requireContext())
-    val requiredPermissions = WelcomePermissions.getWelcomePermissions(isUserSelectionRequired)
-    requestPermissionLauncher.launch(requiredPermissions)
-  }
 
-  private fun onNotNowClicked() {
-    when (args.welcomeAction) {
-      WelcomeAction.CONTINUE -> continueNotNow()
-      WelcomeAction.RESTORE_BACKUP -> Log.w(TAG, "Not yet implemented!", NotImplementedError()) // TODO [regv2]
+    val neededPermissions = WelcomePermissions.getWelcomePermissions(isUserSelectionRequired).filterNot {
+      ContextCompat.checkSelfPermission(requireContext(), it) == PackageManager.PERMISSION_GRANTED
+    }
+
+    if (neededPermissions.isEmpty()) {
+      proceedToNextScreen()
+    } else {
+      requestPermissionLauncher.launch(neededPermissions.toTypedArray())
     }
   }
 
-  private fun continueNotNow() {
-    NavHostFragment.findNavController(this).popBackStack()
-  }
-
-  private fun permissionsGranted(permissions: Map<String, Boolean>) {
+  private fun onPermissionsGranted(permissions: Map<String, Boolean>) {
     permissions.forEach {
       Log.d(TAG, "${it.key} = ${it.value}")
     }
     sharedViewModel.setRegistrationCheckpoint(RegistrationCheckpoint.PERMISSIONS_GRANTED)
+    proceedToNextScreen()
+  }
+
+  private fun proceedToNextScreen() {
+    when (welcomeAction) {
+      WelcomeAction.CONTINUE -> NavHostFragment.findNavController(this).safeNavigate(GrantPermissionsV2FragmentDirections.actionEnterPhoneNumber())
+      WelcomeAction.RESTORE_BACKUP -> {
+        val restoreIntent = RestoreActivity.getIntentForRestore(requireActivity())
+        launchRestoreActivity.launch(restoreIntent)
+      }
+    }
   }
 
   /**
@@ -109,5 +115,9 @@ class GrantPermissionsV2Fragment : ComposeFragment() {
   enum class WelcomeAction {
     CONTINUE,
     RESTORE_BACKUP
+  }
+
+  companion object {
+    private val TAG = Log.tag(GrantPermissionsV2Fragment::class.java)
   }
 }

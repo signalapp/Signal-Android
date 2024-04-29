@@ -207,7 +207,7 @@ class VerifyAccountRepository(private val context: Application) {
     }.subscribeOn(Schedulers.io())
   }
 
-  interface MasterKeyProducer {
+  fun interface MasterKeyProducer {
     @Throws(IOException::class, SvrWrongPinException::class, SvrNoDataException::class)
     fun produceMasterKey(): MasterKey
   }

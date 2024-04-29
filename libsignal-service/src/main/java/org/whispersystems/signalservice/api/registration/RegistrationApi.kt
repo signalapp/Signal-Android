@@ -8,6 +8,7 @@ package org.whispersystems.signalservice.api.registration
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.account.AccountAttributes
 import org.whispersystems.signalservice.api.account.PreKeyCollection
+import org.whispersystems.signalservice.internal.push.BackupAuthCheckResponse
 import org.whispersystems.signalservice.internal.push.PushServiceSocket
 import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataResponse
 import org.whispersystems.signalservice.internal.push.VerifyAccountResponse
@@ -65,6 +66,12 @@ class RegistrationApi(
   fun registerAccount(sessionId: String?, recoveryPassword: String?, attributes: AccountAttributes?, aciPreKeys: PreKeyCollection?, pniPreKeys: PreKeyCollection?, fcmToken: String?, skipDeviceTransfer: Boolean): NetworkResult<VerifyAccountResponse> {
     return NetworkResult.fromFetch {
       pushServiceSocket.submitRegistrationRequest(sessionId, recoveryPassword, attributes, aciPreKeys, pniPreKeys, fcmToken, skipDeviceTransfer)
+    }
+  }
+
+  fun getSvrAuthCredential(e164: String, usernamePasswords: List<String>): NetworkResult<BackupAuthCheckResponse> {
+    return NetworkResult.fromFetch {
+      pushServiceSocket.checkBackupAuthCredentials(e164, usernamePasswords)
     }
   }
 }

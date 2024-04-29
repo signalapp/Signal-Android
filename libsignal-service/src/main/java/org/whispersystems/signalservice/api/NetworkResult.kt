@@ -65,6 +65,18 @@ sealed class NetworkResult<T> {
   }
 
   /**
+   * Returns the [Throwable] associated with the result, or null if the result is successful.
+   */
+  fun getCause(): Throwable? {
+    return when (this) {
+      is Success -> null
+      is NetworkError -> exception
+      is StatusCodeError -> exception
+      is ApplicationError -> throwable
+    }
+  }
+
+  /**
    * Takes the output of one [NetworkResult] and transforms it into another if the operation is successful.
    * If it's a failure, the original failure will be propagated. Useful for changing the type of a result.
    */

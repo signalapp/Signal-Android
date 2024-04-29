@@ -24,6 +24,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -95,7 +96,9 @@ class EnterPhoneNumberV2Fragment : LoggingFragment(R.layout.fragment_registratio
     sharedViewModel.uiState.observe(viewLifecycleOwner) { sharedState ->
       presentRegisterButton(sharedState)
       presentProgressBar(sharedState.inProgress, sharedState.isReRegister)
-      if (sharedState.registrationCheckpoint >= RegistrationCheckpoint.VERIFICATION_CODE_REQUESTED) {
+      if (sharedState.registrationCheckpoint >= RegistrationCheckpoint.PHONE_NUMBER_CONFIRMED && sharedState.canSkipSms) {
+        moveToEnterPinScreen()
+      } else if (sharedState.registrationCheckpoint >= RegistrationCheckpoint.VERIFICATION_CODE_REQUESTED) {
         moveToVerificationEntryScreen()
       }
     }
@@ -318,6 +321,11 @@ class EnterPhoneNumberV2Fragment : LoggingFragment(R.layout.fragment_registratio
       setNegativeButton(R.string.RegistrationActivity_edit_number) { _, _ -> onConfirmNumberDialogCanceled() }
       setOnCancelListener { _ -> onConfirmNumberDialogCanceled() }
     }.show()
+  }
+
+  private fun moveToEnterPinScreen() {
+    sharedViewModel.setInProgress(false)
+    findNavController().safeNavigate(EnterPhoneNumberV2FragmentDirections.actionReRegisterWithPinV2Fragment())
   }
 
   private fun moveToVerificationEntryScreen() {

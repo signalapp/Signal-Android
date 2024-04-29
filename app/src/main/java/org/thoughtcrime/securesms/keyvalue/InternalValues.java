@@ -217,6 +217,6 @@ public final class InternalValues extends SignalStoreValues {
   }
 
   public boolean enterRestoreV2Flow() {
-    return FeatureFlags.registrationV2() && getBoolean(FORCE_ENTER_RESTORE_V2_FLOW, false);
+    return FeatureFlags.restoreAfterRegistration() && getBoolean(FORCE_ENTER_RESTORE_V2_FLOW, false);
   }
 }

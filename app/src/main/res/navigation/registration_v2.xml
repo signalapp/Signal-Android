@@ -12,14 +12,6 @@
         tools:layout="@layout/fragment_registration_welcome_v2">
 
         <action
-            android:id="@+id/action_restore"
-            app:destination="@id/restoreBackupV2Fragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-
-        <action
             android:id="@+id/action_skip_restore"
             app:destination="@id/enterPhoneNumberV2Fragment"
             app:enterAnim="@anim/nav_default_enter_anim"
@@ -28,16 +20,8 @@
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
 
         <action
-            android:id="@+id/action_transfer_or_restore"
-            app:destination="@id/transferOrRestore"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-
-        <action
-            android:id="@+id/action_welcomeFragment_to_deviceTransferSetup"
-            app:destination="@id/deviceTransferSetup"
+            android:id="@+id/action_go_to_registration"
+            app:destination="@id/enterPhoneNumberV2Fragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
@@ -59,24 +43,10 @@
         android:label="fragment_grant_permissions">
 
         <action
-            android:id="@+id/action_restore"
-            app:destination="@id/restoreBackupV2Fragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-
-        <action
-            android:id="@+id/action_skip_restore"
+            android:id="@+id/action_enter_phone_number"
             app:destination="@id/enterPhoneNumberV2Fragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-
-        <action
-            android:id="@+id/action_transfer_or_restore"
-            app:destination="@id/transferOrRestore"
+            app:popUpTo="@+id/welcomeV2Fragment"
+            app:popUpToInclusive="true"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
@@ -120,16 +90,7 @@
         android:label="fragment_enter_phone_number"
         tools:layout="@layout/fragment_registration_enter_phone_number_v2">
 
-        <action
-            android:id="@+id/action_pickCountry"
-            app:destination="@id/countryPickerV2Fragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:launchSingleTop="true"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-
-        <action
+         <action
             android:id="@+id/action_enterVerificationCode"
             app:destination="@id/enterCodeV2Fragment"
             app:enterAnim="@anim/nav_default_enter_anim"
@@ -247,7 +208,7 @@
 
     <fragment
         android:id="@+id/reRegisterWithPinV2Fragment"
-        android:name="org.thoughtcrime.securesms.registration.fragments.ReRegisterWithPinFragment"
+        android:name="org.thoughtcrime.securesms.registration.v2.ui.reregisterwithpin.ReRegisterWithPinV2Fragment"
         tools:layout="@layout/fragment_registration_lock">
 
         <action

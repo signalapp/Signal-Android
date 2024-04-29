@@ -54,6 +54,7 @@ class SignalBackupAgent : BackupAgent() {
       items.find { dataInput.key == it.getKey() }?.restoreData(buffer)
     }
     DataOutputStream(FileOutputStream(newState.fileDescriptor)).use { it.writeInt(cumulativeHashCode()) }
+    Log.i(TAG, "Android Backup Service complete.")
   }
 
   private fun cumulativeHashCode(): Int {
