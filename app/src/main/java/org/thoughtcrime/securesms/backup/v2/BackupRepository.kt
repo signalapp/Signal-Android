@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.NetworkResult
+import org.whispersystems.signalservice.api.StatusCodeErrorAction
 import org.whispersystems.signalservice.api.archive.ArchiveGetMediaItemsResponse
 import org.whispersystems.signalservice.api.archive.ArchiveMediaRequest
 import org.whispersystems.signalservice.api.archive.ArchiveServiceCredential
@@ -60,6 +61,13 @@ object BackupRepository {
 
   private val TAG = Log.tag(BackupRepository::class.java)
   private const val VERSION = 1L
+
+  private val resetInitializedStateErrorAction: StatusCodeErrorAction = { error ->
+    if (error.code == 401) {
+      Log.i(TAG, "Resetting initialized state due to 401.")
+      SignalStore.backup().backupsInitialized = false
+    }
+  }
 
   fun export(outputStream: OutputStream, append: (ByteArray) -> Unit, plaintext: Boolean = false) {
     val eventTimer = EventTimer()
@@ -229,13 +237,7 @@ object BackupRepository {
     val api = ApplicationDependencies.getSignalServiceAccountManager().archiveApi
     val backupKey = SignalStore.svr().getOrCreateMasterKey().deriveBackupKey()
 
-    return api
-      .triggerBackupIdReservation(backupKey)
-      .then { getAuthCredential() }
-      .then { credential ->
-        api.setPublicKey(backupKey, credential)
-          .map { credential }
-      }
+    return initBackupAndFetchAuth(backupKey)
       .then { credential ->
         api.getArchiveMediaItemsPage(backupKey, credential, limit, cursor)
       }
@@ -248,14 +250,7 @@ object BackupRepository {
     val api = ApplicationDependencies.getSignalServiceAccountManager().archiveApi
     val backupKey = SignalStore.svr().getOrCreateMasterKey().deriveBackupKey()
 
-    return api
-      .triggerBackupIdReservation(backupKey)
-      .then { getAuthCredential() }
-      .then { credential ->
-        api.setPublicKey(backupKey, credential)
-          .also { Log.i(TAG, "PublicKeyResult: $it") }
-          .map { credential }
-      }
+    return initBackupAndFetchAuth(backupKey)
       .then { credential ->
         api.getBackupInfo(backupKey, credential)
           .map { it to credential }
@@ -282,14 +277,7 @@ object BackupRepository {
     val api = ApplicationDependencies.getSignalServiceAccountManager().archiveApi
     val backupKey = SignalStore.svr().getOrCreateMasterKey().deriveBackupKey()
 
-    return api
-      .triggerBackupIdReservation(backupKey)
-      .then { getAuthCredential() }
-      .then { credential ->
-        api.setPublicKey(backupKey, credential)
-          .also { Log.i(TAG, "PublicKeyResult: $it") }
-          .map { credential }
-      }
+    return initBackupAndFetchAuth(backupKey)
       .then { credential ->
         api.getMessageBackupUploadForm(backupKey, credential)
           .also { Log.i(TAG, "UploadFormResult: $it") }
@@ -311,9 +299,7 @@ object BackupRepository {
     val api = ApplicationDependencies.getSignalServiceAccountManager().archiveApi
     val backupKey = SignalStore.svr().getOrCreateMasterKey().deriveBackupKey()
 
-    return api
-      .triggerBackupIdReservation(backupKey)
-      .then { getAuthCredential() }
+    return initBackupAndFetchAuth(backupKey)
       .then { credential ->
         api.getBackupInfo(backupKey, credential)
       }
@@ -332,9 +318,7 @@ object BackupRepository {
     val api = ApplicationDependencies.getSignalServiceAccountManager().archiveApi
     val backupKey = SignalStore.svr().getOrCreateMasterKey().deriveBackupKey()
 
-    return api
-      .triggerBackupIdReservation(backupKey)
-      .then { getAuthCredential() }
+    return initBackupAndFetchAuth(backupKey)
       .then { credential ->
         api.debugGetUploadedMediaItemMetadata(backupKey, credential)
       }
@@ -347,9 +331,7 @@ object BackupRepository {
     val api = ApplicationDependencies.getSignalServiceAccountManager().archiveApi
     val backupKey = SignalStore.svr().getOrCreateMasterKey().deriveBackupKey()
 
-    return api
-      .triggerBackupIdReservation(backupKey)
-      .then { getAuthCredential() }
+    return initBackupAndFetchAuth(backupKey)
       .then { credential ->
         api.getMediaUploadForm(backupKey, credential)
       }
@@ -362,9 +344,7 @@ object BackupRepository {
     val api = ApplicationDependencies.getSignalServiceAccountManager().archiveApi
     val backupKey = SignalStore.svr().getOrCreateMasterKey().deriveBackupKey()
 
-    return api
-      .triggerBackupIdReservation(backupKey)
-      .then { getAuthCredential() }
+    return initBackupAndFetchAuth(backupKey)
       .then { credential ->
         api.setPublicKey(backupKey, credential)
           .map { credential }
@@ -390,9 +370,7 @@ object BackupRepository {
     val api = ApplicationDependencies.getSignalServiceAccountManager().archiveApi
     val backupKey = SignalStore.svr().getOrCreateMasterKey().deriveBackupKey()
 
-    return api
-      .triggerBackupIdReservation(backupKey)
-      .then { getAuthCredential() }
+    return initBackupAndFetchAuth(backupKey)
       .then { credential ->
         val requests = mutableListOf<ArchiveMediaRequest>()
         val mediaIdToAttachmentId = mutableMapOf<String, AttachmentId>()
@@ -445,7 +423,7 @@ object BackupRepository {
       return NetworkResult.Success(Unit)
     }
 
-    return getAuthCredential()
+    return initBackupAndFetchAuth(backupKey)
       .then { credential ->
         api.deleteArchivedMedia(
           backupKey = backupKey,
@@ -476,7 +454,7 @@ object BackupRepository {
       return NetworkResult.Success(Unit)
     }
 
-    return getAuthCredential()
+    return initBackupAndFetchAuth(backupKey)
       .then { credential ->
         api.deleteArchivedMedia(
           backupKey = backupKey,
@@ -533,7 +511,7 @@ object BackupRepository {
     val api = ApplicationDependencies.getSignalServiceAccountManager().archiveApi
     val backupKey = SignalStore.svr().getOrCreateMasterKey().deriveBackupKey()
 
-    return getAuthCredential()
+    return initBackupAndFetchAuth(backupKey)
       .then { credential ->
         api.getCdnReadCredentials(
           cdnNumber = cdnNumber,
@@ -570,7 +548,7 @@ object BackupRepository {
     val api = ApplicationDependencies.getSignalServiceAccountManager().archiveApi
     val backupKey = SignalStore.svr().getOrCreateMasterKey().deriveBackupKey()
 
-    return getAuthCredential()
+    return initBackupAndFetchAuth(backupKey)
       .then { credential ->
         api.getBackupInfo(backupKey, credential).map {
           BackupDirectories(it.backupDir!!, it.mediaDir!!)
@@ -582,6 +560,25 @@ object BackupRepository {
           SignalStore.backup().cachedBackupMediaDirectory = it.result.mediaDir
         }
       }
+  }
+
+  /**
+   * Ensures that the backupId has been reserved and that your public key has been set, while also returning an auth credential.
+   * Should be the basis of all backup operations.
+   */
+  private fun initBackupAndFetchAuth(backupKey: BackupKey): NetworkResult<ArchiveServiceCredential> {
+    val api = ApplicationDependencies.getSignalServiceAccountManager().archiveApi
+
+    return if (SignalStore.backup().backupsInitialized) {
+      getAuthCredential().runOnStatusCodeError(resetInitializedStateErrorAction)
+    } else {
+      return api
+        .triggerBackupIdReservation(backupKey)
+        .then { getAuthCredential() }
+        .then { credential -> api.setPublicKey(backupKey, credential).map { credential } }
+        .runIfSuccessful { SignalStore.backup().backupsInitialized = true }
+        .runOnStatusCodeError(resetInitializedStateErrorAction)
+    }
   }
 
   /**

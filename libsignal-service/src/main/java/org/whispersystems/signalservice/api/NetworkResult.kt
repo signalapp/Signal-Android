@@ -8,6 +8,8 @@ package org.whispersystems.signalservice.api
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
 import java.io.IOException
 
+typealias StatusCodeErrorAction = (NetworkResult.StatusCodeError<*>) -> Unit
+
 /**
  * A helper class that wraps the result of a network request, turning common exceptions
  * into sealed classes, with optional request chaining.
@@ -22,7 +24,9 @@ import java.io.IOException
  * sealed class. However, for the majority of requests which just require getting a model from
  * the success case and the status code of the error, this can be quite convenient.
  */
-sealed class NetworkResult<T> {
+sealed class NetworkResult<T>(
+  private val statusCodeErrorActions: MutableSet<StatusCodeErrorAction> = mutableSetOf()
+) {
   companion object {
     /**
      * A convenience method to capture the common case of making a request.
@@ -54,6 +58,8 @@ sealed class NetworkResult<T> {
 
   /**
    * Returns the result if successful, otherwise turns the result back into an exception and throws it.
+   *
+   * Useful for bridging to Java, where you may want to use try-catch.
    */
   fun successOrThrow(): T {
     when (this) {
@@ -78,27 +84,95 @@ sealed class NetworkResult<T> {
 
   /**
    * Takes the output of one [NetworkResult] and transforms it into another if the operation is successful.
-   * If it's a failure, the original failure will be propagated. Useful for changing the type of a result.
+   * If it's non-successful, [transform] lambda is not run, and instead the original failure will be propagated.
+   * Useful for changing the type of a result.
+   *
+   * ```kotlin
+   * val user: NetworkResult<LocalUserModel> = NetworkResult
+   *   .fromFetch { fetchRemoteUserModel() }
+   *   .map { it.toLocalUserModel() }
+   * ```
    */
   fun <R> map(transform: (T) -> R): NetworkResult<R> {
     return when (this) {
-      is Success -> Success(transform(this.result))
-      is NetworkError -> NetworkError(exception)
-      is StatusCodeError -> StatusCodeError(code, body, exception)
-      is ApplicationError -> ApplicationError(throwable)
+      is Success -> Success(transform(this.result)).runOnStatusCodeError(statusCodeErrorActions)
+      is NetworkError -> NetworkError<R>(exception).runOnStatusCodeError(statusCodeErrorActions)
+      is ApplicationError -> ApplicationError<R>(throwable).runOnStatusCodeError(statusCodeErrorActions)
+      is StatusCodeError -> StatusCodeError<R>(code, body, exception).runOnStatusCodeError(statusCodeErrorActions)
     }
   }
 
   /**
    * Takes the output of one [NetworkResult] and passes it as the input to another if the operation is successful.
-   * If it's a failure, the original failure will be propagated. Useful for chaining operations together.
+   * If it's non-successful, the [result] lambda is not run, and instead the original failure will be propagated.
+   * Useful for chaining operations together.
+   *
+   * ```kotlin
+   * val networkResult: NetworkResult<MyData> = NetworkResult
+   *   .fromFetch { fetchAuthCredential() }
+   *   .then {
+   *     NetworkResult.fromFetch { credential -> fetchData(credential) }
+   *   }
+   * ```
    */
   fun <R> then(result: (T) -> NetworkResult<R>): NetworkResult<R> {
     return when (this) {
-      is Success -> result(this.result)
-      is NetworkError -> NetworkError(exception)
-      is StatusCodeError -> StatusCodeError(code, body, exception)
-      is ApplicationError -> ApplicationError(throwable)
+      is Success -> result(this.result).runOnStatusCodeError(statusCodeErrorActions)
+      is NetworkError -> NetworkError<R>(exception).runOnStatusCodeError(statusCodeErrorActions)
+      is ApplicationError -> ApplicationError<R>(throwable).runOnStatusCodeError(statusCodeErrorActions)
+      is StatusCodeError -> StatusCodeError<R>(code, body, exception).runOnStatusCodeError(statusCodeErrorActions)
     }
+  }
+
+  /**
+   * Will perform an operation if the result at this point in the chain is successful. Note that it runs if the chain is _currently_ successful. It does not
+   * depend on anything futher down the chain.
+   *
+   * ```kotlin
+   * val networkResult: NetworkResult<MyData> = NetworkResult
+   *   .fromFetch { fetchAuthCredential() }
+   *   .runIfSuccessful { storeMyCredential(it) }
+   * ```
+   */
+  fun runIfSuccessful(result: (T) -> Unit): NetworkResult<T> {
+    if (this is Success) {
+      result(this.result)
+    }
+    return this
+  }
+
+  /**
+   * Specify an action to be run when a status code error occurs. When a result is a [StatusCodeError] or is transformed into one further down the chain via
+   * a future [map] or [then], this code will be run. There can only ever be a single status code error in a chain, and therefore this lambda will only ever
+   * be run a single time.
+   *
+   * This is a low-visibility way of doing things, so use sparingly.
+   *
+   * ```kotlin
+   * val result = NetworkResult
+   *   .fromFetch { getAuth() }
+   *   .runOnStatusCodeError { error -> logError(error) }
+   *   .then { credential ->
+   *     NetworkResult.fromFetch { fetchUserDetails(credential) }
+   *   }
+   * ```
+   */
+  fun runOnStatusCodeError(action: StatusCodeErrorAction): NetworkResult<T> {
+    return runOnStatusCodeError(setOf(action))
+  }
+
+  internal fun runOnStatusCodeError(actions: Collection<StatusCodeErrorAction>): NetworkResult<T> {
+    if (actions.isEmpty()) {
+      return this
+    }
+
+    statusCodeErrorActions += actions
+
+    if (this is StatusCodeError) {
+      statusCodeErrorActions.forEach { it.invoke(this) }
+      statusCodeErrorActions.clear()
+    }
+
+    return this
   }
 }

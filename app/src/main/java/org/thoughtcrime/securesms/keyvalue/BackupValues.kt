@@ -26,6 +26,7 @@ internal class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     private const val KEY_CDN_BACKUP_MEDIA_DIRECTORY = "backup.cdn.mediaDirectory"
 
     private const val KEY_OPTIMIZE_STORAGE = "backup.optimizeStorage"
+    private const val KEY_BACKUPS_INITIALIZED = "backup.initialized"
 
     /**
      * Specifies whether remote backups are enabled on this device.
@@ -49,7 +50,20 @@ internal class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
 
   var nextBackupTime: Long by longValue(KEY_NEXT_BACKUP_TIME, -1)
 
-  var areBackupsEnabled: Boolean by booleanValue(KEY_BACKUPS_ENABLED, false)
+  var areBackupsEnabled: Boolean
+    get() {
+      return getBoolean(KEY_BACKUPS_ENABLED, false)
+    }
+    set(value) {
+      store
+        .beginWrite()
+        .putBoolean(KEY_BACKUPS_ENABLED, value)
+        .putLong(KEY_NEXT_BACKUP_TIME, -1)
+        .putBoolean(KEY_BACKUPS_INITIALIZED, false)
+        .apply()
+    }
+
+  var backupsInitialized: Boolean by booleanValue(KEY_BACKUPS_INITIALIZED, false)
 
   /**
    * Retrieves the stored credentials, mapped by the day they're valid. The day is represented as
