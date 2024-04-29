@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
 
 import org.signal.core.util.concurrent.DeadlockDetector;
-import org.signal.libsignal.net.Network;
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations;
 import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations;
 import org.thoughtcrime.securesms.components.TypingStatusRepository;
@@ -59,6 +58,7 @@ import org.whispersystems.signalservice.api.util.Tls12SocketFactory;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
 import org.whispersystems.signalservice.internal.util.BlacklistingTrustManager;
 import org.whispersystems.signalservice.internal.util.Util;
+import org.whispersystems.signalservice.internal.websocket.LibSignalNetwork;
 
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
@@ -131,7 +131,7 @@ public class ApplicationDependencies {
   private static volatile DeadlockDetector             deadlockDetector;
   private static volatile ClientZkReceiptOperations    clientZkReceiptOperations;
   private static volatile ScheduledMessageManager      scheduledMessagesManager;
-  private static volatile Network                      libsignalNetwork;
+  private static volatile LibSignalNetwork             libsignalNetwork;
 
   @MainThread
   public static void init(@NonNull Application application, @NonNull Provider provider) {
@@ -260,6 +260,9 @@ public class ApplicationDependencies {
   public static void resetAllNetworkConnections() {
     synchronized (LOCK) {
       closeConnections();
+      if (libsignalNetwork != null) {
+        libsignalNetwork.resetSettings(getSignalServiceNetworkAccess().getConfiguration());
+      }
       if (signalWebSocket != null) {
         signalWebSocket.forceNewWebSockets();
       }
@@ -688,11 +691,11 @@ public class ApplicationDependencies {
     return deadlockDetector;
   }
 
-  public static @NonNull Network getLibsignalNetwork() {
+  public static @NonNull LibSignalNetwork getLibsignalNetwork() {
     if (libsignalNetwork == null) {
       synchronized (LIBSIGNAL_NETWORK_LOCK) {
         if (libsignalNetwork == null) {
-          libsignalNetwork = provider.provideLibsignalNetwork();
+          libsignalNetwork = provider.provideLibsignalNetwork(getSignalServiceNetworkAccess().getConfiguration());
         }
       }
     }
@@ -726,7 +729,7 @@ public class ApplicationDependencies {
     @NonNull SignalCallManager provideSignalCallManager();
     @NonNull PendingRetryReceiptManager providePendingRetryReceiptManager();
     @NonNull PendingRetryReceiptCache providePendingRetryReceiptCache();
-    @NonNull SignalWebSocket provideSignalWebSocket(@NonNull Supplier<SignalServiceConfiguration> signalServiceConfigurationSupplier, @NonNull Supplier<Network> libSignalNetworkSupplier);
+    @NonNull SignalWebSocket provideSignalWebSocket(@NonNull Supplier<SignalServiceConfiguration> signalServiceConfigurationSupplier, @NonNull Supplier<LibSignalNetwork> libSignalNetworkSupplier);
     @NonNull SignalServiceDataStoreImpl provideProtocolStore();
     @NonNull GiphyMp4Cache provideGiphyMp4Cache();
     @NonNull SimpleExoPlayerPool provideExoPlayerPool();
@@ -737,6 +740,6 @@ public class ApplicationDependencies {
     @NonNull DeadlockDetector provideDeadlockDetector();
     @NonNull ClientZkReceiptOperations provideClientZkReceiptOperations(@NonNull SignalServiceConfiguration signalServiceConfiguration);
     @NonNull ScheduledMessageManager provideScheduledMessageManager();
-    @NonNull Network provideLibsignalNetwork();
+    @NonNull LibSignalNetwork provideLibsignalNetwork(@NonNull SignalServiceConfiguration config);
   }
 }

@@ -233,8 +233,8 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
   }
 
   @Override
-  public @NonNull Network provideLibsignalNetwork() {
-    return new Network(BuildConfig.LIBSIGNAL_NET_ENV);
+  public @NonNull LibSignalNetwork provideLibsignalNetwork(@NonNull SignalServiceConfiguration config) {
+    return new LibSignalNetwork(new Network(BuildConfig.LIBSIGNAL_NET_ENV), config);
   }
 
   @Override
@@ -290,7 +290,7 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
   }
 
   @Override
-  public @NonNull SignalWebSocket provideSignalWebSocket(@NonNull Supplier<SignalServiceConfiguration> signalServiceConfigurationSupplier, @NonNull Supplier<Network> libSignalNetworkSupplier) {
+  public @NonNull SignalWebSocket provideSignalWebSocket(@NonNull Supplier<SignalServiceConfiguration> signalServiceConfigurationSupplier, @NonNull Supplier<LibSignalNetwork> libSignalNetworkSupplier) {
     SleepTimer                   sleepTimer      = !SignalStore.account().isFcmEnabled() || SignalStore.internalValues().isWebsocketModeForced() ? new AlarmSleepTimer(context) : new UptimeSleepTimer() ;
     SignalWebSocketHealthMonitor healthMonitor   = new SignalWebSocketHealthMonitor(context, sleepTimer);
     SignalWebSocket              signalWebSocket = new SignalWebSocket(provideWebSocketFactory(signalServiceConfigurationSupplier, healthMonitor, libSignalNetworkSupplier));
@@ -400,7 +400,7 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
     return provideClientZkOperations(signalServiceConfiguration).getReceiptOperations();
   }
 
-  @NonNull WebSocketFactory provideWebSocketFactory(@NonNull Supplier<SignalServiceConfiguration> signalServiceConfigurationSupplier, @NonNull SignalWebSocketHealthMonitor healthMonitor, @NonNull Supplier<Network> libSignalNetworkSupplier) {
+  @NonNull WebSocketFactory provideWebSocketFactory(@NonNull Supplier<SignalServiceConfiguration> signalServiceConfigurationSupplier, @NonNull SignalWebSocketHealthMonitor healthMonitor, @NonNull Supplier<LibSignalNetwork> libSignalNetworkSupplier) {
     return new WebSocketFactory() {
       @Override
       public WebSocketConnection createWebSocket() {
@@ -415,7 +415,7 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
       @Override
       public WebSocketConnection createUnidentifiedWebSocket() {
         if (FeatureFlags.libSignalWebSocketEnabled()) {
-          var network = new LibSignalNetwork(libSignalNetworkSupplier.get());
+          LibSignalNetwork network = libSignalNetworkSupplier.get();
           return new LibSignalChatConnection(
               "libsignal-unauth",
               network.createChatService(null),
