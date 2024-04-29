@@ -386,7 +386,7 @@
     <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Ang iyong request to join ay na-send na sa group admin. You\'ll be notified when they take action.</string>
     <string name="ConversationActivity_cancel_request">I-cancel ang Request</string>
 
-    <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Upang magpadala ng mensaheng audio, payagan ang Signal na magamit ang iyong mikropono.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Upang magpadala ng mensaheng audio, payagan ang Signal na magamit ang iyong mikropono.</string> -->
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Kailangan ng Signal ang pahintulot sa Mikropono upang makapagpadala ng mensaheng audio, ngunit permanente itong ipinagbabawal. Pumunta sa app settings, piliin ang \"Mga Pahintulot\", at i-enable ang \"Mikropono\".</string>
     <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Kailangan ng Signal ang pahintulot sa Mikropono at Camera upang matawagan si %1$s, ngunit ito ay permaneteng ipinagbabawal. Pumunta sa app settings, piliin ang \"Pahintulot\", at i-enable ang \"Mikropono\" at \"Camera\".</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Upang makakuha ng larawan at video, payagan ang Signal na gamitin ang camera.</string>
@@ -411,7 +411,7 @@
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Aalis ka sa grupong ito, at ito\'y mabubura sa lahat ng iyong mga device.</string>
     <string name="ConversationActivity_delete">Burahin</string>
     <string name="ConversationActivity_delete_and_leave">Burahin at umalis</string>
-    <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Para tawagan si %1$s, kailangan ng Signal ng access sa iyong microphone</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Para tawagan si %1$s, kailangan ng Signal ng access sa iyong microphone</string> -->
 
 
     <string name="ConversationActivity_join">Mag-join</string>

@@ -392,7 +392,7 @@
     <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Twoja prośba o przyjęcie do grupy została wysłana do administratora. Zostaniesz powiadomiony(a), gdy podejmie decyzję.</string>
     <string name="ConversationActivity_cancel_request">Anuluj prośbę</string>
 
-    <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Aby wysyłać wiadomości głosowe, zezwól Signal na dostęp do mikrofonu.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Aby wysyłać wiadomości głosowe, zezwól Signal na dostęp do mikrofonu.</string> -->
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal wymaga pozwolenia na dostęp do mikrofonu w celu umożliwienia wysyłania wiadomości głosowych, ale zostało one na stałe odrzucone. Przejdź do ustawień aplikacji, wybierz \"Uprawnienia\" i włącz \"Mikrofon\".</string>
     <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal wymaga pozwolenia na dostęp do mikrofonu i aparatu, aby zadzwonić do %1$s, ale zostały one na stałe odrzucone. Przejdź do ustawień aplikacji, wybierz \"Uprawnienia\" i włącz \"Aparat\" oraz \"Mikrofon\".</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Aby móc robić zdjęcia i nagrywać wideo, zezwól Signal na dostęp do aparatu.</string>
@@ -417,7 +417,7 @@
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Opuścisz tę grupę i zostanie ona usunięta ze wszystkich Twoich urządzeń.</string>
     <string name="ConversationActivity_delete">Usuń</string>
     <string name="ConversationActivity_delete_and_leave">Usuń i opuść</string>
-    <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Aby zadzwonić do %1$s, Signal potrzebuje dostępu do mikrofonu</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Aby zadzwonić do %1$s, Signal potrzebuje dostępu do mikrofonu</string> -->
 
 
     <string name="ConversationActivity_join">Dołącz</string>

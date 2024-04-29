@@ -43,7 +43,7 @@
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Vous n’avez pas encore défini de phrase de passe.</string>
     <string name="ApplicationPreferencesActivity_disable_passphrase">Désactiver la phrase de passe ?</string>
-    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Signal et les notifications de message seront déverrouillées en permanence.</string>
+    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Signal et les notifications de message seront accessibles en permanence.</string>
     <string name="ApplicationPreferencesActivity_disable">Désactiver</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Erreur de connexion au serveur.</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Le blocage d’inscription nécessite l’utilisation d’un code PIN. Pour désactiver le code PIN, commencez par désactiver le blocage d’inscription.</string>
@@ -86,9 +86,9 @@
 
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Impossible de trouver une appli pour sélectionner le média.</string>
-    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Pour joindre des photos, des vidéos ou de l’audio, Signal doit accéder au stockage de l’appareil, mais vous lui en avez interdit l’accès. Pour l’autoriser à y accéder, ouvrez l’application « Paramètres » de votre appareil, appuyez sur « Applications », puis sélectionnez « Autorisations » et activez « Stockage ».</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal exige l’autorisation Contacts afin de joindre des coordonnées de contact, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Contacts ».</string>
-    <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal exige l’autorisation Position afin de joindre une position géographique, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Position ».</string>
+    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Pour joindre des photos, des vidéos ou de l’audio, Signal doit accéder au stockage de l’appareil, mais vous lui en avez interdit l’accès. Ouvrez l’application « Paramètres » de votre appareil, puis touchez Applications &gt; Signal &gt; Autorisations &gt; Stockage.</string>
+    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Pour joindre les coordonnées d’un contact, Signal doit accéder à l’application Contacts mais vous lui en avez interdit l’accès. Ouvrez l’application « Paramètres » de votre appareil, puis touchez Applications &gt; Signal &gt; Autorisations &gt; Contacts &gt; Autoriser.</string>
+    <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Pour joindre une position géographique, Signal doit accéder à l’application Position mais vous lui en avez interdit l’accès. Ouvrez l’application « Paramètres » de votre appareil, puis touchez Applications &gt; Signal &gt; Autorisations &gt; Position et activer l’autorisation appropriée.</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
     <string name="AttachmentManager__not_activated_payments">%1$s n’a pas activé les paiements </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
@@ -221,8 +221,8 @@
     <string name="CameraContacts_select_signal_recipients">Sélectionner les destinataires Signal</string>
     <string name="CameraContacts_no_signal_contacts">Aucun contact Signal</string>
     <string name="CameraContacts_you_can_only_use_the_camera_button">Vous ne pouvez utiliser le bouton Appareil photo que pour envoyer des photos à des contacts Signal. </string>
-    <string name="CameraContacts_cant_find_who_youre_looking_for">Éprouvez-vous des difficultés à trouver qui vous cherchiez ?</string>
-    <string name="CameraContacts_invite_a_contact_to_join_signal">Inviter un contact à se joindre à Signal</string>
+    <string name="CameraContacts_cant_find_who_youre_looking_for">Vous ne trouvez pas ce que vous recherchez ?</string>
+    <string name="CameraContacts_invite_a_contact_to_join_signal">Inviter un contact à rejoindre Signal</string>
     <string name="CameraContacts__menu_search">Rechercher</string>
 
     <!-- Censorship Circumvention Megaphone -->
@@ -270,7 +270,7 @@
     <!-- Label for my stories when selecting who to send media to -->
     <string name="ContactsCursorLoader_my_stories">Mes stories</string>
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
-    <string name="ContactsCursorLoader_new">Nouvelle Story</string>
+    <string name="ContactsCursorLoader_new">Nouvelle story</string>
     <!-- Header for conversation search section labeled "Chats" -->
     <string name="ContactsCursorLoader__chats">Conversations</string>
     <!-- Header for conversation search section labeled "Messages" -->
@@ -386,7 +386,7 @@
     <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Votre demande de vous joindre au groupe a été envoyée à son administrateur. Vous serez averti de sa décision.</string>
     <string name="ConversationActivity_cancel_request">Annuler la demande</string>
 
-    <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Pour envoyer des messages audio, autorisez l’accès de Signal à votre microphone.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Pour envoyer des messages audio, autorisez l’accès de Signal à votre microphone.</string> -->
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Pour envoyer des messages audio, Signal doit être autorisé à accéder à l’application Microphone, mais vous lui en avez interdit l’accès. Pour l’autoriser à y accéder, ouvrez l’application « Paramètres » de votre appareil, appuyez sur « Applications », puis sélectionnez « Autorisations » et activez « Microphone ».</string>
     <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal a besoin des autorisations Microphone et Appareil photo pour appeler %1$s, mais elles ont été refusées définitivement. Veuillez accéder aux paramètres de l’appli, sélectionner Autorisations et activer Microphone et Appareil photo.</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Pour prendre des photos et des vidéos, autorisez l’accès de Signal à l’appareil photo.</string>
@@ -411,7 +411,7 @@
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Vous quitterez ce groupe et il sera supprimé de tous vos appareils.</string>
     <string name="ConversationActivity_delete">Supprimer</string>
     <string name="ConversationActivity_delete_and_leave">Supprimer et quitter</string>
-    <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Pour appeler %1$s, Signal a besoin d’accéder à votre microphone</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Pour appeler %1$s, Signal a besoin d’accéder à votre microphone</string> -->
 
 
     <string name="ConversationActivity_join">Me joindre</string>
@@ -1789,7 +1789,7 @@
     <!-- Recipient -->
     <string name="Recipient_you">Vous</string>
     <!-- Name of recipient representing user\'s \'My Story\' -->
-    <string name="Recipient_my_story">Ma Story</string>
+    <string name="Recipient_my_story">Ma story</string>
     <!-- Name of recipient for a call link without a name -->
     <string name="Recipient_signal_call">Appel Signal</string>
 
@@ -2335,7 +2335,7 @@
     <string name="UsernameEditFragment__usernames_let_others_message">Les noms d’utilisateur sont toujours associés à une série de chiffres.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">Qu\'est-ce que ce numéro ?</string>
-    <string name="UsernameEditFragment__these_digits_help_keep">Ces chiffres servent à préserver la confidentialité de votre identité correspondant au nom d\'utilisatuer choisi et ainsi d\'éviter les messages indésirables. Ne partagez votre nom d’utilisateur qu\'avec les personnes et les groupes avec lesquels vous souhaitez échanger. Si vous changez votre nom d’utilisateur, un nouvel ensemble de chiffres vous sera attribué.</string>
+    <string name="UsernameEditFragment__these_digits_help_keep">Ces chiffres servent à protéger la confidentialité de votre nom d\'utilisateur, vous évitant ainsi de recevoir des messages indésirables. Ne partagez votre nom d’utilisateur qu’avec les personnes et les groupes avec lesquels vous voulez discuter. Si vous changez de nom d’utilisateur, une nouvelle série de chiffres vous sera attribuée.</string>
     <!-- Button to allow user to skip -->
     <string name="UsernameEditFragment__skip">Ignorer</string>
     <!-- Content description for done button -->
@@ -2693,8 +2693,8 @@
     </plurals>
     <!-- Displays number of viewers for a story -->
     <plurals name="contact_selection_list_item__number_of_viewers">
-        <item quantity="one">%1$d spectateur</item>
-        <item quantity="other">%1$d spectateurs</item>
+        <item quantity="one">%1$d personne</item>
+        <item quantity="other">%1$d personnes</item>
     </plurals>
 
     <!-- conversation_activity -->
@@ -5569,7 +5569,7 @@
     <!-- Context menu item to delete a story response -->
     <string name="StoryGroupReplyItem__delete">Effacer</string>
     <!-- Page title for My Story options -->
-    <string name="MyStorySettingsFragment__my_story">Ma Story</string>
+    <string name="MyStorySettingsFragment__my_story">Ma story</string>
     <!-- Number of total signal connections displayed in "All connections" row item -->
     <plurals name="MyStorySettingsFragment__viewers">
         <item quantity="one">%1$d spectateur</item>
@@ -5578,13 +5578,13 @@
     <!-- Button on all signal connections row to view all signal connections. Please keep as short as possible. -->
     <string name="MyStorySettingsFragment__view">Afficher</string>
     <!-- Section heading for story visibility -->
-    <string name="MyStorySettingsFragment__who_can_view_this_story">Qui peut voir cette Story ?</string>
+    <string name="MyStorySettingsFragment__who_can_view_this_story">Qui peut voir cette story ?</string>
     <!-- Clickable option for selecting people to hide your story from -->
     <!-- Privacy setting title for sending stories to all your signal connections -->
-    <string name="MyStorySettingsFragment__all_signal_connections">Tous les contacts Signal</string>
+    <string name="MyStorySettingsFragment__all_signal_connections">Tous mes contacts Signal</string>
     <!-- Privacy setting description for sending stories to all your signal connections -->
     <!-- Privacy setting title for sending stories to all except the specified connections -->
-    <string name="MyStorySettingsFragment__all_except">Tout sauf…</string>
+    <string name="MyStorySettingsFragment__all_except">Tous mes contacts Signal, sauf…</string>
     <!-- Privacy setting description for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Cacher votre Story de certains contacts</string>
     <!-- Summary of clickable option displaying how many people you have excluded from your story -->
@@ -5593,22 +5593,22 @@
         <item quantity="other">%1$d personnes exclues</item>
     </plurals>
     <!-- Privacy setting title for only sharing your story with specified connections -->
-    <string name="MyStorySettingsFragment__only_share_with">Partager uniquement avec…</string>
+    <string name="MyStorySettingsFragment__only_share_with">Ne partager qu’avec…</string>
     <!-- Privacy setting description for only sharing your story with specified connections -->
-    <string name="MyStorySettingsFragment__only_share_with_selected_people">Partager uniquement avec les contacts sélectionnés</string>
+    <string name="MyStorySettingsFragment__only_share_with_selected_people">Ne partager qu’avec les contacts sélectionnés</string>
     <!-- Summary of clickable option displaying how many people you have included to send to in your story -->
     <plurals name="MyStorySettingsFragment__d_people">
         <item quantity="one">%1$d personne</item>
         <item quantity="other">%1$d personnes</item>
     </plurals>
     <!-- My story privacy fine print about what the privacy settings are for -->
-    <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Choisissez qui peut voir votre Story. Les modifications n\'affecteront pas les Stories déjà postées.</string>
+    <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Choisissez qui peut voir votre story. Cela ne modifiera pas l’audience des stories déjà publiées.</string>
     <!-- Section header for options related to replies and reactions -->
     <string name="MyStorySettingsFragment__replies_amp_reactions">Réponses et réactions</string>
     <!-- Switchable option for allowing replies and reactions on your stories -->
     <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Autoriser les réponses et réactions</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
-    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Laisser les personnes qui peuvent voir votre Story réagir et y répondre</string>
+    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Autoriser les contacts qui peuvent voir votre story à y réagir et à y répondre</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">Contacts Signal</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
@@ -5620,7 +5620,7 @@
     <!-- Signal connections sheet bullet point 3 -->
     <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Il s’agit de contacts enregistrés sur votre téléphone</string>
     <!-- Note at the bottom of the Signal connections sheet -->
-    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Vos connexions peuvent voir vos nom et photo ainsi que vos publications dans « Mes stories » à moins que vous ne cachiez ces publications pour elles."</string>
+    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Vos contacts Signal peuvent voir votre nom et votre photo. Ils peuvent aussi afficher vos stories, sauf si vous décidez de les masquer."</string>
     <!-- Clickable option to add a viewer to a custom story -->
     <string name="PrivateStorySettingsFragment__add_viewer">Ajouter un spectateur</string>
     <!-- Clickable option to delete a custom story -->
@@ -5659,9 +5659,9 @@
     <!-- Toast shown when a trying to add a link preview to a text story post and the link/url is not valid (e.g., missing .com at the end) -->
     <string name="TextStoryPostSendFragment__please_enter_a_valid_link">Veuillez saisir un lien valide.</string>
     <!-- Title for screen allowing user to exclude "My Story" entries from specific people -->
-    <string name="ChangeMyStoryMembershipFragment__all_except">Tout sauf…</string>
+    <string name="ChangeMyStoryMembershipFragment__all_except">Tous mes contacts Signal, sauf…</string>
     <!-- Title for screen allowing user to only share "My Story" entries with specific people -->
-    <string name="ChangeMyStoryMembershipFragment__only_share_with">Partager uniquement avec…</string>
+    <string name="ChangeMyStoryMembershipFragment__only_share_with">Ne partager qu’avec…</string>
     <!-- Done button label for hide story from screen -->
     <string name="HideStoryFromFragment__done">Terminé</string>
     <!-- Dialog title for removing a group story -->
@@ -5946,11 +5946,11 @@
     <!-- Subtitle of initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Choisissez les contacts autorisés à voir votre story. Vous pouvez modifier ces préférences à tout moment dans les paramètres.</string>
     <!-- All connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Tous les contacts Signal</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Tous mes contacts Signal</string>
     <!-- All connections except option for initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__all_except">Tout sauf…</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__all_except">Tous mes contacts Signal, sauf…</string>
     <!-- Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Partager uniquement avec…</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Ne partager qu’avec…</string>
 
     <!-- Story info header sent heading -->
     <string name="StoryInfoHeader__sent">Envoyé</string>
@@ -5993,7 +5993,7 @@
 
     <!-- GroupStorySettingsFragment -->
     <!-- Section header for who can view a group story -->
-    <string name="GroupStorySettingsFragment__who_can_view_this_story">Qui peut voir cette Story ?</string>
+    <string name="GroupStorySettingsFragment__who_can_view_this_story">Qui peut voir cette story ?</string>
     <!-- Explanation of who can view a group story -->
     <string name="GroupStorySettingsFragment__members_of_the_group_s">"Les membres de ce groupe \" %1$s \" peuvent consulter et commenter votre Story. Vous pouvez modifier les participants du groupe en question."</string>
     <!-- Preference label for removing this group story -->

@@ -386,7 +386,7 @@
     <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Kërkesa juaj për t\'ju bashkuar grupit i është dërguar administratorit të grupit. Do të njoftoheni kur ata të ndërmarrin veprime.</string>
     <string name="ConversationActivity_cancel_request">Anuloje kërkesën</string>
 
-    <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Për të dërguar mesazhe audio, lejo qasjen e Signal-it në mikrofonin tënd.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Për të dërguar mesazhe audio, lejo qasjen e Signal-it në mikrofonin tënd.</string> -->
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal kërkon lejen e aktivizimit të Mikrofonit për të dërguar mesazhe audio, por është i mbyllur përgjithmonë. Ju lutemi, vazhdoni te parametrat e aplikacionit, zgjidhni \"Lejet\" dhe aktivizoni \"Mikrofoni\".</string>
     <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal ka nevojë për lejet e aktivizimit të mikrofonit dhe të kamerës për të telefonuar%1$s, por janë mbyllur përgjithmonë. Ju lutemi, vazhdoni te parametrat e aplikacionit, zgjidhni \"Lejet\" dhe aktivizoni \"Mikrofoni\" dhe \"Kamera\".</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Për të bërë foto dhe video, lejo qasjen e Signal-it në kamerë.</string>
@@ -411,7 +411,7 @@
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Do të largohesh nga ky grup dhe do të fshihet nga të gjitha pajisjet e tua.</string>
     <string name="ConversationActivity_delete">Fshije</string>
     <string name="ConversationActivity_delete_and_leave">Fshije dhe dil</string>
-    <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Për të telefonuar %1$s, Signal ka nevojë për qasje te mikrofoni juaj</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Për të telefonuar %1$s, Signal ka nevojë për qasje te mikrofoni juaj</string> -->
 
 
     <string name="ConversationActivity_join">Bashkohu</string>

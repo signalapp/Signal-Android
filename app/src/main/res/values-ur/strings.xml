@@ -386,7 +386,7 @@
     <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">آپ کی شمولیت کی درخواست گروپ منتظم کو بھیج دی گئی ہے۔ جب وہ کارروائی کریں گے تو آپ کو مطلع کیا جائے گا۔</string>
     <string name="ConversationActivity_cancel_request">درخواست منسوخ</string>
 
-    <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">آڈیو پیغامات بھیجنے کے لیے Signal کو مائکروفون تک رسائی کی اجازت دیں۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">آڈیو پیغامات بھیجنے کے لیے Signal کو مائکروفون تک رسائی کی اجازت دیں۔</string> -->
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal کو آڈیو پیغامات بھیجنے کے لیے مائکروفون کی اجازت کی ضرورت ہے، لیکن اس کی مستقل طور پر نفی کردی گئی ہے ۔ برائے مہربانی ایپ کی ترتیبات میں جائیں، \"منظوری\"، منتخب کریں، اور \"مائکروفون\" فعال کریں۔</string>
     <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">%1$s کال کیلئے Signal کو مائکروفون اور کیمرہ کی منظوری کی ضرورت ہوتی ہے، لیکن ان کی مستقل طور پر نفی کر دی گئی ہے ۔ برائے مہربانی ایپ کی ترتیبات میں جائیں، \"منظوری\" منتخب کریں، اور \"مائکروفون\" اور \"کیمرہ\"کو فعال کریں۔</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">تصویریں اور ویڈیو بنانے کے لیے ، Signal کو کیمرہ تک رسائی کی ضرورت ہے</string>
@@ -411,7 +411,7 @@
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">آپ اس گروپ کو چھوڑ دیں گے ، اور یہ آپ کے سبھی devices سے حذف ہوجائے گا۔</string>
     <string name="ConversationActivity_delete">حذف کریں</string>
     <string name="ConversationActivity_delete_and_leave">حذف کریں اور چھوڑیں</string>
-    <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">%1$s کو فون کرنے کے لئے ، Signal کو آپ کے مائکروفون تک رسائی کی ضرورت ہے</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">%1$s کو فون کرنے کے لئے ، Signal کو آپ کے مائکروفون تک رسائی کی ضرورت ہے</string> -->
 
 
     <string name="ConversationActivity_join">شامل ہوں</string>

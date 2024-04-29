@@ -386,7 +386,7 @@
     <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Liittymispyyntösi on lähetetty ryhmän ylläpitäjälle. Saat ilmoituksen, kun he tekevät päätöksen.</string>
     <string name="ConversationActivity_cancel_request">Peruuta pyyntö</string>
 
-    <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Ääniviestin lähettäminen edellyttää mikrofonin käyttöoikeuden myöntämistä Signalille.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Ääniviestin lähettäminen edellyttää mikrofonin käyttöoikeuden myöntämistä Signalille.</string> -->
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal tarvitsee luvan käyttää mikrofonia äänitiedostojen lähettämistä varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Mikrofoni\".</string>
     <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal tarvitsee luvan käyttää laitteesi mikrofonia ja kameraa yhteystiedolle %1$s soittamista varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Mikrofoni\" ja \"Kamera\".</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Kuvien ja videoiden ottaminen edellyttää, että annat Signalille kameran käyttöoikeuden.</string>
@@ -411,7 +411,7 @@
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Poistut tästä ryhmästä ja se poistetaan kaikilta laitteiltasi.</string>
     <string name="ConversationActivity_delete">Poista</string>
     <string name="ConversationActivity_delete_and_leave">Poista ja poistu ryhmästä</string>
-    <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Jotta voit soittaa käyttäjälle %1$s, Signal tarvitsee luvan käyttää mikrofonia.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Jotta voit soittaa käyttäjälle %1$s, Signal tarvitsee luvan käyttää mikrofonia.</string> -->
 
 
     <string name="ConversationActivity_join">Liity</string>

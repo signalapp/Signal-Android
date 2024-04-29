@@ -386,7 +386,7 @@
     <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">તમારી જૂથમાં જોડાવવાની વિનંતી એડમિનને મોકલવામાં આવી છે. જ્યારે તેઓ મંજૂર કરશે ત્યારે તમને જાણ કરવામાં આવશે.</string>
     <string name="ConversationActivity_cancel_request">વિનંતી રદ કરો</string>
 
-    <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">ઓડિયો મેસેજ મોકલવા માટે, તમારા માઇક્રોફોન પર Signal એક્સેસની મંજૂરી આપો.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">ઓડિયો મેસેજ મોકલવા માટે, તમારા માઇક્રોફોન પર Signal એક્સેસની મંજૂરી આપો.</string> -->
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">ઓડિયો મેસેજ મોકલવા માટે Signal ને માઇક્રોફોન પરવાનગીની આવશ્યકતા છે, પરંતુ તે કાયમી ધોરણે નામંજૂર કરવામાં આવી છે. કૃપા કરીને એપ્લિકેશન સેટિંગ્સ ચાલુ રાખો, \"પરવાનગી\" પસંદ કરો અને \"માઇક્રોફોન\" સક્ષમ કરો.</string>
     <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">કૉલ કરવા માટે Signal ને માઇક્રોફોન અને કેમેરાની પરવાનગીની જરૂર છે %1$s, પરંતુ તેઓને કાયમી નામંજૂર કરવામાં આવ્યા છે. કૃપા કરીને એપ્લિકેશન સેટિંગ્સ ચાલુ રાખો, \"પરવાનગી\" પસંદ કરો અને \"માઇક્રોફોન\" અને \"કેમેરો\" સક્ષમ કરો.</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">ફોટા અને વિડિયો મેળવવા માટે, કેમેરામાં Signal એક્સેસની મંજૂરી આપો.</string>
@@ -411,7 +411,7 @@
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">તમે આ ગ્રુપને છોડી દો, અને તે તમારા બધા ડિવાઇસમાંથી ડિલીટ કરવામાં આવશે.</string>
     <string name="ConversationActivity_delete">ડિલીટ કરો</string>
     <string name="ConversationActivity_delete_and_leave">ડિલીટ કરો અને છોડો</string>
-    <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">%1$s ને કોલ કરવા માટે, સિગ્નલને તમારા માઇક્રોફોનની ઍક્સેસની જરૂર છે</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">%1$s ને કોલ કરવા માટે, સિગ્નલને તમારા માઇક્રોફોનની ઍક્સેસની જરૂર છે</string> -->
 
 
     <string name="ConversationActivity_join">જોડાઓ</string>
@@ -1582,15 +1582,15 @@
     <!-- Chat log text for a group call that ended within the last 5 minutes with a placeholder for formatted time -->
     <string name="MessageRecord__the_video_call_has_ended_s">વીડિયો કૉલ સમાપ્ત થયો છે · %1$s</string>
     <!-- Chat log text for a group call that ended more than 5 minutes ago and was missed -->
-    <string name="MessageRecord__missed_video_call">મિસ્ડ વિડિયો કૉલ</string>
+    <string name="MessageRecord__missed_video_call">મિસ્ડ વીડિયો કૉલ</string>
     <!-- Chat log text for a group call that ended more than 5 minutes ago and was missed with a placeholder for formatted time -->
-    <string name="MessageRecord__missed_video_call_s">મિસ્ડ વિડિયો કૉલ · %1$s</string>
+    <string name="MessageRecord__missed_video_call_s">મિસ્ડ વીડિયો કૉલ · %1$s</string>
     <!-- Chat log text for a group call that ended that the local user did not start -->
-    <string name="MessageRecord__incoming_video_call">ઈનકમિંગ વિડિયો કૉલ</string>
+    <string name="MessageRecord__incoming_video_call">ઇનકમિંગ વીડિયો કૉલ</string>
     <!-- Chat log text for a group call that ended that the local user did not start with a placeholder for formatted time -->
     <string name="MessageRecord__incoming_video_call_s">ઇનકમિંગ વીડિયો કૉલ · %1$s</string>
     <!-- Chat log text for a group call that ended that the local user started -->
-    <string name="MessageRecord__outgoing_video_call">આઉટગોઈંગ વિડિયો કૉલ</string>
+    <string name="MessageRecord__outgoing_video_call">આઉટગોઈંગ વીડિયો કૉલ</string>
     <!-- Chat log text for a group call that ended that the local user started with a placeholder for formatted time -->
     <string name="MessageRecord__outgoing_video_call_s">આઉટગોઇંગ વીડિયો કૉલ · %1$s</string>
     <!-- Chat log text for an ongoing group call that the local user started -->
@@ -1606,14 +1606,14 @@
 
     <!-- Chat log text for an ongoing group call with more than two participants with placeholders for the first two joined users, a placeholder for the number of users in the call, and a placeholder for formatted time -->
     <plurals name="MessageRecord_s_s_and_d_others_are_in_the_call_s">
-        <item quantity="one">%1$s, %2$s, અને %3$d અન્યો આ કૉલમાં છે%4$s</item>
-        <item quantity="other">%1$s, %2$s, અને %3$d અન્યો આ ગ્રુપ કૉલમાં છે%4$s</item>
+        <item quantity="one">%1$s, %2$s અને અન્ય %3$d આ કૉલમાં છે · %4$s</item>
+        <item quantity="other">%1$s, %2$s અને અન્ય %3$d આ ગ્રૂપ કૉલમાં છે · %4$s</item>
     </plurals>
 
     <!-- Chat log text for an ongoing group call with more than two participants with placeholders for the first two joined users and a placeholder for the number of users in the call -->
     <plurals name="MessageRecord_s_s_and_d_others_are_in_the_call">
-        <item quantity="one">%1$s, %2$s, અને %3$d અન્યો આ કૉલમાં છે</item>
-        <item quantity="other">%1$s, %2$s, અને %3$d અન્યો આ ગ્રુપ કૉલમાં છે</item>
+        <item quantity="one">%1$s, %2$s અને અન્ય %3$d આ કૉલમાં છે</item>
+        <item quantity="other">%1$s, %2$s અને અન્ય %3$d આ ગ્રૂપ કૉલમાં છે</item>
     </plurals>
 
     <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->

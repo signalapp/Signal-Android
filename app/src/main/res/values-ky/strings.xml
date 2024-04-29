@@ -383,7 +383,7 @@
     <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Кошулуу өтүнүчүңүз топтун администраторуна жөнөтүлдү. Анын чечими тууралуу билдирме аласыз.</string>
     <string name="ConversationActivity_cancel_request">Өтүнүчтү жокко чыгаруу</string>
 
-    <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Аудио билдирүүлөрдү жөнөтүү үчүн Signal колдонмосуна микрофонуңузду жеткиликтүү кылышыңыз керек.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Аудио билдирүүлөрдү жөнөтүү үчүн Signal колдонмосуна микрофонуңузду жеткиликтүү кылышыңыз керек.</string> -->
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal колдонмосуна аудио билдирүүлөрдү жөнөтүү үчүн микрофонду колдонууга уруксат беришиңиз керек, бирок сиз андан баш тарткансыз. Колдонмонун параметрлерине кирүү үчүн \"Улантуу\" дегенди басып, \"Уруксаттар\" дегенди тандап, \"Микрофон\" дегенди иштетиңиз.</string>
     <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal колдонмосуна %1$s чалуу үчүн микрофон менен камераны колдонууга уруксат беришиңиз керек, бирок сиз андан баш тарткансыз. Колдонмонун параметрлерине кирүү үчүн \"Улантуу\" дегенди басып, \"Уруксаттар\" дегенди тандап, \"Микрофон\" жана \"Камера\" дегенди иштетиңиз.</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Сүрөт же видео тартуу үчүн Signal колдонмосуна камераны колдонууга уруксат беришиңиз керек.</string>
@@ -408,7 +408,7 @@
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Бул топтон чыгасыз жана ал бардык түзмөктөрүңүздөн өчүрүлөт.</string>
     <string name="ConversationActivity_delete">Өчүрүү</string>
     <string name="ConversationActivity_delete_and_leave">Өчүрүп, топтон чыгам</string>
-    <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">%1$s чалуу үчүн Signal колдонмосуна микрофонуңуз керек</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">%1$s чалуу үчүн Signal колдонмосуна микрофонуңуз керек</string> -->
 
 
     <string name="ConversationActivity_join">Кошулуу</string>

@@ -386,7 +386,7 @@
     <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Ombi lako la kujiunga limetumwa kwa msimamizi wa kikundi. Utaarifiwa atakapochukua hatua.</string>
     <string name="ConversationActivity_cancel_request">Ghairi Ombi</string>
 
-    <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Kutuma jumbe za sauti, ruhusu ufikiaji wa Signal kwenye kipaza sauti chako.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Kutuma jumbe za sauti, ruhusu ufikiaji wa Signal kwenye kipaza sauti chako.</string> -->
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal inahitaji idhini ya Kipaza sauti ili kutuma ujumbe wa sauti, lakini imekataliwa kabisa. Tafadhali endelea kwenye mipangilio ya programu, chagua \"Ruhusa\", na uwezeshe \"Kipaza sauti\".</string>
     <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal inahitaji ruhusa ya Kipaza sauti na Kamera ili kupiga%1$s , lakini zimekataliwa kabisa. Tafadhali endelea kwenye mipangilio ya programu, chagua \"Ruhusa\", na uwezeshe \"Kipaza sauti\" na \"Kamera\".</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Ili kupiga picha na video, ruhusu ufikiaji wa Signal kwa kamera.</string>
@@ -411,7 +411,7 @@
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Utaondoka kundi hili, na litafutwa kutoka kwa vifaa vyako vyote.</string>
     <string name="ConversationActivity_delete">Futa</string>
     <string name="ConversationActivity_delete_and_leave">Futa na uondoke</string>
-    <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Ili kumpigia %1$s simu, Signal inahitaji kufikia maikrofoni yako</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Ili kumpigia %1$s simu, Signal inahitaji kufikia maikrofoni yako</string> -->
 
 
     <string name="ConversationActivity_join">Jiunge</string>

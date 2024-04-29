@@ -383,7 +383,7 @@
     <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">已經話咗畀個谷嘅話事人知，您要求加入呢個谷。一有消息會通知您㗎喇。</string>
     <string name="ConversationActivity_cancel_request">取消請求</string>
 
-    <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">要傳送語音訊息嘅話，請允許 Signal 存取您部機個咪。</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">要傳送語音訊息嘅話，請允許 Signal 存取您部機個咪。</string> -->
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal 要攞「麥克風」權限，先可以傳送語音訊息，但權限已被永久拒絕。請到呢個 app 嘅應用程式設定，揀選「權限」，然後啟用「麥克風」。</string>
     <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal 要攞「麥克風」同「相機」權限，先可以同 %1$s 通話，但權限已被永久拒絕。請到呢個 app 嘅應用程式設定，揀選「權限」，然後啟用「麥克風」同「相機」。</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">要影相或者拍片嘅話，請允許 Signal 存取您部機嘅相機。</string>
@@ -408,7 +408,7 @@
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">你會退出呢個群組，而呢個群組亦都會喺你所有裝置上面刪除。</string>
     <string name="ConversationActivity_delete">刪除</string>
     <string name="ConversationActivity_delete_and_leave">刪除，然後退出</string>
-    <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">要同 %1$s 通話嘅話，Signal 需要存取您部機個咪</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">要同 %1$s 通話嘅話，Signal 需要存取您部機個咪</string> -->
 
 
     <string name="ConversationActivity_join">摻埋我</string>

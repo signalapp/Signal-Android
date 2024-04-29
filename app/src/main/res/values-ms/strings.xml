@@ -383,7 +383,7 @@
     <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Permintaan anda untuk join telah dihantar kepada admin group. Anda akan diberitahu sekiranya mereka telah mengambil tindakan.</string>
     <string name="ConversationActivity_cancel_request">Batalkan Permintaan</string>
 
-    <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Untuk menghantar mesej audio, benarkan Signal untuk mengakses mikrofon anda.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Untuk menghantar mesej audio, benarkan Signal untuk mengakses mikrofon anda.</string> -->
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal memerlukan kebenaran Mikrofon untuk menghantar mesej audio, tetapi telah ditolak secara kekal. Sila terus ke menu tetapan aplikasi, pilih \"Kebenaran\", dan dayakan \"Mikrofon\".</string>
     <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal memerlukan kebenaran Mikrofon dan Kamera untuk memanggil %1$s, tetapi telah ditolak secara kekal. Sila terus ke menu tetapan aplikasi, pilih \"Kebenaran\", dan dayakan \"Mikrofon\" dan \"Kamera\".</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Untuk menangkap foto dan video, benarkan Signal untuk mengakses kamera anda.</string>
@@ -408,7 +408,7 @@
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Anda akan meninggalkan kumpulan ini, dan ia akan dipadam daripada semua peranti anda.</string>
     <string name="ConversationActivity_delete">Padam</string>
     <string name="ConversationActivity_delete_and_leave">Padam dan tinggalkan</string>
-    <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Untuk memanggil %1$s, Signal memerlukan akses kepada mikrofon anda</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Untuk memanggil %1$s, Signal memerlukan akses kepada mikrofon anda</string> -->
 
 
     <string name="ConversationActivity_join">Sertai</string>

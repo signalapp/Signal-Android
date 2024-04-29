@@ -392,13 +392,13 @@
     <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Ваш запит на приєднання надіслано до адміністраторів групи. Ви отримаєте повідомлення, коли вони відреагують.</string>
     <string name="ConversationActivity_cancel_request">Відкликати запит</string>
 
-    <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Щоб надсилати аудіоповідомлення, надайте Signal доступ до мікрофона.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Щоб надсилати аудіоповідомлення, надайте Signal доступ до мікрофона.</string> -->
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal потребує дозволу «Мікрофон», щоб відправляти аудіоповідомлення, але наразі доступу немає. Будь ласка, перейдіть до налаштувань застосунку, оберіть «Дозволи» та увімкніть «Мікрофон».</string>
     <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal потребує дозволів «Мікрофон» та «Камера», щоб подзвонити до %1$s, але наразі доступу немає. Будь ласка, перейдіть до налаштувань застосунку, оберіть «Дозволи» та увімкніть «Мікрофон» та «Камера».</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Щоб знімати фото і відео, надайте Signal доступ до камери.</string>
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal потребує дозволу \"Камера\", щоб фотографувати або знімати відео, але наразі доступу немає. Будь ласка, перейдіть до налаштувань додатку, оберіть \"Дозволи\", та увімкніть \"Камера\".</string>
     <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal потребує дозволу «Камера», щоб фотографувати або фільмувати.</string>
-    <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Надайте доступ до мікрофону, щоб записувати відео зі звуком.</string>
+    <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Надайте доступ до мікрофона, щоб записувати відео зі звуком.</string>
     <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal потрібен дозвіл на доступ до мікрофона, щоб знімати відео, але воно було вами відхилено. Будь ласка, натисніть «Продовжити», щоб перейти в налаштування програми, відкрийте \"Дозволи\" і включіть \"Мікрофон\" та \"Камера\".</string>
     <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal потребує доступу до мікрофона для запису відео.</string>
 
@@ -417,7 +417,7 @@
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Ви покинете цю групу, та її буде видалено з усіх ваших пристроїв.</string>
     <string name="ConversationActivity_delete">Видалити</string>
     <string name="ConversationActivity_delete_and_leave">Видалити і покинути</string>
-    <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Щоб зателефонувати %1$s, Signal має отримати доступ до мікрофона</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Щоб зателефонувати %1$s, Signal має отримати доступ до мікрофона</string> -->
 
 
     <string name="ConversationActivity_join">Приєднатись</string>
@@ -1002,7 +1002,7 @@
     <string name="LeaveGroupDialog_choose_admin">Вибрати адміністратора</string>
 
     <!-- LinkPreviewView -->
-    <string name="LinkPreviewView_no_link_preview_available">Немає попереднього перегляду посилання</string>
+    <string name="LinkPreviewView_no_link_preview_available">Попередній вигляд вебсторінки недоступний</string>
     <string name="LinkPreviewView_this_group_link_is_not_active">Посилання групи неактивне</string>
     <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
     <!-- Description for Call Link url previews -->
@@ -1451,11 +1451,11 @@
     <string name="MessageRecord_call_message_with_date">%1$s · %2$s</string>
     <string name="MessageRecord_s_updated_group">%1$s оновив групу.</string>
     <string name="MessageRecord_s_joined_signal">%1$s приєднався до Signal!</string>
-    <string name="MessageRecord_you_disabled_disappearing_messages">Ви вимкнули зникаючі повідомлення</string>
-    <string name="MessageRecord_s_disabled_disappearing_messages">%1$s вимкнув зникаючі повідомлення.</string>
-    <string name="MessageRecord_you_set_disappearing_message_time_to_s">Ви встановлюєте час зникнення повідомлення на %1$s.</string>
-    <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$sвстановлює час зникання повідомлень на %2$s.</string>
-    <string name="MessageRecord_disappearing_message_time_set_to_s">Таймер часу зникнення повідомлення було встановлено на %1$s.</string>
+    <string name="MessageRecord_you_disabled_disappearing_messages">Ви вимкнули тимчасові повідомлення.</string>
+    <string name="MessageRecord_s_disabled_disappearing_messages">Користувач %1$s вимкнув тимчасові повідомлення.</string>
+    <string name="MessageRecord_you_set_disappearing_message_time_to_s">Ви встановили таймер тимчасових повідомлень на %1$s.</string>
+    <string name="MessageRecord_s_set_disappearing_message_time_to_s">Користувач %1$s встановив таймер тимчасових повідомлень на %2$s.</string>
+    <string name="MessageRecord_disappearing_message_time_set_to_s">Таймер тимчасових повідомлень встановлено на %1$s.</string>
     <string name="MessageRecord_this_group_was_updated_to_a_new_group">Цю групу оновлено до Нової групи.</string>
     <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Вас не вдалось додати до Нової групи, а тому було запрошено приєднатись.</string>
     <string name="MessageRecord_chat_session_refreshed">Сесію чату оновлено</string>
@@ -2421,8 +2421,8 @@
     <!-- Displayed in the notification when the recipient can accept payments -->
     <string name="ThreadRecord_can_accept_payments">%1$s тепер може приймати платежі</string>
     <string name="ThreadRecord_s_is_on_signal">%1$s приєднався до Signal!</string>
-    <string name="ThreadRecord_disappearing_messages_disabled">Зникаючі повідомлення заборонені</string>
-    <string name="ThreadRecord_disappearing_message_time_updated_to_s">Час зникнення повідомлень встановлено на %1$s</string>
+    <string name="ThreadRecord_disappearing_messages_disabled">Тимчасові повідомлення вимкнено</string>
+    <string name="ThreadRecord_disappearing_message_time_updated_to_s">Таймер тимчасових повідомлень встановлено на %1$s</string>
     <string name="ThreadRecord_safety_number_changed">Код безпеки змінився</string>
     <string name="ThreadRecord_your_safety_number_with_s_has_changed">Код безпеки для чату з %1$s змінився.</string>
     <string name="ThreadRecord_you_marked_verified">Ви перевірили</string>
@@ -2919,7 +2919,7 @@
     <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Спільних груп немає. Переглядайте запити уважно.</string>
     <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">У цій групі немає контактів. Переглядайте запити уважно.</string>
     <string name="ConversationUpdateItem_view">Детальніше</string>
-    <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Час зникання повідомлення буде встановлено на %1$s, коли ви його відправите їм.</string>
+    <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Таймер цього тимчасового повідомлення буде встановлено на %1$s, коли ви його відправите.</string>
     <!-- Update item button text to show to boost a feature -->
     <string name="ConversationUpdateItem_donate">Задонатити</string>
     <!-- Update item button text to send payment -->
@@ -3321,8 +3321,8 @@
     <string name="preferences__pref_keep_muted_chats_archived">Залишати стишені чати заархівованими</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Стишені заархівовані чати залишатимуться заархівованими після отримання нового повідомлення.</string>
-    <string name="preferences__generate_link_previews">Генерувати посилання попереднього перегляду</string>
-    <string name="preferences__retrieve_link_previews_from_websites_for_messages">Для надісланих повідомлень отримувати дані попереднього перегляду посилань напряму з веб-сайтів.</string>
+    <string name="preferences__generate_link_previews">Генерувати попередній вигляд вебсторінок</string>
+    <string name="preferences__retrieve_link_previews_from_websites_for_messages">Показувати попередній вигляд вебсторінок за посиланнями, які ви надсилаєте в повідомленнях.</string>
     <string name="preferences__change_passphrase">Змінити фразу-пароль</string>
     <string name="preferences__change_your_passphrase">Змінить вашу фразу-пароль</string>
     <string name="preferences__enable_passphrase">Увімкнути фразу-пароль</string>
@@ -3794,7 +3794,7 @@
     <!-- Button to save a message attachment (image, file etc.) -->
 
     <!-- conversation_expiring_off -->
-    <string name="conversation_expiring_off__disappearing_messages">Зникнення повідомлень</string>
+    <string name="conversation_expiring_off__disappearing_messages">Тимчасові повідомлення</string>
 
     <!-- conversation_selection -->
     <!-- Button to view detailed information for a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
@@ -4813,13 +4813,13 @@
     <string name="PrivacySettingsFragment__blocked">Заблоковані</string>
     <string name="PrivacySettingsFragment__d_contacts">%1$d контактів</string>
     <string name="PrivacySettingsFragment__messaging">Листування</string>
-    <string name="PrivacySettingsFragment__disappearing_messages">Зникаючі повідомлення</string>
+    <string name="PrivacySettingsFragment__disappearing_messages">Тимчасові повідомлення</string>
     <string name="PrivacySettingsFragment__app_security">Безпека програми</string>
     <!-- This refers to the multi-tasking overview (recent apps) from the Android operating system.-->
     <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Блокувати знімки екрану в списку недавніх і в застосунку</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Повідомлення і виклики в Signal, завжди ретранслювати виклики, захищений відправник</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">Таймер за умовчанням для нових чатів</string>
-    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Встановіть таймер зникнення повідомлень за замовчуванням для усіх нових чатів, які ви створите.</string>
+    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Установіть стандартний таймер для тимчасових повідомлень у всіх нових чатах, які ви починаєте.</string>
     <!-- Summary for stories preference to launch into story privacy settings -->
     <string name="PrivacySettingsFragment__payment_lock_require_lock">Увімкніть розблокування екрана Android чи розблокування відбитком пальця для переказу коштів</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
@@ -4847,8 +4847,8 @@
     <string name="ExpireTimerSettingsFragment__1_hour">1 година</string>
     <string name="ExpireTimerSettingsFragment__5_minutes">5 хвилин</string>
     <string name="ExpireTimerSettingsFragment__30_seconds">30 секунд</string>
-    <string name="ExpireTimerSettingsFragment__custom_time">Власний час</string>
-    <string name="ExpireTimerSettingsFragment__set">Задати</string>
+    <string name="ExpireTimerSettingsFragment__custom_time">Свій час</string>
+    <string name="ExpireTimerSettingsFragment__set">Установити</string>
     <string name="ExpireTimerSettingsFragment__save">Зберегти</string>
 
     <string name="CustomExpireTimerSelectorView__seconds">секунди</string>
@@ -4987,7 +4987,7 @@
     <string name="ConversationSettingsFragment__muted">Сповіщення вимкнені</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__search">Пошук</string>
-    <string name="ConversationSettingsFragment__disappearing_messages">Зникаючі повідомлення</string>
+    <string name="ConversationSettingsFragment__disappearing_messages">Тимчасові повідомлення</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">Звуки &amp; сповіщення</string>
   <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
     <string name="ConversationSettingsFragment__contact_details">Дані з контактів телефона</string>
@@ -6603,7 +6603,7 @@
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for minute, e.g., 24m -->
     <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">хв</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label for button that will apply the setting -->
-    <string name="TimeDurationPickerDialog_positive_button">Задати</string>
+    <string name="TimeDurationPickerDialog_positive_button">Установити</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
     <string name="TimeDurationPickerDialog_minimum_duration_warning">Мінімальний час до застосування блокування екрана становить 1 хвилину.</string>
 

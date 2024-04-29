@@ -96,7 +96,7 @@
     <string name="AttachmentManager_signal_to_send_location">To send your location:</string>
     <!-- Alert dialog description asking for location permission -->
     <string name="AttachmentManager_signal_allow_signal_access_location">Allow Signal access to send your location.</string>
-    <!-- Toast text explaining Signal's need for location access -->
+    <!-- Toast text explaining Signal\'s need for location access -->
     <string name="AttachmentManager_signal_needs_location_access">Signal needs location access to send your location.</string>
 
     <!-- Alert dialog title to show the recipient has not activated payments -->
@@ -402,7 +402,7 @@
     <string name="ConversationActivity_signal_to_send_audio_messages">To send audio messages:</string>
     <!-- Alert dialog description asking for microphone permission in order to send voice messages -->
     <string name="ConversationActivity_to_send_voice_messages_allow_signal_access_to_your_microphone">To send voice messages, allow Signal access to your microphone.</string>
-    <!-- Toast text explaining Signal's need for microphone access -->
+    <!-- Toast text explaining Signal\'s need for microphone access -->
     <string name="ConversationActivity_signal_needs_microphone_access_voice_message">Signal needs microphone access to record a voice message.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal requires the Microphone permission in order to send audio messages, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Microphone\".</string>
 
@@ -434,7 +434,7 @@
     <string name="ConversationActivity__to_start_call">To start a call:</string>
     <!-- Alert dialog description asking for microphone permission in order to start a voice call -->
     <string name="ConversationActivity__to_call_signal_needs_access_to_your_microphone">To start a call, allow Signal access to your microphone.</string>
-    <!-- Toast text explaining Signal's need for microphone access for a voice call -->
+    <!-- Toast text explaining Signal\'s need for microphone access for a voice call -->
     <string name="ConversationActivity_signal_needs_microphone_access_voice_call">Signal needs microphone access to start a call.</string>
 
 
@@ -6792,17 +6792,17 @@
     <string name="BackupProgressService_title_downloading">Downloading backup data…</string>
 
     <!-- BackupsTypeSettingsFragment -->
-    <!-- Displayed as the user's payment method as a label in a preference row -->
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__credit_or_debit_card">Credit or debit card</string>
-    <!-- Displayed as the user's payment method as a label in a preference row -->
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__iDEAL">iDEAL</string>
-    <!-- Displayed as the user's payment method as a label in a preference row -->
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__google_pay">Google Pay</string>
-    <!-- Displayed as the user's payment method as a label in a preference row -->
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__bank_transfer">Bank transfer</string>
-    <!-- Displayed as the user's payment method as a label in a preference row -->
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__paypal">PayPal</string>
-    <!-- Displayed as the user's payment method as a label in a preference row -->
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__unknown">Unknown</string>
 
 

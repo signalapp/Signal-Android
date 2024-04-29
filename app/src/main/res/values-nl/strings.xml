@@ -73,7 +73,7 @@
     <string name="DraftDatabase_Draft_video_snippet">(video)</string>
     <string name="DraftDatabase_Draft_location_snippet">(locatie)</string>
     <string name="DraftDatabase_Draft_quote_snippet">(citaat)</string>
-    <string name="DraftDatabase_Draft_voice_note">(Audiobericht)</string>
+    <string name="DraftDatabase_Draft_voice_note">(Spraakbericht)</string>
 
     <!-- AttachmentKeyboard -->
     <string name="AttachmentKeyboard_gallery">Galerij</string>
@@ -386,8 +386,8 @@
     <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Je verzoek om lid te worden van de groep is doorgestuurd naar een beheerder. Je krijgt een melding zodra deze een besluit heeft genomen.</string>
     <string name="ConversationActivity_cancel_request">Verzoek annuleren</string>
 
-    <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Om audioberichten op te nemen, moet je Signal toegang geven tot je microfoon.</string>
-    <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal heeft toegang tot de microfoon nodig om audioberichten te kunnen opnemen, maar deze is pertinent geweigerd. Ga naar de instellingen voor deze app, tik op ‘Machtigingen’ en schakel ‘Microfoon’ in.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Om spraakberichten op te nemen, moet je Signal toegang geven tot je microfoon.</string> -->
+    <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal heeft toegang tot de microfoon nodig om spraakberichten te kunnen opnemen, maar deze is pertinent geweigerd. Ga naar de instellingen voor deze app, tik op ‘Machtigingen’ en schakel ‘Microfoon’ in.</string>
     <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal heeft toegang tot de microfoon en de camera nodig om %1$s te kunnen bellen, maar deze is pertinent geweigerd. Ga naar de instellingen voor deze app, tik op ‘Machtigingen’ en schakel ‘Microfoon’ en ‘Camera’ in.</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Geef Signal toegang tot de camera om foto\'s en video\'s te maken.</string>
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal heeft toegang tot de camera nodig om foto’s en video’s te kunnen opnemen, maar deze is pertinent geweigerd. Ga naar de instellingen voor deze app, tik op ‘Machtigingen’ en schakel ‘Camera’ in.</string>
@@ -411,7 +411,7 @@
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Je zult deze groep verlaten en het gesprek zal op al je eigen apparaten worden verwijderd.</string>
     <string name="ConversationActivity_delete">Verwijderen</string>
     <string name="ConversationActivity_delete_and_leave">Verwijderen en verlaten</string>
-    <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Signal heeft toegang tot je microfoon nodig om %1$s te bellen.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Signal heeft toegang tot je microfoon nodig om %1$s te bellen.</string> -->
 
 
     <string name="ConversationActivity_join">Deelnemen</string>
@@ -1336,7 +1336,7 @@
     <string name="MediaRepository__camera">Camera</string>
 
     <!-- MessageRecord -->
-    <string name="MessageRecord_unknown">Gebruiker niet bekend</string>
+    <string name="MessageRecord_unknown">Onbekend</string>
     <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Dit bericht gebruikt verouderde versleuteling van een Signal-versie die niet langer wordt ondersteund. Vraag de afzender om bij te werken naar de meest recente versie en het bericht opnieuw te verzenden.</string>
     <string name="MessageRecord_left_group">Je hebt de groep verlaten.</string>
     <string name="MessageRecord_you_updated_group">Je hebt de groep aangepast.</string>
@@ -2274,7 +2274,7 @@
     <string name="ThreadRecord_hidden_recipient">Je hebt deze persoon verborgen. Als je hem of haar opnieuw een bericht stuurt, wordt diegene weer aan je lijst toegevoegd.</string>
     <string name="ThreadRecord_photo">Afbeelding</string>
     <string name="ThreadRecord_gif">GIF</string>
-    <string name="ThreadRecord_voice_message">Audiobericht</string>
+    <string name="ThreadRecord_voice_message">Spraakbericht</string>
     <string name="ThreadRecord_file">Bestand</string>
     <string name="ThreadRecord_video">Video</string>
     <string name="ThreadRecord_chat_session_refreshed">Chatsessie vernieuwd</string>
@@ -2500,7 +2500,7 @@
     <string name="NotificationChannel_other">Anders</string>
     <string name="NotificationChannel_group_chats">Chats</string>
     <string name="NotificationChannel_missing_display_name">Onbekend</string>
-    <string name="NotificationChannel_voice_notes">Audioberichten</string>
+    <string name="NotificationChannel_voice_notes">Spraakberichten</string>
     <string name="NotificationChannel_contact_joined_signal">Nieuw persoon bereikbaar via Signal</string>
     <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Geen ‘activiteit’ beschikbaar om instellingen voor meldingskanalen mee te openen.</string>
     <!-- Notification channel name for showing persistent background connection on devices without push notifications -->
@@ -2888,7 +2888,7 @@
     </plurals>
 
     <!-- giphy_activity -->
-    <string name="giphy_activity_toolbar__search_gifs">GIFs zoeken</string>
+    <string name="giphy_activity_toolbar__search_gifs">GIF\'s zoeken</string>
 
     <!-- giphy_fragment -->
     <string name="giphy_fragment__nothing_found">Niets gevonden</string>
@@ -3424,7 +3424,7 @@
     <!-- Contacts permission row title -->
     <string name="GrantPermissionsFragment__contacts">Contacten</string>
     <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">Vind mensen die je kent. Je contacten zijn versleuteld en niet zichtbaar voor de Signal-service.</string>
+    <string name="GrantPermissionsFragment__find_people_you_know">Vind mensen die je kent. Je contacten zijn versleuteld en niet zichtbaar voor de Signal-dienst.</string>
     <!-- Phone calls permission row title -->
     <string name="GrantPermissionsFragment__phone_calls">Telefoonoproepen</string>
     <!-- Phone calls permission row description -->
@@ -3749,7 +3749,7 @@
     <string name="CreateKbsPinFragment__create_a_new_pin">Nieuwe pincode aanmaken</string>
     <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Je kunt je pincode nu nog wijzigen omdat je telefoonnummer nog voor dit apparaat geregistreerd staat. Wanneer je telefoonnummer niet meer geregistreerd staat voor dit apparaat, dan kun je de pincode niet langer wijzigen en ook niet teruglezen. Het is daarom belangrijk dat je je pincode onthoudt.</string>
     <string name="CreateKbsPinFragment__create_your_pin">Pincode aanmaken</string>
-    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">Pincodes kunnen je helpen je account te herstellen en je informatie versleuteld te houden met Signal. </string>
+    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">Pincodes kunnen je helpen je account te herstellen en je informatie versleuteld te houden op Signal. </string>
     <string name="CreateKbsPinFragment__choose_a_stronger_pin">Verzin een sterkere pincode</string>
 
     <!-- ConfirmKbsPinFragment -->
@@ -4166,10 +4166,10 @@
     <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">De link is momenteel niet actief</string>
 
     <!-- VoiceNotePlaybackPreparer -->
-    <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Het afspelen van het audiobericht is mislukt</string>
+    <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Het afspelen van het spraakbericht is mislukt</string>
 
     <!-- VoiceNoteMediaDescriptionCompatFactory -->
-    <string name="VoiceNoteMediaItemFactory__voice_message">Audiobericht · %1$s</string>
+    <string name="VoiceNoteMediaItemFactory__voice_message">Spraakbericht · %1$s</string>
     <!-- This is a title in a banner describing the conversation sender to receiver placeholders of the currently playing voice memo. -->
     <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s naar %2$s</string>
 
@@ -4726,7 +4726,7 @@
     <string name="KeyboardPagerFragment_open_gif_search">GIF zoeken</string>
     <string name="KeyboardPagerFragment_stickers">Stickers</string>
     <string name="KeyboardPagerFragment_backspace">Backspace</string>
-    <string name="KeyboardPagerFragment_gifs">GIFs</string>
+    <string name="KeyboardPagerFragment_gifs">GIF\'s</string>
     <string name="KeyboardPagerFragment_search_emoji">Emoji zoeken</string>
     <string name="KeyboardPagerfragment_back_to_emoji">Terug naar emoji-overzicht</string>
     <string name="KeyboardPagerfragment_clear_search_entry">Zoekveld leegmaken</string>
@@ -4858,11 +4858,11 @@
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
-    <string name="VoiceNotePlayerView__stop_voice_message">Audiobericht afspelen stoppen</string>
+    <string name="VoiceNotePlayerView__stop_voice_message">Spraakbericht afspelen stoppen</string>
     <string name="VoiceNotePlayerView__change_voice_message_speed">Audioafspeelsnelheid aanpassen</string>
-    <string name="VoiceNotePlayerView__pause_voice_message">Audiobericht pauzeren</string>
-    <string name="VoiceNotePlayerView__play_voice_message">Audiobericht afspelen</string>
-    <string name="VoiceNotePlayerView__navigate_to_voice_message">Naar audiobericht navigeren</string>
+    <string name="VoiceNotePlayerView__pause_voice_message">Spraakbericht pauzeren</string>
+    <string name="VoiceNotePlayerView__play_voice_message">Spraakbericht afspelen</string>
+    <string name="VoiceNotePlayerView__navigate_to_voice_message">Naar spraakbericht navigeren</string>
 
 
     <!-- AvatarPickerFragment -->

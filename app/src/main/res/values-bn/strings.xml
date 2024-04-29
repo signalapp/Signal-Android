@@ -386,7 +386,7 @@
     <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">আপনার গ্রুপে ঢোকার অনুরোধ গ্রুপের অ্যাডমিনদের কাছে পাঠানো হয়েছে। তারা কোনো পদক্ষেপ নিলে আপনাকে জানানো হবে।</string>
     <string name="ConversationActivity_cancel_request">অনুরোধ বাতিল করুন</string>
 
-    <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">অডিও বার্তা পাঠাতে Signal কে আপনার মাইক্রোফোন ব্যাবহারের অনুমতি দিন।</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">অডিও বার্তা পাঠাতে Signal কে আপনার মাইক্রোফোন ব্যাবহারের অনুমতি দিন।</string> -->
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">অডিও বার্তাগুলি প্রেরণের জন্য Signal এর মাইক্রোফোনের অনুমতি প্রয়োজন, কিন্তু এর উপর স্থায়ীভাবে নিষেধাজ্ঞা আরোপ করা হয়েছে। দয়া করে অ্যাপ্লিকেশন সেটিংসে যান, \"অনুমতিগুলি\" নির্বাচন করুন এবং \"মাইক্রোফোন\" সক্ষম করুন|</string>
     <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">%1$s কে ফোন করতে Signal এর মাইক্রোফোন এবং ক্যামেরা ব্যাবহারের অনুমতির প্রয়োজন, কিন্তু এর উপর স্থায়ীভাবে নিষেধাজ্ঞা আরোপ করা হয়েছে। দয়া করে এপ সেটিংসে যান, \"অনুমতি\" নির্বাচন করুন এবং \"মাইক্রোফোন\" ও \"ক্যামেরা\" এর অনুমতি সক্ষম করুন।</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">ছবি ও ভিডিও তুলতে Signal কে ক্যামেরা ব্যাবহারের অনুমতি দিন।</string>
@@ -411,7 +411,7 @@
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">আপনি এই গ্রুপ ছেড়ে চলে যাবেন এবং এটি আপনার সকল ডিভাইস থেকে মুছে ফেলা হবে।</string>
     <string name="ConversationActivity_delete">মুছে ফেলুন</string>
     <string name="ConversationActivity_delete_and_leave">মুছুন এবং ছেড়ে যান</string>
-    <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">%1$s কে ফোন করতে Signal কে আপনার মাইক্রোফোন ব্যাবহার করতে হবে।</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">%1$s কে ফোন করতে Signal কে আপনার মাইক্রোফোন ব্যাবহার করতে হবে।</string> -->
 
 
     <string name="ConversationActivity_join">যোগদান করুন</string>

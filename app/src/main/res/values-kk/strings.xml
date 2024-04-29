@@ -386,7 +386,7 @@
     <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Топқа қосылу туралы өтінішіңіз топ әкімшісіне жіберілді. Олар шара қолданғанда, сізге хабарландыру келеді.</string>
     <string name="ConversationActivity_cancel_request">Өтініштен бас тарту</string>
 
-    <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Аудио хаттар жіберу үшін Signal қолданбасына микрофонды пайдалануына рұқсат етіңіз.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Аудио хаттар жіберу үшін Signal қолданбасына микрофонды пайдалануына рұқсат етіңіз.</string> -->
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Аудио хаттар жіберу үшін Signal-ға микрофон ашық болу керек, бірақ параметрлерде микрофонды пайдалануға рұқсат берілмеген. Қолданба параметрлеріне кіріп, \"Рұқсаттар\" бөлімін таңдаңыз да, \"Микрофон\" параметрін қосыңыз.</string>
     <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">%1$s қоңырау шалу үшін Signal қолданбасына микрофон мен камераны пайдалануға рұқсат керек, бірақ параметрлерде оларды пайдалануға рұқсат берілмеген. Қолданба параметрлеріне кіріп, \"Рұқсаттар\" бөлімін таңдаңыз да, \"Микрофон\" және \"Камера\" параметрлерін қосыңыз.</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Фотосуреттер мен видео түсіру үшін Signal қолданбасына камера ашық болу керек.</string>
@@ -411,7 +411,7 @@
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Сіз бұл топтан шығып кетесіз және ол сіздің барлық құрылғыларыңыздан жойылады.</string>
     <string name="ConversationActivity_delete">Жою</string>
     <string name="ConversationActivity_delete_and_leave">Жойып, шығып кету</string>
-    <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">%1$s қоңырау шалу үшін Signal қолданбасына микрофонды пайдалануға рұқсат керек</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">%1$s қоңырау шалу үшін Signal қолданбасына микрофонды пайдалануға рұқсат керек</string> -->
 
 
     <string name="ConversationActivity_join">Қосылу</string>

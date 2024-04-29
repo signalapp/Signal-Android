@@ -383,7 +383,7 @@
     <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Yêu cầu tham gia nhóm của bạn đã được gửi tới quản trị viên nhóm. Bạn sẽ được thông báo khi họ đưa ra quyết định.</string>
     <string name="ConversationActivity_cancel_request">Hủy yêu cầu</string>
 
-    <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Để gửi tin nhắn âm thanh, hãy cho phép Signal truy cập micro điện thoại.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Để gửi tin nhắn âm thanh, hãy cho phép Signal truy cập micro điện thoại.</string> -->
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal cần quyền truy cập Micro để gửi tin nhắn âm thanh, nhưng đã bị từ chối vĩnh viễn. Vui lòng mở cài đặt ứng dụng, chọn \"Quyền\" và bật \"Micro\".</string>
     <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal cần quyền truy cập Micro và Máy ảnh để gọi %1$s, nhưng đã bị từ chối vĩnh viễn. Vui lòng mở cài đặt ứng dụng, chọn \"Quyền\" và bật \"Micro\" và \"Máy ảnh\"</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Để chụp ảnh, hãy cho phép Signal truy cập máy ảnh.</string>
@@ -408,7 +408,7 @@
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Bạn sẽ rời nhóm, và lịch sử trò chuyện sẽ bị xóa trên tất cả các thiết bị của bạn.</string>
     <string name="ConversationActivity_delete">Xóa</string>
     <string name="ConversationActivity_delete_and_leave">Xóa và rời khỏi</string>
-    <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Để gọi %1$s, Signal cần quyền truy cập micro của bạn</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Để gọi %1$s, Signal cần quyền truy cập micro của bạn</string> -->
 
 
     <string name="ConversationActivity_join">Tham gia</string>

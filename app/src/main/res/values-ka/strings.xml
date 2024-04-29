@@ -386,7 +386,7 @@
     <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">შენი გაწევრიანების მოთხოვნა იქნა გაგზავნილი ჯგუფის ადმინთან. შენ მიიღებ შეტყობინებას, როდესაც ისინი რამეს მოიმოქმედებენ.</string>
     <string name="ConversationActivity_cancel_request">მოთხოვნის გაუქმება</string>
 
-    <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">აუდიო შეტყობინებების გასაგზავნად, მიეცი Signal-ს წვდომა შენს მიკროფონზე.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">აუდიო შეტყობინებების გასაგზავნად, მიეცი Signal-ს წვდომა შენს მიკროფონზე.</string> -->
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">აუდიო შეტყობინებების გადასაგზავნად Signal-ს მიკროფონზე წვდომის ნებართვა სჭირდება, მაგრამ ის სამუდამოდ იქნა უარყოფილი. გთხოვთ, გადახვიდე აპის პარამეტრების მენიუში, აირჩიო \"უფლებები\" და ჩართო \"მიკროფონი\".</string>
     <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">%1$s-თან დასარეკად Signal-ს მიკროფონსა და კამერაზე წვდომის ნებართვა სჭირდება, მაგრამ ის სამუდამოდ იქნა უარყოფილი. გთხოვთ, გადახვიდე აპის პარამეტრების მენიუში, აირჩიო \"უფლებები\" და ჩართოთ \"მიკროფონი\" და \"კამერა\".</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">სურათების და ვიდეოების გადასაღებად, მიეცი Signal-ს წვდომა კამერაზე.</string>
@@ -411,7 +411,7 @@
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">ამ ჯგუფს დატოვებ და ის შენი ყველა მოწყობილობიდან წაიშლება.</string>
     <string name="ConversationActivity_delete">წაშლა</string>
     <string name="ConversationActivity_delete_and_leave">წაშლა და დატოვება</string>
-    <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">%1$s-თან დასარეკად, Signal-ს შენს მიკროფონზე წვდომა სჭირდება</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">%1$s-თან დასარეკად, Signal-ს შენს მიკროფონზე წვდომა სჭირდება</string> -->
 
 
     <string name="ConversationActivity_join">შემოუერთდი</string>

@@ -386,7 +386,7 @@
     <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Jou aansluitingsversoek is na die groepadmin gestuur. Jy sal laat weet word wanneer hulle aksie geneem het.</string>
     <string name="ConversationActivity_cancel_request">Kanselleer versoek</string>
 
-    <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Om klankboodskappe te stuur, laat Signal toegang tot jou mikrofoon toe.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Om klankboodskappe te stuur, laat Signal toegang tot jou mikrofoon toe.</string> -->
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal benodig toestemming vir die Mikrofoon om klankboodskappe te stuur, maar dit is permanent geweier. Gaan asseblief na die programinstellings, kies \"Toestemmings\" en aktiveer \"Mikrofoon\".</string>
     <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal benodig toestemming vir die Mikrofoon en Kamera om %1$s te kan bel, maar dit is permanent geweier. Gaan asseblief na die programinstellings, kies \"Toestemmings\" en skakel \"Mikrofoon\" en \"Kamera\" aan.</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Laat Signal toegang tot die kamera om foto\'s en video op te neem.</string>
@@ -411,7 +411,7 @@
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Jy sal hierdie groep verlaat, en dit sal van al jou toestelle geskrap word.</string>
     <string name="ConversationActivity_delete">Skrap</string>
     <string name="ConversationActivity_delete_and_leave">Skrap en verlaat</string>
-    <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Om %1$s te skakel, het Signal toegang tot jou mikrofoon nodig.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Om %1$s te skakel, het Signal toegang tot jou mikrofoon nodig.</string> -->
 
 
     <string name="ConversationActivity_join">Sluit aan</string>
