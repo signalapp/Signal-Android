@@ -917,9 +917,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
 
   @Override
   public void onReactions(@NonNull GroupCall groupCall, List<Reaction> reactions) {
-    if (FeatureFlags.groupCallReactions()) {
-      processStateless(s -> serviceState.getActionProcessor().handleGroupCallReaction(serviceState, s, reactions));
-    }
+    processStateless(s -> serviceState.getActionProcessor().handleGroupCallReaction(serviceState, s, reactions));
   }
 
   @Override

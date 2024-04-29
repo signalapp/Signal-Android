@@ -159,7 +159,7 @@ public final class WebRtcControls {
   }
 
   public boolean displayOverflow() {
-    return (FeatureFlags.groupCallReactions() || FeatureFlags.groupCallRaiseHand()) && isAtLeastOutgoing() && hasAtLeastOneRemote && isGroupCall();
+    return isAtLeastOutgoing() && hasAtLeastOneRemote && isGroupCall();
   }
 
   public boolean displayMuteAudio() {

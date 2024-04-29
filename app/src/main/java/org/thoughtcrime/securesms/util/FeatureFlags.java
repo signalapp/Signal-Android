@@ -113,7 +113,6 @@ public final class FeatureFlags {
   private static final String IDEAL_DONATIONS                   = "android.ideal.donations.5";
   public static final  String IDEAL_ENABLED_REGIONS             = "global.donations.idealEnabledRegions";
   public static final  String SEPA_ENABLED_REGIONS              = "global.donations.sepaEnabledRegions";
-  private static final String CALLING_REACTIONS                 = "android.calling.reactions";
   private static final String NOTIFICATION_THUMBNAIL_BLOCKLIST  = "android.notificationThumbnailProductBlocklist";
   private static final String CALLING_RAISE_HAND                = "android.calling.raiseHand";
   private static final String USE_ACTIVE_CALL_MANAGER           = "android.calling.useActiveCallManager.5";
@@ -197,7 +196,6 @@ public final class FeatureFlags {
       IDEAL_DONATIONS,
       IDEAL_ENABLED_REGIONS,
       SEPA_ENABLED_REGIONS,
-      CALLING_REACTIONS,
       NOTIFICATION_THUMBNAIL_BLOCKLIST,
       CALLING_RAISE_HAND,
       USE_ACTIVE_CALL_MANAGER,
@@ -278,7 +276,6 @@ public final class FeatureFlags {
       PROMPT_FOR_NOTIFICATION_CONFIG,
       PROMPT_BATTERY_SAVER,
       CRASH_PROMPT_CONFIG,
-      CALLING_REACTIONS,
       NOTIFICATION_THUMBNAIL_BLOCKLIST,
       CALLING_RAISE_HAND,
       VIDEO_RECORD_1X_ZOOM,
@@ -677,13 +674,6 @@ public final class FeatureFlags {
 
   public static String sepaEnabledRegions() {
     return getString(SEPA_ENABLED_REGIONS, "");
-  }
-
-  /**
-   * Whether or not group call reactions are enabled.
-   */
-  public static boolean groupCallReactions() {
-    return getBoolean(CALLING_REACTIONS, false);
   }
 
   /**
