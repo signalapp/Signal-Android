@@ -4227,8 +4227,16 @@
     <string name="ReviewCardDialogFragment__review_members">Review members</string>
     <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
     <string name="ReviewCardDialogFragment__review_request">Review request</string>
-    <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d group members have the same name, review the members below and choose to take action.</string>
-    <string name="ReviewCardDialogFragment__if_youre_not_sure">If you\'re not sure who the request is from, review the contacts below and take action.</string>
+    <!-- Message of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
+    <plurals name="ReviewCardDialogFragment__d_group_members_have_the_same_name">
+        <item quantity="one">%1$d group member have the same name, review the member below and choose to take action.</item>
+        <item quantity="other">%1$d group members have the same name, review the members below and choose to take action.</item>
+    </plurals>
+    <!-- Message of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
+    <plurals name="ReviewCardDialogFragment__if_youre_not_sure">
+        <item quantity="one">If you\'re not sure who the request is from, review the contact below and take action.</item>
+        <item quantity="other">If you\'re not sure who the request is from, review the contacts below and take action.</item>
+    </plurals>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">No other groups in common.</string>
     <string name="ReviewCardDialogFragment__no_groups_in_common">No groups in common.</string>
     <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
@@ -4259,12 +4267,20 @@
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s joined</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s and %2$s joined</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s and %3$s joined</string>
-    <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s and %3$d others joined</string>
+    <!-- Toast message shown in group call when 3 or more people join -->
+    <plurals name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">
+        <item quantity="one">%1$s, %2$s and %3$d other joined</item>
+        <item quantity="other">%1$s, %2$s and %3$d others joined</item>
+    </plurals>
     <!-- Toast/popup text shown when someone leaves a group call -->
     <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s left</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s and %2$s left</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s and %3$s left</string>
-    <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s and %3$d others left</string>
+    <!-- Toast message shown in group call when 3 or more people leave -->
+    <plurals name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">
+        <item quantity="one">%1$s, %2$s and %3$d other left</item>
+        <item quantity="other">%1$s, %2$s and %3$d others left</item>
+    </plurals>
 
     <string name="CallParticipant__you">You</string>
     <string name="CallParticipant__you_on_another_device">You (on another device)</string>
@@ -4634,7 +4650,11 @@
 
     <!-- PrivacySettingsFragment -->
     <string name="PrivacySettingsFragment__blocked">Blocked</string>
-    <string name="PrivacySettingsFragment__d_contacts">%1$d contacts</string>
+    <!-- Settings label that shows the number blocked contacts -->
+    <plurals name="PrivacySettingsFragment__d_contacts">
+        <item quantity="one">%1$d contact</item>
+        <item quantity="other">%1$d contacts</item>
+    </plurals>
     <string name="PrivacySettingsFragment__messaging">Messaging</string>
     <string name="PrivacySettingsFragment__disappearing_messages">Disappearing messages</string>
     <string name="PrivacySettingsFragment__app_security">App security</string>

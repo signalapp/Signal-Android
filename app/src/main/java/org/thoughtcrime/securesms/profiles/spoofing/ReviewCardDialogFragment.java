@@ -38,7 +38,7 @@ public class ReviewCardDialogFragment extends FullScreenDialogFragment {
 
   public static ReviewCardDialogFragment createForReviewRequest(@NonNull RecipientId recipientId) {
     return create(R.string.ReviewCardDialogFragment__review_request,
-                  R.string.ReviewCardDialogFragment__if_youre_not_sure,
+                  R.plurals.ReviewCardDialogFragment__if_youre_not_sure,
                   R.string.ReviewCardDialogFragment__no_groups_in_common,
                   R.plurals.ReviewCardDialogFragment__d_groups_in_common,
                   recipientId,
@@ -47,7 +47,7 @@ public class ReviewCardDialogFragment extends FullScreenDialogFragment {
 
   public static ReviewCardDialogFragment createForReviewMembers(@NonNull GroupId.V2 groupId) {
     return create(R.string.ReviewCardDialogFragment__review_members,
-                  R.string.ReviewCardDialogFragment__d_group_members_have_the_same_name,
+                  R.plurals.ReviewCardDialogFragment__d_group_members_have_the_same_name,
                   R.string.ReviewCardDialogFragment__no_other_groups_in_common,
                   R.plurals.ReviewCardDialogFragment__d_other_groups_in_common,
                   null,
@@ -55,7 +55,7 @@ public class ReviewCardDialogFragment extends FullScreenDialogFragment {
   }
 
   private static ReviewCardDialogFragment create(@StringRes int titleResId,
-                                                 @StringRes int descriptionResId,
+                                                 @PluralsRes int descriptionResId,
                                                  @StringRes int noGroupsInCommonResId,
                                                  @PluralsRes int groupsInCommonResId,
                                                  @Nullable RecipientId recipientId,
@@ -92,7 +92,7 @@ public class ReviewCardDialogFragment extends FullScreenDialogFragment {
 
     viewModel.getReviewCards().observe(getViewLifecycleOwner(), cards -> {
       adapter.submitList(cards);
-      description.setText(getString(getDescriptionResId(), cards.size()));
+      description.setText(getResources().getQuantityString(getDescriptionResId(), cards.size(), cards.size()));
     });
 
     viewModel.getReviewEvents().observe(getViewLifecycleOwner(), this::onReviewEvent);
@@ -105,7 +105,7 @@ public class ReviewCardDialogFragment extends FullScreenDialogFragment {
     viewModel = new ViewModelProvider(this, factory).get(ReviewCardViewModel.class);
   }
 
-  private @StringRes int getDescriptionResId() {
+  private @PluralsRes int getDescriptionResId() {
     return requireArguments().getInt(EXTRA_DESCRIPTION_RES_ID);
   }
 
