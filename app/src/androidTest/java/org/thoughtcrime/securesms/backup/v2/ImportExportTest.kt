@@ -21,10 +21,9 @@ import org.signal.libsignal.messagebackup.MessageBackup
 import org.signal.libsignal.messagebackup.MessageBackupKey
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.backup.v2.proto.AccountData
+import org.thoughtcrime.securesms.backup.v2.proto.AdHocCall
 import org.thoughtcrime.securesms.backup.v2.proto.BackupInfo
 import org.thoughtcrime.securesms.backup.v2.proto.BodyRange
-import org.thoughtcrime.securesms.backup.v2.proto.Call
-import org.thoughtcrime.securesms.backup.v2.proto.CallChatUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.Chat
 import org.thoughtcrime.securesms.backup.v2.proto.ChatItem
 import org.thoughtcrime.securesms.backup.v2.proto.ChatUpdateMessage
@@ -34,8 +33,7 @@ import org.thoughtcrime.securesms.backup.v2.proto.ExpirationTimerChatUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.FilePointer
 import org.thoughtcrime.securesms.backup.v2.proto.Frame
 import org.thoughtcrime.securesms.backup.v2.proto.Group
-import org.thoughtcrime.securesms.backup.v2.proto.GroupCallChatUpdate
-import org.thoughtcrime.securesms.backup.v2.proto.IndividualCallChatUpdate
+import org.thoughtcrime.securesms.backup.v2.proto.IndividualCall
 import org.thoughtcrime.securesms.backup.v2.proto.MessageAttachment
 import org.thoughtcrime.securesms.backup.v2.proto.ProfileChangeChatUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.Quote
@@ -198,8 +196,7 @@ class ImportExportTest {
               masterKey = TestRecipientUtils.generateGroupMasterKey().toByteString(),
               whitelisted = true,
               hideStory = false,
-              storySendMode = Group.StorySendMode.ENABLED,
-              name = "Cool Group $i"
+              storySendMode = Group.StorySendMode.ENABLED
             )
           )
         )
@@ -265,8 +262,7 @@ class ImportExportTest {
               masterKey = TestRecipientUtils.generateGroupMasterKey().toByteString(),
               whitelisted = random.trueWithProbability(0.9f),
               hideStory = random.trueWithProbability(0.1f),
-              storySendMode = if (random.trueWithProbability(0.9f)) Group.StorySendMode.ENABLED else Group.StorySendMode.DISABLED,
-              name = "Cool Group $i"
+              storySendMode = if (random.trueWithProbability(0.9f)) Group.StorySendMode.ENABLED else Group.StorySendMode.DISABLED
             )
           )
         )
@@ -434,8 +430,7 @@ class ImportExportTest {
           masterKey = TestRecipientUtils.generateGroupMasterKey().toByteString(),
           whitelisted = true,
           hideStory = true,
-          storySendMode = Group.StorySendMode.ENABLED,
-          name = "Cool test group"
+          storySendMode = Group.StorySendMode.ENABLED
         )
       ),
       Recipient(
@@ -444,8 +439,7 @@ class ImportExportTest {
           masterKey = TestRecipientUtils.generateGroupMasterKey().toByteString(),
           whitelisted = false,
           hideStory = false,
-          storySendMode = Group.StorySendMode.DEFAULT,
-          name = "Cool test group"
+          storySendMode = Group.StorySendMode.DEFAULT
         )
       )
     )
@@ -596,8 +590,7 @@ class ImportExportTest {
           masterKey = TestRecipientUtils.generateGroupMasterKey().toByteString(),
           whitelisted = true,
           hideStory = true,
-          storySendMode = Group.StorySendMode.DEFAULT,
-          name = "Cool test group"
+          storySendMode = Group.StorySendMode.DEFAULT
         )
       ),
       Chat(
@@ -615,113 +608,64 @@ class ImportExportTest {
   }
 
   @Test
-  fun calls() {
-    val individualCalls = ArrayList<Call>()
-    val groupCalls = ArrayList<Call>()
-    val states = arrayOf(Call.State.MISSED, Call.State.COMPLETED, Call.State.DECLINED_BY_USER, Call.State.DECLINED_BY_NOTIFICATION_PROFILE)
-    val types = arrayOf(Call.Type.VIDEO_CALL, Call.Type.AD_HOC_CALL, Call.Type.AUDIO_CALL)
-    var id = 1L
-    var timestamp = 12345L
-
+  fun individualCalls() {
+    val individualCalls = ArrayList<ChatItem>()
+    val states = arrayOf(IndividualCall.State.ACCEPTED, IndividualCall.State.NOT_ACCEPTED, IndividualCall.State.MISSED, IndividualCall.State.MISSED_NOTIFICATION_PROFILE)
+    val oldStates = arrayOf(IndividualCall.State.ACCEPTED, IndividualCall.State.MISSED)
+    val types = arrayOf(IndividualCall.Type.VIDEO_CALL, IndividualCall.Type.AUDIO_CALL)
+    val directions = arrayOf(IndividualCall.Direction.OUTGOING, IndividualCall.Direction.INCOMING)
+    var sentTime = 0L
+    var callId = 1L
+    val startedAci = TestRecipientUtils.nextAci().toByteString()
     for (state in states) {
       for (type in types) {
-        individualCalls.add(
-          Call(
-            callId = id++,
-            conversationRecipientId = 3,
-            type = type,
-            state = state,
-            timestamp = timestamp++,
-            ringerRecipientId = 3,
-            outgoing = true
+        for (direction in directions) {
+          // With call id
+          individualCalls.add(
+            ChatItem(
+              chatId = 1,
+              authorId = selfRecipient.id,
+              dateSent = sentTime++,
+              sms = false,
+              directionless = ChatItem.DirectionlessMessageDetails(),
+              updateMessage = ChatUpdateMessage(
+                individualCall = IndividualCall(
+                  callId = callId++,
+                  type = type,
+                  state = state,
+                  direction = direction
+                )
+              )
+            )
           )
-        )
-        individualCalls.add(
-          Call(
-            callId = id++,
-            conversationRecipientId = 3,
-            type = type,
-            state = state,
-            timestamp = timestamp++,
-            ringerRecipientId = selfRecipient.id,
-            outgoing = false
-          )
-        )
+        }
       }
-      groupCalls.add(
-        Call(
-          callId = id++,
-          conversationRecipientId = 4,
-          type = Call.Type.GROUP_CALL,
-          state = state,
-          timestamp = timestamp++,
-          ringerRecipientId = 3,
-          outgoing = true
-        )
-      )
-      groupCalls.add(
-        Call(
-          callId = id++,
-          conversationRecipientId = 4,
-          type = Call.Type.GROUP_CALL,
-          state = state,
-          timestamp = timestamp++,
-          ringerRecipientId = selfRecipient.id,
-          outgoing = false
-        )
-      )
     }
-
-    var sentTime = 0L
-    val individualCallChatItems = individualCalls.map { call ->
-      ChatItem(
-        chatId = 1,
-        authorId = selfRecipient.id,
-        dateSent = sentTime++,
-        sms = false,
-        incoming = ChatItem.IncomingMessageDetails(
-          dateReceived = sentTime + 1,
-          dateServerSent = sentTime,
-          read = true,
-          sealedSender = true
-        ),
-        updateMessage = ChatUpdateMessage(
-          callingMessage = CallChatUpdate(
-            callMessage = IndividualCallChatUpdate(
-              type = IndividualCallChatUpdate.Type.INCOMING_AUDIO_CALL
+    for (state in oldStates) {
+      for (type in types) {
+        for (direction in directions) {
+          if (state == IndividualCall.State.MISSED && direction == IndividualCall.Direction.OUTGOING) continue
+          // Without call id
+          individualCalls.add(
+            ChatItem(
+              chatId = 1,
+              authorId = selfRecipient.id,
+              dateSent = sentTime++,
+              sms = false,
+              directionless = ChatItem.DirectionlessMessageDetails(),
+              updateMessage = ChatUpdateMessage(
+                individualCall = IndividualCall(
+                  callId = null,
+                  type = type,
+                  state = state,
+                  direction = direction
+                )
+              )
             )
           )
-        )
-      )
-    }.toTypedArray()
-
-    val startedAci = TestRecipientUtils.nextAci().toByteString()
-    val groupCallChatItems = groupCalls.map { call ->
-      ChatItem(
-        chatId = 1,
-        authorId = selfRecipient.id,
-        dateSent = sentTime++,
-        sms = false,
-        incoming = ChatItem.IncomingMessageDetails(
-          dateReceived = sentTime + 1,
-          dateServerSent = sentTime,
-          read = true,
-          sealedSender = true
-        ),
-        updateMessage = ChatUpdateMessage(
-          callingMessage = CallChatUpdate(
-            groupCall = GroupCallChatUpdate(
-              startedCallAci = startedAci,
-              startedCallTimestamp = 0,
-              endedCallTimestamp = 0,
-              localUserJoined = GroupCallChatUpdate.LocalUserJoined.JOINED,
-              inCallAcis = emptyList()
-            )
-          )
-        )
-      )
-    }.toTypedArray()
-
+        }
+      }
+    }
     importExport(
       *standardFrames,
       Recipient(
@@ -748,8 +692,7 @@ class ImportExportTest {
           masterKey = TestRecipientUtils.generateGroupMasterKey().toByteString(),
           whitelisted = true,
           hideStory = true,
-          storySendMode = Group.StorySendMode.DEFAULT,
-          name = "Cool test group"
+          storySendMode = Group.StorySendMode.DEFAULT
         )
       ),
       Chat(
@@ -763,10 +706,7 @@ class ImportExportTest {
         dontNotifyForMentionsIfMuted = true,
         wallpaper = null
       ),
-      *individualCalls.toArray(),
-      *groupCalls.toArray(),
-      *individualCallChatItems,
-      *groupCallChatItems
+      *individualCalls.toArray()
     )
   }
 
@@ -1003,7 +943,7 @@ class ImportExportTest {
       chatId = 1,
       authorId = alice.id,
       dateSent = 101,
-      expireStartDate = null,
+      expireStartDate = 0,
       expiresInMs = TimeUnit.DAYS.toMillis(1),
       sms = false,
       incoming = ChatItem.IncomingMessageDetails(
@@ -1435,7 +1375,7 @@ class ImportExportTest {
           is Recipient -> writer.write(Frame(recipient = obj))
           is Chat -> writer.write(Frame(chat = obj))
           is ChatItem -> writer.write(Frame(chatItem = obj))
-          is Call -> writer.write(Frame(call = obj))
+          is AdHocCall -> writer.write(Frame(adHocCall = obj))
           is StickerPack -> writer.write(Frame(stickerPack = obj))
           else -> Assert.fail("invalid object $obj")
         }
@@ -1496,7 +1436,7 @@ class ImportExportTest {
           is Recipient -> writer.write(Frame(recipient = obj))
           is Chat -> writer.write(Frame(chat = obj))
           is ChatItem -> writer.write(Frame(chatItem = obj))
-          is Call -> writer.write(Frame(call = obj))
+          is AdHocCall -> writer.write(Frame(adHocCall = obj))
           is StickerPack -> writer.write(Frame(stickerPack = obj))
           else -> Assert.fail("invalid object $obj")
         }
@@ -1527,8 +1467,8 @@ class ImportExportTest {
     val chatsExported = ArrayList<Chat>()
     val chatItemsImported = ArrayList<ChatItem>()
     val chatItemsExported = ArrayList<ChatItem>()
-    val callsImported = ArrayList<Call>()
-    val callsExported = ArrayList<Call>()
+    val callsImported = ArrayList<AdHocCall>()
+    val callsExported = ArrayList<AdHocCall>()
     val stickersImported = ArrayList<StickerPack>()
     val stickersExported = ArrayList<StickerPack>()
 
@@ -1538,7 +1478,7 @@ class ImportExportTest {
         f.recipient != null -> recipientsImported.add(f.recipient!!)
         f.chat != null -> chatsImported.add(f.chat!!)
         f.chatItem != null -> chatItemsImported.add(f.chatItem!!)
-        f.call != null -> callsImported.add(f.call!!)
+        f.adHocCall != null -> callsImported.add(f.adHocCall!!)
         f.stickerPack != null -> stickersImported.add(f.stickerPack!!)
       }
     }
@@ -1549,7 +1489,7 @@ class ImportExportTest {
         f.recipient != null -> recipientsExported.add(f.recipient!!)
         f.chat != null -> chatsExported.add(f.chat!!)
         f.chatItem != null -> chatItemsExported.add(f.chatItem!!)
-        f.call != null -> callsExported.add(f.call!!)
+        f.adHocCall != null -> callsExported.add(f.adHocCall!!)
         f.stickerPack != null -> stickersExported.add(f.stickerPack!!)
       }
     }

@@ -5,7 +5,7 @@ import androidx.annotation.Nullable;
 
 import org.signal.core.util.Base64;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.backup.v2.proto.GroupCallChatUpdate;
+import org.thoughtcrime.securesms.backup.v2.proto.GroupCall;
 import org.thoughtcrime.securesms.database.model.databaseprotos.GroupCallUpdateDetails;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.whispersystems.signalservice.api.push.ServiceId;
@@ -28,7 +28,7 @@ public final class GroupCallUpdateDetailsUtil {
   /**
    * Generates a group chat update message body from backup data
    */
-  public static @NonNull String createBodyFromBackup(@NonNull GroupCallChatUpdate groupCallChatUpdate) {
+  public static @NonNull String createBodyFromBackup(@NonNull GroupCall groupCallChatUpdate) {
     ServiceId.ACI startedCall = groupCallChatUpdate.startedCallAci != null ? ServiceId.ACI.parseOrNull(groupCallChatUpdate.startedCallAci) : null;
 
     GroupCallUpdateDetails details = new GroupCallUpdateDetails.Builder()
@@ -36,15 +36,7 @@ public final class GroupCallUpdateDetailsUtil {
         .startedCallTimestamp(groupCallChatUpdate.startedCallTimestamp)
         .endedCallTimestamp(groupCallChatUpdate.endedCallTimestamp)
         .isCallFull(false)
-        .inCallUuids(groupCallChatUpdate.inCallAcis.stream()
-                                                   .filter(Objects::nonNull)
-                                                   .map(ServiceId.ACI::parseOrNull)
-                                                   .filter(Objects::nonNull)
-                                                   .map(ServiceId.ACI::toString)
-                                                   .collect(Collectors.toList())
-        )
         .isRingingOnLocalDevice(false)
-        .localUserJoined(groupCallChatUpdate.localUserJoined != GroupCallChatUpdate.LocalUserJoined.DID_NOT_JOIN)
         .build();
 
     return Base64.encodeWithPadding(details.encode());

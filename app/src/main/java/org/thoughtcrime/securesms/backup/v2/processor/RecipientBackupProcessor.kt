@@ -10,9 +10,13 @@ import org.thoughtcrime.securesms.backup.v2.BackupState
 import org.thoughtcrime.securesms.backup.v2.ExportState
 import org.thoughtcrime.securesms.backup.v2.database.BackupRecipient
 import org.thoughtcrime.securesms.backup.v2.database.getAllForBackup
+import org.thoughtcrime.securesms.backup.v2.database.getCallLinksForBackup
 import org.thoughtcrime.securesms.backup.v2.database.getContactsForBackup
 import org.thoughtcrime.securesms.backup.v2.database.getGroupsForBackup
-import org.thoughtcrime.securesms.backup.v2.database.restoreRecipientFromBackup
+import org.thoughtcrime.securesms.backup.v2.database.restoreContactFromBackup
+import org.thoughtcrime.securesms.backup.v2.database.restoreFromBackup
+import org.thoughtcrime.securesms.backup.v2.database.restoreGroupFromBackup
+import org.thoughtcrime.securesms.backup.v2.database.restoreReleaseNotes
 import org.thoughtcrime.securesms.backup.v2.proto.Frame
 import org.thoughtcrime.securesms.backup.v2.proto.ReleaseNotes
 import org.thoughtcrime.securesms.backup.v2.stream.BackupFrameEmitter
@@ -60,10 +64,26 @@ object RecipientBackupProcessor {
       state.recipientIds.add(it.id)
       emitter.emit(Frame(recipient = it))
     }
+
+    SignalDatabase.callLinks.getCallLinksForBackup().forEach {
+      state.recipientIds.add(it.id)
+      emitter.emit(Frame(recipient = it))
+    }
   }
 
   fun import(recipient: BackupRecipient, backupState: BackupState) {
-    val newId = SignalDatabase.recipients.restoreRecipientFromBackup(recipient, backupState)
+    val newId = when {
+      recipient.contact != null -> SignalDatabase.recipients.restoreContactFromBackup(recipient.contact)
+      recipient.group != null -> SignalDatabase.recipients.restoreGroupFromBackup(recipient.group)
+      recipient.distributionList != null -> SignalDatabase.distributionLists.restoreFromBackup(recipient.distributionList, backupState)
+      recipient.self != null -> Recipient.self().id
+      recipient.releaseNotes != null -> SignalDatabase.recipients.restoreReleaseNotes()
+      recipient.callLink != null -> SignalDatabase.callLinks.restoreFromBackup(recipient.callLink)
+      else -> {
+        Log.w(TAG, "Unrecognized recipient type!")
+        null
+      }
+    }
     if (newId != null) {
       backupState.backupToLocalRecipientId[recipient.id] = newId
     }

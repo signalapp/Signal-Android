@@ -7,29 +7,28 @@ package org.thoughtcrime.securesms.backup.v2.processor
 
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.backup.v2.BackupState
-import org.thoughtcrime.securesms.backup.v2.database.getCallsForBackup
+import org.thoughtcrime.securesms.backup.v2.database.getAdhocCallsForBackup
 import org.thoughtcrime.securesms.backup.v2.database.restoreCallLogFromBackup
+import org.thoughtcrime.securesms.backup.v2.proto.AdHocCall
 import org.thoughtcrime.securesms.backup.v2.proto.Frame
 import org.thoughtcrime.securesms.backup.v2.stream.BackupFrameEmitter
 import org.thoughtcrime.securesms.database.SignalDatabase
 
-typealias BackupCall = org.thoughtcrime.securesms.backup.v2.proto.Call
+object AdHocCallBackupProcessor {
 
-object CallLogBackupProcessor {
-
-  val TAG = Log.tag(CallLogBackupProcessor::class.java)
+  val TAG = Log.tag(AdHocCallBackupProcessor::class.java)
 
   fun export(emitter: BackupFrameEmitter) {
-    SignalDatabase.calls.getCallsForBackup().use { reader ->
+    SignalDatabase.calls.getAdhocCallsForBackup().use { reader ->
       for (callLog in reader) {
         if (callLog != null) {
-          emitter.emit(Frame(call = callLog))
+          emitter.emit(Frame(adHocCall = callLog))
         }
       }
     }
   }
 
-  fun import(call: BackupCall, backupState: BackupState) {
+  fun import(call: AdHocCall, backupState: BackupState) {
     SignalDatabase.calls.restoreCallLogFromBackup(call, backupState)
   }
 }

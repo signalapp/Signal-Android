@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.backup.v2.database.ChatItemImportInserter
 import org.thoughtcrime.securesms.backup.v2.database.clearAllDataForBackupRestore
 import org.thoughtcrime.securesms.backup.v2.processor.AccountDataProcessor
-import org.thoughtcrime.securesms.backup.v2.processor.CallLogBackupProcessor
+import org.thoughtcrime.securesms.backup.v2.processor.AdHocCallBackupProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.ChatBackupProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.ChatItemBackupProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.RecipientBackupProcessor
@@ -109,7 +109,7 @@ object BackupRepository {
           eventTimer.emit("thread")
         }
 
-        CallLogBackupProcessor.export { frame ->
+        AdHocCallBackupProcessor.export { frame ->
           writer.write(frame)
           eventTimer.emit("call")
         }
@@ -198,8 +198,8 @@ object BackupRepository {
             eventTimer.emit("chat")
           }
 
-          frame.call != null -> {
-            CallLogBackupProcessor.import(frame.call, backupState)
+          frame.adHocCall != null -> {
+            AdHocCallBackupProcessor.import(frame.adHocCall, backupState)
             eventTimer.emit("call")
           }
 
@@ -644,7 +644,6 @@ class BackupState(val backupKey: BackupKey) {
   val chatIdToLocalThreadId = HashMap<Long, Long>()
   val chatIdToLocalRecipientId = HashMap<Long, RecipientId>()
   val chatIdToBackupRecipientId = HashMap<Long, Long>()
-  val callIdToType = HashMap<Long, Long>()
 }
 
 class BackupMetadata(

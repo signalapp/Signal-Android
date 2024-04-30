@@ -9,14 +9,26 @@ message BackupInfo {
   uint64 backupTimeMs = 2;
 }
 
+// Frames must follow in the following ordering rules:
+//
+// 1. There is exactly one AccountData and it is the first frame.
+// 2. A frame referenced by ID must come before the referencing frame.
+//    e.g. a Recipient must come before any Chat referencing it.
+// 3. All ChatItems must appear in global Chat rendering order.
+//    (The order in which they were received by the client.)
+//
+// Recipients, Chats, StickerPacks, and AdHocCalls can be in any order.
+// (But must respect rule 2.)
+// For example, Chats may all be together at the beginning,
+// or may each immediately precede its first ChatItem.
 message Frame {
   oneof item {
     AccountData account = 1;
     Recipient recipient = 2;
     Chat chat = 3;
     ChatItem chatItem = 4;
-    Call call = 5;
-    StickerPack stickerPack = 6;
+    StickerPack stickerPack = 5;
+    AdHocCall adHocCall = 6;
   }
 }
 
@@ -84,6 +96,7 @@ message Recipient {
     DistributionList distributionList = 4;
     Self self = 5;
     ReleaseNotes releaseNotes = 6;
+    CallLink callLink = 7;
   }
 }
 
@@ -120,8 +133,7 @@ message Group {
   bool whitelisted = 2;
   bool hideStory = 3;
   StorySendMode storySendMode = 4;
-  string name = 5;
-  GroupSnapshot snapshot = 6;
+  GroupSnapshot snapshot = 5;
 
   // These are simply plaintext copies of the groups proto from Groups.proto.
   // They should be kept completely in-sync with Groups.proto.
@@ -154,7 +166,7 @@ message Group {
     bytes userId = 1;
     Role role = 2;
     bytes profileKey = 3;
-    bytes presentation = 4;
+    reserved /*presentation*/ 4; // The field is deprecated in the context of static group state
     uint32 joinedAtVersion = 5;
   }
 
@@ -207,6 +219,44 @@ message Chat {
   FilePointer wallpaper = 9;
 }
 
+/**
+ * Call Links have some associated data including a call, but unlike other recipients
+ * are not tied to threads because they do not have messages associated with them.
+ *
+ * note:
+ * - room id can be derived from the root key
+ * - the presence of an admin key means this user is a call admin
+ */
+message CallLink {
+  enum Restrictions {
+    UNKNOWN = 0;
+    NONE = 1;
+    ADMIN_APPROVAL = 2;
+  }
+
+  bytes rootKey = 1;
+  optional bytes adminKey = 2; // Only present if the user is an admin
+  string name = 3;
+  Restrictions restrictions = 4;
+  uint64 expirationMs = 5;
+}
+
+message AdHocCall {
+  enum State {
+    UNKNOWN_STATE = 0;
+    GENERIC = 1;
+  }
+
+  uint64 callId = 1;
+  // Refers to a `CallLink` recipient.
+  uint64 recipientId = 2;
+  State state = 3;
+  optional bytes startedCallAci = 4;
+  uint64 startedCallTimestamp = 5;
+  // The time the call ended. 0 indicates an unknown time.
+  uint64 endedCallTimestamp = 6;
+}
+
 message DistributionList {
   enum PrivacyMode {
     UNKNOWN = 0;
@@ -232,32 +282,6 @@ message Identity {
   bool nonblockingApproval = 6;
 }
 
-message Call {
-  enum Type {
-    UNKNOWN_TYPE = 0;
-    AUDIO_CALL = 1;
-    VIDEO_CALL = 2;
-    GROUP_CALL = 3;
-    AD_HOC_CALL = 4;
-  }
-
-  enum State {
-    UNKNOWN_EVENT = 0;
-    COMPLETED = 1; // A call that was successfully completed or was accepted and in-progress at the time of the backup.
-    DECLINED_BY_USER = 2; // An incoming call that was manually declined by the user.
-    DECLINED_BY_NOTIFICATION_PROFILE = 3; // An incoming call that was automatically declined by an active notification profile.
-    MISSED = 4; // An incoming call that either expired, was cancelled by the sender, or was auto-rejected due to already being in a different call.
-  }
-
-  uint64 callId = 1;
-  uint64 conversationRecipientId = 2;
-  Type type = 3;
-  bool outgoing = 4;
-  uint64 timestamp = 5;
-  optional uint64 ringerRecipientId = 6;
-  State state = 7;
-}
-
 message ChatItem {
   message IncomingMessageDetails {
     uint64 dateReceived = 1;
@@ -276,8 +300,8 @@ message ChatItem {
   uint64 chatId = 1;   // conversation id
   uint64 authorId = 2; // recipient id
   uint64 dateSent = 3;
-  optional uint64 expireStartDate = 4; // timestamp of when expiration timer started ticking down
-  optional uint64 expiresInMs = 5; // how long timer of message is (ms)
+  uint64 expireStartDate = 4; // timestamp of when expiration timer started ticking down
+  uint64 expiresInMs = 5; // how long timer of message is (ms)
   repeated ChatItem revisions = 6; // ordered from oldest to newest
   bool sms = 7;
 
@@ -561,46 +585,72 @@ message ChatUpdateMessage {
     ProfileChangeChatUpdate profileChange = 4;
     ThreadMergeChatUpdate threadMerge = 5;
     SessionSwitchoverChatUpdate sessionSwitchover = 6;
-    CallChatUpdate callingMessage = 7;
+    IndividualCall individualCall = 7;
+    GroupCall groupCall = 8;
   }
 }
 
-message CallChatUpdate{
-  oneof call {
-    uint64 callId = 1; // maps to id of Call from call log
-    IndividualCallChatUpdate callMessage = 2;
-    GroupCallChatUpdate groupCall = 3;
-  }
-}
-
-message IndividualCallChatUpdate {
+message IndividualCall {
   enum Type {
-    UNKNOWN = 0;
-    INCOMING_AUDIO_CALL = 1;
-    INCOMING_VIDEO_CALL = 2;
-    OUTGOING_AUDIO_CALL = 3;
-    OUTGOING_VIDEO_CALL = 4;
-    MISSED_INCOMING_AUDIO_CALL = 5;
-    MISSED_INCOMING_VIDEO_CALL = 6;
-    UNANSWERED_OUTGOING_AUDIO_CALL = 7;
-    UNANSWERED_OUTGOING_VIDEO_CALL = 8;
+    UNKNOWN_TYPE = 0;
+    AUDIO_CALL = 1;
+    VIDEO_CALL = 2;
   }
 
-  Type type = 1;
+  enum Direction {
+    UNKNOWN_DIRECTION = 0;
+    INCOMING = 1;
+    OUTGOING = 2;
+  }
+
+  enum State {
+    UNKNOWN_STATE = 0;
+    ACCEPTED = 1;
+    NOT_ACCEPTED = 2;
+    // An incoming call that is no longer ongoing, which we neither accepted
+    // not actively declined. For example, it expired, was canceled by the
+    // sender, or was rejected due to being in another call.
+    MISSED = 3;
+    // We auto-declined an incoming call due to a notification profile.
+    MISSED_NOTIFICATION_PROFILE = 4;
+  }
+
+  optional uint64 callId = 1;
+  Type type = 2;
+  Direction direction = 3;
+  State state = 4;
+  uint64 startedCallTimestamp = 5;
 }
 
-message GroupCallChatUpdate {
-  enum LocalUserJoined {
-    UNKNOWN = 0;
-    JOINED = 1;
-    DID_NOT_JOIN = 2;
+message GroupCall {
+  enum State {
+    UNKNOWN_STATE = 0;
+    // A group call was started without ringing.
+    GENERIC = 1;
+    // We joined a group call that was started without ringing.
+    JOINED = 2;
+    // An incoming group call is actively ringing.
+    RINGING = 3;
+    // We accepted an incoming group ring.
+    ACCEPTED = 4;
+    // We declined an incoming group ring.
+    DECLINED = 5;
+    // We missed an incoming group ring, for example because it expired.
+    MISSED = 6;
+    // We auto-declined an incoming group ring due to a notification profile.
+    MISSED_NOTIFICATION_PROFILE = 7;
+    // An outgoing ring was started. We don't track any state for outgoing rings
+    // beyond that they started.
+    OUTGOING_RING = 8;
   }
 
-  optional bytes startedCallAci = 1;
-  uint64 startedCallTimestamp = 2;
-  repeated bytes inCallAcis = 3;
-  uint64 endedCallTimestamp = 4; // 0 indicates we do not know
-  LocalUserJoined localUserJoined = 5;
+  optional uint64 callId = 1;
+  State state = 2;
+  optional uint64 ringerRecipientId = 3;
+  optional bytes startedCallAci = 4;
+  uint64 startedCallTimestamp = 5;
+  // The time the call ended. 0 indicates an unknown time.
+  uint64 endedCallTimestamp = 6;
 }
 
 message SimpleChatUpdate {

@@ -22,7 +22,8 @@ import org.thoughtcrime.securesms.backup.v2.BackupState
 import org.thoughtcrime.securesms.backup.v2.proto.BodyRange
 import org.thoughtcrime.securesms.backup.v2.proto.ChatItem
 import org.thoughtcrime.securesms.backup.v2.proto.ChatUpdateMessage
-import org.thoughtcrime.securesms.backup.v2.proto.IndividualCallChatUpdate
+import org.thoughtcrime.securesms.backup.v2.proto.GroupCall
+import org.thoughtcrime.securesms.backup.v2.proto.IndividualCall
 import org.thoughtcrime.securesms.backup.v2.proto.MessageAttachment
 import org.thoughtcrime.securesms.backup.v2.proto.Quote
 import org.thoughtcrime.securesms.backup.v2.proto.Reaction
@@ -215,11 +216,53 @@ class ChatItemImportInserter(
 
     var followUp: ((Long) -> Unit)? = null
     if (this.updateMessage != null) {
-      if (this.updateMessage.callingMessage != null && this.updateMessage.callingMessage.callId != null) {
+      if (this.updateMessage.individualCall != null && this.updateMessage.individualCall.callId != null) {
         followUp = { messageRowId ->
-          val callContentValues = ContentValues()
-          callContentValues.put(CallTable.MESSAGE_ID, messageRowId)
-          db.update(CallTable.TABLE_NAME, SQLiteDatabase.CONFLICT_IGNORE, callContentValues, "${CallTable.CALL_ID} = ?", SqlUtil.buildArgs(this.updateMessage.callingMessage.callId))
+          val values = contentValuesOf(
+            CallTable.CALL_ID to updateMessage.individualCall.callId,
+            CallTable.MESSAGE_ID to messageRowId,
+            CallTable.PEER to chatRecipientId.serialize(),
+            CallTable.TYPE to CallTable.Type.serialize(if (updateMessage.individualCall.type == IndividualCall.Type.VIDEO_CALL) CallTable.Type.VIDEO_CALL else CallTable.Type.AUDIO_CALL),
+            CallTable.DIRECTION to CallTable.Direction.serialize(if (updateMessage.individualCall.direction == IndividualCall.Direction.OUTGOING) CallTable.Direction.OUTGOING else CallTable.Direction.INCOMING),
+            CallTable.EVENT to CallTable.Event.serialize(
+              when (updateMessage.individualCall.state) {
+                IndividualCall.State.MISSED -> CallTable.Event.MISSED
+                IndividualCall.State.MISSED_NOTIFICATION_PROFILE -> CallTable.Event.MISSED_NOTIFICATION_PROFILE
+                IndividualCall.State.ACCEPTED -> CallTable.Event.ACCEPTED
+                IndividualCall.State.NOT_ACCEPTED -> CallTable.Event.NOT_ACCEPTED
+                else -> CallTable.Event.MISSED
+              }
+            ),
+            CallTable.TIMESTAMP to updateMessage.individualCall.startedCallTimestamp,
+            CallTable.READ to CallTable.ReadState.serialize(CallTable.ReadState.UNREAD)
+          )
+          db.insert(CallTable.TABLE_NAME, SQLiteDatabase.CONFLICT_IGNORE, values)
+        }
+      } else if (this.updateMessage.groupCall != null && this.updateMessage.groupCall.callId != null) {
+        followUp = { messageRowId ->
+          val values = contentValuesOf(
+            CallTable.CALL_ID to updateMessage.groupCall.callId,
+            CallTable.MESSAGE_ID to messageRowId,
+            CallTable.PEER to chatRecipientId.serialize(),
+            CallTable.TYPE to CallTable.Type.serialize(CallTable.Type.GROUP_CALL),
+            CallTable.DIRECTION to CallTable.Direction.serialize(if (backupState.backupToLocalRecipientId[updateMessage.groupCall.ringerRecipientId] == selfId) CallTable.Direction.OUTGOING else CallTable.Direction.INCOMING),
+            CallTable.EVENT to CallTable.Event.serialize(
+              when (updateMessage.groupCall.state) {
+                GroupCall.State.ACCEPTED -> CallTable.Event.ACCEPTED
+                GroupCall.State.MISSED -> CallTable.Event.MISSED
+                GroupCall.State.MISSED_NOTIFICATION_PROFILE -> CallTable.Event.MISSED_NOTIFICATION_PROFILE
+                GroupCall.State.GENERIC -> CallTable.Event.GENERIC_GROUP_CALL
+                GroupCall.State.JOINED -> CallTable.Event.JOINED
+                GroupCall.State.RINGING -> CallTable.Event.RINGING
+                GroupCall.State.OUTGOING_RING -> CallTable.Event.OUTGOING_RING
+                GroupCall.State.DECLINED -> CallTable.Event.DECLINED
+                else -> CallTable.Event.GENERIC_GROUP_CALL
+              }
+            ),
+            CallTable.TIMESTAMP to updateMessage.groupCall.startedCallTimestamp,
+            CallTable.READ to CallTable.ReadState.serialize(CallTable.ReadState.UNREAD)
+          )
+          db.insert(CallTable.TABLE_NAME, SQLiteDatabase.CONFLICT_IGNORE, values)
         }
       }
     }
@@ -444,31 +487,21 @@ class ChatItemImportInserter(
         val threadMergeDetails = ThreadMergeEvent(previousE164 = updateMessage.threadMerge.previousE164.toString()).encode()
         put(MessageTable.BODY, Base64.encodeWithPadding(threadMergeDetails))
       }
-      updateMessage.callingMessage != null -> {
-        when {
-          updateMessage.callingMessage.callId != null -> {
-            typeFlags = backupState.callIdToType[updateMessage.callingMessage.callId]!!
-          }
-          updateMessage.callingMessage.callMessage != null -> {
-            typeFlags = when (updateMessage.callingMessage.callMessage.type) {
-              IndividualCallChatUpdate.Type.INCOMING_AUDIO_CALL -> MessageTypes.INCOMING_AUDIO_CALL_TYPE
-              IndividualCallChatUpdate.Type.INCOMING_VIDEO_CALL -> MessageTypes.INCOMING_VIDEO_CALL_TYPE
-              IndividualCallChatUpdate.Type.OUTGOING_AUDIO_CALL -> MessageTypes.OUTGOING_AUDIO_CALL_TYPE
-              IndividualCallChatUpdate.Type.OUTGOING_VIDEO_CALL -> MessageTypes.OUTGOING_VIDEO_CALL_TYPE
-              IndividualCallChatUpdate.Type.MISSED_INCOMING_AUDIO_CALL -> MessageTypes.MISSED_AUDIO_CALL_TYPE
-              IndividualCallChatUpdate.Type.MISSED_INCOMING_VIDEO_CALL -> MessageTypes.MISSED_VIDEO_CALL_TYPE
-              IndividualCallChatUpdate.Type.UNANSWERED_OUTGOING_AUDIO_CALL -> MessageTypes.OUTGOING_AUDIO_CALL_TYPE
-              IndividualCallChatUpdate.Type.UNANSWERED_OUTGOING_VIDEO_CALL -> MessageTypes.OUTGOING_VIDEO_CALL_TYPE
-              IndividualCallChatUpdate.Type.UNKNOWN -> typeFlags
-            }
-          }
-          updateMessage.callingMessage.groupCall != null -> {
-            typeFlags = MessageTypes.GROUP_CALL_TYPE
-            this.put(MessageTable.BODY, GroupCallUpdateDetailsUtil.createBodyFromBackup(updateMessage.callingMessage.groupCall))
+      updateMessage.individualCall != null -> {
+        if (updateMessage.individualCall.state == IndividualCall.State.MISSED || updateMessage.individualCall.state == IndividualCall.State.MISSED_NOTIFICATION_PROFILE) {
+          typeFlags = if (updateMessage.individualCall.type == IndividualCall.Type.AUDIO_CALL) MessageTypes.MISSED_AUDIO_CALL_TYPE else MessageTypes.MISSED_VIDEO_CALL_TYPE
+        } else {
+          typeFlags = if (updateMessage.individualCall.direction == IndividualCall.Direction.OUTGOING) {
+            if (updateMessage.individualCall.type == IndividualCall.Type.AUDIO_CALL) MessageTypes.OUTGOING_AUDIO_CALL_TYPE else MessageTypes.OUTGOING_VIDEO_CALL_TYPE
+          } else {
+            if (updateMessage.individualCall.type == IndividualCall.Type.AUDIO_CALL) MessageTypes.INCOMING_AUDIO_CALL_TYPE else MessageTypes.INCOMING_VIDEO_CALL_TYPE
           }
         }
-        // Calls don't use the incoming/outgoing flags, so we overwrite the flags here
         this.put(MessageTable.TYPE, typeFlags)
+      }
+      updateMessage.groupCall != null -> {
+        this.put(MessageTable.BODY, GroupCallUpdateDetailsUtil.createBodyFromBackup(updateMessage.groupCall))
+        this.put(MessageTable.TYPE, MessageTypes.GROUP_CALL_TYPE)
       }
       updateMessage.groupChange != null -> {
         put(MessageTable.BODY, "")
