@@ -89,6 +89,16 @@
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal има потреба од дозвола до складот за да можете да прикачите слики, видеа или аудио. Оваа дозвола е трајно одбиена. Ве молиме продолжете до менито за поставувања, изберете „Дозволи“, и вклучете „Склад“</string>
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal има потреба од дозвола до контактите за да можете да прикачите информации за контакти. Оваа дозвола е трајно одбиена. Ве молиме продолжете до менито за поставување на апликациите, изберете „Дозволи“ и вклучете \"Контакти\".</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal има потреба од дозвола за локација за да може да прикачи локација. Оваа дозвола е трајно одбиена. Ве молиме продолжете до менито за поставувања, изберете „Дозволи“, и вклучете „Локација“.</string>
+
+    <!-- Dialog title asking users for location permission -->
+    <string name="AttachmentManager_signal_allow_access_location">Allow access to your location</string>
+    <!-- Dialog description that will explain the steps needed to give location permission -->
+    <string name="AttachmentManager_signal_to_send_location">To send your location:</string>
+    <!-- Alert dialog description asking for location permission -->
+    <string name="AttachmentManager_signal_allow_signal_access_location">Allow Signal access to send your location.</string>
+    <!-- Toast text explaining Signal\'s need for location access -->
+    <string name="AttachmentManager_signal_needs_location_access">Signal needs location access to send your location.</string>
+
     <!-- Alert dialog title to show the recipient has not activated payments -->
     <string name="AttachmentManager__not_activated_payments">%1$s нема активирано плаќања </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
@@ -386,8 +396,16 @@
     <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Вашето барање за да се приклучите е испратено до администраторот на групата. Ќе бидете известени штом преземат нешто околу тоа.</string>
     <string name="ConversationActivity_cancel_request">Откажи барање</string>
 
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">За да испраќате аудио пораки, дозволете му на Signal пристап до Вашиот микрофон.</string> -->
+    <!-- Dialog title asking users for microphone permission -->
+    <string name="ConversationActivity_allow_access_microphone">Allow access to your microphone</string>
+    <!-- Dialog description that will explain the steps needed to give microphone permissions -->
+    <string name="ConversationActivity_signal_to_send_audio_messages">To send audio messages:</string>
+    <!-- Alert dialog description asking for microphone permission in order to send voice messages -->
+    <string name="ConversationActivity_to_send_voice_messages_allow_signal_access_to_your_microphone">To send voice messages, allow Signal access to your microphone.</string>
+    <!-- Toast text explaining Signal\'s need for microphone access -->
+    <string name="ConversationActivity_signal_needs_microphone_access_voice_message">Signal needs microphone access to record a voice message.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal има потреба од дозвола до микрофонот за да може да испраќа аудио пораки. Оваа дозвола е трајно одбиена. Ве молиме продолжете до менито за поставувања, изберете „Дозволи“ и вклучете „Микрофон“.</string>
+
     <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal има потреба од дозвола до микрофонот и камерата за да може да воспостави повик со %1$s. Овие дозволи се трајно одбиени. Ве молиме продолжете до менито за поставувањата, изберете „Дозволи“ и вклучете „Микрофон“ и „Камера“.</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">За да снимате фотографии и видеа, дозволете му на Signal пристап до камерата.</string>
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal има потреба од дозвола до камерата за да слика и снима видео. Оваа дозвола е трајно одбиена. Ве молиме продолжете до менито за поставувања, изберете „Дозволи“ и вклучете „Камера”.</string>
@@ -411,7 +429,13 @@
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Ќе ја напуштите оваа група и таа ќе биде избришана од сите ваши уреди.</string>
     <string name="ConversationActivity_delete">Избриши</string>
     <string name="ConversationActivity_delete_and_leave">Избриши и напушти</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">За да го/ја повикате %1$s, на Signal му треба пристап до микрофонот</string> -->
+
+    <!-- Dialog description that will explain the steps needed to give microphone permissions for a voice call -->
+    <string name="ConversationActivity__to_start_call">To start a call:</string>
+    <!-- Alert dialog description asking for microphone permission in order to start a voice call -->
+    <string name="ConversationActivity__to_call_signal_needs_access_to_your_microphone">To start a call, allow Signal access to your microphone.</string>
+    <!-- Toast text explaining Signal\'s need for microphone access for a voice call -->
+    <string name="ConversationActivity_signal_needs_microphone_access_voice_call">Signal needs microphone access to start a call.</string>
 
 
     <string name="ConversationActivity_join">Приклучи сѐ</string>
@@ -3434,6 +3458,14 @@
     <!-- Storage permission row description -->
     <string name="GrantPermissionsFragment__send_photos_videos_and_files">Испраќајте слики, видеа или датотеки од вашиот уред.</string>
 
+    <!-- PermissionDeniedBottomSheet -->
+    <!-- Sheet describing step 1 on how to give permissions by opening settings -->
+    <string name="PermissionDeniedBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
+    <!-- Sheet describing step 2 on how to give permissions by checking the permissions button in settings where %s will be replaced with an image of a checked button -->
+    <string name="PermissionDeniedBottomSheet__2_allow_permission">2. %1$s Allow the permission</string>
+    <!-- Label for button at the bottom of the sheet which opens the system permission settings -->
+    <string name="PermissionDeniedBottomSheet__settings">Settings</string>
+
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
     <string name="PaymentsSecuritySetupFragment__security_setup">Поставувања за безбедност</string>
@@ -3687,6 +3719,14 @@
     <!-- Label for a menu item that appears after pressing the three-dot icon in a  -->
     <string name="conversation_group_options__conversation">Разговор</string>
     <string name="conversation_group_options__broadcast">Емитување</string>
+
+    <!-- DoubleTapEditEducationSheet -->
+    <!-- Displayed as the title of the education bottom sheet -->
+    <string name="DoubleTapEditEducationSheet__double_tap_edit_title">Double tap to edit</string>
+    <!-- Text on the sheet explaining how double tapping on a message will let them edit it -->
+    <string name="DoubleTapEditEducationSheet__quickly_tap_twice">Quickly tap twice on your messages to edit them. You can edit your messages up to 24hrs after they’ve been sent.</string>
+    <!-- Button label to dismiss sheet -->
+    <string name="DoubleTapEditEducationSheet__got_it">Got it</string>
 
     <!-- text_secure_normal -->
     <string name="text_secure_normal__menu_new_group">Нова група</string>
@@ -4184,8 +4224,16 @@
     <string name="ReviewCardDialogFragment__review_members">Прегледајте ги членовите</string>
     <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
     <string name="ReviewCardDialogFragment__review_request">Прегледајте го барањето</string>
-    <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d членови на групата го имаат истото име, прегледајте ги членовите подолу и решете што сакате да направите.</string>
-    <string name="ReviewCardDialogFragment__if_youre_not_sure">Ако не сте сигурни од кого е барањето, прегледајте ги контактите подолу и решете што сакате да направите.</string>
+    <!-- Message of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
+    <plurals name="ReviewCardDialogFragment__d_group_members_have_the_same_name">
+        <item quantity="one">%1$d group member have the same name, review the member below and choose to take action.</item>
+        <item quantity="other">%1$d group members have the same name, review the members below and choose to take action.</item>
+    </plurals>
+    <!-- Message of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
+    <plurals name="ReviewCardDialogFragment__if_youre_not_sure">
+        <item quantity="one">If you\'re not sure who the request is from, review the contact below and take action.</item>
+        <item quantity="other">If you\'re not sure who the request is from, review the contacts below and take action.</item>
+    </plurals>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">Немате други заеднички групи.</string>
     <string name="ReviewCardDialogFragment__no_groups_in_common">Немате заеднички групи.</string>
     <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
@@ -4216,12 +4264,20 @@
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s се приклучи</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s и %2$s се приклучија</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s и %3$s се приклучија</string>
-    <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s и %3$d други се приклучија</string>
+    <!-- Toast message shown in group call when 3 or more people join -->
+    <plurals name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">
+        <item quantity="one">%1$s, %2$s and %3$d other joined</item>
+        <item quantity="other">%1$s, %2$s and %3$d others joined</item>
+    </plurals>
     <!-- Toast/popup text shown when someone leaves a group call -->
     <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s напушти</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s и %2$s напуштија</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s и %3$s напуштија</string>
-    <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s и %3$d други напуштија</string>
+    <!-- Toast message shown in group call when 3 or more people leave -->
+    <plurals name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">
+        <item quantity="one">%1$s, %2$s and %3$d other left</item>
+        <item quantity="other">%1$s, %2$s and %3$d others left</item>
+    </plurals>
 
     <string name="CallParticipant__you">Вие</string>
     <string name="CallParticipant__you_on_another_device">Вие (од друг уред)</string>
@@ -4591,7 +4647,11 @@
 
     <!-- PrivacySettingsFragment -->
     <string name="PrivacySettingsFragment__blocked">Барањето е блокирано</string>
-    <string name="PrivacySettingsFragment__d_contacts">%1$d контакти</string>
+    <!-- Settings label that shows the number blocked contacts -->
+    <plurals name="PrivacySettingsFragment__d_contacts">
+        <item quantity="one">%1$d contact</item>
+        <item quantity="other">%1$d contacts</item>
+    </plurals>
     <string name="PrivacySettingsFragment__messaging">Пораки</string>
     <string name="PrivacySettingsFragment__disappearing_messages">Исчезнувачки пораки</string>
     <string name="PrivacySettingsFragment__app_security">Безбедност на апликацијата</string>
@@ -6747,6 +6807,21 @@
     <string name="BackupProgressService_title">Се враќа резервната копија…</string>
     <!-- Notification title shown while downloading backup restore data -->
     <string name="BackupProgressService_title_downloading">Се преземаат податоците од резервната копија…</string>
+
+    <!-- BackupsTypeSettingsFragment -->
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
+    <string name="BackupsTypeSettingsFragment__credit_or_debit_card">Credit or debit card</string>
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
+    <string name="BackupsTypeSettingsFragment__iDEAL">iDEAL</string>
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
+    <string name="BackupsTypeSettingsFragment__google_pay">Google Pay</string>
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
+    <string name="BackupsTypeSettingsFragment__bank_transfer">Bank transfer</string>
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
+    <string name="BackupsTypeSettingsFragment__paypal">PayPal</string>
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
+    <string name="BackupsTypeSettingsFragment__unknown">Unknown</string>
+
 
     <!-- EOF -->
 </resources>

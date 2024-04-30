@@ -89,6 +89,16 @@
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">फ़ोटो, वीडियो या ऑडियो संलग्न करने के लिए Signal को संग्रहण अनुमति की आवश्यकता होती है, लेकिन इसे स्थायी रूप से अस्वीकार कर दिया गया है। कृपया ऐप सेटिंग्स मेनू पर जारी रखें, \"अनुमतियां\" चुनें, और \"संग्रहण\" सक्षम करें।</string>
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">संपर्क जानकारी संलग्न करने के लिए Signal को संपर्क अनुमति की आवश्यकता होती है, लेकिन इसे स्थायी रूप से अस्वीकार कर दिया गया है। कृपया ऐप सेटिंग्स मेनू पर जारी रखें, \"अनुमतियां\" चुनें, और \"संपर्क\" सक्षम करें।</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">किसी स्थान को संलग्न करने के लिए Signal को स्थान अनुमति की आवश्यकता होती है, लेकिन इसे स्थायी रूप से अस्वीकार कर दिया गया है। कृपया ऐप सेटिंग्स मेनू पर जारी रखें, \"अनुमतियां\" चुनें, और \"स्थान\" सक्षम करें।</string>
+
+    <!-- Dialog title asking users for location permission -->
+    <string name="AttachmentManager_signal_allow_access_location">Allow access to your location</string>
+    <!-- Dialog description that will explain the steps needed to give location permission -->
+    <string name="AttachmentManager_signal_to_send_location">To send your location:</string>
+    <!-- Alert dialog description asking for location permission -->
+    <string name="AttachmentManager_signal_allow_signal_access_location">Allow Signal access to send your location.</string>
+    <!-- Toast text explaining Signal\'s need for location access -->
+    <string name="AttachmentManager_signal_needs_location_access">Signal needs location access to send your location.</string>
+
     <!-- Alert dialog title to show the recipient has not activated payments -->
     <string name="AttachmentManager__not_activated_payments">%1$s ने भुगतान सक्रीय नहीं किए हैं </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
@@ -386,8 +396,16 @@
     <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">समूह से जुड़ने का आपका अनुरोध समूह संचालक को भेज दिया गया है। जब वे जवाब देंगे तो आपको सूचित किया जाएगा।</string>
     <string name="ConversationActivity_cancel_request">निवेदन रद्द करें</string>
 
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">ऑडियो मेसेज भेजने के लिए, अपने माइक्रोफ़ोन पर Signal पहुंच की अनुमति दें।</string> -->
+    <!-- Dialog title asking users for microphone permission -->
+    <string name="ConversationActivity_allow_access_microphone">Allow access to your microphone</string>
+    <!-- Dialog description that will explain the steps needed to give microphone permissions -->
+    <string name="ConversationActivity_signal_to_send_audio_messages">To send audio messages:</string>
+    <!-- Alert dialog description asking for microphone permission in order to send voice messages -->
+    <string name="ConversationActivity_to_send_voice_messages_allow_signal_access_to_your_microphone">To send voice messages, allow Signal access to your microphone.</string>
+    <!-- Toast text explaining Signal\'s need for microphone access -->
+    <string name="ConversationActivity_signal_needs_microphone_access_voice_message">Signal needs microphone access to record a voice message.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">ऑडियो मेसेज को भेजने के लिए Signal को माइक्रोफ़ोन अनुमति की आवश्यकता होती है, लेकिन इसे स्थायी रूप से अस्वीकार कर दिया गया है। कृपया ऐप सेटिंग्स जारी रखें, \"अनुमतियां\" चुनें, और \"माइक्रोफ़ोन\" सक्षम करें।</string>
+
     <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">%1$s को कॉल करने के लिए Signal को माइक्रोफ़ोन और कैमरा अनुमतियों की आवश्यकता होती है, लेकिन उन्हें स्थायी रूप से अस्वीकार कर दिया गया है। कृपया ऐप सेटिंग्स जारी रखें, \"अनुमतियां\" चुनें, और \"माइक्रोफ़ोन\" और \"कैमरा\" सक्षम करें।</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">फोटो और वीडियो कैप्चर करने के लिए, कैमरे को Signal पहुंच की अनुमति दें।</string>
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal को फ़ोटो या वीडियो लेने के लिए कैमरा अनुमति की आवश्यकता होती है, लेकिन इसे स्थायी रूप से अस्वीकार कर दिया गया है। कृपया ऐप सेटिंग्स जारी रखें, \"अनुमतियां\" चुनें, और \"कैमरा\" सक्षम करें।</string>
@@ -411,7 +429,13 @@
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">आप इस ग्रूप को छोङ देंगे और यह ग्रूप आपके सभी डिवाइस से डिलीट कर दिया जाएगा।</string>
     <string name="ConversationActivity_delete">डिलीट करें</string>
     <string name="ConversationActivity_delete_and_leave">डिलीट करें और छोड़ दें</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">%1$s को कॉल करने के लिए, Signal को आपके माइक्रोफ़ोन तक पहुंच की आवश्यकता है।</string> -->
+
+    <!-- Dialog description that will explain the steps needed to give microphone permissions for a voice call -->
+    <string name="ConversationActivity__to_start_call">To start a call:</string>
+    <!-- Alert dialog description asking for microphone permission in order to start a voice call -->
+    <string name="ConversationActivity__to_call_signal_needs_access_to_your_microphone">To start a call, allow Signal access to your microphone.</string>
+    <!-- Toast text explaining Signal\'s need for microphone access for a voice call -->
+    <string name="ConversationActivity_signal_needs_microphone_access_voice_call">Signal needs microphone access to start a call.</string>
 
 
     <string name="ConversationActivity_join">जुड़ें</string>
@@ -3434,6 +3458,14 @@
     <!-- Storage permission row description -->
     <string name="GrantPermissionsFragment__send_photos_videos_and_files">अपनी डिवाइस से फोटो, वीडियो और फाइलें भेजें।</string>
 
+    <!-- PermissionDeniedBottomSheet -->
+    <!-- Sheet describing step 1 on how to give permissions by opening settings -->
+    <string name="PermissionDeniedBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
+    <!-- Sheet describing step 2 on how to give permissions by checking the permissions button in settings where %s will be replaced with an image of a checked button -->
+    <string name="PermissionDeniedBottomSheet__2_allow_permission">2. %1$s Allow the permission</string>
+    <!-- Label for button at the bottom of the sheet which opens the system permission settings -->
+    <string name="PermissionDeniedBottomSheet__settings">Settings</string>
+
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
     <string name="PaymentsSecuritySetupFragment__security_setup">सुरक्षा सेटअप</string>
@@ -3687,6 +3719,14 @@
     <!-- Label for a menu item that appears after pressing the three-dot icon in a  -->
     <string name="conversation_group_options__conversation">चैट</string>
     <string name="conversation_group_options__broadcast">प्रसारण</string>
+
+    <!-- DoubleTapEditEducationSheet -->
+    <!-- Displayed as the title of the education bottom sheet -->
+    <string name="DoubleTapEditEducationSheet__double_tap_edit_title">Double tap to edit</string>
+    <!-- Text on the sheet explaining how double tapping on a message will let them edit it -->
+    <string name="DoubleTapEditEducationSheet__quickly_tap_twice">Quickly tap twice on your messages to edit them. You can edit your messages up to 24hrs after they’ve been sent.</string>
+    <!-- Button label to dismiss sheet -->
+    <string name="DoubleTapEditEducationSheet__got_it">Got it</string>
 
     <!-- text_secure_normal -->
     <string name="text_secure_normal__menu_new_group">नया समूह</string>
@@ -4184,8 +4224,16 @@
     <string name="ReviewCardDialogFragment__review_members">सदस्यों की समीक्षा करें</string>
     <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
     <string name="ReviewCardDialogFragment__review_request">निवेदन की समीक्षा करें</string>
-    <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d समूह सदस्यों के एक ही नाम हैं, नीचे दिए गए सदस्यों की समीक्षा करें और कार्रवाई का चुनाव करें।</string>
-    <string name="ReviewCardDialogFragment__if_youre_not_sure">अगर आप इस निवेदन को भेजने वाले के बारे में निश्चित नहीं हों, तो निचे दिए गए संपर्कों की समीक्षा करें और कार्रवाई करें।</string>
+    <!-- Message of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
+    <plurals name="ReviewCardDialogFragment__d_group_members_have_the_same_name">
+        <item quantity="one">%1$d group member have the same name, review the member below and choose to take action.</item>
+        <item quantity="other">%1$d group members have the same name, review the members below and choose to take action.</item>
+    </plurals>
+    <!-- Message of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
+    <plurals name="ReviewCardDialogFragment__if_youre_not_sure">
+        <item quantity="one">If you\'re not sure who the request is from, review the contact below and take action.</item>
+        <item quantity="other">If you\'re not sure who the request is from, review the contacts below and take action.</item>
+    </plurals>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">कोई दूसरा साझा समूह नहीं</string>
     <string name="ReviewCardDialogFragment__no_groups_in_common">कोई साझा समूह नहीं</string>
     <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
@@ -4216,12 +4264,20 @@
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s समूह में शामिल हुए</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s और %2$s समूह में शामिल हुए</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s %3$s और समूह में शामिल हुए</string>
-    <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s और %3$d अन्य उपयोगकर्ता शामिल हुए</string>
+    <!-- Toast message shown in group call when 3 or more people join -->
+    <plurals name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">
+        <item quantity="one">%1$s, %2$s and %3$d other joined</item>
+        <item quantity="other">%1$s, %2$s and %3$d others joined</item>
+    </plurals>
     <!-- Toast/popup text shown when someone leaves a group call -->
     <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s समूह छोड़ गए</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$sऔर %2$s समूह छोड़ गए</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s और %3$s समूह छोड़ गए</string>
-    <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s और %3$d अन्यउपयोगकर्ता समूह छोड़ गए</string>
+    <!-- Toast message shown in group call when 3 or more people leave -->
+    <plurals name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">
+        <item quantity="one">%1$s, %2$s and %3$d other left</item>
+        <item quantity="other">%1$s, %2$s and %3$d others left</item>
+    </plurals>
 
     <string name="CallParticipant__you">आप</string>
     <string name="CallParticipant__you_on_another_device">आप (दूसरे डिवाइस से)</string>
@@ -4591,7 +4647,11 @@
 
     <!-- PrivacySettingsFragment -->
     <string name="PrivacySettingsFragment__blocked">ब्लॉक किया गया</string>
-    <string name="PrivacySettingsFragment__d_contacts">%1$d संपर्क</string>
+    <!-- Settings label that shows the number blocked contacts -->
+    <plurals name="PrivacySettingsFragment__d_contacts">
+        <item quantity="one">%1$d contact</item>
+        <item quantity="other">%1$d contacts</item>
+    </plurals>
     <string name="PrivacySettingsFragment__messaging">संदेश संवाद</string>
     <string name="PrivacySettingsFragment__disappearing_messages">गायब होने वाले मेसेज</string>
     <string name="PrivacySettingsFragment__app_security">ऐप सुरक्षा</string>
@@ -6747,6 +6807,21 @@
     <string name="BackupProgressService_title">बैकअप पुनः निर्मित हो रहा है…</string>
     <!-- Notification title shown while downloading backup restore data -->
     <string name="BackupProgressService_title_downloading">बैकअप डाटा डाउनलोड हो रहा है…</string>
+
+    <!-- BackupsTypeSettingsFragment -->
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
+    <string name="BackupsTypeSettingsFragment__credit_or_debit_card">Credit or debit card</string>
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
+    <string name="BackupsTypeSettingsFragment__iDEAL">iDEAL</string>
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
+    <string name="BackupsTypeSettingsFragment__google_pay">Google Pay</string>
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
+    <string name="BackupsTypeSettingsFragment__bank_transfer">Bank transfer</string>
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
+    <string name="BackupsTypeSettingsFragment__paypal">PayPal</string>
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
+    <string name="BackupsTypeSettingsFragment__unknown">Unknown</string>
+
 
     <!-- EOF -->
 </resources>
