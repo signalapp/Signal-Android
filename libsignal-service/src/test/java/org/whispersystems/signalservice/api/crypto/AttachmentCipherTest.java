@@ -39,7 +39,7 @@ public final class AttachmentCipherTest {
     }
   }
 
-  private static int MEBIBYTE = 1024 * 1024;
+  private static final int MEBIBYTE = 1024 * 1024;
 
   @Test
   public void attachment_encryptDecrypt_nonIncremental() throws IOException, InvalidMessageException {
@@ -391,7 +391,7 @@ public final class AttachmentCipherTest {
 
     try {
       byte[]        key              = Util.getSecretBytes(64);
-      byte[]        plaintextInput   = "Uncle Ben".getBytes();
+      byte[]        plaintextInput   = Util.getSecretBytes(MEBIBYTE);
       EncryptResult encryptResult    = encryptData(plaintextInput, key, true);
       byte[]        badMacCiphertext = Arrays.copyOf(encryptResult.ciphertext, encryptResult.ciphertext.length);
 
@@ -418,7 +418,7 @@ public final class AttachmentCipherTest {
     assumeLibSignalSupportedOnOS();
 
     byte[]        packKey         = Util.getSecretBytes(32);
-    byte[]        plaintextInput  = "Peter Parker".getBytes();
+    byte[]        plaintextInput  = Util.getSecretBytes(MEBIBYTE);
     EncryptResult encryptResult   = encryptData(plaintextInput, expandPackKey(packKey), true);
     InputStream   inputStream     = AttachmentCipherInputStream.createForStickerData(encryptResult.ciphertext, packKey);
     byte[]        plaintextOutput = readInputStreamFully(inputStream);
@@ -447,7 +447,7 @@ public final class AttachmentCipherTest {
 
     try {
       byte[]        packKey        = Util.getSecretBytes(32);
-      byte[]        plaintextInput = "Gwen Stacy".getBytes();
+      byte[]        plaintextInput = Util.getSecretBytes(MEBIBYTE);
       EncryptResult encryptResult  = encryptData(plaintextInput, expandPackKey(packKey), true);
       byte[]        badPackKey     = new byte[32];
 
@@ -467,7 +467,7 @@ public final class AttachmentCipherTest {
 
     try {
       byte[]        packKey          = Util.getSecretBytes(32);
-      byte[]        plaintextInput   = "Uncle Ben".getBytes();
+      byte[]        plaintextInput   = Util.getSecretBytes(MEBIBYTE);
       EncryptResult encryptResult    = encryptData(plaintextInput, expandPackKey(packKey), true);
       byte[]        badMacCiphertext = Arrays.copyOf(encryptResult.ciphertext, encryptResult.ciphertext.length);
 
