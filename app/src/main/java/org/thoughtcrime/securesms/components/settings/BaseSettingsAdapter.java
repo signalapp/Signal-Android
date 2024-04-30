@@ -20,9 +20,4 @@ public class BaseSettingsAdapter extends MappingAdapter {
     registerFactory(SingleSelectSetting.Item.class,
                     new LayoutFactory<>(v -> new SingleSelectSetting.ViewHolder(v, selectionChangedListener), R.layout.single_select_item));
   }
-
-  public void configureCustomizableSingleSelect(@NonNull CustomizableSingleSelectSetting.CustomizableSingleSelectionListener selectionListener) {
-    registerFactory(CustomizableSingleSelectSetting.Item.class,
-                    new LayoutFactory<>(v -> new CustomizableSingleSelectSetting.ViewHolder(v, selectionListener), R.layout.customizable_single_select_item));
-  }
 }

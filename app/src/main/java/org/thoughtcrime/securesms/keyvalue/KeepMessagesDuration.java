@@ -35,7 +35,7 @@ public enum KeepMessagesDuration {
     return duration;
   }
 
-  static @NonNull KeepMessagesDuration fromId(int id) {
+  public static @NonNull KeepMessagesDuration fromId(int id) {
     return values()[id];
   }
 }

@@ -86,8 +86,8 @@ object Dialogs {
       text = { Text(text = body) },
       confirmButton = {
         TextButton(onClick = {
-          onConfirm()
           onDismiss()
+          onConfirm()
         }) {
           Text(text = confirm, color = confirmColor)
         }

@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.database
 import android.annotation.SuppressLint
 import android.content.Context
 import android.database.Cursor
+import androidx.compose.runtime.Immutable
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullString
@@ -302,6 +303,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
     }
   }
 
+  @Immutable
   data class StorageBreakdown(
     val photoSize: Long,
     val videoSize: Long,

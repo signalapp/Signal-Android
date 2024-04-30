@@ -26,16 +26,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import org.signal.core.ui.theme.SignalTheme
+import org.signal.core.ui.Rows.TextAndLabel
 
 object Rows {
 
   /**
-   * A row consisting of a radio button and text, which takes up the full
-   * width of the screen.
+   * A row consisting of a radio button and [text] and optional [label] in a [TextAndLabel].
    */
   @Composable
   fun RadioRow(
@@ -43,6 +41,30 @@ object Rows {
     text: String,
     modifier: Modifier = Modifier,
     label: String? = null,
+    enabled: Boolean = true
+  ) {
+    RadioRow(
+      content = {
+        TextAndLabel(
+          text = text,
+          label = label,
+          enabled = enabled
+        )
+      },
+      selected = selected,
+      modifier = modifier,
+      enabled = enabled
+    )
+  }
+
+  /**
+   * Customizable radio row that allows [content] to be provided as composable functions instead of primitives.
+   */
+  @Composable
+  fun RadioRow(
+    content: @Composable RowScope.() -> Unit,
+    selected: Boolean,
+    modifier: Modifier = Modifier,
     enabled: Boolean = true
   ) {
     Row(
@@ -58,70 +80,66 @@ object Rows {
         modifier = Modifier.padding(end = 24.dp)
       )
 
-      Column(
-        modifier = Modifier.alpha(if (enabled) 1f else 0.4f)
-      ) {
-        Text(
-          text = text,
-          style = MaterialTheme.typography.bodyLarge
-        )
-
-        if (label != null) {
-          Text(
-            text = label,
-            fontSize = 14.sp,
-            lineHeight = 20.sp,
-            color = MaterialTheme.colorScheme.onSurfaceVariant
-          )
-        }
-      }
+      content()
     }
   }
 
+  /**
+   * Row that positions [text] and optional [label] in a [TextAndLabel] to the side of a [Switch].
+   */
   @Composable
   fun ToggleRow(
     checked: Boolean,
     text: String,
-    textColor: Color = MaterialTheme.colorScheme.onSurface,
     onCheckChanged: (Boolean) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    label: String? = null,
+    textColor: Color = MaterialTheme.colorScheme.onSurface,
+    enabled: Boolean = true
   ) {
     Row(
       modifier = modifier
         .fillMaxWidth()
-        .padding(defaultPadding())
+        .padding(defaultPadding()),
+      verticalAlignment = CenterVertically
     ) {
-      Text(
+      TextAndLabel(
         text = text,
-        color = textColor,
-        modifier = Modifier
-          .weight(1f)
-          .align(CenterVertically)
+        label = label,
+        textColor = textColor,
+        enabled = enabled,
+        modifier = Modifier.padding(end = 16.dp)
       )
 
       Switch(
         checked = checked,
-        onCheckedChange = onCheckChanged,
-        modifier = Modifier.align(CenterVertically)
+        enabled = enabled,
+        onCheckedChange = onCheckChanged
       )
     }
   }
 
+  /**
+   * Text row that positions [text] and optional [label] in a [TextAndLabel] to the side of an optional [icon].
+   */
   @Composable
   fun TextRow(
     text: String,
     modifier: Modifier = Modifier,
     iconModifier: Modifier = Modifier,
+    label: String? = null,
     icon: Painter? = null,
     foregroundTint: Color = MaterialTheme.colorScheme.onSurface,
-    onClick: (() -> Unit)? = null
+    onClick: (() -> Unit)? = null,
+    enabled: Boolean = true
   ) {
     TextRow(
       text = {
-        Text(
+        TextAndLabel(
           text = text,
-          color = foregroundTint,
-          modifier = Modifier.align(CenterVertically)
+          label = label,
+          textColor = foregroundTint,
+          enabled = enabled
         )
       },
       icon = if (icon != null) {
@@ -137,22 +155,28 @@ object Rows {
         null
       },
       modifier = modifier,
-      onClick = onClick
+      onClick = onClick,
+      enabled = enabled
     )
   }
 
+  /**
+   * Customizable text row that allows [text] and [icon] to be provided as composable functions instead of primitives.
+   */
   @Composable
   fun TextRow(
     text: @Composable RowScope.() -> Unit,
     modifier: Modifier = Modifier,
     icon: (@Composable RowScope.() -> Unit)? = null,
-    onClick: (() -> Unit)? = null
+    onClick: (() -> Unit)? = null,
+    enabled: Boolean = true
   ) {
     Row(
       modifier = modifier
         .fillMaxWidth()
-        .clickable(enabled = onClick != null, onClick = onClick ?: {})
-        .padding(defaultPadding())
+        .clickable(enabled = enabled && onClick != null, onClick = onClick ?: {})
+        .padding(defaultPadding()),
+      verticalAlignment = CenterVertically
     ) {
       if (icon != null) {
         icon()
@@ -169,12 +193,45 @@ object Rows {
       vertical = 16.dp
     )
   }
+
+  /**
+   * Row component to position text above an optional label.
+   */
+  @Composable
+  fun RowScope.TextAndLabel(
+    text: String,
+    modifier: Modifier = Modifier,
+    label: String? = null,
+    enabled: Boolean = true,
+    textColor: Color = MaterialTheme.colorScheme.onSurface,
+    textStyle: TextStyle = MaterialTheme.typography.bodyLarge
+  ) {
+    Column(
+      modifier = modifier
+        .alpha(if (enabled) 1f else 0.4f)
+        .weight(1f)
+    ) {
+      Text(
+        text = text,
+        style = textStyle,
+        color = textColor
+      )
+
+      if (label != null) {
+        Text(
+          text = label,
+          style = MaterialTheme.typography.bodyMedium,
+          color = MaterialTheme.colorScheme.onSurfaceVariant
+        )
+      }
+    }
+  }
 }
 
-@Preview
+@SignalPreview
 @Composable
 private fun RadioRowPreview() {
-  SignalTheme(isDarkMode = false) {
+  Previews.Preview {
     var selected by remember { mutableStateOf(true) }
 
     Rows.RadioRow(
@@ -188,15 +245,16 @@ private fun RadioRowPreview() {
   }
 }
 
-@Preview
+@SignalPreview
 @Composable
 private fun ToggleRowPreview() {
-  SignalTheme(isDarkMode = false) {
+  Previews.Preview {
     var checked by remember { mutableStateOf(false) }
 
     Rows.ToggleRow(
       checked = checked,
       text = "ToggleRow",
+      label = "ToggleRow label",
       onCheckChanged = {
         checked = it
       }
@@ -210,7 +268,26 @@ private fun TextRowPreview() {
   Previews.Preview {
     Rows.TextRow(
       text = "TextRow",
-      icon = painterResource(id = android.R.drawable.ic_menu_camera)
+      icon = painterResource(id = android.R.drawable.ic_menu_camera),
+      onClick = {}
     )
+  }
+}
+
+@SignalPreview
+@Composable
+private fun TextAndLabelPreview() {
+  Previews.Preview {
+    Row {
+      TextAndLabel(
+        text = "TextAndLabel Text",
+        label = "TextAndLabel Label"
+      )
+      TextAndLabel(
+        text = "TextAndLabel Text",
+        label = "TextAndLabel Label",
+        enabled = false
+      )
+    }
   }
 }
