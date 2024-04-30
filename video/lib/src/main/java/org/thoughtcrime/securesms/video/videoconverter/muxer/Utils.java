@@ -31,7 +31,7 @@ final class Utils {
   }
 
   static @NonNull ByteBuffer subBuffer(final @NonNull ByteBuffer buf, final int start) {
-    return subBuffer(buf, start, buf.remaining() - start);
+    return subBuffer(buf, start, buf.limit() - start);
   }
 
   static @NonNull ByteBuffer subBuffer(final @NonNull ByteBuffer buf, final int start, final int count) {
