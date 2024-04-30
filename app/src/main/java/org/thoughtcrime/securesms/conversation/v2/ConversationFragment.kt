@@ -3098,7 +3098,7 @@ class ConversationFragment :
               }
 
               override fun onHide() {
-                if (!lifecycle.currentState.isAtLeast(Lifecycle.State.INITIALIZED)) {
+                if (!lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED) || activity == null || activity?.isFinishing == true) {
                   return
                 }
 
@@ -3107,10 +3107,8 @@ class ConversationFragment :
                   getVoiceNoteMediaController().resumePlayback(selectedConversationModel.audioUri, messageRecord.getId())
                 }
 
-                if (activity != null) {
-                  WindowUtil.setLightStatusBarFromTheme(requireActivity())
-                  WindowUtil.setLightNavigationBarFromTheme(requireActivity())
-                }
+                WindowUtil.setLightStatusBarFromTheme(requireActivity())
+                WindowUtil.setLightNavigationBarFromTheme(requireActivity())
 
                 clearFocusedItem()
 

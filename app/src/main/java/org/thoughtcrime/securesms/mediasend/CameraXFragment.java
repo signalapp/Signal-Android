@@ -561,6 +561,10 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
       return Unit.INSTANCE;
     }
 
+    if (!getLifecycle().getCurrentState().isAtLeast(androidx.lifecycle.Lifecycle.State.STARTED)) {
+      return Unit.INSTANCE;
+    }
+
     getViewLifecycleOwner().getLifecycle().addObserver(cameraScreenBrightnessController);
     if (cameraController.hasCamera(CameraSelector.DEFAULT_FRONT_CAMERA) && cameraController.hasCamera(CameraSelector.DEFAULT_BACK_CAMERA)) {
       flipButton.setVisibility(View.VISIBLE);
