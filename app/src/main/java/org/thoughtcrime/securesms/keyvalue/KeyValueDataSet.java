@@ -2,6 +2,8 @@ package org.thoughtcrime.securesms.keyvalue;
 
 import androidx.annotation.NonNull;
 
+import org.thoughtcrime.securesms.util.Util;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -119,12 +121,30 @@ public class KeyValueDataSet implements KeyValueReader {
     return types.get(key);
   }
 
-  private <E> E readValueAsType(@NonNull String key, Class<E> type, boolean nullable) {
+  private <E> E readValueAsType(@NonNull String key, Class<E> expectedType, boolean nullable) {
     Object value = values.get(key);
-    if ((value == null && nullable) || (value != null && value.getClass() == type)) {
-      return type.cast(value);
-    } else {
-      throw new IllegalArgumentException("Type mismatch!");
+    if (value == null && nullable) {
+      return null;
     }
+
+    if (value == null) {
+      throw new IllegalArgumentException("Nullability mismatch!");
+    }
+
+    if (value.getClass() == expectedType) {
+      return expectedType.cast(value);
+    }
+
+    if (expectedType == Integer.class && value instanceof Long) {
+      long longValue = (long) value;
+      return expectedType.cast(Util.toIntExact(longValue));
+    }
+
+    if (expectedType == Long.class && value instanceof Integer) {
+      int intValue = (int) value;
+      return expectedType.cast((long) intValue);
+    }
+
+    throw new IllegalArgumentException("Type mismatch!");
   }
 }
