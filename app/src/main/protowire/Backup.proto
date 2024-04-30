@@ -142,10 +142,10 @@ message Group {
   // For documentation, defer to Groups.proto. The only name change is Group -> GroupSnapshot to avoid the naming conflict.
   message GroupSnapshot {
     bytes publicKey = 1;
-    string title = 2;
-    string description = 11;
-    string avatar = 3;
-    uint32 disappearingMessagesTimer = 4;
+    GroupAttributeBlob title = 2;
+    GroupAttributeBlob description = 11;
+    string avatarUrl = 3;
+    GroupAttributeBlob disappearingMessagesTimer = 4;
     AccessControl accessControl = 5;
     uint32 version = 6;
     repeated Member members = 7;
@@ -154,6 +154,15 @@ message Group {
     bytes inviteLinkPassword = 10;
     bool announcements_only = 12;
     repeated MemberBanned members_banned = 13;
+  }
+
+  message GroupAttributeBlob {
+    oneof content {
+      string title = 1;
+      bytes  avatar = 2;
+      uint32 disappearingMessagesDuration = 3;
+      string descriptionText = 4;
+    }
   }
 
   message Member {
@@ -179,7 +188,7 @@ message Group {
   message MemberPendingAdminApproval {
     bytes userId = 1;
     bytes profileKey = 2;
-    bytes presentation = 3;
+    reserved /*presentation*/ 3; // The field is deprecated in the context of static group state
     uint64 timestamp = 4;
   }
 

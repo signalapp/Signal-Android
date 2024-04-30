@@ -232,7 +232,10 @@ fun RecipientTable.restoreGroupFromBackup(group: Group): RecipientId {
   }
 
   val recipientId = writableDatabase.insert(RecipientTable.TABLE_NAME, null, values)
-  SignalDatabase.groups.create(masterKey, decryptedState)
+  val restoredId = SignalDatabase.groups.create(masterKey, decryptedState)
+  if (restoredId != null) {
+    SignalDatabase.groups.setShowAsStoryState(restoredId, group.storySendMode.toGroupShowAsStoryState())
+  }
 
   return RecipientId.from(recipientId)
 }
@@ -286,16 +289,16 @@ private fun DecryptedGroup.toSnapshot(): Group.GroupSnapshot? {
     return null
   }
   return Group.GroupSnapshot(
-    title = title,
-    avatar = avatar,
-    disappearingMessagesTimer = disappearingMessagesTimer?.duration ?: 0,
+    title = Group.GroupAttributeBlob(title = title),
+    avatarUrl = avatar,
+    disappearingMessagesTimer = Group.GroupAttributeBlob(disappearingMessagesDuration = disappearingMessagesTimer?.duration ?: 0),
     accessControl = accessControl?.toSnapshot(),
     version = revision,
     members = members.map { it.toSnapshot() },
     membersPendingProfileKey = pendingMembers.map { it.toSnapshot() },
     membersPendingAdminApproval = requestingMembers.map { it.toSnapshot() },
     inviteLinkPassword = inviteLinkPassword,
-    description = description,
+    description = Group.GroupAttributeBlob(descriptionText = description),
     announcements_only = isAnnouncementGroup == EnabledState.ENABLED,
     members_banned = bannedMembers.map { it.toSnapshot() }
   )
@@ -362,16 +365,16 @@ private fun DecryptedBannedMember.toSnapshot(): Group.MemberBanned {
 
 private fun Group.GroupSnapshot.toDecryptedGroup(operations: GroupsV2Operations.GroupOperations): DecryptedGroup {
   return DecryptedGroup(
-    title = title,
-    avatar = avatar,
-    disappearingMessagesTimer = DecryptedTimer(duration = disappearingMessagesTimer),
+    title = title?.title ?: "",
+    avatar = avatarUrl,
+    disappearingMessagesTimer = DecryptedTimer(duration = disappearingMessagesTimer?.disappearingMessagesDuration ?: 0),
     accessControl = accessControl?.toLocal(),
     revision = version,
     members = members.map { member -> member.toLocal() },
     pendingMembers = membersPendingProfileKey.map { pending -> pending.toLocal(operations) },
     requestingMembers = membersPendingAdminApproval.map { requesting -> requesting.toLocal() },
     inviteLinkPassword = inviteLinkPassword,
-    description = description,
+    description = description?.descriptionText ?: "",
     isAnnouncementGroup = if (announcements_only) EnabledState.ENABLED else EnabledState.DISABLED,
     bannedMembers = members_banned.map { it.toLocal() }
   )

@@ -430,7 +430,13 @@ class ImportExportTest {
           masterKey = TestRecipientUtils.generateGroupMasterKey().toByteString(),
           whitelisted = true,
           hideStory = true,
-          storySendMode = Group.StorySendMode.ENABLED
+          storySendMode = Group.StorySendMode.ENABLED,
+          snapshot = Group.GroupSnapshot(
+            title = Group.GroupAttributeBlob(title = "Group Cool"),
+            description = Group.GroupAttributeBlob(descriptionText = "Description"),
+            version = 10,
+            disappearingMessagesTimer = Group.GroupAttributeBlob(disappearingMessagesDuration = 1500000)
+          )
         )
       ),
       Recipient(
@@ -439,7 +445,13 @@ class ImportExportTest {
           masterKey = TestRecipientUtils.generateGroupMasterKey().toByteString(),
           whitelisted = false,
           hideStory = false,
-          storySendMode = Group.StorySendMode.DEFAULT
+          storySendMode = Group.StorySendMode.DEFAULT,
+          snapshot = Group.GroupSnapshot(
+            title = Group.GroupAttributeBlob(title = "Group Cool"),
+            description = Group.GroupAttributeBlob(descriptionText = "Description"),
+            version = 10,
+            disappearingMessagesTimer = Group.GroupAttributeBlob(disappearingMessagesDuration = 1500000)
+          )
         )
       )
     )
