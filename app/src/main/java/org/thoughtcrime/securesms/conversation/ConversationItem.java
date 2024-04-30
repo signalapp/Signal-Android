@@ -237,6 +237,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   private                Stub<GiftMessageView>                   giftViewStub;
   private                Stub<PaymentMessageView>                paymentViewStub;
   private @Nullable      EventListener                           eventListener;
+  private @Nullable      GestureDetector                         gestureDetector;
 
   private int     defaultBubbleColor;
   private int     defaultBubbleColorForWallpaper;
@@ -497,6 +498,11 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   @Override
   public void setEventListener(@Nullable EventListener eventListener) {
     this.eventListener = eventListener;
+  }
+
+  @Override
+  public void setGestureDetector(GestureDetector gestureDetector) {
+    this.gestureDetector = gestureDetector;
   }
 
   public boolean disallowSwipe(float downX, float downY) {
@@ -2442,20 +2448,12 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   private class DoubleTapEditTouchListener implements View.OnTouchListener {
-    private final GestureDetector gestureDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
-      @Override
-      public boolean onDoubleTap(MotionEvent e) {
-        if (eventListener != null && batchSelected.isEmpty()) {
-          eventListener.onItemDoubleClick(getMultiselectPartForLatestTouch());
-          return true;
-        }
-        return false;
-      }
-    });
-
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-      return gestureDetector.onTouchEvent(event);
+      if (gestureDetector != null && batchSelected.isEmpty()) {
+        return gestureDetector.onTouchEvent(event);
+      }
+      return false;
     }
   }
 

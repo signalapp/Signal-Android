@@ -6,6 +6,9 @@
 package org.thoughtcrime.securesms.conversation.v2
 
 import android.text.TextUtils
+import android.view.GestureDetector
+import android.view.GestureDetector.SimpleOnGestureListener
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.text.HtmlCompat
@@ -382,8 +385,22 @@ class ConversationAdapterV2(
   }
 
   private inner class OutgoingMediaViewHolder(itemView: View) : ConversationViewHolder<OutgoingMedia>(itemView) {
+    val gestureDetector = GestureDetector(
+      context,
+      object : SimpleOnGestureListener() {
+        override fun onDoubleTap(e: MotionEvent): Boolean {
+          if (clickListener != null) {
+            clickListener.onItemDoubleClick(getMultiselectPartForLatestTouch())
+            return true
+          }
+          return false
+        }
+      }
+    )
+
     override fun bind(model: OutgoingMedia) {
       bindable.setEventListener(clickListener)
+      bindable.setGestureDetector(gestureDetector)
 
       if (bindPayloadsIfAvailable()) {
         return
