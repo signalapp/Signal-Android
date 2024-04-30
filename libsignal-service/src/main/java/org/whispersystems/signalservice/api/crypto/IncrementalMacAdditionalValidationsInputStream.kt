@@ -11,6 +11,7 @@ import java.io.FilterInputStream
 import java.io.InputStream
 import java.security.MessageDigest
 import javax.crypto.Mac
+import kotlin.math.max
 
 /**
  * This is meant as a helper stream to go along with [org.signal.libsignal.protocol.incrementalmac.IncrementalMacInputStream].
@@ -68,7 +69,10 @@ class IncrementalMacAdditionalValidationsInputStream(
 
       // Even though we're reading into the MAC, many of the bytes read in this method call could be non-MAC bytes, so we need to copy
       // those over, while excluding the bytes that are part of the MAC.
-      mac.update(buffer, offset, bytesRead - bytesOfMacRead)
+      val bytesOfNonMacRead = max(0, bytesRead - bytesOfMacRead)
+      if (bytesOfNonMacRead > 0) {
+        mac.update(buffer, offset, bytesOfNonMacRead)
+      }
     } else {
       mac.update(buffer, offset, bytesRead)
     }
