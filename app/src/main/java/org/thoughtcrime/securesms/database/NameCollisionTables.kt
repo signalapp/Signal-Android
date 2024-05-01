@@ -39,6 +39,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import java.io.IOException
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
+import java.util.Optional
 import kotlin.time.Duration.Companion.days
 
 /**
@@ -166,7 +167,7 @@ class NameCollisionTables(
       return emptyList()
     }
 
-    val collisions = readableDatabase
+    val collisions: Set<ReviewRecipient> = readableDatabase
       .select()
       .from(NameCollisionMembershipTable.TABLE_NAME)
       .where("${NameCollisionMembershipTable.COLLISION_ID} = ?", collisionId)
@@ -176,11 +177,16 @@ class NameCollisionTables(
           Recipient.resolved(RecipientId.from(cursor.requireLong(NameCollisionMembershipTable.RECIPIENT_ID))),
           cursor.requireBlob(NameCollisionMembershipTable.PROFILE_CHANGE_DETAILS)?.let { ProfileChangeDetails.ADAPTER.decode(it) }
         )
-      }.toMutableList()
+      }.toSet()
 
-    val groups = collisions.groupBy { SqlUtil.buildCaseInsensitiveGlobPattern(it.recipient.getDisplayName(context)) }
-    val toDelete: List<ReviewRecipient> = groups.values.filter { it.size < 2 }.flatten()
-    val toReturn: List<ReviewRecipient> = groups.values.filter { it.size >= 2 }.flatten()
+    val groupMembers: Optional<List<RecipientId>> = SignalDatabase.groups.getGroup(recipientId).map { it.members }
+    val invalidCollisions: Set<ReviewRecipient> = collisions.filter {
+      groupMembers.isPresent && (it.recipient.id !in groupMembers.get())
+    }.toSet()
+
+    val groups = (collisions - invalidCollisions).groupBy { SqlUtil.buildCaseInsensitiveGlobPattern(it.recipient.getDisplayName(context)) }
+    val toDelete: Set<ReviewRecipient> = invalidCollisions + groups.values.filter { it.size < 2 }.flatten().toSet()
+    val toReturn: Set<ReviewRecipient> = groups.values.filter { it.size >= 2 }.flatten().toSet()
 
     if (toDelete.isNotEmpty()) {
       writableDatabase.withinTransaction { db ->
@@ -199,7 +205,7 @@ class NameCollisionTables(
       }
     }
 
-    return toReturn
+    return toReturn.toList()
   }
 
   /**
