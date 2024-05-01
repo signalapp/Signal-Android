@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.conversation.v2.keyboard
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
@@ -94,8 +95,10 @@ class AttachmentKeyboardFragment : LoggingFragment(R.layout.attachment_keyboard_
   override fun onAttachmentPermissionsRequested() {
     Permissions.with(requireParentFragment())
       .request(*PermissionCompat.forImagesAndVideos())
+      .ifNecessary()
       .onAllGranted { viewModel.refreshRecentMedia() }
-      .withPermanentDenialDialog(getString(R.string.AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio))
+      .withPermanentDenialDialog(getString(R.string.AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio), null, R.string.AttachmentManager_signal_allow_storage, R.string.AttachmentManager_signal_to_show_photos, parentFragmentManager)
+      .onAnyDenied { Toast.makeText(requireContext(), R.string.AttachmentManager_signal_needs_storage_access, Toast.LENGTH_LONG).show() }
       .execute()
   }
 
