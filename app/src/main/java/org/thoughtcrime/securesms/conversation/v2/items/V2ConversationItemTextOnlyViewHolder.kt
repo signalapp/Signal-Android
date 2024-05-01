@@ -154,7 +154,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
         )
     }
 
-    binding.root.setOnTouchListener { _, event -> gestureDetector.onTouchEvent(event) }
+    binding.body.setOnTouchListener { _, event -> gestureDetector.onTouchEvent(event) }
     binding.root.setOnClickListener { onBubbleClicked() }
     binding.root.setOnLongClickListener {
       conversationContext.clickListener.onItemLongClick(binding.root, getMultiselectPartForLatestTouch())
