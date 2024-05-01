@@ -110,6 +110,10 @@ public class SQLiteDatabase implements SupportSQLiteDatabase {
 
     tracer.start(methodName, params);
     E result = returnable.run();
+    if (result instanceof Cursor) {
+      // Triggers filling the window (which is about to be done anyway), but lets us capture that time inside the trace
+      ((Cursor) result).getCount();
+    }
     tracer.end(methodName);
 
     if (locked) {
