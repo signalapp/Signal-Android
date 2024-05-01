@@ -72,7 +72,7 @@ public class PinRestoreEntryFragment extends LoggingFragment {
     RegistrationViewDelegate.setDebugLogSubmitMultiTapView(root.findViewById(R.id.pin_restore_pin_title));
 
     pinEntry       = root.findViewById(R.id.pin_restore_pin_input);
-    pinButton      = root.findViewById(R.id.pin_restore_pin_continue);
+    pinButton      = root.findViewById(R.id.pin_restore_pin_confirm);
     errorLabel     = root.findViewById(R.id.pin_restore_pin_input_label);
     keyboardToggle = root.findViewById(R.id.pin_restore_keyboard_toggle);
     helpButton     = root.findViewById(R.id.pin_restore_forgot_pin);
