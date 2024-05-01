@@ -1154,7 +1154,7 @@
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Сповіщати мене про згадування</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Отримувати сповіщення, якщо вас згадали в чатах із вимкнутими сповіщеннями?</string>
+    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Отримувати сповіщення, коли вас згадують, навіть якщо сповіщення від чату вимкнено?</string>
     <string name="GroupMentionSettingDialog_always_notify_me">Завжди сповіщати</string>
     <string name="GroupMentionSettingDialog_dont_notify_me">Не сповіщати</string>
 
@@ -2447,7 +2447,7 @@
     <string name="ThreadRecord_s_is_on_signal">%1$s приєднався до Signal!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Тимчасові повідомлення вимкнено</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Таймер тимчасових повідомлень встановлено на %1$s</string>
-    <string name="ThreadRecord_safety_number_changed">Код безпеки змінився</string>
+    <string name="ThreadRecord_safety_number_changed">Змінився код безпеки</string>
     <string name="ThreadRecord_your_safety_number_with_s_has_changed">Код безпеки для чату з %1$s змінився.</string>
     <string name="ThreadRecord_you_marked_verified">Ви перевірили</string>
     <string name="ThreadRecord_you_marked_unverified">Номер безпеки є НЕперевіреним</string>
@@ -2989,13 +2989,13 @@
     <string name="BubbleOptOutTooltip__turn_off">Вимкнути</string>
 
     <!-- safety_number_change_dialog -->
-    <string name="safety_number_change_dialog__safety_number_changes">Історія змін коду безпеки</string>
+    <string name="safety_number_change_dialog__safety_number_changes">Зміна коду безпеки</string>
     <string name="safety_number_change_dialog__accept">Прийняти</string>
     <string name="safety_number_change_dialog__call_anyway">Усе одно зателефонувати</string>
     <string name="safety_number_change_dialog__join_call">Приєднатися до дзвінка</string>
     <string name="safety_number_change_dialog__continue_call">Продовжити дзвінок</string>
     <string name="safety_number_change_dialog__leave_call">Покинути дзвінок</string>
-    <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Можливо, ці користувачі перевстановили застосунок або замінили пристрої. Перевірте коди безпеки для чатів з цими користувачами, щоб упевнитись у конфіденційності спілкування.</string>
+    <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Можливо, ці люди перевстановили застосунок або замінили пристрої. Перевірте коди безпеки для чатів з ними, щоб упевнитись у конфіденційності спілкування.</string>
     <string name="safety_number_change_dialog__view">Детальніше</string>
     <!-- Subtitle shown for a single contact and that their safety number was previously verified and is now no longer verified. -->
     <string name="safety_number_change_dialog__previous_verified">Попереднє підтверджено</string>
@@ -3209,7 +3209,7 @@
     <string name="message_details_header__issues_need_your_attention">Є деякі проблеми, що потребують вашої уваги.</string>
     <string name="message_details_header_sent">Надіслано</string>
     <string name="message_details_header_received">Одержано</string>
-    <string name="message_details_header_disappears">Зникає</string>
+    <string name="message_details_header_disappears">Зникне через</string>
     <string name="message_details_header_via">Через</string>
 
     <!-- message_details_recipient_header -->
@@ -4731,11 +4731,11 @@
 
     <!-- QualitySelectorBottomSheetDialog -->
     <!-- Label for our standard quality media conversion. -->
-    <string name="QualitySelectorBottomSheetDialog__standard">Стандартне</string>
+    <string name="QualitySelectorBottomSheetDialog__standard">Стандартна</string>
     <!-- Description for our standard quality media conversion. -->
     <string name="QualitySelectorBottomSheetDialog__faster_less_data">Швидше, менше даних</string>
     <!-- Label for our high quality media conversion. This has better quality than standard. -->
-    <string name="QualitySelectorBottomSheetDialog__high">Великий</string>
+    <string name="QualitySelectorBottomSheetDialog__high">Висока</string>
     <!-- Label for our high quality media conversion. This has better quality than standard. -->
     <string name="QualitySelectorBottomSheetDialog__slower_more_data">Повільніше, більше даних</string>
     <!-- Title heading for our media conversion quality selector. -->
@@ -4943,9 +4943,9 @@
     <string name="DataAndStorageSettingsFragment__sent_media_quality">Якість відправлених медіа</string>
     <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Відправлення медіа високої якості споживатиме більше даних.</string>
     <!-- Setting option that can be selected to default media to be sent as high quality by default -->
-    <string name="DataAndStorageSettingsFragment__high">Великий</string>
+    <string name="DataAndStorageSettingsFragment__high">Висока</string>
     <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
-    <string name="DataAndStorageSettingsFragment__standard">Стандартне</string>
+    <string name="DataAndStorageSettingsFragment__standard">Стандартна</string>
     <string name="DataAndStorageSettingsFragment__calls">Виклики</string>
 
     <!-- ChatColorSelectionFragment -->
@@ -5093,10 +5093,10 @@
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Вимкнути сповіщення</string>
-    <string name="SoundsAndNotificationsSettingsFragment__not_muted">Сповіщення увімкнені</string>
+    <string name="SoundsAndNotificationsSettingsFragment__not_muted">Сповіщення ввімкнено</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">Згадки</string>
-    <string name="SoundsAndNotificationsSettingsFragment__always_notify">Завжди повідомляти</string>
-    <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Не повідомляти</string>
+    <string name="SoundsAndNotificationsSettingsFragment__always_notify">Завжди сповіщати</string>
+    <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Не сповіщати</string>
     <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Власні повідомлення</string>
 
     <!-- StickerKeyboard -->
@@ -6243,9 +6243,9 @@
     <!-- Sub-line when a user is verified. -->
     <string name="SafetyNumberRecipientRowItem__verified">Верифіковано</string>
     <!-- Title of safety number changes bottom sheet when showing individual records -->
-    <string name="SafetyNumberBottomSheetFragment__safety_number_changes">Історія змін коду безпеки</string>
+    <string name="SafetyNumberBottomSheetFragment__safety_number_changes">Зміна коду безпеки</string>
     <!-- Message of safety number changes bottom sheet when showing individual records -->
-    <string name="SafetyNumberBottomSheetFragment__the_following_people">Ці люди могли заново встановити Signal або змінити пристрої. Натисніть на одержувача, щоб підтвердити новий код безпеки. Це необов\'язково.</string>
+    <string name="SafetyNumberBottomSheetFragment__the_following_people">Можливо, ці люди перевстановили Signal або замінили пристрій. Натисніть на користувача, щоб підтвердити новий код безпеки. Це необов\'язково.</string>
     <!-- Title of safety number changes bottom sheet when not showing individual records -->
     <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">Перевірка коду безпеки</string>
     <!-- Title of safety number changes bottom sheet when not showing individual records and user has seen review screen -->
@@ -6272,7 +6272,7 @@
     <!-- Done button on safety number review fragment -->
     <string name="SafetyNumberReviewConnectionsFragment__done">Готово</string>
     <!-- Title of safety number review fragment -->
-    <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Історія змін коду безпеки</string>
+    <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Зміна коду безпеки</string>
     <!-- Message of safety number review fragment -->
     <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
         <item quantity="one">%1$d одержувач міг заново встановити Signal або змінити пристрій. Натисніть на одержувача, щоб підтвердити новий код безпеки. Це необов\'язково.</item>
