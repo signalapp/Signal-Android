@@ -39,11 +39,14 @@ public class ModernEncryptingPartOutputStream {
       mac.init(new SecretKeySpec(attachmentSecret.getModernKey(), "HmacSHA256"));
 
       FileOutputStream fileOutputStream = new FileOutputStream(file);
-      byte[]           iv               = new byte[16];
+      byte[]           iv               = new byte[12];
+      new SecureRandom().nextBytes(iv);
       byte[]           key              = mac.doFinal(random);
 
-      Cipher cipher = Cipher.getInstance("AES/CTR/NoPadding");
-      cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(key, "AES"), new IvParameterSpec(iv));
+     
+      Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
+      cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(key, "AES"), new GCMParameterSpec(128, iv)); 
+
 
       if (inline) {
         fileOutputStream.write(random);
