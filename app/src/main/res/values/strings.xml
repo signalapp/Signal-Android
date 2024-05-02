@@ -2269,10 +2269,10 @@
     <string name="SupportEmailUtil_filter">Filter:</string>
     <string name="SupportEmailUtil_device_info">Device info:</string>
     <string name="SupportEmailUtil_android_version">Android version:</string>
-    <string name="SupportEmailUtil_signal_version">Signal version:</string>
-    <string name="SupportEmailUtil_signal_package">Signal package:</string>
+    <string name="SupportEmailUtil_signal_version" translatable="false">Signal version:</string>
+    <string name="SupportEmailUtil_signal_package" translatable="false">Signal package:</string>
     <string name="SupportEmailUtil_registration_lock">Registration lock:</string>
-    <string name="SupportEmailUtil_locale">Locale:</string>
+    <string name="SupportEmailUtil_locale" translatable="false">Locale:</string>
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">Group updated</string>
@@ -3079,7 +3079,7 @@
     <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string>
     <string name="HelpFragment__support_info">Support Info</string>
     <string name="HelpFragment__signal_android_support_request">Signal Android Support Request</string>
-    <string name="HelpFragment__debug_log">Debug Log:</string>
+    <string name="HelpFragment__debug_log" translatable="false">Debug Log:</string>
     <string name="HelpFragment__could_not_upload_logs">Could not upload logs</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Please be as descriptive as possible to help us understand the issue.</string>
     <string-array name="HelpFragment__categories_5">
