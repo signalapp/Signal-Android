@@ -10,12 +10,15 @@ import android.graphics.drawable.Drawable
 import android.media.AudioManager
 import android.os.Bundle
 import android.text.SpannableString
+import android.text.Spanned
 import android.text.method.LinkMovementMethod
 import android.text.method.ScrollingMovementMethod
+import android.text.style.ClickableSpan
 import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.ScaleGestureDetector
 import android.view.View
+import android.view.ViewGroup
 import android.view.animation.Interpolator
 import android.widget.FrameLayout
 import android.widget.TextView
@@ -25,6 +28,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.core.view.GestureDetectorCompat
 import androidx.core.view.animation.PathInterpolatorCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -47,6 +51,7 @@ import org.thoughtcrime.securesms.components.AvatarImageView
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
 import org.thoughtcrime.securesms.components.segmentedprogressbar.SegmentedProgressBar
 import org.thoughtcrime.securesms.components.segmentedprogressbar.SegmentedProgressBarListener
+import org.thoughtcrime.securesms.components.spoiler.SpoilerAnnotation
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto
 import org.thoughtcrime.securesms.contacts.avatars.FallbackPhoto20dp
 import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto
@@ -67,6 +72,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment
 import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
 import org.thoughtcrime.securesms.stories.StorySlateView
+import org.thoughtcrime.securesms.stories.StoryTextPostView
 import org.thoughtcrime.securesms.stories.StoryVolumeOverlayView
 import org.thoughtcrime.securesms.stories.dialogs.StoryContextMenu
 import org.thoughtcrime.securesms.stories.dialogs.StoryDialogs
@@ -84,6 +90,7 @@ import org.thoughtcrime.securesms.util.AvatarUtil
 import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.Debouncer
+import org.thoughtcrime.securesms.util.Projection
 import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.fragments.requireListener
@@ -262,7 +269,10 @@ class StoryViewerPageFragment :
       scaleListener
     )
 
-    cardWrapper.setOnInterceptTouchEventListener { !storySlate.state.hasClickableContent && viewModel.getPost()?.content?.isText() != true }
+    cardWrapper.setOnInterceptTouchEventListener {
+      !storySlate.state.hasClickableContent && !checkEventIntersectsClickableSpan(cardWrapper, it)
+    }
+
     cardWrapper.setOnTouchListener { _, event ->
       scaleDetector.onTouchEvent(event)
       val result = if (scaleDetector.isInProgress || scaleListener.isPerformingEndAnimation) {
@@ -531,6 +541,50 @@ class StoryViewerPageFragment :
 
   override fun onDismissForwardSheet() {
     viewModel.setIsDisplayingForwardDialog(false)
+  }
+
+  private fun checkEventIntersectsClickableSpan(cardWrapper: ViewGroup, event: MotionEvent): Boolean {
+    if (viewModel.getPost()?.content?.isText() != true) {
+      return false
+    }
+
+    val action = event.action
+    if (action != MotionEvent.ACTION_DOWN && action != MotionEvent.ACTION_UP) {
+      return false
+    }
+
+    val storyTextPostView = cardWrapper.findViewById<StoryTextPostView>(R.id.text)
+    val textView = storyTextPostView.findViewById<TextView>(R.id.text_story_post_text)
+    val spanned = textView.text as? Spanned ?: return false
+
+    val textViewProjection = Projection.relativeToParent(cardWrapper, textView, null)
+    var x = event.x - textViewProjection.x
+    var y = event.y - textViewProjection.y
+
+    textViewProjection.release()
+
+    x -= textView.totalPaddingLeft
+    y -= textView.totalPaddingTop
+
+    x += textView.scrollX
+    y += textView.scrollY
+
+    val layout = textView.layout
+    val line = layout.getLineForVertical(y.toInt())
+    val off = layout.getOffsetForHorizontal(line, x)
+
+    val spoilers = spanned.getSpans(off, off, SpoilerAnnotation.SpoilerClickableSpan::class.java)
+    if (spoilers.isNotEmpty()) {
+      return true
+    }
+
+    val clickables = spanned.getSpans(off, off, ClickableSpan::class.java)
+    if (clickables.isNotEmpty()) {
+      return true
+    }
+
+    val linkPreview = storyTextPostView.findViewById<View>(R.id.text_story_post_link_preview)
+    return linkPreview.isVisible
   }
 
   private fun calculateDurationForText(textContent: StoryPost.Content.TextContent): Long {
