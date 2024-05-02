@@ -11,6 +11,7 @@ import org.signal.core.util.Base64
 import org.signal.core.util.Hex
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.isAbsent
+import org.signal.core.util.roundedString
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
@@ -33,6 +34,8 @@ import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.livedata.Store
 import java.util.Objects
+import kotlin.time.Duration.Companion.nanoseconds
+import kotlin.time.DurationUnit
 
 /**
  * Shows internal details about a recipient that you can view from the conversation settings.
@@ -150,6 +153,17 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
           summary = DSLSettingsText.from(buildCapabilitySpan(recipient))
         )
       }
+
+      clickPref(
+        title = DSLSettingsText.from("Trigger Thread Update"),
+        summary = DSLSettingsText.from("Triggers a thread update. Useful for testing perf."),
+        onClick = {
+          val startTimeNanos = System.nanoTime()
+          SignalDatabase.threads.update(state.threadId ?: -1, true)
+          val endTimeNanos = System.nanoTime()
+          Toast.makeText(context, "Thread update took ${(endTimeNanos - startTimeNanos).nanoseconds.toDouble(DurationUnit.MILLISECONDS).roundedString(2)} ms", Toast.LENGTH_SHORT).show()
+        }
+      )
 
       if (!recipient.isGroup) {
         sectionHeaderPref(DSLSettingsText.from("Actions"))
