@@ -122,6 +122,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     initializeSharedElementTransition()
 
     viewLifecycleOwner.lifecycle.addObserver(conversationUpdateTick)
+    viewLifecycleOwner.lifecycle.addObserver(viewModel.callLogPeekHelper)
 
     val callLogAdapter = CallLogAdapter(this)
     disposables.bindTo(viewLifecycleOwner)

@@ -24,7 +24,8 @@ import java.util.concurrent.TimeUnit
  * ViewModel for call log management.
  */
 class CallLogViewModel(
-  private val callLogRepository: CallLogRepository = CallLogRepository()
+  val callLogPeekHelper: CallLogPeekHelper = CallLogPeekHelper(),
+  private val callLogRepository: CallLogRepository = CallLogRepository(callLogPeekHelper = callLogPeekHelper)
 ) : ViewModel() {
   private val callLogStore = RxStore(CallLogState())
 
@@ -77,6 +78,7 @@ class CallLogViewModel(
     }
 
     disposables += callLogRepository.listenForChanges().subscribe {
+      callLogPeekHelper.onDataSetInvalidated()
       controller.onDataInvalidated()
     }
 
@@ -92,6 +94,7 @@ class CallLogViewModel(
         .observeOn(Schedulers.computation())
         .distinctUntilChanged()
         .subscribe {
+          callLogPeekHelper.onDataSetInvalidated()
           controller.onDataInvalidated()
         }
     }

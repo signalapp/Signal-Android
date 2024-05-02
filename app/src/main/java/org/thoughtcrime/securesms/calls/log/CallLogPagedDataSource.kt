@@ -67,6 +67,7 @@ class CallLogPagedDataSource(
       callLogRows.add(CallLogRow.ClearFilter)
     }
 
+    repository.onCallTabPageLoaded(callLogRows)
     return callLogRows
   }
 
@@ -83,5 +84,6 @@ class CallLogPagedDataSource(
     fun getCalls(query: String?, filter: CallLogFilter, start: Int, length: Int): List<CallLogRow>
     fun getCallLinksCount(query: String?, filter: CallLogFilter): Int
     fun getCallLinks(query: String?, filter: CallLogFilter, start: Int, length: Int): List<CallLogRow>
+    fun onCallTabPageLoaded(pageData: List<CallLogRow>)
   }
 }

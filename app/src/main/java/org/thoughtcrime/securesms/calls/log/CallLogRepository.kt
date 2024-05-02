@@ -17,7 +17,8 @@ import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 import org.thoughtcrime.securesms.service.webrtc.links.UpdateCallLinkResult
 
 class CallLogRepository(
-  private val updateCallLinkRepository: UpdateCallLinkRepository = UpdateCallLinkRepository()
+  private val updateCallLinkRepository: UpdateCallLinkRepository = UpdateCallLinkRepository(),
+  private val callLogPeekHelper: CallLogPeekHelper
 ) : CallLogPagedDataSource.CallRepository {
   override fun getCallsCount(query: String?, filter: CallLogFilter): Int {
     return SignalDatabase.calls.getCallsCount(query, filter)
@@ -38,6 +39,12 @@ class CallLogRepository(
     return when (filter) {
       CallLogFilter.MISSED -> emptyList()
       CallLogFilter.ALL, CallLogFilter.AD_HOC -> SignalDatabase.callLinks.getCallLinks(query, start, length)
+    }
+  }
+
+  override fun onCallTabPageLoaded(pageData: List<CallLogRow>) {
+    SignalExecutors.BOUNDED_IO.execute {
+      callLogPeekHelper.onPageLoaded(pageData)
     }
   }
 
