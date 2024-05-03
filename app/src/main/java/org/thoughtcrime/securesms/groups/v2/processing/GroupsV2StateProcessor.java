@@ -724,7 +724,7 @@ public class GroupsV2StateProcessor {
             ApplicationDependencies.getJobManager().add(new LeaveGroupV2Job(groupId));
             //noinspection UnnecessaryReturnStatement
             return;
-          } else if (addedBy.isSystemContact() || addedBy.isProfileSharing()) {
+          } else if ((addedBy.isSystemContact() || addedBy.isProfileSharing()) && !addedBy.isHidden()) {
             Log.i(TAG, "Group 'adder' is trusted. contact: " + addedBy.isSystemContact() + ", profileSharing: " + addedBy.isProfileSharing());
             Log.i(TAG, "Added to a group and auto-enabling profile sharing");
             recipientTable.setProfileSharing(Recipient.externalGroupExact(groupId).getId(), true);
