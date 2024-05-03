@@ -99,7 +99,7 @@ class RegistrationV2ViewModel : ViewModel() {
   fun onBackupSuccessfullyRestored() {
     val recoveryPassword = SignalStore.svr().recoveryPassword
     store.update {
-      it.copy(registrationCheckpoint = RegistrationCheckpoint.BACKUP_RESTORED, recoveryPassword = SignalStore.svr().recoveryPassword, canSkipSms = recoveryPassword != null)
+      it.copy(registrationCheckpoint = RegistrationCheckpoint.BACKUP_RESTORED_OR_SKIPPED, recoveryPassword = SignalStore.svr().recoveryPassword, canSkipSms = recoveryPassword != null)
     }
   }
 

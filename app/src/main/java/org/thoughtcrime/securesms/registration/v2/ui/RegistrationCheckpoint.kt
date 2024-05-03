@@ -12,9 +12,7 @@ package org.thoughtcrime.securesms.registration.v2.ui
 enum class RegistrationCheckpoint {
   INITIALIZATION,
   PERMISSIONS_GRANTED,
-  BACKUP_DETECTED,
-  BACKUP_SELECTED,
-  BACKUP_RESTORED,
+  BACKUP_RESTORED_OR_SKIPPED,
   PUSH_NETWORK_AUDITED,
   PHONE_NUMBER_CONFIRMED,
   PIN_CONFIRMED,

@@ -66,9 +66,7 @@ class TransferOrRestoreV2Fragment : LoggingFragment(R.layout.fragment_transfer_r
   private fun launchSelection(restorationType: BackupRestorationType) {
     when (restorationType) {
       BackupRestorationType.DEVICE_TRANSFER -> {
-        // TODO [regv2]
-        Log.w(TAG, "Not yet implemented!", NotImplementedError())
-        Toast.makeText(requireContext(), "Not yet implemented!", Toast.LENGTH_LONG).show()
+        NavHostFragment.findNavController(this).safeNavigate(TransferOrRestoreV2FragmentDirections.actionNewDeviceTransferInstructions())
       }
       BackupRestorationType.LOCAL_BACKUP -> {
         NavHostFragment.findNavController(this).safeNavigate(TransferOrRestoreV2FragmentDirections.actionTransferOrRestoreToRestore())

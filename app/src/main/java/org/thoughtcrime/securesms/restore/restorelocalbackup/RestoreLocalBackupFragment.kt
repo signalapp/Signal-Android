@@ -55,6 +55,14 @@ class RestoreLocalBackupFragment : LoggingFragment(R.layout.fragment_restore_loc
 
     binding.restoreButton.setOnClickListener { presentBackupPassPhrasePromptDialog() }
 
+    // TODO [regv2]: check for re-register and skip ahead to phone number entry
+
+    if (SignalStore.settings().isBackupEnabled) {
+      Log.i(TAG, "Backups enabled, so a backup must have been previously restored.")
+      onBackupCompletedSuccessfully()
+      return
+    }
+
     restoreLocalBackupViewModel.uiState.observe(viewLifecycleOwner) { fragmentState ->
       fragmentState.backupInfo?.let {
         presentBackupFileInfo(backupSize = it.size, backupTimestamp = it.timestamp)
