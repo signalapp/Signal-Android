@@ -34,6 +34,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
@@ -64,7 +65,12 @@ public final class CdsiV2Service {
           Log.i(TAG, "Starting CDSI lookup via libsignal-net");
           Future<CdsiLookupResponse> cdsiRequest = network.cdsiLookup(username, password, buildLibsignalRequest(request), tokenSaver);
           return Single.fromFuture(cdsiRequest)
-              .onErrorResumeNext((Throwable err) -> Single.error(mapLibsignalError(err)))
+              .onErrorResumeNext((Throwable err) -> {
+                if (err instanceof ExecutionException && err.getCause() != null) {
+                  err = err.getCause();
+                }
+                return Single.error(mapLibsignalError(err));
+              })
               .map(CdsiV2Service::parseLibsignalResponse)
               .toObservable();
         } catch (Exception exception) {
