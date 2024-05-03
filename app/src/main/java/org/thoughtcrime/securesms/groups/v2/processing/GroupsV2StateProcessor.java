@@ -1,14 +1,11 @@
 package org.thoughtcrime.securesms.groups.v2.processing;
 
-import android.content.Context;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import androidx.annotation.WorkerThread;
-
-import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.zkgroup.VerificationFailedException;
@@ -18,7 +15,6 @@ import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.protos.groups.local.DecryptedMember;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
-import org.thoughtcrime.securesms.backup.v2.proto.GroupChangeChatUpdate;
 import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.RecipientTable;
@@ -29,7 +25,6 @@ import org.thoughtcrime.securesms.database.model.GroupsV2UpdateMessageConverter;
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context;
 import org.thoughtcrime.securesms.database.model.databaseprotos.GV2UpdateDescription;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.groups.GroupDoesNotExistException;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupMutation;
 import org.thoughtcrime.securesms.groups.GroupNotAMemberException;
@@ -93,30 +88,25 @@ public class GroupsV2StateProcessor {
    */
   public static final int RESTORE_PLACEHOLDER_REVISION = GroupStateMapper.RESTORE_PLACEHOLDER_REVISION;
 
-  private final Context        context;
-  private final RecipientTable recipientTable;
-  private final GroupTable     groupDatabase;
-  private final GroupsV2Authorization groupsV2Authorization;
-  private final GroupsV2Api           groupsV2Api;
-
-  public GroupsV2StateProcessor(@NonNull Context context) {
-    this.context               = context.getApplicationContext();
-    this.groupsV2Authorization = ApplicationDependencies.getGroupsV2Authorization();
-    this.groupsV2Api           = ApplicationDependencies.getSignalServiceAccountManager().getGroupsV2Api();
-    this.recipientTable        = SignalDatabase.recipients();
-    this.groupDatabase         = SignalDatabase.groups();
+  private GroupsV2StateProcessor() {
   }
 
-  public StateProcessorForGroup forGroup(@NonNull ServiceIds serviceIds, @NonNull GroupMasterKey groupMasterKey) {
+  public static StateProcessorForGroup forGroup(@NonNull ServiceIds serviceIds, @NonNull GroupMasterKey groupMasterKey) {
     return forGroup(serviceIds, groupMasterKey, null);
   }
 
-  public StateProcessorForGroup forGroup(@NonNull ServiceIds serviceIds, @NonNull GroupMasterKey groupMasterKey, @Nullable GroupSecretParams groupSecretParams) {
-    if (groupSecretParams == null) {
-      return new StateProcessorForGroup(serviceIds, context, groupDatabase, groupsV2Api, groupsV2Authorization, groupMasterKey, recipientTable);
-    } else {
-      return new StateProcessorForGroup(serviceIds, context, groupDatabase, groupsV2Api, groupsV2Authorization, groupMasterKey, groupSecretParams, recipientTable);
-    }
+  public static StateProcessorForGroup forGroup(@NonNull ServiceIds serviceIds, @NonNull GroupMasterKey groupMasterKey, @Nullable GroupSecretParams groupSecretParams) {
+    groupSecretParams = groupSecretParams != null ? groupSecretParams : GroupSecretParams.deriveFromMasterKey(groupMasterKey);
+
+    return new StateProcessorForGroup(
+        serviceIds,
+        SignalDatabase.groups(),
+        ApplicationDependencies.getSignalServiceAccountManager().getGroupsV2Api(),
+        ApplicationDependencies.getGroupsV2Authorization(),
+        groupMasterKey,
+        groupSecretParams,
+        SignalDatabase.recipients()
+    );
   }
 
   public enum GroupState {
@@ -160,18 +150,6 @@ public class GroupsV2StateProcessor {
     private final ProfileAndMessageHelper profileAndMessageHelper;
 
     private StateProcessorForGroup(@NonNull ServiceIds serviceIds,
-                                   @NonNull Context context,
-                                   @NonNull GroupTable groupDatabase,
-                                   @NonNull GroupsV2Api groupsV2Api,
-                                   @NonNull GroupsV2Authorization groupsV2Authorization,
-                                   @NonNull GroupMasterKey groupMasterKey,
-                                   @NonNull RecipientTable recipientTable)
-    {
-      this(serviceIds, context, groupDatabase, groupsV2Api, groupsV2Authorization, groupMasterKey, GroupSecretParams.deriveFromMasterKey(groupMasterKey), recipientTable);
-    }
-
-    private StateProcessorForGroup(@NonNull ServiceIds serviceIds,
-                                   @NonNull Context context,
                                    @NonNull GroupTable groupDatabase,
                                    @NonNull GroupsV2Api groupsV2Api,
                                    @NonNull GroupsV2Authorization groupsV2Authorization,
@@ -186,7 +164,7 @@ public class GroupsV2StateProcessor {
       this.masterKey               = groupMasterKey;
       this.groupSecretParams       = groupSecretParams;
       this.groupId                 = GroupId.v2(groupSecretParams.getPublicParams().getGroupIdentifier());
-      this.profileAndMessageHelper = new ProfileAndMessageHelper(context, serviceIds.getAci(), groupMasterKey, groupId, recipientTable);
+      this.profileAndMessageHelper = new ProfileAndMessageHelper(serviceIds.getAci(), groupMasterKey, groupId, recipientTable);
     }
 
     @VisibleForTesting StateProcessorForGroup(@NonNull ServiceIds serviceIds,
@@ -522,40 +500,6 @@ public class GroupsV2StateProcessor {
       return new GroupUpdateResult(GroupState.GROUP_UPDATED, finalState);
     }
 
-    @WorkerThread
-    public @NonNull DecryptedGroup getCurrentGroupStateFromServer()
-        throws IOException, GroupNotAMemberException, GroupDoesNotExistException
-    {
-      try {
-        return groupsV2Api.getGroup(groupSecretParams, groupsV2Authorization.getAuthorizationForToday(serviceIds, groupSecretParams));
-      } catch (GroupNotFoundException e) {
-        throw new GroupDoesNotExistException(e);
-      } catch (NotInGroupException e) {
-        throw new GroupNotAMemberException(e);
-      } catch (VerificationFailedException | InvalidGroupStateException e) {
-        throw new IOException(e);
-      }
-    }
-
-    @WorkerThread
-    public @Nullable DecryptedGroup getSpecificVersionFromServer(int revision)
-        throws IOException, GroupNotAMemberException, GroupDoesNotExistException
-    {
-      try {
-        return groupsV2Api.getGroupHistoryPage(groupSecretParams, revision, groupsV2Authorization.getAuthorizationForToday(serviceIds, groupSecretParams), true)
-                          .getResults()
-                          .get(0)
-                          .getGroup()
-                          .orElse(null);
-      } catch (GroupNotFoundException e) {
-        throw new GroupDoesNotExistException(e);
-      } catch (NotInGroupException e) {
-        throw new GroupNotAMemberException(e);
-      } catch (VerificationFailedException | InvalidGroupStateException e) {
-        throw new IOException(e);
-      }
-    }
-
     private void insertGroupLeave() {
       if (!groupDatabase.isActive(groupId)) {
         warn("Group has already been left.");
@@ -655,11 +599,7 @@ public class GroupsV2StateProcessor {
     }
 
     private void info(String message) {
-      info(message, null);
-    }
-
-    private void info(String message, Throwable t) {
-      Log.i(TAG, "[" + groupId.toString() + "] " + message, t);
+      Log.i(TAG, "[" + groupId.toString() + "] " + message);
     }
 
     private void warn(String message) {
@@ -674,7 +614,6 @@ public class GroupsV2StateProcessor {
   @VisibleForTesting
   static class ProfileAndMessageHelper {
 
-    private final Context        context;
     private final ACI            aci;
     private final GroupId.V2     groupId;
     private final RecipientTable recipientTable;
@@ -682,8 +621,7 @@ public class GroupsV2StateProcessor {
     @VisibleForTesting
     GroupMasterKey masterKey;
 
-    ProfileAndMessageHelper(@NonNull Context context, @NonNull ACI aci, @NonNull GroupMasterKey masterKey, @NonNull GroupId.V2 groupId, @NonNull RecipientTable recipientTable) {
-      this.context        = context;
+    ProfileAndMessageHelper(@NonNull ACI aci, @NonNull GroupMasterKey masterKey, @NonNull GroupId.V2 groupId, @NonNull RecipientTable recipientTable) {
       this.aci            = aci;
       this.masterKey      = masterKey;
       this.groupId        = groupId;
@@ -706,13 +644,13 @@ public class GroupsV2StateProcessor {
         DecryptedMember selfAsMember     = selfAsMemberOptional.get();
         int             revisionJoinedAt = selfAsMember.joinedAtRevision;
 
-        Optional<Recipient> addedByOptional = Stream.of(inputGroupState.getServerHistory())
-                                                    .map(ServerGroupLogEntry::getChange)
-                                                    .filter(c -> c != null && c.revision == revisionJoinedAt)
-                                                    .findFirst()
-                                                    .map(c -> Optional.ofNullable(ServiceId.parseOrNull(c.editorServiceIdBytes))
-                                                                      .map(Recipient::externalPush))
-                                                    .orElse(Optional.empty());
+        Optional<Recipient> addedByOptional = inputGroupState.getServerHistory()
+                                                             .stream()
+                                                             .map(ServerGroupLogEntry::getChange)
+                                                             .filter(c -> c != null && c.revision == revisionJoinedAt)
+                                                             .findFirst()
+                                                             .flatMap(c -> Optional.ofNullable(ServiceId.parseOrNull(c.editorServiceIdBytes))
+                                                                                   .map(Recipient::externalPush));
 
         if (addedByOptional.isPresent()) {
           Recipient addedBy = addedByOptional.get();
@@ -804,7 +742,7 @@ public class GroupsV2StateProcessor {
     void storeMessage(@NonNull DecryptedGroupV2Context decryptedGroupV2Context, long timestamp, @Nullable String serverGuid) {
       Optional<ServiceId> editor = getEditor(decryptedGroupV2Context);
 
-      boolean outgoing = !editor.isPresent() || aci.equals(editor.get());
+      boolean outgoing = editor.isEmpty() || aci.equals(editor.get());
 
       GV2UpdateDescription updateDescription = new GV2UpdateDescription.Builder()
           .gv2ChangeDescription(decryptedGroupV2Context)

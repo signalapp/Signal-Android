@@ -17,7 +17,6 @@ import org.thoughtcrime.securesms.database.DatabaseObserver;
 import org.thoughtcrime.securesms.database.PendingRetryReceiptCache;
 import org.thoughtcrime.securesms.groups.GroupsV2Authorization;
 import org.thoughtcrime.securesms.groups.GroupsV2AuthorizationMemoryValueCache;
-import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.megaphone.MegaphoneRepository;
@@ -101,7 +100,6 @@ public class ApplicationDependencies {
   private static volatile FrameRateTracker             frameRateTracker;
   private static volatile MegaphoneRepository          megaphoneRepository;
   private static volatile GroupsV2Authorization        groupsV2Authorization;
-  private static volatile GroupsV2StateProcessor       groupsV2StateProcessor;
   private static volatile GroupsV2Operations           groupsV2Operations;
   private static volatile EarlyMessageCache            earlyMessageCache;
   private static volatile TypingStatusRepository       typingStatusRepository;
@@ -196,18 +194,6 @@ public class ApplicationDependencies {
     }
 
     return groupsV2Operations;
-  }
-
-  public static @NonNull GroupsV2StateProcessor getGroupsV2StateProcessor() {
-    if (groupsV2StateProcessor == null) {
-      synchronized (LOCK) {
-        if (groupsV2StateProcessor == null) {
-          groupsV2StateProcessor = new GroupsV2StateProcessor(application);
-        }
-      }
-    }
-
-    return groupsV2StateProcessor;
   }
 
   public static @NonNull SignalServiceMessageSender getSignalServiceMessageSender() {

@@ -32,7 +32,6 @@ import org.thoughtcrime.securesms.database.GroupStateTestData
 import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.model.databaseprotos.member
 import org.thoughtcrime.securesms.groups.v2.GroupCandidateHelper
-import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor
 import org.thoughtcrime.securesms.logging.CustomSignalProtocolLogger
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.testutil.SystemOutLogger
@@ -66,7 +65,6 @@ class GroupManagerV2Test_edit {
   private lateinit var groupsV2API: GroupsV2Api
   private lateinit var groupsV2Operations: GroupsV2Operations
   private lateinit var groupsV2Authorization: GroupsV2Authorization
-  private lateinit var groupsV2StateProcessor: GroupsV2StateProcessor
   private lateinit var groupCandidateHelper: GroupCandidateHelper
   private lateinit var sendGroupUpdateHelper: GroupManagerV2.SendGroupUpdateHelper
   private lateinit var groupOperations: GroupsV2Operations.GroupOperations
@@ -89,7 +87,6 @@ class GroupManagerV2Test_edit {
     groupsV2API = mockk()
     groupsV2Operations = GroupsV2Operations(clientZkOperations, 1000)
     groupsV2Authorization = mockk(relaxed = true)
-    groupsV2StateProcessor = mockk()
     groupCandidateHelper = mockk()
     sendGroupUpdateHelper = mockk()
     groupOperations = groupsV2Operations.forGroup(groupSecretParams)
@@ -100,7 +97,6 @@ class GroupManagerV2Test_edit {
       groupsV2API,
       groupsV2Operations,
       groupsV2Authorization,
-      groupsV2StateProcessor,
       serviceIds,
       groupCandidateHelper,
       sendGroupUpdateHelper

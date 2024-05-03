@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.database
 
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
-import org.junit.Assert.assertNotEquals
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
@@ -73,21 +72,6 @@ class GroupTableTest {
     val groups = groupTable.getGroupMemberIds(groupId, GroupTable.MemberSet.FULL_MEMBERS_INCLUDING_SELF)
 
     assertEquals(2, groups.size)
-  }
-
-  @Test
-  fun givenGroups_whenIQueryGroupsByMembership_thenIExpectBothGroups() {
-    insertPushGroup()
-    insertMmsGroup(members = listOf(harness.others[1]))
-
-    val groups = groupTable.queryGroupsByMembership(
-      setOf(harness.self.id, harness.others[1]),
-      includeInactive = false,
-      excludeV1 = false,
-      excludeMms = false
-    )
-
-    assertEquals(2, groups.cursor?.count)
   }
 
   @Test
@@ -179,68 +163,6 @@ class GroupTableTest {
     val actual = groupTable.isCurrentMember(v2Group.requirePush(), harness.others[1])
 
     assertFalse(actual)
-  }
-
-  @Test
-  fun givenAGroup_whenIUpdateMembers_thenIExpectUpdatedMembers() {
-    val v2Group = insertPushGroup()
-    groupTable.updateMembers(v2Group, listOf(harness.self.id, harness.others[1]))
-    val groupRecord = groupTable.getGroup(v2Group)
-
-    assertEquals(setOf(harness.self.id, harness.others[1]), groupRecord.get().members.toSet())
-  }
-
-  @Test
-  fun givenAnMmsGroup_whenIGetOrCreateMmsGroup_thenIExpectMyMmsGroup() {
-    val members: List<RecipientId> = listOf(harness.self.id, harness.others[0])
-    val other = insertMmsGroup(members + listOf(harness.others[1]))
-    val mmsGroup = insertMmsGroup(members)
-    val actual = groupTable.getOrCreateMmsGroupForMembers(members.toSet())
-
-    assertNotEquals(other, actual)
-    assertEquals(mmsGroup, actual)
-  }
-
-  @Test
-  fun givenMultipleMmsGroups_whenIGetOrCreateMmsGroup_thenIExpectMyMmsGroup() {
-    val group1Members: List<RecipientId> = listOf(harness.self.id, harness.others[0], harness.others[1])
-    val group2Members: List<RecipientId> = listOf(harness.self.id, harness.others[0], harness.others[2])
-
-    val group1: GroupId = insertMmsGroup(group1Members)
-    val group2: GroupId = insertMmsGroup(group2Members)
-
-    val group1Result: GroupId = groupTable.getOrCreateMmsGroupForMembers(group1Members.toSet())
-    val group2Result: GroupId = groupTable.getOrCreateMmsGroupForMembers(group2Members.toSet())
-
-    assertEquals(group1, group1Result)
-    assertEquals(group2, group2Result)
-    assertNotEquals(group1Result, group2Result)
-  }
-
-  @Test
-  fun givenMultipleMmsGroupsWithDifferentMemberOrders_whenIGetOrCreateMmsGroup_thenIExpectMyMmsGroup() {
-    val group1Members: List<RecipientId> = listOf(harness.self.id, harness.others[0], harness.others[1], harness.others[2]).shuffled()
-    val group2Members: List<RecipientId> = listOf(harness.self.id, harness.others[0], harness.others[2], harness.others[3]).shuffled()
-
-    val group1: GroupId = insertMmsGroup(group1Members)
-    val group2: GroupId = insertMmsGroup(group2Members)
-
-    val group1Result: GroupId = groupTable.getOrCreateMmsGroupForMembers(group1Members.shuffled().toSet())
-    val group2Result: GroupId = groupTable.getOrCreateMmsGroupForMembers(group2Members.shuffled().toSet())
-
-    assertEquals(group1, group1Result)
-    assertEquals(group2, group2Result)
-    assertNotEquals(group1Result, group2Result)
-  }
-
-  @Test
-  fun givenMmsGroupWithOneMember_whenIGetOrCreateMmsGroup_thenIExpectMyMmsGroup() {
-    val groupMembers: List<RecipientId> = listOf(harness.self.id)
-    val group: GroupId = insertMmsGroup(groupMembers)
-
-    val groupResult: GroupId = groupTable.getOrCreateMmsGroupForMembers(groupMembers.toSet())
-
-    assertEquals(group, groupResult)
   }
 
   @Test
