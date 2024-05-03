@@ -15,7 +15,7 @@ dependencyResolutionManagement {
       version("exoplayer", "2.19.0")
       version("glide", "4.15.1")
       version("kotlin", "1.8.10")
-      version("libsignal-client", "0.45.1")
+      version("libsignal-client", "0.46.0")
       version("mp4parser", "1.9.39")
       version("android-gradle-plugin", "8.0.2")
       version("accompanist", "0.28.0")
