@@ -27,6 +27,7 @@ import org.signal.core.ui.SignalPreview
 import org.signal.core.util.money.FiatMoney
 import org.signal.donations.PaymentSourceType
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsFlowActivity
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
 import org.thoughtcrime.securesms.compose.ComposeFragment
@@ -186,6 +187,7 @@ private fun BackupsTypeSettingsContentPreview() {
     BackupsTypeSettingsContent(
       state = BackupsTypeSettingsState(
         backupsType = MessageBackupsType(
+          tier = MessageBackupTier.PAID,
           pricePerMonth = FiatMoney(BigDecimal.valueOf(3), Currency.getInstance("USD")),
           title = "Text + all media",
           features = persistentListOf()

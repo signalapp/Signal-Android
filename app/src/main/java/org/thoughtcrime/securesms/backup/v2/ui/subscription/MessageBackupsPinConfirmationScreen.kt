@@ -16,6 +16,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
@@ -32,6 +33,7 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -52,92 +54,94 @@ fun MessageBackupsPinConfirmationScreen(
   onNextClick: () -> Unit
 ) {
   val focusRequester = remember { FocusRequester() }
-
-  Column(
-    modifier = Modifier
-      .fillMaxSize()
-      .padding(horizontal = dimensionResource(id = R.dimen.core_ui__gutter))
-  ) {
-    LazyColumn(
+  Surface {
+    Column(
       modifier = Modifier
-        .fillMaxWidth()
-        .weight(1f)
+        .fillMaxSize()
+        .padding(horizontal = dimensionResource(id = R.dimen.core_ui__gutter))
     ) {
-      item {
-        Text(
-          text = "Enter your PIN", // TODO [message-backups] Finalized copy
-          style = MaterialTheme.typography.headlineMedium,
-          modifier = Modifier.padding(top = 40.dp)
-        )
-      }
-
-      item {
-        Text(
-          text = "Enter your Signal PIN to enable backups", // TODO [message-backups] Finalized copy
-          style = MaterialTheme.typography.bodyLarge,
-          color = MaterialTheme.colorScheme.onSurfaceVariant,
-          modifier = Modifier.padding(top = 16.dp)
-        )
-      }
-
-      item {
-        // TODO [message-backups] Confirm default focus state
-        val keyboardType = remember(pinKeyboardType) {
-          when (pinKeyboardType) {
-            PinKeyboardType.NUMERIC -> KeyboardType.NumberPassword
-            PinKeyboardType.ALPHA_NUMERIC -> KeyboardType.Password
-          }
+      LazyColumn(
+        modifier = Modifier
+          .fillMaxWidth()
+          .weight(1f)
+      ) {
+        item {
+          Text(
+            text = "Enter your PIN", // TODO [message-backups] Finalized copy
+            style = MaterialTheme.typography.headlineMedium,
+            modifier = Modifier.padding(top = 40.dp)
+          )
         }
 
-        TextField(
-          value = pin,
-          onValueChange = onPinChanged,
-          textStyle = LocalTextStyle.current.copy(textAlign = TextAlign.Center),
-          keyboardActions = KeyboardActions(
-            onDone = { onNextClick() }
-          ),
-          keyboardOptions = KeyboardOptions(
-            keyboardType = keyboardType
-          ),
-          modifier = Modifier
-            .padding(top = 72.dp)
-            .fillMaxWidth()
-            .focusRequester(focusRequester)
-        )
+        item {
+          Text(
+            text = "Enter your Signal PIN to enable backups", // TODO [message-backups] Finalized copy
+            style = MaterialTheme.typography.bodyLarge,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.padding(top = 16.dp)
+          )
+        }
+
+        item {
+          // TODO [message-backups] Confirm default focus state
+          val keyboardType = remember(pinKeyboardType) {
+            when (pinKeyboardType) {
+              PinKeyboardType.NUMERIC -> KeyboardType.NumberPassword
+              PinKeyboardType.ALPHA_NUMERIC -> KeyboardType.Password
+            }
+          }
+
+          TextField(
+            value = pin,
+            onValueChange = onPinChanged,
+            textStyle = LocalTextStyle.current.copy(textAlign = TextAlign.Center),
+            keyboardActions = KeyboardActions(
+              onDone = { onNextClick() }
+            ),
+            keyboardOptions = KeyboardOptions(
+              keyboardType = keyboardType
+            ),
+            modifier = Modifier
+              .padding(top = 72.dp)
+              .fillMaxWidth()
+              .focusRequester(focusRequester),
+            visualTransformation = PasswordVisualTransformation()
+          )
+        }
+
+        item {
+          Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier
+              .fillMaxWidth()
+              .padding(top = 48.dp)
+          ) {
+            PinKeyboardTypeToggle(
+              pinKeyboardType = pinKeyboardType,
+              onPinKeyboardTypeSelected = onPinKeyboardTypeSelected
+            )
+          }
+        }
       }
 
-      item {
-        Box(
-          contentAlignment = Alignment.Center,
-          modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 48.dp)
+      Box(
+        contentAlignment = Alignment.BottomEnd,
+        modifier = Modifier
+          .fillMaxWidth()
+          .padding(vertical = 16.dp)
+      ) {
+        Buttons.LargeTonal(
+          onClick = onNextClick
         ) {
-          PinKeyboardTypeToggle(
-            pinKeyboardType = pinKeyboardType,
-            onPinKeyboardTypeSelected = onPinKeyboardTypeSelected
+          Text(
+            text = "Next" // TODO [message-backups] Finalized copy
           )
         }
       }
-    }
 
-    Box(
-      contentAlignment = Alignment.BottomEnd,
-      modifier = Modifier
-        .fillMaxWidth()
-        .padding(vertical = 16.dp)
-    ) {
-      Buttons.LargeTonal(
-        onClick = onNextClick
-      ) {
-        Text(
-          text = "Next" // TODO [message-backups] Finalized copy
-        )
+      LaunchedEffect(Unit) {
+        focusRequester.requestFocus()
       }
-    }
-
-    LaunchedEffect(Unit) {
-      focusRequester.requestFocus()
     }
   }
 }

@@ -650,3 +650,8 @@ class BackupMetadata(
   val usedSpace: Long,
   val mediaCount: Long
 )
+
+enum class MessageBackupTier {
+  FREE,
+  PAID
+}

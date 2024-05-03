@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.jobs
 
+import org.greenrobot.eventbus.EventBus
 import org.signal.core.util.logging.Log
 import org.signal.protos.resumableuploads.ResumableUpload
 import org.thoughtcrime.securesms.attachments.Attachment
@@ -13,6 +14,7 @@ import org.thoughtcrime.securesms.attachments.AttachmentUploadUtil
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
+import org.thoughtcrime.securesms.backup.v2.BackupV2Event
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
@@ -34,7 +36,9 @@ import kotlin.time.Duration.Companion.days
 class ArchiveAttachmentBackfillJob private constructor(
   parameters: Parameters,
   private var attachmentId: AttachmentId?,
-  private var uploadSpec: ResumableUpload?
+  private var uploadSpec: ResumableUpload?,
+  private var totalCount: Int?,
+  private var progress: Int?
 ) : Job(parameters) {
   companion object {
     private val TAG = Log.tag(ArchiveAttachmentBackfillJob::class.java)
@@ -42,7 +46,7 @@ class ArchiveAttachmentBackfillJob private constructor(
     const val KEY = "ArchiveAttachmentBackfillJob"
   }
 
-  constructor() : this(
+  constructor(progress: Int? = null, totalCount: Int? = null) : this(
     parameters = Parameters.Builder()
       .setQueue("ArchiveAttachmentBackfillJob")
       .setMaxInstancesForQueue(2)
@@ -51,7 +55,9 @@ class ArchiveAttachmentBackfillJob private constructor(
       .addConstraint(NetworkConstraint.KEY)
       .build(),
     attachmentId = null,
-    uploadSpec = null
+    uploadSpec = null,
+    totalCount = totalCount,
+    progress = progress
   )
 
   override fun serialize(): ByteArray {
@@ -64,6 +70,7 @@ class ArchiveAttachmentBackfillJob private constructor(
   override fun getFactoryKey(): String = KEY
 
   override fun run(): Result {
+    EventBus.getDefault().postSticky(BackupV2Event(BackupV2Event.Type.PROGRESS_ATTACHMENTS, progress?.toLong() ?: 0, totalCount?.toLong() ?: 0))
     var attachmentRecord: DatabaseAttachment? = if (attachmentId != null) {
       Log.i(TAG, "Retrying $attachmentId")
       SignalDatabase.attachments.getAttachment(attachmentId!!)
@@ -73,7 +80,7 @@ class ArchiveAttachmentBackfillJob private constructor(
 
     if (attachmentRecord == null && attachmentId != null) {
       Log.w(TAG, "Attachment $attachmentId was not found! Was likely deleted during the process of archiving. Re-enqueuing job with no ID.")
-      ApplicationDependencies.getJobManager().add(ArchiveAttachmentBackfillJob())
+      reenqueueWithIncrementedProgress()
       return Result.success()
     }
 
@@ -84,11 +91,16 @@ class ArchiveAttachmentBackfillJob private constructor(
       val resetCount = SignalDatabase.attachments.resetPendingArchiveBackfills()
       if (resetCount > 0) {
         Log.w(TAG, "We thought we were done, but $resetCount items were still in progress! Need to run again to retry.")
-        ApplicationDependencies.getJobManager().add(ArchiveAttachmentBackfillJob())
+        ApplicationDependencies.getJobManager().add(
+          ArchiveAttachmentBackfillJob(
+            progress = (totalCount ?: resetCount) - resetCount,
+            totalCount = totalCount ?: resetCount
+          )
+        )
       } else {
         Log.i(TAG, "All good! Should be done.")
       }
-
+      EventBus.getDefault().postSticky(BackupV2Event(type = BackupV2Event.Type.FINISHED, count = totalCount?.toLong() ?: 0, estimatedTotalCount = totalCount?.toLong() ?: 0))
       return Result.success()
     }
 
@@ -97,7 +109,7 @@ class ArchiveAttachmentBackfillJob private constructor(
     val transferState: AttachmentTable.ArchiveTransferState? = SignalDatabase.attachments.getArchiveTransferState(attachmentRecord.attachmentId)
     if (transferState == null) {
       Log.w(TAG, "Attachment $attachmentId was not found when looking for the transfer state! Was likely just deleted. Re-enqueuing job with no ID.")
-      ApplicationDependencies.getJobManager().add(ArchiveAttachmentBackfillJob())
+      reenqueueWithIncrementedProgress()
       return Result.success()
     }
 
@@ -105,19 +117,19 @@ class ArchiveAttachmentBackfillJob private constructor(
 
     if (transferState == AttachmentTable.ArchiveTransferState.FINISHED) {
       Log.i(TAG, "Attachment $attachmentId is already finished. Skipping.")
-      ApplicationDependencies.getJobManager().add(ArchiveAttachmentBackfillJob())
+      reenqueueWithIncrementedProgress()
       return Result.success()
     }
 
     if (transferState == AttachmentTable.ArchiveTransferState.PERMANENT_FAILURE) {
       Log.i(TAG, "Attachment $attachmentId is already marked as a permanent failure. Skipping.")
-      ApplicationDependencies.getJobManager().add(ArchiveAttachmentBackfillJob())
+      reenqueueWithIncrementedProgress()
       return Result.success()
     }
 
     if (transferState == AttachmentTable.ArchiveTransferState.ATTACHMENT_TRANSFER_PENDING) {
       Log.i(TAG, "Attachment $attachmentId is already marked as pending transfer, meaning it's a send attachment that will be uploaded on it's own. Skipping.")
-      ApplicationDependencies.getJobManager().add(ArchiveAttachmentBackfillJob())
+      reenqueueWithIncrementedProgress()
       return Result.success()
     }
 
@@ -164,7 +176,7 @@ class ArchiveAttachmentBackfillJob private constructor(
 
     if (attachmentRecord == null) {
       Log.w(TAG, "$attachmentId was not found after uploading! Possibly deleted in a narrow race condition. Re-enqueuing job with no ID.")
-      ApplicationDependencies.getJobManager().add(ArchiveAttachmentBackfillJob())
+      reenqueueWithIncrementedProgress()
       return Result.success()
     }
 
@@ -174,7 +186,7 @@ class ArchiveAttachmentBackfillJob private constructor(
         Log.d(TAG, "Move complete!")
 
         SignalDatabase.attachments.setArchiveTransferState(attachmentRecord.attachmentId, AttachmentTable.ArchiveTransferState.FINISHED)
-        ApplicationDependencies.getJobManager().add(ArchiveAttachmentBackfillJob())
+        reenqueueWithIncrementedProgress()
         Result.success()
       }
 
@@ -210,6 +222,15 @@ class ArchiveAttachmentBackfillJob private constructor(
         }
       }
     }
+  }
+
+  private fun reenqueueWithIncrementedProgress() {
+    ApplicationDependencies.getJobManager().add(
+      ArchiveAttachmentBackfillJob(
+        totalCount = totalCount,
+        progress = progress?.inc()?.coerceAtMost(totalCount ?: 0)
+      )
+    )
   }
 
   override fun onFailure() {
@@ -261,7 +282,9 @@ class ArchiveAttachmentBackfillJob private constructor(
       return ArchiveAttachmentBackfillJob(
         parameters = parameters,
         attachmentId = data?.attachmentId?.let { AttachmentId(it) },
-        uploadSpec = data?.uploadSpec
+        uploadSpec = data?.uploadSpec,
+        totalCount = data?.totalCount,
+        progress = data?.count
       )
     }
   }

@@ -96,22 +96,22 @@ fun MessageBackupsPinEducationScreen(
       }
 
       Buttons.LargePrimary(
-        onClick = onGeneratePinClick,
+        onClick = onUseCurrentPinClick,
         modifier = Modifier.fillMaxWidth()
       ) {
         Text(
-          text = "Generate a new $recommendedPinSize-digit PIN" // TODO [message-backups] Finalized copy
+          text = "Use current Signal PIN" // TODO [message-backups] Finalized copy
         )
       }
 
       TextButton(
-        onClick = onUseCurrentPinClick,
+        onClick = onGeneratePinClick,
         modifier = Modifier
           .fillMaxWidth()
           .padding(bottom = 16.dp)
       ) {
         Text(
-          text = "Use current Signal PIN" // TODO [message-backups] Finalized copy
+          text = "Generate a new $recommendedPinSize-digit PIN" // TODO [message-backups] Finalized copy
         )
       }
     }

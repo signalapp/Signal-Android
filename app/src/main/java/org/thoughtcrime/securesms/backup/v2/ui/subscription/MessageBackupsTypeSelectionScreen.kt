@@ -39,16 +39,17 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withAnnotation
 import androidx.compose.ui.text.withStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.Previews
 import org.signal.core.ui.Scaffolds
+import org.signal.core.ui.SignalPreview
 import org.signal.core.ui.theme.SignalTheme
 import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import java.math.BigDecimal
 import java.util.Currency
@@ -59,9 +60,9 @@ import java.util.Currency
 @OptIn(ExperimentalTextApi::class)
 @Composable
 fun MessageBackupsTypeSelectionScreen(
-  selectedBackupsType: MessageBackupsType?,
-  availableBackupsTypes: List<MessageBackupsType>,
-  onMessageBackupsTypeSelected: (MessageBackupsType) -> Unit,
+  selectedBackupTier: MessageBackupTier?,
+  availableBackupTiers: List<MessageBackupTier>,
+  onMessageBackupsTierSelected: (MessageBackupTier) -> Unit,
   onNavigationClick: () -> Unit,
   onReadMoreClicked: () -> Unit,
   onNextClicked: () -> Unit
@@ -128,13 +129,16 @@ fun MessageBackupsTypeSelectionScreen(
         }
 
         itemsIndexed(
-          availableBackupsTypes,
-          { _, item -> item.title }
+          availableBackupTiers,
+          { _, item -> item }
         ) { index, item ->
+          val type = remember(item) {
+            getTierDetails(item)
+          }
           MessageBackupsTypeBlock(
-            messageBackupsType = item,
-            isSelected = item == selectedBackupsType,
-            onSelected = { onMessageBackupsTypeSelected(item) },
+            messageBackupsType = type,
+            isSelected = item == selectedBackupTier,
+            onSelected = { onMessageBackupsTierSelected(item) },
             modifier = Modifier.padding(top = if (index == 0) 20.dp else 18.dp)
           )
         }
@@ -154,54 +158,16 @@ fun MessageBackupsTypeSelectionScreen(
   }
 }
 
-@Preview
+@SignalPreview
 @Composable
 private fun MessageBackupsTypeSelectionScreenPreview() {
-  val freeTier = MessageBackupsType(
-    pricePerMonth = FiatMoney(BigDecimal.ZERO, Currency.getInstance("USD")),
-    title = "Text + 30 days of media",
-    features = persistentListOf(
-      MessageBackupsTypeFeature(
-        iconResourceId = R.drawable.symbol_thread_compact_bold_16,
-        label = "Full text message backup"
-      ),
-      MessageBackupsTypeFeature(
-        iconResourceId = R.drawable.symbol_album_compact_bold_16,
-        label = "Last 30 days of media"
-      )
-    )
-  )
-
-  val paidTier = MessageBackupsType(
-    pricePerMonth = FiatMoney(BigDecimal.valueOf(3), Currency.getInstance("USD")),
-    title = "Text + All your media",
-    features = persistentListOf(
-      MessageBackupsTypeFeature(
-        iconResourceId = R.drawable.symbol_thread_compact_bold_16,
-        label = "Full text message backup"
-      ),
-      MessageBackupsTypeFeature(
-        iconResourceId = R.drawable.symbol_album_compact_bold_16,
-        label = "Full media backup"
-      ),
-      MessageBackupsTypeFeature(
-        iconResourceId = R.drawable.symbol_thread_compact_bold_16,
-        label = "1TB of storage (~250K photos)"
-      ),
-      MessageBackupsTypeFeature(
-        iconResourceId = R.drawable.symbol_heart_compact_bold_16,
-        label = "Thanks for supporting Signal!"
-      )
-    )
-  )
-
-  var selectedBackupsType by remember { mutableStateOf(freeTier) }
+  var selectedBackupsType by remember { mutableStateOf(MessageBackupTier.FREE) }
 
   Previews.Preview {
     MessageBackupsTypeSelectionScreen(
-      selectedBackupsType = selectedBackupsType,
-      availableBackupsTypes = listOf(freeTier, paidTier),
-      onMessageBackupsTypeSelected = { selectedBackupsType = it },
+      selectedBackupTier = MessageBackupTier.FREE,
+      availableBackupTiers = listOf(MessageBackupTier.FREE, MessageBackupTier.PAID),
+      onMessageBackupsTierSelected = { selectedBackupsType = it },
       onNavigationClick = {},
       onReadMoreClicked = {},
       onNextClicked = {}
@@ -272,7 +238,51 @@ private fun formatCostPerMonth(pricePerMonth: FiatMoney): String {
 
 @Stable
 data class MessageBackupsType(
+  val tier: MessageBackupTier,
   val pricePerMonth: FiatMoney,
   val title: String,
   val features: ImmutableList<MessageBackupsTypeFeature>
 )
+
+fun getTierDetails(tier: MessageBackupTier): MessageBackupsType {
+  return when (tier) {
+    MessageBackupTier.FREE -> MessageBackupsType(
+      tier = MessageBackupTier.FREE,
+      pricePerMonth = FiatMoney(BigDecimal.ZERO, Currency.getInstance("USD")),
+      title = "Text + 30 days of media",
+      features = persistentListOf(
+        MessageBackupsTypeFeature(
+          iconResourceId = R.drawable.symbol_thread_compact_bold_16,
+          label = "Full text message backup"
+        ),
+        MessageBackupsTypeFeature(
+          iconResourceId = R.drawable.symbol_album_compact_bold_16,
+          label = "Last 30 days of media"
+        )
+      )
+    )
+    MessageBackupTier.PAID -> MessageBackupsType(
+      tier = MessageBackupTier.PAID,
+      pricePerMonth = FiatMoney(BigDecimal.valueOf(3), Currency.getInstance("USD")),
+      title = "Text + All your media",
+      features = persistentListOf(
+        MessageBackupsTypeFeature(
+          iconResourceId = R.drawable.symbol_thread_compact_bold_16,
+          label = "Full text message backup"
+        ),
+        MessageBackupsTypeFeature(
+          iconResourceId = R.drawable.symbol_album_compact_bold_16,
+          label = "Full media backup"
+        ),
+        MessageBackupsTypeFeature(
+          iconResourceId = R.drawable.symbol_thread_compact_bold_16,
+          label = "1TB of storage (~250K photos)"
+        ),
+        MessageBackupsTypeFeature(
+          iconResourceId = R.drawable.symbol_heart_compact_bold_16,
+          label = "Thanks for supporting Signal!"
+        )
+      )
+    )
+  }
+}
