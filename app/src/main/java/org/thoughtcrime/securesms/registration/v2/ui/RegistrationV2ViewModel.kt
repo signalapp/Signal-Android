@@ -12,6 +12,7 @@ import androidx.lifecycle.viewModelScope
 import com.google.i18n.phonenumbers.NumberParseException
 import com.google.i18n.phonenumbers.PhoneNumberUtil
 import com.google.i18n.phonenumbers.Phonenumber
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
@@ -27,6 +28,19 @@ import org.thoughtcrime.securesms.pin.SvrWrongPinException
 import org.thoughtcrime.securesms.registration.RegistrationData
 import org.thoughtcrime.securesms.registration.RegistrationUtil
 import org.thoughtcrime.securesms.registration.v2.data.RegistrationRepository
+import org.thoughtcrime.securesms.registration.v2.data.network.BackupAuthCheckResult
+import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeRequestResult.AttemptsExhausted
+import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeRequestResult.ChallengeRequired
+import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeRequestResult.ExternalServiceFailure
+import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeRequestResult.ImpossibleNumber
+import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeRequestResult.InvalidTransportModeFailure
+import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeRequestResult.MalformedRequest
+import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeRequestResult.NonNormalizedNumber
+import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeRequestResult.RateLimited
+import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeRequestResult.MustRetry
+import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeRequestResult.Success
+import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeRequestResult.TokenNotAccepted
+import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeRequestResult.UnknownError
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.dualsim.MccMncProducer
@@ -42,8 +56,14 @@ import java.io.IOException
 class RegistrationV2ViewModel : ViewModel() {
 
   private val store = MutableStateFlow(RegistrationV2State())
-
   private val password = Util.getSecret(18) // TODO [regv2]: persist this
+
+  private val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
+    Log.w(TAG, "CoroutineExceptionHandler invoked.", exception)
+    store.update {
+      it.copy(networkError = exception)
+    }
+  }
 
   val uiState = store.asLiveData()
 
@@ -80,7 +100,7 @@ class RegistrationV2ViewModel : ViewModel() {
   }
 
   fun fetchFcmToken(context: Context) {
-    viewModelScope.launch {
+    viewModelScope.launch(context = coroutineExceptionHandler) {
       val fcmToken = RegistrationRepository.getFcmToken(context)
       store.update {
         it.copy(registrationCheckpoint = RegistrationCheckpoint.PUSH_NETWORK_AUDITED, isFcmSupported = true, fcmToken = fcmToken)
@@ -120,22 +140,67 @@ class RegistrationV2ViewModel : ViewModel() {
       store.update {
         it.copy(canSkipSms = true)
       }
-    } else {
-      viewModelScope.launch {
-        val svrCredentials = RegistrationRepository.hasValidSvrAuthCredentials(context, e164, password)
+      return
+    }
 
-        if (svrCredentials != null) {
-          // Re-registration when credentials stored in backup.
+    viewModelScope.launch {
+      val svrCredentialsResult = RegistrationRepository.hasValidSvrAuthCredentials(context, e164, password)
+
+      when (svrCredentialsResult) {
+        is BackupAuthCheckResult.UnknownError -> {
+          handleGenericError(svrCredentialsResult.getCause())
+          return@launch
+        }
+
+        is BackupAuthCheckResult.SuccessWithCredentials -> {
+          Log.d(TAG, "Found local valid SVR auth credentials.")
           store.update {
-            it.copy(canSkipSms = true, svrAuthCredentials = svrCredentials)
+            it.copy(canSkipSms = true, svrAuthCredentials = svrCredentialsResult.authCredentials)
           }
-        } else {
-          val codeRequestResponse = RegistrationRepository.requestSmsCode(context, e164, password, mccMncProducer.mcc, mccMncProducer.mnc).successOrThrow()
+          return@launch
+        }
+
+        is BackupAuthCheckResult.SuccessWithoutCredentials -> Log.d(TAG, "No local SVR auth credentials could be found and/or validated.")
+      }
+
+      val codeRequestResponse = RegistrationRepository.requestSmsCode(context, e164, password, mccMncProducer.mcc, mccMncProducer.mnc)
+
+      when (codeRequestResponse) {
+        is UnknownError -> {
+          handleGenericError(codeRequestResponse.getCause())
+          return@launch
+        }
+
+        is Success -> {
+          updateFcmToken(context)
           store.update {
-            it.copy(sessionId = codeRequestResponse.body.id, nextSms = RegistrationRepository.deriveTimestamp(codeRequestResponse.headers, codeRequestResponse.body.nextSms), nextCall = RegistrationRepository.deriveTimestamp(codeRequestResponse.headers, codeRequestResponse.body.nextCall), registrationCheckpoint = RegistrationCheckpoint.VERIFICATION_CODE_REQUESTED)
+            it.copy(
+              sessionId = codeRequestResponse.sessionId,
+              nextSms = codeRequestResponse.nextSms,
+              nextCall = codeRequestResponse.nextCall,
+              registrationCheckpoint = RegistrationCheckpoint.VERIFICATION_CODE_REQUESTED
+            )
           }
         }
+
+        is AttemptsExhausted -> Log.w(TAG, "TODO")
+        is ChallengeRequired -> Log.w(TAG, "TODO")
+        is ImpossibleNumber -> Log.w(TAG, "TODO")
+        is NonNormalizedNumber -> Log.w(TAG, "TODO")
+        is RateLimited -> Log.w(TAG, "TODO")
+        is ExternalServiceFailure -> Log.w(TAG, "TODO")
+        is InvalidTransportModeFailure -> Log.w(TAG, "TODO")
+        is MalformedRequest -> Log.w(TAG, "TODO")
+        is MustRetry -> Log.w(TAG, "TODO")
+        is TokenNotAccepted -> Log.w(TAG, "TODO")
       }
+    }
+  }
+
+  private fun handleGenericError(cause: Throwable) {
+    Log.w(TAG, "Encountered unknown error!", cause)
+    store.update {
+      it.copy(inProgress = false, networkError = cause)
     }
   }
 
@@ -164,7 +229,7 @@ class RegistrationV2ViewModel : ViewModel() {
     if (RegistrationRepository.canUseLocalRecoveryPassword()) {
       if (RegistrationRepository.doesPinMatchLocalHash(pin)) {
         Log.d(TAG, "Found recovery password, attempting to re-register.")
-        viewModelScope.launch {
+        viewModelScope.launch(context = coroutineExceptionHandler) {
           verifyReRegisterInternal(context, pin, SignalStore.svr().getOrCreateMasterKey())
           setInProgress(false)
         }
@@ -180,7 +245,7 @@ class RegistrationV2ViewModel : ViewModel() {
     val authCredentials = store.value.svrAuthCredentials
     if (authCredentials != null) {
       Log.d(TAG, "Found SVR auth credentials, fetching recovery password from SVR.")
-      viewModelScope.launch {
+      viewModelScope.launch(context = coroutineExceptionHandler) {
         try {
           val masterKey = RegistrationRepository.fetchMasterKeyFromSvrRemote(pin, authCredentials)
           setRecoveryPassword(masterKey.deriveRegistrationRecoveryPassword())
@@ -254,7 +319,7 @@ class RegistrationV2ViewModel : ViewModel() {
     }
     val e164: String = getCurrentE164() ?: throw IllegalStateException()
 
-    viewModelScope.launch {
+    viewModelScope.launch(context = coroutineExceptionHandler) {
       val registrationData = getRegistrationData(code)
       val verificationResponse = RegistrationRepository.submitVerificationCode(context, e164, password, sessionId, registrationData).successOrThrow()
 

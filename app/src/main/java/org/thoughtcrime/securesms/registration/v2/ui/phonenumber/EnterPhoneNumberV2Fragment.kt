@@ -96,6 +96,10 @@ class EnterPhoneNumberV2Fragment : LoggingFragment(R.layout.fragment_registratio
     sharedViewModel.uiState.observe(viewLifecycleOwner) { sharedState ->
       presentRegisterButton(sharedState)
       presentProgressBar(sharedState.inProgress, sharedState.isReRegister)
+
+      sharedState.networkError?.let {
+        presentNetworkError(it)
+      }
       if (sharedState.registrationCheckpoint >= RegistrationCheckpoint.PHONE_NUMBER_CONFIRMED && sharedState.canSkipSms) {
         moveToEnterPinScreen()
       } else if (sharedState.registrationCheckpoint >= RegistrationCheckpoint.VERIFICATION_CODE_REQUESTED) {
@@ -224,6 +228,15 @@ class EnterPhoneNumberV2Fragment : LoggingFragment(R.layout.fragment_registratio
         Log.w(TAG, "Not yet implemented!", NotImplementedError()) // TODO [regv2]
       }
     }
+  }
+
+  private fun presentNetworkError(networkError: Throwable) {
+    // TODO [regv2]: check specific errors with a when clause
+    Log.i(TAG, "Unknown error during verification code request", networkError)
+    MaterialAlertDialogBuilder(requireContext())
+      .setMessage(R.string.RegistrationActivity_unable_to_connect_to_service)
+      .setPositiveButton(android.R.string.ok, null)
+      .show()
   }
 
   private fun onRegistrationButtonClicked() {

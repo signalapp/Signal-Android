@@ -51,7 +51,7 @@ sealed class NetworkResult<T>(
   data class NetworkError<T>(val exception: IOException) : NetworkResult<T>()
 
   /** Indicates we got a response, but it was a non-2xx response. */
-  data class StatusCodeError<T>(val code: Int, val body: String?, val exception: IOException) : NetworkResult<T>()
+  data class StatusCodeError<T>(val code: Int, val body: String?, val exception: NonSuccessfulResponseCodeException) : NetworkResult<T>()
 
   /** Indicates that the application somehow failed in a way unrelated to network activity. Usually a runtime crash. */
   data class ApplicationError<T>(val throwable: Throwable) : NetworkResult<T>()

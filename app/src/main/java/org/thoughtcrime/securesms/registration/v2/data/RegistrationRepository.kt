@@ -7,9 +7,9 @@ package org.thoughtcrime.securesms.registration.v2.data
 
 import android.app.backup.BackupManager
 import android.content.Context
-import androidx.annotation.WorkerThread
 import androidx.core.app.NotificationManagerCompat
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.withContext
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -41,6 +41,8 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.registration.PushChallengeRequest
 import org.thoughtcrime.securesms.registration.RegistrationData
 import org.thoughtcrime.securesms.registration.VerifyAccountRepository
+import org.thoughtcrime.securesms.registration.v2.data.network.BackupAuthCheckResult
+import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeRequestResult
 import org.thoughtcrime.securesms.registration.viewmodel.SvrAuthCredentialSet
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener
@@ -59,6 +61,7 @@ import org.whispersystems.signalservice.api.registration.RegistrationApi
 import org.whispersystems.signalservice.internal.push.AuthCredentials
 import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataHeaders
 import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataResponse
+import java.io.IOException
 import java.nio.charset.StandardCharsets
 import java.util.Locale
 import java.util.concurrent.CountDownLatch
@@ -142,7 +145,6 @@ object RegistrationRepository {
   /**
    * Takes a server response from a successful registration and persists the relevant data.
    */
-  @WorkerThread
   @JvmStatic
   suspend fun registerAccountLocally(context: Context, registrationData: RegistrationData, response: AccountRegistrationResult, reglockEnabled: Boolean) =
     withContext(Dispatchers.IO) {
@@ -258,20 +260,21 @@ object RegistrationRepository {
    * 2. (Optional) If the session has any proof requirements ("challenges"), the user must solve them and submit the proof.
    * 3. Once the service responds we are allowed to, we request the verification code.
    */
-  suspend fun requestSmsCode(context: Context, e164: String, password: String, mcc: String?, mnc: String?, mode: Mode = Mode.SMS_WITHOUT_LISTENER): NetworkResult<RegistrationSessionMetadataResponse> =
+  suspend fun requestSmsCode(context: Context, e164: String, password: String, mcc: String?, mnc: String?, mode: Mode = Mode.SMS_WITHOUT_LISTENER): VerificationCodeRequestResult =
     withContext(Dispatchers.IO) {
       val fcmToken: String? = FcmUtil.getToken(context).orElse(null)
       val api: RegistrationApi = AccountManagerFactory.getInstance().createUnauthenticated(context, e164, SignalServiceAddress.DEFAULT_DEVICE_ID, password).registrationApi
-      val activeSession = if (fcmToken == null) {
-        // TODO [regv2]
-        val notImplementedError = NotImplementedError()
-        Log.w(TAG, "Not yet implemented!", notImplementedError)
-        NetworkResult.ApplicationError(notImplementedError)
-      } else {
-        createSessionAndBlockForPushChallenge(api, fcmToken, mcc, mnc)
-      }
 
-      activeSession.then { session ->
+      val result = (
+        if (fcmToken == null) {
+          // TODO [regv2]
+          val notImplementedError = NotImplementedError()
+          Log.w(TAG, "Not yet implemented!", notImplementedError)
+          NetworkResult.ApplicationError(notImplementedError)
+        } else {
+          createSessionAndBlockForPushChallenge(api, fcmToken, mcc, mnc)
+        }
+        ).then { session ->
         val sessionId = session.body.id
         SignalStore.registrationValues().sessionId = sessionId
         SignalStore.registrationValues().sessionE164 = e164
@@ -290,6 +293,8 @@ object RegistrationRepository {
           api.requestSmsVerificationCode(sessionId, Locale.getDefault(), mode.isSmsRetrieverSupported)
         }
       }
+
+      return@withContext VerificationCodeRequestResult.from(result)
     }
 
   /**
@@ -397,38 +402,44 @@ object RegistrationRepository {
     return timestamp + deltaSeconds.seconds.inWholeMilliseconds
   }
 
-  suspend fun hasValidSvrAuthCredentials(context: Context, e164: String, password: String): AuthCredentials? =
+  suspend fun hasValidSvrAuthCredentials(context: Context, e164: String, password: String): BackupAuthCheckResult =
     withContext(Dispatchers.IO) {
-      val usernamePasswords = SignalStore.svr()
-        .authTokenList
-        .take(10)
-        .map {
-          it.replace("Basic ", "").trim()
-        }
-        .map {
-          Base64.decode(it) // TODO [regv2]: figure out why Android Studio doesn't like mapCatching
-        }
-        .map {
-          String(it, StandardCharsets.ISO_8859_1)
-        }
-
-      if (usernamePasswords.isEmpty()) {
-        return@withContext null
-      }
+      val usernamePasswords = async { retrieveLocalSvrCredentials() }
       val api: RegistrationApi = AccountManagerFactory.getInstance().createUnauthenticated(context, e164, SignalServiceAddress.DEFAULT_DEVICE_ID, password).registrationApi
 
-      val authCheck = api.getSvrAuthCredential(e164, usernamePasswords)
-      if (authCheck !is NetworkResult.Success) {
-        return@withContext null
-      }
+      val result = api.getSvrAuthCredential(e164, usernamePasswords.await())
+        .runIfSuccessful {
+          val removedInvalidTokens = SignalStore.svr().removeAuthTokens(it.invalid)
+          if (removedInvalidTokens) {
+            BackupManager(context).dataChanged()
+          }
+        }
 
-      val removedInvalidTokens = SignalStore.svr().removeAuthTokens(authCheck.result.invalid)
-      if (removedInvalidTokens) {
-        BackupManager(context).dataChanged()
-      }
-
-      return@withContext authCheck.result.match
+      return@withContext BackupAuthCheckResult.from(result)
     }
+
+  private suspend fun retrieveLocalSvrCredentials(): List<String> = withContext(Dispatchers.IO) {
+    return@withContext SignalStore.svr()
+      .authTokenList
+      .asSequence()
+      .filterNotNull()
+      .take<String>(10)
+      .map<String, String> {
+        it.replace("Basic ", "").trim()
+      }
+      .mapNotNull<String, ByteArray> {
+        try {
+          Base64.decode(it)
+        } catch (e: IOException) {
+          Log.w(TAG, "Encountered error trying to decode a token!", e)
+          null
+        }
+      }
+      .map<ByteArray, String> {
+        String(it, StandardCharsets.ISO_8859_1)
+      }
+      .toList()
+  }
 
   enum class Mode(val isSmsRetrieverSupported: Boolean) {
     SMS_WITH_LISTENER(true), SMS_WITHOUT_LISTENER(false), PHONE_CALL(false)
