@@ -60,6 +60,7 @@ import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.conversation.v2.registerForLifecycle
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.util.DateUtils
+import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.viewModel
 import java.util.Locale
@@ -88,7 +89,8 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
       requestedDialog = state.dialog,
       requestedSnackbar = state.snackbar,
       contentCallbacks = callbacks,
-      backupProgress = state.backupProgress
+      backupProgress = state.backupProgress,
+      backupSize = state.backupSize
     )
   }
 
@@ -181,7 +183,8 @@ private fun RemoteBackupsSettingsContent(
   requestedDialog: RemoteBackupsSettingsState.Dialog,
   requestedSnackbar: RemoteBackupsSettingsState.Snackbar,
   contentCallbacks: ContentCallbacks,
-  backupProgress: BackupV2Event?
+  backupProgress: BackupV2Event?,
+  backupSize: Long
 ) {
   val snackbarHostState = remember {
     SnackbarHostState()
@@ -245,7 +248,7 @@ private fun RemoteBackupsSettingsContent(
                 color = MaterialTheme.colorScheme.onSurface
               )
               Text(
-                text = "2.3GB",
+                text = Util.getPrettyFileSize(backupSize ?: 0),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
               )
@@ -572,7 +575,8 @@ private fun RemoteBackupsSettingsContentPreview() {
       requestedDialog = RemoteBackupsSettingsState.Dialog.NONE,
       requestedSnackbar = RemoteBackupsSettingsState.Snackbar.NONE,
       contentCallbacks = object : ContentCallbacks {},
-      backupProgress = null
+      backupProgress = null,
+      backupSize = 2300000
     )
   }
 }

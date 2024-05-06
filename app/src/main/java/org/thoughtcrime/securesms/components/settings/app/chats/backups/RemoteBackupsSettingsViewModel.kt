@@ -29,7 +29,8 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
       } else {
         null
       },
-      lastBackupTimestamp = SignalStore.backup().lastBackupTime
+      lastBackupTimestamp = SignalStore.backup().lastBackupTime,
+      backupSize = SignalStore.backup().totalBackupSize
     )
   )
 
@@ -60,7 +61,15 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
   }
 
   fun updateBackupProgress(backupEvent: BackupV2Event?) {
-    internalState.value = state.value.copy(backupProgress = backupEvent, lastBackupTimestamp = SignalStore.backup().lastBackupTime)
+    internalState.value = state.value.copy(backupProgress = backupEvent)
+    refreshBackupState()
+  }
+
+  private fun refreshBackupState() {
+    internalState.value = state.value.copy(
+      lastBackupTimestamp = SignalStore.backup().lastBackupTime,
+      backupSize = SignalStore.backup().totalBackupSize
+    )
   }
 
   fun onBackupNowClick() {

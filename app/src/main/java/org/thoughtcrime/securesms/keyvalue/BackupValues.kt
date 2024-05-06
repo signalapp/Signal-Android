@@ -19,6 +19,8 @@ internal class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     private const val KEY_CDN_READ_CREDENTIALS = "backup.cdn.readCredentials"
     private const val KEY_CDN_READ_CREDENTIALS_TIMESTAMP = "backup.cdn.readCredentials.timestamp"
     private const val KEY_RESTORE_STATE = "backup.restoreState"
+    private const val KEY_BACKUP_USED_MEDIA_SPACE = "backup.usedMediaSpace"
+    private const val KEY_BACKUP_LAST_PROTO_SIZE = "backup.lastProtoSize"
 
     private const val KEY_NEXT_BACKUP_TIME = "backup.nextBackupTime"
     private const val KEY_LAST_BACKUP_TIME = "backup.lastBackupTime"
@@ -41,6 +43,8 @@ internal class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
   private var cachedCdnCredentials: String? by stringValue(KEY_CDN_READ_CREDENTIALS, null)
   var cachedBackupDirectory: String? by stringValue(KEY_CDN_BACKUP_DIRECTORY, null)
   var cachedBackupMediaDirectory: String? by stringValue(KEY_CDN_BACKUP_MEDIA_DIRECTORY, null)
+  var usedBackupMediaSpace: Long by longValue(KEY_BACKUP_USED_MEDIA_SPACE, 0L)
+  var lastBackupProtoSize: Long by longValue(KEY_BACKUP_LAST_PROTO_SIZE, 0L)
 
   override fun onFirstEverAppLaunch() = Unit
   override fun getKeysToIncludeInBackup(): List<String> = emptyList()
@@ -51,6 +55,8 @@ internal class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
 
   var nextBackupTime: Long by longValue(KEY_NEXT_BACKUP_TIME, -1)
   var lastBackupTime: Long by longValue(KEY_LAST_BACKUP_TIME, -1)
+
+  val totalBackupSize: Long get() = lastBackupProtoSize + usedBackupMediaSpace
 
   var areBackupsEnabled: Boolean
     get() {

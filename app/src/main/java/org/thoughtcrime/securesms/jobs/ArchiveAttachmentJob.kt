@@ -61,6 +61,8 @@ class ArchiveAttachmentJob private constructor(private val attachmentId: Attachm
     }
 
     BackupRepository.archiveMedia(attachment).successOrThrow()
+
+    SignalStore.backup().usedBackupMediaSpace += attachment.size
   }
 
   override fun onShouldRetry(e: Exception): Boolean {

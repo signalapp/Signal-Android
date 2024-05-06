@@ -243,6 +243,17 @@ object BackupRepository {
       }
   }
 
+  fun getRemoteBackupUsedSpace(): NetworkResult<Long?> {
+    val api = ApplicationDependencies.getSignalServiceAccountManager().archiveApi
+    val backupKey = SignalStore.svr().getOrCreateMasterKey().deriveBackupKey()
+
+    return initBackupAndFetchAuth(backupKey)
+      .then { credential ->
+        api.getBackupInfo(backupKey, credential)
+          .map { it.usedSpace }
+      }
+  }
+
   /**
    * Returns an object with details about the remote backup state.
    */
@@ -551,6 +562,7 @@ object BackupRepository {
     return initBackupAndFetchAuth(backupKey)
       .then { credential ->
         api.getBackupInfo(backupKey, credential).map {
+          SignalStore.backup().usedBackupMediaSpace = it.usedSpace ?: 0L
           BackupDirectories(it.backupDir!!, it.mediaDir!!)
         }
       }

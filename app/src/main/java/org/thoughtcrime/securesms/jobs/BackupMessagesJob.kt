@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.providers.BlobProvider
 import org.whispersystems.signalservice.api.NetworkResult
 import java.io.FileInputStream
 import java.io.FileOutputStream
+import java.io.IOException
 
 /**
  * Job that is responsible for exporting the DB as a backup proto and
@@ -115,12 +116,18 @@ class BackupMessagesJob private constructor(parameters: Parameters) : BaseJob(pa
       BackupRepository.uploadBackupFile(it, tempBackupFile.length())
     }
     val needBackfill = archiveAttachments()
+    SignalStore.backup().lastBackupProtoSize = tempBackupFile.length()
     if (!tempBackupFile.delete()) {
       Log.e(TAG, "Failed to delete temp backup file")
     }
     SignalStore.backup().lastBackupTime = System.currentTimeMillis()
     if (!needBackfill) {
       EventBus.getDefault().postSticky(BackupV2Event(BackupV2Event.Type.FINISHED, 0, 0))
+      try {
+        SignalStore.backup().usedBackupMediaSpace = (BackupRepository.getRemoteBackupUsedSpace().successOrThrow() ?: 0)
+      } catch (e: IOException) {
+        Log.e(TAG, "Failed to update used space")
+      }
     }
   }
 
