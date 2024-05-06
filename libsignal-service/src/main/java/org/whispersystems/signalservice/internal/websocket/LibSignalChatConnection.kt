@@ -11,10 +11,10 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import io.reactivex.rxjava3.subjects.SingleSubject
 import org.signal.core.util.logging.Log
-import org.signal.libsignal.internal.CompletableFuture
 import org.signal.libsignal.net.ChatService
 import org.whispersystems.signalservice.api.websocket.HealthMonitor
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
+import org.whispersystems.signalservice.internal.util.whenComplete
 import java.time.Instant
 import java.util.Optional
 import kotlin.time.Duration.Companion.seconds
@@ -52,6 +52,31 @@ class LibSignalChatConnection(
       ByteArray(0),
       SEND_TIMEOUT.toInt()
     )
+
+    private fun WebSocketRequestMessage.toLibSignalRequest(timeout: Long = SEND_TIMEOUT): LibSignalRequest {
+      return LibSignalRequest(
+        this.verb?.uppercase() ?: "GET",
+        this.path ?: "",
+        this.headers.associate {
+          val parts = it.split(':', limit = 2)
+          if (parts.size != 2) {
+            throw IllegalArgumentException("Headers must contain at least one colon")
+          }
+          parts[0] to parts[1]
+        },
+        this.body?.toByteArray() ?: byteArrayOf(),
+        timeout.toInt()
+      )
+    }
+
+    private fun LibSignalResponse.toWebsocketResponse(isUnidentified: Boolean): WebsocketResponse {
+      return WebsocketResponse(
+        this.status,
+        this.body.decodeToString(),
+        this.headers,
+        isUnidentified
+      )
+    }
   }
 
   override val name = "[$name:${System.identityHashCode(this)}]"
@@ -175,43 +200,5 @@ class LibSignalChatConnection(
 
   override fun sendResponse(response: WebSocketResponseMessage?) {
     throw NotImplementedError()
-  }
-
-  private fun WebSocketRequestMessage.toLibSignalRequest(timeout: Long = SEND_TIMEOUT): LibSignalRequest {
-    return LibSignalRequest(
-      this.verb?.uppercase() ?: "GET",
-      this.path ?: "",
-      this.headers.associate {
-        val parts = it.split(':', limit = 2)
-        if (parts.size != 2) {
-          throw IllegalArgumentException("Headers must contain at least one colon")
-        }
-        parts[0] to parts[1]
-      },
-      this.body?.toByteArray() ?: byteArrayOf(),
-      timeout.toInt()
-    )
-  }
-
-  private fun LibSignalResponse.toWebsocketResponse(isUnidentified: Boolean): WebsocketResponse {
-    return WebsocketResponse(
-      this.status,
-      this.body.decodeToString(),
-      this.headers,
-      isUnidentified
-    )
-  }
-
-  private fun <T> CompletableFuture<T>.whenComplete(
-    onSuccess: ((T?) -> Unit),
-    onFailure: ((Throwable) -> Unit)
-  ): CompletableFuture<T> {
-    return this.whenComplete { value, throwable ->
-      if (throwable != null) {
-        onFailure(throwable)
-      } else {
-        onSuccess(value)
-      }
-    }
   }
 }

@@ -130,6 +130,7 @@ public final class FeatureFlags {
   private static final String REGISTRATION_V2                   = "android.registration.v2";
   private static final String LIBSIGNAL_WEB_SOCKET_ENABLED      = "android.libsignalWebSocketEnabled";
   private static final String RESTORE_POST_REGISTRATION         = "android.registration.restorePostRegistration";
+  private static final String LIBSIGNAL_WEB_SOCKET_SHADOW_PCT   = "android.libsignalWebSocketShadowingPercentage";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -209,7 +210,8 @@ public final class FeatureFlags {
       RX_MESSAGE_SEND,
       LINKED_DEVICE_LIFESPAN_SECONDS,
       CAMERAX_CUSTOM_CONTROLLER,
-      LIBSIGNAL_WEB_SOCKET_ENABLED
+      LIBSIGNAL_WEB_SOCKET_ENABLED,
+      LIBSIGNAL_WEB_SOCKET_SHADOW_PCT
   );
 
   @VisibleForTesting
@@ -753,6 +755,15 @@ public final class FeatureFlags {
   /** Whether or not to launch the restore activity after registration is complete, rather than before. */
   public static boolean restoreAfterRegistration() {
     return getBoolean(RESTORE_POST_REGISTRATION, false);
+  }
+
+  /**
+   * Percentage [0, 100] of web socket requests that will be "shadowed" by sending
+   * an unauthenticated keep-alive via libsignal-net. Default: 0
+   */
+  public static  int libSignalWebSocketShadowingPercentage() {
+    int value = getInteger(LIBSIGNAL_WEB_SOCKET_SHADOW_PCT, 0);
+    return Math.max(0, Math.min(value, 100));
   }
 
   /** Only for rendering debug info. */

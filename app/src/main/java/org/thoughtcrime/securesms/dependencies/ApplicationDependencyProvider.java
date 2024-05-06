@@ -45,6 +45,7 @@ import org.thoughtcrime.securesms.jobs.TypingSendJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.megaphone.MegaphoneRepository;
 import org.thoughtcrime.securesms.messages.IncomingMessageObserver;
+import org.thoughtcrime.securesms.net.DefaultWebSocketShadowingBridge;
 import org.thoughtcrime.securesms.net.SignalWebSocketHealthMonitor;
 import org.thoughtcrime.securesms.net.StandardUserAgentInterceptor;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
@@ -92,9 +93,11 @@ import org.whispersystems.signalservice.api.util.UptimeSleepTimer;
 import org.whispersystems.signalservice.api.websocket.WebSocketFactory;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
 import org.whispersystems.signalservice.internal.websocket.LibSignalNetwork;
+import org.whispersystems.signalservice.internal.websocket.ShadowingWebSocketConnection;
 import org.whispersystems.signalservice.internal.websocket.WebSocketConnection;
 import org.whispersystems.signalservice.internal.websocket.LibSignalChatConnection;
 import org.whispersystems.signalservice.internal.websocket.OkHttpWebSocketConnection;
+import org.whispersystems.signalservice.internal.websocket.WebSocketShadowingBridge;
 
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
@@ -294,7 +297,8 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
   public @NonNull SignalWebSocket provideSignalWebSocket(@NonNull Supplier<SignalServiceConfiguration> signalServiceConfigurationSupplier, @NonNull Supplier<LibSignalNetwork> libSignalNetworkSupplier) {
     SleepTimer                   sleepTimer      = !SignalStore.account().isFcmEnabled() || SignalStore.internalValues().isWebsocketModeForced() ? new AlarmSleepTimer(context) : new UptimeSleepTimer() ;
     SignalWebSocketHealthMonitor healthMonitor   = new SignalWebSocketHealthMonitor(context, sleepTimer);
-    SignalWebSocket              signalWebSocket = new SignalWebSocket(provideWebSocketFactory(signalServiceConfigurationSupplier, healthMonitor, libSignalNetworkSupplier));
+    WebSocketShadowingBridge     bridge          = new DefaultWebSocketShadowingBridge(context);
+    SignalWebSocket              signalWebSocket = new SignalWebSocket(provideWebSocketFactory(signalServiceConfigurationSupplier, healthMonitor, libSignalNetworkSupplier, bridge));
 
     healthMonitor.monitor(signalWebSocket);
 
@@ -401,7 +405,11 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
     return provideClientZkOperations(signalServiceConfiguration).getReceiptOperations();
   }
 
-  @NonNull WebSocketFactory provideWebSocketFactory(@NonNull Supplier<SignalServiceConfiguration> signalServiceConfigurationSupplier, @NonNull SignalWebSocketHealthMonitor healthMonitor, @NonNull Supplier<LibSignalNetwork> libSignalNetworkSupplier) {
+  @NonNull WebSocketFactory provideWebSocketFactory(@NonNull Supplier<SignalServiceConfiguration> signalServiceConfigurationSupplier,
+                                                    @NonNull SignalWebSocketHealthMonitor healthMonitor,
+                                                    @NonNull Supplier<LibSignalNetwork> libSignalNetworkSupplier,
+                                                    @NonNull WebSocketShadowingBridge bridge)
+  {
     return new WebSocketFactory() {
       @Override
       public WebSocketConnection createWebSocket() {
@@ -415,6 +423,20 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
 
       @Override
       public WebSocketConnection createUnidentifiedWebSocket() {
+        int shadowPercentage = FeatureFlags.libSignalWebSocketShadowingPercentage();
+        if (shadowPercentage > 0) {
+          return new ShadowingWebSocketConnection(
+              "unauth-shadow",
+              signalServiceConfigurationSupplier.get(),
+              Optional.empty(),
+              BuildConfig.SIGNAL_AGENT,
+              healthMonitor,
+              Stories.isFeatureEnabled(),
+              libSignalNetworkSupplier.get().createChatService(null),
+              shadowPercentage,
+              bridge
+          );
+        }
         if (FeatureFlags.libSignalWebSocketEnabled()) {
           LibSignalNetwork network = libSignalNetworkSupplier.get();
           return new LibSignalChatConnection(
