@@ -202,7 +202,7 @@ class EnterPhoneNumberV2Fragment : LoggingFragment(R.layout.fragment_registratio
 
       EnterPhoneNumberV2State.Error.INVALID_PHONE_NUMBER -> {
         MaterialAlertDialogBuilder(requireContext()).apply {
-          setTitle(getString(R.string.RegistrationActivity_invalid_number))
+          setTitle(R.string.RegistrationActivity_invalid_number)
           setMessage(
             String.format(
               getString(R.string.RegistrationActivity_the_number_you_specified_s_is_invalid),
@@ -225,7 +225,14 @@ class EnterPhoneNumberV2Fragment : LoggingFragment(R.layout.fragment_registratio
       }
 
       EnterPhoneNumberV2State.Error.PLAY_SERVICES_TRANSIENT -> {
-        Log.w(TAG, "Not yet implemented!", NotImplementedError()) // TODO [regv2]
+        MaterialAlertDialogBuilder(requireContext()).apply {
+          setTitle(R.string.RegistrationActivity_play_services_error)
+          setMessage(R.string.RegistrationActivity_google_play_services_is_updating_or_unavailable)
+          setPositiveButton(android.R.string.ok) { _, _ -> fragmentViewModel.clearError() }
+          setOnCancelListener { fragmentViewModel.clearError() }
+          setOnDismissListener { fragmentViewModel.clearError() }
+          show()
+        }
       }
     }
   }
@@ -247,8 +254,14 @@ class EnterPhoneNumberV2Fragment : LoggingFragment(R.layout.fragment_registratio
       sharedViewModel.uiState.observe(viewLifecycleOwner, FcmTokenRetrievedObserver())
       sharedViewModel.fetchFcmToken(requireContext())
     } else {
-      sharedViewModel.setInProgress(false)
-      // TODO [regv2]: handle if FCM isn't available
+      sharedViewModel.uiState.value?.let { value ->
+        if (value.phoneNumber == null) {
+          fragmentViewModel.setError(EnterPhoneNumberV2State.Error.INVALID_PHONE_NUMBER)
+          sharedViewModel.setInProgress(false)
+        } else {
+          presentConfirmNumberDialog(value.phoneNumber, value.isReRegister, value.canSkipSms, missingFcmConsentRequired = true)
+        }
+      }
     }
   }
 
@@ -257,7 +270,7 @@ class EnterPhoneNumberV2Fragment : LoggingFragment(R.layout.fragment_registratio
       fragmentViewModel.setError(EnterPhoneNumberV2State.Error.INVALID_PHONE_NUMBER)
       sharedViewModel.setInProgress(false)
     } else {
-      presentConfirmNumberDialog(value.phoneNumber, value.isReRegister, value.canSkipSms)
+      presentConfirmNumberDialog(value.phoneNumber, value.isReRegister, value.canSkipSms, missingFcmConsentRequired = false)
     }
   }
 
@@ -309,7 +322,7 @@ class EnterPhoneNumberV2Fragment : LoggingFragment(R.layout.fragment_registratio
     ViewUtil.focusAndMoveCursorToEndAndOpenKeyboard(phoneNumberInputLayout)
   }
 
-  private fun presentConfirmNumberDialog(phoneNumber: PhoneNumber, isReRegister: Boolean, canSkipSms: Boolean) {
+  private fun presentConfirmNumberDialog(phoneNumber: PhoneNumber, isReRegister: Boolean, canSkipSms: Boolean, missingFcmConsentRequired: Boolean) {
     val title = if (isReRegister) {
       R.string.RegistrationActivity_additional_verification_required
     } else {
@@ -329,11 +342,31 @@ class EnterPhoneNumberV2Fragment : LoggingFragment(R.layout.fragment_registratio
       setMessage(message)
       setPositiveButton(android.R.string.ok) { _, _ ->
         Log.d(TAG, "User confirmed number.")
-        sharedViewModel.onUserConfirmedPhoneNumber(requireContext())
+        if (missingFcmConsentRequired) {
+          handlePromptForNoPlayServices()
+        } else {
+          sharedViewModel.onUserConfirmedPhoneNumber(requireContext())
+        }
       }
       setNegativeButton(R.string.RegistrationActivity_edit_number) { _, _ -> onConfirmNumberDialogCanceled() }
       setOnCancelListener { _ -> onConfirmNumberDialogCanceled() }
     }.show()
+  }
+
+  private fun handlePromptForNoPlayServices() {
+    Log.d(TAG, "Device does not have Play Services, showing consent dialog.")
+    MaterialAlertDialogBuilder(requireContext()).apply {
+      setTitle(R.string.RegistrationActivity_missing_google_play_services)
+      setMessage(R.string.RegistrationActivity_this_device_is_missing_google_play_services)
+      setPositiveButton(R.string.RegistrationActivity_i_understand) { _, _ ->
+        Log.d(TAG, "User confirmed number.")
+        sharedViewModel.onUserConfirmedPhoneNumber(requireContext())
+      }
+      setNegativeButton(android.R.string.cancel, null)
+      setOnCancelListener { fragmentViewModel.clearError() }
+      setOnDismissListener { fragmentViewModel.clearError() }
+      show()
+    }
   }
 
   private fun moveToEnterPinScreen() {
