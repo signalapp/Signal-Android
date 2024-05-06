@@ -5,15 +5,15 @@
 
 package org.thoughtcrime.securesms.components.settings.app.chats.backups
 
+import org.thoughtcrime.securesms.backup.v2.BackupFrequency
 import org.thoughtcrime.securesms.backup.v2.BackupV2Event
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
-import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsFrequency
 
 data class RemoteBackupsSettingsState(
   val messageBackupsTier: MessageBackupTier? = null,
   val canBackUpUsingCellular: Boolean = false,
   val backupSize: Long = 0,
-  val backupsFrequency: MessageBackupsFrequency = MessageBackupsFrequency.DAILY,
+  val backupsFrequency: BackupFrequency = BackupFrequency.DAILY,
   val lastBackupTimestamp: Long = 0,
   val dialog: Dialog = Dialog.NONE,
   val snackbar: Snackbar = Snackbar.NONE,

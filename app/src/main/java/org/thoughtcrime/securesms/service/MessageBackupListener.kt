@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.service
 
 import android.content.Context
+import org.thoughtcrime.securesms.backup.v2.BackupFrequency
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.FeatureFlags
@@ -47,6 +48,12 @@ class MessageBackupListener : PersistentAlarmManagerListener() {
       var next = now.withHour(hour).withMinute(minute).withSecond(0)
       val jitter = Random().nextInt(BACKUP_JITTER_WINDOW_SECONDS) - BACKUP_JITTER_WINDOW_SECONDS / 2
       next.plusSeconds(jitter.toLong())
+      next = when (SignalStore.backup().backupFrequency) {
+        BackupFrequency.DAILY -> next.plusDays(1)
+        BackupFrequency.MANUAL -> next.plusDays(365)
+        BackupFrequency.MONTHLY -> next.plusDays(30)
+        BackupFrequency.WEEKLY -> next.plusDays(7)
+      }
       if (now.isAfter(next)) {
         next = next.plusDays(1)
       }

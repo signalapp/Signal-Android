@@ -51,10 +51,10 @@ import org.signal.core.ui.SignalPreview
 import org.signal.core.ui.Snackbars
 import org.signal.core.ui.Texts
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.backup.v2.BackupFrequency
 import org.thoughtcrime.securesms.backup.v2.BackupV2Event
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsFlowActivity
-import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsFrequency
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.getTierDetails
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.conversation.v2.registerForLifecycle
@@ -132,7 +132,7 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
       viewModel.requestSnackbar(RemoteBackupsSettingsState.Snackbar.NONE)
     }
 
-    override fun onSelectBackupsFrequencyChange(newFrequency: MessageBackupsFrequency) {
+    override fun onSelectBackupsFrequencyChange(newFrequency: BackupFrequency) {
       viewModel.setBackupsFrequency(newFrequency)
     }
 
@@ -170,7 +170,7 @@ private interface ContentCallbacks {
   fun onChangeBackupFrequencyClick() = Unit
   fun onDialogDismissed() = Unit
   fun onSnackbarDismissed() = Unit
-  fun onSelectBackupsFrequencyChange(newFrequency: MessageBackupsFrequency) = Unit
+  fun onSelectBackupsFrequencyChange(newFrequency: BackupFrequency) = Unit
   fun onTurnOffAndDeleteBackupsConfirm() = Unit
 }
 
@@ -179,7 +179,7 @@ private fun RemoteBackupsSettingsContent(
   messageBackupTier: MessageBackupTier?,
   lastBackupTimestamp: Long,
   canBackUpUsingCellular: Boolean,
-  backupsFrequency: MessageBackupsFrequency,
+  backupsFrequency: BackupFrequency,
   requestedDialog: RemoteBackupsSettingsState.Dialog,
   requestedSnackbar: RemoteBackupsSettingsState.Snackbar,
   contentCallbacks: ContentCallbacks,
@@ -498,8 +498,8 @@ private fun TurnOffAndDeleteBackupsDialog(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun BackupFrequencyDialog(
-  selected: MessageBackupsFrequency,
-  onSelected: (MessageBackupsFrequency) -> Unit,
+  selected: BackupFrequency,
+  onSelected: (BackupFrequency) -> Unit,
   onDismiss: () -> Unit
 ) {
   AlertDialog(
@@ -520,12 +520,12 @@ private fun BackupFrequencyDialog(
           modifier = Modifier.padding(24.dp)
         )
 
-        MessageBackupsFrequency.values().forEach {
+        BackupFrequency.values().forEach {
           Rows.RadioRow(
             selected = selected == it,
             text = getTextForFrequency(backupsFrequency = it),
             label = when (it) {
-              MessageBackupsFrequency.NEVER -> "By tapping \"Back up now\""
+              BackupFrequency.MANUAL -> "By tapping \"Back up now\""
               else -> null
             },
             modifier = Modifier
@@ -554,12 +554,12 @@ private fun BackupFrequencyDialog(
 }
 
 @Composable
-private fun getTextForFrequency(backupsFrequency: MessageBackupsFrequency): String {
+private fun getTextForFrequency(backupsFrequency: BackupFrequency): String {
   return when (backupsFrequency) {
-    MessageBackupsFrequency.DAILY -> "Daily"
-    MessageBackupsFrequency.WEEKLY -> "Weekly"
-    MessageBackupsFrequency.MONTHLY -> "Monthly"
-    MessageBackupsFrequency.NEVER -> "Manually back up"
+    BackupFrequency.DAILY -> "Daily"
+    BackupFrequency.WEEKLY -> "Weekly"
+    BackupFrequency.MONTHLY -> "Monthly"
+    BackupFrequency.MANUAL -> "Manually back up"
   }
 }
 
@@ -571,7 +571,7 @@ private fun RemoteBackupsSettingsContentPreview() {
       messageBackupTier = null,
       lastBackupTimestamp = -1,
       canBackUpUsingCellular = false,
-      backupsFrequency = MessageBackupsFrequency.NEVER,
+      backupsFrequency = BackupFrequency.MANUAL,
       requestedDialog = RemoteBackupsSettingsState.Dialog.NONE,
       requestedSnackbar = RemoteBackupsSettingsState.Snackbar.NONE,
       contentCallbacks = object : ContentCallbacks {},
@@ -628,7 +628,7 @@ private fun TurnOffAndDeleteBackupsDialogPreview() {
 private fun BackupFrequencyDialogPreview() {
   Previews.Preview {
     BackupFrequencyDialog(
-      selected = MessageBackupsFrequency.DAILY,
+      selected = BackupFrequency.DAILY,
       onSelected = {},
       onDismiss = {}
     )

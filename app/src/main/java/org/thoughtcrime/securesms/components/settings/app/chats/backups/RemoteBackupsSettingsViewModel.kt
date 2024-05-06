@@ -8,11 +8,13 @@ package org.thoughtcrime.securesms.components.settings.app.chats.backups
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import org.thoughtcrime.securesms.backup.v2.BackupFrequency
 import org.thoughtcrime.securesms.backup.v2.BackupV2Event
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
-import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsFrequency
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.service.MessageBackupListener
 
 /**
  * ViewModel for state management of RemoteBackupsSettingsFragment
@@ -30,7 +32,8 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
         null
       },
       lastBackupTimestamp = SignalStore.backup().lastBackupTime,
-      backupSize = SignalStore.backup().totalBackupSize
+      backupSize = SignalStore.backup().totalBackupSize,
+      backupsFrequency = SignalStore.backup().backupFrequency
     )
   )
 
@@ -41,9 +44,11 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
     internalState.value = state.value.copy(canBackUpUsingCellular = canBackUpUsingCellular)
   }
 
-  fun setBackupsFrequency(backupsFrequency: MessageBackupsFrequency) {
-    // TODO [message-backups] -- Update via repository?
+  fun setBackupsFrequency(backupsFrequency: BackupFrequency) {
+    SignalStore.backup().backupFrequency = backupsFrequency
     internalState.value = state.value.copy(backupsFrequency = backupsFrequency)
+    MessageBackupListener.setNextBackupTimeToIntervalFromNow()
+    MessageBackupListener.schedule(ApplicationDependencies.getApplication())
   }
 
   fun requestDialog(dialog: RemoteBackupsSettingsState.Dialog) {

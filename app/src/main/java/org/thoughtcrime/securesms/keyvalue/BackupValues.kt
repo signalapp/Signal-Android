@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.keyvalue
 import com.fasterxml.jackson.annotation.JsonProperty
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.backup.RestoreState
+import org.thoughtcrime.securesms.backup.v2.BackupFrequency
 import org.whispersystems.signalservice.api.archive.ArchiveServiceCredential
 import org.whispersystems.signalservice.api.archive.GetArchiveCdnCredentialsResponse
 import org.whispersystems.signalservice.internal.util.JsonUtil
@@ -24,6 +25,7 @@ internal class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
 
     private const val KEY_NEXT_BACKUP_TIME = "backup.nextBackupTime"
     private const val KEY_LAST_BACKUP_TIME = "backup.lastBackupTime"
+    private const val KEY_BACKUP_FREQUENCY = "backup.backupFrequency"
 
     private const val KEY_CDN_BACKUP_DIRECTORY = "backup.cdn.directory"
     private const val KEY_CDN_BACKUP_MEDIA_DIRECTORY = "backup.cdn.mediaDirectory"
@@ -55,6 +57,7 @@ internal class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
 
   var nextBackupTime: Long by longValue(KEY_NEXT_BACKUP_TIME, -1)
   var lastBackupTime: Long by longValue(KEY_LAST_BACKUP_TIME, -1)
+  var backupFrequency: BackupFrequency by enumValue(KEY_BACKUP_FREQUENCY, BackupFrequency.MANUAL, BackupFrequency.Serializer)
 
   val totalBackupSize: Long get() = lastBackupProtoSize + usedBackupMediaSpace
 
