@@ -267,10 +267,7 @@ object RegistrationRepository {
 
       val result = (
         if (fcmToken == null) {
-          // TODO [regv2]
-          val notImplementedError = NotImplementedError()
-          Log.w(TAG, "Not yet implemented!", notImplementedError)
-          NetworkResult.ApplicationError(notImplementedError)
+          api.createRegistrationSession(null, mcc, mnc)
         } else {
           createSessionAndBlockForPushChallenge(api, fcmToken, mcc, mnc)
         }
