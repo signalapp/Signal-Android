@@ -55,7 +55,7 @@ data class CallParticipantsState(
     get() {
       val results = allRemoteParticipants.asSequence()
         .filter { it.isHandRaised }
-        .distinctBy { it.recipient }
+        .distinctBy { it.recipient.id }
         .map { GroupCallRaiseHandEvent(it.recipient, it.handRaisedTimestamp) }
         .sortedBy { it.timestamp }
         .toMutableList()
