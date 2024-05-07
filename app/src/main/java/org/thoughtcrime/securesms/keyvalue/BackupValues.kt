@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.backup.RestoreState
 import org.thoughtcrime.securesms.backup.v2.BackupFrequency
+import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.whispersystems.signalservice.api.archive.ArchiveServiceCredential
 import org.whispersystems.signalservice.api.archive.GetArchiveCdnCredentialsResponse
 import org.whispersystems.signalservice.internal.util.JsonUtil
@@ -73,6 +74,16 @@ internal class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
         .putBoolean(KEY_BACKUPS_INITIALIZED, false)
         .apply()
     }
+
+  val backupTier: MessageBackupTier? = if (areBackupsEnabled) {
+    if (canReadWriteToArchiveCdn) {
+      MessageBackupTier.PAID
+    } else {
+      MessageBackupTier.FREE
+    }
+  } else {
+    null
+  }
 
   var backupsInitialized: Boolean by booleanValue(KEY_BACKUPS_INITIALIZED, false)
 

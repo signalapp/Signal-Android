@@ -10,7 +10,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import org.thoughtcrime.securesms.backup.v2.BackupFrequency
 import org.thoughtcrime.securesms.backup.v2.BackupV2Event
-import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -22,15 +21,7 @@ import org.thoughtcrime.securesms.service.MessageBackupListener
 class RemoteBackupsSettingsViewModel : ViewModel() {
   private val internalState = mutableStateOf(
     RemoteBackupsSettingsState(
-      messageBackupsTier = if (SignalStore.backup().areBackupsEnabled) {
-        if (SignalStore.backup().canReadWriteToArchiveCdn) {
-          MessageBackupTier.PAID
-        } else {
-          MessageBackupTier.FREE
-        }
-      } else {
-        null
-      },
+      messageBackupsTier = SignalStore.backup().backupTier,
       lastBackupTimestamp = SignalStore.backup().lastBackupTime,
       backupSize = SignalStore.backup().totalBackupSize,
       backupsFrequency = SignalStore.backup().backupFrequency

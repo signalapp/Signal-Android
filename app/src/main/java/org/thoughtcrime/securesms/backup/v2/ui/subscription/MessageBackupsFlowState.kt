@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.lock.v2.PinKeyboardType
 
 data class MessageBackupsFlowState(
   val selectedMessageBackupTier: MessageBackupTier? = null,
+  val currentMessageBackupTier: MessageBackupTier? = null,
   val availableBackupTiers: List<MessageBackupTier> = emptyList(),
   val selectedPaymentGateway: GatewayResponse.Gateway? = null,
   val availablePaymentGateways: List<GatewayResponse.Gateway> = emptyList(),

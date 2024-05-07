@@ -24,7 +24,8 @@ class MessageBackupsFlowViewModel : ViewModel() {
         emptyList()
       } else {
         listOf(MessageBackupTier.FREE, MessageBackupTier.PAID)
-      }
+      },
+      selectedMessageBackupTier = SignalStore.backup().backupTier
     )
   )
 

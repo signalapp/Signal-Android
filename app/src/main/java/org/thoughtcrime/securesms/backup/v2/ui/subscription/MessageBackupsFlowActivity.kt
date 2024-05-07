@@ -57,7 +57,7 @@ class MessageBackupsFlowActivity : PassphraseRequiredActivity() {
 
         NavHost(
           navController = navController,
-          startDestination = MessageBackupsScreen.EDUCATION.name,
+          startDestination = if (state.currentMessageBackupTier == null) MessageBackupsScreen.EDUCATION.name else MessageBackupsScreen.TYPE_SELECTION.name,
           enterTransition = { slideInHorizontally(initialOffsetX = { it }) },
           exitTransition = { slideOutHorizontally(targetOffsetX = { -it }) },
           popEnterTransition = { slideInHorizontally(initialOffsetX = { -it }) },

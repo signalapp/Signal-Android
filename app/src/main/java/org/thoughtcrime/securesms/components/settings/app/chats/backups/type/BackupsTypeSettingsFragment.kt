@@ -19,23 +19,19 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.fragment.findNavController
-import kotlinx.collections.immutable.persistentListOf
 import org.signal.core.ui.Previews
 import org.signal.core.ui.Rows
 import org.signal.core.ui.Scaffolds
 import org.signal.core.ui.SignalPreview
-import org.signal.core.util.money.FiatMoney
 import org.signal.donations.PaymentSourceType
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsFlowActivity
-import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
+import org.thoughtcrime.securesms.backup.v2.ui.subscription.getTierDetails
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.viewModel
-import java.math.BigDecimal
-import java.util.Currency
 import java.util.Locale
 
 /**
@@ -87,7 +83,7 @@ private fun BackupsTypeSettingsContent(
   state: BackupsTypeSettingsState,
   contentCallbacks: ContentCallbacks
 ) {
-  if (state.backupsType == null) {
+  if (state.backupsTier == null) {
     return
   }
 
@@ -101,7 +97,7 @@ private fun BackupsTypeSettingsContent(
     ) {
       item {
         BackupsTypeRow(
-          backupsType = state.backupsType,
+          backupsTier = state.backupsTier,
           nextRenewalTimestamp = state.nextRenewalTimestamp
         )
       }
@@ -131,12 +127,16 @@ private fun BackupsTypeSettingsContent(
 
 @Composable
 private fun BackupsTypeRow(
-  backupsType: MessageBackupsType,
+  backupsTier: MessageBackupTier,
   nextRenewalTimestamp: Long
 ) {
+  val messageBackupsType = remember {
+    getTierDetails(backupsTier)
+  }
+
   val resources = LocalContext.current.resources
-  val formattedAmount = remember(backupsType.pricePerMonth) {
-    FiatMoneyUtil.format(resources, backupsType.pricePerMonth, FiatMoneyUtil.formatOptions().trimZerosAfterDecimal())
+  val formattedAmount = remember(messageBackupsType.pricePerMonth) {
+    FiatMoneyUtil.format(resources, messageBackupsType.pricePerMonth, FiatMoneyUtil.formatOptions().trimZerosAfterDecimal())
   }
 
   val renewal = remember(nextRenewalTimestamp) {
@@ -145,7 +145,7 @@ private fun BackupsTypeRow(
 
   Rows.TextRow(text = {
     Column {
-      Text(text = backupsType.title)
+      Text(text = messageBackupsType.title)
       Text(
         text = "$formattedAmount/month . Renews $renewal", // TODO [message-backups] final copy
         style = MaterialTheme.typography.bodyMedium,
@@ -186,12 +186,7 @@ private fun BackupsTypeSettingsContentPreview() {
   Previews.Preview {
     BackupsTypeSettingsContent(
       state = BackupsTypeSettingsState(
-        backupsType = MessageBackupsType(
-          tier = MessageBackupTier.PAID,
-          pricePerMonth = FiatMoney(BigDecimal.valueOf(3), Currency.getInstance("USD")),
-          title = "Text + all media",
-          features = persistentListOf()
-        )
+        backupsTier = MessageBackupTier.PAID
       ),
       contentCallbacks = object : ContentCallbacks {}
     )
