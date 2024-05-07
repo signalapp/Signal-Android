@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
+import org.thoughtcrime.securesms.jobmanager.impl.WifiConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.whispersystems.signalservice.api.NetworkResult
@@ -43,7 +44,7 @@ class BackupMessagesJob private constructor(parameters: Parameters) : BaseJob(pa
 
   constructor() : this(
     Parameters.Builder()
-      .addConstraint(NetworkConstraint.KEY)
+      .addConstraint(if (SignalStore.backup().backupWithCellular) NetworkConstraint.KEY else WifiConstraint.KEY)
       .setMaxAttempts(3)
       .setMaxInstancesForFactory(1)
       .setQueue(QUEUE)

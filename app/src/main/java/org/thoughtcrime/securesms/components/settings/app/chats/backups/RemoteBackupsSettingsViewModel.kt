@@ -31,7 +31,7 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
   val state: State<RemoteBackupsSettingsState> = internalState
 
   fun setCanBackUpUsingCellular(canBackUpUsingCellular: Boolean) {
-    // TODO [message-backups] -- Update via repository?
+    SignalStore.backup().backupWithCellular = canBackUpUsingCellular
     internalState.value = state.value.copy(canBackUpUsingCellular = canBackUpUsingCellular)
   }
 
