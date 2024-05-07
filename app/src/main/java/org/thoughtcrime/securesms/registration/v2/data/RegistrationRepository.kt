@@ -265,33 +265,31 @@ object RegistrationRepository {
       val fcmToken: String? = FcmUtil.getToken(context).orElse(null)
       val api: RegistrationApi = AccountManagerFactory.getInstance().createUnauthenticated(context, e164, SignalServiceAddress.DEFAULT_DEVICE_ID, password).registrationApi
 
-      val result = (
-        if (fcmToken == null) {
-          api.createRegistrationSession(null, mcc, mnc)
-        } else {
-          createSessionAndBlockForPushChallenge(api, fcmToken, mcc, mnc)
-        }
-        ).then { session ->
-        val sessionId = session.body.id
-        SignalStore.registrationValues().sessionId = sessionId
-        SignalStore.registrationValues().sessionE164 = e164
-        if (!session.body.allowedToRequestCode) {
-          val challenges = session.body.requestedInformation.joinToString()
-          Log.w(TAG, "Not allowed to request code! Remaining challenges: $challenges")
-          // TODO [regv2]: actually handle challenges
-        }
-        // TODO [regv2]: support other verification code [Mode] options
-        if (mode == Mode.PHONE_CALL) {
-          // TODO [regv2]
-          val notImplementedError = NotImplementedError()
-          Log.w(TAG, "Not yet implemented!", notImplementedError)
-          NetworkResult.ApplicationError(notImplementedError)
-        } else {
-          api.requestSmsVerificationCode(sessionId, Locale.getDefault(), mode.isSmsRetrieverSupported)
-        }
+      val registrationSessionResult = if (fcmToken == null) {
+        api.createRegistrationSession(null, mcc, mnc)
+      } else {
+        createSessionAndBlockForPushChallenge(api, fcmToken, mcc, mnc)
+      }
+      val session = registrationSessionResult.successOrThrow()
+      val sessionId = session.body.id
+      SignalStore.registrationValues().sessionId = sessionId
+      SignalStore.registrationValues().sessionE164 = e164
+      if (!session.body.allowedToRequestCode) {
+        val challenges = session.body.requestedInformation.joinToString()
+        Log.w(TAG, "Not allowed to request code! Remaining challenges: $challenges")
+        return@withContext VerificationCodeRequestResult.from(registrationSessionResult)
+      }
+      // TODO [regv2]: support other verification code [Mode] options
+      if (mode == Mode.PHONE_CALL) {
+        // TODO [regv2]
+        val notImplementedError = NotImplementedError()
+        Log.w(TAG, "Not yet implemented!", notImplementedError)
+        NetworkResult.ApplicationError(notImplementedError)
+      } else {
+        api.requestSmsVerificationCode(sessionId, Locale.getDefault(), mode.isSmsRetrieverSupported)
       }
 
-      return@withContext VerificationCodeRequestResult.from(result)
+      return@withContext VerificationCodeRequestResult.from(registrationSessionResult)
     }
 
   /**
@@ -300,7 +298,17 @@ object RegistrationRepository {
   suspend fun submitVerificationCode(context: Context, e164: String, password: String, sessionId: String, registrationData: RegistrationData): NetworkResult<RegistrationSessionMetadataResponse> =
     withContext(Dispatchers.IO) {
       val api: RegistrationApi = AccountManagerFactory.getInstance().createUnauthenticated(context, e164, SignalServiceAddress.DEFAULT_DEVICE_ID, password).registrationApi
-      api.verifyAccount(registrationData.code, sessionId)
+      api.verifyAccount(sessionId = sessionId, verificationCode = registrationData.code)
+    }
+
+  /**
+   * Submits the solved captcha token to the service.
+   */
+  suspend fun submitCaptchaToken(context: Context, e164: String, password: String, sessionId: String, captchaToken: String) =
+    withContext(Dispatchers.IO) {
+      val api: RegistrationApi = AccountManagerFactory.getInstance().createUnauthenticated(context, e164, SignalServiceAddress.DEFAULT_DEVICE_ID, password).registrationApi
+      val captchaSubmissionResult = api.submitCaptchaToken(sessionId = sessionId, captchaToken = captchaToken)
+      return@withContext VerificationCodeRequestResult.from(captchaSubmissionResult)
     }
 
   /**

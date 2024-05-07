@@ -29,15 +29,16 @@ import org.thoughtcrime.securesms.registration.RegistrationData
 import org.thoughtcrime.securesms.registration.RegistrationUtil
 import org.thoughtcrime.securesms.registration.v2.data.RegistrationRepository
 import org.thoughtcrime.securesms.registration.v2.data.network.BackupAuthCheckResult
+import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeRequestResult
 import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeRequestResult.AttemptsExhausted
 import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeRequestResult.ChallengeRequired
 import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeRequestResult.ExternalServiceFailure
 import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeRequestResult.ImpossibleNumber
 import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeRequestResult.InvalidTransportModeFailure
 import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeRequestResult.MalformedRequest
+import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeRequestResult.MustRetry
 import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeRequestResult.NonNormalizedNumber
 import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeRequestResult.RateLimited
-import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeRequestResult.MustRetry
 import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeRequestResult.Success
 import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeRequestResult.TokenNotAccepted
 import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeRequestResult.UnknownError
@@ -96,6 +97,15 @@ class RegistrationV2ViewModel : ViewModel() {
   fun setPhoneNumber(phoneNumber: Phonenumber.PhoneNumber?) {
     store.update {
       it.copy(phoneNumber = phoneNumber)
+    }
+  }
+
+  fun setCaptchaResponse(token: String) {
+    store.update {
+      it.copy(
+        registrationCheckpoint = RegistrationCheckpoint.CHALLENGE_COMPLETED,
+        captchaToken = token
+      )
     }
   }
 
@@ -165,36 +175,61 @@ class RegistrationV2ViewModel : ViewModel() {
 
       val codeRequestResponse = RegistrationRepository.requestSmsCode(context, e164, password, mccMncProducer.mcc, mccMncProducer.mnc)
 
-      when (codeRequestResponse) {
-        is UnknownError -> {
-          handleGenericError(codeRequestResponse.getCause())
-          return@launch
-        }
-
-        is Success -> {
-          updateFcmToken(context)
-          store.update {
-            it.copy(
-              sessionId = codeRequestResponse.sessionId,
-              nextSms = codeRequestResponse.nextSms,
-              nextCall = codeRequestResponse.nextCall,
-              registrationCheckpoint = RegistrationCheckpoint.VERIFICATION_CODE_REQUESTED
-            )
-          }
-        }
-
-        is AttemptsExhausted -> Log.w(TAG, "TODO")
-        is ChallengeRequired -> Log.w(TAG, "TODO")
-        is ImpossibleNumber -> Log.w(TAG, "TODO")
-        is NonNormalizedNumber -> Log.w(TAG, "TODO")
-        is RateLimited -> Log.w(TAG, "TODO")
-        is ExternalServiceFailure -> Log.w(TAG, "TODO")
-        is InvalidTransportModeFailure -> Log.w(TAG, "TODO")
-        is MalformedRequest -> Log.w(TAG, "TODO")
-        is MustRetry -> Log.w(TAG, "TODO")
-        is TokenNotAccepted -> Log.w(TAG, "TODO")
-      }
+      handleSessionStateResult(context, codeRequestResponse)
     }
+  }
+
+  fun submitCaptchaToken(context: Context) {
+    val e164 = getCurrentE164() ?: throw IllegalStateException("TODO")
+    val sessionId = store.value.sessionId ?: throw IllegalStateException("TODO")
+    val captchaToken = store.value.captchaToken ?: throw IllegalStateException("TODO")
+
+    viewModelScope.launch {
+      val captchaSubmissionResult = RegistrationRepository.submitCaptchaToken(context, e164, password, sessionId, captchaToken)
+
+      handleSessionStateResult(context, captchaSubmissionResult)
+    }
+  }
+
+  /**
+   * @return whether the request was successful and execution should continue
+   */
+  private suspend fun handleSessionStateResult(context: Context, sessionResult: VerificationCodeRequestResult): Boolean {
+    when (sessionResult) {
+      is UnknownError -> {
+        handleGenericError(sessionResult.getCause())
+        return false
+      }
+
+      is Success -> {
+        updateFcmToken(context)
+        store.update {
+          it.copy(
+            sessionId = sessionResult.sessionId,
+            nextSms = sessionResult.nextSms,
+            nextCall = sessionResult.nextCall,
+            registrationCheckpoint = RegistrationCheckpoint.VERIFICATION_CODE_REQUESTED
+          )
+        }
+        return true
+      }
+
+      is AttemptsExhausted -> Log.w(TAG, "TODO")
+      is ChallengeRequired -> store.update {
+        it.copy(
+          registrationCheckpoint = RegistrationCheckpoint.CHALLENGE_RECEIVED
+        )
+      }
+      is ImpossibleNumber -> Log.w(TAG, "TODO")
+      is NonNormalizedNumber -> Log.w(TAG, "TODO")
+      is RateLimited -> Log.w(TAG, "TODO")
+      is ExternalServiceFailure -> Log.w(TAG, "TODO")
+      is InvalidTransportModeFailure -> Log.w(TAG, "TODO")
+      is MalformedRequest -> Log.w(TAG, "TODO")
+      is MustRetry -> Log.w(TAG, "TODO")
+      is TokenNotAccepted -> Log.w(TAG, "TODO")
+    }
+    return false
   }
 
   private fun handleGenericError(cause: Throwable) {

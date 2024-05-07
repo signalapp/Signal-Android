@@ -215,7 +215,7 @@
 
     <fragment
         android:id="@+id/captchaV2Fragment"
-        android:name="org.thoughtcrime.securesms.registration.fragments.CaptchaFragment"
+        android:name="org.thoughtcrime.securesms.registration.v2.ui.captcha.CaptchaFragment"
         android:label="fragment_captcha"
         tools:layout="@layout/fragment_registration_captcha" />
 

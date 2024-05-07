@@ -100,10 +100,15 @@ class EnterPhoneNumberV2Fragment : LoggingFragment(R.layout.fragment_registratio
       sharedState.networkError?.let {
         presentNetworkError(it)
       }
+
       if (sharedState.registrationCheckpoint >= RegistrationCheckpoint.PHONE_NUMBER_CONFIRMED && sharedState.canSkipSms) {
         moveToEnterPinScreen()
       } else if (sharedState.registrationCheckpoint >= RegistrationCheckpoint.VERIFICATION_CODE_REQUESTED) {
         moveToVerificationEntryScreen()
+      } else if (sharedState.registrationCheckpoint >= RegistrationCheckpoint.CHALLENGE_COMPLETED) {
+        sharedViewModel.submitCaptchaToken(requireContext())
+      } else if (sharedState.registrationCheckpoint >= RegistrationCheckpoint.CHALLENGE_RECEIVED) {
+        findNavController().safeNavigate(EnterPhoneNumberV2FragmentDirections.actionRequestCaptcha())
       }
     }
 
@@ -370,18 +375,18 @@ class EnterPhoneNumberV2Fragment : LoggingFragment(R.layout.fragment_registratio
   }
 
   private fun moveToEnterPinScreen() {
-    sharedViewModel.setInProgress(false)
     findNavController().safeNavigate(EnterPhoneNumberV2FragmentDirections.actionReRegisterWithPinV2Fragment())
+    sharedViewModel.setInProgress(false)
   }
 
   private fun moveToVerificationEntryScreen() {
-    NavHostFragment.findNavController(this).safeNavigate(EnterPhoneNumberV2FragmentDirections.actionEnterVerificationCode())
+    findNavController().safeNavigate(EnterPhoneNumberV2FragmentDirections.actionEnterVerificationCode())
     sharedViewModel.setInProgress(false)
   }
 
   private fun popBackStack() {
     sharedViewModel.setRegistrationCheckpoint(RegistrationCheckpoint.INITIALIZATION)
-    NavHostFragment.findNavController(this).popBackStack()
+    findNavController().popBackStack()
   }
 
   private inner class FcmTokenRetrievedObserver : LiveDataObserverCallback<RegistrationV2State>(sharedViewModel.uiState) {

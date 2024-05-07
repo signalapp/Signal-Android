@@ -25,6 +25,7 @@ data class RegistrationV2State(
   val userSkippedReregistration: Boolean = false,
   val isFcmSupported: Boolean = false,
   val fcmToken: String? = null,
+  val captchaToken: String? = null,
   val nextSms: Long = 0L,
   val nextCall: Long = 0L,
   val registrationCheckpoint: RegistrationCheckpoint = RegistrationCheckpoint.INITIALIZATION,
