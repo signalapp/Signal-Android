@@ -59,17 +59,7 @@ open class StickerKeyboardPageFragment :
 
     val requestManager = Glide.with(this)
     stickerListAdapter = KeyboardStickerListAdapter(requestManager, this, DeviceProperties.shouldAllowApngStickerAnimation(requireContext()))
-    layoutManager = GridLayoutManager(requireContext(), 2).apply {
-      spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
-        override fun getSpanSize(position: Int): Int {
-          val model: Optional<MappingModel<*>> = stickerListAdapter.getModel(position)
-          if (model.isPresent && model.get() is KeyboardStickerListAdapter.Header) {
-            return spanCount
-          }
-          return 1
-        }
-      }
-    }
+    layoutManager = stickerListAdapter.createLayoutManager(requireContext())
     listTouchListener = StickerRolloverTouchListener(requireContext(), requestManager, this, this)
 
     stickerList = view.findViewById(R.id.sticker_keyboard_list)

@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import org.thoughtcrime.securesms.R
@@ -24,6 +25,22 @@ class KeyboardStickerListAdapter(
   init {
     registerFactory(Sticker::class.java, LayoutFactory(::StickerViewHolder, R.layout.sticker_keyboard_page_list_item))
     registerFactory(StickerHeader::class.java, LayoutFactory(::StickerHeaderViewHolder, R.layout.sticker_grid_header))
+    registerFactory(Separator::class.java, LayoutFactory(::SeparatorHolder, R.layout.sticker_grid_header))
+  }
+
+  fun createLayoutManager(context: Context): GridLayoutManager {
+    val listAdapter = this
+    return GridLayoutManager(context, 2).apply {
+      spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+        override fun getSpanSize(position: Int): Int {
+          val model = listAdapter.getModel(position)
+          if (model.isPresent && model.get() is Header) {
+            return spanCount
+          }
+          return 1
+        }
+      }
+    }
   }
 
   data class Sticker(override val packId: String, val stickerRecord: StickerRecord) : MappingModel<Sticker>, HasPackId {
@@ -82,6 +99,25 @@ class KeyboardStickerListAdapter(
 
     override fun bind(model: StickerHeader) {
       title.text = model.getTitle(context)
+    }
+  }
+
+  private class SeparatorHolder(itemView: View) : MappingViewHolder<Separator>(itemView) {
+
+    private val title: TextView = findViewById(R.id.sticker_grid_header_title)
+
+    override fun bind(model: Separator) {
+      title.text = ""
+    }
+  }
+
+  class Separator : MappingModel<Separator>, Header {
+    override fun areItemsTheSame(newItem: Separator): Boolean {
+      return true
+    }
+
+    override fun areContentsTheSame(newItem: Separator): Boolean {
+      return true
     }
   }
 

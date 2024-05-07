@@ -25,12 +25,11 @@ class StickerSearchRepository {
     }
 
     val maybeEmojiQuery: List<StickerRecord> = findStickersForEmoji(query)
-    val searchResults: List<StickerRecord> = emojiSearchTable.query(query, EMOJI_SEARCH_RESULTS_LIMIT)
-      .map { findStickersForEmoji(it) }
-      .flatten()
-      .plus(
-        StickerPackRecordReader(stickerTable.getStickerPacksByTitle(query)).readAll()
-          .map { pack -> StickerRecordReader(stickerTable.getStickersForPack(pack.packId)).readAll() }
+    val searchResults: List<StickerRecord> =
+      // Match by title first, then by emoji.
+      StickerRecordReader(stickerTable.getStickerPacksByTitle(query)).readAll()
+        .plus(emojiSearchTable.query(query, EMOJI_SEARCH_RESULTS_LIMIT)
+          .map(::findStickersForEmoji)
           .flatten())
 
     return maybeEmojiQuery + searchResults
