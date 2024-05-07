@@ -158,6 +158,7 @@ class AttachmentUploadJob private constructor(
           val remoteAttachment = messageSender.uploadAttachment(localAttachment)
           val attachment = PointerAttachment.forPointer(Optional.of(remoteAttachment), null, databaseAttachment.fastPreflightId).get()
           SignalDatabase.attachments.finalizeAttachmentAfterUpload(databaseAttachment.attachmentId, attachment, remoteAttachment.uploadTimestamp)
+          ArchiveThumbnailUploadJob.enqueueIfNecessary(databaseAttachment.attachmentId)
         }
       }
     } catch (e: NonSuccessfulResumableUploadResponseCodeException) {

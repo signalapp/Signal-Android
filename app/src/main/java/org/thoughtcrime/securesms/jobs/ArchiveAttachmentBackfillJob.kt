@@ -186,6 +186,7 @@ class ArchiveAttachmentBackfillJob private constructor(
         Log.d(TAG, "Move complete!")
 
         SignalDatabase.attachments.setArchiveTransferState(attachmentRecord.attachmentId, AttachmentTable.ArchiveTransferState.FINISHED)
+        ArchiveThumbnailUploadJob.enqueueIfNecessary(attachmentRecord.attachmentId)
         reenqueueWithIncrementedProgress()
         Result.success()
       }

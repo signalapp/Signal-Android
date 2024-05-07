@@ -408,6 +408,11 @@ public class MediaUtil {
   }
 
   @WorkerThread
+  public static @Nullable Bitmap getVideoThumbnail(@NonNull Context context, @Nullable Uri uri) {
+    return getVideoThumbnail(context, uri, 1000);
+  }
+
+  @WorkerThread
   public static @Nullable Bitmap getVideoThumbnail(@NonNull Context context, @Nullable Uri uri, long timeUs) {
     if (uri == null) {
       return null;

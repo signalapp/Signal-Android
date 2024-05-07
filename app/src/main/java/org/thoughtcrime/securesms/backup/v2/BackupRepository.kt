@@ -14,6 +14,7 @@ import org.signal.libsignal.messagebackup.MessageBackup.ValidationResult
 import org.signal.libsignal.messagebackup.MessageBackupKey
 import org.signal.libsignal.protocol.ServiceId.Aci
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
+import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
@@ -40,6 +41,7 @@ import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.StatusCodeErrorAction
 import org.whispersystems.signalservice.api.archive.ArchiveGetMediaItemsResponse
 import org.whispersystems.signalservice.api.archive.ArchiveMediaRequest
+import org.whispersystems.signalservice.api.archive.ArchiveMediaResponse
 import org.whispersystems.signalservice.api.archive.ArchiveServiceCredential
 import org.whispersystems.signalservice.api.archive.DeleteArchivedMediaRequest
 import org.whispersystems.signalservice.api.archive.GetArchiveCdnCredentialsResponse
@@ -351,15 +353,25 @@ object BackupRepository {
       }
   }
 
-  fun archiveMedia(attachment: DatabaseAttachment): NetworkResult<Unit> {
+  fun archiveThumbnail(thumbnailAttachment: Attachment, parentAttachment: DatabaseAttachment): NetworkResult<ArchiveMediaResponse> {
     val api = ApplicationDependencies.getSignalServiceAccountManager().archiveApi
     val backupKey = SignalStore.svr().getOrCreateMasterKey().deriveBackupKey()
 
     return initBackupAndFetchAuth(backupKey)
       .then { credential ->
-        api.setPublicKey(backupKey, credential)
-          .map { credential }
+        api.archiveAttachmentMedia(
+          backupKey = backupKey,
+          serviceCredential = credential,
+          item = thumbnailAttachment.toArchiveMediaRequest(parentAttachment.getThumbnailMediaName(), backupKey)
+        )
       }
+  }
+
+  fun archiveMedia(attachment: DatabaseAttachment): NetworkResult<Unit> {
+    val api = ApplicationDependencies.getSignalServiceAccountManager().archiveApi
+    val backupKey = SignalStore.svr().getOrCreateMasterKey().deriveBackupKey()
+
+    return initBackupAndFetchAuth(backupKey)
       .then { credential ->
         val mediaName = attachment.getMediaName()
         val request = attachment.toArchiveMediaRequest(mediaName, backupKey)
@@ -625,7 +637,11 @@ object BackupRepository {
     return MediaName.fromDigest(remoteDigest!!)
   }
 
-  private fun DatabaseAttachment.toArchiveMediaRequest(mediaName: MediaName, backupKey: BackupKey): ArchiveMediaRequest {
+  fun DatabaseAttachment.getThumbnailMediaName(): MediaName {
+    return MediaName.fromDigestForThumbnail(remoteDigest!!)
+  }
+
+  private fun Attachment.toArchiveMediaRequest(mediaName: MediaName, backupKey: BackupKey): ArchiveMediaRequest {
     val mediaSecrets = backupKey.deriveMediaSecrets(mediaName)
 
     return ArchiveMediaRequest(
