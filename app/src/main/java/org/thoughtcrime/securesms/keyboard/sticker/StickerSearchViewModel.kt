@@ -22,19 +22,19 @@ class StickerSearchViewModel(private val searchRepository: StickerSearchReposito
       if (sticker.isCover) {
         // This is a pack. Start with header.
         val pack = stickerTable.getStickerPack(sticker.packId)
-        if (pack != null) {
+        if (pack != null && pack.isInstalled) {
           list += KeyboardStickerListAdapter.StickerHeader(pack.packId, pack.title.orElse(null), null)
-        }
-        // Get stickers for pack.
-        StickerRecordReader(stickerTable.getStickersForPack(sticker.packId)).use {
-          var next = it.next
-          while (next != null) {
-            list += KeyboardStickerListAdapter.Sticker(next.packId, next)
-            next = it.next
+          // Get stickers for pack.
+          StickerRecordReader(stickerTable.getStickersForPack(pack.packId)).use {
+            var next = it.next
+            while (next != null) {
+              list += KeyboardStickerListAdapter.Sticker(pack.packId, next)
+              next = it.next
+            }
           }
+          // Add empty header when emoji matches reached to separate them from title matches
+          needsPackSeparator = true
         }
-        // Add empty header when emoji matches reached to separate them from title matches
-        needsPackSeparator = true
       } else {
         // This is a sticker. Add directly.
         if (needsPackSeparator) {
