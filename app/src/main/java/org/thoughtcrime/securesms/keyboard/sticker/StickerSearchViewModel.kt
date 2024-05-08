@@ -20,11 +20,9 @@ class StickerSearchViewModel(private val searchRepository: StickerSearchReposito
     val stickerTable = SignalDatabase.stickers
     for (sticker in results) {
       if (sticker.isCover) {
-        // This is a pack. Start with header.
         val pack = stickerTable.getStickerPack(sticker.packId)
         if (pack != null && pack.isInstalled) {
           list += KeyboardStickerListAdapter.StickerHeader(pack.packId, pack.title.orElse(null), null)
-          // Get stickers for pack.
           StickerRecordReader(stickerTable.getStickersForPack(pack.packId)).use {
             var next = it.next
             while (next != null) {
@@ -32,13 +30,10 @@ class StickerSearchViewModel(private val searchRepository: StickerSearchReposito
               next = it.next
             }
           }
-          // Add empty header when emoji matches reached to separate them from title matches
           needsPackSeparator = true
         }
       } else {
-        // This is a sticker. Add directly.
         if (needsPackSeparator) {
-          // Add a separator so that emoji matches don't get lumped in with the last matched pack
           list += KeyboardStickerListAdapter.Separator()
           needsPackSeparator = false
         }
